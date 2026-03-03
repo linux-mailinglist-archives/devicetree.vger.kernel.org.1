@@ -1,160 +1,160 @@
-Return-Path: <devicetree+bounces-270800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270801-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 7qXsLEdup2nrhQAAu9opvQ
-	(envelope-from <devicetree+bounces-270800-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 00:27:03 +0100
+	id KArrMcdvp2kEhgAAu9opvQ
+	(envelope-from <devicetree+bounces-270801-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 00:33:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF7781F85AC
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 00:27:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 204101F862F
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 00:33:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 3A34030298AB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 23:26:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6C126302C5FB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 23:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADB7B33F59D;
-	Tue,  3 Mar 2026 23:26:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F593537FA;
+	Tue,  3 Mar 2026 23:33:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n74hPDPB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BZEi65Fq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8864D33B6D9;
-	Tue,  3 Mar 2026 23:26:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9316117A300
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 23:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772580399; cv=none; b=eD3xIb64viEQ2qrUMFwhA/oIhkm+F645eYpLbCNhuk/kgt4zHHcfaauUJg8vlN8o919q5Ia8Hh5FrW2xHM+ThrWOKdk1TyI+OUCvxFXKfFPTQkJrueZ7TWl7PzlGzeMgWEFeC/hf2kbgps/m68kom6KSqZcztTxb30571jizBYs=
+	t=1772580804; cv=none; b=orvwWXwZIrQCYNSXTNwtwp4U/rNUY0305jv35YjuO8yK3e6b2TsZdW8Uvyg7nB5sk4adDuuW/m61jqlghWtqZs5+9gWpwjIKm4ObHAojOxpIe0csA/zFe5wJ8KphspqLkJLZfAzXcLzo3m/qgEU6aOO0AYifGUOGz7hWqkpq+BM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772580399; c=relaxed/simple;
-	bh=nFeGYlARoMmzZtAGsU/X82xVpzi4kLYOlHaX8giYd9E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EPvE0aI6alHYDEQtjXO8sBU18SLamVpIP8Vzbx5zAt02AC4XATeMUZ9Wf1xFl28ZyTdrhcPMQjM6UTREsWDOtmsE16rNM5KczeXxFIENKu1q0pBCHHXb2BypaNs3DGHOlidZ+qrMt+xuLViSdlI4HqX9fyfeyqbn+GNpcM0Rn0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n74hPDPB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D3BAC19422;
-	Tue,  3 Mar 2026 23:26:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772580399;
-	bh=nFeGYlARoMmzZtAGsU/X82xVpzi4kLYOlHaX8giYd9E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n74hPDPBnyDxll6kkWMhhUWFfbWcwH/8WRXLFMaUYgecR4gZlQ+dQw2VHF2ZhjNAa
-	 E9jLyiAa+ZjrDsvfh6sWHr4wyIfhVeKZ1zGPDiHa2FpJ4svToAB2X/fWKPhxgR3Nhq
-	 Uedh+3NceAhz4ZZrYetl8IyG86Utio2s2PVc74N1TE/hqLkj53OKVz6hQF2BJn2ZeF
-	 49JvQOQCig0vJCeroodg9zmBnAc+rJVHCWFcoRWH1nO44vwImg5Pjh+dlWx8/HdJsP
-	 q0iKLAyAPld7Rl2zhZCYRGyOJkZd/oI3sdZXGePQub3DM9MpLJWtL0YgFWMuzxnsI7
-	 GtsdiH/Gt5BsA==
-Message-ID: <dde5f82a-9ff5-4f7c-9ef9-470aad17c9d0@kernel.org>
-Date: Tue, 3 Mar 2026 23:26:33 +0000
+	s=arc-20240116; t=1772580804; c=relaxed/simple;
+	bh=fSrbO0X+3ySxw+b6KUMTuqz9PDm326zDCh5hV4ahPOc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rvvK8GEJryDZfQlEypY8qwSc/yGGnygd1snSdH87JcqLeNuCvmeC09Ou9fVd3Uy4O6amqCWwlXKJB+qlVRxnY+E2kNe+X20ESvye+r552PG6ma/XrVtwC6I5/Z7R8ZiGjJorWwDf3qzjmleFIQrqXCNx+b+GjRP09t21WZC0/Fo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BZEi65Fq; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4836f363d0dso55144285e9.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 15:33:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772580802; x=1773185602; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WNINmK1HzY8W2WXeM6TACfCUfupHIfdDHCepQJ9ZJr4=;
+        b=BZEi65FqHXFD+Fne5xRdiQxyQAVkhj/rGygxRtX7GhS0mWggict3bKIbAa7PK9SXWT
+         pd9i40sfEdMeMkq5NxRFO8+t9Shfk1hIt9LGasip+XXAn7pcRXsUlsuJ+fY1pQuY9mXq
+         oscF0xxg6nh2NFfW/zAhoFwGxn8fQB/0wd6OBbp/7N0NOwsyRChREeeChfLIf9iPFSzr
+         ZpDaFD9r6UeTHyVLWXPhZMSqClDFNeCmj2e5Vkrkp9/5Jp+TH+TEUNVLQkjLyfvnDbDK
+         EYFyQh9NY9/tJAKhScVpFo91XF0jD9DWOad2JdxVq8813ZfFxRYOgVR7UCc0URd0Z6Y9
+         cV3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772580802; x=1773185602;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WNINmK1HzY8W2WXeM6TACfCUfupHIfdDHCepQJ9ZJr4=;
+        b=HMER/KYCWvZ45srWmD3hmUlnbBhS6Md7tqgQZVF/uS7qSVLeu7dBG+FGv6mO6Wbjc3
+         a/D4TX/YglHMLNmYbv5Hvue4RaYIVh19OYV9fvETJL0alugQwT8BvfO0gfPN+3q/SIo2
+         wMvJDB87AP/2Ohc3O4dxk0u+R76kLP9v7En2NjB4sKfVXnp+IclXlLYrzP95WE1f9Pd9
+         9zyGeLp6qhXbv51tkM3oiYbhDsMYTo93Y0EOB7fJZFzHdQ0bAxFcI4GZp3CmeXv44DNZ
+         x5zWkRWbD6wz0ViVYqDyJ8s3nj6285wdwH8AfmBScW1yYlXXuN1S0k5GR9/wiXdLUO6E
+         oHVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVlDHo86LHul/clh9gfhHr3raMzzKGMBYSFO1RcAJZ/27o0dxGe8RCzeoSFFY+rk/uJXJd0uua0/LyW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5g50cDHqyv2b/4QDLlzQJKB1YuVOA65INxBx+tsIoiGZeFjj1
+	sQc7KRz0lT62v3FBZKW1bBADKrN+wE6eCdHyBxFMHP8TtIqcSMxgQDnj
+X-Gm-Gg: ATEYQzwPRGF7H3Xe2CgTGm2vYn9Lj1JevyNQmXd5N5bXVX5C05xxk/lyewOTFYFc9Vp
+	f7ozc7oMDALVjH8h1K703sok7tZFcL7gtbrqTeLFz6jVsX9UMSRKoTf1kXOYdnleHjDxD6Q6Zyw
+	obH3J+wYd4wWIQjIg+jlX/geYv3/cJVTRVgz5isH4AKhMIM/9N904L4m040O+iKKaxfIWtdwcq4
+	doQTzpN62CZwSDVza/Ib5GvRmAfrxX1crEhJyzKP3uZK05u+n67g4cRC+ix9Lj8d3G7j7KaQJiE
+	LNucOoAShdB5mJvCSuXYMCFhmT6bfbea0174vxkVGmA9XiO28A8Dt2QxsLhWZpae9kylSYGAbaq
+	/9wME708pPnswPRb5TFLl3LHZqDg2RgQ+gWUyT0A4CWbuCQGQbWfBG2p10dPqo2rGts96uFP708
+	HZGawYOsePkVwe67K6NjODPRA465+h1asoJWbm6u0KFIZaEiS0EmfzAaY1VEk9wT4udDPFctyAQ
+	iNyvFEoIFCk1vlwB8vjfjppephAe8lB/IliJg==
+X-Received: by 2002:a05:600c:6291:b0:47e:e20e:bbb0 with SMTP id 5b1f17b1804b1-48519837bbdmr1012905e9.6.1772580801762;
+        Tue, 03 Mar 2026 15:33:21 -0800 (PST)
+Received: from iku.Home ([2a06:5906:61b:2d00:30fa:3523:429c:2894])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485126705e5sm26188185e9.5.2026.03.03.15.33.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 15:33:21 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/2] Add DMA support for RSPI channels in RZ/V2H(P) and RZ/V2N SoCs
+Date: Tue,  3 Mar 2026 23:33:12 +0000
+Message-ID: <20260303233314.2928711-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260226-x1e-csi2-phy-v3-0-11e608759410@linaro.org>
- <20260226-x1e-csi2-phy-v3-1-11e608759410@linaro.org>
- <4pFL6wOeTKUt-Zq4YbjqJdacMgUIPSYJD-4-5DcIMEZ1sM7JsNFYcSv1bd7ZRVOklTsmkEfxM2b6tTflmiECNQ==@protonmail.internalid>
- <c85fe457-c140-441c-93ed-342dce32e604@oss.qualcomm.com>
- <03b44922-72d5-465b-96e1-97a19655e97d@kernel.org>
- <4440a3a8-7281-4bea-bb84-7a9d19ef7ce9@oss.qualcomm.com>
- <2a1155bd-7dc5-4ed8-b1eb-ddfa483c75ca@oss.qualcomm.com>
- <4fea7117-ebd3-4279-9973-3ac4f2a78835@linaro.org>
- <bfTUflirC2qzMSllq_4qHGr3GL6TJ088yNF4lCBtjCoc1sXqz0KcfYyWuQv6TeRtP6GdpqllNp4ipl4Qax4xwQ==@protonmail.internalid>
- <f031acf1-9a03-42f9-b61f-b6fa6bf9100b@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <f031acf1-9a03-42f9-b61f-b6fa6bf9100b@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: AF7781F85AC
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 204101F862F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270800-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270801-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FREEMAIL_TO(0.00)[glider.be,gmail.com,kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,bp.renesas.com,renesas.com];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bod@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[prabhakarcsengg@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bp.renesas.com:mid]
 X-Rspamd-Action: no action
 
-On 03/03/2026 23:17, Vijay Kumar Tumati wrote:
-> Sorry, I do not know about videocc.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I think Iris does those itself see:
+Hi All,
 
-                 iris: video-codec@aa00000 {
-                         compatible = "qcom,x1e80100-iris", 
-"qcom,sm8550-iris";
+This patch series adds DMA support for RSPI channels in Renesas RZ/V2H(P)
+and RZ/V2N SoCs.
 
-                         reg = <0 0x0aa00000 0 0xf0000>;
-                         interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
+v1->v2:
+- Added all the possible DMA channels
 
-                         power-domains = <&videocc VIDEO_CC_MVS0C_GDSC>,
-                                         <&videocc VIDEO_CC_MVS0_GDSC>,
-                                         <&rpmhpd RPMHPD_MXC>,
-                                         <&rpmhpd RPMHPD_MMCX>;
-                         power-domain-names = "venus",
-                                              "vcodec0",
-                                              "mxc",
-                                              "mmcx";
+Cheers,
+Prabhakar
 
-Still not getting an especially clear picture on what _levels_ you are 
-proposing here for MXA - here are the three opps we have for the PHY.
+Lad Prabhakar (2):
+  arm64: dts: renesas: r9a09g056: Add DMA support for RSPI channels
+  arm64: dts: renesas: r9a09g057: Add DMA support for RSPI channels
 
-Sorry I don't get how turbo is coming into this ..
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi | 21 +++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 21 +++++++++++++++++++++
+ 2 files changed, 42 insertions(+)
 
-+    csiphy_opp_table: opp-table-csiphy {
-+        compatible = "operating-points-v2";
-+
-+        opp-300000000 {
-+            opp-hz = /bits/ 64 <300000000>;
-+            required-opps = <&rpmhpd_opp_low_svs_d1>;
-+        };
-+
-+        opp-400000000 {
-+            opp-hz = /bits/ 64 <400000000>;
-+            required-opps = <&rpmhpd_opp_low_svs>;
-+        };
-+
-+        opp-480000000 {
-+            opp-hz = /bits/ 64 <480000000>;
-+            required-opps = <&rpmhpd_opp_low_svs>;
-+        };
-+    };
+-- 
+2.53.0
 
----
-bod
 
