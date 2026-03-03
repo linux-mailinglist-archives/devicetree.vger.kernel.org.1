@@ -1,189 +1,206 @@
-Return-Path: <devicetree+bounces-270288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270289-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLWPElN4pmnxQAAAu9opvQ
-	(envelope-from <devicetree+bounces-270288-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 06:57:39 +0100
+	id 6LYSOiR8pmmuQQAAu9opvQ
+	(envelope-from <devicetree+bounces-270289-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:13:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B75E21E95C8
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 06:57:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46DE61E96C7
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 94894300C811
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 05:57:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 86055301F99A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09C230F95C;
-	Tue,  3 Mar 2026 05:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB4A375AD6;
+	Tue,  3 Mar 2026 06:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wi6bop3J"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dihq27W7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640642F6920
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 05:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.54
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772517455; cv=pass; b=u9THZ3s/jHjUNV/ysBPByBbqGhHJ+bBRG4u2VQyZI3FKZ/5Kk9mP5HS517wQUIEF1jihx04AtBtecOQ0FoedDNwbatdyUqAZ2LQEwi+dmbFqm+0NyabwVldQM55nXnKr/Jjgt3fy5IQ905pEoEaKHPx2aGhxp9QBzqrvKg9kKhE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772517455; c=relaxed/simple;
-	bh=xSqRiRO4QtdJPUtYtBkRw+9iQGBfoCjVp65Ni/N9uGc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o+uG5oietU4HdEsIaZ+sD2Ew9G8PcbHhFkgY4M9AgOEo+pHrXF96/8JthdjlEah38YvaK5kh7hWbeiatGy0pWqZw4HTRAgepw8k3FG7WRQeV3q63/JVSQfQZTckvXyqSWHU2hICp95TdGiuf6llZx4Jy1LotlXuqhCDqTU7shd4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wi6bop3J; arc=pass smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-439b9b190easo1009710f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 21:57:34 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772517453; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Vbpul1Mg9+gxwU/eAVXbPQoL4KISv9zWUKzlYkst6VZp88gMPpA8piyCxUU9Xke0xY
-         waFvl/dvLTsw9PVLd6b0ozeA4tSWQy/rNQz2koNrFMjzGTc/0K61Lhp65z7C54px1Y9N
-         BoyXtfOLFyl2eUYs96H1sMpV9P3O1wz+3Upy1pMAH48NLPCixm3zf7HEo6eDf5sf17Lz
-         MOeEmrHR7Vn1Fiq/jJPIBCOzVrj8di1Xf568yXjMMGMX53+2Xu4g8YQvLwM7Y+4Fz3sS
-         rXi8eGv/JOgNevofpnuVlP1F/gtWw+2s+lY9jw/70CSGSqUt4lV3a/dm4CAyugORsK66
-         UGiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=pX0VLINMz6A6FQc/U8nBqp0XlDLDKfuR77NNnYDj7+w=;
-        fh=4BguhkwBM3w7TXRBTw8U4eOqjLK0nAMWlYpNKyamVWk=;
-        b=PdojWUuK9nG0xBHnTpq/Ag2c09UfUw+C9caQhUT1KcUeQ+tsDGHP9b66JwYDlDtoIf
-         aTrVkJBJgA0YQYROz2Gu7aHukpR8sCfXUg0eN8LIAQ2WAq13GyHObIZhcquFKYo9z/bc
-         m/+VeO5B2IF1UjGPdbIBdkbU1IzCqs3+LC7ofMaa906fTb2NRMmIMOjNy4IsVgdmn8dD
-         roIW9zaFwsmmAeYQV5voJimJDFRSx7nSXBAumkCnMHrF9tci1OoL3ZT3XRQ9TQX1YtIe
-         OX+hzO6AcLQcPSQv6w72GH3IEgXstI8KFbBvgnvEYOcq+zDSvKhMML4CdJLlXKPMFTSv
-         hr0w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A899C36DA04
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 06:13:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772518427; cv=none; b=cQ4euLR8Px1qKWpjFNkcud4TH/3yfkTjjbdyE5FBD1z+d/lC2Rklxe3DVy49NmColZAWvC2Uk5ptuTyx5i4mkNIiMy4RR129ealANdefrpHvRGCk2MxOpDNktW9YyX+7mLTQHMCsiUzhbCNoINSb6QaLqoCyQUJxJAzZWDb66OM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772518427; c=relaxed/simple;
+	bh=wSdJCNEcRSpLA7NqxRp95eZD0EaV2U7w5ovgw1r/V+E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MTm7pc6M62966gRRhq1t2h71WHiSIojMCHGMh10d+Z/6iM8x9e89h47+HipKZlJKSwR2dD6PaWw8XEW9h6gJAOVLAZD+lJ7ygmXDsDH/IeL2/JG5NJ/AH1mDVERLWYfpUHrN/dTvSmaEPRyR0CBqgthm6QWok0agHHecV4TZNJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dihq27W7; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2ae5636ab04so16335335ad.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 22:13:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772517453; x=1773122253; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pX0VLINMz6A6FQc/U8nBqp0XlDLDKfuR77NNnYDj7+w=;
-        b=Wi6bop3J5w7p3PqFEPU2zYhjy/7jg5d/zsNNVVNNF877HFdkivFYvCuqTxjIB3kn9l
-         7FOYzTGvDAmsu6kVLvUaDQZk+ZolgT994kssbAEXVXcsIg5BbR2Q9E2cq7pN3K3ml5MQ
-         owLJPu6zhbzO+PtwzICrD9lLMrjlgYUAHEkPwZxSrwHzAG3zGsMkqXfZm2HL7GNJ3ry8
-         duEb80TBVr0FJZ97Zukl7ifV7vZyEnxFQlMJtYrwxzgFx+Mr8G9Hk+q9l1Cjm8ClDBiR
-         xTl2WwiUZxOWOGvqv3Nz9adWMpfOeTE/eds94YTRmjPV3gdXCt7iQac9bcggt6Wnof3V
-         8GKA==
+        d=chromium.org; s=google; t=1772518425; x=1773123225; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VUnwHAHVUtkTlajQSql9yZcRD1MLD9k9rKTQHvdToZs=;
+        b=dihq27W7M+QYvEUMNaZAnfn8oi/CBE2ERA9Yg6VszunmTsEiG/h2f4tqLUOFANK/Wl
+         GVUlTR4wNwi3EBJx3Ixkv8Y2zyBuEvEBSOMDAKByWpvGAyXBVfoyNKWEyycOEgXDXQ5g
+         TKp+A8cDbyes9OZ0rrHrD6fwRuIk30oPQ8qCI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772517453; x=1773122253;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=pX0VLINMz6A6FQc/U8nBqp0XlDLDKfuR77NNnYDj7+w=;
-        b=lg14u9n9RAkFYyTkKIC6yUVJBb0gzROW9bZ4NL9uDFVzZLeUuU74NQNG7oBjOxWZwf
-         ZdfobdTmtC0k7kfdtMYwS73/VtqKMNq+yxJfQNYtdfpVNj6ABkCrnJcDNNEOAlt3QHOX
-         MK498/x72+xfVj/viqU/aPHaPMinkDYWhNqWb7p8jrGFTiWkj/4fCMxl/gSbIw6LrVvG
-         CCgLrN/JXYagDIqZMRVNK78qTqiD+xFpBrODQSkQ3i7QwlcuBJ8tAVlf+WlmoGXp9Ipx
-         znSney7PexvzqvD5OsgSHgnKUWu59soNWqGxhKn6rKwRC2Swm5G0LHAV1UjlBDaNVjRF
-         bFfA==
-X-Forwarded-Encrypted: i=1; AJvYcCWzHLb5GF0LO00lC8e+Xf4yoCKEAX+QYk6sl5cgg+XL9RV7rub5SwWOykhNSDotcHaRaA7eVRIre42q@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGpnAJttT2CFISQgL9Sx420DY00v6o4iWon1Uy6vQOg/Y9R9hO
-	fOJxWuQ2M5T9s4JPwYBFk+4VjWk0r0d5damrg+x5YxmRevv/mesKa18ht1o9be5TuRptFfmtqfd
-	VMEykTXHCw5F4o5ZpsWCboa6Qk6/vO2I=
-X-Gm-Gg: ATEYQzx/TiuijQCMoHxkp3w0vFP+mBUKbzARdylBx5B66WG6ijcxZjFWSVZFVUvfktO
-	qtG+x1wQd0Pu0C+Doj4HSKWHfKDV0E9KHsOpRVGEJFjRdTZ8MfSn9ZjF2pCEsM6rde+a4SxNRXR
-	+o4rnhUywFyl5q95buQmIFiasGgKFLgUWINkG+e4trKWj6w6YzIHdUltkQrB4Vgxtp9NTt0V5N5
-	LvqI8pzn10jdna0bmUtVXW63NR94Rj7lRkYkyTnmziYLHLixr8QpPs6W5df++9ISfElY+TrlPTA
-	exWBADDIcvvE17EBqEAvKtCeJg/RjQLRiL43JEc=
-X-Received: by 2002:a05:6000:2001:b0:439:b4c9:9061 with SMTP id
- ffacd0b85a97d-439b4c99198mr13341273f8f.5.1772517452685; Mon, 02 Mar 2026
- 21:57:32 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772518425; x=1773123225;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VUnwHAHVUtkTlajQSql9yZcRD1MLD9k9rKTQHvdToZs=;
+        b=gITcrUtbcyTsnQfXhps7LIt6fChc8QNLardlk1mnjKARHDTmjk3ZxhPMEOt9JV9wVj
+         aWKJ/HTWOoJP4ALx3E79gknHe07fuujKquMIApVhhDvMMAA1slClgaP09lCzifCUw0Lm
+         sfMCYJDWxSeDy5CZ9uQchesZvHRtHQw2r+Kj6lhRZ6x0Ipm2UCK0/qqmBqG881DJ4FIp
+         9YdjUpgH8ej3zkik8Ni7ts3HQli8lAHvb346AnOLH9qW4bKq+yn9NfCU4WacFX4odQKX
+         7NJ9Vw6fCMgTgf6tDTVP+l91X4fKqxhHFruSi3va4LnaTc3/UnhpBjcehOG/EZx3OxTt
+         ltjw==
+X-Forwarded-Encrypted: i=1; AJvYcCVxobm9mGnqttJX7Cs2WXJsgkhvRJJAl4Bne2cdlQWM/uTGQqc16qjCGVbTMbioEaoz8zv14nJmcBIl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxv1ZwgwECXS4t4hxS2GBDznJmiWp/BUMVCjx7sQ3JlKoI2xblW
+	XDNBmhuZGT3GaYMb7Rri8qcPaxQOmHjKLnXlev0bIBtMTi+kJ+22cWGW8qPbsLC52tI5stHekA4
+	b6QY=
+X-Gm-Gg: ATEYQzz1yaOcN1BpIg1EbW/jWvmrdtNRRDBumjtfdcEerrtuRKPPLu+WZxhePgl8Jv3
+	T2R1jYcRUgkr+1ssD6J9gpF2fKAUlHKv8sJ8CEWgEaCentOFnSaWM7iQGoBdPAke/xnKmKAiZeH
+	4KlknxwzvkvjA2DACAsYbV6LVmthnTtS4Dgu6ahur2yUPf0PtIStaBc9A+GSCiQ7bYc5NengSqF
+	GcTM/XkUBB/btNEBpBul/M+iSyQY/uxjw+lkLq/cb+IixWbi2T3MI3Cd37vX8Jcoki01TBaaoLz
+	lWxZbH8Frv1XwpASjcCBhlwdAQXigeG0RRyy3pu2Bd6M4JDDYqQFP6BIyj04xjXKnlvfXeCQ9yR
+	Os1G7xIaOtQyK008U0Wyhc3qD+hfRDlocGug7YfkeqKGJ6GxAtqwwNVOGuY6i+SdlgwMuWtLNnD
+	Osclfm4I2thBxi49/v5on9bmqHitTZBlqTYk4cnGp2zoc8F8h4zMRNqttLRnj6J0z+UWMHqpiq2
+	CTfwkvi8GpDjKYF3A0NsLaWoqpatlW1sQ==
+X-Received: by 2002:a17:902:f70f:b0:2ae:5a21:f7ee with SMTP id d9443c01a7336-2ae5a21fa6fmr37483595ad.0.1772518425479;
+        Mon, 02 Mar 2026 22:13:45 -0800 (PST)
+Received: from jingyliang-input-linux.c.googlers.com (111.169.168.34.bc.googleusercontent.com. [34.168.169.111])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb6fe4f3sm152639735ad.91.2026.03.02.22.13.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Mar 2026 22:13:44 -0800 (PST)
+From: Jingyuan Liang <jingyliang@chromium.org>
+Subject: [PATCH 00/12] Add spi-hid transport driver
+Date: Tue, 03 Mar 2026 06:12:52 +0000
+Message-Id: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260228205418.2944620-1-dennis@ausil.us> <20260228205418.2944620-3-dennis@ausil.us>
-In-Reply-To: <20260228205418.2944620-3-dennis@ausil.us>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Mon, 2 Mar 2026 23:57:21 -0600
-X-Gm-Features: AaiRm52w2RMmTSSLdZHxtEjWYjj6N6MGUqWIzppOn89hLbAKT7zZ6KSUnyUL9Z4
-Message-ID: <CALWfF7LZV07x7zAgufE_aa58s7x6e_ODAM2LgZqjbEakDticpA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
-To: dennis@ausil.us
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Hsun Lai <i@chainsx.cn>, Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	John Clark <inindev@gmail.com>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Andrew Lunn <andrew@lunn.ch>, 
-	Alexey Charkov <alchark@gmail.com>, Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: B75E21E95C8
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOR7pmkC/x3MQQ5AMBBG4avIrDWpSZC6iliI/mUWSjqIRNxdY
+ /kt3ntIkQRKXfFQwiUqW8yoyoKmZYwzjPhsYsuN5YqNInpz7nokjKtp69AE7+Adg3KzJwS5/18
+ /vO8H6J83h18AAAA=
+X-Change-ID: 20260212-send-upstream-75f6fd9ed92e
+To: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Mark Brown <broonie@kernel.org>, 
+ Steven Rostedt <rostedt@goodmis.org>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, 
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ hbarnor@chromium.org, Jingyuan Liang <jingyliang@chromium.org>, 
+ Jarrett Schultz <jaschultz@microsoft.com>, 
+ Dmitry Antipov <dmanti@microsoft.com>, Angela Czubak <acz@semihalf.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772518424; l=2786;
+ i=jingyliang@chromium.org; s=20260213; h=from:subject:message-id;
+ bh=wSdJCNEcRSpLA7NqxRp95eZD0EaV2U7w5ovgw1r/V+E=;
+ b=ZiBezP9vXWQWUH4xJexyE2fSowbVOByYok8M/4ZB3IOWkh60Ktwg63v7/f43RkdINRwEM6e0Y
+ twvbFrczErzD1aGZ5lqUJLsWtx9uFpEEmLogAK8K6CvDRUR2TuWLffa
+X-Developer-Key: i=jingyliang@chromium.org; a=ed25519;
+ pk=VTYSdqslTtYOjWWoIGgYoWupGWqNSidrggReKMgfPo4=
+X-Rspamd-Queue-Id: 46DE61E96C7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
+	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270288-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270289-lists,devicetree=lfdr.de];
+	URIBL_MULTI_FAIL(0.00)[chromium.org:server fail,sea.lore.kernel.org:server fail];
+	FREEMAIL_TO(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,gmail.com,rootcommit.com,cherry.de,lunn.ch,vger.kernel.org,lists.infradead.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[honyuenkwun@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[jingyliang@chromium.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[chromium.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid,ausil.us:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Dennis,
+This series picks up the spi-hid driver work originally started by
+Microsoft. The patch breakdown has been modified and the implementation has
+been refactored to address upstream feedback and testing issues. We are
+submitting this as a new series while keeping the original sign-off
+chain to reflect the history.
 
-Some curiosities below,
+Same as the original series, there is a change to HID documentation, some
+HID core changes to support a SPI device, the SPI HID transport driver,
+and HID over SPI Device Tree binding. We have added the HID over SPI ACPI
+support, power management, panel follower, and quirks for Ilitek touch
+controllers.
 
-On Sat, Feb 28, 2026 at 2:54=E2=80=AFPM <dennis@ausil.us> wrote:
-<snip>
-> +
-> +       /* Pro uses gpio-leds instead; pwm0 LED is not wired up */
-> +       /delete-node/ pwm-leds;
-<snip>
-> +
-> +       gpio-leds {
-> +               compatible =3D "gpio-leds";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&leds_rgb>;
-> +
-> +               blue-led {
-> +                       color =3D <LED_COLOR_ID_BLUE>;
-> +                       function =3D LED_FUNCTION_STATUS;
-> +                       gpios =3D <&gpio1 RK_PC6 GPIO_ACTIVE_HIGH>;
-How come you decided gpio-leds instead of pwm-leds for this? GPIO1 C6
-is muxed with PWM15_IR_M2
-> +                       linux,default-trigger =3D "heartbeat";
-> +               };
-> +
-> +               green-led {
-> +                       color =3D <LED_COLOR_ID_GREEN>;
-> +                       function =3D LED_FUNCTION_ACTIVITY;
-> +                       gpios =3D <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-How come you decided gpio-leds instead of pwm-leds for this? GPIO1 C2
-is muxed with PWM3_IR_M2.
-> +                       linux,default-trigger =3D "mmc0";
-> +               };
-> +       };
+Original authors: Jarrett Schultz <jaschultz@microsoft.com>,
+		  Dmitry Antipov <dmanti@microsoft.com>
+Link: https://lore.kernel.org/r/86b63b7b-afda-d7f4-7bfa-175085d5a8ef@gmail.com
 
-Jimmy
+Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
+---
+Angela Czubak (2):
+      HID: spi-hid: add transport driver skeleton for HID over SPI bus
+      HID: spi_hid: add ACPI support for SPI over HID
+
+Jarrett Schultz (3):
+      Documentation: Correction in HID output_report callback description.
+      HID: Add BUS_SPI support and define HID_SPI_DEVICE macro
+      HID: spi_hid: add device tree support for SPI over HID
+
+Jingyuan Liang (7):
+      HID: spi-hid: add spi-hid driver HID layer
+      HID: spi-hid: add HID SPI protocol implementation
+      HID: spi_hid: add spi_hid traces
+      dt-bindings: input: Document hid-over-spi DT schema
+      HID: spi-hid: add power management implementation
+      HID: spi-hid: add panel follower support
+      HID: spi-hid: add quirkis to support mode switch for Ilitek touch
+
+ .../devicetree/bindings/input/hid-over-spi.yaml    |  153 ++
+ Documentation/hid/hid-transport.rst                |    4 +-
+ drivers/hid/Kconfig                                |    2 +
+ drivers/hid/Makefile                               |    2 +
+ drivers/hid/hid-core.c                             |    3 +
+ drivers/hid/spi-hid/Kconfig                        |   45 +
+ drivers/hid/spi-hid/Makefile                       |   11 +
+ drivers/hid/spi-hid/spi-hid-acpi.c                 |  254 ++++
+ drivers/hid/spi-hid/spi-hid-core.c                 | 1493 ++++++++++++++++++++
+ drivers/hid/spi-hid/spi-hid-core.h                 |   94 ++
+ drivers/hid/spi-hid/spi-hid-of.c                   |  244 ++++
+ drivers/hid/spi-hid/spi-hid.h                      |   51 +
+ include/linux/hid.h                                |    2 +
+ include/trace/events/spi_hid.h                     |  156 ++
+ 14 files changed, 2512 insertions(+), 2 deletions(-)
+---
+base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
+change-id: 20260212-send-upstream-75f6fd9ed92e
+
+Best regards,
+-- 
+Jingyuan Liang <jingyliang@chromium.org>
+
 
