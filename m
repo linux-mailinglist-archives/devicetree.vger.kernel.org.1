@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-270615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270616-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UHHuJwMEp2k7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270615-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:53:39 +0100
+	id qPqcAQYEp2k7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270616-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:53:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 066011F2FE0
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:53:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C691F2FE7
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:53:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DA8C301113E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:51:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3DCFC30151E4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:51:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3643E7158;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE820492187;
 	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvLhGrVT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXZQJ5cH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A84D3CB2CE;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7BD3EB80A;
 	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772553062; cv=none; b=GgMf1gPOgXQfHSOfpNVigzH2WZixazj1KUPwy/3hAo26RgYGesK92j7FIYfjvJT6X6mMscmeY1qpsyB24jNuJeLp8Jp/kTAGHt8V098JzHf0KqerXJ4URtnJzIfaozwaOp66QTkevBv2OyKGOfD7jz6Q2g0+D5/oPCcdXMQVECU=
+	t=1772553062; cv=none; b=aaeOAWdZTa2V8gAMgLrwu8YVF+OkD8Smf8X0qsCxJD5BEIipyteq9XNI3HInGUmyAkerEcgxISvDHwhq2DUXFazAePoqBjLm9FKA7GYXSIBEdIhTPxoYr8tO5nq4s6z8BYpAdZvqTbe62gI9/NsXPeqkfc+vlIzZ/bu1XHUw++k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772553062; c=relaxed/simple;
-	bh=79m/nJ/QDMP8KLr5bX+4nacC2eKgzRySRWsaV7zH+GM=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EQRhVqBxQlySLzvHJOSxWO2p4iySL2ADypeklmKu2s5hopS6nfxc9/2bF8MtIRJkyMB4GbNKg+RW6s/a0DwnjlZHKdzMvH0wgqvtJZqRoy2p9R+aZ8GwbFbYraibkt7nxGfdPbKcM4GbBSYwqZHTl8uWBEw32IKwJsovsp5D8Tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvLhGrVT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4F80BC19422;
+	bh=OOfjCSWCBhLL6glOZ14lpz0laPBiOBBCOoLk3MYrsHE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=qynR/ts151vAJYPsWMRWmFCk1o0kW7RE6Xjh88Fx1hYPVxJKFtszhlR3ausgJVk9G4y7s40lR7cpVzo3ln2YNimnqff14K1xbUf+kDilTxj41iQYtg0or8b65cPsfCx/YjUNkjjXc/KKGujmlsamNMKGfPee1CZBYeKkIh67rhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DXZQJ5cH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 59839C2BC9E;
 	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1772553062;
-	bh=79m/nJ/QDMP8KLr5bX+4nacC2eKgzRySRWsaV7zH+GM=;
-	h=From:Subject:Date:To:Cc:Reply-To:From;
-	b=fvLhGrVTUoKflqESHQQVMzU2LPTVN0i5gxbPA3D71X7sPFycd5zSIHa6GuxhCc8da
-	 yWCmJh3/EP4ObpSLW21ShzenPXlXUdGM27GvLcyfje/alAkndorPfGMBhTjKEHr51M
-	 fKx1ewYyEsJyD+HX/ZnGWAuLGFxGCNe6266pR/uYXkHvl7aWs01H/9aS7CIrDvKjIB
-	 SIvxlYbBdOew18yfmdH2KIa3iQFcc/7qsxCnKFTiVt85LtWz0m5UFMose/poisoreK
-	 /dKJV0tEIlhI7DBAgaPuKcXGyqNbUa7ihHafadB9IvfgDJE18rrJca0N902lMaFMpo
-	 KLlQaANi5Khig==
+	bh=OOfjCSWCBhLL6glOZ14lpz0laPBiOBBCOoLk3MYrsHE=;
+	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+	b=DXZQJ5cH8yskb4VzrXiffPof5jSqzIdgna1z4tKpAmLPDdI57YwML38sVq+AD9EF+
+	 AA8cWSF69ToPBs33qrX6XmeeaGzAcBEuZ0tuNkJY53gaMic+uy4QUAY89bKObjsjB4
+	 kFJt5rKaxuEsyG8ACFBtIG47jfSyju1SirPc1jI4lehMQHegjA+gPvHLHVw6f1Un6g
+	 1SzbYIydSDH5/fMOCkCbspTnyKT39pr4rgHjF6OUK5ZGsakL5IHdvO60t/9B/UJFrF
+	 lXexUSaYB+2/+T/yYSOlX9X1cjpJFuX267GLWX2PShse7MNKHgPUZLXgDBYHWpXLSt
+	 Dyy2t+Gyv6huA==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 30D47EDA68F;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 47DD4EDA690;
 	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
 From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Subject: [PATCH RESEND v2 0/5] PowerPC: A few cleanups in MPC83xx
- devicetrees
-Date: Tue, 03 Mar 2026 16:50:50 +0100
-Message-Id: <20260303-mpc83xx-cleanup-v2-0-187d3a13effa@posteo.net>
+Date: Tue, 03 Mar 2026 16:50:51 +0100
+Subject: [PATCH RESEND v2 1/5] powerpc: dts: mpc8313erdb: Use IRQ_TYPE_*
+ macros
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,6 +59,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20260303-mpc83xx-cleanup-v2-1-187d3a13effa@posteo.net>
+References: <20260303-mpc83xx-cleanup-v2-0-187d3a13effa@posteo.net>
+In-Reply-To: <20260303-mpc83xx-cleanup-v2-0-187d3a13effa@posteo.net>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Madhavan Srinivasan <maddy@linux.ibm.com>, 
@@ -68,29 +71,29 @@ Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
  linux-kernel@vger.kernel.org, 
  =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772553061; l=1655;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772553061; l=7074;
  i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=79m/nJ/QDMP8KLr5bX+4nacC2eKgzRySRWsaV7zH+GM=;
- b=zrNwdxzIbYzU/MGAyY0HR5Ici/8ZnZZKhC/bkSy+egATOEhlLVs9Q8qIji2hiK+Duui3GPCGi
- 0UMAJUK79SjD43EpU71/2yC+3eOnMXb+/fK9RPUc0p7Xbco4jcxUGsh
+ bh=YzhWn94y98dBRxKxgWEVSW5w8DI1UwZxNQXS2Dk695w=;
+ b=lxmKBmmvoVxyb8eJ7fJGcmPqc7GkjPC2Ez/uv7MxhX4Kd3Z0gxmilQ+7WK0uEnXj9Nq+zqE7O
+ cs7ydD+DqwAB1UvQpSFmEwqg8LAlOA2GD5lqCQTtU099kBM4Ztci1Fr
 X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
  pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
 X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
  auth_id=156
 X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
 Reply-To: j.ne@posteo.net
-X-Rspamd-Queue-Id: 066011F2FE0
+X-Rspamd-Queue-Id: 55C691F2FE7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270615-lists,devicetree=lfdr.de,j.ne.posteo.net];
+	TAGGED_FROM(0.00)[bounces-270616-lists,devicetree=lfdr.de,j.ne.posteo.net];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -108,47 +111,243 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	HAS_REPLYTO(0.00)[j.ne@posteo.net];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.net:replyto,posteo.net:email,posteo.net:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-This series contains a few cleanups for mpc8315erdb.dts and other
-PowerPC devicetrees, which are hopefully uncontroversial.
+From: "J. Neuschäfer" <j.ne@posteo.net>
 
-Some of the patches were previously part of another, larger series,
-titled "powerpc: MPC83xx cleanup and LANCOM NWAPP2 board", but that
-series became too unwieldy to carry on. For this reason, this series
-starts at version 2.
+This increases readability, because "0x8" isn't very descriptive.
+
+mpc8313erdb.dtb remains identical after this patch.
 
 Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 ---
-J. Neuschäfer (5):
-      powerpc: dts: mpc8313erdb: Use IRQ_TYPE_* macros
-      powerpc: dts: mpc8315erdb: Use IRQ_TYPE_* macros
-      powerpc: dts: mpc8315erdb: Rename LED nodes to comply with schema
-      powerpc: dts: mpc8315erdb: Add missing #cells properties to SPI bus
-      powerpc: dts: mpc83xx: Add unit addresses to /memory
+ arch/powerpc/boot/dts/mpc8313erdb.dts | 59 ++++++++++++++++++++---------------
+ 1 file changed, 34 insertions(+), 25 deletions(-)
 
- arch/powerpc/boot/dts/asp834x-redboot.dts |   2 +-
- arch/powerpc/boot/dts/mpc8308_p1m.dts     |   2 +-
- arch/powerpc/boot/dts/mpc8308rdb.dts      |   2 +-
- arch/powerpc/boot/dts/mpc8313erdb.dts     |  61 ++++++++-------
- arch/powerpc/boot/dts/mpc8315erdb.dts     | 119 ++++++++++++++++--------------
- arch/powerpc/boot/dts/mpc832x_rdb.dts     |   2 +-
- arch/powerpc/boot/dts/mpc8349emitx.dts    |   2 +-
- arch/powerpc/boot/dts/mpc8349emitxgp.dts  |   2 +-
- arch/powerpc/boot/dts/mpc8377_rdb.dts     |   2 +-
- arch/powerpc/boot/dts/mpc8377_wlan.dts    |   2 +-
- arch/powerpc/boot/dts/mpc8378_rdb.dts     |   2 +-
- arch/powerpc/boot/dts/mpc8379_rdb.dts     |   2 +-
- 12 files changed, 109 insertions(+), 91 deletions(-)
----
-base-commit: d3f2d8e7de622d2a2d4283cb545e51745d87f0c5
-change-id: 20260101-mpc83xx-cleanup-4de8df290c75
+diff --git a/arch/powerpc/boot/dts/mpc8313erdb.dts b/arch/powerpc/boot/dts/mpc8313erdb.dts
+index 09508b4c8c7309..137217d377e91b 100644
+--- a/arch/powerpc/boot/dts/mpc8313erdb.dts
++++ b/arch/powerpc/boot/dts/mpc8313erdb.dts
+@@ -6,6 +6,7 @@
+  */
+ 
+ /dts-v1/;
++#include <dt-bindings/interrupt-controller/irq.h>
+ 
+ / {
+ 	model = "MPC8313ERDB";
+@@ -48,7 +49,7 @@ localbus@e0005000 {
+ 		#size-cells = <1>;
+ 		compatible = "fsl,mpc8313-elbc", "fsl,elbc", "simple-bus";
+ 		reg = <0xe0005000 0x1000>;
+-		interrupts = <77 0x8>;
++		interrupts = <77 IRQ_TYPE_LEVEL_LOW>;
+ 		interrupt-parent = <&ipic>;
+ 
+ 		// CS0 and CS1 are swapped when
+@@ -118,7 +119,7 @@ i2c@3000 {
+ 				cell-index = <0>;
+ 				compatible = "fsl-i2c";
+ 				reg = <0x3000 0x100>;
+-				interrupts = <14 0x8>;
++				interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
+ 				interrupt-parent = <&ipic>;
+ 				dfsrr;
+ 				rtc@68 {
+@@ -131,7 +132,7 @@ crypto@30000 {
+ 				compatible = "fsl,sec2.2", "fsl,sec2.1",
+ 				             "fsl,sec2.0";
+ 				reg = <0x30000 0x10000>;
+-				interrupts = <11 0x8>;
++				interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+ 				interrupt-parent = <&ipic>;
+ 				fsl,num-channels = <1>;
+ 				fsl,channel-fifo-len = <24>;
+@@ -146,7 +147,7 @@ i2c@3100 {
+ 			cell-index = <1>;
+ 			compatible = "fsl-i2c";
+ 			reg = <0x3100 0x100>;
+-			interrupts = <15 0x8>;
++			interrupts = <15 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 			dfsrr;
+ 		};
+@@ -155,7 +156,7 @@ spi@7000 {
+ 			cell-index = <0>;
+ 			compatible = "fsl,spi";
+ 			reg = <0x7000 0x1000>;
+-			interrupts = <16 0x8>;
++			interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 			mode = "cpu";
+ 		};
+@@ -167,7 +168,7 @@ usb@23000 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			interrupt-parent = <&ipic>;
+-			interrupts = <38 0x8>;
++			interrupts = <38 IRQ_TYPE_LEVEL_LOW>;
+ 			phy_type = "utmi_wide";
+ 			sleep = <&pmc 0x00300000>;
+ 		};
+@@ -175,7 +176,8 @@ usb@23000 {
+ 		ptp_clock@24E00 {
+ 			compatible = "fsl,etsec-ptp";
+ 			reg = <0x24E00 0xB0>;
+-			interrupts = <12 0x8 13 0x8>;
++			interrupts = <12 IRQ_TYPE_LEVEL_LOW>,
++				     <13 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = < &ipic >;
+ 			fsl,tclk-period = <10>;
+ 			fsl,tmr-prsc    = <100>;
+@@ -197,7 +199,9 @@ enet0: ethernet@24000 {
+ 			compatible = "gianfar";
+ 			reg = <0x24000 0x1000>;
+ 			local-mac-address = [ 00 00 00 00 00 00 ];
+-			interrupts = <37 0x8 36 0x8 35 0x8>;
++			interrupts = <37 IRQ_TYPE_LEVEL_LOW>,
++				     <36 IRQ_TYPE_LEVEL_LOW>,
++				     <35 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 			tbi-handle = < &tbi0 >;
+ 			/* Vitesse 7385 isn't on the MDIO bus */
+@@ -211,7 +215,7 @@ mdio@520 {
+ 				reg = <0x520 0x20>;
+ 				phy4: ethernet-phy@4 {
+ 					interrupt-parent = <&ipic>;
+-					interrupts = <20 0x8>;
++					interrupts = <20 IRQ_TYPE_LEVEL_LOW>;
+ 					reg = <0x4>;
+ 				};
+ 				tbi0: tbi-phy@11 {
+@@ -231,7 +235,9 @@ enet1: ethernet@25000 {
+ 			reg = <0x25000 0x1000>;
+ 			ranges = <0x0 0x25000 0x1000>;
+ 			local-mac-address = [ 00 00 00 00 00 00 ];
+-			interrupts = <34 0x8 33 0x8 32 0x8>;
++			interrupts = <34 IRQ_TYPE_LEVEL_LOW>,
++				     <33 IRQ_TYPE_LEVEL_LOW>,
++				     <32 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 			tbi-handle = < &tbi1 >;
+ 			phy-handle = < &phy4 >;
+@@ -259,7 +265,7 @@ serial0: serial@4500 {
+ 			compatible = "fsl,ns16550", "ns16550";
+ 			reg = <0x4500 0x100>;
+ 			clock-frequency = <0>;
+-			interrupts = <9 0x8>;
++			interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 		};
+ 
+@@ -269,15 +275,12 @@ serial1: serial@4600 {
+ 			compatible = "fsl,ns16550", "ns16550";
+ 			reg = <0x4600 0x100>;
+ 			clock-frequency = <0>;
+-			interrupts = <10 0x8>;
++			interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 		};
+ 
+ 		/* IPIC
+-		 * interrupts cell = <intr #, sense>
+-		 * sense values match linux IORESOURCE_IRQ_* defines:
+-		 * sense == 8: Level, low assertion
+-		 * sense == 2: Edge, high-to-low change
++		 * interrupts cell = <intr #, type>
+ 		 */
+ 		ipic: pic@700 {
+ 			interrupt-controller;
+@@ -290,7 +293,7 @@ ipic: pic@700 {
+ 		pmc: power@b00 {
+ 			compatible = "fsl,mpc8313-pmc", "fsl,mpc8349-pmc";
+ 			reg = <0xb00 0x100 0xa00 0x100>;
+-			interrupts = <80 8>;
++			interrupts = <80 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 			fsl,mpc8313-wakeup-timer = <&gtm1>;
+ 
+@@ -306,14 +309,20 @@ pmc: power@b00 {
+ 		gtm1: timer@500 {
+ 			compatible = "fsl,mpc8313-gtm", "fsl,gtm";
+ 			reg = <0x500 0x100>;
+-			interrupts = <90 8 78 8 84 8 72 8>;
++			interrupts = <90 IRQ_TYPE_LEVEL_LOW>,
++				     <78 IRQ_TYPE_LEVEL_LOW>,
++				     <84 IRQ_TYPE_LEVEL_LOW>,
++				     <72 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 		};
+ 
+ 		timer@600 {
+ 			compatible = "fsl,mpc8313-gtm", "fsl,gtm";
+ 			reg = <0x600 0x100>;
+-			interrupts = <91 8 79 8 85 8 73 8>;
++			interrupts = <91 IRQ_TYPE_LEVEL_LOW>,
++				     <79 IRQ_TYPE_LEVEL_LOW>,
++				     <85 IRQ_TYPE_LEVEL_LOW>,
++				     <73 IRQ_TYPE_LEVEL_LOW>;
+ 			interrupt-parent = <&ipic>;
+ 		};
+ 	};
+@@ -341,7 +350,7 @@ pci0: pci@e0008500 {
+ 					 0x7800 0x0 0x0 0x3 &ipic 17 0x8
+ 					 0x7800 0x0 0x0 0x4 &ipic 18 0x8>;
+ 			interrupt-parent = <&ipic>;
+-			interrupts = <66 0x8>;
++			interrupts = <66 IRQ_TYPE_LEVEL_LOW>;
+ 			bus-range = <0x0 0x0>;
+ 			ranges = <0x02000000 0x0 0x90000000 0x90000000 0x0 0x10000000
+ 				  0x42000000 0x0 0x80000000 0x80000000 0x0 0x10000000
+@@ -363,14 +372,14 @@ dma@82a8 {
+ 			reg = <0xe00082a8 4>;
+ 			ranges = <0 0xe0008100 0x1a8>;
+ 			interrupt-parent = <&ipic>;
+-			interrupts = <71 8>;
++			interrupts = <71 IRQ_TYPE_LEVEL_LOW>;
+ 
+ 			dma-channel@0 {
+ 				compatible = "fsl,mpc8313-dma-channel",
+ 				             "fsl,elo-dma-channel";
+ 				reg = <0 0x28>;
+ 				interrupt-parent = <&ipic>;
+-				interrupts = <71 8>;
++				interrupts = <71 IRQ_TYPE_LEVEL_LOW>;
+ 				cell-index = <0>;
+ 			};
+ 
+@@ -379,7 +388,7 @@ dma-channel@80 {
+ 				             "fsl,elo-dma-channel";
+ 				reg = <0x80 0x28>;
+ 				interrupt-parent = <&ipic>;
+-				interrupts = <71 8>;
++				interrupts = <71 IRQ_TYPE_LEVEL_LOW>;
+ 				cell-index = <1>;
+ 			};
+ 
+@@ -388,7 +397,7 @@ dma-channel@100 {
+ 				             "fsl,elo-dma-channel";
+ 				reg = <0x100 0x28>;
+ 				interrupt-parent = <&ipic>;
+-				interrupts = <71 8>;
++				interrupts = <71 IRQ_TYPE_LEVEL_LOW>;
+ 				cell-index = <2>;
+ 			};
+ 
+@@ -397,7 +406,7 @@ dma-channel@180 {
+ 				             "fsl,elo-dma-channel";
+ 				reg = <0x180 0x28>;
+ 				interrupt-parent = <&ipic>;
+-				interrupts = <71 8>;
++				interrupts = <71 IRQ_TYPE_LEVEL_LOW>;
+ 				cell-index = <3>;
+ 			};
+ 		};
 
-Best regards,
 -- 
-J. Neuschäfer <j.ne@posteo.net>
+2.51.0
 
 
 
