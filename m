@@ -1,404 +1,269 @@
-Return-Path: <devicetree+bounces-270570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270571-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KsdEPv1pmmgawAAu9opvQ
-	(envelope-from <devicetree+bounces-270570-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:53:47 +0100
+	id QDfiLVH2pmmgawAAu9opvQ
+	(envelope-from <devicetree+bounces-270571-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:55:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84D141F1D3A
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:53:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 330361F1DB0
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:55:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D07C53078714
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:47:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6B2A9312ECCA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75F3547D931;
-	Tue,  3 Mar 2026 14:47:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10BA547CC9B;
+	Tue,  3 Mar 2026 14:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PFP3bTMS";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="AskVjbzh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lEEOcZuV";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XGsR4dcw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C14547D926
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=170.10.133.124
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772549251; cv=pass; b=VwRLOjztymcH3pucX2TTDL4lGUNWVt4QXYHv8BqvUjGltzNxEEIaWZ5zsF/2Uc5L1OqUu6EVyJsyeMHRfmuAn0CujmAcvmAVi1J/SEZylQmSTa7iQISJ+2JnhjXgf1i+UxGyLZAcZIVTIR81DLgwpK23qTxJhPylcjDksXX9/sQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772549251; c=relaxed/simple;
-	bh=7MpbblFcPZi3wBjzTsxHXVpnWCSauFBEUdLtqyENUK4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JLj4TFzolPydBaxHsy71g1APB9vDNzdV0T3vi7yZSbgL2BIXsBonIvHy24h8bQaPA7qVSVLtteP2X3QzcxSh3HwYs60cE2RapHaYNIEoOtztz5cp5CUkJT+YyXqmBDzXnQ/1W1XOiFRoqwh9U1uvWWOLSKtIC2VkyOSG3/kvTo4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PFP3bTMS; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=AskVjbzh; arc=pass smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1772549247;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=67yY3F56XFWrwiaal1aRX9aq+ZjoX8WGlYCGFwR1Ay0=;
-	b=PFP3bTMSneHi9dSlPnKRLuz7w2912yPdBciw8Lk10GPYCskjy6z5OCDC2nG0f7/IOJ8lSZ
-	KZlQ5IUA8eHL8i2JIje1fXJFfQEx2QBU1tmg0/ZGCod8tAaSwn9BDas9fJTFIpmd9Kqy3F
-	qmErmJ9UNg3P72UUsAg1CFsWFTxbaKE=
-Received: from mail-yx1-f70.google.com (mail-yx1-f70.google.com
- [74.125.224.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-590-OLJXNOIhObSiyexUl0ZM3w-1; Tue, 03 Mar 2026 09:47:26 -0500
-X-MC-Unique: OLJXNOIhObSiyexUl0ZM3w-1
-X-Mimecast-MFC-AGG-ID: OLJXNOIhObSiyexUl0ZM3w_1772549246
-Received: by mail-yx1-f70.google.com with SMTP id 956f58d0204a3-64cad8f8d03so10105095d50.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:47:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772549246; cv=none;
-        d=google.com; s=arc-20240605;
-        b=l2hV1Iu0C8EzErk3EQ1wrZG0Oh1JDaW7t7rWKvnc6/7t3klA9i+hDYKugcTgtf4jsU
-         kgVxDYn7hMLG3/FMeoniUgoqCrjVuw0Zgr2PVISY9w7XDlBafdIrUQS/z3bg2AciUVeT
-         0Fu77hPArIgZBUWve2uw7ELJFkulUqaFWx9AGV8EE9ApkVKSMvG9nwV3wldBxH02TE6B
-         EyWU5Xv7bDeBN6MzyFJOC4M2or6iMuhs89DCJMNzxfs/kMOfZNW+YDLILRekv2MnS63/
-         cjCSeDLdSNH305O86rn7QbdSfehXO86R/QrtJ9tIGSgVquJwM/EdC+IDut2PczJrsRK3
-         VrWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=67yY3F56XFWrwiaal1aRX9aq+ZjoX8WGlYCGFwR1Ay0=;
-        fh=LHUEkJapcZy5J57axS3a2gxDk6cOGW3tzEM/kQ/iA3g=;
-        b=XrkZYi0Yo83i6Aq0DK+Dk+gq9BcAXC+1TC3tArGQvUeT99GJ9arLfNT4tkL+1Bmmhy
-         I6Z8N9ix4wY1p2Lr0lGSTSyQ4kTmfgUY5djyANRR/A0T5aIeL4mD9pxiuON5YWIEFamF
-         2mE2IjIbbWzx+rhUkRbIWGNH6KW1mthdu5fxtuKL0MvWFPMpxnYgjEfjDp0D9HWfuusf
-         fltG2kjO00w1BqCj7Zmu27LJ2tRVHqL8osOGC+ZXPkNRwM6nKS5RWxYsd1xryENYssMx
-         8ZJ2wyi6y1bkGhraAMLbiL28jgg+BSmQ2xwkKpwdh6qBm2vZUDOTw7MIZKYRJNXt3rvc
-         w5HQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E6E3CCA0D
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:50:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772549442; cv=none; b=KR31Xk8FdKZUA8vtu0CKrs3uoxvwv80T75WeTJo+6ODDE5Kn0N7B2h1qsyfeDW2MFbL6eYyR97yfKi78t2Wx44PLuJDi48UC+Uo+CC6r0XOT9jpI6cm6/ptvzHbLrruMFnL3/iTwKWZoeyVHDhx/+AqHpAvOHrYIXAaGqxIJ49A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772549442; c=relaxed/simple;
+	bh=+m1oPPpqfWeAOO56f1hf4+JV6zoMk3IpH9UEKIQQVdk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BLGVqxNtll39XaHThKdgWAHbmQFP4eHz5pBLwdKXCBhBY9/4HSLA6ZF5v+Uu5GdWDU63C7+SnV6sKDmiikHBUKVM8+vzomULbo+1gsmyzBWvd5+r1xSjM6QcUc14Gl+HVgFoxPNPTNxaWqm66xqNnYa9W1ChkEHqIHEsas/2qMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lEEOcZuV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XGsR4dcw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6239n7M42630006
+	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 14:50:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NE8pe8ib8kQOsIUrUjRQdb4uB8crsnoEVqb4KHhRpHw=; b=lEEOcZuVmN8xb/uJ
+	I+DvIulht3sRtrS3pGsyaeHRJi827gjdR2vD2PkHANwMxX7PXjRzOD/YkWxYAGkv
+	UZ1ptaV5RuJ17xo8I3HCBk8Kg3XMqSU9bzg8fOnhnj9WwaaoVwmseip012zHZ3uL
+	1urQ/QUsUvn7hRRtnwLoAAYObcH9ii2+/zxqCb5q0xeNfqDjSaKmMnS4OK1QsHeX
+	wdVdwhOj3DH7p0PPPRezPDGIihJi8GjLt1x82lf0DDtFJAen5sHepvu4AuSLqqRO
+	jM8tTnR1Ysrzw5oWTuYHouVfOvpySx+Wuv4541WClDtWnGNBotBJdROg5kM7y5KT
+	j1BYBA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnhx5b71k-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 14:50:39 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2ae4a6bb316so26701215ad.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:50:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1772549246; x=1773154046; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=67yY3F56XFWrwiaal1aRX9aq+ZjoX8WGlYCGFwR1Ay0=;
-        b=AskVjbzhUmXtUyZMf+W0SISoCbdVXlt+QpO5fU8PuAxgQkIPxzAPDM0UQm6Ys9l8fH
-         JBmbnbiO9c1Us6yb6MvUfvYOLcslQSHhTmy0eH/FZWRca20/oVRBDYagi8Mo8zwSmW9B
-         GGLenNTo9VCxQr2r2jPsY4FhZQvTRkfICn/SF7YLZoKoxfFzLi7Usbs0v0wxMqmIeJy1
-         Y9n2N4SyZ8J2YKzpVCrVjCbuWAvQUGw85pxhDEzjFkby76nTB++Bs0gN45L7mWob/hrT
-         19uZ9mlolqotFdpbuxe5l/MVyLiC9LrQBLWhTxzu2ZyIJGoywOHD3ULJVF8+MSkesGNT
-         7iqw==
+        d=oss.qualcomm.com; s=google; t=1772549438; x=1773154238; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NE8pe8ib8kQOsIUrUjRQdb4uB8crsnoEVqb4KHhRpHw=;
+        b=XGsR4dcwa2YemqJ+kA6bC6Ua+M0kxFZRDJLYs0VXMUvTCkesOw3GrguWqDYskA5gRC
+         MaMmCaprkQywPUjSUtcdldHfuNBwjwzSAxGtwjg0ETrUjeW/CNYe/iQ3qWbI1yFI2IxO
+         NRDnial+3tRaomZJNLmMFRTB/mCd0PA7INrg4m3/3Wtu8ZtXF5lu8ULkO0SmMsQsV4Ss
+         F3TtwwIjUGE+X1kKh/LoI0Aaz/Ek586y9hV7rHzDzH9caFJqh6k1o5/tGmhWDdORpoue
+         +Ikh5SH9sb0obIIZ7ZjMgAw9uHmaDVk1geHqeerpHH01jBpimI6csu0F0+4FKcZ3rDHq
+         MGCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772549246; x=1773154046;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=67yY3F56XFWrwiaal1aRX9aq+ZjoX8WGlYCGFwR1Ay0=;
-        b=tRYIuqWJEMlVgVngmL7NbtKZAbmuwfsbGk2y04sx2GqntqkhiCMqKcTDN0KKGbkRoo
-         sSn52Cs3eCIRB7Oa2HfAcMf6xuNIxeisQLA+TmhFP5lMzzFP2yFG44+Jrfn/CWtLozUy
-         aYFmk1Oa4Ci0SBzwIVqrXqErGZYhl1lcS3TteTf+dC74SLUdV8QWDWY+u8NZqPNlnnoT
-         tdUEwd4OuDX13yZXTyMwfTFhS6Qpt8xus3kjkfg01ZBt0N8ufOvTxUjwOSKgLeQnNakw
-         oZHkEYZiHlabIZ+fsBnK5jJ0/BtAWOx6NMpNYL4BInv6VZWoBKdOhVOvHy/h25cVyXqS
-         3C3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUn5AnmrOrd3/LOUvaJ1652Rn+vlgyE2sJ+E5EiNSrzB0Mz6e8LDW8rD+/HvGYICaqLExEOVxjOfge9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjYTOJZwRqbxXb9VZhmn8bhu+Pk3KqjKrp4yT7kIYze0Cek9jP
-	OqFz1njhfiCkoFT1cFoMJTp18ho991fI08RAo2xZjFkMRKIAtzQwmE8LNMR5DJUkQ3PjcGtRbrL
-	oWKaG59x8tCq4VOBVUKsdokhzsSjMrUqAKBaH22qxqu0NKPtX9J9jVFdsBOfx7+LiksHhrUPFgc
-	m6y3pA3BMX+hmj9G7DFcVgMJhNt6LauoTqlrmJvg==
-X-Gm-Gg: ATEYQzzH8AFbGugh4VSD6vD1SNaPUNcHjK1kjwZINxmTTvnFTfwX5b5yzrMciRxWWEJ
-	iRAfCIXvRmVdwXFCBN02YBRmwLTrSSfr64XQUKiY1AzaM/zFgbbX88mh5QnG+H+5PkJpvckTS/o
-	cvxKmHJFxSIodVlIDXS/XShvm4vA7sVAT2Ct/wwIuzIbB+Ox7nQgQR0ulQkhSJ9RH95UWPfWxOe
-	w==
-X-Received: by 2002:a05:690e:b4b:b0:64c:cfae:a9c4 with SMTP id 956f58d0204a3-64cedbb766amr1502446d50.15.1772549245618;
-        Tue, 03 Mar 2026 06:47:25 -0800 (PST)
-X-Received: by 2002:a05:690e:b4b:b0:64c:cfae:a9c4 with SMTP id
- 956f58d0204a3-64cedbb766amr1502428d50.15.1772549245221; Tue, 03 Mar 2026
- 06:47:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772549438; x=1773154238;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NE8pe8ib8kQOsIUrUjRQdb4uB8crsnoEVqb4KHhRpHw=;
+        b=kA3GSU4Z6khnpTcLs4XC7hdSvy5T+0cM5UkUXDt9KDtZ/w1Ex5mq/OJStWr7eMTA0h
+         ML4oqzWBG9W3QBeLwdk+5FHGf2T+zIInYwKh+LrtY++BNB/YfG0hKpL/neUtzu3o6A3f
+         gKMFK1ZluUwsEmMglPL8A5LCLvyLpI5pR0cgmw+P2MSFPOo9OH2X5cAq6nz6bdwy0cN6
+         Sa70wCs/e03KYjvRqMTUNtvz8aXM8+orOtFAhfEiClF1Nx59+7ETPgpBRFnyim1h31+w
+         vSlP6wFoA+RleBV9K6fiCngGjEZPyZP0NQ3T5Cxg1Rv7Lv0AwAHnDyzyrUIXfn9oU33l
+         fqqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZinFqV0ovWVVggqzh3SuDFB7xd+0Xou5OdaZL4aWkzPjEv1xYlb3h/sfnPzFoMqDSbMKzg0B1yhTM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzt7fkRdD+rVMY2XbALWxKVxQ2BuLnIN9xV8U+cq6k5jvQEB40I
+	k/u68k9y0oL+lqX6+reU166xawvd4BeIm9zwMAChJEtYdOUI443nR3eOHF8/C8EWQ8Y60RU7dvw
+	W1OPf9Op0CljrgJyhpBhqdhkSsdxjGMmRb0lQLl0DSpngQVdd0Jx8r1swUWaAm3IS
+X-Gm-Gg: ATEYQzwP1tYOYteqAMTgoPR+Edt3Z58Pq/HfSWIJOacb/TLgzg3cahA3bYPso7fBGWL
+	mwj73L/nDYaSOAacLmk9xBH+GFGNToAFrTGhVirB9x2ZzMbergCYsUEl5Ke8+WcqGnRR8Ggqz19
+	fC1bU2B06bs+7PH7wnXnRWTG2yk3H+KfUIE1AAPVmCq/3vfDbfIBfPBhunJe1oqtG+T5Cx2jHpB
+	NnC3M2lytkcq/Y/03kV2xrlMQNjRP9L0GpPHf4vwlFXVT1RvP/R1SrMYyDE0HFYqOg4aZaIuYA9
+	ERLNLxX6A6hCal/UACuuCLZlUMOg8OSzpyyQ56jcTEN86uHYRNb/DpRQZIIqpwD1c7ffIQSeFFF
+	44An29gjKndqWDpfb5W+y8aQFDvIhnOoMUM8RTkjopSjO1qfRNus=
+X-Received: by 2002:a17:902:ce8d:b0:2ae:55bd:1473 with SMTP id d9443c01a7336-2ae55bd1983mr61678395ad.31.1772549438144;
+        Tue, 03 Mar 2026 06:50:38 -0800 (PST)
+X-Received: by 2002:a17:902:ce8d:b0:2ae:55bd:1473 with SMTP id d9443c01a7336-2ae55bd1983mr61678135ad.31.1772549437633;
+        Tue, 03 Mar 2026 06:50:37 -0800 (PST)
+Received: from [192.168.1.5] ([122.179.39.61])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb69f283sm170655295ad.49.2026.03.03.06.50.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Mar 2026 06:50:37 -0800 (PST)
+Message-ID: <99b76cfa-389b-409f-bdc4-74a077108a07@oss.qualcomm.com>
+Date: Tue, 3 Mar 2026 20:20:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260303-b4-dmabuf-heap-coherent-rmem-v2-0-65a4653b3378@redhat.com>
- <20260303-b4-dmabuf-heap-coherent-rmem-v2-4-65a4653b3378@redhat.com> <20260303-rigorous-cow-of-saturation-23f87b@houat>
-In-Reply-To: <20260303-rigorous-cow-of-saturation-23f87b@houat>
-From: Albert Esteve <aesteve@redhat.com>
-Date: Tue, 3 Mar 2026 15:47:14 +0100
-X-Gm-Features: AaiRm519G2sejRBJyA3Xs8Zi4JtzQv5MBBjaKxQXlykPb9RAYNkCbJ50N8lMMy0
-Message-ID: <CADSE00+jCZSHi=OLbmOebBwnue5tjG7AFPKN76CbYDWYBcP+AA@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] dma-buf: heaps: Add Coherent heap to dmabuf heaps
-To: Maxime Ripard <mripard@redhat.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>, 
-	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, 
-	Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev, 
-	devicetree@vger.kernel.org, echanude@redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 84D141F1D3A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: qcom,qcs615-rpmh: add
+ clocks property to enable QoS
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20260211091112.3285626-1-odelu.kukatla@oss.qualcomm.com>
+ <20260211091112.3285626-2-odelu.kukatla@oss.qualcomm.com>
+ <20260212-armored-kingfisher-of-admiration-bdef7c@quoll>
+Content-Language: en-US
+From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+In-Reply-To: <20260212-armored-kingfisher-of-admiration-bdef7c@quoll>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDExOCBTYWx0ZWRfX8mU3XyNN2NUg
+ EIjKzo8ia3IC26hjjL5kAV3CWZtkRPkb0cUO99peyf33kXY+jOl2mS7RGretmqxMItabI8UteCl
+ dAwHSif18feVmD7si4xlXiPeDXF9nqkL9k3E2SWH9WMvuLKp5S1axl7PUj/PWIYvT8g1dZ7K6gX
+ hx6DszMy7eXN2ExGA5HQ7mRB2oHRQEYli6R6hSMsaZSC3o6aOMUe9BQq2l2DJTi4aU0w80Rf1f7
+ 7GftZIukXW35dofylOdJvfCfKvkzacTRzkt+ROcD3+O+iOUxLBk2ZC4BB6nHZsFPcGFLygn0x7X
+ tzYQQyw+e9yZfwg5ptM1447wA/dxERxkQC6I4DPZwQGVRyVaUueGoI+2Ejzz4oGNbMITAk4N1k5
+ a1i17/khgsm0DeuEvlV66Y7/wbfnZe6ndzjx8Dw2YbfXhZ9sj5nnAfY220G8RnAIEXyTBphZQ45
+ sOeE0iZvhB6STfyq7cg==
+X-Authority-Analysis: v=2.4 cv=T9CBjvKQ c=1 sm=1 tr=0 ts=69a6f53f cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=U82GXnHrZkNfQIH0kmVtCQ==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=EUspDBNiAAAA:8 a=hh-M-2xEcZ6B0zPyQVMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: zl1xQtMSEQJC_Jorz8hBs6vP9yVmHYRe
+X-Proofpoint-ORIG-GUID: zl1xQtMSEQJC_Jorz8hBs6vP9yVmHYRe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_05,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
+ priorityscore=1501 clxscore=1015 suspectscore=0 malwarescore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603030118
+X-Rspamd-Queue-Id: 330361F1DB0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270570-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-270571-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aesteve@redhat.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,exp_info.name:url]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[odelu.kukatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Tue, Mar 3, 2026 at 2:20=E2=80=AFPM Maxime Ripard <mripard@redhat.com> w=
-rote:
->
-> Hi,
->
-> On Tue, Mar 03, 2026 at 01:33:47PM +0100, Albert Esteve wrote:
-> > Add a dma-buf heap for DT coherent reserved-memory
-> > (i.e., 'shared-dma-pool' without 'reusable' property),
-> > exposing one heap per region for userspace buffers.
-> >
-> > The heap binds the heap device to each memory region so
-> > coherent allocations use the correct dev->dma_mem, and
-> > it defers registration until module_init when normal
-> > allocators are available.
-> >
-> > Signed-off-by: Albert Esteve <aesteve@redhat.com>
-> > ---
-> >  drivers/dma-buf/dma-heap.c            |   4 +-
-> >  drivers/dma-buf/heaps/Kconfig         |   9 +
-> >  drivers/dma-buf/heaps/Makefile        |   1 +
-> >  drivers/dma-buf/heaps/coherent_heap.c | 426 ++++++++++++++++++++++++++=
-++++++++
-> >  include/linux/dma-heap.h              |  11 +
-> >  include/linux/dma-map-ops.h           |   7 +
-> >  6 files changed, 456 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
-> > index 88189d4e48561..ba87e5ac16ae2 100644
-> > --- a/drivers/dma-buf/dma-heap.c
-> > +++ b/drivers/dma-buf/dma-heap.c
-> > @@ -390,8 +390,8 @@ struct dma_heap *dma_heap_add(const struct dma_heap=
-_export_info *exp_info)
-> >
-> >       heap =3D dma_heap_create(exp_info);
-> >       if (IS_ERR(heap)) {
-> > -             pr_err("dma_heap: failed to create heap (%d)\n", PTR_ERR(=
-heap));
-> > -             return PTR_ERR(heap);
-> > +             pr_err("dma_heap: failed to create heap (%ld)\n", PTR_ERR=
-(heap));
-> > +             return ERR_CAST(heap);
->
-> This looks unrelated and should possibly be squashed into the previous
-> patch that introduces dma_heap_create()?
->
-> > +static int coherent_heap_init_dma_mask(struct device *dev)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret =3D dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> > +     if (!ret)
-> > +             return 0;
-> > +
-> > +     /* Fallback to 32-bit DMA mask */
-> > +     return dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
-> > +}
->
-> Why do you need to mess with the DMA mask? I'd expect that device to be
-> able to access everything.
 
-When I tested I was getting: "reserved memory is beyond device's set
-DMA address range", so I tested if it was fixed with
-dma_coerce_mask_and_coherent() and/or dma_set_mask_coherent(). I did
-not debug the value of coherent_dma_mask, but given the error I assume
-it was not set properly? Ultimately, using the 64 bit mask fixed it,
-and I added a 32-bit fallback to ensure support for 32-bit systems.
 
->
-> > +static int __coherent_heap_register(struct reserved_mem *rmem)
-> > +{
-> > +     struct dma_heap_export_info exp_info;
-> > +     struct coherent_heap *coh_heap;
-> > +     struct device *heap_dev;
-> > +     int ret;
-> > +
-> > +     if (!rmem || !rmem->name)
-> > +             return -EINVAL;
-> > +
-> > +     coh_heap =3D kzalloc_obj(*coh_heap);
-> > +     if (!coh_heap)
-> > +             return -ENOMEM;
-> > +
-> > +     coh_heap->rmem =3D rmem;
-> > +     coh_heap->name =3D kstrdup(rmem->name, GFP_KERNEL);
-> > +     if (!coh_heap->name) {
-> > +             ret =3D -ENOMEM;
-> > +             goto free_coherent_heap;
-> > +     }
-> > +
-> > +     exp_info.name =3D coh_heap->name;
-> > +     exp_info.ops =3D &coherent_heap_ops;
-> > +     exp_info.priv =3D coh_heap;
-> > +
-> > +     coh_heap->heap =3D dma_heap_create(&exp_info);
-> > +     if (IS_ERR(coh_heap->heap)) {
-> > +             ret =3D PTR_ERR(coh_heap->heap);
-> > +             goto free_name;
-> > +     }
-> > +
-> > +     heap_dev =3D dma_heap_get_dev(coh_heap->heap);
-> > +     ret =3D coherent_heap_init_dma_mask(heap_dev);
-> > +     if (ret) {
-> > +             pr_err("coherent_heap: failed to set DMA mask (%d)\n", re=
-t);
-> > +             goto destroy_heap;
-> > +     }
-> > +
-> > +     ret =3D of_reserved_mem_device_init_with_mem(heap_dev, rmem);
-> > +     if (ret) {
-> > +             pr_err("coherent_heap: failed to initialize memory (%d)\n=
-", ret);
-> > +             goto destroy_heap;
-> > +     }
-> > +
-> > +     ret =3D dma_heap_register(coh_heap->heap);
-> > +     if (ret) {
-> > +             pr_err("coherent_heap: failed to register heap (%d)\n", r=
-et);
-> > +             goto destroy_heap;
-> > +     }
->
-> I guess it's more of a comment about your previous patch, but it's not
-> clear to me why you needed to split dma_heap_add into dma_heap_create /
-> _register. Can you expand a bit?
+On 2/12/2026 4:32 PM, Krzysztof Kozlowski wrote:
+> On Wed, Feb 11, 2026 at 02:41:10PM +0530, Odelu Kukatla wrote:
+>> Aggre1-noc interconnect node on QCS615 has QoS registers located
+>> inside a block whose interface is clock-gated. For that node,
+>> driver must enable the corresponding clock(s) before accessing
+>> the registers. Add the 'clocks' property so the driver can obtain
+>> and enable the required clock(s).
+>>
+>> Only interconnects that have clock‑gated QoS register interface
+>> use this property; it is not applicable to all interconnect nodes.
+>>
+>> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+>> ---
+>>  .../interconnect/qcom,qcs615-rpmh.yaml        | 46 +++++++++++++++++++
+>>  1 file changed, 46 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml
+>> index e06404828824..42679deb4607 100644
+>> --- a/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml
+>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml
+>> @@ -34,6 +34,10 @@ properties:
+>>    reg:
+>>      maxItems: 1
+>>  
+>> +  clocks:
+>> +    minItems: 4
+>> +    maxItems: 4
+> 
+> Define the clocks here please.
+> 
+>> +
+>>  required:
+>>    - compatible
+>>  
+>> @@ -53,6 +57,37 @@ allOf:
+>>        required:
+>>          - reg
+>>  
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,qcs615-aggre1-noc
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          items:
+>> +            - description: aggre UFS PHY AXI clock
+>> +            - description: aggre USB2 SEC AXI clock
+>> +            - description: aggre USB3 PRIM AXI clock
+>> +            - description: RPMH CC IPA clock
+> 
+> And this entire "if" goes away... unless you already plan to correct other
+> devices. If so, please correc them now.
+> 
 
-So first I tried to just use dma_heap_add() and then use the heap_dev
-afterward to call of_reserved_mem_device_init_with_mem(), but if that
-call failed, the error path required some kind dma_heap_remove()
-function as the heap was already registered by then.
+Hi Krzysztof,
+Thanks for the review.
 
-In the CMA heap for example, dma_heap_add() is invoked at the end of
-the `init` function. Therefore, you do not have this issue, if it
-failed it means the heap was not added and you just need to clean
-everything else.
+I will move the clocks definition to the top-level properties and remove
+the specific if block for aggre1-noc as suggested.
+Regarding the exclusion “if” block: I will keep it to align with your
+recent fix for SA8775P (dt-bindings: interconnect: sa8775p: Fix
+incorrectly added reg and clocks) where you enforced strict constraints.
 
-However, performing a remove() does not sound like something that can
-be done safely. I've spent some time thinking on alternatives, but
-splitting felt the best pattern.
+My plan for v3 is to:
+1.Define clocks at the top level.
+2.Remove "if" block for aggre1-noc
+3.Keep "if" block to explicitly disallow clocks for the nodes that do
+not support them.
 
-This way I can:
-1. Create the device
-2. Call of_reserved_mem_device_init_with_mem
-3. Register the heap
+I will send v3 with these changes shortly.
 
-This places registration at the end, making every error path and
-cleanup easy to handle.
+Regards,
+Odelu
 
-Also, the `dma_heap_add()` code already seemed to handle these two
-parts/phases implicitly with device_create(), so splitting felt
-architecturally sound.
-
->
-> > diff --git a/include/linux/dma-heap.h b/include/linux/dma-heap.h
-> > index 1b0ea43ba66c3..77e6cb66ffce1 100644
-> > --- a/include/linux/dma-heap.h
-> > +++ b/include/linux/dma-heap.h
-> > @@ -9,10 +9,12 @@
-> >  #ifndef _DMA_HEAPS_H
-> >  #define _DMA_HEAPS_H
-> >
-> > +#include <linux/errno.h>
-> >  #include <linux/types.h>
-> >
-> >  struct dma_heap;
-> >  struct device;
-> > +struct reserved_mem;
-> >
-> >  /**
-> >   * struct dma_heap_ops - ops to operate on a given heap
-> > @@ -53,4 +55,13 @@ struct dma_heap *dma_heap_add(const struct dma_heap_=
-export_info *exp_info);
-> >
-> >  extern bool mem_accounting;
-> >
-> > +#if IS_ENABLED(CONFIG_DMABUF_HEAPS_COHERENT)
-> > +int dma_heap_coherent_register(struct reserved_mem *rmem);
-> > +#else
-> > +static inline int dma_heap_coherent_register(struct reserved_mem *rmem=
-)
-> > +{
-> > +     return -EOPNOTSUPP;
-> > +}
-> > +#endif
-> > +
-> >  #endif /* _DMA_HEAPS_H */
->
-> Do you still need that now that you switched to an iterator-like
-> function?
->
-> > diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-> > index 60b63756df821..c87e5e44e5383 100644
-> > --- a/include/linux/dma-map-ops.h
-> > +++ b/include/linux/dma-map-ops.h
-> > @@ -12,6 +12,7 @@
-> >
-> >  struct cma;
-> >  struct iommu_ops;
-> > +struct reserved_mem;
-> >
-> >  struct dma_map_ops {
-> >       void *(*alloc)(struct device *dev, size_t size,
-> > @@ -161,6 +162,7 @@ int dma_alloc_from_dev_coherent(struct device *dev,=
- ssize_t size,
-> >  int dma_release_from_dev_coherent(struct device *dev, int order, void =
-*vaddr);
-> >  int dma_mmap_from_dev_coherent(struct device *dev, struct vm_area_stru=
-ct *vma,
-> >               void *cpu_addr, size_t size, int *ret);
-> > +struct reserved_mem *dma_coherent_get_reserved_region(unsigned int idx=
-);
-> >  #else
-> >  static inline int dma_declare_coherent_memory(struct device *dev,
-> >               phys_addr_t phys_addr, dma_addr_t device_addr, size_t siz=
-e)
-> > @@ -172,6 +174,11 @@ static inline int dma_declare_coherent_memory(stru=
-ct device *dev,
-> >  #define dma_release_from_dev_coherent(dev, order, vaddr) (0)
-> >  #define dma_mmap_from_dev_coherent(dev, vma, vaddr, order, ret) (0)
-> >  static inline void dma_release_coherent_memory(struct device *dev) { }
-> > +static inline
-> > +struct reserved_mem *dma_coherent_get_reserved_region(unsigned int idx=
-)
-> > +{
-> > +     return NULL;
-> > +}
-> >  #endif /* CONFIG_DMA_DECLARE_COHERENT */
-> >
-> >  #ifdef CONFIG_DMA_GLOBAL_POOL
->
-> To preserve bisectability, you shouldn't do it that way. Introduce this
-> function into a preliminary patch, and then use it in this one.
->
-> Maxime
+> Best regards,
+> Krzysztof
+> 
 
 
