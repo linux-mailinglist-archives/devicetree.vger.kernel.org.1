@@ -1,139 +1,117 @@
-Return-Path: <devicetree+bounces-270524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270525-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yA7WBz3lpmnjZAAAu9opvQ
-	(envelope-from <devicetree+bounces-270524-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:42:21 +0100
+	id 8IA8Gybmpmm9ZQAAu9opvQ
+	(envelope-from <devicetree+bounces-270525-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:46:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B25D61F081E
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:42:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 583561F09EC
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:46:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D793C3027E15
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:42:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8D69B303B823
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:44:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA2B31E833;
-	Tue,  3 Mar 2026 13:42:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2C832FA2E;
+	Tue,  3 Mar 2026 13:44:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="K4vsT1tK"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GES8EzSh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82C09126C03;
-	Tue,  3 Mar 2026 13:42:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573DD2D3EE5;
+	Tue,  3 Mar 2026 13:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772545337; cv=none; b=CjOhZPXa+SnAnNPf27vI1iLDtW6q6tyCWkJzLWV5Ti0Bn55A/vuIYcDErYF+MPE5liERqmTDrFpi5DDSjfVMtwSoeVV+7pOenHvB/e4I7FXDPBjnsO73zL+mZdz4uT6Mz+81mm4VhBzTMLreTr2jKTXJxqqQeDyjBBYsl3r+syQ=
+	t=1772545462; cv=none; b=lzd2Clcd4hhC/XtXp4e6SYKr6crWeJFEl/K5bw3O128iUetB8ztlyUwa1Ka3ZCQ6QTs6BdSfrK+TC9i81FSQ+ABj3LqBWNe/n0jtyA1Thf6p+Iv+mlws67Qv3eROdCvr5extMb9Ov9bsz+YJEGgrk91R9M3us4GRR2mIQSTAaO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772545337; c=relaxed/simple;
-	bh=DZkF5PcCbMI8m09JxEhDCClI3xUSZAsE0/umwgopBLM=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XwSeuZH/g4IZsWPQ6GcrcVp3qZyWIv6/VSK6r9V7aUf/Gpmw4Z5nNHJVFZtS4Gpi6OFgLj4aXJsg61N41G8crA3X+aTaWg1dzsi0dxgJbcLEaqQrFV5i+XXaCUjaW8XsAZX3902//G8aisG5z/60g5UYK8wWF82bJLXR9+Xs9NU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=K4vsT1tK; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id EAFE74E42500;
-	Tue,  3 Mar 2026 13:42:13 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BD0D95FF29;
-	Tue,  3 Mar 2026 13:42:13 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DC32A103685C9;
-	Tue,  3 Mar 2026 14:42:07 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772545332; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=t6FnL1nGnOp3nQgTM5xZBDRFoD8EHpB/OxobjHHyrxA=;
-	b=K4vsT1tK7wybbNAPe8tmCAogUGJOJbR+cUwZuB329VCiTkq0OJw40wUKgds69zvDmCo/hg
-	as9j/05T4ZJFfMCjXfS9B+YjG9H6s0KF57maGUPNIf2i6SqHzR4P8Qo2xkg6avTtrscNJM
-	nCIldUB1haMOCmyA4ZwjF0YsOXoppXtoCmsj6dhU9E3no6Myay1WxZ+iKW9De4/4YLILZc
-	G7elJE+td/pcfDwOErWr6Nu8Pk0eG7Nxyp5sqyZvs+3mV7S/TRUfu4oHJrumIB2Q6jADxP
-	0UPte8rL2CauGhdLcYpxsd9oFATYweHAqmw03Of+x25+nV7Z2p5omU1YhBmlkA==
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: dri-devel@lists.freedesktop.org, 
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
- Joseph Guo <qijian.guo@nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
-References: <20260115024004.660986-1-marek.vasut+renesas@mailbox.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge:
- waveshare,dsi2dpi: Document 1..4 DSI lane support
-Message-Id: <177254532764.177236.18347134827363909064.b4-ty@bootlin.com>
-Date: Tue, 03 Mar 2026 14:42:07 +0100
+	s=arc-20240116; t=1772545462; c=relaxed/simple;
+	bh=SM8CDKHTLfZStBdV6dP4UCK4RHnUUYiivZCe+7F2yeQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aVBWyGuXoDjvY4A4I7tLKYLAkqejcrvCMD3aLut3yz0MXMv8r/CInUUbs6mXcKEOMafI6OU6e++gfnwyOT81NjLOB9kNEfOd3xbjWjGMuvGHAK02uLRB0dZ3Odwz21FwQGJbbxbhfF2wfPWOFBI9iv3lbTGIbmM0IMig+sX5ALk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GES8EzSh; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=lTO8+TYA6Tnx96yiik/stw1atxvhV7xNTPMgP84TLpU=; b=GES8EzShQBOiSKLc/+MajqA43A
+	+7DaUuek9LbU4yyTInZhF9CawrrwbwQhxkQIwOQ/hBneTiut+B/bUq32OxEmavKZ80udWQ6QjsmmR
+	Wf1H6Plfvpq1xY1JzrewuzrFG68T5Ghvvp+3J1lItR6wo4IojktlsYKcz6GK4WfoqgFg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vxQ2m-009rVr-Ji; Tue, 03 Mar 2026 14:44:12 +0100
+Date: Tue, 3 Mar 2026 14:44:12 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next] dt-bindings: net: dsa: maxlinear,mxl862xx:
+ remove port label
+Message-ID: <10a7e43b-794a-4425-9e96-4a41f2e25736@lunn.ch>
+References: <61579de297eb636ec5f1e6c97d453e26abb0625d.1772507210.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: B25D61F081E
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <61579de297eb636ec5f1e6c97d453e26abb0625d.1772507210.git.daniel@makrotopia.org>
+X-Rspamd-Queue-Id: 583561F09EC
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270524-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270525-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[intel.com,kernel.org,gmail.com,kwiboo.se,nxp.com,ideasonboard.com,linux.intel.com,linaro.org,ffwll.ch,suse.de,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:email,lunn.ch:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,makrotopia.org:email]
 X-Rspamd-Action: no action
 
-
-On Thu, 15 Jan 2026 03:39:42 +0100, Marek Vasut wrote:
-> Describe 1..4 DSI lanes as supported. Internally, this bridge is
-> an ChipOne ICN6211 which loads its register configuration from a
-> dedicated storage and its I2C does not seem to be accessible. The
-> ICN6211 supports up to 4 DSI lanes, so this is a hard limit for
-> this bridge. The lane configuration is preconfigured in the bridge
-> for each of the WaveShare panels.
+On Tue, Mar 03, 2026 at 03:16:23AM +0000, Daniel Golle wrote:
+> The ports in the example device tree should not have a 'label'
+> property. Labels for all user ports have been removed from an earlier
+> submission, but this was overlooked in the case of the CPU port.
 > 
-> [...]
+> Remove 'cpu' port label from the example.
+> 
+> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
 
-Applied, thanks!
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-[1/2] dt-bindings: display: bridge: waveshare,dsi2dpi: Document 1..4 DSI lane support
-      commit: 2befa6407d5c8b543be32c2276d396db395d9d02
-[2/2] drm/bridge: waveshare-dsi: Add support for 1..4 DSI data lanes
-      commit: fca11428425e92bf21d4a7f5865708c5e64430e4
-
-Best regards,
--- 
-Luca Ceresoli <luca.ceresoli@bootlin.com>
-
+    Andrew
 
