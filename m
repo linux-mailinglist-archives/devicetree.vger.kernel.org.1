@@ -1,201 +1,331 @@
-Return-Path: <devicetree+bounces-270536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270535-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CeYFEXqpmnjZgAAu9opvQ
-	(envelope-from <devicetree+bounces-270536-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:49 +0100
+	id SCQxNTLqpmnjZgAAu9opvQ
+	(envelope-from <devicetree+bounces-270535-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E53741F0FC1
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:48 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01B761F0F91
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1CB86319ADF8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:54:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92E2B311495B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E216336656D;
-	Tue,  3 Mar 2026 13:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F754364E91;
+	Tue,  3 Mar 2026 13:53:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEXma8uV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E3C36495D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5F1361DC4
 	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772546001; cv=none; b=X5jZjLswcCztZuy/TMBBhJsab7WdsP7nn4pL+z03EmYnU0Xbw+EaYX2+bZz5mbvtxjrQeJtX1xte/EEmR/7RxPCVokgJ+FJFX4260j+8oEoozdp8381zjtXRj4Yqznw6m7Vbkt5kH2Brwc7pibRMj6D0IkrK3ne3BJPZuTg+iqo=
+	t=1772546000; cv=none; b=Ktk07o5QeQh+2DWSg+DxSM/Lt1gowu/7fJSTf17vxdxT2Qm5LLG6U+rOqlcAhrhkjNaeB95goDiZOj/HV0IjncTaWyfsIZHhfTnToLtLoDiRXn1qgE4Ko7fycbns8kvFmfxsMRgGdLeC/TVg/8L22RinI3/RjwxurmfYmgHgu0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772546001; c=relaxed/simple;
-	bh=CLpy3oVfBpno5pNtd654a0t44zAg8ABNYi8W5CRKakE=;
+	s=arc-20240116; t=1772546000; c=relaxed/simple;
+	bh=o1uQy6drhsv5pZD0LZDFkCYjjp8aERY7B+ED/OHab84=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gvs+qj7KIgmd8RU0+LgVbgQGzZ1opDL0INwoI9vwUxstbaM50FRrWn945yv6kYv77aRE7dDGPeQ7AaFl55MJ2bWT7K33ilIP93TTiF8mzMwfADRD9bZDV2zu9rAzaOL/YhVG12tw3mt0kLaYEqYcPpmuSvapj9trYIpCeYYUjxk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-56753dc51baso2422320e0c.1
+	 To:Cc:Content-Type; b=kDFr6TfNH3qbnTxzzIdt6cPjkJtoMhjVC8WhsSf7DlJ79J59IBY4zmSbUOI3YNJcKHTiblmwU/MpW3NlFRvFbWaXfIfP1xr28p5gT0m+YixcOT/sSs3KnQzYJMmvIV7AHDdGF0YtE+Gs9EOxVum7YUEpfXP9aQG3E8LCCSBmKrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEXma8uV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BAB5C2BC9E
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:53:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772546000;
+	bh=o1uQy6drhsv5pZD0LZDFkCYjjp8aERY7B+ED/OHab84=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=oEXma8uVZmBZdCV84TKivC0vLoyWFYSojkK0qJP/Ey4vlkNLGD4FL6UTtI/K/y+W6
+	 zCrhRzg9Qn+A0t8K9Q8nMmXa0RWZbtEfSVBw+VvW5aS0oDRGHnibhInat6eRVWo+cD
+	 3WJad2wTiNTcRrILyUTrNWoJaPBxMSknA+2ibnyy4OcDfaJ0Nk770aihtIjW/0g41X
+	 hsSfQTajCkqPlaL7iCC9S8HYz5Kheguv32/eisgnUBmeFT1icetiRHhrmwyMC0hzIY
+	 O3u2j4aYoQTZfCkFibHdzAfB3UxVgIWt0ekkofAnAZZ9zIvF9c/ZlSrTwSWgqLMWCk
+	 Bqn3JBVv7cKrQ==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-65c0891f4e9so963943a12.1
         for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:53:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772545999; x=1773150799;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ftlyiDWQ8XObPCVS8E03AqNdtSao1cmOMFUjNen6Yhc=;
-        b=LIvMxSYwGaBkWqyz4haX4SoW5yD7GM2iTXHqj8YFb6Da+0tKZuUxjBIl7Y5kFjUjyW
-         fTHRuaUQMXf+Kx4qnTLwCy3u8TWY9BUQ8M7lSZLg9qZdoH9ZEmQCNRzfs9YUqeqw9wYy
-         4OONZR+0gA4cBDADTSK84VCEV20RViT0qCa5OtBBpwO8osn8nrFd4IAOu7dUed3KSRTS
-         f/JNhehjP1uwicDxTqYu2gSahAp6+FSuFaWGvczzcmfcQYhaO2CVcZRQl/R94z1BIHGC
-         8OzwB5Q3wv6olMDIXYwSQqHHY/ElXa9LCAYjs3fcQhW/M2+CpdGMwoacJjfsSgxQqs1H
-         b4rA==
-X-Forwarded-Encrypted: i=1; AJvYcCW0iwYrxNfy3KqZXcOzbChzQsJx6QoUoa7e9j1tUlxzCpqJhX3sGnxaTJ4EjDEfDPWP6BQi8EufOtJl@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvuXT6SW835cj/r+YK82dys334z0eVND6twVM0dw+MbqEs0QYb
-	kJBHizSGcikaMiLCo2/iTRi2det7IID+wgiCBsEzsFKfm1cnbMv7lpoynYHH2o5y
-X-Gm-Gg: ATEYQzw0sTRiq3hBxALM+046zsI/Pxpu+VoDLmLljHgek24k1uxXvkwVTj2+j6TdGBg
-	4wztrIXRS9YeGT1soID4uP6AV24gO194XlKMVxHOJOPwYSflMihNljmUGMMUAJEIgVKPeyVd3Io
-	DhPDkytGcPs/0Z02XOJbrWCBccB2VI/tkHQnuGV5Gd3HGXWbOtr3QsRiKkgbcjEl6M95USfqmIe
-	tTX8hR7H02QzmlT80KvIRMpm5Jd4Y6nSJFmjbU0VgbhmucjZ4HUbDJdkb8zRG6AMhkOUOLSNdBg
-	DsjvHUAf15nkC9rx1S+EaqWcj0LO69Z0Vr4GQX6ZW6Kest+Yz8/ls7ZdztJVSs99SSG8eyNEWQu
-	3VsRfBNLqwH84D59s/lJfGOM2Y/cXgwhicgch35sDUO/8FqDIh6UVBgl3dmD618t1ZTsJL/X6Mi
-	N3NBgq0q8E+17e08Lh+Y36G98/CaW3nXHHdiNWluq7LWP3tRufrsN+t0SPzjidtoeo
-X-Received: by 2002:a05:6122:3782:b0:567:499d:1fb8 with SMTP id 71dfb90a1353d-56aa0a9c30bmr7401380e0c.13.1772545999499;
-        Tue, 03 Mar 2026 05:53:19 -0800 (PST)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56a92175e87sm19128150e0c.15.2026.03.03.05.53.16
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Mar 2026 05:53:17 -0800 (PST)
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-56a91a5e64eso2178873e0c.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:53:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW8cI0w83h2Pt5Sepz9nEGwf59XOjNHA2QcYLktGnG3tViRVEoFcalrALCQg2cBRIV1Hohf8PfxSZlN@vger.kernel.org
-X-Received: by 2002:a05:6122:7ca:b0:56a:9401:11eb with SMTP id
- 71dfb90a1353d-56aa09f0b38mr6440166e0c.2.1772545995814; Tue, 03 Mar 2026
- 05:53:15 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVlRKyfWTgMcQlGtvoNuIhljEDSz6IKZTsv4n9q7rt08Cgmb1FqQpriA1J4qgZdPfW+WCpcKjQ+Ke5A@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzm9GkbT+rvgVZcZDLOams28MPffxAf0MnIVjcY0wfXoN+38jeC
+	GP4+wIO4XjdyEm19ZpNvwA/00tAcjE05fIWkoUmczSz35TehN4rZrgWu03iAgcMphH8694OInhE
+	yGli8QXJtTmBQYF12mBg32De3j06GjQ==
+X-Received: by 2002:a05:6402:51d3:b0:660:b913:faa with SMTP id
+ 4fb4d7f45d1cf-660b91311ffmr782984a12.7.1772545998078; Tue, 03 Mar 2026
+ 05:53:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251014191121.368475-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251014191121.368475-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251014191121.368475-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 3 Mar 2026 14:53:04 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWQeOa5L9QAMDMy-KSH=HiZeOpLnq+VewSTVbvWHosygw@mail.gmail.com>
-X-Gm-Features: AaiRm503CgavmHGHdjX0Ja6Qo22cAvLU4FN50HhU_yNMMdgGQ2R4xUYUTQ3hqfw
-Message-ID: <CAMuHMdWQeOa5L9QAMDMy-KSH=HiZeOpLnq+VewSTVbvWHosygw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] pinctrl: renesas: rzt2h: Add pin configuration support
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org> <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org>
+In-Reply-To: <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 3 Mar 2026 07:53:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKN45FswZjo+27OzoHMeM7ec3hS7piF7SKNykmXNSmA0g@mail.gmail.com>
+X-Gm-Features: AaiRm53ac9QEFDq8SvGBhIqKLe9Px3qYmH3XP37nJ_98UhLN34dE0tk0zj5PhvU
+Message-ID: <CAL_JsqKN45FswZjo+27OzoHMeM7ec3hS7piF7SKNykmXNSmA0g@mail.gmail.com>
+Subject: Re: [PATCH 09/12] dt-bindings: input: Document hid-over-spi DT schema
+To: Jingyuan Liang <jingyliang@chromium.org>
+Cc: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, Mark Brown <broonie@kernel.org>, 
+	Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
+	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-spi@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, hbarnor@chromium.org, 
+	Dmitry Antipov <dmanti@microsoft.com>, Jarrett Schultz <jaschultz@microsoft.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: E53741F0FC1
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 01B761F0F91
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270536-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270535-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com,vger.kernel.org,chromium.org,microsoft.com];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[linaro.org,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,renesas.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[linux-m68k.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	NEURAL_SPAM(0.00)[0.124];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,renesas.com:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,mail.gmail.com:mid,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,chromium.org:email,suse.cz:email]
 X-Rspamd-Action: no action
 
-Hi Prabhakar,
-
-On Tue, 14 Oct 2025 at 21:11, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Tue, Mar 3, 2026 at 12:14=E2=80=AFAM Jingyuan Liang <jingyliang@chromium=
+.org> wrote:
 >
-> Add pin configuration support for the Renesas RZ/T2H SoC. The RZ/T2H allows
-> configuring pin properties through the DRCTLm (I/O Buffer Function
-> Switching) registers, including:
-> - Drive strength (low/middle/high/ultra high)
-> - Pull-up/pull-down/no-bias configuration (3 options: no pull, pull-up,
->   pull-down)
-> - Schmitt trigger control (enable/disable)
-> - Slew rate control (2 options: slow/fast)
+> Documentation describes the required and optional properties for
+> implementing Device Tree for a Microsoft G6 Touch Digitizer that
+> supports HID over SPI Protocol 1.0 specification.
 >
-> The drive strength configuration uses four discrete levels (low, middle,
-> high, ultra high) rather than the standard milliamp values. To properly
-> represent this hardware behavior, implement a custom device-tree binding
-> parameter "renesas,drive-strength" that accepts values 0-3 corresponding
-> to these discrete levels.
+> The properties are common to HID over SPI.
 >
-> The DRCTLm registers are accessed in 32-bit mode, with each port split
-> into two halves (bits 0-3 and bits 4-7) requiring separate register
-> offsets.
+> Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
+> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
+> Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
+> ---
+>  .../devicetree/bindings/input/hid-over-spi.yaml    | 153 +++++++++++++++=
+++++++
+>  1 file changed, 153 insertions(+)
 >
-> Implement pinconf_ops to support:
-> - Getting/setting individual pin configurations
-> - Getting/setting pin group configurations
-> - Standard properties: bias-disable, bias-pull-up, bias-pull-down,
->   input-schmitt-enable, slew-rate
-> - Custom property: renesas,drive-strength
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-Just a minor drive-by comment for a patch that is still WIP...
-
-> --- a/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-> +++ b/drivers/pinctrl/renesas/pinctrl-rzt2h.c
-
-> +static void rzt2h_drctl_rmw(struct rzt2h_pinctrl *pctrl, unsigned int pin,
-> +                           u32 mask, u32 val)
-> +{
-> +       u32 port = RZT2H_PIN_ID_TO_PORT(pin);
-> +       u8 bit = RZT2H_PIN_ID_TO_PIN(pin);
-> +       u32 offset = DRCTL(port);
-> +       unsigned long flags;
-> +       u32 drctl;
+> diff --git a/Documentation/devicetree/bindings/input/hid-over-spi.yaml b/=
+Documentation/devicetree/bindings/input/hid-over-spi.yaml
+> new file mode 100644
+> index 000000000000..b623629ed9d3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/hid-over-spi.yaml
+> @@ -0,0 +1,153 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/hid-over-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +       /* Access DRCTLm register in 32-bit mode */
-> +       if (bit >= 4)
-> +               offset += 4;
+> +title: HID over SPI Devices
 > +
-> +       spin_lock_irqsave(&pctrl->lock, flags);
+> +maintainers:
+> +  - Benjamin Tissoires <benjamin.tissoires@redhat.com>
+> +  - Jiri Kosina <jkosina@suse.cz>
+> +
+> +description: |+
+> +  HID over SPI provides support for various Human Interface Devices over=
+ the
+> +  SPI bus. These devices can be for example touchpads, keyboards, touch =
+screens
+> +  or sensors.
+> +
+> +  The specification has been written by Microsoft and is currently avail=
+able here:
+> +  https://www.microsoft.com/en-us/download/details.aspx?id=3D103325
+> +
+> +  If this binding is used, the kernel module spi-hid will handle the com=
+munication
+> +  with the device and the generic hid core layer will handle the protoco=
+l.
+> +
+> +allOf:
+> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - microsoft,g6-touch-digitizer
+> +          - const: hid-over-spi
+> +      - description: Just "hid-over-spi" alone is allowed, but not recom=
+mended.
+> +        const: hid-over-spi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description:
+> +      GPIO specifier for the digitizer's reset pin (active low). The lin=
+e must
+> +      be flagged with GPIO_ACTIVE_LOW.
+> +
+> +  vdd-supply:
+> +    description:
+> +      Regulator for the VDD supply voltage.
 
-Please use "guard(spinlock_irqsave)(&pctrl->lock);" instead, to match
-the style of the rest of the file.
+Is this part of the spec? This won't scale for multiple devices with
+different power rails.
 
-Note that that will become "raw_spinlock_irqsave" soon, due to
-"[PATCH v2] pinctrl: renesas: rzt2h: fix invalid wait context".
+> +
+> +  input-report-header-address:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 0xffffff
+> +    description:
+> +      A value to be included in the Read Approval packet, listing an add=
+ress of
+> +      the input report header to be put on the SPI bus. This address has=
+ 24
+> +      bits.
+> +
+> +  input-report-body-address:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 0xffffff
+> +    description:
+> +     A value to be included in the Read Approval packet, listing an addr=
+ess of
+> +      the input report body to be put on the SPI bus. This address has 2=
+4 bits.
+> +
+> +  output-report-address:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 0xffffff
+> +    description:
+> +      A value to be included in the Output Report sent by the host, list=
+ing an
+> +      address where the output report on the SPI bus is to be written to=
+. This
+> +      address has 24 bits.
+> +
+> +  post-power-on-delay-ms:
+> +    description:
+> +      Optional time in ms required by the device after enabling its regu=
+lators
+> +      or powering it on, before it is ready for communication.
 
-> +       drctl = rzt2h_pinctrl_readl(pctrl, port, offset) & ~mask;
-> +       rzt2h_pinctrl_writel(pctrl, port, drctl | val, offset);
-> +       spin_unlock_irqrestore(&pctrl->lock, flags);
-> +}
+Drop. This should be implied by the compatible.
 
-Gr{oetje,eeting}s,
+> +
+> +  minimal-reset-delay-ms:
+> +    description:
+> +      Optional minimum amount of time in ms that device needs to be in r=
+eset
+> +      state for the reset to take effect.
 
-                        Geert
+Drop. This should be implied by the compatible.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +
+> +  read-opcode:
+> +  $ref: /schemas/types.yaml#/definitions/uint8
+> +    description:
+> +      Value to be used in Read Approval packets. 1 byte.
+> +
+> +  write-opcode:
+> +  $ref: /schemas/types.yaml#/definitions/uint8
+> +    description:
+> +      Value to be used in Write Approval packets. 1 byte.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Why are these and the address properties above not defined by the
+spec? Do they vary for a specific device? If not, then they should be
+implied by the compatible.
+
+> +
+> +  hid-over-spi-flags:
+> +  $ref: /schemas/types.yaml#/definitions/uint16
+> +    description:
+> +      16 bits.
+> +      Bits 0-12 - Reserved (must be 0)
+> +      Bit 13 - SPI Write Mode. Possible values -
+> +        * 0b0- Writes are carried out in Single-SPI mode
+> +        * 0b1- Writes are carried out in the Multi-SPI mode specified by=
+ bits
+> +               14-15
+> +      Bits 14-15 - Multi-SPI Mode. Possible values -
+> +        * 0b00- Single SPI
+> +        * 0b01- Dual SPI
+> +        * 0b10- Quad SPI
+
+We already have SPI properties to define the bus width for read and write.
+
+> +
+> +required:
+> +  - compatible
+> +  - interrupts
+> +  - reset-gpios
+> +  - vdd-supply
+> +  - input-report-header-address
+> +  - input-report-body-address
+> +  - output-report-address
+> +  - read-opcode
+> +  - write-opcode
+> +  - hid-over-spi-flags
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      hid@0 {
+> +        compatible =3D "hid-over-spi";
+> +        reg =3D <0x0>;
+> +        interrupts-extended =3D <&gpio 42 IRQ_TYPE_EDGE_FALLING>;
+> +        reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
+> +        vdd-supply =3D <&pm8350c_l3>;
+> +        pinctrl-names =3D "default";
+> +        pinctrl-0 =3D <&ts_d6_reset_assert &ts_d6_int_bias>;
+> +        input-report-header-address =3D <0x1000>;
+> +        input-report-body-address =3D <0x1004>;
+> +        output-report-address =3D <0x2000>;
+> +        read-opcode =3D <0x0b>;
+> +        write-opcode =3D <0x02>;
+> +        hid-over-spi-flags =3D <0x0000>;
+> +        post-power-on-delay-ms =3D <5>;
+> +        minimal-reset-delay-ms =3D <5>;
+> +      };
+> +    };
+> \ No newline at end of file
+
+Fix this.
+
+Rob
 
