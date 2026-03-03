@@ -1,218 +1,143 @@
-Return-Path: <devicetree+bounces-270645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270646-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eN1QJ5cPp2k0cwAAu9opvQ
-	(envelope-from <devicetree+bounces-270645-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:43:03 +0100
+	id mA0ECyoQp2k0cwAAu9opvQ
+	(envelope-from <devicetree+bounces-270646-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:45:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 210D11F3FDF
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:43:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 802641F40A7
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:45:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7DB1D307908E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:36:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 687603196BBA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54424F7979;
-	Tue,  3 Mar 2026 16:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8D13264CC;
+	Tue,  3 Mar 2026 16:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ShGOIDRv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L+PIsnkD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010047.outbound.protection.outlook.com [52.101.193.47])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C8514F7971;
-	Tue,  3 Mar 2026 16:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772555804; cv=fail; b=X5yeSnxlHnXETNMpLE49IebXiKwiMdGlULBMKWhw5RiA5rtxrv3c1HrZ3TvVz3ajZ8c39zkSTfvNVxcSeB0Mzwf4GagfT+hzqEIsRZbd58zQSXU1+JpPf3kfAF86OgTgT/JNF4N3mys2hB3w1Lfe9wXW7knqiiJ7oqBRWsIf7ew=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772555804; c=relaxed/simple;
-	bh=ydWkXqBppfgzi2ybWs8bp7HA3HYrmX4QaOOv1lNsQqw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=BxQYl0IxRbmrpTJCK2lmt0s2BcLZI8eTzkhdTYcAdHcoSK2cvOxp9MkWIsD0OdGPwoARnA3rsrcQwS+UfDrgBxyWL+mx2dvzsfwzZt5jzS7GTgVssuqgOVzUOfuiRZSiwedKLyuj0t9/A+5lNbkadZHcgUzbQQPbhr0Y70VBdS8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ShGOIDRv; arc=fail smtp.client-ip=52.101.193.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aTBVt7uX4+8FTmApvZZ81uss4jYI4fWrqmjDziBsdszcs9qo68QxkIgPKxjXI04CxfQGcqWeoc5eLurJbr2qaFS15Kddil5WRmpjgIP4jvHEvBBQae5CLmfIj6SOsuALw3idEwgId7vjpkDbTrluaFP07Cy59vuEIN0SASRN0CL/nBxG/EpBu7BNIUEJ981bufkS/G9vnGt75MLRLSlLko5lCA/8yuLkYPAfOKDAmyy9RrxzkH9ugDHqHMmIgBJqFFeIGLD2Hgm9hDj3zEf7cDHqOL4wYpWMKz+Hr7U5WDSY2gTniQQAcTc7F7DSw6SeUmykMz+HkP2GlnIhUGa5dQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tSJ/LqL9F7vLzB7f0vJCbvix4YPeTSl77YE7feAOTFE=;
- b=E9bfXUvcymp1tWWHzjtTlBRAlgWn2O8xM2Gpk6hloJ9YpMWZAqmeeF+/KUseP+WbDKU0acykiAHOMDbzs54R3RuEadMrprwCGafoZ5YfsXy5BtmIh7vrF3kxk2zTZeOQ/w1hiSXyFKK2qjIttoBDJ4DROWUArq2cj52OmaFPfbzhiLxo9gavgjNUwB3A8s/9pUxgTYjCUnHR3SslSiCpUQa+7a5ShPYI6z4CMRUJLh1rhwSH76lElXefcJQDP/gb2jsBnMw1LM5or1xpzCOyATO706hnTeTCBaxgzQ9aJypU/QA5dAtq2rqhQgWrpO+mtRwQ6VRyjsVKLmU+R9kfuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.21.194) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tSJ/LqL9F7vLzB7f0vJCbvix4YPeTSl77YE7feAOTFE=;
- b=ShGOIDRvN3HE6RVWnLIhXgPNiO5fqQf7zOCrC7eRIWfICpUA7hw28v78pK2mvC2sf1eOh6RxTnGVBGliMveUjMt95dR25gloO+auAdsgvPHQ9Nv05ErAMaALY80Yx5IoLtzuNruH0Kabq7LSY4KNR+XzQzutpUXuglhHSk1AcYE=
-Received: from CH5PR05CA0024.namprd05.prod.outlook.com (2603:10b6:610:1f0::29)
- by BY5PR10MB4371.namprd10.prod.outlook.com (2603:10b6:a03:210::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Tue, 3 Mar
- 2026 16:36:39 +0000
-Received: from DS2PEPF000061C4.namprd02.prod.outlook.com
- (2603:10b6:610:1f0:cafe::f) by CH5PR05CA0024.outlook.office365.com
- (2603:10b6:610:1f0::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.22 via Frontend Transport; Tue,
- 3 Mar 2026 16:36:34 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
-Received: from flwvzet200.ext.ti.com (198.47.21.194) by
- DS2PEPF000061C4.mail.protection.outlook.com (10.167.23.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Tue, 3 Mar 2026 16:36:36 +0000
-Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet200.ext.ti.com
- (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Mar
- 2026 10:36:35 -0600
-Received: from DFLE202.ent.ti.com (10.64.6.60) by DFLE201.ent.ti.com
- (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Mar
- 2026 10:36:34 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE202.ent.ti.com
- (10.64.6.60) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 3 Mar 2026 10:36:34 -0600
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105] (may be forged))
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 623GaYaC2453259;
-	Tue, 3 Mar 2026 10:36:34 -0600
-Message-ID: <0633e48a-27a3-456a-8b9b-32e88d417560@ti.com>
-Date: Tue, 3 Mar 2026 10:36:34 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58977370D5C;
+	Tue,  3 Mar 2026 16:37:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772555866; cv=none; b=NTMGQEupXZu+664ilpsL97yQeUnbA/7ZGu/nzXZS27rt0ft5/IUwFi80nsPzIk+eMUQCi3E2kfLtqHd2ACGXaS2C7rJjgu+C3dYaTUQ1OlFdV+9AAh/rP2io7Qm7bd4v9fgmxJTxzSWuZgZ2N0O5eOVFuN7RGeUTek/WiQmxagE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772555866; c=relaxed/simple;
+	bh=4zCxRWHuSkku0YSduihXnooyBIGPdu7ySKeLPFfTZ40=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PTwcS9PcH6n7b6YJKC+E8j8r8z5pFOLSFFWsOIWs18lRJlrdc+2C+xoxAqL8S9XVYNE4DKASImFtGuW9tHev4kdQvLo84oF7jqxs/dZoQHWRamtjtNhWglFHvZ4m1B7xYUrP1FBGJQLH3Vj4/66n80HTia0bfq17OUFK9YGG3gE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L+PIsnkD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0AC21C116C6;
+	Tue,  3 Mar 2026 16:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772555866;
+	bh=4zCxRWHuSkku0YSduihXnooyBIGPdu7ySKeLPFfTZ40=;
+	h=From:To:Cc:Subject:Date:From;
+	b=L+PIsnkDLRWMzQhLSe6Aw4kJcPUMaGafo8ac3Pb55w324b0Gp8p+zD+agjL3lcOrz
+	 An9/pHCZGP2GME+b9fbPG4nyQqlVNKyQ7UOaXDd8AXXb8rKqDrAE3DJg8FpiI/9UUk
+	 KFahwsm1N0WWea/cmzP7pUQy+1m9uhCYX+n3c3GIzP84Vxkyd2YFALuDaQDFFk7bpH
+	 fpxMTwCL4DL9ajWIdlNBFYXjYae0fsIcp+XGjjuMlDUfbro/oMWpTfn7yMja7+xgjW
+	 SFJhq8G3Dr2vP5G7F3BvRCK6kqB4AulRQs76CjLmavO7FWNMAbUqSYl41EiI4jqBxG
+	 rFOSwfAHYPVYg==
+From: Conor Dooley <conor@kernel.org>
+To: linux-usb@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] dt-bindings: usb: mpfs-musb: permit resets
+Date: Tue,  3 Mar 2026 16:37:39 +0000
+Message-ID: <20260303-backspace-unhearing-c6cc8cbddbba@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-sk: Fix pinmux for pin M19 used
- by sdhci1
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<srk@ti.com>
-References: <20260212130843.1054100-1-s-vadapalli@ti.com>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <20260212130843.1054100-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PEPF000061C4:EE_|BY5PR10MB4371:EE_
-X-MS-Office365-Filtering-Correlation-Id: 904ea5ae-6dfe-467e-4e1e-08de794309e6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013|34020700016;
-X-Microsoft-Antispam-Message-Info:
-	US6jwP98kDl570g+5KBRUiQPNGas3UnPdYroqChYaAKiEshYLHzKAODM3ydp5M33pAkDE7MOdM8JNaMG8eku9LPr0hyS51BSQLkoJOFdbmVhCrm8WR0lbR2zi8R+x6rMzT5uajt2/HxxaJCqG4Ia/0ABh7i/NEko9HcGdjP7xFYGgcBqk7B4t1JaHt7rQh+/GPGLe6owSNZ3y44r4gM7/ZsoCjMg2EPHmL6IXqS8UKiJPdVluJz6pZRo3VPedLdt+Lyw7GLY72w+wk9G12h+YFSe4NMkrMIAAQTn8asWeim1+G2351XwwtS4pVtfV9ll26kuyaKNunJzgfBwRgeyA8Xb73/MKpYdu+KMFsgAwzRnI+UNu5zC4ur9fZReXBqbF+piZyHe9TcWtrePg2FNGkuRTPxKoVFy474i//+R0NqijLs50xJkjdQaqpaGW6HiAimBVXLUH+gEzg0GxrfNSrW3h9IJVPP9DEwLsCGZMHfzmFuQfy0cNuGKd4uR/mNo7dTYEOm/xlJEDlctDsajM4c66tTb75PqMhMLfE3o293KTuHJwkCbnLwJohHVIW7b6I5nCkfPBzhJDva4cajF4P82OUs8P5GKFAv7G9uckdlk30WKduO6Kf0U7o4JPQvLRSuLC+RjmHhQxwT18vQFgQ/aGV3S8zG/wzWA+cEM0txSh7H4gmfuawAqXk5O6zhbvpuU5MWx6Knw/YTn85XQvukKYQAaQ6z0mW8E0tSkR4VgADy302ruSxXxHxVjjA7DEh8BNUgdRo/IdGEmcgP8O3MNXoQw1GanN7Kg1+gJqoH/kXObnQAnhvdRkXFMjJPfcDoJUGRbzaDDkQuhhOQwEA==
-X-Forefront-Antispam-Report:
-	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(34020700016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	ka526NF0zwRpJbOC1qf1C0EQoay8lfI33Sh81m8q7pUIqN5PqWOBtIUp0Mi+wWWwxF6Eh9fqw/ZROpN9n85BKbBCbYDnwcbo9Es+6aMdiizKfE39niNdd4u/uT6r9GXEnUmmHaBfdIduMaQ1cZVtOXCRiy7kF6yFlGHYno38WBAvA7F+ALOqcATNXI+9BtqAnM7c92RvReGVF2Z2AJsMP27IhmmMp3g8awt8VoHzWrMSmZ1mUALFq+2DdjShGXIrpqKvCX0OPnY99Awqx5MYc8S5Ivmcscu95BrkueftQz3ccVtEv7gQ5XQ9fenGVQanPHVrC7bAhVR5TYZRvYx6EJr+fTPSHTMG+bEx6fV68TBObKG3Fm8Bc4y382bqFCUt8Xj/rjYUfsXR0Sks0VJqAEazLUmgTXeZSFojYdm+CkmBKW3nrcOAKrhUhDk3Hvo1
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 16:36:36.8282
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 904ea5ae-6dfe-467e-4e1e-08de794309e6
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS2PEPF000061C4.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR10MB4371
-X-Rspamd-Queue-Id: 210D11F3FDF
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1478; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=dpcvPwQiXhJxptNJ0T8pgqXJ5w228xDV3ANyBjxePt4=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJnL+YJZ/3FZeV7jE3xefTLpbaKVbNW2c+UWZRrMHPd+7 H/PeU+5o5SFQYyLQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABM5No2R4WCT8dZZwrGRv3wD PH6k3Cmb5X0s0mbLu13+rLr1xancLowMDzoTJNKLFGfnzZFYf8z8R9rv5D6VHJelMvz3XrWtelv BDgA=
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 802641F40A7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270645-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:dkim,ti.com:email,ti.com:url,ti.com:mid];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270646-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jm@ti.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infradead.org:email]
 X-Rspamd-Action: no action
 
-Hi Siddharth,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On 2/12/26 7:06 AM, Siddharth Vadapalli wrote:
-> According to the datasheet for the AM62Ax SoC [0], pin M19 has the address
-> 0x000F40A8. Therefore, the offset to be passed to the AM62AX_IOPAD macro is
-> 0xa8 and not 0x07c. With the existing incorrect offset, the following error
-> is seen when Linux boots:
-> 	fa00000.mmc: deferred probe pending: platform: supplier regulator-5 not ready
-> with the SD Card being unusable and the boot process halting due to the root
-> filesystem in the SD Card being inaccessible.
-> 
-> Hence, fix it.
-> 
-> [0]: https://www.ti.com/lit/ds/symlink/am62a7.pdf
-> 
-> Fixes: 8f023012eb4a ("arm64: dts: ti: k3-am62a: Enable UHS mode support for SD cards")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
-> 
-> Hello,
-> 
-> This patch is based on commit
-> 37a93dd5c49b Merge tag 'net-next-7.0' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
-> of Mainline Linux.
-> 
-> Regards,
-> Siddharth.
-> 
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> index e99bdbc2e0cb..9cfe7e7b317b 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> @@ -398,7 +398,7 @@ AM62AX_IOPAD(0x01d4, PIN_INPUT, 7) /* (C15) UART0_RTSn.GPIO1_23 */
->   
->   	vddshv_sdio_pins_default: vddshv-sdio-default-pins {
->   		pinctrl-single,pins = <
-> -			AM62AX_IOPAD(0x07c, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO0_31 */
-> +			AM62AX_IOPAD(0x0a8, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO0_31 */
+The musb IP on mpfs and pic64gx has a reset pin, but until now this has
+been undocumented because platform firmware takes the block out of reset
+on first-party boards (or those using modified versions of the vendor
+firmware), but not all boards may take this approach. Permit providing a
+reset in devicetree for Linux, or other devicetree-consuming software,
+to use.
 
-What! I don't think this is right.
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+CC: Conor Dooley <conor.dooley@microchip.com>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: linux-riscv@lists.infradead.org
+CC: linux-usb@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+---
+ Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Looking at device tree, regulator-5 is using main_gpio0 31 to control SD
-ENA with PMIC. Which is GPMC0_CLK (N22 pad) and VSEL_SD_SOC. Which is
-0x000F407C address in the device datasheet. So as far as I can see, the
-original address is correct and just the (M19) name is wrong. Did you
-test this patch to see if that fixed the failure?
+diff --git a/Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml b/Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml
+index a812317d80893..c4e1c2d73bdb3 100644
+--- a/Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml
++++ b/Documentation/devicetree/bindings/usb/microchip,mpfs-musb.yaml
+@@ -37,6 +37,9 @@ properties:
+   clocks:
+     maxItems: 1
+ 
++  resets:
++    maxItems: 1
++
+   microchip,ext-vbus-drv:
+     description:
+       Some ULPI USB PHYs do not support an internal VBUS supply and driving
+-- 
+2.51.0
 
-~ Judith
 
