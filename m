@@ -1,66 +1,118 @@
-Return-Path: <devicetree+bounces-270441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270442-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LTkLITEpmn3TQAAu9opvQ
-	(envelope-from <devicetree+bounces-270441-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 12:22:44 +0100
+	id CLjKGrjHpmkaTwAAu9opvQ
+	(envelope-from <devicetree+bounces-270442-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 12:36:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3400A1EDAD4
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 12:22:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D17AB1EE060
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 12:36:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D49E6305FDA0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 11:21:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AB5903098386
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 11:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9A9426D06;
-	Tue,  3 Mar 2026 11:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA5204301D2;
+	Tue,  3 Mar 2026 11:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AdTAassW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bzi58NQ/";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gykl2t0+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB245421F1F;
-	Tue,  3 Mar 2026 11:20:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8942426EAD
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 11:26:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772536814; cv=none; b=Rnh3BYWxtqs+tm0AZ/iYOpH4Yf3w5qsKM8HJhgKf8nnH16AKZ3ZPpix5/jy+ssyWr4Xexl8pOZtaB0ejEQkiWQw/zIFdt+hhLd6w4kSZpb1SiTnTEu7Fwj2GJWEEg7B8XUFm7Ighab5MyhcDN+47T1GCxAZCUXfaYX4qVg46HfE=
+	t=1772537166; cv=none; b=FgV1SAHL98B3z9rb2zJe9Z2BEEYYDENQFYGcHT0g4EbOoRjmD8O0O4P5ADyHS4BrObSCqeTT4F4lLS7y3GOJtb5Pe0LGeJ8wAB9o3qySkQots84uycJwSGKOmxg4XlgYxwfRWCMY/AeVkkskJe3i/SE9ZVgcc6AX3uJKZzMQ97s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772536814; c=relaxed/simple;
-	bh=5gsU3MpRyvJgy0jHTrGZxVFs3KaPcjh/qBnxHe/0DJI=;
+	s=arc-20240116; t=1772537166; c=relaxed/simple;
+	bh=swPtd6qOa+PdreXJ2qkayT81wvg7myqshv8J/8w1wLk=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Nws55VEPcdd5lliPIlRvX7r5Eienvuc3decuUNJWjK/0c7tWJ1JGPJOI9sg5ios7jhNHv2sSTd7UKh/kU7Bscrb8A8ZPp3q6CMBP/Yrkh2Rtsl8I9QqOHiE9AMSZ8JNnqJnIWjLdccmpdTFaxaHI7sf+52+rJTzlR+5Fqs9IEp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AdTAassW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3358C2BC9E;
-	Tue,  3 Mar 2026 11:20:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772536814;
-	bh=5gsU3MpRyvJgy0jHTrGZxVFs3KaPcjh/qBnxHe/0DJI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AdTAassWbw+I6PNYdbChW8VRb84YqbWXS00IQtF+praI+4ik21pZH6TzZCq3CELhE
-	 /3Q2yKVRBbEbqg71aLv58173pq6XNg/gj9TbMZ1D0u1aB2Zzyzfff4UqCFLL9KLwE9
-	 vKp6ghvxJ+QJ9wUW9tAb4uq8ot7yU60cE09d09HBPvOTbR9og7xbAsr+9/36RgaQDT
-	 iQYT5L6cIVZvov8SNe1uazvohn4SZ6y+7HgQP5E9ar22PjFrN4o1IzWqqpJNBeFHYD
-	 zWHHna9ZC53iahZ4e2OjS3gFHersye+vjy1VK1FHKlww/6/iqQbowg4r+tkvRd8P8d
-	 ygMLJ9zqBVflQ==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@kernel.org>, 
- "Sheetal ." <sheetal@nvidia.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Sameer Pujar <spujar@nvidia.com>, Mohan kumar <mkumard@nvidia.com>, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260302085323.3139571-1-sheetal@nvidia.com>
-References: <20260302085323.3139571-1-sheetal@nvidia.com>
-Subject: Re: (subset) [PATCH 0/2] ASoC: tegra: Add Tegra238 sound card
- support
-Message-Id: <177253681160.22767.9266052644842174169.b4-ty@kernel.org>
-Date: Tue, 03 Mar 2026 11:20:11 +0000
+	 MIME-Version:Content-Type; b=m8sKYrphZZSihgBGaGQ/Ba0sYL42sXpoMlQPwBqrNsenF4dHpCYWMCEt+aDXcyyXLRGebB61rHxvuoGD8+bH6m4qazbsunqO4NGo1lxuIIlNLcy759BmBNsaTeUwO7EW3VVQJwkV1drlwCEgL5XbJ5DIXyhZusSbwP80FIS7EGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bzi58NQ/; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gykl2t0+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6239mnG33995369
+	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 11:26:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/M2ngA9x972ob1U4Z2Cvp2jGZydYFzdvDgc3quauSCU=; b=bzi58NQ/VVf3WrXu
+	iFK5xWphBgyZu067M+Ki+CKAVQqnMAiwQN8kll5+CxyrkRgu729+3Euedaf7V5oY
+	3appOb6I8oDgF0jAoJkc+XyDePw5nofgKW5Eif/vtVTXvnAUPRo13EHA8N2ESrn6
+	j8idhFNZzkc49gm2dXYrW0fo0WTG0HMtPUp79ZnTH8fZ62CPvafAxDvgZ/1MEgBr
+	2fPRiZV8aJrjohiAkzjYk07Q4ovfZal6HcXLIms8dBqImr3BozbXd3nd6hZ2WtU/
+	RD6jgl1EUfGFemIVU1eadRB8ylivDsDIs5D0LeYOC95rrAioua2IZANAUF1uJivv
+	Q2VCVA==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cns5fs8pn-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 11:26:03 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b6ce1b57b9cso4509006a12.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 03:26:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772537162; x=1773141962; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/M2ngA9x972ob1U4Z2Cvp2jGZydYFzdvDgc3quauSCU=;
+        b=gykl2t0+spGBQ0+DsxZ4O6+zhqL8m2IRgM+58dlrVPhmCvNOJtSddiDpL7pGx1vhOJ
+         Ar+mMLWZ/4TK3AqIa8hrDgYvVdxzhkthBwLrIm18Xq4WPVCmrG5SpLbj6QCVcTwFO1nP
+         N70pVLCG/lA1He1iPaGA+v3rVirtwttP2Qd1KxirEcyVtXk4/Ea3vERJJSF92aw2Mjc2
+         AwFHtnS4Le+w/hbBKAdGFh3Z/iJRGnG8PT4a1uL7fKuJ1tzblEUuZWVbcBfcqO99cACl
+         d+sFGproRX1RbYmdt6iwto6Nsj7L3M26819xBzh5Mpq1vXcfoNAY0PjBMNbD5UNiAgT/
+         Hw1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772537162; x=1773141962;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=/M2ngA9x972ob1U4Z2Cvp2jGZydYFzdvDgc3quauSCU=;
+        b=KbcFF0Gvn5oLS2YuOvXsqfzwyttfKru4qug2edcKU0SHeyyrncDpiUH27UI0dRerI1
+         lVnOi1OJ8a867tYcJVBJgI546uQgGdGr+R7UbOUI8z3ZGg6lzFaGdwrHQFHJx0ixwV5c
+         CKAtE1XTENi8ixZjdLayYouPulxbdxYKoRcOTi8vUHagcVHpoN6uOoENUrEICIxjKi+Y
+         2CIKk0tjkKfV06XwV8REC7QvLAey1TBaqNgyocrlbbxO5UPnWnMR/m5dfASmRUfF7zed
+         Zc3R8WerbmJzwXpNDPgg3DDsx7bkGoyNkUnRuav3U9mVJ18zccYLfLokF9/NMPgX3Q2q
+         MNEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVIiQ7jJytJ8773cPG8RbGNiAqehV1rOdpHrHjAbNGfBRG8ubcs9217PriSrZWG4kud/zriz5hh3nCE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyh7Ljp1OdNvHHxKjD8DXIXvuzr4XEs2TSc0yKlZCBoZRBPyHCD
+	jiT8y8srJ3sQF/PYqzSPup4YDbXptbfUppz7BlmyUPfRSAIw3otHGadddc9Zp4xN2XyMXXGCQQk
+	yTmZrcqFqoH2h5yL/+ZvTsY1ON/nir6CDLBPGRohzjdRlXreu0oY26x1su94DaKTC
+X-Gm-Gg: ATEYQzwDjpdatRUsXjvU4P2Aet/gGGmnu+CodGUb2xTaPLC22StAgOE2qoDxtPX3UTb
+	Qan1EOJhgM4mu+Qw2N6MV3JFkQd5vgFcR7zDzMAGACfhcxwvUfyAllcBoqadPfRHrEiaDv22h8n
+	8quTViFbzGsdKResV6n6/EywBkyY2l7u7nxtbEsXFM2sv/8bGCbniXygA14JTEp2peb6LJeEVNM
+	Ab0GilgdK5yJpwNL9rX+zeBHXCQ/YiFAHpA1EGySAAiNdL/dMeeg2gYsiJdmEqVGqEwMzura/45
+	4CZLj9Z4ldYOMG0hN+RKR0aW1QYaF4YQeQj2pD315qJWV2MPRG0NqNUiK0ggcYVrk2pDOUS+PoM
+	RcCLXYkR6Cqwwzt1XGEVE6cRaE67IS7UjP52o/n3Z9S2ETLq27xLKb82LiuEgd39mFebmnvZv6E
+	BKZ1Frctu1CZw1gsonGUc=
+X-Received: by 2002:a17:902:f543:b0:2a9:4698:2577 with SMTP id d9443c01a7336-2ae2e3e3cc8mr153061755ad.2.1772537162398;
+        Tue, 03 Mar 2026 03:26:02 -0800 (PST)
+X-Received: by 2002:a17:902:f543:b0:2a9:4698:2577 with SMTP id d9443c01a7336-2ae2e3e3cc8mr153061495ad.2.1772537161935;
+        Tue, 03 Mar 2026 03:26:01 -0800 (PST)
+Received: from [127.0.0.1] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb6b416bsm170426165ad.61.2026.03.03.03.25.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 03:26:01 -0800 (PST)
+From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+In-Reply-To: <20260302-dts-qcom-glymur-add-usb-support-v3-0-883eb2691a0d@oss.qualcomm.com>
+References: <20260302-dts-qcom-glymur-add-usb-support-v3-0-883eb2691a0d@oss.qualcomm.com>
+Subject: Re: [PATCH RFT v3 0/3] arm64: dts: qcom: glymur: Add USB support
+Message-Id: <177253715785.1524003.10186721451358817329.b4-ty@oss.qualcomm.com>
+Date: Tue, 03 Mar 2026 16:55:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,76 +121,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-38bf1
-X-Rspamd-Queue-Id: 3400A1EDAD4
+X-Mailer: b4 0.13.0
+X-Authority-Analysis: v=2.4 cv=Pv2ergM3 c=1 sm=1 tr=0 ts=69a6c54b cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=nykp0w8WpVuyzLAiQ0YA:9 a=QEXdDO2ut3YA:10
+ a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-ORIG-GUID: zyAz3VZFUNboiq6rJKOVURkdZH4Vptt1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDA4OCBTYWx0ZWRfX1d6cxMLzelWg
+ n90BgHP9X5YXO451PI7e9scQuLm4RsFm3xnnV+aZAKycvEUSmdVWiKU02aRxEe0R9U6Jv7YLAsX
+ nVaF8cxModSPNQPb0myqgpIuoAI0e88VS4MDF6zLcw+LSLkZ73QB4ldPDUZ5d/l6MPam4FrQwjv
+ TYmBuftos5I/HColiJl+K0S8TLGwIJYUhRDvKP6embGJ9b30lGF6AXOskgdHI3cQqkFuZmdGfj/
+ 3DZLrbHCAxcLhC+kJpQgjjK4nM++7fhZQocfLtzKtMdCAO6gwEo1QY/+c+CpHHr8bd1QPj3TgTx
+ u5ynYHrueP1YIZns3SKBMGDPnZEtwq1a2kJUnuIr69c6d3Pq3srNZnnvuev+/egptXxFYyV1Ir7
+ KLAxDt9OjrV+Hcs+z6KOpBarAM/MTo79lDV+8bnsMxj18MENoGXn0UADr1RWkolqU0vl1W9EEUm
+ V7aNeFwFG/iypqYqWjQ==
+X-Proofpoint-GUID: zyAz3VZFUNboiq6rJKOVURkdZH4Vptt1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_05,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 lowpriorityscore=0 impostorscore=0 malwarescore=0 spamscore=0
+ suspectscore=0 adultscore=0 priorityscore=1501 phishscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603030088
+X-Rspamd-Queue-Id: D17AB1EE060
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270441-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nvidia.com];
+	TAGGED_FROM(0.00)[bounces-270442-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pankaj.patil@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Mon, 02 Mar 2026 14:23:21 +0530, Sheetal . wrote:
-> Add Tegra238 sound card support in the Tegra audio graph card driver,
-> as Tegra238 requires different PLLA and PLLA_OUT0 clock rates compared
-> to other Tegra platforms.
+
+On Mon, 02 Mar 2026 19:09:51 +0200, Abel Vesa wrote:
+> Add support for USB on Glymur SoC and its Compute Reference Device.
 > 
-> Sheetal (2):
->   ASoC: dt-bindings: tegra: Add compatible for Tegra238 sound card
->   ASoC: tegra: Add support for Tegra238 soundcard
+> It adds the usb_2 controller on top and addresses all comments.
+> 
+> This unblocks the upstreaming of the display support, since 3 DP instances
+> rely on some clocks provided by the combo PHYs.
 > 
 > [...]
 
-Applied to
+Tested-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/2] ASoC: dt-bindings: tegra: Add compatible for Tegra238 sound card
-      commit: a8df7892a9f42b2e2d5851f8835c734bd7fe8ad4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+--
+Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 
 
