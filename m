@@ -1,399 +1,231 @@
-Return-Path: <devicetree+bounces-270256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270257-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJ/VJZkzpmlJMQAAu9opvQ
-	(envelope-from <devicetree+bounces-270256-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 02:04:25 +0100
+	id KBOQID80pmlJMQAAu9opvQ
+	(envelope-from <devicetree+bounces-270257-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 02:07:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E8831E777B
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 02:04:25 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16B941E77AA
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 02:07:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4BB023025247
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 01:04:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 29D1330236AC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 01:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B641421B9DA;
-	Tue,  3 Mar 2026 01:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5373205E3B;
+	Tue,  3 Mar 2026 01:07:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cNN0XiJa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RYWWhJiM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 098D93D3B3
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 01:04:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5857155C97
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 01:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772499858; cv=none; b=cMQH3jMrSz9DyjLV5TSj61SgjmNgn+nimFpawti/pZG0rHK2dL+jQG2ED5mKtwtMFmZKnYjGTlakJrydqDa7E1/jGkbcifnLO+qmZBg1ZelLXaepuU/LcDun5yu+tRvTGbjhmRQmdd6S774hUL1Q8jAfCnBTzaC5nWCuNEcJVYQ=
+	t=1772500028; cv=none; b=HmvDzYpnc4Fy4xNrbqGOsEN9P5Hobq7ens21/dCZxSbZSJefFBmdesqhy4bcpFHvLD+TtsqRQdbf3wk7SWZQCy2looVaSrghhhbzDo8jwWl5Hb5vqQ0HLM+jfxSMpq22GQ/FeXrUYhiwkJdrLDC7j4OxrcZJrps8ozo/OiFAvcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772499858; c=relaxed/simple;
-	bh=CoXi3raZ8Hi+U1VVQqdGvWKzGnKswTm8aEYfEf9JBhY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NSD53BXrt8fIfw5e3kybqAzGSwz6qPq6qqQ7PwZ3vW+uUsE0L2M5fgSfMRP1FHsap4cUEVZlGWwYzSY7nWd1RqZExULsVspnlqKkeeXRPvscSOxu+yYpSndxtv5g0ywxnU2rX2tlzvBaWF5+y6PsoGhmaSNxeySSFwsMl08A638=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cNN0XiJa; arc=none smtp.client-ip=209.85.216.43
+	s=arc-20240116; t=1772500028; c=relaxed/simple;
+	bh=gES4GJg7caL7FDakaIQFxprqwVBsSTtJ0RmrIWeRxjk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=p9EfxoK6iEoR/2KEtv+VHeIB1x8UF5e4bcpeEQgF9fFLcsNolrp448Eya5yDIiox/1/LrorMjt7FwVZaa8E1+mMCBkkQaaINTZ/A2B02KZbpE5k33QXjVdt+eMmy0JhxHS1M/6wFzN9YDensoGSyR9K6GvN+m0JRuO1AxA4Db9A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RYWWhJiM; arc=none smtp.client-ip=209.85.215.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-3598df39444so928276a91.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 17:04:15 -0800 (PST)
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-c70ece855e2so2144496a12.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 17:07:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772499855; x=1773104655; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJfO34USsvCpv1UH9qU1hYEgkmphxj2R3COc9IPiZ2A=;
-        b=cNN0XiJaDaFlURUq97QblI4lwas+h2r/t7GOYdSc52BQ66+bvcT1tqtKL1Nm2+yZuq
-         yX/tiKyUrTwjmxR9gr5HZW5+gCA2qNIGIJK3gFkqYmSIbyN9uqA9xiGtPK187Vpp0tp8
-         8tTBIlca2LmfafSz8Q6nR07U7N9o8quhm7p/j0cV7vrPMnV5b9ihxtexUYPqndHpjJQa
-         D/jcyZeSte6d/ABCla8dcO0jgcWimRSGIrYY0Zvk1pj76uqrLIdcjFDUibVzP4dlS3G+
-         DJD4Q+NXWAbO4dxTWlQA/iDRZ3FGhCM58X265x8kqeZ6nldS+GV7sEnvFoMKXH+PHiDX
-         cxWA==
+        d=gmail.com; s=20230601; t=1772500027; x=1773104827; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uyhrdqZlHw4Vr79hIFoPgUvb87j9Owo78niBL4sfkNc=;
+        b=RYWWhJiM6D228xY2l1IFJYXs9b2w/L+oNp3rN6LlIQVfY7lQfjR6TUFbqR7JicHeoQ
+         kpQ7wnnMFM5NZIq4UBtihp6YaJEjX0Eu71neYaJj9isw/IhK3kO0jtCijFJbp8vSdQRn
+         uJBeiwYulw+ICPQUyvOZBJwb6KPXnH3SgIEoAk2o3S14q/Q1VXc1sOKZZt0TZ6iNiWPH
+         pRKtxxGu4ZZzA31/oa1vcq7TFo1nU7jfZ/VdJ9vBlJKmKBUmQjycnp7ECtuqT3U/h+X4
+         +rxJcV3XgPak2maBvQV9ANy1Sn8ltT5RE6JDsof6NieMfCuSiPtU9dl4P6TAFIiZIwyN
+         MxRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772499855; x=1773104655;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LJfO34USsvCpv1UH9qU1hYEgkmphxj2R3COc9IPiZ2A=;
-        b=dqM0CvXTklEQG+wWTJiXes2Xd9VM7vQFoZOU/FM890vmXh2n93eFUapyhCNZ8h8lMY
-         BtlscCIBeh71a6j6nZ3jsTEr3r4+hqFOs3f07ShYIA6ju+Wc31H53hlAjZ5RJLxE1EpJ
-         AbwlOmyaS360ieGO52AdQWobR99eKXFbjBznRVzPde7DcuT+Ic9u9yEPTA4HfKfV8Kt8
-         ozE2Bew2sRSmz4T+MS8/Jwj8ASlMEzm7OavcC3ztXujw8i7PmAG2IpjSNKBKSPIEIRrS
-         BFf2jyHD/FTT1TSXae9K/v+N05qimcTh9MH6vwZHtQY/PSBvSf7aIo7slDKDuVPKMYIz
-         V8YA==
-X-Forwarded-Encrypted: i=1; AJvYcCXpZOYS+WBNfacjmhe6wG/sq6vtRydOSZPftw0QxOt994wdl4sG7vNaM/Ye8l/ksZGhwtJFjnKBZVB/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUiSIqy+2ctlz6EbOnCvr7TN4Wd7TCjXr7xgC8yyY0kKqtFg3u
-	0M/YhIijzyKSaQlh08LDbGcqFA8360/c63RfsS/YTnRE+Dz4WzPlxz0X
-X-Gm-Gg: ATEYQzy1AAkQSXLJqcF5XYaWkWG5GTRaKHSEiMP2t7HBuzT5VUENVxjVUkWB9JVnI92
-	ZpYR9jpqA41Fn3zo+u4sgjs5AwQcIeQaqiRSzccxd2JdUQoBehdvuQ7xYgAqHodJ4nSfFbe6GPK
-	2kB5QWOgmMLlekTHMHO4w88ATwkhRoXbvRoajkcJyVtuVKcgKjX8v3NM5VAjAclnKU3A+MonfYR
-	KVowkN3feFRPTesi9rlabA795eY9F+lTWG/YoCiIzt0Jn73kUGN9okuUQtR+nnsT0N1XNtGbcU8
-	lZPlFow2tEiQgLV6kXhX6I5rnkGBYYJL6PxfnZcNaqXgWS3vu6nHtKeI2Db84o+tz9NhyAB87jQ
-	I2KtZ0Clfu5xJi2j3Fut0ocYLk+tsKJOvHR1F1iUjHvAwTmG/TobcoG/pHC6nIQxiDzwEe/4Azs
-	RfLORA9MWWuWUQx8EscDi/zA==
-X-Received: by 2002:a17:90b:578d:b0:343:e2ba:e8be with SMTP id 98e67ed59e1d1-35965c3c945mr12250080a91.10.1772499855342;
-        Mon, 02 Mar 2026 17:04:15 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772500027; x=1773104827;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uyhrdqZlHw4Vr79hIFoPgUvb87j9Owo78niBL4sfkNc=;
+        b=c2g42kUehBHnQ22n1Sajx24NrfxBGUUXHipTAebdGxeWbtmuExXuDYOlw2SVOTpPL7
+         ffeVEg2ayyaXg3ees6AmTOu/8ZdZvFqCMmbFA6hbToLax9NrvWOBmPibBuie9wGCSPhF
+         FFZo2EzFOkHf5D2Ro/QnL5FXHYBP8Fbs8hiIE4w+uaftCnlZOO4KIab2HOAGaynKfoZh
+         AFIXBSqIpsOap4nDrw97FT56s3r+USgwpqP5DRJ9Sr7alysVZAFrez6KHZg7u3pCF3Ly
+         DQgjVP/SwocZktdsJxluQEKq9Bf29hYkFQX4LEDqXTH3+fPfTWCsHVVEm+vrhgiUcyEU
+         uQqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWcHpBipNIvWwnICjmqcZvoiKkEV6hvWJr6kgJ60lejeGyM1bxMj2OtP0XCTHQatlg4YtZLVtU3PlC6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZmCOih34kqg7hvNbd5Af3y8YgMYqnNi3JWHWzkwCnTtGp3tzf
+	ghWmIX8ERA6DUMJytEk5g7pq9e3IOkBmBfF5NROOwQT8Jn/2j0Rknz2F
+X-Gm-Gg: ATEYQzyu1rWk5S+0Ad62yxsFLpMgXghxc2ATGujzoEIpsxq5kXl9PqVO6Yu+rWTybwL
+	C8Z16Dh7ybNYEpE2/YjSoQX6mFpr7rUh9bs0D7PFCYgBd5GM2Z5oYEtqLq7M5Szzxn2fimrQZ0M
+	1kL9teYs49TT1rcfwTiaeFgRq71YXqDKCL1SD5a4i1Zni9VAXUw5hFjhdcnKGzkn+/zap8qjAw8
+	gbQSvJsacB6tZmtGGDV66YqN1Bvbdj0hH9TQJ+wDgWKw57hN5Irrnxo7NOu/UInQiXITuyAko9o
+	vj8tx9nJ5SFZ2/7DG0FxkDE/twt2z3o/WC4iypXbW7CyX+vHRCmqxtewnArhpolDN+BGQy5YF1P
+	+hk2+ZcWfdwSdeTj9Lk2+AhQkYrUMhNtPzsfTc7u79x9mgrZ9WXlBRmeXf1/FBCV4aLZ2lLkKRN
+	Qr4imlHS+NAW8X8bFzzgN4xg==
+X-Received: by 2002:a17:903:2447:b0:2a0:b432:4a6 with SMTP id d9443c01a7336-2ae60cc32efmr3595925ad.15.1772500026993;
+        Mon, 02 Mar 2026 17:07:06 -0800 (PST)
 Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c49eb5bsm361668a91.11.2026.03.02.17.04.14
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae45b5201fsm66337935ad.87.2026.03.02.17.07.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 17:04:14 -0800 (PST)
-Date: Tue, 3 Mar 2026 09:03:46 +0800
+        Mon, 02 Mar 2026 17:07:06 -0800 (PST)
 From: Inochi Amaoto <inochiama@gmail.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
-	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, Boon Khai Ng <boon.khai.ng@altera.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Choong Yong Liang <yong.liang.choong@linux.intel.com>, 
-	Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Jose Abreu <joabreu@synopsys.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paolo Abeni <pabeni@redhat.com>, Paul Walmsley <pjw@kernel.org>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Richard Cochran <richardcochran@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
-	Yanteng Si <siyanteng@cqsoftware.com.cn>, Yao Zi <me@ziyao.cc>, Yixun Lan <dlan@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v5 0/3] riscv: spacemit: Add ethernet support
- for K3
-Message-ID: <aaYyUAaz7cSnBXl9@inochi.infowork>
-References: <20260227075718.2243818-1-inochiama@gmail.com>
- <CAJM55Z_soPhC9P03edfq_A-GN07PbGqu31aHgE_5kKhkQwkMmQ@mail.gmail.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Yao Zi <me@ziyao.cc>,
+	Yanteng Si <siyanteng@cqsoftware.com.cn>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH net-next v6 0/3] riscv: spacemit: Add ethernet support for K3
+Date: Tue,  3 Mar 2026 09:06:26 +0800
+Message-ID: <20260303010630.567674-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z_soPhC9P03edfq_A-GN07PbGqu31aHgE_5kKhkQwkMmQ@mail.gmail.com>
-X-Rspamd-Queue-Id: 3E8831E777B
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 16B941E77AA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270256-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[canonical.com,armlinux.org.uk,eecs.berkeley.edu,ghiti.fr,foss.st.com,lunn.ch,altera.com,kernel.org,linux.intel.com,davemloft.net,google.com,st.com,gmail.com,synopsys.com,bp.renesas.com,bootlin.com,dabbelt.com,redhat.com,cherry.de,eswincomputing.com,cqsoftware.com.cn,ziyao.cc];
+	TAGGED_FROM(0.00)[bounces-270257-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,ziyao.cc,cqsoftware.com.cn,bp.renesas.com,eswincomputing.com,altera.com,bootlin.com,cherry.de,st.com,synopsys.com];
+	RCPT_COUNT_TWELVE(0.00)[38];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,kernel,netdev,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[d4015000:email,inochi.infowork:mid,5.245.225.0:email,cac8e000:email,0.0.0.1:email,cac80000:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Mar 02, 2026 at 08:08:59AM -0500, Emil Renner Berthing wrote:
-> Quoting Inochi Amaoto (2026-02-27 08:57:14)
-> > Add initial support for ethernet controller of the Spacemit K3 SoC.
-> > This ethernet controller is almost a standard Synopsys DesignWare
-> > MAC (version 5.40a). This controller require a syscon device to
-> > configure some basic features, like interface type and internal delay.
-> 
-> I don't know how we can accept this when it can't be tested since it still
-> doesn't come with the device tree nodes. If you don't want it to be part of the
-> series, just share a tree where this code is working. There are plenty of free
-> public git hosting sites available.
-> 
+Add initial support for ethernet controller of the Spacemit K3 SoC.
+This ethernet controller is almost a standard Synopsys DesignWare
+MAC (version 5.40a). This controller require a syscon device to
+configure some basic features, like interface type and internal delay.
 
-It seems like you have not read my reply before, I was forbidden from
-opening other's patch. So some dependency can not be satisfied. For me,
-the only thing I can open is the ethernet device node. The other things,
-like clock, pinctrl and gpio devices. You should collect by yourself and
-I can not provide.
+Change from v5:
+- https://lore.kernel.org/netdev/20260227075718.2243818-1-inochiama@gmail.com
+patch 3:
+1. fix error from checkpatch
 
-Here is the ethernet DTS patch
+Change from v4:
+- https://lore.kernel.org/netdev/20260130022705.1059214-1-inochiama@gmail.com
+patch 1:
+1 Apply Rob's tag.
+2 Adjust clock description according to Russell's suggestion.
+patch 3:
+1. Add set_phy_intf_sel() and get_interfaces() hook, suggested by Russell.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-index b691304d4b74..1dfeef564ef3 100644
---- a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-+++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-@@ -5,6 +5,7 @@
-  */
- 
- #include "k3.dtsi"
-+#include "k3-pinctrl.dtsi"
- 
- / {
- 	model = "SpacemiT K3 Pico-ITX";
-@@ -24,6 +25,25 @@ memory@100000000 {
- 	};
- };
- 
-+&eth0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&phy0>;
-+	status = "okay";
-+
-+	mdio {
-+		phy0: phy@1 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <1>;
-+			reset-gpios = <&gpio 0 15 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <10000>;
-+		};
-+	};
-+};
-+
- &uart0 {
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-new file mode 100644
-index 000000000000..aa8e7cfd7efe
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-@@ -0,0 +1,56 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#define K3_PADCONF(pin, func) (((pin) << 16) | (func))
-+
-+&pinctrl {
-+	gmac0_cfg: gmac0-cfg {
-+		/* Base pins: - Used by RMII directly */
-+		gmac0_base_pins: gmac0-0-pins {
-+			pinmux = <K3_PADCONF(0, 1)>,
-+				 <K3_PADCONF(1, 1)>,
-+				 <K3_PADCONF(2, 1)>,
-+				 <K3_PADCONF(3, 1)>,
-+				 <K3_PADCONF(6, 1)>,
-+				 <K3_PADCONF(7, 1)>,
-+				 <K3_PADCONF(11, 1)>,
-+				 <K3_PADCONF(12, 1)>,
-+				 <K3_PADCONF(13, 1)>;
-+
-+			bias-disable;
-+			drive-strength = <25>;
-+			power-source = <1800>;
-+		};
-+
-+		/* RGMII extra pins: add on top of base pins */
-+		gmac0_rgmii_add_pins: gmac0-1-pins {
-+			pinmux = <K3_PADCONF(4, 1)>,
-+				 <K3_PADCONF(5, 1)>,
-+				 <K3_PADCONF(8, 1)>,
-+				 <K3_PADCONF(9, 1)>,
-+				 <K3_PADCONF(10, 1)>;
-+
-+			bias-disable;
-+			drive-strength = <25>;
-+			power-source = <1800>;
-+		};
-+
-+		/* Optional int pins */
-+		gmac0_int_pins: gmac0-3-pins {
-+			pinmux = <K3_PADCONF(14, 1)>;
-+
-+			bias-disable;
-+			drive-strength = <25>;
-+			power-source = <1800>;
-+		};
-+
-+		gmac0-6-pins {
-+			pinmux = <K3_PADCONF(15, 0)>;
-+
-+			bias-disable;
-+			drive-strength = <25>;
-+			power-source = <1800>;
-+		};
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index 6cc31e94c13a..066006826e92 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -5,6 +5,7 @@
-  */
- 
- #include <dt-bindings/clock/spacemit,k3-clocks.h>
-+#include <dt-bindings/reset/spacemit,k3-resets.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- 
- /dts-v1/;
-@@ -437,6 +438,112 @@ soc: soc {
- 		dma-noncoherent;
- 		ranges;
- 
-+		gmac_axi_setup: stmmac-axi-config {
-+			snps,wr_osr_lmt = <0xf>;
-+			snps,rd_osr_lmt = <0xf>;
-+			/* max axi burst len is 256 */
-+			snps,blen = <256 128 64 32 16 0 0>;
-+		};
-+
-+		eth0: ethernet@cac80000 {
-+			compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
-+			reg = <0x0 0xcac80000 0x0 0x2000>;
-+			clocks = <&syscon_apmu CLK_APMU_EMAC0_BUS>,
-+				 <&syscon_apmu CLK_APMU_EMAC0_1588>,
-+				 <&syscon_apmu CLK_APMU_EMAC0_RGMII_TX>;
-+			clock-names = "stmmaceth", "ptp_ref", "tx";
-+			interrupt-parent = <&saplic>;
-+			interrupts = <131 IRQ_TYPE_LEVEL_HIGH>,
-+				     <276 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq", "eth_wake_irq";
-+			resets = <&syscon_apmu RESET_APMU_EMAC0>;
-+			reset-names = "stmmaceth";
-+			rx-fifo-depth = <8192>;
-+			tx-fifo-depth = <8192>;
-+			snps,multicast-filter-bins = <64>;
-+			snps,perfect-filter-entries = <32>;
-+			snps,aal;
-+			snps,tso;
-+			snps,txpbl = <8>;
-+			snps,rxpbl = <8>;
-+			snps,force_sf_dma_mode;
-+			snps,axi-config = <&gmac_axi_setup>;
-+			spacemit,apmu = <&syscon_apmu 0x3e4 0x3e8>;
-+			status = "disabled";
-+
-+			mdio {
-+				compatible = "snps,dwmac-mdio";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
-+		eth1: ethernet@cac82000 {
-+			compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
-+			reg = <0x0 0xcac82000 0x0 0x2000>;
-+			clocks = <&syscon_apmu CLK_APMU_EMAC1_BUS>,
-+				 <&syscon_apmu CLK_APMU_EMAC1_1588>,
-+				 <&syscon_apmu CLK_APMU_EMAC1_RGMII_TX>;
-+			clock-names = "stmmaceth", "ptp_ref", "tx";
-+			interrupt-parent = <&saplic>;
-+			interrupts = <133 IRQ_TYPE_LEVEL_HIGH>,
-+				     <277 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq", "eth_wake_irq";
-+			resets = <&syscon_apmu RESET_APMU_EMAC1>;
-+			reset-names = "stmmaceth";
-+			rx-fifo-depth = <8192>;
-+			tx-fifo-depth = <8192>;
-+			snps,multicast-filter-bins = <64>;
-+			snps,perfect-filter-entries = <32>;
-+			snps,aal;
-+			snps,tso;
-+			snps,txpbl = <8>;
-+			snps,rxpbl = <8>;
-+			snps,force_sf_dma_mode;
-+			snps,axi-config = <&gmac_axi_setup>;
-+			spacemit,apmu = <&syscon_apmu 0x3ec 0x3f0>;
-+			status = "disabled";
-+
-+			mdio {
-+				compatible = "snps,dwmac-mdio";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
-+		eth2: ethernet@cac8e000 {
-+			compatible = "spacemit,k3-dwmac", "snps,dwmac-5.40a";
-+			reg = <0x0 0xcac8e000 0x0 0x2000>;
-+			clocks = <&syscon_apmu CLK_APMU_EMAC2_BUS>,
-+				 <&syscon_apmu CLK_APMU_EMAC2_1588>,
-+				 <&syscon_apmu CLK_APMU_EMAC2_RGMII_TX>;
-+			clock-names = "stmmaceth", "ptp_ref", "tx";
-+			interrupt-parent = <&saplic>;
-+			interrupts = <130 IRQ_TYPE_LEVEL_HIGH>,
-+				     <278 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq", "eth_wake_irq";
-+			resets = <&syscon_apmu RESET_APMU_EMAC2>;
-+			reset-names = "stmmaceth";
-+			rx-fifo-depth = <4096>;
-+			tx-fifo-depth = <4096>;
-+			snps,multicast-filter-bins = <64>;
-+			snps,perfect-filter-entries = <32>;
-+			snps,aal;
-+			snps,tso;
-+			snps,txpbl = <8>;
-+			snps,rxpbl = <8>;
-+			snps,force_sf_dma_mode;
-+			snps,axi-config = <&gmac_axi_setup>;
-+			spacemit,apmu = <&syscon_apmu 0x248 0x24c>;
-+			status = "disabled";
-+
-+			mdio {
-+				compatible = "snps,dwmac-mdio";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
-+		};
-+
- 		syscon_apbc: system-controller@d4015000 {
- 			compatible = "spacemit,k3-syscon-apbc";
- 			reg = <0x0 0xd4015000 0x0 0x1000>;
--- 
+Change from v3:
+- https://lore.kernel.org/netdev/20260128072931.875041-1-inochiama@gmail.com
+patch 1:
+1. fix the uncorrect compatible string postion
+patch 3:
+1. add "CTRL_" prefix to all ctrl register definition
+2. only use delay config 0 to calculate delay code.
+3. fix typo in the comment
+
+Change from v2:
+- https://lore.kernel.org/netdev/20260121071315.940130-1-inochiama@gmail.com
+patch 1:
+1. remove not needed compatible for select
+2. drop empty line in "spacemit,apmu" properties
+3. add spacemit,apmu properties to required.
+patch 3:
+1. remove misused phy_fix_phy_mode_for_mac_delays.
+2. use local tx clock instead of the clk_tx_i in the dwmac.
+
+Change from v1:
+- https://lore.kernel.org/netdev/20260120043609.910302-1-inochiama@gmail.com
+patch 1:
+1. remove phy clock
+patch 3:
+1. improve comment and include something special about Spacmit K3 dwmac
+2. reorder the included file
+3. fix wrong delay macro used in spacemit_dwmac_set_delay.
+4. add check for maximum supported delay.
+5. use DIV_ROUND_CLOSEST to calculate best delay configuration.
+6. use assign for the ctrl register initial value.
+7. fix input when calling of_property_read_u32().
+
+Inochi Amaoto (3):
+  dt-bindings: net: Add support for Spacemit K3 dwmac
+  net: stmmac: platform: Add snps,dwmac-5.40a IP compatible string
+  net: stmmac: Add glue layer for Spacemit K3 SoC
+
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   2 +
+ .../bindings/net/spacemit,k3-dwmac.yaml       | 103 ++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 228 ++++++++++++++++++
+ .../ethernet/stmicro/stmmac/stmmac_platform.c |   1 +
+ 6 files changed, 347 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
+
+--
 2.53.0
-
-Inochi
 
 
