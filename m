@@ -1,226 +1,269 @@
-Return-Path: <devicetree+bounces-270455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270457-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IvkJYjQpmmgWwAAu9opvQ
-	(envelope-from <devicetree+bounces-270455-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 13:14:00 +0100
+	id MHUcJY3TpmnHWgAAu9opvQ
+	(envelope-from <devicetree+bounces-270457-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 13:26:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3881B1EF21D
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 13:14:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1032B1EF62E
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 13:26:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C46AB3030D85
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 12:13:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 268B7308410D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 12:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93DF033FE12;
-	Tue,  3 Mar 2026 12:13:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC32311973;
+	Tue,  3 Mar 2026 12:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b+PkR2E/"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Hbmryubh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 133DF33F8B8
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 12:13:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EC0337BA0;
+	Tue,  3 Mar 2026 12:23:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772540035; cv=none; b=G+fJiixwep3yk9+HJ5Ejq0IVQ/UASxmdv8oLL8I4CyD88xdGw8HHi7XTg2cZmRGbVpnMHCCSzGW0ClhqrHQ4SQaTAea7PXUSGxCklMixa2CU4hU6jpGEsT4pJsllwjitjFXyH0FAGfelsc/LMxOZA0tF7u9VQSF8dDIm+e4Gerc=
+	t=1772540629; cv=none; b=TjSl+6+dgJNa9tgoklxi7d3fggHAaDaEJpXcjfd1PimNipGBf7cRw7kvg3RN73KX2L1EDKYZysWRb+khsUsOQFAaMym7lBST32gwcFmWPSH758yHA0pVMkgXkl8l9IMDCKX3LBJxGVMMo93gKeyfFi2Q72m34XYfvU0ZwQ8GeqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772540035; c=relaxed/simple;
-	bh=iaaMMI/k7WQJvHt1nbIJyR0XOGadyN9uqrto12B+tb8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i6vVwfgueKGVdAkLN2RrbP3IZwhAXIZHqGCIobCiaY0mSPk5I6UejUeNO7+UiZJ/NC77Sif0hAK13myT8PgS1uRsPCYQbtfcXonpbUEWnPhygX6qMrUqXn6HJqIWMcQ5qRBoqaB9Vn7IP+766HFLQr6R10IJwjGsh5INFF+U5o0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b+PkR2E/; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4836f4cbe0bso47822485e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 04:13:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772540031; x=1773144831; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=gqNb2+lvfz7Zcwb57rdSTxDdzqT6Z0aXOwyE7epiZnM=;
-        b=b+PkR2E/yqp3sjeQEHG9fxnuYzEqG2kN0rb2b73pAQUG0wRwrJlviVsqMg1baunqoc
-         fIKzcYxFIRaiUdFCE2/Ljcfu0i13QjMt/s4gfppDu/FTsaVeakFV1CyBUC3pEvgxoazS
-         l088DpZsJleH1mKC2UTdMaBfIqBc70jc4+ipx3ZGFfF2zaJwB3vtEqHxujVDkC2xTFBB
-         yb9qI72YTpLl01qz/Xcw2s4FpanVrcX6f9L1N5c4q+tXzQKih9fnlDpiJ0qf1lXeSNBR
-         i/byKpn9H66Emw4G47wztKxq//Nn4RcS/3CdBec3qCaAbKko+jmydLQIuMPTej0rPGct
-         oJ0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772540031; x=1773144831;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gqNb2+lvfz7Zcwb57rdSTxDdzqT6Z0aXOwyE7epiZnM=;
-        b=eir+8ORkrgmG1pDi+I4AeqV2uxCImYkigkF5EW0eDrDMW4DEU7xhXVW3hRmMfH6+wu
-         SVnistX/ssg0tdu2T8s5qz3B0dwxDwA+NFfhtlBvSrBuWB1UIdulU801J9AIcnnbCOq5
-         7HV5u5xcf3JmHMPYquHQZAw4TQjOCYXcWGxoL3Y8KdtQnNpOfr/q0nr2EDygK0PWpdCH
-         PWJQuWy2nTKf30q3aycxE0TMM4uRxSq/JIx4Z1mUjt7Ti8+c9Zl3NG50si2mNB4yDipD
-         oFi9f5wG+axzgZdp5a2oQiQIG2sxqYtBrBAvhAjg98G1/KlIB9gQYhLN5wiE6+xXkzSM
-         ybkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXSu4jrKyk6NC0n3fAm0wCQJBwNKTFQIpcvK6xX2w0m2Bj2xCpWj8jAc2m0xh2v0QW2hWgBpc7SEmSu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkvlyGOnejuGqyINqmAZJ9KFgiSlRsMA0G2p/vbLCQt98v7rCk
-	wFzrd0ID06uY/y05YWpGV/hTRVLk/rs9qvc6cqGXNLdrikO/YHLj5Zil
-X-Gm-Gg: ATEYQzwHU5J2bf6fX9jeJnSJ4NbnIUxwK3sUDZ/DL+iWAV1h4AZblUK2F0zpfPLCPNS
-	8DAff7VeIeDOwzx1JV6lm28CDqUifHxfS93acDicvhRA2W40NKhmTRNEpSX9BhROyroI2Nm2fPv
-	8xdmkU0WouwENIK0gngYZ5D0zM9VVce0QDt1CbSTdwTyijzL64uDmaMnSNfVFTzY33WImMn9HuA
-	gKFlioIuN0g/y1no4dZZbWoy9U2iw8wuOil8Jod3W/AReYdDGvrsSmJfBN4P05EJYQQhYH5Kc0k
-	W1tXq/r48JIVkmLqewI5UCF6Wd+bP8HyoDQ24oMLHOuwmh5mKyxdUm6Qinm6mqqF2YYAhFsF6JQ
-	346YREGgHzDCRPAQ58g2LdQcbDDlEPk48jbNkMGH9NA+PhnDCOcYyAs5wUsJlTMeLkv5mm9yXo9
-	e89pktuRG8S4P57d683GtiREKwRuZc505tS8KwlZiFZlgx9Lt1f7nFY9mrL+4ynSgi3vG93mNaI
-	GfORJ6twDYAt9xl
-X-Received: by 2002:a05:600c:4fc8:b0:47b:e2a9:2bd7 with SMTP id 5b1f17b1804b1-483c9beaca0mr330124105e9.19.1772540031180;
-        Tue, 03 Mar 2026 04:13:51 -0800 (PST)
-Received: from emanueleg-nb.corp.toradex.int (93-34-120-147.ip49.fastwebnet.it. [93.34.120.147])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4399c75b272sm33572593f8f.24.2026.03.03.04.13.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 04:13:50 -0800 (PST)
-From: Emanuele Ghidoli <ghidoliemanuele@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] arm64: dts: freescale: imx95-toradex-smarc: Support Cortex M7
-Date: Tue,  3 Mar 2026 13:13:06 +0100
-Message-ID: <20260303121324.1576841-1-ghidoliemanuele@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1772540629; c=relaxed/simple;
+	bh=g3fKDlurWC1PfL7BGX0dpJf2FNsgSqsCMdJ5IN8RwKc=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=XuXyRWNm/1k0JzQD/EQlEaUs4867PEA8AWKdxVu136bdk5vOhxdYIpIT3NoJv5jhnCVAmVdwtFVEzrcYqAGnuiTCi4IivzaW2DVARmjc2M4cApPkgjj1OQfCEE81zZzjarCpd3e4RiThGtaF1g+xqe6L2Q79H0Djp1fxwfC9/pE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Hbmryubh; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772540627; x=1804076627;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=g3fKDlurWC1PfL7BGX0dpJf2FNsgSqsCMdJ5IN8RwKc=;
+  b=HbmryubhJW/rdfk4vg+ed2gnZ1DnWKkfE0W8XHzBoC1ARetHXeuP+42j
+   CMbGD2DmEQ3DRdLu//I5Cr00iiQSHVcXZgI22Ys9OTzVEIKOMrcIAkEOl
+   g6Gf9oIkpreE/ZsoGJjqxdn2uy+a5XY3AE2XcLNAo7YQLP4gq3riBh+p3
+   HtxOjtGwqv8Ec67DeaLxWHOCZEsn87AK3hc9jv/m0C0+wYb3ywXiGQJRV
+   cRUbL8CuitshQf5kn6xXcQKyu6c0th1DnN/nTcrxhO4LnCYwjOoQai54p
+   E7QlG/VsxFW+KilZkj0C30/ft7VyCuQMSRvAqTceY2B8SCAU0s6lXhxmR
+   g==;
+X-CSE-ConnectionGUID: O5MLb/nJR+Ce7h6ad0rSrA==
+X-CSE-MsgGUID: a4jxtFRLR5O47naYPXqVkQ==
+X-IronPort-AV: E=Sophos;i="6.21,321,1763449200"; 
+   d="scan'208";a="285516796"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2026 05:23:40 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 3 Mar 2026 05:23:19 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 3 Mar 2026 05:23:16 -0700
+From: =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+Subject: [PATCH net-next 0/8] net: dsa: add DSA support for the LAN9645x
+ switch chip family
+Date: Tue, 3 Mar 2026 13:22:26 +0100
+Message-ID: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 3881B1EF21D
+X-B4-Tracking: v=1; b=H4sIAILSpmkC/x3NTQrCMBBA4auUWRtIUq3oVaSE/EztgIwyE2qg9
+ O4Gl9/mvR0UhVDhPuwguJHSmzvcaYC8Rn6iodIN3vrJemdN0RhekW/T+dKCfqnmNRShDSWkqGh
+ G51Na8njFkqBXPoILtf/hAYzVMLYK83H8AKyZSs57AAAA
+To: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "Vladimir
+ Oltean" <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, Russell King
+	<linux@armlinux.org.uk>, Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>
+CC: <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, =?utf-8?q?Jens_Emil_Schulz_=C3=98stergaard?=
+	<jensemil.schulzostergaard@microchip.com>
+X-Mailer: b4 0.15-dev
+X-Rspamd-Queue-Id: 1032B1EF62E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[toradex.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-270457-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[microchip.com,lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-270455-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[ghidoliemanuele@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_PROHIBIT(0.00)[5.63.20.32:email,4.196.180.0:email,5.63.12.80:email,5.62.229.64:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,5.62.198.0:email,5.62.237.16:email,5.66.33.96:email]
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:email,microchip.com:url,microchip.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+This series provides the Microchip LAN9645X Switch driver.
 
-Enable Cortex M7, the vring nodes, a mailbox and reserve DDR memory for
-the M7. The remoteproc framework is so capable to load and run the M7
-firmware.
+The LAN9645x is a family of chips with ethernet switch functionality and
+multiple peripheral functions. The switch delivers up to 9 ethernet
+ports and 12 Gbps switching bandwidth.
 
-Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+The switch chip has 5 integrated copper PHYs, support for 2x RGMII
+interfaces, 2x SGMII and one QSGMII interface.
+
+The switch chip is from the same design architecture family as ocelot
+and lan966x, and the driver reflects this similarity. However, LAN9645x
+does not have an internal CPU in any package, and must be driven
+externally. For register IO it supports interfaces such as SPI, I2C and
+MDIO.
+
+The chip supports a variety of network features such as
+
+* Mactable for MDB/FDB functionality
+* Bridge forwarding offload
+* VLAN-aware bridging
+* IGMP/MLD snooping
+* Link aggregation
+* PTP timestamping
+* FRER (802.1CB)
+* Media Redundancy Protocol
+* Parallel Redundancy and High-Availability Seamless Redundancy
+  (HSR/PRP) in DANH/DANP mode
+* Per stream filtering and policing
+* Shapers such as Credit Based Shaping and Time Aware Shaing
+* Frame preemption
+* A TCAM (VCAP) for line-rate frame processing
+
+The LAN9645x family consists of the following SKUs:
+
+LAN96455F
+LAN96457F
+LAN96459F
+LAN96455S
+LAN96457S
+LAN96459S
+
+The difference between the SKUs is the number of supported ports (5, 7
+or 9) and features supported. The F subfamily supports HSR/PRP and TSN,
+while the S subfamily does not.
+
+The intended way to bind this driver is using a parent MFD driver,
+responsible for the register IO protocol, and distributing regmaps to
+child devices. The goal is to use the same approach as the MFD driver in
+drivers/mfd/ocelot-spi.c.
+
+This driver expects to request named regmaps from a parent device. This
+approach is similar to the DSA driver
+
+drivers/net/dsa/ocelot/ocelot_ext.c
+
+which supports being driven by an external CPU via SPI with parent
+device drivers/mfd/ocelot-spi.c.
+
+The MFD driver will come in a later series, because there are
+requirements on the number of child devices before a driver qualifies as
+a MFD device.
+
+Development is done using the LAN966x as a host CPU, running the lan966x
+swichdev driver, using the EVB-LAN9668 EDS2 board.
+
+The datasheet is available here:
+https://ww1.microchip.com/downloads/aemDocuments/documents/UNG/ProductDocuments/DataSheets/LAN9645xF-Data-Sheet-DS00006065.pdf
+
+This series will deliver the following features:
+
+* Standalone ports
+* Bridge forwarding and FDB offloading
+* VLAN-aware bridge
+* Stats integration
+
+More support will be added at a later stage. Here is a tentative plan of
+future patches for this DSA driver:
+
+* Add LAG support.
+* Add MDB support.
+* Add TC matchall mirror support.
+* Add TC matchall police support.
+* Add DCB/qos support.
+* Add simple TC support: mqprio, cbs, tbf, ebf.
+* Add TC flower filter support.
+* Add HSR/PRP offloading support.
+* Add PTP support.
+* Add TC taprio support.
+
+For completeness I include tentative plan of planned patches for
+LAN9645x peripherals:
+
+* Extend pinctrl-ocelot for LAN9645x:
+  https://lore.kernel.org/linux-gpio/20260119-pinctrl_ocelot_extend_support_for_lan9645x-v1-0-1228155ed0ee@microchip.com/
+* Add driver for internal PHY:
+  https://lore.kernel.org/netdev/20260123-phy_micrel_add_support_for_lan9645x_internal_phy-v1-1-8484b1a5a7fd@microchip.com/
+* MFD driver for managing register IO protocol and child device
+  initialization.
+* Extend pinctrl-microchip-sgpio for LAN9645x support.
+* Extend i2c_designware for LAN9645x support.
+* Add driver for outbound interrupt controller.
+* Add serdes driver for lan9645x.
+
+Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
 ---
- .../dts/freescale/imx95-toradex-smarc.dtsi    | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+Jens Emil Schulz Østergaard (8):
+      net: dsa: add tag driver for LAN9645X
+      dt-bindings: net: lan9645x: add LAN9645X switch bindings
+      net: dsa: lan9645x: add autogenerated register macros
+      net: dsa: lan9645x: add basic dsa driver for LAN9645X
+      net: dsa: lan9645x: add bridge support
+      net: dsa: lan9645x: add vlan support
+      net: dsa: lan9645x: add mac table integration
+      net: dsa: lan9645x: add port statistics
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-index 5932ba238a8a..77c4a6dee098 100644
---- a/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95-toradex-smarc.dtsi
-@@ -42,6 +42,16 @@ clk_serdes_eth_ref: clock-eth-ref {
- 		enable-gpios = <&som_gpio_expander_1 13 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	cm7: remoteproc-cm7 {
-+		compatible = "fsl,imx95-cm7";
-+		mbox-names = "tx", "rx", "rxdb";
-+		mboxes = <&mu7 0 1
-+			  &mu7 1 1
-+			  &mu7 3 1>;
-+		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
-+				<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>, <&m7_reserved>;
-+	};
-+
- 	connector {
- 		compatible = "gpio-usb-b-connector", "usb-b-connector";
- 		/* SMARC P64 - USB0_OTG_ID */
-@@ -156,6 +166,42 @@ linux_cma: linux,cma {
- 			alloc-ranges = <0 0x80000000 0 0x7f000000>;
- 			linux,cma-default;
- 		};
-+
-+		m7_reserved: memory@80000000 {
-+			reg = <0 0x80000000 0 0x1000000>;
-+			no-map;
-+		};
-+
-+		rsc_table: memory@88220000 {
-+			reg = <0 0x88220000 0 0x1000>;
-+			no-map;
-+		};
-+
-+		vdev0vring0: memory@88000000 {
-+			reg = <0 0x88000000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev0vring1: memory@88008000 {
-+			reg = <0 0x88008000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring0: memory@88010000 {
-+			reg = <0 0x88010000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdev1vring1: memory@88018000 {
-+			reg = <0 0x88018000 0 0x8000>;
-+			no-map;
-+		};
-+
-+		vdevbuffer: memory@88020000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x88020000 0 0x100000>;
-+			no-map;
-+		};
- 	};
- };
- 
-@@ -572,6 +618,10 @@ &lpuart3 {
- 	pinctrl-0 = <&pinctrl_uart3>;
- };
- 
-+&mu7 {
-+	status = "okay";
-+};
-+
- /* SMARC MDIO, shared between all ethernet ports */
- &netc_emdio {
- 	pinctrl-names = "default";
+ .../net/dsa/microchip,lan9645x-switch.yaml         |  137 ++
+ MAINTAINERS                                        |   10 +
+ drivers/net/dsa/microchip/Makefile                 |    1 +
+ drivers/net/dsa/microchip/lan9645x/Kconfig         |   12 +
+ drivers/net/dsa/microchip/lan9645x/Makefile        |   10 +
+ drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c  |  413 +++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.c |  884 ++++++++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  478 +++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_npi.c  |   99 ++
+ .../net/dsa/microchip/lan9645x/lan9645x_phylink.c  |  537 ++++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_port.c |  294 ++++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_regs.h | 1851 ++++++++++++++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.c    |  825 +++++++++
+ .../net/dsa/microchip/lan9645x/lan9645x_stats.h    |  288 +++
+ drivers/net/dsa/microchip/lan9645x/lan9645x_vlan.c |  339 ++++
+ drivers/net/ethernet/microchip/Kconfig             |    1 +
+ include/linux/dsa/lan9645x.h                       |  290 +++
+ include/net/dsa.h                                  |    2 +
+ net/dsa/Kconfig                                    |   10 +
+ net/dsa/Makefile                                   |    1 +
+ net/dsa/tag_lan9645x.c                             |  143 ++
+ 21 files changed, 6625 insertions(+)
+---
+base-commit: 01857fc712f6469cab9cc578120cdc80f1c2a634
+change-id: 20260210-dsa_lan9645x_switch_driver_base-312bbfc37edb
+
+Best regards,
 -- 
-2.43.0
+Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
 
 
