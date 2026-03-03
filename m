@@ -1,479 +1,176 @@
-Return-Path: <devicetree+bounces-270634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270635-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oAyvF8gKp2kDcgAAu9opvQ
-	(envelope-from <devicetree+bounces-270634-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:22:32 +0100
+	id EPsiLOUJp2kDcgAAu9opvQ
+	(envelope-from <devicetree+bounces-270635-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:18:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E00FC1F3A6D
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:22:31 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C5911F389C
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:18:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 08C08309597B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:15:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BC68D303D6B1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635A44C040D;
-	Tue,  3 Mar 2026 16:15:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D419F4D90B9;
+	Tue,  3 Mar 2026 16:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HTsLqRiB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0544BCAA7
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 16:15:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502094D90C6
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 16:17:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772554512; cv=none; b=LRKOZbUWZ8eCkSyphXFg/rVzARwsTQXQPCUkTEcJ9KqKc4SK78nraIeVoBc5Sw7ct/uYuSmUOZ4IH4pgbuRqoQu/ljXH9pfFsvw5nYz5w0z+9obdV/SwyHn9YW2N1dVBUbmjP2q/8P9OogSDcJuVq/CZ3hgdS90Tm/uffL4wWrs=
+	t=1772554678; cv=none; b=pcPYjya54c9SBxzDne0xQcuEywMAwgl32SrWlJrqlPP2GB1LgZseKGWRtsB3Qjmp4ZzCtjdn/WX0A/qm7i2gkUA7lrDJSVCM373iTyONbE82AH3jC7ujRYYHFY88w1APLfvmxF8Z98YXGLzvOysCukAVwZyxa3+sHvdKwEWYJnw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772554512; c=relaxed/simple;
-	bh=g6wJXKdgwjdhbbJCQpY0n2URjxDo2iSh9vaWqgVlYPU=;
+	s=arc-20240116; t=1772554678; c=relaxed/simple;
+	bh=Ou6LdZqCzPD6VJp1TNvcfVntCiu7NT1mM5jZzyRm/Kw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kStg00we8AyU3tAeWTTzJjDQSXKAt7v2M3eUO9NuT+RYva50N0NiMY6UBPnU90GtoTp1TmtrDN6fPpfJC6alveqKaZxqtt2hoWcp4rSCT/bBSbquDTDySXV7HC0RdFuFQGPxgGYuHuH2GWTOac9ncs6xIAI0i9FP8lRswqAAmLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxSOQ-0000WO-Nm; Tue, 03 Mar 2026 17:14:42 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxSOO-003Zk0-1K;
-	Tue, 03 Mar 2026 17:14:41 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxSOP-0000000G7Sq-2dyJ;
-	Tue, 03 Mar 2026 17:14:41 +0100
-Date: Tue, 3 Mar 2026 17:14:41 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Andrew Thomas <andrew.thomas@touchnetix.com>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, 
-	Russ Weight <russ.weight@linux.dev>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Andrew Morton <akpm@linux-foundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Marco Felsch <kernel@pengutronix.de>, 
-	Henrik Rydberg <rydberg@bitmath.org>, Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v5 4/4] Input: Add TouchNetix aXiom I2C Touchscreen
- support
-Message-ID: <4x3dnedfzf3rqzsy3wjdoj6yaxmy6kop37xhxeao4vjer7ifdi@35ux42ztq3eb>
-References: <20260111-v6-10-topic-touchscreen-axiom-v5-0-f94e0ae266cb@pengutronix.de>
- <20260111-v6-10-topic-touchscreen-axiom-v5-4-f94e0ae266cb@pengutronix.de>
- <qoelgb5k77a4c4jodn622a6wauotzkeygy5fj54cjjnobb5g6c@ysxkou6nhkop>
- <a7hajq5edw3w2pm5l3ytn65kmudjckvaj5relydayoua5i7oha@wsattyisot4s>
- <lgpdkwl7hxz7ok7qtujzdhf3c3iehwvm5d7myxfewr4kgrcq5k@3s4v4sjus7go>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HqY+K2B//vF18QZcJNxvS4g+Uq/NVbYRPErzLEDPG0kWTScNnbcp3x8/ZUfXezKfrwlllXHvGThoCabx5hPtBhJj8nWQUU7+lIobngQJUnJvdbojHiwBFqVFItq8EJZLV5AMB+ouhLzBdZ2SGAFNYJgIFbmcRCWmCzUqkw3XgsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HTsLqRiB; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-48378e60742so6827655e9.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 08:17:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772554676; x=1773159476; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=BpMzQ/Fm0GSVT5QTwa/j0w3V4b8dDXB+Ulw9MTc4WEQ=;
+        b=HTsLqRiBLr8J/vudZSwVAa3mFTyPbLUC2DX7pbEWx/zhW2HF7yzcHrUucjXltd2bhc
+         C14RtXsJ8lsJlCAj1H7w5cgs34bkimO+1y/WV8AT+RDKUxbtUEkYPqwmzhUdD23oBvXb
+         RWkibjUUyfnoAatTNNiheCBJoSKJdASNcoVVkbJD+gKWQuxH6ldhYRYzWgJwMrFGcZEK
+         wJJkzJVKBCGRsnHBLkCy/K4TbOcvOD37RmFQH9EaBnCIj4jmKhuHdj1sHO/0EfbDrzTi
+         HVferqhFhHD7E94Dd980mls/HABjSf8iNkvek3kTe17oX9kTmUymTkkmCnyh269PRgpi
+         5ALw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772554676; x=1773159476;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BpMzQ/Fm0GSVT5QTwa/j0w3V4b8dDXB+Ulw9MTc4WEQ=;
+        b=EZmYms1GUrWwz2cXN0p6ZjAsowcFeR2OjDR/TS43CnU32KxaXt06ZGyaI3ETIJZT50
+         Y5TqDKIPJWM+Q5NCfu5NCRYq0lUHEj3834BBkxWnbtPf9cnOzPl1F7aPbIM/Hyy6zwtd
+         rmFd28IzNwI5OxezPEnvqdrBU6sRKXqm4llCh6RX1Lo3X4ZqRNqr4Ltt1uSUcMAafuFl
+         Fp35XsN2UJldDAABOqDE7aF1s1odZKYuVxWuqHPCzppKaSb71uDVyijfOeKvEmsqGy3L
+         WtPbevfSG9KaH7UYp1cI/zQlzITDPWA1UwCVvr5WPsexYM7zbT36ai9zy0nuJ8IzuqI/
+         xJjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXQqNWSi4BJOUCHmnNJ+E3V7NTm94ATpiUlFR8Gof7vaT4FBjgaWLu23nfUQfhlh5PgkGmSPjODoTHg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+Akw2oOnmuPPWUz9yZOSnnVNaEdpnniVONQMBq3f6iFZDIHua
+	LpnZFfSGwyLdEztqU66PRABvdADvAZ7E8Bb8e/Z4FeZy50LBhow+e9jE
+X-Gm-Gg: ATEYQzwY7+kUl0X/+5YoHcBLCW6q3siMJ+IjSEgJwsHMLdES3eVjceAyHBkKYrV8sNI
+	pDag2sb/BrQmbW4PviN3wKcA2+SiD4UFHZvbT05R36TUEmTSYwtKEeVZRRADWsgFsh0UGvl1rmI
+	3NKlqbf7ZpdNt6hQKUf2q7xE8u58Ht5ZcFiU8JMjQ8ZtCarGUlMjugi80wg2aDVNsehEkIvD7Qx
+	N9fQJdmHSDLwEDyAsfcb86AnzABOdLvvrjzkZjwJl4Lmru3o2udd5L3W+9So0qg/E9KsYx/mGCa
+	N0QRQTv9s2VGTdmxQdPFy4t4ez6LWdODM2r7COkPV8sillnTbDOjhJrOXy680fzTd225fXGvQTA
+	wWspQgr4iTwQVKxCT0DWNuavHiDegtrApindSvZi2Bcpdho1g0CsZaEQMKC9QPurlxczC9KBnEY
+	NxCs4OywLjAOldWO0=
+X-Received: by 2002:a05:600c:4e8a:b0:483:887:6e32 with SMTP id 5b1f17b1804b1-483c9bd9eaemr168266765e9.8.1772554675591;
+        Tue, 03 Mar 2026 08:17:55 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d00e:3600:2472:8e4a:cf12:bb30])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b346ccsm325715375e9.2.2026.03.03.08.17.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 08:17:54 -0800 (PST)
+Date: Tue, 3 Mar 2026 18:17:51 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 5/8] net: dsa: lan9645x: add bridge support
+Message-ID: <20260303161751.s4ryquinp2fus37g@skbuf>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
+ <20260303142048.y4vu5i57daeuezxm@skbuf>
+ <930c6381b676f6c911e3c7235be5b08c7ca24e09.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <lgpdkwl7hxz7ok7qtujzdhf3c3iehwvm5d7myxfewr4kgrcq5k@3s4v4sjus7go>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: E00FC1F3A6D
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <930c6381b676f6c911e3c7235be5b08c7ca24e09.camel@microchip.com>
+X-Rspamd-Queue-Id: 9C5911F389C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270634-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270635-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[kernel.org,linux.dev,linuxfoundation.org,linux-foundation.org,gmail.com,bootlin.com,pengutronix.de,bitmath.org,vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.948];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,pengutronix.de:url]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Hi Andrew,
-
-On 26-02-26, Andrew Thomas wrote:
-> On Wed, Feb 25, 2026 at 09:50:11PM +0100, Marco Felsch wrote:
-
-...
-
-> > > > +static int axiom_u02_enter_bootloader(struct axiom_data *ts)
-> > > > +{
-> > > > +	struct axiom_u02_rev1_system_manager_msg msg = { };
-> > > > +	struct device *dev = ts->dev;
-> > > > +	unsigned int val;
-> > > > +	int ret;
-> > > > +
-> > > > +	if (!axiom_driver_supports_usage(ts, AXIOM_U02))
-> > > > +		return -EINVAL;
-> > > > +
-> > > > +	/*
-> > > > +	 * Enter the bootloader mode requires 3 consecutive messages so we can't
-> > > > +	 * check for the response.
-> > > > +	 */
-> > > > +	msg.command = cpu_to_le16(AXIOM_U02_REV1_CMD_ENTERBOOTLOADER);
-> > > > +	msg.parameters[0] = cpu_to_le16(AXIOM_U02_REV1_PARAM0_ENTERBOOLOADER_KEY1);
-> > > > +	ret = axiom_u02_send_msg(ts, &msg, false);
-> > > > +	if (ret) {
-> > > > +		dev_err(dev, "Failed to send bootloader-key1: %d\n", ret);
-> > > > +		return ret;
-> > > > +	}
-> > > 
-> > > A delay is required between commands. 10ms is fine.
+On Tue, Mar 03, 2026 at 05:08:10PM +0100, Jens Emil Schulz Ostergaard wrote:
+> On Tue, 2026-03-03 at 16:20 +0200, Vladimir Oltean wrote:
 > > 
-> > Can I make use of the axiom_u02_wait_idle() logic which checks the
-> > AXIOM_U02_REV1_RESP_SUCCESS? Arbitrary delays are always a source of
-> > trouble.
+> > On Tue, Mar 03, 2026 at 01:22:31PM +0100, Jens Emil Schulz Østergaard wrote:
+> > > We support a single bridge device.
+> > 
+> > Why? I keep seeing this from Microchip engineers. Having two
+> > VLAN-unaware bridges on different sets of ports is a perfectly valid use
+> > case. On Ocelot I took the driver from a state where it had an identical
+> > implementation to yours and I made it handle multiple bridges. I don't
+> > see where's the problem.
 > 
-> Yes, I tested with axiom_u02_wait_idle() which is OK.
+> The main reason is that is what we support in other drivers such as sparx5,
+> lan969x and lan966x. I saw your solution for Ocelot, but I could not think
+> of the use case, where you would not just use vlans on a single bridge to
+> isolate forwarding domains. But I may be missing something.
 
-I tested it too, unfortunately I wasn't able to enter the bootlaoder
-mode with:
-  - axiom_u02_send_msg(.., .., true);
+I already said the use case, VLAN-unaware bridging, where it transports
+VLAN-tagged packets from one port to another without filtering based on
+the VLAN tag.
 
-This aligns with the "Programmer's Guide":
-| 
-| 0x000B: ENTERBOOTLOADER
-| 
-| This command must be sent sequentially, in 3 phases, with no other usage
-| accesses in between each phase...
-| 
+You can't replicate that with a bridge with vlan_filtering=1, because it
+would then stumble over VLAN-tagged packets which you'd need to add to
+the VLAN table, otherwise they'd be dropped. And then you couldn't have
+the same VLANs being transported in bridge A as the VLANs that are
+transported by bridge B, because you would allow inter-bridge forwarding.
+It's just not the same thing.
 
-> I am slightly worried about too short a delay to axiom causing instability,
-> however this works fine.
-> It can unfortunately be an unstable device..
+> The same solution would work here, but the bridges can not be vlan-aware.
 
-That could be one issue. I've added a delay of 10ms between each
-enter-bootloader-cmd and tested the update. It turns out that the 10ms
-delay makes the "enter bootloader" process more unstable. Without the
-delay, I mostly enter the bootloader on the first attempt or at least
-after three attempts. With the delay I needed 5+ attempts sometimes.
-
-Therefore I would like to keep it as it is right now (no delay). Note:
-The "Programmer's Guide" mentions no timing contraints as well. I added
-a TODO comment to the driver.
-
-...
-
-> > > > +/* Custom regmap read/write handling is required due to the aXiom protocol */
-> > > > +static int axiom_regmap_read(void *context, const void *reg_buf, size_t reg_size,
-> > > > +			     void *val_buf, size_t val_size)
-> > > > +{
-> > > > +	struct device *dev = context;
-> > > > +	struct i2c_client *i2c = to_i2c_client(dev);
-> > > > +	struct axiom_data *ts = i2c_get_clientdata(i2c);
-> > > > +	struct axiom_cmd_header hdr;
-> > > > +	u16 xferlen, addr, baseaddr;
-> > > > +	struct i2c_msg xfer[2];
-> > > > +	int ret;
-> > > > +
-> > > > +	if (val_size > AXIOM_MAX_XFERLEN) {
-> > > > +		dev_err(ts->dev, "Exceed max xferlen: %zu > %u\n",
-> > > > +			val_size, AXIOM_MAX_XFERLEN);
-> > > > +		return -EINVAL;
-> > > > +	}
-> > > > +
-> > > > +	addr = *((u16 *)reg_buf);
-> > > > +	hdr.target_address = cpu_to_le16(addr);
-> > > > +	xferlen = FIELD_PREP(AXIOM_CMD_HDR_DIR_MASK, AXIOM_CMD_HDR_READ) |
-> > > > +		  FIELD_PREP(AXIOM_CMD_HDR_LEN_MASK, val_size);
-> > > > +	hdr.xferlen = cpu_to_le16(xferlen);
-> > > > +
-> > > > +	/* Verify that usage including the usage rev is supported */
-> > > > +	baseaddr = addr & AXIOM_USAGE_BASEADDR_MASK;
-> > > > +	if (!axiom_usage_supported(ts, baseaddr))
-> > > > +		return -EINVAL;
-> > > > +
-> > > > +	xfer[0].addr = i2c->addr;
-> > > > +	xfer[0].flags = 0;
-> > > > +	xfer[0].len = sizeof(hdr);
-> > > > +	xfer[0].buf = (u8 *)&hdr;
-> > > > +
-> > > > +	xfer[1].addr = i2c->addr;
-> > > > +	xfer[1].flags = I2C_M_RD;
-> > > > +	xfer[1].len = val_size;
-> > > > +	xfer[1].buf = val_buf;
-> > > > +
-> > > > +	ret = i2c_transfer(i2c->adapter, xfer, 2);
-> > > > +	if (ret == 2)
-> > > > +		return 0;
-> > > > +	else if (ret < 0)
-> > > > +		return ret;
-> > > > +	else
-> > > > +		return -EIO;
-> > > > +}
-> > > 
-> > > There needs to be atleast 40us holdoff between axiom bus transfers.
-> > > I am not sure that has been considered here.
-> > 
-> > Is this written somewhere within the datasheet/programming-guide?
-> 
-> In aXiom Comms Protocol in v4.8.9 if you have access to the webportal
-> it says to use 40us holdoff for report reading. Although this may apply
-> to all transactions.
-
-Okay this is new information :) TBH the paragraph is bit hard to read.
-Furthermore in POLL-mode the IRQ-pin can't be sampled :/ As already
-pointed out, I'm also not a fan of adding arbitrary delays. The driver
-has already enough delays.
-
-It's also not quite clear to me why the device keeps the IRQ line
-asserted till the I2C-STOP was received? It's like your postman is
-holding your door bell till you go to the door, open it, provide your
-signature and close the door. In other words, this sounds like a
-firmware bug.
-
-For polling there should be a simple 'is data-avaiable?' -> yes: do
-further processing; -> no: try again in N-poll-ms.
-
-> Doing comms while axiom is changing the DMA causes issues (NAKs), for the
-> driver I posted atleast, the holdoff was required otherwise I would receive
-> 0-length reports frequently.
-
-Yep in this is actually the case but the driver can handle 0-length
-reports just fine. I will add this new information as code comment.
-Also according "aXiom Comms Protocol v4.8.9":
-|
-| This will not result in a communications failure but the host will
-| read an empty report, as the device will not have had time to prepare
-| the next report.
-|
-it shouldn't be a problem.
-
-> It looks to be fine currently, however if there is unstability for users
-> we should consider adding this or something similar.
-
-I would like to use the same mechanism for polling and IRQ mode to check
-if the device POLL/IRQ is done or not. Since the driver can handle
-0-length reports just fine, there should be no issue.
-
-> > ...
-> > 
-> > > > +static enum fw_upload_err
-> > > > +axiom_cfg_fw_prepare(struct fw_upload *fw_upload, const u8 *data, u32 size)
-> > > > +{
-> > 
-> > ...
-> > 
-> > > > +	cur_runtime_crc = ts->crc[AXIOM_CRC_CUR].runtime;
-> > > > +	fw_runtime_crc = ts->crc[AXIOM_CRC_NEW].runtime;
-> > > > +	if (cur_runtime_crc != fw_runtime_crc) {
-> > > > +		dev_err(dev, "TH2CFG and device runtime CRC doesn't match: %#x != %#x\n",
-> > > > +			fw_runtime_crc, cur_runtime_crc);
-> > > > +		ret = FW_UPLOAD_ERR_FW_INVALID;
-> > > > +		goto out;
-> > > > +	}
-> > > 
-> > > The firmware CRCs dont need to match for a config load, only the usage revision/length.
-> > 
-> > What difference does it make? The firmware CRC implicit includes the
-> > usage revision and the length (register layout). So we can ensure that
-> > the configuration was made for the correct register layout without
-> > checking each register and revision.
-> 
-> Different firmware revisions/CRCs can have compatible usages.
-
-Yes this could be possible, but...
-
-> Aslong as the usage revisions match to u31 the usages will be compatible.
-
-isn't a th2cfg binary a complete register value update or can a th2cfg
-binary update only register parts?
-
-> For us atleast we have different CRCs for small firmware changes, therefore
-> if testing such firmware here we would always have to uncomment this section.
-
-So it's rather a feature used by you guys during development?
-
-> In the updated python I changed the check to the following:
-> 
->     # Compare the firmware runtime CRC from the file with the CRC from the device.
->     # Only proceed if the CRCs match.
->     if not force:
->         if u33_from_file.fld_runtime_crc != ax.u33.fld_runtime_crc:
->             logging.error("Cannot load config file as it was saved from a different revision of firmware:")
->             logging.error("Firmware info from device      : 0x{0:08X}, {1}".format(ax.u33.fld_runtime_crc, ax.u31.get_device_info_short()))
->             logging.error("Firmware info from config file : 0x{0:08X}, {1}".format(u33_from_file.fld_runtime_crc, u31_from_file.get_device_info_short()))
->             return ERROR_CFG_FILE_NOT_COMPATIBLE
->     else:
->         if u33_from_file.fld_runtime_crc != ax.u33.fld_runtime_crc:
->             logging.warning("The config file was saved from a different revision of firmware therefore it may not be compatible:")
->             logging.warning("Firmware info from device      : 0x{0:08X}, {1}".format(ax.u33.fld_runtime_crc, ax.u31.get_device_info_short()))
->             logging.warning("Firmware info from config file : 0x{0:08X}, {1}".format(u33_from_file.fld_runtime_crc, u31_from_file.get_device_info_short()))
-> 
->     # Now ensure the config is compatible with the device
->     valid_cfg = False
->     file_usage_table = u31_from_file.get_usage_table()
-> 
->     for usage in usages.keys():
->         if usage not in ax.u31.get_usages():
->             logging.error(f"Usage u{usage:02x} unsupported on this device.")
->             break
-
-I don't understand the logic here. Above you have a 'force' switch but
-here you perform the checks anyway. So it's more like a 'light-force'?
-
-Don't get me wrong I get your point but since this the mainline kernel
-and the kernel needs to ensure that everything is correct I would like
-to keep the simple firmware-crc check.
-
->         usage_entry = ax.u31.get_usage_entry(usage)
->         if usage_entry.start_page != file_usage_table[usage].start_page:
->             logging.error(f"Incompatible config address for u{usage:02x}:")
->             logging.error(f"  Device: 0x{usage_entry.start_page:02x}00  File: 0x{file_usage_table[usage].start_page:02x}00")
->             break
-> 
->         if ax.get_usage_length(usage) != len(usages[usage][2]):
->             logging.error(f"Incompatible config length for u{usage:02x}:")
->             logging.error(f"  Device: {ax.get_usage_length(usage)}  File: {len(usages[usage][2])}")
->             break
->     else:
->         valid_cfg = True
-> 
->     if not valid_cfg:
->         logging.error("Cannot load config as the usages are incompatible with the device.")
->         return ERROR_CFG_FILE_NOT_COMPATIBLE
-> 
-> Possibly we could add a force parameter to the sysfs like above?
-
-Yes :) But this would be a 'force' aka no CRC check at all. I would see
-this as addition which could be provided by you guys :)
-
-> > ...
-> > 
-> > > > +static enum fw_upload_err
-> > > > +axiom_cfg_fw_write(struct fw_upload *fw_upload, const u8 *data, u32 offset,
-> > > > +		   u32 size, u32 *written)
-> > > > +{
-> > 
-> > ....
-> > 
-> > > > +	/* Ensure that the chunks are written correctly */
-> > > > +	ret = axiom_verify_volatile_mem(ts);
-> > > > +	if (ret) {
-> > > > +		dev_err(dev, "Failed to verify written config, abort\n");
-> > > > +		goto err_swreset;
-> > > > +	}
-> > > > +
-> > > > +	ret = axiom_u02_save_config(ts);
-> > > > +	if (ret)
-> > > > +		goto err_swreset;
-> > > > +
-> > > > +	/*
-> > > > +	 * TODO: Check if u02 start would be sufficient to load the new config
-> > > > +	 * values
-> > > > +	 */
-> > > 
-> > > It is not necessarily needed.
-> > 
-> > What do you mean by this? Do we need the axiom_u02_swreset() or can we
-> > just start the system via u02 (without swreset)?
-> 
-> There is no need to do a reset after a config load you can just start the AE
-> with CMD_START, but we can keep it as is since it does the same thing.
-
-Okay, I will update the comment then.
-
-> > > > +	ret = axiom_u02_swreset(ts);
-> > > > +	if (ret) {
-> > > > +		dev_err(dev, "Soft reset failed\n");
-> > > > +		goto err_unlock;
-> > > > +	}
-> > 
-> > ....
-> > 
-> > > > +static ssize_t fw_variant_show(struct device *dev,
-> > > > +			       struct device_attribute *attr, char *buf)
-> > > > +{
-> > > > +	struct i2c_client *i2c = to_i2c_client(dev);
-> > > > +	struct axiom_data *ts = i2c_get_clientdata(i2c);
-> > > > +	const char *val;
-> > > > +
-> > > > +	switch (ts->fw_variant) {
-> > > > +	case 0:
-> > > > +		val = "3d";
-> > > > +		break;
-> > > > +	case 1:
-> > > > +		val = "2d";
-> > > > +		break;
-> > > > +	case 3:
-> > > > +		val = "force";
-> > > > +		break;
-> > > > +	default:
-> > > > +		val = "unknown";
-> > > > +		break;
-> > > > +	}
-> > > 
-> > > The following are all the variants we currently support in order:
-> > > FW_VARIANTS = ["3D", "2D", "FORCE", "0D", "XL"]
-> > 
-> > Means:
-> > 
-> > 0 == 3d
-> > 1 == 2d
-> > 3 == force
-> > 4 == 0d
-> > 5 == xl
-> > 
-> > ?
-> > 
-> > This is also something I can test on my site. Patches are welcome once
-> > this is mainline of course :)
-> 
-> It is like so:
-> #define DEVICE_BUILD_VARIANT_3D       (0U)
-> #define DEVICE_BUILD_VARIANT_2D       (1U)
-> #define DEVICE_BUILD_VARIANT_FORCE    (2U)
-> #define DEVICE_BUILD_VARIANT_0D       (3U)
-> #define DEVICE_BUILD_VARIANT_XL       (4U)
-
-...
-
-> I shall try to give a more prompt review once you have the new version up.
-
-Thanks for your input, but keep in mind, that you guys could add your
-additions ontop of our changes since our use-cases are fulfilled with
-the current driver. However I've added the 0d, xl fw_variants and
-updated the code comments.
-
-Regards,
-  Marco
-
-
-
-
-> 
-> Many Thanks,
-> Andrew
-> 
-> 
-
--- 
-#gernperDu 
-#CallMeByMyFirstName
-
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+Yeah, hardware limitation, there it makes sense to have a restriction in place.
 
