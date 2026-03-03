@@ -1,181 +1,278 @@
-Return-Path: <devicetree+bounces-270689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPTbE6Ulp2mrewAAu9opvQ
-	(envelope-from <devicetree+bounces-270689-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:17:09 +0100
+	id COX1Dmslp2k3fAAAu9opvQ
+	(envelope-from <devicetree+bounces-270690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:16:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A23311F5229
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:17:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0CC11F520F
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:16:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CFC14302001E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 18:11:48 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D74A83069E71
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 18:14:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39DC83264EC;
-	Tue,  3 Mar 2026 18:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52AC73E714E;
+	Tue,  3 Mar 2026 18:13:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lLgxNHN0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="owZThwJh";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="E0fQo2i9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B41351C0F;
-	Tue,  3 Mar 2026 18:11:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BD9F3A874A
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 18:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772561508; cv=none; b=ph+ht7RaeDrrUK/quJMAX0SdgytofpIcarM6b+9FcmVhi1pOELPlM48qMMiVGJ1l3kmgw76ezT3Too5wRsFyzCmbjfUd5xNtwWgzAJ1oDLJF2MUhqt6It6FH1TJ2FnojY9sHeY3db2sx8GjGzvCCrXvsC0R+wPtf2JBiAnt/UaM=
+	t=1772561635; cv=none; b=ciXAaWp9HDQf+GOFR/dM/tJisYPVo1i4TgYt/M7JUjDE65EU5HERW9HXPtWdCGhvWBFPQH4paYWTZpRHkoVSoTECQyStQBMEnlfjupTw2uXn7dknzFBsLYcL/sf64Yj6BhZ296g0CRnUQTAOzUoyTSjTl7Wbt7s/PA8UfXbQ1BI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772561508; c=relaxed/simple;
-	bh=ooftv9lYM0YxXQ/qu8gsttncrPPQ7/k8pB7S7dbDKXg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ryMHWRgaseWE7Zc9WHPdvMtHS6PbDJVXC69Km5wpETnaJxaCct8nZZCcalQvDDaxiyWPnSYXH5wbmkez7ukLxSn50kJtfZQd1vgZi8LYUbMK6JCOrni1V6zBvWrllMO2dyXw1VX9y7D+Rt3WQQcndEdNK9T4dsTl5D7G6E/YGjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lLgxNHN0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F2DAC116C6;
-	Tue,  3 Mar 2026 18:11:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772561507;
-	bh=ooftv9lYM0YxXQ/qu8gsttncrPPQ7/k8pB7S7dbDKXg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lLgxNHN0OgfoenWoM/vJ497zA6eUGYMgLkikAIIwGbqPDSKLsCydLdkWvbD6b3erz
-	 JkaISw+TFKiYt+6X8yvt/iWqbTgfiOKeVXxGi1Yo1V2WbFanddBl/44WULbAp9+nNu
-	 LQY+7f3FStO74Cro7F30NFIbOvGLaiEq3SbVDNuyA1hwb/2UqKydQcjj6cLrrbDusV
-	 22gL4fPmXKaAQ6axo2FHkmm6YqeQ/uFBKlX/PCipVi1PknCAjGc8MrcXewax2RfaO6
-	 NQ0a8V7LrQGfCSA3LCCekqSneDDGsWTGIOveoisinBMUCDuWRu4IKki9LmF/tUj1Ry
-	 NOoSncHIX/T3w==
-Date: Tue, 3 Mar 2026 18:11:42 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Charles Perry <charles.perry@microchip.com>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/4] dt-bindings: net: cdns,macb: forbid phy
- nodes for Microchip p64h
-Message-ID: <20260303-curse-shudder-9bd286fa6cd0@spud>
-References: <20260303180318.1814791-1-charles.perry@microchip.com>
- <20260303180318.1814791-3-charles.perry@microchip.com>
+	s=arc-20240116; t=1772561635; c=relaxed/simple;
+	bh=RcXwqXfS7Q5UFVrsfUc/MKGMCy848BRRPAW+m1ka48E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pHe860OZOqcPHwzlei3/MHc2pTCj35yOS9hCpPyVI59yXuZJfqmW6VRkF7oZsy8kEXGUn6HS+ygiTcCN6CJvogZtSBk464TWxSNTYqGqtaymD/ehXFAccXoN00RdQQ1qu7dVCc6krL9ddFaYQDIjaddF6KV22bSSxKeRK/vQRZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=owZThwJh; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=E0fQo2i9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 623H12T73560022
+	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 18:13:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	u3Uqm7HnmfbRYpPRyjqAGfV/78GMbwg16ye8LCZyPMk=; b=owZThwJh90AMnzRV
+	paDO7cq59E1QOE3ULFAyQheUv2KstgXkYWoyfoFOaENT6WsPcGmwVGp1I1S8jWeK
+	hkPkWWycWG1XDk8vQtLqDG+JrpBhi9k2oaN03YTIvNwbsdUnal8jrVTIuO0sPdCI
+	PRz7TiFTFluTlq2oJXHa0R0LR8JiG5kRvO6/tScNlnJi81ae+yNmc8k7I7ZNscXi
+	2QL6F1rG/oN+KTDgjWMtz3YKNdkXYkjhWesZEQUoXJy0Ar/HPXWepg78FMEcC2JT
+	xnVWkgGiHB/mygYn9Bm/cFWupgTiCJDqJOksBBmOCUyFbajJh7dkXEGsinjRy46p
+	t+W3fQ==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnhx5bwwa-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 18:13:51 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-35641c14663so6110650a91.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 10:13:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772561630; x=1773166430; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u3Uqm7HnmfbRYpPRyjqAGfV/78GMbwg16ye8LCZyPMk=;
+        b=E0fQo2i9GkpyHtS4xGyKGs1gaKlqDLewQvs+9RnrviGB+tY1l3fWl3eFPzXiy9iCgK
+         BlhpSvVn57AbbkLPgteCUKNFhVtzK9AYE3OxIXZ5wS6KQnrNX5uxvTUUmsS7akbo+Ild
+         cDDPflj4M+8lOVE7a1XJXTrv5PcOgfLijkNlGrglGtJF8y9iiXIbFaxbdOanNpYeaEp9
+         +vD+otUSSm+bplsh0hz0Wx/sE0lXD7r+1HcFQJD1QztRdw2Ljg842aK6SVDX+O7L04we
+         NysbjNvsBdRANEX6ifeGs2Dvm8PPnZWqf6thsjxi5eM3iMeMN0tnaOZMaa744fzwy8B/
+         U6fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772561630; x=1773166430;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u3Uqm7HnmfbRYpPRyjqAGfV/78GMbwg16ye8LCZyPMk=;
+        b=t0IWiL8PBF/aG0ylfonIVwiIXfLfypfp4hc6/MZm8Lnjuj0/KXW9FH0h4YkHEJV+ii
+         Q0Rkw58ydU8Z1j67sY6+gEA2Yh/bJi7M91AwyDC+zj5H93Y2f8y2nPHWCrX9HKPvhV3y
+         qDVebaPhQ/4ANHA3iSkBa82hU1Ahj6u1RbXeLnTN8v0WW2d5cAsR52Yj+wHZNYENuJOy
+         bzbyEuJoATzPB3UcBMDWyzLe5WbpXcUhoLJl3rNqlKtSl7O5PTgWaZTbw9CMgTZqoiX8
+         mUdzaxFe06bh+W7vN6BP09Sb5Pm+/920/Obk4vM/hQL/4SJptWVThRZjpr0uotRZqJPX
+         qZbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWFEF51CWnu5dS0zRBeW6y9jWnQ12i7lrAbDjARz52JV8UyR3xEh2DWcuIUBs1UZk+e19W50OA5SqSE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0w07q8GNqW+BlaTKuLKbLqtfH+MrFt/eHEnAsARwyNzgh233k
+	7Zo0h1+IyO4/Fciuf6a1lF4SXv+huJ6ntbUxXSghG+pazRxMryHYumbJt5gv6hxyzBKA051dX4F
+	AbsEl7MgJKMcrpOdHUfdNvDi+3cUPDEXIZksjWOtyJdEfe/zlFB9OrmsiM2leb3/s
+X-Gm-Gg: ATEYQzzzXofGyrg+1suxP+SSNA7l76pddSTfQNbKy96oqgRU7n3aPrPPq978FUMmRTB
+	TJw2Y5s9xIbRnlDOZOA0NXwkXNdphcBvAYWfY4rIrpjwx1G1zLKs6HlBEWoyQRcTIgwaeqwPhmf
+	bs77IsdOan+3j+HvqbMwus59pGB8+x2bYR1L0p6epSg5rH95ZEgezixh/wJIQpbR89kfPC78Vea
+	ZWoVUPwppeKXdm63BTB06ahAbBBp077nQCwFw6YMrO4DzxemAQGEt+7pNpr5bfnkkOqUaGsYQQL
+	QZnOtY9tirF2Nvl0QIEEjhXXwaQmrKxChscAyqjzGjMXMvC7qqx+H764zW+RNzpc1P8E0R43gj2
+	XEReyz3t9JB7mlkuQHTNvvQpyK/aAzC6Fe+13M9Ie4DYcr7nQx+kr4ws=
+X-Received: by 2002:a17:90b:1f8c:b0:359:7c55:c160 with SMTP id 98e67ed59e1d1-3597c55c28emr10322561a91.13.1772561630180;
+        Tue, 03 Mar 2026 10:13:50 -0800 (PST)
+X-Received: by 2002:a17:90b:1f8c:b0:359:7c55:c160 with SMTP id 98e67ed59e1d1-3597c55c28emr10322519a91.13.1772561629667;
+        Tue, 03 Mar 2026 10:13:49 -0800 (PST)
+Received: from [192.168.0.172] ([49.205.248.49])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599ca38be9sm2030588a91.4.2026.03.03.10.13.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Mar 2026 10:13:49 -0800 (PST)
+Message-ID: <635cc998-d530-42eb-95cf-99b0d5baab68@oss.qualcomm.com>
+Date: Tue, 3 Mar 2026 23:43:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kVYLEYPFNlPTY8zB"
-Content-Disposition: inline
-In-Reply-To: <20260303180318.1814791-3-charles.perry@microchip.com>
-X-Rspamd-Queue-Id: A23311F5229
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] media: dt-bindings: qcom-kaanapali-iris: Add
+ kaanapali video codec binding
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Hans Verkuil <hverkuil+cisco@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260227-kaanapali-iris-v2-0-850043ac3933@oss.qualcomm.com>
+ <20260227-kaanapali-iris-v2-1-850043ac3933@oss.qualcomm.com>
+ <nen35eqhwbikt7jlpxn22hvur33chxibrbmzd6awo425i3mujf@f2cbncxpcatc>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <nen35eqhwbikt7jlpxn22hvur33chxibrbmzd6awo425i3mujf@f2cbncxpcatc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDE0NiBTYWx0ZWRfXxVIvCzvzhEdh
+ 0U9iPEb9fWUvH7ZUwAjMpD8ziZpGeH3t2LNSn8EvCdujlE3j0swqXZx63vMDmPCliRKX+yUra0O
+ ZHJwT1mm0IZyW5TOaFI+dtV64YqiZN+KbkQnDO+R6f4gDqkJ2Bga0cOZWg2wReaCtR1XJp0gQv+
+ W+onXM2RJjYr6ANA/pUtfn2ahuN1/W0quEL0PCXeebrkLr0QN6gVy1VZWG6kN1o/qF7bJFESrMk
+ CKCB3FNLNTH06KZ4RVuFa25DTB8YsbtRHy1wBZNwzbQcNmJds4WdL+yg0rgoP6OQ9pT8BliFi8U
+ aupPIpehJSqT1jfpiYG422Fz1dEpEbsWQkF92+wUcktpxettQHiJ45amTzplyupcDCVQ+xVhbLc
+ V3PDuvFQJShwPhrdjXj6nheCliEseddLkn0yF8AW24IrqbV4t3BOJxL6fVT8vlOshyAC3wj63pG
+ 7OJjLL/LOPXFNujET1Q==
+X-Authority-Analysis: v=2.4 cv=T9CBjvKQ c=1 sm=1 tr=0 ts=69a724df cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=KPiuay1jFzAquJblYynD6w==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
+ a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=yfRxjFk6VvuiwaCZe6sA:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-GUID: V-hKqgbhD-P39NJc91WQuzw8OBALpMRO
+X-Proofpoint-ORIG-GUID: V-hKqgbhD-P39NJc91WQuzw8OBALpMRO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-03_02,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
+ priorityscore=1501 clxscore=1015 suspectscore=0 malwarescore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603030146
+X-Rspamd-Queue-Id: A0CC11F520F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270689-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270690-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,80.111.88.32:email,microchip.com:email,0.0.0.0:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
 
---kVYLEYPFNlPTY8zB
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 03, 2026 at 10:03:16AM -0800, Charles Perry wrote:
-> The GEM IPs within Microchip p64h have their MDIO controllers
-> unconnected from any physical pin.
->=20
-> When compiling a p64h device tree with a phy on a GEM node with
-> CHECK_DTBS=3D1, this generates an error like:
->=20
-> ```
-> linux/arch/riscv/boot/dts/microchip/p64h-hb130x.dtb:
-> ethernet@40004180000 (microchip,p64h-gem): ethernet-phy@0: False
-> schema does not allow {'reg': [[0]]}
-> 	from schema $id:
-> http://devicetree.org/schemas/net/cdns,macb.yaml#
-> ```
+On 2/28/2026 1:22 AM, Dmitry Baryshkov wrote:
+> On Fri, Feb 27, 2026 at 07:41:17PM +0530, Vikash Garodia wrote:
+>> Kaanapali SOC brings in the new generation of video IP i.e iris4. When
+>> compared to previous generation, iris3x, it has,
+>> - separate power domains for stream and pixel processing hardware blocks
+>>    (bse and vpp).
+>> - additional power domain for apv codec.
+>> - power domains for individual pipes (VPPx).
+>> - different clocks and reset lines.
+>>
+>> iommu-map include all the different stream-ids which can be possibly
+>> generated by vpu4 hardware as below,
+>> bitstream stream from vcodec
+>> non-pixel stream from vcodec
+>> non-pixel stream from tensilica
+>> pixel stream from vcodec
+>> secure bitstream stream from vcodec
+>> secure non-pixel stream from vcodec
+>> secure non-pixel stream from tensilica
+>> secure pixel stream from vcodec
+>> firmware stream from tensilica (might be handled by the TZ / hyp)
+>>
+>> This patch is depend on the below dt-schema patch.
+>> Link: https://github.com/devicetree-org/dt-schema/pull/184/changes/d341298d62805bc972dfba691da6b3b62aa3ff15
+>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+>> ---
+>>   .../bindings/media/qcom,kaanapali-iris.yaml        | 261 +++++++++++++++++++++
+>>   include/dt-bindings/media/qcom,iris.h              |  18 ++
+>>   2 files changed, 279 insertions(+)
+>>
+>> +
+>> +  iommu-map:
+>> +    description: |
+>> +        - bitstream stream from vcodec
+>> +        - non-pixel stream from vcodec
+>> +        - non-pixel stream from tensilica
+>> +        - pixel stream from vcodec
+>> +        - secure bitstream stream from vcodec
+>> +        - secure non-pixel stream from vcodec
+>> +        - secure non-pixel stream from tensilica
+>> +        - secure pixel stream from vcodec
+>> +        # firmware might be handled by the TZ / hyp
+>> +        - firmware stream from tensilica
+> 
+> Why are you providing description as a list rather than describing each
+> item separately? Then you wouldn't need maxItems.
+> 
 
-This should just be part of the patch adding the compatible. Adding it
-incorrectly only to fix it up one patch later doesn't make sense.
-Additionally, remove this information about the error adding this
-produces, all you need here is the justification for it.
+rewrote them as below and dropped maxItems. Please review.
 
-pw-bot: changes-requested
+iommu-map:
+     $ref: /schemas/types.yaml#/definitions/uint32-matrix
+     items:
+       - description: bitstream stream from vcodec
+         items:
+           - description: Function ID
+           - description: Phandle to IOMMU
+           - description: IOMMU stream ID base
+           - description: IOMMU stream ID mask
+           - description: Number of stream IDs
+       - description: non-pixel stream from vcodec
+       - description: non-pixel stream from tensilica
+       - description: pixel stream from vcodec
+       - description: secure bitstream stream from vcodec
+       - description: secure non-pixel stream from vcodec
+       - description: secure non-pixel stream from tensilica
+       - description: secure pixel stream from vcodec
+       # firmware might be handled by the TZ / hyp
+       - description: firmware stream from tensilica
+     minItems: 8
 
->=20
-> Signed-off-by: Charles Perry <charles.perry@microchip.com>
-> ---
->  Documentation/devicetree/bindings/net/cdns,macb.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Docum=
-entation/devicetree/bindings/net/cdns,macb.yaml
-> index dff350302098..be66cc9a42fd 100644
-> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> @@ -197,6 +197,17 @@ allOf:
->        required:
->          - phys
-> =20
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: microchip,p64h-gem
-> +    then:
-> +      patternProperties:
-> +        "^ethernet-phy@[0-9a-f]$": false
-> +      properties:
-> +        mdio: false
-> +
->  unevaluatedProperties: false
-> =20
->  examples:
-> --=20
-> 2.47.3
->=20
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>> +    items:
+>> +      $ref: '#/definitions/iommu-types'
+>> +      minItems: 5
+>> +    minItems: 8
+>> +    maxItems: 9
+>> +
+> 
 
---kVYLEYPFNlPTY8zB
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaackXgAKCRB4tDGHoIJi
-0mEFAP4x/utBAYjtDikgFeZ09Z1bpUmjAVX6LWWhhf6+IjNITAEA8pui39GfmaF7
-oDKupcUfRRsbTw6GX3RpDguW8JnWrQk=
-=TfYY
------END PGP SIGNATURE-----
-
---kVYLEYPFNlPTY8zB--
+Regards,
+Vikash
 
