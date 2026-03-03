@@ -1,365 +1,210 @@
-Return-Path: <devicetree+bounces-270301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270302-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLO1Fzh9pmnDQQAAu9opvQ
-	(envelope-from <devicetree+bounces-270301-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:18:32 +0100
+	id eD/oGbp9pmnhQQAAu9opvQ
+	(envelope-from <devicetree+bounces-270302-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:20:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF7761E98C7
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10D8C1E9915
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:20:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 13A27311BE6D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:14:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D032D30B2DD8
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A559386431;
-	Tue,  3 Mar 2026 06:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="e+9q8H9Z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8838377026;
+	Tue,  3 Mar 2026 06:16:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2869C383C6A
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 06:13:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 633852DCBEC;
+	Tue,  3 Mar 2026 06:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772518441; cv=none; b=IazxXxj7+44s7QG7CNVBYs0o1W9DI+wnUwhShkHOcrQIkzFII41dorTK76cJDyazobaJvzoDouBpBU6rp39fD12DHklFCuuau3wWkgKkIQu70poeC7szOOPJt/Se8bxMcO2SYF5WRb/M8xOR4JJZtRYa4DvB3S6wkc3KpCOhreE=
+	t=1772518570; cv=none; b=nyAYiq38yK4LBnqCul1GM5UEEMpdNBI6K3ZQNkLhC9Uc3wtXtYia16f2x3lSSEg+zGW/PUw0NyTYmDwa7r6Rk1Q9YBH9+v77xMVY0RByT3AAWb/WaImYO0Vx2AE/bSsP92+olWfIcs2ngdTf7sww9k0CTQ82aE+GOkpRwA6/y90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772518441; c=relaxed/simple;
-	bh=RuF4EBelwWjX4MVB7wRAKwjHLIyH356VR5EZd3QmjHw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ApVYojkm99SJYFfSkU1w0+pXOIIFRuZ3bbmPt0M5gE4ZAZKfJ0LPKdI1gHW9b+5Acfsn8a3oL8Mr6qXoHrQs14p63WpFPlGu2pCJHL/wxQIiBz7DW6Ue94MFcBzEGOYLI4B7hMNaoyGBI0Gx1dO+YWi5vRNPFeVH/9YpA5SYpwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=e+9q8H9Z; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-c6e248aa446so2114186a12.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 22:13:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1772518437; x=1773123237; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iTYYpNGe7aJcDLJJdiqjkV8VqGfZqV4Qv94rVv/ZSwU=;
-        b=e+9q8H9Z2qaUbup2uhMXSUAKhFg4kP8EaZTJCDbEtlMY+sjG2idWUzGG1GalnklDbq
-         raUw8Zf/h+acrwI14KJAwQvza07p9H78YbNaSXlXXCEIVKfAC/pgoJmTo9aVbwrhqhh7
-         3BFB1AizMh3VTRYKE5TM+u5QAbuW000RDS1hM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772518437; x=1773123237;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=iTYYpNGe7aJcDLJJdiqjkV8VqGfZqV4Qv94rVv/ZSwU=;
-        b=us0zzk+soBL8YP43qWrBM4CM6mqBbNvcEkZll08VF+Xi835PfgYBVliVaza5A2DPP5
-         /Jsurae/iyEVeurMD/Jb+x5VPBdgXKJ6Onr0QkcxSCYwgmhmiZw3gf2izo9rxuTUPSDy
-         Akqt39XXU+nrjXh0XccXn6ZkqZMIe6uFaggddWLLPA2Jm819HAvutOOS5ALP4XXlBeA7
-         vbMmIyyNtAXoNGDLIz8dLYxb1barzf/08MHf0skxfB/oCKusoB0a4G/67/j8/KZUPDF5
-         oqpPeTEW3OzkeX/HKYuqL9LMVtz5FWi0voMpFLkZ0nrwQbraak0DgkKXT2iPOErv8TQk
-         SMHw==
-X-Forwarded-Encrypted: i=1; AJvYcCWHiRRHpnMcVtaq2uzr2nuWl/75bZxbbYBsFITc2uN6k7fEE/TqlJAO/RcOIND7LoxaXgAwn5lZrH+X@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz24TxRrrth1rqydMGjFVymSLInsIsQk7WrBnuFD1nxYwAhfK9Z
-	Uy394WgrICc1o41oUVmD+YPqhj7N9KbbcCiVVg6VCSxbCZMXGii9hezQw8mhOdFiyRGoOqrqVSJ
-	fhUI=
-X-Gm-Gg: ATEYQzwakun2zxATBwCM4JVW8aG9MlfUbN5BjHn2xZynSAKrYE2juxxDN65Oga+n+Of
-	se4XDHe3vjtD+XNQSBpRWLZJkW2Qb6yPwkhG6ZLB9BN4kQtT+igwiwPMpplJYWP/T/ScsQoJqzc
-	J5ypqBOqwNsxCjZo1dxMJ7Ltsx3ZN6ShKDypDZPn9fXJeN47qzeCxsI1VBtWhjLpxRh/cCzQ6eh
-	xowRvEa93hxGWtt6exos/mtV/qhASMb2OggNEdOT2i0U6xzW+F39ch15rOF3IQK4IPvONljxlEz
-	QQfmKAUYgfL3cGo/Xyb563iGKQ96ug/s+mn2dScjgpTgjU7H82ySwzAMhF7/4MjSniVw5i09GPv
-	p25JMZLXfhMUcG5Sim+PUorf7mzt7L7R3FMfyto9qt8pUX7noeT+X7Gx3WgjTLeLDEW9hz+EOr/
-	bhOomDjAC2lS/OxMWLk25goe+de1tkXHGJXVgTZkEdTJxS1nz1inrgwn6RKty+kotfr+8br7gMj
-	uHQWHicC7LwoWXiBRRSo1OoG+e1hl5bVg==
-X-Received: by 2002:a17:903:b0d:b0:2ae:5598:1db3 with SMTP id d9443c01a7336-2ae55982a32mr46227035ad.53.1772518437154;
-        Mon, 02 Mar 2026 22:13:57 -0800 (PST)
-Received: from jingyliang-input-linux.c.googlers.com (111.169.168.34.bc.googleusercontent.com. [34.168.169.111])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb6fe4f3sm152639735ad.91.2026.03.02.22.13.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 22:13:56 -0800 (PST)
-From: Jingyuan Liang <jingyliang@chromium.org>
-Date: Tue, 03 Mar 2026 06:13:04 +0000
-Subject: [PATCH 12/12] HID: spi-hid: add quirkis to support mode switch for
- Ilitek touch
+	s=arc-20240116; t=1772518570; c=relaxed/simple;
+	bh=eSNUqfeb+9+NO8GVgejZ3lkjPrPxheNL4AgfVdI1ImY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tG2NYaf6UPfhtDtPK+QGwPVUxzPXPKUuT5ao/7k4SFrGd6E/bFq+gZ1SLGiCuZhvlRcP/tWGg5lYKk30qRJzk18Gr4I4gTwGSkYWun+0U58prnAl39uDuLUvMMlFGRnWghpugp2Cf6ZOIr1enrdE1FgVii8ZrCp57iEIFyqAJqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0004057DT.eswin.cn (unknown [10.11.96.26])
+	by app1 (Coremail) with SMTP id TAJkCgCXLHGBfKZpcToFAA--.18321S2;
+	Tue, 03 Mar 2026 14:15:31 +0800 (CST)
+From: lizhi2@eswincomputing.com
+To: devicetree@vger.kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	netdev@vger.kernel.org,
+	pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	rmk+kernel@armlinux.org.uk,
+	wens@kernel.org,
+	pjw@kernel.org,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu,
+	alex@ghiti.fr,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	pritesh.patel@einfochips.com,
+	weishangjuan@eswincomputing.com,
+	Zhi Li <lizhi2@eswincomputing.com>
+Subject: [PATCH net-next v3 0/3] net: stmmac: eic7700: fix EIC7700 eth1 RX sampling timing
+Date: Tue,  3 Mar 2026 14:15:24 +0800
+Message-ID: <20260303061525.846-1-lizhi2@eswincomputing.com>
+X-Mailer: git-send-email 2.52.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260303-send-upstream-v1-12-1515ba218f3d@chromium.org>
-References: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org>
-In-Reply-To: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org>
-To: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Mark Brown <broonie@kernel.org>, 
- Steven Rostedt <rostedt@goodmis.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- hbarnor@chromium.org, Jingyuan Liang <jingyliang@chromium.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772518424; l=7060;
- i=jingyliang@chromium.org; s=20260213; h=from:subject:message-id;
- bh=RuF4EBelwWjX4MVB7wRAKwjHLIyH356VR5EZd3QmjHw=;
- b=yqf3lINoDU5izp7XLxBncUEfy96hR5Uvs/pFDvxmmcHDmeFoqVujMRkAE6X/GypO/8SUjW/3o
- lT326CxlFyPDmz4HEgVb+PXKKZ5GIdZgPXaG1pCF1ZDP2sH2scC1goy
-X-Developer-Key: i=jingyliang@chromium.org; a=ed25519;
- pk=VTYSdqslTtYOjWWoIGgYoWupGWqNSidrggReKMgfPo4=
-X-Rspamd-Queue-Id: AF7761E98C7
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgCXLHGBfKZpcToFAA--.18321S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxXF4UWF1UAr1kWFWkJrW8JFb_yoWrJF1UpF
+	W5Wr4agF1DJr1xJwsFq3W0934rJan3G3W7ur18Jrn7JwsI9Fn0qrW2kF15XFy8CrZ7uryU
+	AFy5Ka1UCa4j9rJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRBOJnUUUUU=
+X-CM-SenderInfo: xol2xx2s6h245lqf0zpsxwx03jof0z/
+X-Rspamd-Queue-Id: 10D8C1E9915
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[chromium.org,none];
-	R_DKIM_ALLOW(-0.20)[chromium.org:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270301-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[chromium.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-270302-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FREEMAIL_TO(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com];
+	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jingyliang@chromium.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[lizhi2@eswincomputing.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:dkim,chromium.org:email,chromium.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-0.807];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:mid,eswincomputing.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add quirks to support mode switch among Ilitek normal, debug and test mode
-and allow delay before send output reports.
-Add a shared variable to configure response timeout value for Ilitek
-touch controllers.
+From: Zhi Li <lizhi2@eswincomputing.com>
 
-Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
----
- drivers/hid/spi-hid/spi-hid-core.c | 84 +++++++++++++++++++++++++++++++++++++-
- drivers/hid/spi-hid/spi-hid-core.h |  4 ++
- drivers/hid/spi-hid/spi-hid.h      |  6 +++
- 3 files changed, 93 insertions(+), 1 deletion(-)
+v2 -> v3:
+  - Update eswin,eic7700-eth.yaml:
+    - Extend rx-internal-delay-ps and tx-internal-delay-ps range
+      from 0-2400 to 0-2540 to match the full 7-bit hardware delay
+      field (127 * 20 ps).
+    - Add "multipleOf: 20" constraint to reflect the 20 ps hardware
+      step size.
+    - Make rx-internal-delay-ps and tx-internal-delay-ps optional.
+      A well-designed board should not require internal delay tuning.
+    - Remove rx-internal-delay-ps and tx-internal-delay-ps from the
+      example to avoid encouraging blind copy into board DTs.
 
-diff --git a/drivers/hid/spi-hid/spi-hid-core.c b/drivers/hid/spi-hid/spi-hid-core.c
-index 893a0d4642d2..736e51f10cfc 100644
---- a/drivers/hid/spi-hid/spi-hid-core.c
-+++ b/drivers/hid/spi-hid/spi-hid-core.c
-@@ -22,6 +22,7 @@
- 
- #include <linux/completion.h>
- #include <linux/crc32.h>
-+#include <linux/delay.h>
- #include <linux/device.h>
- #include <linux/dma-mapping.h>
- #include <linux/err.h>
-@@ -45,9 +46,14 @@
- #include <linux/wait.h>
- #include <linux/workqueue.h>
- 
-+#include "../hid-ids.h"
- #include "spi-hid.h"
- #include "spi-hid-core.h"
- 
-+/* quirks to control the device */
-+#define SPI_HID_QUIRK_MODE_SWITCH	BIT(0)
-+#define SPI_HID_QUIRK_READ_DELAY	BIT(1)
-+
- /* Protocol constants */
- #define SPI_HID_READ_APPROVAL_CONSTANT		0xff
- #define SPI_HID_INPUT_HEADER_SYNC_BYTE		0x5a
-@@ -86,6 +92,16 @@
- #define SPI_HID_CREATE_DEVICE	4
- #define SPI_HID_ERROR	5
- 
-+static const struct spi_hid_quirks {
-+	__u16 idVendor;
-+	__u16 idProduct;
-+	__u32 quirks;
-+} spi_hid_quirks[] = {
-+	{ USB_VENDOR_ID_ILITEK, HID_ANY_ID,
-+		SPI_HID_QUIRK_MODE_SWITCH | SPI_HID_QUIRK_READ_DELAY },
-+	{ 0, 0 }
-+};
-+
- /* Processed data from input report header */
- struct spi_hid_input_header {
- 	u8 version;
-@@ -112,6 +128,27 @@ struct spi_hid_output_report {
- 
- static struct hid_ll_driver spi_hid_ll_driver;
- 
-+/**
-+ * spi_hid_lookup_quirk: return any quirks associated with a SPI HID device
-+ * @idVendor: the 16-bit vendor ID
-+ * @idProduct: the 16-bit product ID
-+ *
-+ * Returns: a u32 quirks value.
-+ */
-+static u32 spi_hid_lookup_quirk(const u16 idVendor, const u16 idProduct)
-+{
-+	u32 quirks = 0;
-+	int n;
-+
-+	for (n = 0; spi_hid_quirks[n].idVendor; n++)
-+		if (spi_hid_quirks[n].idVendor == idVendor &&
-+		    (spi_hid_quirks[n].idProduct == (__u16)HID_ANY_ID ||
-+		     spi_hid_quirks[n].idProduct == idProduct))
-+			quirks = spi_hid_quirks[n].quirks;
-+
-+	return quirks;
-+}
-+
- static void spi_hid_populate_read_approvals(const struct spi_hid_conf *conf,
- 					    u8 *header_buf, u8 *body_buf)
- {
-@@ -382,6 +419,9 @@ static int spi_hid_send_output_report(struct spi_hid *shid,
- 	u8 padding;
- 	int error;
- 
-+	if (shid->quirks & SPI_HID_QUIRK_READ_DELAY)
-+		usleep_range(2000, 2100);
-+
- 	guard(mutex)(&shid->output_lock);
- 	if (report->content_length > shid->desc.max_output_length) {
- 		dev_err(dev, "Output report too big, content_length 0x%x.",
-@@ -406,18 +446,38 @@ static int spi_hid_send_output_report(struct spi_hid *shid,
- 	return error;
- }
- 
-+static const u32 spi_hid_get_timeout(struct spi_hid *shid)
-+{
-+	struct device *dev = &shid->spi->dev;
-+	u32 timeout;
-+
-+	timeout = READ_ONCE(shid->ops->response_timeout_ms);
-+
-+	if (timeout < SPI_HID_RESP_TIMEOUT || timeout > 10000) {
-+		dev_dbg(dev, "Response timeout is out of range, using default %d",
-+			SPI_HID_RESP_TIMEOUT);
-+		timeout = SPI_HID_RESP_TIMEOUT;
-+	}
-+
-+	return timeout;
-+}
-+
- static int spi_hid_sync_request(struct spi_hid *shid,
- 				struct spi_hid_output_report *report)
- {
- 	struct device *dev = &shid->spi->dev;
-+	u32 timeout = SPI_HID_RESP_TIMEOUT;
- 	int error;
- 
- 	error = spi_hid_send_output_report(shid, report);
- 	if (error)
- 		return error;
- 
-+	if (shid->quirks & SPI_HID_QUIRK_MODE_SWITCH)
-+		timeout = spi_hid_get_timeout(shid);
-+
- 	error = wait_for_completion_interruptible_timeout(&shid->output_done,
--							  msecs_to_jiffies(SPI_HID_RESP_TIMEOUT));
-+							  msecs_to_jiffies(timeout));
- 	if (error == 0) {
- 		dev_err(dev, "Response timed out.");
- 		return -ETIMEDOUT;
-@@ -561,6 +621,8 @@ static int spi_hid_create_device(struct spi_hid *shid)
- 	hid->vendor = shid->desc.vendor_id;
- 	hid->product = shid->desc.product_id;
- 
-+	shid->quirks = spi_hid_lookup_quirk(hid->vendor, hid->product);
-+
- 	snprintf(hid->name, sizeof(hid->name), "spi %04X:%04X",
- 		 hid->vendor, hid->product);
- 	strscpy(hid->phys, dev_name(&shid->spi->dev), sizeof(hid->phys));
-@@ -836,6 +898,24 @@ static irqreturn_t spi_hid_dev_irq(int irq, void *_shid)
- 		goto out;
- 	}
- 
-+	if (shid->quirks & SPI_HID_QUIRK_MODE_SWITCH) {
-+		/*
-+		 * Update reset_pending on mode transitions inferred from
-+		 * response timeout (entering/exiting a mode).
-+		 */
-+		u32 timeout = spi_hid_get_timeout(shid);
-+		bool mode_enabled = timeout > SPI_HID_RESP_TIMEOUT;
-+
-+		if (mode_enabled != shid->prev_mode_enabled) {
-+			if (mode_enabled)
-+				set_bit(SPI_HID_RESET_PENDING, &shid->flags);
-+			else
-+				clear_bit(SPI_HID_RESET_PENDING, &shid->flags);
-+		}
-+
-+		shid->prev_mode_enabled = mode_enabled;
-+	}
-+
- 	if (shid->input_message.status < 0) {
- 		dev_warn(dev, "Error reading header: %d.",
- 			 shid->input_message.status);
-@@ -1190,6 +1270,8 @@ static int spi_hid_dev_init(struct spi_hid *shid)
- 	struct device *dev = &spi->dev;
- 	int error;
- 
-+	shid->ops->custom_init(shid->ops);
-+
- 	shid->ops->assert_reset(shid->ops);
- 
- 	shid->ops->sleep_minimal_reset_delay(shid->ops);
-diff --git a/drivers/hid/spi-hid/spi-hid-core.h b/drivers/hid/spi-hid/spi-hid-core.h
-index 88e9020d37aa..8441dbad95d4 100644
---- a/drivers/hid/spi-hid/spi-hid-core.h
-+++ b/drivers/hid/spi-hid/spi-hid-core.h
-@@ -62,6 +62,10 @@ struct spi_hid {
- 	u16 response_length;
- 	u16 bufsize;
- 
-+	bool prev_mode_enabled;	/* Previous device mode tracked for SPI_HID_QUIRK_MODE_SWITCH. */
-+
-+	unsigned long quirks;	/* Various quirks. */
-+
- 	enum hidspi_power_state power_state;
- 
- 	u8 reset_attempts;	/* The number of reset attempts. */
-diff --git a/drivers/hid/spi-hid/spi-hid.h b/drivers/hid/spi-hid/spi-hid.h
-index 5651c7fb706a..3c0369bdb4ab 100644
---- a/drivers/hid/spi-hid/spi-hid.h
-+++ b/drivers/hid/spi-hid/spi-hid.h
-@@ -25,6 +25,9 @@ struct spi_hid_conf {
-  * @power_down: do sequencing to power down the device
-  * @assert_reset: do sequencing to assert the reset line
-  * @deassert_reset: do sequencing to deassert the reset line
-+ * @sleep_minimal_reset_delay: minimal sleep delay during reset
-+ * @custom_init: customized device init
-+ * @response_timeout_ms: output report response timeout in ms
-  */
- struct spihid_ops {
- 	int (*power_up)(struct spihid_ops *ops);
-@@ -32,6 +35,9 @@ struct spihid_ops {
- 	int (*assert_reset)(struct spihid_ops *ops);
- 	int (*deassert_reset)(struct spihid_ops *ops);
- 	void (*sleep_minimal_reset_delay)(struct spihid_ops *ops);
-+	int (*custom_init)(struct spihid_ops *ops);
-+
-+	u32 response_timeout_ms;
- };
- 
- int spi_hid_core_probe(struct spi_device *spi, struct spihid_ops *ops,
+  - Update dwmac-eic7700.c:
+    - Treat rx-internal-delay-ps and tx-internal-delay-ps as optional
+      DT properties.
+    - Apply delay configuration only when properties are present.
+    - Keep TX/RX delay registers cleared by default to ensure a
+      deterministic state when no delay is specified.
+
+  - Describe Ethernet configuration for the HiFive Premier P550 board:
+    - Add GMAC controller nodes for the HiFive Premier P550 board
+      to describe the on-board Ethernet configuration.
+
+      The Ethernet controller depends on clock, reset, pinctrl
+      and HSP subsystem providers which are currently under
+      upstream review. These dependent nodes will be submitted
+      separately once the corresponding drivers are merged.
+
+      Due to these missing dependencies, dt-binding-check may
+      report warnings or failures for this series.
+
+  - No functional changes to RX clock inversion logic.
+
+  - Link to v2:
+    https://lore.kernel.org/lkml/20260209094628.886-1-lizhi2@eswincomputing.com/
+
+  - This series is based on the EIC7700 clock support series:
+    https://lore.kernel.org/all/20260210095008.726-1-dongxuyang@eswincomputing.com/
+    The clock series is currently under review.
+
+v1 -> v2:
+  - Update eswin,eic7700-eth.yaml:
+    - Drop the vendor-specific properties eswin,rx-clk-invert and
+      eswin,tx-clk-invert.
+    - Introduce a distinct compatible string
+      "eswin,eic7700-qos-eth-clk-inversion" to describe MAC instances that
+      require internal RGMII clock inversion.
+      This models the SoC-specific hardware difference directly via the
+      compatible string and avoids per-board configuration properties.
+    - Change rx-internal-delay-ps and tx-internal-delay-ps from enum to
+      minimum/maximum to reflect the actual delay range (0-2400 ps)
+    - Add reference to High-Speed Subsystem documentation in eswin,hsp-sp-csr
+      description. The HSP CSR block is described in Chapter 10
+      ("High-Speed Interface") of the EIC7700X SoC Technical Reference Manual,
+      Part 4 (EIC7700X_SoC_Technical_Reference_Manual_Part4.pdf):
+      https://github.com/eswincomputing/EIC7700X-SoC-Technical-Reference-Manual/releases
+
+  - Update dwmac-eic7700.c:
+    - Remove handling of eswin,rx-clk-invert and eswin,tx-clk-invert
+      properties.
+    - Select RX clock inversion based on the new
+      "eswin,eic7700-qos-eth-clk-inversion" compatible string, using
+      match data to apply the required configuration for affected MAC
+      instances (eth1).
+
+  - Link to v1:
+    https://lore.kernel.org/lkml/20260109080601.1262-1-lizhi2@eswincomputing.com/
+
+Zhi Li (3):
+  dt-bindings: ethernet: eswin: add clock sampling control
+  net: stmmac: eic7700: enable clocks before syscon access and correct
+    RX sampling timing
+  riscv: dts: eswin: eic7700-hifive-premier-p550: enable Ethernet
+    controller
+
+ .../bindings/net/eswin,eic7700-eth.yaml       |  75 ++++++--
+ .../dts/eswin/eic7700-hifive-premier-p550.dts |  50 +++++
+ arch/riscv/boot/dts/eswin/eic7700.dtsi        |  54 ++++++
+ .../ethernet/stmicro/stmmac/dwmac-eic7700.c   | 180 +++++++++++++-----
+ 4 files changed, 300 insertions(+), 59 deletions(-)
 
 -- 
-2.53.0.473.g4a7958ca14-goog
+2.25.1
 
 
