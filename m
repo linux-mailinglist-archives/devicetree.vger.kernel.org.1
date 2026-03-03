@@ -1,58 +1,60 @@
-Return-Path: <devicetree+bounces-270537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270538-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNXhH7bqpmnjZgAAu9opvQ
-	(envelope-from <devicetree+bounces-270537-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:05:42 +0100
+	id EJT6OG7spmmQaAAAu9opvQ
+	(envelope-from <devicetree+bounces-270538-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:13:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 436421F1087
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:05:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CFF61F12AF
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:13:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 77ED03075CEC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:55:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B7D663237EA2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:55:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9031C34F494;
-	Tue,  3 Mar 2026 13:54:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BF0368978;
+	Tue,  3 Mar 2026 13:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="D3KuLE28"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Kp80WY9m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0AE36655D
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:54:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3302636654B;
+	Tue,  3 Mar 2026 13:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772546080; cv=none; b=g7UkQAv+UQxCetNjemWO+P19msYwkOgRQoHrEB6wodGRf7Rd5pAvPYnQVIxuKpKSD4vlFAX+SJ/9aegd92IYkDkRw2VmBuv65w/aCz4Ru6Lzy2KY5gktCQZpcLhGp2TBadmC2kCeg8naFQibEV03eposQacsZmxQnv4nPSj3hyg=
+	t=1772546081; cv=none; b=gLx3bBUldZKp0tG7wNOEMI3823fbcrN2eYnKqQ+PWOitddX6y90h2lJ7QbOOlntec3tHxytEPtTAbVqM5MOFEoLIjW3WaqeOOB2RjEWPpcHyKH35mHxhwZlDxadtcxrz6lLYo2k/WzpQ+MNpFagnczVihtQmruCRZNnhtOj0e4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772546080; c=relaxed/simple;
-	bh=pnAvSg9BDIgvscOo7XYPxJbTgoOGDp8Dafxe4N3+xP0=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=a3iTrrFEjleiimtFCc+8fr/RrfhDBhU4YRz2/11TAcBgXjXv44IO5Ipqpupt9NyNEbGgxFaSfkLKjkDtmWaN9KnUbxa+GbeUcE3JG/oK5duztcfRAF8iGA09yRNe3HBKwzuUh70Klc684z7S6dulLlDmefn7jPA6zJA+ZZ6JPDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=D3KuLE28; arc=none smtp.client-ip=185.246.84.56
+	s=arc-20240116; t=1772546081; c=relaxed/simple;
+	bh=SMMr1PdcU/OF0EiAehRqWWuHFzTL+3hjgw3LMCb1gTo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=FKxrjv4vBQbQyFjzfvnPKutH7KMlSWxbXTaR8Je54dWdl/iMn/FRIvYEoPUkQpqETs6ywVw2RM6OMknb1aKwIBsgrXM/5elIGfM4iCRkKHZMqIdpkXHgAlIKW3X3PG+M4+f9vM0DqYEL1tQcx/cWcuadseOY5+LiIYcW2SzLPgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Kp80WY9m; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 2C95F1A2357;
-	Tue,  3 Mar 2026 13:54:35 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id C9F4A4E42500;
+	Tue,  3 Mar 2026 13:54:36 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id E56DE5FF29;
-	Tue,  3 Mar 2026 13:54:34 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 41F541036869F;
-	Tue,  3 Mar 2026 14:54:29 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9DCA15FF29;
+	Tue,  3 Mar 2026 13:54:36 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3F2C2103696DA;
+	Tue,  3 Mar 2026 14:54:34 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772546073; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=fQOqnaiUmuhsJFXxkLq20Gijmxp0xf6Cu9xnALeENoM=;
-	b=D3KuLE28pO0WmToSyf3NBBmA0AudAU0NkrBv5E7LyaNYXuvls+bOehr1RFUUt6lRYNxeCc
-	86rEaKEzOkgk1COznuwm31h1x6XvPTv0nM4TsDmmLJCW9esfzzPUtwuHQTKM5QzpvfEIpX
-	aA0ldt38PB+TYEuZ7e5yyudwz9MYO49nNp0GO3zzea2D/EjqRSr8EfqaZvd8Btga67fiZI
-	gPvOKNbx0H7k2z0B1maRsFwscPhuNbgb3p5s/fH+Q4VRUgFLPoP64Mdophzoy3vybYOYd8
-	Zaj/jk5joQ9vrFifh/MTyehB4Y310zoohpAdD8T0BJr3WQka2gxQpdiTMNx27w==
+	t=1772546075; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=tIAzdhsujhMcPbHTHBP9SpG8Mzlw5Ly5rGbW+sw5+Ww=;
+	b=Kp80WY9mw07Du0z+vZQ4XxyWYiItSZww+0eroe07Q03DlcDZziTXVhKLeAABBAxLiLbreU
+	82COeyY2lenO17EmdLdEuPd+0TbYq/3yKBOyjT6dmb5n68/qqWpua2ZOdl71FBKGWOWhDa
+	eOliQ5rNQooUDqAJwkpk9LJJsaMh3yAsGFQsDAhhUGZcUFC4HQCdZc2gHIZH+6YpShjrPa
+	0VwZ06A+8e/W1G2sbgOGljkv0ht+j/7ZmY+9OjpV2tQfeurEb0gUXi5/7kLEMNOxz973Uv
+	qMC15a+u74tqKXlTPc4XAKUF73gBz48W9UrVB+rjA3RUkO7XOAt6c3fYpeCbeQ==
 From: Romain Gantois <romain.gantois@bootlin.com>
-Subject: [PATCH net-next 0/2] net: sfp: Describe and handle regulators
-Date: Tue, 03 Mar 2026 14:54:25 +0100
-Message-Id: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+Date: Tue, 03 Mar 2026 14:54:26 +0100
+Subject: [PATCH net-next 1/2] dt-bindings: net: sff,sfp: Describe power
+ supply pins
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,10 +63,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIABHopmkC/x3MSQqAMAxA0atI1gZq64BeRVw4RA1IlaSKIN7d4
- vIt/n9ASZgUmuQBoYuVdx+RpQmMa+8XQp6iwRpbGmcc6nyg0HJufdhFMauMdWU95IV1EKNDaOb
- 7H7bgKaCnO0D3vh9JIDMtagAAAA==
-X-Change-ID: 20260303-sfp-regulators-1702369b4523
+Message-Id: <20260303-sfp-regulators-v1-1-7101ae34cb84@bootlin.com>
+References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+In-Reply-To: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
 To: Russell King <linux@armlinux.org.uk>, 
  Andrew Lunn <andrew+netdev@lunn.ch>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
@@ -79,69 +80,69 @@ Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
  Romain Gantois <romain.gantois@bootlin.com>
 X-Mailer: b4 0.14.3
 X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 436421F1087
+X-Rspamd-Queue-Id: 4CFF61F12AF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270537-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[armlinux.org.uk,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270538-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[armlinux.org.uk,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Hi everyone,
+SFP cages and soldered-on SFF transceivers have two separate power supply
+pins: one for the transmitter circuit, and one for the receiver circuit.
 
-This series describes regulators supplying the VccT and VccR pins of an SFP
-cage or soldered-down transceiver.
-
-These regulators can then be turned on only when the SFP device is probed,
-thus saving power on systems which only load SFP cage support at certain
-times, or load SFP device descriptions via device tree overlays.
-
-Please let me know what you think.
-
-Best Regards,
-
-Romain
+Describe these two pins and the regulators supplying them.
 
 Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
 ---
-Romain Gantois (2):
-      dt-bindings: net: sff,sfp: Describe power supply pins
-      net: sfp: manage receiver and transmitter regulators
-
  Documentation/devicetree/bindings/net/sff,sfp.yaml | 8 ++++++++
- drivers/net/phy/sfp.c                              | 9 +++++++++
- 2 files changed, 17 insertions(+)
----
-base-commit: ed0abfe93fd135dac223e87a3c945017b1fa8bfc
-change-id: 20260303-sfp-regulators-1702369b4523
+ 1 file changed, 8 insertions(+)
 
-Best regards,
+diff --git a/Documentation/devicetree/bindings/net/sff,sfp.yaml b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+index 15616ad737f57..95729cf694a7d 100644
+--- a/Documentation/devicetree/bindings/net/sff,sfp.yaml
++++ b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+@@ -68,6 +68,14 @@ properties:
+       output gpio signal (SFP+ only), low - low Tx rate, high - high Tx rate. Must
+       not be present for SFF modules
+ 
++  vccr-supply:
++    description:
++      Phandle to a regulator supplying the receiver power (AKA VccR) pin.
++
++  vcct-supply:
++    description:
++      Phandle to a regulator supplying the transmitter power (AKA VccT) pin.
++
+ allOf:
+   - if:
+       properties:
+
 -- 
-Romain Gantois <romain.gantois@bootlin.com>
+2.52.0
 
 
