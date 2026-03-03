@@ -1,152 +1,192 @@
-Return-Path: <devicetree+bounces-270588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270589-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WEGICwz9pmkKcAAAu9opvQ
-	(envelope-from <devicetree+bounces-270588-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:23:56 +0100
+	id eJ75FyT8pmnYbwAAu9opvQ
+	(envelope-from <devicetree+bounces-270589-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:20:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F99A1F27A9
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:23:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCF721F2694
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:20:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7C0A30097F1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:15:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2F5B6300681D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC4B148AE33;
-	Tue,  3 Mar 2026 15:14:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2C3382F39;
+	Tue,  3 Mar 2026 15:20:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CAoBictr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YpzoE+ge"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3031F481AB8;
-	Tue,  3 Mar 2026 15:14:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9AE535F60C;
+	Tue,  3 Mar 2026 15:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772550850; cv=none; b=DeNpbvMo3OXlw3p2p2G9uhhinMbY09n4W1RcCthAtV7pvX9hAwVy8qWZZhs3ww2ny5VcjioI5h1+a7ciaYlQn9W6FJNdqjhRidzYhhUOojVG3mBN4o4ucGw+hsPOdKVZ7eltIt8PYFn86tC+z4Dsh8GkNODe2uvCC3W2npCi7Qg=
+	t=1772551202; cv=none; b=hOBEjUtoh9KDcNDhjPpKGBhrrJvfXqpOt+stnr/GRHKkXfnFRxVt7w1Jo9xLK3vdSxq1e84+PKka4q2wgzK8o5Kcv9CBu27Tb2+T11Zc+AjL7+QvHccyvCHLPSW4+K65uXOrzWbd4jqdFTAZ8Bsj+5vgD7rfE4R4x/iST9Si+0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772550850; c=relaxed/simple;
-	bh=q8Yhoxi7+IE1A7PHj8vz4yw9E24/lnWHEoBeTrLCQ7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X0h7sBHf4BMwdgce0XpYDoOjZCOirCIdWptq1Dy2I3dJi484JLWsfGOeu2oVzqxWN5sz5RvMaDg0oXbLUo3Pykbo4u9BM2oLgTFCMYgHAezwkwDX0/Wbq+Ms5kLHfkys9wy0YJaEIhyKpsEihZKPGprMew6TsgL39z2MdDe7fNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CAoBictr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB185C2BCB4;
-	Tue,  3 Mar 2026 15:14:05 +0000 (UTC)
+	s=arc-20240116; t=1772551202; c=relaxed/simple;
+	bh=pZrtl3shfJvTr3T8MQVrMuWyjI2cByDEDsJhCmSyKK0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bk30/a55WR/8/KAJCgXAOnPkOMrF4ZyO1Y6M5RkDvAgLVkPKkznQ+twqlIV2UpwjdDpfNci+urxOzJQdlAUO4CUx5jz7LL1TEJUlU4cLGQUJmRAfrdzT4tNcVB+1mTg+OaOxEFXh5CvF9WZUspq3MYCWjw0kqYYfyCBzYi7tJsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YpzoE+ge; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F7FFC116C6;
+	Tue,  3 Mar 2026 15:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772550849;
-	bh=q8Yhoxi7+IE1A7PHj8vz4yw9E24/lnWHEoBeTrLCQ7A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CAoBictrO4XMnhEynZfcJBR718wkTXWRhtZtVgC3NGGwDfeKBiEN8CZC37mWyOpNM
-	 zz/dqtIXyRa7x9Qs1Bhq7NZuW6CvyjSrLRmIFnp6eGlIAlOpx/U3QUGMqZgs0CT69Z
-	 K6ZFFk81YQStjvj2VkSICcPWMGsrRCenCLT0fOSKIRljF3FYjv2uJw43Re5XEpcL4Q
-	 dXty1dXe7esewqHf1rudeXBLIKtuDrSPiZARpey/Zwy16w8WEOyzIpLlFF06xleWTQ
-	 QaN6sH+0XnRtC0S9GDPS/p0h7YXDaCh1g3lxHtlbpZJvzGv3ZD104tP3DbDv4Pdy2J
-	 dvHyk4J0OBVcQ==
-Date: Tue, 3 Mar 2026 15:14:02 +0000
-From: Mark Brown <broonie@kernel.org>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Romain Gantois <romain.gantois@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter
- regulators
-Message-ID: <536e57fe-9738-4026-a9c9-fdb7135cbe2f@sirena.org.uk>
-References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
- <20260303-sfp-regulators-v1-2-7101ae34cb84@bootlin.com>
- <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
- <aab6Tqo1z-8YQ4j6@shell.armlinux.org.uk>
+	s=k20201202; t=1772551201;
+	bh=pZrtl3shfJvTr3T8MQVrMuWyjI2cByDEDsJhCmSyKK0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YpzoE+geP8VecHaSiMY+a6GOGSoEJu9EJMG+HGrGz0FvNyMaBcuhM77Zg7BAAfzWR
+	 BPagKDzE7cL8GmX3KzkVIgKhLlhr3um4alLjdJebGm2MCrXSs64R3bz1MLnq4CL6BN
+	 1iIzHJ+ndArmyNohhJVbSg0E3gD58shj1radm3Uth6/Y8IbQGqMiUF1q6YMrK+H2Wj
+	 ocIDvMQV27yUnuHHm5sVAjR01onOOpsnjkdH/OdsL+D4a2xM4mHp9s6UK9ta6dfgDh
+	 VldLziFXRc567MGfR0gHXJbNjSxUUGS6riQltm67y7iU9CDDWHaRJIcI30D6v8IW8e
+	 mMsEACfVb2FrQ==
+Message-ID: <920740e1-5bbb-4632-a62d-325715cd8043@kernel.org>
+Date: Tue, 3 Mar 2026 16:19:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZFJd5vM8CVsa9xva"
-Content-Disposition: inline
-In-Reply-To: <aab6Tqo1z-8YQ4j6@shell.armlinux.org.uk>
-X-Cookie: Use the Force, Luke.
-X-Rspamd-Queue-Id: 8F99A1F27A9
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 04/14] dt-bindings: arm: fsl: change incorrect VAR-SOM-6UL
+ model name
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, shawnguo@kernel.org,
+ laurent.pinchart+renesas@ideasonboard.com, antonin.godard@bootlin.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>
+References: <20260302190953.669325-1-hugo@hugovil.com>
+ <20260302190953.669325-5-hugo@hugovil.com>
+ <20260303-rational-thundering-firefly-9dcaa9@quoll>
+ <20260303095533.1c6dff174f6c9d162d3e3303@hugovil.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260303095533.1c6dff174f6c9d162d3e3303@hugovil.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: BCF721F2694
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270589-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270588-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,nxp.com,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dimonoff.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,variscite.com:url]
 X-Rspamd-Action: no action
 
+On 03/03/2026 15:55, Hugo Villeneuve wrote:
+> Hi Krzysztof,
+> 
+> On Tue, 3 Mar 2026 08:10:51 +0100
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>> On Mon, Mar 02, 2026 at 02:03:40PM -0500, Hugo Villeneuve wrote:
+>>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+>>>
+>>> There is no Variscite module named VAR-SOM-MX6UL.
+>>
+>> VAR-SOM-MX6? And there is.
+>> https://dev.variscite.com/var-som-mx6/
+> 
+> Ok,
+> I was confused by the "const: variscite,var-som-imx6ul" and thought the
+> description was not matching.
+> 
+> But there is still no module named "VAR-SOM-MX6UL", but "VAR-SOM-MX6",
+> with different CPU variants like UL, ULL, etc. So I will modify the
+> patch to reflect that.
 
---ZFJd5vM8CVsa9xva
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I don't understand what you want to reflect/modify.
 
-On Tue, Mar 03, 2026 at 03:12:14PM +0000, Russell King (Oracle) wrote:
-> On Tue, Mar 03, 2026 at 02:22:40PM +0000, Mark Brown wrote:
-> > On Tue, Mar 03, 2026 at 02:54:27PM +0100, Romain Gantois wrote:
+Description says: VAR-SOM-MX6
+My link says: VAR-SOM-MX6
 
-> > > If phandles to receiver and/or transmitter regulators for an SFP device are
-> > > found, enable them at probe time.
+What is incorrect?
 
-> > The driver should unconditionally request whatever power the device
-> > needs.
+> 
+> In fact, I will modify the description to reflect that it supports both
+> VAR-SOM-MX6 and VAR-SOM-6UL modules.
 
-> ... and then we break everyone, just like you broke SATA, and I've
-> never forgiven you for taking a principled line on this rather than a
-> pragmatic approach. You're making the same mistake here.
+Are you sure that it does?
 
-Sorry, what's the breakage here?  The log messages, or something else?
-
---ZFJd5vM8CVsa9xva
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmm+rkACgkQJNaLcl1U
-h9CRSQf+IrzhYUxFlRBk3BpGyWg0HcCkNww1FUyWm1I/8IDylKE2uyh52Mz78K0R
-J1d7qVdmo356qfGcUkXAw2XxxZXZjxMsiewbw2Vefcu/q1N4TEKK5e0lOXlyrAQc
-Rdn+4Y2fr6lmjP0k+VIBZhMUuPIhNSaOKEFsedu600Mc8YpYRGhTKDkylTfzfWTU
-/dIrKxIn8/YXpHyJzHELlmjOGR923T51qOTE3zABoxMOxVPksrqas621z5U9G10D
-+kSWTZ7PvoodL7dGa5IjdaAVctholrY2e37p5A9DBGwxHmxrvwcpw1vqrzLgNXIF
-3YYxb/EogdLxbMUpmczC47OJJV934w==
-=Km+u
------END PGP SIGNATURE-----
-
---ZFJd5vM8CVsa9xva--
+Best regards,
+Krzysztof
 
