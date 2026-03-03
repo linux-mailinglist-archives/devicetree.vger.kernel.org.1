@@ -1,276 +1,220 @@
-Return-Path: <devicetree+bounces-270286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id zUoVDqJ1pmnDQAAAu9opvQ
-	(envelope-from <devicetree+bounces-270286-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 06:46:10 +0100
+	id yK56BFV4pmnxQAAAu9opvQ
+	(envelope-from <devicetree+bounces-270287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 06:57:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C02831E94E6
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 06:46:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5A741E95D0
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 06:57:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BC34C301BAB4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 05:46:08 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 302543075FB4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 05:56:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4343D994;
-	Tue,  3 Mar 2026 05:46:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21CF534575F;
+	Tue,  3 Mar 2026 05:56:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bnRbfky+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CkZdqbu3";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LzX9Joq3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C831729A2
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 05:46:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772516765; cv=pass; b=ufoKHieZ0HiiHDCyHWttJCsn+S3X5HiJMMhNzcBJwd9uw1XQuPzO/nWPVocd89rQlOANb/5I5YwMCvt76RhKuLOjuxGF+qxoXPFdZizz93GGuEqWGegme0Gmd6JbT06ZCok/H57vTb/M++Mw5ZzszAjpRN5OaC2GU8wy89YkolE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772516765; c=relaxed/simple;
-	bh=DsX1kTnKCeSfsHdDeFpxr4GGfo2SoOOYDiI+D+KDcr0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hRruR30L8Bw8QZJW9LO7fGyI7m4oageu1Gi/Uok11A/yR8Qq3wRrwkEKbQVY3LwAkyRtn293tYvhCs+DlVxlw9oA0zXPxjtwYEvLDvno0ibYpr3zkQNOx2uVCSgZxY827O9Tu4EYEu+uAKnV4TSUbDRf9fzRFQGTELkvgcSD4QU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bnRbfky+; arc=pass smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-48371119eacso64879075e9.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 21:46:03 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772516762; cv=none;
-        d=google.com; s=arc-20240605;
-        b=XJ3ES1SXG/DH9+tOSQUTubBZq4x3Nn1lpwSm7bHZE5huIHxWPCQpdEeMLymm4k6p8/
-         MnEe1JnT1xOYUo99NG1KWbJqIxipE2lFm0fqQztVUM4rh7pyve5EZ/KYvh7EeB2h1s6W
-         gf3n6fKJvmqymb0Qp6YfHh47DCn5A2tnQMIg3n8SrbUnPoDNRXkjuO+HDp0uAP0GZoLL
-         YkMlwPHFcGpMPkiU7QwRDCJOLkQ/1McftjIlZxRoyqddFReNylMJHpM88chNTbbg4Lgq
-         kQFwjz0Xbf6QqpXBOLYig/unBGvCvHmXCiWNGbtZICm3cpPKHok7dqFMQCmakdg1E5kY
-         of+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=xg1uZWJossyBD+q6zxGguo3A8O0UO4OS1MVY0/VBkLM=;
-        fh=7faFSVyVWf2HiVn310ScVMXnSx1V+UPJUjeJUqPtBRI=;
-        b=hZcJadO5cNAgt51559HLk6Mdo5PS/S0t86fhvRRbnK5rGMlFAK0BNR91Sux92WS7mw
-         Z82rOZO4lz4kE0iBd+Ew/aXS2243xCxe0jFVuBrZpCMPlhOPP7RDRYC+jwuNvAkHf2uk
-         6A2S6AVQOPQ3GpzVAGdi2BBtfq5M5n+IFrf0+zOqXZHDtFtqiHBszGD7IJDO33+n+Ccx
-         Kqdg8JdcQBOHuKgNH/dYG9HG+20vwDcu4/LXyrLicIeKDNctNgYWIQA+YE88rrysWpbG
-         1hFV4O15WJkGWt49q4M0kddZ8b7w4Za09wBOBPp7NzX4mp9HTmq/peLQN7w0eW4KFQPf
-         /2WQ==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0FF430EF6B
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 05:56:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772517394; cv=none; b=IDRfVH5qpT5+FcPfKvck1Tk5znuj+mujNZmErOSxr0HPIqS4hCOZTX85CrqFSBZcrBhhxZPPRCXK6Cah3S5qm6UgJUKAa+5D+HsT3xYC5gGlB3buYeC7SkIgKXgn/js7EkkHF9C9LCwxbqM3B7Chj2kR/kzpBh5TDkusGyGZILE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772517394; c=relaxed/simple;
+	bh=3bIXffY/9X2HVXQIA39mw4H/IcuURtGpwlkl8koIlMc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fYwa2En5d4GBd1wGk/mCbm7VunKw86dEo433vzpyTrGJQ/E+8CBrAXoc8tp+3N2KjA9o1GkGsrIxtkEqUnvZgEsspeYGrGo9bxlbv4TswYsgao5mQuN4W7wuyyHDGRcddGMaSJpn8gc8dqOYCCfFGHYy5BmvL0oSNVynUkVJ6ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CkZdqbu3; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LzX9Joq3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 622NEPeL2048777
+	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 05:56:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zFRkum70LwaLQ544ntcVbg9EgSAccXUR17foftejeHo=; b=CkZdqbu3cXsf309b
+	1OkxUDCi1VpE2jB2U5FHi51pNiwjumq7GxVWzn7z//8zQ0D4kfl3te8hSE93N4T5
+	LWhf+B7KcWF74PfyGuurDHDDD/y6Y6k5dJFZQ80QzLLN19Qa/oKR32m3kMBvrUeA
+	VV3hixGm0uywBPQzSzQcRJpvVOvv2wLtHIioVOTXnN79emeW7kJ7tva3TXeP4Z0r
+	UqjxXMj13pfBHLbcGwsibGFYdU1IcF4jJVKZwUGoTmZhQ4eCG7NtZnYkavJ+Gwf0
+	cwwtpIOHqyXYDqZHrrxbM8SIsqr8usCBdGqxXMnJ9vvDhQrmzthXOJYxdSPR4qUy
+	8SHkMw==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cncmftr76-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:56:31 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-35983ee9f3bso2265300a91.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 21:56:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772516762; x=1773121562; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xg1uZWJossyBD+q6zxGguo3A8O0UO4OS1MVY0/VBkLM=;
-        b=bnRbfky+3vV8s4RaRYvm9A618Hh/C8b6qRw3rYz7ijlOoPXAnQtKefqWWM89G46XGC
-         IBe7Ps6oqoAUY38VQqUiltqIlRzyBP71j7G2EmldbFV3fuGfavN1UTfH7uyNQaxDBeBh
-         rFw8hGhT/t6yCYRl5j0gp7+/+J4K0ssjG6X65mE1WWaxLXbI0Nn3tlQILwKI49MZuDbo
-         jgGbxdOTMKhmOUDjlHCBieD21DyOXT8+x5ZnqzPS4WCbtiJO9FwuvpUSkv7g0mbqp8d4
-         J/SZJ3NPn0amQu15D/W61cA2B5T+7erXgjKfzgSbnpmqROWHWQHsmOvjyNe+6LCFudvS
-         7p0g==
+        d=oss.qualcomm.com; s=google; t=1772517391; x=1773122191; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zFRkum70LwaLQ544ntcVbg9EgSAccXUR17foftejeHo=;
+        b=LzX9Joq3wwuk+XT3KCPFxtZmnRtoXnbSMOQDA5snSLJFljuLigv2UL7Z8ALm7YPaLI
+         PWgC/rm6Jz88F0xt/9vpreiVDL8yhKtQ/7Zdg7Zgf5WK8G7iK82y8TOvW2oAvhXTL2P7
+         cbvoUhqaPwOGKIfHhHWxg9ryTqW13X4h8ABJJzSEnzFbFXVp/AJBFAqQfqlxtTmoGFCC
+         TvoEoZ2lASAjGGBE6qQJsEs29F8XkEZgNrOdYuePJJQXtdNoiUIwVokXX54+ceHSg13z
+         RO3q9sP9drAgUHzHHNJNCx8LExgG/IndFDKmv2a+gnRHqbt9wG5/YbsqvlfYUsxNDUyI
+         GquA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772516762; x=1773121562;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=xg1uZWJossyBD+q6zxGguo3A8O0UO4OS1MVY0/VBkLM=;
-        b=NgyHn0wxcq7tDBhr/SkbrmjrJo4CLCm1tnBBS8+IWvSPC7zF6kf0vNjZ5oGNL+7TR3
-         BqaTqcVB3AlFz4gPDcWuwXqn6XIt8cRvRXk6yf8vyW+B4p0cgMAG1icp0SH3ZIL0MmuX
-         q3MgIp9Msnbi5A2BlF/WQoiXEpi2HD5/WoXkH6tD/CLiorJ1JUIzm2RTux7Ujuw/fq6Q
-         zHhMVkZutA4bHx1dr5TYhOza6CiVqpEFIEyaXsZAv1UfrhUkguQvNHckDl6V8qZ6nR8m
-         W9S16iZf12BKJlBNqBeP7uo4F19tDrr2/gsP28rBLdLkgfojZB5Rcf7OzH9+VcLtGdvC
-         SuaA==
-X-Forwarded-Encrypted: i=1; AJvYcCWB3iUj6thFCAzGnJpCWjfKYXUNZZ46aNyUY2QxUOVawx/NRIDS0BzSbY9EaBOvwPqSEWPKMRfKcLmT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqBJjW8bjdtBVtctWj8igWatfqZlHh8VlSXfTfRLXxmfdkAJUZ
-	NMogRzESkQi8qUKW0ZbHmTYMQQZ2g2JVYm7MfwOS/binpoBzClMeOZGeZ6ZTgirE10joyTxRoJi
-	qBd6+SVmondPK8+n9wAX1K0rN4r63OcY=
-X-Gm-Gg: ATEYQzxHrflFxTnc7LTGqzaPjbGbPY+uj0+2Q0VTIsQO2snm+bB6yLBOas3l8f2BhXG
-	DuKgkNhhjPcaRwZXHRul+CD6Fx0B6qnX/SmHUGQzrnP4oLPk3JGuCBbttOCj+rPoLc+aM7KqqsW
-	FpA5ieW6Q0jEvR3dcJaKbsg+blxWLUFkB2OTKJk+VL9lWWUelQyH/fdJQYTKHSnunf+qsV3K6w+
-	8UHwiDpy52UDwVSOp9NyM4cl9vKdn5def4qgWoYJ+K1eDw40EVZHMTBfEkXIssKta2fXLaC1+fs
-	zlJIMhyWhHT+I9w3lYSY4qXpHVxWmEJhJXalMoI=
-X-Received: by 2002:a05:600c:444d:b0:480:4a90:1afe with SMTP id
- 5b1f17b1804b1-483c9c2be1dmr238500735e9.34.1772516761986; Mon, 02 Mar 2026
- 21:46:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772517391; x=1773122191;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zFRkum70LwaLQ544ntcVbg9EgSAccXUR17foftejeHo=;
+        b=aGsvBA10UP9NcoFs3IjzsR9STUlpTdU7Tz8bpQIdNREKeLrBfkLZaXQGqCAOc6fl5u
+         t1Kj6ZJmp0oEjHBoqLhBZlfxa2e9sGMconjKRKs5hQ4hI884BdkJ8GaGXusp4vzX6Bfm
+         x7N/V9ndF7+/WamnRU9vdsoTe5vdN1acN7fYiDalkwFokDIKFtprTxzqOu6jmom04B8o
+         fiWHPWfYuZXERixtzT66WEKqMOImjHhb3Z5oEsQM15jg7XT0NEVIKVVdnWfVbhcs+kvl
+         Qrj/SH11hTXQ2b52wCJQIy54uDepOW/Pqyb1+CLgHk2gvLaZNV7o9S/xdEdyrGni0Tsy
+         kGsg==
+X-Forwarded-Encrypted: i=1; AJvYcCWgoLhwMbBktXFbsXcTpSewepXMixSEjw5+VbpEwnJORZ0KPDDaQX6CAMEJeU9xYYAmqeGZhjjLWSvz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLF2/+Q19d2gcCLPnTS/sgb0Yg2mdGlacyEHLXUDrLy6oOYKDh
+	u4vLoZ+HotSDs7jMDaKIP6ZuGFL6oeQ+xHt2dw+XUN6xI/DDIi44oN2+K0Di7dEUgptK8ah5LiL
+	KksYv6hMkVhIqLP6O331pBgNM2DgmKHfaqEVlMMsPROyDq27VVlpppr/DppIL8WNf
+X-Gm-Gg: ATEYQzyyJ3mFkmf0bdj3VCPz+1RMV0JdVqqJGk1AcqiZYMFmzcL3twixqa4Ah6/6VZ3
+	NPFhIbVSUyD6WONAEeO0m6GKE7sAYIGzMaepOrpeh7HTD0kfY3k57fhCiKXMDCcHYpY0R9Ce/a/
+	gDJL8hX1wxpVcgR1vyxiDDULvEBIZkiNkxPyS5Y9cxne5sveqm4v9vox+a9s3HVtd+eII9oJ5t8
+	8k5iqtQ4tCl3//bkoWP2yvkVzO4KNR2OdPgZ3e0KKJ4hx9sr2dCddN+a/lXGobrJMXyXFjO6ovB
+	V48S3U5SVO9LbbT7VmErIto+K5bEw/Yx9zEYaLn8i/FM/D/TDfh02tMT0Cbmq6htky5PQ+IucsY
+	NymOIU9F2NuUR6rPgxgxuHNLuyDwzDPhrhhic6nUfjEr3xEjn
+X-Received: by 2002:a17:90b:1e50:b0:359:8812:7c01 with SMTP id 98e67ed59e1d1-35988127fd7mr5371869a91.28.1772517390666;
+        Mon, 02 Mar 2026 21:56:30 -0800 (PST)
+X-Received: by 2002:a17:90b:1e50:b0:359:8812:7c01 with SMTP id 98e67ed59e1d1-35988127fd7mr5371841a91.28.1772517390198;
+        Mon, 02 Mar 2026 21:56:30 -0800 (PST)
+Received: from [10.218.28.224] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c49eb72sm1199207a91.12.2026.03.02.21.56.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 02 Mar 2026 21:56:29 -0800 (PST)
+Message-ID: <9ff1645f-b2c9-4c1a-ae2d-96af416b08d9@oss.qualcomm.com>
+Date: Tue, 3 Mar 2026 11:26:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260228205418.2944620-1-dennis@ausil.us> <20260228205418.2944620-3-dennis@ausil.us>
- <7914983.EvYhyI6sBW@phil>
-In-Reply-To: <7914983.EvYhyI6sBW@phil>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Mon, 2 Mar 2026 23:45:51 -0600
-X-Gm-Features: AaiRm513DtYPYb0SE8zCJViZ_vWjiX4flM-ALyo4bupgiMyyhndhFJi4olO5cRM
-Message-ID: <CALWfF7+fkGRVGBtjupK_1xL9F48JSSHiz2xt2_6_BX_-bt8rDQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
-To: Heiko Stuebner <heiko@sntech.de>, dennis@ausil.us
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>, Hsun Lai <i@chainsx.cn>, 
-	Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	John Clark <inindev@gmail.com>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Andrew Lunn <andrew@lunn.ch>, 
-	Alexey Charkov <alchark@gmail.com>, Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: C02831E94E6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 08/18] arm64: dts: qcom: x1e80100: Add CAMCC block
+ definition
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Mauro Carvalho Chehab
+ <mchehab@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        Bryan O'Donoghue <bod@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+References: <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-0-95517393bcb2@linaro.org>
+ <20260225-b4-linux-next-25-03-13-dtsi-x1e80100-camss-v8-8-95517393bcb2@linaro.org>
+ <4fab8e64-8251-4424-974c-19434ee04c76@oss.qualcomm.com>
+Content-Language: en-US
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <4fab8e64-8251-4424-974c-19434ee04c76@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=Br+QAIX5 c=1 sm=1 tr=0 ts=69a6780f cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=c9pHKBabw8uT7j5izdkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-ORIG-GUID: oroyjb6KBHLOUa7utvhmWi4W2J94Ouka
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDAzOCBTYWx0ZWRfXzZR1FCWJtk4N
+ dOlJ8cjnQjuLLQG/Ovi8PFi5DNw1p6X/tkbbdJyZgDtZ0ft6Lvk4iKKQMTBpEySKkh8uoqzJ8ur
+ I1VQrG7MyhDWeHMdhTv8PtssczIoylF8811N3aDRKY+BUKAXsTfyMGsxEtGAl4g/7+CHWW9Ik9j
+ RO63QafG17EdFO6erkrmBUVW3jKttGNVI3K59kbkOTFjA8OKMbYgn8oYWszCRpJxTW7BslVZJQm
+ 7Hk9gVD14G5MkPT77qiaUPDpcC39SPgTNZxms7g3u6uupEpsgZUdl9Uyx3uGi3l541XcWLsmEYP
+ Isr5cuYPMFR1wB+V67SWS/X/1Q9AbrslyvIx4ZwwJ9beKsdZFcO8l0I9EAijqeDoe0nElm7sVjN
+ xwCpyBQDjBPJQ0qEf2jXiB/eXDdZGCHI/9TubUc+Kj9nJR+lGRTBNEtinWmRWhQAcyfx346ln2S
+ lijoblw1Hfi1RtM/WIQ==
+X-Proofpoint-GUID: oroyjb6KBHLOUa7utvhmWi4W2J94Ouka
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_05,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 clxscore=1015 bulkscore=0 spamscore=0
+ priorityscore=1501 adultscore=0 lowpriorityscore=0 suspectscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603030038
+X-Rspamd-Queue-Id: A5A741E95D0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270286-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270287-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ade0000:email,qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,linaro.org,kernel.org,baylibre.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[kernel.org,radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,gmail.com,rootcommit.com,cherry.de,lunn.ch,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[honyuenkwun@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,orangepi.org:url,ausil.us:email,sntech.de:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Mon, Mar 2, 2026 at 5:27=E2=80=AFAM Heiko Stuebner <heiko@sntech.de> wro=
-te:
->
-> Hi Dennis,
->
-> Am Samstag, 28. Februar 2026, 21:54:17 Mitteleurop=C3=A4ische Normalzeit =
-schrieb dennis@ausil.us:
-> > From: Dennis Gilmore <dennis@ausil.us>
-> >
-> > Add device tree for the Xunlong Orange Pi 5 Pro (RK3588S). The Pro
-> > differs from the base Orange Pi 5 in the following ways:
-> >
-> > - No SPI NOR flash; eMMC module slot instead, you can optionally solder
-> >   a SPI NOR fin place and turn off the eMMC
-> > - PCIe-attached NIC (pcie2x1l1) replaces the GMAC1 ethernet
-> > - PCIe NVMe slot (pcie2x1l2)
-> > - AP6256 WiFi (BCM43456) via SDIO with mmc-pwrseq
-> > - BCM4345C5 Bluetooth via uart9 with full RTS/CTS
-> > - Two-colour (blue/green) GPIO LED using modern color/function binding
-> > - audio is wired up differently
-> >
-> > Vendors description and links to schematics available:
-> > http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/detai=
-ls/Orange-Pi-5-Pro.html
-> >
-> > Signed-off-by: Dennis Gilmore <dennis@ausil.us>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
-> >  .../dts/rockchip/rk3588s-orangepi-5-pro.dts   | 376 ++++++++++++++++++
-> >  2 files changed, 377 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro=
-.dts
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dt=
-s/rockchip/Makefile
-> > index 4d384f153c13..c99dca2ae9e7 100644
-> > --- a/arch/arm64/boot/dts/rockchip/Makefile
-> > +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> > @@ -214,6 +214,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-nanopi-r6c=
-.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-odroid-m2.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5b.dtb
-> > +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5-pro.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-cm5-base.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-radxa-cm5-io.dtb
-> >  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-roc-pc.dtb
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts b/=
-arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-> > new file mode 100644
-> > index 000000000000..d656328c906d
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-> > @@ -0,0 +1,376 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "rk3588s-orangepi-5.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Xunlong Orange Pi 5 Pro";
-> > +     compatible =3D "xunlong,orangepi-5-pro", "rockchip,rk3588s";
-> > +
-> > +     aliases {
-> > +             /delete-property/ ethernet0;
-> > +             mmc0 =3D &sdhci;
-> > +             mmc1 =3D &sdmmc;
-> > +             mmc2 =3D &sdio;
-> > +     };
-> > +
-> > +     /* Pro uses gpio-leds instead; pwm0 LED is not wired up */
-> > +     /delete-node/ pwm-leds;
-> > +
-> > +     /*
-> > +      * Pro uses i2s2 (i2s2m1 mux) for audio, not i2s1. Recreate the s=
-ound
-> > +      * card node pointing at i2s2_2ch instead.
-> > +      */
-> > +     /delete-node/ analog-sound;
->
-> I think it would make more sense to move the relevant not-shared part
-> out of the dtsi instead. Yes the duplication in orangepi-5 and orangepi-5=
-b
-> should be fine.
->
-> Having a devicetree with so many /delete-node/ and /delete-property/
-> elements sprinkled throughout the file, will definitly cause readability
-> (and handling issues) in the future.
->
-> Additionally this makes all the comments in the file explaining individua=
-l
-> difference unnecessary.
->
->
-> Thanks
-> Heiko
->
-Hi Dennis,
 
-You could follow the pattern that was used for the full RK3588 Orange
-Pi 5 boards.
-The Orange Pi 5 Max and Ultra are very similar, so they both share a
-DTSI. However, the parts that are also common with the Orange Pi 5
-Plus are put into a common DTSI that is used by all 3 boards.
+>>  
+>> +
+>> +		camcc: clock-controller@ade0000 {
+>> +			compatible = "qcom,x1e80100-camcc";
+>> +			reg = <0 0x0ade0000 0 0x20000>;
+>> +			clocks = <&gcc GCC_CAMERA_AHB_CLK>,
+>> +				 <&bi_tcxo_div2>,
+>> +				 <&bi_tcxo_ao_div2>,
+>> +				 <&sleep_clk>;
+>> +			power-domains = <&rpmhpd RPMHPD_MXC>,
+>> +					<&rpmhpd RPMHPD_MMCX>;
+>> +			required-opps = <&rpmhpd_opp_low_svs>,
+>> +					<&rpmhpd_opp_low_svs>;
+> 
+> Taniya, in light of the recent discoveries on other platforms, does x1
+> need a performance vote on MXA here?
 
-So for these RK3588s Orange Pi 5 boards, you could refactor the
-existing DTSI to separate the parts that are only used by the older
-DDR4 Orange Pi 5 and 5B, from the parts that are common to all 3
-boards.
+Konrad, MxA is always ON, and with the current clock configuration, a
+performance vote isn’t required because the clock controller currently
+votes only for the minimum level.
 
-To verify the existing Orange Pi 5 and 5B boards DTBs are not damaged,
-you should be able to convert the DTBs to DTSs before refactoring as a
-baseline, and then after the refactoring, convert the DTBs to DTSs and
-compare with the baseline.
+-- 
+Thanks,
+Taniya Das
 
-As an example of the delete-node/delete-property leading to problems
-in the future is when DisplayPort AltMode is added to the 5 and 5B.
-The new properties will be inherited into the 5 Pro device tree, when
-they are not wanted.
-
-Jimmy
 
