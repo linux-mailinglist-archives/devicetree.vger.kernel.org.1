@@ -1,249 +1,375 @@
-Return-Path: <devicetree+bounces-270340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270343-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WD5WCQuWpmnmRQAAu9opvQ
-	(envelope-from <devicetree+bounces-270340-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:04:27 +0100
+	id yDlaF0CXpmltRgAAu9opvQ
+	(envelope-from <devicetree+bounces-270343-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:09:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 958401EA830
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:04:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BC21EA95E
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:09:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B920F30086D7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:01:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 861A030FC150
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:06:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 786C2359A75;
-	Tue,  3 Mar 2026 08:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="aw25T0Yf";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="qJLhPQrs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D2C386C08;
+	Tue,  3 Mar 2026 08:06:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBB133B6D4;
-	Tue,  3 Mar 2026 08:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772524888; cv=fail; b=bTY84Y6KVP5YH+awg2timZ3Ui7OLFNKXKyIN4tt61U4aGw2Yt4tZE4+fMjM5KNsRE8olrq1D0GGFDK/lxQoKhJoVEFcfrI6q12E90RNDrg3raoUK+PITCV+Qjv3bOPZHIqUMeADrqOUox7XCjlc7aI/+bIUqOcAzR/FGUvkHR+M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772524888; c=relaxed/simple;
-	bh=3slQenzJgoEsE0HOUhXzOoVOnKIkq2pgZRZfekvfGgE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=FE1az0Cm3RdKAZUVZ/LujalR8AeUM8hu5D0Tia6tUw1uDusOSoxX1xjVlUY52pKk4/Tv6b0RwP+Z8YSrK22kIibHQcgizY8ObkxqwY7kVKnQDlMTT0qn8dSgWxrAmn+j6026HPIcTbHx13i7A3Bcj2EkOnv9eSu9JahCAAMQzFs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=aw25T0Yf; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=qJLhPQrs; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 293da61c16d711f1bcd7499a721e883d-20260303
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=3slQenzJgoEsE0HOUhXzOoVOnKIkq2pgZRZfekvfGgE=;
-	b=aw25T0YfOlON0zgWVwvWffGZbX9xN6jC7ennz+V9y4p3YxV1rkE4atxbdNAwaiQ9lsb8R5QtcF51+UUZIwWUqsfW61poCf33UALk2lFDSmcO1vux5xM1MombAH7SZC7BH6Iud9/JbL04l5/wjBIyu9kXMDklWOKnbTwKY2SkvKo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.11,REQID:274da4a5-e581-4261-aacd-e77e262c7dca,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:89c9d04,CLOUDID:dc0c767b-8c8a-4fc4-88c0-3556e7711556,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|888|898,
-	TC:-5,Content:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BE
-	C:-1,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 293da61c16d711f1bcd7499a721e883d-20260303
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
-	(envelope-from <peter.wang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1848414532; Tue, 03 Mar 2026 16:01:19 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.29; Tue, 3 Mar 2026 16:01:18 +0800
-Received: from SG2PR04CU010.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.2562.29 via Frontend Transport; Tue, 3 Mar 2026 16:01:18 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nGCC8BxaLXM722PgeB+aQhOUy/YUw19roHxIlx5/+/wBsbwbIZMLsHbYtDO1PRPia6l4iXblpvg1OxbSBrmsX2774vL/BtaBHBmOoDowyDggvW98CBnOa2XgHy0m8MwjwJbevs26NgpCRSegtKTkCmMipSJPMfOER7PAp7sBBpTiWz7LBxERKn6o7KX0i39nmmbsna4zaQbS+n0VKrkcR2k/n2qpkRlL6myt8r7Zwr2A9t+DfFvPRThcu4jXDmHUVJpohgsU3r/UjcYem7MnWhkYNpBuvtGNgpiBfS+r/Sn+iWen3X7AlzKPudnF3W/FkS7dbo3GyN43U19enz05ww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3slQenzJgoEsE0HOUhXzOoVOnKIkq2pgZRZfekvfGgE=;
- b=GZWCYwUU8mYnqNLoapyf9ugKOtP1fXeBoPjoOV3OYqCobtDCZGjq/TMJxVhKT2Xw2RGvlx5DimlHH8IBAohdIQR/jwfx2T2/OchPEemRujl5iNekLoag/0RoIgS5HRpFs/F45Qx+JT3vmRkV9T84NNx1SbuHvlCyq9foAEozM11ZCZGmXZ4SXuw5l1nRhImWKKvC6T6UeUirIDS8RLnHKVEspSN4X7rfId4dX2sFA9F1mrnVZIXxq6pWWQfR2n3GN/k9wh/yF+UoSr9Gl1FMoTO+Nd4+aE4vnbNNxPgdV5DXxJ/MpzPSD1c0CbUx0vsGGrL54/WeMZTCLe3YOtS15g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3slQenzJgoEsE0HOUhXzOoVOnKIkq2pgZRZfekvfGgE=;
- b=qJLhPQrs4Ho6TN+FC0EEcO/8rv76kOyH0zOLoEMxiPf65Y/fWTV3txlX3VrMtux1ZFBRAoTe0whMlIgEc6EUvtXLxbhcX2LQn1qXCOvDsnjJ0q/6+Pqn5bhdSvmZGYO8V5aLjPgFgZUyhp+4kAaYhmtlEXt0WhblwWAT48lpHOM=
-Received: from PSAPR03MB5605.apcprd03.prod.outlook.com (2603:1096:301:66::6)
- by JH0PR03MB7654.apcprd03.prod.outlook.com (2603:1096:990:14::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Tue, 3 Mar
- 2026 08:01:15 +0000
-Received: from PSAPR03MB5605.apcprd03.prod.outlook.com
- ([fe80::165:d36a:3f76:2925]) by PSAPR03MB5605.apcprd03.prod.outlook.com
- ([fe80::165:d36a:3f76:2925%4]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
- 08:01:15 +0000
-From: =?utf-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>
-To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>, "robh@kernel.org"
-	<robh@kernel.org>, =?utf-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?=
-	<Chunfeng.Yun@mediatek.com>, "kishon@kernel.org" <kishon@kernel.org>,
-	"James.Bottomley@HansenPartnership.com"
-	<James.Bottomley@HansenPartnership.com>, "bvanassche@acm.org"
-	<bvanassche@acm.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>,
-	=?utf-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
-	<Chaotian.Jing@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>,
-	"vkoul@kernel.org" <vkoul@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "avri.altman@wdc.com"
-	<avri.altman@wdc.com>, "broonie@kernel.org" <broonie@kernel.org>,
-	"martin.petersen@oracle.com" <martin.petersen@oracle.com>
-CC: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-phy@lists.infradead.org"
-	<linux-phy@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, Louis-Alexis Eyraud
-	<louisalexis.eyraud@collabora.com>, "kernel@collabora.com"
-	<kernel@collabora.com>
-Subject: Re: [PATCH v7 20/23] scsi: ufs: mediatek: Back up idle timer in
- per-instance struct
-Thread-Topic: [PATCH v7 20/23] scsi: ufs: mediatek: Back up idle timer in
- per-instance struct
-Thread-Index: AQHcn0oP6tEnScLyfUKovG8pABVQS7WTRnGAgAAi7YCAAP0HAIAAcnSAgAewYYA=
-Date: Tue, 3 Mar 2026 08:01:14 +0000
-Message-ID: <0bef3e1592e64f74e6a6fd8ef59129ac71b307e4.camel@mediatek.com>
-References: <20260216-mt8196-ufs-v7-0-b5f2907c6da7@collabora.com>
-	 <20260216-mt8196-ufs-v7-20-b5f2907c6da7@collabora.com>
-	 <5d9723fd6b4ff8430889efb33e0fc93a10c4a880.camel@mediatek.com>
-	 <cad2e275-8b5d-4023-b3da-a191bfd065c5@collabora.com>
-	 <6297edc9c2d6d1a323f188ef411205701a629d88.camel@mediatek.com>
-	 <48e8f40b-f5f3-42b5-a97b-7a25d1dc0fb8@collabora.com>
-In-Reply-To: <48e8f40b-f5f3-42b5-a97b-7a25d1dc0fb8@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PSAPR03MB5605:EE_|JH0PR03MB7654:EE_
-x-ms-office365-filtering-correlation-id: 69bad1b9-d52b-4a1f-6e73-08de78fb0b44
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700021|921020;
-x-microsoft-antispam-message-info: FGYtpgKUyOtLSfuNmT1rBusfX4Y9Ys2qqRiZ41/9g3GLwzrcm6QoGs4XuGzkzyJ8I4ul7ocLrocIh2GSpGJ2TZH/CA9iCnnddalwVRc72dvZ9sRfBVrYUa1viQTvN4vQ2MTzVEnY59QUX7lGiWzOfDzW0fD7TZzS0OqiYnkbhRysRMa+vYOeTCZaNvJVbd0hwIaRqBG+blvvzsX/+D4VE0SLHaDCYWpQI9v/a7bd4+LeHZbcqhC8CD23zOO/d3UqSizdBJm2JXIYgycnu3/wzfPuEu98XxqEqsRvDHS4CXnP5Lh02iQhvKonvKoWm7vZJcgqwlIZH3jH+0p8OVZk0aKSgHUgHAsrhvFpcgclyWbeUF8zQcwzzmRcypTZgfsy6VYv476xK0b19EztByZ/UY0EwuOi6oS4EgMxRNi1LWFUlE+EAdIXqdgRXMZK6ixBtOEa+q4NtcSwNMCf54gf3cKYx1oYoPI4A6eqKwXmOgS54cjyrFyRY095OqBEVwkI9eNq9HwzLpBPZGH0uF14M6Ibz58niVcEjpGc/bfOgJyNgkEAF/kPW/4K4JUkj+qPYLYtW/pIoFxnKZwyzP8pe4q0Qov6htO1uFHaM7hqBjW4pxrkJGU/IRMHRnvlzuoeAc2o9txuxs4/tDebXXIU3xhkByevT61G/p+ek9DT1F0u+eA7ZJ5O9UNVjNYrDQwr7HtHHoMTTSWcY2y0VL/qH8XES75SPhR6deVbuTivlkTVyFACvENeLcqWulbWSHwr9G2D68nUkoIUza2pHfUOGzAggkoMyHKJZM5U7cgZcrtlnCZbAh5ntO7fBBWwMPJb
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PSAPR03MB5605.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Tkt6UUVvNEgvRXdnMVJLdXlGQVZ5cm9sb1VsbmEyU3R6L0k0WXAyVmJRa29T?=
- =?utf-8?B?bW9GN3IvWVBhS2lRRkppclVQRFFGdUFMRDhlNmRYT3c5N0Z4cTgyYWY4T0xT?=
- =?utf-8?B?ME5CbG1IYTRGV0FrNmgyTHpNVUh5bEtkMHBhcDhIai9ickkwMnBObFhIVWdY?=
- =?utf-8?B?RmxoV2tXWVFZaUU5dWdCcy9KaWdVa0Y1bVVuYzgwTTZ6b01kZVE5SHdlaTJj?=
- =?utf-8?B?bGlQY05FVDhpa2V0bnNoQittR0MxYjg1Rzc4Y2lXbEI4YWYzWFR1K0JxTURW?=
- =?utf-8?B?Uk9KYkpMSGloc1BHZEM5dEhLYTl3Q0llZng3YnBDMUFnNkYyaEVXV3grcUxV?=
- =?utf-8?B?NUpYZEVxeUdHMTN1ZFg4NUJMYVd5V3ZRd2tVVHJLRGczd1h4K1V5d1JZa1Y2?=
- =?utf-8?B?R0pDQXJNRVhSOWdIMDlPVzl5bzRxdUZ6Tk44c2NvZFVGUThCNzZMVHNscWhw?=
- =?utf-8?B?U0ZMZlE5cUY2Wi84QVRxU0JndzU4bW1mK0FYVVFEVjR3Q1I4SmlYSlVLZFE3?=
- =?utf-8?B?YTVRcXRITmMxM3FHbG5vUCttUERZZ3Z3blhoVlljZlA0SGtmTFZXMmNLajlz?=
- =?utf-8?B?N1VTS2dPc2phbkVWTVBNYzhkU2E2S0dLeEM1MzMrTzN5K0lnRmcvU2k3b3RY?=
- =?utf-8?B?NVA4dk9yeW9NOFBXaDYvei9JUUNXSFBmQ2pETW44U2RMeXVjZTFFVjRLeEJK?=
- =?utf-8?B?bzBnZUxKN1czdm0yclk0MWQ1Y3kzRU5Yaitod1EyTlVqNDBTbWRML0o2WllL?=
- =?utf-8?B?cWV6S29oQjU1OEErQWEwZWcrME1JMjR3bS9aVzhmQUNoVkUzZlF2V0RMa0pp?=
- =?utf-8?B?bjQvTGZEMlhIbmJSdnJvbGZCT25Yc2JQeXl4VHNacXdFa0p0a0RiN0ZaVW1Q?=
- =?utf-8?B?bVN6QklRZTJERFdQY05FdDl1ZFJWSnFKVDFPY2ZUYUlMWk4xT1k4eXRwVlpo?=
- =?utf-8?B?dnJidlZWdUVYZ0dDYmt0aXJUL2F0VjBhT3Y0b3NUdkZRa2liZUVjOGxDQUN0?=
- =?utf-8?B?QXE3dXZ2ak9sNFVQa1Ayc1hhRTRsWmVSTEpibm82ekROeG5zMHdaT3NJeUtY?=
- =?utf-8?B?bmk3UHJsc01OOVB6WGVEeEtRbEVtaHdyV0I4UFQyVzJIRGdYT1RHc2tmaDJO?=
- =?utf-8?B?ejd1Y3BJUmtMQ01zVW1SSzA3eDljUmtJWnBnVUhFVDBHUTdOMzZ6bE9RN3pu?=
- =?utf-8?B?WFJRZkZ2VEtHTm9SaTJKRmE0ak9NaTllYytmNktEVHY3Zm9yUnRGdTdUMUZS?=
- =?utf-8?B?Q3k1WEFMcHVuUUxyb2xLR29VMU5XOENhOWFqSHdDU3kvYi9iYjFpRU9tOUI2?=
- =?utf-8?B?U1haUjZWR2lWTEk5bjFvZ2tHeTZIWTJZUzdjS3dCZjNvVHVWM1VHMjBGWlFP?=
- =?utf-8?B?eTZja2lvWmZvTzRIUTE2OTgxam1CS0tXY0hRVXNhaWJiM2NMUVNWclR6Q1po?=
- =?utf-8?B?N2pBZjBIQ3BBdDlXR2JkZm9zVlF1N1JGYlF5amVON0htbVNOSEV4b3B5L05S?=
- =?utf-8?B?ZmNySWhHSTBHU0YxdWJlNWp1eXgyTnk5ZkU4RWEycDFBNTREdG5kOVNKWW0x?=
- =?utf-8?B?QzBDdVM3czNYbC9MVVhscGNHS3FGd2FBN3FuQzFGTjhvUzJJYnc1TER0U3p6?=
- =?utf-8?B?Y3B1SkdHUStnUEhmcUZWYU5tN0RSQlA2NnFPVzZ4TDJCU25BdEI1c1BxNHV2?=
- =?utf-8?B?NzAxWEdJMEhXWVZ1Wm1URkZ5dGhRUGFJL0tGS3Q5QWVRTHlDTFdvZWFWMlU4?=
- =?utf-8?B?U2NiVDN1eDZjN3c5ZksyNXJZUTJqNnRIQlhpZTJNc0VMWGdNS2RidG9zK3o0?=
- =?utf-8?B?ak92K1krQzFkN2Z3eC8rcUJlT2RLT1lZKzBuK1VtMWEvaUFXQmZDOFc1MFBP?=
- =?utf-8?B?VXVDNzdJOE15a2d5a0hpa0sxdjRVSnF0emhBbWNYUTEyUlhZZmFvdjA4VmQr?=
- =?utf-8?B?U2V3NGhpYWowQytmSUpYakxGbGpHT3lTZTVGMkVWM01MZmJWN0NaVUNMRzM5?=
- =?utf-8?B?QXJIanpCaldpc1VyQW9ERGFnMXNlamR6azFOVGJIUVhmblZhQXA5WmZaaGtv?=
- =?utf-8?B?T0Z1Q25IQ2toS2xWLzc2ZWpSVWJtRHdOOXR1NHRmVmxKVCs0aWpEdU10am5z?=
- =?utf-8?B?aVBhVG5BMm5uY2U3Q3ptbzJwVkkydFhtUytSMEpENjd2K1piSEFpZ2YrMW9D?=
- =?utf-8?B?OU1OYkQyVnB0b2cvL29PTi85UHl5QVpsRlJzUDhqN0dXYnhLYlNsSk9EVmY4?=
- =?utf-8?B?OXVDZ3diNUFNQ3VSWkVHNFc4YmFSaHBVY3VCMTZKT0k2ZjNzT0F6NThPTWx5?=
- =?utf-8?B?Y0IzeG04NC9Gd0d4TFFuYzBXQjNjOUcxT0xhOGdlbFR0aHE0YVJRWFVjN1JV?=
- =?utf-8?Q?89mVy9+KI+B/330g=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <07FDFD69AF16DE4FBF3EA0563FF4B836@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 812D43845C0;
+	Tue,  3 Mar 2026 08:06:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772525174; cv=none; b=PT4myxCYBIQKXPNxS4iYJ4Z3xx+Vacgs4TO1Py5rFtYHeMp/6dLoXQnujtRDl5VjvdiM0Bonf+g4FJYSN6ULT9eyaElTAJMibLdwikRY1iVcevckWOOs2ttDm/7vJ0bj25FRKZYZVUBBxlr++J9ijmycgb+UvgttN2Cyal2l1F4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772525174; c=relaxed/simple;
+	bh=nGTplBZMzlIwTNoyuYuYZXDFQMjt11Cqwzxh9vcN7dw=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=crUt1I+89Mm+W+li1Qgkhw41iSJrfSoPD3BoLiNpo4PbNwk4ufmC1rTXnpcnKBmZcviqKqqH/BvnJ1ed2hIqO4czEAuLB52XQtqFReRyTWj9w1p9I+pacePjARfB1ShwDHqGgVLoJnqVel+KXr0e6k6HGKu2WednMmrzGAhl81I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgB3DHFglqZpO0EFAA--.18157S2;
+	Tue, 03 Mar 2026 16:05:53 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ganboing@gmail.com,
+	marcel@ziswiler.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v15 0/4] Add driver support for ESWIN eic700 SoC clock controller
+Date: Tue,  3 Mar 2026 16:05:13 +0800
+Message-Id: <20260303080513.2042-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: o3B2R/WDhM8M5aUvtT7sAwO8mhxhw/9l03XtS18Neu301galLuVo9EICDeu9h8vHNJjMxNDb0x/1aY6Vw4vT/q7UxcP9KYw6q+Pq7vStWHb3d2vTNdxxn9pzLqhTM2FbxBeOIg4tsKghyjyptGuLN0A2DMSCYPCEmez0xTnXe0gV3Zd63EaBJZyGq4sfG4lh4MzujIVXlHnyorj+Wxu1yDix/HF0cXNnCUzmw6EOD0yEepAB//8al76vVzd0GkNbGkRFHk4HILCapNpnoYP8I3DXNnAc0wIt5eKCcK15jEPc/jD+huQFmGwKHktuXx6UsYHB+qIx3A7CW1/GNkHO8g==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PSAPR03MB5605.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 69bad1b9-d52b-4a1f-6e73-08de78fb0b44
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2026 08:01:15.4160
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sakldx2YxOwGUxk7AU0A4tqmmAsTMEve0SssRKH8XZkdA4ar5wueVjHblPU7JELmjHniFBqqpC9SQSevqZ+6lg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7654
-X-MTK: N
-X-Rspamd-Queue-Id: 958401EA830
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgB3DHFglqZpO0EFAA--.18157S2
+X-Coremail-Antispam: 1UD129KBjvAXoW3Kw1Dtw1rtF4DCw47WrWktFb_yoW8Jr1DKo
+	Z7Gr4jqF40q3y5Cr92ywn3Ca13Wr92qr1fJay5CryDGasrXFs5K3Wrua43X34SyFy8ZF1q
+	qr12v397t3WxJFyfn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UjIYCTnIWjp_UUUYK7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E6xAIw20EY4v20xva
+	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
+	x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
+	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
+	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
+	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
+	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
+	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
+	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRK1vVDUUUU
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-Rspamd-Queue-Id: B1BC21EA95E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.44 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk,mediateko365.onmicrosoft.com:s=selector2-mediateko365-onmicrosoft-com];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	TAGGED_FROM(0.00)[bounces-270340-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,mediatek.com,HansenPartnership.com,acm.org,collabora.com,pengutronix.de,samsung.com,linaro.org,wdc.com,oracle.com];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mediatek.com:dkim,mediatek.com:mid,mediateko365.onmicrosoft.com:dkim];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270343-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com];
+	FROM_NO_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[peter.wang@mediatek.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[mediatek.com:+,mediateko365.onmicrosoft.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.793];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:email,ziswiler.com:email,linux.dev:email]
 X-Rspamd-Action: no action
 
-T24gVGh1LCAyMDI2LTAyLTI2IGF0IDExOjM2ICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gDQo+IE9rYXksIGRvZXMgInNhdmVkX2F1dG9faGliZXJuOF9pZGxlX3Rt
-ciIgc291bmQgZ29vZCBmb3IgeW91IGluc3RlYWQ/DQo+IA0KPiBSZWdhcmRzLA0KPiBBbmdlbG8N
-Cj4gDQo+IA0KDQpIaSBBbmdlbG9HaW9hY2NoaW5vLA0KDQpJ4oCZbSBmaW5lIHdpdGggc2F2ZWRf
-YXV0b19oaWJlcm44X2lkbGVfdG1yLCBidXQgaXQgaXMgbW9yZSANCnZlcmJvc2UgY29tcGFyZWQg
-dG8gc2F2ZWRfYWhpdC4NCg0KVGhhbmtzDQpQZXRlcg0K
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
+
+The link [1] provides the official documentation for the EIC7700. Section 3.2
+covers the clock subsystem.
+
+[1] https://www.sifive.com/document-file/eic7700x-datasheet
+
+Updates:
+  Change in v15:
+  - Updated driver file
+    - Add 'Reviewed-by: Brian Masney <bmasney@redhat.com>' for patch 2/4, 3/4 and 4/4.
+    - Add space between the name and < in MODULE_AUTHOR.
+    - Remove memset_p() and commit in eswin_clk_init().
+      The current implementation ensures that parent clocks are registered
+      before child clocks, thus preventing the creation of invalid clocks.
+
+  - Link to v14: https://lore.kernel.org/all/20260226090513.1696-1-dongxuyang@eswincomputing.com/
+
+  Change in v14:
+  - Updated driver file
+  - Change the error code from eswin_clk_init() from -EAGAIN to PTR_ERR(clk_data).
+  - In eswin_clk_init(), change error handling:
+    - Replace NULL return from devm_kzalloc() with ERR_PTR(-ENOMEM).
+    - Replace NULL return from devm_platform_ioremap_resource() with ERR_PTR(-EINVAL)
+      and remove dev_err().
+  - Add CLK_IGNORE_UNUSED flag to gate clocks. When clk_ignore_unused is dropped
+    during testing, these clocks should remain enabled.
+  - Modify the frac calculation formula to:
+    frac = (rate * 4 % parent_rate * (2^24)) / parent_rate
+  - Add calculation step descriptions in eswin_calc_pll.
+    Remove tmp1 and temp2 variables, using only 'rem = do_div(tmp, parent_rate)'
+    to calculate frac. The previous calculation formula was overly complex.
+
+  - Link to v13: https://lore.kernel.org/all/20260214101421.228-1-dongxuyang@eswincomputing.com/
+
+  Change in v13:
+  - Updated driver file
+    - Modify commit subject from "clock: eswin: ..." to "clk: eswin: ...".
+    - Use parent rate to calculate PLL clock rate.
+    - Use GENMASK() to define PLL mask macros and use FIELD_PREP() to simplify
+      bitwise operations.
+    - Remove shift and width references for pll enable, refdiv, fbdiv, frac and postdiv.
+      (Use only the PLL macros to match the functionality)
+    - Set postdiv1 and postdiv2 in clk_pll_set_rate function.
+
+  - Link to v12: https://lore.kernel.org/all/20260213094112.115-1-dongxuyang@eswincomputing.com/
+
+  Change in v12:
+  - Updated driver file
+    - Add CLK_MUX_ROUND_CLOSEST to the mux clocks since they need a more
+      accurate clock frequency.
+    - Change 'rem' from u64 to u32 for function 'eswin_calc_pll' and
+      function 'clk_pll_recalc_rate'.
+    - Change 'rate' from u64 to unsigned long for function 'clk_pll_recalc_rate'.
+    - Fix build error with u64 divisor for function `clk_pll_set_rate'.
+      Reported-by: kernel test robot <lkp@intel.com>
+      Closes: https://lore.kernel.org/oe-kbuild-all/202602111424.mhTAakDX-lkp@intel.com/
+
+  - Link to v11: https://lore.kernel.org/all/20260210095008.726-1-dongxuyang@eswincomputing.com/
+
+  Change in v11:
+  - Updated driver file
+    - Add "Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77" tag.
+    - Fix build error in function eswin_clk_register_clks.
+      Reported-by: kernel test robot <lkp@intel.com>
+      Closes: https://lore.kernel.org/oe-kbuild-all/202602060520.p4Hg35Ja-lkp@intel.com/
+
+  - Link to v10: https://lore.kernel.org/all/20260205093322.1030-1-dongxuyang@eswincomputing.com/
+
+  Changes in v10:
+  - Updated driver file
+    - Add a private clock divider API named 'eswin_register_clkdiv' to
+      register divider clocks with private flag.
+      Define 'ESWIN_PRIV_DIV_MIN_2' private flag for registering the clock
+      dividers whose division ratio start from 2.
+      Implement the private set_rate, recalc_rate, and determine_rate accordingly.
+    - Add CLK_DIVIDER_ALLOW_ZERO flag to the clock dividers whose division
+      ratio start from 0.
+    - Replace CONFIG_ARCH_ESWIN with CONFIG_COMMON_CLK_ESWIN in the Makefile.
+    - Modify the help description of COMMON_CLK_EIC7700.
+    - Move register offset definitions from 'clk-eic7700.h' to 'clk-eic7700.c' and
+      remove the 'clk-eic7700.h'. Remove '_CTRL' from the offset names.
+    - Remove all unused headers.
+    - Use devm_platform_ioremap_resource() instead of devm_of_iomap().
+    - Export the functions from clk.c as symbols.
+    - Use readl_poll_timeout().
+    - Use 'clk_parent_data' and '.hw' instead of string parent names.
+    - Rename the header file from clk.h to common.h.
+    - Rename macros from EIC7700_* to ESWIN_* in common.h.
+    - Add a new function, 'eswin_clk_register_clks', which can register
+      divider, mux, gate, and fixed-factor clocks based on their types.
+    - Add structure 'eswin_clk_info' to manage the clocks that need to be registered
+      in a specific order.
+    - Add macros 'ESWIN_*_TYPE' to define divider, mux, gate, and fixed-factor clocks
+      with type. Add enum 'eswin_clk_type' for these types.
+    - Remove 'eswin_clk_register_mux_tbl'. Use 'eswin_clk_register_mux' to register
+      mux clocks with or without table.
+    - Add xtal24m as the parent clock of the PLL.
+    - Change 2025 to 2026 in all files.
+
+  - Link to v9: https://lore.kernel.org/all/20251229105844.1089-1-dongxuyang@eswincomputing.com/
+
+  Changes in v9:
+  - Updated driver file
+    - Checked return values of eswin_clk_register_*() in the probe function.
+    - Removed binding IDs check from pll functions in clk.c, as these functions
+      were exclusively used by pll clocks and did not require ID validation.
+    - The PLL structure has been extended with max_rate and min_rate fields to
+      explicitly define the frequency operating range of the PLL. These limits
+      were now utilized by the clk_pll_determine_rate() function.
+    - Removed __clk_lookup() in clk_pll_set_rate. Added clk_notifier support
+      in clk-eic7700.c.
+    - Added five previously missing clocks from [1].
+
+  - Link to v8: https://lore.kernel.org/all/20251113013637.1109-1-dongxuyang@eswincomputing.com/
+
+  Changes in v8:
+  - Updated YAML file
+    - Added "Acked-by: Troy Mitchell <troy.mitchell@linux.dev>"
+  - Updated driver file
+    - Changed Kconfig from bool to tristate.
+  - Updated MAINTAINERS file
+    - Added "ESWIN SOC SERIES CLOCK DRIVER"
+
+  - Link to v7: https://lore.kernel.org/all/20251023071658.455-1-dongxuyang@eswincomputing.com/
+
+  Changes in v7:
+  - Updated YAML file
+    - Added "Acked-by: Conor Dooley <conor.dooley@microchip.com>" for bindings.
+  - Updated driver file
+    - Added description for clk of eswin_calc_pll().
+    - Added macro EIC7700_MUX_TBL to manage mux clock-tree.
+    - Added eswin_clk_register_mux_tbl() to register mux clocks with
+      discontinuous parent indexes.
+
+  - Link to v6: https://lore.kernel.org/all/20251009092029.140-1-dongxuyang@eswincomputing.com/
+
+  Changes in v6:
+  - Removed config option patch dependency from cover letter, because the patch
+    was applied.
+  - Updated YAML file
+    - Added an oscillator as the clock input, named xtal24m.
+    - Added clocks property.
+  - Updated driver file
+    - Replaced fixed_rate_clk_xtal_24m with xtal24m.
+    - Dropped fixed_rate_clk_xtal_24m from driver. Because clock xtal24m was
+      registered by fixed-clock as oscillator.
+
+  - Link to v5: https://lore.kernel.org/all/20250923084637.1223-1-dongxuyang@eswincomputing.com/
+
+  Changes in v5:
+  - Removed vendor prefix patch dependency from cover letter, because the patch
+    was applied.
+  - Updated YAML file
+    - Placed the required after all properties.
+    - Removed patternProperties. Also removed compatible of eswin,pll-clock,
+      eswin,mux-clock, eswin,divider-clock and eswin,gate-clock as we have moved
+      clock tree from DTS to Linux driver.
+    - Removed the clock tree from DTS. Used clock-controller to manage all
+      clock. Removed all child nodes in clock-controller.
+    - Removed '#address-cells' and '#size-cells' properties, because the clock
+      controller did not need to define these properties.
+    - Removed eic7700-clocks.dtsi.
+    - Added dt-bindings header for clock IDs. Because used the IDs to register
+      clocks.
+  - Updated driver file
+    - Modified the commit for clock driver. Dropped indentation in commit.
+    - Removed CLK_OF_DECLARE(). Used *clk_hw_register* to register clocks. Used
+      devm_of_clk_add_hw_provider.
+    - Dropped singletons.
+    - Checked the value right after obtaining it.
+    - Removed the definitions of macro frequency in clk.h like CLK_FREQ_24M.
+    - Modified description of help in Kconfig.
+    - Added COMPILE_TEST. Added COMMON_CLK_ESWIN for clk.o. And added
+      "select COMMON_CLK_ESWIN" for clk-eic7700.c. Without COMMON_CLK_EIC7700,
+      clk.c could not be compiled.
+    - Used .determined_rate.
+    - Added macro definitions of EIC7700_DIV, EIC7700_FIXED, EIC7700_FACTOR,
+      EIC7700_MUX and EIC7700_PLL to manage clock tree.
+    - Added clk-eic7700.h to place eic7700 SoC clock registers.
+    - Removed refdiv_val and postdiv1_val from clk_pll_recalc_rate(). Because
+      these values were unused.
+
+  - Link to v4: https://lore.kernel.org/all/20250815093539.975-1-dongxuyang@eswincomputing.com/
+
+  Changes in v4:
+  - Updated YAML file
+    - Changed name from cpu-default-frequency to cpu-default-freq-hz.
+    - Dropped $ref of cpu-default-frequency.
+    - Added cpu-default-frequency for required.
+    - Removed cpu-default-frequency in updated file, because there was no
+      need to add cpu-default-frequency.
+    - Moved DIVIDER to DIV.
+    - Arranged the IDs in order.
+    - Dropped EIC7700_NR_CLKS.
+    - Removed dt-bindings eswin,eic7700-clock.h. Because IDs was not used,
+      and used clock device nodes.
+    - According to the updated driver codes, the YAML has been updated.
+  - Updated driver file
+    - Remove undocumented parameters "cpu_no_boost_1_6ghz" and
+      "cpu-default-frequency".
+    - Modified the comment and used the correct Linux coding style.
+    - Removed codes of voltage, because it was not the clock driver.
+    - Updated the formula of clock frequency calculation. Removed the logic
+      that only used register selection.
+    - Used CLK_OF_DECLARE() to register clocks. Registered pll-clock,
+      mux-clock, divider-clock, and gate-clock in clk-eic7700.c.
+      The specific implementation of clock registration was in clk.c.
+    - Added eic7700-clocks.dtsi.
+    - Moved device information to DTS. Put all clocks' node in the
+      eic7700-clocks.dtsi.
+
+  - Link to v3: https://lore.kernel.org/all/20250624103212.287-1-dongxuyang@eswincomputing.com/
+
+  Changes in v3:
+  - Update example, drop child node and add '#clock-cells' to the parent
+    node.
+  - Change parent node from sys-crg to clock-controller for this yaml.
+  - Drop "syscon", "simple-mfd" to clear warnings/errors by using "make
+    dt_binding_check". And these are not necessary.
+  - Add "cpu-default-frequency" definition in yaml for "undocumented ABI".
+  - Drop Reviewed-by, this is misunderstanding. We have not received such
+    an email.
+  - Link to v2: https://lore.kernel.org/all/20250523090747.1830-1-dongxuyang@eswincomputing.com/
+
+  Changes in v2:
+  - Update example, drop child node.
+  - Clear warnings/errors for using "make dt_binding_check".
+  - Change to the correct format.
+  - Drop some non-stanard code.
+  - Use dev_err_probe() in probe functions.
+  - Link to v1: https://lore.kernel.org/all/20250514002233.187-1-dongxuyang@eswincomputing.com/
+
+Xuyang Dong (4):
+  dt-bindings: clock: eswin: Documentation for eic7700 SoC
+  clk: divider: Add devm_clk_hw_register_divider_parent_data
+  clk: eswin: Add eic7700 clock driver
+  MAINTAINERS: Add entry for ESWIN EIC7700 clock driver
+
+ .../bindings/clock/eswin,eic7700-clock.yaml   |   46 +
+ MAINTAINERS                                   |    8 +
+ drivers/clk/Kconfig                           |    1 +
+ drivers/clk/Makefile                          |    1 +
+ drivers/clk/eswin/Kconfig                     |   15 +
+ drivers/clk/eswin/Makefile                    |    8 +
+ drivers/clk/eswin/clk-eic7700.c               | 1376 +++++++++++++++++
+ drivers/clk/eswin/clk.c                       |  586 +++++++
+ drivers/clk/eswin/common.h                    |  340 ++++
+ .../dt-bindings/clock/eswin,eic7700-clock.h   |  285 ++++
+ include/linux/clk-provider.h                  |   20 +
+ 11 files changed, 2686 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+ create mode 100644 drivers/clk/eswin/Kconfig
+ create mode 100644 drivers/clk/eswin/Makefile
+ create mode 100644 drivers/clk/eswin/clk-eic7700.c
+ create mode 100644 drivers/clk/eswin/clk.c
+ create mode 100644 drivers/clk/eswin/common.h
+ create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
+
+--
+2.34.1
+
 
