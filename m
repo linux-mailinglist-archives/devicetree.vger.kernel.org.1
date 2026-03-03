@@ -1,91 +1,77 @@
-Return-Path: <devicetree+bounces-270280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270281-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGljLkhfpmlVOwAAu9opvQ
-	(envelope-from <devicetree+bounces-270280-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 05:10:48 +0100
+	id MHg3FuphpmlBPAAAu9opvQ
+	(envelope-from <devicetree+bounces-270281-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 05:22:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id C11061E8A36
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 05:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 603C41E8C67
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 05:22:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id BE9D4300B2B5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 04:10:44 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3B495300B457
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 04:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C42F382281;
-	Tue,  3 Mar 2026 04:10:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 137A5382284;
+	Tue,  3 Mar 2026 04:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GbqGTGDr"
+	dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b="IxM0//KW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 776A237DE98
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 04:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772511041; cv=none; b=k31xRvvyz5WTnhBqis8QOs7LdvsFuTtm8Z+iGA9O58Fz8yqWOJ/NSXV4ZWkMmfnYK0VPsCXdhxsuBhIG+C6vsH/WESaTbM92bQILPcuvEZ1txmfvbo3dnaquPOqEHYxS+sfkMU1Pyqr4MIrMuvv9h8sFgVQq2R6Hv5G5auWz9o0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772511041; c=relaxed/simple;
-	bh=ycEUqxu2VC/LIBrKv1r/HjXANBQeoGPsrUfYyYj7B8o=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFBED37DEBD;
+	Tue,  3 Mar 2026 04:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772511116; cv=pass; b=dyC48HJIq2DAl6UlSyE6tHQs3+mbPk2kJ7231cSkIZpEpcHvYbza+k6I9j9YfGSfTh4Jrv4xZndWCuBf6kUwOOEp7tgz2AygoSjfnl56Xr61sQtutMDawVxCIvoCH0Ty8Z4dmcezBgnSdi07VlRcvHmP4J2gYzF6j8HrSKiIY3w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772511116; c=relaxed/simple;
+	bh=TY11tP+fjvCydeVTJmTrTv4lTOv8tyIwbrRjCYcormg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EgEsxHcZd8b8NT2LCKUjxt0/IQDCcEwzVNFK3xztVsUb6vgdv56Fw5fz2eTHANYdWkRzt/uLodwMZ0vpVIrKHj6+4Pj+tSm6Pxa7P8rOTkrwgRYVfWHXNq4UEHGk2X/HtCudV0HR6UZIbxSz1fXk2ex2UISlR5LgIlWR1LKVeTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GbqGTGDr; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-35995cb33a8so766749a91.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 20:10:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772511040; x=1773115840; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wm/wTJAYni/bfoPe16quMxTzhtynqt7x0YSgPTMXEuI=;
-        b=GbqGTGDrJdKKyBtONZhgh77o7JV46u/xOx/xknH0DtTzlqdxpa02HewHeF6tkw7dxE
-         CgSWUZ8LvDfHY3oyflv4a+XBKHSjJ7pA6HZPZ2hvHTvZQ77o9u6K9vmZ0PZdiGPd3WIP
-         WIEfSXgTVznBTdtVp4ydMj2SPFv63fesPQxlBPu4q0ZmWKQ5qz5apB4S4jYjayxbwv3W
-         9yQ/TeUp0q+1k6ZBNAc9YMUmVYdAFCImPSgzBAbeRTmW0rJKg1Xf1LFMTbX2OwU2f2wl
-         cz4uhWuJ1kkOWd3ZJPsAC3N+iMrPd9lxr/xMziRephxiId4EgZd18XuLBZAoSCOyZ1SL
-         j5Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772511040; x=1773115840;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Wm/wTJAYni/bfoPe16quMxTzhtynqt7x0YSgPTMXEuI=;
-        b=rJrCaIBGXX5MN9STF2mZW2JOKdwfzqlWExkMXkBt/d1/4gHnH5EeiCrXNIegeK0yMC
-         Kxoz0bm+HbHcCWVq6/exUl1lz9D1i+Q96/RqW3IdWAzAk+1+vXsmsUPGsqUDawyipQ5E
-         gwXKZOOttezir51tD/dUP8NwVDXHfkr4/BqOH1X8dHEB04Ie2kmDZLIfo5hvpWyX5VT5
-         1HQV0bczelc9VH3ktCyAHAcjFzla6m83Vs7UxZbx5UyywSRt1ZjHDKCUnGQCL4uTVRRL
-         y5tQ00Oo20zIT6+C8yMXTxLp4vsyPt4rp/s1sxLeco5XqznUnzB36MSf4swGQcB5VPV/
-         H2Zg==
-X-Forwarded-Encrypted: i=1; AJvYcCUNGoiv/4nQfRgteUHcH1xI2aCAqVGidfO9G07gTQWHa1HZ60QyqiIhWS/VQHsg9xbXXbdz7v7t7O/6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRP8nrzwv8XkFiqeKaxsMDa7FVd4iUN7AUlJZCotXsf+lZNhPe
-	HmPda02ZHqNkexZ1yvLs+PS2hhCQQtq4ZpmamJna8ZGJ4rxF3pJcf21Ft0YXSHDP64M=
-X-Gm-Gg: ATEYQzzdLknDGHOdDRWxJoBeW2m/0pYwCzNblawj3Qxle5gI2R/gZykqfzDWQOQRQp0
-	Dtqu8C7ZPWvuzWNhg7wIqlguMDivnEjXP/ozyOdbeEfmixfmUucdzjDNAzFV8llE7s2UYupaQuO
-	Ta2Gch9zn+/ZfJHIdHHJ9xdMz9LqyUKS8jZ9Wgxhbg6zW7I5RFKRtBgzn2hTLYW8JRKeoqMm3nY
-	OFKPyV5AshcDk4eKLOn00OM2yiHq7t99AbbVdr5Qta6+NpOQfCH1Lab08DZNcHi4WtS7jeSVRym
-	AlJM3M9wIkOn2EUAxW5PdT2y3Bh+j4jOYdNsZYVbNxjv+XZZYDQwateq5n0snHKBFWnhMChSP2f
-	25ovSjjDuvgY56z+37o+iBpyE5PxaCOe8ZWHPrWdHIraR5N+wwWnRe983sH4Z0k7gVP1Q/av3hD
-	TXZp5z6efVaYA6NiOlU88bkwxm
-X-Received: by 2002:a17:90b:3fc4:b0:359:901a:4b04 with SMTP id 98e67ed59e1d1-3599cee8ec6mr697357a91.14.1772511039563;
-        Mon, 02 Mar 2026 20:10:39 -0800 (PST)
-Received: from localhost ([122.172.81.200])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c4c0787sm895192a91.15.2026.03.02.20.10.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 20:10:38 -0800 (PST)
-Date: Tue, 3 Mar 2026 09:40:36 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dzg4HQE2VFAFUQnG3w3Dj5Vv+b8uv1pdiiLs8RfHPL38Y6yb5GU0lS3cIi0iZE4VzFuFKLWKgb67mtB/IPBmZuOFX3A39/CIvb3Yw6DFzOdq4hYDnyiLUkDlyMkNlyDac9ym3EJVa1iLNqubqdhQ9mRXoxNczLUhqcQx+UXyADc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc; spf=pass smtp.mailfrom=ziyao.cc; dkim=pass (1024-bit key) header.d=ziyao.cc header.i=me@ziyao.cc header.b=IxM0//KW; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ziyao.cc
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziyao.cc
+ARC-Seal: i=1; a=rsa-sha256; t=1772511082; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Nwd9ijqe9wv6K0c1fJjpp7BhOomKu43HENZ9U+A9NHlJQLFetbov2b9WEO6CM5rM6YD3r63aH8daaiHXRVxuolzadDSBBWFMCyIUdQB4l07TUxSKJ5iAmTBBeDHBUuAIC8n543oqABQcjz1nF3Vr+MbpNW7oblg/8SxHjk/ArIM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1772511082; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=K+eU4GhIMfoBUPBn8WXtEEB/bAz12IYbwXDw+L/CKZ0=; 
+	b=Pv8JAHYoaATi8tchKflcyt62D6M0I4CfPrhuXV6LCvZ3rjyQVkqrtW5PmJv7hZ7WaAfEHJwkOh0cgVZSvWaqtuK2uJYosiFMDT8vqH2xUMPE2vdqwc+iuZZ+pqXoM2NGAyFcLI0mgwJhgyoeygVHmNAm1LzamVLjpvCTHpZtUqY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=ziyao.cc;
+	spf=pass  smtp.mailfrom=me@ziyao.cc;
+	dmarc=pass header.from=<me@ziyao.cc>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772511082;
+	s=zmail; d=ziyao.cc; i=me@ziyao.cc;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=K+eU4GhIMfoBUPBn8WXtEEB/bAz12IYbwXDw+L/CKZ0=;
+	b=IxM0//KWXKzn7VPRtt3fLDCmqrjs+oVOtA7heOxoAFjKb3ew4et/slXb0VPKG+Up
+	ZTIP83KQnCKyzRA2e42uPfdE00GCUGts3lkunclkCdESsp6ZCgOLAtJksDREV6xxsWC
+	nQm3KpwXHj80F70EznVrR6MdEAQvlq3F2DEc7F/k=
+Received: by mx.zohomail.com with SMTPS id 1772511080557943.3150450884574;
+	Mon, 2 Mar 2026 20:11:20 -0800 (PST)
+Date: Tue, 3 Mar 2026 04:11:01 +0000
+From: Yao Zi <me@ziyao.cc>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: cpufreq: qcom-hw: document Eliza cpufreq
- hardware
-Message-ID: <3up7phdh5lywcvdmzwe7e2q4sqhpeea3lre5373d2ayanimjk5@5trdeshj6q57>
-References: <20260223-eliza-bindings-cpufreq-v1-1-421f8e1e2805@oss.qualcomm.com>
+Subject: Re: [PATCH 03/10] mmc: sdhci-of-k1: add regulator framework support
+Message-ID: <aaZfVZoCe3AxTzAf@pie>
+References: <20260302-orangepi-sd-card-uhs-v1-0-89c219973c0c@gmail.com>
+ <20260302-orangepi-sd-card-uhs-v1-3-89c219973c0c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,62 +80,88 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260223-eliza-bindings-cpufreq-v1-1-421f8e1e2805@oss.qualcomm.com>
-X-Rspamd-Queue-Id: C11061E8A36
+In-Reply-To: <20260302-orangepi-sd-card-uhs-v1-3-89c219973c0c@gmail.com>
+X-ZohoMailClient: External
+X-Rspamd-Queue-Id: 603C41E8C67
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+X-Spamd-Result: default: False [9.34 / 15.00];
+	URIBL_BLACK(7.50)[ziyao.cc:dkim];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270280-lists,devicetree=lfdr.de];
+	R_DKIM_ALLOW(0.00)[ziyao.cc:s=zmail];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270281-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,linaro.org,kernel.org,gentoo.org,intel.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[viresh.kumar@linaro.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	GREYLIST(0.00)[pass,body];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DMARC_POLICY_ALLOW(0.00)[ziyao.cc,quarantine];
+	DKIM_TRACE(0.00)[ziyao.cc:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Action: no action
+	R_SPF_ALLOW(0.00)[+ip4:104.64.211.4:c];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[me@ziyao.cc,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_SPAM(0.00)[0.988];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ziyao.cc:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Action: add header
+X-Spam: Yes
 
-On 23-02-26, 10:50, Abel Vesa wrote:
-> Document the cpufreq hardware on the Eliza SoC.
+On Mon, Mar 02, 2026 at 04:13:24PM +0100, Iker Pedrosa wrote:
+> Add regulator framework support for voltage switching operations. This
+> enables proper PMIC control for UHS voltage switching between 3.3V and
+> 1.8V signaling levels.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> - Add regulator supply parsing
+> - Implement voltage switching callback
+> - Enable mmc regulator framework integration
+> 
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
 > ---
->  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/mmc/host/sdhci-of-k1.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+
+It seems PATCH 4 should be squashed into this one, or the functionality
+of voltage switching isn't really complete.
+
+> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
+> index b703b78282ed8d89183c816477c149c0a565618a..c260cb89704ae7a25bec0f07831d495553405bbd 100644
+> --- a/drivers/mmc/host/sdhci-of-k1.c
+> +++ b/drivers/mmc/host/sdhci-of-k1.c
+
+...
+
+> @@ -291,6 +297,12 @@ static int spacemit_sdhci_probe(struct platform_device *pdev)
+>  
+>  	host->mmc->caps |= MMC_CAP_NEED_RSP_BUSY;
+>  
+> +	ret = mmc_regulator_get_supply(host->mmc);
+> +	if (ret)
+> +		dev_warn(dev, "Failed to get regulators: %d\n", ret);
+> +
+> +	host->mmc_host_ops.start_signal_voltage_switch = spacemit_sdhci_start_signal_voltage_switch;
+
+Why not assign start_signal_voltage_switch in the declaration of
+spacemit_sdhci_ops?
+
+>  	ret = spacemit_sdhci_get_clocks(dev, pltfm_host);
+>  	if (ret)
+>  		goto err_pltfm;
 > 
-> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> index 22eeaef14f55..98eb36bff172 100644
-> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
-> @@ -35,6 +35,7 @@ properties:
->        - description: v2 of CPUFREQ HW (EPSS)
->          items:
->            - enum:
-> +              - qcom,eliza-cpufreq-epss
->                - qcom,milos-cpufreq-epss
->                - qcom,qcs8300-cpufreq-epss
->                - qcom,qdu1000-cpufreq-epss
+> -- 
+> 2.53.0
 
-Applied. Thanks.
-
--- 
-viresh
+Best regards,
+Yao Zi
 
