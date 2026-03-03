@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-270433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270434-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4AtWBG69pmlDTQAAu9opvQ
-	(envelope-from <devicetree+bounces-270433-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:52:30 +0100
+	id iKXVEMO9pmlDTQAAu9opvQ
+	(envelope-from <devicetree+bounces-270434-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:53:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id C650E1ECFE3
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:52:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACDEE1ED03F
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:53:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 554DE30391D0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:51:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 634643099683
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 129653B5845;
-	Tue,  3 Mar 2026 10:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF2E3B585C;
+	Tue,  3 Mar 2026 10:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jwq5ZGIH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GZNhzuQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28BDA3B4EA4
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 10:51:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7F13A6F08
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 10:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772535083; cv=none; b=a+IZ8rIpEOLuDx2yWIFvOjw40ReMBIJ+IHkA5WiSfVQou03pntrzrXloAU1rJvu9WdcLS4tkzpEpxSN0x6lFhhZPa6EYSdfB5d0+qLw6P/s/R/OBe8/x0RHaHm7CorGTQ6Whk7pmipYRqeaV3ancV6k554ZVcOwVkd/QhKm13Ck=
+	t=1772535086; cv=none; b=Fbh52mKi+zI9XjofVnDc9c9OzkvY7oBAVgqwMnKt6eXLZyEbafvScFkNay3GDlpoUoUxXIw3c1fDIaQ6N3spwACIf4+7rhxgijV/O11csrg0BfKAApyCJG72F13i2tH5myYvdilUKR4VUwxOmmved7/XrpKRycnDUcL50PP7Xzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772535083; c=relaxed/simple;
-	bh=kMO1mUplPoeX2sAJ+bgJIIhKz7q/jcfABBVHbd7B8rk=;
+	s=arc-20240116; t=1772535086; c=relaxed/simple;
+	bh=BcqtxYrifE+gGLmgwoTfgQRgmiu8BI+Qb7OTCwT2j1U=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K0yerNnWlT3Q41WX8OS0XeKk6wLu7ZskB3mwzAdSpfsLTd43G29rG0y3lw6i2KTGN3d15LwkGmuZuzyXasavszE3sNBz1To5WDVVIjBww0CZiLT9i76oZPGPfgn2FO3iQA4c+2dNpKzINuDos7z/1V+rRGtX6100mIEQNCQVO74=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jwq5ZGIH; arc=none smtp.client-ip=209.85.128.54
+	 MIME-Version; b=KjdvNAgPrKddslqtIGxIlekBTjBxqPpyZPZXVo/OSwGER5wyJcHX/GZ82epEggnYD/BsZ73WD12oqmuDM+LPLC5sb0+2WKKOlZOJ7NnPn7Jo3nhdNnZGn7Ohqj763Jps5aLSKyXc4dKYFiLg32kuqyqewXnL5B8wY9p01SfOBmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GZNhzuQB; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4836f363ad2so65439875e9.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 02:51:15 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4837584120eso39747385e9.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 02:51:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772535074; x=1773139874; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772535076; x=1773139876; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qRBxFrn7AC9wXOJpDQL0/mC0loZfyU6jw3bAKE+4IaY=;
-        b=jwq5ZGIHmufp/8pyKDzo1LF0A7pnZaixbUTwJJ4OlKyTWYArci7joMbjCQ/xtRQxaq
-         7CXZ1qLAhsOau480Jrc2OwuhnoubMyeqMlrvSH+84zIQbFjvUtDmrwquloFoXBjpDG8Q
-         LoP1VXMNTT6Yukk3yquEQczRljNBVvbieZkn5o3j0Fxbx4nl42ZraQOL7XCUwSRS5nSU
-         4cPWL4miLH2RsxqNjM5NjNj2/mJz1OKqB7OFmA4Ux7qWbrjseWzIsOwS4ZWMyLCksBqE
-         Yz79lILUQuMSc67L/60xf9o8nlnWr5j0EM1+53hEndBVRVbhVjePo2I2fJa2yitCRK2K
-         LshA==
+        bh=Xw8+TcMIpZZ4zLXVcvTdQrXSx/gfSku2RkwQw92NCJU=;
+        b=GZNhzuQB0hCLh6Uq0WCDBWPtJ9HK2JUPUqsgloDPyH0pA++TUWTVifmWSbHmCysTpd
+         3SMKpegNB6B2+mT4bRg4qTawFxIj80vyweIaQxrYIAk0uehTndlrL/pu4uzS7ow1uX9Y
+         IiqsP94k1nW9GpptRVXFAD+hm7MSEqFdUyhpD/iBdbO9jGkMy8qTTgl9NSJU5DBGh/bX
+         ydjZNXf3dfZT9fM/U261THLaZEdoVc41VN+lmUJZz9aJaXOIaDaWDDcWEJyNptceE2yV
+         I7qZHrrn+uAiF4+e8UYo0WKL8IbBp/xxZKHrKknF60yk2aKJE/weFWSZj2P26fSc21BR
+         iw9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772535074; x=1773139874;
+        d=1e100.net; s=20230601; t=1772535076; x=1773139876;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=qRBxFrn7AC9wXOJpDQL0/mC0loZfyU6jw3bAKE+4IaY=;
-        b=Ys5Cmo6Yx+lt/BJABNw78YmjasNY1i5SYPKBqEG6tndT2W8XES9Jr0Et4qe1hpZj/o
-         5IokyXtoiGqwsMiE+hDCbsaZf7fA5y6RkKZzfQ5d7s7yBNh/rksn1A4PWfOCtnJOSOTB
-         HoWqA6cKHhZDCyjiezp3BDg3szavtkRu0nDUjWUKD7SiUINoTaMH0f26ZDpW9nxujsE5
-         Sv0Y1wzzCoYYLMJK5z8xcg6eWFc9A+BaTA4tylDUH1p8JbpcLw8kyN6Va0tMSDiDvoBG
-         LMAw6vLBOVptro2o0G6NV2tI6dj3rBiMksxXgL/0fBXVKv7bVTPAjcO/wCQQy3V78xBO
-         FJYA==
-X-Forwarded-Encrypted: i=1; AJvYcCWegOD1uvKaveRGm4FQhRQCjv3zQQn2iLTQNkYZSe9yeAeFaHAfTcqurjo5EzQMCVtt4xVNclwGtbh0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzChyPRbk7suOSeTe+nLHvfG0hcB1a65b96Uw7ATd7Noc1h+3Aj
-	iu/bv6tZzk1Musu95haRjGMdZGGs1GkzTGt8NgswjcKNnQj87ofsWjbc
-X-Gm-Gg: ATEYQzwx3xhOZ1tu2HvHUt5WYnVJlGmaATSWd7c/uUkNe3xNCfdKrU7gcVtLnf9u6Cy
-	rTcv2qWTp+dBKfcV/zudjZTZQVxqTC1YfI0rrWc8e9BhwSgIQmdFJ6ywqvEuoUpg5q7CjWrMeMU
-	PtdoCF/k6lXCegjqdIIT9ADbDVt0CK0GTqwRU94Ubiy8s4CdAGeavIgMg03cngT7c40Y4nJIojA
-	o9N8Hhg1V5f2f0cu6/NzKao+8Dyqax+z1Z4qR2zS89vSqE2cTT+VU3EYdmdbQOHGGIXmKn9z1GG
-	oiylwTgNa2J+AlhY9odXP5EHFazfj04bAxqn4bBGluSS9zXB4Axwq4jM80ph4s+R/FPwFqq/dIq
-	gAgFjX8Q9lNlESghJJ38DzqBnkLboMPtsz1JZjNKS2EhiGxC9JLfck6F/Bv34Vv5QH8lnfH7Fgq
-	ifJi4hs3YKtjIW5cYxUl/OP8D1zs5fvVEpv44rHJxTa1ZiTuLyJeIfJCLuxposGnFZXEMaibnRq
-	1T/wa/9c0ao/ybySsc/J1SjbPocFH0222jI7RY=
-X-Received: by 2002:a05:600c:c490:b0:480:20f1:7abd with SMTP id 5b1f17b1804b1-483c9c204b0mr264369755e9.31.1772535073748;
-        Tue, 03 Mar 2026 02:51:13 -0800 (PST)
+        bh=Xw8+TcMIpZZ4zLXVcvTdQrXSx/gfSku2RkwQw92NCJU=;
+        b=pqUTHncVGx8Xo6kDcFyN3xNIKBe20l+jOQdqI/lSVtkpG3MUvlC6brZUs4aiJrjWhL
+         eMbpxbhvQle7GHEaLrVcdfd2RogABfEseJi4rddSC+NHIvXRamncgZb89x9CZAVo1RFR
+         nEaKh1o4fzGFH1rB0cp6CZIK8BibLOxXjbYvDz4TrmDte76JkRtUJffr8dmjq0wcOJbW
+         tpcaGDP10Xb5NQCaCI7eGzhD7uuYzBjJy4uG87H1XFURoAnG40NEjOTEnNL/GS0zT8C3
+         vukSb434w/Q0kpnsf2IBWN9ML5yAT2uzu/Bi7cBEez1GXDezhzCcqVk0feIRxC16PH9A
+         ExAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCViBQ951CKaG8QMjyFcWosPKvA9Zsq0xoD3DwaPBHCWVeT2vYHp5F9riGbXKo6I5qNBXV2+Sk+IzhnE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRO05qBCjCgjpn0+pEfgvoPxVdttyrcf6m5Lk2R7py4r4mPsnP
+	HY5aw3S46WUBOrU37UZ6SuwVCvNY9D0Jy0ItjQAHf9qPJnU3NC4SzfVw
+X-Gm-Gg: ATEYQzyooy97KUqoEPi5wq33A6xlm/639wM5mdySpfTZX8kb4Blw//7PsaUNUtHGPOo
+	jsh2QKG/q5bBa37cEuxExRsayX8pAGrFGAFF/bDKHcLv7ssnrAq2+qdU1J8Xe2vMJJhKZYwVEEe
+	uQ73mUqlTIbCBl2JQphszLeRlDK223NMaXnx5aHumHxVv3NT5J9PELd9xjIJb6JiWfYV6xCjtkE
+	ovrnBn0TfN5zNTAUld8t0E1QMB2l9GPg3mIQtxDaDACXYlzLoaj2bbZYat01ATQIBPSy94LCDgZ
+	9cImX7j8YeDExzLYuGT1jEpFZdn3hb5Lidob5vyvo6G3mdwQ61vtu1DGZWvvbrFaOu6Z8zHHv0/
+	0S8wEi4OMDT7hfEaR/HLUDOicao5fUdSE1/+R9yqbW8UcJ9BkyRBnvAbi06MoRFZFVAkDP7ccWi
+	cVaejFSH1WSkroQS5NryKc3Q2SI95+YmarHKv8XYbKSjkBhamF/Vfca45mJUnfdo4XtrF/UYcck
+	wHaXKCa5sN4Ain78hbG2WJGv9EHZGLPwXK/hcs=
+X-Received: by 2002:a05:600c:3b99:b0:483:71f7:2796 with SMTP id 5b1f17b1804b1-483c9b9d99cmr280869695e9.10.1772535075434;
+        Tue, 03 Mar 2026 02:51:15 -0800 (PST)
 Received: from Lord-Beerus.station (net-188-152-100-94.cust.dsl.teletu.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b3474dsm318916045e9.1.2026.03.03.02.51.12
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b3474dsm318916045e9.1.2026.03.03.02.51.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 02:51:13 -0800 (PST)
+        Tue, 03 Mar 2026 02:51:14 -0800 (PST)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: Frank Li <Frank.Li@nxp.com>,
@@ -100,11 +100,10 @@ Cc: pierluigi.p@variscite.com,
 	Josua Mayer <josua@solid-run.com>,
 	Francesco Dolcini <francesco.dolcini@toradex.com>,
 	Primoz Fiser <primoz.fiser@norik.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 1/3] dt-bindings: arm: fsl: add Variscite DART-MX91 Boards
-Date: Tue,  3 Mar 2026 11:50:37 +0100
-Message-ID: <3b6984f4cf47f98fe6aa69705b771e7aaf787f79.1772534362.git.stefano.r@variscite.com>
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 2/3] arm64: dts: freescale: Add support for Variscite DART-MX91
+Date: Tue,  3 Mar 2026 11:50:38 +0100
+Message-ID: <5ab5a20c07cd0631fdecc7dba03f0ebb91dfe098.1772534362.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772534362.git.stefano.r@variscite.com>
 References: <cover.1772534362.git.stefano.r@variscite.com>
@@ -115,45 +114,59 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: C650E1ECFE3
+X-Rspamd-Queue-Id: ACDEE1ED03F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[variscite.com,kernel.org,pengutronix.de,gmail.com,ew.tq-group.com,amarulasolutions.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,lists.infradead.org];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-270433-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[variscite.com,kernel.org,pengutronix.de,gmail.com,ew.tq-group.com,amarulasolutions.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,lists.infradead.org,microchip.com];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270434-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.25:email];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:mid,variscite.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,variscite.com:mid,variscite.com:email,variscite.com:url,0.0.0.0:email]
 X-Rspamd-Action: no action
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-Add DT compatible strings for Variscite DART-MX91 SoM and Variscite
-development carrier Board.
+Add device tree support for the Variscite DART-MX91 system on module.
+This SOM is designed to be used with various carrier boards.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+The module includes:
+- NXP i.MX91 MPU processor
+- Up to 2GB of LPDDR4 memory
+- Up to 128GB of eMMC storage memory
+- Integrated 10/100/1000 Mbps Ethernet Transceiver
+- Codec audio WM8904
+- WIFI6 dual-band 802.11ax/ac/a/b/g/n with optional 802.15.4 and Bluetooth
+
+Only SOM-specific peripherals are enabled by default. Carrier board
+specific interfaces are left disabled to be enabled in the respective
+carrier board device trees.
+
+Link: https://variscite.com/system-on-module-som/i-mx-9/i-mx-91/dart-mx91/
+
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
 v2->v3:
@@ -162,26 +175,484 @@ v2->v3:
 v1->v2:
  - Ordering by hex and node name.
 
- Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../boot/dts/freescale/imx91-var-dart.dtsi    | 468 ++++++++++++++++++
+ 1 file changed, 468 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-var-dart.dtsi
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 5716d701292c..be2b88c3d9ee 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1545,6 +1545,12 @@ properties:
-           - const: phytec,imx93-phycore-som # phyCORE-i.MX93 SoM
-           - const: fsl,imx93
- 
-+      - description: Variscite DART-MX91 based boards
-+        items:
-+          - const: variscite,var-dart-mx91-sonata # Variscite DART-MX91 on Sonata Development Board
-+          - const: variscite,var-dart-mx91 # Variscite DART-MX91 SOM
-+          - const: fsl,imx91
+diff --git a/arch/arm64/boot/dts/freescale/imx91-var-dart.dtsi b/arch/arm64/boot/dts/freescale/imx91-var-dart.dtsi
+new file mode 100644
+index 000000000000..e87b7abd86bb
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx91-var-dart.dtsi
+@@ -0,0 +1,468 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Common dtsi for Variscite DART-MX91
++ *
++ * Link: https://variscite.com/system-on-module-som/i-mx-9/i-mx-91/dart-mx91/
++ *
++ * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
++ *
++ */
 +
-       - description: Variscite VAR-SOM-MX93 based boards
-         items:
-           - const: variscite,var-som-mx93-symphony
++/dts-v1/;
++
++#include <dt-bindings/leds/common.h>
++#include <dt-bindings/usb/pd.h>
++#include "imx91.dtsi"
++
++/ {
++	model = "Variscite DART-MX91 Module";
++	compatible = "variscite,var-dart-mx91", "fsl,imx91";
++
++	sound-wm8904 {
++		compatible = "simple-audio-card";
++		simple-audio-card,bitclock-master = <&codec_dai>;
++		simple-audio-card,format = "i2s";
++		simple-audio-card,frame-master = <&codec_dai>;
++		simple-audio-card,mclk-fs = <256>;
++		simple-audio-card,name = "wm8904-audio";
++		simple-audio-card,routing =
++			"Headphone Jack", "HPOUTL",
++			"Headphone Jack", "HPOUTR",
++			"IN2L", "Line In Jack",
++			"IN2R", "Line In Jack",
++			"IN1L", "Microphone Jack",
++			"IN1R", "Microphone Jack";
++		simple-audio-card,widgets =
++			"Microphone", "Microphone Jack",
++			"Headphone", "Headphone Jack",
++			"Line", "Line In Jack";
++
++		codec_dai: simple-audio-card,codec {
++			sound-dai = <&wm8904>;
++		};
++
++		simple-audio-card,cpu {
++			sound-dai = <&sai1>;
++		};
++	};
++
++	wifi_pwrseq: wifi-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		post-power-on-delay-ms = <100>;
++		power-off-delay-us = <10000>;
++		reset-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>, /* WIFI_RESET */
++			      <&gpio3 7 GPIO_ACTIVE_LOW>; /* WIFI_PWR_EN */
++	};
++};
++
++&eqos {
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&pinctrl_eqos>;
++	pinctrl-1 = <&pinctrl_eqos_sleep>;
++	/*
++	 * The required RGMII TX and RX 2ns delays are implemented directly
++	 * in hardware via passive delay elements on the SOM PCB.
++	 * No delay configuration is needed in software via PHY driver.
++	 */
++	phy-mode = "rgmii";
++	phy-handle = <&ethphy0>;
++	snps,clk-csr = <5>;
++	status = "okay";
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		clock-frequency = <1000000>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethphy0: ethernet-phy@0 {
++			compatible = "ethernet-phy-ieee802.3-c22";
++			reg = <0>;
++			reset-gpios = <&gpio1 7 GPIO_ACTIVE_LOW>;
++			reset-assert-us = <15000>;
++			reset-deassert-us = <100000>;
++
++			leds {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				led@0 {
++					reg = <0>;
++					color = <LED_COLOR_ID_YELLOW>;
++					function = LED_FUNCTION_LAN;
++					linux,default-trigger = "netdev";
++				};
++
++				led@1 {
++					reg = <1>;
++					color = <LED_COLOR_ID_GREEN>;
++					function = LED_FUNCTION_LAN;
++					linux,default-trigger = "netdev";
++				};
++			};
++		};
++	};
++};
++
++&lpi2c3 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default", "sleep", "gpio";
++	pinctrl-0 = <&pinctrl_lpi2c3>;
++	pinctrl-1 = <&pinctrl_lpi2c3_gpio>;
++	pinctrl-2 = <&pinctrl_lpi2c3_gpio>;
++	scl-gpios = <&gpio2 29 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	sda-gpios = <&gpio2 28 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	status = "okay";
++
++	wm8904: audio-codec@1a {
++		compatible = "wlf,wm8904";
++		reg = <0x1a>;
++		#sound-dai-cells = <0>;
++		clocks = <&clk IMX93_CLK_SAI1_GATE>;
++		clock-names = "mclk";
++		AVDD-supply = <&buck5>;
++		CPVDD-supply = <&buck5>;
++		DBVDD-supply = <&buck4>;
++		DCVDD-supply = <&buck5>;
++		MICVDD-supply = <&buck5>;
++		wlf,drc-cfg-names = "default", "peaklimiter", "tradition",
++				    "soft", "music";
++		/*
++		 * Config registers per name, respectively:
++		 * KNEE_IP = 0,   KNEE_OP = 0,     HI_COMP = 1,   LO_COMP = 1
++		 * KNEE_IP = -24, KNEE_OP = -6,    HI_COMP = 1/4, LO_COMP = 1
++		 * KNEE_IP = -42, KNEE_OP = -3,    HI_COMP = 0,   LO_COMP = 1
++		 * KNEE_IP = -45, KNEE_OP = -9,    HI_COMP = 1/8, LO_COMP = 1
++		 * KNEE_IP = -30, KNEE_OP = -10.5, HI_COMP = 1/4, LO_COMP = 1
++		 */
++		wlf,drc-cfg-regs = /bits/ 16 <0x01af 0x3248 0x0000 0x0000>,
++				   /bits/ 16 <0x04af 0x324b 0x0010 0x0408>,
++				   /bits/ 16 <0x04af 0x324b 0x0028 0x0704>,
++				   /bits/ 16 <0x04af 0x324b 0x0018 0x078c>,
++				   /bits/ 16 <0x04af 0x324b 0x0010 0x050e>;
++		/* GPIO1 = DMIC_CLK, don't touch others */
++		wlf,gpio-cfg = <0x0018>, <0xffff>, <0xffff>, <0xffff>;
++		/* DMIC is connected to IN1L */
++		wlf,in1l-as-dmicdat1;
++	};
++
++	pmic@25 {
++		compatible = "nxp,pca9451a";
++		reg = <0x25>;
++
++		regulators {
++			buck1: BUCK1 {
++				regulator-name = "BUCK1";
++				regulator-min-microvolt = <650000>;
++				regulator-max-microvolt = <2237500>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <3125>;
++			};
++
++			buck2: BUCK2 {
++				regulator-name = "BUCK2";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <2187500>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-ramp-delay = <3125>;
++			};
++
++			buck4: BUCK4{
++				regulator-name = "BUCK4";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buck5: BUCK5{
++				regulator-name = "BUCK5";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			buck6: BUCK6 {
++				regulator-name = "BUCK6";
++				regulator-min-microvolt = <600000>;
++				regulator-max-microvolt = <3400000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo1: LDO1 {
++				regulator-name = "LDO1";
++				regulator-min-microvolt = <1600000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo4: LDO4 {
++				regulator-name = "LDO4";
++				regulator-min-microvolt = <800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			ldo5: LDO5 {
++				regulator-name = "LDO5";
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++		};
++	};
++};
++
++/* BT module */
++&lpuart5 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart5>, <&pinctrl_bt>;
++	uart-has-rtscts;
++	status = "okay";
++
++	bluetooth {
++		compatible = "nxp,88w8987-bt";
++	};
++};
++
++&sai1 {
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&pinctrl_sai1>;
++	pinctrl-1 = <&pinctrl_sai1_sleep>;
++	assigned-clocks = <&clk IMX93_CLK_SAI1>;
++	assigned-clock-parents = <&clk IMX93_CLK_AUDIO_PLL>;
++	assigned-clock-rates = <12288000>;
++	#sound-dai-cells = <0>;
++	fsl,sai-mclk-direction-output;
++	status = "okay";
++};
++
++/* eMMC */
++&usdhc1 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz";
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
++	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
++/* WiFi */
++&usdhc3 {
++	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
++	pinctrl-0 = <&pinctrl_usdhc3>, <&pinctrl_usdhc3_wlan>;
++	pinctrl-1 = <&pinctrl_usdhc3_100mhz>, <&pinctrl_usdhc3_wlan>;
++	pinctrl-2 = <&pinctrl_usdhc3_200mhz>, <&pinctrl_usdhc3_wlan>;
++	pinctrl-3 = <&pinctrl_usdhc3_sleep>, <&pinctrl_usdhc3_wlan>;
++	mmc-pwrseq = <&wifi_pwrseq>;
++	keep-power-in-suspend;
++	bus-width = <4>;
++	non-removable;
++	wakeup-source;
++	status = "okay";
++};
++
++&wdog3 {
++	status = "okay";
++};
++
++&iomuxc {
++	pinctrl_bt: btgrp {
++		fsl,pins = <
++			MX91_PAD_ENET2_MDIO__GPIO4_IO15				0x51e
++		>;
++	};
++
++	pinctrl_eqos: eqosgrp {
++		fsl,pins = <
++			MX91_PAD_ENET1_MDC__ENET1_MDC				0x57e
++			MX91_PAD_ENET1_MDIO__ENET_QOS_MDIO			0x57e
++			MX91_PAD_ENET1_RD0__ENET_QOS_RGMII_RD0			0x57e
++			MX91_PAD_ENET1_RD1__ENET_QOS_RGMII_RD1			0x57e
++			MX91_PAD_ENET1_RD2__ENET_QOS_RGMII_RD2			0x57e
++			MX91_PAD_ENET1_RD3__ENET_QOS_RGMII_RD3			0x57e
++			MX91_PAD_ENET1_RXC__ENET_QOS_RGMII_RXC			0x5fe
++			MX91_PAD_ENET1_RX_CTL__ENET_QOS_RGMII_RX_CTL		0x57e
++			MX91_PAD_ENET1_TD0__ENET_QOS_RGMII_TD0			0x57e
++			MX91_PAD_ENET1_TD1__ENET1_RGMII_TD1			0x57e
++			MX91_PAD_ENET1_TD2__ENET_QOS_RGMII_TD2			0x57e
++			MX91_PAD_ENET1_TD3__ENET_QOS_RGMII_TD3			0x57e
++			MX91_PAD_ENET1_TXC__CCM_ENET_QOS_CLOCK_GENERATE_TX_CLK	0x5fe
++			MX91_PAD_ENET1_TX_CTL__ENET_QOS_RGMII_TX_CTL		0x57e
++			MX91_PAD_UART2_TXD__GPIO1_IO7				0x51e
++		>;
++	};
++
++	pinctrl_eqos_sleep: eqos-sleepgrp {
++		fsl,pins = <
++			MX91_PAD_ENET1_MDC__GPIO4_IO0				0x31e
++			MX91_PAD_ENET1_MDIO__GPIO4_IO1				0x31e
++			MX91_PAD_ENET1_RD0__GPIO4_IO10				0x31e
++			MX91_PAD_ENET1_RD1__GPIO4_IO11				0x31e
++			MX91_PAD_ENET1_RD2__GPIO4_IO12				0x31e
++			MX91_PAD_ENET1_RD3__GPIO4_IO13				0x31e
++			MX91_PAD_ENET1_RXC__GPIO4_IO9				0x31e
++			MX91_PAD_ENET1_RX_CTL__GPIO4_IO8			0x31e
++			MX91_PAD_ENET1_TD0__GPIO4_IO5				0x31e
++			MX91_PAD_ENET1_TD1__GPIO4_IO4				0x31e
++			MX91_PAD_ENET1_TD2__GPIO4_IO3				0x31e
++			MX91_PAD_ENET1_TD3__GPIO4_IO2				0x31e
++			MX91_PAD_ENET1_TXC__GPIO4_IO7				0x31e
++			MX91_PAD_ENET1_TX_CTL__GPIO4_IO6			0x31e
++		>;
++	};
++
++	pinctrl_lpi2c3: lpi2c3grp {
++		fsl,pins = <
++			MX91_PAD_GPIO_IO28__LPI2C3_SDA				0x40000b9e
++			MX91_PAD_GPIO_IO29__LPI2C3_SCL				0x40000b9e
++		>;
++	};
++
++	pinctrl_lpi2c3_gpio: lpi2c3gpiogrp {
++		fsl,pins = <
++			MX91_PAD_GPIO_IO28__GPIO2_IO28				0x40000b9e
++			MX91_PAD_GPIO_IO29__GPIO2_IO29				0x40000b9e
++		>;
++	};
++
++	pinctrl_sai1: sai1grp {
++		fsl,pins = <
++			MX91_PAD_SAI1_TXC__SAI1_TX_BCLK				0x31e
++			MX91_PAD_SAI1_TXFS__SAI1_TX_SYNC			0x31e
++			MX91_PAD_SAI1_TXD0__SAI1_TX_DATA0			0x31e
++			MX91_PAD_SAI1_RXD0__SAI1_RX_DATA0			0x31e
++			MX91_PAD_I2C2_SDA__SAI1_RX_BCLK				0x31e
++			MX91_PAD_I2C2_SCL__SAI1_RX_SYNC				0x31e
++			MX91_PAD_UART2_RXD__SAI1_MCLK				0x31e
++		>;
++	};
++
++	pinctrl_sai1_sleep: sai1-sleepgrp {
++		fsl,pins = <
++			MX91_PAD_SAI1_TXC__GPIO1_IO12				0x31e
++			MX91_PAD_SAI1_TXFS__GPIO1_IO11				0x31e
++			MX91_PAD_SAI1_TXD0__GPIO1_IO13				0x31e
++			MX91_PAD_SAI1_RXD0__GPIO1_IO14				0x31e
++			MX91_PAD_UART2_RXD__GPIO1_IO6				0x31e
++			MX91_PAD_I2C2_SDA__GPIO1_IO3				0x31e
++			MX91_PAD_I2C2_SCL__GPIO1_IO2				0x31e
++		>;
++	};
++
++	pinctrl_uart5: uart5grp {
++		fsl,pins = <
++			MX91_PAD_DAP_TDO_TRACESWO__LPUART5_TX			0x31e
++			MX91_PAD_DAP_TDI__LPUART5_RX				0x31e
++			MX91_PAD_DAP_TMS_SWDIO__LPUART5_RTS_B			0x31e
++			MX91_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B			0x31e
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX91_PAD_SD1_CLK__USDHC1_CLK				0x1582
++			MX91_PAD_SD1_CMD__USDHC1_CMD				0x1382
++			MX91_PAD_SD1_DATA0__USDHC1_DATA0			0x1382
++			MX91_PAD_SD1_DATA1__USDHC1_DATA1			0x1382
++			MX91_PAD_SD1_DATA2__USDHC1_DATA2			0x1382
++			MX91_PAD_SD1_DATA3__USDHC1_DATA3			0x1382
++			MX91_PAD_SD1_DATA4__USDHC1_DATA4			0x1382
++			MX91_PAD_SD1_DATA5__USDHC1_DATA5			0x1382
++			MX91_PAD_SD1_DATA6__USDHC1_DATA6			0x1382
++			MX91_PAD_SD1_DATA7__USDHC1_DATA7			0x1382
++			MX91_PAD_SD1_STROBE__USDHC1_STROBE			0x1582
++		>;
++	};
++
++	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
++		fsl,pins = <
++			MX91_PAD_SD1_CLK__USDHC1_CLK				0x158e
++			MX91_PAD_SD1_CMD__USDHC1_CMD				0x138e
++			MX91_PAD_SD1_DATA0__USDHC1_DATA0			0x138e
++			MX91_PAD_SD1_DATA1__USDHC1_DATA1			0x138e
++			MX91_PAD_SD1_DATA2__USDHC1_DATA2			0x138e
++			MX91_PAD_SD1_DATA3__USDHC1_DATA3			0x138e
++			MX91_PAD_SD1_DATA4__USDHC1_DATA4			0x138e
++			MX91_PAD_SD1_DATA5__USDHC1_DATA5			0x138e
++			MX91_PAD_SD1_DATA6__USDHC1_DATA6			0x138e
++			MX91_PAD_SD1_DATA7__USDHC1_DATA7			0x138e
++			MX91_PAD_SD1_STROBE__USDHC1_STROBE			0x158e
++		>;
++	};
++
++	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
++		fsl,pins = <
++			MX91_PAD_SD1_CLK__USDHC1_CLK				0x15fe
++			MX91_PAD_SD1_CMD__USDHC1_CMD				0x13fe
++			MX91_PAD_SD1_DATA0__USDHC1_DATA0			0x13fe
++			MX91_PAD_SD1_DATA1__USDHC1_DATA1			0x13fe
++			MX91_PAD_SD1_DATA2__USDHC1_DATA2			0x13fe
++			MX91_PAD_SD1_DATA3__USDHC1_DATA3			0x13fe
++			MX91_PAD_SD1_DATA4__USDHC1_DATA4			0x13fe
++			MX91_PAD_SD1_DATA5__USDHC1_DATA5			0x13fe
++			MX91_PAD_SD1_DATA6__USDHC1_DATA6			0x13fe
++			MX91_PAD_SD1_DATA7__USDHC1_DATA7			0x13fe
++			MX91_PAD_SD1_STROBE__USDHC1_STROBE			0x15fe
++		>;
++	};
++
++	pinctrl_usdhc3: usdhc3grp {
++		fsl,pins = <
++			MX91_PAD_SD3_CLK__USDHC3_CLK				0x1582
++			MX91_PAD_SD3_CMD__USDHC3_CMD				0x1382
++			MX91_PAD_SD3_DATA0__USDHC3_DATA0			0x1382
++			MX91_PAD_SD3_DATA1__USDHC3_DATA1			0x1382
++			MX91_PAD_SD3_DATA2__USDHC3_DATA2			0x1382
++			MX91_PAD_SD3_DATA3__USDHC3_DATA3			0x1382
++		>;
++	};
++
++	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
++		fsl,pins = <
++			MX91_PAD_SD3_CLK__USDHC3_CLK				0x158e
++			MX91_PAD_SD3_CMD__USDHC3_CMD				0x138e
++			MX91_PAD_SD3_DATA0__USDHC3_DATA0			0x138e
++			MX91_PAD_SD3_DATA1__USDHC3_DATA1			0x138e
++			MX91_PAD_SD3_DATA2__USDHC3_DATA2			0x138e
++			MX91_PAD_SD3_DATA3__USDHC3_DATA3			0x138e
++		>;
++	};
++
++	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
++		fsl,pins = <
++			MX91_PAD_SD3_CLK__USDHC3_CLK				0x15fe
++			MX91_PAD_SD3_CMD__USDHC3_CMD				0x13fe
++			MX91_PAD_SD3_DATA0__USDHC3_DATA0			0x13fe
++			MX91_PAD_SD3_DATA1__USDHC3_DATA1			0x13fe
++			MX91_PAD_SD3_DATA2__USDHC3_DATA2			0x13fe
++			MX91_PAD_SD3_DATA3__USDHC3_DATA3			0x13fe
++		>;
++	};
++
++	pinctrl_usdhc3_sleep: usdhc3-sleepgrp {
++		fsl,pins = <
++			MX91_PAD_SD3_CLK__GPIO3_IO20				0x31e
++			MX91_PAD_SD3_CMD__GPIO3_IO21				0x31e
++			MX91_PAD_SD3_DATA0__GPIO3_IO22				0x31e
++			MX91_PAD_SD3_DATA1__GPIO3_IO23				0x31e
++			MX91_PAD_SD3_DATA2__GPIO3_IO24				0x31e
++			MX91_PAD_SD3_DATA3__GPIO3_IO25				0x31e
++		>;
++	};
++
++	pinctrl_usdhc3_wlan: usdhc3wlangrp {
++		fsl,pins = <
++			MX91_PAD_ENET2_MDC__GPIO4_IO14				0x51e
++			MX91_PAD_SD2_RESET_B__GPIO3_IO7				0x51e
++		>;
++	};
++};
 -- 
 2.47.3
 
