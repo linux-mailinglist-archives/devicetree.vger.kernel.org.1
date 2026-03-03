@@ -1,697 +1,254 @@
-Return-Path: <devicetree+bounces-270435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270436-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCaPI9C9pmlDTQAAu9opvQ
-	(envelope-from <devicetree+bounces-270435-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:54:08 +0100
+	id uNsRKDO/pmlDTQAAu9opvQ
+	(envelope-from <devicetree+bounces-270436-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 12:00:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02DDE1ED066
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:54:07 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD5381ED3B6
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 12:00:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 20AF7309B9B5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:52:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F38D43136CA7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:54:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD59B3B3C0F;
-	Tue,  3 Mar 2026 10:51:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IxArQj1g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 612583B960D;
+	Tue,  3 Mar 2026 10:54:51 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022103.outbound.protection.outlook.com [52.101.126.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F4B03B4EB2
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 10:51:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772535088; cv=none; b=Z6YAHKCGU+i07WYmhI86DFRjj4xFQoOIK0NcbA8fUxcawFRwQnV21k6pcHX6lngTo7MleJkoffYYh3pnfb3LBrfypRvZHDKdmJVV1JDdAZSoT08Vc/LbQA+CNg1Z7KNJZ9fbPoOfpNGIkP9y7qiSZegeyHJfVQU5VUC2BPVAhuY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772535088; c=relaxed/simple;
-	bh=4Jk0ABeCVWSJ0ZI6IwiYb7vdtDBnRgnYGykh/ow+PlM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LXm/CRT+Kb8YmxctPogqWuz08x1JHtnsDn+Rrt/eZ9ToAJYMYc3vM1tRqxCwekndKLV62H8uwvsVzmSbYsiZ0MUysu84K7SpqTFHKoZUh44pjteWgH987oFTiMCJUXao4zLCG9HX+O3Ck65qq6tRPRAXTPTj6XsaC+ORCLYnYZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IxArQj1g; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-48378136adcso32514745e9.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 02:51:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772535077; x=1773139877; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=utqkl3kYVvYwYw2ZD5zaK5rhlUkPadO8PwS5ynzz0Ms=;
-        b=IxArQj1g7VgpJ7Iyus+Gw/thR+41EvD8fVmFlkLL81dknF+wzIDuZ385bLMrlMbgfF
-         t1ei87y2GEfinA29zdZOmApQ9qcw4kbdYzBnpidgbFVjHqCSKaxEnPmb88gbJFhsGqDp
-         NNHmzQC+OFOo04f+ntp2ZVXw5X0HuURUMn0CZobpULvPPxB2PNQANcV8rIaoa7Z4YyeE
-         boLXTJ35tpQ3ibXg0Dz2JjLfq1nceiE67J52g6GLaFmC1tW8F70yRQFY9Uj224MhFZfO
-         aPTesVpV+MYv5FUaQaAjh0oY0wLPsemTvVihx4loQ1q7l36ozlcLA4kb4JAk38nsuluk
-         mQcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772535077; x=1773139877;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=utqkl3kYVvYwYw2ZD5zaK5rhlUkPadO8PwS5ynzz0Ms=;
-        b=IWmwCNbpNe/RiiD2hUNRCghsZHBb0M2QZmq1nf0XwqrzkQmjrr+nWrV1qJd2vrgGYo
-         Qza8BzE7QCtTw79ikoryPNZ6jRu6fJJQx2SHHOOUYoHO+7OCxj6DZeqPKAH9YDhPfrn6
-         YfjRKXHnDnizYln++A9S3FwKzPTiwhmQTwM9R+oW+khB2O1tODKObXP16ptHEKLk9mhd
-         NJ9omEXkSSQHPdlNed0zlE14tS+8fVmULebj05gdrL/hUzduERGG6yolKS7YwBni6g2R
-         QuNhMEB2V5xMKeUtYW9uPT76hHfq9AFKD/BO5S+QbShPuLtDifNB3TFgCSCPH8Q/F8e8
-         dwHg==
-X-Forwarded-Encrypted: i=1; AJvYcCXP+qAbDHmbmPNYRKz+EWb1reTYLGl1wzhoKLTOrZ0QX0nTjbwvuMmNKgV6qipMbsg7WBTl0mvfohKt@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDC+GR/B1IYl3nkXdxE7DdhX2RL605ZleFppKdW3baFKBVnfNm
-	I/UrF5nsmaLrbeM2/V86Wh6t6lw/22TV6oJlTdLafB86HxAs9tKetCsq
-X-Gm-Gg: ATEYQzzgtyiBgIubh4O0ocCFx8REH+kmUNN2M1zZSsaQmw9rQ1jnwxgiUOzaE0l804v
-	6Sf9u7N9x94mANayBcafU1VEhwjZQFiEK7JZOcHbTPvFwME7UAtWgKSM8GkS9Oe/QMNiLV8wIqo
-	+En4RkLdnwOG0fh+drRBCUZlAkXjj36v5J2oHyjNGRbKKORyWfV2FNDlf/YWiwb/4CdOixGpWqT
-	r6gPZLmMu68Cf9jwQ1RJr2idqkd5MJpee3l8jhWrJEwGgvu68DFMNXdDKV0LWCkRX7bcJioL4Vb
-	U10IXoObbMn12yDxvBpuV0SsKv4G3u8RXN2bqBqCCJ6E1cOQWl2lZF+jppDdGrqDcBRlmKNx2b6
-	66bOsAL2uCInRZCf0wM1NEbO8BsLipPZWtXiwaxkSlIjjd2iTYPCVoqUdu7FGJ6PSnH+UInRVik
-	CEZBJQRNaGwa9IMikIoIEwic8wbM3vWjc0S0T4yXK3vNRSjHYklnroNcTL7J2mi/PDsFJ1rmY2q
-	hQWNKH4kPeasmO7pgrOoO+lg2yOzyuvYTV8VlE=
-X-Received: by 2002:a05:600c:1f06:b0:47d:586e:2fea with SMTP id 5b1f17b1804b1-483c9bc557fmr276744345e9.15.1772535077002;
-        Tue, 03 Mar 2026 02:51:17 -0800 (PST)
-Received: from Lord-Beerus.station (net-188-152-100-94.cust.dsl.teletu.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b3474dsm318916045e9.1.2026.03.03.02.51.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 02:51:16 -0800 (PST)
-From: Stefano Radaelli <stefano.radaelli21@gmail.com>
-X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
-To: Frank Li <Frank.Li@nxp.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Cc: pierluigi.p@variscite.com,
-	Stefano Radaelli <stefano.r@variscite.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Markus Niebel <Markus.Niebel@tq-group.com>,
-	Matthias Schiffer <matthias.schiffer@tq-group.com>,
-	Yannic Moog <y.moog@phytec.de>,
-	Josua Mayer <josua@solid-run.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Primoz Fiser <primoz.fiser@norik.com>,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 3/3] arm64: dts: imx91-var-dart: Add support for Variscite Sonata board
-Date: Tue,  3 Mar 2026 11:50:39 +0100
-Message-ID: <aec58b97aecd317e1fe274afc2844334feb9b9ab.1772534362.git.stefano.r@variscite.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1772534362.git.stefano.r@variscite.com>
-References: <cover.1772534362.git.stefano.r@variscite.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A626F38228F;
+	Tue,  3 Mar 2026 10:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.103
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772535291; cv=fail; b=Vm3y27m5JvHdp56xYt8m/XwHbynGJbH/6+e2uZ7DhXtkJj4StnG57VejvNgbeROJuDFmYoNz4t9mL1sRcymnLoRTa44XgbfNrhzmfqqJ3LUl+AG2cJ5MdepPTG62x2gMksk4wwXTDokIKIXieVUgOn2h5Tytx4RM8hBCcAGsGUg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772535291; c=relaxed/simple;
+	bh=I1AJdE0B7oCW54ReuhIbonoJjvrtZecZ/oNGkCaU3SA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KljeMGG3qD93uD0ZfNDjGaOe0Jlj0BRq0/vxB2xR4C2kNdPWW0V74/EmRZBCBteMwCLL8pv6VgSdbDyR1OxOxVE4vlms+V/Fc+3Wde0R7m1aI2S7atl76m3fsfnK60Nm68ClTKUiLIDjY6/+yHZpFdC0xs1hCUv/4tHJrGtK/G4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.103
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jZcaLTki6su3MsQMedYWHYwSYbQ9QUH2D+2bHzBiDYUrbRNC8PHQlO8VJR9DYFxtnYjuinMkN2SfBAhPOYFiKPjQgb6x+Ty1voCfPuGQHc1jzATPBfTt5IOhbgCoLzOJzu1a0yOsubgr5gxvd8a68kDw4jSxovbxmajg7X1sB/nNu03obycA8kCuTYRpX99TnHvU7KcyVnD5YnW32K0EETBDdqMoJmOQ9Cb5HAitXeOY0X18dfQvdRZLglQQahOkOTKx09zMbZ7mwlsmFxqRmmrkHCfPVOFZxBh5DzWHl/JxV4Ksf2NZYIddtAKOKKPOw4fGbKOG0qy6NGsEm4E/qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZtGPUvhiNX9L0SOr366rNxBEvsXo/dK58y8mc9MAvHU=;
+ b=dxVO8CQOjkQRoz+kLXiPOQpuXzTRBurjacsIY/4+G7T2f+bwyuVW7UR9jn4oMOEYV7qJoLcJNL46y8gU/y9iuO6mggy7A4uOKFD7jVdVYBBgecl3QXV0eB4aW9pjy6w9XS3wzCzwUsN2g079k0Adk5dkF+mnjnrX3zLNKxufKbcFTh0XXJHBw+3wmkaJvn5Rk7VY9U4vM8C9mqYfotE6hELw9F5Xn5l7apvYAuF2w/hzhVJCfWblvCwhkGHes0JoTjUgvyEwVeL7bWfQb5ooA+gkbBCudGhZYJBzbiQ620ePFxBdDgiAyCUSc71at785WO50UwbngAYf0OrVz6FLKQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2P153CA0035.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c7::22) by
+ SEYPR06MB8004.apcprd06.prod.outlook.com (2603:1096:101:2d6::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.22; Tue, 3 Mar 2026 10:54:45 +0000
+Received: from OSA0EPF000000CB.apcprd02.prod.outlook.com
+ (2603:1096:4:c7:cafe::6d) by SG2P153CA0035.outlook.office365.com
+ (2603:1096:4:c7::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.9 via Frontend Transport; Tue, 3
+ Mar 2026 10:54:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CB.mail.protection.outlook.com (10.167.240.57) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Tue, 3 Mar 2026 10:54:43 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 6A1AE4350703;
+	Tue,  3 Mar 2026 18:54:42 +0800 (CST)
+Date: Tue, 3 Mar 2026 18:54:37 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Pawel Laszczak <pawell@cadence.com>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+	"rogerq@kernel.org" <rogerq@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"cix-kernel-upstream@cixtech.com" <cix-kernel-upstream@cixtech.com>
+Subject: Re: [PATCH 0/2] usb: cdns3: USBSSP platform driver support
+Message-ID: <aaa97U38DByYYDcC@nchen-desktop>
+References: <20260302030339.324196-1-peter.chen@cixtech.com>
+ <PH7PR07MB9538DF65B6E13761C630615ADD7FA@PH7PR07MB9538.namprd07.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 02DDE1ED066
+In-Reply-To: <PH7PR07MB9538DF65B6E13761C630615ADD7FA@PH7PR07MB9538.namprd07.prod.outlook.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CB:EE_|SEYPR06MB8004:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8e923da6-7fb6-4a92-8c0d-08de79134744
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	EwTvGo77qPL9fEAdZqzikWzlvM9yBQILeSUAGG3Dtb3Lh1wHYdeoEQP+74jsH1jEeWpYyHW0xjGGsychpYUKbP9mtPdJuFhReE54WmoyWJhqy8rvKGoyeaLPemuBecWQxjhh9BPQvl75DAYXY5iccyCTq3Te30yMuTxw1ebsU1iuaylRcQQpm49qZKaUhp6U1gjdhDxkUnvU25czOcHhmlqxSjImvQvzu5Ghbm2cldKWhqI1G7Ocgyhdy0p4O0M1VHpDaHH1nJAHZjbUomC2tJHTlMA3YNCWrKrtB51bblUcDP9ObCHFMMA/FnuRmWaVtJHgePBLlOkOGDIBNkpX6lpt6ADICcEVzVV2HqsyXb6In98IRAKD3rtmnk+FFxsOwJcnS2ryIaxlfpjTYMwmILPOcZs0EAznr9xGCJTnbzyl48ADUTp3AdZaSOw+6dhuANfaCBYmLp4BTq2aU78WTmy4g9MVK583wYEfG0xwXp5oz7F0D74YnCpVAHHVmsnJaUvHEHF2rpJtALRTwjBAU2gIrSfL2du8XNFW9dv0JMZ5wjBJ3MYtA69LKlUDdghJBR2liz6RY15rH9ujsquYb/V7nxt5wTutZo3EviQvctz7eWVtdChq9rVt7XcxNaTKm0KmzWrOT3DDx76QAhmZ5mEC1WCzAOD3vV2O4+W6D6Mo4IrYcfpbGMTVsAi2XPu6kXsHJGO+fSrvFChQrDlPgpR2Y9D0pwxLp1s0tLjPzgcUgaVwWaG/A+aHkp4kxM4cVDACQRppux6c/OFDgltf8A==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	EW0XJozmNh1zRYOM4DDC1tTmMRDqdSoVj5Tr7BgGG+t4gJiqZ7l32lOckKcBHwPwiiJxqoidQcz24gHrwyHb6A2H34oMWroQJuGIvx7hwfPf9yiZ5lmmFFv11FVLQR/ps9VuvFcZQONQOAK6T9eAF1CTUGrDRHsCwOmPaS29kYwl8L+vkMix4BWUCJk8y61vK+KQoarcuPCE+4EkUF2QKbYYpQFJc1TlKvmrJxWi5eyTscWOZizG0+xNO/gsGSMOucAmmZRnvShdJEV3hJZAfe1dcBcbYKgVdQjaIwGGtaX4+GNVXsnZFd8uw2TYaTpi/uslGFVzWdipvGxorKq4oFpxKZGSkjCZEjetZg/3JrbV9YCnfubqd8NoFe9qqoyIX7shVZjDZQ8maft4A0WkSy0rMG16GUlpbYEO5MlLsDB1DysIVuVz5uk8IPwNAxQe
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 10:54:43.6160
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8e923da6-7fb6-4a92-8c0d-08de79134744
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000CB.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB8004
+X-Rspamd-Queue-Id: AD5381ED3B6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-270435-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270436-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,aka.ms:url,spinics.net:url];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[variscite.com,kernel.org,pengutronix.de,gmail.com,ew.tq-group.com,amarulasolutions.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DMARC_NA(0.00)[cixtech.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.978];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: Stefano Radaelli <stefano.r@variscite.com>
+On 26-03-03 07:34:54, Pawel Laszczak wrote:
+> [Some people who received this message don't often get email from pawell@cadence.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> EXTERNAL EMAIL
+> 
+> >
+> >Hi Pawel,
+> >
+> >The Cadence USBSSP (CDNSP) controller was previously only accessible
+> >through PCI, coupling the gadget driver with the PCI glue layer into a single
+> >monolithic module (cdnsp-udc-pci). This prevented using the CDNSP IP on
+> >SoC/platform designs that expose the controller through device tree, eg, CIX
+> >Sky1 SoC.
+> >
+> >In this series, it restructures the driver to decouple the CDNSP gadget from
+> >PCI, and refactor cdnsp-pci.c into a thin PCI-to-platform wrapper (similar to
+> >cdns3-pci-wrap.c) that registers a platform device and passes PCI resources
+> >and platform data to the common platform driver. So, please help test it in
+> >your platform.
+> >
+> >The changes are tested with random configuration combination tests.
+> >
+> >============================================================
+> >ALL TESTS COMPLETE. Summary:
+> >============================================================
+> >Starting cdns3 config combination tests...
+> >Timestamp: 2026年 03月 02日 星期一 09:34:47 CST
+> >
+> >PASS: all-builtin (SUPPORT=y CDNS3=y GADGET=y HOST=y CDNSP=y
+> >CDNSP_G=y CDNSP_H=y)
+> >PASS: support-y_cdns3-m_gadget-y (SUPPORT=y CDNS3=m GADGET=y
+> >HOST=y CDNSP=y CDNSP_G=y CDNSP_H=y)
+> >PASS: support-y_cdns3-m_gadget-n (SUPPORT=y CDNS3=m GADGET=n
+> >HOST=y CDNSP=y CDNSP_G=y CDNSP_H=y)
+> >PASS: support-y_cdnsp-m_gadget-y (SUPPORT=y CDNS3=y GADGET=y HOST=y
+> >CDNSP=m CDNSP_G=y CDNSP_H=y)
+> >PASS: all-module (SUPPORT=m CDNS3=m GADGET=y HOST=y CDNSP=m
+> >CDNSP_G=y CDNSP_H=y)
+> >PASS: no-cdns3 (SUPPORT=y CDNS3=n GADGET=n HOST=n CDNSP=y
+> >CDNSP_G=y CDNSP_H=y)
+> >PASS: no-gadget (SUPPORT=y CDNS3=y GADGET=n HOST=y CDNSP=y
+> >CDNSP_G=n CDNSP_H=y)
+> >PASS: support-y_both-m_gadget-y (SUPPORT=y CDNS3=m GADGET=y HOST=y
+> >CDNSP=m CDNSP_G=y CDNSP_H=y)
+> >PASS: minimal-module (SUPPORT=m CDNS3=m GADGET=n HOST=n CDNSP=m
+> >CDNSP_G=n CDNSP_H=n)
+> >
+> >This patch was developed with assistance from Anthropic Claude Opus 4.6.
+> >
+> 
+> I can compile the kernel but when I try to install modules with
+> make modules_install I get error:
+> 
+> DEPMOD  /lib/modules/7.0.0-rc1-new-pci-plat-support-next-20260227+
+> depmod: ERROR: Cycle detected: cdns_usb_common -> cdnsp -> cdns_usb_common
+> depmod: ERROR: Cycle detected: udc_core
+> depmod: ERROR: Found 2 modules in dependency cycles!
+> make[2]: *** [scripts/Makefile.modinst:132: depmod] Error 1
+> 
+> It occurs even with minimal configuration:
+> CONFIG_USB_CDNS_SUPPORT=m
+> # CONFIG_USB_CDNS3 is not set
+> CONFIG_USB_CDNSP=m
+> CONFIG_USB_CDNSP_GADGET=y
+> 
 
-Add device tree support for the Variscite Sonata carrier board with
-the DART-MX91 system on module.
+Thanks for testing. It needs to let cdns3(p) platform driver as
+standalone module to fix it. Would you please try below fix on top
+of my patch set:
 
-The Sonata board includes
-- uSD Card support
-- USB ports and OTG
-- Additional Gigabit Ethernet interface
-- Uart interfaces
-- GPIO Expanders
-- RTC module
-- TPM module
-
-Link: https://variscite.com/carrier-boards/sonata-board/
-Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
----
-v2->v3:
- - Rebased the series to fix DTS apply issues.
-
-v1->v2:
- - Ordering by hex and node name.
-
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx91-var-dart-sonata.dts   | 498 ++++++++++++++++++
- 2 files changed, 499 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx91-var-dart-sonata.dts
-
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index e0738525d37e..8ee7d41a367d 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -411,6 +411,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-11x11-frdm-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-phyboard-segin.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx91-tqma9131-mba91xxca.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx91-var-dart-sonata.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-9x9-qsb.dtb
+diff --git a/drivers/usb/cdns3/Makefile b/drivers/usb/cdns3/Makefile
+index 0e9b20e799d0..63484f145bb9 100644
+--- a/drivers/usb/cdns3/Makefile
++++ b/drivers/usb/cdns3/Makefile
+@@ -3,12 +3,14 @@
+ CFLAGS_cdns3-trace.o				:= -I$(src)
+ CFLAGS_cdnsp-trace.o				:= -I$(src)
  
- imx93-9x9-qsb-can1-dtbs += imx93-9x9-qsb.dtb imx93-9x9-qsb-can1.dtbo
-diff --git a/arch/arm64/boot/dts/freescale/imx91-var-dart-sonata.dts b/arch/arm64/boot/dts/freescale/imx91-var-dart-sonata.dts
-new file mode 100644
-index 000000000000..b3c74feaf644
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx91-var-dart-sonata.dts
-@@ -0,0 +1,498 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Variscite Sonata carrier board for DART-MX91
-+ *
-+ * Link: https://variscite.com/carrier-boards/sonata-board/
-+ *
-+ * Copyright (C) 2025 Variscite Ltd. - https://www.variscite.com/
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx91-var-dart.dtsi"
-+
-+/ {
-+	model = "Variscite DART-MX91 on Sonata-Board";
-+	compatible = "variscite,var-dart-mx91-sonata",
-+		     "variscite,var-dart-mx91",
-+		     "fsl,imx91";
-+
-+	aliases {
-+		ethernet0 = &eqos;
-+		ethernet1 = &fec;
-+		gpio0 = &gpio1;
-+		gpio1 = &gpio2;
-+		gpio2 = &gpio3;
-+		i2c0 = &lpi2c1;
-+		i2c1 = &lpi2c2;
-+		i2c2 = &lpi2c3;
-+		mmc0 = &usdhc1;
-+		mmc1 = &usdhc2;
-+		serial0 = &lpuart1;
-+		serial1 = &lpuart2;
-+		serial2 = &lpuart3;
-+		serial3 = &lpuart4;
-+		serial4 = &lpuart5;
-+		serial5 = &lpuart6;
-+	};
-+
-+	chosen {
-+		stdout-path = &lpuart1;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-home {
-+			label = "Home";
-+			linux,code = <KEY_HOME>;
-+			gpios = <&pca6408_1 4 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-up {
-+			label = "Up";
-+			linux,code = <KEY_UP>;
-+			gpios = <&pca6408_1 5 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-down {
-+			label = "Down";
-+			linux,code = <KEY_DOWN>;
-+			gpios = <&pca6408_1 6 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+
-+		button-back {
-+			label = "Back";
-+			linux,code = <KEY_BACK>;
-+			gpios = <&pca6408_1 7 GPIO_ACTIVE_LOW>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+
-+		led-emmc {
-+			label = "eMMC";
-+			gpios = <&pca6408_2 7 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc0";
-+		};
-+	};
-+
-+	reg_vref_1v8: regulator-adc-vref {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vref_1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	reg_usdhc2_vmmc: regulator-vmmc-usdhc2 {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VDD_SD2_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio4 28 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		off-on-delay-us = <20000>;
-+	};
-+
-+	reserved-memory {
-+		ranges;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			alloc-ranges = <0 0x80000000 0 0x40000000>;
-+			reusable;
-+			size = <0 0x10000000>;
-+			linux,cma-default;
-+		};
-+	};
-+};
-+
-+&adc1 {
-+	vref-supply = <&reg_vref_1v8>;
-+	status = "okay";
-+};
-+
-+/* Use external instead of internal RTC */
-+&bbnsm_rtc {
-+	status = "disabled";
-+};
-+
-+&eqos {
-+	mdio {
-+		ethphy1: ethernet-phy@1 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <1>;
-+			reset-gpios = <&pca6408_2 0 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <15000>;
-+			reset-deassert-us = <100000>;
-+
-+			leds {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				led@0 {
-+					reg = <0>;
-+					color = <LED_COLOR_ID_YELLOW>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+
-+				led@1 {
-+					reg = <1>;
-+					color = <LED_COLOR_ID_GREEN>;
-+					function = LED_FUNCTION_LAN;
-+					linux,default-trigger = "netdev";
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_fec>;
-+	pinctrl-1 = <&pinctrl_fec_sleep>;
-+	/*
-+	 * The required RGMII TX and RX 2ns delays are implemented directly
-+	 * in hardware via passive delay elements on the SOM PCB.
-+	 * No delay configuration is needed in software via PHY driver.
-+	 */
-+	phy-mode = "rgmii";
-+	phy-handle = <&ethphy1>;
-+	status = "okay";
-+};
-+
-+&flexcan1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	status = "okay";
-+};
-+
-+&lpi2c1 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep", "gpio";
-+	pinctrl-0 = <&pinctrl_lpi2c1>;
-+	pinctrl-1 = <&pinctrl_lpi2c1_gpio>;
-+	pinctrl-2 = <&pinctrl_lpi2c1_gpio>;
-+	scl-gpios = <&gpio1 0 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio1 1 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	pca6408_1: gpio@20 {
-+		compatible = "nxp,pcal6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	pca6408_2: gpio@21 {
-+		compatible = "nxp,pcal6408";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	pca9534: gpio@22 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <10 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+	st33ktpm2xi2c: tpm@2e {
-+		compatible = "st,st33ktpm2xi2c", "tcg,tpm-tis-i2c";
-+		reg = <0x2e>;
-+	};
-+
-+	/* Capacitive touch controller */
-+	ft5x06_ts: touchscreen@38 {
-+		compatible = "edt,edt-ft5206";
-+		reg = <0x38>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_captouch>;
-+		reset-gpios = <&pca6408_2 4 GPIO_ACTIVE_LOW>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+		wakeup-source;
-+	};
-+
-+	/* USB Type-C Controller */
-+	typec@3d {
-+		compatible = "nxp,ptn5150";
-+		reg = <0x3d>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_extcon>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <29 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		port {
-+			typec1_dr_sw: endpoint {
-+				remote-endpoint = <&usb1_drd_sw>;
-+			};
-+		};
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+	};
-+};
-+
-+/* Console (J10) */
-+&lpuart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* Header (J12.4, J12.6) */
-+&lpuart6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart6>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	dr_mode = "otg";
-+	hnp-disable;
-+	srp-disable;
-+	adp-disable;
-+	usb-role-switch;
-+	disable-over-current;
-+	samsung,picophy-pre-emp-curr-control = <3>;
-+	samsung,picophy-dc-vol-level-adjust = <7>;
-+	status = "okay";
-+
-+	port {
-+		usb1_drd_sw: endpoint {
-+			remote-endpoint = <&typec1_dr_sw>;
-+		};
-+	};
-+};
-+
-+&usbotg2 {
-+	disable-over-current;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+/* SD */
-+&usdhc2 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-3 = <&pinctrl_usdhc2_sleep>, <&pinctrl_usdhc2_gpio_sleep>;
-+	cd-gpios = <&gpio3 0 GPIO_ACTIVE_LOW>;
-+	vmmc-supply = <&reg_usdhc2_vmmc>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			/* GPIO Expanders shared IRQ */
-+			MX91_PAD_PDM_BIT_STREAM1__GPIO1_IO10            0x31e
-+		>;
-+	};
-+
-+	pinctrl_captouch: captouchgrp {
-+		fsl,pins = <
-+			MX91_PAD_CCM_CLKO2__GPIO3_IO27			0x31e
-+		>;
-+	};
-+
-+	pinctrl_extcon: extcongrp {
-+		fsl,pins = <
-+			MX91_PAD_CCM_CLKO4__GPIO4_IO29			0x31e
-+		>;
-+	};
-+
-+	pinctrl_fec: fecgrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET2_RD0__ENET2_RGMII_RD0             0x57e
-+			MX91_PAD_ENET2_RD1__ENET2_RGMII_RD1             0x57e
-+			MX91_PAD_ENET2_RD2__ENET2_RGMII_RD2             0x57e
-+			MX91_PAD_ENET2_RD3__ENET2_RGMII_RD3             0x37e
-+			MX91_PAD_ENET2_RXC__ENET2_RGMII_RXC             0x5fe
-+			MX91_PAD_ENET2_RX_CTL__ENET2_RGMII_RX_CTL       0x57e
-+			MX91_PAD_ENET2_TD0__ENET2_RGMII_TD0             0x57e
-+			MX91_PAD_ENET2_TD1__ENET2_RGMII_TD1             0x57e
-+			MX91_PAD_ENET2_TD2__ENET2_RGMII_TD2             0x57e
-+			MX91_PAD_ENET2_TD3__ENET2_RGMII_TD3             0x57e
-+			MX91_PAD_ENET2_TXC__ENET2_RGMII_TXC             0x5fe
-+			MX91_PAD_ENET2_TX_CTL__ENET2_RGMII_TX_CTL       0x57e
-+		>;
-+	};
-+
-+	pinctrl_fec_sleep: fecsleepgrp {
-+		fsl,pins = <
-+			MX91_PAD_ENET2_RD0__GPIO4_IO24                  0x51e
-+			MX91_PAD_ENET2_RD1__GPIO4_IO25                  0x51e
-+			MX91_PAD_ENET2_RD2__GPIO4_IO26                  0x51e
-+			MX91_PAD_ENET2_RD3__GPIO4_IO27                  0x31e
-+			MX91_PAD_ENET2_RXC__GPIO4_IO23                  0x51e
-+			MX91_PAD_ENET2_RX_CTL__GPIO4_IO22               0x51e
-+			MX91_PAD_ENET2_TD0__GPIO4_IO19                  0x51e
-+			MX91_PAD_ENET2_TD1__GPIO4_IO18                  0x51e
-+			MX91_PAD_ENET2_TD2__GPIO4_IO17                  0x51e
-+			MX91_PAD_ENET2_TD3__GPIO4_IO16                  0x51e
-+			MX91_PAD_ENET2_TXC__GPIO4_IO21                  0x51e
-+			MX91_PAD_ENET2_TX_CTL__GPIO4_IO20               0x51e
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX91_PAD_PDM_CLK__CAN1_TX			0x139e
-+			MX91_PAD_PDM_BIT_STREAM0__CAN1_RX		0x139e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c1: lpi2c1grp {
-+		fsl,pins = <
-+			MX91_PAD_I2C1_SCL__LPI2C1_SCL			0x40000b9e
-+			MX91_PAD_I2C1_SDA__LPI2C1_SDA			0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c1_gpio: lpi2c1-gpiogrp {
-+		fsl,pins = <
-+			MX91_PAD_I2C1_SCL__GPIO1_IO0			0x31e
-+			MX91_PAD_I2C1_SDA__GPIO1_IO1			0x31e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c7: lpi2c7grp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO07__LPI2C7_SCL			0x40000b9e
-+			MX91_PAD_GPIO_IO06__LPI2C7_SDA			0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_lpi2c7_gpio: lpi2c7-gpiogrp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO07__GPIO2_IO7			0x31e
-+			MX91_PAD_GPIO_IO06__GPIO2_IO6			0x31e
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX91_PAD_CCM_CLKO3__GPIO4_IO28			0x31e
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtcgrp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO02__GPIO2_IO2			0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX91_PAD_UART1_RXD__LPUART1_RX			0x31e
-+			MX91_PAD_UART1_TXD__LPUART1_TX			0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart6: uart6grp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO05__LPUART6_RX			0x31e
-+			MX91_PAD_GPIO_IO04__LPUART6_TX			0x31e
-+		>;
-+	};
-+
-+	pinctrl_uart7: uart7grp {
-+		fsl,pins = <
-+			MX91_PAD_GPIO_IO09__LPUART7_RX			0x31e
-+			MX91_PAD_GPIO_IO08__LPUART7_TX			0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CLK__USDHC2_CLK			0x1582
-+			MX91_PAD_SD2_CMD__USDHC2_CMD			0x1382
-+			MX91_PAD_SD2_DATA0__USDHC2_DATA0		0x1382
-+			MX91_PAD_SD2_DATA1__USDHC2_DATA1		0x1382
-+			MX91_PAD_SD2_DATA2__USDHC2_DATA2		0x1382
-+			MX91_PAD_SD2_DATA3__USDHC2_DATA3		0x1382
-+			MX91_PAD_SD2_VSELECT__USDHC2_VSELECT		0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CLK__USDHC2_CLK			0x158e
-+			MX91_PAD_SD2_CMD__USDHC2_CMD			0x138e
-+			MX91_PAD_SD2_DATA0__USDHC2_DATA0		0x138e
-+			MX91_PAD_SD2_DATA1__USDHC2_DATA1		0x138e
-+			MX91_PAD_SD2_DATA2__USDHC2_DATA2		0x138e
-+			MX91_PAD_SD2_DATA3__USDHC2_DATA3		0x138e
-+			MX91_PAD_SD2_VSELECT__USDHC2_VSELECT		0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CLK__USDHC2_CLK			0x15fe
-+			MX91_PAD_SD2_CMD__USDHC2_CMD			0x13fe
-+			MX91_PAD_SD2_DATA0__USDHC2_DATA0		0x13fe
-+			MX91_PAD_SD2_DATA1__USDHC2_DATA1		0x13fe
-+			MX91_PAD_SD2_DATA2__USDHC2_DATA2		0x13fe
-+			MX91_PAD_SD2_DATA3__USDHC2_DATA3		0x13fe
-+			MX91_PAD_SD2_VSELECT__USDHC2_VSELECT		0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_sleep: usdhc2sleepgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CLK__GPIO3_IO1			0x51e
-+			MX91_PAD_SD2_CMD__GPIO3_IO2			0x51e
-+			MX91_PAD_SD2_DATA0__GPIO3_IO3			0x51e
-+			MX91_PAD_SD2_DATA1__GPIO3_IO4			0x51e
-+			MX91_PAD_SD2_DATA2__GPIO3_IO5			0x51e
-+			MX91_PAD_SD2_DATA3__GPIO3_IO6			0x51e
-+			MX91_PAD_SD2_VSELECT__GPIO3_IO19		0x51e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CD_B__GPIO3_IO0			0x31e
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio_sleep: usdhc2gpiosleepgrp {
-+		fsl,pins = <
-+			MX91_PAD_SD2_CD_B__GPIO3_IO0			0x51e
-+		>;
-+	};
-+};
--- 
-2.47.3
+-cdns-usb-common-y				:= core.o drd.o cdns3-plat.o
++cdns-usb-common-y				:= core.o drd.o
+ 
+ ifeq ($(CONFIG_USB),m)
+ obj-m						+= cdns-usb-common.o
++obj-m						+= cdns3-plat.o
+ else
+ obj-$(CONFIG_USB_CDNS_SUPPORT)			+= cdns-usb-common.o
++obj-$(CONFIG_USB_CDNS_SUPPORT)			+= cdns3-plat.o
+ endif
+ 
+ cdns-usb-common-$(CONFIG_USB_CDNS_HOST) 	+= host.o
 
+Besides, would you please comment [1], the key point is could we
+keep one platform driver with one compatible string, and cdns3 or cdnsp
+platform is decided at runtime?
+
+[1] https://www.spinics.net/lists/kernel/msg6072480.html
+
+-- 
+
+Best regards,
+Peter
 
