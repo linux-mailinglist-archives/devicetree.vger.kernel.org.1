@@ -1,192 +1,157 @@
-Return-Path: <devicetree+bounces-270575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270574-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLTuCn34pmk7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:04:29 +0100
+	id IINGIML3pmmgawAAu9opvQ
+	(envelope-from <devicetree+bounces-270574-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:01:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 812C91F1FD4
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:04:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF8671F1F00
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:01:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EAA7B3134453
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:56:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0436E309E3CF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FD93CF66C;
-	Tue,  3 Mar 2026 14:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD2203DEAD5;
+	Tue,  3 Mar 2026 14:55:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="Dj6VtwQ/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xGhTW7gO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF8A63CB;
-	Tue,  3 Mar 2026 14:56:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 597863D5651
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772549774; cv=none; b=KiGMqpj0xEQI5201mlao+/q1RTHHoG9uqbIh2YNQe4cl4h71DyAfbjpVYM7GfI3ZyTlf69ChhjaPAeYGNzd4uM+GRyD8P3cZcNQnVye97WHiuR4U8edg7/5bO4Y/hzlRgseCngS/xlM973x6H2dboEsL+jiKiEsDcseeulXgIpc=
+	t=1772549759; cv=none; b=pJpqzXAHRJx+sqJ2SObhxuA+irHBeRw0j2XbT9po4bhZi6tmBfGdnkD/A7dTZDjnH3qXPsSBGndwaskzLjdDz5+E6YeZI5OT01HbZDD6JukTkXGf7YbdfFkmtrZSh7xdaaDFtmLDuz7gtzZmIdGsSPXX6yUXm2vQTJwD1vfLZ4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772549774; c=relaxed/simple;
-	bh=QeieHzJfWDKmuoAxOflh+pN/RkUk+FjrKgWD9Z04g50=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=uzJ6UtBp/FmNkL6M1OrTOSuWGmZc9JTOohVn2ZW9a+fOvhpxKJV6d6Rir4GpPvTkpXaMENoYwoMqyz+fx5JQ0sP6ftY/n7hOrmNTtsluYglakEvuo4Ad03Edf4NG2H+5X9XxcePDRLIZycS5BUPimZ9vTyfm0PZM/lzxg+XQYlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=Dj6VtwQ/; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=cTIgmgb/ImQ+v4+VhZg8vRmsZhPrw5oDndGDTm3rYyU=; b=Dj6VtwQ/vo5l9HiQZuUUD75aA3
-	Vh/txUhdj0g+wsjdCXC/Kiz35j6z4cLxYbwnDvT5NZAH6DyyTFFxF1B7t+uW8+XBJROxShyx50ZTa
-	JwGmkaHJkyrGMQqcsBuxBVRtgxrtxOC9bT60v4kp233ssO1FI4Zwd25niUMiNVzbsTvs=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:38300 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vxR9q-0000YP-RN; Tue, 03 Mar 2026 09:55:35 -0500
-Date: Tue, 3 Mar 2026 09:55:33 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, shawnguo@kernel.org,
- laurent.pinchart+renesas@ideasonboard.com, antonin.godard@bootlin.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>
-Message-Id: <20260303095533.1c6dff174f6c9d162d3e3303@hugovil.com>
-In-Reply-To: <20260303-rational-thundering-firefly-9dcaa9@quoll>
-References: <20260302190953.669325-1-hugo@hugovil.com>
-	<20260302190953.669325-5-hugo@hugovil.com>
-	<20260303-rational-thundering-firefly-9dcaa9@quoll>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772549759; c=relaxed/simple;
+	bh=hrLPfwP2F8z17FAq2PhT8sl4gqA6PODrX3gTp54f+Fc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XmMp37gxjH0HLjaWWyeLlSshNvKkhugAexG72Rz3jn2MfDC5YB02JusHQSasxl3F1Thvg406ZW6oFrfJeYkV5t763ZMWsb8FPlR8WetcCwRHhibcch5xScM4FkqM1KIl+OQ8fdVVwhJPiFgt83/Q62EKYMJbp14hWkRazoFU9hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xGhTW7gO; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-480706554beso63892155e9.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:55:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772549757; x=1773154557; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S+MDG+fHqbczardpdRalYE3e5+KsIfu23xnB/cF6drI=;
+        b=xGhTW7gO9H7ydAZ11Q9WXYVBEssnfH0ed4MCMubDHhVRtUe9Iz3Mqiahk8SetgBl1h
+         pKK64nUDWNcUiNmlkjFS8vns8/HqqEr6I7Q93am02skUMnvzOGazwx2hCzV0vmZ0EIma
+         1CInPOEhYO1fiYUcWTR4PsQB6E+x5JMj62UeagGNYDnB//tLVEt1OczqN4Db9WmmbLzh
+         CD6Gx2h5ZrZTPIO7g6ktLhA70wyKSNe5cmEOYchoxpUFKTPk9di1zP8jSDo4fjOOIjCn
+         MeEPD1zTsHhyZ3m7RnWWuWi8GwK4MEI78GCNsIFrgtCPCCRE58SRiFlKblgZbMPD8A+h
+         NQqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772549757; x=1773154557;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S+MDG+fHqbczardpdRalYE3e5+KsIfu23xnB/cF6drI=;
+        b=X/HNR8Az4LvqPL/Rrxu579jqFNHqam8j+nm2L7WhNG4Pb0MQiC2Jr5fTumNFAxmU69
+         6She1pCEaxhpFDgqu3KOaZG4EIs+6yYUSCzRK3QsGjBvAONYRjM6QSKsO2gzguCfjsLZ
+         EFK41jv8051PafCbLoQqARHsLPQbVl9Aglfe1QcaL9ahz9QMaF/06A+KIF4HKFY4YzT9
+         tvSfIfjmuMHQvB4P0g57WNcloJXRtwzlrX/Kk8ky23oVDRxEKtguDzQaowChWyAr9T1n
+         MGB9omYeNF1a3Oh2FcGGmwoKOc7C3Tf7BUqnmrCF02oll0uQ2F5SRTjWtAxV7gDCsRdB
+         q7Xw==
+X-Forwarded-Encrypted: i=1; AJvYcCWbHXT3JWHUyzkZ8s3JWe2nMaiUWXdpjFtuXmoWC4EeWrAkid1fX9enLvArK25qqSZggWsed1URKgfV@vger.kernel.org
+X-Gm-Message-State: AOJu0YypmqSNIGvasKmpUwTZxdCilWuDD0oi7s2gKLQsf2U5XVq56sF+
+	v7MzF3Z6P6Uupcd25gSZnQFbynepkcHm9h3LWM4jqZ0LJGyyH4OYAtNCI2CmbwGWIfo=
+X-Gm-Gg: ATEYQzwMnwZEH5iKRXWQtyz393WjO1IhIohlxL9cSc0L4Qyw1XulnG19P9FfUG8KlJX
+	BqXXcHWxpNU7H23jpvKVLjEl3Gy6FCTTt8M8IHYf5HYoOb/vI2UqIkwa2jQCcijOx8zUbli9AdH
+	WptbSj746CDuvUk4ieE9Oqf7ek3IJcSBqbq3Qjsg18j1qgnxsuckeOuP5ncLLkietHWqde9gEU1
+	8GIqv5Y4yOkBJ6Ag/qztgUg9sHH26oVFC4tmdyVzkQfzzrmWxNsiKl7zaQzUdfZAWGwbVgPFfUL
+	jMz5u+2Eu+luSnQCB+Lt+zrWee6/KrfD/cr2a6k0E1uByIdvo7JrHr/4z2d8C/6YfpcWdt25WLv
+	mWFsDpA90IlgE3DXihVVbMd205cNPD3t6mZUWbBxVjijrLn5pRHQilcrXe2pvvfEe+ID5T0sWCG
+	MAEM4HRMr+iafyL9cI6X9oaFC/msWa0xmxT7asQzIaq7m/ys2eZoy7EupFhDrT/8NLk7q12OWxb
+	Fs=
+X-Received: by 2002:a05:600c:46d5:b0:483:5310:dc67 with SMTP id 5b1f17b1804b1-483c9bbbe77mr264243655e9.20.1772549756678;
+        Tue, 03 Mar 2026 06:55:56 -0800 (PST)
+Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bd6f3124sm482928495e9.1.2026.03.03.06.55.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Mar 2026 06:55:56 -0800 (PST)
+Message-ID: <1082062b-87a7-4254-b5e7-2dc3769a619f@linaro.org>
+Date: Tue, 3 Mar 2026 14:56:08 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bryan O'Donoghue <bod@nxsw.ie>, Bryan O'Donoghue <bod@kernel.org>,
+ Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260226-x1e-csi2-phy-v3-0-11e608759410@linaro.org>
+ <20260226-x1e-csi2-phy-v3-1-11e608759410@linaro.org>
+ <c85fe457-c140-441c-93ed-342dce32e604@oss.qualcomm.com>
+ <676e2a9f-d274-40fa-988f-e9388ba40f71@nxsw.ie>
+ <04f22394-2dbb-4b7b-bce3-9b41ebfb7709@oss.qualcomm.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <04f22394-2dbb-4b7b-bce3-9b41ebfb7709@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.8 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH 04/14] dt-bindings: arm: fsl: change incorrect
- VAR-SOM-6UL model name
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: 812C91F1FD4
+X-Rspamd-Queue-Id: EF8671F1F00
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270575-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,nxp.com,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270574-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,variscite.com:url,phycore-i.mx:url,hugovil.com:dkim,hugovil.com:mid,dimonoff.com:email]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
-
-On Tue, 3 Mar 2026 08:10:51 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On Mon, Mar 02, 2026 at 02:03:40PM -0500, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > There is no Variscite module named VAR-SOM-MX6UL.
+On 03/03/2026 12:34, Konrad Dybcio wrote:
+> That depends on the use case.
 > 
-> VAR-SOM-MX6? And there is.
-> https://dev.variscite.com/var-som-mx6/
+> MXA is always-on (that's the 'A' in the name, as opposed to 'C'
+> for 'Collapsible'), but it's not always at the required performance
+> state (svs, nom, etc.). For some clock controllers specifically, there
+> is no need to put them into the picture, as the rail may be unconnected
+> altogether, or only used for some retention mechanisms (which only
+> require the rail to be enabled and nothing more)
 
-Ok,
-I was confused by the "const: variscite,var-som-imx6ul" and thought the
-description was not matching.
+Does this rail have an OPP table you can share ?
 
-But there is still no module named "VAR-SOM-MX6UL", but "VAR-SOM-MX6",
-with different CPU variants like UL, ULL, etc. So I will modify the
-patch to reflect that.
-
-In fact, I will modify the description to reflect that it supports both
-VAR-SOM-MX6 and VAR-SOM-6UL modules.
-
-
-> 
-> > 
-> > The official name from the manufacturer is VAR-SOM-6UL.
-> > 
-> > Change SOM model name to VAR-SOM-6UL to reduce confusion.
-> 
-> That's just one paragraph. Please write concise commit msgs so reading
-> them will be fast and easy.
-
-Ok, no problem.
-
-
-> 
-> Not a sentence.
-> 
-> By a sentence.
-> 
-> In multiple steps.
-> 
-> > 
-> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 5716d701292cf..99dc1b3f1ba92 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -688,7 +688,7 @@ properties:
-> >            - const: phytec,imx6ul-pcl063   # PHYTEC phyCORE-i.MX 6UL
-> >            - const: fsl,imx6ul
-> >  
-> > -      - description: i.MX6UL Variscite VAR-SOM-MX6 Boards
-> > +      - description: i.MX6UL Variscite VAR-SOM-6UL Boards
-> >          items:
-> >            - const: variscite,mx6ulconcerto
-> >            - const: variscite,var-som-imx6ul
-> > -- 
-> > 2.47.3
-> > 
-> 
-
-
--- 
-Hugo Villeneuve
+---
+bod
 
