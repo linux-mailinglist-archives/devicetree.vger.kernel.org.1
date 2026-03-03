@@ -1,160 +1,149 @@
-Return-Path: <devicetree+bounces-270577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCJ9Kyr6pmk7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270577-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:11:38 +0100
+	id 6NtRK5X7pmk7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:17:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E2A11F223C
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:11:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43E791F2580
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:17:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2DC06305FDB2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:00:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E8A7E30B2CB7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:10:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87F0E48034F;
-	Tue,  3 Mar 2026 15:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64ECC48124D;
+	Tue,  3 Mar 2026 15:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b3XT6QNq"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="UL0NOTKK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17BF939EF27
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88925480952;
+	Tue,  3 Mar 2026 15:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772550001; cv=none; b=M4F+PvgPXhVmKkwk6yv8XAw9SaSo5aB8elrIHqKaTjjD4WVma17YDaj3MWHnUqzqz/1bbgpR8CpfVei2uCXnjG9j2BHPEUnedHvF9uzL+cHOuXaAbTKd6yVh9YHoEuKbwCcsFH4LGxtgfRaEm5LmHrQAFxr+Hdr8K/PUFMswcqM=
+	t=1772550639; cv=none; b=HuOk0M61P7gHaw+HcuoLgNCWiJFQMj9qrBGdUzPfkKX2ffnupp6pdBiQ0obY9Itl1ROPHApz8CDaHH+DcffJdbTvY9rZgayKmeoOTK3icsC19/rzBGinI93QWTgDK3ht0PAbOqq34Zx/ZkZjvZkJtg+KbLbp4MJ9W9D5Qv7Dl7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772550001; c=relaxed/simple;
-	bh=uEQgHtY9MZCTD725CBYZMjAHc2k6m1ThrmWooqXIArA=;
+	s=arc-20240116; t=1772550639; c=relaxed/simple;
+	bh=kmLW65LGn3lj3fNViRHixN/BqzcnjNHXl6jmk7uSGv8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LPIy8d720INkiMHdDFJeYwb6Miz9TbHoSG3gkNNzxNbk30NP7babOAsKsDRYEhBaqFe8u7UefArDgM+m7nG1OLqw7zw9rC9XptnNetxby92ZUZYVWZRQwmBjFzcH1fyuHKLf75Xg42kYL0ntt3zuaG3lWuW9HS4kPrYZY853zuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b3XT6QNq; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4830b67aa6bso5959315e9.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:59:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772549998; x=1773154798; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=GiLKMREsyicYQSFfLMBTINVcnbX3xGOhl62R7/wSDcA=;
-        b=b3XT6QNq8LwnfX7TcL0c6hhesFGeXATnyylbIayNVpHV9Qpms8ue4x/o0igtFUehNA
-         4P6ggKWvEHqcaim0dx8zOJ2sRmM4hWHro6CXii+dRSGecd/xkzYozJ7oStqXkSxq0uS+
-         nq+kGPJhnTEOtUXE/YbJP2+6sfxOMRoghnFVOCXDfUJoHJ8reZReUmrnXLiA++APh/+c
-         Uyphqv7EmZbiWcGlSxI+R96GCqleGE+HRDS9Vob8Yd+9lxQm8r5cmp6dRl+VxPPYNGhW
-         stMsm10Nw3ONdodWsHXwtiutYh8MVOBG3LE14X/xdam9EEzbGuSKFYnriWCsL1sX4dnB
-         DhuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772549998; x=1773154798;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GiLKMREsyicYQSFfLMBTINVcnbX3xGOhl62R7/wSDcA=;
-        b=GUQM6wbXJhnGxut3+cLxasN65qhfROTxtX6Aks8Wru0SVgSh0BYZ7ohH/Sja6Krap9
-         FqqqvuNokJxznhG1vDLDnsrKCDLMJynHYK1cdE0w3nuAc4c2EiAvvVQYhUlW5tTRrIKx
-         mbKS1NBE31qgXJLJmWr/VuHBuv5KwWPI9DaWnvsA99GUT4v+/26L0bMyZNqbS6BcE99b
-         Pi2jucVgYJtPzwsqqKUL6JQRnWCbvCtXcBPmpuJ9k4hd7KSTl72YpZ6Izip4bbHHnhUa
-         h64tMGLcRppDwy0Jkmi3qwZSMC0EX9+VLkhWt5i0apLEDyudmNbjLshgnmtNWVpB/yI3
-         LcWw==
-X-Forwarded-Encrypted: i=1; AJvYcCW82Lq6WN8QYphAXiWmH6aGggTDNfp7z2baymXyeadmK84YHG+ZE9xEg/0WZPFbZKXMwXW5+3oSYUru@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyv8BDMfvS0nE/sWZdRyMYpGKNrLS3xVp5mG5M2k6KPof+sHEvV
-	1Alm/NFhHcDL77s/K8MQp2bSyZhx1V0BbX85tfoQClxx6/tyZrOzLgsx
-X-Gm-Gg: ATEYQzyDBoit6cnMvNAQ7RnsTEr5Buipl0HcVHYoAdULPuLnxSyTUEs9FKFivRKfGOG
-	68Ybpb3ZiBDchYkDwKsqJ9WLSl0qxMpI0h2PR3CHKfZ1MdCv7i6VqlulHFRh8ePkBebDLa2POnM
-	fV0vqhOwTW/U3a2k0XgrJmKFQlAtj6xhnnMKJ+pk2kvAMHnXUnw/HXFaSRYW+1MpnC+egU34zEf
-	WvCKLpOLmPywAe1nK8lRnSvRg9uixDb6wu9HsfNQwLh5BxVlPaK0H9sS9NFMe68d8iC0h7daYij
-	tV2+EH001dtcZRK+L2x9fHUXj/MPjL1QtHviH851rrO5IaSsMSusEQNUtf1GwB1v2Vve5MuAwdq
-	VoJOO9WJ2ru+fBfJpfeUEyokP0nEgZkYrqmxMljOP9Z7cVCPLcOjg4wX6hdVxqmVjsY9TMy8ZyZ
-	5zNNjbhEomWpKlxyo=
-X-Received: by 2002:a05:600c:5249:b0:477:a478:3f94 with SMTP id 5b1f17b1804b1-483c9c29b66mr173293595e9.5.1772549998257;
-        Tue, 03 Mar 2026 06:59:58 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d00e:3600:2472:8e4a:cf12:bb30])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483bd6f2f88sm459994135e9.2.2026.03.03.06.59.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 06:59:57 -0800 (PST)
-Date: Tue, 3 Mar 2026 16:59:55 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jens Emil Schulz =?utf-8?Q?=C3=98stergaard?= <jensemil.schulzostergaard@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=M3i/jXTRWRYS6VkY2+j26Myk6XBlnJZtsvjRudkTPqiy01D2OD/2qSjNWcXGhKUCXk8SY4MftISS3mf3I45oB/fsbJqRlC/Y9KjGs+WxrsNy3dhNE2XT6GGLzGhCQRC1ebsiu/aAbbIfgMsIq80ePwtkrDCPJWKL6YLG7EDzsro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=UL0NOTKK; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=hatu/QAzhv1FKvPqz3f9cN8vip3SjPUH9A/AXblImUk=; b=UL0NOTKKFgwr5abFCaIzbuqIrF
+	j52NEejCHRQi6r0gZjeTvlnUWYqC8VMgDc0UTOUVlixXNyZBnWpZ0bysqEu3J/ie0gGxZi/EiZd31
+	NGN7ZlDyI89p53kvfzC3iHz6vG075v8soCLh3FazqxqA7zMMiWIco7dm5gwC2m7sqAtucsSEMXe3J
+	mN1Tq9LUHE12fgtSouBqlcDjg0ax8waT0o1pk1FQXMJcEYmDWnEls2bEWD2Oi1icPfjxWJjrv7n8e
+	Z1k2Ai9Hyl0iR9dy6vD38xJstYroFI5k7gdq44WuHIJKODU9kHZE5I1sM5LHR3x/EvllWh8UbMT0Q
+	bJOdXeQw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:34698)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vxRO4-000000005Ew-2Bvk;
+	Tue, 03 Mar 2026 15:10:16 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vxRO0-0000000071d-45k0;
+	Tue, 03 Mar 2026 15:10:13 +0000
+Date: Tue, 3 Mar 2026 15:10:12 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 6/8] net: dsa: lan9645x: add vlan support
-Message-ID: <20260303145955.s4kjiwjv6ahn6zph@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-6-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-6-bff8ca1396f5@microchip.com>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/2] net: sfp: Describe and handle regulators
+Message-ID: <aab51KbpIq72wtSU@shell.armlinux.org.uk>
+References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260303-dsa_lan9645x_switch_driver_base-v1-6-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-6-bff8ca1396f5@microchip.com>
-X-Rspamd-Queue-Id: 0E2A11F223C
+In-Reply-To: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Rspamd-Queue-Id: 43E791F2580
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270577-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-270578-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_SPAM(0.00)[0.259];
 	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,bridge_vlan_mcast.sh:url,bridge_vlan_unaware.sh:url,bridge_vlan_change_awareness.sh:url,microchip.com:email,bridge_vlan_aware.sh:url]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 01:22:32PM +0100, Jens Emil Schulz Østergaard wrote:
-> Add support for vlanaware bridge. We reserve vid 4095 for standalone
-> mode, to implement fdb-isolation. An vlan-unaware bridge uses vid 0.
+On Tue, Mar 03, 2026 at 02:54:25PM +0100, Romain Gantois wrote:
+> Hi everyone,
 > 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
-> ---
+> This series describes regulators supplying the VccT and VccR pins of an SFP
+> cage or soldered-down transceiver.
+> 
+> These regulators can then be turned on only when the SFP device is probed,
+> thus saving power on systems which only load SFP cage support at certain
+> times, or load SFP device descriptions via device tree overlays.
+> 
+> Please let me know what you think.
 
-Have you run these from tools/testing/selftests/net/forwarding/? It
-would help to know where to look closer for potential problems.
+As ever, I don't want to be adding support for stuff into mainline
+which doesn't ever get used - historically, we've had a lot of that.
+So, any patch set which adds some kind of facility like this needs to
+be accompanied by a user of it.
 
-bridge_vlan_aware.sh
-bridge_vlan_change_awareness.sh
-bridge_vlan_mcast.sh
-bridge_vlan_unaware.sh
+This is especially true in this case, because I want to see why you're
+wanting to have two regulators, when INF-8074 suggests that both VccT
+and VccR should be derived from the same supply. The reason the
+modules have separate supplies for the transmitter and receiver is
+because the host side has the supply filtering networks to ensure
+cross-talk between each is kept to a minimum.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
