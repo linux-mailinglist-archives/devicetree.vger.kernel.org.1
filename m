@@ -1,241 +1,481 @@
-Return-Path: <devicetree+bounces-270342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270345-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDdaIxqXpmnmRQAAu9opvQ
-	(envelope-from <devicetree+bounces-270342-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:08:58 +0100
+	id cNhMKdaWpmnmRQAAu9opvQ
+	(envelope-from <devicetree+bounces-270345-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:07:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA9B81EA913
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:08:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F1381EA8D1
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:07:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E079305E333
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:06:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 889E43032D1C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F943386C08;
-	Tue,  3 Mar 2026 08:06:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D123876C7;
+	Tue,  3 Mar 2026 08:06:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A86F382377
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 08:06:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88429386C34;
+	Tue,  3 Mar 2026 08:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772525170; cv=none; b=aLNH6nJh6ASJmZZPmgxtkVCYGHGOSM4P2QGoD3hB5v5QQ8uN3jy9gz0vPcLkZLl8WbSxYjsZ4ZEAoPGMieGRx/InZPaHAvx6K/2TjdfA7rU7DAEJVxdmRRby9Joi0/CPnQhQPFABvQHu4dfLKiMOL0eTtUj2ux5qGGchrJD/zGo=
+	t=1772525216; cv=none; b=Bv01Osxob9UxHoO2mD4wAvz0iaMjaww7ztqmdn2z+qBtP4m3S0CLYEZacrLmKIR1bXYMGSJsygg40SenfK3sSTKlIOSGKH+YNnBt0szdxk15r/xzNG4Wu/mgzzkTVOJdxsUFKzc3FHBJ3pDiuX41ogni8JLSreXX/R33AU9fwCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772525170; c=relaxed/simple;
-	bh=0GdfgMDV4ebHY8MXT4f/HTProAYyiFFJtMvorgsnlds=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O7UOS5l+1+WNpXE14jAOM47zxRLyt8y35+uLCValLMloPpMAPh00sMJjUpF8dGRDOhtAYxzCGK2ROEs+6Fhz5gYgKJuVRncPr8zRdy14Fr+70DxTBCykqRAhDGIReGatNr3XhYYe+9ay4Qx+1EoCdCXPtz5W36z1hWcRW9tW5zA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxKlG-0005ew-HV; Tue, 03 Mar 2026 09:05:46 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxKlB-003Vqs-2g;
-	Tue, 03 Mar 2026 09:05:43 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxKlD-0000000FzWF-07cc;
-	Tue, 03 Mar 2026 09:05:43 +0100
-Date: Tue, 3 Mar 2026 09:05:43 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, luca.ceresoli@bootlin.com, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, frank.li@nxp.com
-Subject: Re: [PATCH v10 2/3] drm/bridge: imx: Add i.MX93 parallel display
- format configuration support
-Message-ID: <jyawx2cllg2jecdvx6bdfv4qiinfiwb6cuuwdhditpr2g2evee@qiox37ahgczd>
-References: <20260302-v6-18-topic-imx93-parallel-display-v10-0-634fe2778c7a@pengutronix.de>
- <20260302-v6-18-topic-imx93-parallel-display-v10-2-634fe2778c7a@pengutronix.de>
- <d97a9c0c-bdda-466a-8131-73799cdb20cd@nxp.com>
+	s=arc-20240116; t=1772525216; c=relaxed/simple;
+	bh=4wYNLfY6sjphIB1eGDwCjsot5cs7HtXgdc/sRdiPhiU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Ks0MH+UBLDWCAofuWW8G8exKdNfj18O1b3oo2+h5okFjv5DW6+axNWtKT40KLv/eH1f+CmuIrQtRpc/691gp3TiSnTw1poJGG1pdQ2oKIsC8vK9QX547kKiUpwmOiu9x0/Umzv+YQb16ipu9cz8sC8rH+uf7yyPWSR2jTpk76GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgD3jHGPlqZpR0EFAA--.23230S2;
+	Tue, 03 Mar 2026 16:06:41 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	troy.mitchell@linux.dev,
+	bmasney@redhat.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	ganboing@gmail.com,
+	marcel@ziswiler.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v15 1/4] dt-bindings: clock: eswin: Documentation for eic7700 SoC
+Date: Tue,  3 Mar 2026 16:06:37 +0800
+Message-Id: <20260303080637.2100-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
+In-Reply-To: <20260303080513.2042-1-dongxuyang@eswincomputing.com>
+References: <20260303080513.2042-1-dongxuyang@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <d97a9c0c-bdda-466a-8131-73799cdb20cd@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: EA9B81EA913
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgD3jHGPlqZpR0EFAA--.23230S2
+X-Coremail-Antispam: 1UD129KBjvAXoW3ZF4UuF45ur18Zr13Xw15XFb_yoW8Wr4fWo
+	W8C3Zxu3yUKw1IvrsxGw1xX3yYkr47Jr1DXF13Xa4fKF1xJrnFkry8Jr40934ftryj9r90
+	kwsrKwn7ZrWY9FW7n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UjIYCTnIWjp_UUUYK7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E6xAIw20EY4v20xva
+	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
+	x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
+	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
+	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+	6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
+	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
+	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
+	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
+	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
+	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRENtxDUUUU
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-Rspamd-Queue-Id: 1F1381EA8D1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270342-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,bootlin.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-270345-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com,microchip.com];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[3.22.213.32:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.612];
+	NEURAL_HAM(-0.00)[-0.917];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:email,nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,linux.dev:email,devicetree.org:url,microchip.com:email,eswincomputing.com:mid,eswincomputing.com:email]
 X-Rspamd-Action: no action
 
-On 26-03-03, Liu Ying wrote:
-> On Mon, Mar 02, 2026 at 05:10:41PM +0100, Marco Felsch wrote:
-> > From: Liu Ying <victor.liu@nxp.com>
-> > 
-> > NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
-> > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
-> > field. Add a DRM bridge driver to support the display format configuration.
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > [m.felsch@pengutronix.de: port to v7.0-rc1]
-> > [m.felsch@pengutronix.de: add review feedback (Alexander)]
-> > [m.felsch@pengutronix.de: fix to short Kconfig description (checkpath)]
-> > [m.felsch@pengutronix.de: use "GPL" instead of "GPL v2" (checkpatch)]
-> > [m.felsch@pengutronix.de: add bus-width support]
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> >  drivers/gpu/drm/bridge/imx/Kconfig      |  11 ++
-> >  drivers/gpu/drm/bridge/imx/Makefile     |   1 +
-> >  drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 225 ++++++++++++++++++++++++++++++++
-> >  3 files changed, 237 insertions(+)
-> > 
-> 
-> [...]
-> 
-> > +static bool imx93_pdfc_bus_output_fmt_supported(const  u32 fmt)
-> 
-> As I mentioned in v9, can you drop const?
-> I don't think const is needed.
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
-It makes sense to spot failures early. Albeit this function is very
-small, the fmt shouldn't be changed and therefore needs to be const.
+Add device tree binding documentation for the ESWIN eic7700
+clock controller module.
 
-I forgot to add the double space fix though, thanks.
+Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Troy Mitchell <troy.mitchell@linux.dev>
+Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77
+Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+---
+ .../bindings/clock/eswin,eic7700-clock.yaml   |  46 +++
+ .../dt-bindings/clock/eswin,eic7700-clock.h   | 285 ++++++++++++++++++
+ 2 files changed, 331 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+ create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
 
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(imx93_pdfc_bus_output_fmts); i++) {
-> > +		if (imx93_pdfc_bus_output_fmts[i] == fmt)
-> > +			return true;
-> > +	}
-> > +
-> > +	return false;
-> > +}
-> > +
-> > +static u32 *
-> > +imx93_pdfc_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
-> > +					    struct drm_bridge_state *bridge_state,
-> > +					    struct drm_crtc_state *crtc_state,
-> > +					    struct drm_connector_state *conn_state,
-> > +					    u32 output_fmt,
-> > +					    unsigned int *num_input_fmts)
-> > +{
-> > +	struct imx93_pdfc *pdfc = bridge_to_imx93_pdfc(bridge);
-> > +	u32 *input_fmts;
-> > +
-> > +	*num_input_fmts = 0;
-> > +
-> > +	input_fmts = kmalloc_obj(*input_fmts, GFP_KERNEL);
-> 
-> With the below two commits in v7.0-rc1, I believe that GFP_KERNEL can be
-> dropped.
-> 
-> bf4afc53b77a Convert 'alloc_obj' family to use the new default GFP_KERNEL argument
-> e19e1b480ac7 add default_gfp() helper macro and use it in the new *alloc_obj() helpers
-
-Will drop the GFP_KERNEL.
-
-> > +	if (!input_fmts)
-> > +		return NULL;
-> > +
-> > +	*num_input_fmts = 1;
-> > +
-> > +	if (!imx93_pdfc_bus_output_fmt_supported(output_fmt)) {
-> > +		dev_dbg(pdfc->dev, "No valid output bus-fmt detected, fallback to MEDIA_BUS_FMT_RGB888_1X24\n");
-> > +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-> > +		return input_fmts;
-> > +	}
-> > +
-> > +	switch (output_fmt) {
-> > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > +	case MEDIA_BUS_FMT_RGB565_1X16:
-> > +		input_fmts[0] = output_fmt;
-> > +		break;
-> > +	case MEDIA_BUS_FMT_RGB666_1X18:
-> > +	case MEDIA_BUS_FMT_FIXED:
-> > +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-> > +		break;
-> > +	}
-> > +
-> > +	return input_fmts;
-> > +}
-> > +
-> > +static int imx93_pdfc_bridge_atomic_check(struct drm_bridge *bridge,
-> > +					  struct drm_bridge_state *bridge_state,
-> > +					  struct drm_crtc_state *crtc_state,
-> > +					  struct drm_connector_state *conn_state)
-> > +{
-> > +	struct imx93_pdfc *pdfc = bridge_to_imx93_pdfc(bridge);
-> > +	const u32 format = bridge_state->output_bus_cfg.format;
-> 
-> Can you drop const?
-
-No because this function is not supposed to change the format. The
-function documentation says: this function can alter the bus_cfg.flags
-bit _not_ the format.
-
-Regards,
-  Marco
-
-
-
-> 
-> -- 
-> Regards,
-> Liu Ying
-> 
-
+diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+new file mode 100644
+index 000000000000..3125ae52bde6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/eswin,eic7700-clock.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Eswin EIC7700 SoC clock controller
++
++maintainers:
++  - Yifeng Huang <huangyifeng@eswincomputing.com>
++  - Xuyang Dong <dongxuyang@eswincomputing.com>
++
++description:
++  The clock controller generates and supplies clock to all the modules
++  for eic7700 SoC.
++
++properties:
++  compatible:
++    const: eswin,eic7700-clock
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: External 24MHz oscillator clock
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    clock-controller@51828000 {
++        compatible = "eswin,eic7700-clock";
++        reg = <0x51828000 0x300>;
++        clocks = <&xtal24m>;
++        #clock-cells = <1>;
++    };
+diff --git a/include/dt-bindings/clock/eswin,eic7700-clock.h b/include/dt-bindings/clock/eswin,eic7700-clock.h
+new file mode 100644
+index 000000000000..d7ef697d0f7a
+--- /dev/null
++++ b/include/dt-bindings/clock/eswin,eic7700-clock.h
+@@ -0,0 +1,285 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
++ * All rights reserved.
++ *
++ * Device Tree binding constants for EIC7700 clock controller.
++ *
++ * Authors:
++ *	Yifeng Huang <huangyifeng@eswincomputing.com>
++ *	Xuyang Dong <dongxuyang@eswincomputing.com>
++ */
++
++#ifndef _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_
++#define _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_
++
++#define EIC7700_CLK_XTAL_32K				0
++#define EIC7700_CLK_PLL_CPU				1
++#define EIC7700_CLK_SPLL0_FOUT1				2
++#define EIC7700_CLK_SPLL0_FOUT2				3
++#define EIC7700_CLK_SPLL0_FOUT3				4
++#define EIC7700_CLK_SPLL1_FOUT1				5
++#define EIC7700_CLK_SPLL1_FOUT2				6
++#define EIC7700_CLK_SPLL1_FOUT3				7
++#define EIC7700_CLK_SPLL2_FOUT1				8
++#define EIC7700_CLK_SPLL2_FOUT2				9
++#define EIC7700_CLK_SPLL2_FOUT3				10
++#define EIC7700_CLK_VPLL_FOUT1				11
++#define EIC7700_CLK_VPLL_FOUT2				12
++#define EIC7700_CLK_VPLL_FOUT3				13
++#define EIC7700_CLK_APLL_FOUT1				14
++#define EIC7700_CLK_APLL_FOUT2				15
++#define EIC7700_CLK_APLL_FOUT3				16
++#define EIC7700_CLK_EXT_MCLK				17
++#define EIC7700_CLK_LPDDR_REF_BAK			18
++#define EIC7700_CLK_MUX_CPU_ROOT_3MUX1_GFREE		19
++#define EIC7700_CLK_MUX_CPU_ACLK_2MUX1_GFREE		20
++#define EIC7700_CLK_MUX_DSP_ACLK_ROOT_2MUX1_GFREE	21
++#define EIC7700_CLK_MUX_D2D_ACLK_ROOT_2MUX1_GFREE	22
++#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_0		23
++#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_1		24
++#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_2		25
++#define EIC7700_CLK_MUX_NPU_LLCLK_3MUX1_GFREE		26
++#define EIC7700_CLK_MUX_NPU_CORE_3MUX1_GFREE		27
++#define EIC7700_CLK_MUX_VI_ACLK_ROOT_2MUX1_GFREE	28
++#define EIC7700_CLK_MUX_VI_DVP_ROOT_2MUX1_GFREE		29
++#define EIC7700_CLK_MUX_VI_DIG_ISP_ROOT_2MUX1_GFREE	30
++#define EIC7700_CLK_MUX_VO_ACLK_ROOT_2MUX1_GFREE	31
++#define EIC7700_CLK_MUX_VO_PIXEL_ROOT_2MUX1		32
++#define EIC7700_CLK_MUX_VCDEC_ROOT_2MUX1_GFREE		33
++#define EIC7700_CLK_MUX_VCACLK_ROOT_2MUX1_GFREE		34
++#define EIC7700_CLK_MUX_SATA_PHY_2MUX1			35
++#define EIC7700_CLK_MUX_BOOTSPI_CLK_2MUX1_GFREE		36
++#define EIC7700_CLK_MUX_SCPU_CORE_CLK_2MUX1_GFREE	37
++#define EIC7700_CLK_MUX_LPCPU_CORE_CLK_2MUX1_GFREE	38
++#define EIC7700_CLK_MUX_VO_MCLK_2MUX_EXT_MCLK		39
++#define EIC7700_CLK_MUX_SYSCFG_CLK_ROOT_2MUX1_GFREE	40
++#define EIC7700_CLK_MUX_AONDMA_AXI2MUX1_GFREE		41
++#define EIC7700_CLK_MUX_RMII_REF_2MUX			42
++#define EIC7700_CLK_MUX_ETH_CORE_2MUX1			43
++#define EIC7700_CLK_MUX_VI_DW_ROOT_2MUX1		44
++#define EIC7700_CLK_MUX_NPU_E31_3MUX1_GFREE		45
++#define EIC7700_CLK_MUX_DDR_ACLK_ROOT_2MUX1_GFREE	46
++#define EIC7700_CLK_DIV_SYS_CFG_DYNM			47
++#define EIC7700_CLK_DIV_NOC_NSP_DYNM			48
++#define EIC7700_CLK_DIV_BOOTSPI_DYNM			49
++#define EIC7700_CLK_DIV_SCPU_CORE_DYNM			50
++#define EIC7700_CLK_DIV_LPCPU_CORE_DYNM			51
++#define EIC7700_CLK_DIV_GPU_ACLK_DYNM			52
++#define EIC7700_CLK_DIV_DSP_ACLK_DYNM			53
++#define EIC7700_CLK_DIV_D2D_ACLK_DYNM			54
++#define EIC7700_CLK_DIV_HSP_ACLK_DYNM			55
++#define EIC7700_CLK_DIV_ETH_TXCLK_DYNM_0		56
++#define EIC7700_CLK_DIV_ETH_TXCLK_DYNM_1		57
++#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_0		58
++#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_1		59
++#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_2		60
++#define EIC7700_CLK_DIV_PCIE_ACLK_DYNM			61
++#define EIC7700_CLK_DIV_NPU_ACLK_DYNM			62
++#define EIC7700_CLK_DIV_NPU_LLC_SRC0_DYNM		63
++#define EIC7700_CLK_DIV_NPU_LLC_SRC1_DYNM		64
++#define EIC7700_CLK_DIV_NPU_CORECLK_DYNM		65
++#define EIC7700_CLK_DIV_VI_ACLK_DYNM			66
++#define EIC7700_CLK_DIV_VI_DVP_DYNM			67
++#define EIC7700_CLK_DIV_VI_DIG_ISP_DYNM			68
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_0		69
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_1		70
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_2		71
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_3		72
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_4		73
++#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_5		74
++#define EIC7700_CLK_DIV_VO_ACLK_DYNM			75
++#define EIC7700_CLK_DIV_IESMCLK_DYNM			76
++#define EIC7700_CLK_DIV_VO_PIXEL_DYNM			77
++#define EIC7700_CLK_DIV_VO_MCLK_DYNM			78
++#define EIC7700_CLK_DIV_VC_ACLK_DYNM			79
++#define EIC7700_CLK_DIV_JD_DYNM				80
++#define EIC7700_CLK_DIV_JE_DYNM				81
++#define EIC7700_CLK_DIV_VE_DYNM				82
++#define EIC7700_CLK_DIV_VD_DYNM				83
++#define EIC7700_CLK_DIV_G2D_DYNM			84
++#define EIC7700_CLK_DIV_AONDMA_AXI_DYNM			85
++#define EIC7700_CLK_DIV_CRYPTO_DYNM			86
++#define EIC7700_CLK_DIV_VI_DW_DYNM			87
++#define EIC7700_CLK_DIV_NPU_E31_DYNM			88
++#define EIC7700_CLK_DIV_SATA_PHY_REF_DYNM		89
++#define EIC7700_CLK_DIV_DSP_0_ACLK_DYNM			90
++#define EIC7700_CLK_DIV_DSP_1_ACLK_DYNM			91
++#define EIC7700_CLK_DIV_DSP_2_ACLK_DYNM			92
++#define EIC7700_CLK_DIV_DSP_3_ACLK_DYNM			93
++#define EIC7700_CLK_DIV_DDR_ACLK_DYNM			94
++#define EIC7700_CLK_DIV_AON_RTC_DYNM			95
++#define EIC7700_CLK_DIV_U84_RTC_TOGGLE_DYNM		96
++#define EIC7700_CLK_DIV_VO_CEC_DYNM			97
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_0		98
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_1		99
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_2		100
++#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_3		101
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_0		102
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_1		103
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_2		104
++#define EIC7700_CLK_GATE_CPU_TRACE_CLK_3		105
++#define EIC7700_CLK_GATE_CPU_TRACE_COM_CLK		106
++#define EIC7700_CLK_GATE_SPLL0_FOUT2			107
++#define EIC7700_CLK_GATE_NOC_NSP_CLK			108
++#define EIC7700_CLK_GATE_BOOTSPI			109
++#define EIC7700_CLK_GATE_BOOTSPI_CFG			110
++#define EIC7700_CLK_GATE_SCPU_CORE			111
++#define EIC7700_CLK_GATE_SCPU_BUS			112
++#define EIC7700_CLK_GATE_LPCPU_CORE			113
++#define EIC7700_CLK_GATE_LPCPU_BUS			114
++#define EIC7700_CLK_GATE_GPU_ACLK			115
++#define EIC7700_CLK_GATE_GPU_GRAY_CLK			116
++#define EIC7700_CLK_GATE_GPU_CFG_CLK			117
++#define EIC7700_CLK_GATE_DSPT_ACLK			118
++#define EIC7700_CLK_GATE_DSPT_CFG_CLK			119
++#define EIC7700_CLK_GATE_D2D_ACLK			120
++#define EIC7700_CLK_GATE_D2D_CFG_CLK			121
++#define EIC7700_CLK_GATE_TCU_ACLK			122
++#define EIC7700_CLK_GATE_TCU_CFG_CLK			123
++#define EIC7700_CLK_GATE_DDRT_CFG_CLK			124
++#define EIC7700_CLK_GATE_DDRT0_P0_ACLK			125
++#define EIC7700_CLK_GATE_DDRT0_P1_ACLK			126
++#define EIC7700_CLK_GATE_DDRT0_P2_ACLK			127
++#define EIC7700_CLK_GATE_DDRT0_P3_ACLK			128
++#define EIC7700_CLK_GATE_DDRT0_P4_ACLK			129
++#define EIC7700_CLK_GATE_DDRT1_P0_ACLK			130
++#define EIC7700_CLK_GATE_DDRT1_P1_ACLK			131
++#define EIC7700_CLK_GATE_DDRT1_P2_ACLK			132
++#define EIC7700_CLK_GATE_DDRT1_P3_ACLK			133
++#define EIC7700_CLK_GATE_DDRT1_P4_ACLK			134
++#define EIC7700_CLK_GATE_TIMER_CLK_0			135
++#define EIC7700_CLK_GATE_TIMER_CLK_1			136
++#define EIC7700_CLK_GATE_TIMER_CLK_2			137
++#define EIC7700_CLK_GATE_TIMER_CLK_3			138
++#define EIC7700_CLK_GATE_TIMER_PCLK_0			139
++#define EIC7700_CLK_GATE_TIMER_PCLK_1			140
++#define EIC7700_CLK_GATE_TIMER_PCLK_2			141
++#define EIC7700_CLK_GATE_TIMER_PCLK_3			142
++#define EIC7700_CLK_GATE_TIMER3_CLK8			143
++#define EIC7700_CLK_GATE_PCIET_ACLK			144
++#define EIC7700_CLK_GATE_PCIET_CFG_CLK			145
++#define EIC7700_CLK_GATE_PCIET_CR_CLK			146
++#define EIC7700_CLK_GATE_PCIET_AUX_CLK			147
++#define EIC7700_CLK_GATE_NPU_ACLK			148
++#define EIC7700_CLK_GATE_NPU_CFG_CLK			149
++#define EIC7700_CLK_GATE_NPU_LLC_ACLK			150
++#define EIC7700_CLK_GATE_NPU_CLK			151
++#define EIC7700_CLK_GATE_NPU_E31_CLK			152
++#define EIC7700_CLK_GATE_VI_ACLK			153
++#define EIC7700_CLK_GATE_VI_DVP_CLK			154
++#define EIC7700_CLK_GATE_VI_CFG_CLK			155
++#define EIC7700_CLK_GATE_VI_DIG_DW_CLK			156
++#define EIC7700_CLK_GATE_VI_DIG_ISP_CLK			157
++#define EIC7700_CLK_GATE_VI_SHUTTER_0			158
++#define EIC7700_CLK_GATE_VI_SHUTTER_1			159
++#define EIC7700_CLK_GATE_VI_SHUTTER_2			160
++#define EIC7700_CLK_GATE_VI_SHUTTER_3			161
++#define EIC7700_CLK_GATE_VI_SHUTTER_4			162
++#define EIC7700_CLK_GATE_VI_SHUTTER_5			163
++#define EIC7700_CLK_GATE_VI_PHY_TXCLKESC		164
++#define EIC7700_CLK_GATE_VI_PHY_CFG			165
++#define EIC7700_CLK_GATE_VO_ACLK			166
++#define EIC7700_CLK_GATE_VO_CFG_CLK			167
++#define EIC7700_CLK_GATE_VO_HDMI_IESMCLK		168
++#define EIC7700_CLK_GATE_VO_PIXEL_CLK			169
++#define EIC7700_CLK_GATE_VO_I2S_MCLK			170
++#define EIC7700_CLK_GATE_HSP_CFG_CLK			171
++#define EIC7700_CLK_GATE_VC_ACLK			172
++#define EIC7700_CLK_GATE_VC_CFG_CLK			173
++#define EIC7700_CLK_GATE_VC_JE_CLK			174
++#define EIC7700_CLK_GATE_VC_JD_CLK			175
++#define EIC7700_CLK_GATE_VC_VE_CLK			176
++#define EIC7700_CLK_GATE_VC_VD_CLK			177
++#define EIC7700_CLK_GATE_G2D_CFG_CLK			178
++#define EIC7700_CLK_GATE_G2D_CLK			179
++#define EIC7700_CLK_GATE_G2D_ACLK			180
++#define EIC7700_CLK_GATE_AONDMA_CFG			181
++#define EIC7700_CLK_GATE_AONDMA_ACLK			182
++#define EIC7700_CLK_GATE_AON_ACLK			183
++#define EIC7700_CLK_GATE_HSP_SATA_RBC_CLK		184
++#define EIC7700_CLK_GATE_VO_CR_CLK			185
++#define EIC7700_CLK_GATE_HSP_ACLK			186
++#define EIC7700_CLK_GATE_HSP_SATA_OOB_CLK		187
++#define EIC7700_CLK_GATE_RTC_CFG			188
++#define EIC7700_CLK_GATE_RTC				189
++#define EIC7700_CLK_GATE_HSP_MSHC0_CORE_CLK		190
++#define EIC7700_CLK_GATE_HSP_MSHC1_CORE_CLK		191
++#define EIC7700_CLK_GATE_HSP_MSHC2_CORE_CLK		192
++#define EIC7700_CLK_GATE_HSP_ETH0_CORE_CLK		193
++#define EIC7700_CLK_GATE_HSP_ETH1_CORE_CLK		194
++#define EIC7700_CLK_GATE_HSP_RMII_REF_0			195
++#define EIC7700_CLK_GATE_HSP_RMII_REF_1			196
++#define EIC7700_CLK_GATE_PKA_CFG			197
++#define EIC7700_CLK_GATE_SPACC_CFG			198
++#define EIC7700_CLK_GATE_CRYPTO				199
++#define EIC7700_CLK_GATE_TRNG_CFG			200
++#define EIC7700_CLK_GATE_OTP_CFG			201
++#define EIC7700_CLK_GATE_MAILBOX_0			202
++#define EIC7700_CLK_GATE_MAILBOX_1			203
++#define EIC7700_CLK_GATE_MAILBOX_2			204
++#define EIC7700_CLK_GATE_MAILBOX_3			205
++#define EIC7700_CLK_GATE_MAILBOX_4			206
++#define EIC7700_CLK_GATE_MAILBOX_5			207
++#define EIC7700_CLK_GATE_MAILBOX_6			208
++#define EIC7700_CLK_GATE_MAILBOX_7			209
++#define EIC7700_CLK_GATE_MAILBOX_8			210
++#define EIC7700_CLK_GATE_MAILBOX_9			211
++#define EIC7700_CLK_GATE_MAILBOX_10			212
++#define EIC7700_CLK_GATE_MAILBOX_11			213
++#define EIC7700_CLK_GATE_MAILBOX_12			214
++#define EIC7700_CLK_GATE_MAILBOX_13			215
++#define EIC7700_CLK_GATE_MAILBOX_14			216
++#define EIC7700_CLK_GATE_MAILBOX_15			217
++#define EIC7700_CLK_GATE_LSP_I2C0_PCLK			218
++#define EIC7700_CLK_GATE_LSP_I2C1_PCLK			219
++#define EIC7700_CLK_GATE_LSP_I2C2_PCLK			220
++#define EIC7700_CLK_GATE_LSP_I2C3_PCLK			221
++#define EIC7700_CLK_GATE_LSP_I2C4_PCLK			222
++#define EIC7700_CLK_GATE_LSP_I2C5_PCLK			223
++#define EIC7700_CLK_GATE_LSP_I2C6_PCLK			224
++#define EIC7700_CLK_GATE_LSP_I2C7_PCLK			225
++#define EIC7700_CLK_GATE_LSP_I2C8_PCLK			226
++#define EIC7700_CLK_GATE_LSP_I2C9_PCLK			227
++#define EIC7700_CLK_GATE_LSP_WDT0_PCLK			228
++#define EIC7700_CLK_GATE_LSP_WDT1_PCLK			229
++#define EIC7700_CLK_GATE_LSP_WDT2_PCLK			230
++#define EIC7700_CLK_GATE_LSP_WDT3_PCLK			231
++#define EIC7700_CLK_GATE_LSP_SSI0_PCLK			232
++#define EIC7700_CLK_GATE_LSP_SSI1_PCLK			233
++#define EIC7700_CLK_GATE_LSP_PVT_PCLK			234
++#define EIC7700_CLK_GATE_AON_I2C0_PCLK			235
++#define EIC7700_CLK_GATE_AON_I2C1_PCLK			236
++#define EIC7700_CLK_GATE_LSP_UART0_PCLK			237
++#define EIC7700_CLK_GATE_LSP_UART1_PCLK			238
++#define EIC7700_CLK_GATE_LSP_UART2_PCLK			239
++#define EIC7700_CLK_GATE_LSP_UART3_PCLK			240
++#define EIC7700_CLK_GATE_LSP_UART4_PCLK			241
++#define EIC7700_CLK_GATE_LSP_TIMER_PCLK			242
++#define EIC7700_CLK_GATE_LSP_FAN_PCLK			243
++#define EIC7700_CLK_GATE_LSP_PVT0_CLK			244
++#define EIC7700_CLK_GATE_LSP_PVT1_CLK			245
++#define EIC7700_CLK_GATE_VC_JE_PCLK			246
++#define EIC7700_CLK_GATE_VC_JD_PCLK			247
++#define EIC7700_CLK_GATE_VC_VE_PCLK			248
++#define EIC7700_CLK_GATE_VC_VD_PCLK			249
++#define EIC7700_CLK_GATE_VC_MON_PCLK			250
++#define EIC7700_CLK_GATE_HSP_DMA0_CLK			251
++#define EIC7700_CLK_GATE_HSP_DMA0_CLK_TEST		252
++#define EIC7700_CLK_FIXED_FACTOR_CPU_DIV2		253
++#define EIC7700_CLK_FIXED_FACTOR_CLK_1M_DIV24		254
++#define EIC7700_CLK_FIXED_FACTOR_MIPI_TXESC_DIV10	255
++#define EIC7700_CLK_FIXED_FACTOR_U84_CORE_LP_DIV2	256
++#define EIC7700_CLK_FIXED_FACTOR_SCPU_BUS_DIV2		257
++#define EIC7700_CLK_FIXED_FACTOR_LPCPU_BUS_DIV2		258
++#define EIC7700_CLK_FIXED_FACTOR_PCIE_CR_DIV2		259
++#define EIC7700_CLK_FIXED_FACTOR_PCIE_AUX_DIV4		260
++#define EIC7700_CLK_FIXED_FACTOR_PVT_DIV20		261
++#define EIC7700_CLK_FIXED_FACTOR_HSP_RMII_REF_DIV6	262
++#define EIC7700_CLK_DIV_NOC_WDREF_DYNM			263
++#define EIC7700_CLK_GATE_DDR0_TRACE			264
++#define EIC7700_CLK_GATE_DDR1_TRACE			265
++#define EIC7700_CLK_GATE_RNOC_NSP			266
++#define EIC7700_CLK_GATE_NOC_WDREF			267
++
++#endif /* _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_ */
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+2.34.1
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
