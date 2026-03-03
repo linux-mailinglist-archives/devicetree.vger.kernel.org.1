@@ -1,285 +1,207 @@
-Return-Path: <devicetree+bounces-270757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270758-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0P8SBO5Fp2kFgQAAu9opvQ
-	(envelope-from <devicetree+bounces-270757-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 21:34:54 +0100
+	id GOMGA2pIp2lOgQAAu9opvQ
+	(envelope-from <devicetree+bounces-270758-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 21:45:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78C641F6DDF
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 21:34:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 753371F6EBA
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 21:45:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CF75E31C9817
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 20:30:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AA1A43041997
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 20:45:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2B033822BA;
-	Tue,  3 Mar 2026 20:30:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8455C3750B5;
+	Tue,  3 Mar 2026 20:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E+nYX8h2"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="CkOjcmdE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C593B37C908
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 20:30:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E49426E6F3;
+	Tue,  3 Mar 2026 20:45:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772569844; cv=none; b=nqEVxorDmuEE1Ns5r1CeowqifaAEKzIjcLrAbBAWYWiBZJWac6Yu6LwPX56c/HAK4w6FoZvOJYcvgqaEn3rT4jQPJ1EN9eMYF12rNddeJgCfv9YaptRIJEVDY/+JYgTI9o9lsdkwS2Tyzb2WYGeKMjX8L5Xtv5F8UG7UGWRSYnE=
+	t=1772570727; cv=none; b=qL+ZTYYzrVWXhZJPGfwIVgth07rE2WnhkWBKULzwT95F8lx2WxenyFNbLTHoigRjuba8B03CcxxCAzJhZgtYOu+GdmWfUw1vy5dikx/HqffRy2zv0uCJs3BuVIGF8WRG3AREi0brayIthl9iITaqLvaqXPxevktT1JDybV6BI5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772569844; c=relaxed/simple;
-	bh=T/FjvdGM7OD6Yjn2fdSSsnX2CArQ46QvxueAlbps8EM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ApgC5sFtEDpxaMe1Xe7p7WKIqFj8FVyffbslBJKTgH5amTJYpGsamplB7JrmWEO1h+aNJjJ3z0OVP23jzqnKX/sSEoR89eL65G7O/USGYVQ4k3aUJl1OpHdEgcabuq3sMasDcLmW1aV8ycRATXFEaYbKrwGpawO+t38TmkaMEfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E+nYX8h2; arc=none smtp.client-ip=209.85.222.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-8c70b5594f4so633380885a.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 12:30:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772569841; x=1773174641; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=INGbKjO0pPud5pCmrtXsYBpEWemfrnA7TW8P4kAQQH4=;
-        b=E+nYX8h2+KAlixcWVSbRKcDW8mvqZrg3N/Qo0CqUDUQCZNWRAzFVyJ8ddNXd7CX0PY
-         U+RGJAmeILMdmRtMr/mfu53qYhLjqjMPpMmriqBIRnZCGtghJakZaulqtZEBNzWSwxZ/
-         j8bgQbvA13K497Ju9L7FZo3EZeFr2Ynr4ZNSoYGChlkpP++ayZJP14u11f6nlOICtSuq
-         Xce6CpRPQSdivyzBLKXV5cXePogOc6rdFqt4eVqC+XXfOg3RyGMVbxBuqAF0Ga3W+H0O
-         qYzCPBVP3I5rhcp8patduxCAVOQXkx4EaDlufFSYEo/0SjCJLFI18oJ6yvZIygPIyQxV
-         /+Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772569841; x=1773174641;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=INGbKjO0pPud5pCmrtXsYBpEWemfrnA7TW8P4kAQQH4=;
-        b=A/Qu3TpNMKzdzonzaERTE1dQK1bX7Iv50MKKkl4VZCW/A3WbKlLZYSZkCFz+0S/5eQ
-         tgyXfTN6d0sltvgfgWy01QwYEEUQjH3knFw06UOdNf2bu4X4QCK5THziVJxLAozFcW5g
-         H5BoEg2o1TJtnpuB1jWo2pB47UYcKlv5rd9vfehGHHKkRW53uHePM9nvnT38WNnZWLXm
-         fLzKfC9EtGhiR2f3uBdykNhW5GFsNmLhWpwgzILRKTfh2W7pV/+05Ja/Lfq8c5iFpC8l
-         fsZhXet0YWqhUpmquz2PmF3tjSovP54DfCGpkjObJ5PTrlM49oLz1FUUG268n4KJIXrR
-         ZnxQ==
-X-Gm-Message-State: AOJu0Yy4pwjVVuoEPUUqxzwBq+EIoGr+pxsH7zNCKFDxfixtuKMfXr3h
-	0NvaRrokSxPh2tRfyrDQTT9/u/Iof+mPD+LRxhoOhl0VB3FioArdS0yr
-X-Gm-Gg: ATEYQzx1Ts2ZPbcQAnKnXuowfJ9B4Dcx8DQyN0i2CdcdX9uXr57czF17CbyoEbMZSBl
-	TwwgqkOACBZ8XGpwQJR0vU451NRjV2JMDuhR4xNBVl1J/lP68UdsUhO1d95tvVqc/3Olsf+wSQX
-	VlVKcPpESLl2j8Bn/0U41N4XusZQ391VajMToqeNlA4J2jJf85z/jB6CdECwO492gV9vhdoCzoY
-	uVhH0MvPqRmZIOsTQKNGJRmoUIPSazw4n/ekvgU8WWV0gAQlIPOPpfnkUznXowxJEw61ggYO8Fr
-	44XoniLFyIEGJX+1CYDyxw2TP+RNySj3aQ2wygnHcLOxSHSthvJDbwxkJZEw1NUUO6S4YG7TsLL
-	WTxrljVAYLK4wlNr+WIpPWIO5uij7mThKCUGJA1JgF8od083uFu0rYqbBZDzgcxWbK425R/+fSd
-	Q0+qX4d14/K78qbtXsi9qBFTf3VMXCV0QX20fHRbor08V4nH0M4USlbAUyzamEihV8WuMUCCv9K
-	xrVzAXYFEnp9SgNih3qDQ==
-X-Received: by 2002:a05:620a:28d1:b0:8cb:3fca:2f9 with SMTP id af79cd13be357-8cd508e279cmr429991285a.4.1772569840704;
-        Tue, 03 Mar 2026 12:30:40 -0800 (PST)
-Received: from mighty.stonybrook.edu (nat-130-245-192-1.resnet.stonybrook.edu. [130.245.192.1])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cbbf564c27sm1465032085a.0.2026.03.03.12.30.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 12:30:40 -0800 (PST)
-From: Mithil Bavishi <bavishimithil@gmail.com>
-To: aaro.koskinen@iki.fi,
-	airlied@gmail.com,
-	andreas@kemnade.info,
-	conor+dt@kernel.org,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	khilman@baylibre.com,
-	krzk+dt@kernel.org,
-	laurent.pinchart@ideasonboard.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	prabhakar.mahadev-lad.rj@bp.renesas.com,
-	jesszhan0024@gmail.com,
-	rfoss@kernel.org,
-	robh@kernel.org,
-	rogerq@kernel.org,
-	simona@ffwll.ch,
-	thierry.reding@gmail.com,
-	tony@atomide.com,
-	tzimmermann@suse.de,
-	andrzej.hajda@intel.com,
-	bavishimithil@gmail.com
-Cc: devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: [PATCH v9 8/8] ARM: dts: ti: omap: samsung-espresso10: Add initial support for Galaxy Tab 2 10.1
-Date: Tue,  3 Mar 2026 15:30:17 -0500
-Message-ID: <20260303203017.511-9-bavishimithil@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260303203017.511-1-bavishimithil@gmail.com>
-References: <20260303203017.511-1-bavishimithil@gmail.com>
+	s=arc-20240116; t=1772570727; c=relaxed/simple;
+	bh=Ua4V1PXhLnJ8TKpbe1jjOprEwoDqkbQCsQKhKbfp+m4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IkHTYuInGAK43/nsVF1A4KT2m1/goSp1PlS0EdfCjkoZ6lKINe39n6WTUTFyReqTK7oprPl6fYwaWApnV2i8/Gc3sRCL10RegsLcd91X2JXkOV7DPC1mtoR07kKi3ONPXXTSjlhmgApS6VEgBLBw0N2pj49lhJS94i2jyDvbzY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=CkOjcmdE; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772570725; x=1804106725;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Ua4V1PXhLnJ8TKpbe1jjOprEwoDqkbQCsQKhKbfp+m4=;
+  b=CkOjcmdExjatNefWt7xo3Rpox207Y0jSsKaXIhvtPLXCyVYvCNToSQle
+   9zYzSa5WS6LQvsenOEAjS/LPrruOsrfCnquGj33+uJrtPsszjz6TIpm+Z
+   ME2yr7oFHu+xxI8DffZQH6Q4I+ylklgzKwrKag7fgvUAktZrFMTw/qFe3
+   6IFkLPOJYVymwl8oeNMixL3UQ9HG8NbFXIomHeTMq6B6JV0RbfmeSe54v
+   FTSqCMr8tpMu/2gsfHNCn/QRtt6iLXhAELAxX8f5T/xyWaAg2xnx94Adb
+   DR4NrYDlzNwtxT5UMPPx00gmqHwNRM9VR+iEKjzSGaJ31WsgK0FaVoaWj
+   A==;
+X-CSE-ConnectionGUID: WbW/3edCSFOfGuo6LdDdBw==
+X-CSE-MsgGUID: COi6B65CTNe+5a6E4gfmEw==
+X-IronPort-AV: E=Sophos;i="6.21,322,1763449200"; 
+   d="scan'208";a="53430819"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2026 13:45:25 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.35; Tue, 3 Mar 2026 13:45:23 -0700
+Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58 via Frontend Transport; Tue, 3 Mar 2026 13:45:22 -0700
+Date: Tue, 3 Mar 2026 12:45:21 -0800
+From: Charles Perry <charles.perry@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: <netdev@vger.kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, "Claudiu
+ Beznea" <claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <charles.perry@microchip.com>
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: cdns,macb: add a
+ compatible for Microchip p64h
+Message-ID: <aadIYcFrlYmrV3RW@bby-cbu-swbuild03.eng.microchip.com>
+References: <20260303180318.1814791-1-charles.perry@microchip.com>
+ <20260303180318.1814791-2-charles.perry@microchip.com>
+ <20260303-primal-cradling-f600faca8504@spud>
+ <aacuSRxLktvCBaNK@bby-cbu-swbuild03.eng.microchip.com>
+ <20260303-emperor-childlike-6c43d8a91753@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 78C641F6DDF
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260303-emperor-childlike-6c43d8a91753@spud>
+X-Rspamd-Queue-Id: 753371F6EBA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270757-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[iki.fi,gmail.com,kemnade.info,kernel.org,kwiboo.se,baylibre.com,ideasonboard.com,linux.intel.com,linaro.org,bp.renesas.com,ffwll.ch,atomide.com,suse.de,intel.com];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bavishimithil@gmail.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270758-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_NONE(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.6:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.20:email,0.0.0.11:email,0.0.0.1:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Create a device tree for the 10 inch variants (P5100, P5110, P5113)
+On Tue, Mar 03, 2026 at 07:32:25PM +0000, Conor Dooley wrote:
+> On Tue, Mar 03, 2026 at 10:54:01AM -0800, Charles Perry wrote:
+> > On Tue, Mar 03, 2026 at 06:18:48PM +0000, Conor Dooley wrote:
+> > > On Tue, Mar 03, 2026 at 10:03:15AM -0800, Charles Perry wrote:
+> > > > "p64h" is shorthand for "PIC64-HPSC" and "PIC64HX"
+> > > 
+> > > No, sorry. If these are different SoCs they need to have SoC-specific
+> > > compatibles, particularly since PIC64HY could be something that is not
+> > > compatible with these devices. It'd be fine to add
+> > > "microchip,pic64hpsc-gem" with "microchip,pic64hx-gem" as a fallback
+> > > though, since they do appear to be very very very similar devices and
+> > 
+> > Yes, "very very very similar" is the right term.
+> 
+> FWIW, if the only difference was binning or fusing, having the same
+> compatible for more than one device could be okay. But these are
+> actually like polarfire-soc and rt-polarfire-soc, where they look very
+> similar to software but the rt process means that they're physically
+> different, right?
+> 
 
-Signed-off-by: Mithil Bavishi <bavishimithil@gmail.com>
----
- arch/arm/boot/dts/ti/omap/Makefile            |   1 +
- .../dts/ti/omap/omap4-samsung-espresso10.dts  | 101 ++++++++++++++++++
- 2 files changed, 102 insertions(+)
- create mode 100644 arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
+I know they are functionally equivalent but some blocks are fused. I don't
+know about manufacturing processes, sorry.
 
-diff --git a/arch/arm/boot/dts/ti/omap/Makefile b/arch/arm/boot/dts/ti/omap/Makefile
-index 1fd426204..be992910f 100644
---- a/arch/arm/boot/dts/ti/omap/Makefile
-+++ b/arch/arm/boot/dts/ti/omap/Makefile
-@@ -81,6 +81,7 @@ dtb-$(CONFIG_ARCH_OMAP4) += \
- 	omap4-var-dvk-om44.dtb \
- 	omap4-var-stk-om44.dtb \
- 	omap4-samsung-espresso7.dtb \
-+	omap4-samsung-espresso10.dtb \
- 	omap4-xyboard-mz609.dtb \
- 	omap4-xyboard-mz617.dtb
- dtb-$(CONFIG_SOC_AM33XX) += \
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
-new file mode 100644
-index 000000000..558dc3c02
---- /dev/null
-+++ b/arch/arm/boot/dts/ti/omap/omap4-samsung-espresso10.dts
-@@ -0,0 +1,101 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/dts-v1/;
-+
-+#include "omap4-samsung-espresso-common.dtsi"
-+#include <dt-bindings/power/summit,smb347-charger.h>
-+/ {
-+	model = "Samsung Galaxy Tab 2 (10 inch)";
-+	compatible = "samsung,espresso10", "ti,omap4430", "ti,omap4";
-+
-+	i2c-gpio5 {
-+		smb347: charger@6 {
-+			compatible = "summit,smb347";
-+			reg = <0x6>; // 0x0C >> 1
-+			interrupt-parent = <&gpio2>;
-+			interrupts = <0 IRQ_TYPE_EDGE_BOTH>;
-+
-+			summit,enable-usb-charging;
-+			summit,enable-charge-control = <SMB3XX_CHG_ENABLE_SW>;
-+			summit,chip-temperature-threshold-celsius = <120>;
-+			summit,usb-current-limit-microamp = <1800000>;
-+		};
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&backlight_pins>;
-+		pwms = <&pwm10 0 1600 0>;
-+		power-supply = <&reg_lcd>;
-+		enable-gpios = <&gpio3 31 GPIO_ACTIVE_HIGH>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <7>;
-+	};
-+
-+	panel {
-+		compatible = "samsung,ltn101al03", "panel-lvds";
-+		power-supply = <&reg_lcd>;
-+		width-mm = <223>;
-+		height-mm = <125>;
-+		data-mapping = "vesa-24";
-+		backlight = <&backlight>;
-+
-+		panel-timing {
-+			clock-frequency = <69818000>;
-+
-+			hback-porch = <64>;
-+			hactive = <1280>;
-+			hfront-porch = <16>;
-+			hsync-len = <48>;
-+
-+			vback-porch = <11>;
-+			vactive = <800>;
-+			vfront-porch = <16>;
-+			vsync-len = <3>;
-+
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			de-active = <1>;
-+			pixelclk-active = <1>;
-+		};
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&bridge_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c3 {
-+	touchscreen@20 {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x20>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_pins>;
-+
-+		//avdd-supply = <&reg_touch_ldo_en>;
-+		vdd-supply = <&ldo6>;
-+
-+		syna,reset-delay-ms = <200>;
-+		syna,startup-delay-ms = <200>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x01>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f11@11 {
-+			reg = <0x11>;
-+			touchscreen-size-x = <1280>;
-+			touchscreen-size-y = <800>;
-+			syna,sensor-type = <1>;
-+		};
-+	};
-+};
--- 
-2.43.0
+> > > can clearly share the same match data in the driver. That's what pic64gx
+> > > and mpfs do.
+> > 
+> > Ok, no problem. Like this? :
+> > 
+> > ```
+> >       - items:
+> >           - enum:
+> >               - microchip,pic64hpsc-gem
+> >               - microchip,pic64hx-gem
+> >           - const: microchip,pic64h-gem
+> >           - const: cdns,gem
+> 
+> I was thinking
+> - items:
+>     - const: microchip,pic64hx-gem
+>     - const: cdns,gem
+> - items:
+>     - const: microchip,pic64hpsc-gem
+>     - const: microchip,pic64hx-gem
+>     - const: cdns,gem
+> 
+> And getting rid of the "pic64h" that may end up not being sufficiently
+> common in the future.
+> 
+
+Ok sounds good but I'll make "pic64hpsc" the favorite child and let
+"pic64hx" fallback to "pic64hpsc".
+
+> > Also, how important is it to use "pic64h" vs "p64h"?
+> 
+> Oh I didn't even notice that tbh, I just have "pic64" muscle memory from
+> the pic64gx, and the pic32mzda also spells it out. My OCD says says "pic",
+> and the fact that all the marketing stuff uses "pic" kinda votes in that
+> favour too.
+> 
+
+Ok, lets use "pic".
+
+> > Much of the downstream development uses "p64h" in compatibles, file names,
+> > function names, etc. and it would create some overhead to rename
+> > everything.
+> 
+> This is probably one of the easiest things to absorb from a
+> up/down stream perspective, you could (and probably will on other
+> submissions) get far more disruptive feedback than something that's
+> effectively cosmetic and can be solved by adding a single line to a
+> driver. To be honest, I don't care if you rename functions or filenames,
+> it's only devicetree related things that I personally care about.
+> 
+
+Understood.
+
+Thank you,
+Charles
+
+> > Although, as I think of it, it might not be a bad thing since it would
+> > allow to quickly identify the mainstream from the downstream code.
+
 
 
