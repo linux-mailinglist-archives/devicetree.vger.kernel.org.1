@@ -1,184 +1,202 @@
-Return-Path: <devicetree+bounces-270638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270640-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLqNNsELp2kDcgAAu9opvQ
-	(envelope-from <devicetree+bounces-270638-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:26:41 +0100
+	id mPNaGWkMp2kDcgAAu9opvQ
+	(envelope-from <devicetree+bounces-270640-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:29:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43EF71F3C24
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:26:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 071021F3CA0
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:29:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 92BF1301D304
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:23:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4FC2730478A5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:26:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E1B4DA544;
-	Tue,  3 Mar 2026 16:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02E53496911;
+	Tue,  3 Mar 2026 16:26:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfVi6sv5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lylUKGGk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52414DA531;
-	Tue,  3 Mar 2026 16:23:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34CA3C2793;
+	Tue,  3 Mar 2026 16:26:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772554985; cv=none; b=qzqrxjdGr45PGeMtK9tGvwbNK9CPUilEMUj02/H+WQE4i7UAUe5CkLbAb3nCAxesm6XWjMNpJ2XW0PY3hYEW8du7umrUCWor+3y+5i6E74DXvQm+lsFdRx2nURt7aoAv3ualSSjhLGcjWGKKrjjb7EghdLsAnayyy0uMI+a19XA=
+	t=1772555191; cv=none; b=Sl8HA/3ZC7I6I2gDy0KKELEM++chyDwnRGIQ7Q0yYuNnaWHXnG6OXKoo89PWHSUrZLb17d2aHrWU+VsxtPABWyOfVDaRHXln8EYzHsE9L01u2BYyS9rYzH7bemRvz/W8n3JmMujt8bRVBq3oNR1nQNN+GCLjvsNGOwJIZDaZUY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772554985; c=relaxed/simple;
-	bh=3KP5UsXW/n92tPBlXiap82i+5VV+PmnqKnEg0EMd6J4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cVdGAIwdbXRSWV9hukXnLPjdgHBTWfht544VbxUkWkaUB+Qh0V+Aw5k+z90YzAf9T2uDWYr8mBKTFyQI3Q4GzZawVMH4vsAwUHdyjtn6q1geo+2i/s7ToWgT/xavKkQeoO/0dc65ffuDppmKbaonNrGBNLzsPGhyHpVMSr9gqjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfVi6sv5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9FC1C116C6;
-	Tue,  3 Mar 2026 16:22:59 +0000 (UTC)
+	s=arc-20240116; t=1772555191; c=relaxed/simple;
+	bh=CNof27mBd7wDf5xVAmiF83SJwHYfTGHuU1OvIIJqavM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=sluP1TsCE15FaUnsAkK67Q17V9Tq75N9otWpHXJtD55WgBY/2AeqkRAETXWeVv9NCHpOSWBLUIkFhpcgFU3CRaZORtaGtaNwaP4aRgrUbh027arj3AQKJnPDvaTErNQ2lwdoyOJkO4qiz/2ONKZF4Jsu3QGdj6tGvlfj4Qw9bTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lylUKGGk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7122FC116C6;
+	Tue,  3 Mar 2026 16:26:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772554985;
-	bh=3KP5UsXW/n92tPBlXiap82i+5VV+PmnqKnEg0EMd6J4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LfVi6sv5mzDF+gto8oNzM2EgaPhlTmS2tXuRZU4Jxga/cnE6f5iNWPgSh1AVbgVGF
-	 oMF1d36tNOVhUXoRK/2NAd2pou4/OoKDEuwnMQM7xpxmwbxjRVkPVHvrgWSTak88z9
-	 XNiLBwkaY4UFmHTr9FhGgxikuqVM1XUw6Pe7rKsZx+BGwNS5LEN6mAh9IMchsnnTVW
-	 tBEbMGVwm8k6ALqLQHiWOPq0kDSPSXOTscu4vP6tDkpZ8cjT+DVmY/CyP6CIn+JN/n
-	 qTpziJBz3+tQYAgpPpqjqQZcUeZtKVt8dfXhMNT0q0bFihJy+EFtzR0PaN4cqLGjpf
-	 1OXFaw1RIIgtg==
-Message-ID: <69853a6a-47a2-4777-9a5a-1a53f24531a2@kernel.org>
-Date: Tue, 3 Mar 2026 17:22:57 +0100
+	s=k20201202; t=1772555191;
+	bh=CNof27mBd7wDf5xVAmiF83SJwHYfTGHuU1OvIIJqavM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=lylUKGGk1Z4QWPsJvE3c0aZaw7lLVxGzIFr3G6NLL5nzncLwG0jjky3MI96HllUhO
+	 GAbziDezN4B5SrzxMzX2vk+WqyPgCpxXR7tCjx0JnFldU+RqctcMM5gIE12lkOJeL1
+	 9jh4YfNT1U058uUj+DCw5xbX5RDmEUALuLHT+F2ATs3ZqU05ft6rqx0O5xjFpo/Jl2
+	 FUflsZD9HbSHhDEmY+LRAkOHhFCIWibT1plvQ5Y2fhicm4CxIdnfx6kyQrElqY/TFz
+	 83l01dHPENFtSljUdFVf9KOZUtfIhU7YDSXiTGccqEMPBYOB25aIkEA14y05PiaAt+
+	 La63c7PM674OA==
+Date: Tue, 03 Mar 2026 10:26:30 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] drm/msm/dpu: Add support for Eliza SoC
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
- <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Jonathan Marek <jonathan@marek.ca>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260303-drm-display-eliza-v1-0-814121dbb2bf@oss.qualcomm.com>
- <20260303-drm-display-eliza-v1-7-814121dbb2bf@oss.qualcomm.com>
- <7hwaqdfopuptvjoikc5y5jm7lf6pr556k2yijcac44fobt3x2z@5eglub7asuqq>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7hwaqdfopuptvjoikc5y5jm7lf6pr556k2yijcac44fobt3x2z@5eglub7asuqq>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 43EF71F3C24
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>, 
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+To: Alexey Charkov <alchark@flipper.net>
+In-Reply-To: <20260303-bq25792-v1-1-e6e5e0033458@flipper.net>
+References: <20260303-bq25792-v1-0-e6e5e0033458@flipper.net>
+ <20260303-bq25792-v1-1-e6e5e0033458@flipper.net>
+Message-Id: <177255519061.3485716.8870568133764595988.robh@kernel.org>
+Subject: Re: [PATCH 01/11] dt-bindings: mfd: ti,bq25703a: Expand to include
+ BQ25792
+X-Rspamd-Queue-Id: 071021F3CA0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:subspace.kernel.org:reject}];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW_WITH_FAILURES(-0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270638-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,quicinc.com,marek.ca,linaro.org,vger.kernel.org,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270640-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,collabora.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_SPAM(0.00)[0.916];
+	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_REJECT(0.00)[kernel.org:s=k20201202];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DKIM_TRACE(0.00)[kernel.org:-];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,devicetree.org:url,6b:email,flipper.net:email]
 X-Rspamd-Action: no action
 
-On 03/03/2026 15:10, Dmitry Baryshkov wrote:
-> On Tue, Mar 03, 2026 at 02:07:57PM +0100, Krzysztof Kozlowski wrote:
->> Add support for DPU (v12.4) on Qualcomm Eliza SoC, with one
->> incomplete/skipped part: HDMI interface (INT_4).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->> ---
->>  .../gpu/drm/msm/disp/dpu1/catalog/dpu_12_4_eliza.h | 365 +++++++++++++++++++++
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   1 +
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
->>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
->>  4 files changed, 368 insertions(+)
->>
->> +	}, {
->> +		.name = "intf_3", .id = INTF_3,
->> +		.base = 0x37000, .len = 0x4bc,
->> +		.type = INTF_DP,
->> +		.controller_id = MSM_DP_CONTROLLER_1,
+
+On Tue, 03 Mar 2026 19:32:46 +0400, Alexey Charkov wrote:
+> TI BQ25792 is similar in operation to BQ25703A, but has a different
+> register layout and different current/voltage capabilities.
 > 
-> There is no DP_1 on Eliza
+> Expand the existing BQ25703A binding to include BQ25792, and move the
+> voltage and current limits into per-variant conditional statements.
+> 
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> ---
+>  .../devicetree/bindings/mfd/ti,bq25703a.yaml       | 79 +++++++++++++++++-----
+>  1 file changed, 62 insertions(+), 17 deletions(-)
+> 
 
-You are right, thanks. It's paired with INTF_0.
+My bot found errors running 'make dt_binding_check' on your patch:
 
+yamllint warnings/errors:
 
-Best regards,
-Krzysztof
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: ignoring, error in schema: properties: allOf
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties: 'allOf' should not be valid under {'$ref': '#/definitions/json-schema-prop-names'}
+	hint: A json-schema keyword was found instead of a DT property name.
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml: properties:allOf: [{'if': {'properties': {'compatible': {'const': 'ti,bq25703a'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 500000, 'maximum': 6350000, 'default': 5000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 6350000}, 'regulator-min-microvolt': {'minimum': 4480000, 'maximum': 20800000}, 'regulator-max-microvolt': {'minimum': 4480000, 'maximum': 20800000}}}}}}}}, {'if': {'properties': {'compatible': {'const': 'ti,bq25792'}}}, 'then': {'properties': {'input-current-limit-microamp': {'minimum': 1000000, 'maximum': 3300000, 'default': 3000000}, 'regulators': {'properties': {'vbus': {'properties': {'regulator-min-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-max-microamp': {'minimum': 0, 'maximum': 3320000}, 'regulator-min-mic
+ rovolt': {'minimum': 2800000, 'maximum': 22000000}, 'regulator-max-microvolt': {'minimum': 2800000, 'maximum': 22000000}}}}}}}}] is not of type 'object', 'boolean'
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-doc-validate", line 8, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 66, in main
+    ret |= check_doc(f)
+           ~~~~~~~~~^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/doc_validate.py", line 37, in check_doc
+    dtsch.check_schema_refs()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 241, in check_schema_refs
+    self._check_schema_refs(resolver, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 212, in _check_schema_refs
+    self._check_schema_refs(resolver, v, parent=k, is_common=is_common,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            has_constraint=has_constraint)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 216, in _check_schema_refs
+    self._check_schema_refs(resolver, schema[i], parent=parent, is_common=is_common,
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                            has_constraint=has_constraint)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/dtschema/schema.py", line 203, in _check_schema_refs
+    ref_sch = resolver.lookup(schema['$ref']).contents
+              ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 682, in lookup
+    retrieved = self._registry.get_or_retrieve(uri)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 422, in get_or_retrieve
+    registry = self.crawl()
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 500, in crawl
+    id = resource.id()
+  File "/usr/local/lib/python3.13/dist-packages/referencing/_core.py", line 231, in id
+    id = self._specification.id_of(self.contents)
+  File "/usr/local/lib/python3.13/dist-packages/referencing/jsonschema.py", line 50, in _dollar_id
+    return contents.get("$id")
+           ^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'get'
+Documentation/devicetree/bindings/mfd/ti,bq25703a.example.dtb: /example-0/i2c/charger@6b: failed to match any schema with compatible: ['ti,bq25703a']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260303-bq25792-v1-1-e6e5e0033458@flipper.net
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
