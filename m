@@ -1,156 +1,191 @@
-Return-Path: <devicetree+bounces-270708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270706-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CC/XLYUup2nlfgAAu9opvQ
-	(envelope-from <devicetree+bounces-270708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:55:01 +0100
+	id SA+2FXgup2nlfgAAu9opvQ
+	(envelope-from <devicetree+bounces-270706-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:54:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E981F584D
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:55:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF8C1F5837
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 19:54:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BD4CB302FE75
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 18:55:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8E222300427B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 18:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117883B8920;
-	Tue,  3 Mar 2026 18:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 175CE3750CE;
+	Tue,  3 Mar 2026 18:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="daMJGcVP"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="tp+jwrbP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 619C114B977
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 18:54:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7DCA2153D8;
+	Tue,  3 Mar 2026 18:54:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772564100; cv=none; b=QSUVxNv2wyZIsj3LNNQWSgJPUQ24ILZQPQwk9vFNfWa8W8E500YNokXPWtbBw8nAuPVXXA+tkvvn5TDf9wGA9WQEIS9RHwhxQ5J3FyZYB8IYdFhvTrjy8szMEM5lG5Aayjdwr1q7DkoA6edoRRKE7+8A3zyu5VgxiHe15+wZnNM=
+	t=1772564086; cv=none; b=PAGSSx5QSYuILuvw5zPgqNlzUD3nkjoYM2H40E9BBaJqFNlSFKGNTedrk7800z/WstzhoeYbFmSlIdkuG04Vv4LrQvVufNSHb+BcGFjPm0vuBlN8uOwnfhhP4RLoS8OOaXi3E4c3arVw/cj2jOVfVcSdQFpuepG3V4WtfCvDtGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772564100; c=relaxed/simple;
-	bh=+B9N9a0VNwBhIQZAxT1kIzubVJvqrzU0XbMlVw4a2PQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J4dORr0DT5DTTw12ZXJAVCuSo0Y7PXzEMSx8bcSfrK2ZBSC5DFSL6KuVEupUDj4mFwZt3BH+YzFtP27uU+/J12ckEOeREkGUn/jGBvpRAQAw7dLt1Tl92HxtExQUJdQmTnx8Ts7lkp/rE2YElbew3T03heXR6vtIomByTS/JKDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=daMJGcVP; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 46139 invoked from network); 3 Mar 2026 19:54:55 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1772564095; bh=zwh2kADgvZw65MCFoX1HtfudMZcZ5wfa9E3f2CLwDlw=;
-          h=From:To:Cc:Subject;
-          b=daMJGcVPw90CcQ/NtdndGOIiXDQQSp29B3g2jgQuGq4+gLKGJS6z+JKAuEicI/Yuf
-           zZl1EYiCUeVuvLSfk8FCwapvNdslHaxpqCCMeYAngPIMLm0UuBYIIvzevKl4yQsarf
-           ltHUismVs9QYyC6mBzs+Yb6w2MKHFjs5k6lLZqpYOcYhmQCgjW6rghMDeSYtZ0h9GH
-           zy4nWiJLdAysZoFhBicSpoXFyEBGOZuscsU2P6w+EMfY/WPUNXuKiFzhmvFCVPKjfM
-           DQNtSn//dBqzyWt/meBBjGmaw7mIHxRZ/KKYJN2XWVi4UnWfVH6qqC0+pRLBxm1dvB
-           Bpqpyzl46Q8NQ==
-Received: from 83.24.116.171.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.116.171])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with TLS_AES_256_GCM_SHA384 encrypted SMTP
-          for <herbert@gondor.apana.org.au>; 3 Mar 2026 19:54:55 +0100
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	atenart@kernel.org,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Cc: Aleksander Jan Bajkowski <olek2@wp.pl>
-Subject: [PATCH v3 2/2] arm64: dts: mediatek: add crypto offload support on MT7981
-Date: Tue,  3 Mar 2026 19:53:50 +0100
-Message-ID: <20260303185451.70794-2-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260303185451.70794-1-olek2@wp.pl>
-References: <20260303185451.70794-1-olek2@wp.pl>
+	s=arc-20240116; t=1772564086; c=relaxed/simple;
+	bh=/idX8QivQo2BDr3Mxzwukch259tw+JdI2SitHpRhJcQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OjvbvACYY+YMCSxkmGbODbrzZMlos+LjC7hSGb218Sa3o6V/knbuC/jZZzsDmezRdFeaRZcmt+hyaZETEmc93+1OFXsIY+urt3LIYBKwfFzFOkU7OStiXEuJFIwYFM2xe3ZCeMQ8r5l2w0rr2qvMIdNPArS9lB3IyoeO79DTYDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=tp+jwrbP; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772564085; x=1804100085;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/idX8QivQo2BDr3Mxzwukch259tw+JdI2SitHpRhJcQ=;
+  b=tp+jwrbPEmJjcwHOpiYgwVZKTNINWR3R9zTwBk6u3YK31fG7AcbkXwRc
+   xJ0fpNWzlrrLada+EieLHtGeU++6QMGhZJcTf8OS2UABfsMA+ebM6s1GD
+   L3VnPVLUCvyBbqJPaR1XoLfL5LBl7W0KweuM81XlzpfFEFGyNi0JT9d/2
+   o8FqvuXCgyARwtJS1f87CWr6Ld/GsbC2Qo57tyv+Omcs6uWFbClAjhBl0
+   DA2cuj1W++YeDLim8zw4EdEao/7Anqqd+/i0GcJu5BWMxqOr/sAvFpLMZ
+   vt3taanysGkP/uJ7bka4TVVnlJ5y3AvBRnobT76Ek/Ih/2aHB66OhicHH
+   Q==;
+X-CSE-ConnectionGUID: vCCADSueTRSDNnUFr7evcQ==
+X-CSE-MsgGUID: CEhNlibjT6iB2YW6dMy4ww==
+X-IronPort-AV: E=Sophos;i="6.21,322,1763449200"; 
+   d="scan'208";a="54162938"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2026 11:54:44 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 3 Mar 2026 11:54:03 -0700
+Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58 via Frontend Transport; Tue, 3 Mar 2026 11:54:02 -0700
+Date: Tue, 3 Mar 2026 10:54:01 -0800
+From: Charles Perry <charles.perry@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: <netdev@vger.kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, "Claudiu
+ Beznea" <claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: cdns,macb: add a
+ compatible for Microchip p64h
+Message-ID: <aacuSRxLktvCBaNK@bby-cbu-swbuild03.eng.microchip.com>
+References: <20260303180318.1814791-1-charles.perry@microchip.com>
+ <20260303180318.1814791-2-charles.perry@microchip.com>
+ <20260303-primal-cradling-f600faca8504@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-WP-DKIM-Status: good (id: wp.pl)                                                      
-X-WP-MailID: b80b92edaf8e041f5f39b6bc99eed231
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000009 [gLPh]                               
-X-Rspamd-Queue-Id: 59E981F584D
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260303-primal-cradling-f600faca8504@spud>
+X-Rspamd-Queue-Id: 9EF8C1F5837
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[wp.pl,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[wp.pl:s=20241105];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270706-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270708-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[wp.pl];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gondor.apana.org.au,davemloft.net,kernel.org,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	DKIM_TRACE(0.00)[wp.pl:+];
-	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olek2@wp.pl,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[wp.pl];
-	DBL_PROHIBIT(0.00)[0.167.224.144:email,0.157.120.128:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[wp.pl:dkim,wp.pl:email,wp.pl:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:email,0.153.167.240:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,microchip.com:dkim,microchip.com:email,bby-cbu-swbuild03.eng.microchip.com:mid]
 X-Rspamd-Action: no action
 
-The MT7981 as well as the MT7986 have a built-in EIP-97 crypto accelerator.
-This commit adds the missing entry in the dts.
+On Tue, Mar 03, 2026 at 06:18:48PM +0000, Conor Dooley wrote:
+> On Tue, Mar 03, 2026 at 10:03:15AM -0800, Charles Perry wrote:
+> > "p64h" is shorthand for "PIC64-HPSC" and "PIC64HX"
+> 
+> No, sorry. If these are different SoCs they need to have SoC-specific
+> compatibles, particularly since PIC64HY could be something that is not
+> compatible with these devices. It'd be fine to add
+> "microchip,pic64hpsc-gem" with "microchip,pic64hx-gem" as a fallback
+> though, since they do appear to be very very very similar devices and
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt7981b.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Yes, "very very very similar" is the right term.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-index 4084f4dfa3e5..94c7bf0050fc 100644
---- a/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt7981b.dtsi
-@@ -150,6 +150,21 @@ sgmiisys1: syscon@10070000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		crypto@10320000 {
-+			compatible = "mediatek,mt7981-crypto",
-+				"inside-secure,safexcel-eip97ies";
-+			reg = <0 0x10320000 0 0x40000>;
-+			interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "ring0", "ring1", "ring2", "ring3";
-+			clocks = <&topckgen CLK_TOP_EIP97B>;
-+			clock-names = "core";
-+			assigned-clocks = <&topckgen CLK_TOP_EIP97B_SEL>;
-+			assigned-clock-parents = <&topckgen CLK_TOP_CB_NET1_D5>;
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt7981-uart", "mediatek,mt6577-uart";
- 			reg = <0 0x11002000 0 0x100>;
--- 
-2.47.3
+> can clearly share the same match data in the driver. That's what pic64gx
+> and mpfs do.
+
+Ok, no problem. Like this? :
+
+```
+      - items:
+          - enum:
+              - microchip,pic64hpsc-gem
+              - microchip,pic64hx-gem
+          - const: microchip,pic64h-gem
+          - const: cdns,gem
+```
+
+Also, how important is it to use "pic64h" vs "p64h"?
+
+Much of the downstream development uses "p64h" in compatibles, file names,
+function names, etc. and it would create some overhead to rename
+everything.
+
+Although, as I think of it, it might not be a bad thing since it would
+allow to quickly identify the mainstream from the downstream code.
+
+Thank you,
+Charles
+
+> 
+> pw-bot: changes-requested
+> 
+> Cheers,
+> Conor.
+> 
+> > 
+> > The generic compatible "cdns,gem" works but offers limited features.
+> > Keep it as a fallback.
+> > 
+> > Signed-off-by: Charles Perry <charles.perry@microchip.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/cdns,macb.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > index cb14c35ba996..dff350302098 100644
+> > --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> > @@ -27,6 +27,7 @@ properties:
+> >  
+> >        - items:
+> >            - enum:
+> > +              - microchip,p64h-gem    # Microchip P64H SoC
+> >                - xlnx,versal-gem       # Xilinx Versal
+> >                - xlnx,zynq-gem         # Xilinx Zynq-7xxx SoC
+> >                - xlnx,zynqmp-gem       # Xilinx Zynq Ultrascale+ MPSoC
+> > -- 
+> > 2.47.3
+> > 
+
 
 
