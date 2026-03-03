@@ -1,358 +1,139 @@
-Return-Path: <devicetree+bounces-270398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270399-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iAi2HaCtpmn9SgAAu9opvQ
-	(envelope-from <devicetree+bounces-270398-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:45:04 +0100
+	id WP5UBAewpmn9SgAAu9opvQ
+	(envelope-from <devicetree+bounces-270399-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:55:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C3C01EC0DC
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:45:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EDE91EC273
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:55:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7C9BC300D346
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 09:45:03 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 124543039F73
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 09:55:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD0938C439;
-	Tue,  3 Mar 2026 09:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="EvdmgJSC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D8D538C2DF;
+	Tue,  3 Mar 2026 09:55:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013055.outbound.protection.outlook.com [40.107.162.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74FB8388E54;
-	Tue,  3 Mar 2026 09:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.55
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772531100; cv=fail; b=sovaiK1Nbs5vxWTxv4UCRbsQUK2QsKYbGHANOI17zWEpjdRnK06L81BOIXoQ/8qL2cAVHzU0PQZUY8246VMXkVNIwuW2FVlBRJGXOssuT6vSk5TUJ9B9HnfpjDd6SuTKWOGSp+RnIrePgLnFbNipJVqvQvp3DYN6hd02YmPyBBA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772531100; c=relaxed/simple;
-	bh=N8NtjipBeJFoj+fxpORXqJsv9V3aoKP/KfSDXEFkhgw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=dS13gXxq3344ZLsM0xhxlu0Y6Cgj7N0O1OEcC+2IsLRw8+GDTBqdpc1PNReqCdtXf+zWdJjfKCkiPSnNNW97DIVwDSQXG8MXu54B1o13b/JhLDALuvWKfwq+20BSjblmMTVHXcLSJszlL+wNDGpAWTptHu+PFKvfz4PdMT1OXiM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=EvdmgJSC; arc=fail smtp.client-ip=40.107.162.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RAjRVhLzMmxxUw9+yFEvMQ0GYC22SA5XmtrkaL79AEQlFr584nzde4FGHbiY0oy5SRwhbuQ8w/cAalRLj4ewi59GXPow6uIKCPI+AxXJ9UCef5aMnfO8l7oT+qf7ggH5gdz7tZ+k0EoXg0C6UKpOfYHLMYJSDskFw2SCCLHbTbf68J0ERzDp59MAJcdqYJ/JXWO7s16qnrsfVP4a56HRZa9sxlDDJJBYtzq1AeNMr5hXw92W4YyP34mdO/H4aD+xTHa67jibzQwLCZ7VHO8G0Hn4LhbKthkuUKo1nTE5/DbgsPoIZ0vKppS5zVP3A34S3+e5PW6aBVEKstPQ223MIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pDYJBG7jmhjliTPrMBvjeMwuimbYyI2vv4k0WphLWxs=;
- b=hNlXTyVfftjEOISupiqoofcNkrYqNxf8yhS97nuihM/fFPI4vaMzcKM8cEXDjWJrJxwrlgEb4/VOFQTA/Dlz8xd7FYLA4UB2uJa3qFDuUYan9Z6lCz2H8l5d/WVgBeNrfVMaAE+1UNOEQHKs2pqpAuXwenePNUL73g2UcVaTCmWipTQ+2Uy76Vhp2E98U6qedQ6riwYoX1WSan70+hSFc94XjMQsGjjCWwJvDDDccq4iL0CWT2oHbLf3/An+mUMKSQ5VIoZ7TBmV7WlZ0PuPWVH3ZKt6+0tQQsgu7kElXxz/3UW9dzhRTzLpg5B5JmQyow9WUB9uRkuFIf1AvNJ09Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pDYJBG7jmhjliTPrMBvjeMwuimbYyI2vv4k0WphLWxs=;
- b=EvdmgJSC96EW42bL7Hm37d5XH/drTpWSRixFajXU9tJ5izw3fuBr6lyzf6b4tmi///QRHUtE5FWeGKQomv3dJEoiScFlCFAcGETroR9Or51KU6BoEw2E5Ok+O4AadhJNmHe765rRplNnZr7Gcyz3Mbvur83KFMxGf62XofdNogNwvpb0BzyG8t/f2OsG7QJsPnVHgv7vXOV93887RAGV7MEuJ3lyDSMKsdsKagaiaWPFk7ZCAlc9EOnn5WFl8y2vxuiwiOIb08PXnwWTMkLolWiZ5YOqFjMlkVtwEo8Mjxg5fjBpE7X7gvaGZKGaRVd+JCmUavELvEESwFviss0FSw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB7051.eurprd04.prod.outlook.com (2603:10a6:10:fd::20)
- by VI1PR04MB7007.eurprd04.prod.outlook.com (2603:10a6:803:13e::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Tue, 3 Mar
- 2026 09:44:54 +0000
-Received: from DB8PR04MB7051.eurprd04.prod.outlook.com
- ([fe80::a5a4:c92e:b316:aba0]) by DB8PR04MB7051.eurprd04.prod.outlook.com
- ([fe80::a5a4:c92e:b316:aba0%5]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
- 09:44:54 +0000
-Message-ID: <f3f6ba3b-3253-4945-adf5-40147fe751bb@nxp.com>
-Date: Tue, 3 Mar 2026 17:45:57 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
- subnode to schema and example
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- luca.ceresoli@bootlin.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, frank.li@nxp.com
-References: <20260302-v6-18-topic-imx93-parallel-display-v10-0-634fe2778c7a@pengutronix.de>
- <20260302-v6-18-topic-imx93-parallel-display-v10-1-634fe2778c7a@pengutronix.de>
- <7d708ede-a576-4eae-b319-ebd54dbc5163@nxp.com>
- <4sofljffovrorpxe2os3jl745qfjoglvl54oqf3v7r5bk5f6aq@6y3jwn4abiqy>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <4sofljffovrorpxe2os3jl745qfjoglvl54oqf3v7r5bk5f6aq@6y3jwn4abiqy>
-Content-Type: text/plain; charset=UTF-8
-X-ClientProxiedBy: SI1PR02CA0035.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::8) To DB8PR04MB7051.eurprd04.prod.outlook.com
- (2603:10a6:10:fd::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C330369206;
+	Tue,  3 Mar 2026 09:55:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772531704; cv=none; b=SYDcMdelpUAdjRoNnYZu9VwI4xnncVNqQFbXBhrjSc1Qu6+T7cbEYbGuy1/yAdvD6jVE1WIaPcAAV6bNeBbz1lhxpnT3xMKb8s5DjhTmkwu/ZRvDTZFmNB+P80kduO6q0MDNrwbXtMrpDYTnfMkRUsWr3mlvebWLP4LJpMdA1vg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772531704; c=relaxed/simple;
+	bh=uQuEV1L4Zeytm0zMAGjwc1P5mrMbM/X3GwH/RfOzjDs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gtsar6TOyw9pQQtMNmVFxU70gNtZjdivmg+ZOKLGylPBR9AU3xqPDNhnK+kyQ90shUp/K1EHRBwKzuyf37Ib2YIyLs3q4/MYmhsA4bkgGUfpljTMPQuKzts5O3+ReKCOMQ89rBHgRUcDMq/pme4mtHNJlc4qYK1L5GDul1mjbAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [10.213.20.192] (unknown [210.73.43.101])
+	by APP-05 (Coremail) with SMTP id zQCowAB3zhHor6ZpCWyTCQ--.36234S2;
+	Tue, 03 Mar 2026 17:54:49 +0800 (CST)
+Message-ID: <ded1cb94-8484-4ea3-ba7a-22fa76547db9@iscas.ac.cn>
+Date: Tue, 3 Mar 2026 17:54:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB8PR04MB7051:EE_|VI1PR04MB7007:EE_
-X-MS-Office365-Filtering-Correlation-Id: f4c99abe-b45b-4de8-3275-08de79098594
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|19092799006|7053199007;
-X-Microsoft-Antispam-Message-Info:
- cjHPqve2sfCAqv8x9DkjAuzyxVFK+SJDSj9lHRt1WtblZ8P0GP4gWWroSIlIwMIPKodzxtBpYHonEIA4rK40XdN0lIDRbnttz9UeYHT3utNxKA90HJSx4xOIigfjlxxkl9w7UKE/zv7vJsSFXCDkqz9opxUsrYBd6sRBwUQgeE5DPPBbPwkA/ZB4Pp3GrGcwgS2Emf2aUucz2yspZp2JMSvI8SczIskLHNODNans+AcUuOCbqAsyXzr2R2QvQIiMhmfukfAranQ+yL0EdzhE691xA8d3fSW2gW+nqODVph5AiJxSOBtwskhbUbv+qM8VD1T/x3fDsad0px6dRS4ASjpkbyJv36cXmgZrdpdNbiSfP8E5jdoQSHE9z8KHUI/lF3VN8E62g60/BjaTsChHwzDbW9a/ZMXXV+JmpJ7NAwfGq4JE837yDrn/+54J6bBM1tkRz6gqQbnLQJn5VV7qoeqsAXAKpcbzw1IWXMOkL7H5fiNYghLXCFWiP9OvpAlITDqDor/HdGFKQpl8fYIq+piKaUrGfv+LAGK3Ke1Tz7cXE06gZLgLIcO2tMLACEPGx8qskuBtMA46PjYk6DVTFKFB/4T6kLMjXDQW4Ti0WaVsIPEWFeuUzFDmXav00ZIsJpBkpnpXgtm+RuDah9aaIEFlsGbc3B9MCIiqzOipo6tXGilb9mQFQSaGRJF9e7p3EgwD89+1O69re7n3PG+grzePmQGyAgg5FryFytJ6eKM=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB7051.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(19092799006)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?QWpGa0VpbWYrdmJjLzU2RDZLb2FhSVc4ZWY4azB5TnlyQUQ3Qk1sTkI4U2VE?=
- =?utf-8?B?V01MSWFpcHpvbVc2MDhpUG8wNWZSWTMzZHpmRTR2cDJJS09aajd1UXJLY3F2?=
- =?utf-8?B?VzY5RFdZY3JqMmZtZzlpUVJMTmRBL0w1b1UwMDJiS3J5UEliYlRBeEJLVzNy?=
- =?utf-8?B?Y2NNV0lYZ1FsMlNhc1VSSzQ2aWFtZ0JoYm1GbnJiLzljNG5EWFJaWk1sMlpJ?=
- =?utf-8?B?dzFDOXkvT1kreExiOU44cEVhWGtSTVNDVnVjcUd5Y3pnTnpDQ0diL2xUQ01C?=
- =?utf-8?B?Q0tyUHh5UFVidkg3QUpOOCt0UldnTVpNWTJDZ21iQzh1SnV6UnVUMmdMTlhN?=
- =?utf-8?B?T3NVbjQxN1RqTlJ2d3UrRlJXb0xxTkt2TDNmUUNTOWxjdnYvM0lKTytUUk1C?=
- =?utf-8?B?SEc1YU1LWEZ4QXI2SVNBVXdYdWVGN2NXUTZCTml5WCtMaXF4SDFJRFNxSXpJ?=
- =?utf-8?B?NGN1Wms2UWNoWTQxK0xkMU5CZDZwdXhHcVdCQmkvdkNyZWM2RDEvbkdXbjVQ?=
- =?utf-8?B?Y1hEQjFqOHo4Y1pqY1lQUnllWFRpdnFnQlo2a3VOc2I4R0YrSGo3OEFLTUUy?=
- =?utf-8?B?a3lSWUE2V1Q3M09MYk9OUmJjcmoyRHh0UklvaTRjaWZuN2RPcndSMElHL3Q2?=
- =?utf-8?B?Q1VyaldhRUxMTHh6UWF0NGp6bkdRZ2ZjRlVHeDhnVWdSdDRtME9zSDhHcnJM?=
- =?utf-8?B?U21sdk5SeFc1Y3JOeHlUYjNHNzJuRVVnNWFzOHFGTVN3ekt6VmF3Qm5YRkJ4?=
- =?utf-8?B?UEVIZy92TUhkTkFtNmZLM0E4MkM3Vi8xeHVjSlRtVy9zN1Fmc3NSS2hvc2pR?=
- =?utf-8?B?UHI5dE5yMlJ2RW1CeU5PaTAyUDdOVlRzYVhlNmU2YjhJWXFSK3NsTzJ1S3k5?=
- =?utf-8?B?Zm5iTEh2WXd0WWZldWtlQVVLZXV0MFNmVFNJTnU4SHhZeG9KZUppR29aUDc1?=
- =?utf-8?B?Y0Fja3lhVnF0Rk1kYThsZnJGR0w5R2EraWI1b2Vxa2Z4eUVBYUM0YndKaThH?=
- =?utf-8?B?RENDWlBKWUdXd2UrVVdIS2x2dkQrUkVjSUIwbFhHbVQvY3pWdzJrUXBIZlhx?=
- =?utf-8?B?VEJmKzA3NFBNV3dWWXN3aWdvRnBFZzBteXZMNGd5MVY2M3BhWkkzK0RJYlk3?=
- =?utf-8?B?RThaVjNuZzFDUFNiQnNmc1JSbWZEampKR3Ntakh6SW43UlZyOWZKYnltVmFk?=
- =?utf-8?B?dHhGaHZhMUxmcFNVejVlSHU4d1BqU1ptTVE4UE1GWnlBQzlNaXpkOU0rWkpQ?=
- =?utf-8?B?cmZNdEpMSlN2M1pITXAzcDVkQnhCekppRXdScStESlNKeGhLRlNCRTZFaDh0?=
- =?utf-8?B?WXVmRUJBbFFWSE92QUc5QmprK2wxWHhLZkprQ1RScDJkaVpBb0ZJclErYjN3?=
- =?utf-8?B?RjlrcUg3VExBQk5FeXVsU2J2SEEyNGpDTUhSeVhuUjNiVzNrNWFyWmN5U211?=
- =?utf-8?B?bmhpdkZOVnlUVHZzRm9QbUFzMlR0cnFnUXhPQVZUVzhNK0pTUnpnUk5hdzNW?=
- =?utf-8?B?RndSR0orOW5wWG1EQURZMXdBa09FbERlczh0QStVTFlJa2RwNFNZME8yTEsy?=
- =?utf-8?B?L2Z3T3lGbXlCdm43dTFVTXlEQ0xwVVpKVk9lbzFHQm10ZUZ3WFovWm1DblRS?=
- =?utf-8?B?cnNzN3VLRnRJcGhjMloxMjFudzhScVBkRWxlc21ZTGVmQWtURXdMWU5xOGoy?=
- =?utf-8?B?VFN6Q3VORGNrQzJsY3BrOWVUR0ZFWmh2djZhWFVjOE1MYWRzdHlLUUlrS3ho?=
- =?utf-8?B?VFkxUFBLVFhoNW9qSFhjUTFTMlVYRW5QamNqd0ZtQTR5KzVRVGhzWUQrVDNk?=
- =?utf-8?B?eWl4aGsweDhlYmNvUG9JTC9nNFRqaHV0RVRRTmRuUklWZ3ZCUG9Deit6QXA0?=
- =?utf-8?B?cUdxZGlkTkNuWkp4V2w3OWx2ZWM3SnhKcUdpdkQrYUQrbVkxUlJFbG9UZW92?=
- =?utf-8?B?bWxTOEJ1TXloRkhBUWRURTd2MjNWOG5FdGF3NE9VVkNUTktCaGZjdklBY2k5?=
- =?utf-8?B?TUxNT29CU1UxUm1uRkU2NUc1bW5ndmE2anliRnZmZlYxTktYS0dSL1FLRHRh?=
- =?utf-8?B?WTJNbWljc2o2UFRGSzNrM053Z1VsakdyTDRkcWpyaDlib3ovN0JxRFA5dC9K?=
- =?utf-8?B?Q2ltYXpxUUttbzhqN0lvWURmdkQraU5CTjRqVlRZU3BUc3o2bDk2QXQwNlk0?=
- =?utf-8?B?dDZDbTRrNFFUUDR3YmZpWHZ4R0lFWmh6WUFCWmprWXdHc0JaZy9FS0ZFY2ZP?=
- =?utf-8?B?SjZzemYxOUhBSHYrNmVDNVkwNDc1YzVpK3RzNnVMSThHRlRsUEMxSUlpeUxv?=
- =?utf-8?B?ZG5HQjNKci8waC8raGRqVmNHTlZLdFRBOHRWMFI4SVZ0VURXLzVOQT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4c99abe-b45b-4de8-3275-08de79098594
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB7051.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 09:44:54.0136
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xLLXECxA7GPjReO3a/zNylGLd6xbNxfyTfr/uykEyPFe0ga7wAN6RvTH8qKNir/2j3paVMEw4HLucjk6izw54Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7007
-X-Rspamd-Queue-Id: 1C3C01EC0DC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] riscv: dts: spacemit: Add 'linux,pci-domain' to PCIe
+ nodes for K1
+To: Yixun Lan <dlan@gentoo.org>, Chukun Pan <amadeus@jmu.edu.cn>
+Cc: alex@ghiti.fr, aou@eecs.berkeley.edu, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dlan@kernel.org, krzk+dt@kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ palmer@dabbelt.com, pjw@kernel.org, robh@kernel.org, spacemit@lists.linux.dev
+References: <20260202100000.19176-1-amadeus@jmu.edu.cn>
+ <20260302071502.63672-1-amadeus@jmu.edu.cn>
+ <20260302074235-GYB288339@gentoo.org>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20260302074235-GYB288339@gentoo.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:zQCowAB3zhHor6ZpCWyTCQ--.36234S2
+X-Coremail-Antispam: 1UD129KBjvdXoWruw1DGFy8JF17JFWDWFy8Zrb_yoWDCFb_uF
+	yDAr1DC34DKryxKr1Fkws3XrWxA3y8Kw18trn3GFy2k3s5X39agFsYkFn3ZayxJFZ7GrnI
+	yF1Fv3y3Zr1YvjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbakYjsxI4VWDJwAYFVCjjxCrM7AC8VAFwI0_Gr0_Xr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z2
+	80aVCY1x0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAK
+	zVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Gr0_Cr1lOx
+	8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7MxkF
+	7I0En4kS14v26r1q6r43MxkIecxEwVAFwVW8uwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4
+	IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1r
+	MI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJV
+	WUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j
+	6r1xMIIF0xvEx4A2jsIE14v26r4j6F4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJb
+	IYCTnIWIevJa73UjIFyTuYvjxUxsXoUUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+X-Rspamd-Queue-Id: 9EDE91EC273
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270398-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,bootlin.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270399-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[victor.liu@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	FROM_NEQ_ENVFROM(0.00)[wangruikang@iscas.ac.cn,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.964];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,nxp.com:dkim,nxp.com:email,nxp.com:mid,pengutronix.de:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,iscas.ac.cn:mid]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 08:59:58AM +0100, Marco Felsch wrote:
-> On 26-03-03, Liu Ying wrote:
->> On Mon, Mar 02, 2026 at 05:10:40PM +0100, Marco Felsch wrote:
->>> From: Liu Ying <victor.liu@nxp.com>
->>>
->>> i.MX93 SoC mediamix blk-ctrl contains one DISPLAY_MUX register which
->>> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
->>> field. Document the Parallel Display Format Configuration(PDFC) subnode
->>> and add the subnode to example.
->>>
->>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->>> [m.felsch@pengutronix.de: port to v7.0-rc1]
->>> [m.felsch@pengutronix.de: add bus-width]
->>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
->>> ---
->>>  .../bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml | 78 ++++++++++++++++++++++
->>>  1 file changed, 78 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
->>> index 34aea58094e55365a2f9c86092f637e533f954ff..d828c2e82965c7a4cd69a67136047d83c96b0a35 100644
->>> --- a/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/imx/fsl,imx93-media-blk-ctrl.yaml
->>> @@ -40,6 +40,58 @@ properties:
->>>      minItems: 8
->>>      maxItems: 10
->>>  
->>> +  dpi-bridge:
+
+On 3/2/26 15:42, Yixun Lan wrote:
+> Hi Chukun,
+>
+> On 15:15 Mon 02 Mar     , Chukun Pan wrote:
+>> Hi,
 >>
->> Cc'ing Frank.
+>>> The SpacemiT K1 SoC has 3 PCIe EP controller nodes. Add the
+>>> 'linux,pci-domain' property to assign a PCI domain number to
+>>> each of the controllers instead of assigning it randomly.
+>> Does anyone have any thoughts on this?
+>> Without this patch, the PCI domain number is random.
 >>
->> fsl,ldb.yaml documents fsl,imx6sx-ldb, fsl,imx8mp-ldb and fsl,imx93-ldb
->> with a reg property.  Since all of them are child devices of either GPR
->> or BLK_CTRL and this dpi-bridge is a child device of BLK_CTRL without a
->> reg property, how can we handle the inconsistency?  At least, with this
->> patch and the current fsl,ldb.yaml, we cannot add an i.MX93 LDB child
->> node.
-> 
-> This reg property was longly discussed and there should be no reg
-> because this 'reg' covers not only the PDFC register fields. Please see
-> the discussion:
-> 
-> - https://lore.kernel.org/all/PAXPR04MB84599D676EC1E3879694579688B2A@PAXPR04MB8459.eurprd04.prod.outlook.com/
-> 
-> The LDB node shouldn't have a reg property in the first place. There are
-> a few registers within BLK-CTRL which belong to only one "IP" like the
-> LDB. But these are the exception rather than the rule. To make it
-> possible to abstract _all_ sub-devices within the BLK control you need
-> to drop the reg property. The subdevice drivers need to handle the
-> offsets within the BLK-CTRL accordingly, like the LDB driver already
-> does. So removing the reg property from the LDB dt-bindings is the
-> correct fix.
+> You describe what's has been done here, but no why?
+> Can you add description about why problem with random domain,
+> and the motivation of the change behind?
+>
+> from my understanding of reading DT document, either way seems
+> fine..
 
-Hmm, reg property was added intentionally by the below commit.  But,
-I'm not saying removing the reg property is not a correct fix.  Just
-feel embarrassing to see that it was added and then to be removed.
+For example systemd-udevd provides the interface name based on the
+segment group / domain number, so if you add an additional PCIe network
+card, the name of the network interface will flip between enP0p1s0 and
+enP1p1s0, which is a bit inconvenient.
 
-16c8d76abe83 dt-bindings: display: bridge: ldb: Fill in reg property
+This isn't inherently a problem (these things were never as predictible
+as they wanted anyway) but a convenience would still be nice.
 
-Can you contribute patches to get this done if you think it's a correct
-fix?
+Vivian "dramforever" Wang
 
-> 
-> Regards,
->   Marco
-> 
->>> +    type: object
->>> +    additionalProperties: false
->>> +
->>> +    properties:
->>> +      compatible:
->>> +        enum:
->>> +          - nxp,imx91-pdfc
->>> +          - nxp,imx93-pdfc
->>> +
->>> +      ports:
->>> +        $ref: /schemas/graph.yaml#/properties/ports
->>> +
->>> +        properties:
->>> +          port@0:
->>> +            $ref: /schemas/graph.yaml#/properties/port
->>> +            description: Input port node to receive pixel data.
->>> +
->>> +          port@1:
->>> +            $ref: /schemas/graph.yaml#/$defs/port-base
->>> +            unevaluatedProperties: false
->>> +            description: Output port node to downstream pixel data receivers.
->>> +
->>> +            properties:
->>> +              endpoint:
->>> +                $ref: /schemas/media/video-interfaces.yaml#
->>> +                unevaluatedProperties: false
->>> +
->>> +                properties:
->>> +                  bus-width:
->>> +                    enum: [ 16, 18, 24 ]
->>> +                    description:
->>> +                      Specify the physical parallel bus width.
->>> +
->>> +                      This property is optional if the display bus-width
->>> +                      matches the SoC bus-width, e.g. a 18-bit RGB666 (display)
->>> +                      is connected and all 18-bit data lines are muxed to the
->>> +                      parallel-output pads.
->>> +
->>> +                      This property must be set to 18 to cut only the LSBs
->>> +                      instead of the MSBs in case a 24-bit RGB888 display is
->>> +                      connected and only the lower 18-bit data lanes are muxed
->>> +                      to the parallel-output pads.
->>> +
->>> +        required:
->>> +          - port@0
->>> +          - port@1
->>> +
->>> +    required:
->>> +      - compatible
->>> +      - ports
->>> +
->>>  allOf:
->>>    - if:
->>>        properties:
->>> @@ -112,4 +164,30 @@ examples:
->>>                 clock-names = "apb", "axi", "nic", "disp", "cam",
->>>                               "pxp", "lcdif", "isi", "csi", "dsi";
->>>        #power-domain-cells = <1>;
->>> +
->>> +      dpi-bridge {
->>> +        compatible = "nxp,imx93-pdfc";
->>> +
->>> +        ports {
->>> +          #address-cells = <1>;
->>> +          #size-cells = <0>;
->>> +
->>> +          port@0 {
->>> +            reg = <0>;
->>> +
->>> +            pdfc_from_lcdif: endpoint {
->>> +              remote-endpoint = <&lcdif_to_pdfc>;
->>> +            };
->>> +          };
->>> +
->>> +          port@1 {
->>> +            reg = <1>;
->>> +
->>> +            pdfc_to_panel: endpoint {
->>> +              remote-endpoint = <&panel_from_pdfc>;
->>> +              bus-width = <18>;
->>> +            };
->>> +          };
->>> +        };
->>> +      };
->>>      };
->>>
->>
->> -- 
->> Regards,
->> Liu Ying
->>
-> 
-
--- 
-Regards,
-Liu Ying
 
