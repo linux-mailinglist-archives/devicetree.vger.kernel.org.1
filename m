@@ -1,51 +1,84 @@
-Return-Path: <devicetree+bounces-270373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270374-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKxaDM6jpmkTSQAAu9opvQ
-	(envelope-from <devicetree+bounces-270373-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:03:10 +0100
+	id 8PXGIKujpmmvSAAAu9opvQ
+	(envelope-from <devicetree+bounces-270374-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:02:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAFD51EB961
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:03:09 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 941BA1EB94C
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 10:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B424F3116735
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:57:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EE39F304EE9F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 09:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F77F38944C;
-	Tue,  3 Mar 2026 08:57:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA522388E40;
+	Tue,  3 Mar 2026 09:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rU+Ih78T"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w5+HF9S7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C6C38552F;
-	Tue,  3 Mar 2026 08:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56133374E5A
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 09:01:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772528254; cv=none; b=CVbCJ03iSCQkCs9SovR1B9TQkPX4cX4gVHx3cVHxrCLfA58xcCdwgPsyGix5pT/SMaShzXjI6+XwqcXWZwI+C4MNOVgktdGlLmo3/T2I6qAzOu3D7KbiWDOgL7XPnSV/t/JycGNrL9UBGJpKIyVnuD0X/Ms11k8UFgpC//ZvGJk=
+	t=1772528507; cv=none; b=PKo4l9JU+mihgEz8rXXSaY2S25GG+LxvsQVotYFk1coZGphKBBMXK5wp6FmMNHeiMpBk76EzlkBzolY5iz1qhYCEF6mseQ8hMBC6uQIK8No076GWFFocbEwB9DBiFYcGptoxA18jH4Dzm1LYyoENhcBSqioswd+4pvZBZLV4g8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772528254; c=relaxed/simple;
-	bh=KulhFkadCwBsmVUEcbSD4peLvLMdzJNrHT+Iiz3ob9A=;
+	s=arc-20240116; t=1772528507; c=relaxed/simple;
+	bh=wKzv8JjnWV5gBG65VFCZ2zPm9xxHlHBRT8kIM6tUCBY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mPHk+qAarjzxTZ4wBDLfXKl2J4C22RXxwAkxu9hWglC+CJcvCQyJrbPfKRDKAK0NCeww9/MAaf0/9M/NJooR+R5z3klqW8zDfO8kWREaI4NyBsU0ySXc1j8q4xM2yO97cYT0Kqk1GiJvA3+tkRJkSOWamiwD6qOlfNJXF/WJ4Fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rU+Ih78T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5E76C19425;
-	Tue,  3 Mar 2026 08:57:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772528254;
-	bh=KulhFkadCwBsmVUEcbSD4peLvLMdzJNrHT+Iiz3ob9A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rU+Ih78T7EOoLYCGqRgx6jNA22Fi92dBiAxVgB/yNJ4xXHGjsjGynQjkVicwZzaA1
-	 I5r3k1XYoyN/7PAbzYMvwkMsCj9oSBsRV7sOlPn0oTmXWQ2m9MYMxIkmgmKIAoCeBt
-	 9QJZ3Iqrw+KwEvPFJhUBA/nMIUtAr8sgzulSkpyD21c/sH8q2Diw7UxS4R3sKxnHC5
-	 8xWdcpBp6wKnOowaDNUHj/OjSaVa+ih/lsH7L9uwrY5E46odlltoIlUuCqKbZCN1wp
-	 UtF+aBQaL+412kW7FfFS7xEWvwizsPQ/kc8QugLRPZgY0iAlGF0YMyFp3KXb4/gtsc
-	 VFoFf1TxZjOwg==
-Message-ID: <a8f807dd-156e-45bd-8280-38e73dd99b04@kernel.org>
-Date: Tue, 3 Mar 2026 09:57:29 +0100
+	 In-Reply-To:Content-Type; b=BFWNyQ1irAUYRpGRX2nb4Qtx+2jIne2MBjKlqUcmq16mBg9Mht9NpN50iG22FVt6bMisVa5TdqUyYNsw5VbQvC02bv7ZkEM3ZbYKwh/hL0rpTHb3JxfS2sV1/cHyFLplUb4G2fzGXDimA4U9TlxWz+nD7tFRs3FXclsTYj3Bq8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w5+HF9S7; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4837907f535so46607375e9.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 01:01:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772528505; x=1773133305; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3xKcWF7NPjeXU/Yo9Rn3BptYJg8YH0is0Fv10MXJEt8=;
+        b=w5+HF9S7SpRWMZba5sOz4lNbxVM1DShoNulBVR9GGxFlErxPJAQIB1tNRAoWMdSf9C
+         4BQawI3ab20j7asF+paexzPduMb7qjwh9hq1tq23FAwz3VLgUEjHntxUJLgcFMkVXLms
+         ZjqZoRqfWx5XWsj7PG5+UmShQlKIhGKOaQpzTzyIsMPk1iLbgnWdm9f3g6OcBdl5ARw4
+         hPxMlFP3mbZ/0b3uVahPv3nIW9eJeMuqGARhNAOpjhht2yD2DU0pE2Qzt26m2fGqAnEr
+         SRfpD4Pre9Svmd0Mm+o43o+qLWIfHVbPYYM8BeczfOir0/EhL6Rca1XiFSiWQXosLsLu
+         pYVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772528505; x=1773133305;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3xKcWF7NPjeXU/Yo9Rn3BptYJg8YH0is0Fv10MXJEt8=;
+        b=w4lxjTN2oytAfqzPlXdiv6VsQdQG2tW373BevC19bG+E/yjT+ez8DE1Wk1OWPRGtet
+         yaJqtd5uad8pavSAZEs2KxXTKza+IkGK3/woFw9C7gjNJnFbLvuGbr9nUVIRjSQ1dm2p
+         OP6DgejbPu4W4ndi6+lOWujLyt/O0wGi+wi90kAiWut/hQcSrscdVpt4dgoLGGzCMBNb
+         jcYFZVIhiJSeOSTjcLAm8LcmvbHEWE/cLA9JvoWCFzGLOJ3NGoH/2Kf642FTC9X3MB1z
+         Qd046MbuQugZadtFiRQVOn4Ww/REeMMwUTG5fRLN/6g1MAPDACSUrM1p0R5U0FDR8yKB
+         U37A==
+X-Forwarded-Encrypted: i=1; AJvYcCUsrzgmxwi36qu7pNaIhGGBWmGkWMMRWOVQ7zEY0MvsOgMjVnTRsmrqe/U6d1n/ki4khcI5oxYoqeWS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtdwqK6wapUpmsNTag0cOmQ2hG6jGzAnE20Cm2NB/JVtGmp6Ip
+	+LVeO0SGM3oXB0O3ygFA0/dRZKI3Z7ZX2PdYrJCt2dOl3X0DNKuCA0A++JY29Id+uMM=
+X-Gm-Gg: ATEYQzxBqpdyG1T84AlMknU4sIsef0Np2h+2tplR6eo8TPj2KrXRlZsmMwesjmL1v8E
+	cHLcdfDKNkzOeyxyyr+deZkE+i44PIG4jOAxDWj/wkEW7SwSy3xUiOdW6LxU24Y+n7wAvK/+pU7
+	E4ng4oGr7nviB4WzC6wuiS3k0dP7Vyyepy1SOPXheH7h0UfX6QM+7PYWOhedQpdJMuLMmTCmff5
+	VWGWosqQ4hL2uJnP+Qoj33FP0X7exfKmToShxUJjeixdCj+2sUW0znyBemnBbq3Lz6nugpEH6MU
+	yAHWfugf9ydsE3Zp064m2ME18AE1PgPlQTu+0+19m1QhHn99fDv4AO7iYp/9MeTYmq6oajJ8/fE
+	fkDq1rVH3PBuqWY+Ldl4vlCu00YPySfaW/oZCnHuW9/xjbVcn1Rip0dnHAYkDTAjfzOG8zLyTV6
+	NYJjflMQWnOSObe/OTbwIVlhkabn87Hok=
+X-Received: by 2002:a05:600c:6385:b0:477:54f9:6ac2 with SMTP id 5b1f17b1804b1-483c9b53c9cmr291863355e9.0.1772528504551;
+        Tue, 03 Mar 2026 01:01:44 -0800 (PST)
+Received: from [10.11.12.108] ([79.115.63.77])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b3474dsm312924805e9.1.2026.03.03.01.01.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Mar 2026 01:01:44 -0800 (PST)
+Message-ID: <b8a029f1-1229-418b-895e-b8dc0319b545@linaro.org>
+Date: Tue, 3 Mar 2026 11:01:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,147 +86,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] dt-bindings: dma: nvidia,tegra186-gpc-dma: Add
- iommu-map property
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: Frank.Li@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org, jonathanh@nvidia.com, krzk+dt@kernel.org,
- ldewangan@nvidia.com, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, p.zabel@pengutronix.de, robh@kernel.org,
- thierry.reding@kernel.org, vkoul@kernel.org
-References: <20260303-famous-fearless-asp-1240cb@quoll>
- <20260303084005.57114-1-akhilrajeev@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v2 0/7] thermal: samsung: Add support for Google GS101 TMU
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ willmcvicker@google.com, jyescas@google.com, shin.son@samsung.com,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org
+References: <20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org>
+ <CANgGJDpjsyoCnuXuMMi1L3nWNJsM4aMs6C=NvBcTkWeC3NFadQ@mail.gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260303084005.57114-1-akhilrajeev@nvidia.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <CANgGJDpjsyoCnuXuMMi1L3nWNJsM4aMs6C=NvBcTkWeC3NFadQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: CAFD51EB961
+X-Rspamd-Queue-Id: 941BA1EB94C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270373-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,intel.com,arm.com,samsung.com,gmail.com,google.com,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-270374-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[tudor.ambarus@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 03/03/2026 09:40, Akhil R wrote:
-> On Tue, 3 Mar 2026 07:39:58 +0100 Krzysztof Kozlowski wrote:
->> On Mon, Mar 02, 2026 at 06:02:31PM +0530, Akhil R wrote:
->>> Add iommu-map property to specify separate stream IDs for each DMA
->>> channel. This enables each channel to be in its own IOMMU domain,
->>> keeping memory isolated from other devices sharing the same DMA
->>> controller.
->>>
->>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
->>> ---
->>>  .../devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml     | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
->>> index 0dabe9bbb219..1e7b5ddd4658 100644
->>> --- a/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
->>> +++ b/Documentation/devicetree/bindings/dma/nvidia,tegra186-gpc-dma.yaml
->>> @@ -14,6 +14,7 @@ description: |
->>>  maintainers:
->>>    - Jon Hunter <jonathanh@nvidia.com>
->>>    - Rajesh Gumasta <rgumasta@nvidia.com>
->>> +  - Akhil R <akhilrajeev@nvidia.com>
->>>  
->>>  allOf:
->>>    - $ref: dma-controller.yaml#
->>> @@ -51,6 +52,10 @@ properties:
->>>    iommus:
->>>      maxItems: 1
->>>  
->>> +  iommu-map:
->>> +    minItems: 1
->>> +    maxItems: 32
->>
->> Why is this flexible? If it is, means usually items are distinctive, so
->> I would expect defining/listing them. If they are not distinctive,
->> commit msg is incorrect. If the list is as simple as 1-to-1 channel
->> mapping, just add it in the description how they are ordered.
+
+
+On 3/2/26 8:30 PM, Alexey Klimov wrote:
+> Hi Tudor,
+
+Hi!
+
 > 
-> Yes, it is a 1-to-1 channel mapping to an IOMMU ID. The intent of making
-> it flexible is to allow non-consecutive IOMMU ID assignments as well.
+> On Sun, 1 Mar 2026 at 02:26, Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+> 
+> [...]
+> 
+>> ---
+>> Tudor Ambarus (7):
+>>       dt-bindings: thermal: Add Google GS101 TMU
+>>       firmware: samsung: acpm: Add TMU protocol support
+>>       firmware: samsung: acpm: Add devm_acpm_get_by_phandle helper
+>>       thermal: samsung: Add support for GS101 TMU
+>>       MAINTAINERS: Add entry for Samsung Exynos ACPM thermal driver
+>>       arm64: dts: exynos: gs101: Add thermal management unit
+>>       arm64: defconfig: enable Exynos ACPM thermal support
+>>
+>>  .../bindings/thermal/google,gs101-tmu-top.yaml     |  67 +++
+>>  MAINTAINERS                                        |   8 +
+>>  arch/arm64/boot/dts/exynos/google/gs101-tmu.dtsi   | 209 +++++++
+>>  arch/arm64/boot/dts/exynos/google/gs101.dtsi       |  18 +
+>>  arch/arm64/configs/defconfig                       |   1 +
+>>  drivers/firmware/samsung/Makefile                  |   1 +
+>>  drivers/firmware/samsung/exynos-acpm-tmu.c         | 212 +++++++
+>>  drivers/firmware/samsung/exynos-acpm-tmu.h         |  33 ++
+>>  drivers/firmware/samsung/exynos-acpm.c             |  35 ++
+>>  drivers/thermal/samsung/Kconfig                    |  16 +
+>>  drivers/thermal/samsung/Makefile                   |   2 +
+>>  drivers/thermal/samsung/acpm-tmu.c                 | 643 +++++++++++++++++++++
+>>  .../linux/firmware/samsung/exynos-acpm-protocol.h  |  30 +
+>>  13 files changed, 1275 insertions(+)
+>> ---
+>> base-commit: e2211f5d980086dd9fbdab3bcd86b715e12cae13
+>> change-id: 20260113-acpm-tmu-27e21f0e2c3b
+> 
+> JFYI, the series doesn't clearly apply on today's linux-next:
 
-You cannot skip items if these have such meaning of mapping per channel.
-The list order is the ABI - index of the list is the channel here.
+okay, thanks. I'll submit a v2, but right now I'm dealing with other
+higher priority topics.
 
-> This is particularly needed in virtualised environments where the
-> hypervisor may reserve certain stream IDs, and the guest VM can map only
-> the permitted ones. Shall I add a description here mentioning this
-> use-case?
+> 
+> Grabbing thread from
+> lore.kernel.org/all/20260119-acpm-tmu-v2-0-e02a834f04c6@linaro.org/t.mbox.gz
+> Checking for newer revisions
+> Grabbing search results from lore.kernel.org
+> Analyzing 18 messages in the thread
+> Looking for additional code-review trailers on lore.kernel.org
+> Analyzing 20 code-review messages
+> Checking attestation on all messages, may take a moment...
+> 
+> Base: using specified base-commit e2211f5d980086dd9fbdab3bcd86b715e12cae13
+> Applying: dt-bindings: thermal: Add Google GS101 TMU
+> Applying: firmware: samsung: acpm: Add TMU protocol support
+> Patch failed at 0002 firmware: samsung: acpm: Add TMU protocol support
+> error: patch failed: include/linux/firmware/samsung/exynos-acpm-protocol.h:40
+> error: include/linux/firmware/samsung/exynos-acpm-protocol.h: patch
+> does not apply
+> 
+> Was it done against mainline?
 
-You can also look at recent works for iris video codec from Qualcomm
-solving something similar.
+Of course, yes. It was on top of what was the latest Samsung SoC tree
+at the time of development. Internal kernel trees may change,
+depending on the maintainer.
+
+If you want to try the code while I submit a v2, I pushed what I
+think it was v2 at:
+
+git@github.com:ambarus/linux-0day.git, branch b4/acpm-tmu
 
 
-Best regards,
-Krzysztof
+Cheers,
+ta
 
