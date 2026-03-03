@@ -1,331 +1,147 @@
-Return-Path: <devicetree+bounces-270535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270537-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCQxNTLqpmnjZgAAu9opvQ
-	(envelope-from <devicetree+bounces-270535-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:30 +0100
+	id sNXhH7bqpmnjZgAAu9opvQ
+	(envelope-from <devicetree+bounces-270537-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:05:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B761F0F91
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:03:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 436421F1087
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:05:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 92E2B311495B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:54:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 77ED03075CEC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F754364E91;
-	Tue,  3 Mar 2026 13:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9031C34F494;
+	Tue,  3 Mar 2026 13:54:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEXma8uV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="D3KuLE28"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5F1361DC4
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0AE36655D
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772546000; cv=none; b=Ktk07o5QeQh+2DWSg+DxSM/Lt1gowu/7fJSTf17vxdxT2Qm5LLG6U+rOqlcAhrhkjNaeB95goDiZOj/HV0IjncTaWyfsIZHhfTnToLtLoDiRXn1qgE4Ko7fycbns8kvFmfxsMRgGdLeC/TVg/8L22RinI3/RjwxurmfYmgHgu0o=
+	t=1772546080; cv=none; b=g7UkQAv+UQxCetNjemWO+P19msYwkOgRQoHrEB6wodGRf7Rd5pAvPYnQVIxuKpKSD4vlFAX+SJ/9aegd92IYkDkRw2VmBuv65w/aCz4Ru6Lzy2KY5gktCQZpcLhGp2TBadmC2kCeg8naFQibEV03eposQacsZmxQnv4nPSj3hyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772546000; c=relaxed/simple;
-	bh=o1uQy6drhsv5pZD0LZDFkCYjjp8aERY7B+ED/OHab84=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kDFr6TfNH3qbnTxzzIdt6cPjkJtoMhjVC8WhsSf7DlJ79J59IBY4zmSbUOI3YNJcKHTiblmwU/MpW3NlFRvFbWaXfIfP1xr28p5gT0m+YixcOT/sSs3KnQzYJMmvIV7AHDdGF0YtE+Gs9EOxVum7YUEpfXP9aQG3E8LCCSBmKrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEXma8uV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BAB5C2BC9E
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:53:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772546000;
-	bh=o1uQy6drhsv5pZD0LZDFkCYjjp8aERY7B+ED/OHab84=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=oEXma8uVZmBZdCV84TKivC0vLoyWFYSojkK0qJP/Ey4vlkNLGD4FL6UTtI/K/y+W6
-	 zCrhRzg9Qn+A0t8K9Q8nMmXa0RWZbtEfSVBw+VvW5aS0oDRGHnibhInat6eRVWo+cD
-	 3WJad2wTiNTcRrILyUTrNWoJaPBxMSknA+2ibnyy4OcDfaJ0Nk770aihtIjW/0g41X
-	 hsSfQTajCkqPlaL7iCC9S8HYz5Kheguv32/eisgnUBmeFT1icetiRHhrmwyMC0hzIY
-	 O3u2j4aYoQTZfCkFibHdzAfB3UxVgIWt0ekkofAnAZZ9zIvF9c/ZlSrTwSWgqLMWCk
-	 Bqn3JBVv7cKrQ==
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-65c0891f4e9so963943a12.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:53:20 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVlRKyfWTgMcQlGtvoNuIhljEDSz6IKZTsv4n9q7rt08Cgmb1FqQpriA1J4qgZdPfW+WCpcKjQ+Ke5A@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm9GkbT+rvgVZcZDLOams28MPffxAf0MnIVjcY0wfXoN+38jeC
-	GP4+wIO4XjdyEm19ZpNvwA/00tAcjE05fIWkoUmczSz35TehN4rZrgWu03iAgcMphH8694OInhE
-	yGli8QXJtTmBQYF12mBg32De3j06GjQ==
-X-Received: by 2002:a05:6402:51d3:b0:660:b913:faa with SMTP id
- 4fb4d7f45d1cf-660b91311ffmr782984a12.7.1772545998078; Tue, 03 Mar 2026
- 05:53:18 -0800 (PST)
+	s=arc-20240116; t=1772546080; c=relaxed/simple;
+	bh=pnAvSg9BDIgvscOo7XYPxJbTgoOGDp8Dafxe4N3+xP0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=a3iTrrFEjleiimtFCc+8fr/RrfhDBhU4YRz2/11TAcBgXjXv44IO5Ipqpupt9NyNEbGgxFaSfkLKjkDtmWaN9KnUbxa+GbeUcE3JG/oK5duztcfRAF8iGA09yRNe3HBKwzuUh70Klc684z7S6dulLlDmefn7jPA6zJA+ZZ6JPDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=D3KuLE28; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 2C95F1A2357;
+	Tue,  3 Mar 2026 13:54:35 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E56DE5FF29;
+	Tue,  3 Mar 2026 13:54:34 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 41F541036869F;
+	Tue,  3 Mar 2026 14:54:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772546073; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=fQOqnaiUmuhsJFXxkLq20Gijmxp0xf6Cu9xnALeENoM=;
+	b=D3KuLE28pO0WmToSyf3NBBmA0AudAU0NkrBv5E7LyaNYXuvls+bOehr1RFUUt6lRYNxeCc
+	86rEaKEzOkgk1COznuwm31h1x6XvPTv0nM4TsDmmLJCW9esfzzPUtwuHQTKM5QzpvfEIpX
+	aA0ldt38PB+TYEuZ7e5yyudwz9MYO49nNp0GO3zzea2D/EjqRSr8EfqaZvd8Btga67fiZI
+	gPvOKNbx0H7k2z0B1maRsFwscPhuNbgb3p5s/fH+Q4VRUgFLPoP64Mdophzoy3vybYOYd8
+	Zaj/jk5joQ9vrFifh/MTyehB4Y310zoohpAdD8T0BJr3WQka2gxQpdiTMNx27w==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH net-next 0/2] net: sfp: Describe and handle regulators
+Date: Tue, 03 Mar 2026 14:54:25 +0100
+Message-Id: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org> <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org>
-In-Reply-To: <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 3 Mar 2026 07:53:06 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKN45FswZjo+27OzoHMeM7ec3hS7piF7SKNykmXNSmA0g@mail.gmail.com>
-X-Gm-Features: AaiRm53ac9QEFDq8SvGBhIqKLe9Px3qYmH3XP37nJ_98UhLN34dE0tk0zj5PhvU
-Message-ID: <CAL_JsqKN45FswZjo+27OzoHMeM7ec3hS7piF7SKNykmXNSmA0g@mail.gmail.com>
-Subject: Re: [PATCH 09/12] dt-bindings: input: Document hid-over-spi DT schema
-To: Jingyuan Liang <jingyliang@chromium.org>
-Cc: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Mark Brown <broonie@kernel.org>, 
-	Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
-	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-spi@vger.kernel.org, linux-trace-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, hbarnor@chromium.org, 
-	Dmitry Antipov <dmanti@microsoft.com>, Jarrett Schultz <jaschultz@microsoft.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 01B761F0F91
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABHopmkC/x3MSQqAMAxA0atI1gZq64BeRVw4RA1IlaSKIN7d4
+ vIt/n9ASZgUmuQBoYuVdx+RpQmMa+8XQp6iwRpbGmcc6nyg0HJufdhFMauMdWU95IV1EKNDaOb
+ 7H7bgKaCnO0D3vh9JIDMtagAAAA==
+X-Change-ID: 20260303-sfp-regulators-1702369b4523
+To: Russell King <linux@armlinux.org.uk>, 
+ Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Romain Gantois <romain.gantois@bootlin.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 436421F1087
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270535-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com,vger.kernel.org,chromium.org,microsoft.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-270537-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[armlinux.org.uk,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[romain.gantois@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,mail.gmail.com:mid,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,chromium.org:email,suse.cz:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
 X-Rspamd-Action: no action
 
-On Tue, Mar 3, 2026 at 12:14=E2=80=AFAM Jingyuan Liang <jingyliang@chromium=
-.org> wrote:
->
-> Documentation describes the required and optional properties for
-> implementing Device Tree for a Microsoft G6 Touch Digitizer that
-> supports HID over SPI Protocol 1.0 specification.
->
-> The properties are common to HID over SPI.
->
-> Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
-> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
-> Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
-> ---
->  .../devicetree/bindings/input/hid-over-spi.yaml    | 153 +++++++++++++++=
-++++++
->  1 file changed, 153 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/input/hid-over-spi.yaml b/=
-Documentation/devicetree/bindings/input/hid-over-spi.yaml
-> new file mode 100644
-> index 000000000000..b623629ed9d3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/hid-over-spi.yaml
-> @@ -0,0 +1,153 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/hid-over-spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HID over SPI Devices
-> +
-> +maintainers:
-> +  - Benjamin Tissoires <benjamin.tissoires@redhat.com>
-> +  - Jiri Kosina <jkosina@suse.cz>
-> +
-> +description: |+
-> +  HID over SPI provides support for various Human Interface Devices over=
- the
-> +  SPI bus. These devices can be for example touchpads, keyboards, touch =
-screens
-> +  or sensors.
-> +
-> +  The specification has been written by Microsoft and is currently avail=
-able here:
-> +  https://www.microsoft.com/en-us/download/details.aspx?id=3D103325
-> +
-> +  If this binding is used, the kernel module spi-hid will handle the com=
-munication
-> +  with the device and the generic hid core layer will handle the protoco=
-l.
-> +
-> +allOf:
-> +  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - microsoft,g6-touch-digitizer
-> +          - const: hid-over-spi
-> +      - description: Just "hid-over-spi" alone is allowed, but not recom=
-mended.
-> +        const: hid-over-spi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description:
-> +      GPIO specifier for the digitizer's reset pin (active low). The lin=
-e must
-> +      be flagged with GPIO_ACTIVE_LOW.
-> +
-> +  vdd-supply:
-> +    description:
-> +      Regulator for the VDD supply voltage.
+Hi everyone,
 
-Is this part of the spec? This won't scale for multiple devices with
-different power rails.
+This series describes regulators supplying the VccT and VccR pins of an SFP
+cage or soldered-down transceiver.
 
-> +
-> +  input-report-header-address:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 0xffffff
-> +    description:
-> +      A value to be included in the Read Approval packet, listing an add=
-ress of
-> +      the input report header to be put on the SPI bus. This address has=
- 24
-> +      bits.
-> +
-> +  input-report-body-address:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 0xffffff
-> +    description:
-> +     A value to be included in the Read Approval packet, listing an addr=
-ess of
-> +      the input report body to be put on the SPI bus. This address has 2=
-4 bits.
-> +
-> +  output-report-address:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 0xffffff
-> +    description:
-> +      A value to be included in the Output Report sent by the host, list=
-ing an
-> +      address where the output report on the SPI bus is to be written to=
-. This
-> +      address has 24 bits.
-> +
-> +  post-power-on-delay-ms:
-> +    description:
-> +      Optional time in ms required by the device after enabling its regu=
-lators
-> +      or powering it on, before it is ready for communication.
+These regulators can then be turned on only when the SFP device is probed,
+thus saving power on systems which only load SFP cage support at certain
+times, or load SFP device descriptions via device tree overlays.
 
-Drop. This should be implied by the compatible.
+Please let me know what you think.
 
-> +
-> +  minimal-reset-delay-ms:
-> +    description:
-> +      Optional minimum amount of time in ms that device needs to be in r=
-eset
-> +      state for the reset to take effect.
+Best Regards,
 
-Drop. This should be implied by the compatible.
+Romain
 
-> +
-> +  read-opcode:
-> +  $ref: /schemas/types.yaml#/definitions/uint8
-> +    description:
-> +      Value to be used in Read Approval packets. 1 byte.
-> +
-> +  write-opcode:
-> +  $ref: /schemas/types.yaml#/definitions/uint8
-> +    description:
-> +      Value to be used in Write Approval packets. 1 byte.
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Romain Gantois (2):
+      dt-bindings: net: sff,sfp: Describe power supply pins
+      net: sfp: manage receiver and transmitter regulators
 
-Why are these and the address properties above not defined by the
-spec? Do they vary for a specific device? If not, then they should be
-implied by the compatible.
+ Documentation/devicetree/bindings/net/sff,sfp.yaml | 8 ++++++++
+ drivers/net/phy/sfp.c                              | 9 +++++++++
+ 2 files changed, 17 insertions(+)
+---
+base-commit: ed0abfe93fd135dac223e87a3c945017b1fa8bfc
+change-id: 20260303-sfp-regulators-1702369b4523
 
-> +
-> +  hid-over-spi-flags:
-> +  $ref: /schemas/types.yaml#/definitions/uint16
-> +    description:
-> +      16 bits.
-> +      Bits 0-12 - Reserved (must be 0)
-> +      Bit 13 - SPI Write Mode. Possible values -
-> +        * 0b0- Writes are carried out in Single-SPI mode
-> +        * 0b1- Writes are carried out in the Multi-SPI mode specified by=
- bits
-> +               14-15
-> +      Bits 14-15 - Multi-SPI Mode. Possible values -
-> +        * 0b00- Single SPI
-> +        * 0b01- Dual SPI
-> +        * 0b10- Quad SPI
+Best regards,
+-- 
+Romain Gantois <romain.gantois@bootlin.com>
 
-We already have SPI properties to define the bus width for read and write.
-
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - reset-gpios
-> +  - vdd-supply
-> +  - input-report-header-address
-> +  - input-report-body-address
-> +  - output-report-address
-> +  - read-opcode
-> +  - write-opcode
-> +  - hid-over-spi-flags
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    spi {
-> +      #address-cells =3D <1>;
-> +      #size-cells =3D <0>;
-> +
-> +      hid@0 {
-> +        compatible =3D "hid-over-spi";
-> +        reg =3D <0x0>;
-> +        interrupts-extended =3D <&gpio 42 IRQ_TYPE_EDGE_FALLING>;
-> +        reset-gpios =3D <&gpio 27 GPIO_ACTIVE_LOW>;
-> +        vdd-supply =3D <&pm8350c_l3>;
-> +        pinctrl-names =3D "default";
-> +        pinctrl-0 =3D <&ts_d6_reset_assert &ts_d6_int_bias>;
-> +        input-report-header-address =3D <0x1000>;
-> +        input-report-body-address =3D <0x1004>;
-> +        output-report-address =3D <0x2000>;
-> +        read-opcode =3D <0x0b>;
-> +        write-opcode =3D <0x02>;
-> +        hid-over-spi-flags =3D <0x0000>;
-> +        post-power-on-delay-ms =3D <5>;
-> +        minimal-reset-delay-ms =3D <5>;
-> +      };
-> +    };
-> \ No newline at end of file
-
-Fix this.
-
-Rob
 
