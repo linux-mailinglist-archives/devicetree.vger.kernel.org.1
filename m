@@ -1,288 +1,203 @@
-Return-Path: <devicetree+bounces-270572-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270573-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AM5+CJr2pmmgawAAu9opvQ
-	(envelope-from <devicetree+bounces-270572-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:56:26 +0100
+	id eBIoGyv4pmmgawAAu9opvQ
+	(envelope-from <devicetree+bounces-270573-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:03:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69F521F1DED
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:56:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD571F1F79
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 903333160ECC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:51:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 60F2E3152F60
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:54:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F0038756B;
-	Tue,  3 Mar 2026 14:51:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E3447ECCA;
+	Tue,  3 Mar 2026 14:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fxn+FZQL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k3OnuGIA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EF037CD5F
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:51:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F3B47DD78;
+	Tue,  3 Mar 2026 14:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772549498; cv=none; b=p3O0l7FWwW6Y6tqQk3zTv04jtcWe7pHXYpMqR5LFRy68vZHu9bZpV/AfKriBGPcrri4ClW6rGAzmhDOAuSikFVh6mQP8iWr6YVYEraBvEjxtRKVo8A33z45m4uJw0yDSI1P8PtQiaJVDqSoSkVuOYy9d983ym6Xm9tKKiGUSvMo=
+	t=1772549665; cv=none; b=DDu92WXS97frYjMVWvejQr1MWBtot0pzHaX+U4XGccv3zPDD3qo+KVlUSa9GbdBU8PrteNWNO2ygZJhA4EguSk40lxHsVf8Az/V3/CMl17IB+F4CljALpRDAWyvdxx4dHs4ZiE6wUbT43jYP4ihDyuHD0lj9nHTQD9YzlmydyY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772549498; c=relaxed/simple;
-	bh=6KdAnhQrt+OtDqhpU53NGZUuv8Yx4CgsDTHUa/zHqBk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qrs3vcyMaYFRCMnLw5N6BjCgQ0VPEbBa/5EB1NEHAAW8Ay351TG6fGM3dqVZRF84meToXRLXcOjPAYyOJtmH/2RtV9DaVGs1vuiseUo44d3+K/vRJ01o2VxKb1B6gaL7qPxxPzEL3AXTnzWBoIGRLQ+f52hznNy64teQUMm5mIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fxn+FZQL; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4830f029407so11795025e9.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:51:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772549494; x=1773154294; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=YEdSGTNZRnrKg7rdXD/O1fVlFTgm/leciP0nfy91AHw=;
-        b=Fxn+FZQLFum5I9kK2LgMpQYThU8VFT5GBrKHN9e7zDdip3HjkfW7TJLoqb7c94suR1
-         vRyZouXtlvhHZZev4l6lbSO8NzOnwLqALP4KsNb9w9YAVIlD8eKz87Xx5F3BVA2U8SpM
-         AnYUmyLikjEn8UpEQ8veuFeD6NJzYxenbCzZi6DnLOpngFHqF8FBCuNDNbuZwCo4OYTS
-         qDEraDAceAx2DEUvdKPybUdGB49WPIyc8V5cjebf0z4wgefqMPKW4y/P7gsyyBAhxWtN
-         hgNXqP2Ff1qT5OOrmN8VE41aNq1FCR8Qy02752JKbvxlErGVqR2rWBGY3n55um7wVkuw
-         5qLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772549494; x=1773154294;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YEdSGTNZRnrKg7rdXD/O1fVlFTgm/leciP0nfy91AHw=;
-        b=m2zYM5rPgywp6ioInByA/5I+z7m0qhyhCD8r5exKfIP/J+8uTzUMkpMjnIrWXAVQf0
-         gNuVNICwsxKJSZXdL7woIaE/wIQgW3CHCi0K338V5uk2PteU/fdCgn+uB0wMKb5ANMKV
-         YFBkpfDuNeWRl+LF8j1vDUZ2xjbBQ+RuUxj2sykdtBSFTvs/+6MnG+SvGEatBxa8j7B9
-         N90NaU0+dW4RfhWaR8PaYCwQ1ybSBv60gvgMA7MzBdV6Y+kePkrykdtC5ESZkRi6A2Od
-         wiK0jZcO3Vd45sMRjn+dn68DaV8jdTd8eczcI9ehMy/zqBfKQwajC6zF9gbFR2tDRDSr
-         LcbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX153rZAntKYo1hyPClD5mhPmthYdA8oz+aDSrEDbpcGdJCwiZyf1EGeMS6HOBkCu2gkHp62xIuRf+e@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuDnHRppBkhGr0DfLsBsS0bSC5L89E/cIfOtkjeXkNJD9chtHF
-	xcm8i/C/wyLxgtNnOQNNIWt+7sRTQOpaHrO6ac2ShHIZtZkyOF895NxG
-X-Gm-Gg: ATEYQzz3H0tzS9cbw2pxNV+TIrFIA5YKsP0LFmCI9UYWsIJcish87U2azBlX4GVRTPB
-	Lv/EVPweM853sGEtiuT5q0YAVkIZqxwfKey5rFUvlt5xXwILo+C5mYempXRlh1s2Egc0R1FFlPs
-	KH6qZQjKHebJHjlDtbAn+TuLKt+VH1zg2eTd5kTJzRB5Y/b1b4XVz6b+srHiLXCIP89N21hl9BM
-	18TK07+Gq6M2kcGjrM+6hHod1KRZrs63muGBnBUAnR8vKO6qd1WXHP+3a6YSusZ//7JfAxLzmkP
-	saC4kbGbnZJ1j+I9ZOW0R+yiOMmC3ILlYu25k8M7uLJaCawJt7qOC90UI2sYYMBPTP4YVtN+kak
-	D54yIjgwB3hktSVjfj0uIkhXDAtaaPtBeEFq2FBJZb7M+Ovkhtv3N2ON5J/jNFO/GTEwjWwy8/d
-	fknk7EN2/D5F+Xhhg=
-X-Received: by 2002:a05:600c:3542:b0:477:5b01:7d42 with SMTP id 5b1f17b1804b1-483c9bc3f6bmr156313945e9.5.1772549493842;
-        Tue, 03 Mar 2026 06:51:33 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d00e:3600:2472:8e4a:cf12:bb30])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b84023sm356468875e9.12.2026.03.03.06.51.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 06:51:33 -0800 (PST)
-Date: Tue, 3 Mar 2026 16:51:30 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jens Emil Schulz =?utf-8?Q?=C3=98stergaard?= <jensemil.schulzostergaard@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 5/8] net: dsa: lan9645x: add bridge support
-Message-ID: <20260303145130.rbp3qycr3eh5ifcp@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
+	s=arc-20240116; t=1772549665; c=relaxed/simple;
+	bh=Slb45QWwmAR2MlJYLyxHM7i5vjmCP+MZCFMlFewVzGs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ba0rrJULO5OCjahlC+OBpJeOfoqC5JUmxkVtdlXd3kjKIBRQq4lcxKtiBKXpoQW0HpxANZ4RWKiJwIGbje/IwhnQcUWu5Xjjx1YR4gXToD5GoFMpfus6nuc6M+DZx05/movwR+r0zkK+vwtjQfN/JGJ9rjakSgEYu7S4myYA0oc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k3OnuGIA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AC70C116C6;
+	Tue,  3 Mar 2026 14:54:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772549665;
+	bh=Slb45QWwmAR2MlJYLyxHM7i5vjmCP+MZCFMlFewVzGs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=k3OnuGIADSsLdlI8xZPEqDDKjRK8ycb5RmHYSLY7OAgQC1QfuXs2VnnDz54gNUYG2
+	 tgPA8lJBYOJFhX/dqVq8T+RiSVvC1QSDlEYchLSUEC1xALOZg1zO7kgHUoZTVKX3VE
+	 JpMKR5dOILbJDG53Yp9LWJrsImlVVAS5r8+XxQpyzTtffLUeJcyHc/emrjNQVUJfwy
+	 /U77bFOjBh+mLgO069Ov6W6ez8URZTrC7+EG9jkQJ3qyUo+yCX9Ze23150SH5uBC7C
+	 vFffB+x/clZd2O76RL4TGv9z/xA20TcwrsbSZIOZ5DI+mkkoGUeM3cLfceyPj91RIa
+	 0gbSf4qNgeh1Q==
+Message-ID: <38e38531-ad06-4971-b750-e77a3268b97a@kernel.org>
+Date: Tue, 3 Mar 2026 15:54:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
-X-Rspamd-Queue-Id: 69F521F1DED
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] ASoC: tegra: Add support for Tegra238 soundcard
+To: Jon Hunter <jonathanh@nvidia.com>, "Sheetal ." <sheetal@nvidia.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thierry Reding <thierry.reding@kernel.org>
+Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sameer Pujar <spujar@nvidia.com>, Mohan kumar <mkumard@nvidia.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Aditya Bavanari <abavanari@nvidia.com>
+References: <20260302085323.3139571-1-sheetal@nvidia.com>
+ <20260302085323.3139571-3-sheetal@nvidia.com>
+ <7447fde1-7eae-4bbc-b36e-fc0da9609c8c@kernel.org>
+ <92292069-a60d-4ea8-9c3a-182a5c0cd267@nvidia.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <92292069-a60d-4ea8-9c3a-182a5c0cd267@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: DDD571F1F79
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270572-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270573-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nvidia.com,gmail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 01:22:31PM +0100, Jens Emil Schulz Østergaard wrote:
-> Add support for hardware offloading of the bridge. We support a single
-> bridge device.
+On 03/03/2026 15:24, Jon Hunter wrote:
 > 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
-> ---
->  drivers/net/dsa/microchip/lan9645x/lan9645x_main.c | 196 +++++++++++++++++++++
->  drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  11 ++
->  drivers/net/dsa/microchip/lan9645x/lan9645x_port.c |   2 +
->  3 files changed, 209 insertions(+)
+> On 02/03/2026 09:04, Krzysztof Kozlowski wrote:
+>> On 02/03/2026 09:53, Sheetal . wrote:
+>>> From: Sheetal <sheetal@nvidia.com>
+>>>
+>>> Tegra238 platforms use different clock rates for plla and
+>>> plla_out0 clocks. Add Tegra238 support in the Tegra
+>>> sound card driver to apply specific clock configurations.
+>>>
+>>> Signed-off-by: Aditya Bavanari <abavanari@nvidia.com>
+>>> Signed-off-by: Sheetal <sheetal@nvidia.com>
+>>> ---
+>>>   sound/soc/tegra/tegra_audio_graph_card.c | 13 ++++++++++++-
+>>>   1 file changed, 12 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/sound/soc/tegra/tegra_audio_graph_card.c b/sound/soc/tegra/tegra_audio_graph_card.c
+>>> index 94b5ab77649b..b6dadd6a3d3d 100644
+>>> --- a/sound/soc/tegra/tegra_audio_graph_card.c
+>>> +++ b/sound/soc/tegra/tegra_audio_graph_card.c
+>>> @@ -1,5 +1,5 @@
+>>>   // SPDX-License-Identifier: GPL-2.0-only
+>>> -// SPDX-FileCopyrightText: Copyright (c) 2020-2025 NVIDIA CORPORATION. All rights reserved.
+>>> +// SPDX-FileCopyrightText: Copyright (c) 2020-2026 NVIDIA CORPORATION. All rights reserved.
+>>
+>> If updating it, you should rather drop it and use standard copyright.
+>> This tag is not supported in kernel in general and I document it only
+>> because it already spread all over.
 > 
-> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> index 739013f049d0..b6efaf669a3f 100644
-> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> @@ -171,6 +171,8 @@ static int lan9645x_setup(struct dsa_switch *ds)
->  		return err;
->  	}
->  
-> +	mutex_init(&lan9645x->fwd_domain_lock);
-> +
->  	/* Link Aggregation Mode: NETDEV_LAG_HASH_L2 */
->  	lan_wr(ANA_AGGR_CFG_AC_SMAC_ENA |
->  	       ANA_AGGR_CFG_AC_DMAC_ENA,
-> @@ -288,6 +290,192 @@ static void lan9645x_port_phylink_get_caps(struct dsa_switch *ds, int port,
->  	lan9645x_phylink_get_caps(ds->priv, port, config);
->  }
->  
-> +static int lan9645x_set_ageing_time(struct dsa_switch *ds, unsigned int msecs)
-> +{
-> +	u32 age_secs = max(1, msecs / 1000 / 2);
+> To be clear, you mean that 'SPDX-FileCopyrightText' is not supported? 
 
-s/1000/MSEC_PER_SEC/
+Yes
 
-> +	struct lan9645x *lan9645x = ds->priv;
-> +
-> +	/* Entry is must suffer two aging scans before it is removed, so an
+> Where exactly do you document it for reference?
 
-"An entry must suffer (...), so it is aged"
+paste SPDX-FileCopyrightText in lore
 
-> +	 * entry is aged after 2*AGE_PERIOD, and the unit is in seconds.
-> +	 * An age period of 0 disables automatic aging.
-> +	 */
-> +	lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(age_secs),
-> +		ANA_AUTOAGE_AGE_PERIOD,
-> +		lan9645x, ANA_AUTOAGE);
-> +	return 0;
-> +}
-> +
-> +static int lan9645x_port_pre_bridge_flags(struct dsa_switch *ds, int port,
-> +					  struct switchdev_brport_flags flags,
-> +					  struct netlink_ext_ack *extack)
-> +{
-> +	if (flags.mask &
-> +	    ~(BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD | BR_BCAST_FLOOD))
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +static void lan9645x_port_pgid_set(struct lan9645x *lan9645x, u16 pgid,
-> +				   int chip_port, bool enabled)
-> +{
-> +	u32 reg_msk, port_msk;
-> +
-> +	WARN_ON(chip_port > CPU_PORT);
-> +
-> +	port_msk = ANA_PGID_PGID_SET(enabled ? BIT(chip_port) : 0);
-> +	reg_msk = ANA_PGID_PGID_SET(BIT(chip_port));
-> +
-> +	lan_rmw(port_msk, reg_msk, lan9645x, ANA_PGID(pgid));
-> +}
-> +
-> +static void lan9645x_port_set_learning(struct lan9645x *lan9645x, int port,
-> +				       bool enabled)
-> +{
-> +	struct lan9645x_port *p;
-> +
-> +	lan_rmw(ANA_PORT_CFG_LEARN_ENA_SET(enabled), ANA_PORT_CFG_LEARN_ENA,
-> +		lan9645x, ANA_PORT_CFG(port));
 
-Actually, the port may be in an STP state where learning shouldn't be
-enabled, when this function is called. Enabling the "learning" bridge
-port flag shouldn't change that.
-
-> +
-> +	p = lan9645x_to_port(lan9645x, port);
-> +	p->learn_ena = enabled;
-> +}
-> +
-> +static int lan9645x_port_bridge_flags(struct dsa_switch *ds, int port,
-> +				      struct switchdev_brport_flags f,
-> +				      struct netlink_ext_ack *extack)
-> +{
-> +	struct lan9645x *l = ds->priv;
-
-Could we have some consistency in variable naming throughout the driver,
-at least for the main private structure? I don't have an issue with it
-being called l, it's just that I would prefer it being called the same
-everywhere.
-
-> +
-> +	if (WARN_ON(port == l->npi))
-> +		return -EINVAL;
-> +
-> +	if (f.mask & BR_LEARNING)
-> +		lan9645x_port_set_learning(l, port, !!(f.val & BR_LEARNING));
-> +
-> +	if (f.mask & BR_FLOOD)
-> +		lan9645x_port_pgid_set(l, PGID_UC, port, !!(f.val & BR_FLOOD));
-> +
-> +	if (f.mask & BR_MCAST_FLOOD) {
-> +		bool ena = !!(f.val & BR_MCAST_FLOOD);
-> +
-> +		lan9645x_port_pgid_set(l, PGID_MC, port, ena);
-> +		lan9645x_port_pgid_set(l, PGID_MCIPV4, port, ena);
-> +		lan9645x_port_pgid_set(l, PGID_MCIPV6, port, ena);
-> +	}
-> +
-> +	if (f.mask & BR_BCAST_FLOOD)
-> +		lan9645x_port_pgid_set(l, PGID_BC, port,
-> +				       !!(f.val & BR_BCAST_FLOOD));
-> +
-> +	return 0;
-> +}
-> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
-> index 038868ae0a32..b60c64458957 100644
-> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
-> @@ -15,6 +15,8 @@ int lan9645x_port_init(struct lan9645x *lan9645x, int port)
->  		ANA_PORT_CFG_LEARN_ENA,
->  		lan9645x, ANA_PORT_CFG(p->chip_port));
->  
-> +	p->learn_ena = false;
-> +
-
-This is already zero-initialized memory.
-
->  	lan9645x_port_set_maxlen(lan9645x, port, ETH_DATA_LEN);
->  
->  	lan9645x_phylink_port_down(lan9645x, port);
 > 
-> -- 
-> 2.52.0
-> 
+> I know that Rob previously indicated that the 'Copyright' string in the 
+> above was redundant, but we have been told to keep this by the people at 
+> NVIDIA that specify how we should be formatting such tags when adding 
+> NVIDIA copyrights.
+
+For the kernel, for most of us, most likely legally it is redundant and
+Rob was right, but some companies insist on it and I don't want to
+discuss with them, because they never use actual arguments except "my
+legal told me I must do", so you can have it. That's not a problem.
+
+
+Best regards,
+Krzysztof
 
