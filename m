@@ -1,84 +1,83 @@
-Return-Path: <devicetree+bounces-270297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270298-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6OMgLMd8pmmuQQAAu9opvQ
-	(envelope-from <devicetree+bounces-270297-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:16:39 +0100
+	id yObILeZ8pmnDQQAAu9opvQ
+	(envelope-from <devicetree+bounces-270298-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:17:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 588CD1E981C
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:16:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D23E1E9849
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 07:17:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5FD7D30E6FE0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:14:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A870C30F9B4C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 06:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5A89382365;
-	Tue,  3 Mar 2026 06:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE903845AD;
+	Tue,  3 Mar 2026 06:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fJ8/Z8bx"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="YnaJKba/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC72A382382
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 06:13:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1D7382398
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 06:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772518437; cv=none; b=gCH3CGt3c7dPjfe8wvHlWgm7EqwuxbS3u1R5YkAPhrm7FZH2bqWvD5dFwLxW2HbbDGXvR/fqkybvndsZjLs+7jv/xFGYsF4gfnsmqaaHzU2Usjhfie3GHHMkhIoXsUMnZFH1D2aBFEwh+R1tP0jo20W+kPr3i9BuUszs1fG7jIU=
+	t=1772518439; cv=none; b=tpCe312Y0NFHM8Osj2PvZNCMZpf7hZZtESAq6LrHxf+PfQIPaPQAJA17e7+Fkh0Ln2hCrQ+oFqf8IIvPsX8lv6al6mKWW+CBCsqLU5h5U3nGrmMLRNxlPoTczSz4uDcTc4dPuYyoNokGk9PXwJY42zDJNQVuTha0upEl1wgOh08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772518437; c=relaxed/simple;
-	bh=0OWVvkpb8UuVF2dcKxIXv4nkgilqjcELXDqX61I3pA0=;
+	s=arc-20240116; t=1772518439; c=relaxed/simple;
+	bh=HKsF8s2CN39ptYXnUpAjllMxDvOrGH7BmQr/pDNdroM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cl/IX66xAVQi8P3n1alc8TSMhQwYYQJRa2W/88p0ptSVXAKraBEiFlGgfZYQt0Z5OBOl1hIOFRVntPW/63uKZ2bKZsZK6b2/ZmVgRVTCB7MBEZWClIgmQPXSc1IHhd1dYOkKiZoCSw4RMMZI1PdbUB6vfE7PbGyMBfagV0j6TxM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fJ8/Z8bx; arc=none smtp.client-ip=209.85.214.180
+	 In-Reply-To:To:Cc; b=T7vEmIycHz65brKNB1Gru73tLOOA5Vpf+R1YG3oXgkKsc7QAAT+Qp4nwPdRVJ3MN/uqtJxc9gjoeMZnB3D+Vmtd7Qme79y0Pa0JKmXJnkE/1mD//sPboXOgWC37MNm+p46zLZj0W3ssHT7EOE6iHkOwNGfM4S0Hj0s7Fb/3x0VM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=YnaJKba/; arc=none smtp.client-ip=209.85.214.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2ae41544dcfso28639125ad.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 22:13:53 -0800 (PST)
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2addb31945aso39081135ad.1
+        for <devicetree@vger.kernel.org>; Mon, 02 Mar 2026 22:13:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1772518433; x=1773123233; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1772518434; x=1773123234; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=jrh1Fd8nSQVaqqRA38zJbtmK+DIMwuwcBDvEg12fGDM=;
-        b=fJ8/Z8bxteLz7rT+nhqFNSDZRHnUA3zljqh6wFYM44pFWZ9bdu4PR5AlwDukloOSyE
-         QIpIESPK6a89y7YtVcj2M+mLTBTRDScVfBBBVJnIDThy2Tc/YcQPxpV40XTMsVh7lmEI
-         pn42nBWpZsP3EG2thQFSyqzmaXyKauIUU4pk8=
+        bh=1zbYunSd9SIDIr6FUrKkB2zIIm+2n+JbdlctTH55ffY=;
+        b=YnaJKba/CUPhw6WwK6kd5nrN5VX9i36RPXyzclk5PLwufyN7lcKbfUO4l8c/CSHPcT
+         nMY06euorAc+J+0Jv6l2JaF3u+TrHniCG11W5hN3kKgRQ6iSsSyz1v/zUy3VH2mu4toi
+         pKNA9nsVj+zL8Nw3CEqskl0bMs8cC8mQGB1Tc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772518433; x=1773123233;
+        d=1e100.net; s=20230601; t=1772518434; x=1773123234;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=jrh1Fd8nSQVaqqRA38zJbtmK+DIMwuwcBDvEg12fGDM=;
-        b=bijEyjFmTHrkZ7yXEF8Z56xskECysLtmRXNFvz8lL7yJsHzMSvpY/o9Kw81gRIfKHB
-         5esEgbfUF/GBcQuuSStlBoxddep2emfCQrL6uJEkYnrVnL3IOmdCNZDTKsJUAXNYOdmk
-         jU9cC4Jk9iSrlgZd5kY30prQv5crLi3wz5Pz9Qz/4qOJIQQzbPhNVGUlK8elJTYT+VNI
-         hI5nE9pxN0p9TdwYO4UwmTToqnAD/+NrDGg9ZE3Bvz/aC3jgcL8OQzzrY6I0O/LGG9bD
-         oKYiwEooPrdpL+1RNseqxE6h6WRDZuoFdG7FLQPUftoCiM+fnZJnLhSN3KTQmhjGXKW9
-         D5uA==
-X-Forwarded-Encrypted: i=1; AJvYcCUs2gl8S2tcvmt6JOV/05gxcP31V2uwHnjHXSDi81WYazT5qeTVr6SRket5FZn6WPKseKDtrXGpepzj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZyTOMYVHNYcUzJJsgmimHDU6DP2ajwA5AEnp0zsP98vlmYbJU
-	h4Zj60kkWWwt+OY0hIm/FKRqHJW0ozR7Esu9s1S0Btz25QpeJcwfHfrjw23cyeRTqRx9WI4a36c
-	+7e8=
-X-Gm-Gg: ATEYQzym5xHrinyUCgNlK8h80aosKy/UgrNGKuHb6CokL+tXPqVDhL7WRxlcH42u0AB
-	uFsl8UjhW7mkTEaNSSAS3/3Y8ncQBbmetX/sBmG4T5lnCsbuNG95sI7/Dew7kDA/VTAQKfuvRXh
-	kgVXr95QgM1TLyUWezxChDz29J0L4GIp6SWSNW5JJPq/pwn0tZ3I5Ki2nRSmMB9kk/OnxPZng/o
-	LeZeuHRpvtCSiQcF8j6fZGC/w6aUZCl6spou6ZwYNbIC0fLfXKjyBKDE7og11mgqrz8mClhh60F
-	lEtZSUNKVhy/26SF/6BOptZvvKa/5KTVw/pf/VUDlJAxiiloGdStaCsDWkTi/L+S8lNmLqGt7ar
-	0H9oNU2Sv1FD5UEa6MsWsgi2SQp6ajwMoFy6gCLylzC8hD6zV8yiGEJF3cGwmZdfs3T3/s/hA+t
-	JNuL1UuJmfX1kxPeQ7k+eAgu8/nf/G/Rr1pb6ibQbO0GkegKOIJf7w4lI5qQyceDBjilAKtJsaw
-	zMnT1nZsdMLTtyzXR6y6WQakD18DQVQ2w==
-X-Received: by 2002:a17:902:f68b:b0:2ae:5851:9960 with SMTP id d9443c01a7336-2ae58519b53mr41949005ad.21.1772518432883;
-        Mon, 02 Mar 2026 22:13:52 -0800 (PST)
+        bh=1zbYunSd9SIDIr6FUrKkB2zIIm+2n+JbdlctTH55ffY=;
+        b=QU39JHXY0yp4A9h18c3mDe+8jfU8b4Rpw7JgqLboHa53Sbt4R0J7iFQtc4qW8Ow5BZ
+         NFQpAJlWFmpkJMAspvz2GRrA5y4ORDkiaJ8nP712TSdtJG1fZVXld8IoyOiV258ykxA3
+         FXuX1CouSX8FGKXeGMdDMiG15aUGcJnPwmUUCc+dYnzy/uWnRd34Qg5HDF0RBtpnqaIY
+         Sr+CDXdvDmjQnt61l0P4b0C6YqU/nLV/uwvKrKCAkvy9cD1DN1i1aoNWkBMe2ueh057t
+         XmP2YUlBZ8fS/EmAmNcegSh1sqYG/PV5AHjzhUkUHW0+F0o2sB/qOXOIXuLoCy0r1kTe
+         puIw==
+X-Forwarded-Encrypted: i=1; AJvYcCX4VCkxkhL3lBJgwKZUUhwJirnBGCJjs1IQD6H8RPORMeorMH7VifU50kGUvAweIelBbWWmBbYl/HRn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuX+yb7e3v13m6z1n/rAg7tnOVbE6s6Jmv5w+c8p5sBX9JxU37
+	Sd8UNZc8zQNmFaJXIJq6S6C2vM2pAMcf81WNJNqdGIBep2OinDPH0KJlD2md0SVnERxWu1gQNFH
+	3mBY=
+X-Gm-Gg: ATEYQzwCVqWc9gUB/sk0S45wL6J5GMOLSaS1Zf78DC/7Y6cpK5fALlwO76O1zv2q/oi
+	6kObWziW1jKQ0r6AnSNemZ7bh4URP6NYDaQec66+FQRpcxr/J5VhmptAB+yy6v2WyTaho4/GvKg
+	+AVfE16WX4gfMRvttpRmk+oLF8e4miCJg/L3gBKUCq44yeWYk6YyaeMop/dj7CKck7mQ+FTKDmO
+	793R8P+f/EkMLxJTIJCdItMF1QAT+05elR1YQUsmXd0STjDcXl4VodC6NbWXF4Tk1QH2fZc6mbx
+	BICx9JHNnLwKJD4tslSOirfrLKSt6wQG/P+Ogz/dWK4amY7xH7Eq3ejnwiuJHuflBUN1Np0a26M
+	3Hemc3tNImYn5RhewNOL7iaerujkr19dxVtXgU2QL7S1oYG0Ugi+4uRqg8XFlS+wD+hqX762kdr
+	KIzX3jCkpeMtnVaHQPeoAN7AkP3zsAXA8VAu9E87HsFzlz5Qrj4ZwyqtZJYP4GG4hScpTRxVHlG
+	dPUhOZA/f8GPUJFPEVdbsLXMnHWHYQysg==
+X-Received: by 2002:a17:903:1786:b0:2aa:e817:1bcf with SMTP id d9443c01a7336-2ae2e4d7a3bmr137864645ad.51.1772518433772;
+        Mon, 02 Mar 2026 22:13:53 -0800 (PST)
 Received: from jingyliang-input-linux.c.googlers.com (111.169.168.34.bc.googleusercontent.com. [34.168.169.111])
         by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb6fe4f3sm152639735ad.91.2026.03.02.22.13.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Mar 2026 22:13:52 -0800 (PST)
+        Mon, 02 Mar 2026 22:13:53 -0800 (PST)
 From: Jingyuan Liang <jingyliang@chromium.org>
-Date: Tue, 03 Mar 2026 06:13:00 +0000
-Subject: [PATCH 08/12] HID: spi_hid: add device tree support for SPI over
- HID
+Date: Tue, 03 Mar 2026 06:13:01 +0000
+Subject: [PATCH 09/12] dt-bindings: input: Document hid-over-spi DT schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,7 +86,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260303-send-upstream-v1-8-1515ba218f3d@chromium.org>
+Message-Id: <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org>
 References: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org>
 In-Reply-To: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org>
 To: Jiri Kosina <jikos@kernel.org>, Benjamin Tissoires <bentiss@kernel.org>, 
@@ -102,17 +101,17 @@ Cc: linux-input@vger.kernel.org, linux-doc@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org, 
  linux-trace-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
  hbarnor@chromium.org, Jingyuan Liang <jingyliang@chromium.org>, 
- Jarrett Schultz <jaschultz@microsoft.com>, 
- Dmitry Antipov <dmanti@microsoft.com>
+ Dmitry Antipov <dmanti@microsoft.com>, 
+ Jarrett Schultz <jaschultz@microsoft.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772518424; l=8754;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772518424; l=5693;
  i=jingyliang@chromium.org; s=20260213; h=from:subject:message-id;
- bh=DhX2Uh1rHNONR9PWKjCuHamOIXQpxg2tk//xxr/GNPg=;
- b=dDRFUCZnpLF1KnXWXYiRsSlUS8MJO3AWwE32XYsswZX0/B6AABOdoeQqF2SlQ+BRC4FVSDbK0
- QNBC2h7LX40BSzuPL2J/nM+D3eAr/CRBC5O6OGBgYZrNS/o2yrtw80H
+ bh=HKsF8s2CN39ptYXnUpAjllMxDvOrGH7BmQr/pDNdroM=;
+ b=3yauzbUstrOGl5qDbA/zaXfBs8F8XvC7hZJ8BVjAu9S340VlZ8h1r6uNBWzD+nBmeke1laoEl
+ KMLb+MDQtJyB1u7HQFp7CyBh7fKvz7M3Cislqv92CB/53/zJ5KRua02
 X-Developer-Key: i=jingyliang@chromium.org; a=ed25519;
  pk=VTYSdqslTtYOjWWoIGgYoWupGWqNSidrggReKMgfPo4=
-X-Rspamd-Queue-Id: 588CD1E981C
+X-Rspamd-Queue-Id: 2D23E1E9849
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -123,7 +122,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270297-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270298-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,lwn.net,goodmis.org,efficios.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -141,303 +140,182 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,suse.cz:email,chromium.org:dkim,chromium.org:email,chromium.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,chromium.org:dkim,chromium.org:email,chromium.org:mid,suse.cz:email,devicetree.org:url]
 X-Rspamd-Action: no action
 
-From: Jarrett Schultz <jaschultz@microsoft.com>
+Documentation describes the required and optional properties for
+implementing Device Tree for a Microsoft G6 Touch Digitizer that
+supports HID over SPI Protocol 1.0 specification.
+
+The properties are common to HID over SPI.
 
 Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
+Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
 Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
 ---
- drivers/hid/spi-hid/Kconfig      |  15 +++
- drivers/hid/spi-hid/Makefile     |   1 +
- drivers/hid/spi-hid/spi-hid-of.c | 243 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 259 insertions(+)
+ .../devicetree/bindings/input/hid-over-spi.yaml    | 153 +++++++++++++++++++++
+ 1 file changed, 153 insertions(+)
 
-diff --git a/drivers/hid/spi-hid/Kconfig b/drivers/hid/spi-hid/Kconfig
-index 114b1e00da39..76a2cd587a3e 100644
---- a/drivers/hid/spi-hid/Kconfig
-+++ b/drivers/hid/spi-hid/Kconfig
-@@ -25,6 +25,21 @@ config SPI_HID_ACPI
- 	  will be called spi-hid-acpi. It will also build/depend on the
- 	  module spi-hid.
- 
-+config SPI_HID_OF
-+	tristate "HID over SPI transport layer Open Firmware driver"
-+	depends on OF
-+	select SPI_HID_CORE
-+	help
-+	  Say Y here if you use a keyboard, a touchpad, a touchscreen, or any
-+	  other HID based devices which are connected to your computer via SPI.
-+	  This driver supports Open Firmware (Device Tree)-based systems.
-+
-+	  If unsure, say N.
-+
-+	  This support is also available as a module.  If so, the module
-+	  will be called spi-hid-of. It will also build/depend on the
-+	  module spi-hid.
-+
- config SPI_HID_CORE
- 	tristate
- endif
-diff --git a/drivers/hid/spi-hid/Makefile b/drivers/hid/spi-hid/Makefile
-index 753c7b7a7844..fe627fd378e3 100644
---- a/drivers/hid/spi-hid/Makefile
-+++ b/drivers/hid/spi-hid/Makefile
-@@ -8,3 +8,4 @@
- obj-$(CONFIG_SPI_HID_CORE)	+= spi-hid.o
- spi-hid-objs 			= spi-hid-core.o
- obj-$(CONFIG_SPI_HID_ACPI)	+= spi-hid-acpi.o
-+obj-$(CONFIG_SPI_HID_OF)	+= spi-hid-of.o
-diff --git a/drivers/hid/spi-hid/spi-hid-of.c b/drivers/hid/spi-hid/spi-hid-of.c
+diff --git a/Documentation/devicetree/bindings/input/hid-over-spi.yaml b/Documentation/devicetree/bindings/input/hid-over-spi.yaml
 new file mode 100644
-index 000000000000..a20c8146230b
+index 000000000000..b623629ed9d3
 --- /dev/null
-+++ b/drivers/hid/spi-hid/spi-hid-of.c
-@@ -0,0 +1,243 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * HID over SPI protocol, Open Firmware related code
-+ *
-+ * Copyright (c) 2021 Microsoft Corporation
-+ *
-+ * This code was forked out of the HID over SPI core code, which is partially
-+ * based on "HID over I2C protocol implementation:
-+ *
-+ * Copyright (c) 2012 Benjamin Tissoires <benjamin.tissoires@gmail.com>
-+ * Copyright (c) 2012 Ecole Nationale de l'Aviation Civile, France
-+ * Copyright (c) 2012 Red Hat, Inc
-+ *
-+ * which in turn is partially based on "USB HID support for Linux":
-+ *
-+ * Copyright (c) 1999 Andreas Gal
-+ * Copyright (c) 2000-2005 Vojtech Pavlik <vojtech@suse.cz>
-+ * Copyright (c) 2005 Michael Haboustak <mike-@cinci.rr.com> for Concept2, Inc
-+ * Copyright (c) 2007-2008 Oliver Neukum
-+ * Copyright (c) 2006-2010 Jiri Kosina
-+ */
++++ b/Documentation/devicetree/bindings/input/hid-over-spi.yaml
+@@ -0,0 +1,153 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/hid-over-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/delay.h>
++title: HID over SPI Devices
 +
-+#include "spi-hid.h"
++maintainers:
++  - Benjamin Tissoires <benjamin.tissoires@redhat.com>
++  - Jiri Kosina <jkosina@suse.cz>
 +
-+/* Config structure is filled with data from Device Tree */
-+struct spi_hid_of_config {
-+	struct spihid_ops ops;
++description: |+
++  HID over SPI provides support for various Human Interface Devices over the
++  SPI bus. These devices can be for example touchpads, keyboards, touch screens
++  or sensors.
 +
-+	struct spi_hid_conf property_conf;
-+	u32 post_power_on_delay_ms;
-+	u32 minimal_reset_delay_ms;
-+	struct gpio_desc *reset_gpio;
-+	struct regulator *supply;
-+	bool supply_enabled;
-+};
++  The specification has been written by Microsoft and is currently available here:
++  https://www.microsoft.com/en-us/download/details.aspx?id=103325
 +
-+static int spi_hid_of_populate_config(struct spi_hid_of_config *conf,
-+				      struct device *dev)
-+{
-+	int error;
-+	u32 val;
++  If this binding is used, the kernel module spi-hid will handle the communication
++  with the device and the generic hid core layer will handle the protocol.
 +
-+	error = device_property_read_u32(dev, "input-report-header-address",
-+					 &val);
-+	if (error) {
-+		dev_err(dev, "Input report header address not provided.");
-+		return -ENODEV;
-+	}
-+	conf->property_conf.input_report_header_address = val;
++allOf:
++  - $ref: /schemas/input/touchscreen/touchscreen.yaml#
 +
-+	error = device_property_read_u32(dev, "input-report-body-address", &val);
-+	if (error) {
-+		dev_err(dev, "Input report body address not provided.");
-+		return -ENODEV;
-+	}
-+	conf->property_conf.input_report_body_address = val;
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - microsoft,g6-touch-digitizer
++          - const: hid-over-spi
++      - description: Just "hid-over-spi" alone is allowed, but not recommended.
++        const: hid-over-spi
 +
-+	error = device_property_read_u32(dev, "output-report-address", &val);
-+	if (error) {
-+		dev_err(dev, "Output report address not provided.");
-+		return -ENODEV;
-+	}
-+	conf->property_conf.output_report_address = val;
++  reg:
++    maxItems: 1
 +
-+	error = device_property_read_u32(dev, "read-opcode", &val);
-+	if (error) {
-+		dev_err(dev, "Read opcode not provided.");
-+		return -ENODEV;
-+	}
-+	conf->property_conf.read_opcode = val;
++  interrupts:
++    maxItems: 1
 +
-+	error = device_property_read_u32(dev, "write-opcode", &val);
-+	if (error) {
-+		dev_err(dev, "Write opcode not provided.");
-+		return -ENODEV;
-+	}
-+	conf->property_conf.write_opcode = val;
++  reset-gpios:
++    maxItems: 1
++    description:
++      GPIO specifier for the digitizer's reset pin (active low). The line must
++      be flagged with GPIO_ACTIVE_LOW.
 +
-+	error = device_property_read_u32(dev, "post-power-on-delay-ms", &val);
-+	if (error) {
-+		dev_err(dev, "post-power-on-delay-ms not provided, using 10.");
-+		val = 10;
-+	}
-+	conf->post_power_on_delay_ms = val;
++  vdd-supply:
++    description:
++      Regulator for the VDD supply voltage.
 +
-+	error = device_property_read_u32(dev, "minimal-reset-delay-ms", &val);
-+	if (error) {
-+		dev_err(dev, "minimal-reset-delay-ms not provided, using 100.");
-+		val = 100;
-+	}
-+	conf->minimal_reset_delay_ms = val;
++  input-report-header-address:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 0xffffff
++    description:
++      A value to be included in the Read Approval packet, listing an address of
++      the input report header to be put on the SPI bus. This address has 24
++      bits.
 +
-+	/* FIXME: not reading hid-over-spi-flags, multi-fragment not supported */
++  input-report-body-address:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 0xffffff
++    description:
++     A value to be included in the Read Approval packet, listing an address of
++      the input report body to be put on the SPI bus. This address has 24 bits.
 +
-+	conf->supply = devm_regulator_get(dev, "vdd");
-+	if (IS_ERR(conf->supply)) {
-+		if (PTR_ERR(conf->supply) != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to get regulator: %ld.",
-+				PTR_ERR(conf->supply));
-+		return PTR_ERR(conf->supply);
-+	}
-+	conf->supply_enabled = false;
++  output-report-address:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 0xffffff
++    description:
++      A value to be included in the Output Report sent by the host, listing an
++      address where the output report on the SPI bus is to be written to. This
++      address has 24 bits.
 +
-+	conf->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(conf->reset_gpio)) {
-+		dev_err(dev, "%s: error getting reset GPIO.", __func__);
-+		return PTR_ERR(conf->reset_gpio);
-+	}
++  post-power-on-delay-ms:
++    description:
++      Optional time in ms required by the device after enabling its regulators
++      or powering it on, before it is ready for communication.
 +
-+	return 0;
-+}
++  minimal-reset-delay-ms:
++    description:
++      Optional minimum amount of time in ms that device needs to be in reset
++      state for the reset to take effect.
 +
-+static int spi_hid_of_power_down(struct spihid_ops *ops)
-+{
-+	struct spi_hid_of_config *conf = container_of(ops,
-+						      struct spi_hid_of_config,
-+						      ops);
-+	int error;
++  read-opcode:
++  $ref: /schemas/types.yaml#/definitions/uint8
++    description:
++      Value to be used in Read Approval packets. 1 byte.
 +
-+	if (!conf->supply_enabled)
-+		return 0;
++  write-opcode:
++  $ref: /schemas/types.yaml#/definitions/uint8
++    description:
++      Value to be used in Write Approval packets. 1 byte.
 +
-+	error = regulator_disable(conf->supply);
-+	if (error == 0)
-+		conf->supply_enabled = false;
++  hid-over-spi-flags:
++  $ref: /schemas/types.yaml#/definitions/uint16
++    description:
++      16 bits.
++      Bits 0-12 - Reserved (must be 0)
++      Bit 13 - SPI Write Mode. Possible values -
++        * 0b0- Writes are carried out in Single-SPI mode
++        * 0b1- Writes are carried out in the Multi-SPI mode specified by bits
++               14-15
++      Bits 14-15 - Multi-SPI Mode. Possible values -
++        * 0b00- Single SPI
++        * 0b01- Dual SPI
++        * 0b10- Quad SPI
 +
-+	return error;
-+}
++required:
++  - compatible
++  - interrupts
++  - reset-gpios
++  - vdd-supply
++  - input-report-header-address
++  - input-report-body-address
++  - output-report-address
++  - read-opcode
++  - write-opcode
++  - hid-over-spi-flags
 +
-+static int spi_hid_of_power_up(struct spihid_ops *ops)
-+{
-+	struct spi_hid_of_config *conf = container_of(ops,
-+						      struct spi_hid_of_config,
-+						      ops);
-+	int error;
++additionalProperties: false
 +
-+	if (conf->supply_enabled)
-+		return 0;
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
 +
-+	error = regulator_enable(conf->supply);
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
 +
-+	if (error == 0) {
-+		conf->supply_enabled = true;
-+		usleep_range(1000 * conf->post_power_on_delay_ms,
-+			     1000 * (conf->post_power_on_delay_ms + 1));
-+	}
-+
-+	return error;
-+}
-+
-+static int spi_hid_of_assert_reset(struct spihid_ops *ops)
-+{
-+	struct spi_hid_of_config *conf = container_of(ops,
-+						      struct spi_hid_of_config,
-+						      ops);
-+
-+	gpiod_set_value(conf->reset_gpio, 1);
-+	return 0;
-+}
-+
-+static int spi_hid_of_deassert_reset(struct spihid_ops *ops)
-+{
-+	struct spi_hid_of_config *conf = container_of(ops,
-+						      struct spi_hid_of_config,
-+						      ops);
-+
-+	gpiod_set_value(conf->reset_gpio, 0);
-+	return 0;
-+}
-+
-+static void spi_hid_of_sleep_minimal_reset_delay(struct spihid_ops *ops)
-+{
-+	struct spi_hid_of_config *conf = container_of(ops,
-+						      struct spi_hid_of_config,
-+						      ops);
-+	usleep_range(1000 * conf->minimal_reset_delay_ms,
-+		     1000 * (conf->minimal_reset_delay_ms + 1));
-+}
-+
-+static int spi_hid_of_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct spi_hid_of_config *config;
-+	int error;
-+
-+	config = devm_kzalloc(dev, sizeof(struct spi_hid_of_config),
-+			      GFP_KERNEL);
-+	if (!config)
-+		return -ENOMEM;
-+
-+	config->ops.power_up = spi_hid_of_power_up;
-+	config->ops.power_down = spi_hid_of_power_down;
-+	config->ops.assert_reset = spi_hid_of_assert_reset;
-+	config->ops.deassert_reset = spi_hid_of_deassert_reset;
-+	config->ops.sleep_minimal_reset_delay =
-+		spi_hid_of_sleep_minimal_reset_delay;
-+
-+	error = spi_hid_of_populate_config(config, dev);
-+	if (error) {
-+		dev_err(dev, "%s: unable to populate config data.", __func__);
-+		return error;
-+	}
-+
-+	return spi_hid_core_probe(spi, &config->ops, &config->property_conf);
-+}
-+
-+const struct of_device_id spi_hid_of_match[] = {
-+	{ .compatible = "hid-over-spi" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, spi_hid_of_match);
-+
-+static const struct spi_device_id spi_hid_of_id_table[] = {
-+	{ "hid", 0 },
-+	{ "hid-over-spi", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(spi, spi_hid_of_id_table);
-+
-+static struct spi_driver spi_hid_of_driver = {
-+	.driver = {
-+		.name	= "spi_hid_of",
-+		.owner	= THIS_MODULE,
-+		.of_match_table = of_match_ptr(spi_hid_of_match),
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+		.dev_groups = spi_hid_groups,
-+	},
-+	.probe		= spi_hid_of_probe,
-+	.remove		= spi_hid_core_remove,
-+	.id_table	= spi_hid_of_id_table,
-+};
-+
-+module_spi_driver(spi_hid_of_driver);
-+
-+MODULE_DESCRIPTION("HID over SPI OF transport driver");
-+MODULE_AUTHOR("Dmitry Antipov <dmanti@microsoft.com>");
-+MODULE_LICENSE("GPL");
++      hid@0 {
++        compatible = "hid-over-spi";
++        reg = <0x0>;
++        interrupts-extended = <&gpio 42 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
++        vdd-supply = <&pm8350c_l3>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&ts_d6_reset_assert &ts_d6_int_bias>;
++        input-report-header-address = <0x1000>;
++        input-report-body-address = <0x1004>;
++        output-report-address = <0x2000>;
++        read-opcode = <0x0b>;
++        write-opcode = <0x02>;
++        hid-over-spi-flags = <0x0000>;
++        post-power-on-delay-ms = <5>;
++        minimal-reset-delay-ms = <5>;
++      };
++    };
+\ No newline at end of file
 
 -- 
 2.53.0.473.g4a7958ca14-goog
