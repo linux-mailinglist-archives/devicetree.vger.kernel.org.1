@@ -1,395 +1,170 @@
-Return-Path: <devicetree+bounces-270711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270712-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eP+BEPIvp2mbfgAAu9opvQ
-	(envelope-from <devicetree+bounces-270711-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:01:06 +0100
+	id sLBtImAxp2kjfwAAu9opvQ
+	(envelope-from <devicetree+bounces-270712-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:07:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF3E31F595F
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:01:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DEC21F5A74
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:07:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 454273124F81
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 18:58:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7ED8A309D183
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 19:04:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5D1537268C;
-	Tue,  3 Mar 2026 18:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76AD386452;
+	Tue,  3 Mar 2026 19:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CgQ//7No";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ZjGzShsN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dIQSYG+r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACE8372683
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 18:58:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CA4377EA1;
+	Tue,  3 Mar 2026 19:04:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772564331; cv=none; b=kb+rPwWhWgexp9q9rcEfpCVWHFIhocAglwrSUrl+RHKIemNqQOpoCBZqUAL2rwOrIc/BGjRu6zs2FcbI6DBjK5uRVxEEAl7GXLE3ywz778bAbbHsAYydeVH7kjyCJbgwGnhVPzMDdHGGfo6DQW8hZx9UTD+EydtHHwIJ+IEZ2+8=
+	t=1772564649; cv=none; b=Gb9/UvkMk6wF80NmHyi+ILvUk587Bf8/Jm8qhIfdVIRTdPwTGxCOJ+HOJIGCCQ5u99b8I7PeEuAEN8V8VLI0zbMtuv5bOKJU5WF1nvy04QIh7pL/NfbnI+79ewpBR/72b+AqjCvzvaq7ImwLo2fWvWng2xTJ019Gdsc0LUTejR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772564331; c=relaxed/simple;
-	bh=ctNiVpFgI+g5fqJUA1lUqb0Ck7ixmxvJ2X+MG1TYJgM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=iYRhaAI7LGcnpc5wwJfPk5cDNQBHtFxRETzBzXuoNHjiShNIQgV+iopKIigty+gSVkaIFIszqnqFZK4FyRzrllCQ5p6ywTSFB3OVKSBGsJZm5FBruJZlrIhd9UjumRUjhxps07uW4qA41S7gEwu6BAycFJIvjWDeMz9BLRxGrcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CgQ//7No; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ZjGzShsN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 623H0Nlh3708633
-	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 18:58:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mgXWrJl2w15tZkyYqMKFf/LP5i6WrIDM0ESMOQGxoto=; b=CgQ//7Nok6T3aEgt
-	PGktN55Uoj9Ru54AkNy0t9aq0Zu4p3TcCRqKt6Kk4yUeP2xY/PuOuQhlrPxk6/jr
-	3czisgKC3O6nkKPNUaoHZZmxVaE0MCNIH0BEPYaCWyeOD86odHSgmH8ItQhXDO5Y
-	Wno40z9PRcJmCseObtnt1Cg+ncbPVLMQoJL+MDn+HLvVHlDtvIrnbKXZNgzFSNPD
-	SwVPApm5KfHR1Qwoa2c7zFhIRIEDZ1k8OWTHX/zhKfdqgjK3zq8/W+tvRpxeqKV+
-	5TH3DGzbnLYyX0Q1vna+CdoHPw8gIGzhR6s1JfJBJ32NNnLUAX8jiJ5PJ0gojVPW
-	MYwc6g==
-Received: from mail-dl1-f69.google.com (mail-dl1-f69.google.com [74.125.82.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnsjm2ptg-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 18:58:49 +0000 (GMT)
-Received: by mail-dl1-f69.google.com with SMTP id a92af1059eb24-1270c88d3a8so5213157c88.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 10:58:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772564329; x=1773169129; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mgXWrJl2w15tZkyYqMKFf/LP5i6WrIDM0ESMOQGxoto=;
-        b=ZjGzShsNR8fA+rfJuD7RnNxgcU5s/C/3Q3mZKdzak0Z8gpjvNKsYolyuzhB4n95YmM
-         gFDQkiq+A7wozA3yiRmnlnwBOj2j0RwYX2ap8/ag1o0pO4mW08h9eM9Fp1XAsg0SSJna
-         EFimX+nih4/LAsLwkA/o8SnBSXI6ixlGtSN1KhVXdwD0EV1r0g43Myr2L/ph54FO91oz
-         5ZfciuZ6kS1xi2nwJGC4YjGA30LP2xqq92svZ94JwTYBGi9I8r8jlgyMCLaRLiSzA+PH
-         8Huv9MtFMS/tMogCaCqxoWxgtCc4gn2a2mvbFCTd3vQcV++/rNsi+botv0DvKoW8+scU
-         bX7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772564329; x=1773169129;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mgXWrJl2w15tZkyYqMKFf/LP5i6WrIDM0ESMOQGxoto=;
-        b=lMECETBblUX8fhPQ9ENn8K09Ui2iCNNM0j4Kjh0J217fC+0DL1tuSY0rz4X2QfMH61
-         JtQwJxj9hRrx8uMvR/TiRR8T23PF/pOOf1iV+ECfexRdgC0f8d5UPiB7ZJaBrKyXh+ox
-         L7qJi/i/PK55/nCzTIib2dr7p7G+Qlau2T7Y22cbUSQFBkHOoB6sV+m0b8flVjiaU0rb
-         xdIM+LntKRD5JbB/WsXeQEmxLxuPrDsXszqz+QkYIPyf8F2XSfcAak+r1Ow9k1NjmEsj
-         9dwbyGITpkKjCPS/aDjYENjGONl5+Fby0qO6Clg4VPucqXRWLQC6p11q8HPr1KsyaIQp
-         38ug==
-X-Forwarded-Encrypted: i=1; AJvYcCXD3DBOBLKAdxFxCZ9UuUes15YBxvqo+bXUWQVW5mKJojWOeStWZHIOzUEYhvQVCpr7QvjzzrXFSJy0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJPy5DngeKYFjc3AXT7SrdlZi/MKZ79F5vZ1cEk2MWj/z7EKI6
-	b9aYodkfVI0vFZOgtXOuZqkziUJu3NDEeiFrT7+JeG+Jh6qdOVylCG+tRJ7PqjmI7v1zz6Wy+hf
-	MgOo0WuEbLv7finzYdRy4uJkCRn00StIBGtKufND51xDi0y/YnUHs+DXSe/xrHR0D
-X-Gm-Gg: ATEYQzyuBlJ942EFJ1Mb7R+d5TpIssZhTm6xa9/LNbVnzANRBe3AMmxrLLe5CKeyIgu
-	84vfL8fsotkSMjGwMIWSgeWzQmq3fKpSisz6zs/oaXXPu280rnGs1YPFW798IJ/ZVm/ft/gXZO3
-	/7IkCYcmLLGkh9+nV5lcNwSWtHhRJsaVDrfUkY2/d4g1QKc3gckIDv9vhvvD3Xht/EYLgVlBzpz
-	VOqCjOEoxOSsD2hYc1+TzHul3kcLQCo6oEJ80aKUccKf0S9yT1qmyXR5rdWEIDbKSSM4z7BlfMh
-	OjzupcME5zgWL6rYsG8XFK7kI0jKBiv5TO9ZlLtUiSsrf0UjL/rSiRg7gY6O3JpWxZBWvjw66HU
-	Xe6fZi8lCS9SLyNOm9+lAas+PfUFmJ4HmUmNVT/TfeRaQnYwUebqItg9AIjsvNN1SE79tdSIPv5
-	uQ
-X-Received: by 2002:a05:7022:127:b0:119:e569:f875 with SMTP id a92af1059eb24-128b0da99a8mr1348141c88.18.1772564328545;
-        Tue, 03 Mar 2026 10:58:48 -0800 (PST)
-X-Received: by 2002:a05:7022:127:b0:119:e569:f875 with SMTP id a92af1059eb24-128b0da99a8mr1348120c88.18.1772564327940;
-        Tue, 03 Mar 2026 10:58:47 -0800 (PST)
-Received: from [10.62.37.55] (i-global254.qualcomm.com. [199.106.103.254])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-12789a5312dsm17177876c88.16.2026.03.03.10.58.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Mar 2026 10:58:47 -0800 (PST)
-Message-ID: <2a1155bd-7dc5-4ed8-b1eb-ddfa483c75ca@oss.qualcomm.com>
-Date: Tue, 3 Mar 2026 10:58:45 -0800
+	s=arc-20240116; t=1772564649; c=relaxed/simple;
+	bh=Ls5d0F6utRyv7s9aWgBon26Vc6hhPSXQBepnMUYJc28=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dNljJph+6qppgFS9ztWK0/N7X1YsiGH4jfTGjeOLbVOgBWSL3r6w07Qa1retO5p4QHukIXXy0mh0UEZkzE7yTeRjjaoOwaQeyN06TR8l5G3c7OB4H8fLr7WFr5RSruD/Z14BX/0k+T/rvA6QCbJNbGf618RxRSkVIW4v0KBUnVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dIQSYG+r; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B64B2C116C6;
+	Tue,  3 Mar 2026 19:04:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772564649;
+	bh=Ls5d0F6utRyv7s9aWgBon26Vc6hhPSXQBepnMUYJc28=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dIQSYG+rFjYV7pnNtO/c6aFPT2Pnk5SSDc4JN83WBDNm/g1VUtfDR2tt097i+kJSQ
+	 kzJp6tJI1sXZoGkVZ34ue6qqtUqzgVxS6bX84EW2fwHPPaOB8ByhqWjOjaWj+avr6p
+	 cGyx4cDOwsqeWjT3vJuS7nsGacsulHiS/swKh9Zd2DHdLwmxFVRpImIStoY9gnX59/
+	 AmX9fESwe1twnsyznXH5YedP325ZQoNUVJgTfN9X/7mzfj2FdLHp0n6VWydgBHbUtN
+	 4j0AfU4DlC33N37s26ZbVSQHrGyS5MCQytDq1mmlAlK19cKX1Oz34MckK5lPKUY3MK
+	 DHRUxpzks7ANA==
+Date: Tue, 3 Mar 2026 19:04:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Jens Emil Schulz =?iso-8859-1?Q?=D8stergaard?= <jensemil.schulzostergaard@microchip.com>,
+	UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
+ switch bindings
+Message-ID: <20260303-mosaic-debate-90cf8c8bbb33@spud>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
+ <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-From: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>
-To: Bryan O'Donoghue <bod@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vinod Koul
- <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20260226-x1e-csi2-phy-v3-0-11e608759410@linaro.org>
- <20260226-x1e-csi2-phy-v3-1-11e608759410@linaro.org>
- <4pFL6wOeTKUt-Zq4YbjqJdacMgUIPSYJD-4-5DcIMEZ1sM7JsNFYcSv1bd7ZRVOklTsmkEfxM2b6tTflmiECNQ==@protonmail.internalid>
- <c85fe457-c140-441c-93ed-342dce32e604@oss.qualcomm.com>
- <03b44922-72d5-465b-96e1-97a19655e97d@kernel.org>
- <4440a3a8-7281-4bea-bb84-7a9d19ef7ce9@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <4440a3a8-7281-4bea-bb84-7a9d19ef7ce9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: ZhKqm9AMv3FrhrkuSrgkJcah-gGQrsXD
-X-Authority-Analysis: v=2.4 cv=GIUF0+NK c=1 sm=1 tr=0 ts=69a72f69 cx=c_pps
- a=kVLUcbK0zfr7ocalXnG1qA==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=gEfo2CItAAAA:8 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=SNpfbsHd_ZTzF1W5vAsA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=vr4QvYf-bLy2KjpDp97w:22
- a=sptkURWiP4Gy88Gu7hUp:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: ZhKqm9AMv3FrhrkuSrgkJcah-gGQrsXD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDE1MyBTYWx0ZWRfX/niejxJBtoKq
- clUNCF16aJQGNJ56xbJz14bvz9nZG0T5e3DazUYUwCGrIBgfU7kr6K/ozqP5y034dvE4Ab4kEaO
- /jQf5J/W8AFOsYmGGbQ62zW75aJpG4OIxPADETdJh8eBjkByuiO2XklxaIhKIWQAeaeylbexYVZ
- r+oFYMXOnV7KRGjlZZ3K+G2+j3QrdUYTJvcZg+q5iY5SKQLa1iY427Ppuv1qZx4R/V1TSv2CUq0
- 6nkVMD4k09vTI0Et/lBgI/jHvepdifUpBwzOFTIBav+hg/ixOCFFIeZxLoFU5QECs/XPRyJRBHl
- h4dJB/5LBMKBNFVCnHGvB/HqxsJHO0uX1ss0luRvoy/UNxuSPQUfZQfigh5Dv8HGXzmtqip3xKE
- jFDjCNXGTApLzLquR5yxFo/8njHtWcwJzmduDe2in5zrcl9XPscV2DOX/1mc5c1g5ESnxpYcBBI
- CpUXRvbevzctjvATfxg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-03_02,2026-03-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 priorityscore=1501 clxscore=1015 malwarescore=0
- suspectscore=0 spamscore=0 phishscore=0 lowpriorityscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603030153
-X-Rspamd-Queue-Id: DF3E31F595F
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="mDeycmnSpjEBNjAk"
+Content-Disposition: inline
+In-Reply-To: <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
+X-Rspamd-Queue-Id: 0DEC21F5A74
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-270711-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,linaro.org:email,ace4000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,devicetree.org:url,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vijay.tumati@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270712-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
 
+--mDeycmnSpjEBNjAk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 3/3/2026 10:08 AM, Vijay Kumar Tumati wrote:
-> 
-> 
-> On 3/3/2026 1:27 AM, Bryan O'Donoghue wrote:
->> On 03/03/2026 01:51, Vijay Kumar Tumati wrote:
->>> Hi Bryan,
->>>
->>> On 2/26/2026 4:34 AM, Bryan O'Donoghue wrote:
->>>> Add a base schema initially compatible with x1e80100 to describe 
->>>> MIPI CSI2
->>>> PHY devices.
->>>>
->>>> The hardware can support both C-PHY and D-PHY modes. The CSIPHY devices
->>>> have their own pinouts on the SoC as well as their own individual 
->>>> voltage
->>>> rails.
->>>>
->>>> The need to model voltage rails on a per-PHY basis leads us to define
->>>> CSIPHY devices as individual nodes.
->>>>
->>>> Two nice outcomes in terms of schema and DT arise from this change.
->>>>
->>>> 1. The ability to define on a per-PHY basis voltage rails.
->>>> 2. The ability to require those voltage.
->>>>
->>>> We have had a complete bodge upstream for this where a single set of
->>>> voltage rail for all CSIPHYs has been buried inside of CAMSS.
->>>>
->>>> Much like the I2C bus which is dedicated to Camera sensors - the CCI 
->>>> bus in
->>>> CAMSS parlance, the CSIPHY devices should be individually modelled.
->>>>
->>>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->>>> ---
->>>>    .../bindings/phy/qcom,x1e80100-csi2-phy.yaml       | 114 ++++++++ 
->>>> + ++++++++++++
->>>>    1 file changed, 114 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,x1e80100- 
->>>> csi2-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,x1e80100- 
->>>> csi2-phy.yaml
->>>> new file mode 100644
->>>> index 0000000000000..c937d26ccbda9
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/phy/qcom,x1e80100-csi2-phy.yaml
->>>> @@ -0,0 +1,114 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/phy/qcom,x1e80100-csi2-phy.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Qualcomm CSI2 PHY
->>>> +
->>>> +maintainers:
->>>> +  - Bryan O'Donoghue <bod@kernel.org>
->>>> +
->>>> +description:
->>>> +  Qualcomm MIPI CSI2 C-PHY/D-PHY combination PHY. Connects MIPI 
->>>> CSI2 sensors
->>>> +  to Qualcomm's Camera CSI Decoder. The PHY supports both C-PHY and 
->>>> D-PHY
->>>> +  modes.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: qcom,x1e80100-csi2-phy
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  "#phy-cells":
->>>> +    const: 1
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 4
->>>> +
->>>> +  clock-names:
->>>> +    items:
->>>> +      - const: csiphy
->>>> +      - const: csiphy_timer
->>>> +      - const: camnoc_axi
->>>> +      - const: cpas_ahb
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 1
->>>> +
->>>> +  operating-points-v2:
->>>> +    maxItems: 1
->>>> +
->>>> +  power-domains:
->>>> +    maxItems: 1
->>>> +
->>>> +  vdda-0p8-supply:
->>>> +    description: Phandle to a 0.8V regulator supply to a PHY.
->>>> +
->>>> +  vdda-1p2-supply:
->>>> +    description: Phandle to 1.2V regulator supply to a PHY.
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - "#phy-cells"
->>>> +  - clocks
->>>> +  - clock-names
->>>> +  - interrupts
->>>> +  - operating-points-v2
->>>> +  - power-domains
->>>> +  - vdda-0p8-supply
->>>> +  - vdda-1p2-supply
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +    #include <dt-bindings/clock/qcom,x1e80100-camcc.h>
->>>> +    #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
->>>> +    #include <dt-bindings/phy/phy.h>
->>>> +
->>>> +    csiphy@ace4000 {
->>>> +        compatible = "qcom,x1e80100-csi2-phy";
->>>> +        reg = <0x0ace4000 0x2000>;
->>>> +        #phy-cells = <1>;
->>>> +
->>>> +        clocks = <&camcc CAM_CC_CSIPHY0_CLK>,
->>>> +                 <&camcc CAM_CC_CSI0PHYTIMER_CLK>,
->>>> +                 <&camcc CAM_CC_CAMNOC_AXI_RT_CLK>,
->>>> +                 <&camcc CAM_CC_CPAS_AHB_CLK>;
->>>> +        clock-names = "csiphy",
->>>> +                      "csiphy_timer",
->>>> +                      "camnoc_axi",
->>>> +                      "cpas_ahb";
->>>> +
->>>> +        operating-points-v2 = <&csiphy_opp_table>;
->>>> +
->>>> +        interrupts = <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>;
->>>> +
->>>> +        power-domains = <&camcc CAM_CC_TITAN_TOP_GDSC>;
->>> As we are cleaning up the PHY device nodes, we should consider fixing
->>> the power domains as well. Although TOP GDSC is defined as a power
->>> domain, it is not the power source for the PHY devices. Rather, it is
->>> the MMCX, MXC and optionally MXA based on the architecture (Refer to
->>> 'Voltage rail' column for PHY clocks in IPCAT). 
->>
->> Feel free to send me a qcom laptop and I will :)
-> :)
->>
->>  From memory though I _thought_ only the TOP was required for the PHY. 
->> I'd be grateful if you could confirm yourself in ipcat.
->>
->> - TITAN_TOP_GDSC
->> - MXC
->> - MMCX
->> - MXA - first time I've heard of this rail, from memory I don't remember
->>          having seen this in ipcat when I could do so.
-> MCX and MMCX are comminly required power domains across the PHYs but a 
-> subset of PHYs have the dependency on MXA.
-Actually, it's a bit more complicated on this target as 
-cam_cc_cphy_rx_clk_src also depends on MXA, which means all the CBCs 
-connected this RCG do as well.
->>
->> There is no
->>> parent-child relationship between the TOP GDSC and these in the clock
->>> driver and it was just working as the required power rails are getting
->>> enabled by/for other MM devices.
->>
->> Well only the GDSC is supplied by the clock controller.
-> Right, GDSC is controlled by the CAMCC to suspend the subsystems. But 
-> the actual power supply and the voltage rails are under the control of 
-> the RPMH. So the clients need to enable and vote for the required perf 
-> corner as the core clocks scale up/down to be independent of the other 
-> subsystems sharing those voltage rails.
->>
->>>> +
->>>> +        vdda-0p8-supply = <&vreg_l2c_0p8>;
->>>> +        vdda-1p2-supply = <&vreg_l1c_1p2>;
->>>> +    };
->>>> +
->>>> +    csiphy_opp_table: opp-table-csiphy {
->>>> +        compatible = "operating-points-v2";
->>>> +
->>>> +        opp-300000000 {
->>>> +            opp-hz = /bits/ 64 <300000000>;
->>>> +            required-opps = <&rpmhpd_opp_low_svs_d1>;
->>>> +        };
->>>> +
->>>> +        opp-400000000 {
->>>> +            opp-hz = /bits/ 64 <400000000>;
->>>> +            required-opps = <&rpmhpd_opp_low_svs>;
->>>> +        };
->>>> +
->>>> +        opp-480000000 {
->>>> +            opp-hz = /bits/ 64 <480000000>;
->>>> +            required-opps = <&rpmhpd_opp_low_svs>;
->>>> +        };
->>>> +    };
->>>>
->>> Thanks,
->>> Vijay.
->>
-> Thanks,
-> Vijay.
+On Tue, Mar 03, 2026 at 03:18:45PM +0100, Andrew Lunn wrote:
+> > +        properties:
+> > +          microchip,led-drive-mode:
+> > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > +            description: |
+> > +              Set the LED drive mode for the copper PHY associated with
+> > +              this port.
+> > +
+> > +                0 - LED1 and LED2 in open-drain mode
+> > +                1 - LED1 in active drive mode (can be used for single-=
+LED
+> > +                    configurations requiring active drive)
+> > +                2 - Reserved
+> > +                3 - LED1 and LED2 in active drive mode
+> > +            minimum: 0
+> > +            maximum: 3
+>=20
+> I doubt the DT Maintainers will accept that. This looks a lot like a
+> value you write into a register. How are active drive and open-drain
+> described in other DT bindings? Is there something you can reuse?
 
+I had a quick look and I didn't see anything really that stood out to me
+that would be a drop-in replacement.
+I also tried looking in the datasheet for more information on these
+modes, but I couldn't see anything obvious. For example, there were zero
+hits for "drain" in either LAN9645xS or LAN9645xF datasheets.
+
+That said, yea you're right about DT maintainer feelings about it.
+There's a couple things I could suggest, but I'd like to know about what
+mode 1 means for LED2 first. If there's actually nothing similar, what
+about representing each led with a child node and having open-drain be
+the default with a property in the child for active-drive?
+
+>=20
+> For 1, what happens to LED2? Not used at all?
+>=20
+>     Andrew
+
+--mDeycmnSpjEBNjAk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaacwowAKCRB4tDGHoIJi
+0gb4AQCWkWkmTIM8GJfJTP4My3dFk7rkxfSKzGAagdkb2xu+ywEA2x8Xwh4vxcOV
+1olqF8zATG33o0OYhTOjUbJtGGAfbgM=
+=iHFd
+-----END PGP SIGNATURE-----
+
+--mDeycmnSpjEBNjAk--
 
