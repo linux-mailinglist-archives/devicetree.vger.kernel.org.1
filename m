@@ -1,203 +1,192 @@
-Return-Path: <devicetree+bounces-270573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBIoGyv4pmmgawAAu9opvQ
-	(envelope-from <devicetree+bounces-270573-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:03:07 +0100
+	id wLTuCn34pmk7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:04:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD571F1F79
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:03:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 812C91F1FD4
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:04:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 60F2E3152F60
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:54:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EAA7B3134453
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:56:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34E3447ECCA;
-	Tue,  3 Mar 2026 14:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FD93CF66C;
+	Tue,  3 Mar 2026 14:56:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k3OnuGIA"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="Dj6VtwQ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82F3B47DD78;
-	Tue,  3 Mar 2026 14:54:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AF8A63CB;
+	Tue,  3 Mar 2026 14:56:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772549665; cv=none; b=DDu92WXS97frYjMVWvejQr1MWBtot0pzHaX+U4XGccv3zPDD3qo+KVlUSa9GbdBU8PrteNWNO2ygZJhA4EguSk40lxHsVf8Az/V3/CMl17IB+F4CljALpRDAWyvdxx4dHs4ZiE6wUbT43jYP4ihDyuHD0lj9nHTQD9YzlmydyY8=
+	t=1772549774; cv=none; b=KiGMqpj0xEQI5201mlao+/q1RTHHoG9uqbIh2YNQe4cl4h71DyAfbjpVYM7GfI3ZyTlf69ChhjaPAeYGNzd4uM+GRyD8P3cZcNQnVye97WHiuR4U8edg7/5bO4Y/hzlRgseCngS/xlM973x6H2dboEsL+jiKiEsDcseeulXgIpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772549665; c=relaxed/simple;
-	bh=Slb45QWwmAR2MlJYLyxHM7i5vjmCP+MZCFMlFewVzGs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ba0rrJULO5OCjahlC+OBpJeOfoqC5JUmxkVtdlXd3kjKIBRQq4lcxKtiBKXpoQW0HpxANZ4RWKiJwIGbje/IwhnQcUWu5Xjjx1YR4gXToD5GoFMpfus6nuc6M+DZx05/movwR+r0zkK+vwtjQfN/JGJ9rjakSgEYu7S4myYA0oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k3OnuGIA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AC70C116C6;
-	Tue,  3 Mar 2026 14:54:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772549665;
-	bh=Slb45QWwmAR2MlJYLyxHM7i5vjmCP+MZCFMlFewVzGs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=k3OnuGIADSsLdlI8xZPEqDDKjRK8ycb5RmHYSLY7OAgQC1QfuXs2VnnDz54gNUYG2
-	 tgPA8lJBYOJFhX/dqVq8T+RiSVvC1QSDlEYchLSUEC1xALOZg1zO7kgHUoZTVKX3VE
-	 JpMKR5dOILbJDG53Yp9LWJrsImlVVAS5r8+XxQpyzTtffLUeJcyHc/emrjNQVUJfwy
-	 /U77bFOjBh+mLgO069Ov6W6ez8URZTrC7+EG9jkQJ3qyUo+yCX9Ze23150SH5uBC7C
-	 vFffB+x/clZd2O76RL4TGv9z/xA20TcwrsbSZIOZ5DI+mkkoGUeM3cLfceyPj91RIa
-	 0gbSf4qNgeh1Q==
-Message-ID: <38e38531-ad06-4971-b750-e77a3268b97a@kernel.org>
-Date: Tue, 3 Mar 2026 15:54:19 +0100
+	s=arc-20240116; t=1772549774; c=relaxed/simple;
+	bh=QeieHzJfWDKmuoAxOflh+pN/RkUk+FjrKgWD9Z04g50=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=uzJ6UtBp/FmNkL6M1OrTOSuWGmZc9JTOohVn2ZW9a+fOvhpxKJV6d6Rir4GpPvTkpXaMENoYwoMqyz+fx5JQ0sP6ftY/n7hOrmNTtsluYglakEvuo4Ad03Edf4NG2H+5X9XxcePDRLIZycS5BUPimZ9vTyfm0PZM/lzxg+XQYlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=Dj6VtwQ/; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=cTIgmgb/ImQ+v4+VhZg8vRmsZhPrw5oDndGDTm3rYyU=; b=Dj6VtwQ/vo5l9HiQZuUUD75aA3
+	Vh/txUhdj0g+wsjdCXC/Kiz35j6z4cLxYbwnDvT5NZAH6DyyTFFxF1B7t+uW8+XBJROxShyx50ZTa
+	JwGmkaHJkyrGMQqcsBuxBVRtgxrtxOC9bT60v4kp233ssO1FI4Zwd25niUMiNVzbsTvs=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:38300 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vxR9q-0000YP-RN; Tue, 03 Mar 2026 09:55:35 -0500
+Date: Tue, 3 Mar 2026 09:55:33 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, shawnguo@kernel.org,
+ laurent.pinchart+renesas@ideasonboard.com, antonin.godard@bootlin.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>
+Message-Id: <20260303095533.1c6dff174f6c9d162d3e3303@hugovil.com>
+In-Reply-To: <20260303-rational-thundering-firefly-9dcaa9@quoll>
+References: <20260302190953.669325-1-hugo@hugovil.com>
+	<20260302190953.669325-5-hugo@hugovil.com>
+	<20260303-rational-thundering-firefly-9dcaa9@quoll>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: tegra: Add support for Tegra238 soundcard
-To: Jon Hunter <jonathanh@nvidia.com>, "Sheetal ." <sheetal@nvidia.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thierry Reding <thierry.reding@kernel.org>
-Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sameer Pujar <spujar@nvidia.com>, Mohan kumar <mkumard@nvidia.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
- Aditya Bavanari <abavanari@nvidia.com>
-References: <20260302085323.3139571-1-sheetal@nvidia.com>
- <20260302085323.3139571-3-sheetal@nvidia.com>
- <7447fde1-7eae-4bbc-b36e-fc0da9609c8c@kernel.org>
- <92292069-a60d-4ea8-9c3a-182a5c0cd267@nvidia.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <92292069-a60d-4ea8-9c3a-182a5c0cd267@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: DDD571F1F79
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.8 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH 04/14] dt-bindings: arm: fsl: change incorrect
+ VAR-SOM-6UL model name
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+X-Rspamd-Queue-Id: 812C91F1FD4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270575-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270573-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nvidia.com,gmail.com,kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[hugovil.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,nxp.com,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[hugovil.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,variscite.com:url,phycore-i.mx:url,hugovil.com:dkim,hugovil.com:mid,dimonoff.com:email]
 X-Rspamd-Action: no action
 
-On 03/03/2026 15:24, Jon Hunter wrote:
+Hi Krzysztof,
+
+On Tue, 3 Mar 2026 08:10:51 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On Mon, Mar 02, 2026 at 02:03:40PM -0500, Hugo Villeneuve wrote:
+> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > 
+> > There is no Variscite module named VAR-SOM-MX6UL.
 > 
-> On 02/03/2026 09:04, Krzysztof Kozlowski wrote:
->> On 02/03/2026 09:53, Sheetal . wrote:
->>> From: Sheetal <sheetal@nvidia.com>
->>>
->>> Tegra238 platforms use different clock rates for plla and
->>> plla_out0 clocks. Add Tegra238 support in the Tegra
->>> sound card driver to apply specific clock configurations.
->>>
->>> Signed-off-by: Aditya Bavanari <abavanari@nvidia.com>
->>> Signed-off-by: Sheetal <sheetal@nvidia.com>
->>> ---
->>>   sound/soc/tegra/tegra_audio_graph_card.c | 13 ++++++++++++-
->>>   1 file changed, 12 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/sound/soc/tegra/tegra_audio_graph_card.c b/sound/soc/tegra/tegra_audio_graph_card.c
->>> index 94b5ab77649b..b6dadd6a3d3d 100644
->>> --- a/sound/soc/tegra/tegra_audio_graph_card.c
->>> +++ b/sound/soc/tegra/tegra_audio_graph_card.c
->>> @@ -1,5 +1,5 @@
->>>   // SPDX-License-Identifier: GPL-2.0-only
->>> -// SPDX-FileCopyrightText: Copyright (c) 2020-2025 NVIDIA CORPORATION. All rights reserved.
->>> +// SPDX-FileCopyrightText: Copyright (c) 2020-2026 NVIDIA CORPORATION. All rights reserved.
->>
->> If updating it, you should rather drop it and use standard copyright.
->> This tag is not supported in kernel in general and I document it only
->> because it already spread all over.
-> 
-> To be clear, you mean that 'SPDX-FileCopyrightText' is not supported? 
+> VAR-SOM-MX6? And there is.
+> https://dev.variscite.com/var-som-mx6/
 
-Yes
+Ok,
+I was confused by the "const: variscite,var-som-imx6ul" and thought the
+description was not matching.
 
-> Where exactly do you document it for reference?
+But there is still no module named "VAR-SOM-MX6UL", but "VAR-SOM-MX6",
+with different CPU variants like UL, ULL, etc. So I will modify the
+patch to reflect that.
 
-paste SPDX-FileCopyrightText in lore
+In fact, I will modify the description to reflect that it supports both
+VAR-SOM-MX6 and VAR-SOM-6UL modules.
 
 
 > 
-> I know that Rob previously indicated that the 'Copyright' string in the 
-> above was redundant, but we have been told to keep this by the people at 
-> NVIDIA that specify how we should be formatting such tags when adding 
-> NVIDIA copyrights.
+> > 
+> > The official name from the manufacturer is VAR-SOM-6UL.
+> > 
+> > Change SOM model name to VAR-SOM-6UL to reduce confusion.
+> 
+> That's just one paragraph. Please write concise commit msgs so reading
+> them will be fast and easy.
 
-For the kernel, for most of us, most likely legally it is redundant and
-Rob was right, but some companies insist on it and I don't want to
-discuss with them, because they never use actual arguments except "my
-legal told me I must do", so you can have it. That's not a problem.
+Ok, no problem.
 
 
-Best regards,
-Krzysztof
+> 
+> Not a sentence.
+> 
+> By a sentence.
+> 
+> In multiple steps.
+> 
+> > 
+> > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index 5716d701292cf..99dc1b3f1ba92 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -688,7 +688,7 @@ properties:
+> >            - const: phytec,imx6ul-pcl063   # PHYTEC phyCORE-i.MX 6UL
+> >            - const: fsl,imx6ul
+> >  
+> > -      - description: i.MX6UL Variscite VAR-SOM-MX6 Boards
+> > +      - description: i.MX6UL Variscite VAR-SOM-6UL Boards
+> >          items:
+> >            - const: variscite,mx6ulconcerto
+> >            - const: variscite,var-som-imx6ul
+> > -- 
+> > 2.47.3
+> > 
+> 
+
+
+-- 
+Hugo Villeneuve
 
