@@ -1,170 +1,167 @@
-Return-Path: <devicetree+bounces-270712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270713-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLBtImAxp2kjfwAAu9opvQ
-	(envelope-from <devicetree+bounces-270712-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:07:12 +0100
+	id AOqbM/kxp2kjfwAAu9opvQ
+	(envelope-from <devicetree+bounces-270713-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:09:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DEC21F5A74
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:07:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30BF91F5AC7
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 20:09:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7ED8A309D183
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 19:04:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 686FB303C4EE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 19:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76AD386452;
-	Tue,  3 Mar 2026 19:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E564536DA17;
+	Tue,  3 Mar 2026 19:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dIQSYG+r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pDnLgV/e"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3CA4377EA1;
-	Tue,  3 Mar 2026 19:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A6F30EF92;
+	Tue,  3 Mar 2026 19:05:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772564649; cv=none; b=Gb9/UvkMk6wF80NmHyi+ILvUk587Bf8/Jm8qhIfdVIRTdPwTGxCOJ+HOJIGCCQ5u99b8I7PeEuAEN8V8VLI0zbMtuv5bOKJU5WF1nvy04QIh7pL/NfbnI+79ewpBR/72b+AqjCvzvaq7ImwLo2fWvWng2xTJ019Gdsc0LUTejR0=
+	t=1772564705; cv=none; b=mk3kMoJGEIOkbsmhKMig2QK37cdosltbC+7hToJxvqLymRQSZMnZTfqo6hCQMS2YrAzhimHZtcreQD9rjBos+h7WQ78ftLps87mGPaDp/aVM0aCFgyEfI4lqvLt6Bz1peTPNBO+4nshq9SVgb77nHV0oMfhnnGmeNjduGmSXrdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772564649; c=relaxed/simple;
-	bh=Ls5d0F6utRyv7s9aWgBon26Vc6hhPSXQBepnMUYJc28=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dNljJph+6qppgFS9ztWK0/N7X1YsiGH4jfTGjeOLbVOgBWSL3r6w07Qa1retO5p4QHukIXXy0mh0UEZkzE7yTeRjjaoOwaQeyN06TR8l5G3c7OB4H8fLr7WFr5RSruD/Z14BX/0k+T/rvA6QCbJNbGf618RxRSkVIW4v0KBUnVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dIQSYG+r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B64B2C116C6;
-	Tue,  3 Mar 2026 19:04:05 +0000 (UTC)
+	s=arc-20240116; t=1772564705; c=relaxed/simple;
+	bh=I3C57r6azO48yZzyNuNe6/kxRiFpeGaZXr+2V6WEkW0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BSrcxVzv2t4FR43dg4KOCO9zeDyITp81R77PDyURgSkidphoq0hjBZlrSOTPXwIu6rApzmL78jQ1aeM/ayg4xWYJdeJd9I7g4J+NXFsFTCspuFnyvqTxsqhWsrCLrUR4EYP59Jr6rMAPk0gjFveAFyTtKXFg5VkAZJgLrlJ3Bjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pDnLgV/e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 487AFC116C6;
+	Tue,  3 Mar 2026 19:05:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772564649;
-	bh=Ls5d0F6utRyv7s9aWgBon26Vc6hhPSXQBepnMUYJc28=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dIQSYG+rFjYV7pnNtO/c6aFPT2Pnk5SSDc4JN83WBDNm/g1VUtfDR2tt097i+kJSQ
-	 kzJp6tJI1sXZoGkVZ34ue6qqtUqzgVxS6bX84EW2fwHPPaOB8ByhqWjOjaWj+avr6p
-	 cGyx4cDOwsqeWjT3vJuS7nsGacsulHiS/swKh9Zd2DHdLwmxFVRpImIStoY9gnX59/
-	 AmX9fESwe1twnsyznXH5YedP325ZQoNUVJgTfN9X/7mzfj2FdLHp0n6VWydgBHbUtN
-	 4j0AfU4DlC33N37s26ZbVSQHrGyS5MCQytDq1mmlAlK19cKX1Oz34MckK5lPKUY3MK
-	 DHRUxpzks7ANA==
-Date: Tue, 3 Mar 2026 19:04:03 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Jens Emil Schulz =?iso-8859-1?Q?=D8stergaard?= <jensemil.schulzostergaard@microchip.com>,
-	UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-Message-ID: <20260303-mosaic-debate-90cf8c8bbb33@spud>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
- <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
+	s=k20201202; t=1772564705;
+	bh=I3C57r6azO48yZzyNuNe6/kxRiFpeGaZXr+2V6WEkW0=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=pDnLgV/eazlr7UIzXY5QmohbXFxsQJxtz7+ZZPC38mYnSoGp8GFSzzuJ2qaBqHzcz
+	 7C94DJji/wKEVqXfvrzBroc3S3nXCrjAcwfqle970eHfTu5lz8noGePIGu38uW8etC
+	 6HzqB+bAK8HkOn90Xls2p33QM/BAIMRroKre/oCxFuNTpPAxRoALpdobcsusWgV6D8
+	 dG3LuKiyWeOuAH+kUYDh9iWhCmZQXdTttq6fC+B1yHs1fkaSRck9DwScBs/KHQjPQU
+	 zGsP4VARUR1UQ8/uI6nrdJvJvHIscpeuNjmSmZJ76ySdambQHviyujZG9xhfBq2Yxz
+	 aFDuPDQQffUoQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 3D380EDEBE6;
+	Tue,  3 Mar 2026 19:05:05 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Date: Tue, 03 Mar 2026 20:05:00 +0100
+Subject: [PATCH RESEND] powerpc: DTS: mpc8313erdb: Add
+ timer@*/clock-frequency properties
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mDeycmnSpjEBNjAk"
-Content-Disposition: inline
-In-Reply-To: <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
-X-Rspamd-Queue-Id: 0DEC21F5A74
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260303-timer-clock-v1-1-68336d3161f3@posteo.net>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772564704; l=1719;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=wToNi3p+7oH/fZkL7rybDw1OVJ8Mht3DHd2zANSoxwc=;
+ b=1Y5vaGMTDSwDyTMDt6bOuEi0MTG9ayKBdBMjYkAgwux3aVe+bMocyRNbMftjIT1i5M06PHR/u
+ RYochVODplxD1OWG3jKHme3675+QXAlXsjdItXL+fq+xU5SFOARPLdr
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
+X-Rspamd-Queue-Id: 30BF91F5AC7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270712-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-270713-lists,devicetree=lfdr.de,j.ne.posteo.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.1.244:email,intel.com:email,posteo.net:replyto,posteo.net:email,posteo.net:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.2.88:email]
 X-Rspamd-Action: no action
 
+From: "J. Neuschäfer" <j.ne@posteo.net>
 
---mDeycmnSpjEBNjAk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The recent formalization of the fsl,gtm schema has shown that
+mpc8313erdb.dts doesn't provide the clock-frequency property on timer
+nodes. A few different expectations collide here:
 
-On Tue, Mar 03, 2026 at 03:18:45PM +0100, Andrew Lunn wrote:
-> > +        properties:
-> > +          microchip,led-drive-mode:
-> > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > +            description: |
-> > +              Set the LED drive mode for the copper PHY associated with
-> > +              this port.
-> > +
-> > +                0 - LED1 and LED2 in open-drain mode
-> > +                1 - LED1 in active drive mode (can be used for single-=
-LED
-> > +                    configurations requiring active drive)
-> > +                2 - Reserved
-> > +                3 - LED1 and LED2 in active drive mode
-> > +            minimum: 0
-> > +            maximum: 3
->=20
-> I doubt the DT Maintainers will accept that. This looks a lot like a
-> value you write into a register. How are active drive and open-drain
-> described in other DT bindings? Is there something you can reuse?
+ - Both the binding and the driver for the Freescale global timer module
+   (GTM) have always required clock-frequency, since their addition in
+   2008 (v2.6.26-rc5-236-g83ff9dcf375c41).
+ - mpc8313erdb.dts never had the timer@*/clock-frequency property, since
+   the timer nodes were added in 2008 (v2.6.26-3343-g574366128db29e)
 
-I had a quick look and I didn't see anything really that stood out to me
-that would be a drop-in replacement.
-I also tried looking in the datasheet for more information on these
-modes, but I couldn't see anything obvious. For example, there were zero
-hits for "drain" in either LAN9645xS or LAN9645xF datasheets.
+I suspect the way this worked was that the bootloader filled these
+values when booting on an MPC8313 board.
 
-That said, yea you're right about DT maintainer feelings about it.
-There's a couple things I could suggest, but I'd like to know about what
-mode 1 means for LED2 first. If there's actually nothing similar, what
-about representing each led with a child node and having open-drain be
-the default with a property in the child for active-drive?
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/oe-kbuild-all/202505300136.HOpO5P6y-lkp@intel.com/
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+ arch/powerpc/boot/dts/mpc8313erdb.dts | 2 ++
+ 1 file changed, 2 insertions(+)
 
->=20
-> For 1, what happens to LED2? Not used at all?
->=20
->     Andrew
+diff --git a/arch/powerpc/boot/dts/mpc8313erdb.dts b/arch/powerpc/boot/dts/mpc8313erdb.dts
+index 09508b4c8c7309..0bddc3be9e62f8 100644
+--- a/arch/powerpc/boot/dts/mpc8313erdb.dts
++++ b/arch/powerpc/boot/dts/mpc8313erdb.dts
+@@ -308,6 +308,7 @@ gtm1: timer@500 {
+ 			reg = <0x500 0x100>;
+ 			interrupts = <90 8 78 8 84 8 72 8>;
+ 			interrupt-parent = <&ipic>;
++			clock-frequency = <0>; /* filled by bootloader */
+ 		};
+ 
+ 		timer@600 {
+@@ -315,6 +316,7 @@ timer@600 {
+ 			reg = <0x600 0x100>;
+ 			interrupts = <91 8 79 8 85 8 73 8>;
+ 			interrupt-parent = <&ipic>;
++			clock-frequency = <0>; /* filled by bootloader */
+ 		};
+ 	};
+ 
 
---mDeycmnSpjEBNjAk
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
+change-id: 20250625-timer-clock-e03fa9e835c8
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaacwowAKCRB4tDGHoIJi
-0gb4AQCWkWkmTIM8GJfJTP4My3dFk7rkxfSKzGAagdkb2xu+ywEA2x8Xwh4vxcOV
-1olqF8zATG33o0OYhTOjUbJtGGAfbgM=
-=iHFd
------END PGP SIGNATURE-----
 
---mDeycmnSpjEBNjAk--
 
