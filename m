@@ -1,155 +1,363 @@
-Return-Path: <devicetree+bounces-270494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270495-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mAdAFmvfpmlkYAAAu9opvQ
-	(envelope-from <devicetree+bounces-270494-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:17:31 +0100
+	id ENoBKIjhpmkPYQAAu9opvQ
+	(envelope-from <devicetree+bounces-270495-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:26:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA141F00EB
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:17:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 224F91F02C6
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 14:26:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 63DC4301A6B1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:17:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 84F793132DF5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 13:20:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A160D426D17;
-	Tue,  3 Mar 2026 13:17:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B46C74266BE;
+	Tue,  3 Mar 2026 13:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Rxq8YKY/";
+	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="fLF6JY8P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1CF330305
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:17:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D93334C9A3
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 13:20:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772543830; cv=none; b=OHFQq0Sqrm/9yBvraP8qeLsFWH5B6P0q4ruvtcZcw4GtoT+ZFDv8i2kjLQawUPFnevO2V/ogdDXEs6xHmFleqN5h8QhGBUEvf2UJS6XG672cQ4juLjMGNzlR0SzNvsMCjaYN1LREDpv2nOEAY4xTXGKeuA2HBlEgTQEe9CLDsIM=
+	t=1772544043; cv=none; b=Y6Hn8o9LQ8pYT3ffchhgSZhGHSSsz517GCK4yJ1WanCO3jfunMhuyE2FWqUusLPj22NLTgM7XCReXEQ0+m3VW43lyb362Lt3FaDm+DJExWLhrstAa1XJXR6nWJOvDAO14l7+IKG3pfSlPRPv/BqxBP/5nxBUBdZpojCOd6oi8gw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772543830; c=relaxed/simple;
-	bh=n2OmAIMl/gywcCrUj4d8zXzLma6xKUNcSmZ27Kjdqpw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MwxVG8bXooj6zzHbMyx+yeyB7JasT1goK2aG8td7sK7JGRjCOPi8fUNY01qae3wb/fptQNcrhVEqDSbk4rIPk6AjUCmm44DsMuKoKqtnB4FMX71ZsUuIil4bZhUV2eXEWS93PcIOGEOGzq31Ma5vdK3PfmrFlOhVxzds6aIl/+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-56a9402b52fso4831128e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:17:09 -0800 (PST)
+	s=arc-20240116; t=1772544043; c=relaxed/simple;
+	bh=J4csnvn+Bc+XOoKsNSRfk9sHct/ghF7OEQ7i1GtycAg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qGuGVyfKkleiisrzXhGa3qHEIVdU54F/ewzvZ8uIyW+XeUNNp1YLeK0EUaSSeXupxB79mWsUSdybVgVk6AwTGXS02Xg6QaFelfp9wCpdnEwVbsXCAmjwJtv+eFeLeaKjUyth+YOAr78+MmsG5HZviq1VOeUJTiuf+fLbVX+K7xQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Rxq8YKY/; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=fLF6JY8P; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1772544041;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8HeSeolQ1fBhOJOln5m5tn/ig4w91f0rYiMidADsnM8=;
+	b=Rxq8YKY/G0MAzRHW70jR/uxPVvH1nHRtu+bppm/uTpFOnBZFyuh0DVbUoxn/kEbH6edYQH
+	HBMW38YqkVC2puMmCBRmXH0u7l/yX5IuaUmW1NuHYUYrMsb9ygXwmEkJgiMnpBSgefDchZ
+	xBZJua9+qdrY5b/r/7FErxYln+YB2rU=
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
+ [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-696-0pBU35EcOFuVewCpPSupLQ-1; Tue, 03 Mar 2026 08:20:38 -0500
+X-MC-Unique: 0pBU35EcOFuVewCpPSupLQ-1
+X-Mimecast-MFC-AGG-ID: 0pBU35EcOFuVewCpPSupLQ_1772544037
+Received: by mail-wr1-f69.google.com with SMTP id ffacd0b85a97d-439b20722e3so1130159f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:20:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=redhat.com; s=google; t=1772544037; x=1773148837; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8HeSeolQ1fBhOJOln5m5tn/ig4w91f0rYiMidADsnM8=;
+        b=fLF6JY8PeN2Fyly1gwQVpvjd95zb5DouTdxj8dXwFPWl1hHChYllKiVN0fGfHlp0li
+         mXU/35kWjauRnc6tZHhtOwrUfmKakORcunlALDKqmKyvutsrZAHVhYuaEtUQHgJs2oZa
+         i8Xm/NVxMcmOJtO7HEMLp/N5eK5e6Mfa+LiEBdblRwOd9qvNevI5mUsnbK2P0+QlYgK3
+         4+2KpvikPN70zjJus/ek/Vz8diunEBM9P6yKEPkiqlFH3rLYITnSItJZn06H5BiQu63f
+         KOS/Fv3CVXMyZUJZtKJa6sCgXK5dl+7EifcSZi2Ku91XX/mOXIQHAmNlNDbNjJ0XVB5n
+         uPIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772543828; x=1773148628;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=muQepyaITr1dI13pFJp+536u1zM3z0pO9iYDkPNsg4s=;
-        b=sWNIBNscOY7rg0G+bf7URm3/lEJhgP3UDaPiPX2Pn61dUMNBAe/Rdi8oadbAMGvHZ2
-         Adk6lg37OvGSwZZ55JSK4v/eYV2B1veXN0zzb58epyvbYbjdX2Qi4XESfEPefOq31aKK
-         TmIqhl8pMHNlfCHa0dfQoxW/zTW9YfkLFx/ppKG4f4kol7fmd9kM+H9zZmuB4+Ci95G6
-         kvLGnK94v46KZaI2CLta0D5zwUvOD4ckDfthcxMoaX5oiWHkt/BrhLW2khoGOLJFGXgf
-         Fd2yph5ocisDwDdVbNefR1AIfAO4ok0tP9L8KsKnQrhGlKly1cVLX/J+ySa5FLXLdsmn
-         LeyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWY14brZqX6NmzbutfdEsGX3QoYeV3OFot4MgIRnHuvnhYOI8D1PpfTZyJfMGUs0K3B8TWJmTsR52Fa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzDnf7wRa2bjMsx+Z0hvREXV9TZOdWTeCs0RpzAfpxO1xRw8Mb
-	zMeCoCflTWjruLz1vhardA+2SGemh/3Ka0oTuCopfMGoGzW5LG/FmM2W7Sn457U9
-X-Gm-Gg: ATEYQzx12uY32dV5DO6Av6drgnYotjC4eEv6RnZ44524QUQwuV8QGkxjxZzBTDTo7T1
-	4QBcW9B5EFjUwxOCZAA8Z4DhznSUHvYETd2hxdti/pKlZZ3c+zIuIupnr4PcmERaHlrlv4v+Tyl
-	OcOqBGZnYfw1Dhp9H4HEMZBjGLd/WwjQM8pLO+BDZBdbEnuEL2mvPjmcn2Peaskx4eUFsL6A9oo
-	HnlvyjXrnMVu9JtUzLOwRo7lIOBh8wS4dK8pLAzW3EwuSrZ3qQQZpL895F0FtSijoCJwMhr+DDS
-	JxQDAEPyKJnsup/IV+qmjw7AjCjGUTY3l4DhnjZ6uxreL+BD3UDSCVcfIz8pLlIjTgvyei80BpE
-	BY4F/V7p4p5duXFxtpB9dC54/a8b9JoO033ybKfw7oXXncV89+LB753TZzdNYNtsUPdV34c+dlp
-	uAjsu/1rjDkgE8/yZdHW//9yvN8+AaNAjibsoLuVR6CJGQ/KEyQJSxT45HCN9Q
-X-Received: by 2002:a05:6122:6588:b0:563:7a35:1d9f with SMTP id 71dfb90a1353d-56aa0aa1953mr7828030e0c.15.1772543828469;
-        Tue, 03 Mar 2026 05:17:08 -0800 (PST)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-94df65b281asm14741464241.13.2026.03.03.05.17.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Mar 2026 05:17:05 -0800 (PST)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5ff9d225a0eso119933137.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 05:17:04 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWNTO9BZ5mcr3UyIEuVrFouWfeTKIY3zZvY6MWYVaCuRKZfZOwC0ta1fyiMzrJuaS8rqeWmE/IGLits@vger.kernel.org
-X-Received: by 2002:a05:6102:c47:b0:5f5:487c:83d2 with SMTP id
- ada2fe7eead31-5ff325d53c9mr7807558137.38.1772543823941; Tue, 03 Mar 2026
- 05:17:03 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772544037; x=1773148837;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8HeSeolQ1fBhOJOln5m5tn/ig4w91f0rYiMidADsnM8=;
+        b=QgAo2KYe/P6YXhTt51OpUNZi3MU4KRJPfdMXQUC3jYUkHHEZf+DAhh73SK8G4p3US/
+         ZHxPyIypkpxivO+jShZKWvCszVROsaeMSKWXLTpFBYhbeWkrvDITdcT/wGduP8HiNxj6
+         PK9QHyfX9a4FVWlOmx2mFB0epzARUTiMWRyPBboyuAB3aq2m01Vq2/gJUBFyci710YST
+         rRPUVK/H4wjDpINHYn62N/KBgRYBS0ST3CJlaEaDRjr8IrEiMvQjXLPcOr2FeKXUTdQc
+         TaSJtSYntA4EVDrOJSrmqx4Xu5JVpAaEgMWUWrM7/eW+xcVfNJSMXbYxjKCfD1ZnEuj/
+         u/8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXmdF/Q4tkmE8DGNSMRwHr8KbEb5sLhdAVqYVoI9GcPN1E0R+SXxXwcuA6HPpLf30lX8OaYKpXmF41b@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxs4QRR4+sJj8zXyosBSN6k2QkZOsb3DxgPbWu3dT8JaTP9Lx6V
+	EgVOX3oeLJXL6CMWlXIlEdVh2y8/TLpfeDjRb030/B3K9D3xX5SYKZWNYdLkWeRENoYaokO6+RM
+	f2Qu9OqeGDwUgEmesR1ZTSsMV0AH1c0QL8YkpnfANzTSCY4QStXHu1iDWdXBj338=
+X-Gm-Gg: ATEYQzzpKjaXRH51CngeHoZ8Ef48ttQfhDvukJjcyIJLOQgiH3W88PCAaQ8O1OAKqQE
+	9lgqOVt2Vd1Y/sDPyBKkdAVMLRplTVRGVxUAoWcKdBQwh90Wol3G4je73SS9MHLNZInYn8UynYt
+	upiZQplPMjD+vxiYmtwBRlSpdzHI2xMsa2hfsG23YOLmwqweg0/S2HCB8CrjSGiZSMl4fOpXi3v
+	6OJOctwkPS1JB3StVIJSCt9ThlqFKicfnOt/hR7yovP4wXSv1xCfcEtNKXP7pzowk3Z2N3uZUdA
+	D1dJDQXTCk94MUsftcC78BC5KXPfp21LmPnDp+TY9gpGFzbcwrBZcZjS4/J7F8rboSZ41I3e/g=
+	=
+X-Received: by 2002:a05:6000:25c6:b0:439:c14b:2100 with SMTP id ffacd0b85a97d-439c14b22d7mr3433776f8f.12.1772544036624;
+        Tue, 03 Mar 2026 05:20:36 -0800 (PST)
+X-Received: by 2002:a05:6000:25c6:b0:439:c14b:2100 with SMTP id ffacd0b85a97d-439c14b22d7mr3433696f8f.12.1772544036002;
+        Tue, 03 Mar 2026 05:20:36 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439af926c53sm24022288f8f.8.2026.03.03.05.20.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 05:20:35 -0800 (PST)
+Date: Tue, 3 Mar 2026 14:20:34 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Albert Esteve <aesteve@redhat.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>, 
+	Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
+	Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev, 
+	devicetree@vger.kernel.org, echanude@redhat.com
+Subject: Re: [PATCH v2 4/6] dma-buf: heaps: Add Coherent heap to dmabuf heaps
+Message-ID: <20260303-rigorous-cow-of-saturation-23f87b@houat>
+References: <20260303-b4-dmabuf-heap-coherent-rmem-v2-0-65a4653b3378@redhat.com>
+ <20260303-b4-dmabuf-heap-coherent-rmem-v2-4-65a4653b3378@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203124247.7320-1-fabrizio.castro.jz@renesas.com> <20260203124247.7320-2-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20260203124247.7320-2-fabrizio.castro.jz@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 3 Mar 2026 14:16:52 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXtrAwAtqNPqwq5qKHo4SKQqFoGSE7qPnFRD4rbKkPfaA@mail.gmail.com>
-X-Gm-Features: AaiRm52a94My3QCqI-CCMK4Bc8JSeFzJGy0yOXJPSReec93Wzsgcz5hw25V0nt0
-Message-ID: <CAMuHMdXtrAwAtqNPqwq5qKHo4SKQqFoGSE7qPnFRD4rbKkPfaA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: watchdog: renesas,r9a09g057-wdt:
- Rework example
-To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-watchdog@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 7AA141F00EB
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="3oyzr26awgsnuxvr"
+Content-Disposition: inline
+In-Reply-To: <20260303-b4-dmabuf-heap-coherent-rmem-v2-4-65a4653b3378@redhat.com>
+X-Rspamd-Queue-Id: 224F91F02C6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,roeck-us.net,baylibre.com,linux-watchdog.org,gmail.com,bp.renesas.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-270494-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270495-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.641];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mripard@redhat.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,glider.be:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,microchip.com:email,linux-m68k.org:email,renesas.com:email]
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, 3 Feb 2026 at 13:43, Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> When the bindings for the Renesas RZ/V2H(P) SoC were factored
-> out IP WDT0 was selected for the example, however the HW user
-> manual states that only IP WDT1 can be used by Linux.
->
-> This commit is part of a series that removes WDT{0,2,3} support
-> from the kernel, therefore the example from the bindings has
-> lost its meaning.
->
-> Update the example accordingly.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+--3oyzr26awgsnuxvr
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 4/6] dma-buf: heaps: Add Coherent heap to dmabuf heaps
+MIME-Version: 1.0
 
-Gr{oetje,eeting}s,
+Hi,
 
-                        Geert
+On Tue, Mar 03, 2026 at 01:33:47PM +0100, Albert Esteve wrote:
+> Add a dma-buf heap for DT coherent reserved-memory
+> (i.e., 'shared-dma-pool' without 'reusable' property),
+> exposing one heap per region for userspace buffers.
+>=20
+> The heap binds the heap device to each memory region so
+> coherent allocations use the correct dev->dma_mem, and
+> it defers registration until module_init when normal
+> allocators are available.
+>=20
+> Signed-off-by: Albert Esteve <aesteve@redhat.com>
+> ---
+>  drivers/dma-buf/dma-heap.c            |   4 +-
+>  drivers/dma-buf/heaps/Kconfig         |   9 +
+>  drivers/dma-buf/heaps/Makefile        |   1 +
+>  drivers/dma-buf/heaps/coherent_heap.c | 426 ++++++++++++++++++++++++++++=
+++++++
+>  include/linux/dma-heap.h              |  11 +
+>  include/linux/dma-map-ops.h           |   7 +
+>  6 files changed, 456 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
+> index 88189d4e48561..ba87e5ac16ae2 100644
+> --- a/drivers/dma-buf/dma-heap.c
+> +++ b/drivers/dma-buf/dma-heap.c
+> @@ -390,8 +390,8 @@ struct dma_heap *dma_heap_add(const struct dma_heap_e=
+xport_info *exp_info)
+> =20
+>  	heap =3D dma_heap_create(exp_info);
+>  	if (IS_ERR(heap)) {
+> -		pr_err("dma_heap: failed to create heap (%d)\n", PTR_ERR(heap));
+> -		return PTR_ERR(heap);
+> +		pr_err("dma_heap: failed to create heap (%ld)\n", PTR_ERR(heap));
+> +		return ERR_CAST(heap);
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+This looks unrelated and should possibly be squashed into the previous
+patch that introduces dma_heap_create()?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +static int coherent_heap_init_dma_mask(struct device *dev)
+> +{
+> +	int ret;
+> +
+> +	ret =3D dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(64));
+> +	if (!ret)
+> +		return 0;
+> +
+> +	/* Fallback to 32-bit DMA mask */
+> +	return dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
+> +}
+
+Why do you need to mess with the DMA mask? I'd expect that device to be
+able to access everything.
+
+> +static int __coherent_heap_register(struct reserved_mem *rmem)
+> +{
+> +	struct dma_heap_export_info exp_info;
+> +	struct coherent_heap *coh_heap;
+> +	struct device *heap_dev;
+> +	int ret;
+> +
+> +	if (!rmem || !rmem->name)
+> +		return -EINVAL;
+> +
+> +	coh_heap =3D kzalloc_obj(*coh_heap);
+> +	if (!coh_heap)
+> +		return -ENOMEM;
+> +
+> +	coh_heap->rmem =3D rmem;
+> +	coh_heap->name =3D kstrdup(rmem->name, GFP_KERNEL);
+> +	if (!coh_heap->name) {
+> +		ret =3D -ENOMEM;
+> +		goto free_coherent_heap;
+> +	}
+> +
+> +	exp_info.name =3D coh_heap->name;
+> +	exp_info.ops =3D &coherent_heap_ops;
+> +	exp_info.priv =3D coh_heap;
+> +
+> +	coh_heap->heap =3D dma_heap_create(&exp_info);
+> +	if (IS_ERR(coh_heap->heap)) {
+> +		ret =3D PTR_ERR(coh_heap->heap);
+> +		goto free_name;
+> +	}
+> +
+> +	heap_dev =3D dma_heap_get_dev(coh_heap->heap);
+> +	ret =3D coherent_heap_init_dma_mask(heap_dev);
+> +	if (ret) {
+> +		pr_err("coherent_heap: failed to set DMA mask (%d)\n", ret);
+> +		goto destroy_heap;
+> +	}
+> +
+> +	ret =3D of_reserved_mem_device_init_with_mem(heap_dev, rmem);
+> +	if (ret) {
+> +		pr_err("coherent_heap: failed to initialize memory (%d)\n", ret);
+> +		goto destroy_heap;
+> +	}
+> +
+> +	ret =3D dma_heap_register(coh_heap->heap);
+> +	if (ret) {
+> +		pr_err("coherent_heap: failed to register heap (%d)\n", ret);
+> +		goto destroy_heap;
+> +	}
+
+I guess it's more of a comment about your previous patch, but it's not
+clear to me why you needed to split dma_heap_add into dma_heap_create /
+_register. Can you expand a bit?
+
+> diff --git a/include/linux/dma-heap.h b/include/linux/dma-heap.h
+> index 1b0ea43ba66c3..77e6cb66ffce1 100644
+> --- a/include/linux/dma-heap.h
+> +++ b/include/linux/dma-heap.h
+> @@ -9,10 +9,12 @@
+>  #ifndef _DMA_HEAPS_H
+>  #define _DMA_HEAPS_H
+> =20
+> +#include <linux/errno.h>
+>  #include <linux/types.h>
+> =20
+>  struct dma_heap;
+>  struct device;
+> +struct reserved_mem;
+> =20
+>  /**
+>   * struct dma_heap_ops - ops to operate on a given heap
+> @@ -53,4 +55,13 @@ struct dma_heap *dma_heap_add(const struct dma_heap_ex=
+port_info *exp_info);
+> =20
+>  extern bool mem_accounting;
+> =20
+> +#if IS_ENABLED(CONFIG_DMABUF_HEAPS_COHERENT)
+> +int dma_heap_coherent_register(struct reserved_mem *rmem);
+> +#else
+> +static inline int dma_heap_coherent_register(struct reserved_mem *rmem)
+> +{
+> +	return -EOPNOTSUPP;
+> +}
+> +#endif
+> +
+>  #endif /* _DMA_HEAPS_H */
+
+Do you still need that now that you switched to an iterator-like
+function?
+
+> diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
+> index 60b63756df821..c87e5e44e5383 100644
+> --- a/include/linux/dma-map-ops.h
+> +++ b/include/linux/dma-map-ops.h
+> @@ -12,6 +12,7 @@
+> =20
+>  struct cma;
+>  struct iommu_ops;
+> +struct reserved_mem;
+> =20
+>  struct dma_map_ops {
+>  	void *(*alloc)(struct device *dev, size_t size,
+> @@ -161,6 +162,7 @@ int dma_alloc_from_dev_coherent(struct device *dev, s=
+size_t size,
+>  int dma_release_from_dev_coherent(struct device *dev, int order, void *v=
+addr);
+>  int dma_mmap_from_dev_coherent(struct device *dev, struct vm_area_struct=
+ *vma,
+>  		void *cpu_addr, size_t size, int *ret);
+> +struct reserved_mem *dma_coherent_get_reserved_region(unsigned int idx);
+>  #else
+>  static inline int dma_declare_coherent_memory(struct device *dev,
+>  		phys_addr_t phys_addr, dma_addr_t device_addr, size_t size)
+> @@ -172,6 +174,11 @@ static inline int dma_declare_coherent_memory(struct=
+ device *dev,
+>  #define dma_release_from_dev_coherent(dev, order, vaddr) (0)
+>  #define dma_mmap_from_dev_coherent(dev, vma, vaddr, order, ret) (0)
+>  static inline void dma_release_coherent_memory(struct device *dev) { }
+> +static inline
+> +struct reserved_mem *dma_coherent_get_reserved_region(unsigned int idx)
+> +{
+> +	return NULL;
+> +}
+>  #endif /* CONFIG_DMA_DECLARE_COHERENT */
+> =20
+>  #ifdef CONFIG_DMA_GLOBAL_POOL
+
+To preserve bisectability, you shouldn't do it that way. Introduce this
+function into a preliminary patch, and then use it in this one.
+
+Maxime
+
+--3oyzr26awgsnuxvr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaabgIgAKCRAnX84Zoj2+
+dpoAAYDbvla5ginFJZBwWscCdbzpqxZu0Nmn5Wmi+a860nETKwKEQNqs0s5JuwUy
+LJBvBPIBf3AhBVl15Ze7xHfd358n8N5AmjXfB9uhtuZLkCNeqTzjr/j0hj5xhQ45
+SMroDA+cOQ==
+=6R14
+-----END PGP SIGNATURE-----
+
+--3oyzr26awgsnuxvr--
+
 
