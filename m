@@ -1,187 +1,169 @@
-Return-Path: <devicetree+bounces-270655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270656-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Lg0DWcTp2mfdQAAu9opvQ
-	(envelope-from <devicetree+bounces-270655-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:59:19 +0100
+	id +PHUJ+4Tp2ncdQAAu9opvQ
+	(envelope-from <devicetree+bounces-270656-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:01:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 911521F43D1
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:59:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CEBD1F457B
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:01:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F140530D4FB4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:56:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DFB39301CD8A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 17:00:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91063492532;
-	Tue,  3 Mar 2026 16:56:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00B28480345;
+	Tue,  3 Mar 2026 16:59:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sSjKUJrP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L+AXG+AO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224EE3DBD66;
-	Tue,  3 Mar 2026 16:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D08463C6A52;
+	Tue,  3 Mar 2026 16:59:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772556966; cv=none; b=MeMO5TgO92veiHFQQPBbE0siIC6AlwtwIpsN4mFrelzNkN4tWnV8J8flomAjKbLOLKfOexoWLfGt2eWb1Vmu/AE/Vm6oEahTytuuSS6qtAx3o7iUF290XsJpRtZRkj1CifYdNiZfm3r+1vRhgzWPYV9mLm24H5An9Pl78wVQEHc=
+	t=1772557197; cv=none; b=WREkjqqcbXB7liWlX2FCZYWamhz7Yk2n3LPGPH8F0gD2Lxc1yx2kfBMJJKjWD7PgRuvYdrEFq8UDVTswCgDlf1A2CpiAM86d2qjpv38f+IigIUqnH1i0ryzmWM4qNJmCBv6sv7mDoeodyBmNAJd3aHN2gxtbnaa9inopbuHfK6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772556966; c=relaxed/simple;
-	bh=PspKwEQyJf0sGxt3Osb+chOp3772zSkyGfm6ysAwHYc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U77YvgTF5vAoH13v0a3r80o29od89Xt25roGGJxBWunrNCSI/C9iAQ6BqeVwh6DJkvhheJUYzUE+vkomHviePUMG1TQX4Ex850xuufIwlzmo84LFfqIwG5PcmjsxT+Bovqw8GC7Ecew5jTLFfiHUVXTuTnHlg6ZZmYG+h2TR77k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sSjKUJrP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8F9AC116C6;
-	Tue,  3 Mar 2026 16:55:59 +0000 (UTC)
+	s=arc-20240116; t=1772557197; c=relaxed/simple;
+	bh=mgwUhCncYhDl61XAwXlMI23b+H6nVEk5nE7YqMPl7/4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=WrqbgfwgT/8GMCFyjVw3pvPi+BM37bAFYC7fmW1p85dXUCrZdl50iz46EN2Uin5K6W+PpvDpMmyETr/NXlCL3XEiDZR4bNlWZ27McodJmCD+7uv4CeehoBgM9itjdZIE+sCseuNPheslhzj0QAlkHGoxrp5IEZiWITvgVdNDfCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L+AXG+AO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8A434C116C6;
+	Tue,  3 Mar 2026 16:59:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772556965;
-	bh=PspKwEQyJf0sGxt3Osb+chOp3772zSkyGfm6ysAwHYc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sSjKUJrPBzRIJEib0UnUSBOhNY3IHP4dSv/oX2tq5IwYDRUdUJUKncey/ietImsoe
-	 FYHNuueNEdsT41MevNnsmdEtTQChUYPyopSDBTZ6uaSQatRVQqxdtGErlaMgp0Etyx
-	 2s8IZ622CpgP7f/3c4DU7B/zSWsc2F6E5WhvgJXUBiKlBpOvO+1O85JeA9nMYUV+X2
-	 hYGJvaLL0dkxueTcYBKgqkvEfU+2nARYiFHpEOLempOhFzyqPlXtknH9Em5ONfVTxw
-	 EWvvs5ZUUwvdZxFY9GJND/0DkHes+QguDxpnXsG2X7gQCi+Tg6xTe5BewuERRaCC94
-	 IW816OBtPZwBg==
-Date: Tue, 3 Mar 2026 22:25:50 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Harshal Dev <harshal.dev@oss.qualcomm.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, "David S. Miller" <davem@davemloft.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Abel Vesa <abel.vesa@oss.qualcomm.com>, cros-qcom-dts-watchers@chromium.org, 
-	Brian Masney <bmasney@redhat.com>, Neeraj Soni <neeraj.soni@oss.qualcomm.com>, 
-	Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/11] dt-bindings: crypto: qcom,ice: Require
- power-domain and iface clk
-Message-ID: <mns7565jbkjtmqioe5y3la4kpco43umbzpnxvfc73cnpxw7khy@7xcmoflqakuv>
-References: <14a71b33-4c10-41b0-a6cb-585a38e05f56@kernel.org>
- <06160c6c-a945-467a-be82-7b33c5285d0f@oss.qualcomm.com>
- <7216c86d-2b87-496c-9548-ccdcb3c98b6b@oss.qualcomm.com>
- <1f99db18-d76c-4b87-9e30-423eee7037e1@oss.qualcomm.com>
- <dd34525c-0a25-47ae-9061-c4c7ab708306@kernel.org>
- <2830a189-a5ce-45a0-92fe-7a01c3b012a7@oss.qualcomm.com>
- <6efcdf51-bdb1-4dfc-aa5e-8b7dc8c68cd3@kernel.org>
- <b217a08a-2755-4ef8-bf39-af1c3e628cf8@oss.qualcomm.com>
- <3cxejy2jplgqufj5fivi27ii3rrcrhzdyvmxd4ekp2ik3aqa6l@tiwyslt3ng5p>
- <vpgeduh5fwgvbx42dujbm7x3vacbmwjgjkcmhpgcsaa2ig4cm3@kk34eaqoh6ww>
+	s=k20201202; t=1772557197;
+	bh=mgwUhCncYhDl61XAwXlMI23b+H6nVEk5nE7YqMPl7/4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=L+AXG+AOypu1+2+mVs1pOvJWkKKAlYjCNLOWqw0VNC51YgJnnOQIY3aO5/toAKmFa
+	 ii/nt5Bp67wYf0V4UXKrRRWF+DUtoMNkJ2ATZxjVn7R2IAkCK07dbui+Yl5ZhDX6RP
+	 D5w7hZZsiiuomAW64PgC91lhe+2iJUz9oqYFFjbOIyTII7fWQ8rmgY+Z6ivQMK7Mcu
+	 J6HkqO14hb3K7mIYOoJHfJjuWhTJa0+9YlcIBsa0dT0cGy7ZmPioqZbpnfG0t5hn6Z
+	 YNXS/yzCN2eFaM28+7ZDjY2T9vopEiIBxiXKTo6MlfySoGCBzsfTgUtoh5ETIcuMyl
+	 s06DeI4og5NGw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 6B6A4EDA697;
+	Tue,  3 Mar 2026 16:59:57 +0000 (UTC)
+From: =?utf-8?q?Nuno_S=C3=A1_via_B4_Relay?= <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v6 0/3] hwmon: Add support for the LTC4283 Hot Swap
+ Controller
+Date: Tue, 03 Mar 2026 17:00:39 +0000
+Message-Id: <20260303-ltc4283-support-v6-0-efe11502fad2@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <vpgeduh5fwgvbx42dujbm7x3vacbmwjgjkcmhpgcsaa2ig4cm3@kk34eaqoh6ww>
-X-Rspamd-Queue-Id: 911521F43D1
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBA0avErBNEzaSrRAuxqQbCZKwIwrsnL
+ d/i/xcyMmGGoXmB8aZMR6ywbQNh83FFQXM1KKms1FKL/QxGOS3yldLBp5BWL73zIXTeQK0S40L
+ PfxynUj660kVMYQAAAA==
+X-Change-ID: 20260303-ltc4283-support-063f78acc5a4
+To: linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772557240; l=1962;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=mgwUhCncYhDl61XAwXlMI23b+H6nVEk5nE7YqMPl7/4=;
+ b=5QEy1itU4Qq/SbblS24Kt7rPX/4f94eo9Z8Iwj5JbfsH6EGvRk7Shvd0OCxCOFe/D3IM3xtXg
+ jyAOnii5XYlD114Ja5BrgGvlFYESNG2je0ZO2v0RyNDX/Qu+WS3rWbG
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received: by B4 Relay for nuno.sa@analog.com/20231116 with
+ auth_id=100
+X-Original-From: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
+Reply-To: nuno.sa@analog.com
+X-Rspamd-Queue-Id: 3CEBD1F457B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270655-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	TAGGED_FROM(0.00)[bounces-270656-lists,devicetree=lfdr.de,nuno.sa.analog.com];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[nuno.sa@analog.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:replyto,analog.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 09:59:41AM -0600, Bjorn Andersson wrote:
-> On Fri, Feb 20, 2026 at 08:01:59PM +0530, Manivannan Sadhasivam wrote:
-> > On Mon, Feb 09, 2026 at 11:13:06AM +0530, Harshal Dev wrote:
-> > > On 2/6/2026 4:20 PM, Krzysztof Kozlowski wrote:
-> > > > On 06/02/2026 11:07, Harshal Dev wrote:
-> > > >> On 2/5/2026 4:47 PM, Krzysztof Kozlowski wrote:
-> > > >>> On 03/02/2026 10:26, Harshal Dev wrote:
-> > > >>>> On 1/26/2026 3:59 PM, Konrad Dybcio wrote:
-> > > >>>>> On 1/23/26 12:04 PM, Harshal Dev wrote:
-> > > >>>>>> On 1/23/2026 2:27 PM, Krzysztof Kozlowski wrote:
-> > > >>>>>>> On 23/01/2026 08:11, Harshal Dev wrote:
-> [..]
-> > > >>> My NAK for driver change stays. This is wrong approach - you cannot
-> > > >>> break working DTS.
-> > > >>>
-> > > >>
-> > > >> I agree that this patch in it's current form will break both the in-kernel and
-> > > >> out of tree DTS written in accordance with the old binding. If this isn't acceptable
-> > > > 
-> > > > What? You just said few lines above:
-> > > > "it will still continue to work if:"
-> > > >
-> > > 
-> > > I hope I am clear now, 'it' referred to the in-tree ICE driver and not to this particular
-> > > DT schema commit. :)
-> > >  
-> > > > So either this will continue to work or not. I don't understand this
-> > > > thread and honestly do not have patience for it. I gave you already
-> > > > reasoning what is wrong and why it is. Now it is just wasting my time.
-> > > > 
-> > > 
-> > > Apologies again for the confusion. I totally agree, as replied previously too, that the
-> > > updated DT binding breaks backward compatibility. Like I said, I will post another patch
-> > > to preserve the correctness of existing in-tree and out-of-tree DTS.
-> > > 
-> > 
-> > The ICE hardware cannot work without 'iface' clock and the power domain, which
-> > are shared with the UFS PHY. One can argue that ICE is actually a part of the
-> > peripherals like UFS/eMMC, but I don't have access to internal layout, so cannot
-> > comment on that. I ran into this issue today when I tried to rmmod ice driver
-> > together with ufs_qcom driver and got SError when reloading the module because
-> > ice driver was trying to access unclocked/unpowered register.
-> > 
-> > But you should mark the resources as 'required' in the binding and justify the
-> > ABI break. No need to preserve backwards compatibility here as the binding was
-> > wrong from day one.
-> > 
-> 
-> Marking it "required" in the binding, implies that it's fine for the
-> driver to fail in its absence. If I understand correctly that will
-> prevent UFS and eMMC from probing, unless you have a DTB from "the
-> future".
-> 
-> Even if I merge the dt-binding change through the qcom-tree (together
-> with the driver change) I will not guarantee that torvalds/master will
-> remain bisectable - because dts changes and driver changes goes in
-> different branches.
-> 
+This is v6 for the LTC4283 how swap controller. Main change is that I'm
+now using the auxiliary bus for adding the GPIO device (done depending
+on FW properties).
 
-Yeah, that's true.
+Similar to the LTC4282 device, we're clearing some fault logs in the
+reset_history attributes.
 
-> 
-> As such, the pragmatic approach is to introduce the clock as optional
-> and then once we're "certain" that the dts changes has propagated we
-> can consider breaking the backwards compatibility.
-> 
+---
+Changes in v6:
+- Patch 2:
+  * Rework regmap to use single regmap with custom regmap_bus
+    (lm75-style);
+  * Add explicit i2c func checks;
+  * Make sure page support is enabled for energy reads;
+  * Fix MODULE_DESCRIPTION: "How Swap" -> "Hot Swap";
+  * Remove #include <linux/hwmon-sysfs.h> (unused);
+  * Fix commit message: "How Swap Controller" -> "Hot Swap Controller";
+  * Fix "Addresses scanned" section in docs (no .detect() supported).
 
-Only if we remember to mark it required some point, fine with me!
+- Patch 3:
+  * Fix typo: LTC42823_ADIO_CONFIG -> LTC4283_ADIO_CONFIG.
+ 
+- Link to v5: https://lore.kernel.org/linux-hwmon/20251223-ltc4283-support-v5-0-1152bff59a61@analog.com/
 
-- Mani
+---
 
--- 
-மணிவண்ணன் சதாசிவம்
+---
+Nuno Sá (3):
+      dt-bindings: hwmon: Document the LTC4283 Swap Controller
+      hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+      gpio: gpio-ltc4283: Add support for the LTC4283 Swap Controller
+
+ .../devicetree/bindings/hwmon/adi,ltc4283.yaml     |  272 +++
+ Documentation/hwmon/index.rst                      |    1 +
+ Documentation/hwmon/ltc4283.rst                    |  265 +++
+ MAINTAINERS                                        |    9 +
+ drivers/gpio/Kconfig                               |   15 +
+ drivers/gpio/Makefile                              |    1 +
+ drivers/gpio/gpio-ltc4283.c                        |  218 +++
+ drivers/hwmon/Kconfig                              |   12 +
+ drivers/hwmon/Makefile                             |    1 +
+ drivers/hwmon/ltc4283.c                            | 1780 ++++++++++++++++++++
+ 10 files changed, 2574 insertions(+)
+---
+base-commit: 78558965440b27814592ec82d8f3668395953b1b
+change-id: 20260303-ltc4283-support-063f78acc5a4
+--
+
+Thanks!
+- Nuno Sá
+
+
 
