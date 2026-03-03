@@ -1,65 +1,54 @@
-Return-Path: <devicetree+bounces-270667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270668-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GF1uJkIYp2m+dgAAu9opvQ
-	(envelope-from <devicetree+bounces-270667-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:20:02 +0100
+	id aLLmHAUbp2m+dgAAu9opvQ
+	(envelope-from <devicetree+bounces-270668-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:31:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D1E11F483F
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:20:02 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 771251F4A4F
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:31:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A94293023359
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 17:19:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2E816301075A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 17:31:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065A547D92C;
-	Tue,  3 Mar 2026 17:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1B73E9F99;
+	Tue,  3 Mar 2026 17:31:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="PsT6SkmH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ayMZEOCx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11532351C31;
-	Tue,  3 Mar 2026 17:19:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA8A9370D61;
+	Tue,  3 Mar 2026 17:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772558380; cv=none; b=ncTF0SGGrcVuRsre9RZj0M6JrJ+r+TTsJlCDEuVD9QfI5wjlRJhBHCaJC4OaKIqsFysXN5EDa375eTDnC2PTb3eFX2vJcRzuHsu/j71RIxLEuLL55bfu+Ao00gMDtmx1zI8on/kt6WhbrCQE1sNWkF1NDp9QZDDP/bexBWQxAVI=
+	t=1772559103; cv=none; b=kWw98nu29A5nF0tLF9iNoDuwTL1IgYvG/GsnkRruYqSZyde1qyc1qJcBtO8EpEYsc74obBK4TeiFKOVz5e1HZfcD83ugo6CYZmYi6rXK5fyyeuvLPHNEI2epxRdbooVujqW5TOuHGXQsRmYDyCRrK1XecCusOor9eVJvMF2E5Vg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772558380; c=relaxed/simple;
-	bh=Ca+ARr12/XdBIhnv7QrCLpRPeKuqqx38eJrQDvnhluA=;
+	s=arc-20240116; t=1772559103; c=relaxed/simple;
+	bh=pY5n2w8jxdL8cFzyns9wivOokBIq3asBNiks807SDUg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lu2kGaBQsmDzFlk/IJOLUfEiX+WP9/9F6G3cyTYym/M/tRxLVJ8OhUEGvRxakOp0+4aiBly8Ceg6rr0cgdNiPLSFdK60pa1fdEEzoTxWdTgO1HwZawKE4sh06Pfs79wyhG537nUXLKPQP4RN6JR43movH3jdQAECAYhkp20ZtnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=PsT6SkmH; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=FWEQDeYjZ/Kvx6qPEMl2sy6hl+csZIw5LCAMUKWoglQ=; b=PsT6SkmHwqV5c+BFaY/sSATpj0
-	dahDe3Pnj8a6qokJxyJB4U4OolAl4dyJ+dbpeXihHVxwJ1RXwt3vMOSn9okNJ4Hrq0f0EHeP+VeV/
-	GgbpNUa571Kdj5X0+tRKzX+SuNT1zY81z/YdFVtlijJp1T3K+2NPOqO9x5CWZNIJyg8Lgct2sFXZj
-	Q+idnQF9keH4o4LoPiIKBHqr3ZpZ3aqfTHVys5XSmCeskb0acb3CwJkxPPuQ2TH3hwbGaneNH5LUQ
-	0w0zHK4DggshS7iECxwkimq04+7qltJa19/b0j7AwQMxvdWbe0yElbZZy62HKBxN+OR+zY/OEGZTS
-	Vf2OAD8g==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:47280)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vxTP3-000000005Qr-3lP3;
-	Tue, 03 Mar 2026 17:19:26 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vxTOz-0000000076m-1NPo;
-	Tue, 03 Mar 2026 17:19:21 +0000
-Date: Tue, 3 Mar 2026 17:19:21 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=UUiBft8SJExJxtbAHiB2PW23fGzsGZOarqXn6VbwK0KsxWaaL37vm0qoHG7GEpKXd3gHcjZ379+1hodMrpr5ULaCiyV7eXX/A27d0ZjSkfSFiVXSKc8IMLTvv3yu0Rw15tDOocP+TuRyJjUPyvx9pyurnUX3GcABgKOoD2LR+pY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ayMZEOCx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC311C116C6;
+	Tue,  3 Mar 2026 17:31:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772559103;
+	bh=pY5n2w8jxdL8cFzyns9wivOokBIq3asBNiks807SDUg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ayMZEOCxp4r1d+JFjs7Mm76K0BMM3upfkBAEHAFiVYnbgldtosNDL2ucp1UO/lJy8
+	 rhP1E0u94SpIpXMTCc1PzxUoZpsOB4D1R+BfM0pIUMLb/v9WhCxl5vwNjUW93mwMWl
+	 6EurA1MTmL394eqa44VQS/5y7DsepQNUvPhzAGANVZOSYASOEGI7gNI9ff52UTcJNC
+	 ZFEBLIIyNyXayUpvY9DFZBiI/F0vZSkL2W0ruct4DyODpMA0t0T/HpiPaSjahEps0N
+	 c0XxRn8hqohG2oKRIFStvn46KIok2/eDSyjJwFks2NLQy6UC7loA/fj/CMx0izdu31
+	 NADfVK/XbCCsg==
+Date: Tue, 3 Mar 2026 17:31:36 +0000
+From: Mark Brown <broonie@kernel.org>
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Romain Gantois <romain.gantois@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
 	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
@@ -68,121 +57,121 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
 	Heiner Kallweit <hkallweit1@gmail.com>,
 	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
 	Maxime Chevallier <maxime.chevallier@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	netdev@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 0/2] net: sfp: Describe and handle regulators
-Message-ID: <aacYGTBobbfJgZpp@shell.armlinux.org.uk>
+Subject: Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter
+ regulators
+Message-ID: <1dbc679e-ad6d-49c5-86bd-3b319b899584@sirena.org.uk>
 References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
- <aab51KbpIq72wtSU@shell.armlinux.org.uk>
- <9586950.CDJkKcVGEf@fw-rgant>
+ <20260303-sfp-regulators-v1-2-7101ae34cb84@bootlin.com>
+ <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
+ <aab6Tqo1z-8YQ4j6@shell.armlinux.org.uk>
+ <536e57fe-9738-4026-a9c9-fdb7135cbe2f@sirena.org.uk>
+ <aab9bwKSubR6zxKG@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="u2KMOK4Ft/U2Z0A+"
 Content-Disposition: inline
-In-Reply-To: <9586950.CDJkKcVGEf@fw-rgant>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Rspamd-Queue-Id: 3D1E11F483F
+In-Reply-To: <aab9bwKSubR6zxKG@shell.armlinux.org.uk>
+X-Cookie: Use the Force, Luke.
+X-Rspamd-Queue-Id: 771251F4A4F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270667-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270668-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	FREEMAIL_CC(0.00)[bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_SPAM(0.00)[0.259];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 04:54:56PM +0100, Romain Gantois wrote:
-> Hi Russell,
-> 
-> On Tuesday, 3 March 2026 16:10:12 CET Russell King (Oracle) wrote:
-> > On Tue, Mar 03, 2026 at 02:54:25PM +0100, Romain Gantois wrote:
-> > > Hi everyone,
-> > > 
-> > > This series describes regulators supplying the VccT and VccR pins of an
-> > > SFP
-> > > cage or soldered-down transceiver.
-> > > 
-> > > These regulators can then be turned on only when the SFP device is probed,
-> > > thus saving power on systems which only load SFP cage support at certain
-> > > times, or load SFP device descriptions via device tree overlays.
-> > > 
-> > > Please let me know what you think.
-> > 
-> > As ever, I don't want to be adding support for stuff into mainline
-> > which doesn't ever get used - historically, we've had a lot of that.
-> > So, any patch set which adds some kind of facility like this needs to
-> > be accompanied by a user of it.
-> > 
-> 
-> I understand, though I'm dealing with an out-of-tree board but I understand 
-> that this doesn't really count as a valid first use case.
-> 
-> > This is especially true in this case, because I want to see why you're
-> > wanting to have two regulators, when INF-8074 suggests that both VccT
-> > and VccR should be derived from the same supply. The reason the
-> > modules have separate supplies for the transmitter and receiver is
-> > because the host side has the supply filtering networks to ensure
-> > cross-talk between each is kept to a minimum.
-> 
-> Interesting, I wasn't aware of this. I thought it was something like "being 
-> able to shut down the transmitter side only while waiting for a WoL packet".
 
-A transceiver module is permitted to internally connect VccT and VccR,
-which would make separate supplies questionable. See INF-8074, table 1
-note 8, on page 22.
+--u2KMOK4Ft/U2Z0A+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I suspect there could be boards out there which do have separate
-control of each supply, but they need to be prepared for a module that
-does physically connect VccT and VccR together on the module.
+On Tue, Mar 03, 2026 at 03:25:35PM +0000, Russell King (Oracle) wrote:
+> On Tue, Mar 03, 2026 at 03:14:02PM +0000, Mark Brown wrote:
 
-There is the problem that these documents do not specify which Vcc
-pins supply power to the EEPROM, and if one powers down the supply
-for the EEPROM, or the PHY/uC in the case of a copper module, that
-could cause ESD diodes to conduct, pulling down the I2C bus. It
-would also be out of spec. For example, the M24C02C datasheet from
-Microchip states in 1.0 under the Absolute Maximum Ratings (beyond
-which damage may occur) that for any input or output, the allowable
-voltage range is -0.6V to Vcc + 1.0V - this is normally because of
-the ESD diodes that clamp the input pin voltages to be within the
-supply voltage pins +/- the diode drop.
+> > Sorry, what's the breakage here?  The log messages, or something else?
 
-Thus, powering down supplies to a SFP/SFF module while it's plugged
-in and keeping IOs at their normal levels would have unspecified
-behaviour, especially if there is no way to isolate the I2C bus from
-the module and/or if other signals are actively driven or pulled up
-to their "high" state.
+> ... which then caused someone to "fix" DT by disabling devices to shut
+> up those log messages, including for platforms where those devices were
+> being used, which ultimately caused a boot failure.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> ... and your argument that SATA PHYs need these supplies, which is false
+> when the SATA PHY is integrated into the SoC and there's no details on
+> what those supplies are or where they come from, or even if they are
+> controllable.
+
+The supplies don't need to be controllable or have any other information
+to be specified, it sounds like this hardware has a fixed voltage
+regulator that's supplying the PHY which is representable without any
+changes, though I do agree it's annoying.
+
+Though having said that with your description above I'm really not clear
+that the regulator support is in the right place in the SATA framework
+at all, it sounds like the supplies are being requested by the SATA
+controller but the expectation is that the SATA controller is the thing
+that is supplying power rather than consuming it.  I think that's where
+things are going wrong here?  There are some SATA implementations that
+don't include the power delivery part of SATA and only those require the
+supplies?  The logs you posted looked like it was controllers requesting
+the supplies which does look like the bindings and associated requests
+aren't what I'd expect for something describing the hardware.
+
+For SFP my understanding is that SFP has a physical specification which
+includes power inputs and that these supplies are being requested by the
+devices that consume them.  If some part of that is not the case then it
+sounds like the bindings aren't describing the hardware (or at least are
+a bit unclear about how they're doing so) and should be revised.  The
+series doesn't seem to do anything at all with the supply side either,
+I'm guessing there are some SFP controllers with integrated power
+provisioning.
+
+--u2KMOK4Ft/U2Z0A+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmnGvcACgkQJNaLcl1U
+h9ClPQf+KoZchX4uxx9PwHMnQmvsfiSbR/ULKTz9o+AwC9GPuXRw8Un/rSp7FTQW
+5GAgU0fSIq9CYaSf9x4JfovQPeSMQhLli1tuow+uJg5pMzyBmaX8c2uk7rMmQbHk
+iRkaT07l6/zFEdhoGZ/ZsibclP9oJmxpG+xkdnjDElS5TU14XxtlYd7A6Hs3l6VU
+mMsMmBCFIBxlWQWaS0pg713dbSo+knym6T5Uvb/UAHxZsLCrcouSwJeSIQTRodhV
+GRpyjfa4YoOPM8krXd32+Q838CaX4wxbAQQMiIwVPs4yizdW3RTdE1IxjiWzhCrU
+WU/YzmPwkGXDxlvMzOQqtJ+ItyNemQ==
+=wqtY
+-----END PGP SIGNATURE-----
+
+--u2KMOK4Ft/U2Z0A+--
 
