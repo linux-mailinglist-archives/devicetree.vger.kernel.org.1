@@ -1,269 +1,288 @@
-Return-Path: <devicetree+bounces-270571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270572-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QDfiLVH2pmmgawAAu9opvQ
-	(envelope-from <devicetree+bounces-270571-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:55:13 +0100
+	id AM5+CJr2pmmgawAAu9opvQ
+	(envelope-from <devicetree+bounces-270572-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:56:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 330361F1DB0
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:55:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F521F1DED
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6B2A9312ECCA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:50:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 903333160ECC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10BA547CC9B;
-	Tue,  3 Mar 2026 14:50:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F0038756B;
+	Tue,  3 Mar 2026 14:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lEEOcZuV";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="XGsR4dcw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fxn+FZQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59E6E3CCA0D
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:50:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96EF037CD5F
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:51:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772549442; cv=none; b=KR31Xk8FdKZUA8vtu0CKrs3uoxvwv80T75WeTJo+6ODDE5Kn0N7B2h1qsyfeDW2MFbL6eYyR97yfKi78t2Wx44PLuJDi48UC+Uo+CC6r0XOT9jpI6cm6/ptvzHbLrruMFnL3/iTwKWZoeyVHDhx/+AqHpAvOHrYIXAaGqxIJ49A=
+	t=1772549498; cv=none; b=p3O0l7FWwW6Y6tqQk3zTv04jtcWe7pHXYpMqR5LFRy68vZHu9bZpV/AfKriBGPcrri4ClW6rGAzmhDOAuSikFVh6mQP8iWr6YVYEraBvEjxtRKVo8A33z45m4uJw0yDSI1P8PtQiaJVDqSoSkVuOYy9d983ym6Xm9tKKiGUSvMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772549442; c=relaxed/simple;
-	bh=+m1oPPpqfWeAOO56f1hf4+JV6zoMk3IpH9UEKIQQVdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BLGVqxNtll39XaHThKdgWAHbmQFP4eHz5pBLwdKXCBhBY9/4HSLA6ZF5v+Uu5GdWDU63C7+SnV6sKDmiikHBUKVM8+vzomULbo+1gsmyzBWvd5+r1xSjM6QcUc14Gl+HVgFoxPNPTNxaWqm66xqNnYa9W1ChkEHqIHEsas/2qMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lEEOcZuV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=XGsR4dcw; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6239n7M42630006
-	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 14:50:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NE8pe8ib8kQOsIUrUjRQdb4uB8crsnoEVqb4KHhRpHw=; b=lEEOcZuVmN8xb/uJ
-	I+DvIulht3sRtrS3pGsyaeHRJi827gjdR2vD2PkHANwMxX7PXjRzOD/YkWxYAGkv
-	UZ1ptaV5RuJ17xo8I3HCBk8Kg3XMqSU9bzg8fOnhnj9WwaaoVwmseip012zHZ3uL
-	1urQ/QUsUvn7hRRtnwLoAAYObcH9ii2+/zxqCb5q0xeNfqDjSaKmMnS4OK1QsHeX
-	wdVdwhOj3DH7p0PPPRezPDGIihJi8GjLt1x82lf0DDtFJAen5sHepvu4AuSLqqRO
-	jM8tTnR1Ysrzw5oWTuYHouVfOvpySx+Wuv4541WClDtWnGNBotBJdROg5kM7y5KT
-	j1BYBA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnhx5b71k-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 14:50:39 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2ae4a6bb316so26701215ad.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:50:39 -0800 (PST)
+	s=arc-20240116; t=1772549498; c=relaxed/simple;
+	bh=6KdAnhQrt+OtDqhpU53NGZUuv8Yx4CgsDTHUa/zHqBk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qrs3vcyMaYFRCMnLw5N6BjCgQ0VPEbBa/5EB1NEHAAW8Ay351TG6fGM3dqVZRF84meToXRLXcOjPAYyOJtmH/2RtV9DaVGs1vuiseUo44d3+K/vRJ01o2VxKb1B6gaL7qPxxPzEL3AXTnzWBoIGRLQ+f52hznNy64teQUMm5mIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fxn+FZQL; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4830f029407so11795025e9.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:51:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772549438; x=1773154238; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NE8pe8ib8kQOsIUrUjRQdb4uB8crsnoEVqb4KHhRpHw=;
-        b=XGsR4dcwa2YemqJ+kA6bC6Ua+M0kxFZRDJLYs0VXMUvTCkesOw3GrguWqDYskA5gRC
-         MaMmCaprkQywPUjSUtcdldHfuNBwjwzSAxGtwjg0ETrUjeW/CNYe/iQ3qWbI1yFI2IxO
-         NRDnial+3tRaomZJNLmMFRTB/mCd0PA7INrg4m3/3Wtu8ZtXF5lu8ULkO0SmMsQsV4Ss
-         F3TtwwIjUGE+X1kKh/LoI0Aaz/Ek586y9hV7rHzDzH9caFJqh6k1o5/tGmhWDdORpoue
-         +Ikh5SH9sb0obIIZ7ZjMgAw9uHmaDVk1geHqeerpHH01jBpimI6csu0F0+4FKcZ3rDHq
-         MGCA==
+        d=gmail.com; s=20230601; t=1772549494; x=1773154294; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=YEdSGTNZRnrKg7rdXD/O1fVlFTgm/leciP0nfy91AHw=;
+        b=Fxn+FZQLFum5I9kK2LgMpQYThU8VFT5GBrKHN9e7zDdip3HjkfW7TJLoqb7c94suR1
+         vRyZouXtlvhHZZev4l6lbSO8NzOnwLqALP4KsNb9w9YAVIlD8eKz87Xx5F3BVA2U8SpM
+         AnYUmyLikjEn8UpEQ8veuFeD6NJzYxenbCzZi6DnLOpngFHqF8FBCuNDNbuZwCo4OYTS
+         qDEraDAceAx2DEUvdKPybUdGB49WPIyc8V5cjebf0z4wgefqMPKW4y/P7gsyyBAhxWtN
+         hgNXqP2Ff1qT5OOrmN8VE41aNq1FCR8Qy02752JKbvxlErGVqR2rWBGY3n55um7wVkuw
+         5qLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772549438; x=1773154238;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NE8pe8ib8kQOsIUrUjRQdb4uB8crsnoEVqb4KHhRpHw=;
-        b=kA3GSU4Z6khnpTcLs4XC7hdSvy5T+0cM5UkUXDt9KDtZ/w1Ex5mq/OJStWr7eMTA0h
-         ML4oqzWBG9W3QBeLwdk+5FHGf2T+zIInYwKh+LrtY++BNB/YfG0hKpL/neUtzu3o6A3f
-         gKMFK1ZluUwsEmMglPL8A5LCLvyLpI5pR0cgmw+P2MSFPOo9OH2X5cAq6nz6bdwy0cN6
-         Sa70wCs/e03KYjvRqMTUNtvz8aXM8+orOtFAhfEiClF1Nx59+7ETPgpBRFnyim1h31+w
-         vSlP6wFoA+RleBV9K6fiCngGjEZPyZP0NQ3T5Cxg1Rv7Lv0AwAHnDyzyrUIXfn9oU33l
-         fqqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZinFqV0ovWVVggqzh3SuDFB7xd+0Xou5OdaZL4aWkzPjEv1xYlb3h/sfnPzFoMqDSbMKzg0B1yhTM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzt7fkRdD+rVMY2XbALWxKVxQ2BuLnIN9xV8U+cq6k5jvQEB40I
-	k/u68k9y0oL+lqX6+reU166xawvd4BeIm9zwMAChJEtYdOUI443nR3eOHF8/C8EWQ8Y60RU7dvw
-	W1OPf9Op0CljrgJyhpBhqdhkSsdxjGMmRb0lQLl0DSpngQVdd0Jx8r1swUWaAm3IS
-X-Gm-Gg: ATEYQzwP1tYOYteqAMTgoPR+Edt3Z58Pq/HfSWIJOacb/TLgzg3cahA3bYPso7fBGWL
-	mwj73L/nDYaSOAacLmk9xBH+GFGNToAFrTGhVirB9x2ZzMbergCYsUEl5Ke8+WcqGnRR8Ggqz19
-	fC1bU2B06bs+7PH7wnXnRWTG2yk3H+KfUIE1AAPVmCq/3vfDbfIBfPBhunJe1oqtG+T5Cx2jHpB
-	NnC3M2lytkcq/Y/03kV2xrlMQNjRP9L0GpPHf4vwlFXVT1RvP/R1SrMYyDE0HFYqOg4aZaIuYA9
-	ERLNLxX6A6hCal/UACuuCLZlUMOg8OSzpyyQ56jcTEN86uHYRNb/DpRQZIIqpwD1c7ffIQSeFFF
-	44An29gjKndqWDpfb5W+y8aQFDvIhnOoMUM8RTkjopSjO1qfRNus=
-X-Received: by 2002:a17:902:ce8d:b0:2ae:55bd:1473 with SMTP id d9443c01a7336-2ae55bd1983mr61678395ad.31.1772549438144;
-        Tue, 03 Mar 2026 06:50:38 -0800 (PST)
-X-Received: by 2002:a17:902:ce8d:b0:2ae:55bd:1473 with SMTP id d9443c01a7336-2ae55bd1983mr61678135ad.31.1772549437633;
-        Tue, 03 Mar 2026 06:50:37 -0800 (PST)
-Received: from [192.168.1.5] ([122.179.39.61])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2adfb69f283sm170655295ad.49.2026.03.03.06.50.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Mar 2026 06:50:37 -0800 (PST)
-Message-ID: <99b76cfa-389b-409f-bdc4-74a077108a07@oss.qualcomm.com>
-Date: Tue, 3 Mar 2026 20:20:29 +0530
+        d=1e100.net; s=20230601; t=1772549494; x=1773154294;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YEdSGTNZRnrKg7rdXD/O1fVlFTgm/leciP0nfy91AHw=;
+        b=m2zYM5rPgywp6ioInByA/5I+z7m0qhyhCD8r5exKfIP/J+8uTzUMkpMjnIrWXAVQf0
+         gNuVNICwsxKJSZXdL7woIaE/wIQgW3CHCi0K338V5uk2PteU/fdCgn+uB0wMKb5ANMKV
+         YFBkpfDuNeWRl+LF8j1vDUZ2xjbBQ+RuUxj2sykdtBSFTvs/+6MnG+SvGEatBxa8j7B9
+         N90NaU0+dW4RfhWaR8PaYCwQ1ybSBv60gvgMA7MzBdV6Y+kePkrykdtC5ESZkRi6A2Od
+         wiK0jZcO3Vd45sMRjn+dn68DaV8jdTd8eczcI9ehMy/zqBfKQwajC6zF9gbFR2tDRDSr
+         LcbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX153rZAntKYo1hyPClD5mhPmthYdA8oz+aDSrEDbpcGdJCwiZyf1EGeMS6HOBkCu2gkHp62xIuRf+e@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuDnHRppBkhGr0DfLsBsS0bSC5L89E/cIfOtkjeXkNJD9chtHF
+	xcm8i/C/wyLxgtNnOQNNIWt+7sRTQOpaHrO6ac2ShHIZtZkyOF895NxG
+X-Gm-Gg: ATEYQzz3H0tzS9cbw2pxNV+TIrFIA5YKsP0LFmCI9UYWsIJcish87U2azBlX4GVRTPB
+	Lv/EVPweM853sGEtiuT5q0YAVkIZqxwfKey5rFUvlt5xXwILo+C5mYempXRlh1s2Egc0R1FFlPs
+	KH6qZQjKHebJHjlDtbAn+TuLKt+VH1zg2eTd5kTJzRB5Y/b1b4XVz6b+srHiLXCIP89N21hl9BM
+	18TK07+Gq6M2kcGjrM+6hHod1KRZrs63muGBnBUAnR8vKO6qd1WXHP+3a6YSusZ//7JfAxLzmkP
+	saC4kbGbnZJ1j+I9ZOW0R+yiOMmC3ILlYu25k8M7uLJaCawJt7qOC90UI2sYYMBPTP4YVtN+kak
+	D54yIjgwB3hktSVjfj0uIkhXDAtaaPtBeEFq2FBJZb7M+Ovkhtv3N2ON5J/jNFO/GTEwjWwy8/d
+	fknk7EN2/D5F+Xhhg=
+X-Received: by 2002:a05:600c:3542:b0:477:5b01:7d42 with SMTP id 5b1f17b1804b1-483c9bc3f6bmr156313945e9.5.1772549493842;
+        Tue, 03 Mar 2026 06:51:33 -0800 (PST)
+Received: from skbuf ([2a02:2f04:d00e:3600:2472:8e4a:cf12:bb30])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-483c3b84023sm356468875e9.12.2026.03.03.06.51.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 06:51:33 -0800 (PST)
+Date: Tue, 3 Mar 2026 16:51:30 +0200
+From: Vladimir Oltean <olteanv@gmail.com>
+To: Jens Emil Schulz =?utf-8?Q?=C3=98stergaard?= <jensemil.schulzostergaard@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 5/8] net: dsa: lan9645x: add bridge support
+Message-ID: <20260303145130.rbp3qycr3eh5ifcp@skbuf>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: qcom,qcs615-rpmh: add
- clocks property to enable QoS
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mike Tipton <mike.tipton@oss.qualcomm.com>
-References: <20260211091112.3285626-1-odelu.kukatla@oss.qualcomm.com>
- <20260211091112.3285626-2-odelu.kukatla@oss.qualcomm.com>
- <20260212-armored-kingfisher-of-admiration-bdef7c@quoll>
-Content-Language: en-US
-From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-In-Reply-To: <20260212-armored-kingfisher-of-admiration-bdef7c@quoll>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDExOCBTYWx0ZWRfX8mU3XyNN2NUg
- EIjKzo8ia3IC26hjjL5kAV3CWZtkRPkb0cUO99peyf33kXY+jOl2mS7RGretmqxMItabI8UteCl
- dAwHSif18feVmD7si4xlXiPeDXF9nqkL9k3E2SWH9WMvuLKp5S1axl7PUj/PWIYvT8g1dZ7K6gX
- hx6DszMy7eXN2ExGA5HQ7mRB2oHRQEYli6R6hSMsaZSC3o6aOMUe9BQq2l2DJTi4aU0w80Rf1f7
- 7GftZIukXW35dofylOdJvfCfKvkzacTRzkt+ROcD3+O+iOUxLBk2ZC4BB6nHZsFPcGFLygn0x7X
- tzYQQyw+e9yZfwg5ptM1447wA/dxERxkQC6I4DPZwQGVRyVaUueGoI+2Ejzz4oGNbMITAk4N1k5
- a1i17/khgsm0DeuEvlV66Y7/wbfnZe6ndzjx8Dw2YbfXhZ9sj5nnAfY220G8RnAIEXyTBphZQ45
- sOeE0iZvhB6STfyq7cg==
-X-Authority-Analysis: v=2.4 cv=T9CBjvKQ c=1 sm=1 tr=0 ts=69a6f53f cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=U82GXnHrZkNfQIH0kmVtCQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22
- a=EUspDBNiAAAA:8 a=hh-M-2xEcZ6B0zPyQVMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-GUID: zl1xQtMSEQJC_Jorz8hBs6vP9yVmHYRe
-X-Proofpoint-ORIG-GUID: zl1xQtMSEQJC_Jorz8hBs6vP9yVmHYRe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-02_05,2026-03-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
- priorityscore=1501 clxscore=1015 suspectscore=0 malwarescore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603030118
-X-Rspamd-Queue-Id: 330361F1DB0
+In-Reply-To: <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
+X-Rspamd-Queue-Id: 69F521F1DED
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-270571-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[odelu.kukatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270572-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email]
 X-Rspamd-Action: no action
 
-
-
-On 2/12/2026 4:32 PM, Krzysztof Kozlowski wrote:
-> On Wed, Feb 11, 2026 at 02:41:10PM +0530, Odelu Kukatla wrote:
->> Aggre1-noc interconnect node on QCS615 has QoS registers located
->> inside a block whose interface is clock-gated. For that node,
->> driver must enable the corresponding clock(s) before accessing
->> the registers. Add the 'clocks' property so the driver can obtain
->> and enable the required clock(s).
->>
->> Only interconnects that have clockâ€‘gated QoS register interface
->> use this property; it is not applicable to all interconnect nodes.
->>
->> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
->> ---
->>  .../interconnect/qcom,qcs615-rpmh.yaml        | 46 +++++++++++++++++++
->>  1 file changed, 46 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml
->> index e06404828824..42679deb4607 100644
->> --- a/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml
->> +++ b/Documentation/devicetree/bindings/interconnect/qcom,qcs615-rpmh.yaml
->> @@ -34,6 +34,10 @@ properties:
->>    reg:
->>      maxItems: 1
->>  
->> +  clocks:
->> +    minItems: 4
->> +    maxItems: 4
+On Tue, Mar 03, 2026 at 01:22:31PM +0100, Jens Emil Schulz Østergaard wrote:
+> Add support for hardware offloading of the bridge. We support a single
+> bridge device.
 > 
-> Define the clocks here please.
+> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
+> Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
+> ---
+>  drivers/net/dsa/microchip/lan9645x/lan9645x_main.c | 196 +++++++++++++++++++++
+>  drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  11 ++
+>  drivers/net/dsa/microchip/lan9645x/lan9645x_port.c |   2 +
+>  3 files changed, 209 insertions(+)
 > 
->> +
->>  required:
->>    - compatible
->>  
->> @@ -53,6 +57,37 @@ allOf:
->>        required:
->>          - reg
->>  
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,qcs615-aggre1-noc
->> +    then:
->> +      properties:
->> +        clocks:
->> +          items:
->> +            - description: aggre UFS PHY AXI clock
->> +            - description: aggre USB2 SEC AXI clock
->> +            - description: aggre USB3 PRIM AXI clock
->> +            - description: RPMH CC IPA clock
+> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
+> index 739013f049d0..b6efaf669a3f 100644
+> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
+> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
+> @@ -171,6 +171,8 @@ static int lan9645x_setup(struct dsa_switch *ds)
+>  		return err;
+>  	}
+>  
+> +	mutex_init(&lan9645x->fwd_domain_lock);
+> +
+>  	/* Link Aggregation Mode: NETDEV_LAG_HASH_L2 */
+>  	lan_wr(ANA_AGGR_CFG_AC_SMAC_ENA |
+>  	       ANA_AGGR_CFG_AC_DMAC_ENA,
+> @@ -288,6 +290,192 @@ static void lan9645x_port_phylink_get_caps(struct dsa_switch *ds, int port,
+>  	lan9645x_phylink_get_caps(ds->priv, port, config);
+>  }
+>  
+> +static int lan9645x_set_ageing_time(struct dsa_switch *ds, unsigned int msecs)
+> +{
+> +	u32 age_secs = max(1, msecs / 1000 / 2);
+
+s/1000/MSEC_PER_SEC/
+
+> +	struct lan9645x *lan9645x = ds->priv;
+> +
+> +	/* Entry is must suffer two aging scans before it is removed, so an
+
+"An entry must suffer (...), so it is aged"
+
+> +	 * entry is aged after 2*AGE_PERIOD, and the unit is in seconds.
+> +	 * An age period of 0 disables automatic aging.
+> +	 */
+> +	lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(age_secs),
+> +		ANA_AUTOAGE_AGE_PERIOD,
+> +		lan9645x, ANA_AUTOAGE);
+> +	return 0;
+> +}
+> +
+> +static int lan9645x_port_pre_bridge_flags(struct dsa_switch *ds, int port,
+> +					  struct switchdev_brport_flags flags,
+> +					  struct netlink_ext_ack *extack)
+> +{
+> +	if (flags.mask &
+> +	    ~(BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD | BR_BCAST_FLOOD))
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static void lan9645x_port_pgid_set(struct lan9645x *lan9645x, u16 pgid,
+> +				   int chip_port, bool enabled)
+> +{
+> +	u32 reg_msk, port_msk;
+> +
+> +	WARN_ON(chip_port > CPU_PORT);
+> +
+> +	port_msk = ANA_PGID_PGID_SET(enabled ? BIT(chip_port) : 0);
+> +	reg_msk = ANA_PGID_PGID_SET(BIT(chip_port));
+> +
+> +	lan_rmw(port_msk, reg_msk, lan9645x, ANA_PGID(pgid));
+> +}
+> +
+> +static void lan9645x_port_set_learning(struct lan9645x *lan9645x, int port,
+> +				       bool enabled)
+> +{
+> +	struct lan9645x_port *p;
+> +
+> +	lan_rmw(ANA_PORT_CFG_LEARN_ENA_SET(enabled), ANA_PORT_CFG_LEARN_ENA,
+> +		lan9645x, ANA_PORT_CFG(port));
+
+Actually, the port may be in an STP state where learning shouldn't be
+enabled, when this function is called. Enabling the "learning" bridge
+port flag shouldn't change that.
+
+> +
+> +	p = lan9645x_to_port(lan9645x, port);
+> +	p->learn_ena = enabled;
+> +}
+> +
+> +static int lan9645x_port_bridge_flags(struct dsa_switch *ds, int port,
+> +				      struct switchdev_brport_flags f,
+> +				      struct netlink_ext_ack *extack)
+> +{
+> +	struct lan9645x *l = ds->priv;
+
+Could we have some consistency in variable naming throughout the driver,
+at least for the main private structure? I don't have an issue with it
+being called l, it's just that I would prefer it being called the same
+everywhere.
+
+> +
+> +	if (WARN_ON(port == l->npi))
+> +		return -EINVAL;
+> +
+> +	if (f.mask & BR_LEARNING)
+> +		lan9645x_port_set_learning(l, port, !!(f.val & BR_LEARNING));
+> +
+> +	if (f.mask & BR_FLOOD)
+> +		lan9645x_port_pgid_set(l, PGID_UC, port, !!(f.val & BR_FLOOD));
+> +
+> +	if (f.mask & BR_MCAST_FLOOD) {
+> +		bool ena = !!(f.val & BR_MCAST_FLOOD);
+> +
+> +		lan9645x_port_pgid_set(l, PGID_MC, port, ena);
+> +		lan9645x_port_pgid_set(l, PGID_MCIPV4, port, ena);
+> +		lan9645x_port_pgid_set(l, PGID_MCIPV6, port, ena);
+> +	}
+> +
+> +	if (f.mask & BR_BCAST_FLOOD)
+> +		lan9645x_port_pgid_set(l, PGID_BC, port,
+> +				       !!(f.val & BR_BCAST_FLOOD));
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
+> index 038868ae0a32..b60c64458957 100644
+> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
+> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
+> @@ -15,6 +15,8 @@ int lan9645x_port_init(struct lan9645x *lan9645x, int port)
+>  		ANA_PORT_CFG_LEARN_ENA,
+>  		lan9645x, ANA_PORT_CFG(p->chip_port));
+>  
+> +	p->learn_ena = false;
+> +
+
+This is already zero-initialized memory.
+
+>  	lan9645x_port_set_maxlen(lan9645x, port, ETH_DATA_LEN);
+>  
+>  	lan9645x_phylink_port_down(lan9645x, port);
 > 
-> And this entire "if" goes away... unless you already plan to correct other
-> devices. If so, please correc them now.
+> -- 
+> 2.52.0
 > 
-
-Hi Krzysztof,
-Thanks for the review.
-
-I will move the clocks definition to the top-level properties and remove
-the specific if block for aggre1-noc as suggested.
-Regarding the exclusion â€œifâ€ block: I will keep it to align with your
-recent fix for SA8775P (dt-bindings: interconnect: sa8775p: Fix
-incorrectly added reg and clocks) where you enforced strict constraints.
-
-My plan for v3 is to:
-1.Define clocks at the top level.
-2.Remove "if" block for aggre1-noc
-3.Keep "if" block to explicitly disallow clocks for the nodes that do
-not support them.
-
-I will send v3 with these changes shortly.
-
-Regards,
-Odelu
-
-> Best regards,
-> Krzysztof
-> 
-
 
