@@ -1,123 +1,175 @@
-Return-Path: <devicetree+bounces-270551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270552-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UMjdHcLtpmlKaQAAu9opvQ
-	(envelope-from <devicetree+bounces-270551-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:18:42 +0100
+	id uBZkMezspmmQaAAAu9opvQ
+	(envelope-from <devicetree+bounces-270552-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:15:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0D21F14D8
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:18:42 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 961AA1F1387
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:15:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 43E5730EF7D8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:12:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6CA5E303D5D7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6555D3AEF53;
-	Tue,  3 Mar 2026 14:12:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7BD73AE18E;
+	Tue,  3 Mar 2026 14:13:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UDHVu/Fj"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="SPWntByS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241C93AE18E;
-	Tue,  3 Mar 2026 14:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EA935CBC4;
+	Tue,  3 Mar 2026 14:13:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772547176; cv=none; b=Z5up9FyKmenFsDKtMTeqp/nlPg/xs71iAFLWWoMhnRyJMYixIyvM7Vbzu1h0ZX9RJA0ZMRWG9Kt/zWsgmySdikSko9KKuCxXGsVBjLn2ZHvMdorIxu3KooRslZ6gsyzc6F9Ig3JBIR8Q2EXYn5FoTSEkkqJL9WFk7mrqP6raUiM=
+	t=1772547221; cv=none; b=lM4MrWZty0Oz4h8qwccTUHKv+lpHy3WKd4SmpRVCl9SPQaU9C+lN8PpSDIQUR685DYoqaQ7DwwlQMAlu3WBoD9jBmyMfLi9f2gea/FfiS4xM2MLHnfGLbOd0I6BuS++WupRirTxsTnkDfGYdRrsSlmIUCxPbMOJTtu3ork2WLmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772547176; c=relaxed/simple;
-	bh=I1RcmXzbZMBrvUOvOt+mIG2zd3hNEJtpd9z3pYneLCU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i4QCGFhFgXH05Doc4oqIZxBmUIsvTySSA496tehVc376mmwjy66wA0nIPtIchts7hW3PTPEXdb0F1rKWhPytepiC0G90wC77YGceWCV4+hsuvFFIimf3ArZd4oNVXyvyXg0+CRaPUJTzsaDFgCKWhYfFvMxbv3095/86HGPYtqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UDHVu/Fj; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1772547173;
-	bh=I1RcmXzbZMBrvUOvOt+mIG2zd3hNEJtpd9z3pYneLCU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UDHVu/Fjr+fk4c6bX+qQg8zJqvbVYEATwZlstMqA7VCjpgNMmGNSxYMwxR37rbM5l
-	 bmvb63r9bm9DeTE/SgNX2YvHp8Bny07/E4cHgbw1Z2vVu6ryVTO0DLxkUmYsDmmylU
-	 saCIuMIloFvRm3Etr/9RjSq9dDKD1dvd/dFvZ+r6+cP8KA7EaNjoyz6EdloDgN1NzK
-	 +5TcPMzkII2plQxzUUdfPJycQuxQwrFTKP+zlD2MntzudUaOFZcR96FceLq2ZBMEBt
-	 luNDUcnQO2iQVrJVXta2BM3XfKfjWsiWYeIK1rEWemZxQcvEkEm0hgf69qu80kwjks
-	 7+084pw1iPJ0A==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DC2F617E03E5;
-	Tue,  3 Mar 2026 15:12:52 +0100 (CET)
-Message-ID: <f5290ec5-2c54-41cd-b926-44964499fb7b@collabora.com>
-Date: Tue, 3 Mar 2026 15:12:52 +0100
+	s=arc-20240116; t=1772547221; c=relaxed/simple;
+	bh=yVMnKaxqCc7XaVuRhPyqAU+dppHnR2+MIEE7iUM0kwE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iepl+VLM0QLK3S/2Izc66wxDJQiqgo/jaqxt35XspgVz08RTMLpAQLKZ4wd/Jjw4jMHglAbTMRAnbdV80cejRS1t58dK4C7HWihJI4jqsQNWuTo68AS5KP8fHGmpCfrJ64EsNymlJQn1DcOj4XTf3XutQLDH0vgZ+gdzW65XQhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=SPWntByS; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=wmyUrmwYhbtal84M9nOqbwniUVXZJpfDSjJfxgS0ia0=; b=SPWntBySpHYG3MS+zt4ArDyMt9
+	b2JUQqZwIxUgyL7Bx4g23ZlhpghbpJfkZrmRsMdmSBd1YZOQSccFlYuz6CZ4+zioZBALAY1c4yebE
+	T9xGOvKhQat90UPAC/TSQ78CzBT/mb6Ipa9KOZfPb6hcK7rhANlvztMXEwXXnNdwe0R8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vxQV5-009ruN-NS; Tue, 03 Mar 2026 15:13:27 +0100
+Date: Tue, 3 Mar 2026 15:13:27 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jens Emil Schulz =?iso-8859-1?Q?=D8stergaard?= <jensemil.schulzostergaard@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/8] net: dsa: add tag driver for LAN9645X
+Message-ID: <c0213890-ef36-435c-aa73-869ee5e849d5@lunn.ch>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-1-bff8ca1396f5@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: mediatek: audsys: fix formatting issues
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, Eugen Hristev <eugen.hristev@linaro.org>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-References: <20260303-mtk-audsys-dtbinding-check-warnings-v1-1-e4e1b62f060e@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20260303-mtk-audsys-dtbinding-check-warnings-v1-1-e4e1b62f060e@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 1E0D21F14D8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260303-dsa_lan9645x_switch_driver_base-v1-1-bff8ca1396f5@microchip.com>
+X-Rspamd-Queue-Id: 961AA1F1387
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270551-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[collabora.com,kernel.org,gmail.com,linaro.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270552-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Il 03/03/26 12:58, Louis-Alexis Eyraud ha scritto:
-> Fix indentation and drop duplicate newline to resolve the following
-> 'make dt_binding_check' warnings:
-> ```
-> ./Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml:52:2:
->    [warning] wrong indentation: expected 2 but found 1 (indentation)
-> ./Documentation/devicetree/bindings/arm/mediatek/mediatek,audsys.yaml:84:1:
->    [warning] too many blank lines (2 > 1) (empty-lines)
-> ```
-> 
-> Fixes: a8e3d66ff5c0 ("dt-bindings: arm: mediatek: audsys: Support mt8192-audsys variant")
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> +#define LAN9645X_VALIDATE_FIELD(_fld, _fld_sz)				\
+> +do {									\
+> +	BUILD_BUG_ON_MSG((_fld_sz) > 32, "IFH field size wider than 32.");\
+> +	BUILD_BUG_ON_MSG((_fld_sz) == 0, "IFH field size of 0.");	\
+> +	BUILD_BUG_ON_MSG((_fld) + (_fld_sz) > LAN9645X_IFH_BITS,	\
+> +			 "IFH field overflows IFH");			\
+> +} while (0)
+> +
+> +#define LAN9645X_IFH_GET(_ifh, _fld) \
+> +({ \
+> +	LAN9645X_VALIDATE_FIELD(_fld, _fld##_SZ);\
+> +	lan9645x_ifh_get((_ifh), (_fld), _fld##_SZ); \
+> +})
+> +
+> +#define LAN9645X_IFH_SET(_ifh, _fld, _val) \
+> +({ \
+> +	LAN9645X_VALIDATE_FIELD(_fld, _fld##_SZ);\
+> +	lan9645x_ifh_set((_ifh), (_val), (_fld), _fld##_SZ); \
+> +})
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+If you change the BUILD_BUG_ON_MSG() to static_assert(), you can do
+the checks in global scope, rather than in a function call.  You can
+then call lan9645x_ifh_set() directly, without the macro.
 
+> +static inline void lan9645x_ifh_set(u8 *ifh, u32 val, size_t pos, size_t length)
 
+These functions are big enough i would place them into the .c file.
+Then, normally, i would say, please don't use inline in a C file. But
+here we are in the fast path. Have you tried this with and without the
+inline? How does it change the object size and performance?
+
+> diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
+> index 5ed8c704636d..8592cccde7ff 100644
+> --- a/net/dsa/Kconfig
+> +++ b/net/dsa/Kconfig
+> @@ -211,4 +211,14 @@ config NET_DSA_TAG_YT921X
+>  	  Say Y or M if you want to enable support for tagging frames for
+>  	  Motorcomm YT921x switches.
+>  
+> +config NET_DSA_TAG_LAN9645X
+> +	tristate "Tag driver for Lan9645x switches"
+> +	help
+> +	  Say Y or M if you want to enable NPI tagging for the Lan9645x switches.
+> +	  In this mode, the frames over the Ethernet CPU port are prepended with
+> +	  a hardware-defined injection/extraction frame header.
+> +	  On injection a 28 byte internal frame header (IFH) is used. On
+> +	  extraction a 16 byte prefix is prepended before the internal frame
+> +	  header. This prefix starts with a broadcast MAC, to ease passage
+> +	  through the host side RX filter.
+
+The sorting in DSA is a bit hit and miss. The Kconfig file is however
+sorted. Please insert before the Lantiq tag driver.
+
+>  endif
+> diff --git a/net/dsa/Makefile b/net/dsa/Makefile
+> index bf7247759a64..dddcd85c81ce 100644
+> --- a/net/dsa/Makefile
+> +++ b/net/dsa/Makefile
+> @@ -42,6 +42,7 @@ obj-$(CONFIG_NET_DSA_TAG_TRAILER) += tag_trailer.o
+>  obj-$(CONFIG_NET_DSA_TAG_VSC73XX_8021Q) += tag_vsc73xx_8021q.o
+>  obj-$(CONFIG_NET_DSA_TAG_XRS700X) += tag_xrs700x.o
+>  obj-$(CONFIG_NET_DSA_TAG_YT921X) += tag_yt921x.o
+> +obj-$(CONFIG_NET_DSA_TAG_LAN9645X) += tag_lan9645x.o
+
+Also sorted.
+
+	Andrew
 
