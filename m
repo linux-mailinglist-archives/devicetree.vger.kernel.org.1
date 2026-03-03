@@ -1,98 +1,71 @@
-Return-Path: <devicetree+bounces-270555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270556-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6JVXJcbupmnjaQAAu9opvQ
-	(envelope-from <devicetree+bounces-270555-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:23:02 +0100
+	id gNFbDEbvpmkQagAAu9opvQ
+	(envelope-from <devicetree+bounces-270556-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:25:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2EE1F161D
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:23:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0171F1693
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 15:25:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E3398309E3DF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:16:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EF62330A9AB2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 14:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 607FA3D75B6;
-	Tue,  3 Mar 2026 14:16:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BBDC3D6CA2;
+	Tue,  3 Mar 2026 14:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jruDCTK9"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fzgxBuXR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC9833F368
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 14:16:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3492636D9E9;
+	Tue,  3 Mar 2026 14:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772547390; cv=none; b=u+/ueeGubfDy7hTIu2O2Kkr62EKfBMB9I9xMMweyKkUWgHpVKRwOZMJdz4FoF9tfZu1lXry/bmsJqpCnk0CV8iDhfa9/UReaQgC5ZmQN5POyPU+Vfd5M0U17eeLYD1gb6pT+lE+NmA2dpsQ9y3iwDkzQRboilajjr1DM+lCCHK8=
+	t=1772547535; cv=none; b=CbplvTIdyxtSzlU6RTpjHxJ1MPs+sZArK4dd8uEyMf3aTrOkbqKh7cw4EODMM4UyIDf7ZMLuWPG5eoayXUPNn1X0TO8EkNMv9WFDWquw3nG/B7Z0/Mukye4VvO5aRnwwVv1F/4L2TNqZs5jhAUxIWGDfWJb8/CLQIxh/1Cx5LBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772547390; c=relaxed/simple;
-	bh=O3wxBlM5A9IROKIfrvTr5CqxizEqTm2V+XA0/tPb8jo=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iRG6Wbh0oJz1srPqvHXg6hUKhE/bxaOJv/pZYMTRY/6KSJ1krjsvKfRd6l9kR4N0ijOzDSOyyJMSuDScS2s35UHvmsJ/k5BncomDn3h/Y3KlpD4c/T3GNzp9u3lxqRKttyldcZVwJZWtR9WQ41wghLyP8F+O/5fOPmJcejfqOWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jruDCTK9; arc=none smtp.client-ip=209.85.160.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-506a321cc53so66075101cf.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 06:16:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772547388; x=1773152188; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SN5gEyJ3CvnwwkSktZKIQYQ3lN+9NI4Pr7f8HGw+b+o=;
-        b=jruDCTK9psKhqIPBaHVzjUYt817UWNLRW3uWnQBih5DaWHVTy/vkdmLZAavMLbCaZu
-         emPzWCT/BUQ9IczRzgDAo2nNwv/TGfm8BpYdnTEYpFOORESRqAED7PD39XvBv1G/1PMu
-         v6s3v/rJbicx0op9m+wQwPaByvo3azmW64RguH6McdKJx7KLUfu6efO+kbJvwUucKbZy
-         +2WRLbJpe9K9sbhKkFmgx0lpwx0ZlXqyo8Wk7ObsazhNh3IWTMigegIuJWf/u6VQGo2i
-         9W3nbYZfREQ/Gxr6Sf/jwIMWXrfX7uri3rXsVejjQ+56dHwJ1CTh2r98Q40YjeEdAJl8
-         MIpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772547388; x=1773152188;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SN5gEyJ3CvnwwkSktZKIQYQ3lN+9NI4Pr7f8HGw+b+o=;
-        b=FX4C4vWET0MsEoIZy09iQdv3B9iAWD1hWyIyRrV5u5Sre5ms0OZdYZ6biC8ZQKRg7R
-         BxaYZaNLNYDH3i+dKvIHYHG8pLbQuerkn+62Fb9YC5i2oO/NsCRi8tdeVHPCYCDtc+6O
-         c393TOKDxavlA8ZrG64MCkF1pDaKjjeahEvrZ9+XK2mIsdBga7ZQSIihPej9yOze2rdH
-         s1btBuVy26if9pN658g/ewWCbqWIAdFVBAZDzCxMuV+Q/TUqabNXLUJs6zq+ZWG+w3Ps
-         HkLJwJBCnJ+Q0y1N1bDOKq5yZPi1Kqh7V4qpWaJQvUwEfuRCFHQOXVuIogPOJLxoxYuG
-         p93g==
-X-Forwarded-Encrypted: i=1; AJvYcCWtJbagghmv56kG6vDgYuIjvkvrn181GuXF3GFKRFjWYNA+xHts1RPZaymbC84mwX2XJzT35VUC0jAs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyo9HbBk8M4hnXZsrW3W6AVyxaZsiLsWhO4SDU48uZfRcoLSxG3
-	UbP1ipfO7SfemRFiTNIRmO1anEk5lZr28oafmSJcKAVzhKypBsvW39r2
-X-Gm-Gg: ATEYQzxhjJFjX7QE3AE3+vVv4SJjk5LarmuN9HSWJdJb0HdWTE5PBK2lOEtfc+TBVmX
-	fMgQk0p5UGHzuUx9P3S22k3uNYuLe1JAEg1wdSACaKdbNL5XDaHNpNm60gP8TuByW/Ja2WYTK1P
-	2rNnakffWonUmy35hBYZhfYnhl0I+lc3KI4cCfCfcxglCmOWHV/WppajH5yP9W2eOfJH9H2BkZk
-	ZghzY+JwW1L58jUfRA22Sn9qOXJQGe6pdKYlKcfCFuF0ObZ0dIAiTQezZUSapVBk9ZyXWJ1xBjd
-	YcNKKjgY3MCVd5xiU5ot6WRWQuFqHeF0A8xqhzBXpHy4+oSzCwSCp6a1nLidzGh20uwhaRMEWMw
-	sRcresG7BO0jwJB6F9eVrdHtpvS9/1/0S8WQrpBv6Z+mOFB+AjKgVte3o65VaXpPmneAqKm/LRP
-	Xwp5fmUS8ALJJqM6f2lE3Q8o9eRd/Zog4vZe+2J4bDh8bGFDo9Wkoi7FpYr4ZSEu9eaqt7Hzu4J
-	/xv2VUr+3Pkk0EXsS7pivvRavvCYyVFHCbKSfv2ePgJEDacL+I=
-X-Received: by 2002:a05:622a:1445:b0:506:6ec8:835 with SMTP id d75a77b69052e-507529bb500mr199466901cf.54.1772547387868;
-        Tue, 03 Mar 2026 06:16:27 -0800 (PST)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.103.netskope-rdns.com. [24.206.116.103])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50744ab3d7csm129120271cf.20.2026.03.03.06.16.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 06:16:26 -0800 (PST)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Tue, 3 Mar 2026 14:16:19 +0000
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	rodrigo.alencar@analog.com
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
-	Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v8 02/10] lib: kstrtox: add kstrntoull() helper
-Message-ID: <qcloiwjlbehs4yyuttvrt46monh7isef4d5nzuwlaby6uxfael@j3trvc5jwosy>
-References: <20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com>
- <20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
- <aabm23jCikXs1l6F@ashevche-desk.local>
+	s=arc-20240116; t=1772547535; c=relaxed/simple;
+	bh=JPFqgYi1Dv6MyQj6TPG9TdPWn3O2Cor+PGrwtLhEj+0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zi3e45FEVQOIlBGvFkqgFSM7oKRGIyk0vj8kyEFUIBJgLlcckFGymz0WEpuQ6KZfJvxajSAQAuayJqEqPXH5aT7/ILpbUeasPkuGZ1VvCXfrtmM0XsUXslaG16esSN5DK7HxDzqwtcKNXptzvGQ3gLZEo+skdbzYm5G0YZ93drU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fzgxBuXR; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+nHBkmQijyAGhMX32bNGbPnMfuA80dIeNxevfOH31Aw=; b=fzgxBuXR6XzIMO3VO4rjmSXZD0
+	8Ief15AJ+nt6Mjx9E/pQbAo0RGEa8bXoaxZP2wH/YolvHIsxzj4gYfaVkvxmrppDQnm1CF5/xHcHF
+	SPLrvI5UZFUqEGxVnxsQ+WK+8Sg1zFbt6gz+ppvb1M/9ea7ZiLpRRx/KDI/kP74aktMU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vxQaD-009s1E-Sv; Tue, 03 Mar 2026 15:18:45 +0100
+Date: Tue, 3 Mar 2026 15:18:45 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jens Emil Schulz =?iso-8859-1?Q?=D8stergaard?= <jensemil.schulzostergaard@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
+ switch bindings
+Message-ID: <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,69 +74,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aabm23jCikXs1l6F@ashevche-desk.local>
-X-Rspamd-Queue-Id: 0D2EE1F161D
+In-Reply-To: <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
+X-Rspamd-Queue-Id: 9D0171F1693
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270555-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270556-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On 26/03/03 03:49PM, Andy Shevchenko wrote:
-> On Tue, Mar 03, 2026 at 01:27:07PM +0000, Rodrigo Alencar via B4 Relay wrote:
-> 
-> > Add kstrntoull() function, which converts a string to an ULL with a max
-> > character limit. The function is an alternative integer parsing function
-> > that does not require a null-terminated string. It becomes a better option
-> 
-> null -->  NUL
-> 
-> > over simple_strtoull() or kstrtoull() when parsing integers from a buffer
-> > with custom delimiters without having to create temporary copies.
-> > The function is consumed inside the implementation _kstrtoull(),
-> > promoting reuse.
-> 
-> But this will not properly convert 0000000000000000000000000000000000000000100,
-> for example, if the max_chars say set to 20.
+> +        properties:
+> +          microchip,led-drive-mode:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: |
+> +              Set the LED drive mode for the copper PHY associated with
+> +              this port.
+> +
+> +                0 - LED1 and LED2 in open-drain mode
+> +                1 - LED1 in active drive mode (can be used for single-LED
+> +                    configurations requiring active drive)
+> +                2 - Reserved
+> +                3 - LED1 and LED2 in active drive mode
+> +            minimum: 0
+> +            maximum: 3
 
-Why would I want that? truncation will happen in the case and the value will
-be zero. max_chars can be zet to INT_MAX/SIZE_MAX if you want to get 100.
+I doubt the DT Maintainers will accept that. This looks a lot like a
+value you write into a register. How are active drive and open-drain
+described in other DT bindings? Is there something you can reuse?
 
-> Also kstrto*() have a common idea behind to consume the only \n and allowed
-> digits. This (naming) doesn't fit into the kstrto*() category.
+For 1, what happens to LED2? Not used at all?
 
-mmm ok, but include/linux/kstrtox.h is the right place for this? how about just
-strntoull()? I feel like a safe_ prefix does not make much sense if it is
-only to differentiate from simple_strto*(), which should have been safe at
-the first place.
-
--- 
-Kind regards,
-
-Rodrigo Alencar
+    Andrew
 
