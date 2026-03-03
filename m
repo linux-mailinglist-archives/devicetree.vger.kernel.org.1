@@ -1,166 +1,282 @@
-Return-Path: <devicetree+bounces-270613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270621-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCJhHZQCp2k7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:47:32 +0100
+	id EFnTE0MEp2k7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270621-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:54:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F0471F2E5C
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:47:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE6561F3085
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:54:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2ACE7304EE82
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:47:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CE824308601A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63D084921BE;
-	Tue,  3 Mar 2026 15:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rQSQVj7H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086DD4921B8;
+	Tue,  3 Mar 2026 15:51:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CED44921A2;
-	Tue,  3 Mar 2026 15:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5A1495537
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 15:51:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772552836; cv=none; b=m9YIYBm1MSqCW/Xzy19aMTvqwEOuDFUVIb1X3WG6mnWrtzcWKA7ESe33f0fqwmhye8ZqTTvbFy8L/Z3f+OOdUTk9KhgaVtMAsnlNsKlynJU9patKXpPFs7yuvufSJBcv5z1aaqVSIoBPVrNQwRiY7W+mDc4kWGnbzUJpIgcaz98=
+	t=1772553072; cv=none; b=CpnRysxvoXmvqIh9vQA7opT+T0lq3iW1hRhJg1GZLElqZgagsxLFoFor0fC3Tn04QxxrNPHKrlV4caijLcre8QrKI+4sDYXTcDe85hFru+UqY84+d+vGXvMJ6E/UdQrBlma2LgRnJMptCKy39QQMAsFqRh3DG4PkaeFLRSgx7C0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772552836; c=relaxed/simple;
-	bh=LLKQElExZghMy4kQ8esawKMBzcTfhLrpiQB2Ve3kd+s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=shnvQrxWKncUnejiGsvEJq2cN4RSNjReqAfouDgm82Rfidl5MaNpSarcAmfWkqSpc/Gbe1x1T3qBuOsJzkKzPpy8ib+7MdNEeKNOdmnj19J/Xi2V78iTVfsDUXLUGR84U9Mzp+X98K123iSv6r/1WbM7IeKDBkXVp55TfvbjwE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rQSQVj7H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E3B9CC2BCAF;
-	Tue,  3 Mar 2026 15:47:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772552835;
-	bh=LLKQElExZghMy4kQ8esawKMBzcTfhLrpiQB2Ve3kd+s=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=rQSQVj7HT/6abpwLlcS7u+hzgwwsKQQ3Oa56ei58g2IC8MPXpcDeSssGkIIufUJ/H
-	 7vYOA3/AoqIm200UR++fkWRuutBjqYfTiJsETnQsYXUSn7sC16omKbZ6ws4OhnT3D8
-	 kPgLFWUmOCh249MNvBkO78Q92Xehb6EFU0b4O07BggEKTANbh7tfau9kncoTiWTkdu
-	 EeSjRitClF83K6Mj1sCMrYdVphljt/GzKNIuo1R16x5KbhTaxJW4n6PK/XlR2bHigo
-	 IeXsgS6U1VQNVWRXDilA4sjPKU0pJWjUjNK/r63xUB+QjzRFZao/ODi8FRKRX5rriI
-	 n4JUpAQLhrpww==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D8646EDA690;
-	Tue,  3 Mar 2026 15:47:15 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Tue, 03 Mar 2026 16:47:16 +0100
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: Define PCIe clock pinctrl for
- BPI-R2-Pro
+	s=arc-20240116; t=1772553072; c=relaxed/simple;
+	bh=+Sm/P01h0kFbiVviehOODArZCDJSwlqi41ntmhONvrM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oR1CUc9KNI+0jxqmzhsVVInKWh1sgh/3noU21AMMSbEA+URSx8ojCN6SGxrqwC3A9Kki9f0wIA5tJiBt21nPI70zjRximJkd/zE2GlyjYlSY1jGf+UF52zuSe4P/zCL1A8cYgY78/D70vI/kNSGnWPBO2ducyAUZmnjj48x38ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxS16-000579-GX; Tue, 03 Mar 2026 16:50:36 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxS11-003ZRH-2s;
+	Tue, 03 Mar 2026 16:50:33 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vxS13-0000000G7Cv-0QPS;
+	Tue, 03 Mar 2026 16:50:33 +0100
+Date: Tue, 3 Mar 2026 16:50:33 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
+	Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, luca.ceresoli@bootlin.com, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v11 3/3] arm64: dts: imx93: Add parallel display output
+ nodes
+Message-ID: <5esgi6k7sji6nwmp7ch3xcajrc6xxc3yfxe2iqq6z6wuvznuts@ytchokq2uy5t>
+References: <20260303-v6-18-topic-imx93-parallel-display-v11-0-1b03733c8461@pengutronix.de>
+ <20260303-v6-18-topic-imx93-parallel-display-v11-3-1b03733c8461@pengutronix.de>
+ <tyqgkbmkmenkdqdptb3baeizmvsdoyfjnaudlpb4jnz4py7cpb@oy64pijka2yz>
+ <aacCBGRAd6JbktHU@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260303-rk3568-bri-r2-pro-fix-pcie-v2-3-04665e55d5a8@ixit.cz>
-References: <20260303-rk3568-bri-r2-pro-fix-pcie-v2-0-04665e55d5a8@ixit.cz>
-In-Reply-To: <20260303-rk3568-bri-r2-pro-fix-pcie-v2-0-04665e55d5a8@ixit.cz>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Martin Filla <freebsd@sysctl.cz>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1430; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=YlHCb0F1jScc81vTO0QX1ebEtLSzHBVXADDaJRK3w/o=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBppwKCO+kcSHyvVYUFDqdVlS/FKdg2A2uzn7r7i
- 14m2Hb9WmOJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaacCggAKCRBgAj/E00kg
- chSTD/0aqo0VrgY7y3pu2xg/5Hs9RLsyUQ9RMPw9nhqZxI+GaxgPgHw4Q4qmQCCxDun/wkv2zj9
- t6lZor6QRNaLMQ5UHuajfEsz1MH1Jg0wV1jXWdKuYn8KCd0542qPxl0cDDf9AzfafT9FsfafkCn
- VkL8Oz61MvzWpTbGcOLOJzFmEB3aCdxesPiKCMhAV0ueuckNtqWn/nA7rKnLPrqMpBpYspqbjSJ
- YeG5QIIj19+KIaOzhOjGgTh+tTXVpSesYCshI+c2ZaC8BRTmCQXwiZUodXIkd5dApKHPMeRLyIo
- fDTr+E7EUkXyMURwc+QaxIQYHJBhwATi3wRB58uok4wdnn77e+ZGfN63yv7BkSiQqdqnxcr8k/b
- Op1+1evuQWP+HK5AXtiAx98FQOp9OAeepOhHqS5u3g9UuT/gzuNmEzBCobDxybJMq/pOpj0DpzF
- errUiIHL8zg4bS+BEfkZvVMcjkYFZgmsNZl/y9646A1CjQ75sr4um8tSdWSaPHkkbq1Jao4JE2q
- Asi0jh/mJYzPaU2F77cy5Ahy1bWkuHKQVSMQu4O3ol5oCuy6H4KQ62OwKFDE+kCbnVWHxTuroEX
- fxwFpjhJ6YCDV1GF7wc72VBToyedtEFBweezk2XZ+RG88BUGJOQ60aEpWMdyO3q8MzXIzcdeOp5
- SjoHILyGCxzcoTw==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
-X-Rspamd-Queue-Id: 0F0471F2E5C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aacCBGRAd6JbktHU@lizhi-Precision-Tower-5810>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: BE6561F3085
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270613-lists,devicetree=lfdr.de,david.ixit.cz];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270621-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[david@ixit.cz];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,bootlin.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sysctl.cz:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ixit.cz:replyto,ixit.cz:email,ixit.cz:mid]
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.963];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.2:email,pengutronix.de:url,pengutronix.de:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,2.166.110.232:email,4ae30000:email]
 X-Rspamd-Action: no action
 
-From: David Heidelberg <david@ixit.cz>
+On 26-03-03, Frank Li wrote:
+> On Tue, Mar 03, 2026 at 11:42:08AM +0100, Marco Felsch wrote:
+> > Hi Frank,
+> >
+> > On 26-03-03, Marco Felsch wrote:
+> > > Add required OF nodes to support the i.MX93 parallel output (DPI) path.
+> > >
+> > > On the i.MX93 a single LCDIF is connected to three bridges: DPI, LVDS
+> > > LDB and the MIPI-DSI whereas the i.MX91 support only the DPI bridge.
+> > >
+> > > Map endpoint@0 as DPI bridge output since the i.MX93 TRM (Figure 485.
+> > > MEDIAMIX block diagram) doesn't mention any port-number <-> bridge
+> > > combination.
+> > >
+> > > Set the MEDIA-AXI and MEDIA-APB clocks to the overdrive (OD) values
+> > > since the i.MX93 and i.MX91 use the overdrive (OD) clk settings per
+> > > default.
+> > >
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> >
+> > Please ignore this particular patch since you already applied this one.
+> 
+> You can skip these when you post new version. post delta if need update,
+> I can squash to previous patch as need.
+> 
+> >
+> > Next time we should align the apply with the rest of the patch series if
+> > dt-bindings and driver behaviors are involved. In such case the final
+> > integration patch should be merged at the end and not at the beginning
+> > :)
+> 
+> You request apply at :)
+> https://lore.kernel.org/all/fl2br7rtcjrjj2uqxva7ai3xbvjwrrbbl2ruaoqolrccr2rd5p@z33qfx7dpavf/
 
-Without configuring the PCIe clock enable pin as an output, it
-remains floating in input state. Some operating systems that rely
-on correct pin settings may fail to boot as a result.
+I meant the whole series :) Although I'm unaware which maintainer is
+taken which part. Sorry for causing troubles on your site. However if
+you would try to apply this on your tree, git would have told you that
+nothing needs to be applied because this patch is untouched.
 
-Fixes: 86973ae0355b ("arm64: dts: rockchip: Add PCIe v3 nodes to BPI-R2-Pro")
-Reported-by: Martin Filla <freebsd@sysctl.cz> # reported by private message
-Tested-by: Martin Filla <freebsd@sysctl.cz>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+Regards,
+  Marco
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index a071cb67579c4..0616d9a065605 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -125,6 +125,8 @@ pcie_refclk: pcie-refclk-clock {
- 		clocks = <&pcie_refclk_gen>;
- 		#clock-cells = <0>;
- 		enable-gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&pcie_clkreq_h>;
-+		pinctrl-names = "default";
- 	};
- 
- 	vcc3v3_minipcie: regulator-vcc3v3-minipcie {
-@@ -650,6 +652,10 @@ ir_receiver_pin: ir-receiver-pin {
- 	};
- 
- 	pcie {
-+		pcie_clkreq_h: pcie-clkreq-h {
-+			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_output_high>;
-+		};
-+
- 		minipcie_enable_h: minipcie-enable-h {
- 			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none_drv_level_5>;
- 		};
+> 
+> Frank
+> >
+> > Thanks,
+> >   Marco
+> >
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx91_93_common.dtsi | 54 ++++++++++++++++++++++
+> > >  arch/arm64/boot/dts/freescale/imx93.dtsi           | 12 +++++
+> > >  2 files changed, 66 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> > > index 7958cef353766a430df5e626ff2403dc05a974b1..5a8813df6bc993d559fb0b20fc742a106bfe6315 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
+> > > @@ -1122,8 +1122,62 @@ media_blk_ctrl: system-controller@4ac10000 {
+> > >  				 <&clk IMX93_CLK_MIPI_DSI_GATE>;
+> > >  			clock-names = "apb", "axi", "nic", "disp", "cam",
+> > >  				      "pxp", "lcdif", "isi", "csi", "dsi";
+> > > +			assigned-clocks = <&clk IMX93_CLK_MEDIA_AXI>,
+> > > +					  <&clk IMX93_CLK_MEDIA_APB>,
+> > > +					  <&clk IMX93_CLK_MEDIA_DISP_PIX>;
+> > > +			assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>,
+> > > +						 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
+> > > +						 <&clk IMX93_CLK_VIDEO_PLL>;
+> > > +			assigned-clock-rates = <400000000>, <133333333>;
+> > >  			#power-domain-cells = <1>;
+> > >  			status = "disabled";
+> > > +
+> > > +			dpi_bridge: dpi-bridge {
+> > > +				compatible = "nxp,imx93-pdfc";
+> > > +				status = "disabled";
+> > > +
+> > > +				ports {
+> > > +					#address-cells = <1>;
+> > > +					#size-cells = <0>;
+> > > +
+> > > +					port@0 {
+> > > +						reg = <0>;
+> > > +
+> > > +						dpi_from_lcdif: endpoint {
+> > > +							remote-endpoint = <&lcdif_to_dpi>;
+> > > +						};
+> > > +					};
+> > > +
+> > > +					port@1 {
+> > > +						reg = <1>;
+> > > +
+> > > +						dpi_to_panel: endpoint {
+> > > +						};
+> > > +					};
+> > > +				};
+> > > +			};
+> > > +		};
+> > > +
+> > > +		lcdif: display-controller@4ae30000 {
+> > > +			compatible = "fsl,imx93-lcdif";
+> > > +			reg = <0x4ae30000 0x23c>;
+> > > +			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			clocks = <&clk IMX93_CLK_MEDIA_DISP_PIX>,
+> > > +				 <&clk IMX93_CLK_LCDIF_GATE>,
+> > > +				 <&clk IMX93_CLK_MEDIA_AXI>;
+> > > +			clock-names = "pix", "axi", "disp_axi";
+> > > +			power-domains = <&media_blk_ctrl IMX93_MEDIABLK_PD_LCDIF>;
+> > > +			status = "disabled";
+> > > +
+> > > +			port {
+> > > +				#address-cells = <1>;
+> > > +				#size-cells = <0>;
+> > > +
+> > > +				lcdif_to_dpi: endpoint@0 {
+> > > +					reg = <0>;
+> > > +					remote-endpoint = <&dpi_from_lcdif>;
+> > > +				};
+> > > +			};
+> > >  		};
+> > >
+> > >  		usbotg1: usb@4c100000 {
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > > index 7b27012dfcb564650882dc8c40e836e797b2fda1..5436b48b30e89eb1f939b398ce1bf105abe7e34b 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> > > @@ -150,6 +150,18 @@ l3_cache: l3-cache {
+> > >  	};
+> > >  };
+> > >
+> > > +&lcdif {
+> > > +	port {
+> > > +		lcdif_to_ldb: endpoint@1 {
+> > > +			reg = <1>;
+> > > +		};
+> > > +
+> > > +		lcdif_to_dsi: endpoint@2 {
+> > > +			reg = <2>;
+> > > +		};
+> > > +	};
+> > > +};
+> > > +
+> > >  &src {
+> > >  	mlmix: power-domain@44461800 {
+> > >  		compatible = "fsl,imx93-src-slice";
+> > >
+> > > --
+> > > 2.47.3
+> > >
+> >
+> > --
+> > #gernperDu
+> > #CallMeByMyFirstName
+> >
+> > Pengutronix e.K.                           |                             |
+> > Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+> > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+> 
 
 -- 
-2.53.0
+#gernperDu 
+#CallMeByMyFirstName
 
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
