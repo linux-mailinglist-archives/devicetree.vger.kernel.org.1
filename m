@@ -1,330 +1,198 @@
-Return-Path: <devicetree+bounces-270411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270412-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGuaCa2ypmn9SgAAu9opvQ
-	(envelope-from <devicetree+bounces-270411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:06:37 +0100
+	id QAISJFazpmn9SgAAu9opvQ
+	(envelope-from <devicetree+bounces-270412-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:09:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B99821EC580
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:06:36 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 932811EC684
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 2B6DF3007534
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:06:36 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E96E7301BD71
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B083939C6;
-	Tue,  3 Mar 2026 10:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED54B39150B;
+	Tue,  3 Mar 2026 10:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwvAnL8s"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DFMZi/qu";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="TtEb7TWO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 511F4391821;
-	Tue,  3 Mar 2026 10:06:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6A9391503
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 10:07:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772532389; cv=none; b=ryodNBJVHPM8eljqNKs+IaYmmXpuodHfFj1EiFElZWVkAExyH5lUhfPsq9zSTL+HNVx29UHiwJUoSw1ThuAmQbVdxr7g5FTVpwXkYPIC18GbSe7+uD7BaZ6MPsm6+/rS8HM3vemOn8t51N8NXOA+cwYjQ7xcbG0pvgwy5H4rgj4=
+	t=1772532461; cv=none; b=Ofu7q8Ygh8B9vAyH+BvH117wKJ5xYKLED9Dc+S0hQ0c7awHLff8Rmz6ui2MKQMD+AizqR6H2qWSLTy5FIA16qn+pPF4UyGynETQ5Wf4OCDEY/MK9ibIn9gZ8XQTgIqZ7POanR/5aKKJ9ilomtego1QUMWFNscm1DsZVqBesCdQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772532389; c=relaxed/simple;
-	bh=eO9gr/Eb4XIsWl7Ozofk85fAxnL6mM1g0zjcZLACG1E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=u8gM6r6SPdQ34XgP0BVgDVTrr4ChtMThZPa3PZACye9DcXRNe25D3RfmziDwwe5jVJjJRoGg6ga3c2HSrFmxGXbXqmquFWPCHVmcq1bBiff9yGMuuzPNogI98QOIHNX0yvxHTnaRAbu5cZtiJfrfineAaCsPL3YWmuI4Pd0VK8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwvAnL8s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 14F8AC2BCB2;
-	Tue,  3 Mar 2026 10:06:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772532389;
-	bh=eO9gr/Eb4XIsWl7Ozofk85fAxnL6mM1g0zjcZLACG1E=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QwvAnL8s3kUVS+Wkay3SZrBGweoFZp3/PWltmdmzr3P2yx+KYDH5vHkNUpFLOZGmN
-	 RfpyhKzW67qb+r0uHikBeRF2v+QsdIszX7XSGw4nUGTop1sOa8aDcTtv4V+WdUsEJF
-	 3sqW2SIV4epMyUuQuwCgyYBZRnMoLJkyoe0VvS6d8gLF1BjkAjLRKuLYz8+BS2xWHt
-	 kZTnuUm5itoZseg7Wu4jI7llZwLAKGFalxiDgK4rAI1uzaKaaqPyl6MyaQNsHfSkl5
-	 1xH+E9vi4cW9kmzyGxsljBYvqhtff2a8CIegC6M3kpmG4WGJNzZcUE+Issc0O6bBZS
-	 TvB6QzSky/JNg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 057C9EC048C;
-	Tue,  3 Mar 2026 10:06:29 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 03 Mar 2026 10:06:26 +0000
-Subject: [PATCH v3 2/2] arm64: dts: add support for A9 based Amlogic BY401
+	s=arc-20240116; t=1772532461; c=relaxed/simple;
+	bh=2QgGw+VLl538AxK4NH+SulIRIdtltjIFPi+D9n3D+pM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZLbaqaQVauTmI0MzoJOWdnUSkyNQeCXi123O2OkssNF5PZuEOqi7+am3CxrQjKXoEexbua7ObqcThmiDi5AftLFCV16PB7yxbXdmBPvKnOX3wcPwa6W13Ht45hQiOEdPxGLs2JEKS159b8Txkaq6sKYngQLh+OgXpBYov2sGblc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DFMZi/qu; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=TtEb7TWO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6239n5Jq1838277
+	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 10:07:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	CZGGj/Cq43q5ATiRBFYGEftySIRuSNWf8OfummFnl00=; b=DFMZi/quVv2iY5j2
+	CsQ1gxfK8ODtli7gAgMSA6d7fHusooOICd3XkfdE0GtLRyF3OzKlW9eSozKfBUO4
+	Yh6zLGtVWSYIhO27m3IOOeK0Q3j9rGJx8vwqjza74j7a7BApu14unY/QNnV6LmuA
+	amX/d5quVf88qxQOLWVNSjBW29N/elpkcX/Sx2/oLfBL1a4b9sbnY/jR+43Py5hC
+	ME/fM6NKtkHAg+xg4xi4njiacE3M3eFb+HMIt/Gov16PWzbTtrRFmHX91m/y63so
+	QQIVgrnbpEH6Q+NIwG7ry1LcVJGkq7GefsI65xVswW/Go53CKWA9KUEViI3Cqe+N
+	s3lX/g==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnngg9rkk-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 10:07:40 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8c7177d4ab4so525353185a.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 02:07:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772532459; x=1773137259; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CZGGj/Cq43q5ATiRBFYGEftySIRuSNWf8OfummFnl00=;
+        b=TtEb7TWO7qdTjx6M4oUW22UQ8LAU3YaRpdggOsOfcKa2KCfyTpwlhakL3gOLCCBUHd
+         HigtBtrEKpKlVbgjS7LlRI9KAe2cjzksdSqqhjPj2C9HE5zsu4focYt2EDfPThTmDXsQ
+         wMz0xr59+HHrHRaWF6g6+An4FVa6qF0yeowqQH0TI5V8r7Itr+uf4hP4LH5XqjO/KzvQ
+         YjAc+gNj2se0J4WqaSqEEDHwLXrHu8xRNTIPjYHRDUJo7Xm3f1UKdjn3mWiP9RJxbv3S
+         LNIG27KUbmdc6v2OfzCxBgaJ6izKgU34LYndww9AsN4sVdTg3UzQMDOLddyG979LbhDz
+         b6aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772532459; x=1773137259;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CZGGj/Cq43q5ATiRBFYGEftySIRuSNWf8OfummFnl00=;
+        b=fQqWXmQqq5q+rRjZw2pgPoF8zr0vj6iWx1oTHM/ftBlDFW4AfZkq94yVr6h2agOtU+
+         jBZN9g5sKXnYyYMmjnxcW1vugy2oV9fbZqJ7xN3QfutjhwO4BjQfBdfnbUcCC44GhBeY
+         kwIYfc7s4bJdOnBtuWdeEP+v+r5hfaAEpIKwsP92E9syjg3otk0fZlehJ7tgnkjAIuTB
+         q0OxosyNIGf6zpglT7A+L+T7u4rEG55VmtWaL8ghtaMHwy323IWThk12H13il7sDFX6P
+         y7JxnMf0kQY7za7w7E4T0brjobD9g7gxdSma1EUzFbFCgaQ9BnBlJLbND6HeMqs4ThuZ
+         vb3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVs474sU5gMONm6DJakpqCZGZxFWyMfwjIstPzWT1DkNjCZzRdwT329vrt2uujCU07Xm05nbnaGYt7k@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYqHgPogL0DRe4b6bKwoTRTHJzQ1W98d8mCTaogsk4OhBmsbwd
+	kgnDTI+uJE53PktgOxnFbA0RsXZRiFoOfe1xyG88NDjGbbXr6RLkKZH0f+VbVgG5h2oyAIszLAJ
+	nwyU4yx+6OrJSR7E+cEHU4ypwlCPTcDCRnbyNswCWVBRdaQdlIFPKoTMTR/KOf1Eh
+X-Gm-Gg: ATEYQzy0J0yL2WK8i+VKjVXf4tMZV0bsWho4zf6Z3Q8xRV6mg8rlDq/rTmnCt1Tvs+K
+	uQrcj3aWTMehUFRSpDIS0ca7PNjkwmWTE9kOimjkRnQBHSewrRFpHF4stFHLkibsOdJk3WNylHf
+	4gSsH6c6jEX+Vams+5pN0aCNVJ09PQih0FsrM4pksK/FQhSoMiKTMeCmCVrIcgoJRtf4U5ox0Pp
+	I6ip8PpSj4O9oQ8410H0RxFMWDJpUNfb2NgCEXtT+4R0mXa8+wvk6NKeYPiHI6cL3AXlwHFe1Rj
+	5gihIZHrLoDATulgOCTKn3ktEfyEUoEg+l29Bi9L94EGf1HvRig6vNoCEERBFbKZS+39ILD8NQy
+	04fq4NRODOt7DfQRZdgrtiZKtRmCitVDPM5kRHwxVhvrT1adUubqgEsoC0r9sRLJViZRtUSnBhC
+	gxDKw=
+X-Received: by 2002:a05:620a:7007:b0:8cb:3fa7:c4f0 with SMTP id af79cd13be357-8cbc8ee5ac8mr1679032785a.5.1772532459065;
+        Tue, 03 Mar 2026 02:07:39 -0800 (PST)
+X-Received: by 2002:a05:620a:7007:b0:8cb:3fa7:c4f0 with SMTP id af79cd13be357-8cbc8ee5ac8mr1679030485a.5.1772532458530;
+        Tue, 03 Mar 2026 02:07:38 -0800 (PST)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9383397fcasm444054166b.60.2026.03.03.02.07.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Mar 2026 02:07:37 -0800 (PST)
+Message-ID: <aef4305e-3965-4f55-8eb5-3bbabd63bd18@oss.qualcomm.com>
+Date: Tue, 3 Mar 2026 11:07:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/7] soc: qcom: pd-mapper: Convert to
+ of_machine_get_match()
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+        Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>, Ilia Lin <ilia.lin@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1772468323.git.geert+renesas@glider.be>
+ <0d23a449e62ac85f04ff07bc2758efbaa709c9d1.1772468323.git.geert+renesas@glider.be>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <0d23a449e62ac85f04ff07bc2758efbaa709c9d1.1772468323.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260303-a9-baisc-dts-v3-2-4bf21001f05c@amlogic.com>
-References: <20260303-a9-baisc-dts-v3-0-4bf21001f05c@amlogic.com>
-In-Reply-To: <20260303-a9-baisc-dts-v3-0-4bf21001f05c@amlogic.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jiri Slaby <jirislaby@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772532387; l=5530;
- i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
- bh=ngLHAW867mRhs8VNuDyRiFbWtUBMBRBgKcYsKwXWGTI=;
- b=kq1gPymBgUjE80ZPXYiIBeePFG1tvPtkAA8t84W83cJvSsI3hfikZCueSKu36A9ph/RI/kl2Y
- Q0Nz3CBc3xFDXQNXy5ghHTlta4obN0SEoYDW4603aJu4AW+BdkKtEKv
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
- auth_id=578
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
-X-Rspamd-Queue-Id: B99821EC580
+X-Authority-Analysis: v=2.4 cv=P7E3RyAu c=1 sm=1 tr=0 ts=69a6b2ec cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=EUspDBNiAAAA:8 a=O2ICF3MwSKB_Mz4s5DoA:9 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-GUID: wiMMf9KmsPiRVHFOG7_dYv_Y7EYOR_2X
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDA3NiBTYWx0ZWRfX8ikF0QKeRaiJ
+ M0p/dIwiCK/ILZEIz5mIPZN7GxFtaRCr87WzB0yUo1I7Mln11uWEjg8EYtnrsPWI9UyuFv7twT/
+ hSFnQaxtqMeTlUSQnyH6fy+OGDeCjvh5lQOVZCiZkw1UdckJZi6LfjWX0LBIATyJ7b2h0d3W/lg
+ KKNpH8ty8sqau0ryKCeZjKO+0S7CdaOojHy1L03C9rNbNH31ZIgNhDf0k5jlRQ0k+cuKny4TiKO
+ z1IQla6eJYErIw9dMUbvybJsqlC/yeHXfCDwPtdIv91WHi0bRH9y0u2nzSwoTX8lLHo1lhuw88f
+ My3V6aeo2U6FopBrsR58b9p52AmFL+Nnn1CDYzXJ03s2Nz+xfSTKCEv/sUWA5/i4af24qrSyWC0
+ MVjiGhdTim0ftNka9AH6Yz5nSNtDgJ9Bra4i0aDcEkNaEVwdQk6lYGTagViiVX8GjC+9VXuZpLd
+ OiHVFU+xDXYzkDhqFcA==
+X-Proofpoint-ORIG-GUID: wiMMf9KmsPiRVHFOG7_dYv_Y7EYOR_2X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-02_05,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 malwarescore=0 adultscore=0 bulkscore=0
+ spamscore=0 priorityscore=1501 lowpriorityscore=0 impostorscore=0
+ phishscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603030076
+X-Rspamd-Queue-Id: 932811EC684
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270411-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-270412-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,glider.be:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,googlemail.com,baylibre.com,linuxfoundation.org];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On 3/2/26 5:29 PM, Geert Uytterhoeven wrote:
+> Use the of_machine_get_match() helper instead of open-coding the same
+> operation.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> Compile-tested only.
+> ---
 
-Add basic support for the A9 based Amlogic BY401 board, which describes
-the following components: CPU, GIC, IRQ, Timer and UART.
-These are capable of booting up into the serial console.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/Makefile               |   1 +
- .../boot/dts/amlogic/amlogic-a9-a311y3-by401.dts   |  40 +++++++
- arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi        | 128 +++++++++++++++++++++
- 3 files changed, 169 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 15f9c817e502..57bc440fa55c 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-a9-a311y3-by401.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c308l-aw419.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-s6-s905x5-bl209.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-new file mode 100644
-index 000000000000..a6b380ca47a5
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9-a311y3-by401.dts
-@@ -0,0 +1,40 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "amlogic-a9.dtsi"
-+/ {
-+	model = "Amlogic A311DY3 BY401 Development Board";
-+	compatible = "amlogic,by401", "amlogic,a9";
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x80000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 35 MiB reserved for ARM Trusted Firmware */
-+		secmon_reserved: secmon@5000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x0 0x05000000 0x0 0x2300000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-new file mode 100644
-index 000000000000..d957c8ad1d86
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a9.dtsi
-@@ -0,0 +1,128 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2026 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x200>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x300>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu4: cpu@400 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x400>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu5: cpu@500 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x500>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu6: cpu@600 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x0 0x600>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu7: cpu@700 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a78";
-+			reg = <0x0 0x700>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@ff800000 {
-+			compatible = "arm,gic-v3";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xff800000 0 0x1000>,
-+			      <0x0 0xff840000 0 0x8000>;
-+			interrupts = <GIC_PPI 9 0xf04>;
-+		};
-+
-+		aobus: bus@ffa00000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xffa00000 0x0 0x100000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xffa00000 0x0 0x100000>;
-+
-+			uart_b: serial@1e000 {
-+				compatible = "amlogic,a9-uart",
-+					     "amlogic,meson-s4-uart";
-+				reg = <0x0 0x1e000 0x0 0x18>;
-+				interrupts = <GIC_SPI 66 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+		};
-+	};
-+};
-
--- 
-2.52.0
-
-
+Konrad
 
