@@ -1,220 +1,315 @@
-Return-Path: <devicetree+bounces-270670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270671-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEl2CZgbp2kUeAAAu9opvQ
-	(envelope-from <devicetree+bounces-270670-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:34:16 +0100
+	id GAPXF18cp2kUeAAAu9opvQ
+	(envelope-from <devicetree+bounces-270671-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:37:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 927BC1F4AAE
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:34:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 068B61F4B80
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 18:37:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EC1F7302F735
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 17:34:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C19243064BE7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 17:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8323DEAD0;
-	Tue,  3 Mar 2026 17:34:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068303C6A2C;
+	Tue,  3 Mar 2026 17:35:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="S+Auf81b"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="1qMBKhQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com (mail-centralusazon11011031.outbound.protection.outlook.com [52.101.62.31])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF993364E95;
-	Tue,  3 Mar 2026 17:34:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.62.31
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772559252; cv=fail; b=N4kOik+gskp/sAvPhRu+AsLal1bHm/Clqq7N1n9usndx3BCONTqrcw4hRoFRhbtPrne/3k8pzhZoOO8xh2XcgCj29DF6XJnjRi8JWXXLzg/n2dX4b0AUaMC0D9rwpT9RxK9ieP45n3Nl5oXwP6YTW54ogj2hBGItXl3MVxk9BcA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772559252; c=relaxed/simple;
-	bh=aUwB/y0T3zu+yfRJMBrIs9mX9NO6nTCPOXlPQBB7xA8=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Ll2ErjzL77eZZ+pzbG8rSRrSg0hgZtnGy/rViCphJc2gJFlMKlaDHEI3MMpAJjCqG/1aoLbrWb+rQWWf9GYcBqG4dn2f4Way+xt2me441UTXex2eh8JW4PD0fwGHarDJ9IKU8ExJ8VcljKtE1lKH74TxX5/zWxyGk0Ho/E52aXU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=S+Auf81b; arc=fail smtp.client-ip=52.101.62.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FDcs3V+F7JYmHdzxzEde9v702PUBdlyNWOEGQsATjWN05muy+rRD5ekhj6Lv86eDoP+tSxGjsz7fR/2B/e6Rqb6CUGntH8NqL+Md+zeLViKhPnPYwAMNdY4BPTbmmMpX/Z00S1R2iBE6y/VTQF4x+8UB1QvVb2jsuFeppTBzj67YKW4XGvtRTMdRm604NoQz66YiKWARkwYElD+8yjIKFEstjOz2UMOe8NYuG9ak9UKo3vRpaBQBoNY6DsS/lPZOpCnw6bpO08gSkpwhPFAReSktfY/KtUJqdytyJNAXXqIC2Brtw1SFutZlA4f+C0iu/LU0MVQm86FzCem7wwrA1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2jxcCLOF13+rpnyrtrMXhZEF87PkPyvUmUV90mFdCl8=;
- b=KRFjv3vaitlDS9RTOadZKsl1P50saxYA9A8Jo/qTXLcdWE4ZYkli3lxRns0Slw7o5YxiN/E2uMWhdn2z7flvN08Vvjbwr8ZBnr8OD0O3aqkYr+BngHKWMCC3JaLleeZcvxb9eiK6+IYQjWUrFDHr3OZ/+RFhw4lx/AF1XKlNHsusKd7rNjAyQ7NT0I+2SvRQoaAeszmke9RoOabRPgKnPWqurDPNEtnGWJjPQMGD2Aw4IUrCCULlIquHZlZsM8oFDhWzeKEeW5L17vjnwH97G4BQbWpOYHXCP37umcK7Wte6fVuu2OfR+7PdxpQKkvfFiFUEITrse1Da+FngMcdvMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2jxcCLOF13+rpnyrtrMXhZEF87PkPyvUmUV90mFdCl8=;
- b=S+Auf81bewLSCLJ516wg6jP+ZRx/zxEOsynqKxGwo9MeJeW0Zqro6cx6ZgwkzdwwyoagZwCV+T2I7aNokK/McxOAH7fLkRoCTxNcYdY3kMk2g19BikeUoLeXmyFb5eW+692cIoUeKHdTeqqI0nousCCcHc8jKovfFg3fM2gPImtnendaqC96m40MG5JAzt5etkGiIIE6PE6EZJ6kYKZh6da6RiX/3J0JSrROF0Mkxw0bWrehcsz0ivOid8ymkMhjMn4cGpDZevlDvqWcFXvQEnKPe6mHqfomuMmOUupFcVVG5qqm9ABZZpNRiT4NkSsgeuy1HUN57sSrskiLx6/xGA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
- by PH7PR12MB8827.namprd12.prod.outlook.com (2603:10b6:510:26b::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Tue, 3 Mar
- 2026 17:34:05 +0000
-Received: from DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
- ([fe80::56a8:d6bf:e24c:b391%5]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
- 17:34:05 +0000
-Message-ID: <361e0146-c5af-4f16-a946-14d1df85f99b@nvidia.com>
-Date: Tue, 3 Mar 2026 17:34:00 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/9] dt-bindings: dma: nvidia,tegra186-gpc-dma: Add
- iommu-map property
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: Frank.Li@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org, krzk+dt@kernel.org, krzk@kernel.org,
- ldewangan@nvidia.com, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, p.zabel@pengutronix.de, robh@kernel.org,
- thierry.reding@kernel.org, vkoul@kernel.org
-References: <28c731aa-970c-4ca4-93b5-e2cc57b0c119@nvidia.com>
- <20260303171441.11545-1-akhilrajeev@nvidia.com>
-From: Jon Hunter <jonathanh@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <20260303171441.11545-1-akhilrajeev@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P265CA0198.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:318::11) To DS2PR12MB9750.namprd12.prod.outlook.com
- (2603:10b6:8:2b0::12)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60B4D3A963A;
+	Tue,  3 Mar 2026 17:35:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772559318; cv=none; b=merFQ0MzDhmoRAxoxYLjwJWHTsKaBRNhinfzPrURlEo/HU/LRvl4dxivQ4+x2SFKXaCdm7vzs0085Bhxqy9M4uF5fVQT7fPnGCE6OlZZw/HpOEXRZZF9neOiperZi4J4+kDAZ4nmCLx4pMVQzQnmNAwEAvRmZJLkG19nqTZMg8g=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772559318; c=relaxed/simple;
+	bh=zDi+9ip27KvaZgXDANm1Jv8MZl7/WZGTtKX3IVlD78E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=tlShAbE3mRH+K6PELhZYu+4NSN7oqX1tzcsB+cJqytnzVkhz9v1MXEMF4J5+bBpbTn1zwdIVSTrM+u+krdW3IUQy8fUAqwvpa7RI/RqxGGpT4rRciDnam5TbHpluWVs4i4xracWH7XCpbXx1aNMlL6ApIa2DknSq4wbLNcfcdgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=1qMBKhQL; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772559317; x=1804095317;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=zDi+9ip27KvaZgXDANm1Jv8MZl7/WZGTtKX3IVlD78E=;
+  b=1qMBKhQLx1A8sjTfverxKznvAR//umxvboPYST7tffogXxtlm+LMWvD8
+   yOWUqcuPmYKmdPg6xxUkgqjWmSgm2HFhWdHBRRWU/Ksd/lqiJ9SlLLmZ1
+   NMrY6JGxIJkGqGmmnXJ2xoqBW2XrSwkKjI5UetxVMwIUuXj519DULzul3
+   E13ZaIUYUQnQ7PVzqzgQVwLjsvVZqIDJKKZAMI+ESHN0GJlMZqy5qtVcu
+   OB60jsuSMLkPKZ1bSrmRb+/r8U0b8MNynNkepqXhwBxcO0rWwIA0XSKyd
+   vO6TqBHGJ5hHniSLEd0kUDVsKaPIMsQ3DVHiOFZcogUiqF5tKLyGeGBel
+   g==;
+X-CSE-ConnectionGUID: l+McZhTnR1KWxB6hU/HDTg==
+X-CSE-MsgGUID: Qt3zyM1aTdSLW8AmyjYHNQ==
+X-IronPort-AV: E=Sophos;i="6.21,322,1763449200"; 
+   d="scan'208";a="53416880"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2026 10:35:15 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 3 Mar 2026 10:35:00 -0700
+Received: from [10.10.179.162] (10.10.85.11) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Tue, 3 Mar 2026 10:35:00 -0700
+Message-ID: <a1e36563-0e74-48b2-ae02-813cb28fc931@microchip.com>
+Date: Tue, 3 Mar 2026 10:35:05 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|PH7PR12MB8827:EE_
-X-MS-Office365-Filtering-Correlation-Id: da2d76ba-d34d-4102-4c4c-08de794b1136
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|10070799003|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	9K6/OFWCwLTTg+SerAHQC1v3KgO1cy9y9XHxCGVKooJhxUruiPX+MA30K0uAWGe/2EBpDFiG2IdTpcGK4AAmsqQsQ3OC48VAeybfXOy2A9v8azbq17XSjQSPGD+mlFPuiEf6z6qVWEqc6siC/tCtVvlvKQi4533e/SIcmG7UOt3a/Vm8QPkatiaKPBXP3vz0O4Y5cFAjzyYAQGWnSK6PjtiKr9nQIT1RaVym74En8YA9BH8JwZRzBfYsQPIvyI3JYNiwwu5IcrzyICaPCiDULn9z7zkeNgwzacpFqowg89xX3EFXxkwWxwPOeK5TH2KDVuGKYLTHKuNFk6m8eRDpERHM22hu5SLN6aaHEgKDpMpQjaW93FCmJ6CwuOKH5N5gBzsZI5jIbO3F3WxQGFMtZkDri1avSZhdIWONMpU7vYgLR+Kg9ccwP/WGnXJ3eS/esX84zYEJ3QFfe67dhRmiHzw1msm0hcsJa2JjpdiVRK0bD25qCWJjP0HmZDpoRZtLX+WoAZ0E3LuOQNVh8OF/MnvXTq61mvqs+h9AD7eaPiossnLfchLFEy77fZX4yVmIxzefH8hED/9cz4vLoJah9BSCWYKU0mXddamXXg66qxolNbM7SJ2Co4RXbRvJBjCIqpQlGZuI6LspKbu+Y5Irp7BxSoMMB7vCkeVbJokztCBusn5lqgGGR3dCCkx9yjPIWigcA8GQV85MpvksQ3WDp7668ouH/AMNm17TnwtaVZU=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(10070799003)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TjJQZkgxeFZueHA0aDdkejBoVEx2MnkrM1VEaWxnN1RDN21JcHRZQmRZZkM2?=
- =?utf-8?B?R3lmdEVpTGRGL2JnbDRQUTV4aUJkYWxacXF0dmlTcG9ZeG51clFSUVk0OHMy?=
- =?utf-8?B?cTRWS1V4ZEVWa1Z2dWhNNTNVSmxoNkNsM3FHdVFqZXhWN3IzanMyUERoY21j?=
- =?utf-8?B?dWVDYXVySERxb0NUSmUwMUQrS2FmWEFhckpFYzRldktCSmdFK0MrT05ScmVP?=
- =?utf-8?B?Vi8wUS9zbnFWbHR6NUxTTVY2WjIrYzdkNVlsN3hacnlLR0Jhd21qb0c2WmpO?=
- =?utf-8?B?QkRRSU1SMTN2NXdYc0h5dE5qR3liQkxxcE9XelN5K3M1bjM3L3RjV3lNYjRp?=
- =?utf-8?B?dWJIOVpmU2Vac2hQMVAxUmZhYmFzT3VEQUt3WldDTWpPakJXZUYvVnBGVFZ2?=
- =?utf-8?B?bVZ4U3YwVUI1NjRyaVF4NEN4NjlIYWZGMExYU3V2Nmx5ZFhZV0tvYk1LcXd4?=
- =?utf-8?B?Q0pkMHNQekZSMEpLUng1Q0FWWmxoQVc2VHJiekJqUm1xS29JUEc1d2xPYWpk?=
- =?utf-8?B?TFZGenkrN2xNNkNQbVo4bTRmOHB3WFYzVkE5cW43bHNWQVF2UzdJZFA2TVpP?=
- =?utf-8?B?RzVmWFVsNDBORkxqVVBsVE1CZ2pBQXoyOER0bEkvcE9JbVAyMFZaL0pmZkhv?=
- =?utf-8?B?VjArb1cvSUhJNCt2NitnUlNZVHRmZTVlOEFNcnJLekxQWVJ0NXdsZmlPY2Fw?=
- =?utf-8?B?RW1iMm83YkV6L1lRdUZWaDhzUDR0ZmdLY0plWC9FTlB2ZVl2THRqckdtcTJ2?=
- =?utf-8?B?S05yeHpDZGU2cnlIbXpXWllTRGk3alVnKzJDejlDZXEyRUR5MjhtaXdtTVF0?=
- =?utf-8?B?VzQvYUdJY0YzU0U4OFY0eVBYSWJ4YzNSN1BTNWNPaW9Jc0NkV2lCZ1h0aVZ3?=
- =?utf-8?B?QklzbE5KdkVYUFpoMWFwU1pRWHFGTjFYK2k3NFQ1SmNKaGpsVmp2RUVXN2p4?=
- =?utf-8?B?MXpOSHNHK0VvdXN0K0RMMndRUWJJQnNEOWUvZVZGWW1SSjBCZlZPK21iZ2JG?=
- =?utf-8?B?anJYUTUvNktsdHZiUlJxQjdwR3pjMUZkT2xoekJMZHRyVE0xbjhJWDV4aTBH?=
- =?utf-8?B?bW9OU3RwbnEwcmU0TXViRVpkN2ltdXRRNnNLZW81R3dDV3BIRzNmZUpGdVM3?=
- =?utf-8?B?a29sUUxoUUl4OHI2akFOL3FLSjkwT2h6ZFoybFpuVmdDTVlOd3J5MHcydnZY?=
- =?utf-8?B?NzFGQWU4SmpYSzFYT3lWYkpiRE9MNnY2OU82SGNON3dYcmdUdnM0UjFJNFNX?=
- =?utf-8?B?bzZ1V1JXQVhDemdYaytBS3JkdnAxTVF6cmIxcGc1Y0xYZXBvQUNsRFl5VlN0?=
- =?utf-8?B?dXRnT1JmeFJ5aWFCNTFuLzdkMnlzVnowS2JTeDVpTExET004a3NYZk5oRkF1?=
- =?utf-8?B?T0krck02MXM5TU1pM1pqeCs0WElJQ2xGQ2t5M0Vna3AyNktYSzJIV3ppck4x?=
- =?utf-8?B?WmVnYmxFRVBUakUzT3M2UURMM0pmaEhkQ0NpNmtmTUdZSFEvd3p0S3ZESjlG?=
- =?utf-8?B?dDFCZ0owVEoxSWYrYW9QQ1UrNExDeXl5bVNUREhnY3krR3daelNFNnJqbzRN?=
- =?utf-8?B?dVlGYm40SWNTejJmUko0WkVoV2t3U1pVNzBDb3Jzb2RtOFJncC8zYU5LaVQ5?=
- =?utf-8?B?cHdUQ2MzaFNzbDMySDZ6SnJBSi9EM2toR3BLWjhzclpRM0VXTlNnOC9BUTgr?=
- =?utf-8?B?NTdudzlHc3d5bXNoU3ptb25iNFJMa1U2eUc4ODBaNmxjdUxLcDc0bVZneHFL?=
- =?utf-8?B?dHlmZ3RnZFFWSnM2Ymgwc2QwZ1Y2NUdJeW8wRUlVS200b1crSWt2eHVkZFY1?=
- =?utf-8?B?Um1rTmZrR1FENVNvQ2QzU0pDRTQrdFVVSFJJZExRS2R3RkNyM0hsa2N6L2RP?=
- =?utf-8?B?NkdhaFQyYWhJQmNWOGFOVnN6V0UzcmkwVWNaR0kvQzJIZnorRzQzVkVFbHdG?=
- =?utf-8?B?b3FJTzY0b1JYRE82aEFoQkZWUFNGNnR4ZGRqZXg5YnF6ckRML1c2M0lhTkVa?=
- =?utf-8?B?STFTSUVRYXI3d3dIeVpLK1NoK1JYMnVIZFN4bm1HdG5HdllUMS9rQVFuWm4z?=
- =?utf-8?B?UXlTc1kreTQ4U0ZRLzVWa1BnUjNUVjJjenJRT3ZobWgyS0pKR0VJZTh4elNr?=
- =?utf-8?B?Y3pkQUZmNFZUamJQVmp2Kzl2YWQ4M2pPWURSY2hSK3lKWkpKaVpxb2FxR1d4?=
- =?utf-8?B?Z1ZHUEptRm0yM1RNb1gzMGVIUnRYeEhCOGlKWFRVNWxla1ZqQUdOYXV2UThM?=
- =?utf-8?B?alNjQk5YdmtST0JtNGIrK2hhVVI3UEFzeURpZXJtQmF0dUpEc294dFd0blJK?=
- =?utf-8?B?RElJRnB0TGx3VW54TUNpdnFVVmR1T1RhYWNWS1VMc1pxelYyN3BSMUFLeHBL?=
- =?utf-8?Q?Gc+aOJxyJ5qE0aJBQmQ5deH4X5691yAoSPqrzQM5jR69R?=
-X-MS-Exchange-AntiSpam-MessageData-1: rwtjhslDR1xx5A==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da2d76ba-d34d-4102-4c4c-08de794b1136
-X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 17:34:05.3514
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0dtJKmgwB0mjNs4D6zfIJ73gGAE0cP4NC5P0Y/VP+em+GfV5HJU7S0crXr3yG0W0HIHNeaBGghVl4w4AkvHpnA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8827
-X-Rspamd-Queue-Id: 927BC1F4AAE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [net-next,v2,2/8] net: macb: rename macb_default_usrio to
+ at91_default_usrio as not all platforms have mii mode control in usrio
+To: Conor Dooley <conor@kernel.org>, Jakub Kicinski <kuba@kernel.org>
+CC: <andrew+netdev@lunn.ch>, <richardcochran@gmail.com>,
+	<abin.joseph@amd.com>, <robh@kernel.org>, <edumazet@google.com>,
+	<netdev@vger.kernel.org>, <theo.lebrun@bootlin.com>, <pjw@kernel.org>,
+	<Valentina.FernandezAlanis@microchip.com>, <krzk+dt@kernel.org>,
+	<sean.anderson@linux.dev>, <aou@eecs.berkeley.edu>,
+	<linux-kernel@vger.kernel.org>, <alex@ghiti.fr>,
+	<devicetree@vger.kernel.org>, <palmer@dabbelt.com>,
+	<nicolas.ferre@microchip.com>, <vineeth.karumanchi@amd.com>,
+	<claudiu.beznea@tuxon.dev>, <samuel.holland@sifive.com>,
+	<daire.mcnamara@microchip.com>, <conor+dt@kernel.org>,
+	<dave.stevenson@raspberrypi.com>, <linux-riscv@lists.infradead.org>,
+	<davem@davemloft.net>, <conor.dooley@microchip.com>,
+	<narmstrong@baylibre.com>, <pabeni@redhat.com>
+References: <20260226-enjoyer-shock-e17f9dc7cbdb@spud>
+ <20260228232600.4187398-1-kuba@kernel.org>
+ <20260228-shopping-april-a8c4d2481cbe@spud>
+From: Ryan Wanner <ryan.wanner@microchip.com>
+Content-Language: en-US
+In-Reply-To: <20260228-shopping-april-a8c4d2481cbe@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 068B61F4B80
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-270670-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[30];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270671-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,amd.com,kernel.org,google.com,vger.kernel.org,bootlin.com,microchip.com,linux.dev,eecs.berkeley.edu,ghiti.fr,dabbelt.com,tuxon.dev,sifive.com,raspberrypi.com,lists.infradead.org,davemloft.net,baylibre.com,redhat.com];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathanh@nvidia.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FROM_NEQ_ENVFROM(0.00)[ryan.wanner@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nvidia.com:mid,Nvidia.com:dkim]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-
-On 03/03/2026 17:14, Akhil R wrote:
-> On Tue, 3 Mar 2026 13:09:00 +0000, Jon Hunter wrote:
->> On 03/03/2026 08:40, Akhil R wrote:
->>
->> ...
->>
->>>> Why is this flexible? If it is, means usually items are distinctive, so
->>>> I would expect defining/listing them. If they are not distinctive,
->>>> commit msg is incorrect. If the list is as simple as 1-to-1 channel
->>>> mapping, just add it in the description how they are ordered.
->>>
->>> Yes, it is a 1-to-1 channel mapping to an IOMMU ID. The intent of making
->>> it flexible is to allow non-consecutive IOMMU ID assignments as well.
->>> This is particularly needed in virtualised environments where the
->>> hypervisor may reserve certain stream IDs, and the guest VM can map only
->>> the permitted ones. Shall I add a description here mentioning this
->>> use-case?
->>
->> Isn't this already handled by the 'dma-channel-mask' property? The
->> driver will skip over any channels that are not in specified by the mask.
+On 2/28/26 17:06, Conor Dooley wrote:
+> Yo,
 > 
-> dma-channel-mask would not help if a channel is exposed, and the
-> corresponding IOMMU ID is not exposed. For instance say channel 15 is
-> available for a VM, but not the stream ID 0x80f.
+> On Sat, Feb 28, 2026 at 03:26:00PM -0800, Jakub Kicinski wrote:
+>> This is an AI-generated review of your patch. The human sending this
+>> email has considered the AI review valid, or at least plausible.
+>>
+>> For local reproduction steps see https://netdev-ai.bots.linux.dev/ai-local.html
+>> ---
+>> net: macb: rename macb_default_usrio to at91_default_usrio as not all
+>> platforms have mii mode control in usrio
+>>
+>> This patch renames macb_default_usrio to at91_default_usrio to better
+>> reflect that the usrio configuration is platform-specific, and
+>> introduces a new capability flag (MACB_CAPS_USRIO_HAS_MII) to gate MII
+>> mode configuration code for platforms that actually support it.
+>>
+>>> diff --git a/drivers/net/ethernet/cadence/macb.h b/drivers/net/ethernet/cadence/macb.h
+>>> --- a/drivers/net/ethernet/cadence/macb.h
+>>> +++ b/drivers/net/ethernet/cadence/macb.h
+>>> @@ -779,6 +779,7 @@ #define MACB_CAPS_DMA_64B			BIT(21)
+>>>  #define MACB_CAPS_DMA_PTP			BIT(22)
+>>>  #define MACB_CAPS_RSC				BIT(23)
+>>>  #define MACB_CAPS_NO_LSO			BIT(24)
+>>> +#define MACB_CAPS_USRIO_HAS_MII			BIT(25)
+>>>
+>>>  /* LSO settings */
+>>>  #define MACB_LSO_UFO_ENABLE			0x01
+>>> diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
+>>> --- a/drivers/net/ethernet/cadence/macb_main.c
+>>> +++ b/drivers/net/ethernet/cadence/macb_main.c
+>>> @@ -4614,13 +4614,15 @@
+>>>
+>>>  	if (!(bp->caps & MACB_CAPS_USRIO_DISABLED)) {
+>>>  		val = 0;
+>>> -		if (phy_interface_mode_is_rgmii(bp->phy_interface))
+>>> -			val = bp->usrio->rgmii;
+>>> -		else if (bp->phy_interface == PHY_INTERFACE_MODE_RMII &&
+>>> -			 (bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+>>> -			val = bp->usrio->rmii;
+>>> -		else if (!(bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+>>> -			val = bp->usrio->mii;
+>>> +		if (bp->caps & MACB_CAPS_USRIO_HAS_MII) {
+>>> +			if (phy_interface_mode_is_rgmii(bp->phy_interface))
+>>> +				val = bp->usrio->rgmii;
+>>> +			else if (bp->phy_interface == PHY_INTERFACE_MODE_RMII &&
+>>> +				 (bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+>>> +				val = bp->usrio->rmii;
+>>> +			else if (!(bp->caps & MACB_CAPS_USRIO_DEFAULT_IS_MII_GMII))
+>>> +				val = bp->usrio->mii;
+>>> +		}
+>>>
+>>>  		if (bp->caps & MACB_CAPS_USRIO_HAS_CLKEN)
+>>>  			val |= bp->usrio->refclk;
+>>
+>> Can bp->usrio be NULL here? The new MACB_CAPS_USRIO_HAS_MII capability
+>> gates the MII-related dereferences of bp->usrio, but bp->usrio is also
+>> dereferenced when MACB_CAPS_USRIO_HAS_CLKEN is set.
+>>
+>> With the change to default_gem_config later in this patch:
+>>
+>> static const struct macb_config default_gem_config = {
+>> 	...
+>> 	.usrio = NULL,
+>> 	...
+>> };
+>>
+>> A device that matches the generic 'cdns,macb' compatible string (without
+>> specific .data) will get bp->usrio = NULL during probe. If the device
+>> tree then has 'cdns,refclk-ext', macb_configure_caps() adds
+>> MACB_CAPS_USRIO_HAS_CLKEN without checking if bp->usrio is valid:
+>>
+>> macb_configure_caps() {
+>> 	...
+>> 	if (of_property_read_bool(np, "cdns,refclk-ext"))
+>> 		bp->caps |= MACB_CAPS_USRIO_HAS_CLKEN;
+>> 	...
+>> }
+>>
+>> Then in macb_init(), the code would dereference bp->usrio->refclk with
+>> bp->usrio being NULL, causing a crash.
+>>
+>> The MACB_CAPS_USRIO_HAS_MII gate only protects the MII-related
+>> dereferences above, not the CLKEN dereference.
+> 
+> AI makes a good point here, but in one way this isn't even a problem
+> with the patchset, it's actually another example of the sort of thing
+> that I am trying to get rid of from the driver. As far as I can tell,
+> this was added very recently, for the emac on sama7g5. The sama7g5-emac
+> sets this cap in its match data, as do several other devices, so this
+> code that sets the cap based on the dt property isn't needed.
+> 
+> I would like to get rid of setting the cap based on the dt property,
+> because it is inherently tied to how at91 have their USRIO set up.
+> Other platforms that want to use this external refclk might use a
+> different mechanism for the selection, or only support an external
+> source. What USRIO does is very platform specific, so it should be
+> something that is opted in to explicitly. I didn't ask for the property
+> to be bound to only the at91 devices that use it when I reviewed the
+> binding, because I figured other platforms might be able to reuse the
+> property and that's also why I didn't ask for a microchip prefix on the
+> property. For the driver to reflect that general use, it shouldn't then
+> do at91-specific things when the property is present.
+> 
+> Ryan, how does this property actually work now, given your removal
+> of the cap from match data was reverted? I feel like it just doesn't do
+> what you want it to do anymore? Before the revert, having the property
+> meant that the value in sama7g5_usrio.refclk would be written to the
+> hardware and not having the property meant that the bit would remain
+> unset. You then had to revert to avoid breaking old devices, because
+> your property changed the default behaviour for the emac, so now having
+> the property means that the value in sama7g5_usrio.refclk is written to
+> the hardware, but that also happens without the property because the cap
+> is set in the match data.
 
-Is that a valid configuration? Above we said it is a 1-to-1 mapping 
-which would imply the mapping is always constant. Ie. same channels maps 
-to name SID. Is that not the case?
+So even with the revert the patch still does what it is intended to do,
+mainly for the sama7g5_gem and the newer SAM devices, sam9x75 and sama7d65.
 
-Jon
+Currently with the removal of the change to the emac there is no
+functional difference. With the newer SAM devices that need this usrio
+flexibility this patch still works.
 
--- 
-nvpublic
+How this works now is for sama7g5_gmac configs, the default is to use
+the internal clock for refclk then adding that dt property will set that
+bit to 1 and refclk will be from an external source. For the
+sama7g5_emac configs this has no effect due to ABI.
+> 
+> Unless I am missing something, should we not actually revert
+> dce32ece3bb8f ("net: cadence: macb: Expose REFCLK as a device tree
+> property") and 1b7531c094c88 ("dt-bindings: net: cdns,macb: Add external
+> REFCLK property"), and instead add a property like
+> "microchip,refclk-internal", because that would actually let you
+> override the default behaviour of the driver?
+
+I think this could be the better way to go as this keeps the existing
+behavior for the legacy devices while still allowing the initial goal of
+the patch series. Seems it would be more strait forward in the ABI sense
+to have a "microchip,refclk-internal" property than an "refclk-ext"
+property and having the risk of breaking older devices.
+
+Just my train of thought with this,
+Ryan
+> 
+> Cheers,
+> Conor.
+> 
+>>
+>>> @@ -4638,13 +4640,6 @@
+>>>  	return 0;
+>>>  }
+>>>
+>>> -static const struct macb_usrio_config macb_default_usrio = {
+>>> -	.mii = MACB_BIT(MII),
+>>> -	.rmii = MACB_BIT(RMII),
+>>> -	.rgmii = GEM_BIT(RGMII),
+>>> -	.refclk = MACB_BIT(CLKEN),
+>>> -};
+>>> -
+>>
+>> [ ... ]
+>>
+>>> @@ -5219,6 +5214,13 @@ static int eyeq5_init(struct platform_device *pdev)
+>>>  	return ret;
+>>>  }
+>>>
+>>> +static const struct macb_usrio_config at91_default_usrio = {
+>>> +	.mii = MACB_BIT(MII),
+>>> +	.rmii = MACB_BIT(RMII),
+>>> +	.rgmii = GEM_BIT(RGMII),
+>>> +	.refclk = MACB_BIT(CLKEN),
+>>> +};
+>>> +
+>>
+>> [ ... ]
+>>
+>>> @@ -5432,7 +5448,7 @@ MODULE_DEVICE_TABLE(of, macb_dt_ids);
+>>>  	.dma_burst_length = 16,
+>>>  	.clk_init = macb_clk_init,
+>>>  	.init = macb_init,
+>>> -	.usrio = &macb_default_usrio,
+>>> +	.usrio = NULL,
+>>>  	.jumbo_max_len = 10240,
+>>>  };
+>>>
+>> -- 
+>> pw-bot: cr
 
 
