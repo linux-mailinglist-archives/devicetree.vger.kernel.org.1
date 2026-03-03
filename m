@@ -1,382 +1,254 @@
-Return-Path: <devicetree+bounces-270651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270652-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eN5wM+YQp2k0cwAAu9opvQ
-	(envelope-from <devicetree+bounces-270651-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:48:38 +0100
+	id yDenJlMRp2k0cwAAu9opvQ
+	(envelope-from <devicetree+bounces-270652-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:50:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E42601F418C
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:48:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47A941F41F8
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:50:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3E4C730B389B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:43:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B85A730CB96C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:43:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6101F3264C7;
-	Tue,  3 Mar 2026 16:43:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 184353264E0;
+	Tue,  3 Mar 2026 16:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pNEsRlGD";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AB2V1/6A"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QlGiuM6L";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VDiULR76"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E58E63264C0
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 16:43:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A096D3264D8
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 16:43:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772556209; cv=none; b=EbJMRdBC5pG3U/G1ydANXWqaoz/eUfwCtLptxyqNciPeBkK91rffpGEiIIFmmfv0QYJXqgdwxwo+37ny4GaDqfW0uSI3edv5Pfnvi1iwndJNWXMNI+hhU4FvDByRXB2JexIBleYESPwZwSTfTQBeW0/BqlrFiwhlIm+XGeTsbNg=
+	t=1772556237; cv=none; b=MoMDuEpy4SEjfB+AeQbRInt40HwyvqkbgGchcHuX3uM//KqVxAtv8tRQuY0OW2xHCNQpz1oSi8TGJdJOrUovTTUdGfOOeqQupShfnVXJjY1x3ILKTQCQolXtemOEGCdApnwwlo5ft36uhYBmJqR6F1uo9Yce+zlNY29I4gInRsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772556209; c=relaxed/simple;
-	bh=/Y9yvbIVflTZGoxak/t0m6bjgdhG8e/xJZCPaqb1qSE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=YOjjXsY64k9BD8eoePhIgdMkrMFhJWUavUqi25f/eaZTCSrDcVbZcDB0XNuJrsPIERpWdDIqB0hH0yyyhmksiaX5HCqG+idGjs14u/CN2gDIV3gQw5oYU/liT/T1I99zVub45Z0JJc+zhDn3nDXu5l+tuC7Xx5651w9/A4+ps7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pNEsRlGD; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AB2V1/6A; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1772556237; c=relaxed/simple;
+	bh=0luLqj0bA9HqriWeMlInhLYgC8atn2e/7AMYtJLxTo0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=uo5qT7qDzU6ageDt8PuWdVHR7b4O8nfIepz967puPvb/iKk3gxHdd1r42f8Dd2fb/k1OVe1gn1PxOzjL1KP9yGg1KxCydnveo8Ck1InWx3lSYlOeFhpj92Ei+oKp1tDAJILtJTwAOzeISjY+8SxME1ZUxJDhIIfD7BKe5Ve7ys8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QlGiuM6L; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VDiULR76; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6239n8pv2630039
-	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 16:43:27 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6239mn182733127
+	for <devicetree@vger.kernel.org>; Tue, 3 Mar 2026 16:43:55 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=QO1j4VMiZdP
-	cMlS2TtY7aC9MsTd8SUCYpTe3L54onAI=; b=pNEsRlGDac1kFAneh+tqt514/BI
-	XnUZGSBZhI98UWotHdMylkeADRkZR9ZEZ1vdiNlo41pnXAP7iyaakkaLa/DwEsUn
-	zghz8x8SMR8RctIJ+LLhIdTWqKCH8jxVvdPMNNkvhPyOhStN30Zdl0hw9TrjR0cg
-	RjsgYKs41oBo9odghwl7HG4HtimNqDR4k0b0rHCaI2GsnjZGynXmxdpPOM6pUNeV
-	d8TX5RNoIeT/2euZbh+iDmOCoLypiRu8IaQpaCwtohHXzsZEns5SPXNfZ8Zpr05b
-	00YquTSIHl6/7zEfPrKMlUZMUpEurHfA1DrP/PavQtl1b/6FYlR4o+WC8qw==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnhx5bkg8-1
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=UC/1X9LLLCNNOizpP5u5YF
+	CEcHwOUMvz4FL7ouzur5I=; b=QlGiuM6LQnf+GbNnuPUg68tjQ4r7KxDpkgxieA
+	nYHafuhTsCZvHaGidcnAyld8eiJg/e/uLGRHy8INOv3FGSm4qmgZTJxalvYXT4JI
+	7KVRNTW77Q1NjMF3vbSk5OYeG7S7TcWrQ6Pd76n1MjR66997m6NAmkC+YAUFyt1U
+	B0G2qlUR0PXk+pDlLBZtfwHHGyYcfQPQ8I/s8PpWL0/Wts0aRloB7TDtfCaRC3SX
+	CpS00Bx1rSLNKVKu31HI8jo7znPKv0VXQCn1SMJiM/rQS4GP8ozcGOIoonZog50F
+	8LDcUhFhRY9UVDKuqoFtvYWhGCBRPPU/rYySLs+JNUbAhU4A==
+Received: from mail-dl1-f69.google.com (mail-dl1-f69.google.com [74.125.82.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cnswe231e-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 16:43:26 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-824a2ca6eefso2505043b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 08:43:26 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 16:43:54 +0000 (GMT)
+Received: by mail-dl1-f69.google.com with SMTP id a92af1059eb24-127124fefe8so571320c88.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 08:43:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772556206; x=1773161006; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QO1j4VMiZdPcMlS2TtY7aC9MsTd8SUCYpTe3L54onAI=;
-        b=AB2V1/6A2bKQqm7+HldYxRFq4gGTlOuJpPzoivBHgSyIWLYk0H18PujNrzvozCMlVS
-         NWcZraYfmiQ7XfWsh9LR2wbUDl3nB8dLMIcPRFEj4K39YbnGcB87uIhd+f2IBU0HqUu3
-         zDnqRSlcIJb2GBhmlaPffslVlrLae7KSdH2AtF8Xh771RmGvVOrMO8qJcI+3lblPvdl+
-         KCiGXQXj9Qe/rv4bS3XSZ5FquuNBL/h1k9dIvaRf3BDTYmD+Wag+4vKc3Qgvs4HQxx/f
-         8MJwG0RkNZTu6gxulRQ0vx/eLzBcoVjjkvzi6r/Hj8uVthu9NxwWe7yiVwD/RxB4XbBc
-         X/Iw==
+        d=oss.qualcomm.com; s=google; t=1772556234; x=1773161034; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UC/1X9LLLCNNOizpP5u5YFCEcHwOUMvz4FL7ouzur5I=;
+        b=VDiULR76P1szaYhpgeUTkBI7VzB8/TfDdgvtArBCyLkyZIbxmsyHBKP8NrLKTXW13T
+         AyED9Wf+benxRVagRNJssBob0ka9QS/lKU6vip5x2/d42Ml0Y1ptEAQxSyf16I3Uq01m
+         WxBy+a1p/9IyFgLUXp0hDx/txZEU0uzM1fW3T6fEqKCDQ1hPKhJavauJXiAsRqmteGnQ
+         /5ZL41Sd0ujngBGxie61ETuM+jAU1p+MH3XOE4ixJzUn/eR0/qS1gpori+ZfllCHJ1T3
+         y7aV5u2qTk328EFcGFe7qcLiQSTBy0yYlgQdj1rSwIUU5yGjzdKcUJ5ocsf0tKZs/ZBD
+         XfDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772556206; x=1773161006;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=QO1j4VMiZdPcMlS2TtY7aC9MsTd8SUCYpTe3L54onAI=;
-        b=slRaCcyNGDZP7DHqke78Um7ldY456e00YlCMnbHpobfb8yWgHMgWAJD0b5ih2EeFva
-         wNVlrleL9f86JePj/nb8sbO20YzxUoUmmvb+P5W8EYWkie+bRc15oSOcR8ivjs4dicAE
-         7rXMK8dKnivI3FnRtONGEiVMpPdh6pgH91lhqjZUmcUSZtY9lWIkNnulQ0/OmbdaS+Vu
-         sCwC9V/cSoemVr4CMzMgK13nABtzFUL77xWkMOM28vtHmanuSTJ7QghFt0NPuL3xCyoX
-         FCE1Hrr3KwhxTLg+0Aclx1cxYHdOtX3o0lAE1fG9hal7vA4gSUiCcoa3PsIqKXFpxDqQ
-         ikiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVz7orKdXQ26kGBExZOjnXzgGDxStK/INk/M1rLKqKbjLIpvWJvLgYeqPGtFXZYAee6QSl+b86wOSI8@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGEkSJ3D+xzdtxzelKiwM89Z047gRFie3TkWvmn1HlmYo/Mg7N
-	5TmHl7O+/VC2+O5PkpNffyh+pBqUUBdE6BjpXwEmfGbBxO9QmZZfv3gfq6EGm39hYTt8fqiBVMf
-	F+S3/rCc0SSkcX9n7eukTlgtSAHl+XgZn9OC4LUbwzC81GH9+TKwlZhWAv537EmVa
-X-Gm-Gg: ATEYQzxzzkpSdzCKFL31mSQXXbQWtt4k42DSyUAruqC8tBmHDWMd0mEV1uEazZI9t5V
-	OfSGoxdIr1yovT+pTtWngulkklrjIfNQSUk5VPqgkS4bDFSHIUS4uTQx3+B977oQUqfKQRmCf/J
-	PCsIL7ynAxmGYaHhGB4AleucRv9jzKw23mprGTd7R0YthaHgJMK1xt5bOPczEob8JYSBgBPMzFg
-	mCkjqNtZZmlSBLAntLkTvpMe2E8g/fauSQRWpeSlXbDlkmBa6Kg/qONKJFqU61yi6wAI8QIcmtN
-	f9jv63Cd4z/8XstnDQKSCvP4OgtmEYI30jfB8ATPExyDz5VuGTOzsnKYKqVxLx++EeaH91DDXHD
-	684vU0rMOZNzsbtszW/qwKP3QzKjPQ8xpDJapXdp9c1xy7ECRxYrN
-X-Received: by 2002:a05:6a00:390e:b0:824:9f50:83c7 with SMTP id d2e1a72fcca58-8274d7d4efbmr11136097b3a.0.1772556205659;
-        Tue, 03 Mar 2026 08:43:25 -0800 (PST)
-X-Received: by 2002:a05:6a00:390e:b0:824:9f50:83c7 with SMTP id d2e1a72fcca58-8274d7d4efbmr11136066b3a.0.1772556205055;
-        Tue, 03 Mar 2026 08:43:25 -0800 (PST)
-Received: from hu-uchheda-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-8273a048615sm16153508b3a.52.2026.03.03.08.43.20
+        d=1e100.net; s=20230601; t=1772556234; x=1773161034;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UC/1X9LLLCNNOizpP5u5YFCEcHwOUMvz4FL7ouzur5I=;
+        b=ndtXQUjs2a6ahAOXie51EeyL+IEtSQlue/D8ybxn/60w0NrtpuBqWNG1lPbPi/CdNv
+         3B0TAZsId3PnCB4ASvnRHlErSUCq48RaofrIwyNRGWLOKF7KqqFh0mOVwX6yPM0Xi6nR
+         Vgn+Pw1asnKO+tFZM+ugyNUYZKlEStrudyaUMg7xSI7trHN+hqSh2K9HKK75j/9IPx38
+         O/MuSzqXffhTWz0eamPcL5y/81cBIT0u6aB0Ust/CnH4MN3wX9fZRLasKLBuWJX5hEeC
+         tgvQ6gpfmGlBA6Hmb82dBP/OfIMchwExO8YrtGC5NVJl9JMJRNROnBxsUxpYMftPn1r6
+         uejA==
+X-Forwarded-Encrypted: i=1; AJvYcCUbV8zGoqZa//6WEJ1WIWcvMLxw0qmz/zfNV+9Ol6K6LnTNTxlH2bPdzlukmuWgjwVKJRYNQbJAMVVp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxVAV7t0sbRj6bq/wX7UWDU65I0F8BB3SOwXGnB0szRAcJwldW
+	+Uwv4EoP+C6iRSabJxJ9kHP1/47PMjeKldyjUKSLpZcPySHwTuf4zosMYTYAyBVq2z0T8+bNFGt
+	EacZ6Nz4dUo8E8nA4YLFtKbQyKwhAZiMnesfVJbDDPubrDcZX1hJmxQLTMutPfwpc
+X-Gm-Gg: ATEYQzxXLU2ggPQkclv0Zd3Rpsj0u2l90DVZo0OdfrRdN1sANjIHXLGsmQf4tQSUUXE
+	9OUeqQFBmS5V2RsddDi8LIPFk9rZzMTd3Yl89dFOtO3MNEgY+V1QX3q9equx1x6NSVO7wX5Pxv/
+	dVqvqyhxOMe156lagbjS/OPh/7NJqAPCbxlL0dAx+91sagp3Ua7DXly4/avxLZb+DLxCjNjWCsb
+	ZOLaps/2GGUwSy6OFo2NQiVOplevqjbcxSOwztzrhOOfhHmfHi7h1ixB1sGZSAPKUdxhNdu4lX7
+	+HD+8fK0zVvt6gdox/Q5xYaZIRtf3uZGVcqLFMLLqIdmJBrxQVgXZ2uUYqfKN6P2gj9A4H8MoNT
+	XpvbvyYY5KFo2WAFfy52IZI30oyUQTtjAYaH0+i7nR6+BlYt1vIzGfPz8kPsMUMDgLMxdr0FGsq
+	jZihinWJ9b6vj+ClSfepLJ5rWcN3RXqHMSeAO3rNrFmA==
+X-Received: by 2002:a05:7301:2b84:b0:2ba:7d5a:a816 with SMTP id 5a478bee46e88-2bde1cf86d3mr2957383eec.4.1772556234082;
+        Tue, 03 Mar 2026 08:43:54 -0800 (PST)
+X-Received: by 2002:a05:7301:2b84:b0:2ba:7d5a:a816 with SMTP id 5a478bee46e88-2bde1cf86d3mr2957365eec.4.1772556233308;
+        Tue, 03 Mar 2026 08:43:53 -0800 (PST)
+Received: from hu-vishsain-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be002ee839sm8823286eec.8.2026.03.03.08.43.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 08:43:24 -0800 (PST)
-From: Umang Chheda <umang.chheda@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, richardcochran@gmail.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, umang.chheda@oss.qualcomm.com,
-        mohd.anwar@oss.qualcomm.com, krishna.chundru@oss.qualcomm.com,
-        monish.chunara@oss.qualcomm.com,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v3 1/1] arm64: dts: qcom: monaco-evk: Add IFP Mezzanine
-Date: Tue,  3 Mar 2026 22:13:14 +0530
-Message-Id: <20260303164314.886733-2-umang.chheda@oss.qualcomm.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260303164314.886733-1-umang.chheda@oss.qualcomm.com>
-References: <20260303164314.886733-1-umang.chheda@oss.qualcomm.com>
+        Tue, 03 Mar 2026 08:43:52 -0800 (PST)
+From: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
+Subject: [PATCH v5 0/2] Add lontium lt8713sx bridge driver
+Date: Tue, 03 Mar 2026 22:13:34 +0530
+Message-Id: <20260303-lt8713sx-bridge-driver-v5-0-6cc2a855aafa@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDEzMyBTYWx0ZWRfX5RoFqXSNNqNw
- IeF+ibLqJwhD/mcZfWr6szCSP20hFvJKhutYVn/BsNQaTZy20RzxOl7TuyH9FxZlZNGiYQB0hdy
- 970eASOOIcPsguY1i6ByVCxyjVWBgN7cjXoNBbLj5rLV537TzFek0X2ytF9XapQTRqXjOx/E9A4
- AOThPwKxFGDfhqrCO272txY/FBPg0/vPdh/l4Hr7IBEH8yidA2wzOoco49UKmAjF2HkfC8jucZY
- XYVmGHcJcTn48JWBpwHqioColgdZpjCSy3C8h7+bknL5fIUraj4HDjCyKRFnO6f95mD+HZiwp/q
- RVo4HTsr1u7ElUsGPIqaLUUcpGStJ6v+zDEgS4q/VNPkms7rWA6olbZyPT5/FqZDRX3Iw+7Z8EO
- shC2eRNvj5M0TyyzwtrjrQvywsjWmVdgwZSeAiDRz+jn9UY5R5pwFfvV1+QMONwRDPSceh/W2ZV
- HbOjrxUnZKbvq+vZlqw==
-X-Authority-Analysis: v=2.4 cv=T9CBjvKQ c=1 sm=1 tr=0 ts=69a70fae cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
- a=7WwWSvKBDqV37eUiOWMA:9 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-GUID: fuuTt__WaQY-XWq_FzjgSRmmHtbWOxYK
-X-Proofpoint-ORIG-GUID: fuuTt__WaQY-XWq_FzjgSRmmHtbWOxYK
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALYPp2kC/4XPzYoCMQwH8FeRnrfSpM1Mx9O+h3jo16wFddxWi
+ yLz7tsRFj1s2Uvgn5BfyIPlkGLIbLN6sBRKzHE61UAfK+b25vQVePQ1MxRIAED8cNE9yHzjNkV
+ fxz7FEhKX2AuliKwbDKvL5xTGeHvC213N+5gvU7o/7xRYuv+SBbjg1pMBB66XwnxOOa+/r+bgp
+ uNxXQtb5ILvmm5qWDUk49WAWhiAhiZfGmJbk1UboBtGG0YRyDY09at1AlE1NbV8Sp2QIynSXv+
+ hzfP8A9QJ2witAQAA
+X-Change-ID: 20251115-lt8713sx-bridge-driver-32704455bc9a
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Tony <syyang@lontium.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Vishnu Saini <vishnu.saini@oss.qualcomm.com>,
+        prahlad.valluru@oss.qualcomm.com,
+        Prahlad Valluru <vvalluru@qti.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+        Simon Zhu <xmzhu@lontium.corp-partner.google.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772556225; l=2252;
+ i=vishnu.saini@oss.qualcomm.com; s=20251113; h=from:subject:message-id;
+ bh=0luLqj0bA9HqriWeMlInhLYgC8atn2e/7AMYtJLxTo0=;
+ b=A+VBgVZVipLftaWUhKTWxZyB/s94eLe9qv+M+zYLKr4mnWoC9/yDpNa4hnvdWT94LICh+Vr/7
+ g1mC+O1NbWeDFmjUkFonV5AoZVsDvTtFmJKNUKRo+d7w3bsQX/b0IpF
+X-Developer-Key: i=vishnu.saini@oss.qualcomm.com; a=ed25519;
+ pk=8hlXlF8j/3GeOaDK3w2LYhkv9FanCQru0c7kRH/It7k=
+X-Proofpoint-ORIG-GUID: NWtHC9P2Nrq7wr89Wx-tFsjr8nHl0q3a
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAzMDEzMyBTYWx0ZWRfXyxDpg6LOmF/O
+ rp2ckZiF+9BT8DAoICzsEWtDRPNH/IcjI+4YQmtk9m3SyIUpbEvauaSSizKXD5arFkSOAd9iQa+
+ Qm57HMoGE2Jmb+rzT8nIGQjgzRazV9jmJW3oWb+kCp2L9Uxo7EY4fiQgGPNCeJpDxeL0km59XYB
+ 7LL26yoYBAoYJEJplPI9YN30gFAoJd+wZNp50XhcRLjJmfx/hfPrRSUfC0vjDh1otcvkgHRTOmf
+ xRB4VlNIAyYLDelgtzS8PS+sIh/jW4JSV8/YTVwBrayrGaFtvOPbkctbwQrWVQE2fnFQ0V3vOby
+ mOYQ/3iS9N/XmHx7+6trJ+5yVdgh1XDFBmaey3DIU0ekrwrUIeCEMQqRr0MVeRSA4V4PBQt1P7Q
+ jK4xGpk4Z8pj+NQiQDAtQXDJoO48Xplei4lqIQHqmGjn0QBtHSGrFRI0SS3WrnOMvePX37e2+ll
+ xFk/FzLnkP2zuMg4lqw==
+X-Authority-Analysis: v=2.4 cv=TtHrRTXh c=1 sm=1 tr=0 ts=69a70fca cx=c_pps
+ a=kVLUcbK0zfr7ocalXnG1qA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=QNFiEYH7FFPh0Mko9SYA:9 a=QEXdDO2ut3YA:10
+ a=vr4QvYf-bLy2KjpDp97w:22
+X-Proofpoint-GUID: NWtHC9P2Nrq7wr89Wx-tFsjr8nHl0q3a
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-03_02,2026-03-03_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0
- priorityscore=1501 clxscore=1015 suspectscore=0 malwarescore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603030133
-X-Rspamd-Queue-Id: E42601F418C
+ lowpriorityscore=0 malwarescore=0 phishscore=0 suspectscore=0 adultscore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 bulkscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603030133
+X-Rspamd-Queue-Id: 47A941F41F8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-270651-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270652-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,checkpatch.pl:url];
+	FREEMAIL_TO(0.00)[intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,lontium.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[umang.chheda@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vishnu.saini@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.2:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,0.0.0.0:email,0.0.0.3:email,qualcomm.com:dkim,qualcomm.com:email,0.0.0.1:email,0.0.0.52:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-The IFP Mezzanine is an hardware expansion add-on board designed
-to be stacked on top of Monaco EVK.
+The lt8713sx is a Type-C/DP1.4 to Type-C/DP1.4/HDMI2.0 converter,
+with three configurable DP1.4/HDMI2.0/DP++ output interfaces and
+audio output interface.
 
-It has following peripherals :
-- 4x Type A USB ports in host mode.
-- TC9563 PCIe switch, which has following three downstream ports (DSP) :
-   - 1st DSP is routed to an M.2 E-Key connector, intended for
-     WLAN modules.
-   - 2nd DSP is routed to an M.2 B-key connector, intended for
-     cellular modems.
-   - 3rd DSP with support for Dual Ethernet ports.
-- EEPROM.
-- LVDS Display.
-- 2*mini DP.
+This series provides bridge driver and dt bindings for lt8713sx.
+The driver is required for firmware upgrade and enabling the bridge chip.
 
-Add support for following peripherals :
-- TC9563 PCIe Switch.
-- EEPROM.
-
-Enable support for USB hub, LVDS display and mini-DP later once dependent
-changes are available in monaco-evk core-kit.
-
-Written with inputs from :
-    Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com> - PCIe
-    Monish Chunara <monish.chunara@oss.qualcomm.com> - EEPROM.
-
-Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Vishnu Saini <vishnu.saini@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |   4 +
- .../dts/qcom/monaco-evk-ifp-mezzanine.dtso    | 149 ++++++++++++++++++
- 2 files changed, 153 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
+Changes in v5:
+- Commit msg changed a bit
+- Added Author Maintainer after confirmation from Lontium
+- Link to v4: https://lore.kernel.org/r/20260224-lt8713sx-bridge-driver-v4-0-b5603f5458d8@oss.qualcomm.com
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f80b5d9cf1e8..9d298e7e8a90 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -45,6 +45,10 @@ lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= milos-fairphone-fp6.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
-+
-+monaco-evk-ifp-mezzanine-dtbs	:= monaco-evk.dtb monaco-evk-ifp-mezzanine.dtbo
-+
-+dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk-ifp-mezzanine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-alcatel-idol347.dtb
-diff --git a/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso b/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
-new file mode 100644
-index 000000000000..e6beb4393430
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/monaco-evk-ifp-mezzanine.dtso
-@@ -0,0 +1,149 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&{/} {
-+	model = "Qualcomm Technologies, Inc. Monaco-EVK IFP Mezzanine";
-+
-+	vreg_0p9: regulator-0v9 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_0P9";
-+
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vreg_1p8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VREG_1P8";
-+
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+};
-+
-+&i2c15 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	eeprom1: eeprom@52 {
-+		compatible = "giantec,gt24c256c", "atmel,24c256";
-+		reg = <0x52>;
-+		pagesize = <64>;
-+
-+		nvmem-layout {
-+			compatible = "fixed-layout";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+		};
-+	};
-+};
-+
-+&pcie0 {
-+	iommu-map = <0x0   &pcie_smmu 0x0 0x1>,
-+		    <0x100 &pcie_smmu 0x1 0x1>,
-+		    <0x208 &pcie_smmu 0x2 0x1>,
-+		    <0x210 &pcie_smmu 0x3 0x1>,
-+		    <0x218 &pcie_smmu 0x4 0x1>,
-+		    <0x300 &pcie_smmu 0x5 0x1>,
-+		    <0x400 &pcie_smmu 0x6 0x1>,
-+		    <0x500 &pcie_smmu 0x7 0x1>,
-+		    <0x501 &pcie_smmu 0x8 0x1>;
-+};
-+
-+&pcieport0 {
-+	#address-cells = <3>;
-+	#size-cells = <2>;
-+
-+	pcie@0,0 {
-+		compatible = "pci1179,0623";
-+		reg = <0x10000 0x0 0x0 0x0 0x0>;
-+		#address-cells = <3>;
-+		#size-cells = <2>;
-+
-+		device_type = "pci";
-+		ranges;
-+		bus-range = <0x2 0xff>;
-+
-+		vddc-supply = <&vreg_0p9>;
-+		vdd18-supply = <&vreg_1p8>;
-+		vdd09-supply = <&vreg_0p9>;
-+		vddio1-supply = <&vreg_1p8>;
-+		vddio2-supply = <&vreg_1p8>;
-+		vddio18-supply = <&vreg_1p8>;
-+
-+		i2c-parent = <&i2c15 0x77>;
-+
-+		resx-gpios = <&tlmm 124 GPIO_ACTIVE_LOW>;
-+
-+		pinctrl-0 = <&tc9563_resx_n>;
-+		pinctrl-names = "default";
-+
-+		pcie@1,0 {
-+			reg = <0x20800 0x0 0x0 0x0 0x0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+
-+			device_type = "pci";
-+			ranges;
-+			bus-range = <0x3 0xff>;
-+		};
-+
-+		pcie@2,0 {
-+			reg = <0x21000 0x0 0x0 0x0 0x0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+
-+			device_type = "pci";
-+			ranges;
-+			bus-range = <0x4 0xff>;
-+		};
-+
-+		pcie@3,0 {
-+			reg = <0x21800 0x0 0x0 0x0 0x0>;
-+			#address-cells = <3>;
-+			#size-cells = <2>;
-+			device_type = "pci";
-+			ranges;
-+			bus-range = <0x5 0xff>;
-+
-+			pci@0,0 {
-+				reg = <0x50000 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				ranges;
-+			};
-+
-+			pci@0,1 {
-+				reg = <0x50100 0x0 0x0 0x0 0x0>;
-+				#address-cells = <3>;
-+				#size-cells = <2>;
-+				device_type = "pci";
-+				ranges;
-+			};
-+		};
-+	};
-+};
-+
-+&tlmm {
-+	tc9563_resx_n: tc9563-resx-state {
-+		pins = "gpio124";
-+		function = "gpio";
-+		bias-disable;
-+		/* Reset pin of tc9563 is active low hence set default
-+		 * state of this pin to output-high.
-+		 */
-+		output-high;
-+	};
-+};
---
-2.34.1
+Changes in v4:
+- Improved crc calculation, calculated on padded buffer instead of bit
+  by bit.
+- Fixed brm bridge chain, using single drm_bridge as bridge chip itself will
+  take care of providing all edp outputs from single input.
+- Used guard mutex where needed.
+- Link to v3: https://lore.kernel.org/r/20251228-lt8713sx-bridge-driver-v3-0-9169fbef0e5b@oss.qualcomm.com
+
+Changes in v3:
+- Used linux/sizes.h header for size definations.
+- Used linux/crc8.h for CRC calculation
+- Added Basic drm_bridge changes to support corresponding ports handeling in dt
+- Ran coccinelle, smatch and sparse checkpatch.pl tools to improve code quality.
+- Link to v2: https://lore.kernel.org/r/20251118-lt8713sx-bridge-driver-v2-0-25ad49280a11@oss.qualcomm.com
+
+Changes in v2:
+- Addressed review comments from V1, majorly:
+- Fixed DCO chain.
+- Added supply in bindings.
+- Handeled deferred probe in lt8713sx driver probe.
+- Link to v1: https://lore.kernel.org/r/20251115-lt8713sx-bridge-driver-v1-0-bd5a1c1c730a@oss.qualcomm.com
+
+---
+Vishnu Saini (2):
+      dt-bindings: bridge: lt8713sx: Add bindings
+      drm/bridge: add support for lontium lt8713sx bridge driver
+
+ .../bindings/display/bridge/lontium,lt8713sx.yaml  | 113 ++++
+ drivers/gpu/drm/bridge/Kconfig                     |  10 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/lontium-lt8713sx.c          | 598 +++++++++++++++++++++
+ 4 files changed, 722 insertions(+)
+---
+base-commit: de0d6e19d2ef33ba34be2467ffdf3595da5f5326
+change-id: 20251115-lt8713sx-bridge-driver-32704455bc9a
+
+Best regards,
+-- 
+Vishnu Saini <vishnu.saini@oss.qualcomm.com>
 
 
