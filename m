@@ -1,209 +1,219 @@
-Return-Path: <devicetree+bounces-270252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270253-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cAKmGfMkpmlrLAAAu9opvQ
-	(envelope-from <devicetree+bounces-270252-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 01:01:55 +0100
+	id lQb8FqsqpmknLgAAu9opvQ
+	(envelope-from <devicetree+bounces-270253-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 01:26:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06C411E6EAA
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 01:01:54 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B238D1E71C6
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 01:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 050F43023689
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 00:01:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF680305367D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 00:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BAFD330330;
-	Tue,  3 Mar 2026 00:01:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40FEA1FECBA;
+	Tue,  3 Mar 2026 00:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="R7Sc3mME"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="l2TquD5C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11267342C88;
-	Tue,  3 Mar 2026 00:01:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772496079; cv=pass; b=pSR00D76DxWZJS9Cj5TLafeoo4Zj+TFJvbYinLO4j33j8MMvY5NwMdbQDDlec73Hzt6675fRCHLyluf01K75Nn4PdkDvDGB1OcipzVfMkXosEqqEV6vmIr1iFjjRmLZGbgPFh/gNSr8FrdFn5lDi9NadmfmPd6YjdMfcuChI8TE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772496079; c=relaxed/simple;
-	bh=ioGr+nk8fi9NYjdV0OIUJe4BpGL8TdYgG41Pew4uTmU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HmZcdWbDONH5oqyT9/VyDO/KgdUUZLNNYjxd6XuQ9XpLBB+ngGzyUgiAACFejCOFVTg140CMW0tdmrdR5vXwRQ58V3eUODgcGEtnehUtfTNBpXlACL1pskbsfUk1ERm5SbTAYx2rC2Iks3sO9LfVfoNd9JMJXIk/4H6jZlcRA64=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=R7Sc3mME; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D06EA1DF26E;
+	Tue,  3 Mar 2026 00:26:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772497570; cv=none; b=Jui7Isf4bwWPcV4sYpc5BcfeEQcspCyAC0y1uFPz432ayk4I4llIjZNWVXirRb+n6Jj2vs+KXQlDo+SBoSuuo8mJweRqqKbhtnpJY+FChfYh6vkZW0IjHSqkqtNBYNU5ducmVRQ7CMUn9Ml9YJUdn88qq9NXvkh9QDem5UgkBBQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772497570; c=relaxed/simple;
+	bh=nvbePl0CEYS4+L/6FTUnYwtO7w+lj1CwvH0QATF0abw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YTfcscFKAU7P2MYBhB+1VCKGm+9+CGhvrQkD6B45daCilcEbjmmQjgYJ6VeQtm/PrqWGr2bG0ATIWZDfeKa/EuhHzxuvYTWgLY6Y1ZEUG8YV46HAkA/z/6pI9J5uQ9RQpx5/zHUpp1XVNyMRVqm/bU2JLpadBY8lmQJWlKyeM0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=l2TquD5C; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1772496053; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=SZAENPhpCVc5KCiFdrk/pr+sWKRZl+95DN9q+hnlsBwaN0wOumWDKLa1JIgwZXc5xf2tYoRVq43oILVW7srDICw46NvMpIxrxAfL4TTX5gJ4SdMzEe5A9/joogroTH1P19ViVfZML8HA7Kl473KqNjNuSusteT5Q6mx4dDHSjNk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1772496053; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=l3PYFCVcWjGQaSSZj39sm1aZzw9LlSKfmhEhHtoI7MY=; 
-	b=RGVfAtl7QXtEdlOV89ZYwG1zqyY/yt291EyWsC2qmDEauoE7Sk53CwHAv00TBGCIqYO4aiID27ew2SfkFYAtZ6WTrkLTRkh3JOLLA4R/jgM6abT6sh14HIPUG1oWoKPaC/OAZdZkZrwGEiI06L4kEuW7ZPtmeunL1x5M/LeYEiU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772496052;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=l3PYFCVcWjGQaSSZj39sm1aZzw9LlSKfmhEhHtoI7MY=;
-	b=R7Sc3mME6oQ9arKfbh/G4lQNo6DTFlUSvKAaPdsCDMw1w97KKSxv7X9sIT/F1IL+
-	MeO6JkQn9Wt1+pqAwJiRF0SQ/2UPHe+tZCxE8yI9LiEwXa2kWFGyPgeATdv0E5lOrjm
-	pvw3kbKAUdiMUjOepHr06zsnwro3H/5AlEdzKoIM=
-Received: by mx.zohomail.com with SMTPS id 1772496050787810.127324350416;
-	Mon, 2 Mar 2026 16:00:50 -0800 (PST)
-Received: by venus (Postfix, from userid 1000)
-	id 062E9180D08; Tue, 03 Mar 2026 01:00:45 +0100 (CET)
-Date: Tue, 3 Mar 2026 01:00:45 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Otto =?utf-8?Q?Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
-	Baolin Wang <baolin.wang@linux.alibaba.com>, Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 5/6] power: reset: sc27xx: Add platform_device_id table
-Message-ID: <aaYkhIGP2pexbxt7@venus>
-References: <20260222-sc27xx-mfd-cells-v1-0-69526fe74c77@abscue.de>
- <20260222-sc27xx-mfd-cells-v1-5-69526fe74c77@abscue.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1772497567;
+	bh=nvbePl0CEYS4+L/6FTUnYwtO7w+lj1CwvH0QATF0abw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=l2TquD5CV5jD/gLJ3IBBpxsFsPaNM0jbvYXpMcVZB+R6GX2G5hZSDjH1TLO/VvqWh
+	 LiLMLOQiXb8Q/7TkVbjWoEUtEEnHZNn+goDvA7scw/ghQfNgkLuC406bTduv7svO2p
+	 y84SqoWMUmMtAkfSkOkZM+zI5m+b2Q1QzjzszNV7rf2JOXPr4LTpyicI1y3PCybrF5
+	 k31wAmOAY3snxOHJfwiYXA7xYIyaFI0jz8PDnwpCTYWLXEVbFfuFQEBuZtDmeBx1LS
+	 QoMS9mHsMi3WvHbYsKJcHZPzriAbinthd0KzI7NeYRRCye7m8DuqZukQ4SWdKrDHi1
+	 qvIKnj+ewDlGQ==
+Received: from [192.168.1.90] (unknown [86.123.23.225])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5B36A17E0EA0;
+	Tue,  3 Mar 2026 01:26:06 +0100 (CET)
+Message-ID: <a70731e8-375a-4ba9-b142-600b92ae1087@collabora.com>
+Date: Tue, 3 Mar 2026 02:26:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="adszrmxnyvdyek6f"
-Content-Disposition: inline
-In-Reply-To: <20260222-sc27xx-mfd-cells-v1-5-69526fe74c77@abscue.de>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.1.1.4.3/272.480.55
-X-ZohoMailClient: External
-X-Rspamd-Queue-Id: 06C411E6EAA
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
+ reg-names order for RK35{76,88}
+To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Detlev Casanova <detlev.casanova@collabora.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
+References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
+ <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
+ <20260227-observant-roaring-ara-ef7eb0@quoll>
+ <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
+ <20260227-omission-stoic-417d7109ad4d@spud>
+ <3ab4f91e-37d0-4950-af88-01920705d31a@collabora.com>
+ <1fe5529f-cd9f-4960-b6dd-96a2d02b8d86@kernel.org>
+ <59b442c8-da2a-40a8-b9db-1609a8eee744@kernel.org>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <59b442c8-da2a-40a8-b9db-1609a8eee744@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: B238D1E71C6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270252-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[bootlin.com,kernel.org,gmail.com,linux.alibaba.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270253-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,abscue.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:mid]
 X-Rspamd-Action: no action
 
+Hi Krzysztof,
 
---adszrmxnyvdyek6f
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 5/6] power: reset: sc27xx: Add platform_device_id table
-MIME-Version: 1.0
+On 2/28/26 11:58 AM, Krzysztof Kozlowski wrote:
+> On 28/02/2026 10:54, Krzysztof Kozlowski wrote:
+>> On 27/02/2026 18:42, Cristian Ciocaltea wrote:
+>>> On 2/27/26 7:13 PM, Conor Dooley wrote:
+>>>> On Fri, Feb 27, 2026 at 01:37:17PM +0200, Cristian Ciocaltea wrote:
+>>>>> Hi Krzysztof, Conor,
+>>>>>
+>>>>> On 2/27/26 9:46 AM, Krzysztof Kozlowski wrote:
+>>>>>> On Thu, Feb 26, 2026 at 12:46:53PM +0200, Cristian Ciocaltea wrote:
+>>>>>>> With the introduction of the RK3588 SoC, and RK3576 afterwards, two more
+>>>>>>> register blocks have been provided for the video decoder unit.
+>>>>>>>
+>>>>>>> However, the binding does not properly describe the new hardware layout,
+>>>>>>
+>>>>>> As you shown me last time with excerpt of address spaces from
+>>>>>> datasheet/manual, the binding correctly describes the hardware and above
+>>>>>> sentence is not true.
+>>>>>>
+>>>>>>> as it breaks the convention expecting the unit address to indicate the
+>>>>>>> start of the first register range, i.e. 'function' block is listed
+>>>>>>
+>>>>>> Imprecise wording. "start of the main or primary register range"
+>>>>>>
+>>>>>> (if you have 0x1000 with one reg and 0x20000000 with everything, the
+>>>>>> unit address will be 0x20000000).
+>>>>>>
+>>>>>>> before 'link' instead of the opposite.
+>>>>>>>
+>>>>>>> Since the binding changes have been already released and a fix would
+>>>>>>> bring up an ABI break, mark the current 'reg-names' ordering as
+>>>>>>> deprecated and introduce an alternative 'link,function,cache' listing
+>>>>>>> which follows the address-based ordering according to the TRM.
+>>>>>>>
+>>>>>>> Additionally, drop the 'reg' description items as the order is not fixed
+>>>>>>> anymore, while the information they offer is not very relevant anyway.
+>>>>>>
+>>>>>> This is fine for me.
+>>>>>
+>>>>> Thanks for the additional feedback!
+>>>>>
+>>>>> If I'm not mistaken (please correct me), the only remaining (hard)
+>>>>> blocker for the series would be to improve this commit message.
+>>>>
+>>>> No, you also need to fix the problem I pointed out about reg-names being
+>>>> optional on the devices you're relying on reg-names for. 
+>>>
+>>> My only concern is that by marking reg-names as required we would break the ABI,
+>>
+>> You are ALREADY BREAKING the ABI. Really, for absolutely non-important
+>> cosmetic change in unit address, where I asked you repeatedly to fix the
+>> unit address, you change the ABI affecting kernel and DTS users.
 
-Hi,
+I thought we've already reached consensus to allow extending the binding and
+keep both lists, precisely to avoid breaking the ABI.  At least this was my
+understanding according to your reply [1]:
 
-On Sun, Feb 22, 2026 at 02:16:49PM +0100, Otto Pfl=FCger wrote:
-> Make the poweroff driver for SC27xx-series PMICs probe automatically.
-> Since the device representing the poweroff functionality of the SC27xx
-> PMIC is not supposed to have a dedicated device tree node without any
-> corresponding DT resources [1], an of_device_id table cannot be used
-> here. Instead, use a platform_device_id table to match the poweroff
-> sub-device instantiated by the parent MFD driver.
->=20
-> Signed-off-by: Otto Pfl=FCger <otto.pflueger@abscue.de>
->=20
-> [1]: https://lore.kernel.org/all/20251002025344.GA2958334-robh@kernel.org/
-> ---
+  You can have also oneOf with older list "deprecated: true", if want to
+  keep any users unaffected.
 
-Acked-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+And this patch was meant to do exactly that.  Did I miss something?
 
--- Sebastian
+>> This is barely acceptable, but I am just annoyed already explain it to
+>> you multiple times.
 
->  drivers/power/reset/sc27xx-poweroff.c | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/drivers/power/reset/sc27xx-poweroff.c b/drivers/power/reset/=
-sc27xx-poweroff.c
-> index 393bd1c33b73..6376706bf561 100644
-> --- a/drivers/power/reset/sc27xx-poweroff.c
-> +++ b/drivers/power/reset/sc27xx-poweroff.c
-> @@ -6,6 +6,7 @@
-> =20
->  #include <linux/cpu.h>
->  #include <linux/kernel.h>
-> +#include <linux/mod_devicetable.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm.h>
-> @@ -70,11 +71,18 @@ static int sc27xx_poweroff_probe(struct platform_devi=
-ce *pdev)
->  	return 0;
->  }
-> =20
-> +static const struct platform_device_id sc27xx_poweroff_id_table[] =3D {
-> +	{ "sc2731-poweroff" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(platform, sc27xx_poweroff_id_table);
-> +
->  static struct platform_driver sc27xx_poweroff_driver =3D {
->  	.probe =3D sc27xx_poweroff_probe,
->  	.driver =3D {
->  		.name =3D "sc27xx-poweroff",
->  	},
-> +	.id_table =3D sc27xx_poweroff_id_table,
->  };
->  module_platform_driver(sc27xx_poweroff_driver);
-> =20
->=20
-> --=20
-> 2.51.0
->=20
->=20
+There is no need to explain it again, we've got your point.  We've also brought our
+arguments and I had the impression that we eventually agreed to keep the unit
+address unchanged, based on your comments [2]:
 
---adszrmxnyvdyek6f
-Content-Type: application/pgp-signature; name="signature.asc"
+  Yes, with drop of the oneOf this would be fine.
+  I meant, the "one item option" in oneOf.
 
------BEGIN PGP SIGNATURE-----
+Is this not applicable anymore?
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmmJKkACgkQ2O7X88g7
-+pqKDA/5AV136yvRe7RqNNIT156QrAc+9gAeOqzQ6oPlahmYFlPYeIeqFAdyRbFP
-CUks1Q7xZp4kcIlL9Qi0tdHM/em2QpHpx2Grh4nk3ZCv6oSp+ENj8xblRua85aPJ
-DQAM/xfskwuVATHFfRc6Aus6wSJpbmlXwGelvP2/Sxiq9FSmmn4CSPP7b8Lw41iA
-/tp6p3UuXPY8B8PkLApLBwECZ757Y/DZPTbfHkdUunt25qHvr5gOM0cUJ42kadVG
-WbmXtd4GRzkdT+IOgYhbWKhbbtjLIFkE1F3OLuJF/JfnpHs9WLuvgdnfyTy2kEc1
-D/ogyBvec9PqAFHpgymYgTRVcLHw3Lp7Yfane9f6PtTjsn5/A5vZmr8vi9xG2RuS
-UMThn+0OKwURaABK90z6udRR66+EDT3TClJLyK8P7tqmFNJ7YGtAa6K5r/VQikJi
-qzdHpJLRR2h0OVHJN/zyfitZHiJrE7EPwGd6p4w7EfuuG9emNRSDXZetZX+45dLA
-f/scfcVGxOB3KYpoB6r2rrF9yCQBJV/M9G3tgShq65WLLIfedUaM2NbcOEk7KYrn
-Dkb8c64EzMPOA/i4TWeZKpw2xpr6DSLl4VEC+1BApiux86+rsfw21bjASWq/2gX/
-KgibKzWdkv0HXK7/QU5g7gNPPnRNZPA3PhPEQE6PAr9TGtHSJNY=
-=U7O7
------END PGP SIGNATURE-----
+>> But now you claim, you can break ABI for cosmetic unimportant change,
 
---adszrmxnyvdyek6f--
+No, breaking ABI wasn't our intention here.  If we put the issue with reg-names
+being optional aside for a moment (as that one will be handled separately), is
+there still a problem with the current revision?
+
+>> but actually doing something meaningful is a no-go?
+
+Making reg-names mandatory has been already clarified with Conor and agreed [3]
+to be handled in a dedicated patch.  And that one will indeed break the ABI, but
+it's unavoidable, unfortunately. 
+
+>> At least use correct arguments if you want to discuss.
+
+Sorry, I'm not sure what do you mean.  I really believed that we managed to
+address all the open topics by now.
+
+Thanks,
+Cristian
+
+[1] https://lore.kernel.org/all/1cdc36f2-6e51-492a-9063-7d0a784f5118@kernel.org/
+[2] https://lore.kernel.org/all/12b30229-1c55-429d-8a3c-0d831c4d33ab@kernel.org/
+[3] https://lore.kernel.org/all/20260227-urologist-gratitude-7984733f2d41@spud/
+
 
