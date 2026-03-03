@@ -1,696 +1,193 @@
-Return-Path: <devicetree+bounces-270594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270595-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPiFOFX+pmk7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270594-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:29:25 +0100
+	id UO2rDMoAp2k7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270595-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:39:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 991491F29F0
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:29:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18B51F2CE5
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:39:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id DFD4B3056C15
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:27:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9E371310968B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:33:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E1748BD33;
-	Tue,  3 Mar 2026 15:27:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90A1748AE3D;
+	Tue,  3 Mar 2026 15:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="emGIHAq0"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="hxuIy/qv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 453463D565B
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 15:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F7B3750DD
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 15:32:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772551636; cv=none; b=lWWmNFLdZfCq0n5HRBLj/7QWEh4DcS5AJ36ogMY+ygBto18V3S+2ymCj0wPb103ZlkKex/bmagwvq0pcUVaErGD0PpyZXJ5+Yo220TPsY7z6KoJun9VlTAtY0zrKW61rhLbEhnpNO/iV/a2g2ryTarI08waIdqmDSNjzmZLIjDM=
+	t=1772551981; cv=none; b=K2D2BiYpoaCO5LZqHlOFEuaLQ1ZB4oN/yuEJvkuQDP2rFPOYIYNzj81eunSldaDbSMlwPmO5gC7Jn7Z1xFQrVXeetOtUceyEinCO9OCUyrjabUlugT43nF7KbtQ4/foca23luH9loFi+ztjiVaqDew8YLtKsgvrhtJeWXAASQMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772551636; c=relaxed/simple;
-	bh=zRyKIaYOOdvmG28P4Uh3RDwPd5dApfVwAmCouxPGbGg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SkExbKLNZKRJwWN0ObJh7/IlkqcazuuPDKXO4XlKUWIPEzTd7S11efYWT/Xoyak/ZLlnRtHYk+RvOvylKv8G3r7H+BhQ+b7QVUIicCq369+cE2+v0fk1hJtJPHXEZ7pSCkykOL+ZBPTBbDNYLHI5/5d3zgPK84i1wJQWo7fcfU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=emGIHAq0; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-439bc832351so144211f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 07:27:14 -0800 (PST)
+	s=arc-20240116; t=1772551981; c=relaxed/simple;
+	bh=qiMt4AKxRW6uzIHaOc4XWX09wGEBsrHpnjGhmEeRg3U=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VvI2C2/1rKVFNh9DPO69k2DbCxxmcfTouKUeo5ugKYdDrAIKfaXqR0mpNAGf6Az4xO3oBRSdHDDExPz+U8BSKfTQlYGGBidgIJF+tuPkyVUJj/Hr7B0vzYyaeduQfoWeXn78cCrh9XaBCxWzWEME2RFUcq91VfsQdhaA4fqgVwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=hxuIy/qv; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4806f3fc50bso62037465e9.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 07:32:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772551633; x=1773156433; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=n6ot4uYhfVKWexRgfYoEfAn0O34sAB3ydUfOEIAivbI=;
-        b=emGIHAq0/iRi186v0PF9FFK0oJJpq2b3T0X1vNiHxn4JYz//gwbpokNw1Vm9IN2ziT
-         WANjhF4bzADdB/VzKpkp+LC0kpI3NdKpg2rL1k0h91Q0k6K2AHJVwlrd/xEGyoMGveZX
-         qBIHmAyAKQKwt40Xm70b4L6jX5mSAnTCCdIG8JEifUnCzUue/TLXAJjVVBMhSIv8pSqa
-         GcdYjFm9xDUdy/bIeu4RVy7RL/ugFp2N3Vd0eBNSivd1LAKhy1OYA2fZTndsHYMMLdwh
-         AGH4ypcgb+DqiovTTvhuWOL715NVlYxEsIuoLjB9gl9xMkPlghGvlb1EBtXFJXibYK7p
-         VZZw==
+        d=flipper.net; s=google; t=1772551978; x=1773156778; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lR9itk2uXqg3duC81sXm2F1W0Z/G0NBQ0f28RHZQOcc=;
+        b=hxuIy/qvmAKWUHq4TrmjnNtynVs8ldsC1Vw2u0WBoZD0J46NJnuuj42aqSuH/dHhDd
+         8uogG7FO9WXA+HrcLOgSGYAFh0DcKGaB/lheN0i7glbpmBESLAC3VQkoZpg7xTdfk0Fz
+         1UqmMBXzeiR5IHKAWwSWQfedIUKbvJh2s7DU83tB0mcmlv803P7TtqXIpc4pRpzsymLJ
+         yqe6v9HhTK6rE4Kc9ScK3Cx4Go0pxZPBJcVD/cobnRRgK+2SFNpwbe6jMXcnTa34+NQQ
+         fWGm0TK6RaZ8JFK7W0QCwKa6wcBTGAaGQWSOuqgdFEKdU1xFgGldHI5Rqe+gNhEwB+wb
+         LP7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772551633; x=1773156433;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n6ot4uYhfVKWexRgfYoEfAn0O34sAB3ydUfOEIAivbI=;
-        b=ltGhnaSYYyTpH5mjxn1vCSyisjp+1a1bnN6J4ZtemGYftji7wHWgDgbWJMRDIIFzZ5
-         hkZyB8BBbDH9ULBMqlgAPrA0z8ydVy9ZSJ/G+pOiRnotd+qBBJ8Sfo7UETJECFJBzK2Z
-         SMrz9o7yUCEtSvvMrUJXPX8buGhOmIDSOWnZTNIwz5MX4kH1xf0s18QzrCfouPomTxgW
-         NuCQUlpbz0A4sHmvlPlbD8W5wfamB60Klg4m+L9PVi2ITyukSmZgF+D5vRd8DgHv+fNQ
-         JmK34wvils3VinPFtaQwCC/dO8W4Tf6xtzT5dXOrjCRTDo4+/qXCQ/AACMnsLkfTcG6h
-         pdBg==
-X-Forwarded-Encrypted: i=1; AJvYcCXi1OysDKAjoFXXxlSj0s5h71LDoNbPXJ4/NOUUnTez3VsdCx93AXMmwjUYOI9tVMxMkeQR5NVXDhCX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQctVv/AxFQrLyoBxGwOcwriGhb5jQEJK/NGPRTypnFte/K8jA
-	KCZt+IAGfV5rHCNzB9TFcnSCxPYVOYIPZ/88znx+TJXojQjrEXMa11Se
-X-Gm-Gg: ATEYQzwYEL1F4RDSTaVsq5x5DA3/AFRdJj3VuTIY1aj8wnpQDzSl/tUkK9Fq76naQAD
-	qq3TgPPZ+D9SluA0/Qq5XKxHc7OuzPNRgFNiGdA6bebWh0W7Hu2w0/+p39QxrLNNQ0B3cgYXOYS
-	m3r7TxDcDpsdhVwRCIg/F5YSaVVQTy3i8ZsBVlmZYpcaOt06vbY46Kv9CT4Yhr918slLBYqdb/E
-	b44a+nhbdQpWQ/VGSiE32AVahMvr1eKvBQ25/eftwnxar6IIjo0XdwxGsBkvbCgkfuL/tpWhZOX
-	nkAbgMdm1Vs8RIv6Fhagn8Hk1PYVynkYygX/a75F/POo4e89WTx1Z+T318XNX0FQtSpoCEG1hpO
-	8uLeSi/YsIAe4loIulKtgfxrGlF+S0TZvJUP41YV1/rWc5zQL+dRfo+Qu3ggGa/GLydbQzOzZHW
-	Igmi7Y0IPyAJ6lLRQ=
-X-Received: by 2002:a05:6000:2001:b0:439:b4c9:9065 with SMTP id ffacd0b85a97d-439b4c991bdmr9082442f8f.6.1772551632367;
-        Tue, 03 Mar 2026 07:27:12 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d00e:3600:2472:8e4a:cf12:bb30])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b503425asm17657092f8f.25.2026.03.03.07.27.10
+        d=1e100.net; s=20230601; t=1772551978; x=1773156778;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lR9itk2uXqg3duC81sXm2F1W0Z/G0NBQ0f28RHZQOcc=;
+        b=LnyN2e1y+ca22yhExtyoq6TWIB2ljFPH2TmEIdRMg1vfWPfYKv7oAKrOFvaiI4T1cJ
+         1U6QXyfqMEyLr1nVG9Q5G+QaQ8t1PXRb1tc2s317lER8nmT6Au/MyaFl9hmgohEWL460
+         2g5/kl48j6tv0NEqkYZvRfOQqH+BE2o3H9nwELXXGmTxeawb/LHNJeI7yqrJwUxBsVGi
+         +NkULqjJMcHs4uLymxaxdSJuCcWA9wIaQgdJJKyyVkzdJ797HCcOybV1gsw6Pcdj+Nlc
+         7qI9kvCD8G1R4WzMKyB1LAMQvKnpn/Ds1IbprrHGwQ7ThiFHhEbGJN6aMcBRV/S5bVj9
+         2xgA==
+X-Gm-Message-State: AOJu0YxysT2Yq+KvldzCe943bS/+/fQH1NAZwps3yMg/RdsPn0e3T5lB
+	LxENfE+ez7gKAotNH1JTTqlIfXpswEDfS6oiF0VbLoaW4BgWhBZ576uMRBAIJJdFPXM=
+X-Gm-Gg: ATEYQzwUw6MVzW9uslxgmsGYeyqvKrj7kCAlcaZ92FGmW20BLvovbky7Ajk1R32jMBH
+	to4E/XYwl31mzhtSq+bsQjceLg7BFVjRWl3Z1Fs1JDCxqf4aeUczUq9XUPtnti3KGTtJacgTNsb
+	RnHzOGzkHy/dsS671KFEt1NmhoJuSbE/jOSe1wt/NHncEI+1SUqUXg8ac3WJGnDaFszrAMzuKCK
+	6cmF9tyR5nJ0jv9WLvm+WXq2c4TBUGrI0P/3f2W/42Vl3XPL+5Ys1uAJzolZv2M8XXpyR3WKeE2
+	9joA37ftGXmBIj2LwtJFQ+ERM3rAnO1EtWdNshM5qTVVgQRLEyGRwvcLm17PGqQpu2T634wWtPZ
+	jfGhbR6wa2y4T8KxmG18E8M+pVAA00d/n2FCNZLLbUcDI6dYIO4PIBqgI/RK1e7X7AqAVnDlOHs
+	JrpMzoozwbW9oCC+s4WTtiwB+OhEwwCYPXYsBRoZfOPbiV3rrQ5IdEv8cdnRGYH2dSCuug00+Te
+	tY=
+X-Received: by 2002:a05:600c:4e8e:b0:483:a922:2e8d with SMTP id 5b1f17b1804b1-483c9b97198mr270143195e9.4.1772551977423;
+        Tue, 03 Mar 2026 07:32:57 -0800 (PST)
+Received: from alchark-surface.localdomain (bba-94-59-44-101.alshamil.net.ae. [94.59.44.101])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b55d15besm19799447f8f.30.2026.03.03.07.32.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 07:27:11 -0800 (PST)
-Date: Tue, 3 Mar 2026 17:27:09 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jens Emil Schulz =?utf-8?Q?=C3=98stergaard?= <jensemil.schulzostergaard@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 7/8] net: dsa: lan9645x: add mac table
- integration
-Message-ID: <20260303152709.nospd2qq3dju2tev@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
+        Tue, 03 Mar 2026 07:32:57 -0800 (PST)
+From: Alexey Charkov <alchark@flipper.net>
+Subject: [PATCH 00/11] Add support for the TI BQ25792 battery charger
+Date: Tue, 03 Mar 2026 19:32:45 +0400
+Message-Id: <20260303-bq25792-v1-0-e6e5e0033458@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
-X-Rspamd-Queue-Id: 991491F29F0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB3/pmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDYwNj3aRCI1NzSyNdA0Njo8RkCzMLE7MUJaDqgqLUtMwKsEnRsbW1ADj
+ AvYlZAAAA
+X-Change-ID: 20260303-bq25792-0132ac86846d
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Sebastian Reichel <sre@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ linux-pm@vger.kernel.org, Alexey Charkov <alchark@flipper.net>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2511; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=qiMt4AKxRW6uzIHaOc4XWX09wGEBsrHpnjGhmEeRg3U=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWQu+6/mWnhU/Y7Xn+AVIvuyS2cvyzFoy4q7t2r2Dr1jP
+ 1ZfkE9N75jIwiDGxWAppsgy99sS26lGfLN2eXh8hZnDygQyRFqkgQEIWBj4chPzSo10jPRMtQ31
+ DA11jHWMGLg4BWCq/x1lZJiXfbXzS8ZWe/Oy+HsGD7bqn6qwP/6/qUetd0/hzI1v3VUY/ocECfW
+ 8W/HavEx1IkOk/fcPDnmctWE/Kg2zPJ1/W12dxwgA
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+X-Rspamd-Queue-Id: D18B51F2CE5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270594-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-270595-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,hotmail.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[flipper.net:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[flipper.net:dkim,flipper.net:email,flipper.net:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 01:22:33PM +0100, Jens Emil Schulz Østergaard wrote:
-> Add MAC table support, and dsa fdb callback integration. The mactable is
-> keyed on (vid,mac) and each bucket has 4 slots. A mac table entry
-> typically points to a PGID index, the first 9 of which represent a front
-> port.
-> 
-> Mac table entries for L2 multicast will use a PGID containing a group
-> port mask. For IP multicast entries in the mac table a trick us used,
-> where the group port mask is packed into the MAC data, exploiting the
-> fact that the top bits are fixed, and that the number of switch ports is
-> small enough to fit in the redundant bits.
-> 
-> Therefore, we can avoid using sparse PGID resources for IP multicast
-> entries in the mac table.
-> 
-> Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
-> ---
->  drivers/net/dsa/microchip/lan9645x/Makefile        |   1 +
->  drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c  | 413 +++++++++++++++++++++
->  drivers/net/dsa/microchip/lan9645x/lan9645x_main.c | 110 +++++-
->  drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  48 +++
->  4 files changed, 571 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/dsa/microchip/lan9645x/Makefile b/drivers/net/dsa/microchip/lan9645x/Makefile
-> index bb5eec14d225..a90a46f81c72 100644
-> --- a/drivers/net/dsa/microchip/lan9645x/Makefile
-> +++ b/drivers/net/dsa/microchip/lan9645x/Makefile
-> @@ -6,3 +6,4 @@ mchp-lan9645x-objs := lan9645x_main.o \
->  	lan9645x_port.o \
->  	lan9645x_phylink.o \
->  	lan9645x_vlan.o \
-> +	lan9645x_mac.o \
+This adds support for the TI BQ25792 battery charger, which is similar in
+overall logic to the BQ25703A, but has a different register layout and
+slightly different lower-level programming logic.
 
-Is there some particular ordering here? Because it's surely not
-alphabetical.
+The series is organized as follows:
+- Patch 1 adds the new variant to the existing DT binding, including the
+  changes in electrical characteristics
+- Patches 2-4 are minor cleanups to the existing BQ25703A OTG regulator
+  driver, slimming down the code and making it more reusable for the new
+  BQ25792 variant
+- Patch 5 is a logical fix to the BQ25703A clamping logic for VSYSMIN
+  (this is a standalone fix which can be applied independently and may be
+  backported to stable)
+- Patches 6-8 are slight refactoring of the existing BQ25703A charger
+  driver to make it more reusable for the new BQ25792 variant
+- Patch 9 adds platform data to distinguish between the two variants in
+  the parent MFD driver, and binds it to the new compatible string
+- Patches 10-11 add variant-specific code to support the new BQ25792
+  variant in the regulator part and the charger part respectively,
+  selected by the platform data added in patch 9
 
-> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c
-> new file mode 100644
-> index 000000000000..3226cff16e8c
-> --- /dev/null
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c
-> @@ -0,0 +1,413 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/* Copyright (C) 2026 Microchip Technology Inc.
-> + */
-> +
-> +#include "lan9645x_main.h"
-> +
-> +#define LAN9645X_MAC_COLUMNS	4
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
+---
+Alexey Charkov (11):
+      dt-bindings: mfd: ti,bq25703a: Expand to include BQ25792
+      regulator: bq257xx: Remove reference to the parent MFD's dev
+      regulator: bq257xx: Drop the regulator_dev from the driver data
+      regulator: bq257xx: Make OTG enable GPIO really optional
+      power: supply: bq257xx: Fix VSYSMIN clamping logic
+      power: supply: bq257xx: Make the default current limit a per-chip attribute
+      power: supply: bq257xx: Consistently use indirect get/set helpers
+      power: supply: bq257xx: Add fields for 'charging' and 'overvoltage' states
+      mfd: bq257xx: Add BQ25792 support
+      regulator: bq257xx: Add support for BQ25792
+      power: supply: bq257xx: Add support for BQ25792
 
-Doesn't appear used.
+ .../devicetree/bindings/mfd/ti,bq25703a.yaml       |  79 ++-
+ drivers/mfd/bq257xx.c                              |  60 ++-
+ drivers/power/supply/bq257xx_charger.c             | 534 ++++++++++++++++++++-
+ drivers/regulator/bq257xx-regulator.c              | 123 ++++-
+ include/linux/mfd/bq257xx.h                        | 415 ++++++++++++++++
+ 5 files changed, 1163 insertions(+), 48 deletions(-)
+---
+base-commit: d517cb8cea012f43b069617fc8179b45404f8018
+change-id: 20260303-bq25792-0132ac86846d
 
-> +
-> +#define CMD_IDLE		0
-> +#define CMD_LEARN		1
-> +#define CMD_FORGET		2
-> +#define CMD_AGE			3
-> +#define CMD_GET_NEXT		4
-> +#define CMD_INIT		5
-> +#define CMD_READ		6
-> +#define CMD_WRITE		7
-> +#define CMD_SYNC_GET_NEXT	8
-> +
-> +#define LAN9645X_INVALID_ROW	(-1)
-> +
-> +static bool lan9645x_mact_entry_equal(struct lan9645x_mact_entry *entry,
-> +				      const unsigned char *mac, u16 vid)
-> +{
-> +	/* The hardware table is keyed on (vid,mac) */
-> +	return entry->common.key.vid == vid &&
-> +		ether_addr_equal(mac, entry->common.key.mac);
+Best regards,
+-- 
+Alexey Charkov <alchark@flipper.net>
 
-Can you please align the "entry" with "ether_addr_equal".
-I think there's more coding style inconsistencies of the same type in
-the submission that I went over and omitted to comment on.
-
-> +}
-> +
-> +static struct lan9645x_mact_entry *
-> +lan9645x_mact_entry_find(struct lan9645x *lan9645x, const unsigned char *mac,
-> +			 u16 vid)
-> +{
-> +	struct lan9645x_mact_entry *entry;
-> +
-> +	lockdep_assert_held(&lan9645x->mac_entry_lock);
-> +
-> +	list_for_each_entry(entry, &lan9645x->mac_entries, list)
-> +		if (lan9645x_mact_entry_equal(entry, mac, vid))
-> +			return entry;
-> +
-> +	return NULL;
-> +}
-> +
-> +static struct lan9645x_mact_entry *
-> +lan9645x_mact_entry_alloc(struct lan9645x *lan9645x, const unsigned char *mac,
-> +			  u16 vid, u8 pgid, enum macaccess_entry_type type)
-> +{
-> +	struct lan9645x_mact_entry *entry;
-> +
-> +	entry = kzalloc_obj(*entry);
-> +	if (!entry)
-> +		return NULL;
-> +
-> +	INIT_LIST_HEAD(&entry->list);
-
-This isn't needed on individual list elements, only on the head.
-
-> +	ether_addr_copy(entry->common.key.mac, mac);
-> +	entry->common.key.vid = vid;
-> +	entry->common.pgid = pgid;
-> +	entry->common.row = LAN9645X_INVALID_ROW;
-
-Do you use the row for anything?
-
-> +	entry->common.type = type;
-> +
-> +	dev_dbg(lan9645x->dev,
-> +		"mact_entry_alloc mac=%pM vid=%u pgid=%u type=%d",
-> +		entry->common.key.mac, entry->common.key.vid,
-> +		entry->common.pgid, entry->common.type);
-> +	return entry;
-> +}
-> +
-> +static void lan9645x_mact_entry_dealloc(struct lan9645x *lan9645x,
-> +					struct lan9645x_mact_entry *entry)
-> +{
-> +	if (!entry)
-> +		return;
-> +
-> +	dev_dbg(lan9645x->dev,
-> +		"mact_entry_dealloc mac=%pM vid=%u pgid=%u type=%d",
-> +		entry->common.key.mac, entry->common.key.vid,
-> +		entry->common.pgid, entry->common.type);
-> +
-> +	list_del(&entry->list);
-> +	kfree(entry);
-> +}
-> +
-> +static int lan9645x_mac_wait_for_completion(struct lan9645x *lan9645x,
-> +					    u32 *maca)
-> +{
-> +	u32 val = 0;
-> +	int err;
-> +
-> +	lockdep_assert_held(&lan9645x->mact_lock);
-> +
-> +	err = lan9645x_rd_poll_timeout(lan9645x, ANA_MACACCESS, val,
-> +				       ANA_MACACCESS_MAC_TABLE_CMD_GET(val) ==
-> +				       CMD_IDLE);
-> +	if (err)
-> +		return err;
-> +
-> +	if (maca)
-> +		*maca = val;
-> +
-> +	return 0;
-> +}
-> +
-> +static void lan9645x_mact_parse(u32 machi, u32 maclo, u32 maca,
-> +				struct lan9645x_mact_common *rentry)
-> +{
-> +	u64 addr = ANA_MACHDATA_MACHDATA_GET(machi);
-> +
-> +	addr = addr << 32 | maclo;
-> +	u64_to_ether_addr(addr, rentry->key.mac);
-> +	rentry->key.vid = ANA_MACHDATA_VID_GET(machi);
-> +	rentry->pgid = ANA_MACACCESS_DEST_IDX_GET(maca);
-> +	rentry->type = ANA_MACACCESS_ENTRYTYPE_GET(maca);
-> +}
-> +
-> +static void lan9645x_mac_select(struct lan9645x *lan9645x,
-> +				const unsigned char *addr, u16 vid)
-> +{
-> +	u64 maddr = ether_addr_to_u64(addr);
-> +
-> +	lockdep_assert_held(&lan9645x->mact_lock);
-> +
-> +	lan_wr(ANA_MACHDATA_VID_SET(vid) |
-> +	       ANA_MACHDATA_MACHDATA_SET(maddr >> 32),
-> +	       lan9645x,
-> +	       ANA_MACHDATA);
-> +
-> +	lan_wr(maddr & GENMASK(31, 0),
-> +	       lan9645x,
-> +	       ANA_MACLDATA);
-> +}
-> +
-> +static int __lan9645x_mact_forget(struct lan9645x *lan9645x,
-> +				  const unsigned char mac[ETH_ALEN],
-> +				  unsigned int vid,
-> +				  enum macaccess_entry_type type)
-> +{
-> +	lockdep_assert_held(&lan9645x->mact_lock);
-> +
-> +	lan9645x_mac_select(lan9645x, mac, vid);
-> +
-> +	lan_wr(ANA_MACACCESS_ENTRYTYPE_SET(type) |
-> +	       ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_FORGET),
-> +	       lan9645x,
-> +	       ANA_MACACCESS);
-> +
-> +	return lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> +}
-> +
-> +int lan9645x_mact_forget(struct lan9645x *lan9645x,
-> +			 const unsigned char mac[ETH_ALEN], unsigned int vid,
-> +			 enum macaccess_entry_type type)
-> +{
-> +	int ret;
-
-Inconsistent use of "err" and "ret" throughout the driver.
-Pick one and stick to it.
-
-> +
-> +	mutex_lock(&lan9645x->mact_lock);
-> +	ret = __lan9645x_mact_forget(lan9645x, mac, vid, type);
-> +	mutex_unlock(&lan9645x->mact_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static bool lan9645x_mac_ports_use_cpu(const unsigned char *mac,
-> +				       enum macaccess_entry_type type)
-> +{
-> +	u32 mc_ports;
-> +
-> +	switch (type) {
-> +	case ENTRYTYPE_MACV4:
-> +		mc_ports = (mac[1] << 8) | mac[2];
-> +		break;
-> +	case ENTRYTYPE_MACV6:
-> +		mc_ports = (mac[0] << 8) | mac[1];
-> +		break;
-> +	default:
-> +		return false;
-> +	}
-> +
-> +	return !!(mc_ports & BIT(CPU_PORT));
-> +}
-> +
-> +static int __lan9645x_mact_learn_cpu_copy(struct lan9645x *lan9645x, int port,
-> +					  const unsigned char *addr, u16 vid,
-> +					  enum macaccess_entry_type type,
-> +					  bool cpu_copy)
-> +{
-> +	lockdep_assert_held(&lan9645x->mact_lock);
-> +
-> +	lan9645x_mac_select(lan9645x, addr, vid);
-> +
-> +	lan_wr(ANA_MACACCESS_VALID_SET(1) |
-> +	       ANA_MACACCESS_DEST_IDX_SET(port) |
-> +	       ANA_MACACCESS_MAC_CPU_COPY_SET(cpu_copy) |
-> +	       ANA_MACACCESS_ENTRYTYPE_SET(type) |
-> +	       ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_LEARN),
-> +	       lan9645x, ANA_MACACCESS);
-> +
-> +	return lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> +}
-> +
-> +static int __lan9645x_mact_learn(struct lan9645x *lan9645x, int port,
-> +				 const unsigned char *addr, u16 vid,
-> +				 enum macaccess_entry_type type)
-> +{
-> +	bool cpu_copy = lan9645x_mac_ports_use_cpu(addr, type);
-> +
-> +	return __lan9645x_mact_learn_cpu_copy(lan9645x, port, addr, vid, type,
-> +					      cpu_copy);
-> +}
-> +
-> +int lan9645x_mact_learn(struct lan9645x *lan9645x, int port,
-> +			const unsigned char *addr, u16 vid,
-> +			enum macaccess_entry_type type)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&lan9645x->mact_lock);
-> +	ret = __lan9645x_mact_learn(lan9645x, port, addr, vid, type);
-> +	mutex_unlock(&lan9645x->mact_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +int lan9645x_mact_flush(struct lan9645x *lan9645x, int port)
-> +{
-> +	int err = 0;
-
-This is overwritten with the lan9645x_mac_wait_for_completion() result
-and never read. You don't need to zero-initialize it.
-
-> +
-> +	mutex_lock(&lan9645x->mact_lock);
-> +	/* MAC table entries with dst index matching port are aged on scan. */
-> +	lan_wr(ANA_ANAGEFIL_PID_EN_SET(1) |
-> +	       ANA_ANAGEFIL_PID_VAL_SET(port),
-> +	       lan9645x, ANA_ANAGEFIL);
-> +
-> +	/* Flushing requires two scans. First sets AGE_FLAG=1, second removes
-> +	 * entries with AGE_FLAG=1.
-> +	 */
-> +	lan_wr(ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_AGE),
-> +	       lan9645x,
-> +	       ANA_MACACCESS);
-> +
-> +	err = lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> +	if (err)
-> +		goto mact_unlock;
-> +
-> +	lan_wr(ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_AGE),
-> +	       lan9645x,
-> +	       ANA_MACACCESS);
-> +
-> +	err = lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> +
-> +mact_unlock:
-> +	lan_wr(0, lan9645x, ANA_ANAGEFIL);
-> +	mutex_unlock(&lan9645x->mact_lock);
-> +	return err;
-> +}
-> +
-> +int lan9645x_mact_entry_add(struct lan9645x *lan9645x, int pgid,
-> +			    const unsigned char *mac, u16 vid)
-> +{
-> +	struct lan9645x_mact_entry *entry;
-> +	int ret = 0;
-> +
-> +	/* Users can not move (vid,mac) to a different port, without removing
-> +	 * the original entry first. But we overwrite entry in HW, and update
-> +	 * software pgid for good measure.
-> +	 */
-> +	mutex_lock(&lan9645x->mac_entry_lock);
-> +	entry = lan9645x_mact_entry_find(lan9645x, mac, vid);
-> +	if (entry) {
-> +		entry->common.pgid = pgid;
-> +		mutex_unlock(&lan9645x->mac_entry_lock);
-> +		goto mac_learn;
-> +	}
-> +
-> +	entry = lan9645x_mact_entry_alloc(lan9645x, mac, vid, pgid,
-> +					  ENTRYTYPE_LOCKED);
-> +	if (!entry) {
-> +		mutex_unlock(&lan9645x->mac_entry_lock);
-> +		return -ENOMEM;
-> +	}
-> +
-> +	list_add_tail(&entry->list, &lan9645x->mac_entries);
-> +	mutex_unlock(&lan9645x->mac_entry_lock);
-> +
-> +mac_learn:
-> +	WARN_ON(entry->common.pgid != pgid);
-> +	ret = lan9645x_mact_learn(lan9645x, pgid, mac, vid, ENTRYTYPE_LOCKED);
-
-Same comment about multiple critical sections getting opened and closed.
-It makes you wonder what can happen in between them. Any reason why you
-don't call __lan9645x_mact_learn()?
-
-> +	if (ret) {
-> +		mutex_lock(&lan9645x->mac_entry_lock);
-> +		lan9645x_mact_entry_dealloc(lan9645x, entry);
-> +		mutex_unlock(&lan9645x->mac_entry_lock);
-> +	}
-> +	return ret;
-> +}
-> +
-> +int lan9645x_mact_entry_del(struct lan9645x *lan9645x, int pgid,
-> +			    const unsigned char *mac, u16 vid)
-> +{
-> +	struct lan9645x_mact_entry *entry;
-> +
-> +	mutex_lock(&lan9645x->mac_entry_lock);
-> +	entry = lan9645x_mact_entry_find(lan9645x, mac, vid);
-> +	if (entry) {
-> +		WARN_ON(entry->common.pgid != pgid);
-> +		lan9645x_mact_entry_dealloc(lan9645x, entry);
-> +		mutex_unlock(&lan9645x->mac_entry_lock);
-> +		goto forget;
-> +	}
-> +	mutex_unlock(&lan9645x->mac_entry_lock);
-> +	return -ENOENT;
-> +
-> +forget:
-> +	return lan9645x_mact_forget(lan9645x, mac, vid, ENTRYTYPE_LOCKED);
-
-I don't understand why you release the mac_entry_lock just for
-lan9645x_mact_forget() to acquire it again. Can't stuff happen in the
-split second where the MAC table is unlocked? It seems at least more
-straightforward to call __lan9645x_mact_forget() under the locked
-section rather than do the jump.
-
-And it also seems more straightforward to invert the branch where the
-entry is found in the MAC table with the one where it isn't. This allows
-the more complex code to be less indented.
-
-> +}
-> +
-> +void lan9645x_mac_init(struct lan9645x *lan9645x)
-> +{
-> +	mutex_init(&lan9645x->mac_entry_lock);
-> +	mutex_init(&lan9645x->mact_lock);
-> +	mutex_init(&lan9645x->fwd_domain_lock);
-> +	INIT_LIST_HEAD(&lan9645x->mac_entries);
-> +
-> +	/* Clear the MAC table */
-> +	mutex_lock(&lan9645x->mact_lock);
-> +	lan_wr(CMD_INIT, lan9645x, ANA_MACACCESS);
-> +	lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> +	mutex_unlock(&lan9645x->mact_lock);
-
-mutex_init() immediately followed by mutex_lock() is an antipattern.
-mutex_init() is run from a context with no concurrent threads that can
-acquire the lock.
-mutex_lock() is run from a context where concurrent threads are possible.
-The two put together are a logical inconsistency, it means acquiring the
-lock is unnecessary.
-
-> +}
-> +
-> +void lan9645x_mac_deinit(struct lan9645x *lan9645x)
-> +{
-> +	mutex_destroy(&lan9645x->mac_entry_lock);
-> +	mutex_destroy(&lan9645x->mact_lock);
-> +	mutex_destroy(&lan9645x->fwd_domain_lock);
-> +}
-> +
-> +int lan9645x_mact_dsa_dump(struct lan9645x *lan9645x, int port,
-> +			   dsa_fdb_dump_cb_t *cb, void *data)
-> +{
-> +	struct lan9645x_mact_entry entry = { 0 };
-
-Just {}.
-https://lore.kernel.org/netdev/20210810091238.GB1343@shell.armlinux.org.uk/
-
-> +	u32 mach, macl, maca;
-> +	int err = 0;
-> +	u32 autoage;
-> +
-> +	mach = 0;
-> +	macl = 0;
-
-You have two choices.
-
-You can fold these into their declaration: "u32 mach = 0, macl = 0, maca;",
-_if_ you're going to write them as variables:
-	lan_wr(mach, lan9645x, ANA_MACHDATA);
-	lan_wr(macl, lan9645x, ANA_MACLDATA);
-
-Or you can remove the initializer, which is overwritten by the first
-variable assignment in the while (1) loop, without the variables ever
-being read in the meantime.
-
-> +	entry.common.type = ENTRYTYPE_NORMAL;
-> +
-> +	mutex_lock(&lan9645x->mact_lock);
-> +
-> +	/* The aging filter works both for aging scans and GET_NEXT table scans.
-> +	 * With it, the HW table iteration only stops at entries matching our
-> +	 * filter. Since DSA calls us for each port on a table dump, this helps
-> +	 * avoid unnecessary work.
-
-Nice. I think this is the first driver I see which doesn't do duplicated
-work here. I vaguely remember testing this feature on Ocelot too, but it
-didn't work.
-
-> +	 *
-> +	 * Disable automatic aging temporarily. First save current state.
-> +	 */
-> +	autoage = lan_rd(lan9645x, ANA_AUTOAGE);
-> +
-> +	/* Disable aging */
-> +	lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(0),
-> +		ANA_AUTOAGE_AGE_PERIOD,
-> +		lan9645x, ANA_AUTOAGE);
-> +
-> +	/* Setup filter on our port */
-> +	lan_wr(ANA_ANAGEFIL_PID_EN_SET(1) |
-> +	       ANA_ANAGEFIL_PID_VAL_SET(port),
-> +	       lan9645x, ANA_ANAGEFIL);
-> +
-> +	lan_wr(0, lan9645x, ANA_MACHDATA);
-> +	lan_wr(0, lan9645x, ANA_MACLDATA);
-> +
-> +	while (1) {
-> +		/* NOTE: we rely on mach, macl and type being set correctly in
-> +		 * the registers from previous round, vis a vis the GET_NEXT
-> +		 * semantics, so locking entire loop is important.
-> +		 */
-> +		lan_wr(ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_GET_NEXT) |
-> +		       ANA_MACACCESS_ENTRYTYPE_SET(entry.common.type),
-> +		       lan9645x, ANA_MACACCESS);
-> +
-> +		if (lan9645x_mac_wait_for_completion(lan9645x, &maca))
-> +			break;
-> +
-> +		if (ANA_MACACCESS_VALID_GET(maca) == 0)
-> +			break;
-> +
-> +		mach = lan_rd(lan9645x, ANA_MACHDATA);
-> +		macl = lan_rd(lan9645x, ANA_MACLDATA);
-> +
-> +		lan9645x_mact_parse(mach, macl, maca, &entry.common);
-> +
-> +		if (ANA_MACACCESS_DEST_IDX_GET(maca) == port &&
-> +		    entry.common.type == ENTRYTYPE_NORMAL) {
-> +			if (entry.common.key.vid > VLAN_MAX)
-> +				entry.common.key.vid = 0;
-> +
-> +			err = cb(entry.common.key.mac, entry.common.key.vid,
-> +				 false, data);
-> +			if (err)
-> +				break;
-> +		}
-> +	}
-> +
-> +	/* Remove aging filters and restore aging */
-> +	lan_wr(0, lan9645x, ANA_ANAGEFIL);
-> +	lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(ANA_AUTOAGE_AGE_PERIOD_GET(autoage)),
-> +		ANA_AUTOAGE_AGE_PERIOD,
-> +		lan9645x, ANA_AUTOAGE);
-> +
-> +	mutex_unlock(&lan9645x->mact_lock);
-> +
-> +	return err;
-> +}
-> diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> index 1c8f20452487..ba76279b4414 100644
-> --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> @@ -78,6 +78,7 @@ static void lan9645x_teardown(struct dsa_switch *ds)
->  
->  	debugfs_remove_recursive(lan9645x->debugfs_root);
->  	lan9645x_npi_port_deinit(lan9645x, lan9645x->npi);
-> +	lan9645x_mac_deinit(lan9645x);
->  }
->  
->  static int lan9645x_change_mtu(struct dsa_switch *ds, int port, int new_mtu)
-> @@ -171,8 +172,8 @@ static int lan9645x_setup(struct dsa_switch *ds)
->  		return err;
->  	}
->  
-> -	mutex_init(&lan9645x->fwd_domain_lock);
-
-Why did you have to move this to lan9645x_mac_init()? It has changed
-position since the beginning of the series. Also, it isn't related to
-the MAC table.
-
->  	lan9645x_vlan_init(lan9645x);
-> +	lan9645x_mac_init(lan9645x);
->  
->  	/* Link Aggregation Mode: NETDEV_LAG_HASH_L2 */
->  	lan_wr(ANA_AGGR_CFG_AC_SMAC_ENA |
 
