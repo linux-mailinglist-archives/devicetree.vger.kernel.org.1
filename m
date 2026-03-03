@@ -1,481 +1,291 @@
-Return-Path: <devicetree+bounces-270345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270344-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cNhMKdaWpmnmRQAAu9opvQ
-	(envelope-from <devicetree+bounces-270345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:07:50 +0100
+	id UKo0Op6WpmnmRQAAu9opvQ
+	(envelope-from <devicetree+bounces-270344-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:06:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1381EA8D1
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:07:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 672081EA87D
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 889E43032D1C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:07:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 09DF9303B5D6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:06:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D123876C7;
-	Tue,  3 Mar 2026 08:06:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58AD5386C15;
+	Tue,  3 Mar 2026 08:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="V10cxy2L";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="sE5c4Cpi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88429386C34;
-	Tue,  3 Mar 2026 08:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772525216; cv=none; b=Bv01Osxob9UxHoO2mD4wAvz0iaMjaww7ztqmdn2z+qBtP4m3S0CLYEZacrLmKIR1bXYMGSJsygg40SenfK3sSTKlIOSGKH+YNnBt0szdxk15r/xzNG4Wu/mgzzkTVOJdxsUFKzc3FHBJ3pDiuX41ogni8JLSreXX/R33AU9fwCY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772525216; c=relaxed/simple;
-	bh=4wYNLfY6sjphIB1eGDwCjsot5cs7HtXgdc/sRdiPhiU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ks0MH+UBLDWCAofuWW8G8exKdNfj18O1b3oo2+h5okFjv5DW6+axNWtKT40KLv/eH1f+CmuIrQtRpc/691gp3TiSnTw1poJGG1pdQ2oKIsC8vK9QX547kKiUpwmOiu9x0/Umzv+YQb16ipu9cz8sC8rH+uf7yyPWSR2jTpk76GM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app1 (Coremail) with SMTP id TAJkCgD3jHGPlqZpR0EFAA--.23230S2;
-	Tue, 03 Mar 2026 16:06:41 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	troy.mitchell@linux.dev,
-	bmasney@redhat.com
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	ganboing@gmail.com,
-	marcel@ziswiler.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v15 1/4] dt-bindings: clock: eswin: Documentation for eic7700 SoC
-Date: Tue,  3 Mar 2026 16:06:37 +0800
-Message-Id: <20260303080637.2100-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20260303080513.2042-1-dongxuyang@eswincomputing.com>
-References: <20260303080513.2042-1-dongxuyang@eswincomputing.com>
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADAA7382387;
+	Tue,  3 Mar 2026 08:06:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=210.61.82.184
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772525211; cv=fail; b=CztsUfMkdnAOenuycScS0aUE12W/QQqWHa99xUH/npApRs3tul9gbTvSdSD1HUbKovkJK9/9ErdWfzg10jddbfOzSTyPxFX4Fd6fmqZGUAnV+YgwGuQUn2mIspzuflSzTJZ94bDE87LlrXtzkfUYDVVfZkT7Wf1TUh2/EOPTbc8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772525211; c=relaxed/simple;
+	bh=PNyTSxHP6F99vc4hcQsIfnPOGqdDhQaA5d32CRR3b3U=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=EJiZoQWitqsVoXsSXACL6RFcmndolJKLtSYVmrykpFseI40xSi6Q1JyRECamFt/LOvznmnQ++Fktyrtu1TqBZYocR86di30Z23cU0tmophpEIJo2fMnwugb5eJiklFNQk/t9CGhbBr0WDY+rTTbCAfK1kWDnOh/LfU/GA0mi7u8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=V10cxy2L; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=sE5c4Cpi; arc=fail smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: eb38381816d711f1b7fc4fdb8733b2bc-20260303
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=PNyTSxHP6F99vc4hcQsIfnPOGqdDhQaA5d32CRR3b3U=;
+	b=V10cxy2Lu27Nf0yAGDTw/4asSryxkeYGbSB2GMK/wNQ4jx0FXSMBjmyVlZJME+ElCT1NpEXSf7a2jb23AvYcZUSdRh0s0HBgbPyl8v8/IJLKAd30jMYJ8DGB8PZCr1lC/3TG68Uu3/Po9holoPvz59J7qI59bFcVsUa7CE91Si8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.11,REQID:7d35cf1c-cb89-4582-b2cb-0af628359498,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:89c9d04,CLOUDID:08a033f1-16bd-4243-b4ca-b08ca08ab1d8,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|888|898,
+	TC:-5,Content:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BE
+	C:-1,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: eb38381816d711f1b7fc4fdb8733b2bc-20260303
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+	(envelope-from <peter.wang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1733544609; Tue, 03 Mar 2026 16:06:44 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Tue, 3 Mar 2026 16:06:43 +0800
+Received: from SG2PR04CU010.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Tue, 3 Mar 2026 16:06:43 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yT9mMpxXSK55wp5G5WI5Gu3kRpHxPvEILV0/tDLKpfj7Q4KP4vgLe72m7UtSBlK70yVfYXHSJeSfmYOKmiiAjmxHKwhg5kd+ULBNdjcaHvET0cgK+taYZAqW7OPmVlLU5Q+ZRzTLeTpP2wiF87lnB4GuCGFd0yxMp9xjl7RVNvG5veeiFw8aZFnZWRR+WSZxCouWKcNc7aj94HIA1bxJKbUxpPxeqLm32CD1Ig+Ft8qiQhhIyn7cuD42oKMXb2Yem/+JuuMaYu/NWRWYI/ZP5ejS5ckwAyn+u9SXb/KS8NZe3CJh/clWXdjiLzsd0L4av5AHrvd1AzWmQCiOQl6vKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PNyTSxHP6F99vc4hcQsIfnPOGqdDhQaA5d32CRR3b3U=;
+ b=x/QEVISRiR3WA2uc0J779WKglEpOojOv2IEP3BPlGw72CL3njfI7tEJEQYTP3RZbuBcOIYC/MzsOZnvg7LfQztCW3mENrUGlrvMv7GQphaU48d1bI79YMDPm4ZIWGFu1lHwgZVlQGWBYmc3KlOQy5wgbTc9inzwDuLD7qEF5yyRocGQ7kNpy3faD5WdDfLvAQjzLqnaMFoteo7unAE8lRiiCtjhHxtAO6J3I1k0/s47se1RUVmiZymkQhHUVV8LuojNmVk1NrM0ca7sjpJOLz0R3VorOiHVgTVEcGfPsKq98CCxNc/mF6PzBiahA63B4Da5oFb69So/Ix3qFc4PI2Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PNyTSxHP6F99vc4hcQsIfnPOGqdDhQaA5d32CRR3b3U=;
+ b=sE5c4CpiyZS2JeMpXpiLdnS3R2Y9fZjX+01GhDgS+iWhtQ6ICf5m34bRGr2e5+XZ77ukGS+YzK0mVVHuOLOUzpIwuXJw1EmsXHpm5jWw1q9qHSU+XekoqQ+xtrMrfKinpMpUBLHRFwXy/QiLqXDIiQIvUP9oMKnSlkocPPeFWFU=
+Received: from PSAPR03MB5605.apcprd03.prod.outlook.com (2603:1096:301:66::6)
+ by KUZPR03MB9712.apcprd03.prod.outlook.com (2603:1096:d10:61::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Tue, 3 Mar
+ 2026 08:06:40 +0000
+Received: from PSAPR03MB5605.apcprd03.prod.outlook.com
+ ([fe80::165:d36a:3f76:2925]) by PSAPR03MB5605.apcprd03.prod.outlook.com
+ ([fe80::165:d36a:3f76:2925%4]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
+ 08:06:40 +0000
+From: =?utf-8?B?UGV0ZXIgV2FuZyAo546L5L+h5Y+LKQ==?= <peter.wang@mediatek.com>
+To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>, "robh@kernel.org"
+	<robh@kernel.org>, =?utf-8?B?Q2h1bmZlbmcgWXVuICjkupHmmKXls7Ap?=
+	<Chunfeng.Yun@mediatek.com>, "kishon@kernel.org" <kishon@kernel.org>,
+	"James.Bottomley@hansenpartnership.com"
+	<James.Bottomley@hansenpartnership.com>, "bvanassche@acm.org"
+	<bvanassche@acm.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>,
+	=?utf-8?B?Q2hhb3RpYW4gSmluZyAo5LqV5pyd5aSpKQ==?=
+	<Chaotian.Jing@mediatek.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+	"nicolas.frattaroli@collabora.com" <nicolas.frattaroli@collabora.com>,
+	"vkoul@kernel.org" <vkoul@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "avri.altman@wdc.com"
+	<avri.altman@wdc.com>, "broonie@kernel.org" <broonie@kernel.org>,
+	"martin.petersen@oracle.com" <martin.petersen@oracle.com>
+CC: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-phy@lists.infradead.org"
+	<linux-phy@lists.infradead.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, Louis-Alexis Eyraud
+	<louisalexis.eyraud@collabora.com>, "kernel@collabora.com"
+	<kernel@collabora.com>
+Subject: Re: [PATCH v7 16/23] scsi: ufs: mediatek: Clean up logging prints
+Thread-Topic: [PATCH v7 16/23] scsi: ufs: mediatek: Clean up logging prints
+Thread-Index: AQHcn0ncDWW9D+zkUUupEOV+hOFhPrWR2OKAgAGXfYCAAAN1gIABKM8AgAA+2wCAB69BgA==
+Date: Tue, 3 Mar 2026 08:06:40 +0000
+Message-ID: <76e49783820e2d9dcd3ad5568124a9396da9b37d.camel@mediatek.com>
+References: <20260216-mt8196-ufs-v7-0-b5f2907c6da7@collabora.com>
+	 <20260216-mt8196-ufs-v7-16-b5f2907c6da7@collabora.com>
+	 <c333898413d249c017430d4ae98bc7be3bf33a64.camel@mediatek.com>
+	 <2575185.irdbgypaU6@workhorse>
+	 <f0e97a38-a11b-4e69-902a-e0ccd0dc4540@collabora.com>
+	 <259b24885e5e721ae562d27dd761b02e6a68c971.camel@mediatek.com>
+	 <84f22f00-e3eb-4ea5-999e-260c81f29338@collabora.com>
+In-Reply-To: <84f22f00-e3eb-4ea5-999e-260c81f29338@collabora.com>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PSAPR03MB5605:EE_|KUZPR03MB9712:EE_
+x-ms-office365-filtering-correlation-id: 7ed6da82-8451-45a8-f0ab-08de78fbcccc
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700021|921020;
+x-microsoft-antispam-message-info: AZa4TJmYRNsWN1jAwmsFII0Z0cGKmgbW8LWP5okoGuuruKk/KTScWFgud+ffM5xFLq/tHQfBq3QpvxT3PdvkB5eq3FGo+HvG0wjHB55vWL/kbV0b1Xj28cwemFzULI5YppSUmQPeDwDIF6hOiIpqamNOsRPkY6nsjKPK48S601AsuQs1tjsSSVYL8fb0iYDjdcbtd93UXmvySUo8gRjZAHO8aXyCIfUVKv31mkP40nX0fA1D5tUfRAp1PZOzbs+l10HCDig6AowE86Gu7so+0EkJucpSOssF/ays6T6wjeuJs3B4ur2TqbvvAfiFmSXi07518OKMaeDkpEz8vXzaaGj7ughhpV8lAkT93H+VeAUBmJSw1qtCDKfczra5oH9qqX12u4U4O1n6BPWLyszeCVCZ3T5Ik83QXZ2XDskd+uIuy7JjjFfcHkgTGtdHFIeytERdqk8V76TWTVI8JP/UzNiJ1LtuaWeU0ShdBVZD63zBTreR7HlGAJ/Ag+Cdk+C0ET5XNC87PD5O2pU5+eqnPFrjcN9WRtvg6xj61MwmrVQADe5TcDYg4RyHVHC4MJbdlT6v85PiQLMJ8YB0aJOavmrnXo0KPE0grkM+VaS1M+zDDH1kjsxg3dVRX31meH4BchW/XmgMy3Em6rtACOQqUUaJ5gs9zOP81pSwtVdLnhWJigr945gPS+Is7K3sTytxqfXBjI/3f2Pnqq0D8I7YnGTx75OZpUbE/r2ZRus+QZ5Pn7AsMByTS9fCAjOfSKvGXz6p7yJf/vCoRFw0U8CVUW0R9tPggeDMW6IUySoidqUEJ4m8TlEi5aVgsCV4K286
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PSAPR03MB5605.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700021)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VUpwOXBQR2xEUWlhNjB3WEpxN3FYQmM2YVJpNHBZT2FNRkdjZVFtQ1paYkkx?=
+ =?utf-8?B?NFRtSlZiam9tWjZxaTMzSSt6NFRkNVVJaWVhZFYvMDlaZVpST045TWxISUc4?=
+ =?utf-8?B?NDF0WGQ3RDhoOEFQNnhuNUl2WkNNOHN0OWE0S09CMDUreXd0aCtCZm9PaDhG?=
+ =?utf-8?B?eXpUL0tTOEFxdWpZbkpWUXVnc3R4dWlSS3dhZ25PRTF0dndCYklTZ0xUTktU?=
+ =?utf-8?B?V3hVMjFmYlBFOGZJSDNUTXNQVm5Dc1NMVTYwRW5pSW5YRXh5ZG9NQlBJa09I?=
+ =?utf-8?B?cVkwQ1drbUFoNzNYSzErZkNGTFl1NXhTd04rampTSlpXUFdHbERzaldjalMv?=
+ =?utf-8?B?Yml4L2c2Ym9SMndTR2NtK3p1VThJVGQ1TGJRczJVZ1dpZEliK0ZBWS9CVjZo?=
+ =?utf-8?B?V2xrYkFDZVc3N0ZOWkZvQTZub3pRQ0oydmMreGpoL0dmdHBVVGxaOWkwUktp?=
+ =?utf-8?B?RDVmL2tTM2RhaVh1Zmd2R3JMUkpuZVpvZzdnbG9vUE9qbFdVdXh1V201SzAx?=
+ =?utf-8?B?TkZDc090SHZpc1o2ZXVBOGxPYkhaRGF2eTlaeHhJK1JaVzRQelpPT2ZiU1FP?=
+ =?utf-8?B?YVdLUDg1T0pZb3dudThYNFM1UGNIeG9HcmI4VWJPWnQvNGhSZjdPaTFRanBU?=
+ =?utf-8?B?ckhYazNoS0kxRjVpQ3o5ZjVrYStOL3JOL1RIM3hrZU53Mk9ibjZmclA5UXUz?=
+ =?utf-8?B?T1hzSzBvNS9NK2VYTmtDcXYyODZLOVdLcXMxdTlTK2FTOE9aZjRDMFFuMlBk?=
+ =?utf-8?B?ZUUyZWVaRkhQNjdzQWM0UFlMeDkxUWV2d1p4WUtvMEJ0YnBXRkNyK0Y2YnYy?=
+ =?utf-8?B?YWE3ZDVnV3ZwYlBJVktuWTJtcEdWUGhiM3U2MFFlenFjMTYzQm9uYXJtd2NN?=
+ =?utf-8?B?cFNnSng1V1JlR3lUbnE3S2F2aTFRZHZwN2dEdmxsTDdjL3p4eTJlUUlvdFFy?=
+ =?utf-8?B?Wm44bWhvTDV4b3Z6bVNVOFFCbEF1U1lNVitwSlR4YmVTVmpBb2RocG1aMHZY?=
+ =?utf-8?B?ZlFEV3RzUG1RMkEzejM3bjA0NlVneVhnNy9uYUlQcmdiTFhxV3VmK2IycFFj?=
+ =?utf-8?B?ZnQwV3kvRlQwZmxnVzlFV2NBZmI1WGcxYTdaSk5RUG1UTXNsMWFWRkRTcjVE?=
+ =?utf-8?B?T2hZMWEvU2hFeTdUbStuRjlRclZ5Vm0ycW9ISlNUaWVNcnZkTWpOY2JwK05J?=
+ =?utf-8?B?MERGWVZNZm5hSmhUUHNOU09QVmRoazJpUUdYS25lL0pVL05OR0RrQk5pcjdu?=
+ =?utf-8?B?VE1wa0M4WDI1U1A1cGdXZitpUnRjT05vcWlrQmY1NmZuaTBSUFRCM0lsZFBB?=
+ =?utf-8?B?ZWxpdkpJc2RTeXhBbjN0VGFsRGRaSm5LdGVRWGMrV1lTRXNRcDJpcldmK1lu?=
+ =?utf-8?B?WlJMS0JDeUpvNHNaZXErZGsvNlduU3JyQm1ZcGVtVERhWDYyZkVzbWdpR0x5?=
+ =?utf-8?B?V2k0NVlheVNXRXIzc1pTSlc1bXpzMnBOSkZjZjZ0RXltQXlPdVVWTE1hY1Zp?=
+ =?utf-8?B?WWlSdDhzbzhnaXdtRFJXZ2NHWGJyQnNSc3AzcWppT0VDdmtQRXFxTVJYeVBy?=
+ =?utf-8?B?SmF3NTkzY2FSaXJGVk5vOVo4dzNONzlLLzVHb2V1TFF6NWdhSE0weVBFTExJ?=
+ =?utf-8?B?WGhNZzRVNE1SQUNCS3BaclF4QjRVbHB6LzhEejZyYlBqY3NXSnRlWWJqZkRF?=
+ =?utf-8?B?WUpCVnVPZGc4WFNPUnhFdllmN1RoMGxhWUNaRm5JQlNDQTJsakdja1IwZGFR?=
+ =?utf-8?B?ZURRdDZkSU5tRHhIU3N1YnYwVEI3R0lnSmd2dUpPYmp5cHE4eEl4MyswNHJk?=
+ =?utf-8?B?RXl5WTdIUFRVajNWMHQ4TVNYZ2FJSHE2ZHhTOGVNbTlLb0RDQ0ZNVFFuVGY0?=
+ =?utf-8?B?WWVCZTdNRnhZRk9qY0l1RDIydWRQY1lJL1ZXMHkrZTRYbFpnMElCQ0t0Mksw?=
+ =?utf-8?B?N01qT0lwMTlKbzFkcXN4ZFFvMG9RaXdwNmczV3NjYmpDbnJGT01TRlg4cGV6?=
+ =?utf-8?B?OUJXbnZVeGVNMW1tVVFxT0dvTnMyb3dBSGdGNWVNelJKVkV5STB3R1U4ejRk?=
+ =?utf-8?B?NThOSVRQU1lRWlhsVDAvS3g5eDhEOFl1OFpzYVBiSGhtSENvR0NFWi9EYmFj?=
+ =?utf-8?B?bFJIVGJtYzFybDlTQVR4azdkVklCMk9xUXdpSlord0hrUXA3OUNDbVZqWEJh?=
+ =?utf-8?B?SytRS1ZLVE8yNlNDQXBVQ0xPMjdZc0ZMZCsxMFpyVEsvWXVpRUMrTE9tb0ll?=
+ =?utf-8?B?QjkySTd6Y0IwVmdJNit4TEVxRStYdUsrTkZ2SjBMa0JwYlpRMzdIcXM5RVZF?=
+ =?utf-8?B?cmEwODRTQnNBSzMweFNxdUdkTmUyL2dVTDRBQ05JWVJCTEhxMXl6OGdzczJn?=
+ =?utf-8?Q?kEld6JVZ4IyYDras=3D?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9546035E42A8A14881DC2886B009A9D8@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgD3jHGPlqZpR0EFAA--.23230S2
-X-Coremail-Antispam: 1UD129KBjvAXoW3ZF4UuF45ur18Zr13Xw15XFb_yoW8Wr4fWo
-	W8C3Zxu3yUKw1IvrsxGw1xX3yYkr47Jr1DXF13Xa4fKF1xJrnFkry8Jr40934ftryj9r90
-	kwsrKwn7ZrWY9FW7n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UjIYCTnIWjp_UUUYK7AC8VAFwI0_Xr0_Wr1l1xkIjI8I6I8E6xAIw20EY4v20xva
-	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
-	x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
-	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
-	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
-	6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
-	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
-	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVW8ZVWrXwCY02Avz4vE-syl42
-	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
-	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r4a6rW5MIIYrxkI7VAKI4
-	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
-	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
-	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRENtxDUUUU
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
-X-Rspamd-Queue-Id: 1F1381EA8D1
+X-Exchange-RoutingPolicyChecked: NqA9Iu2wsyoE6A78LQdqVcmXQpVTJhIq5dzLxWR0iTqBP83jV+KBMTsjnfX9FxxAgzgjqOW7FaKIaxYW/II8tXPXxYL9K/DudTesXhyj4Ye0bFZt0l7BfszihpUbQm38p0qOXIPFuszhoSk7AAE8NwcaIaX5vOvLztnTmcYsFcug32xSRkCGxLhwT/7SWcwnHq+4uNRnwh7XrSG5O3tP+4DGV0qKQ5219Ye68NGrFnkWzvFxu/54aQZv3jeSNjzhu6q0Vg7OaeIZsYXBGbjVBnyWdzuf+WDAQCP6FY0ElFSzgrmne0bowi38TiZe5xVgMB17bXHHJ4MH0yZZVmONkw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PSAPR03MB5605.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ed6da82-8451-45a8-f0ab-08de78fbcccc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2026 08:06:40.1201
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YfRRd1uHsE8kWPncElnWIl/RYOL9dREGthAjt/1j9ViQ6l0hVOReK9GEzFd/9cq3zDZiqzyMUhl4u7iNjMEF8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KUZPR03MB9712
+X-MTK: N
+X-Rspamd-Queue-Id: 672081EA87D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk,mediateko365.onmicrosoft.com:s=selector2-mediateko365-onmicrosoft-com];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-270345-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-270344-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[eswincomputing.com,einfochips.com,gmail.com,ziswiler.com,microchip.com];
-	DMARC_NA(0.00)[eswincomputing.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_NO_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[3.22.213.32:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,mediatek.com,hansenpartnership.com,acm.org,collabora.com,pengutronix.de,samsung.com,linaro.org,wdc.com,oracle.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:dkim,mediatek.com:mid,mediateko365.onmicrosoft.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.917];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.wang@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+,mediateko365.onmicrosoft.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,linux.dev:email,devicetree.org:url,microchip.com:email,eswincomputing.com:mid,eswincomputing.com:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
-
-Add device tree binding documentation for the ESWIN eic7700
-clock controller module.
-
-Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Troy Mitchell <troy.mitchell@linux.dev>
-Tested-by: Marcel Ziswiler <marcel@ziswiler.com> # ebc77
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
----
- .../bindings/clock/eswin,eic7700-clock.yaml   |  46 +++
- .../dt-bindings/clock/eswin,eic7700-clock.h   | 285 ++++++++++++++++++
- 2 files changed, 331 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
- create mode 100644 include/dt-bindings/clock/eswin,eic7700-clock.h
-
-diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
-new file mode 100644
-index 000000000000..3125ae52bde6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/eswin,eic7700-clock.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Eswin EIC7700 SoC clock controller
-+
-+maintainers:
-+  - Yifeng Huang <huangyifeng@eswincomputing.com>
-+  - Xuyang Dong <dongxuyang@eswincomputing.com>
-+
-+description:
-+  The clock controller generates and supplies clock to all the modules
-+  for eic7700 SoC.
-+
-+properties:
-+  compatible:
-+    const: eswin,eic7700-clock
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: External 24MHz oscillator clock
-+
-+  '#clock-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - '#clock-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    clock-controller@51828000 {
-+        compatible = "eswin,eic7700-clock";
-+        reg = <0x51828000 0x300>;
-+        clocks = <&xtal24m>;
-+        #clock-cells = <1>;
-+    };
-diff --git a/include/dt-bindings/clock/eswin,eic7700-clock.h b/include/dt-bindings/clock/eswin,eic7700-clock.h
-new file mode 100644
-index 000000000000..d7ef697d0f7a
---- /dev/null
-+++ b/include/dt-bindings/clock/eswin,eic7700-clock.h
-@@ -0,0 +1,285 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-+/*
-+ * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * Device Tree binding constants for EIC7700 clock controller.
-+ *
-+ * Authors:
-+ *	Yifeng Huang <huangyifeng@eswincomputing.com>
-+ *	Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_
-+#define _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_
-+
-+#define EIC7700_CLK_XTAL_32K				0
-+#define EIC7700_CLK_PLL_CPU				1
-+#define EIC7700_CLK_SPLL0_FOUT1				2
-+#define EIC7700_CLK_SPLL0_FOUT2				3
-+#define EIC7700_CLK_SPLL0_FOUT3				4
-+#define EIC7700_CLK_SPLL1_FOUT1				5
-+#define EIC7700_CLK_SPLL1_FOUT2				6
-+#define EIC7700_CLK_SPLL1_FOUT3				7
-+#define EIC7700_CLK_SPLL2_FOUT1				8
-+#define EIC7700_CLK_SPLL2_FOUT2				9
-+#define EIC7700_CLK_SPLL2_FOUT3				10
-+#define EIC7700_CLK_VPLL_FOUT1				11
-+#define EIC7700_CLK_VPLL_FOUT2				12
-+#define EIC7700_CLK_VPLL_FOUT3				13
-+#define EIC7700_CLK_APLL_FOUT1				14
-+#define EIC7700_CLK_APLL_FOUT2				15
-+#define EIC7700_CLK_APLL_FOUT3				16
-+#define EIC7700_CLK_EXT_MCLK				17
-+#define EIC7700_CLK_LPDDR_REF_BAK			18
-+#define EIC7700_CLK_MUX_CPU_ROOT_3MUX1_GFREE		19
-+#define EIC7700_CLK_MUX_CPU_ACLK_2MUX1_GFREE		20
-+#define EIC7700_CLK_MUX_DSP_ACLK_ROOT_2MUX1_GFREE	21
-+#define EIC7700_CLK_MUX_D2D_ACLK_ROOT_2MUX1_GFREE	22
-+#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_0		23
-+#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_1		24
-+#define EIC7700_CLK_MUX_MSHCORE_ROOT_3MUX1_2		25
-+#define EIC7700_CLK_MUX_NPU_LLCLK_3MUX1_GFREE		26
-+#define EIC7700_CLK_MUX_NPU_CORE_3MUX1_GFREE		27
-+#define EIC7700_CLK_MUX_VI_ACLK_ROOT_2MUX1_GFREE	28
-+#define EIC7700_CLK_MUX_VI_DVP_ROOT_2MUX1_GFREE		29
-+#define EIC7700_CLK_MUX_VI_DIG_ISP_ROOT_2MUX1_GFREE	30
-+#define EIC7700_CLK_MUX_VO_ACLK_ROOT_2MUX1_GFREE	31
-+#define EIC7700_CLK_MUX_VO_PIXEL_ROOT_2MUX1		32
-+#define EIC7700_CLK_MUX_VCDEC_ROOT_2MUX1_GFREE		33
-+#define EIC7700_CLK_MUX_VCACLK_ROOT_2MUX1_GFREE		34
-+#define EIC7700_CLK_MUX_SATA_PHY_2MUX1			35
-+#define EIC7700_CLK_MUX_BOOTSPI_CLK_2MUX1_GFREE		36
-+#define EIC7700_CLK_MUX_SCPU_CORE_CLK_2MUX1_GFREE	37
-+#define EIC7700_CLK_MUX_LPCPU_CORE_CLK_2MUX1_GFREE	38
-+#define EIC7700_CLK_MUX_VO_MCLK_2MUX_EXT_MCLK		39
-+#define EIC7700_CLK_MUX_SYSCFG_CLK_ROOT_2MUX1_GFREE	40
-+#define EIC7700_CLK_MUX_AONDMA_AXI2MUX1_GFREE		41
-+#define EIC7700_CLK_MUX_RMII_REF_2MUX			42
-+#define EIC7700_CLK_MUX_ETH_CORE_2MUX1			43
-+#define EIC7700_CLK_MUX_VI_DW_ROOT_2MUX1		44
-+#define EIC7700_CLK_MUX_NPU_E31_3MUX1_GFREE		45
-+#define EIC7700_CLK_MUX_DDR_ACLK_ROOT_2MUX1_GFREE	46
-+#define EIC7700_CLK_DIV_SYS_CFG_DYNM			47
-+#define EIC7700_CLK_DIV_NOC_NSP_DYNM			48
-+#define EIC7700_CLK_DIV_BOOTSPI_DYNM			49
-+#define EIC7700_CLK_DIV_SCPU_CORE_DYNM			50
-+#define EIC7700_CLK_DIV_LPCPU_CORE_DYNM			51
-+#define EIC7700_CLK_DIV_GPU_ACLK_DYNM			52
-+#define EIC7700_CLK_DIV_DSP_ACLK_DYNM			53
-+#define EIC7700_CLK_DIV_D2D_ACLK_DYNM			54
-+#define EIC7700_CLK_DIV_HSP_ACLK_DYNM			55
-+#define EIC7700_CLK_DIV_ETH_TXCLK_DYNM_0		56
-+#define EIC7700_CLK_DIV_ETH_TXCLK_DYNM_1		57
-+#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_0		58
-+#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_1		59
-+#define EIC7700_CLK_DIV_MSHC_CORE_DYNM_2		60
-+#define EIC7700_CLK_DIV_PCIE_ACLK_DYNM			61
-+#define EIC7700_CLK_DIV_NPU_ACLK_DYNM			62
-+#define EIC7700_CLK_DIV_NPU_LLC_SRC0_DYNM		63
-+#define EIC7700_CLK_DIV_NPU_LLC_SRC1_DYNM		64
-+#define EIC7700_CLK_DIV_NPU_CORECLK_DYNM		65
-+#define EIC7700_CLK_DIV_VI_ACLK_DYNM			66
-+#define EIC7700_CLK_DIV_VI_DVP_DYNM			67
-+#define EIC7700_CLK_DIV_VI_DIG_ISP_DYNM			68
-+#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_0		69
-+#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_1		70
-+#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_2		71
-+#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_3		72
-+#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_4		73
-+#define EIC7700_CLK_DIV_VI_SHUTTER_DYNM_5		74
-+#define EIC7700_CLK_DIV_VO_ACLK_DYNM			75
-+#define EIC7700_CLK_DIV_IESMCLK_DYNM			76
-+#define EIC7700_CLK_DIV_VO_PIXEL_DYNM			77
-+#define EIC7700_CLK_DIV_VO_MCLK_DYNM			78
-+#define EIC7700_CLK_DIV_VC_ACLK_DYNM			79
-+#define EIC7700_CLK_DIV_JD_DYNM				80
-+#define EIC7700_CLK_DIV_JE_DYNM				81
-+#define EIC7700_CLK_DIV_VE_DYNM				82
-+#define EIC7700_CLK_DIV_VD_DYNM				83
-+#define EIC7700_CLK_DIV_G2D_DYNM			84
-+#define EIC7700_CLK_DIV_AONDMA_AXI_DYNM			85
-+#define EIC7700_CLK_DIV_CRYPTO_DYNM			86
-+#define EIC7700_CLK_DIV_VI_DW_DYNM			87
-+#define EIC7700_CLK_DIV_NPU_E31_DYNM			88
-+#define EIC7700_CLK_DIV_SATA_PHY_REF_DYNM		89
-+#define EIC7700_CLK_DIV_DSP_0_ACLK_DYNM			90
-+#define EIC7700_CLK_DIV_DSP_1_ACLK_DYNM			91
-+#define EIC7700_CLK_DIV_DSP_2_ACLK_DYNM			92
-+#define EIC7700_CLK_DIV_DSP_3_ACLK_DYNM			93
-+#define EIC7700_CLK_DIV_DDR_ACLK_DYNM			94
-+#define EIC7700_CLK_DIV_AON_RTC_DYNM			95
-+#define EIC7700_CLK_DIV_U84_RTC_TOGGLE_DYNM		96
-+#define EIC7700_CLK_DIV_VO_CEC_DYNM			97
-+#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_0		98
-+#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_1		99
-+#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_2		100
-+#define EIC7700_CLK_GATE_CPU_EXT_SRC_CORE_CLK_3		101
-+#define EIC7700_CLK_GATE_CPU_TRACE_CLK_0		102
-+#define EIC7700_CLK_GATE_CPU_TRACE_CLK_1		103
-+#define EIC7700_CLK_GATE_CPU_TRACE_CLK_2		104
-+#define EIC7700_CLK_GATE_CPU_TRACE_CLK_3		105
-+#define EIC7700_CLK_GATE_CPU_TRACE_COM_CLK		106
-+#define EIC7700_CLK_GATE_SPLL0_FOUT2			107
-+#define EIC7700_CLK_GATE_NOC_NSP_CLK			108
-+#define EIC7700_CLK_GATE_BOOTSPI			109
-+#define EIC7700_CLK_GATE_BOOTSPI_CFG			110
-+#define EIC7700_CLK_GATE_SCPU_CORE			111
-+#define EIC7700_CLK_GATE_SCPU_BUS			112
-+#define EIC7700_CLK_GATE_LPCPU_CORE			113
-+#define EIC7700_CLK_GATE_LPCPU_BUS			114
-+#define EIC7700_CLK_GATE_GPU_ACLK			115
-+#define EIC7700_CLK_GATE_GPU_GRAY_CLK			116
-+#define EIC7700_CLK_GATE_GPU_CFG_CLK			117
-+#define EIC7700_CLK_GATE_DSPT_ACLK			118
-+#define EIC7700_CLK_GATE_DSPT_CFG_CLK			119
-+#define EIC7700_CLK_GATE_D2D_ACLK			120
-+#define EIC7700_CLK_GATE_D2D_CFG_CLK			121
-+#define EIC7700_CLK_GATE_TCU_ACLK			122
-+#define EIC7700_CLK_GATE_TCU_CFG_CLK			123
-+#define EIC7700_CLK_GATE_DDRT_CFG_CLK			124
-+#define EIC7700_CLK_GATE_DDRT0_P0_ACLK			125
-+#define EIC7700_CLK_GATE_DDRT0_P1_ACLK			126
-+#define EIC7700_CLK_GATE_DDRT0_P2_ACLK			127
-+#define EIC7700_CLK_GATE_DDRT0_P3_ACLK			128
-+#define EIC7700_CLK_GATE_DDRT0_P4_ACLK			129
-+#define EIC7700_CLK_GATE_DDRT1_P0_ACLK			130
-+#define EIC7700_CLK_GATE_DDRT1_P1_ACLK			131
-+#define EIC7700_CLK_GATE_DDRT1_P2_ACLK			132
-+#define EIC7700_CLK_GATE_DDRT1_P3_ACLK			133
-+#define EIC7700_CLK_GATE_DDRT1_P4_ACLK			134
-+#define EIC7700_CLK_GATE_TIMER_CLK_0			135
-+#define EIC7700_CLK_GATE_TIMER_CLK_1			136
-+#define EIC7700_CLK_GATE_TIMER_CLK_2			137
-+#define EIC7700_CLK_GATE_TIMER_CLK_3			138
-+#define EIC7700_CLK_GATE_TIMER_PCLK_0			139
-+#define EIC7700_CLK_GATE_TIMER_PCLK_1			140
-+#define EIC7700_CLK_GATE_TIMER_PCLK_2			141
-+#define EIC7700_CLK_GATE_TIMER_PCLK_3			142
-+#define EIC7700_CLK_GATE_TIMER3_CLK8			143
-+#define EIC7700_CLK_GATE_PCIET_ACLK			144
-+#define EIC7700_CLK_GATE_PCIET_CFG_CLK			145
-+#define EIC7700_CLK_GATE_PCIET_CR_CLK			146
-+#define EIC7700_CLK_GATE_PCIET_AUX_CLK			147
-+#define EIC7700_CLK_GATE_NPU_ACLK			148
-+#define EIC7700_CLK_GATE_NPU_CFG_CLK			149
-+#define EIC7700_CLK_GATE_NPU_LLC_ACLK			150
-+#define EIC7700_CLK_GATE_NPU_CLK			151
-+#define EIC7700_CLK_GATE_NPU_E31_CLK			152
-+#define EIC7700_CLK_GATE_VI_ACLK			153
-+#define EIC7700_CLK_GATE_VI_DVP_CLK			154
-+#define EIC7700_CLK_GATE_VI_CFG_CLK			155
-+#define EIC7700_CLK_GATE_VI_DIG_DW_CLK			156
-+#define EIC7700_CLK_GATE_VI_DIG_ISP_CLK			157
-+#define EIC7700_CLK_GATE_VI_SHUTTER_0			158
-+#define EIC7700_CLK_GATE_VI_SHUTTER_1			159
-+#define EIC7700_CLK_GATE_VI_SHUTTER_2			160
-+#define EIC7700_CLK_GATE_VI_SHUTTER_3			161
-+#define EIC7700_CLK_GATE_VI_SHUTTER_4			162
-+#define EIC7700_CLK_GATE_VI_SHUTTER_5			163
-+#define EIC7700_CLK_GATE_VI_PHY_TXCLKESC		164
-+#define EIC7700_CLK_GATE_VI_PHY_CFG			165
-+#define EIC7700_CLK_GATE_VO_ACLK			166
-+#define EIC7700_CLK_GATE_VO_CFG_CLK			167
-+#define EIC7700_CLK_GATE_VO_HDMI_IESMCLK		168
-+#define EIC7700_CLK_GATE_VO_PIXEL_CLK			169
-+#define EIC7700_CLK_GATE_VO_I2S_MCLK			170
-+#define EIC7700_CLK_GATE_HSP_CFG_CLK			171
-+#define EIC7700_CLK_GATE_VC_ACLK			172
-+#define EIC7700_CLK_GATE_VC_CFG_CLK			173
-+#define EIC7700_CLK_GATE_VC_JE_CLK			174
-+#define EIC7700_CLK_GATE_VC_JD_CLK			175
-+#define EIC7700_CLK_GATE_VC_VE_CLK			176
-+#define EIC7700_CLK_GATE_VC_VD_CLK			177
-+#define EIC7700_CLK_GATE_G2D_CFG_CLK			178
-+#define EIC7700_CLK_GATE_G2D_CLK			179
-+#define EIC7700_CLK_GATE_G2D_ACLK			180
-+#define EIC7700_CLK_GATE_AONDMA_CFG			181
-+#define EIC7700_CLK_GATE_AONDMA_ACLK			182
-+#define EIC7700_CLK_GATE_AON_ACLK			183
-+#define EIC7700_CLK_GATE_HSP_SATA_RBC_CLK		184
-+#define EIC7700_CLK_GATE_VO_CR_CLK			185
-+#define EIC7700_CLK_GATE_HSP_ACLK			186
-+#define EIC7700_CLK_GATE_HSP_SATA_OOB_CLK		187
-+#define EIC7700_CLK_GATE_RTC_CFG			188
-+#define EIC7700_CLK_GATE_RTC				189
-+#define EIC7700_CLK_GATE_HSP_MSHC0_CORE_CLK		190
-+#define EIC7700_CLK_GATE_HSP_MSHC1_CORE_CLK		191
-+#define EIC7700_CLK_GATE_HSP_MSHC2_CORE_CLK		192
-+#define EIC7700_CLK_GATE_HSP_ETH0_CORE_CLK		193
-+#define EIC7700_CLK_GATE_HSP_ETH1_CORE_CLK		194
-+#define EIC7700_CLK_GATE_HSP_RMII_REF_0			195
-+#define EIC7700_CLK_GATE_HSP_RMII_REF_1			196
-+#define EIC7700_CLK_GATE_PKA_CFG			197
-+#define EIC7700_CLK_GATE_SPACC_CFG			198
-+#define EIC7700_CLK_GATE_CRYPTO				199
-+#define EIC7700_CLK_GATE_TRNG_CFG			200
-+#define EIC7700_CLK_GATE_OTP_CFG			201
-+#define EIC7700_CLK_GATE_MAILBOX_0			202
-+#define EIC7700_CLK_GATE_MAILBOX_1			203
-+#define EIC7700_CLK_GATE_MAILBOX_2			204
-+#define EIC7700_CLK_GATE_MAILBOX_3			205
-+#define EIC7700_CLK_GATE_MAILBOX_4			206
-+#define EIC7700_CLK_GATE_MAILBOX_5			207
-+#define EIC7700_CLK_GATE_MAILBOX_6			208
-+#define EIC7700_CLK_GATE_MAILBOX_7			209
-+#define EIC7700_CLK_GATE_MAILBOX_8			210
-+#define EIC7700_CLK_GATE_MAILBOX_9			211
-+#define EIC7700_CLK_GATE_MAILBOX_10			212
-+#define EIC7700_CLK_GATE_MAILBOX_11			213
-+#define EIC7700_CLK_GATE_MAILBOX_12			214
-+#define EIC7700_CLK_GATE_MAILBOX_13			215
-+#define EIC7700_CLK_GATE_MAILBOX_14			216
-+#define EIC7700_CLK_GATE_MAILBOX_15			217
-+#define EIC7700_CLK_GATE_LSP_I2C0_PCLK			218
-+#define EIC7700_CLK_GATE_LSP_I2C1_PCLK			219
-+#define EIC7700_CLK_GATE_LSP_I2C2_PCLK			220
-+#define EIC7700_CLK_GATE_LSP_I2C3_PCLK			221
-+#define EIC7700_CLK_GATE_LSP_I2C4_PCLK			222
-+#define EIC7700_CLK_GATE_LSP_I2C5_PCLK			223
-+#define EIC7700_CLK_GATE_LSP_I2C6_PCLK			224
-+#define EIC7700_CLK_GATE_LSP_I2C7_PCLK			225
-+#define EIC7700_CLK_GATE_LSP_I2C8_PCLK			226
-+#define EIC7700_CLK_GATE_LSP_I2C9_PCLK			227
-+#define EIC7700_CLK_GATE_LSP_WDT0_PCLK			228
-+#define EIC7700_CLK_GATE_LSP_WDT1_PCLK			229
-+#define EIC7700_CLK_GATE_LSP_WDT2_PCLK			230
-+#define EIC7700_CLK_GATE_LSP_WDT3_PCLK			231
-+#define EIC7700_CLK_GATE_LSP_SSI0_PCLK			232
-+#define EIC7700_CLK_GATE_LSP_SSI1_PCLK			233
-+#define EIC7700_CLK_GATE_LSP_PVT_PCLK			234
-+#define EIC7700_CLK_GATE_AON_I2C0_PCLK			235
-+#define EIC7700_CLK_GATE_AON_I2C1_PCLK			236
-+#define EIC7700_CLK_GATE_LSP_UART0_PCLK			237
-+#define EIC7700_CLK_GATE_LSP_UART1_PCLK			238
-+#define EIC7700_CLK_GATE_LSP_UART2_PCLK			239
-+#define EIC7700_CLK_GATE_LSP_UART3_PCLK			240
-+#define EIC7700_CLK_GATE_LSP_UART4_PCLK			241
-+#define EIC7700_CLK_GATE_LSP_TIMER_PCLK			242
-+#define EIC7700_CLK_GATE_LSP_FAN_PCLK			243
-+#define EIC7700_CLK_GATE_LSP_PVT0_CLK			244
-+#define EIC7700_CLK_GATE_LSP_PVT1_CLK			245
-+#define EIC7700_CLK_GATE_VC_JE_PCLK			246
-+#define EIC7700_CLK_GATE_VC_JD_PCLK			247
-+#define EIC7700_CLK_GATE_VC_VE_PCLK			248
-+#define EIC7700_CLK_GATE_VC_VD_PCLK			249
-+#define EIC7700_CLK_GATE_VC_MON_PCLK			250
-+#define EIC7700_CLK_GATE_HSP_DMA0_CLK			251
-+#define EIC7700_CLK_GATE_HSP_DMA0_CLK_TEST		252
-+#define EIC7700_CLK_FIXED_FACTOR_CPU_DIV2		253
-+#define EIC7700_CLK_FIXED_FACTOR_CLK_1M_DIV24		254
-+#define EIC7700_CLK_FIXED_FACTOR_MIPI_TXESC_DIV10	255
-+#define EIC7700_CLK_FIXED_FACTOR_U84_CORE_LP_DIV2	256
-+#define EIC7700_CLK_FIXED_FACTOR_SCPU_BUS_DIV2		257
-+#define EIC7700_CLK_FIXED_FACTOR_LPCPU_BUS_DIV2		258
-+#define EIC7700_CLK_FIXED_FACTOR_PCIE_CR_DIV2		259
-+#define EIC7700_CLK_FIXED_FACTOR_PCIE_AUX_DIV4		260
-+#define EIC7700_CLK_FIXED_FACTOR_PVT_DIV20		261
-+#define EIC7700_CLK_FIXED_FACTOR_HSP_RMII_REF_DIV6	262
-+#define EIC7700_CLK_DIV_NOC_WDREF_DYNM			263
-+#define EIC7700_CLK_GATE_DDR0_TRACE			264
-+#define EIC7700_CLK_GATE_DDR1_TRACE			265
-+#define EIC7700_CLK_GATE_RNOC_NSP			266
-+#define EIC7700_CLK_GATE_NOC_WDREF			267
-+
-+#endif /* _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_ */
--- 
-2.34.1
-
+T24gVGh1LCAyMDI2LTAyLTI2IGF0IDExOjQ1ICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
+ZWdubyB3cm90ZToNCj4gU29ycnkgUGV0ZXIsIGJ1dCBJJ2QgYXJndWUgdGhhdCB0aGUgdXNlcnMg
+ZG9uJ3QgY2FyZSBhYm91dCBob3cgbXVjaA0KPiBhbmQgd2hlbg0KPiB0aGVpciBVRlMgZGV2aWNl
+IHJlc2V0cy4gVXNlcnMganVzdCB3YW50IHRvIHVzZSBhIGRldmljZSwgd2l0aG91dA0KPiBjYXJp
+bmcNCj4gYWJvdXQgYW55IGltcGxlbWVudGF0aW9uIGRldGFpbC4NCj4gVGhlIHNwaXJpdCBpczog
+InJhZGlvIHNpbGVuY2UgYXMgbG9uZyBhcyBldmVyeXRoaW5nIHdvcmtzIGdvb2QiLg0KPiANCj4g
+UG93ZXIgdXNlcnMgbWlnaHQgd2FudCB0byBjaGVjayB0aGUga2VybmVsIGxvZyBpbiBhIHByb2Js
+ZW1hdGljDQo+IHNjZW5hcmlvIHRvDQo+IHNlZWsgZm9yIGEgbWVzc2FnZSB0aGF0IHNheXMgdGhh
+dCAic29tZXRoaW5nIHdlbnQgaG9ycmlibHkgd3JvbmciLA0KPiBidXQgb3RoZXINCj4gdGhhbiBk
+ZXZlbG9wZXJzLCBub2JvZHkgY2FyZXMgYWJvdXQgd2hlbiBVRlMgcmVzZXRzLg0KPiANCj4gwqBG
+cm9tIGEgZGV2ZWxvcGVyIHN0YW5kcG9pbnQsIEkgZG8gYWdyZWUgd2l0aCB5b3UgaW4gdGhhdCB3
+ZSBkbyAqbm90Kg0KPiB3YW50IHRvDQo+IHNlZSBkZXZpY2UgcmVzZXRzIG9jY3VycmluZyByZXBl
+YXRlZGx5LCBidXQgd2UncmUgdGFsa2luZyBhYm91dCBhDQo+IHVzZXIgaGVyZS4NCj4gDQo+IFNl
+ZSBpdCBsaWtlIHRoaXMuLi4gaW1hZ2luZSBpZiBhbGwgb2YgdGhlIGRldmljZSBkcml2ZXJzIGlu
+IHRoZSBMaW51eA0KPiBrZXJuZWwNCj4gd291bGQgc2F5ICJkZXZpY2UgcmVzZXQgZG9uZSI6IGhv
+dyBtYW55IGRldmljZXMgYXJlIHByZXNlbnQgaW4gb25lDQo+IFNvQyAob2YNCj4gY291cnNlLCBp
+Z25vcmluZyBzdWJkZXZpY2VzIG9uIGEgYm9hcmQpPw0KPiANCj4gT2YgYWxsIHRob3NlIG1hbnkg
+ZGV2aWNlcywgaWYgYWxsIG9mIHRoZW0gd291bGQgcHJpbnQgYSBtZXNzYWdlDQo+IHNheWluZyB0
+aGF0DQo+IHRoZWlyIHJlc2V0IGlzIGRvbmUgKGFuZCBvcGVyYXRpb24gaXMgb2spLCB0aGUga2Vy
+bmVsIGxvZyB3b3VsZCBnZXQNCj4gcXVpdGUgYQ0KPiBiaXQgY2xvZ2dlZCwgeW91J2QgbmVlZCB0
+byBoYXZlIGEgYmlnZ2VyIFJBTSBjYXJ2ZW91dCBqdXN0IGZvciAuLg0KPiB3ZWxsLCB0aGUNCj4g
+a2VybmVsIGxvZyBpdHNlbGYsIGFuZCB0aGVuIHlvdSdkIGhhdmUgdG8gZ3JlcCB0aGUgbG9nLCBo
+b3BpbmcgdG8NCj4gZmluZCB0aGUNCj4gb25lIHNpbmdsZSBsaW5lIHRoYXQgaGVscHMgeW91IGZp
+bmRpbmcgYW4gaXNzdWUgdGhhdCB5b3UncmUgaGF2aW5nLg0KPiANCj4gVGhpcyBpcyB0aGUgcmVh
+c29uIHdoeSBrZWVwaW5nIGFueSBtZXNzYWdlIHRoYXQgaXMgbm90IGV4YWN0bHkgYQ0KPiAqc2lu
+Z2xlKg0KPiBpbmRpY2F0aW9uIG9mIGFuIGVycm9yIChzbywgYW4gYWN0dWFsIGlzc3VlKSBhcyBh
+IGRldl9kYmcoKSBpcyBhDQo+IHNlbnNpYmxlDQo+IHRoaW5nIHRvIGRvIChhbmQgb2YgY291cnNl
+LCB3aXRoIGR5bmFtaWMgZGVidWcgaW4gdGhlIGtlcm5lbCwgeW91IGNhbg0KPiBhbHdheXMNCj4g
+YWN0aXZhdGUgdGhhdCBvbi10aGUtZmx5IHdpdGhvdXQgcmVjb21waWxpbmcgdG8gdmVyaWZ5IGZ1
+bmN0aW9uYWxpdHkNCj4gc2hvdWxkDQo+IHlvdSBoYXZlIGFueSBpbW1lZGlhdGUgZG91YnQpLg0K
+PiANCj4gU28gd2hpbGUgSSBhZ3JlZSBhYm91dCB5b3VyIHJlYXNvbnMsIEkgdmVyeSBzdHJvbmds
+eSBkaXNhZ3JlZSBhYm91dA0KPiBoYXZpbmcNCj4gdGhpcyBtZXNzYWdlIGFzIGEgZGV2X2luZm8o
+KSwgbm9yIGFueXRoaW5nIGVsc2UgdGhhdCBpcyBub3QgZGV2X2RiZygpDQo+IHJlYWxseS4NCj4g
+DQo+IFJlZ2FyZHMsDQo+IEFuZ2Vsbw0KDQpIaSBBbmdlbG9HaW9hY2NoaW5vLA0KDQpJIGFtIG5v
+dCBzdXJlIGlmIHlvdSBrbm93IHRoYXQgd2hlbiBVRlMgZW5jb3VudGVycyBhbiBlcnJvciwNCnN1
+Y2ggYXMgYSBVSUMgZXJyb3Igb3IgdGltZW91dCwgc29tZSBlcnJvcnMgY2FuIGJlIHNvIHNldmVy
+ZQ0KdGhhdCB0aGV5IGNhbm5vdCBiZSByZWNvdmVyZWQgd2l0aG91dCBhIHJlc2V0LiBJbiB0aGVz
+ZSBjYXNlcywNCndlIG5lZWQgdG8gcGVyZm9ybSBlcnJvciBoYW5kbGluZyBvciByZWNvdmVyeSBi
+eSByZXNldHRpbmcgDQp0aGUgZGV2aWNlLg0KDQpJIGFncmVlIHRoYXQgInJhZGlvIHNpbGVuY2Ug
+aXMgcHJlZmVyYWJsZSBhcyBsb25nIGFzIGV2ZXJ5dGhpbmcNCndvcmtzIHdlbGwuIiBIb3dldmVy
+LCB1c2VycyBtYXkgc29tZXRpbWVzIHdvbmRlciB3aHkgdGhlaXIgDQpkZXZpY2UgKHBob25lLCB0
+YWJsZXQsIGxhcHRvcCwgZXRjLikgc2hvd3MgZ29vZCBJTyBwZXJmb3JtYW5jZSANCmluIHRlc3Rz
+LCBidXQgdGhlIGFjdHVhbCB1c2VyIGV4cGVyaWVuY2UgaXMgcG9vciAobGFnZ3kpLg0KVGhpcyBs
+b2cgY2FuIHByb3ZpZGUgdXNlcnMgd2l0aCBhbiBleHBsYW5hdGlvbiBmb3IgSU8gbGFnDQpkdXJp
+bmcgdXNhZ2UuDQoNCkkgYWxzbyBhZ3JlZSB0aGF0IG1hbnkgZGV2aWNlcyBhcmUgcHJlc2VudCBp
+biBhIHNpbmdsZSBTb0MsIGJ1dA0KSSBkb24ndCB0aGluayB0aGVyZSBpcyBtdWNoIHJlc2V0IGlu
+Zm9ybWF0aW9uIHRocm91Z2hvdXQgdGhlIHN5c3RlbS4NCkVhY2ggZGV2aWNlIHNob3VsZCBlbnN1
+cmUgdGhhdCB0aGUgbGlrZWxpaG9vZCBvZiBhIHJlc2V0IChlcnJvcikgDQppcyBtaW5pbWl6ZWQu
+DQoNClRoYW5rcy4NClBldGVyDQoNCg==
 
