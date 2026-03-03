@@ -1,211 +1,163 @@
-Return-Path: <devicetree+bounces-270406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270407-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UMZyIWaypmn9SgAAu9opvQ
-	(envelope-from <devicetree+bounces-270406-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:05:26 +0100
+	id CHkaBfaypmn9SgAAu9opvQ
+	(envelope-from <devicetree+bounces-270407-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:07:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CBE61EC509
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:05:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9239E1EC610
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 11:07:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 179F7306DD8C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:04:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5DF6030970D5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 10:05:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 553AF38F624;
-	Tue,  3 Mar 2026 10:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB53390C96;
+	Tue,  3 Mar 2026 10:05:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="ArWUg6p1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tNqIhFGy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (mail-westusazon11012028.outbound.protection.outlook.com [52.101.43.28])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1591138C40D;
-	Tue,  3 Mar 2026 10:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.43.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772532254; cv=fail; b=GzjjKK+F0XOA1AEAlS9kISzVyTC5fpn1261RceRZd3s1zWkWFGs8E5JZXGs1yU/thmb6h4t4F7+YdU3QbW6MYubMQoUZ08NfVjA2u9HtyP0ddK1HSoMHT7wdN72wWQRnSJx+cIoJZWsAG2abu+6RZ0npqwsZiqwF/wvmELDCfxQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772532254; c=relaxed/simple;
-	bh=Gqkd5kQ5zH973YnnkaJ0jRtvfwvF32Et/bhXZnEeZKU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=fYV75Zzk5wHRA3LFE1i3kvBjwVM2QXVW3/FdNFNyOIw3gWyaj1zKxRpHTPDiLowYX4PVcXwqPHdzfVgY6TIJ8a1MWYTo3ZyFQ/WVVlJ5oy7EwGqQxjt+3bWzFQF20w2QYq/3p8ZCyG6IbGsjP/f3ekp59FljGCR3RbEHLz6jE1c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=ArWUg6p1; arc=fail smtp.client-ip=52.101.43.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ejgixP2qEk2UT1JL0FmwNFA4bE394Qjkx+b7rKTo/drOuG0X0UbuX0jSgrzBE/8EyBUbbOBbxbu069M708bdldNIw6M4m2clV4EnROdSbkS4qY5a2vujtgq/5uk4vg6ONehTEZT9nvuyPQq2nzvPn46fclKUXOzjXGATT6k91Hg9mvrCS7spOBFpqm+cvqaBPDeOvSaCmWNthQP40zDDVrqJyxkavVckvNcAuwILx7mbTRyfWTHO9n3+/Yn1HjDEQ8RVRhFcPKScdXCqy+a/VltXLBMPSuutxqLyCw8Cx+3CJ0Nkbw52+QuuM7DbcutCtnYGw+MX4t4dawSwa4QNQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WVW8hrtNSuE328DO2H4QY5j4ktghoOKevkCWOROqeX4=;
- b=xjzZ/j/aJy766Q0dM8unOJrz+6ERc/zxFwi1pQyZbkbNspWz3IO7vnm+9nvj6WvYHegecskThk4OwhCFwoyOfQ8NE9AEInedmfMKGUQZEZZF59y8BBN4RaonVvdDXDMUctV0H7awdrEGf4LsNnLUOkknjyGN/+cv/S+CgNGoGTgcL+r6CUjFIt33kMsmWyvCur9BVQoEYIMwhECcthp/YTHtKwbinb4NsE3IcOEekRe9WNu8Fd7ENhksFPmjV+2AS57v+VFjhPArQUGD1UFH3pyHNy7e7yMsc3Wewvj3yUHaT4j3hrszwen379dx8Ot+w5Uj8QPuETtCiwaObHCKpw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=gmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WVW8hrtNSuE328DO2H4QY5j4ktghoOKevkCWOROqeX4=;
- b=ArWUg6p1WsLU7b+0OTZC1KRKOHl6baeZ0vJOq/3anItoUOJcpM63PxKELujHY2odCkmRqD19II5f+jZhH2rK7Kt8NcG253OdxDq2M/kHvtYfGQfZdBqkH047cBFjJ+rxVw8w663DqpzfPPfuEy9KaiE9P4Bpq+oIO9JGN76QORLrVndXpLBUtgsDnbr9U3F7L9VnFrM8CHOPU/gXavHkWSP6cXeB97AVGfhWfGg+GjxFze46k4ibtUL9xh+VXr4Ht4JxrbtSOx13/ThwP2+c1B3rM3hrL7k5iBEpU9vY+16os9gYOEyKiSjaMeb+S4GfVOiyuofjQUzZwRGxSWVF8w==
-Received: from DM6PR07CA0131.namprd07.prod.outlook.com (2603:10b6:5:330::19)
- by MW5PR12MB5623.namprd12.prod.outlook.com (2603:10b6:303:199::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Tue, 3 Mar
- 2026 10:04:08 +0000
-Received: from DS1PEPF00017095.namprd03.prod.outlook.com
- (2603:10b6:5:330:cafe::f9) by DM6PR07CA0131.outlook.office365.com
- (2603:10b6:5:330::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.22 via Frontend Transport; Tue,
- 3 Mar 2026 10:04:05 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- DS1PEPF00017095.mail.protection.outlook.com (10.167.17.138) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Tue, 3 Mar 2026 10:04:07 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Mar
- 2026 02:03:52 -0800
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Mar
- 2026 02:03:52 -0800
-Received: from sheetal.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Tue, 3 Mar 2026 02:03:47 -0800
-From: "Sheetal ." <sheetal@nvidia.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>
-CC: Jonathan Hunter <jonathanh@nvidia.com>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Sameer Pujar <spujar@nvidia.com>, Mohan kumar
-	<mkumard@nvidia.com>, <linux-sound@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, Sheetal <sheetal@nvidia.com>, Aditya Bavanari
-	<abavanari@nvidia.com>
-Subject: [PATCH v2 2/2] ASoC: tegra: Add support for Tegra238 soundcard
-Date: Tue, 3 Mar 2026 15:32:49 +0530
-Message-ID: <20260303100249.3214529-3-sheetal@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260303100249.3214529-1-sheetal@nvidia.com>
-References: <20260303100249.3214529-1-sheetal@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09BE38C2DF;
+	Tue,  3 Mar 2026 10:05:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772532328; cv=none; b=EJTvrNsBY0TU6VqkWb6lZCadv9Muj+s/WaR041Wjppuy5oazyMEakYdx413XUUABlBzb+rGy3dNmYss3nNM9/GzRGoPxMK2nOESHQNXxVOs4EMb86lHhTgzV/Q5qAgPeUAGBf7NI33SLGKpYsn5OoLE7oFFCAd+0IkY9OgE6ed8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772532328; c=relaxed/simple;
+	bh=9dJ8qLLYIZAO2CG6AxPuvLdbo0/KEzaLIw6AaTJMJd4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cu75CPHjQoYU2F4ODRXU3CCmRCbit+cNjms4qA95J+KFQ2XM5lQe6H4BH4hYvqpLMqcMHMG3tbCBy9nX8GIgzxi8GY/qlkR6Tu9Zt+x0pqNna/i3bfijaC0tFy+OIysNeDs80RWX0Zmje1VZe/V7CLLcr6LBY6HQF5LsUdCpwQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tNqIhFGy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6FCEDC116C6;
+	Tue,  3 Mar 2026 10:05:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772532327;
+	bh=9dJ8qLLYIZAO2CG6AxPuvLdbo0/KEzaLIw6AaTJMJd4=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=tNqIhFGyv+8lZVoVDvwE8QvojLMCyfL2tmt84dEhbczmoEsco9rI+RloW/K61AoPY
+	 6sf8b+59/9p6RLFKXl07xEJFLWUKPWBHUY9I0KSJ/Gy9CII0tdTm6BFSIrSqeifhfE
+	 mOxZjcTAml3uhF+Hm+Ypjmvh8IKDOF+obV8bdNbWlrYziyaK3Zp4BGmzFb+LdWHLGu
+	 u+jmEtA579IQ+hwWvWRaqQhgMqBL5HBtT2UaY4JqCZrnHkYqhrK0k99fBo16gRHDv+
+	 p2zxJQOxQhCYbck+uGo/726uW4MMoBz9k8jgyNZrx9q0t4AyD+DQCEDPyHAGbex55s
+	 H8IXvpS+PjfmQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 63220EC048B;
+	Tue,  3 Mar 2026 10:05:27 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Tue, 03 Mar 2026 10:05:24 +0000
+Subject: [PATCH] dt-bindings: serial: amlogic,meson-uart: Add compatible
+ string for A9
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017095:EE_|MW5PR12MB5623:EE_
-X-MS-Office365-Filtering-Correlation-Id: 715ddd67-4d64-48a0-54a9-08de790c3577
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|376014|7416014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	Vtea1MfJvcaudOT0FZmU54wlBkQavk6qDSOQc43gCDEEVB6r0apI5tlV8bnGEKdqVLJE24q8Gay8XhcpeZDkBcPc/JP7aDw/yxKqrXiVQL8tozbbkYJtBocqj4XGaO/YOF/uRw3wgR8TJJoEsm9brHKty+fZ2wTD8rL6QfxWDr7yu8p7e56TTdrDva+kjtZDSx5wnSohzQ+QaUVTt0SCb2dM+963tXImOPs/sLAnVd/EBRzC1/imPRRv19kXCPqRVGyrOk1hJmLWXmu7Ume1F3mHXvKu+yb0cug9T0I5cafYrDkBuDVk+MxeDAHNfaofEqqCcA0RCfIUd7lWYew6Dwpc9qA85gdPtXZ+MxjRyX06fBjw7CBI4d7v2mCCRLqtiHw8vp+eavy2x10UEJP4y70a6U9QNecqE47/S6OymBLvqjXlLiGL70nEEQYJcn4Vu/h2Fr6iKAkWnGg5tZIZoWicYC4Y721kfyMoxVh639MMZsPDupRhBYOlBeclwp9X+Dkyk5WP4RSHrZ+xUbb1BPoMvDR5OfUOh1FRf+MgCg91vsIkwr2iTVJS+R6aeak5hrEVx2yiAm1SOvi9b7tLs7ALJtqdYOmcJcSbsHuBxaoUyx08pj5B1EV2PQwaJbEkYEcm4gYiWqEXtkU1SLAFw09crCVrqiu8EhbCQsK5TKmAShQ6X7hxn4Cl9/b+EtirHxK9bGecrKN8yDFnzb/UQ9rlPMnYCN8lCWMmTuarHFRLHM70sihLVv6Z6eYFDuc8pXOBqeHKjA7XIPiPAdpN2uGkA5nN3BXBWIkTzSSItgcTB6bL1JKgiH5eMSrxDkxkC0UMYoWLAcCWvF0xjR8TzA==
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(7416014)(82310400026);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	hH3UMVX4BR8m+hJ6L4j8nD5MpG0AzE6CsIR3AMqBUDSbr56LOddIHh/N9KnZ9jAWqzdqAh+yIMDJ9SFUBgW2srsbQRauhdOZPmWccTle01kx9BNxoXArplJoUharuQ0P5Cb8YdGZI9387r6RWjkpaLNPqK1/HXgIefAJ90Fsh9kM/ZXOSqhCXI589PcE92R2rDo8ndoYSTiB8QBEWdpS15UGs9d5TbU7i4dNbfHjwdln2uDX2WoA1dihbG/bJD/qmOItKQRX+Ltar81a+7jKjjr+U0We7no284zkfgJIBo0lPbPBQshBGREP4sKBRP1KWQ/FUGkWOi6rp7jmDweXHBmZn6SmuS/yPHb4hfityQZ3Df3TEQxfnaVgmdx/89f8+DivOYChI4ILqIy9A0ptuvAjah0JFyt/5R8cuhIQDtXcsB1DGKhnXCXSrjRy9D6T
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 10:04:07.5348
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 715ddd67-4d64-48a0-54a9-08de790c3577
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DS1PEPF00017095.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR12MB5623
-X-Rspamd-Queue-Id: 3CBE61EC509
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260303-serial-binding-v1-1-c3df2a8f6fa3@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAGOypmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDYwNjXZD6xBzdpMy8lMy8dN20FEtDEwsTE3NDczMloKaCotS0zAqwgdG
+ xtbUAB4QGzmAAAAA=
+X-Change-ID: 20260303-serial-binding-fd9148447176
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-amlogic@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772532325; l=1431;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=9mURwWMNKHKPj5DQwkxO2/oc3KhRCoTzoGeBobWkQYM=;
+ b=JymmJL57wfD3WRuexnCQrwj4gWarkh2+sQtMISQ+nJ1d184MWywv+CAUTFEJ+63gky+C2/16m
+ Q8gP9fwsZgFDGeltyP3ZIJJ6/77WPI0Z0i/jNaphv5N1Ab//xjCNCEa
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
+X-Rspamd-Queue-Id: 9239E1EC610
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270407-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270406-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sheetal@nvidia.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,linaro.org,baylibre.com,googlemail.com];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,Nvidia.com:dkim,nvidia.com:mid,nvidia.com:email];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:replyto,amlogic.com:email,amlogic.com:mid,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Sheetal <sheetal@nvidia.com>
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-Tegra238 platforms use different clock rates for plla and
-plla_out0 clocks. Add Tegra238 support in the Tegra
-sound card driver to apply specific clock configurations.
+Amlogic A9 SoCs uses the same UART controller as S4 SoCs.
+There is no need for an extra compatible line in the driver,
+but add A9 compatible line for documentation.
 
-Signed-off-by: Aditya Bavanari <abavanari@nvidia.com>
-Signed-off-by: Sheetal <sheetal@nvidia.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
 ---
- sound/soc/tegra/tegra_audio_graph_card.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+This patch is from the submission below(patch 2/3).
+https://lore.kernel.org/all/20260205-a9-baisc-dts-v1-0-1212b46f95a7@amlogic.com/
 
-diff --git a/sound/soc/tegra/tegra_audio_graph_card.c b/sound/soc/tegra/tegra_audio_graph_card.c
-index 94b5ab77649b..b6dadd6a3d3d 100644
---- a/sound/soc/tegra/tegra_audio_graph_card.c
-+++ b/sound/soc/tegra/tegra_audio_graph_card.c
-@@ -231,6 +231,15 @@ static const struct tegra_audio_cdata tegra186_data = {
- 	.plla_out0_rates[x11_RATE] = 45158400,
- };
- 
-+static const struct tegra_audio_cdata tegra238_data = {
-+	/* PLLA */
-+	.plla_rates[x8_RATE] = 1277952000,
-+	.plla_rates[x11_RATE] = 1264435200,
-+	/* PLLA_OUT0 */
-+	.plla_out0_rates[x8_RATE] = 49152000,
-+	.plla_out0_rates[x11_RATE] = 45158400,
-+};
-+
- static const struct tegra_audio_cdata tegra264_data = {
- 	/* PLLA1 */
- 	.plla_rates[x8_RATE] = 983040000,
-@@ -245,6 +254,8 @@ static const struct of_device_id graph_of_tegra_match[] = {
- 	  .data = &tegra210_data },
- 	{ .compatible = "nvidia,tegra186-audio-graph-card",
- 	  .data = &tegra186_data },
-+	{ .compatible = "nvidia,tegra238-audio-graph-card",
-+	  .data = &tegra238_data },
- 	{ .compatible = "nvidia,tegra264-audio-graph-card",
- 	  .data = &tegra264_data },
- 	{},
+It is just sent again separately since it goes via the tty tree
+---
+ Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+index d8ad1bb6172d..a2702319685d 100644
+--- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+@@ -56,6 +56,7 @@ properties:
+         items:
+           - enum:
+               - amlogic,a4-uart
++              - amlogic,a9-uart
+               - amlogic,s6-uart
+               - amlogic,s7-uart
+               - amlogic,s7d-uart
+
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260303-serial-binding-fd9148447176
+
+Best regards,
 -- 
-2.34.1
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
 
 
