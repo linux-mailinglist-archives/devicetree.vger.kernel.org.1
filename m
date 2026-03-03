@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-270371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270372-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2IpCBSaipmmvSAAAu9opvQ
-	(envelope-from <devicetree+bounces-270371-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:56:06 +0100
+	id uL49HnShpmlqRwAAu9opvQ
+	(envelope-from <devicetree+bounces-270372-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:53:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66CE31EB54A
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:56:05 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0DD571EB153
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 09:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D58CC30677BA
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:49:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4B50730117DB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 08:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63430388E4E;
-	Tue,  3 Mar 2026 08:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23391388E4E;
+	Tue,  3 Mar 2026 08:53:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="yyl4e3Bk"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WRRhIhW7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8160F282F05
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 08:49:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32E33845A8;
+	Tue,  3 Mar 2026 08:53:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772527794; cv=none; b=UDzVxvgvK8VqWPMrleXJvxzHazbJHKma5rfNpWDaHt+APEnPz6vC0fA0PfH0hq7aLu/xFtKfdo8iLZ/0Jhvz+UltRvT9YtTZGvcjNmUsqjMeRjpMdTF6PARkci9c3vlKdF1HuB56krCy/gJqAEKZCxWDOHUzfL05zoxekCNrjYQ=
+	t=1772527985; cv=none; b=txoc6YiofnH+jpIf/YMuPLV83lZXJ00QJckMm0b2ufU1ObwFi5EYqxOUCktOipRwuFfIqvkzP5q/FNVcutUSVvZEpzE28jqZIK1sxI21dg4iaSvQ1RQ+gBmz6f7YCc4fNJPrEnt9VJlNn2KNZ2+Svb1JidGEnsCooB2PcAfez8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772527794; c=relaxed/simple;
-	bh=5MWhkdi4EnpIv5O5Lk9CmyyLKWnUH2vFRIZIMto4/So=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=aOr/rgvIGmIF6lmoAWA3Op0FHJRCbBMBnAckGDPxV2Axht5ISrRcA1UYUJ0KIhLlXqNRW0Cn0nr5FiII4CCqaOnlH7+fmY9ms498SL/E6rqi0ZcWJ8bIy4snnCwOdnW95F6MoPdfvNBLgRv6xBxIF6Fj6wqzuBhS3ZyDVdzpBO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=yyl4e3Bk; arc=none smtp.client-ip=185.246.85.4
+	s=arc-20240116; t=1772527985; c=relaxed/simple;
+	bh=EZJ4svSt7V3vpKRfdhXZ9YHmHiWswuXMdvqzwzAMZ+g=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=c4OSHLt62l2cJ5QbHBcFYkRWGMkOGriGc+PcgzQQow4WTbM0aoxrB3zjCbKdiifHLjqBtoqNc+U3PRs2XH29D5tawviQV1W/1Z7Ytc6rZPZCzqRg1KEvG7UaY9wBfiaG3KMgdvYfHaLF4mglAAVBFRtXJksI+6BnLFlHwZ70M8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WRRhIhW7; arc=none smtp.client-ip=185.246.84.56
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id C9C7A4E424F4;
-	Tue,  3 Mar 2026 08:49:44 +0000 (UTC)
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 140581A22E8;
+	Tue,  3 Mar 2026 08:53:02 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 826CE5FF29;
-	Tue,  3 Mar 2026 08:49:44 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3958310368535;
-	Tue,  3 Mar 2026 09:49:27 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id CF6105FF29;
+	Tue,  3 Mar 2026 08:53:01 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B877610368535;
+	Tue,  3 Mar 2026 09:52:49 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772527783; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	t=1772527980; h=from:subject:date:message-id:to:cc:mime-version:content-type:
 	 content-transfer-encoding:in-reply-to:references;
-	bh=k2kixXIwzcfNbHwd5w2xvnLJwKD/ZbAoWYUhKmFOtFY=;
-	b=yyl4e3BkR1c9BpSKwiVJqWmRzxe1nONWInzsUl0vHpDj/Y6GdrEQS0g9cfjJFo4KIQZ7pf
-	os9iwf+5+dn+7O6sZ8RFeOuYxf9FGwhr/8BicW8+2LmpBElfkk2DWv/51uSamKfjjHzOEh
-	oKstnDmp5aZfKrkMfom9KtEXx5Cbo2CJIT/6XhLv052oWbtj/4oT/kQAv6yqu5eKaMyX3I
-	ajDAfKFGPOoIbAK6vX6BiDRgTAclk42XXhxGSToB7onZ5OaAGGVI71XjIwFdK/cPhZgmwh
-	yg6Hxi69iunSOOXCEteDKlnHkkAyZ79E4iaZ4TzUAVb12VnxxIuE/7l2M9BjjQ==
+	bh=dHzjooMLjEqCTLZkR7Emb0dRbrH9mQHksD/dLPxL7GM=;
+	b=WRRhIhW7vgeQlUBtRYy3lSHT0g7ssIR9CeRQtfoaN7OdZZdWE5SukFGsLLbCIdZ9Rvk5P5
+	x3YGBf1y7LiWXgLFbXOctHmnCPnz6MEz3JcxtoJgT292PBQcgsZgMb67LDJ4ygTtonXGHl
+	NptOg5QWRQocFJ+rT7Ew6sQ0KYNhopPIv/Sav8VfDWGHMf3N+Fwfq3dDYHpRN0lgFNsuS4
+	Ag/RcE50VgDX70ljiGOuXWmZFxz47/OxtST229tGXoP+k/sbo+ZIeYJPL0S9DBPiU1pXDO
+	7lRXVgu2hOg0vCWsWnhBaS9gdwTuafASl358/MHiepvPTdxf4JFQsgDLCDOXbQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,53 +59,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 03 Mar 2026 09:49:26 +0100
-Message-Id: <DGT0NIR1EE4J.242LILLFFMDJ7@bootlin.com>
-Subject: Re: [PATCH v10 2/3] drm/bridge: imx: Add i.MX93 parallel display
- format configuration support
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Shawn Guo"
- <shawnguo@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>,
- "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam"
- <festevam@gmail.com>, "Peng Fan" <peng.fan@nxp.com>, "Andrzej Hajda"
+Date: Tue, 03 Mar 2026 09:52:49 +0100
+Message-Id: <DGT0Q3TGTG26.KD9DBZYH63DY@bootlin.com>
+Cc: "Heikki Krogerus" <heikki.krogerus@linux.intel.com>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Peter Chen" <hzpeterchen@gmail.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Vinod Koul"
+ <vkoul@kernel.org>, "Kishon Vijay Abraham I" <kishon@kernel.org>, "Heiko
+ Stuebner" <heiko@sntech.de>, "Sandy Huang" <hjc@rock-chips.com>, "Andy Yan"
+ <andy.yan@rock-chips.com>, "Yubing Zhang" <yubing.zhang@rock-chips.com>,
+ "Frank Wang" <frank.wang@rock-chips.com>, "Andrzej Hajda"
  <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
  "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
  <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
  "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
  <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
  "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
- <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <dri-devel@lists.freedesktop.org>, <frank.li@nxp.com>
-To: "Marco Felsch" <m.felsch@pengutronix.de>, "Liu Ying"
- <victor.liu@nxp.com>
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Amit Sunil Dhamne"
+ <amitsd@google.com>, "Dragan Simic" <dsimic@manjaro.org>, "Johan Jonker"
+ <jbx6244@gmail.com>, "Diederik de Haas" <didi.debian@cknow.org>, "Peter
+ Robinson" <pbrobinson@gmail.com>, <linux-usb@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-phy@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <dri-devel@lists.freedesktop.org>
+To: "Chaoyi Chen" <chaoyi.chen@rock-chips.com>
 From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+Subject: Re: [PATCH v14 7/9] drm/rockchip: cdn-dp: Add multiple bridges to
+ support PHY port selection
 X-Mailer: aerc 0.20.1
-References: <20260302-v6-18-topic-imx93-parallel-display-v10-0-634fe2778c7a@pengutronix.de> <20260302-v6-18-topic-imx93-parallel-display-v10-2-634fe2778c7a@pengutronix.de> <d97a9c0c-bdda-466a-8131-73799cdb20cd@nxp.com> <jyawx2cllg2jecdvx6bdfv4qiinfiwb6cuuwdhditpr2g2evee@qiox37ahgczd>
-In-Reply-To: <jyawx2cllg2jecdvx6bdfv4qiinfiwb6cuuwdhditpr2g2evee@qiox37ahgczd>
+References: <20260119073100.143-1-kernel@airkyi.com>
+ <20260119073100.143-8-kernel@airkyi.com>
+ <DGSHIQOB2YTB.1559SD1YLGT7P@bootlin.com>
+ <601a8b51-7411-429d-91a1-0633cabce9ee@rock-chips.com>
+In-Reply-To: <601a8b51-7411-429d-91a1-0633cabce9ee@rock-chips.com>
 X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 66CE31EB54A
+X-Rspamd-Queue-Id: 0DD571EB153
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270371-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270372-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	FREEMAIL_CC(0.00)[linux.intel.com,linuxfoundation.org,oss.qualcomm.com,gmail.com,kernel.org,sntech.de,rock-chips.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,suse.de,ffwll.ch,google.com,manjaro.org,cknow.org,vger.kernel.org,lists.infradead.org,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[38];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
@@ -116,33 +125,68 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:url,bootlin.com:mid,pengutronix.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url,bootlin.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hello Marco,
+Hello Chaoyi,
 
-On Tue Mar 3, 2026 at 9:05 AM CET, Marco Felsch wrote:
-> On 26-03-03, Liu Ying wrote:
->> On Mon, Mar 02, 2026 at 05:10:41PM +0100, Marco Felsch wrote:
->> > From: Liu Ying <victor.liu@nxp.com>
->> >
->> > NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
->> > configures parallel display format by using the "PARALLEL_DISP_FORMAT"
->> > field. Add a DRM bridge driver to support the display format configura=
-tion.
->> >
->> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
->> > [m.felsch@pengutronix.de: port to v7.0-rc1]
->> > [m.felsch@pengutronix.de: add review feedback (Alexander)]
->> > [m.felsch@pengutronix.de: fix to short Kconfig description (checkpath)=
-]
->> > [m.felsch@pengutronix.de: use "GPL" instead of "GPL v2" (checkpatch)]
->> > [m.felsch@pengutronix.de: add bus-width support]
->> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+On Tue Mar 3, 2026 at 1:44 AM CET, Chaoyi Chen wrote:
+>>> +static int cdn_dp_parse_next_bridge_dt(struct cdn_dp_device *dp)
+>>> +{
+>>> +	struct device_node *np =3D dp->dev->of_node;
+>>> +	struct device_node *port __free(device_node) =3D of_graph_get_port_by=
+_id(np, 1);
+>>> +	struct drm_bridge *bridge;
+>>> +	int count =3D 0;
+>>> +	int ret =3D 0;
+>>> +	int i;
+>>> +
+>>> +	/* If device use extcon, do not use hpd bridge */
+>>> +	for (i =3D 0; i < dp->ports; i++) {
+>>> +		if (dp->port[i]->extcon) {
+>>> +			dp->bridge_count =3D 1;
+>>> +			return 0;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	/* One endpoint may correspond to one next bridge. */
+>>> +	for_each_of_graph_port_endpoint(port, dp_ep) {
+>>> +		struct device_node *next_bridge_node __free(device_node) =3D
+>>> +			of_graph_get_remote_port_parent(dp_ep);
+>>> +
+>>> +		bridge =3D of_drm_find_bridge(next_bridge_node);
+>>> +		if (!bridge) {
+>>> +			ret =3D -EPROBE_DEFER;
+>>> +			goto out;
+>>> +		}
+>>> +
+>>> +		drm_bridge_get(bridge);
+>>> +		dp->next_bridge_valid =3D true;
+>>> +		dp->next_bridge_list[count] =3D bridge;
+>>
+>> Correct, but the drm_bridge_get() slightly far away from the assignement=
+ is
+>> a bit misleading. I hadn't seen it initially so I suspected a missing ge=
+t.
+>>
+>> I suggest to do it in a single statement, for clarity:
+>>
+>> 		dp->next_bridge_list[count] =3D bridgedrm_bridge_get(bridge);
+>>
+>
+> I think the bridgedrm_bridge_get here seems to be a typo?
 
-With the GFP_KERNEL and double space dropped you can add:
+Oops, of course! :)
 
-  Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+As you probably guessed, I was meaning:
+
+		dp->next_bridge_list[count] =3D drm_bridge_get(bridge);
+
+
+> Anyway, thank you very much for your efforts on the bridge lifetime.
+> I will fix this in the next version :)
+
+Thanks!
 
 Luca
 
