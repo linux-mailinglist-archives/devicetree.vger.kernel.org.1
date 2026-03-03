@@ -1,197 +1,184 @@
-Return-Path: <devicetree+bounces-270639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270638-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aNnpEGULp2kDcgAAu9opvQ
-	(envelope-from <devicetree+bounces-270639-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:25:09 +0100
+	id kLqNNsELp2kDcgAAu9opvQ
+	(envelope-from <devicetree+bounces-270638-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:26:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 038FB1F3BD2
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:25:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43EF71F3C24
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:26:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0B9F53045934
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:23:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92BF1301D304
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:23:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB3734DB561;
-	Tue,  3 Mar 2026 16:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E1B4DA544;
+	Tue,  3 Mar 2026 16:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="pg6KN0dJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LfVi6sv5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D87274D991F;
-	Tue,  3 Mar 2026 16:23:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A52414DA531;
+	Tue,  3 Mar 2026 16:23:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772554994; cv=none; b=lw026KHirLiLAidKKN7/BobnFMIpn5hHabZuqUqyuRPzFXadFdFbZT4c9MjfJfZkKOM+0u6+vt4kyMownL8WzyN89O65Oj4HDoHTSX5UWqFTL0Kuo0IMksXCxgnrGYjlQWusHiyeD7/u34JuRPCixRicFH6lrUN9en/LSnJqF58=
+	t=1772554985; cv=none; b=qzqrxjdGr45PGeMtK9tGvwbNK9CPUilEMUj02/H+WQE4i7UAUe5CkLbAb3nCAxesm6XWjMNpJ2XW0PY3hYEW8du7umrUCWor+3y+5i6E74DXvQm+lsFdRx2nURt7aoAv3ualSSjhLGcjWGKKrjjb7EghdLsAnayyy0uMI+a19XA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772554994; c=relaxed/simple;
-	bh=DLu3q9o3XmmE0oW7F+z6Mc4THjhnJnjhOxFhA8FxFEU=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=ao0jKiIF/PbpeXBz4yBikckX8BEmh0biRYEYPpnsE9wBLvLjJfKJXnSljyuAgRGKnv074WjAWPw702iWe6llhv19tte1bIaZRKjgdN8RWtpYnZDSjF/qmGMThvwg7AorUO6hPkKhcz/XMipb9pbBj5Q+jfwmdKrDfpwBmPDHPiQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=pg6KN0dJ; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=dIABMziNLvW0jGN8kMlgpZrAq89Imgr046x+DRl4Rp0=; b=pg6KN0dJ5ZW2AM6cCDdSSbnuh8
-	PhW6AkE7BgkA004hNmbRR18mGBAQhSx99q5o9AAXWurQ7v8cqZw4Sy816/wAn7HandtGwvps2gs9f
-	Rqcam9kTr/6hJ0oAXcGwT8kAE04C11Py+CCOXtzokRwkAzZE0Z/Vid+3hcaJR9LmbvjM=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:35704 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vxSWF-0003Ms-A8; Tue, 03 Mar 2026 11:22:47 -0500
-Date: Tue, 3 Mar 2026 11:22:46 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, shawnguo@kernel.org,
- laurent.pinchart+renesas@ideasonboard.com, antonin.godard@bootlin.com,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Hugo Villeneuve
- <hvilleneuve@dimonoff.com>
-Message-Id: <20260303112246.0bd6238aba7489b6de499299@hugovil.com>
-In-Reply-To: <920740e1-5bbb-4632-a62d-325715cd8043@kernel.org>
-References: <20260302190953.669325-1-hugo@hugovil.com>
-	<20260302190953.669325-5-hugo@hugovil.com>
-	<20260303-rational-thundering-firefly-9dcaa9@quoll>
-	<20260303095533.1c6dff174f6c9d162d3e3303@hugovil.com>
-	<920740e1-5bbb-4632-a62d-325715cd8043@kernel.org>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772554985; c=relaxed/simple;
+	bh=3KP5UsXW/n92tPBlXiap82i+5VV+PmnqKnEg0EMd6J4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cVdGAIwdbXRSWV9hukXnLPjdgHBTWfht544VbxUkWkaUB+Qh0V+Aw5k+z90YzAf9T2uDWYr8mBKTFyQI3Q4GzZawVMH4vsAwUHdyjtn6q1geo+2i/s7ToWgT/xavKkQeoO/0dc65ffuDppmKbaonNrGBNLzsPGhyHpVMSr9gqjc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LfVi6sv5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9FC1C116C6;
+	Tue,  3 Mar 2026 16:22:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772554985;
+	bh=3KP5UsXW/n92tPBlXiap82i+5VV+PmnqKnEg0EMd6J4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LfVi6sv5mzDF+gto8oNzM2EgaPhlTmS2tXuRZU4Jxga/cnE6f5iNWPgSh1AVbgVGF
+	 oMF1d36tNOVhUXoRK/2NAd2pou4/OoKDEuwnMQM7xpxmwbxjRVkPVHvrgWSTak88z9
+	 XNiLBwkaY4UFmHTr9FhGgxikuqVM1XUw6Pe7rKsZx+BGwNS5LEN6mAh9IMchsnnTVW
+	 tBEbMGVwm8k6ALqLQHiWOPq0kDSPSXOTscu4vP6tDkpZ8cjT+DVmY/CyP6CIn+JN/n
+	 qTpziJBz3+tQYAgpPpqjqQZcUeZtKVt8dfXhMNT0q0bFihJy+EFtzR0PaN4cqLGjpf
+	 1OXFaw1RIIgtg==
+Message-ID: <69853a6a-47a2-4777-9a5a-1a53f24531a2@kernel.org>
+Date: Tue, 3 Mar 2026 17:22:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/8] drm/msm/dpu: Add support for Eliza SoC
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar
+ <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Jonathan Marek <jonathan@marek.ca>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260303-drm-display-eliza-v1-0-814121dbb2bf@oss.qualcomm.com>
+ <20260303-drm-display-eliza-v1-7-814121dbb2bf@oss.qualcomm.com>
+ <7hwaqdfopuptvjoikc5y5jm7lf6pr556k2yijcac44fobt3x2z@5eglub7asuqq>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <7hwaqdfopuptvjoikc5y5jm7lf6pr556k2yijcac44fobt3x2z@5eglub7asuqq>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.8 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH 04/14] dt-bindings: arm: fsl: change incorrect
- VAR-SOM-6UL model name
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: 038FB1F3BD2
+X-Rspamd-Queue-Id: 43EF71F3C24
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270639-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270638-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,quicinc.com,marek.ca,linaro.org,vger.kernel.org,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,nxp.com,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	HAS_WP_URI(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,hugovil.com:dkim,hugovil.com:mid,variscite.com:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
-
-On Tue, 3 Mar 2026 16:19:54 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On 03/03/2026 15:55, Hugo Villeneuve wrote:
-> > Hi Krzysztof,
-> > 
-> > On Tue, 3 Mar 2026 08:10:51 +0100
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > 
-> >> On Mon, Mar 02, 2026 at 02:03:40PM -0500, Hugo Villeneuve wrote:
-> >>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >>>
-> >>> There is no Variscite module named VAR-SOM-MX6UL.
-> >>
-> >> VAR-SOM-MX6? And there is.
-> >> https://dev.variscite.com/var-som-mx6/
-> > 
-> > Ok,
-> > I was confused by the "const: variscite,var-som-imx6ul" and thought the
-> > description was not matching.
-> > 
-> > But there is still no module named "VAR-SOM-MX6UL", but "VAR-SOM-MX6",
-> > with different CPU variants like UL, ULL, etc. So I will modify the
-> > patch to reflect that.
+On 03/03/2026 15:10, Dmitry Baryshkov wrote:
+> On Tue, Mar 03, 2026 at 02:07:57PM +0100, Krzysztof Kozlowski wrote:
+>> Add support for DPU (v12.4) on Qualcomm Eliza SoC, with one
+>> incomplete/skipped part: HDMI interface (INT_4).
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>> ---
+>>  .../gpu/drm/msm/disp/dpu1/catalog/dpu_12_4_eliza.h | 365 +++++++++++++++++++++
+>>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   1 +
+>>  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
+>>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
+>>  4 files changed, 368 insertions(+)
+>>
+>> +	}, {
+>> +		.name = "intf_3", .id = INTF_3,
+>> +		.base = 0x37000, .len = 0x4bc,
+>> +		.type = INTF_DP,
+>> +		.controller_id = MSM_DP_CONTROLLER_1,
 > 
-> I don't understand what you want to reflect/modify.
-> 
-> Description says: VAR-SOM-MX6
-> My link says: VAR-SOM-MX6
-> 
-> What is incorrect?
+> There is no DP_1 on Eliza
 
-VAR-SOM-MX6 is ok, like your link shows, but not VAR-SOM-MX6UL.
-
-If someone looks at VAR-SOM-MX6UL, they may think that the "MX6" part
-refers to the VAR-SOM-MX6, or they may think that the "6UL" part refers
-to the VAR-SOM-6UL, and it can be extremely confusing. This was my
-understanding at first, and the reason why I submitted this patch.
-
-If you look at the associated board entry in the binding, it says
-"const: variscite,mx6ulconcerto" but the VAR-SOM-MX6 doesn't use
-the concerto board. It uses a board named "VAR-MX6CustomBoard":
-
-https://variscite.com/wp-content/uploads/2017/12/VAR-MX6CustomBoard-Datasheet.pdf
-
-The VAR-SOM-6UL uses the concerto board:
-
-https://variscite.com/wp-content/uploads/2019/07/Concerto-Board_Datasheet.pdf
-
-So the description in the binding "i.MX6UL Variscite VAR-SOM-MX6 Boards"
-is wrong, and needs to be replaced with VAR-SOM-6UL.
-
-By the way, support for the VAR-SOM-MX6 is provided by this binding entry:
-   - description: i.MX6Q Variscite VAR-SOM-MX6 Boards
-    items:
-      - const: variscite,mx6customboard
-      - const: variscite,var-som-imx6q
-      - const: fsl,imx6q
+You are right, thanks. It's paired with INTF_0.
 
 
-> > 
-> > In fact, I will modify the description to reflect that it supports both
-> > VAR-SOM-MX6 and VAR-SOM-6UL modules.
-> 
-> Are you sure that it does?
-
-With my new research, as explained above, this is not the case. I will
-modify the description to reflect that it supports VAR-SOM-6UL modules only.
-
--- 
-Hugo Villeneuve
+Best regards,
+Krzysztof
 
