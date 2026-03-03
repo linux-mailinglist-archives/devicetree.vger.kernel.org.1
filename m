@@ -1,282 +1,154 @@
-Return-Path: <devicetree+bounces-270621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270615-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EFnTE0MEp2k7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:54:43 +0100
+	id UHHuJwMEp2k7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270615-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:53:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6561F3085
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:54:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 066011F2FE0
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 16:53:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CE824308601A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:51:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8DA8C301113E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 15:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086DD4921B8;
-	Tue,  3 Mar 2026 15:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D3643E7158;
+	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvLhGrVT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5A1495537
-	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 15:51:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A84D3CB2CE;
+	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772553072; cv=none; b=CpnRysxvoXmvqIh9vQA7opT+T0lq3iW1hRhJg1GZLElqZgagsxLFoFor0fC3Tn04QxxrNPHKrlV4caijLcre8QrKI+4sDYXTcDe85hFru+UqY84+d+vGXvMJ6E/UdQrBlma2LgRnJMptCKy39QQMAsFqRh3DG4PkaeFLRSgx7C0=
+	t=1772553062; cv=none; b=GgMf1gPOgXQfHSOfpNVigzH2WZixazj1KUPwy/3hAo26RgYGesK92j7FIYfjvJT6X6mMscmeY1qpsyB24jNuJeLp8Jp/kTAGHt8V098JzHf0KqerXJ4URtnJzIfaozwaOp66QTkevBv2OyKGOfD7jz6Q2g0+D5/oPCcdXMQVECU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772553072; c=relaxed/simple;
-	bh=+Sm/P01h0kFbiVviehOODArZCDJSwlqi41ntmhONvrM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oR1CUc9KNI+0jxqmzhsVVInKWh1sgh/3noU21AMMSbEA+URSx8ojCN6SGxrqwC3A9Kki9f0wIA5tJiBt21nPI70zjRximJkd/zE2GlyjYlSY1jGf+UF52zuSe4P/zCL1A8cYgY78/D70vI/kNSGnWPBO2ducyAUZmnjj48x38ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxS16-000579-GX; Tue, 03 Mar 2026 16:50:36 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxS11-003ZRH-2s;
-	Tue, 03 Mar 2026 16:50:33 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vxS13-0000000G7Cv-0QPS;
-	Tue, 03 Mar 2026 16:50:33 +0100
-Date: Tue, 3 Mar 2026 16:50:33 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
-	Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, luca.ceresoli@bootlin.com, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v11 3/3] arm64: dts: imx93: Add parallel display output
- nodes
-Message-ID: <5esgi6k7sji6nwmp7ch3xcajrc6xxc3yfxe2iqq6z6wuvznuts@ytchokq2uy5t>
-References: <20260303-v6-18-topic-imx93-parallel-display-v11-0-1b03733c8461@pengutronix.de>
- <20260303-v6-18-topic-imx93-parallel-display-v11-3-1b03733c8461@pengutronix.de>
- <tyqgkbmkmenkdqdptb3baeizmvsdoyfjnaudlpb4jnz4py7cpb@oy64pijka2yz>
- <aacCBGRAd6JbktHU@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1772553062; c=relaxed/simple;
+	bh=79m/nJ/QDMP8KLr5bX+4nacC2eKgzRySRWsaV7zH+GM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EQRhVqBxQlySLzvHJOSxWO2p4iySL2ADypeklmKu2s5hopS6nfxc9/2bF8MtIRJkyMB4GbNKg+RW6s/a0DwnjlZHKdzMvH0wgqvtJZqRoy2p9R+aZ8GwbFbYraibkt7nxGfdPbKcM4GbBSYwqZHTl8uWBEw32IKwJsovsp5D8Tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvLhGrVT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4F80BC19422;
+	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772553062;
+	bh=79m/nJ/QDMP8KLr5bX+4nacC2eKgzRySRWsaV7zH+GM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fvLhGrVTUoKflqESHQQVMzU2LPTVN0i5gxbPA3D71X7sPFycd5zSIHa6GuxhCc8da
+	 yWCmJh3/EP4ObpSLW21ShzenPXlXUdGM27GvLcyfje/alAkndorPfGMBhTjKEHr51M
+	 fKx1ewYyEsJyD+HX/ZnGWAuLGFxGCNe6266pR/uYXkHvl7aWs01H/9aS7CIrDvKjIB
+	 SIvxlYbBdOew18yfmdH2KIa3iQFcc/7qsxCnKFTiVt85LtWz0m5UFMose/poisoreK
+	 /dKJV0tEIlhI7DBAgaPuKcXGyqNbUa7ihHafadB9IvfgDJE18rrJca0N902lMaFMpo
+	 KLlQaANi5Khig==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 30D47EDA68F;
+	Tue,  3 Mar 2026 15:51:02 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH RESEND v2 0/5] PowerPC: A few cleanups in MPC83xx
+ devicetrees
+Date: Tue, 03 Mar 2026 16:50:50 +0100
+Message-Id: <20260303-mpc83xx-cleanup-v2-0-187d3a13effa@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aacCBGRAd6JbktHU@lizhi-Precision-Tower-5810>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: BE6561F3085
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772553061; l=1655;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=79m/nJ/QDMP8KLr5bX+4nacC2eKgzRySRWsaV7zH+GM=;
+ b=zrNwdxzIbYzU/MGAyY0HR5Ici/8ZnZZKhC/bkSy+egATOEhlLVs9Q8qIji2hiK+Duui3GPCGi
+ 0UMAJUK79SjD43EpU71/2yC+3eOnMXb+/fK9RPUc0p7Xbco4jcxUGsh
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
+X-Rspamd-Queue-Id: 066011F2FE0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270615-lists,devicetree=lfdr.de,j.ne.posteo.net];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270621-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,bootlin.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.963];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.2:email,pengutronix.de:url,pengutronix.de:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,2.166.110.232:email,4ae30000:email]
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.net:replyto,posteo.net:email,posteo.net:mid]
 X-Rspamd-Action: no action
 
-On 26-03-03, Frank Li wrote:
-> On Tue, Mar 03, 2026 at 11:42:08AM +0100, Marco Felsch wrote:
-> > Hi Frank,
-> >
-> > On 26-03-03, Marco Felsch wrote:
-> > > Add required OF nodes to support the i.MX93 parallel output (DPI) path.
-> > >
-> > > On the i.MX93 a single LCDIF is connected to three bridges: DPI, LVDS
-> > > LDB and the MIPI-DSI whereas the i.MX91 support only the DPI bridge.
-> > >
-> > > Map endpoint@0 as DPI bridge output since the i.MX93 TRM (Figure 485.
-> > > MEDIAMIX block diagram) doesn't mention any port-number <-> bridge
-> > > combination.
-> > >
-> > > Set the MEDIA-AXI and MEDIA-APB clocks to the overdrive (OD) values
-> > > since the i.MX93 and i.MX91 use the overdrive (OD) clk settings per
-> > > default.
-> > >
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> >
-> > Please ignore this particular patch since you already applied this one.
-> 
-> You can skip these when you post new version. post delta if need update,
-> I can squash to previous patch as need.
-> 
-> >
-> > Next time we should align the apply with the rest of the patch series if
-> > dt-bindings and driver behaviors are involved. In such case the final
-> > integration patch should be merged at the end and not at the beginning
-> > :)
-> 
-> You request apply at :)
-> https://lore.kernel.org/all/fl2br7rtcjrjj2uqxva7ai3xbvjwrrbbl2ruaoqolrccr2rd5p@z33qfx7dpavf/
+This series contains a few cleanups for mpc8315erdb.dts and other
+PowerPC devicetrees, which are hopefully uncontroversial.
 
-I meant the whole series :) Although I'm unaware which maintainer is
-taken which part. Sorry for causing troubles on your site. However if
-you would try to apply this on your tree, git would have told you that
-nothing needs to be applied because this patch is untouched.
+Some of the patches were previously part of another, larger series,
+titled "powerpc: MPC83xx cleanup and LANCOM NWAPP2 board", but that
+series became too unwieldy to carry on. For this reason, this series
+starts at version 2.
 
-Regards,
-  Marco
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+J. Neuschäfer (5):
+      powerpc: dts: mpc8313erdb: Use IRQ_TYPE_* macros
+      powerpc: dts: mpc8315erdb: Use IRQ_TYPE_* macros
+      powerpc: dts: mpc8315erdb: Rename LED nodes to comply with schema
+      powerpc: dts: mpc8315erdb: Add missing #cells properties to SPI bus
+      powerpc: dts: mpc83xx: Add unit addresses to /memory
 
-> 
-> Frank
-> >
-> > Thanks,
-> >   Marco
-> >
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx91_93_common.dtsi | 54 ++++++++++++++++++++++
-> > >  arch/arm64/boot/dts/freescale/imx93.dtsi           | 12 +++++
-> > >  2 files changed, 66 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-> > > index 7958cef353766a430df5e626ff2403dc05a974b1..5a8813df6bc993d559fb0b20fc742a106bfe6315 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx91_93_common.dtsi
-> > > @@ -1122,8 +1122,62 @@ media_blk_ctrl: system-controller@4ac10000 {
-> > >  				 <&clk IMX93_CLK_MIPI_DSI_GATE>;
-> > >  			clock-names = "apb", "axi", "nic", "disp", "cam",
-> > >  				      "pxp", "lcdif", "isi", "csi", "dsi";
-> > > +			assigned-clocks = <&clk IMX93_CLK_MEDIA_AXI>,
-> > > +					  <&clk IMX93_CLK_MEDIA_APB>,
-> > > +					  <&clk IMX93_CLK_MEDIA_DISP_PIX>;
-> > > +			assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>,
-> > > +						 <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>,
-> > > +						 <&clk IMX93_CLK_VIDEO_PLL>;
-> > > +			assigned-clock-rates = <400000000>, <133333333>;
-> > >  			#power-domain-cells = <1>;
-> > >  			status = "disabled";
-> > > +
-> > > +			dpi_bridge: dpi-bridge {
-> > > +				compatible = "nxp,imx93-pdfc";
-> > > +				status = "disabled";
-> > > +
-> > > +				ports {
-> > > +					#address-cells = <1>;
-> > > +					#size-cells = <0>;
-> > > +
-> > > +					port@0 {
-> > > +						reg = <0>;
-> > > +
-> > > +						dpi_from_lcdif: endpoint {
-> > > +							remote-endpoint = <&lcdif_to_dpi>;
-> > > +						};
-> > > +					};
-> > > +
-> > > +					port@1 {
-> > > +						reg = <1>;
-> > > +
-> > > +						dpi_to_panel: endpoint {
-> > > +						};
-> > > +					};
-> > > +				};
-> > > +			};
-> > > +		};
-> > > +
-> > > +		lcdif: display-controller@4ae30000 {
-> > > +			compatible = "fsl,imx93-lcdif";
-> > > +			reg = <0x4ae30000 0x23c>;
-> > > +			interrupts = <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			clocks = <&clk IMX93_CLK_MEDIA_DISP_PIX>,
-> > > +				 <&clk IMX93_CLK_LCDIF_GATE>,
-> > > +				 <&clk IMX93_CLK_MEDIA_AXI>;
-> > > +			clock-names = "pix", "axi", "disp_axi";
-> > > +			power-domains = <&media_blk_ctrl IMX93_MEDIABLK_PD_LCDIF>;
-> > > +			status = "disabled";
-> > > +
-> > > +			port {
-> > > +				#address-cells = <1>;
-> > > +				#size-cells = <0>;
-> > > +
-> > > +				lcdif_to_dpi: endpoint@0 {
-> > > +					reg = <0>;
-> > > +					remote-endpoint = <&dpi_from_lcdif>;
-> > > +				};
-> > > +			};
-> > >  		};
-> > >
-> > >  		usbotg1: usb@4c100000 {
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > > index 7b27012dfcb564650882dc8c40e836e797b2fda1..5436b48b30e89eb1f939b398ce1bf105abe7e34b 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> > > @@ -150,6 +150,18 @@ l3_cache: l3-cache {
-> > >  	};
-> > >  };
-> > >
-> > > +&lcdif {
-> > > +	port {
-> > > +		lcdif_to_ldb: endpoint@1 {
-> > > +			reg = <1>;
-> > > +		};
-> > > +
-> > > +		lcdif_to_dsi: endpoint@2 {
-> > > +			reg = <2>;
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > >  &src {
-> > >  	mlmix: power-domain@44461800 {
-> > >  		compatible = "fsl,imx93-src-slice";
-> > >
-> > > --
-> > > 2.47.3
-> > >
-> >
-> > --
-> > #gernperDu
-> > #CallMeByMyFirstName
-> >
-> > Pengutronix e.K.                           |                             |
-> > Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-> > 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
-> 
+ arch/powerpc/boot/dts/asp834x-redboot.dts |   2 +-
+ arch/powerpc/boot/dts/mpc8308_p1m.dts     |   2 +-
+ arch/powerpc/boot/dts/mpc8308rdb.dts      |   2 +-
+ arch/powerpc/boot/dts/mpc8313erdb.dts     |  61 ++++++++-------
+ arch/powerpc/boot/dts/mpc8315erdb.dts     | 119 ++++++++++++++++--------------
+ arch/powerpc/boot/dts/mpc832x_rdb.dts     |   2 +-
+ arch/powerpc/boot/dts/mpc8349emitx.dts    |   2 +-
+ arch/powerpc/boot/dts/mpc8349emitxgp.dts  |   2 +-
+ arch/powerpc/boot/dts/mpc8377_rdb.dts     |   2 +-
+ arch/powerpc/boot/dts/mpc8377_wlan.dts    |   2 +-
+ arch/powerpc/boot/dts/mpc8378_rdb.dts     |   2 +-
+ arch/powerpc/boot/dts/mpc8379_rdb.dts     |   2 +-
+ 12 files changed, 109 insertions(+), 91 deletions(-)
+---
+base-commit: d3f2d8e7de622d2a2d4283cb545e51745d87f0c5
+change-id: 20260101-mpc83xx-cleanup-4de8df290c75
 
+Best regards,
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+J. Neuschäfer <j.ne@posteo.net>
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+
 
