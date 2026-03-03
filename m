@@ -1,161 +1,152 @@
-Return-Path: <devicetree+bounces-270324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270325-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kImrIYSNpmnxRAAAu9opvQ
-	(envelope-from <devicetree+bounces-270324-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 08:28:04 +0100
+	id MOzKHa6OpmnxRAAAu9opvQ
+	(envelope-from <devicetree+bounces-270325-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 08:33:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F4D51EA29C
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 08:28:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E67D21EA33F
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 08:33:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6107930CFF1B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 07:24:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E993230E66C6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 07:29:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D532A386549;
-	Tue,  3 Mar 2026 07:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C81937419A;
+	Tue,  3 Mar 2026 07:29:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CumCzOFU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aOUv7iZA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADBE4386456;
-	Tue,  3 Mar 2026 07:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A4AC32E126
+	for <devicetree@vger.kernel.org>; Tue,  3 Mar 2026 07:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772522671; cv=none; b=XUoJ8ZBpS+xwkhaz/e1Rgl6EXlKpd6Lxs9HdHVd9usn5Nr73TO1VOeQdmG1nrwVcb0KcwHe38NnaszMV3aWnqEWhUmO5Ta9v6iz3p+uycLsqg7CAFR/lQVj3B/QJ93LjIA6k+GNxAF8PE97f52lrE5RCUm7Wc48+x2XFdJq4ElU=
+	t=1772522982; cv=none; b=O2nOk3EuuqJ4iOAfrWpRebwYCXwakZE0fMeO/QAAWac+P5oxzKGYBJ+GkeSPIAEkb1dk6YRgarClEO9MXWVootETIbyUs61Fat678leiCIYYx+j2hAAQv0ZV2SJ6JYSiBgHj9T9euTPOolTZIYUKRTTooN8wr3N8pUmlF652wVU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772522671; c=relaxed/simple;
-	bh=QZft4tGQpuvbjBTEEEvSJYL99Aepiq91XDG/qGhbh2U=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=S4TpJ3zxOYBiQZrvMbQ+MbksQKX3nIEf5wOSPYPK5g9prp9j7tM8cvFRzrpvNL33Dld2Qcu0O24Rvui0cegru9zmCtM6RvRb3YWxBvxQlQTCEDr2Um32hkMJupk8bwpOnnikjriEJOGQKeAxyslzREOKoK3qC79HF4t2ZG4p2OM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CumCzOFU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29555C116C6;
-	Tue,  3 Mar 2026 07:24:31 +0000 (UTC)
+	s=arc-20240116; t=1772522982; c=relaxed/simple;
+	bh=YyZ0/QyOn8tE5obx99KeIpMwB/Zi+4Oct6cmtNgDxTM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pzhpGy7K4fh7T+/sqInSdmhYOjBuBHMO49yvpWYfswWeq+NePojSUsCUQm74L+0yzvm+b5C1zGi3JS+5j+D5sGS8kPM8+2N6kBSurS5i2iWGmvrW/KrqflnjNe99FQ0stegJhxRKztQFZt+0WmzKtrwPAxx46XBHYmPVDsXxHYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aOUv7iZA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F545C2BC87;
+	Tue,  3 Mar 2026 07:29:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772522671;
-	bh=QZft4tGQpuvbjBTEEEvSJYL99Aepiq91XDG/qGhbh2U=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=CumCzOFUtZqcX2cEkO0qbJ7HgPEArgGAHGrdvxRnYksDyKfc+E2PnGCBDHFSpgJ88
-	 qw/tpX7Y4ifWZSKeOvez0pyBFPcHcFR5OOK2mzBng5IWhcjrAeraVLn3hvGG0DzSV3
-	 0vO3CyW4+Ndfw4Ng+gzNbFFDHrjtViseftgqYjoSnOCGLWa7kVtmfkmRowtA5ztxfB
-	 CWy5EBcZydl4miHogKhCyPMFisU1yFQ6j4/eOfLse1txS5xR7BaNPCdYrmmjJja5Zl
-	 0Isua/vIPYOtqgJcUWnfboPYkBbr8wX/NnBVkfJe570MEUSMCt6yX9NJrju1rGrsG4
-	 vDT9axQFRKN9w==
-Date: Tue, 03 Mar 2026 01:24:30 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1772522981;
+	bh=YyZ0/QyOn8tE5obx99KeIpMwB/Zi+4Oct6cmtNgDxTM=;
+	h=From:Subject:Date:To:Cc:From;
+	b=aOUv7iZAkOxJN6tZhZdGrj74l+tbJfrv94nv3u3I2hjQh7iWL5hXlux1wKa7YGBPe
+	 pqIddRTg0UyLtq3D86jtCSjatrh/zAOIaJLWMuidfMuJcEIVmgNoYy94BUMFrDYonq
+	 7kXU2EKCCxba+CsT1Zr3Q2DxVL8DOIkWSs3MI+3u90X/G5+fBki/lrnWrrE5ntTYeY
+	 JefJTrYuOswINMQ07VchepsS0qSv+DO+70vSc1d89zc48ZCwCTnl/GuCz0qPGkIi7Z
+	 TEwfD3n4cuP8kBPfVUFI2bMAOKDw+pDIbZnK6Y1MqMa1LKJIkiudBIy96TAUf3A3mD
+	 bnl6NtGx8p7YA==
+From: Linus Walleij <linusw@kernel.org>
+Subject: [PATCH v2 0/8] ARM: dts: gemini: Additions and updates
+Date: Tue, 03 Mar 2026 08:29:32 +0100
+Message-Id: <20260303-gemini-dts-fixes-v2-0-5b92ced841ce@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, 
- Benjamin Tissoires <bentiss@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, 
- Jarrett Schultz <jaschultz@microsoft.com>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Jonathan Corbet <corbet@lwn.net>, Jiri Kosina <jikos@kernel.org>, 
- linux-doc@vger.kernel.org, linux-input@vger.kernel.org, 
- hbarnor@chromium.org, Steven Rostedt <rostedt@goodmis.org>, 
- Dmitry Antipov <dmanti@microsoft.com>, linux-spi@vger.kernel.org, 
- linux-trace-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-To: Jingyuan Liang <jingyliang@chromium.org>
-In-Reply-To: <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org>
-References: <20260303-send-upstream-v1-0-1515ba218f3d@chromium.org>
- <20260303-send-upstream-v1-9-1515ba218f3d@chromium.org>
-Message-Id: <177252267017.1911710.5393390799820908682.robh@kernel.org>
-Subject: Re: [PATCH 09/12] dt-bindings: input: Document hid-over-spi DT
- schema
-X-Rspamd-Queue-Id: 2F4D51EA29C
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2WNwQ7CIBBEf6XZs2uAGlI9+R+mhxYWulFpAw3RN
+ Py7WI8e30zezAaJIlOCS7NBpMyJ51BBHRow0xA8IdvKoITSQqoWPT05MNo1oeMXJWwH17WyM2e
+ jCaq2RNqLat36yhOndY7v/SHLb/obU6r7H8sSBQqjnbbCjafRXu8UAz2Oc/TQl1I+YxIWHLEAA
+ AA=
+X-Change-ID: 20260123-gemini-dts-fixes-3af8318c9c6e
+To: Hans Ulli Kroll <ulli.kroll@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ Linus Walleij <linusw@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Rspamd-Queue-Id: E67D21EA33F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,efficios.com,microsoft.com,gmail.com,lwn.net,vger.kernel.org,chromium.org,goodmis.org];
-	TAGGED_FROM(0.00)[bounces-270324-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270325-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[googlemail.com,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[chromium.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+This augments and fixes the Gemini DTS files a bit based
+on some upstream work from OpenWrt.
 
-On Tue, 03 Mar 2026 06:13:01 +0000, Jingyuan Liang wrote:
-> Documentation describes the required and optional properties for
-> implementing Device Tree for a Microsoft G6 Touch Digitizer that
-> supports HID over SPI Protocol 1.0 specification.
-> 
-> The properties are common to HID over SPI.
-> 
-> Signed-off-by: Dmitry Antipov <dmanti@microsoft.com>
-> Signed-off-by: Jarrett Schultz <jaschultz@microsoft.com>
-> Signed-off-by: Jingyuan Liang <jingyliang@chromium.org>
-> ---
->  .../devicetree/bindings/input/hid-over-spi.yaml    | 153 +++++++++++++++++++++
->  1 file changed, 153 insertions(+)
-> 
+- Add the SSP block from the bindings already merged to
+  the SPI subsystem.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+- Add Verbatim Corporations vendor ID and the S08V1901-D1
+  NAS.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/input/hid-over-spi.yaml:67:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
-./Documentation/devicetree/bindings/input/hid-over-spi.yaml:89:15: [error] empty value in block mapping (empty-values)
-./Documentation/devicetree/bindings/input/hid-over-spi.yaml:153:7: [error] no new line character at the end of file (new-line-at-end-of-file)
-./Documentation/devicetree/bindings/input/hid-over-spi.yaml:91:16: [error] syntax error: mapping values are not allowed here (syntax)
+- Add Raidsonic IB-4210-B DTS.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/input/hid-over-spi.yaml: ignoring, error parsing file
-./Documentation/devicetree/bindings/input/hid-over-spi.yaml:91:16: mapping values are not allowed here
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/input/hid-over-spi.example.dts'
-Documentation/devicetree/bindings/input/hid-over-spi.yaml:91:16: mapping values are not allowed here
-make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/input/hid-over-spi.example.dts] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1559: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+- Fix up errors in the Teltonika RUT1xx DTS.
 
-doc reference errors (make refcheckdocs):
+- Small fix to the iTian SQ201.
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260303-send-upstream-v1-9-1515ba218f3d@chromium.org
+Signed-off-by: Linus Walleij <linusw@kernel.org>
+---
+Changes in v2:
+- Designate the two new devices as "new" not "missing".
+- Link to v1: https://lore.kernel.org/r/20260228-gemini-dts-fixes-v1-0-0c6f6d0fb4bd@kernel.org
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+---
+Linus Walleij (8):
+      ARM: dts: gemini: iTian SQ201 need to boot from mtdblock3
+      ARM: dts: gemini: Tag disk led for disk-activity
+      ARM: dts: gemini: Add SSP/SPI block
+      dt-bindings: vendor-prefixes: Add Verbatim Corporation
+      dt-bindings: arm: Add two new Gemini devices
+      ARM: dts: Add a Verbatim Gigabit NAS DTS
+      ARM: dts: Add a Raidsonic IB-4210-B DTS
+      ARM: dts: gemini: Correct the RUT1xx
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+ Documentation/devicetree/bindings/arm/gemini.yaml  |  10 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm/boot/dts/gemini/Makefile                  |   2 +
+ arch/arm/boot/dts/gemini/gemini-nas4210b.dts       | 205 +++++++++++++++++++
+ arch/arm/boot/dts/gemini/gemini-nas4220b.dts       |   1 +
+ arch/arm/boot/dts/gemini/gemini-rut1xx.dts         |  18 +-
+ arch/arm/boot/dts/gemini/gemini-sq201.dts          |   2 +-
+ .../dts/gemini/gemini-verbatim-s08v1901-d1.dts     | 225 +++++++++++++++++++++
+ arch/arm/boot/dts/gemini/gemini.dtsi               |  17 ++
+ 9 files changed, 470 insertions(+), 12 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260123-gemini-dts-fixes-3af8318c9c6e
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Linus Walleij <linusw@kernel.org>
 
 
