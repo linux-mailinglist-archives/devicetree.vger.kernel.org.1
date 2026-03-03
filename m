@@ -1,262 +1,144 @@
-Return-Path: <devicetree+bounces-270629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270630-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHHfHigIp2k7bgAAu9opvQ
-	(envelope-from <devicetree+bounces-270629-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:11:20 +0100
+	id qHbsIfoIp2k7bgAAu9opvQ
+	(envelope-from <devicetree+bounces-270630-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:14:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8BF41F35E5
-	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:11:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B3071F3715
+	for <lists+devicetree@lfdr.de>; Tue, 03 Mar 2026 17:14:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EEBB73032741
-	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:04:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CA8D830630B6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Mar 2026 16:08:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6961A282F37;
-	Tue,  3 Mar 2026 16:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29093496905;
+	Tue,  3 Mar 2026 16:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hauh7GHh"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="VFMecLyX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4614E27732;
-	Tue,  3 Mar 2026 16:04:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E30BF4968E4;
+	Tue,  3 Mar 2026 16:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772553856; cv=none; b=no0HuW1hxgXnMsfkkbljuuzCQHNCL1EgyIwJ7OfHq05eZBMRGMs9i2B11MQkVjxLOKNAXye51RLgmukiXDWSOQbjVjz0+Wx4DN2rdw6LYcV/TzjpQNDeu7cII5u4NUT7fWVUOKRum+nvNXN+UbAeM+ZnknhDzby2L6zLHnVTJYY=
+	t=1772554136; cv=none; b=DWVDSHx4zGLoxx4Gc1NJ71mqK3OqgYSRy8CoAisnAaH+DbzTgz1pmNUrjHjfqhSVLHn+bIt2UdPVdJ49Ka0TVe2SaTGLQfi+jNcQgrK3MwRUUtisKO6ZnClVNkICE+KNpL6MrsTH0U7RJRdzQzGfzjAWvF5GZVFw0cbCVC8LE0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772553856; c=relaxed/simple;
-	bh=a7/rRD8QRX/T56zI93E4KvZTeQlDeftjKMb5+MtVtnA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=U/liQRGXKmrabf2rTn5pfJY2nSyuooaIVN9aWM3UlyqyJr+QHeT3Eh01K+/TsiCxSA/s8pYNxstYs9TbOp8P9YxIMa08/VRc0lOttXbghvSQydmxpRfoC/Uag3dVrJghFR874BODiAJphNgzRlUPdngVgT12W+C7lljcy0UgVQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hauh7GHh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D4816C2BCAF;
-	Tue,  3 Mar 2026 16:04:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772553855;
-	bh=a7/rRD8QRX/T56zI93E4KvZTeQlDeftjKMb5+MtVtnA=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=hauh7GHhHuzKfqsjUARNMGRhoqDc35OrIXWUOSDvsuLMt7LOflnyjb7C8UxVQpXt/
-	 KVLwpolmvwjIVu+3IH+QuBt4yRMdARFr3WRAn80dSBZKBrNXt7uaPXMhgzn9OePoyO
-	 0TbKSDcHM6MjFEZylr46zwcCN7rCzmM5b/k0iUKDuejJTK+AyGbMtS4FkvqTTFP4Kn
-	 pdYo3yg4LM9ytUAkmDysPjK/erRX1MItjzmXjx9CmH9R3xquo0wljg0duGisjqOgI/
-	 xfrjyqzvFv/ix/jg3la5PJ8qExjfykH0ohU9uAHeu6WYEeJG2p15twvZOa0kl91Wy+
-	 HYGWzzp+H2Few==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id BFF61EDA693;
-	Tue,  3 Mar 2026 16:04:15 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Tue, 03 Mar 2026 17:04:08 +0100
-Subject: [PATCH RESEND v5] dt-bindings: powerpc: Add Freescale/NXP MPC83xx
- SoCs
+	s=arc-20240116; t=1772554136; c=relaxed/simple;
+	bh=LxDpmZIStQFl4pKJuLi1lEHlzuukqL6IbdtXzKTYw28=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KaZJaHn4o+waBnndMHU4ozJlZ5P/bo42qhgrXha2M2GVT0xpC6B3/3YyM4b78xIjQsLrwLSqikd1NWWI8t/NIbkpNV2a2H4eUM1ysWMkCFFjblkZUxWYbfftpFNxKa5zjjRv6BIHCwuBNtdCt5nWKTV3rtgorOvSwlpx0SEA0/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=VFMecLyX; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772554134; x=1804090134;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=LxDpmZIStQFl4pKJuLi1lEHlzuukqL6IbdtXzKTYw28=;
+  b=VFMecLyXZdg1PMdXqUawN1jPTfir56b21JYu7mwdBdqXlV8VxaYD4f+9
+   wtSiHoqbjKxapSzBok8gfKw8gQE0crtQ2RTM9nSzCgwjpZCU8mdPYBAQD
+   sgCoppCEpcje9+5hpZnsFxANbr2acUYJV6vQy0D0lfbD6jH0BO4GRsVan
+   IRXQUO/hnO2tb1mv8/RpilJiVT+f+1kz/iYBKQCJWj49Nj/yT29R2NMuy
+   OyujCYQXD6mxmHK+bynMnfMtmqjHRe7AlFsC6TfgKYcblwR1WzZHFcT6l
+   4sYnUttHqx7Fhrs2ApNYc77DYpDRB8qOEeHyS759qd/hVtr4AHmMfMk2u
+   w==;
+X-CSE-ConnectionGUID: 8DytlORHRCqQU3ifMLJo7Q==
+X-CSE-MsgGUID: DnESnoheQQSdOZ5CQBVMug==
+X-IronPort-AV: E=Sophos;i="6.21,322,1763449200"; 
+   d="scan'208";a="221420262"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2026 09:08:54 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 3 Mar 2026 09:08:14 -0700
+Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Tue, 3 Mar 2026 09:08:10 -0700
+Message-ID: <930c6381b676f6c911e3c7235be5b08c7ca24e09.camel@microchip.com>
+Subject: Re: [PATCH net-next 5/8] net: dsa: lan9645x: add bridge support
+From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+To: Vladimir Oltean <olteanv@gmail.com>
+CC: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman
+	<horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung Huh
+	<woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
+ Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
+	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
+Date: Tue, 3 Mar 2026 17:08:10 +0100
+In-Reply-To: <20260303142048.y4vu5i57daeuezxm@skbuf>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+	 <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+	 <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
+	 <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
+	 <20260303142048.y4vu5i57daeuezxm@skbuf>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260303-ppcyaml-soc-v5-1-2982d5a857bc@posteo.net>
-To: Scott Wood <oss@buserror.net>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- Naveen N Rao <naveen@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>, 
- Christophe Leroy <chleroy@kernel.org>
-Cc: linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772553855; l=4183;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=536L63cvPpKbvFHHC4dH21r7FgAfuo5+xdMh/4DunPY=;
- b=/GGIoV2BYbJfWNeB7iMXQvs3m30g1HLFdwyLBRvTCjEAxDYYcIhsK/23tNmmoenhXWkfsxuY+
- DcKC/fwlklMDNs93mkWksuznsSlEc3TMoqPZEG/i6/qsiU5/i3vxINv
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
-X-Rspamd-Queue-Id: D8BF41F35E5
+X-Rspamd-Queue-Id: 0B3071F3715
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270629-lists,devicetree=lfdr.de,j.ne.posteo.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[buserror.net,linux.ibm.com,ellerman.id.au,gmail.com,kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-270630-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,csgroup.eu:email,posteo.net:replyto,posteo.net:email,posteo.net:mid,e0000000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On Tue, 2026-03-03 at 16:20 +0200, Vladimir Oltean wrote:
+>=20
+> On Tue, Mar 03, 2026 at 01:22:31PM +0100, Jens Emil Schulz =C3=98stergaar=
+d wrote:
+> > We support a single bridge device.
+>=20
+> Why? I keep seeing this from Microchip engineers. Having two
+> VLAN-unaware bridges on different sets of ports is a perfectly valid use
+> case. On Ocelot I took the driver from a state where it had an identical
+> implementation to yours and I made it handle multiple bridges. I don't
+> see where's the problem.
 
-Add a new binding for MPC83xx platforms, describing the board compatible
-strings used in currently existing device trees.
+The main reason is that is what we support in other drivers such as sparx5,
+lan969x and lan966x. I saw your solution for Ocelot, but I could not think
+of the use case, where you would not just use vlans on a single bridge to
+isolate forwarding domains. But I may be missing something. The same soluti=
+on
+would work here, but the bridges can not be vlan-aware.
 
-Note that the SoC bus is called immr@... in many existing devicetrees,
-but this contradicts the simple-bus binding.
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-Changes in v5:
-- Add Christophe Leroy's R-b tag
-- Link to v4: https://lore.kernel.org/r/20250412-ppcyaml-soc-v4-1-bd34f4613d31@posteo.net
-
-Changes in v4:
-- Rebase on v6.15-rc1
-- Try to list all existing compatible strings for MPC83xx boards
-- Link to v3: https://lore.kernel.org/r/20250220-ppcyaml-soc-v3-1-b8c98a61bc1a@posteo.net
-
-V3:
-- split out as a single patch
-- otherwise no changes
-
-V2:
-- part of series [PATCH v2 00/12] YAML conversion of several Freescale/PowerPC DT bindings
-  Link: https://lore.kernel.org/lkml/20250207-ppcyaml-v2-1-8137b0c42526@posteo.net/
-- trim subject line
-- fix property order to comply with dts coding style
-- add Rob Herrings's R-b tag
----
- .../bindings/powerpc/fsl/fsl,mpc83xx.yaml          | 93 ++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml b/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml
-new file mode 100644
-index 00000000000000..9e37d155c5829a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/powerpc/fsl/fsl,mpc83xx.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/powerpc/fsl/fsl,mpc83xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale PowerQUICC II Pro (MPC83xx) platforms
-+
-+maintainers:
-+  - J. Neuschäfer <j.ne@posteo.net>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: MPC83xx Reference Design Boards
-+        items:
-+          - enum:
-+              - fsl,mpc8308rdb
-+              - fsl,mpc8315erdb
-+              - fsl,mpc8360rdk
-+              - fsl,mpc8377rdb
-+              - fsl,mpc8377wlan
-+              - fsl,mpc8378rdb
-+              - fsl,mpc8379rdb
-+
-+      - description: MPC8313E Reference Design Board
-+        items:
-+          - const: MPC8313ERDB
-+          - const: MPC831xRDB
-+          - const: MPC83xxRDB
-+
-+      - description: MPC8323E Reference Design Board
-+        items:
-+          - const: MPC8323ERDB
-+          - const: MPC832xRDB
-+          - const: MPC83xxRDB
-+
-+      - description: MPC8349E-mITX(-GP) Reference Design Platform
-+        items:
-+          - enum:
-+              - MPC8349EMITX
-+              - MPC8349EMITXGP
-+          - const: MPC834xMITX
-+          - const: MPC83xxMITX
-+
-+      - description: Keymile KMETER1 board
-+        const: keymile,KMETER1
-+
-+      - description: MPC8308 P1M board
-+        const: denx,mpc8308_p1m
-+
-+patternProperties:
-+  "^soc@.*$":
-+    type: object
-+    properties:
-+      compatible:
-+        oneOf:
-+          - items:
-+              - enum:
-+                  - fsl,mpc8315-immr
-+                  - fsl,mpc8308-immr
-+              - const: simple-bus
-+          - items:
-+              - const: fsl,mpc8360-immr
-+              - const: fsl,immr
-+              - const: fsl,soc
-+              - const: simple-bus
-+          - const: simple-bus
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    / {
-+        compatible = "fsl,mpc8315erdb";
-+        model = "MPC8315E-RDB";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        soc@e0000000 {
-+            compatible = "fsl,mpc8315-immr", "simple-bus";
-+            reg = <0xe0000000 0x00000200>;
-+            #address-cells = <1>;
-+            #size-cells = <1>;
-+            device_type = "soc";
-+            ranges = <0 0xe0000000 0x00100000>;
-+            bus-frequency = <0>;
-+        };
-+    };
-+
-+...
-
----
-base-commit: 9448598b22c50c8a5bb77a9103e2d49f134c9578
-change-id: 20250220-ppcyaml-soc-cae1f14cf389
-
-Best regards,
--- 
-J. Neuschäfer <j.ne@posteo.net>
-
-
+Thanks,
+Emil
 
