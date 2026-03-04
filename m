@@ -1,51 +1,58 @@
-Return-Path: <devicetree+bounces-270964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270965-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EN1iN2kFqGkRnQAAu9opvQ
-	(envelope-from <devicetree+bounces-270964-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:11:53 +0100
+	id WNELBwsGqGmEnQAAu9opvQ
+	(envelope-from <devicetree+bounces-270965-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:14:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1AD1FE256
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:11:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75C901FE271
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:14:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 79D2630241A8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:11:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 736C63041A5F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C0239F189;
-	Wed,  4 Mar 2026 10:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED6139FCA5;
+	Wed,  4 Mar 2026 10:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VGJTWLPJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="B/fv+zkY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA0A390CAD;
-	Wed,  4 Mar 2026 10:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A18382F10;
+	Wed,  4 Mar 2026 10:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772619104; cv=none; b=XKORinFYEHyFuIX0Xid28QYkXR0UgHBh70c3V37u5a0pRd1PqnJ85US0QxGoaRsE8cpAwVNQdlev8roLvoluwk/ugYjM7q4blQPTHqSW+PtXJind0QupnC+B+oUoCL9Zs3xmYdVM5n6J0FMb0juN8JkKoSOhV2yr+KcIeUCHJYI=
+	t=1772619262; cv=none; b=d7YZE11/7kP3nJCvybbZiyJ4kvi0JzmLly7QTDT5wrDsGHT6MPRm7MxczuAOhP2zikPV5TaPuQTQ1s9AROaiaEAW3MGWUL5sK7wGljjlnPEpue9r6G5LIpG97YiwD+bpB53QyoT3lKO3VBSsbwUFYaQQBOsyiJ34UF7XzvPuVfA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772619104; c=relaxed/simple;
-	bh=FFQxwALHcJxfORoVnM2t7+FswmhzzNKVK+wobuNtuKA=;
+	s=arc-20240116; t=1772619262; c=relaxed/simple;
+	bh=7OLsM46dILzIKFo7Cs0Sje7dLaNFHpEAJy3wRh2pdIU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CdL5RfywqYY65evF1LNqfKF4jrzqxO7wrfZsZcKBpXif129L+bHC6y2rHcFLwgQrEBNLJqNwQAXoFy23Xu/ezIuYiSarpWLBsCX5q+bQBSae4mp825CkBHEDJ2qWUVjjO0iFMVfmRhlp748ggz3IebXiZSJF0F5dGOFr6kyVox4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VGJTWLPJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C300EC19423;
-	Wed,  4 Mar 2026 10:11:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772619103;
-	bh=FFQxwALHcJxfORoVnM2t7+FswmhzzNKVK+wobuNtuKA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VGJTWLPJuKDoWKU5szZ0TbP5F/eF7zxag8S9Rv2nR2fyHBl/KhedL8aFccH/+c0WQ
-	 LdHIOj0gVU/yCQjubeZKuBE3thInsQyZeDI2YXp8Gt5lZFfzWd/+rsPw2+/A3yO3Tk
-	 jkamWSAez2jWWwDMKafY8fp/vuIDzeR8lnpziqJ27U65AB+4sp6CqDPgwW8B2OG8wq
-	 zJ2cyI+DDEnJHkJvkJ/gnUUu9FrmoIsgwUprTtcE48rQow8uQKo76Giq+uPe2f8zEp
-	 f8eQzJyhaRQIwxHTesMMTt/kJwHbe8iROszc5KN2gOu4CDuD1ipFSu7ECj/kk91riY
-	 Xihpkl5+ISkHQ==
-Message-ID: <a9bbff27-28b4-4ec4-91e7-481eac0c5479@kernel.org>
-Date: Wed, 4 Mar 2026 11:11:38 +0100
+	 In-Reply-To:Content-Type; b=G05fC2zwD8jh40aG5+Zp2bolnQQhPlS8Zn9IY6hJOarKmKsROIN1hIO/4PbtSBTdroIma2v7zxwLud2o/H69L0Zd2i6k/WqB5kUq8JJBtc6+dLi7cUJbKHhh4bsIXpKBG+QbjJXUgBm8ywYgqx52RaLKshYedYI8PMoQXkS5VA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=B/fv+zkY; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id A5AFD1A2791;
+	Wed,  4 Mar 2026 10:14:18 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6F0655FF5C;
+	Wed,  4 Mar 2026 10:14:18 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7C169103685F1;
+	Wed,  4 Mar 2026 11:14:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772619256; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=4UJB5Tef4Xa9EPz7ddJaJCyEjLF4LufxiJyl/vDD5jg=;
+	b=B/fv+zkYhgUMX/YSdxnpxySN1eY9IVSqPBwvk+7Jk/y4L89Diiyi2gNmuiuUXZF8oG3ABu
+	leSag3vgWeKHqqglNWPEKXKEg9IH5fvb2/msgpQpFXrLJ8ovugh7lSPdR+K+0p5iTBQgJb
+	eCzNrv5jp7cWDwefB+fsTevUgg6VCM91lIzD0AnmDzXQaQ3myCErTR9oF0kDmMO1N3NFOD
+	MKowduDmUe3FsOat4B0Z1uB6evRtNc3y2JcqKXA0IbP3rVUMdr27mRABfMnQzdb1AxKbVm
+	CadNpF57ZMKmEwa0MvO/Z+pPe6kJyIK6ufJFtAJe2lD4vj2PvsUfPYVAM1M5Bg==
+Message-ID: <4a073736-9caf-4973-b7ad-a482d63bb672@bootlin.com>
+Date: Wed, 4 Mar 2026 11:14:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,132 +60,123 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: power: reset: qcom-pon: Add new
- compatible PMM8654AU
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Rakesh Kota <rakesh.kota@oss.qualcomm.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-References: <20260227-b4-add_pwrkey_and_resin-v3-0-61c5bb2cdda9@oss.qualcomm.com>
- <20260227-b4-add_pwrkey_and_resin-v3-1-61c5bb2cdda9@oss.qualcomm.com>
- <20260228-polite-swine-of-potency-56e61a@quoll>
- <6a304d0d-61b1-422f-bb65-8f8055095c39@oss.qualcomm.com>
- <7118ad44-5a56-4523-baff-9afa8030aff0@kernel.org>
- <ef5a0e22-2f12-4584-9abb-0d3202a58b41@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: Add support for Airoha
+ AN8801/R GbE PHY
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>
+Cc: kevin-kw.huang@airoha.com, macpaul.lin@mediatek.com,
+ matthias.bgg@gmail.com, kernel@collabora.com, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20260304-add-airoha-an8801-support-v1-0-0ae4ee5a2f9d@collabora.com>
+ <20260304-add-airoha-an8801-support-v1-1-0ae4ee5a2f9d@collabora.com>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <ef5a0e22-2f12-4584-9abb-0d3202a58b41@oss.qualcomm.com>
+In-Reply-To: <20260304-add-airoha-an8801-support-v1-1-0ae4ee5a2f9d@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 5A1AD1FE256
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 75C901FE271
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270965-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270964-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[airoha.com,mediatek.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:mid]
 X-Rspamd-Action: no action
 
-On 04/03/2026 11:08, Konrad Dybcio wrote:
-> On 3/2/26 11:28 AM, Krzysztof Kozlowski wrote:
->> On 02/03/2026 11:20, Konrad Dybcio wrote:
->>> On 2/28/26 11:17 AM, Krzysztof Kozlowski wrote:
->>>> On Fri, Feb 27, 2026 at 06:02:28PM +0530, Rakesh Kota wrote:
->>>>> PMM8654AU is a different PMIC from PMM8650AU, even though both share
->>>>> the same PMIC subtype. Add PON compatible string for PMM8654AU PMIC
->>>>> variant.
->>>>>
->>>>> The PMM8654AU PON block is compatible with the PMK8350 PON
->>>>> implementation, but PMM8654AU also implements additional PON registers
->>>>
->>>> So does that mean that PMM8654AU has 2 address spaces and PMK8350 has
->>>> only one? At least it looks, so I expect fixing the last if:then: - you
->>>> need to drop contains from PMK8350 if clause and add new if:then: for
->>>> PMM8654AU.
->>>
->>> The delta between them is such that within the already-described reg
->>> ranges, there is some additional bits and/or registers (can't remember
->>> but it doesn't matter for this point)
->>>
->>> This doesn't impact the described size, as all QC PMIC peripherals are
->>> by design allocated 0x100-wide windows
->>
->> I still expect that fixed.
+Hi Louis-Alexis,
+
+On 04/03/2026 10:35, Louis-Alexis Eyraud wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > 
-> that = commit message?
+> Add a new binding to support the Airoha AN8801R Series Gigabit
+> Ethernet PHY.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> ---
+>  .../devicetree/bindings/net/airoha,an8801.yaml     | 81 ++++++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/airoha,an8801.yaml b/Documentation/devicetree/bindings/net/airoha,an8801.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..f251c9d2fbbed3675c9fd7ff22174049a13a7b5e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/airoha,an8801.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/airoha,an8801.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Airoha AN8801R Series PHY
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
+> +description:
+> +  The Airoha AN8801R is a low power single-port Ethernet PHY Transceiver
+> +  with Single-port serdes interface for 1000Base-X/RGMII; this chip is
+> +  compliant with 10Base-T, 100Base-TX and 1000Base-T IEEE 802.3(u,ab)
+> +  and supports Energy Efficient Ethernet (802.3az), Full Duplex Control
+> +  Flow (802.3x), auto-negotiation, crossover detect and autocorrection,
+> +  Wake-on-LAN with Magic Packet, and Jumbo Frame up to 9 Kilobytes.
+> +  This PHY also supports up to three user-configurable LEDs, which are
+> +  usually used for LAN Activity, 100M, 1000M indication.
+> +
+> +allOf:
+> +  - $ref: ethernet-phy.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ethernet-phy-idc0ff.0421
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  leds: true
+> +
+> +required:
+> +  - reg
+> +  - leds
 
-No, what I wrote in my first reply what has to be fixed.
+Seems odd to me that leds are required. Any reason for that ?
 
-Best regards,
-Krzysztof
+Maxime
+
 
