@@ -1,148 +1,250 @@
-Return-Path: <devicetree+bounces-270926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270927-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKfMDXnvp2mWlwAAu9opvQ
-	(envelope-from <devicetree+bounces-270926-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:38:17 +0100
+	id 8JfXBM7vp2mWlwAAu9opvQ
+	(envelope-from <devicetree+bounces-270927-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:39:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D0321FCBA0
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:38:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 103CB1FCC01
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:39:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1EA2C308511F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:36:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D760F30080AE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFA639182D;
-	Wed,  4 Mar 2026 08:36:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C7B39182E;
+	Wed,  4 Mar 2026 08:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EfR5j+Gg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E60A3914ED
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 08:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E18C364EA3;
+	Wed,  4 Mar 2026 08:39:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772613406; cv=none; b=fum2Ds0UVUeQ5JTh97jioAOPYVSpeteXeHumurfMhy0euQQ/79fC+kLoKIdFyRCW21aukL6HrNL/o6axCNWyMHVoJzeFpfbzPjVa5Rxdadoe6g+RwIJGkhLGUvJb9KgUmbj0F97xkL+Pp+f8tZPw1TUn9XvCEJQi+1aw6Wh/XRo=
+	t=1772613576; cv=none; b=D8sqC139S3XloOJE6SNjkGC2KWjqR+64UeGe9EkRDFcMVIDAZMJZw1wFDRWmB9FOxbzgGoCposs2eJ26xMoJwM37cURaCMDRjtKkW9diezn2ZzpKMGUGy+XkOpOp+3bMnkfmp3ARh0NCrUmPMFROH1bKOiNku0LYT3wpVanC1Fg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772613406; c=relaxed/simple;
-	bh=elLmZc1jcw/cKiPUPuBZuwYPvBIc0Ez1uIV9vvssIMI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Nw49XwwFvjYNnhWEnIjbV3b3a7Q4xfR/r5MamxcyvjS1DHArsh0Avcvhz5+WUSznlvORua4lJiV1kCO4eYQtidObERg1sFyOnbixGGAhfrtuvX4RMfNhYD+6XxWz3Cp+Zdexq/5nOXx2yrm1mlsrV4yDwpFoabkUMISPOfQ2uqc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-5688c221fd3so2936902e0c.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 00:36:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772613404; x=1773218204;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7EM3HBjgEUYLDW4ZlFiTbUJGOP/CBi5VZ79QGeNCuqE=;
-        b=h4Hovfq17AuIP0Fj+kAnlFf3KADMNNlhMdSFFiGkWn4tPQi5eK3T1/IGfbsI43eBcQ
-         cjC2QMjLgvsBo9vp0eDvAfozkFO5ZafyioD/VU+r/FSzAcpJUCPOV9QgVNjIOOLxRH2Y
-         sK8+pRDEqVybeVO2yaDF3WoRxnFZ13IQ/TRsoLlKDiIOILCQzAyaWesd4skS0wpnYfyN
-         QTNncwncFDrVRXqe4sKd2BEZRiSAXYO3h7y+sGmCUCiq7XNvHcjuEcJH1eBVDyTnBOu4
-         KtHvC2OeAiPuv7RSescJY4JBcEyXpL/18QdFVCMjOwha95P7KgBxybeVVZi2gsxOGek+
-         OW5w==
-X-Forwarded-Encrypted: i=1; AJvYcCXvzMWOqo1Q4H7+VSuTSpoyyR0Q7E6Btweorgbv7uhLvS2Pb5hlcNw0+BYA1qjht681/6J94gCf/M1M@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhhIlORP98fEpt7XG7BaCUpXVG3h2SbczaX5Mvk97LO6dMMHro
-	ZiXRB0tI6EGQBdau2iupxwSMi1COo5s1XyLJYaQzyPZGdn1l2N7wuktf5dw5uDlh
-X-Gm-Gg: ATEYQzzDieYyD9pMCgMn2TMV3SlvMxSMtIvubBqY/MjFpYmOWHpppc9rEk4mZuKwXW0
-	EjTCDPlzaf0SoNb4rox2bXIiVhkg6fxqICQK/k5qGOr5HsoOfhDKTt+9NL56gYtTr60vbt5lIkT
-	DWiJY8kUeVjUXRmGtrNZZut2mzPHuVfrJMneiaPPzv4pk3+H3kF65oJQh2QJ5H4Urd+FAY6CQwx
-	J2Ad8uJ4SAYEMDqJQvnhZxLK7h7W0h27gqWWi08LFuHBoNvz3a/Vo02dmfHLjlZhgL2wwPYw8Xn
-	1G/EALTCW/sZZUpdSkbycWurS9QDSYpqHWiiFjyikKskiUXoo8E0Y0GZd24Bz2Nd3YwWILAwMkP
-	EhCtA6WwkOuvt0sY7S7cxuSrsyLXGrye7m/BCzIWw3CjVFicPmu9XPXkG2dhwXfZHTluJy7tRka
-	pN5N2yPBJA8g2eQ48WyloAVZnJKvJ9+gAMceXrWxidmvaOoxz9NIks1i9ZdOpSyCyB
-X-Received: by 2002:a05:6122:31a9:b0:567:50c7:8d9b with SMTP id 71dfb90a1353d-56ae7609377mr520098e0c.8.1772613404162;
-        Wed, 04 Mar 2026 00:36:44 -0800 (PST)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56ae886d695sm1037880e0c.5.2026.03.04.00.36.43
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Mar 2026 00:36:43 -0800 (PST)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-5673804da95so2856098e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 00:36:43 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVFC8ApJVL14jxbQum0YHw1qoeAMbIW6l3XMvk0+vQ++yx8RBsz95UYn8hs/XOwyZH2fmZZdyEkL+HT@vger.kernel.org
-X-Received: by 2002:a05:6102:2922:b0:5f5:7721:569c with SMTP id
- ada2fe7eead31-5ffaaa87597mr553949137.4.1772613402810; Wed, 04 Mar 2026
- 00:36:42 -0800 (PST)
+	s=arc-20240116; t=1772613576; c=relaxed/simple;
+	bh=BW1MAMlh/nk9MxeyiUabogHzZOl5p0qUa7BasAromto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cX7jRRs/KxCzPTqtQUbQn1VRASgg6FZDSMCd+awJWxvfTDd8i95HQu/CaNInZfyPHEGJ0JRZbwM3+Tw0Q+0VzJ71aKg4ssyjuyDLfwpx0xtYsmFmu0oLJ5RKG7LSHJbX2GFYZG3atwRPvK6yq2Izw8AGYwypegIFfPIx0n3sp3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EfR5j+Gg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31FECC19425;
+	Wed,  4 Mar 2026 08:39:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772613575;
+	bh=BW1MAMlh/nk9MxeyiUabogHzZOl5p0qUa7BasAromto=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EfR5j+GgtqBCJg9fn4WlhlRXNMZoren5zEMp9IawERa7OzBlNPqY3ntehvva1btFW
+	 8xsJbUsmmWUhHnyf+jBxr2ja0Z8XZPiZal3Ylk/3mOuZJejvLg3d75YRVyKtZdprcg
+	 du8ajEQ+Ke7oW16KjYjfs9lxtrhRAWfHdC2W7FfL0ikdn7SSR3xv6tA9gxGOn+61Uc
+	 aJoEXQO1hg25LbX54rzdUD9KMQBbAsnJUoTM2OgDHwScrid+WkGTn1iv8KsLAC7UNK
+	 PXbWKWLa+44L3myxtKVDYzc3noL5tTlb/+Kj7FWnBEPU6Tksq/+2cPWi+vHz59pIZ2
+	 X/LjKrskKwZJA==
+Date: Wed, 4 Mar 2026 09:39:33 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Caleb James DeLisle <cjd@cjdns.fr>
+Cc: linux-mips@vger.kernel.org, naseefkm@gmail.com, 
+	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, tsbogend@alpha.franken.de, ryder.lee@mediatek.com, 
+	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
+	bhelgaas@google.com, vkoul@kernel.org, neil.armstrong@linaro.org, 
+	p.zabel@pengutronix.de, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
+	nbd@nbd.name, ansuelsmth@gmail.com, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/8] dt-bindings: clock, reset: Add econet EN751221
+ bindings
+Message-ID: <20260304-accomplished-helpful-orca-5d6b81@quoll>
+References: <20260303190948.694783-1-cjd@cjdns.fr>
+ <20260303190948.694783-2-cjd@cjdns.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com> <20260203103031.247435-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20260203103031.247435-4-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 4 Mar 2026 09:36:31 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWUJ05q1s1L5wQRc8X8h1wGyAkuVoAEmMEEurZSLrHQkg@mail.gmail.com>
-X-Gm-Features: AaiRm50D9HbEEWtQYOio6TpUThokdQuGEdJJw5GSvHjNWvW1Lgs1DYUnBt4LkWQ
-Message-ID: <CAMuHMdWUJ05q1s1L5wQRc8X8h1wGyAkuVoAEmMEEurZSLrHQkg@mail.gmail.com>
-Subject: Re: [PATCH v3 03/10] dt-bindings: soc: renesas: renesas,rzg2l-sysc:
- Document RZ/G3L SoC
-To: Biju <biju.das.au@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 9D0321FCBA0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260303190948.694783-2-cjd@cjdns.fr>
+X-Rspamd-Queue-Id: 103CB1FCC01
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org,microchip.com];
-	TAGGED_FROM(0.00)[bounces-270926-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-270927-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,baylibre.com,kernel.org,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,collabora.com,nbd.name,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.424];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid,glider.be:email,renesas.com:email,linux-m68k.org:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,cjdns.fr:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,1fb00000:email]
 X-Rspamd-Action: no action
 
-On Tue, 3 Feb 2026 at 11:30, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Document RZ/G3L (R9A08G046) SYSC bindings. The SYSC block found on the
-> RZ/G3L SoC is similar to the one found on the RZ/G3S.
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Tue, Mar 03, 2026 at 07:09:41PM +0000, Caleb James DeLisle wrote:
+> Add clock and reset bindings for EN751221 as well as
+> a "chip-scu" which is an additional regmap that is used
+> by the clock driver as well as others. This split of the
+> SCU across two register areas is the same as the Airoha
+> AN758x family.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.1.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-Gr{oetje,eeting}s,
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-                        Geert
+> 
+> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> ---
+>  .../bindings/clock/airoha,en7523-scu.yaml     | 19 ++++++-
+>  .../mips/econet,en751221-chip-scu.yaml        | 41 ++++++++++++++++
+>  MAINTAINERS                                   |  3 ++
+>  .../dt-bindings/clock/econet,en751221-scu.h   | 15 ++++++
+>  .../dt-bindings/reset/econet,en751221-scu.h   | 49 +++++++++++++++++++
+>  5 files changed, 126 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
+>  create mode 100644 include/dt-bindings/clock/econet,en751221-scu.h
+>  create mode 100644 include/dt-bindings/reset/econet,en751221-scu.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> index a8471367175b..e60e54273393 100644
+> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+> @@ -32,6 +32,7 @@ properties:
+>        - enum:
+>            - airoha,en7523-scu
+>            - airoha,en7581-scu
+> +          - econet,en751221-scu
+>  
+>    reg:
+>      items:
+> @@ -67,7 +68,10 @@ allOf:
+>    - if:
+>        properties:
+>          compatible:
+> -          const: airoha,en7581-scu
+> +          items:
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Drop items, it's just enum
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> +            - enum:
+> +                - airoha,en7581-scu
+> +                - econet,en751221-scu
+>      then:
+>        properties:
+>          reg:
+> @@ -98,3 +102,16 @@ examples:
+>                #reset-cells = <1>;
+>        };
+>      };
+> +
+> +  - |
+> +    soc {
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+
+No need for new example, especially without any differences. You already
+have there two.
+
+> +
+> +      scuclk2: clock-controller@1fb00000 {
+> +        compatible = "econet,en751221-scu";
+> +        reg = <0x1fb00000 0x970>;
+> +        #clock-cells = <1>;
+> +        #reset-cells = <1>;
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml b/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
+> new file mode 100644
+> index 000000000000..7c7c8cf8d2a5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mips/econet,en751221-chip-scu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: EcoNet Chip SCU Controller for EN751221 SoC
+> +
+> +maintainers:
+> +  - Caleb James DeLisle <cjd@cjdns.fr>
+> +
+> +description:
+> +  The EcoNet chip-scu block provides a configuration interface for clock,
+> +  io-muxing and other functionalities used by multiple controllers (e.g. clock,
+> +  pinctrl, ecc) on EN751221 SoC.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: econet,en751221-chip-scu
+> +      - const: syscon
+
+And it does not fit existing syscon bindings file, because ... ?
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      syscon@1fa20000 {
+> +        compatible = "econet,en751221-chip-scu", "syscon";
+> +        reg = <0x1fa20000 0x388>;
+> +      };
+> +    };
+
+...
+
+> +
+> +#define EN751221_MAX_CLKS	6
+
+Drop, not a binding.
+
+> +
+> +#endif /* _DT_BINDINGS_CLOCK_ECONET_EN751221_SCU_H_ */
+> diff --git a/include/dt-bindings/reset/econet,en751221-scu.h b/include/dt-bindings/reset/econet,en751221-scu.h
+> new file mode 100644
+
+Best regards,
+Krzysztof
+
 
