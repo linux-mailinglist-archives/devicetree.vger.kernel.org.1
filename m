@@ -1,277 +1,289 @@
-Return-Path: <devicetree+bounces-270934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270935-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4E8BM1z4p2l1nAAAu9opvQ
-	(envelope-from <devicetree+bounces-270934-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:16:12 +0100
+	id EKXkFbL4p2mtmwAAu9opvQ
+	(envelope-from <devicetree+bounces-270935-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:17:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4BE1FD69B
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:16:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3AE51FD700
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:17:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6FA18308C0D9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 09:09:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 616CD3005792
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 09:11:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC6839448A;
-	Wed,  4 Mar 2026 09:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDF7B3932C7;
+	Wed,  4 Mar 2026 09:11:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="d5U8vb6p"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nZ7KJvkb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+Received: from CY3PR05CU001.outbound.protection.outlook.com (mail-westcentralusazon11013031.outbound.protection.outlook.com [40.93.201.31])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA64139184B;
-	Wed,  4 Mar 2026 09:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772615374; cv=none; b=OVuhpzkaSj8XGWHvZkyNhuSSI61wL4Rw81JB7KajB3jREai+5oIgbZQ9KWZ6L4iNey90PyNX+I6mfI1Y4UZ5LpBcswSSFIVrlNgtUVkZ8jLiuGsuTGY5NE1qeQqFPYBcnDo2DZX7iJI2HwJaRPScjM2/+mOp9KG0CdbmVxpWgSM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772615374; c=relaxed/simple;
-	bh=yftRdM8nyWQsdJ2/EVnd712szefjtMJ1WAaLClGC6a4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pagGXb9kjdSqHUo3ycPtJls1a23YbVscC5YxOway7o5DFzjBMTnfxvNe18P//J0I5OGOUrvig438TG3oQ6iF60OC/9BHuzpsDPsuRMSbmcM1hyTZqsm34or7UEVE2eUQe37Bsxw8A6TUFx+jZ1qDY2xwT2ChUztTK1VbO2ZUbQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=d5U8vb6p; arc=none smtp.client-ip=5.135.140.105
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6471B22953A;
-	Wed,  4 Mar 2026 10:09:21 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
-	t=1772615369; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=0QOY3SwlDPrGm+6EJVdxOMdbUCm/cndSMZI5zzeh0dI=;
-	b=d5U8vb6pBn5ABOYJsTtCnPXgqoJsbhO0uLtdRutCR/zeXaC+BKOEY1MZg+X7cB00LZyYD/
-	tvls+YGM9G4/i15SovrHmKK1Ikt3mBp74ZiRxlqgP3qHBkfHoSyOWFrwghYZBtpA/Toc13
-	0JxoAEscHkZYZjS7H8KC05CD1oe2Oth1w2lNxtCGmrH7e3FJYRhDaqPYEMR39Y/EgT4rJ+
-	How3mchqTzXemRlWZO/2TEax9ylq46DxosIW80V8jvyRuSpff48d0/WpVVq/cDjHKfehlC
-	K+/DzLb4pbYKJFIWkec2nvS7YUVsQgGgC5UuYMpPHcoCqyJR7GoBKq+3Rm+MXQ==
-Message-ID: <7888e449-fec9-4a23-8133-ad0c9651a354@cjdns.fr>
-Date: Wed, 4 Mar 2026 10:09:20 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45C24386C15;
+	Wed,  4 Mar 2026 09:11:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.201.31
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772615514; cv=fail; b=QJtwesQUy/iDoVhdDTg05D9JucKBppXrKtFuKJ4Ndwgv20oPRiGz8qWTPU/cOxxSSFeZ6/eGxWc8ef9gw9NX6dQMM6utLhAfhzMzrV7O+OawzV8abmrS1xi5gAEARh4i33gVQErUJdqRzLvaaiBnOhkN603hoBaQbNaKK819mPo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772615514; c=relaxed/simple;
+	bh=2qKzPBXTmSbbkdrhJ71J66HasTCRxQPhbpVLmO1Vmtw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=rnPj6Ka5JNf9rwzTk2Qq/J2pUzhNEYbsB5T41ftx3QGoSdgBVSn3KEXg9x8toWGTB3gm3bxkKP5OmQvt+5HtqqOp5zfdfsc/NNdnvXivjo6EW4gJdzWDQd1eHC9CvnrxxkAyJIsDIOJMAIDL+vWR8ARJBEo+6wWVlfk6bzDxSMc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nZ7KJvkb; arc=fail smtp.client-ip=40.93.201.31
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eumX/8ZN2CHGPcjRBa81LkzR0bayL734L9C/dxdUkGD+x/tjR2lPfxbpaLxyA+GEsGpfbIFJdQ2ujCB9v/4mzIBg2CB1XtBsLupA54kpGIzO+Ziyd/jX07TLyzLGuueb4vY7RE33VIIc3Bg1UOmTI39PkW4uX6Ix4Qn+OPRk34aWlW9xRi2Dt+1aZvlFtiL6CTSql28jNf4UcgQ8Kk4mh6Iywe+RAiIex+DGzNdvD6SRA10sHsYaGv4O0fsgEJHOxKYNWy5Z1e3tGyzF9VIf+9q7/Q+IguoSVFYfCrSkhK/OfDEqEGyf2yBziPsPKgigsLSbnK1FQmfkr0hXa14LfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=d1ku7K70/Sa/jEMUfBMIWD7BFpoeLVw7+cKZ9Rv/p/c=;
+ b=VQFmKxjOFGpcyGk5374TONsPC+NebCPNd2AQ6GYxwdsPImYsmppNKZa5ieoe4XV2CNWmUZYbZWc0UEzX4ggv1646bUV8OzxYgJfQo595PTQFS8MN/iO1v7a1HYiwqUMGwKVlMkEbD2+W7t9Zba+bBKR3S/OnD7rukzxo9QhSvdUDYL57F9pUO/SO2Z+SNv1w4rflBEbP7IEaGKkRUQ5YtRb3L5jw0FTUbCejmSJy8ZkoHcaylT/t/65DGCW1J1tDzIzf089rjJ6FiUKnJNfX2XYPBDRAbNIEKfHiWqK9sfP0yz8uFfpKSamfdmLYKGe/eET7NvMb4Z3qZZGNMr2ZxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.194) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=d1ku7K70/Sa/jEMUfBMIWD7BFpoeLVw7+cKZ9Rv/p/c=;
+ b=nZ7KJvkbmHNNlY8xe+mGOv8DjGWNyQieZ3GvUnMdLZqCerMSIafSMAjFYWphvp6dchdOJlZ5Hg3lYXmu3Ud8ESUEaX05qxDhrm+9bmGfT6kab6a/xtNzx0Bt+v9gKM/Rf5s+H3Sei37La8ko7WoFGION173yKlBhoJzAn3fm8JE=
+Received: from SN6PR01CA0017.prod.exchangelabs.com (2603:10b6:805:b6::30) by
+ PH7PR10MB6532.namprd10.prod.outlook.com (2603:10b6:510:203::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.18; Wed, 4 Mar 2026 09:11:49 +0000
+Received: from SA2PEPF00003F61.namprd04.prod.outlook.com
+ (2603:10b6:805:b6:cafe::58) by SN6PR01CA0017.outlook.office365.com
+ (2603:10b6:805:b6::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.22 via Frontend Transport; Wed,
+ 4 Mar 2026 09:11:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.194; helo=flwvzet200.ext.ti.com; pr=C
+Received: from flwvzet200.ext.ti.com (198.47.21.194) by
+ SA2PEPF00003F61.mail.protection.outlook.com (10.167.248.36) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 4 Mar 2026 09:11:48 +0000
+Received: from DFLE203.ent.ti.com (10.64.6.61) by flwvzet200.ext.ti.com
+ (10.248.192.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
+ 2026 03:11:24 -0600
+Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE203.ent.ti.com
+ (10.64.6.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
+ 2026 03:11:23 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE213.ent.ti.com
+ (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 4 Mar 2026 03:11:23 -0600
+Received: from psdkl-workstation0.dhcp.ti.com (psdkl-workstation0.dhcp.ti.com [10.24.51.24])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6249BKWt3789067;
+	Wed, 4 Mar 2026 03:11:20 -0600
+From: Aniket Limaye <a-limaye@ti.com>
+Date: Wed, 4 Mar 2026 14:41:05 +0530
+Subject: [PATCH] arm64: dts: ti: k3-j722s: Add main_i2c4 device node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH 1/8] dt-bindings: clock, reset: Add econet EN751221
- bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-mips@vger.kernel.org, naseefkm@gmail.com, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- tsbogend@alpha.franken.de, ryder.lee@mediatek.com,
- jianjun.wang@mediatek.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- mani@kernel.org, bhelgaas@google.com, vkoul@kernel.org,
- neil.armstrong@linaro.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, nbd@nbd.name, ansuelsmth@gmail.com,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260303190948.694783-1-cjd@cjdns.fr>
- <20260303190948.694783-2-cjd@cjdns.fr>
- <20260304-accomplished-helpful-orca-5d6b81@quoll>
-Content-Language: en-US
-From: Caleb James DeLisle <cjd@cjdns.fr>
-In-Reply-To: <20260304-accomplished-helpful-orca-5d6b81@quoll>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 5A4BE1FD69B
+Message-ID: <20260304-j722s-main-i2c4-dt-v1-1-03f79f0cdf97@ti.com>
+X-B4-Tracking: v=1; b=H4sIACj3p2kC/x3MQQqAIBBA0avErBuwUSq6SrQQHWuCLDQiiO6et
+ HyL/x/InIQzDNUDiS/JsseCpq7ALTbOjOKLgRS1SiuNa0eUcbMSUcgZ9Cf2ttHGeGVCYCjhkTj
+ I/U/H6X0/Nk/A7GQAAAA=
+X-Change-ID: 20260303-j722s-main-i2c4-dt-8a1344d04ffe
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <u-kumar1@ti.com>, Jared McArthur
+	<j-mcarthur@ti.com>, Aniket Limaye <a-limaye@ti.com>
+X-Mailer: b4 0.14.3
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SA2PEPF00003F61:EE_|PH7PR10MB6532:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe43490b-e3c3-4d04-d1e4-08de79ce10b6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|34020700016|1800799024|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	74Qey+VUbSBXdrBqEaoXGJL4NWu8dkrfAtEcGyD9YXkam07VCJnHlOEVRoTs+srqyVJN/+bvPHhHI5DyskW58/3hVajyrcSrnHijeD1FBNytVkI783/6Edcu6EckkRYNSfmf+M6tlQIkVlbN5M6csP9hpVWwRciNXISOE0iSfxQHh2zGaH0OprN7mvf67mTuM86wz8hJx2DF5rM2L9YxQHCHxAPCj6HF93sfo5olCJN5nV2IzMVk2Zcmvlt9JkjtNDtm7Zyh2FPRnOobnhnS+3QhgI3Q30isffwtT9tWNLfLl4SNkw/YlMSJ0kXFHLLlfIl/GBfE6GxdYr4bd5kDbCTGLIjD1pxRQyKoQNLrc8N61y2l33CXoPGep2hAz+ohcSYuXX1gaHcxzypYtWnqJk/47efsRTg9YS1ajSh+ZhQl27vP2F0XeBzZHmwS2OY65Q09cwNmCV0PnbrR0kHUBh0VL5cBd/GwAqtcsQBJK9VoUK0htvM77PbkpJpQqrAaEe9L4hRTE+3G/rfsygMQjoKwwlME35h372X+Vi5WZVnn/L3pN6+A3Stm976oVDGmv4Yzf9rklW0pQGmK5veqcmESpUl86wrmbfpaRukqOrL/GpGYLmgZ+CQG/GyM+csHi0NEJ08onnBwDW/ksei4Q3Nao0n5LAQiKc1xXhdK1hvI4pA6sRRNSpYILcr3LZpPirIK5aIlJWIQJoZo+0cof3AoxiDlJvfcIl5m3ipoWEw=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet200.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(34020700016)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	2h3dAlBo0orfcn9LekItguaoRZGJXLWRlfQOtE937NF6eG4hvRJJCTEf/dsmTS9wOpuglNeVbCF8XEdJsI9iWM2bRFVYEFACNeCmEQOiy4rqwl6R4xy1o9IIbRdPulNqHN04TXMl0Jc6O4n5LJiHFey+IYUUgmzxGjirQpL+NuTNqGjI2hd3XKJkLOe2mOWM6N93v95JukYLdHYuzbF0ZVFhh1XR7bqR71sotJiHhWlfY+jcjC8B1xatfH93Px6CI2KkHYPptwARcwI1/Ug/R8P3imKbEskLSDBOloejbA5rETAnSO8pP3/SnuLBX+UsDWv9n5HVz2rII5EDZgvGydiQckNdcaG/cbPcX99Te4oRg+HsiCGGERbC2QCIppu6x9eNgqrSLVa0cY22qzIIWqDZjNZ+7nsDlsTeqDnruJR9NfdLthZubXWWG5AJQJqu
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 09:11:48.3427
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe43490b-e3c3-4d04-d1e4-08de79ce10b6
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.194];Helo=[flwvzet200.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SA2PEPF00003F61.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6532
+X-Rspamd-Queue-Id: A3AE51FD700
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
-	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-270935-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270934-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,baylibre.com,kernel.org,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,collabora.com,nbd.name,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[a-limaye@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[cjdns.fr:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[1fa20000:email,cjdns.fr:dkim,cjdns.fr:email,cjdns.fr:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url,bootlin.com:url,1fb00000:email]
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
+Add missing device tree node for main_i2c4, and the corresponding ranges
+in cbass_main. Interrupt for this i2c controller is routed through the
+Main GPIOMUX Router.
+Base address, Interrupt IDs are taken from J722S TRM [0].
+Device, Clock IDs are taken from TISCI docs [1].
 
-On 04/03/2026 09:39, Krzysztof Kozlowski wrote:
-> On Tue, Mar 03, 2026 at 07:09:41PM +0000, Caleb James DeLisle wrote:
->> Add clock and reset bindings for EN751221 as well as
->> a "chip-scu" which is an additional regmap that is used
->> by the clock driver as well as others. This split of the
->> SCU across two register areas is the same as the Airoha
->> AN758x family.
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-OK
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-OK
->> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
->> ---
->>   .../bindings/clock/airoha,en7523-scu.yaml     | 19 ++++++-
->>   .../mips/econet,en751221-chip-scu.yaml        | 41 ++++++++++++++++
->>   MAINTAINERS                                   |  3 ++
->>   .../dt-bindings/clock/econet,en751221-scu.h   | 15 ++++++
->>   .../dt-bindings/reset/econet,en751221-scu.h   | 49 +++++++++++++++++++
->>   5 files changed, 126 insertions(+), 1 deletion(-)
->>   create mode 100644 Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
->>   create mode 100644 include/dt-bindings/clock/econet,en751221-scu.h
->>   create mode 100644 include/dt-bindings/reset/econet,en751221-scu.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
->> index a8471367175b..e60e54273393 100644
->> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
->> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
->> @@ -32,6 +32,7 @@ properties:
->>         - enum:
->>             - airoha,en7523-scu
->>             - airoha,en7581-scu
->> +          - econet,en751221-scu
->>   
->>     reg:
->>       items:
->> @@ -67,7 +68,10 @@ allOf:
->>     - if:
->>         properties:
->>           compatible:
->> -          const: airoha,en7581-scu
->> +          items:
-> Drop items, it's just enum
->
->> +            - enum:
->> +                - airoha,en7581-scu
->> +                - econet,en751221-scu
->>       then:
->>         properties:
->>           reg:
->> @@ -98,3 +102,16 @@ examples:
->>                 #reset-cells = <1>;
->>         };
->>       };
->> +
->> +  - |
->> +    soc {
->> +      #address-cells = <1>;
->> +      #size-cells = <1>;
-> No need for new example, especially without any differences. You already
-> have there two.
-OK
->> +
->> +      scuclk2: clock-controller@1fb00000 {
->> +        compatible = "econet,en751221-scu";
->> +        reg = <0x1fb00000 0x970>;
->> +        #clock-cells = <1>;
->> +        #reset-cells = <1>;
->> +      };
->> +    };
->> diff --git a/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml b/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
->> new file mode 100644
->> index 000000000000..7c7c8cf8d2a5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
->> @@ -0,0 +1,41 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mips/econet,en751221-chip-scu.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: EcoNet Chip SCU Controller for EN751221 SoC
->> +
->> +maintainers:
->> +  - Caleb James DeLisle <cjd@cjdns.fr>
->> +
->> +description:
->> +  The EcoNet chip-scu block provides a configuration interface for clock,
->> +  io-muxing and other functionalities used by multiple controllers (e.g. clock,
->> +  pinctrl, ecc) on EN751221 SoC.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: econet,en751221-chip-scu
->> +      - const: syscon
-> And it does not fit existing syscon bindings file, because ... ?
+Additionally, the I2C4 is the only interrupt source to the GPIOMUX INTR
+router that generates level interrupts, while all other sources generate
+edge interrupts. Due to this, the router needs to handle interrupt-type
+on a per-line basis. Modify the router node and its consumers to
+specify the interrupt type corresponding to each interrupt line.
 
+[0]: https://www.ti.com/lit/zip/sprujb3
+[1]:
+https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/index.html#j722s
 
-If you're asking why it needs to be named "econet,en751221-chip-scu" and 
-not just "syscon", it's because the actual clock/scu searches for it by 
-compatible. This is patterned after "airoha,en7581-chip-scu" ( 
-https://lore.kernel.org/20241023-en7581-pinctrl-v9-1-afb0cbcab0ec@kernel.org 
-).
+Signed-off-by: Jared McArthur <j-mcarthur@ti.com>
+Signed-off-by: Aniket Limaye <a-limaye@ti.com>
+---
+Note:
+Support for per-line interrupt-types was added through a recent series
+[2], which was already merged in.
 
-I could drop this file and use "airoha,en7581-chip-scu" in the DT and 
-clk driver, but I do not think it is identical to the actual EN7581 chip 
-scu.
+Testing:
+- Enable I2C4 (additional DT patch) on j722s-evm and run i2cdetect [3].
+- Add testcode to ignore the NACK interrupt, which results in an irq
+  storm -> showing that GIC is actually receiving level interrupt from
+  the INTR [4].
 
-I could also drop the file and add "econet,en751221-chip-scu" as a 
-compatible to airoha,en7581-chip-scu.yaml, but that file lives in /arm 
-and this is a MIPS.
+[2]: https://lore.kernel.org/all/20260123-ul-driver-i2c-j722s-v4-0-b08625c487d5@ti.com/
+[3]: https://gist.github.com/aniket-l/844925345316adf9f65f04c8cdedd62d#file-j722s-evm-main-i2c4-working-logs-txt
+[4]: https://gist.github.com/aniket-l/844925345316adf9f65f04c8cdedd62d#file-j722s-evm-main-i2c4-irqstorm-logs-txt
+---
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 13 +++++++------
+ arch/arm64/boot/dts/ti/k3-j722s-main.dtsi              | 13 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-j722s.dtsi                   |  3 ++-
+ 3 files changed, 22 insertions(+), 7 deletions(-)
 
-I chose this route because it seemed least hackish, but I would defer to 
-your judgement on the matter.
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+index 0e1af2a69ca2..f130c7cb998d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+@@ -543,10 +543,9 @@ main_spi2: spi@20120000 {
+ 	main_gpio_intr: interrupt-controller@a00000 {
+ 		compatible = "ti,sci-intr";
+ 		reg = <0x00 0x00a00000 0x00 0x800>;
+-		ti,intr-trigger-type = <1>;
+ 		interrupt-controller;
+ 		interrupt-parent = <&gic500>;
+-		#interrupt-cells = <1>;
++		#interrupt-cells = <2>;
+ 		ti,sci = <&dmsc>;
+ 		ti,sci-dev-id = <3>;
+ 		ti,interrupt-ranges = <0 32 16>;
+@@ -558,8 +557,9 @@ main_gpio0: gpio@600000 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		interrupt-parent = <&main_gpio_intr>;
+-		interrupts = <190>, <191>, <192>,
+-			     <193>, <194>, <195>;
++		interrupts = <190 IRQ_TYPE_EDGE_RISING>, <191 IRQ_TYPE_EDGE_RISING>,
++			     <192 IRQ_TYPE_EDGE_RISING>, <193 IRQ_TYPE_EDGE_RISING>,
++			     <194 IRQ_TYPE_EDGE_RISING>, <195 IRQ_TYPE_EDGE_RISING>;
+ 		interrupt-controller;
+ 		#interrupt-cells = <2>;
+ 		ti,davinci-gpio-unbanked = <0>;
+@@ -574,8 +574,9 @@ main_gpio1: gpio@601000 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		interrupt-parent = <&main_gpio_intr>;
+-		interrupts = <180>, <181>, <182>,
+-			     <183>, <184>, <185>;
++		interrupts = <180 IRQ_TYPE_EDGE_RISING>, <181 IRQ_TYPE_EDGE_RISING>,
++			     <182 IRQ_TYPE_EDGE_RISING>, <183 IRQ_TYPE_EDGE_RISING>,
++			     <184 IRQ_TYPE_EDGE_RISING>, <185 IRQ_TYPE_EDGE_RISING>;
+ 		interrupt-controller;
+ 		#interrupt-cells = <2>;
+ 		ti,davinci-gpio-unbanked = <0>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+index 9ee5d0c8ffd1..ddf20e44f0ea 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+@@ -154,6 +154,19 @@ usb1: usb@31200000 {
+ 		};
+ 	};
+ 
++	main_i2c4: i2c@fe80000 {
++		compatible = "ti,am64-i2c", "ti,omap4-i2c";
++		reg = <0x00 0x0fe80000 0x00 0x100>;
++		interrupt-parent = <&main_gpio_intr>;
++		interrupts = <178 IRQ_TYPE_LEVEL_HIGH>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++		power-domains = <&k3_pds 257 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 257 2>;
++		clock-names = "fck";
++		status = "disabled";
++	};
++
+ 	ti_csi2rx1: ticsi2rx@30122000 {
+ 		compatible = "ti,j721e-csi2rx-shim";
+ 		reg = <0x00 0x30122000 0x00 0x1000>;
+diff --git a/arch/arm64/boot/dts/ti/k3-j722s.dtsi b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+index 059c65ece183..1b36dcf37925 100644
+--- a/arch/arm64/boot/dts/ti/k3-j722s.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j722s.dtsi
+@@ -160,7 +160,8 @@ cbass_main: bus@f0000 {
+ 			 <0x00 0x0fd80000 0x00 0x0fd80000 0x00 0x00080000>, /* GPU */
+ 			 <0x00 0x0fd20000 0x00 0x0fd20000 0x00 0x00000100>, /* JPEGENC0_CORE */
+ 			 <0x00 0x0fd20200 0x00 0x0fd20200 0x00 0x00000200>, /* JPEGENC0_CORE_MMU */
+-			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Third peripheral window */
++			 <0x00 0x0fe00000 0x00 0x0fe00000 0x00 0x000f0400>, /* Third peripheral window */
++			 <0x00 0x20000000 0x00 0x20000000 0x00 0x0a008000>, /* Fourth peripheral window */
+ 			 <0x00 0x30040000 0x00 0x30040000 0x00 0x00080000>, /* PRUSS-M */
+ 			 <0x00 0x301c0000 0x00 0x301c0000 0x00 0x00001000>, /* DPHY-TX */
+ 			 <0x00 0x30101000 0x00 0x30101000 0x00 0x00080100>, /* CSI window */
 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    soc {
->> +      #address-cells = <1>;
->> +      #size-cells = <1>;
->> +      syscon@1fa20000 {
->> +        compatible = "econet,en751221-chip-scu", "syscon";
->> +        reg = <0x1fa20000 0x388>;
->> +      };
->> +    };
-> ...
->
->> +
->> +#define EN751221_MAX_CLKS	6
-> Drop, not a binding.
-OK
->
->> +
->> +#endif /* _DT_BINDINGS_CLOCK_ECONET_EN751221_SCU_H_ */
->> diff --git a/include/dt-bindings/reset/econet,en751221-scu.h b/include/dt-bindings/reset/econet,en751221-scu.h
->> new file mode 100644
+---
+base-commit: d517cb8cea012f43b069617fc8179b45404f8018
+change-id: 20260303-j722s-main-i2c4-dt-8a1344d04ffe
 
+Best regards,
+-- 
+Aniket Limaye <a-limaye@ti.com>
 
-Thank you kindly for the prompt review.
-
-Caleb
-
-
-> Best regards,
-> Krzysztof
->
->
 
