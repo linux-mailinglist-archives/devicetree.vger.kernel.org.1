@@ -1,182 +1,156 @@
-Return-Path: <devicetree+bounces-270965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270966-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WNELBwsGqGmEnQAAu9opvQ
-	(envelope-from <devicetree+bounces-270965-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:14:35 +0100
+	id wE0aCqMGqGmEnQAAu9opvQ
+	(envelope-from <devicetree+bounces-270966-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:17:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75C901FE271
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:14:34 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EECB1FE2C2
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:17:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 736C63041A5F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:14:24 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1D7DD30055FE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:17:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EED6139FCA5;
-	Wed,  4 Mar 2026 10:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C53539FCDF;
+	Wed,  4 Mar 2026 10:17:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="B/fv+zkY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F+FSwpMX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A18382F10;
-	Wed,  4 Mar 2026 10:14:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E75332638
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 10:16:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772619262; cv=none; b=d7YZE11/7kP3nJCvybbZiyJ4kvi0JzmLly7QTDT5wrDsGHT6MPRm7MxczuAOhP2zikPV5TaPuQTQ1s9AROaiaEAW3MGWUL5sK7wGljjlnPEpue9r6G5LIpG97YiwD+bpB53QyoT3lKO3VBSsbwUFYaQQBOsyiJ34UF7XzvPuVfA=
+	t=1772619421; cv=none; b=gpRD7oWP53xfKe5RFhBPfihzXwdvfpdogq203HFhw+d5SuWL+3v1wq51JuM+TMllNrvy8l0tzmsQPr0GyZMWGyIZltm2sDh4aH6wmORINWBfUdjEz5IOHIlNto/4mG0L8K/gt/iKVZ9ocnHM3UfSYHKcYptQryCt4+72CW+uHeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772619262; c=relaxed/simple;
-	bh=7OLsM46dILzIKFo7Cs0Sje7dLaNFHpEAJy3wRh2pdIU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G05fC2zwD8jh40aG5+Zp2bolnQQhPlS8Zn9IY6hJOarKmKsROIN1hIO/4PbtSBTdroIma2v7zxwLud2o/H69L0Zd2i6k/WqB5kUq8JJBtc6+dLi7cUJbKHhh4bsIXpKBG+QbjJXUgBm8ywYgqx52RaLKshYedYI8PMoQXkS5VA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=B/fv+zkY; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id A5AFD1A2791;
-	Wed,  4 Mar 2026 10:14:18 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6F0655FF5C;
-	Wed,  4 Mar 2026 10:14:18 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7C169103685F1;
-	Wed,  4 Mar 2026 11:14:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772619256; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=4UJB5Tef4Xa9EPz7ddJaJCyEjLF4LufxiJyl/vDD5jg=;
-	b=B/fv+zkYhgUMX/YSdxnpxySN1eY9IVSqPBwvk+7Jk/y4L89Diiyi2gNmuiuUXZF8oG3ABu
-	leSag3vgWeKHqqglNWPEKXKEg9IH5fvb2/msgpQpFXrLJ8ovugh7lSPdR+K+0p5iTBQgJb
-	eCzNrv5jp7cWDwefB+fsTevUgg6VCM91lIzD0AnmDzXQaQ3myCErTR9oF0kDmMO1N3NFOD
-	MKowduDmUe3FsOat4B0Z1uB6evRtNc3y2JcqKXA0IbP3rVUMdr27mRABfMnQzdb1AxKbVm
-	CadNpF57ZMKmEwa0MvO/Z+pPe6kJyIK6ufJFtAJe2lD4vj2PvsUfPYVAM1M5Bg==
-Message-ID: <4a073736-9caf-4973-b7ad-a482d63bb672@bootlin.com>
-Date: Wed, 4 Mar 2026 11:14:08 +0100
+	s=arc-20240116; t=1772619421; c=relaxed/simple;
+	bh=e78qIDzHbDTqXVogJF+UVOVMy75B++Q+8NZ/1KY9TUY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jPvUXH6n8RjLGd0MSiiyQIcDObenIjFG1PLEZGo6FqRd9jD38rkGP56l3yUihvBnWNvqzLJ5rfpAujJ2Ip0AJF0TyT+Pdf3xQccChTJkkExINIf0mxm8+dLPCX8DU6+0buRrf6fp+A0eUvWSAvSh5ThzV69mS/Jhv6o87s9qTcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F+FSwpMX; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-480706554beso72348175e9.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 02:16:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772619418; x=1773224218; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hYB3YNu9CO7wLt2ZT8Xt9m7azMQTOfSk/ijLWaYuruI=;
+        b=F+FSwpMXpboj5Xote2ENRoHs8jokK6NZkRGnHXH4Qy3cV3lBdhiex5fHH9wNHAjdhK
+         yqGvfBGwjpHrGAR+l6wgHNZa77l96PQY1fJWo2xhuCVwQp6WrSo/kVUGJtLRM+lpwMlz
+         tP+31aj1JPS+X4nRNiTwhltna0Em727kkN2S2Iw7DmoBsbn1CDPDOHgMd18NfKRPRqk8
+         0TvYXo1BoWGnRr73ONsX444mo+GUDtdoixmN6R+5aBXYazoDMqyRZ9QHPbl3AT1nnCk1
+         +/K1DTBEv0BP29zEOeRkYIjutxE2ZIuX7lhUCht8CRZhQInAqHabKMqS5C73FREKZnDG
+         otzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772619418; x=1773224218;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hYB3YNu9CO7wLt2ZT8Xt9m7azMQTOfSk/ijLWaYuruI=;
+        b=li9xW2Y3yZJNKfGC05kPgSlSXVW0ttJ8BxMoTssOkWIcxvMK/TQJALWSTe8Yc/QXck
+         mxFlKVEM1zyBVbLDp1XyQwoOP9i5k8l0iitlzKry7HgCzSA3oiGG05TXW3VGedO+VK8C
+         fIl21dFqGIXLCLz57J2Zc651vrwOYJEylktjVJ4xB4bqbFZEE+uAaYRNGQK01VuoG/9V
+         rJhhT+xc85sUTzL046tpFSznz6BRUEDuaYygNDxnMoPk0lmuKmZhW3Ty+wJX8XybzVhL
+         jTPCBr/bdLt0+3fvkFo7oo8TvSZVCURvgUiPSeJB0sdHWA00mb8XbmJ24z5UGecceCew
+         BpPA==
+X-Forwarded-Encrypted: i=1; AJvYcCU+OgatVCy2lV1TQfqj2Tmi+W6CTp32MewGwhdJyIH3bm5uT2xn6ugymHMGe04C9QXubFXYGWHDLsvc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwoiyYg1d5/936EBVYd3V8DFtZ47sPXt83v7JBLOcylQPLZCm9/
+	3nCsgY6dRAkwB46dcuIAFPpN6MWWmwuTPX3HauRzMlb8icqnxtfjJQCJ
+X-Gm-Gg: ATEYQzy4NasUEZnlxsiyFmv7ZuUMBA+UGr/h8RgzpDA2QHXU5jErrRZ8KYRkTyUOqem
+	WAjQ8+yhL5Arv0IonFqLx+ksaXMrHZdexQ0XGweVNbPwHdTxpW+ACuKhY5h5baafVdpMhI15/aQ
+	UTwupSl1SkW/Zr7Gfb3BSDGM6vhP9FhMAj6aNBcUSK+s6lUEpchKAc5kNa17349ns9K8eWGcYyZ
+	ZM6WeeFUtB7nZ4kKHWSdmqsd9fKC1lQUyobHDY6kpghkmpj6mKVhO6foUfAm7uTz7ZVEL1+xv0+
+	p38nAqIrkIdAjAdNQLtJ6wTPyuqQ10Hwd8PsuqZvTfMR/FC/H2Y7k+ws/I6+do1qLGrJwfoIt+U
+	11wTWt8sG2Zy2cQRog6Jqe9nFmS2DWcaLd6Q+pOGtr+59DiM1YE/4pOfj+DWka7S/FHIYTmR2xu
+	i8y9CfJyqEkQDZyC/OLJUVAQGcMfzOAZf+ucuXZgqTYg5nVIS2ginBugeQEJQQoaTP
+X-Received: by 2002:a05:600c:a51:b0:47d:3ffa:5f03 with SMTP id 5b1f17b1804b1-48519886ca3mr23059915e9.21.1772619417522;
+        Wed, 04 Mar 2026 02:16:57 -0800 (PST)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48518839ae7sm36391845e9.1.2026.03.04.02.16.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2026 02:16:57 -0800 (PST)
+Date: Wed, 4 Mar 2026 10:16:55 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: Rodrigo Alencar via B4 Relay
+ <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, David
+ Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Andrew Morton <akpm@linux-foundation.org>
+Subject: Re: [PATCH v8 02/10] lib: kstrtox: add kstrntoull() helper
+Message-ID: <20260304101655.620df7ee@pumpkin>
+In-Reply-To: <20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
+References: <20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com>
+	<20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: Add support for Airoha
- AN8801/R GbE PHY
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>
-Cc: kevin-kw.huang@airoha.com, macpaul.lin@mediatek.com,
- matthias.bgg@gmail.com, kernel@collabora.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260304-add-airoha-an8801-support-v1-0-0ae4ee5a2f9d@collabora.com>
- <20260304-add-airoha-an8801-support-v1-1-0ae4ee5a2f9d@collabora.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20260304-add-airoha-an8801-support-v1-1-0ae4ee5a2f9d@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 75C901FE271
+X-Rspamd-Queue-Id: 2EECB1FE2C2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270965-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[collabora.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[airoha.com,mediatek.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270966-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_NEQ_ENVFROM(0.00)[davidlaightlinux@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:mid]
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Louis-Alexis,
+On Tue, 03 Mar 2026 13:27:07 +0000
+Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
 
-On 04/03/2026 10:35, Louis-Alexis Eyraud wrote:
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
 > 
-> Add a new binding to support the Airoha AN8801R Series Gigabit
-> Ethernet PHY.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> ---
->  .../devicetree/bindings/net/airoha,an8801.yaml     | 81 ++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/airoha,an8801.yaml b/Documentation/devicetree/bindings/net/airoha,an8801.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f251c9d2fbbed3675c9fd7ff22174049a13a7b5e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/airoha,an8801.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/airoha,an8801.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Airoha AN8801R Series PHY
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The Airoha AN8801R is a low power single-port Ethernet PHY Transceiver
-> +  with Single-port serdes interface for 1000Base-X/RGMII; this chip is
-> +  compliant with 10Base-T, 100Base-TX and 1000Base-T IEEE 802.3(u,ab)
-> +  and supports Energy Efficient Ethernet (802.3az), Full Duplex Control
-> +  Flow (802.3x), auto-negotiation, crossover detect and autocorrection,
-> +  Wake-on-LAN with Magic Packet, and Jumbo Frame up to 9 Kilobytes.
-> +  This PHY also supports up to three user-configurable LEDs, which are
-> +  usually used for LAN Activity, 100M, 1000M indication.
-> +
-> +allOf:
-> +  - $ref: ethernet-phy.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ethernet-phy-idc0ff.0421
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  leds: true
-> +
-> +required:
-> +  - reg
-> +  - leds
+> Add kstrntoull() function, which converts a string to an ULL with a max
+> character limit. The function is an alternative integer parsing function
+> that does not require a null-terminated string. It becomes a better option
+> over simple_strtoull() or kstrtoull() when parsing integers from a buffer
+> with custom delimiters without having to create temporary copies.
+> The function is consumed inside the implementation _kstrtoull(),
+> promoting reuse.
 
-Seems odd to me that leds are required. Any reason for that ?
+If you've got custom delimiters use a function that returns a pointer
+to the character that terminated the conversion.
+They save you having to find the delimiter as well as taking a copy.
 
-Maxime
+	David
 
 
