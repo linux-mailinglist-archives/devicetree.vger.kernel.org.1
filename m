@@ -1,212 +1,150 @@
-Return-Path: <devicetree+bounces-271278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271279-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ePpIKyKkqGnywAAAu9opvQ
-	(envelope-from <devicetree+bounces-271278-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:29:06 +0100
+	id ONwcGn+mqGkYwQAAu9opvQ
+	(envelope-from <devicetree+bounces-271279-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:39:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA72207FCF
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:29:05 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 284E420809B
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:39:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A1091300614A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:26:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D0796301DEC7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BAF9386444;
-	Wed,  4 Mar 2026 21:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309893932F2;
+	Wed,  4 Mar 2026 21:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="RXhkKbCV";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="5A25tT79"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XR2PIT4Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B2F386432;
-	Wed,  4 Mar 2026 21:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E057E3822BD;
+	Wed,  4 Mar 2026 21:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772659614; cv=none; b=rZ2s9QgO/ge1wM0qRtCDGBU+BlMyDTg8UExIorZPKrZKfI11HitpM3Jnk0z9n3X1mfoGn48uaM3YEoyvvMKyxGKpdUuof6bxJBSsADYx+Q8EL4Qk571dTd3lKGqWcAeKri8jOXG5iFB2wOiMBCnI7XifQTJvKYPvV8iBij95RNg=
+	t=1772660347; cv=none; b=bKXk/qlbP9JSXnhsgNr7tys6+Et4PKxJzVsU7pOx1jZ4s+jU3UQ21+DRHhFB75q6mqhtlV8dcXVse9Xxrmb8C1ZzQ/K9PSmd71VuKr3bo1XEBR6hgesvKDR9fMPRzb4bvVoBfD88p1m31i7IOQPYWJjVT+LxonIz+8q4q51Wo58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772659614; c=relaxed/simple;
-	bh=MVhmd4cWE0Kx3+BczUBvTeGMoG4y8lKZBKmcPBNai8Q=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=Gfe/XMsySc/inxPfauKSYAE7DWc9bfi1IqTwyVDNJ78veUYXOwoSSBlGxvxQ/yLmi9i88b1xZ3mv0gCCrtmkMZWwlILJskDOTjbwp/zZOqj+5BeAPyUrzhHnx/UmWZYeefDfK1y1ELgJPiUbGsNPJKuZQSjSdK4Oo6SkA8wbMH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=RXhkKbCV; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=5A25tT79; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1772659603; bh=ph8FSrXPg2/n2Ad6/2vbcmV
-	Qb668+5s77efPfp1VCHA=; b=RXhkKbCVAcPaz1mI5rRjFzXC7h2MjdCW6IahRHDaBTZ+tjHK1x
-	RTT/M/c5Law8eJDHHNzFpjjAJeQZgJ2qZDQcx/8Lf8pBOCXYQF6pwjfgLdRLM1nsfs/2fN4Yz9d
-	M2IehnG3rue2wkgHxDfZxcI+pEpn2m4MRi9rCjwS2S4vwjoHHYxsU7bb4ue0dgym9+tEk9fAbvl
-	Dd+vjSNMauLHbK03xU1F0OGeurPYtMUes8Dj9hhi+c8qmCr3j6ROf4pW8Bg0/+/9dNMgrDel2eI
-	5a6cVJFvrD6Ec7fFjGFqgRklFL+agMXkNSXJlrCMTvhIrV8kAb8CKT07iqSSfeR9JHA==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1772659603; bh=ph8FSrXPg2/n2Ad6/2vbcmV
-	Qb668+5s77efPfp1VCHA=; b=5A25tT79Aq2CJfrW6ibkNOhBuEcu5Z+zHyKHR5TouGxL8S1LnF
-	GdgmMJp2WuIpZlaNxy8r6DoX8/2BojAevyCw==;
+	s=arc-20240116; t=1772660347; c=relaxed/simple;
+	bh=kZqKu8Q3HVNIal07DuJIyN1zu3R45CNMJ7csG5g7LEY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hqhku4Y+xmY5UVZt3Y3e4/lDkem7L0uJ+6qPhq/bQtHFx3GPkmaKwgWuIfYM6hSPvdy7cwcXfsjDLdUqchKPyriqqlaD9zOWfvzKw2nKxuAqLTiiff9o+60pNFATM+JMKLGhTA2s4VR6QnVquGaq3gX8iSiiWJ+fbcTAwZkaBZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XR2PIT4Z; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=PQNIKgK+s1Hm4hxWnJCY1K4WoMHACQn7mWMe/0TAztE=; b=XR2PIT4ZaGssLFN5oQg7obFT92
+	86lxVACR8TVzy49s7lVuRzmJZTRQWZKVQJrNVaS2uWBh6qs0+By7os/n3jNyziQtm0rz3GdytcSlJ
+	vUNwxN9e0BJCYStWIDJ2EH0D9kgoHc0Y4J8BIFXu4QiUmnsn5MZtoJlA7oGB1Xd8mDJ0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vxtvi-00AB3c-1g; Wed, 04 Mar 2026 22:38:54 +0100
+Date: Wed, 4 Mar 2026 22:38:54 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Mark Brown <broonie@kernel.org>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Romain Gantois <romain.gantois@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter
+ regulators
+Message-ID: <6b4bfb6a-d279-44bd-9110-6d2dc67d8020@lunn.ch>
+References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+ <20260303-sfp-regulators-v1-2-7101ae34cb84@bootlin.com>
+ <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
+ <aab6Tqo1z-8YQ4j6@shell.armlinux.org.uk>
+ <536e57fe-9738-4026-a9c9-fdb7135cbe2f@sirena.org.uk>
+ <aab9bwKSubR6zxKG@shell.armlinux.org.uk>
+ <1dbc679e-ad6d-49c5-86bd-3b319b899584@sirena.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 04 Mar 2026 22:26:43 +0100
-From: barnabas.czeman@mainlining.org
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Gabriel Gonzales <semfault@disroot.org>, Kees Cook
- <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Biswapriyo Nath <nathbappai@gmail.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- linux@mainlining.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/7] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct
- reserved memory ranges
-In-Reply-To: <xgcv6gcaw6xxelkafo23waz4sbw2cycas45qhzxkfhbeuukzbe@wwssuc44mp7y>
-References: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
- <20260126-xiaomi-willow-v3-2-aad7b106c311@mainlining.org>
- <xgcv6gcaw6xxelkafo23waz4sbw2cycas45qhzxkfhbeuukzbe@wwssuc44mp7y>
-Message-ID: <f1028a5b2eefbb0672f0a5e55d0691d1@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 0CA72207FCF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1dbc679e-ad6d-49c5-86bd-3b319b899584@sirena.org.uk>
+X-Rspamd-Queue-Id: 284E420809B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
-	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271278-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-271279-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,disroot.org,intel.com,igalia.com,gmail.com,vger.kernel.org,lists.sr.ht,mainlining.org,oss.qualcomm.com];
+	FREEMAIL_CC(0.00)[armlinux.org.uk,bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,vger.kernel.org];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[mainlining.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid,wikipedia.org:url]
 X-Rspamd-Action: no action
 
-On 2026-03-04 19:51, Bjorn Andersson wrote:
-> On Mon, Jan 26, 2026 at 05:34:52PM +0100, Barnabás Czémán wrote:
->> The device was crashing on high memory load because the reserved 
->> memory
->> ranges was wrongly defined. Correct the ranges for avoid the crashes.
->> Change the ramoops memory range to match with the values from the 
->> recovery
->> to be able to get the results from the device.
->> 
-> 
-> FYI. If you add "memtest=1" to your kernel command line the kernel will
-I have tested with memtest=1 also, it is working fine.
-> sweep all memory at boot, which tends to flush out most such issues.
-> Then you don't need to rely on "high memory load" for testing for such
-> issues.
-> 
-> Regards,
-> Bjorn
-> 
->> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for 
->> xiaomi-ginkgo")
->> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts | 41 
->> ++++++++++++++++-------
->>  1 file changed, 29 insertions(+), 12 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts 
->> b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> index bf03226a6f85..d5e5abdb3b2f 100644
->> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
->> @@ -13,6 +13,12 @@
->>  #include "sm6125.dtsi"
->>  #include "pm6125.dtsi"
->> 
->> +/delete-node/ &adsp_pil_mem;
->> +/delete-node/ &cont_splash_mem;
->> +/delete-node/ &gpu_mem;
->> +/delete-node/ &ipa_fw_mem;
->> +/delete-node/ &ipa_gsi_mem;
->> +
->>  / {
->>  	model = "Xiaomi Redmi Note 8";
->>  	compatible = "xiaomi,ginkgo", "qcom,sm6125";
->> @@ -36,28 +42,39 @@ framebuffer0: framebuffer@5c000000 {
->>  	};
->> 
->>  	reserved-memory {
->> -		debug_mem: debug@ffb00000 {
->> -			reg = <0x0 0xffb00000 0x0 0xc0000>;
->> +		adsp_pil_mem: adsp_pil_mem@55300000 {
->> +			reg = <0x0 0x55300000 0x0 0x2200000>;
->>  			no-map;
->>  		};
->> 
->> -		last_log_mem: lastlog@ffbc0000 {
->> -			reg = <0x0 0xffbc0000 0x0 0x80000>;
->> +		ipa_fw_mem: ipa_fw_mem@57500000 {
->> +			reg = <0x0 0x57500000 0x0 0x10000>;
->>  			no-map;
->>  		};
->> 
->> -		pstore_mem: ramoops@ffc00000 {
->> -			compatible = "ramoops";
->> -			reg = <0x0 0xffc40000 0x0 0xc0000>;
->> -			record-size = <0x1000>;
->> -			console-size = <0x40000>;
->> -			pmsg-size = <0x20000>;
->> +		ipa_gsi_mem: ipa_gsi_mem@57510000 {
->> +			reg = <0x0 0x57510000 0x0 0x5000>;
->> +			no-map;
->>  		};
->> 
->> -		cmdline_mem: memory@ffd00000 {
->> -			reg = <0x0 0xffd40000 0x0 0x1000>;
->> +		gpu_mem: gpu_mem@57515000 {
->> +			reg = <0x0 0x57515000 0x0 0x2000>;
->>  			no-map;
->>  		};
->> +
->> +		framebuffer@5c000000 {
->> +			reg = <0x0 0x5c000000 0x0 (2340 * 1080 * 4)>;
->> +			no-map;
->> +		};
->> +
->> +		/* Matching with recovery values to be able to get the results. */
->> +		ramoops@61600000 {
->> +			compatible = "ramoops";
->> +			reg = <0x0 0x61600000 0x0 0x400000>;
->> +			record-size = <0x80000>;
->> +			pmsg-size = <0x200000>;
->> +			console-size = <0x100000>;
->> +		};
->>  	};
->> 
->>  	extcon_usb: extcon-usb {
->> 
->> --
->> 2.52.0
->> 
+> For SFP my understanding is that SFP has a physical specification which
+> includes power inputs and that these supplies are being requested by the
+> devices that consume them.  If some part of that is not the case then it
+> sounds like the bindings aren't describing the hardware (or at least are
+> a bit unclear about how they're doing so) and should be revised.  The
+> series doesn't seem to do anything at all with the supply side either,
+> I'm guessing there are some SFP controllers with integrated power
+> provisioning.
+
+There is not really an SFP controller.
+
+SFPs really break up into two parts, because they are
+hot-pluggable. There is a cage, which is mounted on the board, and a
+module which is inserted into the cage. The cage is passive.
+
+https://en.wikipedia.org/wiki/Small_Form-factor_Pluggable gives a
+reasonable overview.
+
+The cage provides the module with power, 3.3v, max 300mA for Rx and
+the same for TX. Something must supply the cage, and most designs just
+connect the cage to the board power rails. The example give in
+Multisource Agreement does exactly that, with some capacitors and
+inducters to limit surge on hot plug.
+
+This is the first board since 2017, when support for SFPs was added,
+which can actually control the power supplies. We cannot make
+regulators mandatory without breaking backwards compatibility.
+
+So for me, the patch is good as it is now, the regulators are
+optional.
+
+   Andrew
+
 
