@@ -1,208 +1,169 @@
-Return-Path: <devicetree+bounces-271220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271227-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oC49MJZ/qGmYvAAAu9opvQ
-	(envelope-from <devicetree+bounces-271220-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 19:53:10 +0100
+	id aGGuMmeCqGmAvQAAu9opvQ
+	(envelope-from <devicetree+bounces-271227-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:05:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B4F206A94
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 19:53:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44AA2206DC4
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:05:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2652E300AC0E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 18:53:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6DE63048544
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 18:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979993D6CC6;
-	Wed,  4 Mar 2026 18:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB7D3E0C41;
+	Wed,  4 Mar 2026 18:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cZFpD/nr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AwB8CcU3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73DC23CE480;
-	Wed,  4 Mar 2026 18:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1B13DEAC0;
+	Wed,  4 Mar 2026 18:58:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772650386; cv=none; b=NpF8YfBCFTB8wvZtFLzTvnesLhDd4UH1o1uCCr/lk6O8GOEXgNrWU/DiibBHpr1Ca4ljnltQvJS53hVZYR7xNxazYD8CVtj0OJFc7DH+b8NWj538WrnRisK3oI4XOqiHNm61KfPl1TWPK+JFCAnIGHFUbUQ7hhgkZnLVdL3l3gU=
+	t=1772650694; cv=none; b=YffvG2mpTQ2IQqN8DOTeUaOIo++pZNkrgHzSvi+wnToUwEAfdXbO9UjCiTgt4Xpdu6OnKjhbp/DIafN93+1WlG2BhxVOEFgr0CX8AvSfBYnejROt+ceNZzgsf2wHTD3u/cmyCnxeVrrdZrdzK+PTq6Y4ZDq4zDSednZPY90RXPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772650386; c=relaxed/simple;
-	bh=TpogHSI6BcOdK+qKwsFW1zNTYQiLpATLKXEGKvxL/xg=;
+	s=arc-20240116; t=1772650694; c=relaxed/simple;
+	bh=pu3OJFJuXTN1mbkxo4zJRrJEcUuyxNxIUZrmOglqj/c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UXopHgpbXb84y3U8dykNfEfs8lBV89CmTX3VOsBIuYeJ/HaYiwX+BeIWD+qmRsg0Ljyb3yl/AIQA+nPlgdWmrdHF2V5NaI8hdWJ15JAk72gqBU+AAIRSILb8CW3pKnbmkvgXzCWuPDJIk+hZrXMfiNGv9dqxp3+E8y1iBAZKRc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cZFpD/nr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCF4CC4CEF7;
-	Wed,  4 Mar 2026 18:53:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BnsX/IQQxN0EOaeC9jA8xPmcsuqPecbskMQiR8h8s1M0YfvF+yb+ZMG6rfDUqkefiVBlcOhwvzm7IRnY+Gtm5HoYnOy6+nEAzAFAAjotcXWfGIbx+tNU/osZt4uk+vpMH56GFyBMy26vbQAhPsB2Qq/c5bHvR6LPQyPn4xbo5jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AwB8CcU3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D7E9C4CEF7;
+	Wed,  4 Mar 2026 18:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772650386;
-	bh=TpogHSI6BcOdK+qKwsFW1zNTYQiLpATLKXEGKvxL/xg=;
+	s=k20201202; t=1772650694;
+	bh=pu3OJFJuXTN1mbkxo4zJRrJEcUuyxNxIUZrmOglqj/c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cZFpD/nrDZcQASVw6AJGSdVacyhbfwgsxtiC+9WXGN+fceQhzqJzXZwRXUOVZen/6
-	 8yZg4u/kkoIQGdPatD02YtopuwEI4DM/1N51yTmXlhRP6g3tKN84hRaZkEi72IkJum
-	 0YQPpDI9mHsn26XkErcXt9YJizfd9Gmd7WSyQGnpbaEIgFNH3xj2VnqSVdCN/Q2afa
-	 o1M5qzZlaL1thHt2Mkl1AAx2SGRdGkkKIYDDccZBSxGxEo0n6HM917CufdlLEi6p8A
-	 rinoUBfTI+/gnJWM8crnt+P+Eu+taYdaohQj29+oPPTmbFbJtoF4VJjBZTm/l9qjqS
-	 fqEfpiXwgNy7Q==
-Date: Wed, 4 Mar 2026 18:52:58 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Ryan Wanner <ryan.wanner@microchip.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, andrew+netdev@lunn.ch,
-	richardcochran@gmail.com, abin.joseph@amd.com, robh@kernel.org,
-	edumazet@google.com, netdev@vger.kernel.org,
-	theo.lebrun@bootlin.com, pjw@kernel.org,
-	Valentina.FernandezAlanis@microchip.com, krzk+dt@kernel.org,
-	sean.anderson@linux.dev, aou@eecs.berkeley.edu,
-	linux-kernel@vger.kernel.org, alex@ghiti.fr,
-	devicetree@vger.kernel.org, palmer@dabbelt.com,
-	nicolas.ferre@microchip.com, vineeth.karumanchi@amd.com,
-	claudiu.beznea@tuxon.dev, samuel.holland@sifive.com,
-	daire.mcnamara@microchip.com, conor+dt@kernel.org,
-	dave.stevenson@raspberrypi.com, linux-riscv@lists.infradead.org,
-	davem@davemloft.net, conor.dooley@microchip.com,
-	narmstrong@baylibre.com, pabeni@redhat.com
-Subject: Re: [net-next,v2,2/8] net: macb: rename macb_default_usrio to
- at91_default_usrio as not all platforms have mii mode control in usrio
-Message-ID: <20260304-stardust-blade-c9ed766b041a@spud>
-References: <20260226-enjoyer-shock-e17f9dc7cbdb@spud>
- <20260228232600.4187398-1-kuba@kernel.org>
- <20260228-shopping-april-a8c4d2481cbe@spud>
- <a1e36563-0e74-48b2-ae02-813cb28fc931@microchip.com>
- <20260303-stardust-shaky-c8a757ec149d@spud>
- <1d35173d-b364-4c4a-a083-388d3bd27ce5@microchip.com>
- <20260303-speech-reversing-b3fdf4817798@spud>
- <cb782e55-29f9-46c5-8213-397202b326ec@microchip.com>
+	b=AwB8CcU3+sXaDNelrTNcdKED5BuooBcptyjoz9pyiIDJlix/dUrVlBRAtY2KBDSD7
+	 h6KrDy4b73ZJdvM4hktgVTAjTX6zRTc+gvSTQ/5RottG6nhL+D3O/QjhQk8OWJVt2/
+	 MvKM3oW0h8rAaH+Xy1nyrLgibke4pf8Ytw146llNQq7shcJlSKiDHrM6C9X7NfmYak
+	 j4f0yovpFJlvkk+d+Ppu2se2Y2B54cqTv7SCSCMtvTuyxvwIBBCn9Oi3G8xndWyLtN
+	 BQYRKVOwWfHkMT/8IdaQvAWQhI9w2L1pW92h2u/lnv7UgDWNOHQ2tQ439iGinuyOqk
+	 Kz5iPPq8G9rwQ==
+Date: Wed, 4 Mar 2026 12:57:43 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Ritesh Kumar <quic_riteshk@quicinc.com>
+Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, 
+	abhinav.kumar@linux.dev, sean@poorly.run, marijn.suijten@somainline.org, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	quic_mahap@quicinc.com, konradybcio@kernel.org, mani@kernel.org, 
+	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, vkoul@kernel.org, kishon@kernel.org, 
+	cros-qcom-dts-watchers@chromium.org, linux-phy@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, quic_vproddut@quicinc.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: qcom-edp: Add reference clock
+ for sa8775p eDP PHY
+Message-ID: <gurq34svc5p52bqx5qwkgjmschzcbklmssjzmu2tg5wzgppkft@c6nrw2ageyp2>
+References: <20260128114853.2543416-1-quic_riteshk@quicinc.com>
+ <20260128114853.2543416-2-quic_riteshk@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9f74gDXlIrnBN4fp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cb782e55-29f9-46c5-8213-397202b326ec@microchip.com>
-X-Rspamd-Queue-Id: 53B4F206A94
+In-Reply-To: <20260128114853.2543416-2-quic_riteshk@quicinc.com>
+X-Rspamd-Queue-Id: 44AA2206DC4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271227-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271220-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWELVE(0.00)[30];
-	FREEMAIL_CC(0.00)[kernel.org,lunn.ch,gmail.com,amd.com,google.com,vger.kernel.org,bootlin.com,microchip.com,linux.dev,eecs.berkeley.edu,ghiti.fr,dabbelt.com,tuxon.dev,sifive.com,raspberrypi.com,lists.infradead.org,davemloft.net,baylibre.com,redhat.com];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,poorly.run,somainline.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,quicinc.com,hansenpartnership.com,oracle.com,chromium.org,lists.infradead.org,vger.kernel.org,lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,quicinc.com:email]
 X-Rspamd-Action: no action
 
+On Wed, Jan 28, 2026 at 05:18:49PM +0530, Ritesh Kumar wrote:
+> The initial sa8775p eDP PHY binding contribution missed adding support for
+> voting on the eDP reference clock. This went unnoticed because the UFS PHY
+> driver happened to enable the same clock.
+> 
+> After commit 77d2fa54a945 ("scsi: ufs: qcom : Refactor phy_power_on/off
+> calls"), the eDP reference clock is no longer kept enabled, which results
+> in the following PHY power-on failure:
+> 
+> phy phy-aec2a00.phy.10: phy poweron failed --> -110
+> 
+> To fix this, explicit voting for the eDP reference clock is required.
+> This patch adds the eDP reference clock for sa8775p eDP PHY and updates
+> the corresponding example node.
+> 
+> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
 
---9f74gDXlIrnBN4fp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Is there any reason why you didn't follow up on this patch Ritesh?
+Looks like it's ready to be merged.
 
-On Wed, Mar 04, 2026 at 09:13:39AM -0700, Ryan Wanner wrote:
-> > No, I don't think this is what I am suggesting. I am suggesting adding
-> > USRIO_HAS_CLKEN to the gem configs, and then modifying the usrio struct
-> > to have a member called something like "refclk_default_enable" and sett=
-ing
-> > it to true for emacs and false for gems. Then in init code somewhere, we
-> > would do:
-> >=20
-> > 	if (property_present(refclk-source))
-> > 		if (property_read_string(refclk-source) =3D=3D "external"
-> > 			refclk_enable =3D true
-> > 		else
-> > 			refclk_enable =3D false
-> > 	else if (property_present(refclk-ext))
-> > 		refclk_enable =3D true
-> > 	else
-> > 		refclk_enable =3D usrio.refclk_default_enable
-> >=20
-> > Then later on in init, when configuring the caps, we would do:
-> >=20
-> > 	if (!(bp->caps & MACB_CAPS_USRIO_DISABLED)) {
-> >=20
-> > 		if (bp->caps & MACB_CAPS_USRIO_HAS_CLKEN)
-> > 			val |=3D refclk_enable;
-> >=20
-> > 		macb_or_gem_writel(bp, USRIO, val);
-> > 	}
-> >=20
-> > Or maybe we just roll all that up together inside the !USRIO_DISABLED
-> > code.=20
-> >=20
-> > The code currently in macb_configure_caps() about refclks would be
-> > deleted.
-> >=20
-> > This would produce one property that works for both emacs and gems, not
-> > change any defaults for existing devices and retain support for whatever
-> > devicetrees made it into the wild with your property.
-> >=20
-> > Does that make sense?
->=20
-> If we are set to have an external and internal clock dt property than I
-> think we should just keep those if statements inside the !USRIO_DISABLED
-> code block just to keep it more organized and clean and keeping the
-> current HAS_CLKEN if statement be the fallback default case to set the
-> register bit value. Some thing like this:
->=20
-> if (!(bp->caps & MACB_CAPS_USRIO_DISABLED)) {
-> 		if (property_present(refclk-source)) {
-> 			if (property_read_string =3D=3D "external")
-> 				val |=3D true;
-> 			else
-> 				val |=3D false;
-> 		}
-> 		else if (bp->caps & MACB_CAPS_USRIO_HAS_CLKEN)
-> 			val |=3D bp->usrio->refclk;
->=20
-> 		macb_or_gem_writel(bp, USRIO, val);
-> }
->=20
-> Would this be a good middle ground?
+Reviewed-by: Bjorn Andersson <andersson@kernel.org>
 
-I explicitly would like to make HAS_CLKEN represent the USRIO having the
-bit, and not ascribe behaviour to it, so that it is actually a
-capability. This is why I want to make the default a member of the usrio
-struct in match data.
-Also, the bit position depends on the usrio struct, which we both
-omitted from our pseudo code, which means that even knowing how to
-modify val depends on having HAS_CLKEN/usrio.refclk being set, so your
-fallback doesn't sit right with me - I am trying to avoid things writing
-to USRIO without specifically being told what it is writing to is valid.
+Regards,
+Bjorn
 
---9f74gDXlIrnBN4fp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaah/igAKCRB4tDGHoIJi
-0u9rAQCBHamX+ZXo+ry/A8L1d4Wrf/HBb6wst95AlTZw5drewAEAk+Vt8RuqH3cj
-W3p74jc+/pi4WgO9M0TeCoSpNnl1Kgs=
-=JNVT
------END PGP SIGNATURE-----
-
---9f74gDXlIrnBN4fp--
+> ---
+>  .../devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml  | 6 ++++--
+>  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml     | 1 +
+>  2 files changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> index e2730a2f25cf..6c827cf9692b 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
+> @@ -200,9 +200,11 @@ examples:
+>                    <0x0aec2000 0x1c8>;
+>  
+>              clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+> -                     <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>;
+> +                     <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
+> +                     <&gcc GCC_EDP_REF_CLKREF_EN>;
+>              clock-names = "aux",
+> -                          "cfg_ahb";
+> +                          "cfg_ahb",
+> +                          "ref";
+>  
+>              #clock-cells = <1>;
+>              #phy-cells = <0>;
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> index 4a1daae3d8d4..0bf8bf4f66ac 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+> @@ -74,6 +74,7 @@ allOf:
+>          compatible:
+>            enum:
+>              - qcom,glymur-dp-phy
+> +            - qcom,sa8775p-edp-phy
+>              - qcom,x1e80100-dp-phy
+>      then:
+>        properties:
+> -- 
+> 2.34.1
+> 
 
