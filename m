@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-271148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271149-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uJQZOhdfqGmZtgAAu9opvQ
-	(envelope-from <devicetree+bounces-271148-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:34:31 +0100
+	id oMRhEclaqGmZtgAAu9opvQ
+	(envelope-from <devicetree+bounces-271149-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:16:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5D162045AF
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:34:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B8F420401D
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 02CBE310D797
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:53:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1600A3169A81
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96EF234EF03;
-	Wed,  4 Mar 2026 15:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87EF834F255;
+	Wed,  4 Mar 2026 15:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ejG6lIKu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fVyfMExt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715A334D939;
-	Wed,  4 Mar 2026 15:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637453469E6;
+	Wed,  4 Mar 2026 15:55:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772639630; cv=none; b=hLEbuCxiN/ysd1ycXk2e2BTbaFfQWnyTo6bt8pr4XYxMU2T0sg9Kq141HfXgNjMnTrhhcbSOiBTtvlgYNAyeX4l6/jbwNhwNtQygRO0gFv8HHevIxe1ij5p7UOzsVYzYodU0y2HzIAs+oruQ6Quu50+0THpFIFn97pnwja7SheA=
+	t=1772639729; cv=none; b=IjFvlNWmT3w+s7POtnfS18MfZCDa6V48225pPDi6RMqM7BMFlJNyxkbOGhqqiQJ5Fuicx+AL3W6S/9gYh/NkqZwTpWqmNegCCa4xpSFUEQmEP7ylAZtrFCpaarr+UFm9oGpqxcTFthV0LbmDBr4FyENThbIPTu+5iJSAyo4A/JI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772639630; c=relaxed/simple;
-	bh=qqLhj84DT4HpngRYXs1OS6LsrY4iBoCpiVUSJUR3vMU=;
+	s=arc-20240116; t=1772639729; c=relaxed/simple;
+	bh=ABz42zLJsDylI4eJTmW95G8I/nLM8maLSCBDhdPGCB0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eWrAhKJUgG9uE9r3h+0wXR59LH9oIy746AX/HUMeuRz+m0Whq6KAbb2ASgPrMZBn1FGn44gfAI87LhUPDg9SQIZoyFNtfaSaeSC1kreOp/P5eSkslTezn6vqxUiLDeOJdEC2z5lQX/mWszqXnKsqfxm4nJRKGykpp0DCiPphAlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ejG6lIKu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 97324C4CEF7;
-	Wed,  4 Mar 2026 15:53:46 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=YMo31QWubX+3aE4Aka1NPzE11ngAYeF7S7cFtuapXhETGKG8aTcG0IFbaANdTYmuOFxug5xqN56AbTPgtiC6I8oO8+kULj24a+XldAuNTeJBbYDWGrMyPwkloKqUV6d4dELYcu7Q4Y1qcU5Yj+J8Uc0owUnmZVb+w/J3ar9hjtg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fVyfMExt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2A24C4CEF7;
+	Wed,  4 Mar 2026 15:55:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772639630;
-	bh=qqLhj84DT4HpngRYXs1OS6LsrY4iBoCpiVUSJUR3vMU=;
+	s=k20201202; t=1772639729;
+	bh=ABz42zLJsDylI4eJTmW95G8I/nLM8maLSCBDhdPGCB0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ejG6lIKuVopIgFVTvbbeKgkbSwXEiQvvVWWDTQZw8MHg7tStSgkAcYjio1VMJZN9X
-	 5meWSKA5ZNGPDdTnt/c945wj9nii6B7BeqczfLprCm0WXgT1k30QIpLQ1ZnrGondxk
-	 tSdkRmoB3etVozPZCvBXWJCFToJn65o3Pam/6zODhCdyOEdQIj0V7rFPN6Ujyq64sd
-	 u/G2VGKdrdfD1QTWVhC1PPnohjRqDWqutM4kqvNl6vr0g1PzlcSdO7wcnPtUrqbhkd
-	 MkV3/Nf54elHFk0VqlAOl8hUkV+TLVMQtLL4SgwspTaQ5mDjlCj/hCO0CPEfdcCfkV
-	 5SLQvlk4ihDeg==
-Message-ID: <d4e0f3de-cf76-4a74-baee-fb3f3375abb0@kernel.org>
-Date: Wed, 4 Mar 2026 16:53:44 +0100
+	b=fVyfMExttLwdhcRAkciRqEv2gfEJKIapjYgottINew3vTuCopPDCu8uVV64f/deKK
+	 Y3FKjyE1k+kOy/fah3fQjBBH8LOb2Sj1zEs7C7ehqUZerOe+d3trNjzRZcXx75Pe3H
+	 iyoZt5EdCBQQu+ma9ufm/atM+CB/Mu+hssRhkVNtXxTPgupKawbqUAwsUnqpTpJtAf
+	 F7Q8T/krrV96QvxbhOEiqa2MBXdMDjLyEaVINV8ftOTnS9L4DH9cuMLyJqaxL7EI9s
+	 NvBxqRTYA+WyyzKlC+iM/hAeYItIU/VtJmfBe/8bxJud1dgFgiS7oFZo1QgsO7n34L
+	 j0LUT9KMAidQA==
+Message-ID: <bc061b0b-448d-43d5-91c2-db2864e0f7c2@kernel.org>
+Date: Wed, 4 Mar 2026 16:55:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,29 +53,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] spi: dt-bindings: renesas,rzv2h-rspi: Document RZ/G3E
- SoC support
-To: Biju Das <biju.das.jz@bp.renesas.com>,
- Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: Tommaso Merciai <tomm.merciai@gmail.com>,
- "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- "magnus.damm" <magnus.damm@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
-References: <cover.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
- <f6b43f0dc64e13b1c9942c164dea30002d4c4466.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
- <20260218-qualified-octopus-of-luck-5fcbf1@quoll>
- <3cec7787-0787-4b97-8eb6-5fe28f4c2a14@kernel.org>
- <TY3PR01MB113466BB56D07926CD00A8EC4867CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <39db1990-5004-4bba-8e2b-3b5e066fccdb@kernel.org>
- <TY3PR01MB113467498CF0830EE5DC5872B867CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Subject: Re: [PATCH v3 2/3] arm64: dts: freescale: Add support for Variscite
+ DART-MX91
+To: Frank Li <Frank.Li@nxp.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev
+Cc: pierluigi.p@variscite.com, Stefano Radaelli <stefano.r@variscite.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+ Markus Niebel <Markus.Niebel@tq-group.com>,
+ Matthias Schiffer <matthias.schiffer@tq-group.com>,
+ Yannic Moog <y.moog@phytec.de>, Josua Mayer <josua@solid-run.com>,
+ Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Primoz Fiser <primoz.fiser@norik.com>, linux-arm-kernel@lists.infradead.org
+References: <5ab5a20c07cd0631fdecc7dba03f0ebb91dfe098.1772534362.git.stefano.r@variscite.com>
+ <20260303210131.2966214-8-Frank.Li@nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -121,110 +116,55 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <TY3PR01MB113467498CF0830EE5DC5872B867CA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <20260303210131.2966214-8-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: A5D162045AF
+X-Rspamd-Queue-Id: 9B8F420401D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271148-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271149-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,renesas.com,kernel.org,glider.be,baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_CC(0.00)[variscite.com,kernel.org,pengutronix.de,gmail.com,ew.tq-group.com,amarulasolutions.com,tq-group.com,phytec.de,solid-run.com,toradex.com,norik.com,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,variscite.com:url]
 X-Rspamd-Action: no action
 
-On 04/03/2026 16:52, Biju Das wrote:
-> Hi Krzysztof Kozlowski,
+On 03/03/2026 22:01, Frank Li wrote:
+> From: Frank Li (AI-BOT) <frank.li@nxp.com>
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: 04 March 2026 15:40
->> Subject: Re: [PATCH 3/5] spi: dt-bindings: renesas,rzv2h-rspi: Document RZ/G3E SoC support
->>
->> On 04/03/2026 16:34, Biju Das wrote:
->>> Hi Krzysztof Kozlowski,
->>>
->>>> -----Original Message-----
->>>> From: Krzysztof Kozlowski <krzk@kernel.org>
->>>> Sent: 04 March 2026 15:06
->>>> Subject: Re: [PATCH 3/5] spi: dt-bindings: renesas,rzv2h-rspi:
->>>> Document RZ/G3E SoC support
->>>>
->>>> On 18/02/2026 08:50, Krzysztof Kozlowski wrote:
->>>>> On Tue, Feb 17, 2026 at 05:23:47PM +0100, Tommaso Merciai wrote:
->>>>>> Document the RSPI controller on the Renesas RZ/G3E SoC. The block
->>>>>> is compatible with the RSPI implementation found on the RZ/V2H(P) family.
->>>>>>
->>>>>> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
->>>>>> ---
->>>>>>  - This patch depend up on [0]
->>>>>>  - [0]
->>>>>> https://lore.kernel.org/all/20260128215132.1353381-2-cosmin-gabriel
->>>>>> .t
->>>>>> anislav.xa@renesas.com/
->>>>>
->>>>> I am not even looking there, start reviewing each other patches, so
->>>>> you won't be sending FIXES instead of reviews.
->>>>
->>>> You kind of ignored the problem and the other patch got merged.
->>>
->>> We prepared a patch updating the description and it is under internal review:
->>
->> That's not the point. The point was that you give PUBLIC review that mentioned patch is incomplete and
->> must be changed.
->>
->> Not prepare a follow-up patch. That's exactly my complain I raised, so you solved nothing.
+> AI bot review and may be useless.
 > 
-> We were supposed to send a v2 with description after your review, by the time the other patch got merged.
+>> +/*
+>> + * Copyright (C) 2026 Variscite Ltd. - https://www.variscite.com/
+>> + *
+>> + */
 > 
-> Now we prepared an incremental patch just for updating the description and it is under internal review.
-> 
->>
->>>
->>> This will cover any combinations.
->>>
->>>   description:
->>>       Must contain unique references to DMA specifiers, with at least one
->>>       for transmission and one for reception. Each category may include
->>>       multiple entries, constrained only by the total number of DMACs
->>>       available on the SoC.
->>
->> No. Solves nothing. Renesas folks were supposed to review patches instead of letting poor code be
->> merged to THEN develop fixes.
-> 
-> Why you think this description won't fix the issue with multiple DMACS?
+> Copyright year is 2026, which is in the future. Should be 2024 or
+> current year.
 
-Because I asked you TO REVIEW the patch while it was inflight.
-
-Did it happen? No.
-
-Explain me how posting patch now solves the past events, that patch was
-already merged and no review from Renesas was given?
-
+Why are you sending such junk to public mailing lists?
 
 Best regards,
 Krzysztof
