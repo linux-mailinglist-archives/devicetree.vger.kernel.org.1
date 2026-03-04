@@ -1,131 +1,171 @@
-Return-Path: <devicetree+bounces-271264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271265-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GCjTKJSaqGkGwAAAu9opvQ
-	(envelope-from <devicetree+bounces-271264-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:48:20 +0100
+	id AHSeGn6cqGlDwAAAu9opvQ
+	(envelope-from <devicetree+bounces-271265-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:56:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4BC4207B6E
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:48:19 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83155207BFA
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:56:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 133A83028EC7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:48:17 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9B82A3014894
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ABA6382394;
-	Wed,  4 Mar 2026 20:48:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85DA137F8B5;
+	Wed,  4 Mar 2026 20:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QbA0MI/v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5799A37F01B
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 20:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62C68239E6F;
+	Wed,  4 Mar 2026 20:56:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772657295; cv=none; b=luTrwtNufoW0sciMXjKTW/Y3gnfXVpiiJBKvs0j2h00qsyJk/u/NBwIoqDX5Qk46JL9Bes9BU8LOr5oWfGJ4+6OlyqVUOgKtwZ+dReLRFJDwZScJL1o5Es4IrRG5tydw6g4WJodB6okhcDBn822UFabNeXT6dn7jTIY2DYmZinE=
+	t=1772657785; cv=none; b=gwTx3OcRq/l3v4yY/hSeSnNkPht5KeZ9ArCpcChFIblque3Vd5S3r07rk1GFOYiFp35ma4yNYavJ/HjSfC8XtpYhToCUUW/2IBnhgk0P0q61bE1yD3Geifk1f5ElGMHEtnViI12JIh0/gy59mJhHz/KlpkGQb4ZCehEbyc9vCdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772657295; c=relaxed/simple;
-	bh=UJxxerwHojYuB4Aq4cfBMQSvONFhwkRKMlsX4DBJyHQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=joqHoEddUZ9NwdeeC8FMJf4sqlMUYeR8aJ/rCgt/5V40BJdKGwS2aD/jR3vRtsl1kVEJRj+2LZciBi75hDXuLJFZQCykoO+DY4DrqIUaXaxRGs0oLjAw1Hu/j1aZhMWMyfENs3R9vmSt8oHU4G+7UVs21SuUkBECz+U2Sp9ccrU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=pta2002.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=pta2002.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4327790c4e9so5594806f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 12:48:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772657293; x=1773262093;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KYNFqupRvkwAilNqSDcz2z6T7EuDcaIGLGnq2s5luwA=;
-        b=nXoEQR/jUY/Y110cERLSy6gkMc5fnAj2eT/VL2DNlonGAV+xwFfzyhpHF8oL43ajmq
-         FcnQrb4r/oPoFJIt7j8qojcewZ0CJ2tUrbxHgei05eu7B3wKFrPTbP2c/20Be8NHRSzR
-         s262hH3EQv4x9p7RMbrNTDS3ih8NVxWaBrSXyu9ziSdjm1MO/6L936bJQIfKl6gZgoMM
-         W0XapVWwStUvUGOXi1vAi8BtoChsfa0ZMPKoaSiJpVpU0Dv+m+CsbaYcJJ14Vd2gmCQW
-         jEwShjcKDiZfW8NKhFsM/AbgeeZunaq5GLuT8gvYYXL+K5VufrD4sy5xbXxdfVrI7tZg
-         Ch+Q==
-X-Gm-Message-State: AOJu0Yy5Wne4QtNRAaDP02Ie0JjMuGqM13Fn0nvf5lLwZ/vCNNTDZKFl
-	ic/gRUw85QpRJYhaDwfWjgk8bWASUXZUR/kMuNzt9xpmvy+gTEV9FJIz
-X-Gm-Gg: ATEYQzw5Q50j/9NpTaZq7aa3sd+gJfvzbMe3mXS9Pd38oE7wwQyZVolhPk0LKEhIKv0
-	VNfA+pYy3UA5RF+OOE4QgyL86sUbpPCFsp0MYOJDwj/4PLezk04TX3DXwd5SEGVRaxclALyzljz
-	UUAHu3Pa28icFmb0OH08iULKEUbgeaKgc/P11yNcmfBoDg+CnsLkddPuRXHqSc6rZyJaNkyiPuL
-	/lqkck8bob+j6tCCghOJnw9rA7GR3+q7ZFQnkgZpiWqWX3r6Ms5363Nq1/4ETlmR/o+O5azgMeV
-	/nZWjfOiKgX/nzmjU88QISbsLtzMCoeemJiI+4Rq9yan1Fgk/kZW73uQgldhlc3Vofxa5YWzIIs
-	hxV8AI72MuYsXOkKF5BUC0UGOosIn6GmKtqNZbKmf1GRnN4KlwjozIqXgg9K8xM51rWIO1aVIOe
-	wdLoPituW8/SoAK91X/15UxTlGqqKL6ncSRqbxTFkx3r4/VjATAYk/9Aqno3A6mMntH6pbxqhvG
-	VN2VOsAhRFMYZ2d25vVC6Uz88EN
-X-Received: by 2002:a5d:5d07:0:b0:439:cce7:d04d with SMTP id ffacd0b85a97d-439cce7d0a0mr2269547f8f.58.1772657292586;
-        Wed, 04 Mar 2026 12:48:12 -0800 (PST)
-Received: from ?IPV6:2001:818:ea73:e00:b102:ff11:db49:2389? ([2001:818:ea73:e00:b102:ff11:db49:2389])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439ba2a5970sm22469059f8f.33.2026.03.04.12.48.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Mar 2026 12:48:12 -0800 (PST)
-Message-ID: <7d3c5e4c-37a8-4d12-a7da-3b4d159a8d4d@pta2002.com>
-Date: Wed, 4 Mar 2026 20:48:09 +0000
+	s=arc-20240116; t=1772657785; c=relaxed/simple;
+	bh=4miKrOyOeAlc+J2Ios2RIDFEqUBEX2FaGTCxau8xQqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PmbXeQDC/7HYztdt4AM5tIq5tFq4MP0acrD8MiY6spExrataDnOvL7vjaDWDrxF+RKTt4Ju5VlymultxSpAwt6iWkTSHnZGULeH8xMQJbqSDL77EzV7MAkIX6h0agsNx+HyTn76IRQ7ouEr07JXGJFUOQWw2PWa/u0ksYqHau7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QbA0MI/v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03624C4CEF7;
+	Wed,  4 Mar 2026 20:56:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772657785;
+	bh=4miKrOyOeAlc+J2Ios2RIDFEqUBEX2FaGTCxau8xQqk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QbA0MI/v1+vgNHVfpePjuy4pPg/KSVSVi0kDnqABIZ1kAQrno6N8XQG+dbJ/6jqN7
+	 OK5toIDSFbfTFeZJFCE7ZLRwISzkNSrmJS3RKEO/mAQC0Wb+9+uKKmH9n9iuWdbawy
+	 4u+b+Ev+WnuyGx4TIgtW7qFl8PrnqXtq3WnDksc7Pi4D5mWsn0Z+cvscCAT/eRVk2X
+	 aaps5DehHwoS8SL+eC4oa7KTh8piDAS17BEl3xkWK4QN9osw1/UDf366x7EDFS6VWh
+	 fOE3o1dZarD4RSBx2KDlVgFDPNEpqrlHhPSAjmnCkodnC1Qx+LeIuNfCTlqxqmrHTn
+	 FNd4UG8AFpYCg==
+Date: Wed, 4 Mar 2026 14:56:10 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Pankaj Patil <pankaj.patil@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>
+Subject: Re: [PATCH RFT v3 0/2] arm64: dts: qcom: glymur: Enable SoC-wise
+ display and eDP panel on CRD
+Message-ID: <p6ua35deutb2cf63mdciwh46rufnoubaj2ywjeag2ypntm3zmx@fvyg4qztwr3i>
+References: <20260303-dts-qcom-glymur-crd-add-edp-v3-0-4d1ffcb1d9f6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: configure hdmirx in Rock 5 ITX
-To: Heiko Stuebner <heiko@sntech.de>,
- Diederik de Haas <diederik@cknow-tech.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260304-radxa-r5-itx-hdmirx-v1-1-f77bf1f7ce03@pta2002.com>
- <DGU7SPZQMZR5.1506XM8RO4EHE@cknow-tech.com>
- <CAAEXfUVBVMmT3i+10F3uvmGOtMMLoQK4WXM7_0G88aL5DntOuw@mail.gmail.com>
- <24285215.6Emhk5qWAg@phil>
-Content-Language: pt_PT
-From: Pedro Alves <pta2002@pta2002.com>
-In-Reply-To: <24285215.6Emhk5qWAg@phil>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: D4BC4207B6E
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260303-dts-qcom-glymur-crd-add-edp-v3-0-4d1ffcb1d9f6@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 83155207BFA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[pta2002.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-271264-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271265-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pta2002@pta2002.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.985];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	R_DKIM_NA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,msgid.link:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 04/03/2026 20:26, Heiko Stuebner wrote:
-> I really want pin-names to reflect the schematics. This makes searching
-> so much easier. Sometimes things slip through where that doesn't match,
-> but the goal would be to always move to improve things.
+On Tue, Mar 03, 2026 at 12:44:07PM +0200, Abel Vesa wrote:
+> Start by describing the MDSS (Mobile Display SubSystem), the MDP
+> (Mobile Display Processor) and the 4 DisplayPort controllers it brings,
+> then describe the PHY used for eDP and tie up the PHY provided clocks
+> to the Display clock controller.
 > 
-> So at least the newly added hdmirx here should follow the schematics,
-> and if you are keen to bring everything in line, you could also change
-> the other boards. But please make sure via the schematics of those :-)
+> Do all this in order to enable the eDP panel the CRD comes with.
+> 
+> Sent as an RFT since it was only boot-tested on a remote-only accessible
+> device.
+> 
 
-Thanks for the feedback. I've reverted that and will look into changing
-the other boards in a separate patch since there are quite a few.
+This doesn't apply, am I doing something wrong?
+
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+> Changes in v3:
+> - Fixed opp table according to Konrad's suggestion.
+> - Added missing reg regions for all DP controllers, as Konrad suggested.
+> - Fixed all sizes of the reg ranges.
+> - Replaced all 0s with 0x0 in all reg ranges.
+> - Added missing clock name entry reported by Dmitry. 
+> - Link to v2: https://patch.msgid.link/20260113-dts-qcom-glymur-crd-add-edp-v2-0-8026af65ecbb@oss.qualcomm.com
+> 
+> Changes in v2:
+> - Add missing PIXEL1 clock to DPs [0-2]
+> - Use the same opp table for all DPs and drop the dedicated ones.
+> - Drop the extra compatible from DP1.
+> - Changed compatible for the panel to samsung,atna60cl08, as that is the
+>   actual model.
+> - Link to v1: https://patch.msgid.link/20250925-dts-qcom-glymur-crd-add-edp-v1-0-20233de3c1e2@linaro.org
+> 
+> ---
+> Abel Vesa (2):
+>       arm64: dts: qcom: glymur: Describe display related nodes
+>       arm64: dts: qcom: glymur-crd: Enable eDP display support
+> 
+>  arch/arm64/boot/dts/qcom/glymur-crd.dts |  71 +++++
+>  arch/arm64/boot/dts/qcom/glymur.dtsi    | 471 +++++++++++++++++++++++++++++++-
+>  2 files changed, 534 insertions(+), 8 deletions(-)
+> ---
+> base-commit: 767cea52f08277557c8ba0e37638f2e7da271677
+> change-id: 20260109-dts-qcom-glymur-crd-add-edp-03f0adde9750
+> prerequisite-change-id: 20260227-phy-qcom-m31-eusb2-make-repeater-optional-621c8c1c0354:v2
+> prerequisite-patch-id: df42484b224c01014637ec5a8f56bab459890557
+> prerequisite-change-id: 20260109-dts-qcom-glymur-add-usb-support-617b6d9d032c:v3
+> prerequisite-patch-id: 66643de4d7142692ceee6ab78d4c1fb446182123
+> prerequisite-patch-id: 056da4cc346b633ccf7e12536839eeefa9469b78
+> prerequisite-patch-id: 3d3c5004e30407229b8f6612ee2c56dd6171447c
+> prerequisite-patch-id: a4ed5f8f3d10b47b0d1daee2e0dc44090c13c01c
+> prerequisite-patch-id: 144090e55a19a1479f4b35b75f9e5b80a9b919f0
+> prerequisite-patch-id: a9ccb06216435308c295e2de9adffb79060439cf
+> prerequisite-patch-id: 1e8d403675640d7db68a4c0caf28d1b1be895e8a
+> prerequisite-patch-id: 09bf515a2cd6bec5b21f15b18bebdb172f4b4a57
+> prerequisite-patch-id: e88699eb550ada640f5f2f5e4f432d6a3ae2552f
+> prerequisite-patch-id: df42484b224c01014637ec5a8f56bab459890557
+> prerequisite-patch-id: d986d8d948eaf7b80028b2244750dc7aff7de307
+> prerequisite-patch-id: 7ec5f802a334d96421d8f95d4d9e9773655cc947
+> prerequisite-patch-id: 460edb2664f266b4f33fb213e88316ba9402b3d5
+> prerequisite-change-id: 20260227-glymur-fix-dp-bindings-reg-clocks-704d0ccbeef9:v4
+> prerequisite-patch-id: 64ec868b066c682f08ff9845e4507cbf7f8f671d
+> 
+
+Do you really have all these dependencies? Do I have all these
+dependencies?
+
+Regards,
+Bjorn
+
+> Best regards,
+> --  
+> Abel Vesa <abel.vesa@oss.qualcomm.com>
+> 
 
