@@ -1,241 +1,260 @@
-Return-Path: <devicetree+bounces-270884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270885-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDaNB0/kp2mrlAAAu9opvQ
-	(envelope-from <devicetree+bounces-270884-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:50:39 +0100
+	id eELeJYPkp2mrlAAAu9opvQ
+	(envelope-from <devicetree+bounces-270885-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:51:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD4801FBE99
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:50:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EFEA91FBF24
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:51:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 659043083841
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:44:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 61C21300696A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:46:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA7937E31F;
-	Wed,  4 Mar 2026 07:44:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D277386542;
+	Wed,  4 Mar 2026 07:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h14YwVVE"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="pXBvI9b4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B661034D385;
-	Wed,  4 Mar 2026 07:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE928385536
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 07:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772610263; cv=none; b=MKUlglDYcoTPXjZHO/wKMfhhwb9vbqLd6NLPENGXYP0eFusUaMUTyt+RtyU0bYK43NJ9c2GezzQNd1AsvVNfsq5bsw1HhUR9hgLCQGsh4PvEoDPvvYIJJU+vN/mUpBUJLyAotkSluT8X/ktavskwYS6Dgu0CDdmhPUEYtStGeoo=
+	t=1772610409; cv=none; b=KK1BoaNMsLUdyeZ6B9swB36kDcOqdW/85lBN6wOq60wBodLvtY66O2O1777ZaUoA1yqopPU+My7sFrCtBP0wOscK9AFJdYqnjscllOhBxD8exnkMU53hv+6FmN1Jvqc9x9AcK3XB6eM5LQhSMCaEP05ZBTR9uuMhTUIAmKpQscI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772610263; c=relaxed/simple;
-	bh=Us0KGNplk7HG7Fg83BdG+51O34emtOY7P1nZiiQ0jEU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=suREU+sPpHI9wDQS0PAs7oXoYAbkT7svPjomiOMenhHxiFHed07KG9Gbnd0XX+ZliMTUyHrVBN1JWAhGLpTYL8CzrQQEQmj/NLvbaZAjrlw1qMhevpI0yU//7XyKi9rKm/Jbj1vUEVWNIa1pBoAl8ti8y+7cTSamwkgypvjENww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h14YwVVE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3F04C19423;
-	Wed,  4 Mar 2026 07:44:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772610263;
-	bh=Us0KGNplk7HG7Fg83BdG+51O34emtOY7P1nZiiQ0jEU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h14YwVVE6Wj9ayUYI7MGAZoootsuGQ+RsRUIvXmDBYdBvhOGLpsE4P9nw/2i1qmGz
-	 N+VqJuvhpyVsQ3BBLC2IEcy35P7Ad/6xl3kwoDp9ofcfS11K9avXjLWOkOANI4AyWf
-	 zJ01vAyxeRvijBP0ed+iFx0t37A5i0q2Lmim14MvcdRkXdKvcAWbmi9LfC7HaHHuYd
-	 7/rzk8X8A68rxJ7EIcgY3aUvzucihf1RDs3lmV/JqqF5wBtjK2XgakMOwBQlEsoHdv
-	 /MYd0/fycri9g3fr899YtXuwAMjsl3gXw7WHMGy5a5R7snhJZXIh3OvT7FPtFg0fkX
-	 B6OXkr5jGjEcQ==
-Date: Wed, 4 Mar 2026 08:44:21 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: lizhi2@eswincomputing.com
-Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
-	edumazet@google.com, kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com, 
-	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk, 
-	wens@kernel.org, pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	alex@ghiti.fr, linux-riscv@lists.infradead.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, linmin@eswincomputing.com, 
-	pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com, weishangjuan@eswincomputing.com
-Subject: Re: [PATCH net-next v3 1/3] dt-bindings: ethernet: eswin: add clock
- sampling control
-Message-ID: <20260304-hot-sponge-of-emphasis-6864db@quoll>
-References: <20260303061525.846-1-lizhi2@eswincomputing.com>
- <20260303061637.872-1-lizhi2@eswincomputing.com>
+	s=arc-20240116; t=1772610409; c=relaxed/simple;
+	bh=ZgkidBpLL8oWBDBcLOBpxRD9Rfn2XlNJpVDOX2q6dmk=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=e4f6WQFbgEAfLoziVIx2UZG+TGA8QQXqz2P6MhIJKCdcJRaukgqEJDt5Ko6t0i2L5mXsem5kW435VYHHCBrRdC90I86fR2on+NOPMHfMKu6Px5D2mTosxgMxUWEOeU/WdaGLvn0JzhE18I+canLpLdWqrZNIZ939KM9p8XbIv9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=pXBvI9b4; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260304074642epoutp02e04739fb2036dffd8900913c16287abb~Zk8TpZxlN2329523295epoutp02M
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 07:46:42 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260304074642epoutp02e04739fb2036dffd8900913c16287abb~Zk8TpZxlN2329523295epoutp02M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1772610402;
+	bh=kOSxfB+UsOuozAKdJYcd03wV8YPEdksJx4QCQmr+or8=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=pXBvI9b4K3VDKV1w2jS/GCWc6tbiKJBYMJ5bufAoYj6dWJ4F6WxxFZr4Go8uCpyg4
+	 2iuIFnprpBNiZRU/adQqSSVFCSi33gcfrQo4V+Kl0Di/ZllKUREBi1e6Tg8sHd1H43
+	 AA8uCwt+YpxmfH6rJ67XgHD/4CBHro7SrHNdnPfg=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
+	20260304074640epcas5p36b26a45cf9acf580c7c717f5998248ed~Zk8SFl5eK0732507325epcas5p3R;
+	Wed,  4 Mar 2026 07:46:40 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.89]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4fQl9W4R4Sz6B9m7; Wed,  4 Mar
+	2026 07:46:39 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20260304074638epcas5p23e2fddcfdad2ac7eaff71907d902f706~Zk8QW3l0b0808608086epcas5p29;
+	Wed,  4 Mar 2026 07:46:38 +0000 (GMT)
+Received: from INBRO007194 (unknown [107.122.3.105]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20260304074636epsmtip2d413503c49f5f56dc235c3bf9bc61751~Zk8N9uXGh0539805398epsmtip2V;
+	Wed,  4 Mar 2026 07:46:36 +0000 (GMT)
+From: <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
+Subject: RE: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add
+ regulators for the USB
+Date: Wed, 4 Mar 2026 13:16:34 +0530
+Message-ID: <000001dcabab$089a75d0$19cf6170$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260303061637.872-1-lizhi2@eswincomputing.com>
-X-Rspamd-Queue-Id: BD4801FBE99
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQEa27yOGkcSyej7W4JCG0x5iKXFKwI+5auhAd1pMcUC7yIEuAId+/jbAjLLeawBtyOf6wEmYkR7tq/MoMA=
+Content-Language: en-us
+X-CMS-MailID: 20260304074638epcas5p23e2fddcfdad2ac7eaff71907d902f706
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20260122125134epcas5p36625b7ac70b8dfba9430831a11955682
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+	<CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
+	<20260122130721.205664-3-pritam.sutar@samsung.com>
+	<352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
+	<000001dc9c13$ea305520$be90ff60$@samsung.com>
+	<2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
+	<019001dca0b8$f709e640$e51db2c0$@samsung.com>
+	<a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
+X-Rspamd-Queue-Id: EFEA91FBF24
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270884-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270885-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,eswincomputing.com,einfochips.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
+	FROM_NO_DN(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,eswincomputing.com:email]
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 02:16:37PM +0800, lizhi2@eswincomputing.com wrote:
-> From: Zhi Li <lizhi2@eswincomputing.com>
-> 
-> The second Ethernet controller (eth1) on the EIC7700 SoC may experience
-> RX data sampling issues at high speed due to EIC7700-specific receive
-> clock to data skew at the MAC input.
-> 
-> On the EIC7700 SoC, the second Ethernet controller (eth1) requires
-> inversion of the internal RGMII receive clock in order to meet RX data
-> sampling timing at high speed.
-> 
-> Describe this SoC-specific difference by introducing a distinct compatible
-> string for MAC instances that require internal clock inversion, allowing the
-> driver to select the appropriate configuration without relying on per-board
-> vendor-specific properties.
+Hi Krzysztof,
 
-Pointless description/paragrapgh. Your explanation why adding a
-compatible is "because I need compatible". That's completely redundant.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Thursday, February 19, 2026 1:24 AM
+> To: pritam.sutar=40samsung.com; robh=40kernel.org; krzk+dt=40kernel.org;
+> conor+dt=40kernel.org; alim.akhtar=40samsung.com
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
+ linux-
+> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v2 2/3=5D arm64: dts: exynos: ExynosAutov920: Add
+> regulators for the USB
+>=20
+> On 18/02/2026 10:28, pritam.sutar=40samsung.com wrote:
+> >>>>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
+> >>>>
+> >>>> Please use name for all fixed regulators which matches current
+> >>>> format
+> >>>> recommendation: 'regulator-=5B0-9=5Dv=5B0-9=5D'
+> >>>>
+> >>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.
+> >>>> gi
+> >>>> t/tree/
+> >>>> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> >>>>
+> >>>> None of the regulators are called like you wrote. Really NONE.
+> >>>>
+> >>>
+> >>> Thank you for the references. Will bring changes for regulator's
+> >>> name and labels as
+> >>>
+> >>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
+> >>> +       reg_usbdrd31_dwc3_vbus: regulator-1 =7B
+> >>
+> >> Did you read the binding? That's not what I asked.
+> >>
+> >
+> > Yes.
+> > Sorry for misinterpreting above comment. Is it expected as below?
+> >
+> > This is based on our understanding by referring binding and other vendo=
+r
+> dts.
+> >
+> > --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+> > =40=40 -59,7 +59,7 =40=40 dummy_regulator: regulator-0 =7B
+> >                  regulator-name =3D =22dummy_regulator=22;
+> >         =7D;
+> >
+> > -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
+> > +       reg_usb_vbus0: regulator-5v0-vbus0 =7B
+>=20
+> Yes, that's better.
 
-Explain what is special about this MAC instance, what's different in its
-programming model or other characteristics that you claim it is a
-different device.
+Thank you for the confirmation.
 
-> 
-> The rx-internal-delay-ps and tx-internal-delay-ps properties now use
-> minimum and maximum constraints to reflect the actual hardware delay
-> range (0-2540 ps) applied in 20 ps steps. This relaxes the binding
-> validation compared to the previous enum-based definition and avoids
-> regressions for existing DTBs while keeping the same hardware limits.
-> 
-> Treat the RX/TX internal delay properties as optional, board-specific
-> tuning knobs and remove them from the example to avoid encouraging
-> their use.
-> 
-> In addition, the binding now includes additional background information
-> about the HSP CSR registers accessed by the MAC. The TXD and RXD delay
-> control registers are included so the driver can explicitly clear any
-> residual configuration left by the bootloader. Background reference for
-> the High-Speed Subsystem and HSP CSR block is available in Chapter 10
-> ("High-Speed Interface") of the EIC7700X SoC Technical Reference Manual,
-> Part 4 (EIC7700X_SoC_Technical_Reference_Manual_Part4.pdf):
-> https://github.com/eswincomputing/EIC7700X-SoC-Technical-Reference-Manual/releases
-> 
-> There are currently no in-tree users of the EIC7700 Ethernet driver, so
-> these changes are safe.
-> 
-> Fixes: 888bd0eca93c ("dt-bindings: ethernet: eswin: Document for EIC7700 SoC")
-> Signed-off-by: Zhi Li <lizhi2@eswincomputing.com>
-> ---
->  .../bindings/net/eswin,eic7700-eth.yaml       | 75 +++++++++++++++----
->  1 file changed, 59 insertions(+), 16 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> index 91e8cd1db67b..22d1cecea07e 100644
-> --- a/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> +++ b/Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
-> @@ -20,6 +20,7 @@ select:
->        contains:
->          enum:
->            - eswin,eic7700-qos-eth
-> +          - eswin,eic7700-qos-eth-clk-inversion
->    required:
->      - compatible
->  
-> @@ -28,9 +29,13 @@ allOf:
->  
->  properties:
->    compatible:
-> -    items:
-> -      - const: eswin,eic7700-qos-eth
-> -      - const: snps,dwmac-5.20
-> +    oneOf:
-> +      - items:
-> +          - const: eswin,eic7700-qos-eth
-> +          - const: snps,dwmac-5.20
-> +      - items:
-> +          - const: eswin,eic7700-qos-eth-clk-inversion
+>=20
+> Only under the assumption these are actually dedicated single-enable-pin
+> regulators, not pins going to the PMIC.
+>=20
 
-So just enum for both entries?
+Yes. this is dedicated single-enable-pin.
 
-Anyway, that's the same device, so you do not get two compatibles. This
-should be a property. Which property not sure, maybe all this was
-discussed already.
+> >                compatible =3D =22regulator-fixed=22;
+> >                regulator-name =3D =22usbdrd31_dwc3-vbus=22;
+> >                regulator-min-microvolt =3D <5000000>; =40=40 -75,7 +75,=
+7 =40=40
+> > usb_phy0: usb-phy0 =7B
+> >                 vbus-supply =3D <&usbdrd31_dwc3_vbus>;
+> >         =7D;
+> >
+>=20
+> ...
+>=20
+> >>>>
+> >>>> That's a bit too much of dummies. This is heavily incomplete. You
+> >>>> need to bring back the PMIC first.
+> >>>>
+> >>>
+> >>> Presently, relying on USB LDOs being enabled by the bootloader in
+> >>> this automotive SoC. However, we understand the concern and it is
+> >>> added in case if anyone wants to use implemented PMIC in future. For
+> >>> now, would like to proceed with the dummy regulators to enable the
+> >>> required USB
+> >> features.
+> >>
+> >> And I don't see the point of these dummies. Solves nothing.
+> >>
+> >
+> > Are you expecting details as mentioned in above section in commit
+> message?
+> > However, we have mentioned these details in cover letter.
+>=20
+> No, I am expecting proper PMIC to be represented here. One dummy
+> regulator during the fast development phase is okay. Dummy added by
+> community contributors without resources and schematics would also fly.
+>=20
+> But Samsung, with all the resources, schematics doing development since
+> 2023 and still adding 20 dummies to every device? Nope, no, sorry.
+>=20
+> Please start doing this properly. Look how entire new SoC was upstreamed
+> by Linaro:
+> https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-
+> db9d0507ffd3=40linaro.org/
+>=20
+> Or something newer by Qualcomm:
+> https://lore.kernel.org/linux-arm-msm/?q=3Ds%3Aglymur
+>=20
 
+Appreciated for the references.
 
-> +          - const: snps,dwmac-5.20
->  
->    reg:
->      maxItems: 1
-> @@ -63,16 +68,29 @@ properties:
->        - const: stmmaceth
->  
->    rx-internal-delay-ps:
-> -    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
-> +    minimum: 0
-> +    maximum: 2540
-> +    multipleOf: 20
->  
->    tx-internal-delay-ps:
-> -    enum: [0, 200, 600, 1200, 1600, 1800, 2000, 2200, 2400]
-> +    minimum: 0
-> +    maximum: 2540
-> +    multipleOf: 20
->  
->    eswin,hsp-sp-csr:
->      description:
->        HSP CSR is to control and get status of different high-speed peripherals
->        (such as Ethernet, USB, SATA, etc.) via register, which can tune
->        board-level's parameters of PHY, etc.
-> +
-> +      Additional background information about the High-Speed Subsystem
-> +      and the HSP CSR block is available in Chapter 10 ("High-Speed Interface")
-> +      of the EIC7700X SoC Technical Reference Manual, Part 4
-> +      (EIC7700X_SoC_Technical_Reference_Manual_Part4.pdf). The manual is
-> +      publicly available at
-> +      https://github.com/eswincomputing/EIC7700X-SoC-Technical-Reference-Manual/releases
-> +
-> +      This reference is provided for background information only.
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      items:
->        - items:
-> @@ -81,7 +99,9 @@ properties:
->                           or external clock selection
->            - description: Offset of AXI clock controller Low-Power request
->                           register
-> +          - description: Offset of register controlling TXD delay
->            - description: Offset of register controlling TX/RX clock delay
-> +          - description: Offset of register controlling RXD delay
-
-As pointed out, you cannot change the order and there is no reason for
-doing this explained in commit msg.
-
-Best regards,
-Krzysztof
-
+As you might know, the regulator control and power=E2=80=91management=20arc=
+hitecture=20=0D=0Ahas=20changed=20in=20recent=20Exynos=E2=80=AFSoCs.=20It=
+=20is=20now=20controlled=20by=20the=20ACPM/APM=20core,=20and=20=0D=0Athe=20=
+PMIC=20is=20interfaced=20over=20SPMI=20(instead=20of=20the=20legacy=20I2C=
+=20interface).=20I=20am=20checking=20=0D=0Ainternally=20how=20to=20implemen=
+t=20this,=20and=20it=20may=20take=20a=20bit=20longer=20to=20have=20the=20fu=
+ll=20recipe=20=0D=0Aready=20to=20add=20an=20actual=20regulator.=0D=0A=0D=0A=
+USB=20is=20one=20of=20the=20critical=20IP=20blocks=20that=20needs=20be=20en=
+abled=20to=20allow=20the=20rest=20of=20the=20=0D=0Ateam=E2=80=99s=20workflo=
+w=20over=20USB=20(e.g.,=20enabling=20automation=20via=20USB=20for=20testing=
+,=20etc.).=0D=0A=0D=0AIf=20these=20changes=20can=20be=20accommodated,=20it=
+=20would=20be=20great.=20In=20the=20meantime,=20=0D=0AI=20will=20continue=
+=20working=20internally=20to=20see=20how=20we=20can=20push=20the=20missing=
+=20pieces=20upstream.=0D=0A=0D=0A>=20=0D=0A>=20Best=20regards,=0D=0A>=20Krz=
+ysztof=0D=0A=0D=0AThank=20you.=0D=0A=0D=0ARegards,=0D=0APritam=0D=0A=0D=0A
 
