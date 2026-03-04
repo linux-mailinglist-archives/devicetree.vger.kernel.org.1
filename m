@@ -1,164 +1,138 @@
-Return-Path: <devicetree+bounces-271254-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271255-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EPIhIp6QqGnZvgAAu9opvQ
-	(envelope-from <devicetree+bounces-271254-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:05:50 +0100
+	id wDVCBPyQqGkLvwAAu9opvQ
+	(envelope-from <devicetree+bounces-271255-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:07:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD7D2207659
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:05:49 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88C542076A8
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:07:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AF8A7306774F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:05:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 182EC30B3D40
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:06:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076053822B5;
-	Wed,  4 Mar 2026 20:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA097382375;
+	Wed,  4 Mar 2026 20:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="oJ1OIMXj"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=pta2002.com header.i=pta2002@pta2002.com header.b="hJiO9lCj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+Received: from sender4-of-o56.zoho.com (sender4-of-o56.zoho.com [136.143.188.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE1737F725
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 20:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772654735; cv=none; b=E9HqdkY6QfxCmxbty3K021G4mWoLo4AYOa/Tacbc81/tFmD2wf5OZeZgCb7ydVphQZXR6k3Yl7ofe6Nb1mpR3gWEf4hCPmb/srQ+pgYdLjfRI19X7mSPujVTIwclDj7foeG1LOXyDR8mSPmCoX/GHYkbeRnwJPHoCQLTtGvCRrg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772654735; c=relaxed/simple;
-	bh=xjYD6G5CbGg5JtEVXKmlHBeAo19LTw9xBknLuqx9SLo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J7f/8ygS72t+UlAidqR8ciDU9BqcGHEiam0a8j0KBBf3bPl6rDHWswyuJSnDZoI3R0ACZ2wbyI6vTEHB7cUeG6r2thV8q8qVGH8Mu9flgJW/1zh6d7dcRolDXm6THLW2uuKRkq6PnEMQ+fbfMJKTCuPEUhbmqhhs0xoFzP6Wr1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=oJ1OIMXj; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 28053 invoked from network); 4 Mar 2026 21:05:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1772654725; bh=bEhVJmS85dWuXz+i/uzPhkGcpMPxtb7lSKola8x84hc=;
-          h=Subject:To:Cc:From;
-          b=oJ1OIMXjqjeXFFszYYc3yJgoFq7PYYsoyzNz47hzV8pdAlQtEaCjfxx7YY1FHvGfy
-           N7skD9lCQo2nwpqjEQwuqzUWd8K5Kz3Btb/SKwzPoJRNeb47AIQt+4tMB/xDfLaVFu
-           ftfhuPAnY4idLRa6BgS36h72UjMoo3a5v2yD/HFRpepiJNdG/Z75q1yksiF3ilFdS+
-           Jjd82u5zHToUvAOD8WvRbcN+Unx7XA62cVr+CuFvJfzFmkhC+3/xKhjlM0eiIAWfeI
-           FoCE62fG3Od2X+c58DoHh1o+8FPwpq+yyw48SA3yLaWobrtPaU5RFS84QPZvKaFDtP
-           YiRyDKc9+FJPw==
-Received: from 83.24.116.171.ipv4.supernova.orange.pl (HELO [192.168.3.246]) (olek2@wp.pl@[83.24.116.171])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with TLS_AES_256_GCM_SHA384 encrypted SMTP
-          for <ansuelsmth@gmail.com>; 4 Mar 2026 21:05:25 +0100
-Message-ID: <5df659ba-4850-4c04-8153-9fb55af81bd0@wp.pl>
-Date: Wed, 4 Mar 2026 21:05:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC1EE37E31F
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 20:06:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.56
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772654772; cv=pass; b=m2eSLHdOOHZK7P1RsjFyJLNGQUlVxklAnHGfpj9JBsqZgbXMxSisp6C8K0I9ZJBl8jSPEXvNY8i6kPfCJy+l9S0YH6SlM/ww76sqGzxYLeCpzPmYvv+1WLAzR8xnP0CZWDtfjm60vpnvJQXIvxaBuceUH2wdufTmdJlfzy07CeM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772654772; c=relaxed/simple;
+	bh=KxxzOa2h0b95iP3Xk5WWWLQcyEoyNoD/1Y6h01FV4K8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aCyWkdGqLrntJsWsQFE2eqgysX77zrMFsNcuG3m5LQIfsbZfPAdUNEayfO8Fx2F7W7alyGe2KyRwx+7kgDLYiW+0f+ATatFRGdcXkZMG0nuXZ1QPmrK0Ze53msqmwAMkRwpDlNbZPvN29Xv5sHjn9V1yZvKP6NPUh7Df7hSAJ8o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=pta2002.com; spf=fail smtp.mailfrom=pta2002.com; dkim=fail (0-bit key) header.d=pta2002.com header.i=pta2002@pta2002.com header.b=hJiO9lCj reason="key not found in DNS"; arc=pass smtp.client-ip=136.143.188.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=pta2002.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=pta2002.com
+ARC-Seal: i=1; a=rsa-sha256; t=1772654767; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=c5K66uliHzk7CGpi8n5aExhKsMDeoU90n2QaTiYviOAKp4G9lCEFcHztxFKdds/mn0OY1JeyKQKTHmqwSAdctXkE+KFHGEdc6GP7p+PZ40VmvnPGzIvCy4X99n2fAc/bm8AhPV0/+QhnVDIShfb5y/mVb74ORV4ywWaW6qBkUPA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1772654767; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=KxxzOa2h0b95iP3Xk5WWWLQcyEoyNoD/1Y6h01FV4K8=; 
+	b=Sb1adAzpwBtNOrEhOmIiofyghlc+EJJ2BbRyQaVGzpOW62S0zu6X0Gyz0Thv9xTW3xowOnY2gxE6w5zkbM3YgMzWo9/qVw+Aj59cbhXU/J4NTcdbX5C8FJTv9gaNlB6AmTEwa63eZTIGf8IMyYM1SBl5hI+b2QH5YHvyI+KYyuQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=pta2002.com;
+	spf=pass  smtp.mailfrom=pta2002@pta2002.com;
+	dmarc=pass header.from=<pta2002@pta2002.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772654767;
+	s=zoho; d=pta2002.com; i=pta2002@pta2002.com;
+	h=MIME-Version:References:In-Reply-To:From:From:Date:Date:Message-ID:Subject:Subject:To:To:Cc:Cc:Content-Type:Message-Id:Reply-To;
+	bh=KxxzOa2h0b95iP3Xk5WWWLQcyEoyNoD/1Y6h01FV4K8=;
+	b=hJiO9lCjT0uMu80sgo23W5lxl3egQAhfpU+tgR0JuDv0VKylV2IRFmxOfXflverg
+	3jQFxAv+sc49cEKruWwcWFZSqyLgtizPyaS0R/pocYMVsge7+ShdtTyunW2IvlbWEC1
+	Uym91j1sicQ/9kX8MNwUW/QNQlgRCA87Zq78qmtc=
+Received: by mx.zohomail.com with SMTPS id 1772654765041935.8700978070677;
+	Wed, 4 Mar 2026 12:06:05 -0800 (PST)
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-899ed41208fso78918066d6.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 12:06:04 -0800 (PST)
+X-Gm-Message-State: AOJu0YytTbTBLkPeDUBHpkNg2nnn/Lbpd0Mjjy4MX+M1CxeXnYnOadL9
+	XGJMoEpBdKhJUniVFKB8t/AWY6ixdqDRefXTpxJ82kuY4vm4ups6Ye5TWaZes1Fdt4sAtg8WiQr
+	IN6PrqvIeYzaqsgK/suImpeqWGEqHhG8=
+X-Received: by 2002:a05:6214:da6:b0:899:fecd:30d6 with SMTP id
+ 6a1803df08f44-89a19af7521mr44089846d6.30.1772654763973; Wed, 04 Mar 2026
+ 12:06:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: airoha: en7581: add crypto offload
- support
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: herbert@gondor.apana.org.au, davem@davemloft.net, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, lorenzo@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260303193923.85242-1-olek2@wp.pl>
- <20260303193923.85242-2-olek2@wp.pl>
- <69a73dcd.7b0a0220.1ac46b.9bfc@mx.google.com>
-Content-Language: en-US
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-In-Reply-To: <69a73dcd.7b0a0220.1ac46b.9bfc@mx.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-WP-MailID: 98f13932068cf993ee8247d24573eb09
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000009 [QerX]                               
-X-Rspamd-Queue-Id: DD7D2207659
+References: <20260304-radxa-r5-itx-hdmirx-v1-1-f77bf1f7ce03@pta2002.com> <DGU7SPZQMZR5.1506XM8RO4EHE@cknow-tech.com>
+In-Reply-To: <DGU7SPZQMZR5.1506XM8RO4EHE@cknow-tech.com>
+From: Pedro Alves <pta2002@pta2002.com>
+Date: Wed, 4 Mar 2026 20:05:52 +0000
+X-Gmail-Original-Message-ID: <CAAEXfUVBVMmT3i+10F3uvmGOtMMLoQK4WXM7_0G88aL5DntOuw@mail.gmail.com>
+X-Gm-Features: AaiRm522NeKVPT_NuMI8MroNRdXzBN2oEYdWCpnVvfjbm98xzQHscRW9QI3Jbck
+Message-ID: <CAAEXfUVBVMmT3i+10F3uvmGOtMMLoQK4WXM7_0G88aL5DntOuw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: configure hdmirx in Rock 5 ITX
+To: Diederik de Haas <diederik@cknow-tech.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-ZohoMailClient: External
+X-Rspamd-Queue-Id: 88C542076A8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[wp.pl,none];
-	R_DKIM_ALLOW(-0.20)[wp.pl:s=20241105];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[pta2002.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271255-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[wp.pl];
-	TAGGED_FROM(0.00)[bounces-271254-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[wp.pl:+];
+	R_DKIM_PERMFAIL(0.00)[pta2002.com:s=zoho];
+	DKIM_TRACE(0.00)[pta2002.com:~];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olek2@wp.pl,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,gmail.com,collabora.com,kernel.org,lists.infradead.org,vger.kernel.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[1e004000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pta2002@pta2002.com,devicetree@vger.kernel.org];
+	NEURAL_SPAM(0.00)[0.986];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Christian,
-
-On 3/3/26 21:00, Christian Marangi wrote:
-> On Tue, Mar 03, 2026 at 08:39:18PM +0100, Aleksander Jan Bajkowski wrote:
->> Add support for the built-in cryptographic accelerator. This accelerator
->> supports 3DES, AES (128/192/256 bit), ARC4, MD5, SHA1, SHA224, and SHA256.
->> It also supports full IPSEC, SRTP and TLS offload.
->>
->> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
->> ---
->>   arch/arm64/boot/dts/airoha/en7581.dtsi | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
->> index ff6908a76e8e..4931b704235a 100644
->> --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
->> +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
->> @@ -300,6 +300,18 @@ rng@1faa1000 {
->>   			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
->>   		};
->>   
->> +		crypto@1e004000 {
->> +			compatible = "airoha,en7581-eip93",
->> +				"inside-secure,safexcel-eip93ies";
->> +			reg = <0x0 0x1fb70000 0x0 0x1000>;
->> +
->> +			clocks = <&scuclk EN7523_CLK_CRYPTO>;
->> +
->> +			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +			resets = <&scuclk EN7581_CRYPTO_RST>;
-> I guess you can drop the extra new line between clocks interrupts and resets.
-
-It makes sense.
-
+On 04/03/2026 18:38, Diederik de Haas wrote:
+> I have a strong suspicion that it was named 'hdmirx_det' because in the
+> schema its label is 'HDMIIRX_DET_L' where the extra 'I' was probably
+> dropped as that seems to be a spelling issue and the '_L' suffix is
+> quite often dropped.
 >
-> Does the driver supports these property tho? For example the clock is just
-> enabled or tweaked to a specific frequency? Same question for resets.
+> FWIW: The label in the schematic for Rock 5B, Rock 5B+, Rock 5T and Rock
+> 5 ITX+ are all 'HDMIIRX_DET_L', yet none of them follow the convention
+> to use the label from the schematics.
 
-As far as I know, the driver doesn't use these properties. They may be used
-in the future.
+That's a good point, and the other boards all have the hdmirx_det
+naming in the downstream kernel, so I guess that would be the most
+"correct" name to use.
 
->
->> +		};
->> +
->>   		system-controller@1fbf0200 {
->>   			compatible = "airoha,en7581-gpio-sysctl", "syscon",
->>   				     "simple-mfd";
->> -- 
->> 2.47.3
->>
+> So now the 'problem' is indeed: make it consistent with the other boards
+> or keep the one where the convention was followed.
+
+Also a third option of changing the other boards to all match. Either
+way, I can do those changes, just let me know what would be desirable.
+
+Best regards,
+Pedro Alves
 
