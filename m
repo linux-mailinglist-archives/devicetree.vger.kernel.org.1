@@ -1,74 +1,62 @@
-Return-Path: <devicetree+bounces-271230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271231-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2AIEIbWDqGmYvAAAu9opvQ
-	(envelope-from <devicetree+bounces-271230-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:10:45 +0100
+	id SDEEDwWEqGmgvQAAu9opvQ
+	(envelope-from <devicetree+bounces-271231-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:12:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id F051E206F05
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:10:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A15206F5E
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:12:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 35D3B301FA88
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 19:06:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DDF62301919F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 19:09:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506863D6CC0;
-	Wed,  4 Mar 2026 19:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C56B3D7D63;
+	Wed,  4 Mar 2026 19:09:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xy35ToS3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QvO5DLuz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0CA358D27;
-	Wed,  4 Mar 2026 19:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F3D3CD8BD;
+	Wed,  4 Mar 2026 19:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772651212; cv=none; b=bC+JEodoy4PO6VwZYu7NSgfe4x2CIllz3nUBN4meWBReWjPKlUybEg579cZXWd1DMFeDWblFlv5g1bPxPSLKF7Sgq2jzuf5ExfEo8pfbREhrczRUzMMzGwB3KmH8qUmjdKcmOQ3FWgZh7zEeItzIeFSBESK8PtdUa6bW2GB00B8=
+	t=1772651345; cv=none; b=OYe1EbzO+MmVlCXgHsJwVIkvMXv6pWvNRtk9/TSApuDUiu4+J5o3C4A14YhYOW/KUcF3urYrMkfY4Q18O+xrbmPIWrzPvB8O0ol/BE5rW/JI+R/kGs+ZPdXkNlj4z4zSX+6ti3pwOsT2ZxfWXuP9sT9ULAcX4kGfzmVqlYN2EaM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772651212; c=relaxed/simple;
-	bh=ZBbz/4pMl66VuJ7NOaXWlWQQszEhPGX6Web3VLQthbo=;
+	s=arc-20240116; t=1772651345; c=relaxed/simple;
+	bh=+qb4Y2WkmElXR9Cy7wmVw2lZ111N906ZQK11dhQZq+w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LlsceU82PzdU43TvM4k12YGKxfvIVrbC8TfH+Z4Dg+jqG2WjRdcSB4/5u49mUSQycNnxykf1ScNW8zOvtCV+ygftxPQLGUU9BI9KIbAT1BbnbR5FCtGoeW+CVuqc6WAmu16cjSk9wnRP1iOm0nAb5tlnP6xnfYQy++z424G0/0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xy35ToS3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43513C4CEF7;
-	Wed,  4 Mar 2026 19:06:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=L0/PW1ebTRdoIa1IKUDhHeRL3q52rqPa0mIv1JZ8QDL3j0/K+NFch1arUeaMRPyli6057TRH8NepUPOV/ItQZQk7GMT5XYu2H73aqJFlDSIyYkLE671D7fG8Cpn6PHdwogeFKslQE/sF1GcCk9L4oIPPKJvCtDZ7ifHWTEfxSHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QvO5DLuz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0D4BC4CEF7;
+	Wed,  4 Mar 2026 19:09:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772651211;
-	bh=ZBbz/4pMl66VuJ7NOaXWlWQQszEhPGX6Web3VLQthbo=;
+	s=k20201202; t=1772651344;
+	bh=+qb4Y2WkmElXR9Cy7wmVw2lZ111N906ZQK11dhQZq+w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xy35ToS3hhHn6tWBb2KpO0CcsE4iZ1ttiQDkmVr/Qz/bFh8s2d6TAk6Vt0HTF7EXe
-	 kMXRhxJj6tGEI8vdrpPoleKeXsv2YFccT6gPZpivEoaqBjgxzHCq7NQJ5lpTd1FXg3
-	 hoXiO/zDk7lKjfz9BSqbS7WfSDoKb+2I9mxCn2XmxU2KB9DzVhMym1rV4G+WsdVpAd
-	 Ztve3mRG6zsd+JCAYljlWaZ8TEfJUb88SE+b/cm86OIIGzsCvxTYVPADvIioEl58CJ
-	 UtUGKgaZjcMWR5OhioYLAcwfdDmr/xXlKsznTgEjH45X/YURlMXeqQyqLffr8ga5K9
-	 ayzBoa3ZBzM7Q==
-Date: Wed, 4 Mar 2026 19:06:46 +0000
+	b=QvO5DLuzqQwEZhr4I89jFVDl6g07LdFrOEAFT99e6LVcLGMXYzYfJVjkwgPawfWGA
+	 GtvyhOM+HdbZBfDcqKVwTvIUVW5zoYkRy/dhsU8FZxVwV8ryqvZdUDQvT+6ag+F2vx
+	 iMI5SBC7F25IcY852UxhxMShCS7tcw5YBnfhQkrTNMOUev+VOhsmjtkr5COq5/MSlh
+	 hARMN1XOuslc/VKZNywt24+QOwcUNGAQA242LEuJBhemjA5RjvgaLiuRQQNhafSxfF
+	 H4haXmbP7VTk93FvVhDsxXXgLblVzJtvckmE3DezOUAr4kYwc4ItwP4wHWetmQpQO2
+	 x0gkV8g6tvqtA==
+Date: Wed, 4 Mar 2026 19:08:59 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Vladimir Oltean <olteanv@gmail.com>
-Cc: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>,
-	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-Message-ID: <20260304-capture-kissable-3bdfe389864b@spud>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
- <20260303-disperser-clone-512efa99f26c@spud>
- <65fd5f46f1f996dd5f4df2de2efb52c8fa3575b3.camel@microchip.com>
- <20260304161457.l6tkxix6sgube3qc@skbuf>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: ansuelsmth@gmail.com, herbert@gondor.apana.org.au, davem@davemloft.net,
+	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	lorenzo@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: eip93: add clock gate and reset
+ line
+Message-ID: <20260304-hardship-abreast-7a2d58cbe446@spud>
+References: <20260303193923.85242-1-olek2@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,10 +64,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="b6bV6EY6NMjXdDw4"
+	protocol="application/pgp-signature"; boundary="XxcjsSvyQL4G5pyd"
 Content-Disposition: inline
-In-Reply-To: <20260304161457.l6tkxix6sgube3qc@skbuf>
-X-Rspamd-Queue-Id: F051E206F05
+In-Reply-To: <20260303193923.85242-1-olek2@wp.pl>
+X-Rspamd-Queue-Id: 95A15206F5E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -87,108 +75,105 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271230-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271231-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[wp.pl];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,collabora.com,kernel.org,lists.infradead.org,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.61.9.0:email,0.0.0.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,wp.pl:email,1e004000:email]
 X-Rspamd-Action: no action
 
 
---b6bV6EY6NMjXdDw4
-Content-Type: text/plain; charset=iso-8859-1
+--XxcjsSvyQL4G5pyd
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 04, 2026 at 06:14:57PM +0200, Vladimir Oltean wrote:
-> On Wed, Mar 04, 2026 at 05:10:11PM +0100, Jens Emil Schulz Ostergaard wro=
-te:
-> > On Tue, 2026-03-03 at 18:56 +0000, Conor Dooley wrote:
-> > > On Tue, Mar 03, 2026 at 01:22:28PM +0100, Jens Emil Schulz =D8stergaa=
-rd wrote:
-> > > > +examples:
-> > > > +  - |
-> > > > +    soc {
-> > > > +        #address-cells =3D <1>;
-> > > > +        #size-cells =3D <0>;
-> > > > +
-> > > > +      ethernet-switch@0 {
-> > > > +        reg =3D <0>;
-> > >=20
-> > > Also, this is an odd example, why are you at address 0 on a "soc" bus,
-> > > which usually means that this device on an AXI/AHB bus, and 0 is very
-> > > unusual for that. Obviously the example doesn't have to match the real
-> > > user, but this stands out.
-> > > I may have some follow up questions I think depending on your answer.
-> >=20
-> > The intended way to bind this driver is via a parent MFD driver which s=
-ets
-> > up the SPI register protocol, initiates regmaps and distributes them to=
- child
-> > devices (like this DSA driver).
-> >=20
-> > Similar to mscc,vsc7512 in drivers/mfd/ocelot-spi.c.
-> >=20
-> > This MFD would be the soc node. All child nodes perform register IO over
-> > spi, using the regmaps requested from this parent so I think the addres=
-ses
-> > on the bus are purely ornamental. Should I write the smallest register
-> > address in all regions used by the DSA driver instead?
+On Tue, Mar 03, 2026 at 08:39:17PM +0100, Aleksander Jan Bajkowski wrote:
+> Add the clock gate and reset line, both of which are available
+> on the Airoha AN7581. Both properties are optional.
+
+Why are they optional?
+
 >=20
-> They are not ornamental, they should be the same addresses you'd put if
-> Linux had direct access to the SoC interconnect for MMIO, rather than to
-> an SPI bridge to the SoC interconnect. Or at least I don't see why it
-> wouldn't be that way.
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+> ---
+>  .../crypto/inside-secure,safexcel-eip93.yaml         | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safex=
+cel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,saf=
+excel-eip93.yaml
+> index 997bf9717f9e..058454b679b4 100644
+> --- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip=
+93.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip=
+93.yaml
+> @@ -48,6 +48,12 @@ properties:
+>    interrupts:
+>      maxItems: 1
+> =20
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -57,11 +63,17 @@ additionalProperties: false
+> =20
+>  examples:
+>    - |
+> +    #include <dt-bindings/clock/en7523-clk.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/reset/airoha,en7581-reset.h>
+> =20
+>      crypto@1e004000 {
+>        compatible =3D "airoha,en7581-eip93", "inside-secure,safexcel-eip9=
+3ies";
+>        reg =3D <0x1fb70000 0x1000>;
+> =20
+> +      clocks =3D <&scuclk EN7523_CLK_CRYPTO>;
+> +
+>        interrupts =3D <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +      resets =3D <&scuclk EN7581_CRYPTO_RST>;
+>      };
+> --=20
+> 2.47.3
+>=20
 
-I don't mind if they're made up addresses, but the example should be
-realistic. 0 is likely not realistic, but if it was 0x4000_0000 when the
-real thing is 0x8123_1234 then I don't really care. Since the parent is
-not actually a soc bus, can't you just remove this fake parent entirely,
-like the ocelot switch example does? Or insert something more genuine,
-like:
-spi {
-  #address-cells =3D <1>;
-  #size-cells =3D <0>;
-
-  soc@0 {
-    compatible =3D "microchip,lan96455s";
-    reg =3D <0>;
-    #address-cells =3D <1>;
-    #size-cells =3D <1>;
-
-    ethernet-switch@4000000 {
-      reg =3D <4000000 44>;
-
-
---b6bV6EY6NMjXdDw4
+--XxcjsSvyQL4G5pyd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaiCxQAKCRB4tDGHoIJi
-0pNbAP9uGOb02KpKec1SzZegVdL/v1K3XiSjnA1dmjqNkh21gwEAz6KT6TLUzASJ
-fKWAfv4fQQ8yAChtiSlXCOIuW3RZkwU=
-=MGus
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaiDSwAKCRB4tDGHoIJi
+0kFdAQDa2xGAEXWTcsZnWZ+DqPQeS9mrnJ5G8gdZkyafZYSJmAD/Vur2DZEbjjta
+PQB3sWJGJCz1S70yK3n9JmMjSmGN9gk=
+=5r04
 -----END PGP SIGNATURE-----
 
---b6bV6EY6NMjXdDw4--
+--XxcjsSvyQL4G5pyd--
 
