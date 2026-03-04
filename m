@@ -1,238 +1,185 @@
-Return-Path: <devicetree+bounces-271046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271048-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDwjDd0wqGm+pQAAu9opvQ
-	(envelope-from <devicetree+bounces-271046-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:17:17 +0100
+	id KNgHIKswqGm+pQAAu9opvQ
+	(envelope-from <devicetree+bounces-271048-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:16:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3AA320046A
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:17:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 226CC20042E
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:16:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 02E5530B7755
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 13:10:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C3983304E352
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 13:16:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12842286D5D;
-	Wed,  4 Mar 2026 13:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFD72282F2F;
+	Wed,  4 Mar 2026 13:16:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N8V6wgR2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OPmbjRh2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8114D281530;
-	Wed,  4 Mar 2026 13:10:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C2226AF4
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 13:16:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772629814; cv=none; b=dX62K3xfn3zS19gLKXttr7z9ODMaqreWaQOCKQXJw98HJ7aAbs6Sd6SvhLkiaZQpVSIcEx79dEZ40lyFdP7EA1YFEakakhDmuMHmUM1VdBKEgNQPJo4S/2ZHqsX9+dP90jwq9GdwkPbDKUabLw0IxP59Fb5SVGm5ygDCaT3PlQI=
+	t=1772630178; cv=none; b=bfv+5OtCQSMN4rneWOSyQai18cQiaeI9i1+AvB1hMLRNYV3ICHzN+cZsTe/lrUlw0+iUMirko34Iu2BtTfUwvQc4XCWkh2mzFDGRGlLMgINAkGSyu8PJTQr7N4IsOGUVb0yuJhIHRSUbf61AtTegcNV/vYJaljAfBvLD9ks7sZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772629814; c=relaxed/simple;
-	bh=AD2e0bpIZZqpqRRBcmGZBxmNqUkD9RJXGzuDxoQI8wk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cnmb9kw0lshRhaS+MCIdGCL2qgtHOUiajJg+Cgvg++pGPVVkK/sQD85KhacHMT8P+En3kQtDHbw8EuNrORA6fQlnnkUtp3lk3WtqafE2EpzPRNj2RFKc4T2zoswfLlQBWskrX+n1cnXzy6ocU5U138L7FeV8O61pfp/Rum3LA5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N8V6wgR2; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772629811; x=1804165811;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=AD2e0bpIZZqpqRRBcmGZBxmNqUkD9RJXGzuDxoQI8wk=;
-  b=N8V6wgR2x0rfdd0hEvCRxy+/7C0nn6/HXruiA6e9c5sknJwkq6ODigz9
-   HJ8TkX1R9ydKJR/2+6S8DdHUODeUUxV1IT737fOW9PnWd69FEdrng1yrH
-   TL+dnIHgqZLvAd5dtPqT+yNeRK3Vj2nsA01rtDpaGi9e6qBzNnU0hgkjX
-   QroDr2CB/jY11uan+XR2NYwzfcvTg2ezK1sjcPKNP5vXyG9hD4CzqzCIg
-   lyRvHu+auGQUuZEET4fVni9O6YjAO2isvghALgX9DzeE6aENDHHt3V5XS
-   XA6LyDEYxWVao/Adr1sZcywacb/wobTo8QSfeUXZRDNJhRH46MjjG3uTC
-   A==;
-X-CSE-ConnectionGUID: m0iExaMuS0iBG26QJswJeA==
-X-CSE-MsgGUID: 46ut251wRd2D6YojvvP6ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73600755"
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
-   d="scan'208";a="73600755"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 05:10:09 -0800
-X-CSE-ConnectionGUID: 8KzM47p3TveHM7EkavH5Zw==
-X-CSE-MsgGUID: kGjDZfOqRWyBuu2VHe1y8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
-   d="scan'208";a="215285098"
-Received: from abityuts-desk.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.233])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 05:10:05 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 73DB9121D1E;
-	Wed, 04 Mar 2026 15:10:33 +0200 (EET)
-Date: Wed, 4 Mar 2026 15:10:33 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: johannes.goede@oss.qualcomm.com,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] media: i2c: mt9m114: add support for Aptina MI1040
-Message-ID: <aagvSf4TE3c9PdKt@kekkonen.localdomain>
-References: <20260212122302.29211-1-clamor95@gmail.com>
- <20260212122302.29211-3-clamor95@gmail.com>
- <1cb955d5-c813-4b52-8f0a-51e4635d7b27@oss.qualcomm.com>
- <CAPVz0n0CSFhYKnzLWsSo_7kE_nDsBKJ1cS+A5ZQ6gt9DWLtxAg@mail.gmail.com>
- <aafuPQ171Jwo12D-@kekkonen.localdomain>
- <CAPVz0n0moFZkubOwDnXGpMLg8S4LW9KEFgnFMH5PmrEzExH6bg@mail.gmail.com>
+	s=arc-20240116; t=1772630178; c=relaxed/simple;
+	bh=ZM0UeGckLgWfb8A9LZDrdGuBcoOBBI4fXdeLoyxc1d8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=lOVjN7IWtocx2dEXINv5RsCBGywps9N1icpmKnMLb85szKY9az2aYvEB6j7HV8qkltx7N7ymz3uiVTprcK8YnbIVK51THURK0dgYyc1qSy9Hx5r77Suvms70l5GSOYY6NHtsqC1WBh/BkGLK4sxaVt69iZ1lWg+9bkTraR1C7zY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OPmbjRh2; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b935ff845c8so880355766b.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 05:16:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772630174; x=1773234974; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=veByMjsGeeA2OCIj+ldV0X1YxNMqgif+fScGvqauuiw=;
+        b=OPmbjRh2byzpiGHqE6m0xgECQ98ogsE02JLsOPwH7UCkI5FfDtxW/UgTmYrdSRuLqg
+         /n0FqjeXIThzbkiaSaSGLxULCtKOtHOQXLt73k1wmkQareBZ4yOWs4gJYyGcJXjebMdR
+         MxoUjt8vjalxJm9/lEVoC9K8j6spS+IS7IDnTeaDM7E85ZBfKRXE8oaCSk4mZJmhe2sL
+         BSMujJSVbOY72zEH24hEv1wbwrf9uzng+GeWLFlD8Oxy9z9Z/Bghd4PiqIVto/JyHDzY
+         lqVEeNf07F9YgiEKcEb98eS4VU1DP1yNl/+Df0GOGKThajOSmu3eWoerERQn1cQ4yD5W
+         EboQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772630174; x=1773234974;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=veByMjsGeeA2OCIj+ldV0X1YxNMqgif+fScGvqauuiw=;
+        b=TT+PZuboKgaS1gZjCuy3F1pV+rigB9XuK2FPw2qsaNiFCL30AbtYg3m73fV3jEQxtd
+         xV7hS/mtKZGnuxjZAXCbfHW39JNmBEVqG+wDoUxBUh6g0P5Oil53mpIv8usQxidSzR8Q
+         A4BiFTV3w2lakQXTsYt8yPVFpRIzJW/nbFbOBPfw9joRfLqDRyJyZbYtDTc9FsyPPM1R
+         nm40yHSUI4P2W9KxLuVJFtpJlw2BXEbvahTe7KNEDDMR6ZJRCHpI8bpuZF74vI7Sktpb
+         Y2w6tt8SQjGecCWTEOtqhsU+uCEEYZRZm+nSqX8RXyJLS2sj56+5hGz6k1jVWpZpG49K
+         z/0w==
+X-Forwarded-Encrypted: i=1; AJvYcCV3KYoQmFPTmM70/cuLVOJkXZYHdXJXB13t1a/np5J5ZyhKl4IzugGyLIi1F0KZMsRVozm2sQdVrfH3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTT73cSEzpGMlTAnbymSnzYCdI31i/p/pOT5rdYUATEaKkHUNt
+	cpBWWppBwgfg4V4HN5UyTnayRrqblaT1aVJDRhPwqvg+La/aRFe3Dxgx
+X-Gm-Gg: ATEYQzyCFd10U9ag0AL8RfaTEioRY/lBpXO8e22G6NBhgl4Mgi6hKcR7OkIuBCfm/Zx
+	HPyQelr9j9E3dQf6Xl7oGgcD5xgnFVheTYzqGGEhe0LrN+IA0ptc9LAHiIFrdG3AUR15UF/sD2z
+	f8F7suJWvFgVzQ4SDSZDanXHrvK3xsEVhqoth/db4fwRbqHKJOuPfYKuHj4PKnxDZ3fekEoV6PV
+	MfCurUVODJwSW6N4jVnZXp08k4Omj5BQ7UWZNyLHz+/n5fcBfTMQjRdVc3DM/v15Au9IzJ6TCOq
+	tT/4SrUOB7pllne5v50qSSQrm4rEVIlPzlImozxHEBKz3XDvz2T/cEl33VCeP06PhgsoJkUA3NQ
+	Ct9u/Ym3UdXP6EaLNmAoT4l0XPJGVY7eZPGPDP17bXlrkuEU+xeOVBhhORM2T5LtkZ6nraBybaY
+	IfHMPXB4UY8of+yYaXRR4MDZcERkQzZJ4QQEpuIwFEJE2Z2NIsKkC2RwFogdJWqg9+G6eLo2k9h
+	v2+6XMKoj1QKuyRngMXDbPaPEDtic+c685S5L2G2pFnt88C2giPcUjWn8QVbOYduwRdRzKnqIW0
+	D3eFoofQ4r89ntQa
+X-Received: by 2002:a17:907:3f87:b0:b88:40bd:be54 with SMTP id a640c23a62f3a-b93f11b1f21mr110307966b.24.1772630173896;
+        Wed, 04 Mar 2026 05:16:13 -0800 (PST)
+Received: from DESKTOP-JNMGKT5.residents.sin.openfiber.nl ([88.202.160.248])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b935ac84357sm740226266b.30.2026.03.04.05.16.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2026 05:16:13 -0800 (PST)
+From: Alexandru Hossu <hossu.alexandru@gmail.com>
+To: krzk@kernel.org
+Cc: robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-staging@lists.linux.dev,
+	Alexandru Hossu <hossu.alexandru@gmail.com>
+Subject: [PATCH] dt-bindings: misc: xlnx,axi-fifo-mm-s: fix interrupt-parent property
+Date: Wed,  4 Mar 2026 14:16:10 +0100
+Message-ID: <20260304131610.37503-1-hossu.alexandru@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <e6f8db4d-2a5a-4424-b44d-6416ee0c5ca0@kernel.org>
+References: <e6f8db4d-2a5a-4424-b44d-6416ee0c5ca0@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPVz0n0moFZkubOwDnXGpMLg8S4LW9KEFgnFMH5PmrEzExH6bg@mail.gmail.com>
-X-Rspamd-Queue-Id: A3AA320046A
+X-Rspamd-Queue-Id: 226CC20042E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271046-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271048-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,linuxfoundation.org,lists.linux.dev,gmail.com];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[hossualexandru@gmail.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.961];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kekkonen.localdomain:mid,intel.com:dkim,intel.com:email,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,43c00000:email]
 X-Rspamd-Action: no action
 
-Hi Svyatoslav,
+Signed-off-by: Alexandru Hossu <hossu.alexandru@gmail.com>
+---
+ .../devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml   | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-On Wed, Mar 04, 2026 at 10:40:04AM +0200, Svyatoslav Ryhel wrote:
-> ср, 4 бер. 2026 р. о 10:32 Sakari Ailus <sakari.ailus@linux.intel.com> пише:
-> >
-> > Hi Svyatoslav, Hans,
-> >
-> > On Thu, Feb 12, 2026 at 06:44:06PM +0200, Svyatoslav Ryhel wrote:
-> > > чт, 12 лют. 2026 р. о 17:53 <johannes.goede@oss.qualcomm.com> пише:
-> > > >
-> > > > Hi,
-> > > >
-> > > > On 12-Feb-26 13:23, Svyatoslav Ryhel wrote:
-> > > > > Slightly different version of MT9M114 camera module is used in a several
-> > > > > devices like ASUS Nexus 7 (2012) or ASUS Transformer Prime TF201 and is
-> > > > > called Aptina MI1040. The only difference found so far is lacking ability
-> > > > > to poll STATE register during power on sequence, which causes driver to
-> > > > > fail with time out error. Add state_polling flag to diverge models and
-> > > > > address quirk found in MI1040.
-> > > > >
-> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > ---
-> > > > >  drivers/media/i2c/mt9m114.c | 29 ++++++++++++++++++++++++-----
-> > > > >  1 file changed, 24 insertions(+), 5 deletions(-)
-> > > > >
-> > > > > diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
-> > > > > index d5b142fe68a9..a4b021702a1f 100644
-> > > > > --- a/drivers/media/i2c/mt9m114.c
-> > > > > +++ b/drivers/media/i2c/mt9m114.c
-> > > > > @@ -373,6 +373,10 @@ enum {
-> > > > >   * Data Structures
-> > > > >   */
-> > > > >
-> > > > > +struct mt9m114_model_info {
-> > > > > +     bool state_polling;
-> > > > > +};
-> > > > > +
-> > > > >  enum mt9m114_format_flag {
-> > > > >       MT9M114_FMT_FLAG_PARALLEL = BIT(0),
-> > > > >       MT9M114_FMT_FLAG_CSI2 = BIT(1),
-> > > > > @@ -422,6 +426,8 @@ struct mt9m114 {
-> > > > >
-> > > > >               struct v4l2_ctrl *tpg[4];
-> > > > >       } ifp;
-> > > > > +
-> > > > > +     const struct mt9m114_model_info *info;
-> > > > >  };
-> > > > >
-> > > > >  /* -----------------------------------------------------------------------------
-> > > > > @@ -2279,9 +2285,11 @@ static int mt9m114_power_on(struct mt9m114 *sensor)
-> > > > >        * reaches the standby mode (either initiated manually above in
-> > > > >        * parallel mode, or automatically after reset in MIPI mode).
-> > > > >        */
-> > > > > -     ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
-> > > > > -     if (ret < 0)
-> > > > > -             goto error_clock;
-> > > > > +     if (sensor->info->state_polling) {
-> > > > > +             ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
-> > > > > +             if (ret < 0)
-> > > > > +                     goto error_clock;
-> > > > > +     }
-> > > >
-> > > > So I would expect a flag called state_polling to be checked
-> > > > in mt9m114_poll_state(). It looks like you are only disabling
-> > > > one specific case of state polling, not all of them.
-> >
-> > There's a single user for mt9m114_poll_state()... I think the current name
-> > is fine.
-> >
-> 
-> I will name the flag `state_standby_polling` if everyone is fine with
-> it since the case below requires resending anyway.
-> 
-> > > >
-> > > > Please rename the flag to reflect this.
-> > > >
-> > >
-> > > And which name you see fitting? There is only one instance of using
-> > > mt9m114_poll_state in this driver, I see no controversy in naming.
-> > >
-> > > > >
-> > > > >       return 0;
-> > > > >
-> > > > > @@ -2527,6 +2535,8 @@ static int mt9m114_probe(struct i2c_client *client)
-> > > > >       if (ret < 0)
-> > > > >               return ret;
-> > > > >
-> > > > > +     sensor->info = device_get_match_data(dev);
-> > > > > +
-> > > >
-> > > > This can return NULL when the driver is manually bound through
-> > > > sysfs, which will result in a crash later on when checked in
-> > > > mt9m114_power_on()
-> >
-> > Svyatoslav, can you add a check for this?
-> >
-> > I guess a few other drivers also suffer from this...
-> >
-> 
-> Yes, sure. Should I set it to return neg error or fallback to default entry?
-
-In fact probe() won't run that far as it'll return an error on the missing
-endpoint.
-
-You could return an error here, it doesn't really matter.
-
+diff --git a/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
+index 6d1cd651e..cdc295f2d 100644
+--- a/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
++++ b/Documentation/devicetree/bindings/misc/xlnx,axi-fifo-mm-s.yaml
+@@ -31,8 +31,6 @@ properties:
+     items:
+       - const: interrupt
+ 
+-  interrupt-parent: true
+-
+   xlnx,use-rx-data:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     enum: [0, 1]
+@@ -56,7 +54,6 @@ required:
+   - reg
+   - interrupts
+   - interrupt-names
+-  - interrupt-parent
+   - xlnx,use-rx-data
+   - xlnx,use-tx-data
+ 
+@@ -64,11 +61,16 @@ additionalProperties: true
+ 
+ examples:
+   - |
++    intc: interrupt-controller {
++      interrupt-controller;
++      #interrupt-cells = <1>;
++    };
++
+     axi_fifo_mm_s_0: axi_fifo_mm_s@43c00000 {
+       compatible = "xlnx,axi-fifo-mm-s-4.1";
+       interrupt-names = "interrupt";
+       interrupt-parent = <&intc>;
+-      interrupts = <0 29 4>;
++      interrupts = <29>;
+       reg = <0x43c00000 0x10000>;
+       xlnx,use-rx-data = <0x0>;
+       xlnx,use-tx-data = <0x1>;
 -- 
-Kind regards,
+2.43.0
 
-Sakari Ailus
 
