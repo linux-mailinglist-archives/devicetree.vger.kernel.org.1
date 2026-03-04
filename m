@@ -1,179 +1,184 @@
-Return-Path: <devicetree+bounces-271158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271159-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uB0+CrVbqGmZtgAAu9opvQ
-	(envelope-from <devicetree+bounces-271158-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:20:05 +0100
+	id cPGsAINeqGmZtgAAu9opvQ
+	(envelope-from <devicetree+bounces-271159-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:32:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA60920416E
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:20:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F221E2044DC
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:32:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8847E300363D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 16:15:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E6233011C4D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 16:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9BE2351C05;
-	Wed,  4 Mar 2026 16:15:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D0E35E921;
+	Wed,  4 Mar 2026 16:16:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DkQaVkAT"
+	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="KvyMhbpy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011000.outbound.protection.outlook.com [52.101.70.0])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C589351C00
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 16:15:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772640903; cv=none; b=PNt7Hqcn2e3qTHVOBBOrcSmndzn/H9cVHvjZAB6q34oetXTZrkqQM1nscO2y0DssOaHi+U4/z/Bpfs5vdIlj37Fa2KGIFDO/hLnOxplMSt9W5D6LkrihrdHAmn6VMvgNoio9WcUn0dsJrfQF2eicLWUx0773dZB2Whs07pxjNQU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772640903; c=relaxed/simple;
-	bh=jwbDEATg8fW9vDaRDhRzDHXH7o9vAPHP/aATjZNU17s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E2lu1My0H5bVR4775il6KkxuotqMKOTzhPpnaZjye3mk1U8+SO2naDjhMK4m76YkYbjdkr0OF/7d/QTSx9CtOacDWfo/3bhy+nBlAfiT36mu+y9Mx4JnDaJsUltqZxnWl4t+6idHArDToCLTLWFaw0ILJrqjqL96HyJDHbSPKAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DkQaVkAT; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-439ad481518so608887f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 08:15:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772640901; x=1773245701; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=te21XJbMFTrGPZV/E8Xfa+RlFYp/4cGGtQTDWYMXpZ0=;
-        b=DkQaVkAT/r90BXfqvwqwNKmpWcaLeOG31JWL1M/jmsr3PHdR++GKGnP/fXoiI3s/cY
-         BEehehNkrNmAcLUeKxYWqcHe3wXfDoWN2VmM3MY6iemaaG6cwpb7/3XikFcME8NtNYGR
-         9Ws5LB1MqehvegXpmDSpmZ2rvug1frJOBp7FOQx3hA9BhAXGIPCtj+it+pqgpplGlIZL
-         VhE8EoYyriwEIsgRnUS66Z/YLW0LQnkyvOBSVx4DR/dRFsxKnL7Vxcu6y8+frV6cDCi+
-         d4lGoDdFkFkX3wxOk+9NmaX+ZBvgk1QF5bWaN9CMZJ96dSI+E7ArWpNhBlwdKiJHVgkm
-         C7BA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772640901; x=1773245701;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=te21XJbMFTrGPZV/E8Xfa+RlFYp/4cGGtQTDWYMXpZ0=;
-        b=pwrmyrA/KV4Vji0eWECoxumZJ28mqANc0RzLc5SJeTH48iy67rWbgMgBG4RnX3BiJX
-         B50ZBLxC61LMFBfqntctp8C/qvN4niT+J0BfZvUQ4IOpqaAXOYhJ3pbUzuXcT9cfb2EZ
-         AHEQA9xQk+XxxSghSg0j+5lpeOCPY8oBkOlk3ek/4sdXXezlq+I1+vMugt3BV+V7/inX
-         aYFrkkvTtjwvU7ZXqvmyglKh1XKvd1EUXVMUNRjOI8bL5Z6RSZPQZTxtdrY/fPWonyxG
-         dRZ9RoPsIfkVY8gZSju4VzpCgLlEl+xGJlKqBpGNECz4Ucqt6PaZ10cJ6I+2ycfscrjy
-         ifqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqGFaL7q8cYcWqeNCdAeFgr2FD3pC/Fcz0SRIb9WL8Mu+/ZIkHt397PqxJaMQbHY3ymKXu3LFZXRWF@vger.kernel.org
-X-Gm-Message-State: AOJu0YydtMcGKCUqj1yYyWCvR4CfDc80zqT/ijIQIpaYJ0II5vbr+FxX
-	bYXW9ZdeDifg5P+Kjf3DuHsebxk804dOIjprrwFHGBMsqemys8tSZ14c
-X-Gm-Gg: ATEYQzwB2DWGlgJCg8B3BZfls5oatg5hiapmZbWd90BmWPOhv2KqfkGAAWt+9b0RYKA
-	kH5De+a5bi4FmS8+nNcV+hYyGk63LbnqxuLJ0VkYqtMFnq5fLCkEO3otz7wqgah9En2Mg5qPu8b
-	jYCOG+vE97Vn2j43BTReYrSNJQU8nOfaJjiTxRPNipcbrLM1zioTK9WzpF0SaDKIQrWiccHPME2
-	b/NMRwyC0UbcVft91j9+1lwIJzgNZ01zZV/ogAKvZx6v+gwxnr/MkdFme/oCgih5ODbISqg0L9V
-	tVkHgmTzxQuz/zJb0Pg5XnPR8IN6BLxvM00gELF7Rxx5U8Gtkamt/C9YKNKYqdD3BQEw+Yae23h
-	NBm7fTeHQXgjapccuyI1tTfil3BLZYj7GVpwiKRBvkm2WNf9i+Com779zWfPpUkuOTxfAbzjucX
-	BIc9Zz3C0/1egPhc8=
-X-Received: by 2002:a05:600c:a07:b0:477:7bd8:8f2d with SMTP id 5b1f17b1804b1-4851988f040mr29274045e9.8.1772640900632;
-        Wed, 04 Mar 2026 08:15:00 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d00e:3600:3896:e6f1:29a3:961b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851881264fsm56343555e9.14.2026.03.04.08.14.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 08:15:00 -0800 (PST)
-Date: Wed, 4 Mar 2026 18:14:57 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-Cc: Conor Dooley <conor@kernel.org>, UNGLinuxDriver@microchip.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-Message-ID: <20260304161457.l6tkxix6sgube3qc@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
- <20260303-disperser-clone-512efa99f26c@spud>
- <65fd5f46f1f996dd5f4df2de2efb52c8fa3575b3.camel@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 220C235DA75;
+	Wed,  4 Mar 2026 16:16:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.0
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772641013; cv=fail; b=oMCpAFILT8hOcQh03WYrHl7hy/NvhOH7H+nB8crd3lStpR44c2aVopNEq2t9OmHZFV0GUliyinf9nxlQiDY28oRC1LksVeubtyYkdgzLC2spItHBs5BPxXSwPxo0ltndDtThZ3J+u40mrLjJkuZg1g754vatJydTQWTNmzA2xbY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772641013; c=relaxed/simple;
+	bh=my2TcbKi2tN/bQ1wSewYiM5CSbqYL6cCxjvCcsvFhqk=;
+	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ULVS1+N5hewP9F4UeLxZcVAIVSJPcNh5qE/bhvrKZt3ISXr5KguebnQbvcFdVZQlE0vSTAocP4xBwjH4JW6bAUyXXQ6Etmatj2kEKDJbcQsDvTht9wpPQ/91MtoVV37BUEygRiljyEaP3/K3jMLO+66MrDzEqJ8g6uSfsKncb/0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=KvyMhbpy; arc=fail smtp.client-ip=52.101.70.0
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tQNjkn4tjqNxMpHjEU68+DS44vfkFzKh1zfGTcNcRACJEI+dmZthd9P3S6irWhSovZlD2+jrFXliW1Ap/5TjEtS9lInAWqd98s9D5Bz658nwtJMBnZUMf3g0i8JRmvtpul2aWZvA3JssTxnDhGeBSHWyIRhGLzH8kWUVGr5sFSaxcT3vDJv9As4moNSmI0XjNPeC33mDquaAq0FPTxZwKh6faUJFPEnMUstS0KfjkRm6tBrjzRYO/RErNGoasert9RhdNrW4fzZJlF96IFZEQxk0f5tCUd4mNAvjN+ZdLuggyPlC0uEezIC+OMN12RpEBKyPf+0IlrxI2HJgnDP6aQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=my2TcbKi2tN/bQ1wSewYiM5CSbqYL6cCxjvCcsvFhqk=;
+ b=KaPeBtAwmwnyBQ+cdEORUssrF4Te8yvW03/MerzyHzipHzseF3W5mbBhqIhjNDuibs063XTSdIdIZf4IyhjL3pKVA1q8fdnHZEZyf1UNTpjLuLaznJYm/tWw6YCSMm6oS/tGfa0VKD2XSimH4nUraxNB5wQ4loCcPdD6EbIk9xubxAzkdiwY5dkWnfqT2f7wyFPgHNCQkPtzI98MnLuBIen8+uL1YHfEhRq+Kbxr26aELpbLThNW8/xCWD7kHIGSc5cL8K/287oT27hYHBetlxIigpgT68w2oxjfFVzUcygJK+8f7HSFylDhnqk6LS1fjPGDkFZFc8mVm9dgYZMJgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 195.60.68.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=axis.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=my2TcbKi2tN/bQ1wSewYiM5CSbqYL6cCxjvCcsvFhqk=;
+ b=KvyMhbpy6ARgWuzG/Cni793xb3V0kCAIbpeEhCDCwYvca6z63RXqvBp0Aw85qm8ISa5ajFyn6q24atJulHIqag9Br9mFpiGoCSVygfYDKpfe0Gz2W5BDYtD8fC7L5jzJakAs9Qz86O2CHc1bVtX4Jm0h6aBljLa2wMgb9ZvDSNU=
+Received: from DB7PR05CA0003.eurprd05.prod.outlook.com (2603:10a6:10:36::16)
+ by DB9PR02MB6905.eurprd02.prod.outlook.com (2603:10a6:10:1ff::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
+ 2026 16:16:47 +0000
+Received: from DU6PEPF00009526.eurprd02.prod.outlook.com
+ (2603:10a6:10:36:cafe::fc) by DB7PR05CA0003.outlook.office365.com
+ (2603:10a6:10:36::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.22 via Frontend Transport; Wed,
+ 4 Mar 2026 16:16:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
+ smtp.mailfrom=axis.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=axis.com;
+Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
+ 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=195.60.68.100; helo=mail.axis.com; pr=C
+Received: from mail.axis.com (195.60.68.100) by
+ DU6PEPF00009526.mail.protection.outlook.com (10.167.8.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 4 Mar 2026 16:16:47 +0000
+Received: from pc52311-2249 (10.4.0.13) by se-mail10w.axis.com (10.20.40.10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.39; Wed, 4 Mar
+ 2026 17:16:46 +0100
+From: Waqar Hameed <waqar.hameed@axis.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	<kernel@axis.com>, <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: power: supply: Add TI BQ25630 charger
+In-Reply-To: <20260302-removing-fidgeting-ea8909e3f407@spud> (Conor Dooley's
+	message of "Mon, 2 Mar 2026 17:47:41 +0000")
+References: <cover.1772201049.git.waqar.hameed@axis.com>
+	<65f55d19b4bcf8f07300df5922ba1605bb669138.1772201049.git.waqar.hameed@axis.com>
+	<20260227-percolate-armful-ac15f947b2ff@spud> <pnd8qcawdl8.a.out@axis.com>
+	<20260302-removing-fidgeting-ea8909e3f407@spud>
+User-Agent: a.out
+Date: Wed, 4 Mar 2026 17:16:46 +0100
+Message-ID: <pndldg7a7td.a.out@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <65fd5f46f1f996dd5f4df2de2efb52c8fa3575b3.camel@microchip.com>
-X-Rspamd-Queue-Id: BA60920416E
+Content-Type: text/plain
+X-ClientProxiedBy: se-mail11w.axis.com (10.20.40.11) To se-mail10w.axis.com
+ (10.20.40.10)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU6PEPF00009526:EE_|DB9PR02MB6905:EE_
+X-MS-Office365-Filtering-Correlation-Id: c2eb4c53-f110-423d-5886-08de7a096f74
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700016;
+X-Microsoft-Antispam-Message-Info:
+	C55jMfL+nJoDJbpd/KgxKwuXiXzmp/EhWgrF6x8QkauwDhQkw0YSwJ94af0s1vRLT6uShBcOHBSg2DjDhi3hY29cnKP3BIoeXYelVJ+JyLEmKKYOS2jQWrwLxa1BTUQ+N9qhgFiQssC1T+2FvrbnZujakkDoeOtQj/ZDddSkk36qXmYN7T01FAMgbN1TXQQXfl1f8CY/nJiv/xp/L9Ebj6hzHo+aftsxXVSZ/Kwz20AgDsReG5+LLVacPG/JyQNHYNo57AvebUBERoo/wymkVBhICnH5HCmjrbRxQx2rvTZ4ai24qVjSZ06jBZyeajPBaBj/D3BHKJYpwrBdp4sgB56bteiq6g+wgfdVpyy39C1xNK2RdQ85Ph/2gKXPQUIt6gLTohiH2rduL4OWWWleeb7ED5wa3U375iepPEJttaUvgSjcCncihuFSRJaMl2Xos7iC9IM+w5leQh2EEdO5UwmXemtWqlPN3eBwgA3jFivgTSZZYjHmVM1+aKY0vBeq5Ua/HNarRc4bWCp+K5wKamVQBbZPwLg/j8/md077oGkF/R8AMd8qRm5tSMmqiQkcuZweZ5A82Dp/ART0Hz7Ysz/vCjBeM3ssTwWVgR7UGYWUkTss3CTSfX9MVhJPv7VfeNetOp9HWjbvh3ueIC/6pRgX028uZqNDUGrDpPqXyR1xsSUMMAO79Q2p/v9DsyI/ku817b5vXjof4nY03bMBtqgPMZ+zq63qEmrlHqOLElV83rD5k/O7XGqmYGrxZD1Hr4w2SJekNlJSdbmkt01Jug==
+X-Forefront-Antispam-Report:
+	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	JNGuigdAJBJSZi2oi3Fwg18DX/yNDKasFZ/c0Rwg1sjDl8ew5wxUSvfEr5Tx55l5wCW8T/Xe18HRokR6sij6TneCwqxi0rWEerFZHFkOaAb4rneccOP/R+YHJUwjdXgus5Lm1GeLBakjlvRP4u1T9r4Vfew46rd52ggY30AkPe5WripK7WRWzM9ZIVIL5xJcj6nIm4DviWIKeHDme2H6T4itrZBkIowRlSujVYEGQ6AJv919hKXPkBOLumn4d2tEA7YEQ2PUfuI1IJMVg8vh5jtVo5XBR0QHC+tP26evB86F/ZVBkMRYsvLGS7XHCX84h9hgmJ1XvyNs8JoFC6FOznULleVarUzMorW8MgK+6Me7nu8m3NoI+T5GmW/wFBOExw3ZtIAfrEJZ8Eh8qoZfZtALoq4AGZh3ZtVTBuwMC/En2CwskZ3lW6cKezBSPBAQ
+X-OriginatorOrg: axis.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 16:16:47.5878
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2eb4c53-f110-423d-5886-08de7a096f74
+X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU6PEPF00009526.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB6905
+X-Rspamd-Queue-Id: F221E2044DC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+X-Spamd-Result: default: False [0.35 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	XM_UA_NO_VERSION(0.01)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271158-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271159-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[axis.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[waqar.hameed@axis.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 05:10:11PM +0100, Jens Emil Schulz Ostergaard wrote:
-> On Tue, 2026-03-03 at 18:56 +0000, Conor Dooley wrote:
-> > On Tue, Mar 03, 2026 at 01:22:28PM +0100, Jens Emil Schulz Østergaard wrote:
-> > > +examples:
-> > > +  - |
-> > > +    soc {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +      ethernet-switch@0 {
-> > > +        reg = <0>;
-> > 
-> > Also, this is an odd example, why are you at address 0 on a "soc" bus,
-> > which usually means that this device on an AXI/AHB bus, and 0 is very
-> > unusual for that. Obviously the example doesn't have to match the real
-> > user, but this stands out.
-> > I may have some follow up questions I think depending on your answer.
-> 
-> The intended way to bind this driver is via a parent MFD driver which sets
-> up the SPI register protocol, initiates regmaps and distributes them to child
-> devices (like this DSA driver).
-> 
-> Similar to mscc,vsc7512 in drivers/mfd/ocelot-spi.c.
-> 
-> This MFD would be the soc node. All child nodes perform register IO over
-> spi, using the regmaps requested from this parent so I think the addresses
-> on the bus are purely ornamental. Should I write the smallest register
-> address in all regions used by the DSA driver instead?
+On Mon, Mar 02, 2026 at 17:47 +0000 Conor Dooley <conor@kernel.org> wrote:
 
-They are not ornamental, they should be the same addresses you'd put if
-Linux had direct access to the SoC interconnect for MMIO, rather than to
-an SPI bridge to the SoC interconnect. Or at least I don't see why it
-wouldn't be that way.
+> On Mon, Mar 02, 2026 at 02:44:19PM +0100, Waqar Hameed wrote:
+
+[...]
+
+>> I'm guessing you mean that when extracting the example, the insertion of
+>> `/plugin/` to the `*.example.dts`-file will "falsify the phandle"?
+>
+> I'll be honest, I don't know exactly what the mechanism is that fakes
+> the phandles, but it means that any sort of generic device doesn't need
+> to be included in the example.
+
+Haha alright. I appreciate the honesty :)
+
+I'll stick to my explanation for now then, since it makes sense for me
+at least (someone otherwise please correct me).
+
+>
+>> There are some other examples in this folder that include this node. Not
+>> sure if it's worth the churn to fix those as well to help the next
+>> person?
+>
+> Probably isn't worth the churn /shrug
+
+Alright, let's leave it then.
 
