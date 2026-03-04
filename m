@@ -1,230 +1,290 @@
-Return-Path: <devicetree+bounces-270902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270903-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KEb7LOTop2mDlgAAu9opvQ
-	(envelope-from <devicetree+bounces-270902-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:10:12 +0100
+	id aMRrMPvpp2nelgAAu9opvQ
+	(envelope-from <devicetree+bounces-270903-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:14:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC3F1FC40F
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:10:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D3BD1FC578
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:14:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0EF1E3063829
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:09:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55A683040228
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3351F390CBE;
-	Wed,  4 Mar 2026 08:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E7F3914EB;
+	Wed,  4 Mar 2026 08:08:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KgMJc9/v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4lx/WGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D26390CA8
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 08:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6550438657B;
+	Wed,  4 Mar 2026 08:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772611720; cv=none; b=uuRNIU/mm8yF5v9rqQXnf0+CveCUgVEqlPpH1b3hie3CQDBG9N4MYO9SKIjDDZZqUDtmBO73joXGLbGnVBpZMdmx/6IhX6si2sJqbwV/mSN+SB78HeRviUWK5i1KqYLYaQLWlzm7RnsUwCDf51wCTcHcFHUrutpDgwoK9yPmzHs=
+	t=1772611727; cv=none; b=m1qBwq3/e0zRJCHoj9jutuXZmjy2d1qbsTV3MaciavcozSF2hYRvZ0lNtqW+celCTKuetwlS38DXd920gzI49zyNjqQH0PGJjOIuwlmflGRSqpNYvSI+MP+0/fuTPi1aC5kmY11h231cM7GpnAOktUTFnYDvOu3+Qas7bs6tthA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772611720; c=relaxed/simple;
-	bh=SCl11TbcKKgrDpz8AOKo3E9AzwfTwHh0/Z5vfzDPinw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D/ObAUCX8ECFr+zKXqicOF6eF/Jl9ur51odrWY3n+a2wpChP8NHXA04vetmlqLGGLLayTvz1lp1Se4GlHepA4WQKEXQvHUts8OG9d3owAVLlCtlyQqPVWaaU4ReaD792pWgJOpmIGpHZ/fxgIUzvP4ZWJBDHC+yXPGCl2E7ArA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KgMJc9/v; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-3598e7155bbso2002804a91.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 00:08:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772611715; x=1773216515; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6V4ZABAoBYAEDoOVQvmIQ76oRldfMwh5wzfjWSFa+/U=;
-        b=KgMJc9/v7e8TyF0l45KxWaYpiGQiHHdHaHh99F+sQOVf7pnj0jMqVkxoryAXv4vup4
-         XQJheuqy6Bxicnv+xPE75cY/aZ5VIUGTBYLsN1yQwwimsf0Pa6A4bFkAy5bPdTvpUoMo
-         qssc5eEPe6UlxisuAkkqhdbFA5RRP11tMk5dw6pFiyS+mOg4Dqxsaq9t7SXFgio+jYmX
-         qGbcWQ+qNAicdFeo9FE6D3S97FcwyfH2x2VRTAa+F/Kxooe3FWp4A9cp47WLmDPdoGLl
-         oPOxqY98YA42YhCUFlG6EDYiJBQTpHuwVjCs2A9vjNo9BeakWAoQ75r/m4a1BovurIJf
-         jDIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772611715; x=1773216515;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6V4ZABAoBYAEDoOVQvmIQ76oRldfMwh5wzfjWSFa+/U=;
-        b=bdUSe8txxaDQHuI3CvlnnVg3rOv5pR0lyI0fbnNeZxqPdAOsyijKd9ryY156mq4XQC
-         qByjVFJ5OYC/+Wjiv+7dEaIq2C12AbsTvW+opqhvUxaL2cTG5o15p51WnwMH/ZOiDA9d
-         uZoGkrffRejfXgrRx+Znjp0NZIZEHTKxnwlPrghsbIt36ZBEHrSTs941tLyCzWq5nIg0
-         6i3DEfnQzJp3EhDqcmmhfKcHi/XyLVH/uSpyY/3cdTDhbQ/PlMhc5lxLvCFU1tLmJLRE
-         tvFgsJQJUt5u3eF+6JwCr07qINwJeHY/z+KkpFluqYlQ7Vq1qmeWk6u+agVFVOVu/in3
-         vUQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXWYkFIVLu9OscHrcRNOLCYDG/T5J/V3bk8swYTTu6rrCZ4tpK+RbFtZal/bkFRWMRrpFu0HQxwyte5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNUQN0Rco9P7rrp9Y3soKFTUVHQnBorYLfPKcg1ZgbAjMfLAa7
-	RkjHIbyco/Kz37UldYL7d6ft3ruT18v6MQnJfveNt6QVI+OWvh8GXDc3
-X-Gm-Gg: ATEYQzyEs9oaO9R/ZpZJYArOeXKz7M4a6WvwAU16IFuB/reTdQY5P4qSJqiAoN2WirM
-	trZuRoSJ8+7ZYmkCJBf1vE1b6fzODOF5xzxnB7GtfodxOalPgHAkftwxqfB7wPkZlaLgL5gi4qU
-	1Yu6PGUqFvUB6VWzAWN3mg3o5JKxiDCC0wIOxHxL4Bnmw3D2HhZP49rdiSyASnkUZJvzzGQ60z/
-	UkD9wp/v1l24LXGCTWnqDvO5hqGa+kxtNEwUnSt4yokKrDM03bv+GiC01M1ImRm2zrF0sdeGwxs
-	g3m4/LG1V8VPOnwbQ4lz6kvc4S8Zvd5LmH1466sCYv+fjQ7Q8cYUymJLNL5ZV8Q7DJAo719g7s/
-	YXfmOEjrOWR6gcgjNSnbF5HGYJ8jqaJNrthsP0HfqtynniSLPvuUI9LA0CbRBkrrhH2mHhIBlSz
-	MP9hz+LjmaCelbhnd9qQpAlXXp46iprxlFosjTPqc=
-X-Received: by 2002:a17:90b:2fc8:b0:359:8e1c:542 with SMTP id 98e67ed59e1d1-359a6a3c1ddmr1261053a91.18.1772611715477;
-        Wed, 04 Mar 2026 00:08:35 -0800 (PST)
-Received: from DESKTOP-TIT0J8O.localdomain ([49.47.198.15])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3599c3acea3sm4504552a91.16.2026.03.04.00.08.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 00:08:35 -0800 (PST)
-Date: Wed, 4 Mar 2026 12:08:25 +0400
-From: Ahmed Naseef <naseefkm@gmail.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Caleb James DeLisle <cjd@cjdns.fr>, linux-mips@vger.kernel.org,
-	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, tsbogend@alpha.franken.de,
-	ryder.lee@mediatek.com, jianjun.wang@mediatek.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	bhelgaas@google.com, vkoul@kernel.org, neil.armstrong@linaro.org,
-	p.zabel@pengutronix.de, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, nbd@nbd.name,
-	ansuelsmth@gmail.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 7/8] PCI: Skip bridge window reads when window is not
- supported
-Message-ID: <aafoedMHhKNuEwFE@DESKTOP-TIT0J8O.localdomain>
-References: <20260303190948.694783-8-cjd@cjdns.fr>
- <20260303213723.GA4075286@bhelgaas>
+	s=arc-20240116; t=1772611727; c=relaxed/simple;
+	bh=Q9eQAaHfbimh/OgPN9DKz1Eoxd8bQF170nC43iXD4Ak=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mS2yB8tG3+U0Is90QmPSyd7IfYDc2GTgQOo3WZF/VoUIvREbOc8lxOxM/PkbXk9g9ZNXlRlF7xGh3h25jKVZuTO6hxyJycgQyEgXKjnTHygUSLtdBKWsT2YG1hNADwnAnKciy/U60JjbNbQtR82dyd9SL8WpJe754kZSZAqimQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4lx/WGZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD3D2C2BCAF;
+	Wed,  4 Mar 2026 08:08:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772611726;
+	bh=Q9eQAaHfbimh/OgPN9DKz1Eoxd8bQF170nC43iXD4Ak=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=D4lx/WGZ+r/QOXj+VJ6sJUeR1KIBHkZnCFhx6OdffahLfLmGGMlFQUOk/xKaOKpKo
+	 Hrv11Dwz5dqeYQqvWJk+0rSxKSPj2B8ClLCxrvhi48vTNABTBw0iBDuwDsIR5Cfd1l
+	 EywjgJTI1FYC4G6EVySgR4N5jZrcKER8JRnaHgSDakQilL3lV8XLPGlSi8CsUnLtl4
+	 oRLswbtkPp/zEyW0f7q6aaE46waqONt/Klo0WxFCKLPr2YwDIQ4VSslpsteenjj0Tt
+	 xdtuPE+iPcX2ZUmaEjAyaXnJL7r8HjWLN92Joo8JRCEYSTPuwbyXQ5T9VrSZDoerjZ
+	 xix3ylhpOkA3Q==
+Message-ID: <06f7ad53-c650-4498-be3b-5ef5719c3d8b@kernel.org>
+Date: Wed, 4 Mar 2026 09:08:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260303213723.GA4075286@bhelgaas>
-X-Rspamd-Queue-Id: 9CC3F1FC40F
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add regulators
+ for the USB
+To: pritam.sutar@samsung.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alim.akhtar@samsung.com
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rosa.pila@samsung.com, dev.tailor@samsung.com, faraz.ata@samsung.com,
+ muhammed.ali@samsung.com, selvarasu.g@samsung.com
+References: <20260122130721.205664-1-pritam.sutar@samsung.com>
+ <CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
+ <20260122130721.205664-3-pritam.sutar@samsung.com>
+ <352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
+ <000001dc9c13$ea305520$be90ff60$@samsung.com>
+ <2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
+ <019001dca0b8$f709e640$e51db2c0$@samsung.com>
+ <a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
+ <000001dcabab$089a75d0$19cf6170$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <000001dcabab$089a75d0$19cf6170$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 1D3BD1FC578
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270902-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[cjdns.fr,vger.kernel.org,baylibre.com,kernel.org,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,gmail.com,collabora.com,nbd.name,lists.infradead.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270903-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TO_DN_NONE(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[naseefkm@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,DESKTOP-TIT0J8O.localdomain:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infradead.org:email,samsung.com:email]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 03:37:23PM -0600, Bjorn Helgaas wrote:
-> On Tue, Mar 03, 2026 at 07:09:47PM +0000, Caleb James DeLisle wrote:
-> > pci_read_bridge_io() and pci_read_bridge_mmio_pref() read bridge window
-> > registers unconditionally. If the registers are hardwired to zero
-> > (not implemented), both base and limit will be 0. Since (0 <= 0) is
-> > true, a bogus window [mem 0x00000000-0x000fffff] or [io 0x0000-0x0fff]
-> > gets created.
-> > 
-> > pci_read_bridge_windows() already detects unsupported windows by
-> > testing register writability and sets io_window/pref_window flags
-> > accordingly. Check these flags at the start of pci_read_bridge_io()
-> > and pci_read_bridge_mmio_pref() to skip reading registers when the
-> > window is not supported.
+On 04/03/2026 08:46, pritam.sutar@samsung.com wrote:
+> Hi Krzysztof,
 > 
-> BTW, I'm still interested in the details of how we got here.  It
-> shouldn't be too unusual to have a bridge without an I/O window or
-> maybe even without a prefetchable (64-bit) memory window.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Thursday, February 19, 2026 1:24 AM
+>> To: pritam.sutar@samsung.com; robh@kernel.org; krzk+dt@kernel.org;
+>> conor+dt@kernel.org; alim.akhtar@samsung.com
+>> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> rosa.pila@samsung.com; dev.tailor@samsung.com;
+>> faraz.ata@samsung.com; muhammed.ali@samsung.com;
+>> selvarasu.g@samsung.com
+>> Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add
+>> regulators for the USB
+>>
+>> On 18/02/2026 10:28, pritam.sutar@samsung.com wrote:
+>>>>>>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+>>>>>>
+>>>>>> Please use name for all fixed regulators which matches current
+>>>>>> format
+>>>>>> recommendation: 'regulator-[0-9]v[0-9]'
+>>>>>>
+>>>>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.
+>>>>>> gi
+>>>>>> t/tree/
+>>>>>> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+>>>>>>
+>>>>>> None of the regulators are called like you wrote. Really NONE.
+>>>>>>
+>>>>>
+>>>>> Thank you for the references. Will bring changes for regulator's
+>>>>> name and labels as
+>>>>>
+>>>>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+>>>>> +       reg_usbdrd31_dwc3_vbus: regulator-1 {
+>>>>
+>>>> Did you read the binding? That's not what I asked.
+>>>>
+>>>
+>>> Yes.
+>>> Sorry for misinterpreting above comment. Is it expected as below?
+>>>
+>>> This is based on our understanding by referring binding and other vendor
+>> dts.
+>>>
+>>> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
+>>> @@ -59,7 +59,7 @@ dummy_regulator: regulator-0 {
+>>>                  regulator-name = "dummy_regulator";
+>>>         };
+>>>
+>>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
+>>> +       reg_usb_vbus0: regulator-5v0-vbus0 {
+>>
+>> Yes, that's better.
 > 
-Hi Bjorn,
+> Thank you for the confirmation.
+> 
+>>
+>> Only under the assumption these are actually dedicated single-enable-pin
+>> regulators, not pins going to the PMIC.
+>>
+> 
+> Yes. this is dedicated single-enable-pin.
+> 
+>>>                compatible = "regulator-fixed";
+>>>                regulator-name = "usbdrd31_dwc3-vbus";
+>>>                regulator-min-microvolt = <5000000>; @@ -75,7 +75,7 @@
+>>> usb_phy0: usb-phy0 {
+>>>                 vbus-supply = <&usbdrd31_dwc3_vbus>;
+>>>         };
+>>>
+>>
+>> ...
+>>
+>>>>>>
+>>>>>> That's a bit too much of dummies. This is heavily incomplete. You
+>>>>>> need to bring back the PMIC first.
+>>>>>>
+>>>>>
+>>>>> Presently, relying on USB LDOs being enabled by the bootloader in
+>>>>> this automotive SoC. However, we understand the concern and it is
+>>>>> added in case if anyone wants to use implemented PMIC in future. For
+>>>>> now, would like to proceed with the dummy regulators to enable the
+>>>>> required USB
+>>>> features.
+>>>>
+>>>> And I don't see the point of these dummies. Solves nothing.
+>>>>
+>>>
+>>> Are you expecting details as mentioned in above section in commit
+>> message?
+>>> However, we have mentioned these details in cover letter.
+>>
+>> No, I am expecting proper PMIC to be represented here. One dummy
+>> regulator during the fast development phase is okay. Dummy added by
+>> community contributors without resources and schematics would also fly.
+>>
+>> But Samsung, with all the resources, schematics doing development since
+>> 2023 and still adding 20 dummies to every device? Nope, no, sorry.
+>>
+>> Please start doing this properly. Look how entire new SoC was upstreamed
+>> by Linaro:
+>> https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-
+>> db9d0507ffd3@linaro.org/
+>>
+>> Or something newer by Qualcomm:
+>> https://lore.kernel.org/linux-arm-msm/?q=s%3Aglymur
+>>
+> 
+> Appreciated for the references.
+> 
+> As you might know, the regulator control and power‑management architecture 
+> has changed in recent Exynos SoCs. It is now controlled by the ACPM/APM core, and 
+> the PMIC is interfaced over SPMI (instead of the legacy I2C interface). I am checking 
+> internally how to implement this, and it may take a bit longer to have the full recipe 
+> ready to add an actual regulator.
 
-I'm fairly new to the PCI subsystem, so please correct me if
-any of my understanding below is wrong.
+I did not say anything odd about the process. You should have done
+ACPM/APM/SPMI much earlier, because PMIC is a necessary early step in
+upstreaming.
 
-Regarding the I/O window check: I only hit the issue with the
-prefetchable window. The I/O window check was added per your
-suggestion in our earlier discussion, since the same logic
-applies. Neither downstream device (MT7603, MT7663) has I/O
-BARs, so I haven't been able to test that path.
+Your explanation feels like you are surprised.
 
-The EN7528 SoC's PCIe bridge does not implement the optional
-prefetchable memory window , the registers are hardwired to
-zero. The downstream device (MT7663 WiFi) has 64-bit
-prefetchable BARs.
+> 
+> USB is one of the critical IP blocks that needs be enabled to allow the rest of the 
+> team’s workflow over USB (e.g., enabling automation via USB for testing, etc.).
 
-The problem is that pci_read_bridge_bases() reads these
-registers without checking pref_window. With both base and
-limit hardwired to zero, base(0) <= limit(0) evaluates true,
-creating a bogus [mem 0x00000000-0x000fffff pref] window.
-This makes the allocator believe the bridge has a prefetch
-window and route the prefetchable BARs through it. But since
-the hardware can't actually forward through this non-existent
-window, the device becomes unreachable.
+PMIC is before USB...
 
-This patch skips the register read when pref_window is not
-set, so no bogus resource is created, and the allocator
-correctly falls back to the non-prefetchable MMIO window.
+> 
+> If these changes can be accommodated, it would be great. In the meantime, 
+> I will continue working internally to see how we can push the missing pieces upstream.
 
-As to why this hasn't surfaced before , I'm not sure. It may
-depend on whether pci_read_bridge_bases() gets called on a
-given platform and whether the downstream devices have
-prefetchable BARs. But I don't have enough experience with
-other platforms to say for certain.
+Sorry, I am not taking ~22 phandles to a dummy regulator.
 
-Reagrds,
-Ahmed Naseef
-
-> > Suggested-by: Bjorn Helgaas <helgaas@kernel.org>
-> > Signed-off-by: Ahmed Naseef <naseefkm@gmail.com>
-> > Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
-> > ---
-> >  drivers/pci/probe.c | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> > index bccc7a4bdd79..4eacb741b4ec 100644
-> > --- a/drivers/pci/probe.c
-> > +++ b/drivers/pci/probe.c
-> > @@ -395,6 +395,9 @@ static void pci_read_bridge_io(struct pci_dev *dev, struct resource *res,
-> >  	unsigned long io_mask, io_granularity, base, limit;
-> >  	struct pci_bus_region region;
-> >  
-> > +	if (!dev->io_window)
-> > +		return;
-> > +
-> >  	io_mask = PCI_IO_RANGE_MASK;
-> >  	io_granularity = 0x1000;
-> >  	if (dev->io_window_1k) {
-> > @@ -465,6 +468,9 @@ static void pci_read_bridge_mmio_pref(struct pci_dev *dev, struct resource *res,
-> >  	pci_bus_addr_t base, limit;
-> >  	struct pci_bus_region region;
-> >  
-> > +	if (!dev->pref_window)
-> > +		return;
-> > +
-> >  	pci_read_config_word(dev, PCI_PREF_MEMORY_BASE, &mem_base_lo);
-> >  	pci_read_config_word(dev, PCI_PREF_MEMORY_LIMIT, &mem_limit_lo);
-> >  	base64 = (mem_base_lo & PCI_PREF_RANGE_MASK) << 16;
-> > -- 
-> > 2.39.5
-> > 
+Best regards,
+Krzysztof
 
