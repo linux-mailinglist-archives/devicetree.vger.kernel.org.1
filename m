@@ -1,158 +1,164 @@
-Return-Path: <devicetree+bounces-270979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270976-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IDhQFlkSqGm/ngAAu9opvQ
-	(envelope-from <devicetree+bounces-270979-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:07:05 +0100
+	id 2PhZDBISqGm/ngAAu9opvQ
+	(envelope-from <devicetree+bounces-270976-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:05:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D991FEACC
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:07:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4AF61FEA89
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:05:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 07BBA3108362
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 11:05:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E5D483047505
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 11:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062D73ACA77;
-	Wed,  4 Mar 2026 11:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB10039FCAC;
+	Wed,  4 Mar 2026 11:05:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iZTR737A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P9UVVy9/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ECD0371CF1;
-	Wed,  4 Mar 2026 11:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9361E396593;
+	Wed,  4 Mar 2026 11:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772622333; cv=none; b=TW7iMzfyZ1COz+ghwCFjBEMXnpLrc3PWUJgB9r4ODG53HWLXk1qt06Oywoguv7FgOOwZqCKgxcDjZWzE12K/vsp5kMkKTZuhPY1vmnraAPdLbc8vPiYkFGspwtoBYK+UPS1TAYO7spLYh7CGiAkI5nC2SpGSJ3ioEXHwhlKW6Po=
+	t=1772622332; cv=none; b=qOr1Kp+oogiVjcFRgs6+cRo2kuvR5iWBNYv7h8GaHPe9fYtW4LUyVC4Id4my8oZZV3FwRF6YKFU174fFVhns6FL/6ik4QWNjzeVEmPu+e7yQNq2MTLVB3i3SBkWiIfvUFrJwz32rk8dTrAblXU+A1Rj7MBwRufzuaujnCjtn5Ds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772622333; c=relaxed/simple;
-	bh=/Pp8xd0MR53jkbmdo8SmhG/HDAzp5ECtWSf22t4Ir9Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h7dtzVm8lLlraooazlgiokiAsy8V4A0NDXiltUlhresfTKXiWFepacYkVXBUKGjTHkMzdSNIcYeu03j+btw5z6Fr+eJ6eIDhG0lhbjkAsC8CbME3nN+gOYuxazXehkWDKwe3COo6KpkovE3cpLDq2K+tqrS0TlGCuWGoGz90zrc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iZTR737A; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772622331; x=1804158331;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/Pp8xd0MR53jkbmdo8SmhG/HDAzp5ECtWSf22t4Ir9Q=;
-  b=iZTR737AbBow32u27dy4kK+89mXzFd1UukxzyPnK9mG2NKUKW0QReCZx
-   pZ4w8fS32Tc0NNB4JEhEKUT9brjAY5sAU6ayxGscDj6oJ3xD0jfMhYDTq
-   uFNTFQgXTEx1MQMSXyZvd2KvbbnTdgFPXsZzmIJZvUSppxH5vIz0/Notp
-   PkymIdIO2BuFCWU7xPX7wTk8IzatJKgtgZRSRVIMx9c2qeVIfnOpSt7z5
-   gdkBE5gmim3PfRGFNPuFDEhE2DJ8oCrXd9kln2JS7eOWFZ59T0Td0AJde
-   k2vxB3VKAoiz1gGgRU6boTHd6iMcTzPSgphEyFM9rvtPpooo58rABhr3B
-   w==;
-X-CSE-ConnectionGUID: IePeBvWLSsSXFK1VNhNzdg==
-X-CSE-MsgGUID: otAfXvRZSJmkpTF9l7Ko2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="76281171"
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; 
-   d="scan'208";a="76281171"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 03:05:30 -0800
-X-CSE-ConnectionGUID: ChR8CHo2Rjma9c6r6eCz2w==
-X-CSE-MsgGUID: kQr/68s/S6W37euO0DGe1A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; 
-   d="scan'208";a="216624885"
-Received: from igk-lkp-server01.igk.intel.com (HELO 9958d990ccf2) ([10.211.93.152])
-  by fmviesa008.fm.intel.com with ESMTP; 04 Mar 2026 03:05:27 -0800
-Received: from kbuild by 9958d990ccf2 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vxk2f-000000001fp-3THD;
-	Wed, 04 Mar 2026 11:05:25 +0000
-Date: Wed, 4 Mar 2026 12:05:00 +0100
-From: kernel test robot <lkp@intel.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
-	linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Subject: Re: [PATCH v6 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-Message-ID: <202603041109.HFnPWnj8-lkp@intel.com>
-References: <20260303-ltc4283-support-v6-2-efe11502fad2@analog.com>
+	s=arc-20240116; t=1772622332; c=relaxed/simple;
+	bh=rappOU6haODzrmo9ldSIUDJg7935zH1v7n2L238WwX8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pE3tL2R5y2GaOxAGBA7qDAcuPl5XHC3OZgB0Maa1LNdEXsstXWGXWKCI0IUdoFTmX+cR+OwEWXdoVCMJlcZ1lsRmEZvOVeRMNlYe3U6ts3V7UQTedj6gcVTDltEBlb+F7VofRWnD1nFj8ivXM9izrXworHhHflozFm/V6tVuGes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P9UVVy9/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 39F92C19423;
+	Wed,  4 Mar 2026 11:05:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772622332;
+	bh=rappOU6haODzrmo9ldSIUDJg7935zH1v7n2L238WwX8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=P9UVVy9//4YN1Rju/uX3WQmodPMvwy8xwizNCocsDJc+02uvLXxFTis61/9MCQ6FC
+	 8KhVVPxVgN7SG9nh8RDhNsuulzO8JfP1sQ8BQsgNywDj6DP76mvM41pVQzjEAo94Uu
+	 ObMODv1RsTyoNjCmB8t+MiFtzSLCqdbUkms2dSVDyF/wQs5IRsi6JjIoWB40MYM3mP
+	 IB+zrBZtiEc8XZOPDe2+namWh7i07us3JV4VrDV8WqR/rd3PxZfuxOrEQbmVJJzH4l
+	 fwGXurY6Uu8DOcgZRtmEfMwUE0W9fX8TQszOo4cSrHxJUxTP+mjkDLzyY7Th/8I12/
+	 lZ0Z3SX8bMvwg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2E8F8EB7EB8;
+	Wed,  4 Mar 2026 11:05:32 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v4 0/4] Rework BPI-R2-Pro PCIe clock topology
+Date: Wed, 04 Mar 2026 12:05:26 +0100
+Message-Id: <20260304-rk3568-bri-r2-pro-fix-pcie-v4-0-37abd7ba29d0@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260303-ltc4283-support-v6-2-efe11502fad2@analog.com>
-X-Rspamd-Queue-Id: D2D991FEACC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPcRqGkC/43NwQ6CMAzG8VcxO1vTdRTQk+9hPGxsaGMiZBCCE
+ t7dqQf1Qjz+vya/TqoLUUKndqtJxTBIJ801RbZeqepsr6cA4lMrQsqRiCBeDOcluCgQCdrYQC0
+ jtJUEMMwOCb1HTyoBbQzp9sIPx9Rn6fom3l6/Bv1c36xBvcQOGjS4bfBGly6zRbGXUfpNdVdPd
+ KBvyCxCBAiY5TkHZs+2/IXM/5BJkK3ZMmHh0OoPNM/zA5Rx59tUAQAA
+X-Change-ID: 20260222-rk3568-bri-r2-pro-fix-pcie-355b020dd0d2
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Frank Wunderlich <frank-w@public-files.de>
+Cc: Martin Filla <freebsd@sysctl.cz>, 
+ Charalampos Mitrodimas <charmitro@posteo.net>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1501; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=rappOU6haODzrmo9ldSIUDJg7935zH1v7n2L238WwX8=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBpqBH5QVhOP27LnMiKOOFlu0rfrwVolxABEt7dW
+ rPVhLK3scuJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaagR+QAKCRBgAj/E00kg
+ cujPD/0T4cguv77mntr2cU2BgHwJ0LcMPebStYmJTq6Ik7/c5+GAK/s8VhkqnKNzdzbjUpi7hrg
+ O7nxijvj6U5NDJS9uiRTi9570RZFDs8pZDenp/IPKi5WR/GuaslR6Xnbqo8tyt2g2S10rXQaWuJ
+ jgWWbr5pc3KZ7aXNNNMBQ8C8GpEj+9VplgNe0WhsDVJhhq6wVZrZsu++DNYpVDEvJ64O5L2vcG/
+ Yt30ScMWu6s5mLmYs+CYDFAMsTrrf1P+GqJ7Y/boFpckV5Jg4IW8M68uUbZMqYQxyy1MjES8EH7
+ BVviXGVMKG2nPJJYERRIXZTIW1fvMkLTEGk934BsHPGxqOBHKf7FkjH/Jo3jHhBWPckEjWdL0MK
+ Of+84WHs6SfTh4JqBwBCzL60pYiOahlVjiyoUq8zb3CGLsriWVz/lSY6af+or2aCmLLuF3cYqOn
+ m1DWX8cN7aqwDjGQB7JBShBDGm7Tyk4FRr2WqPOWtNt40VXoQlCcBK7e7u3N5Uc5B0IPmR5X7c3
+ bvvPPZa6XSq1W+wWlr1qzPx5gMvkypnN27jWc1mMLPTxkk1y5X8tM1Tbly8lUsm/zVrUtQKZrfU
+ rn5M99P8fjNOGhI/PyF9H2VNF8VaHswSAXfkoz5vlyLyGWxjxeQKw+O113kDLClPxY510e4gk3l
+ GUKSMAtb06LD/RQ==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
+X-Rspamd-Queue-Id: C4AF61FEA89
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270979-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270976-lists,devicetree=lfdr.de,david.ixit.cz];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,sntech.de,public-files.de];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,nuno.sa.analog.com,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,01.org:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[david@ixit.cz];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ixit.cz:replyto,ixit.cz:email,ixit.cz:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Nuno,
+Signed-off-by: David Heidelberg <david@ixit.cz>
+---
+Changes in v4:
+- Extend rk3568 pipe clock introduction to whole rk356x. (Shawn)
+- typos (Charalampos)
+- Link to v3: https://lore.kernel.org/r/20260303-rk3568-bri-r2-pro-fix-pcie-v3-0-af5a5207b0a1@ixit.cz
 
-kernel test robot noticed the following build warnings:
+Changes in v3:
+- Added commit extending the clock list with pipe clock for rk3568.
+- Updated the clock list in BPI-R2-Pro dts. (Charalampos)
+- Link to v2: https://lore.kernel.org/r/20260303-rk3568-bri-r2-pro-fix-pcie-v2-0-04665e55d5a8@ixit.cz
 
-[auto build test WARNING on 78558965440b27814592ec82d8f3668395953b1b]
+Changes in v2:
+- Added patches for solving the topology issues and on top of these
+  original patch. (Heiko)
+- Link to v1: https://lore.kernel.org/r/20260301-rk3568-bri-r2-pro-fix-pcie-v1-1-b9ed318b4a77@ixit.cz
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-S-via-B4-Relay/dt-bindings-hwmon-Document-the-LTC4283-Swap-Controller/20260304-010255
-base:   78558965440b27814592ec82d8f3668395953b1b
-patch link:    https://lore.kernel.org/r/20260303-ltc4283-support-v6-2-efe11502fad2%40analog.com
-patch subject: [PATCH v6 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap Controller
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-docutils: docutils (Docutils 0.21.2, Python 3.13.5, on linux)
-reproduce: (https://download.01.org/0day-ci/archive/20260304/202603041109.HFnPWnj8-lkp@intel.com/reproduce)
+---
+David Heidelberg (4):
+      arm64: dts: rockchip: assign pipe clock to rk356x PCIe lanes
+      arm64: dts: rockchip: Introduce the reference PCIe clk generator for BPI-R2-Pro
+      arm64: dts: rockchip: Use reference PCIe clock generator for BPI-R2-Pro
+      arm64: dts: rockchip: Define PCIe clock pinctrl for BPI-R2-Pro
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603041109.HFnPWnj8-lkp@intel.com/
+ arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 59 +++++++++++++++++-----
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi           | 12 +++--
+ arch/arm64/boot/dts/rockchip/rk356x-base.dtsi      |  6 ++-
+ 3 files changed, 57 insertions(+), 20 deletions(-)
+---
+base-commit: c025f6cf4209e1542ec2afebe49f42bbaf1a5c7b
+change-id: 20260222-rk3568-bri-r2-pro-fix-pcie-355b020dd0d2
 
-All warnings (new ones prefixed by >>):
-
-   =======================         ========================================== [docutils]
->> Documentation/hwmon/ltc4283.rst:258: WARNING: Blank line required after table. [docutils]
-   Documentation/mm/memfd_preservation:7: ./mm/memfd_luo.c:13: ERROR: Unexpected section title.
-
-
-vim +258 Documentation/hwmon/ltc4283.rst
-
-   256	
-   257	=======================		==========================================
- > 258	power1_failed_fault_log		Set to 1 by a power1 fault occurring.
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+David Heidelberg <david@ixit.cz>
+
+
 
