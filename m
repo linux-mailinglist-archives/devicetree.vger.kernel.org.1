@@ -1,244 +1,196 @@
-Return-Path: <devicetree+bounces-270849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270850-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mHyZOJaqp2lejAAAu9opvQ
-	(envelope-from <devicetree+bounces-270849-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 04:44:22 +0100
+	id cCe/Oveqp2lejAAAu9opvQ
+	(envelope-from <devicetree+bounces-270850-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 04:45:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE1741FA7C0
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 04:44:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 992C01FA7F8
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 04:45:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AD611301BF88
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 03:44:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 577FF30902DC
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 03:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BB78377559;
-	Wed,  4 Mar 2026 03:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCD81377576;
+	Wed,  4 Mar 2026 03:45:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UbmR68Fk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E7nIza/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293DB376BD6
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 03:44:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772595853; cv=none; b=LhvNq/9ye+rhldGuLGqgUgJkEc2lcR7SjWmOp0eGQm1dX96vJrzneQWlPJ//CVLIDz6xkQa5L+PH+UcVnx/CxLRbd2vL1XBvkf/mptwiN0KQ2Nvb93vCNWYDYlYlaKVUIfhqMSR548/MhcuEtutaBCwLp4Sx151Di5AYfnMqHiE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772595853; c=relaxed/simple;
-	bh=V3nE+XT6gJM1djPOVmmoXLkSIGNlRHxcehnXAsYeJSw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cfVBAp+bvslhlURpIHAqNCo7noD/o0ReURLeY/WoVOj3Z4Qjb7cTKegLYypBuNRl/2Cn/37aeZs6rN4U6/fvReKUcjfgY8gvC6vqRdWDSO4q47KrTo3HyqTsr8Xee1pi2XFAD5qd/T6neCk5WNYFgi/6tSu8MTG1p6wBNNSr68U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UbmR68Fk; arc=none smtp.client-ip=209.85.160.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8446377034
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 03:45:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.42
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772595952; cv=pass; b=s5loGm742D9ELPAz34fvAKkL6nO0P1tBTZJjI/2VQ6oivWjjTEtzBJiAIg5fRtcbYzymftPQa5XRRBjFeDynl1VNPE5cPsczh2LmYU0yxtIxBUVZIABqTvyHthymYCie+xuNzHEHtLp+F+SlKOuckFiCdXWIKEC0x7CiuVsFa4A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772595952; c=relaxed/simple;
+	bh=69P8goYDO/b/sn65ZnV8O0kNHlTnh70b1PMYtrnR1Cc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TpiXc1ZTbQbC6M+9PhpvB4SfKpDEkTfaz1pGMebJiNaco/TNGoxqSG7sO03LI8v44fizXyVW0aXJxPUg0LTi6AFbRNX5alym96RubiI/ck9OUKNOzFSA/wrwCVWRrRSVBHTgqhNdkOFNk+SvMZ3X9YH0NHLJOnuLteoHwTqW97M=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E7nIza/V; arc=pass smtp.client-ip=209.85.221.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-506c02ec1b3so73532981cf.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 19:44:12 -0800 (PST)
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-439b2965d4bso2881845f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 19:45:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772595949; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ae+c2u1aG9rVUVk5ga7tMDxWzA5vGlr6FBwvP/7AD5EukgwbpTr+wsDf59CWlyiVyg
+         J8HIGAG3GT/gjflzJI2G7zUtioEg6UmjlEaPtTlIsje+EaKfEFfOeeqRH/Afk0z2rwGy
+         AZBQZhSCX+FvjUi8iOWqP/p3jhzE43GnQEPUPd01kUfaj8DnZ2K4nydG6ST/ZVvgPZ1S
+         G/cBhr+CYhFgjobKDXG5rPWcMVLftuLW/dOE9S9HKyWcaGoYujXHG5uw+70YxIll9X+3
+         8rvdPCKZYhe5lVh65BTRjWDL/ibzPbVETjK9XvpYjc+tUXZ6DgFxPFOuOixZ88eLgFUk
+         mqeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=0ck0SxwPDcv+Zqhqz8cZVKiShWiiww33rNFdcafCJLs=;
+        fh=/C6ohC3nDOis4EmDVe0sOcevwl2EZzBy0LqstmaC3mc=;
+        b=I6GGeAxafRXi6kbXtFMrqLFCY/mTmK+IXAim7SjtlBQ5eo2X1rn8tuuUpyf1x8dHPD
+         Y4kEZGg/V5e9rwp2Uq+ue1YYz6dnF/uxot7l/AwwdHET7th6rUrDnN1+jAaj13QXtWb3
+         bKSgP0E+VzVjPYk3iOP+ZTrRXx+R5MM/O3BHu1EEXNhhF8NZHL3YSasK1XDIG1DGJars
+         Lgkh0dwNuX2fnoKrm83N781GOApBYQIVdpEF374a6K0IhJXuaJMl9AzxBMqB/mZOASXp
+         AyJBoxSq2RQ2TLr6oPCvuXAVldTS1QB02A35YObSw4Scy4286uxwvAI57OvamSXrd938
+         +WbQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772595851; x=1773200651; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZmZUdiZZg0fCj/2i+g2j9xmvk9n9CjWeVFiVPCHQNYY=;
-        b=UbmR68FkK7IIj+x9hLIlgrrZ26cZFQyULJysCgnfFl7nzbmOrpNa7nEAiH4y+lmQwa
-         Cs1TKw5xXy/xEoSVWt83LWndJBOZoK1FVw2i8AXWRh8h6jxtGKBl5U2ieSgqyvPjUsmS
-         tGKtGzN/TGhCXLfuvV9kX9a0j25u7HSCnMiwavyHG1Vy/6TkETTrrNq5vSc7kB2cYm2q
-         gtR6c2vbgM+KxK1KNfR/sI2emqIl4v6i+RvLeZwEwFBv6TTQPuY198t2bgV3QDnXPevK
-         gCe67X4z1OAIy+jWyPCqaemd6ZmEWXHgEicSU6RHLKRPmvGPsLi/HauC2oVe6yzqwCKn
-         rM7A==
+        d=gmail.com; s=20230601; t=1772595949; x=1773200749; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0ck0SxwPDcv+Zqhqz8cZVKiShWiiww33rNFdcafCJLs=;
+        b=E7nIza/VHff0aegEAWDh5ynv/uU5oaH3iEHO+LbHQyUDrSaFENI3U4BjNMVeMBgRgs
+         NAtLGYSfRISGiwAagtSdbz/0TD5+krJdsSVmSMDOKigCWBeBJVsjpF/bnjWOO2n/gKg7
+         YxerJ4Uwluifv4MQqKS7DfUVfPi7nMImQNzM1LTruB+xzoLaEPrYKcEQ3BsK+VKXaBlJ
+         5UyW0z5/W4/k5dksGnFDBI7iIz0onRgjcnj98gdrxSroo7yx79n9vIibNabn4j62lby0
+         BZFWlViFifGnk+VW5Wu3oGANj2FeC76fwtdjreN13K2qaFlEMzo1rZQAjeDQsmaOn5nR
+         gEfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772595851; x=1773200651;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ZmZUdiZZg0fCj/2i+g2j9xmvk9n9CjWeVFiVPCHQNYY=;
-        b=SIcK9WwbNAbpEqlDUlgqI9jg1J7tiEwtbw/xlBos+hbXupXsEJXLzMsA+Pc4sBZJcr
-         HqULCCkPfeBXb7Iuy3rWb+mTS70i5Yh/htL/3HqDbFHkwOk7uW+OVu1VzIy6x9zRDFfs
-         w1gak/TgvHWtMTPkkq8VozWMCaYIoeCB0EPweI+Rr9lg1umWBwGc3UxasysrBYVKPedy
-         uqUPAENKObdliywitOjfXSjTA5hhcg8y22M4tASJhAzuCD8zQ/1TTo+jlodzPQmhgI2/
-         2M8ywsKqE1Rojnle3WCAkWSnrREEUXTWhnqqmFbVntsYrUH06dR/pIxsQqD3JtVO/vcX
-         yyzA==
-X-Gm-Message-State: AOJu0YwN1Sx1DTw/aHPeIVC+FuHrbnRRMAorhg4p0y0G5PHYEUYMd1cb
-	vGWPxHtBkUoYJOF7QFfMMdwx621f1YhwmhreDVFvGY3IGx1z7jLMBqSE
-X-Gm-Gg: ATEYQzzanb1GJfSiDcCN1ZSudsnf/f24AXLoUrJR8We1P+nbsQ8g+R3fAS5EBOcIOLq
-	jCIwcQeHkbEoMOrol6r28qVz/Zyzaxb9DtbDxEMv70Jk1kFDF9I3ZH01N/FdMC9GwUZr4WFjgum
-	7++Dmi0CHB11C2x18rP0kgKNPdmkCRiLVlBw39YnEhkToeKJgb7pkTkwYkLmEOCIn28szKjGaq/
-	Nl/EPYbox59MozwdaK8+dTZuc+8kixk3NzfumwpD96z0K/0ZhSaIlbXUP41YBub8lO7qvIaeonA
-	CZrZcLOqvN9on+MUSlJfz95+OP1CV29lLRJ0PpZVtQDpPJIJT1LkCQEtJHAmL5pLfHA0YmOqWpD
-	nB4m94kWQZAJGhn9CWW9lnaTmW1kRu+QXLxlsQgjYcGI5vYqOxgWmUisr91N9/N7b9AvwbSp0Cr
-	MwWP/hHKGToX08MoTuywzJvgrY2pU=
-X-Received: by 2002:a05:622a:1490:b0:501:4b9d:ad19 with SMTP id d75a77b69052e-508cea9b44fmr52007601cf.22.1772595851140;
-        Tue, 03 Mar 2026 19:44:11 -0800 (PST)
-Received: from [172.17.0.2] ([134.128.219.200])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-899e608cfc6sm88603286d6.14.2026.03.03.19.44.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 19:44:10 -0800 (PST)
-From: Yuanshen Cao <alex.caoys@gmail.com>
-Date: Wed, 04 Mar 2026 03:43:45 +0000
-Subject: [PATCH 2/2] pmdomain: sunxi: Add support for A733 to Allwinner
- PCK600 driver
+        d=1e100.net; s=20230601; t=1772595949; x=1773200749;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=0ck0SxwPDcv+Zqhqz8cZVKiShWiiww33rNFdcafCJLs=;
+        b=b7tpEB96i3J6WztlAXt1qMfITWrH1x4uVZt8VWBTfNle4K1qU4V5zKmsM5iY9Qs0Me
+         ZrQtElawfKxOx6f4w+PV/0VWtLYpHvcSwsfLdZMa6QbO5YXQvGu4D3QTDK0UQ9FHAC5F
+         qoWfrR2IShIfGsgawSN04+QSjT7hKLbmKO5npk2AzynPdm9oI5LvLHLKGZBxqOyI82zH
+         Q1nFVgjSnYsfyUQYFMCr8Py94VUt7sQyXBXJ+n0e4aaYpEI/yh7W5oOP5s2HW2MoMmpH
+         bI+IF8j5Is4KhynlUKQFcfS05etxf8kXx0p21rJX9vs0Mdm4EXsngfuXdxnB++m13uSc
+         ZBrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtuXK5/kliqQph1GeBUiIFyUxiJKmU3ojGs6a5T+ylxrrklDBMYuS2pwe2ViR8kMU2Z2s9Kk4mANKZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2jqRo19z8LU986kQWvd+bsZz6g4SgyRdYJL3j2/8HzFetTOUC
+	FiF4Gmg77vVqWKMvvoXcHA7fPL3pMjaDEHsGjCqzkbpP/Icnvai9O2Q+pkPD/CscRdRNNp9amgH
+	M8tw9shZL+Xv/PgUj2/w1kVXa7ZHfZKM=
+X-Gm-Gg: ATEYQzxoyyBtQWmCacC6cfA6xytWzGvEnwXKUQwy1U3iL1cKveA5SjctqOVjtsMhYoP
+	7UuUnSj6/VQoeTEyyTTmf2QGfBz24NLM5JoPmy0vtzHNwOvpsTC8JCHhb0sra/w1nCmE69HcfWT
+	0+2P39r8TOEIlFdTcZJaPGubt/X6o3dMAWbf61Zeu5befaWPQs0BXPAWKfgYHi++VeMpnVHMO7i
+	ulil4N2j14WDQpyQO603ys27PcWzGBvcpx/AOQk7Bg9nafXhxZhpuy0zyWqKAG1YwICHRFJIEZm
+	g8BxDuUKEIokFz62uw34XZQj9luvoN3Q4UBIbN8=
+X-Received: by 2002:a05:6000:1acc:b0:439:ac53:a94d with SMTP id
+ ffacd0b85a97d-439c80005a2mr1016259f8f.29.1772595949061; Tue, 03 Mar 2026
+ 19:45:49 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260304-b4-pck600-a733-v1-2-2f54efdb8cc2@gmail.com>
-References: <20260304-b4-pck600-a733-v1-0-2f54efdb8cc2@gmail.com>
-In-Reply-To: <20260304-b4-pck600-a733-v1-0-2f54efdb8cc2@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Samuel Holland <samuel@sholland.org>, Ulf Hansson <ulf.hansson@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, Yuanshen Cao <alex.caoys@gmail.com>
-X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: EE1741FA7C0
+References: <20260228205418.2944620-1-dennis@ausil.us> <20260228205418.2944620-3-dennis@ausil.us>
+ <CALWfF7LZV07x7zAgufE_aa58s7x6e_ODAM2LgZqjbEakDticpA@mail.gmail.com> <CAABkxwsJ2ZnytCcHEvXWzNkjwzNThoTR23FAeHJLdf4JjXJEMg@mail.gmail.com>
+In-Reply-To: <CAABkxwsJ2ZnytCcHEvXWzNkjwzNThoTR23FAeHJLdf4JjXJEMg@mail.gmail.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Tue, 3 Mar 2026 21:45:37 -0600
+X-Gm-Features: AaiRm510_muOP2trKshqRAe1MQ9prhJ4qP0ttHmvpYHaggzE4klTOIJdcnDBxLM
+Message-ID: <CALWfF7+gdNqSgzk4uAnVRkG8vT9FwJDV46VXpb26hd7BzdaGcw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
+To: Dennis Gilmore <dennis@ausil.us>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, 
+	Hsun Lai <i@chainsx.cn>, Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	John Clark <inindev@gmail.com>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Andrew Lunn <andrew@lunn.ch>, 
+	Alexey Charkov <alchark@gmail.com>, Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 992C01FA7F8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270849-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org,linaro.org];
+	TAGGED_FROM(0.00)[bounces-270850-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[kernel.org,sntech.de,radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,gmail.com,rootcommit.com,cherry.de,lunn.ch,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexcaoys@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[honyuenkwun@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
-The Allwinner A733 PCK600, similar to A523 PCK600, is likely a
-customized version of ARM PCK-600 power controller. It shares
-the same BSP driver with A523. According to the BSP provided
-by Radxa, unlike A523, it doesn't require reset.
+On Tue, Mar 3, 2026 at 1:43=E2=80=AFPM Dennis Gilmore <dennis@ausil.us> wro=
+te:
+>
+> On Mon, Mar 2, 2026 at 11:57=E2=80=AFPM Jimmy Hon <honyuenkwun@gmail.com>=
+ wrote:
+> >
+> > Hi Dennis,
+> >
+> > Some curiosities below,
+> >
+> > On Sat, Feb 28, 2026 at 2:54=E2=80=AFPM <dennis@ausil.us> wrote:
+> > <snip>
+> > > +
+> > > +       /* Pro uses gpio-leds instead; pwm0 LED is not wired up */
+> > > +       /delete-node/ pwm-leds;
+> > <snip>
+> > > +
+> > > +       gpio-leds {
+> > > +               compatible =3D "gpio-leds";
+> > > +               pinctrl-names =3D "default";
+> > > +               pinctrl-0 =3D <&leds_rgb>;
+> > > +
+> > > +               blue-led {
+> > > +                       color =3D <LED_COLOR_ID_BLUE>;
+> > > +                       function =3D LED_FUNCTION_STATUS;
+> > > +                       gpios =3D <&gpio1 RK_PC6 GPIO_ACTIVE_HIGH>;
+> > How come you decided gpio-leds instead of pwm-leds for this? GPIO1 C6
+> > is muxed with PWM15_IR_M2
+>
+> the downstream dts uses gpio-leds  the GPIO comes from the schematic
+It should be fine to upgrade to pwm-leds when adding into mainline.
+The Orange 5 Plus did.
+In the downstream DTS, they used gpio-led for the green led
+https://github.com/orangepi-xunlong/linux-orangepi/blob/232ed4b97b65da2b7b6=
+47c4e3c496f8594b9f3f1/arch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.d=
+ts#L31-L36
+But in the mainline kernel, it was converted to use pwm-led.
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/a=
+rch/arm64/boot/dts/rockchip/rk3588-orangepi-5-plus.dts?id=3D236d225e1ee72a2=
+8aa7c2b1e39894e4390bbf51c
 
-Make reset optional in the sunxi pck600 driver and add support
-for A733.
-
-Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
----
- drivers/pmdomain/sunxi/sun55i-pck600.c | 53 ++++++++++++++++++++++++++++++----
- 1 file changed, 48 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/pmdomain/sunxi/sun55i-pck600.c b/drivers/pmdomain/sunxi/sun55i-pck600.c
-index c7ab51514531..8f9fdc3915bd 100644
---- a/drivers/pmdomain/sunxi/sun55i-pck600.c
-+++ b/drivers/pmdomain/sunxi/sun55i-pck600.c
-@@ -52,6 +52,7 @@ struct sunxi_pck600_desc {
- 	u32 logic_power_switch0_delay;
- 	u32 logic_power_switch1_delay;
- 	u32 off2on_delay;
-+	bool has_rst_clk;
- };
- 
- struct sunxi_pck600_pd {
-@@ -151,9 +152,11 @@ static int sunxi_pck600_probe(struct platform_device *pdev)
- 	if (IS_ERR(base))
- 		return PTR_ERR(base);
- 
--	rst = devm_reset_control_get_exclusive_released(dev, NULL);
--	if (IS_ERR(rst))
--		return dev_err_probe(dev, PTR_ERR(rst), "failed to get reset control\n");
-+	if (desc->has_rst_clk) {
-+		rst = devm_reset_control_get_exclusive_released(dev, NULL);
-+		if (IS_ERR(rst))
-+			return dev_err_probe(dev, PTR_ERR(rst), "failed to get reset control\n");
-+	}
- 
- 	clk = devm_clk_get_enabled(dev, NULL);
- 	if (IS_ERR(clk))
-@@ -193,7 +196,14 @@ static int sunxi_pck600_probe(struct platform_device *pdev)
- }
- 
- static const char * const sun55i_a523_pck600_pd_names[] = {
--	"VE", "GPU", "VI", "VO0", "VO1", "DE", "NAND", "PCIE"
-+	"VE",
-+	"GPU",
-+	"VI",
-+	"VO0",
-+	"VO1",
-+	"DE",
-+	"NAND",
-+	"PCIE",
- };
- 
- static const struct sunxi_pck600_desc sun55i_a523_pck600_desc = {
-@@ -206,7 +216,36 @@ static const struct sunxi_pck600_desc sun55i_a523_pck600_desc = {
- 	.device_ctrl1_delay = 0xffff,
- 	.logic_power_switch0_delay = 0x8080808,
- 	.logic_power_switch1_delay = 0x808,
--	.off2on_delay = 0x8
-+	.off2on_delay = 0x8,
-+	.has_rst_clk = true,
-+};
-+
-+static const char * const sun60i_a733_pck600_pd_names[] = {
-+	"VI",
-+	"DE_SYS",
-+	"VE_DEC",
-+	"VE_ENC",
-+	"NPU",
-+	"GPU_TOP",
-+	"GPU_CORE",
-+	"PCIE",
-+	"USB2",
-+	"VO",
-+	"VO1",
-+};
-+
-+static const struct sunxi_pck600_desc sun60i_a733_pck600_desc = {
-+	.pd_names = sun60i_a733_pck600_pd_names,
-+	.num_domains = ARRAY_SIZE(sun60i_a733_pck600_pd_names),
-+	.logic_power_switch0_delay_offset = 0xc00,
-+	.logic_power_switch1_delay_offset = 0xc04,
-+	.off2on_delay_offset = 0xc10,
-+	.device_ctrl0_delay = 0x1f1f1f,
-+	.device_ctrl1_delay = 0x1f1f,
-+	.logic_power_switch0_delay = 0x8080808,
-+	.logic_power_switch1_delay = 0x808,
-+	.off2on_delay = 0x8,
-+	.has_rst_clk = false,
- };
- 
- static const struct of_device_id sunxi_pck600_of_match[] = {
-@@ -214,6 +253,10 @@ static const struct of_device_id sunxi_pck600_of_match[] = {
- 		.compatible	= "allwinner,sun55i-a523-pck-600",
- 		.data		= &sun55i_a523_pck600_desc,
- 	},
-+	{
-+		.compatible	= "allwinner,sun60i-a733-pck-600",
-+		.data		= &sun60i_a733_pck600_desc,
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, sunxi_pck600_of_match);
-
--- 
-2.53.0
-
+Jimmy
 
