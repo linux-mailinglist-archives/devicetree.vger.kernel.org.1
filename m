@@ -1,315 +1,153 @@
-Return-Path: <devicetree+bounces-270882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270883-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KJUsNOPhp2mrlAAAu9opvQ
-	(envelope-from <devicetree+bounces-270882-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:40:19 +0100
+	id aPdrOcnip2mrlAAAu9opvQ
+	(envelope-from <devicetree+bounces-270883-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:44:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C7651FBB90
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:40:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B4751FBC78
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:44:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E0244310A62B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:37:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D0400308A883
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 841DF36D9FA;
-	Wed,  4 Mar 2026 07:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C25737186B;
+	Wed,  4 Mar 2026 07:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qCVsVDfx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fx6eA5xb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615D335CB7A;
-	Wed,  4 Mar 2026 07:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58E9035CB7A;
+	Wed,  4 Mar 2026 07:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772609848; cv=none; b=oc/2gUEfH8h+fZmGrOlcM40c0tU8VI9yBXRTcJOIzMBcbHOAET9ZUraASkbQMRL1jbarcTvYt7zXcL6IHCthD8FaM/DRBhZXXia4SjlXWg0ebl0HbcT0f4ZqjTYRk4/YpYwJgT2VCpsMZJ7KmTRLtiTG5xp2dmd2EYyXOhSJ6Bs=
+	t=1772609985; cv=none; b=Y8vgRQ05j1bwR2VIrS/gQqgq7sBYLUHgigImu2+emv/6LPiuzrFa+0uxbJhE4MINmSmLh+Qe5nnJ+FIau6Z/KL4eOclTueUQRU7c0ML62vEyC5jgkuq95q5MDcRX5RJAi4suPveN0WT2xzIRhRp/FmURep4r2LjJNgJnD7ojDwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772609848; c=relaxed/simple;
-	bh=PU9E6pvdIlTXi8fnb6POonhnG/LZrpSiO7afGiZDxCg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dSH2W0XWUJlXCttNegBVmwg1u9nOpQmZ9TedduQmecl4AtzvDcMiOp2d0TFYVPSmlkQSpdQpo1/FHZzG14gaTn+fYWJD4Z0leCTqc9lPnOIKT5x9Q4p3tHIvkCB6dwpO3rRMMeENL5L/8twlbIAkxUgsj/8kgdrQEM8XoxQF+Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qCVsVDfx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91910C19423;
-	Wed,  4 Mar 2026 07:37:25 +0000 (UTC)
+	s=arc-20240116; t=1772609985; c=relaxed/simple;
+	bh=qdRtPAje6I7hfutoJeNmqVJEJbOGSUjuE1RqijSch3c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tklNOci2Y8x3G0BFODq1xJERUPfNVheygoTQTs1zjg/yfq51L6lQRT/zlD2pPHwEf17V7xxwa4n7QN3toHPyL0onDpE5IAJvoR41dVSQ6LUdDR2Un+4TGgIU51LdZ7/yLBPuStpsDBhnfo/owqnIDgl2owr/QLe+FtUaW+iUipA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fx6eA5xb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BE5AC19423;
+	Wed,  4 Mar 2026 07:39:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772609848;
-	bh=PU9E6pvdIlTXi8fnb6POonhnG/LZrpSiO7afGiZDxCg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=qCVsVDfxVJvkOi1kDJpbjU+fQLmyFgE3WC6VrTCFKTNAte6PfTthuNIutHSdLEdl5
-	 qlJiVGQG8hopLbM6BolJWGeeQU5Q1CZyOKL3Oz3sKpQjqiSRDCO3JYbYCHL49ePfml
-	 RLmpN6dPyRTsjLcz7WrDJbyea2MSvJhf+JsnTBIttfQ4LKwR/0rdEBK4RNXXHNUgX8
-	 Yi9ApvexIkEGifijIb2SuGx7j4P079OX5kyt0GEBoso/o7kNvuc3ME/S+7PYjQEP0V
-	 C/NBlDklTzESFQrx7g903Aay5F6tlcZRvji+nirgUD+oJAAwyVTLuOFuzu1v1ORJYj
-	 YwhQnMq12YjvA==
-From: Yixun Lan <dlan@kernel.org>
-Date: Wed, 04 Mar 2026 07:36:45 +0000
-Subject: [PATCH 4/4] riscv: dts: spacemit: k3: add full resource to UART
+	s=k20201202; t=1772609984;
+	bh=qdRtPAje6I7hfutoJeNmqVJEJbOGSUjuE1RqijSch3c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fx6eA5xbdBXKpUHh3/IErKPDYWgCQMOpGOgNwTTtlboSsMT2zDcFz4NP5doi6f89r
+	 wDKDYQeygqdWZ3mckkpNuFdbCfd9ISn/LHbPM9+po9wMN0ke2Sq7okB4Em152CfeS7
+	 cHnKusNJdzuRkyL49/kkyPGm0S05gkX52f+CEf8AkGOXVj/UAh7L7oxwfIh2Wjrk0z
+	 Uxwt75SSIBzP873g1BaZ1O28zSg88gOejUG65uXc3y0NEGpIfjbh1ee3vw3ipsZ+K4
+	 RNckEFqYZcobNZEEh/wYAn7allEHlvCfsipl4IjAMA9/4k7dAre3Z5h+ezsAFDvhaq
+	 dolGMc42cY2Dg==
+Date: Wed, 4 Mar 2026 08:39:42 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Bo Gan <ganboing@gmail.com>
+Cc: Conor Dooley <conor@kernel.org>, Jakub Kicinski <kuba@kernel.org>, 
+	lizhi2@eswincomputing.com, devicetree@vger.kernel.org, andrew+netdev@lunn.ch, 
+	davem@davemloft.net, edumazet@google.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com, 
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk, 
+	wens@kernel.org, pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	alex@ghiti.fr, linux-riscv@lists.infradead.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, linmin@eswincomputing.com, 
+	pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com, weishangjuan@eswincomputing.com
+Subject: Re: [PATCH net-next v3 1/3] dt-bindings: ethernet: eswin: add clock
+ sampling control
+Message-ID: <20260304-stalwart-raptor-of-cleaning-446b61@quoll>
+References: <20260303061525.846-1-lizhi2@eswincomputing.com>
+ <20260303061637.872-1-lizhi2@eswincomputing.com>
+ <20260303163846.156d18f7@kernel.org>
+ <20260304-regulate-verdict-c3a361d2dc83@spud>
+ <05a15890-392c-41c3-9566-8eb506ddfe5f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260304-01-dts-uart-full-v1-4-50a0aa53a245@kernel.org>
-References: <20260304-01-dts-uart-full-v1-0-50a0aa53a245@kernel.org>
-In-Reply-To: <20260304-01-dts-uart-full-v1-0-50a0aa53a245@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Yixun Lan <dlan@kernel.org>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6388; i=dlan@kernel.org;
- h=from:subject:message-id; bh=PU9E6pvdIlTXi8fnb6POonhnG/LZrpSiO7afGiZDxCg=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpp+Ek3f7qT9eVOyes3n8iQaYZedxnfHU0ksOVO
- NpKTrjye7yJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaafhJBsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+14cA//TefcIjF+yE61NYbff1LjwKw6K138+XeItfZAjwPC2MG8gme1Yiu4g
- XW0IvPPA9UljzSCWOj05ZUxxk1yfGPRHDtqPoRvObqRPJlfjZbEZpIFIwXzaTwUBU8+VlU3P1ZJ
- sgYjUn2id1MkYOJTLxm20rUXGDzIoiIovEbkJFcobobvdvRVUjEj4Sttp5b252h1T4+fofK/R5N
- q+HLJtb00B7uQhL5dVkhzzR1b8fuKXbqe2zDsI9V7WQrEvt3ZewR0gwNNGhOnwVNcOQA1b1rHMQ
- SXfGHXw/T+z8IBkKi/xo0low45/iBgUhQ90LsS0HBmb8tbpt0W0FRej7t6dNK8ngFiOhMnv9qN0
- pzeLyugDkR7GOU0MYYYM+sI/ENenkxcEkyYE3tgsN0/+urLDl2qjs/IPz74SOhZz9xQudh/a+s/
- irsAKqp7Nl3QHtMsRmS6hVxjFAjdxKSS1/RQ8qJSrYiv00pwxtNP7JiQ2j4hiZA8BkON+I8SDsI
- rytLtuqxskx4my7VnApOuR31+BIihhf17nDu1uMB8hdZo7ZQ4D+4k4rLabXvD7aDh2obLlFSaLg
- KdW/4gfHcY/c3LoIkLYc3xQ83So1ZCMHVNLOBU1Ayp0Hr23S17BeeQY3d4KwgQU9QDaJi2KRxlt
- PtLJq999NnXWx0l+5s59B2TlcZE77w=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Rspamd-Queue-Id: 1C7651FBB90
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <05a15890-392c-41c3-9566-8eb506ddfe5f@gmail.com>
+X-Rspamd-Queue-Id: 8B4751FBC78
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270882-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270883-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,einfochips.com];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Previously the UART rely on external bootloader to initialize clock,
-pinctrl and reset, to solve this, explicitly adding those resource in
-Device Tree, so UART driver will handle them properly.
+On Tue, Mar 03, 2026 at 05:23:18PM -0800, Bo Gan wrote:
+> Hi All,
+> 
+> On 3/3/26 16:47, Conor Dooley wrote:
+> > On Tue, Mar 03, 2026 at 04:38:46PM -0800, Jakub Kicinski wrote:
+> > > On Tue,  3 Mar 2026 14:16:37 +0800 lizhi2@eswincomputing.com wrote:
+> > > > There are currently no in-tree users of the EIC7700 Ethernet driver, so
+> > > > these changes are safe.
+> > > 
+> > > What do you mean by this sentence? The commit under Fixes was part of
+> > > Linux v6.19 already.
+> > 
+> > The "funny" thing is that caring about users doesn't even really matter
+> > on the devicetree patch, except for this hunk:
+> > |@@ -81,7 +99,9 @@ properties:
+> > |                          or external clock selection
+> > |           - description: Offset of AXI clock controller Low-Power request
+> > |                          register
+> > |+          - description: Offset of register controlling TXD delay
+> > |           - description: Offset of register controlling TX/RX clock delay
+> > |+          - description: Offset of register controlling RXD delay
+> > |
+> > | required:
+> > |   - compatible
+> > And it only matters here because an item is injected mid-list. If this
+> > was moved to the end with the RXD delay, the **dt-binding** changes
+> > don't have issues with safety. I've not looked at whether there are
+> > knock-on concerns about users in the driver or whatever yet, but from a
+> > binding POV only that hunk can break something that currently works.
+> 
+> This was already discussed here in v1:
+> https://lore.kernel.org/lkml/e7183ae1-8b8b-4e77-9f4e-3bc1b4b63556@lunn.ch/
+> 
+> The device-tree is not checked in yet by ESWIN folks, so there's currently
+> no user of the dt-binding. No need to worry about backward compat.
 
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
- arch/riscv/boot/dts/spacemit/k3-pico-itx.dts |  3 ++
- arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi | 24 +++++++++++++
- arch/riscv/boot/dts/spacemit/k3.dtsi         | 51 ++++++++++++++++++++++------
- 3 files changed, 68 insertions(+), 10 deletions(-)
+Of course there is user of this binding, for example ESWIN. Or many
+other vendors using it out of tree. You documented ABI.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-index b691304d4b74..b098dbd0e7a1 100644
---- a/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-+++ b/arch/riscv/boot/dts/spacemit/k3-pico-itx.dts
-@@ -5,6 +5,7 @@
-  */
- 
- #include "k3.dtsi"
-+#include "k3-pinctrl.dtsi"
- 
- / {
- 	model = "SpacemiT K3 Pico-ITX";
-@@ -25,5 +26,7 @@ memory@100000000 {
- };
- 
- &uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_0_cfg>;
- 	status = "okay";
- };
-diff --git a/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-new file mode 100644
-index 000000000000..efb0f1572188
---- /dev/null
-+++ b/arch/riscv/boot/dts/spacemit/k3-pinctrl.dtsi
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (c) 2026 Yixun Lan <dlan@kernel.org>
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+#define K3_PADCONF(pin, func) (((pin) << 16) | (func))
-+
-+/* Map GPIO pin to each bank's <index, offset> */
-+#define K3_GPIO(x)	(x / 32) (x % 32)
-+
-+&pinctrl {
-+	/omit-if-no-ref/
-+	uart0_0_cfg: uart0-0-cfg {
-+		uart0-0-pins {
-+			pinmux = <K3_PADCONF(149, 2)>,	/* uart0 tx */
-+				 <K3_PADCONF(150, 2)>;	/* uart0 rx */
-+
-+			bias-pull-up = <0>;
-+			drive-strength = <25>;
-+		};
-+	};
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k3.dtsi b/arch/riscv/boot/dts/spacemit/k3.dtsi
-index 3683a1a65362..a3a8ceddabec 100644
---- a/arch/riscv/boot/dts/spacemit/k3.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k3.dtsi
-@@ -5,6 +5,7 @@
-  */
- 
- #include <dt-bindings/clock/spacemit,k3-clocks.h>
-+#include <dt-bindings/reset/spacemit,k3-resets.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- 
- /dts-v1/;
-@@ -451,7 +452,10 @@ uart0: serial@d4017000 {
- 			reg = <0x0 0xd4017000 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART0>,
-+				 <&syscon_apbc CLK_APBC_UART0_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART0>;
- 			interrupts = <42 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -461,7 +465,10 @@ uart2: serial@d4017100 {
- 			reg = <0x0 0xd4017100 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART2>,
-+				 <&syscon_apbc CLK_APBC_UART2_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART2>;
- 			interrupts = <44 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -471,7 +478,10 @@ uart3: serial@d4017200 {
- 			reg = <0x0 0xd4017200 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART3>,
-+				 <&syscon_apbc CLK_APBC_UART3_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART3>;
- 			interrupts = <45 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -481,7 +491,10 @@ uart4: serial@d4017300 {
- 			reg = <0x0 0xd4017300 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART4>,
-+				 <&syscon_apbc CLK_APBC_UART4_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART4>;
- 			interrupts = <46 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -491,7 +504,10 @@ uart5: serial@d4017400 {
- 			reg = <0x0 0xd4017400 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART5>,
-+				 <&syscon_apbc CLK_APBC_UART5_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART5>;
- 			interrupts = <47 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -501,7 +517,10 @@ uart6: serial@d4017500 {
- 			reg = <0x0 0xd4017500 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART6>,
-+				 <&syscon_apbc CLK_APBC_UART6_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART6>;
- 			interrupts = <48 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -511,7 +530,10 @@ uart7: serial@d4017600 {
- 			reg = <0x0 0xd4017600 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART7>,
-+				 <&syscon_apbc CLK_APBC_UART7_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART7>;
- 			interrupts = <49 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -521,7 +543,10 @@ uart8: serial@d4017700 {
- 			reg = <0x0 0xd4017700 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART8>,
-+				 <&syscon_apbc CLK_APBC_UART8_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART8>;
- 			interrupts = <50 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -531,7 +556,10 @@ uart9: serial@d4017800 {
- 			reg = <0x0 0xd4017800 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART9>,
-+				 <&syscon_apbc CLK_APBC_UART9_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART9>;
- 			interrupts = <51 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-@@ -567,7 +595,10 @@ uart10: serial@d401f000 {
- 			reg = <0x0 0xd401f000 0x0 0x100>;
- 			reg-shift = <2>;
- 			reg-io-width = <4>;
--			clock-frequency = <14700000>;
-+			clocks = <&syscon_apbc CLK_APBC_UART10>,
-+				 <&syscon_apbc CLK_APBC_UART10_BUS>;
-+			clock-names = "core", "bus";
-+			resets = <&syscon_apbc RESET_APBC_UART10>;
- 			interrupts = <281 IRQ_TYPE_LEVEL_HIGH>;
- 			status = "disabled";
- 		};
-
--- 
-2.53.0
+Best regards,
+Krzysztof
 
 
