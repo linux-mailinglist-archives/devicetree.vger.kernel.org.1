@@ -1,189 +1,230 @@
-Return-Path: <devicetree+bounces-271111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271112-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APXmABFOqGlbtAAAu9opvQ
-	(envelope-from <devicetree+bounces-271111-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:21:53 +0100
+	id mEiYCRpNqGnUswAAu9opvQ
+	(envelope-from <devicetree+bounces-271112-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:17:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BD992028A5
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:21:51 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A964520271A
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:17:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 088E130EBDAA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:01:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 10FE1301476B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:04:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A893B892A;
-	Wed,  4 Mar 2026 14:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49A333C3C1C;
+	Wed,  4 Mar 2026 15:00:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="CAIVtC2j"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BexXbVtF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA3A3B3C1C;
-	Wed,  4 Mar 2026 14:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772636173; cv=pass; b=qmhLNwqZ+7OePrJ55bYki5hmlOyT30HQW8UNLtHsN+CAS16xplVhopLr38fAcdSFpEbrxD+6b43Pw0Tc+BcOjgUVHd/R0340v0cvl6iaH/t6CvjwM7cEM5c8mxrX16xY0GgBH7iPzoWPRAojSbBAb90I+woKMGFqThj37FTKMVc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772636173; c=relaxed/simple;
-	bh=GjFf63axbaazfur7KNFjfv9PwinzFu/ZI3jq7p25c4k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=frrSrSahvi16Pu2RSRuUaFDlUI+Ghpf9yKBAmNnVpVPNt0xzcEmTYiVjW/Nt8xMsuBuEZsCWyOmrsaTNouCbLlfCQYk6fUayNiIKUxQBwmJ4/3Udmr2sYBTkfl0Ktm6CExNvkVSCM5/ilRRRk7vwWVqr/MZof1URidsS0eqCgvU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=CAIVtC2j; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1772636138; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=AU0dfGiZJIbbK19p+MDgaZqtm2R8hFunuv7hkxWvN6CN/Aehq1IiXkufMjjxOL+R25jcZDVaPiMZfBItqQtx75t42UPS+/GgGnRIUqfkplF11c4ihG1S3X30yatO7evq/t4n+4V9xSku8D16cGIyjOQjw1ZXk7afzaTo/2Wioi0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1772636138; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=4zl1V74JjZEQ00igJg/pKn4t3Auq4QD7fJPZAoJSVfA=; 
-	b=gVlxjpgtsUFSiDmVuH1dHsCkCcvn3hhWRu2pjJvqKFZCevfTZPYhmUGpobIh2sCnRq5Ciu2SyjLfO2x2zY+ACJIK50SV4Tu6LB37FnyUkfRyeK8DvH8WZgw/P0gQXQnvxefRett//bTBNB0uM98T6uHy9eUegPTQ0uQeSDSJYQg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772636138;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
-	bh=4zl1V74JjZEQ00igJg/pKn4t3Auq4QD7fJPZAoJSVfA=;
-	b=CAIVtC2jK4y+72dTp8PKmASE6jlKNXnPR7+5yTnczVfwQIxsAE1s+eZp8CUQsKwR
-	yq+31FkI+NLA2Im8mXncAY/VPyFUzIYORcdaORlxoEp3lwIhNDnB5dRaiVH8AYe3ip1
-	cK3jtSiLDlRxqgwnoELj0W8RVGgyqMCy/Vq86t0g=
-Received: by mx.zohomail.com with SMTPS id 177263613629493.10029857824361;
-	Wed, 4 Mar 2026 06:55:36 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 04 Mar 2026 15:53:28 +0100
-Subject: [PATCH v8 23/23] scsi: ufs: mediatek: Add MT8196 compatible,
- update copyright
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B3523C3C07;
+	Wed,  4 Mar 2026 15:00:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772636402; cv=none; b=Rm47Ht9nLsd3fmLfaeCPqZhfTP3b1ipztKHqOmwsOVO0PLEQhVpQ67ULrh+LqmZYkUn+QdBW3nOE5sfIYwV9ZWryqAIfCqIsGdXPy0Lz9d1FLweRQkCIV6ej4BDqd5YDYGZApFxmadIze/zVpkKG7WynnC016Y39Gi/E4ISsXbs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772636402; c=relaxed/simple;
+	bh=wL+j94lcC2pnf64dqcTGe4lJKYr0KLZgqJWZVNjFYA8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HR1B2GvTvG4j+4oQZfpROQ14BgeaejOUNDTqVQ49vtOA7DFPBdJdcvlLqXIuXfzmioAGyN5YwigP4p70yS0gFTTMuLVZEkoriPCXjqthvTOdIoLD0aRKnyJ/bC770uxxDmjVA/r861t/M3GMC5Kr1zUrHKYpAzlu4s/9K7qnvV8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BexXbVtF; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=vqPIfe+mfsqFhoVG72QNFvYOtrojMOGGbstCn1l5Va0=; b=BexXbVtFTtWrabAERt3I7VaQUE
+	1MDE/MWnlrPGimoVaeUcdFk3FB5zaA8BjNLAPHpAYn7v9Q4G0Kwcr5Jl3Q1XLsVswkXw0CyTTLaL/
+	g/dxJutxfPtrr083s9hbQTqwycBJ/VpA4S0S99OWCob94R/W08s1BOKSyzpRiCrzXEWM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vxnhP-00A7ZE-C5; Wed, 04 Mar 2026 15:59:43 +0100
+Date: Wed, 4 Mar 2026 15:59:43 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, kevin-kw.huang@airoha.com,
+	macpaul.lin@mediatek.com, matthias.bgg@gmail.com,
+	kernel@collabora.com, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/2] net: phy: Introduce Airoha AN8801/R Gigabit
+ Ethernet PHY driver
+Message-ID: <3fbfabf7-b3af-405b-ade4-4f62db2c1c45@lunn.ch>
+References: <20260304-add-airoha-an8801-support-v1-0-0ae4ee5a2f9d@collabora.com>
+ <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260304-mt8196-ufs-v8-23-5b0eac23314f@collabora.com>
-References: <20260304-mt8196-ufs-v8-0-5b0eac23314f@collabora.com>
-In-Reply-To: <20260304-mt8196-ufs-v8-0-5b0eac23314f@collabora.com>
-To: Alim Akhtar <alim.akhtar@samsung.com>, 
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, 
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>, 
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
- kernel@collabora.com, linux-scsi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- linux-phy@lists.infradead.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: 3BD992028A5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
+X-Rspamd-Queue-Id: A964520271A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271111-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[samsung.com,wdc.com,acm.org,kernel.org,gmail.com,collabora.com,mediatek.com,HansenPartnership.com,oracle.com,pengutronix.de,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271112-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,collabora.com,gmail.com,armlinux.org.uk,airoha.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,mediatek.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid]
 X-Rspamd-Action: no action
 
-THe MT8196's UFS controller has a new compatible. Add the necessary
-struct definitions to support it.
+> +static int an8801r_did_interrupt(struct phy_device *phydev)
+> +{
+> +	u32 irq_en, irq_status;
+> +	int ret;
+> +
+> +	ret = air_buckpbus_reg_read(phydev, AN8801_BPBUS_REG_WAKE_IRQ_EN,
+> +				    &irq_en);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = air_buckpbus_reg_read(phydev, AN8801_BPBUS_REG_WAKE_IRQ_STS,
+> +				    &irq_status);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (irq_status & AN8801_IRQ_WAKE_MAGICPKT)
+> +		return 0;
 
-Also update the copyrights and authors, without tabs following spaces to
-avoid checkpatch errors, to list myself as having contributed to this
-driver after the preceding rework patches.
+With a name like an8801r_did_interrupt() you would expect the return
+value to be some value of True, if there was an interrupt. I would
+suggest either a different name, or return 1. Maybe also add a
+kerneldoc header indicating the return values, since it is probably
+not going to be standard.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Reviewed-by: Peter Wang <peter.wang@mediatek.com>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> +static void an8801r_get_wol(struct phy_device *phydev,
+> +			    struct ethtool_wolinfo *wol)
+> +{
+> +	u32 reg_val;
+> +
+> +	air_buckpbus_reg_read(phydev, AN8801_BPBUS_REG_WAKEUP_CTL1, &reg_val);
+> +
+> +	wol->supported = WAKE_MAGIC;
+
+How does WoL work on this device. Only via interrupts? If so, maybe
+you should only return WAKE_MAGIC as supported if there is a valid
+interrupt?
+
+> +static int an8801r_rgmii_delay_config(struct phy_device *phydev)
+> +{
+> +	switch (phydev->interface) {
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		return an8801r_rgmii_txdelay(phydev, 4);
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +		return an8801r_rgmii_rxdelay(phydev, 0);
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +		return an8801r_rgmii_txdelay(phydev, 4);
+> +		return an8801r_rgmii_rxdelay(phydev, 0);
+
+The parameters look very odd here. 4 means 2ns, but 0 also means 0ns?
+Can this API be improved?
+
+Also, PHY_INTERFACE_MODE_RGMII_TXID means 2ns delay for TX, but it
+also means 0ns delay for RX. The code appears to be missing this
+second part.
+
+
+> +	case PHY_INTERFACE_MODE_RGMII:
+
+And here you should be disabling all delays. We have seen boards where
+the strapping is wrong, the PHY boots in RGMII_ID, but RGMII is
+required, and so the driver must fully implement
+PHY_INTERFACE_MODE_RGMII disabling the delays.
+
+> +static int an8801r_config_init(struct phy_device *phydev)
+> +{
+> +	u8 led_default_function[AN8801R_NUM_LEDS] = { 0 };
+> +	int prev_page, ret;
+> +
+> +	ret = an8801r_of_init_leds(phydev, led_default_function);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Disable Low Power Mode (LPM) */
+> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND2, AN8801_REG_PHY_INTERNAL0,
+> +			    FIELD_PREP(AN8801_PHY_INTFUNC_MASK, 0x1e));
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND2, AN8801_REG_PHY_INTERNAL1,
+> +			    FIELD_PREP(AN8801_PHY_INTFUNC_MASK, 0x2));
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Disable EEE by default */
+> +	ret = phy_write_mmd(phydev, MDIO_MMD_AN, MDIO_AN_EEE_ADV, 0);
+> +	if (ret)
+> +		return ret;
+
+Why? If EEE is broken, this is not sufficient to stop a user
+re-enabling it.
+
+> +static int an8801r_read_status(struct phy_device *phydev)
+> +{
+> +	int prev_speed, ret;
+> +	u32 val;
+> +
+> +	prev_speed = phydev->speed;
+> +
+> +	ret = genphy_read_status(phydev);
+> +	if (ret)
+> +		return ret;
+
+You configure the PHY to support downshift. If it has performed a
+downshift, does it report the actual speed in the usual registers read
+by genphy_read_status(), or is it necessary to read a vendor register?
+
+> +static struct phy_driver airoha_driver[] = {
+> +{
+> +	PHY_ID_MATCH_MODEL(AN8801R_PHY_ID),
+> +	.name			= "Airoha AN8801R",
+> +	.features		= PHY_GBIT_FEATURES,
+
+Should not be needed, if the PHY enumerates its capabilities
+correctly.
+
+    Andrew
+
 ---
- drivers/ufs/host/ufs-mediatek.c | 17 +++++++++++++++--
- 1 file changed, 15 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/ufs/host/ufs-mediatek.c b/drivers/ufs/host/ufs-mediatek.c
-index 6292c943ef99..a9e8641e6f29 100644
---- a/drivers/ufs/host/ufs-mediatek.c
-+++ b/drivers/ufs/host/ufs-mediatek.c
-@@ -1,9 +1,11 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-  * Copyright (C) 2019 MediaTek Inc.
-+ * Copyright (C) 2025 Collabora Ltd.
-  * Authors:
-- *	Stanley Chu <stanley.chu@mediatek.com>
-- *	Peter Wang <peter.wang@mediatek.com>
-+ *      Stanley Chu <stanley.chu@mediatek.com>
-+ *      Peter Wang <peter.wang@mediatek.com>
-+ *      Nicolas Frattaroli <nicolas.frattaroli@collabora.com> (Major cleanups)
-  */
- 
- #include <linux/arm-smccc.h>
-@@ -2200,6 +2202,10 @@ static const char *const ufs_mtk_regs_avdd12_ckbuf_avdd18[] = {
- 	"avdd12", "avdd12-ckbuf", "avdd18"
- };
- 
-+static const char *const ufs_mtk_regs_avdd12_ckbuf[] = {
-+	"avdd12", "avdd12-ckbuf"
-+};
-+
- static const struct ufs_mtk_soc_data mt8183_data = {
- 	.has_avdd09 = true,
- 	.reg_names = ufs_mtk_regs_avdd12_avdd18,
-@@ -2212,10 +2218,17 @@ static const struct ufs_mtk_soc_data mt8192_8195_data = {
- 	.num_reg_names = ARRAY_SIZE(ufs_mtk_regs_avdd12_ckbuf_avdd18),
- };
- 
-+static const struct ufs_mtk_soc_data mt8196_data = {
-+	.has_avdd09 = true,
-+	.reg_names = ufs_mtk_regs_avdd12_ckbuf,
-+	.num_reg_names = ARRAY_SIZE(ufs_mtk_regs_avdd12_ckbuf),
-+};
-+
- static const struct of_device_id ufs_mtk_of_match[] = {
- 	{ .compatible = "mediatek,mt8183-ufshci", .data = &mt8183_data },
- 	{ .compatible = "mediatek,mt8192-ufshci", .data = &mt8192_8195_data },
- 	{ .compatible = "mediatek,mt8195-ufshci", .data = &mt8192_8195_data },
-+	{ .compatible = "mediatek,mt8196-ufshci", .data = &mt8196_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
-
--- 
-2.53.0
-
+pw-bot: cr
 
