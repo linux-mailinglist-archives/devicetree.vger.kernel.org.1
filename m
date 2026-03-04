@@ -1,260 +1,154 @@
-Return-Path: <devicetree+bounces-270885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270886-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eELeJYPkp2mrlAAAu9opvQ
-	(envelope-from <devicetree+bounces-270885-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:51:31 +0100
+	id 8JEHEgLkp2mrlAAAu9opvQ
+	(envelope-from <devicetree+bounces-270886-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:49:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFEA91FBF24
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:51:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52A2E1FBD43
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:49:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 61C21300696A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:46:51 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 74A7530086AD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D277386542;
-	Wed,  4 Mar 2026 07:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F4E388363;
+	Wed,  4 Mar 2026 07:49:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="pXBvI9b4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="acbyI5vR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE928385536
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 07:46:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9FA43845A6
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 07:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772610409; cv=none; b=KK1BoaNMsLUdyeZ6B9swB36kDcOqdW/85lBN6wOq60wBodLvtY66O2O1777ZaUoA1yqopPU+My7sFrCtBP0wOscK9AFJdYqnjscllOhBxD8exnkMU53hv+6FmN1Jvqc9x9AcK3XB6eM5LQhSMCaEP05ZBTR9uuMhTUIAmKpQscI=
+	t=1772610553; cv=none; b=gYQeLlp2b7QPLacTXX7KAfDe1lZfPZgmwmjYmXRteICKGCPnaVPPw+jKXL9ELHqBt04pe47XEkJ2J+nXcWrmgbz3ySTmYEBVWWHFO83HQRE2Np58L/icir4+8mzkM0luKVYCHNMDoGYNB+RBlUKAg9qoNc7VIUGV43Nto0ATV84=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772610409; c=relaxed/simple;
-	bh=ZgkidBpLL8oWBDBcLOBpxRD9Rfn2XlNJpVDOX2q6dmk=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=e4f6WQFbgEAfLoziVIx2UZG+TGA8QQXqz2P6MhIJKCdcJRaukgqEJDt5Ko6t0i2L5mXsem5kW435VYHHCBrRdC90I86fR2on+NOPMHfMKu6Px5D2mTosxgMxUWEOeU/WdaGLvn0JzhE18I+canLpLdWqrZNIZ939KM9p8XbIv9s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=pXBvI9b4; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20260304074642epoutp02e04739fb2036dffd8900913c16287abb~Zk8TpZxlN2329523295epoutp02M
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 07:46:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20260304074642epoutp02e04739fb2036dffd8900913c16287abb~Zk8TpZxlN2329523295epoutp02M
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1772610402;
-	bh=kOSxfB+UsOuozAKdJYcd03wV8YPEdksJx4QCQmr+or8=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=pXBvI9b4K3VDKV1w2jS/GCWc6tbiKJBYMJ5bufAoYj6dWJ4F6WxxFZr4Go8uCpyg4
-	 2iuIFnprpBNiZRU/adQqSSVFCSi33gcfrQo4V+Kl0Di/ZllKUREBi1e6Tg8sHd1H43
-	 AA8uCwt+YpxmfH6rJ67XgHD/4CBHro7SrHNdnPfg=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20260304074640epcas5p36b26a45cf9acf580c7c717f5998248ed~Zk8SFl5eK0732507325epcas5p3R;
-	Wed,  4 Mar 2026 07:46:40 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.89]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4fQl9W4R4Sz6B9m7; Wed,  4 Mar
-	2026 07:46:39 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20260304074638epcas5p23e2fddcfdad2ac7eaff71907d902f706~Zk8QW3l0b0808608086epcas5p29;
-	Wed,  4 Mar 2026 07:46:38 +0000 (GMT)
-Received: from INBRO007194 (unknown [107.122.3.105]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20260304074636epsmtip2d413503c49f5f56dc235c3bf9bc61751~Zk8N9uXGh0539805398epsmtip2V;
-	Wed,  4 Mar 2026 07:46:36 +0000 (GMT)
-From: <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>
-Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
-Subject: RE: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add
- regulators for the USB
-Date: Wed, 4 Mar 2026 13:16:34 +0530
-Message-ID: <000001dcabab$089a75d0$19cf6170$@samsung.com>
+	s=arc-20240116; t=1772610553; c=relaxed/simple;
+	bh=e7lPtmTMcvTguLmDjO9LEHGP6/1tdEJTOrt+13Anzmc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JmcP6YNVXyA2choxcWuksEWgfneChYIGI9wpTbPpFHW/iQUvrnol8y3OpKReaBQ1aXIK4AD9PR3RY/IsMJ0hJrURRctoULkhBSo+7sHiWCNwZEDbSIp+pnL1tsfzf2rCnbhlDbyHUbxZ81Doofd427J51OxstwRQsttC44l9LFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=acbyI5vR; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4836e3288cdso44267725e9.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 23:49:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772610549; x=1773215349; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zvknzicABFsHxu76HaZco8fpkXU2BWcqQfyY9njxdw8=;
+        b=acbyI5vRnrWPprPO5VvNxDLXFOz61E/hjQM2oPSmDX2uq1syV6+UIqoaH23xMHc/ix
+         ldW6Sdkd3F5w8bIf3OBroj7NioNFOIU7O/HYatnOTrBqGZ50dI2YyL9M672wppP7GcBj
+         urCBB+X+MmyvqbrUi/T78Nl9Ul0beW98Ncpe8nUUSXTA8o97aT4q63Z30sNJiVyitBt5
+         r+cL8942RsjS4Xt0pV2Ms5IdLtzRqjuhoW8i3ru+jkq3JKtJdPzp5isRkXKmz4921mjP
+         va/OY5yW8vT89PBalLYaZlw5+bhglnHct1QANe+RMwH8p8aRy7e3Te+JkML7g6+rMW/j
+         yhTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772610549; x=1773215349;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zvknzicABFsHxu76HaZco8fpkXU2BWcqQfyY9njxdw8=;
+        b=JENH1wC8pLXsuK2FQLdUi3M9iFvkUEjkR5YpDF1KLYu++OmPhp6kfXwE60L1SJ5pnn
+         tFIWNp/l1mDz8S4UcUQKSqabj440k4teXpzEWT1Kp/rxDE2fCFkiqT48DSS3zWpgzAqx
+         loPKZFxf6HW+aF8nRqyIW0P6PtfkBmU77ObW/Gb9jRYeIi3dM34V9ubFD5ztDQR6y1lN
+         DVRG8uNTZf6VqA5znwTDwsuUHnyXYi4OLB5H9ux+2m6zGVbSt7haAIdiFG8xnAosnLaM
+         e/++RlDIr2vj6kkc+eKKJM1yb7GOfc8+VnyZFfjOVjhihBGWOfJp2i1ZjZnoLL2Pbve+
+         esAw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3IP3Ql825jA4LlzgXyj84c+KJFK+SO9RP/LloGBLeP/9WJFEI9O+IzPMpFCnsPT2xj/B4znex4OXb@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywj/l/Z/KRELy4uku0H7lG8jWeTeMSRhvvTOY5XGLnQqd4c+2kE
+	Us0EE2AWStlC+H8+1ZpS7VZtpDlKQiwz+YjgGW3984hcW9UOmCK3BjmX
+X-Gm-Gg: ATEYQzyLP9CAMZ/WeiDCnbfl7NutchSTzTozafDBvzXcLYYt5vk/Zag3JKR2/77U9hs
+	ySEeICTn1IyHRHlzqJweiuXCA5g9bYTM11JINrAynhTNUGfq7lv0874kYjiBSRZzIu6zGtdBHtc
+	tb2HY7cnXCInp48Sb22suxqgJ/WDNSLoLpMdTsjV0oifo4Uvb7zSiAgCYCpsJEKT80o2z2dR2mV
+	3rkQc11wZOhMTvA2eBrfL0CmeiH9DtNc3lUMttKG8OtCLmhw4vC876+14djmcx9t/gLtxMx4cbZ
+	lFc+PfHLtFdwjQqlVD7730JhzrXdtE78GAzZhggYNbDC2/Bfyswz8Xm7IbxZDx7Sjv3S9VEm147
+	wseSJI5Aau/3BGFApPdHb2CXxYmmgZGEcN8fBN5W5pZG2Pezl5K/nVrs29eQjXvdft+QTgSp8GI
+	vjjgdz/MSQDhyaOAWuJ+jNKVZNBYm68gU=
+X-Received: by 2002:a05:600c:648a:b0:483:6fe3:bb49 with SMTP id 5b1f17b1804b1-4851370354dmr94872985e9.0.1772610548917;
+        Tue, 03 Mar 2026 23:49:08 -0800 (PST)
+Received: from biju.lan ([2a00:23c4:a758:8a01:de3f:f927:40ff:12a6])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4399c75a25dsm39957572f8f.21.2026.03.03.23.49.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 23:49:08 -0800 (PST)
+From: Biju <biju.das.au@gmail.com>
+X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	linux-spi@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH 0/2] Add Renesas RZ/G3L RSPI support
+Date: Wed,  4 Mar 2026 07:49:00 +0000
+Message-ID: <20260304074907.9697-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQEa27yOGkcSyej7W4JCG0x5iKXFKwI+5auhAd1pMcUC7yIEuAId+/jbAjLLeawBtyOf6wEmYkR7tq/MoMA=
-Content-Language: en-us
-X-CMS-MailID: 20260304074638epcas5p23e2fddcfdad2ac7eaff71907d902f706
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20260122125134epcas5p36625b7ac70b8dfba9430831a11955682
-References: <20260122130721.205664-1-pritam.sutar@samsung.com>
-	<CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
-	<20260122130721.205664-3-pritam.sutar@samsung.com>
-	<352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
-	<000001dc9c13$ea305520$be90ff60$@samsung.com>
-	<2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
-	<019001dca0b8$f709e640$e51db2c0$@samsung.com>
-	<a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
-X-Rspamd-Queue-Id: EFEA91FBF24
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 52A2E1FBD43
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
-	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270885-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	TAGGED_FROM(0.00)[bounces-270886-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[samsung.com:+];
+	FREEMAIL_TO(0.00)[renesas.com,kernel.org,glider.be,gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pritam.sutar@samsung.com,devicetree@vger.kernel.org];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+From: Biju Das <biju.das.jz@bp.renesas.com>
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: Thursday, February 19, 2026 1:24 AM
-> To: pritam.sutar=40samsung.com; robh=40kernel.org; krzk+dt=40kernel.org;
-> conor+dt=40kernel.org; alim.akhtar=40samsung.com
-> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;=
- linux-
-> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
-> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v2 2/3=5D arm64: dts: exynos: ExynosAutov920: Add
-> regulators for the USB
->=20
-> On 18/02/2026 10:28, pritam.sutar=40samsung.com wrote:
-> >>>>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
-> >>>>
-> >>>> Please use name for all fixed regulators which matches current
-> >>>> format
-> >>>> recommendation: 'regulator-=5B0-9=5Dv=5B0-9=5D'
-> >>>>
-> >>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.
-> >>>> gi
-> >>>> t/tree/
-> >>>> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> >>>>
-> >>>> None of the regulators are called like you wrote. Really NONE.
-> >>>>
-> >>>
-> >>> Thank you for the references. Will bring changes for regulator's
-> >>> name and labels as
-> >>>
-> >>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
-> >>> +       reg_usbdrd31_dwc3_vbus: regulator-1 =7B
-> >>
-> >> Did you read the binding? That's not what I asked.
-> >>
-> >
-> > Yes.
-> > Sorry for misinterpreting above comment. Is it expected as below?
-> >
-> > This is based on our understanding by referring binding and other vendo=
-r
-> dts.
-> >
-> > --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
-> > =40=40 -59,7 +59,7 =40=40 dummy_regulator: regulator-0 =7B
-> >                  regulator-name =3D =22dummy_regulator=22;
-> >         =7D;
-> >
-> > -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus =7B
-> > +       reg_usb_vbus0: regulator-5v0-vbus0 =7B
->=20
-> Yes, that's better.
+This patch series adds binding and driver support for RSPI IP found on the
+RZ/G3L SoC. The RSPI is compatible with RZ/V2H RSPI, but has 2 clocks
+compared to 3 on RZ/V2H.
 
-Thank you for the confirmation.
+Biju Das (2):
+  dt-bindings: spi: renesas,rzv2h-rspi: Document RZ/G3L SoC
+  spi: rzv2h-rspi: Add support for RZ/G3L (R9A08G046)
 
->=20
-> Only under the assumption these are actually dedicated single-enable-pin
-> regulators, not pins going to the PMIC.
->=20
+ .../bindings/spi/renesas,rzv2h-rspi.yaml      | 26 +++++++++++++++++++
+ drivers/spi/spi-rzv2h-rspi.c                  |  8 ++++++
+ 2 files changed, 34 insertions(+)
 
-Yes. this is dedicated single-enable-pin.
+-- 
+2.43.0
 
-> >                compatible =3D =22regulator-fixed=22;
-> >                regulator-name =3D =22usbdrd31_dwc3-vbus=22;
-> >                regulator-min-microvolt =3D <5000000>; =40=40 -75,7 +75,=
-7 =40=40
-> > usb_phy0: usb-phy0 =7B
-> >                 vbus-supply =3D <&usbdrd31_dwc3_vbus>;
-> >         =7D;
-> >
->=20
-> ...
->=20
-> >>>>
-> >>>> That's a bit too much of dummies. This is heavily incomplete. You
-> >>>> need to bring back the PMIC first.
-> >>>>
-> >>>
-> >>> Presently, relying on USB LDOs being enabled by the bootloader in
-> >>> this automotive SoC. However, we understand the concern and it is
-> >>> added in case if anyone wants to use implemented PMIC in future. For
-> >>> now, would like to proceed with the dummy regulators to enable the
-> >>> required USB
-> >> features.
-> >>
-> >> And I don't see the point of these dummies. Solves nothing.
-> >>
-> >
-> > Are you expecting details as mentioned in above section in commit
-> message?
-> > However, we have mentioned these details in cover letter.
->=20
-> No, I am expecting proper PMIC to be represented here. One dummy
-> regulator during the fast development phase is okay. Dummy added by
-> community contributors without resources and schematics would also fly.
->=20
-> But Samsung, with all the resources, schematics doing development since
-> 2023 and still adding 20 dummies to every device? Nope, no, sorry.
->=20
-> Please start doing this properly. Look how entire new SoC was upstreamed
-> by Linaro:
-> https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-
-> db9d0507ffd3=40linaro.org/
->=20
-> Or something newer by Qualcomm:
-> https://lore.kernel.org/linux-arm-msm/?q=3Ds%3Aglymur
->=20
-
-Appreciated for the references.
-
-As you might know, the regulator control and power=E2=80=91management=20arc=
-hitecture=20=0D=0Ahas=20changed=20in=20recent=20Exynos=E2=80=AFSoCs.=20It=
-=20is=20now=20controlled=20by=20the=20ACPM/APM=20core,=20and=20=0D=0Athe=20=
-PMIC=20is=20interfaced=20over=20SPMI=20(instead=20of=20the=20legacy=20I2C=
-=20interface).=20I=20am=20checking=20=0D=0Ainternally=20how=20to=20implemen=
-t=20this,=20and=20it=20may=20take=20a=20bit=20longer=20to=20have=20the=20fu=
-ll=20recipe=20=0D=0Aready=20to=20add=20an=20actual=20regulator.=0D=0A=0D=0A=
-USB=20is=20one=20of=20the=20critical=20IP=20blocks=20that=20needs=20be=20en=
-abled=20to=20allow=20the=20rest=20of=20the=20=0D=0Ateam=E2=80=99s=20workflo=
-w=20over=20USB=20(e.g.,=20enabling=20automation=20via=20USB=20for=20testing=
-,=20etc.).=0D=0A=0D=0AIf=20these=20changes=20can=20be=20accommodated,=20it=
-=20would=20be=20great.=20In=20the=20meantime,=20=0D=0AI=20will=20continue=
-=20working=20internally=20to=20see=20how=20we=20can=20push=20the=20missing=
-=20pieces=20upstream.=0D=0A=0D=0A>=20=0D=0A>=20Best=20regards,=0D=0A>=20Krz=
-ysztof=0D=0A=0D=0AThank=20you.=0D=0A=0D=0ARegards,=0D=0APritam=0D=0A=0D=0A
 
