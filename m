@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-271115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271116-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SLA5FPVNqGmvsgAAu9opvQ
-	(envelope-from <devicetree+bounces-271115-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:21:25 +0100
+	id sOFRDcJQqGmztAAAu9opvQ
+	(envelope-from <devicetree+bounces-271116-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:33:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B446D202865
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:21:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A18D0202C94
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:33:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B49F83013EEE
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:08:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 500C33240594
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2B02329373;
-	Wed,  4 Mar 2026 15:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE733382F0;
+	Wed,  4 Mar 2026 15:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="syDX+awR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rsw4eF5o"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C7A632ED54;
-	Wed,  4 Mar 2026 15:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195F526E6FA;
+	Wed,  4 Mar 2026 15:07:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772636741; cv=none; b=uK90g3QpC656RDodus+cryDRcY1lrSmrBh2YPtcoA68IeUiFrN21bqyuAOQ+0my0k+532FRysfFWLNsDsHeYSk4jhIDLjdlbSwcVVCGa5N0g2PNTZ9fATLT8B3cALU3k4kOMATfGdnJn5S5KbNd2vuf8LShyv3ewLuUiTxxGwMA=
+	t=1772636829; cv=none; b=Ie8bbDqwHfk7BwIJ8Jx9eHsAwL1YjRaJnNsDRgZXOvCXrMbIeCGj+tmR+ch+pBsxPNgwHYlfbZoddKJEdJRrJ9ofYDgAYNfsr5nWi/s5+S5U03cCupV5JON1AN+281jhex81FwuVPke9XbR+C4eiMljk30P7t5g3r6V9lPlHyNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772636741; c=relaxed/simple;
-	bh=EQq+Z/eEJ/BjZ3Sli8Trx7DoThRfnqXwppcDfiyKYXk=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Iue9niKNJocGwbfUCNvygH2DBRmHINEmlqCb7usdUniSip6k8TEszgfi0H7gRH68nEZX27XT+OUcAbLV5JQ3AIARMzb8lagPtQpv2NFvpHPi3gR1Rk6lFDk64Zj14WvYCAIsOZj/EjTxWeluevlh+fCGqFVCvClEHB6dKOxkHGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=syDX+awR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24D27C4CEF7;
-	Wed,  4 Mar 2026 15:05:36 +0000 (UTC)
+	s=arc-20240116; t=1772636829; c=relaxed/simple;
+	bh=JXmlTFImkPwlmtaIbqtEQwDNMjBLlnNNJejnI18Fw/Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k7LCKUjCcJGWa+ThZjluVWn91ua7hn94DrruKPu6qRTWZIe951PVFNY5c83PuRU5/IAC32W3w5xWyM/TRfqjEYVucwK7/NfjnsayyU0KO9EuL4xNq7qDWA9pU4M/I3lrBqsAkC1rcyuNBEFnnGYUYLKwD+4nopdF1TWjKmjviaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rsw4eF5o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71037C4CEF7;
+	Wed,  4 Mar 2026 15:07:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772636740;
-	bh=EQq+Z/eEJ/BjZ3Sli8Trx7DoThRfnqXwppcDfiyKYXk=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=syDX+awRE0iFPv2HiOGRFYRW1webFqd8nfEis9HwTVlMlDXVi5hr3vwzm3cHQpNyN
-	 4tvGELJv8erZH5u0sIVVA5+P5KOpPmNuoII1/0AzJwk4fwRLFCKmAwHAB/T8FM+Em3
-	 Tajh03GZ972NiQbW5dEcgos4WTM/8ZQkPUcDK0OB8urvBRDhrjNlw2upM4ayF7k3T2
-	 1noEeQaw0i/o38VfPgvufeGwT9XVJ2smHaHOgFz/Zi5pIVCJb9WgnDygkA1paiIg4v
-	 jGzDLp6Mw1CvWlIcGa64kGKjGpsrGV/ZEYE3pJ9KtH2Mlf7+8a2m5OIwMnYa/WwZHz
-	 bTv2A8RN9nnFw==
-Message-ID: <3cec7787-0787-4b97-8eb6-5fe28f4c2a14@kernel.org>
-Date: Wed, 4 Mar 2026 16:05:35 +0100
+	s=k20201202; t=1772636829;
+	bh=JXmlTFImkPwlmtaIbqtEQwDNMjBLlnNNJejnI18Fw/Q=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rsw4eF5oWxMFl69UfYBSmzTbdOZ+WFukGW/16hzxMHjphC1bYobxoGyMyvQeIE7Lx
+	 xAJKHTloCCPFx6HbppGEgbQZbKUJJnpeebOv2oIvvbJOSDhjGLBgGKnMTig2MctztU
+	 L/M2MrlisO7IQ82olIDDdWTSOPZcT3CgCTkXQtvOavBc5QHSiAiVVNHrWBzR6x4tSn
+	 Oyht5e6hhQ/2cAaycdbzKOUni67aOa4YZx7wl9qh05lbR4dIQpP1dFkjEo6yK0bZd6
+	 OCkk/fACa+JESsLmSqFYAnFhBnR/R5vcUgGIMfamOl/WnOVdjiH/lEFreILwiRpk7n
+	 jzoosQGnFIEqA==
+Message-ID: <6a610a7c-04f1-4023-82dc-e9cdf5673d55@kernel.org>
+Date: Wed, 4 Mar 2026 16:07:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,23 +53,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] spi: dt-bindings: renesas,rzv2h-rspi: Document RZ/G3E
- SoC support
+Subject: Re: [PATCH v2 1/7] media: dt-bindings: qcom-kaanapali-iris: Add
+ kaanapali video codec binding
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Bryan O'Donoghue <bod@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Stefan Schmidt <stefan.schmidt@linaro.org>,
+ Hans Verkuil <hverkuil@kernel.org>,
+ Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260227-kaanapali-iris-v2-0-850043ac3933@oss.qualcomm.com>
+ <20260227-kaanapali-iris-v2-1-850043ac3933@oss.qualcomm.com>
+ <4dcbbd06-18eb-46c6-a52c-07a4b17205cd@kernel.org>
+ <68db6d61-640b-4eef-8ccd-ab2fbcb58427@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Cc: tomm.merciai@gmail.com, linux-renesas-soc@vger.kernel.org,
- biju.das.jz@bp.renesas.com, Fabrizio Castro
- <fabrizio.castro.jz@renesas.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
- <f6b43f0dc64e13b1c9942c164dea30002d4c4466.1771344527.git.tommaso.merciai.xr@bp.renesas.com>
- <20260218-qualified-octopus-of-luck-5fcbf1@quoll>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -114,10 +119,10 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260218-qualified-octopus-of-luck-5fcbf1@quoll>
+In-Reply-To: <68db6d61-640b-4eef-8ccd-ab2fbcb58427@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: B446D202865
+X-Rspamd-Queue-Id: A18D0202C94
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -128,41 +133,45 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271115-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271116-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,bp.renesas.com,renesas.com,kernel.org,glider.be,baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,renesas.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On 18/02/2026 08:50, Krzysztof Kozlowski wrote:
-> On Tue, Feb 17, 2026 at 05:23:47PM +0100, Tommaso Merciai wrote:
->> Document the RSPI controller on the Renesas RZ/G3E SoC. The block is
->> compatible with the RSPI implementation found on the RZ/V2H(P) family.
->>
->> Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
->> ---
->>  - This patch depend up on [0]
->>  - [0] https://lore.kernel.org/all/20260128215132.1353381-2-cosmin-gabriel.tanislav.xa@renesas.com/
+On 03/03/2026 19:10, Vikash Garodia wrote:
 > 
-> I am not even looking there, start reviewing each other patches, so you
-> won't be sending FIXES instead of reviews.
+>>
+>> ...
+>>
+>>> +    };
+>>> diff --git a/include/dt-bindings/media/qcom,iris.h b/include/dt-bindings/media/qcom,iris.h
+>>
+>> Filename must match binding/compatible. I asked for this multiple times.
+>>
+> 
+> in this case, its applicable for other platforms as well. Naming it as 
+> qcom,kaanapali-iris.h would make it look like kaanapali specific.
 
-You kind of ignored the problem and the other patch got merged.
+I repeated that feedback way too many times.
+
+NAK
+
+Nacked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com
 
 Best regards,
 Krzysztof
