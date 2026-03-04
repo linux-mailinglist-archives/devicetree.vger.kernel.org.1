@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-270924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YMC5DKjvp2mWlwAAu9opvQ
-	(envelope-from <devicetree+bounces-270924-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:39:04 +0100
+	id YI62AMTvp2mWlwAAu9opvQ
+	(envelope-from <devicetree+bounces-270925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:39:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC4C11FCBD3
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:39:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BCCB1FCBE4
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A6416304A59E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:34:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 55CD43070157
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:35:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EDD2390C9A;
-	Wed,  4 Mar 2026 08:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FBA63914FA;
+	Wed,  4 Mar 2026 08:35:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQFixfd4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jbDO9REZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BCF2382F35;
-	Wed,  4 Mar 2026 08:34:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9CD1A2C0B;
+	Wed,  4 Mar 2026 08:35:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772613255; cv=none; b=eXP5Aq74N1TfYdFBhIebL7b3ceUs5aSemlBnn8EDJgNAh8fSPVOFP7E7D1gjK3Jrr+BoYurcPJuH2ga0fe8/YcPYTvlLNhy7zMrEqZ4iIsqQtHg8StPuQ/LGIxBDl9Y/S9Jw9h8uCACawiqCtUQmxwBmpQHRay4TT8GzGpgJcHg=
+	t=1772613340; cv=none; b=W6EZRfEOq4bRTBWHnetAUZa3p1mUbWoq56TKTzZOmqEGblCo9ZLklpiTdFxi9hh0eO0jSDo8NpFg28vJWpjL4dDmqQbdjCbOIxHTX1EC6D4kDM1us2Eur5NK4rSPzn6YxS+boac5X95hsMjTCTRQ7EuZvUFT6y2Hc1b9gHEnKpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772613255; c=relaxed/simple;
-	bh=ziTBDWIW9u87ppp3H8YLHxXrmlbuWtR01bSwg21V0Ks=;
+	s=arc-20240116; t=1772613340; c=relaxed/simple;
+	bh=oWg/cg7kWlEES/qZchQJbpztQ2Tn1CAdFHkpToBc1HM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RZH0rsDkLjXlI1Ul9uKZeACClNn8PH48wB5+SUPHl25MllC1z/IxKn/g+D/Fhx3I8q8aKVEpnRxN9Aayk8+xzdUm8SvjcJdBij1NNdBRe2alnd9agORw0qkVtV5mCukVk4zRlQbyjfexkng2+PSeLUGDE+YIMHJCzUx7wTJqRRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQFixfd4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9051BC2BC87;
-	Wed,  4 Mar 2026 08:34:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=morPEMXc9ZeQ1I/COKlK5J4xTTrjmz2vq5Q+Ir/PWwhO+c/muxdN0sPit4bBZAbhCpLZbAdLe8O3dzQSK8pqp+GiTwURcApIst5l3jWBhcRGNCYe7cEWc+/nC59JfaxLpIgDmqE0jZuXZJTFNQQMT9LXxnEyEgCa717JDRUbKVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jbDO9REZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F715C19423;
+	Wed,  4 Mar 2026 08:35:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772613255;
-	bh=ziTBDWIW9u87ppp3H8YLHxXrmlbuWtR01bSwg21V0Ks=;
+	s=k20201202; t=1772613340;
+	bh=oWg/cg7kWlEES/qZchQJbpztQ2Tn1CAdFHkpToBc1HM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KQFixfd4QrHOw1LVI/dUoEwBC+tW6PRXfGUa5uNDkW5x5dhVUdJyPCuucQLXN19dE
-	 zIecJjIv3LEsP9UzSHiwktilM/Me0O335+zBXedw9xK+fLCt9KB9Wh/Emnz3MUJ1GS
-	 skSI96+vcIr+/7c31ndy2uH3fXs8j4OmIWkXmy56dXPxYHA8r77MvLQtE0Afe/mO1p
-	 6YMMODxNm4tLYAR4lbmdY6jJiu7Eqs/nY/wG9AGxNk7SPIJSOvpOYEC2/lK7KRqDUD
-	 PUbqTpP2VEZmbypypr22Z5DRSlC7cG54aXvefZJu48X4KFKG50g83Pkd7y83Jp7vaN
-	 Tno19lc+JPBjQ==
-Date: Wed, 4 Mar 2026 09:34:12 +0100
+	b=jbDO9REZow53raDLG6Ylx8rKhsJQX8kWtGz7KlNrZATvSPnmX8sDpV9Tq+my2eKvY
+	 fxJqZ2FcA3QsALILV1TuSsnrTBrnRVWgb5tvTZ68Y1EyPOKMv4Dz+/lACKzqHTY2X+
+	 1xoIDJ6XusXVNeZ++c8yjBO/fmwvYxk0Ho360/zfWqZQBTxfXe9F1YaKXPNhMk9xwH
+	 3gCfDP4acMucgyzLN1qpWikFA5i0c0IdrgBnmw4riv5065a5oWxTHJYCTIOcGCW/yC
+	 D/RR6oVtruJAhNNZpSMlo6xU3+68Lhsyr3sUyv+6OP/8sIperKgNYz8Km8c0NNllJg
+	 HP7x24bA6QNNQ==
+Date: Wed, 4 Mar 2026 09:35:37 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Conor Dooley <conor@kernel.org>
-Cc: linux-rtc@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Daire McNamara <daire.mcnamara@microchip.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: rtc: mpfs-rtc: permit resets
-Message-ID: <20260304-camouflaged-invisible-rhino-6e3c84@quoll>
-References: <20260303-flounder-slate-dd69766990ce@spud>
+Cc: linux-i2c@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: i2c: microchip,corei2c: permit resets
+Message-ID: <20260304-vivacious-congenial-bear-f47377@quoll>
+References: <20260303-clang-earthling-8a4904cb8a7b@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +62,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260303-flounder-slate-dd69766990ce@spud>
-X-Rspamd-Queue-Id: BC4C11FCBD3
+In-Reply-To: <20260303-clang-earthling-8a4904cb8a7b@spud>
+X-Rspamd-Queue-Id: 5BCCB1FCBE4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270924-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270925-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
@@ -91,20 +91,34 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,infradead.org:email,microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 04:36:33PM +0000, Conor Dooley wrote:
+On Tue, Mar 03, 2026 at 04:34:54PM +0000, Conor Dooley wrote:
 > From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> The RTC on mpfs and pic64gx has a reset pin, but until now this has been
-> undocumented because platform firmware takes the RTC out of reset on
-> first-party boards (or those using modified versions of the vendor
-> firmware), but not all boards may take this approach. Permit providing a
-> reset in devicetree for Linux, or other devicetree-consuming software,
-> to use.
+> Both CoreI2C and the hardened versions of it on mpfs and pic64gx have a
+> reset pin. For the former, usually this is wired to a common fabric
+> reset not managed by software and for the latter two the platform
+> firmware takes them out of reset on first-party boards (or those using
+> modified versions of the vendor firmware), but not all boards may take
+> this approach. Permit providing a reset in devicetree for Linux, or
+> other devicetree-consuming software, to use.
 > 
 > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> CC: Conor Dooley <conor.dooley@microchip.com>
+> CC: Daire McNamara <daire.mcnamara@microchip.com>
+> CC: Andi Shyti <andi.shyti@kernel.org>
+> CC: Rob Herring <robh@kernel.org>
+> CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> CC: linux-riscv@lists.infradead.org
+> CC: linux-i2c@vger.kernel.org
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/i2c/microchip,corei2c.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
