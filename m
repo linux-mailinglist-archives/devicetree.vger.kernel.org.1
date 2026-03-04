@@ -1,184 +1,134 @@
-Return-Path: <devicetree+bounces-270824-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270825-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gJc1DZqIp2nliAAAu9opvQ
-	(envelope-from <devicetree+bounces-270824-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 02:19:22 +0100
+	id eGxVERCMp2kuiQAAu9opvQ
+	(envelope-from <devicetree+bounces-270825-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 02:34:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86ECF1F92C8
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 02:19:21 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2A9D1F97B8
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 02:34:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 29A20307A081
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 01:19:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A09C030D87AE
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 01:31:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E94F3093CB;
-	Wed,  4 Mar 2026 01:19:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9A93242A9;
+	Wed,  4 Mar 2026 01:30:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WV6MAc78"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ph+F9Lr9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487DA1E1E12
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 01:19:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 068F3322B8C;
+	Wed,  4 Mar 2026 01:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772587159; cv=none; b=uQtWoPH+fAMGOb7ZmKkDQPXuCBE5RLjGvxTf8dNeEWU4nc3SZKUuOhyfeESrCFH5dhxdv7YRHmUhRwk1pF7lSZnabOA5J+OBd2N6DvD9Nnt7Hsj/IlNFv1xLsY0MeJ+xCG1o5GxRyZNfNDgF8lW26F5/C0wToS6HxWy1U3j0LXQ=
+	t=1772587838; cv=none; b=TUVRi6l93bY06FFfFzdNNJhY025yIhf5uyWRebXU8e4z46YkZVcfZs3CV77AHmarrKTi9KJFp+gqvSebb/Jjc3uPW4cuqXG8+bpyNLgh6ZPIaT34oWWK2ZyXpItbNNRcPJzTBnVJ3BTqZW+kq22clvB9bK2+lI3JjoPA6bnRetY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772587159; c=relaxed/simple;
-	bh=rdDyhELc7hSIr6ByJJWu3JPfPVveq+7o3+8nhUm+zc8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m25L6HVeOTCAOPiVptEhOCTziNULSAf+kLvlE3ZTqUTmK+nE4JsBP8ga/vA6a1cPVjQXiAXtQlSTGeyhW5/lzYHZzgiLf5mPFWh8vJet153nvlXouL2zb00wKKVt0ZYC4iPJv1PJWVmg5wATUb5iGEQCP1GAhsGfFNFGU8KCLCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WV6MAc78; arc=none smtp.client-ip=74.125.82.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2bdd80beee1so2020905eec.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 17:19:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772587157; x=1773191957; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gvvy8mrMhzjULjG/waJaGKSbWOymXRI0aiNwOWuVKAk=;
-        b=WV6MAc78RB8PldkwMpwzKY2soJ4AMRocvWmV1o73BS0+vfQajVl4Mo8WIBlI0idUzo
-         MWVNLFEvHi1L3FG4jwfCucdOqCEAYH9s2Ia7StCK7C+h+mwedKQuODpfbbNWU10x0hBM
-         lSgB7sT9piaqU3TDThacV5Q2mUxiJPXpVcXB74Pd7HWufh7h+76iJH4b0lR6K+ssprKO
-         rT2glzNJSnLNw7ruMJWv6EBEtH+GOImml5jfRrh2L2FRf2UGEiby9O1GFo893Fm16K1F
-         JJBOCz4QHUTkP9C36fAkOJlZyTQHbrWA5teT3V4a4lPuVMNqmNhxmXf3+xHLRnAfGWuL
-         PACQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772587157; x=1773191957;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gvvy8mrMhzjULjG/waJaGKSbWOymXRI0aiNwOWuVKAk=;
-        b=wnfSCYelcm8lJgrV6R8L8kE+rNsf61urNAVwHxzAglxnM/Y0lUYbdZ8+sbBs82XIJ1
-         OXGlJcMtxt5Wps1pEmnm0sXU9Gsyiws1tnKDgUlYSJNIzYku7WP7CRM5oFWIi4JK3TYI
-         WA5EZJWa+A1LoLxiLundcxojFvw4gIwYmEZx4CJOqTfkd86/WIZ07jdom247qWTyWcUH
-         aSyJdM1JUTCKcj6K/AHXgFWYm0FBRlZ9gMlNP8yyaNckZYoLdRDQt2lPYCF+YqAb4r8x
-         dxjSlOnVItgnYO2n1NQUdXiqa3NDdLwM/HVqYEpQ1UdkgMXzGoicwmeMASSE5qw5lfC5
-         +nBw==
-X-Forwarded-Encrypted: i=1; AJvYcCXYc9GQS1RIG1IW5gywhH/8e+dX57z2iMfXvaqobEvAHNz6+eUQNhPrT9wDoJJlbQmtkGxVCA736VgO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoJG4kqh6hwzp0aN9tqvucgZh9oRjW9Nqc3eDcwm0Wf5REd6pO
-	J/NJI+gI8XQoxx4KCaBlNxG7ZA1C8kaTSUo60n4oWK9uku6jl7QmrJMm
-X-Gm-Gg: ATEYQzy29OA1MgcB1R2BPaZYvoD8mgUaYNa5f5RQJTsHYfFvhhXOb88zNogLlzWZ5MW
-	grEkXh1oLfJ2mQDt/b53J6uvVftApGOU1pdoGWuBgraBe6lNLJK2pEJ4iKGYs/W/Z9dPMxYlZlv
-	4GVggDyLBJ6nG2tAV3Q1Y/8bU9kzCxINCWwRruse/8wNIPfuXfpaSv/Ce+OkVdCH7yFE75u0m1Y
-	5y9F50a59816QcIwL2CmNTF3X4Axsv+NYaQgmH8frgd9tUccat+PlmKVrOnBgdb+8S/UC9JZ4w2
-	2QweTvWytN6VMRSDf0kdZTyxHUJXf5tbvFPY3w3hFGgSV6ga39HLEECUWnenmB5goP/RMAwqTqb
-	wVisP7tWXmVBmnqf+doFGPUkHxBsZJUzdqVixtmCv+bZORvd/5AEdw0ZXthzexvIYer4bSlJvrh
-	sONCDM9fKolK+H1oDCEl4KxWKFUxPuhU7fWxOEKxuJWFKKlME=
-X-Received: by 2002:a05:7300:ac81:b0:2be:969:75f6 with SMTP id 5a478bee46e88-2be2344da48mr1494176eec.9.1772587157326;
-        Tue, 03 Mar 2026 17:19:17 -0800 (PST)
-Received: from [172.16.0.242] ([192.19.161.250])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be0d7e0d40sm6999679eec.12.2026.03.03.17.19.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Mar 2026 17:19:16 -0800 (PST)
-Message-ID: <05a15890-392c-41c3-9566-8eb506ddfe5f@gmail.com>
-Date: Tue, 3 Mar 2026 17:23:18 -0800
+	s=arc-20240116; t=1772587838; c=relaxed/simple;
+	bh=+I+hq5d0Ukd9MEdfhHt1OsWJaWgutZdYvcEqbxDyxqU=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=icMPuIDSDWpPeChW9cMO6a+GHjySsDLlTnefeWSJYFL5n5juse8LqDypeuBLzTyV48CEROTawfOZ8mjzl3iO52J+EEIeQ2lSM0+5asfozgKUttUIt+KWgdtCDXLXKaVmVwp96V4vmL8Aq9TyP5uJ6hbx6gJT+SCKQ8ZW+AmfguI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ph+F9Lr9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B191BC2BCB0;
+	Wed,  4 Mar 2026 01:30:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772587837;
+	bh=+I+hq5d0Ukd9MEdfhHt1OsWJaWgutZdYvcEqbxDyxqU=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=ph+F9Lr9dGojpzp44IwvwNc7Xzd80mdx2Mdy9tq55GXsJ31dupTH7ZFY3sANQJZV7
+	 v3wWtdvvm8glGo9uP6cTo3PvDb3Q10AX7GaF0RCY4Jd+S2qTv8SkyD3sc/rm5jueJ7
+	 0YJy0IWAUwuMcra0wjAzu8nix3XdG1X3bvrrFl1qcXH2XTf93TdFxVXP9RsHj6uRUg
+	 TzdgeSEb2jQXkBjSELPpUZDhM20H2QdGmrx3JcURNYuuNu7Imn8c2a7neFbi/WLTLy
+	 pw6iL2swgmTb2TW6pYqZe7+llC+vPxxMlbvbPUww6C3t1LoT5CfMCKXgM2NQdAM0ji
+	 E1p1grKVjRVqw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 02E523808200;
+	Wed,  4 Mar 2026 01:30:40 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 1/3] dt-bindings: ethernet: eswin: add clock
- sampling control
-To: Conor Dooley <conor@kernel.org>, Jakub Kicinski <kuba@kernel.org>
-Cc: lizhi2@eswincomputing.com, devicetree@vger.kernel.org,
- andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gmail.com,
- alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk, wens@kernel.org,
- pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
- linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
- weishangjuan@eswincomputing.com
-References: <20260303061525.846-1-lizhi2@eswincomputing.com>
- <20260303061637.872-1-lizhi2@eswincomputing.com>
- <20260303163846.156d18f7@kernel.org>
- <20260304-regulate-verdict-c3a361d2dc83@spud>
-Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <20260304-regulate-verdict-c3a361d2dc83@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 86ECF1F92C8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [net-next PATCH v6 0/3] Grab IPA IMEM slice through DT
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <177258783853.1546050.12919128541243132740.git-patchwork-notify@kernel.org>
+Date: Wed, 04 Mar 2026 01:30:38 +0000
+References: <20260302-topic-ipa_imem-v6-0-c0ebbf3eae9f@oss.qualcomm.com>
+In-Reply-To: <20260302-topic-ipa_imem-v6-0-c0ebbf3eae9f@oss.qualcomm.com>
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, elder@kernel.org,
+ marijn.suijten@somainline.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, konrad.dybcio@oss.qualcomm.com,
+ krzysztof.kozlowski@oss.qualcomm.com, elder@riscstar.com,
+ dmitry.baryshkov@oss.qualcomm.com, horms@kernel.org, krzk@kernel.org
+X-Rspamd-Queue-Id: B2A9D1F97B8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,einfochips.com];
-	TAGGED_FROM(0.00)[bounces-270824-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_FROM(0.00)[bounces-270825-lists,devicetree=lfdr.de,netdevbpf];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NO_DN(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ganboing@gmail.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	MISSING_XM_UA(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Hi All,
+Hello:
 
-On 3/3/26 16:47, Conor Dooley wrote:
-> On Tue, Mar 03, 2026 at 04:38:46PM -0800, Jakub Kicinski wrote:
->> On Tue,  3 Mar 2026 14:16:37 +0800 lizhi2@eswincomputing.com wrote:
->>> There are currently no in-tree users of the EIC7700 Ethernet driver, so
->>> these changes are safe.
->>
->> What do you mean by this sentence? The commit under Fixes was part of
->> Linux v6.19 already.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon, 02 Mar 2026 16:58:42 +0100 you wrote:
+> This adds the necessary driver change to migrate over from
+> hardcoded-per-IPA-version-but-varying-per-implementation numbers, while
+> unfortunately keeping them in there for backwards compatibility.
 > 
-> The "funny" thing is that caring about users doesn't even really matter
-> on the devicetree patch, except for this hunk:
-> |@@ -81,7 +99,9 @@ properties:
-> |                          or external clock selection
-> |           - description: Offset of AXI clock controller Low-Power request
-> |                          register
-> |+          - description: Offset of register controlling TXD delay
-> |           - description: Offset of register controlling TX/RX clock delay
-> |+          - description: Offset of register controlling RXD delay
-> |
-> | required:
-> |   - compatible
-> And it only matters here because an item is injected mid-list. If this
-> was moved to the end with the RXD delay, the **dt-binding** changes
-> don't have issues with safety. I've not looked at whether there are
-> knock-on concerns about users in the driver or whatever yet, but from a
-> binding POV only that hunk can break something that currently works.
-
-This was already discussed here in v1:
-https://lore.kernel.org/lkml/e7183ae1-8b8b-4e77-9f4e-3bc1b4b63556@lunn.ch/
-
-The device-tree is not checked in yet by ESWIN folks, so there's currently
-no user of the dt-binding. No need to worry about backward compat.
-
+> The DT changes will be submitted in a separate series, this one is OK
+> to merge independently.
 > 
->>> Fixes: 888bd0eca93c ("dt-bindings: ethernet: eswin: Document for EIC7700 SoC")
+> [...]
 
-Bo
+Here is the summary with links:
+  - [net-next,v6,1/3] dt-bindings: sram: qcom,imem: Allow modem-tables subnode
+    https://git.kernel.org/netdev/net-next/c/ca4c7771a059
+  - [net-next,v6,2/3] dt-bindings: net: qcom,ipa: Add sram property for describing IMEM slice
+    https://git.kernel.org/netdev/net-next/c/f5a598abfdd9
+  - [net-next,v6,3/3] net: ipa: Grab IMEM slice base/size from DTS
+    https://git.kernel.org/netdev/net-next/c/6f82cb4ecdb4
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
