@@ -1,175 +1,277 @@
-Return-Path: <devicetree+bounces-270933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270934-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOYdEOr3p2l1nAAAu9opvQ
-	(envelope-from <devicetree+bounces-270933-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:14:18 +0100
+	id 4E8BM1z4p2l1nAAAu9opvQ
+	(envelope-from <devicetree+bounces-270934-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:16:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D681FD617
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:14:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A4BE1FD69B
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:16:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 14450312ECCA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 09:07:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6FA18308C0D9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 09:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87FC3932F2;
-	Wed,  4 Mar 2026 09:07:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC6839448A;
+	Wed,  4 Mar 2026 09:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="Xwx9n+xa"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="d5U8vb6p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp16.bhosted.nl (smtp16.bhosted.nl [94.124.121.27])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 594ED38E13F
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 09:07:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.27
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA64139184B;
+	Wed,  4 Mar 2026 09:09:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772615276; cv=none; b=gCm5kjNacbPhp6NCx4e/GvAe2lYMtP2aaBFszi7mw8XIsAherbz6MeGcwxxSXK2UQ3qDWUqqouu7wge0fWAcP58SCoESvyzjQtL2s2T022il5Lv93g10nOVfDCDc6IkmPq7T7U3GcvLZsnnMU19EnpS/sCOdEnlnWDkuGsAEc50=
+	t=1772615374; cv=none; b=OVuhpzkaSj8XGWHvZkyNhuSSI61wL4Rw81JB7KajB3jREai+5oIgbZQ9KWZ6L4iNey90PyNX+I6mfI1Y4UZ5LpBcswSSFIVrlNgtUVkZ8jLiuGsuTGY5NE1qeQqFPYBcnDo2DZX7iJI2HwJaRPScjM2/+mOp9KG0CdbmVxpWgSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772615276; c=relaxed/simple;
-	bh=HzGhRH94uYQhm+jiWYn+DKKu4qjvpXaVupl5oLLTzEA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ii/eqLxtRiGuuy+DnlvWyyLi0LtGjwNXb/qYdX6Xa3k/KoLOsHpU8AkJnPwi5iTVpGNVatWIhnB3htHwZH4wQtQaf2kvJKXMky+Juhc+WSG9ACtvHhCe+Sz9ER36S+TkNvSpHQAzVEPToMl0MVXVBqZYzAOGZONw7qWHzuqq3rg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=Xwx9n+xa; arc=none smtp.client-ip=94.124.121.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=ANgf0NirWa/yPqZ74gRfT33LDkbxijfweyinRAYArLg=;
-	b=Xwx9n+xaFIhq1CObs4uX0c/ShhFw6TqnK1+/PvKSZcM0go5tDwJUPghr/UHqI5Lpw22ejAKMy6TDR
-	 E2zysWfgMZRPnEGAkM6GLHuOyoUNofUEAiu99erPrqsxMLmP5S5BD2kINOoQf+5dPhlO31yQMUyXRk
-	 zlwJDYie0pVavdchPu+bZjUk8xY1waITkH4HCSxAki+aMxteC04nmLL7S3lyvysT42aMSre04j+GPE
-	 UJawikvRkDA3Zu67ej7X5DXJiPNo6JNYW9t4CX7/oqpKjMEAGyrW9scckueCbV2EDQ6r8IJ+LqKlJP
-	 mj1eTjouyzWZff0wnrUnfVgDbEaBfgw==
-X-MSG-ID: 76524656-17a9-11f1-9155-005056817704
-Date: Wed, 4 Mar 2026 10:06:42 +0100
-From: David Jander <david@protonic.nl>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>, "Rob Herring (Arm)"
- <robh@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin
- <peda@axentia.se>, kernel@pengutronix.de, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, Guenter Roeck
- <linux@roeck-us.net>, Linus Walleij <linusw@kernel.org>,
- linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
-Message-ID: <20260304100642.44d00b99@erd003.prtnl>
-In-Reply-To: <20260304-graceful-sweet-bittern-98efdb@quoll>
-References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
-	<20260303133947.1123575-2-o.rempel@pengutronix.de>
-	<177254885509.3251575.14819823286886805862.robh@kernel.org>
-	<aacH7NmkOzZued0Y@pengutronix.de>
-	<20260304-graceful-sweet-bittern-98efdb@quoll>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772615374; c=relaxed/simple;
+	bh=yftRdM8nyWQsdJ2/EVnd712szefjtMJ1WAaLClGC6a4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pagGXb9kjdSqHUo3ycPtJls1a23YbVscC5YxOway7o5DFzjBMTnfxvNe18P//J0I5OGOUrvig438TG3oQ6iF60OC/9BHuzpsDPsuRMSbmcM1hyTZqsm34or7UEVE2eUQe37Bsxw8A6TUFx+jZ1qDY2xwT2ChUztTK1VbO2ZUbQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=d5U8vb6p; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6471B22953A;
+	Wed,  4 Mar 2026 10:09:21 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1772615369; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=0QOY3SwlDPrGm+6EJVdxOMdbUCm/cndSMZI5zzeh0dI=;
+	b=d5U8vb6pBn5ABOYJsTtCnPXgqoJsbhO0uLtdRutCR/zeXaC+BKOEY1MZg+X7cB00LZyYD/
+	tvls+YGM9G4/i15SovrHmKK1Ikt3mBp74ZiRxlqgP3qHBkfHoSyOWFrwghYZBtpA/Toc13
+	0JxoAEscHkZYZjS7H8KC05CD1oe2Oth1w2lNxtCGmrH7e3FJYRhDaqPYEMR39Y/EgT4rJ+
+	How3mchqTzXemRlWZO/2TEax9ylq46DxosIW80V8jvyRuSpff48d0/WpVVq/cDjHKfehlC
+	K+/DzLb4pbYKJFIWkec2nvS7YUVsQgGgC5UuYMpPHcoCqyJR7GoBKq+3Rm+MXQ==
+Message-ID: <7888e449-fec9-4a23-8133-ad0c9651a354@cjdns.fr>
+Date: Wed, 4 Mar 2026 10:09:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH 1/8] dt-bindings: clock, reset: Add econet EN751221
+ bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-mips@vger.kernel.org, naseefkm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tsbogend@alpha.franken.de, ryder.lee@mediatek.com,
+ jianjun.wang@mediatek.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, bhelgaas@google.com, vkoul@kernel.org,
+ neil.armstrong@linaro.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, nbd@nbd.name, ansuelsmth@gmail.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260303190948.694783-1-cjd@cjdns.fr>
+ <20260303190948.694783-2-cjd@cjdns.fr>
+ <20260304-accomplished-helpful-orca-5d6b81@quoll>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <20260304-accomplished-helpful-orca-5d6b81@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 90D681FD617
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 5A4BE1FD69B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[protonic.nl:s=202111];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[protonic.nl];
-	HAS_ORG_HEADER(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270933-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270934-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,baylibre.com,kernel.org,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,collabora.com,nbd.name,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@protonic.nl,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[protonic.nl:+];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[protonic.nl:dkim,nxp.com:url,erd003.prtnl:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.0:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[1fa20000:email,cjdns.fr:dkim,cjdns.fr:email,cjdns.fr:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url,bootlin.com:url,1fb00000:email]
 X-Rspamd-Action: no action
 
 
-Hi Krzysztof,
+On 04/03/2026 09:39, Krzysztof Kozlowski wrote:
+> On Tue, Mar 03, 2026 at 07:09:41PM +0000, Caleb James DeLisle wrote:
+>> Add clock and reset bindings for EN751221 as well as
+>> a "chip-scu" which is an additional regmap that is used
+>> by the clock driver as well as others. This split of the
+>> SCU across two register areas is the same as the Airoha
+>> AN758x family.
+> Please wrap commit message according to Linux coding style / submission
+> process (neither too early nor over the limit):
+> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+OK
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+OK
+>> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+>> ---
+>>   .../bindings/clock/airoha,en7523-scu.yaml     | 19 ++++++-
+>>   .../mips/econet,en751221-chip-scu.yaml        | 41 ++++++++++++++++
+>>   MAINTAINERS                                   |  3 ++
+>>   .../dt-bindings/clock/econet,en751221-scu.h   | 15 ++++++
+>>   .../dt-bindings/reset/econet,en751221-scu.h   | 49 +++++++++++++++++++
+>>   5 files changed, 126 insertions(+), 1 deletion(-)
+>>   create mode 100644 Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
+>>   create mode 100644 include/dt-bindings/clock/econet,en751221-scu.h
+>>   create mode 100644 include/dt-bindings/reset/econet,en751221-scu.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+>> index a8471367175b..e60e54273393 100644
+>> --- a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+>> @@ -32,6 +32,7 @@ properties:
+>>         - enum:
+>>             - airoha,en7523-scu
+>>             - airoha,en7581-scu
+>> +          - econet,en751221-scu
+>>   
+>>     reg:
+>>       items:
+>> @@ -67,7 +68,10 @@ allOf:
+>>     - if:
+>>         properties:
+>>           compatible:
+>> -          const: airoha,en7581-scu
+>> +          items:
+> Drop items, it's just enum
+>
+>> +            - enum:
+>> +                - airoha,en7581-scu
+>> +                - econet,en751221-scu
+>>       then:
+>>         properties:
+>>           reg:
+>> @@ -98,3 +102,16 @@ examples:
+>>                 #reset-cells = <1>;
+>>         };
+>>       };
+>> +
+>> +  - |
+>> +    soc {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <1>;
+> No need for new example, especially without any differences. You already
+> have there two.
+OK
+>> +
+>> +      scuclk2: clock-controller@1fb00000 {
+>> +        compatible = "econet,en751221-scu";
+>> +        reg = <0x1fb00000 0x970>;
+>> +        #clock-cells = <1>;
+>> +        #reset-cells = <1>;
+>> +      };
+>> +    };
+>> diff --git a/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml b/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
+>> new file mode 100644
+>> index 000000000000..7c7c8cf8d2a5
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mips/econet,en751221-chip-scu.yaml
+>> @@ -0,0 +1,41 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mips/econet,en751221-chip-scu.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: EcoNet Chip SCU Controller for EN751221 SoC
+>> +
+>> +maintainers:
+>> +  - Caleb James DeLisle <cjd@cjdns.fr>
+>> +
+>> +description:
+>> +  The EcoNet chip-scu block provides a configuration interface for clock,
+>> +  io-muxing and other functionalities used by multiple controllers (e.g. clock,
+>> +  pinctrl, ecc) on EN751221 SoC.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: econet,en751221-chip-scu
+>> +      - const: syscon
+> And it does not fit existing syscon bindings file, because ... ?
 
-On Wed, 4 Mar 2026 09:05:11 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> On Tue, Mar 03, 2026 at 05:10:20PM +0100, Oleksij Rempel wrote:
-> > Hi Krzysztof and Rob,
-> > 
-> > On Tue, Mar 03, 2026 at 08:40:55AM -0600, Rob Herring (Arm) wrote:  
-> > > >  .../devicetree/bindings/mfd/nxp,mc33978.yaml  | 114 ++++++++++++++++++
-> > > >  .../bindings/pinctrl/nxp,mc33978-pinctrl.yaml |  82 +++++++++++++
-> > > >  2 files changed, 196 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,mc33978.yaml
-> > > >  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978-pinctrl.yaml
-> > > >   
-> > > 
-> > > My bot found errors running 'make dt_binding_check' on your patch:
-> > > 
-> > > yamllint warnings/errors:
-> > > 
-> > > dtschema/dtc warnings/errors:
-> > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/nxp,mc33978.example.dtb: gpio@0 (nxp,mc33978): $nodename:0: 'gpio@0' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
-> > > 	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
-> > >   
-> > 
-> > Folding the mux node into the parent as suggested [1] causes this error.
-> > Because the parent now has #mux-control-cells, the generic
-> > mux-controller.yaml forces the node name to be mux-controller. Since
-> > this chip is primarily a switch/GPIO controller, naming the parent SPI
-> > node mux-controller@0 is misleading.
-> > 
-> > What is the preferred way to go here?  
-> 
-> https://www.nxp.com/products/interfaces/multi-switch-detection-interface/22-i-o-msdi-programmable-current-analog-mux:MC33978
-> 
-> Name of the mc33978 device is "programmable analog mux" and further
-> description says "analog multiplexer for reading analog inputs ", so I
-> don't find "mux-controller" a confusing name. It is EXACTLY a
-> mux, so mux-controller.
+If you're asking why it needs to be named "econet,en751221-chip-scu" and 
+not just "syscon", it's because the actual clock/scu searches for it by 
+compatible. This is patterned after "airoha,en7581-chip-scu" ( 
+https://lore.kernel.org/20241023-en7581-pinctrl-v9-1-afb0cbcab0ec@kernel.org 
+).
 
-Sorry to chime in here. I'm afraid the NXP description on that link you posted
-is a typo. It is not correct. This chip is primarily a "Switch Detection
-Interface", or in other wordt a switch input interface. Wee here for the same
-page for the MC34978, which is the exact same chip:
+I could drop this file and use "airoha,en7581-chip-scu" in the DT and 
+clk driver, but I do not think it is identical to the actual EN7581 chip 
+scu.
 
-https://www.nxp.com/products/interfaces/multi-switch-detection-interface/switch-detection-interface-22-i-os-programmable-wetting-current-temp-sensor-3-3-v-5-0-v-spi:MC34978
+I could also drop the file and add "econet,en751221-chip-scu" as a 
+compatible to airoha,en7581-chip-scu.yaml, but that file lives in /arm 
+and this is a MIPS.
 
-It has an additional function that can be used as an analog MUX, but it is an
-extra feature and definitely NOT its primary function.
+I chose this route because it seemed least hackish, but I would defer to 
+your judgement on the matter.
 
-Not sure if this is relevant, but I fear there might be some confusion.
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    soc {
+>> +      #address-cells = <1>;
+>> +      #size-cells = <1>;
+>> +      syscon@1fa20000 {
+>> +        compatible = "econet,en751221-chip-scu", "syscon";
+>> +        reg = <0x1fa20000 0x388>;
+>> +      };
+>> +    };
+> ...
+>
+>> +
+>> +#define EN751221_MAX_CLKS	6
+> Drop, not a binding.
+OK
+>
+>> +
+>> +#endif /* _DT_BINDINGS_CLOCK_ECONET_EN751221_SCU_H_ */
+>> diff --git a/include/dt-bindings/reset/econet,en751221-scu.h b/include/dt-bindings/reset/econet,en751221-scu.h
+>> new file mode 100644
 
-Best regards,
 
-> Anyway if you want gpio, then please add a patch extending the pattern
-> in mux-controller.yaml to allow "gpio".
-> 
-> Alternative, because it is rather a mux than a controller of a mux,
-> would be to call it just "mux" or "io-mux" (maybe the latter, since we
-> have "i2c-mux" in the spec) and allow that pattern to be in
-> mux-controller.
-> 
-> 
+Thank you kindly for the prompt review.
+
+Caleb
+
+
 > Best regards,
 > Krzysztof
-
--- 
-David Jander
+>
+>
 
