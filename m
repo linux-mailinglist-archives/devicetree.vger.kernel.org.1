@@ -1,179 +1,135 @@
-Return-Path: <devicetree+bounces-271231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271232-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDEEDwWEqGmgvQAAu9opvQ
-	(envelope-from <devicetree+bounces-271231-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:12:05 +0100
+	id gA1iM0CEqGmgvQAAu9opvQ
+	(envelope-from <devicetree+bounces-271232-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:13:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95A15206F5E
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:12:04 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B615206F8A
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:13:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DDF62301919F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 19:09:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 91AC33017C26
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 19:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C56B3D7D63;
-	Wed,  4 Mar 2026 19:09:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DF953D7D63;
+	Wed,  4 Mar 2026 19:09:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QvO5DLuz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqMAJOtt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F3D3CD8BD;
-	Wed,  4 Mar 2026 19:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCF728504F;
+	Wed,  4 Mar 2026 19:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772651345; cv=none; b=OYe1EbzO+MmVlCXgHsJwVIkvMXv6pWvNRtk9/TSApuDUiu4+J5o3C4A14YhYOW/KUcF3urYrMkfY4Q18O+xrbmPIWrzPvB8O0ol/BE5rW/JI+R/kGs+ZPdXkNlj4z4zSX+6ti3pwOsT2ZxfWXuP9sT9ULAcX4kGfzmVqlYN2EaM=
+	t=1772651394; cv=none; b=KgLTKXrFEf4y/F0tI6HdL2sq0o5eeBYpOGBbqg2ZO8TXdTJ+JnQPM/Emn67nocAC8nd3HkLcrnLV4f71m210nB+sNqFvPDbtI3+g+hbhV1VNQwcGpuAqaSh4CSjl71rgZrLMGiad+oUDBtWDo57N2OGv1+Ta8gBAZDHSJAyi4DE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772651345; c=relaxed/simple;
-	bh=+qb4Y2WkmElXR9Cy7wmVw2lZ111N906ZQK11dhQZq+w=;
+	s=arc-20240116; t=1772651394; c=relaxed/simple;
+	bh=hpbVWUNxEEHzPDcYAl93i7ZTWuK/43eTmFhvBhl5RoM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L0/PW1ebTRdoIa1IKUDhHeRL3q52rqPa0mIv1JZ8QDL3j0/K+NFch1arUeaMRPyli6057TRH8NepUPOV/ItQZQk7GMT5XYu2H73aqJFlDSIyYkLE671D7fG8Cpn6PHdwogeFKslQE/sF1GcCk9L4oIPPKJvCtDZ7ifHWTEfxSHY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QvO5DLuz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0D4BC4CEF7;
-	Wed,  4 Mar 2026 19:09:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gg9ZN7LUN3P3gX16qszDbjfxH8GgMuVkHi5Xp0QQslAk0h5IhTgTPFYLIDdg29id25piDqVtp29i2iRx1SsAfbtRSfedG+4aiSoq2Z04zBqZ4xcZzDWQIkQObc8M6OP0F0rr6XccXYzg17unhKa6HicVYc/jezo2R84rb6+4A1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZqMAJOtt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5953C4CEF7;
+	Wed,  4 Mar 2026 19:09:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772651344;
-	bh=+qb4Y2WkmElXR9Cy7wmVw2lZ111N906ZQK11dhQZq+w=;
+	s=k20201202; t=1772651393;
+	bh=hpbVWUNxEEHzPDcYAl93i7ZTWuK/43eTmFhvBhl5RoM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QvO5DLuzqQwEZhr4I89jFVDl6g07LdFrOEAFT99e6LVcLGMXYzYfJVjkwgPawfWGA
-	 GtvyhOM+HdbZBfDcqKVwTvIUVW5zoYkRy/dhsU8FZxVwV8ryqvZdUDQvT+6ag+F2vx
-	 iMI5SBC7F25IcY852UxhxMShCS7tcw5YBnfhQkrTNMOUev+VOhsmjtkr5COq5/MSlh
-	 hARMN1XOuslc/VKZNywt24+QOwcUNGAQA242LEuJBhemjA5RjvgaLiuRQQNhafSxfF
-	 H4haXmbP7VTk93FvVhDsxXXgLblVzJtvckmE3DezOUAr4kYwc4ItwP4wHWetmQpQO2
-	 x0gkV8g6tvqtA==
-Date: Wed, 4 Mar 2026 19:08:59 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: ansuelsmth@gmail.com, herbert@gondor.apana.org.au, davem@davemloft.net,
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	lorenzo@kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: eip93: add clock gate and reset
- line
-Message-ID: <20260304-hardship-abreast-7a2d58cbe446@spud>
-References: <20260303193923.85242-1-olek2@wp.pl>
+	b=ZqMAJOttVgjWoQw+dgEHt7jGeyIOV9dpgnYzJWV5qLrm/P7SUaYaehDMfJ3MEejF5
+	 wNKSns5H98cqU6lgwtZQI//aOBYZDL4j6KanGC79Nj2Y99g9H7QLhbqeH1Un4n992w
+	 EwPlzeF0B/m7re29ELqOxq6QpP3TkwtbnE5zmKzHK7fbz9Fzqv9vnvG7XbLmEDyuBX
+	 OMn0A9Yv8V8P1u6hkV2ldPstJzXl4iImwuoK3LIBU+QST9m0nh5Ccu7B54R51sgsIi
+	 hDYoG6+MdODEaRN+W+Kb4Cpy9nrLbb9MB2d7LM0h57AMhL1x1spXlqaESzqsHTMMa7
+	 6ET4BN6DBg5ow==
+Date: Wed, 4 Mar 2026 13:09:31 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Sumit Garg <sumit.garg@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	akhilpo@oss.qualcomm.com, vikash.garodia@oss.qualcomm.com, 
+	dikshita.agarwal@oss.qualcomm.com, robin.clark@oss.qualcomm.com, lumag@kernel.org, 
+	loic.poulain@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com, linux-kernel@vger.kernel.org, 
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: agatti: Fix IOMMU DT properties
+Message-ID: <6yafwubiwtjnpao2crgi3wnfgj5546e3vjcpjnwsnj3y7q76m4@ej3ldry6fbki>
+References: <20260122121042.579270-1-sumit.garg@kernel.org>
+ <20260122172222.GA2670019-robh@kernel.org>
+ <aaWIPgKd-_cm4t7X@sumit-xelite>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XxcjsSvyQL4G5pyd"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260303193923.85242-1-olek2@wp.pl>
-X-Rspamd-Queue-Id: 95A15206F5E
+In-Reply-To: <aaWIPgKd-_cm4t7X@sumit-xelite>
+X-Rspamd-Queue-Id: 2B615206F8A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271231-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[wp.pl];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271232-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,collabora.com,kernel.org,lists.infradead.org,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,wp.pl:email,1e004000:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
+On Mon, Mar 02, 2026 at 06:23:18PM +0530, Sumit Garg wrote:
+> Hey Bjorn,
+> 
+> On Thu, Jan 22, 2026 at 11:22:22AM -0600, Rob Herring wrote:
+> > On Thu, Jan 22, 2026 at 05:40:39PM +0530, Sumit Garg wrote:
+> > > From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> > > 
+> > > Fix IOMMU DT propeties for GPU, display and video peripherals via
+> > > dropping SMMU stream IDs which relates to secure context bank.
+> > > 
+> > > This problem only surfaced when the Gunyah based firmware stack is
+> > > ported on Agatti replacing the legacy QHEE based firmware stack. Assigning
+> > > Linux kernel (HLOS) VMID to secure context bank stream IDs is treated
+> > > as a fault by Gunyah hypervisor which were previously ignored by QHEE
+> > > hypervisor.
+> > > 
+> > > The DT changes should be backwards compatible with legacy QHEE based
+> > > firmware stack too.
+> > 
+> > To avoid intermittent warnings, Bjorn should pick up the whole series.
+> > 
+> 
+> Just a gentle reminder in case it slipped your attention. Can we pick
+> this as part of fixes for v7.0 release?
+> 
 
---XxcjsSvyQL4G5pyd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the ping. Is the Gunyah firmware generally available and
+would this thereby be considered a regression that we need to fix for
+v7.0? Or can I just pick it for v7.1?
 
-On Tue, Mar 03, 2026 at 08:39:17PM +0100, Aleksander Jan Bajkowski wrote:
-> Add the clock gate and reset line, both of which are available
-> on the Airoha AN7581. Both properties are optional.
+Regards,
+Bjorn
 
-Why are they optional?
-
->=20
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> ---
->  .../crypto/inside-secure,safexcel-eip93.yaml         | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safex=
-cel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,saf=
-excel-eip93.yaml
-> index 997bf9717f9e..058454b679b4 100644
-> --- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip=
-93.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip=
-93.yaml
-> @@ -48,6 +48,12 @@ properties:
->    interrupts:
->      maxItems: 1
-> =20
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> @@ -57,11 +63,17 @@ additionalProperties: false
-> =20
->  examples:
->    - |
-> +    #include <dt-bindings/clock/en7523-clk.h>
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/reset/airoha,en7581-reset.h>
-> =20
->      crypto@1e004000 {
->        compatible =3D "airoha,en7581-eip93", "inside-secure,safexcel-eip9=
-3ies";
->        reg =3D <0x1fb70000 0x1000>;
-> =20
-> +      clocks =3D <&scuclk EN7523_CLK_CRYPTO>;
-> +
->        interrupts =3D <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +      resets =3D <&scuclk EN7581_CRYPTO_RST>;
->      };
-> --=20
-> 2.47.3
->=20
-
---XxcjsSvyQL4G5pyd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaiDSwAKCRB4tDGHoIJi
-0kFdAQDa2xGAEXWTcsZnWZ+DqPQeS9mrnJ5G8gdZkyafZYSJmAD/Vur2DZEbjjta
-PQB3sWJGJCz1S70yK3n9JmMjSmGN9gk=
-=5r04
------END PGP SIGNATURE-----
-
---XxcjsSvyQL4G5pyd--
+> -Sumit
 
