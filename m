@@ -1,199 +1,113 @@
-Return-Path: <devicetree+bounces-271065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271066-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6ESjJa87qGl6rQAAu9opvQ
-	(envelope-from <devicetree+bounces-271065-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:03:27 +0100
+	id 2AF9Okg8qGl6rQAAu9opvQ
+	(envelope-from <devicetree+bounces-271066-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:06:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77B73200E85
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:03:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96673200F36
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:06:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9DA83301A794
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:03:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E6EF030654F2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4B693A2576;
-	Wed,  4 Mar 2026 14:03:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kQDrejRG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB66B3AEF4E;
+	Wed,  4 Mar 2026 14:04:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 910A2238C1B;
-	Wed,  4 Mar 2026 14:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A6739B978;
+	Wed,  4 Mar 2026 14:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772632997; cv=none; b=dL3qmrjWZvddE1oF+KhGHe5gTN2WuRFXQhQSSoQdOkepL6rnsGGjijqZdojeNGfxWh4PuXyeh1Yx/k3nCuykROqTgmjzqDIpu480g2Any3ubfubm4bJaV9gVVzCyONPX5a3saIeBuF71btbsNa1/8+HyW+1E22ZdstbDO+pDWVY=
+	t=1772633056; cv=none; b=AbWITIOhDWryZyOhGrGYXjS99VWYz+Y46T3jS+WqSNISFD8zZaccsMdVJNlabOU7ngHqbLdNuu39mSagNot0Jn2T5/iSROudoqrrfzazVS9XgkaC2iR77XQE88r3XBEB657lqixTw4emV9zg9EJEbIsU2ABbeCBIKpb9/3Jic2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772632997; c=relaxed/simple;
-	bh=BGV80tUD11eyPnfJKUYoZf/Qjy2LIJDrmkSepkpUtc8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q/yts0XSRr7sNRzl4JphcX8gc7W2TZSvKtMptfpAbgYIBWgEdfcoYCFSvk7eaSd10CsoA3UopOf9KRT4k9F/NTTEo+4NznHjh6M0wTLXfri7rw+0dAWmG6jChBJoEOqUNGQgPnAXR2paXoeIthEt8hzjDWINwtQ18+O/39W+Q54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kQDrejRG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA3FEC19423;
-	Wed,  4 Mar 2026 14:03:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772632997;
-	bh=BGV80tUD11eyPnfJKUYoZf/Qjy2LIJDrmkSepkpUtc8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kQDrejRGPxlLhiedSrqlS6fiaSBQSj1QXCt6/rGISRdpGrzdiOmNACqegOg+4tEbo
-	 d+yqvpdkUpkBwvc+jFMUmvgk4bBs8auudvlNeeDeXgtvd/nFimiQdVXmijjKeyBBda
-	 bg0Jh94fsaKthKJJcRWTG7xEh8OxvbJY38XRcWVLBZ3zkjNBckd8kxqMQeQSeTNoc2
-	 szNJDzU1ZjkZbU+nlLuf23OxMvs6eJdmhVQqmH9QDqF1fs+2MdZrA0Du3PLk+yyJU4
-	 faxHvPjkqlBiljsoMGE7o73N7bEaoW/L7CpylQInWcu8tXJf8SYdW2lE7awt6RuRK0
-	 mME4mC4FTt5UA==
-Message-ID: <377f0895-0340-423f-a95b-246cf79233dc@kernel.org>
-Date: Wed, 4 Mar 2026 15:03:09 +0100
+	s=arc-20240116; t=1772633056; c=relaxed/simple;
+	bh=GkBJw/OUo0Oa+IzoSIatQ7hMK7OHe6CVg7wKYrKwZHs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Mg3jWnEC6U7r7qosNlHpiEz7igdEKmf7PBVcPdhJlqv2ZmGgKLtyg3NMahUp8CsJV0Xuqg3GvDV1OunGx66iMzSNTiaqPo480AfwZbwRJKdBC30ex4xh/utFKU6L/0O5hX5Fdm4s1Y2qdQ2QzZwPb7YSAofU4BakUq5gSvTgQIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95097C4CEF7;
+	Wed,  4 Mar 2026 14:04:14 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Marc Zyngier <maz@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Fix EPPI range
+Date: Wed,  4 Mar 2026 15:04:10 +0100
+Message-ID: <107183629106ad392e17fdf539a3d79873024377.1772632987.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] soc: qcom: ubwc: Add configuration Eliza SoC
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Jonathan Marek <jonathan@marek.ca>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260304-drm-display-eliza-v2-0-ea0579f62358@oss.qualcomm.com>
- <20260304-drm-display-eliza-v2-6-ea0579f62358@oss.qualcomm.com>
- <7e092c9d-ccc9-4084-91a8-7ddb063a904d@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <7e092c9d-ccc9-4084-91a8-7ddb063a904d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 77B73200E85
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 96673200F36
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.96 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271065-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,quicinc.com,marek.ca,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_FROM(0.00)[bounces-271066-lists,devicetree=lfdr.de,renesas];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[glider.be];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
+	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,glider.be:mid,glider.be:email,arm.com:url]
 X-Rspamd-Action: no action
 
-On 04/03/2026 14:35, Konrad Dybcio wrote:
-> On 3/4/26 1:58 PM, Krzysztof Kozlowski wrote:
->> Add configuration data and an entry to OF table for matching the Eliza
->> SoC.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
->>
->> ---
->>
->> Changes in v2:
->> 1. Use data from manual (UBWC v5 as pointed out by Dmitry, but different
->>    highest bank bits).
->> ---
->>  drivers/soc/qcom/ubwc_config.c | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
->> index 1c25aaf55e52..633d1efa0883 100644
->> --- a/drivers/soc/qcom/ubwc_config.c
->> +++ b/drivers/soc/qcom/ubwc_config.c
->> @@ -16,6 +16,16 @@ static const struct qcom_ubwc_cfg_data no_ubwc_data = {
->>  	/* no UBWC, no HBB */
->>  };
->>  
->> +static const struct qcom_ubwc_cfg_data eliza_data = {
->> +	.ubwc_enc_version = UBWC_5_0,
->> +	.ubwc_dec_version = UBWC_5_0,
->> +	.ubwc_swizzle = 6,
-> 
->  = UBWC_SWIZZLE_ENABLE_LVL2 | UBWC_SWIZZLE_ENABLE_LVL3
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+According to the "Arm Generic Interrupt Controller (GIC) Architecture
+Specification, v3 and v3", revision H.b[1], there can be only 64
+Extended PPI interrupts.
 
-oh, crap, I rebased without my earlier patches fixing this and just
-copied existing.
+[1] https://developer.arm.com/documentation/ihi0069/hb/
 
-Although would be nice if my UBWC patch got merged...
+Fixes: 4b049063e0bcbfd3 ("dt-bindings: interrupt-controller: arm,gic-v3: Describe EPPI range support")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+ .../devicetree/bindings/interrupt-controller/arm,gic-v3.yaml    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+index bfd30aae682bf3f7..360a0643a0b567a4 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
+@@ -50,7 +50,7 @@ properties:
+       The 2nd cell contains the interrupt number for the interrupt type.
+       SPI interrupts are in the range [0-987]. PPI interrupts are in the
+       range [0-15]. Extended SPI interrupts are in the range [0-1023].
+-      Extended PPI interrupts are in the range [0-127].
++      Extended PPI interrupts are in the range [0-63].
+ 
+       The 3rd cell is the flags, encoded as follows:
+       bits[3:0] trigger type and level flags.
+-- 
+2.43.0
+
 
