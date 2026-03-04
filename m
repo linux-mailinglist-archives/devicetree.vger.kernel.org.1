@@ -1,201 +1,168 @@
-Return-Path: <devicetree+bounces-270861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270862-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMPKFqO8p2nfjQAAu9opvQ
-	(envelope-from <devicetree+bounces-270861-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 06:01:23 +0100
+	id WPQmBbvNp2m6jwAAu9opvQ
+	(envelope-from <devicetree+bounces-270862-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 07:14:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29141FAD14
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 06:01:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7EC91FB0A6
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 07:14:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9E27E3038F12
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 05:01:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0B75F30383E5
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 06:14:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BC2367F38;
-	Wed,  4 Mar 2026 05:01:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95C537F8C1;
+	Wed,  4 Mar 2026 06:14:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="noVzN0gY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fKHlI7vo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 090D42E2663
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 05:01:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5350351C18;
+	Wed,  4 Mar 2026 06:14:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772600480; cv=none; b=r+bcRvT/ouKz2nobQIOihm7W0O3dfTTGz7AWYg9OxXKMTkuLLc0omabQ2YgMAaWAurFT4thublSRd7uVUcvSY2L0d25V+aJbmkA/ee1H5Ne9Y6IhEosiAp5JPafagjfBQiD/MiPGcxdUrZu6IUfxrR8QuuB7oEYFkugK1GRYFtQ=
+	t=1772604856; cv=none; b=CVnMffxrh1TlZCFBiENlbYEUSDIB9DEDtPwJKDT2NaOB29/eaKtTMnSbfoopV9FaUs9+G9DsKerKn/CyWRy122j+jt05AhTPSoGLYFnlvAuNqPgZgRaF+D//bD1kPRLY6tbMtWA3cBMMKyErq6wVdDrlwf0jhdu0iXEjcFF54Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772600480; c=relaxed/simple;
-	bh=q900SxARa7WkotcVHjlQh+90jJwX7uIhDq9gH9l/QfU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G+7vyjhp5mf8x61WW5ykE4B5Awf7/ItFNJG2rMH3zbk4PfDol4A5bqOSjBlraycXVR5YWw8cNtVitOUvEZUGXibILwoHu+Rx5vGAM744rDeUhzJqUoGx7Erv8Ck06obyjXDhUHXEgZDXTiul23w51WAwQJLBb8iC5AUM90CIYuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=noVzN0gY; arc=none smtp.client-ip=74.125.82.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dl1-f53.google.com with SMTP id a92af1059eb24-12758ce1e8dso940025c88.0
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 21:01:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772600478; x=1773205278; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=l/nYbvJ2Ie/7AoV2hxQbNjt9CPBgI0NZpDJT+MhOo98=;
-        b=noVzN0gY6eDOmqdIDzhqW7qhaHHSELHcvJObBWE3FYMEO/OLSyyhqgXb+Pu2XWdyAq
-         LI7wT165K39bYeBeQxZE9Udgs5sijUrIh+t+s6aF2TyoYRsLi6pV3tbNoyerqGwIFUSo
-         Qr4cym0LaZmn0aKkCdXz99pW7FlPrWk4pv4yLTG1S8MgOVtAW7GQeQ61nlIgc+HjDGCV
-         pMmoZBG9RO5WHCegH5cDgy5EipYHDY43UJUwMTOSYbZYOqHCaNtPz5Gv3Dz13GmNCPeT
-         rZCHThWX18UcDrkdEHrsnI94B48y60CtvMDdKHvIgEKvDn/gDGuALJmgOqFGk47pHqvw
-         b0Xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772600478; x=1773205278;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l/nYbvJ2Ie/7AoV2hxQbNjt9CPBgI0NZpDJT+MhOo98=;
-        b=MIW50uNzmq6isE4WuD5POBEKV7Y4OdBODR5xGWhNcUH9uA/565+6oy+UK7fut5pd16
-         qAs80YvcMjkhtMLuTZ3QAHrtr7lhTZPoGKSzwrMpuvXLbHxcdU0razFz6LWczIKfptmP
-         dSJiPss5RIKjo7vBA+gtYZQiya2Fephxx/xHzobhA5b2NXgN0edWFJ86sfBeqW4G/R8x
-         3d2niDqI0fcObO2O8kLOvRAl2Hg0FTcDsr5BNm2xqTNTX/lDRX7f60TMrlwGm4OOFdZE
-         5om2LapClOVZG41NyVDwA6UoVrDGrA1H20FpnqetWlL6WYe5FdGXEtaMoPmhog1Tm5au
-         5prQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYIxvbsHuuADS82TZEAWBMZ5L9kxZmDHIJ5Pa+EtNKUyzIhkv+zQ7bXhhRkoXLAmqwCgdD1MDAQJyp@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQX7sQel1f4pKY+jmCxXsPNykCyzdLRGNE+1NSHd5JN/Ic5PcZ
-	FqKJ7PgQHDrOS8JTRvi9VZbYdlYhkgDR5tt68E6+tT7HRhYyMD4L4agY
-X-Gm-Gg: ATEYQzwBUZJd75n95hJzHTBtedEsN96r54R9Ur2SR3sUw5SZe+QUZZfgBuG6GlYO2rF
-	BDOEY5VSP/iqZcJJ3Zkpuc76tNZKoIpl+PLMIGt6Phah0O0gS2wvl7tNCN3AW+lRknX4wbpoQPh
-	TB+N5jIAAl+JT8Ms5WT+0peldBQGevcjE4Cjv8pa9SjSZ4ofzFQAKcGeueaRbWOERTiB7h6NlzO
-	UuhYSClndCdn93CvxW2aurcrb+YB1H3MLzOLxug0K03k+tHkCtKpy5Hwbp5sH0Ztcl8/Nuf8YPn
-	lxw/EqP8ufYTGBq7cQ9oObpk+QlCQZ1+iB6FNyUg0iZ6eddYnguCwYY4mBN2SdwZFcKwI/rQO2z
-	l3PQFhFFEWAsaWc3PUn1u6jKKDw8yAMdo5BT1j+pTdA0XUNpQFwlomFI5mdiDCzdbEXZUGuYQR4
-	FKZD9cUu1H3JkKnwEr2LxXyPMvK5ho6ORvgc2wL60j1gzlx11yPYMwcQermcAnBZs4
-X-Received: by 2002:a05:7022:24aa:b0:119:e569:fbb2 with SMTP id a92af1059eb24-128b70df522mr302307c88.33.1772600477988;
-        Tue, 03 Mar 2026 21:01:17 -0800 (PST)
-Received: from google.com ([2a00:79e0:2ebe:8:a048:d9ec:d217:7d59])
-        by smtp.gmail.com with ESMTPSA id a92af1059eb24-127899dfc47sm21528620c88.6.2026.03.03.21.01.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 21:01:17 -0800 (PST)
-Date: Tue, 3 Mar 2026 21:01:14 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: david@ixit.cz
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Henrik Rydberg <rydberg@bitmath.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Petr Hodina <petr.hodina@protonmail.com>, 
-	linux-input@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	phone-devel@vger.kernel.org
-Subject: Re: [PATCH 04/10] Input: stmfts - disable regulators when power on
- fails
-Message-ID: <aae8OqFl5Aejv6YN@google.com>
-References: <20260301-stmfts5-v1-0-22c458b9ac68@ixit.cz>
- <20260301-stmfts5-v1-4-22c458b9ac68@ixit.cz>
+	s=arc-20240116; t=1772604856; c=relaxed/simple;
+	bh=ITg/ig7wrS1ZXLm9pbAOjF/U8W9JlHhbHX5MT6WlX0o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NSJeM4OImg8p2Qhk3wBz/VJl1P23DeHyRBXAMF5PsDkNUIpNlQ+5pZfG2QR/T9XAp7/i1WQiURk88UnmZ5xOn6RQiDczu64LBg1jd0PsWYrkChkvM32CfUONqxdjKOLowOHc+qAkBGnDlofgIO8sy24OkZlqJNxPGYFgwmX5xyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fKHlI7vo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 622BAC19423;
+	Wed,  4 Mar 2026 06:14:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772604856;
+	bh=ITg/ig7wrS1ZXLm9pbAOjF/U8W9JlHhbHX5MT6WlX0o=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=fKHlI7vo1WRqwM3r6iUYfH2eCl3o6uuf8ooLroJYoSX5D8+i16HONe+LOlWSmDEA/
+	 mqk7hrCz5mEVO5rfIH63sQjS2lkg63L5KAjDPORjOO5wdUJdMspfosnG1ui75SQ8vl
+	 IJijRTXhwc/mz5xrV50MyQbdKz3yLCnG4fINIlHnTOyZiFGRZxljIbT3neRuNOdhds
+	 GXuw6BntbiLRWCRaNtFcKeNsM7fDUZv1SwonUwPnDz03y8Zg32UyVlSOtwICKVsGMT
+	 gn6rtZPwy1W3oEcQhYgwG41WULqySM9/c7m4g7NUBecE2P7yyroZxNaxmMX/vHpoXV
+	 VT6rk6l3zxvTw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 490B5EDEBF7;
+	Wed,  4 Mar 2026 06:14:16 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Subject: [PATCH v5 0/3] Add Amlogic general DMA
+Date: Wed, 04 Mar 2026 06:14:11 +0000
+Message-Id: <20260304-amlogic-dma-v5-0-aa453d14fd43@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260301-stmfts5-v1-4-22c458b9ac68@ixit.cz>
-X-Rspamd-Queue-Id: C29141FAD14
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALPNp2kC/2XOwQ6CMAwG4FchOzvDyro5T76H8QCswBJhBgzRE
+ N7dQSQKHP82398OrKPWUcfO0cBa6l3nfBMCHiKWV2lTEnc2ZAYxoACBPK3vvnQ5t3XKtZFaW8w
+ tKMmCeLRUuNfcdr2FXLnu6dv3XN6Labr0qFVPL3jMCU6GUJNRqb58t8fc12xq6mHRKhag1xqCl
+ ghoE9BWS7vXyU9DvLmdBI2qyEyBhizAXss/vb0tgy4ASSohyWSbz8dx/ACL32ScYgEAAA==
+X-Change-ID: 20251215-amlogic-dma-79477d5cd264
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>
+Cc: linux-amlogic@lists.infradead.org, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hardening@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772604853; l=2054;
+ i=xianwei.zhao@amlogic.com; s=20251216; h=from:subject:message-id;
+ bh=ITg/ig7wrS1ZXLm9pbAOjF/U8W9JlHhbHX5MT6WlX0o=;
+ b=fjpfIMWfqpeL8CRxzINA9C5cxUZwVJX06v1o7F7JQow0xOWuh2fpVIvPAHYGlMbwtr3l+1uCn
+ aoKAGr7CJO1BirRlQeYQnLP4NaWu+m1AD99kRobQCjxde8i/uaFBgtH
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=dWwxtWCxC6FHRurOmxEtr34SuBYU+WJowV/ZmRJ7H+k=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20251216 with
+ auth_id=578
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
+X-Rspamd-Queue-Id: A7EC91FB0A6
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270861-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,foss.st.com,kernel.org,bitmath.org,protonmail.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-270862-lists,devicetree=lfdr.de,xianwei.zhao.amlogic.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[xianwei.zhao@amlogic.com];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ixit.cz:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,amlogic.com:replyto,amlogic.com:email,amlogic.com:mid]
 X-Rspamd-Action: no action
 
-On Sun, Mar 01, 2026 at 06:51:18PM +0100, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> We must power off regulators after failing at power on phase.
-> 
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
->  drivers/input/touchscreen/stmfts.c | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/input/touchscreen/stmfts.c b/drivers/input/touchscreen/stmfts.c
-> index db2dd0bb59fcc..f4e5f1b3ce796 100644
-> --- a/drivers/input/touchscreen/stmfts.c
-> +++ b/drivers/input/touchscreen/stmfts.c
-> @@ -558,7 +558,7 @@ static int stmfts_power_on(struct stmfts_data *sdata)
->  
->  	err = stmfts_read_system_info(sdata);
->  	if (err)
-> -		return err;
-> +		goto power_off;
->  
->  	enable_irq(sdata->client->irq);
->  
-> @@ -566,11 +566,11 @@ static int stmfts_power_on(struct stmfts_data *sdata)
->  
->  	err = stmfts_command(sdata, STMFTS_SYSTEM_RESET);
->  	if (err)
-> -		return err;
-> +		goto power_off;
->  
->  	err = stmfts_command(sdata, STMFTS_SLEEP_OUT);
->  	if (err)
-> -		return err;
-> +		goto power_off;
->  
->  	/* optional tuning */
->  	err = stmfts_command(sdata, STMFTS_MS_CX_TUNING);
-> @@ -586,7 +586,7 @@ static int stmfts_power_on(struct stmfts_data *sdata)
->  
->  	err = stmfts_command(sdata, STMFTS_FULL_FORCE_CALIBRATION);
->  	if (err)
-> -		return err;
-> +		goto power_off;
->  
->  	/*
->  	 * At this point no one is using the touchscreen
-> @@ -595,6 +595,11 @@ static int stmfts_power_on(struct stmfts_data *sdata)
->  	(void) i2c_smbus_write_byte(sdata->client, STMFTS_SLEEP_IN);
->  
->  	return 0;
-> +
-> +power_off:
-> +	regulator_bulk_disable(ARRAY_SIZE(stmfts_supplies),
-> +			       sdata->supplies);
-> +	return err;
+Add DMA driver and bindigns for the Amlogic SoCs.
 
-Maybe wrap everything below enabling the supplies into
-stmfts_configute() or something to avoid bunch of gotos to power off on
-error?
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Changes in v5:
+- Rename head file and rename macro definition.
+- Rename the subject in [2/3] from "dma" to "dmaengine".
+- Link to v4: https://lore.kernel.org/r/20260227-amlogic-dma-v4-0-f25e4614e9b7@amlogic.com
 
-Thanks.
+Changes in v4:
+- Support split transfer when data len > MAX_LEN.
+- When a module fails or exits, perform de-initialization.
+- Some other minor modifications.
+- Link to v3: https://lore.kernel.org/r/20260206-amlogic-dma-v3-0-56fb9f59ed22@amlogic.com
 
+Changes in v3:
+- Adjust the format of binding according to Frank's suggestion.
+- Some code format modified according to Frank's suggestion.
+- Support one prep_sg and one submit, drop multi prep_sg and one submit.
+- Keep pre state when resume from pause status.
+- Link to v2: https://lore.kernel.org/r/20260127-amlogic-dma-v2-0-4525d327d74d@amlogic.com
+
+Changes in v2:
+- Introduce what the DMA is used for in the A9 SoC.
+- Some minor modifications were made according to Krzysztof's suggestions.
+- Some modifications were made according to Neil's suggestions.
+- Fix a build error.
+- Link to v1: https://lore.kernel.org/r/20251216-amlogic-dma-v1-0-e289e57e96a7@amlogic.com
+
+---
+Xianwei Zhao (3):
+      dt-bindings: dma: Add Amlogic A9 SoC DMA
+      dmaengine: amlogic: Add general DMA driver for A9
+      MAINTAINERS: Add an entry for Amlogic DMA driver
+
+ .../devicetree/bindings/dma/amlogic,a9-dma.yaml    |  65 +++
+ MAINTAINERS                                        |   7 +
+ drivers/dma/Kconfig                                |   9 +
+ drivers/dma/Makefile                               |   1 +
+ drivers/dma/amlogic-dma.c                          | 585 +++++++++++++++++++++
+ include/dt-bindings/dma/amlogic,a9-dma.h           |   8 +
+ 6 files changed, 675 insertions(+)
+---
+base-commit: 3d2d1059cae3abab771576a7ee7f59d9627cfb8e
+change-id: 20251215-amlogic-dma-79477d5cd264
+
+Best regards,
 -- 
-Dmitry
+Xianwei Zhao <xianwei.zhao@amlogic.com>
+
+
 
