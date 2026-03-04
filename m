@@ -1,375 +1,292 @@
-Return-Path: <devicetree+bounces-270971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270972-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OA4tDwYOqGk8ngAAu9opvQ
-	(envelope-from <devicetree+bounces-270971-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:48:38 +0100
+	id sP8RAjAPqGk8ngAAu9opvQ
+	(envelope-from <devicetree+bounces-270972-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:53:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9F721FE88E
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:48:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id F28E91FE92A
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:53:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6B9CC3037170
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:48:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id F0C6F303AB78
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:53:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46ED23A5E9F;
-	Wed,  4 Mar 2026 10:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E6F93A451B;
+	Wed,  4 Mar 2026 10:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GOGNH2RK";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="JYqRE3fK"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fXjiiJ1W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azhn15012013.outbound.protection.outlook.com [52.102.136.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6E23A451A
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 10:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1826739F19E;
+	Wed,  4 Mar 2026 10:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.102.136.13
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772621286; cv=pass; b=r2WbcOvfUy4uv5MgnK8Oor9QjlOj1j6sEi6lRl7qQhUxoLjq+EqUYACJ7RuTcxXjPHtvneaH3jVqGWCkwE7QD/RQ4cPqmh4V7LrauTj6/5jpdhIz1oU2VbMDg1riHik92q3b5cKzkruLn/5Kf5Bd01Kel/oNJHDYIm4wCjqkDh0=
+	t=1772621587; cv=fail; b=rlmW45W+1RCL9a/Y1ExRnc9UPgftHWmZvJAq/DgXv+nFDVD94PHuBsV2EJ7aFW91EoAtJRQQP1vuNeJmA0v5EVYHQoYKFKPE+wDHQhJ4e0+Ftk+kjjh4Dr+rT0Nr+/0Wi1GDK1uYTQiE0xq9xfayQmluNmDL2M+qpbDwpqd6Wy0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772621286; c=relaxed/simple;
-	bh=k6KRKIP4TZjViNcDueZ4+NGt/5c8kw4PHq86rmuQtLQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gxnNbcSwiHIIuXFQpkboOHTyBVqAUQlJAa5Ob71//CCFDdObpQfjMSHpRWOq4q26U7j7jpV+vogDUJLRmUJRgcSxZ0TBcb5gOtG8u/xsCOCHWigYvLFhVnpkpvJacGSovWSt2Zekm8I+fRtM8VMLaUYUXYzKq/DnY1UKytRpnLM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GOGNH2RK; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=JYqRE3fK; arc=pass smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6245SX1Y2861222
-	for <devicetree@vger.kernel.org>; Wed, 4 Mar 2026 10:48:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1KxF8SRYe32RdPz36NUB4WnL8i7RMkq+6Nsv1V3yEmU=; b=GOGNH2RKr7U5Yrd1
-	519L6iO4mJsnd/3w+X8457FbOmsNFpVAEGM3pJvzO/IBEvxlPKr6XIBlHHKe4ktA
-	iWW70rpAXJt1a4mhfkggIBRyse0kK8wh+qCGY0D77rxTVrbk25+pf1TQHH02V3Q/
-	eY9suMXfe4lGoJyToziA137uH83QfXi3+0uF3QWdybfq/WM/Y/AE5odhjBVCFfGS
-	Sxis7gSiYs21BWaKQW0jSgPVadH3hUaWDcPQUgXGvFBsq6mMPWPXl6NqEDG+CHOX
-	+7nxugdugfxD0OsQVx10WRNI7VfN34ZIITmgBwUh7De6yS9wV+GDfej/2AXelkM0
-	eVSkSQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cp2c9kkj8-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 10:48:02 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-899fa82ebb9so200260406d6.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 02:48:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772621282; cv=none;
-        d=google.com; s=arc-20240605;
-        b=kWla+947njcDND8wAB8BTytUNN0+INLsKzEcl+x5ij5HK5KWKXfeoFKJEXICzBja4g
-         EQnGwFnzHQ0tJDvoBPU1XFVW2T7WKTW/T/FMdxuZ4/QfH8D/rhSSD0cPpjaoA/I2BcgE
-         U9yUSdcL1M1jAHAW5tVC9P54jj9CxSqTDgU6oWWsh5UhjFBtFOebAVWq+mRwGKQshgb4
-         PHPSGmhBnd4gs1ppXz4z4DV5DGFh1aoK9Qfskxh048OOsFw/2b9Bnsi4Agx0pA0BJhWJ
-         BExakpfdVmjC0xYEWa1e4dB5VUYJoq1MRn7IxokToiepCmPb7BhI1/hXbCdGcONuUVSq
-         nENg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=1KxF8SRYe32RdPz36NUB4WnL8i7RMkq+6Nsv1V3yEmU=;
-        fh=GfD0wwpXtUlNr/Mz0r4ge8iwrnQ/IVJFow5OwcgkZn0=;
-        b=FF2czhVLUz72qCsDfZaYrUmQ4jkIw5soKlrNYFqyqKHfyAknroFMSCySVc5zpMIVR4
-         rk0xrBijL47PZQQJQmff8j1zGNc/QiKjJNokXVWANw3ES0rniP0nUsPvm5fFya1Whekv
-         JjrGLCoBusXpdEayYrzVIDUlQdUVsso3eUqwQPyOlcFCB6Jb2b9XOEoI/vDB6ex1YzZn
-         Av+SoLB4BppmoH/La884SgaeuVjVBIyphwsniIV9ivKdLI6LxSfVj9k8CZfWcse4FhLD
-         vAePQ+V4cDKOpETtO4OsaeuypAChiPzq0lCBoWnpSJcTItm187J8jewZjUMox1z/4Lqx
-         oEcA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772621282; x=1773226082; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1KxF8SRYe32RdPz36NUB4WnL8i7RMkq+6Nsv1V3yEmU=;
-        b=JYqRE3fK4GjHIDw48vUm3a9KLGesec9XteaYvEvL3xPkRiS7TTuLk3mdcU4aIaF0rU
-         xJsJvmcFvzfymTRFBJ16L7j5bDoKXcmI1ZK1VCHVaJ/c/b3swwEdZaJR7adhkbBeJrzw
-         t1f6uUt7yJl/yfwREzQK/0ck/Xx4Uils3FlO5N6Qt8x6EqzQiChbuZryv/7N0xyIw9HO
-         SHbUJYn19a0N+N+zXH8Idw2Q40948Nk+lslnjiZXA3fEgL64B1QwaqECRvF8uASPOjCs
-         nbDkhweZ63kcXELpak/3Way22CU3QoE55YKxu9zjSUgvFeKVBpPP8pqI0oKORX9zvVX4
-         1v0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772621282; x=1773226082;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=1KxF8SRYe32RdPz36NUB4WnL8i7RMkq+6Nsv1V3yEmU=;
-        b=M13yuZRkU9HstA6eo1xavlEvlxE7sFKnO/nJhCz4O2ezuwrDJ9mLncsUmL0s6eFUDG
-         ewGRVK0Kco1oNznboa7oJBIQD4qoFB+UnmbO+rIuSeEgMnktbwOsE4EbVWwPZkfVlxgs
-         2RiLxwbWeeL3y0ttb1fm1N5TvJDnbp4xZ/5rFMYn9Q/U46V96WyF/frwm22TohE4lfB3
-         URC8WcYVezDfV0gZzWZGQHPC5EPdgz6x752sn2K+rJUWkZeS///sPh675ZSURilbZI/T
-         q11m5yG504gmEWfeYkpFwa04IueuVGM+6l+sNehIPD8GBmX6jFaZyKVj8knngHPEapaK
-         tSGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUEB2ReumE2ZoRv53vec8XIyvwWkHI98B7KPbqc6S0bNxoGEa4/ZYsS63uKPz+kA7V1THCrNv7CF008@vger.kernel.org
-X-Gm-Message-State: AOJu0YwbqcaHnfQUBuM/lucJk7744Of5qkwDmGHRuNUxoMLziaE5otka
-	x77V5f7AqQwsz76GubM8ReNK6W1XkaxnBwWliCN9qG0PpIKFyLEs/QLAkdj9PGreHSF7uP+4ssM
-	uXZOfncleFBAVYfqxIDyiV1XuYvKcGZ76wAYnsDk+79CYAlLa0LY1l/NalnLvoD6cZUmPms1sBu
-	F3SWTrF0WgpfE0Z2rh+FW4Y2ajC7UX+PWPbPWll80=
-X-Gm-Gg: ATEYQzxhowoVjNrrGRMVuwuNsKjNRyOkB6ImLdS6bueQqYMRoDBZOydTlSwGCCora4D
-	sJ+RWOfWI1aC00zxsV316cuZQqdGqo9Mp+0kt2h9pX0kkNZ3kzRDcZ5eulD8NZFRGQzipYiQONV
-	+V8GWa1jSLrfFu5clKcM1SZMwN10YUT4O79CF4ION45QP8hEDbmRQzF3T7SkilHREl4PhymGo1g
-	34+PO9cggj0Ru1PKHd/0+lAhMTk/uUPizE5p6px
-X-Received: by 2002:a05:6214:d89:b0:899:ef7d:cea0 with SMTP id 6a1803df08f44-89a19ce507emr15717206d6.44.1772621281987;
-        Wed, 04 Mar 2026 02:48:01 -0800 (PST)
-X-Received: by 2002:a05:6214:d89:b0:899:ef7d:cea0 with SMTP id
- 6a1803df08f44-89a19ce507emr15716956d6.44.1772621281445; Wed, 04 Mar 2026
- 02:48:01 -0800 (PST)
+	s=arc-20240116; t=1772621587; c=relaxed/simple;
+	bh=G34V6iDa1J3hKbBWhIQ4euSSvn4ClRmwKaW7dbGGXLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nG6JNMRlB2n/qXHV4TYEM14Y6SNgRnsbSk3Jizea6zcBW9RS4YYSmUNQM0C5cNuyCV/boV6/d6OXd42JHXY1ziAcgAC6i5hj8QlWPTeNk0VGvi/5Dclz9IK9w767ZnzoERQ4Zx8y5XShgDA4L23DFveQzf7AMoasvkICQwTBXkY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fXjiiJ1W; arc=fail smtp.client-ip=52.102.136.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QOb7vdetBdH+4IIaSgat5Sr8pufpInqdI2CHcFHv6NJn737o+5+QPMQb1WcCA/MiCnFknvXx/kF/GYhO2jhf1O10P3nU10BBI4aiEANzWgnDcf+xZRgsxjLDWgB6x07KmkE7td+FZXX9ejiar+AcTQ3oMxI0fifDfYFqHchOAI7k3uKQLKulUvVHiM4hSaqWSLjmKXQkxFeCSlfd1OKpk67qkavSE+zfR2O0mFbUkkZDMC7tJ+cXg7nsJgvPqITTPh6VhX0blxuQq2dlPRUBZAoBDoBGUk8zIvpHwPk2VAqvhr7ocUIBe5PTn9WPHC7YG2Zq6m/25sdOMjmgwhilcA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QVRhkMntvBj+ZtEISffIKDRtcWm8X5Uln6JMGzYgrxI=;
+ b=NGlCdq/KvbjyusgFaITB/r7WiP6Epgmr/8Fmny2lvrUz4NjU/pFBIR3y1SSTotXvXJPLrKR8oP5uc0fvj2DGBpfj9pS2e+vQsnxgLCPrbPA+06ngDnUVGX/pAU2l64P4+fOIyYxCc6oGBGdtc8BAVePYz6vIikbn59W5gKR3D0WfwkLcv1pmmTpq9tMV4ih9H1ZU6c3G+Wk65HXRrYqMBdC1k5jZMG625pNvxm1ckR+y5YSReYWfCOWEKv8KWoNfazkrTpbY/isaDfo1NKeZhmIqqdF4sfJPHQxDhIf1ODFh5s/8kPDCpT7W5QzhhIPSGbBpPzi2PLc97frR6xo3JA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=nxp.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QVRhkMntvBj+ZtEISffIKDRtcWm8X5Uln6JMGzYgrxI=;
+ b=fXjiiJ1W9k67eOGBjuZ/2mXHsqi5sLhTU4JztIGAlVSnFjok3Ieqvy8zo6NJZ4bKlek3I9LznCLozxsqAxjBIHfgcOX+9RhNGuU30xroN0z8ziaX7dUrkFI7Kw1S/rHd1Zq+/+nSCXV4+3h0hcizl2Ui74swpnBmd6KfGt2gqDQ=
+Received: from IA4P221CA0009.NAMP221.PROD.OUTLOOK.COM (2603:10b6:208:559::11)
+ by PH7PR10MB6284.namprd10.prod.outlook.com (2603:10b6:510:1aa::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
+ 2026 10:53:00 +0000
+Received: from BL6PEPF0001AB50.namprd04.prod.outlook.com
+ (2603:10b6:208:559:cafe::31) by IA4P221CA0009.outlook.office365.com
+ (2603:10b6:208:559::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.23 via Frontend Transport; Wed,
+ 4 Mar 2026 10:53:03 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BL6PEPF0001AB50.mail.protection.outlook.com (10.167.242.74) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 4 Mar 2026 10:53:00 +0000
+Received: from DLEE211.ent.ti.com (157.170.170.113) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
+ 2026 04:52:59 -0600
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE211.ent.ti.com
+ (157.170.170.113) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 4 Mar
+ 2026 04:52:59 -0600
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 4 Mar 2026 04:52:59 -0600
+Received: from [172.24.233.239] (uda0498651.dhcp.ti.com [172.24.233.239])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 624Aqtdr229809;
+	Wed, 4 Mar 2026 04:52:55 -0600
+Message-ID: <e1d07c8a-a90d-444a-a367-230f147e01d6@ti.com>
+Date: Wed, 4 Mar 2026 16:22:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260210155329.3044455-1-swati.agarwal@oss.qualcomm.com>
- <20260210155329.3044455-3-swati.agarwal@oss.qualcomm.com> <CAFEp6-1+t+672=Oh8nvjMAEJrV_sz2SMzh1WeDNowsVzdXu8LA@mail.gmail.com>
- <CAHz4bYsyZyWrC1t_osVDFrKDX7Wsc8mdcr6bMiigUDUnkOSQ9Q@mail.gmail.com>
- <CAFEp6-08BQZKGeW2P4WPqYq3V69um6QTnE5Gpd+cvT9D-zsj-A@mail.gmail.com> <2jcrdz7tj7cuo5j77n7d6nfxlo72s35njdig6lytbta3vzo4m7@wegza7xjgcxo>
-In-Reply-To: <2jcrdz7tj7cuo5j77n7d6nfxlo72s35njdig6lytbta3vzo4m7@wegza7xjgcxo>
-From: Loic Poulain <loic.poulain@oss.qualcomm.com>
-Date: Wed, 4 Mar 2026 11:47:50 +0100
-X-Gm-Features: AaiRm52lXRGGBfpVsm-gH5eY8R45ToXbmA3y0ej6pyjpx-x57sdiS1p33QlRDjs
-Message-ID: <CAFEp6-1FCdAnjiYn4fXJdrndytm_bBrceCbK6XVPfxvy7baoHg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: monaco-evk: Enable the tertiary USB controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Swati Agarwal <swati.agarwal@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 12/18] dt-bindings: dma: ti: Add K3 BCDMA V2
+To: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, <peter.ujfalusi@gmail.com>,
+	<vkoul@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nm@ti.com>,
+	<ssantosh@kernel.org>, <dmaengine@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>,
+	<Frank.li@nxp.com>, <r-sharma3@ti.com>, <gehariprasath@ti.com>
+References: <20260218095243.2832115-1-s-adivi@ti.com>
+ <20260218095243.2832115-13-s-adivi@ti.com>
+ <20260219-hopeful-intrepid-cuckoo-32967d@quoll>
+ <bab85365-063a-4d46-a1bf-48a25228d109@ti.com>
+ <20260223182057.GA4190282-robh@kernel.org>
+Content-Language: en-US
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+In-Reply-To: <20260223182057.GA4190282-robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA0MDA4MyBTYWx0ZWRfX+UfaQWvFFgo6
- odh6Q3Nn//nVafz47HUXOhDCJm23u/SoiQYk05WCEhnpHB7IBcYDkw0jwoU3mnvAlqZU35sd9gS
- ceUwtfkBwabCGdeEF4cdhWUrtf/P81d9RkrVUAcKWMGAJunaSY9SDASWV9sKaj0NIen9ZyG/N5Z
- CNZB79F3NjfAHc+1dC/XgVFkYoNbr18Yb+jfyxXJJof3yVfE3ztndhJEC394lbYvtFr/6phhXml
- hDA9Y0QuvjI0LhV6Rv+7VwVj3xqLBz507k04dsCOOsLeSmicnUIlIc3iDaSLicuKleHPEwiMPGU
- 2jyJ/mxKa4BwCWZYrVeWeM9GhaAdFHcu+j9iJ9RlTr6TBE0mt2TXvzTjM3eGo9JWQ3IAbjUQZL1
- iGnyKtQ6+ypIskDT/XRBnupygDd25EafR3MMGBxjCfC5zfwUBu3G6fYvPFhmPmd06twDF2zZ6eE
- AL6CQPGOk3+HPmPes3Q==
-X-Proofpoint-ORIG-GUID: pwDreW5RMXnJagTRBNzN_WPfDmumOXZ_
-X-Proofpoint-GUID: pwDreW5RMXnJagTRBNzN_WPfDmumOXZ_
-X-Authority-Analysis: v=2.4 cv=EefFgfmC c=1 sm=1 tr=0 ts=69a80de2 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10
- a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8 a=S_nBkAQNT4dCZKHrMJQA:9
- a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-04_05,2026-03-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 spamscore=0 bulkscore=0 adultscore=0 impostorscore=0
- phishscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603040083
-X-Rspamd-Queue-Id: D9F721FE88E
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB50:EE_|PH7PR10MB6284:EE_
+X-MS-Office365-Filtering-Correlation-Id: 57877341-e2f5-4c16-ffea-08de79dc33f9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|7416014|34020700016|36860700016|12100799066;
+X-Microsoft-Antispam-Message-Info:
+	/7cY+Dw3bX7ueJZK85vEA6cw2y0+4qIAV7n3dVbSt08l8DHDS/+U09zR/nAlKQDzCD0pp5Qyq2HDndUKkPr5gC0pL4Hei8xIAHZcQQe/Us0focuTGcQXah1uRRxDb+xvv2XVA0QqXBP9/2byhFxwhFxYXtimMUkDqfYurV1R7tMo6pxKKRzL4ys0OhQWaLJdD5m7eet6MmAX6I1PJmuoeI+/M+Y5bPj89y8LWpyOnr8oK3tlB5iGTs54dgbcTaCpO50HE5nQYEVQIyblee8duiQcwwb9VzPIlLf/+BYcN0b7gJDWnEop8Agoibtmt7silhPRJd6oOwJK/vbt1jiHHk/8Lj+rEUJJsYHCyZDbGR++siPHJIog9kNbH7VCVxYB5ATenfA9dswlMFzsSQ5L7Q+GkHpjuGMoSgm3OR2Qu/ivPR8LMZd+iT2O58nfBumVfT7esO24R1wix63fRK8L0cyVFOUoiyQJGeQG7vwi8ug1YQTfJWTyTKCrlzxl6QoZr/lOU4dQjIMznZVjgZD0PtNF5UB+lkpU2UujMaHlBioqD8pBZS1PxzJGVV149znJ4P7E7X4SPHDYcbXdtKSGGzPv564/2DmagA+8p0l6UbnH4Y2n7s+E052vU3npTbKykmouicWQ0GrU3iYuU5oI6Q0T57k7i6X7mi2efyTLmUovtKkQ8XhEJHRkyHGmrZk+ab7SumEhwXIV+x807V6Ypk0ip/Kl5uv5zkiFCvjuxCM=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(7416014)(34020700016)(36860700016)(12100799066);DIR:OUT;SFP:1501;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	08VgGqRQ2D+tGAc07wwvb8nDcsv+FcxrM7j14Q7090WcEx6QSwdBQ9L4N6E+jp7PNrcl3JsDWYk7Huf3fAkibS0l5u5VcJrIp/n7oMdFErso2S5XlPkGAJsFaeVWC6gLhwta90VTCaP8vHCuFm6HZVOymq99WlHoKltml6dlBXwSuNTMNQ/jfXAhFYyfLtfcUFoskTKBp6g2DTeClR3/z84BDZzzWtZ+dC7Ig9am5EjJWe/iyoYkpWhU13EmwjA3QGM/TLD/0G6oUOoBhq3Ar0XvwhD1PxWD641vFpx5noMKyekhRX5vAQfupa+wIvEGSA0QoXyJ6/qxiU3I+v2GwzzugvWe99Yh/Y9pxgo+wFyZ3a3/LYfu6O8BSUBOCTGNbnP344TeyPMNVGSUCB1hY8tmhJ7clKI1sCk9NIJnvqpkEkIrQI/DJL4OgSIvwZ6v
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 10:53:00.3721
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57877341-e2f5-4c16-ffea-08de79dc33f9
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL6PEPF0001AB50.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6284
+X-Rspamd-Queue-Id: F28E91FE92A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270972-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,ti.com,vger.kernel.org,lists.infradead.org,nxp.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270971-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,ti.com:dkim,ti.com:email,ti.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[loic.poulain@oss.qualcomm.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[s-adivi@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ti.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
-Hi Dmitry,
 
-On Wed, Mar 4, 2026 at 3:22=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
+On 23/02/26 23:50, Rob Herring wrote:
+> On Thu, Feb 19, 2026 at 05:45:46PM +0530, Sai Sree Kartheek Adivi wrote:
+>> On 19/02/26 13:13, Krzysztof Kozlowski wrote:
+>>
+>> Hi Krzysztof,
+>>
+>> Thanks for the review.
+>>> On Wed, Feb 18, 2026 at 03:22:37PM +0530, Sai Sree Kartheek Adivi wrote:
+>>>> New binding document for
+>>> Fix wrapping - it's wrapped too early.
+>> Ack. will fix it in v6.
+>>>> Texas Instruments K3 Block Copy DMA (BCDMA) V2.
+>>>>
+>>>> BCDMA V2 is introduced as part of AM62L.
+>>>>
+>>>> Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+>>>> ---
+>>>>   .../bindings/dma/ti/ti,am62l-dmss-bcdma.yaml  | 120 ++++++++++++++++++
+>>>>   1 file changed, 120 insertions(+)
+>>>>   create mode 100644 Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
+>>>> new file mode 100644
+>>>> index 0000000000000..6fa08f22df375
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/dma/ti/ti,am62l-dmss-bcdma.yaml
+>>>> @@ -0,0 +1,120 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +# Copyright (C) 2024-25 Texas Instruments Incorporated
+>>>> +# Author: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/dma/ti/ti,am62l-dmss-bcdma.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Texas Instruments K3 DMSS BCDMA V2
+>>>> +
+>>>> +maintainers:
+>>>> +  - Sai Sree Kartheek Adivi <s-adivi@ti.com>
+>>>> +
+>>>> +description:
+>>>> +  The BCDMA V2 is intended to perform similar functions as the TR
+>>>> +  mode channels of K3 UDMA-P.
+>>>> +  BCDMA V2 includes block copy channels and Split channels.
+>>>> +
+>>>> +  Block copy channels mainly used for memory to memory transfers, but with
+>>>> +  optional triggers a block copy channel can service peripherals by accessing
+>>>> +  directly to memory mapped registers or area.
+>>>> +
+>>>> +  Split channels can be used to service PSI-L based peripherals.
+>>>> +  The peripherals can be PSI-L native or legacy, non PSI-L native peripherals
+>>>> +  with PDMAs. PDMA is tasked to act as a bridge between the PSI-L fabric and the
+>>>> +  legacy peripheral.
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: /schemas/dma/dma-controller.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: ti,am62l-dmss-bcdma
+>>>> +
+>>>> +  reg:
+>>>> +    items:
+>>>> +      - description: BCDMA Control & Status Registers region
+>>>> +      - description: Block Copy Channel Realtime Registers region
+>>>> +      - description: Channel Realtime Registers region
+>>>> +      - description: Ring Realtime Registers region
+>>>> +
+>>>> +  reg-names:
+>>>> +    items:
+>>>> +      - const: gcfg
+>>>> +      - const: bchanrt
+>>>> +      - const: chanrt
+>>>> +      - const: ringrt
+>>>> +
+>>>> +  "#address-cells":
+>>>> +    const: 0
+>>>> +
+>>>> +  "#interrupt-cells":
+>>>> +    const: 1
+>>> I don't get why this is nexus but not a interrupt-controller.
+>>>
+>>> Can you point me to DTS with complete picture using this?
+>> Please refer https://github.com/sskartheekadivi/linux/commit/4a7078a6892bfbc4c620b9668e3421b4c7405ca4
+>>
+>> for the dt nodes of AM62L BCDMA and PKTDMA.
+>>
+>> Refer to the below tree for full set of driver, dt-binding and dts changes
+>>
+>> https://github.com/sskartheekadivi/linux/commits/dma-upstream-v5/
+> Whether this is an interrupt-map or a chained interrupt controller 
+> entirely depends on whether the interrupts are transparent to the 
+> DMA controller (i.e. do they have to be acked?). interrupt-map is 
+> generally for transparent cases.
 >
-> On Tue, Mar 03, 2026 at 08:32:36PM +0100, Loic Poulain wrote:
-> > On Tue, Mar 3, 2026 at 9:25=E2=80=AFAM Swati Agarwal
-> > <swati.agarwal@oss.qualcomm.com> wrote:
-> > >
-> > > On Fri, Feb 13, 2026 at 4:15=E2=80=AFPM Loic Poulain
-> > > <loic.poulain@oss.qualcomm.com> wrote:
-> > > >
-> > > > Hi Swati,
-> > > >
-> > > > On Tue, Feb 10, 2026 at 4:54=E2=80=AFPM Swati Agarwal
-> > > > <swati.agarwal@oss.qualcomm.com> wrote:
-> > > > >
-> > > > > Enable the tertiary usb controller connected to micro usb port in=
- OTG mode
-> > > > > on Monaco EVK platform.
-> > > > >
-> > > > > Signed-off-by: Swati Agarwal <swati.agarwal@oss.qualcomm.com>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/qcom/monaco-evk.dts | 53 +++++++++++++++++++=
-++++++
-> > > > >  arch/arm64/boot/dts/qcom/monaco.dtsi    |  7 ++++
-> > > > >  2 files changed, 60 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64=
-/boot/dts/qcom/monaco-evk.dts
-> > > > > index 03af9bbcacc9..e6fc6f6a52e1 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> > > > > +++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> > > > > @@ -27,6 +27,25 @@ chosen {
-> > > > >                 stdout-path =3D "serial0:115200n8";
-> > > > >         };
-> > > > >
-> > > > > +       connector-2 {
-> > > > > +               compatible =3D "gpio-usb-b-connector", "usb-b-con=
-nector";
-> > > > > +               label =3D "micro-USB";
-> > > > > +               type =3D "micro";
-> > > > > +
-> > > > > +               id-gpios =3D <&pmm8620au_0_gpios 9 GPIO_ACTIVE_HI=
-GH>;
-> > > > > +               vbus-gpios =3D <&expander6 7 GPIO_ACTIVE_HIGH>;
-> > > > > +               vbus-supply =3D <&vbus_supply_regulator_2>;
-> > > > > +
-> > > > > +               pinctrl-names =3D "default";
-> > > > > +               pinctrl-0 =3D <&usb2_id>;
-> > > > > +
-> > > > > +               port {
-> > > > > +                       usb2_con_hs_ep: endpoint {
-> > > > > +                               remote-endpoint =3D <&usb_2_dwc3_=
-hs>;
-> > > > > +                       };
-> > > > > +               };
-> > > > > +       };
-> > > > > +
-> > > > >         dmic: audio-codec-0 {
-> > > > >                 compatible =3D "dmic-codec";
-> > > > >                 #sound-dai-cells =3D <0>;
-> > > > > @@ -77,6 +96,15 @@ platform {
-> > > > >                         };
-> > > > >                 };
-> > > > >         };
-> > > > > +
-> > > > > +       vbus_supply_regulator_2: vbus-supply-regulator-2 {
-> > > > > +               compatible =3D "regulator-fixed";
-> > > > > +               regulator-name =3D "vbus_supply_2";
-> > > > > +               gpio =3D <&pmm8650au_1_gpios 7 GPIO_ACTIVE_HIGH>;
-> > > > > +               regulator-min-microvolt =3D <5000000>;
-> > > > > +               regulator-max-microvolt =3D <5000000>;
-> > > > > +               enable-active-high;
-> > > > > +       };
-> > > > >  };
-> > > > >
-> > > > >  &apps_rsc {
-> > > > > @@ -484,6 +512,16 @@ &pcieport1 {
-> > > > >         wake-gpios =3D <&tlmm 21 GPIO_ACTIVE_HIGH>;
-> > > > >  };
-> > > > >
-> > > > > +&pmm8620au_0_gpios {
-> > > > > +       usb2_id: usb2-id-state {
-> > > > > +               pins =3D "gpio9";
-> > > > > +               function =3D "normal";
-> > > > > +               input-enable;
-> > > > > +               bias-pull-up;
-> > > > > +               power-source =3D <0>;
-> > > > > +       };
-> > > > > +};
-> > > > > +
-> > > > >  &qupv3_id_0 {
-> > > > >         firmware-name =3D "qcom/qcs8300/qupv3fw.elf";
-> > > > >         status =3D "okay";
-> > > > > @@ -690,3 +728,18 @@ &usb_qmpphy {
-> > > > >
-> > > > >         status =3D "okay";
-> > > > >  };
-> > > > > +
-> > > > > +&usb_2 {
-> > > > > +       status =3D "okay";
-> > > > > +};
-> > > > > +
-> > > > > +&usb_2_dwc3_hs {
-> > > > > +       remote-endpoint =3D <&usb2_con_hs_ep>;
-> > > > > +};
-> > > > > +
-> > > > > +&usb_2_hsphy {
-> > > > > +       vdda-pll-supply =3D <&vreg_l7a>;
-> > > > > +       vdda18-supply =3D <&vreg_l7c>;
-> > > > > +       vdda33-supply =3D <&vreg_l9a>;
-> > > > > +       status =3D "okay";
-> > > > > +};
-> > > >
-> > > > I noticed that usb_2/hs doesn=E2=80=99t work properly unless refgen=
- is
-> > > > supplied. It may appear to work on your setup if another PHY or
-> > > > subsystem enables refgen, either explicitly in software (e.g. DSI) =
-or
-> > > > indirectly, such as through DP, which might be voting for it behind
-> > > > the scenes.
-> > >
-> > > Hi Loic,
-> > >
-> > > Are you facing issues with this patch set? or your patch set that was
-> > > raised as below?
-> >
-> > Both. I'm basically running Debian with kernel mainline and your
-> > series, booting from eMMC.
-> > Usb seems to enumerate a boot time but is then unusable.
-> >
-> > # lsusb
-> > Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-> > Bus 001 Device 002: ID 0781:5580 SanDisk Corp. SDCZ80 Flash Drive
-> > #  dd if=3D/dev/zero of=3D/dev/sda bs=3D1MB count=3D10
-> > [  225.248307] xhci-hcd xhci-hcd.0.auto: xHCI host not responding to
-> > stop endpoint command
-> > [  225.290186] xhci-hcd xhci-hcd.0.auto: xHCI host controller not
-> > responding, assume dead
-> > [  225.298385] xhci-hcd xhci-hcd.0.auto: HC died; cleaning up
-> > [  225.307748] usb 1-1: USB disconnect, device number 2
-> >
-> > It starts to work if I add the following in the monaco-evk devicetree:
-> > &refgen{
-> >     regulator-always-on;
-> > };
->
-> Interesting. Could you please verify that PHY is not being reset or
-> powered down at any point? Unlike the DSI, USB should be voting directly
-> on the refgen.
+> If not transparent, then just 'interrupts' and 'interrupt-controller' 
+> should work for you. You can map 'interrupts' entries to channels like 
+> many other DMA controllers do that have per channel interrupts.
 
-I don't observe any reset being triggered, and the PHY registers
-appear to be in a sane state.
-While debugging the REFGEN registers, I can clearly see that manually
-forcing the SW vote makes USB work immediately.
-devmem2 0x891C080 w 0x1
+Thanks for the clarification, Rob.
 
-I do not see any other votes asserted in the REFGEN registers, except
-when connecting a DP sink. In that case, USB also starts working, and
-I can see a corresponding vote appearing in register 0x891C064.
 
-This suggests that either our assumption that the USB2 PHY is voting
-is incorrect, or the driver is not putting the PHY into a state that
-triggers the expected vote.
+To answer your question: the interrupts are definitely not transparent. They
 
+have to be explicitly acked by writing to the BCDMA registers.
+
+Given that, interrupt-map is the wrong approach here. I'll drop the nexus
+
+properties and figure out the best way to map the per-channel interrupts
+
+using standard interrupts in v6.
+
+
+Regards,
+
+Kartheek
 
 >
-> >
-> > # dd if=3D/dev/zero of=3D/dev/sda bs=3D1MB count=3D10
-> > 10+0 records in
-> > 10+0 records out
-> > 10000000 bytes (10 MB, 9.5 MiB) copied, 0.7521 s, 13.3 MB/s
-> > # No more USB errors...
-> >
-> > Regards,
-> > Loic
->
-> --
-> With best wishes
-> Dmitry
+> Rob
 
