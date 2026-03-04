@@ -1,231 +1,212 @@
-Return-Path: <devicetree+bounces-271277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0KmRDd6jqGnywAAAu9opvQ
-	(envelope-from <devicetree+bounces-271277-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:27:58 +0100
+	id ePpIKyKkqGnywAAAu9opvQ
+	(envelope-from <devicetree+bounces-271278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:29:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8925C207FB9
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:27:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CA72207FCF
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:29:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 896E6300B9EE
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:26:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1091300614A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D23387341;
-	Wed,  4 Mar 2026 21:26:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BAF9386444;
+	Wed,  4 Mar 2026 21:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hwVg+qqt"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="RXhkKbCV";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="5A25tT79"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5511E386444;
-	Wed,  4 Mar 2026 21:26:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B2F386432;
+	Wed,  4 Mar 2026 21:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772659594; cv=none; b=aHtgBOMS8a0HDGicjTjuQmsan23tnKoUTMh30ikK9YrX4fYjs9U86TnyeTjDhuWvxz4NFTK/zRMZq6m2ziIP1zPsMTcON46mv76xdAcMLJ9cak5SEveHe5K/DzF4kVQjB8pkJEfUh8dwfyX8fzsbnycmmeMX815bNy9dAKHzKxc=
+	t=1772659614; cv=none; b=rZ2s9QgO/ge1wM0qRtCDGBU+BlMyDTg8UExIorZPKrZKfI11HitpM3Jnk0z9n3X1mfoGn48uaM3YEoyvvMKyxGKpdUuof6bxJBSsADYx+Q8EL4Qk571dTd3lKGqWcAeKri8jOXG5iFB2wOiMBCnI7XifQTJvKYPvV8iBij95RNg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772659594; c=relaxed/simple;
-	bh=4Xnncoe1im22Gd++O66NN0sXnUSV5WQx7hFdbwwMeuE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ciEnwR2rQNcmP6pJTdKpY3u5bBDAmz6jKSVebFq1pniIBrpjoGNHKXgeBk9SNOvU7wS+6HehiWNq0FsnZEI0xaYomWxuOf0v/P5QifKrJ9JLNBZU492B22Iy2Yxl6c7k1aeOmvjTaHqCFaU+kU87IZbsLeSSWgP7xiMJXoT6ZRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hwVg+qqt; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1772659591;
-	bh=4Xnncoe1im22Gd++O66NN0sXnUSV5WQx7hFdbwwMeuE=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=hwVg+qqtO823WxAJrDdekGg0chWwLiX4jglTnkBf8EftMdLJo3X0ERvFktguk0FuT
-	 5Myz8LO83G8etw3Kf1o65DY6ajSnktkLk0SVxlNFOV4eXoTEgsyKegFYlrVMaxsqQN
-	 ceibHgPOPhD5De4U5ydFOuWo19kTV4oCkD+AjoAwBk52ZNiDYsPmtsel9tz+lv2sD4
-	 JUzY1dbGd55uTyFIdCs/RzD+9z9nUCPdFzqO8i0ryksDCvMcOmxENb5hrkUtNYeG5s
-	 z6J49eU0YAnrQ9oHoMN1CK934sTfUJGBEpwpCO7DLs8NV4VcVJAwNryRyZggEgMjHA
-	 qbTvF6TUanEyQ==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C3EFB17E0A2D;
-	Wed,  4 Mar 2026 22:26:30 +0100 (CET)
-Message-ID: <cce68679-8dcf-4c8d-8a66-df426c037f6c@collabora.com>
-Date: Wed, 4 Mar 2026 23:26:30 +0200
+	s=arc-20240116; t=1772659614; c=relaxed/simple;
+	bh=MVhmd4cWE0Kx3+BczUBvTeGMoG4y8lKZBKmcPBNai8Q=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Gfe/XMsySc/inxPfauKSYAE7DWc9bfi1IqTwyVDNJ78veUYXOwoSSBlGxvxQ/yLmi9i88b1xZ3mv0gCCrtmkMZWwlILJskDOTjbwp/zZOqj+5BeAPyUrzhHnx/UmWZYeefDfK1y1ELgJPiUbGsNPJKuZQSjSdK4Oo6SkA8wbMH4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=RXhkKbCV; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=5A25tT79; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1772659603; bh=ph8FSrXPg2/n2Ad6/2vbcmV
+	Qb668+5s77efPfp1VCHA=; b=RXhkKbCVAcPaz1mI5rRjFzXC7h2MjdCW6IahRHDaBTZ+tjHK1x
+	RTT/M/c5Law8eJDHHNzFpjjAJeQZgJ2qZDQcx/8Lf8pBOCXYQF6pwjfgLdRLM1nsfs/2fN4Yz9d
+	M2IehnG3rue2wkgHxDfZxcI+pEpn2m4MRi9rCjwS2S4vwjoHHYxsU7bb4ue0dgym9+tEk9fAbvl
+	Dd+vjSNMauLHbK03xU1F0OGeurPYtMUes8Dj9hhi+c8qmCr3j6ROf4pW8Bg0/+/9dNMgrDel2eI
+	5a6cVJFvrD6Ec7fFjGFqgRklFL+agMXkNSXJlrCMTvhIrV8kAb8CKT07iqSSfeR9JHA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1772659603; bh=ph8FSrXPg2/n2Ad6/2vbcmV
+	Qb668+5s77efPfp1VCHA=; b=5A25tT79Aq2CJfrW6ibkNOhBuEcu5Z+zHyKHR5TouGxL8S1LnF
+	GdgmMJp2WuIpZlaNxy8r6DoX8/2BojAevyCw==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: rockchip,vdec: Add alternative
- reg-names order for RK35{76,88}
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil@kernel.org>, kernel@collabora.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>, linux-media@vger.kernel.org
-References: <20260226-vdec-reg-order-rk3576-v4-0-b8d72dc75250@collabora.com>
- <20260226-vdec-reg-order-rk3576-v4-1-b8d72dc75250@collabora.com>
- <20260227-observant-roaring-ara-ef7eb0@quoll>
- <adbbdbb1-b126-4807-821c-c9850befd695@collabora.com>
- <20260227-omission-stoic-417d7109ad4d@spud>
- <3ab4f91e-37d0-4950-af88-01920705d31a@collabora.com>
- <1fe5529f-cd9f-4960-b6dd-96a2d02b8d86@kernel.org>
- <59b442c8-da2a-40a8-b9db-1609a8eee744@kernel.org>
- <a70731e8-375a-4ba9-b142-600b92ae1087@collabora.com>
-Content-Language: en-US
-In-Reply-To: <a70731e8-375a-4ba9-b142-600b92ae1087@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 8925C207FB9
+Date: Wed, 04 Mar 2026 22:26:43 +0100
+From: barnabas.czeman@mainlining.org
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Gabriel Gonzales <semfault@disroot.org>, Kees Cook
+ <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli"
+ <gpiccoli@igalia.com>, Biswapriyo Nath <nathbappai@gmail.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v3 2/7] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct
+ reserved memory ranges
+In-Reply-To: <xgcv6gcaw6xxelkafo23waz4sbw2cycas45qhzxkfhbeuukzbe@wwssuc44mp7y>
+References: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
+ <20260126-xiaomi-willow-v3-2-aad7b106c311@mainlining.org>
+ <xgcv6gcaw6xxelkafo23waz4sbw2cycas45qhzxkfhbeuukzbe@wwssuc44mp7y>
+Message-ID: <f1028a5b2eefbb0672f0a5e55d0691d1@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 0CA72207FCF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271278-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271277-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,disroot.org,intel.com,igalia.com,gmail.com,vger.kernel.org,lists.sr.ht,mainlining.org,oss.qualcomm.com];
 	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian.ciocaltea@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[mainlining.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 3/3/26 2:26 AM, Cristian Ciocaltea wrote:
-> Hi Krzysztof,
+On 2026-03-04 19:51, Bjorn Andersson wrote:
+> On Mon, Jan 26, 2026 at 05:34:52PM +0100, Barnabás Czémán wrote:
+>> The device was crashing on high memory load because the reserved 
+>> memory
+>> ranges was wrongly defined. Correct the ranges for avoid the crashes.
+>> Change the ramoops memory range to match with the values from the 
+>> recovery
+>> to be able to get the results from the device.
+>> 
 > 
-> On 2/28/26 11:58 AM, Krzysztof Kozlowski wrote:
->> On 28/02/2026 10:54, Krzysztof Kozlowski wrote:
->>> On 27/02/2026 18:42, Cristian Ciocaltea wrote:
->>>> On 2/27/26 7:13 PM, Conor Dooley wrote:
->>>>> On Fri, Feb 27, 2026 at 01:37:17PM +0200, Cristian Ciocaltea wrote:
->>>>>> Hi Krzysztof, Conor,
->>>>>>
->>>>>> On 2/27/26 9:46 AM, Krzysztof Kozlowski wrote:
->>>>>>> On Thu, Feb 26, 2026 at 12:46:53PM +0200, Cristian Ciocaltea wrote:
->>>>>>>> With the introduction of the RK3588 SoC, and RK3576 afterwards, two more
->>>>>>>> register blocks have been provided for the video decoder unit.
->>>>>>>>
->>>>>>>> However, the binding does not properly describe the new hardware layout,
->>>>>>>
->>>>>>> As you shown me last time with excerpt of address spaces from
->>>>>>> datasheet/manual, the binding correctly describes the hardware and above
->>>>>>> sentence is not true.
->>>>>>>
->>>>>>>> as it breaks the convention expecting the unit address to indicate the
->>>>>>>> start of the first register range, i.e. 'function' block is listed
->>>>>>>
->>>>>>> Imprecise wording. "start of the main or primary register range"
->>>>>>>
->>>>>>> (if you have 0x1000 with one reg and 0x20000000 with everything, the
->>>>>>> unit address will be 0x20000000).
->>>>>>>
->>>>>>>> before 'link' instead of the opposite.
->>>>>>>>
->>>>>>>> Since the binding changes have been already released and a fix would
->>>>>>>> bring up an ABI break, mark the current 'reg-names' ordering as
->>>>>>>> deprecated and introduce an alternative 'link,function,cache' listing
->>>>>>>> which follows the address-based ordering according to the TRM.
->>>>>>>>
->>>>>>>> Additionally, drop the 'reg' description items as the order is not fixed
->>>>>>>> anymore, while the information they offer is not very relevant anyway.
->>>>>>>
->>>>>>> This is fine for me.
->>>>>>
->>>>>> Thanks for the additional feedback!
->>>>>>
->>>>>> If I'm not mistaken (please correct me), the only remaining (hard)
->>>>>> blocker for the series would be to improve this commit message.
->>>>>
->>>>> No, you also need to fix the problem I pointed out about reg-names being
->>>>> optional on the devices you're relying on reg-names for. 
->>>>
->>>> My only concern is that by marking reg-names as required we would break the ABI,
->>>
->>> You are ALREADY BREAKING the ABI. Really, for absolutely non-important
->>> cosmetic change in unit address, where I asked you repeatedly to fix the
->>> unit address, you change the ABI affecting kernel and DTS users.
+> FYI. If you add "memtest=1" to your kernel command line the kernel will
+I have tested with memtest=1 also, it is working fine.
+> sweep all memory at boot, which tends to flush out most such issues.
+> Then you don't need to rely on "high memory load" for testing for such
+> issues.
 > 
-> I thought we've already reached consensus to allow extending the binding and
-> keep both lists, precisely to avoid breaking the ABI.  At least this was my
-> understanding according to your reply [1]:
+> Regards,
+> Bjorn
 > 
->   You can have also oneOf with older list "deprecated: true", if want to
->   keep any users unaffected.
-> 
-> And this patch was meant to do exactly that.  Did I miss something?
-> 
->>> This is barely acceptable, but I am just annoyed already explain it to
->>> you multiple times.
-> 
-> There is no need to explain it again, we've got your point.  We've also brought our
-> arguments and I had the impression that we eventually agreed to keep the unit
-> address unchanged, based on your comments [2]:
-> 
->   Yes, with drop of the oneOf this would be fine.
->   I meant, the "one item option" in oneOf.
-> 
-> Is this not applicable anymore?
-> 
->>> But now you claim, you can break ABI for cosmetic unimportant change,
-> 
-> No, breaking ABI wasn't our intention here.  If we put the issue with reg-names
-> being optional aside for a moment (as that one will be handled separately), is
-> there still a problem with the current revision?
-> 
->>> but actually doing something meaningful is a no-go?
-> 
-> Making reg-names mandatory has been already clarified with Conor and agreed [3]
-> to be handled in a dedicated patch.  And that one will indeed break the ABI, but
-> it's unavoidable, unfortunately. 
-> 
->>> At least use correct arguments if you want to discuss.
-> 
-> Sorry, I'm not sure what do you mean.  I really believed that we managed to
-> address all the open topics by now.
-
-I've just submitted v5.  For some reason the link to the cover letter [1]
-doesn't seem to work, I'm getting:
-
-  Message-ID <20260304-vdec-reg-order-rk3576-v5-0-7006fad42c3a@collabora.com>
-  not found
-
-But all the others are just fine, e.g. [2] is the for the 1st patch.  I've never
-encountered something similar before.
-
-Regards,
-Cristian
-
-[1] https://lore.kernel.org/all/20260304-vdec-reg-order-rk3576-v5-0-7006fad42c3a@collabora.com/
-[2] https://lore.kernel.org/all/20260304-vdec-reg-order-rk3576-v5-1-7006fad42c3a@collabora.com/
-
-
-
+>> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for 
+>> xiaomi-ginkgo")
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts | 41 
+>> ++++++++++++++++-------
+>>  1 file changed, 29 insertions(+), 12 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts 
+>> b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+>> index bf03226a6f85..d5e5abdb3b2f 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+>> @@ -13,6 +13,12 @@
+>>  #include "sm6125.dtsi"
+>>  #include "pm6125.dtsi"
+>> 
+>> +/delete-node/ &adsp_pil_mem;
+>> +/delete-node/ &cont_splash_mem;
+>> +/delete-node/ &gpu_mem;
+>> +/delete-node/ &ipa_fw_mem;
+>> +/delete-node/ &ipa_gsi_mem;
+>> +
+>>  / {
+>>  	model = "Xiaomi Redmi Note 8";
+>>  	compatible = "xiaomi,ginkgo", "qcom,sm6125";
+>> @@ -36,28 +42,39 @@ framebuffer0: framebuffer@5c000000 {
+>>  	};
+>> 
+>>  	reserved-memory {
+>> -		debug_mem: debug@ffb00000 {
+>> -			reg = <0x0 0xffb00000 0x0 0xc0000>;
+>> +		adsp_pil_mem: adsp_pil_mem@55300000 {
+>> +			reg = <0x0 0x55300000 0x0 0x2200000>;
+>>  			no-map;
+>>  		};
+>> 
+>> -		last_log_mem: lastlog@ffbc0000 {
+>> -			reg = <0x0 0xffbc0000 0x0 0x80000>;
+>> +		ipa_fw_mem: ipa_fw_mem@57500000 {
+>> +			reg = <0x0 0x57500000 0x0 0x10000>;
+>>  			no-map;
+>>  		};
+>> 
+>> -		pstore_mem: ramoops@ffc00000 {
+>> -			compatible = "ramoops";
+>> -			reg = <0x0 0xffc40000 0x0 0xc0000>;
+>> -			record-size = <0x1000>;
+>> -			console-size = <0x40000>;
+>> -			pmsg-size = <0x20000>;
+>> +		ipa_gsi_mem: ipa_gsi_mem@57510000 {
+>> +			reg = <0x0 0x57510000 0x0 0x5000>;
+>> +			no-map;
+>>  		};
+>> 
+>> -		cmdline_mem: memory@ffd00000 {
+>> -			reg = <0x0 0xffd40000 0x0 0x1000>;
+>> +		gpu_mem: gpu_mem@57515000 {
+>> +			reg = <0x0 0x57515000 0x0 0x2000>;
+>>  			no-map;
+>>  		};
+>> +
+>> +		framebuffer@5c000000 {
+>> +			reg = <0x0 0x5c000000 0x0 (2340 * 1080 * 4)>;
+>> +			no-map;
+>> +		};
+>> +
+>> +		/* Matching with recovery values to be able to get the results. */
+>> +		ramoops@61600000 {
+>> +			compatible = "ramoops";
+>> +			reg = <0x0 0x61600000 0x0 0x400000>;
+>> +			record-size = <0x80000>;
+>> +			pmsg-size = <0x200000>;
+>> +			console-size = <0x100000>;
+>> +		};
+>>  	};
+>> 
+>>  	extcon_usb: extcon-usb {
+>> 
+>> --
+>> 2.52.0
+>> 
 
