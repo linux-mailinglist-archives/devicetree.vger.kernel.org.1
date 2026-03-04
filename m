@@ -1,210 +1,172 @@
-Return-Path: <devicetree+bounces-271012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271011-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8DjRGSojqGl3ogAAu9opvQ
-	(envelope-from <devicetree+bounces-271012-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:18:50 +0100
+	id ULlmEn0jqGl3ogAAu9opvQ
+	(envelope-from <devicetree+bounces-271011-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:20:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26A141FF961
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:18:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2971FF9C8
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:20:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7C380301388D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:18:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C04C63034E3B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A29FB3321D8;
-	Wed,  4 Mar 2026 12:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487CE35F613;
+	Wed,  4 Mar 2026 12:18:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="FU8xeBq9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cM/EV2SA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E55372699
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 12:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2493623F26A;
+	Wed,  4 Mar 2026 12:18:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772626726; cv=none; b=YTxGNHzmvqJT3b0Yl2q/ynrE6M+AmxqMbNNPvFsAlcRI27oND1IrJdD8LezJQQG+ZG4HLc2kR75GTOGNb6VnMgDRe5b6Y2y5h8bx9NKs06qeDbTRcD2oOzMk/rzX7dwmT0hLIt9mumHGNhH0c/xvvzLOawaR3vFdcNBBlPebnZs=
+	t=1772626705; cv=none; b=saB91qcFlhnUdQM9rkqOGvYoAuqiXZ12hjdKoDWZDGBGR3HeLjpox/EUo0jHJocfnhonb14Z5CvT4JuJhlnaFx4ZB3uG+w+t0DGJaWGLxmAdFQUYS0D0t7ZrOwsV1dKOB+zPI9eFsjg2U8jZ31o6CukUJZP39x9WKPRKv3PlmZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772626726; c=relaxed/simple;
-	bh=BoyqZOwzv86J0T7f0ecaThsJ7YcnOqzNw6EzgiMmm/0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jRIr/QX3vj1FJOnaP91DXLTD24OLl5vbrvBjVp2M3ng5QCicT1P9SQQlPGcX/mzWSKbvRIJDSg07dd+pptKPIIOlPS9jjJ4SxKcYU+sxZtKmjCYAEBEDpt0gWRCn/GGl3PmqUpi3nhWMMJw3QWzYc7U4hyfTezUPducu0KWVdkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=FU8xeBq9; arc=none smtp.client-ip=94.124.121.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=protonic.nl; s=202111;
-	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
-	 message-id:subject:cc:to:from:date:from;
-	bh=WOiupv8j7lDIDR3re2KbAgeXq9V22995QNDUCNKWpwI=;
-	b=FU8xeBq9APHA1ar3fILKGc791H54zUAJNuHAysWcC4aaoTWVmq5rKII6QZIyh+h9FOOOSosObXfJd
-	 osyVOHKzoGR+EPGMOAy++pXo5ZcRXvVteDVD1Bj7OM5/w1dKhqfVAU/TkDpfLvQdAnN+RSXGEhNrPz
-	 nzj5OqyFZnOsGDRwP6Qf5rlcpteRMSGxHqI30YqucDFb1ZnLTMgi1ThRTGyI9nkZktpNWz0PfBay79
-	 LzDkG8Ar2VGgZplEg5/ae8PNkk4P65ZmJe4CfCDznpEjqy7ShXZEluL8a5gXAnF9XQW7TvZ2S4dmML
-	 80HmB0eEOuhEoIcxEApGDTjav0+AEfg==
-X-MSG-ID: 1e832110-17c4-11f1-bcce-00505681446f
-Date: Wed, 4 Mar 2026 13:17:31 +0100
-From: David Jander <david@protonic.nl>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>, "Rob Herring (Arm)"
- <robh@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin
- <peda@axentia.se>, kernel@pengutronix.de, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, Guenter Roeck
- <linux@roeck-us.net>, Linus Walleij <linusw@kernel.org>,
- linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
-Message-ID: <20260304131731.4d54f051@erd003.prtnl>
-In-Reply-To: <98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
-References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
-	<20260303133947.1123575-2-o.rempel@pengutronix.de>
-	<177254885509.3251575.14819823286886805862.robh@kernel.org>
-	<aacH7NmkOzZued0Y@pengutronix.de>
-	<20260304-graceful-sweet-bittern-98efdb@quoll>
-	<20260304100642.44d00b99@erd003.prtnl>
-	<4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
-	<20260304112500.4766f21b@erd003.prtnl>
-	<98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
-Organization: Protonic Holland
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772626705; c=relaxed/simple;
+	bh=F1bRyVccRjRVWSe1NJrM2wkFpBdYoCPe7+Z7tfPIK4A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RsCcWshjfFGlRW58e3ucSJCh4hkSxg3iuVGS2eVhDBPepSY6+7HSH6J7/PX/Psff3g7HavHVjP7EES6+qIYg0vqZq22n+HAwcwovo/Ath+huOWLN6QxgVme1jZXRWKT6Wz2bkyQOJZWEHCyz+oJgGhaNWg/27RN6xA/ybRpm87A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cM/EV2SA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC14EC19423;
+	Wed,  4 Mar 2026 12:18:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772626704;
+	bh=F1bRyVccRjRVWSe1NJrM2wkFpBdYoCPe7+Z7tfPIK4A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cM/EV2SADiomFUoEJrVe9OVVB4w6fI/+vK7tysU4Ig8Z4uK06dCy6+YcxbX+gXngl
+	 vvuKIeT1fYw3xYc3jzqX8Zwt9KOU6Nf2Xuit4I2M3nFAxISZOzdU8WntOVWCJbCJuj
+	 /pK5BXA6iTQdmbfkIWWvdrKc4sYHVi7RTGfABrIdneDaZOXM5p+zcpGzYo6M6/Rzn3
+	 eLKpfWBWWfPPgSrFndhui9nvQM77EnU94DUoFGEqmy/sSenG/gkKpJOdPypTo7Hf4B
+	 BoXpxZkQEY4GqmnJLcfQ9ZOx0zSmvaw0SLuEXEvVJLgNqjsepQOCYORGgAvogMZT2R
+	 kgFj8TpAH/lVg==
+Message-ID: <8e685c37-afca-4f2e-ac0a-76a0b060805d@kernel.org>
+Date: Wed, 4 Mar 2026 13:18:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: rng: mtk-rng: add SMC-based TRNG
+ variants
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Olivia Mackall <olivia@selenic.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sean Wang <sean.wang@mediatek.com>, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <04622e0bc917aed4145a9a3b50b61f343fc89312.1772585683.git.daniel@makrotopia.org>
+ <20260304-defiant-echidna-of-examination-b1e798@quoll>
+ <aagiPIgoosVqsA0t@makrotopia.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aagiPIgoosVqsA0t@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 26A141FF961
+X-Rspamd-Queue-Id: BA2971FF9C8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[protonic.nl:s=202111];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271011-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[protonic.nl];
-	HAS_ORG_HEADER(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271012-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[selenic.com,gondor.apana.org.au,kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@protonic.nl,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[protonic.nl:+];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, 4 Mar 2026 12:41:37 +0100
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-> On 04/03/2026 11:25, David Jander wrote:
-> > On Wed, 4 Mar 2026 10:49:06 +0100
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >   
-> >> On 04/03/2026 10:06, David Jander wrote:  
-> >>>
-> >>> Hi Krzysztof,
-> >>>
-> >>> On Wed, 4 Mar 2026 09:05:11 +0100
-> >>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >>>     
-> >>>> On Tue, Mar 03, 2026 at 05:10:20PM +0100, Oleksij Rempel wrote:    
-> >>>>> Hi Krzysztof and Rob,
-> >>>>>
-> >>>>> On Tue, Mar 03, 2026 at 08:40:55AM -0600, Rob Herring (Arm) wrote:      
-> >>>>>>>  .../devicetree/bindings/mfd/nxp,mc33978.yaml  | 114 ++++++++++++++++++
-> >>>>>>>  .../bindings/pinctrl/nxp,mc33978-pinctrl.yaml |  82 +++++++++++++
-> >>>>>>>  2 files changed, 196 insertions(+)
-> >>>>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,mc33978.yaml
-> >>>>>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978-pinctrl.yaml
-> >>>>>>>       
-> >>>>>>
-> >>>>>> My bot found errors running 'make dt_binding_check' on your patch:
-> >>>>>>
-> >>>>>> yamllint warnings/errors:
-> >>>>>>
-> >>>>>> dtschema/dtc warnings/errors:
-> >>>>>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/nxp,mc33978.example.dtb: gpio@0 (nxp,mc33978): $nodename:0: 'gpio@0' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
-> >>>>>> 	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
-> >>>>>>       
-> >>>>>
-> >>>>> Folding the mux node into the parent as suggested [1] causes this error.
-> >>>>> Because the parent now has #mux-control-cells, the generic
-> >>>>> mux-controller.yaml forces the node name to be mux-controller. Since
-> >>>>> this chip is primarily a switch/GPIO controller, naming the parent SPI
-> >>>>> node mux-controller@0 is misleading.
-> >>>>>
-> >>>>> What is the preferred way to go here?      
-> >>>>
-> >>>> https://www.nxp.com/products/interfaces/multi-switch-detection-interface/22-i-o-msdi-programmable-current-analog-mux:MC33978
-> >>>>
-> >>>> Name of the mc33978 device is "programmable analog mux" and further
-> >>>> description says "analog multiplexer for reading analog inputs ", so I
-> >>>> don't find "mux-controller" a confusing name. It is EXACTLY a
-> >>>> mux, so mux-controller.    
-> >>>
-> >>> Sorry to chime in here. I'm afraid the NXP description on that link you posted
-> >>> is a typo. It is not correct. This chip is primarily a "Switch Detection
-> >>> Interface", or in other wordt a switch input interface. Wee here for the same
-> >>> page for the MC34978, which is the exact same chip:
-> >>>
-> >>> https://www.nxp.com/products/interfaces/multi-switch-detection-interface/switch-detection-interface-22-i-os-programmable-wetting-current-temp-sensor-3-3-v-5-0-v-spi:MC34978    
-> >>
-> >> That's MC34978 and I commented on MC33978.
-> >>
-> >> What is the primary function of MC33978 being described here as the base?  
-> > 
-> > The MC34978 and MC33978 are the exact same part (except for the temperature
-> > range). The fact that NXP has two different web-pages with two different
-> > descriptions of it certainly doesn't help, but you can also check the
-> > datasheet[1] description: "MC33978: 22-channel multiple switch detection
-> > interface with programmable wetting current"
-> > 
-> > Further down in the description it says: "It also features a 24-to-1 analog
-> > multiplexer for reading inputs as analog."
-> > IMHO this makes it clear that this is NOT primarily a MUX.
-> > 
-> > Actually, I doubt many users of this chip will use the analog MUX function at
-> > all since it has quite a few limitations that make it not very practical to
-> > use.
-> > 
-> > The most fitting Linux framework for this chip's primary funtcion IMHO is
-> > pinctrl/gpio, but there are some caveats unfortunately.
-> > 
-> > [1] https://www.nxp.com/docs/en/data-sheet/MC33978.pdf  
+On 04/03/2026 13:14, Daniel Golle wrote:
 > 
-> OK, thanks for the explanation, but then primary function is not GPIO
-> either, because nothing on linked page says it is a generic purpose IO.
-> It says it is switch detection. Maybe better generic name is then
-> "pinctrl", thus also "pinctrl" child should be folded into the parent...
-> but switch detection is also not a pinctrl. :/
+> Starting with MT7981 and followed by MT7988 and MT7987 it is
+> technically the same hardware, but on those ARMv8 SoCs TF-A assigns
 
-I agree. This chip is indeed not very clear-cut with respect to the correct
-Linux subsystem. It could also be an input device if you view it strictly from
-the "switches" standpoint. I thought about this also, but figured that it
-would be more flexible to just view it as a pinctrl device, which could always
-be used in combination with something like gpio-keys.c if one really wanted
-the input functionality. For context, our use-case is primarily for industrial
-control reading digital sensors such as mechanical switches or industrial
-optical sensors, and that is AFAIK the main application for this chip anyway.
-For this the gpio UAPI is a good match.
+So they are compatible, I presume?
+
+> the MMIO range of the TRNG to only be accessible from within the
+> secure/trusted land, and TF-A provides a (vendor-specific) API
+> allowing non-trusted land (ie. Linux) to acquire random bytes.
+> 
+> With MT7986 they made the unlucky choice to initially allow direct
+> access to the MMIO range, but later updates to TF-A then also locked
+> it to secure/trusted land, offering the same API as on the newer SoCs.
+> So for MT7986 the driver has to try and figure out which convention to
+> use.
+> 
+
+
 
 Best regards,
-
--- 
-David Jander
-
+Krzysztof
 
