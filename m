@@ -1,113 +1,134 @@
-Return-Path: <devicetree+bounces-271066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271067-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2AF9Okg8qGl6rQAAu9opvQ
-	(envelope-from <devicetree+bounces-271066-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:06:00 +0100
+	id CPFpMwM+qGl6rQAAu9opvQ
+	(envelope-from <devicetree+bounces-271067-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:13:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96673200F36
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:06:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AB82011AF
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:13:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E6EF030654F2
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:04:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D711431C3563
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:06:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB66B3AEF4E;
-	Wed,  4 Mar 2026 14:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CEB83B8941;
+	Wed,  4 Mar 2026 14:04:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RQR13/ZH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A6739B978;
-	Wed,  4 Mar 2026 14:04:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6537B3A4512;
+	Wed,  4 Mar 2026 14:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772633056; cv=none; b=AbWITIOhDWryZyOhGrGYXjS99VWYz+Y46T3jS+WqSNISFD8zZaccsMdVJNlabOU7ngHqbLdNuu39mSagNot0Jn2T5/iSROudoqrrfzazVS9XgkaC2iR77XQE88r3XBEB657lqixTw4emV9zg9EJEbIsU2ABbeCBIKpb9/3Jic2M=
+	t=1772633082; cv=none; b=nXre8naVXOiusTMyZuCgHacqen/u0cYE/qGhrWVpKunbmka9AjkNMp/eLYU7uULNiTm9lAA9MqMj4MtfTHexrEgcBUCo3s9zOxpsT2/yQrRMWxJwG2UqYQ86kUYlASDUpO5CO1nG4sw0ykKD9r1ek9kQgrUA3EBf+B4bi7icHqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772633056; c=relaxed/simple;
-	bh=GkBJw/OUo0Oa+IzoSIatQ7hMK7OHe6CVg7wKYrKwZHs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Mg3jWnEC6U7r7qosNlHpiEz7igdEKmf7PBVcPdhJlqv2ZmGgKLtyg3NMahUp8CsJV0Xuqg3GvDV1OunGx66iMzSNTiaqPo480AfwZbwRJKdBC30ex4xh/utFKU6L/0O5hX5Fdm4s1Y2qdQ2QzZwPb7YSAofU4BakUq5gSvTgQIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95097C4CEF7;
-	Wed,  4 Mar 2026 14:04:14 +0000 (UTC)
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Marc Zyngier <maz@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Fix EPPI range
-Date: Wed,  4 Mar 2026 15:04:10 +0100
-Message-ID: <107183629106ad392e17fdf539a3d79873024377.1772632987.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1772633082; c=relaxed/simple;
+	bh=nJlM3uqhcdtv948kNs3zutBgWNIPD3VVSvIYRFuWgas=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=kl8eml/ra7EbXcd/q7o/KRo7k9RGugHY7SS3nfQa0nofksy6+QY5hrW1HQM1aReFIUdriyJc1nMVjmcBkUWs3nQEwOqrX7mmxMMDyu0T+L3sT6xfZaCH7Ig2lMRS6daZ3SDg0aPEoIqMCXalqEvgX/ztq9ly+w4OJRU0QBpeP+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RQR13/ZH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8433AC19423;
+	Wed,  4 Mar 2026 14:04:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772633082;
+	bh=nJlM3uqhcdtv948kNs3zutBgWNIPD3VVSvIYRFuWgas=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=RQR13/ZHOPgwvVHfqE6n2f0tncVYAlkmBndcaOJ3G8T2tIQPyC5e2KpqdiP96w7yp
+	 fy/7KYvqOqjxgBDkC2O2FwB5qK37qR3zk/sa/1/VUfjI9YsbPy/K7D/lYR9Arn0p9/
+	 A8yKHc5ABj/BWal5Lp1nlQweE9m5+YVTkD5tEllllxTkGGGtfX5FJ5TEWcQfjXJ8h8
+	 smuW+LpKOczErVcmbKGiObB3LID/FGvcamGUxkyN/Q3BpUwC8Uh2VmXwWeaqKKWBvz
+	 oBi1HgKpufrZCKR6mIL8p9m/KxJYyc65kwM9bXFKiHYNq/i9rQWtyRuywgtBSXe6SM
+	 n3sh9iRJEvLGA==
+From: Mark Brown <broonie@kernel.org>
+To: Biju Das <biju.das.jz@bp.renesas.com>, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Biju <biju.das.au@gmail.com>
+Cc: linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20260304072000.6787-1-biju.das.jz@bp.renesas.com>
+References: <20260304072000.6787-1-biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G3L SoC
+Message-Id: <177263307926.96340.355429636551743485.b4-ty@kernel.org>
+Date: Wed, 04 Mar 2026 14:04:39 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 96673200F36
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-6ac23
+X-Rspamd-Queue-Id: 34AB82011AF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.96 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271066-lists,devicetree=lfdr.de,renesas];
-	PRECEDENCE_BULK(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[glider.be];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com,kernel.org,glider.be];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271067-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,devicetree@vger.kernel.org];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,glider.be:mid,glider.be:email,arm.com:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-According to the "Arm Generic Interrupt Controller (GIC) Architecture
-Specification, v3 and v3", revision H.b[1], there can be only 64
-Extended PPI interrupts.
+On Wed, 04 Mar 2026 07:19:55 +0000, Biju wrote:
+> Document RZ/G3L SSIF-2 bindings. The RZ/G3L SSIF-2 IP is identical to one
+> found on the RZ/G2L SoC.
 
-[1] https://developer.arm.com/documentation/ihi0069/hb/
+Applied to
 
-Fixes: 4b049063e0bcbfd3 ("dt-bindings: interrupt-controller: arm,gic-v3: Describe EPPI range support")
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- .../devicetree/bindings/interrupt-controller/arm,gic-v3.yaml    | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-index bfd30aae682bf3f7..360a0643a0b567a4 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-@@ -50,7 +50,7 @@ properties:
-       The 2nd cell contains the interrupt number for the interrupt type.
-       SPI interrupts are in the range [0-987]. PPI interrupts are in the
-       range [0-15]. Extended SPI interrupts are in the range [0-1023].
--      Extended PPI interrupts are in the range [0-127].
-+      Extended PPI interrupts are in the range [0-63].
- 
-       The 3rd cell is the flags, encoded as follows:
-       bits[3:0] trigger type and level flags.
--- 
-2.43.0
+Thanks!
+
+[1/1] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G3L SoC
+      commit: fbb143e4a6efa4a175e856fc898754b06cb13c4f
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
