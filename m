@@ -1,146 +1,176 @@
-Return-Path: <devicetree+bounces-271079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271080-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YKnKMBVDqGmRrwAAu9opvQ
-	(envelope-from <devicetree+bounces-271079-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:35:01 +0100
+	id SMPyBpNAqGl6rQAAu9opvQ
+	(envelope-from <devicetree+bounces-271080-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:24:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72A812019BF
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:35:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F40A201545
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:24:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 32B2430BFE85
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:15:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 61FBE30813F9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:22:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 301213A8747;
-	Wed,  4 Mar 2026 14:12:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC8161C84DC;
+	Wed,  4 Mar 2026 14:22:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NZXO1dqy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rVqGFqhz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A83F3A8759
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 14:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B952835957;
+	Wed,  4 Mar 2026 14:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772633529; cv=none; b=FMlHikMZ/C4pOaTS2gbihy1m6is4t38C67ZhTjCthnx4EANsKKjfTs5zSmrpKWP8S+BsTLvavRqq9qJg3eTfiIQKxMFWdpEB7wxJlRZkdbW2y77IdeWeRofAdg67hTnV5wcTzAb8JQXYY5H09Ylhbs9mmOALtUUj8SQkR/WT2Po=
+	t=1772634178; cv=none; b=p/QsLNQSN2Txefwqah+PcyavegJmcWrvkjEpQSrcdKu9H1B2mZZLr5ROYi8p07MzMKmIbA0sC5gRu7S23QpP2+eSGMq7j6w15WK8iysfXpuNV/pzCc38clxXVbUokGc2E1fOu9bNoUWKHLUWzDYwQItA6i6lS6SQJ/wqBhY0iSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772633529; c=relaxed/simple;
-	bh=fYkYiiWDCV0YZLGuiXOMcbkzcFgkMg8u6U3v5cwfDTo=;
+	s=arc-20240116; t=1772634178; c=relaxed/simple;
+	bh=062hePw29zWwwauxfQEeqKQOzqwtn/nqm4F4fwtRqWk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PmS9ws2+iRLfoL7ngiOga3OyVOjPHT48/Dz8wCV1fFmBZQdOVMNTxjqzRMfGD5q74niOwZOecRVIyvyHF0OwHcozTNwK75AftNGwhz3qLh++5vsKm4fIbkFaLjJii7M9ZA/aF1/w5z/c8PMspEkRbKnjLSXfli7Bh2/l4kmrMDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NZXO1dqy; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-437711e9195so5373614f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 06:12:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772633526; x=1773238326; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=oFvwRQT+OVcEB+x3IOoQu0A/G0gh0DEwGhj7UgsZ3lE=;
-        b=NZXO1dqyimRLc2/qsN2INiKAPpU4Pu4zLzs4Eo2IOx9CoYReiygAQFpCuPZtHzQsvN
-         ZTUPbFswK+uYhRGXU9HQ1hkKdqxoFMXfKSxA3TvYbzb0HT/cvznvnHYS3vWuQX3fhy/7
-         rZKzBipMiUYlER+Po5/sprEAHNMMMCzLNxzyZIYAmtspdgPTQ/WPEPa5rPJt3KNOFNj5
-         gqEX6HEr6Hn6vlYnibCqRi0tpV/2Y/1LArcjP0nw7q+o2VQezbyxmljfKskkjLz5dTkm
-         BiB2gxLWJ6ZVDFZbcjvGtXHLNXS34z0tsABkKh7VS9epoIpynvhVy5x30nUQJpvO9WXm
-         /Z0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772633526; x=1773238326;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oFvwRQT+OVcEB+x3IOoQu0A/G0gh0DEwGhj7UgsZ3lE=;
-        b=uNO0O9BXJZvAyE898uPksDCW77m6S4Zu4Rx+r+PaufIkalphpVoC03z73JmYwqhd5z
-         TPNR5yPCb2jIhr7bWBWGGX8gDg3XDvof7vXV9RzB7kM+rX66asCLV2vgTmYGo02cOkov
-         jhlWZzFji89ERS5xrUY/CxVB+MdXPwnapBKOfqhCcB/sG+N40x/vJ2mX3x+V4Ft4VjkR
-         ULvvR/JNA+5zSiBR0unD1yjns/c0sM91Ix4Llx05kEgM3bKPI0ZRwq01tJPy+JFbgi/v
-         mgLQcyLrcXeF9zdmKeQWWx9xkMP4BuuDo7vPsyYMP81bD2YOuTuuHioVZ35WyxtfNf5Z
-         6yiw==
-X-Forwarded-Encrypted: i=1; AJvYcCX2LovBbIS7Mr78Cogz8VitRcCRJSxYyKlyYQGmmOojopmIw7wzqz+06WHnBRr+aJX0RemqqqyhYAwD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZwxe0uKsBvFt6pa4PW3uJBx90v/jZLM+0OkDMuUeCFsMT8ihQ
-	DGiUes5nQv7I5AhJgxYXbytfw2t1Lft4fIuCTO1CAJt5lsU0KQ/yHAhlzhN+gUeg+Os=
-X-Gm-Gg: ATEYQzxu581TOKyyfHiiMFUx6YEcN+pgB/Qd84oAm38onmYdjR2Uebqtr5T30efcOkb
-	Ar3c11qgDiF2l5Wc5Z0pMON+dPa46KnJWKk27CWWcJS5gv7SkKhmpXcZOIvj2Q9RRByZl61ysFb
-	L1NtnCratfveLKHq52NRQLAtd010bhsZK6VxVwqOI4R7Wlft4WtwCc1aTItmz1UC1RXOB851wau
-	R6zHlE9PmKa/D4LupbPrO9INi87zoBhuSqimjJec7+cvDZozEj+2L9uFHK5F0LY3t8mA3c9DzLc
-	ujVuKp4VX1vDhBCnJJtUyw46z/1n/g7q21BdC/pNshEL8fOVOR5k/vVmJOVIH4RCYHZOeCCBINI
-	2Lv5m+AwXY+VKWvUyl5RZT6lmZVNgwf7kolQcpIb6cutbJcaWOW6uL3mcwKMPCcE0ZACyP4509B
-	SNuLLgZf0QGqkpvaEuMeL81ig6l5pZ1Dsx153S3EY=
-X-Received: by 2002:a05:600c:6992:b0:485:17a7:b9c7 with SMTP id 5b1f17b1804b1-4851984fd72mr37672115e9.10.1772633525715;
-        Wed, 04 Mar 2026 06:12:05 -0800 (PST)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48518807293sm51540475e9.11.2026.03.04.06.12.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 06:12:05 -0800 (PST)
-Date: Wed, 4 Mar 2026 17:12:02 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Alexandru Hossu <hossu.alexandru@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
-	jollys@xilinx.com, devicetree@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=tU3e+IeptLCmR9aVVmHh2QsrXEzH4nNFvUpH8kU9GAhRvHRKNgg1N/2phM3fEiuRg0gL6zP2gPhLx/jpMHKtN7/qidw5T85OmUqekFq6QqmzFb4ZF68ApzttUgcBJcg/zPRTQwCLQxcB5uWElOR8tNp7Ghzncf3dUslL00Hl9/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rVqGFqhz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 808DAC19423;
+	Wed,  4 Mar 2026 14:22:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772634178;
+	bh=062hePw29zWwwauxfQEeqKQOzqwtn/nqm4F4fwtRqWk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rVqGFqhzypI4wMzzlnG29/QiWzr9weEeWh5+6bTDrLR3lqEtNActaCr9HFB5e6uMf
+	 EaNBQRW/7iPTPKCDtahh620D6Y3mFPr7kcKxNsAfQlvZ2n6mPkS1cjts+Y6veu3xa+
+	 lemfLysxAYFW1FgHabPB5vBktgefeXfmjcH4uAykEmFZAjVQ/UQZVkpi5YpU3VP6Et
+	 gPgJB7SkvgofBadtPLKm0ovV2kjSXrnpqaORWOLykwHGbQSSCxQU+bOCJ7cMATZuVM
+	 8XH+geF70m1D/pU9sk/s86ZsYeFeTIGAM2C/Tl1J/8korAIYCrvWzxqwEAeWiF4RJz
+	 cuPCGdMr6fYcw==
+Date: Wed, 4 Mar 2026 14:22:53 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Greg KH <gregkh@linuxfoundation.org>,
+	Alexandru Hossu <hossu.alexandru@gmail.com>, robh@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org,
 	linux-kernel@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2] dt-bindings: misc: xlnx,axi-fifo-mm-s: fix
+Subject: Re: [PATCH] dt-bindings: misc: xlnx,axi-fifo-mm-s: fix
  interrupt-parent property
-Message-ID: <aag9sgjkjQwIy7Db@stanley.mountain>
-References: <ae0a95f4-8dac-4690-8810-79ad5fee7895@gmail.com>
- <0eea78fe-59ab-4ca0-9e29-d68fa298ac09@kernel.org>
- <fbb68131-03ab-460b-8d11-e4892d91807f@gmail.com>
+Message-ID: <20260304-premises-brunch-26faa087389a@spud>
+References: <e6f8db4d-2a5a-4424-b44d-6416ee0c5ca0@kernel.org>
+ <20260304131610.37503-1-hossu.alexandru@gmail.com>
+ <2026030429-kick-anemic-f48f@gregkh>
+ <6C6F8C62-19C5-48D8-9F80-47153B44DC6A@kernel.org>
+ <9d57af5e-ac23-4679-9719-6505dd851a2e@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Qod8k0j7dQ8bWRCw"
 Content-Disposition: inline
-In-Reply-To: <fbb68131-03ab-460b-8d11-e4892d91807f@gmail.com>
-X-Rspamd-Queue-Id: 72A812019BF
+In-Reply-To: <9d57af5e-ac23-4679-9719-6505dd851a2e@kernel.org>
+X-Rspamd-Queue-Id: 9F40A201545
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271079-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-271080-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linuxfoundation.org,gmail.com,kernel.org,vger.kernel.org,lists.linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dan.carpenter@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,stanley.mountain:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linuxfoundation.org:email]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 01:46:00PM +0100, Alexandru Hossu wrote:
-> v2: Remove interrupt-parent property declaration as it is a standard
-> property that does not need to be explicitly defined in the binding.
-> 
-> Signed-off-by: Alexandru Hossu <hossu.alexandru@gmail.com>
 
-Please, wait a day between resends.  No need to rush.
+--Qod8k0j7dQ8bWRCw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://staticthinking.wordpress.com/2022/07/27/how-to-send-a-v2-patch/
+On Wed, Mar 04, 2026 at 03:08:46PM +0100, Krzysztof Kozlowski wrote:
+> On 04/03/2026 14:29, Conor Dooley wrote:
+> >=20
+> >=20
+> > On 4 March 2026 13:22:48 GMT, Greg KH <gregkh@linuxfoundation.org> wrot=
+e:
+> >> On Wed, Mar 04, 2026 at 02:16:10PM +0100, Alexandru Hossu wrote:
+> >>> Signed-off-by: Alexandru Hossu <hossu.alexandru@gmail.com>
+> >>
+> >> For obvious reasons, we can't take patches without any changelog text,
+> >> nor would you want us to.
+> >=20
+> > This is also a second person working on this conversation.
+>=20
+> I see, so that's a patch for something which does not exist yet (not
+> merged).
 
-regards,
-dan carpenter
+This is the usual "two people working independently", except
+Alexandru's "v2" is actually not a v2 but rather a patch on top of his
+own v1. Ditto with his v3. It's not a patch on top of the other guy.
 
+>=20
+> > I left commentary on the other version of it.
+> > I am fairly confident that converting this binding is almost useless wi=
+thout evaluating whether this should become a dma engine.
+> > I'm almost certain my employer has something very similar, based on nam=
+ing and use case, and I saw no reason why it could not be a dma engine.
+> > Any as-is conversation of this should, IMO, come with an evaluation of =
+why this is the correct way to model it.
+> > I don't think it's suitable for any sort of "internship" program that s=
+ees binding conversations as low hanging fruit.
+
+Whoops, my bad on the long lines, sent it from my phone..
+
+> Do you suspect another round of some GSoC or LFX mentorship?
+
+Yeah, that is my suspicion. Lucas (the other submitter) also displayed
+lack of familiarity with the process, but that may just be happenstance.
+Plenty of binding conversions I am sure are suitable for some sort of
+
+"internship", but probably not ones in staging, since they probably need
+to come with an evaluation of whether things are currently correct and
+maybe with driver changes that really require having the hardware.
+
+This is probably one of the few cases where what's in staging is a bad
+candidate to work on, and things outside of staging that have a fixed
+ABI are much easier to convert.
+
+If this is some sort of "internship", probably the guidance on what to
+do should not include binding conversions without oversight from the
+mentor.
+
+--Qod8k0j7dQ8bWRCw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaahAEwAKCRB4tDGHoIJi
+0nN4APsHTLgsJ+WM95qfeQkv8jUQ9GaZUMqZFhuRIvIc67GQZAEA0yH+ay+Zuadp
+N1iPsKKe4eLsgyEGQMyCwo9BQbmoJAo=
+=4FiI
+-----END PGP SIGNATURE-----
+
+--Qod8k0j7dQ8bWRCw--
 
