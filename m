@@ -1,169 +1,209 @@
-Return-Path: <devicetree+bounces-271227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271221-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aGGuMmeCqGmAvQAAu9opvQ
-	(envelope-from <devicetree+bounces-271227-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:05:11 +0100
+	id 4C7hGTaCqGmYvAAAu9opvQ
+	(envelope-from <devicetree+bounces-271221-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:04:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44AA2206DC4
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:05:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13C93206D3C
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:04:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E6DE63048544
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 18:58:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5D87E30D6D31
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 18:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAB7D3E0C41;
-	Wed,  4 Mar 2026 18:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 242263DA5A2;
+	Wed,  4 Mar 2026 18:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AwB8CcU3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="es3DPGsL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D1B13DEAC0;
-	Wed,  4 Mar 2026 18:58:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BEC13D5242
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 18:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772650694; cv=none; b=YffvG2mpTQ2IQqN8DOTeUaOIo++pZNkrgHzSvi+wnToUwEAfdXbO9UjCiTgt4Xpdu6OnKjhbp/DIafN93+1WlG2BhxVOEFgr0CX8AvSfBYnejROt+ceNZzgsf2wHTD3u/cmyCnxeVrrdZrdzK+PTq6Y4ZDq4zDSednZPY90RXPU=
+	t=1772650685; cv=none; b=R13+L5B/y/MmMVCW55z+D2s2oYYBuUwU/k1G5yQY9LzOAhbRYfOr8nhU51TBcDgpZdLIJvow9q9Ki6Y1Za2BTxHKEPMqNChwT1kT196VlOSErsjnbWjGRRGLwIN6Mx9/H5uO3O8WGsZV4+qG+WAVX/eqXxGsay0l2dYa7tbibL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772650694; c=relaxed/simple;
-	bh=pu3OJFJuXTN1mbkxo4zJRrJEcUuyxNxIUZrmOglqj/c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BnsX/IQQxN0EOaeC9jA8xPmcsuqPecbskMQiR8h8s1M0YfvF+yb+ZMG6rfDUqkefiVBlcOhwvzm7IRnY+Gtm5HoYnOy6+nEAzAFAAjotcXWfGIbx+tNU/osZt4uk+vpMH56GFyBMy26vbQAhPsB2Qq/c5bHvR6LPQyPn4xbo5jU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AwB8CcU3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D7E9C4CEF7;
-	Wed,  4 Mar 2026 18:57:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772650694;
-	bh=pu3OJFJuXTN1mbkxo4zJRrJEcUuyxNxIUZrmOglqj/c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AwB8CcU3+sXaDNelrTNcdKED5BuooBcptyjoz9pyiIDJlix/dUrVlBRAtY2KBDSD7
-	 h6KrDy4b73ZJdvM4hktgVTAjTX6zRTc+gvSTQ/5RottG6nhL+D3O/QjhQk8OWJVt2/
-	 MvKM3oW0h8rAaH+Xy1nyrLgibke4pf8Ytw146llNQq7shcJlSKiDHrM6C9X7NfmYak
-	 j4f0yovpFJlvkk+d+Ppu2se2Y2B54cqTv7SCSCMtvTuyxvwIBBCn9Oi3G8xndWyLtN
-	 BQYRKVOwWfHkMT/8IdaQvAWQhI9w2L1pW92h2u/lnv7UgDWNOHQ2tQ439iGinuyOqk
-	 Kz5iPPq8G9rwQ==
-Date: Wed, 4 Mar 2026 12:57:43 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Ritesh Kumar <quic_riteshk@quicinc.com>
-Cc: robin.clark@oss.qualcomm.com, lumag@kernel.org, 
-	abhinav.kumar@linux.dev, sean@poorly.run, marijn.suijten@somainline.org, 
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
-	simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	quic_mahap@quicinc.com, konradybcio@kernel.org, mani@kernel.org, 
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com, vkoul@kernel.org, kishon@kernel.org, 
-	cros-qcom-dts-watchers@chromium.org, linux-phy@lists.infradead.org, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, quic_vproddut@quicinc.com
-Subject: Re: [PATCH v4 1/2] dt-bindings: phy: qcom-edp: Add reference clock
- for sa8775p eDP PHY
-Message-ID: <gurq34svc5p52bqx5qwkgjmschzcbklmssjzmu2tg5wzgppkft@c6nrw2ageyp2>
-References: <20260128114853.2543416-1-quic_riteshk@quicinc.com>
- <20260128114853.2543416-2-quic_riteshk@quicinc.com>
+	s=arc-20240116; t=1772650685; c=relaxed/simple;
+	bh=R2AUYnU8Wz8oU/h5rvR1qBJ/kWXkextxlhRXzMBmDPY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ryJo4BgJ/+HNmwFJhjqgWtDZn+RwOH1kcQRpOVrTemDv0E7Bv6N3lm71edKQhklrdWUYcztrw8gYKDYAbSgBTpVKY5rrybxIAOhRSPnBIWWXKFkCyJhYKGR0LUOaO1m/VCBYQzd0UlqQzSN8LFD8ftT5MnGJVMTKU3RFKURNkRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=es3DPGsL; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-38a2a59baa6so14149391fa.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 10:58:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772650683; x=1773255483; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3/VwVHY85Z4sAx1gqqncPobsH7DOkhMw1reihUc4ZtI=;
+        b=es3DPGsLJn26+Co2HAWCOqc4Gh2z5omQEHbjEFXZ0LWlgaoyj7VsrmenNpRO2hVVaJ
+         gl4U3I10/1Ol7mUuJaJi0v52Z72Cy2jno8kmqyRx+7hpBGYkQSCruI7q3mhjBxsPFu4Q
+         rHrBnBKmUw7Ctnvej6jWevizr3tfKFV2In6x5T/Kmex9f724I/bl4SK0MJY90eFv8GAQ
+         Sdm0iCmjhC014efPxAQ8hkDr4RTrvjg3ud0BbuTpZUWO4uhz0Muq96QnOyoxzQzB+2vW
+         fZ40xDQGoYD/OKDXCmxb8899Ywm/lXTAG7pxT4KIekaM4kYNFrns6RXfpUwd8ILkursD
+         ZlEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772650683; x=1773255483;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3/VwVHY85Z4sAx1gqqncPobsH7DOkhMw1reihUc4ZtI=;
+        b=ENbim6UoQqPEljzQ5Su8FUCy0E5eOj/Zx6HN9BmzZ3XLwNSZrCCqGSNQBBlzjHdGCN
+         ujloFZS/wQiIOPiQJ54/X1hpu9RsNgl3A7bvxPL61z4hQ9AYFKmAbQv3mvaQzboSzC2B
+         K2twUthV2PazTvHgBNPbA9rIIyDhOcKbwoDzM4IvqZ/RBlSwmSIgXVr+oh0HYgKFxI4l
+         lJngDXKY4QUi7TuHwoIJNivSFQDGVcZJvBgk3KoEMkjTlrq2n7tMjWWFR99RAVIxK392
+         Dw3v7wEJdy7fEephPBeauMsErWLAg55bAtoVuwF5/3FwEFbkRGBVAvZwgxm0T0TeZkYX
+         VP0w==
+X-Gm-Message-State: AOJu0YyVkSUSZ00SWEfJwRDVizoVD2wabFbCHuDvGElLw3eJWNVnnYyt
+	JZtamcvIjUuWBV/L9GMdPjOs461hRFlr9P4W2+erTEPWrjRoCBpJ+DoG
+X-Gm-Gg: ATEYQzzNBX368xvMAnnkiAjj5IsEn3tE0E14hZaho5Wt/zUQ+/NrA7Vqt6nMZbBKf5J
+	V26+ny2+B/gSUZbj3pvPVQc0HXlaTRQ48l8EydedRHsEfhVyWCnPgA/kXJje8YBIhAFoc9CpPH1
+	/IjQ9//6mH6nXrBLOWC2NwADLTrjnpu6CN3Rrq+uZhosw/gF5pyZT7GLmND86SuuFvzqgVSUy8E
+	bSaHsNZiZ+w1VFDhU2rWqRBlMK962r034DkkVazoUlpUoDhRGN7s4dOYR2MLTycbzkCw1YzFOWX
+	WZnRzdxVUCYb1OovfX8vZwFvdgQuymdv5pod+LN7IVIRNHwuUxyVFwRIObIvPRjr8x94s+QYHQc
+	BRM1Myu3J1QORVfggRcfdHM8+kIvxlaAM4qqPavziMcBr82ej18cZO0WdZyEDoWk3d86qa5slH6
+	bSv+qVRgvlmXLdRsDG5FNbi7g=
+X-Received: by 2002:a05:651c:1581:b0:385:dde5:1bf3 with SMTP id 38308e7fff4ca-38a2c564e64mr24339791fa.6.1772650682396;
+        Wed, 04 Mar 2026 10:58:02 -0800 (PST)
+Received: from xeon ([188.163.112.72])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a12a6ddd3bsm704985e87.0.2026.03.04.10.58.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2026 10:58:01 -0800 (PST)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Ion Agorria <ion@agorria.com>,
+	=?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	linux-pm@vger.kernel.org
+Subject: [PATCH v5 0/7] mfd: Add support for Asus Transformer embedded controller
+Date: Wed,  4 Mar 2026 20:57:44 +0200
+Message-ID: <20260304185751.83494-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260128114853.2543416-2-quic_riteshk@quicinc.com>
-X-Rspamd-Queue-Id: 44AA2206DC4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 13C93206D3C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271227-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-271221-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,poorly.run,somainline.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,quicinc.com,hansenpartnership.com,oracle.com,chromium.org,lists.infradead.org,vger.kernel.org,lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,quicinc.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Jan 28, 2026 at 05:18:49PM +0530, Ritesh Kumar wrote:
-> The initial sa8775p eDP PHY binding contribution missed adding support for
-> voting on the eDP reference clock. This went unnoticed because the UFS PHY
-> driver happened to enable the same clock.
-> 
-> After commit 77d2fa54a945 ("scsi: ufs: qcom : Refactor phy_power_on/off
-> calls"), the eDP reference clock is no longer kept enabled, which results
-> in the following PHY power-on failure:
-> 
-> phy phy-aec2a00.phy.10: phy poweron failed --> -110
-> 
-> To fix this, explicit voting for the eDP reference clock is required.
-> This patch adds the eDP reference clock for sa8775p eDP PHY and updates
-> the corresponding example node.
-> 
-> Signed-off-by: Ritesh Kumar <quic_riteshk@quicinc.com>
+Add support for embedded controller used in Asus Transformers for
+managing power and input functions.
 
-Is there any reason why you didn't follow up on this patch Ritesh?
-Looks like it's ready to be merged.
+---
+Changes in v2:
+- converted sysfs debug exports into debugfs
+- added kernel-doc comments for exposed functions
+- fixed minor typos and inconsistencies
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Changes in v3:
+- dropped DockRAM commits (both schema and driver)
+- integrated DockRAM functionality directly into the controller driver
+- EC schema moved to embedded controllers folder
+- removed all cell descriptions from the schema
+- removed all compatibles from the cell drivers
+- adjusted naming conventions to better align with the ASUS Transformers
+- defined EC variant sets to provide coverage for all known devices
 
-Regards,
-Bjorn
+Changes in v4:
+- grouped known programming models of EC chronologically (both schema
+  and driver)
+- call debugfs init only if CONFIG_DEBUG_FS is enabled
 
-> ---
->  .../devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml  | 6 ++++--
->  Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml     | 1 +
->  2 files changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> index e2730a2f25cf..6c827cf9692b 100644
-> --- a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-mdss.yaml
-> @@ -200,9 +200,11 @@ examples:
->                    <0x0aec2000 0x1c8>;
->  
->              clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
-> -                     <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>;
-> +                     <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-> +                     <&gcc GCC_EDP_REF_CLKREF_EN>;
->              clock-names = "aux",
-> -                          "cfg_ahb";
-> +                          "cfg_ahb",
-> +                          "ref";
->  
->              #clock-cells = <1>;
->              #phy-cells = <0>;
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> index 4a1daae3d8d4..0bf8bf4f66ac 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> @@ -74,6 +74,7 @@ allOf:
->          compatible:
->            enum:
->              - qcom,glymur-dp-phy
-> +            - qcom,sa8775p-edp-phy
->              - qcom,x1e80100-dp-phy
->      then:
->        properties:
-> -- 
-> 2.34.1
-> 
+Changes in v5:
+- added asus,tf600t-ec-dock compatible to schema
+- rebased on top of v7.0
+- kzalloc > kzalloc_obj in keys and kbc
+---
+
+Michał Mirosław (6):
+  mfd: Add driver for ASUS Transformer embedded controller
+  input: serio: Add driver for ASUS Transformer dock keyboard and
+    touchpad
+  input: keyboard: Add driver for ASUS Transformer dock multimedia keys
+  leds: Add driver for ASUS Transformer LEDs
+  power: supply: Add driver for ASUS Transformer battery
+  power: supply: Add charger driver for Asus Transformers
+
+Svyatoslav Ryhel (1):
+  dt-bindings: embedded-controller: document ASUS Transformer EC
+
+ .../asus,tf201-ec-pad.yaml                    | 119 +++
+ drivers/input/keyboard/Kconfig                |  10 +
+ drivers/input/keyboard/Makefile               |   1 +
+ .../input/keyboard/asus-transformer-ec-keys.c | 272 +++++++
+ drivers/input/serio/Kconfig                   |  15 +
+ drivers/input/serio/Makefile                  |   1 +
+ drivers/input/serio/asus-transformer-ec-kbc.c | 147 ++++
+ drivers/leds/Kconfig                          |  11 +
+ drivers/leds/Makefile                         |   1 +
+ drivers/leds/leds-asus-transformer-ec.c       |  79 ++
+ drivers/mfd/Kconfig                           |  14 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/asus-transformer-ec.c             | 762 ++++++++++++++++++
+ drivers/power/supply/Kconfig                  |  22 +
+ drivers/power/supply/Makefile                 |   2 +
+ .../supply/asus-transformer-ec-battery.c      | 272 +++++++
+ .../supply/asus-transformer-ec-charger.c      | 193 +++++
+ include/linux/mfd/asus-transformer-ec.h       | 162 ++++
+ 18 files changed, 2084 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/embedded-controller/asus,tf201-ec-pad.yaml
+ create mode 100644 drivers/input/keyboard/asus-transformer-ec-keys.c
+ create mode 100644 drivers/input/serio/asus-transformer-ec-kbc.c
+ create mode 100644 drivers/leds/leds-asus-transformer-ec.c
+ create mode 100644 drivers/mfd/asus-transformer-ec.c
+ create mode 100644 drivers/power/supply/asus-transformer-ec-battery.c
+ create mode 100644 drivers/power/supply/asus-transformer-ec-charger.c
+ create mode 100644 include/linux/mfd/asus-transformer-ec.h
+
+-- 
+2.51.0
+
 
