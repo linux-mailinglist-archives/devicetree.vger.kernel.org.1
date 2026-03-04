@@ -1,180 +1,200 @@
-Return-Path: <devicetree+bounces-271060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271061-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2D5IFBc5qGkTqgAAu9opvQ
-	(envelope-from <devicetree+bounces-271060-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:52:23 +0100
+	id qGrLEik6qGkTqgAAu9opvQ
+	(envelope-from <devicetree+bounces-271061-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:56:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D07C0200BE0
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:52:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE178200D21
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:56:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7816C303EC04
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 13:48:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id CFCD23040204
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 13:55:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F66318BA6;
-	Wed,  4 Mar 2026 13:48:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DDE73B52E5;
+	Wed,  4 Mar 2026 13:54:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dB0FOAvQ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=pta2002.com header.i=@pta2002.com header.b="MlhLMxlR";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mrs1.rp.oracleemaildelivery.com header.i=@mrs1.rp.oracleemaildelivery.com header.b="ncdpzK/4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from abi149ajj126.mrs1.oracleemaildelivery.com (abi149ajj126.mrs1.oracleemaildelivery.com [129.149.100.126])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC7392FFFB8
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 13:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739A93B4E8F
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 13:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.149.100.126
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772632131; cv=none; b=mj3Yexmf1NjFwcGV/zSUHIC9/wzTV0oEK32ByUijlzGdOalWI80CNW7X/NMlTRfaztqTS421dERTPKMnIP8aSpal8vD1+myMmLEHp533k7HBX1u1HikWXMS48SxHj+N77WMA/CYK/HXKE0lJv/5hwUkqt5WFRNpBFqKVA0Bn160=
+	t=1772632492; cv=none; b=Wm2aMa9BflsywPbtYzAQcik33MxOEu/T4I289+PMK/SJXopBUF4Fua2WpvzcZcTj35TcGMWF6zYqkbSSUUa83ha/r6l9zs0WftGgTIQNxNww6mgXFKu4nVljls/RrFed2FpIuovbHylXDjgKoDbQ6Bc0X2LhdMoqZCshLqNB8EU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772632131; c=relaxed/simple;
-	bh=6OEGsU2MLt4JMocYh++a3wWmyrukETDkXbHMmWSVQ+Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KMXhnVC+eWpLBoXRcjIVM2wtL5+kaCiMlq4bIiJcV+Qdxf/NGB53A1Q7n05xg2ZloFWHvbmR991m37QL0CYosbGxocGscnkfK934OZWGnqsWCSHO7a3YrURlFbEWO/3Njk4egpA/y/aZq9rn5+dMBjXbdpsbv7wQinjIQBwWfyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dB0FOAvQ; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-439b73f4ab4so3594029f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 05:48:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772632128; x=1773236928; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h7FCkxbz0uuB2WpYGMfhNmyuLtfIktURdr7cmvLKcyY=;
-        b=dB0FOAvQ0/9xrX1x4w4t927xlRjAkfOCoUdlE4SudgSPpU5AQRjTuCONNpBKH4y8Ye
-         wQIzbHpfcMPOzH5iyRQGcWFuadkpqHpTvQxGw6Z8Wj+R3aS3r5dFYcvZi7bFk8h0zaSy
-         TyVmhYKXOIOHNw/lis5gkGV2CZ4xQw5iwUExNSiPttt+cyXnO+P4yi2V0ka87GYXauEW
-         +ls1ybOTLyHv/AbNncuFLG/sgm00wCyoGCUsxdENV/U2m7TwUbT5SfsyFoolG3Cr9TJl
-         /QL6l0nl6CJYIaWvi/XHG/v9iWku/iUhQpxPZhP2kbDHdelSEbtxwNSpfhcoyZZ7VyQp
-         migA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772632128; x=1773236928;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=h7FCkxbz0uuB2WpYGMfhNmyuLtfIktURdr7cmvLKcyY=;
-        b=sCCWPYHb7GeBgnvPd8Vmb1HQLQgqUm5uYLuzzJAeawx/hN2y5AgZwjnDlSa+EF+AnI
-         9GbIDUA2k3uuxmgoXjIvSC8Mx6aWM12XDzxPgTx3XfiYQqCvjS4JKxADEiYrPncgMOjK
-         AvfUfRDRt/3lzWy1Uf+D30ohdBm9f9DpWzD/pFJ3SiguXToo7WWKQ3jQioBZHyZGipGG
-         E9HdZAb6GVjlRqpagL15NwH7lWeIoso/QHnO1CpiclwZ7sMEz8CYkOWPxbgGsgb2f21n
-         y8Od5UljYqYEN2emdbQc+baOa5DnshZje3W+BR3QvvPILwcc+yuQR1s9odEkdAQfxUER
-         g0IQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXoCzfUsc5HIFfcdkuXdd0b92pPaAzxUKQ2Ayd0FHCz1qNBumABUcShcMI4iwAYoiuVJjKcaG4CrUts@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOnyeIRAS3N5UXQj/LdNZTolFR7h0gAvM5VD/tnVW9Ebup4sZY
-	dU6Ka3YVRLANQqwgND4GGpKSzs/n6PIUKCneDW7/ZQUkItcye692Qp8o
-X-Gm-Gg: ATEYQzwQex4FytdUm6dB5FMzPox8t6/v2uazcGuyMD7UxJn+H1BPbbf8Lg8n3gReYQv
-	E+5wsLxi4AoBCw4WxobYvCnmeflI+CUQi+I2tdLuY5Isy0ByEB+GSSK+MXDEKpBfT4kpYRcFJ94
-	d6Ud+T/D7+sWEUnd8Iu9bpBYgG9OngOV6OoGqcVwpEGGP/X640+KEhkNfow6s312uraR+L63YVZ
-	3+gdVmqPxF+pUlkYflSCWnq+Rs+4+cjeVHO4NDk02QppUauDIFRIZ8FmffqTNgCJtZpa/srchss
-	tFsMYp4AGdcrcly3bKKni38HUcTudb4lsXZZ6tA0ZVNwFlfz6p62Mb6B/I6nycs7HkYjRG+AD9H
-	To079TEHCAwnScKLOo7nCDCYQL1HtzBuYXYCMsogYL3seI23/vhfM/nebgwIY1G6b+iQJwzOlBP
-	2mUOzO9tAVaxl4TAEH36tUMc5Fq+QVAN+pN31keCRP4A==
-X-Received: by 2002:a05:6000:430e:b0:439:be82:1fd9 with SMTP id ffacd0b85a97d-439c7f99994mr3850514f8f.12.1772632128092;
-        Wed, 04 Mar 2026 05:48:48 -0800 (PST)
-Received: from biju.lan ([2a00:23c4:a758:8a01:de3f:f927:40ff:12a6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439c65e0b23sm7105229f8f.32.2026.03.04.05.48.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 05:48:47 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 1/4] dt-bindings: gpu: mali-bifrost: Add compatible for RZ/G3L SoC
-Date: Wed,  4 Mar 2026 13:48:36 +0000
-Message-ID: <20260304134845.267030-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260304134845.267030-1-biju.das.jz@bp.renesas.com>
-References: <20260304134845.267030-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1772632492; c=relaxed/simple;
+	bh=a20VMlDpaLH9AXgrhdHoV4Pssvg7BkUbHXan6awwzQ8=;
+	h=From:Date:Subject:MIME-version:Content-type:Message-id:To:Cc; b=Z5Opd+dVOTzOh1J/33NLj5ZtDcErSEe4FP4gsV9CEb+wFtI8xX/lW1yEnuFqw46LHwdU858/5slwoyX9b4WRlLaZbYdEeUoL1Dg9LBtH3y1VVPPCGdC75CV8URR+ZfttQ4TLDyFbcAWBa6fToSFmvPwjfxm6Q5U9oTX3tXFJS5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pta2002.com; spf=pass smtp.mailfrom=mrs1.rp.oracleemaildelivery.com; dkim=pass (2048-bit key) header.d=pta2002.com header.i=@pta2002.com header.b=MlhLMxlR; dkim=pass (2048-bit key) header.d=mrs1.rp.oracleemaildelivery.com header.i=@mrs1.rp.oracleemaildelivery.com header.b=ncdpzK/4; arc=none smtp.client-ip=129.149.100.126
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pta2002.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mrs1.rp.oracleemaildelivery.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=pta2002-202603;
+ d=pta2002.com;
+ h=Date:To:From:Subject:Message-Id:MIME-Version:Sender:List-Unsubscribe:List-Unsubscribe-Post;
+ bh=f8nmjH0o71gVTcBoCc9bpsGh59DT0B52MUM4FwYNG4o=;
+ b=MlhLMxlRXoh/nBQEK7SkhlUcifFt8nsCYYWr9Qr+9mWh/gOIX0mgr3D15j2rvie8ZLD4lH0Q5CSt
+   jiEQ2riLGzvka24M4SSY2ngxVI3i8IpeV5JmeFOZjNt7ixpt7GgeG+sANjN8IderLa8uLFXU74EC
+   A+JjwUIUJAwRpvDVa+1AhfEn+HXaT8ZF0TAJWfaAx+aeuLp6GgrOAY6q0wmkbzKbmCYbu6hHoTet
+   PoJls3JEXi5SPoiSJ8CbBjMaPMGNSF/5io/DP9dqsxQd8lTmHaeod95/CMCGJWt3mLj+4TIZ5IXa
+   dEJw+QYhtQfH6JawYd28vPh8mlg9iA5uv9wmew==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=prod-mrs-20211019;
+ d=mrs1.rp.oracleemaildelivery.com;
+ h=Date:To:From:Subject:Message-Id:MIME-Version:Sender:List-Unsubscribe:List-Unsubscribe-Post;
+ bh=f8nmjH0o71gVTcBoCc9bpsGh59DT0B52MUM4FwYNG4o=;
+ b=ncdpzK/4LS97XKB1skyxaHGRmjnOXja4tHeTgHiF84UY4iUyXoT1KCLY8eqd0g3rr2OaFfSiZlYa
+   n7fmJv3fL/x3Zv8OuE/Jp0M5CxpbkYfeiXiWF4H8koQvkvIsfLXSEjfDjlKa7WinNyZ1XM0sUKEl
+   LRFL5XozqmisKWVlnbaohUiGfWsDn63gATIWOvg3b15hGCD+o3VawZIpRzgQgVBLNGLxMy2bLXRy
+   j4y3QDMFU19KwAuJYEUep/NCoTKWi7W5nyD0hHDa2RZz0S45oQD5eFVRXef9Br3bSQ1n4YRsz+7Z
+   uSKCeWmPs0JIwHV8RrOSekjiWzPqtCDi/M1Jdw==
+Received: by omta-ad1-fd2-401-eu-marseille-1.omtaad1.vcndpmrs.oraclevcn.com
+ (Oracle Communications Messaging Server 8.1.0.1.20260212 64bit (built Feb 12
+ 2026))
+ with ESMTPS id <0TBD00DONNZACF40@omta-ad1-fd2-401-eu-marseille-1.omtaad1.vcndpmrs.oraclevcn.com>
+ for devicetree@vger.kernel.org; Wed, 04 Mar 2026 13:54:46 +0000 (GMT)
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+From: Pedro Alves <pta2002@pta2002.com>
+Date: Wed, 04 Mar 2026 13:54:45 +0000
+Subject: [PATCH] arm64: dts: rockchip: configure hdmirx in Rock 5 ITX
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: D07C0200BE0
+MIME-version: 1.0
+Content-type: text/plain; charset="utf-8"
+Content-transfer-encoding: 7bit
+Message-id: <20260304-radxa-r5-itx-hdmirx-v1-1-f77bf1f7ce03@pta2002.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Pedro Alves <pta2002@pta2002.com>
+X-Mailer: b4 0.14.3
+X-B4-Tracking: v=1; b=H4sIAKQ5qGkC/x3MSQqAMAxA0atI1gaqHRCvIi6KTW0WDqQiBfHuF
+ pdv8f8DmYQpw9g8IHRz5mOv6NoGluT3lZBDNfSqd0orjeJD8SgW+SqYwsZSMBpnLDkTh0VDLU+
+ hyOW/TvP7fnnBuFVlAAAA
+X-Change-ID: 20260303-radxa-r5-itx-hdmirx-f4645e64f8c3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772632485; l=2284;
+ i=pta2002@pta2002.com; s=20260304; h=from:subject:message-id;
+ bh=a20VMlDpaLH9AXgrhdHoV4Pssvg7BkUbHXan6awwzQ8=;
+ b=T4+sgz4tWkB8i0u16hTDGjXuLsMdrYYl15JeSAdNb40ze7ydGmZe+dJlrjHy11G8r2aDvoAc4
+ FfEVkl+3sLQB8E2pj3XSkQVo40wODZC7G/oYYxB7dVSAMTzUJNzTgrJ
+X-Developer-Key: i=pta2002@pta2002.com; a=ed25519;
+ pk=leagPTMCtYIB9nQJfoZ5+TYiuZUercAQHfGnFVTTaiQ=
+Reporting-Meta:
+ AAFw+0CP0PnaoJ46S1wWgOjfMw4kceiZ7uqB5ClL97jTJ2qLoufiwQIhvJ3NQU+T
+ V33OC6+yp86+syDj7IVQ2dZaJCEsMkOjKhmct6PIaNhLuH7hSl2615KouHtA/GBQ
+ NUkRLtG5RJX6ehM8hvFkluXBvY2lVYxEUWDNSosnvReve6Y9w7o/RpWmfi2PBX1U
+ GR50+YGwGKpaMUGWDgkfAXfrWBgjfu1Di/Ac9MrzVXPnmK3JmHSE/WYpBK225iLa
+ tbESxgstSujrXxbPDM/8S1HJokf1b3zWQss4ZYDTJy3A+FgSNykrmGpUp5rMjZ3U
+ rfHXTnKmFqt7wClBEIHKAaN6R9lw7z+EEHCPcI/9atGqGr2a0hKY+EuUb15H9kgz
+ EFvU3YM6Ei3bNgzbnApCNIhdTm52y5+fw4ziiXikmJMGbY7VywozSVVfuWqCRBs=
+X-Rspamd-Queue-Id: EE178200D21
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[pta2002.com:s=pta2002-202603,mrs1.rp.oracleemaildelivery.com:s=prod-mrs-20211019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[pta2002.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271060-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271061-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,lists.freedesktop.org,vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,glider.be];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[pta2002.com:-,mrs1.rp.oracleemaildelivery.com:-];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bp.renesas.com:mid,renesas.com:email]
+	FROM_NEQ_ENVFROM(0.00)[pta2002@pta2002.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.407];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,pta2002.com:mid,pta2002.com:email]
 X-Rspamd-Action: no action
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+The Radxa Rock 5 ITX board exposes an HDMI input exactly the same way as
+the Rock 5B, but this was not reflected in its DTS.
 
-Add a compatible string for the Renesas RZ/G3L SoC variants that include a
-Mali-G31 GPU. These variants share the same restrictions on interrupts,
-clocks, and power domains as the RZ/G2L SoC, so extend the existing schema
-validation accordingly.
+Change the rk3588-rock-5-itx to configure and enable the hdmi_receiver
+and hdmi_receiver_cma nodes.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+One of the existing pinctrl labels, hdmirx_det, was renamed into
+hdmirx_hpd to match the other boards. The _det name seems to have come
+from the downstream kernel sources, where the other boards also have
+that name. Changing it to hdmirx_hpd in order to be consistent with the
+other rk3588 boards in the kernel.
+
+The configurations were confirmed to be identical on the downstream
+Radxa kernel, and this has been tested to work on a Rock 5 ITX board
+running kernel 6.19.3.
+
+Signed-off-by: Pedro Alves <pta2002@pta2002.com>
 ---
- Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Tested with the following commands:
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-index db49b8ff8c74..9db9f84ad964 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
-@@ -26,6 +26,7 @@ properties:
-               - realtek,rtd1619-mali
-               - renesas,r9a07g044-mali
-               - renesas,r9a07g054-mali
-+              - renesas,r9a08g046-mali
-               - renesas,r9a09g047-mali
-               - renesas,r9a09g056-mali
-               - renesas,r9a09g057-mali
-@@ -150,6 +151,7 @@ allOf:
-             enum:
-               - renesas,r9a07g044-mali
-               - renesas,r9a07g054-mali
-+              - renesas,r9a08g046-mali
-               - renesas,r9a09g047-mali
-               - renesas,r9a09g056-mali
-               - renesas,r9a09g057-mali
+v4l2-ctl --verbose -d /dev/video4 \
+  --set-fmt-video=width=3840,height=2160,pixelformat='BGR3' \
+  --stream-mmap=4 --stream-skip=3 --stream-count=20 \
+  --stream-to=hdmiin.raw --stream-poll
+
+ffmpeg -f rawvideo -vcodec rawvideo -s 3840x2160 -r 30 -pix_fmt bgr24 \
+  -i hdmiin.raw output.mp4
+---
+ arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+index 172aeabba72a..9f4f31d1ca94 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
+@@ -349,6 +349,18 @@ &hdmi1_sound {
+ 	status = "okay";
+ };
+ 
++&hdmi_receiver_cma {
++	status = "okay";
++};
++
++&hdmi_receiver {
++	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_hpd>;
++	pinctrl-names = "default";
++
++	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
++	status = "okay";
++};
++
+ &hdptxphy1 {
+ 	status = "okay";
+ };
+@@ -746,7 +758,7 @@ vbus5v0_typec_en: vbus5v0-typec-en {
+ 	};
+ 
+ 	hdmirx {
+-		hdmirx_det: hdmirx-det {
++		hdmirx_hpd: hdmirx-5v-detection {
+ 			rockchip,pins = <1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+
+---
+base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
+change-id: 20260303-radxa-r5-itx-hdmirx-f4645e64f8c3
+
+Best regards,
 -- 
-2.43.0
+Pedro Alves <pta2002@pta2002.com>
 
 
