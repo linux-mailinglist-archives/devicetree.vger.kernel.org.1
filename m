@@ -1,178 +1,264 @@
-Return-Path: <devicetree+bounces-271087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271089-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aM3NFfhIqGnysQAAu9opvQ
-	(envelope-from <devicetree+bounces-271087-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:00:08 +0100
+	id ABmqHrJIqGnysQAAu9opvQ
+	(envelope-from <devicetree+bounces-271089-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:58:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 025362021DC
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:00:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E67E4202167
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:58:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 499123196DCD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:52:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D49D430E025E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42E513A257F;
-	Wed,  4 Mar 2026 14:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65F383B3C00;
+	Wed,  4 Mar 2026 14:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RX68Q39j"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="ElhIYL4G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3CD3A6EF1
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 14:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772635949; cv=none; b=SabMxVuckXKdkQaPsvTU/OQ4epVUIU4OZcX3Q+T4TDyhCdPozHI3qXn4V04XqMFnQBvOAo5V7+9iZmK0pOG/0sGDMbHSGpPKaZqf2Vz+9iZQ5ThNtBr1EZKN76Sjfs7npAGeOrGUUcTU+90HgO/nq/a2JWi6UTzBVZ7vE1v54NU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772635949; c=relaxed/simple;
-	bh=z6uT7O+CT8FhEGZthzxAia7oQbmDcyMrk6r/+n+jDIA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LijphYt6Sr/tgwPDeE/bg6PjfqNBgnQEEuQTXPB/pf9USyrEgRZsvfInwvwE7bZJzKgEKs0rjp+7GJUA73hpfD5Cx50w6UQw7KEGFBEYggsA3HnuU3RSE/G9CPmrQ/vd8Ta+ZoSa6NfPiZYyh9KBRCQmkB621on+rsL8MWT4DDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RX68Q39j; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-439b83ed536so264404f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 06:52:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772635945; x=1773240745; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yhKHc0NTgAalEfYn0byG9UfswGgGUZojG8TrMIMwxKI=;
-        b=RX68Q39jCrmG0QNGZVhS7jsmSC+3mzGFheii5mRCL81QOfkQjjhO/y006Ehp+fJSX4
-         88yebQK55s3+gE2bOOPdr/qR+Vw1lKRpiXeTdsnnshX/QU8xI61MNFVBCN5phlLql4tS
-         K+tSnp/e7nM6f//y7/Ngz6H+4+tMsVJoPYb2cXMSv8F//RE1isIyVDdVSrzxxQ9/lorh
-         z0IX2xP/xuTIzGqD7RhkB1kLmIiEgXMjp218ydW/6lvOelZumJ9foGbz3wOhOrwgwHan
-         i45/k9DVFGmAeBrlNAnD+r/8uI7AxpYGKqcevBXQfB99oio/wDjlQDh9rHK2bicUK9Ee
-         ipcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772635945; x=1773240745;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yhKHc0NTgAalEfYn0byG9UfswGgGUZojG8TrMIMwxKI=;
-        b=Xu9hvqS+sWM5kUtYlGO+suAqnGzYbVkk+41HzK/bB4FSOMvPpWfAt4pizxoRmptNfM
-         2OccQPw8W3Dw4PfTgvqzzQziYi9mk2SP365iaSNphFUgAeq8OSk1/XhY50xYh+LOEbAP
-         cRmQkDvINkiIN5aE1Y1X0LvVFrQQlOgVn1O+RTyYNO2IwM4yr07YBJ3oR0r6h9JaH3y+
-         fvoBTV9ts7hj7EjyE3+tWNnlfmLQHW9ILPcs9etrRhFeO+/36kJJswnTi+e6mOHSRF/p
-         WOToy7/R2NvYqYHg7IGugn1CcfCzm0AcACmRv9GGQXR9mQn55I6WQS3WQdTheL4nJOQh
-         ns6A==
-X-Forwarded-Encrypted: i=1; AJvYcCUsEWqY3HSa7pArlHYDptzRqkpSUa9mlu+f7jNgp9PkOhuQpF+xi3f7ulvw43O24uIqB7xjlolwQ2Dg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQkK2ItdEnWFSZFBZ6XvBYblQqNI3axZo4PcCRklWeX3na3vSG
-	BThjJZh2Ms4bbzdmX6lipirFPpRbtTEBmSDssl04d0i3PzZGWYf1DgqE
-X-Gm-Gg: ATEYQzwWU6NgohE4ngipypEeS00q+7s8H4jzZsAWrsWBs4QGXZ8ZGgsEJYv4Aq2swe9
-	yiNPhdrrTlAu4zljomdpNcFpS7dIZXIkQomLvIsT1w2AbBg+ukar+chYzWriZgSE4g3q8QDc3aM
-	eWwbaZ9lExYgh9oR9yrVtmU6NGhYfFG/lKlbJEdWsB7xM0AKiVXw5Li+7q0qbAToJXwYcjCL6Am
-	IL7gotJadnFIrA+ENn+PPmtArIdCfyBEZ7O6wCiPQtQlQzDgilJPb+LbDHiRGs2kWP6zjzorUPA
-	qohLq4KfKX8ewfpRa/GAcIdCZSqPxgd166HIodZi3vA/CaQI23ldrKZWQWujiKQZ1OatuVHHzp3
-	XOW2U7nrydnRPE0lASrei8npaxgdL7V60OENuNMFnLrlz5Ux+KRM7/n/KZ1tu7BCbsix/wbfk+g
-	zKPtc2nZBHS3n9YOs=
-X-Received: by 2002:a05:6000:288f:b0:439:b7c9:2efc with SMTP id ffacd0b85a97d-439c7fe0339mr2393701f8f.3.1772635945098;
-        Wed, 04 Mar 2026 06:52:25 -0800 (PST)
-Received: from skbuf ([2a02:2f04:d00e:3600:3896:e6f1:29a3:961b])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b4d06c27sm23295313f8f.17.2026.03.04.06.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 06:52:23 -0800 (PST)
-Date: Wed, 4 Mar 2026 16:52:21 +0200
-From: Vladimir Oltean <olteanv@gmail.com>
-To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-Cc: UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 6/8] net: dsa: lan9645x: add vlan support
-Message-ID: <20260304145221.ae3bxf5dh2v4itsx@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-6-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-6-bff8ca1396f5@microchip.com>
- <20260303145955.s4kjiwjv6ahn6zph@skbuf>
- <e30d9e84ac37142c26af35b6e589fdd23157aa35.camel@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B2B73B4E8B;
+	Wed,  4 Mar 2026 14:54:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772636052; cv=pass; b=BYBZxHA1mWahYywh9TJFq+muqZnZel7OfTxe6KFoTg7fz/sFzS04YDBS3SRhkO+oiqTkDjGJccC+kI9BkqOetLDuAWrONQ05wcs7u3LNjaPq2JB/zcLEr1LVEneIq+PL0VnNrCHjGYnkVnMkJr5hJdfPQypDOswlUdePPPu/7e8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772636052; c=relaxed/simple;
+	bh=U5J/8w6eAjmWVGPXbgCPV0fln3PLXGN7G03BxrLStXQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=h6mAEJmk0ZDfl+/r7sLgrae21NHi4UpQJSWVv8sJqG8cWhtQUEN6gJ/fUpvWWoiGBTWVBnE8LZ/QA5Q6PFu24gg8VDVJ+Y/cpSUlDzsFHmCMkImQ8Wbhpubc6MeJhyQblhi40bT/IcYLVrQrtE365hW7K+842DKpjkcjAxAL1LM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=ElhIYL4G; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1772636010; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=BGRFMqf3f+qwOZjqTu980MQjWfRmm+6+SNbTomaSi9mbXYfuqitaRFUTyBwBgfEwBSNmpK4ZS4q4NN+f8bL/o3TSa1QK8LBlqALkkxG2Dh8wrlSPw8Q9E9UYgSA1MDZrQPPALTjFEIdBdL3AsMCt+M6BVmD3QysD1Yw/x7BdnZ0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1772636010; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=wc8JL0McLIvsZxPgoF+2RNHPVCsDGScBrPMPMhuKD4U=; 
+	b=D8BodfoRR9V3a116ajF3zxN07AORqO0G0Xaz/Sxjqfq3ZPrwXeMqC0/CiefR1Faozwhhu8ybsD8X7BZbZV8wxGX67pH0fF9xlKTT30Wd9j0rYOqV21PIoIYkiZYpO4c4zSSOuvvoceg1snynt/XgfQf/GbCfh6MXzeJDVC5E8rg=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772636010;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=wc8JL0McLIvsZxPgoF+2RNHPVCsDGScBrPMPMhuKD4U=;
+	b=ElhIYL4GywhiPtHr7O3w1YXxwX07rHWWHEVj1XaWc3PeGNrUJNX04l+TaMa4FxDw
+	NPGWVfdoJkenbmaXiO196xsWMUzS6IykbNicNyOenvkkQ07QHG8GRhGoNSxFEMfO2dd
+	zuIc9mwnX3zKsQXnTsHsKmJe7hIAoGc+lzmclnZk=
+Received: by mx.zohomail.com with SMTPS id 1772636008163878.5025387870418;
+	Wed, 4 Mar 2026 06:53:28 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v8 00/23] MediaTek UFS Cleanup and MT8196 Enablement
+Date: Wed, 04 Mar 2026 15:53:05 +0100
+Message-Id: <20260304-mt8196-ufs-v8-0-5b0eac23314f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e30d9e84ac37142c26af35b6e589fdd23157aa35.camel@microchip.com>
-X-Rspamd-Queue-Id: 025362021DC
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/23Qy2rDMBAF0F8xWldl9Lay6n+ULvQYN4I4bm3Hp
+ AT/e6cOJXbw8grOHXFvbMC+4MAO1Y31OJWhdGcK9UvF0jGcP5GXTJlJkEaA0Lwda+EtvzQDT5h
+ 09ME7NIoR+OqxKdel7P3jnnv8vlDneH9kMQzIU9e2ZTxUZ7yOnHotKFDsDxzLMHb9z/KZSSxi7
+ +4kOHDhTU4YaxVT/Za60ynErg+vVL5UTXLN7YZL4kk5VSudNLqwx9WKS7Xhijg0oKMOzpum2eP
+ 6waWoN1wTzxmTC8r6nOUeN//cgoAtN8S1l8II42h/scftisvtdJY4ugRgogWQu9O5B5dP0zni0
+ TTSg0s2B/fM53n+BVa/AdpTAgAA
+X-Change-ID: 20251014-mt8196-ufs-cec4b9a97e53
+To: Alim Akhtar <alim.akhtar@samsung.com>, 
+ Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>, 
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>, 
+ "Martin K. Petersen" <martin.petersen@oracle.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+ Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
+ kernel@collabora.com, linux-scsi@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-phy@lists.infradead.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Rspamd-Queue-Id: E67E4202167
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271087-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271089-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[samsung.com,wdc.com,acm.org,kernel.org,gmail.com,collabora.com,mediatek.com,HansenPartnership.com,oracle.com,pengutronix.de,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[31];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olteanv@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bridge_vlan_aware.sh:url,microchip.com:email,bridge_vlan_change_awareness.sh:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bridge_vlan_unaware.sh:url,bridge_vlan_mcast.sh:url]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,collabora.com:mid]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 03:40:30PM +0100, Jens Emil Schulz Ostergaard wrote:
-> On Tue, 2026-03-03 at 16:59 +0200, Vladimir Oltean wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On Tue, Mar 03, 2026 at 01:22:32PM +0100, Jens Emil Schulz Østergaard wrote:
-> > > Add support for vlanaware bridge. We reserve vid 4095 for standalone
-> > > mode, to implement fdb-isolation. An vlan-unaware bridge uses vid 0.
-> > > 
-> > > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> > > Signed-off-by: Jens Emil Schulz Østergaard <jensemil.schulzostergaard@microchip.com>
-> > > ---
-> > 
-> > Have you run these from tools/testing/selftests/net/forwarding/? It
-> > would help to know where to look closer for potential problems.
-> > 
-> > bridge_vlan_aware.sh
-> > bridge_vlan_change_awareness.sh
-> > bridge_vlan_mcast.sh
-> > bridge_vlan_unaware.sh
-> 
-> No I have not run the selftests, only our own test setup. I will get these
-> up and running.
-> 
-> Thanks,
-> Emil
+In this series, the existing MediaTek UFS binding is expanded and
+completed to correctly describe not just the existing compatibles, but
+also to introduce a new compatible in the from of the MT8196 SoC.
 
-OK.
+The resets, which until now were completely absent from both the UFS
+host controller binding and the UFS PHY binding, are introduced to both.
+This also means the driver's undocumented and, in mainline, unused reset
+logic is reworked. In particular, the PHY reset is no longer a reset of
+the host controller node, but of the PHY node.
 
-There are multiple ways to do that. What I tend to do is transfer the
-entire selftests folder, then cd selftests/drivers/net/dsa/ and run the
-selftests symlinked there with ./ from the current folder. Doing this
-inherits the forwarding.config which makes DSA run well with those tests.
+This means the host controller can reset the PHY through the common PHY
+framework.
+
+The resets remain optional.
+
+Additionally, a massive number of driver cleanups are introduced. These
+were prompted by me inspecting the driver more closely as I was
+adjusting it to correspond to the binding.
+
+The driver still implements vendor properties that are undocumented in
+the binding. I did not touch most of those, as I neither want to
+convince the bindings maintainers that they are needed without knowing
+precisely what they're for, nor do I want to argue with the driver
+authors when removing them.
+
+Due to the "Marie Kondo with a chainsaw" nature of the driver cleanup
+patches, I humbly request that reviewers do not comment on displeasing
+code they see in the context portion of a patch before they've read the
+whole patch series, as that displeasing code may in fact be reworked in
+a subsequent patch of this series. Please keep comments focused on the
+changed lines of the diff; I know there's more that can be done, but it
+doesn't necessarily need to be part of this series.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v8:
+- Split "Rework probe function" into two, turn the reset removal into
+  its own patch and squash the PHY changes into the common PHY framework
+  patch.
+- Leave "device reset done" logging print at INFO level
+- Remove redundant falsy check for reg_vcore in "Don't acquire
+  dvfsrc-vcore twice".
+- Change ufs_mtk_wait_idle_state to early-exit on all non-HIB states,
+  and poll for VS_HCE_BASE instead.
+- Link to v7: https://lore.kernel.org/r/20260216-mt8196-ufs-v7-0-b5f2907c6da7@collabora.com
+
+Changes in v7:
+- Rebase onto next-20260205, which drops "scsi: ufs: mediatek: Switch to
+  newer PM ops helpers" as Arnd sent an equivalent patch that also fixes
+  the PM-less build failure.
+- Link to v6: https://lore.kernel.org/r/20260124-mt8196-ufs-v6-0-e7c005b60028@collabora.com
+
+Changes in v6:
+- Reword "Rework probe function" commit to better justify the changes
+  being made.
+- Drop "Add vendor prefix to clk-scale-up-vcore-min"
+- Add patch to remove clk-scale-up-vcore-min entirely, describing the
+  process for bringing it back (in a different form) in the commit
+  message.
+- Link to v5: https://lore.kernel.org/r/20260108-mt8196-ufs-v5-0-49215157ec41@collabora.com
+
+Changes in v5:
+- Drop "scsi: ufs: mediatek: Make scale_us in setup_clk_gating const" as
+  someone else already got a patch in for this into next.
+- Make mtk_init_boost_crypt void
+- Don't disable/enable misc regulators during suspend/resume, but enable
+  them once when acquiring with a devm helper.
+- Link to v4: https://lore.kernel.org/r/20251218-mt8196-ufs-v4-0-ddec7a369dd2@collabora.com
+
+Changes in v4:
+- bindings: Redo the supply situation, as the avdd pins don't describe
+  the vcc(q2) card supplies.
+- bindings: format clock in mt8196 example more tersely.
+- phy: use devm_reset_control_get_optional_exclusive directly
+- driver: get and enable/disable the aforementioned avdd supplies.
+- Link to v3: https://lore.kernel.org/r/20251023-mt8196-ufs-v3-0-0f04b4a795ff@collabora.com
+
+Changes in v3:
+- Split mediatek,ufs bindings change into two patches, one for
+  completing the existing binding, one for the MT8196
+- Add over a dozen driver cleanup patches
+- Add explicit support for the MT8196 compatible to the driver
+- Note: next-20251023, on which I based this, currently has a broken
+  build due to an unrelated OPP core change that was merged with no
+  build testing. I can't use next-20251022 either, as that lacks the
+  recent mediatek UFS changes. It is what it is.
+- Link to v2: https://lore.kernel.org/r/20251016-mt8196-ufs-v2-0-c373834c4e7a@collabora.com
+
+Changes in v2:
+- Reorder define in mtk_sip_svc.h
+- Use bulk reset APIs in UFS host driver
+- Link to v1: https://lore.kernel.org/r/20251014-mt8196-ufs-v1-0-195dceb83bc8@collabora.com
+
+---
+Nicolas Frattaroli (23):
+      dt-bindings: phy: Add mediatek,mt8196-ufsphy variant
+      dt-bindings: ufs: mediatek,ufs: Complete the binding
+      dt-bindings: ufs: mediatek,ufs: Add mt8196 variant
+      scsi: ufs: mediatek: Move MTK_SIP_UFS_CONTROL to mtk_sip_svc.h
+      phy: mediatek: ufs: Add support for resets
+      scsi: ufs: mediatek: Rework resets
+      scsi: ufs: mediatek: Rework 0.9V regulator
+      scsi: ufs: mediatek: Rework init function
+      scsi: ufs: mediatek: Rework the crypt-boost stuff
+      scsi: ufs: mediatek: Handle misc host voltage regulators
+      scsi: ufs: mediatek: Remove undocumented downstream reset cruft
+      scsi: ufs: mediatek: Remove vendor kernel quirks cruft
+      scsi: ufs: mediatek: Use the common PHY framework
+      scsi: ufs: mediatek: Remove mediatek,ufs-broken-rtc property
+      scsi: ufs: mediatek: Rework _ufs_mtk_clk_scale error paths
+      scsi: ufs: mediatek: Clean up logging prints
+      scsi: ufs: mediatek: Rework ufs_mtk_wait_idle_state
+      scsi: ufs: mediatek: Don't acquire dvfsrc-vcore twice
+      scsi: ufs: mediatek: Rework hardware version reading
+      scsi: ufs: mediatek: Back up idle timer in per-instance struct
+      scsi: ufs: mediatek: Remove ret local from link_startup_notify
+      scsi: ufs: mediatek: Remove undocumented "clk-scale-up-vcore-min"
+      scsi: ufs: mediatek: Add MT8196 compatible, update copyright
+
+ .../devicetree/bindings/phy/mediatek,ufs-phy.yaml  |  16 +
+ .../devicetree/bindings/ufs/mediatek,ufs.yaml      | 173 +++-
+ drivers/phy/mediatek/phy-mtk-ufs.c                 |  71 ++
+ drivers/ufs/host/ufs-mediatek-sip.h                |   9 -
+ drivers/ufs/host/ufs-mediatek.c                    | 958 +++++++++------------
+ drivers/ufs/host/ufs-mediatek.h                    |  17 +-
+ include/linux/soc/mediatek/mtk_sip_svc.h           |   3 +
+ 7 files changed, 650 insertions(+), 597 deletions(-)
+---
+base-commit: 11e703f54ac21f4dc609ea12ab578ffa47c87e11
+change-id: 20251014-mt8196-ufs-cec4b9a97e53
+
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
 
