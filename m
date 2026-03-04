@@ -1,160 +1,345 @@
-Return-Path: <devicetree+bounces-271132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271133-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QOS9HV5SqGnUtAAAu9opvQ
-	(envelope-from <devicetree+bounces-271132-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:40:14 +0100
+	id kF0LL7dRqGnUtAAAu9opvQ
+	(envelope-from <devicetree+bounces-271133-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:37:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5E6202F67
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:40:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DD2C202E8C
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:37:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 4D25031778D1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:27:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E8BF2309E282
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:29:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878FF346E66;
-	Wed,  4 Mar 2026 15:26:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA08341057;
+	Wed,  4 Mar 2026 15:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nSRBIKPr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Q1inYt1P";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="amwtKKpc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44471346A14;
-	Wed,  4 Mar 2026 15:26:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7EE233B96C
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 15:29:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772637982; cv=none; b=nFVZWcb0j4WKlQI4z1P4GQtSKgKBtpSDblsqQMDged7KP71itkqetOVM+jX1CN+WjQKBJoGrPI5AYdElvdp+Cmc/JiSErZycawaa4VjTKPjvtkuBG6x9ef4uS4Nvi+IHnZWx/C+/FOCz5f0IQTBtlJk4kjTzNVex3u/sUmgXvds=
+	t=1772638177; cv=none; b=IQqj+Wg9+E/ZK1PB7wkaF/odceTNT7OkuiLG5IrD+c1K2VTgDFca7vcui1/D5ARrNbOu4MRq1uPVvlmekZc2JWtFsBJqzrmLx0EBwQOc/7GiFvXH295NiWCUsnINzA0AoyemiYYLmc4um5Ky2ZDbokEl5xZjjrLWuqkeuMofVDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772637982; c=relaxed/simple;
-	bh=oeXM94kV6KHPAXahFiulkvM6OwqAeFx4teAXmvi9pCo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cfSYLv7yAuEKOpuj0IPDEpXoXFCV8mX3oAX3hzRxZsQ9pZOm9p8tekcwKKKgr0POUApdXw2MhbMYIjzKDggOSLOzDZHaKN/+ckWiSmOJtYWfZNE/1U3LfZkXD93vF/gLj02WTx7VSgO59Cm4OzBFx7Qsb5YA4CFEUd2UGy24pPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nSRBIKPr; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id D77794E42543;
-	Wed,  4 Mar 2026 15:26:18 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id AC2FF5FF5C;
-	Wed,  4 Mar 2026 15:26:18 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CE875103697AE;
-	Wed,  4 Mar 2026 16:26:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772637977; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=CQCPdFYuBjBjLSKu+vdlGdK6ZBcUmbZ+RsQ4S72GLlQ=;
-	b=nSRBIKPr38NFab2uSfgMDC9MoRS9I59s+LdEf3oQGQKkDn0HN8XO01iZWimLJW7Nlsje09
-	2UM6j7/J7yQ6xSUtS1y5frzCMAMcFsLnygVsuyJLnqmAWaz5/CprwtvrIUgpfDSVboQF+f
-	r48gcaZ3VuJjTUPfq1TeivhuBzd43hGXDT8ZapR8ULsmAK252QL+Tqlgl553bBYEWTtSvN
-	f4A26uDlW2MezHJbcfVbVVKt8iHTrOieVEn2+RcNwISMT+mOX3MgXtObsLND0E2ZvQkdtY
-	8pz9Nd6eu3Km3jfsJVuK0+1uPCgkYtnyPN9FPrM7fqHna6vvIhKQnkhJ45I4aA==
-From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Date: Wed, 04 Mar 2026 16:25:24 +0100
-Subject: [PATCH v4 10/10] MAINTAINERS: Add entry for Mobileye RISC-V SoCs
+	s=arc-20240116; t=1772638177; c=relaxed/simple;
+	bh=J2pHDqkcI5jgiqu24QsunAV3h4H2fOr3FdQWGJTAODc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VhIlrt4i8itY5ER4uEozseE7WTQArYbMb/R8xASdklF5Kp6TTM9KPOIvG2b/jfIKamPc+q3ezsmJV2iFCvmRZoMAF7DQt8Z4WZLiXGrO9HlHxclO/4LwjZDQXJHjBZ1nPqL6JF1hK0gHkEpZYsrpwrkRqzxuxjTtqjjvZqnCp6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q1inYt1P; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=amwtKKpc; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 624BuvJP2306436
+	for <devicetree@vger.kernel.org>; Wed, 4 Mar 2026 15:29:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	S7C3ZGxT6MAy3b00eY/LGUqY8Jlj5bg+7oTeA1mEoGE=; b=Q1inYt1P8vbSvquh
+	RbvN1tXFxrQ7WBO3jZeuKtTjeAdNz4ed30cG+G58sHStPLRsDwStQPGQs1dKktMm
+	oJLDvRMSjLmHEww6yy+apcHIz4RMoGWyCBlp5LE+GYdW6c3jGs6VkyZPZyypEeSw
+	WngbUHpGtG1e2KHcRMRUs18ACkBa+1iML/MCIgto3Bgoa9RSbmmaDGcQst1S+ZFB
+	45FSzvD9ZpzFF6UskSy+MK3gXph4vfIwm/md0q+Vz/2kO7KSp3NJ5AMGDsn/Jj0W
+	1UKHCydobH6Js0BBYNHw5s10R0Zo6ro7QjZYup1+K2sB6cNbJUxZBK9qhpjPdBv2
+	4ThEWQ==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cpau8tnbw-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 15:29:34 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-c738662b963so221471a12.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 07:29:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772638173; x=1773242973; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S7C3ZGxT6MAy3b00eY/LGUqY8Jlj5bg+7oTeA1mEoGE=;
+        b=amwtKKpcg5Am7DUBKeR4t3fJGJ6o0F0l0XLfTB3gHCI+3qMMBlWOfajgTO8eVo2H9k
+         ZwvZDZRfytrDvNajiyiQj7627LNMSEpcUAAxUYRuXFWej87vD+j/ZnETw4/Yqj1d8xq2
+         27eLK7tACgduTaZhBQtqvJlPfPNGVG27Pmcvt9Tp3ypqk0bmXwbjqcy41ruKF1KqsuQU
+         61k7ZXFkHiPkc9lmj7DmieVCfyORtykzUAha5OvnFOeDN/NAcwRtz12d8TEVhRcCAm0Q
+         9Z1XZHkvcGQhNK4VXLacQigtMiS1jYJf8KfOzE5MdBrwyClmiCyFAwFjMTNscDSjcbIG
+         896w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772638173; x=1773242973;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S7C3ZGxT6MAy3b00eY/LGUqY8Jlj5bg+7oTeA1mEoGE=;
+        b=T7NOyXwt3Z8VxJnvHGgNsqYllS6TcUEWabElP6bQzL6nQe+LGOhqXfCne8IPm4Qx3a
+         IWF3+f82qvqupqyXGZpoOiRD+DaIomA7m/xCyJrIcU8uJ8DGTrEzRfa1IJBnymd4orOl
+         c/qHPCd1GwBFpdwjsl6FmaKJWDDIQUdi/2WKyv3u3ziR7O4KZnZU/RIzdiq18gF792Ef
+         cPWX6uC4q2ozMOA6i9tdThg+/NT3YbvN72isng961ATzyWbHXOf5VM3z2NyMvmOl9L/7
+         xiq1op0xRgaT70FjoWZbWTmrC3b27Q3wfiJNAfYI4mH2F6uaM800PsalflcWtBgVX9/r
+         oURg==
+X-Forwarded-Encrypted: i=1; AJvYcCWcwyTiv2nCD3MawjTBuYtewMX1VWmsFcJxZYjdGlMu2+Pa0t4PGweZhNuXO31uz7vQTotbKSoJ23c2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4wSPgqzVDsXui9BhMLEWLuJWjlLMoujBy/Su7ecL+ZKzA2jO2
+	tbs4E4R55oniOZbCB+Ia8vV26knW6LhzNSZH/9N/PQw8JvpJM75QIGKfvOhGR5iCKiaciKQZmz4
+	gd+l/A3Py72rxQKPmAE9aQmm2hkMci8RCB3uhW9nifc2qjKVapJjUTSqp4tlbAWK2
+X-Gm-Gg: ATEYQzy9Wpf5HGrqeHsXkm0+iRCn5Kd3pEP7zv4O2AMjdTigdrt/0dPX+UB25uRAbyj
+	OpWInHr25MvmTzw0ts/eAAp7ErsVvdkxTO6wrDdEh6SCfIYMGKAnenyEe33x7f/0BKPnCWo82eL
+	ykIZwX50Lbb9yq7N8d3o0GqbJFVKcK2l8VwMk3cdmgRRu70DdhhC+TZs+W/pHWlcEvw5JiAZeeC
+	IrNcjhKXwEvJ+FfHprBDLfW2IJwpqbxtqPdhdcNJaLSwECSOiUSCdwC69BKEnL3sCoe0qgpaAqj
+	eq0RXAo8UQkIqKd7wqG9RfqY5OZtPzBWOv91EaA3HYj6i/ThhasAx+WTug1ol69covSovQLWIHE
+	rUVUbeZLTxIhFgzXhK9uptqXVfwfUe2eusSuygRRBxaT6EWUir1iaZQ==
+X-Received: by 2002:a05:6a21:1f89:b0:38b:d9b0:e943 with SMTP id adf61e73a8af0-3982e1fe150mr2227276637.38.1772638173492;
+        Wed, 04 Mar 2026 07:29:33 -0800 (PST)
+X-Received: by 2002:a05:6a21:1f89:b0:38b:d9b0:e943 with SMTP id adf61e73a8af0-3982e1fe150mr2227236637.38.1772638172953;
+        Wed, 04 Mar 2026 07:29:32 -0800 (PST)
+Received: from [10.204.101.56] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c70fa61a19bsm17288234a12.9.2026.03.04.07.29.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Mar 2026 07:29:32 -0800 (PST)
+Message-ID: <22b3e2e9-b855-487e-868f-e72fcbbb22cd@oss.qualcomm.com>
+Date: Wed, 4 Mar 2026 20:59:24 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260304-clk-eyeq7-v4-10-9d6bd9d24bec@bootlin.com>
-References: <20260304-clk-eyeq7-v4-0-9d6bd9d24bec@bootlin.com>
-In-Reply-To: <20260304-clk-eyeq7-v4-0-9d6bd9d24bec@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-riscv@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-mips@vger.kernel.org, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-X-Mailer: b4 0.14.3
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: DF5E6202F67
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/7] media: iris: add helper to select context bank
+ device
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Hans Verkuil <hverkuil+cisco@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260227-kaanapali-iris-v2-0-850043ac3933@oss.qualcomm.com>
+ <20260227-kaanapali-iris-v2-5-850043ac3933@oss.qualcomm.com>
+ <bi3i37ho3ppzlgdx264ohxpcem3nwumjelzckf4x5uzdj5rt7a@2y2jrilmfimj>
+ <1dc86b00-9a18-482c-94b1-96692c1dd530@oss.qualcomm.com>
+ <jgygscmwovezkytizhh54cmmu5etgv23bgopfqrql3qj7zlhxh@adxo2b7izlrc>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <jgygscmwovezkytizhh54cmmu5etgv23bgopfqrql3qj7zlhxh@adxo2b7izlrc>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=AJS1/0o2 c=1 sm=1 tr=0 ts=69a84fde cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22
+ a=EUspDBNiAAAA:8 a=aBrO_zpjTiySyTrMC9oA:9 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-ORIG-GUID: 7zPJbT8ku9ZBYvEpXx5s0O9BwC0G7hAO
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA0MDEyNiBTYWx0ZWRfX/Mkb2xr862FA
+ VRQfncCscHyT50q3mVmw1Xh0P801r4XK32iLeIDAV+31IlRiKPUh2wdAnLR13CtxneGYFF4lfoy
+ r9U7Ev109EZirR9yPP24TAk1GTKDJ1Y68RI9ryuxseoyxqZWm1uazvX/8VkQ6ld2z4XhwouYviu
+ e5CVrCAHLftv5yZg284a3hpPFmJsdSMY6NW6usiobV1riGzknpH634Xioac6S2p97YmLh9Bsp4l
+ Nw+oK2w9pm/2LBWDYa99tkgTPyUjZOgbGLogYR2iggBxF0OCqhd0RYFjL0xMBAjdx5xhP7sOLpO
+ Y29i5HcUDUPhk2XkTKX6tL+xWFISrqniEJi9KWWuuft+nwvu/cMnNkVbqrE6NDHZS6VYGPT90cX
+ ofzko2jx6FsNsUrTQpsCFVpZ9E1gphh/j6XxkMfCfzgbeSH4zT4Aob7v5+2zQdWCoY/4Z0nO6Zh
+ 8bLLew0kNNShH0cAWUw==
+X-Proofpoint-GUID: 7zPJbT8ku9ZBYvEpXx5s0O9BwC0G7hAO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-04_06,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 suspectscore=0 spamscore=0
+ phishscore=0 adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603040126
+X-Rspamd-Queue-Id: 5DD2C202E8C
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271132-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[benoit.monin@bootlin.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271133-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,mobileye.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,infradead.org:email,suse.com:email]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Add Vladimir, Gregory, Théo and myself as co-maintainers for the
-Mobileye RISC-V SoCs, and clarify the dt-bindings entries between
-MIPS and RISC-V SoCs.
 
-Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
----
- MAINTAINERS | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+On 3/4/2026 3:57 AM, Dmitry Baryshkov wrote:
+> On Wed, Mar 04, 2026 at 12:46:27AM +0530, Vikash Garodia wrote:
+>>
+>>
+>> On 2/28/2026 1:57 AM, Dmitry Baryshkov wrote:
+>>> On Fri, Feb 27, 2026 at 07:41:21PM +0530, Vikash Garodia wrote:
+>>>> Depending on the buffer type (input, output, internal and interface
+>>>> queues), associated context bank is selected, if available. Fallback to
+>>>> parent device for backward compatibility.
+>>>>
+>>>> Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+>>>> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+>>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+>>>> ---
+>>>>    drivers/media/platform/qcom/iris/iris_buffer.c    |  7 +--
+>>>>    drivers/media/platform/qcom/iris/iris_buffer.h    |  2 +
+>>>>    drivers/media/platform/qcom/iris/iris_hfi_queue.c | 16 +++---
+>>>>    drivers/media/platform/qcom/iris/iris_resources.c | 60 +++++++++++++++++++++++
+>>>>    drivers/media/platform/qcom/iris/iris_resources.h |  2 +
+>>>>    drivers/media/platform/qcom/iris/iris_vidc.c      |  4 +-
+>>>>    6 files changed, 79 insertions(+), 12 deletions(-)
+>>>>
+>>>> @@ -177,3 +178,62 @@ int iris_create_child_device_and_map(struct iris_core *core, struct iris_context
+>>>>    	return 0;
+>>>>    }
+>>>> +
+>>>> +static enum iris_buffer_region iris_get_region(struct iris_inst *inst,
+>>>> +					       enum iris_buffer_type buffer_type)
+>>>> +{
+>>>> +	switch (buffer_type) {
+>>>> +	case BUF_INPUT:
+>>>> +		if (inst && inst->domain == ENCODER)
+>>>
+>>> Can inst be NULL here?
+>>
+>> during queues init/deinit, instances are not created.
+> 
+> Is this function being called during queues init?
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 63048d5ede7d..8ccc99b44850 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17808,7 +17808,8 @@ M:	Théo Lebrun <theo.lebrun@bootlin.com>
- L:	linux-mips@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/mips/mobileye.yaml
--F:	Documentation/devicetree/bindings/soc/mobileye/
-+F:	Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml
-+F:	Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq6lplus-olb.yaml
- F:	arch/mips/boot/dts/mobileye/
- F:	arch/mips/configs/eyeq*_defconfig
- F:	arch/mips/mobileye/board-epm5.its.S
-@@ -17818,6 +17819,16 @@ F:	drivers/reset/reset-eyeq.c
- F:	include/dt-bindings/clock/mobileye,eyeq5-clk.h
- F:	include/dt-bindings/clock/mobileye,eyeq6lplus-clk.h
- 
-+MOBILEYE RISC-V SOCS
-+M:	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
-+M:	Benoît Monin <benoit.monin@bootlin.com>
-+M:	Gregory CLEMENT <gregory.clement@bootlin.com>
-+M:	Théo Lebrun <theo.lebrun@bootlin.com>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq7h-olb.yaml
-+F:	include/dt-bindings/clock/mobileye,eyeq7h-clk.h
-+
- MODULE SUPPORT
- M:	Luis Chamberlain <mcgrof@kernel.org>
- M:	Petr Pavlu <petr.pavlu@suse.com>
+yes, via iris_get_cb_dev()
 
--- 
-2.53.0
+> 
+>>
+>>>
+>>>> +			return IRIS_PIXEL_REGION;
+>>>> +		else if (inst && inst->domain == DECODER)
+>>>> +			return IRIS_BITSTREAM_REGION;
+>>>
+>>> Are there any other possibilities than encoder and decoder?
+>>
+>> will simplify it as
+>>
+>> if (inst) {
+>>      if (inst->domain == ENCODER)
+>>          return IRIS_PIXEL_REGION;
+>>      else
+>>          return IRIS_BITSTREAM_REGION;
+>> }
+>>>
+>>>> +		break;
+>>>> +	case BUF_OUTPUT:
+>>>> +		if (inst && inst->domain == ENCODER)
+>>>> +			return IRIS_BITSTREAM_REGION;
+>>>> +		else if (inst && inst->domain == DECODER)
+>>>> +			return IRIS_PIXEL_REGION;
+>>>> +		break;
+>>>> +	case BUF_BIN:
+>>>> +		return IRIS_BITSTREAM_REGION;
+>>>> +	case BUF_DPB:
+>>>> +	case BUF_PARTIAL:
+>>>> +	case BUF_SCRATCH_2:
+>>>> +	case BUF_VPSS:
+>>>> +		return IRIS_PIXEL_REGION;
+>>>> +	case BUF_ARP:
+>>>> +	case BUF_COMV:
+>>>> +	case BUF_HFI_QUEUE:
+>>>> +	case BUF_LINE:
+>>>> +	case BUF_NON_COMV:
+>>>> +	case BUF_PERSIST:
+>>>> +		return IRIS_NON_PIXEL_REGION;
+>>>> +	default:
+>>>> +		return 0;
+>>>
+>>> dev_err(dev, "unsupported buffer type %x\n", buffer_type)
+>>> return -EINVAL;
+>>
+>> these are bit fields, returning -EINVAL would still match some bits and can
+>> make the logic as true. 0 can be defined as IRIS_UNKNOWN_REGION
+> 
+> Yes, sounds good.
+> 
+>>
+>>>
+>>>> +	}
+>>>> +
+>>>> +	return 0;
+>>>
+>>> Drop
+>>>
+>>
+>> Ack
+>>
+>>>> +}
+>>>> +
+>>>> +struct device *iris_get_cb_dev(struct iris_core *core, struct iris_inst *inst,
+>>>> +			       enum iris_buffer_type buffer_type)
+>>>> +{
+>>>> +	enum iris_buffer_region region;
+>>>> +	struct device *dev = NULL;
+>>>> +	int i;
+>>>> +
+>>>> +	region = iris_get_region(inst, buffer_type);
+>>>> +
+>>>> +	for (i = 0; i < core->iris_platform_data->cb_data_size; i++) {
+>>>> +		if (core->iris_platform_data->cb_data[i].region & region) {
+>>>> +			dev = core->iris_platform_data->cb_data[i].dev;
+>>>> +			break;
+>>>> +		}
+>>>
+>>> You really seem to overcomplicate things. Replace array search with the
+>>> indexed array access. Much easier and much better.
+>>>
+>>> enum iris_buffer_region {
+>>> 	IRIS_PIXEL_REGION,
+>>> 	IRIS_BITSTREAM_REGION,
+>>> 	IRIS_NON_PIXEL_REGION,
+>>> 	// add more when necessary
+>>> 	IRIS_NUM_REGIONS,
+>>> };
+>>>
+>>> struct iris_core {
+>>> 	struct iris_cb_device cb_devices[IRIS_NUM_REGIONS];
+>>> };
+>>>
+>>> region = iris_get_region(inst, buffer_type);
+>>> dev = core->cb_devices[region];
+>>
+>> all the regions may/may not be present in all SOC
+> 
+> You can check for dev != NULL afterwards.
+
+with one CB to multiple region mapping, this logic would not work.
+
+Regards,
+Vikash
+
+> 
+> 
 
 
