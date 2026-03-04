@@ -1,774 +1,243 @@
-Return-Path: <devicetree+bounces-271121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271122-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wHBkFa5SqGkTtQAAu9opvQ
-	(envelope-from <devicetree+bounces-271121-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:41:34 +0100
+	id +MlNDk9QqGmztAAAu9opvQ
+	(envelope-from <devicetree+bounces-271122-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:31:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF815202FE7
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:41:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E82202BA1
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:31:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 30973308F0A3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:24:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A94213124CCB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F236933A6E0;
-	Wed,  4 Mar 2026 15:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47B3033C53F;
+	Wed,  4 Mar 2026 15:26:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="B++dUHFp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TOKnlZwD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E38C731E106;
-	Wed,  4 Mar 2026 15:24:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 078F8339863;
+	Wed,  4 Mar 2026 15:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772637844; cv=none; b=rTh+chI3wP7TGhikp7yam1qbDiPRh6cevTjOawSdA5iF5XTwcxIY+ZKYcGKA2AzU6JqSyygr0aaGQuGZvbp0mGonveC+x8FFqzkWnTHQ63WybDGCvLjDbQJsjJbwJ7FRK67GsDBdjnhVbZxIZbXNtev2Rxp+WR0JLsnlxKsmEbc=
+	t=1772637963; cv=none; b=g2Zj5Ango4gimM+mUnVLTbt2zm+UczV3opViDuP73aBQvOJW27KZxGhyegbAtCRoSyrI3ZAvBfvpux7k2oblsIlMWGWNhDTZ2/ZZ43ch3fEk10oZAOJmx7rz7EAWG1lZwvxJRNLRM98vqlu6fZmXRQVJTJET3E0Rd9rIDf1pWrU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772637844; c=relaxed/simple;
-	bh=Hw4fGNIjdfhodMoIpG7Z7KS180pIXRVgFvIDKZ363S0=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EOAfsB7cW7tmEnqwhZXmhKhUdin26hfWPgOo4wkel3fLhgco+ydhEXYAAxNFMEawP5RHGBVKHjPHVdxGio2TDMWytR16CbrX9f0cwObCOmvmuItrzkz3vN7r/Is2UPywnHZq3yoLdHVCE5UTSdj6HuUksPkvbUWlG3bvkszJvdY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=B++dUHFp; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772637843; x=1804173843;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=Hw4fGNIjdfhodMoIpG7Z7KS180pIXRVgFvIDKZ363S0=;
-  b=B++dUHFpqNDqZuN/A4dhLW25cyqfucR434WWGcanyk+3YMV1p7EmZ7J8
-   MbjbSwjqlSpN3xPVg9BcLE+9HoHRTBAL9yaKu2uSXF/EA8QhmjITA6t0s
-   ZN6u/bAzKKqLP8z2r/r6Ic8qBwFS57hBZ+5muePL04tJbbUnynx2O1e82
-   lk/JLP8gy9tDqzitDAMOWXOsIyWPKLDvNkyMAqTH784miUIo2ieKKx11p
-   KvXg45PQVSTt2B4Y+tyhw67jVUl0Mbgh+dN8bWsJToDx/U7xqNAfdjBy5
-   M6aZJ0uz5GxD9ljFST3mm09HjXvsMU82XjkOKdg/wwdC4yGsm4oTiXirj
-   g==;
-X-CSE-ConnectionGUID: t9hixU6yQkmR9P9EAoZgiw==
-X-CSE-MsgGUID: X1AgBhfqSsufSel+8TYbEw==
-X-IronPort-AV: E=Sophos;i="6.21,324,1763449200"; 
-   d="scan'208";a="285597312"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Mar 2026 08:24:02 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Wed, 4 Mar 2026 08:23:55 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 4 Mar 2026 08:23:52 -0700
-Message-ID: <67a34d22b8f59964fd3bfaee99c8418a21526f3e.camel@microchip.com>
-Subject: Re: [PATCH net-next 7/8] net: dsa: lan9645x: add mac table
- integration
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-CC: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman
-	<horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung Huh
-	<woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
- Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
-	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Wed, 4 Mar 2026 16:23:51 +0100
-In-Reply-To: <20260303152709.nospd2qq3dju2tev@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
-	 <20260303152709.nospd2qq3dju2tev@skbuf>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1772637963; c=relaxed/simple;
+	bh=2zTJepp9PeAUecvd2FD/sQLoC97yP4rS/9I24SeT0Y4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n1F/y/jDZOTP7roDqf9GgsmwZKe54uWTQdF1lymhdJeOPGKNYD8P5KBGm6e2PCLbyG3PfkPSd5gppPEI2MZ+lN5krmed1xvxMrbijZX9leWXjSNKQ0z6Xltpc44laknbJOUL4isrE4k2u5Ap5AJdfaZVZyn+gPvcAM1Jaxdbvbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TOKnlZwD; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 789801A2C8D;
+	Wed,  4 Mar 2026 15:25:58 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 411C75FF5C;
+	Wed,  4 Mar 2026 15:25:58 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1AC3A103697AE;
+	Wed,  4 Mar 2026 16:25:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772637957; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=stR+fiQn44jXAiWKBJzbsxfh8q0GGnEp7PRkh3gMa3I=;
+	b=TOKnlZwD7v8PFZeNSuQC0M3oyEv2h5CRUZYCZV1ZPAYMootLlr79pikYpmZmTaW3+H6iL5
+	gNdCDzS7liY6Xt7o1VI0Y0K6U5ZesH8lqM+WhFOyQLxS6XtJzr9+xhaIArayuHNcYUULFP
+	mdyi8LlAGZZUCnGB6DHwUD0pGUcrielhMPiyISYLktBrH2NEgkbyHMW8Nxe+pJs1Bxhd2I
+	VOeHF3rbjy0H9xiIX3qCfxAa0BilBSwU8K8JId9JpFaDMRndTJiSie2B1BpBLMAYbOFoDd
+	IuiL4uBLW4Yj/GiBG5bi78vjwVA+sYbIaXmX0rm22dx87DDRgPoFKmA9g9ZAnA==
+From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
+Subject: [PATCH v4 00/10] Add clock and reset support for Mobileye EyeQ7H
+Date: Wed, 04 Mar 2026 16:25:14 +0100
+Message-Id: <20260304-clk-eyeq7-v4-0-9d6bd9d24bec@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: AF815202FE7
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIANtOqGkC/2WQ2WrDMBBFf8XouQoabV4Ipf9R+mBJ40bUWyxH1
+ IT8e2WbFoc+XmnO4c7cScDJYyBVdicTRh/80KcgXzJiL3X/idS7lAlnXLGC5dS2XxQXvOa0Ka3
+ GWgoHoiBpfpyw8d+b6/0j5YsP8zAtmzrC+rpbSiYOlgiUUdEoxqVRTiN/M8Mwt74/2aEjqyfyP
+ xY4l0eWJ7aAXEoH6deV/1nxy2oG8MSKlUXjTJ0bBkI8s499oQmvt3STed+KdBhCvd2kys6blHN
+ Fu9oaOl4WGvPk1FoZV2gonYKj85Ucb1pl2z7Ai62Pbsf2FmipwWrBGlZKVqXuiTB1QJrwzs9VF
+ vMTo5OF1O/xA8qeP7e7AQAA
+X-Change-ID: 20250807-clk-eyeq7-f9c6ea43d138
+To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-mips@vger.kernel.org, 
+ =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ Sari Khoury <sari.khoury@mobileye.com>
+X-Mailer: b4 0.14.3
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 89E82202BA1
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271121-lists,devicetree=lfdr.de];
-	URIBL_MULTI_FAIL(0.00)[microchip.com:server fail,tor.lore.kernel.org:server fail];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-271122-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[benoit.monin@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:email,microchip.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:url,bootlin.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, 2026-03-03 at 17:27 +0200, Vladimir Oltean wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> On Tue, Mar 03, 2026 at 01:22:33PM +0100, Jens Emil Schulz =C3=98stergaar=
-d wrote:
-> > Add MAC table support, and dsa fdb callback integration. The mactable i=
-s
-> > keyed on (vid,mac) and each bucket has 4 slots. A mac table entry
-> > typically points to a PGID index, the first 9 of which represent a fron=
-t
-> > port.
-> >=20
-> > Mac table entries for L2 multicast will use a PGID containing a group
-> > port mask. For IP multicast entries in the mac table a trick us used,
-> > where the group port mask is packed into the MAC data, exploiting the
-> > fact that the top bits are fixed, and that the number of switch ports i=
-s
-> > small enough to fit in the redundant bits.
-> >=20
-> > Therefore, we can avoid using sparse PGID resources for IP multicast
-> > entries in the mac table.
-> >=20
-> > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> > Signed-off-by: Jens Emil Schulz =C3=98stergaard <jensemil.schulzosterga=
-ard@microchip.com>
-> > ---
-> >  drivers/net/dsa/microchip/lan9645x/Makefile        |   1 +
-> >  drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c  | 413 +++++++++++++=
-++++++++
-> >  drivers/net/dsa/microchip/lan9645x/lan9645x_main.c | 110 +++++-
-> >  drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  48 +++
-> >  4 files changed, 571 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/Makefile b/drivers/net/=
-dsa/microchip/lan9645x/Makefile
-> > index bb5eec14d225..a90a46f81c72 100644
-> > --- a/drivers/net/dsa/microchip/lan9645x/Makefile
-> > +++ b/drivers/net/dsa/microchip/lan9645x/Makefile
-> > @@ -6,3 +6,4 @@ mchp-lan9645x-objs :=3D lan9645x_main.o \
-> >       lan9645x_port.o \
-> >       lan9645x_phylink.o \
-> >       lan9645x_vlan.o \
-> > +     lan9645x_mac.o \
->=20
-> Is there some particular ordering here? Because it's surely not
-> alphabetical.
->=20
+This patchset brings the support of the Other Logic Blocks (OLB)
+found in the first Mobileye SoC based on the RISC-V architecture, the
+EyeQ7H. Despite the change from MIPS to RISC-V, the Other Logic Blocks
+provide similar clock and reset functions to the controllers of the
+chip. This series introduces the device tree bindings of the SoC and
+the necessary changes to the clock and reset eyeq drivers.
 
-I just add new files at the end, I thought that made the most sense. Should=
- they be
-sorted by name?
+Since this series affects drivers used on Mobileye MIPS SoCs, mainly
+clk-eyeq, I tested that it does not introduce regressions on EyeQ5,
+EyeQ6H, and EyeQ6Lplus evaluation boards.
+    
+In detail, the first patch adds the dt-bindings yaml and headers for
+the EyeQ7H OLB.
 
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c b/driver=
-s/net/dsa/microchip/lan9645x/lan9645x_mac.c
-> > new file mode 100644
-> > index 000000000000..3226cff16e8c
-> > --- /dev/null
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_mac.c
-> > @@ -0,0 +1,413 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/* Copyright (C) 2026 Microchip Technology Inc.
-> > + */
-> > +
-> > +#include "lan9645x_main.h"
-> > +
-> > +#define LAN9645X_MAC_COLUMNS 4
->=20
-> Doesn't appear used.
+Patch 2 adds the compatible entries to the reset-eyeq driver, and the
+necessary changes for the reset domains found in the EyeQ7H OLB.
 
-I will remove it.
+Patches 3 and 4 rework the handling of parent clocks in
+__clk_hw_register_fixed_factor() to make it identical to other clock types
+like divider or gate. This allows simplifying the registration functions
+built on top of the now exported __clk_hw_register_fixed_factor(). A
+new clk_hw_register_fixed_factor_pdata() is added that will be used in
+clk-eyeq later in the series.
 
->=20
-> > +
-> > +#define CMD_IDLE             0
-> > +#define CMD_LEARN            1
-> > +#define CMD_FORGET           2
-> > +#define CMD_AGE                      3
-> > +#define CMD_GET_NEXT         4
-> > +#define CMD_INIT             5
-> > +#define CMD_READ             6
-> > +#define CMD_WRITE            7
-> > +#define CMD_SYNC_GET_NEXT    8
-> > +
-> > +#define LAN9645X_INVALID_ROW (-1)
-> > +
-> > +static bool lan9645x_mact_entry_equal(struct lan9645x_mact_entry *entr=
-y,
-> > +                                   const unsigned char *mac, u16 vid)
-> > +{
-> > +     /* The hardware table is keyed on (vid,mac) */
-> > +     return entry->common.key.vid =3D=3D vid &&
-> > +             ether_addr_equal(mac, entry->common.key.mac);
->=20
-> Can you please align the "entry" with "ether_addr_equal".
-> I think there's more coding style inconsistencies of the same type in
-> the submission that I went over and omitted to comment on.
->=20
+Patch 5 renames the defines and functions related to the PLL with the
+PLL type fracg, to make room for the other types of PLL found the in
+EyeQ7H OLB.
 
-I will go over the patches and fix this where applicable.
+Patch 6 introduces a new generic type of clock structure that can
+represents all clocks found in OLB. Then patch 7 and 8 converts all
+clocks defined in the driver to the new struct eqc_clock and remove all
+the previous separate clocks structures.
 
-> > +}
-> > +
-> > +static struct lan9645x_mact_entry *
-> > +lan9645x_mact_entry_find(struct lan9645x *lan9645x, const unsigned cha=
-r *mac,
-> > +                      u16 vid)
-> > +{
-> > +     struct lan9645x_mact_entry *entry;
-> > +
-> > +     lockdep_assert_held(&lan9645x->mac_entry_lock);
-> > +
-> > +     list_for_each_entry(entry, &lan9645x->mac_entries, list)
-> > +             if (lan9645x_mact_entry_equal(entry, mac, vid))
-> > +                     return entry;
-> > +
-> > +     return NULL;
-> > +}
-> > +
-> > +static struct lan9645x_mact_entry *
-> > +lan9645x_mact_entry_alloc(struct lan9645x *lan9645x, const unsigned ch=
-ar *mac,
-> > +                       u16 vid, u8 pgid, enum macaccess_entry_type typ=
-e)
-> > +{
-> > +     struct lan9645x_mact_entry *entry;
-> > +
-> > +     entry =3D kzalloc_obj(*entry);
-> > +     if (!entry)
-> > +             return NULL;
-> > +
-> > +     INIT_LIST_HEAD(&entry->list);
->=20
-> This isn't needed on individual list elements, only on the head.
->=20
-> > +     ether_addr_copy(entry->common.key.mac, mac);
-> > +     entry->common.key.vid =3D vid;
-> > +     entry->common.pgid =3D pgid;
-> > +     entry->common.row =3D LAN9645X_INVALID_ROW;
->=20
-> Do you use the row for anything?
->=20
+Patch 9 adds the list of clocks as match data for the 14 OLB present
+in the EyeQ7H SoC, and the functions needed to probe the two PLL types
+found in the chip.
 
-No I will remove it, and the LIST_INIT above.
+Finally patch 10 adds an entry for Mobileye RISC-V SoCs to the MAINTAINERS
+file for the newly added dt-bindings files.
 
-> > +     entry->common.type =3D type;
-> > +
-> > +     dev_dbg(lan9645x->dev,
-> > +             "mact_entry_alloc mac=3D%pM vid=3D%u pgid=3D%u type=3D%d"=
-,
-> > +             entry->common.key.mac, entry->common.key.vid,
-> > +             entry->common.pgid, entry->common.type);
-> > +     return entry;
-> > +}
-> > +
-> > +static void lan9645x_mact_entry_dealloc(struct lan9645x *lan9645x,
-> > +                                     struct lan9645x_mact_entry *entry=
-)
-> > +{
-> > +     if (!entry)
-> > +             return;
-> > +
-> > +     dev_dbg(lan9645x->dev,
-> > +             "mact_entry_dealloc mac=3D%pM vid=3D%u pgid=3D%u type=3D%=
-d",
-> > +             entry->common.key.mac, entry->common.key.vid,
-> > +             entry->common.pgid, entry->common.type);
-> > +
-> > +     list_del(&entry->list);
-> > +     kfree(entry);
-> > +}
-> > +
-> > +static int lan9645x_mac_wait_for_completion(struct lan9645x *lan9645x,
-> > +                                         u32 *maca)
-> > +{
-> > +     u32 val =3D 0;
-> > +     int err;
-> > +
-> > +     lockdep_assert_held(&lan9645x->mact_lock);
-> > +
-> > +     err =3D lan9645x_rd_poll_timeout(lan9645x, ANA_MACACCESS, val,
-> > +                                    ANA_MACACCESS_MAC_TABLE_CMD_GET(va=
-l) =3D=3D
-> > +                                    CMD_IDLE);
-> > +     if (err)
-> > +             return err;
-> > +
-> > +     if (maca)
-> > +             *maca =3D val;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void lan9645x_mact_parse(u32 machi, u32 maclo, u32 maca,
-> > +                             struct lan9645x_mact_common *rentry)
-> > +{
-> > +     u64 addr =3D ANA_MACHDATA_MACHDATA_GET(machi);
-> > +
-> > +     addr =3D addr << 32 | maclo;
-> > +     u64_to_ether_addr(addr, rentry->key.mac);
-> > +     rentry->key.vid =3D ANA_MACHDATA_VID_GET(machi);
-> > +     rentry->pgid =3D ANA_MACACCESS_DEST_IDX_GET(maca);
-> > +     rentry->type =3D ANA_MACACCESS_ENTRYTYPE_GET(maca);
-> > +}
-> > +
-> > +static void lan9645x_mac_select(struct lan9645x *lan9645x,
-> > +                             const unsigned char *addr, u16 vid)
-> > +{
-> > +     u64 maddr =3D ether_addr_to_u64(addr);
-> > +
-> > +     lockdep_assert_held(&lan9645x->mact_lock);
-> > +
-> > +     lan_wr(ANA_MACHDATA_VID_SET(vid) |
-> > +            ANA_MACHDATA_MACHDATA_SET(maddr >> 32),
-> > +            lan9645x,
-> > +            ANA_MACHDATA);
-> > +
-> > +     lan_wr(maddr & GENMASK(31, 0),
-> > +            lan9645x,
-> > +            ANA_MACLDATA);
-> > +}
-> > +
-> > +static int __lan9645x_mact_forget(struct lan9645x *lan9645x,
-> > +                               const unsigned char mac[ETH_ALEN],
-> > +                               unsigned int vid,
-> > +                               enum macaccess_entry_type type)
-> > +{
-> > +     lockdep_assert_held(&lan9645x->mact_lock);
-> > +
-> > +     lan9645x_mac_select(lan9645x, mac, vid);
-> > +
-> > +     lan_wr(ANA_MACACCESS_ENTRYTYPE_SET(type) |
-> > +            ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_FORGET),
-> > +            lan9645x,
-> > +            ANA_MACACCESS);
-> > +
-> > +     return lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> > +}
-> > +
-> > +int lan9645x_mact_forget(struct lan9645x *lan9645x,
-> > +                      const unsigned char mac[ETH_ALEN], unsigned int =
-vid,
-> > +                      enum macaccess_entry_type type)
-> > +{
-> > +     int ret;
->=20
-> Inconsistent use of "err" and "ret" throughout the driver.
-> Pick one and stick to it.
->=20
+This series depends on the EyeQ6Lplus support patchset posted
+previously[1], which in turn depends on Théo's series[2]. In particular,
+the changes made to the clk-eyeq driver in this patchset depend on the
+changes done in these two series.
 
-I will fix this in the next version.
+[1]: https://lore.kernel.org/all/20260226-eyeq6lplus-v3-0-9cbeb59268b0@bootlin.com/
+[2]: https://lore.kernel.org/lkml/20260225-macb-phy-v7-0-665bd8619d51@bootlin.com/
 
+Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
+---
+Changes in v4:
+- Rebased on v7.0-rc1 + version 3 of eyeq6plus series.
+- Link to v3: https://lore.kernel.org/r/20260114-clk-eyeq7-v3-0-8ebdba7b0133@bootlin.com
 
-> > +
-> > +     mutex_lock(&lan9645x->mact_lock);
-> > +     ret =3D __lan9645x_mact_forget(lan9645x, mac, vid, type);
-> > +     mutex_unlock(&lan9645x->mact_lock);
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +static bool lan9645x_mac_ports_use_cpu(const unsigned char *mac,
-> > +                                    enum macaccess_entry_type type)
-> > +{
-> > +     u32 mc_ports;
-> > +
-> > +     switch (type) {
-> > +     case ENTRYTYPE_MACV4:
-> > +             mc_ports =3D (mac[1] << 8) | mac[2];
-> > +             break;
-> > +     case ENTRYTYPE_MACV6:
-> > +             mc_ports =3D (mac[0] << 8) | mac[1];
-> > +             break;
-> > +     default:
-> > +             return false;
-> > +     }
-> > +
-> > +     return !!(mc_ports & BIT(CPU_PORT));
-> > +}
-> > +
-> > +static int __lan9645x_mact_learn_cpu_copy(struct lan9645x *lan9645x, i=
-nt port,
-> > +                                       const unsigned char *addr, u16 =
-vid,
-> > +                                       enum macaccess_entry_type type,
-> > +                                       bool cpu_copy)
-> > +{
-> > +     lockdep_assert_held(&lan9645x->mact_lock);
-> > +
-> > +     lan9645x_mac_select(lan9645x, addr, vid);
-> > +
-> > +     lan_wr(ANA_MACACCESS_VALID_SET(1) |
-> > +            ANA_MACACCESS_DEST_IDX_SET(port) |
-> > +            ANA_MACACCESS_MAC_CPU_COPY_SET(cpu_copy) |
-> > +            ANA_MACACCESS_ENTRYTYPE_SET(type) |
-> > +            ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_LEARN),
-> > +            lan9645x, ANA_MACACCESS);
-> > +
-> > +     return lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> > +}
-> > +
-> > +static int __lan9645x_mact_learn(struct lan9645x *lan9645x, int port,
-> > +                              const unsigned char *addr, u16 vid,
-> > +                              enum macaccess_entry_type type)
-> > +{
-> > +     bool cpu_copy =3D lan9645x_mac_ports_use_cpu(addr, type);
-> > +
-> > +     return __lan9645x_mact_learn_cpu_copy(lan9645x, port, addr, vid, =
-type,
-> > +                                           cpu_copy);
-> > +}
-> > +
-> > +int lan9645x_mact_learn(struct lan9645x *lan9645x, int port,
-> > +                     const unsigned char *addr, u16 vid,
-> > +                     enum macaccess_entry_type type)
-> > +{
-> > +     int ret;
-> > +
-> > +     mutex_lock(&lan9645x->mact_lock);
-> > +     ret =3D __lan9645x_mact_learn(lan9645x, port, addr, vid, type);
-> > +     mutex_unlock(&lan9645x->mact_lock);
-> > +
-> > +     return ret;
-> > +}
-> > +
-> > +int lan9645x_mact_flush(struct lan9645x *lan9645x, int port)
-> > +{
-> > +     int err =3D 0;
->=20
-> This is overwritten with the lan9645x_mac_wait_for_completion() result
-> and never read. You don't need to zero-initialize it.
->=20
+Changes in v3:
+- Fix eyeq7h-olb DT bindings following Krzysztof review.
+- Link to v2: https://lore.kernel.org/r/20251224-clk-eyeq7-v2-0-81744d1025d9@bootlin.com
 
-I will remove this.
+Changes in v2:
+- Move the dt-bindings to their own files and sort the compatibles.
+- Reorder the changes in reset-eyeq and make the register access more
+  readable.
+- Drop the validity check on even divider. Unnecessary since it is
+  always called from a clock .set_rate().
+- Drop the parameters check on divider registration. Will be posted
+  separately.
+- Switch to a new generic struct for describing the clocks.
+- Add an entry to MAINTAINERS.
+- Link to v1: https://lore.kernel.org/r/20250903-clk-eyeq7-v1-0-3f5024b5d6e2@bootlin.com
 
-> > +
-> > +     mutex_lock(&lan9645x->mact_lock);
-> > +     /* MAC table entries with dst index matching port are aged on sca=
-n. */
-> > +     lan_wr(ANA_ANAGEFIL_PID_EN_SET(1) |
-> > +            ANA_ANAGEFIL_PID_VAL_SET(port),
-> > +            lan9645x, ANA_ANAGEFIL);
-> > +
-> > +     /* Flushing requires two scans. First sets AGE_FLAG=3D1, second r=
-emoves
-> > +      * entries with AGE_FLAG=3D1.
-> > +      */
-> > +     lan_wr(ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_AGE),
-> > +            lan9645x,
-> > +            ANA_MACACCESS);
-> > +
-> > +     err =3D lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> > +     if (err)
-> > +             goto mact_unlock;
-> > +
-> > +     lan_wr(ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_AGE),
-> > +            lan9645x,
-> > +            ANA_MACACCESS);
-> > +
-> > +     err =3D lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> > +
-> > +mact_unlock:
-> > +     lan_wr(0, lan9645x, ANA_ANAGEFIL);
-> > +     mutex_unlock(&lan9645x->mact_lock);
-> > +     return err;
-> > +}
-> > +
-> > +int lan9645x_mact_entry_add(struct lan9645x *lan9645x, int pgid,
-> > +                         const unsigned char *mac, u16 vid)
-> > +{
-> > +     struct lan9645x_mact_entry *entry;
-> > +     int ret =3D 0;
-> > +
-> > +     /* Users can not move (vid,mac) to a different port, without remo=
-ving
-> > +      * the original entry first. But we overwrite entry in HW, and up=
-date
-> > +      * software pgid for good measure.
-> > +      */
-> > +     mutex_lock(&lan9645x->mac_entry_lock);
-> > +     entry =3D lan9645x_mact_entry_find(lan9645x, mac, vid);
-> > +     if (entry) {
-> > +             entry->common.pgid =3D pgid;
-> > +             mutex_unlock(&lan9645x->mac_entry_lock);
-> > +             goto mac_learn;
-> > +     }
-> > +
-> > +     entry =3D lan9645x_mact_entry_alloc(lan9645x, mac, vid, pgid,
-> > +                                       ENTRYTYPE_LOCKED);
-> > +     if (!entry) {
-> > +             mutex_unlock(&lan9645x->mac_entry_lock);
-> > +             return -ENOMEM;
-> > +     }
-> > +
-> > +     list_add_tail(&entry->list, &lan9645x->mac_entries);
-> > +     mutex_unlock(&lan9645x->mac_entry_lock);
-> > +
-> > +mac_learn:
-> > +     WARN_ON(entry->common.pgid !=3D pgid);
-> > +     ret =3D lan9645x_mact_learn(lan9645x, pgid, mac, vid, ENTRYTYPE_L=
-OCKED);
->=20
-> Same comment about multiple critical sections getting opened and closed.
-> It makes you wonder what can happen in between them. Any reason why you
-> don't call __lan9645x_mact_learn()?
->=20
+---
+Benoît Monin (10):
+      dt-bindings: soc: mobileye: Add EyeQ7H OLB
+      reset: eyeq: Add EyeQ7H compatibles
+      clk: fixed-factor: Rework initialization with parent clocks
+      clk: fixed-factor: Export __clk_hw_register_fixed_factor()
+      clk: eyeq: Prefix the PLL registers with the PLL type
+      clk: eyeq: Introduce a generic clock type
+      clk: eyeq: Convert clocks declaration to eqc_clock
+      clk: eyeq: Drop PLL, dividers, and fixed factors structs
+      clk: eyeq: Add EyeQ7H compatibles
+      MAINTAINERS: Add entry for Mobileye RISC-V SoCs
 
-There is a lock for the mac_entry list (mac_entry_lock) and one for the mac
-table (mact_lock) which __lan9645x_mact_learn would not take. But they
-are not used independently here, and as you mention not interleaved right.
-I will strip this down to 1 lock for both mac_entry list and mac table.
+ .../bindings/soc/mobileye/mobileye,eyeq7h-olb.yaml |  192 +++
+ MAINTAINERS                                        |   13 +-
+ drivers/clk/clk-eyeq.c                             | 1245 +++++++++++++-------
+ drivers/clk/clk-fixed-factor.c                     |   72 +-
+ drivers/reset/reset-eyeq.c                         |  268 ++++-
+ include/dt-bindings/clock/mobileye,eyeq7h-clk.h    |  119 ++
+ include/linux/clk-provider.h                       |   56 +-
+ 7 files changed, 1468 insertions(+), 497 deletions(-)
+---
+base-commit: 559f264e403e4d58d56a17595c60a1de011c5e20
+change-id: 20250807-clk-eyeq7-f9c6ea43d138
+prerequisite-message-id: <20260225-macb-phy-v7-0-665bd8619d51@bootlin.com>
+prerequisite-patch-id: 68a9ce9820cf78e8a0705505ea29ff981b518570
+prerequisite-patch-id: 40a406305a44a0ea0d0b861d34c199907750f84c
+prerequisite-patch-id: dda6d7c3d7d7d8e49b31015887d1a7308f65559a
+prerequisite-change-id: 20251128-eyeq6lplus-961c630f0940:v3
+prerequisite-patch-id: 68a9ce9820cf78e8a0705505ea29ff981b518570
+prerequisite-patch-id: 40a406305a44a0ea0d0b861d34c199907750f84c
+prerequisite-patch-id: dda6d7c3d7d7d8e49b31015887d1a7308f65559a
+prerequisite-patch-id: ee24f0dcdb893f3850e9dd0d54e848782a1b9ed7
+prerequisite-patch-id: 781c4ae465c2af54c28ef4ad7a3c142da8390cf0
+prerequisite-patch-id: 5de50e537525f326cd3478f8cf88df947c66a7ee
+prerequisite-patch-id: cbb05dadd49dbf4ef54548b1016bba1e80c90805
+prerequisite-patch-id: 07021e7be37e3c14ef2950f2ca176a69b3be3ded
+prerequisite-patch-id: 1ee9fc5cf027bc9211c1a5e1547036e33d30fcf7
+prerequisite-patch-id: 30f092cffaae6e2adc8f6520af6073b9cd20c59e
+prerequisite-patch-id: 90361e8b03b1160a73257cc7d69e32435f319423
+prerequisite-patch-id: 5db4ab27d470485e90f50a95ab7fc423ae63f5c8
+prerequisite-patch-id: 571f8eb779bcad13ac8762519dafc2d0c260d6c7
+prerequisite-patch-id: 27c86e0ecfdabca4bca4bdc44e1bc9db8c27634a
+prerequisite-patch-id: 40a5ae6831ec4107ae32d74e948636837fa9e076
+prerequisite-patch-id: a8952e1ae521fd6f757ebed446f15523791003ac
 
-> > +     if (ret) {
-> > +             mutex_lock(&lan9645x->mac_entry_lock);
-> > +             lan9645x_mact_entry_dealloc(lan9645x, entry);
-> > +             mutex_unlock(&lan9645x->mac_entry_lock);
-> > +     }
-> > +     return ret;
-> > +}
-> > +
-> > +int lan9645x_mact_entry_del(struct lan9645x *lan9645x, int pgid,
-> > +                         const unsigned char *mac, u16 vid)
-> > +{
-> > +     struct lan9645x_mact_entry *entry;
-> > +
-> > +     mutex_lock(&lan9645x->mac_entry_lock);
-> > +     entry =3D lan9645x_mact_entry_find(lan9645x, mac, vid);
-> > +     if (entry) {
-> > +             WARN_ON(entry->common.pgid !=3D pgid);
-> > +             lan9645x_mact_entry_dealloc(lan9645x, entry);
-> > +             mutex_unlock(&lan9645x->mac_entry_lock);
-> > +             goto forget;
-> > +     }
-> > +     mutex_unlock(&lan9645x->mac_entry_lock);
-> > +     return -ENOENT;
-> > +
-> > +forget:
-> > +     return lan9645x_mact_forget(lan9645x, mac, vid, ENTRYTYPE_LOCKED)=
-;
->=20
-> I don't understand why you release the mac_entry_lock just for
-> lan9645x_mact_forget() to acquire it again. Can't stuff happen in the
-> split second where the MAC table is unlocked? It seems at least more
-> straightforward to call __lan9645x_mact_forget() under the locked
-> section rather than do the jump.
->=20
-> And it also seems more straightforward to invert the branch where the
-> entry is found in the MAC table with the one where it isn't. This allows
-> the more complex code to be less indented.
->=20
-
-Yes, as mentioned above I think you are right about the gap, but they are
-different locks. The idea was you could potentially iterate the list withou=
-t
-locking the mactable. But I will reduce it to 1 lock and use=C2=A0
-__lan9645x_mact_forget.
-
-> > +}
-> > +
-> > +void lan9645x_mac_init(struct lan9645x *lan9645x)
-> > +{
-> > +     mutex_init(&lan9645x->mac_entry_lock);
-> > +     mutex_init(&lan9645x->mact_lock);
-> > +     mutex_init(&lan9645x->fwd_domain_lock);
-> > +     INIT_LIST_HEAD(&lan9645x->mac_entries);
-> > +
-> > +     /* Clear the MAC table */
-> > +     mutex_lock(&lan9645x->mact_lock);
-> > +     lan_wr(CMD_INIT, lan9645x, ANA_MACACCESS);
-> > +     lan9645x_mac_wait_for_completion(lan9645x, NULL);
-> > +     mutex_unlock(&lan9645x->mact_lock);
->=20
-> mutex_init() immediately followed by mutex_lock() is an antipattern.
-> mutex_init() is run from a context with no concurrent threads that can
-> acquire the lock.
-> mutex_lock() is run from a context where concurrent threads are possible.
-> The two put together are a logical inconsistency, it means acquiring the
-> lock is unnecessary.
->=20
-
-Thanks, I was not aware. I will remove the lock here.
-
-> > +}
-> > +
-> > +void lan9645x_mac_deinit(struct lan9645x *lan9645x)
-> > +{
-> > +     mutex_destroy(&lan9645x->mac_entry_lock);
-> > +     mutex_destroy(&lan9645x->mact_lock);
-> > +     mutex_destroy(&lan9645x->fwd_domain_lock);
-> > +}
-> > +
-> > +int lan9645x_mact_dsa_dump(struct lan9645x *lan9645x, int port,
-> > +                        dsa_fdb_dump_cb_t *cb, void *data)
-> > +{
-> > +     struct lan9645x_mact_entry entry =3D { 0 };
->=20
-> Just {}.
-> https://lore.kernel.org/netdev/20210810091238.GB1343@shell.armlinux.org.u=
-k/
->=20
-
-I will change this where applicable.
-
-> > +     u32 mach, macl, maca;
-> > +     int err =3D 0;
-> > +     u32 autoage;
-> > +
-> > +     mach =3D 0;
-> > +     macl =3D 0;
->=20
-> You have two choices.
->=20
-> You can fold these into their declaration: "u32 mach =3D 0, macl =3D 0, m=
-aca;",
-> _if_ you're going to write them as variables:
->         lan_wr(mach, lan9645x, ANA_MACHDATA);
->         lan_wr(macl, lan9645x, ANA_MACLDATA);
->=20
-> Or you can remove the initializer, which is overwritten by the first
-> variable assignment in the while (1) loop, without the variables ever
-> being read in the meantime.
-
->=20
->=20
->=20
-> I will just remove the initializers.
->=20
-> > +     entry.common.type =3D ENTRYTYPE_NORMAL;
-> > +
-> > +     mutex_lock(&lan9645x->mact_lock);
-> > +
-> > +     /* The aging filter works both for aging scans and GET_NEXT table=
- scans.
-> > +      * With it, the HW table iteration only stops at entries matching=
- our
-> > +      * filter. Since DSA calls us for each port on a table dump, this=
- helps
-> > +      * avoid unnecessary work.
->=20
-> Nice. I think this is the first driver I see which doesn't do duplicated
-> work here. I vaguely remember testing this feature on Ocelot too, but it
-> didn't work.
->=20
-
-With register IO over SPI this is painfully slow without the hardware itera=
-tion. Ocelot
-is before my time, so I was not aware the age filters were broken there.
-
-> > +      *
-> > +      * Disable automatic aging temporarily. First save current state.
-> > +      */
-> > +     autoage =3D lan_rd(lan9645x, ANA_AUTOAGE);
-> > +
-> > +     /* Disable aging */
-> > +     lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(0),
-> > +             ANA_AUTOAGE_AGE_PERIOD,
-> > +             lan9645x, ANA_AUTOAGE);
-> > +
-> > +     /* Setup filter on our port */
-> > +     lan_wr(ANA_ANAGEFIL_PID_EN_SET(1) |
-> > +            ANA_ANAGEFIL_PID_VAL_SET(port),
-> > +            lan9645x, ANA_ANAGEFIL);
-> > +
-> > +     lan_wr(0, lan9645x, ANA_MACHDATA);
-> > +     lan_wr(0, lan9645x, ANA_MACLDATA);
-> > +
-> > +     while (1) {
-> > +             /* NOTE: we rely on mach, macl and type being set correct=
-ly in
-> > +              * the registers from previous round, vis a vis the GET_N=
-EXT
-> > +              * semantics, so locking entire loop is important.
-> > +              */
-> > +             lan_wr(ANA_MACACCESS_MAC_TABLE_CMD_SET(CMD_GET_NEXT) |
-> > +                    ANA_MACACCESS_ENTRYTYPE_SET(entry.common.type),
-> > +                    lan9645x, ANA_MACACCESS);
-> > +
-> > +             if (lan9645x_mac_wait_for_completion(lan9645x, &maca))
-> > +                     break;
-> > +
-> > +             if (ANA_MACACCESS_VALID_GET(maca) =3D=3D 0)
-> > +                     break;
-> > +
-> > +             mach =3D lan_rd(lan9645x, ANA_MACHDATA);
-> > +             macl =3D lan_rd(lan9645x, ANA_MACLDATA);
-> > +
-> > +             lan9645x_mact_parse(mach, macl, maca, &entry.common);
-> > +
-> > +             if (ANA_MACACCESS_DEST_IDX_GET(maca) =3D=3D port &&
-> > +                 entry.common.type =3D=3D ENTRYTYPE_NORMAL) {
-> > +                     if (entry.common.key.vid > VLAN_MAX)
-> > +                             entry.common.key.vid =3D 0;
-> > +
-> > +                     err =3D cb(entry.common.key.mac, entry.common.key=
-.vid,
-> > +                              false, data);
-> > +                     if (err)
-> > +                             break;
-> > +             }
-> > +     }
-> > +
-> > +     /* Remove aging filters and restore aging */
-> > +     lan_wr(0, lan9645x, ANA_ANAGEFIL);
-> > +     lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(ANA_AUTOAGE_AGE_PERIOD_GET(aut=
-oage)),
-> > +             ANA_AUTOAGE_AGE_PERIOD,
-> > +             lan9645x, ANA_AUTOAGE);
-> > +
-> > +     mutex_unlock(&lan9645x->mact_lock);
-> > +
-> > +     return err;
-> > +}
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drive=
-rs/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > index 1c8f20452487..ba76279b4414 100644
-> > --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > @@ -78,6 +78,7 @@ static void lan9645x_teardown(struct dsa_switch *ds)
-> >=20
-> >       debugfs_remove_recursive(lan9645x->debugfs_root);
-> >       lan9645x_npi_port_deinit(lan9645x, lan9645x->npi);
-> > +     lan9645x_mac_deinit(lan9645x);
-> >  }
-> >=20
-> >  static int lan9645x_change_mtu(struct dsa_switch *ds, int port, int ne=
-w_mtu)
-> > @@ -171,8 +172,8 @@ static int lan9645x_setup(struct dsa_switch *ds)
-> >               return err;
-> >       }
-> >=20
-> > -     mutex_init(&lan9645x->fwd_domain_lock);
->=20
-> Why did you have to move this to lan9645x_mac_init()? It has changed
-> position since the beginning of the series. Also, it isn't related to
-> the MAC table.
->=20
-
-I was just used to having it there, but I think you are right. I will keep =
-it in
-lan9645x_setup.
-
->=20
-> >       lan9645x_vlan_init(lan9645x);
-> > +     lan9645x_mac_init(lan9645x);
-> >=20
-> >       /* Link Aggregation Mode: NETDEV_LAG_HASH_L2 */
-> >       lan_wr(ANA_AGGR_CFG_AC_SMAC_ENA |
+Best regards,
+-- 
+Benoît Monin, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
