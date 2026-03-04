@@ -1,234 +1,262 @@
-Return-Path: <devicetree+bounces-271163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271164-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPULD6ReqGmZtgAAu9opvQ
-	(envelope-from <devicetree+bounces-271163-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:32:36 +0100
+	id QD2gI7heqGmZtgAAu9opvQ
+	(envelope-from <devicetree+bounces-271164-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:32:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1673204519
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:32:35 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E255204530
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:32:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 4787A30065CC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 16:32:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8DB1E3006474
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 16:32:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 298E036AB46;
-	Wed,  4 Mar 2026 16:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA8836BCC4;
+	Wed,  4 Mar 2026 16:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="kcAhc82X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xF7e7+DP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27AD319848;
-	Wed,  4 Mar 2026 16:32:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0DD235F5EE
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 16:32:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772641952; cv=none; b=qn2aNVuee2XKjZa119zrJYyqlO7lZKmKk5n5a0AV3MzxxcLswlrOWGw1m2M8FzQDkpu6PjORofglNDvaobKex+Gl0HklK8aOJB4dCf3+EwQp5N+Kkuts5/mCsMoRU+51xGkEAbdwkBqtHSSj9N5ds3OlyosoiHBobiqnLHbzWdQ=
+	t=1772641969; cv=none; b=k4AIVnh5k+orcMxgsoNrmz6RgLUgQ79kBWbX8DJJhdOZP90BrzYlhQPgXjD0v/yVBC09YwkXhaGertZIJntkibO1QFgX0fn2uhB9Uc277U17lBrCjyDVjgmczeFuRVeEMa6IsnCPoKS1ZbPVFr90PFYq8VaeokqJLJfT7rrKGLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772641952; c=relaxed/simple;
-	bh=jg6J//vb12263kITZC9G8reXF2e1rvW3uaZ0PYjlsSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W/PE0Jj83lFekEKkdUQGg6Q6H2OJdGxewHwlZ9fLkLCxUJXNWLLTzWlhxLmaSkV0+zSN/J76q3Q8XO5qafouhVAqWU0OEyRstL45OawLLw3yHylBZ+fopEVv7FhDWtsYmVQsS0FCDxuQLw8Xr9ja/3Dv5PMGsvqhykIhbNISC+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=kcAhc82X; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=4E81S360LZJasm+z9mMQB95l0sk0q8GKUxtXCQeVoTg=; b=kcAhc82XV2zj4ATHfuIl5oAz9H
-	UPBtKS/AafU12aOJQMXH35D//2gq8JYzL3mNfaqnaTYYFO/5+sGwgybnjea9DTJQYbf+gkQ3PiJGQ
-	7+8gKBfoPFnKyJv2KXp9d+gkA8/THuduL5z8Ch4B78IMQEdnoendq2zWEMG0HxbXGE4BqzmSgYvek
-	er0OB5Y6bfjxP41aJPnZGKoLtRTGqVBuAc+GMh4Hg8Iq90oKKMh0tOjYJjcjeRs1mvzdehedLVz79
-	y3Y1uJH9Bx9MpiWee51iTuYKzuH2hoH9A5ngD4rBH1UnS8Azh0X3NgxnuGWkaKnnhZON21RDILiRb
-	s4+hQCSw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:56966)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vxp8w-000000006lU-3Xbg;
-	Wed, 04 Mar 2026 16:32:14 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vxp8s-0000000082X-3150;
-	Wed, 04 Mar 2026 16:32:10 +0000
-Date: Wed, 4 Mar 2026 16:32:10 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>, kevin-kw.huang@airoha.com,
-	macpaul.lin@mediatek.com, matthias.bgg@gmail.com,
-	kernel@collabora.com, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: phy: Introduce Airoha AN8801/R Gigabit
- Ethernet PHY driver
-Message-ID: <aaheilkwpQ90xMmR@shell.armlinux.org.uk>
-References: <20260304-add-airoha-an8801-support-v1-0-0ae4ee5a2f9d@collabora.com>
- <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
+	s=arc-20240116; t=1772641969; c=relaxed/simple;
+	bh=Xppvl95xgBS9KCaO7oJxhZKdat8wB8r5AMcozVjxUY0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=RU4rTvmUaP6o3Mp11Al4dThPr7yWmGvbHEov+wa435h6bapW0yWwtJwUlpNdRBhBTF/1g4kpdDpwDVhH2LU8XDNJUJ1mHUmJZCZO/ANaxPvQYKg8xOEw6YL2cZDcGX3xQdqL829Zq9RA5nX6k51a4fgn47zatdZ8MGypaD757nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xF7e7+DP; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48371bb515eso105590765e9.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 08:32:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772641966; x=1773246766; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YzBLKK2SPFT1wsSEyBgdZB5voy4EsI1LK+m46W4f00k=;
+        b=xF7e7+DPARfYTASOu68cxUISiIy9kstIKcJh3AShTdWvGAHWcMu3QmoyOAfjwV+WRS
+         OpbtlIZ4fxr0o0XQHP2n5ukcPHGeiSIocjmyzcXKWmZSkU8x2vo4HpNa0aCQbjQLACWO
+         zF2x6EtZoSqaYJOsdiN+DMtyCiXtWS21ZskXupMwKn29UdyeuD3V2UjxlU1w5xpiVmLx
+         Y0wk/IJfaqlqsqhpkywxRrQdx1RIN8pPd/r2QV8k25W7ep2qSi27Yt3iO6iSkVQ5gggA
+         BN8LIrBn6WRfWFvgbb9nuCOBL8LXurH2l+XUVLDtEbfQZ9BgJaVH5YRd/Qe0t82hvUfM
+         WYlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772641966; x=1773246766;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YzBLKK2SPFT1wsSEyBgdZB5voy4EsI1LK+m46W4f00k=;
+        b=r8GvnLEkYGtfyn26T+lo73TNCgRg2uBaWxpKfUSsOmxtPb6luWS2Rf24XBPNBXmgla
+         Md90muEHVvq6XFK5unGllXZk+9Gja+x61V70JyN3+fs3pMejizQ0c2zgbTFgIzLx9Iia
+         9Mf85Ok2nFqglogbz0w2xry+//Mhxo99aXm+D8UEo1EtSDczQO4KVadJK7SV08bGAxLH
+         2V2kX1nWtuW1jTVgiKMb3X60o1/l2JShZR9Nz+rf0QOagDUzxv63hrXzrl6jcgj2hzJC
+         ypmyZtI7D0rdr9+dz6APnvB5fPpNiPj96NJpyC/5ZD6jR3fAy/bpAQ/1mUWNIkvPzGNA
+         sgYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX+2Gx02CJhlcYT6WvI36IE43LM6idn2Q4dF0hQg6hJS2XwEceTiNQthIgzPQktd50oh1YO3bfosqmm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxi6t4Yj4nChVraawD/GMDYbet7beKeHcVyP7eUSWL5GKcPcla2
+	8iBXvu2uLvyugxRJSfoy6BfkH6/VUqx6S3eU1FH8CoD+zhcjkptUItdDno4R0ffLOT0=
+X-Gm-Gg: ATEYQzyTnMeq2HzT9RfqmcGLzM4XLcpx1iYOCEh5UOR1mue/75mZz8na2HZMzsMhPB7
+	xcMY/ioIXDBphV/yAzFhJ+ONGZHJLovc6nJSHtm/6ukZGXuvdAKD6Xh8FyxR6KG9DHDvPYdXcAK
+	AD2J4tRiLpov4nzjA5xl9D4ltSFmr2TmRmGa1ncxx6p9T5s7bY3O0obe1yqAW7cCNR81yM7eCFy
+	+uvhSak+V56tvkKCtChXPBX2gZ1pw1VKN4JLGsSVou1uejiCUxRxVVnQpKEj+VQ3doclpjMoASw
+	rnGpwP36eY2b9/N0JHgsJWT7oyi/MipaMrzsruI93XheP3hQTBc5/ArTTp6i7mANzbYV4vxD6gt
+	JOFtD051vPQFe2aHuoxT2znwwSQR8+fsYHGWf4WWSmBr42Zy8HvrE9wVecWTW9RE5GmLyKIA9Qr
+	zAlZUWBNg8ttaxtQwkuK7f31UOHQ6aHqjKQNbvw2jKIDyFpXNiP4lXZ7qnnWmco3DE2XRBe3jh8
+	Ac6k5HClg4qBIU=
+X-Received: by 2002:a05:600c:8b67:b0:483:498f:7953 with SMTP id 5b1f17b1804b1-4851989cb45mr45028445e9.28.1772641966114;
+        Wed, 04 Mar 2026 08:32:46 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:106d:1080:da6:dde3:e477:94d2? ([2a01:e0a:106d:1080:da6:dde3:e477:94d2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851acf3124sm25994175e9.3.2026.03.04.08.32.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Mar 2026 08:32:45 -0800 (PST)
+Message-ID: <933fd2e0-46ff-4ab8-b98a-554ac46982c5@linaro.org>
+Date: Wed, 4 Mar 2026 17:32:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Rspamd-Queue-Id: D1673204519
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC 1/2] dt-bindings: display: panel: Add ChipWealth
+ CH13726A AMOLED driver bindings
+To: webgeek1234@gmail.com, Jessica Zhang <jesszhan0024@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
+References: <20260222-ch13726a-v1-0-e501d78e105a@gmail.com>
+ <20260222-ch13726a-v1-1-e501d78e105a@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260222-ch13726a-v1-1-e501d78e105a@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 2E255204530
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271163-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,collabora.com,gmail.com,airoha.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_SPAM(0.00)[0.123];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
-	PRECEDENCE_BULK(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TAGGED_FROM(0.00)[bounces-271164-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,armlinux.org.uk:url,shell.armlinux.org.uk:mid]
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,linaro.org:dkim,linaro.org:mid,linaro.org:replyto,holder.com:email,devicetree.org:url,0.0.0.0:email];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 10:35:29AM +0100, Louis-Alexis Eyraud wrote:
-> +static void an8801r_get_wol(struct phy_device *phydev,
-> +			    struct ethtool_wolinfo *wol)
-> +{
-> +	u32 reg_val;
+On 2/22/26 23:26, Aaron Kling via B4 Relay wrote:
+> From: Aaron Kling <webgeek1234@gmail.com>
+> 
+> The Chip Wealth Technology CH13726A display driver is a single chip
+> solution for AMOLED using MIPI-DSI. This is used for the AYN Thor bottom
+> panel.
+> 
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>   .../display/panel/chipwealth,ch13726a.yaml         | 66 ++++++++++++++++++++++
+>   1 file changed, 66 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml b/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..890984b00c341285066176995e6a973c5607cbde
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/chipwealth,ch13726a.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/chipwealth,ch13726a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	air_buckpbus_reg_read(phydev, AN8801_BPBUS_REG_WAKEUP_CTL1, &reg_val);
+> +title: Chip Wealth Technology CH13726A display driver
 > +
-> +	wol->supported = WAKE_MAGIC;
-> +
-> +	if (reg_val & AN8801_WOL_WAKE_MAGIC_EN)
-> +		wol->wolopts |= WAKE_MAGIC;
-> +	else
-> +		wol->wolopts &= ~WAKE_MAGIC;
+> +maintainers:
+> +  - Place Holder <place@holder.com>
 
-Please only support WoL if you know that the PHY has been wired up in
-such a way to allow it to actually wake the system. The PHY itself
-merely supporting WoL is insufficient.
+??
 
-Please look at my recent change to realtek_main.c in commit
-b826bf795564 ("net: phy: realtek: fix RTL8211F wake-on-lan support")
-to see a possible way to achieve this.
-
-> +static int an8801r_config_init(struct phy_device *phydev)
-> +{
-> +	u8 led_default_function[AN8801R_NUM_LEDS] = { 0 };
-> +	int prev_page, ret;
-> +
-> +	ret = an8801r_of_init_leds(phydev, led_default_function);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Disable Low Power Mode (LPM) */
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND2, AN8801_REG_PHY_INTERNAL0,
-> +			    FIELD_PREP(AN8801_PHY_INTFUNC_MASK, 0x1e));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND2, AN8801_REG_PHY_INTERNAL1,
-> +			    FIELD_PREP(AN8801_PHY_INTFUNC_MASK, 0x2));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Disable EEE by default */
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_AN, MDIO_AN_EEE_ADV, 0);
-> +	if (ret)
-> +		return ret;
-
-Are you sure this is safe, e.g. over a suspend/resume, and doesn't
-cause the hardware vs software state to desync?
 
 > +
-> +	prev_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_1);
-> +	if (prev_page < 0)
-> +		return prev_page;
+> +description:
+> +  Chip Wealth Technology CH13726A is a single-chip solution
+> +  for AMOLED connected using a MIPI-DSI video interface.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: ayntec,thor-panel-bottom
 
-No, this is buggy. Please read the phy_select_page() documentation to
-find out why.
+??? why not chipwealth,ch13726a ??
 
 > +
-> +	/* Set the PHY to perform auto-downshift after 3 auto-negotiation
-> +	 * attempts
-> +	 */
-> +	__phy_write(phydev, AN8801_EXT_REG_PHY,
-> +		    FIELD_PREP(AN8801_EXT_PHY_CTRL1, 0x1d) |
-> +		    FIELD_PREP(AN8801_EXT_PHY_DOWNSHIFT_CTL, 1) |
-> +		    AN8801_EXT_PHY_DOWNSHIFT_EN);
+> +  port: true
+> +  reg:
+> +    maxItems: 1
+> +    description: DSI virtual channel
 > +
-> +	ret = phy_restore_page(phydev, prev_page, ret);
-> +	if (ret)
-> +		return ret;
-
-However, the bug could've been avoided by using the appropriate
-accessor:
-
-	ret = phy_write_paged(phydev, AIR_PHY_PAGE_EXTENDED_1,
-			      AN8801_EXT_REG_PHY,
-			      FIELD_PREP(AN8801_EXT_PHY_CTRL1, 0x1d) |
-			      FIELD_PREP(AN8801_EXT_PHY_DOWNSHIFT_CTL, 1) |
-			      AN8801_EXT_PHY_DOWNSHIFT_EN);
-	if (ret < 0)
-		return ret;
-
-> +static int an8801r_read_status(struct phy_device *phydev)
-> +{
-> +	int prev_speed, ret;
-> +	u32 val;
+> +  vdd-supply: true
+> +  vddio-supply: true
+> +  vdd1v2-supply: true
+> +  avdd-supply: true
 > +
-> +	prev_speed = phydev->speed;
+> +  reset-gpios: true
 > +
-> +	ret = genphy_read_status(phydev);
-> +	if (ret)
-> +		return ret;
+> +  rotation: true
 > +
-> +	if (!phydev->link)
-> +		return 0;
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vddio-supply
+> +  - vdd1v2-supply
+> +  - avdd-supply
+> +  - reset-gpios
 > +
-> +	if (prev_speed != phydev->speed) {
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        panel@0 {
+> +            compatible = "ayntec,thor-panel-bottom";
+> +            reg = <0>;
+> +            vdd1v2-supply = <&vreg_l11b_1p2>;
+> +            vddio-supply = <&vdd_disp_1v8>;
+> +            vdd-supply = <&vreg_l13b_3p0>;
+> +            avdd-supply = <&vdd_disp2_2v8>;
+> +            reset-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> +
+> +...
+> 
 
-Maybe:
-
-	if (phydev->link && prev_speed != phydev->speed) {
-
-?
-
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
