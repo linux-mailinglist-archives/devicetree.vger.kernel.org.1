@@ -1,99 +1,72 @@
-Return-Path: <devicetree+bounces-270966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270967-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wE0aCqMGqGmEnQAAu9opvQ
-	(envelope-from <devicetree+bounces-270966-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:17:07 +0100
+	id UO/sDwIKqGn2nQAAu9opvQ
+	(envelope-from <devicetree+bounces-270967-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:31:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EECB1FE2C2
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:17:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D0A21FE5F6
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:31:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1D7DD30055FE
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:17:03 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4096F301D31D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C53539FCDF;
-	Wed,  4 Mar 2026 10:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52E13A2553;
+	Wed,  4 Mar 2026 10:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="F+FSwpMX"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="rxQg0s9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp28.bhosted.nl (smtp28.bhosted.nl [94.124.121.40])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E75332638
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 10:16:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17FFE3A1A56
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 10:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772619421; cv=none; b=gpRD7oWP53xfKe5RFhBPfihzXwdvfpdogq203HFhw+d5SuWL+3v1wq51JuM+TMllNrvy8l0tzmsQPr0GyZMWGyIZltm2sDh4aH6wmORINWBfUdjEz5IOHIlNto/4mG0L8K/gt/iKVZ9ocnHM3UfSYHKcYptQryCt4+72CW+uHeE=
+	t=1772619974; cv=none; b=CrHNF0ALPwy08PnFVG0ujub4inMeTPW0m0lWB+PqnfRClyeQXzRgnmbgVw6qJmazzz/RFjoVwL2bXZ8gZzspQBDtQsVxdmPO6Y6AQWOWcYgHQUimwL4hpmNWaOPnkinVh27Jqpdq09GvirJaalWWxQDww4uUYlrN8xqS3KmT//M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772619421; c=relaxed/simple;
-	bh=e78qIDzHbDTqXVogJF+UVOVMy75B++Q+8NZ/1KY9TUY=;
+	s=arc-20240116; t=1772619974; c=relaxed/simple;
+	bh=iaoKu1YAbCoudL14l3Rwg8N48l6zL3jjv2BcSRhzbo0=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jPvUXH6n8RjLGd0MSiiyQIcDObenIjFG1PLEZGo6FqRd9jD38rkGP56l3yUihvBnWNvqzLJ5rfpAujJ2Ip0AJF0TyT+Pdf3xQccChTJkkExINIf0mxm8+dLPCX8DU6+0buRrf6fp+A0eUvWSAvSh5ThzV69mS/Jhv6o87s9qTcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=F+FSwpMX; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-480706554beso72348175e9.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 02:16:59 -0800 (PST)
+	 MIME-Version:Content-Type; b=nVv+RyzUPE2wK0Is1Flmz3OpE1b6vaeSaur2FkuzqSNHLHTO0Z04uT5v5JDWOuhfrIcnSxa0ebg5j9kG1pdpuFn27Rn4v1xONfiWufQ2PbTEldjTrFv4bPD82wF7aBTmWu5PCxwDx5e6cUBD1zU/UFJUFE/bgtxdzU8EWJ8YPCA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=rxQg0s9M; arc=none smtp.client-ip=94.124.121.40
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772619418; x=1773224218; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hYB3YNu9CO7wLt2ZT8Xt9m7azMQTOfSk/ijLWaYuruI=;
-        b=F+FSwpMXpboj5Xote2ENRoHs8jokK6NZkRGnHXH4Qy3cV3lBdhiex5fHH9wNHAjdhK
-         yqGvfBGwjpHrGAR+l6wgHNZa77l96PQY1fJWo2xhuCVwQp6WrSo/kVUGJtLRM+lpwMlz
-         tP+31aj1JPS+X4nRNiTwhltna0Em727kkN2S2Iw7DmoBsbn1CDPDOHgMd18NfKRPRqk8
-         0TvYXo1BoWGnRr73ONsX444mo+GUDtdoixmN6R+5aBXYazoDMqyRZ9QHPbl3AT1nnCk1
-         +/K1DTBEv0BP29zEOeRkYIjutxE2ZIuX7lhUCht8CRZhQInAqHabKMqS5C73FREKZnDG
-         otzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772619418; x=1773224218;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=hYB3YNu9CO7wLt2ZT8Xt9m7azMQTOfSk/ijLWaYuruI=;
-        b=li9xW2Y3yZJNKfGC05kPgSlSXVW0ttJ8BxMoTssOkWIcxvMK/TQJALWSTe8Yc/QXck
-         mxFlKVEM1zyBVbLDp1XyQwoOP9i5k8l0iitlzKry7HgCzSA3oiGG05TXW3VGedO+VK8C
-         fIl21dFqGIXLCLz57J2Zc651vrwOYJEylktjVJ4xB4bqbFZEE+uAaYRNGQK01VuoG/9V
-         rJhhT+xc85sUTzL046tpFSznz6BRUEDuaYygNDxnMoPk0lmuKmZhW3Ty+wJX8XybzVhL
-         jTPCBr/bdLt0+3fvkFo7oo8TvSZVCURvgUiPSeJB0sdHWA00mb8XbmJ24z5UGecceCew
-         BpPA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+OgatVCy2lV1TQfqj2Tmi+W6CTp32MewGwhdJyIH3bm5uT2xn6ugymHMGe04C9QXubFXYGWHDLsvc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoiyYg1d5/936EBVYd3V8DFtZ47sPXt83v7JBLOcylQPLZCm9/
-	3nCsgY6dRAkwB46dcuIAFPpN6MWWmwuTPX3HauRzMlb8icqnxtfjJQCJ
-X-Gm-Gg: ATEYQzy4NasUEZnlxsiyFmv7ZuUMBA+UGr/h8RgzpDA2QHXU5jErrRZ8KYRkTyUOqem
-	WAjQ8+yhL5Arv0IonFqLx+ksaXMrHZdexQ0XGweVNbPwHdTxpW+ACuKhY5h5baafVdpMhI15/aQ
-	UTwupSl1SkW/Zr7Gfb3BSDGM6vhP9FhMAj6aNBcUSK+s6lUEpchKAc5kNa17349ns9K8eWGcYyZ
-	ZM6WeeFUtB7nZ4kKHWSdmqsd9fKC1lQUyobHDY6kpghkmpj6mKVhO6foUfAm7uTz7ZVEL1+xv0+
-	p38nAqIrkIdAjAdNQLtJ6wTPyuqQ10Hwd8PsuqZvTfMR/FC/H2Y7k+ws/I6+do1qLGrJwfoIt+U
-	11wTWt8sG2Zy2cQRog6Jqe9nFmS2DWcaLd6Q+pOGtr+59DiM1YE/4pOfj+DWka7S/FHIYTmR2xu
-	i8y9CfJyqEkQDZyC/OLJUVAQGcMfzOAZf+ucuXZgqTYg5nVIS2ginBugeQEJQQoaTP
-X-Received: by 2002:a05:600c:a51:b0:47d:3ffa:5f03 with SMTP id 5b1f17b1804b1-48519886ca3mr23059915e9.21.1772619417522;
-        Wed, 04 Mar 2026 02:16:57 -0800 (PST)
-Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48518839ae7sm36391845e9.1.2026.03.04.02.16.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 02:16:57 -0800 (PST)
-Date: Wed, 4 Mar 2026 10:16:55 +0000
-From: David Laight <david.laight.linux@gmail.com>
-To: Rodrigo Alencar via B4 Relay
- <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, David
- Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v8 02/10] lib: kstrtox: add kstrntoull() helper
-Message-ID: <20260304101655.620df7ee@pumpkin>
-In-Reply-To: <20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
-References: <20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com>
-	<20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=w6F9EZJVS8+TF1xyzyXSI4fM3c5Dtg3XikqZDLJUQME=;
+	b=rxQg0s9M7zsl29LETTXvuEN2hLbg7fHyi7KWCFsfIibM4SdvaeotGKAcJvJLdtpWmY02EHyKO2IcJ
+	 jSjkE/blulrRpemUlqg5mDYXA9IyYZwbhn8XfkX0eqxE2mo0H92PtLIIQvFGHJ3SAYGt/hoTTWimWY
+	 NnPfzJJsCBabFtdedNTtaRYO9ex26bEw+7qjDyTv+wPMIs/WK+8nQ9HS7OakRBBA7sRV8/gA9rhlNQ
+	 gyC4OetacoqxSyAO22YZV9oFybgny7sx0zfBQPjRKJaJoTmdY4LDrNjqXQ/817UrDycxwn64xcZgWf
+	 lFZWNcM1OLp6MFVXxNEoLk6bDXKu/og==
+X-MSG-ID: 66bae932-17b4-11f1-b532-0050568164d1
+Date: Wed, 4 Mar 2026 11:25:00 +0100
+From: David Jander <david@protonic.nl>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, "Rob Herring (Arm)"
+ <robh@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin
+ <peda@axentia.se>, kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, Guenter Roeck
+ <linux@roeck-us.net>, Linus Walleij <linusw@kernel.org>,
+ linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
+Message-ID: <20260304112500.4766f21b@erd003.prtnl>
+In-Reply-To: <4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
+References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
+	<20260303133947.1123575-2-o.rempel@pengutronix.de>
+	<177254885509.3251575.14819823286886805862.robh@kernel.org>
+	<aacH7NmkOzZued0Y@pengutronix.de>
+	<20260304-graceful-sweet-bittern-98efdb@quoll>
+	<20260304100642.44d00b99@erd003.prtnl>
+	<4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,55 +75,129 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 2EECB1FE2C2
+X-Rspamd-Queue-Id: 9D0A21FE5F6
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[protonic.nl:s=202111];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270966-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[protonic.nl];
+	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270967-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[david@protonic.nl,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[protonic.nl:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[davidlaightlinux@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.0:email,nxp.com:url,protonic.nl:dkim,devicetree.org:url,erd003.prtnl:mid]
 X-Rspamd-Action: no action
 
-On Tue, 03 Mar 2026 13:27:07 +0000
-Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
+On Wed, 4 Mar 2026 10:49:06 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> On 04/03/2026 10:06, David Jander wrote:
+> > 
+> > Hi Krzysztof,
+> > 
+> > On Wed, 4 Mar 2026 09:05:11 +0100
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On Tue, Mar 03, 2026 at 05:10:20PM +0100, Oleksij Rempel wrote:  
+> >>> Hi Krzysztof and Rob,
+> >>>
+> >>> On Tue, Mar 03, 2026 at 08:40:55AM -0600, Rob Herring (Arm) wrote:    
+> >>>>>  .../devicetree/bindings/mfd/nxp,mc33978.yaml  | 114 ++++++++++++++++++
+> >>>>>  .../bindings/pinctrl/nxp,mc33978-pinctrl.yaml |  82 +++++++++++++
+> >>>>>  2 files changed, 196 insertions(+)
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,mc33978.yaml
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978-pinctrl.yaml
+> >>>>>     
+> >>>>
+> >>>> My bot found errors running 'make dt_binding_check' on your patch:
+> >>>>
+> >>>> yamllint warnings/errors:
+> >>>>
+> >>>> dtschema/dtc warnings/errors:
+> >>>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/nxp,mc33978.example.dtb: gpio@0 (nxp,mc33978): $nodename:0: 'gpio@0' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
+> >>>> 	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
+> >>>>     
+> >>>
+> >>> Folding the mux node into the parent as suggested [1] causes this error.
+> >>> Because the parent now has #mux-control-cells, the generic
+> >>> mux-controller.yaml forces the node name to be mux-controller. Since
+> >>> this chip is primarily a switch/GPIO controller, naming the parent SPI
+> >>> node mux-controller@0 is misleading.
+> >>>
+> >>> What is the preferred way to go here?    
+> >>
+> >> https://www.nxp.com/products/interfaces/multi-switch-detection-interface/22-i-o-msdi-programmable-current-analog-mux:MC33978
+> >>
+> >> Name of the mc33978 device is "programmable analog mux" and further
+> >> description says "analog multiplexer for reading analog inputs ", so I
+> >> don't find "mux-controller" a confusing name. It is EXACTLY a
+> >> mux, so mux-controller.  
+> > 
+> > Sorry to chime in here. I'm afraid the NXP description on that link you posted
+> > is a typo. It is not correct. This chip is primarily a "Switch Detection
+> > Interface", or in other wordt a switch input interface. Wee here for the same
+> > page for the MC34978, which is the exact same chip:
+> > 
+> > https://www.nxp.com/products/interfaces/multi-switch-detection-interface/switch-detection-interface-22-i-os-programmable-wetting-current-temp-sensor-3-3-v-5-0-v-spi:MC34978  
 > 
-> Add kstrntoull() function, which converts a string to an ULL with a max
-> character limit. The function is an alternative integer parsing function
-> that does not require a null-terminated string. It becomes a better option
-> over simple_strtoull() or kstrtoull() when parsing integers from a buffer
-> with custom delimiters without having to create temporary copies.
-> The function is consumed inside the implementation _kstrtoull(),
-> promoting reuse.
+> That's MC34978 and I commented on MC33978.
+> 
+> What is the primary function of MC33978 being described here as the base?
 
-If you've got custom delimiters use a function that returns a pointer
-to the character that terminated the conversion.
-They save you having to find the delimiter as well as taking a copy.
+The MC34978 and MC33978 are the exact same part (except for the temperature
+range). The fact that NXP has two different web-pages with two different
+descriptions of it certainly doesn't help, but you can also check the
+datasheet[1] description: "MC33978: 22-channel multiple switch detection
+interface with programmable wetting current"
 
-	David
+Further down in the description it says: "It also features a 24-to-1 analog
+multiplexer for reading inputs as analog."
+IMHO this makes it clear that this is NOT primarily a MUX.
 
+Actually, I doubt many users of this chip will use the analog MUX function at
+all since it has quite a few limitations that make it not very practical to
+use.
+
+The most fitting Linux framework for this chip's primary funtcion IMHO is
+pinctrl/gpio, but there are some caveats unfortunately.
+
+[1] https://www.nxp.com/docs/en/data-sheet/MC33978.pdf
+
+Best regards,
+
+> > It has an additional function that can be used as an analog MUX, but it is an
+> > extra feature and definitely NOT its primary function.
+> > 
+> > Not sure if this is relevant, but I fear there might be some confusion.
+> > 
+> > Best regards,
+> >   
+> >> Anyway if you want gpio, then please add a patch extending the pattern
+> >> in mux-controller.yaml to allow "gpio".
+> >>
+> >> Alternative, because it is rather a mux than a controller of a mux,
+> >> would be to call it just "mux" or "io-mux" (maybe the latter, since we
+> >> have "i2c-mux" in the spec) and allow that pattern to be in
+> >> mux-controller.
+
+
+-- 
+David Jander
 
