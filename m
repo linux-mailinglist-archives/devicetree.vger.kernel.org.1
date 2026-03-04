@@ -1,223 +1,201 @@
-Return-Path: <devicetree+bounces-271218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271219-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCquKdt/qGmYvAAAu9opvQ
-	(envelope-from <devicetree+bounces-271218-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 19:54:19 +0100
+	id OKVLLB2AqGmYvAAAu9opvQ
+	(envelope-from <devicetree+bounces-271219-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 19:55:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F846206AD6
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 19:54:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 125D2206AFB
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 19:55:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CE17830ECBF8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 18:50:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6627D30470D0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 18:52:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32F43D3301;
-	Wed,  4 Mar 2026 18:50:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571EE28504F;
+	Wed,  4 Mar 2026 18:52:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ixl5CFZI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QJWkbwba"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702AB3D75B1
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 18:50:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291853D34AA;
+	Wed,  4 Mar 2026 18:52:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772650229; cv=none; b=TbDNFNPxDKMBmzCTaUqlD1O2fbzwjwij5eOkRtNVMuS2ITgEYEjA1wWOHDYaDtiTW+PQNMUd5lX1q4/J9Pm2yXv2bTUqyHctyfY4n+JCWhSQ2LXUcqJNksEkYXiZV4D5LvQqsYX4YqchFYssNsN5ubJvVK8JCTFb/t2HWWK6Qbk=
+	t=1772650339; cv=none; b=O+isid8uTPdYtvO/fqSkQNOEQD2jo9J6GBepMZM2dXfu8QxmxUMiOrJBg+Vkc5zMQ8Gp5Yjk/nOE24ZKWBtY5UdPYUI5kCi1L0ITJOmZuae6AWl1A3VYVtRf5PuCuuulxgqruTX/gS4PqlvgMEhxk6Rzy5w31CJN/Ci2WB5Rg20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772650229; c=relaxed/simple;
-	bh=b5sg8UdiED+J1eixEpdPFv3QH4TXbgcQlHN5Nil/vQA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=LxbhLF4m/QpdsANPICul7e4TzeQRqIHy8cfWb+C2AXMdAmN9+Fz5H532vLgdYuYjz1AckMHz5+X/vJ+2MPXCumUVRNq8LIH5w/AQQJQFrYAuqVzXIfU2UrgCLRPGlaL7IvhWyc7JbG3PQuZxVtgHuxnPT1H09nLV4eD/XfdGll8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ixl5CFZI; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-38a33a542aeso2822961fa.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 10:50:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772650227; x=1773255027; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WZ0k0KuXTsc1BE5vPZGWauEJN+TnRKw9hy7+Z/cTVX4=;
-        b=Ixl5CFZINf40KMTDkATzJIN3dJDqVbdrNF1t/hXhA/K9hnYZPrd8Q6xXERe3aqiKiE
-         9KGdEWMl87HPA1kI/RcyAfJiPdSffcD1n/avuw1C2wOdg0o/MKUXATvfTLMBtdXmVqKK
-         SQ1Tsi6vR+2xjOJi/jFsQqMhuBVaJXl7HzVolXit0+5lWiqzPCTdIvC0fjqiz9meN5E/
-         Dg6xXN0n2hz7GifJ6ecAj3sG6cVHTKWsZfD7WrFN4GIhoPFI0aqnaWZMDdtbIdCD37+w
-         56hBflnu0CSfo8uXxGgMKAxqNVwz4R1322Dgk7fHt1UtiaVa10SpJLuXQMUB5+5Sc4sS
-         CAvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772650227; x=1773255027;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=WZ0k0KuXTsc1BE5vPZGWauEJN+TnRKw9hy7+Z/cTVX4=;
-        b=qHarlCmHO+Vk/fj6weD7R4j4bDKXUp1t5LMMb32gRwO7tuIbGuoAaKDH1UZ5mpaj3W
-         MH8ZsJVcO92sOKUWVLXSP9+79/CVXnt5vKS/dW8Hke4zV0u+BZ0BiFusd023uvE3ytQq
-         VcmejTqiVrVggB/1wfw5gxVJs+Tjjm1uZ18aH5+KpbyAQD8GSmuNtpmqyhpW4YaUZlGR
-         HSf+MnHNBFFv4Wiok9M+H3K5moJP9ktk4U2nQDBKJq4UBcWQBi2A0wJrf/A1sDGFqZRy
-         cInQ6+Cd/HQ8mXKivLwD8bJZaqHZX+9Stqm6svluYW8u+od0UIFRXrFfukYq+kZzr5Nl
-         k2Eg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPFOIwE3al7vc2DyHIYVEglLNdg+Roz73nJLa6U2tgfIo/C1qii8k8TgHyTd4+uiawMY7TivUexnw6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8Do7DO68NYfcjnM+tBidglm+/wQecGU+1OLmf8YWs5rgFcw8y
-	mleKibVEFY+ISfON71XlRUyK8a5umPhYnKUHG3vRV0HHZf7gvDHxZw4+5X9zkg==
-X-Gm-Gg: ATEYQzwEjj6GqPLOp5ySTmwrcD9yEtv2eUYNQivzwiwX7on46e+62cZPJ9dzyWKHIeQ
-	w+XwE+KYfTCLNshoV/xYc7OQ5/O07cI6Ht4f5abpQ12BmcFy2EMXy7N+TGlWgsmf0Lkxb0UPD+T
-	FyHDgmvCmgglKS7m2MrqL9C586zuUa/xYSMcDk0LJO3esVKHxHurUv9D+UCNiEZ4NzG6YKcUvfg
-	/IagK+BrBRsHQX8KBKN6jCejF1OveYCMB/1hGPv4MjLkwkNJXGv7FTSQAbQqORntQu0+P8v1kkd
-	64FZzpc1bH8p/xfp6Y/WP9BV4zmihPgsSk7TpBsnE7ac6o3/CZaQkxvTy+YV4DUrJ5GEAD8/Qmp
-	Pabiu8uRxMhWqD+eLRgpXi2M6iXEKgNlV4tetbL87JhWsOFbBmUe0C/UZMLKRz0GHs/20ORoJXZ
-	HKckY8B7WQUTEd
-X-Received: by 2002:a2e:bc05:0:b0:38a:519:f788 with SMTP id 38308e7fff4ca-38a2c58db91mr23750691fa.2.1772650226373;
-        Wed, 04 Mar 2026 10:50:26 -0800 (PST)
-Received: from xeon ([188.163.112.72])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-389f30179e9sm36636101fa.33.2026.03.04.10.50.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 10:50:25 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] media: i2c: mt9m114: add support for Aptina MI1040
-Date: Wed,  4 Mar 2026 20:50:01 +0200
-Message-ID: <20260304185001.82988-3-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260304185001.82988-1-clamor95@gmail.com>
-References: <20260304185001.82988-1-clamor95@gmail.com>
+	s=arc-20240116; t=1772650339; c=relaxed/simple;
+	bh=DDFFy501pyxspfWhkdcUxEKpUA/8TVxM3OGvXEIiwRo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o7pqeNBggfHX/Z0589+a+8XymWSc+6/QcPrGNIeZSwsrthNCxMZKIg6J5imGUhUS/NnXxZmgv7/Sed/WbG84BsSg0wcHTkDgBJH1TM5muaOYJD98WPK7mpF1WYDuhgHWu53YeJNH5sVtMU/nf6pXLg9SmwLYLy+Cc8J25Ggwl48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QJWkbwba; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A829BC4CEF7;
+	Wed,  4 Mar 2026 18:52:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772650338;
+	bh=DDFFy501pyxspfWhkdcUxEKpUA/8TVxM3OGvXEIiwRo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QJWkbwbacfYJo+IuwGLW6H5IhxxBfJC1lZTnSzdl1LXiWUZLlRdB4RIK47OyWVY3C
+	 UZ9YjjTC7VZgSNQejFfJzVjhqqOl5KpYM0hSTGCaZ7MZ0VdLgZba3dhh/eX4wT4zLC
+	 epTOMbEQOKHwcWKhbP01s9o1O2kJpEq6ja0aGC3rrUaYzILV2eGTgucK8vR4PFyGFJ
+	 +ZlVGry/WP8a2dTlk+PiB2AbhWPczTyqyrdvT6FGxXuMZHW/o3uDsGCc8+jsd4P42W
+	 NoPWys8q72nbXXNcaeE7aq+uy5wQ5l2nHpSZR6YRTJpPHgRPnJmZljA9G1RIEJUTDk
+	 VyiUoWcDgdwIA==
+Date: Wed, 4 Mar 2026 12:51:54 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: =?utf-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Gabriel Gonzales <semfault@disroot.org>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, Biswapriyo Nath <nathbappai@gmail.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v3 2/7] arm64: dts: qcom: sm6125-xiaomi-ginkgo: Correct
+ reserved memory ranges
+Message-ID: <xgcv6gcaw6xxelkafo23waz4sbw2cycas45qhzxkfhbeuukzbe@wwssuc44mp7y>
+References: <20260126-xiaomi-willow-v3-0-aad7b106c311@mainlining.org>
+ <20260126-xiaomi-willow-v3-2-aad7b106c311@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 3F846206AD6
+In-Reply-To: <20260126-xiaomi-willow-v3-2-aad7b106c311@mainlining.org>
+X-Rspamd-Queue-Id: 125D2206AFB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[ideasonboard.com,kernel.org,linux.intel.com,gmail.com];
+	TAGGED_FROM(0.00)[bounces-271219-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271218-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,disroot.org,intel.com,igalia.com,gmail.com,vger.kernel.org,lists.sr.ht,mainlining.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Slightly different version of MT9M114 camera module is used in a several
-devices like ASUS Nexus 7 (2012) or ASUS Transformer Prime TF201 and is
-called Aptina MI1040. The only difference found so far is lacking ability
-to poll STATE register during power on sequence, which causes driver to
-fail with time out error. Add state_standby_polling flag to diverge models
-and address quirk found in MI1040.
+On Mon, Jan 26, 2026 at 05:34:52PM +0100, Barnabás Czémán wrote:
+> The device was crashing on high memory load because the reserved memory
+> ranges was wrongly defined. Correct the ranges for avoid the crashes.
+> Change the ramoops memory range to match with the values from the recovery
+> to be able to get the results from the device.
+> 
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/media/i2c/mt9m114.c | 31 ++++++++++++++++++++++++++-----
- 1 file changed, 26 insertions(+), 5 deletions(-)
+FYI. If you add "memtest=1" to your kernel command line the kernel will
+sweep all memory at boot, which tends to flush out most such issues.
+Then you don't need to rely on "high memory load" for testing for such
+issues.
 
-diff --git a/drivers/media/i2c/mt9m114.c b/drivers/media/i2c/mt9m114.c
-index 16b0ace15813..e8f74bd11cd7 100644
---- a/drivers/media/i2c/mt9m114.c
-+++ b/drivers/media/i2c/mt9m114.c
-@@ -368,6 +368,10 @@
-  * Data Structures
-  */
- 
-+struct mt9m114_model_info {
-+	bool state_standby_polling;
-+};
-+
- enum mt9m114_format_flag {
- 	MT9M114_FMT_FLAG_PARALLEL = BIT(0),
- 	MT9M114_FMT_FLAG_CSI2 = BIT(1),
-@@ -417,6 +421,8 @@ struct mt9m114 {
- 
- 		struct v4l2_ctrl *tpg[4];
- 	} ifp;
-+
-+	const struct mt9m114_model_info *info;
- };
- 
- /* -----------------------------------------------------------------------------
-@@ -2284,9 +2290,11 @@ static int mt9m114_power_on(struct mt9m114 *sensor)
- 	 * reaches the standby mode (either initiated manually above in
- 	 * parallel mode, or automatically after reset in MIPI mode).
- 	 */
--	ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
--	if (ret < 0)
--		goto error_clock;
-+	if (sensor->info->state_standby_polling) {
-+		ret = mt9m114_poll_state(sensor, MT9M114_SYS_STATE_STANDBY);
-+		if (ret < 0)
-+			goto error_clock;
-+	}
- 
- 	return 0;
- 
-@@ -2532,6 +2540,10 @@ static int mt9m114_probe(struct i2c_client *client)
- 	if (ret < 0)
- 		return ret;
- 
-+	sensor->info = device_get_match_data(dev);
-+	if (!sensor->info)
-+		return -ENODEV;
-+
- 	/* Acquire clocks, GPIOs and regulators. */
- 	sensor->clk = devm_v4l2_sensor_clk_get(dev, NULL);
- 	if (IS_ERR(sensor->clk)) {
-@@ -2646,9 +2658,18 @@ static void mt9m114_remove(struct i2c_client *client)
- 	pm_runtime_set_suspended(dev);
- }
- 
-+static const struct mt9m114_model_info mt9m114_models_default = {
-+	.state_standby_polling = true,
-+};
-+
-+static const struct mt9m114_model_info mt9m114_models_aptina = {
-+	.state_standby_polling = false,
-+};
-+
- static const struct of_device_id mt9m114_of_ids[] = {
--	{ .compatible = "onnn,mt9m114" },
--	{ /* sentinel */ },
-+	{ .compatible = "onnn,mt9m114", .data = &mt9m114_models_default },
-+	{ .compatible = "aptina,mi1040", .data = &mt9m114_models_aptina },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, mt9m114_of_ids);
- 
--- 
-2.51.0
+Regards,
+Bjorn
 
+> Fixes: 9b1a6c925c88 ("arm64: dts: qcom: sm6125: Initial support for xiaomi-ginkgo")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts | 41 ++++++++++++++++-------
+>  1 file changed, 29 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+> index bf03226a6f85..d5e5abdb3b2f 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-ginkgo.dts
+> @@ -13,6 +13,12 @@
+>  #include "sm6125.dtsi"
+>  #include "pm6125.dtsi"
+>  
+> +/delete-node/ &adsp_pil_mem;
+> +/delete-node/ &cont_splash_mem;
+> +/delete-node/ &gpu_mem;
+> +/delete-node/ &ipa_fw_mem;
+> +/delete-node/ &ipa_gsi_mem;
+> +
+>  / {
+>  	model = "Xiaomi Redmi Note 8";
+>  	compatible = "xiaomi,ginkgo", "qcom,sm6125";
+> @@ -36,28 +42,39 @@ framebuffer0: framebuffer@5c000000 {
+>  	};
+>  
+>  	reserved-memory {
+> -		debug_mem: debug@ffb00000 {
+> -			reg = <0x0 0xffb00000 0x0 0xc0000>;
+> +		adsp_pil_mem: adsp_pil_mem@55300000 {
+> +			reg = <0x0 0x55300000 0x0 0x2200000>;
+>  			no-map;
+>  		};
+>  
+> -		last_log_mem: lastlog@ffbc0000 {
+> -			reg = <0x0 0xffbc0000 0x0 0x80000>;
+> +		ipa_fw_mem: ipa_fw_mem@57500000 {
+> +			reg = <0x0 0x57500000 0x0 0x10000>;
+>  			no-map;
+>  		};
+>  
+> -		pstore_mem: ramoops@ffc00000 {
+> -			compatible = "ramoops";
+> -			reg = <0x0 0xffc40000 0x0 0xc0000>;
+> -			record-size = <0x1000>;
+> -			console-size = <0x40000>;
+> -			pmsg-size = <0x20000>;
+> +		ipa_gsi_mem: ipa_gsi_mem@57510000 {
+> +			reg = <0x0 0x57510000 0x0 0x5000>;
+> +			no-map;
+>  		};
+>  
+> -		cmdline_mem: memory@ffd00000 {
+> -			reg = <0x0 0xffd40000 0x0 0x1000>;
+> +		gpu_mem: gpu_mem@57515000 {
+> +			reg = <0x0 0x57515000 0x0 0x2000>;
+>  			no-map;
+>  		};
+> +
+> +		framebuffer@5c000000 {
+> +			reg = <0x0 0x5c000000 0x0 (2340 * 1080 * 4)>;
+> +			no-map;
+> +		};
+> +
+> +		/* Matching with recovery values to be able to get the results. */
+> +		ramoops@61600000 {
+> +			compatible = "ramoops";
+> +			reg = <0x0 0x61600000 0x0 0x400000>;
+> +			record-size = <0x80000>;
+> +			pmsg-size = <0x200000>;
+> +			console-size = <0x100000>;
+> +		};
+>  	};
+>  
+>  	extcon_usb: extcon-usb {
+> 
+> -- 
+> 2.52.0
+> 
 
