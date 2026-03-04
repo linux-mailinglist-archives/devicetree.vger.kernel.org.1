@@ -1,189 +1,210 @@
-Return-Path: <devicetree+bounces-271010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271012-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0D5jKWwiqGl3ogAAu9opvQ
-	(envelope-from <devicetree+bounces-271010-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:15:40 +0100
+	id 8DjRGSojqGl3ogAAu9opvQ
+	(envelope-from <devicetree+bounces-271012-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:18:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19A981FF8EA
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:15:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26A141FF961
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:18:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9F2103015A7E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:15:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7C380301388D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:18:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF253372699;
-	Wed,  4 Mar 2026 12:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A29FB3321D8;
+	Wed,  4 Mar 2026 12:18:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="FU8xeBq9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp15.bhosted.nl (smtp15.bhosted.nl [94.124.121.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A58636C9FA;
-	Wed,  4 Mar 2026 12:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E55372699
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 12:18:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772626523; cv=none; b=e1ucGl3w5BOku4wMPGZZhNiOy0I8YtkJOIvuIZ6f+aPzfTlNqY+80pZYVMPo/bhauJqO2jI2X6omDAUOMz3iBdCMUPwuv/OfGGuQuRCMSVV8j2mpN/yJ74STqWBsIEkHeNzrOLIKKqchvlJHM6O1EuaFTsgXkqnhtxkCVCwUXUw=
+	t=1772626726; cv=none; b=YTxGNHzmvqJT3b0Yl2q/ynrE6M+AmxqMbNNPvFsAlcRI27oND1IrJdD8LezJQQG+ZG4HLc2kR75GTOGNb6VnMgDRe5b6Y2y5h8bx9NKs06qeDbTRcD2oOzMk/rzX7dwmT0hLIt9mumHGNhH0c/xvvzLOawaR3vFdcNBBlPebnZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772626523; c=relaxed/simple;
-	bh=QNXVSOW9tFdALkmjVYn4GHOL44CBLZoDEykweptmIyM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hSE3yWWJrXHwsuaiAWgeUnRu/yX1O1XyCcSmss5T0hXDZMdJcMR95O/XAfSYOCObN1NuUD5/bLwKSPAFPxtos/uvBAg+77RQohy1tukoGN5e+erMXzqWq04S8YT/RaxC9US8npzVZI9IpxYXy0dOot9xQ1nSS7kjWdZw+2vnedA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.99)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1vxl84-000000002yZ-1O0K;
-	Wed, 04 Mar 2026 12:15:04 +0000
-Date: Wed, 4 Mar 2026 12:14:52 +0000
-From: Daniel Golle <daniel@makrotopia.org>
+	s=arc-20240116; t=1772626726; c=relaxed/simple;
+	bh=BoyqZOwzv86J0T7f0ecaThsJ7YcnOqzNw6EzgiMmm/0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jRIr/QX3vj1FJOnaP91DXLTD24OLl5vbrvBjVp2M3ng5QCicT1P9SQQlPGcX/mzWSKbvRIJDSg07dd+pptKPIIOlPS9jjJ4SxKcYU+sxZtKmjCYAEBEDpt0gWRCn/GGl3PmqUpi3nhWMMJw3QWzYc7U4hyfTezUPducu0KWVdkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=FU8xeBq9; arc=none smtp.client-ip=94.124.121.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=WOiupv8j7lDIDR3re2KbAgeXq9V22995QNDUCNKWpwI=;
+	b=FU8xeBq9APHA1ar3fILKGc791H54zUAJNuHAysWcC4aaoTWVmq5rKII6QZIyh+h9FOOOSosObXfJd
+	 osyVOHKzoGR+EPGMOAy++pXo5ZcRXvVteDVD1Bj7OM5/w1dKhqfVAU/TkDpfLvQdAnN+RSXGEhNrPz
+	 nzj5OqyFZnOsGDRwP6Qf5rlcpteRMSGxHqI30YqucDFb1ZnLTMgi1ThRTGyI9nkZktpNWz0PfBay79
+	 LzDkG8Ar2VGgZplEg5/ae8PNkk4P65ZmJe4CfCDznpEjqy7ShXZEluL8a5gXAnF9XQW7TvZ2S4dmML
+	 80HmB0eEOuhEoIcxEApGDTjav0+AEfg==
+X-MSG-ID: 1e832110-17c4-11f1-bcce-00505681446f
+Date: Wed, 4 Mar 2026 13:17:31 +0100
+From: David Jander <david@protonic.nl>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: rng: mtk-rng: add SMC-based TRNG
- variants
-Message-ID: <aagiPIgoosVqsA0t@makrotopia.org>
-References: <04622e0bc917aed4145a9a3b50b61f343fc89312.1772585683.git.daniel@makrotopia.org>
- <20260304-defiant-echidna-of-examination-b1e798@quoll>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, "Rob Herring (Arm)"
+ <robh@kernel.org>, devicetree@vger.kernel.org, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin
+ <peda@axentia.se>, kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, Guenter Roeck
+ <linux@roeck-us.net>, Linus Walleij <linusw@kernel.org>,
+ linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
+Message-ID: <20260304131731.4d54f051@erd003.prtnl>
+In-Reply-To: <98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
+References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
+	<20260303133947.1123575-2-o.rempel@pengutronix.de>
+	<177254885509.3251575.14819823286886805862.robh@kernel.org>
+	<aacH7NmkOzZued0Y@pengutronix.de>
+	<20260304-graceful-sweet-bittern-98efdb@quoll>
+	<20260304100642.44d00b99@erd003.prtnl>
+	<4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
+	<20260304112500.4766f21b@erd003.prtnl>
+	<98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260304-defiant-echidna-of-examination-b1e798@quoll>
-X-Rspamd-Queue-Id: 19A981FF8EA
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 26A141FF961
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[protonic.nl:s=202111];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271010-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[selenic.com,gondor.apana.org.au,kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[protonic.nl];
+	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271012-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	DMARC_NA(0.00)[makrotopia.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.943];
+	FROM_NEQ_ENVFROM(0.00)[david@protonic.nl,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[protonic.nl:+];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 12:34:45PM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Mar 04, 2026 at 12:55:27AM +0000, Daniel Golle wrote:
-> > diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.yaml b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> > index 7e8dc62e5d3a6..6074758552ac3 100644
-> > --- a/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> > +++ b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> > @@ -11,12 +11,15 @@ maintainers:
-> >  
-> >  properties:
-> >    $nodename:
-> > -    pattern: "^rng@[0-9a-f]+$"
-> > +    pattern: "^rng(@[0-9a-f]+)?$"
-> >  
-> >    compatible:
-> >      oneOf:
-> >        - enum:
-> >            - mediatek,mt7623-rng
-> > +          - mediatek,mt7981-rng
-> > +          - mediatek,mt7987-rng
-> > +          - mediatek,mt7988-rng
+On Wed, 4 Mar 2026 12:41:37 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+> On 04/03/2026 11:25, David Jander wrote:
+> > On Wed, 4 Mar 2026 10:49:06 +0100
+> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >   
+> >> On 04/03/2026 10:06, David Jander wrote:  
+> >>>
+> >>> Hi Krzysztof,
+> >>>
+> >>> On Wed, 4 Mar 2026 09:05:11 +0100
+> >>> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >>>     
+> >>>> On Tue, Mar 03, 2026 at 05:10:20PM +0100, Oleksij Rempel wrote:    
+> >>>>> Hi Krzysztof and Rob,
+> >>>>>
+> >>>>> On Tue, Mar 03, 2026 at 08:40:55AM -0600, Rob Herring (Arm) wrote:      
+> >>>>>>>  .../devicetree/bindings/mfd/nxp,mc33978.yaml  | 114 ++++++++++++++++++
+> >>>>>>>  .../bindings/pinctrl/nxp,mc33978-pinctrl.yaml |  82 +++++++++++++
+> >>>>>>>  2 files changed, 196 insertions(+)
+> >>>>>>>  create mode 100644 Documentation/devicetree/bindings/mfd/nxp,mc33978.yaml
+> >>>>>>>  create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978-pinctrl.yaml
+> >>>>>>>       
+> >>>>>>
+> >>>>>> My bot found errors running 'make dt_binding_check' on your patch:
+> >>>>>>
+> >>>>>> yamllint warnings/errors:
+> >>>>>>
+> >>>>>> dtschema/dtc warnings/errors:
+> >>>>>> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/nxp,mc33978.example.dtb: gpio@0 (nxp,mc33978): $nodename:0: 'gpio@0' does not match '^mux-controller(@.*|-([0-9]|[1-9][0-9]+))?$'
+> >>>>>> 	from schema $id: http://devicetree.org/schemas/mux/mux-controller.yaml
+> >>>>>>       
+> >>>>>
+> >>>>> Folding the mux node into the parent as suggested [1] causes this error.
+> >>>>> Because the parent now has #mux-control-cells, the generic
+> >>>>> mux-controller.yaml forces the node name to be mux-controller. Since
+> >>>>> this chip is primarily a switch/GPIO controller, naming the parent SPI
+> >>>>> node mux-controller@0 is misleading.
+> >>>>>
+> >>>>> What is the preferred way to go here?      
+> >>>>
+> >>>> https://www.nxp.com/products/interfaces/multi-switch-detection-interface/22-i-o-msdi-programmable-current-analog-mux:MC33978
+> >>>>
+> >>>> Name of the mc33978 device is "programmable analog mux" and further
+> >>>> description says "analog multiplexer for reading analog inputs ", so I
+> >>>> don't find "mux-controller" a confusing name. It is EXACTLY a
+> >>>> mux, so mux-controller.    
+> >>>
+> >>> Sorry to chime in here. I'm afraid the NXP description on that link you posted
+> >>> is a typo. It is not correct. This chip is primarily a "Switch Detection
+> >>> Interface", or in other wordt a switch input interface. Wee here for the same
+> >>> page for the MC34978, which is the exact same chip:
+> >>>
+> >>> https://www.nxp.com/products/interfaces/multi-switch-detection-interface/switch-detection-interface-22-i-os-programmable-wetting-current-temp-sensor-3-3-v-5-0-v-spi:MC34978    
+> >>
+> >> That's MC34978 and I commented on MC33978.
+> >>
+> >> What is the primary function of MC33978 being described here as the base?  
+> > 
+> > The MC34978 and MC33978 are the exact same part (except for the temperature
+> > range). The fact that NXP has two different web-pages with two different
+> > descriptions of it certainly doesn't help, but you can also check the
+> > datasheet[1] description: "MC33978: 22-channel multiple switch detection
+> > interface with programmable wetting current"
+> > 
+> > Further down in the description it says: "It also features a 24-to-1 analog
+> > multiplexer for reading inputs as analog."
+> > IMHO this makes it clear that this is NOT primarily a MUX.
+> > 
+> > Actually, I doubt many users of this chip will use the analog MUX function at
+> > all since it has quite a few limitations that make it not very practical to
+> > use.
+> > 
+> > The most fitting Linux framework for this chip's primary funtcion IMHO is
+> > pinctrl/gpio, but there are some caveats unfortunately.
+> > 
+> > [1] https://www.nxp.com/docs/en/data-sheet/MC33978.pdf  
 > 
-> Not compatible with each other?
+> OK, thanks for the explanation, but then primary function is not GPIO
+> either, because nothing on linked page says it is a generic purpose IO.
+> It says it is switch detection. Maybe better generic name is then
+> "pinctrl", thus also "pinctrl" child should be folded into the parent...
+> but switch detection is also not a pinctrl. :/
 
-MT7623 is the original hardware first supported in Linux. It can be
-accessed via MMIO and requires the clock to be enabled by Linux.
+I agree. This chip is indeed not very clear-cut with respect to the correct
+Linux subsystem. It could also be an input device if you view it strictly from
+the "switches" standpoint. I thought about this also, but figured that it
+would be more flexible to just view it as a pinctrl device, which could always
+be used in combination with something like gpio-keys.c if one really wanted
+the input functionality. For context, our use-case is primarily for industrial
+control reading digital sensors such as mechanical switches or industrial
+optical sensors, and that is AFAIK the main application for this chip anyway.
+For this the gpio UAPI is a good match.
 
-Starting with MT7981 and followed by MT7988 and MT7987 it is
-technically the same hardware, but on those ARMv8 SoCs TF-A assigns
-the MMIO range of the TRNG to only be accessible from within the
-secure/trusted land, and TF-A provides a (vendor-specific) API
-allowing non-trusted land (ie. Linux) to acquire random bytes.
+Best regards,
 
-With MT7986 they made the unlucky choice to initially allow direct
-access to the MMIO range, but later updates to TF-A then also locked
-it to secure/trusted land, offering the same API as on the newer SoCs.
-So for MT7986 the driver has to try and figure out which convention to
-use.
-
-
-> 
-> >        - items:
-> >            - enum:
-> >                - mediatek,mt7622-rng
-> > @@ -38,9 +41,22 @@ properties:
-> >  
-> >  required:
-> >    - compatible
-> > -  - reg
-> > -  - clocks
-> > -  - clock-names
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          not:
-> 
-> Use rather positive list, so drop "not:" and use cntains for only one
-> compatible - mediatek,mt7623-rng.
-
-Ack.
-
-> 
-> > +            contains:
-> > +              enum:
-> > +                - mediatek,mt7981-rng
-> > +                - mediatek,mt7987-rng
-> > +                - mediatek,mt7988-rng
-> > +    then:
-> > +      required:
-> > +        - reg
-> > +        - clocks
-> > +        - clock-names
-> >  
-> >  additionalProperties: false
-> >  
-> > @@ -53,3 +69,7 @@ examples:
-> >              clocks = <&infracfg CLK_INFRA_TRNG>;
-> >              clock-names = "rng";
-> >      };
-> > +  - |
-> > +    rng {
-> > +            compatible = "mediatek,mt7981-rng";
-> 
-> Use four spaces for indentation.
-
-Oh sorry, I knew that actually but forgot...
+-- 
+David Jander
 
 
