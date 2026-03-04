@@ -1,551 +1,326 @@
-Return-Path: <devicetree+bounces-270960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wEBsFSMDqGkRnQAAu9opvQ
-	(envelope-from <devicetree+bounces-270960-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:02:11 +0100
+	id kBFJC0cDqGkRnQAAu9opvQ
+	(envelope-from <devicetree+bounces-270961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:02:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CEA31FE075
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:02:10 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2971FE09A
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 11:02:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D67153031D94
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 09:59:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EC1C130391C7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 10:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF1639EF32;
-	Wed,  4 Mar 2026 09:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A223939F18A;
+	Wed,  4 Mar 2026 10:02:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M9HjhNE4"
+	dkim=pass (2048-bit key) header.d=cadence.com header.i=@cadence.com header.b="ccJHxxtG";
+	dkim=pass (2048-bit key) header.d=cadence.com header.i=@cadence.com header.b="R9LclucM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mx0a-0014ca01.pphosted.com (mx0b-0014ca01.pphosted.com [208.86.201.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2AE5371886
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 09:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772618354; cv=none; b=X4g9pPbgWyt/zDx1JhJFl9Yi3PTtAeN+Qm+UAcHU+qcB2/MCTIPc0NMkYMkIYTrIsc7K+5a3hTA+uA71VXVHSOTzw+G9wttl+qPFDDzrksD4IuwtbM+4LJbcbga98+c5VRiY6BdwhqPl4USaFpIFOOx89Vlx7x+onivdxWaTh0w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772618354; c=relaxed/simple;
-	bh=Gfd7B7ql+ueW1elwqPAFE3oydJVnAT3ypUR8/SwNJRU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cru2052Rs350H93X+yM1FHVpOjjYagj1F9rU16GHBVeOr0oEz6mvWe30vA/CJY2AALZkCb38NWIX4iJKF+9oVcL35y377u3wvyeL81h9uWCkKUNIswdN+GfLoSwTAYcqiFsF8fF3yIktiJmxWBhYl95KmMZZElJE6tq6kTtdH7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M9HjhNE4; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 01737C143D8;
-	Wed,  4 Mar 2026 09:59:22 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D740A5FF5C;
-	Wed,  4 Mar 2026 09:59:03 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1F1711036977B;
-	Wed,  4 Mar 2026 10:58:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1772618342; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:content-language:in-reply-to:references;
-	bh=jO+WMNA5FIO5l4TT7PRcI+iwxq8dA48cn1PI5SmWFxo=;
-	b=M9HjhNE4NX99Pp/8LSFYR614KbD7xC2Fvz0+5w/UQb3lj5scvXgEZgZw/g3bbbvit47XI0
-	exNuboXwikEw0/jPcMnLwSkN1jvnn0HFIqgN3VjXg7gf44IHRCplX2Q7YEwIkRuEBuo01Y
-	e5xTSuzEm62hTHQs+mdOXVsIG+WMaHpvDFeQrP8dPT5vSnOiggRMeQwXqj+0pUYbF9e75X
-	sVrUbac9IHSBestzh8n24rGKOf1cNXIDbZgkKktAkFyL33A0SU+g3QBccajkjHw6iAURWX
-	N4+F8hx9qk/eMVtZzgg5Nj4hzLtTF82ftug8e2uc5vaAFfeoyQM60t44fJxd5Q==
-Message-ID: <32dd938b-2693-4efb-b70b-f713fbd8fefd@bootlin.com>
-Date: Wed, 4 Mar 2026 10:58:53 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032DC39479F;
+	Wed,  4 Mar 2026 10:02:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=208.86.201.193
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772618554; cv=fail; b=ZaMBWmP2wSEWpbIftvIoYz+SBbtTWIMKe7UJe650xugfNJdo3N/6CgO52EgFaZ8E3KNdr2dptMqfDJ1kU8EczwwsCP2K+B7gbttvsPqdQpNdi/KSdYlptOZnKOmZkjhpAs4zzXTzQwr/vKisg++h+26ZGCq1uKQ/xFT0qkk1puo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772618554; c=relaxed/simple;
+	bh=PQrfR+3vcus1vvOdSl23+17ZeGlCjFYiocVcVvAM8D8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=inOX42ggIwpK0Eqbe2WvYB3l2NsGX4LQWdHJTX+hWj9bDhRDsXsv0HukWyG4GyrXBH7bkWC5jFkAPjcNQd0iateZeAm+anYKr5UUjLJdLalll98/cnN8z+x6kFqNqdtIEKnY2bCHrl9GQcE3Z6PU+XVo3ZBNDwTMF6LrT7DZ31I=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cadence.com; spf=pass smtp.mailfrom=cadence.com; dkim=pass (2048-bit key) header.d=cadence.com header.i=@cadence.com header.b=ccJHxxtG; dkim=pass (2048-bit key) header.d=cadence.com header.i=@cadence.com header.b=R9LclucM; arc=fail smtp.client-ip=208.86.201.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=cadence.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cadence.com
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+	by mx0b-0014ca01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6247dIGl940256;
+	Wed, 4 Mar 2026 02:02:11 -0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=proofpoint;
+	 bh=PQrfR+3vcus1vvOdSl23+17ZeGlCjFYiocVcVvAM8D8=; b=ccJHxxtG1gP8
+	CngtRu01ihx2CbgnsKw4ApIx3FN6vuJyv6DvVwp6v1xULuQzEvd7sjOw/isqkGM3
+	LeX97PifJLCSRtjGhZrojQNtpzOLi560sSv50EXbAm1dHjCgT7K99ThVEHl+/AZb
+	8iRVXQGEPhT8SsX1famcx9CUFkLuMe6mn+z1HA2EdnPGK9O+H0xJWLWe2eXvb0lG
+	+7OmpcXGafxmgEYAXD6ro4zatzPPWeKAh2FyfrUEKOU5PhidYpKrQB0MVPLo84eM
+	KmpV8jpj6dxcwxtadtqOdUdMAw0sLLDbkvixnTRwnSTRrGaX9rYt06mg3+Gjp2Ap
+	7GLfy1kzvw==
+Received: from sj2pr03cu001.outbound.protection.outlook.com (mail-westusazon11012068.outbound.protection.outlook.com [52.101.43.68])
+	by mx0b-0014ca01.pphosted.com (PPS) with ESMTPS id 4cp8ksadak-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 04 Mar 2026 02:02:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UIBqtGyfQgqfm8JXJ40CsZDycn36rimdyg8Jx27tdZjX+Tp2fZPwkaf25lrgqN90irsHC0RSzyZpR7WeT0AV+nN6sqTYF/lP3MetqKd6ZpFEpgckliBgFa9LB7fB06hJxgBTFQXGlryTBrqhH4GXqt4v3zsk4XBe8BJYB1xSpl+LCyeyMYUeY3qalro0EHJWwN+TRXuiEqCyOct9ZTa3HmRvHrBniBcDiU/bFh0W+HX6W0ozL/zdyZroJgXLEIUhXZ3Fk9IjlpN2wEz82tp8MY+3X416nSrql65K8gwo/WzZNdc+9Rgstfxc0qUr2b80CUsSdQ38ZSV7FzzqBHEnAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PQrfR+3vcus1vvOdSl23+17ZeGlCjFYiocVcVvAM8D8=;
+ b=LGVJnsFAeAT/wpbMu01KjvqiVTgoc7xn56uzGywqlESTwVXYuedQz6vHLcZEi1hsjnhaDURwC84omaxl40aQXiBD4L5NNskK+ZRWaFN0OkXd7KFldVd4rzRnL7ko5YFSlTAWxmvW118HEn3n/NQdne2K6iATD4kwRqFxtwc0/WeuhAD9vOskETY9CJETcdttT8EyjgvxXOCHjuyMIleUaQIQPiazECPV5z6nJ59yXvMy2muftPrmuapBjfHwPsu4UOSw3hgJo5zciqYamUUhUwBX1K7hDOnvkcAUPXPHp0zfS5LyQcWAJvEccDaJs7phy4B8dcv3wiAW4YmnKiW91w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cadence.com; dmarc=pass action=none header.from=cadence.com;
+ dkim=pass header.d=cadence.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PQrfR+3vcus1vvOdSl23+17ZeGlCjFYiocVcVvAM8D8=;
+ b=R9LclucM8whUYMavXkH9ZzgyJzFFDR9ZP6mbU96RK6SrycXVJUuCymHalAbmY4SwXsAk2zWEh5nc4jRH0Fi9r2aJ7NGQq85RaVkSwatcEbcZOo7d9OgZImPYbXk+7mqmLpnF7gPpmirK5fghUg2e43vDm6xjtFCT2+4s8rBZA6R0qvwOVevkKUZ9jieMdVlxZIpoELj56/l9NCchyETJD44UvGXx2CJ2Mn3KugsC14HnwoDiVLI2knB1Jeh9v9p+Tj0tAYk4q11VkBJF77lDhZBgV0V8UwS5i6gizWKVyCASsq0N2ovNBoZDOHkQ6B3oc5xQmtHT0MW+oO80EPw7jw==
+Received: from PH7PR07MB9538.namprd07.prod.outlook.com (2603:10b6:510:203::19)
+ by PH7PR07MB9676.namprd07.prod.outlook.com (2603:10b6:510:2b3::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Wed, 4 Mar
+ 2026 10:02:08 +0000
+Received: from PH7PR07MB9538.namprd07.prod.outlook.com
+ ([fe80::9088:4354:91a3:3bbe]) by PH7PR07MB9538.namprd07.prod.outlook.com
+ ([fe80::9088:4354:91a3:3bbe%7]) with mapi id 15.20.9654.022; Wed, 4 Mar 2026
+ 10:02:08 +0000
+From: Pawel Laszczak <pawell@cadence.com>
+To: Peter Chen <peter.chen@cixtech.com>, Krzysztof Kozlowski <krzk@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "rogerq@kernel.org" <rogerq@kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org"
+	<linux-usb@vger.kernel.org>,
+        "cix-kernel-upstream@cixtech.com"
+	<cix-kernel-upstream@cixtech.com>
+Subject: RE: [PATCH 2/2] dt-bindings: usb: cdns,usb3: Add support for USBSSP
+Thread-Topic: [PATCH 2/2] dt-bindings: usb: cdns,usb3: Add support for USBSSP
+Thread-Index: AQHcqfEzqq3AzishPkyu47OHwJ3jnrWa2FeAgAAfqICAAAGdgIAAGbMAgAMTr8A=
+Date: Wed, 4 Mar 2026 10:02:07 +0000
+Message-ID:
+ <PH7PR07MB9538DCBF95C0C77D150E2D4BDD7CA@PH7PR07MB9538.namprd07.prod.outlook.com>
+References: <20260302030339.324196-1-peter.chen@cixtech.com>
+ <20260302030339.324196-3-peter.chen@cixtech.com>
+ <20260302-vengeful-delicate-macaw-e8dc8c@quoll>
+ <aaVWlfMPSZgy55Cc@nchen-desktop>
+ <81c86ce7-0c55-4c2b-8956-cea4c63351cb@kernel.org>
+ <aaVtfpY1waI8yQOf@nchen-desktop>
+In-Reply-To: <aaVtfpY1waI8yQOf@nchen-desktop>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+x-dg-rorf: true
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR07MB9538:EE_|PH7PR07MB9676:EE_
+x-ms-office365-filtering-correlation-id: 3c86d555-8e0a-48be-2a40-08de79d518b8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700021;
+x-microsoft-antispam-message-info:
+ B4tKU9NLACCwP4Za6sMFJhoBPVbCqRlf69Tno9aAMIGSATkVjDqtOlDGr76HtOuQ04IZQP2ColHSvNYKPSakEYJScFvVS7ta+kYUqnld3eYnxm21SLopUevpJMt7O/TSAEyHElxeewC9xw45ZrR+INKLxIsKsb3jy/RZQvIZDi/shypcbmS09VVcQBwYsfuF+F6gavluG5C6i6ZBz31eziS1gWNctOZoKJHpQVxWnzih7byhZ5t+M8af8i5rwm6Na0KBvxa2SujzQzoNTNVm7xge8ZVYEMNZU4TZe5Anb/t41aIBse+SGnEfQ+ZCU0vY8UcaEHNeFoY3HO2WnJ7lFCKYxVPEUEvLLVk/lSL19l7MOu+oBRhBWo9mB8eMB2CnPsKy8anboJOCXayNiZE9Txd9ZZOI3wtsZ+wN8lWwHwf1hu7I8L30KtYmR48YcOCtl/7FZfRdneoI0tGdNFy+kPg6S03Awixt1aaZ4aSOYbHfEZ5EB/jsPrVwP8itPLjzaGThzg/ZZivOTpkFNdmVufbpG4KMNOKGIvnwrASUC4jHPYujKnIezEBRf7uVN2bHK31hDMnKR5joqRoNah6bPTJfu15JRLGqlDh8pQHbYtQFJB+neqIcmEY7H/cmAI7USJzexa6Li82eeUltrg3uZSUk56FrcTpAT3r7r7Nes8nNOOi6G9m9JA3g1RiM/Yqxm6uzjRcp5UJ8wK2OfPYjfvuXKabGHpIgiUFTTrwo1Ot4a2TCDrRAFSrGxGEMEm3pocM5G2SEmJkflv0Ux00SGZMguD89vPikxuyK3BJ4KeA=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR07MB9538.namprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?UTBnYkI5ajJiQ29hNndiUk03eitiVWpZa0xPaTBiTEZYcy9VbFBoWkVTa3pH?=
+ =?utf-8?B?WnRVQ2pIdlFYV3orQTNzZVZqT1N0RzBJS0MzMXA1emh0a0oxR0VFYXcvMjd4?=
+ =?utf-8?B?aDhQMXFxeHRiYXNYSmR3WkUrb0FENEsrWGlsV1lXd3lFMGgwNmNlZmNvRnNG?=
+ =?utf-8?B?QVprNVdXUm5mOEJJWDJ4OWN5QVF6N0ZWVHZMZjdNaUtwR2xNQjBSZmZJUEhp?=
+ =?utf-8?B?dnJwUXdaYmQzNkJxNFB3ZW0zczMrUkNJQjVqSktQRk9PSm01d3RGekY1a21V?=
+ =?utf-8?B?S1BnT1BaaEQ1dUhyT2h5OFg5TGc4dzNZK21yQVJlQVRTUExtWnE2eWNBMmE3?=
+ =?utf-8?B?QWU0MjYzQU9nZk5CeGYrTnhhQjJZeE0zVExpZTVlQVZkcXk1UHRWZit0K0Nh?=
+ =?utf-8?B?bjZqYnU1OXNLTTE1OE1CUzJTblRjWGE2cFdVTUh2U0tMc2J0bTBKaU1EUnAw?=
+ =?utf-8?B?R0gzbGZ5SXd0NVh0QWgxanBCNmFWU25qTUl6Yk04dFNTUWZiQjZlVHZNTlhH?=
+ =?utf-8?B?M21YTTYzQ2ZuVkhFUmdNdHdMYVJMQVR6ME9mVTZoaXlHQlUzWERROUVRV0pB?=
+ =?utf-8?B?WkpUckJGaFVtZTNYUHozVHhEM2dQWEw4c28zZy9ZMHROY3pHbHJzVGxrUDFC?=
+ =?utf-8?B?VkVqTVdSUzFHY201TXlUUU4vdUhNcGU3MzFES1prMU02a0dRNlFVb3FSekhu?=
+ =?utf-8?B?V3hDMkE5ZjljcDhwY1pxYjFqWjMvWlRTWjdxTkZvVk1ackttK2NHcUh4amIr?=
+ =?utf-8?B?eTVsRGZyc3hTRTlBZ1FZRi8rWGVIZkFLYTVSSmV6L1RDemFBMTV5Y3pzVHlz?=
+ =?utf-8?B?MUJPN3JXL2x5MlpLa29kNU5XVlJkWU5iRG9FWlE4M2RuemV5N2lKbVRtSTVi?=
+ =?utf-8?B?cldZakFvMGZVZ1lNa0MwK3VwNzY3NDU1TldWNXJvaWRoTCt0eUJPRmQ5a0JU?=
+ =?utf-8?B?YmdsREFpRm5rQm8wWnBsYzVuWHBGQ29rQTlKcnhBQlFKYytMWkhtbmlpM1JG?=
+ =?utf-8?B?MktRNlJlNktXMzhIeTZ5MFd0d0F6WCt4VzhCbzEwT1ZYWTYzQjR0ZEZhV25T?=
+ =?utf-8?B?S1J1bkZCd2l5WlpqaDdUM29sbGNTdTNESXZaQmlvTHVYQ3RvbUtZRWFDdzdT?=
+ =?utf-8?B?cUlJdzJSWXRGekg1VHhsa012bnFvTTRrY1dFKzZhcW5hYWpQL0E5KzJJQzZK?=
+ =?utf-8?B?OWkyOWNqV1dUc2lkdVJIUkI1ZG5JaDBRNkZhWmZ5YjBjMisreVJXdk5jb1A4?=
+ =?utf-8?B?RW9LVzBOdHQ1WlBqWFZ6V0NQZnpjUXpZTFN1NXRzWTZwTm1VVGpWQklXbW1v?=
+ =?utf-8?B?bFh1eTNzV0VHNjBTU0l0Y2FLRVNYajUwcUJFd290Y1prVlI5NzU2UTJMVDBi?=
+ =?utf-8?B?RTE0SWtIRzRza2R4SGxNanA0cEtRRzMvTGdPWTB2c3EydEJuVEhVUElhNEZn?=
+ =?utf-8?B?eFNyc2ZxbVdSUUE3dFhTZWQ4S3lSRHlWb2h6dmNZejc0MnBKcG0yRldyeDMw?=
+ =?utf-8?B?eDBtZmFJL3BmSzJBNk5oMjFEQm1GTDdJRHhidk41Q1ZySWZHM1NDZXV0ZGVI?=
+ =?utf-8?B?L2F4dXg2UnZ5bjNxUTBhVFQreHFYeURzcmdXZGdUNjJScFcrTDhMVFV3M3NJ?=
+ =?utf-8?B?VnBQTUdyVDVtMmhCaHRQc2RZZXJtRlpaOTl6RkFTUElNekV6WkdLVkRKM3hE?=
+ =?utf-8?B?WlVOSWt3THVNd2gzU0hnRkV6ZnNpRStVOXNmNHdwNWJBKzIzWndWVEhicGRZ?=
+ =?utf-8?B?TDNnTVhzN1pPbU5rS1lCaWFXa3hrbCtwSTBNaHllTnYxT3Q0ME4vSHUyUE9q?=
+ =?utf-8?B?MUxhdnpwNmltWVkyVmtkb3JHVjFoT3ZmaXdRLzhDUjhlSzVPL2lnU3hqVHZl?=
+ =?utf-8?B?Q2dFSEhuR0wyQm1wZ1dxWUFOOGhVY1grYlBmZ2Fsa2dRTHRTb21rTmlGeGZP?=
+ =?utf-8?B?azN3T09ScDUwSHRSUVk5QUZOT01rdHBOK1hkNGRPZE9BVXdER2hyTlZ0WjVB?=
+ =?utf-8?B?TlBjTlc0cUVHYTBPL2VPa1FsOFJ1ZUFjYmZTU1dLWjdzaG9FbWtqb1Z1WkM0?=
+ =?utf-8?B?VlRnR2tUY3U4emgwcFZjekpzRXo3OFAyekwvWXY1Y2JWbFZNenRuY0VxUzdN?=
+ =?utf-8?B?K0lxWGxsMjlCRHlNeWpoUWw4RW9GMWRzWkRTTU1SN3dZVFhBclh4K1FqNHdU?=
+ =?utf-8?B?VUd4MVU0eVdrc1NQdXAyM0VmWDl4RHBCRGZBRWdMZm5IdnMvaC9oTkdyZVlx?=
+ =?utf-8?B?MGRzWEgwdGZDa2R2YmJhVm9UNSsyV0ovdU9FZkZxYktkMzdXTWl5dTNhSmtP?=
+ =?utf-8?B?RWpCelhuOEFWem51algzenVZNExWR1plcWFrSHBveTJWczRCdk8vQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 2/2] net: phy: Introduce Airoha AN8801/R Gigabit
- Ethernet PHY driver
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>
-Cc: kevin-kw.huang@airoha.com, macpaul.lin@mediatek.com,
- matthias.bgg@gmail.com, kernel@collabora.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260304-add-airoha-an8801-support-v1-0-0ae4ee5a2f9d@collabora.com>
- <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 4CEA31FE075
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR07MB9538.namprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c86d555-8e0a-48be-2a40-08de79d518b8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2026 10:02:08.1447
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UfDKPJxp3j2jVqMjO0oPnTfa5kT1ryov8LqLEBk92NkgCSPzxWgM7DDwFQ5JWNCS12QlH8DktP+r+bO8DutoHOtP58IonvKVA/ATXwOKfw8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR07MB9676
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA0MDA3NiBTYWx0ZWRfX/Y3qqitQ9SDA
+ 9RjGrqSECS+/iy6jvdVe9Frg+tDOwIb0fr06OWYkPYH04Mw/6yddCytxuK/LPhGRjbXXp7QuP3g
+ ntLrKrvt9pKmNFxwrrbwbnVZn7xcuq+wMN2nD3aHktotMeVA/th6Rex+w4Eh6g4W4mBO/XF8DKU
+ j9gpKLUanp6wXnsCdzC82JywJUTH+EIQpRBTcsFtJsHCmzU3HndDyfVRrtfOK9aDX3ov7l/Fbm5
+ kTpjGE8lAqSQWDaY4DIhcyh1/eiJWW+yYphkolT8to39XmdGy1SypsRGN3usv9pH+q9rark7kaL
+ XEcRcb06FyrjAcMYTCIZxwD8uo0xvPgPvZy6CQzjHD6FRjdsw2sU9go+F+0NI7BjjhqGgt/uZPi
+ VJYKRdzI+nv8e6TCLv7oEF98UdIH5Z5ag2jzqmiDd3Vxg+ASbbLPLGQYCJQdojJiE5l0LVGjhcI
+ vCZdxvOBtKl756s6A/w==
+X-Authority-Analysis: v=2.4 cv=XKo9iAhE c=1 sm=1 tr=0 ts=69a80323 cx=c_pps
+ a=PeFxPTU/9IdxQzUa63kYNg==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
+ a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=Yq5XynenixoA:10 a=Zpq2whiEiuAA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=W8fx6O4W8wtO2w6lYej3:22 a=tuMieXAyK57eGGFK7xkD:22 a=Br2UW1UjAAAA:8
+ a=qIqyTwgw9_R7z1ascTMA:9 a=QEXdDO2ut3YA:10 a=WmXOPjafLNExVIMTj843:22
+X-Proofpoint-ORIG-GUID: WJr1HzJkQ33bpbx0GHwVPAeaJsdo1_6f
+X-Proofpoint-GUID: WJr1HzJkQ33bpbx0GHwVPAeaJsdo1_6f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-04_05,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check
+ score=0 phishscore=0 priorityscore=1501 adultscore=0 spamscore=0
+ clxscore=1011 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ impostorscore=0 bulkscore=0 classifier=typeunknown authscore=0 authtc=
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.22.0-2602130000 definitions=main-2603040076
+X-Rspamd-Queue-Id: 4F2971FE09A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+X-Spamd-Result: default: False [0.94 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[cadence.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[cadence.com:s=proofpoint,cadence.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270960-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270961-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[collabora.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[airoha.com,mediatek.com,gmail.com,collabora.com,vger.kernel.org,lists.infradead.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,cadence.com:dkim,cadence.com:email];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maxime.chevallier@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_NEQ_ENVFROM(0.00)[pawell@cadence.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[cadence.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,collabora.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Hi Louis-Alexis
-
-On 04/03/2026 10:35, Louis-Alexis Eyraud wrote:
-> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Introduce a driver for the Airoha AN8801R Series Gigabit Ethernet
-> PHY; this currently supports setting up PHY LEDs, 10/100M, 1000M
-> speeds, and Wake on LAN and PHY interrupts.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> ---
->  drivers/net/phy/Kconfig      |    5 +
->  drivers/net/phy/Makefile     |    1 +
->  drivers/net/phy/air_an8801.c | 1059 ++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 1065 insertions(+)
-> 
-> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-> index 7b73332a13d9520582fb45780528de4e17496f5e..53f451479509b7c11999beaf91ae08ed4ed01e86 100644
-> --- a/drivers/net/phy/Kconfig
-> +++ b/drivers/net/phy/Kconfig
-> @@ -96,6 +96,11 @@ config AS21XXX_PHY
->  	  AS21210PB1 that all register with the PHY ID 0x7500 0x7500
->  	  before the firmware is loaded.
->  
-> +config AIR_AN8801_PHY
-> +	tristate "Airoha AN8801 Gigabit PHY"
-> +	help
-> +	  Currently supports the Airoha AN8801R PHY.
-> +
->  config AIR_EN8811H_PHY
->  	tristate "Airoha EN8811H 2.5 Gigabit PHY"
->  	select PHY_COMMON_PROPS
-> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-> index 3a34917adea72d03342a8a4ef703ee5d087d229e..83516da36c9ffa4e3b077717e9fc375e38ab2ea5 100644
-> --- a/drivers/net/phy/Makefile
-> +++ b/drivers/net/phy/Makefile
-> @@ -29,6 +29,7 @@ obj-y				+= $(sfp-obj-y) $(sfp-obj-m)
->  
->  obj-$(CONFIG_ADIN_PHY)		+= adin.o
->  obj-$(CONFIG_ADIN1100_PHY)	+= adin1100.o
-> +obj-$(CONFIG_AIR_AN8801_PHY)	+= air_an8801.o
->  obj-$(CONFIG_AIR_EN8811H_PHY)   += air_en8811h.o
->  obj-$(CONFIG_AMD_PHY)		+= amd.o
->  obj-$(CONFIG_AMCC_QT2025_PHY)	+= qt2025.o
-> diff --git a/drivers/net/phy/air_an8801.c b/drivers/net/phy/air_an8801.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..86828c7d9716ee45832483d74f01f2764fcda408
-> --- /dev/null
-> +++ b/drivers/net/phy/air_an8801.c
-> @@ -0,0 +1,1059 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Driver for the Airoha AN8801 Gigabit PHY.
-> + *
-> + * Copyright (C) 2025 Airoha Technology Corp.
-> + * Copyright (C) 2025 Collabora Ltd.
-> + *                    AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/delay.h>
-> +#include <linux/errno.h>
-> +#include <linux/init.h>
-> +#include <linux/netdevice.h>
-> +#include <linux/of.h>
-> +#include <linux/phy.h>
-> +
-> +#define AN8801R_PHY_ID			0xc0ff0421
-> +
-> +/* MII Registers */
-> +#define AIR_EXT_PAGE_ACCESS		0x1f
-> +#define   AIR_PHY_PAGE_STANDARD		0
-> +#define   AIR_PHY_PAGE_EXTENDED_1	1
-> +#define   AIR_PHY_PAGE_EXTENDED_4	4
-> +
-> +/* MII Registers - Airoha Page 1 */
-> +#define AN8801_EXT_REG_PHY		0x14
-> +#define   AN8801_EXT_PHY_STATUS0	GENMASK(1, 0)
-> +#define   AN8801_EXT_PHY_DOWNSHIFT_CTL	GENMASK(3, 2) /* 2 to 5 1G auto-neg attempts (0..3) */
-> +#define   AN8801_EXT_PHY_DOWNSHIFT_EN	BIT(4)
-> +#define   AN8801_EXT_PHY_CTRL0		BIT(5)
-> +#define   AN8801_EXT_PHY_STATUS1	GENMASK(8, 6)
-> +#define   AN8801_EXT_PHY_CTRL1		GENMASK(14, 9)
-> +
-> +/* MII Registers - Airoha Page 4 */
-> +#define AN8801_PBUS_ACCESS		BIT(28)
-> +#define AN8801_PBUS_EPHY_ACCESS		BIT(24)
-> +#define AN8801_PBUS_CL22_ACCESS		BIT(23)
-> +
-> +#define AIR_BPBUS_MODE			0x10
-> +#define AIR_BPBUS_WR_ADDR_HIGH		0x11
-> +#define AIR_BPBUS_WR_ADDR_LOW		0x12
-> +#define AIR_BPBUS_WR_DATA_HIGH		0x13
-> +#define AIR_BPBUS_WR_DATA_LOW		0x14
-> +#define AIR_BPBUS_RD_ADDR_HIGH		0x15
-> +#define AIR_BPBUS_RD_ADDR_LOW		0x16
-> +#define AIR_BPBUS_RD_DATA_HIGH		0x17
-> +#define AIR_BPBUS_RD_DATA_LOW		0x18
-> +
-> +/* BPBUS Registers */
-> +#define AN8801_BPBUS_REG_LED_GPIO	0x54
-> +#define AN8801_BPBUS_REG_LED_ID_SEL	0x58
-> +#define   LED_ID_GPIO_SEL(led, gpio)	((led) << ((gpio) * 3))
-> +#define AN8801_BPBUS_REG_GPIO_MODE	0x70
-> +#define AN8801_BPBUS_REG_PHY_IRQ_GPIO	0x7c
-> +#define   AN8801_PHY_IRQ_GPIO_NUM_MASK	GENMASK(19, 16)
-> +#define   AN8801_PHY_IRQ_GPIO_NUM	1
-> +
-> +#define AN8801_BPBUS_REG_CKO		0x1a4
-> +#define AN8801_CKO_OUTPUT_MODE_AUTO	3
-> +
-> +#define AN8801_BPBUS_REG_LINK_MODE	0x5054
-> +#define  AN8801_BPBUS_LINK_MODE_1000	BIT(0)
-> +
-> +#define AN8801_BPBUS_REG_BYPASS_PTP	0x21c004
-> +#define   AN8801_BYP_PTP_SGMII_TO_GPHY	BIT(8)
-> +#define   AN8801_BYP_PTP_RGMII_TO_GPHY	BIT(0)
-> +
-> +#define AN8801_BPBUS_REG_TXDLY_STEP	0x21c024
-> +#define   RGMII_DELAY_STEP_MASK		GENMASK(2, 0)
-> +#define   RGMII_TXDELAY_FORCE_MODE	BIT(24)
-> +
-> +#define AN8801_BPBUS_REG_RXDLY_STEP	0x21c02c
-> +#define   RGMII_RXDELAY_ALIGN		BIT(4)
-> +#define   RGMII_RXDELAY_FORCE_MODE	BIT(24)
-> +
-> +#define AN8801_BPBUS_REG_EFIFO_CTL(x)	(0x270004 + (0x100 * (x))) /* 0..2 */
-> +#define   AN8801_EFIFO_ALL_EN		GENMASK(7, 0)
-> +#define   AN8801_EFIFO_RX_EN		BIT(0)
-> +#define   AN8801_EFIFO_TX_EN		BIT(1)
-> +#define   AN8801_EFIFO_RX_CLK_EN	BIT(2)
-> +#define   AN8801_EFIFO_TX_CLK_EN	BIT(3)
-> +#define   AN8801_EFIFO_RX_EEE_EN	BIT(4)
-> +#define   AN8801_EFIFO_TX_EEE_EN	BIT(5)
-> +#define   AN8801_EFIFO_RX_ODD_NIBBLE_EN	BIT(6)
-> +#define   AN8801_EFIFO_TX_ODD_NIBBLE_EN	BIT(7)
-> +
-> +#define AN8801_BPBUS_REG_WOL_MAC_16_47	0x285114
-> +#define AN8801_BPBUS_REG_WOL_MAC_0_15	0x285118
-> +
-> +#define AN8801_BPBUS_REG_WAKEUP_CTL1	0x285400
-> +#define   AN8801_WOL_WAKE_MAGIC_EN	GENMASK(3, 1)
-> +
-> +#define AN8801_BPBUS_REG_WAKEUP_CTL2	0x285404
-> +#define   AN8801_WAKE_OUT_TYPE_PULSE	BIT(0) /* Set/Unset: Pulse/Static */
-> +#define   AN8801_WAKE_OUT_POLARITY_NEG	BIT(1) /* Set/Unset: Negative/Positive */
-> +#define   AN8801_WAKE_OUT_WIDTH		GENMASK(2, 3)
-> +#define    AN8801_WAKE_OUT_84MS		0
-> +#define    AN8801_WAKE_OUT_168MS	1
-> +#define    AN8801_WAKE_OUT_336MS	2
-> +#define    AN8801_WAKE_OUT_672MS	3
-> +#define   AN8801_WAKE_OUT_EN		BIT(4)
-> +#define   AN8801_PME_WAKEUP_CLR		BIT(8)
-> +
-> +#define AN8801_BPBUS_REG_WAKE_IRQ_EN	0x285700
-> +#define AN8801_BPBUS_REG_WAKE_IRQ_STS	0x285704
-> +#define   AN8801_IRQ_WAKE_LNKCHG	BIT(0) /* Wake on link change */
-> +#define   AN8801_IRQ_WAKE_UNIPKT	BIT(1) /* Wake on unicast packet */
-> +#define   AN8801_IRQ_WAKE_MULPKT	BIT(2) /* Wake on multicast packet */
-> +#define   AN8801_IRQ_WAKE_BCPKT		BIT(3) /* Wake on broadcast packet */
-> +#define   AN8801_IRQ_WAKE_MAGICPKT	BIT(4) /* Wake on magic packet */
-> +#define   AN8801_IRQ_WAKE_ALL		GENMASK(4, 0)
-> +
-> +/* MDIO_MMD_VEND1 Registers */
-> +#define AN8801_PHY_TX_PAIR_DLY_SEL_GBE	0x13
-> +#define   AN8801_PHY_PAIR_DLY_SEL_A_GBE	GENMASK(14, 12)
-> +#define   AN8801_PHY_PAIR_DLY_SEL_B_GBE	GENMASK(10, 8)
-> +#define   AN8801_PHY_PAIR_DLY_SEL_C_GBE	GENMASK(6, 4)
-> +#define   AN8801_PHY_PAIR_DLY_SEL_D_GBE	GENMASK(2, 0)
-> +#define AN8801_PHY_RXADC_CTRL		0xd8
-> +#define   AN8801_PHY_RXADC_SAMP_PHSEL_A	BIT(12)
-> +#define   AN8801_PHY_RXADC_SAMP_PHSEL_B	BIT(8)
-> +#define   AN8801_PHY_RXADC_SAMP_PHSEL_C	BIT(4)
-> +#define   AN8801_PHY_RXADC_SAMP_PHSEL_D	BIT(0)
-> +#define AN8801_PHY_RXADC_REV_0		0xd9
-> +#define   AN8801_PHY_RXADC_REV_MASK_A	GENMASK(15, 8)
-> +#define   AN8801_PHY_RXADC_REV_MASK_B	GENMASK(7, 0)
-> +#define AN8801_PHY_RXADC_REV_1		0xda
-> +#define   AN8801_PHY_RXADC_REV_MASK_C	GENMASK(15, 8)
-> +#define   AN8801_PHY_RXADC_REV_MASK_D	GENMASK(7, 0)
-> +
-> +/* MDIO_MMD_VEND2 Registers */
-> +#define LED_BCR				0x21
-> +#define   LED_BCR_MODE_MASK		GENMASK(1, 0)
-> +#define   LED_BCR_TIME_TEST		BIT(2)
-> +#define   LED_BCR_CLK_EN		BIT(3)
-> +#define   LED_BCR_EVT_ALL		BIT(4)
-> +#define   LED_BCR_EXT_CTRL		BIT(15)
-> +#define   LED_BCR_MODE_DISABLE		0
-> +#define   LED_BCR_MODE_2LED		1
-> +#define   LED_BCR_MODE_3LED_1		2
-> +#define   LED_BCR_MODE_3LED_2		3
-> +
-> +#define LED_ON_DUR			0x22
-> +#define   LED_ON_DUR_MASK		GENMASK(15, 0)
-> +
-> +#define LED_BLINK_DUR			0x23
-> +#define   LED_BLINK_DUR_MASK		GENMASK(15, 0)
-> +
-> +#define LED_ON_CTRL(i)			(0x24 + ((i) * 2))
-> +#define   LED_ON_EVT_MASK		GENMASK(6, 0)
-> +#define   LED_ON_EVT_LINK_1000M		BIT(0)
-> +#define   LED_ON_EVT_LINK_100M		BIT(1)
-> +#define   LED_ON_EVT_LINK_10M		BIT(2)
-> +#define   LED_ON_EVT_LINK_DN		BIT(3)
-> +#define   LED_ON_EVT_FDX		BIT(4)
-> +#define   LED_ON_EVT_HDX		BIT(5)
-> +#define   LED_ON_EVT_FORCE		BIT(6)
-> +#define   LED_ON_POL			BIT(14)
-> +#define   LED_ON_EN			BIT(15)
-> +
-> +#define LED_BLINK_CTRL(i)		(0x25 + ((i) * 2))
-> +#define LED_BLINK_EVT_MASK		GENMASK(9, 0)
-> +#define LED_BLINK_EVT_1000M_TX		BIT(0)
-> +#define LED_BLINK_EVT_1000M_RX		BIT(1)
-> +#define LED_BLINK_EVT_100M_TX		BIT(2)
-> +#define LED_BLINK_EVT_100M_RX		BIT(3)
-> +#define LED_BLINK_EVT_10M_TX		BIT(4)
-> +#define LED_BLINK_EVT_10M_RX		BIT(5)
-> +#define LED_BLINK_EVT_COLLISION		BIT(6)
-> +#define LED_BLINK_EVT_RX_CRC_ERR	BIT(7)
-> +#define LED_BLINK_EVT_RX_IDLE_ERR	BIT(8)
-> +#define LED_BLINK_EVT_FORCE		BIT(9)
-> +
-> +#define AN8801R_NUM_LEDS		3
-> +#define AN8801_PERIOD_SHIFT		15
-> +#define AN8801_PERIOD_UNIT		32768 /* (1 << AN8801_PERIOD_SHIFT) */
-> +#define AN8801_MAX_PERIOD_MS		2147
-> +
-> +#define LED_BLINK_DURATION_UNIT		780
-> +#define LED_BLINK_DURATION(f)		(LED_BLINK_DURATION_UNIT << (f))
-> +
-> +#define AN8801_LED_DURATION_UNIT_US	32768
-> +
-> +#define AN8801_REG_PHY_INTERNAL0	0x600
-> +#define AN8801_REG_PHY_INTERNAL1	0x601
-> +#define   AN8801_PHY_INTFUNC_MASK	GENMASK(15, 0) /* PHY internal functions */
-> +
-> +enum an8801r_led_fn {
-> +	AN8801R_LED_FN_NONE,
-> +	AN8801R_LED_FN_LINK,
-> +	AN8801R_LED_FN_ACTIVITY,
-> +	AN8801R_LED_FN_MAX,
-> +};
-> +
-> +static int an8801r_read_page(struct phy_device *phydev)
-> +{
-> +	return __phy_read(phydev, AIR_EXT_PAGE_ACCESS);
-> +}
-> +
-> +static int an8801r_write_page(struct phy_device *phydev, int page)
-> +{
-> +	return __phy_write(phydev, AIR_EXT_PAGE_ACCESS, page);
-> +}
-> +
-> +static int __air_buckpbus_reg_write(struct phy_device *phydev,
-> +				    u32 addr, u32 data)
-> +{
-> +	int ret;
-> +
-> +	addr |= AN8801_PBUS_ACCESS;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_MODE, MII_MMD_CTRL_ADDR);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_ADDR_HIGH, upper_16_bits(addr));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_ADDR_LOW, lower_16_bits(addr));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_DATA_HIGH, upper_16_bits(data));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_DATA_LOW, lower_16_bits(data));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int __air_buckpbus_reg_read(struct phy_device *phydev,
-> +				   u32 addr, u32 *data)
-> +{
-> +	int pbus_data_l, pbus_data_h;
-> +	int ret;
-> +
-> +	addr |= AN8801_PBUS_ACCESS;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_MODE, MII_MMD_CTRL_ADDR);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_RD_ADDR_HIGH, upper_16_bits(addr));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_RD_ADDR_LOW, lower_16_bits(addr));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_read(phydev, AIR_BPBUS_RD_DATA_HIGH);
-> +	if (pbus_data_h < 0)
-> +		return pbus_data_h;
-> +
-> +	pbus_data_l = __phy_read(phydev, AIR_BPBUS_RD_DATA_LOW);
-> +	if (pbus_data_l < 0)
-> +		return pbus_data_l;
-> +
-> +	*data = (pbus_data_h << 16) | pbus_data_l;
-> +	return 0;
-> +}
-> +
-> +static int air_buckpbus_reg_rmw(struct phy_device *phydev,
-> +				u32 addr, u32 mask, u32 set)
-> +{
-> +	u32 data_old, data_new;
-> +	int prev_page, ret;
-> +
-> +	prev_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_4);
-> +	if (prev_page < 0)
-> +		return prev_page;
-> +
-> +	ret = __air_buckpbus_reg_read(phydev, addr, &data_old);
-> +	if (ret)
-> +		return phy_restore_page(phydev, prev_page, ret);
-> +
-> +	data_new = data_old & ~mask;
-> +	data_new |= set;
-> +	if (data_new != data_old)
-> +		ret = __air_buckpbus_reg_write(phydev, addr, data_new);
-> +
-> +	return phy_restore_page(phydev, prev_page, ret);
-> +}
-> +
-> +static int air_buckpbus_reg_set_bits(struct phy_device *phydev,
-> +				     u32 addr, u32 mask)
-> +{
-> +	return air_buckpbus_reg_rmw(phydev, addr, mask, mask);
-> +}
-> +
-> +static int air_buckpbus_reg_clear_bits(struct phy_device *phydev,
-> +				       u32 addr, u32 mask)
-> +{
-> +	return air_buckpbus_reg_rmw(phydev, addr, mask, 0);
-> +}
-> +
-> +static int air_buckpbus_reg_write(struct phy_device *phydev, u32 addr, u32 data)
-> +{
-> +	int prev_page, ret = 0;
-> +
-> +	prev_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_4);
-> +	if (prev_page < 0)
-> +		return prev_page;
-> +
-> +	ret = __air_buckpbus_reg_write(phydev, addr, data);
-> +
-> +	return phy_restore_page(phydev, prev_page, ret);
-> +}
-> +
-> +static int air_buckpbus_reg_read(struct phy_device *phydev, u32 addr, u32 *data)
-> +{
-> +	int prev_page, ret;
-> +
-> +	prev_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_4);
-> +	if (prev_page < 0)
-> +		return prev_page;
-> +
-> +	ret = __air_buckpbus_reg_read(phydev, addr, data);
-> +
-> +	return phy_restore_page(phydev, prev_page, ret);
-> +}
-These buckplus accessors look very similar to what's in the existing air_en8811h.c
-driver, any chance the code can be shared ?
-
-[...]
-
-
-> +static int an8801r_rgmii_rxdelay(struct phy_device *phydev, u16 delay_steps)
-> +{
-> +	u32 reg_val;
-> +
-> +	if (delay_steps > RGMII_DELAY_STEP_MASK)
-> +		return -EINVAL;
-> +
-> +	reg_val = delay_steps & RGMII_DELAY_STEP_MASK;
-> +	reg_val |= RGMII_RXDELAY_ALIGN;
-> +	reg_val |= RGMII_RXDELAY_FORCE_MODE;
-> +
-> +	return air_buckpbus_reg_write(phydev, AN8801_BPBUS_REG_RXDLY_STEP,
-> +				      reg_val);
-> +}
-> +
-> +static int an8801r_rgmii_txdelay(struct phy_device *phydev, u16 delay_steps)
-> +{
-> +	u32 reg_val;
-> +
-> +	if (delay_steps > RGMII_DELAY_STEP_MASK)
-> +		return -EINVAL;
-> +
-> +	reg_val = delay_steps & RGMII_DELAY_STEP_MASK;
-> +	reg_val |= RGMII_TXDELAY_FORCE_MODE;
-> +
-> +	return air_buckpbus_reg_write(phydev, AN8801_BPBUS_REG_TXDLY_STEP,
-> +				      reg_val);
-> +}
-> +
-> +static int an8801r_rgmii_delay_config(struct phy_device *phydev)
-> +{
-> +	switch (phydev->interface) {
-> +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> +		return an8801r_rgmii_txdelay(phydev, 4);
-> +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> +		return an8801r_rgmii_rxdelay(phydev, 0);
-> +	case PHY_INTERFACE_MODE_RGMII_ID:
-> +		return an8801r_rgmii_txdelay(phydev, 4);
-> +		return an8801r_rgmii_rxdelay(phydev, 0);
-> +	case PHY_INTERFACE_MODE_RGMII:
-> +	default:
-> +		return 0;
-> +	}
-
-Can you elaborate on these values for the steps ? Why is it 4 for TX internal delays, but 0 for RX delays ?
-
-Maxime
+Pg0KPk9uIDI2LTAzLTAyIDEwOjI3OjExLCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPj4g
+Pj4+ICBtYWludGFpbmVyczoNCj4+ID4+PiAgICAtIFBhd2VsIExhc3pjemFrIDxwYXdlbGxAY2Fk
+ZW5jZS5jb20+DQo+PiA+Pj4NCj4+ID4+PiArZGVzY3JpcHRpb246DQo+PiA+Pj4gKyAgQ2FkZW5j
+ZSBVU0IgZHVhbC1yb2xlIGNvbnRyb2xsZXJzLiBVU0JTUyAoY2Rucyx1c2IzKSBzdXBwb3J0cw0K
+Pj4gPj4+ICt1cCB0bw0KPj4gPj4+ICsgIFN1cGVyU3BlZWQgKFVTQiAzLjApLiBVU0JTU1AgKGNk
+bnMsdXNic3NwKSBpcyB0aGUgbmV4dA0KPj4gPj4+ICtnZW5lcmF0aW9uIHdpdGgNCj4+ID4+PiAr
+ICBTdXBlclNwZWVkIFBsdXMgKFVTQiAzLjEgZ2VuMngxKSBhbmQgWEhDSS1iYXNlZCBkZXZpY2UN
+Cj4+ID4+PiArY29udHJvbGxlci4gQm90aA0KPj4gPj4+ICsgIHNoYXJlIHRoZSBzYW1lIHJlZ2lz
+dGVyIGxheW91dCBhbmQgcmVzb3VyY2UgbW9kZWwuDQo+PiA+Pg0KPj4gPj4gU28gYXJlIGNvbXBh
+dGlibGUgb3Igbm90Pw0KPj4gPj4NCj4+ID4NCj4+ID4gU29ycnkgZm9yIHRoZSBtaXNsZWFkaW5n
+IGRlc2NyaXB0aW9uLiBUaGV5IGFyZSBOT1QgZnVsbHkgY29tcGF0aWJsZS4NCj4+ID4gVGhlIHJl
+Z2lzdGVyIGxheW91dCAoT1RHL1hIQ0kvRGV2aWNlKSBhbmQgaW50ZXJydXB0cw0KPj4gPiAoT1RH
+L1hIQ0kvRGV2aWNlL1dha2V1cCkgYXJlIHRoZSBzYW1lLCBidXQgcmVnaXN0ZXIgY29udGVudHMg
+YXJlDQo+Pg0KPj4gTGF5b3V0IGNhbm5vdCBiZSB0aGUgc2FtZSBpZiBjb250ZW50cyBpcyBkaWZm
+ZXJlbnQuIFNhbWUgbGF5b3V0IG1lYW5zDQo+PiBzYW1lIHJlZ2lzdGVyIGlzIGF0IHRoZSBzYW1l
+IHBsYWNlLiBJZiB5b3UgaGF2ZSBkaWZmZXJlbnQgcmVnaXN0ZXINCj4+IHdpdGggZGlmZmVyZW50
+IGNvbnRlbnRzIGF0IGdpdmVuIHBsYWNlLCBob3cgaXMgaXQgInNhbWUgbGF5b3V0Ij8NCj4NCj5T
+b3JyeS4gSSBtZWFuIHRoZSBVU0JTUyBhbmQgVVNCU1NQIHNoYXJlIHRoZSBzYW1lIHJlc291cmNl
+IG1vZGVsICh0aHJlZQ0KPm1lbW9yeSByZWdpb25zIGZvciBPVEcsIFhIQ0kgYW5kIERldmljZSwg
+cGx1cyB0aHJlZSB0byBmb3VyIGludGVycnVwdHMpLiBCdXQgaW4NCj5lYWNoIHJlZ2lvbiwgZWcg
+aW4gT1RHIHJlZ2lvbiwgdGhlIGxheW91dCBmb3IgZWFjaCByZWdpc3RlciBhcmUgZGlmZmVyZW50
+IGZvciBib3RoDQo+Y29udHJvbGxlcnMuDQo+DQo+UGF3ZWwsIEkgdGhpbmsgd2UgY291bGQgdHJ5
+IEtyenlzenRvZidzIHN1Z2dlc3Rpb24gYW5kIGRpZmZlcmVudGlhdGluZyBVU0JTUyBJUCBhbmQN
+Cj5VU0JTU1AgSVAgYXQgcnVudGltZSwgd2UgY291bGQgdXNlIERJRCByZWdpc3RlciAoY2Rucy0+
+dmVyc2lvbikgdG8gZG8gdGhhdCBhbmQNCj5hdm9pZCBhZGRpbmcgbmV3IElQIGdlbmVyYWwgYmlu
+ZGluZyBkb2MuIFdoYXQgZG8geW91IHRoaW5rIHNvPw0KPg0KPlBldGVyDQo+DQo+Pg0KPj4gPiBk
+aWZmZXJlbnQsIGVzcCwgdGhlIGRldmljZSAoZ2FkZ2V0KSBjb250cm9sbGVycyBhcmUgYXJjaGl0
+ZWN0dXJhbGx5IGRpZmZlcmVudDoNCj4+ID4NCj4+ID4gLSBVU0JTUyB1c2VzIGEgY3VzdG9tIGdh
+ZGdldCBjb250cm9sbGVyIChjZG5zM19nYWRnZXRfaW5pdCkNCj4+ID4gLSBVU0JTU1AgdXNlcyBh
+biBYSENJLWJhc2VkIGdhZGdldCBjb250cm9sbGVyIChjZG5zcF9nYWRnZXRfaW5pdCkNCj4+DQo+
+PiBZb3UganVzdCBkZXNjcmliZWQgZHJpdmVycywgc28gdGhpcyBkb2VzIG5vdCBjb252aW5jZSBt
+ZSBhdCBhbGwuDQo+Pg0KPj4gPg0KPj4gPiBJIHdpbGwgZml4IHRoZSBkZXNjcmlwdGlvbiBpbiB2
+MiB0byBjbGVhcmx5IHN0YXRlIHRoaXMgZGlmZmVyZW5jZS4NCj4+ID4NCj4+ID4+PiArDQo+PiA+
+Pj4gIHByb3BlcnRpZXM6DQo+PiA+Pj4gICAgY29tcGF0aWJsZToNCj4+ID4+PiAtICAgIGNvbnN0
+OiBjZG5zLHVzYjMNCj4+ID4+PiArICAgIGVudW06DQo+PiA+Pj4gKyAgICAgIC0gY2Rucyx1c2Iz
+DQo+PiA+Pj4gKyAgICAgIC0gY2Rucyx1c2Jzc3ANCj4+ID4+DQo+PiA+PiBXaHkgZG8gd2UgbmVl
+ZCBhbm90aGVyIGdlbmVyaWMgY29tcGF0aWJsZT8NCj4+ID4+DQo+PiA+PiBBbmQgd2h5IGRvIHlv
+dSBhZGQgaXQgbm93IHRvIGVhY2ggb2YgZGV2aWNlIHNjaGVtYXMgdXNpbmcgdGhpcyBvbmU/DQo+
+Pg0KPj4gWW91IGRpZCBub3QgcmVzcG9uZCB0byB0aGlzIG9uZS4gTG9vayBob3cgdGhpcyBzY2hl
+bWEgaXMgdXNlZC4NCj4+DQo+PiA+DQo+PiA+IExpa2UgZXhwbGFpbiBhYm92ZSwgdGhlIFVTQlNT
+UCBoYXMgYSBkaWZmZXJlbnQgZGV2aWNlL2dhZGdldA0KPj4gPiBjb250cm9sbGVyIGFyY2hpdGVj
+dHVyZSBmcm9tIFVTQlNTLiBUaGUgcGxhdGZvcm0gZHJpdmVyIHVzZXMgdGhlDQo+PiA+IGNvbXBh
+dGlibGUgc3RyaW5nIHRvIHNlbGVjdCB0aGUgY29ycmVjdCBnYWRnZXQgaW5pdCBmdW5jdGlvbjoN
+Cj4+DQo+PiBBZ2FpbiwgZHJpdmVyIHN0dWZmLg0KPj4NCj4+ID4NCj4+ID4gICBpZiAoZGV2aWNl
+X2dldF9tYXRjaF9kYXRhKGRldikgPT0gJmNkbnNwX3BsYXQpDQo+PiA+ICAgICAgIGNkbnMtPmdh
+ZGdldF9pbml0ID0gY2Ruc3BfZ2FkZ2V0X2luaXQ7DQo+PiA+ICAgZWxzZQ0KPj4gPiAgICAgICBj
+ZG5zLT5nYWRnZXRfaW5pdCA9IGNkbnMzX2dhZGdldF9pbml0Ow0KPj4gPg0KPj4gPiBXaXRob3V0
+IGEgZGlzdGluY3QgY29tcGF0aWJsZSwgdGhlIGRyaXZlciBjYW5ub3Qga25vdyB3aGljaCBnYWRn
+ZXQNCj4+ID4gY29udHJvbGxlciBpcyBwcmVzZW50LiBUaGlzIGlzIGEgQ2FkZW5jZSBJUC1sZXZl
+bCBkaXN0aW5jdGlvbiAobm90DQo+PiA+IFNvQy1zcGVjaWZpYyksIHNvIGEgZ2VuZXJpYyBjb21w
+YXRpYmxlIHNlZW1zIGFwcHJvcHJpYXRlIGhlcmUuIEJ1dA0KPj4gPiBwbGVhc2UgbGV0IG1lIGtu
+b3cgaWYgeW91J2QgcHJlZmVyIGEgZGlmZmVyZW50IGFwcHJvYWNoLg0KPj4NCj4+IEdlbmVyaWMg
+Y29tcGF0aWJsZXMgYXJlIGFsbW9zdCBuZXZlciBhcHByb3ByaWF0ZSBhbmQgZHJpdmVyIGNvZGUN
+Cj4+IHJhcmVseSBjb252aW5jZXMuDQo+Pg0KPj4gQmVzdCByZWdhcmRzLA0KPj4gS3J6eXN6dG9m
+DQoNClRoZSBEZXZpY2UgKFBlcmlwaGVyYWwpIGNvbnRyb2xsZXIgaW4gVVNCU1NQIGlzIG5vdCBq
+dXN0IGFuIGV2b2x1dGlvbg0Kb2YgVVNCU1M7IGl0IGlzIGEgY29tcGxldGVseSBkaWZmZXJlbnQg
+SVAgY29yZSB3aXRoIGEgZGlzdGluY3QgcmVnaXN0ZXINCm1hcC4NCldoaWxlIHRoZSBIb3N0IChY
+SENJKSBhbmQgT1RHL0RSRCBwb3J0aW9ucyBvdmVybGFwIHNpZ25pZmljYW50bHksIHRoZQ0KRGV2
+aWNlIHJlZ2lzdGVyIHNwYWNlIGluIFVTQlNTUCBpcyBhcmNoaXRlY3R1cmFsbHkgaW5jb21wYXRp
+YmxlIHdpdGggVVNCU1MuIA0KVGhleSBhcmUgZGlmZmVyZW50IElQIGNvcmVzIGludGVncmF0ZWQg
+aW50byB0aGUgc2FtZSBzdWJzeXN0ZW06DQoNClRoZSByZWdpc3RlciBtYXAgZm9yIHRoZSBEZXZp
+Y2UgY29udHJvbGxlciBpbiBVU0JTU1AgaXMgZW50aXJlbHkNCmRpZmZlcmVudC4gT2Zmc2V0cyB0
+aGF0IGFyZSB2YWxpZCBmb3Igb25lIGNvbnRyb2xsZXIgcG9pbnQgdG8gZGlmZmVyZW50DQpmdW5j
+dGlvbnMgb3IgcmVzZXJ2ZWQgc3BhY2UgaW4gdGhlIG90aGVyLiBVc2luZyBhIHNpbmdsZSBjb21w
+YXRpYmxlIHN0cmluZw0Kd291bGQgaW1wbHkgcmVnaXN0ZXItbGV2ZWwgY29tcGF0aWJpbGl0eSB0
+aGF0IGRvZXMgbm90IGV4aXN0Lg0KVVNCU1MgdXNlcyBhIGN1c3RvbSBETUEtYmFzZWQgcGVyaXBo
+ZXJhbCBjb250cm9sbGVyLCB3aGVyZWFzIFVTQlNTUCB1c2VzDQphbiBlbnRpcmVseSBkaWZmZXJl
+bnQgWEhDSS1iYXNlZCBhcmNoaXRlY3R1cmUgZm9yIHRoZSBkZXZpY2Ugc2lkZS4NCg0KVGhlc2Ug
+dHdvIGNvbnRyb2xsZXJzIGRvIG5vdCBwcm92aWRlIGEgcmVsaWFibGUgd2F5IChlLmcuLCB2aWEg
+cmVnaXN0ZXJzKQ0KdG8gZGlzdGluZ3Vpc2ggYmV0d2VlbiB0aGVtIGluIGV2ZXJ5IGNhc2UuDQpX
+ZSBzaG91bGQgdHJlYXQgdGhlbSBhcyB0d28gc2VwYXJhdGUgY29udHJvbGxlcnMgdGhhdCBoYXBw
+ZW4gdG8gc2hhcmUNCnNvbWUgY29tbW9uIGNvZGUsIHJhdGhlciB0aGFuIHZpZXdpbmcgVVNCU1NQ
+IHNpbXBseSBhcyBhIG5ld2VyDQp2ZXJzaW9uIG9mIFVTQlNTLg0KDQpJIGJlbGlldmUgUGV0ZXIn
+cyBpbnRlbnRpb24gd2FzIHRvIHVzZSBhIGNvbW1vbiBEVCBiaW5kaW5nIGFuZCBhIHNpbmdsZQ0K
+cGxhdGZvcm0gZHJpdmVyLCBhcyB0aGUgcmVzb3VyY2UgbW9kZWwgYW5kIHBhcnRzIG9mIHRoZSBj
+b2RlIGFyZSBuZWFybHkNCmlkZW50aWNhbC4NCkhvd2V2ZXIsIGdpdmVuIHRoZSBhcmNoaXRlY3R1
+cmFsIGRpZmZlcmVuY2VzIG9uIHRoZSBkZXZpY2Ugc2lkZSwNCkkgYmVsaWV2ZSBoYXZpbmcgZGlz
+dGluY3QgY29tcGF0aWJsZSBzdHJpbmdzIGlzIHRoZSBtb3N0IGFjY3VyYXRlIHdheSB0bw0KZGVz
+Y3JpYmUgdGhlIGhhcmR3YXJlLiBJdCBwcmV2ZW50cyB0aGUgZHJpdmVyIGZyb20gbWFraW5nICJi
+bGluZCIgYWNjZXNzZXMNCnRvIHJlZ2lzdGVycyB0aGF0IGhhdmUgZGlmZmVyZW50IG1lYW5pbmdz
+IGRlcGVuZGluZyBvbiB0aGUgdW5kZXJseWluZyBJUC4NCg0KTWF5YmUgdG8gcmVzb2x2ZSB0aGlz
+LCB3ZSBzaG91bGQgaGF2ZSBzZXBhcmF0ZSBEVCBiaW5kaW5nIGRvY3VtZW50YXRpb24NCmFuZCBw
+b3RlbnRpYWxseSBzZXBhcmF0ZSBwbGF0Zm9ybSBkcml2ZXJzIHRvIHJlZmxlY3QgdGhpcyBhcmNo
+aXRlY3R1cmFsDQpzcGxpdD8NCg0KS3J6eXN6dG9mLCB3aGF0IGRvIHlvdSB0aGluayBhYm91dCB0
+aGlzIGFwcHJvYWNoPw0KDQo+DQo+LS0NCj4NCj5CZXN0IHJlZ2FyZHMsDQo+UGV0ZXINCg==
 
