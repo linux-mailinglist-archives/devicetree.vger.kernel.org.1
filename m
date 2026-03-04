@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-270995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMosH+cYqGkVoAAAu9opvQ
-	(envelope-from <devicetree+bounces-270995-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:35:03 +0100
+	id aE3hMWkaqGmgnwAAu9opvQ
+	(envelope-from <devicetree+bounces-271002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:41:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20E491FF0D8
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:35:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5391FF29E
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 12:41:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8DA85303AB45
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 11:34:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD6D5302BDCB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 11:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E433034A78C;
-	Wed,  4 Mar 2026 11:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001EF36E47F;
+	Wed,  4 Mar 2026 11:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P8pZhTA6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fvmMP9gA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C112E3451AE;
-	Wed,  4 Mar 2026 11:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8EAA36AB40;
+	Wed,  4 Mar 2026 11:36:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772624087; cv=none; b=mx9xFt2wT1IKYyJpzt0zaztJJrQalBuwioy4hbSoFAIsx7dbwpaI88OVYQMXE2C/kkfIzvNmc1jr9f9SPtXICJIpFwwyPVmZeGkf0oIDciflBYgBWAe9JQ2sNEKHGxkZXR7tNIJ0VziqanuLR0nSXQ/MzMb1NcEXvc+BmaCLLNg=
+	t=1772624198; cv=none; b=tLVoODo8xxjIGO5yCv9T++9peFyo+6HHky4pPzlYQ2epR3qliZuH396IuXJ0C2lAvbGMqEDL/fZ/bWQIi2uXFzV0d/GwHSiIKQNHgBUcogbSJB/8Ic012hOAl8Ui4l9oFFqpbOwTvwiHKeeJhNU0aPMcy9K6Gv5hUI9IT1GZZwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772624087; c=relaxed/simple;
-	bh=8ynUVUDyth5bSt/By20k6bJWU9I97gy1nrt2iENQfHY=;
+	s=arc-20240116; t=1772624198; c=relaxed/simple;
+	bh=fVa2FI2dmPWrKtEOJmEyVjPJeA/foOm5/Q0jw7iXxek=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GbQyEfjCN5gKpjRRnKySdPnOIVI9Af8fo6huOQSuhDQH4+537r6k8rxn23osxpjbTVXqzKvw+vHhiek7eiu6O/VMXXIRHDtbIToq9SPbAvtgOUXuYMqbfKUnd5xqUdBbAv1Frd6clYVb7moGVHa/IxICBVMh/sTROGK5qPfCAP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P8pZhTA6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04F1FC19423;
-	Wed,  4 Mar 2026 11:34:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lt3gKnxFbiE8efCa/LnEvoL6+11kz+gOxDtWzLG+pkrqyM2cHZQYwDisny3oOWTP3GFdQUBme/KrUwZWGYVCIZov/f1QFtIn3qV9o8BhkXrha6wkpmYC4kdArPUVjO6xi+QYlwnA0X1A+qrMLt+Vq5zZN1PjImXe1TSunQFHdxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fvmMP9gA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7920C2BC87;
+	Wed,  4 Mar 2026 11:36:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772624087;
-	bh=8ynUVUDyth5bSt/By20k6bJWU9I97gy1nrt2iENQfHY=;
+	s=k20201202; t=1772624198;
+	bh=fVa2FI2dmPWrKtEOJmEyVjPJeA/foOm5/Q0jw7iXxek=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P8pZhTA6EhprRj40CnGqbIRNhfj1qcvYxaVvXz9neh16grGyd57KyQXsPDmzkzyzd
-	 pyo4tgOInkzbL1RPptLdgqPHLZ9pFvN2R/rO4nQy0pivE3AGYgBC5A7UST7SRpGAmO
-	 auQa8sQp/G8i0Wd6U9qmRYUJyI697qHud/eii+OZ4YG+RthlAqAP3V2I+FCJttXueO
-	 c346ig/LwSV5U81xG8gs34KXaYaPW4/HeaWYtlYqYi4hajinmEBduJjQCosAgX5jmx
-	 dgTgYGycoZ7lEzPR84ocX84KLvrUVxYrCMa2+eE1u8vTE0CTkHpgLuf4/Il2MZw/Dv
-	 rdtWvNpCZLndQ==
-Date: Wed, 4 Mar 2026 12:34:45 +0100
+	b=fvmMP9gA0GssHmtBPON5JEeQJuSLVeu5NXmEVMbrdRKr5AnWqdcB+Ay9LX5RnbPfD
+	 QOuXdkKkuOXRqR8uVhmk8mV/6fGKcS9z6sCt2XlwmiWxGc6Iit0X50z/8XY0PUU3Vs
+	 jsu6O1EjldggUixchqLHn2ALouWE0IzuYSz8nbEBKJMB/DqxArkmM2nbbppEZWpeLm
+	 e/OYmev6Jo0unA/XN3TTJEAh9kfGVr7KzK0ytxpo7bK1N0VXtIxVhXyRByftUAOmPE
+	 vkJcllMQGTYU61TpPQsGJmaTzCc198pLSDA93nfeIxQH6C6uS0ATeA8N/vNmPE9Amp
+	 HQ9F9/SxiDFIw==
+Date: Wed, 4 Mar 2026 12:36:36 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Olivia Mackall <olivia@selenic.com>, 
-	Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>, 
+To: Yuanshen Cao <alex.caoys@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@mediatek.com>, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: rng: mtk-rng: add SMC-based TRNG
- variants
-Message-ID: <20260304-defiant-echidna-of-examination-b1e798@quoll>
-References: <04622e0bc917aed4145a9a3b50b61f343fc89312.1772585683.git.daniel@makrotopia.org>
+	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add Support for Allwinner A733
+ PCK600 Power Domain Controller
+Message-ID: <20260304-succinct-russet-stoat-fab9e3@quoll>
+References: <20260304-b4-pck600-a733-v1-0-2f54efdb8cc2@gmail.com>
+ <20260304-b4-pck600-a733-v1-1-2f54efdb8cc2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,106 +66,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <04622e0bc917aed4145a9a3b50b61f343fc89312.1772585683.git.daniel@makrotopia.org>
-X-Rspamd-Queue-Id: 20E491FF0D8
+In-Reply-To: <20260304-b4-pck600-a733-v1-1-2f54efdb8cc2@gmail.com>
+X-Rspamd-Queue-Id: 6A5391FF29E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270995-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271002-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[selenic.com,gondor.apana.org.au,kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 12:55:27AM +0000, Daniel Golle wrote:
-> diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.yaml b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> index 7e8dc62e5d3a6..6074758552ac3 100644
-> --- a/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> +++ b/Documentation/devicetree/bindings/rng/mtk-rng.yaml
-> @@ -11,12 +11,15 @@ maintainers:
->  
->  properties:
->    $nodename:
-> -    pattern: "^rng@[0-9a-f]+$"
-> +    pattern: "^rng(@[0-9a-f]+)?$"
->  
->    compatible:
->      oneOf:
->        - enum:
->            - mediatek,mt7623-rng
-> +          - mediatek,mt7981-rng
-> +          - mediatek,mt7987-rng
-> +          - mediatek,mt7988-rng
+On Wed, Mar 04, 2026 at 03:43:44AM +0000, Yuanshen Cao wrote:
+> The A733 PCK600, similar to A523 PCK600, is likely a customized version
+> of ARM PCK-600 power controller. They share the same BSP drivers in the
+> package provided by Radxa, with the only difference being the lack of
+> resets.
+> 
+> Therefore, document A733 compatible and make resets required only for
+> the other models, as well as prepare the PD definitions for future
+> device trees.
+> 
+> Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
+> ---
+>  .../bindings/power/allwinner,sun20i-d1-ppu.yaml        | 17 ++++++++++++++++-
+>  .../dt-bindings/power/allwinner,sun60i-a733-pck-600.h  | 18 ++++++++++++++++++
+>  2 files changed, 34 insertions(+), 1 deletion(-)
 
-Not compatible with each other?
+Thanks for the patch, nice explanation.
 
->        - items:
->            - enum:
->                - mediatek,mt7622-rng
-> @@ -38,9 +41,22 @@ properties:
->  
->  required:
->    - compatible
-> -  - reg
-> -  - clocks
-> -  - clock-names
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          not:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Use rather positive list, so drop "not:" and use cntains for only one
-compatible - mediatek,mt7623-rng.
+Best regards,
+Krzysztof
 
-> +            contains:
-> +              enum:
-> +                - mediatek,mt7981-rng
-> +                - mediatek,mt7987-rng
-> +                - mediatek,mt7988-rng
-> +    then:
-> +      required:
-> +        - reg
-> +        - clocks
-> +        - clock-names
->  
->  additionalProperties: false
->  
-> @@ -53,3 +69,7 @@ examples:
->              clocks = <&infracfg CLK_INFRA_TRNG>;
->              clock-names = "rng";
->      };
-> +  - |
-> +    rng {
-> +            compatible = "mediatek,mt7981-rng";
-
-Use four spaces for indentation.
-
-> +    };
-> -- 
-> 2.53.0
 
