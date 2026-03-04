@@ -1,99 +1,100 @@
-Return-Path: <devicetree+bounces-270869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270870-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KRLDDTdp2lnkgAAu9opvQ
-	(envelope-from <devicetree+bounces-270869-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:20:20 +0100
+	id iP1CLYPep2lnkgAAu9opvQ
+	(envelope-from <devicetree+bounces-270870-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:25:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01A4B1FB856
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:20:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2153B1FB92D
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 08:25:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8A5E13049552
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:20:13 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 884B73017C34
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 07:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A8833E376;
-	Wed,  4 Mar 2026 07:20:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3475351C2A;
+	Wed,  4 Mar 2026 07:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rpo62eeJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BhosY8Tk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-dl1-f48.google.com (mail-dl1-f48.google.com [74.125.82.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7CF34D398
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 07:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C2830E84D
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 07:25:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772608806; cv=none; b=k7qia45pR7mbZDfEDFyX4IGSctqlUO9gneOJ37r2kurTOS4/mCG+x/7NPvzXXoiGl03Hfl+Vqn3R1SxSnBzL6IJ9HSm7zMfsMIsnRF6fsjmoGC9VvO7o3f396bH0vdcvTeNasqSPLM0bhDXrUR3dq+ZkN6i4T63STvJOCETEIZo=
+	t=1772609152; cv=none; b=FYjRN9iDW/3dVK80sVNHmzjfHnDGERJ0ycotmRuLjHhyoq9elbgTNOe/N9bii1nfv6cHEOSuZewWGiNGSS+37Ia+FVrR6L4d64yjvk+tiIchKPRXKDbEwxjNDVUAGIyKcFxXklaFGbrBP1Nhkc8MEAzVksSooPO69sazdI6FsCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772608806; c=relaxed/simple;
-	bh=tGGAKhZ+FH+TOTfXSCqoHejGCkph46PhQW+y2VLqK64=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gaLHR5LuxVagJlei0VaMkmRbKtM2Jk+hp3xLzBxAy57c3ePjBGnxdqKR1SlhHNCqerLK4K9oke3ZLjhatZPJiZ6lINrI9UUbHiM/KG8dIdQBjuj0rEdCrZhY3Ryw+hxQZImgMHYntfacuCXkNE035i6XFAPt4Co4LJR6tdHFkiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rpo62eeJ; arc=none smtp.client-ip=209.85.221.42
+	s=arc-20240116; t=1772609152; c=relaxed/simple;
+	bh=u2dqIwEcqB7gZGhAjpnE89HllIsn+qZmeaKPFJf4eC8=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=jCbcpUaOxV3VEZPxhVMdMBneg1M08X05t3YzgO9WvlCJ179lleZiPfBbUAhBNVje2i5JpnN0EV7g+ZCy6Y+KGze7cYJInm1EvWJCIeFPmccStPQpk7Ah/n8chL+zQ2wkV7YHGyYrYshVWLpG37x6+0zCQTzbP1wJ3MQQZH2Tkz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BhosY8Tk; arc=none smtp.client-ip=74.125.82.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-439c4bde55cso617380f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 23:20:03 -0800 (PST)
+Received: by mail-dl1-f48.google.com with SMTP id a92af1059eb24-12732165d1eso7011602c88.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 23:25:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772608802; x=1773213602; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qfQgqDvue/EVF4KyiX+OpQ7cgSYz6kuqRUaxn8LjfkU=;
-        b=Rpo62eeJ5qIHhhC9a4rnmRsoYLYrXgVT3tng5NKGRf+WSa+FqUcldAksgWlyzhlMeE
-         lQ86LeN/mI15S93SYU3UCe8fqwKZsC77+P/pEPv54IreW0YmVKpSt8yXVDNsMQGoaFPB
-         fpotq0t6hNc4Ty9a3OagrRM1HUgD1gdIaSvQwZPxRprOT4JvU9C02xOmn5xb9AXNCGOr
-         FyTqXay984449diiOpN2PAt8ny3u5JljpPnZ4SzZrcNywyfU6lEFLQ+EIUK2b2jZY3Yo
-         3cbgQ1yjx+tdWRbbAnx4qiJ+ilJjDUlVlJEZMO8Ib3qiYk5DoVEnPDcI0MHpbyOkCoWI
-         yttA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772608802; x=1773213602;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1772609151; x=1773213951; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qfQgqDvue/EVF4KyiX+OpQ7cgSYz6kuqRUaxn8LjfkU=;
-        b=Ymr2VVO72b0hmLRt7BnrAvASd2X8oXmIusioqE8w5aEW9GvJg67CUBw6yTxUr+7/Fi
-         lFNBmh8QKhe8ZD13zr8IlBFlCjB68qNbWxEUNiw/ex6fkwwPNQnFeOvkPKVgt5Kn7O0/
-         j8k0CbtXqtFHJ3ErVdZq/FEN0KYsHHgLib6E171k9D/dvGz7cuUaAW5CAoTr5uCug9GA
-         A5ABVig/kkfw+ujgdVn2R+8joU+LutxiadbXaTOXaWo74goEhhFcDhRzXiDLTnDdXcLB
-         VpWIL4G9SWZljEVrhXGgvIERzNgt1ZFqdqCjQhrolmcYQueBE+zjDMSM0eoMWrRxJ13z
-         1dgg==
-X-Forwarded-Encrypted: i=1; AJvYcCVzEW+O6lOgJUOo2DamcYT8tXIxAZYpwCKx4UM0xl3/0As/IK5I0Xes51rpsaRpo72QT66hFmF03VFv@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZoE748r7h4uiI6mPX+baF78el6qeTxtB+RSKQo/LTULJb1HTc
-	QR8fWJPwOohB/sU/fhD6KjDb03by4kT46jyTEqcqWWzHtKU0opGO//1N
-X-Gm-Gg: ATEYQzzRJ+WAOZv5KzSicLiHa3pXkUlNW7l/pwsz7e5REJIBX6N014zyFEk+NG3ejOG
-	EnlRZYdAVBGpgTwDoh1CUf+ZIUY1DSM8S9p3Abxai+d1p2GuB9o4RliszI6pWsZaixueF7GAk8B
-	YTPNZVJmhLE2izmyfnC+o/ubAM3//fksONKYC10xZ0Kj77/McDXn0+LEwLOrn2ggW8OgkP/GAOR
-	5e2fsze/1oXem8jkLOTPjF8ogSzxV4EW1JbcHHE2AsqUb6wz6NxyvXsXR/BHtC3VsewNIS941Dk
-	Km0WD0qtO3e156Jlv/K3z4r8GQwUq9AveGr1a4PLycID4FUTxEEfFUjNscnxzC7DkLwiPkNvZHU
-	K5D70Mnn42nh8fXDZzPeIljmATc5BXFCmdL5tHF6k/326PQvjs8QXkwCxLCusWaDb+emXGXzeOj
-	vKQMe3DlfYQhMdaHnVz1nTiHM6pwwGUXg=
-X-Received: by 2002:a05:600c:8411:b0:477:df7:b020 with SMTP id 5b1f17b1804b1-485198744camr16136855e9.18.1772608802480;
-        Tue, 03 Mar 2026 23:20:02 -0800 (PST)
-Received: from biju.lan ([2a00:23c4:a758:8a01:de3f:f927:40ff:12a6])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851a8aa589sm4989285e9.5.2026.03.03.23.20.01
+        bh=2Xjt8bJH/L3RjqSPLVXpTgggvkPMU8B0IuZLjfddvGU=;
+        b=BhosY8TkYsPKrhVgf9LfpjCt6MKdNhm7SfBppFqs1X1d4RYFo0KCfi2kpRsBa9f/AQ
+         p7NK8qy/qmElgFyZKzfeWZU3LXPxnk7WjoBYKBfngPhGSa50qluVRvoCvEIrEj0E0wfu
+         x2DhjRZ/LyIcYGaTVw8DQ+RYn7HBNawXWryWCILdl+F8+vERALHRtltNU+ZeldMMZkjY
+         OP0theBT2+x1KJFflsF6u12LRgnsCObnQJsPv3rlqvTKw3aaqmRRnwB8QPw4rwgTmdkd
+         nyzMpxSc80I8BQeMqmYHJBb3TpMlze37Hde8/QceS0vI/3/hBgNaTQ996waUOtFtqR6d
+         W1lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772609151; x=1773213951;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=2Xjt8bJH/L3RjqSPLVXpTgggvkPMU8B0IuZLjfddvGU=;
+        b=VNpR3GmXDXMlrwUGVSyRpn4nYsm6DVAouxrBR7fq6KtaVpPfZo/98cOpooqr+thpNu
+         Qeo8YXj6A7u1C1vCrGWHgHaLfZomFa4uCv+xkNWQQLwbVXliyPhNUxOIs5mnh2r9A9iL
+         7jMvnjgyo6an6Q5BXqo+wa/mmo5EQuledJ/JZtIKqEvz9AwI3u2jg/QLd+SkcpVqwhzd
+         hoXpci9KfSmPj/y1fA38kpbVR/+yzjoe+Zb5pP2eT9FQ0VF/EV3ukG70G1cuze4B9PA/
+         La2yqaXi8G/b1tLya3t3MvEYh2kJYbWy00UKvjjo0bFL4ebfbb4o0QGim0rYWqDDKCAJ
+         aJ8A==
+X-Forwarded-Encrypted: i=1; AJvYcCWqRbcnDVuBp+Zn+L54c4RGet5Z5/uJHz+u1OQBzmdVZHS53htsZLwL5EgNHsRdLBqVbO0F7vkfijGM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzclcmTTwJdPQ/4fZ8+FSt7YiW2eYOYcUIe6Kt0YNSPP8ZtoxFx
+	GRmp24JDiFykT63qLUrgz18LCFC/XZgidh6iX3dd7oNtWfXoEhfaHpYf
+X-Gm-Gg: ATEYQzxDMRm08DaLQqk44ljM78nV1Q3kuKt6a6/orSMncoWL3+wMA/ARLcciwyv59gv
+	2ZC+DjhRhxP9dQXFhArmp4SiXfXDTbIy8OLsLkkq+xgVpMi8CbrIVXaFT63Drrqj4+/iSOLzTlv
+	3wg5M7Oy+i0ON362UEuup9nY18Hcqh9ch6pbSHpBdH9wlvBm8YmJxH1ZzYYsCYgZ75G2fRF5r1j
+	xTPoRm0Y63FB4ASf7LYODJOW8sNxsI9REJu9fwDbWV7AJuNAfEbprTt0nGeldCj8pMlQo+r1+DI
+	dMKgh+cWHJ6ojNBavT8RL5BGmkf9hc0x+MX8t8SEERyVrP2uF2XNSBMP8DIPrQiKRsRFxTvIHWw
+	CBS7BTRtLkMf9+Jt+xdsNcuzoKnyWQQz8SzsfCFMIc2k2l8lfrOZbOWnz5LSWNiIms5guzjidHq
+	jzb/uAsEy6Vz/KDYmSH+AHjq9SRqWoYwo=
+X-Received: by 2002:a05:7300:72d1:b0:2ae:5e93:b69 with SMTP id 5a478bee46e88-2be310904acmr459054eec.29.1772609150602;
+        Tue, 03 Mar 2026 23:25:50 -0800 (PST)
+Received: from arch.localdomain ([2409:8a28:a55:9af1::1002])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be249ed6a4sm2548374eec.11.2026.03.03.23.25.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 23:20:02 -0800 (PST)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-sound@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
+        Tue, 03 Mar 2026 23:25:50 -0800 (PST)
+From: Jun Yan <jerrysteve1101@gmail.com>
+To: jernej.skrabec@gmail.com
+Cc: andre.przywara@arm.com,
+	conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH] ASoC: dt-bindings: renesas,rz-ssi: Document RZ/G3L SoC
-Date: Wed,  4 Mar 2026 07:19:55 +0000
-Message-ID: <20260304072000.6787-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+	jerrysteve1101@gmail.com,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	mripard@kernel.org,
+	robh@kernel.org,
+	samuel@sholland.org,
+	wens@kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: allwinner: h6: Add TaiqiCat (TQC) A01 support
+Date: Wed,  4 Mar 2026 15:25:43 +0800
+Message-ID: <20260304072543.436707-1-jerrysteve1101@gmail.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <5969847.DvuYhMxLoT@jernej-laptop>
+References: <5969847.DvuYhMxLoT@jernej-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,63 +102,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 01A4B1FB856
+X-Rspamd-Queue-Id: 2153B1FB92D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	MID_CONTAINS_TO(1.00)[];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270869-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[bp.renesas.com,gmail.com,kernel.org,glider.be];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[arm.com,kernel.org,vger.kernel.org,gmail.com,lists.infradead.org,lists.linux.dev,sholland.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-270870-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[jerrysteve1101@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bp.renesas.com:mid,renesas.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,archive.org:url]
 X-Rspamd-Action: no action
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+> Dne ponedeljek, 2. marec 2026 ob 03:09:56 Srednjeevropski standardni =C4=8D=
+> as je Jun Yan napisal(a):
+> > TaiqiCat (TQC) A01 is a set-top box powered by an Allwinner H6 SoC,
+> > equipped with an AXP305 PMIC, 1GB LPDDR3 RAM, 8GB eMMC, an AP6212
+> > WiFi/BT combo module, one 100M Ethernet port, one USB 3.0 Type-A port,
+> > one USB 2.0 Type-A port, one Micro USB port, HDMI, SPDIF, Micro-SD, and
+> > infrared input.
+> >=20
+> > It was released by Ultrapower(UQSoft) as a blockchain-based terminal and =
+> is
+> > now discontinued and no longer supported.
+> >=20
+> >   https://web.archive.org/web/20190409213228/https://tq.ultrapower.com.cn=
+> /product.html
+> >=20
+> > Hardware schematics are not available at this time; however, the
+> > dts from the vendor firmware is provided for reference [1].
+> >=20
+> > Based on the PCB silkscreen marking "AZW-KT02 2.0", the ODM/OEM
+> > can be confirmed as AZW, and the overall hardware circuit design
+> > is highly similar to the Beelink GS1.
+> >=20
+> > Tested, works:
+> > - debug UART
+> > - status LED
+> > - USB 3.0 Type-A port
+> > - USB 2.0 Type-A port
+> > - Micro USB port (Host)
+> > - MicroSD
+> > - eMMC
+> > - WiFi/Bluetooth
+> > - HDMI video output
+> >=20
+> > Does not work:
+> > - Ethernet (requires AC200 MFD/EPHY driver)
+> > - HDMI audio
+> >=20
+> > Untested:
+> > - SPDIF
+> > - IR receiver
+> >=20
+> > [1] https://archive.org/download/tqc-a01-stock-fw/tqc-a01-stock-fw.dts
+> >=20
+> > Signed-off-by: Jun Yan <jerrysteve1101@gmail.com>
+> > Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/Makefile        |   1 +
+> >  .../dts/allwinner/sun50i-h6-taiqicat-a01.dts  | 361 ++++++++++++++++++
+> >  2 files changed, 362 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.=
+> dts
+> >=20
+> > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts=
+> /allwinner/Makefile
+> > index 2edfa7bf4ab3..d116864b6c2b 100644
+> > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > @@ -38,6 +38,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-orangepi-lite2.=
+> dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-orangepi-one-plus.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-pine-h64.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-pine-h64-model-b.dtb
+> > +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-taiqicat-a01.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-tanix-tx6.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-tanix-tx6-mini.dtb
+> >  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h313-tanix-tx1.dtb
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts b/a=
+> rch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
+> > new file mode 100644
+> > index 000000000000..3138292abb45
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-taiqicat-a01.dts
+> > @@ -0,0 +1,361 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +// Copyright (C) 2026 Jun Yan <jerrysteve1101@gmail.com>
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sun50i-h6.dtsi"
+> > +#include "sun50i-h6-cpu-opp.dtsi"
+> > +#include "sun50i-h6-gpu-opp.dtsi"
+> > +
+> > +#include <dt-bindings/gpio/gpio.h>
+> > +
+> > +/ {
+> > +	model =3D "TaiqiCat (TQC) A01";
+> > +	compatible =3D "ultrapower,taiqicat-a01", "allwinner,sun50i-h6";
+> > +
+> > +	aliases {
+> > +		ethernet0 =3D &sdio_wifi;
+> 
+> Wifi has alias ethernet1 on H6.
 
-Document RZ/G3L SSIF-2 bindings. The RZ/G3L SSIF-2 IP is identical to one
-found on the RZ/G2L SoC.
+Acknowledged. This will be fixed in PATCH V4.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> 
+> Other that that, it looks good. With that fixed:
+> Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+> 
+> Best regards,
+> Jernej
 
-diff --git a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-index e4cdbf2202b9..1394f78281fc 100644
---- a/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-+++ b/Documentation/devicetree/bindings/sound/renesas,rz-ssi.yaml
-@@ -20,6 +20,7 @@ properties:
-           - renesas,r9a07g044-ssi  # RZ/G2{L,LC}
-           - renesas,r9a07g054-ssi  # RZ/V2L
-           - renesas,r9a08g045-ssi  # RZ/G3S
-+          - renesas,r9a08g046-ssi  # RZ/G3L
-       - const: renesas,rz-ssi
- 
-   reg:
--- 
-2.43.0
+
 
 
