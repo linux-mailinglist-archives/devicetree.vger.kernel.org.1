@@ -1,229 +1,187 @@
-Return-Path: <devicetree+bounces-271056-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271078-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qDoNMxE2qGm+pQAAu9opvQ
-	(envelope-from <devicetree+bounces-271056-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:39:29 +0100
+	id kGl8BydBqGl6rQAAu9opvQ
+	(envelope-from <devicetree+bounces-271078-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:26:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31BE7200893
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:39:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0AFB201691
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 15:26:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 946C230C82A9
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 13:35:41 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D9E79307A023
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 14:15:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC143914E8;
-	Wed,  4 Mar 2026 13:35:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 262EB39B978;
+	Wed,  4 Mar 2026 14:11:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VJsYsb/2";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="blXXh+Zb"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="fx22D2kn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail-m49231.qiye.163.com (mail-m49231.qiye.163.com [45.254.49.231])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A75A836EAB3
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 13:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C84D23C4FF;
+	Wed,  4 Mar 2026 14:11:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772631340; cv=none; b=hI6NKw78hh/xn/z012+w3J368c7/6YuwAV5CRaeNoAonZSGUb+VYPHYzFP/LknLzn5B+asx6pnEbmIYhruEw5xHAbb3yQYMbRAHNgbJXZ1JKsal7AzsFIlcM5lriQsLizukfzjP337l9C5nRykxZij8M2Ne2IbBYxjm/dPzowOI=
+	t=1772633510; cv=none; b=JGvH42oE3QIRzZ4scEn6wUckTtL4KqgRBexl+g1QosOztJsUZauv7LhitQ43TziJsfCHIZKuPrpPALGZOD9s+K0J2PjZCPHc3Da04Wwj7xaFw7X+7kaiGUM5qq4H3qrYQ+D7L1xa/EqnHLNpNxaJLKG6jTIJEj286N8iXYLtEIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772631340; c=relaxed/simple;
-	bh=Bc60Ce5RAVxeMqV5F3Hw8I4j0mmAfOiRf0KEGpNL4HQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kjHq8BFpL6pTzjuYLbKMrXhyAu/E3rF0kemV1apGCDQZ6ywrk7o0kYfwbVaOyg9eqMN9xLG5qqLStOkaspZOUvmrrKNjHqlOmeY48EKqZgWNtZwB7Rw6noZZrQpbT52cWbWe9uaXtQb58K9withSQZLHJUT66tVlyTkOuu0oLkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VJsYsb/2; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=blXXh+Zb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6249KfUq1455858
-	for <devicetree@vger.kernel.org>; Wed, 4 Mar 2026 13:35:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HHFSyLWU+Oy7MJVGltMtPHpNmUOfcwnnSnJ2aE5TD9U=; b=VJsYsb/2vSUGtnPX
-	iAmIkOgQTRoD/pXdcxv1p9Ch0KCg8y24kjy3jAWP4wTumPB6ms0CkgQw/LwXj4ft
-	jP5S7gacgbggk+5rn5iq5pzem1VogAAJ4ZV6zmZ5+gpii9RmVKti/zw6QSyShX3y
-	XHUCT9i7mQKRxa7HMw2lvXY1bUYLjYVqTpsDua7MZbX9AAaV/tbsPOYIlxXFbCM2
-	gsWcrtBwC/BRN9c/dDXdPZHguTytvXTGXHySYLjjGWCtO2VwqlPEZ5k5hQPO3QG6
-	bQk4G3Mxuyr7yhbli8QeIIutffjrcG3TXMi87c2vzO1hS/4vkK/RJwSFiam8i/Rp
-	pF3uSg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cpj180qhd-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 13:35:38 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cb5a76f13eso390326585a.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 05:35:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772631338; x=1773236138; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HHFSyLWU+Oy7MJVGltMtPHpNmUOfcwnnSnJ2aE5TD9U=;
-        b=blXXh+ZbKAIc3nZIfgu6I/SjlvYXjzkLc49OiXq1hZMYtrJ6YNu/0PcmNGik1KAQS4
-         suOVGhcAsruQFGGMdWXZncJ2Joyy54dLKzA05R0Xx3VOHSsw30L09gtLoxdpU9G9Tn32
-         KdELdRAhj53614MsHviV/WLR71zFgKcD9U37gRAOBVqhTwZdzcC4VTcSM9apvgrMShVx
-         o+aNPvd+8XZC2dmmJoZ/SE1L9VN5M0/Fr8T5gQjXB9bFUZTr9xTdeiaY3tvdA5rtlXOo
-         r9OofF1WiF2DB31wvwlElMUJ142wB3S30ydD2WmyrBwsmbIMriIZATYnxR8PF1/xOT4p
-         ta8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772631338; x=1773236138;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HHFSyLWU+Oy7MJVGltMtPHpNmUOfcwnnSnJ2aE5TD9U=;
-        b=CJzSz+s06FUh/YmocmxvYVUBY/37oOG1Vc+lrMagHAxXaRam3q/O3ZqxUAGD9wAkZI
-         9bfU+dco+8bHwFlKf5p1vzCL519RqtX+667CAqQ3iDSZGW8otQTMqTf23oFMHOIa+dWL
-         XIXYRvRJwChhrHIjBTJHMNB/+YqwSdNDtgNjl9J5GqsSkDrGSl7oDGnpUcHRpO4LAeou
-         xMwK11OoM2oV4p3uFhnMAKuNvEsV1+zuA7zzmbPZvdioEn3xJqT1+soHNkBt8wpMY2af
-         6lcxawidelJBIOrKi06MnGZpPl9FNO+F0BbsjrX71IX4Nx0dFINVmb8fx6oPRvJjZN9H
-         WnAA==
-X-Forwarded-Encrypted: i=1; AJvYcCXVi+zfbLPJZwAZFHf4ld94lmozUi3LtZGS4sIOQ2tktryrE0bThvcW13geQz5NsWbRVraZv2NgTteM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yygp1dfxXvBZA0VaubcTcFyY0GX8Y+dQkz4kJLlbNVYP5ixJIxE
-	8CMmW5gefSkcre+Ftkpo5FNnG3Qwh4SpReKKB0LpkUCr5dszkRNQnuFnWIUfjNv6U5B7Zk1kOiW
-	yq1116QKQbVVafnLWvfezZKLHtQl/l4tn38Mk3rPbf9M0TmpVXlkyhjDa7aMbIicG
-X-Gm-Gg: ATEYQzys2lJAknqqzoUxak0pyIevhdscNiouQexNOTli71prVO0/6x3hSZmnD3y5RXj
-	zAuAFBgptchkBRY/Xun73Z+WYoPv6/UvTH2WB76rZj3kCAuWxtRBq20zA5Y9ChiHcpqlANCuXis
-	kQxoiy2WHxhwPAwMBPjJb5N1OzMb3YYlylm1nRftaSMnpLw5V6nzhaEsYCRqGSUfD001C+Qdm0o
-	ZP1ieU6QXEAcHeHqpWz8WTbAiOFYQuZvqUhiXrJdPQWuzeDkWGhquv4Y/DvRBlwqbSfnaoIujiU
-	jMLwBwHPrJVZ4qStPNCzEIbXz51gBMSBmiDfqRREP1ChysWUxOs86c9AxJp12r+jlrda/fG3gyY
-	EgP71nRnE8YrSDheM+rntWkAMgLirfjXOYnqT0BGggP6j06kNDc4l+XbIIeA7UeSImUeSzky5WH
-	Fad7I=
-X-Received: by 2002:a05:620a:404c:b0:8c7:1b40:d096 with SMTP id af79cd13be357-8cd5afcdcfbmr175281485a.9.1772631337976;
-        Wed, 04 Mar 2026 05:35:37 -0800 (PST)
-X-Received: by 2002:a05:620a:404c:b0:8c7:1b40:d096 with SMTP id af79cd13be357-8cd5afcdcfbmr175276685a.9.1772631337417;
-        Wed, 04 Mar 2026 05:35:37 -0800 (PST)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-660b5df4bf9sm1505895a12.29.2026.03.04.05.35.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Mar 2026 05:35:36 -0800 (PST)
-Message-ID: <7e092c9d-ccc9-4084-91a8-7ddb063a904d@oss.qualcomm.com>
-Date: Wed, 4 Mar 2026 14:35:33 +0100
+	s=arc-20240116; t=1772633510; c=relaxed/simple;
+	bh=9hfLEMLEjEMc8uZwHodU+viTGo92h6eeEPI7jhWM9m8=;
+	h=Cc:Subject:To:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=eAFetZKzvlB+6hpzJ69CPP+4sT1ZlCrU//ZQKFILb/KZ0EvErAjirbE3meqjuHt8S3DMY8990zVb+lgSB3ZbmeLhyjkuNY9Ai495nSCLtsmux+RHHwGhl1clY7IHdFQ5RHxzZiVEs4AauOqWVJw/cBOfXMU50jH2VUAD5i0jzgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=fx22D2kn; arc=none smtp.client-ip=45.254.49.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.14] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 35bef961c;
+	Wed, 4 Mar 2026 21:36:16 +0800 (GMT+08:00)
+Cc: shawn.lin@rock-chips.com, Martin Filla <freebsd@sysctl.cz>,
+ Charalampos Mitrodimas <charmitro@posteo.net>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Frank Wunderlich <frank-w@public-files.de>
+Subject: Re: [PATCH v4 1/4] arm64: dts: rockchip: assign pipe clock to rk356x
+ PCIe lanes
+To: david@ixit.cz, Rob Herring <robh@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, "elaine.zhang"
+ <elaine.zhang@rock-chips.com>
+References: <20260304-rk3568-bri-r2-pro-fix-pcie-v4-0-37abd7ba29d0@ixit.cz>
+ <20260304-rk3568-bri-r2-pro-fix-pcie-v4-1-37abd7ba29d0@ixit.cz>
+From: Shawn Lin <shawn.lin@rock-chips.com>
+Message-ID: <d981fa84-bd05-ac9d-98ca-89ee47177829@rock-chips.com>
+Date: Wed, 4 Mar 2026 21:36:15 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.11.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] soc: qcom: ubwc: Add configuration Eliza SoC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
- <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
-References: <20260304-drm-display-eliza-v2-0-ea0579f62358@oss.qualcomm.com>
- <20260304-drm-display-eliza-v2-6-ea0579f62358@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260304-drm-display-eliza-v2-6-ea0579f62358@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ppe1BI2cEy3yG3ToCZAtL1II2GKdoxK1
-X-Proofpoint-ORIG-GUID: ppe1BI2cEy3yG3ToCZAtL1II2GKdoxK1
-X-Authority-Analysis: v=2.4 cv=Ed7FgfmC c=1 sm=1 tr=0 ts=69a8352a cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22
- a=EUspDBNiAAAA:8 a=ofcykXZfb13_7XvavCoA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA0MDEwOSBTYWx0ZWRfXyXgroB+NG/m4
- s2rGInR3RZeyrc3g4jSPqYJIPBCJj+r0rdWQIX+uoylHF5FAIBeE6KDLLS9tVaRVJa4VtkY6nbi
- nywYXsIrqaCajkSH6ukfjKSyt3Ra3xTyh64OfRiJmiRWzx1nEIFpyalhG9B1YwXzJG0V9NfzgnE
- +av/bA3C8DAaDSA9AwK2R7+y91Tc70x6h2aC9D6+Qzwx+oZlTvKceOhrMKfO2K/gk+SV6HAcxnX
- CfFY3VEfp9kKpL8mjmQ0JlYH3tbMI/lsyfnQ8G6QspVF1gj/0JqKiNgP1xCijYWp07mdaZqzgfr
- V/UITVRlazRkU7kZ9CUua1jpucP/jA23MIksQp1IpMXP1bxyOhMECgT7LvgrRwxk0UKNFPx9EmQ
- mO6/C1WPFo8vdGpskJiErk7yvGnsgwaWWUpPY17tjf+CFQWWXFGzv6G+ht8W82lxIFnWRunwQgc
- TGhYXZybZsx3y74AMGQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-04_06,2026-03-03_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 suspectscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- clxscore=1015 malwarescore=0 impostorscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603040109
-X-Rspamd-Queue-Id: 31BE7200893
+In-Reply-To: <20260304-rk3568-bri-r2-pro-fix-pcie-v4-1-37abd7ba29d0@ixit.cz>
+Content-Type: text/plain; charset=gbk; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9cb91043db09cckunm56444db0122910c
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxgYQ1ZIQkxLHxhNSUweTB9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=fx22D2kn242RR6kXvU/2drBjn1X7G1r4J6WP3RnZQe9shUfVHmlNHN60ywYZG39crbVuIKrwgDtFYU4oIbfReugUOmgXdVdgWDFlSsGQJbth/rPtmlUigRHhfyk4mNFvhSQ/F3n1Dk9z5rfkpYnAu08yC8Gs6u66zvNO7SXT20w=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=p/5CjFN5DQLnwXu9X2kNfSbkWVbxCQkt3uDqFMTtaNk=;
+	h=date:mime-version:subject:message-id:from;
+X-Rspamd-Queue-Id: D0AFB201691
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271056-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,quicinc.com,marek.ca,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
+	TAGGED_FROM(0.00)[bounces-271078-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[rock-chips.com,sysctl.cz,posteo.net,vger.kernel.org,lists.infradead.org,kernel.org,public-files.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ixit.cz:email,posteo.net:email,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,fe260000:email,fe280000:email]
 X-Rspamd-Action: no action
 
-On 3/4/26 1:58 PM, Krzysztof Kozlowski wrote:
-> Add configuration data and an entry to OF table for matching the Eliza
-> SoC.
++ Elaine
+
+在 2026/03/04 星期三 19:05, David Heidelberg via B4 Relay 写道:
+> From: David Heidelberg <david@ixit.cz>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> 
+> These clocks are used by PCIe lanes, but we're missing from the
+> definition.
+>
+
+These missing clocks are needed but PCIe still work fine，because
+the clk code for rk3568 didn't actually define them as real clock
+gates. So they are always enabled thanks to the default value and out
+of the radar of clk_disable_unused().
+
+It's a bit suboptimal and probably need to be improved in clk-rk3568.c
+
+For $subject patch,
+
+Reviewed-by: Shawn Lin <shawn.lin@rock-chips.com>
+
+
+> Suggested-by: Charalampos Mitrodimas <charmitro@posteo.net>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 > ---
+>   arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 12 ++++++++----
+>   arch/arm64/boot/dts/rockchip/rk356x-base.dtsi |  6 ++++--
+>   2 files changed, 12 insertions(+), 6 deletions(-)
 > 
-> Changes in v2:
-> 1. Use data from manual (UBWC v5 as pointed out by Dmitry, but different
->    highest bank bits).
-> ---
->  drivers/soc/qcom/ubwc_config.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> index 658097ed69714..3bc653f027f1f 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -155,9 +155,11 @@ pcie3x1: pcie@fe270000 {
+>   		bus-range = <0x10 0x1f>;
+>   		clocks = <&cru ACLK_PCIE30X1_MST>, <&cru ACLK_PCIE30X1_SLV>,
+>   			 <&cru ACLK_PCIE30X1_DBI>, <&cru PCLK_PCIE30X1>,
+> -			 <&cru CLK_PCIE30X1_AUX_NDFT>;
+> +			 <&cru CLK_PCIE30X1_AUX_NDFT>,
+> +			 <&cru CLK_PCIE30X1_PIPE_DFT>;
+>   		clock-names = "aclk_mst", "aclk_slv",
+> -			      "aclk_dbi", "pclk", "aux";
+> +			      "aclk_dbi", "pclk", "aux",
+> +			      "pipe";
+>   		device_type = "pci";
+>   		interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+>   			     <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
+> @@ -208,9 +210,11 @@ pcie3x2: pcie@fe280000 {
+>   		bus-range = <0x20 0x2f>;
+>   		clocks = <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,
+>   			 <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,
+> -			 <&cru CLK_PCIE30X2_AUX_NDFT>;
+> +			 <&cru CLK_PCIE30X2_AUX_NDFT>,
+> +			 <&cru CLK_PCIE30X2_PIPE_DFT>;
+>   		clock-names = "aclk_mst", "aclk_slv",
+> -			      "aclk_dbi", "pclk", "aux";
+> +			      "aclk_dbi", "pclk", "aux",
+> +			      "pipe";
+>   		device_type = "pci";
+>   		interrupts = <GIC_SPI 165 IRQ_TYPE_LEVEL_HIGH>,
+>   			     <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>,
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> index 68b48606f6010..15741acac6274 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> @@ -1020,9 +1020,11 @@ pcie2x1: pcie@fe260000 {
+>   		bus-range = <0x0 0xf>;
+>   		clocks = <&cru ACLK_PCIE20_MST>, <&cru ACLK_PCIE20_SLV>,
+>   			 <&cru ACLK_PCIE20_DBI>, <&cru PCLK_PCIE20>,
+> -			 <&cru CLK_PCIE20_AUX_NDFT>;
+> +			 <&cru CLK_PCIE20_AUX_NDFT>,
+> +			 <&cru CLK_PCIE20_PIPE_DFT>;
+>   		clock-names = "aclk_mst", "aclk_slv",
+> -			      "aclk_dbi", "pclk", "aux";
+> +			      "aclk_dbi", "pclk", "aux",
+> +			      "pipe";
+>   		device_type = "pci";
+>   		#interrupt-cells = <1>;
+>   		interrupt-map-mask = <0 0 0 7>;
 > 
-> diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
-> index 1c25aaf55e52..633d1efa0883 100644
-> --- a/drivers/soc/qcom/ubwc_config.c
-> +++ b/drivers/soc/qcom/ubwc_config.c
-> @@ -16,6 +16,16 @@ static const struct qcom_ubwc_cfg_data no_ubwc_data = {
->  	/* no UBWC, no HBB */
->  };
->  
-> +static const struct qcom_ubwc_cfg_data eliza_data = {
-> +	.ubwc_enc_version = UBWC_5_0,
-> +	.ubwc_dec_version = UBWC_5_0,
-> +	.ubwc_swizzle = 6,
-
- = UBWC_SWIZZLE_ENABLE_LVL2 | UBWC_SWIZZLE_ENABLE_LVL3
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
 
