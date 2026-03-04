@@ -1,180 +1,139 @@
-Return-Path: <devicetree+bounces-271117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271118-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJE4KURNqGmvsgAAu9opvQ
-	(envelope-from <devicetree+bounces-271117-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:18:28 +0100
+	id MDo8CQ5OqGlbtAAAu9opvQ
+	(envelope-from <devicetree+bounces-271118-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:21:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5961C202780
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:18:28 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A0A20289D
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 16:21:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 621113035E2F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:10:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1611C3066E71
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 15:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC3B5342517;
-	Wed,  4 Mar 2026 15:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1466A282F3E;
+	Wed,  4 Mar 2026 15:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EGGvURqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC28A34028D
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 15:09:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B091F3FED;
+	Wed,  4 Mar 2026 15:15:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772636987; cv=none; b=Yc+GtgQ+nv/Oij0hMKHX4sf0LcvORqhYOXIjAXZzTc2aqkldu3dRLvxipy77aNDmuQ8ns5zfz2ZFoOKTUSbbkx8vKUX+5mu9eu8lCnyKiiXycONvwRQJHz+V0frANurvH+4+b4NB2jkO8KtVF4+sHHQyP1j1d/+EKxGOSuC2+lA=
+	t=1772637307; cv=none; b=cX7vDN+Eav/jyTUK5HVk5GW9kciULGLid1YII59HwyjQhROQEpzjlECuIX2qIbfj4uitrlopAxyEsxW5e1RCH7tdMnDq+4R1k5sjG/Y5OnrYo9BaCO33ky6XWQ1ppyAt+DKT8v9lpMDJHR/yfyUXfO6t1rpEDDlu+rFe5vV0X0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772636987; c=relaxed/simple;
-	bh=stMCj65DIZttmcEMyLUzMF4GFW7A3LJezswKZItX0ns=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pzYgkTHlNuKARXwIvg2En/9eWGoa4RqMP5MG3NG+T8xo+JeP+ns+CLMclIQ9bwVW74dCytFCIg8CyUXFBIBzdBox3eKUWiOLGmn0mfg1+4hbtkANUEQL1m2VplpgSFFYzbFu6xHivfcb7XBmwGK6oyVe2WAT11xvg3z3rMvZrIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-56a8584e3a2so5847862e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 07:09:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772636983; x=1773241783;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vxSWH/2v55NAFblNv9fIFlXwxWEhhmnEpCtyuAZg0R4=;
-        b=gxDOlkPGLsPK1xtfxHfXBSiJ36a7sz3x75R+jcLn7qi6JqOvFei31NI/afRszsGZb+
-         1Aazoh+zgWUtT0SHhGmCENk2nLf7miBQH5ZYajq2UgUrB1GmKSWBBCvBhEtqRUePvhh4
-         64IIsApPsBEynNNAn1QL6QQj27w8U2u1EZOrYZnD5BCt4SlS1DuBPgXDKLCDEbqrli+s
-         sbl/3IA+Y/m/ym+wwar3rQXAlHsFTdsSQL7AGFpsmdGpoEO7FzGXJlbsFpb4ktL9yMnH
-         h0z4sF8DHCcbR4lnnkVeiCCAq3X4tc5vj8MhzelpZLnYwod+v1KixaGG6ko81nSi4S9T
-         4WKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhKfsNp0Eb+3PiZBDHLh/TsCrh2bA+ALXxcUaskuktUE8YEqK9lZ0ijbwqUVmt/qfLwOtFyOoSvqj6@vger.kernel.org
-X-Gm-Message-State: AOJu0YztyKSZ5JQoXClcvVp3BWRO6Gfefq43rk5q3ZIG+9ElONhjSSSW
-	MOSD8od0u6818jrSxLEnS4jTCpULBZnvrGzr6oZp1Qt3ttrdhXAza/wm9pfsMpfz
-X-Gm-Gg: ATEYQzwoO9dhYBjTPaLdb2tqBGrQdsAoivGXkNGLE4qLh9iE8H7EGwmBkTsQSI2VZxh
-	GCNDFdFrD8CeYRc2sjlAiYFMgm0w01isgoM4TaaJLaa45H3GiCZQ6yAS3iAaVuxgI7s9lIa+TTK
-	Oy4DGBqBQevpEH/7coqDFFSuK8jkLxIQJO06Cd4KOo6IYi2ayvEp9+JRngdgC1Im+BW3khqUTAU
-	ufdFMhpLGwLF8D0vivDeVkeIFl2AaQoMTjOheU3EaFOd0PN/eGCTxRnffUGSuiK7MI2T12NHy0e
-	Qj6lkyc9RTYi2h92KZ7XVx2dw7VbQsYDrRTJ1+dOiHB59j3GNtg4W8KfAkD4M96LrtrY9oyGUCK
-	9wN1qC7Vik+dZKavrhi9if3SfUXX0kYl81v2EdkEdHTQkZHFckzqkDj8fskyBAtCDR3gutUaWtx
-	3wXsZgxe2oGlnGP/KMmVt3oIZzPq3Loz6iUZP9v+fxlotiN5xu/51uHZtnstXiL/6u
-X-Received: by 2002:a05:6122:218c:b0:563:83b2:ef2d with SMTP id 71dfb90a1353d-56ae7822f86mr1071312e0c.16.1772636982627;
-        Wed, 04 Mar 2026 07:09:42 -0800 (PST)
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com. [209.85.221.180])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56a91659421sm24921041e0c.0.2026.03.04.07.09.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Mar 2026 07:09:41 -0800 (PST)
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-56a8584e3a2so5847844e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 07:09:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWe+rRy3+lpoXMzaUd1gGDm9VRXojTvvXq8+IAJ+XITubfrsyEcopZyXJnYLROmfE4zDj6QJ/e6X7Ny@vger.kernel.org
-X-Received: by 2002:a05:6122:250a:b0:56a:8c20:2d9b with SMTP id
- 71dfb90a1353d-56ae6b97c39mr1061719e0c.0.1772636981170; Wed, 04 Mar 2026
- 07:09:41 -0800 (PST)
+	s=arc-20240116; t=1772637307; c=relaxed/simple;
+	bh=x4R8A2RNTfUwzOXr3eMyGbEAnd2tLvcvAMGI+tjAWi4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mFWMTELcbR66nMFTvH5QuDWHNmrx0+L87SsTBClYjhjKLbec6ooYLJhU0UhJoojsVN3yFCiuLvonAVAmauDx2189cafdYeujDntLDf3bxScDIVouAVUFRqOsGW+nrACdTmCyON5SL+pakH0QaodGOAfCtP/y3dnQbDqX2DNMMjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EGGvURqh; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=/F/6qnqfXtJ15sBnSuLKV29FiLetLwxJj98fT8vIhN4=; b=EGGvURqhv+xBc/Oiqth4S3Uq/g
+	tfch3dfxw4MVoNSLfdrO/vjyOBNg3VDYRzZGlCNwtRe9n9+bjBzN2CNmGpwHPc7VE+6bJthhJRYQ+
+	7r567lrAq0nrS7AFv4r7k18Kl+e5hb0WPT2aDG1yl8R0i35qVdJfLogPFM/v6xhlM8zU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vxnw6-00A7lc-TR; Wed, 04 Mar 2026 16:14:54 +0100
+Date: Wed, 4 Mar 2026 16:14:54 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+Cc: UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/8] net: dsa: add tag driver for LAN9645X
+Message-ID: <8ce78efd-2304-43d2-a755-4189fcbffb25@lunn.ch>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-1-bff8ca1396f5@microchip.com>
+ <c0213890-ef36-435c-aa73-869ee5e849d5@lunn.ch>
+ <1ceeb7fb0abc89f4b384c9d73b7d29c73bb8d53b.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <107183629106ad392e17fdf539a3d79873024377.1772632987.git.geert+renesas@glider.be>
- <86y0k77jhs.wl-maz@kernel.org>
-In-Reply-To: <86y0k77jhs.wl-maz@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 4 Mar 2026 16:09:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXwd-k79EyU=gs8sWFSO=Ap62kbmb7UX3MDUir986GvVA@mail.gmail.com>
-X-Gm-Features: AaiRm524M_lVDqJeLtLCIplagqZCSJvYvhbt7bK9RL4CkdtLzJuotoXm9OoR-Jo
-Message-ID: <CAMuHMdXwd-k79EyU=gs8sWFSO=Ap62kbmb7UX3MDUir986GvVA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: arm,gic-v3: Fix EPPI range
-To: Marc Zyngier <maz@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Thomas Gleixner <tglx@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 5961C202780
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1ceeb7fb0abc89f4b384c9d73b7d29c73bb8d53b.camel@microchip.com>
+X-Rspamd-Queue-Id: 83A0A20289D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271117-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-271118-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.933];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,linux-m68k.org:email,glider.be:email]
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Marc,
+> > These functions are big enough i would place them into the .c file.
+> > Then, normally, i would say, please don't use inline in a C file. But
+> > here we are in the fast path. Have you tried this with and without the
+> > inline? How does it change the object size and performance?
+> > 
+> 
+> I did test performance back when I first implemented this. I had some issues
+> getting gcc to inline the functions, and that hurt performance quite a bit.
+> But I did not look at object size though. I moved them to the header so I could
+> add the inline. I can move them to the .c file in the next version.
 
-On Wed, 4 Mar 2026 at 15:32, Marc Zyngier <maz@kernel.org> wrote:
-> On Wed, 04 Mar 2026 14:04:10 +0000,
-> Geert Uytterhoeven <geert+renesas@glider.be> wrote:
-> >
-> > According to the "Arm Generic Interrupt Controller (GIC) Architecture
-> > Specification, v3 and v3", revision H.b[1], there can be only 64
->
-> v3 and v4?
+Developers often get inline wrong:
 
-Doh, no one is immune to hallucinations ;-)
+It is used on the slow path, so all it achieves is bloating the object
+size.
 
-> > Extended PPI interrupts.
-> >
-> > [1] https://developer.arm.com/documentation/ihi0069/hb/
-> >
-> > Fixes: 4b049063e0bcbfd3 ("dt-bindings: interrupt-controller: arm,gic-v3: Describe EPPI range support")
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> >  .../devicetree/bindings/interrupt-controller/arm,gic-v3.yaml    | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> > index bfd30aae682bf3f7..360a0643a0b567a4 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> > @@ -50,7 +50,7 @@ properties:
-> >        The 2nd cell contains the interrupt number for the interrupt type.
-> >        SPI interrupts are in the range [0-987]. PPI interrupts are in the
-> >        range [0-15]. Extended SPI interrupts are in the range [0-1023].
-> > -      Extended PPI interrupts are in the range [0-127].
-> > +      Extended PPI interrupts are in the range [0-63].
-> >
-> >        The 3rd cell is the flags, encoded as follows:
-> >        bits[3:0] trigger type and level flags.
->
-> Duh. Thankfully the code didn't have the same problem... Thanks for
-> noticing it. With the above fixed:
->
-> Brain-farted-by: Marc Zyngier <maz@kernel.org>
+It is used on tiny functions, which the compiler is likely to inline
+anyway.
 
-Is that a common and acceptable tag? ;-)
+Your use case is different. This is fast path, and it is not a small
+function. You also have a good justification, you know not using
+inline really does hurt performance.
 
-> Acked-by: Marc Zyngier <maz@kernel.org>
+So, please move this into the .c file, and use inline. And add a
+comment to the commit message adding your justification for inline.
+If something is justified, we will accept it.
 
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+	Andrew
 
