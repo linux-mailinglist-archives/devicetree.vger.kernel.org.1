@@ -1,393 +1,194 @@
-Return-Path: <devicetree+bounces-271229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271230-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPEyEHSCqGmAvQAAu9opvQ
-	(envelope-from <devicetree+bounces-271229-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:05:24 +0100
+	id 2AIEIbWDqGmYvAAAu9opvQ
+	(envelope-from <devicetree+bounces-271230-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:10:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9E65206DDB
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:05:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F051E206F05
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 20:10:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B7FBC30DE897
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 18:59:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 35D3B301FA88
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 19:06:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4C153E1237;
-	Wed,  4 Mar 2026 18:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506863D6CC0;
+	Wed,  4 Mar 2026 19:06:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XL5TlMiC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xy35ToS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A013DEAC9
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 18:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0CA358D27;
+	Wed,  4 Mar 2026 19:06:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772650696; cv=none; b=CET/Fin70d1UxVGKX+uVlC6cM41koYurvvviiS1FWRacjiLFFQSWaTnbNNIncK+r9zr9IYQ5syIlDo7N3U60ICAfhLpfRWJuVMgxdyoHNkYDnd2R2KpJr6CSIuFoSW+Gx0/BUJQlJpUiCPkIj+H2pUAEAE7FnUyiShGGsb2E7oQ=
+	t=1772651212; cv=none; b=bC+JEodoy4PO6VwZYu7NSgfe4x2CIllz3nUBN4meWBReWjPKlUybEg579cZXWd1DMFeDWblFlv5g1bPxPSLKF7Sgq2jzuf5ExfEo8pfbREhrczRUzMMzGwB3KmH8qUmjdKcmOQ3FWgZh7zEeItzIeFSBESK8PtdUa6bW2GB00B8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772650696; c=relaxed/simple;
-	bh=kH6IxGWU9/YPnlpdIv152C9oL2JnvfglKibkmH2D9yc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ukXLdH0PUFT6Wgz1EVp9cVHJwTvkKNuvIkTC5PVkBtzxpj97yuL6biMV1+cy7cGnEmkqtNyOcTrbpqlHbY15yyOgNk3RxfXlbBjXxYvn9DymrffykO1zLTJNKeVWWxBRlC8/4vRM0Gte/WjCzmYvFP7oBkyZRNhyg+crUPdsWVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XL5TlMiC; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-389f9895c81so66800601fa.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 10:58:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772650692; x=1773255492; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o3TwQJXKVq1pyC7HWfeudplW5CQQTbeaEyQZUhCqwB8=;
-        b=XL5TlMiCpVWuKJzyj7siq+BkZ6jh2U1zvoKYFkMNcumO9QhRKD4i4S7nEdjsQuM1oP
-         HKuCIC7i3fHV8FYMgVNUrqK7HpZJKuCroe4qvv97KLvccRsjkTxIUTTpsYJ+mfL0pf7A
-         EfwIsvXAQAw/25bmANk2lZOeOM5c9I+S+IJxH67DGcmJi6+/fxcg4t72HKr+uCqquGvz
-         1haRHRlp6rnVHvkSnr9oPBPG449yUFlzBpMkxGxb9z90FjCdnSzuqqCb3C1XLUnJ9e2J
-         Yr7yNYo6/aaZjqZhQVbbJ5rh6en2kaQTeL668pe7zLue3/D2NfUPGimPnXNkUd1xgNd/
-         vIpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772650692; x=1773255492;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=o3TwQJXKVq1pyC7HWfeudplW5CQQTbeaEyQZUhCqwB8=;
-        b=Ojc17oE28ieNMvytat0GCq5SsJFRIOjjumUKoXXzE9N29+9GGyC9Rc4dQ5cgr37V6a
-         IPYJPM0Lyy0cCBOHVOxYzFeEQ5E0vt5n7WPH1uLCPcoVqz6Ni9BbOqORE+4tsk1ZUcAR
-         AUt+wL7QzgwC2qkZ8eQnHj7Y9Irz/ED9wZBBzlLh0t8pCAI71KffjsPtGl2HoRG9HIdQ
-         2SUa85oftzV97e7FFTDoT4lolzeIK4lfqrjK0oiao4LFFwhyyxMnmmmdAqLn1Z1zbNBa
-         p3BxRBWz4PH7W3d/o8+qyznyunkYgcD1xZIS85Vch/gLuMLRaBva3wrKz2uqq9cA5sMY
-         Alxg==
-X-Gm-Message-State: AOJu0YxaI7MW4TKWm4eHaRtNxHtD4SxWnf71mwgdApbxe4q2C7jBGPnP
-	8Xc9YliXOa5WX5ki7zi8NpIIVyV3Bs1C8gSkZLZB0G8y7zM+0dcblyGW
-X-Gm-Gg: ATEYQzyJnDYHszEvKfvNTe9Z0FrQnPTERFz6cpNSh33YwCipYO38cDCFJONfpblQ3mp
-	ODA9vsrYhni6lU8Nc/GHm8gwiIsKLyxv0SD7tY5pyl5oKGVaqx4grVrfs9JkjDKj4Egz0Ws9JfU
-	jf+mgE63fmg+gmb6+KnG/8AH1D3qX/OvMbts3VtLG3y0SmpixJCDkWWlOyhxZkEweJMjflZxyT0
-	xA0ZEPKr4k1QMs5C+fbnNvsdOISGiLUbk9Tyaga8oO/xZqKgqRPEYDEDpNdP9hAGFhzNGjYAKHB
-	puM9jZTfCNI+dvld5NvqJS8nDVld1dYWqeYd38YWhCngNBdCxpzJHGKDj75wJTr4Id4Hoh7CSKF
-	Gz4Fcb1jlRmNhV0y3Lxu5k1bfIVqx5GCs0hjEpnFnRgOgIQpUjRSV5kOqO4kbWZ5rGx7OAV+Mnj
-	4l1HLgGmxN9B8E
-X-Received: by 2002:a05:651c:f04:b0:389:fc69:45e8 with SMTP id 38308e7fff4ca-38a2c597194mr30443421fa.13.1772650691885;
-        Wed, 04 Mar 2026 10:58:11 -0800 (PST)
-Received: from xeon ([188.163.112.72])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a12a6ddd3bsm704985e87.0.2026.03.04.10.58.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 10:58:11 -0800 (PST)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1772651212; c=relaxed/simple;
+	bh=ZBbz/4pMl66VuJ7NOaXWlWQQszEhPGX6Web3VLQthbo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LlsceU82PzdU43TvM4k12YGKxfvIVrbC8TfH+Z4Dg+jqG2WjRdcSB4/5u49mUSQycNnxykf1ScNW8zOvtCV+ygftxPQLGUU9BI9KIbAT1BbnbR5FCtGoeW+CVuqc6WAmu16cjSk9wnRP1iOm0nAb5tlnP6xnfYQy++z424G0/0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xy35ToS3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43513C4CEF7;
+	Wed,  4 Mar 2026 19:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772651211;
+	bh=ZBbz/4pMl66VuJ7NOaXWlWQQszEhPGX6Web3VLQthbo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Xy35ToS3hhHn6tWBb2KpO0CcsE4iZ1ttiQDkmVr/Qz/bFh8s2d6TAk6Vt0HTF7EXe
+	 kMXRhxJj6tGEI8vdrpPoleKeXsv2YFccT6gPZpivEoaqBjgxzHCq7NQJ5lpTd1FXg3
+	 hoXiO/zDk7lKjfz9BSqbS7WfSDoKb+2I9mxCn2XmxU2KB9DzVhMym1rV4G+WsdVpAd
+	 Ztve3mRG6zsd+JCAYljlWaZ8TEfJUb88SE+b/cm86OIIGzsCvxTYVPADvIioEl58CJ
+	 UtUGKgaZjcMWR5OhioYLAcwfdDmr/xXlKsznTgEjH45X/YURlMXeqQyqLffr8ga5K9
+	 ayzBoa3ZBzM7Q==
+Date: Wed, 4 Mar 2026 19:06:46 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Vladimir Oltean <olteanv@gmail.com>
+Cc: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>,
+	UNGLinuxDriver@microchip.com, Andrew Lunn <andrew@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Lee Jones <lee@kernel.org>,
-	Pavel Machek <pavel@kernel.org>,
-	Sebastian Reichel <sre@kernel.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Ion Agorria <ion@agorria.com>,
-	=?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org
-Subject: [PATCH v5 7/7] power: supply: Add charger driver for Asus Transformers
-Date: Wed,  4 Mar 2026 20:57:51 +0200
-Message-ID: <20260304185751.83494-8-clamor95@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260304185751.83494-1-clamor95@gmail.com>
-References: <20260304185751.83494-1-clamor95@gmail.com>
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
+ switch bindings
+Message-ID: <20260304-capture-kissable-3bdfe389864b@spud>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
+ <20260303-disperser-clone-512efa99f26c@spud>
+ <65fd5f46f1f996dd5f4df2de2efb52c8fa3575b3.camel@microchip.com>
+ <20260304161457.l6tkxix6sgube3qc@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: E9E65206DDB
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="b6bV6EY6NMjXdDw4"
+Content-Disposition: inline
+In-Reply-To: <20260304161457.l6tkxix6sgube3qc@skbuf>
+X-Rspamd-Queue-Id: F051E206F05
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271230-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271229-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qmqm.pl:email]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.61.9.0:email,0.0.0.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
 
-Add support for charger detection capabilities found in the embedded
-controller of ASUS Transformer devices.
+--b6bV6EY6NMjXdDw4
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Suggested-by: Maxim Schwalm <maxim.schwalm@gmail.com>
-Suggested-by: Svyatoslav Ryhel <clamor95@gmail.com>
-Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/power/supply/Kconfig                  |  11 +
- drivers/power/supply/Makefile                 |   1 +
- .../supply/asus-transformer-ec-charger.c      | 193 ++++++++++++++++++
- 3 files changed, 205 insertions(+)
- create mode 100644 drivers/power/supply/asus-transformer-ec-charger.c
+On Wed, Mar 04, 2026 at 06:14:57PM +0200, Vladimir Oltean wrote:
+> On Wed, Mar 04, 2026 at 05:10:11PM +0100, Jens Emil Schulz Ostergaard wro=
+te:
+> > On Tue, 2026-03-03 at 18:56 +0000, Conor Dooley wrote:
+> > > On Tue, Mar 03, 2026 at 01:22:28PM +0100, Jens Emil Schulz =D8stergaa=
+rd wrote:
+> > > > +examples:
+> > > > +  - |
+> > > > +    soc {
+> > > > +        #address-cells =3D <1>;
+> > > > +        #size-cells =3D <0>;
+> > > > +
+> > > > +      ethernet-switch@0 {
+> > > > +        reg =3D <0>;
+> > >=20
+> > > Also, this is an odd example, why are you at address 0 on a "soc" bus,
+> > > which usually means that this device on an AXI/AHB bus, and 0 is very
+> > > unusual for that. Obviously the example doesn't have to match the real
+> > > user, but this stands out.
+> > > I may have some follow up questions I think depending on your answer.
+> >=20
+> > The intended way to bind this driver is via a parent MFD driver which s=
+ets
+> > up the SPI register protocol, initiates regmaps and distributes them to=
+ child
+> > devices (like this DSA driver).
+> >=20
+> > Similar to mscc,vsc7512 in drivers/mfd/ocelot-spi.c.
+> >=20
+> > This MFD would be the soc node. All child nodes perform register IO over
+> > spi, using the regmaps requested from this parent so I think the addres=
+ses
+> > on the bus are purely ornamental. Should I write the smallest register
+> > address in all regions used by the DSA driver instead?
+>=20
+> They are not ornamental, they should be the same addresses you'd put if
+> Linux had direct access to the SoC interconnect for MMIO, rather than to
+> an SPI bridge to the SoC interconnect. Or at least I don't see why it
+> wouldn't be that way.
 
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 3c46b412632d..56800aab82f9 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -497,6 +497,17 @@ config CHARGER_88PM860X
- 	help
- 	  Say Y here to enable charger for Marvell 88PM860x chip.
- 
-+config CHARGER_ASUS_TRANSFORMER_EC
-+	tristate "Asus Transformer's charger driver"
-+	depends on MFD_ASUS_TRANSFORMER_EC
-+	help
-+	  Say Y here to enable support AC plug detection on Asus Transformer
-+	  Dock.
-+
-+	  This sub-driver supports charger detection mechanism found in Asus
-+	  Transformer tablets and mobile docks and controlled by special
-+	  embedded controller.
-+
- config CHARGER_PF1550
- 	tristate "NXP PF1550 battery charger driver"
- 	depends on MFD_PF1550
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index aa5e6b05b018..24679f09bb61 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -68,6 +68,7 @@ obj-$(CONFIG_CHARGER_RT9471)	+= rt9471.o
- obj-$(CONFIG_CHARGER_RT9756)	+= rt9756.o
- obj-$(CONFIG_BATTERY_TWL4030_MADC)	+= twl4030_madc_battery.o
- obj-$(CONFIG_CHARGER_88PM860X)	+= 88pm860x_charger.o
-+obj-$(CONFIG_CHARGER_ASUS_TRANSFORMER_EC)	+= asus-transformer-ec-charger.o
- obj-$(CONFIG_CHARGER_PF1550)	+= pf1550-charger.o
- obj-$(CONFIG_BATTERY_RX51)	+= rx51_battery.o
- obj-$(CONFIG_AB8500_BM)		+= ab8500_bmdata.o ab8500_charger.o ab8500_fg.o ab8500_btemp.o ab8500_chargalg.o
-diff --git a/drivers/power/supply/asus-transformer-ec-charger.c b/drivers/power/supply/asus-transformer-ec-charger.c
-new file mode 100644
-index 000000000000..de01f0bf2fd7
---- /dev/null
-+++ b/drivers/power/supply/asus-transformer-ec-charger.c
-@@ -0,0 +1,193 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+
-+#include <linux/err.h>
-+#include <linux/mfd/asus-transformer-ec.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/power_supply.h>
-+#include <linux/property.h>
-+
-+struct asus_ec_charger_data {
-+	struct notifier_block nb;
-+	const struct asusec_info *ec;
-+	struct power_supply *psy;
-+	struct power_supply_desc psy_desc;
-+};
-+
-+static enum power_supply_property asus_ec_charger_properties[] = {
-+	POWER_SUPPLY_PROP_USB_TYPE,
-+	POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR,
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_MODEL_NAME,
-+};
-+
-+static int asus_ec_charger_get_property(struct power_supply *psy,
-+					enum power_supply_property psp,
-+					union power_supply_propval *val)
-+{
-+	struct asus_ec_charger_data *priv = power_supply_get_drvdata(psy);
-+	enum power_supply_usb_type psu;
-+	int ret;
-+	u64 ctl;
-+
-+	ret = asus_ec_get_ctl(priv->ec, &ctl);
-+	if (ret)
-+		return ret;
-+
-+	switch (ctl & (ASUSEC_CTL_FULL_POWER_SOURCE | ASUSEC_CTL_DIRECT_POWER_SOURCE)) {
-+	case ASUSEC_CTL_FULL_POWER_SOURCE:
-+		psu = POWER_SUPPLY_USB_TYPE_CDP;	/* DOCK */
-+		break;
-+	case ASUSEC_CTL_DIRECT_POWER_SOURCE:
-+		psu = POWER_SUPPLY_USB_TYPE_SDP;	/* USB */
-+		break;
-+	case 0:
-+		psu = POWER_SUPPLY_USB_TYPE_UNKNOWN;	/* no power source connected */
-+		break;
-+	default:
-+		psu = POWER_SUPPLY_USB_TYPE_ACA;	/* power adapter */
-+		break;
-+	}
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_ONLINE:
-+		val->intval = psu != POWER_SUPPLY_USB_TYPE_UNKNOWN;
-+		return 0;
-+
-+	case POWER_SUPPLY_PROP_USB_TYPE:
-+		val->intval = psu;
-+		return 0;
-+
-+	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
-+		if (ctl & ASUSEC_CTL_TEST_DISCHARGE)
-+			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE;
-+		else if (ctl & ASUSEC_CTL_USB_CHARGE)
-+			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO;
-+		else
-+			val->intval = POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE;
-+		return 0;
-+
-+	case POWER_SUPPLY_PROP_MODEL_NAME:
-+		val->strval = priv->ec->model;
-+		return 0;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int asus_ec_charger_set_property(struct power_supply *psy,
-+					enum power_supply_property psp,
-+					const union power_supply_propval *val)
-+{
-+	struct asus_ec_charger_data *priv = power_supply_get_drvdata(psy);
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
-+		switch ((enum power_supply_charge_behaviour)val->intval) {
-+		case POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO:
-+			return asus_ec_update_ctl(priv->ec,
-+				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE,
-+				ASUSEC_CTL_USB_CHARGE);
-+
-+		case POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE:
-+			return asus_ec_clear_ctl_bits(priv->ec,
-+				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE);
-+
-+		case POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE:
-+			return asus_ec_update_ctl(priv->ec,
-+				ASUSEC_CTL_TEST_DISCHARGE | ASUSEC_CTL_USB_CHARGE,
-+				ASUSEC_CTL_TEST_DISCHARGE);
-+		default:
-+			return -EINVAL;
-+		}
-+
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int asus_ec_charger_property_is_writeable(struct power_supply *psy,
-+						 enum power_supply_property psp)
-+{
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CHARGE_BEHAVIOUR:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct power_supply_desc asus_ec_charger_desc = {
-+	.name = "asus-ec-charger",
-+	.type = POWER_SUPPLY_TYPE_USB,
-+	.charge_behaviours = BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_AUTO) |
-+			     BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_INHIBIT_CHARGE) |
-+			     BIT(POWER_SUPPLY_CHARGE_BEHAVIOUR_FORCE_DISCHARGE),
-+	.usb_types = BIT(POWER_SUPPLY_USB_TYPE_UNKNOWN) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_SDP) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_CDP) |
-+		     BIT(POWER_SUPPLY_USB_TYPE_ACA),
-+	.properties = asus_ec_charger_properties,
-+	.num_properties = ARRAY_SIZE(asus_ec_charger_properties),
-+	.get_property = asus_ec_charger_get_property,
-+	.set_property = asus_ec_charger_set_property,
-+	.property_is_writeable = asus_ec_charger_property_is_writeable,
-+	.no_thermal = true,
-+};
-+
-+static int asus_ec_charger_notify(struct notifier_block *nb,
-+				  unsigned long action, void *data)
-+{
-+	struct asus_ec_charger_data *priv =
-+		container_of(nb, struct asus_ec_charger_data, nb);
-+
-+	switch (action) {
-+	case ASUSEC_SMI_ACTION(POWER_NOTIFY):
-+	case ASUSEC_SMI_ACTION(ADAPTER_EVENT):
-+		power_supply_changed(priv->psy);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int asus_ec_charger_probe(struct platform_device *pdev)
-+{
-+	struct asus_ec_charger_data *priv;
-+	struct device *dev = &pdev->dev;
-+	struct power_supply_config cfg = { };
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, priv);
-+	priv->ec = cell_to_ec(pdev);
-+
-+	cfg.fwnode = dev_fwnode(dev->parent);
-+	cfg.drv_data = priv;
-+
-+	memcpy(&priv->psy_desc, &asus_ec_charger_desc, sizeof(priv->psy_desc));
-+	priv->psy_desc.name = devm_kasprintf(dev, GFP_KERNEL, "%s-charger",
-+					     priv->ec->name);
-+
-+	priv->psy = devm_power_supply_register(dev, &priv->psy_desc, &cfg);
-+	if (IS_ERR(priv->psy))
-+		return dev_err_probe(dev, PTR_ERR(priv->psy),
-+				     "Failed to register power supply\n");
-+
-+	priv->nb.notifier_call = asus_ec_charger_notify;
-+
-+	return devm_asus_ec_register_notifier(pdev, &priv->nb);
-+}
-+
-+static struct platform_driver asus_ec_charger_driver = {
-+	.driver.name = "asus-transformer-ec-charger",
-+	.probe = asus_ec_charger_probe,
-+};
-+module_platform_driver(asus_ec_charger_driver);
-+
-+MODULE_AUTHOR("Michał Mirosław <mirq-linux@rere.qmqm.pl>");
-+MODULE_DESCRIPTION("ASUS Transformer Pad battery charger driver");
-+MODULE_LICENSE("GPL");
--- 
-2.51.0
+I don't mind if they're made up addresses, but the example should be
+realistic. 0 is likely not realistic, but if it was 0x4000_0000 when the
+real thing is 0x8123_1234 then I don't really care. Since the parent is
+not actually a soc bus, can't you just remove this fake parent entirely,
+like the ocelot switch example does? Or insert something more genuine,
+like:
+spi {
+  #address-cells =3D <1>;
+  #size-cells =3D <0>;
 
+  soc@0 {
+    compatible =3D "microchip,lan96455s";
+    reg =3D <0>;
+    #address-cells =3D <1>;
+    #size-cells =3D <1>;
+
+    ethernet-switch@4000000 {
+      reg =3D <4000000 44>;
+
+
+--b6bV6EY6NMjXdDw4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaiCxQAKCRB4tDGHoIJi
+0pNbAP9uGOb02KpKec1SzZegVdL/v1K3XiSjnA1dmjqNkh21gwEAz6KT6TLUzASJ
+fKWAfv4fQQ8yAChtiSlXCOIuW3RZkwU=
+=MGus
+-----END PGP SIGNATURE-----
+
+--b6bV6EY6NMjXdDw4--
 
