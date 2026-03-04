@@ -1,76 +1,59 @@
-Return-Path: <devicetree+bounces-271257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271258-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AD/+CBOTqGkLvwAAu9opvQ
-	(envelope-from <devicetree+bounces-271257-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:16:19 +0100
+	id mI5iF9KTqGkLvwAAu9opvQ
+	(envelope-from <devicetree+bounces-271258-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:19:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 810EB20784B
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:16:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6D8C2078A5
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:19:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8CAFA305871F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:16:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C573C30125DD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07FEF34403D;
-	Wed,  4 Mar 2026 20:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B132634CFCF;
+	Wed,  4 Mar 2026 20:17:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="xYIGO1mN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BrfPZFjU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16972D8DA8;
-	Wed,  4 Mar 2026 20:16:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D67833B6CC;
+	Wed,  4 Mar 2026 20:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772655369; cv=none; b=PrPq9/atdodS8vgevH75aTND5G1bbo3vk554BdvyeUTzoxepsZ78Oi8WtuTc0rPBXVfRUcYeEYPh+BTeJmbfAHoFeLCBphs6iTpKwiHHsSwVddIml5E9vqYcdtWV3EJWkRjs7AJ8CHeu6o7yrxYiYgcscKHInXBFAXeRfdPBfZg=
+	t=1772655431; cv=none; b=Trnx0qtgAW9ht1i+eABzAaFT6sEiFNMbwCQsJuvlrG0+D62vMluUXYfYp9E5GZXqEohMtrbodK335vBfZJKxwLMOUTQQMgmxT6ExoH9VLZwtjIUiPXuOmw0+q6FVA/0Bmw6I5OZibkl2SELBmWQkWiDBtTFkObRa/1bUIEO59lM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772655369; c=relaxed/simple;
-	bh=u1bbpiWKxcQ33xBweWmJBReij8hzB8i3pgK0waGCwOk=;
+	s=arc-20240116; t=1772655431; c=relaxed/simple;
+	bh=Ew0sj9abeVbOjePp7BPCZPYrqEj+18Iaxog4xwj0wc4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X9csPt3pq+hO1Cpd9sOeyBV9YxXAV+/lrdwFShQqSw00oFeDSmMRxmKYD36abP9u5nUz97SJ32pocs2AbOvugT47xKPY2eBi6WSzBLzGk95uLI5to9EdHhesRRDpF800OhxXcXVEx3qobBdeJL6wam84oKZDmo+rgp+xXVXM5CM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=xYIGO1mN; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=O5W0rWNkyqIYuvm8hc/o0jT6NtzcpJClwcC+P3CAwxA=; b=xYIGO1mN6A+vyyrQebHB5RDrjO
-	Cax+vH7HBHBnKH3pJLlMqu2z+9wJ1DXp15d3kAdIEQcs/+91UX7VV7fEWMrG7q/rQzEnJ1gwRC+1t
-	N7HNovYnSV6GPazhPDL+FQybwqYiogrhd9dVD54AIhVamfKzXl91omeJ5LmRa1Sv4CD0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vxsdF-00AAfh-DA; Wed, 04 Mar 2026 21:15:45 +0100
-Date: Wed, 4 Mar 2026 21:15:45 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Po-Yu Chuang <ratbert@faraday-tech.com>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"taoren@meta.com" <taoren@meta.com>
-Subject: Re: =?utf-8?B?5Zue6KaGOiBbUEFUQ0ggbmV0LW5l?= =?utf-8?Q?xt?= v6 3/5]
- net: ftgmac100: Add RGMII delay support for AST2600
-Message-ID: <8b1e64cd-b48c-43c4-a184-82a6297f273b@lunn.ch>
-References: <20260302-rgmii_delay_2600-v6-0-68319a4c4110@aspeedtech.com>
- <20260302-rgmii_delay_2600-v6-3-68319a4c4110@aspeedtech.com>
- <ae88d56a-04c9-4a50-af22-5e439acd59c7@lunn.ch>
- <SEYPR06MB5134E02B840BA59CA81C21389D7CA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WE1taaJIKdeZbrdQK4c/ZABfuMBWJbG8myb7H58Eqhq0YJSXoURFeq1YIxsD+lcbqKBjoDHGDKMu3Guqy/mL1r+U0Ticrbq5qou4fJmtb05GsubXFb2sPkn1wCB235y24U3uAAlTAqUXg3QqB0vvXbN0nUAz7t5iJosGqJcqVLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BrfPZFjU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A0A7C4CEF7;
+	Wed,  4 Mar 2026 20:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772655431;
+	bh=Ew0sj9abeVbOjePp7BPCZPYrqEj+18Iaxog4xwj0wc4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BrfPZFjUJnjvzd8LBJEmjWlQYtOpp+VPrx6+AagL+Ur8B3hsX6U9YqM3nk0kTaJrL
+	 Rgqrri9tyhYYptmKdtbxSG3q9YocAIl60OPGzcjynzYKMy35DUXHH1v3SwvWUp47zf
+	 UFtlCYKVnb96J9o8Zayo6UWfXbZST7dLj6j7Ctzz9t8lqTNjRESLlUedUmiuss5JFo
+	 UeoTO8fNsEh4fJu5HDIRehsg8l72RfdnE+iKmv51rLdNR+huUC65+m76bePzlGWlkc
+	 0mzG+C60FSiHkBUEmLGhbfQ0et/knnhqz69dtWIR+pb9ToAUi0reZDW0/PExLWpK4o
+	 MRvc1+FYhdZcQ==
+Date: Wed, 4 Mar 2026 14:16:55 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Xin Liu <xin.liu@oss.qualcomm.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, tingwei.zhang@oss.qualcomm.com, jie.gan@oss.qualcomm.com
+Subject: Re: [PATCH v2] arm64: dts: qcom: hamoa: Add remoteproc in EL2 device
+ trees
+Message-ID: <ao4jf5guszon6iuyyvzmkuaf2iaa56y3b33srx2w3whtyo2u3r@k74fxy3ktsyo>
+References: <20260202055436.818098-1-xin.liu@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,67 +62,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <SEYPR06MB5134E02B840BA59CA81C21389D7CA@SEYPR06MB5134.apcprd06.prod.outlook.com>
-X-Rspamd-Queue-Id: 810EB20784B
+In-Reply-To: <20260202055436.818098-1-xin.liu@oss.qualcomm.com>
+X-Rspamd-Queue-Id: B6D8C2078A5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271257-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271258-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[lunn.ch:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:url,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-> > > Therefore, we calculate the delay stage from the rx-internal-delay-ps
-> > > of MAC2/3 to add 26. If the stage is equel to or bigger than 32, the
-> > > delay stage will be mask 0x1f to get the correct setting.
-> > 
-> > Please return -EINVAL. Asking for more than 7.75ns is clearly broken.
+On Sun, Feb 01, 2026 at 09:54:36PM -0800, Xin Liu wrote:
+> All the existing variants Hamoa boards are using Gunyah hypervisor
+> which means that, so far, Linux-based OS could only boot in EL1 on
+> those devices. However, it is possible for us to boot Linux at EL2
+> on these devices [1].
 > 
-> ...
-> 	tx_delay_index = DIV_ROUND_CLOSEST(rgmii_tx_delay, rgmii_delay_unit);
-> 	if (tx_delay_index >= 32) {
-> 		dev_err(dev, "The %u ps of TX delay is out of range\n",
-> 			rgmii_tx_delay);
-> 		return -EINVAL;
-> 	}
-> 
-> 	rx_delay_index = DIV_ROUND_CLOSEST(rgmii_rx_delay, rgmii_delay_unit);
-> 	if (rx_delay_index >= 32) {
-> 		dev_err(dev, "The %u ps of RX delay is out of range\n",
-> 			rgmii_rx_delay);
-> 		return -EINVAL;
-> 	}
-> ...
-> 
-> These codes will calculate the ns delay to MAC delay index.
-> (rgmii_delay_unit is 250 ps on MAC2/3)
-> If set tx delay to 8 ns on MAC2 or MAC3, it will get index is 32.
-> It is over the delay configuration range, here will return -EINVAL.
 
-So is the comment wrong? No masking is actually done?
+Lots of people are running Linux at EL2 on their Hamoa laptops, but
+then there's no PAS. I presume adding iommu properties won't "hurt" in
+that case, but can you confirm that with this change remoteproc is fully
+working somewhere (i.e. [1] refers to a firmware for which the Glymur
+PAS/PIL changes has been backported?)
 
-   Andrew
+Regards,
+Bjorn
+
+> When running under Gunyah, the remote processor firmware IOMMU streams
+> are controlled by Gunyah. However, without Gunyah, the IOMMU is managed
+> by the consumer of this DeviceTree. Therefore, describe the firmware
+> streams for each remote processor.
+> 
+> Add remoteproc to the EL2 device trees to generate the corresponding
+> -el2.dtb files.
+> 
+> [1]
+> https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+> 
+> Signed-off-by: Xin Liu <xin.liu@oss.qualcomm.com>
+> ---
+> Changes in v2:
+> - Fix the adsp iommus mask
+> - Link to v1 : https://lore.kernel.org/all/20260130073113.3091884-1-xin.liu@oss.qualcomm.com/
+> 
+>  arch/arm64/boot/dts/qcom/x1-el2.dtso | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1-el2.dtso b/arch/arm64/boot/dts/qcom/x1-el2.dtso
+> index 175679be01eb..ee006742d6f3 100644
+> --- a/arch/arm64/boot/dts/qcom/x1-el2.dtso
+> +++ b/arch/arm64/boot/dts/qcom/x1-el2.dtso
+> @@ -52,6 +52,14 @@ &pcie_smmu {
+>  	status = "okay";
+>  };
+>  
+> +&remoteproc_adsp {
+> +	iommus = <&apps_smmu 0x1000 0x80>;
+> +};
+> +
+> +&remoteproc_cdsp {
+> +	iommus = <&apps_smmu 0x0c00 0x0>;
+> +};
+> +
+>  /*
+>   * The "SBSA watchdog" is implemented in software in Gunyah
+>   * and can't be used when running in EL2.
+> -- 
+> 2.43.0
+> 
 
