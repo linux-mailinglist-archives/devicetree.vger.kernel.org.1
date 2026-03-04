@@ -1,172 +1,190 @@
-Return-Path: <devicetree+bounces-271011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271013-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ULlmEn0jqGl3ogAAu9opvQ
-	(envelope-from <devicetree+bounces-271011-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:20:13 +0100
+	id OBUuIHQjqGl3ogAAu9opvQ
+	(envelope-from <devicetree+bounces-271013-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:20:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2971FF9C8
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:20:12 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 376601FF9B2
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:20:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C04C63034E3B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:18:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7453130164A9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487CE35F613;
-	Wed,  4 Mar 2026 12:18:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBBE3321D8;
+	Wed,  4 Mar 2026 12:19:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cM/EV2SA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mPGS7qcY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2493623F26A;
-	Wed,  4 Mar 2026 12:18:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595543A872F
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 12:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772626705; cv=none; b=saB91qcFlhnUdQM9rkqOGvYoAuqiXZ12hjdKoDWZDGBGR3HeLjpox/EUo0jHJocfnhonb14Z5CvT4JuJhlnaFx4ZB3uG+w+t0DGJaWGLxmAdFQUYS0D0t7ZrOwsV1dKOB+zPI9eFsjg2U8jZ31o6CukUJZP39x9WKPRKv3PlmZU=
+	t=1772626784; cv=none; b=Dks7ao0m5eP9JcOW5j84Kxvk81hwKfrBETex384gY58UNbBbRHSBRTalrC28IN/lU6fRk+hg/f5I/3uPluqIKXc1Zw0iACeLZJq3vbDf0XUXPHHephBuG2lhj+w5ISZkjaY2G+uNnfLoMc28khBD+sOvilyG8ROiXe1+qIekxT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772626705; c=relaxed/simple;
-	bh=F1bRyVccRjRVWSe1NJrM2wkFpBdYoCPe7+Z7tfPIK4A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RsCcWshjfFGlRW58e3ucSJCh4hkSxg3iuVGS2eVhDBPepSY6+7HSH6J7/PX/Psff3g7HavHVjP7EES6+qIYg0vqZq22n+HAwcwovo/Ath+huOWLN6QxgVme1jZXRWKT6Wz2bkyQOJZWEHCyz+oJgGhaNWg/27RN6xA/ybRpm87A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cM/EV2SA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC14EC19423;
-	Wed,  4 Mar 2026 12:18:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772626704;
-	bh=F1bRyVccRjRVWSe1NJrM2wkFpBdYoCPe7+Z7tfPIK4A=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cM/EV2SADiomFUoEJrVe9OVVB4w6fI/+vK7tysU4Ig8Z4uK06dCy6+YcxbX+gXngl
-	 vvuKIeT1fYw3xYc3jzqX8Zwt9KOU6Nf2Xuit4I2M3nFAxISZOzdU8WntOVWCJbCJuj
-	 /pK5BXA6iTQdmbfkIWWvdrKc4sYHVi7RTGfABrIdneDaZOXM5p+zcpGzYo6M6/Rzn3
-	 eLKpfWBWWfPPgSrFndhui9nvQM77EnU94DUoFGEqmy/sSenG/gkKpJOdPypTo7Hf4B
-	 BoXpxZkQEY4GqmnJLcfQ9ZOx0zSmvaw0SLuEXEvVJLgNqjsepQOCYORGgAvogMZT2R
-	 kgFj8TpAH/lVg==
-Message-ID: <8e685c37-afca-4f2e-ac0a-76a0b060805d@kernel.org>
-Date: Wed, 4 Mar 2026 13:18:20 +0100
+	s=arc-20240116; t=1772626784; c=relaxed/simple;
+	bh=8jaB9xhr+C3taJqbbWa5n/w0SjBdD0Ab/HQmNKTmf5w=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=B/TOEB5E8y4s8aWIAenzlNF8hGadB0d0dELvci4tKsyCPenVd/ALcqEroiTPUe9lzv9MYAFJO94+6VTAOXhahjsTXg07zwz2BkElVP7GrAdp2cyZfaKbgYfj5IkQRQ/fOUfurY0sRHwvcJKhdxTirmwYmPk1+jZ4IfhO6CMXDXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mPGS7qcY; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-439bc14dcf4so1915281f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 04:19:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772626782; x=1773231582; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=FrV9cbgp4wuO7j5QZsaUWjFR+kDOuc1YVBeslenYsE8=;
+        b=mPGS7qcYgizPq0GUZEFxBiiZXF7J3p+av3wLK1Y+kbcw9Zz4Hi0XPDjE3MnudZb42x
+         5MYVxuHHhzpxS2V1aHm8eI+I+0Tf5qIbElxaYYqDPw6Ax73zRmJwkyr+Nysi17c3Rppk
+         z3its7D8ypyaT2gg7RKuZ41epVo8umsilAbjwI+JvMbz8QZq14KK19EBTMSgtt/4ZcgC
+         RYnH2xIRZK5G2+Nmim/vXEx9EZPOcuBR9n/t2usMiuG9OyopEW+fTr9+MOhZbKj7JXvF
+         B6GNfEdf4hIXoIOf9zT71etn5a5IE6Km6u7TwlZNblgB6hj/NClk9fd81to/W49WEJLt
+         H5aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772626782; x=1773231582;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FrV9cbgp4wuO7j5QZsaUWjFR+kDOuc1YVBeslenYsE8=;
+        b=AcyeycMSslmBit+USd/3VoXasdpkA+M16pDdAYjzjaRdM5HuZFx/xaz6w/hEe5LIpU
+         iCxpcSg4m6GleF4WboZISSqZzgkiBtbutnv1Lv1RjHIYeAq7rLKUGhUa7ow0UjW/dZXM
+         Q6UVXJPGBNi3QD4CymdMXInKN0bcem0D2mvnxZED1TrV6r93ECu6mOvfR6C9hyMt9YmK
+         FKN472BuZWyL6v52/5rXLsbKORUtVQNjadsMyuS8eQk783NnvBxM3UDpuK+ggMMlJMEj
+         6+1I63mabwMolsa/QJfVgWedGvrSX+YAsIzWYWtJjQ411TUWbQ7g1IZFx8qFj0XBj8Bz
+         uqqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWyKnZUQYDVC6m/Cnk/38LPKgXT6Vr8wXAKxOe+KfHvRwrG+e2x0v0L3WxzRAZ6KJvhCr9hR6H891VU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhk4Y+wc06Qmk0NjeT+kGkNYtwbMylpLl7+48yuMQPMmwiSW81
+	PwKyfs5umwDsepyFKzpK6qlWZUA6PnkoJPmsPRSX2Gpacmv4hWvLgl+X
+X-Gm-Gg: ATEYQzzd6RZGJMwTSuRn17H6J4E5FZMLA9izT/tmHFwVqIUfmufUuXwEgkecthlTw9z
+	6PX5vxtrtosdaagUx238GQLzzrpw7Ysd7abVhvQmcVIq5gmk7lu6Wgg805IqSjTp5Wy7e/xAo2h
+	SH/eK3DU+N9xaHu4tE/pyCs0xo4YxSXLWrvBuoroVg5o1AA19Ejj796NWSX855XXKDLcsNxDR57
+	RXhE/pAogEwS4doC0frjQcLZik+ZfI250aKNnc+uzc0l0PcGNz39hzdDOmt+/uSxYBqyeq+lrhg
+	GKQTsWdA+cvsCRjXn5/likxPhnrfQ3Bfpj39XBCQH2nfkh4FdHlwml9pWHvKhegbhj3Ma55t5h/
+	+8pVMCyO0Wr3usgHIaX49fumZ9CK2Lth18oYhFxPYVs3HJhjkTC31IVBa2m6WoATAC9FuPyk/f1
+	p3M0kT8iWbO7xv1Vf5Rv4Otz0QNEJz2jM=
+X-Received: by 2002:a05:6000:2912:b0:439:b9e8:635f with SMTP id ffacd0b85a97d-439c8a9f004mr3065699f8f.21.1772626781522;
+        Wed, 04 Mar 2026 04:19:41 -0800 (PST)
+Received: from [192.168.1.187] ([148.63.225.166])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439b3cc2e65sm27010827f8f.2.2026.03.04.04.19.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2026 04:19:41 -0800 (PST)
+Message-ID: <f3fa4c490a61c4544fa93682f3dd18e0f98b8473.camel@gmail.com>
+Subject: Re: [PATCH v6 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
+ Controller
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: kernel test robot <lkp@intel.com>, Nuno =?ISO-8859-1?Q?S=E1?= via B4
+ Relay <devnull+nuno.sa.analog.com@kernel.org>, linux-gpio@vger.kernel.org, 
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Guenter Roeck <linux@roeck-us.net>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>,  Jonathan Corbet	 <corbet@lwn.net>, Linus
+ Walleij <linusw@kernel.org>, Bartosz Golaszewski	 <brgl@kernel.org>
+Date: Wed, 04 Mar 2026 12:20:25 +0000
+In-Reply-To: <202603041109.HFnPWnj8-lkp@intel.com>
+References: <20260303-ltc4283-support-v6-2-efe11502fad2@analog.com>
+	 <202603041109.HFnPWnj8-lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: rng: mtk-rng: add SMC-based TRNG
- variants
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Olivia Mackall <olivia@selenic.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Sean Wang <sean.wang@mediatek.com>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <04622e0bc917aed4145a9a3b50b61f343fc89312.1772585683.git.daniel@makrotopia.org>
- <20260304-defiant-echidna-of-examination-b1e798@quoll>
- <aagiPIgoosVqsA0t@makrotopia.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <aagiPIgoosVqsA0t@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: BA2971FF9C8
+X-Rspamd-Queue-Id: 376601FF9B2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271011-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[selenic.com,gondor.apana.org.au,kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271013-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,nuno.sa.analog.com,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,01.org:url,intel.com:email]
 X-Rspamd-Action: no action
 
-On 04/03/2026 13:14, Daniel Golle wrote:
-> 
-> Starting with MT7981 and followed by MT7988 and MT7987 it is
-> technically the same hardware, but on those ARMv8 SoCs TF-A assigns
+On Wed, 2026-03-04 at 12:05 +0100, kernel test robot wrote:
+> Hi Nuno,
+>=20
+> kernel test robot noticed the following build warnings:
+>=20
+> [auto build test WARNING on 78558965440b27814592ec82d8f3668395953b1b]
+>=20
+> url:=C2=A0=C2=A0=C2=A0
+> https://github.com/intel-lab-lkp/linux/commits/Nuno-S-via-B4-Relay/dt-bin=
+dings-hwmon-Document-the-LTC4283-Swap-Controller/20260304-010255
+> base:=C2=A0=C2=A0 78558965440b27814592ec82d8f3668395953b1b
+> patch link:=C2=A0=C2=A0=C2=A0 https://lore.kernel.org/r/20260303-ltc4283-=
+support-v6-2-efe11502fad2%40analog.com
+> patch subject: [PATCH v6 2/3] hwmon: ltc4283: Add support for the LTC4283=
+ Swap Controller
+> compiler: clang version 20.1.8
+> (https://github.com/llvm/llvm-project=C2=A087f0227cb60147a26a1eeb4fb06e3b=
+505e9c7261)
+> docutils: docutils (Docutils 0.21.2, Python 3.13.5, on linux)
+> reproduce:
+> (https://download.01.org/0day-ci/archive/20260304/202603041109.HFnPWnj8-l=
+kp@intel.com/reproduce)
+>=20
+> If you fix the issue in a separate patch/commit (i.e. not just a new vers=
+ion of
+> the same patch/commit), kindly add following tags
+> > Reported-by: kernel test robot <lkp@intel.com>
+> > Closes: https://lore.kernel.org/oe-kbuild-all/202603041109.HFnPWnj8-lkp=
+@intel.com/
+>=20
+> All warnings (new ones prefixed by >>):
+>=20
+> =C2=A0=C2=A0 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D [docutils]
+> > > Documentation/hwmon/ltc4283.rst:258: WARNING: Blank line required aft=
+er table. [docutils]
+> =C2=A0=C2=A0 Documentation/mm/memfd_preservation:7: ./mm/memfd_luo.c:13: =
+ERROR: Unexpected section title.
+>=20
+>=20
+> vim +258 Documentation/hwmon/ltc4283.rst
+>=20
+> =C2=A0=C2=A0 256=09
+> =C2=A0=C2=A0 257	=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D		=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> =C2=A0> 258	power1_failed_fault_log		Set to 1 by a power1 fault occurring=
+.
 
-So they are compatible, I presume?
+Arggh, will wait for more feedback before spinning a new version.
 
-> the MMIO range of the TRNG to only be accessible from within the
-> secure/trusted land, and TF-A provides a (vendor-specific) API
-> allowing non-trusted land (ie. Linux) to acquire random bytes.
-> 
-> With MT7986 they made the unlucky choice to initially allow direct
-> access to the MMIO range, but later updates to TF-A then also locked
-> it to secure/trusted land, offering the same API as on the newer SoCs.
-> So for MT7986 the driver has to try and figure out which convention to
-> use.
-> 
-
-
-
-Best regards,
-Krzysztof
+- Nuno S=C3=A1
 
