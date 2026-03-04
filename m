@@ -1,83 +1,73 @@
-Return-Path: <devicetree+bounces-271280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271281-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OOvtFoynqGlOwQAAu9opvQ
-	(envelope-from <devicetree+bounces-271280-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:43:40 +0100
+	id iIQpOMinqGlOwQAAu9opvQ
+	(envelope-from <devicetree+bounces-271281-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:44:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17A42081E4
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EC44208245
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:44:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 71D96301C978
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:43:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CDC38301C96F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026173B583E;
-	Wed,  4 Mar 2026 21:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFBF238910E;
+	Wed,  4 Mar 2026 21:44:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="djt0iN/L"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NNXaHyMx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB8C27FB0E;
-	Wed,  4 Mar 2026 21:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 875783242B0;
+	Wed,  4 Mar 2026 21:44:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772660616; cv=none; b=GZrIPLnjeRjgzVOY/fuySmbvp54PDskp0PSZtX0UDNYwwVmhpxx5qKETEQUnx7GhbfoIikB5RZAzJmapPc8eOGvqErf6P+1o0dELsMll1CDj6WhlH/M4MLwhxsGeoLxHp5CRAo9QshBURwxVkzk1E6SU4p3lpy9EKBSeBCiyi40=
+	t=1772660675; cv=none; b=VYMzCnsyN/z4BJUF5StDRW2+Orbq4UaHCt18xBByCGvLEUdz43qSdUKb3K7ZvUjMHqw6HLsqxQK/P9OXs1+itrrXEFl64sSB+60GEKIHT29jFiT/UxLSiWZ4kxsQfxz9+5QQX+wcV7cnxBLI4BSXOXtEJVWErGgmFtVDBcigGg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772660616; c=relaxed/simple;
-	bh=7wXP8WRiNeSyKnTYbShOZiG/e+hNJHKsu0WRVUrocSQ=;
+	s=arc-20240116; t=1772660675; c=relaxed/simple;
+	bh=UBfSjjmJrNCjjkKBzC1qtXYKL+YoMoiQC/Mi2uGGDaY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=laYYEOwKGODI3v740Tegwev4feZSXFHdfIB0Mc5/YzVWkid822tc2mGnLJaQmn+4JE5jUzXP721SVKApf93Zyru0bgWkByGgPsO2+L9rL6nrcjE3k37wdJptkkn3PW3bLq9r8Q2PxYF928+bE+q9NraeTZf2FcLZSGcaWPau8AE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=djt0iN/L; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772660615; x=1804196615;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7wXP8WRiNeSyKnTYbShOZiG/e+hNJHKsu0WRVUrocSQ=;
-  b=djt0iN/LX5Cu9Exh3CYvu6y4p7fM7byIgwwteFYgf6x+4+nVYwVpRfJ6
-   0ktjwE3HsaE3Y1cC4+wPJ4xRl3AfkPokNzYPWQ0j1m3QF5JP/y3jNfHc1
-   MjJS9gCnZO3qz4076lASbfFjml3HIjQEFOg1sXHQEZvbJ8IyFTG2iqQK5
-   r9wsfQzFMgMh3CJdbx/Q1E6BpzZ/mClrcDcMPj+/bU7zfenmfmG6DwxXc
-   cmomhjMchxFjoGb5A17cJkc3oNG+elHeXi4lKq+zAxFq05I6p5SCrEfHd
-   byYLKEg9J4twQRmaHkw1z7iaXKOI9FZssqaDI88onPVWw/JwfKxixUW25
-   Q==;
-X-CSE-ConnectionGUID: IJ2pJA+hRQW4ohpZXuoqCA==
-X-CSE-MsgGUID: RyymdAe8TOSCB9MKjsuXHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="85206487"
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
-   d="scan'208";a="85206487"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 13:43:35 -0800
-X-CSE-ConnectionGUID: HipjXJbqSqOXgbAMz8bTdg==
-X-CSE-MsgGUID: QdS6PPkRTU2JfLIcFLOudg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
-   d="scan'208";a="217627119"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.13])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 13:43:33 -0800
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id E5CDB120CA3;
-	Wed, 04 Mar 2026 23:44:01 +0200 (EET)
-Date: Wed, 4 Mar 2026 23:44:01 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=YTA8wtjMmwcDxNVamvM5ETSCGZ2iJDGvub0/d28fu2/HX/L1vdSwWFlrk3dU+/uHqgxKFwFhhj5klHewGs/ROKqrkd+X+y7CWnLtBNCS6nnsUnKDvnAa07pZeDYWceEt3gBa+QoOi/Ugrov9mU4M2f1hNPPTVgbvBcXpBQXl0MY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NNXaHyMx; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=gSLtBaL1I366zXJPvC+wIcMvR7jmFaS7+yuOf6tZMQo=; b=NNXaHyMxK5aX6E5+xmFa2tWZWm
+	OR0qyviGA18t3zeE46SChvog3qyfq1EE1txbvqsTpOocpCwEqF7Kuf/u1At4edbHZ4tLI/lTwLxjT
+	nbOKGa7W9vYicLineftF+55eOyK4jakskbxYsKnKbHLPMNV4po6ZNd6Kro6p6YzDNzi0=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vxu14-00AB6X-Eh; Wed, 04 Mar 2026 22:44:26 +0100
+Date: Wed, 4 Mar 2026 22:44:26 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] media: i2c: mt9m114: add support for Aptina MI1040
-Message-ID: <aainoYv6RXkXFcHv@kekkonen.localdomain>
-References: <20260304185001.82988-1-clamor95@gmail.com>
- <20260304185001.82988-3-clamor95@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/2] net: sfp: Describe and handle regulators
+Message-ID: <640957c8-cff7-4703-b1d1-5474c6b22cdc@lunn.ch>
+References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
+ <aab51KbpIq72wtSU@shell.armlinux.org.uk>
+ <9586950.CDJkKcVGEf@fw-rgant>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,72 +76,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260304185001.82988-3-clamor95@gmail.com>
-X-Rspamd-Queue-Id: D17A42081E4
+In-Reply-To: <9586950.CDJkKcVGEf@fw-rgant>
+X-Rspamd-Queue-Id: 4EC44208245
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271280-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271281-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[armlinux.org.uk,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,bootlin.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.972];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid]
 X-Rspamd-Action: no action
 
-Hi Svyatoslav,
+> Interesting, I wasn't aware of this. I thought it was something like "being 
+> able to shut down the transmitter side only while waiting for a WoL packet".
 
-One more thing...
+That will not be reliable. INF-8074 says:
 
-On Wed, Mar 04, 2026 at 08:50:01PM +0200, Svyatoslav Ryhel wrote:
-> @@ -2646,9 +2658,18 @@ static void mt9m114_remove(struct i2c_client *client)
->  	pm_runtime_set_suspended(dev);
->  }
->  
-> +static const struct mt9m114_model_info mt9m114_models_default = {
-> +	.state_standby_polling = true,
-> +};
-> +
-> +static const struct mt9m114_model_info mt9m114_models_aptina = {
-> +	.state_standby_polling = false,
-> +};
-> +
->  static const struct of_device_id mt9m114_of_ids[] = {
-> -	{ .compatible = "onnn,mt9m114" },
-> -	{ /* sentinel */ },
-> +	{ .compatible = "onnn,mt9m114", .data = &mt9m114_models_default },
-> +	{ .compatible = "aptina,mi1040", .data = &mt9m114_models_aptina },
-> +	{ /* sentinel */ }
+6) VeeR and VeeT may be internally connected within the SFP module.
 
-The driver also supports ACPI. mt9m114_models_default needs to be added to
-the ACPI data, too; otherwise ACPI support breaks.
+So shutting down the transmit regulator might end up putting double
+load on the receive regulator, and the magic smoke getting out, if the
+design does not take this into account.
 
->  };
->  MODULE_DEVICE_TABLE(of, mt9m114_of_ids);
->  
-
--- 
-Kind regards,
-
-Sakari Ailus
+       Andrew
 
