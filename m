@@ -1,206 +1,240 @@
-Return-Path: <devicetree+bounces-271053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271055-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uAVaBgw1qGm+pQAAu9opvQ
-	(envelope-from <devicetree+bounces-271053-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:35:08 +0100
+	id sLSpCpo1qGm+pQAAu9opvQ
+	(envelope-from <devicetree+bounces-271055-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:37:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82D182007FA
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:35:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83EBF200847
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 14:37:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1209C310CC12
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 13:29:41 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BC1FB301D312
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 13:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5266836C5A4;
-	Wed,  4 Mar 2026 13:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A5A738737B;
+	Wed,  4 Mar 2026 13:33:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ERSjYRpo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qif17WzB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7B636AB6C
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 13:29:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD24383C85
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 13:33:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772630980; cv=none; b=d0dlLQchZ15qh37NXm+ORs1Iyw4RUEwREj/QlghRl78aG3VbGbX2t1mZhfSQynPqSIM8rtXbOs17kPUS0uPHJgBDxDcII0ly/zGsVUdkF+ANgB+AKtWyoUu35yWu2+4IkIUI6zvxiTBrHocFl1AgkEEHq53Z0zcV+6U44HH2Uho=
+	t=1772631218; cv=none; b=aG5rolUopVrdDsDezv4uAzWpfTGUyFQuHv+Nk9Eu/UudEcNKglv1rsk/csW3O9hA0XS7DRZO5Ef+0WMsT2gW3BjYc9NtNjJ8n1XHy8nA/vRID/K9XU88954q7LLE92vSFs+C8pe/TQ6nGPOo074UDGQQbP/QjL2di4JPqOi4uzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772630980; c=relaxed/simple;
-	bh=oxOnKH95/GBhVd6q/7Mffq96PDJdq2BWLCnXONslloE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cKho4A2qrNxd1pe4jh27RDgC0dh0hHoDtMpVnE4QXBA9Fj+aihuQ9fdL7lCZ70j6Rr9BqiD2WrejWHWNAqxMcn7+0e0RQIpOcrCug9Wq5aEaVSR5y+CgIsNozWa8f8vCZHXXT9ajeyPa2SLbqLGTAetV8lg7FdHvokKKS9cq3Hs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ERSjYRpo; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4836f363ad2so80276945e9.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 05:29:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772630977; x=1773235777; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8mg++I7PIn4dt5AFv6kcvsSJIHq4QLe4L7ARlFnSbcA=;
-        b=ERSjYRpo9v+ntsM7Uh4UY44hUwNZ2DCFvrQ77+dWbeeMdWPxv+e+jnl1/YNeXDg2X+
-         hlc5taVxSkf2kZbRuZGeFFfnDmDS0XID3oXl5elnjzuaUytT0fdehRXA5fAlpXuIa10N
-         xxbtDc0jPITgfT89Mus6+6cBRy4OSpVdhL3UyPewbdW+zTrt1l1zPBWAHVEmySGwiA3f
-         USalwaabQ7C2meIhKT5MCH7ItbFR7/Qnn/dprXQ5yaceDHqX7pN1DpwAjs65Azr2LtIZ
-         mw8R6lrBQu+LKp4p7fFJME7MP7K8NHW8VBpB7q3pJFHJHRl+cnTzMpsT8vBXaxIzv1Jg
-         pNgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772630977; x=1773235777;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8mg++I7PIn4dt5AFv6kcvsSJIHq4QLe4L7ARlFnSbcA=;
-        b=q6seztVBF7gztIzuAnZGrTyb4ETSlfLwVH+xXCEvV1F7dHD5EfmOnJHwNzxKzFIe+d
-         qUp1qHBbCz7jMUNdWjHwzd6wraUw1FNLLRzxBeLmuxTYLvKKfJZo71zcbCwS+3SdTEeB
-         v+gELR6u2DknbX/RrqygDl9Eul51rghr5DHYDPhU1Mbev5tay6Tj9+3FqBlA2p4d8jBk
-         nSUc8Sqxm7c0Y55fHsLeSbYo5Qml0nRf36y6PwRkkD6qU2P22+ogCpzl3IRP4gP+XQwb
-         nPbpSLTMvBPEU0ciuEhnvffJGuQTyaiHi3U+t2UJ584R+3Rc+e0Y4AZn7JpXA+52I04c
-         ZPJA==
-X-Forwarded-Encrypted: i=1; AJvYcCXIKyFWtjLYQMYisdpohrkt2x0cH5hBQEyIdeND79z20u4ZP6lQjJOqQqv9I6bD1edui+L/nMhGYGFi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8HcFv2+6hNnIxFveL9OLbCAEDrMwPNpNLc/BWwSbTtQihD7Ta
-	cfOL+E5EEhKtaLiYz7g0k5GIZLTSyzn4jauvxnCyGUGD9A7wohTvrojO
-X-Gm-Gg: ATEYQzxzlOoLPYSznwnz7zy9Nydtmkp4J7P0Qcigj1KROf9dqOEXczV5PcOogP+M4cN
-	dSev6SdbiY5fXGFUFAspWiQBS1n2xvBZyof+tjwV8mrwXnm9HLSk5iKMkiPbFlNIbyBDXN/V35V
-	0ao3b79HiiKORHlX0g28LbioufVHx28gaNz8cLsiS9t3SllmKBts/Kijq+YzYaZUMC4qXC6fr9q
-	q7P6ic0XC952D1IZc93lDjmaAbOGZ4pWcqQ2bhrS44l/N+/BX8TbBltzJjt371MtC1tNHWX5iXK
-	q9V6dwblCO+P4QNQ6g6eKQvxTmRGyHIWv9VNtnzwoZ2iER6m8CwwbyFyhIAgcSt8H3A8UeveQ/j
-	C7Tlx8Ama/tcEZ1opUXtw0o60cGIfz50Vdv+w35ZTNexKqiEIKDhozniPyYBtfmi1v8L/KE1OwB
-	xSDuMyI17fH6JCarZ7unD7aRMBFflU4P8iqFAn1a2EVmfxBBon
-X-Received: by 2002:a05:600c:6098:b0:471:1717:411 with SMTP id 5b1f17b1804b1-48519888e49mr31558475e9.24.1772630976778;
-        Wed, 04 Mar 2026 05:29:36 -0800 (PST)
-Received: from debian.levillagebyca.com ([213.152.28.84])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851887fa9csm51283605e9.9.2026.03.04.05.29.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 05:29:36 -0800 (PST)
-From: MidG971 <midgy971@gmail.com>
-To: linux-rockchip@lists.infradead.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	jonas@kwiboo.se,
-	midgy971@gmail.com,
-	Claude <noreply@anthropic.com>
-Subject: [PATCH v2] arm64: dts: rockchip: rock-3b: Model PI6C20100 as
- gated-fixed-clock
-Date: Wed,  4 Mar 2026 14:29:57 +0100
-Message-Id: <20260304132957.684616-1-midgy971@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20260213151452.535527-1-midgy971@gmail.com>
-References: <20260213151452.535527-1-midgy971@gmail.com>
+	s=arc-20240116; t=1772631218; c=relaxed/simple;
+	bh=qX8bwC7Pr9sLJEwNHDJdwt6wRYUINp909IFCD+BCZGM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jSKQ/JA0hRc2m7m3bp0AzLKmY8Qir5ig1iY7KC8HGmI50Hazbu8WA1nJuQ21ATB3ErMFfFX9uRXAVbcxmBHnejj6JAtnlTecvGkujQZ/jDUkAXdumI8HuI2VrUILkRzfpGyY4ulxK0/nJMFIAj8hr6cOHX0DFhntw2pz4uOrKIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qif17WzB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9C9FC2BC87
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 13:33:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772631217;
+	bh=qX8bwC7Pr9sLJEwNHDJdwt6wRYUINp909IFCD+BCZGM=;
+	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
+	b=Qif17WzBzBvkoZ/nngJnz8sJxXvmtVb7CDH2GgHnvD8Eg4wXcB7/iUPikO1Rj7Lw+
+	 nTyeDShVWEJOTO6LH41cgsGChErXNk4UKZM7InHw5IsnZgGFDjFjAs2YidL2FRDYye
+	 wldPBeuWRLX4A9id9QwKZBANP4J2ET6394qW5k7N2UQGEsmgZCa+jY9ZNUFKoJtfcc
+	 kp4S9COjdi8zaoMeBQU/KYuckEHF9LS1wWSUozRuey+J3NCBd5gFrq0etry2kCVYsH
+	 3j8h0Gcx7Fgo/89C/1X2+zm7mvzM9yMm9WVMK/zifcZLgf5JixXx4xcD8IqOZHyO8b
+	 mExfYykDd2sgQ==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-38a3066b68bso6231321fa.3
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 05:33:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVVnBt28+fg82dY6QPE+bMjyjxVRHpLSjZRj8c9Y+j+IKw3AgpdgzJubhICCeR/VYnLql4FO5TZIfyl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGOX0RNsokjo20BtAWNnx8zNNbkb9VUg1IDFZLjA3HGm1d9fxS
+	4o+Q1QoDlnzwGUuxazBLbW5PGAZDfRBnffvevTLIa5rHZ7JfUcKEHBrTSM+5wxBvfNIwI8PioZC
+	8a6xGmYTIxvPABH1r11trX4IB5g7F5zA=
+X-Received: by 2002:a05:651c:997:b0:389:ff39:d36f with SMTP id
+ 38308e7fff4ca-38a2c564975mr18004471fa.8.1772631216030; Wed, 04 Mar 2026
+ 05:33:36 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20260304-b4-pck600-a733-v1-0-2f54efdb8cc2@gmail.com> <20260304-b4-pck600-a733-v1-2-2f54efdb8cc2@gmail.com>
+In-Reply-To: <20260304-b4-pck600-a733-v1-2-2f54efdb8cc2@gmail.com>
+Reply-To: wens@kernel.org
+From: Chen-Yu Tsai <wens@kernel.org>
+Date: Wed, 4 Mar 2026 22:33:23 +0900
+X-Gmail-Original-Message-ID: <CAGb2v64n_8RyWDieUKvbpkTikipB9ZvqEscYRRLowe+rvaJKCQ@mail.gmail.com>
+X-Gm-Features: AaiRm52IhPssfKwic0-9MUev9i9zshO3IgtBuLjVx0xGClavhc7qhY1LONhcieE
+Message-ID: <CAGb2v64n_8RyWDieUKvbpkTikipB9ZvqEscYRRLowe+rvaJKCQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pmdomain: sunxi: Add support for A733 to Allwinner
+ PCK600 driver
+To: Yuanshen Cao <alex.caoys@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Ulf Hansson <ulf.hansson@linaro.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 82D182007FA
+X-Rspamd-Queue-Id: 83EBF200847
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,sntech.de,kwiboo.se,gmail.com,anthropic.com];
-	TAGGED_FROM(0.00)[bounces-271053-lists,devicetree=lfdr.de];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271055-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[midgy971@gmail.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,linaro.org,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[wens@kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[devicetree];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
-The Radxa ROCK 3B uses a PI6C20100 PCIe reference clock buffer to=0D
-provide a 100MHz reference clock to the PCIe 3.0 PHY and controllers.=0D
-This chip is currently modeled only as a fixed regulator=0D
-(vcc3v3_pi6c_03), with no clock output representation.=0D
-=0D
-The PI6C20100 is a clock generator, not a power supply. Model it=0D
-properly as a gated-fixed-clock, following the pattern established=0D
-for the Rock 5 ITX and other boards with similar PCIe clock buffer=0D
-chips.=0D
-=0D
-The regulator node is kept as-is since it controls the power supply=0D
-to the PI6C20100 chip via GPIO0_D4. The new gated-fixed-clock node=0D
-references this regulator as its vdd-supply and provides a proper=0D
-100MHz clock output. The pcie3x2 node is updated to include the=0D
-reference clock, matching the approach used in rk3588-rock-5-itx.dts.=0D
-=0D
-Signed-off-by: Claude <noreply@anthropic.com>=0D
-Signed-off-by: MidG971 <midgy971@gmail.com>=0D
----=0D
-=0D
-Changes since v1 [1]:=0D
- - Drop phy-supply approach entirely (Jonas, Shawn)=0D
- - Model PI6C20100 as gated-fixed-clock instead=0D
- - Wire reference clock to pcie3x2 controller=0D
- - Follow pattern from rk3588-rock-5-itx.dts=0D
-=0D
-[1] https://lore.kernel.org/linux-rockchip/20260213151452.535527-1-midgy971=
-@gmail.com/=0D
-=0D
- .../arm64/boot/dts/rockchip/rk3568-rock-3b.dts | 18 +++++++++++++++++-=0D
- 1 file changed, 17 insertions(+), 1 deletion(-)=0D
-=0D
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts b/arch/arm64/b=
-oot/dts/rockchip/rk3568-rock-3b.dts=0D
-index 69001e4..24befc9 100644=0D
---- a/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-rock-3b.dts=0D
-@@ -56,7 +56,16 @@=0D
- 		};=0D
- 	};=0D
-=0D
--	/* pi6c pcie clock generator */=0D
-+	/* PI6C20100 PCIe reference clock buffer (100MHz) */=0D
-+	pcie30_refclk: pcie-clock-generator {=0D
-+		compatible =3D "gated-fixed-clock";=0D
-+		#clock-cells =3D <0>;=0D
-+		clock-frequency =3D <100000000>;=0D
-+		clock-output-names =3D "pcie30_refclk";=0D
-+		vdd-supply =3D <&vcc3v3_pi6c_03>;=0D
-+	};=0D
-+=0D
-+	/* PI6C20100 power supply - active-high GPIO0_D4 */=0D
- 	vcc3v3_pi6c_03: regulator-3v3-vcc-pi6c-03 {=0D
- 		compatible =3D "regulator-fixed";=0D
- 		enable-active-high;=0D
-@@ -553,6 +562,13 @@=0D
- };=0D
-=0D
- &pcie3x2 {=0D
-+	clocks =3D <&cru ACLK_PCIE30X2_MST>, <&cru ACLK_PCIE30X2_SLV>,=0D
-+		 <&cru ACLK_PCIE30X2_DBI>, <&cru PCLK_PCIE30X2>,=0D
-+		 <&cru CLK_PCIE30X2_AUX_NDFT>,=0D
-+		 <&pcie30_refclk>;=0D
-+	clock-names =3D "aclk_mst", "aclk_slv",=0D
-+		      "aclk_dbi", "pclk", "aux",=0D
-+		      "ref";=0D
- 	pinctrl-names =3D "default";=0D
- 	pinctrl-0 =3D <&pcie30x2m1_pins>;=0D
- 	reset-gpios =3D <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;=0D
---=0D
-2.39.5=0D
-=0D
+On Wed, Mar 4, 2026 at 12:44=E2=80=AFPM Yuanshen Cao <alex.caoys@gmail.com>=
+ wrote:
+>
+> The Allwinner A733 PCK600, similar to A523 PCK600, is likely a
+> customized version of ARM PCK-600 power controller. It shares
+> the same BSP driver with A523. According to the BSP provided
+> by Radxa, unlike A523, it doesn't require reset.
+>
+> Make reset optional in the sunxi pck600 driver and add support
+> for A733.
+>
+> Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
+> ---
+>  drivers/pmdomain/sunxi/sun55i-pck600.c | 53 ++++++++++++++++++++++++++++=
+++----
+>  1 file changed, 48 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/pmdomain/sunxi/sun55i-pck600.c b/drivers/pmdomain/su=
+nxi/sun55i-pck600.c
+> index c7ab51514531..8f9fdc3915bd 100644
+> --- a/drivers/pmdomain/sunxi/sun55i-pck600.c
+> +++ b/drivers/pmdomain/sunxi/sun55i-pck600.c
+> @@ -52,6 +52,7 @@ struct sunxi_pck600_desc {
+>         u32 logic_power_switch0_delay;
+>         u32 logic_power_switch1_delay;
+>         u32 off2on_delay;
+> +       bool has_rst_clk;
+>  };
+>
+>  struct sunxi_pck600_pd {
+> @@ -151,9 +152,11 @@ static int sunxi_pck600_probe(struct platform_device=
+ *pdev)
+>         if (IS_ERR(base))
+>                 return PTR_ERR(base);
+>
+> -       rst =3D devm_reset_control_get_exclusive_released(dev, NULL);
+> -       if (IS_ERR(rst))
+> -               return dev_err_probe(dev, PTR_ERR(rst), "failed to get re=
+set control\n");
+> +       if (desc->has_rst_clk) {
+> +               rst =3D devm_reset_control_get_exclusive_released(dev, NU=
+LL);
+> +               if (IS_ERR(rst))
+> +                       return dev_err_probe(dev, PTR_ERR(rst), "failed t=
+o get reset control\n");
+> +       }
+>
+>         clk =3D devm_clk_get_enabled(dev, NULL);
+>         if (IS_ERR(clk))
+> @@ -193,7 +196,14 @@ static int sunxi_pck600_probe(struct platform_device=
+ *pdev)
+>  }
+>
+>  static const char * const sun55i_a523_pck600_pd_names[] =3D {
+> -       "VE", "GPU", "VI", "VO0", "VO1", "DE", "NAND", "PCIE"
+> +       "VE",
+> +       "GPU",
+> +       "VI",
+> +       "VO0",
+> +       "VO1",
+> +       "DE",
+> +       "NAND",
+> +       "PCIE",
+
+No need to change this part.
+
+>  };
+>
+>  static const struct sunxi_pck600_desc sun55i_a523_pck600_desc =3D {
+> @@ -206,7 +216,36 @@ static const struct sunxi_pck600_desc sun55i_a523_pc=
+k600_desc =3D {
+>         .device_ctrl1_delay =3D 0xffff,
+>         .logic_power_switch0_delay =3D 0x8080808,
+>         .logic_power_switch1_delay =3D 0x808,
+> -       .off2on_delay =3D 0x8
+> +       .off2on_delay =3D 0x8,
+> +       .has_rst_clk =3D true,
+> +};
+> +
+> +static const char * const sun60i_a733_pck600_pd_names[] =3D {
+> +       "VI",
+> +       "DE_SYS",
+> +       "VE_DEC",
+> +       "VE_ENC",
+> +       "NPU",
+> +       "GPU_TOP",
+> +       "GPU_CORE",
+> +       "PCIE",
+> +       "USB2",
+> +       "VO",
+> +       "VO1",
+> +};
+> +
+> +static const struct sunxi_pck600_desc sun60i_a733_pck600_desc =3D {
+> +       .pd_names =3D sun60i_a733_pck600_pd_names,
+> +       .num_domains =3D ARRAY_SIZE(sun60i_a733_pck600_pd_names),
+> +       .logic_power_switch0_delay_offset =3D 0xc00,
+> +       .logic_power_switch1_delay_offset =3D 0xc04,
+> +       .off2on_delay_offset =3D 0xc10,
+> +       .device_ctrl0_delay =3D 0x1f1f1f,
+> +       .device_ctrl1_delay =3D 0x1f1f,
+> +       .logic_power_switch0_delay =3D 0x8080808,
+> +       .logic_power_switch1_delay =3D 0x808,
+> +       .off2on_delay =3D 0x8,
+> +       .has_rst_clk =3D false,
+>  };
+>
+>  static const struct of_device_id sunxi_pck600_of_match[] =3D {
+> @@ -214,6 +253,10 @@ static const struct of_device_id sunxi_pck600_of_mat=
+ch[] =3D {
+>                 .compatible     =3D "allwinner,sun55i-a523-pck-600",
+>                 .data           =3D &sun55i_a523_pck600_desc,
+>         },
+> +       {
+> +               .compatible     =3D "allwinner,sun60i-a733-pck-600",
+> +               .data           =3D &sun60i_a733_pck600_desc,
+> +       },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, sunxi_pck600_of_match);
+>
+> --
+> 2.53.0
+>
 
