@@ -1,198 +1,189 @@
-Return-Path: <devicetree+bounces-271262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271263-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OTTK76ZqGm8vwAAu9opvQ
-	(envelope-from <devicetree+bounces-271262-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:44:46 +0100
+	id cLixIDqaqGkGwAAAu9opvQ
+	(envelope-from <devicetree+bounces-271263-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:46:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F00207AFF
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04084207B32
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:46:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E9DAE3005AF6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:44:44 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5DDA8300D915
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:46:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B856382F39;
-	Wed,  4 Mar 2026 20:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2141370D71;
+	Wed,  4 Mar 2026 20:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=pta2002.com header.i=@pta2002.com header.b="BEa/4Axp";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mrs1.rp.oracleemaildelivery.com header.i=@mrs1.rp.oracleemaildelivery.com header.b="0uIFlJ9Z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XFtrj/Cf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abi149ajj127.mrs1.oracleemaildelivery.com (abi149ajj127.mrs1.oracleemaildelivery.com [129.149.100.127])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3219C382F29
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 20:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.149.100.127
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF97366DAC;
+	Wed,  4 Mar 2026 20:46:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772657084; cv=none; b=Q84XiibKA+M1Nt1lFYTNrp3Jm5br2e84ddjAOQg29dqQtERb4etoWAkT7WTLU7MpVW5ie2qViA+QlW2BJgtk5uVqzZmR51VURPMojDSXCnvA6GEy/PRCaItBM50Lt43fBV8jselGFW8BfXzhCq2n3qGWogex599bHmj67vGQPs4=
+	t=1772657199; cv=none; b=G85SUF4+k6lTHbF8+UjzBcl80/vM/uiy2kAVrWKEeAny81kgELQadvdvlFIGLf0E8krCGqdMdxkWNuT46IJblHOSrLcyFE3j3yZt+H+yS0WgfSNj22QEoDSDfFuEoAastSazzzhiEgde01TEvXC5ugcnOnAKYahJzgqvXmOOraQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772657084; c=relaxed/simple;
-	bh=jtuJ3sDSTRydL4QDqtLQQf/RxGRON6GfNn+9/Wpf6pU=;
-	h=From:Date:Subject:MIME-version:Content-type:Message-id:To:Cc; b=WA1F8SVUOqRmBU5bGibalsMn5kf0zrYANPbkfKboia4/BoHxJytzJ22zFuamzOZcP6S5GOb7DNg4fWtPoEtLzT9a+89sF7/UX2qNLCXAtEh4JaZaH7zEarhh+EKaOtnv4x0mdMzpIKTtczZ0JTgP1eZZuvvizW/yL0rERH2aiTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pta2002.com; spf=pass smtp.mailfrom=mrs1.rp.oracleemaildelivery.com; dkim=pass (2048-bit key) header.d=pta2002.com header.i=@pta2002.com header.b=BEa/4Axp; dkim=pass (2048-bit key) header.d=mrs1.rp.oracleemaildelivery.com header.i=@mrs1.rp.oracleemaildelivery.com header.b=0uIFlJ9Z; arc=none smtp.client-ip=129.149.100.127
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pta2002.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mrs1.rp.oracleemaildelivery.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=pta2002-202603;
- d=pta2002.com;
- h=Date:To:From:Subject:Message-Id:MIME-Version:Sender:List-Unsubscribe:List-Unsubscribe-Post;
- bh=QqcNY84HU56C92q/VUNsNqUbrdG+Xf4zqhVnZIVoFdA=;
- b=BEa/4AxpA1nQi3hrfpCPXoVWsAoqVcV3VTBXbq9/w29cR91Kp5CVDlWErcmtVh7pDm7+Mad0bL1S
-   zsjRijur6M8rF2oI1wFh+VRZG7fz3T65jkEg5amj7AUqts8RupbaFczmZ5z3p5Ctp0qsXuubEYWJ
-   hrYl7cofggPUX+YigDYtapa2BkZ3w6cZ0Dli1qaCCcLk7aT/hYxMcjayKBu1K5qXcjNZ1RS2lmfk
-   eSX27M0k6IyTpCg6GUZjwWUg3RL67LsjlwqH/yaZ5RMf/5fmPN518NktaU+N8TfUptz9PKdvwT2i
-   j2j/pf8JWVNHi7CCO+DMJJTxJwjp9gD0KmQ/qw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=prod-mrs-20211019;
- d=mrs1.rp.oracleemaildelivery.com;
- h=Date:To:From:Subject:Message-Id:MIME-Version:Sender:List-Unsubscribe:List-Unsubscribe-Post;
- bh=QqcNY84HU56C92q/VUNsNqUbrdG+Xf4zqhVnZIVoFdA=;
- b=0uIFlJ9ZDCawFc/yBghXtDjZNwGz+zejpR2qH5zTlf+G5Ag13xvJzdmmmck9e8z+zWUnduK7q9dI
-   cklI3p87zh1owwyO1+boMcBYU5NEBGrT6kcp1F9eBATWiaIDNiGERn1KCqACrjggsK7rDYsRFphu
-   +UcAggEBoPKXavEhiPXrwe6+3moMBDSPBQYkBiS1iR2ivMD7vMRS8OEOiZ2cOF05qQfF/CbfVF/+
-   P3BGFDcPosaDb7Ew7i3sNPxSgvFXJDBQueXWwT1PtUrZp5Xj4xaA2JjFtUg2A9rKkVGBkyX8NL90
-   nRRsD3i5XGSUwCdP0BrWVaHDFAn8o9fGeXjPSA==
-Received: by omta-ad1-fd1-401-eu-marseille-1.omtaad1.vcndpmrs.oraclevcn.com
- (Oracle Communications Messaging Server 8.1.0.1.20260212 64bit (built Feb 12
- 2026))
- with ESMTPS id <0TBE002FJ6YG8730@omta-ad1-fd1-401-eu-marseille-1.omtaad1.vcndpmrs.oraclevcn.com>
- for devicetree@vger.kernel.org; Wed, 04 Mar 2026 20:44:40 +0000 (GMT)
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-From: Pedro Alves <pta2002@pta2002.com>
-Date: Wed, 04 Mar 2026 20:44:39 +0000
-Subject: [PATCH v2] arm64: dts: rockchip: configure hdmirx in Rock 5 ITX
+	s=arc-20240116; t=1772657199; c=relaxed/simple;
+	bh=xZPU+lO15zbS01J/5fhSubvCHoqF8ecKxJyi14RpyjE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ax+ElLcA+H22Cnz+0qUUKn5xD96OHRR/ms/ob9DK3rkJ7NdlvAVTgE/ftVQWjYF8oqm8LlfVzt2H+ZO0WADTYBcqlibXKE3fSzSj3jNTGb6yGE3gdKhfoPy8sgoI0HCmDsS/cHlRoV/RiXDODQtn6ATmQ+RaKj8fR9OYDs7MKKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XFtrj/Cf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B95EFC4CEF7;
+	Wed,  4 Mar 2026 20:46:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772657199;
+	bh=xZPU+lO15zbS01J/5fhSubvCHoqF8ecKxJyi14RpyjE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XFtrj/CfE7jawNLOVd9//PL4AXeNcwg7aU2khJ2s3QPivnnq8v1QTuywFUWuNkCIc
+	 Hd5/evtUohpOUbwHRqikiTH2OU2K7N8j8TBM08HgAwmCtklm2J7GI/dWMViFl3CG1W
+	 QOdbUPYl62X3ibbincSJD1obKO54k3qe3PrCU0FyCUHyLExhtdHUw3n5qHX9TVKyRL
+	 OdMR5zk7Dah5eLwQVZOxKlKLBUSkep7RziDbGG7EN2jq2HsP4zkE5lC+ulY16of1Gg
+	 PGHG0h6ONyCzYYXkCy5ZWvF5o1fFzJ15kkkEXpgRnJzG/i+Ho5CrNVIgzkKZtMdrRJ
+	 fngDBxHqKqc1w==
+Date: Wed, 4 Mar 2026 14:46:22 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] phy: qcom: qmp-pcie: Add multiple power-domains
+ support
+Message-ID: <qmtl3j7czisocywmkwgaxxuzhc6e6zzvaqmqjs5p2phcpk2q3x@rocbjxeguv4g>
+References: <20260304-glymur_gen5x8_phy-v1-0-849e9a72e125@oss.qualcomm.com>
+ <20260304-glymur_gen5x8_phy-v1-2-849e9a72e125@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-version: 1.0
-Content-type: text/plain; charset="utf-8"
-Content-transfer-encoding: 7bit
-Message-id: <20260304-radxa-r5-itx-hdmirx-v2-1-6567e9e3298b@pta2002.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Pedro Alves <pta2002@pta2002.com>
-X-Mailer: b4 0.14.3
-X-B4-Tracking: v=1; b=H4sIALaZqGkC/22Nyw6CMBBFf4XM2jF9AcaV/2FY1DKVWQBmSkgN4
- d+tJO5cnpPcczdIJEwJrtUGQisnnqcC5lRBGPz0JOS+MBhlGmWVRfF99ig18pJx6EeWjNE1rqb
- GxUuwUJYvocj5qN67wgOnZZb3cbLqr/313N/eqlFjbNtH1LENpOzttXijlDmHeYRu3/cPbRHbm
- bgAAAA=
-X-Change-ID: 20260303-radxa-r5-itx-hdmirx-f4645e64f8c3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772657079; l=2272;
- i=pta2002@pta2002.com; s=20260304; h=from:subject:message-id;
- bh=jtuJ3sDSTRydL4QDqtLQQf/RxGRON6GfNn+9/Wpf6pU=;
- b=bWuzjkfSGwG38Yb0np1TmOduH+RX+yiRB5PsCDCZPQ7ZVeJZVfkgc9Pks/HDmhjHLh9cWSGD0
- FwK1SVJ5rDqCblHoWkVIPpIFTHLZz3et+1xZTUIOQe6nsriCIqE6xVL
-X-Developer-Key: i=pta2002@pta2002.com; a=ed25519;
- pk=leagPTMCtYIB9nQJfoZ5+TYiuZUercAQHfGnFVTTaiQ=
-Reporting-Meta:
- AAHDjmJjvCZUCcZYIX7JF0y6IfTTYzSwJJDp0tXSTosAK1Fg2saYxHqqtPk2U2cu
- 1AADq0lNRLQvx62sAxrSipYGlv9v6DU8CbOc0pGUdCFgXbEkCvccz1SNdV8zhs31
- RqjFzkkPm6pTWNFK9vkAf7hrOAz4Wt6pGkUXyHdqV+7ear5AdHqdMve+mGNNVtqZ
- N9G1xtGI/9cZBKiIWhkMV80y6RiqfIyGrqHI43WOUTWKt+MHZHtYS7x32vBHArcF
- A+dr9NqjY+Go8QcD2vPhFCEtPIY7oTiGjgVyQPBme9ErDeqTlbP25WG05eE8uNbR
- 4+iiETgImJAzRGtHVISLAIaNHm6BRY7CxyYQaH4MVLkTItcT86lU0AdKy93isGcb
- E+8EEHktzEvSBoNDVmGlTjoPzk9OQzTntuJNw+shL5mZuV9yil4/QRL5adP3CAvG
-X-Rspamd-Queue-Id: 17F00207AFF
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260304-glymur_gen5x8_phy-v1-2-849e9a72e125@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 04084207B32
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[pta2002.com:s=pta2002-202603,mrs1.rp.oracleemaildelivery.com:s=prod-mrs-20211019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[pta2002.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271262-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271263-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[pta2002.com:-,mrs1.rp.oracleemaildelivery.com:-];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pta2002@pta2002.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.569];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-The Radxa Rock 5 ITX board exposes an HDMI input exactly the same way as
-the Rock 5B, but this was not reflected in its DTS.
+On Wed, Mar 04, 2026 at 12:21:56AM -0800, Qiang Yu wrote:
+> The Glymur SoC's 3rd PCIe instance supports 8-lane mode using two PHYs in
+> a bifurcated configuration. Each PHY has its own power domain (phy_gdsc)
+> that must be powered on before initialization per hardware requirements.
+> 
+> Current PHY power management assumes a single power domain per PHY,
+> preventing proper setup for this dual-PHY scenario. Add support for
+> multiple power domains by using devm_pm_domain_attach_list() to attach
+> power domains manually, while maintaining compatibility with single
+> power domain PHYs.
+> 
+> Enable runtime PM to allow power domain control when the PCIe driver
+> calls phy_power_on/phy_power_off:
+> 
 
-Change the rk3588-rock-5-itx to configure and enable the hdmi_receiver
-and hdmi_receiver_cma nodes.
+Enabling runtime PM seems like a separate change that impacts all
+existing targets, while adding multiple power domains should only affect
+the specific ones.
 
-The hot-plug detection (HPD) pin keeps the hdmirx_det name rather than
-the hdmirx_hpd name used in other boards since that is what matches the
-official schematics (HDMIIRX_DET_L).
+I'm not sure if it's too picky, but it would be nice to separate this -
+so that any issues that might arise can be bisected down to one or the
+other of these two changes?
 
-The configurations were confirmed to be identical on the downstream
-Radxa kernel, and this has been tested to work on a Rock 5 ITX board
-running kernel 6.19.3.
+> - Single power domain: QMP PHY platform device directly attaches to
+>   power domain and controls it during runtime resume/suspend
+> - Multiple power domains: devm_pm_domain_attach_list() creates virtual
+>   devices as power domain suppliers, linked to the QMP PHY platform
+>   device as consumer
+> 
+> This ensures power domains are properly attached and turned on/off
+> for both single and multiple power domain configurations.
+> 
+> Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> index fed2fc9bb31108d51f88d34f3379c7744681f485..7369c291be51aa1ad7a330459dcb857f5a1988f6 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
+> @@ -17,6 +17,7 @@
+>  #include <linux/phy/pcie.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_domain.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/reset.h>
+> @@ -3334,6 +3335,8 @@ struct qmp_pcie {
+>  
+>  	struct clk_fixed_rate pipe_clk_fixed;
+>  	struct clk_fixed_rate aux_clk_fixed;
+> +
+> +	struct dev_pm_domain_list *pd_list;
 
-Signed-off-by: Pedro Alves <pta2002@pta2002.com>
----
-Tested with the following commands:
+This is just an pointer to the list allocated inside
+devm_pm_domain_attach_list(), as far as I can tell you don't need to
+keep this in the qmp_pcie struct - as you're not using it anyways.
 
-v4l2-ctl --verbose -d /dev/video4 \
-  --set-fmt-video=width=3840,height=2160,pixelformat='BGR3' \
-  --stream-mmap=4 --stream-skip=3 --stream-count=20 \
-  --stream-to=hdmiin.raw --stream-poll
+Regards,
+Bjorn
 
-ffmpeg -f rawvideo -vcodec rawvideo -s 3840x2160 -r 30 -pix_fmt bgr24 \
-  -i hdmiin.raw output.mp4
----
-Changes in v2:
-- Updated dts spacing to match coding style
-- Reverted pin naming to hdmirx_det to match schematics
-  - Didn't end up changing other boards to match. There are quite a few
-    others, so I'll probably send a separate patch for that.
-
-- Link to v1: https://lore.kernel.org/r/20260304-radxa-r5-itx-hdmirx-v1-1-f77bf1f7ce03@pta2002.com
----
- arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-index 172aeabba72a..8e0eead7d223 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5-itx.dts
-@@ -349,6 +349,18 @@ &hdmi1_sound {
- 	status = "okay";
- };
- 
-+&hdmi_receiver_cma {
-+	status = "okay";
-+};
-+
-+&hdmi_receiver {
-+	pinctrl-0 = <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_rx_sda &hdmirx_det>;
-+	pinctrl-names = "default";
-+	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
- &hdptxphy1 {
- 	status = "okay";
- };
-
----
-base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
-change-id: 20260303-radxa-r5-itx-hdmirx-f4645e64f8c3
-
-Best regards,
--- 
-Pedro Alves <pta2002@pta2002.com>
-
+>  };
+>  
+>  static bool qphy_checkbits(const void __iomem *base, u32 offset, u32 val)
+> @@ -5348,6 +5351,16 @@ static int qmp_pcie_probe(struct platform_device *pdev)
+>  	WARN_ON_ONCE(!qmp->cfg->pwrdn_ctrl);
+>  	WARN_ON_ONCE(!qmp->cfg->phy_status);
+>  
+> +	ret = devm_pm_domain_attach_list(dev, NULL, &qmp->pd_list);
+> +	if (ret < 0 && ret != -EEXIST) {
+> +		dev_err(dev, "Failed to attach power domain\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return ret;
+> +
+>  	ret = qmp_pcie_clk_init(qmp);
+>  	if (ret)
+>  		return ret;
+> 
+> -- 
+> 2.34.1
+> 
 
