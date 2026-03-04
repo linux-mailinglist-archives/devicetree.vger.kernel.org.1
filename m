@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-271019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271020-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJsDA8sqqGnJpAAAu9opvQ
-	(envelope-from <devicetree+bounces-271019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:51:23 +0100
+	id ON0AMBkrqGnJpAAAu9opvQ
+	(envelope-from <devicetree+bounces-271020-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:52:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DBFD1FFDDF
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:51:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 454B11FFDFF
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 13:52:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2DD33301691E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:51:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 945373016CAF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 12:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590761EBA14;
-	Wed,  4 Mar 2026 12:51:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEBC02116F4;
+	Wed,  4 Mar 2026 12:52:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pwhj8Tyl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lWcKO/iv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352641E633C;
-	Wed,  4 Mar 2026 12:51:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA68D1FE44A;
+	Wed,  4 Mar 2026 12:52:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772628680; cv=none; b=LqVrmdMNunlYbGkY7MGRrzm/tlYGWzgOdMnR5d6Enzp4bDBKtA9UOKGQvT28nJK6cpWLZ51LjcD/Cz8eMPCznY8bajGCM16OIvlWxf3dRvNM4alLn5/8owQWJpWPfqHdCPruPDxJaPCCrMqR+CAYaG6LzOsDv5Tf4KD/6ersDc0=
+	t=1772628757; cv=none; b=gUYrabX+mL2Vm+0HCzMzg9YMyT/BG5CdMuF9IDCecJbVUfG5jFgubQAdp4yqVRaYazFKddZTTIlpGx4o3njpUsY9XM6YLLSH/ha1vFHVEUeoKcX4OVPKqNutjBdgZ7469r9ttUknDWk6xdS0cUpCYkjqhoCTgEx/hPdPxYo0+Nw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772628680; c=relaxed/simple;
-	bh=CS3JJSNe2pgBqtNAi3ryLic5lXWt6XcOlwivx9J84Vk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IjxdxOs/U6Luaq1f4OuG4JrhIwErRFWFT/nHlOzDWXX82jb6QrTNkTHi2OYqtZg2i6Da1L/dfovX/01/bvPayzUyk2UejVDpsC0tfcTERCZgxw6cGscWy7Mgsx/EElUKril6CGMSeIOZWnk+UzdVgn7KG1jB0sapCUlyjbxaOc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pwhj8Tyl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C61EAC19423;
-	Wed,  4 Mar 2026 12:51:17 +0000 (UTC)
+	s=arc-20240116; t=1772628757; c=relaxed/simple;
+	bh=akw+8/F2JADZrNE06FS6v60DMqxShWftWnHC5BklOhw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Dze3iVykaftvUzPMzpjTQQ04+ZuQiTiEN907g3dsbkRZfA8Gc7YgXrWoxPtwnA/vYomxk5Tw+ywOIwOyNCZqWU4p2PQ4j4WnZzP4UcpyCRzXTEAYzP6DFhB9IX+irsZCoH8OfLaEQkNhLfi3YxPlY4emdYR/0veXCbUd+scOzBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lWcKO/iv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70ECEC19423;
+	Wed,  4 Mar 2026 12:52:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772628679;
-	bh=CS3JJSNe2pgBqtNAi3ryLic5lXWt6XcOlwivx9J84Vk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pwhj8TylG64Dm4mxpxr6p8iX14kpMv+Wid3uQFWQA9fMXNIR6Rd81ZZSIBBVWDRoc
-	 RW/vsjzZG6rb6r7XunGsvFVm1SRy3F75OYeilnRd3NCjV3sZu9V1ID3MY/VeWdNkVN
-	 iyEHGzaOeP2fHPoiMpp1MEwc7Bc6sIpgdpbdpTb7cDgT8ZYghFFTxn6SKk9dWDLbhj
-	 o6qwJujWiO+SwHNOdsDiS1nGcvD8y3217k67QLR0t5tHmc/VgkMoJF2NxoRu+qQRxU
-	 Hd5FrzBsLuRLct5wZjS/U7VDDQoBsAT6CHiQuHE0BURHZ6ikccEMQ/tOi2dUMHZXkp
-	 Ygb1zB7oVvUmA==
-Message-ID: <fe1f9d67-7176-476e-8c76-afcc7595cde1@kernel.org>
-Date: Wed, 4 Mar 2026 13:51:15 +0100
+	s=k20201202; t=1772628757;
+	bh=akw+8/F2JADZrNE06FS6v60DMqxShWftWnHC5BklOhw=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=lWcKO/ivqsCBv3Zt7e9fNTpZwSZ5mvWniJOaEWFX7EBGAb9casXl1i0a9vej5jc3N
+	 ZymikJzYZrINtPbiylfNFHz7948e+MBN115c1zcSIApv1qIdrEhoJAhSydOrDXs/oI
+	 ncCWStDaNoiEoT4DqGDeVAXq2Cy1yhWfRgo48ccwZYlY0E+9W5bdd7VaL5pSGddoyP
+	 MNnkosNESKzMAG66Es9mLNQQEdsmJWvLFVVuTds2kbjub4wie+6fyH/bk495oW2BYF
+	 QRxYlptt7GUDVfLYZwE2UeYxKMeVmFyGLXdoKFJmQGI8XCbLPjDAbewUpSk+eY8iEW
+	 DStefzOiuILWg==
+Message-ID: <e6f8db4d-2a5a-4424-b44d-6416ee0c5ca0@kernel.org>
+Date: Wed, 4 Mar 2026 13:52:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,6 +55,7 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2] dt-bindings: misc: xlnx,axi-fifo-mm-s: fix
  interrupt-parent property
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Alexandru Hossu <hossu.alexandru@gmail.com>, robh@kernel.org
 Cc: krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
  jollys@xilinx.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -62,7 +63,7 @@ Cc: krzk+dt@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org,
 References: <ae0a95f4-8dac-4690-8810-79ad5fee7895@gmail.com>
  <0eea78fe-59ab-4ca0-9e29-d68fa298ac09@kernel.org>
  <fbb68131-03ab-460b-8d11-e4892d91807f@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <fe1f9d67-7176-476e-8c76-afcc7595cde1@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -107,21 +108,21 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <fbb68131-03ab-460b-8d11-e4892d91807f@gmail.com>
+In-Reply-To: <fe1f9d67-7176-476e-8c76-afcc7595cde1@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 7DBFD1FFDDF
+X-Rspamd-Queue-Id: 454B11FFDFF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271019-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271020-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
@@ -142,16 +143,28 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 04/03/2026 13:46, Alexandru Hossu wrote:
-> v2: Remove interrupt-parent property declaration as it is a standard
-> property that does not need to be explicitly defined in the binding.
+On 04/03/2026 13:51, Krzysztof Kozlowski wrote:
+> On 04/03/2026 13:46, Alexandru Hossu wrote:
+>> v2: Remove interrupt-parent property declaration as it is a standard
+>> property that does not need to be explicitly defined in the binding.
+>>
+>> Signed-off-by: Alexandru Hossu <hossu.alexandru@gmail.com>
 > 
-> Signed-off-by: Alexandru Hossu <hossu.alexandru@gmail.com>
+> 
+> Stop and read the feedback.
+> 
+> There is still no patch!
 
+Look here:
+https://lore.kernel.org/lkml/fbb68131-03ab-460b-8d11-e4892d91807f@gmail.com/
+No patch inline, just separate attachment. That's not something possible
+to review.
 
-Stop and read the feedback.
-
-There is still no patch!
+And another point is:
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets. See also:
+https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
 
 Best regards,
 Krzysztof
