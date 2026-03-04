@@ -1,180 +1,396 @@
-Return-Path: <devicetree+bounces-270938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270939-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCUZKuH7p2mlnAAAu9opvQ
-	(envelope-from <devicetree+bounces-270938-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:31:13 +0100
+	id UFwYLIX8p2mlnAAAu9opvQ
+	(envelope-from <devicetree+bounces-270939-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:33:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F1E91FD9AD
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:31:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C6CC1FDA97
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 10:33:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BFC513039029
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 09:31:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B57373017394
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 09:33:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A328C3976B4;
-	Wed,  4 Mar 2026 09:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F6013988E1;
+	Wed,  4 Mar 2026 09:33:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nM++lJkf"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jG7fGQ4v";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="AnD2HPj1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796143976AA;
-	Wed,  4 Mar 2026 09:31:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BAD350D7D
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 09:33:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772616665; cv=none; b=cusH7L4SHkWCnx8FQYNSiR/5xFAetMsakZwPwJm1xscfPta9lIGhd59cJiqbZQ7ExYd4cLAQLuBTSWmF5ngipduWy/BrammaTbG4Z8tphdI4s61FLGGWZwv4JYwPrmFD9gqe3sm2fw2dRO16+R/545Rf4pixryRQDfZZfhyOSFg=
+	t=1772616828; cv=none; b=pKJUPTqUy0xDmzo2hE9WeULZIeUjhMs1NVaiNmI30R4dRJGJ/7ZWe5T6If4NNVRoBoccljtP1pBQDG/UAQmlgIDzaJs5pIhTcs6e57p3Fyx5Y76fsADxukC+O960q462QohNmm2qgUS+5Gz6ULZoIfPQx41Dn0DKT7367h2I5HM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772616665; c=relaxed/simple;
-	bh=zgQE9FPg79NGedD2qfd8rrEbgmI4ffrc7T2hh1mMJGs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YeXd8RtlH9DxsE1jO4OE8IAvyzMKyrf7S1a/PL5i6v7uMhVf2tbLdAoTVpMwGgIiV/AldPGZgVm1LT2aqQ/IIqmXj57j4C8vDUNK/ifU2EEHJhtQ2CJOVLqCD1a+4AxUVm0CzRZVN+WRVUPeE5FrrduGFz1yke0qh7k3GHvAt2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nM++lJkf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99223C19425;
-	Wed,  4 Mar 2026 09:30:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772616664;
-	bh=zgQE9FPg79NGedD2qfd8rrEbgmI4ffrc7T2hh1mMJGs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nM++lJkfi0p1/jKfOa1D+SffAY8be/O9gEmD2PT9ZTwuqGwVM1VSkTvzj+W7HiYE/
-	 u1bt9hSCZdXwGoyy71KOHeyUeE5T5BQ3/LHCed27eQcXArBchaxw7NyiRKJUB4FunA
-	 HBgTGF2hDdooYslK8PIhi4PWwpvCin/mEoz/9Op0AHUHIPgnIGgTUlNLnu/Rioj8x1
-	 /6RhEweeWR2ms7D/bxvbWrFo+/ISYanwH6djArYLBHXYdakBjHdtP0GeovKHxhhCQJ
-	 JE7u1UuyeHI73A1i7yFg5/TPmB28KzDjkCncr8WDbuGtARNrAmf02o7AGBos5Je4C4
-	 hYKrLmEEfy1sQ==
-Date: Wed, 4 Mar 2026 09:30:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Bo Gan <ganboing@gmail.com>
-Cc: Jakub Kicinski <kuba@kernel.org>, lizhi2@eswincomputing.com,
-	devicetree@vger.kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
-	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
-	wens@kernel.org, pjw@kernel.org, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr,
-	linux-riscv@lists.infradead.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
-	weishangjuan@eswincomputing.com
-Subject: Re: [PATCH net-next v3 1/3] dt-bindings: ethernet: eswin: add clock
- sampling control
-Message-ID: <20260304-capable-setback-908ba5b5c858@spud>
-References: <20260303061525.846-1-lizhi2@eswincomputing.com>
- <20260303061637.872-1-lizhi2@eswincomputing.com>
- <20260303163846.156d18f7@kernel.org>
- <20260304-regulate-verdict-c3a361d2dc83@spud>
- <05a15890-392c-41c3-9566-8eb506ddfe5f@gmail.com>
+	s=arc-20240116; t=1772616828; c=relaxed/simple;
+	bh=UgQTgkB5UzffbHxj48UknwnHweyGmMrlnoYCea5R01M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=icLRVAMuei8a0eVP6vprNpEwLyLjtO7VGIsxsOnlJGIXSPkq4Acws9k3vUzcWNMG/JRLdFjc6Qwq+gozbEVIJ1VshtBOKJw5+kapbr85ruehhPL78y5QxTQ4FP4nWlGM4gYUmgTaIbUT//UOjWQBDmlBtNOy9RHLkB/54lFJhF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jG7fGQ4v; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=AnD2HPj1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6245Se831422277
+	for <devicetree@vger.kernel.org>; Wed, 4 Mar 2026 09:33:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	olej/QuVyiT3XCCYbNDROqVlMJ/ZiroIS/6G24fqqXw=; b=jG7fGQ4v5uKwi+m6
+	jYRS3LTZutxZaRvtn8jkQxwWB2a0rTwd5e4FuO+g0wWd5G6gGJcJF4AE1G5i+wFk
+	OVKDaM+De548acZWpPzF3QrgKX7M0ybyyo9T9nH5iq1FCKDwI9itphQ7adIazLDh
+	RCVUSxnyEZWmuQHAooPZDGtWaMjcWZ8Cwxhrap9wNj/tneGiKaSjMDD1SK277er9
+	zx1qlz8KOShYrjRR+IbVJPOroaviNiAlxyRY0ZMUgNqTvVo0VGxfRXNQzqpcimU5
+	5LEprhOHTQYA/7ocebT16KTOpnKkzt3JtoAKgir2XJgo30Zc72Ql1lf/KJbK5HwK
+	TOtKHw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cpe8u0vxu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 09:33:45 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2ae53ec06b0so132979165ad.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 01:33:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772616824; x=1773221624; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=olej/QuVyiT3XCCYbNDROqVlMJ/ZiroIS/6G24fqqXw=;
+        b=AnD2HPj1eZgauJ+a51GpxVR5LOXekFbZkM/CI1vXOYd5EhIQiMgjfvPxOZzHfjqgwP
+         2MSH6X2qnxMqo0MhwIvXpHrq9sQUlQg8zEFmZhnBIemjtRD0dhw0Xm+YKs0TW4k0TkLc
+         plRWwOkxz1sVw00as9jzQJgwc0LgIJDIYE7hITDl+4htUjO5PiG7SuTuk8YPgrPmy39l
+         44omh1OCnCk3bHosJLxqq/d5Ag/OA2siUhUY9l5QSBxzhSAOwhRgNO3dLISB0SHqoGCU
+         2srym+0FdLUlRbJbxffo/84LsArWxI+gDv9JKtpBQp26y74bfBVsbNRHDACWl1jVTVVt
+         g4kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772616824; x=1773221624;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=olej/QuVyiT3XCCYbNDROqVlMJ/ZiroIS/6G24fqqXw=;
+        b=KeeDc2zOMfFVBCSTAfNHj+M9RbSVmE69ZBWlTV7BJNyPSmoYoED9Fcow2iaiSXkjzZ
+         7HfieWFr7NLg+MHuAM75afugwWnSssw1yPyJyNMGvlzySxn2eORzG5FQhnldImnr9v8N
+         dgRlVEMAUlXPTEOXaXuo8c9Na6ij+WvX2r9e9wD/U73OpkjVKuqOqASkSRlyyVXnxfMD
+         xjc4vja6Gvman3ZaSvMl9Rjawlys8I1wqMdNBleOAU4EB2Z4qx+uBTH/ivQE+bve3RHa
+         YpchN0MC/s4vgKlQa73HEAf4I3IxE4m5LljNi4FTNKkIv6WhFtHb4u20wK//sWeccuXO
+         kF6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUSs2YYiYdslELHTRX3LMepugpi/24wJ6QEl6G74LKCNBLNaqF4rSObz+T6CEfuNrOV5ckEjn5Oh/Jn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkR32T9bgYX30nNBMuUjNSdZ6oyzZf3akKb1hKDBxkqbjJiV2z
+	g9VPK25Qxra9RlFEdspyJvNO1/tzVrgP5GY3bXpknaalI0TLhxGJDhWOEqBRICAkh0XdOa1jACy
+	gmQrgY1OWq+WObID9bzIAXCKNyoWOCkNjCVsI6HrIaq0lJXoUQm7tHm90UAoJpA2V
+X-Gm-Gg: ATEYQzw6Nq9KHhb1b5yRdhmb/MwUFCTuGbeN0V8uttgW8EasovVNLh6/VMXW1pClGeS
+	HrHFbnRD1sqWbvTuARow1a3VEpQKPbK50YgZjZzJ1xWV7qg84STyqg7nLwfCWEcVNU4fRsZC8Xg
+	pg4xep+Bn1Za+64kh72SEfR2i/mx/KGdasftfB2/qHkysWxbCmIwhf54XAKp7CxuwnH8s2QoSIZ
+	qPQFeDNg0jKycRaF00QM881pHzONk3OSkX1wK9DU8pRjYUZyrb5hBbfJhDmiJPHm2RYn6hG7ahr
+	+5pogPQ5Na2PPfNZXz3D6c+d6Uj9RYFFxdCbat0bdIjEirKL/Y3wpC3txw1JCdFcP8nDFzMvKSA
+	PXwkg+gReH7oNFWReFFMuO5ei/YwnopXbTMKwTG8QOXaZDl77+uPYs+LQ
+X-Received: by 2002:a17:903:3586:b0:2ae:483f:b23b with SMTP id d9443c01a7336-2ae6aaae620mr19110155ad.32.1772616824015;
+        Wed, 04 Mar 2026 01:33:44 -0800 (PST)
+X-Received: by 2002:a17:903:3586:b0:2ae:483f:b23b with SMTP id d9443c01a7336-2ae6aaae620mr19109655ad.32.1772616823507;
+        Wed, 04 Mar 2026 01:33:43 -0800 (PST)
+Received: from [10.219.57.109] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae541358d4sm76250575ad.75.2026.03.04.01.33.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Mar 2026 01:33:42 -0800 (PST)
+Message-ID: <d3687764-024d-4dbc-9342-8edc9b4f1fdd@oss.qualcomm.com>
+Date: Wed, 4 Mar 2026 15:02:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="VyT/OApBJ2ELuMkj"
-Content-Disposition: inline
-In-Reply-To: <05a15890-392c-41c3-9566-8eb506ddfe5f@gmail.com>
-X-Rspamd-Queue-Id: 6F1E91FD9AD
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/3] of: Add convenience wrappers for of_map_id()
+To: Marc Zyngier <maz@kernel.org>
+Cc: Nipun Gupta <nipun.gupta@amd.com>,
+        Nikhil Agarwal
+ <nikhil.agarwal@amd.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Thomas Gleixner
+ <tglx@kernel.org>, Rob Herring <robh@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>,
+        Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas
+ <bhelgaas@google.com>, Frank Li <Frank.Li@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Juergen Gross <jgross@suse.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,
+        Prakash Gupta <prakash.gupta@oss.qualcomm.com>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, imx@lists.linux.dev,
+        xen-devel@lists.xenproject.org, linux-arm-msm@vger.kernel.org
+References: <20260301-parse_iommu_cells-v9-0-4d1bceecc5e1@oss.qualcomm.com>
+ <20260301-parse_iommu_cells-v9-1-4d1bceecc5e1@oss.qualcomm.com>
+ <86342janlx.wl-maz@kernel.org>
+Content-Language: en-US
+From: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+In-Reply-To: <86342janlx.wl-maz@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: cv8kpRraM-5KvDyxJqOLwhHMOuPRJOPC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA0MDA3MiBTYWx0ZWRfXy4s09DfMy7NN
+ 3F8JmyVux8Ch1B1+S45N6NiLrZzJBiuiBR1vRHnOIp6plcibh6FLvbwaW9pWT+PZtYUf7gdbImy
+ YZ915ThpA9hQAPBqMHuaT4TrARDBQ/V+ZEtC/RjrfRmhkbHA4Rn21+/f5ukAp/BJ67EdmmBi3GR
+ bmsZArBwzKMKy+ZHq96xtvChOoN3lqySUWuAIvxybQHi2QCbKUGD5QEd6RuENnnwwWY9pL52tFZ
+ iwhIs5PKFvVPd7zWlC9V4X0fFIDclCIkaXtYuhnKHHzWXhK+9M+MFJAxrameV0qKBHELn0u9YJA
+ 8izxJaBMHb9OhLRbHQufnOHxcP1zzYvMECafJ2Cz/RtYRC/VnZI71CRPGMyejGvfL+MteVdgUoh
+ 3y+cZgotrDeJoWCrXl4GJmUxKMqdKLWqC1NW//+rNCT7vGJ+3hfwHuhcW1ShEfAA7e8Er+7rFaW
+ hSOhVCh3uShPYOk5iuA==
+X-Authority-Analysis: v=2.4 cv=FpAIPmrq c=1 sm=1 tr=0 ts=69a7fc79 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=7CQSdrXTAAAA:8 a=VwQbUJbxAAAA:8 a=8AirrxEcAAAA:8
+ a=xEgsDuFUHT4EKXnybycA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22 a=a-qgeE7W1pNrGK8U0ZQC:22 a=ST-jHhOKWsTCqRlWije3:22
+X-Proofpoint-GUID: cv8kpRraM-5KvDyxJqOLwhHMOuPRJOPC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-04_05,2026-03-03_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
+ adultscore=0 phishscore=0 malwarescore=0 clxscore=1015 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603040072
+X-Rspamd-Queue-Id: 3C6CC1FDA97
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270938-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[amd.com,8bytes.org,kernel.org,arm.com,nxp.com,pengutronix.de,google.com,gmail.com,suse.com,epam.com,oss.qualcomm.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.xenproject.org];
+	TAGGED_FROM(0.00)[bounces-270939-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email,arm.com:email,qualcomm.com:dkim,qualcomm.com:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vijayanand.jitta@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.998];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,einfochips.com];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
 
---VyT/OApBJ2ELuMkj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 03, 2026 at 05:23:18PM -0800, Bo Gan wrote:
-> Hi All,
->=20
-> On 3/3/26 16:47, Conor Dooley wrote:
-> > On Tue, Mar 03, 2026 at 04:38:46PM -0800, Jakub Kicinski wrote:
-> > > On Tue,  3 Mar 2026 14:16:37 +0800 lizhi2@eswincomputing.com wrote:
-> > > > There are currently no in-tree users of the EIC7700 Ethernet driver=
-, so
-> > > > these changes are safe.
-> > >=20
-> > > What do you mean by this sentence? The commit under Fixes was part of
-> > > Linux v6.19 already.
-> >=20
-> > The "funny" thing is that caring about users doesn't even really matter
-> > on the devicetree patch, except for this hunk:
-> > |@@ -81,7 +99,9 @@ properties:
-> > |                          or external clock selection
-> > |           - description: Offset of AXI clock controller Low-Power req=
-uest
-> > |                          register
-> > |+          - description: Offset of register controlling TXD delay
-> > |           - description: Offset of register controlling TX/RX clock d=
-elay
-> > |+          - description: Offset of register controlling RXD delay
-> > |
-> > | required:
-> > |   - compatible
-> > And it only matters here because an item is injected mid-list. If this
-> > was moved to the end with the RXD delay, the **dt-binding** changes
-> > don't have issues with safety. I've not looked at whether there are
-> > knock-on concerns about users in the driver or whatever yet, but from a
-> > binding POV only that hunk can break something that currently works.
->=20
-> This was already discussed here in v1:
-> https://lore.kernel.org/lkml/e7183ae1-8b8b-4e77-9f4e-3bc1b4b63556@lunn.ch/
->=20
-> The device-tree is not checked in yet by ESWIN folks, so there's currently
-> no user of the dt-binding. No need to worry about backward compat.
+On 3/1/2026 3:16 PM, Marc Zyngier wrote:
+> On Sun, 01 Mar 2026 08:34:19 +0000,
+> Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com> wrote:
+>>
+>> From: Robin Murphy <robin.murphy@arm.com>
+>>
+>> Since we now have quite a few users parsing "iommu-map" and "msi-map"
+>> properties, give them some wrappers to conveniently encapsulate the
+>> appropriate sets of property names. This will also make it easier to
+>> then change of_map_id() to correctly account for specifier cells.
+>>
+>> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+>> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
+>> Signed-off-by: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
+>> ---
+>>  drivers/cdx/cdx_msi.c                    |  3 +--
+>>  drivers/iommu/of_iommu.c                 |  4 +---
+>>  drivers/irqchip/irq-gic-its-msi-parent.c |  2 +-
+>>  drivers/of/irq.c                         |  3 +--
+>>  drivers/pci/controller/dwc/pci-imx6.c    |  6 ++----
+>>  drivers/pci/controller/pcie-apple.c      |  3 +--
+>>  drivers/xen/grant-dma-ops.c              |  3 +--
+>>  include/linux/of.h                       | 14 ++++++++++++++
+>>  8 files changed, 22 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/cdx/cdx_msi.c b/drivers/cdx/cdx_msi.c
+>> index 91b95422b263..63b3544ec997 100644
+>> --- a/drivers/cdx/cdx_msi.c
+>> +++ b/drivers/cdx/cdx_msi.c
+>> @@ -128,8 +128,7 @@ static int cdx_msi_prepare(struct irq_domain *msi_domain,
+>>  	int ret;
+>>  
+>>  	/* Retrieve device ID from requestor ID using parent device */
+>> -	ret = of_map_id(parent->of_node, cdx_dev->msi_dev_id, "msi-map", "msi-map-mask",
+>> -			NULL, &dev_id);
+>> +	ret = of_map_msi_id(parent->of_node, cdx_dev->msi_dev_id, NULL, &dev_id);
+>>  	if (ret) {
+>>  		dev_err(dev, "of_map_id failed for MSI: %d\n", ret);
+>>  		return ret;
+>> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+>> index 6b989a62def2..a511ecf21fcd 100644
+>> --- a/drivers/iommu/of_iommu.c
+>> +++ b/drivers/iommu/of_iommu.c
+>> @@ -48,9 +48,7 @@ static int of_iommu_configure_dev_id(struct device_node *master_np,
+>>  	struct of_phandle_args iommu_spec = { .args_count = 1 };
+>>  	int err;
+>>  
+>> -	err = of_map_id(master_np, *id, "iommu-map",
+>> -			 "iommu-map-mask", &iommu_spec.np,
+>> -			 iommu_spec.args);
+>> +	err = of_map_iommu_id(master_np, *id, &iommu_spec.np, iommu_spec.args);
+>>  	if (err)
+>>  		return err;
+>>  
+>> diff --git a/drivers/irqchip/irq-gic-its-msi-parent.c b/drivers/irqchip/irq-gic-its-msi-parent.c
+>> index d36b278ae66c..b63343a227a9 100644
+>> --- a/drivers/irqchip/irq-gic-its-msi-parent.c
+>> +++ b/drivers/irqchip/irq-gic-its-msi-parent.c
+>> @@ -180,7 +180,7 @@ static int of_pmsi_get_msi_info(struct irq_domain *domain, struct device *dev, u
+>>  
+>>  	struct device_node *msi_ctrl __free(device_node) = NULL;
+>>  
+>> -	return of_map_id(dev->of_node, dev->id, "msi-map", "msi-map-mask", &msi_ctrl, dev_id);
+>> +	return of_map_msi_id(dev->of_node, dev->id, &msi_ctrl, dev_id);
+>>  }
+>>  
+>>  static int its_pmsi_prepare(struct irq_domain *domain, struct device *dev,
+>> diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+>> index 6367c67732d2..e37c1b3f8736 100644
+>> --- a/drivers/of/irq.c
+>> +++ b/drivers/of/irq.c
+>> @@ -817,8 +817,7 @@ u32 of_msi_xlate(struct device *dev, struct device_node **msi_np, u32 id_in)
+>>  	 * "msi-map" or an "msi-parent" property.
+>>  	 */
+>>  	for (parent_dev = dev; parent_dev; parent_dev = parent_dev->parent) {
+>> -		if (!of_map_id(parent_dev->of_node, id_in, "msi-map",
+>> -				"msi-map-mask", msi_np, &id_out))
+>> +		if (!of_map_msi_id(parent_dev->of_node, id_in, msi_np, &id_out))
+>>  			break;
+>>  		if (!of_check_msi_parent(parent_dev->of_node, msi_np))
+>>  			break;
+>> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+>> index a5b8d0b71677..bff8289f804a 100644
+>> --- a/drivers/pci/controller/dwc/pci-imx6.c
+>> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+>> @@ -1144,8 +1144,7 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
+>>  	u32 sid = 0;
+>>  
+>>  	target = NULL;
+>> -	err_i = of_map_id(dev->of_node, rid, "iommu-map", "iommu-map-mask",
+>> -			  &target, &sid_i);
+>> +	err_i = of_map_iommu_id(dev->of_node, rid, &target, &sid_i);
+>>  	if (target) {
+>>  		of_node_put(target);
+>>  	} else {
+>> @@ -1158,8 +1157,7 @@ static int imx_pcie_add_lut_by_rid(struct imx_pcie *imx_pcie, u32 rid)
+>>  	}
+>>  
+>>  	target = NULL;
+>> -	err_m = of_map_id(dev->of_node, rid, "msi-map", "msi-map-mask",
+>> -			  &target, &sid_m);
+>> +	err_m = of_map_msi_id(dev->of_node, rid, &target, &sid_m);
+>>  
+>>  	/*
+>>  	 *   err_m      target
+>> diff --git a/drivers/pci/controller/pcie-apple.c b/drivers/pci/controller/pcie-apple.c
+>> index 2d92fc79f6dd..a0937b7b3c4d 100644
+>> --- a/drivers/pci/controller/pcie-apple.c
+>> +++ b/drivers/pci/controller/pcie-apple.c
+>> @@ -764,8 +764,7 @@ static int apple_pcie_enable_device(struct pci_host_bridge *bridge, struct pci_d
+>>  	dev_dbg(&pdev->dev, "added to bus %s, index %d\n",
+>>  		pci_name(pdev->bus->self), port->idx);
+>>  
+>> -	err = of_map_id(port->pcie->dev->of_node, rid, "iommu-map",
+>> -			"iommu-map-mask", NULL, &sid);
+>> +	err = of_map_iommu_id(port->pcie->dev->of_node, rid, NULL, &sid);
+>>  	if (err)
+>>  		return err;
+>>  
+>> diff --git a/drivers/xen/grant-dma-ops.c b/drivers/xen/grant-dma-ops.c
+>> index c2603e700178..1b7696b2d762 100644
+>> --- a/drivers/xen/grant-dma-ops.c
+>> +++ b/drivers/xen/grant-dma-ops.c
+>> @@ -325,8 +325,7 @@ static int xen_dt_grant_init_backend_domid(struct device *dev,
+>>  		struct pci_dev *pdev = to_pci_dev(dev);
+>>  		u32 rid = PCI_DEVID(pdev->bus->number, pdev->devfn);
+>>  
+>> -		if (of_map_id(np, rid, "iommu-map", "iommu-map-mask", &iommu_spec.np,
+>> -				iommu_spec.args)) {
+>> +		if (of_map_iommu_id(np, rid, &iommu_spec.np, iommu_spec.args)) {
+>>  			dev_dbg(dev, "Cannot translate ID\n");
+>>  			return -ESRCH;
+>>  		}
+>> diff --git a/include/linux/of.h b/include/linux/of.h
+>> index be6ec4916adf..824649867810 100644
+>> --- a/include/linux/of.h
+>> +++ b/include/linux/of.h
+>> @@ -1457,6 +1457,20 @@ static inline int of_property_read_s32(const struct device_node *np,
+>>  	return of_property_read_u32(np, propname, (u32*) out_value);
+>>  }
+>>  
+>> +static inline int of_map_iommu_id(const struct device_node *np, u32 id,
+>> +				  struct device_node **target, u32 *id_out)
+>> +{
+>> +	return of_map_id(np, id, "iommu-map", "iommu-map-mask",
+>> +			 target, id_out);
+>> +}
+>> +
+>> +static inline int of_map_msi_id(const struct device_node *np, u32 id,
+>> +				struct device_node **target, u32 *id_out)
+>> +{
+>> +	return of_map_id(np, id, "msi-map", "msi-map-mask",
+>> +			 target, id_out);
+>> +}
+>> +
+> 
+> Any particular reason why this is made inline instead of out of line
+> in of/base.c? Also, some documentation would be helpful for the
+> aspiring hackers dipping into this.
+> 
+> Other than that,
+> 
+> Acked-by: Marc Zyngier <maz@kernel.org>
+> 
+> 	M.
+> 
 
-The binding and driver exist, there doesn't need to be a dts in tree for
-there to be potential users. If the break was important I might not
-care, but this seems to be a gratuitous break, since the new items could
-be added to the end of the list and compatibility maintained without
-incurring any more difficulty for you.
+Thanks Marc.
 
---VyT/OApBJ2ELuMkj
-Content-Type: application/pgp-signature; name="signature.asc"
+I made them static inline mainly because they’re just trivial wrappers
+around of_map_id(), so keeping them in include/linux/of.h avoids adding
+new global symbols/exports and keeps the callsites simple (similar to
+the existing of_property_read_*() inline wrappers).
 
------BEGIN PGP SIGNATURE-----
+That said, I don’t have a strong preference—if you’d rather have
+out-of-line helpers in drivers/of/base.c, I’m happy to respin accordingly.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaaf70QAKCRB4tDGHoIJi
-0t+yAQDaqUwbBXUnRZdznNlE9A9+14ZFfzPctlXgnLmjDlK8KQEAznLn0a9hkqF9
-NpmQ3RerxFbR3zZlgJKl/8p/5oYxngk=
-=yS9x
------END PGP SIGNATURE-----
+Re Documentation, Sure I'll add comments for of_map_iommu_id() and
+of_map_msi_id() in follow up patch.
 
---VyT/OApBJ2ELuMkj--
+Thanks,
+Vijay
+
+
+
 
