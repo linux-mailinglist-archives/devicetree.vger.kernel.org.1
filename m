@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-270819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270820-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id zE3dGt+Dp2mZiAAAu9opvQ
-	(envelope-from <devicetree+bounces-270819-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:59:11 +0100
+	id EE72CuCDp2mZiAAAu9opvQ
+	(envelope-from <devicetree+bounces-270820-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:59:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAAEE1F906A
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:59:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF1121F9071
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:59:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 08B123061E00
+	by sea.lore.kernel.org (Postfix) with ESMTP id B560530699AD
 	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 00:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68AC5291864;
-	Wed,  4 Mar 2026 00:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F29A2F6193;
+	Wed,  4 Mar 2026 00:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AhwahGbw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PPYRtT2Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D875D223336
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 00:59:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18CB23C39A
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 00:59:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772585948; cv=none; b=LJ1C7Q0uB1tgTuTFt4wS5bcyFdbEuMwAMtdoKs8+EVKIJdOiCoilA3qaOoNIgayfJq2VjjJCgdU/kleZ3snr2/Xbs/1kcDnjjPcM4TGSo9/aKFXyWwSP2lbodPRGgzL6cQqG6FTYwIQyYXkGqpYi4PgI35gzBKTTs6kJzmW5Rh8=
+	t=1772585949; cv=none; b=Ij0xmkH+RDevOZa2xokE6Wl7Ip++FjHcGdPPenRvF6J610hGpE0Vv3E1DURAdFzddpDQB/93Tx4wK0IMYwQT419yEY94zjXedPs6sjoE7dzbBXHC0eXTzuWFvDT05J28UHq/b4lRHXx0TdsWGf9dsMa0I8wLLohN/TqWYZZ4RSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772585948; c=relaxed/simple;
-	bh=Qe3nWY0lSbvjCIK4+kctylSw9SzyLCRUsYkdKSTPEv8=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=a3qZCq+z7O2gQIkMkkRYWIXsembPsywu7538hQIfAPXhyrxyiHk9TDhfBavq/Rid3wJwPlJt544S/LwH4HEeJtMauRcZ76nZY6mwqvsS+42M0Vaj0IRusENqUOfZKq8stmmdPsGGGLRaLUz9XQIhkVaOQ6DqBgN4UxPEsNzLIwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AhwahGbw; arc=none smtp.client-ip=209.85.128.42
+	s=arc-20240116; t=1772585949; c=relaxed/simple;
+	bh=kqEpoeU6uwUw7UJCVSou/auM1cXuat3qxhal/UfK2Xg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=aHY0d4IyrLaljQqrIrsiVu6cPwPAfuZwqcHm5wiq27Gi/Nu5XNHQP0Mw5NivSkyn8EmRkEP6ETJoN1OkeIYJYpDAXbP83dc8c68xBigHWRE4Ful8heIwxfWft/A0NzgiPlxm9Xt9NT7YH7Do5lo/nKL4AHML62N1k7S3vRwi9+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PPYRtT2Q; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4836f363d0dso55475615e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 16:59:06 -0800 (PST)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4806cc07ce7so71083765e9.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 16:59:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772585945; x=1773190745; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ogMkUraTjety9MOgCpxzZj4mdAQTkI2/0DG477NiJI=;
-        b=AhwahGbwMYsaD8xHnabj7AY9TaDbzZrbWyiIBOlpwHWkr9gJuk/J9ZOQlgRu4Wo5u3
-         VkkC+ZAwp4Xtal24csM4n09+kF1IGP89qtCVeQGSDYs/CzX4LU+yPIn/uhHGQcLdN3j7
-         UiUKxA6zbNi5XVniWuQGzyIdWjl9GWQaae/4Lx6E2WoDcAYXeytTERxbmgnZXnZsUbS5
-         Y/y07tDHDqZ4yQFwuFcnXTUSLAQdelybDWZWPUwH3m0caXQOQTI/VAhxcEnV2fR99E5O
-         0kyjVXjUEg18wh/znV9hmfiYpVELswJzSZJc8wh2DtF/AjfpNsE3E2GZOyoubOcvYZjy
-         lMfg==
+        d=gmail.com; s=20230601; t=1772585946; x=1773190746; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uq+Zu8LykB2khmPRxrzoypE2Ot8bOB1NxKiqjP0T/vQ=;
+        b=PPYRtT2QZKRz5AvxCFybOmuGOqiq1F6wCY7JFYdOSqKd3bEfyrQlO0wo/mLmugjCWp
+         RDyK0n//vkHuq3CAvORyMzvFZHC5kROVtEpUolNhd3o9ldC9+Ro3DtW8oNEVh40pbLKe
+         Tmhepw4St7vkaKDY5S2qr0Tyqx98bX2GO+ncZn4EIbmoiTH1B8J0N1GVDtPCHkBA4+Z1
+         rC8mb+mAlNWnnNPnD2DmNa+S6REtARkLluRtbht53fxBNC/jRqVR8223Lz63rP/IJ/yS
+         pPDvZP2qMMvkLAxW8vSJCD4aM32siuzzq3o3HjWusSgbRW54D2RgcQF1LhrobWXVmPBg
+         CSwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772585945; x=1773190745;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5ogMkUraTjety9MOgCpxzZj4mdAQTkI2/0DG477NiJI=;
-        b=I61nYCU1SnX5LrAvYM/ANI4ABV4yBYp1W8IigCioRRvuqy3QYzQZJUqOIf9cets+8m
-         iMUpVG7GOe8jw5VtC5gMB2z6mkRVoYsahDkooYU8eaDU0sBhNEuXtLezO80pDkUkhAkt
-         81G49e3CcAYqkt8k3aIu0KSz4HmLbn5LXOkkO0yt2qqTX5py7QfvuQUsD/xXL8RUjWCO
-         rJdymTV3Fj1CMgCZC8lQj8wpW9TS5RPcvzhhOSTt9Na/wUyZ9AZwhNmP07wWDuFje157
-         uo6dzZMyY/mkpK2AQO1hUIVzNm4JE1FfRqfbantAgBNYUhWZMwzfqZbDYSW2p2pxdw8x
-         D8Fg==
-X-Forwarded-Encrypted: i=1; AJvYcCVy7W1p6bLVRfxzZn7kCltBmky4ZNtMXcNkWwA2eA/x047FwqV2fgRX4jgTfpwbH33if++A38wpqnDn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNbOqL8sLZPayXNJAHqJGsNRadL8cMxt00qLhULmnegKe1fg6t
-	rwKu9IY+kOyX1FBdKixYIYZMUmxjtLUIv9MWI1+wYMxv0rcuJY6C0oXQ
-X-Gm-Gg: ATEYQzytm024Af0J+SRG0RPEitwcNF+TmBVSe7J7NQwtEoiUxwYCbzPnhruq+uCUQob
-	iyJBbZxXn40FfBk/PmtNdShgbQVwrw/J3s4o77lEJnXjRQOdwUQwxJoBw/MWcrTt39i4vB6wVZG
-	svOppn43tiWiQOCfk2WPuSNQkXA9Y/iKOfjwtG78YTIm+sXyUXl8VuQ+VNXZb0Ix8KOapMrkxcQ
-	jh6IVbA/8NvwW495Azs/Lv4kLVjGRUvky5yqq0zGNW51h374fM9yl09+7BwZwO0YeyKd+fECqUA
-	lNmIOqQgzF2mD9LK6Ol/qJruXFwEfX+fyWHdNAj8ft+48ixf2tM5zO708SHyiGapczv2KFCuQ2f
-	84DRrv3exizH3z5dlnyHlka477bINGRpDzMHsf3TS0AjBWytMNoYrgt2J+DtJwQThLLD5jcKu2j
-	7Sn3tn8hVivaR0jc1Go33JOm/VcXj0oFJR4AsKDwuzBzgivEaqqn9HtPA=
-X-Received: by 2002:a05:600c:a08c:b0:483:885:f0b0 with SMTP id 5b1f17b1804b1-485198bac26mr3235315e9.35.1772585945092;
-        Tue, 03 Mar 2026 16:59:05 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772585946; x=1773190746;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=uq+Zu8LykB2khmPRxrzoypE2Ot8bOB1NxKiqjP0T/vQ=;
+        b=vPfztpvqXV/YVy60AW7kUnHcIbRGOKe63kD7XteoT3UMSE2RH3QO6cNyD0wCIiIjF5
+         cufKO2FJJsL3ERjBLxwGQporJK5stIysLN7bYW40lO3wo6DoVGgVEGHLNqhiC72TTrRS
+         KDJJ6HUVZzbDIBkZ8u7Wk1GdpH50FjAPO6npoKAFOmiu/vcjAihr7Yp3eTjSJmTejdB/
+         EUyT6ln+wQ5tHGOUBdSpsakdRsH8InnxB8WrSDYrs39v5iZ7zJL4vGe8NQBdXNfCApSZ
+         rqJQL1gfAqFCYWK/XONKm5lLx0Qz7VcKfqr6QzHdHCZWWs89yZjmQDYznW6Xuk0EfMmc
+         u69w==
+X-Forwarded-Encrypted: i=1; AJvYcCVIroziwE7WbXxUsXABZkgeZxXzIcETbd32vlihd5NQM1cIfK/ZoL4VKoxwSqWsphNewMIdqCUvHegj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOCutmQ9vzfpzdQ3pYTqRSfHAU7r7VS5IDRQZlMw4o/3qLWw5c
+	mUF50k12ztFGNkJJ+oq6lagVvKy7L9x1gWQ5HmcyRHJhb8EFkwaVqLaH
+X-Gm-Gg: ATEYQzw3RP25Maa629QTs1obBXeTxm/gNBpX4FnPWUqwsY2fnrGxAt7zl2eTEQJxzUZ
+	ZaSBb7YAxtrkL89yLOvsKkmSVVSwRqOqyGoiISaJcMqfuOZyhMhSv/euxAb7fgPO/dF961aj8H9
+	L0XyN97olAsFJ+aaWHa2omRmsbUKEz1lmwZ17rnKiv6zZsdyYrgw72g1m9I+4XmhYyAWSnNQOGC
+	PCtu4vOURYbkWkFAdF1aQHpa/ROmcXOFTH3bWTZe7w1fFM9L2+yXVyff+8E6AomNDASUmSD5bb7
+	8t2plbGEGrH7CVZOZU4J8MOvfbRmfhV3gr1JwpnVG/fYuope2lXMQZUEXVu8zBqYpBRj0kQcDyV
+	tvcyXtJ6ZLu0gSJrWjQ2AsDdVbPFYDiKO4aD86VQhXgCpPQ30/EpzOCwFhMrx4zfFC2Re+zir3V
+	g/Dps9LWQ5iassMiFBcXfJUO7GDxqktkz0Zf2XbnjjNM1z9qaJDZRRxsE=
+X-Received: by 2002:a05:600c:3f0d:b0:483:7903:c3b1 with SMTP id 5b1f17b1804b1-48519889a49mr3172975e9.20.1772585946112;
+        Tue, 03 Mar 2026 16:59:06 -0800 (PST)
 Received: from Ansuel-XPS24 (93-34-88-122.ip49.fastwebnet.it. [93.34.88.122])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4851880724esm26927575e9.9.2026.03.03.16.59.03
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-4851880724esm26927575e9.9.2026.03.03.16.59.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2026 16:59:03 -0800 (PST)
+        Tue, 03 Mar 2026 16:59:05 -0800 (PST)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Christian Marangi <ansuelsmth@gmail.com>,
 	Vinod Koul <vkoul@kernel.org>,
@@ -86,10 +88,13 @@ To: Christian Marangi <ansuelsmth@gmail.com>,
 	linux-phy@lists.infradead.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v5 0/4] airoha: an7581: USB support
-Date: Wed,  4 Mar 2026 01:58:32 +0100
-Message-ID: <20260304005843.2680-1-ansuelsmth@gmail.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v5 1/4] dt-bindings: soc: Add bindings for Airoha SCU Serdes lines
+Date: Wed,  4 Mar 2026 01:58:33 +0100
+Message-ID: <20260304005843.2680-2-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260304005843.2680-1-ansuelsmth@gmail.com>
+References: <20260304005843.2680-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,12 +102,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: AAAEE1F906A
+X-Rspamd-Queue-Id: AF1121F9071
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
@@ -110,100 +115,62 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,lists.infradead.org,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270819-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-270820-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,lists.infradead.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email]
 X-Rspamd-Action: no action
 
-This is a major rework of the old v2 series.
+The Airoha AN7581 SoC can configure the SCU serdes lines for multiple
+purpose. For example the Serdes for the USB1 port can be both
+used for USB 3.0 operation or for Ethernet. Or the USB2 serdes can both
+used for USB 3.0 operation or for PCIe.
 
-The SoC always support USB 2.0 but for USB 3.0 it needs additional
-configuration for the Serdes port. Such port can be either configured
-for USB usage or for PCIe lines or HSGMII and these are configured
-in the SCU space.
+The PCIe Serdes can be both used for PCIe operation or for Ethernet.
 
-The previous implementation of a dedicated SSR driver was too
-complex and fragile for the simple task of configuring a register
-hence it was dropped and the handling is entirely in the PHY driver.
+Add bindings to permit correct reference of the different ports in DT,
+mostly to differentiate the different supported modes internally to the
+drivers.
 
-Everything was reducted to the dt-bindings to describe the Serdes line.
-
-Also the property for the PHY are renamed to a more suitable name and
-everything is now mandatory to simplify the implementation.
-(the PHY are always present and active on the SoC)
-
-Also other unrelated patch are dropped from this series.
-
-Changes v5:
-- Add Ack and Review tag from Connor
-- Implement Ethernet support in the USB driver
-  (testing support for this Serdes on a special reference board)
-- Use an7581 prefix for USB PHY driver
-
-Changes v4:
-- Rename PCIe and USB PHY to AN7581
-- Drop airoha,scu (handled directly in driver)
-- Drop dt-bindings for monitor clock in favor of raw values
-- Better describe the usage of airoha,usb3-serdes
-- Simplify values of dt-bindings SSR SERDES
-  Link: https://lore.kernel.org/all/20251107160251.2307088-1-ansuelsmth@gmail.com/
-
-Changes v3:
-- Drop clk changes
-- Drop SSR driver
-- Rename property in Documentation
-- Simplify PHY handling
-- Move SSR handling inside the PHY driver
-  Link: https://lore.kernel.org/all/20251029173713.7670-1-ansuelsmth@gmail.com/
-
-Changes v2:
-- Drop changes for simple-mfd
-- Rework PHY node structure to single node
-- Drop port-id property in favor of serdes-port and
-  usb2-monitor-clock-sel
-- Make the SSR driver probe from the clock driver
-
-Christian Marangi (4):
-  dt-bindings: soc: Add bindings for Airoha SCU Serdes lines
-  dt-bindings: phy: Add documentation for Airoha AN7581 USB PHY
-  phy: move and rename Airoha PCIe PHY driver to dedicated directory
-  phy: airoha: Add support for Airoha AN7581 USB PHY
-
- .../bindings/phy/airoha,an7581-usb-phy.yaml   |   71 +
- MAINTAINERS                                   |   11 +-
- drivers/phy/Kconfig                           |   11 +-
- drivers/phy/Makefile                          |    4 +-
- drivers/phy/airoha/Kconfig                    |   23 +
- drivers/phy/airoha/Makefile                   |    4 +
- drivers/phy/airoha/phy-an7581-pcie-regs.h     |  494 +++++++
- drivers/phy/airoha/phy-an7581-pcie.c          | 1290 +++++++++++++++++
- drivers/phy/airoha/phy-an7581-usb.c           |  640 ++++++++
- include/dt-bindings/soc/airoha,scu-ssr.h      |   11 +
- 10 files changed, 2545 insertions(+), 14 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/airoha,an7581-usb-phy.yaml
- create mode 100644 drivers/phy/airoha/Kconfig
- create mode 100644 drivers/phy/airoha/Makefile
- create mode 100644 drivers/phy/airoha/phy-an7581-pcie-regs.h
- create mode 100644 drivers/phy/airoha/phy-an7581-pcie.c
- create mode 100644 drivers/phy/airoha/phy-an7581-usb.c
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ include/dt-bindings/soc/airoha,scu-ssr.h | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
  create mode 100644 include/dt-bindings/soc/airoha,scu-ssr.h
 
+diff --git a/include/dt-bindings/soc/airoha,scu-ssr.h b/include/dt-bindings/soc/airoha,scu-ssr.h
+new file mode 100644
+index 000000000000..a14cef465dad
+--- /dev/null
++++ b/include/dt-bindings/soc/airoha,scu-ssr.h
+@@ -0,0 +1,11 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++
++#ifndef __DT_BINDINGS_AIROHA_SCU_SSR_H
++#define __DT_BINDINGS_AIROHA_SCU_SSR_H
++
++#define AIROHA_SCU_SERDES_PCIE1		0
++#define AIROHA_SCU_SERDES_PCIE2		1
++#define AIROHA_SCU_SERDES_USB1		0
++#define AIROHA_SCU_SERDES_USB2		1
++
++#endif /* __DT_BINDINGS_AIROHA_SCU_SSR_H */
 -- 
 2.51.0
 
