@@ -1,94 +1,70 @@
-Return-Path: <devicetree+bounces-271283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271284-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qAZGJF+wqGmfwQAAu9opvQ
-	(envelope-from <devicetree+bounces-271283-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 23:21:19 +0100
+	id EBGXH3ewqGmfwQAAu9opvQ
+	(envelope-from <devicetree+bounces-271284-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 23:21:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F3E20871C
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 23:21:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C776020872D
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 23:21:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 03DF53001180
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 22:13:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4A8FD30910B0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 22:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 592E837B02B;
-	Wed,  4 Mar 2026 22:13:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D482637B02B;
+	Wed,  4 Mar 2026 22:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LGU4lD6T"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="lQhArVQa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68EAA351C02;
-	Wed,  4 Mar 2026 22:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FE1384243
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 22:14:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772662426; cv=none; b=faJKrr8wsYwWCSLjy/Z5gG6TAfiOprHOh5GAPtZCcIpBe9BcOaI4unfJ0/vfNEvxJwv/BTx80BhCdhAtGV3dI6Q9i1iYbzOuv4iK0DHeyUEprsj4uR+SsgblEm9sHv13tItkFtxwZBqTHvD/uhXv/L2HoKhprpqHK47dic8nVRI=
+	t=1772662484; cv=none; b=sXcyKADaqjzss3rLborcNaV89UQarl51XtoVAt5MWVAkoKP7ZoX0Fuszi+0oIbWrUVM0E34bxei7ztEuRCJ6nXKoU3YLjO47ckrq8nXP5TjOIRPtZW1zhcX1RKLeD65Y2AbRNugryx9vIzYCthiov/CtzFVUpJevJ7rfV2ZXYY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772662426; c=relaxed/simple;
-	bh=8viQ62Vl8rOScrYYff4z3W73/71vqWr9R5SU1cx41TU=;
+	s=arc-20240116; t=1772662484; c=relaxed/simple;
+	bh=JmMXkK+pLB2Bo1YGTHUwtHtIJTZMiA8prpH5Y/2aOjY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=USUhEIg45iDSvOZ50+U/wI+B1dBOo2ObNqRTaN89immnR2lhcxHv2juODxZbx5Ov6K+fvPzeWY3/3h0G0NZ3SPd+GkyD7482EEEm96DcOiXGBeaJwTxhvcIupsYYqbVSYxVbWVib0qIYsd+69LccXCg2IBh5j5Orgj5W5JZ6NXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LGU4lD6T; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772662423; x=1804198423;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8viQ62Vl8rOScrYYff4z3W73/71vqWr9R5SU1cx41TU=;
-  b=LGU4lD6T9socxIoLAOWJ85iz5AGm31KQBaDFGz9MLrcDEEMng3nH5Vou
-   Z7xWFbbH/vnLJdHzj3hxdRc3uexUKn7xTGW/9ahtEx9iFtx57uIQOookY
-   ta85xoXLt0ZKV29LSns1bXGsYdqI+mY8I6fkmNZwg/Ex9+beuydJmgC5p
-   IMK40buOf4b3JI0fEMKps77B00L8mUG5KAChryq9Yo75F8DL3WQsengra
-   38lNcvcc6gTvTec7VTiOznm/I3cSUubhrQEHP+EhZJdvNNHNNLPBa3LuZ
-   IAlhMUpvLEyYr9vf5IWlAcDIcx28nkcGEajV2YNtQIvLQ5SQsmsEZo4w1
-   Q==;
-X-CSE-ConnectionGUID: 4bNaekX0TwOioMI66QQ89A==
-X-CSE-MsgGUID: EwSZKSgyQhK7XOkcxbAZaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="61309895"
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
-   d="scan'208";a="61309895"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 14:13:42 -0800
-X-CSE-ConnectionGUID: vKgF8lqPSuuf9WEb103q4w==
-X-CSE-MsgGUID: 4DnBmdg1RWOursf8+vRWaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
-   d="scan'208";a="223440410"
-Received: from lkp-server01.sh.intel.com (HELO f27a57aa7a36) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 04 Mar 2026 14:13:38 -0800
-Received: from kbuild by f27a57aa7a36 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vxuTF-000000004a9-1tK7;
-	Wed, 04 Mar 2026 22:13:33 +0000
-Date: Thu, 5 Mar 2026 06:13:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fnrj6VbcrfR+C3fxsfzfl4mrxZjOlRqQMVBHhS+5KGruZD/TxYBrpGMIHxGmxyiuhP6xHp7YXS0opv6+toIlGtQ3UgL9JrVAnLWz2HKeJp0L4ASM8pEemnHkek8Ttq+6Ia9B5S4nU8MZuYDo9vWbb7QHD3sOBQ9GRmTJ8PXlKe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=lQhArVQa; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 5201F240028
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 23:14:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1772662481; bh=AygycHmKMmUEErxEv++3db/RN2PgXbdgG0QAnKwV848=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:From;
+	b=lQhArVQaT2AiSmCNtPaomel7gxESCcjL6XkZ8Cqa81dzQDRhl8+9/6iS/fxPtlYrB
+	 e4DJkxUAZVD/PziEESlHwFPHRlxo+9RooLJUB/a/2xupxjbN3aL32T/WWs5scCRuVL
+	 MEk7sC2LlUghXNywPANYWpT3y0S1Mj5uIJLN7ibn9pOa5zwhD/insimOtFoqfO77g3
+	 Zfp14J7mn0/vLBOu0laOFSK+n1QdvP1nL2Xcvxz5JQwN+rU1XDm0TCJWkIEUUrgaKD
+	 /jIOLmv/aovFXUW/+ME+MCO7e/hHwbjFPOpXGU9Z2eGovbDLS64KKfHGAjMLpC1x4s
+	 N0TIGe35iamYg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fR6R34wK6z6tsb;
+	Wed,  4 Mar 2026 23:14:39 +0100 (CET)
+Date: Wed, 04 Mar 2026 22:14:40 +0000
+From: Paul Adam <adamp@posteo.de>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	netdev@vger.kernel.org, kevin-kw.huang@airoha.com,
-	macpaul.lin@mediatek.com, matthias.bgg@gmail.com,
-	kernel@collabora.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Subject: Re: [PATCH net-next 2/2] net: phy: Introduce Airoha AN8801/R Gigabit
- Ethernet PHY driver
-Message-ID: <202603050606.eulVmYcb-lkp@intel.com>
-References: <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: msm8916-wiko-chuppito: add
+ initial devicetree
+Message-ID: <aaiuzCWHegpJMCVj@MyryksLaptop>
+References: <20260301-wiko-chuppito-v3-0-9b36a2a7aed5@posteo.de>
+ <20260301-wiko-chuppito-v3-3-9b36a2a7aed5@posteo.de>
+ <9ffc0460-e394-4f18-aed2-ad8a0b3d1b8f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,108 +73,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d@collabora.com>
-X-Rspamd-Queue-Id: 91F3E20871C
+In-Reply-To: <9ffc0460-e394-4f18-aed2-ad8a0b3d1b8f@oss.qualcomm.com>
+X-Rspamd-Queue-Id: C776020872D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,airoha.com,mediatek.com,gmail.com,collabora.com,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	TAGGED_FROM(0.00)[bounces-271283-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[collabora.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,armlinux.org.uk];
+	TAGGED_FROM(0.00)[bounces-271284-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[adamp@posteo.de,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,01.org:url]
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Louis-Alexis,
+On 26/03/02 12:08, Konrad Dybcio wrote:
+> On 3/1/26 11:29 PM, Paul Adam via B4 Relay wrote:
+> > From: Paul Adam <adamp@posteo.de>
+> > 
+> > Add an initial device tree for Wiko PULP 4G.
+> > Includes support for:
+> > - UART
+> > - USB (no OTG)
+> > - Internal storage
+> > - MicroSD
+> > - Volume keys + Power button
+> > - Touchscreen
+> > - Backlight
+> > - Accelerometer: Invensense MPU6880
+> > - Magnetometer: Asahi Kasei AK09911
+> > - Hall sensor: Rohm BU52021HFV
+> > - Proximity sensor
+> > - Vibrator
+> > - Earpiece
+> > - Microphone 1
+> > - Headphones
+> > - Wifi
+> > - Bluetooth
+> > - GPU
+> > 
+> > Signed-off-by: Paul Adam <adamp@posteo.de>
+> > ---
+> 
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> Konrad
 
-kernel test robot noticed the following build warnings:
+Thanks for reviewing!
 
-[auto build test WARNING on ed0abfe93fd135dac223e87a3c945017b1fa8bfc]
+I assume I resend this once more with your tag added?
+Also is there anything else I need to do, if I don't receive further
+suggestions?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Louis-Alexis-Eyraud/dt-bindings-net-Add-support-for-Airoha-AN8801-R-GbE-PHY/20260304-174023
-base:   ed0abfe93fd135dac223e87a3c945017b1fa8bfc
-patch link:    https://lore.kernel.org/r/20260304-add-airoha-an8801-support-v1-2-0ae4ee5a2f9d%40collabora.com
-patch subject: [PATCH net-next 2/2] net: phy: Introduce Airoha AN8801/R Gigabit Ethernet PHY driver
-config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20260305/202603050606.eulVmYcb-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 9a109fbb6e184ec9bcce10615949f598f4c974a9)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260305/202603050606.eulVmYcb-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603050606.eulVmYcb-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/net/phy/air_an8801.c:258:6: warning: variable 'pbus_data_h' is uninitialized when used here [-Wuninitialized]
-     258 |         if (pbus_data_h < 0)
-         |             ^~~~~~~~~~~
-   drivers/net/phy/air_an8801.c:240:30: note: initialize the variable 'pbus_data_h' to silence this warning
-     240 |         int pbus_data_l, pbus_data_h;
-         |                                     ^
-         |                                      = 0
-   1 warning generated.
-
-
-vim +/pbus_data_h +258 drivers/net/phy/air_an8801.c
-
-   236	
-   237	static int __air_buckpbus_reg_read(struct phy_device *phydev,
-   238					   u32 addr, u32 *data)
-   239	{
-   240		int pbus_data_l, pbus_data_h;
-   241		int ret;
-   242	
-   243		addr |= AN8801_PBUS_ACCESS;
-   244	
-   245		ret = __phy_write(phydev, AIR_BPBUS_MODE, MII_MMD_CTRL_ADDR);
-   246		if (ret < 0)
-   247			return ret;
-   248	
-   249		ret = __phy_write(phydev, AIR_BPBUS_RD_ADDR_HIGH, upper_16_bits(addr));
-   250		if (ret < 0)
-   251			return ret;
-   252	
-   253		ret = __phy_write(phydev, AIR_BPBUS_RD_ADDR_LOW, lower_16_bits(addr));
-   254		if (ret < 0)
-   255			return ret;
-   256	
-   257		ret = __phy_read(phydev, AIR_BPBUS_RD_DATA_HIGH);
- > 258		if (pbus_data_h < 0)
-   259			return pbus_data_h;
-   260	
-   261		pbus_data_l = __phy_read(phydev, AIR_BPBUS_RD_DATA_LOW);
-   262		if (pbus_data_l < 0)
-   263			return pbus_data_l;
-   264	
-   265		*data = (pbus_data_h << 16) | pbus_data_l;
-   266		return 0;
-   267	}
-   268	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Paul
 
