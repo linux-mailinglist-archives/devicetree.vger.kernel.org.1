@@ -1,63 +1,59 @@
-Return-Path: <devicetree+bounces-270922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270923-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4PwxAEPvp2mWlwAAu9opvQ
-	(envelope-from <devicetree+bounces-270922-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:37:23 +0100
+	id 0LjrCH/vp2mWlwAAu9opvQ
+	(envelope-from <devicetree+bounces-270923-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:38:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58A0C1FCB70
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:37:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81A671FCBAF
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:38:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4555E30BE57C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:33:20 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D730F314A7F3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:33:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E4839182E;
-	Wed,  4 Mar 2026 08:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 953B3391827;
+	Wed,  4 Mar 2026 08:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GNLdJVuG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Icu8Pkor"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7076639150A;
-	Wed,  4 Mar 2026 08:33:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704C63914FA;
+	Wed,  4 Mar 2026 08:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772613198; cv=none; b=JSzIc1KBmnGCV5Um4Ke8oM0q2dYCE9ySqV5NYeiP9aDYv+D8c3IPZegwH9hEFEDBnxJVNXfp7hGJwlhnOJJr60RqUWguaUgfAgPHZe+/wYbAKlRb9ZFGDqbRJv/pF9WwjZGm49ou/RnknmJwGH8X0/3/I2egwLXCjZr7TkAg40c=
+	t=1772613237; cv=none; b=AD11c/kmt7OZW7ewGnzfAICTfmh5SqgfhJn6MFHU84fWsqgQ8VNvrzVAbxrU5V32jYYH2ZkUqqm4DGrSeA9Azja9v8rnysTV8s3tPBq9bXQCCbAiieG1fcUdEUoHsZ0v6elR6LzfHIK4x24kPAdRCtxOXia5Dm31KI2jpGjwrog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772613198; c=relaxed/simple;
-	bh=8DYzQRKsMra55l5GwvXKMq4BaXEbDFqKZmM5iSmxJUY=;
+	s=arc-20240116; t=1772613237; c=relaxed/simple;
+	bh=cp63Ur8HU7ilJqcOuhYKGlclOHDeaOci4wiN9pi4SOA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qjLtFOWT7mc4lYBlD+28nn1NW9AhEoKt1cZN3esq+H5xZul++BeQE5lyMB9YrtdZR+vI53RyvAVFqmYKq8kYhG9sB6zGmGrg5OyT1O+KQ/FJx+2eKGw+cpwjUXh0Vy7rwGOpd5Z7PksOtqxDu+XtINROeeTAU4Z+rHc28rTJpwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GNLdJVuG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93EFFC19423;
-	Wed,  4 Mar 2026 08:33:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rDKVbEV53otq8a+3/Rf2fvNpYkR3S2P4hfSx1FUbMW4bhRt/yV7YG3xPryW/AsDhnVVae4hGI0NEm4UWBctpzy7QDFoKRzXc6/gr2walMyttTv/txmclmh+zrfsudbR1H88ZX3Xmw+Kd22ASJfs0cysLi8LaZmZJud+dBUtgDpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Icu8Pkor; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1581C19425;
+	Wed,  4 Mar 2026 08:33:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772613198;
-	bh=8DYzQRKsMra55l5GwvXKMq4BaXEbDFqKZmM5iSmxJUY=;
+	s=k20201202; t=1772613237;
+	bh=cp63Ur8HU7ilJqcOuhYKGlclOHDeaOci4wiN9pi4SOA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GNLdJVuGVzGaCRM8Uw8dbzpFxRc7ef3myQXuNB7bBQANHzESlyO5AJwrd4S8e62tg
-	 e+/c4YbGrGXzMYfP9Zy3ZnLaKXHIPKfJwITZGq9ejckkHr8ubjUPxBqReIKsS4ssVt
-	 bToPDg59+c08EsnmD+MWIFG4Z+mCfOMPiN/u+xGNKLLo1L/e5QgTH73rFWMh/dEGpI
-	 6Mms07s3A1oBy27ufJ53ZxRCkCinSV7LeP21JbhLmd6lNES57phc0BpGWOd+ZCIfIn
-	 ohD46HMkweN9IH3HMtK8IFAEozFZrIvp+Oz4EVSiDrAq4Vche3MsS07vJTfnIGqf7C
-	 ZdVpCr9GL9y/A==
-Date: Wed, 4 Mar 2026 09:33:15 +0100
+	b=Icu8PkorEMNEeclCCIQjLqWCLTo4vgW7AO+ITcc35IIfqCT01AMBu3bcvUtgK820g
+	 ABFfBni8aKVb5ViycrjzBn2OnbANKPL+VFYzjIxmx4rzAVvoGNrfUj8k5tLG0tmiej
+	 k4TW4JACYBJUuaJq9kg8OAC7sQwlJnTRdx88sOW4AJSnVro2NE6C0Gw7OP4mvQmfxq
+	 nMBhw9J4DjfhGKeeUzucxpApmWZvtF7zQOW7Q9/jRRL8Smy4w+PVK1+lTZfpHrmN+e
+	 WmfxlBkS7bQYqk0KLfUzWhPx/YoAHqIuGeLmOr1IK4qiTTJIybbRejYF/t/6K3C+kz
+	 Y39xmW+67Dy9A==
+Date: Wed, 4 Mar 2026 09:33:52 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexey Charkov <alchark@flipper.net>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chris Morgan <macromorgan@hotmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH 01/11] dt-bindings: mfd: ti,bq25703a: Expand to include
- BQ25792
-Message-ID: <20260304-fantastic-butterfly-of-abracadabra-8fb2c4@quoll>
-References: <20260303-bq25792-v1-0-e6e5e0033458@flipper.net>
- <20260303-bq25792-v1-1-e6e5e0033458@flipper.net>
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-usb@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Daire McNamara <daire.mcnamara@microchip.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: usb: mpfs-musb: permit resets
+Message-ID: <20260304-majestic-bumblebee-of-rain-1ec92f@quoll>
+References: <20260303-backspace-unhearing-c6cc8cbddbba@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,8 +62,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260303-bq25792-v1-1-e6e5e0033458@flipper.net>
-X-Rspamd-Queue-Id: 58A0C1FCB70
+In-Reply-To: <20260303-backspace-unhearing-c6cc8cbddbba@spud>
+X-Rspamd-Queue-Id: 81A671FCBAF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -75,42 +71,43 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-270922-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-270923-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,vger.kernel.org,collabora.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,microchip.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 03, 2026 at 07:32:46PM +0400, Alexey Charkov wrote:
->            enable-gpios:
->              description:
->                The BQ25703 may require both a register write and a GPIO
-> @@ -74,6 +65,60 @@ properties:
->            - regulator-min-microvolt
->            - regulator-max-microvolt
->  
-> +  allOf:
+On Tue, Mar 03, 2026 at 04:37:39PM +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> The musb IP on mpfs and pic64gx has a reset pin, but until now this has
+> been undocumented because platform firmware takes the block out of reset
+> on first-party boards (or those using modified versions of the vendor
+> firmware), but not all boards may take this approach. Permit providing a
+> reset in devicetree for Linux, or other devicetree-consuming software,
+> to use.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-Heh, why bothering to test your code before sending...
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
