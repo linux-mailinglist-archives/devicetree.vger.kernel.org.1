@@ -1,78 +1,83 @@
-Return-Path: <devicetree+bounces-271279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271280-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ONwcGn+mqGkYwQAAu9opvQ
-	(envelope-from <devicetree+bounces-271279-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:39:11 +0100
+	id OOvtFoynqGlOwQAAu9opvQ
+	(envelope-from <devicetree+bounces-271280-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:43:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 284E420809B
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:39:11 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D17A42081E4
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 22:43:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D0796301DEC7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:39:09 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 71D96301C978
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 21:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309893932F2;
-	Wed,  4 Mar 2026 21:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026173B583E;
+	Wed,  4 Mar 2026 21:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XR2PIT4Z"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="djt0iN/L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E057E3822BD;
-	Wed,  4 Mar 2026 21:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABB8C27FB0E;
+	Wed,  4 Mar 2026 21:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772660347; cv=none; b=bKXk/qlbP9JSXnhsgNr7tys6+Et4PKxJzVsU7pOx1jZ4s+jU3UQ21+DRHhFB75q6mqhtlV8dcXVse9Xxrmb8C1ZzQ/K9PSmd71VuKr3bo1XEBR6hgesvKDR9fMPRzb4bvVoBfD88p1m31i7IOQPYWJjVT+LxonIz+8q4q51Wo58=
+	t=1772660616; cv=none; b=GZrIPLnjeRjgzVOY/fuySmbvp54PDskp0PSZtX0UDNYwwVmhpxx5qKETEQUnx7GhbfoIikB5RZAzJmapPc8eOGvqErf6P+1o0dELsMll1CDj6WhlH/M4MLwhxsGeoLxHp5CRAo9QshBURwxVkzk1E6SU4p3lpy9EKBSeBCiyi40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772660347; c=relaxed/simple;
-	bh=kZqKu8Q3HVNIal07DuJIyN1zu3R45CNMJ7csG5g7LEY=;
+	s=arc-20240116; t=1772660616; c=relaxed/simple;
+	bh=7wXP8WRiNeSyKnTYbShOZiG/e+hNJHKsu0WRVUrocSQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hqhku4Y+xmY5UVZt3Y3e4/lDkem7L0uJ+6qPhq/bQtHFx3GPkmaKwgWuIfYM6hSPvdy7cwcXfsjDLdUqchKPyriqqlaD9zOWfvzKw2nKxuAqLTiiff9o+60pNFATM+JMKLGhTA2s4VR6QnVquGaq3gX8iSiiWJ+fbcTAwZkaBZs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XR2PIT4Z; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=PQNIKgK+s1Hm4hxWnJCY1K4WoMHACQn7mWMe/0TAztE=; b=XR2PIT4ZaGssLFN5oQg7obFT92
-	86lxVACR8TVzy49s7lVuRzmJZTRQWZKVQJrNVaS2uWBh6qs0+By7os/n3jNyziQtm0rz3GdytcSlJ
-	vUNwxN9e0BJCYStWIDJ2EH0D9kgoHc0Y4J8BIFXu4QiUmnsn5MZtoJlA7oGB1Xd8mDJ0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vxtvi-00AB3c-1g; Wed, 04 Mar 2026 22:38:54 +0100
-Date: Wed, 4 Mar 2026 22:38:54 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Mark Brown <broonie@kernel.org>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=laYYEOwKGODI3v740Tegwev4feZSXFHdfIB0Mc5/YzVWkid822tc2mGnLJaQmn+4JE5jUzXP721SVKApf93Zyru0bgWkByGgPsO2+L9rL6nrcjE3k37wdJptkkn3PW3bLq9r8Q2PxYF928+bE+q9NraeTZf2FcLZSGcaWPau8AE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=djt0iN/L; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772660615; x=1804196615;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7wXP8WRiNeSyKnTYbShOZiG/e+hNJHKsu0WRVUrocSQ=;
+  b=djt0iN/LX5Cu9Exh3CYvu6y4p7fM7byIgwwteFYgf6x+4+nVYwVpRfJ6
+   0ktjwE3HsaE3Y1cC4+wPJ4xRl3AfkPokNzYPWQ0j1m3QF5JP/y3jNfHc1
+   MjJS9gCnZO3qz4076lASbfFjml3HIjQEFOg1sXHQEZvbJ8IyFTG2iqQK5
+   r9wsfQzFMgMh3CJdbx/Q1E6BpzZ/mClrcDcMPj+/bU7zfenmfmG6DwxXc
+   cmomhjMchxFjoGb5A17cJkc3oNG+elHeXi4lKq+zAxFq05I6p5SCrEfHd
+   byYLKEg9J4twQRmaHkw1z7iaXKOI9FZssqaDI88onPVWw/JwfKxixUW25
+   Q==;
+X-CSE-ConnectionGUID: IJ2pJA+hRQW4ohpZXuoqCA==
+X-CSE-MsgGUID: RyymdAe8TOSCB9MKjsuXHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="85206487"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
+   d="scan'208";a="85206487"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 13:43:35 -0800
+X-CSE-ConnectionGUID: HipjXJbqSqOXgbAMz8bTdg==
+X-CSE-MsgGUID: QdS6PPkRTU2JfLIcFLOudg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; 
+   d="scan'208";a="217627119"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.13])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 13:43:33 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id E5CDB120CA3;
+	Wed, 04 Mar 2026 23:44:01 +0200 (EET)
+Date: Wed, 4 Mar 2026 23:44:01 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 2/2] net: sfp: manage receiver and transmitter
- regulators
-Message-ID: <6b4bfb6a-d279-44bd-9110-6d2dc67d8020@lunn.ch>
-References: <20260303-sfp-regulators-v1-0-7101ae34cb84@bootlin.com>
- <20260303-sfp-regulators-v1-2-7101ae34cb84@bootlin.com>
- <e7a1ab5e-c34d-4ca5-93eb-4f5bcfacdb40@sirena.org.uk>
- <aab6Tqo1z-8YQ4j6@shell.armlinux.org.uk>
- <536e57fe-9738-4026-a9c9-fdb7135cbe2f@sirena.org.uk>
- <aab9bwKSubR6zxKG@shell.armlinux.org.uk>
- <1dbc679e-ad6d-49c5-86bd-3b319b899584@sirena.org.uk>
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] media: i2c: mt9m114: add support for Aptina MI1040
+Message-ID: <aainoYv6RXkXFcHv@kekkonen.localdomain>
+References: <20260304185001.82988-1-clamor95@gmail.com>
+ <20260304185001.82988-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,70 +86,72 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1dbc679e-ad6d-49c5-86bd-3b319b899584@sirena.org.uk>
-X-Rspamd-Queue-Id: 284E420809B
+In-Reply-To: <20260304185001.82988-3-clamor95@gmail.com>
+X-Rspamd-Queue-Id: D17A42081E4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271279-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[armlinux.org.uk,bootlin.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271280-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid,wikipedia.org:url]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.972];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-> For SFP my understanding is that SFP has a physical specification which
-> includes power inputs and that these supplies are being requested by the
-> devices that consume them.  If some part of that is not the case then it
-> sounds like the bindings aren't describing the hardware (or at least are
-> a bit unclear about how they're doing so) and should be revised.  The
-> series doesn't seem to do anything at all with the supply side either,
-> I'm guessing there are some SFP controllers with integrated power
-> provisioning.
+Hi Svyatoslav,
 
-There is not really an SFP controller.
+One more thing...
 
-SFPs really break up into two parts, because they are
-hot-pluggable. There is a cage, which is mounted on the board, and a
-module which is inserted into the cage. The cage is passive.
+On Wed, Mar 04, 2026 at 08:50:01PM +0200, Svyatoslav Ryhel wrote:
+> @@ -2646,9 +2658,18 @@ static void mt9m114_remove(struct i2c_client *client)
+>  	pm_runtime_set_suspended(dev);
+>  }
+>  
+> +static const struct mt9m114_model_info mt9m114_models_default = {
+> +	.state_standby_polling = true,
+> +};
+> +
+> +static const struct mt9m114_model_info mt9m114_models_aptina = {
+> +	.state_standby_polling = false,
+> +};
+> +
+>  static const struct of_device_id mt9m114_of_ids[] = {
+> -	{ .compatible = "onnn,mt9m114" },
+> -	{ /* sentinel */ },
+> +	{ .compatible = "onnn,mt9m114", .data = &mt9m114_models_default },
+> +	{ .compatible = "aptina,mi1040", .data = &mt9m114_models_aptina },
+> +	{ /* sentinel */ }
 
-https://en.wikipedia.org/wiki/Small_Form-factor_Pluggable gives a
-reasonable overview.
+The driver also supports ACPI. mt9m114_models_default needs to be added to
+the ACPI data, too; otherwise ACPI support breaks.
 
-The cage provides the module with power, 3.3v, max 300mA for Rx and
-the same for TX. Something must supply the cage, and most designs just
-connect the cage to the board power rails. The example give in
-Multisource Agreement does exactly that, with some capacitors and
-inducters to limit surge on hot plug.
+>  };
+>  MODULE_DEVICE_TABLE(of, mt9m114_of_ids);
+>  
 
-This is the first board since 2017, when support for SFPs was added,
-which can actually control the power supplies. We cannot make
-regulators mandatory without breaking backwards compatibility.
+-- 
+Kind regards,
 
-So for me, the patch is good as it is now, the regulators are
-optional.
-
-   Andrew
-
+Sakari Ailus
 
