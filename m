@@ -1,51 +1,86 @@
-Return-Path: <devicetree+bounces-271160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271161-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBMeK9BiqGlauQAAu9opvQ
-	(envelope-from <devicetree+bounces-271160-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:50:24 +0100
+	id 8M2uM2RgqGmduAAAu9opvQ
+	(envelope-from <devicetree+bounces-271161-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:40:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FEB420497F
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:50:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 428142047B7
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 17:40:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6D64830F67E5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 16:21:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 910AD306BE31
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 16:25:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0265363C66;
-	Wed,  4 Mar 2026 16:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F1D3659FF;
+	Wed,  4 Mar 2026 16:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="csMMdZG8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jHDgtEis"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB4DB353EDA;
-	Wed,  4 Mar 2026 16:21:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781B5361DA5
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 16:25:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772641300; cv=none; b=RQMJVvawEFxORTQyb3GLzJKrWbk9QekwO6TIBHm6jc1ckApquYVSZ5+UnfX+FUif5YRz0aCfOLe7wUhiiTzflIKvig7gLaLxcv9skjbc6qfwmzdXHzOVhBwIoU4gM9UHPg97xgIilvVSdoDNNlrMWh0A7QQqhMKZy3WM3H59G8g=
+	t=1772641543; cv=none; b=hZCyv6zqVCfCWmjr9deCVkwhssyMJlrK4c6LavO4iHcZvJHayJB3UoTfZFruGtRG8uOd51L/Pm38Q2BxGissuq05gI3PVlagTlJeW0Thvay9o2INAZL/mo29uwmWoXKj4kJMbkAP3oK+1Icp8aQNoqV0Asulw93kjT/xzftmMgE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772641300; c=relaxed/simple;
-	bh=ccdFdBD1lMtPM8oiM9p/PWDd1n6egACt/w1BvXrrZm4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KkaPX8tvRgTmDuP4dS0hahPWtGxhyPSIzddPGpI3uyAo6Pyv5l5NHX+raQeQWOLQJE7JrCssXR9mSWJDALMN3+D12RsXDEHlitynhqNgTefGwKMQCrO93C+ekg9dNamH7Pg6Q9lh1zYfIDJR2Piat/dQEJ7tqJuypk1KpEZby8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=csMMdZG8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23C41C19423;
-	Wed,  4 Mar 2026 16:21:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772641300;
-	bh=ccdFdBD1lMtPM8oiM9p/PWDd1n6egACt/w1BvXrrZm4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=csMMdZG8xq7Htpz0PW91yO1dopWEmj8WLULkMtoAl/VWq3vY5hJcDxYFWSKoCxy93
-	 p4Hb73rqhN039MK/tXQFp41TT/xbQcl+qg2h/UXYTod5oGxovmmAdn4H7wTRtD5JmP
-	 gKN9sl2H9zPoX6JbTbTvdyIwS5hjkFAAkk6/qfr4NxpFnhcxSwjNz9CEnpRVanzQur
-	 XbZ0gdx0ZEV3TOqHap++NAAiwjcLZtmcEc+Zqcn9TTeyCYpoKabztxVkSUQD0AoBuv
-	 6oET1VP3yIuVmxCDnlvOucCaSiMSOjbGtfFkxAJGYJMRKdhHUQTsnTj3MVxoNu/rsX
-	 3mBlM1bvb/Smg==
-Message-ID: <2e0e0a40-bef4-4688-b2f7-bcb9b432e9d5@kernel.org>
-Date: Wed, 4 Mar 2026 17:21:33 +0100
+	s=arc-20240116; t=1772641543; c=relaxed/simple;
+	bh=eIQPTjRrK4vWYIuEEJqe5c/zPEqXdmeM+Z6ldVCZXNA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=g9sKhyM01p9hEE63xBCfMxfxHuCClzVABQvF5SRpOUH7T4tVAerj6lM6IbHnnfoS70nJlSw/XP9LuSKetUjXRkbAxTyWRcT5YQnKJw8F+l1baVEAB2JF/W7m13RvGajapXYX7uMQUe3p/R8PfWQaQE8fUAIuO3BbHOb5C4owI8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jHDgtEis; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4834826e5a0so80346815e9.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 08:25:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772641540; x=1773246340; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Gp7LS/GMjpgQsWMfi+qSIWrnrcb+aaUnysqcUKFRag=;
+        b=jHDgtEiszhsrbXbUAoOEmMs9hWiJpxpsQuv7jjm8Ml1aCWXeG9XXaxN8P12AMvpYa1
+         xlSpQXumFshqwKrPCqxWlINeRDGuQywqhm/AD1Sp2NsUS7aNnCP1pBVR1uL90nh9uYbK
+         1wI0y6vEqWhAQCwDGpKx8orPFu43r+p1v2Trtl0aV/j8gynLHzfIfskGYqph6nGejBJD
+         Y+QMng2Gv5+oOgoNgkFCLbooHgXByRDRJWdxALZ2zYV2ty9Lap40tEOMLwMHKMVb+ztJ
+         P428DpK4VzKyXe69RcR9/M0hz1TDZMqeiH+gRoBq20fjD0VSmjDV3vpYuSLrJEASuZF3
+         XHTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772641540; x=1773246340;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1Gp7LS/GMjpgQsWMfi+qSIWrnrcb+aaUnysqcUKFRag=;
+        b=sgOkoNK4HhAsFoXGxi9m3FakH/b2/vgatoFbFj+b2uzgkGXe+U3ZiccX3ch0QprTjs
+         gRi62draY3eWKtypHYNt3YLCQVmFJvVzCazpTIL51dEkwwDbkXub0MldLl4LEbK3rL7S
+         NNzAueLAQVi56gQzkXqmEyrJ4e6DySAs3Q9gefgETHm/TxZD09K0/X6ett8Tuet7LvWo
+         U43lbVLUAXrptXOGILOGBgIMS7zoERsSW7fAWY9qakoy2WPIb68FEFsbEDANPjtpuP4B
+         6kRM9nvl6jgHEAcYEYhyNAoomVQVmreS7ie+Lh3PLWt8Ceex44gY1zQF1MgVB1vF1+l8
+         pP6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVdabg4aIc4cpyzNjNDIUT1fbJhB4uPzj1T2XrZtiMMlsL1zhZ3gcTSlRKmL3fJo0EJcmMybTXat4JE@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAAeIXHKX9tk5Plrj0LBH8w02SyPgDhA88FSzU94fhOaVCtrlp
+	oMShORdFSPPAS+Ro3E4/5/TAyL8b5asM2vQ99QeGqOzUQqn8e6wWiGUIqNvAvLNZ+/0=
+X-Gm-Gg: ATEYQzzkz+bKbbPUtq74iTTrL+eoHyN+7Ji2E1Zon7AObckTpd7tG0uLKSnX3lOqlVf
+	+tbKT6ZLtxAcq1RzPcz7OkN+pmIbA66fmTOnIAIdXu7CxtppdEDoXKFxQt6KbeqkZxHthhFM1d4
+	SP4pLs2/uHsmhQlbwcDH6sm2Fpsx4oCshyEfUYbHd0LkkducCVzxV4oBMtET/JYe+TR5KipYDB7
+	vImCNCB2BRUUbGAIgWOK3YoQ3102eByc0Bo/FzBybRp6mD3d7DG2n56sVJ0dgwn2kfRRELfrh5V
+	KX89+V4e5R3ULg9Zg23qlWZUWz7VmVt1zcVfxngOp4JHQXAazVVQbzB595o/am0PtBJfnbhOtiG
+	oYRqWbFIWXLJZeGPhV9Lng/L4PsRWW3hO1JffJDRNgYJkDefQDV135RNJ2k6/ZoixkNkUw5Es/h
+	vjDG+Cm+8A3+QaodXcVR3kBqpQD8oifqM9UexAAi3fBWtVuDLiIeUBN8Q0VM2BdscVR2vTgXzM2
+	KDiJTEyBRwOXqY=
+X-Received: by 2002:a05:600c:a0a:b0:477:7a53:f493 with SMTP id 5b1f17b1804b1-48519895542mr45844535e9.23.1772641539675;
+        Wed, 04 Mar 2026 08:25:39 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:106d:1080:da6:dde3:e477:94d2? ([2a01:e0a:106d:1080:da6:dde3:e477:94d2])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851884224fsm62339335e9.4.2026.03.04.08.25.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Mar 2026 08:25:39 -0800 (PST)
+Message-ID: <eb361483-736e-44ff-bf55-8b833f083ce2@linaro.org>
+Date: Wed, 4 Mar 2026 17:25:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,164 +88,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/6] media: platform: Add Raspberry Pi HEVC decoder
- driver
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, John Cox
- <john.cox@raspberrypi.com>, Dom Cobley <dom@raspberrypi.com>,
- review list <kernel-list@raspberrypi.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc: Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org
-References: <20260304-media-rpi-hevc-dec-v6-0-93868ae6dff8@raspberrypi.com>
- <20260304-media-rpi-hevc-dec-v6-5-93868ae6dff8@raspberrypi.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260304-media-rpi-hevc-dec-v6-5-93868ae6dff8@raspberrypi.com>
-Content-Type: text/plain; charset=UTF-8
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add Powertip PH800480T032-ZHC19
+ panel
+To: Florijan Plohl <florijan.plohl@norik.com>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+References: <20260217123759.169317-1-florijan.plohl@norik.com>
+ <20260217123759.169317-2-florijan.plohl@norik.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260217123759.169317-2-florijan.plohl@norik.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 1FEB420497F
+X-Rspamd-Queue-Id: 428142047B7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271160-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[collabora.com,kynesim.co.uk,gmx.net,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271161-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[norik.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:replyto,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,raspberrypi.com:email]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Action: no action
 
-On 04/03/2026 15:05, Dave Stevenson wrote:
-> +static int hevc_d_probe(struct platform_device *pdev)
-> +{
-> +	struct hevc_d_dev *dev;
-> +	struct video_device *vfd;
-> +	int ret;
-> +
-> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-> +	if (!dev)
-> +		return -ENOMEM;
-> +
-> +	dev->vfd = hevc_d_video_device;
-> +	dev->dev = &pdev->dev;
-> +	dev->pdev = pdev;
-> +
-> +	ret = hevc_d_hw_probe(dev);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to probe hardware - %d\n", ret);
-
-Here and...
-
-> +		return ret;
-> +	}
-> +
-> +	mutex_init(&dev->dev_mutex);
-> +
-> +	ret = v4l2_device_register(&pdev->dev, &dev->v4l2_dev);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to register V4L2 device\n");
-
-return dev_err_probe. I would say same in other places (instead of v4l
-wrapper), but I guess media maintainers know better what do they prefer.
-
-> +		return ret;
-> +	}
-
-
-
-> +
-> +static struct platform_driver hevc_d_driver = {
-> +	.probe		= hevc_d_probe,
-> +	.remove		= hevc_d_remove,
-> +	.driver		= {
-> +		.name = HEVC_D_NAME,
-> +		.of_match_table	= of_match_ptr(hevc_d_dt_match),
-
-You have warning here. Drop of_match_ptr. Better if you start from new
-drivers, not some old code.
-
-> +	},
+On 2/17/26 13:37, Florijan Plohl wrote:
+> Add support for the Powertip PH800480T032-ZHC19 7" (800x480) parallel
+> LCD-TFT panel.
+> 
+> Signed-off-by: Florijan Plohl <florijan.plohl@norik.com>
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 30 ++++++++++++++++++++++++++++
+>   1 file changed, 30 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 91ab280869ba..aa74f310d455 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -4068,6 +4068,33 @@ static const struct panel_desc powertip_ph800480t013_idf02  = {
+>   	.connector_type = DRM_MODE_CONNECTOR_DPI,
+>   };
+>   
+> +static const struct drm_display_mode powertip_ph800480t032_zhc19_mode = {
+> +	.clock = 27200,
+> +	.hdisplay = 800,
+> +	.hsync_start = 800 + 52,
+> +	.hsync_end = 800 + 52 + 2,
+> +	.htotal = 800 + 52 + 2 + 44,
+> +	.vdisplay = 480,
+> +	.vsync_start = 480 + 7,
+> +	.vsync_end = 480 + 7 + 2,
+> +	.vtotal = 480 + 7 + 2 + 2,
 > +};
-> +module_platform_driver(hevc_d_driver);
 > +
-> +MODULE_LICENSE("GPL");
-> +MODULE_AUTHOR("John Cox <john.cox@raspberrypi.com>");
-> +MODULE_DESCRIPTION("Raspberry Pi HEVC V4L2 driver");
+> +static const struct panel_desc powertip_ph800480t032_zhc19 = {
+> +	.modes = &powertip_ph800480t032_zhc19_mode,
+> +	.num_modes = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 152,
+> +		.height = 91,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH |
+> +		DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE |
+> +		DRM_BUS_FLAG_SYNC_SAMPLE_NEGEDGE,
+> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+> +};
+> +
+>   static const struct drm_display_mode primeview_pm070wl4_mode = {
+>   	.clock = 32000,
+>   	.hdisplay = 800,
+> @@ -5481,6 +5508,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "powertip,ph800480t013-idf02",
+>   		.data = &powertip_ph800480t013_idf02,
+> +	}, {
+> +		.compatible = "powertip,ph800480t032-zhc19",
+> +		.data = &powertip_ph800480t032_zhc19,
+>   	}, {
+>   		.compatible = "primeview,pm070wl4",
+>   		.data = &primeview_pm070wl4,
 
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Best regards,
-Krzysztof
+Thanks,
+Neil
 
