@@ -1,474 +1,224 @@
-Return-Path: <devicetree+bounces-271178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271177-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0ORCHGpmqGl3uQAAu9opvQ
-	(envelope-from <devicetree+bounces-271178-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 18:05:46 +0100
+	id gEVgFr9nqGl3uQAAu9opvQ
+	(envelope-from <devicetree+bounces-271177-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 18:11:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10B21204D50
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 18:05:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DF26204EEB
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 18:11:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 58C8B302E108
+	by sin.lore.kernel.org (Postfix) with ESMTP id B1A3E306D788
 	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 17:04:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBF237B005;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 993D937A4B7;
 	Wed,  4 Mar 2026 17:04:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="FWH7CINh"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="THEi+RHa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011018.outbound.protection.outlook.com [52.101.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DEBA37A49D;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE79237AA6C;
 	Wed,  4 Mar 2026 17:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772643863; cv=none; b=qnwBE0cNpkYDL2bIuQb4N+d4AYKXSVa4lH7a3KmNn61rSfNHgK1QYWaOvvFQjE2QYCe6q3YCtn6iC9ec6lIn3Jm3//KL11xjxQGOTeoCiJTGLiMBOIWmASomujQ7DhATCX2Cw6jS6oGKcwA4jZF3pDnL3ipI71B1nBOJ9k5uv3U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.18
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772643863; cv=fail; b=JcuHXznYRs8dU1eoFvQ6DCI4LfJEtB1Up6ALzz7acIIrzruiMzmOkophXFchNj6dvj6m9sSYmjgNhdje/KM8344Vw/eTWonqRPj8U5zqFRQJo3MwRlmHAPuNHaEut8kdhwL+ChjUSmq8bKLL2XftVauzhqsYvTH5RTo4i6zE0uQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772643863; c=relaxed/simple;
-	bh=DcNUOSXCuHRThfphJBV1YI7mRpSJHdMf0b+bHozhD5Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fQOQPCoWDE068Dy+9USyw0Grgg7HeUwDXJP7wf9EYn+fpp4CNWnNLLCMCOwn9F0KasTE16zC3inAqTLRZH6m0+AEVV1JuHeMs+7KRiGcOktQTsnXQqE7/BoA+opEb3jhwt3SPwS4GSXWWL4Ue4Ttog5mycGssX8D7N/2cxGqg8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=FWH7CINh; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 7B541268A1;
-	Wed,  4 Mar 2026 18:04:14 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 9pyzL0Jyi5ga; Wed,  4 Mar 2026 18:04:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1772643853; bh=DcNUOSXCuHRThfphJBV1YI7mRpSJHdMf0b+bHozhD5Y=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=FWH7CINhWHOqGXtaFRx1DXF/riyttN0WYAG7pJ62t8Znp80eBNr0zF1Q/q509Dxzd
-	 iOArRn+M11/YyWC8x7o3kmIyAcegmm7uRnyl7DKNALfCkj2kIoVJSXgwX6PpApC/bo
-	 MP4kAPRkBp/DY4t547DwNMi3BUxw1tb8YGD6FNf4ZWtXz5ALzXc6/QglXjDGmccU1N
-	 0oUEaEcScQf1rWxRv0J4h0TEyffPfj2InzYbOFmTbz47sg8JtWzU0fcUi0Rc1gv2Vx
-	 a49w6JL7TdoqBf83qPq5bMpvM4aaIG85Sih6+bAP73Y92ZwUk0SaK9Q08rfOejnK1F
-	 DyggVL2oJiXkQ==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Wed, 04 Mar 2026 22:33:56 +0530
-Subject: [PATCH v3 2/2] power: supply: add support for S2MU005 battery fuel
- gauge device
+	bh=bI5eyIv4cdL3NI1QHUUJUeuqJW1OtozD8UQVNhw0hl4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=lol7N7R+xAeUqpdA8cj4Qy9K3snQ7tZ+sEFaCiUNOVCPYnSq4Ajl+K8XmJET3nYRT6A9Ve0AW4f9DTQa2LMpX7QSklKxdTdeF3KVGQf/q6h22PNYJVKeOe/bAsxv5Ye6R/h82Ff/DChXEkl1wAfQZmPBkqzRffZazxuCK59Z4JM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=THEi+RHa; arc=fail smtp.client-ip=52.101.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XUYg1tQ1Yv26PSN0PAQlPbF0twDlUkI6d0eomkGro0f+blSSLp+QNwWDXIaEXyLfTv35TrDfUk+RJYsMJLeI2eLL4f61InLyIGgA0lAISXXkygHMo16xMJYgxpTVoyGwP94JUbPuknumEMjFbEqeVK3jRNUE69PbymHM84NUnAh9mpKsSHcyqQeL5BFNP+8buf47X42a3q42XeoVh7zWPW9sxDVLPXJ7ilmpG/vvR9pNv/yasDcU+wI0hgm8CrBJWvBfuk+fnAduukrQ1yZcWBm94UCxG4xutYzSAWFVS8l3KzBeTHyxuYo8pK9PQlnkGXSaV8wEzGOFIb9nmLzU1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ToCenrdvsGktxpdl7MlzBj8uHsqgVPbw3MQ3wwDjSww=;
+ b=E0JFcXPxEEzE/x5qaBceLKZiNfrxPumkNRIxtN26bJ70nl2Ucmfhq6yH4MFKeBlODX44R5+jhQwA7C72FW+Hot+jm93jjKfnfvY5dyzqVwLWoHmtzgcSxkAe/VqJwCE/LeQIS23M13eWyhFbq8RrRVBadc3SYIWKaWd8mIXnbbVzbAxkHV8HckGHRYtmoO7olTGGd84/imgFSoc6r6e1Gyo3krlEaHGlnzUSWd9jSi8vEyOhffVX9cOOsHjE9KqNpOYipHe+EJWQLDpBQAO7twsZjoJyQtnTwlSK3d0c0tmmq9MYhnKcqbhKAC14+MQ7ttoAwnVw7x6XSZOfNDNPQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ToCenrdvsGktxpdl7MlzBj8uHsqgVPbw3MQ3wwDjSww=;
+ b=THEi+RHaf6kzE0ql0eHoMGt3TPRNLYQcNdtbJBLVb5zqQDVLifRkaZwbGWd0If4eDlnKXcR06fvxWBz9/dK4z9ua+SuT9aBzae7n9A8pmg20HMEFOqumdYKbAOcA5EPGpuVvmTXeISDiP9fMn5v/bjhDy84KNtAkeU4ol5mntAMLY3H27ey7bm3MAA5Uj1QXOf9CCkNt02saQPx9+0+YyqAonnUEl4/HtvTWTwKUwffRi4AiqM0K4AkjhphShg6ZRFwVvjCi0D7YYnM0sUx/ix4QwiMu9JHG1GEoR9egXCDLFZX2RzGjiQABr4wd0Ko2gBpC3CCColJsU94nf6VCAQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by AM0PR04MB7075.eurprd04.prod.outlook.com (2603:10a6:208:19e::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Wed, 4 Mar
+ 2026 17:04:16 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Wed, 4 Mar 2026
+ 17:04:16 +0000
+Date: Wed, 4 Mar 2026 12:04:07 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	Liu Ying <victor.liu@nxp.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	luca.ceresoli@bootlin.com, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	Marco Felsch <m.felsch@pengutronix.de>
+Subject: Re: [PATCH v11 1/3] dt-bindings: soc: imx93-media-blk-ctrl: Add PDFC
+ subnode to schema and example
+Message-ID: <aahmB6Rhn9qXChpi@lizhi-Precision-Tower-5810>
+References: <20260303-v6-18-topic-imx93-parallel-display-v11-1-1b03733c8461@pengutronix.de>
+ <20260303210131.2966214-1-Frank.Li@nxp.com>
+ <dda5b0b0-1a8d-4d37-aa82-9515dab2cbc0@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <dda5b0b0-1a8d-4d37-aa82-9515dab2cbc0@kernel.org>
+X-ClientProxiedBy: SA1P222CA0057.NAMP222.PROD.OUTLOOK.COM
+ (2603:10b6:806:2c1::6) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260304-s2mu005-fuelgauge-v3-2-e4dc4e47cde8@disroot.org>
-References: <20260304-s2mu005-fuelgauge-v3-0-e4dc4e47cde8@disroot.org>
-In-Reply-To: <20260304-s2mu005-fuelgauge-v3-0-e4dc4e47cde8@disroot.org>
-To: Yassine Oudjana <y.oudjana@protonmail.com>, 
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Rspamd-Queue-Id: 10B21204D50
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM0PR04MB7075:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1f2d97f-2b22-4044-d338-08de7a101170
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|52116014|19092799006|7416014|366016|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ aiYVDpVQ7iBekARrR/gGW94ugr13lykEATv//bJxQJreYXavwWuPLSVIM3Glkw8xEaUCLv+BNVA8+T346j990rOWfJRPUc3gidTXFUtoXOXh5ykhgn94Lu7snVNLURV3Jr0eVpMLJ/R7Ea0pVublo5J1OkURphk4lThRfzPMfoP+gNF0qGUhgVWoMtnfQe72BqEWxlWj6aPnc8IMnJqSscdRbu6xg8PTUhmaaKleZwsbf35PDax6s/iFqoZ8dH0wR93w1axvg9xvlx8o3CDzKUYiVhc014JiwI8JmAcXa0cm60w6NT365JLQQp7WtrsaBmuoeeavtIy6lOR3a3Ys3VDiz+NNCToq53JmP5oT39X6mmdEhoqiOii5ZCHK1qPbZOFu5VBpXe9tBdgb8uCXVV11m04md4MS3W1hswINhM7tBTcuaqOp27Ax53abMjC4NfA0DPPlYH2HYn9wROJfoU47ZXjy6E8wFiq1UO4kNIx46PhoekJf7K7RiBOJg7TLuxpaSfTKXdhezJ5C3b9/u7vLUZq2gP1OKS+MH53MDUMmh3zAgrJBTqgFXh6n4tg5phHmzudHoPjeIQ4ikoZPS4KJEU9cbL2M1/hNJSFUfeowDIJn5Vpd+FSbSqm4XR51EF7CGJRDY8Orevd9boo+HNoXwQaTsb5f/oM3QYGUT6vO2PYZ2JImmzdt3nEsWLprCbjzdzrd4ielhHfXyxikb4oyALaTkBQVC/L+Qt8KWZp4ltk6A+2IpDwNvPRArZW/9Hp+SxY5IqnicU1Id1DHBb3qmR306mVUUMVTOuiua0U=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(19092799006)(7416014)(366016)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?Srd0NtwGgR3tKQr/ulGmPcmoExg8X9RsYUoyA1xURElzVdx8vKYY5E+O/82v?=
+ =?us-ascii?Q?151Ll037FF6pgZbqHz0b4mlcpaOBdxSg3BlvhdWTOAD+EIwCPO49RJJ8/epN?=
+ =?us-ascii?Q?jc7LkJaSC66tfITClOEBPISliQUSaNPgPuGTUpuipBbjUheoRhJPDCj3pIF2?=
+ =?us-ascii?Q?N9fUdS/+SsWy/fsWbcCrx9qgtAiLZyoTaI+F3OjUxrE8sTuNaHtjhZjFFW4x?=
+ =?us-ascii?Q?9m8H/3sZFYKkApAQ6+kLaBYzSdvxMtL2xwUnO8ZQKaHJcJI7f+uiatGaBCQS?=
+ =?us-ascii?Q?nWtAMMuurVjmMhIe7AbNzPh4hRueesyaRbU2gZetPVpf9VQxubnj772tFc85?=
+ =?us-ascii?Q?Mfza5EERYXEZZ1G37298QVTxTE+61OgJUphFQTABH3lwHv19uUGsNaH5Vfd7?=
+ =?us-ascii?Q?lZSGeFxii1G9F0EozQGcwEEBrVilvSvlCQF1zFotudMNEe0q1EKFQnE0hrH/?=
+ =?us-ascii?Q?aM9uBloY+T1yWOlgsQfx4deydRxsnPSH9Dsr1mC61IVXejuHV1ur9Ujae6n4?=
+ =?us-ascii?Q?BzI2o4pdLBsGQQsSrrACqWaNstZTdzEfmLpmy6RVVUp1z1iQMS6c4qunevHp?=
+ =?us-ascii?Q?JCPedKZRZsmSGpe4WuAiYPbGVyu5ppcPqeHjZhOSAox7lVG+kRT24BwcD39B?=
+ =?us-ascii?Q?TcCIajO3ds7YgOadRLI0DUSjgH28qwVbvJ4oZoMt/PlKYB3PU02QaJIXgdET?=
+ =?us-ascii?Q?j1JCjex47YVwLhqD+allsOIS/R4m5yTxASgEmUYTHpNlfqoCXUHwGqEp/EGQ?=
+ =?us-ascii?Q?ABYpC3KEjbbkXOaz7mBlWnlvUgkpRZWfJF6MdtLqolKr45Ea1/mkriKjpYPR?=
+ =?us-ascii?Q?CNVcA8RLG4/4jQsPvLKFw5ziqVjUm67+liz17dYe7LqOHWgSGnKaCiwTeq4+?=
+ =?us-ascii?Q?Vg9gh0SeIGeHXdeExVp9yyH/U655V6gMXmtNUaUGCdiKDA/YzOj309SvxVMH?=
+ =?us-ascii?Q?ZmNLqudzNR36xOe06rJJrE/aSl25/w4ItZGD3WRH0DHMFqGBuI2fFzZgMhUM?=
+ =?us-ascii?Q?K/V5OGkB4qouLy0L8fsGADaMiP7kIx0PbAwYdUx7r1qk8SqHtIja/a/ZFeYW?=
+ =?us-ascii?Q?UxCDot1xOEajn/57HX9PciUgNYiHPpSAuXXsZruihneU3Q85or49qIiLvYK+?=
+ =?us-ascii?Q?vkJnmUVOa5obsQI+jdBkFmOTH3V7MZD+gRcnj7qloHhvi1nu44S5LkIAwdS9?=
+ =?us-ascii?Q?oTADuYplRj37pV9GQNO2SpiKOvzAUv4RXRZZuTMZtEDdFXifbC1QAme8kvGt?=
+ =?us-ascii?Q?7SmmPIoSfq5YAVCBdE9G8intOxlvHEhdfqT0MVnhLsod4sLLtJYi1IzvTEfe?=
+ =?us-ascii?Q?BDFibxSUZYfUc7CMTr8EnqGp1IGrNSVoSXI2fCfPocS4VLe7qzlFlPUs6GNL?=
+ =?us-ascii?Q?S3UYoZTf2MpU/4doozzDTaljLaTpq6Cpobu/en6COaB6cMdwAhBg8flpmDHO?=
+ =?us-ascii?Q?TaWN2J04TknFKQdUclbh/c0JegXAD1w5Eq95hqJkMl8bQjEgKdrAq6ckayNU?=
+ =?us-ascii?Q?8khFLudt6ObXum11I4t5SG7O+HhjDFAvWi6Kgbb7wABkr/GCZ58Xo05nUWrA?=
+ =?us-ascii?Q?PHBEqolnBGuhtLWAoUNv2QfOwkHldWFRPRb7byGzSDNu73o5MSp7Ju0ffqSD?=
+ =?us-ascii?Q?Oni38o60z4BeojApxP7ivUi8wYkt0tPmUQSctNrYdaENTZZ/CBUvnufAdCfl?=
+ =?us-ascii?Q?qIi5JqUZost9KLn7OwTl1XRmC7LRx6aJgsiQvlO/0QJMQIWz?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1f2d97f-2b22-4044-d338-08de7a101170
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 17:04:16.5423
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 58a2KErKQuXpP6JjQ5HIt3ocHEOKvs4wcmJBxxQ5/CdlEgMHGuq/zOyj59ZFIIkw5W3QK53FLvmqiIz0duWklg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7075
+X-Rspamd-Queue-Id: 7DF26204EEB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271178-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[protonmail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-271177-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[disroot.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,bootlin.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:dkim,disroot.org:email,disroot.org:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,protonmail.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email]
 X-Rspamd-Action: no action
 
-From: Yassine Oudjana <y.oudjana@protonmail.com>
+On Wed, Mar 04, 2026 at 04:49:27PM +0100, Krzysztof Kozlowski wrote:
+> On 03/03/2026 22:00, Frank Li wrote:
+> > From: Frank Li (AI-BOT) <frank.li@nxp.com>
+> >
+> > AI bot review and may be useless.
+> >
+> > This is a device tree bindings patch, not kernel C code. The YAML
+> > schema additions look structurally sound. A few observations:
+> >
+> >> +  dpi-bridge:
+> >> +    type: object
+> >> +    additionalProperties: false
+> >> +
+> >> +    properties:
+> >> +      compatible:
+> >> +        enum:
+> >> +          - nxp,imx91-pdfc
+> >> +          - nxp,imx93-pdfc
+> >
+> > The compatible strings should be documented in a separate vendor
+> > prefix file (nxp.yaml) if not already present. Verify they exist
+> > in Documentation/devicetree/bindings/vendor-prefixes.yaml.
+>
+> What?!?!?
+>
+> This is nonsense.
+>
+> Also, you are responding to an already reviewed patch.
 
-Samsung's S2MU005 PMIC, which contains battery charger functionality
-also includes a battery fuel gauge device, which is separate from the
-PMIC itself, and typically connected to an I2C bus. Add a generic driver
-to support said device.
+Sorry, I tested 22 patches of from imx and sent out intermediate result.
 
-Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-Co-developed-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- drivers/power/supply/Kconfig           |  11 ++
- drivers/power/supply/Makefile          |   1 +
- drivers/power/supply/s2mu005-battery.c | 307 +++++++++++++++++++++++++++++++++
- 3 files changed, 319 insertions(+)
-
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 3a5b7d9234c21..e8a1bdb246c4d 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -229,6 +229,17 @@ config BATTERY_SAMSUNG_SDI
- 	  Say Y to enable support for Samsung SDI battery data.
- 	  These batteries are used in Samsung mobile phones.
- 
-+config BATTERY_S2MU005
-+	tristate "Samsung S2MU005 PMIC fuel gauge driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Say Y to enable support for the Samsung S2MU005 PMIC integrated
-+	  fuel gauge, which works indepenently of the PMIC battery charger
-+	  counterpart, and reports battery metrics.
-+
-+	  This driver, if built as a module, will be called s2mu005-fuel-gauge.
-+
- config BATTERY_COLLIE
- 	tristate "Sharp SL-5500 (collie) battery"
- 	depends on SA1100_COLLIE && MCP_UCB1200
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index d14420b606d8c..f2efbb82707c7 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_BATTERY_PMU)	+= pmu_battery.o
- obj-$(CONFIG_BATTERY_QCOM_BATTMGR)	+= qcom_battmgr.o
- obj-$(CONFIG_BATTERY_OLPC)	+= olpc_battery.o
- obj-$(CONFIG_BATTERY_SAMSUNG_SDI)	+= samsung-sdi-battery.o
-+obj-$(CONFIG_BATTERY_S2MU005)	+= s2mu005-battery.o
- obj-$(CONFIG_BATTERY_COLLIE)	+= collie_battery.o
- obj-$(CONFIG_BATTERY_INGENIC)	+= ingenic-battery.o
- obj-$(CONFIG_BATTERY_INTEL_DC_TI) += intel_dc_ti_battery.o
-diff --git a/drivers/power/supply/s2mu005-battery.c b/drivers/power/supply/s2mu005-battery.c
-new file mode 100644
-index 0000000000000..686693052a5dc
---- /dev/null
-+++ b/drivers/power/supply/s2mu005-battery.c
-@@ -0,0 +1,307 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Battery Fuel Gauge Driver for Samsung S2MU005 PMIC.
-+ *
-+ * Copyright (C) 2015 Samsung Electronics
-+ * Copyright (C) 2023 Yassine Oudjana <y.oudjana@protonmail.com>
-+ * Copyright (C) 2025 Kaustabh Chakraborty <kauschluss@disroot.org>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/interrupt.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/power_supply.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/units.h>
-+
-+#define S2MU005_FG_REG_STATUS		0x00
-+#define S2MU005_FG_REG_IRQ		0x02
-+#define S2MU005_FG_REG_RVBAT		0x04
-+#define S2MU005_FG_REG_RCURCC		0x06
-+#define S2MU005_FG_REG_RSOC		0x08
-+#define S2MU005_FG_REG_MONOUT		0x0a
-+#define S2MU005_FG_REG_MONOUTSEL	0x0c
-+#define S2MU005_FG_REG_RBATCAP		0x0e
-+#define S2MU005_FG_REG_RZADJ		0x12
-+#define S2MU005_FG_REG_RBATZ0		0x16
-+#define S2MU005_FG_REG_RBATZ1		0x18
-+#define S2MU005_FG_REG_IRQLVL		0x1a
-+#define S2MU005_FG_REG_START		0x1e
-+
-+#define S2MU005_FG_MONOUTSEL_AVGCURRENT		0x26
-+#define S2MU005_FG_MONOUTSEL_AVGVOLTAGE		0x27
-+
-+struct s2mu005_fg {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct power_supply *psy;
-+	struct mutex monout_mutex;
-+};
-+
-+static const struct regmap_config s2mu005_fg_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 16,
-+	.val_format_endian = REGMAP_ENDIAN_LITTLE,
-+};
-+
-+static irqreturn_t s2mu005_handle_irq(int irq, void *data)
-+{
-+	struct s2mu005_fg *priv = data;
-+
-+	msleep(100);
-+	power_supply_changed(priv->psy);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int s2mu005_fg_get_voltage_now(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_RVBAT, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read voltage register (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	*value = (val * MICRO) >> 13;
-+
-+	return 0;
-+}
-+
-+static int s2mu005_fg_get_voltage_avg(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	mutex_lock(&priv->monout_mutex);
-+
-+	ret = regmap_write(regmap, S2MU005_FG_REG_MONOUTSEL,
-+			   S2MU005_FG_MONOUTSEL_AVGVOLTAGE);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to enable average voltage monitoring (%d)\n",
-+			ret);
-+		goto unlock;
-+	}
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_MONOUT, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read current register (%d)\n", ret);
-+		goto unlock;
-+	}
-+
-+	*value = (val * MICRO) >> 12;
-+
-+unlock:
-+	mutex_unlock(&priv->monout_mutex);
-+
-+	return ret;
-+}
-+static int s2mu005_fg_get_current_now(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_RCURCC, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read current register (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	*value = -((s16)val * MICRO) >> 12;
-+
-+	return 0;
-+}
-+
-+static int s2mu005_fg_get_current_avg(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	mutex_lock(&priv->monout_mutex);
-+
-+	ret = regmap_write(regmap, S2MU005_FG_REG_MONOUTSEL,
-+			   S2MU005_FG_MONOUTSEL_AVGCURRENT);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to enable average current monitoring (%d)\n",
-+			ret);
-+		goto unlock;
-+	}
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_MONOUT, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read current register (%d)\n", ret);
-+		goto unlock;
-+	}
-+
-+	*value = -((s16)val * MICRO) >> 12;
-+
-+unlock:
-+	mutex_unlock(&priv->monout_mutex);
-+
-+	return ret;
-+}
-+
-+static int s2mu005_fg_get_capacity(struct s2mu005_fg *priv, int *value)
-+{
-+	struct regmap *regmap = priv->regmap;
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(regmap, S2MU005_FG_REG_RSOC, &val);
-+	if (ret < 0) {
-+		dev_err(priv->dev, "failed to read capacity register (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	*value = (val * CENTI) >> 14;
-+
-+	return 0;
-+}
-+
-+static int s2mu005_fg_get_status(struct s2mu005_fg *priv, int *value)
-+{
-+	int current_now, current_avg, capacity;
-+	int ret;
-+
-+	ret = s2mu005_fg_get_current_now(priv, &current_now);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = s2mu005_fg_get_current_avg(priv, &current_avg);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Verify both current values reported to reduce inaccuracies due to
-+	 * internal hysteresis.
-+	 */
-+	if (current_now < 0 && current_avg < 0) {
-+		*value = POWER_SUPPLY_STATUS_DISCHARGING;
-+	} else if (current_now == 0) {
-+		*value = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+	} else {
-+		*value = POWER_SUPPLY_STATUS_CHARGING;
-+
-+		ret = s2mu005_fg_get_capacity(priv, &capacity);
-+		if (!ret && capacity > 98)
-+			*value = POWER_SUPPLY_STATUS_FULL;
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const enum power_supply_property s2mu005_fg_properties[] = {
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_VOLTAGE_AVG,
-+	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CURRENT_AVG,
-+	POWER_SUPPLY_PROP_CAPACITY,
-+	POWER_SUPPLY_PROP_STATUS,
-+};
-+
-+static int s2mu005_fg_get_property(struct power_supply *psy,
-+				   enum power_supply_property psp,
-+				   union power_supply_propval *val)
-+{
-+	struct s2mu005_fg *priv = power_supply_get_drvdata(psy);
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		return s2mu005_fg_get_voltage_now(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_VOLTAGE_AVG:
-+		return s2mu005_fg_get_voltage_avg(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_CURRENT_NOW:
-+		return s2mu005_fg_get_current_now(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_CURRENT_AVG:
-+		return s2mu005_fg_get_current_avg(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_CAPACITY:
-+		return s2mu005_fg_get_capacity(priv, &val->intval);
-+	case POWER_SUPPLY_PROP_STATUS:
-+		return s2mu005_fg_get_status(priv, &val->intval);
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static const struct power_supply_desc s2mu005_fg_desc = {
-+	.name = "s2mu005-fuel-gauge",
-+	.type = POWER_SUPPLY_TYPE_BATTERY,
-+	.properties = s2mu005_fg_properties,
-+	.num_properties = ARRAY_SIZE(s2mu005_fg_properties),
-+	.get_property = s2mu005_fg_get_property,
-+};
-+
-+static int s2mu005_fg_i2c_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct s2mu005_fg *priv;
-+	struct power_supply_config psy_cfg = {};
-+	const struct power_supply_desc *psy_desc;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, priv);
-+	priv->dev = dev;
-+
-+	priv->regmap = devm_regmap_init_i2c(client, &s2mu005_fg_regmap_config);
-+	if (IS_ERR(priv->regmap))
-+		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-+				     "failed to initialize regmap\n");
-+
-+	psy_desc = device_get_match_data(dev);
-+
-+	psy_cfg.drv_data = priv;
-+	psy_cfg.fwnode = dev_fwnode(dev);
-+	priv->psy = devm_power_supply_register(priv->dev, psy_desc, &psy_cfg);
-+	if (IS_ERR(priv->psy))
-+		return dev_err_probe(dev, PTR_ERR(priv->psy),
-+				     "failed to register power supply subsystem\n");
-+
-+	ret = devm_mutex_init(dev, &priv->monout_mutex);
-+	if (ret)
-+		dev_err_probe(dev, ret, "failed to initialize MONOUT mutex\n");
-+
-+	ret = devm_request_threaded_irq(priv->dev, client->irq, NULL,
-+					s2mu005_handle_irq, IRQF_ONESHOT,
-+					psy_desc->name, priv);
-+	if (ret)
-+		dev_err_probe(dev, ret, "failed to request IRQ\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id s2mu005_fg_of_match_table[] = {
-+	{
-+		.compatible = "samsung,s2mu005-fuel-gauge",
-+		.data = &s2mu005_fg_desc,
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, s2mu005_fg_of_match_table);
-+
-+static struct i2c_driver s2mu005_fg_i2c_driver = {
-+	.probe = s2mu005_fg_i2c_probe,
-+	.driver = {
-+		.name = "s2mu005-fuel-gauge",
-+		.of_match_table = s2mu005_fg_of_match_table,
-+	},
-+};
-+module_i2c_driver(s2mu005_fg_i2c_driver);
-+
-+MODULE_DESCRIPTION("Samsung S2MU005 PMIC Battery Fuel Gauge Driver");
-+MODULE_AUTHOR("Yassine Oudjana <y.oudjana@protonmail.com>");
-+MODULE_AUTHOR("Kaustabh Chakraborty <kauschluss@disroot.org>");
-+MODULE_LICENSE("GPL");
-
--- 
-2.53.0
-
+Frank
+>
+> Best regards,
+> Krzysztof
 
