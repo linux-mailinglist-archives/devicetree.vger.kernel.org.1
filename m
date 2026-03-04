@@ -1,255 +1,164 @@
-Return-Path: <devicetree+bounces-271253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271254-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPo1GcCPqGmzvgAAu9opvQ
-	(envelope-from <devicetree+bounces-271253-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:02:08 +0100
+	id EPIhIp6QqGnZvgAAu9opvQ
+	(envelope-from <devicetree+bounces-271254-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:05:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 053BA207600
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:02:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD7D2207659
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 21:05:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 25CD630783B8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:00:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AF8A7306774F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 20:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 048203DFC85;
-	Wed,  4 Mar 2026 20:00:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 076053822B5;
+	Wed,  4 Mar 2026 20:05:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d4OKRsw1"
+	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="oJ1OIMXj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17133DFC80
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 19:59:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE1737F725
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 20:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772654399; cv=none; b=Unb/2W9cellK5arA2k1qnkC/Foh9743CghobZHvEEPf7LJ1ZFRCFwb5LutCDW49jnWw0QC+MO8mBtfh9eItZBEtc9bdEwTbHS+OfovoPQgcOCoz13yQof8LtCnFdgBwoIGw3qoU2yiJtOOUMqqoff3M7uP5HkY2VYbt8IlzIjEw=
+	t=1772654735; cv=none; b=E9HqdkY6QfxCmxbty3K021G4mWoLo4AYOa/Tacbc81/tFmD2wf5OZeZgCb7ydVphQZXR6k3Yl7ofe6Nb1mpR3gWEf4hCPmb/srQ+pgYdLjfRI19X7mSPujVTIwclDj7foeG1LOXyDR8mSPmCoX/GHYkbeRnwJPHoCQLTtGvCRrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772654399; c=relaxed/simple;
-	bh=8/f4hdOSdwYHmvZUxaFmVQurWRhk7GDQgpmiggd0Y9M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=F7rcseWpdze7QA+QDjqM5MHkgc9N6Wg99OGj6Md3D5fFONCHZnXPUM/Jdym6CkzsxAKn47aw1MzDK2rPjAGW1Pc4Sx18MDq6+vS0RanmofrhF5StalJgdbhr5CrE9Vbt0b/JV+XIOCrwipyFEtahRTlUL6cfJsTk3K3V8TRAYD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d4OKRsw1; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-899a5db525cso66475686d6.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 11:59:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772654397; x=1773259197; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8TOsv1PGUXfFuGxG5SQQqgTLrZyW8alSpUKXMJIOho4=;
-        b=d4OKRsw1GObVqE4eFja2CZKSLEsEq3xKWH1c9o4VK3lFnpve6Xq85cG1JGVFgeoNAL
-         4wWfM8xu/ho/Sse+YpskUkK4nKsuaAzteY/B5v7tQuzk6YdF07mrRtQtNlE3jASRkki1
-         k0B59ArPjcp0n+dR4S7MUjOcMNmQXYaCLf882Frg6A4FMoOlfcwzhsH3mw7vSzJqmgOt
-         8qRKbzuIrljC7ZQJIWLvhrvwvGt8+RsZfW01DhklZq1ee8htaDocMBcDfK045p3qDMT6
-         pU4QJp/H2Z90IG/ReOYd5pFicIK5/ccAcnksBdi7W+zYTgxOy2hlXkHCM2l/4qcXo20R
-         ir9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772654397; x=1773259197;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8TOsv1PGUXfFuGxG5SQQqgTLrZyW8alSpUKXMJIOho4=;
-        b=LhmuzJW72o04KJhMpJEhYB6oPXGCm5SsNnvppFWqbL/DJs5PdRaw18qh2H30ofGxY/
-         711H8+EaMwFrywmxo0CIIVmLxuKKDZRtJu7pUkGtMYZTXgh+k//3dYY4pVR+/YctC956
-         AQ6lkdtK9AIO6RhPIu78LZqAIRRJ49uzxbVH5fsH/H/RvE9mxh+5D52DR0tiQ2CVZqVS
-         rm3IDvr8A73O10HtqX8Iisxn1VzrYhaKd1DDzFeyS9wos70IJRVa09xIP5hYAzpGe8TT
-         /BVWZ2enX2UlxpxkLt18xwjM+CVZOR/sUxb7Fp3F0XiofJgR4Wg77JXPMYsru6F0Rr1D
-         PSsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWgKR15wUiX6NItYmWd7y4htQ0QewhU74O9XM8+2iYDr/56o4PYMz6hLlYRkYVyUVlzvbSC2mfbEKvr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyfq9ba03/mzQt25BsrVlj36x+QIzbRXamka+EYviki7AVhbfVk
-	nXTsDbuMY+MDKtCnuDWyqonqNK/mC317W8sqX9GNEWVt8SEDRhPA3hED
-X-Gm-Gg: ATEYQzxBitPgcQbA6qz5AhP+lP1oaw5pk+pkfpvQ0KJdxot9MQdm0dTlh0wpkRASUlx
-	XAeFE6BP9GEOq+lJY3u4/CbobclcMnKazayzRNvgkbMgzL20bCKI6Ysm9WWDRllYajHdCakyDUl
-	q6oOQa0HdihS7UVulmSyEEJo/E8jiX0YCkS2AOxiBqYCW+QMpTQOKH5cih3mEX0USmREvDP5qL2
-	AJtByrFdFQZfkgSg40R+IjpiTLX68n+FHkzKAckCNQGeHzGXyNyWceeICF2QekDDe5j03pQ96IT
-	u8LOYUX2bTNShd48bu6Use5iP0F8Le880YDVBnke/S4pWuA8n+Q3sbUvIGhDWdOAReDdWCymgVh
-	mCqRGSIPLHSrFJpAvbLflwdE56mZdHSUYx/NNZEBeVu813fjNxoG2lmwyQyDWz8V0IQTBiDaA8N
-	WFhdNEQXWiUfAt1ua0KRcwrau2HolhJskBl65k
-X-Received: by 2002:a05:6214:21ce:b0:89a:b94:3cb6 with SMTP id 6a1803df08f44-89a199967b1mr43265516d6.1.1772654396693;
-        Wed, 04 Mar 2026 11:59:56 -0800 (PST)
-Received: from localhost ([184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-899eab5cf2asm100369486d6.13.2026.03.04.11.59.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 11:59:56 -0800 (PST)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Nickolay Goppen <setotau@mainlining.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Johan Hovold <johan@kernel.org>,
-	Kees Cook <kees@kernel.org>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v2 11/11] ASoC: msm8916-wcd-analog: add quirk for cajon 2.0
-Date: Wed,  4 Mar 2026 14:58:15 -0500
-Message-ID: <20260304195815.52347-12-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260304195815.52347-1-mailingradian@gmail.com>
-References: <20260304195815.52347-1-mailingradian@gmail.com>
+	s=arc-20240116; t=1772654735; c=relaxed/simple;
+	bh=xjYD6G5CbGg5JtEVXKmlHBeAo19LTw9xBknLuqx9SLo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J7f/8ygS72t+UlAidqR8ciDU9BqcGHEiam0a8j0KBBf3bPl6rDHWswyuJSnDZoI3R0ACZ2wbyI6vTEHB7cUeG6r2thV8q8qVGH8Mu9flgJW/1zh6d7dcRolDXm6THLW2uuKRkq6PnEMQ+fbfMJKTCuPEUhbmqhhs0xoFzP6Wr1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=oJ1OIMXj; arc=none smtp.client-ip=212.77.101.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
+Received: (wp-smtpd smtp.wp.pl 28053 invoked from network); 4 Mar 2026 21:05:25 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
+          t=1772654725; bh=bEhVJmS85dWuXz+i/uzPhkGcpMPxtb7lSKola8x84hc=;
+          h=Subject:To:Cc:From;
+          b=oJ1OIMXjqjeXFFszYYc3yJgoFq7PYYsoyzNz47hzV8pdAlQtEaCjfxx7YY1FHvGfy
+           N7skD9lCQo2nwpqjEQwuqzUWd8K5Kz3Btb/SKwzPoJRNeb47AIQt+4tMB/xDfLaVFu
+           ftfhuPAnY4idLRa6BgS36h72UjMoo3a5v2yD/HFRpepiJNdG/Z75q1yksiF3ilFdS+
+           Jjd82u5zHToUvAOD8WvRbcN+Unx7XA62cVr+CuFvJfzFmkhC+3/xKhjlM0eiIAWfeI
+           FoCE62fG3Od2X+c58DoHh1o+8FPwpq+yyw48SA3yLaWobrtPaU5RFS84QPZvKaFDtP
+           YiRyDKc9+FJPw==
+Received: from 83.24.116.171.ipv4.supernova.orange.pl (HELO [192.168.3.246]) (olek2@wp.pl@[83.24.116.171])
+          (envelope-sender <olek2@wp.pl>)
+          by smtp.wp.pl (WP-SMTPD) with TLS_AES_256_GCM_SHA384 encrypted SMTP
+          for <ansuelsmth@gmail.com>; 4 Mar 2026 21:05:25 +0100
+Message-ID: <5df659ba-4850-4c04-8153-9fb55af81bd0@wp.pl>
+Date: Wed, 4 Mar 2026 21:05:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 053BA207600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: airoha: en7581: add crypto offload
+ support
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: herbert@gondor.apana.org.au, davem@davemloft.net, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lorenzo@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260303193923.85242-1-olek2@wp.pl>
+ <20260303193923.85242-2-olek2@wp.pl>
+ <69a73dcd.7b0a0220.1ac46b.9bfc@mx.google.com>
+Content-Language: en-US
+From: Aleksander Jan Bajkowski <olek2@wp.pl>
+In-Reply-To: <69a73dcd.7b0a0220.1ac46b.9bfc@mx.google.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-WP-MailID: 98f13932068cf993ee8247d24573eb09
+X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
+X-WP-SPAM: NO 0000009 [QerX]                               
+X-Rspamd-Queue-Id: DD7D2207659
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[wp.pl,none];
+	R_DKIM_ALLOW(-0.20)[wp.pl:s=20241105];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271253-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_FROM(0.00)[wp.pl];
+	TAGGED_FROM(0.00)[bounces-271254-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[mainlining.org,quicinc.com,linuxfoundation.org,kernel.org,opensource.cirrus.com,renesas.com,gmail.com];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[wp.pl:+];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.997];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[olek2@wp.pl,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gondor.apana.org.au,davemloft.net,gmail.com,collabora.com,kernel.org,lists.infradead.org,vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[1e004000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-The codec version CAJON_2_0 on the Snapdragon 670 requires touching the
-HPH test registers. Add the quirk so this driver can also support
-SDM670.
+Hi Christian,
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
----
- sound/soc/codecs/msm8916-wcd-analog.c | 63 ++++++++++++++++++++++++++-
- 1 file changed, 61 insertions(+), 2 deletions(-)
+On 3/3/26 21:00, Christian Marangi wrote:
+> On Tue, Mar 03, 2026 at 08:39:18PM +0100, Aleksander Jan Bajkowski wrote:
+>> Add support for the built-in cryptographic accelerator. This accelerator
+>> supports 3DES, AES (128/192/256 bit), ARC4, MD5, SHA1, SHA224, and SHA256.
+>> It also supports full IPSEC, SRTP and TLS offload.
+>>
+>> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
+>> ---
+>>   arch/arm64/boot/dts/airoha/en7581.dtsi | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
+>> index ff6908a76e8e..4931b704235a 100644
+>> --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
+>> +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
+>> @@ -300,6 +300,18 @@ rng@1faa1000 {
+>>   			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+>>   		};
+>>   
+>> +		crypto@1e004000 {
+>> +			compatible = "airoha,en7581-eip93",
+>> +				"inside-secure,safexcel-eip93ies";
+>> +			reg = <0x0 0x1fb70000 0x0 0x1000>;
+>> +
+>> +			clocks = <&scuclk EN7523_CLK_CRYPTO>;
+>> +
+>> +			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +			resets = <&scuclk EN7581_CRYPTO_RST>;
+> I guess you can drop the extra new line between clocks interrupts and resets.
 
-diff --git a/sound/soc/codecs/msm8916-wcd-analog.c b/sound/soc/codecs/msm8916-wcd-analog.c
-index 9ca381812975..6fe111e6d686 100644
---- a/sound/soc/codecs/msm8916-wcd-analog.c
-+++ b/sound/soc/codecs/msm8916-wcd-analog.c
-@@ -217,9 +217,11 @@
- #define CDC_A_RX_HPH_BIAS_LDO_OCP	(0xf195)
- #define CDC_A_RX_HPH_BIAS_CNP		(0xf196)
- #define CDC_A_RX_HPH_CNP_EN		(0xf197)
-+#define CDC_A_RX_HPH_L_TEST		(0xf19A)
- #define CDC_A_RX_HPH_L_PA_DAC_CTL	(0xf19B)
- #define RX_HPA_L_PA_DAC_CTL_DATA_RESET_MASK	BIT(1)
- #define RX_HPA_L_PA_DAC_CTL_DATA_RESET_RESET	BIT(1)
-+#define CDC_A_RX_HPH_R_TEST		(0xf19C)
- #define CDC_A_RX_HPH_R_PA_DAC_CTL	(0xf19D)
- #define RX_HPH_R_PA_DAC_CTL_DATA_RESET	BIT(1)
- #define RX_HPH_R_PA_DAC_CTL_DATA_RESET_MASK BIT(1)
-@@ -696,6 +698,59 @@ static int pm8916_wcd_analog_enable_ear_pa(struct snd_soc_dapm_widget *w,
- 	return 0;
- }
- 
-+static int pm8916_wcd_analog_enable_hphl_pa(struct snd_soc_dapm_widget *w,
-+					    struct snd_kcontrol *kcontrol,
-+					    int event)
-+{
-+	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-+	struct pm8916_wcd_analog_priv *priv = dev_get_drvdata(component->dev);
-+
-+	/* This quirk is not required for revisions prior to CAJON_2_0 */
-+	if (priv->codec_version < 4)
-+		return 0;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		usleep_range(7000, 7100);
-+		snd_soc_component_update_bits(component, CDC_A_RX_HPH_L_TEST,
-+				0x04, 0x04);
-+		break;
-+	case SND_SOC_DAPM_POST_PMD:
-+		/* wait 20 ms after the digital codec has powered down */
-+		msleep(20);
-+		snd_soc_component_update_bits(component, CDC_A_RX_HPH_L_TEST,
-+				0x04, 0x00);
-+		break;
-+	}
-+	return 0;
-+}
-+
-+static int pm8916_wcd_analog_enable_hphr_pa(struct snd_soc_dapm_widget *w,
-+					    struct snd_kcontrol *kcontrol,
-+					    int event)
-+{
-+	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-+	struct pm8916_wcd_analog_priv *priv = dev_get_drvdata(component->dev);
-+
-+	/* This quirk is not required for revisions prior to CAJON_2_0 */
-+	if (priv->codec_version < 4)
-+		return 0;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		usleep_range(7000, 7100);
-+		snd_soc_component_update_bits(component, CDC_A_RX_HPH_R_TEST,
-+				0x04, 0x04);
-+		break;
-+	case SND_SOC_DAPM_POST_PMD:
-+		msleep(20);
-+		snd_soc_component_update_bits(component, CDC_A_RX_HPH_R_TEST,
-+				0x04, 0x00);
-+		break;
-+	}
-+	return 0;
-+}
-+
- static const struct reg_default wcd_reg_defaults_2_0[] = {
- 	{CDC_A_RX_COM_OCP_CTL, 0xD1},
- 	{CDC_A_RX_COM_OCP_COUNT, 0xFF},
-@@ -883,11 +938,15 @@ static const struct snd_soc_dapm_widget pm8916_wcd_analog_dapm_widgets[] = {
- 	SND_SOC_DAPM_MUX("EAR_S", SND_SOC_NOPM, 0, 0, &ear_mux),
- 	SND_SOC_DAPM_SUPPLY("EAR CP", CDC_A_NCP_EN, 4, 0, NULL, 0),
- 
--	SND_SOC_DAPM_PGA("HPHL PA", CDC_A_RX_HPH_CNP_EN, 5, 0, NULL, 0),
-+	SND_SOC_DAPM_PGA_E("HPHL PA", CDC_A_RX_HPH_CNP_EN, 5, 0, NULL, 0,
-+			   pm8916_wcd_analog_enable_hphl_pa,
-+			   SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
- 	SND_SOC_DAPM_MUX("HPHL", SND_SOC_NOPM, 0, 0, &hphl_mux),
- 	SND_SOC_DAPM_MIXER("HPHL DAC", CDC_A_RX_HPH_L_PA_DAC_CTL, 3, 0, NULL,
- 			   0),
--	SND_SOC_DAPM_PGA("HPHR PA", CDC_A_RX_HPH_CNP_EN, 4, 0, NULL, 0),
-+	SND_SOC_DAPM_PGA_E("HPHR PA", CDC_A_RX_HPH_CNP_EN, 4, 0, NULL, 0,
-+			   pm8916_wcd_analog_enable_hphr_pa,
-+			   SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_POST_PMD),
- 	SND_SOC_DAPM_MUX("HPHR", SND_SOC_NOPM, 0, 0, &hphr_mux),
- 	SND_SOC_DAPM_MIXER("HPHR DAC", CDC_A_RX_HPH_R_PA_DAC_CTL, 3, 0, NULL,
- 			   0),
--- 
-2.53.0
+It makes sense.
 
+>
+> Does the driver supports these property tho? For example the clock is just
+> enabled or tweaked to a specific frequency? Same question for resets.
+
+As far as I know, the driver doesn't use these properties. They may be used
+in the future.
+
+>
+>> +		};
+>> +
+>>   		system-controller@1fbf0200 {
+>>   			compatible = "airoha,en7581-gpio-sysctl", "syscon",
+>>   				     "simple-mfd";
+>> -- 
+>> 2.47.3
+>>
 
