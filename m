@@ -1,246 +1,138 @@
-Return-Path: <devicetree+bounces-270810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270811-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oE5bOLN3p2kchwAAu9opvQ
-	(envelope-from <devicetree+bounces-270810-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:07:15 +0100
+	id qGI+Bxd3p2nyhgAAu9opvQ
+	(envelope-from <devicetree+bounces-270811-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:04:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC411F8B2D
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:07:15 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 532531F8A71
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 01:04:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 39CE630CC788
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 00:02:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4DB883036AB1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 00:04:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54F1A135A53;
-	Wed,  4 Mar 2026 00:02:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gEv2ibit"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD3817C203;
+	Wed,  4 Mar 2026 00:04:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A62727A107
-	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 00:02:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A297F8460;
+	Wed,  4 Mar 2026 00:04:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772582545; cv=none; b=PwQFnJ8dhVz8G1QMkJLwUtVFnjMqeeiBCkUwg+kfQTGVQdqLtPtWL/lX28W2g/sXo8tWHP8HWkG0+KV7s6tijPOZh3IcOxfKrGY7hmlnkhB3MWtJJVPMPJkGATOZ69Uz8fMDT9dkahav3QT51pj0GFCs0eaLfjr3cOoA4M55Rb0=
+	t=1772582674; cv=none; b=mlgzz48cSt75Nw8bNpaAKEw+ILSHieNigI3ZD70v1/9pYXdSqVsladOZTq9obGQTcxPrnjci2kUBDlnHjcbk6+1jLYBVJXRIqoek03dpjqeNAUFHpBiew/13MmP9BQLNzhXtHDLK3m7ucgNHRx/omeeDi/L08FnQNTI1w3be/p0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772582545; c=relaxed/simple;
-	bh=+gtpGvpUHd0JfxYPbL7Ag7WdFEyaLo1orHoZcjDRLSI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Qhg6MtlCAecydCOtumo1ZzIGFIs5nDtetkMyOHYUBwUIux0agqSHa2FoyXC1rgVp6EUHKARtpTEl1i0y415W3bT7Juh3P5m/W808SR76lSOuNLHWXPC06EQMPAqjdzMx6F066XNDv5DiL7L2BumpGEVJ2e6brgfXdDqDTphCXgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gEv2ibit; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-48374014a77so75887115e9.3
-        for <devicetree@vger.kernel.org>; Tue, 03 Mar 2026 16:02:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772582541; x=1773187341; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3A33foWrGV/3pmx7ubiIaObP2mGudnBEt53Evwina6s=;
-        b=gEv2ibit1f2fbU9KEdVfRan/5cUB1vb8cJvTAZA7E/42XGxSJPfr78bpQB/7mZSMjZ
-         uMky/uBY0bIjaDYxD0nSHg51KaKuaDefwjeTkjquiRenHjMuq1ONx2XEgOC/kzUIFBQS
-         Ms/KI8wthv6zc4TcKFnbempDxtFn/ufYxYR9PSI60/eknY4aSH57Jmps3S69qTgLgpuH
-         Wwl4V1e/BjJLw7csr0+pEGcWR53c86t57V/RgiAMD2PTSZFSefp2AGAbwJL9HTIpajV8
-         f1PQlLwnz4ueAWPHR3PRUctM7qIsMpxtGy3dTCidQZe5ICyiuu7C+Pcb7Ah3YBgpj8N8
-         XYQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772582541; x=1773187341;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3A33foWrGV/3pmx7ubiIaObP2mGudnBEt53Evwina6s=;
-        b=BjHgrZMa9i4M9RpkleGdb6toZhbT6TpBrvtnLLATYYAacKvvo5nm9+DMRmqmhZmjHP
-         mcgW+jXcmNy3oSkVnRe3o4LeM32x5PikQoRXWfeQZw9H0ddivf+o7+jKQDIiX7NNRJQG
-         JtEDDELIDrM6hfcOB+Mz5AtRbp/slJAXNzB57bAWTdOCU/Cm+xoEpfWGDa8oHDNhLuUH
-         lr1RfLu8iQlB59+IDDbarbvR/2lCj/AaY1V95V8yy5deVhgwOZ1JjkHZgynTdm/P42Mv
-         MS4rT7SvYQGtBlgC5inwmMOPaYyAToYTKE20CtxfewYDwsEBBpzVNw2USAVQq71LYzZ7
-         loBA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjVcLYCuFRDtVIttUWskMQZWKFK0PslyVEwDQVElKBJZl1W7yg9qSG1AcwuQcYFiW+Eww0ZMxu1mMF@vger.kernel.org
-X-Gm-Message-State: AOJu0YxnyVZjKN7lXpiwtytizOZ4Oez3tgdHBgDqt4/LVAajHHEOk03I
-	0+hiZoDHK/9G6pcdvFEG4ed5v6iipOYpg7trTAFEqd3Osc1aOMzfVNsvB/em6aWSyvI=
-X-Gm-Gg: ATEYQzws1EtJzuImNCJ2/baxhpJP/vbebXnXNeGaipMoCY6c360vuWF88arkOKWqiWE
-	2kt3WepVpW/63YGoM1D1LwIl6jdnJlAagt9l7r/ffjfcXOjWxTqbwtXhUsIleRmWFHOQe9NMUVU
-	TG2fboJIM2CM3aQ2TDmxX4+U0SUIIVY6bHK8tKFpPtPepu0XBCILfvlyjtLXyXF8E6gF+WEdFfE
-	7eCPGZe73JbbwBpZHsGo1kypMjI3YswJ43OJGka0rKIBxYWbJGrwhyScdJQLbU5b9CXVNdEe3HW
-	xYDgm6uQj1XmSJdgF+yU6c8nQKtH+1Azm2hCFrL3SAPf3+CEm2L6cpSQr7bKFQH3eDTGd3Dei9G
-	An7ATl8jCdcX3L+SJl0oKEs7YfsKgw7T5//bVnZLenuPq5MLtadL6ZSk6YzoibpAWe2lTj4Zx+W
-	ihUVEEPzI/EY4LHT7z7v9YXKVrD+j6PYVaZV9vXk0z6UmWN2KOZfy8L0jpTNt+/APJ
-X-Received: by 2002:a05:600c:8105:b0:477:93f7:bbc5 with SMTP id 5b1f17b1804b1-48519840222mr1722765e9.10.1772582541304;
-        Tue, 03 Mar 2026 16:02:21 -0800 (PST)
-Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485187ced3bsm11058185e9.8.2026.03.03.16.02.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Mar 2026 16:02:20 -0800 (PST)
-Message-ID: <39828202-9f48-44f9-9f28-574f141e2ee9@linaro.org>
-Date: Wed, 4 Mar 2026 00:02:18 +0000
+	s=arc-20240116; t=1772582674; c=relaxed/simple;
+	bh=NoO9VN9h9ycImmL7Q40p0gzUHrE+bbaWI1ek1N7e39k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NLFNKONxMI9qnN2Z13CZsKKv2vtHcJGiFpls3jXxFXTCa+7Z4ZgLQVP46lVoxd/iajKMbyaXDORhSEzmyHY1i5CuPZb/KsmP5Y1Imo9qpqn6r3JuCBf5IWOc+3gXy3iXu2fcLYL/iPPrhHAfZKm/TbheW/6LO2HxnvQoXkxnLsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.99)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1vxZiz-000000008Ax-1oPl;
+	Wed, 04 Mar 2026 00:04:25 +0000
+Date: Wed, 4 Mar 2026 00:04:17 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Andrew LaMarche <andrewjlamarche@gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt7988a-bpi-r4pro: rename mgmt
+ port to lan5
+Message-ID: <aad3Acno6QWPbw7T@makrotopia.org>
+References: <20260303202006.37515-1-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: qcom: Add CSI2 C-PHY/DPHY schema
-To: Vijay Kumar Tumati <vijay.tumati@oss.qualcomm.com>,
- Bryan O'Donoghue <bod@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260226-x1e-csi2-phy-v3-0-11e608759410@linaro.org>
- <20260226-x1e-csi2-phy-v3-1-11e608759410@linaro.org>
- <4pFL6wOeTKUt-Zq4YbjqJdacMgUIPSYJD-4-5DcIMEZ1sM7JsNFYcSv1bd7ZRVOklTsmkEfxM2b6tTflmiECNQ==@protonmail.internalid>
- <c85fe457-c140-441c-93ed-342dce32e604@oss.qualcomm.com>
- <03b44922-72d5-465b-96e1-97a19655e97d@kernel.org>
- <4440a3a8-7281-4bea-bb84-7a9d19ef7ce9@oss.qualcomm.com>
- <2a1155bd-7dc5-4ed8-b1eb-ddfa483c75ca@oss.qualcomm.com>
- <4fea7117-ebd3-4279-9973-3ac4f2a78835@linaro.org>
- <bfTUflirC2qzMSllq_4qHGr3GL6TJ088yNF4lCBtjCoc1sXqz0KcfYyWuQv6TeRtP6GdpqllNp4ipl4Qax4xwQ==@protonmail.internalid>
- <f031acf1-9a03-42f9-b61f-b6fa6bf9100b@oss.qualcomm.com>
- <dde5f82a-9ff5-4f7c-9ef9-470aad17c9d0@kernel.org>
- <8e7c2036-74de-4f21-8269-8e2b24323753@oss.qualcomm.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <8e7c2036-74de-4f21-8269-8e2b24323753@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4BC411F8B2D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260303202006.37515-1-linux@fw-web.de>
+X-Rspamd-Queue-Id: 532531F8A71
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-270810-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	TAGGED_FROM(0.00)[bounces-270811-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,public-files.de,vger.kernel.org,lists.infradead.org];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[makrotopia.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	NEURAL_HAM(-0.00)[-0.957];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[daniel@makrotopia.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ace4000:email,linaro.org:dkim,linaro.org:mid,acec000:email]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On 03/03/2026 23:50, Vijay Kumar Tumati wrote:
-> Sure, I was just giving an example. I haven't looked a lot into the 
-> IPCAT / clock corners of this target particularly. Someone needs to 
-> check the clock plan, 
+On Tue, Mar 03, 2026 at 09:20:06PM +0100, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> It turns out that the label mgmt confuses users and now official case is
+> released where the port is labeled with number 5. So just rename it to
+> lan5 to follow naming convension (lan1-4 from mxl switch and lan6 for lan-
+> combo).
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
 
-I mean, feel free.
+Confirming that the port is labeled as "5" on the official case sold
+by SinoVoip/BananaPi.
 
-understand which PHYs require which power domains
-> and add that in the following OPP table and as for scaling you can use 
-> the same RPMH levels for all those power domains. Btw, if you had 
-> defined the below OPP table for TOP GDSC, I think that is wrong. It only 
-> has two perf states (on and off) and doesn't need OPP scaling. If you 
-> look at the Iris driver, they link only the mxc and mmcx power domains 
-> to the OPP table using 'PD_FLAG_REQUIRED_OPP, not the GDSCs.
->>
->> +    csiphy_opp_table: opp-table-csiphy {
->> +        compatible = "operating-points-v2";
->> +
->> +        opp-300000000 {
->> +            opp-hz = /bits/ 64 <300000000>;
->> +            required-opps = <&rpmhpd_opp_low_svs_d1>;
->> +        };
->> +
->> +        opp-400000000 {
->> +            opp-hz = /bits/ 64 <400000000>;
->> +            required-opps = <&rpmhpd_opp_low_svs>;
->> +        };
->> +
->> +        opp-480000000 {
->> +            opp-hz = /bits/ 64 <480000000>;
->> +            required-opps = <&rpmhpd_opp_low_svs>;
->> +        };
->> +    };
->>
->> ---
->> bod 
+    5
+[=     =]
+[ RJ-45 ]
+[       ]
+  1G LAN
 
-Yes, we should scale the MX*, that's incorrect.
+Reviewed-by: Daniel Golle <daniel@makrotopia.org>
 
-csiphy_mxc_opp_table: opp-table-csiphy-mxc {
-     compatible = "operating-points-v2";
-
-     opp-300000000 {
-         opp-hz = /bits/ 64 <300000000>;
-         required-opps = <&rpmhpd_opp_low_svs_d1>,
-                         <&rpmhpd_opp_low_svs_d1>;
-     };
-
-     opp-400000000 {
-         opp-hz = /bits/ 64 <400000000>;
-         required-opps = <&rpmhpd_opp_low_svs>,
-                         <&rpmhpd_opp_low_svs>;
-     };
-
-     opp-480000000 {
-         opp-hz = /bits/ 64 <480000000>;
-         required-opps = <&rpmhpd_opp_low_svs>,
-                         <&rpmhpd_opp_low_svs>;
-     };
-};
-
-csiphy_mxa_opp_table: opp-table-csiphy-mxa {
-     compatible = "operating-points-v2";
-
-     opp-300000000 {
-         opp-hz = /bits/ 64 <300000000>;
-         required-opps = <&rpmhpd_opp_low_svs_d1>,
-                         <&rpmhpd_opp_low_svs_d1>;
-     };
-
-     opp-400000000 {
-         opp-hz = /bits/ 64 <400000000>;
-         required-opps = <&rpmhpd_opp_low_svs>,
-                         <&rpmhpd_opp_low_svs>;
-     };
-
-     opp-480000000 {
-         opp-hz = /bits/ 64 <480000000>;
-         required-opps = <&rpmhpd_opp_low_svs>,
-                         <&rpmhpd_opp_low_svs>;
-     };
-};
-
-csiphy0: phy@ace4000 {
-     power-domains = <&rpmhpd RPMHPD_MXC>,
-                     <&rpmhpd RPMHPD_MMCX>;
-     operating-points-v2 = <&csiphy_mxc_opp_table>;
-     ...
-};
-
-csiphy4: phy@acec000 {
-     power-domains = <&rpmhpd RPMHPD_MXA>,
-                     <&rpmhpd RPMHPD_MMCX>;
-     operating-points-v2 = <&csiphy_mxa_opp_table>;
-     ...
-};
-
----
-bod
+>  arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
+> index a48132f09411..1175ee156cb3 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt7988a-bananapi-bpi-r4-pro.dtsi
+> @@ -207,7 +207,7 @@ &gsw_phy0_led0 {
+>  };
+>  
+>  &gsw_port0 {
+> -	label = "mgmt";
+> +	label = "lan5";
+>  };
+>  
+>  /* R4Pro has only port 0 connected, so disable the others */
+> -- 
+> 2.43.0
+> 
 
