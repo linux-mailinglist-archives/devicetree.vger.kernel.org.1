@@ -1,290 +1,188 @@
-Return-Path: <devicetree+bounces-270903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-270904-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aMRrMPvpp2nelgAAu9opvQ
-	(envelope-from <devicetree+bounces-270903-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:14:51 +0100
+	id KEEdJLPqp2kvlwAAu9opvQ
+	(envelope-from <devicetree+bounces-270904-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:17:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D3BD1FC578
-	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:14:50 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422D51FC66A
+	for <lists+devicetree@lfdr.de>; Wed, 04 Mar 2026 09:17:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 55A683040228
-	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:09:14 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 5CD14310E174
+	for <lists+devicetree@lfdr.de>; Wed,  4 Mar 2026 08:10:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E7F3914EB;
-	Wed,  4 Mar 2026 08:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09B47389117;
+	Wed,  4 Mar 2026 08:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D4lx/WGZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NpuPmtk6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6550438657B;
-	Wed,  4 Mar 2026 08:08:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772611727; cv=none; b=m1qBwq3/e0zRJCHoj9jutuXZmjy2d1qbsTV3MaciavcozSF2hYRvZ0lNtqW+celCTKuetwlS38DXd920gzI49zyNjqQH0PGJjOIuwlmflGRSqpNYvSI+MP+0/fuTPi1aC5kmY11h231cM7GpnAOktUTFnYDvOu3+Qas7bs6tthA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772611727; c=relaxed/simple;
-	bh=Q9eQAaHfbimh/OgPN9DKz1Eoxd8bQF170nC43iXD4Ak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mS2yB8tG3+U0Is90QmPSyd7IfYDc2GTgQOo3WZF/VoUIvREbOc8lxOxM/PkbXk9g9ZNXlRlF7xGh3h25jKVZuTO6hxyJycgQyEgXKjnTHygUSLtdBKWsT2YG1hNADwnAnKciy/U60JjbNbQtR82dyd9SL8WpJe754kZSZAqimQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D4lx/WGZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD3D2C2BCAF;
-	Wed,  4 Mar 2026 08:08:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772611726;
-	bh=Q9eQAaHfbimh/OgPN9DKz1Eoxd8bQF170nC43iXD4Ak=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=D4lx/WGZ+r/QOXj+VJ6sJUeR1KIBHkZnCFhx6OdffahLfLmGGMlFQUOk/xKaOKpKo
-	 Hrv11Dwz5dqeYQqvWJk+0rSxKSPj2B8ClLCxrvhi48vTNABTBw0iBDuwDsIR5Cfd1l
-	 EywjgJTI1FYC4G6EVySgR4N5jZrcKER8JRnaHgSDakQilL3lV8XLPGlSi8CsUnLtl4
-	 oRLswbtkPp/zEyW0f7q6aaE46waqONt/Klo0WxFCKLPr2YwDIQ4VSslpsteenjj0Tt
-	 xdtuPE+iPcX2ZUmaEjAyaXnJL7r8HjWLN92Joo8JRCEYSTPuwbyXQ5T9VrSZDoerjZ
-	 xix3ylhpOkA3Q==
-Message-ID: <06f7ad53-c650-4498-be3b-5ef5719c3d8b@kernel.org>
-Date: Wed, 4 Mar 2026 09:08:41 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB08B38C400
+	for <devicetree@vger.kernel.org>; Wed,  4 Mar 2026 08:10:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.128.178
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772611854; cv=pass; b=BuM2N716xPdtqxwlLAYJt7qocgsVsM6MR14qsf/vvTR83xbfTo2tSYlAO46ITQUBiQorPZQXYIxCtBJmWsT0MD1Nycfw9Jx/xp9fWpmJWKjK4HhjCMjwWtUKBmSWggoDL0dofmP/HFIOBP95hhHcuKPPzICOiot56lj1UH4vIPM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772611854; c=relaxed/simple;
+	bh=pZPELEAX/XvgCd+EHGG39RWeEAKi/FXGHUEcYZlbyg4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MBzMaWb59ShS/85Tx0iW0oLW+oRbjzr42mU+95QjwaQVY+VM5TACIu+Px3U6ULm1DGIu9BxYSTOmH0SyG6r9jKYO54hIJcxK4pOjVaP2VRChxd3S+EegIoV1kX8qOj0Lcg6Klzd3stAS6aGZr8a/cj/vQcU6HMbVdOP42awM9i8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NpuPmtk6; arc=pass smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-79800183233so90599157b3.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 00:10:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772611851; cv=none;
+        d=google.com; s=arc-20240605;
+        b=O7TYvdfaEe1mfd8429zLgTn0KIqaVrnD0ks/cGg187xgqZXrS0RPGH/6BF8OtGi02G
+         2IHtauZS0dh4wyDyqQu3XGpAeReHs4djq/HgP6ii8rJRmrS0luqpfqivtu5JO0H3mleW
+         BeVC0RY81yv+NYkJsm/OIDU07jaBjrx4UBjvYiT+sYORB3cf158x9LvjHXkNiEpOohwS
+         15G5iPBKO7L3yJ67fIKF/4Nn7b8wyLaH1DRJOw0RWvClg/dhbtAqrImsIFP7XRgqn69P
+         NN9hFdLvnQ/cd2Yg4G1WUwvJyIkKlyHijNWUvbf1hWgI+QvVBb1gxQzkt65Zm9xJWXiU
+         cHlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=xGLcah51hQA85jyOrvUCy/8RViW2Ks3it80HDo6IDSc=;
+        fh=vg0QZUgldK6EwqQ9hSzpLFKyoJX/ASSAYnCC8nvGaMo=;
+        b=QRQfdje03/ymf7/vZwQJ4g0hbTOMlCyGq/EJIY9mg9vZeuo6ZmOETHvUwOEu52LES3
+         tCJGbSLbrhvW7ox9H2voZrRPd1A3xkw9jjIzDiGkT0Hu0vFfuNqTgra+N2Om/SC2/rBm
+         iIAL157NzCTQddaTB2WF4UuZqnCfjxRVUk2Fw9Da/9qnN4obmyU/AyFtS4W4x7tYoTbJ
+         I4KfbWr/Vynb0+b7awQCeuT95afx55/2VHiOSkoDteAwPNgUdKt7vRpccVm8monb20os
+         SW+/wuadqIdKUWlEGxqi2prk+K1HkpdUnTAcbJPgwmAKoT6sECAaqPIEn9Xb3gSm0HU8
+         Jb6Q==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772611851; x=1773216651; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xGLcah51hQA85jyOrvUCy/8RViW2Ks3it80HDo6IDSc=;
+        b=NpuPmtk6wEdmvluOha/MzcnzH4IL+AygfFIRyYpfl2UlFst4GqCsxnve70c9j33qBP
+         IJdEYt0IJqsQFhXqqTxHa/dQp6MuLWjxYz1wEJfx1tCvKxo9ZEQamZjLCJ5WOz/Bsvb8
+         mG38euPngSbfnX8bERTqVSEly8VaQuIiu/8Y4dSX2G14EiHBs99T9UGzWPbViT2qwB/x
+         kH2OySJBD0dMgG0oTTZKcn0WAriknXmt/RtLbi/VFKIaCSFoo2jNN8gdJtdtbazZ+fMZ
+         jvS5ky7pFJNo8fpwZE0Njq3J76/Rihm2xpCwVif4W2RFoDTUUEfcD294zM0W+ce0a9Ps
+         Vr7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772611851; x=1773216651;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=xGLcah51hQA85jyOrvUCy/8RViW2Ks3it80HDo6IDSc=;
+        b=ucL09lVkmCB6ae9dEoeQwn9UN2RnkNhmzpCopwLwMOxxv/Rca9/edVOyFtCOz/C5Zz
+         ScOm5k0bpzdTIMBX7mRDhX4uGMH26ldZKEEYO2Gmv943W5Nb0DkS+ieXLjNHz+8f+Vga
+         bAexk3NON0xj8E0HqXc6I2hjMfzqU+fI+mcdqIWeu1hw02E70oE74yU7322KMQrc5XtL
+         VR8Bay0qQllR0PkdmMAJba5uooaL/in2IdADgAIE7VqGCkABDbMWVPaZCyc7z9Dcbgux
+         sgzYS9LmC94g0ANrkJ5dzXl+IJ3IGMCW4dpJ7H7HMoJPpI1sieBy2zIU2gYyUcSSvd2j
+         ToTw==
+X-Forwarded-Encrypted: i=1; AJvYcCU9yiFQs6peR2TGPr0glBU0nvL1bBm/3bMyvRjxUgMSxz+5qFkfrpB8Iq9GP1YjuXRrOKIIsbb6Iw8y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4Gf6NO3WN6DRxwQ1Ts8+I47RG3S5Xvk7vLkwA0FFJxtHOTbHZ
+	h/wA+Ljr4AHGDfgXvmlULYPiIxPR14XX6LzQSLGBhwKxAqB1/Gqco4Q+RHW4gh1olQQS3Ldbq47
+	QztXkW6Amqc/uLaXVAZjkC7WrLQs96IA=
+X-Gm-Gg: ATEYQzwOwod0RRNy4qr6RqvroBWaAiqLLS+RMib/UllxW9pybpeX729eYpdhwxr/mRn
+	bVnbzrbsfAh2OQSRZlDWNjU+7b9e4ZY4UmQUk5xqTF4ebFmJ5qHx9YDk1Dl0k4R0VKveWXF5mXr
+	wOHp03BilaAjh43nosqCeAarJ6/z26zHFbPoCPc21YzS5IMuX9BcEw2eACUj8ZLxlKk7WlF47ex
+	UAadd2Gho3zKGpJ7w47KEVWiH0ZSw4bkzernRcnMTBWXcqSvK8XdaULArQ4SJVlu31E7ii1mL20
+	C5O9J4vx
+X-Received: by 2002:a05:690c:9a90:b0:794:c283:5fb8 with SMTP id
+ 00721157ae682-798bb44f72cmr33135687b3.25.1772611850798; Wed, 04 Mar 2026
+ 00:10:50 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add regulators
- for the USB
-To: pritam.sutar@samsung.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, alim.akhtar@samsung.com
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
- rosa.pila@samsung.com, dev.tailor@samsung.com, faraz.ata@samsung.com,
- muhammed.ali@samsung.com, selvarasu.g@samsung.com
-References: <20260122130721.205664-1-pritam.sutar@samsung.com>
- <CGME20260122125134epcas5p36625b7ac70b8dfba9430831a11955682@epcas5p3.samsung.com>
- <20260122130721.205664-3-pritam.sutar@samsung.com>
- <352427f4-144a-4a43-a2f3-dd959302939f@kernel.org>
- <000001dc9c13$ea305520$be90ff60$@samsung.com>
- <2edff611-76bb-45aa-922e-f96581dd0525@kernel.org>
- <019001dca0b8$f709e640$e51db2c0$@samsung.com>
- <a7c5c5df-28d9-4b4e-87f0-572b7f637d26@kernel.org>
- <000001dcabab$089a75d0$19cf6170$@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <000001dcabab$089a75d0$19cf6170$@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 1D3BD1FC578
+References: <20260302-orangepi-sd-card-uhs-v1-0-89c219973c0c@gmail.com>
+ <20260302-orangepi-sd-card-uhs-v1-1-89c219973c0c@gmail.com>
+ <20260302-crewman-faster-9fd00b62e30c@spud> <20260302223803-GKB289813@kernel.org>
+ <CABdCQ=Nd9ZW6OBnAiuki=2+DhVraW19bh_m8=LLQGUKN8TkEdQ@mail.gmail.com> <20260303222800-GKC289813@kernel.org>
+In-Reply-To: <20260303222800-GKC289813@kernel.org>
+From: Iker Pedrosa <ikerpedrosam@gmail.com>
+Date: Wed, 4 Mar 2026 09:10:39 +0100
+X-Gm-Features: AaiRm53WZ82ezbm0-nMVrOL-p2i2zBrqno2q7oSRqZHnhzqczyjmu4JOpaAlYaQ
+Message-ID: <CABdCQ=OxA4RM+3Kqjim9QPUQD3xBkAjUTD+ObC5Cmux1Mx1UpQ@mail.gmail.com>
+Subject: Re: [PATCH 01/10] dt-bindings: mmc: spacemit,sdhci: add AIB voltage
+ switching registers
+To: Yixun Lan <dlan@kernel.org>
+Cc: Conor Dooley <conor@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Yixun Lan <dlan@gentoo.org>, Adrian Hunter <adrian.hunter@intel.com>, 
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Alexandre Ghiti <alex@ghiti.fr>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
+	Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 422D51FC66A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-270904-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-270903-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TO_DN_NONE(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ikerpedrosam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infradead.org:email,samsung.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
-On 04/03/2026 08:46, pritam.sutar@samsung.com wrote:
-> Hi Krzysztof,
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Thursday, February 19, 2026 1:24 AM
->> To: pritam.sutar@samsung.com; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; alim.akhtar@samsung.com
->> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
->> samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org;
->> rosa.pila@samsung.com; dev.tailor@samsung.com;
->> faraz.ata@samsung.com; muhammed.ali@samsung.com;
->> selvarasu.g@samsung.com
->> Subject: Re: [PATCH v2 2/3] arm64: dts: exynos: ExynosAutov920: Add
->> regulators for the USB
->>
->> On 18/02/2026 10:28, pritam.sutar@samsung.com wrote:
->>>>>>> +	usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
->>>>>>
->>>>>> Please use name for all fixed regulators which matches current
->>>>>> format
->>>>>> recommendation: 'regulator-[0-9]v[0-9]'
->>>>>>
->>>>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.
->>>>>> gi
->>>>>> t/tree/
->>>>>> Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
->>>>>>
->>>>>> None of the regulators are called like you wrote. Really NONE.
->>>>>>
->>>>>
->>>>> Thank you for the references. Will bring changes for regulator's
->>>>> name and labels as
->>>>>
->>>>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
->>>>> +       reg_usbdrd31_dwc3_vbus: regulator-1 {
->>>>
->>>> Did you read the binding? That's not what I asked.
->>>>
->>>
->>> Yes.
->>> Sorry for misinterpreting above comment. Is it expected as below?
->>>
->>> This is based on our understanding by referring binding and other vendor
->> dts.
->>>
->>> --- a/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
->>> +++ b/arch/arm64/boot/dts/exynos/exynosautov920-sadk.dts
->>> @@ -59,7 +59,7 @@ dummy_regulator: regulator-0 {
->>>                  regulator-name = "dummy_regulator";
->>>         };
->>>
->>> -       usbdrd31_dwc3_vbus: usbdrd31_dwc3-vbus {
->>> +       reg_usb_vbus0: regulator-5v0-vbus0 {
->>
->> Yes, that's better.
-> 
-> Thank you for the confirmation.
-> 
->>
->> Only under the assumption these are actually dedicated single-enable-pin
->> regulators, not pins going to the PMIC.
->>
-> 
-> Yes. this is dedicated single-enable-pin.
-> 
->>>                compatible = "regulator-fixed";
->>>                regulator-name = "usbdrd31_dwc3-vbus";
->>>                regulator-min-microvolt = <5000000>; @@ -75,7 +75,7 @@
->>> usb_phy0: usb-phy0 {
->>>                 vbus-supply = <&usbdrd31_dwc3_vbus>;
->>>         };
->>>
->>
->> ...
->>
->>>>>>
->>>>>> That's a bit too much of dummies. This is heavily incomplete. You
->>>>>> need to bring back the PMIC first.
->>>>>>
->>>>>
->>>>> Presently, relying on USB LDOs being enabled by the bootloader in
->>>>> this automotive SoC. However, we understand the concern and it is
->>>>> added in case if anyone wants to use implemented PMIC in future. For
->>>>> now, would like to proceed with the dummy regulators to enable the
->>>>> required USB
->>>> features.
->>>>
->>>> And I don't see the point of these dummies. Solves nothing.
->>>>
->>>
->>> Are you expecting details as mentioned in above section in commit
->> message?
->>> However, we have mentioned these details in cover letter.
->>
->> No, I am expecting proper PMIC to be represented here. One dummy
->> regulator during the fast development phase is okay. Dummy added by
->> community contributors without resources and schematics would also fly.
->>
->> But Samsung, with all the resources, schematics doing development since
->> 2023 and still adding 20 dummies to every device? Nope, no, sorry.
->>
->> Please start doing this properly. Look how entire new SoC was upstreamed
->> by Linaro:
->> https://lore.kernel.org/all/20231121-topic-sm8650-upstream-dt-v3-0-
->> db9d0507ffd3@linaro.org/
->>
->> Or something newer by Qualcomm:
->> https://lore.kernel.org/linux-arm-msm/?q=s%3Aglymur
->>
-> 
-> Appreciated for the references.
-> 
-> As you might know, the regulator control and power‑management architecture 
-> has changed in recent Exynos SoCs. It is now controlled by the ACPM/APM core, and 
-> the PMIC is interfaced over SPMI (instead of the legacy I2C interface). I am checking 
-> internally how to implement this, and it may take a bit longer to have the full recipe 
-> ready to add an actual regulator.
+El mar, 3 mar 2026 a las 23:28, Yixun Lan (<dlan@kernel.org>) escribi=C3=B3=
+:
+>
+> Hi Iker,
+>
+> On 14:51 Tue 03 Mar     , Iker Pedrosa wrote:
+> > El lun, 2 mar 2026 a las 23:38, Yixun Lan (<dlan@kernel.org>) escribi=
+=C3=B3:
+> >
+> > Thanks for the pointer! I missed that these had already landed in
+> > mainline. I'll rebase the series, drop the redundant properties and
+> > patch [5/10], and send a v2 shortly.
+> >
+> Please wait a little bit longer before sending next version, give me or
+> other people more time for reviewing, as a quick test, this series will
+> break emmc driver as tested on bananapi-f3 board, I suspect it's probably
+> duo to clock related issue, but want to confirm later..
 
-I did not say anything odd about the process. You should have done
-ACPM/APM/SPMI much earlier, because PMIC is a necessary early step in
-upstreaming.
+Thanks for the heads-up. I'll wait for your further review and the
+results of your clock tests on the bananapi-f3.
 
-Your explanation feels like you are surprised.
+>
+> Btw, I was also preparing sd part driver, mainly target K3 SoC, but since
+> they are mostly same IP, the driver can be shared..
 
-> 
-> USB is one of the critical IP blocks that needs be enabled to allow the rest of the 
-> team’s workflow over USB (e.g., enabling automation via USB for testing, etc.).
+I'm also interested in the K3 SoC integration. Since it's the same IP,
+it makes sense to have a unified driver. Please let me know your
+thoughts on the best way to coordinate our efforts.
 
-PMIC is before USB...
-
-> 
-> If these changes can be accommodated, it would be great. In the meantime, 
-> I will continue working internally to see how we can push the missing pieces upstream.
-
-Sorry, I am not taking ~22 phandles to a dummy regulator.
-
-Best regards,
-Krzysztof
+>
+> --
+> Yixun Lan (dlan)
 
