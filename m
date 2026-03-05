@@ -1,67 +1,65 @@
-Return-Path: <devicetree+bounces-271394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271395-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WFcqIb81qWlk3AAAu9opvQ
-	(envelope-from <devicetree+bounces-271394-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:50:23 +0100
+	id uFxqNTA2qWlk3AAAu9opvQ
+	(envelope-from <devicetree+bounces-271395-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:52:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C218A20CEE0
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:50:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7926020CF49
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:52:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6FA65302C825
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:49:15 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 63AA030074BA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 078A5329E49;
-	Thu,  5 Mar 2026 07:49:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A3832ED2F;
+	Thu,  5 Mar 2026 07:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+9h5rox"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o5HWHWmI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81EB27E05E;
-	Thu,  5 Mar 2026 07:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5A5E32D7FB;
+	Thu,  5 Mar 2026 07:51:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772696950; cv=none; b=C5BDhZKoMbSe7/i76u5UC+74bqj8Fwdj7t3hRFm1RZKmL00+RuceuvqxsanKb/T2OhIRa5R9s/XwlOA31d0SYpsWaJw/mUnuoo6KPA53tbxkKutletiSunsGcTPjAiPlBd8JsvX2qwI/O9xpXmjnt4Lo6eqtiMyWJ4kI9tlMR6c=
+	t=1772697118; cv=none; b=drHYuGJ2vcZ2A5x9RxcGNbPfV07+CGRECEYuox3TeEDdPCri6+02w2i13GWDHw14z9KK0E2Ugq7ETGdKW7U7cwqah0Qbk0F+cXZ9y68elIOlhvjKMQqD6DpvcEF2J6XzB6me7XjPzTSg4lSPomSmsFn3STvujRuxiagE310dyU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772696950; c=relaxed/simple;
-	bh=TFdAbilw8W8sjWd9J8Wt7r39BydUSFkn/rQZC9TwBRU=;
+	s=arc-20240116; t=1772697118; c=relaxed/simple;
+	bh=0CK2Jdavr+yUdl57OhO3y9nKTUk9/Qrm2nJwyhFSLNI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lLl7s/5YLjSs0CAmGTD0b8EY+WPVa78qsA/bpBgjvHAnOJ9FR35qc1I382IWCAqQOL6z9j6VPKVbZnZgZeXEiPc2uAU+8XTKaZ5ekxO7udLgr3XrgMzqHQ02eVEUOwFxc2y+b+SDI2LwDy+4zov47fa97Gf49eWCg+bjyO7XEqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+9h5rox; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9459C116C6;
-	Thu,  5 Mar 2026 07:49:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jqAdLGjuA1J7S6KbwOz4BiGJgMThLqt76UZOtuP/J8L0PrSByh72HmQi/KE569KzK2OC+B+1p90InzgeudKg+0XdWXRz+iv3NWI1th159eLxnMoXL+mVBlTmDv/jKQG7X3ZNqInRJGDuXLpwWVS3lP/4L0w9ocSFCwxVbHDbXAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o5HWHWmI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B5A6C116C6;
+	Thu,  5 Mar 2026 07:51:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772696950;
-	bh=TFdAbilw8W8sjWd9J8Wt7r39BydUSFkn/rQZC9TwBRU=;
+	s=k20201202; t=1772697117;
+	bh=0CK2Jdavr+yUdl57OhO3y9nKTUk9/Qrm2nJwyhFSLNI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o+9h5roxVzDXrGaHll77MdtFkZUAg5e5fK5yEz/y4+SA1cUuQLGpBcKfP26Wg6pBc
-	 WvUVljrgQuUiFmna5ubk44KFLeoILql1244YJ3PJly0OVWqC4SDZWxPm+UsFtmxZaN
-	 4wuNbg1FBNBrc5TyExBGaUu7Wq8VECIu6fQ+69H+tjluloT29LwOMaeB9UCuZeTUf4
-	 eKRNWoOZgE8AspGYggfzZrfsfCJ66LySxj5c/5FkUWTXTZNXdyh333LZh6yh6O731u
-	 PwiizzG7gwmKjolGBOfufl/HNfDjbWSVXFrUWUioCu0vlURzcaMaA9VzVw9aWoE2ar
-	 sGN+Pjf5jKcqg==
-Date: Thu, 5 Mar 2026 08:49:07 +0100
+	b=o5HWHWmITfNBTDrdHNfdkY2Zd5XM1EAsMQ+hwHlpAq4lu6DfT8nzrGwxB6JsRAdg5
+	 WJ1ToEAlsCKH3te0xbCpP1f1qiVq/9KrwOy4MiJ6QYY1sCIEeWNrXSf0bFmNcKjWw4
+	 koc9u9Xw8iVvlPvguzfmh4k7G81gzmjL70Sg3oTgawsPi1TrZb6eyqn9Vk1ScOAduK
+	 SNiZbFqiEvIwGO5D5Q3+1fp7smIQMDUxM0enmnuX0Y4PutC/PM7X7e4/NldTlp1nd3
+	 sr4h/w+pwyCHAlrMcNe4K2UI02nBNFQOoMTgqqGSszTJWbG6eyMw+gtpiBtgwN2232
+	 90Ql4CBYImGng==
+Date: Thu, 5 Mar 2026 08:51:55 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Richard Acayan <mailingradian@gmail.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>, 
-	Rajendra Nayak <quic_rjendra@quicinc.com>, Stephan Gerhold <stephan.gerhold@linaro.org>, 
-	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
-	Taniya Das <taniya.das@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v2 2/7] dt-bindings: clock: qcom: Add X1P42100 camera
- clock controller
-Message-ID: <20260305-rugged-agama-of-merriment-6cadf1@quoll>
-References: <20260304-purwa-videocc-camcc-v2-0-dbbd2d258bd6@oss.qualcomm.com>
- <20260304-purwa-videocc-camcc-v2-2-dbbd2d258bd6@oss.qualcomm.com>
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, Nickolay Goppen <setotau@mainlining.org>, 
+	Wesley Cheng <quic_wcheng@quicinc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Johan Hovold <johan@kernel.org>, Kees Cook <kees@kernel.org>, 
+	Charles Keepax <ckeepax@opensource.cirrus.com>, Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v2 10/11] ASoC: qcom: add sdm660 sound card support
+Message-ID: <20260305-industrious-sheep-from-eldorado-4413a5@quoll>
+References: <20260304195815.52347-1-mailingradian@gmail.com>
+ <20260304195815.52347-11-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,76 +68,128 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260304-purwa-videocc-camcc-v2-2-dbbd2d258bd6@oss.qualcomm.com>
-X-Rspamd-Queue-Id: C218A20CEE0
+In-Reply-To: <20260304195815.52347-11-mailingradian@gmail.com>
+X-Rspamd-Queue-Id: 7926020CF49
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271394-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271395-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,perex.cz,suse.com,vger.kernel.org,mainlining.org,quicinc.com,linuxfoundation.org,opensource.cirrus.com,renesas.com];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 11:10:52PM +0530, Jagadeesh Kona wrote:
-> Add X1P42100 camera clock controller support and clock bindings
-> for camera QDSS debug clocks which are applicable for both
-> X1E80100 and X1P42100 platforms.
+On Wed, Mar 04, 2026 at 02:58:14PM -0500, Richard Acayan wrote:
+> The Snapdragon 670 and Snapdragon 660 share the sound card, which can
+> have digital/analog WCD, WCD9335, WCD934X, or board-specific sound
+> codecs. Add support for the sound card.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml | 1 +
->  include/dt-bindings/clock/qcom,x1e80100-camcc.h                  | 3 +++
->  2 files changed, 4 insertions(+)
+>  sound/soc/qcom/Kconfig  |  12 +++
+>  sound/soc/qcom/Makefile |   2 +
+>  sound/soc/qcom/sdm660.c | 192 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 206 insertions(+)
+>  create mode 100644 sound/soc/qcom/sdm660.c
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml
-> index 938a2f1ff3fca899b5708101df7f8aa07e943336..b28614186cc098268ab0d8c32b21d9dd9508c9f9 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml
-> @@ -23,6 +23,7 @@ properties:
->    compatible:
->      enum:
->        - qcom,x1e80100-camcc
-> +      - qcom,x1p42100-camcc
+> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
+> index e6e24f3b9922..2ef4c436e534 100644
+> --- a/sound/soc/qcom/Kconfig
+> +++ b/sound/soc/qcom/Kconfig
+> @@ -167,6 +167,18 @@ config SND_SOC_MSM8996
+>  	  APQ8096 SoC-based systems.
+>  	  Say Y if you want to use audio device on this SoCs
 >  
->    reg:
->      maxItems: 1
-> diff --git a/include/dt-bindings/clock/qcom,x1e80100-camcc.h b/include/dt-bindings/clock/qcom,x1e80100-camcc.h
-> index d72fdfb06a7c716ed2ec376e061e4f0ca35f42c5..06c316022fb0d26ec6243b28477564d97f228c8e 100644
-> --- a/include/dt-bindings/clock/qcom,x1e80100-camcc.h
-> +++ b/include/dt-bindings/clock/qcom,x1e80100-camcc.h
-> @@ -115,6 +115,9 @@
->  #define CAM_CC_SLEEP_CLK_SRC					105
->  #define CAM_CC_SLOW_AHB_CLK_SRC					106
->  #define CAM_CC_XO_CLK_SRC					107
-> +#define CAM_CC_QDSS_DEBUG_CLK					108
-> +#define CAM_CC_QDSS_DEBUG_CLK_SRC				109
-> +#define CAM_CC_QDSS_DEBUG_XO_CLK				110
+> +config SND_SOC_SDM660
+> +	tristate "SoC Machine driver for SDM660 and SDM670 boards"
+> +	depends on QCOM_APR
+> +	depends on OF
+> +	depends on PM
+> +	select SND_SOC_QDSP6
+> +	select SND_SOC_QCOM_COMMON
+> +	help
+> +	  This adds support for audio on Qualcomm Technologies Inc.
+> +	  SDM660 and SDM670 SoC-based systems.
+> +	  Say Y if you want to use audio devices on these SoCs.
+> +
+>  config SND_SOC_SDM845
+>  	tristate "SoC Machine driver for SDM845 boards"
+>  	depends on QCOM_APR && I2C && SOUNDWIRE
+> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
+> index 985ce2ae286b..8b6bdc19e780 100644
+> --- a/sound/soc/qcom/Makefile
+> +++ b/sound/soc/qcom/Makefile
+> @@ -24,6 +24,7 @@ snd-soc-apq8016-sbc-y := apq8016_sbc.o
+>  snd-soc-apq8096-y := apq8096.o
+>  snd-soc-sc7180-y := sc7180.o
+>  snd-soc-sc7280-y := sc7280.o
+> +snd-soc-sdm660-y := sdm660.o
+>  snd-soc-sdm845-y := sdm845.o
+>  snd-soc-sm8250-y := sm8250.o
+>  snd-soc-sc8280xp-y := sc8280xp.o
+> @@ -38,6 +39,7 @@ obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
+>  obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
+>  obj-$(CONFIG_SND_SOC_SC7280) += snd-soc-sc7280.o
+>  obj-$(CONFIG_SND_SOC_SC8280XP) += snd-soc-sc8280xp.o
+> +obj-$(CONFIG_SND_SOC_SDM660) += snd-soc-sdm660.o
+>  obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
+>  obj-$(CONFIG_SND_SOC_SM8250) += snd-soc-sm8250.o
+>  obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
+> diff --git a/sound/soc/qcom/sdm660.c b/sound/soc/qcom/sdm660.c
+> new file mode 100644
+> index 000000000000..8dae01b733dd
+> --- /dev/null
+> +++ b/sound/soc/qcom/sdm660.c
+> @@ -0,0 +1,192 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
 
-Why X1E now gets all these clocks? I don't understand why you are having
-separate drivers and decided to change the ABI used in the first driver?
+Don't upstream 10 year old code, but take newest drivers and change them
+to match your needs. Look here:
+
+...
+
+> +static int snd_sdm660_probe(struct platform_device *pdev)
+> +{
+> +	struct snd_soc_card *card;
+> +	struct sdm660_snd_data *data;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	card = devm_kzalloc(dev, sizeof(struct snd_soc_card), GFP_KERNEL);
+> +	if (!card)
+> +		return -ENOMEM;
+> +
+> +	data = devm_kzalloc(dev, sizeof(struct sdm660_snd_data), GFP_KERNEL);
+
+This is not the syntax we have. For like 10 years.
+
+It is always sizeof(*).
 
 Best regards,
 Krzysztof
