@@ -1,286 +1,318 @@
-Return-Path: <devicetree+bounces-271588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271589-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOpPCJ+RqWmoAAEAu9opvQ
-	(envelope-from <devicetree+bounces-271588-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:22:23 +0100
+	id MLDDC8ySqWkqAQEAu9opvQ
+	(envelope-from <devicetree+bounces-271589-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:27:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B611B2133AA
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:22:22 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B10E32135F3
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:27:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 723423051DC1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:21:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5C42B31C101F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662D32517AA;
-	Thu,  5 Mar 2026 14:21:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC1143A7842;
+	Thu,  5 Mar 2026 14:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jgzHtLDM";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="IrTIrDKr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04D624886A
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:21:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A39A3A5E6D
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:21:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772720507; cv=none; b=ErXYNlcZzue3xJQwKjs8zG5zD7gBcPDrXp5h75MDVeWfdGqf63h2Hr5Ju84zaJwA52TuxpfGNSsF9lfrLqnL/k+AgLn+WPtBNnyu6vI3hPdSPSGB5raAJJ6xRtZNFjm0rFFt6mAvqbKJupt46/PLnSbzrIDURP1viZfL0k8/KDI=
+	t=1772720516; cv=none; b=tKlDIjGzGEFuEnx2pyuVi7XNRtWkp5DUp/+YfJSp/QJd52Tc728i45+PuW04utBak5j8Z8pFjmy920zoFBD9Ts64fGxIWeceHvjUNO/IPQ8J3xE5eKvDyvSsvdRVX+w16I3UeiCUEHvhH+KA5KpKEI7t2EdKJvS1qMbHOri3Wg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772720507; c=relaxed/simple;
-	bh=rEhy/H/nCGCiHwzJthbPzEIukVehLVTNrC1dkGO/Qd8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fdPPdN2PNLMijVsvVCkBqciFZ9EBHHKI4Crw1LO2e778UryDHC37lgnHMi+V+sOltAHl9YpA9V7oB2EJIFPcSfA5cMrtAN/Efdxtgs1a1O/OACcMa8tZcDZy9vkocjDnPSHZQQVPS0gBnV4QLXu2lzotvpo3Zj/ckQnUMTXpA2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b904e1cd038so1087913766b.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:21:44 -0800 (PST)
+	s=arc-20240116; t=1772720516; c=relaxed/simple;
+	bh=wd8r5uIc1SRDv6xBEhA7sLo6Np1+P4tvtporssm1mbQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JnW72I7UqbiOH1ZtypiJws/2mb8fk2jBRzcSCDah7VEDi2XpWkHuk0P2ThtXXtU1bkZuaDalUHNpQ0aJqOHCTtb3croSe5+eJ7i2dgwFcp6DGmb62vVKz1ndnHYpexNwuxWcnH8z57fW8gDvhVuqlRVM2zX39toayT/TIp5bGdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jgzHtLDM; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=IrTIrDKr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 625AFo1G456076
+	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 14:21:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=8n5yASa6UKYdxa6WAwgbC8uy
+	VQlMLNzzc/irYA5mdHc=; b=jgzHtLDMnx37FaU9EaUiO+btP1AMKHNSzsTEmFgN
+	Yhd2S6BPV6kauKyn8ncNubp1uN0RTNK4giNn+aRjuzhIhDzlol+syI9aEXC+GIEJ
+	K4AkXY/V4rBnrWLkilyh82nuauhtnygMYDftm4Px+ZJTzDRCw1HL4odZBvjw8DbF
+	T43v1c08uKz1LjRayY5N5opOuDPumxjgJY5h0+CaV4sUd1td2N04W4RBsMYVmm2b
+	Rf95jQkyHxfB8T1UnyUS4rrHN0r2IgvEOxeWpqWy+3FjDDqpAwGABtzfoXjG08PI
+	DKvJOmVgdhuNhTDxj/YTBHIKuZuWWAodKPzFy/jFC0gV0w==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cps0wkhbu-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 14:21:53 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c71500f274so853703085a.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:21:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772720513; x=1773325313; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8n5yASa6UKYdxa6WAwgbC8uyVQlMLNzzc/irYA5mdHc=;
+        b=IrTIrDKroI4qSIQKanP6KDmqUwkTkYms4ANSpX+pTlYtUrPoMWSjKEzAFHGwACevwG
+         Er7HQYNkCQNk9iluQUeZI8GSTekthir8jF67BSnSBnFtdL9ubpxMplwaHzwxp0+g3Qk1
+         mP8eWOhlwH6CmF7N06T3tzuPPY6icfS9O8qNlpBHG6WuN6Oui1KkC6P7ME/LyfkPuFYF
+         nPHcV9iY3uo3pCzqj8EqJjjNFRPY2Gv2dKyGnXA0hoLJfAdCvM3Ff+Ryc8XRm23UvU51
+         D37Ek51nf0QyJhXiOn8pX623so28ezVSi3VKOIl7fRbvw+rNuF7imCrF+zss0gx/m4QF
+         nefw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772720503; x=1773325303;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CXtAYRrzYSGErNFDdgbOo6Dg4VTIExI46uaNzGfcACQ=;
-        b=RbgS1dvzfQVVA3dSJaivFDdz91rMVnHnOtcOqy5Zkyd0a9yX8HphZDIUnQWn2hT69r
-         MQmwcgxbO8kxAlt3L0BWQDqkyVQTuadJbxS7bb3aCYu3CEVui/PUj6iug6dSa185vrf6
-         qTKQqe/4WIJIQ+yLmZZZJUaOasm6aDJZFmFIDr31wcAKiLuG1BwNzI62XlUzjSnas6vN
-         qyRG9EYV8bpwT9jeKT2xb7oVkMjGj2OCo0jj6MkREIGgaSvZJEwL38vtSW4NfXPqEl39
-         pLw/ZTlJ4I9d+3Uc1Ia6Rp1OCMZwVbRSbe8VuuF/f4ruQ+C8zyE0N5SOmcoWzXF7SLOE
-         DrHw==
-X-Forwarded-Encrypted: i=1; AJvYcCX+m34wFzAb3K+N1QZrouVtGxtfvvLThP1mKWDySIvEzUZ68Vqv25Qt+VpKAMXg6sf94wxcsXoDOqMf@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0OR0LNLx0oudsVdExG2uaXW/iB67Gxag1Kyc+lgDn54BzA/fe
-	YWb6/a1XU2ASEXJwnKA8jaI3J3/QfFYZYmTZGuqW6LNAUEhRSXZjlSFMc1c3+XTcPxM=
-X-Gm-Gg: ATEYQzwMRbYhdPYh4CEcsdIyZFUzyDMvUeoQ3ixV28Duy8R6Yy6N4sJdAqdbMBZpAYe
-	89w/Reep+AlnSgVbvmVoB+89sDcVDxVzZbo2HhhJsgQp310Kht2wiYcY7xJGxY4Dx56wkDhHg21
-	iw3+gkrxHuBhFO3XUN9lMqhUuHqsfRm/9oCKp+38xQ/3joSrdLxNYp1E3v3QH531fLrYoykRt7b
-	RNNXF0ugNlzwVCnrV3iz+PW7EUQwhnaC2HWBbapyhSn6W5jHfJ96fQwQAIMh33bA1ntHfrtlXGV
-	s1IjfbM5eOWgR7JEvqs4y2317bL1NIbFM+QWquKt3q3VVepwFywKwZCxOFCAwqhtQnol6u1nll1
-	V56gTRC7OlzqzbEaX23DH0UYx21Gu/KEyAan9WkukHn4ht2nqjxeUayBCTJfvrQTrxP2HFZMBst
-	53xO3JPWalq95JfiJACXNBD8WvuXVW9zenC18+e+oAIyZIb2MoOWG5dOpVRab5
-X-Received: by 2002:a17:906:2081:b0:b94:354:3dac with SMTP id a640c23a62f3a-b940354449dmr127091366b.59.1772720502963;
-        Thu, 05 Mar 2026 06:21:42 -0800 (PST)
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com. [209.85.218.45])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9402a137c0sm135352166b.57.2026.03.05.06.21.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Mar 2026 06:21:41 -0800 (PST)
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b9359c0ec47so880017766b.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:21:41 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUjOaS32rY7GXFeeySGriUNQsa4my9wpNQpuPLQYXnEpfX2xjFq+VSuSoqGZwFAIi5xTeulc5GFkv4Y@vger.kernel.org
-X-Received: by 2002:a17:906:7316:b0:b87:1fe6:f223 with SMTP id
- a640c23a62f3a-b93f10f8313mr358270066b.6.1772720500784; Thu, 05 Mar 2026
- 06:21:40 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772720513; x=1773325313;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8n5yASa6UKYdxa6WAwgbC8uyVQlMLNzzc/irYA5mdHc=;
+        b=WAX1dunCECK0p7Gkg6xSEtUvqPTnorp761Q+iblMQWYEKA421wypT005bxqtw3dVNV
+         u3ev/Tm36vr3LYYDca7jlqA7dhpoTzdlAjUPYWIwevS4kw4smNkmfcR7dSqVaIo+o/af
+         hTpLpWudpDeVVzNQJtS9MzIy5np7RE6QsvNqMBS19bZp0Xb+y/XWwuIcYhyZEqvAluTc
+         4GEVsq7G5jQ6sLJpZXLnyJTb5tacGM1QWnxpg2U6NMSOTlKw4JbNK3DORh9r0TXKginQ
+         xkxXQ61V64rp9rd6GfxTkft6J3v9+2QhLxCDUsOfNr+dempylEmwmcUADb0EXETuZAbq
+         6CHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVhNdzEjo8ljWLWRXFjtDqJt6jF/vTB0/wu4ngLgbnHqIYuMfvKHcIu3O2gf1ZOmNCfMILqeLAv8ibC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzq2/2r+tBYTOlxesl3qn+vu8YQsYQQUifk0AZbIROeCxMutqU8
+	1yLIEFZqDJwfuM500teNcHZ57/+ajNK3K1/vZyxwDa2OhZDvTkn2njsHLUHAlaesc+Ekyh85D92
+	bixS2UFI3hMsOzC3r2qWDHskVxTvpABMJ94sAOeEHMI8qUgWr0kgeMFeAeKHH0mS9
+X-Gm-Gg: ATEYQzwA8NdM/LZyFvSy8iKN6YN4nbqc2fcYezvo3uKBDqmzpGsEj+k5ZuOJikZbx5v
+	XZEjAUPuB5+bQ5Ugl506dF6297Nbg9fXj54UcsfvlG95AOdFfOBpYKfPRJZRbMb7/L8HFqzKmoC
+	FrxSebbciT8G1TV1EnZaKlVFG9LfGO7kEmHv4PyTgHMzypkMrONWtcbXkKdJsj5YVhccxjQaXgV
+	ZJvv24EF96gmylq5fIWR6apwfT09iB7LND0ZgwrRyOVFc2oNQnT7esWFs5rAV6+Rw9cmDHizgtD
+	8M1u439Fe3RtZjSA9cX3WVHzHhVKF22LXvaTBwU7jPa6CYPL5/U3rsbTro6pEtyMB10Cm1PoHBu
+	dkz49+BDVdCDmgAS60jyHSBX0c7EOsflwry7G8OwYCg7GmK4wI9B26rG9PNiQFHxiPAu8aeKZSs
+	rxPs1oqczBgxFgRKdV3tJoQR1tZN1TDFn51uo=
+X-Received: by 2002:a05:620a:4495:b0:8c6:ca30:fbe9 with SMTP id af79cd13be357-8cd5aec376fmr698519085a.15.1772720512500;
+        Thu, 05 Mar 2026 06:21:52 -0800 (PST)
+X-Received: by 2002:a05:620a:4495:b0:8c6:ca30:fbe9 with SMTP id af79cd13be357-8cd5aec376fmr698513985a.15.1772720511878;
+        Thu, 05 Mar 2026 06:21:51 -0800 (PST)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a135678c75sm226867e87.20.2026.03.05.06.21.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 06:21:51 -0800 (PST)
+Date: Thu, 5 Mar 2026 16:21:48 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Hans Verkuil <hverkuil+cisco@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: Re: [PATCH v2 4/7] media: iris: add context bank devices using
+ iommu-map
+Message-ID: <mqyg7cebyahkrngvnxcrenkdd3dybpnkecago4lqonfwqzize7@yawbtcsli3vi>
+References: <20260227-kaanapali-iris-v2-0-850043ac3933@oss.qualcomm.com>
+ <20260227-kaanapali-iris-v2-4-850043ac3933@oss.qualcomm.com>
+ <rzi7qmzsofocwcqxhsqz3f3tl4ahqnwn34of6qcc54odpben5d@7okuqabxgdqh>
+ <e12da06d-cad5-4967-af07-64c7c6e540f4@oss.qualcomm.com>
+ <vi5v5bczg2wx2adfpr6ppqcad76oecitoyc7zd2i4lahla4buw@mqnppboxcyrs>
+ <6553cfcb-9399-4d17-a529-b07b421ed7e8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com> <20260203103031.247435-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20260203103031.247435-6-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 5 Mar 2026 15:21:27 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXPuBEODa0Uyhuv7u9ERY+YajsECTa0=XKY6WcE-VnaGA@mail.gmail.com>
-X-Gm-Features: AaiRm51dLhVDp_IdfNbKoUzEcAGoO9N7tD3ybXTlfw77SuglDEgtVuQ3mKWaML4
-Message-ID: <CAMuHMdXPuBEODa0Uyhuv7u9ERY+YajsECTa0=XKY6WcE-VnaGA@mail.gmail.com>
-Subject: Re: [PATCH v3 05/10] dt-bindings: clock: Document RZ/G3L SoC
-To: Biju <biju.das.au@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: B611B2133AA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6553cfcb-9399-4d17-a529-b07b421ed7e8@oss.qualcomm.com>
+X-Proofpoint-GUID: KEcYbZycawP3Lp1mjjFzOifTaV48ODvp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDExNCBTYWx0ZWRfX8m9E8qgAmuA1
+ RDBkVRwqFQidwYSMuQMGi0phd9+aVUMz0CfZSEdQWoQsz2OZGYC9ZI6XF7TSgSADFg08f7D87tK
+ alDGPAraCpwBbswB9Kou7KPPS97kur5wf2yQodBuR3fWK6AEWIjJinjb56rkHpCxp0VeHoKEQ8v
+ gcax4/PQExhCeJ/yUhBs0BBzf6k6pOjtmvGxi2PWiT3wzJWpFprk1ADxDM5vRuC9aPl0ZeKie2d
+ O4Ij+ZN3xb4ijJnlJSdMHNEaRhOkbDOLRuzXMg1eztwmzyqkIcc2CHnANYu56dXeGgsnR6HTRhe
+ XfUOX3wy/iSYDbFvBqt1EPNUlabqJ7nElg95moUllGCjjLsMjwhA51ihfbBci94N5IvhA1/lxdA
+ sMA7LMo2DFw0inmRzOU9GFcCSA4Y+GpsLwPn+rsUdSbEiTxSEwK8u81gojtJrslaNRZeLDpLmSW
+ FapKCuELnbA8ArIh41w==
+X-Authority-Analysis: v=2.4 cv=OYWVzxTY c=1 sm=1 tr=0 ts=69a99181 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=EUspDBNiAAAA:8
+ a=FVVa7Cb_h39M_4ok-hYA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-ORIG-GUID: KEcYbZycawP3Lp1mjjFzOifTaV48ODvp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-05_04,2026-03-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 impostorscore=0 adultscore=0 clxscore=1015 priorityscore=1501
+ spamscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050114
+X-Rspamd-Queue-Id: B10E32135F3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,bp.renesas.com,vger.kernel.org,microchip.com];
-	TAGGED_FROM(0.00)[bounces-271588-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271589-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.120];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Hi Biju,
+On Thu, Mar 05, 2026 at 06:19:52PM +0530, Vikash Garodia wrote:
+> 
+> On 3/4/2026 3:55 AM, Dmitry Baryshkov wrote:
+> > On Wed, Mar 04, 2026 at 12:16:50AM +0530, Vikash Garodia wrote:
+> > > 
+> > > On 2/28/2026 1:50 AM, Dmitry Baryshkov wrote:
+> > > > On Fri, Feb 27, 2026 at 07:41:20PM +0530, Vikash Garodia wrote:
+> > > > > Introduce different context banks(CB) and the associated buffer region.
+> > > > > Different stream IDs from VPU would be associated to one of these CB.
+> > > > > Multiple CBs are needed to increase the IOVA for the video usecases like
+> > > > > higher concurrent sessions.
+> > > > > 
+> > > > > Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+> > > > > Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+> > > > > Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> > > > > ---
+> > > > >    .../platform/qcom/iris/iris_platform_common.h      | 18 +++++++
+> > > > >    drivers/media/platform/qcom/iris/iris_probe.c      | 60 ++++++++++++++++++++--
+> > > > >    drivers/media/platform/qcom/iris/iris_resources.c  | 36 +++++++++++++
+> > > > >    drivers/media/platform/qcom/iris/iris_resources.h  |  1 +
+> > > > >    4 files changed, 111 insertions(+), 4 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> > > > > index 5a489917580eb10022fdcb52f7321a915e8b239d..03c50d6e54853fca34d7d32f65d09eb80945fcdd 100644
+> > > > > --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+> > > > > +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> > > > > @@ -204,6 +204,22 @@ struct icc_vote_data {
+> > > > >    	u32 fps;
+> > > > >    };
+> > > > > +enum iris_buffer_region {
+> > > > > +	IRIS_BITSTREAM_REGION		= BIT(0),
+> > > > > +	IRIS_NON_PIXEL_REGION		= BIT(1),
+> > > > > +	IRIS_PIXEL_REGION		= BIT(2),
+> > > > > +	IRIS_SECURE_BITSTREAM_REGION	= BIT(3),
+> > > > > +	IRIS_SECURE_NON_PIXEL_REGION	= BIT(4),
+> > > > > +	IRIS_SECURE_PIXEL_REGION	= BIT(5),
+> > > > 
+> > > > Can a context bank belong to multiple regions at the same time?
+> > > 
+> > > yes, they would.
+> > 
+> > How? Each set of CBs is defined by a separate function in the DT. How
+> > can CB belong to multiple regions? Could you please provide an example?
+> 
+> SM8550 would have same stream id for VPU hardwares (tensilica and vcodec)
+> accessing bitstream and non pixel regions. Thereby non_pixel and bitstream
+> regions would map to one CB.
 
-Thanks for your patch!
+In my opinion it means only one thing: you will have two CBs (one for
+non_pixel and one for bitstream) having the same SIDs. An alternative
+would be to define fallback rules (if CB foo doesn't exist, use CB bar).
 
-On Tue, 3 Feb 2026 at 11:30, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Document the device tree bindings for the Renesas RZ/G3L SoC Clock Pulse
-> Generator (CPG). RZ/G3L CPG is similar to RZ/G2L CPG but has 5 clocks
-> compared to 1 clock on other SoCs.
->
-> Also define RZ/G3L (R9A08G046) Clock Pulse Generator Core Clock, module
+> While kaanapali would have different stream id for tensilica accessing non
+> pixel region and vcodec accessing bitstream region, thereby having different
+> CB.
+> 
+> > 
+> > > 
+> > > > 
+> > > > > +};
+> > > > > +
+> > > > > +struct iris_context_bank {
+> > > > > +	struct device *dev;
+> > > > 
+> > > > Separate data and the actual device. Define a wrapper around struct
+> > > > device for the actual runtime usage.
+> > > 
+> > > we still have to store the list of dynamically created device. Name can be
+> > > used to fetch the device from the list, i think the existing approach is
+> > > simpler ?
+> > 
+> > You don't need a list. You have an array of the size, which is known and
+> > fixed. You have at most 9 functions, which means less than 9 devices.
+> > 
+> 
+> as mentioned above, its not the same for all platforms to have one to one
+> mapping between CBs and buffer region. Thereby indexing based on array would
+> be an issue here
+> It would end up something like this, considering [dev region] array,
+> 
+> SM8550
+> non_pixel_device  non_pixel_region
+> non_pixel_device  bitstream_region
+> pixel_device      pixel_region
+> 
+> kaanapali
+> non_pixel_device  non_pixel_region
+> bitstream_device  bitstream_region
+> pixel_device      pixel_region
 
-Core Clocks, as listed in section 4.4.1 ("Block Diagram of the Clock System")
+I'm sorry, I'm not sure I follow here. Could you please explain? Maybe
+by explititly mapping DT function values to iris_buffer_region values?
 
-> clock outputs, as listed in section 4.4.2 ("Clock List r1.00") and add
-> Reset definitions referring to registers CPG_RST_* in Section 4.4.3
-> ("Register") of the RZ/G3L Hardware User's Manual (Rev.1.00 Oct, 2025).
->
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> 
+> 
+> > > 
+> > > > 
+> > > > > +	const char *name;
+> > > > > +	const u32 f_id;
+> > > > > +	const enum iris_buffer_region region;
+> > > > > +};
+> > > > > +
+> > > > >    enum platform_pm_domain_type {
+> > > > >    	IRIS_CTRL_POWER_DOMAIN,
+> > > > >    	IRIS_HW_POWER_DOMAIN,
+> > > > > @@ -246,6 +262,8 @@ struct iris_platform_data {
+> > > > >    	u32 inst_fw_caps_enc_size;
+> > > > >    	const struct tz_cp_config *tz_cp_config_data;
+> > > > >    	u32 tz_cp_config_data_size;
+> > > > > +	struct iris_context_bank *cb_data;
+> > > > > +	u32 cb_data_size;
+> > > > 
+> > > > Do they differ from platform to platform?
+> > > Yes
+> > > 
+> > > > Mark them as const, it should be data only.
+> > > 
+> > > cb_data_size can be marked as const
+> > 
+> > Why is cb_data non-const?
+> 
+> dev is being updated once created dynamically.
 
-> --- a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
-> +++ b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
-> @@ -28,19 +28,30 @@ properties:
->        - renesas,r9a07g044-cpg # RZ/G2{L,LC}
->        - renesas,r9a07g054-cpg # RZ/V2L
->        - renesas,r9a08g045-cpg # RZ/G3S
-> +      - renesas,r9a08g046-cpg # RZ/G3L
->        - renesas,r9a09g011-cpg # RZ/V2M
->
->    reg:
->      maxItems: 1
->
->    clocks:
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: Clock source to CPG can be either from external clock
-> +                     input (EXCLK) or crystal oscillator (XIN/XOUT).
-> +      - description: ETH0 TXC clock input
-> +      - description: ETH0 RXC clock input
-> +      - description: ETH1 TXC clock input
-> +      - description: ETH1 RXC clock input
->
->    clock-names:
-> -    description:
-> -      Clock source to CPG can be either from external clock input (EXCLK) or
-> -      crystal oscillator (XIN/XOUT).
-> -    const: extal
-> +    minItems: 1
-> +    items:
-> +      - const: extal
-> +      - const: eth0_txc_tx_clk
-> +      - const: eth0_rxc_rx_clk
-> +      - const: eth1_txc_tx_clk
-> +      - const: eth1_rxc_rx_clk
+That's a bad idea. Please make the platform description constant.
 
-Are you sure about these four clocks? On which pins are they input?
-
->
->    '#clock-cells':
->      description: |
-
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/r9a08g046-cpg.h
-> @@ -0,0 +1,343 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> + *
-> + * Copyright (C) 2026 Renesas Electronics Corp.
-> + */
-> +#ifndef __DT_BINDINGS_CLOCK_R9A08G046_CPG_H__
-> +#define __DT_BINDINGS_CLOCK_R9A08G046_CPG_H__
-> +
-> +#include <dt-bindings/clock/renesas-cpg-mssr.h>
-> +
-> +/* R9A08G046 CPG Core Clocks */
-
-[...]
-
-> +#define R9A08G046_OSCCLK               52
-> +#define R9A08G046_OSCCLK2              53
-> +#define R9A08G046_CLK_P4_DIV2          54
-
-CLK_P4_DIV2 looks like a purely internal clock to me.
-
-
-> +
-> +/* R9A08G046 Module Clocks */
-
-[...]
-
-> +#define R9A08G046_CRU_PCLK             65
-> +#define R9A08G046_CRU_ACLK             66
-> +#define R9A08G046_MIPI_DSI_PLLCLK      67
-
-MIPI_DSI_PLLCLK is indeed not a gateable clock, so it should be a core
-clock.
-
-> +#define R9A08G046_MIPI_DSI_SYSCLK      68
-> +#define R9A08G046_MIPI_DSI_ACLK                69
-> +#define R9A08G046_MIPI_DSI_PCLK                70
-> +#define R9A08G046_MIPI_DSI_VCLK                71
-> +#define R9A08G046_MIPI_DSI_LPCLK       72
-> +#define R9A08G046_LVDS_PLLCLK          73
-> +#define R9A08G046_LVDS_CLK_DOT0                74
-> +#define R9A08G046_LVDS_PCLK            75
-
-LVDS_PCLK does not seem to exist, there is only a single reference to it
-(but I can see where its gate bit used to be ;-)
-
-> +#define R9A08G046_LCDC_CLK_A           76
-> +#define R9A08G046_LCDC_CLK_D           77
-> +#define R9A08G046_LCDC_CLK_P           78
-> +#define R9A08G046_SSI0_PCLK2           79
-> +#define R9A08G046_SSI0_PCLK_SFR                80
-> +#define R9A08G046_SSI1_PCLK2           81
-> +#define R9A08G046_SSI1_PCLK_SFR                82
-> +#define R9A08G046_SSI2_PCLK2           83
-> +#define R9A08G046_SSI2_PCLK_SFR                84
-> +#define R9A08G046_SSI3_PCLK2           85
-> +#define R9A08G046_SSI3_PCLK_SFR                86
-> +#define R9A08G046_USB_U2H0_HCLK                87
-> +#define R9A08G046_USB_U2H1_HCLK                88
-> +#define R9A08G046_USB_U2P0_EXR_CPUCLK  89
-> +#define R9A08G046_USB_U2P1_EXR_CPUCLK  90
-> +#define R9A08G046_USB_PCLK             91
-> +#define R9A08G046_USB_SCLK             92
-
-USB_SCLK is not gateable, so it should be a core clock.
-
-[...]
-
-> +/* R9A08G046 Resets */
-
-[...]
-
-> +#define R9A08G046_RSCI2_TRESETN                114
-> +#define R9A08G046_RSCI3_TRESETN                115
-> +#define R9A08G046_LVDS_RESET_N         116
-
-Missing BSC_X_PRESET_BSC?
-It could be added later, but you do list the corresponding module clock.
-
-> +
-> +#endif /* __DT_BINDINGS_CLOCK_R9A08G046_CPG_H__ */
-
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
 
