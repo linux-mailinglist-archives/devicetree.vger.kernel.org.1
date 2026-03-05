@@ -1,175 +1,196 @@
-Return-Path: <devicetree+bounces-271513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271515-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HqdC2dlqWlN6wAAu9opvQ
-	(envelope-from <devicetree+bounces-271513-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:13:43 +0100
+	id WCAGLEdmqWlN6wAAu9opvQ
+	(envelope-from <devicetree+bounces-271515-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:17:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86098210650
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:13:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F93C21075D
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:17:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45DD430D546E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 11:08:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 862C0317B547
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 11:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A89C383C88;
-	Thu,  5 Mar 2026 11:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A740F382298;
+	Thu,  5 Mar 2026 11:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jtg7009Z"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="i5nZiZBw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx-relay12-hz2.antispameurope.com (mx-relay12-hz2.antispameurope.com [83.246.65.98])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 168E737F749;
-	Thu,  5 Mar 2026 11:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772708931; cv=none; b=QmloN6q57vzFKiQV/80X61fDCZ30Z5h21rJe8g7Xiq4WNUjjqqGoyKOj4UNXMUH+kpWyktAcAnqdk5h+KKb2fPcuor+oksu0rUwvyc0VlQeIoduWUNobrYXGF7iXWAYbNeddQdfn0/GjqYUFhb/p7xy+4mXxNojUaTZ8QIrOcUQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772708931; c=relaxed/simple;
-	bh=tTMMEC8DuOg1OgtIV4CsJVix0a9ND4jTsqpfaC+txgU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IHWVPs5tdF3AwEHnjDtP+wr4EoGrOe1VXk83nzUbizJ3rvK6QgJ4lPDbEAcFboPYqGpaZk43bG1RmZdArir7dtiVH6ziKpmjMRbaQiVMNf844h3bLpMaXJZnBqLYgIaLOdRa1eF8AnU+CS6ghK1HaUKu8QQOSMtkstYJwXD9DOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jtg7009Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0367DC116C6;
-	Thu,  5 Mar 2026 11:08:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772708930;
-	bh=tTMMEC8DuOg1OgtIV4CsJVix0a9ND4jTsqpfaC+txgU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jtg7009ZtZSI6coaiefM/RbQhyka7Oddg3/RpS89UF2GUuMQfeee5xtOnlV3OVe1+
-	 j2CIFx7FZDW2p5iqSVXnD0kBr+WuARETGom1gAnd42Q9LuC+G2J9YKTb5nYCT4dyic
-	 T/udTT4Sj3sJvhxuxT0eejT71mBhE85fP/8v+YruYHB+56VXNiheMIOeErbIwSLNG4
-	 rfNnTFKHvXlpjREcGYZJs2TZ9Ql5i6xIsNLbQ9GLa5mVJvxMWFipI4wYA0v7hqXHIo
-	 2pWt4rNYNksUCzAQ+sN0ab2/jVzOZwGBw/kADMgaCnK6TsYwWsbwE6uxTwYyEz0iXQ
-	 CY60NCcv3jtUw==
-Message-ID: <69900d76-3820-467a-9fbc-13f79189df2f@kernel.org>
-Date: Thu, 5 Mar 2026 12:08:43 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0EBD3845CF
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 11:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=83.246.65.98
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772709127; cv=pass; b=d1VefoYsgJezmAtDcbK0qNcWSbXqodDo4uEjmNYrr8lLa1aURFm9yYbLeZs3MZ9mykElOoWzIAL4o+nauemVxOFqSWYByfKkTTjZ5c8Cj2QsOcVeTlwjBT3qkhQJCovqHW7Jo1JUKctzGuQBfk/iYswJTMBkr+hj0+8+DkP+Xgs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772709127; c=relaxed/simple;
+	bh=dXspexM/PX2F8ART0tJsJpHJJRGQMWvcc478lZ7RmKI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=prDeLNum15RUEy+z22w6QjrdBXkw9oGZm5avQDlc0B8jAzcfrJkPNzAYE9CPwzOI6hMrXkC4MO3w6o/9R4wU1WnApHLCxUI3WjLiHzomFFGBsUXPHf9Mys/W8YaKDYV3cE25zsETDAx+fXA86PQ8nVC6xHisxhB2VLWDHiLsygc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=i5nZiZBw; arc=pass smtp.client-ip=83.246.65.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate12-hz2.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
+ dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=PVhuX+l+sVjGT+ko5BL1Nb+mbnU6aEmFddU/rnrJ3m0=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1772709047;
+ b=nDJWXDzYY+RrUm+Uhq5Z50BlW3i/zKQpPW9fUNsva3syFU77fPq2bpX0I8aGag6KYp49t0x4
+ ogkuw8vFZcGs5/+2mVDaCC6z1RnexRZVLYX+dAvosQxr8fEWhFpl3Drs+mVIr/DbwtgmqbbuPSs
+ 0RQYpaCjVhIF50NPC47RHBuuEJFLlpQjMt4cOGEa/9H0FzhFDB/nd24Fwbbeu7cCW1evrVE+kTk
+ Ak8y2HSG8EgPANygFP92dTVUWUoLhkLmcRxZIDTML6JpLCuUPrhREx3z696EQZqR6tpwIkADbAt
+ 4OZsbbi0oOSvLjbaSVZE2bNoduLCFQhHQ+ykGbWT4tdYg==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1772709047;
+ b=ifk1eg2FnqnzF1dgMUz/PV/qe78Ox2o8jx2VdJOThPYCIilWUBHBD5O+ul9aSxbCAR2My5IH
+ JmZWBuaAxWNdNik0AHeWiPlQOvtPnCibczFGnhseIHfN6/wFTYI4Jh6fjNc0KB32O6aGMnrrWBt
+ PkEgPE5GzIsNEQM6/LakEC635swUVjZb6qEN62jwuT67CnlYzJHjPKjGzK410xPPDWYrY0Eg8ju
+ wvF2QZn5rTIl76Gf7gswHJwZ21atV8Kcr+jSMefZqlOmrsJFnBsDaM34e0r+ge6oOdmmKetmH6r
+ vV4Yi0mMMH9eX++6ZAfdR6Vd6aC8t/gP/UgUbz8r8S43w==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay12-hz2.antispameurope.com;
+ Thu, 05 Mar 2026 12:10:47 +0100
+Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 5053DA4079E;
+	Thu,  5 Mar 2026 12:10:42 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: tqma9352-mba93xx*: Fix Ethernet PHY IRQ support
+Date: Thu,  5 Mar 2026 12:10:36 +0100
+Message-ID: <20260305111040.1899965-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v4 1/4] media: dt-bindings: Add Amlogic V4L2 video
- decoder
-To: Zhentao Guo <zhentao.guo@amlogic.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
- <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
- <d96c689d-a5a3-453d-a1ab-56dc1bf01635@kernel.org>
- <75e55ceb-e6dd-47b5-a829-66f6fbb3e13e@amlogic.com>
- <2f68ee18-e9d9-4da6-900c-93a7663b3c9d@kernel.org>
- <598c161c-d157-40e5-992c-912540589d7e@amlogic.com>
- <58d57a6c-7c69-4f5b-a4c2-f34ef0238511@kernel.org>
- <26d0f52e-3681-46ce-b0dc-0cb020e8d9a1@amlogic.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <26d0f52e-3681-46ce-b0dc-0cb020e8d9a1@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 86098210650
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay12-hz2.antispameurope.com with 4fRRfW0jJDz3B9xY
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:1285649cdad526a2a0167bc5483f14a0
+X-cloud-security:scantime:1.458
+DKIM-Signature: a=rsa-sha256;
+ bh=PVhuX+l+sVjGT+ko5BL1Nb+mbnU6aEmFddU/rnrJ3m0=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1772709047; v=1;
+ b=i5nZiZBw721tSIDKf68CGETb42+SvVZq+9C5THlQ2OyjvSbGbkSqhJNwFDswN/s0/iDQMfxy
+ BUGKRvyuC4H6RaVcezS/hBxohoT12m+bZNQVCf1XejOs8VCZqFrPvFh8MDRixyAT2Ob93kkapD1
+ ns1X7iy/nS9ngf8Xr8wbq/NVj1rf1uWkG0qO+s6wCLAY9rir2pwuBdA9DeHO/6U4qGHbOfGQeMx
+ upfZ6G4xNqMBl6yV8TZ9R69rmj2muNMnMa+FA/K7TNgbm5QQmsNx3B1tx1V60+Z5Z77SV+gakXY
+ jqQsO/I/ZR31JAJG+hzCp1xTdFT2ApI3UQeyMty74SVFg==
+X-Rspamd-Queue-Id: 1F93C21075D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271513-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[amlogic.com,kernel.org,linaro.org,baylibre.com,googlemail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271515-lists,devicetree=lfdr.de];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TO_DN_SOME(0.00)[]
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.0:email,tq-group.com:email]
 X-Rspamd-Action: no action
 
-On 05/03/2026 12:01, Zhentao Guo wrote:
-> 
->       2. Why canvas is needed?
-> 
->  1. Since the ARM IOMMU HW is not integrated into the Amlogic SOCs,we
->     need canvas to prevent the DDR memory used by the decoder from being
->     rewrote by other hardware. Canvas provides the decoder with a
->     configurable DDR memory range, as well as hardware-based detection
->     and blocking for out-of-bounds access.
->   2. From the diagram above, we can see a lite CPU called AMRISC. AMRISC
->     is the controller of the decoder HW and the decoder driver needs to
->     access the decoder hardware through AMRISC. However, AMRISC is a
->     16-bit CPU and cannot directly handle 32-bit or 64-bit physical
->     addresses. Therefore, canvas is required to convert the addresses
->     into index to facilitate processing by the AMRISC core.
+Ethernet PHY interrupt mode is level triggered. Adjust the mode
+accordingly.
 
-This suggests "Canvas" is IOMMU, thus use proper IOMMU abstractions and
-you cannot have own phandle for it.
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxca.dts | 4 ++--
+ arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxca.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxca.dts
+index 4760d07ea24b5..9108181e6592b 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxca.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxca.dts
+@@ -242,7 +242,7 @@ ethphy_eqos: ethernet-phy@0 {
+ 			reset-assert-us = <500000>;
+ 			reset-deassert-us = <50000>;
+ 			interrupt-parent = <&gpio3>;
+-			interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
++			interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+ 			enet-phy-lane-no-swap;
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+ 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+@@ -275,7 +275,7 @@ ethphy_fec: ethernet-phy@0 {
+ 			reset-assert-us = <500000>;
+ 			reset-deassert-us = <50000>;
+ 			interrupt-parent = <&gpio3>;
+-			interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
++			interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+ 			enet-phy-lane-no-swap;
+ 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+ 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
+diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+index 8a88c98ac05a7..a78bbc46c59b2 100644
+--- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
++++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba93xxla.dts
+@@ -172,7 +172,7 @@ ethphy_eqos: ethernet-phy@0 {
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&pinctrl_eqos_phy>;
+ 			interrupt-parent = <&gpio3>;
+-			interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
++			interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+ 			reset-gpios = <&expander1 0 GPIO_ACTIVE_LOW>;
+ 			reset-assert-us = <500000>;
+ 			reset-deassert-us = <50000>;
+@@ -205,7 +205,7 @@ ethphy_fec: ethernet-phy@0 {
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&pinctrl_fec_phy>;
+ 			interrupt-parent = <&gpio3>;
+-			interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
++			interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+ 			reset-gpios = <&expander1 1 GPIO_ACTIVE_LOW>;
+ 			reset-assert-us = <500000>;
+ 			reset-deassert-us = <50000>;
+-- 
+2.43.0
+
 
