@@ -1,181 +1,256 @@
-Return-Path: <devicetree+bounces-271328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271329-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOCdGVfoqGmKygAAu9opvQ
-	(envelope-from <devicetree+bounces-271328-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 03:20:07 +0100
+	id UEbOMTHqqGnAygAAu9opvQ
+	(envelope-from <devicetree+bounces-271329-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 03:28:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1195E20A261
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 03:20:07 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C12B20A2FA
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 03:28:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 19A3D309F684
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 02:18:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2E0EF3018768
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 02:27:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666DE24DD17;
-	Thu,  5 Mar 2026 02:18:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446B325F99B;
+	Thu,  5 Mar 2026 02:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n13/4mOk"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="lldnF3/K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32E7BA21
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 02:18:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B069D23C39A;
+	Thu,  5 Mar 2026 02:27:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772677111; cv=none; b=Y8kzzgjCDvY/B1+wB1bmGXlTof5N+wbVQ2buoDm0kf+j50VTvy7C/fiCNPPZPBCB27p6KB1FoxaR4xgv09knoH8cwaHqXf50BcfqzQ565Yxi0B4g4zsvZ8Nq2t3ybxe+jbGfxS0glMVqm6m5ZKEH/uWtA2mqt28p8DpWHeut/N0=
+	t=1772677675; cv=none; b=XF7oii71YX6h49Ivlr/E071GC6bLrRFH+AS8pWfJ4u1yn1ccFPT9pVdfKPyRPnapsWp8N5yOSH0PnM29joq79yG4Y7lWgG/T9k54RlynMzpIT1iEtAFoILuCXfnu1UWXen6viZDrnbggR9Qr4mFj3nCOTro+J5y+6gtNZw09IN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772677111; c=relaxed/simple;
-	bh=omuNtWtOuCCJ0PrwP0Y/lM+iymvlPgAem1lThEqQuY0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lN960/5RprUSLYR4cy3DzvbEc6E6TM2/b2++wBxeH5Tp3WGl10VFoEwgQ7Q0h4ypEwpUH22CZYSGk761M7gwsP/+Y03s4hdzPkl2xEV6E5MmCTkoD+xmEeQmmSYlmd8dVUJXyWMYE9vScxSE2OkeL6M501Bhh3c+BQWlcWqaynw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n13/4mOk; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48371bb515eso111804175e9.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 18:18:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772677108; x=1773281908; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rmOdcRI/juiCXIkhIn1qeTo3SGfYdV+4fS9rxks7eyY=;
-        b=n13/4mOkPLE0iXCGZfkGHjnUv2jM0LwbWucojVxtzmKji1z+eAcJDtn15JVnW8EaIe
-         d86pqH0rLkSSqIXuS6klZwCf87ZGi0sxfm9WUfuXAs7M1gKT0NPqq9/FWB52cv3e6HYi
-         YTQCAEPuIyWoLVjPbpXIT5SpKFAExlUGqpRgXKh/bkYpcfhU+pMk+SFyLUF9YqKsFuMf
-         oucBrsPK4Gte1xlJBy0aFw21MhXXL/XtXGM3h25+vF8le3hf85VVDRedVdP34pF1v7iE
-         uGPKrXi74xsoFjmH8wz0MHGJisPFWHleMb53rX6mkqZ9xtFnfUUTnFKfmoy6YWojl5hj
-         jQCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772677108; x=1773281908;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rmOdcRI/juiCXIkhIn1qeTo3SGfYdV+4fS9rxks7eyY=;
-        b=w7KchvUvvetWK4XIbtEA6ZOnpWgQ5SrLf6vTUft9oMwHyHpWx9diOFiNwOg+JrNB4t
-         WXDuDplkaPAmWgHdyCEsQvty501ZRHIjUR1Nytmf8bS/H224ItTbC/7EDV06zzc37SWq
-         qb5MFsfbs91mLlQzbY2UJ537TlLQYznqifOA5v8GA5eYLDwfKZ0g7XjbLng+nY3rapDX
-         zQ28Zk55sxMCo5IESx8kIjC8t7k1qbQDJ51NhDnrJ0y2+R4+WxvKyhvcgNZSA4CV2Ie9
-         b+u85WEYM5P2diSN/rxnXhJzSZEz/2ZGgLwA06phQG2gkNr/KAVHR1VNc2qhQuwjQJDv
-         fJmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXd7IomBSrI5Worw2V4//+eS9OJ/M4TNed5+Q9mzUqeIzKLTIazfh+mWUosUugG4DeC/YGA8tUDUHZS@vger.kernel.org
-X-Gm-Message-State: AOJu0YziivlyVVcckS8cm0BVMQoo8xGSSvOqBcAr+bEuZjb5eu4nSe0i
-	qmFedCv/yIRWYcr2DbPKvXuLhQ7d+QR4josJO3ph8Vh07r1koX+0f9ebPL58K6bKag0=
-X-Gm-Gg: ATEYQzzkTEssOWVCS6TGvjcaFp+37Uwi/FBd2YVhOO2PQ+ic0/uWhzFbgzu+qYSwgy9
-	kMzAzT2/6qYKTmtgrIGk5oyfQQpAN1+IVBGgGe25KDG143bRGJe9e+UsaaFc5PvA0TPRYe2HgpX
-	bLRYddM2NN8TbEVutCCa61zcGuKMyWiueobnA+SFcWv1rRjyAyYZFC7mSolnJW0tuZLCzeADcjQ
-	tKUeeUncBjjTGf1mjtpEF4FFV4LwYNx9V1EaQ1cZEJYFTjY4qFA13/p5ms3sbnQ40yJbU5Fuzqw
-	+RctemzxevCYI0B3XvrbpbUR5CaXfRyBY8oF0kGQDvntBjvZMM8CVzML2h6n9PhvkdV+3yJEn59
-	NSb6FeDLdoi1Tt1f3mBSmhR3C8uguJoKxHsE4SnDv0M3OS4etZXjFsb35jeL2YbrjOLRQmFxa3i
-	JlAkHlUEhjfTzCxw/XIc4xvL5dtMwjU+dzN0aJi28tn/BfK6fESbLAbSp6ya6kRFzJ
-X-Received: by 2002:a05:600c:190e:b0:480:4a90:1af2 with SMTP id 5b1f17b1804b1-485198bb48fmr74724055e9.35.1772677108366;
-        Wed, 04 Mar 2026 18:18:28 -0800 (PST)
-Received: from [192.168.0.35] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851fb27a13sm6688815e9.11.2026.03.04.18.18.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Mar 2026 18:18:27 -0800 (PST)
-Message-ID: <2f1bdd7a-04a0-49a7-b275-4332f2979378@linaro.org>
-Date: Thu, 5 Mar 2026 02:18:42 +0000
+	s=arc-20240116; t=1772677675; c=relaxed/simple;
+	bh=bB/qm/febIFv9BYbGvAijtJ9QC4L5u6lnb/YhDP82c0=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lc05g2l3EENtDBla/WT9PVT/GfON8SB98eIpvau5pwSVrcygXp0UdAZVkx/0vLthKufXFVwzxeU05RFgCwSs7/ezGIY2PHftepMvmAjnpzmm1zc0uUfGvaEtwVXngEre7xuaBM/knetq+dkCz8JaFDZpZAYZ0b7d/IAdUxQzFJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=lldnF3/K; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: e5c6ee60183a11f1bcd7499a721e883d-20260305
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=TYFn8NiRwsMtMSIwOF/N14WcpCF3yUYWccA9YEno2Pk=;
+	b=lldnF3/KIoQOBO+6kPgS8BxLDeZN7ltmcLO1RF2EhNUz4yxkbClvWQcg4BDESAgWXH8kYu8atmfK+KtbSitIcfmZp/VrBAbEpSzM7WJ3L0a+XIvJKVc0wYhX+46pGILprly17EyfxVyrr98r8lmQ+Ny2pIHjO4H/J7C+pUJ3tUw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.11,REQID:1ff79f68-2590-4972-b8b4-6e393c07bdbe,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:89c9d04,CLOUDID:bed941ea-ef90-4382-9c6f-55f2a0689a6b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: e5c6ee60183a11f1bcd7499a721e883d-20260305
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+	(envelope-from <ot_meiker.gao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1095631818; Thu, 05 Mar 2026 10:27:46 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 5 Mar 2026 10:27:45 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Thu, 5 Mar 2026 10:27:45 +0800
+From: Meiker Gao <ot_meiker.gao@mediatek.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Bayi Cheng
+	<bayi.cheng@mediatek.com>, Chuanhong Guo <gch981213@gmail.com>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
+	<jh.hsu@mediatek.com>, Meiker Gao <ot_meiker.gao@mediatek.com>
+Subject: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Add clock bindings for mt8189
+Date: Thu, 5 Mar 2026 10:27:36 +0800
+Message-ID: <20260305022740.2334033-1-ot_meiker.gao@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/7] clk: qcom: camcc-x1p42100: Add support for camera
- clock controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
- Rajendra Nayak <quic_rjendra@quicinc.com>,
- Stephan Gerhold <stephan.gerhold@linaro.org>,
- Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
- Imran Shaik <imran.shaik@oss.qualcomm.com>,
- Taniya Das <taniya.das@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260304-purwa-videocc-camcc-v2-0-dbbd2d258bd6@oss.qualcomm.com>
- <20260304-purwa-videocc-camcc-v2-5-dbbd2d258bd6@oss.qualcomm.com>
- <2byedzh5w6ymnoebve74a2a7oezgich25wdh4pdsqmvv3jvpkf@kyk2gz5khibe>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <2byedzh5w6ymnoebve74a2a7oezgich25wdh4pdsqmvv3jvpkf@kyk2gz5khibe>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 1195E20A261
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 1C12B20A2FA
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271328-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271329-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[ot_meiker.gao@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,1100d000:email]
 X-Rspamd-Action: no action
 
-On 05/03/2026 00:33, Dmitry Baryshkov wrote:
-> I've cross-checked this against X1E80100 driver. The main changes are a
-> drop of IFE_1, SPE_0, and two PLLs. However it also:
-> - uses hw_clk_ctrl for several clocks
-> - uses rcg2_shared_ops instead of rcg2_ops for several clocks
-> - uses hwcg_reg and BRANCH_HALT_VOTED for cam_cc_camnoc_axi_nrt_clk
-> - uses HW_CTRL_TRIGGER for cam_cc_bps_gdsc and cam_cc_ipe_0_gdsc
-> - uses non-AO clock for cam_cc_xo_clk_src
-> 
-> Are all these changes expected? Are any of them also applicable to X1E?
-> 
-> At this point, I'm torn between suggesting the merge of this driver into
-> X1E driver and ack'ing the current form.
+Update mediatek,spi-mtk-nor.yaml to add conditional clock and
+clock-names bindings for the mt8189-nor platform. The mt8189-nor
+controller requires five specific clocks and corresponding clock-names
+("spi", "sf", "axi_f", "axi_h", "axi_p"). This change enforces these
+requirements in the device tree binding schema.
 
-We can test the diff but, I'm not sure that will really answer the 
-question if it is the right-thing-to-do.
+For other platforms, the minimum number of clocks and clock-names
+remains unchanged. The patch also adds an example for mt8189-nor,
+illustrating the new clock configuration.
 
-OTOH if it ain't broke, don't fix it.
+This update ensures correct hardware description and validation for
+mt8189-nor, improving compatibility and reducing configuration errors.
 
-Reverse the question - is there any reason to have this driver at all ? 
-Can the x1e CAMCC be used as-is ?
-
-If not, then we can accept this patch and potentially look at merging 
-the two drivers later on.
-
-I assume the code submitted has a purpose though i.e. its not possible 
-to just use Hamoa and Purwa interchangably.
-
-A few community members showed me CAMSS working on Purwa last year in 
-Amsterdam with the x1e code - one error if I recall was a clock splat.
-
-So superficially it adds up to me that its not a 1:1 thing with these 
-two parts.
+Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
 
 ---
-bod
+ .../bindings/spi/mediatek,spi-mtk-nor.yaml    | 78 ++++++++++++++++---
+ 1 file changed, 68 insertions(+), 10 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+index a453996c13f2..7e551f2cb52c 100644
+--- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+@@ -17,8 +17,6 @@ description: |
+   for devices other than SPI NOR flash due to limited transfer
+   capability of this controller.
+ 
+-allOf:
+-  - $ref: /schemas/spi/spi-controller.yaml#
+ 
+ properties:
+   compatible:
+@@ -39,6 +37,7 @@ properties:
+       - items:
+           - enum:
+               - mediatek,mt8188-nor
++              - mediatek,mt8189-nor
+           - const: mediatek,mt8186-nor
+ 
+   reg:
+@@ -56,14 +55,12 @@ properties:
+                      design, so this is optional.
+       - description: clock used for controller axi slave bus.
+                      this depends on hardware design, so it is optional.
+-
+-  clock-names:
+-    minItems: 2
+-    items:
+-      - const: spi
+-      - const: sf
+-      - const: axi
+-      - const: axi_s
++      - description: clock used for controller axi fast bus (axi_f).
++                     Required for new platforms, such as mt8189.
++      - description: clock used for controller axi high-speed bus (axi_h).
++                     Required for new platforms, such as mt8189.
++      - description: clock used for controller axi peripheral bus (axi_p).
++                     Required for new platforms, such as mt8189.
+ 
+ required:
+   - compatible
+@@ -71,6 +68,42 @@ required:
+   - clocks
+   - clock-names
+ 
++allOf:
++  - $ref: /schemas/spi/spi-controller.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt8189-nor
++    then:
++      properties:
++        clocks:
++          minItems: 5
++          maxItems: 5
++        clock-names:
++          minItems: 5
++          maxItems: 5
++          items:
++            - const: spi
++            - const: sf
++            - const: axi_f
++            - const: axi_h
++            - const: axi_p
++    else:
++      properties:
++        clocks:
++          minItems: 2
++          maxItems: 2
++        clock-names:
++          minItems: 2
++          maxItems: 2
++          items:
++            - const: spi
++            - const: sf
++            - const: axi
++            - const: axi_s
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -97,3 +130,28 @@ examples:
+         };
+       };
+     };
++
++  - |
++    #include <dt-bindings/clock/mt8189-clk.h>
++
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      nor_flash: spi@1100d000 {
++        compatible = "mediatek,mt8189-nor";
++        reg = <0 0x1100d000 0 0xe0>;
++        interrupts = <1>;
++        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>,
++                 <&pericfg CLK_PERAO_SFLASH_F>, <&topckgen CLK_PERAO_SFLASH_H>,
++                 <&pericfg CLK_PERAO_SFLASH_P>;
++        clock-names = "spi", "sf", "axi_f", "axi_h", "axi_p";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        flash@0 {
++          compatible = "jedec,spi-nor";
++          reg = <0>;
++        };
++      };
++    };
+-- 
+2.45.2
+
 
