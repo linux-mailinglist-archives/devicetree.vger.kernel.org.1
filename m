@@ -1,258 +1,268 @@
-Return-Path: <devicetree+bounces-271600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271601-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNX7BNaZqWm7AgEAu9opvQ
-	(envelope-from <devicetree+bounces-271600-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:57:26 +0100
+	id QMDPG26aqWm7AgEAu9opvQ
+	(envelope-from <devicetree+bounces-271601-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:59:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE29213F8F
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:57:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D326D2140C3
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:59:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3376D30E98F6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:48:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4D92A30CF72C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626153A9D8E;
-	Thu,  5 Mar 2026 14:47:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EGhuVJdY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E07EC3B4E89;
+	Thu,  5 Mar 2026 14:54:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B27A3A962C
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:47:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD6F3AE197
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772722026; cv=none; b=fBLFibop4wmxi7Zx8pcaDqBt9Ta6nimV/u+jG/lrmfo6XOp8kJuKFUdNtFidHmxuJZ0loxc/yGPl850hxHX64lzJwA11UsNyQy/P0zvCzFNYIKUOak7bDij1esWgOM9p9VD8IhIiyEnLCEZ+vEWKg2K62do4wBUapn2ZJaklc/E=
+	t=1772722458; cv=none; b=SNPsFjGYrVxymexx66b+lRAwtDS+aD40zf3iT1/DIbaAOhcXG6lGdkg3OM7IU5nxj8jel2JnU4hdSFFt7MiO6qitfQd3UwOTm3p9JFs2dt12BRgjCzuMppWmg/jWoKRsyJji5Zg7Xm7pyMTv7BDbpLXmvVmg33k8rl9+mhmFN4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772722026; c=relaxed/simple;
-	bh=uBxvabcAKKc9GycYpWhTNkvX6gKDgXPi95h/49nUPcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mwAz7kZuaQBmjS+fDAb60UHaXrObh/mwpMKG6jis2fl0xNodRpl2KlOgfUYqT5TTOxzZ+O7kHDOjDJNyr+/66nbtBr4Oit81dw7u9hKC0TaGRg3WKOn+N6YiGCk+5bz+3JhiLgwI7C2lS1YmkFPey1AMHICNevUXfHknjo/20rk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EGhuVJdY; arc=none smtp.client-ip=74.125.82.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1772722458; c=relaxed/simple;
+	bh=sqFS7jkvmWko0raJbLD+jIlJ3xHTUXzihuRenty1Nbg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=b1fVydnE1sE/fqh+F8QRbf2nSG5cZwFmcC9FzoXyGWDYR0C+02n9zV/+GFETpvgBgkS+bkvTQCa6uAEciiY5QwJFKjOLFwDb8zxvDBRZSTlxUpi0ozhhrEZQG7JYrwLvG4pv8iL25xllwZ/Ww406ayC+VBcR2SdMKkDMDVIjIvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-2be3bdfda8eso1091922eec.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:47:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772722024; x=1773326824; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mepahCioLN4Jzp1BA0LfxlHW1z/eoqVkae7lBDykJ7Q=;
-        b=EGhuVJdYAKt+7Z8N4iT6Cf/P6Doa6tATISTFTcA77CDBgKfNPln8qtUzD7TFxqgI7Q
-         zlO75JntMHT9BX9P0Hzq2hC5C9T55Z+S6YtBkdFJ/7AdrZulEM4RrjAPe6ECskS7AQkj
-         6PjHKV3ZPIMY/2sGELB3RiJIbTnjmITrsnnzKJX7uy+qQ35SY1s4n5G9/N3bRYuG89bV
-         EItQHnGWLwW1gbinqSSTRY3BPF1Lo17DgnBCg+0f1mpR1QQp0mvOJcM7OtdazxNbCM6S
-         +hOGrW4I+bkw3kD3wW8Rk7/FOEuU6UdUXcBpiB6ni3zYx5CuIFffW4eDcIj7i3Om7UKL
-         afhQ==
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-5fded42aa7cso5523621137.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:54:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772722024; x=1773326824;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mepahCioLN4Jzp1BA0LfxlHW1z/eoqVkae7lBDykJ7Q=;
-        b=R/5ZGEOgaCtzKVIwX/1yy35beBtw4FoYCGLthmWB67eKQEtDGtuEl5BdarkYui2WOt
-         GQcHjxg3I/zLwahAWeVb+cD5ZsIfNi6XQbq5v01TsaSTKhJ4dh9IP4G/TZN5ODW48yiH
-         vUPbVmUPadZ2n90tw0EHs2F3MSgdPlyWXchrSe1Fbye5NXC5mAtIypOaOfy0VXnOdTGM
-         Gu5ElkoucHIoRTy6npyqtK532I+6fRSOgkle4bsvsgw0nCh7pNOznVTxKB6jgEBjiuIH
-         Io3Es4IYlxY7PC2mhNZMTFw8l5ajCMtRNv5P7ELkjdpuBWyYaXeo9JmPSV+IaTeGmref
-         U3DA==
-X-Forwarded-Encrypted: i=1; AJvYcCXtiN1SaPaP5lWxuN74GV02HL1vmWw8t2Trtxbc763fHB3wi1fpe5Ap+5Z82E2mUq2eqYQggffJwsVx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/LuYIL4qf7eTuAwcblYfGecHvH8PHj99xSLgOsJe3olgDYlLw
-	M7Ikoe+bi26142Ry3822SEYgp+cWbClBpJRz0LvUZO0L42ipsU4r5k3u
-X-Gm-Gg: ATEYQzybRIe7ixfSLOwJ8gs2Q7GnGh+Hfy3zlNBDnfb+SMap1rkmaysmy3dJvzwZeUZ
-	HxUkIxlI0psk8yr5++FTbyNYX3e6Ob5WVeR/oLm0qngblisg/UQQbtOyHEmInIvJ/dUNmooBWyQ
-	IqvyEG7CB2uFZYdaZkx9XP5A03oY7JUq20q9787OTzSDRFaNEpDqx7V1KgIKGimSbOSHAhowBbd
-	P2Jz/oYrp00ZoLrEfCdUtgnwkFP1kDHAztXykGUEg5r0LflME89uj1a8OLjNaTY0KZDNUqbQoqs
-	sgHXLnyYeLjuJqFeBbCSM9OMDorkG1C+bwSFiS9n1klmeE1fWYEBq7LU8UqqFxQ9dvV4U90WDla
-	SUlF/9aqXSqeSro1UbrVGgx7X7KdQoa8IZRaq3IerdyFJdwVnpEKYdEw8dN/S7HpZ9Qvuz4cWL7
-	UZSMxkIN3dSiKIc1izt6A1I3YBA1rU9mgiOWpf
-X-Received: by 2002:a05:7300:a887:b0:2be:2b8d:3992 with SMTP id 5a478bee46e88-2be30fa55e3mr2534933eec.4.1772722023898;
-        Thu, 05 Mar 2026 06:47:03 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be2c9c67dbsm3900031eec.19.2026.03.05.06.47.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 06:47:03 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 5 Mar 2026 06:47:02 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Huan He <hehuan1@eswincomputing.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	luyulin@eswincomputing.com
-Subject: Re: Re: Re: Re: [PATCH v2 0/2] Add driver support for ESWIN EIC7700
- PVT controller
-Message-ID: <be51fbe2-d2c6-4421-b268-2c2b34128f34@roeck-us.net>
-References: <20260128101400.859-1-hehuan1@eswincomputing.com>
- <1a08e50a.362b.19c4c20db59.Coremail.hehuan1@eswincomputing.com>
- <e648565e-59a9-4270-bbbd-7c53f5f65c6c@kernel.org>
- <2c43c2a.366b.19c5017e58a.Coremail.hehuan1@eswincomputing.com>
- <0183a68b-f8e9-48b8-b77f-5ae0a048a2bf@roeck-us.net>
- <46752141.375d.19c5ae8161e.Coremail.hehuan1@eswincomputing.com>
- <6803a67f.3e27.19cbdb318ff.Coremail.hehuan1@eswincomputing.com>
+        d=1e100.net; s=20230601; t=1772722456; x=1773327256;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QSuHbHDrfHncDN0mo7GU5amj6QcQduXAgP8+JsZLJ9A=;
+        b=dSAzIq5p1P60LUu0qQIY6k5OwoAoa7qUS+ZphiGL9nUrflmpv635ecT8HFSQRAOiuD
+         frifsMFP9+AkAQBZWCG00RuGyt3XY2NWcMzTpwNg7Kf+lTuE6O/0bptZl1PVSBgrYbMf
+         Nk1SntNrVOfig8B5PLKnT+LgScvYszcRoW2myy2bsqoxTYVgsbtYfrUrOcqgVICyrPIl
+         kN6nJXE/sCER6Or+YeHbgYjWabQ9psxjVopux4axG6EL/WZS22Tt55twJpGP4h6fnDbo
+         PP3SiqzMmDEeg9bMUNKqCZIaKDMDRscevAUxL9urI+80EoHyMCvRWR84RE+pp0QEwSWD
+         67mQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU9K9k4sgVk+R/tjx7a4OrAhtTroMnSp4V2ES0CEZ9vPQfR8lOkE9EstIvdI3SIuGaMYYgyWv+aU+YB@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSkXYRG7izPYoQfQiXmDlx4JQt4bd8BT/xsHp5cjcCi7jLIPaD
+	Z1BfpfShNdP654ksK4IBe6OziwJG3yjKM1LEjrhulRQBzTaSxZSo7Tm7VlKlHEZoKO8=
+X-Gm-Gg: ATEYQzyVE3qs6TWOic9cQnFCBSiliE4fYE9iQh5NrdiJZWvFeEAslV6chlmmYGecljA
+	L9IJMSnovfr/ShVP5tyk11THx8//BmOVLTv6GlCsvQmuwCneEe2+c3hiKIuxMYsM5Pf54b9PAJC
+	gM3CLtcRO+P10EbjhrI/RYlFTA4q9mVU8POuFR3gAVyjoTP/O+9erjgRRJQOouCV4zLNCVcjcpi
+	cbW2EeOLnigBGH0FhRHDi52Noj07mBNNRkPgp4Lxr3IE3GJ4NTrVcHAZuDcCkAYcGfTXw67qbR6
+	HQYNhl/ZZdnh6IsP/8HejKDgSH9hh817pKoqMVTO1TigUyTNHHcrb/ZWu47HS61KQVRgMqCRD+J
+	IXfwraj9ZGVEaTVFG6JM9fpNMm9Q4ZX0K85DJ4fJtB0TFILsYeyhMtFwJc2mtBIRvgKXKmT5UdW
+	OPWF7k2YGaFppq4XTakAjM5GRDl0eStEbq9ZqOcw33EZwHJ9gaFk1PJarN8BDjCqMrS++Horg=
+X-Received: by 2002:a05:6102:4421:b0:5ff:d71e:c5fd with SMTP id ada2fe7eead31-5ffd71ed09amr438712137.2.1772722456381;
+        Thu, 05 Mar 2026 06:54:16 -0800 (PST)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ffbe90d7fbsm4003882137.13.2026.03.05.06.54.16
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Mar 2026 06:54:16 -0800 (PST)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-5ffbbf07c11so1130550137.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:54:16 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXL8IFFzkw00ZA4pF4dMOSiIsga0X/+T84B6SPAT5N88Mk2+ALsqkVf7pJJseIfmhlAi04FpRTcY0zu@vger.kernel.org
+X-Received: by 2002:a05:6102:a4a:b0:5ff:24b4:8992 with SMTP id
+ ada2fe7eead31-5ffaac15453mr2876304137.4.1772722454877; Thu, 05 Mar 2026
+ 06:54:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6803a67f.3e27.19cbdb318ff.Coremail.hehuan1@eswincomputing.com>
-X-Rspamd-Queue-Id: AAE29213F8F
+References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com> <20260203103031.247435-8-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20260203103031.247435-8-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 5 Mar 2026 15:54:03 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW20h=D9Tk5T=6rxNanEiON1ZL35CJ6cqzrX12UeDcdPg@mail.gmail.com>
+X-Gm-Features: AaiRm53bqTWke9KaVtnJ84J1a0a9Fq6QAkJRkm21cTTLv8kzepb9P_yYa_WTyJw
+Message-ID: <CAMuHMdW20h=D9Tk5T=6rxNanEiON1ZL35CJ6cqzrX12UeDcdPg@mail.gmail.com>
+Subject: Re: [PATCH v3 07/10] arm64: dts: renesas: Add initial DTSI for RZ/G3L SoC
+To: Biju <biju.das.au@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: D326D2140C3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271600-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-271601-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.223];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linux-m68k.org:email,0.168.77.240:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.180.91.224:email,100ae000:email]
 X-Rspamd-Action: no action
 
-On Thu, Mar 05, 2026 at 07:12:37PM +0800, Huan He wrote:
-> Hi Guenter,
-> 
-> Thank you very much for your detailed review and valuable feedback. I
-> apologize for the delayed response.
-> 
-> > > 
-> > > # Commit 6f4d5698f334 ("hwmon: Add Eswin EIC7700 PVT sensor driver")
-> > > 1.  eic7700-pvt.c:487: ERROR: Unbalanced clock refcount with Runtime PM
-> > >     > +	pvt->clk = devm_clk_get_enabled(&pdev->dev, NULL);
-> > > 
-> > >     Using `devm_clk_get_enabled()` enables the clock and registers a devm action
-> > >     to disable it on removal. However, the driver also uses Runtime PM to manage
-> > >     the same clock:
-> > > 
-> > >     > +static int __maybe_unused eic7700_pvt_runtime_suspend(struct device *dev)
-> > >     > +{
-> > >     > +	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
-> > >     > +
-> > >     > +	clk_disable_unprepare(pvt->clk);
-> > > 
-> > >     If the device is runtime suspended when `remove()` is called:
-> > >     1. `probe()`: `clk_prepare_enable()` (Ref: 1)
-> > >     2. `runtime_suspend()`: `clk_disable_unprepare()` (Ref: 0)
-> > >     3. `remove()` (via devm): `clk_disable_unprepare()` (Ref: -1)
-> > > 
-> > >     This leads to a refcount underflow and warning.
-> > > 
-> > >     Fix: Use `devm_clk_get()` and manually call `clk_prepare_enable()` in probe.
-> > >     Ensure that the manual enable is balanced correctly, or rely on Runtime PM
-> > >     (and `pm_runtime_get_sync` in probe) to handle the clock, ensuring
-> > >     `pm_runtime_put` balances it. Since `check_pwr` needs the clock before
-> > >     Runtime PM is enabled, you should enable it manually and then possibly
-> > >     disable it before enabling Runtime PM, or keep it enabled and let Runtime PM
-> > >     take over (but ensure `remove` doesn't double disable).
-> > > 
-> > >     A common pattern:
-> > >     ```c
-> > >     pvt->clk = devm_clk_get(dev, NULL);
-> > >     ...
-> > >     clk_prepare_enable(pvt->clk);
-> > >     ...
-> > >     pm_runtime_enable(dev);
-> > >     pm_runtime_get_noresume(dev);
-> > >     ...
-> > >     pm_runtime_put(dev);
-> > >     ```
-> > >     And ensure `remove` (or devm action) disables it ONLY if not suspended?
-> > >     Actually, simpler is:
-> > >     Don't use `devm_clk_get_enabled` if you use `runtime_suspend` to disable it.
-> > >     Use `devm_clk_get`.
-> > >     In probe: `clk_prepare_enable`.
-> > >     Register a `devm_add_action` that calls `clk_disable_unprepare` *only if* the
-> > >     driver is not using Runtime PM to control it? No, that's messy.
-> > > 
-> > >     Better fix:
-> > >     Use `devm_clk_get`.
-> > >     In probe: `clk_prepare_enable`.
-> > >     In remove (devm action?): `clk_disable_unprepare` (but this still has the issue).
-> > > 
-> > >     Correct Fix:
-> > >     Do not use `clk_disable_unprepare` in `runtime_suspend` if you used
-> > >     `devm_clk_get_enabled`.
-> > >     OR
-> > >     Don't use `devm_clk_get_enabled`. Use `devm_clk_get`.
-> > >     Manage the clock entirely via Runtime PM.
-> > >     In probe:
-> > >     `clk_prepare_enable(pvt->clk);` (Temporary for check_pwr)
-> > >     `check_pwr...`
-> > >     `clk_disable_unprepare(pvt->clk);`
-> > >     `pm_runtime_enable(dev);`
-> > >     ...
-> > 
-> > We will reproduce and further analyze the clock refcount imbalance
-> > scenario.
-> 
-> Regarding the Runtime PM issue potentially causing clock refcount
-> imbalance, we have investigated it and will address this in the v3 patch.
-> 
-> > 
-> > > 
-> > > 3.  eic7700-pvt.c:368: WARN: Spurious interrupts on shared IRQ line
-> > >     > +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, PVT_ENA_EN);
-> > > 
-> > >     `check_pwr` enables the device (and thus potential interrupts) before
-> > >     `request_irq` is called. If the IRQ line is shared and the device asserts
-> > >     an interrupt immediately, the interrupt will be unhandled (spurious) because
-> > >     no handler is registered yet.
-> > > 
-> > >     Fix: Request the IRQ before enabling the device, or ensure interrupts are masked
-> > >     at the controller level (if possible) before enabling the block. Since `check_pwr`
-> > >     relies on polling and ISR clears the status, moving `request_irq` is tricky.
-> > >     Verify if `PVT_ENA` has a separate interrupt enable bit or if `PVT_INT` has a mask.
-> > >     If not, this is a hardware/driver design risk.
-> > > 
-> > 
-> > Confirmed with the hardware team, the PVT_ENA register has no independent
-> > interrupt enable, and PVT_INT does not support masking.
-> > Enabling the device before request_irq may generate interrupts, but the
-> > driver disables the PVT module (PVT_ENA_EN = 0) and clears interrupts by
-> > writing PVT_INT_CLR. In practice, no issues have been observed.
-> > 
-> 
-> For the spurious interrupt concern: after confirming with the hardware
-> team, the PVT_ENA register has no independent interrupt enable, and
-> PVT_INT does not support masking. In the current implementation, enabling
-> the device during check_pwr may generate an interrupt, but the driver
-> subsequently disables the PVT module (PVT_ENA_EN = 0) and clears the
-> interrupt status by writing PVT_INT_CLR. In practice, no issues have been
-> observed.
-> 
-> Could you please confirm whether it is acceptable to keep the current
-> implementation under these conditions?
+Hi Biju,
 
-Yes, but please explain in the code.
+On Tue, 3 Feb 2026 at 11:30, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Add the initial DTSI for the RZ/G3L SoC.
+> The files in this commit have the following meaning:
+>   - r9a08g046.dtsi:    RZ/G3L family SoC common parts
+>   - r9a08g046l48.dtsi: RZ/G3L R0A08G046L{46,48} SoC specific parts
+>
+> Added place holders to reuse the code for Renesas SMARC II carrier
+> board.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Thanks,
-Guenter
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
+> @@ -0,0 +1,251 @@
+> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +/*
+> + * Device Tree Source for the RZ/G3L SoC
+> + *
+> + * Copyright (C) 2026 Renesas Electronics Corp.
+> + */
+> +
+> +#include <dt-bindings/clock/r9a08g046-cpg.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +       compatible = "renesas,r9a08g046";
+> +       #address-cells = <2>;
+> +       #size-cells = <2>;
+> +       interrupt-parent = <&gic>;
+> +
+> +       audio_clk1: audio-clk1 {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by boards that provide it. */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       audio_clk2: audio-clk2 {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by boards that provide it. */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       can_clk: can-clk {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by boards that provide it. */
+> +               clock-frequency = <0>;
+> +       };
+
+These three are unused, so please drop them.
+
+[...]
+
+> +       eth0_txc_tx_clk: eth0-txc-tx-clk {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       eth0_rxc_rx_clk: eth0-rxc-rx-clk {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       eth1_txc_tx_clk: eth1-txc-tx-clk {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       eth1_rxc_rx_clk: eth1-rxc-rx-clk {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board */
+> +               clock-frequency = <0>;
+> +       };
+
+TBD...
+
+> +
+> +       extal_clk: extal-clk {
+> +               compatible = "fixed-clock";
+> +               #clock-cells = <0>;
+> +               /* This value must be overridden by the board. */
+> +               clock-frequency = <0>;
+> +       };
+> +
+> +       psci {
+> +               compatible = "arm,psci-1.0", "arm,psci-0.2";
+> +               method = "smc";
+> +       };
+> +
+> +       soc: soc {
+
+> +               i2c0: i2c@100ae000 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+
+Please move these two below "reg".
+
+> +                       reg = <0 0x100AE000 0 0x400>;
+
+Please use lower-case hexadecimal.
+
+> +                       /* placeholder */
+> +               };
+
+> +               pinctrl: pinctrl@11030000 {
+> +                       reg = <0 0x11030000 0 0x10000>;
+> +                       gpio-controller;
+> +                       #gpio-cells = <2>;
+
+/* placeholder */
+
+> +               };
+> +
+> +               dmac: dma-controller@11820000 {
+
+Unused. Surely you can wire up scif0?
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
