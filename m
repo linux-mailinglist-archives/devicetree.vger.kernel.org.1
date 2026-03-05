@@ -1,172 +1,173 @@
-Return-Path: <devicetree+bounces-271425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271431-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aKetOXBDqWlT3gAAu9opvQ
-	(envelope-from <devicetree+bounces-271425-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 09:48:48 +0100
+	id MGqYIj1GqWl53gAAu9opvQ
+	(envelope-from <devicetree+bounces-271431-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:00:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D13AC20DB17
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 09:48:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2509820DDB7
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:00:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 432E3300832B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 08:48:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 80FD730ACF16
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 08:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AD39375ADD;
-	Thu,  5 Mar 2026 08:48:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4AFF30F808;
+	Thu,  5 Mar 2026 08:57:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H6bDB/YZ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZvN0Twss"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 658343750DC;
-	Thu,  5 Mar 2026 08:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C74E5373C1E
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 08:57:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772700524; cv=none; b=u5L3iKg+UO+vIMQ+FTB43Z3G2Ry86PPcJRgLTz3d8n8gBQBi7BPp4FldzaP3UNi7+KoBdQGpIYyOrnlNer3zfVEXbcCpquOxTXRmXnS+Oy5ZeT7fu7/UHw9XPN6b3cfFsnk1BEbxEmkPBWRW6pkYY5CYZST9L88btQyMgm+A7SE=
+	t=1772701031; cv=none; b=Ny2By1npksBm2jdODUwDOrsUnzfDfUUSPpPM2HyFOxCQGoGmoFa0946CZt79TXMkx6wCNIYBWGfSjeI+7KHRddOeKFjoS/PASd2u+qVdRtaaMMFeWNiJDhiDwuKJBiu3udvC6ODR1E8pbWECSQ1EGB/Z1Uz6hWf0rXPkkrnaSoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772700524; c=relaxed/simple;
-	bh=EcZ+a9tuBlJ/zUrhdvgSANCnV474o7Fae3JBtqeQnck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YC20YAv0DlgZ1AaJHHbJOKqAraHakM0T56MK6wf5jCxg0VCnlNBKd4KXOIzMbkSVPOybbaxxfkreHti7jIOC4G0jPXV6SY/xXf2ry1BqQTRAZjif6a4uyBmyRNfod7uLfeUmAoF5gSLgY4x27oKFtc0gQJIyjRxTc2B84BLu1G0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H6bDB/YZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53EC0C116C6;
-	Thu,  5 Mar 2026 08:48:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772700524;
-	bh=EcZ+a9tuBlJ/zUrhdvgSANCnV474o7Fae3JBtqeQnck=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H6bDB/YZGFvlfGu7wH7LI8/kMzQHpZiaME/GUOJDKCPZwE/07i2KpQhSuFkY6gwm/
-	 ewcFw+KVDAuRh+hBsqWqy8ciP0j6yTSCfN0PPIBnnZZa0g2+BQ8yH0ZzdFlgT6yvxE
-	 WfgIyQsxc3Cwx8dxrv8FsW7gKKWxnKQ2b7u1ukxVqguUbigHYXFARdeXMUIpaotM1n
-	 nTMy707AwBWk0S1jKotg/8rGfSxdfr7turtD/I971ydlwfZwhobFP6zSP2cewTuw4w
-	 jd9BVftmqWO2SZbT4e4SFk02sJPGYtVMgAwHe6QyJyvwWyd/EUGHbIvZi5ytMRirm7
-	 KASn32cdZUr8Q==
-Message-ID: <fff3ea87-54b0-44b6-b4c8-89b8dad31402@kernel.org>
-Date: Thu, 5 Mar 2026 09:48:38 +0100
+	s=arc-20240116; t=1772701031; c=relaxed/simple;
+	bh=IhuoGE8oRqe1Ym/GsN164uTGYIIELvzj/f6GldWcJdc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Fgctj5svHYGjMnJdnYrotz38I7VwEqh9iWYfqngd8AbgN6HuMjWlEdbgsBWj3qemkp3erfaOZLYyrvqW5h+vzK3AwgmmTgNqNITZnqbvROsk/zcZ7kaXisY+kPQyTJKszC0A3QSUsfpfZFwHIxXtTQ8xY+1ptZjXD4FVMb9tE6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZvN0Twss; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-439ac15f35fso4636867f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 00:57:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772701028; x=1773305828; darn=vger.kernel.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ocIav81eGlA8J7gguvP8abYVPg8GbAkn/vs4f2boCyo=;
+        b=ZvN0Twssfi3ZjkzPInduLpGLbE5kc2hxqZf7F3+qWPGAyWfKpqAe/1iJvtES1qJ6Xz
+         fjCYa/s/GVJgZxqGBr6wXlv9rxOkH7GU+il1bjzluZMTciQ/bSl6NntoD1tzOeJ7I4Fb
+         fBwiYS3E8onwBWzz+16yDwcN37t8PuPwx778OuHpY39/eFahU6tywIhAlPv222N+AUX0
+         dGHUz3OARjQMHNAk1qrx+Z/tTLbwpJH8Zu99DO7E66+AFRNPVz4FnjXVj05w/f5zBkKO
+         amklZsxK8iRP6l9i6Mwls9AmURL2TNjMa8HFWkOsSFbwY0uEyTYwlYNlMVas/urHxUCW
+         8WtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772701028; x=1773305828;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ocIav81eGlA8J7gguvP8abYVPg8GbAkn/vs4f2boCyo=;
+        b=D1dn1H716ph2DvvJnDR07lfVvt8wEtHr5TVfSNJwx8bHkjedRiRJo3NyLNjcuXADci
+         7MbUS7eP8uPkskLifDBD7LW63Ck1nTdLLWtd9v7zZap8OdCbkVanF4VH4K/ax855ng1g
+         MD8dmj5nnmCsiK7Nj0TiI7XafB6E+vDcpCqC0uQHxHkl92XgC29a2xjO3sJjCisuCanb
+         fAKTgMTVz13jfiKL5vupKUeMV1viSkg68zvdOl97fei5JR/m/nleVDuGSniiom0ULccF
+         R3egE/1fVLgYA8vbsTnmiGd5pPJWEiNjQh/UAAH3z1Ke14Z2/zZWb3sJiLpyXT1cAXO7
+         iQQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/xO622xMZ8FuiABcZLu4rHQxAUsgd0TicUBAV3gnV8nKNIC+8dah4p2/Fn6XaWRzISQnRcSaOeADy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzzak2cYF8Lfqr1OyDaaTDh5RLD/831bO6/s3qB3FnC/B2MiNeq
+	jAJtUY9WpSQjQuZ/mMDqxQWLDMfjbcsx/iIcy+lW+YS+52+0CdWLVZoRNHZ+n++Mb+Y=
+X-Gm-Gg: ATEYQzxs8cUuC9R5KDPysxwf9KYM5NMemkBOcRCVK/UwpGFo8CgB0H6VAWgqPmY/u6r
+	uq38sHfOKUJmRq/QooHgMaxlZ5INn9ecW38kr6sFaekoWLscqQs8sgmzGBHWlnXKEru2U+9Xu5W
+	5Svo7DvXar+3r/3POkZjRP0z/cav8DRng63FOywFG7QKzuAVLxYMPT6hOzApFzVRfzCqy7fjzVZ
+	wHkb0eZ+nQjE2Es69ekncPVODoKA/zpJJuzc/XJr/lGIxAkcPjtwR4qqd5wj4+vqH0VApvBHFWM
+	NgwEDTmVUExYN7scj/WNVdxaFbhXvgD9pqaOEYtUFcxCSzkrJuzZxoZvA+U35gznwz7eiVFNuMC
+	UZ/9prE0fmeK4ab1QVYBOdYUW6GbFjCDeoLJ9+4MDPAZn4ovbUsW6z6g2j1y10t24+wfp+Wf+DF
+	cnWiaJwIRBrldawLz6iVhU
+X-Received: by 2002:a05:600c:1d0c:b0:482:df17:bbbc with SMTP id 5b1f17b1804b1-48519874e2amr76440305e9.20.1772701028139;
+        Thu, 05 Mar 2026 00:57:08 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:5595:8450:af3:bbe3])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-439b485a0b6sm32442608f8f.39.2026.03.05.00.57.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 00:57:07 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>,  Stephen Boyd <sboyd@kernel.org>,
+  Michael Turquette <mturquette@baylibre.com>,  robh+dt
+ <robh+dt@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  devicetree
+ <devicetree@vger.kernel.org>,  linux-clk <linux-clk@vger.kernel.org>,
+  linux-amlogic <linux-amlogic@lists.infradead.org>,  linux-kernel
+ <linux-kernel@vger.kernel.org>,  linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>,  Ronald Claveau
+ <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: amlogic: Fix a typo
+In-Reply-To: <20260305074328.639993-2-jian.hu@amlogic.com> (Jian Hu's message
+	of "Thu, 5 Mar 2026 15:43:25 +0800")
+References: <20260305074328.639993-1-jian.hu@amlogic.com>
+	<20260305074328.639993-2-jian.hu@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 05 Mar 2026 09:57:06 +0100
+Message-ID: <1ja4wmbqn1.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Add clock
- bindings for mt8189
-To: Meiker Gao <ot_meiker.gao@mediatek.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Bayi Cheng <bayi.cheng@mediatek.com>, Chuanhong Guo <gch981213@gmail.com>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com, sirius.wang@mediatek.com,
- vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-References: <20260305071546.2603378-1-ot_meiker.gao@mediatek.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260305071546.2603378-1-ot_meiker.gao@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: D13AC20DB17
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 2509820DDB7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271431-lists,devicetree=lfdr.de];
+	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271425-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[amlogic.com:query timed out];
+	DMARC_NA(0.00)[baylibre.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org,aliel.fr];
+	RSPAMD_EMAILBL_FAIL(0.00)[jian.hu.amlogic.com:query timed out];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,amlogic.com:email,baylibre-com.20230601.gappssmtp.com:dkim,starbuckisacylon.baylibre.com:mid]
 X-Rspamd-Action: no action
 
-On 05/03/2026 08:15, Meiker Gao wrote:
-> Update mediatek,spi-mtk-nor.yaml to add conditional clock and
-> clock-names bindings for the mt8189-nor platform. The mt8189-nor
-> controller requires five specific clocks and corresponding clock-names
-> ("spi", "sf", "axi_f", "axi_h", "axi_p"). This change enforces these
-> requirements in the device tree binding schema.
-> 
-> For other platforms, the minimum number of clocks and clock-names
-> remains unchanged. The patch also adds an example for mt8189-nor,
-> illustrating the new clock configuration.
-> 
-> This update ensures correct hardware description and validation for
-> mt8189-nor, improving compatibility and reducing configuration errors.
-> 
-> Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
-> (cherry picked from commit c3180d35e52b5213764a89403e71f9a34d7bb842)
+On jeu. 05 mars 2026 at 15:43, Jian Hu <jian.hu@amlogic.com> wrote:
 
-NAK
+> Fix a typo for T7 gp1 pll.
 
-Stop sending same stuff multiple times.
+Patch title is too vague
 
-Best regards,
-Krzysztof
+Credit is due to Ronald for finding and reporting the issue initially.
+This can be viewed as a clean of his original patch so the change should
+have his Signed-off-by IMO.
+
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  .../devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> index 49c61f65deff..b488d92b7984 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
+> @@ -72,7 +72,7 @@ allOf:
+>            contains:
+>              enum:
+>                - amlogic,t7-gp0-pll
+> -              - amlogic,t7-gp1--pll
+> +              - amlogic,t7-gp1-pll
+>                - amlogic,t7-hifi-pll
+>                - amlogic,t7-pcie-pll
+>                - amlogic,t7-mpll
+
+-- 
+Jerome
 
