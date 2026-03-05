@@ -1,82 +1,84 @@
-Return-Path: <devicetree+bounces-271725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271726-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFr4G77vqWlGIQEAu9opvQ
-	(envelope-from <devicetree+bounces-271725-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 22:03:58 +0100
+	id eCjLG8TvqWlGIQEAu9opvQ
+	(envelope-from <devicetree+bounces-271726-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 22:04:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA5392185D1
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 22:03:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F6532185E0
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 22:04:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0C79430715C6
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDF99306CEF5
 	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 21:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3775934A79A;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA0CF34AAFB;
 	Thu,  5 Mar 2026 21:03:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OKe9BTIr"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="XJz35j82"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CE7349B1D
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 21:03:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD7E34A78C
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 21:03:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772744631; cv=none; b=hNybQ6sg85mTbw0tjgxm81XajWarXiNVN92o74yfI4yzXruEUE4BQRo3KE2JBFEzWxt4QSa0KykoANvIhMF1RO00fv4EWiSKIzs3eVnJ0rCqkE0dOr+J3w+YxAnVIyNuuphCQZ5OeBlOwaEeXmLmqve9WLr4bVfNVRehqpc3clY=
+	t=1772744631; cv=none; b=mqlaA6gbNT+0hVJmFn30Jic+XfAWNB2+eJP+dyJQHfYLhL1+IjQ+s+StknvJgYInb4AwAS4QAfeQnB/fDgyXmTNc+fNdy1wF9k/zbP2ydpuQxxbmzn8NYyPmw2rY9Qvp7utm2dP4vG5lv2/H1fUphkvtANuooJL8gGQEjRB2A1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772744631; c=relaxed/simple;
-	bh=nCZZHuCOrSues8QVWXqMC3+FI2MpOSDkCrCh9OXFww0=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LXSE55pg6YTrNMYE47PwDQAVaXGRUoXdfl+bBg/YKFYehKlI1N2yhVOAz1cyCBCIQ0wZq7smFaPRZELJ4pUl4x38YE6QEWGEJoitq19B9+ervRQpAubw1o+rVvKKB6qm0qvd/RHaqBqmP0lhXQt9q7FDQcDzIbD4N8N1mRhT4YA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OKe9BTIr; arc=none smtp.client-ip=209.85.167.170
+	bh=bGcKPNGpFeozhudmOX3FNcg6vxKf4h+qA1CKaUdGf+U=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=K/3rRUtMyx57hg+Ou/Nmmq49tvkP5p2vzqpvwXJ49YuMZ7HTjtpZoMXJX1lszRhkY0sLINjPX01vYgb7kOFSQW3JI0QA8dEnSkgJNkA4Ap3Wl/OoV3/3CKdC9xad0YuGu7f3JXlroxqiTa5K/kLMQ2qdz9lT/n1GaCVDqdZi45c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=XJz35j82; arc=none smtp.client-ip=209.85.167.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-46394090d2fso3014588b6e.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 13:03:48 -0800 (PST)
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-46391f4c1f9so5341201b6e.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 13:03:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772744627; x=1773349427; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uMUvcEj/jfsJXhZHMSm5BagEwceXMMjDcklR+tqh0YI=;
-        b=OKe9BTIrbGjHZUbE6Xcmezzp8oSopmK9DeAusQ7OorDzQf3E5f1amaumKpc//OSbyw
-         bRP6LNrTybWiERo/zBRpVG6LToJxZTzyn6Xh8zEiHiqB4mvJj5w6cLPrBokHgXxPyR13
-         1L6B6V8L2I4JrFZXjLWmfvXMK9Rpl0xhYRFHf/D92rQPgIF6s+E69cShJxUVPhbHS3IL
-         yjdo9ThrIQN48GO7UqjPYmoKmP2ckRJ11Ek0MKFK1B8trxtUo5KcBtFbMGaHUQK6pogm
-         vKP04TH90TyurAjcdpywWxaRb/reMsxfZPEg2jPN43KO4FpAaoqQZzAU8dMo664wpXcP
-         l51Q==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772744629; x=1773349429; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z+oK1HC6mjzut6Jep3O4wnFAo1gcFVDix5BbI9g78wE=;
+        b=XJz35j82xQP+ksCQtDADw+8vygSKAqE5RbjxiVRo5o7v39o+sKA2cVfDh/E/hEYxDl
+         uPPj8UTIzz7e9b7p5nv/Ovkb61gw772G9SIl6UIHA+R7yusaIQAsA1j+aoPCm8Bmgg+b
+         jHpqJ/e39PFdhCuGskxdbBR0YJ+zkp6fCT1J640yX08ibJyOimy51aTIrop9AZm95/Yx
+         z50gKYgIt893fPaX36V9c4zPjEF48o9hsRKd+bs3RoOyiCGBIDmtjgwGYHHW65tZS6Kh
+         KEnXU99VR9GbTOux3rbdcewCZVrz+EE7egfa7jGoSdFFTGu6xMaAVuj2VgHABzxdQMjv
+         slpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772744627; x=1773349427;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uMUvcEj/jfsJXhZHMSm5BagEwceXMMjDcklR+tqh0YI=;
-        b=CYVP33q+anD0VjhH6MwuLrvkk5o6BLqbhtW6JHGJjd8fhVHNFk0FsE50536pybPshm
-         3v9BcgHDNybYUqXlOvtKaFAO281XaP3gyBiZE1kz9qFsw8xBwwQXBh8VeFTwzbvceuHu
-         rcy744TXrVKGRKvqNGbnTTYjGrajVzRqkYex4Gklm6DA2vGcoOUOqbrHR65U0iM8YJhV
-         Hikc89ez7rMLv044wZ9Cg8fHZouqAZcq6scIV2x8/KXC4uENP0PL35BLqPnWKYoX/LKu
-         UeTlx6prNRSVs2uoUw5yKS9/hHhX3liVM+XTNkz34N+/kV+RGcjW7dJFQpBNOGDzdN6e
-         rhNw==
-X-Gm-Message-State: AOJu0YwIC0L9gpsHVJGbvzm254lkf1ELROdodCgx7KiWfR5XjzmRuj5S
-	uoUoXS5G7v2xrgFOwkaOBvsnMgeX7voAPscLVPPoO64B950IVGSmnkFKp60VAPZfX88=
-X-Gm-Gg: ATEYQzxlbJMDFG8nFtGmfaMQMI3oCgtF7FLOIXzsQV+IBW6gW6Y/+PSJmALo0N2MAq/
-	D8Tcsd0lxMGmmC5uyRKn1cxndZpJ8VhsDWgxufxTu4JOcG3ZLJQxIHSTJ3WNGZ2A6g2HdYOcynY
-	IJYyZWYLW02E01MAK0AqVcLp1lR4yzdMfYFrA1O5q1VCHv63A0Q6vMA3FHQy1iV58bpyDYqfVTc
-	fHXgi4kT+gstbjpZHgvpOq/hMkB8SVYpamyDHGh4cgqsFrJXApKPqW2Q/j6zGjBZjT4KTcbaH4J
-	ze9u9cJfGYg+hp2wkwuwuSWewFMHRoPYxCB8gAMmbk81ls9VcfdNI0HpVbIBmPedLMoYkcOnI95
-	bzRFIjyQBMWTDJcUWUc5WlVEXT7xjmVE8YSBwqIraWFjvBdfwH/vDcCqHs1Gp5eg5Ao9+GIGghs
-	cf95cExniArvsU18K1/T5UnSJzTgW/k5yYIhfZttA=
-X-Received: by 2002:a05:6808:c2ab:b0:455:bf27:e95e with SMTP id 5614622812f47-4651ab1d6b0mr3573703b6e.1.1772744627481;
-        Thu, 05 Mar 2026 13:03:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772744629; x=1773349429;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=z+oK1HC6mjzut6Jep3O4wnFAo1gcFVDix5BbI9g78wE=;
+        b=Ns4y/1j0tg+4qyb/KdBcYNlnI58/Mb3Evu3jGY4A4lRhqah/5TrimswDR/OlXTBPxo
+         S6OnbxvvSA3PbtXsNR/D1gaMiZ2PszApO9tDThIeDSY6ju5Y4dmndHcBK5djmj6qwS6d
+         GXOhHWz1r+3VQdbn/dFKduYOXCWCSWGoAKO5eR8Y5TbdiLp6ARpEnhx3qBXlMP07T2F9
+         CYBfeJzix7fSr5q+s1CFHQk0wX6nqQFJmtTQP1a8ID6a33WYr3W+4RTyXCm+VSKenNHp
+         mgQPP5qxVsk6080WqTzkrPuVWafGT5aZuILRhBWcCZ51OlJO9/mTMWbiizBw4UoUZmva
+         OJbA==
+X-Gm-Message-State: AOJu0YxSG2vq1PB9HOxP/JTqgOZPsh0BoyTFEeCUrGShofh07vm7PrLu
+	7piyvIvuBTJXlsMfpTmzeO8VB5fLLNfOp1T3WhOTB/huwIDB3EDRjDQk+1A68KvyZbE=
+X-Gm-Gg: ATEYQzzVCBxZZHIs9QHJW4wy3HBybJgBPKqVDoxXxGseMXpH5OyFmvu+tv3fhxxX/UI
+	KI0GOTmIXV4ZVnyemSNUBQouFF26cM+P62WrWk5nRuotEl1Xg8cmuzv54uwFmjWR7KWT+ROhPKy
+	/2Sg9cO5Ctn5Jx87ZWHZCBVSAOu53RPT8Wr80rI9RHK7P9TKyIoOyO2rIeAmpTartufJ/LH/ZXT
+	BdPwkul5/SLmTjP0/U1ygLi4fVKrBYM5NBq+QEMs2Vweigs/vBk50gQToqT+iOoaprpKkdrO2pK
+	QqiGzR2zE8NUHKZU0tSILrBxGFIZ+Q21+zGf55tfcVU/3F+kFPgBiD8edIP98lcLg4J1UdpV6su
+	51AaFubwu23BoJuHIhY7Y4B3Wz769KQmM2BmlzQ94a+N7y3PzDKW9ayDMt6Br0Wd2jV69nFDZak
+	1UC8Dfb5pV8zZlFPck6u2+shyyltFO
+X-Received: by 2002:a05:6808:1245:b0:45c:83dc:fab with SMTP id 5614622812f47-4651ac9d13emr3575899b6e.40.1772744629200;
+        Thu, 05 Mar 2026 13:03:49 -0800 (PST)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:874e:e775:4f67:b3a5])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-464bb5d0a8csm13729227b6e.14.2026.03.05.13.03.45
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-464bb5d0a8csm13729227b6e.14.2026.03.05.13.03.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 13:03:45 -0800 (PST)
+        Thu, 05 Mar 2026 13:03:48 -0800 (PST)
 From: David Lechner <dlechner@baylibre.com>
-Subject: [PATCH v2 0/3] arm: dts: mediatek: fix pinctl node names
-Date: Thu, 05 Mar 2026 15:03:15 -0600
-Message-Id: <20260305-mtk-fix-mt7623-pinctl-name-v2-0-a68854a51065@baylibre.com>
+Date: Thu, 05 Mar 2026 15:03:16 -0600
+Subject: [PATCH v2 1/3] arm: dts: mediatek: mt7623: fix pinctrl child node
+ names
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,11 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/42NTQqDMBCFryKz7pT8oNGuvEdxoXGsQzWRRKQi3
- r2pJ+jq8T0e3zsgUmCK8MgOCLRxZO8SqFsGdmzdi5D7xKCEKoQUBc7rGwf+pDSF0riws+uErp0
- JhzKvdJXrjnoDSbAESstL/mwSjxxXH/bra5O/9i/tJlGg1qU01gymJKq7dp+4C3S3fobmPM8v7
- sTGrMcAAAA=
-X-Change-ID: 20260106-mtk-fix-mt7623-pinctl-name-f8593953bed7
+Message-Id: <20260305-mtk-fix-mt7623-pinctl-name-v2-1-a68854a51065@baylibre.com>
+References: <20260305-mtk-fix-mt7623-pinctl-name-v2-0-a68854a51065@baylibre.com>
+In-Reply-To: <20260305-mtk-fix-mt7623-pinctl-name-v2-0-a68854a51065@baylibre.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
  Matthias Brugger <matthias.bgg@gmail.com>, 
@@ -98,28 +98,28 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
  David Lechner <dlechner@baylibre.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1024; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=nCZZHuCOrSues8QVWXqMC3+FI2MpOSDkCrCh9OXFww0=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpqe+WhDO5SBkuyTXjQeMiDCxhJ+2B7nXDuoYIk
- 5tZG2mjU7CJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaanvlgAKCRDCzCAB/wGP
- wEg4B/9KENu8eGKx2Ux1CiqezA+SY9HupqER78ey4oFPO7seJ+znvkbjM4suVHJAMQSh+5NQ3U4
- g+49D/Nuf1O5XelRqVdmivXh9lSisE4Ae9a63KYim9Pcz7IvqGYctovpdU3KJ0wfY/DBKwCOetQ
- u8/RI8RLlhEzT+4O6drd63mip9IeCFaEE8eMpGxpDqUQbk6wr15DwI+AdJ/UqrXPal5mJWLx6NK
- RyJ8E2dGk7YDiYsRxm3WsTYkN4EZIqEa3gO18FhkUSLjpGohV/fahZT9qjbwQan1X6I5i4VmdBO
- p/Xc200kZ37fidWvtIbQ6Ed/8obcxanvcm7eCdo1IjBmUKiY
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6122; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=bGcKPNGpFeozhudmOX3FNcg6vxKf4h+qA1CKaUdGf+U=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpqe+d7EE4rhdk4vjfQsOiPJGSMVnkLsNCSHlEp
+ YFUaYvHIxKJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCaanvnQAKCRDCzCAB/wGP
+ wASKB/4h28IF0/kyGOSl3y9PbwIuXm2RmgroWH8anCAiU7ebKlnD1eqDy+CS39rt05DKxbvePe8
+ 0h4Of+toERsemkKi0uzfMg60PnsXSIoN0WTRmcnreybKsPbX/STQXxoP2Zk2xYo/otY95qxiUsQ
+ UtMs94iw/pbyPS2cr9RggZY2JUzi/notP92My0Z9R6zvBdGvhJhRpGAkbWMvSvvNhKpjJtTqxYU
+ sC8xpeqoXShPsA4MLADbNZASU7O20B/WZL2lnF7i7mfhFvW1V3XWf0kxCv6h8vnCaMSroWJECkG
+ bk39848EWFzcJGOZmtjFB0a5EKTzTA/iTfSe6GofdQD6s9bv
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
-X-Rspamd-Queue-Id: CA5392185D1
+X-Rspamd-Queue-Id: 0F6532185E0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271725-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271726-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[baylibre.com];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com];
@@ -132,41 +132,251 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,1c000000:email]
 X-Rspamd-Action: no action
 
-While passing by, I noticed that the pinctrl nodes in a couple of dtsi
-files did not match the addresses in their reg properties. Here are some
-patches to fix that.
+Fix the pinctrl child node names to adhere to the bindings. The main pin
+node is supposed to be named like "something-pins" and the pinmux node
+named like "pins-something".
 
 Signed-off-by: David Lechner <dlechner@baylibre.com>
 ---
-Changes in v2:
-- Add a new patch to also fix the pinctrl child node names in the
-  mt7623.dtsi file.
-- Link to v1: https://lore.kernel.org/r/20260106-mtk-fix-mt7623-pinctl-name-v1-0-33817c7f78ee@baylibre.com
+ arch/arm/boot/dts/mediatek/mt7623.dtsi | 62 +++++++++++++++++-----------------
+ 1 file changed, 31 insertions(+), 31 deletions(-)
 
----
-David Lechner (3):
-      arm: dts: mediatek: mt7623: fix pinctrl child node names
-      arm: dts: mediatek: mt7623: fix pinctrl controller node name
-      arm: dts: mediatek: mt8135: fix pinctrl node name
+diff --git a/arch/arm/boot/dts/mediatek/mt7623.dtsi b/arch/arm/boot/dts/mediatek/mt7623.dtsi
+index 71ac2b94c6ba..f34f60cde594 100644
+--- a/arch/arm/boot/dts/mediatek/mt7623.dtsi
++++ b/arch/arm/boot/dts/mediatek/mt7623.dtsi
+@@ -1017,14 +1017,14 @@ bdpsys: syscon@1c000000 {
+ };
+ 
+ &pio {
+-	cir_pins_a:cir-default {
++	cir_pins_a: cir-default-pins {
+ 		pins-cir {
+ 			pinmux = <MT7623_PIN_46_IR_FUNC_IR>;
+ 			bias-disable;
+ 		};
+ 	};
+ 
+-	i2c0_pins_a: i2c0-default {
++	i2c0_pins_a: i2c0-default-pins {
+ 		pins-i2c0 {
+ 			pinmux = <MT7623_PIN_75_SDA0_FUNC_SDA0>,
+ 				 <MT7623_PIN_76_SCL0_FUNC_SCL0>;
+@@ -1032,40 +1032,40 @@ pins-i2c0 {
+ 		};
+ 	};
+ 
+-	i2c1_pins_a: i2c1-default {
+-		pin-i2c1 {
++	i2c1_pins_a: i2c1-default-pins {
++		pins-i2c1 {
+ 			pinmux = <MT7623_PIN_57_SDA1_FUNC_SDA1>,
+ 				 <MT7623_PIN_58_SCL1_FUNC_SCL1>;
+ 			bias-disable;
+ 		};
+ 	};
+ 
+-	i2c1_pins_b: i2c1-alt {
+-		pin-i2c1 {
++	i2c1_pins_b: i2c1-alt-pins {
++		pins-i2c1 {
+ 			pinmux = <MT7623_PIN_242_URTS2_FUNC_SCL1>,
+ 				 <MT7623_PIN_243_UCTS2_FUNC_SDA1>;
+ 			bias-disable;
+ 		};
+ 	};
+ 
+-	i2c2_pins_a: i2c2-default {
+-		pin-i2c2 {
++	i2c2_pins_a: i2c2-default-pins {
++		pins-i2c2 {
+ 			pinmux = <MT7623_PIN_77_SDA2_FUNC_SDA2>,
+ 				 <MT7623_PIN_78_SCL2_FUNC_SCL2>;
+ 			bias-disable;
+ 		};
+ 	};
+ 
+-	i2c2_pins_b: i2c2-alt {
+-		pin-i2c2 {
++	i2c2_pins_b: i2c2-alt-pins {
++		pins-i2c2 {
+ 			pinmux = <MT7623_PIN_122_GPIO122_FUNC_SDA2>,
+ 				 <MT7623_PIN_123_HTPLG_FUNC_SCL2>;
+ 			bias-disable;
+ 		};
+ 	};
+ 
+-	i2s0_pins_a: i2s0-default {
+-		pin-i2s0 {
++	i2s0_pins_a: i2s0-default-pins {
++		pins-i2s0 {
+ 			pinmux = <MT7623_PIN_49_I2S0_DATA_FUNC_I2S0_DATA>,
+ 				 <MT7623_PIN_72_I2S0_DATA_IN_FUNC_I2S0_DATA_IN>,
+ 				 <MT7623_PIN_73_I2S0_LRCK_FUNC_I2S0_LRCK>,
+@@ -1076,8 +1076,8 @@ pin-i2s0 {
+ 		};
+ 	};
+ 
+-	i2s1_pins_a: i2s1-default {
+-		pin-i2s1 {
++	i2s1_pins_a: i2s1-default-pins {
++		pins-i2s1 {
+ 			pinmux = <MT7623_PIN_33_I2S1_DATA_FUNC_I2S1_DATA>,
+ 				 <MT7623_PIN_34_I2S1_DATA_IN_FUNC_I2S1_DATA_IN>,
+ 				 <MT7623_PIN_35_I2S1_BCK_FUNC_I2S1_BCK>,
+@@ -1088,7 +1088,7 @@ pin-i2s1 {
+ 		};
+ 	};
+ 
+-	key_pins_a: keys-alt {
++	key_pins_a: keys-alt-pins {
+ 		pins-keys {
+ 			pinmux = <MT7623_PIN_256_GPIO256_FUNC_GPIO256>,
+ 				 <MT7623_PIN_257_GPIO257_FUNC_GPIO257> ;
+@@ -1096,7 +1096,7 @@ pins-keys {
+ 		};
+ 	};
+ 
+-	led_pins_a: leds-alt {
++	led_pins_a: leds-alt-pins {
+ 		pins-leds {
+ 			pinmux = <MT7623_PIN_239_EXT_SDIO0_FUNC_GPIO239>,
+ 				 <MT7623_PIN_240_EXT_XCS_FUNC_GPIO240>,
+@@ -1104,7 +1104,7 @@ pins-leds {
+ 		};
+ 	};
+ 
+-	mmc0_pins_default: mmc0default {
++	mmc0_pins_default: mmc0-default-pins {
+ 		pins-cmd-dat {
+ 			pinmux = <MT7623_PIN_111_MSDC0_DAT7_FUNC_MSDC0_DAT7>,
+ 				 <MT7623_PIN_112_MSDC0_DAT6_FUNC_MSDC0_DAT6>,
+@@ -1130,7 +1130,7 @@ pins-rst {
+ 		};
+ 	};
+ 
+-	mmc0_pins_uhs: mmc0 {
++	mmc0_pins_uhs: mmc0-uhs-pins {
+ 		pins-cmd-dat {
+ 			pinmux = <MT7623_PIN_111_MSDC0_DAT7_FUNC_MSDC0_DAT7>,
+ 				 <MT7623_PIN_112_MSDC0_DAT6_FUNC_MSDC0_DAT6>,
+@@ -1158,7 +1158,7 @@ pins-rst {
+ 		};
+ 	};
+ 
+-	mmc1_pins_default: mmc1default {
++	mmc1_pins_default: mmc1-default-pins {
+ 		pins-cmd-dat {
+ 			pinmux = <MT7623_PIN_107_MSDC1_DAT0_FUNC_MSDC1_DAT0>,
+ 				 <MT7623_PIN_108_MSDC1_DAT1_FUNC_MSDC1_DAT1>,
+@@ -1188,7 +1188,7 @@ pins-insert {
+ 		};
+ 	};
+ 
+-	mmc1_pins_uhs: mmc1 {
++	mmc1_pins_uhs: mmc1-uhs-pins {
+ 		pins-cmd-dat {
+ 			pinmux = <MT7623_PIN_107_MSDC1_DAT0_FUNC_MSDC1_DAT0>,
+ 				 <MT7623_PIN_108_MSDC1_DAT1_FUNC_MSDC1_DAT1>,
+@@ -1207,7 +1207,7 @@ pins-clk {
+ 		};
+ 	};
+ 
+-	nand_pins_default: nanddefault {
++	nand_pins_default: nand-default-pins {
+ 		pins-ale {
+ 			pinmux = <MT7623_PIN_116_MSDC0_CMD_FUNC_NALE>;
+ 			drive-strength = <8>;
+@@ -1236,15 +1236,15 @@ pins-we {
+ 		};
+ 	};
+ 
+-	pcie_default: pcie_pin_default {
+-		pins_cmd_dat {
++	pcie_default: pcie-default-pins {
++		pins-cmd-dat {
+ 			pinmux = <MT7623_PIN_208_AUD_EXT_CK1_FUNC_PCIE0_PERST_N>,
+ 				 <MT7623_PIN_209_AUD_EXT_CK2_FUNC_PCIE1_PERST_N>;
+ 			bias-disable;
+ 		};
+ 	};
+ 
+-	pwm_pins_a: pwm-default {
++	pwm_pins_a: pwm-default-pins {
+ 		pins-pwm {
+ 			pinmux = <MT7623_PIN_203_PWM0_FUNC_PWM0>,
+ 				 <MT7623_PIN_204_PWM1_FUNC_PWM1>,
+@@ -1254,7 +1254,7 @@ pins-pwm {
+ 		};
+ 	};
+ 
+-	spi0_pins_a: spi0-default {
++	spi0_pins_a: spi0-default-pins {
+ 		pins-spi {
+ 			pinmux = <MT7623_PIN_53_SPI0_CSN_FUNC_SPI0_CS>,
+ 				<MT7623_PIN_54_SPI0_CK_FUNC_SPI0_CK>,
+@@ -1264,7 +1264,7 @@ pins-spi {
+ 		};
+ 	};
+ 
+-	spi1_pins_a: spi1-default {
++	spi1_pins_a: spi1-default-pins {
+ 		pins-spi {
+ 			pinmux = <MT7623_PIN_7_SPI1_CSN_FUNC_SPI1_CS>,
+ 				<MT7623_PIN_199_SPI1_CK_FUNC_SPI1_CK>,
+@@ -1273,7 +1273,7 @@ pins-spi {
+ 		};
+ 	};
+ 
+-	spi2_pins_a: spi2-default {
++	spi2_pins_a: spi2-default-pins {
+ 		pins-spi {
+ 			pinmux = <MT7623_PIN_101_SPI2_CSN_FUNC_SPI2_CS>,
+ 				 <MT7623_PIN_104_SPI2_CK_FUNC_SPI2_CK>,
+@@ -1282,28 +1282,28 @@ pins-spi {
+ 		};
+ 	};
+ 
+-	uart0_pins_a: uart0-default {
++	uart0_pins_a: uart0-default-pins {
+ 		pins-dat {
+ 			pinmux = <MT7623_PIN_79_URXD0_FUNC_URXD0>,
+ 				 <MT7623_PIN_80_UTXD0_FUNC_UTXD0>;
+ 		};
+ 	};
+ 
+-	uart1_pins_a: uart1-default {
++	uart1_pins_a: uart1-default-pins {
+ 		pins-dat {
+ 			pinmux = <MT7623_PIN_81_URXD1_FUNC_URXD1>,
+ 				 <MT7623_PIN_82_UTXD1_FUNC_UTXD1>;
+ 		};
+ 	};
+ 
+-	uart2_pins_a: uart2-default {
++	uart2_pins_a: uart2-default-pins {
+ 		pins-dat {
+ 			pinmux = <MT7623_PIN_14_GPIO14_FUNC_URXD2>,
+ 				 <MT7623_PIN_15_GPIO15_FUNC_UTXD2>;
+ 		};
+ 	};
+ 
+-	uart2_pins_b: uart2-alt {
++	uart2_pins_b: uart2-alt-pins {
+ 		pins-dat {
+ 			pinmux = <MT7623_PIN_200_URXD2_FUNC_URXD2>,
+ 				 <MT7623_PIN_201_UTXD2_FUNC_UTXD2>;
 
- arch/arm/boot/dts/mediatek/mt7623.dtsi | 64 +++++++++++++++++-----------------
- arch/arm/boot/dts/mediatek/mt8135.dtsi |  2 +-
- 2 files changed, 33 insertions(+), 33 deletions(-)
----
-base-commit: 3f9cd19e764b782706dbaacc69e502099cb014ba
-change-id: 20260106-mtk-fix-mt7623-pinctl-name-f8593953bed7
-
-Best regards,
 -- 
-David Lechner <dlechner@baylibre.com>
+2.43.0
 
 
