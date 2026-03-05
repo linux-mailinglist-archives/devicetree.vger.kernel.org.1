@@ -1,98 +1,74 @@
-Return-Path: <devicetree+bounces-271664-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271665-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJCOM+u+qWnNDQEAu9opvQ
-	(envelope-from <devicetree+bounces-271664-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:35:39 +0100
+	id MNmWABHBqWnNDQEAu9opvQ
+	(envelope-from <devicetree+bounces-271665-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:44:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34BFE21653B
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:35:38 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EE012166AE
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:44:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5E616310E896
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 17:31:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 636143000BB0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 17:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717FD3E123E;
-	Thu,  5 Mar 2026 17:31:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 536243E51CD;
+	Thu,  5 Mar 2026 17:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="vNv6Wiw4"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FuelH896"
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0833137C90C;
-	Thu,  5 Mar 2026 17:31:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772731912; cv=pass; b=DnlBHV4TuQWSzdfGcN6uMilYE6uPFxpiY2/XoLIsYdgvMy8wVmG3P9FmoN+hLYiRKupNDJ/LgMCjSbeL77gpamqRVfLSSa8vH74zgqHiYUKzUfibpGp4PcAomwSmXKvPJnHtOfHGYl4lMa4lxpp5cgWDJnm76KzzRRLAkzJ3C+Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772731912; c=relaxed/simple;
-	bh=s0EL37c/sYAI7xLRxtgwb9yg+DOGpx71GcVMR6WcoLE=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44D33D5242;
+	Thu,  5 Mar 2026 17:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772732236; cv=none; b=g4WR2piJBn+2VbhK02px5YtfBXuFoUhHT4rVpDT/Dw6kS2frx/Ar9PBzQRnyGafeiHZUiawDHSszyb2905xRNMv3NDx3yIFVqVvInKVIZdApvOTk8E+qegNO/ufnLjfsYHDlZa2QsVt2+9oN4lTr6zT9ijEYF61SB8O3ia3Lt0Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772732236; c=relaxed/simple;
+	bh=FPU9+K5FZpLr/vnCVIdP3CNVxs73aKrczX3fGBx3eg0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eczAi7GBFm0dpLM3plcfY1SwqhMVusF4+EAyS9bv0NVfGGh1WIxblNo7oYm8g5jEjJbZyrwj9PVHTvpF7AK/ycygFXJlQBqbIjRx3SiNgDiea3L3lRgBwWWFd/xSZ7Nw3UdL4WHjcNrV3AGvy3xGxN3Fxto019W8OSqwXaUH9Nw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=vNv6Wiw4; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (n18ws8cotp5c1dsf-1.v6.elisa-laajakaista.fi [IPv6:2001:99a:0:19f:4ce7:0:1157:8c0f])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4fRc626652zyVM;
-	Thu, 05 Mar 2026 19:31:38 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1772731900;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IIdcmWFjidJR6r6yijbOg5atPdCeq+LdXxOD6ElKnbQ=;
-	b=vNv6Wiw4Xvfi089Fq9+E6JNNhi2Y3WR1Jzfwss0xjhX/7G2yJZZYQHoZz9YgAgFIOayfET
-	lNoOP5MnaphYFWQVqURtju+aF1rSq7Pr64avVr2C/id7Mw9Cf/rJCyEX/ibXggi5vRM6yq
-	uZex9HmZB9dXwtCHOSDz6UpugIwZm4I=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1772731900;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IIdcmWFjidJR6r6yijbOg5atPdCeq+LdXxOD6ElKnbQ=;
-	b=GkNFEbEgaSmMs7tpq9OaKpiNvpUEkhiAShomlplPZ9KgCQoUfqsJergpyp+3V2Rt1rIlx6
-	o1BtqZHo+miimEoMzUbXqJ77um/IcWBWhXf1aef5gLySzMAG7o4ihICa+tWtwaRaN6O+DL
-	D7u+6eJbesIl20NAFz/mkv4j2yBUQx4=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; a=rsa-sha256; d=iki.fi; s=meesny; cv=none; t=1772731900;
-	b=Qpjs3xn3xCz6V2Mh2vyntKIo+H83uUw7anamRayaNabMsetmEyZPDGwaloVk7828MPwgux
-	kwsOEzJLotnKGG/L6qRItFrqBFyZwucxeQPzK+MLPEq4xE06GAq4IpE0EKQ1nYIZ7d5yfz
-	R5BwA2a9kpFeYpfBUsnff7wbQ50XMGA=
-Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 60946634C50;
-	Thu, 05 Mar 2026 19:31:34 +0200 (EET)
-Date: Thu, 5 Mar 2026 19:31:34 +0200
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Alain Volmat <alain.volmat@foss.st.com>
-Cc: Hugues Fruchet <hugues.fruchet@foss.st.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=hjWqC90B8x+EicP8ZNrxm/WZhf3/nei6UXphfLvr0ZkP466iXKFujDmt6+bNY8sNFEh9GviaucXz7d9eYqwXCYxJcZfhQ0QKp9Ggc3Ovxj66QQLC6Xj+46Gy7cyKk9qXtRSlpYCi8KyBZQiPPzKzbN3CNGbl7CIM5Ae0v1FJVQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FuelH896; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=7ZM5KkU/rZ9felY/Udq9uvELvoAu/GlxCR0aSRgP124=; b=FuelH8960mElIpPhMBcrh+8qcv
+	BCbjDv3Dd5tJKosddVsPNg6hc+FZmTYmrt1g5BarxkFpGNl9TxIMWLwG1GtDtfTnln7bAFkJJo3gb
+	Ct7fSAC1r+tLZoo/WeW+b/w0A42dtKmAdIzeOZ/Z7P536uDWsnSOV9SX3rP1/66+00SI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vyCdC-00AM5y-30; Thu, 05 Mar 2026 18:37:02 +0100
+Date: Thu, 5 Mar 2026 18:37:02 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
-	linux-media@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH v2 00/12] media: stm32: dcmi: stability & performance
- enhancements
-Message-ID: <aam99usPtkwo9GbJ@valkosipuli.retiisi.eu>
-References: <20260106-stm32-dcmi-dma-chaining-v2-0-70688bccd80a@foss.st.com>
+	Woojung Huh <woojung.huh@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/8] net: dsa: lan9645x: add basic dsa driver
+ for LAN9645X
+Message-ID: <3de08c66-adc8-455d-b23c-b3464153b38c@lunn.ch>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <32b7267f84b60a4632eb643fd0b999d03c630a1d.camel@microchip.com>
+ <052cf8c8-c60b-461a-86ce-aac8d7ebf4d9@lunn.ch>
+ <7365618.GXAFRqVoOG@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,62 +77,50 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260106-stm32-dcmi-dma-chaining-v2-0-70688bccd80a@foss.st.com>
-X-Rspamd-Queue-Id: 34BFE21653B
+In-Reply-To: <7365618.GXAFRqVoOG@steina-w>
+X-Rspamd-Queue-Id: 1EE012166AE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	R_DKIM_ALLOW(-0.20)[iki.fi:s=meesny];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271664-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[iki.fi];
+	TAGGED_FROM(0.00)[bounces-271665-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[foss.st.com,kernel.org,gmail.com,linaro.org,amd.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,lists.freedesktop.org,lists.linaro.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[microchip.com,armlinux.org.uk,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[iki.fi:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@iki.fi,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,iki.fi:dkim,st.com:email,valkosipuli.retiisi.eu:mid]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:mid]
 X-Rspamd-Action: no action
 
-Hi Alain,
-
-On Tue, Jan 06, 2026 at 12:34:28PM +0100, Alain Volmat wrote:
-> This series improve stability of the capture by fixing the
-> handling of the overrun which was leading to captured
-> frame corruption.
-> Locking within the driver is also simplified and the way
-> DMA is handled is reworked allowing to avoid having a
-> specific handling for the JPEG data.
+> > However, this is a multi-giga switch, with high speed SERDES ports. My
+> > guess is, a SERDES port is used to connect to the host, not RGMII. So
+> > i would not implement this, until somebody reports having a board with
+> > RGMII connecting to the host. KISS.
 > 
-> Performances of capture can now be increased via the usage
-> of a DMA->MDMA chaining which allows for capture of higher
-> resolution / framerate.
-> 
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> We intend to do exactly that with this switch, just because the host
+> doesn't support SGMII, just RMII/RGMII.
 
-I've picked the 10 first patches to my tree, I presume the rest are merged
-via another tree?
+:-)
 
-Please cc me on the next time. Thanks.
+Then i suggest using {rx|tx}-internal-delay-ps as Vladimir suggested.
 
--- 
-Kind regards,
-
-Sakari Ailus
+     Andrew
 
