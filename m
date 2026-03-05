@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-271714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271715-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OBuNRThqWnDGwEAu9opvQ
-	(envelope-from <devicetree+bounces-271714-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:24 +0100
+	id ELZOMSDhqWnDGwEAu9opvQ
+	(envelope-from <devicetree+bounces-271715-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56F13217E91
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5ED18217EA3
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C96A13091C86
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:59:08 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EC7433097DF0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:59:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82ED3ED5BC;
-	Thu,  5 Mar 2026 19:57:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 497C03ECBEB;
+	Thu,  5 Mar 2026 19:57:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UI9kdQw8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GJBDXs2A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 312AF3ED5C7
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 736BF3EBF14
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772740651; cv=none; b=ZxGEq6sCJYj5Jfy0xlFDBUxXaTWoPK/0rF6FmRrah7LyF/YCDZGdPZNaAPb8Y33oxRZCDV4sAHYmBA9/LacVdETANnwYPBytJ8HbQT/bNVgu/2jAQSIJgIji0AYq4X6H4maAykbTCphPYudG8t2GfOrZ/9PNvu+Zg7AouR6Eyuk=
+	t=1772740655; cv=none; b=c8LK28TBCrGUJ6p4gPoSwBv0zs+sJ70UeSRjV9RlypcgJOR2Wnl9V7WGLg2J7+lkP6/pefNh65ruOpc095nzwtdRmt2mlu4hVzKU0NlYV6vzpCWyFLPt9Bo9mTBu0wvKXnnZFlsWPTVFK+RQFiyZb9TRBLGlwFMTIxRnMDrqcV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772740651; c=relaxed/simple;
-	bh=ujvbhvdxFxvp+dEVlmpX9OLStQw937Z/KLIDIgyo1gA=;
+	s=arc-20240116; t=1772740655; c=relaxed/simple;
+	bh=pePllyxby7JhdwUh5/jJkZZqOJyp92crYJpaKce4nt4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J3vG4Rynl+EBzeTrQzoVQGJN1coOeDP4rsZJHbkruzYsATPCopOoFdU3qK5NqKOyHVDTbogJ44Nn0giV0k4zP7S1rLKvCJ6N/A/6kc4K6uBRWhQDO9BjFgZXroNCUDmUXHkYcJMU91gBAkkI61DRutGU3Zo0dweBQAHyubkL4xk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UI9kdQw8; arc=none smtp.client-ip=209.85.128.47
+	 MIME-Version; b=ol3FTWJUFleXfws2a7M1iMaEAF5DiUVf6rl2eG++btf2ZvH17qoWAAryJ9Jhn4f64AmDUoRIt+10KIkQ/YqEjjVPGL2AhiRDZ+deCRAJiU6bTtaR9qY2mBICFu+iTj8HRU7ODsiqCQjvvvx0wQi2Qy0R6dWDkpIo8hY2wEdoLnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GJBDXs2A; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso70649295e9.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 11:57:25 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-439cd6b09f8so1066911f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 11:57:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772740644; x=1773345444; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772740647; x=1773345447; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZtSz5l75Rw6ZqIXeFcoTcvd2i9c8nNbyLRXNmlkxqoo=;
-        b=UI9kdQw83t32crcOuu4ZN+pCyFZuXGHNUq0X2JqOBQZoMh7haLTpnzO+r0xgh1qZWQ
-         49qq8B0miepnx7d6k/4O4eUt7gxI49MCrWoZbYFCJbGolfN2oHXxKO0DE9Ws2m3ywsBP
-         /ZCs+/+0GYiKbMJCVkm+osZkMj/nV896Ft5ahaHXBXwAbtx0KT0LFiX/hsfIoUxha0Xb
-         nVfFM/7FZK0a2LV2pDVuRQ/e4QHO/wOzxieshl0UHvp06wwVdFn8IH8SqLwnI6Wy+U4v
-         B3gkK3F3bouH9hyulcGYYuV5CsWjgt0hBO8Jquv9Hv5JUHcvW5rK3RGL2Qxh2Nsgv7hl
-         fL5A==
+        bh=8g4jD+lM4KD2+vvthvQvaKxkXysJFhQZ5m0wfrvK+Hg=;
+        b=GJBDXs2A1JiSwPz0sqykvW4HBWcugEoqk1an3jO+nM+YjkFBFzl6MolWQug8ZpUAaS
+         C4F8QZoIaw66re5qjb6g4uziPfp8pE0Y0+Q+4HU+Wmh7evK9U6atC0YLM0OdeBvf1I+Q
+         YBNpNVoYBI7oaha11s81hM/w9rtrOPhP5XcFbk4b4amfUCQ6J4xkt6cJAL+WHQ14e/Tt
+         K1Dryec85RqFwa1reobW+77M9bLyjXZD/fF6SB2YfyyyMP2k5N7CGmZhMOaxkv/D0mnP
+         s9iXjuhkJEnsYRv4yckURBi8mXxfO3VyaPVMsNUe+U+CTUaeWU9iPb4jMdPEz3hYmtci
+         d+Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772740644; x=1773345444;
+        d=1e100.net; s=20230601; t=1772740647; x=1773345447;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=ZtSz5l75Rw6ZqIXeFcoTcvd2i9c8nNbyLRXNmlkxqoo=;
-        b=m/zmIr1jxPgbwR9ppmdWp7rEeAkVGNMM3iTtvwh2jqwvxTsIAfezbtSMCCnhvceS5X
-         B1xYjGh8DCGmCKQ9fC+VovKJ6+VBsm487tDgkGmtf5vNnEnT049gomdCKNcn848Tw/RQ
-         RymEWcSh93IcbLj+ZVZGL5ENvuCb58eBoWvzueoVJ1OgoMF1MlKzziN6ouAFTMJD3lGw
-         LbWreKywPSLyggmkdwVlM2J6KBNuG7SOzMw6GG5nKE2w8rvm3xPKYiqeyCfwg5OmjI2q
-         HuhjxjweqcrxfTH6nDMM3kQTRiOXfPFzwpYiayyKFmB/0gz161+kShecTsK7MeaxfL4V
-         9spg==
-X-Forwarded-Encrypted: i=1; AJvYcCVTEof4oGAvendIoD7ToW93jAyenwCeEjSrOYu/U5qeiPpmtYaLj+tggGTSwllkkeORWxaJwPvFPiGM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtxLmBveWnQz3BJfXTSvDoBJ+8ueWgHDEcrtiiYhN+euCzLCQB
-	q+4ym50WYa9a6AovqDapQRD+LzQQVlASX3rCPnYjdDKsiff1VgopiYnJfghHIC8p
-X-Gm-Gg: ATEYQzyN4hvCnHBQ/l9h9UWpYQxVWVMjWMbf10X6Y3GbVCPxgwPXgWzl1FTQaAIbzJJ
-	LEWUIIKWFisCugSDMuxb1BEEJUrqiiaW15UBGYhAIhj+o/vuf4skNE8gOeQdvgDS8kNwgjHpJBa
-	sQUXYt4zve3rkYVLRGJZP27b5zUucWBuC97E/1j8Tl9TQWqAN1tJfc7+UbnBvIsiPhfXYXG3sKs
-	3KXiF7ZxZEUngyy3KTOSaUwVcq5kmf+a4/DgBThrrtqGsw4feeeOynECn5FqL3EBB6iLRSJ9Ee1
-	+t2HSG9MlW+xrl8D9bZvUtAGGkcfsl3W9wKIXHqOj56RNiy6dQZLSqAosioPpjDmoHTCTDOKB6K
-	Nry5AXxZEpj3USP/OLsg/netxvuaEQfIg1IUtmYsYDpOEO/+ItJecXs82RSYeuQ+9rrShPJYvBR
-	OZG5kmkQxMc8tD/Y3m0fg=
-X-Received: by 2002:a5d:5f85:0:b0:431:8f8:7f24 with SMTP id ffacd0b85a97d-439d72595bdmr1734488f8f.39.1772740643877;
-        Thu, 05 Mar 2026 11:57:23 -0800 (PST)
+        bh=8g4jD+lM4KD2+vvthvQvaKxkXysJFhQZ5m0wfrvK+Hg=;
+        b=mxlmDaBuXnbwrZltiJlqQnv3/8KuyVlwCx7aokHluRd7j+K2mPNAzMCGqNp4d3FgpW
+         8Vd26yKB3CXLSDi3+3VImj3wQEDErEGj1W1dCU77zRiefb1wiRgvRzNIonka3CnR6oOQ
+         sftoAV7P0XpS8wTB2loCtJAzRNxVktgZrZNF/Uyo2/nJIWHAvX2HFvFdY5zuWsTxEe1T
+         RR8qHy/GihpdXyAcYUDgkwnliLII2DQDioZFIg/UEIDC/xhpVE0d7PkC7s7Nn1GxC11U
+         GJBjXFVRkx1VBbFrNQl+Ov+XIb2DYeFjRqIb5cCSSigpFZZliXy/i09X9eABaJ369RM2
+         msUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWLmpj4m1y6zvzQ/OXhuUCR5aWBY4NK93DFKa9n1Yo2bXgzPwN4ubRLLmhFVQ1t/CEE/z43ukGkMZmB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzSqLxDV19ZJiZmKL7b2TWE6RRD+aervLH/bPT8PltImIzVX2aw
+	6929pIprdK/IrtI8mffiwAZ7PBgkNB8xGuI3QaHVtdnA2Q+oCKtzCDLC
+X-Gm-Gg: ATEYQzxvrWVtY96fTbha5/BqrveHiFylHPZkHS9eZoL/Gx5UbZmWrP0Z4AYjI1A3kTi
+	JvxwS/vHGp2puQH/30ckEEQZj1TRdzQgvqT08pjziSyzzVokgKFO/MukqusHVdPXJpJSuZ7M6Qu
+	DhAq+wvE9x7q1hAbzgdi/CmKmrhYKRYzYtHu8SrMC5mJHcsxg9TmBDARlsUOhensZswVPo9XY57
+	wibiDGlqeGxtyL7nVs3SjYTfCTIyJVcY8MmD+cO4La+VPgeX3CGw+O8WHq0aC9OZdwigSaEEEqR
+	q5NY/YM67FQJTeb2MdtPdZr0HJv3YyR4n+DWt0w37OxKIMJVLisoCVFD3ldJ9rdc0gazr2tqQrp
+	LPN/JqyiGcyk+5mYh8C5bXoGU5BpRquAI/OXGj+N+V1AsTCtTpmoSYU8nj9vuSus/Gm+QNOubgz
+	VMGd3e2wKvsIo2+2S4W/7C+60hRDGzuA==
+X-Received: by 2002:a05:6000:3112:b0:439:d750:42f6 with SMTP id ffacd0b85a97d-439d7504334mr1415838f8f.24.1772740646285;
+        Thu, 05 Mar 2026 11:57:26 -0800 (PST)
 Received: from luca-vm.lan ([154.61.61.58])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439bb686a32sm26974297f8f.13.2026.03.05.11.57.22
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439bb686a32sm26974297f8f.13.2026.03.05.11.57.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 11:57:23 -0800 (PST)
+        Thu, 05 Mar 2026 11:57:25 -0800 (PST)
 From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
@@ -90,15 +90,15 @@ Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
+	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
 	Marek Vasut <marex@nabladev.com>,
-	"Kael D'Alcamo" <dev@kael-k.io>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"Kael D'Alcamo" <dev@kael-k.io>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: display: panel: Add compatibles for Zhunyi Z40046
-Date: Thu,  5 Mar 2026 19:56:30 +0000
-Message-ID: <20260305195650.119196-2-l.scorcia@gmail.com>
+Subject: [PATCH 2/2] drm/panel: jd9365da: Support for Zhunyi Z40046 panels
+Date: Thu,  5 Mar 2026 19:56:31 +0000
+Message-ID: <20260305195650.119196-3-l.scorcia@gmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260305195650.119196-1-l.scorcia@gmail.com>
 References: <20260305195650.119196-1-l.scorcia@gmail.com>
@@ -109,7 +109,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 56F13217E91
+X-Rspamd-Queue-Id: 5ED18217EA3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -123,10 +123,10 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[gmail.com,edgeble.ai,linaro.org,ffwll.ch,linux.intel.com,kernel.org,suse.de,sntech.de,nabladev.com,kael-k.io,bp.renesas.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,edgeble.ai,linaro.org,ffwll.ch,linux.intel.com,kernel.org,suse.de,oss.qualcomm.com,nabladev.com,bp.renesas.com,kael-k.io,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271714-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271715-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
@@ -148,43 +148,356 @@ Fitipower JD9161Z DSI controller found in the Xiaomi Mi Smart Clock
 x04g, apparently in two different variants.
 
 The Fitipower JD9161Z LCD driver IC is very similar to the Jadard
-JD9365DA-H3, it just uses a different initialization sequence.
+JD9365DA-H3, it just uses different initialization sequences.
 
-Since this is the first supported device from this vendor, document its
-name to the vendor-prefixes.yaml file as well.
+The two initialization sequences for the panel have been extracted from
+Android original firmware for the Xiaomi Smart Clock.
+
+Variant v1 tested on device. Variant v2 not tested.
 
 Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 ---
- .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml   | 2 ++
- Documentation/devicetree/bindings/vendor-prefixes.yaml          | 2 ++
- 2 files changed, 4 insertions(+)
+ .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 308 ++++++++++++++++++
+ 1 file changed, 308 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-index 5802fb3c9ffe..da17072ffaaa 100644
---- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-@@ -23,6 +23,8 @@ properties:
-           - melfas,lmfbx101117480
-           - radxa,display-10hd-ad001
-           - radxa,display-8hd-ad002
-+          - zhunyi,z40046v1
-+          - zhunyi,z40046v2
-       - const: jadard,jd9365da-h3
+diff --git a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+index 5386a06fcd08..9bcf846684e4 100644
+--- a/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
++++ b/drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c
+@@ -46,11 +46,22 @@ struct jadard {
+ 	struct gpio_desc *reset;
+ };
  
-   reg:
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index ee7fd3cfe203..18121440dc22 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1913,6 +1913,8 @@ patternProperties:
-     description: Shenzhen Zkmagic Technology Co., Ltd.
-   "^zte,.*":
-     description: ZTE Corp.
-+  "^zhunyi,.*":
-+    description: Shenzhen Zhunyi Technology Co., Ltd.
-   "^zyxel,.*":
-     description: ZyXEL Communications Corp.
++#define JD9161Z_DCS_SWITCH_PAGE		0xde
++
++#define jd9161z_switch_page(dsi_ctx, page) \
++	mipi_dsi_dcs_write_seq_multi(dsi_ctx, JD9161Z_DCS_SWITCH_PAGE, (page))
++
+ #define JD9365DA_DCS_SWITCH_PAGE	0xe0
  
+ #define jd9365da_switch_page(dsi_ctx, page) \
+ 	mipi_dsi_dcs_write_seq_multi(dsi_ctx, JD9365DA_DCS_SWITCH_PAGE, (page))
+ 
++static void jd9161z_enable_standard_cmds(struct mipi_dsi_multi_context *dsi_ctx)
++{
++	// Enable access to DCS and internal commands
++	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xdf, 0x91, 0x62, 0xf3);
++}
++
+ static void jadard_enable_standard_cmds(struct mipi_dsi_multi_context *dsi_ctx)
+ {
+ 	mipi_dsi_dcs_write_seq_multi(dsi_ctx, 0xe1, 0x93);
+@@ -1366,6 +1377,295 @@ static const struct jadard_panel_desc anbernic_rgds_display_desc = {
+ 		      MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM,
+ };
+ 
++// Sequence retrieved from Xiaomi Mi Smart Clock x04g kernel in boot.bin
++static int zhunyi_z40046_init_cmds_v1(struct jadard *jadard_data)
++{
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = jadard_data->dsi };
++
++	// Init configuration sequence
++	jd9161z_switch_page(&dsi_ctx, 0x00);
++	jd9161z_enable_standard_cmds(&dsi_ctx);
++
++	// GAMMA_SET (pos/neg voltage of gamma power)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb7,
++		0x10, 0x04, 0x86, 0x00, 0x1b, 0x35);
++
++	// DCDC_SEL (power mode and charge pump settings)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbb,
++		0x69, 0x0b, 0x30, 0xb2, 0xb2, 0xc0, 0xe0, 0x20,
++		0xf0, 0x50, 0x60,
++	);
++
++	// VDDD_CTRL (control logic voltage setting)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbc,
++		0x73, 0x14);
++
++	// SETRGBCYC (display waveform cycle of RGB mode)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc3,
++		0x74, 0x04, 0x08, 0x0e, 0x00, 0x0e, 0x0c, 0x08,
++		0x0e, 0x00, 0x0e, 0x82, 0x0a, 0x82,
++	);
++
++	// SET_TCON (timing control setting)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4,
++		0x10, 0x90, 0x92, 0x0e, 0x0b, 0x04);
++
++	// SET_R_GAMMA (set red gamma output voltage)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc8,
++		0x7e, 0x76, 0x68, 0x57, 0x4c, 0x39, 0x3a, 0x23,
++		0x3d, 0x3d, 0x40, 0x61, 0x54, 0x64, 0x5d, 0x62,
++		0x5a, 0x50, 0x32, 0x7e, 0x76, 0x68, 0x57, 0x4c,
++		0x39, 0x3a, 0x23, 0x3d, 0x3d, 0x40, 0x61, 0x54,
++		0x64, 0x5d, 0x62, 0x5a, 0x50, 0x32,
++	);
++
++	// SET_GIP_L (CGOUTx_L signal mapping, gs_panel = 0)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd0,
++		0x1f, 0x0a, 0x08, 0x06, 0x04, 0x1f, 0x00, 0x1f,
++		0x17, 0x1f, 0x18, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f,
++	);
++
++	// SET_GIP_R (CGOUTx_R signal mapping, gs_panel = 0)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd1,
++		0x1f, 0x0b, 0x09, 0x07, 0x05, 0x1f, 0x01, 0x1f,
++		0x17, 0x1f, 0x18, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f,
++	);
++
++	// SETGIP1 (GIP signal timing 1)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4,
++		0x10, 0x00, 0x00, 0x03, 0x60, 0x05, 0x10, 0x00,
++		0x02, 0x06, 0x68, 0x00, 0x6c, 0x00, 0x00, 0x00,
++		0x00, 0x06, 0x78, 0x71, 0x07, 0x06, 0x68, 0x0c,
++		0x25, 0x00, 0x63, 0x03, 0x00,
++	);
++
++	// SETGIP2 (GIP signal timing 1)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd5,
++		0x20, 0x10, 0x8c, 0x18, 0x00, 0x80, 0x00, 0x08,
++		0x00, 0x00, 0x06, 0x60, 0x00, 0x81, 0x70, 0x02,
++		0x30, 0x01, 0x00, 0x00, 0xc0, 0x00, 0x00, 0x00,
++		0x03, 0x60, 0x83, 0x90, 0x00, 0x00, 0x03, 0x4f,
++		0x03, 0x00, 0x1f, 0x3f, 0x00, 0x00, 0x00, 0x00,
++	);
++
++	jd9161z_switch_page(&dsi_ctx, 0x04);
++
++	// ?
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0,
++		0x24, 0x01);
++
++	jd9161z_switch_page(&dsi_ctx, 0x02);
++
++	// SETRGBCYC2 (RGB IF source switch control timing)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1,
++		0x71);
++
++	// ?
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2,
++		0x00, 0x18, 0x08, 0x1e, 0x25, 0x7c, 0xc7,
++	);
++
++	jd9161z_switch_page(&dsi_ctx, 0x00);
++
++	mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
++
++	mipi_dsi_msleep(&dsi_ctx, 120);
++
++	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
++
++	mipi_dsi_msleep(&dsi_ctx, 120);
++
++	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
++
++	mipi_dsi_msleep(&dsi_ctx, 5);
++
++	return dsi_ctx.accum_err;
++};
++
++static const struct jadard_panel_desc zhunyi_z40046v1_desc = {
++	.mode = {
++		.clock		= 26700,
++
++		.hdisplay	= 480,
++		.hsync_start	= 480 + 20,
++		.hsync_end	= 480 + 20 + 20,
++		.htotal		= 480 + 20 + 20 + 20,
++
++		.vdisplay	= 800,
++		.vsync_start	= 800 + 12,
++		.vsync_end	= 800 + 12 + 4,
++		.vtotal		= 800 + 12 + 4 + 8,
++
++		.width_mm	= 52,
++		.height_mm	= 86,
++		.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
++		.type		= DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
++	},
++	.lanes = 2,
++	.format = MIPI_DSI_FMT_RGB888,
++	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
++		MIPI_DSI_MODE_LPM,
++	.lp11_before_reset = true,
++	.reset_before_power_off_vcioo = true,
++	.vcioo_to_lp11_delay_ms = 5,
++	.lp11_to_reset_delay_ms = 10,
++	.backlight_off_to_display_off_delay_ms = 100,
++	.display_off_to_enter_sleep_delay_ms = 50,
++	.enter_sleep_to_reset_down_delay_ms = 100,
++	.init = zhunyi_z40046_init_cmds_v1,
++};
++
++// Sequence retrieved from Xiaomi Mi Smart Clock x04g kernel in boot.bin
++static int zhunyi_z40046_init_cmds_v2(struct jadard *jadard_data)
++{
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = jadard_data->dsi };
++
++	// Init configuration sequence
++	jd9161z_switch_page(&dsi_ctx, 0x00);
++	jd9161z_enable_standard_cmds(&dsi_ctx);
++
++	// GAMMA_SET (pos/neg voltage of gamma power)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb7,
++		0x10, 0x08, 0x42, 0x00, 0x56, 0x42,
++	);
++
++	// DCDC_SEL (power mode and charge pump settings)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbb,
++		0x52, 0x0f, 0xb2, 0xb2, 0xb2, 0xc0, 0xd0, 0x50,
++		0xf0, 0x40, 0x50,
++	);
++
++	// VDDD_CTRL (control logic voltage setting)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbc,
++		0x73, 0x14);
++
++	// SETRGBCYC (display waveform cycle of RGB mode)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc3,
++		0x04, 0x07, 0x0b, 0x17, 0x00, 0x17, 0x04, 0x17,
++		0x17, 0x00, 0x17, 0x82, 0x0b, 0x82,
++	);
++
++	// SET_TCON (timing control setting)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4,
++		0x10, 0x90, 0x92, 0x0e, 0x06,
++	);
++
++	// SET_R_GAMMA (set red gamma output voltage)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc8,
++		0x7f, 0x78, 0x69, 0x56, 0x47, 0x33, 0x34, 0x1e,
++		0x3b, 0x3e, 0x43, 0x67, 0x5d, 0x6f, 0x68, 0x70,
++		0x6a, 0x61, 0x3c, 0x7f, 0x78, 0x69, 0x56, 0x47,
++		0x33, 0x34, 0x1e, 0x3b, 0x3e, 0x43, 0x67, 0x5d,
++		0x6f, 0x68, 0x70, 0x6a, 0x61, 0x3c,
++	);
++
++	// SET_GIP_L (CGOUTx_L signal mapping, gs_panel = 0)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd0,
++		0x1f, 0x1e, 0x07, 0x05, 0x01, 0x1f, 0x1f, 0x1f,
++		0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f,
++	);
++
++	// SET_GIP_R (CGOUTx_R signal mapping, gs_panel = 0)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd1,
++		0x1f, 0x1e, 0x06, 0x04, 0x00, 0x1f, 0x1f, 0x1f,
++		0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f,
++	);
++
++	// SET_GIP_L_GS (CGOUTx_L signal mapping, gs_panel = 1)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd2,
++		0x1f, 0x1f, 0x04, 0x06, 0x00, 0x1e, 0x1f, 0x1f,
++		0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f,
++	);
++
++	// SET_GIP_R_GS (CGOUTx_R signal mapping, gs_panel = 1)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd3,
++		0x1f, 0x1f, 0x05, 0x07, 0x01, 0x1e, 0x1f, 0x1f,
++		0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f, 0x1f,
++	);
++
++	// SETGIP1 (GIP signal timing 1)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4,
++		0x30, 0x00, 0x00, 0x00, 0x00, 0x01, 0x10, 0x00,
++		0x03, 0x03, 0x68, 0x03, 0x40, 0x05, 0x00, 0x00,
++		0x00, 0xcc, 0x2d, 0x31, 0x02, 0x03, 0x68, 0x0c,
++		0x25, 0x00, 0x63, 0x03, 0x00,
++	);
++
++	// SETGIP2 (GIP signal timing 1)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd5,
++		0x30, 0x08, 0x80, 0x18, 0x00, 0x00, 0x00, 0x18,
++		0x00, 0x00, 0x06, 0x60, 0x00, 0x07, 0x50, 0x00,
++		0x33, 0xc0, 0x00, 0x60, 0xc0, 0x00, 0x00, 0x00,
++		0x03, 0x60, 0x06, 0x10, 0x00, 0x00, 0x0f, 0x4f,
++		0x00, 0x10, 0x1f, 0x3f,
++	);
++
++	jd9161z_switch_page(&dsi_ctx, 0x02);
++
++	// SETRGBCYC2 (RGB IF source switch control timing)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1,
++		0x60);
++
++	// ?
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2,
++		0x00, 0x18, 0x08, 0x1e, 0x25, 0x7c, 0xc7,
++	);
++
++	jd9161z_switch_page(&dsi_ctx, 0x00);
++
++	// GAS_CTRL (GAS function control)
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbe,
++		0x4e,
++	);
++
++	mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK);
++
++	mipi_dsi_msleep(&dsi_ctx, 120);
++
++	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
++
++	mipi_dsi_msleep(&dsi_ctx, 120);
++
++	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
++
++	mipi_dsi_msleep(&dsi_ctx, 5);
++
++	return dsi_ctx.accum_err;
++};
++
++static const struct jadard_panel_desc zhunyi_z40046v2_desc = {
++	.mode = {
++		.clock		= 26700,
++
++		.hdisplay	= 480,
++		.hsync_start	= 480 + 20,
++		.hsync_end	= 480 + 20 + 20,
++		.htotal		= 480 + 20 + 20 + 20,
++
++		.vdisplay	= 800,
++		.vsync_start	= 800 + 12,
++		.vsync_end	= 800 + 12 + 4,
++		.vtotal		= 800 + 12 + 4 + 8,
++
++		.width_mm	= 52,
++		.height_mm	= 86,
++		.flags		= DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
++		.type		= DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
++	},
++	.lanes = 2,
++	.format = MIPI_DSI_FMT_RGB888,
++	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
++		MIPI_DSI_MODE_LPM,
++	.lp11_before_reset = true,
++	.reset_before_power_off_vcioo = true,
++	.vcioo_to_lp11_delay_ms = 5,
++	.lp11_to_reset_delay_ms = 10,
++	.backlight_off_to_display_off_delay_ms = 100,
++	.display_off_to_enter_sleep_delay_ms = 50,
++	.enter_sleep_to_reset_down_delay_ms = 100,
++	.init = zhunyi_z40046_init_cmds_v2,
++};
++
+ static int jadard_dsi_probe(struct mipi_dsi_device *dsi)
+ {
+ 	struct device *dev = &dsi->dev;
+@@ -1463,6 +1763,14 @@ static const struct of_device_id jadard_of_match[] = {
+ 		.compatible = "radxa,display-8hd-ad002",
+ 		.data = &radxa_display_8hd_ad002_desc
+ 	},
++	{
++		.compatible = "zhunyi,z40046v1",
++		.data = &zhunyi_z40046v1_desc
++	},
++	{
++		.compatible = "zhunyi,z40046v2",
++		.data = &zhunyi_z40046v2_desc
++	},
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, jadard_of_match);
 -- 
 2.43.0
 
