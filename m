@@ -1,603 +1,337 @@
-Return-Path: <devicetree+bounces-271345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271347-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKabIoIFqWlW0QAAu9opvQ
-	(envelope-from <devicetree+bounces-271345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 05:24:34 +0100
+	id UA1rD50GqWlW0QAAu9opvQ
+	(envelope-from <devicetree+bounces-271347-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 05:29:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6844920AC38
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 05:24:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 933B420ACAD
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 05:29:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 14439300699E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 04:24:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 83E31305C6D4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 04:29:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42F5D21D5AF;
-	Thu,  5 Mar 2026 04:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3383127510B;
+	Thu,  5 Mar 2026 04:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ht85c1mr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OF7XjYQC";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bOZJVFUD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1042AD16
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 04:24:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772684668; cv=pass; b=G3Ix86V41V0ElrE6+EL/o0ogy52vwLYUJxWq5VWMp3TIRWXE7GrFHB7Iult1sknSd1reMvUVbayQgBzn1kTQ4HcXbUYXgbdOmLCp/G2TbOW88JdTxz6t2YP/FsbGXY00+/x0dc9/o4F1aQcqPTaksYjufq+BgyIa/2iM4sYZ/2s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772684668; c=relaxed/simple;
-	bh=JdD0X39D1VWp7KdCg4ePwdtG9VhhO9cRgB0z7082Gdw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z8C5Rpu+hrl67HlvYfIQTsz2c8aDh67iflRKDE5F0JOjL60Fy/VtIgPUpaV5gmpwwDbV9hrIrmb0FIGcrypTtl6i0Hf59e3FJ+Rsd1URiAB5R/cZLbSWMd8M8V/FaG3EwcaVlS48Wee/ckcPgMM0cUISKFOwqrVCB/lSAicqfBs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ht85c1mr; arc=pass smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-439b94a19fdso3776195f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 20:24:26 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772684665; cv=none;
-        d=google.com; s=arc-20240605;
-        b=WVLt5ozN9eQZr2/z6XBefp66TZuzCNZSrjfLnWpRBl9Ux8sP3Qw7FffFjd462esqWn
-         AgVCcXtrICYhecopcq4M7utH3c4rRDndb49HHgADYVffcPiyi+KQCFWKH2pVFIi+/NTa
-         9DUCeKa/as35Gte4HkmodqEUBznxZzfY46c3mrVi/zxrUiNSkqjd+HXAg8cEi88+ZUUN
-         RRkTu1cY8Es9TODU0kuE2uSzovaB2tj+nWB+1ZWoyxiNMpDSusiT245sM0gPWSztlVXc
-         5lmlOvs7tocKvxEozlSB/GUdSmkm9AVTGUfu6WAt/USEm00uI4gwwoTnIf5z8Jn0IPCD
-         lX4w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=0XYLyMKJ0dlF29hBtXI26zZL2A2fy41jRfFsqvLL2kY=;
-        fh=ADDOQA1H2pL74mPQlJjZApF+ZdJ8h87mzM8ry3cK8OM=;
-        b=TUvqh5E6qj69e9w+66Z5OcxnVsUaaAewtTF6H5YVcWf3a/fDOIkKFDYGVKWXVCVF87
-         6s6CTdHdrY65NIpLBfKRR/DQuMxsiJzASyONj3kCOxfkTdeDpq0Pfk35MqOMePwsKMXT
-         YymNA1FHi8lNjDPK5fOKXV8YbQtgMf4vVADUkxGqI+bMhXlHRr1w6kHWflxJ+ggTQ41v
-         zIZkSkMwANB4L9NzuOsSpKJkrU6h3z3kMcuWtK0FE47dY4379xrLcfDT9MMhmZjZ8rhb
-         oLE1bbMUSAG3s4mVzjYjop19t2IkS5wt2a8fZ/e8ScFoAB88Mf3fszJVbIVwEZLwKE2r
-         fxlA==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B689B25C704
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 04:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772684941; cv=none; b=d4zWtCzzp04SbSzEmRkmyXde/SwjSN+gNWkJ+0KrJOgrA+vVpJM4rYfkAAays/z7nJ5s3nMnUIWcDwe08pZB14hV4zXpEpa0Uspa+EWIRAQ9ku2NzdlOzDJQsXX6M6scjOFe69roCTdfXw03mpfz5Mx3AEI71acW6nUyhDGJLO4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772684941; c=relaxed/simple;
+	bh=+Cx5q89r/2uxmygkXvkznY4AxwqKjadt+WOwF9aZKAk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=iG6DTMMX70luJbJDnzXaQAzIPFb4Nar6kWjSc2hvEaOstXYKK/pY0nklrRAjbDyZJEdJ+jkGmgrTrDDW4IroKrVUCiOo34prfsNGrmoPaHKSh4VjEarUKOhOmKcpEu8gEaE2V2R0GyGFVMSrLe1kyiEfz0KU220MutogRhatg5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OF7XjYQC; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bOZJVFUD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6251C0J03160464
+	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 04:28:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=Oi71X33SI7rhKIyGul9KTr
+	YLg9wAYvvKP6HOo9k0t/s=; b=OF7XjYQCHbt5CkQeU/rTYQWdxwQdDl9fxn8uKr
+	DtIGRaoxmeNmEW5aRtTbPo1leJsFIQQPz/3GD8oTGMgF3Z4HP8AHe04ar2SL7n7t
+	3mnKYpPB+KbfuJjbrhgeTojUMfKZqhyb6mElRkUsXyzxzAimunfEIAMiCBM12aAh
+	qmxKzcmUqfenp2U6ozNp9R4JdboTYIAiaP4qWRHSktfO7WLEKSD2yE3XZOZfIJa0
+	r94HSS94VZvu4l8i0ojmhCTaQyf0lnFhpZEa10YgPgrdW5alSGchWGx5xATSO81V
+	IE3ogl1gLTXLPUaYc7LRSPjblslxnPu380vgurY5XQOaNJGA==
+Received: from mail-dl1-f71.google.com (mail-dl1-f71.google.com [74.125.82.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cpjh5u34n-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 04:28:53 +0000 (GMT)
+Received: by mail-dl1-f71.google.com with SMTP id a92af1059eb24-128ba70cc99so941869c88.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 20:28:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772684665; x=1773289465; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0XYLyMKJ0dlF29hBtXI26zZL2A2fy41jRfFsqvLL2kY=;
-        b=ht85c1mrHMw8L8p9C9CKzDMGL8vNSkQq3vLHxv1hjXHEoo6wMqmP48daBahGc8TV0T
-         rFzvOOTNFwfMAlEMGN3FTCEG1K1je6RjUB6jGGbRYdVMdX6ycd9jSYG0EIG2nGyWSyYf
-         X52lNv5enKNug7+lUJ8yP+Qy/aysi6zGgbUEtZhfRG9YOQdSEJ+V5m34rvVvgejfiAIW
-         IMHUybySJW2SNflYAK+2frn9lBLXZ1rCpeKOH5vx6CIwlaLSc7NDQK6SYvtk4FgMAhMf
-         hYNPxBRxehIshYKbE7Il9IJYKD/Dr1fWxGKvxbeiHgysLrYRcSR0TmJYjygI6bDypYGx
-         0a2w==
+        d=oss.qualcomm.com; s=google; t=1772684932; x=1773289732; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Oi71X33SI7rhKIyGul9KTrYLg9wAYvvKP6HOo9k0t/s=;
+        b=bOZJVFUDSB8foa6X8FuKd4jZNO6u/cdugUfK3oI2E/Nd6LLsfisRbMNM3oyOmKxHU8
+         agQ7rNUhLhxcbqr0dArT9IHvxSjG7s2yRMOqVovo8lv2zEzWHJwa6+X3M9Fl5cJRovIK
+         Stun+VUMroIP0czrjVsY6gR0zNIsCJqjz+/g7vdbqx27h5H8emFWPTJZqqatMLjF7O5I
+         cQVmuLDLCrYa90iyPGm0SU0LL0mwTaUNeVmo+w4jim/BDAlJPZ8NH+WYgHPf9LjOWveP
+         sI4YhXRa+gw11dcmHpiN9a/LPodfJDl2SrYvjS53NnzrD/txhM2vyqiUEabtB/juOACh
+         0qtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772684665; x=1773289465;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=0XYLyMKJ0dlF29hBtXI26zZL2A2fy41jRfFsqvLL2kY=;
-        b=TyXrjj3V+yfaC5cgXIZ/uWw59bqGy3mKKABzG8McqvjIc9MIT5jMmDkVw2hiqmbhWQ
-         iskwX67UfUYtHc1VA8iHCmM5h73Ln6qe3FAKSjb7943egWkmbo2eN6U3mmP+bOnmXqYv
-         2ncoFYFq/Zr9pYdBMB3QybIyuvog2zqam9mkWRJleGwIH2OxB+x4Unj1Hflr6Lrs6W7J
-         6PMvpt2i8Qj2v6GJxe5lC/nvzWavr3wtpTHkp4Pm4WDHxfKSxwSPJQYPMqGKTI1Xl6CL
-         tLyySSQT7DuT3WNqwvLe51XyaQZPjsJbq8xflXW98lqwPcfySVLDAVZhQ1fEeB4JMimU
-         DvGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFVOlI+mDGvma6nja09La5Vx7NJ1osXYQpaJwvdDcXjbckyLhpKQhKy7SMIEhK7a/61FLIZDuV+W4d@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJp4aznrYDA/krglmrUJSO1XHnDhXZWv9bz3MwJBIIygozFIHr
-	M9ea0C3fO0410rywswcMrMdNw28JTQFTpDzASVXCdfgx6VstxTfy3/XtUg6tXNYiZtEtlvFAXL7
-	jnsN9SZpTQtEDRZ48gSbVReXmnBpxfpQ=
-X-Gm-Gg: ATEYQzwpFr+Nu4pZuUlJxPkUK0bvJCGD0PZ5hos5l38CCfZ0zxo0iLQfGTO8hIDC/o7
-	lvlmcwOeTG6guhlPMfjgqAN76pWA724wxBFJWAyBrV9czINMgI3PRsctJxNz5I5MI4v67qUQZSC
-	eLgHZryaBQKS1+BSKQQMQmRlTPEohXCE3sb7ctL8cAe7MtxfVocdyT8+ttF0N2LYTv/+Ynzz3m9
-	tuVLJfbwfiQi3v/eqpcCCOzxAhk7C4eGoLtKkSYUWC9fG+966sXcyTKPrJvFAfVpvcXVPPlB03o
-	XTDLnBG+3JP21LCKY5Tn4S8TgIY7oJ9T5jTl0rY=
-X-Received: by 2002:a05:6000:200c:b0:439:9282:e728 with SMTP id
- ffacd0b85a97d-439c7f64ff6mr8318259f8f.2.1772684664323; Wed, 04 Mar 2026
- 20:24:24 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772684932; x=1773289732;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Oi71X33SI7rhKIyGul9KTrYLg9wAYvvKP6HOo9k0t/s=;
+        b=XZqpv3Ii6ga7DwddowY/on6fxepiV/6tSLT/N0kovkW/suE8akG2/Rn/WCdViLs+/o
+         NcgfQNLg/68Mp/JkoirqnNaoReGor2HfXAWvgqGgqZE1LVBTQp7ziR3o4BQlPoFN3jlN
+         1SI3QXEfqdnsb6PqiWrSNtTY9KlicPeoyajpT0HBx97b43LcsoT9kTfESujNxcVwweQf
+         FeW3Qc8ZxuQmAf107FSgL9N2yXDUXsvJIZwrMgIYvBqJVWqy6XT79CZfDwbU2u8u2k7S
+         oM3OE5x6OcTJt7TyCjk9R6Nxq4CRo8bec1RBfLd+wUGQsfrnqVvm6YOwKdJeMyphVo1O
+         Z2eA==
+X-Forwarded-Encrypted: i=1; AJvYcCX2idILLhpCCv4pRAZ9FrPB879tj85vuCWuyJ2XiqBfXwy+TUSdFoNzSeeeo1jdzW1/po5WoM0ZlBk+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLUItThJS83ICe/beZ9ClqgY/tAwtwyQLCD+OqlteD0DApokpu
+	KrDkTx2TWCzG9Wu/rrHFlSSBJCMkny9tBdK1FKgY5BvACSlTsr8W7PfslPEpBlzXqyPr+44Qnej
+	eaeS2RAwocpTMK0InnsY2fqlRgkwWq9CVZuH1ipT8tApew1RSjJzwJEFZDp51QkNy
+X-Gm-Gg: ATEYQzycMR5hcrSkZ8ejpYdCRm0uiLuPwoxPIY5dStN/5DwU2powuT4basG4xDFWu83
+	hSkEX67JjSDHTLaxNwdXRorsrn257RO7Z5KjYFNJeLQs7Q/T7BEetlCudakiiL5978GAoJ5r6PM
+	2nSoeCRqeVmSQFGF7Dqz+mYX7AIc0v/oas1OE6LN4czuRd7CKKs2imlApQTmiRRMn9EFneHjj8d
+	t1Yk0IHs+ykayIalV+BqFIk8lg5PfuB6alRDdt0FHUzJkqFiT1K1VxAxlT4J+23YADZHw0epsFJ
+	ucJjpycVDUM9PUTiFCx0mCKK19Inxmu3+PBwRFJZ4HVKQeotqYPSoNAusDOqFkE1DUUqzcZs0+1
+	p0t23wwPeZ9OGsg2Tpt3kQjGey4T9y9HNvtmqz6+ZG++agH29GFytuVck1xSjOAej4JvbuAyS0g
+	==
+X-Received: by 2002:a05:7022:6629:b0:127:5c3d:bd95 with SMTP id a92af1059eb24-128b70df628mr1655498c88.32.1772684932339;
+        Wed, 04 Mar 2026 20:28:52 -0800 (PST)
+X-Received: by 2002:a05:7022:6629:b0:127:5c3d:bd95 with SMTP id a92af1059eb24-128b70df628mr1655483c88.32.1772684931745;
+        Wed, 04 Mar 2026 20:28:51 -0800 (PST)
+Received: from hu-djaggi-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-1279cbd1993sm11164942c88.2.2026.03.04.20.28.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2026 20:28:51 -0800 (PST)
+From: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+Subject: [PATCH v5 0/3] arm64: dts: qcom: Introduce sa8255p platform device
+ tree
+Date: Wed, 04 Mar 2026 20:28:27 -0800
+Message-Id: <20260304-b4-scmi-upstream-v5-0-f8fc763d8da0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260304025521.210377-1-dennis@ausil.us> <20260304025521.210377-4-dennis@ausil.us>
-In-Reply-To: <20260304025521.210377-4-dennis@ausil.us>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Wed, 4 Mar 2026 22:24:13 -0600
-X-Gm-Features: AaiRm53bqxmyn-czRCDphwYeS1JqLKfQ7eIga1HoF08yLPfZl8dXBWFpfflHnow
-Message-ID: <CALWfF7KYSML_W_1Wn=jESepQo7sN1qZyaXQk_rqX5ZGowQw=-Q@mail.gmail.com>
-Subject: Re: [PATCH V2 3/3] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
-To: dennis@ausil.us
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Hsun Lai <i@chainsx.cn>, Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	John Clark <inindev@gmail.com>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Andrew Lunn <andrew@lunn.ch>, 
-	Alexey Charkov <alchark@gmail.com>, Peter Robinson <pbrobinson@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 6844920AC38
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGsGqWkC/x3MQQ5AMBBA0as0szYJTZG6ilhUDWaBpoNIGnfXW
+ L7F/wmEIpNApxJEuln42DPqQoFf3b4Q8pQNutRNqbXB0aD4jfEKckZyG3rbWl9XjTVjBTkLkWZ
+ +/mU/vO8HR2oWj2IAAAA=
+X-Change-ID: 20260224-b4-scmi-upstream-c979c51694b1
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>,
+        Nikunj Kela <quic_nkela@quicinc.com>,
+        Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>,
+        Shazad Hussain <shazad.hussain@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772684930; l=7646;
+ i=deepti.jaggi@oss.qualcomm.com; s=20250501; h=from:subject:message-id;
+ bh=+Cx5q89r/2uxmygkXvkznY4AxwqKjadt+WOwF9aZKAk=;
+ b=kSY1spIOAWhpZz2Gb0c4ZKxAI+fz9dV+ypkHqA+rf+Wsu1ClsEaPk/12kXgsnhaFsdcmcXR9p
+ VMBJjY0Tm1GCCyEA+gLh3tHFZw6BAFKxEX1b6UGoAIy5IqmmEJlKNIj
+X-Developer-Key: i=deepti.jaggi@oss.qualcomm.com; a=ed25519;
+ pk=+b3H5UC/u0pUK5+btJ+35nW+6vKwJV1CfjJ1CJWuOZw=
+X-Proofpoint-GUID: HPhcO1sCLR9MS9R_xIO9SOiobl8ATTtm
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDAzMSBTYWx0ZWRfXxwJN8DskxBrO
+ jFgUuEWqIdekfG7PLfGRfbROlee0/TYfnCTdYoDr4YRRseqmTW8GgSqdVNKO/f+iLV9Nx45CKky
+ WECYHxqAdCyacTw0KeJHJL7ok6/Pich6DKhx3xUus1cH32s88reVbrb0gdyKLIeciXNbRrXiq8d
+ fyxjvvK9nc/N1L6ZJPyqrpeq+4JEZRx3LrkSDw6Z/zX7GXplp6HVj8yGZDCkl0080h1CV7lxf8/
+ H+/GtzYI1WWv2Oxj6J1jEIh0ivRHNnGq6mefGe1+A2Zrrn9979rnwMxJe6QZjNmwO/06Rht8Xfp
+ Tr/HFQinvNEflAwcZq7GXTY/QA08hQBVtrRdqVZ6JAnzgEMxmV/YyAAAqKrrx7+oQIMY5Aesgef
+ btCX+kDrkaIcJYb352g7lw73QuOT51J5BwjEi5szVW4gJAFm1P+djWC8AjcO4ebI0Ys2vjOxRam
+ SKkMvZpoGBUBN2QXX7Q==
+X-Authority-Analysis: v=2.4 cv=JK82csKb c=1 sm=1 tr=0 ts=69a90685 cx=c_pps
+ a=JYo30EpNSr/tUYqK9jHPoA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=OqDjb2b6Uua3qTf0ZKoA:9 a=QEXdDO2ut3YA:10 a=Fk4IpSoW4aLDllm1B1p-:22
+ a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: HPhcO1sCLR9MS9R_xIO9SOiobl8ATTtm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-04_09,2026-03-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ clxscore=1015 bulkscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050031
+X-Rspamd-Queue-Id: 933B420ACAD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271345-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,gmail.com,rootcommit.com,cherry.de,lunn.ch,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-271347-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,linaro.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.11:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[honyuenkwun@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[deepti.jaggi@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,mail.gmail.com:mid,orangepi.org:url,infradead.org:url,infradead.org:email,0.0.0.1:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Tue, Mar 3, 2026 at 8:55=E2=80=AFPM <dennis@ausil.us> wrote:
->
-> From: Dennis Gilmore <dennis@ausil.us>
->
-> Add device tree for the Xunlong Orange Pi 5 Pro (RK3588S). The Pro
-> differs from the base Orange Pi 5 in the following ways:
->
-> - No SPI NOR flash; eMMC module slot instead, you can optionally solder
->   a SPI NOR fin place and turn off the eMMC
-> - PCIe-attached NIC (pcie2x1l1) replaces the GMAC1 ethernet
-> - PCIe NVMe slot (pcie2x1l2)
-> - AP6256 WiFi (BCM43456) via SDIO with mmc-pwrseq
-> - BCM4345C5 Bluetooth via uart9 with full RTS/CTS
-> - Two-colour (blue/green) GPIO LED using modern color/function binding
-> - audio is wired up differently
->
-> Vendors description and links to schematics available:
-> http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details=
-/Orange-Pi-5-Pro.html
->
-> Signed-off-by: Dennis Gilmore <dennis@ausil.us>
-> ---
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../dts/rockchip/rk3588s-orangepi-5-pro.dts   | 376 ++++++++++++++++++
->  2 files changed, 377 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.d=
-ts
->
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
-rockchip/Makefile
-> index 4d384f153c13..c99dca2ae9e7 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -214,6 +214,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-nanopi-r6c.d=
-tb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-odroid-m2.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5b.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-5-pro.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-orangepi-cm5-base.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-radxa-cm5-io.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588s-roc-pc.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts b/ar=
-ch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-> new file mode 100644
-> index 000000000000..d656328c906d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts
-> @@ -0,0 +1,376 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include "rk3588s-orangepi-5.dtsi"
-> +
-> +/ {
-> +       model =3D "Xunlong Orange Pi 5 Pro";
-> +       compatible =3D "xunlong,orangepi-5-pro", "rockchip,rk3588s";
-> +
-> +       aliases {
-> +               /delete-property/ ethernet0;
-This looks the same as the V1. Can you send the updated version.
+Introduce initial device tree support for sa8255p Qualcomm's automotive
+infotainment SoC and its reference board: sa8255p-ride. Use SCMI power,
+reset, performance, and sensor protocols to manage resources such as
+clocks, regulators, interconnects, and PHYs. Operate the SCMI server
+stack in an SMP-enabled VM, using the Qualcomm SMC/HVC transport driver
+for communication.
 
-> +               mmc0 =3D &sdhci;
-> +               mmc1 =3D &sdmmc;
-> +               mmc2 =3D &sdio;
-> +       };
-> +
-> +       /* Pro uses gpio-leds instead; pwm0 LED is not wired up */
-> +       /delete-node/ pwm-leds;
-> +
-> +       /*
-> +        * Pro uses i2s2 (i2s2m1 mux) for audio, not i2s1. Recreate the s=
-ound
-> +        * card node pointing at i2s2_2ch instead.
-> +        */
-> +       /delete-node/ analog-sound;
-> +
-> +       analog-sound {
-> +               compatible =3D "simple-audio-card";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&hp_detect>;
-> +               simple-audio-card,bitclock-master =3D <&masterdai>;
-> +               simple-audio-card,format =3D "i2s";
-> +               simple-audio-card,frame-master =3D <&masterdai>;
-> +               simple-audio-card,hp-det-gpios =3D <&gpio1 RK_PD5 GPIO_AC=
-TIVE_HIGH>;
-> +               simple-audio-card,mclk-fs =3D <256>;
-> +               simple-audio-card,name =3D "rockchip,es8388";
-> +               simple-audio-card,routing =3D
-> +                       "Headphones", "LOUT1",
-> +                       "Headphones", "ROUT1",
-> +                       "LINPUT1", "Microphone Jack",
-> +                       "RINPUT1", "Microphone Jack",
-> +                       "LINPUT2", "Onboard Microphone",
-> +                       "RINPUT2", "Onboard Microphone";
-> +               simple-audio-card,widgets =3D
-> +                       "Microphone", "Microphone Jack",
-> +                       "Microphone", "Onboard Microphone",
-> +                       "Headphone", "Headphones";
-> +
-> +               simple-audio-card,cpu {
-> +                       sound-dai =3D <&i2s2_2ch>;
-> +               };
-> +
-> +               masterdai: simple-audio-card,codec {
-> +                       sound-dai =3D <&es8388>;
-> +                       system-clock-frequency =3D <12288000>;
-> +               };
-> +       };
-> +
-> +       fan: pwm-fan {
-> +               compatible =3D "pwm-fan";
-> +               #cooling-cells =3D <2>;
-> +               cooling-levels =3D <0 50 100 150 200 255>;
-> +               fan-supply =3D <&vcc5v0_sys>;
-> +               pwms =3D <&pwm2 0 20000000 0>;
-> +       };
-> +
-> +       gpio-leds {
-> +               compatible =3D "gpio-leds";
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&leds_rgb>;
-> +
-> +               blue-led {
-> +                       color =3D <LED_COLOR_ID_BLUE>;
-> +                       function =3D LED_FUNCTION_STATUS;
-> +                       gpios =3D <&gpio1 RK_PC6 GPIO_ACTIVE_HIGH>;
-> +                       linux,default-trigger =3D "heartbeat";
-> +               };
-> +
-> +               green-led {
-> +                       color =3D <LED_COLOR_ID_GREEN>;
-> +                       function =3D LED_FUNCTION_ACTIVITY;
-> +                       gpios =3D <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
-> +                       linux,default-trigger =3D "mmc0";
-> +               };
-> +       };
-> +
-> +       vcc5v0_otg: regulator-vcc5v0-otg {
-> +               compatible =3D "regulator-fixed";
-> +               enable-active-high;
-> +               gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&vcc5v0_otg_en>;
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-max-microvolt =3D <5000000>;
-> +               regulator-min-microvolt =3D <5000000>;
-> +               regulator-name =3D "vcc5v0_otg";
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +       };
-> +
-> +       sdio_pwrseq: sdio-pwrseq {
-> +               compatible =3D "mmc-pwrseq-simple";
-> +               clocks =3D <&hym8563>;
-> +               clock-names =3D "ext_clock";
-> +               post-power-on-delay-ms =3D <200>;
-> +               reset-gpios =3D <&gpio0 RK_PD0 GPIO_ACTIVE_LOW>;
-> +       };
-> +
-> +       vcc3v3_pcie20: regulator-vcc3v3-pcie20 {
-> +               compatible =3D "regulator-fixed";
-> +               enable-active-high;
-> +               gpios =3D <&gpio3 RK_PB7 GPIO_ACTIVE_HIGH>;
-> +               regulator-boot-on;
-> +               regulator-max-microvolt =3D <3300000>;
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-name =3D "vcc3v3_pcie20";
-> +               startup-delay-us =3D <50000>;
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +       };
-> +
-> +       vcc3v3_pcie_eth: regulator-vcc3v3-pcie-eth {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-always-on;
-> +               regulator-boot-on;
-> +               regulator-max-microvolt =3D <3300000>;
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-name =3D "vcc3v3_pcie_eth";
-> +               vin-supply =3D <&vcc5v0_sys>;
-> +       };
-> +};
-> +
-> +/* disable gmac1 as the pro has a PCIe attached NIC */
-> +&gmac1 {
-> +       status =3D "disabled";
-> +};
-> +
-> +/* 40-pin header pins 3/5 */
-> +&i2c1 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&i2c1m4_xfer>;
-> +       status =3D "okay";
-> +};
-> +
-> +/*
-> + * Pro routes audio codec via i2c3 (not i2c6) and i2s2m1 (not i2s1m0).
-> + * Delete the inherited es8388 node from i2c6 and redeclare it here.
-> + */
-> +/delete-node/ &es8388;
-> +
-> +&i2c3 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&i2c3m0_xfer>;
-> +       status =3D "okay";
-> +
-> +       es8388: audio-codec@11 {
-> +               compatible =3D "everest,es8388", "everest,es8328";
-> +               reg =3D <0x11>;
-> +               #sound-dai-cells =3D <0>;
-> +               AVDD-supply =3D <&vcc_3v3_s0>;
-> +               DVDD-supply =3D <&vcc_1v8_s0>;
-> +               HPVDD-supply =3D <&vcc_3v3_s0>;
-> +               PVDD-supply =3D <&vcc_3v3_s0>;
-> +               assigned-clock-rates =3D <12288000>;
-> +               assigned-clocks =3D <&cru I2S2_2CH_MCLKOUT>;
-> +               clocks =3D <&cru I2S2_2CH_MCLKOUT>;
-> +       };
-> +};
-> +
-> +/* 40-pin header pins 27/28 */
-> +&i2c4 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&i2c4m3_xfer>;
-> +       status =3D "okay";
-> +};
-> +
-> +/*
-> + * i2s1_8ch uses i2s1m0 which occupies GPIO4_PA0 (CLKREQ#) and GPIO4_PA1
-> + * (WAKE#) needed for the NVMe M.2 slot. Disable it; audio is on i2s2_2c=
-h.
-> + */
-> +&i2s1_8ch {
-> +       status =3D "disabled";
-> +};
-> +
-> +/* Audio codec on i2s2, m1 mux; add mclk pin to the base pinctrl */
-> +&i2s2_2ch {
-> +       pinctrl-0 =3D <&i2s2m1_lrck &i2s2m1_mclk &i2s2m1_sclk
-> +                    &i2s2m1_sdi &i2s2m1_sdo>;
-> +       status =3D "okay";
-> +};
-> +
-> +&package_thermal {
-> +       polling-delay =3D <1000>;
-> +
-> +       cooling-maps {
-> +               map0 {
-> +                       trip =3D <&package_fan0>;
-> +                       cooling-device =3D <&fan THERMAL_NO_LIMIT 1>;
-> +               };
-> +
-> +               map1 {
-> +                       trip =3D <&package_fan1>;
-> +                       cooling-device =3D <&fan 2 THERMAL_NO_LIMIT>;
-> +               };
-> +       };
-> +
-> +       trips {
-> +               package_fan0: package-fan0 {
-> +                       hysteresis =3D <2000>;
-> +                       temperature =3D <55000>;
-> +                       type =3D "active";
-> +               };
-> +
-> +               package_fan1: package-fan1 {
-> +                       hysteresis =3D <2000>;
-> +                       temperature =3D <65000>;
-> +                       type =3D "active";
-> +               };
-> +       };
-> +};
-> +
-> +/* NVMe */
-> +&pcie2x1l1 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pcie30x1m1_1_clkreqn &pcie30x1m1_1_waken>;
-> +       reset-gpios =3D <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
-> +       supports-clkreq;
-> +       vpcie3v3-supply =3D <&vcc3v3_pcie_eth>;
-> +       status =3D "okay";
-> +};
-> +
-> +/* NIC */
-> +&pcie2x1l2 {
-> +       reset-gpios =3D <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
-> +       vpcie3v3-supply =3D <&vcc3v3_pcie20>;
-> +       status =3D "okay";
-> +};
-> +
-> +&pinctrl {
-> +       bluetooth {
-> +               bt_wake_gpio: bt-wake-pin {
-> +                       rockchip,pins =3D <0 RK_PC6 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> +               };
-> +
-> +               bt_wake_host_irq: bt-wake-host-irq {
-> +                       rockchip,pins =3D <0 RK_PC5 RK_FUNC_GPIO &pcfg_pu=
-ll_down>;
-> +               };
-> +       };
-> +
-> +       gpio-leds {
-> +               leds_rgb: leds-rgb {
-> +                       rockchip,pins =3D <1 RK_PC6 RK_FUNC_GPIO &pcfg_pu=
-ll_none>,
-> +                                       <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull=
-_none>;
-> +               };
-> +       };
-> +
-> +       usb {
-> +               vcc5v0_otg_en: vcc5v0-otg-en {
-> +                       rockchip,pins =3D <0 RK_PC4 RK_FUNC_GPIO &pcfg_pu=
-ll_none>;
-> +               };
-> +       };
-> +
-> +       wlan {
-> +               wifi_host_wake_irq: wifi-host-wake-irq {
-> +                       rockchip,pins =3D <0 RK_PA0 RK_FUNC_GPIO &pcfg_pu=
-ll_down>;
-> +               };
-> +       };
-> +};
-> +
-> +/* pwm0 pin conflicts with i2c4 pin 27 Pro */
-> +&pwm0 {
-> +       status =3D "disabled";
-> +};
-> +
-> +&pwm2 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&pwm2m1_pins>;
-> +       status =3D "okay";
-> +};
-> +
-> +&sdhci {
-> +       status =3D "okay";
-> +};
-> +
-> +&sdio {
-> +       #address-cells =3D <1>;
-> +       #size-cells =3D <0>;
-> +       bus-width =3D <4>;
-> +       cap-sd-highspeed;
-> +       cap-sdio-irq;
-> +       disable-wp;
-> +       keep-power-in-suspend;
-> +       max-frequency =3D <150000000>;
-> +       mmc-pwrseq =3D <&sdio_pwrseq>;
-> +       no-mmc;
-> +       no-sd;
-> +       non-removable;
-> +       sd-uhs-sdr104;
-> +       status =3D "okay";
-> +
-> +       ap6256: wifi@1 {
-> +               compatible =3D "brcm,bcm43456-fmac", "brcm,bcm4329-fmac";
-> +               reg =3D <1>;
-> +               interrupt-names =3D "host-wake";
-> +               interrupt-parent =3D <&gpio0>;
-> +               interrupts =3D <RK_PA0 IRQ_TYPE_LEVEL_HIGH>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&wifi_host_wake_irq>;
-> +       };
-> +};
-> +
-> +&uart9 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&uart9m2_xfer &uart9m2_ctsn &uart9m2_rtsn>;
-> +       uart-has-rtscts;
-> +       status =3D "okay";
-> +
-> +       bluetooth {
-> +               compatible =3D "brcm,bcm4345c5";
-> +               clocks =3D <&hym8563>;
-> +               clock-names =3D "lpo";
-> +               device-wakeup-gpios =3D <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-> +               interrupt-names =3D "host-wakeup";
-> +               interrupt-parent =3D <&gpio0>;
-> +               interrupts =3D <RK_PC5 IRQ_TYPE_LEVEL_HIGH>;
-> +               max-speed =3D <1500000>;
-> +               pinctrl-names =3D "default";
-> +               pinctrl-0 =3D <&bt_wake_host_irq &bt_wake_gpio>;
-> +               shutdown-gpios =3D <&gpio0 RK_PD5 GPIO_ACTIVE_HIGH>;
-> +               vbat-supply =3D <&vcc_3v3_s3>;
-> +               vddio-supply =3D <&vcc_1v8_s3>;
-> +       };
-> +};
-> +
-> +/* USB2 OTG PHY for usb_host0_xhci; phy-supply enables VBUS to USB3 Type=
--A port */
-> +&u2phy0_otg {
-> +       phy-supply =3D <&vcc5v0_otg>;
-> +};
-> +
-> +/* Pro has no FUSB302; the USB-C port is power delivery only */
-> +/delete-node/ &usbc0;
-> +
-> +/*
-> + * The Pro's USB-C port is power delivery only: no FUSB302, no data line=
-s,
-> + * no alt-mode switching. The parent DTSI enables usbdp_phy0 (status =3D=
- "okay")
-> + * and adds FUSB302 alt-mode/orientation properties; delete those here.
-> + *
-> + * dp-lane-mux =3D <0 1>: PHY lanes 0/1 are DP (physically routed to the
-> + * LT8711UXD DP=E2=86=92HDMI2 bridge), lanes 2/3 are USB3 SuperSpeed (ph=
-ysically
-> + * routed to the USB3 Type-A port P3). Without this property the driver
-> + * defaults to USB-only mode and places USB3 on lanes 0/1, which do not
-> + * reach the Type-A connector and makes the USB3 port non-functional.
-> + */
-> +&usbdp_phy0 {
-> +       rockchip,dp-lane-mux =3D <0 1>;
-> +       /delete-property/ mode-switch;
-> +       /delete-property/ orientation-switch;
-> +       /delete-property/ sbu1-dc-gpios;
-> +       /delete-property/ sbu2-dc-gpios;
-> +       /delete-node/ port;
-> +};
-> +
-> +/* USB3 Type-A port*/
-> +&usb_host0_xhci {
-> +       dr_mode =3D "host";
-> +       /delete-property/ usb-role-switch;
-> +       status =3D "okay";
-> +       /delete-node/ port;
-> +};
-> +
-> +/*
-> + * combphy2_psu is shared between usb_host2_xhci (USB3) and pcie2x1l1 (P=
-CIe).
-> + * Disable USB3 so the PHY can be used for the NVMe M.2 slot.
-> + */
-> +&usb_host2_xhci {
-> +       status =3D "disabled";
-> +};
-> --
-> 2.53.0
->
->
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Instantiate multiple SCMI instances to support parallelism and assign each
+device a dedicated SCMI channel and Tx/Rx doorbells.
+
+Group resource operations to improve abstraction and minimize SCMI
+server requests. Apply the design as presented at LinaroConnect 2024
+conference[1].
+
+Features added and enabled:
+- CPUs with cpufreq
+- Interrupt-controller with PDC wakeup support
+- Timers, TCSR
+- Reserved memory regions
+- TLMM
+- QuP with uart
+- SMMU
+- Watchdog
+- TSENS (Thermal Sensors)
+- PMIC support
+- IPCC
+- Random number generator (RNG)
+- UFS
+- PCIE
+
+Architecture:
+                                                          +--------------------+
+                                                          |   Shared Memory    |
+                                                          |                    |
+                                                          | +----------------+ |                +-------------------+
+ +--------------------------------+                   +-+-> |    uart-shmem  | <-+-+            |      Linux        |
+ |            SCMI Platform       |                   |   | +----------------+ |   |            |   +----------+    |
+ |                                |                   |   |         |          |   |            |   |   UART   |    |
+ |  +------------+ f +----------+ |                   |   |                    |   |            |   |  Driver  |    |
+ |  |  Drivers   <---+  SCMI    | |        e          |   |         |          |   |            |   +--+----^--+    |
+ |  |  (clks,    | g | Server   +-+-------------------+   |                    |   |            |      |    |       |
+ |  | icc paths, +--->          | |        h              |         |          |  b|k           |     a|   l|       |
+ |  |     tlmm,  |   +--^-----+-+ |                       |                    |   |            |      |    |       |
+ |  |     etc.)  |      |     |   |                       |         |          |   |            |  +---v----+----+  |
+ |  |            |      |     |   |                       |                    |   +------------+--+  UART SCMI  |  |
+ |  +------------+      |     |   |                       |         |          |                |  |  INSTANCE   |  |
+ |                      |     |   |                       |                    |                |  +-^-----+-----+  |
+ |                      |     |   |                       |         |          |                |    |     |        |
+ +----------------------+-----+---+                       |                    |                +----+-----+--------+
+                        |     |                           |         |          |                     |     |
+                        |     |                           +--------------------+                     |     |
+                       d|IRQ i|HVC                                                                  j|IRQ c|HVC
+                        |     |                                                                      |     |
+                        |     |                                                                      |     |
++-----------------------+-----v----------------------------------------------------------------------+-----v--------+
+|                                                                                                                   |
+|                                                                                                                   |
+|                                                                                                                   |
+|                                                               HYPERVISOR                                          |
+|                                                                                                                   |
+|                                                                                                                   |
++-------------------------------------------------------------------------------------------------------------------+
+
++--------+   +--------+                                                               +-----------+
+        | CLOCK  |   |  TLMM  |                                                               |    UART   |
+        +--------+   +--------+                                                               +-----------+
+
+---
+Patch 1:
+Changes in v5:
+  No changes
+
+Changes in v4:
+  Added the patch in this series.
+  Rebased on linux-next
+  Link to v3 https://lore.kernel.org/all/20250423003845.3980330-1-quic_djaggi@quicinc.com/
+
+Changes in v3:
+  Removed the patches from original series[2]
+
+Changes in v2:
+  Added Reviewed-by tag
+
+Patch 2:
+Changes in v5:
+  Move soc and board dt into separate patches(Patch 2 and 3). - Dmitry
+  Drop arch timer label- Dmitry
+  Move pmic thermal zones to board dts - Dmitry 
+
+Changes in v4:
+  Added the patch in this series
+  Updates to commit text
+  Sorted clocks in alphabetical order
+  Added dcvsh interrupts
+  Hystersis value changed to 10000 for soc thermal zones
+  Deleted sa8255p-scmi.dtsi and scmi nodes moved under firmware node to sa8255p.dtsi
+  Changes to scmi shmem nodes - removed from sram and added to reserved region
+  Changes to copyright
+  Added address cells and size cells to interrupt controller/intc
+  Added dma-coherent property to smmu
+  Added pcie and ufs support
+  Link to v3 https://lore.kernel.org/all/20250422231249.871995-1-quic_djaggi@quicinc.com/
+
+Changes in v3:
+  Removed the patches from original series [2].
+  Added arm,max-msg and arm,max-msg-size DT property in scmi nodes.
+  Changed max-rx-timeout-ms to arm,max-rx-timeout-ms in scmi nodes.
+  Updated commit text.
+  Reordered range property for qupv3_id_0, qupv3_id_1 and qupv3_id_3 nodes.
+  Reordered vendor property(#qcom,sensors) for tsens* nodes.
+  Changed cache labels to lower case.
+  Removed unused i2c,spi and tlmm nodes.
+  Updated reserved memory nodes.
+
+Changes in v2:
+  Removed scmichannels label and alias
+  Modified scmi node name to conform to schema
+  Moved status property to be the last one in scmi instances
+  Changed to lower case for cpu labels
+  Added fallback compatible for tlmm node
+
+Patch 3:
+Changes in v5:
+  Added board changes into separate patch - Dmitry
+  PMIC thermal zones moved to board file - Dmitry
+
+[1]: https://resources.linaro.org/en/resource/wfnfEwBhRjLV1PEAJoDDte
+[2]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+
+---
+Nikunj Kela (3):
+      dt-bindings: arm: qcom: add SA8255p Ride board
+      arm64: dts: qcom: Introduce sa8255p SoC
+      arm64: dts: qcom: sa8255p: Enable sa8255p-ride board support
+
+ Documentation/devicetree/bindings/arm/qcom.yaml |    5 +
+ arch/arm64/boot/dts/qcom/Makefile               |    1 +
+ arch/arm64/boot/dts/qcom/sa8255p-ride.dts       |  222 ++
+ arch/arm64/boot/dts/qcom/sa8255p.dtsi           | 4861 +++++++++++++++++++++++
+ 4 files changed, 5089 insertions(+)
+---
+base-commit: af98e93c5c39e6d0b87b42f0a32dd3066f795718
+change-id: 20260224-b4-scmi-upstream-c979c51694b1
+
+Best regards,
+-- 
+Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+
 
