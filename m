@@ -1,150 +1,157 @@
-Return-Path: <devicetree+bounces-271717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271712-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4H6BC+fhqWnDGwEAu9opvQ
-	(envelope-from <devicetree+bounces-271717-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:04:55 +0100
+	id OFfoFJXfqWm4GgEAu9opvQ
+	(envelope-from <devicetree+bounces-271712-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:55:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E4B217F32
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:04:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AACBC217D39
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:55:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 1F714301AA88
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 20:00:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8D8A630416DD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A678B401484;
-	Thu,  5 Mar 2026 19:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD343EB7EB;
+	Thu,  5 Mar 2026 19:54:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b="KwhuQA6G"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="B9l2QOJz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DD223F23B3
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.77.101.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15143EB7E6;
+	Thu,  5 Mar 2026 19:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772740762; cv=none; b=YPL9/LEbezNUPxtqrU2kdd7l8mVJ15N5pL6tFrumZOIW+wxyT5y73n2/jc8w0y2On4we/zAbeN1JJ7z0EmJHrx8C56vD2uOf9XlFO2K2eRWJi7i2p+lgp+hP7jScSUPJUwGvI4nUCWvf/S+xmmO1iz2uaT4ULbh4c1vLL19aX/0=
+	t=1772740458; cv=none; b=KV9x1EZRP6dbIE++G7drbpSHyZsU8SjW2M8lDGmPvtoDGGlXcRfHzBePR/EBxzUVAv3h0FpyOCCqgHqwaVn8+7Y0FTVqu7YUVhvP63OdWCas1Zd7ajJY0uQ/J3Cqv4FhVCHbdJNA7kVfrk9rRoVp4b8yRwLR/Q3zqoKDuheqUkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772740762; c=relaxed/simple;
-	bh=fcA8XSTeu115N9PUnt2hlsZJz7kgu2mWp1bBGaqNijU=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qFoc0lvuBo8gBP8YbEHPzTlg0n//c3l9Z25biGbSksLLs4WRqeNNkVrD7ymn0oH7S7JedzG8fdWh3a4ykGfgzgy/rQFU1J6Ct3LBA5GMaD0VtrcBdmdIoFCUgO0zUhW+qMxOdlQ13LRWDz2g51QqJAXXKjxCkVYGuz6aZFxfKKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl; spf=pass smtp.mailfrom=wp.pl; dkim=pass (2048-bit key) header.d=wp.pl header.i=@wp.pl header.b=KwhuQA6G; arc=none smtp.client-ip=212.77.101.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wp.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wp.pl
-Received: (wp-smtpd smtp.wp.pl 18178 invoked from network); 5 Mar 2026 20:59:08 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=20241105;
-          t=1772740748; bh=UZ5ElGs4yDjDl9zUzhOrvjxZKl8oYf69gNiHnYY/vp0=;
-          h=From:To:Subject;
-          b=KwhuQA6G1v8VHcwAdkzeKB0Jd617Ax7zMA450fs72GLxUEvDqepotNfJVqNqmUrxb
-           WZ544pJS6d7bKpb4AdvpXUgYCbyWjwYP88O8h/JAN+MNdDR4jnVJBWnHHN1bzdFIrI
-           uoB1p74t1ZEVy0SR47a3NRmYQll4R7moXSRXygHGH3j0xJjQO1Jz1/BmKkpA2Df2CT
-           //3gM3tmEPSmVC1m4Ja8jSZjhtLVzbBxRbX0NdTWHeoQ7yr/cTdKWvd4tnoA5NR6Qc
-           QHseuxno8SequcRZUlFOgpFgduN6lo1v+jPE0Xz1ZY34EHmC+PgmYz6xdunD3AqaVV
-           4U+vuhftNLRmA==
-Received: from 83.24.116.171.ipv4.supernova.orange.pl (HELO laptop-olek.lan) (olek2@wp.pl@[83.24.116.171])
-          (envelope-sender <olek2@wp.pl>)
-          by smtp.wp.pl (WP-SMTPD) with TLS_AES_256_GCM_SHA384 encrypted SMTP
-          for <ansuelsmth@gmail.com>; 5 Mar 2026 20:59:08 +0100
-From: Aleksander Jan Bajkowski <olek2@wp.pl>
-To: ansuelsmth@gmail.com,
-	herbert@gondor.apana.org.au,
-	davem@davemloft.net,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	lorenzo@kernel.org,
-	olek2@wp.pl,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: airoha: en7581: add crypto offload support
-Date: Thu,  5 Mar 2026 20:53:11 +0100
-Message-ID: <20260305195903.59776-2-olek2@wp.pl>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260305195903.59776-1-olek2@wp.pl>
-References: <20260305195903.59776-1-olek2@wp.pl>
+	s=arc-20240116; t=1772740458; c=relaxed/simple;
+	bh=XBqM4bs5J6Hv72N2/p1rqCsh6vwggkjVOiUcTcGYUjA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=FKSp0Qbnwev8L/9MkDi3f3SJ5bMH3QrE1pC0EFdRmPFR661QN6DeXvPQiDuTGJOLpviAFh9Nj/RfIjpseRSsJHgBWJOjfNA4Gp3Or52vQWM1IJ0U3vi5Yn3d4M7bcmrqh9gMNwEDQZpEOPmak2Az93E2c1Ldo+t9s7xtzmb6eYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=B9l2QOJz; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 6F4922710D;
+	Thu,  5 Mar 2026 20:54:08 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 5UdGDb1XIa3m; Thu,  5 Mar 2026 20:54:07 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1772740447; bh=XBqM4bs5J6Hv72N2/p1rqCsh6vwggkjVOiUcTcGYUjA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=B9l2QOJzOh2QxV7//mVBInca6X2rCtKZkyLwnonVyvrhxZfZgJORGB2bXL6Mhia0u
+	 2s1bD2Wq7VknWP9qKR+TGbDmNHcgADwfvh4Xh/q0J39Ab4xnai80rRDU3JH0Uz0kgI
+	 tSTHRZzjmX9RwoCxkVIkI77lORHwRc19XwwGPy6OLSypc+J5gYCShDQ+oXHeAOrS/8
+	 MYduAQcMuwCXsSWtg0+YN2RbKnC7KsNG6pSHyu4OWArl4PU02D3mA5Voct6TssU58T
+	 b570i6UP6wBIErFoeZLHPGWiev3J78PVQ21Hon9NHXPuEMiOXlVnzMlxfSWSUdoJOR
+	 /Vdd7Lvvl8J/g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Date: Thu, 05 Mar 2026 19:54:07 +0000
+From: adilov <adilov@disroot.org>
+To: Sander Vanheule <sander@svanheule.net>
+Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski
+ <brgl@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bert Vermeulen
+ <bert@biot.com>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] gpio: realtek-otto: add rtl9607 support
+In-Reply-To: <f92a2a8558ebff7a145ece97c2bc44f1f7aafd26.camel@svanheule.net>
+References: <20260305161106.15999-1-adilov@disroot.org>
+ <20260305161106.15999-3-adilov@disroot.org>
+ <f92a2a8558ebff7a145ece97c2bc44f1f7aafd26.camel@svanheule.net>
+Message-ID: <6a8538a1990dc02a6a0bdbf60ebd747f@disroot.org>
+X-Sender: adilov@disroot.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-X-WP-MailID: 303be36492603e776a8e2b4ea6b63e57
-X-WP-AV: skaner antywirusowy Poczty Wirtualnej Polski
-X-WP-SPAM: NO 0000009 [Ido0]                               
-X-Rspamd-Queue-Id: 35E4B217F32
+X-Rspamd-Queue-Id: AACBC217D39
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[wp.pl,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[wp.pl:s=20241105];
+	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271717-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271712-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[disroot.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,gondor.apana.org.au,davemloft.net,collabora.com,kernel.org,wp.pl,lists.infradead.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[wp.pl:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[olek2@wp.pl,devicetree@vger.kernel.org];
-	FREEMAIL_FROM(0.00)[wp.pl];
-	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[adilov@disroot.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.998];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FROM_HAS_DN(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add support for the built-in cryptographic accelerator. This accelerator
-supports 3DES, AES (128/192/256 bit), ARC4, MD5, SHA1, SHA224, and SHA256.
-It also supports full IPSEC, SRTP and TLS offload.
+On 2026-03-05 19:04, Sander Vanheule wrote:
+> Hi,
+> 
+> On Thu, 2026-03-05 at 21:11 +0500, Rustam Adilov wrote:
+>> The RTL9607C SoC has support for 3 GPIO banks with 32 GPIOs each and
+>> the port order is reversed just like in RTL930x.
+>> 
+>> Signed-off-by: Rustam Adilov <adilov@disroot.org>
+>> ---
+>>  drivers/gpio/gpio-realtek-otto.c | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>> 
+>> diff --git a/drivers/gpio/gpio-realtek-otto.c 
+>> b/drivers/gpio/gpio-realtek-
+>> otto.c
+>> index 4cf91528f547..5e3152c2e51a 100644
+>> --- a/drivers/gpio/gpio-realtek-otto.c
+>> +++ b/drivers/gpio/gpio-realtek-otto.c
+>> @@ -351,6 +351,10 @@ static const struct of_device_id 
+>> realtek_gpio_of_match[]
+>> = {
+>>  	{
+>>  		.compatible = "realtek,rtl9310-gpio",
+>>  	},
+>> +	{
+>> +		.compatible = "realtek,rtl9607-gpio",
+>> +		.data = (void *)GPIO_PORTS_REVERSED,
+>> +	},
+>>  	{}
+>>  };
+>>  MODULE_DEVICE_TABLE(of, realtek_gpio_of_match);
+> 
+> If I'm not mistaken, this SoC has a MIPS InterAptiv CPU like the 
+> RTL931x SoC
+> series. Were you able to validate that the interrupts are functioning 
+> as
+> expected?
+> 
+> Best,
+> Sander
 
-Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
----
-v2:
-- drop extra new lines between properties
----
- arch/arm64/boot/dts/airoha/en7581.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Hi Sander,
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index ff6908a76e8e..5621473f5155 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -300,6 +300,15 @@ rng@1faa1000 {
- 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		crypto@1e004000 {
-+			compatible = "airoha,en7581-eip93",
-+				"inside-secure,safexcel-eip93ies";
-+			reg = <0x0 0x1fb70000 0x0 0x1000>;
-+			clocks = <&scuclk EN7523_CLK_CRYPTO>;
-+			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&scuclk EN7581_CRYPTO_RST>;
-+		};
-+
- 		system-controller@1fbf0200 {
- 			compatible = "airoha,en7581-gpio-sysctl", "syscon",
- 				     "simple-mfd";
--- 
-2.47.3
-
+Yes, this is correct. I played around with gpio-keys in OpenWrt (though 
+it
+has its own gpio-button-hotplug but it should not change things) and can
+verify that button presses and releases are working. I think this should
+confirm that interrupts are functional.
 
