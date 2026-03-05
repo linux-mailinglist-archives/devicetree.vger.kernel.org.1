@@ -1,232 +1,139 @@
-Return-Path: <devicetree+bounces-271742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271743-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHuGIwIJqmmVJwEAu9opvQ
-	(envelope-from <devicetree+bounces-271742-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 23:51:46 +0100
+	id h+HZAGILqmn0KAEAu9opvQ
+	(envelope-from <devicetree+bounces-271743-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:01:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0BA219172
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 23:51:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEB9621924F
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:01:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0FB453020015
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 22:51:39 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id BD02E300D0C1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:01:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93171364059;
-	Thu,  5 Mar 2026 22:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC312FE056;
+	Thu,  5 Mar 2026 23:01:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Gsz7h2jM"
+	dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b="cHbH/Hjn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010002.outbound.protection.outlook.com [52.101.84.2])
+Received: from pdx-out-009.esa.us-west-2.outbound.mail-perimeter.amazon.com (pdx-out-009.esa.us-west-2.outbound.mail-perimeter.amazon.com [35.155.198.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 325A034CFDE;
-	Thu,  5 Mar 2026 22:51:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772751097; cv=fail; b=aRYZChovxeRKpNfdabee4wOeiu2VaJ5Wf23Xr8Q64BYN6S6ddNkMZvSAd2F1a2NVzwjMvzkN6FfxBD2oHlbPjG4gilCKT3/atn4YweL1U8p+tnQC4HR0h+vIf0aKkPXIedA7KIFyiI49+1AfWT4nUzYXUE0powvBKjcLvmFoqzM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772751097; c=relaxed/simple;
-	bh=DidVWHzCb1gEkiJkltegde4LoKqkC+O6TURcUCd9wZk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=B6DLBiFTbJa1nf0FSOfK9N2FBpy5J6MHhBK856DbpI8bhe4+Qh+Ni++zHqgKpsLPq4/tjoC2fe0NGcAp8AxWM1De04a1EzHGFmwrsFlPRBDz7iJMHfh1E9L6VXpW4Wqxlcrja2uPd5wJzd0H4mfg6ex/CCD6p0VXjEMTTn3qsgQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Gsz7h2jM; arc=fail smtp.client-ip=52.101.84.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bGiIwAqAf1bkdZcE5k1z79SPtjPKUiN5PuCEBSByt9StQfDlZlJRp0VV9kHDF4ZNM7ffoEAdLwwXfDRwvYM6KVw66J9XJTCgK2H2qQIcPBLzw0UzSZIzHajoQJlT4szfjxTQSHf6eU6u0sSCBBMt+VR5rX2M5xRwJAU4bB8goNCslUa9JCHNwwEXP9C6G0gvcKxq+pXrzt6UXwj03vbo9BUXD6kcTbfrZs3aZp/LFUnsCB5mTunW0/ppodNqoWeyDAQGv9nIsEfSZzM/jyT9Bmhw6wwKcP2Pu3hMP6gO6CuEm+/zlVrwOH2Ft/gCwvKF8tABOzwSHQELh0IofZ6R3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OLu3L9sDscDr8sVN3E/3rdDak0q8SMyvy13GXCPLAgw=;
- b=IEwmzKLGZxGEwbm0MWaR4cIB9JyEcl8bkRgCBHH8AthhI4TWypabFUi8aCmY7tplS3oOL1NtRfs7nd+viGsW9YPdYTAVjogyU/3NYOOLActylKZhwLVvixMOy8PNQy98+r4xf9RzvkDJqPxwGN0pRjiBDx5LVrtKHZT08ixAWk8cQj2rF3tDwq6rhp3XD7iMtfIMZp2zzuGPwfzkLH5C7qEw97L3OpwGUnRwkf+QjFKPkRkntcfHuSBuOKVVpF0c1Hxem+6siaxkF7DUbCPl6dunDPtp5e2JXwOZwli3UaYitCVRO9IWRVPbZ8z70hdLOx+Lzc5nRg4NgcGASTQYZw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OLu3L9sDscDr8sVN3E/3rdDak0q8SMyvy13GXCPLAgw=;
- b=Gsz7h2jMJ/aBrd5aV1t1Kig15Y3x9wD0/AguZGvhAiziP1K+nMQHNx3jUIvcXDnrhyee8EskZLnGyfgmuEbUZAZl4+sxf62jJjMz2BGWC7R1+Dta6ynarvtir15KIxiecnRe7Rks5cYF5+RczZNOkguVryirt8CXK/u23sIqh0l4w7KYAMQtB1bQO/W0uXePv9vK38uSV4/tUvabZFnfy0AlT12WO7qasfkLjgijGh5+CKb0+DyVJF3UoSyl2iSbcgEYJOs52rLtLcQPLUmxSqGEbctrp85kmar6/QveBV++Z8WbiT+Du7ELYVNNz8M6jscnndxOOlgZi7pqiqI1vg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AM7PR04MB7032.eurprd04.prod.outlook.com (2603:10a6:20b:112::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
- 2026 22:51:33 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Thu, 5 Mar 2026
- 22:51:33 +0000
-Date: Thu, 5 Mar 2026 17:51:25 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: max.krummenacher@gmx.de,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Max Krummenacher <max.krummenacher@toradex.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	"regressions@lists.linux.dev" <regressions@lists.linux.dev>
-Subject: Re: [PATCH] Revert "ARM: dts: imx: move nand related property under
- nand@0"
-Message-ID: <aaoI7TqtClwSKTLg@lizhi-Precision-Tower-5810>
-References: <aZdDF6BObEu_C4KJ@toolbox>
- <aZdnhv2QC1szMCVl@lizhi-Precision-Tower-5810>
- <aZ80BWH6DRu8_W_S@toolbox>
- <aZ82pG3PO1HxD18B@lizhi-Precision-Tower-5810>
- <aaBA65_zLu8S6WMS@toolbox>
- <aaBi9lipWTG5l0hs@lizhi-Precision-Tower-5810>
- <bd0bd330d140f9d9d222c72c3797f79d08fcae1d.camel@active.ch>
- <aaWxiERQ4u6IhO7Q@lizhi-Precision-Tower-5810>
- <aaniGuauaieO3p36@lizhi-Precision-Tower-5810>
- <39ef5c99-ba8e-40c1-bf93-359db7297d55@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <39ef5c99-ba8e-40c1-bf93-359db7297d55@kernel.org>
-X-ClientProxiedBy: SA9PR03CA0006.namprd03.prod.outlook.com
- (2603:10b6:806:20::11) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D980273803;
+	Thu,  5 Mar 2026 23:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.155.198.111
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772751708; cv=none; b=YSJmY3hDmIftXRjC9uWj3Lwuh704LvnDTiaHutJ6r3agO77Pb1t4GV8Qu1JHz9wt+7xxAUx23Kj7iqZrWnzWowA5ipmLCR/zIPu9MqF78n+Rtv4gqy0uE+PQ/+JNc/US3lSlAeRW6wqt3LttnZdl+jjUQ7W2ze8cHnLOAVFFDR4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772751708; c=relaxed/simple;
+	bh=9J5Zj6NdgqbfM4MzVVAxnLzy8MksTLvO/4JRlBcSRsA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=V5b06rZaqeIB60V7qeFO+sGZDeQa4vosUTTSDEwkP2L6MDbRzJuNFco++DbHCu9QRdwgJSjV0ZT7mab6D+EtkUlXYvude3CKDGt43CN4wXVdJBpnxkm6JXB11N23+mac5/9pRxmMBGIpuQVH0hMfLUhzn7YswEvzOM192PY/JL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.com; dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b=cHbH/Hjn; arc=none smtp.client-ip=35.155.198.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
+  t=1772751707; x=1804287707;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9J5Zj6NdgqbfM4MzVVAxnLzy8MksTLvO/4JRlBcSRsA=;
+  b=cHbH/HjnPKggP5J42qB/bDLHA3uyX9LipPhaPWhdd79fKjU0Z6HKZms7
+   oJpKBfpeUOeVtaRzASxoxHGiUJYF0mJokeYsnuG0TGJEJdx7331MDEKQp
+   zN8DPEcpLZdcIobRbTqa7bcFpSgZEaVqCv3lOCRqFyzlgz6yDG89uOw0d
+   cJ30Ca3H0MbOmYFFBKKGSCV4SMOenPZSmNj79/aEAcq+o0w0LD+gZ7/7X
+   M5MfVC6gZ3yuIX1Ugxe0XbL7RaYXn9ENU8X/5jEGGrhH9b25FYgRnuWIn
+   UEmq+1VuEcmrkEiXvILx1VKNmS8vJivHRuFNLkVqI0YxhSwKYRpVkPtCi
+   A==;
+X-CSE-ConnectionGUID: jcVVHuvORC2VqbdEp8WxAA==
+X-CSE-MsgGUID: SBCtrfpaRo+76DraRJKxng==
+X-IronPort-AV: E=Sophos;i="6.23,103,1770595200"; 
+   d="scan'208";a="14307667"
+Received: from ip-10-5-12-219.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.12.219])
+  by internal-pdx-out-009.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2026 23:01:47 +0000
+Received: from EX19MTAUWB001.ant.amazon.com [205.251.233.51:28960]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.51.143:2525] with esmtp (Farcaster)
+ id 0500c0ce-fc0c-46ef-aa88-02fabb1d8dd1; Thu, 5 Mar 2026 23:01:47 +0000 (UTC)
+X-Farcaster-Flow-ID: 0500c0ce-fc0c-46ef-aa88-02fabb1d8dd1
+Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
+ EX19MTAUWB001.ant.amazon.com (10.250.64.248) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37;
+ Thu, 5 Mar 2026 23:01:43 +0000
+Received: from localhost (10.187.171.36) by EX19D001UWA001.ant.amazon.com
+ (10.13.138.214) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37; Thu, 5 Mar 2026
+ 23:01:43 +0000
+Date: Thu, 5 Mar 2026 15:01:42 -0800
+From: Cory Keitz <ckeitz@amazon.com>
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+CC: Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+	<linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/2] i2c: qcom-cci: Add DT property for SCL clock
+ stretching
+Message-ID: <aaoGonc1zcTMKCgE@bcd074ae11bb>
+References: <20260305-cci-scl-stretch-v1-0-8412abc65745@amazon.com>
+ <CAFEp6-3ZuSOW4apj2Ww2DJ5_5Gw-CDXV_9Qc2=wW-JLP8Vbatg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM7PR04MB7032:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e060f95-902f-4a82-3245-08de7b09bf94
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|366016|1800799024|376014|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
- QAKB8KMZF2KoEqo6QRwyt8vbXrOO/wEP5fpoWAcAhgg/P2PV7CxpjIYYDTXCqU9JxRmhnEpx7wGmjyQlSUDqzkbeyESvUNB/U700y8sU/ltDZpWWtJxBQlkWa8x6dau0oZmJi7XnLL9sfaqNEYKWkOTbqj90CGHdsy6WwcPclxNHsI2+fCWVIBmpu4GKauoOVSOusOlR+y+MnsHvYm4bgKI3jXJF6EilVllft4veUh2kewcSAZnIt8uuiuUsYDKSKCnZyZhK6MB6Ywu2QsAeI+Hvwbrxeie0Qekb0zy10qOCFksCBQt/Ib2y15Yho2rrJbEX2Nt89EMdjMWg4fWx1l/6aGCSJaMhdd3H5XD3Ld2/t+EoHG2tfIT6AHd37mhz6iA4S5PI56a2B7EREuXPuows0yhWbtV6AV1OPltQLSIeBi7AE2Blrm+nU5eJNvoxmLVvZimVgf8Ow4FxAu3a1MfdqULQP1IgLi5854caIWBSD7ku/RDN/U+RY6f4TlzpnXUCSqAk7uZco7rUbUUspmJ1DFnE3ma7g3+s2oL1JA4gl4irWHw3d45oVwYFGl7mlKhfrMoX2vai3l7SjABNuP+OTy4ZNd+FUPV7SfXPSVEj9Q3gtlj49dq7OISqh4fJ0Ty6343129H6lfRdehiGxVQgYcUtIXtMHqVHe5jzKlLFlViSiz7rWTqZJSjWKVx8BR00LXscOqkHKqjJYuRjLztv7NYPRNugVkHjkadDzmw4kv8oTC3pTyy6u3T8lwvS2N/e69/NzDCME0G4sw8IFT/juyoVtypUjvw4fMb4/Ok=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?glEyGra1aMjBPDZCaZZdl3jifee/w3LMzyGfMKeOwuncMUKwYZolvUMRv7/h?=
- =?us-ascii?Q?iFXGOw/w5SfIkGZ0nMQ6iJ4XxThPrJ7H0RBNOGpHUGPq7BfUIBKZZdLbc8D4?=
- =?us-ascii?Q?2Gc1qrwUO8k2YcMoYWxIbNAXMjVIfF3fbl2m6SYa/mbzJLlreMD77Rrvq4if?=
- =?us-ascii?Q?ruwgWsxowQIrKSf7BrGSaOpY8gbILDUZrA3saZHVpwIPWmZGfAJIPGzrwClC?=
- =?us-ascii?Q?Y1JMoGQMmOcs1evdkZHbZ6yV6kFvHAY9y55GGpSfHticToBkJ1LOFG5wsfwO?=
- =?us-ascii?Q?QJznGwd3HfksvFJsVXZPJPehef9LCnvZ/gBNlLo0fH+5X/Y3QXj6n2xbIIts?=
- =?us-ascii?Q?00Q3qhfcLoTcYAhNg4sSiEPyKAK71biZWpE41CkDQQdG5y+yMOjRLVVusxvD?=
- =?us-ascii?Q?uFjNuO5OXHnuyl+hUaekyjxE6pnEyoYybQXEeWBcAx1W5mgWRcPKFnTGtrjs?=
- =?us-ascii?Q?yzVX2FEvNb0E4O75TpbV9dL6lRAbfFsjxaQhkX6/IEWct9VvlOsBRvX0ZajD?=
- =?us-ascii?Q?5xemxjgDOfk9C1z2yypPjuJR4Rztg8betsr2Ci2cdTrzriNIL7r8/vJvgHz4?=
- =?us-ascii?Q?0uonCack+3eh6GVfIHj1S+GnKw2tkgNuCpjj+jezpcuWECsP7ITRcqDSzLaL?=
- =?us-ascii?Q?5QQA1oDeWKSKCgW59GOtQs73R241uIcyRYlimLCR3JD2hQEReOMrydDQXThf?=
- =?us-ascii?Q?Kh5Va/YWOQ3oTk1iBW0NhhoESHBIezkrvekRg7uTykw/pBLVus3MgQ5CVGpC?=
- =?us-ascii?Q?79Iww3rqUl/HWSIVAWrkljocsBHVjo3k57EEbR41MfUKDmpb92MwkKEknL7N?=
- =?us-ascii?Q?eiNPUuU7G4jKh5QYnHQyYtD+K6Jb1gSQY99sqLFf64a4OpOi64G44/iP3wBe?=
- =?us-ascii?Q?FBRrqpvCCCudJXq22CmPtJMkZnENV999QiDDKHqeZ4sYd0JEfz949bx62v78?=
- =?us-ascii?Q?UbiYfplOTbfm28zKD9vz/TaDDglAVL0iUeFmLPcb+1nUtnQ0F6JmTs24p1Kd?=
- =?us-ascii?Q?GcIJZcQwd/gDbJj/WTiHD8KGbKmgq9hQ7jykPD5dwZ1ZZTDki4lUHzYS3/Ok?=
- =?us-ascii?Q?U9c6D+XiOzWfqP7VnbtvzpPZ5dWcWpdvsrLhBFhZvIdMUpe/21fEmQ8/Q8jJ?=
- =?us-ascii?Q?UjJN7H6F+7dFEzZ6czUAMVBK7IvW2YahOOpCUQGSGUZ7l6gtvev/nmTqKtPa?=
- =?us-ascii?Q?9gEPtFXIsu+1dRS9mfl6wvo3/lhaB32v8yVEi8DzfhUAqrbOGqPAfzWyNV3G?=
- =?us-ascii?Q?IBaW+clYF+LMi1hcEWsH8eV5eXuu+MZnDBz7FqlWDJBh6exPVQ8runQb5fS/?=
- =?us-ascii?Q?mopazDR317xHpsQXt4C6xtxeqj62BJSsHiaa8AJ9T5A9s5093+wGgRniOEbs?=
- =?us-ascii?Q?DXwnPA2nBXcIe1HPa7ZYl/LJXBlNZdTgK8c6SqL3J1C0DGFSWpMjy6jCYIYj?=
- =?us-ascii?Q?ohqNlupLl9XgJygH8NzN8r6IdFeZRoaJECZfD5owHzAZ0BcEYNusK+n52kPN?=
- =?us-ascii?Q?I2tWo2bFDoWqnYTx9jS8UO1p8Xe+Li1wDDUBGUXLfJ7eDtsC+MA5ucgwXg0K?=
- =?us-ascii?Q?sLQMQOlDI4fwnv/kzV4dmpAtvAgv2P1jX6/DjPqODMLMAi5PgHUkLy7xh+2j?=
- =?us-ascii?Q?8WvOm2bgyn3Z1cIfzdfa+i+2aQGG4HACtIVMV0qWESwXBrjSQPWmEFMT0OFl?=
- =?us-ascii?Q?tAO1NPbDcALQIiz/+jNRJTT7Hykc9ccqqa1v18VU7STDff2EO6PuOEiX4pbK?=
- =?us-ascii?Q?SS10CZkkeA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e060f95-902f-4a82-3245-08de7b09bf94
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 22:51:33.3679
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TE1Q4k5F4BYKmjSRky7DXnjsauDtTGvRdomfHMzR/dVMDSFGmv84RsG1Hgn27OY+2lA/eyhSj+CJDwz7EFusBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7032
-X-Rspamd-Queue-Id: DF0BA219172
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <CAFEp6-3ZuSOW4apj2Ww2DJ5_5Gw-CDXV_9Qc2=wW-JLP8Vbatg@mail.gmail.com>
+X-ClientProxiedBy: EX19D031UWC001.ant.amazon.com (10.13.139.241) To
+ EX19D001UWA001.ant.amazon.com (10.13.138.214)
+X-Rspamd-Queue-Id: EEB9621924F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+X-Spamd-Result: default: False [-8.66 / 15.00];
+	WHITELIST_DMARC(-7.00)[amazon.com:D:+];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[amazon.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amazon.com:s=amazoncorp2];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[gmx.de,toradex.com,kernel.org,gmail.com,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-271742-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271743-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[amazon.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,0.0.0.0:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ckeitz@amazon.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Thu, Mar 05, 2026 at 09:37:26PM +0100, Krzysztof Kozlowski wrote:
-> On 05/03/2026 21:05, Frank Li wrote:
-> > On Mon, Mar 02, 2026 at 10:49:28AM -0500, Frank Li wrote:
-> >> On Mon, Mar 02, 2026 at 11:53:00AM +0100, Max Krummenacher wrote:
-> >>> for our NAND-based modules, and our CI no longer produces any useful
-> >>> results as a consequence.
-> >>>
-> >>> I strongly believe that, as an immediate first step, the commit
-> >>> that moved the DT NAND chip configuration into its subnode should
-> >>> be reverted.
-> >>
-> >> As my previous said, can do partial revert? Just add back property under
-> >> gpmi and keep nand@0 node.
-> >>
-> >> For example
-> >>
-> >> --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
-> >> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-skov-cpu.dtsi
-> >> @@ -260,14 +260,10 @@ fixed-link {
-> >> &gpmi {
-> >>   	pinctrl-names = "default";
-> >>   	pinctrl-0 = <&pinctrl_gpmi_nand>;
-> >> +	nand-on-flash-bbt;
-> >>   	#address-cells = <1>;
-> >>  	#size-cells = <0>;
-> >>   	status = "okay";
-> >>
-> >> Remove "- nand@0" part.  You can use "git add -p" to do that.
-> >
-> > Do you plan rework this patch as what I said?
->
-> Issue and revert were posted two weeks ago. That's maximum time to
-> handle regression.
+On Thu, Mar 05, 2026 at 04:16:31PM +0100, Loic Poulain wrote:
+> I'm not convinced this kind of hardware behaviour belongs in
+> devicetree. As far as I understand, clock stretching is part of the
+> I2C specification, and slaves are allowed to use it whenever they need
+> additional time. Masters are therefore expected to tolerate
+> stretching. Given that, why not enable it unconditionally in the
+> driver? Is there any downside to doing so?
 
-Any docuement said these maxium times, I also want to know other maximum
-time, such as
-	what's max time maintainer need reply? Many patch is not any
-reponse for long time.
+Fair point. I wasn't sure of implications across the platforms, so my
+preference was to make the change opt-in to preserve behavior for
+existing systems. This is probably an overly-cautious approach though.
+I'm happy to submit a v2 that forces it on, and remove the new DT
+binding.
 
-Frank
+Cory
 
