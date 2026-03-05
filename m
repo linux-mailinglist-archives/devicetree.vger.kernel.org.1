@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-271581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271582-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id APfpNwWJqWki+gAAu9opvQ
-	(envelope-from <devicetree+bounces-271581-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:45:41 +0100
+	id UO2vNRWJqWki+gAAu9opvQ
+	(envelope-from <devicetree+bounces-271582-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:45:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A3E9212B92
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:45:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D2DE212BB6
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:45:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A8475308A14D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:45:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1D47030C6937
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:45:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A1A3A5E76;
-	Thu,  5 Mar 2026 13:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05F03A63F0;
+	Thu,  5 Mar 2026 13:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LB//sRAq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R/v3qqbd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CCF1F099C;
-	Thu,  5 Mar 2026 13:45:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C78513A5E9F;
+	Thu,  5 Mar 2026 13:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772718323; cv=none; b=AxfccWpzCb5W3RpEk/8F0VpikVu0gFYIptM+cxf+1BtbC1hZFsHwcx0seJiC/RJ+f7LXALiFb3wGnsTVGr92FECMEBYA7Sno0Bs9kwTl6xEkuqEufavNpiFmoU0PSsU5R0GdBrRfq779puBo1+RhWj6j9ZpZlEKBT45h5QRcrc4=
+	t=1772718324; cv=none; b=ZzIJ6K8+oyJRcSjlE3vhfGRg28uIW9EjFkkIN2afr/y+07t38VGVaw7g3YoxD++TCh6ihFT3PVe1XLfJh3ykwtAGIutYZpEWDmqf09w9WjKDdQXmxrYP+NNbuo9RvtW0BmtPC0563U7P3MdwzoNhVqQE+LO03jyKJcGuvDQbvE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772718323; c=relaxed/simple;
-	bh=OItzwbM1kWf/k111FzhV0ryoidvsVkmrmFKOuyzTRBA=;
+	s=arc-20240116; t=1772718324; c=relaxed/simple;
+	bh=cfwd3qIJwmG1wuBwTW5ybvjyz1eIJ+iRMnfvFs+2hdg=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=lvGRphIgUM71XGZr2gzassvN5FEnisKKChxnk/yAkBSESJc29OJWtKVKAkJ3PR/4M+zRDBiQzHM+aObzlNkHT/2l89zcLRmFCrQ0YMGpwOdEicOmMZOlQ4jk96DZ077q5x7uaNKfK59mP8jEtNmsMQoA/xcsfdR/DDDS1CL5y9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LB//sRAq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F620C116C6;
-	Thu,  5 Mar 2026 13:45:23 +0000 (UTC)
+	 Message-Id:Subject; b=annpuf/hJZZGyayCUuw/fmKjkV4pDJlZyqTf2qbOZJWTwo4jHhgoCH+xHAQLqFRRpxfVLv3afgrIPG9aeyFOeommNsHBt6HFRqWfwJOamT06djH4IfFQ3FHmgXui/BvMZC6N20Wlks9e7dIANflJGSTKtKDmF20LovTRPuVTV/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R/v3qqbd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F76BC116C6;
+	Thu,  5 Mar 2026 13:45:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772718323;
-	bh=OItzwbM1kWf/k111FzhV0ryoidvsVkmrmFKOuyzTRBA=;
+	s=k20201202; t=1772718324;
+	bh=cfwd3qIJwmG1wuBwTW5ybvjyz1eIJ+iRMnfvFs+2hdg=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=LB//sRAqF22s63HNrBHamLSG8+BH0+Cws/VmCppeOuyzHovaM84NrUtkJsx+88eMG
-	 Kvy7oUUO/Gg12APg9N8DkBlWImapQBu7dMHKgBJYtvB28KLJjr5jDtxmBqrUqHyQZ+
-	 4U1ZcaYZk0WmqFuQJwX0RfhS4zcfd1vacfTFEO7I+/D5qd7qklmBBEqFUgJ49I4Wl/
-	 ySo0JzoulrRF3VGczcDCsYTbOVvu9gMamxOM+loEdhxA0RGIIVJ9p+jT1Ho6e6Iyob
-	 WalmR0IgSb/JqAvs0dVVhdifrH4lIOHrXvqlOj0tvB4vynmKdRhTC+emWryJQ+lgt1
-	 xuNUqq5FPr66A==
-Date: Thu, 05 Mar 2026 07:45:22 -0600
+	b=R/v3qqbduJEbLupxWE8fZTb/UX+dNWVPcPvZFAHZRU6FM6YXTXinqLyG0sGwv3ksq
+	 swPJAVC8ECOibBcjy3A8xnEMnojp/njgVtqOsfLnLUi4lTF/wRUgx14MoW7mY2I3We
+	 0ZuyNUp8fHzNM6+MqNvQKihly9AMg6zfTAgsb+K1g5+pCVgLLfoPD49cwK+R2UC9iP
+	 sIcY7SqAob3eLScpS3gYrhe4h5+4dwwr3DskR63I2s2gcTnt2bA2rHmLkw+KhEbylL
+	 F0hJ4Vt2K4i3grQnSnfqlNn8TjJgvnCjzzRHevDGrNyGZC5nD0uTZhPtfDIKKdmGFz
+	 JImiDUYXXIeiA==
+Date: Thu, 05 Mar 2026 07:45:23 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -54,73 +54,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Mark Brown <broonie@kernel.org>, Chuanhong Guo <gch981213@gmail.com>, 
- devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
- Bayi Cheng <bayi.cheng@mediatek.com>, sirius.wang@mediatek.com, 
- Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
- vince-wl.liu@mediatek.com, linux-mediatek@lists.infradead.org, 
- Project_Global_Chrome_Upstream_Group@mediatek.com, 
- linux-arm-kernel@lists.infradead.org, jh.hsu@mediatek.com, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Meiker Gao <ot_meiker.gao@mediatek.com>
-In-Reply-To: <20260305071546.2603378-1-ot_meiker.gao@mediatek.com>
-References: <20260305071546.2603378-1-ot_meiker.gao@mediatek.com>
-Message-Id: <177271832061.3486624.7931849295651115643.robh@kernel.org>
-Subject: Re: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Add clock
- bindings for mt8189
-X-Rspamd-Queue-Id: 4A3E9212B92
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ linux-amlogic <linux-amlogic@lists.infradead.org>, 
+ Stephen Boyd <sboyd@kernel.org>, Ronald Claveau <linux-kernel-dev@aliel.fr>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-clk <linux-clk@vger.kernel.org>, 
+ linux-kernel <linux-kernel@vger.kernel.org>, 
+ devicetree <devicetree@vger.kernel.org>, robh+dt <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Kevin Hilman <khilman@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+In-Reply-To: <20260305074328.639993-3-jian.hu@amlogic.com>
+References: <20260305074328.639993-1-jian.hu@amlogic.com>
+ <20260305074328.639993-3-jian.hu@amlogic.com>
+Message-Id: <177271832223.3486876.11276313304536737957.robh@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: clock: amlogic: t7: Add missing mpll3
+ parent clock
+X-Rspamd-Queue-Id: 2D2DE212BB6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271581-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,mediatek.com,lists.infradead.org,collabora.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271582-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[baylibre.com,lists.infradead.org,kernel.org,linaro.org,aliel.fr,googlemail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_ALL(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TO_DN_SOME(0.00)[]
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16]
 X-Rspamd-Action: no action
 
 
-On Thu, 05 Mar 2026 15:15:42 +0800, Meiker Gao wrote:
-> Update mediatek,spi-mtk-nor.yaml to add conditional clock and
-> clock-names bindings for the mt8189-nor platform. The mt8189-nor
-> controller requires five specific clocks and corresponding clock-names
-> ("spi", "sf", "axi_f", "axi_h", "axi_p"). This change enforces these
-> requirements in the device tree binding schema.
+On Thu, 05 Mar 2026 15:43:26 +0800, Jian Hu wrote:
+> The mpll3 clock is a valid parent clock for sd_emmc and mipi_isp on
+> the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
+> Add it to enable proper clock parent configuration for these peripherals.
 > 
-> For other platforms, the minimum number of clocks and clock-names
-> remains unchanged. The patch also adds an example for mt8189-nor,
-> illustrating the new clock configuration.
-> 
-> This update ensures correct hardware description and validation for
-> mt8189-nor, improving compatibility and reducing configuration errors.
-> 
-> Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
-> (cherry picked from commit c3180d35e52b5213764a89403e71f9a34d7bb842)
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  .../bindings/spi/mediatek,spi-mtk-nor.yaml    | 69 ++++++++++++++++---
->  1 file changed, 58 insertions(+), 11 deletions(-)
+>  .../bindings/clock/amlogic,t7-peripherals-clkc.yaml       | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -128,28 +123,16 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml: allOf:1:then:properties:clock-names: 'oneOf' conditional failed, one must be fixed:
-	False schema does not allow 5
-	[{'const': 'spi'}, {'const': 'sf'}, {'const': 'axi_f'}, {'const': 'axi_h'}, {'const': 'axi_p'}] is too long
-	[{'const': 'spi'}, {'const': 'sf'}, {'const': 'axi_f'}, {'const': 'axi_h'}, {'const': 'axi_p'}] is too short
-	1 was expected
-	5 is greater than the maximum of 2
-	5 is greater than the maximum of 3
-	5 is greater than the maximum of 4
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml
-Lexical error: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dts:79.32-50 Unexpected 'CLK_PERAO_SFLASH_F'
-Lexical error: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dts:79.64-82 Unexpected 'CLK_PERAO_SFLASH_H'
-Lexical error: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dts:80.32-50 Unexpected 'CLK_PERAO_SFLASH_P'
-FATAL ERROR: Syntax error parsing input tree
-make[2]: *** [scripts/Makefile.dtbs:140: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dtb] Error 1
+Error: Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.example.dts:40.26-27 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:140: Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.example.dtb] Error 1
 make[2]: *** Waiting for unfinished jobs....
 make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1597: dt_binding_check] Error 2
 make: *** [Makefile:248: __sub-make] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260305071546.2603378-1-ot_meiker.gao@mediatek.com
+See https://patchwork.kernel.org/project/devicetree/patch/20260305074328.639993-3-jian.hu@amlogic.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
