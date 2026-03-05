@@ -1,355 +1,197 @@
-Return-Path: <devicetree+bounces-271531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271532-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KJlJNuJtqWnH7AAAu9opvQ
-	(envelope-from <devicetree+bounces-271531-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:49:54 +0100
+	id KG4rFnlvqWnH7AAAu9opvQ
+	(envelope-from <devicetree+bounces-271532-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:56:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B1A2210DAF
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:49:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C80C5210F8E
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:56:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B0B773006138
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 11:49:12 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1B5ED3008534
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 11:53:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CD037E2E1;
-	Thu,  5 Mar 2026 11:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB95D377563;
+	Thu,  5 Mar 2026 11:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gTbO9+K1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lc1ZWWwh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE38D2EC0B4
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 11:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772711350; cv=pass; b=rw2H/WQPmHB47mc2tKmujJAmzjlB6tyFw6gZiPbpUJ5qWsBIIKQN5L85on85fiz5Y8zp+xTSDvjWGwYwlHaR7fKEgv4wzm4v1n85xfdIUWjtwaooaE33V2mUuoabXcQG2WIZYiWxZ5dIppln8CZkiF0qmH+x6K2QC2gHWQTPGdQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772711350; c=relaxed/simple;
-	bh=7vyD8zqzHVdsFOSYMdD9Syx+8kthZrIRiMT1pjzzXK4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F4+X4JzK9eLA3KdvJQmdGZzbPYFbRWQDf8meVyLxODOQ8hDOncN/lo52aTbnnnJYUZUbB1n1UCeVxvuMF4K/ybelvbnsKMLyuL2x4eN0OWsjDR93Gf3xiIXun526stTtl/uYi2j+5YCAtzd27Yg/GNnMcwi2FY57HWxQeZMjxa8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gTbO9+K1; arc=pass smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5a1282bc6aaso719416e87.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 03:49:08 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772711347; cv=none;
-        d=google.com; s=arc-20240605;
-        b=J48/ycN+9adrpykF+3i3BNeDMBuLiJcnklAKZGVBH6auupARjB/OTjd6GQAGMtvOZx
-         bP4W9CI+7y/NmM+qVBl6N/1FGKdK7Uxo5L7M2Yit3CsSFM97d+TpT+TcpV0X5/E34tsz
-         V7kLL/ChmKaxd6VVO1YwrH7/rpBh73whTqwhSdjUMlVHskd73LRocN2tb22IAExV85iA
-         6REYvAMnj22GtLBYe2wZRAQLi+edLvxxm9ieAp9QXA2Sv8Lb7coTA8aowdLs62qQ/sxb
-         Vn0OhBOl2lWsMKrzohsWlUOJAcPcO0AK9syaS0SfW8at427PltZ5rwjhqARHYQuj6vpY
-         G/oQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=JsfgSj6xXDBTyorRizxHsuWjgHE8jzwVestTRCsOkXE=;
-        fh=Wrhsu73iAoJODnIeWr7ZM+oTWWttxwIolt+LdM5ok9g=;
-        b=KuU9TaFMZ+CR66Ae18C01i4FnnwXVCpMe2RIgvaUMuB6bEMW78IAmju41jMq39wsyE
-         6CTb/AoFK9rNi6S0r3ymUUG2h0Ijmg/ro8Qw5HY/ZJume29o876Eptw2w35KtXj98ALu
-         8ViNp4WIpPpaCcefHp/yLqyIlIKlF7l7qhnneLWvNCYQ4YtfXSvUKZTbS8PMToBoCNRu
-         B/4RqnutnppFRN1hME9HCjZcwdicN/XmLjygqZIixKpcBobQkGzbuDKQHMkatUXRsT7c
-         hGVioKb46dxhmBzMG7q1aE8FNTI4NrBuqCsLGJa9hGgAXrMOBHoh3Asv8tWiq9TP7XSl
-         xw3w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772711347; x=1773316147; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JsfgSj6xXDBTyorRizxHsuWjgHE8jzwVestTRCsOkXE=;
-        b=gTbO9+K1sj4BhsJnFX13ZPBGjEOTy0KbH2oA4Wq+QTy8DrXRIYzLLolAfcCH+lIbn4
-         3P1Hln8gQjYWE14k1mfCd5Coi6mg8aMKar1SHW/6NJnP7R1XUaHuDtg3jcRY+5AvfEeY
-         rGBN3nEd96CRQ4Evo/3FD+prCUjtLFz07H2biRwUMpaSlDmUYaAXT0vi3WGRS3EAtd/L
-         42xBmsKfpjYm8LYjJG8spoUSKD5Lg56k+O5MQMOOnA55fZZnDnDwhCkEv+a1K9rgqNAW
-         d90j34Pqpr4tPWlKBhS1J3VeyluJK9hMRPvyGLo9wDYiRzIbYKI4bGz2qwJxDy75Bc/j
-         G3Mw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772711347; x=1773316147;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JsfgSj6xXDBTyorRizxHsuWjgHE8jzwVestTRCsOkXE=;
-        b=lnikNmsutsM7q6JIewo5FeRQf0EuItrCfzWJySvsu38ce9yQUvGyY/W8e2VqXJA7bC
-         SdYjhSJiqoYZwzQkU1qYHgCEOSEXptoghK55mWewZNhYzaOXzdA1Z9QPyZGDMCw47KHk
-         yMzbOMRviVZOsgHnq1qAaJc1bYfT8V8sbd6eDEVhn6/8HXwc8+NTSTyRk41683HhMtW9
-         hnRkNWBMSnyOCobyBafcuomUSL51Je0uM0kPKE6GnikXUCqdDZsN08ula7nYzNJ2WiN3
-         b/1jjDDuOwTIg6FVyHHvUZoPmI50We00pnTd9sN5KROTxNKKfdyKXwtVEqqNp6/SyzAv
-         T/pQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWpNFML/tDPMKEC+BUMx3eup6fXMYlGTE6Z77hWt/ZN0leegIBV1qUu/TNfUlZkA/6U13eQ9huMifNU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVVOx/QbcJ6c9PYyqUcJF/jg7LgXn1FKRoWexeoFa1Vfi0vY00
-	5ZmkDR3zAditlqFEz5FFinZRYP6J8ijHEPYLx7BeRaVkRzDz3j2YtKIA9MTniUcikvA6aOmH98H
-	AgEg5xwcWSOkX6SOeX3PAV1wZSMoK3f9NltVcqwf8Tw==
-X-Gm-Gg: ATEYQzxGpxIf+rg3lXp7a9mS6rG8eexetGgLFH9Z5kV3y9g2IIRp8WqRvWRpET38u0f
-	Ren6qbNL4M2b5KaY4ENZuv1Hxg0gqWnmIxNSHhpbBqcu0OOTnWgFObvxtwpWmq+ITA56TOjfiZh
-	S1W2ZGFMCof/bst+tnWKRXZAfb510788Vh68s2i4QtPs96NXA2rSbq3vygQdmHBiXZuus5bbyRj
-	x5p9MP2qX0BWWnRxhosIAM8Wm/JJkQzpAI6cgHvaDlQeJ570aGhkEgyIRjXTnzDOzqKabCePZ34
-	Cwc05sZL
-X-Received: by 2002:a05:6512:3093:b0:5a1:3134:923f with SMTP id
- 2adb3069b0e04-5a131349301mr720263e87.40.1772711346715; Thu, 05 Mar 2026
- 03:49:06 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85DA854652;
+	Thu,  5 Mar 2026 11:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772711616; cv=none; b=UcesvoIHv8u8hVHuI0Vjd1upffOUNB64PT7eY8vw4VooVZRp6AhuV68MN9YEJpBSqiMD7rPpxvQnPL9pjsdBtDZ6nAk7yvXFlhdPEB7v4VRBvSjOh0TiCozWuYBpmB/dUZz3JVYK/aHBxiJmx/U5ncg9Wt6F2ujyaQYPSvIliWE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772711616; c=relaxed/simple;
+	bh=Vokr7pE3jEjoiqQGZNJz/o38aeGgsCzeWhivmvmLiz0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LVh05exPStbROGAAOCLjZS7rY9rdGtp+pKocxcTz0eq1+qQ/XWyn1HS3+wazP+23oNG73AgVbPD5RxkOPR5l8Dm+3JhJEwKssvMH23EMIs76YUHSHwGnYYGH73EsUAgVtCZO400r4GW2NbUJUxlbLSAkJDPFRjgcBtg4ZbQqzTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lc1ZWWwh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C262AC116C6;
+	Thu,  5 Mar 2026 11:53:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772711616;
+	bh=Vokr7pE3jEjoiqQGZNJz/o38aeGgsCzeWhivmvmLiz0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lc1ZWWwh1K+uDC5GITnGWwSlMopayI5NZ65uBO+3ORUFnrdUKiJiEjwIR+Ijv5UMB
+	 1Plrs8An5KzFFWD1x5fiBrENeqRigsixsL+2KkeQ7WpUfiRHI0/F6WXxB2RF1EL5kl
+	 WAyzIV3UFQeBUDzTlXHzGu+jyQa66XfHqxZJGfBSyEliiTLZMZw2R9ft9pwOs4Bqre
+	 NImYGz5NVJgHQYFuL7O48DJDox9lPSalz55jrUUFnZwbcJg6PphNgz8xEzS87VES3h
+	 eGjFf0e3OyZzfKqOrMa9NnmWNhlVnH0R70ARq0c2tUWA+8A9iiuaFKZ8T2PcDer0t0
+	 +y54AZX01CRzw==
+Message-ID: <c8b9aa23-9081-4482-b638-e57a0c419356@kernel.org>
+Date: Thu, 5 Mar 2026 12:53:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn> <20260226115923.75670-3-jiayu.riscv@isrc.iscas.ac.cn>
-In-Reply-To: <20260226115923.75670-3-jiayu.riscv@isrc.iscas.ac.cn>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 5 Mar 2026 12:48:29 +0100
-X-Gm-Features: AaiRm53AjyJYNQijXY6q6y4X_v_yONuMKKSX6WNloZ4c1DB_5kt_3SxJ_g0U8Uc
-Message-ID: <CAPDyKFrxJ0oWuMWoUEYGO0t-WOYU+G7p5eFw8cUY7xyPaREB5Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
- controller support
-To: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-Cc: krzk@kernel.org, adrian.hunter@intel.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	gaohan@iscas.ac.cn, me@ziyao.cc
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 7B1A2210DAF
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v4 1/4] media: dt-bindings: Add Amlogic V4L2 video
+ decoder
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Zhentao Guo <zhentao.guo@amlogic.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org
+References: <20260213-b4-s4-vdec-upstream-v4-0-c7112d00d662@amlogic.com>
+ <20260213-b4-s4-vdec-upstream-v4-1-c7112d00d662@amlogic.com>
+ <d96c689d-a5a3-453d-a1ab-56dc1bf01635@kernel.org>
+ <75e55ceb-e6dd-47b5-a829-66f6fbb3e13e@amlogic.com>
+ <2f68ee18-e9d9-4da6-900c-93a7663b3c9d@kernel.org>
+ <598c161c-d157-40e5-992c-912540589d7e@amlogic.com>
+ <58d57a6c-7c69-4f5b-a4c2-f34ef0238511@kernel.org>
+ <26d0f52e-3681-46ce-b0dc-0cb020e8d9a1@amlogic.com>
+ <69900d76-3820-467a-9fbc-13f79189df2f@kernel.org>
+ <278f5018-9183-4eeb-bde1-7c19adecab06@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <278f5018-9183-4eeb-bde1-7c19adecab06@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C80C5210F8E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271531-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271532-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[linaro.org,amlogic.com,kernel.org,baylibre.com,googlemail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,iscas.ac.cn:email]
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, 26 Feb 2026 at 12:59, Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn> wrote:
->
-> Add SDHCI controller driver for Canaan k230 SoC. Implement custom
-> sdhci_ops for set_clock, phy init, init and reset.
->
-> Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-> ---
->  drivers/mmc/host/sdhci-of-dwcmshc.c | 288 ++++++++++++++++++++++++++++
->  1 file changed, 288 insertions(+)
->
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index 2b75a36c096b..21c77e908d77 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -128,9 +128,11 @@
->  #define PHY_CNFG_PHY_PWRGOOD_MASK      BIT_MASK(1) /* bit [1] */
->  #define PHY_CNFG_PAD_SP_MASK           GENMASK(19, 16) /* bits [19:16] */
->  #define PHY_CNFG_PAD_SP                        0x0c /* PMOS TX drive strength */
-> +#define PHY_CNFG_PAD_SP_k230           0x09 /* PMOS TX drive strength for k230 */
->  #define PHY_CNFG_PAD_SP_SG2042         0x09 /* PMOS TX drive strength for SG2042 */
->  #define PHY_CNFG_PAD_SN_MASK           GENMASK(23, 20) /* bits [23:20] */
->  #define PHY_CNFG_PAD_SN                        0x0c /* NMOS TX drive strength */
-> +#define PHY_CNFG_PAD_SN_k230           0x08 /* NMOS TX drive strength for k230 */
->  #define PHY_CNFG_PAD_SN_SG2042         0x08 /* NMOS TX drive strength for SG2042 */
->
->  /* PHY command/response pad settings */
-> @@ -153,14 +155,22 @@
->  #define PHY_PAD_RXSEL_3V3              0x2 /* Receiver type select for 3.3V */
->
->  #define PHY_PAD_WEAKPULL_MASK          GENMASK(4, 3) /* bits [4:3] */
-> +#define PHY_PAD_WEAKPULL_DISABLED      0x0 /* Weak pull up and pull down disabled */
->  #define PHY_PAD_WEAKPULL_PULLUP                0x1 /* Weak pull up enabled */
->  #define PHY_PAD_WEAKPULL_PULLDOWN      0x2 /* Weak pull down enabled */
->
->  #define PHY_PAD_TXSLEW_CTRL_P_MASK     GENMASK(8, 5) /* bits [8:5] */
->  #define PHY_PAD_TXSLEW_CTRL_P          0x3 /* Slew control for P-Type pad TX */
-> +#define PHY_PAD_TXSLEW_CTRL_P_k230_VAL2        0x2 /* Slew control for P-Type pad TX for k230 */
->  #define PHY_PAD_TXSLEW_CTRL_N_MASK     GENMASK(12, 9) /* bits [12:9] */
->  #define PHY_PAD_TXSLEW_CTRL_N          0x3 /* Slew control for N-Type pad TX */
->  #define PHY_PAD_TXSLEW_CTRL_N_SG2042   0x2 /* Slew control for N-Type pad TX for SG2042 */
-> +#define PHY_PAD_TXSLEW_CTRL_N_k230_VAL2        0x2 /* Slew control for N-Type pad TX for k230 */
-> +#define PHY_PAD_TXSLEW_CTRL_N_k230_VAL1        0x1 /* Slew control for N-Type pad TX for k230 */
-> +
-> +/* PHY Common DelayLine config settings */
-> +#define PHY_COMMDL_CNFG                        (DWC_MSHC_PTR_PHY_R + 0x1c)
-> +#define PHY_COMMDL_CNFG_DLSTEP_SEL     BIT(0) /* DelayLine outputs on PAD enabled */
->
->  /* PHY CLK delay line settings */
->  #define PHY_SDCLKDL_CNFG_R             (DWC_MSHC_PTR_PHY_R + 0x1d)
-> @@ -174,7 +184,10 @@
->  #define PHY_SDCLKDL_DC_HS400           0x18 /* delay code for HS400 mode */
->
->  #define PHY_SMPLDL_CNFG_R              (DWC_MSHC_PTR_PHY_R + 0x20)
-> +#define PHY_SMPLDL_CNFG_EXTDLY_EN      BIT(0)
->  #define PHY_SMPLDL_CNFG_BYPASS_EN      BIT(1)
-> +#define PHY_SMPLDL_CNFG_INPSEL_MASK    GENMASK(3, 2) /* bits [3:2] */
-> +#define PHY_SMPLDL_CNFG_INPSEL         0x3 /* delay line input source */
->
->  /* PHY drift_cclk_rx delay line configuration setting */
->  #define PHY_ATDL_CNFG_R                        (DWC_MSHC_PTR_PHY_R + 0x21)
-> @@ -227,6 +240,14 @@
->  /* SMC call for BlueField-3 eMMC RST_N */
->  #define BLUEFIELD_SMC_SET_EMMC_RST_N   0x82000007
->
-> +/* Canaan specific Registers */
-> +#define SD0_CTRL                       0x00
-> +#define SD0_HOST_REG_VOL_STABLE                BIT(4)
-> +#define SD0_CARD_WRITE_PROT            BIT(6)
-> +#define SD1_CTRL                       0x08
-> +#define SD1_HOST_REG_VOL_STABLE                BIT(0)
-> +#define SD1_CARD_WRITE_PROT            BIT(2)
-> +
->  /* Eswin specific Registers */
->  #define EIC7700_CARD_CLK_STABLE                BIT(28)
->  #define EIC7700_INT_BCLK_STABLE                BIT(16)
-> @@ -268,6 +289,12 @@ struct eic7700_priv {
->         unsigned int drive_impedance;
->  };
->
-> +struct k230_priv  {
-> +       /* Kendryte k230 specific */
-> +       struct regmap *hi_sys_regmap;
-> +       const struct dwcmshc_k230_match_data *match_data;
-> +};
-> +
->  #define DWCMSHC_MAX_OTHER_CLKS 3
->
->  struct dwcmshc_priv {
-> @@ -284,12 +311,34 @@ struct dwcmshc_priv {
->  };
->
->  struct dwcmshc_pltfm_data {
-> +       const void *match_data;
+On 05/03/2026 12:35, Neil Armstrong wrote:
+> On 3/5/26 12:08, Krzysztof Kozlowski wrote:
+>> On 05/03/2026 12:01, Zhentao Guo wrote:
+>>>
+>>>        2. Why canvas is needed?
+>>>
+>>>   1. Since the ARM IOMMU HW is not integrated into the Amlogic SOCs,we
+>>>      need canvas to prevent the DDR memory used by the decoder from being
+>>>      rewrote by other hardware. Canvas provides the decoder with a
+>>>      configurable DDR memory range, as well as hardware-based detection
+>>>      and blocking for out-of-bounds access.
+>>>    2. From the diagram above, we can see a lite CPU called AMRISC. AMRISC
+>>>      is the controller of the decoder HW and the decoder driver needs to
+>>>      access the decoder hardware through AMRISC. However, AMRISC is a
+>>>      16-bit CPU and cannot directly handle 32-bit or 64-bit physical
+>>>      addresses. Therefore, canvas is required to convert the addresses
+>>>      into index to facilitate processing by the AMRISC core.
+>>
+>> This suggests "Canvas" is IOMMU, thus use proper IOMMU abstractions and
+>> you cannot have own phandle for it.
+> 
+> 
+> No it is not, canvas was used for a long time for the display and video processing side.
+> 
+> It's absolutely not like an IOMMU, the diagram is quite clear.
 
-This makes sense to me!
+The diagram and all descriptions points to memory mapping...
 
-Although, I realized that dwcmshc_rk35xx_init() could also move its
-assignment of "devtype" into this match_data.
+"Canvas index is basically a reference to a memory region and its
+configurations."
+"Memory access through canvas has HW out-of-boundary check. "
+"Canvas provides the decoder with a configurable DDR memory range"
+"canvas is required to convert the addresses into index to..."
 
-Can you please create a follow-up patch to fixup this and to avoid
-storing this type of data in two different ways?
+so it is not a random phandle either.
 
->         const struct sdhci_pltfm_data pdata;
->         const struct cqhci_host_ops *cqhci_host_ops;
->         int (*init)(struct device *dev, struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
->         void (*postinit)(struct sdhci_host *host, struct dwcmshc_priv *dwc_priv);
->  };
->
-> +struct dwcmshc_k230_match_data {
-> +       bool is_emmc;
-> +       u32 ctrl_reg;
-> +       u32 vol_stable_bit;
-> +       u32 write_prot_bit;
-> +};
-> +
-> +static const struct dwcmshc_k230_match_data k230_emmc_match_data = {
-> +       .is_emmc = true,
-> +       .ctrl_reg = SD0_CTRL,
-> +       .vol_stable_bit = SD0_HOST_REG_VOL_STABLE,
-> +       .write_prot_bit = SD0_CARD_WRITE_PROT,
-> +};
-> +
-> +static const struct dwcmshc_k230_match_data k230_sdio_match_data = {
-> +       .is_emmc = false,
-> +       .ctrl_reg = SD1_CTRL,
-> +       .vol_stable_bit = SD1_HOST_REG_VOL_STABLE,
-> +       .write_prot_bit = SD1_CARD_WRITE_PROT,
-> +};
 
-[...]
-
-> +
-> +static int dwcmshc_k230_init(struct device *dev, struct sdhci_host *host,
-> +                            struct dwcmshc_priv *dwc_priv)
-> +{
-> +       static const char * const clk_ids[] = {"block", "timer", "axi"};
-> +       const struct dwcmshc_k230_match_data *match_data;
-> +       const struct dwcmshc_pltfm_data *pltfm_data;
-> +       struct device_node *usb_phy_node;
-> +       struct k230_priv *k230_priv;
-> +       u32 data;
-> +       int ret;
-> +
-> +       pltfm_data = device_get_match_data(dev);
-> +
-> +       if (!pltfm_data || !pltfm_data->match_data) {
-> +               dev_err(dev, "No vendor data found for K230\n");
-> +               return -EINVAL;
-> +       }
-> +       match_data = pltfm_data->match_data;
-
-I don't think this should be specific to dwcmshc_k230_init().
-
-Instead I suggest adding a "const void *match_data" to the "struct
-dwcmshc_priv" - and copy the pointer in the common dwcmshc_probe()
-instead. In this way, all variants will be able to use it.
-
-> +
-> +       k230_priv = devm_kzalloc(dev, sizeof(struct k230_priv), GFP_KERNEL);
-> +       if (!k230_priv)
-> +               return -ENOMEM;
-> +
-> +       k230_priv->match_data = match_data;
-> +       dwc_priv->priv = k230_priv;
-> +
-> +       usb_phy_node = of_parse_phandle(dev->of_node, "canaan,usb-phy", 0);
-> +       if (!usb_phy_node)
-> +               return dev_err_probe(dev, -ENODEV,
-> +                                    "Failed to find canaan,usb-phy phandle\n");
-> +
-> +       k230_priv->hi_sys_regmap = device_node_to_regmap(usb_phy_node);
-> +       of_node_put(usb_phy_node);
-> +
-> +       if (IS_ERR(k230_priv->hi_sys_regmap))
-> +               return dev_err_probe(dev, PTR_ERR(k230_priv->hi_sys_regmap),
-> +                                    "Failed to get k230-usb-phy regmap\n");
-> +
-> +       ret = dwcmshc_get_enable_other_clks(mmc_dev(host->mmc), dwc_priv,
-> +                                           ARRAY_SIZE(clk_ids), clk_ids);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret,
-> +                                    "Failed to get/enable k230 mmc other clocks\n");
-> +
-> +       if (match_data->is_emmc) {
-> +               host->flags &= ~SDHCI_SIGNALING_330;
-> +               dwc_priv->flags |= FLAG_IO_FIXED_1V8;
-> +       } else {
-> +               host->mmc->caps |= MMC_CAP_SD_HIGHSPEED;
-> +               host->quirks2 |= SDHCI_QUIRK2_NO_1_8_V;
-> +       }
-> +
-> +       ret = regmap_read(k230_priv->hi_sys_regmap, match_data->ctrl_reg, &data);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Failed to read control reg 0x%x\n",
-> +                                    match_data->ctrl_reg);
-> +
-> +       data |= match_data->write_prot_bit | match_data->vol_stable_bit;
-> +       ret = regmap_write(k230_priv->hi_sys_regmap, match_data->ctrl_reg, data);
-> +       if (ret)
-> +               return dev_err_probe(dev, ret, "Failed to write control reg 0x%x\n",
-> +                                    match_data->ctrl_reg);
-> +
-> +       return 0;
-> +}
-
-[...]
-
-Kind regards
-Uffe
+Best regards,
+Krzysztof
 
