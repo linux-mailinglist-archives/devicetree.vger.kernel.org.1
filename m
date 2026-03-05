@@ -1,241 +1,211 @@
-Return-Path: <devicetree+bounces-271629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271630-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4ASJFEKqqWlCCAEAu9opvQ
-	(envelope-from <devicetree+bounces-271629-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:07:30 +0100
+	id uF9pAfCqqWlSBwEAu9opvQ
+	(envelope-from <devicetree+bounces-271630-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:10:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A733A215215
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:07:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A196F2152B0
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:10:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 42B6F3004C72
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 16:06:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1A1C3008D1F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 16:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF003BD646;
-	Thu,  5 Mar 2026 16:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3407533554F;
+	Thu,  5 Mar 2026 16:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="HwXvKMDF"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="rAelbRJX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010067.outbound.protection.outlook.com [52.101.229.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6974B1799F;
-	Thu,  5 Mar 2026 16:06:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772726803; cv=none; b=aBqiQrJHkpoIR847XzFOfIsuRmqAauvhNKmWgXhJljFuVD8PPBavG+idmDucwdfCaM/50QM/e5pjpJjo9KLt1rVOVIg4pdJ4Lu7qqV3zpZxbvRdsq6fFppxnUNpqmziCO7jvA4ei2A90VNsZ8rSLtAau38cAK8K535UegFbexIc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772726803; c=relaxed/simple;
-	bh=e1CBqI+y/aXrYiG5MwBxKZj92vyniLerzJuuwmm71Ss=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=a8Olg1z/fc1t29sPWWl8xyVILbjLnzYi05e/xldaKNbzfO14kcmPzqYjSDZZIgd4/Aifz7VJi92DwzcQxHTZIfcGS4YpT0d++xpSTEAsMG3kkW8IKPS52YYhXlY73AAqFvkcpLPHakVrGdkDSA70yt9D6FL/C9+cj/YRfMWDiPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=HwXvKMDF; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=VURAe1VBJ++jhd1qN9FU3U4sNtpuG6QDqgVP27ujLLQ=; b=HwXvKMDFPKFt/NwsiuXU2mlZnZ
-	QWDSk6365MrHNW3TYaw+6EPMeJVIjcF/pnvE2e7iBVGgBLCaJCI0hcokrMxvLp5olfn9x84uGbMy+
-	cuFWWWzl5J/mCqXEBx3DBK/EgStY7tVKBdr76PdWtiJahJi/3CGXl6UyeWmk+eyDXNEs=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:42578 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vyBDD-0002QH-SQ; Thu, 05 Mar 2026 11:06:09 -0500
-Date: Thu, 5 Mar 2026 11:06:06 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: "Antonin Godard" <antonin.godard@bootlin.com>
-Cc: "Frank Li" <Frank.li@nxp.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <andrzej.hajda@intel.com>,
- <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
- <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
- <jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
- <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
- <tzimmermann@suse.de>, <s.hauer@pengutronix.de>, <kernel@pengutronix.de>,
- <festevam@gmail.com>, <shawnguo@kernel.org>,
- <laurent.pinchart+renesas@ideasonboard.com>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>,
- "Hugo Villeneuve" <hvilleneuve@dimonoff.com>
-Message-Id: <20260305110606.f24f17ee4f96d7d2b9b08c2d@hugovil.com>
-In-Reply-To: <DGTU9887GHPO.2FUQ3QITRG7F8@bootlin.com>
-References: <20260302190953.669325-1-hugo@hugovil.com>
-	<20260302190953.669325-9-hugo@hugovil.com>
-	<aaX5E7-3xvkaVV-o@lizhi-Precision-Tower-5810>
-	<20260302161545.f6b76209400e8fbe35cd51a0@hugovil.com>
-	<DGTU9887GHPO.2FUQ3QITRG7F8@bootlin.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB68C282F27;
+	Thu,  5 Mar 2026 16:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772726988; cv=fail; b=Sx0ePzENu/XW2Ove8/xHWh6N71kUGh4rNjFVQhfOhFqyiQa3pTObL50aHz5ugMMrDlmDbwrFGu6v65DnHcn2UlLqO9mbSJPMTCT4u8rcU0IBaUlEWlExSvAWJGxnNRsioQzWIApnqcu2RfoKh+XlZq/DOB+Mzwz7BbHAoRtFg9E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772726988; c=relaxed/simple;
+	bh=VgMa7YtCcruZBFkcnwiLuVyJwxEYDvSQnQtfWA/CeVQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=UIxnt7nXJv81bvmSEjCV+f5zOilGwWjUxwCY4UmzrgD+hrZvZgqLLVOTImRWnHOwl79g1YIjmKggnju6BRlhDYr6lKq+hQseGO1VcNA38qrKUGTZJox4vR1hnCNX6FA+Bk/Hjt3KbzxKrqIYmn5YK3oRfI46mAbkCocVG5JvpdU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=rAelbRJX; arc=fail smtp.client-ip=52.101.229.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=x+35je4wPXqA6PbiyOhgW+awJfZ3A51crTDBf+t1vp8AHtswoYmBzIiLnxLloAMgAmq8+HxB8grdJ1KxiYjdXl0iahBqHXgVe0fmoQWzG8pJL3dYYl0CvWtdVV8izc6xnkMyBZG03Tl2l/h6pd9MHc1d59oj8Wc54kQWa+bYItt2Athi/WVTF9V4T92OnM4vLmBopffrt5aaP3sDkTvHJFjck7ZOr4NPvBz10ZwTzjoyMb0WYvQRNiXfob6UQEoDqj5uvVSKgaV2PHfcekbPfIuLbivLquf5hFYaJZ5UdBVmzxEh0TUFjfzTAJxpL2qNynEfIc4K3uubeNiwZr/OmA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VgMa7YtCcruZBFkcnwiLuVyJwxEYDvSQnQtfWA/CeVQ=;
+ b=to2v7AWKlaNTZWKwE/Fg4EPnolUvUixYc3Q2kbjSqjS0QLiVaqv8J1FVxa9Ga1fFjJcrA2xCQ9fFxDOBlOCvzHv4OlQlmdCdEHyeL31Gh5fK30z7MJ9yXFIOLJCy43sC7weXtqeB/mkonSx52eWuB9H74vFJG6st5MCqpzU/IKsY5yusFf33Sb/4Kx5iysG5lb+EszEeuemKJjC/KspsKVBNvIRHljtiHRSuFFK48UuWxrQQGeBkTJlO1af0CyUcUrFKWOUUcu5S/rJEn1Ejr7wV9CalKWeQ2gOvmS7ZiZzZCb/S73AWUsBdBCeBNOAx1NRLg6HVfuSZidcOkprpcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VgMa7YtCcruZBFkcnwiLuVyJwxEYDvSQnQtfWA/CeVQ=;
+ b=rAelbRJXpljvS+S663mBVau5o67CXUNO0m6MxJZ8DXfywTPd26rA63JNvXIJY5qQ/VY7mutxGUL9TMdmU6elI7oyw7ntCq6lyhEX6gD6ZXOMRePaal/EnmvLN13XH8BzyI0WNJ9DjJngh5bajLuiOV/t3Lj0Ku6rRxr3KGkkQTk=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TY4PR01MB12926.jpnprd01.prod.outlook.com (2603:1096:405:1e1::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
+ 2026 16:09:43 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::87d1:4928:d55:97de]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::87d1:4928:d55:97de%4]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
+ 16:09:43 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: geert <geert@linux-m68k.org>, biju.das.au <biju.das.au@gmail.com>
+CC: magnus.damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Prabhakar
+ Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH v3 07/10] arm64: dts: renesas: Add initial DTSI for RZ/G3L
+ SoC
+Thread-Topic: [PATCH v3 07/10] arm64: dts: renesas: Add initial DTSI for
+ RZ/G3L SoC
+Thread-Index: AQHclPgnKnK+tkYa1Ua6JHvG2H9MT7WgNeCAgAAA6wCAABPnUA==
+Date: Thu, 5 Mar 2026 16:09:43 +0000
+Message-ID:
+ <TY3PR01MB1134640428462A79D1E446719867DA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com>
+ <20260203103031.247435-8-biju.das.jz@bp.renesas.com>
+ <CAMuHMdW20h=D9Tk5T=6rxNanEiON1ZL35CJ6cqzrX12UeDcdPg@mail.gmail.com>
+ <CAMuHMdVsv-T-Vjd4yNK2k_pP_YQfw82UvFvYf9ynxMaQJQYxQQ@mail.gmail.com>
+In-Reply-To:
+ <CAMuHMdVsv-T-Vjd4yNK2k_pP_YQfw82UvFvYf9ynxMaQJQYxQQ@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TY4PR01MB12926:EE_
+x-ms-office365-filtering-correlation-id: 2c86443d-9916-4e49-8853-08de7ad19cdb
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|376014|38070700021;
+x-microsoft-antispam-message-info:
+ aewk8dx63Kf59Etwgn+ckWgdY+2P6AGOT1T/qKq9RdJaSB0EQBJORvJzWnsaqw+Jb0IPPcaR5U+lBF+o9dWj0zo4K2yEG/AqVt6QxcHaNAPxbVVecy7guDZoS6xBANPJ9YwWDnZPvqUs1y0MFXBzCkrLf82pUrBYBmeisFNNZeTgKbrMiKe6C4oSPVqQyQoV/kaiffIygd6NnDawI67bgNZvv15iIp02jJIQzximdbwOR2+SzNts+dY50Pl/HSyeDBZmzKrUH0au4EhrDkbUgO8mebWDlUr7gpEtr68/vxUgZpV1fphCNfZryebBk3L+Qq+976H66EVsAH0aAhBfFRRbU3sWdErUVOsmlCxedQ2ZQKF+wicZoXipZ6wLkxM45Hu+UlE/73o6gfenksBaK4ZBV36vt++qETQHRbtt1ptdrBLJ9NFMVljoYkpVeM7p6M6wzlf4Nl2lhexFQ8tRNXDLwYG0o7Nibz2C6IPyms5BB1PvVcpS2S91j6VqxrDWzNsJLufjywHnjyL1qyG3NLgHBMbZxaoxI35+SH1mxZoIe/5/qQ5KzOApNUCgJNCABkho8CUxfsvNZ4DRxntlDYNuq84+nfaQLZwDvPgn80uBfvMVHsUoFSOR6IsG6pFPF7dSgQ6B7hKcuBqsAByKLo8iQxfwLCmHu+JJPPc7G0AP0iYxEaYfl4/8SoGHmbNhN+Lh97c2BnSw3RR67hxY8r/niG14agnrEA/iYH+AOkutxicCy+FMXoCa0A4tjIZVCBT2Iw/iR2rLr0elQ646+2RBbOFUhfEZZ/hhD0xVtPU=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?TUdrTE5oaHBod0RxbFAvM2VzUzAydnRKMEF6M0luVVBCQ05EaXM4OHhobm8z?=
+ =?utf-8?B?WXpYT1lKajVnRWc5ajlTWU1pckxkZGs2ejFyVjdrTDhJZ0dHRCtRZGFQREJK?=
+ =?utf-8?B?Wnk2ZUN3RktoTEYvcXpvU3F3Y1hRaTNSSURKRzRqbGZyRGdxOUEvTXJ2aTBF?=
+ =?utf-8?B?MEtzMUh2M1Vxb1dRc2s0Wm1OZkxPVFpta2pWMmI3b09sdzl4c1BCYllTaGFS?=
+ =?utf-8?B?WkV4NXg1amRyZHRFenp6VEZLWUVLSWtqMDYrWXkxNHVVZFBEWjFKaVdCL1Vs?=
+ =?utf-8?B?TGpvSFhwQjBpbmlQWHhRQnJPNGhWSURka0xVaW56c2wya21VdXFVcW9XQWty?=
+ =?utf-8?B?YURBN05YNEF2YWpLb0JQOXpBeHlqUk5iZFlScVVnelErbGNraEtPOEVOeDd5?=
+ =?utf-8?B?YmdoZzFWSUpaaU5pclowZkNyc2dsdzB2UHJmQ0N6MzIzVjZtdmxSdkVEbVh0?=
+ =?utf-8?B?N0Y3VUZzMjNyWjZmWGdKeDVIUzEzQjJtcEY3T05FczI1WmI2VWZ5SUlGR2VD?=
+ =?utf-8?B?MVFheFExRXlDeXdLd1ZQREo1aE1GWC85anhpY3YwU3ZrMVdiSGhWRlFSMHVO?=
+ =?utf-8?B?cERCTzhWNnRGMmo2Z3lNbEZGd2lpdXlsYStLamo5OUV1dDVSM1pNSFFxSGtr?=
+ =?utf-8?B?TUFhNnRpQ0pGa3FaRktGb1FwdndvMjQyTU55Z0tqc1RXUEg5QVcwVStSajRY?=
+ =?utf-8?B?QXgwdlFkOHlJMXgwbE5RRWQxQ2o0WjhNVUxZeGRFeEhHSDQ1d2FVMCt2ay9Z?=
+ =?utf-8?B?d1dxL29jc1UvUGMxR0RDNXgvWlprZldsM3Z1YkxIY2dHVFpCanI4L3JMT1Rm?=
+ =?utf-8?B?TXEzTzdHS1hZUjNmd1dSWkJCVGlhL0x0aUFob2dxT2M3a25UY29ZSUdIbWpX?=
+ =?utf-8?B?c3M2cDQ3YWU4b1RNMVlMaG01QnR1Y1BDSnVEZnY5SjI5SkUxTWUwNU14eExn?=
+ =?utf-8?B?WGxNYUhFTlVaZnVjRUNSNGFuZUtKeWk2THp2TkUvMG93cFEwM0xMVWFzaXNK?=
+ =?utf-8?B?NXJyRTFERUNuZVQxMWhwQ2R5U0MrMFd1VWZyQUFEZ2k2R3Z3ZDdGUDRWVCsw?=
+ =?utf-8?B?ekZmV1ZROFBwdk5SNjJyVmNjaUJXVFVGTFhZU29GVkJLWVJYZHpXQlptYnQ0?=
+ =?utf-8?B?dEVDZTI2Mjl1T25sQnhKdjk1aDRIZzBXbWlBY1lOWHU4cUdSYWNmMjM0Tkhi?=
+ =?utf-8?B?ZmFUZmowVlRvWThOcXRDVXBvMUNXUkQzY25SUjlpSWdTM1pvQTRzQ2lqVnpO?=
+ =?utf-8?B?TkVNV25MVUFlUEJCVjFqcDJ6VVppWHJqaUlWVjJMRmd6Q0hYUjFWMFFkTy9y?=
+ =?utf-8?B?TU9lb1NkUXVsQXZhaDZjcXpJdGVCanh0SjVtSFcxV3ppOWg3NmxjS1ltajUw?=
+ =?utf-8?B?aDUyb08zdVczU01pcm5SRWdKWlVBZHpyVE1Jai9XKytBaVF1U09RblpuTEdN?=
+ =?utf-8?B?dTlPMXFyOVAyeHdnRmx1K2IyOGgwaWcvU3pOUGZENzc5c28wb2RKWU42ajla?=
+ =?utf-8?B?ckRjM1FSaTlFcktkeTEwSEFLYjdLR0Yzd28zdnhUWDRWUVpyWmxVVDhBRzg0?=
+ =?utf-8?B?OFYrNm1KMEhQZTZPS09NdDR4Y0ZlbWpvRGJITHBLRFNxd0I2eUpoRCtELzFQ?=
+ =?utf-8?B?T0hORVhSUHZmZW1MeFd6Qm9qVTV1OHVPRTZnalVaMG1hS05uZXdieGVuNzRn?=
+ =?utf-8?B?OWwwTGdWdDFyRXpjWXVqK1FwN0xEeXZQNUt1elVVU1ozS2NoY2dJUGxoQkd6?=
+ =?utf-8?B?MUtsQTUwSWl3SDMxdnRNSFZSTDdVQ1dGWjROV3dENVM5OStWVkdja1FvbkhB?=
+ =?utf-8?B?bERXOU5raE1QdWdvanJpY1J0QUNvWmFCYjJvdXFqcEJMSXM2Z0xuK2ZwNHpq?=
+ =?utf-8?B?ZDhWMlNGK090REpLUzcxYm9oT29RSFhBNm1PUFM5cUdqQ1BsZ0VGdjlza1hu?=
+ =?utf-8?B?SUtXNksrblpsVThydjhLMnVmS1hEMWd4bmc2Rjg5QmJaanZyY3RuRjdPa3p4?=
+ =?utf-8?B?RDFHYUQ0MXJWQ1NyZVRWVnJYZ1pqVEExd1d5TUdrRVp0c2Mzdmt4TytHdzFH?=
+ =?utf-8?B?ZGJJSUl3YklxYktUeE00RFNpTlZVUGtNaC9BYUNhVHRMdHQ5OVJxcTJkT1ZF?=
+ =?utf-8?B?Q2dhTS9yeE8wbmNobW5DRXJHcXdONGt2aWVxaEVkTTNzaUlqOHMrdHpyajM0?=
+ =?utf-8?B?NUFJVnBKK3cxQzRXMmhjUlFlS3ZNbUg0YzFMYkFSTXAyZi9pdzc1bG5IUlIy?=
+ =?utf-8?B?VVppWWsyUTh0dUQ4QWkyVllEbERrZDJIMk82STFFSmpwcmtMNlJ5NWphSzYw?=
+ =?utf-8?B?elZqcExRTlVhMWwrMnJpVWwvakhqb2JZeTRMcG5hVFNqejNQK2t3QT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -3.3 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH 08/14] ARM: dts: imx6ul-var-som: factor out SD card
- support
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: A733A215215
+MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c86443d-9916-4e49-8853-08de7ad19cdb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2026 16:09:43.1473
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lio/SBlXUMBFB7RCPaGRvQyhNvCcajSBV3+QNK33VDI+hSQsUyjrnj6IYhxshA6+zYsRxoOKBrzZra1u5oD1li2hDQq1wqqs0tnto/0AED4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB12926
+X-Rspamd-Queue-Id: A196F2152B0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [2.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
+	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271629-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,pengutronix.de,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dimonoff.com:email,nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:email]
+	TAGGED_FROM(0.00)[bounces-271630-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[linux-m68k.org,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[bp.renesas.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux-m68k.org:email]
 X-Rspamd-Action: no action
 
-Hi Antonin,
-
-On Wed, 04 Mar 2026 09:01:20 +0100
-"Antonin Godard" <antonin.godard@bootlin.com> wrote:
-
-> Hi,
-> 
-> On Mon Mar 2, 2026 at 10:15 PM CET, Hugo Villeneuve wrote:
-> > Hi Frank,
-> >
-> > On Mon, 2 Mar 2026 15:54:43 -0500
-> > Frank Li <Frank.li@nxp.com> wrote:
-> >
-> >> On Mon, Mar 02, 2026 at 02:03:44PM -0500, Hugo Villeneuve wrote:
-> >> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> >> >
-> >> > Move SD support to a separate include, since it cannot be used at the
-> >> 
-> >> s/include/dtsi/
-> >
-> > Ok. I will also change it in all the other commit messages.
-> >
-> >  
-> >> > same time as the Wifi/BT module.
-> >> 
-> >> what's relation ship between wifi/bt? you just move sd related part to a
-> >> dtsi file.
-> >
-> > As stated in commit message, the SD card interface cannot be used if
-> > the Wifi/BT module is in use.
-> >
-> > Sd card is not mandatory, for example on our board we do not have it,
-> > so we need to have it disabled.
-> 
-> My two cents: if SDCard and WiFi/Bt support are the only mutually exclusive
-> features for this SoM, then how about the following organization:
-
-They maybe are not. There are other peculiarities, for example using the
-touch panel configuration has some impacts on an oscillator used by the
-Wifi/Bt module. The Varisctite documentation is not entirely clear or
-evident about all these details.
-
-
-> Three SoM dtsi files:
-
-This is already the case (apart from the -bt suffix)?
-
-> 
-> imx6ul-var-som-common.dtsi
-> 
->   imx6ul-var-som-wifi-bt.dtsi:
->     #include "imx6ul-var-som-common.dtsi"
-
-No need to include it, as it is already included by
-imx6ul-var-som-concerto.dts
-
-> 
->   imx6ul-var-som-sd.dtsi:
->     #include "imx6ul-var-som-common.dtsi"
-
-Same...
-
-> 
-> A common concerto dtsi file:
-> 
->   imx6ul-var-som-concerto-common.dtsi
-> 
-> Separate concerto dts files:
-> 
->   imx6ul-var-som-concerto-wifi-bt.dts:
->     #include "imx6ul-var-som-wifi-bt.dtsi"
->     #include "imx6ul-var-som-concerto-common.dtsi"
-> 
->   imx6ul-var-som-concerto-sd.dts
->     #include "imx6ul-var-som-sd.dtsi"
->     #include "imx6ul-var-som-concerto-common.dtsi"
-> 
-> And possibly the following one to avoid breaking compatibility:
-> 
->   imx6ul-var-som-concerto.dts
->     #include "imx6ul-var-som-sd.dtsi"
->     #include "imx6ul-var-som-concerto-common.dtsi"
-> 
-> In any case, the imx6ul-var-som-concerto-common.dtsi should be full-featured
-> (and thus avoid the imx6ull-var-som-concerto-full.dts file from patch 09/14), if
-> that's possible?
-
-I am not convinced that it needs to be full-featured. For our custom
-boards, we want to include only the relevant dtsis, because for example
-we do not use sd, or enet1 or enet2, or audio. Having these options in
-separate dtsi allows our custom boards to include/enable only the
-required features.
-
-The full dts is only there as a reference, and to make sure all dtsi
-are included and therefore compiled-checked. In it I have enabled
-enet1 and enet2, but some boards may use enet1, and not enet2, or
-vice-versa, or some boards (like our custom boards) we are not using
-either one.
-
-> But I don't know if this follows common practices, and if this is possible, but
-> I think it's clearer as a user to know if the DTS I will use will support
-> WiFi/BT _or_ support SDCard by looking at its name.
-> 
-> Of course this is based on the assumption that those two features are the only
-> mutually exclusive ones.
-> 
-> What do you think?
-
-Yes, but there is an exponential number of different
-combinations, and thus would require a lot of different DTS...
-
-If you look at the Variscite git repos, you will see a lot of different
-DTS to support only a subset of the possible combinations, and it
-already looks like a mess to me :) I would like to keep things simple if
-possible.
-
--- 
-Hugo Villeneuve
+SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IC0tLS0tT3JpZ2luYWwg
+TWVzc2FnZS0tLS0tDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgtbTY4
+ay5vcmc+DQo+IFNlbnQ6IDA1IE1hcmNoIDIwMjYgMTQ6NTcNCj4gU3ViamVjdDogUmU6IFtQQVRD
+SCB2MyAwNy8xMF0gYXJtNjQ6IGR0czogcmVuZXNhczogQWRkIGluaXRpYWwgRFRTSSBmb3IgUlov
+RzNMIFNvQw0KPiANCj4gSGkgQmlqdSwNCj4gDQo+IE9uIFRodSwgNSBNYXIgMjAyNiBhdCAxNTo1
+NCwgR2VlcnQgVXl0dGVyaG9ldmVuIDxnZWVydEBsaW51eC1tNjhrLm9yZz4gd3JvdGU6DQo+ID4g
+T24gVHVlLCAzIEZlYiAyMDI2IGF0IDExOjMwLCBCaWp1IDxiaWp1LmRhcy5hdUBnbWFpbC5jb20+
+IHdyb3RlOg0KPiA+ID4gRnJvbTogQmlqdSBEYXMgPGJpanUuZGFzLmp6QGJwLnJlbmVzYXMuY29t
+Pg0KPiA+ID4NCj4gPiA+IEFkZCB0aGUgaW5pdGlhbCBEVFNJIGZvciB0aGUgUlovRzNMIFNvQy4N
+Cj4gPiA+IFRoZSBmaWxlcyBpbiB0aGlzIGNvbW1pdCBoYXZlIHRoZSBmb2xsb3dpbmcgbWVhbmlu
+ZzoNCj4gPiA+ICAgLSByOWEwOGcwNDYuZHRzaTogICAgUlovRzNMIGZhbWlseSBTb0MgY29tbW9u
+IHBhcnRzDQo+ID4gPiAgIC0gcjlhMDhnMDQ2bDQ4LmR0c2k6IFJaL0czTCBSMEEwOEcwNDZMezQ2
+LDQ4fSBTb0Mgc3BlY2lmaWMgcGFydHMNCj4gDQo+IHI5YTA4ZzA0Nmw0OC5kdHNpIGRvZXMgbm90
+IGFwcGx5IHRvIFIwQTA4RzA0Nkw0NiwgYXMgaXQgdXNlcyB0aGUgd3JvbmcgY29tcGF0aWJsZSB2
+YWx1ZT8NCg0KT0ssIEkgd2lsbCB1cGRhdGUgY29tbWl0IGRlc2NyaXB0aW9uIGRyb3BwaW5nIFIw
+QTA4RzA0Nkw0Ng0KDQpDaGVlcnMsDQpCaWp1DQo=
 
