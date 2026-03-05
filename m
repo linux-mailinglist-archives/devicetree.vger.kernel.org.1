@@ -1,227 +1,134 @@
-Return-Path: <devicetree+bounces-271326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271323-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GBPTMzDXqGlmxwAAu9opvQ
-	(envelope-from <devicetree+bounces-271326-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 02:06:56 +0100
+	id qFp/LdnVqGkqxwAAu9opvQ
+	(envelope-from <devicetree+bounces-271323-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 02:01:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574F1209AFE
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 02:06:56 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF5D2209A76
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 02:01:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 5152C30495BF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 01:01:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 59B473014F6B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 01:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECB18231830;
-	Thu,  5 Mar 2026 01:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE2A23815D;
+	Thu,  5 Mar 2026 01:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Co5AAq71"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QqvhlITc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9062203710;
-	Thu,  5 Mar 2026 01:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C819C1A38F9;
+	Thu,  5 Mar 2026 01:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772672477; cv=none; b=YII96ASOK09zyTTMan3vzhNNZLlrmb+eY2XT5J8oINMzHZWeHBGuvIPwG2+vX6JeVSrKxc97VLSF0YoHqSfoTbd7wiIm20KSrf98fYpT7mi6lyWC0Bl8tA+puyNjsE6Z3pDSU0wLhQKVtht/7tGuUd4aYoO4zHYpNTJtagUOYWg=
+	t=1772672462; cv=none; b=B2nztdOPu7BPUaV8dcVbdm+A0Q6Dl4NHa7idx9OmDepqft+TY5MahgPbYen8b4Kcu0PJAS11GeCJFkMoRJN/6Q0I7HWXwuEmxcuLwWATkTvq4ahSSJJn1ThyLL+N661/bi6jMKzfIaPl/7OtzO1Q6nrGgi6mK1jPdju5Cf2QXKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772672477; c=relaxed/simple;
-	bh=OifWCP3vKhA76Fxz0repuDACNgSR1+4dScnDDulrEWs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=c2huHIbOTkSUMaHU4hv6XK9nB54c4/oPYGYO8KsgzO7pd5dVHBLuEwuqolzF3ujRkierMktVgbfmWzZ3BXtj99v6N12BK9uhsKoM8leOjkfZGF6LQZXrmjecctC3OKGmkh4b33AnZUyR4DMF2Lrqgd5PoogCvKBvT6wvzuRszRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Co5AAq71; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDFF1C4CEF7;
-	Thu,  5 Mar 2026 01:01:14 +0000 (UTC)
+	s=arc-20240116; t=1772672462; c=relaxed/simple;
+	bh=H2xwvKsgVFhd+ecvBtd7mF5jRpGF1S9aU65V28D3sfI=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=kmQC/GuGmMe+bhfjF4mhkPHoGx8/W/aVgWbANyAfKbLWI+3BZb1rI8JEtFvB2qO1GRLFWRHNiatqV4EDYhsi9c663rU1MRMAwxM7g43xVzeOIv8HG05GEPE0d4wbU1Z7jH9C7cl7C3WP/6cEcLDJdx98EeJ6L0UmRxeQQcplSwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QqvhlITc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A935C4CEF7;
+	Thu,  5 Mar 2026 01:01:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772672477;
-	bh=OifWCP3vKhA76Fxz0repuDACNgSR1+4dScnDDulrEWs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Co5AAq71WtXBQ39bsUV3pnWurkEvHENiYLZkXRZD0OpRZvzfmbx6CJIqv3IG9Dh3H
-	 5ZGqsQcZGPY9UpDLbUeyC4mXKmE+u1L4gLP1JtnGLuvLCriJCx0P3jZYo+Nhpv5P9t
-	 Rp9DewiDAYEKKHKCiTp3un5S6OyRFkEPjByzwMILbvRx6GD+gCdntQMq/HL2ShuhXH
-	 TJn70oEefhez+RiaiMjgyUajLC0mVaG35eqSegA2LpH2JBH1W1MCIuwP9ri97H2ZJi
-	 Enq9CAjjjcxvAIl0oPr/+mk39+StyWq7pfRy4qJs7x10KIBL2adrmAA+2pnVIvT7y4
-	 BI3yg7eU/eQ1w==
-From: Yixun Lan <dlan@kernel.org>
-Date: Thu, 05 Mar 2026 01:00:52 +0000
-Subject: [PATCH v4 2/2] phy: k1-usb: k3: add USB2 PHY support
+	s=k20201202; t=1772672462;
+	bh=H2xwvKsgVFhd+ecvBtd7mF5jRpGF1S9aU65V28D3sfI=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=QqvhlITcI9EqxbqjWg7iiqEdzDMu0xzVoDUPaWqgZWsc7yvlAAkTQD6J2nWHRpkP2
+	 s9ZfzDqQ7U5Y7dcu1xp2zijeujyCRMIF/wLC8Qi9h1KsnRX6UDydCqWA1P2s/275UA
+	 s2YZh5Xpa239a1O11b6TaFcCyXT7Nk0yClajxCXn84RckToF2rAITuJAH4/6zL+kn7
+	 MdN9CHnI25/IahdhrzyTArlO/yPqS0gI+z6sn1mdFqFntkmx0Oc2Z2tpRKEsWqCel3
+	 plenAAadmGN5Qggfq/VU6Nv9DTKOQGFiqOB+3xZFafyUFqUMSaVOftN55Q5yYppGb6
+	 YTAxuaK3yADxw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 02EF43808200;
+	Thu,  5 Mar 2026 01:01:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-11-k3-usb2-phy-v4-2-15554fb933bc@kernel.org>
-References: <20260305-11-k3-usb2-phy-v4-0-15554fb933bc@kernel.org>
-In-Reply-To: <20260305-11-k3-usb2-phy-v4-0-15554fb933bc@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Ze Huang <huang.ze@linux.dev>
-Cc: Junzhong Pan <panjunzhong@linux.spacemit.com>, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@kernel.org>, 
- Yao Zi <me@ziyao.cc>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3549; i=dlan@kernel.org;
- h=from:subject:message-id; bh=OifWCP3vKhA76Fxz0repuDACNgSR1+4dScnDDulrEWs=;
- b=owEB6QIW/ZANAwAKATGq6kdZTbvtAcsmYgBpqNXQ52oxOWLTT0KQ3j/qZu7FHDVIWtIXTea/3
- 450zd6HzEWJAq8EAAEKAJkWIQS1urjJwxtxFWcCI9wxqupHWU277QUCaajV0BsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDJfFIAAAAAALgAoaXNzdWVyLWZwckBub3RhdGlvbnMub3BlbnBncC5
- maWZ0aGhvcnNlbWFuLm5ldEI1QkFCOEM5QzMxQjcxMTU2NzAyMjNEQzMxQUFFQTQ3NTk0REJCRU
- QACgkQMarqR1lNu+3t9w/9H0QtQhU6nZ1JAXa70DL+bIwvjt1cZZ605FMaIVCwQICVj2kohBDwn
- 4EYFUlsp9Kp5K7Q8KUdXgibW578McfczTbYzShSejl+b1rXCQTMOC63MZEyAkev2yGfY5XBGxnf
- fXTKB7nVK/TiWP45/O56a75ZjFd2X5Ljsrh1OSFggOYXQm1SCSIh7WBFWDpqfnKsimoYXBc71Az
- nHfo9dGns0yKtW835cEQbjfvK106g4UzahC6sOZFc7wfL5JFuLazDZaCtaldpO2Hl4d/5dt3ixa
- fxWqeo+1eu3V4MF4Ol5WyL1y5kZJAGHou937A+b1o3URRqPgxjpr7yFK9l9HxtT9rF3ObNrJknK
- D3W8cCxRr8e/GtBaRQMk0w9W5zEiyaFs3X+5FPo67j8EpFQgHvIxD9AeQSG/8JwF+VqCA4Hs9aX
- i9EeQ5OF1zFMKfWEc1jytfwJSNUIAmyCirfmpqGaGimUXhNJ7QtWKHEDwRgXBbc2FY0KIgjf4zS
- 2OImc1ZmALKLVKc15i+CWdef6Zz1G5HMfy/zMrsv6ID+30yo9aXY20mDEW2ComxH8NuPxzFdeCa
- fLBztPkLT/97KsN6kUXT2OwV6ShKGXjB6zsIg1RWLcGvOfp0by1szH0P+QAKnhLJioy0ztOj1uQ
- wGym+6VWGgwN0p/37QqVA0MuLM+pLs=
-X-Developer-Key: i=dlan@kernel.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
-X-Rspamd-Queue-Id: 574F1209AFE
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: dsa: maxlinear,mxl862xx:
+ remove
+ port label
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <177267246247.2463633.1521027409296541089.git-patchwork-notify@kernel.org>
+Date: Thu, 05 Mar 2026 01:01:02 +0000
+References: 
+ <61579de297eb636ec5f1e6c97d453e26abb0625d.1772507210.git.daniel@makrotopia.org>
+In-Reply-To: 
+ <61579de297eb636ec5f1e6c97d453e26abb0625d.1772507210.git.daniel@makrotopia.org>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+X-Rspamd-Queue-Id: CF5D2209A76
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [8.84 / 15.00];
-	URIBL_BLACK(7.50)[ziyao.cc:email];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271326-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[kernel.org:s=k20201202];
-	GREYLIST(0.00)[pass,body];
+	TAGGED_FROM(0.00)[bounces-271323-lists,devicetree=lfdr.de,netdevbpf];
+	FREEMAIL_CC(0.00)[lunn.ch,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[patchwork-bot@kernel.org,devicetree@vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_POLICY_ALLOW(0.00)[kernel.org,quarantine];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NO_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	R_SPF_ALLOW(0.00)[+ip6:2600:3c09:e001:a7::/64:c];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.629];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ziyao.cc:email]
-X-Rspamd-Action: add header
-X-Spam: Yes
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+X-Rspamd-Action: no action
 
-Add USB2 PHY support for SpacemiT K3 SoC.
+Hello:
 
-Register layout of handling USB disconnect operation has been changed,
-So introducing a platform data to distinguish the different SoCs.
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-Reviewed-by: Yao Zi <me@ziyao.cc>
-Signed-off-by: Yixun Lan <dlan@kernel.org>
----
- drivers/phy/spacemit/phy-k1-usb2.c | 34 +++++++++++++++++++++++++++++-----
- 1 file changed, 29 insertions(+), 5 deletions(-)
+On Tue, 3 Mar 2026 03:16:23 +0000 you wrote:
+> The ports in the example device tree should not have a 'label'
+> property. Labels for all user ports have been removed from an earlier
+> submission, but this was overlooked in the case of the CPU port.
+> 
+> Remove 'cpu' port label from the example.
+> 
+> Suggested-by: Vladimir Oltean <olteanv@gmail.com>
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> 
+> [...]
 
-diff --git a/drivers/phy/spacemit/phy-k1-usb2.c b/drivers/phy/spacemit/phy-k1-usb2.c
-index 9215d0b223b2..87b943d9111f 100644
---- a/drivers/phy/spacemit/phy-k1-usb2.c
-+++ b/drivers/phy/spacemit/phy-k1-usb2.c
-@@ -51,6 +51,9 @@
- #define PHY_K1_HS_HOST_DISC		0x40
- #define  PHY_K1_HS_HOST_DISC_CLR		BIT(0)
- 
-+#define PHY_K3_HS_HOST_DISC		0x20
-+#define  PHY_K3_HS_HOST_DISC_CLR		BIT(8)
-+
- #define PHY_PLL_DIV_CFG			0x98
- #define  PHY_FDIV_FRACT_8_15		GENMASK(7, 0)
- #define  PHY_FDIV_FRACT_16_19		GENMASK(11, 8)
-@@ -145,7 +148,7 @@ static int spacemit_usb2phy_exit(struct phy *phy)
- 	return 0;
- }
- 
--static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
-+static int spacemit_k1_usb2phy_disconnect(struct phy *phy, int port)
- {
- 	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
- 
-@@ -155,10 +158,27 @@ static int spacemit_usb2phy_disconnect(struct phy *phy, int port)
- 	return 0;
- }
- 
--static const struct phy_ops spacemit_usb2phy_ops = {
-+static int spacemit_k3_usb2phy_disconnect(struct phy *phy, int port)
-+{
-+	struct spacemit_usb2phy *sphy = phy_get_drvdata(phy);
-+
-+	regmap_update_bits(sphy->regmap_base, PHY_K3_HS_HOST_DISC,
-+			   PHY_K3_HS_HOST_DISC_CLR, PHY_K3_HS_HOST_DISC_CLR);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops spacemit_k1_usb2phy_ops = {
- 	.init = spacemit_usb2phy_init,
- 	.exit = spacemit_usb2phy_exit,
--	.disconnect = spacemit_usb2phy_disconnect,
-+	.disconnect = spacemit_k1_usb2phy_disconnect,
-+	.owner = THIS_MODULE,
-+};
-+
-+static const struct phy_ops spacemit_k3_usb2phy_ops = {
-+	.init = spacemit_usb2phy_init,
-+	.exit = spacemit_usb2phy_exit,
-+	.disconnect = spacemit_k3_usb2phy_disconnect,
- 	.owner = THIS_MODULE,
- };
- 
-@@ -167,12 +187,15 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
- 	struct phy_provider *phy_provider;
- 	struct device *dev = &pdev->dev;
- 	struct spacemit_usb2phy *sphy;
-+	const struct phy_ops *ops;
- 	void __iomem *base;
- 
- 	sphy = devm_kzalloc(dev, sizeof(*sphy), GFP_KERNEL);
- 	if (!sphy)
- 		return -ENOMEM;
- 
-+	ops = device_get_match_data(dev);
-+
- 	sphy->clk = devm_clk_get_prepared(&pdev->dev, NULL);
- 	if (IS_ERR(sphy->clk))
- 		return dev_err_probe(dev, PTR_ERR(sphy->clk), "Failed to get clock\n");
-@@ -185,7 +208,7 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
- 	if (IS_ERR(sphy->regmap_base))
- 		return dev_err_probe(dev, PTR_ERR(sphy->regmap_base), "Failed to init regmap\n");
- 
--	sphy->phy = devm_phy_create(dev, NULL, &spacemit_usb2phy_ops);
-+	sphy->phy = devm_phy_create(dev, NULL, ops);
- 	if (IS_ERR(sphy->phy))
- 		return dev_err_probe(dev, PTR_ERR(sphy->phy), "Failed to create phy\n");
- 
-@@ -196,7 +219,8 @@ static int spacemit_usb2phy_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id spacemit_usb2phy_dt_match[] = {
--	{ .compatible = "spacemit,k1-usb2-phy", },
-+	{ .compatible = "spacemit,k1-usb2-phy", .data = &spacemit_k1_usb2phy_ops },
-+	{ .compatible = "spacemit,k3-usb2-phy", .data = &spacemit_k3_usb2phy_ops },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, spacemit_usb2phy_dt_match);
+Here is the summary with links:
+  - [net-next] dt-bindings: net: dsa: maxlinear,mxl862xx: remove port label
+    https://git.kernel.org/netdev/net-next/c/8838bb185ef3
 
+You are awesome, thank you!
 -- 
-2.53.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
