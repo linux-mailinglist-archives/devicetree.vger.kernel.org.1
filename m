@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-271713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eME2OgbhqWnDGwEAu9opvQ
-	(envelope-from <devicetree+bounces-271713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:10 +0100
+	id +OBuNRThqWnDGwEAu9opvQ
+	(envelope-from <devicetree+bounces-271714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87827217E7C
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56F13217E91
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 21:01:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 91EBD3090E9B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:59:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C96A13091C86
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5503EB7F8;
-	Thu,  5 Mar 2026 19:57:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82ED3ED5BC;
+	Thu,  5 Mar 2026 19:57:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I+7jOYYX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UI9kdQw8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC1D3EB80D
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 312AF3ED5C7
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:57:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772740645; cv=none; b=l7CO8UkSFWP+8KXBn6FI0B7krw9iZzJQ8u5tMEoNqWdqDNxnwFOiXOf2kKnXrkGKzJDGHldsNEl4kQv67oqlSb+xb+8uQ+dpnii0+OemedF357qwawrcqCG0Tl2YxlTeD49uKqovWESTJJt9mzUcnUxoo9kf+evW6x+zKKT8Yes=
+	t=1772740651; cv=none; b=ZxGEq6sCJYj5Jfy0xlFDBUxXaTWoPK/0rF6FmRrah7LyF/YCDZGdPZNaAPb8Y33oxRZCDV4sAHYmBA9/LacVdETANnwYPBytJ8HbQT/bNVgu/2jAQSIJgIji0AYq4X6H4maAykbTCphPYudG8t2GfOrZ/9PNvu+Zg7AouR6Eyuk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772740645; c=relaxed/simple;
-	bh=yzS/Bqt2ESmBNxPYzlsNcdiSXxrICZ3FcyvqmjHNHDs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QR5apgVmSHsUvHOrWQ6Uu5A1Z26JKbXQOvx67ymwejvBiueztmDenLasHf9iR1Q6Cl90FNKxhHVck5429bKkYScIiOifQuen2YGCtfj60lMzeo2rJPtwiIF5/w2KTrmrQTr1JcCaHtu3pIYvmTK1hj/W91XPYF04QJftrRfwvJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I+7jOYYX; arc=none smtp.client-ip=209.85.221.50
+	s=arc-20240116; t=1772740651; c=relaxed/simple;
+	bh=ujvbhvdxFxvp+dEVlmpX9OLStQw937Z/KLIDIgyo1gA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=J3vG4Rynl+EBzeTrQzoVQGJN1coOeDP4rsZJHbkruzYsATPCopOoFdU3qK5NqKOyHVDTbogJ44Nn0giV0k4zP7S1rLKvCJ6N/A/6kc4K6uBRWhQDO9BjFgZXroNCUDmUXHkYcJMU91gBAkkI61DRutGU3Zo0dweBQAHyubkL4xk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UI9kdQw8; arc=none smtp.client-ip=209.85.128.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-439cd6b09f8so1066806f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 11:57:21 -0800 (PST)
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso70649295e9.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 11:57:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772740640; x=1773345440; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=idzPl1oHysl6/8oMk349FHdQyMf3W5G+eL7EEdW/pbc=;
-        b=I+7jOYYX4KKexuFHb21sBpumYeb84aBq++LNeQ8kK9DpodzZTQRuws7BmQ4dveMuJ5
-         sZSqEBQb2VJG+H4Qk6j6GBEI5uXWihaJ2jgfZ+tRVfAwhgL+9/UmyA9y6vG2wbEGLvWt
-         F/VrdYKvrNhdW/qi41MPfoxFoWpexIojWLm7rUQe9EQAEZ76Q1QvlazoW/ievo10uYMP
-         VjcVuhl1+XaTpEJT+R0XdsW1LTj+54RPLGwVUtxQeKDwXGqiosGIZZ4Mt5PBkkHNdQTV
-         2HCGd/xRKX1mX2MmpWkO39K9BiAnzySm7xBdWqvJQj1/kvsyWdytWMzHgskDS5yTCGlk
-         1CoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772740640; x=1773345440;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1772740644; x=1773345444; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=idzPl1oHysl6/8oMk349FHdQyMf3W5G+eL7EEdW/pbc=;
-        b=gEV/XMVC7rP7psQC4snXIUjZlOtCwVNoUoX7MGB+coj2q9JI4vX3vNNtN90AF0HKhW
-         uzFF8eMU5WSdhyMwhAaX+q9+FELs0BLrZVkylN1eFvSLZfvHh0crPceWC6wz/UgDtKt0
-         Z1IN686juImLRQYZ9lFdQZ9MpSuELqa6q2Ua78w2+N4qEfuf2OT961eIghLtpT94kKWR
-         Q7nEl/JJ5sa8TfNSvZ282vxk4vh39icgjeQS26RCL+vlaIzJqLvxWWyS331Wv+yWuQqP
-         cz2C3c52UVeGYqkOg1gZ1/yM9VBReYZZ/lKRhu2/0xlUgdu+eKAUyTtGlXO7pUkY4LQ4
-         Gd7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXAqtZZTGHn7882k75q7plkV5HcCDS6tFiDJxaWNs66C41iskpM4pM5EKl9/Pf4WhAGzukLhKhgap1r@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYjoEHPh+7LVG+HhQtgzZu+ZrM2YY4hgie5sWvLxu15i1yvv0m
-	3Jnei4u9FW/qDbRsBRFdLZm1z9weBZIUa/vfBgHwPmCzaqC9Z9wHtPU9
-X-Gm-Gg: ATEYQzxEYMsjJwNR6dE6HqhYa8To/UAB9Sql6kbpjhAj6RLUsYEXq2SlIi+BlRSpWXn
-	LRawNkFmPpBllCdxst6mewQPhk7X6F+5Wgjg/XFKPc1aaMnOpqESW5+QJvvDGurLlQNbu+Lhsdl
-	yD7YHWaPV4wIc/L3J2YZX9kD4tiidlwEcHv41u7SKGMHhQo2tVzlZCUQEek4iTkfND7E6w8PIC+
-	TRbjDK5HNpGGc4/zIkdLqjAnzV/NfqmWNJBQkWJk4dod5HV6I/yuwjO9gnxFGMW8yPjYfNclu1S
-	/wqpHjGzIOardnIOOAKmJodqxL67cOLR3knb2d/vGZDC0UeE6p4ZuY7nffozpC8lI987l+fftV3
-	lubuA2lTst7VkLhXAAmQ3NzGbmbwGM7FY2qDInjUsNj/hGfW4IR2VH434Vf08lbyoSudy74AgOd
-	HEmiqTz2EmXO2b2A/PhNmCwdzPo42/YA==
-X-Received: by 2002:a05:600c:1d0c:b0:482:df17:bbbc with SMTP id 5b1f17b1804b1-48519874e2amr112904215e9.20.1772740640050;
-        Thu, 05 Mar 2026 11:57:20 -0800 (PST)
+        bh=ZtSz5l75Rw6ZqIXeFcoTcvd2i9c8nNbyLRXNmlkxqoo=;
+        b=UI9kdQw83t32crcOuu4ZN+pCyFZuXGHNUq0X2JqOBQZoMh7haLTpnzO+r0xgh1qZWQ
+         49qq8B0miepnx7d6k/4O4eUt7gxI49MCrWoZbYFCJbGolfN2oHXxKO0DE9Ws2m3ywsBP
+         /ZCs+/+0GYiKbMJCVkm+osZkMj/nV896Ft5ahaHXBXwAbtx0KT0LFiX/hsfIoUxha0Xb
+         nVfFM/7FZK0a2LV2pDVuRQ/e4QHO/wOzxieshl0UHvp06wwVdFn8IH8SqLwnI6Wy+U4v
+         B3gkK3F3bouH9hyulcGYYuV5CsWjgt0hBO8Jquv9Hv5JUHcvW5rK3RGL2Qxh2Nsgv7hl
+         fL5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772740644; x=1773345444;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ZtSz5l75Rw6ZqIXeFcoTcvd2i9c8nNbyLRXNmlkxqoo=;
+        b=m/zmIr1jxPgbwR9ppmdWp7rEeAkVGNMM3iTtvwh2jqwvxTsIAfezbtSMCCnhvceS5X
+         B1xYjGh8DCGmCKQ9fC+VovKJ6+VBsm487tDgkGmtf5vNnEnT049gomdCKNcn848Tw/RQ
+         RymEWcSh93IcbLj+ZVZGL5ENvuCb58eBoWvzueoVJ1OgoMF1MlKzziN6ouAFTMJD3lGw
+         LbWreKywPSLyggmkdwVlM2J6KBNuG7SOzMw6GG5nKE2w8rvm3xPKYiqeyCfwg5OmjI2q
+         HuhjxjweqcrxfTH6nDMM3kQTRiOXfPFzwpYiayyKFmB/0gz161+kShecTsK7MeaxfL4V
+         9spg==
+X-Forwarded-Encrypted: i=1; AJvYcCVTEof4oGAvendIoD7ToW93jAyenwCeEjSrOYu/U5qeiPpmtYaLj+tggGTSwllkkeORWxaJwPvFPiGM@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtxLmBveWnQz3BJfXTSvDoBJ+8ueWgHDEcrtiiYhN+euCzLCQB
+	q+4ym50WYa9a6AovqDapQRD+LzQQVlASX3rCPnYjdDKsiff1VgopiYnJfghHIC8p
+X-Gm-Gg: ATEYQzyN4hvCnHBQ/l9h9UWpYQxVWVMjWMbf10X6Y3GbVCPxgwPXgWzl1FTQaAIbzJJ
+	LEWUIIKWFisCugSDMuxb1BEEJUrqiiaW15UBGYhAIhj+o/vuf4skNE8gOeQdvgDS8kNwgjHpJBa
+	sQUXYt4zve3rkYVLRGJZP27b5zUucWBuC97E/1j8Tl9TQWqAN1tJfc7+UbnBvIsiPhfXYXG3sKs
+	3KXiF7ZxZEUngyy3KTOSaUwVcq5kmf+a4/DgBThrrtqGsw4feeeOynECn5FqL3EBB6iLRSJ9Ee1
+	+t2HSG9MlW+xrl8D9bZvUtAGGkcfsl3W9wKIXHqOj56RNiy6dQZLSqAosioPpjDmoHTCTDOKB6K
+	Nry5AXxZEpj3USP/OLsg/netxvuaEQfIg1IUtmYsYDpOEO/+ItJecXs82RSYeuQ+9rrShPJYvBR
+	OZG5kmkQxMc8tD/Y3m0fg=
+X-Received: by 2002:a5d:5f85:0:b0:431:8f8:7f24 with SMTP id ffacd0b85a97d-439d72595bdmr1734488f8f.39.1772740643877;
+        Thu, 05 Mar 2026 11:57:23 -0800 (PST)
 Received: from luca-vm.lan ([154.61.61.58])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439bb686a32sm26974297f8f.13.2026.03.05.11.57.18
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439bb686a32sm26974297f8f.13.2026.03.05.11.57.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 11:57:18 -0800 (PST)
+        Thu, 05 Mar 2026 11:57:23 -0800 (PST)
 From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
@@ -94,10 +96,12 @@ Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
 	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] Add support for Zhunyi Z40046 LCD panel
-Date: Thu,  5 Mar 2026 19:56:29 +0000
-Message-ID: <20260305195650.119196-1-l.scorcia@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: display: panel: Add compatibles for Zhunyi Z40046
+Date: Thu,  5 Mar 2026 19:56:30 +0000
+Message-ID: <20260305195650.119196-2-l.scorcia@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260305195650.119196-1-l.scorcia@gmail.com>
+References: <20260305195650.119196-1-l.scorcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,7 +109,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 87827217E7C
+X-Rspamd-Queue-Id: 56F13217E91
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -122,7 +126,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FREEMAIL_CC(0.00)[gmail.com,edgeble.ai,linaro.org,ffwll.ch,linux.intel.com,kernel.org,suse.de,sntech.de,nabladev.com,kael-k.io,bp.renesas.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271713-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271714-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
@@ -144,25 +148,43 @@ Fitipower JD9161Z DSI controller found in the Xiaomi Mi Smart Clock
 x04g, apparently in two different variants.
 
 The Fitipower JD9161Z LCD driver IC is very similar to the Jadard
-JD9365DA-H3, it just uses different initialization sequences. A
-partial data sheet is available at [1].
+JD9365DA-H3, it just uses a different initialization sequence.
 
-The two initialization sequences for the panel have been extracted from
-Android original firmware for the Xiaomi Smart Clock.
+Since this is the first supported device from this vendor, document its
+name to the vendor-prefixes.yaml file as well.
 
-Variant v1 tested on device. Variant v2 not tested.
+Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+---
+ .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml   | 2 ++
+ Documentation/devicetree/bindings/vendor-prefixes.yaml          | 2 ++
+ 2 files changed, 4 insertions(+)
 
-[1] https://github.com/QuecPython/QuecPython_lib_bundles/blob/master/libraries/LCD/JD91651z/JD9161Z_DS_Preliminary_V0.01_20180803(1).pdf
-
-Luca Leonardo Scorcia (2):
-  dt-bindings: display: panel: Add compatibles for Zhunyi Z40046
-  drm/panel: jd9365da: Support for Zhunyi Z40046 panels
-
- .../display/panel/jadard,jd9365da-h3.yaml     |   2 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  | 308 ++++++++++++++++++
- 3 files changed, 312 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+index 5802fb3c9ffe..da17072ffaaa 100644
+--- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
++++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+@@ -23,6 +23,8 @@ properties:
+           - melfas,lmfbx101117480
+           - radxa,display-10hd-ad001
+           - radxa,display-8hd-ad002
++          - zhunyi,z40046v1
++          - zhunyi,z40046v2
+       - const: jadard,jd9365da-h3
+ 
+   reg:
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index ee7fd3cfe203..18121440dc22 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1913,6 +1913,8 @@ patternProperties:
+     description: Shenzhen Zkmagic Technology Co., Ltd.
+   "^zte,.*":
+     description: ZTE Corp.
++  "^zhunyi,.*":
++    description: Shenzhen Zhunyi Technology Co., Ltd.
+   "^zyxel,.*":
+     description: ZyXEL Communications Corp.
+ 
 -- 
 2.43.0
 
