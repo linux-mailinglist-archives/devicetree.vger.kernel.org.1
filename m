@@ -1,147 +1,168 @@
-Return-Path: <devicetree+bounces-271375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271376-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QOKsEvUjqWkL2gAAu9opvQ
-	(envelope-from <devicetree+bounces-271375-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:34:29 +0100
+	id ePcKKyMkqWkL2gAAu9opvQ
+	(envelope-from <devicetree+bounces-271376-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:35:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C42CD20BA6B
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:34:28 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE9820BAB5
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id BBFC4302FEB8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 06:34:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9892B3024097
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 06:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FDC2304BDE;
-	Thu,  5 Mar 2026 06:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4ED33064A9;
+	Thu,  5 Mar 2026 06:35:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JGkdP6PT"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="lm1yAbd0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4632F0C62;
-	Thu,  5 Mar 2026 06:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD08F2DB7BB;
+	Thu,  5 Mar 2026 06:35:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772692465; cv=none; b=bw8s1J+IeGohXEGgU9W2RNd7ltb1Cf0DIWx1SXr+Y2DhvmxBXjwXt51711+QHLBQEBUnYptq5wSKT7C2NmZjm3piBZ05veVpTz5MW9bP6q+Q29B+2rpsWMA5togOTqC++HQsr14o9RZi+m50mivbQkbKLeL/R+2GIZx6onmavfY=
+	t=1772692512; cv=none; b=oTrpbHbtesiIEoBgCiIBvY1tqg+90oYT/hAjRyvJLaWbpH0T6JOo+OHLc7BnHprX7bRTZK+hn9bRgENPu6CxVRroLlYZmtFnhir3lomF/tCWCCPNNNduCJjrlrufy1cb2ob/EZqBX6r/Bipao7e8FzF07LjQ7EPPn2P6b9Jg5uk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772692465; c=relaxed/simple;
-	bh=f2dopSibfdiIHFBquHFXrfBYdoRAd/vshIkU1FaNDgM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k8K3XxCEYXA+rCXG2i5Sfs4JLEf9g4YOQ8GMnpyWQTmoj2qdlt5caTQvCDdRXTUDP/PhvEG4bV7Tks4I2OAg5XqkOyisxLYsoD/qMmD7y5QbUg657wpUymWrZ+k/u/KlzmJAHkpOXXsrORoreYtXpEMBsl2rkGexcAzVrZIX1zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JGkdP6PT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46858C116C6;
-	Thu,  5 Mar 2026 06:34:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772692464;
-	bh=f2dopSibfdiIHFBquHFXrfBYdoRAd/vshIkU1FaNDgM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JGkdP6PTrdNMtWjYk8OM9NLtZmow8GIMiOceeF+o3zCQSczvRqMUuXJZxCBsapJnc
-	 Jt78NqvznjZzahrcDE0SPu70E2euUIPR/JvGi+1iUQh1H4ROs1WrR5NiB4Jq2DgoJM
-	 2jVVTADCzgFgtPMrWalu/HLEg29Y0fvUDHf/bxlnzKo3FmdgajGY1ZNiVd4oYFZbBw
-	 C5edFxHBFRj+fGEknAGf07T33nGe+pfptTGsOTVjBKmGNgXz5m+pfYSJY1LBcJ/ke2
-	 J+Kdp5rrlZ9MuCGrIMnxqR21lzhJFrUE/NfDzTJl9IYk2esMvaYhf6kmjobuobQMih
-	 sQwGLnyAYbpdw==
-Date: Thu, 5 Mar 2026 12:04:15 +0530
-From: Sumit Garg <sumit.garg@kernel.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, konradybcio@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, akhilpo@oss.qualcomm.com,
-	vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
-	robin.clark@oss.qualcomm.com, lumag@kernel.org,
-	loic.poulain@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
-	linux-kernel@vger.kernel.org,
-	Sumit Garg <sumit.garg@oss.qualcomm.com>
-Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: agatti: Fix IOMMU DT properties
-Message-ID: <aakj55LZW_maz6UJ@sumit-xelite>
-References: <20260122121042.579270-1-sumit.garg@kernel.org>
- <20260122172222.GA2670019-robh@kernel.org>
- <aaWIPgKd-_cm4t7X@sumit-xelite>
- <6yafwubiwtjnpao2crgi3wnfgj5546e3vjcpjnwsnj3y7q76m4@ej3ldry6fbki>
+	s=arc-20240116; t=1772692512; c=relaxed/simple;
+	bh=/UJ5jdqtAKSPzc8ABxq9qxtgXhxe3+XsR3r8n6e7x64=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=OIXpYF2bB/ZcZGdAWzAb2p+TO1G7NNAsJoO6ngqWGwiSb7vz0Auq15Dfu447xgmqxUJhoKO7GYLbGlj+3qVzNGMNkjur6cA4ejp62SjWBt3/LGMEddQavin1C4C4ype/gzmjvVygEDHV9Wavo65JLVZ8S+0b715ZxhKP0CRsQ2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=lm1yAbd0; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fRKXT4QGzz9tj4;
+	Thu,  5 Mar 2026 07:35:05 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1772692505;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Roprykd/0bxr9LQQRe+mNdX0hmWBmJ1X7LdzolcDU9k=;
+	b=lm1yAbd0qAPVSB0OOQRUd4vtc6/wSfKt2qM2Mf5PCiHXw/Aq5lbJdcLgCoWXi5rGNzqG9h
+	JsPxrV2AZuTaGZHE9YEkXufXbnBOa1vgH/OnrUowClqEfNoiCn0Z2RCtvrYzR+oA3RBpJW
+	e+Nrb02yhjVWSON6v9JBwtizQrlHgMOvTo/30HxJDRNIAzfuXY5d4VmIh7mzzr4cBGo9SX
+	fibh2XYjLeQstM/fIMbgtwCn+WkPMUCv1469slw01W53veN710C6/45blpQJ7jwf568oQT
+	YYEE0Ukn3WsikjqQgjaUW0CHXyLVJTZeb85uiJItA17JeDi5NujobxUHRg6jUw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6yafwubiwtjnpao2crgi3wnfgj5546e3vjcpjnwsnj3y7q76m4@ej3ldry6fbki>
-X-Rspamd-Queue-Id: C42CD20BA6B
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 05 Mar 2026 14:34:47 +0800
+Message-Id: <DGUN1I6AY5QI.3VWQAV1IQGD7P@mailbox.org>
+Subject: Re: [PATCH v3 0/3] thermal: spacemit: Add support for SpacemiT K1
+ SoC thermal sensor
+From: "Shuwei Wu" <shuwei.wu@mailbox.org>
+To: "Shuwei Wu" <shuweiwoo@163.com>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>, "Zhang
+ Rui" <rui.zhang@intel.com>, "Lukasz Luba" <lukasz.luba@arm.com>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Yixun Lan" <dlan@gentoo.org>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Paul Walmsley" <pjw@kernel.org>,
+ "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>,
+ "Alexandre Ghiti" <alex@ghiti.fr>
+Cc: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-riscv@lists.infradead.org>, <spacemit@lists.linux.dev>,
+ <linux-kernel@vger.kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260119-patchv2-k1-thermal-v3-0-3d82c9ebe8a4@163.com>
+In-Reply-To: <20260119-patchv2-k1-thermal-v3-0-3d82c9ebe8a4@163.com>
+X-MBO-RS-ID: 6a4d1feab15b69ac214
+X-MBO-RS-META: oyujgzgony737ozxqjnzkwqas9ubuoo4
+X-Rspamd-Queue-Id: 2FE9820BAB5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-271376-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[163.com,kernel.org,linaro.org,intel.com,arm.com,gentoo.org,pengutronix.de,dabbelt.com,eecs.berkeley.edu,ghiti.fr];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271375-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	MID_RHS_MATCH_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 01:09:31PM -0600, Bjorn Andersson wrote:
-> On Mon, Mar 02, 2026 at 06:23:18PM +0530, Sumit Garg wrote:
-> > Hey Bjorn,
-> > 
-> > On Thu, Jan 22, 2026 at 11:22:22AM -0600, Rob Herring wrote:
-> > > On Thu, Jan 22, 2026 at 05:40:39PM +0530, Sumit Garg wrote:
-> > > > From: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> > > > 
-> > > > Fix IOMMU DT propeties for GPU, display and video peripherals via
-> > > > dropping SMMU stream IDs which relates to secure context bank.
-> > > > 
-> > > > This problem only surfaced when the Gunyah based firmware stack is
-> > > > ported on Agatti replacing the legacy QHEE based firmware stack. Assigning
-> > > > Linux kernel (HLOS) VMID to secure context bank stream IDs is treated
-> > > > as a fault by Gunyah hypervisor which were previously ignored by QHEE
-> > > > hypervisor.
-> > > > 
-> > > > The DT changes should be backwards compatible with legacy QHEE based
-> > > > firmware stack too.
-> > > 
-> > > To avoid intermittent warnings, Bjorn should pick up the whole series.
-> > > 
-> > 
-> > Just a gentle reminder in case it slipped your attention. Can we pick
-> > this as part of fixes for v7.0 release?
-> > 
-> 
-> Thanks for the ping. Is the Gunyah firmware generally available and
-> would this thereby be considered a regression that we need to fix for
-> v7.0?
+Hi,=20
 
-Yeah it's already available internally and we are just waiting for a
-public release of the Gunyah firmware which is expected to come before
-v7.0 gets released.
+Sorry for the HTML noise in my previous mail. Correcting the format now.
 
-So, please get these fixes in v7.0 as these are boot critical ones.
+Gentle ping on this patch.
+Any feedback to help move it forward would be appreciated!
+Thanks!
 
--Sumit
-
-> Or can I just pick it for v7.1?
+On Mon Jan 19, 2026 at 10:41 AM CST, Shuwei Wu wrote:
+> Introduce support for the on-die thermal sensor found
+> on the SpacemiT K1 SoC.
 >
-> Regards,
-> Bjorn
+> Include the device tree binding documentation in YAML format, the
+> thermal sensor driver implementation, and the device tree changes to
+> enable the sensor on K1 SoC.
+>
+> ---
+> Changes in v3:
+> - Fix indentation and variable types
+> - Simplify clock management and redundant assignments
+> - Link to v2: https://lore.kernel.org/r/20251216-patchv2-k1-thermal-v1-0-=
+d4b31fe9c904@163.com
+>
+> Changes in v2:
+> - Move driver to drivers/thermal/spacemit/ and update Kconfig/Makefile
+> - Address reviewer feedback on style and structure
+> - Improve variable naming and comments
+> - Link to v1: https://lore.kernel.org/r/20251127-b4-k1-thermal-v1-0-f32ce=
+47b1aba@163.com
+>
+> ---
+> Shuwei Wu (3):
+>       dt-bindings: thermal: Add SpacemiT K1 thermal sensor
+>       thermal: spacemit: k1: Add thermal sensor support
+>       riscv: dts: spacemit: Add thermal sensor for K1 SoC
+>
+>  .../bindings/thermal/spacemit,k1-tsensor.yaml      |  76 ++++++
+>  arch/riscv/boot/dts/spacemit/k1.dtsi               | 101 ++++++++
+>  drivers/thermal/Kconfig                            |   2 +
+>  drivers/thermal/Makefile                           |   1 +
+>  drivers/thermal/spacemit/Kconfig                   |  19 ++
+>  drivers/thermal/spacemit/Makefile                  |   3 +
+>  drivers/thermal/spacemit/k1_tsensor.c              | 281 +++++++++++++++=
+++++++
+>  7 files changed, 483 insertions(+)
+> ---
+> base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+> change-id: 20251215-patchv2-k1-thermal-5ffb838fc1cc
+>
+> Best regards,
+
 
