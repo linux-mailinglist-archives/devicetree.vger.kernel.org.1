@@ -1,172 +1,191 @@
-Return-Path: <devicetree+bounces-271397-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271400-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yHWeCoA2qWlk3AAAu9opvQ
-	(envelope-from <devicetree+bounces-271397-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:53:36 +0100
+	id kCKoE8Q2qWlk3AAAu9opvQ
+	(envelope-from <devicetree+bounces-271400-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:54:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BFFB20CF80
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:53:35 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E255920CFCC
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:54:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 431653006911
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:53:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 1F4DF3007482
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CA6433557D;
-	Thu,  5 Mar 2026 07:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31BA5331A4C;
+	Thu,  5 Mar 2026 07:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Az9/1Ttu"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lhxI5l8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78BD533372A;
-	Thu,  5 Mar 2026 07:53:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17BA13346A0
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 07:54:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772697210; cv=none; b=PZtdJ2zX2xcZe6KbfKNJnQY/ZP5EZTAK450no/WtN6gi1ooyrMWPaV6exEu+Io3wuL0R+heNMUcwHT2hy924f+zQAydoOUfRrC7nA6wousKI4SLlGb/hj1K4UY7HaECFpF0NQK7R+rvzoKQMxRNW9YUZVJqIYF+oGQ/ZxytdsvE=
+	t=1772697282; cv=none; b=FTxm6nzRysFBwFiVuqT7oxgSJCB3ZBEQEtP0haEw5dJKwVjol8etYYE2sodVw13MCzx7Zaq4zdf/GPfVB5KUbH/uWXjOklMRRpxXdUqHDb6J/7JBLUS/1qrSk+zD0BfGDPCNAM91HyjuBY0EV4bknHxZO/FaNLxtYyOfPIrbYSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772697210; c=relaxed/simple;
-	bh=peJRV8N+l9ST7Vc7pt3ykWuncWt9bovqpPOBP1Fr1hw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b3olhC/yd4ou+UL2gO/WC/N3mc93bL5ud0KVdtEDjqjm8anCC+ml8WoOiOYzmIKIyv3yhMl5wpisbKS4s4BpOvv+H8JqfmKevGiaGSlOk9v1EZOwQVoUmhg95nJOJProhzPwfKbNg+I+TDnV7q+sIq2HYcT+u14CMboXWSNBvBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Az9/1Ttu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED619C116C6;
-	Thu,  5 Mar 2026 07:53:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772697210;
-	bh=peJRV8N+l9ST7Vc7pt3ykWuncWt9bovqpPOBP1Fr1hw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Az9/1TtuVvttE5ZTQ1zst1nGZSeCh2brx+BJwDdsdxIpB0FILrQByqmLV/iBqGljS
-	 ZDwzieHvUb/dGZrwpiB0eRuyAEPaeDrr8Vmz1jaPG47VOgSjDqeO3Uem+LTNjNd9la
-	 pltZMBHbO3MwHQSPCJv67+EZcZyEOSXShN5S04mAITGt8FwchSHLrfKbVyjWBZFiMd
-	 YGhFSwDX2S+nQXXYUMKu284gHzrrA6NkjRoCCnfmuAwpsNwM+ZtNXmpYEKysCZrPog
-	 KG7jrnNKkwyMJ6BcbKQsHT/Prhuv2fkHnmYicnsxyjd/Qb8/racAMc1nmYI9lgqsXZ
-	 q5u9pnhJ7BBGg==
-Message-ID: <1d92329d-139d-49aa-8fc4-515e7c574774@kernel.org>
-Date: Thu, 5 Mar 2026 08:53:24 +0100
+	s=arc-20240116; t=1772697282; c=relaxed/simple;
+	bh=X6OTzh3WYoi0bidWZYMLL81kQKeHK2GJN9E/O37+9IY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Nmx4InkNk89iKJb0OmeFcqbgxRTrO5rzvR4b3gGrHYTgtWFXGgD14GltIQK/rHaI4s8RGyW3umIsvqJ4f3jcCQ2sJjaSNYOiokA7ezCk14AWlpmVYLAewSrwvfU2sRWKfoP19utqcPcPhz83ZbaI1qWlpCIBeAlw9uM1Ik1tJ9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lhxI5l8/; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 5BEE94E42559;
+	Thu,  5 Mar 2026 07:54:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 28BF15FDEB;
+	Thu,  5 Mar 2026 07:54:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4AFD51036981A;
+	Thu,  5 Mar 2026 08:54:34 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1772697277; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=INGbhC1k38Jrr8kD8M8GCyeZ7uJijtC0Me4SABhYQmg=;
+	b=lhxI5l8/VONdMAIwqs/2IElcJc+GoI3Y+SJON2PZaZFs8Vq54FxfiqMoB6j58Jg4LyKxoN
+	XKzzVE8KbVMV50C0QbPLInENombI2kH+esU68DR4+uaQtUHcDAPboa/g0SYlU05D8ksXPa
+	92ZE8P+kEg4icw/xhHb9nMq9aSoZeWUd/G2Jg/8NnvpISdvG5eyTACg6K2NDkFUVShQoGL
+	IL15RxAr7cENNulbAT+OwLAQow3ue423grgkoHNFKM2dvmBZEGx2iYBwedZcSNs3U9KayG
+	wmHaw0WmPC5rK+yHhIqK7ZWxb49/mFveEM5pq5+esQE7Ppvv+9Io0/SGeTniow==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Andrew Lunn <andrew@lunn.ch>, Gabor Juhos <j4g8y7@gmail.com>
+Cc: Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: drop
+ 'marvell,usb-misc-reg' properties
+In-Reply-To: <db997887-2431-4baa-8e96-04f53ea59060@lunn.ch>
+References: <20260304-armada-37xx-drop-usb-misc-reg-v1-1-800c1b746b7a@gmail.com>
+ <db997887-2431-4baa-8e96-04f53ea59060@lunn.ch>
+Date: Thu, 05 Mar 2026 08:54:34 +0100
+Message-ID: <874imug18l.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/7] clk: qcom: camcc-x1e80100: Add support for camera
- QDSS debug clocks
-To: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
- Rajendra Nayak <quic_rjendra@quicinc.com>,
- Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
- Imran Shaik <imran.shaik@oss.qualcomm.com>,
- Taniya Das <taniya.das@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260304-purwa-videocc-camcc-v2-0-dbbd2d258bd6@oss.qualcomm.com>
- <20260304-purwa-videocc-camcc-v2-4-dbbd2d258bd6@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260304-purwa-videocc-camcc-v2-4-dbbd2d258bd6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 2BFFB20CF80
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: E255920CFCC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271397-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-271400-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[lunn.ch,gmail.com];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregory.clement@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,lunn.ch:email,5e000:email,0.0.226.144:email]
 X-Rspamd-Action: no action
 
-On 04/03/2026 18:40, Jagadeesh Kona wrote:
->  static struct clk_branch cam_cc_sfe_0_clk = {
->  	.halt_reg = 0x133c0,
->  	.halt_check = BRANCH_HALT,
-> @@ -2398,6 +2459,9 @@ static struct clk_regmap *cam_cc_x1e80100_clocks[] = {
->  	[CAM_CC_PLL6_OUT_EVEN] = &cam_cc_pll6_out_even.clkr,
->  	[CAM_CC_PLL8] = &cam_cc_pll8.clkr,
->  	[CAM_CC_PLL8_OUT_EVEN] = &cam_cc_pll8_out_even.clkr,
-> +	[CAM_CC_QDSS_DEBUG_CLK] = &cam_cc_qdss_debug_clk.clkr,
-> +	[CAM_CC_QDSS_DEBUG_CLK_SRC] = &cam_cc_qdss_debug_clk_src.clkr,
-> +	[CAM_CC_QDSS_DEBUG_XO_CLK] = &cam_cc_qdss_debug_xo_clk.clkr,
->  	[CAM_CC_SFE_0_CLK] = &cam_cc_sfe_0_clk.clkr,
+Hello Andrew,
 
-Continuing review form bindings:
-So indeed the this ABI is used by X1E, but commit msg completely missed
-that - just said you are adding X1P clocks.
+> On Wed, Mar 04, 2026 at 08:12:43PM +0100, Gabor Juhos wrote:
+>> The 'marvell,usb-misc-reg' property is present both in the EHCI and
+>> in the XHCI USB host device nodes, however it is not documented. Thus
+>> 'make dtbs_check' produces warnings like these:
+>>=20
+>>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@58000 (marvell,ar=
+mada3700-xhci): Unevaluated properties are not allowed ('marvell,usb-misc-r=
+eg' was unexpected)
+>>           from schema $id: http://devicetree.org/schemas/usb/generic-xhc=
+i.yaml
+>>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@5e000 (marvell,ar=
+mada-3700-ehci): Unevaluated properties are not allowed ('marvell,usb-misc-=
+reg' was unexpected)
+>>           from schema $id: http://devicetree.org/schemas/usb/generic-ehc=
+i.yaml
+>>=20
+>> Apart from the fact that the properties are not documented, those are
+>> not even used by any USB host drivers. At least 'git grep' says this:
+>>=20
+>>   $ git grep -n 'marvell.usb-misc-reg' v7.0-rc2
+>>   v7.0-rc2:Documentation/devicetree/bindings/phy/marvell,armada-3700-utm=
+i-phy.yaml:30:  marvell,usb-misc-reg:
+>>   v7.0-rc2:Documentation/devicetree/bindings/phy/marvell,armada-3700-utm=
+i-phy.yaml:41:  - marvell,usb-misc-reg
+>>   v7.0-rc2:Documentation/devicetree/bindings/phy/marvell,armada-3700-utm=
+i-phy.yaml:50:      marvell,usb-misc-reg =3D <&usb2_syscon>;
+>>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:372:            =
+                  marvell,usb-misc-reg =3D <&usb32_syscon>;
+>>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:383:            =
+                  marvell,usb-misc-reg =3D <&usb32_syscon>;
+>>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:396:            =
+                  marvell,usb-misc-reg =3D <&usb2_syscon>;
+>>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:406:            =
+                  marvell,usb-misc-reg =3D <&usb2_syscon>;
+>>   v7.0-rc2:drivers/phy/marvell/phy-mvebu-a3700-utmi.c:231:              =
+                                           "marvell,usb-misc-reg");
+>
 
-Best regards,
-Krzysztof
+I don't follow:
+
+> The phy-mvebu-a3700-utmi.c does use it, and does document it:
+>
+>   marvell,usb-misc-reg:
+>     description:
+>       Phandle on the "USB miscellaneous registers" shared region
+>       covering registers related to both the host controller and
+>       the PHY.
+>     $ref: /schemas/types.yaml#/definitions/phandle
+>
+> And the patch which added the property to the USB nodes also added the
+> PHY nodes.
+>
+> commit 05d168a56fae8ff50432d5dfe6e7423b989455a8
+> Author: Miquel Raynal <miquel.raynal@bootlin.com>
+> Date:   Tue Jan 29 10:36:34 2019 +0100
+>
+>     arm64: dts: marvell: armada-37xx: declare USB2 UTMI PHYs
+>
+
+You stated that the property is used and was properly added.
+
+> So this change does lookcorrect.
+
+But here you agree with removing it.
+
+I am lost :)
+
+Gregory
+
+>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>
+>     Andrew
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
