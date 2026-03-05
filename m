@@ -1,169 +1,130 @@
-Return-Path: <devicetree+bounces-271595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJasJhyWqWkWAgEAu9opvQ
-	(envelope-from <devicetree+bounces-271595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:41:32 +0100
+	id cKQPBMiYqWm7AgEAu9opvQ
+	(envelope-from <devicetree+bounces-271597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:52:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1868D213AA1
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:41:32 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0813C213E1F
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:52:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E91913042D6E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:40:25 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1FA743007AD9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFFE3A7F72;
-	Thu,  5 Mar 2026 14:40:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HQ0hachb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96408372EC4;
+	Thu,  5 Mar 2026 14:41:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF083A7F4E;
-	Thu,  5 Mar 2026 14:40:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FFB3A7F52;
+	Thu,  5 Mar 2026 14:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772721622; cv=none; b=fc4RVLpYytgapfe6yrja1qGS0NPEoTeNQ4aud+LfhtSKLOOc1UyqRlVmUTparVFqpthiz2sbrH045307vffaaL4QV7o6VnTmekByHJn+ueywyW3+jPOdKKgMPUQ7se5CUq64e8cpkZ5sGawoszOkCtR2CNiEBVXB6gVo0ScyvOI=
+	t=1772721663; cv=none; b=bAq1mhaNURACTR2Q+x+jHE0d5GcPFoTagD2UtIxdAyatYiJGvNcKKRU3K54pokYstRyt9aVZBWsfOurp7NoKrk7/BnyEAroUAMbGFuSbp1retlse6cfrpw8669vm45WFA8b1k6AUJcUX28de0p0nhPVf9glaBsLEqwfW29ZCugw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772721622; c=relaxed/simple;
-	bh=PbM85mGsMx4OQAX2YfPD5JAa646G0nfY5iMdJuDOzTY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Mn6unmIVlHTRXFf2DP7GePVb3HJlNzffF2Xy2DW9n4q1zlmbLeA1E3F7CSBizXnXwalKZCRTr8yinWr4kC+ud61BKXAb4vpSJz6ETxBWawV4Z1mxtOQ7gibPvXFN25aZXnPHz5BTSxIMbvpuXEHHPn7C7jg9p15WEnPXZiqHUhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HQ0hachb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8A98FC2BCB0;
-	Thu,  5 Mar 2026 14:40:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772721622;
-	bh=PbM85mGsMx4OQAX2YfPD5JAa646G0nfY5iMdJuDOzTY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=HQ0hachbv1K+WvoM4jqgkusyS72URaHgr27aw9UZJXOg15kj+KDS/DHDvYNTwAosB
-	 33Cuh23mLIf06/ubKtC8s0fVeElbbTFlQA7AQWjdWKCvxrLwGUcZiyzp+I5Z9p0DEU
-	 j2P6QVlIMa89tuaCvjY9CffHUf0uUKbi2X5+GmCqjAvMaXvhfahRmikjpLztmCSui6
-	 0WbGb6XrNwkv9tHnY7e20e65YGNEh/aN89+qjY+yZuMm57Yd4SNWA+L7CZzrzz5Ips
-	 w/GAB4zXFDBKPIUTezrZUahWgsFCAxTtMYpOs3OhjMt0kgJGZZ+AbM2zOWAP4ftKWH
-	 Oa3zlQGGyXBTQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 78C91F33A79;
-	Thu,  5 Mar 2026 14:40:22 +0000 (UTC)
-From: Cory Keitz via B4 Relay <devnull+ckeitz.amazon.com@kernel.org>
-Date: Thu, 05 Mar 2026 14:40:13 +0000
-Subject: [PATCH 2/2] i2c: qcom-cci: Add DT property for SCL clock
- stretching
+	s=arc-20240116; t=1772721663; c=relaxed/simple;
+	bh=9hNhGk6ESE0+JQXICov6JUntd6Ry+EwVQFUHnFqENrU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JzRt8/UK/OAcX7RuBpoFpDhbAJY8GqaamyGt4NaGGS/JzaMZIbnw2xT0mIP4H1HoRlHYjIdzpjZ2ge99/h3WKC4hUThZG1p2Ml9IRnkJX5nJc6uiwiVoZWvZdkPfC+o0MW5zVFs2koZgJcvRzGAH82yxSwTUErrnU4T6JsCgAqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.14])
+	by APP-03 (Coremail) with SMTP id rQCowABnhNvulalpTx7iCQ--.24548S2;
+	Thu, 05 Mar 2026 22:40:47 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Rahul Tanwar <rtanwar@maxlinear.com>
+Cc: linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH v2 0/2] Add cofficients to the TH1520 PVT
+Date: Thu,  5 Mar 2026 22:40:42 +0800
+Message-ID: <20260305144044.44208-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-cci-scl-stretch-v1-2-8412abc65745@amazon.com>
-References: <20260305-cci-scl-stretch-v1-0-8412abc65745@amazon.com>
-In-Reply-To: <20260305-cci-scl-stretch-v1-0-8412abc65745@amazon.com>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>, 
- Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Cory Keitz <ckeitz@amazon.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772721622; l=1731;
- i=ckeitz@amazon.com; s=20260304; h=from:subject:message-id;
- bh=OwT3G4Wpy7L8KSSJSz2LODppXx7Vr9o7XgiwykQqPqU=;
- b=Y/sFC7CPtrdfbIbHxNIKks1+lYC88LTW/5BKg8Nn+9ZeRLLWP+0geVubpKbswUAB3aHUnX7iR
- rKHVbnFZCpIDswR5NiCI6o6VOHOHtmBR5msi55ZTF6iU5XHPID42C/Q
-X-Developer-Key: i=ckeitz@amazon.com; a=ed25519;
- pk=IWSPbPI9mzOdPU5zG2ROe/O75E4ckVxuBLNJVYVZCag=
-X-Endpoint-Received: by B4 Relay for ckeitz@amazon.com/20260304 with
- auth_id=662
-X-Original-From: Cory Keitz <ckeitz@amazon.com>
-Reply-To: ckeitz@amazon.com
-X-Rspamd-Queue-Id: 1868D213AA1
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowABnhNvulalpTx7iCQ--.24548S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrtrWxZF1DWw1xKF1xJFWUJwb_yoWxCFcEka
+	409FWDCws5A3Z3tF10yrWxJrs8A3y5C3WfAa48tFy2gr98Cr98ZayDCwn3Cr4UuFy5CFyx
+	Ar1kGrZ7t3y2gjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUb38FF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+	Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s
+	1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0
+	cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8Jw
+	ACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka
+	0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7
+	v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF
+	1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIx
+	AIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI
+	42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWI
+	evJa73UjIFyTuYvjfUonmRUUUUU
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+X-Rspamd-Queue-Id: 0813C213E1F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271597-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271595-lists,devicetree=lfdr.de,ckeitz.amazon.com];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	HAS_REPLYTO(0.00)[ckeitz@amazon.com]
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.988];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Cory Keitz <ckeitz@amazon.com>
+This patchset tries to add PVT cofficients from the T-Head TH1520 user
+manual to the corresponding DTSI file.
 
-The CCI hardware supports an SCL clock stretch enable bit in the
-MISC_CTL register, but the driver hardcodes it off for most SoC
-variants. This makes the bus driver unstable for configurations which
-rely on clock stretching. Notably, GMSL uses clock stretching to absorb
-the latency of transaction forwarding across the link.
+The v1 revision of this patchset is called "Initial thermal management
+for Lichee Pi 4A board", however the thermal zone and cooling related
+parts are already added to the DT as part of the TH1520 PWM patchset.
 
-Add a per-master "qcom,scl-stretch-enable" boolean DT property that
-ORs with the existing hw_params default, allowing clock stretching to
-be enabled on individual CCI masters without affecting others.
+Icenowy Zheng (2):
+  dt-bindings: hwmon: moortec,mr75203: adapt multipleOf for T-Head
+    TH1520
+  riscv: dts: thead: th1520: add coefficients to the PVT node
 
-Signed-off-by: Cory Keitz <ckeitz@amazon.com>
----
- drivers/i2c/busses/i2c-qcom-cci.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/i2c/busses/i2c-qcom-cci.c b/drivers/i2c/busses/i2c-qcom-cci.c
-index 884055df1560..022c10b310a0 100644
---- a/drivers/i2c/busses/i2c-qcom-cci.c
-+++ b/drivers/i2c/busses/i2c-qcom-cci.c
-@@ -111,6 +111,7 @@ struct cci_master {
- 	struct i2c_adapter adap;
- 	u16 master;
- 	u8 mode;
-+	bool scl_stretch_en;
- 	int status;
- 	struct completion irq_complete;
- 	struct cci *cci;
-@@ -284,7 +285,8 @@ static int cci_init(struct cci *cci)
- 		val = hw->tbuf;
- 		writel(val, cci->base + CCI_I2C_Mm_SDA_CTL_2(i));
- 
--		val = hw->scl_stretch_en << 8 | hw->trdhld << 4 | hw->tsp;
-+		val = (hw->scl_stretch_en | cci->master[i].scl_stretch_en) << 8 |
-+			hw->trdhld << 4 | hw->tsp;
- 		writel(val, cci->base + CCI_I2C_Mm_MISC_CTL(i));
- 	}
- 
-@@ -572,6 +574,9 @@ static int cci_probe(struct platform_device *pdev)
- 				master->mode = I2C_MODE_FAST_PLUS;
- 		}
- 
-+		master->scl_stretch_en =
-+			of_property_read_bool(child, "qcom,scl-stretch-enable");
-+
- 		init_completion(&master->irq_complete);
- 	}
- 
+ Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 4 ++--
+ arch/riscv/boot/dts/thead/th1520.dtsi                        | 4 ++++
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
 -- 
-2.47.3
-
+2.52.0
 
 
