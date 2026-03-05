@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-271676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271673-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ACdxNcvGqWmcEgEAu9opvQ
-	(envelope-from <devicetree+bounces-271676-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:09:15 +0100
+	id OC8qGbXGqWmcEgEAu9opvQ
+	(envelope-from <devicetree+bounces-271673-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:08:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26F5216D6A
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:09:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01CCC216CFE
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:08:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7F0FD3006D7D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:08:57 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 472A630268BC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E968D3E8C5C;
-	Thu,  5 Mar 2026 18:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BABB13E5ED6;
+	Thu,  5 Mar 2026 18:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="pHUww/Fo"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="uy0z1oIz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48063E5599;
-	Thu,  5 Mar 2026 18:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92EC3288C2C;
+	Thu,  5 Mar 2026 18:08:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772734121; cv=none; b=gM+r5bPuHMlAeU2ufFFYQuJDR1+hlTGcV9zRDLMDwY81gSl5JhA8xNHRQ6jvMT7Axg8DZX+Fw8c5MAxBnuJDgQyVdnfoZ/K1mWB2tb01cJ9vi5Qd3dEZpXqyfpoI+Q52e856XLKwlIeUlPKtgqTCnOBSUvFI7wcKQP95VS8QBXU=
+	t=1772734120; cv=none; b=tptDvaqKRcN74xnoJO1TtrjjDAnhXQOq1kHyF4pqA1fCqi+L+UrpoDUL2DftLjHZSV6Nxf8C2wvFrBlVsxk998B+dJ25PjkUetJ0I/NvHURzHoS+RGtuE1IS4jzvNXrWEZDeQTfwU9xt9NBlbgngl0bVfyqE9OMs5bjOeTz/NMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772734121; c=relaxed/simple;
-	bh=NhEVIqD3scYCwRa3QaJv5ChWXW9dB+na3Yoq7D+yvcY=;
+	s=arc-20240116; t=1772734120; c=relaxed/simple;
+	bh=ht78vGOgPyabcciBgG0XMEuT0626MSS4eZZXn74CEyc=;
 	h=From:To:Cc:Date:Message-ID:In-Reply-To:References:MIME-Version:
-	 Subject; b=Baqok7w0GY39e3Uu6EqqVB5Gu9Av09QcsXnBXKl0mT+uXm1fYdbO2U6q9o+jlZKVJCTn/OSN+MK/jiG6uerzaZ8qPhMNx8yYWgKEJ8FuRE/osvlj9+bvs7Hw2+UsjVj+ib0sWlterUBjZ8pAfRsFU4cxt0U3ef1rZVSrl9JKoQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=pHUww/Fo; arc=none smtp.client-ip=162.243.120.170
+	 Subject; b=AUTuI3vO1FbsUSvvzUUCUWQfNJU/b+VctKwbsgPEHfavzZhZoVOOmY3TZlSL7Gbbte492HLrER5gSq1M7Hqr9WBqduHHu3p/fbb5tXpZtRZsKnDi/p3b2/RHBIYZIn7EtzKyAtKO/Xa0Dh5YuyYQeyo+LzfUgrLNSSRnToMABUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=uy0z1oIz; arc=none smtp.client-ip=162.243.120.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
 	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
 	:From:subject:date:message-id:reply-to;
-	bh=2H6tfy1TUzvjSiheWLKqM1iMWWpxdKE5eZOP/ogsv6M=; b=pHUww/FoKw00KckWsKTOiXsvfd
-	427upCKlkgP0YqSLtD96gSCWc9JrcS2B5Lx42WNh6jK6NdZwxHRinYzDndImiU/3/6JC6tAoHokjB
-	5nMJYC3LfSDeOORo0pTRxVDkEaxNvYDR1vwIf1P3wy2sgXU8EuRlKzXQcC7FXYxPlnko=;
+	bh=IHW6n2hUHxLvs0sr4FpK9XY9GiMrXVjYo3Lx7EQPaKU=; b=uy0z1oIzRapkLtTHutr81LzUzS
+	7GkEVkblCvTnPUGjWM82B0GkkvVkexOSvg661mVU9FuoP/HRJobgL2o/Zj305wb/zbXy42ODiewCo
+	73HRxt0zevM5Rpz1lZ61uAAVwM2UhFEKeZlF4NujLECv134SbX8VWYyXpW9g5sHIYTB8=;
 Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37706 helo=pettiford.lan)
 	by mail.hugovil.com with esmtpa (Exim 4.92)
 	(envelope-from <hugo@hugovil.com>)
-	id 1vyD7Z-0002aR-AO; Thu, 05 Mar 2026 13:08:25 -0500
+	id 1vyD7a-0002aR-N6; Thu, 05 Mar 2026 13:08:27 -0500
 From: Hugo Villeneuve <hugo@hugovil.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -73,8 +73,8 @@ Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	hugo@hugovil.com,
 	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Date: Thu,  5 Mar 2026 13:06:18 -0500
-Message-ID: <20260305180651.1827087-4-hugo@hugovil.com>
+Date: Thu,  5 Mar 2026 13:06:19 -0500
+Message-ID: <20260305180651.1827087-5-hugo@hugovil.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260305180651.1827087-1-hugo@hugovil.com>
 References: <20260305180651.1827087-1-hugo@hugovil.com>
@@ -92,10 +92,10 @@ X-Spam-Report:
 	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Subject: [PATCH v2 03/15] ARM: dts: imx6ul-var-som: change incorrect VAR-SOM-MX6UL references
+Subject: [PATCH v2 04/15] dt-bindings: arm: fsl: change incorrect VAR-SOM-MX6UL references
 X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
 X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: D26F5216D6A
+X-Rspamd-Queue-Id: 01CCC216CFE
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -103,7 +103,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -114,7 +114,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FREEMAIL_TO(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,nxp.com,pengutronix.de,bootlin.com];
 	DMARC_NA(0.00)[hugovil.com];
-	TAGGED_FROM(0.00)[bounces-271676-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271673-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[hugovil.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -123,7 +123,7 @@ X-Spamd-Result: default: False [1.34 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
@@ -139,52 +139,22 @@ Link: https://dev.variscite.com/var-som-mx6 [2]
 
 Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 ---
- arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts | 4 ++--
- arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi         | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-index 085985356668f..35ce647a64075 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-MX6UL
-+ * Support for Variscite Concerto Carrier board with the VAR-SOM-6UL
-  * Variscite SoM mounted on it
-  *
-  * Copyright 2019 Variscite Ltd.
-@@ -11,7 +11,7 @@
- #include <dt-bindings/leds/common.h>
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 5716d701292cf..99dc1b3f1ba92 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -688,7 +688,7 @@ properties:
+           - const: phytec,imx6ul-pcl063   # PHYTEC phyCORE-i.MX 6UL
+           - const: fsl,imx6ul
  
- / {
--	model = "Variscite VAR-SOM-MX6UL Concerto Board";
-+	model = "Variscite VAR-SOM-6UL Concerto Board";
- 	compatible = "variscite,mx6ulconcerto", "variscite,var-som-imx6ul", "fsl,imx6ul";
- 
- 	chosen {
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi
-index 30032be6fdd50..7259526e2b884 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * Support for Variscite VAR-SOM-MX6UL Module
-+ * Support for Variscite VAR-SOM-6UL Module
-  *
-  * Copyright 2019 Variscite Ltd.
-  * Copyright 2025 Bootlin
-@@ -13,7 +13,7 @@
- #include <dt-bindings/gpio/gpio.h>
- 
- / {
--	model = "Variscite VAR-SOM-MX6UL module";
-+	model = "Variscite VAR-SOM-6UL module";
- 	compatible = "variscite,var-som-imx6ul", "fsl,imx6ul";
- 
- 	memory@80000000 {
+-      - description: i.MX6UL Variscite VAR-SOM-MX6 Boards
++      - description: i.MX6UL Variscite VAR-SOM-6UL Boards
+         items:
+           - const: variscite,mx6ulconcerto
+           - const: variscite,var-som-imx6ul
 -- 
 2.47.3
 
