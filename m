@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-271544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJMVBa50qWl77wAAu9opvQ
-	(envelope-from <devicetree+bounces-271544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:18:54 +0100
+	id gFD2FUt0qWl77wAAu9opvQ
+	(envelope-from <devicetree+bounces-271545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:17:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9330021179F
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:18:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00BA621174A
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:17:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D46FB304B4D2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:12:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0F8CE306B2D9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:15:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0878B388395;
-	Thu,  5 Mar 2026 12:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C55538422F;
+	Thu,  5 Mar 2026 12:15:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="krr8AXPv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SnEbcQMw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D894718EB0;
-	Thu,  5 Mar 2026 12:12:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26FE14F881;
+	Thu,  5 Mar 2026 12:15:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772712735; cv=none; b=RAjsWLP1p0xjpf/MEsNj0qLoYhZ2XfL5t0kI0I4m+RqmSZvD2gp5YCmW6IZFN0XVVjnqSDZ5VIguIkZilP2u/gaO7jHpEKE5wGj//9Mz0NuAfpcFw5dlw5aH42hM683JPYiNhgCSxXkDQHWxyOhLTJWSxngY85ZlLdmv5LnzkcE=
+	t=1772712958; cv=none; b=ce/UYbsMoh9qO26fVtenGIvZawzWKmPaKcR5yWPvM90CU928UxDgYQUcFSHoe9pKkI9ASCoa/NY8vC9g0gdU8Sv2kfut+6ZyFuN47xJQIS76t205F9C1gOxR3jyk6snvRpt2mXVHZWQj66twvmYe0hP8YjynpR8CPs6nHEPrAoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772712735; c=relaxed/simple;
-	bh=MCIaZ62bOxHolmAR8XP3vkklc/zstKu8tjoJCXqNuGc=;
+	s=arc-20240116; t=1772712958; c=relaxed/simple;
+	bh=6ZUeF4Pkvv7wjJEy2zlG8/CRj4neGjIZiWogcOtgHVM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HaOFAURGL72DhXR5c4cJcB9Wb7mr3ZK1i7O/HQXqxzkmio+O84xjhJNWZrTjKKuHHifVZg8B/u7jaeA2Ik86WQWGJnoET7gTgboFHsPiLS5jK8ZLWTyB7TwZFw7/TSexMS+5r2Vd73EU3cSw4w0opAr2A69ZNMpnpoQze4fke6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=krr8AXPv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33495C19423;
-	Thu,  5 Mar 2026 12:12:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=LB+1XlwJKwgRV4olAqsmz3+xHtLpRlcKkRD+Mf+RCvHlbtnWIJZb63Gk9MeW7DriyrA3MGGZ+iqFQxOfSeMQxKAISq+uulk4H5j3hOt01yAdCKwG+R6Ri5JGuvJHP2ut64I0AKpnN1w9VjOmbPTpVklZ/wtM1RRtjviFLBueats=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SnEbcQMw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F472C116C6;
+	Thu,  5 Mar 2026 12:15:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772712735;
-	bh=MCIaZ62bOxHolmAR8XP3vkklc/zstKu8tjoJCXqNuGc=;
+	s=k20201202; t=1772712957;
+	bh=6ZUeF4Pkvv7wjJEy2zlG8/CRj4neGjIZiWogcOtgHVM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=krr8AXPv9EVFxKVuYzzaj+gFjszMnyzzhthPzcNtExMy1IZ+aXOgvOcSip0XqWAU7
-	 jliEKzjN5YcjuD4dq4puMktzuY/FrgtmH7JV16vmP4xaZ+MDPgiMP2dnJcXcUxy4Dt
-	 x+L5lgqvzrLS/ZLns0umdwdOfi9vbHI02gQ/QuBWyhCjETc4G6obGTAab05neEIqVW
-	 8EI9ss1pwBvUxq7qDV10jxaDkksWxYjNOCfY+QWH87Q4xgS/Q3W49vp6J92zoMumTc
-	 ciH0ym82ZeqVEYYAeIsyGkJVZyF9dSpqowma16s1ve4fFIbJvkzZAZDToBO9hYDIw7
-	 uNPoxiz953bIQ==
-Message-ID: <6a481490-28dc-4b62-9782-95a32d0e2857@kernel.org>
-Date: Thu, 5 Mar 2026 13:12:08 +0100
+	b=SnEbcQMwiPw+M+nZVkSygFUhktdIln8OWH7kQ9cUTRZ9aWyxSraI6KTV5eR4plXmW
+	 Pk8fa9O0iOfBjRr+EJdwqUKFZVIYnybyNWB1gQueF/bO40zX6UDIwdRsSOLdZ15mB0
+	 RT8cbTYOorU5w+wTYwXTAoy4MKdFuZj1TqsbQA+dWoWT50iCU8FEw2XzpzaTnQBKr4
+	 YQOLoFRHY7ZJG7MMjev85CfgmBRYSVrboshKbVqXkDG1Z9dxva9FRscb6jlQ8Kasif
+	 2yvsX85dhzjkKNFyiOjB2YvxZyKSe/4nD+/UnNphIze+PhaUpdEO1fxiEJtLgPrH1Y
+	 t+QfkTDcjDeAw==
+Message-ID: <d5296247-9d68-4004-a068-1484cb1b9183@kernel.org>
+Date: Thu, 5 Mar 2026 13:15:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,25 +53,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: interrupt-controller: fsl,irqsteer:
- add S32N79 support
-To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Haibo Chen <haibo.chen@nxp.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, s32@nxp.com,
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
- Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>,
- Larisa Grigore <larisa.grigore@nxp.com>
-References: <20260225133858.8026-1-ciprianmarian.costea@oss.nxp.com>
- <20260225133858.8026-2-ciprianmarian.costea@oss.nxp.com>
- <20260226-ingenious-shiny-axolotl-e0e6d2@quoll>
- <e8e258fb-23c0-44d1-bf4d-e2fed92ad90d@oss.nxp.com>
+Subject: Re: [PATCH 6/6] arm64: dts: qcom: qcs6490-rubikpi3: Add audio support
+To: Hongyang Zhao <hongyang.zhao@thundersoft.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Drake <drake@endlessm.com>,
+ Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+ Matteo Martelli <matteomartelli3@gmail.com>,
+ Binbin Zhou <zhoubinbin@loongson.cn>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Srinivas Kandagatla <srini@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ Roger Shimizu <rosh@debian.org>
+References: <20260305-rubikpi-next-20260304-v1-0-327595a4528a@thundersoft.com>
+ <20260305-rubikpi-next-20260304-v1-6-327595a4528a@thundersoft.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,87 +114,74 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e8e258fb-23c0-44d1-bf4d-e2fed92ad90d@oss.nxp.com>
+In-Reply-To: <20260305-rubikpi-next-20260304-v1-6-327595a4528a@thundersoft.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 9330021179F
+X-Rspamd-Queue-Id: 00BA621174A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271544-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271545-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[thundersoft.com,gmail.com,kernel.org,endlessm.com,katsuster.net,loongson.cn,perex.cz,suse.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.11:email];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,i.mx:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 05/03/2026 13:02, Ciprian Marian Costea wrote:
-> On 2/26/2026 9:31 AM, Krzysztof Kozlowski wrote:
->> On Wed, Feb 25, 2026 at 02:38:52PM +0100, Ciprian Costea wrote:
->>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->>>
->>> Add compatible string for the interrupt steering controller used in NXP
->>> S32N79 SoC.
->>>
->>> The S32N79 SoC differs from the i.MX version by not implementing the
->>> CHANCTRL register, but otherwise maintains the same programming model and
->>> register layout.
->>>
->>> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
->>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
->>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->>> ---
->>>   .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml   | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
->>> index 5c768c1e159c..caf3e4a1f26f 100644
->>> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
->>> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
->>> @@ -22,6 +22,7 @@ properties:
->>>                 - fsl,imx94-irqsteer
->>>                 - fsl,imx95-irqsteer
->>>             - const: fsl,imx-irqsteer
->>> +      - const: nxp,s32n79-irqsteer
->>
->> So that should be part of enum with the first entry.
->>
->> Best regards,
->> Krzysztof
->>
-> 
-> Hello Krzysztof,
-> 
-> Thanks for your review. Regarding this change, I was thinking since 
-> S32N79 irqsteer does not implement the 'CHANCTRL' register, it should 
-> not fallback to 'fsl,imx-irqsteer'. If the driver were to match on the 
-> fallback compatible, it would attempt to write to the non-existent 
-> CHANCTRL register.
-> 
-> Am I wrong?
+On 05/03/2026 06:47, Hongyang Zhao wrote:
+>  
+>  &apps_rsc {
+> @@ -727,6 +755,23 @@ &gpu_zap_shader {
+>  	firmware-name = "qcom/qcs6490/a660_zap.mbn";
+>  };
+>  
+> +&i2c0 {
+> +	status = "okay";
+> +
+> +	es8316: es8316@11 {
 
-No clue, I did not say anything about fallbacks.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +		compatible = "everest,es8316";
+> +		reg = <0x11>;
+> +		#sound-dai-cells = <0>;
+> +
+> +		clocks = <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+> +		clock-names = "mclk";
+> +
+> +		interrupts-extended = <&tlmm 63 IRQ_TYPE_EDGE_BOTH>;
+> +
+> +		everest,jack-detect-inverted;
+> +	};
+
+
 
 Best regards,
 Krzysztof
