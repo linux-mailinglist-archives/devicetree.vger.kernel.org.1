@@ -1,203 +1,159 @@
-Return-Path: <devicetree+bounces-271570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271571-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EMB4B3OAqWkd9gAAu9opvQ
-	(envelope-from <devicetree+bounces-271570-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:09:07 +0100
+	id 0NZbNBKBqWkd9gAAu9opvQ
+	(envelope-from <devicetree+bounces-271571-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:11:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E427212690
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:09:06 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B52212740
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:11:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 350F23005142
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:09:03 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1EEDA3006939
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3290A39E6C5;
-	Thu,  5 Mar 2026 13:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F295B3A0B2B;
+	Thu,  5 Mar 2026 13:11:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="fVvxrm1M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Wwh41uvn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D95248F66;
-	Thu,  5 Mar 2026 13:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946A639B4AA
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 13:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772716142; cv=none; b=IRbyh2nvffkXCyB6lCmbnRkVelbqDrRQcuzwGDq2GhHLqINb6UbkfLyrk+GVN1lO+zAXWZ9xcDCkd7mpkJclq+5ofW/q9zQJG27l0PKWspFhdjhvUj8vP9Vtvm3sJQBRpdP2PPTt0KedLnrT7YY7ATKPU0qwXW7viFvSj0knwRs=
+	t=1772716301; cv=none; b=Yvs0e1DL2ZiNPTqU0zWj0dDshcAwRvRTnaM+BiJnwr+7A6uy8BfCfRO67MypIqQrqz7GvVPiJisIY1FIYaV5rWHtBRtMchxETNm2uWC2AYb7KxzSeagb82Y+XZbohGa3v2YKbfuL4XMowrykyfLt/7zU1vr4SWyKKinOSQ+XHn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772716142; c=relaxed/simple;
-	bh=LhhZwf9t0k8G63cUsWJ0P1P7EJ98uOM6BnXeuDdOXNc=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=u/HHhvn1RjYuXQudfIoNsHdTAsoOCm3bu1dOC37TDxSfs4xJ4Gw6K2pLdK/KqJqoTfFRPzqOrYil8S2LbdSgbDsLeARX1XMIaHIKBphTaTaMCNQ6Ldhj5061PDjKrcomGB1aFIMlKCR0EvBfVhbLDY6Rl2wt6U/Ew8A5yYOPGww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=fVvxrm1M; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772716141; x=1804252141;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=LhhZwf9t0k8G63cUsWJ0P1P7EJ98uOM6BnXeuDdOXNc=;
-  b=fVvxrm1MiP/kqQRzFTJGqt7G3YAKSa76jCmUvDe0vt4JFPSqcQAMXg2t
-   5EcMfDRXDk/lsN28TjuXrLl2IFLPKEtZlohT3Rqv0brum4pxQRGMAqNuY
-   zwH5h/w5IufoUZA1HWNHOZRB5ND2/nXAJrAxxpMqfjEcwONkJ5VvEzhcU
-   yzHqKicsSPm76EzoDrcoCq4oasENCqoZdS0KjNbOuNfaaiOJUOsZrYDt2
-   XiEg2YK9gkePVGYz5ys4xnHTRETygxcxLkeDSmqoogTwG7gdRWscbE0ns
-   oRkUdA4AaMLpgTUgRhgsjc738LlH0RRlCWa1hmnZnHELz0eAQcfwjF45k
-   A==;
-X-CSE-ConnectionGUID: gXs77xUDTlKJZhU07oQylw==
-X-CSE-MsgGUID: u9erEe3fRBmR6w68ScAt2g==
-X-IronPort-AV: E=Sophos;i="6.23,103,1770620400"; 
-   d="scan'208";a="54262739"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2026 06:09:00 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.87.152) by
- chn-vm-ex4.mchp-main.com (10.10.87.33) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Thu, 5 Mar 2026 06:08:19 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Thu, 5 Mar 2026 06:08:16 -0700
-Message-ID: <f34815255c6d94194e3c0f01990a1fa650d623c2.camel@microchip.com>
-Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Conor Dooley <conor@kernel.org>, Vladimir Oltean <olteanv@gmail.com>
-CC: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman
-	<horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung Huh
-	<woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
- Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
-	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Thu, 5 Mar 2026 14:08:15 +0100
-In-Reply-To: <20260304-capture-kissable-3bdfe389864b@spud>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
-	 <20260303-disperser-clone-512efa99f26c@spud>
-	 <65fd5f46f1f996dd5f4df2de2efb52c8fa3575b3.camel@microchip.com>
-	 <20260304161457.l6tkxix6sgube3qc@skbuf>
-	 <20260304-capture-kissable-3bdfe389864b@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1772716301; c=relaxed/simple;
+	bh=VPPvql0d0tqKs01yrymniWsmEm+rSLmkjVnK8EiE4AE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=in2LNEQyrcgWHa0dD+dxOZjzfCbq5EfIpjl1Rfy44PJePNLsn0knjkBzw+KxucoQJWbTX+Um+rwSsgQaIOXtUGHzrefKoDjoyw3ru1rqiZ8WprHdN5f4NxnBLN+YbC7UJ7vRNMNZqSACXFYAyzyRpi9UUuvYOn9kFWOqxsVPojU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Wwh41uvn; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-48329eb96a7so53585595e9.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 05:11:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772716299; x=1773321099; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VPPvql0d0tqKs01yrymniWsmEm+rSLmkjVnK8EiE4AE=;
+        b=Wwh41uvn+irwDe5oX6jQKJH62OTy7VPFr7bXXBd5kiIhZZ3PpnK2zqptgJxdPEdsD+
+         wMn7qQbreyh2CU8wCEFUCkL/VGDnc7g+C3enbjB8eRUZR0TVTZ7/01DJ/sY896xUyXZH
+         6h+FaSqLy7TteqTD4R861j+bxW81hooGohbUDjYjNXOUNHAE/9FnhHqq1wa4wDf1U6oe
+         ulLT5TRjef1LDWgNPlYyE64Bg3nQn/enmfb2EWPzK4qYzsE17NbKoEyiNYjG8MhcHxm2
+         EY06oUY0QcjCAbuozqxWzSpCvk+ZG+xzjROLs0zJ5DJGEdUQ17F59YJr5ED2Uqq2k75i
+         547g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772716299; x=1773321099;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VPPvql0d0tqKs01yrymniWsmEm+rSLmkjVnK8EiE4AE=;
+        b=eDqtcgcALTH5qaVhzFiw2ZZH/e54p8U4wwrBJIzSUkhWpHLjuSDGaRUSnN1CQn4jRc
+         HclYQoz1xVZMqQU/hgC4m6kRK8BdGY1vA04vfchbUm0QaIlkHSr9tijhOPiHsUtweRcg
+         h82Bk88cslkbtspAPftRyqHZXrM4YG2LYnw7hiLSXLQjzgatC06ExTuzC5AoDAgh3Inh
+         tptT9fvNAX5vO4E7RUCh7qOb+wijiOcauwEb5xRV7tAxaEsJ83EXOy5o4I+oGSUX9RPD
+         2MeQTSPOqp7DCh6V82XK4lOKqlJi3PthsLkyL8ft7nYzRfdg/0+r+tXEradgABoBh9dl
+         xsEA==
+X-Forwarded-Encrypted: i=1; AJvYcCXvKsCZ649gNzLc+zShONO6HtAYE1+G93aGbbmgOjOWt+i5wfXmJmcit3hFhIlZFYiuzKujQ7t4z+4U@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxXRMhyeyTcWYUVO1HsiQKJMo5ecr0vpy/R/yrmJduGXE2K0a8
+	gIEXWdadwKSAR5VVJgTcMBogbI3zKfklfO6piVsJJDdmRAZyfGqHzE80/bveiKLYtno=
+X-Gm-Gg: ATEYQzz/UAnZ4ZDjrzN3e4v8Kb3i3NxHiAFSHwauXVLpHFVQTOBlxZWvF4wb62c5yHv
+	rDshZXM80E9suNF3NJN7QVfoCQ4vJn8fkWg1pOdFG8L49smj4Y8lfIwmQdQx6YWpCsn5i2DkmP8
+	XOy3Mcp4W6MuBS48nlKC4E5WcQcLIoz3p7HoIV7wSQsTVr/FoNQAbCOoSjlSX21iLLr0r8UtvrW
+	jkq2PxEtIZ2d4CfROudqEfXycLo+9UWQRAp+lc6SM8ugMWpYm8Q73QdSTbNPMDpAHEwK3W7RO+m
+	zIEbsOacAncQleDBHc2XFrovqQEOGlQ+phGFbxtrvaXZR4rIM7FLgH55DJXklBNtxlnGpaRZpDA
+	wavzRtxIwAjaoN8SPJLihU9iQzE0+d/pui2jf8UsMtc6Z4dtanMZJ1YoyYCCOLgh2VHkOdi8gbz
+	Gw28J44qNWQRdg42j+NvT6l2a5aFeuDpUV0bgP5KKNOPWDpXbCkSeil71bTKaTXB24xe82zufmU
+	NM=
+X-Received: by 2002:a05:600c:19c6:b0:480:5951:fc1e with SMTP id 5b1f17b1804b1-48519839402mr103596085e9.11.1772716298965;
+        Thu, 05 Mar 2026 05:11:38 -0800 (PST)
+Received: from [192.168.0.40] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851fafe4c9sm53169005e9.15.2026.03.05.05.11.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Mar 2026 05:11:38 -0800 (PST)
+Message-ID: <1a22f7e9-8a48-448c-a035-7c487e81a96e@linaro.org>
+Date: Thu, 5 Mar 2026 13:11:35 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 1E427212690
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: x1e80100: Add CAMCC block
+ definition
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>,
+ Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Ajit Pandey <ajit.pandey@oss.qualcomm.com>,
+ Imran Shaik <imran.shaik@oss.qualcomm.com>,
+ Taniya Das <taniya.das@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Konrad Dybcio
+ <konrad.dybcio@oss.qualcomm.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>
+References: <20260304-purwa-videocc-camcc-v2-0-dbbd2d258bd6@oss.qualcomm.com>
+ <20260304-purwa-videocc-camcc-v2-6-dbbd2d258bd6@oss.qualcomm.com>
+ <3f69539c-7383-4321-8cc6-1f5a8cc23822@kernel.org>
+ <dd256b85-b88f-4163-a1e0-52c976089eae@kernel.org>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <dd256b85-b88f-4163-a1e0-52c976089eae@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: E1B52212740
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271570-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	TAGGED_FROM(0.00)[bounces-271571-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.61.9.0:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, 2026-03-04 at 19:06 +0000, Conor Dooley wrote:
-> On Wed, Mar 04, 2026 at 06:14:57PM +0200, Vladimir Oltean wrote:
-> > On Wed, Mar 04, 2026 at 05:10:11PM +0100, Jens Emil Schulz Ostergaard w=
-rote:
-> > > On Tue, 2026-03-03 at 18:56 +0000, Conor Dooley wrote:
-> > > > On Tue, Mar 03, 2026 at 01:22:28PM +0100, Jens Emil Schulz =C3=98st=
-ergaard wrote:
-> > > > > +examples:
-> > > > > +  - |
-> > > > > +    soc {
-> > > > > +        #address-cells =3D <1>;
-> > > > > +        #size-cells =3D <0>;
-> > > > > +
-> > > > > +      ethernet-switch@0 {
-> > > > > +        reg =3D <0>;
-> > > >=20
-> > > > Also, this is an odd example, why are you at address 0 on a "soc" b=
-us,
-> > > > which usually means that this device on an AXI/AHB bus, and 0 is ve=
-ry
-> > > > unusual for that. Obviously the example doesn't have to match the r=
-eal
-> > > > user, but this stands out.
-> > > > I may have some follow up questions I think depending on your answe=
-r.
-> > >=20
-> > > The intended way to bind this driver is via a parent MFD driver which=
- sets
-> > > up the SPI register protocol, initiates regmaps and distributes them =
-to child
-> > > devices (like this DSA driver).
-> > >=20
-> > > Similar to mscc,vsc7512 in drivers/mfd/ocelot-spi.c.
-> > >=20
-> > > This MFD would be the soc node. All child nodes perform register IO o=
-ver
-> > > spi, using the regmaps requested from this parent so I think the addr=
-esses
-> > > on the bus are purely ornamental. Should I write the smallest registe=
-r
-> > > address in all regions used by the DSA driver instead?
-> >=20
-> > They are not ornamental, they should be the same addresses you'd put if
-> > Linux had direct access to the SoC interconnect for MMIO, rather than t=
-o
-> > an SPI bridge to the SoC interconnect. Or at least I don't see why it
-> > wouldn't be that way.
->=20
-> I don't mind if they're made up addresses, but the example should be
-> realistic. 0 is likely not realistic, but if it was 0x4000_0000 when the
-> real thing is 0x8123_1234 then I don't really care. Since the parent is
-> not actually a soc bus, can't you just remove this fake parent entirely,
-> like the ocelot switch example does? Or insert something more genuine,
-> like:
-> spi {
->   #address-cells =3D <1>;
->   #size-cells =3D <0>;
->=20
->   soc@0 {
->     compatible =3D "microchip,lan96455s";
->     reg =3D <0>;
->     #address-cells =3D <1>;
->     #size-cells =3D <1>;
->=20
->     ethernet-switch@4000000 {
->       reg =3D <4000000 44>;
->=20
+On 05/03/2026 12:00, Krzysztof Kozlowski wrote:
+> Actually I checked now - all the people reviewed commit without fixes
+> tag and you just added.
 
+Eh ...
 
-I will go with the genuine example. I was not sure if it was appropriate=C2=
-=A0
-to mention the spi node from here. But this is what it would look like with
-the mfd driver. I will also fix the addresses.
+Please don't do that with my SoB patch !
 
-Thanks,
-Emil
+---
+bod
 
