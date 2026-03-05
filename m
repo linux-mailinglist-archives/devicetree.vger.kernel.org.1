@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-271391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271394-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MIthCyU1qWlH3AAAu9opvQ
-	(envelope-from <devicetree+bounces-271391-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:47:49 +0100
+	id WFcqIb81qWlk3AAAu9opvQ
+	(envelope-from <devicetree+bounces-271394-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:50:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9990720CE04
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:47:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C218A20CEE0
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EDE0A303A09E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:47:21 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6FA65302C825
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5E0E2989B0;
-	Thu,  5 Mar 2026 07:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 078A5329E49;
+	Thu,  5 Mar 2026 07:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k40xIYTD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+9h5rox"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A69237A4F;
-	Thu,  5 Mar 2026 07:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81EB27E05E;
+	Thu,  5 Mar 2026 07:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772696839; cv=none; b=If37LCiARG7rYhhxsyrH+Y+jcnrYrdKCuZbdXRZp4uJOlou/v6dK74FtnhA1EcC0E5CIZnSYs2G8ulsbNsSsxfFozQ0Qv9CkM9tLzLPk4yhQCx56muMa76VgmheykBuCOHbCP8Ac4cvQtZKJ90DgqYWN7CnbioyVLIVxl+I1088=
+	t=1772696950; cv=none; b=C5BDhZKoMbSe7/i76u5UC+74bqj8Fwdj7t3hRFm1RZKmL00+RuceuvqxsanKb/T2OhIRa5R9s/XwlOA31d0SYpsWaJw/mUnuoo6KPA53tbxkKutletiSunsGcTPjAiPlBd8JsvX2qwI/O9xpXmjnt4Lo6eqtiMyWJ4kI9tlMR6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772696839; c=relaxed/simple;
-	bh=hYPUpGGfWIgUSWzkvuPzmqoLLcF45V3809LvSzE7F4Q=;
+	s=arc-20240116; t=1772696950; c=relaxed/simple;
+	bh=TFdAbilw8W8sjWd9J8Wt7r39BydUSFkn/rQZC9TwBRU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gR+rTUM6i7cQUTajLJY3hpSP0ylHwGDHkp2GcSE8qUErXC6BLmYmQ4OEDaMa5t9FTQD4+0xK1mZZA0ewMeSWnNhrKNxDiAweqAe48IG92ykL5h6QDFb7rAO6AU82UrgyJ98WszhDBesVPs3nlaIAoMQyn/+oTxnz5SE871Zfar8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k40xIYTD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A178CC116C6;
-	Thu,  5 Mar 2026 07:47:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lLl7s/5YLjSs0CAmGTD0b8EY+WPVa78qsA/bpBgjvHAnOJ9FR35qc1I382IWCAqQOL6z9j6VPKVbZnZgZeXEiPc2uAU+8XTKaZ5ekxO7udLgr3XrgMzqHQ02eVEUOwFxc2y+b+SDI2LwDy+4zov47fa97Gf49eWCg+bjyO7XEqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+9h5rox; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9459C116C6;
+	Thu,  5 Mar 2026 07:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772696839;
-	bh=hYPUpGGfWIgUSWzkvuPzmqoLLcF45V3809LvSzE7F4Q=;
+	s=k20201202; t=1772696950;
+	bh=TFdAbilw8W8sjWd9J8Wt7r39BydUSFkn/rQZC9TwBRU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k40xIYTDb+o4L/MskPRFgFk2kd3c8XA1sNUqDv5xEQR8SsDegaGvwjgzn9mrpS6+k
-	 xPaSUMw7Z5qxNdMPa9YsVLvCwwZGlQRtimRv1qBPYRM0QsUl3VtZTkjBypLNPIO6xp
-	 FAqLVSAkuTCqwDIOinW4Qq5GYqSYDvbAWziLRPYAmVMY+IrBpjoAI2xOYC/+EXLyxK
-	 FXPq4fx7n2wK9v9uHaO8EDzvuADeEzW5mQjNEOWBEw8hD5M+Kvf9VcTekrkjCvwfHg
-	 yguttWZKGmC78gh1xpBpqQldk3EyY8cP1tbi9KmBzEdnibYRm4XlMjmQbSsc7dHySk
-	 W+iaobsojVMvQ==
-Date: Thu, 5 Mar 2026 08:47:16 +0100
+	b=o+9h5roxVzDXrGaHll77MdtFkZUAg5e5fK5yEz/y4+SA1cUuQLGpBcKfP26Wg6pBc
+	 WvUVljrgQuUiFmna5ubk44KFLeoILql1244YJ3PJly0OVWqC4SDZWxPm+UsFtmxZaN
+	 4wuNbg1FBNBrc5TyExBGaUu7Wq8VECIu6fQ+69H+tjluloT29LwOMaeB9UCuZeTUf4
+	 eKRNWoOZgE8AspGYggfzZrfsfCJ66LySxj5c/5FkUWTXTZNXdyh333LZh6yh6O731u
+	 PwiizzG7gwmKjolGBOfufl/HNfDjbWSVXFrUWUioCu0vlURzcaMaA9VzVw9aWoE2ar
+	 sGN+Pjf5jKcqg==
+Date: Thu, 5 Mar 2026 08:49:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
 Cc: Bjorn Andersson <andersson@kernel.org>, 
@@ -56,12 +56,12 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Ajit Pandey <ajit.pandey@oss.qualcomm.com>, Imran Shaik <imran.shaik@oss.qualcomm.com>, 
 	Taniya Das <taniya.das@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: clock: qcom: Add X1P42100 video
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 2/7] dt-bindings: clock: qcom: Add X1P42100 camera
  clock controller
-Message-ID: <20260305-hairy-hidden-stoat-5c1429@quoll>
+Message-ID: <20260305-rugged-agama-of-merriment-6cadf1@quoll>
 References: <20260304-purwa-videocc-camcc-v2-0-dbbd2d258bd6@oss.qualcomm.com>
- <20260304-purwa-videocc-camcc-v2-1-dbbd2d258bd6@oss.qualcomm.com>
+ <20260304-purwa-videocc-camcc-v2-2-dbbd2d258bd6@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,23 +70,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260304-purwa-videocc-camcc-v2-1-dbbd2d258bd6@oss.qualcomm.com>
-X-Rspamd-Queue-Id: 9990720CE04
+In-Reply-To: <20260304-purwa-videocc-camcc-v2-2-dbbd2d258bd6@oss.qualcomm.com>
+X-Rspamd-Queue-Id: C218A20CEE0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271391-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-271394-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -96,59 +96,50 @@ X-Spamd-Result: default: False [-1.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 11:10:51PM +0530, Jagadeesh Kona wrote:
-> X1P42100 video clock controller has most clocks same as SM8650,
-> but it also has few additional clocks and resets. Extend the
-> SM8650 video clock controller bindings to include these additional
-> clocks and resets for X1P42100 platform.
+On Wed, Mar 04, 2026 at 11:10:52PM +0530, Jagadeesh Kona wrote:
+> Add X1P42100 camera clock controller support and clock bindings
+> for camera QDSS debug clocks which are applicable for both
+> X1E80100 and X1P42100 platforms.
 > 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 > Signed-off-by: Jagadeesh Kona <jagadeesh.kona@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml | 2 ++
->  include/dt-bindings/clock/qcom,sm8650-videocc.h                  | 6 ++++++
->  2 files changed, 8 insertions(+)
+>  Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml | 1 +
+>  include/dt-bindings/clock/qcom,x1e80100-camcc.h                  | 3 +++
+>  2 files changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> index e6beebd6a36ee1ce213a816f60df8a76fa5c44d6..e8bf3fcad3fabc4f3b7e8e692c6c634d1aed9605 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> @@ -30,6 +30,7 @@ properties:
->        - qcom,sm8650-videocc
->        - qcom,sm8750-videocc
->        - qcom,x1e80100-videocc
-> +      - qcom,x1p42100-videocc
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml b/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml
+> index 938a2f1ff3fca899b5708101df7f8aa07e943336..b28614186cc098268ab0d8c32b21d9dd9508c9f9 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,x1e80100-camcc.yaml
+> @@ -23,6 +23,7 @@ properties:
+>    compatible:
+>      enum:
+>        - qcom,x1e80100-camcc
+> +      - qcom,x1p42100-camcc
 >  
->    clocks:
->      items:
-> @@ -67,6 +68,7 @@ allOf:
->                - qcom,sm8450-videocc
->                - qcom,sm8550-videocc
->                - qcom,sm8750-videocc
-> +              - qcom,x1p42100-videocc
->      then:
->        required:
->          - required-opps
-> diff --git a/include/dt-bindings/clock/qcom,sm8650-videocc.h b/include/dt-bindings/clock/qcom,sm8650-videocc.h
-> index 4e3c2d87280fb9a37cbc52330e31b0710ab63144..ba2d231e9dc8718bdcc07f994577cf68413dc273 100644
-> --- a/include/dt-bindings/clock/qcom,sm8650-videocc.h
-> +++ b/include/dt-bindings/clock/qcom,sm8650-videocc.h
-> @@ -16,8 +16,14 @@
->  #define VIDEO_CC_MVS1_SHIFT_CLK					14
->  #define VIDEO_CC_MVS1C_SHIFT_CLK				15
->  #define VIDEO_CC_XO_CLK_SRC					16
-> +/* X1P42100 introduces below new clocks compared to SM8650 */
+>    reg:
+>      maxItems: 1
+> diff --git a/include/dt-bindings/clock/qcom,x1e80100-camcc.h b/include/dt-bindings/clock/qcom,x1e80100-camcc.h
+> index d72fdfb06a7c716ed2ec376e061e4f0ca35f42c5..06c316022fb0d26ec6243b28477564d97f228c8e 100644
+> --- a/include/dt-bindings/clock/qcom,x1e80100-camcc.h
+> +++ b/include/dt-bindings/clock/qcom,x1e80100-camcc.h
+> @@ -115,6 +115,9 @@
+>  #define CAM_CC_SLEEP_CLK_SRC					105
+>  #define CAM_CC_SLOW_AHB_CLK_SRC					106
+>  #define CAM_CC_XO_CLK_SRC					107
+> +#define CAM_CC_QDSS_DEBUG_CLK					108
+> +#define CAM_CC_QDSS_DEBUG_CLK_SRC				109
+> +#define CAM_CC_QDSS_DEBUG_XO_CLK				110
 
-I don't understand why X1P42100 was added to SM8650. Last time I asked
-you not to include other header, thus solution is to add full list of
-clocks.
-
-This is completely wrong because you do not have the same driver!
+Why X1E now gets all these clocks? I don't understand why you are having
+separate drivers and decided to change the ABI used in the first driver?
 
 Best regards,
 Krzysztof
