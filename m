@@ -1,151 +1,184 @@
-Return-Path: <devicetree+bounces-271561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271562-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GCg/F6x9qWkg8gAAu9opvQ
-	(envelope-from <devicetree+bounces-271561-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:57:16 +0100
+	id CG5SN0p+qWnA9AAAu9opvQ
+	(envelope-from <devicetree+bounces-271562-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:59:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2D15212341
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:57:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59A51212405
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:59:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 11A0530D6E18
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:54:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 83EC8300CFCC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84BF13A0E8F;
-	Thu,  5 Mar 2026 12:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S+QZVT4R"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD1F539A066;
+	Thu,  5 Mar 2026 12:56:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 495033A0B2D
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 12:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 596AB2405EB;
+	Thu,  5 Mar 2026 12:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772715274; cv=none; b=IhGakNF3qsChkzlWzLJGfVvHqJy+wiEEqKr/73jrO7FSkjmg/R0/hx4j1jvfKNQhER/LZtykM+TwpS/vu5hUH0PG38yjSJyFxwf1l1ipA97gxILrr4yvUAcJ6T2RXo3BgSpWFv5lQCbnOxtReY8l1B07e1h7NentO398Mge7vtE=
+	t=1772715415; cv=none; b=YiJ7uMJLlgjMWYvfbSEjH10blvSuOeoDh1QI0T01jMjXvijAuoTiFZdgwI6takDIzlOcYsFSsRcd81jrA9v5U8CAMVdQvNMpE0/k/PyH2FTrvTRhBembTJdrQ6aNtpO3BQK0T4G9mhXZlTb+IAcRY9NOz/ncfSX3n1g7cUJySxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772715274; c=relaxed/simple;
-	bh=cu1oUJaDlhadNZdXZeA7Rjo/Km1gQ9Mb1DfAEjrTJ2w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SKdQMpqGItspwdhv/PxTxsTzojhu/0qTg2VzbXHGTkaP/HgGAdoj6V3+N6R15UFLDOAGAyBCSQgW9kDDYxHzjWxc1jGLFNonxXFOnFn5Dq//T1K18ATuagKCSUX0m2xK57Tk7DC5kW8CBh5PYRthW3KrhloWAAU/ID+rqfd2PTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S+QZVT4R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03C3AC2BCAF
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 12:54:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772715274;
-	bh=cu1oUJaDlhadNZdXZeA7Rjo/Km1gQ9Mb1DfAEjrTJ2w=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=S+QZVT4RT0FLmiZb/7pVI2B73TrycHXpt1F/2QFKoOIBZ5xZeuqA4nRau2E2EhaZy
-	 eUZuoMdY9O2quh8Pgvd4wyC14ZzyThxDtQVuc9qc1puWBLW2VpozZ22D9asc3b1frM
-	 /auNoRJJWpKdZr0bY5MJ3YrnVF5kvNoisCV1ptx0Vy/0Yv96OuSLfp1YoznhGlvwFC
-	 mV6TuJ21d1Pm/1nGBG9n9rE831rLCesZ341q7SnrrbIeshbkblvL+c92dBZoE0xUVb
-	 ShV0dmTcy7dVNsoda/iHhsv3K0r6fM5aGuEa8DGUnp731TlIJVzDQPt65buYIRkdqO
-	 UU/pkmXVNm5xA==
-Received: by mail-yx1-f43.google.com with SMTP id 956f58d0204a3-64c97997b0fso5602305d50.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 04:54:33 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWdDI9FoTUsEPwKs9+8xk3N2DsMeQj+EbOQ4T8NRNfgbmNetnXEAwymb6Htm1CWHB70xti506NvJt6I@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzLnJfPC8iM95GSoK1X4VxppfT3c77PgpUK0fcAYHXDa95MVql
-	UNwzpQ6rWan6E77R8eBeg6tEzqjq0zX6K6SdqG2iCcVa6ZlEAgGqVP8xwpnOqvUzkwE0xdMZ1pI
-	5syS30TopiCPmu0qiorltvkTs/ZUugmw=
-X-Received: by 2002:a53:e197:0:b0:64a:cdf1:99f6 with SMTP id
- 956f58d0204a3-64cf9ff1cc4mr3631131d50.63.1772715273377; Thu, 05 Mar 2026
- 04:54:33 -0800 (PST)
+	s=arc-20240116; t=1772715415; c=relaxed/simple;
+	bh=OohVGk8rJoJKukEILdvo11BXKOqdjAIBoh85kJ5Eye8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N1O62aZKleB0UCgqLzX8TmB9Xjvec89AZ26z6q3HSVz6H4gZ6ps7TJ7QO2sHrNKh9AnFkm8xM+mN+XSKvPcZ+HMH7I9tXS1w+KTcsyH+vO0pAY2ffYj/9fmQ/T4OEdBBP6yBi67pQKP7A1qUce6/PUro3LLoRMV7v7fxxwZyBtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.227])
+	by gateway (Coremail) with SMTP id _____8Dx7qmOfalpJsYXAA--.11818S3;
+	Thu, 05 Mar 2026 20:56:46 +0800 (CST)
+Received: from kernelserver (unknown [223.64.68.227])
+	by front1 (Coremail) with SMTP id qMiowJDxjcKGfalpJt5OAA--.16319S2;
+	Thu, 05 Mar 2026 20:56:43 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-i2c@vger.kernel.org
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v4 0/2] i2c: Add Loongson-2K0300 I2C controller support
+Date: Thu,  5 Mar 2026 20:56:29 +0800
+Message-ID: <cover.1772714348.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
- <20260303133947.1123575-2-o.rempel@pengutronix.de> <177254885509.3251575.14819823286886805862.robh@kernel.org>
- <aacH7NmkOzZued0Y@pengutronix.de> <20260304-graceful-sweet-bittern-98efdb@quoll>
- <20260304100642.44d00b99@erd003.prtnl> <4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
- <20260304112500.4766f21b@erd003.prtnl> <98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
- <20260304131731.4d54f051@erd003.prtnl>
-In-Reply-To: <20260304131731.4d54f051@erd003.prtnl>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 5 Mar 2026 13:54:20 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkK5od7cODqQ2BsEKE7tvp8vVAsv6erLu1dEzcn35F8QA@mail.gmail.com>
-X-Gm-Features: AaiRm52hABlQPGceianpxeT2EH5vBUlmCgYDsJIaxmSxvInyVQGTDhdoIviYV4s
-Message-ID: <CAD++jLkK5od7cODqQ2BsEKE7tvp8vVAsv6erLu1dEzcn35F8QA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
-To: David Jander <david@protonic.nl>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, 
-	"Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>, 
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, 
-	Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: F2D15212341
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:qMiowJDxjcKGfalpJt5OAA--.16319S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQERCGmpG0IKfAAAs2
+X-Coremail-Antispam: 1Uk129KBj93XoW7ZrWDWFWfCr17uF1DKFWxGrX_yoW8uFWfpa
+	y5A3sIkF1jgr129rs3XrWfZryavF4fJF43Wr47A34Y9anrA3yUZ3yakFs0vFWDCryxuF42
+	q39rKw1UCa4qvFgCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUvIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+	1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv
+	67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2
+	AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAq
+	x4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r
+	43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF
+	7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxV
+	WUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jn
+	SdgUUUUU=
+X-Rspamd-Queue-Id: 59A51212405
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[loongson.cn];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-271561-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,loongson.cn,kernel.org,sang-engineering.com,vger.kernel.org];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271562-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.564];
+	FROM_NEQ_ENVFROM(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,loongson.cn:mid]
 X-Rspamd-Action: no action
 
-On Wed, Mar 4, 2026 at 1:18=E2=80=AFPM David Jander <david@protonic.nl> wro=
-te:
+Hi all:
 
-> > OK, thanks for the explanation, but then primary function is not GPIO
-> > either, because nothing on linked page says it is a generic purpose IO.
-> > It says it is switch detection. Maybe better generic name is then
-> > "pinctrl", thus also "pinctrl" child should be folded into the parent..=
-.
-> > but switch detection is also not a pinctrl. :/
->
-> I agree. This chip is indeed not very clear-cut with respect to the corre=
-ct
-> Linux subsystem. It could also be an input device if you view it strictly=
- from
-> the "switches" standpoint. I thought about this also, but figured that it
-> would be more flexible to just view it as a pinctrl device, which could a=
-lways
-> be used in combination with something like gpio-keys.c if one really want=
-ed
-> the input functionality. For context, our use-case is primarily for indus=
-trial
-> control reading digital sensors such as mechanical switches or industrial
-> optical sensors, and that is AFAIK the main application for this chip any=
-way.
-> For this the gpio UAPI is a good match.
+This patch set describes the I2C controller integrated the
+Loongson-2K0300 chip.
 
-I have read the datasheets and GPIO+pinctrl is the best fit in my opinion,
-mostly because there are a lot of electric properties involved and there
-are industrial use cases, which is a good fit for the GPIO character
-device and the pinctrl+GPIO generic pin config options, some which
-are already identical.
+It has a significantly different design from the previous I2C
+controller(i2c-ls2x), such as support for master-slave transfer mode,
+and DMA transfers (implementation in progress), etc. Therefore, we try
+to name it i2c-ls2x-v2.
 
-The alternative would be to create something new in drivers/iio
-which I think is overkill.
+Thanks.
 
-Yours,
-Linus Walleij
+======
+V4:
+- Rebase on linux-i2c/i2c-next;
+Patch (2/2):
+ - The parent_rate parameter type should be `unsigned long`;
+ - Drop fallthrough and add missing break;
+ - device_set_node()->i2c_adapter_set_node();
+ - Use i2c_parse_fw_timings();
+ - Use i2c_t.bus_freq_hz instead of priv->speed;
+ - Sperate loongson2_i2c_handle_read() into loongson2_i2c_handle_read()
+   and loongson2_i2c_handle_rx_done().
+
+Link to V3:
+https://lore.kernel.org/all/cover.1772001073.git.zhoubinbin@loongson.cn/
+
+V3:
+- Rebase on linux-i2c/i2c-next;
+Patch (2/2):
+ - Reorder header file follow IWYU principle;
+ - Better indentation and coding style;
+ - Use generic macro definitions;
+ - Amend *all* struct data types;
+ - Correct unreasonable variable type definitions;
+ - Refact loongson2_i2c_isr_error();
+ - of_property_read_u32()->device_property_read_u32();
+ - Remove meaningless blank lines and output.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1769476820.git.zhoubinbin@loongson.cn/
+
+V2:
+Patch (1/2):
+ - Add Acked-by tag from Conor, thanks.
+
+Patch (2/2):
+ - Reorder the definitions of read() and write();
+ - Adjust the calculation method for bus speed.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1763018288.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: i2c: loongson,ls2x: Add ls2k0300-i2c compatible
+  i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
+
+ .../bindings/i2c/loongson,ls2x-i2c.yaml       |   4 +
+ MAINTAINERS                                   |   1 +
+ drivers/i2c/busses/Kconfig                    |  10 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-ls2x-v2.c              | 545 ++++++++++++++++++
+ 5 files changed, 561 insertions(+)
+ create mode 100644 drivers/i2c/busses/i2c-ls2x-v2.c
+
+
+base-commit: 6117e1ba1db78a52a4161208ea403d3769ad73c6
+-- 
+2.52.0
+
 
