@@ -1,181 +1,118 @@
-Return-Path: <devicetree+bounces-271388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271392-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WOCZI7wvqWmO2wAAu9opvQ
-	(envelope-from <devicetree+bounces-271388-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:24:44 +0100
+	id 4LJOGZg1qWlk3AAAu9opvQ
+	(envelope-from <devicetree+bounces-271392-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:49:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E980320C9C4
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:24:43 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B89520CEAC
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:49:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C91DA301326A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:24:41 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1C15D30193A1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:48:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3EA0315D40;
-	Thu,  5 Mar 2026 07:24:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lnfaComR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47660328608;
+	Thu,  5 Mar 2026 07:48:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-sc.amlogic.com (unknown [64.106.246.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEFAF191F91;
-	Thu,  5 Mar 2026 07:24:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4319F3594A;
+	Thu,  5 Mar 2026 07:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=64.106.246.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772695480; cv=none; b=qj2FtqYCZT04UzEHqbAXZnwKajDQK90eijJsOdCael5oI/5+YGhrERdkp0GuP9gMrqZsQfwxgkLdYDXEuELxGXuob72giSJFm/A/WussW4mo8+xHOC46a+Tjbw6kBOk4trxauPIBJnx5Fi+zSlxADbetRomzmKDrzZXVAwHBcaU=
+	t=1772696930; cv=none; b=iabOke3wNTiN3uaxSAwH6QLBFDUMmxNO0MM3E3ig0EePc8I+55O3sK/37xxdpfn4oSUmxMU5JEquwSak0o0Aqd/2RE/21ELJC51yomks2ZE2ZtN6lf9vT/tCtB6RfOik4UoKAU1fSeMvcNhCpX9/UNmODtsG8p8Wo43dgSrgluc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772695480; c=relaxed/simple;
-	bh=SqAxJif48hn5wMCG4M87dJcdnDhhNcOcYRdFJfc8YDA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cm5K3fIH8SJYnQCs31l59uFD8KUdwMcGCL6KW8f2ABiyyg0AVBXr2pta42Y4N1XsVtCyQjnFx4ImZdLTViafYK1WbQR8P2eQYmKxMWZLyqMYkWhefjtvdJaiSabbRxrWR+zclSCUMkEVQF/E0SyCrOnIPsrysEaB8OUruER32W4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lnfaComR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A51ABC116C6;
-	Thu,  5 Mar 2026 07:24:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772695480;
-	bh=SqAxJif48hn5wMCG4M87dJcdnDhhNcOcYRdFJfc8YDA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lnfaComR5UCb151SD6jDFra15uT8o/zUc66FlKXSyBKpa/mkNwVTpOZ9sfomEKYIq
-	 ObYqO+wc2ML3Oi8OH6JiD2+i8hoVNL60NioUMu57HLF5ObCNlgdtnJq37VIAjD6T3A
-	 dUe2JWDLHhx9AftYUqOPbxCCCa18TigUYefJEPEA8wF8x/QR8hwWoCux8Prqm9mVy1
-	 xee0D8ycpoXFebufVAS8ATObgmSY4sAh4qRvAE0ReW+aX43s9ex8rF3eOIMnRwhqFa
-	 yyqGjSgTyZQNGllxhd+Yo7xFJ8pzu3AXnUiY7TbZ1WBvrEHVA6SLLv5fBK0s3Szl+B
-	 TFq3RRwJxUX3A==
-Date: Thu, 5 Mar 2026 12:54:24 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v5 3/9] pci: pwrctrl: rename pci-pwrctrl-slot as generic
-Message-ID: <twcdswrgibd3ydrb7ebmxdmyfi32c7yamii6pmrthiecryiyyt@3o6nexlweyzv>
-References: <20260220-topic-sm8650-ayaneo-pocket-s2-base-v5-0-1ad79caa1efa@linaro.org>
- <20260220-topic-sm8650-ayaneo-pocket-s2-base-v5-3-1ad79caa1efa@linaro.org>
+	s=arc-20240116; t=1772696930; c=relaxed/simple;
+	bh=nfp50h/2NcEk1CRTmoFnuNRMeqtyi/4s20+1umIUi1Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gr5UkM1IxuAGGVY3Hd7evcWBiuKx9eofad/wG8/2Cg8a0FWIeSIfb8XNHeLHpS4gSIw5kxeLwstX+6d9XYLls6+STv+9zTnQG1BLR1/OzzoglAXSz/uVplPeXMFCW4smtAq/Gs91e0FC0iw7jlkJ9MZnCpXE+Gughi/+x80FZp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; arc=none smtp.client-ip=64.106.246.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+Received: from rd03-sz.software.amlogic (10.28.11.121) by mailsc.amlogic.com
+ (10.8.11.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Wed, 4 Mar
+ 2026 23:42:45 -0800
+From: Jian Hu <jian.hu@amlogic.com>
+To: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, "Martin
+ Blumenstingl" <martin.blumenstingl@googlemail.com>, Stephen Boyd
+	<sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, robh+dt
+	<robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>,
+	linux-clk <linux-clk@vger.kernel.org>, linux-amlogic
+	<linux-amlogic@lists.infradead.org>, linux-kernel
+	<linux-kernel@vger.kernel.org>, linux-arm-kernel
+	<linux-arm-kernel@lists.infradead.org>, Ronald Claveau
+	<linux-kernel-dev@aliel.fr>
+Subject: [PATCH 0/3] Add the missing mpll3 clock and clock controller nodes
+Date: Thu, 5 Mar 2026 15:43:24 +0800
+Message-ID: <20260305074328.639993-1-jian.hu@amlogic.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260220-topic-sm8650-ayaneo-pocket-s2-base-v5-3-1ad79caa1efa@linaro.org>
-X-Rspamd-Queue-Id: E980320C9C4
+Content-Type: text/plain
+X-ClientProxiedBy: mailsh.amlogic.com (10.18.11.5) To mailsc.amlogic.com
+ (10.8.11.35)
+X-Rspamd-Queue-Id: 6B89520CEAC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [3.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_QUARANTINE(1.50)[amlogic.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271388-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com,google.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-271392-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_ALL(0.00)[];
+	FREEMAIL_TO(0.00)[baylibre.com,linaro.org,googlemail.com,kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email]
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.669];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 04:04:42PM +0100, Neil Armstrong wrote:
-> The driver is pretty generic and would fit for either
-> PCI Slots or endpoints connected to PCI ports, so rename
-> the driver and module as pci-pwrctrl-generic.
-> 
-> Suggested-by: Manivannan Sadhasivam <mani@kernel.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+- Fix a typo for gp1 pll
+- Add the missing mpll3 parent clock definition to t7-peripherals-clkc.yaml
+- Add Amlogic T7 SoC clock controller nodes
 
-One comment below, but that can be fixed while applying. So,
+I have discussed with Ronald and agreed that I will first submit the T7 clock DTS,
+and then he can proceed with his work.
 
-Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
+Thanks to Ronald for pointing out the gp1 pll typo.
 
-> ---
->  drivers/pci/controller/dwc/Kconfig |   4 +-
->  drivers/pci/pwrctrl/Kconfig        |  13 ++--
->  drivers/pci/pwrctrl/Makefile       |   4 +-
->  drivers/pci/pwrctrl/generic.c      | 139 +++++++++++++++++++++++++++++++++++++
->  drivers/pci/pwrctrl/slot.c         | 137 ------------------------------------
->  5 files changed, 150 insertions(+), 147 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index d0aa031397fa..4bd36e133ca6 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -309,7 +309,7 @@ config PCIE_QCOM
->  	select CRC8
->  	select PCIE_QCOM_COMMON
->  	select PCI_HOST_COMMON
-> -	select PCI_PWRCTRL_SLOT
-> +	select PCI_PWRCTRL_GENERIC
->  	help
->  	  Say Y here to enable PCIe controller support on Qualcomm SoCs. The
->  	  PCIe controller uses the DesignWare core plus Qualcomm-specific
-> @@ -431,7 +431,7 @@ config PCIE_SPACEMIT_K1
->  	depends on ARCH_SPACEMIT || COMPILE_TEST
->  	depends on HAS_IOMEM
->  	select PCIE_DW_HOST
-> -	select PCI_PWRCTRL_SLOT
-> +	select PCI_PWRCTRL_GENERIC
->  	default ARCH_SPACEMIT
->  	help
->  	  Enables support for the DesignWare based PCIe controller in
-> diff --git a/drivers/pci/pwrctrl/Kconfig b/drivers/pci/pwrctrl/Kconfig
-> index cd3aa15bad00..ff67bec5b500 100644
-> --- a/drivers/pci/pwrctrl/Kconfig
-> +++ b/drivers/pci/pwrctrl/Kconfig
-> @@ -11,17 +11,18 @@ config PCI_PWRCTRL_PWRSEQ
->  	select POWER_SEQUENCING
->  	select PCI_PWRCTRL
->  
-> -config PCI_PWRCTRL_SLOT
-> -	tristate "PCI Power Control driver for PCI slots"
-> +config PCI_PWRCTRL_GENERIC
-> +	tristate "Generic PCI Power Control driver for PCI slots and endpoints"
->  	select POWER_SEQUENCING
->  	select PCI_PWRCTRL
->  	help
-> -	  Say Y here to enable the PCI Power Control driver to control the power
-> -	  state of PCI slots.
-> +	  Say Y here to enable the generic PCI Power Control driver to control
-> +	  the power state of PCI slots and endpoints.
->  
->  	  This is a generic driver that controls the power state of different
-> -	  PCI slots. The voltage regulators powering the rails of the PCI slots
-> -	  are expected to be defined in the devicetree node of the PCI bridge.
-> +	  PCI slots and endpoints. The voltage regulators powering the rails
-> +	  of the PCI slots or endpoints are expected to be defined in the
-> +	  devicetree node of the PCI bridge.
+Jian Hu (3):
+  dt-bindings: clock: amlogic: Fix a typo
+  dt-bindings: clock: amlogic: t7: Add missing mpll3 parent clock
+  arm64: dts: amlogic: t7: Add clock controller nodes
 
-'PCI bridge or endpoint'
-
-- Mani
+ .../clock/amlogic,t7-peripherals-clkc.yaml    |   8 +-
+ .../bindings/clock/amlogic,t7-pll-clkc.yaml   |   2 +-
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 125 ++++++++++++++++++
+ 3 files changed, 132 insertions(+), 3 deletions(-)
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.47.1
+
 
