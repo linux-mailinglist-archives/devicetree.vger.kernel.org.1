@@ -1,190 +1,239 @@
-Return-Path: <devicetree+bounces-271690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271691-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QFIiLRHOqWnkFQEAu9opvQ
-	(envelope-from <devicetree+bounces-271690-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:40:17 +0100
+	id wLeVOJXOqWk+FgEAu9opvQ
+	(envelope-from <devicetree+bounces-271691-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:42:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C21F721710C
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:40:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6030D217121
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:42:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E868F300463F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:40:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 85919300F78F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E4533CF682;
-	Thu,  5 Mar 2026 18:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39533E717F;
+	Thu,  5 Mar 2026 18:42:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="L4C/bYeE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZaL/avDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AB1B335546;
-	Thu,  5 Mar 2026 18:40:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772736012; cv=pass; b=P4CaRICjgMZ5SW8I7CNc/twhNSmGCJAbiI4Jp0h9IqAaprLfCZ/QRrCLtmavY1HYvblWAiDvjdozFDNpTEgN11ThMIh04F2L+U0yqJOQMlNshuDHMv5fG67UMRf+YArIkIrDP5eFJlLIQVVm7uEIkX3pXPGAePLLtnD+KM/toh4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772736012; c=relaxed/simple;
-	bh=JLvdkRD0v4LKaFHQ/l7/pYm3shGTD09NvVwR1bSsk0s=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=usSkwYixAPt8MgXBknfdJiL7le0Kf4dO2SeHy8CacsImWP8FTkN3sr8kSKWWcV4MKynRtBA86yDZJt4QhUN4BIEyhxZuOlzXyLSnXElfT5a2dX2Y1dNFFFUVNjNA5M4vpn04lB8+RNwKyHEOZPmLjHNmY1WFriOze9PqvnZr8kM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=L4C/bYeE; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1772735988; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=TCVDMS5l7/JU8614v0x4xbc3VFbhNGd+zjSLmQN4mbjMaReyx6S4kMNk79U/YdgFvPONMfk+mSlRzL8CBVrpoSJ91k2jFYFZz7vTbEmj6iDUhHPODiz1vcRMsnX1Jc7TNoqSvxmaM9ERnyk5zIAxVVCAlWs4O9Yw9ctDcFlBoz4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1772735988; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=JLvdkRD0v4LKaFHQ/l7/pYm3shGTD09NvVwR1bSsk0s=; 
-	b=AGpMCStqSSezeDBF1Rde2eCUDZhMKp5ttqp821cWuWyJWUqpKonk4+WSw1UDeakc79WHOhQQLnE7CUU/ICZQKNPf/lYh/G0orxNhw4BGLD0zIVmUTJlq05kmlFEmigX75CDOXBhQWX978Nmq0eqxS3acTbYNpmDoKV2oqJRZGp0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772735987;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=JLvdkRD0v4LKaFHQ/l7/pYm3shGTD09NvVwR1bSsk0s=;
-	b=L4C/bYeEZPzuHjU8iiuW/htnr6e5A9jbZxPn6MYzYdnCjGDe2cnX58V2I01JElqq
-	5B8s6jkPJKurH0E8pZ4QD0NBVRPD4sJrP/DPne1MHSZyHlJpQ952GATW09vSlsCj6RE
-	Ua88RNIkF+zZAXcDU6nP9KPwY3cQ4ByBcxJoGe3UqUnbAk3/E+zpivORyGoFJ0favUm
-	Qv8Wz01NfHimNx/pcaDyfOlxCwHq4p2l0TLI7MhdNle6EWMJH6cGODiNbLPajwVYJdX
-	KKJFqZhtSQuklWIEOXoPs0jvpAG8oRa1WXSi4sinYm3oFJFzxqFLz7heFi7XiGdsOCF
-	GhPWZJ9M+Q==
-Received: by mx.zohomail.com with SMTPS id 1772735986441202.47650338489473;
-	Thu, 5 Mar 2026 10:39:46 -0800 (PST)
-Message-ID: <94d742d9ace2ce58ed31525a58973b3a13257577.camel@icenowy.me>
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: moortec,mr75203: adapt
- multipleOf for T-Head TH1520
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Guo Ren
-	 <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rahul Tanwar
-	 <rtanwar@maxlinear.com>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
-Date: Fri, 06 Mar 2026 02:39:40 +0800
-In-Reply-To: <aanNQSHxLh2OsbvK@x1>
-References: <20260305144044.44208-1-zhengxingda@iscas.ac.cn>
-	 <20260305144044.44208-2-zhengxingda@iscas.ac.cn> <aanNQSHxLh2OsbvK@x1>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE18A3E7162;
+	Thu,  5 Mar 2026 18:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772736145; cv=none; b=UR3yjQTEzBaVUWKrqTimkYfDALHzqcZJsaCEj5uJTA1f2cUqCUldEjN19MHzuEubM0Keh+antcfdsW3vIjPVwirOTPcITLFtaP9XfXG1n3RnY4dp8V0meHn/qpgFfPcpq899xM9RvJzJbLC25loUHZnuZt/bmm6nEFSLawF3Ehc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772736145; c=relaxed/simple;
+	bh=mFBLekNu0pFh38RoS+ly8NDtbNgs1xYCpIaBJhYLK6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=i7nh6+fdAtQamUCzdyMTKhkfaPKxCdUblcN0RRWFTsLo3maEJCGS2Eh6VnuZ44tSI2m1hVv0RRfro+dmBYIM/z/saV6AUT1jdOmHLC2WB4D22RilpGgtq7UfikG/W9uGB8cEccDmNnv+fKV6egMdO7cyCCsbR/OSypl52i3cJ58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZaL/avDC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AA36C116C6;
+	Thu,  5 Mar 2026 18:42:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772736145;
+	bh=mFBLekNu0pFh38RoS+ly8NDtbNgs1xYCpIaBJhYLK6s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZaL/avDCoUq1hdotZkUw4/COICPIBYrMTm9k+d4uRIetbmtsqV+GciipM7MHurTLs
+	 xHKY4E1BNjwJGd2GYjVAnecZv+VegXt/ug1yhqZmDzUTKSpx7rTJHNSrEBGXXySL/W
+	 kyIxF8P7MJ11z1jrIc2AUjshfmglqddtat59eBfoN0Oi8qusPMCySS3Om/bmYQra1a
+	 lA5GxnsDdMfBVF1ZqNLyQfG6boF98td58zsHVg7txsiJ7vE915l0hsQz3+JNEcWxDZ
+	 M/Fr5jz9XHNktZEpxJSj5qc6+1mX8szkHIZfo3b32soS53mwKvluR2akgE776dmWg/
+	 7iBc+LfwGFkvQ==
+Date: Thu, 5 Mar 2026 18:42:17 +0000
+From: Conor Dooley <conor@kernel.org>
+To: =?utf-8?B?5p2O5b+X?= <lizhi2@eswincomputing.com>
+Cc: krzk+dt@kernel.org, Bo Gan <ganboing@gmail.com>,
+	Jakub Kicinski <kuba@kernel.org>, devicetree@vger.kernel.org,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	robh@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk,
+	wens@kernel.org, pjw@kernel.org, palmer@dabbelt.com,
+	aou@eecs.berkeley.edu, alex@ghiti.fr,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, pritesh.patel@einfochips.com,
+	weishangjuan@eswincomputing.com
+Subject: Re: Re: [PATCH net-next v3 1/3] dt-bindings: ethernet: eswin: add
+ clock sampling control
+Message-ID: <20260305-goldsmith-omnivore-21958a41ff48@spud>
+References: <20260303061525.846-1-lizhi2@eswincomputing.com>
+ <20260303061637.872-1-lizhi2@eswincomputing.com>
+ <20260303163846.156d18f7@kernel.org>
+ <20260304-regulate-verdict-c3a361d2dc83@spud>
+ <05a15890-392c-41c3-9566-8eb506ddfe5f@gmail.com>
+ <20260304-capable-setback-908ba5b5c858@spud>
+ <9eaad6e.4df8.19cbbe95b3c.Coremail.lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Rspamd-Queue-Id: C21F721710C
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9LdxKbp5rG3ADm6j"
+Content-Disposition: inline
+In-Reply-To: <9eaad6e.4df8.19cbbe95b3c.Coremail.lizhi2@eswincomputing.com>
+X-Rspamd-Queue-Id: 6030D217121
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[icenowy.me,none];
-	R_DKIM_ALLOW(-0.20)[icenowy.me:s=zmail2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271690-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-271691-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com,eswincomputing.com,einfochips.com];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[icenowy.me:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_NEQ_ENVFROM(0.00)[uwu@icenowy.me,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev,kernel];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-=E5=9C=A8 2026-03-05=E5=9B=9B=E7=9A=84 10:36 -0800=EF=BC=8CDrew Fustini=E5=
-=86=99=E9=81=93=EF=BC=9A
-> On Thu, Mar 05, 2026 at 10:40:43PM +0800, Icenowy Zheng wrote:
-> > The G and J coefficients provided by T-Head TH1520 manual (which
-> > calls
-> > them A and C coefficients and calls H coefficient in the binding as
-> > B)
-> > has the 1/100 degree Celsius bit (the values are 42.74 and -0.16
-> > correspondingly), however the binding currently only allows
-> > cofficients
-> > as precise as 100 milli-Celsius (1/10 degree Celsius).
-> >=20
-> > Change the multipleOf value of these two cofficients to 10 (in the
-> > unit
-> > of milli-Celsius) to satisfy the need of TH1520.
-> >=20
-> > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > ---
-> > New patch in v2.
-> >=20
-> > =C2=A0Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 4
-> > ++--
-> > =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
-> >=20
-> > diff --git
-> > a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > index 56db2292f062d..7d57c2934a8a1 100644
-> > --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > @@ -105,7 +105,7 @@ properties:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 G coefficient for temperature equa=
-tion.
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 5 =3D 60000
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 6 =3D 57400
-> > -=C2=A0=C2=A0=C2=A0 multipleOf: 100
-> > +=C2=A0=C2=A0=C2=A0 multipleOf: 10
-> > =C2=A0=C2=A0=C2=A0=C2=A0 minimum: 1000
-> > =C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
-> > =C2=A0
-> > @@ -131,7 +131,7 @@ properties:
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 J coefficient for temperature equa=
-tion.
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 5 =3D -100
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 6 =3D 0
-> > -=C2=A0=C2=A0=C2=A0 multipleOf: 100
-> > +=C2=A0=C2=A0=C2=A0 multipleOf: 10
-> > =C2=A0=C2=A0=C2=A0=C2=A0 maximum: 0
-> > =C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/int32
-> > =C2=A0
-> > --=20
-> > 2.52.0
-> >=20
+
+--9LdxKbp5rG3ADm6j
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Mar 05, 2026 at 10:52:38AM +0800, =E6=9D=8E=E5=BF=97 wrote:
 >=20
-> I am wondering if there is any backwards compatibility issue but
-> there
-> are no other users of this compatible in mainline other than th1520.
-> There is also the precendent 030d2a0ce5dc ("dt-bindings: hwmon:
-> moortec,mr75203: fix multipleOf for coefficients") having change the
-> property. I suppose it is a not a problem unless other people on the
-> list raise an objection.
-
-Well mathematically any number that is a multiple of 100 is a multiple
-of 10?
-
-So theoretically there should be no compatibility issue.
-
-Thanks
-Icenowy
-
 >=20
-> Thanks,
-> Drew
+>=20
+> > -----=E5=8E=9F=E5=A7=8B=E9=82=AE=E4=BB=B6-----
+> > =E5=8F=91=E4=BB=B6=E4=BA=BA: "Conor Dooley" <conor@kernel.org>
+> > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4:2026-03-04 17:30:57 (=E6=98=9F=E6=
+=9C=9F=E4=B8=89)
+> > =E6=94=B6=E4=BB=B6=E4=BA=BA: "Bo Gan" <ganboing@gmail.com>
+> > =E6=8A=84=E9=80=81: "Jakub Kicinski" <kuba@kernel.org>, lizhi2@eswincom=
+puting.com, devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@daveml=
+oft.net, edumazet@google.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt=
+@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com, mcoquelin.stm32@gma=
+il.com, alexandre.torgue@foss.st.com, rmk+kernel@armlinux.org.uk, wens@kern=
+el.org, pjw@kernel.org, palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghi=
+ti.fr, linux-riscv@lists.infradead.org, linux-stm32@st-md-mailman.stormrepl=
+y.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, =
+ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfo=
+chips.com, pritesh.patel@einfochips.com, weishangjuan@eswincomputing.com
+> > =E4=B8=BB=E9=A2=98: Re: [PATCH net-next v3 1/3] dt-bindings: ethernet: =
+eswin: add clock sampling control
+> >=20
+> > On Tue, Mar 03, 2026 at 05:23:18PM -0800, Bo Gan wrote:
+> > > Hi All,
+> > >=20
+> > > On 3/3/26 16:47, Conor Dooley wrote:
+> > > > On Tue, Mar 03, 2026 at 04:38:46PM -0800, Jakub Kicinski wrote:
+> > > > > On Tue,  3 Mar 2026 14:16:37 +0800 lizhi2@eswincomputing.com wrot=
+e:
+> > > > > > There are currently no in-tree users of the EIC7700 Ethernet dr=
+iver, so
+> > > > > > these changes are safe.
+> > > > >=20
+> > > > > What do you mean by this sentence? The commit under Fixes was par=
+t of
+> > > > > Linux v6.19 already.
+> > > >=20
+> > > > The "funny" thing is that caring about users doesn't even really ma=
+tter
+> > > > on the devicetree patch, except for this hunk:
+> > > > |@@ -81,7 +99,9 @@ properties:
+> > > > |                          or external clock selection
+> > > > |           - description: Offset of AXI clock controller Low-Power=
+ request
+> > > > |                          register
+> > > > |+          - description: Offset of register controlling TXD delay
+> > > > |           - description: Offset of register controlling TX/RX clo=
+ck delay
+> > > > |+          - description: Offset of register controlling RXD delay
+> > > > |
+> > > > | required:
+> > > > |   - compatible
+> > > > And it only matters here because an item is injected mid-list. If t=
+his
+> > > > was moved to the end with the RXD delay, the **dt-binding** changes
+> > > > don't have issues with safety. I've not looked at whether there are
+> > > > knock-on concerns about users in the driver or whatever yet, but fr=
+om a
+> > > > binding POV only that hunk can break something that currently works.
+> > >=20
+> > > This was already discussed here in v1:
+> > > https://lore.kernel.org/lkml/e7183ae1-8b8b-4e77-9f4e-3bc1b4b63556@lun=
+n.ch/
+> > >=20
+> > > The device-tree is not checked in yet by ESWIN folks, so there's curr=
+ently
+> > > no user of the dt-binding. No need to worry about backward compat.
+> >=20
+> > The binding and driver exist, there doesn't need to be a dts in tree for
+> > there to be potential users. If the break was important I might not
+> > care, but this seems to be a gratuitous break, since the new items could
+> > be added to the end of the list and compatibility maintained without
+> > incurring any more difficulty for you.
+>=20
+> Hi Conor and Krzysztof,
+>=20
+> Thanks for the reviews.
+>=20
+> - The next patch will fix the property order to avoid any breakage
+>   with existing DT bindings.
+
+Good, thanks.
+
+> - Eth1 does have a timing issue in silicon, as discussed here:
+>   https://lore.kernel.org/lkml/32a1f814.2c79.19bfe173225.Coremail.linmin@=
+eswincomputing.com/
+>=20
+> =C2=A0 Based on this, and according to the advice from Andrew
+>   https://lore.kernel.org/lkml/59cec617-0189-4dc3-bc3f-6346155a62ae@lunn.=
+ch/
+>   https://lore.kernel.org/lkml/bd202cfa-d6eb-4d0e-982d-b49795dd25f7@lunn.=
+ch/
+> =C2=A0 adding a DT property is not a reasonable approach.
+> =C2=A0=C2=A0
+> =C2=A0 In the next patch, I will improve the description/paragraph and pr=
+operly
+>   document the timing issues.
+
+I personally don't mind having two compatibles, but I might be more
+clear about what device the new one refers to (so something like
+s/clk-inversion/eth1/g). But Krzysztof was the one who objected to
+having multiple compatibles, so it's worth waiting to see what he has to
+say.
+
+--9LdxKbp5rG3ADm6j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaanOiQAKCRB4tDGHoIJi
+0kTVAP9/DDa/WZb3rTbhG6Imf28y6B3b5r9J/wxYjlBtYoF2VAEAq36UpKZJpbys
+a5AO5ebrLpv/DEjmj/ymz2YiZYHVtgw=
+=oXU3
+-----END PGP SIGNATURE-----
+
+--9LdxKbp5rG3ADm6j--
 
