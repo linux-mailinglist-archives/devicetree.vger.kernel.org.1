@@ -1,235 +1,166 @@
-Return-Path: <devicetree+bounces-271709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271710-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SJ6QBk7ZqWmaGQEAu9opvQ
-	(envelope-from <devicetree+bounces-271709-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:28:14 +0100
+	id qNdRC43aqWneGQEAu9opvQ
+	(envelope-from <devicetree+bounces-271710-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:33:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E94217891
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:28:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BF36217970
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:33:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9FA803016B29
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:26:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 7A5D6300A5A6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EC1396583;
-	Thu,  5 Mar 2026 19:26:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5748303A1E;
+	Thu,  5 Mar 2026 19:33:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t808lmHO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jVeZOfAC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA72037D11F;
-	Thu,  5 Mar 2026 19:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772738811; cv=none; b=Bndw+rD1U+gR85+j4q7sQmEcgTShXOZ3l8FBpWKPVTUaRMmmocpkjkbvzwyWgQUZllW/ppb2o2NvOIfF1HvgyZScPXacFZKFURpZQRs1HqkI8pzj3ahCphHG1uIM7N1x+cpR2mKpbWxtfBCUy02E+AKPyGdrP92kOoZ3NjnwpVc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772738811; c=relaxed/simple;
-	bh=Fl+xG8f3V1m4AHOqnKP1lKLxgOPU2ocJ0lJuwUzAE00=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dyx+8G1wKC7cljFk+0oqZ0fq5MYJAO9qlCRYIhyCbiS/KRraGAdJ4X/KwkD/ZRrE7tC3LyVQhKKrq1MjGWWEE99EyMUzi+c0pDg+RKjB1YswY0aVQUKeK8tGvXAEcQj1gYvg9zSe4CGxQ/8EzGLS6CyYi9FJwqprfD+kbQIvd5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t808lmHO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76FADC19425;
-	Thu,  5 Mar 2026 19:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772738811;
-	bh=Fl+xG8f3V1m4AHOqnKP1lKLxgOPU2ocJ0lJuwUzAE00=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=t808lmHOtJGp+XoEZMeQIZVg7/0o/3HSErU+RY/5F+5J0NqG1L34Jvj0iBBc/+DDE
-	 r/7MIgLiyGYStNkVQBdbqZEoD5M4CaLlHQqoKGZyFu0nd51YpqzNkTRhCL/TasAH+G
-	 7fpNxcQgiZVNXgdMt+0N7wyvqwwfGU6epofo3YLOaP64x8TyoZtUoDwLMbsmi5VXTP
-	 8yWCdKrfSiNdn5/Jl2hhYxnqTNDqVrogglSvo0IJcBJn2B39nbudvyT3Ihfm5G+HUQ
-	 Lw/I37tWB1s/cOI8nrxDwqppsyUoGECSHCrw4hkFCiq0UrNmgsgHWMM8Cj4fEbALBB
-	 ixTfHC06jvDIg==
-Date: Thu, 5 Mar 2026 19:26:41 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
-Cc: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
- <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 4/4] iio: adc: ad4691: add SPI offload support
-Message-ID: <20260305192641.3c7c653f@jic23-huawei>
-In-Reply-To: <20260305-ad4692-multichannel-sar-adc-driver-v1-4-336229a8dcc7@analog.com>
-References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
-	<20260305-ad4692-multichannel-sar-adc-driver-v1-4-336229a8dcc7@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83738200110
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772739198; cv=pass; b=mKNrWIo6z7YVWQkl9ct44ZFaUY14NLOII4vbiUQe+hMIz3gqAKqgQiTS01M2wKL+rjRdkFKBdR7tGXWwws7KAM7sxQ3YhQqCT6pwrKL7E+6gAV7xq5VHu1RT5hc9k9yM31d0QaMNvq8BBgkE181ttEBJAkXeROy/tQRERpFyW2Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772739198; c=relaxed/simple;
+	bh=3qFS8mp0A4He5fJiw82IIXCHjDSfPLpUJggQOZM0oiw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m7C90C1a3KVb8jtnD72x7Qz9mBjxSs3Otr3DoTlJjPyUl6JEyIMjaYvWqYv8vn6gIHQauEbyVrEwMxjFS8yF69/cDr0YI5/HhJjhTSPY6me1K07yQWC6NiMvo5zdduB1Wr/aWlC0FRPW2STvlSH8yiGV0p19IxLVckNB5V97Q3c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jVeZOfAC; arc=pass smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-439ac15f35fso5204680f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 11:33:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772739196; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lAeNOGd6BqteZ0ZMNGjrgs4Ro01oMjl0z/23u8sxd+/sWtyMmEVuOBTdDzrkN/nKo/
+         AVGvZnZIyEb86sOyC1g0aovG/TINsdncYuY+JngWhJq4kJm1L1Dv1GVyo1aCFalZxGLI
+         IhsKW9bs8y85UAZqCgih5DorChqHAbpzmqwmFPrl6AQENjoi5Cm1vZhIcwb60gBPt8GQ
+         9cjqw0VqDqXbHlIdvmU6XeG+9V3G5Uae45Oyy+6WXopJdqpatLHoDq9HSB3dp7TaGG0/
+         svHIfGBazQuiNxa1LhZRZdxdDrwGMVLo53rNym6sEOos1AzQFBk1RsH6LD1Z/EV9KzFN
+         8zIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=3qFS8mp0A4He5fJiw82IIXCHjDSfPLpUJggQOZM0oiw=;
+        fh=wQDUkFRjx96fH25+H9Skv/PKD31TL5eMFD8gbCFSKIg=;
+        b=HHEu0cERHxQFdqU6Y84VY8GuVABUx3DVP5snoLYlqCUbSWRX13zi40raR6h/xrB8Js
+         JZax49GKnaEJiJRTa4RtOK10RxR4A0bDD1mL15lpmUbgMCC0/TtWz0QCL4Rk38cz84vw
+         NA6rpeuMXgYi6CRpAvFrEIcFjvt5s1XQsNOzvxJ1uduMuVZ41npXZIBYHiA6etsKTj4Y
+         WlVUofiypF/+R9UYJnn8yB6ajG8c9A6QjKuVCRkBb2I5jS62RwMnLktV98QcweFHPShD
+         S7o7/cqJ7+XAZZvE+L2EDR8R7Ubh1Jezeba3rxUamZQ/j7oP8YH3P8zQdlI9ZmaSvbZ/
+         8ThQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772739196; x=1773343996; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3qFS8mp0A4He5fJiw82IIXCHjDSfPLpUJggQOZM0oiw=;
+        b=jVeZOfACPg/8VWD7c0bO3LaI/kL5nUbhPlYeOSdEfTHOF27afXdxGnlRqQy3x4KBPZ
+         1Nm9UbzSUO7kjZpPI4DFnNmXW3D798vg8pR2z30ej+P2w4rHKXeC4KN/W78+LDbXnWGC
+         xnaSmN46c+6c8yEgX6D6QvtkgUhsJ1G/lI0NtyvM3EeP3ZcNGG8++qjDkaHcZrSt2jhw
+         Wxk6Ek6Aqxf4dI/5g/nqXwrQqFHpZg8RpvKRk2ez9wSuwas3rXG+s88ez0wDouD3EpB3
+         1jU7fxTH5Xg2gsdAoiBXb7qEV4O4qG410kjIqh6/vlTR5Nb9mARFH74fptWt5EYCDrPj
+         RlOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772739196; x=1773343996;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=3qFS8mp0A4He5fJiw82IIXCHjDSfPLpUJggQOZM0oiw=;
+        b=HXUYfM2dxT/1bzp2lRVY4NkXWC3NOwvk04dVEPWWLgiAChgKj8MRkXCzDEC8NReYkQ
+         9/y+b2bEIPvbdgFhV0xZcbBo35nbRoPZ3oMD11uObkvK/I2t/lIKz2Nt+wcX589mqQwX
+         PO+MK80hU5ugeMq9GQrCxtC2DEVSyY2RUF60CV0yJUBzD4ym9z79QSMlSWLjzqLkKo2w
+         QkbkNgZResDs/eHa0gF78OYAOyrAX/CagpGtsMSPk3x3GQL2Txma/zOFwwcSymJdVFXv
+         SwTSb7kHRN7P/Ff/+gwxW/VxFAusqORNkuVWlOVg/xgi+CGsQMKH8Mirmbp3I1rrGb6a
+         ankA==
+X-Forwarded-Encrypted: i=1; AJvYcCWAZzV+QPmV5gLHt96NAxzahk0KqdycP3DntKw9aN92uomdmxt4JZAlB3cREgkzNRSP7yE4rWO1eB8e@vger.kernel.org
+X-Gm-Message-State: AOJu0YynmwVtW/db/+1wyJd6U1xf01d5gm/HUTaq9+W76+OkhKRWZDpR
+	NtJjrlztEV+to2TkxugKDXeSRzALzIuwXESR5Y+lGyEbe60SRugux6ZJyyVlyXA3HwDbE8fXgue
+	YXsEdIKC0pgikiBa6xTcIEuGAFaHrJL8=
+X-Gm-Gg: ATEYQzxILzPMU8QwH01s1/b6pAs9BJ1kfybFotIM3Phkz2agSUbLXALpbHAvvgSyJtB
+	0DTlprMj2cKwmILqCCTt6u2Yh5Ti8udgbPyxZ44Fy0ZiLtke55mcTgxCrfDwe2GB0/Md79rwFdA
+	CKNuvKHccgvZ5DMHkVihwOw3qR/yVkAezwZcKdUDThA7wAdc3rMBmJEhmLIyZ1uTc0B8VvNt7kE
+	cfYSsO5LAxMcJNRRt9pkKPfgAW3V6afIUqmWgUh0z3PpNtDZA2DQD6DB5SvqP/s733zbig37vBZ
+	1Z/RUYgfvL0rtJ6NQh2e1NPdBO0OiJuYueLqJ3q0s2onkgqSJYV0tAwPkHIVAzEh5VRbRXMIDH3
+	4YJGL5ty9TiOuVuP8gVTdhsA=
+X-Received: by 2002:a05:6000:2891:b0:439:be2e:7339 with SMTP id
+ ffacd0b85a97d-439c7f62551mr14098972f8f.8.1772739195787; Thu, 05 Mar 2026
+ 11:33:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 14E94217891
+References: <20260305003253.1022386-1-kerigancreighton@gmail.com>
+ <20260305003253.1022386-4-kerigancreighton@gmail.com> <dea45e4e-aebc-46e4-a245-3603da1779f3@oss.qualcomm.com>
+ <CAN6+ztxfcNR8xR1qwgHQcHHM=zoQbMd-8oggb785ssPZ7f=y4w@mail.gmail.com> <CAFEp6-3JVicAVJB_+5ceSar2Jqstexo-0tyemg3C=qcznQsmxA@mail.gmail.com>
+In-Reply-To: <CAFEp6-3JVicAVJB_+5ceSar2Jqstexo-0tyemg3C=qcznQsmxA@mail.gmail.com>
+From: Kerigan Creighton <kerigancreighton@gmail.com>
+Date: Thu, 5 Mar 2026 13:33:04 -0600
+X-Gm-Features: AaiRm53h5gsIaUcJ-3bFQKEClfESn_bqkCltTUpNu0-wZ5K6CdZUoJq1mcxWf_M
+Message-ID: <CAN6+ztxepeRaYPoTBj5rkeHZFhpZbNu4UYZ1Ajo-0cwsG4++Yg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] wifi: wcn36xx: add support for WCN3610
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, linux-wireless@vger.kernel.org, 
+	wcn36xx@lists.infradead.org, andersson@kernel.org, mathieu.poirier@linaro.org, 
+	linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 5BF36217970
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271709-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271710-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[analog.com,metafoo.de,baylibre.com,kernel.org,gmail.com,vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,analog.com:email]
+	FROM_NEQ_ENVFROM(0.00)[kerigancreighton@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Thu, 05 Mar 2026 14:23:30 +0200
-Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org> wrote:
+On Thu, Mar 5, 2026 at 1:16=E2=80=AFPM Loic Poulain
+<loic.poulain@oss.qualcomm.com> wrote:
+>
+> Could you please add these details to the commit message?
+>
+> Regards,
+> Loic
 
-> From: Radu Sabau <radu.sabau@analog.com>
-> 
-> Add SPI offload support to the AD4691 family driver to enable
-> DMA-based RX stream acquisition. When an SPI offload is available,
-> the driver switches to a pre-built SPI message with 32-bit transfers
-> (4-byte frames aligned to DMA width) and registers a periodic
-> offload trigger for autonomous, CPU-independent sampling.
-> 
-> The offload path implements its own buffer setup ops
-> (ad4691_offload_buffer_postenable/predisable) that enable the
-> offload trigger and wire the DMAengine buffer, while the existing
-> software triggered buffer path is retained as a fallback for
-> non-offload configurations.
-> 
-> Offload channel specs use a 32-bit storage/repeat with a 16-bit
-> shift to extract ADC data from the MSBytes of each DMA word,
-> matching the wire format in Manual Mode where SDO outputs ADC data
-> directly without a command echo.
-> 
-> Kconfig gains a dependency on IIO_BUFFER_DMAENGINE.
-> 
-> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
+Yes, I will send a v3 with more detailed commit messages for all patches.
+I was asked to wait 24 hours between sending patch set revisions.
+Apologies for my poor etiquette (sending HTML email).
 
-Just a few really quick comments as I'm out of time for today.
-
-J
-
-> diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
-> index ab48f336e46c..7ec0a2555a4b 100644
-> --- a/drivers/iio/adc/ad4691.c
-> +++ b/drivers/iio/adc/ad4691.c
-> @@ -8,6 +8,7 @@
->  #include <linux/clk.h>
->  #include <linux/delay.h>
->  #include <linux/device.h>
-> +#include <linux/dmaengine.h>
->  #include <linux/err.h>
->  #include <linux/gpio/consumer.h>
->  #include <linux/hrtimer.h>
-> @@ -21,11 +22,15 @@
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/spi/spi.h>
-> +#include <linux/spi/offload/consumer.h>
-> +#include <linux/spi/offload/provider.h>
-
-This is a provider and a consumer?
-
->  #include <linux/util_macros.h>
->  #include <linux/units.h>
->  #include <linux/unaligned.h>
-
-> @@ -719,7 +871,9 @@ static int ad4691_set_sampling_freq(struct iio_dev *indio_dev, unsigned int freq
->  		 * count. The exact period is refined at buffer enable time when
->  		 * the active channel count is known.
->  		 */
-> -		period_ns = ad4691_cnv_burst_period_ns(st, st->chip->num_channels);
-> +		period_ns = ad4691_cnv_burst_period_ns(st,
-> +							st->chip->num_channels,
-Check for reformatting like occurred for 1st two lines here and try and
-tweak earlier patches to reduce the churn.
-> +							false);
-
-> +
-> +static int ad4691_offload_buffer_predisable(struct iio_dev *indio_dev)
-> +{
-> +	struct ad4691_state *st = iio_priv(indio_dev);
-> +	struct spi_offload_trigger *trigger;
-> +	int ret = 0, tmp;
-> +
-> +	trigger = (st->adc_mode == AD4691_MANUAL_MODE) ?
-> +		  st->offload_trigger_periodic : st->offload_trigger;
-> +
-> +	spi_offload_trigger_disable(st->offload, trigger);
-> +	spi_unoptimize_message(&st->offload_msg);
-> +
-> +	/* Stop conversions and reset sequencer state (not needed for MANUAL_MODE) */
-> +	if (st->adc_mode != AD4691_MANUAL_MODE) {
-> +		tmp = ad4691_sampling_enable(st, false);
-> +		if (!ret)
-> +			ret = tmp;
-> +
-> +		tmp = regmap_write(st->regmap, AD4691_STD_SEQ_CONFIG,
-> +				   AD4691_SEQ_ALL_CHANNELS_OFF);
-> +		if (!ret)
-
-If that failed, all bets are off.  May be better to just return the error.
-
-> +			ret = tmp;
-> +
-> +		tmp = regmap_write(st->regmap, AD4691_STATE_RESET_REG,
-> +				   AD4691_STATE_RESET_ALL);
-> +		if (!ret)
-> +			ret = tmp;
-> +	}
-> +
-> +	return ret;
-> +}
-
->  static irqreturn_t ad4691_irq(int irq, void *private)
->  {
->  	struct iio_dev *indio_dev = private;
-> @@ -1353,10 +1802,17 @@ static void ad4691_setup_channels(struct iio_dev *indio_dev,
->  				  struct ad4691_state *st)
->  {
->  	if (st->adc_mode == AD4691_MANUAL_MODE) {
-> -		if (st->chip->num_channels == 8)
-> -			indio_dev->channels = ad4693_manual_channels;
-> -		else
-> -			indio_dev->channels = ad4691_manual_channels;
-> +		if (st->offload) {
-
-Add more pointers to channel arrays to the chip_info structures and just look them
-up from there.
-
-> +			if (st->chip->num_channels == 8)
-> +				indio_dev->channels = ad4693_manual_offload_channels;
-> +			else
-> +				indio_dev->channels = ad4691_manual_offload_channels;
-> +		} else {
-> +			if (st->chip->num_channels == 8)
-> +				indio_dev->channels = ad4693_manual_channels;
-> +			else
-> +				indio_dev->channels = ad4691_manual_channels;
-> +		}
+Thanks,
+- Kerigan
 
