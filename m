@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-271697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271696-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kKz7K3fUqWmcFwEAu9opvQ
-	(envelope-from <devicetree+bounces-271697-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:07:35 +0100
+	id 0LKHBLjTqWl3FwEAu9opvQ
+	(envelope-from <devicetree+bounces-271696-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:04:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18BFC2173E3
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:07:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EE93217350
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:04:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E3C5305BA83
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:07:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCCFE307A0A0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:04:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 212503033E2;
-	Thu,  5 Mar 2026 19:07:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A66C2F616A;
+	Thu,  5 Mar 2026 19:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="Ax6r6g0i"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="7xp6uLN/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6755923EA8B
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D0262C08BB
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772737647; cv=none; b=r6uUV7AMvEnPaQRoc3e4NPmwvpi8YYtDkeKZ+bFHhat9wkpm7vG6X7vmw12uihkNdp34Qb5UVavzfC5D+TBrYHnpXXxxH60OL73GcrfGCZ9JjdwbbhhJeLUBLLHtIT6yTUM/yTBQr0ydkGoIvYycRC6ceJxHBI2rXh8gfEkjbS4=
+	t=1772737460; cv=none; b=hPB/xeW4Cy8qedIFewdaX1lh3o7UcyQIdQ+o5Wht9ByepUqgqMeiD5C6Mxzr7XaJ33PIQB8HSA/1JBlqFsUujVHbUT2g2AI8dYQIyioHBj7LDi8zi7hu9ME5CUEHEpGkUYrGVsXc5e9nw3dYOmDhC5Ijv98HI+T2ZzFZE1ULEdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772737647; c=relaxed/simple;
-	bh=1xgdNJzLL8KfMHgFDGI6C4e0TMBhJksValsubgWfixk=;
+	s=arc-20240116; t=1772737460; c=relaxed/simple;
+	bh=0cMkxm7dpZ1xmN+oxuhZ+J5McF8TzcD3plfxWOZH13E=;
 	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uxbPspNxWSCc0DPyvq+CIFQa8g1Zig1lj7V3OrydYscRJn3eaRNmRK1jfMCXvG5TSIMAlNsBzOQBDOtylvubLQXrtadm+EbGO2ddU+1S/HFzstnvda8aaWpIj12QTsTgmLcJz8WiJ9egu19eXBqOFmd4hGOjjgKYP5qvftyWhM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=Ax6r6g0i; arc=none smtp.client-ip=84.16.241.116
+	 Content-Type:MIME-Version; b=co6hPNzVqkm/E12uwB4l8mOREc7PPA5VSYZVTBUKbGx0sJ9BZObLF0dG7DsOmdt+wg2jzRF97+bSsLYnapdfZU7WKgKoEr7JyDHl56D4BdrbVFIrz5lPooIP1if7R9kLs2qngzwf4xK2DaJwMGmmPXu8XVY4GFEzEwPA4R8AtHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=7xp6uLN/; arc=none smtp.client-ip=84.16.241.116
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
 Received: from [IPv6:2a02:1812:162c:8f00:19d9:5e35:1cd7:5d5d] (2a02-1812-162c-8f00-19d9-5e35-1cd7-5d5d.ip6.access.telenet.be [IPv6:2a02:1812:162c:8f00:19d9:5e35:1cd7:5d5d])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits))
 	(No client certificate requested)
 	(Authenticated sender: sander@svanheule.net)
-	by polaris.svanheule.net (Postfix) with ESMTPSA id 8DD7E6F2F22;
-	Thu,  5 Mar 2026 19:59:44 +0100 (CET)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 2DCB96F2F33;
+	Thu,  5 Mar 2026 20:04:15 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
-	s=mail1707; t=1772737184;
+	s=mail1707; t=1772737455;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=1xgdNJzLL8KfMHgFDGI6C4e0TMBhJksValsubgWfixk=;
-	b=Ax6r6g0iV/rvUYOCRsC/mhLUQzCVpWN/FQ8VWFFiaIxc3DdNi3g35U1uIkVVCbDdsUrWqD
-	pibW7qa1WA/O5hxYStnru9NVTOUfvVAnwow8AFQw8SnFJT+JBi0T1Q+P074dhz8z/bvaq0
-	yyk1EeL5TCjR9y/Hg1/vA1rXTAdlUCb3i+0AD5soRKzrc/PTy5oByElyVdaMLPQ5aMQ9Ba
-	5cxUIXXSWPsZvga6hRZ+bDZ4jFq+kS1qAlkLIU1Dlc5oJdnMVsee9krEDVqZm99A9i2YyN
-	90mmnockFZ6MtfsKKO40l0k+HCLkbScWbV02cMdvFJ3twrjSzitxZm9ThzaLRA==
-Message-ID: <258c5f81d007cc57e361b27c280167c552e01a3f.camel@svanheule.net>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: realtek-otto: add rtl9607
- compatible
+	bh=t3JlO9jkrcoFYhcSoRZPlkrxeap+txhaWKtFXzrqp/A=;
+	b=7xp6uLN/2jgIUVF5DrHjwCUicbxEi0UEnH2lixV/dH25/QbVJvZXlfZbsp+3N+53JExDmR
+	A20VQypE3lHos49PcaVXLjGIIQDc+IvX0z5VQifjp86+pX2IPZfziBeaRh4Ec6n5CJuzDr
+	HKvy9VVdLHvjG7X4ZTEEaOCDfEuhPXSyQmLfSR/TFpVLcvcCcQZHiXUcFpOgdJrfIwtUUw
+	UcgGHC4FEUxgiZwZ3fXnaV5b68Mn0te3A49nsXV8ASBINHWt2PiXqdMSuS8aPL5JahbAff
+	vT22eHH2UZQcIHcrKvamcGAY3HaDJFlFVNzpC5gPmhsrfE4gxyi65jGqS7l9jA==
+Message-ID: <f92a2a8558ebff7a145ece97c2bc44f1f7aafd26.camel@svanheule.net>
+Subject: Re: [PATCH 2/2] gpio: realtek-otto: add rtl9607 support
 From: Sander Vanheule <sander@svanheule.net>
 To: Rustam Adilov <adilov@disroot.org>, Linus Walleij <linusw@kernel.org>, 
  Bartosz Golaszewski
@@ -63,10 +62,10 @@ To: Rustam Adilov <adilov@disroot.org>, Linus Walleij <linusw@kernel.org>,
 	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bert Vermeulen
 	 <bert@biot.com>, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
-Date: Thu, 05 Mar 2026 19:59:38 +0100
-In-Reply-To: <20260305161106.15999-2-adilov@disroot.org>
+Date: Thu, 05 Mar 2026 20:04:14 +0100
+In-Reply-To: <20260305161106.15999-3-adilov@disroot.org>
 References: <20260305161106.15999-1-adilov@disroot.org>
-	 <20260305161106.15999-2-adilov@disroot.org>
+	 <20260305161106.15999-3-adilov@disroot.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
@@ -76,7 +75,7 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 18BFC2173E3
+X-Rspamd-Queue-Id: 3EE93217350
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -89,7 +88,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271697-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271696-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[svanheule.net:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
@@ -104,38 +103,44 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[svanheule.net:dkim,svanheule.net:email,svanheule.net:mid,disroot.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,disroot.org:email,svanheule.net:dkim,svanheule.net:mid]
 X-Rspamd-Action: no action
 
+Hi,
+
 On Thu, 2026-03-05 at 21:11 +0500, Rustam Adilov wrote:
-> Add the "realtek,rtl9607-gpio" compatible for GPIO nodes
-> on the RTL9607C SoC series.
+> The RTL9607C SoC has support for 3 GPIO banks with 32 GPIOs each and
+> the port order is reversed just like in RTL930x.
 >=20
 > Signed-off-by: Rustam Adilov <adilov@disroot.org>
 > ---
-> =C2=A0Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml | 1 +
-> =C2=A01 file changed, 1 insertion(+)
+> =C2=A0drivers/gpio/gpio-realtek-otto.c | 4 ++++
+> =C2=A01 file changed, 4 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yam=
-l
-> b/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> index 728099c65824..b18f8f0ca0ae 100644
-> --- a/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/realtek,otto-gpio.yaml
-> @@ -30,6 +30,7 @@ properties:
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rt=
-l8390-gpio
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rt=
-l9300-gpio
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rt=
-l9310-gpio
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl9607=
--gpio
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: realtek,otto-gpio
-> =C2=A0
-> =C2=A0=C2=A0 reg: true
+> diff --git a/drivers/gpio/gpio-realtek-otto.c b/drivers/gpio/gpio-realtek=
+-
+> otto.c
+> index 4cf91528f547..5e3152c2e51a 100644
+> --- a/drivers/gpio/gpio-realtek-otto.c
+> +++ b/drivers/gpio/gpio-realtek-otto.c
+> @@ -351,6 +351,10 @@ static const struct of_device_id realtek_gpio_of_mat=
+ch[]
+> =3D {
+> =C2=A0	{
+> =C2=A0		.compatible =3D "realtek,rtl9310-gpio",
+> =C2=A0	},
+> +	{
+> +		.compatible =3D "realtek,rtl9607-gpio",
+> +		.data =3D (void *)GPIO_PORTS_REVERSED,
+> +	},
+> =C2=A0	{}
+> =C2=A0};
+> =C2=A0MODULE_DEVICE_TABLE(of, realtek_gpio_of_match);
 
-Reviewed-by: Sander Vanheule <sander@svanheule.net>
+If I'm not mistaken, this SoC has a MIPS InterAptiv CPU like the RTL931x So=
+C
+series. Were you able to validate that the interrupts are functioning as
+expected?
 
 Best,
 Sander
