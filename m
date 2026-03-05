@@ -1,254 +1,286 @@
-Return-Path: <devicetree+bounces-271587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271588-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qHAXGwSLqWl3/AAAu9opvQ
-	(envelope-from <devicetree+bounces-271587-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:54:12 +0100
+	id GOpPCJ+RqWmoAAEAu9opvQ
+	(envelope-from <devicetree+bounces-271588-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:22:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598F5212D29
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:54:11 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B611B2133AA
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:22:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4ABC9301FE7D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:54:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 723423051DC1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 770BB3A5E7F;
-	Thu,  5 Mar 2026 13:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="vhjkxXVN"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 662D32517AA;
+	Thu,  5 Mar 2026 14:21:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B9D83793AF;
-	Thu,  5 Mar 2026 13:54:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F04D624886A
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772718846; cv=none; b=PmezVK93ht3qfzpdJc0Z8PnPCZd6q/MlHBwgvzpcvTIAg34/7i9+bfsdLy6S6cgIwRIfdQfQ8M890fax070kYuUuDuVHtFDw+LkDpLRs+sUkfC2xSfWWiv8aLvobBsDzgsGENQ9UNGGkFdRgCn2O9qSvASST3NHFON9QlDsXfnc=
+	t=1772720507; cv=none; b=ErXYNlcZzue3xJQwKjs8zG5zD7gBcPDrXp5h75MDVeWfdGqf63h2Hr5Ju84zaJwA52TuxpfGNSsF9lfrLqnL/k+AgLn+WPtBNnyu6vI3hPdSPSGB5raAJJ6xRtZNFjm0rFFt6mAvqbKJupt46/PLnSbzrIDURP1viZfL0k8/KDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772718846; c=relaxed/simple;
-	bh=tCl6/GMKmQ3BxAmgEOZu6/xM8rVKQDzWssWhsDrZvc4=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=H8S9QSPlXdw5IkYPhvm+p/WOV9AUdJCLZQ1QiS5q1BOs6lZEOiSsYkl/dUqTfGXqjcwYBojUwzVYC+JY3FBPbfM5Rl4nQDeM5alSxEbKSX2sxEl73gIlAszI7o/GHWHXkFkWdxUVt7ViAn/Zh7Hj67LeHxeyZwoJ//tr+cDf+Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=vhjkxXVN; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772718845; x=1804254845;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=tCl6/GMKmQ3BxAmgEOZu6/xM8rVKQDzWssWhsDrZvc4=;
-  b=vhjkxXVN+/8N8ZRBTVelvn3AB+5ReXdmntzesgQ5g6TMuMmSukUaHhWi
-   eGz9U1eiBuPWCVwvAChgaKrQnjo8bWfvvvxTNMF5lIXape0Riq0Sgjc5h
-   MmJgxBV39ug1YicyaVveNqF5hB5dpaPBoYhvKwsmP3blorAkwT/qlfDBg
-   /fcL7uSt8Uu32SiSZrPPvPpQj+Ze/F25ObO2VlwxnXRvB35bf55dYabI7
-   27jnypsigqGpM/Iv+ZTMqVAOOEp4nJPQ6EYIucPqKjxRJCh+vWhITtUBv
-   crLEO9qBXpBdDInjhOld0IDnGKv7OLM/GE2CuOR8YvGKDYU+1XtiRLx/t
-   A==;
-X-CSE-ConnectionGUID: 53Fw462UR1+dIo39tzfrSg==
-X-CSE-MsgGUID: x9GW6meWQA6aIc7I/EugbA==
-X-IronPort-AV: E=Sophos;i="6.23,103,1770620400"; 
-   d="scan'208";a="54264246"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Mar 2026 06:54:04 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Thu, 5 Mar 2026 06:53:50 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Thu, 5 Mar 2026 06:53:47 -0700
-Message-ID: <3811e2284c284a3260cf7f746e97fd28426b8ef1.camel@microchip.com>
-Subject: Re: [PATCH net-next 1/8] net: dsa: add tag driver for LAN9645X
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-CC: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman
-	<horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung Huh
-	<woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
- Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
-	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Thu, 5 Mar 2026 14:53:46 +0100
-In-Reply-To: <20260303161147.bgbltslwrl2gtd7p@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-1-bff8ca1396f5@microchip.com>
-	 <20260303161147.bgbltslwrl2gtd7p@skbuf>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1772720507; c=relaxed/simple;
+	bh=rEhy/H/nCGCiHwzJthbPzEIukVehLVTNrC1dkGO/Qd8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fdPPdN2PNLMijVsvVCkBqciFZ9EBHHKI4Crw1LO2e778UryDHC37lgnHMi+V+sOltAHl9YpA9V7oB2EJIFPcSfA5cMrtAN/Efdxtgs1a1O/OACcMa8tZcDZy9vkocjDnPSHZQQVPS0gBnV4QLXu2lzotvpo3Zj/ckQnUMTXpA2Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b904e1cd038so1087913766b.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:21:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772720503; x=1773325303;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CXtAYRrzYSGErNFDdgbOo6Dg4VTIExI46uaNzGfcACQ=;
+        b=RbgS1dvzfQVVA3dSJaivFDdz91rMVnHnOtcOqy5Zkyd0a9yX8HphZDIUnQWn2hT69r
+         MQmwcgxbO8kxAlt3L0BWQDqkyVQTuadJbxS7bb3aCYu3CEVui/PUj6iug6dSa185vrf6
+         qTKQqe/4WIJIQ+yLmZZZJUaOasm6aDJZFmFIDr31wcAKiLuG1BwNzI62XlUzjSnas6vN
+         qyRG9EYV8bpwT9jeKT2xb7oVkMjGj2OCo0jj6MkREIGgaSvZJEwL38vtSW4NfXPqEl39
+         pLw/ZTlJ4I9d+3Uc1Ia6Rp1OCMZwVbRSbe8VuuF/f4ruQ+C8zyE0N5SOmcoWzXF7SLOE
+         DrHw==
+X-Forwarded-Encrypted: i=1; AJvYcCX+m34wFzAb3K+N1QZrouVtGxtfvvLThP1mKWDySIvEzUZ68Vqv25Qt+VpKAMXg6sf94wxcsXoDOqMf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0OR0LNLx0oudsVdExG2uaXW/iB67Gxag1Kyc+lgDn54BzA/fe
+	YWb6/a1XU2ASEXJwnKA8jaI3J3/QfFYZYmTZGuqW6LNAUEhRSXZjlSFMc1c3+XTcPxM=
+X-Gm-Gg: ATEYQzwMRbYhdPYh4CEcsdIyZFUzyDMvUeoQ3ixV28Duy8R6Yy6N4sJdAqdbMBZpAYe
+	89w/Reep+AlnSgVbvmVoB+89sDcVDxVzZbo2HhhJsgQp310Kht2wiYcY7xJGxY4Dx56wkDhHg21
+	iw3+gkrxHuBhFO3XUN9lMqhUuHqsfRm/9oCKp+38xQ/3joSrdLxNYp1E3v3QH531fLrYoykRt7b
+	RNNXF0ugNlzwVCnrV3iz+PW7EUQwhnaC2HWBbapyhSn6W5jHfJ96fQwQAIMh33bA1ntHfrtlXGV
+	s1IjfbM5eOWgR7JEvqs4y2317bL1NIbFM+QWquKt3q3VVepwFywKwZCxOFCAwqhtQnol6u1nll1
+	V56gTRC7OlzqzbEaX23DH0UYx21Gu/KEyAan9WkukHn4ht2nqjxeUayBCTJfvrQTrxP2HFZMBst
+	53xO3JPWalq95JfiJACXNBD8WvuXVW9zenC18+e+oAIyZIb2MoOWG5dOpVRab5
+X-Received: by 2002:a17:906:2081:b0:b94:354:3dac with SMTP id a640c23a62f3a-b940354449dmr127091366b.59.1772720502963;
+        Thu, 05 Mar 2026 06:21:42 -0800 (PST)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com. [209.85.218.45])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9402a137c0sm135352166b.57.2026.03.05.06.21.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Mar 2026 06:21:41 -0800 (PST)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b9359c0ec47so880017766b.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:21:41 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUjOaS32rY7GXFeeySGriUNQsa4my9wpNQpuPLQYXnEpfX2xjFq+VSuSoqGZwFAIi5xTeulc5GFkv4Y@vger.kernel.org
+X-Received: by 2002:a17:906:7316:b0:b87:1fe6:f223 with SMTP id
+ a640c23a62f3a-b93f10f8313mr358270066b.6.1772720500784; Thu, 05 Mar 2026
+ 06:21:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 598F5212D29
+References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com> <20260203103031.247435-6-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20260203103031.247435-6-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 5 Mar 2026 15:21:27 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXPuBEODa0Uyhuv7u9ERY+YajsECTa0=XKY6WcE-VnaGA@mail.gmail.com>
+X-Gm-Features: AaiRm51dLhVDp_IdfNbKoUzEcAGoO9N7tD3ybXTlfw77SuglDEgtVuQ3mKWaML4
+Message-ID: <CAMuHMdXPuBEODa0Uyhuv7u9ERY+YajsECTa0=XKY6WcE-VnaGA@mail.gmail.com>
+Subject: Re: [PATCH v3 05/10] dt-bindings: clock: Document RZ/G3L SoC
+To: Biju <biju.das.au@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: B611B2133AA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271587-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,bp.renesas.com,vger.kernel.org,microchip.com];
+	TAGGED_FROM(0.00)[bounces-271588-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.120];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,microchip.com:dkim,microchip.com:mid]
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On Tue, 2026-03-03 at 18:11 +0200, Vladimir Oltean wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> On Tue, Mar 03, 2026 at 01:22:27PM +0100, Jens Emil Schulz =C3=98stergaar=
-d wrote:
-> > Use long prefix on extraction (RX) and no prefix on injection (TX). A
-> > long prefix on extraction helps get through the conduit port on host
-> > side, since it will see a broadcast MAC.
-> (...)
-> > The format can be configured asymmetrically on RX and TX.
->=20
-> Do you foresee a need to configure the prefix length? It would be
-> possible to do that by changing the tagging protocol. But it implies
-> that the "lan9645x" string as found in /sys/class/net/.../dsa/tagging
-> becomes user ABI that is set in stone. It will mean long extraction
-> prefix and no injection prefix. Otherwise user space will get very
-> confused (libpcap, XDP, whatever else might get written).
->=20
+Hi Biju,
 
-That is a good point, so the prefix choice could be baked into the name lik=
-e
-lan9645x-long? I do not forsee a need to configure the prefix. I wanted to
-mention it because it is a difference with the ocelot driver.
+Thanks for your patch!
 
-> > +static inline u32 lan9645x_ifh_get(const u8 *ifh, size_t pos, size_t l=
-ength)
-> > +{
-> > +     size_t end =3D (pos + length) - 1;
-> > +     size_t start_u8 =3D pos >> 3;
-> > +     size_t end_u8 =3D end >> 3;
-> > +     size_t end_rem =3D end & 0x7;
-> > +     size_t pos_rem =3D pos & 0x7;
-> > +     u8 end_mask, start_mask;
-> > +     const u8 *ptr;
-> > +     u32 val;
-> > +
-> > +     end_mask =3D BTM_MSK(end_rem);
-> > +     start_mask =3D TOP_MSK(pos_rem);
-> > +
-> > +     ptr =3D &ifh[LAN9645X_IFH_LEN - 1 - end_u8];
-> > +
-> > +     if (end_u8 =3D=3D start_u8)
-> > +             return (*ptr & end_mask & start_mask) >> pos_rem;
-> > +
-> > +     val =3D *ptr++ & end_mask;
-> > +
-> > +     for (size_t j =3D 1; j < end_u8 - start_u8; j++)
-> > +             val =3D val << 8 | *ptr++;
-> > +
-> > +     return val << (8 - pos_rem) | (*ptr & start_mask) >> pos_rem;
-> > +}
->=20
-> If performance isn't a huge concern, pack() and unpack() certainly seem
-> simpler than having your own implementation.
->=20
+On Tue, 3 Feb 2026 at 11:30, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Document the device tree bindings for the Renesas RZ/G3L SoC Clock Pulse
+> Generator (CPG). RZ/G3L CPG is similar to RZ/G2L CPG but has 5 clocks
+> compared to 1 clock on other SoCs.
+>
+> Also define RZ/G3L (R9A08G046) Clock Pulse Generator Core Clock, module
 
-I did see pack/unpack, but I had some trouble getting gcc to inline them.
-The performance on the CPU port with our development hosts is less than=C2=
-=A0
-expected, so I tried to make this reasonably fast.
+Core Clocks, as listed in section 4.4.1 ("Block Diagram of the Clock System")
 
-> > +
-> > +static inline void lan9645x_xmit_get_vlan_info(struct sk_buff *skb,
-> > +                                            struct net_device *br,
-> > +                                            u32 *vlan_tci, u32 *tag_ty=
-pe)
-> > +{
-> > +     struct vlan_ethhdr *hdr;
-> > +     u16 proto, tci;
-> > +
-> > +     if (!br || !br_vlan_enabled(br)) {
-> > +             *vlan_tci =3D 0;
-> > +             *tag_type =3D LAN9645X_IFH_TAG_TYPE_C;
-> > +             return;
-> > +     }
-> > +
-> > +     hdr =3D (struct vlan_ethhdr *)skb_mac_header(skb);
-> > +     br_vlan_get_proto(br, &proto);
-> > +
-> > +     if (ntohs(hdr->h_vlan_proto) =3D=3D proto) {
-> > +             vlan_remove_tag(skb, &tci);
-> > +             *vlan_tci =3D tci;
-> > +     } else {
-> > +             rcu_read_lock();
-> > +             br_vlan_get_pvid_rcu(br, &tci);
-> > +             rcu_read_unlock();
-> > +             *vlan_tci =3D tci;
-> > +     }
-> > +
-> > +     *tag_type =3D (proto !=3D ETH_P_8021Q) ? LAN9645X_IFH_TAG_TYPE_S =
-:
-> > +                                          LAN9645X_IFH_TAG_TYPE_C;
-> > +}
-> > +
-> > +#endif /* _NET_DSA_TAG_LAN9645X_H_ */
->=20
-> Why do these need to live in a separate include file? Who else needs
-> access to them other than the tagger?
->=20
+> clock outputs, as listed in section 4.4.2 ("Clock List r1.00") and add
+> Reset definitions referring to registers CPG_RST_* in Section 4.4.3
+> ("Register") of the RZ/G3L Hardware User's Manual (Rev.1.00 Oct, 2025).
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-You are right I will move them to the .c file.
+> --- a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+> +++ b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+> @@ -28,19 +28,30 @@ properties:
+>        - renesas,r9a07g044-cpg # RZ/G2{L,LC}
+>        - renesas,r9a07g054-cpg # RZ/V2L
+>        - renesas,r9a08g045-cpg # RZ/G3S
+> +      - renesas,r9a08g046-cpg # RZ/G3L
+>        - renesas,r9a09g011-cpg # RZ/V2M
+>
+>    reg:
+>      maxItems: 1
+>
+>    clocks:
+> -    maxItems: 1
+> +    minItems: 1
+> +    items:
+> +      - description: Clock source to CPG can be either from external clock
+> +                     input (EXCLK) or crystal oscillator (XIN/XOUT).
+> +      - description: ETH0 TXC clock input
+> +      - description: ETH0 RXC clock input
+> +      - description: ETH1 TXC clock input
+> +      - description: ETH1 RXC clock input
+>
+>    clock-names:
+> -    description:
+> -      Clock source to CPG can be either from external clock input (EXCLK) or
+> -      crystal oscillator (XIN/XOUT).
+> -    const: extal
+> +    minItems: 1
+> +    items:
+> +      - const: extal
+> +      - const: eth0_txc_tx_clk
+> +      - const: eth0_rxc_rx_clk
+> +      - const: eth1_txc_tx_clk
+> +      - const: eth1_rxc_rx_clk
 
-> > +static const struct dsa_device_ops lan9645x_netdev_ops =3D {
-> > +     .name =3D LAN9645X_NAME,
-> > +     .proto =3D DSA_TAG_PROTO_LAN9645X,
-> > +     .xmit =3D lan9645x_xmit,
-> > +     .rcv =3D lan9645x_rcv,
-> > +     .needed_headroom =3D LAN9645X_TOTAL_TAG_LEN,
-> > +     .promisc_on_conduit =3D false,
->=20
-> Initializing with false is unnecessary.
+Are you sure about these four clocks? On which pins are they input?
 
-I will remove it in the next version.
+>
+>    '#clock-cells':
+>      description: |
 
->=20
-> > +};
-> > +
-> > +MODULE_DESCRIPTION("DSA tag driver for LAN9645x family of switches, us=
-ing NPI port");
-> > +MODULE_LICENSE("GPL");
-> > +MODULE_ALIAS_DSA_TAG_DRIVER(DSA_TAG_PROTO_LAN9645X, LAN9645X_NAME);
-> > +
-> > +module_dsa_tag_driver(lan9645x_netdev_ops);
-> >=20
-> > --
-> > 2.52.0
-> >=20
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/r9a08g046-cpg.h
+> @@ -0,0 +1,343 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> + *
+> + * Copyright (C) 2026 Renesas Electronics Corp.
+> + */
+> +#ifndef __DT_BINDINGS_CLOCK_R9A08G046_CPG_H__
+> +#define __DT_BINDINGS_CLOCK_R9A08G046_CPG_H__
+> +
+> +#include <dt-bindings/clock/renesas-cpg-mssr.h>
+> +
+> +/* R9A08G046 CPG Core Clocks */
 
-Thanks,
-Emil
+[...]
 
+> +#define R9A08G046_OSCCLK               52
+> +#define R9A08G046_OSCCLK2              53
+> +#define R9A08G046_CLK_P4_DIV2          54
+
+CLK_P4_DIV2 looks like a purely internal clock to me.
+
+
+> +
+> +/* R9A08G046 Module Clocks */
+
+[...]
+
+> +#define R9A08G046_CRU_PCLK             65
+> +#define R9A08G046_CRU_ACLK             66
+> +#define R9A08G046_MIPI_DSI_PLLCLK      67
+
+MIPI_DSI_PLLCLK is indeed not a gateable clock, so it should be a core
+clock.
+
+> +#define R9A08G046_MIPI_DSI_SYSCLK      68
+> +#define R9A08G046_MIPI_DSI_ACLK                69
+> +#define R9A08G046_MIPI_DSI_PCLK                70
+> +#define R9A08G046_MIPI_DSI_VCLK                71
+> +#define R9A08G046_MIPI_DSI_LPCLK       72
+> +#define R9A08G046_LVDS_PLLCLK          73
+> +#define R9A08G046_LVDS_CLK_DOT0                74
+> +#define R9A08G046_LVDS_PCLK            75
+
+LVDS_PCLK does not seem to exist, there is only a single reference to it
+(but I can see where its gate bit used to be ;-)
+
+> +#define R9A08G046_LCDC_CLK_A           76
+> +#define R9A08G046_LCDC_CLK_D           77
+> +#define R9A08G046_LCDC_CLK_P           78
+> +#define R9A08G046_SSI0_PCLK2           79
+> +#define R9A08G046_SSI0_PCLK_SFR                80
+> +#define R9A08G046_SSI1_PCLK2           81
+> +#define R9A08G046_SSI1_PCLK_SFR                82
+> +#define R9A08G046_SSI2_PCLK2           83
+> +#define R9A08G046_SSI2_PCLK_SFR                84
+> +#define R9A08G046_SSI3_PCLK2           85
+> +#define R9A08G046_SSI3_PCLK_SFR                86
+> +#define R9A08G046_USB_U2H0_HCLK                87
+> +#define R9A08G046_USB_U2H1_HCLK                88
+> +#define R9A08G046_USB_U2P0_EXR_CPUCLK  89
+> +#define R9A08G046_USB_U2P1_EXR_CPUCLK  90
+> +#define R9A08G046_USB_PCLK             91
+> +#define R9A08G046_USB_SCLK             92
+
+USB_SCLK is not gateable, so it should be a core clock.
+
+[...]
+
+> +/* R9A08G046 Resets */
+
+[...]
+
+> +#define R9A08G046_RSCI2_TRESETN                114
+> +#define R9A08G046_RSCI3_TRESETN                115
+> +#define R9A08G046_LVDS_RESET_N         116
+
+Missing BSC_X_PRESET_BSC?
+It could be added later, but you do list the corresponding module clock.
+
+> +
+> +#endif /* __DT_BINDINGS_CLOCK_R9A08G046_CPG_H__ */
+
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
