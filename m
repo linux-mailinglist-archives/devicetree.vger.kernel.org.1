@@ -1,315 +1,153 @@
-Return-Path: <devicetree+bounces-271476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271477-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cOS3AolSqWkj4wAAu9opvQ
-	(envelope-from <devicetree+bounces-271476-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:53:13 +0100
+	id KAhIFKpSqWkj4wAAu9opvQ
+	(envelope-from <devicetree+bounces-271477-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:53:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AF3A20F05C
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:53:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C1F4720F0BF
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:53:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D5D5530406B1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:49:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BDB7B30CA3CB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0E036606E;
-	Thu,  5 Mar 2026 09:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46FB375F62;
+	Thu,  5 Mar 2026 09:49:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="o6yVVFM8";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VYbYKjBU"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="OeGWRPU1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1424637BE85
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 09:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A70288D2;
+	Thu,  5 Mar 2026 09:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772704149; cv=none; b=RFThgb5heoBjQxv0Atn3csi/cwfhRj8pO5FfFexmSSkQv79uexONKAUM94M29MfaEVqepl9qTqRqIYYQk62x7Vo+LJiOcWteeXuIhwmGT0oHKhx6ZxlxSkEwlPO7GHV4HqtgSHpnuu/MyyZo2vzHw2T1kp4BhNHA3b+dMxtmRLU=
+	t=1772704171; cv=none; b=C3Z9e+W/SoAf21kQRRNA1GfcJXGzBeZEagTt2k2DFvmsDT5YDz/o0ayBX08aur84ycHC93KBwNrZpJQM1ReQ3UjyTgtIgafvUCvu3tkXX98F7dPgbXgiDXavW+rN94287QDzPGtpTA/LngXAJSuwK/WFYe4Nys5rPQnr4+CSqa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772704149; c=relaxed/simple;
-	bh=PbP5HbZOT54hjcl4u46HR+7I6IyXggysw7XDymarv6E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=S1oyDbkUusis6bDFV8yqOVXfixCDpKap9l8XUnzlR14R3QNcYrKATSmXQv6Ks8qAslxqKDTwo1EOOGR4Q2U+qOns9L/zoMP3BSAaZqxhVOuHjmGO6bk7YPUjpg4UtkHMZsCHcNz69JPZaNlAZ4xAehjRRs48zzhxGY1bDCHhXBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=o6yVVFM8; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VYbYKjBU; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6258tVPu3604236
-	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 09:49:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4cGHaTDZ3QbyuBDsIPC7MSdJMXOGPnxDxsu9adO9KiQ=; b=o6yVVFM8h/8hdti5
-	M6xulJ38RViodW6hOesY4oK81i2kzeEEPNwDu7mHEUIlqsfYNkrLRJgV70tpPuUc
-	aeONl1OXgWobu3CDczQGLcQC5q+6OaMbiryKewQCDQF7Bl2uKg7+UujHc8PrJnH5
-	/8aT1FORiaozVrpbx5y6HyINK2qhWBUrpcKrSUOF0a4BWwIeXE6qxYKqyNpXjN6o
-	6jQvhBn1aEwe58/PmVTp7uw2+FqzHp9M9Z4uhKOuUnzEaweE81z3+lnu04NHzlgQ
-	7koiqJWlSfabzcWqDa/ZRWOyf+2h02N1XM0+bRp25K61a0uJ59tk2wVLjAN9o7Rk
-	cLD7Bg==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cps0war43-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 09:49:07 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-506bf83258bso167921871cf.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 01:49:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772704146; x=1773308946; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4cGHaTDZ3QbyuBDsIPC7MSdJMXOGPnxDxsu9adO9KiQ=;
-        b=VYbYKjBUfoaapC4dXAtdpesEc/wi4y+c95X7hT2Fbo1rn7TEz7e3NmyGbVba0IlDm5
-         MhIq2FgrBVwc4mcgc1rQRW7w/bqyw8oDRub9jEXb9/ySjmpFfsZLTEHzMEI6MZMAWC8a
-         6sg+QabNOhVKh5CUrIDR68EQPNa5vkQBnwR3gYQiMOSGAIqSXT/vQ4+MTF78rX/ak9ld
-         HsUNatbZ82Kf997vSpbnmL62POXPN6IfW2hD0lnTMhSyZ8B2qw0Yxm8ecLDNQKMM87M/
-         NooqyvhDjrZgNaF0aKcJ4iP51XXvWdyIoqIM0oTtv1xV0/3oIYaz/VXiA7qfn6NNTvvX
-         N2VA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772704146; x=1773308946;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4cGHaTDZ3QbyuBDsIPC7MSdJMXOGPnxDxsu9adO9KiQ=;
-        b=gc93UBmqGJzw8uSgSk4GK5bnzlSw+llXSJ4o2Jlr6aqJtrfo02L3jbA1/a3w/W97pc
-         PRmqcPWKP2rKz74xS/NXBL6nbGA5JvH7ZybqBYK1otA6iA5pZ7a/dtQFvq8v310o1vDx
-         hXK6Zbgs5UoU7qTzqxB8Ji4va5nUh85TqBAaxMocwL6L9kExOf5uzIkFn9FXK71t4dia
-         i1KbUEl4Q3e/1ff66CgWZCD84Gyzz+unKC+LMpZhpyFEmVuPyoOKfp9+9elH1c0pee/4
-         ungh6YdjGEIMfLk8W4xA85QrQ5iJuLz2g3GfMc95TzBd5BjCViSV1y2e/TkLWC/fSajE
-         JIbA==
-X-Forwarded-Encrypted: i=1; AJvYcCW4qq0POgiTOQ/hOU1wLKaxMvSbm33VVXZsxOfEDr6YhezdEK6etQKawRitjRvNSMXTB/k1ExBiMwBO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3tOF59oAvFqNqYeeelmFfgwflpa33d4oumPS8mGPpmtXAA1Ht
-	EvOR3jpnhLle6zvr4IULtgBlgJ2ckV07EHB+j4Q91PRjBnSsNY8tHHVNWCE6Opj6W9+aGHZSC3e
-	gq25xt6TlKEmGd7CKQFndvn20HQBK+6ETo+N5rWL2XAHoV0MgMIy2+lV0A1oU69om
-X-Gm-Gg: ATEYQzwHkLShITcCnPpDtnScOL7xNAc4CjNrLi+v1UI5XVwz2E3rskc5BvcTDS5XEDf
-	amk2OOyYRbieVItb4lMrb+EUWi/wH1tZZs1DRMvbnCCwuhL6WnrTSqOB8msAn2s8yZyj0+Wq/JU
-	q8a0+U8VOP6Tvig7jV3HlkTv/0Hsjq9Go/1TcCQ2/3eQlRW96Tu7cGQADZDZQUf8OskeTf2CxhX
-	bcioTyPFpIU5LKsSnIwf1aeJVP8/YoX1Vvxq7HZ4uvZkqTXgObbl7MKeuUCSGGnzK19T4beyOu1
-	JbLR44R/WzJZ+uaBFURnZwyOD92fqwzYY2nNs3BMk2+msAEs3moMZF+rLk1OUiUIVxCrXf5uBN2
-	c5bgOrheH4nJcO+ru/5FaxKU1C7ptsHcdaSrjW1FyIhKv6MhRmGjliuJmlW3nh/mcgSQsLQo3t6
-	FHQ2lOrxtLOzvL
-X-Received: by 2002:ac8:59d3:0:b0:4f4:c0b3:f50d with SMTP id d75a77b69052e-508db23d4ffmr63775801cf.2.1772704146328;
-        Thu, 05 Mar 2026 01:49:06 -0800 (PST)
-X-Received: by 2002:ac8:59d3:0:b0:4f4:c0b3:f50d with SMTP id d75a77b69052e-508db23d4ffmr63775601cf.2.1772704145831;
-        Thu, 05 Mar 2026 01:49:05 -0800 (PST)
-Received: from WENMLIU-LAB01.ap.qualcomm.com (Global_NAT1_IAD_FW.qualcomm.com. [129.46.232.65])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5074496300fsm177126211cf.2.2026.03.05.01.48.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 01:49:05 -0800 (PST)
-From: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-Date: Thu, 05 Mar 2026 17:48:16 +0800
-Subject: [PATCH v6 5/5] arm64: dts: qcom: talos-evk-camera: Add DT overlay
+	s=arc-20240116; t=1772704171; c=relaxed/simple;
+	bh=5Xcl9IFRzjP/3Rjz3AW1FJUewvUqAGHuI2zzD0ux2VI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dNdjUX26mtS9TTB1dIPbE/Dbh2tZTA5aQ5O94vrwoHl5iogln1SAwRnh39yBpMvC+ONzqPqtIvPqHiRK5dqT4MAeaT6BM7zIrYaaLKRpbOcVzBvUzeF7DaC36eGu0YVYBpQ8n0Di9EnWvSkpGK1WTS2oNpYnoHpAMQuKCMLKSj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=OeGWRPU1; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1772704168;
+	bh=5Xcl9IFRzjP/3Rjz3AW1FJUewvUqAGHuI2zzD0ux2VI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OeGWRPU10+rZvx1DblhD0hp2BmLkizHoDFXqZEh4qkVv8pXhocm27N8qRE5iOzXSm
+	 XKwdlsNi8O0OBdJ/2MpGrMrZuek+w7Jc2CNih/4EZMQIsf0yd2hlOgUyRX7WtMoO6x
+	 riOPG1Nj4Uk9m8Gno2fOIg8IUCriIfcdWz7XWGZ8UWOPultZsLQY3cv2EG72Uun7PM
+	 ddpg4i4/jGrRM4Gk/R1Ugj9C5NV+IKSb8Ez73zmgFXYCvGdRe2ne34pFB+NiwKkBY0
+	 K0wbt45oVrEJyUAWi9i5rrHeaiHDfa492RiAs4FjSqmlHkNUNMhRpBCh0CpTXfaDb4
+	 4PF+HK3XWUs5w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6034617E0454;
+	Thu,  5 Mar 2026 10:49:28 +0100 (CET)
+Message-ID: <e8c587e8-61af-4ef7-b7dd-7d8da7b9aeff@collabora.com>
+Date: Thu, 5 Mar 2026 10:49:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: arm: mediatek: Add Lenovo YOGA Tablet
+ 8/10
+To: Akari Tsuyukusa <akkun11.open@gmail.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ sean.wang@mediatek.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20260304192417.818211-1-akkun11.open@gmail.com>
+ <20260304192417.818211-2-akkun11.open@gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20260304192417.818211-2-akkun11.open@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-sm6150_evk-v6-5-38ce4360d5e0@oss.qualcomm.com>
-References: <20260305-sm6150_evk-v6-0-38ce4360d5e0@oss.qualcomm.com>
-In-Reply-To: <20260305-sm6150_evk-v6-0-38ce4360d5e0@oss.qualcomm.com>
-To: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>
-Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, imx@lists.linux.dev,
-        linux-arm-kernel@lists.infradead.org,
-        Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772704098; l=3694;
- i=wenmeng.liu@oss.qualcomm.com; s=20250925; h=from:subject:message-id;
- bh=PbP5HbZOT54hjcl4u46HR+7I6IyXggysw7XDymarv6E=;
- b=xPjuR1/IXLW6OcuyjZzHZvvlAfZjFPgkhBUumCm5uy+lLpB6F1tFgB9R9QSnD1D9ATPpDavj+
- 2EWETJBbdnFCbfji+wPN8nVvPK6tZEYFBwcjp2ER7wqe2htnK25bEnu
-X-Developer-Key: i=wenmeng.liu@oss.qualcomm.com; a=ed25519;
- pk=fQJjf9C3jGDjE1zj2kO3NQLTbQEaZObVcXAzx5WLPX0=
-X-Proofpoint-GUID: bI83s8UFb5jbcE3m_-SO77iPWHOt6zm0
-X-Authority-Analysis: v=2.4 cv=BNK+bVQG c=1 sm=1 tr=0 ts=69a95193 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=C3Dk8TwHQYyIj7nOf9RCJw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=nxASbDduW_9Jqosb7dAA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDA3OCBTYWx0ZWRfXwx/RVmHGXHPX
- IIDpf+QookT5sb+O68ZbIWaTbSL1T4UR8o1VHLiLIccPY5X8I8Md6VV5DBDSsgF9zO0OI73E34b
- olwHqq8orPukei93OC2CzpzP7TeLAvcjM5/2KDOEWqSfuXiQw3+g2dwU/XKMjVZHENbNzqALHNs
- rC09RRUvyn5IZMDS1+6RSG3925Qb26nEEJXoaKkvQelXCvKswJGG+S+U6r5+Ef0D07BX5z+m8JA
- jP+YUfQBVkfDB0F41fLrsq8D0jeZ8UZUKYQ+IqkvvtrspTB5HifCaO0p1LpzsXknrKA0UToAItW
- 4b6CNSTXoaVdvBUy6dS1HZocZa91h3HmNFnE3TYwzKPt8zEiBG6w34Hxp8VsbC7zAxylMH1MkAc
- JO+4cbfcHm097zynKpVNxHILf+eAurNg4ulV64lhMwZzx+JfFnRtvc6c1rHDLyGeTPkFAxSbpL5
- phRhIdYjMQHPf8VSd9Q==
-X-Proofpoint-ORIG-GUID: bI83s8UFb5jbcE3m_-SO77iPWHOt6zm0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-05_02,2026-03-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 malwarescore=0 spamscore=0 clxscore=1015 impostorscore=0
- adultscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050078
-X-Rspamd-Queue-Id: 8AF3A20F05C
+X-Rspamd-Queue-Id: C1F4720F0BF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271476-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,linaro.org:email,qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.0.1:email];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,gmail.com,linaro.org,pengutronix.de,nxp.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271477-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,mediatek.com];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wenmeng.liu@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:mid]
 X-Rspamd-Action: no action
 
-Enable IMX577 via CCI on Talos EVK Core Kit.
+Il 04/03/26 20:24, Akari Tsuyukusa ha scritto:
+> Add the "lenovo,blade" compatible string for the Lenovo YOGA Tablet 8/10
+> family and add compatible strings for each board
+> (B6000-F, B6000-H, B8000-F, B8000-H).
 
-The Talos EVK board does not include a camera sensor
-by default. This DTSO has enabled the Arducam 12.3MP
-IMX577 Mini Camera Module on the CSI-1 interface.
-CSI-1 interface using mclk2 as the MCLK source on this board.
+You're adding support (a devicetree) only for the B8000-F though...
 
-Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Signed-off-by: Wenmeng Liu <wenmeng.liu@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/Makefile                  |  3 ++
- .../boot/dts/qcom/talos-evk-camera-imx577.dtso     | 63 ++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/talos-evk-som.dtsi        |  7 +++
- 3 files changed, 73 insertions(+)
+> 
+> These tablets are based on the "blade" platform, featuring 1GB of RAM
+> and powered by MediaTek MT8125 or MT8389 SoCs. Since these SoCs are
+> tablet-oriented variants of the MT6589, they are grouped under the
+> "mediatek,mt6589" compatible string.
+> 
+> Signed-off-by: Akari Tsuyukusa <akkun11.open@gmail.com>
+> ---
+>   Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> index 382d0eb4d0af..69dbe389515c 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+> @@ -44,6 +44,11 @@ properties:
+>         - items:
+>             - enum:
+>                 - fairphone,fp1
+> +              - lenovo,b6000-f
+> +              - lenovo,b6000-h
+> +              - lenovo,b8000-f
+> +              - lenovo,b8000-h
+> +              - lenovo,blade
+>                 - mundoreader,bq-aquaris5
+>             - const: mediatek,mt6589
+>         - items:
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index defd40ab69e5c419b9d394c2ba557923de9225f2..5301e9dce4cb2b874715f8bf16a648d33339b578 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -353,6 +353,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8750-qrd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk.dtb
- talos-evk-usb1-peripheral-dtbs := talos-evk.dtb talos-evk-usb1-peripheral.dtbo
- dtb-$(CONFIG_ARCH_QCOM) += talos-evk-usb1-peripheral.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-camera-imx577.dtbo
-+talos-evk-camera-imx577-dtbs	:= talos-evk.dtb talos-evk-camera-imx577.dtbo
-+dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-camera-imx577.dtb
- talos-evk-lvds-auo,g133han01-dtbs	:= \
- 	talos-evk.dtb talos-evk-lvds-auo,g133han01.dtbo
- dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk-lvds-auo,g133han01.dtb
-diff --git a/arch/arm64/boot/dts/qcom/talos-evk-camera-imx577.dtso b/arch/arm64/boot/dts/qcom/talos-evk-camera-imx577.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..e0c385ec53b18e88b08166d391a638c42e42a5c5
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/talos-evk-camera-imx577.dtso
-@@ -0,0 +1,63 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/clock/qcom,qcs615-camcc.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&camss {
-+	vdd-csiphy-1p2-supply = <&vreg_l11a>;
-+	vdd-csiphy-1p8-supply = <&vreg_l12a>;
-+
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			csiphy1_ep: endpoint {
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&imx577_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&cci {
-+	status = "okay";
-+};
-+
-+&cci_i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	camera@1a {
-+		compatible = "sony,imx577";
-+		reg = <0x1a>;
-+
-+		reset-gpios = <&tlmm 29 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&cam_mclk2_default &cam1_reset_default>;
-+		pinctrl-names = "default";
-+
-+		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-+		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-+		assigned-clock-rates = <24000000>;
-+
-+		avdd-supply = <&vreg_s4a>;
-+
-+		port {
-+			imx577_ep: endpoint {
-+				link-frequencies = /bits/ 64 <600000000>;
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&csiphy1_ep>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi b/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
-index f877a3e5d0b000e9c9c5ee59dbbccc8cdfa05937..1b17d49bcbea4e3e2b42c70c5eb2ae8120841b8f 100644
---- a/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
-+++ b/arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
-@@ -463,6 +463,13 @@ bt_en_state: bt-en-state {
- 		bias-pull-down;
- 	};
- 
-+	cam1_reset_default: cam1-reset-default-state {
-+		pins = "gpio29";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	pcie_default_state: pcie-default-state {
- 		clkreq-pins {
- 			pins = "gpio90";
+Did you really test this with dtbs_check?
 
--- 
-2.34.1
+...also, is the "lenovo,blade" really used for anything (bootloader)?
+
+You can either fix that or just remove the lenovo,blade compatible... but please,
+test with `make dtbs_check` before sending a v2 :-)
+
+Cheers,
+Angelo
 
 
