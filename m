@@ -1,79 +1,76 @@
-Return-Path: <devicetree+bounces-271755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271756-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BT2JIQXqmlfLAEAu9opvQ
-	(envelope-from <devicetree+bounces-271755-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:53:40 +0100
+	id eHSzD6AXqmlfLAEAu9opvQ
+	(envelope-from <devicetree+bounces-271756-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:54:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 380D721989D
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:53:40 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 375142198B9
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 10687303CA66
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:53:22 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2FB43300D76B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B4C36922D;
-	Thu,  5 Mar 2026 23:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DA4936922D;
+	Thu,  5 Mar 2026 23:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ElAwYZeK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ee47HRT/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F28235F5FC;
-	Thu,  5 Mar 2026 23:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4E9369224;
+	Thu,  5 Mar 2026 23:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772754800; cv=none; b=CVZXZaj9G5AIdIs7qVAG+ulEBwmte4+QQuOV3dxv6xWZi7qZKpAlsSyHUPDrEg8MUSb4qs/KJSb0//NYCOOzDf4PmqqrTZOnb89Pap56PXNeWP62kfw0I6TMGMGf89gPjMO2HBcE5i0+Q8wnaunagirrxtaHx3KFYVIC87nIhbs=
+	t=1772754842; cv=none; b=TsB6vc87gKK4c81qtkPOzrRhR3aw78CuTzn+DZB86SGSjvDZmrWLTOhzs5V4JxKqatzzbXozpS2yDLLj4IrbeXPs1bWRcljYrF5hIjUpNqF9eZdkDRg9o0vUmqrv9AR70/X8n3dknU/R0ywK+58LdtDGqgdcnn1aYgVgT5nAzZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772754800; c=relaxed/simple;
-	bh=J4ouPwYryWJg/Sgf3XGOhDoXmHmleT+UQJPFAEsXDk0=;
+	s=arc-20240116; t=1772754842; c=relaxed/simple;
+	bh=3GW0DLJzL7idTf1EI4wFZY+pgAJtLC07kNcuB2s04mA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fggVd7mFtZZynRITnjqidS8w9NlKo2xn+njNMHYhXDvIiI2I+UuG7Pm88LZBOsPikI2A0ffU/kaDpSH61Ef30ynN+AjF80jniKlWH5JKmjed9Ydue0IGWDYJnyP22JMg689dDiIJl/K5M3tjkL3ji3MVJ1D93bwwhysH1US03+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ElAwYZeK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C305AC116C6;
-	Thu,  5 Mar 2026 23:53:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=N+QbYduLfo0VC3DJkRUFQwvR7pJv9zAZ5bumZCHeC1pEaEi2pQgq9lGjajKaNXywrShFbyXYiQEfxGxFnZt4m4lJbpus0/eIjcOz8/CmL+esUnUMCAcBYGNdYwZsfOhZYt5LIVbUNmYK5isHBl1XXoejNFbKDZBP8LqBeyRglSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ee47HRT/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15B8BC116C6;
+	Thu,  5 Mar 2026 23:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772754799;
-	bh=J4ouPwYryWJg/Sgf3XGOhDoXmHmleT+UQJPFAEsXDk0=;
+	s=k20201202; t=1772754842;
+	bh=3GW0DLJzL7idTf1EI4wFZY+pgAJtLC07kNcuB2s04mA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ElAwYZeKRz+T7o/hH1HzrDDGYTw+VjMdQ+sgmVJql9gUB7MaeTxmL3q9X+2FEReWd
-	 YCaD4ZkiiMPfZ41X8ZKKoO9sJ4+1L0ufcLKr+RZ5rEffesrFWuk8b5OYpJZfIzlszU
-	 wqnAW1iIXhColg7C1qmIrNVh9oE8fQEIj62E8I8QrIaoZAYgOxsvhgM/woqyVTySUB
-	 GRsYcTUZlfR1IDwBsF0ujMxMNl+YudjlPAXVoq8b8QB0c/aea3mmkLqjjXrA0sflyk
-	 GbsO0rFArKq5CY7U1Wp1jJbQwPf3JWPU6vpgf8STR5dE6reOusT3XqK7SuT+gNQt03
-	 5F70VjtiEqTDQ==
-Date: Thu, 5 Mar 2026 17:53:18 -0600
+	b=ee47HRT/igVAUE/FK5YOD77jz82RugO6VP6//OfdxSIPDaFN09gFy20rcmwOJ0RRe
+	 jGbv61kN8jf+gF4QtRhIUtZ/NpfbSpKuKxSKgy5vm5VmpV3qi/uy9Frh+y5vf4KsDN
+	 1DvKzjJ5Bv48ACIKl95aHvctoDAou3ipjImo+Scy/Mj0IUy1BG1Z/Rrpcv1RQ0Qb6e
+	 V80DD0BM11uIr0jyibIbwo5sQQ0epqXLbqKma5SLh3O/B2DyF/1H+tCGoGdfQnKrBg
+	 03evVF/3ENNCld5sz9SDYvI7cJDt6jTj9eqBLKNi70m/eCkGVivmfwXHvimjfGzy+6
+	 MImyMRtbPcX1g==
+Date: Thu, 5 Mar 2026 17:54:01 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
-Cc: linux-pm@vger.kernel.org, Lee Jones <lee@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Chunyan Zhang <zhang.lyra@gmail.com>,
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	David Airlie <airlied@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mark Brown <broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Pavel Machek <pavel@kernel.org>, Sebastian Reichel <sre@kernel.org>,
-	devicetree@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-	Baolin Wang <baolin.wang@linux.alibaba.com>,
-	linux-leds@vger.kernel.org
-Subject: Re: [PATCH 3/6] regulator: dt-bindings: sc2731: Deprecate compatible
- property
-Message-ID: <177275479830.806461.10691931436723823826.robh@kernel.org>
-References: <20260222-sc27xx-mfd-cells-v1-0-69526fe74c77@abscue.de>
- <20260222-sc27xx-mfd-cells-v1-3-69526fe74c77@abscue.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: document Atrix 4G
+ and Droid X2 DSI panel
+Message-ID: <177275484048.807348.11297712760388672567.robh@kernel.org>
+References: <20260223064630.12720-1-clamor95@gmail.com>
+ <20260223064630.12720-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260222-sc27xx-mfd-cells-v1-3-69526fe74c77@abscue.de>
-X-Rspamd-Queue-Id: 380D721989D
+In-Reply-To: <20260223064630.12720-2-clamor95@gmail.com>
+X-Rspamd-Queue-Id: 375142198B9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -81,46 +78,45 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,gmail.com,bootlin.com,linux.alibaba.com];
-	TAGGED_FROM(0.00)[bounces-271755-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271756-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[ffwll.ch,lists.freedesktop.org,vger.kernel.org,linux.intel.com,kernel.org,gmail.com,suse.de,linaro.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[abscue.de:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
 
-On Sun, 22 Feb 2026 14:16:47 +0100, Otto Pflüger wrote:
-> The node containing the regulators is always a child of the main PMIC
-> node, which already has a compatible property identifying the type of
-> PMIC. This makes the compatible in the child node redundant. Mark it
-> as deprecated and remove it from the required property list and the
-> examples.
+On Mon, 23 Feb 2026 08:46:29 +0200, Svyatoslav Ryhel wrote:
+> Atrix 4G and Droid X2 are based on a board called by Motorola "Mot" and
+> use the same 540x960 DSI video mode panel. Exact panel vendor and model
+> are unknown hence generic compatible based on board name "Mot" is used.
 > 
-> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml                | 2 --
->  .../devicetree/bindings/regulator/sprd,sc2731-regulator.yaml          | 4 +---
->  2 files changed, 1 insertion(+), 5 deletions(-)
+>  .../display/panel/motorola,mot-panel.yaml     | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/motorola,mot-panel.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
