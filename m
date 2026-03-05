@@ -1,212 +1,169 @@
-Return-Path: <devicetree+bounces-271640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271641-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cL/6JWmtqWn+CAEAu9opvQ
-	(envelope-from <devicetree+bounces-271640-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:20:57 +0100
+	id ePOzCJGyqWkZCwEAu9opvQ
+	(envelope-from <devicetree+bounces-271641-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:42:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2C721558C
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:20:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A91821586A
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:42:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9FA4F304A22D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 16:19:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ED55A302A046
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 16:42:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55F73CF66D;
-	Thu,  5 Mar 2026 16:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E723C279C;
+	Thu,  5 Mar 2026 16:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="q1rxxZ+R"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rqwIJgFg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx-relay49-hz3.antispameurope.com (mx-relay49-hz3.antispameurope.com [94.100.134.238])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32D613B5317
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 16:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC872853FD
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 16:42:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.238
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772727595; cv=pass; b=HvB38FmAzk5jaRUCNTfJHtRTjmYaNmpriprGFZfysQtOS92OlRuRiaPTlzPsN7f9wrqAxFql4jwjbwjSEwsyLXF8U6oet5pXih1IWNvXDSHUinbOh7PioRZVvgMopSsTCWBqklmkfnQm00ruR6YocnqsFngR8dgpF3XbILUkngI=
+	t=1772728974; cv=pass; b=gDAhtOaB+F3otueD2ZQD7YOcslIuEA/bd0Eh8/g+bPcK69l41DG47GNISpaI4KuaodZEDQ+F5IPPsjD0pSD2JiYdhedrkDGuaXGwn2LWnOZC2hpfmAFd0zRw2JapMzwfF5MqkvvizEz4Dw5fHed0rgjGZ5fncEOsAPJNILbp2ak=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772727595; c=relaxed/simple;
-	bh=4+VpwCYiZ/k0oS5DZgX7u4wiQTYlbC6gsA/O1CRuO+8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EhTwsg6CZ3autpVqvzQJPjm+Pwp4LbwB2YUjwWTQfeCVcu8LWA5UiCdeXZY0BRxVvrMqn53UZ2W8anNSplpyNamqjX4ssiYejDV7ylvNVvAeCS1iROxleDZnC1Geq0sHY66MBr9C9wg8M+ycUlZ9+hQR10UrVszEPwO+5wSPm+0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=q1rxxZ+R; arc=pass smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5a131870b72so1116170e87.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 08:19:54 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772727592; cv=none;
-        d=google.com; s=arc-20240605;
-        b=JtZRgImCu3kNc2HkXoJTlDz8iLiLg56mtBUpfa3OqPqC2rEfiuWGxZzEiI2D7+ErQk
-         soBJ0nICBO0gEisDUIpHBp8CdbNp0dEDVb5joQSF++vwp3MrRbqBIB/7PNj7TvsSRS4H
-         hs/eQJ1r9L543ZKQaV8EVL81lzYtHVMoA1UVhReISN+rNNDtuytSXQHX7AEJPf6gY2uJ
-         drIVLqCkwuKQqo7t2qEjAJaWqgR3/dCV2S+75QP6ChqDlJ/E+Bd9Rwj2nM2ZlcVWgpiX
-         iNV5/T58yoeuFoyLoChDTNLJiR+ki8AtX50IDE1sO+9tYqc7qGcIr80S4eBUat1YLGWY
-         gXow==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=ClrW0+oPx++TxWQN/hIjl8TEzU24ahyY2M6DFRgObAo=;
-        fh=vU45Of5eSVJz2T3rrG7Y8uN7EhYCwe8Sk914nw9X0gY=;
-        b=Z6YfBUTcXTS1kFei35x8rv4n8uuSiScq1LoJwp0Yk5hyZk3v5RlSmoT/ePZihcbxjH
-         dm/ok0oUckqtF4Rz2zN1B76iJRw5DA8yVt7iZYwEhhIbgy7ocRoiieZJ74MsnRLpOsxa
-         qbs02AsKhzsTrnAS17QG0RJQuECMV1wyRPKClr6Er5ODt6vZIdKJZfeZ7FeNHCwaLra4
-         mbisYUCAHzT+sSPP3gvY3d7r0eBXqLl2HHsOWVWUqClQ+YkoxGFoYxbnENFa8kNhMRjC
-         NLE3L9v3W9zB0136qSfDEFqSi1qDHwBV9zqAoLXKCbQiT4uEfpk16Sb0jIZ9r9RqwSvx
-         R8Gw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772727592; x=1773332392; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ClrW0+oPx++TxWQN/hIjl8TEzU24ahyY2M6DFRgObAo=;
-        b=q1rxxZ+R/c00OLVd9zKREVlXnhXnf6dPnJHoQd9Fv3gM1E3n78TlIvVbGLmf/H6rhN
-         QCLaLoqK0Hzum5zfvQ5aGdm869aGH0kiv9vsCJjgeRf+kTE0OCbV/OR06HMNqe/lYz/h
-         JI0iEmSqBYk18AeQlvwx5ODpYlKfMNze4jVK/TgBdwpIFFNlZ923Pf63pIjP3SaiwJBO
-         h2oRjXurKMaxZIVyQvNcK046OMfRSabM9VrTrrulW9zYWTBJaDImY1lKqSjkBeGgfp6I
-         IUegtysfkxBHDj6KnahmtbocAUBZocYgHQHNhJdde5aFLEtXsBmlxeOO9vRDWmULvEfA
-         442w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772727592; x=1773332392;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ClrW0+oPx++TxWQN/hIjl8TEzU24ahyY2M6DFRgObAo=;
-        b=CXTMNCWja0zyFuFwIIHZhBIsrWk5o1TcYDGMWJ5Jldl1gqyhpUnF46uNTr3fsu4g2M
-         fkvm6puPdqZ7dEFYOB83hlIAn8inVX87Ai6vJDbHmWjkAwaE0mAqL983Two3G6SnoqvZ
-         UClZRY0BRzxLbcihMZu/BXrTxy8+JiRx78F3KvnFgHYNBugs1lySOeC7wIW3LshASvrh
-         dNnNvm/Fav888UWW4xzM50Sd4FYUyNqMQ5/2dQIOo3uKRDN6Mdc0SMwmjVJZtjnYypWa
-         r7QAw3frpB0Y33dsKEvfqziPB7Mtnz+7KFBEFxBBallDXUIveCiPn256BQCnKkv1KyOp
-         XY4g==
-X-Forwarded-Encrypted: i=1; AJvYcCVm5h+N2mldM63EESQRRGRuF2J05MruAnZmP7e0tpTK9T/lenQI9/05GyhAaWq8qKhyNg1RslnWoFQK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMuKr5JlIkeP2tK1Ynm+evc3bL+bDKBuYkkDlTho3UYnO1zzu4
-	d4DX4L5PW4FqAHE2mx6LZInr56p71do+8e0hV4cXHJFLSwlq6mhqSDBbEEAOAn/X4YWSyE7YSgo
-	DWPqrLzzrOGFhG3WkZ91J+2zYcg8fHiJpCFqOcw81sw==
-X-Gm-Gg: ATEYQzwwx68Nyl0apW5xADucFAb1V8TzBH3YaYpWMoDwr70BquWv50+nbMONPF/ucXI
-	qij4LSOJfnoVzyUVii7sBnGlvV+bHznjomhxKp8i/29qc1Z3d7s3d8K+IjvMbTlAS/YGDkx79g6
-	5C7pdk4wCQrZ7p5Ymzm7AmFjUvpbjLAXvZzx/kbNW73zxT0V0R3J9ewd64uj8larQpnp8WewmK5
-	5ov63q025KbjM00S5PFUofEvg9lzVIkRm+rle926XjH1jDJ7kjtb7YX5Wr2zVjfEVPZ86G7DQsM
-	DZLC7Ix4
-X-Received: by 2002:a05:6512:1288:b0:5a0:fe69:af2c with SMTP id
- 2adb3069b0e04-5a12c339474mr1173761e87.33.1772727592278; Thu, 05 Mar 2026
- 08:19:52 -0800 (PST)
+	s=arc-20240116; t=1772728974; c=relaxed/simple;
+	bh=tgBR+uaRfWNUR/xbu/5xWPdr0JhOP+oB90ltAZXz0F4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QMzbHA3SmEo6tdCrguhmy8WjoncHMTVVIu8rP5YHiTg1+2WYdPwW/RI5VgEtJ1Hs8MChD/9/0fG5hWpknrwRt2IlcOSV8oJ77CxTHwNohB2b1rdIC66JJbthrDKNl3F9LJgJm0om+ifIZZm0Dvc2YWKwnGXSKk7D1M16+xXkh9s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rqwIJgFg; arc=pass smtp.client-ip=94.100.134.238
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate49-hz3.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com
+ smtp.helo=hmail-p-smtp01-out03-hz1.hornetsecurity.com; dmarc=pass
+ header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=0bisfPLoTg2XqRMiZbY8naTl0HU//YMfolzvMIjdGgk=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1772728952;
+ b=YH2GjxjBBQWX+ZUQqiLG1cItqiPCOZ5/FQALUSMYhOETF3BJWnqUnKV/jNS6C/WJpTezzQx2
+ d6G2nte6RbsietZh6jLHZtumTy5cvSLUrUSQ9JTojF0vAw3otfoxdLtHHokm38Io5/AmoJ35Wct
+ fObg6rOJDZNvUU1Cc9ujDb0p0a8WiZJ21Yl0gY5gBKr+ufkxA3bqHUgn+KlHQI2BZ4A375N0wwM
+ tDYUj5tHx8YyVBMsHVkQTpyeJrjIJ/gFZq5hEQoVAuQIgPgJf0KC+lJ60Fput93hTW7A8rCVJfC
+ ND45TNElGpROpzE0fETmNwjEj60fFFUq3v0j69oAdq8/g==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1772728952;
+ b=Xc5FHrj1LYNdUataLShG+nJjnUMxKmN9eZZ6FyPR6FsRL3s+cnoU/i86xxDmhqpQhTj+dgE+
+ REWMoJDIiVw3cYapro96K9ZDkz0M4kxdfYfljTVc8Ttp0rI/778hLbar2w5t8V+wb0sfLEgbkVV
+ s95MktvTUwm1rmmTR7GKmM+Vww/6B0h7NZ9YZRVDQ6cViFL9EkMGv9K2Y8g/uisnz3iyd+EfnAQ
+ NfU1GTWhMG/n6H68x/EDZYrZK0oQICHcWbglyCmn0GIDpLb5CemD733/gJn1ojKwIvAAG+lHj6c
+ PqwXv67CrMUUw7ze+pH3M/d/dWZ+3lGFYh3fIqnYB9C5w==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay49-hz3.antispameurope.com;
+ Thu, 05 Mar 2026 17:42:32 +0100
+Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: alexander.stein@ew.tq-group.com)
+	by hmail-p-smtp01-out03-hz1.hornetsecurity.com (Postfix) with ESMTPSA id ED36ACC0D36;
+	Thu,  5 Mar 2026 17:42:25 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/1] arm64: dts: imx91: Fix TMU reference
+Date: Thu,  5 Mar 2026 17:42:22 +0100
+Message-ID: <20260305164223.2650908-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260226-rz-sdio-mux-v11-0-c2a350f9bbd3@solid-run.com>
-In-Reply-To: <20260226-rz-sdio-mux-v11-0-c2a350f9bbd3@solid-run.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 5 Mar 2026 17:19:16 +0100
-X-Gm-Features: AaiRm52HLUuRfxFPVPVExv-76gWZPV1pu-J_tp-8KI24bnstuTqUB205NGBVxZk
-Message-ID: <CAPDyKFr5NZKEKpV2+GXGnzH9pyyj_TLmMCc3rac8h248srX_dw@mail.gmail.com>
-Subject: Re: [PATCH v11 0/9] mmc: host: renesas_sdhi_core: support configuring
- an optional sdio mux
-To: Josua Mayer <josua@solid-run.com>, Peter Rosin <peda@axentia.se>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
-	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
-	Tony Lindgren <tony@atomide.com>, Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
-	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
-	Vladimir Oltean <olteanv@gmail.com>, Mikhail Anikin <mikhail.anikin@solid-run.com>, 
-	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
-	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 0D2C721558C
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:alexander.stein@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay49-hz3.antispameurope.com with 4fRb1G4hfBz3yX1h
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:571ca73a620effc4570f7a8b5f908bd5
+X-cloud-security:scantime:1.761
+DKIM-Signature: a=rsa-sha256;
+ bh=0bisfPLoTg2XqRMiZbY8naTl0HU//YMfolzvMIjdGgk=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1772728952; v=1;
+ b=rqwIJgFgN8K+JaRgLndYzAerf0IZ3IACa9lGvJO4OyjiXNLiTwvo6zA5/Dara7Dh1St79Zu/
+ ljBFT85SGf460yw0c+U50j0b0CQpQeZI4ntQyeCP09QH1J6Zohsw4vGOFdcRSSO0uCohoXfWVAY
+ qIId4ZFlKixShWRA5Ms5AnJ/wdTmh6XTutsSk2uXbRtoRh9hBmsukl/qxhxXp2zG6TcRFEFHQLT
+ 2EginHjgswGx8fwHfJnoxcJOifS7U9IPa30zw4tsZ16DpBZIL0SGs0nGsYFJg8q9E6TtM+iD+Qy
+ LqsTh6wbOjNwTWx1k2sT19AkqFkn3OjIIWa8a8LaXBVlA==
+X-Rspamd-Queue-Id: 6A91821586A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271640-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
-	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,renesas.com,solid-run.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271641-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,solid-run.com:email,linaro.org:dkim,linaro.org:email,mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_PROHIBIT(0.00)[2.166.189.208:email];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,tq-group.com:email,ew.tq-group.com:dkim,ew.tq-group.com:mid]
 X-Rspamd-Action: no action
 
-On Thu, 26 Feb 2026 at 14:21, Josua Mayer <josua@solid-run.com> wrote:
->
-> This series has evolved over time from adding generic mux support for
-> renesas sdhi driver, to partial rewrite of the mux framework.
->
-> Several drivers have started implementing driver-local managed and
-> unmanaged helper functions for getting and selecting a mux-state object.
->
-> mmc maintainers have requested that new code shall intreoduce and use
-> generic helper functions that can be shared by all drivers, avoiding
-> code duplication.
->
-> This series is structured in 5 parts, each of which is self-sufficient
-> depending only on the previous patches. This shall allow the first N
-> patches to be applied even if the last ones need further discussion.
->
-> 1. Rename driver-local helper functions to avoid name collision with
->    global version to be introduced later.
->
-> 2. Implement generic device-managed helper functions in mux core.
->
-> 3. Convert driver local code from similar patterns to use the newly
->    added global helpers.
->
-> 4. Change mux-core Kconfig so that it can be enabled through menuconfig,
->    without an explicit "select" dependency from other drivers.
->
-> 5. add dt bindings and driver support for mux in renesas sdhi driver.
->
-> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> ---
-> Changes in v11:
-> - changed approach to Kconfig making MULTIPLEXER a bool, and adding a
->   user-visible wrapper for menuconfig.
->   (Reported-by: Ulf Hansson <ulf.hansson@linaro.org>)
-> - dropped the "default m if COMPILE_TEST".
->   (Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>)
-> - improved kerneldoc line wrapping.
-> - removed unnecessary changes to original devm_mux_control-get.
-> - fix "reference preceded by free" in mux_state_get function
-> - Link to v10: https://lore.kernel.org/r/20260225-rz-sdio-mux-v10-0-1ee44f2ea112@solid-run.com
->
+Currently a sensor ID is added to the reference, but
+thermal-sensor@44482000 has #thermal-sensor-cells = <0>, so parsing fails.
+This also has the effect that other hwmon sensors (jc42) fail to probe.
+Fix this by removing the superfluous sensor ID.
 
-[...]
+Fixes: f0ed0e844452 ("arm64: dts: imx91: Add thermal-sensor and thermal-zone support")
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/imx91.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-To me, this looks ready for a new try. Unless I hear some objections,
-I intend to apply this as material for v7.1 via my mmc tree on Monday.
+diff --git a/arch/arm64/boot/dts/freescale/imx91.dtsi b/arch/arm64/boot/dts/freescale/imx91.dtsi
+index f075592bfc01f..d63569b39bbc5 100644
+--- a/arch/arm64/boot/dts/freescale/imx91.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx91.dtsi
+@@ -11,7 +11,7 @@ thermal-zones {
+ 		cpu-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <2000>;
+-			thermal-sensors = <&tmu 0>;
++			thermal-sensors = <&tmu>;
+ 
+ 			trips {
+ 				cpu_alert: cpu-alert {
+-- 
+2.43.0
 
-The complete series will be available on an immutable branch, for
-other subsystem maintainers to pull in if that turns out to be needed.
-I let you know of more details on Monday.
-
-Kind regards
-Uffe
 
