@@ -1,180 +1,188 @@
-Return-Path: <devicetree+bounces-271643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271644-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qP7cEoCzqWkZCwEAu9opvQ
-	(envelope-from <devicetree+bounces-271643-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:46:56 +0100
+	id 4HQ6JUm1qWkZCwEAu9opvQ
+	(envelope-from <devicetree+bounces-271644-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:54:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7D9B2158DA
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:46:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E83C62159AD
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 17:54:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1BFEC30D0274
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 16:46:10 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A99543037EC6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 16:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02773CE485;
-	Thu,  5 Mar 2026 16:46:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17903D7D9F;
+	Thu,  5 Mar 2026 16:54:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="HoIPpdv0"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="PiU4nRI6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx-relay47-hz3.antispameurope.com (mx-relay47-hz3.antispameurope.com [94.100.134.236])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB173BED58
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 16:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.134.236
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772729168; cv=pass; b=A3DgrrzDVIP5UiIvuCCajzNIXrlH3TPDXnNGMYBZ1oeXEXgtri00E8gD5GbUuL7NXN1lW6kRjgYFAAKbr71vQQeMq+Filp74yzSxU6Mm5GL+kpSjNfdKzNkUDH2XcG4tajfrFUuC8yQ4UZc5aUfWUscwks20xHzlkvnMDV089Sk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772729168; c=relaxed/simple;
-	bh=HRkTxuwxJA0Vyf6FQfWmcnVzESo3nj9aAWXNjzeyn4M=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A860A17BA6;
+	Thu,  5 Mar 2026 16:54:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772729669; cv=none; b=WrmesAJVMRVNAtvYu/MTptjHQKXl8krbKTVDVEcwco34XC35QCWyp+9PmQ+mEOsZwUcUkzLamgsduvFOPHAnvX8VydWtIO8fQcy6u+uyzxJcQQ9+anDjyTk2VrNeJKLTvkGhNBQP75JOe12nK8J+1LOom8aLB2wsjxDF7fa+HVQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772729669; c=relaxed/simple;
+	bh=Dgtug1RVmGjq0PjxN3ngd8VCVjKlhsQYpnOQzMycfg4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qpWpaDqxDea7WXFxD6yN/fbhFSL8872F+GXZIbzieCVBzyRe5ZEyVvt3teJNIWvYjzMqIA26ZHBmEzKcaUM3Dk+dRy6lclmbAcyYsjOFBYGnut7yuko9yfoE0SJUWN4FJ9wWnmw/2odU6CRANnsiYBU45TKp3oMXXz22eQREZVo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=HoIPpdv0; arc=pass smtp.client-ip=94.100.134.236
+	 MIME-Version:Content-Type; b=ES+oT2FI+vWQbU1DGfJRO5juwoXZB/H4LT1uogjtSCqNDlzgOZfRbST5JkyHHpeioK4or3jOQyRtofUhbV0Uw3RiQxsJROPj2ZbLFzn7ATCUSWxs14ZcHIczWp3AlW28R7kRUnGI29Vu/L6Sp88UDmVs3976TtcvEiITTkoodvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=PiU4nRI6; arc=none smtp.client-ip=188.40.3.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-ARC-Authentication-Results: i=1; mx-gate47-hz3.hornetsecurity.com 1; spf=pass
- reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
- smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
- dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
-ARC-Message-Signature: a=rsa-sha256;
- bh=8ngiLaVCA85hGhw8n+Td0yCrIRvJxsFDKHVUsZ1Svyg=; c=relaxed/relaxed;
- d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
- t=1772729145;
- b=cUh1Lu1TQsbc/r3LvX0odpxLSL98s3ThRu+odrkTB2MBV1NHUH+2V6K4EvoZkc8440vysF4G
- MXRxZLJYTZjD5tr/1NOLAwT6hdTbn5S12ep34svEdXWXZVIHNgYJISRsj3/jIxH+yU7DB/GkBqq
- m721Ae16f1Ak5rWqIS6t3j6FwWtb40FqG0Lkx//Qa0/P1jTmPrmim70teZVmdSk6eUJpuCcwTj0
- 6UwfcPCIqw1BWyPbJfz51xwAbrAkx0Zk264xgLbeERJxPagnRG/34LsmTzLxYFhWhyIyb0byBYv
- WLC9PJ+C3OcxKeYCMfYjMM5wV7TJxLEgpKBTrE0+/02aQ==
-ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
- t=1772729145;
- b=OcXcZ0exS8rzHPhAjyBiKSiLtLxIo1juBsld9QHO+gqDQrXa1LuDkBAoggC42/tEZO63EpRP
- mzouAuzXAJWTylQNDWfZiL2aJsGYCJJzxfzsN0eOAN6zs3ENoojGjWSz5jwNsVkdcdOgA0Pa/Nd
- OqrWi6ee8GI0dHwGN15MfLZOuxP2dS+0wSLx9s/wO3KJ+1oj91jJNGJhc4n1L0s038UtIVDbNNQ
- RrsDMhnqpuJM5Eq2ODP+DOo3tl8WOX9CXZxYjUiwmSBT66Aba4HcwmWmDjfSky+lzAhCxTs1p9o
- lguLK2K4QX1r2G5Ez0ak2/dgXla/zBXY0O7HIOzu9aMHw==
-Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay47-hz3.antispameurope.com;
- Thu, 05 Mar 2026 17:45:45 +0100
-Received: from steina-w.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
-	(Authenticated sender: alexander.stein@ew.tq-group.com)
-	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id E957CA407E8;
-	Thu,  5 Mar 2026 17:45:37 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
+	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=Jja7wrC40p+Bof4036cPfBSjAQs0EEkDw+xbTBRU3PE=; b=PiU4nRI6drEHSTaEEUXjfius5J
+	IC/RKk2A+HcwU9fapSaG+Kyga6UtqcrmiP3zl4LQjin4XhtJ2R2uaa53nxa3AX4yZdZo8KA7vPBkZ
+	6hucouVTs0MD+O1kWEpUbb9QFL6Fcz7U0MPaYocOI2AoNaLj6XYoixhGEzzz7vRC/avq+IGGwggSO
+	ziws2F7+j5b2gDfLX2Df8Pbzs93w2EBiK37Qf2gF5LTPTBhQQfJGaAwT5CRq622yp4MbDHeIMXAGI
+	/C3ytp7ox4wl0YxntIBoZxGw6lcQjoGauhjEhcA1v4l9gS8rf1+s/LP8fJAlbSPfOZFTIlTXgyT/Y
+	1GkLnrzw==;
+Received: from sslproxy02.your-server.de ([78.47.166.47])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1vyBxt-000Jej-2V;
+	Thu, 05 Mar 2026 17:54:21 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1vyBxt-0008R8-0T;
+	Thu, 05 Mar 2026 17:54:21 +0100
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: tqma9352-mba91xxca: Change Ethernet PHY IRQ to IRQ_TYPE_LEVEL_LOW
-Date: Thu,  5 Mar 2026 17:45:34 +0100
-Message-ID: <20260305164535.2653745-2-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260305164535.2653745-1-alexander.stein@ew.tq-group.com>
-References: <20260305164535.2653745-1-alexander.stein@ew.tq-group.com>
+To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>,
+ Andrew Lunn <andrew@lunn.ch>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+ UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Woojung Huh <woojung.huh@microchip.com>,
+ Steen Hegelund <Steen.Hegelund@microchip.com>,
+ Daniel Machon <daniel.machon@microchip.com>, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject:
+ Re: [PATCH net-next 4/8] net: dsa: lan9645x: add basic dsa driver for
+ LAN9645X
+Date: Thu, 05 Mar 2026 17:54:20 +0100
+Message-ID: <7365618.GXAFRqVoOG@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <052cf8c8-c60b-461a-86ce-aac8d7ebf4d9@lunn.ch>
+References:
+ <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <32b7267f84b60a4632eb643fd0b999d03c630a1d.camel@microchip.com>
+ <052cf8c8-c60b-461a-86ce-aac8d7ebf4d9@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-cloud-security-sender:alexander.stein@ew.tq-group.com
-X-cloud-security-recipient:devicetree@vger.kernel.org
-X-cloud-security-crypt: load encryption module
-X-cloud-security-Mailarchiv: E-Mail archived for: alexander.stein@ew.tq-group.com
-X-cloud-security-Mailarchivtype:outbound
-X-cloud-security-Virusscan:CLEAN
-X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay47-hz3.antispameurope.com with 4fRb4y4zlgz4MYsQ
-X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
-X-cloud-security-Digest:2cfb841dcaefcfe296d25fd5cf87c6d3
-X-cloud-security:scantime:2.057
-DKIM-Signature: a=rsa-sha256;
- bh=8ngiLaVCA85hGhw8n+Td0yCrIRvJxsFDKHVUsZ1Svyg=; c=relaxed/relaxed;
- d=ew.tq-group.com;
- h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
- t=1772729145; v=1;
- b=HoIPpdv04oWuowAQNccUdkouD4J9rzJ3paatwcPFCarsnUpyo3K2xmFHbqMgD6VTqCZcWvKv
- 952CicEm57Pep7Igph0CY2W9sZbR8qj+7xB2LEVkMw7vK2Oce8+6jx41IoJ0R4ncM5fURVMxf8K
- QBdTwak/dzn68GOHXiRflGjZIj2rtPRAHOw2+r48S84K1CO10cpy/zyEHwEgrGp4qpXaLSHPkTu
- dbBqFlEI0WevnbQhmuIGOVTgGYtcNVfWK9ivfyS//Zv46zio2yKj+YGBNTIkzK+/1XZEoE5OQAq
- kIQZ6RLNHCsaUILKJmd4/aqCG77YJjRw29Uub1cRrZLmQ==
-X-Rspamd-Queue-Id: E7D9B2158DA
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27931/Thu Mar  5 08:24:23 2026)
+X-Rspamd-Queue-Id: E83C62159AD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=hse1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271644-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271643-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[armlinux.org.uk,microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,tq-group.com:email,ew.tq-group.com:dkim,ew.tq-group.com:mid]
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ew.tq-group.com:dkim,tq-group.com:url]
 X-Rspamd-Action: no action
 
-Ethernet PHY interrupt mode is level triggered. Adjust the mode
-accordingly.
+Hi,
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Adjusted the subject
+Am Donnerstag, 5. M=E4rz 2026, 15:58:16 CET schrieb Andrew Lunn:
+> > > > +     /* We configure delays on the MAC side. When the PHY is not r=
+esponsible
+> > > > +      * for delays, the MAC is, which is why RGMII_TXID results in
+> > > > +      * rx_delay=3Dtrue.
+> > > > +      */
+> > > > +     if (mode =3D=3D PHY_INTERFACE_MODE_RGMII ||
+> > > > +         mode =3D=3D PHY_INTERFACE_MODE_RGMII_TXID)
+> > > > +             rx_delay =3D true;
+> > > > +
+> > > > +     if (mode =3D=3D PHY_INTERFACE_MODE_RGMII ||
+> > > > +         mode =3D=3D PHY_INTERFACE_MODE_RGMII_RXID)
+> > > > +             tx_delay =3D true;
+> > >=20
+> > > PHY_INTERFACE_MODE_RGMII means that the delays are provided by the
+> > > board layout, so this seems wrong to me. Please review the phylib
+> > > documentation concerning RGMII delays. I'd like Andrew to comment on
+> > > this too.
+> > >=20
+> >=20
+> > The idea with this was, if the PHY does not provide internal delay, then
+> > we do it in the MAC.
+>=20
+> That is not really what we want. The default in Linux is that the PHY
+> adds the delays. In general, MAC drivers read the phy-mode, and pass
+> it directly to the PHY. The MAC does not add delays. There are a small
+> number of boards which don't respect this. In the past, there was been
+> claims that an RDK used a PHY which was not capable of adding the
+> needed delays, so the MAC had to. In practice, all the PHY drivers in
+> linux which supporting RGMII support all four configurations of
+> delays.
+>=20
+> So, the best thing to do is hard code the delays in the MAC to 0, and
+> pass phy-mode to the PHY.
+>=20
+> Now, this is a switch, so there is one complexity. Some switches make
+> use of an RGMII port to connect to the host. You then have the host
+> RGMII MAC connected to the switch RGMII MAC. Delays have to be added
+> somewhere. Since the switch MAC is playing the role of the PHY, in the
+> eyes of the host, we allow such a port to add delays.
+>=20
+> However, this is a multi-giga switch, with high speed SERDES ports. My
+> guess is, a SERDES port is used to connect to the host, not RGMII. So
+> i would not implement this, until somebody reports having a board with
+> RGMII connecting to the host. KISS.
 
- arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+We intend to do exactly that with this switch, just because the host
+doesn't support SGMII, just RMII/RGMII.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts
-index 2673d9dccbf4b..737326ba1b2a7 100644
---- a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca.dts
-@@ -232,7 +232,7 @@ ethphy_eqos: ethernet-phy@0 {
- 			reset-assert-us = <500000>;
- 			reset-deassert-us = <50000>;
- 			interrupt-parent = <&gpio3>;
--			interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+			interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
- 			enet-phy-lane-no-swap;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
-@@ -265,7 +265,7 @@ ethphy_fec: ethernet-phy@0 {
- 			reset-assert-us = <500000>;
- 			reset-deassert-us = <50000>;
- 			interrupt-parent = <&gpio3>;
--			interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
-+			interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
- 			enet-phy-lane-no-swap;
- 			ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
- 			ti,tx-internal-delay = <DP83867_RGMIIDCTL_2_25_NS>;
--- 
-2.43.0
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
