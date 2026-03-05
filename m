@@ -1,149 +1,119 @@
-Return-Path: <devicetree+bounces-271745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271746-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KMAdHXAUqmnFKgEAu9opvQ
-	(envelope-from <devicetree+bounces-271745-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:40:32 +0100
+	id uI3qBroUqmnFKgEAu9opvQ
+	(envelope-from <devicetree+bounces-271746-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:41:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0333219682
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:40:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89A702196D5
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:41:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 7AEEA3015A5C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:40:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 470403015880
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B98B36827A;
-	Thu,  5 Mar 2026 23:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF4636682A;
+	Thu,  5 Mar 2026 23:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OHUezPzB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HOAX+5MK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C0A35AC23
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 23:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA1E35AC23;
+	Thu,  5 Mar 2026 23:41:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772754029; cv=none; b=Ms7eB4k6ywIMjaccpXGVmaSYMITY3j2jDvfYgdfoc9tpi+3/Da8/RP5h3yk69EB1ZEZ8MlOQ433Tqbdh/SSuDIWr7QEOmU+z9LYzua2ARQCH+j3GurYZ2pljd8WhUhM+fGmWOg3y6Jk2iZBaR0BJspmSsJ+FuyouDyzfQxNfX9E=
+	t=1772754103; cv=none; b=iIfJ8KGCgEZ06oz5ljr17EsFIqXVmW8FXN1O1ggBneVow0yWgLUEW5I3N6hc94cITipj75Zxgb3840bWYtBNmw31pb9rXF101o9vwQykP9LC2S9QFHY40qBkdt0c2UPg/s3b/AJPDZ1B3UWg3nfidD+nNmlDXQ7x5wVxd904ayI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772754029; c=relaxed/simple;
-	bh=BS7Umqk48e97pOwcEp8BnjV08Occp4nWz8Zi+ocSdsY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=snZpqpgbyUfJIupXU6JJDOigwqe6rgK70hSVepNUYGvVHItPbXCLoayD6ZzlOVhsrwk+Q6uHKUa5kLmqKtvV45+dPEtIaNanBXykEUoQlxTum7/4B1ibh9wKhTfRP+DtLupt+idgYk+6T+Y+kSLcMme/GthUmurFc80wkkkpZrM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OHUezPzB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18965C4AF09
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 23:40:29 +0000 (UTC)
+	s=arc-20240116; t=1772754103; c=relaxed/simple;
+	bh=3mYIpFo0Oo9G4Ia1Fic/4VIkiyuuIbuMW1gFosKJwAE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rfaQJylpF8ws7Cw1XFRyqVJk8ekvo6XQ8IR5Q3T28pXhVWPZ6qORJvzbfHPakJU0EpOPaOsj6/tcPXxw5ELVofqk8Tai2LqfO0ugiAIHL2b6NEJvwY3VEBiEk0tLgXT3i350fbHIU7UY+cpLsyTXESDYhBQVccesU4UcaKkT1bk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HOAX+5MK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73B19C116C6;
+	Thu,  5 Mar 2026 23:41:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772754029;
-	bh=BS7Umqk48e97pOwcEp8BnjV08Occp4nWz8Zi+ocSdsY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=OHUezPzBG+j0/hSxEL3mqpN0okT3SJ9BL3N9XVpxramUlQBrwntgLnLcCLJ3B5xhj
-	 gMvs7Zk1iNNxV0DBcznDykH5WqUtY89IMmvw0g1lKNOg3VLuGTDIqHx3P5Op7we2VI
-	 qHASKd3q7vxYpvzAkoDgfV0lgcSbi5c7Zrl28N6hTqAXDGbcM697WPeiODyPUF9uhS
-	 2EwNaKxq4SgtzfPewl0zY/Zxh1x4KsRAwnm8QEsBJVu6mVXiXce+vNRqTR5WGmU5TC
-	 BbyfTA6V/ztLH1Dwy6zech80m3vEmcGfKMxVwD9Uhj68EAKAi6YM2JrPyBtI+gcT0G
-	 zb/9sej1t3IxQ==
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-7986e0553b0so75582357b3.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 15:40:29 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX0rhEs68zs/1LLNAT9oIphK6BGkOdwOfJrXabJSRCSkjTIhJUtOoSRYVwhT10L3WASQ/IbjuCGFyFn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaDLvgf82UolmsinABEa+RKvlCmKAmCAplrVR6sta5ecZHTGLX
-	6NQBzx+jqBKAepqujZwImbA3i2duJcXgbMeNwy+8zaUJCswssMchh1owlqtFDL5qCKDgUHZoboc
-	CCPSsKnSeynQ7GpXJiUeg/jk+Z8LHMVQ=
-X-Received: by 2002:a05:690c:6201:b0:794:9d24:76b0 with SMTP id
- 00721157ae682-798dd774941mr1327417b3.54.1772754028299; Thu, 05 Mar 2026
- 15:40:28 -0800 (PST)
+	s=k20201202; t=1772754103;
+	bh=3mYIpFo0Oo9G4Ia1Fic/4VIkiyuuIbuMW1gFosKJwAE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HOAX+5MKIvsBrth9KtbSjUcir6c1BDkuA3jaDLHujGubMYWJvQR7VrhHaiPGJJt/V
+	 004gqMMxTh8DQ1BPipczPDeypmfLZHyooXRTftyjJk6MDYANCsve/BDhVIFy0ER2+j
+	 MmO9xUVyVgyeMIuNJis7CkVyl/1Vq3IrLWe1IzfJz31IRDvnY7uVBZnwQD3y5kwSMw
+	 bpZ+yaCjruc+6lBBiHgTRBQZoQJ21cDTDPWAFVfyDsAFLRFw65Lj8jeNEmFVQmsc9Z
+	 vL5zLLW0uiuMahVOrApe43H1SKbdbC/iJf2GhEAIxqLaSCjLjnMSOyveBRr+VjA+IA
+	 edgUazaKLt0eQ==
+Date: Thu, 5 Mar 2026 17:41:40 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Damien Dejean <dam.dejean@gmail.com>
+Cc: linux-kernel@vger.kernel.org, edumazet@google.com, davem@davemloft.net,
+	maxime.chevallier@bootlin.com, devicetree@vger.kernel.org,
+	pabeni@redhat.com, kuba@kernel.org, hkallweit1@gmail.com,
+	andrew@lunn.ch, krzk+dt@kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v6 1/4] dt-bindings: net: ethernet-phy: add property
+ enet-phy-pair-order
+Message-ID: <177275410010.792767.11856213263031089510.robh@kernel.org>
+References: <20260207092539.647768-1-dam.dejean@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
- <20260303133947.1123575-2-o.rempel@pengutronix.de> <177254885509.3251575.14819823286886805862.robh@kernel.org>
- <aacH7NmkOzZued0Y@pengutronix.de> <20260304-graceful-sweet-bittern-98efdb@quoll>
- <20260304100642.44d00b99@erd003.prtnl> <4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
- <20260304112500.4766f21b@erd003.prtnl> <98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
- <20260304131731.4d54f051@erd003.prtnl> <CAD++jLkK5od7cODqQ2BsEKE7tvp8vVAsv6erLu1dEzcn35F8QA@mail.gmail.com>
- <20260305161019.09b67af2@erd003.prtnl>
-In-Reply-To: <20260305161019.09b67af2@erd003.prtnl>
-From: Linus Walleij <linusw@kernel.org>
-Date: Fri, 6 Mar 2026 00:40:16 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=Gaaq0_20wDjjPkYwpyL6HWx7bmKqBmy_tieYu4scB6Q@mail.gmail.com>
-X-Gm-Features: AaiRm53ImxVNtY4WeeRKRMTl05H_o8Tu0rFl0zRGdyjHzHfME3y6wZnmaSU5GLU
-Message-ID: <CAD++jL=Gaaq0_20wDjjPkYwpyL6HWx7bmKqBmy_tieYu4scB6Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
-To: David Jander <david@protonic.nl>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, 
-	"Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>, 
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, 
-	Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: D0333219682
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260207092539.647768-1-dam.dejean@gmail.com>
+X-Rspamd-Queue-Id: 89A702196D5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271745-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-271746-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,google.com,davemloft.net,bootlin.com,redhat.com,kernel.org,gmail.com,lunn.ch];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid,protonic.nl:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, Mar 5, 2026 at 4:10=E2=80=AFPM David Jander <david@protonic.nl> wro=
-te:
 
-> I am tempted to think that hardware developers that use this chip might e=
-xpect
-> the GPIO driver to report the state as it is read from the register. But =
-I
-> suspect that the Linux kernel GPIO framework might enforce strictly the
-> logical state to be equal to the voltage at the pin (i.e. logic 0 =3D=3D =
-zero volt,
-> and logic 1 =3D=3D positive non-zero voltage), but is this true?
+On Sat, 07 Feb 2026 10:25:36 +0100, Damien Dejean wrote:
+> Add property enet-phy-pair-order to the device tree bindings to define
+> the pair order of the PHY. To simplify PCB design some manufacturers
+> allow to wire the pairs in a reverse order, and change the order in
+> software.
+> 
+> The property can be set to 0 to force the normal pair order (ABCD), or 1
+> to force the reverse pair order (DCBA).
+> 
+> Signed-off-by: Damien Dejean <dam.dejean@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
 
-GPIO assumes all values are expressing the (raw) voltage on the pin
-clamped to [0,1] logic level.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-It can further invert the meaning of this using GPIO_ACTIVE_LOW,
-ACTIVE LOW means the same as  "overstrike"  or #VAL in schematic
-so if a signal is active low and low voltage on the board it is
-presented as active (1) to the consumers in the kernel or
-userspace.
-
-If it represents anything else than the raw logic voltage on the line,
-the semantics of GPIO_ACTIVE_LOW would be completely
-confusing.
-
-To represent switch states, I think using drivers or userspace code
-should interpret this.
-
-You can also add a custom debugfs file to your driver to help
-users by providing the actual switch state and more.
-
-Yours,
-Linus Walleij
 
