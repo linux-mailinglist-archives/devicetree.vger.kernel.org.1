@@ -1,377 +1,179 @@
-Return-Path: <devicetree+bounces-271686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sPrrBCvHqWmcEgEAu9opvQ
-	(envelope-from <devicetree+bounces-271686-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:10:51 +0100
+	id uPtCGAPMqWl+FQEAu9opvQ
+	(envelope-from <devicetree+bounces-271687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:31:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A38E3216DC7
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:10:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6E8216FAA
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:31:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D7E1B3055EC5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:09:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41EDE304E0DC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:31:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C7E3EF0B0;
-	Thu,  5 Mar 2026 18:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A000128CF5D;
+	Thu,  5 Mar 2026 18:31:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="lqlBFHzH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hjh2FJ7q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C323EBF05;
-	Thu,  5 Mar 2026 18:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BE21F3FED;
+	Thu,  5 Mar 2026 18:31:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772734153; cv=none; b=m2+F2VmgX427z/QM4RjCUm8bC3WzYs1/DWIgMyv1DCAcdQwTCD+VOW1ZudMTNCIOiiFDDzdIuLFGxFWPyJiFVvCTqKpbMJuzvCDKhsJnfu73FjqIx62i1TMOIEAmyYb4xH1sOOFd9Wyp3+7mAf6P0I/+jlLKoPpy5Prp/cmVxOQ=
+	t=1772735488; cv=none; b=rKwD5fyhE+dZpDmtmDus2Abi2hHtdl/5jEhtvY8DseJOEyUgcs7m2QWPG1Ov3CKeUJPHbKfq8p/s/P1iOeOpmhNZX2QhEvFTw5UoTYRyNlmTYvaIkHHTYWoCOYdZfXTFrT9CFsQain3XUJTCq/lyw0Oxz6/Oxf9I9r/wNUlPbCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772734153; c=relaxed/simple;
-	bh=rjKao/0Y1I3GMYjs9Y1sLlnWo8NV1OEz9mqkuYtGSjc=;
-	h=From:To:Cc:Date:Message-ID:In-Reply-To:References:MIME-Version:
-	 Subject; b=qC5bartXBKiDYokor49TR4GksjIwHuRI/l6lwCKmxcV7zcyzGtBWxjVBwzF0JtxADfzsObVjU9nqDeMSDmBHhKPQ+1PCBK7MmSC03YLmRY7/HR/UdIeWg493GMCL6TNLF3Mb33BZoR5DuWIEs8HO5Ocy3kPTVbp4vEwCnSS0WyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=lqlBFHzH; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
-	:From:subject:date:message-id:reply-to;
-	bh=adH7Yx0sIn9M3KOK46MS0Z5Gi0nhXo0SQhj7OZo/qJ8=; b=lqlBFHzHucqbX23Z0gYNkhbOT+
-	B8TsSyatYJkNNTvIsn8Cn7eGTpr2KuboOyI6uaPultdmhp7TNeuqTG30MMfh7dFgJXSDaEriFaFLf
-	J5HMNj4uA9IIHKbEodePvg9Gw8gptAwbEXsB+m/+1M+p8KXi+O36ZqxGzO6Z+wGgTaas=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37706 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vyD89-0002aR-5o; Thu, 05 Mar 2026 13:09:02 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	Frank.Li@nxp.com,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	shawnguo@kernel.org,
-	laurent.pinchart+renesas@ideasonboard.com,
-	antonin.godard@bootlin.com
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	hugo@hugovil.com,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Date: Thu,  5 Mar 2026 13:06:30 -0500
-Message-ID: <20260305180651.1827087-16-hugo@hugovil.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260305180651.1827087-1-hugo@hugovil.com>
-References: <20260305180651.1827087-1-hugo@hugovil.com>
+	s=arc-20240116; t=1772735488; c=relaxed/simple;
+	bh=AQVfJhoX1BRMgRzZzFWFIZQ56LXVONFDmF13tEmWmSg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VVVy8AqvtRuGNZsx3FdXlX8QBWtDm/a1hPQyR9wUQYj2L1FVTTk+jKbHzQkEwml1fWlPEZdLPfn+Qpvm81w9oyUA708XSiWy7pkO3pzU5nfr+cVdeQ+/A+X1iRbxuuGEduzdpq8TfZHBjVjzFmcc9ccUk8EJ4HKrJw/OBsPSoLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hjh2FJ7q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE657C116C6;
+	Thu,  5 Mar 2026 18:31:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772735488;
+	bh=AQVfJhoX1BRMgRzZzFWFIZQ56LXVONFDmF13tEmWmSg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hjh2FJ7qh1/63/jpE7NBwK7OIRaYt5jVAG/eg24hM9oYj6yXxFAlfWXkwwWrCJMWm
+	 UygLmkaECtHLcntqlTzMXnKBOtdK1axNJJHx4sy0SHEEJuRx1kK9FBFOserhnWE6QV
+	 lOF4KDK3onan0UlJC7q6tzgPzuzRvfk7i06l7IHSQTEU2Kpkgew/9qr5eeIBOpCh4B
+	 v62451+SUL4jfaWoKczRbWs4eFuFI2Ay88TOMEKbAOXo9kHeyuCxbmzmWk+mfCD5ea
+	 Z1qI8MU5NtwNbXxAVVhbejHQrMs6Ydv0KW1xWABGqcD+O3zxHZDZi9gki9zZBxzG7A
+	 ihn6IGwC/02SA==
+Date: Thu, 5 Mar 2026 18:31:22 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, UNGLinuxDriver@microchip.com,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
+ switch bindings
+Message-ID: <20260305-reliant-parchment-0ff685a9c78e@spud>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
+ <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
+ <20260303-mosaic-debate-90cf8c8bbb33@spud>
+ <1db45715a3a12b76b838d20c0e5904c3222053e7.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Subject: [PATCH v2 15/15] ARM: dts: imx6ul-var-som: add support for LVDS display panel
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: A38E3216DC7
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="U36N4Du8wU9KvAZH"
+Content-Disposition: inline
+In-Reply-To: <1db45715a3a12b76b838d20c0e5904c3222053e7.camel@microchip.com>
+X-Rspamd-Queue-Id: 8F6E8216FAA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,nxp.com,pengutronix.de,bootlin.com];
-	DMARC_NA(0.00)[hugovil.com];
-	TAGGED_FROM(0.00)[bounces-271686-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[hugovil.com:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-271687-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lunn.ch,microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FROM_HAS_DN(0.00)[]
+	RCPT_COUNT_TWELVE(0.00)[19];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Add support for the LD configuration option (LVDS encoder assembled on SOM)
-so that the LVDS display panel on the concerto EVK board works properly.
-Not all VAR-SOM-6UL SOMs have the LD configuration option so factor out
-this functionality to a separate dtsi.
+--U36N4Du8wU9KvAZH
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- .../imx/imx6ul-var-som-concerto-common.dtsi   |  35 ++++--
- .../nxp/imx/imx6ul-var-som-concerto-full.dts  |   1 +
- .../dts/nxp/imx/imx6ul-var-som-concerto.dts   |   1 +
- .../nxp/imx/imx6ul-var-som-lvds-panel.dtsi    | 112 ++++++++++++++++++
- .../nxp/imx/imx6ull-var-som-concerto-full.dts |   1 +
- .../dts/nxp/imx/imx6ull-var-som-concerto.dts  |   1 +
- 6 files changed, 139 insertions(+), 12 deletions(-)
- create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-lvds-panel.dtsi
+On Thu, Mar 05, 2026 at 01:57:37PM +0100, Jens Emil Schulz Ostergaard wrote:
+> On Tue, 2026-03-03 at 19:04 +0000, Conor Dooley wrote:
+> > On Tue, Mar 03, 2026 at 03:18:45PM +0100, Andrew Lunn wrote:
+> > > > +        properties:
+> > > > +          microchip,led-drive-mode:
+> > > > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +            description: |
+> > > > +              Set the LED drive mode for the copper PHY associated=
+ with
+> > > > +              this port.
+> > > > +
+> > > > +                0 - LED1 and LED2 in open-drain mode
+> > > > +                1 - LED1 in active drive mode (can be used for sin=
+gle-LED
+> > > > +                    configurations requiring active drive)
+> > > > +                2 - Reserved
+> > > > +                3 - LED1 and LED2 in active drive mode
+> > > > +            minimum: 0
+> > > > +            maximum: 3
+> > >=20
+> > > I doubt the DT Maintainers will accept that. This looks a lot like a
+> > > value you write into a register. How are active drive and open-drain
+> > > described in other DT bindings? Is there something you can reuse?
+> >=20
+> > I had a quick look and I didn't see anything really that stood out to me
+> > that would be a drop-in replacement.
+> > I also tried looking in the datasheet for more information on these
+> > modes, but I couldn't see anything obvious. For example, there were zero
+> > hits for "drain" in either LAN9645xS or LAN9645xF datasheets.
+> >=20
+> > That said, yea you're right about DT maintainer feelings about it.
+> > There's a couple things I could suggest, but I'd like to know about what
+> > mode 1 means for LED2 first. If there's actually nothing similar, what
+> > about representing each led with a child node and having open-drain be
+> > the default with a property in the child for active-drive?
+> >=20
+> > >=20
+> > > For 1, what happens to LED2? Not used at all?
+>=20
+> In mode 1 LED2 will be open-drain. This mode only makes sense if you have
+> just 1 LED. With two LEDs mode 0 or mode 3 should be used.
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
-index f099ca5d0e8f0..e5637310ba632 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-common.dtsi
-@@ -44,6 +44,29 @@ led-0 {
- 			linux,default-trigger = "heartbeat";
- 		};
- 	};
-+
-+	lvds_panel: lvds-panel {
-+		compatible = "sgd,gktw70sdae4se", "panel-lvds";
-+		data-mapping = "jeida-18";
-+		width-mm = <153>;
-+		height-mm = <86>;
-+
-+		panel-timing {
-+			clock-frequency = <35000000>;
-+			hactive = <800>;
-+			vactive = <480>;
-+			hback-porch = <40>;
-+			hfront-porch = <40>;
-+			vback-porch = <29>;
-+			vfront-porch = <13>;
-+			hsync-len = <48>;
-+			vsync-len = <3>;
-+			hsync-active = <0>;
-+			vsync-active = <0>;
-+			de-active = <1>;
-+			pixelclk-active = <0>;
-+		};
-+	};
- };
- 
- &can1 {
-@@ -98,12 +121,6 @@ MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
- 		>;
- 	};
- 
--	pinctrl_pwm4: pwm4grp {
--		fsl,pins = <
--			MX6UL_PAD_GPIO1_IO05__PWM4_OUT		0x110b0
--		>;
--	};
--
- 	pinctrl_rtc: rtcgrp {
- 		fsl,pins = <
- 			MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0 /* RTC alarm IRQ */
-@@ -139,12 +156,6 @@ MX6UL_PAD_GPIO1_IO01__WDOG1_WDOG_B	0x78b0
- 	};
- };
- 
--&pwm4 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_pwm4>;
--	status = "okay";
--};
--
- &snvs_pwrkey {
- 	status = "disabled";
- };
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-full.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-full.dts
-index 64a3cbd8b7c38..725f34d6b7ee9 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-full.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-full.dts
-@@ -14,6 +14,7 @@
- #include "imx6ul-var-som-enet2.dtsi"
- #include "imx6ul-var-som-enet1.dtsi"
- #include "imx6ul-var-som-audio.dtsi"
-+#include "imx6ul-var-som-lvds-panel.dtsi"
- 
- / {
- 	model = "Variscite VAR-SOM-6UL Concerto Board (6UL CPU)";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-index 9c5cb96beeb17..c249e15772b82 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-@@ -14,6 +14,7 @@
- #include "imx6ul-var-som-sd.dtsi"
- #include "imx6ul-var-som-enet2.dtsi"
- #include "imx6ul-var-som-audio.dtsi"
-+#include "imx6ul-var-som-lvds-panel.dtsi"
- 
- / {
- 	model = "Variscite VAR-SOM-6UL Concerto Board (6UL CPU)";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-lvds-panel.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-lvds-panel.dtsi
-new file mode 100644
-index 0000000000000..996b37d35d6e0
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-lvds-panel.dtsi
-@@ -0,0 +1,112 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * LVDS panel support for Variscite VAR-SOM-6UL module.
-+ *
-+ * Copyright 2019-2024 Variscite Ltd.
-+ * Copyright 2026 Dimonoff
-+ */
-+
-+/ {
-+	lcd_backlight: lcd-backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm4 0 2000000 0>;
-+		pwm-names = "LCD_BKLT_PWM";
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <6>;
-+		status = "okay";
-+	};
-+
-+	lvds_encoder: lvds-encoder {
-+		compatible = "ti,sn75lvds93", "lvds-encoder";
-+		power-supply = <&reg_3p3v>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				lvds_enc_in: endpoint {
-+					remote-endpoint = <&lcdif_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				lvds_enc_out: endpoint {
-+					remote-endpoint = <&lvds_panel_in>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_lcdif_ctrl: lcdif-ctrl-grp {
-+		fsl,pins = <
-+			MX6UL_PAD_LCD_CLK__LCDIF_CLK		0x79
-+			MX6UL_PAD_LCD_ENABLE__LCDIF_ENABLE	0x79
-+		>;
-+	};
-+
-+	pinctrl_lcdif_dat: lcdif-dat-grp {
-+		fsl,pins = <
-+			MX6UL_PAD_LCD_DATA02__LCDIF_DATA02	0x79
-+			MX6UL_PAD_LCD_DATA03__LCDIF_DATA03	0x79
-+			MX6UL_PAD_LCD_DATA04__LCDIF_DATA04	0x79
-+			MX6UL_PAD_LCD_DATA05__LCDIF_DATA05	0x79
-+			MX6UL_PAD_LCD_DATA06__LCDIF_DATA06	0x79
-+			MX6UL_PAD_LCD_DATA07__LCDIF_DATA07	0x79
-+			MX6UL_PAD_LCD_DATA10__LCDIF_DATA10	0x79
-+			MX6UL_PAD_LCD_DATA11__LCDIF_DATA11	0x79
-+			MX6UL_PAD_LCD_DATA12__LCDIF_DATA12	0x79
-+			MX6UL_PAD_LCD_DATA13__LCDIF_DATA13	0x79
-+			MX6UL_PAD_LCD_DATA14__LCDIF_DATA14	0x79
-+			MX6UL_PAD_LCD_DATA15__LCDIF_DATA15	0x79
-+			MX6UL_PAD_LCD_DATA18__LCDIF_DATA18	0x79
-+			MX6UL_PAD_LCD_DATA19__LCDIF_DATA19	0x79
-+			MX6UL_PAD_LCD_DATA20__LCDIF_DATA20	0x79
-+			MX6UL_PAD_LCD_DATA21__LCDIF_DATA21	0x79
-+			MX6UL_PAD_LCD_DATA22__LCDIF_DATA22	0x79
-+			MX6UL_PAD_LCD_DATA23__LCDIF_DATA23	0x79
-+		>;
-+	};
-+
-+	pinctrl_pwm4: pwm4-grp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO05__PWM4_OUT		0x110b0 /* LCD BACKLIGHT */
-+		>;
-+	};
-+};
-+
-+&lcdif {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_lcdif_dat
-+		     &pinctrl_lcdif_ctrl>;
-+	status = "okay";
-+
-+	port {
-+		lcdif_out: endpoint {
-+			remote-endpoint = <&lvds_enc_in>;
-+		};
-+	};
-+};
-+
-+&lvds_panel {
-+	status = "okay";
-+
-+	port {
-+		lvds_panel_in: endpoint {
-+			remote-endpoint = <&lvds_enc_out>;
-+		};
-+	};
-+};
-+
-+/* PWM LCD */
-+&pwm4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm4>;
-+	status = "okay";
-+};
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto-full.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto-full.dts
-index 2e1f75d5f25a6..1b7c1a3383eec 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto-full.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto-full.dts
-@@ -14,6 +14,7 @@
- #include "imx6ul-var-som-enet2.dtsi"
- #include "imx6ul-var-som-enet1.dtsi"
- #include "imx6ul-var-som-audio.dtsi"
-+#include "imx6ul-var-som-lvds-panel.dtsi"
- 
- / {
- 	model = "Variscite VAR-SOM-6UL Concerto Board (6ULL CPU)";
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
-index 43a477db652fa..9c9d16eb1a11e 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
-@@ -13,6 +13,7 @@
- #include "imx6ul-var-som-sd.dtsi"
- #include "imx6ul-var-som-enet2.dtsi"
- #include "imx6ul-var-som-audio.dtsi"
-+#include "imx6ul-var-som-lvds-panel.dtsi"
- 
- / {
- 	model = "Variscite VAR-SOM-6UL Concerto Board (6ULL CPU)";
--- 
-2.47.3
+Could we then have child nodes for each led, and have a property in each
+that sets the mode to either open-drain or active-drive? Or am I just
+inserting complexity by asking for that?
 
+--U36N4Du8wU9KvAZH
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaanL+gAKCRB4tDGHoIJi
+0tfIAP9B7qfOus/9VKdwPQXPg9Zhl8gG3TahJc3f6gjl3NDgWgEAmKVBQLZILMPo
+fgRdfpOBD5HexrCxMTk5nAOkDBg0qAA=
+=eDyb
+-----END PGP SIGNATURE-----
+
+--U36N4Du8wU9KvAZH--
 
