@@ -1,217 +1,240 @@
-Return-Path: <devicetree+bounces-271668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271669-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOpIOYHDqWl3EQEAu9opvQ
-	(envelope-from <devicetree+bounces-271668-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:55:13 +0100
+	id 0NQPHrDCqWkhEQEAu9opvQ
+	(envelope-from <devicetree+bounces-271669-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:51:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8AD2A2169B4
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:55:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D75872168DB
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1372630A334D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 17:50:45 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6E825301F17F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 17:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78983E5EF5;
-	Thu,  5 Mar 2026 17:46:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41A6D26F296;
+	Thu,  5 Mar 2026 17:51:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dm/amFbO"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gYQLFsXZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011029.outbound.protection.outlook.com [40.107.130.29])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C18A626FDBF;
-	Thu,  5 Mar 2026 17:46:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772732771; cv=none; b=fmC3qhbxn88n8FLGfWC0gBSM+/fLgetGFNiBK20LvE4Cn8AAQ4NXACBeGHqUB1JyVEvx0IP4cWw4W01G/MauUWjml3mKQiMNqka3bJTjNiKJIm4g2vVyBIEZwUCuWP9d2VVIMcvOFesvDQJSu/3eZbxe5K4fYu+1p4Jb/t7X0a8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772732771; c=relaxed/simple;
-	bh=2HAVcfpUtCyECaW0rvig9lyxyuv7rVKUEqPEYkLuDeQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MTWo81PXXlAktG4Om7bcgyGUY6VsemIEtgOJG45F+hKYuoLC1v+FY2E/jjHZYLj8jRZpV4scPphWIj95yEVfPDrmYkFZhKYJPIJaDwfgW/u+dFAEGDydWUwG8x37hr1UxiXKS/lFuFiBdgmxVjaQA6O6CSiO3Ji4yKrDCgnCuxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dm/amFbO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1C0BC2BCB2;
-	Thu,  5 Mar 2026 17:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772732771;
-	bh=2HAVcfpUtCyECaW0rvig9lyxyuv7rVKUEqPEYkLuDeQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Dm/amFbOJ28V2MKhtPq1e11XjQ+YEsGi+ex48RrYXrHoNGSB21AxQ3UtXo3lVy7/z
-	 jOIM5/tcCzKOLyXvclKL/YL7NhopROcd5yC5LNtUQhGTq+QYBnSqIsXxqEvtbAteDK
-	 oxwqReiny+F82V7Rk3Iz9/17jArPdhPYsqW+ITwEYr5EaZma4VvFLuAWu4qpgsx9vT
-	 pcfajjM+w8EST9+SC8RY54mbMdl+etKmyJyRAK9yHU0R+YZg6zWczUUINW7pm0K0ec
-	 H1zicn1/1UjmIBY1h2xlz8oHUh0qy1S/M+MxoT/IPu89xOg3B728jPvMsMOK1cQNrx
-	 N7JZoLxFr+2Mg==
-Date: Thu, 5 Mar 2026 17:45:59 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
-Cc: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, David Lechner
- <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
- Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
- <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: add bindings for AD4691
- family
-Message-ID: <20260305174559.1ded5173@jic23-huawei>
-In-Reply-To: <20260305-ad4692-multichannel-sar-adc-driver-v1-1-336229a8dcc7@analog.com>
-References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
-	<20260305-ad4692-multichannel-sar-adc-driver-v1-1-336229a8dcc7@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF7D189BB6;
+	Thu,  5 Mar 2026 17:51:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.29
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772733100; cv=fail; b=FZDY96HXzXR5Ku4il90ZBSk0ZyE7qK7MZW0v4J/tXv/u6qLnzXH6tmh4V13VJRAbBo6Rn4U+iRAU5Jt/ZbEBx3JTbEElhigJh9myI7QRPMtacv0msix7bopg48Wvm7C9A8UmJQ/dn8eaMlFDyoOG+L+bRMZFZNYNydmTAAJ5bp8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772733100; c=relaxed/simple;
+	bh=1nD/tOAtL4hU+yaaRTAbT8t6q/zr//1tkiHTJ8Fm29Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=MXKVPw+0H2y8UoS7WZTa+3AWqy93D7j3L5/Ssb0nswDWXZIvn0qCdKMqLk5DhsAJ5D05UkkmWptJoOivK1DaOq9FDqZJy1ihAkd+gCMUWR6fBNV6TTgYzyEqmLFIdW8Gj1hPMr4/3fNZvDq5VDxDhcwb3eKevXEGeLsKw+dcL5U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gYQLFsXZ; arc=fail smtp.client-ip=40.107.130.29
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=JbbcSUAjID5fL6kxiSdKkSLRhmH0cjFm0epqjmNbNiDFTaTaN9nadyxdvHtjKcnbrg9EVoZqTuPUUUIegSu90wT0XPA5Yd5gFvcwyejiOUJwq//PRJtuRjavwjYBQEp1Q4goJgknNQ/hx/S+FsW6+1jjcIGjdUZiYM3oBXQayRD3biGXaCq51kQq3ywTlY738XdTnJWaF/mfro4hPzs0XMIZc+r+CEZC+yXG7+FcX1U5XT92WVhcowc95yoLUfcOHzBizlXWjJHTchbcefXqPPHhUjcC5IlfqxBPU60mB6jiqz2nOAqMcuBrsZDxxmqQAipkpWO4QWWUJQ779117EQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qd25068U3mvjxsTNqDBQEPmWUzBVqNAbRwr+HMsZ5fY=;
+ b=oIM0nW3FqZKxyWusSK7zkUwlHtaS4TbQHdtn5a2MIoW/4P5LKW7AWXQnVlJeWbx6VE+KsuBTFCiPo6XvOqKV1qBDfWotAZCqKhNBaZI7Bnf2hy/3RwwlJDooqQgoyle3xQfjRE+xKjhVPMk/5oIYmTbwuo/eMEhJOz1roC4Bm0G3aW2FcuHJtuEVW0pV0nayo+MgqKSTEnKYCrMgEopaVA1wCnMhFq9bsHBGf7qhoPMICWyoGq9sgLOTrorMXcGnRBOYq+BZ9nqgDD3tO7ibbHup/ogq6YqNY3AZwK571u2urvT8U2E1Zsy2uLRmA5BPLfudRg5kZaQmQvUzASAZSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qd25068U3mvjxsTNqDBQEPmWUzBVqNAbRwr+HMsZ5fY=;
+ b=gYQLFsXZBy3kjG+E2MxQVQn8P50Tvq3AjilDClHAL6SgXOgkv/bqDOOWQeqwB2hFoOUCmbTvsaAqMx3sMFSYXSVFBaFsTpCoqQLzld7oVE617MAV5KvpiMOpQqgqMNHjgRJFLshioVhLiJnwn4eQfusjC5SzKntAFLQQ+Z59Mf69l1DnmW/6QeJSgsez4ON9GXi7xM8xrijkrvulKJrxRAALTw/V9zcMv3XrsagPJTFPa9kilncrS6bnozU+PzTFuvjbLatXSSCBzNefERUb278Np7K9pPdQP6Wi34EQwPOyPghqvSh3MmBaLGHqGBhgXLn9umw91vJZJkFqB/9vLA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by PA6PR04MB11802.eurprd04.prod.outlook.com (2603:10a6:102:521::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Thu, 5 Mar
+ 2026 17:51:35 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Thu, 5 Mar 2026
+ 17:51:35 +0000
+Date: Thu, 5 Mar 2026 12:51:26 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
+	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/6] arm64: dts: freescale: Add Verdin iMX95 support
+Message-ID: <aanCnv0W9x6K_sQ9@lizhi-Precision-Tower-5810>
+References: <20260305-verdin-imx95-upstream-frank-li-base-v1-0-823fad02def9@toradex.com>
+ <20260305-verdin-imx95-upstream-frank-li-base-v1-2-823fad02def9@toradex.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260305-verdin-imx95-upstream-frank-li-base-v1-2-823fad02def9@toradex.com>
+X-ClientProxiedBy: PH8PR15CA0012.namprd15.prod.outlook.com
+ (2603:10b6:510:2d2::18) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 8AD2A2169B4
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PA6PR04MB11802:EE_
+X-MS-Office365-Filtering-Correlation-Id: 87460365-8360-42b1-3806-08de7adfd79f
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|52116014|376014|366016|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ uCpl38nONzkbVFtqjqkBQM8yqZEl/xEv4DScvtjV7EBXsholp2KiA0aZOe6jTUaytS/TFwBypIDA9s5lCFgK9ZJReZaPfl48hf+YMjYDUgSWueSk8pfl9lFbXYM8J5XhN3h5a2pIPHMxW8WVCfjbJYgXBwD88HGydkecM1apQm57dS8Q68QzTZLcK+Ak+et3lT8lzShXimYz4o1LVcpfEAzWZe9wPEDoCME5aazitUYAgi4I9o/TXzcQ6I03WdrUQapyC2ShpE6BgYUEXYsOqLZxl0oz1+IIPrEKHmHsC6i3ehWRT9YtVKGFmqXj7p5WFhRt8pnjezSj/b6vonD8iwhps05xkuph/gOJS/sLth6x68TB+2q0vPOJVYhwtru3ShMU8LnZOHkIeq8sotO/a0gQq1vKhVPpxBFyHUX7C6c3wZQmVg/iz8DLFhtqfd84svUhJPPkrN+UpZZLdZpv3LPjosZomXy6VvzoPS1T3Cpz3EnMwfPMEUPsXQIRPTvfaqfa/EN4qb1YvNqyJ4f8FSbbZi8WRe46QlPckcKB2sLXniJf3R8YAFEF1Hy+ko/5xriLfDknMKMmuTtigGXI1zfEalYGjUpoHeiAio79beDwc3dzOifMLhVWeqGG1r87UD/+SgdfM3L1NV51ehl+qcwbfKEtl1FCYGcDmz8y/wmVzckY3vUoVUapMvQbPWJn5moHsyTe/MSAYVwxyY1SdKES3w1YxJZtsM/k/SOcItIpXFzTyW8YdMXckCf8R3ZJcttwn0VKJaL/jpYUa0TYQN6pFIjdrMxC6kC0uB3mnA4=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(52116014)(376014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?uslQGJgxr9LMl74f9oeqftWGdQwF1dw96MMeOUMxoszDKPOcEiQmLF3PvlFt?=
+ =?us-ascii?Q?e6UhggA/4XjlXtUmSj8XNSzALaMjlZopmbHzkVk51hHwhojzpcrvl328GErl?=
+ =?us-ascii?Q?F8DraGx9hLxq+E/BZiyqHWnpxCh926q4d5pbyvR7P1QlTtG/Z9T/HmddPcPK?=
+ =?us-ascii?Q?RUFzdJmmhP++zAmycda7wkQihX9MgW0Y+v3esbSTEQqW2sU1c3FcMFsOMuRj?=
+ =?us-ascii?Q?0pQQiij+O3gx7tsRyVb/zc55SFKQouGmdGQX9xmE9bT9aInNG7pyoqwKgElH?=
+ =?us-ascii?Q?H75yfyWKlvasUakC8VnCJ8kbJuBNbStn/KBzPDFgsMeVbaaZ0ClC3LohGXbT?=
+ =?us-ascii?Q?Y6LdOjBHQNOYtbcR+E3MJek6jQMaEe9I3aSG4s9wR3yCH6k90G565fsIXglG?=
+ =?us-ascii?Q?Prcz2s5vQLO5nlWdxeciat9yPeYoYhXakLUorTBFQbpLg5sThkIatmv8cN9C?=
+ =?us-ascii?Q?RRoB1VkswxZThuMNFzO49C10wzQJm0kXtPDq70OkpE5llHHBIRDhy/7YLkmA?=
+ =?us-ascii?Q?a4ViAt/7CuTj1MlOrSgepThHs63ew61lfB2zTiRYmaZbrX/zRiQr5IENAXRk?=
+ =?us-ascii?Q?DgbWb4Ht39e7aRVrsEwFcuxhET0+4Np0wi8hJIp61/o8MYlxyH539cQS+hPx?=
+ =?us-ascii?Q?ofexOvhYyqtWnSTCBE50rcgLtTxsSTDTgWZulYgSpNkpgioCAsVh7WQu94T7?=
+ =?us-ascii?Q?tT2IzDCI1j4+Yw4iWn86WnGk66UGYh4VFbfJbWA9JkIPfCArXUdyEViJjfdl?=
+ =?us-ascii?Q?9IK3/znuttctoqU7PNyfi2yJN457ze9ed8PKL/mSiWrQOYY29iLW27YlLeUZ?=
+ =?us-ascii?Q?FFkYUz3gfq/vdBd4v5T91gSnRSmn6yPtl/byY6Xsye5o/Sd4vWq0Cu2BBWLE?=
+ =?us-ascii?Q?sv8XujcFGP+9ztV+SU0AakmDPvuGEawJc4SirQXfWniEmPkjAm00WC2isywz?=
+ =?us-ascii?Q?f+sWzAmjvvYpZMpQHWAE1+1kh3v2dUSAjLfzSGesqITtBNStQ8fY5PcgBEdl?=
+ =?us-ascii?Q?vG2TvyUgLj9WosxvRXkIZiRTZ4Qfo+ouv345OvRwWAkph/HHLYLll0IpoiRq?=
+ =?us-ascii?Q?58myaV6wZLeKxNa8kQdmnY9emBT5lnAReYAoD0U/2qYOxhSw1CaHtdaysBuh?=
+ =?us-ascii?Q?oRGjbilAMeTTZOnm316Xi8/k8RpDmVhxHEL1QnPbvZ/dZQbTAn1rYUFD1+ZA?=
+ =?us-ascii?Q?r4YKmYXG3PZGcr/l7OSXMeNuGwEy+KRsdx80dGxWyPQl5GpFL88t0M9gUcoL?=
+ =?us-ascii?Q?6rWvxGfbVjIRJY401GCezlh0V6sDvTg+FVY8VwUsaUd/ef96OnIGVt/iqGE5?=
+ =?us-ascii?Q?ob3YC50tF5Iiy00YLbjuUlsuuqiUfAuiQGMk3BuK78b9BFC3WN7ZIUfCJc9D?=
+ =?us-ascii?Q?V4uEc1/9rTUpdU5TjE6U6iqh8+iIkkjJUqtmn1xR2lanp6GZVRCpOASbPpKU?=
+ =?us-ascii?Q?gZiyG+tF9AAdBQzoM+sfbLnpdjyy856BRTMjH8m2+TxVAPHc9ktTvktYPFpi?=
+ =?us-ascii?Q?jnMvK9sZnl0cI29TdsI6GO+S0AwMmZNEofYG+ph86mzX8vSgiI7I6Beweax3?=
+ =?us-ascii?Q?ktoCCYuu6TNY//MqH7VzcxEOzojjNYB7imAVCHkn9+ULDKdQB6pDCbkaX6lL?=
+ =?us-ascii?Q?jC9wlj/epYHSzs3z7FV1eo0AzeB01U5binzwqdgujotmmImyICTDHFT++ttJ?=
+ =?us-ascii?Q?ZYhQMHkEgKZtFuc6QNjR8+mK1y4A9PveRV3He8z079TpaX1Y?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87460365-8360-42b1-3806-08de7adfd79f
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 17:51:34.9432
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GzFiWadvOdto8O645Ob2Ge/dbEAB1JZq8/ZRVUS8rNWLBFIBIjtDKxeTHYtQTJfIb7GvLD6a4r5PyXjcaxPn1w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA6PR04MB11802
+X-Rspamd-Queue-Id: D75872168DB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271668-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271669-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[analog.com,metafoo.de,baylibre.com,kernel.org,gmail.com,vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,toradex.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	NEURAL_HAM(-0.00)[-0.996];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On Thu, 05 Mar 2026 14:23:27 +0200
-Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org> wrote:
-
-> From: Radu Sabau <radu.sabau@analog.com>
-> 
-> Add YAML bindings and dt-bindings header for the Analog Devices AD4691
-> family of multichannel SAR ADCs (AD4691, AD4692, AD4693, AD4694).
-> 
-> The binding describes five operating modes selectable via the
-> adi,spi-mode property, optional PWM/clock for CNV Clock and CNV Burst
-> modes, GPIO pins, voltage supplies and the trigger-source interface for
-> SPI Engine offload operation.
-> 
-> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
-
-Hi Radu, I'm going to focus on mode... Mostly because things called
-mode are usually a sign of mixing up different aspects of the board
-design...
-
-
-> +
-> +  adi,spi-mode:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3, 4]
-> +    description: |
-> +      Selects the ADC operating mode:
-> +        0 - CNV Clock Mode: External PWM drives CNV pin, samples at PWM rate.
-> +        1 - CNV Burst Mode: PWM triggers burst cycles, internal oscillator
-> +            drives conversions within each burst.
-> +        2 - Autonomous Mode: Internal oscillator drives conversions, software
-> +            starts/stops via register write.
-> +        3 - SPI Burst Mode: Similar to Autonomous Mode but optimized for
-> +            SPI burst reads.
-> +        4 - Manual Mode: CNV is directly tied to SPI CS. Each SPI transfer
-> +            triggers a conversion and returns previous result (pipelined).
-Which of these are wiring related?
-
-0 and 1 need a PWM wired up.  So describe a PWM. If there is one we need
-to figure which we want so indication provided by userspace.
-
-2 and 3 don't need anything beyond bus.
-
-4 probably does need a binding but that's about whether that wire connection
-is there or not.
-
-> +
-> +  vio-supply:
-> +    description: I/O voltage supply (1.71V to 1.89V or VDD).
-> +
-> +  vref-supply:
-> +    description:
-> +      External reference voltage supply (2.4V to 5.25V). Mutually exclusive
-> +      with vrefin-supply.
-
-Enforce that via a rule as you do below. No need to document it here as well.
-
-> +
-> +  vrefin-supply:
-> +    description:
-> +      Internal reference buffer input supply. Mutually exclusive with
-> +      vref-supply.
-
-
-> +
-> +  # AD4694 (20-bit) does not support Manual Mode
-
-That's a driver thing. Not something we want in the binding.
-
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: adi,ad4694
-> +    then:
-> +      properties:
-> +        adi,spi-mode:
-> +          enum: [0, 1, 2, 3]
-> +
-> +  # CNV Clock Mode and CNV Burst Mode require PWM and clock
-> +  - if:
-> +      properties:
-> +        adi,spi-mode:
-> +          enum: [0, 1]
-
-This is backwards. Define these as optional properties and use that to
-limit what the driver can offer as ways it can run. Maybe they
-only make sense together in which case add that rule.
-
-
-> +    then:
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +        - pwms
-> +        - pwm-names
-> +
-> +  # Non-Manual modes (0-3) without SPI offload require a DRDY interrupt.
-> +  # Offload configurations expose '#trigger-source-cells' instead.
-> +  - if:
-> +      properties:
-> +        adi,spi-mode:
-> +          enum: [0, 1, 2, 3]
-> +      not:
-> +        required:
-> +          - '#trigger-source-cells'
-> +    then:
-> +      required:
-> +        - interrupts
-> +        - interrupt-names
-> +
+On Thu, Mar 05, 2026 at 06:24:30PM +0100, Ernest Van Hoecke wrote:
+> From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 >
+> Add support for the Toradex Verdin iMX95 and its development carrier
+> board.
+>
+> The module consists of an NXP i.MX95 family SoC, up to 16GB LPDDR4x RAM,
+> up to 128GB of storage, a USB 3.2 OTG and USB 2.0 Host, a Gigabit
+> Ethernet PHY, an I2C EEPROM and Temperature Sensor, an RX8130 RTC, an
+> I3C bus, one Quad lane CSI interface, one Quad lane DSI or CSI
+> interface, one LVDS interface (one or two channels), and some optional
+> addons: TPM 2.0, and a WiFi/BT module.
+>
+> Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
+> Link: https://www.toradex.com/products/carrier-board/verdin-development-board-kit
+> Co-developed-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> Signed-off-by: Emanuele Ghidoli <emanuele.ghidoli@toradex.com>
+> Co-developed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+> ---
+
+...
+> +		usb1 = &usb3;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:115200n8";
+> +	};
+> +
+> +	cm7: remoteproc-cm7 {
+> +		compatible = "fsl,imx95-cm7";
+> +		mbox-names = "tx", "rx", "rxdb";
+> +		mboxes = <&mu7 0 1
+> +			  &mu7 1 1
+> +			  &mu7 3 1>;
+> +		memory-region = <&vdevbuffer>, <&vdev0vring0>, <&vdev0vring1>,
+> +				<&vdev1vring0>, <&vdev1vring1>, <&rsc_table>, <&m7_reserved>;
+> +	};
+> +
+> +	connector {
+
+Please order by node name instead of label because node-name generally
+is fixed and standarded.
+
+Run https://github.com/lznuaa/dt-format for new file so needn't check node
+property order manually.
+
+Frank
+> +		compatible = "gpio-usb-b-connector", "usb-b-connector";
+> +		/* Verdin USB_1_ID (SODIMM 161) */
+> +		id-gpios = <&som_gpio_expander 5 GPIO_ACTIVE_HIGH>;
+> +		label = "USB_1";
+> +		self-powered;
+> +		vbus-supply = <&reg_usb1_vbus>;
+> +
+> +		port {
+> +			usb_dr_connector: endpoint {
+> +				remote-endpoint = <&usb1_id>;
+> +			};
+> +		};
+> +	};
+> +
 
