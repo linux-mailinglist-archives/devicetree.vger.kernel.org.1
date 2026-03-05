@@ -1,170 +1,217 @@
-Return-Path: <devicetree+bounces-271435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271436-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cYfRNnxGqWm33gAAu9opvQ
-	(envelope-from <devicetree+bounces-271435-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:01:48 +0100
+	id WDQPI/dHqWnw3gAAu9opvQ
+	(envelope-from <devicetree+bounces-271436-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:08:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D10920DDE3
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:01:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DA020E02D
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:08:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1E631301A79A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:01:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DD187301AA40
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93FCB364E96;
-	Thu,  5 Mar 2026 09:01:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB7A366806;
+	Thu,  5 Mar 2026 09:03:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="3UhppmL1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57837364057
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 09:01:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC4FD359A65
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 09:03:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772701304; cv=none; b=Yd5ZeOZYXYYRmh6VadvQmz87foNDwH9xvXBCj3FhosoMC7jxp3uv1vl6nd4N8QyrY9ytbcGROoSAYcCUcs6yQf08ydullP9YQhjNaIlnhd0GJsROW7hMX3T1A9Z1Tn7tonfOGyXFkU/0qLqYva59UNNVhVEeRor2mGKaIcdQWZ8=
+	t=1772701419; cv=none; b=QfCgHCHqLYi67cqYgZ6jshT+t9jrz5DUgawqSKdX7OMt/EhvvtbBI8H6LYPaDO6EwaUFJc4B9qVAiZKT46FdbKp8AElHVVPD48WNDentTP7HwMTYr/42kq/sd6Se4llqy0Qhc91g2ogbdpCrgDwd0YR56JjuT5fyfn3EStGSlI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772701304; c=relaxed/simple;
-	bh=080koNgSe9hjeVR0q1r2QSSBC9Kp2qRltJfFcYh3d8U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KocYjQ5XJUyenx02wfp59EzIvN6qqQU3fP0as/8JpDnXJsXI4W+Yisqq4kTMKHaZLW5KAAYxAdqe3ebjbHpBRAtcVytcucAdrs86xUu7MC33G1bCZ398wsBxZE9wXh7pWSMAEzBegfr15g9c/YUR1LNkZsDET4I84rlKAMUlL54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vy4a9-0008U0-8W; Thu, 05 Mar 2026 10:01:21 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vy4a7-003qy0-01;
-	Thu, 05 Mar 2026 10:01:20 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vy4a8-00000002F1L-0utp;
-	Thu, 05 Mar 2026 10:01:20 +0100
-Date: Thu, 5 Mar 2026 10:01:20 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: ming.qian@oss.nxp.com
-Cc: linux-media@vger.kernel.org, mchehab@kernel.org, 
-	hverkuil-cisco@xs4all.nl, nicolas@ndufresne.ca, benjamin.gaignard@collabora.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
-	sebastian.fricke@collabora.com, shawnguo@kernel.org, ulf.hansson@linaro.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	fra.schnyder@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de, Frank.li@nxp.com, 
-	peng.fan@nxp.com, eagle.zhou@nxp.com, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] media: verisilicon: Fix kernel panic due to __initconst
- misuse
-Message-ID: <j4h65w6rwsd227gooa437qfp43z3vtiyaegehbe5md3f22anae@lprbmtart3km>
-References: <20260305080354.639-1-ming.qian@oss.nxp.com>
+	s=arc-20240116; t=1772701419; c=relaxed/simple;
+	bh=kxnI1kq3blq/G6aSx3FDq3CCB9uCXKLhW/uT2AuKJOA=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=u4Ll0ckGAF4Ox5YetJmdFS0TsfR9Ohz287dqEsNkophcs/ZINDLnPBHnrmm4ZeX1spg6/52VO71i57l3/qPBizjyoVXm6tg77sojTx7hnPWa65TFnNLWOBzIDEjfYybwYVbzeW3+RHaw+Dht82ndQanF/AvNCpqgR27YITSrxRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=3UhppmL1; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-48371119eacso92794595e9.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 01:03:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772701415; x=1773306215; darn=vger.kernel.org;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WAQoJ+BsCX38jr9SNjCgtieBrTo3xV4mFgoDVHJVgRk=;
+        b=3UhppmL1ubtCdtjhllLgzD5hrVfzI2bvNG7OP6VbqCcyQOzOzZLZEOVOl6oDDnNCnW
+         cOUgZyfp4vzXkrdPXgnXvlnoxyiDo4oINv9KG5Cc5CNepWf4B1SIs9O6rgC0VC5HVyUr
+         0kwgSI/aGFmJ0tcpXxKAMAlrjRNA//plBNi+c/HlfS1E/Eo1nx0jHqpaMBL2DfG1Tog/
+         Uy6f7dj2v3chQ0MegY5Sp94hdyWoAKJ8HR5h5wEmhavkKn5TX5bTV0c5yvrsrh45Lbvb
+         EPOZU0JxGIvCuNJ7YKSMGhuEzpBZlEiQ8caA7jdVDVWdoA/GouPBxdJqW/TIVOLXAeo5
+         mYXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772701415; x=1773306215;
+        h=mime-version:message-id:date:user-agent:references:in-reply-to
+         :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WAQoJ+BsCX38jr9SNjCgtieBrTo3xV4mFgoDVHJVgRk=;
+        b=STzzOJpks5dgOm7U4kwdt1oNuR93wg03jicHCqzt0z3v9M5q1ku/bACMJ9iRRSAYcW
+         yWwGEdQ/ZsbvSGkTtRrgQKxARbBlB1eEcR15n7Ba86jQD3ZHHkSsX/c5yHx0/iY53woM
+         ll/6sNEO3e6LOYyuTXjnCApEGpZ8JXMYqSIXdw6B1l5+smRvqucMaqfoPm80UyjPCVXn
+         BzWavZzAZDJA0mq8m09XxmZIJ8zAipcAL0SCC1NPxsSKxUvxuQ7v0sH3/LdMXtnjJAvk
+         pyYil6rMKGds7KDDpeyfqpVTgBRQEQlOidL9QYueuGjLzKHUG6bFvZaaUmtDhwft+EkM
+         YCTA==
+X-Forwarded-Encrypted: i=1; AJvYcCVIRIDg43acwOzbAWnAWc3vsl7taa75IfFyZN2PNOo64VoP8LHMVNDUevaMxrA7prhslHFTOBFppyj/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzp2VEa8JhNcluYyMqNP1H2J2XK9S5M+1h4AqDYrD6mdqqEL+tt
+	PUw5WWeTAY7bNjZiU/AtINNQdZfrEr5UA5Pgm9bE9aBoOai98eWeX+oP54GPAY1aC2Y=
+X-Gm-Gg: ATEYQzyvct9GTGP+JpP9inWnARLw46sxZrnhVV85lHmMGZ6hynicnhHiz74S6/e5Non
+	By6GaNpBMTaKyhMmdxsA4F7w/wvD+9mD6t6GPkbIXcoQwCgFjQ74mRjg9xtljUzNfpi+esHDzEK
+	uuMM0kvICrXzk2OjajWyY34KETb/Avq9j0dkyO2foRmaccth8vzgam/UIFRFZlZnRusA7G256jc
+	4W5JWeKJ4paYVWDZTJvmsYcnMo+WzaI9ibepzTMNPP+FOC3opApN8ugCjuPK8UTYn3YREX5iGiF
+	9PN40rfpWhe0Ubk/6PZFbINj0CiAEix3fHvfqm2ARrvBpm85DFxy6KJg88Ip/Zf5mB6bz3LWlJK
+	/j+PoMx82IH8PHB5lMhe6QCxn3ZJxlW7UuXJh409QF+CJwM1loqUIYyII0X3S0Jd/LBeJCsuV44
+	ePbDVK/85tSNO0JY7uOi2W
+X-Received: by 2002:a05:600c:1f85:b0:47e:e712:aa88 with SMTP id 5b1f17b1804b1-4851989f765mr93346545e9.31.1772701415004;
+        Thu, 05 Mar 2026 01:03:35 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:5595:8450:af3:bbe3])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-4851fad2812sm41178955e9.1.2026.03.05.01.03.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 01:03:34 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,  Kevin Hilman
+ <khilman@baylibre.com>,  "Martin Blumenstingl"
+ <martin.blumenstingl@googlemail.com>,  Stephen Boyd <sboyd@kernel.org>,
+  Michael Turquette <mturquette@baylibre.com>,  robh+dt
+ <robh+dt@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  devicetree
+ <devicetree@vger.kernel.org>,  linux-clk <linux-clk@vger.kernel.org>,
+  linux-amlogic <linux-amlogic@lists.infradead.org>,  linux-kernel
+ <linux-kernel@vger.kernel.org>,  linux-arm-kernel
+ <linux-arm-kernel@lists.infradead.org>,  Ronald Claveau
+ <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 2/3] dt-bindings: clock: amlogic: t7: Add missing mpll3
+ parent clock
+In-Reply-To: <20260305074328.639993-3-jian.hu@amlogic.com> (Jian Hu's message
+	of "Thu, 5 Mar 2026 15:43:26 +0800")
+References: <20260305074328.639993-1-jian.hu@amlogic.com>
+	<20260305074328.639993-3-jian.hu@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 05 Mar 2026 10:03:32 +0100
+Message-ID: <1j4imubqcb.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260305080354.639-1-ming.qian@oss.nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: 1D10920DDE3
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 33DA020E02D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,xs4all.nl,ndufresne.ca,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271435-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271436-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_ALL(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org,aliel.fr];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_NONE(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.959];
+	FROM_NEQ_ENVFROM(0.00)[jbrunet@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,pengutronix.de:url,pengutronix.de:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,baylibre-com.20230601.gappssmtp.com:dkim,amlogic.com:email,starbuckisacylon.baylibre.com:mid]
 X-Rspamd-Action: no action
 
-Hi Ming,
+On jeu. 05 mars 2026 at 15:43, Jian Hu <jian.hu@amlogic.com> wrote:
 
-On 26-03-05, ming.qian@oss.nxp.com wrote:
-> From: Ming Qian <ming.qian@oss.nxp.com>
-> 
-> Fix a kernel panic when probing the driver as a module:
-> 
->   Unable to handle kernel paging request at virtual address
->   ffffd9c18eb05000
->   of_find_matching_node_and_match+0x5c/0x1a0
->   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
-> 
-> The imx8mq_vpu_shared_resources array is referenced by variant
-> structures through their shared_devices field. When built as a
-> module, __initconst causes this data to be freed after module
-> init, but it's later accessed during probe, causing a page fault.
-> 
-> Use __initconst_or_module to keep the data available when built
-> as a module while still allowing it to be freed when built-in.
+> The mpll3 clock is a valid parent clock for sd_emmc and mipi_isp on
+> the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
+> Add it to enable proper clock parent configuration for these peripherals.
 
-would be nice if I get at least some credit for pointing to the correct
-fix ;)
+... but this changes the index of the clocks after this mpll3, and those
+index are supposed to be stable if I'm not mistaken.
 
-> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
-> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
+It is indeed more convenient to have the optional clocks at the end
+as it avoids writing multiple <0> in DT when we do not have them.
 
-However, patch looks fine:
+At the very least, your commit description should say that this change
+will not break any existing DT because these bindings are not used yet.
 
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+I leave it to the DT folks to say if the change is OK in such case.
 
+>
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
 > ---
->  drivers/media/platform/verisilicon/imx8m_vpu_hw.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
-> index 6f8e43b7f157..fa429e6e8281 100644
-> --- a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
-> +++ b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
-> @@ -343,7 +343,7 @@ const struct hantro_variant imx8mq_vpu_variant = {
->  	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
->  };
+>  .../bindings/clock/amlogic,t7-peripherals-clkc.yaml       | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+> index 55bb73707d58..27cc1f331587 100644
+> --- a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
+> @@ -24,7 +24,7 @@ properties:
+>      const: 1
 >  
-> -static const struct of_device_id imx8mq_vpu_shared_resources[] __initconst = {
-> +static const struct of_device_id imx8mq_vpu_shared_resources[] __initconst_or_module = {
->  	{ .compatible = "nxp,imx8mq-vpu-g1", },
->  	{ .compatible = "nxp,imx8mq-vpu-g2", },
->  	{ /* sentinel */ }
-> -- 
-> 2.52.0
-> 
-> 
+>    clocks:
+> -    minItems: 14
+> +    minItems: 15
+>      items:
+>        - description: input oscillator
+>        - description: input sys clk
+> @@ -40,12 +40,13 @@ properties:
+>        - description: input gp1 pll
+>        - description: input mpll1
+>        - description: input mpll2
+> +      - description: input mpll3
+>        - description: external input rmii oscillator (optional)
+>        - description: input video pll0 (optional)
+>        - description: external pad input for rtc (optional)
+>  
+>    clock-names:
+> -    minItems: 14
+> +    minItems: 15
+>      items:
+>        - const: xtal
+>        - const: sys
+> @@ -61,6 +62,7 @@ properties:
+>        - const: gp1
+>        - const: mpll1
+>        - const: mpll2
+> +      - const: mpll3
+>        - const: ext_rmii
+>        - const: vid_pll0
+>        - const: ext_rtc
+> @@ -98,6 +100,7 @@ examples:
+>                       <&gp1 1>,
+>                       <&mpll 4>,
+>                       <&mpll 6>;
+> +                     <&mpll 8>;
+>              clock-names = "xtal",
+>                            "sys",
+>                            "fix",
+> @@ -112,5 +115,6 @@ examples:
+>                            "gp1",
+>                            "mpll1",
+>                            "mpll2";
+> +                          "mpll3";
+>          };
+>      };
 
 -- 
-#gernperDu 
-#CallMeByMyFirstName
-
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+Jerome
 
