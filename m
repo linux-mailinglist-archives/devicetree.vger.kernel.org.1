@@ -1,239 +1,474 @@
-Return-Path: <devicetree+bounces-271593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271607-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uESBHRKXqWlKAgEAu9opvQ
-	(envelope-from <devicetree+bounces-271593-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:45:38 +0100
+	id eOxoLbmcqWnGAwEAu9opvQ
+	(envelope-from <devicetree+bounces-271607-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:09:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E758C213C1F
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:45:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFB2B214353
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:09:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E60D6334EFEF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:32:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A98063124CF2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 15:06:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABEB13A5E7D;
-	Thu,  5 Mar 2026 14:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6A263BA256;
+	Thu,  5 Mar 2026 15:06:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dBxqYvA9";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bFN55yuQ"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="LU4HGuZE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E173A7831
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFDC3A6F05;
+	Thu,  5 Mar 2026 15:06:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772721139; cv=none; b=Ov+jEQ7fSYyDwS1g8qk0nqCk3m/l9f/wx5jOAtpOck8iTmy+eMGgrpdJwuJgWkc7d3+vPXrljz2dNJ22n8PyfFxWQhX3fcCyVyuELRC52BJ31VI0ksPqk47SDS6tZQKCycTiIM9Du/JPBLzVY2qvXvYwcJu3JUrLeT5y82bmkd8=
+	t=1772723216; cv=none; b=hUJ0EoROlGS2LX4MhuQOyAVMoFN+dzhHWY5tFF7n+h6TlTjRngWZFcGhWU/vPnng/pS2I60blHvEg810YyS8iLIW4K3HqrnQrpoTmpuAnKmFPrYYjj/YpzGfYisRyxpBIC0scSFm8yQgjutd3+/J4INwIyX+j0QQppC/Sq2Gw2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772721139; c=relaxed/simple;
-	bh=XWHn+1ZPDu0FcapTL44ctzL2aOejDqiTvMTJMwQPAtk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aKltFXMDEg/ZpNKh5tBNf/bSSxantFKENyGUYxMNUCRuDOb8L0Tvv7JUr95muNUTcFk3lNHoNdsx5LUZSV5u88EID7LuF31kHTf2MSSvy/k4VFdXxgNmqUDoFXRft6Zx59mlMGrgk54/46vbN12+PqE45lpfhQUDIBDA8vjJZb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dBxqYvA9; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bFN55yuQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 625AFpK21517929
-	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 14:32:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Z9t7wjwaSPH7MTmoJHEvGf2G
-	IFWMJMag1Lhetr+FOmc=; b=dBxqYvA9e1DoQUi6qOJNdncGEpxiiTsPE9Syg08Q
-	bbyR0WngQzLWCYNZB34JATCS8+MgaxS+p0ODRlF7yMDi8FGmtbbm3jZTaUFhlk8h
-	+MIsHiNZGiY+k+c1OkHBKy4jJ3bLoH9rHXl2I8/dZQ87an4SMMkmaI9ZDq+E/PE1
-	f61/fNg/Cd7WcBWsZSNRb7Ziz2pGlA2vaylzVLZ6XmV+jS5sIbbWtEIJRpF2Qcoi
-	GHt8uk2gLRGLRMggO9p0JvlZTuHNVANXBsvtedmhrtz1Qme8TOPPPlhga/vC2VqK
-	Yo43iSycI8fIdr4JtpryUPbc5GxaCDG0TdF9WWKhNGvSLA==
-Received: from mail-vk1-f200.google.com (mail-vk1-f200.google.com [209.85.221.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cpuptk35b-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 14:32:17 +0000 (GMT)
-Received: by mail-vk1-f200.google.com with SMTP id 71dfb90a1353d-56ab2253e6cso47763243e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:32:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772721137; x=1773325937; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z9t7wjwaSPH7MTmoJHEvGf2GIFWMJMag1Lhetr+FOmc=;
-        b=bFN55yuQ/2mNoOmhBd+D/TKaRr6ia4cQRZz+VfjqJN0D8Vq1AGfR6BEmAc0DDmfEhW
-         cGe36iGFB+OMECIvsFCtSIVcgcls3DNifdp+WukhIhRGmDBGmPrFw7IGdSME8GiNPgJd
-         DlRqNaLEhphvlu5+mEo7t7lfwvvJvUjicau9VSZGdeYbyoBT5mbq8eMSRMr6E0aYm5la
-         v8IEzub0V5nQRgv6tlOg4abtYNdak3VCqnWzahaTP7SlP9kCPva5BNY3Sekce3W6Dka8
-         W7qtNnuYp7eh4Z6sdEbYeWc7XhldMnaiznJE/PKIVwHcCg8SMiwQh2uUaZZnJQFdaPay
-         e1LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772721137; x=1773325937;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z9t7wjwaSPH7MTmoJHEvGf2GIFWMJMag1Lhetr+FOmc=;
-        b=m8eEAjApJE/7q2LfsRvR9kpqXerRvcE4fpZmfnImV4IuH9idJHpZpayLVbdrLbVquK
-         C5WKZckBsGjj91bwJ9dQfnZEONUY+uruQikJT10I8JPyJwfcTvc9+CFv35Gz4Y4AfOn+
-         WXZyPql3wXEIUcoXQG7oTU059ZqlIO/vQrHMrr4/eVHpp4Sz91g0+edo0s+Q0e6dmxPS
-         s+BIRyiMaonzyTaEY26EKSAd99PvQJ4EEWfHnYP7e2b6lJpNCBJr+r9UzvHgHqpIHILi
-         HIBjBAeT3lnUKB9ac7I3WW8lLZTR8/0jiMe0tp5oXNj73FwT5+6vzxUmQFUVDCE01aa8
-         bj5w==
-X-Forwarded-Encrypted: i=1; AJvYcCUvBisTa01dvUAMdm5cBU+BvUwRT2us4um2hX30NzXVQqhbmXiauYhOwsiWK90hD3rgSzreSajQ2I4U@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxh5Qd51+4ZbLJpXtdWKEIS2a79OLqKWds25n0oRBa/hvoFSxjw
-	fGNdTs7Z1ZwuWUkahMQMJw6yNNPnrXqVlHh+gQu9AYu9O1V2yYIYu3Bc+gauSTN6gQ0WFaMK5S1
-	tkfHQ7u0XRSdLyKxeqVLF3x8TGOwxCPcKvitt+YB0kMwsvfnIL41GeGFkWqiQUK/F
-X-Gm-Gg: ATEYQzzJeGd8ey+OX5Q6uiTFHcS/G+tQZPqsXapb3wmMri57GgSJqX1ArVQNfDxSewM
-	vWDHr9hWkGc/+z34pkWGPK21ZFXBAqCJQcz3op4HmvRgrSBUCQghGdMurk6NHzKNgq6bZXqcDk5
-	smEehKndMiOXGhEX9/tBL8VsCc2sd0UuyE2Sr0XSOa4qZDz+s4YKaD+WorcwkcPUVXPQD3Gpepc
-	vl+oY6KCg0BU+sROnAjFVHM1ZFHRPjqJTlkakSyR+Wlm5bzi0KKt1Grn/3VICW3aicQRlKwkFGB
-	h0JXGKaN/CjMuHDmNDqdvbnULzWo5lrvv+hbJiPKeCPVIXJjqXETCa/fL4y0/U5xsrEPA2i5i4/
-	qh2Uwrl4f0YmGwGrS9THUh+J1L98wtHJW/QovZPpqa68y8Xeg5PPvqIBb0vQfrOJgFu59HzgP8P
-	gwI6B6DX3D1HGTVHesE4cA3xd3hvNSuLHMJcM=
-X-Received: by 2002:a05:6122:ec7:b0:56a:92d8:785a with SMTP id 71dfb90a1353d-56ae77a2c83mr2575229e0c.15.1772721136780;
-        Thu, 05 Mar 2026 06:32:16 -0800 (PST)
-X-Received: by 2002:a05:6122:ec7:b0:56a:92d8:785a with SMTP id 71dfb90a1353d-56ae77a2c83mr2575192e0c.15.1772721136252;
-        Thu, 05 Mar 2026 06:32:16 -0800 (PST)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a125c65f9csm1633905e87.86.2026.03.05.06.32.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 06:32:15 -0800 (PST)
-Date: Thu, 5 Mar 2026 16:32:13 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v2 7/8] drm/msm/dpu: Add support for Eliza SoC
-Message-ID: <anhregq3m6axyjozkrmcaeh3fkbmxxioypfq74gar3kl7l5vew@mmmh2fckulk2>
-References: <20260304-drm-display-eliza-v2-0-ea0579f62358@oss.qualcomm.com>
- <20260304-drm-display-eliza-v2-7-ea0579f62358@oss.qualcomm.com>
- <mo2fc5oalscfgagdrj67aa7xssnugsara4dartp4ycsdvoyvwv@swzmdnwtij6u>
+	s=arc-20240116; t=1772723216; c=relaxed/simple;
+	bh=AGHLH22J3Pd/fgCOMvjI431iORaqKR7lUDD/wYadxYY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NrtgjDS5Bc7FTsImfrxXR5fVaggkEae37LIi53UGvVN7k0zGkTJjO2M7OoZ2Xen1t8PaUmV1UYT1lN4mPJOzE1rcSETX7W9x9ZRMlNjuVqFkw2tzSNBSEZBY2HG4Sd8v0j+wi5apjZHuZS4R0uTFNPQmMNjsnMEatQ/zsYeoS1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=LU4HGuZE; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Type:MIME-Version:References:
+	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=jJYYjVaNri6uqi/hQTfzZ+kswxplzg5Gi2JWgEwj3V0=; b=LU4HGuZEghHpqwi/LqSv5SR2ck
+	X+kfuRkQhm+bwAJfjvhN7rkitJzjVs/fUpJYJ0JBw6X8TvT53LGDty/47sZ7y94+paa+0Hvh7cSR5
+	pf+MID3WzwGApKqOu6IUqqmaj37Okt6M11QMeEbC6Y2NtR2PKtjiDVDz7q1lC9cjTnuyUqC3JL5PQ
+	r3QRHv5NN7Bq1E4/oxK7FnfjREGu5umQLOjcMkgUzpW3+tAuyJHb1epe2lpLm0mRbRPQkyKJIqoWE
+	9Hdz0/+a+PszZeA286SjsWjRRqqWimICYM2zM/RCsTLBd/CTZtXwXj8EnsssvcEBG2Yrl1pTSgMKr
+	4XZmXdgw==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1vy9pp-000L7i-2O;
+	Thu, 05 Mar 2026 15:37:53 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy01.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1vy9po-000Flr-2V;
+	Thu, 05 Mar 2026 15:37:52 +0100
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+ Liu Ying <victor.liu@nxp.com>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ luca.ceresoli@bootlin.com, Frank Li <Frank.Li@nxp.com>,
+ dri-devel@lists.freedesktop.org, Marco Felsch <m.felsch@pengutronix.de>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, kernel@pengutronix.de,
+ Marco Felsch <m.felsch@pengutronix.de>
+Subject:
+ Re: [PATCH v11 2/3] drm/bridge: imx: Add i.MX93 parallel display format
+ configuration support
+Date: Thu, 05 Mar 2026 15:37:51 +0100
+Message-ID: <7394538.31r3eYUQgx@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To:
+ <20260303-v6-18-topic-imx93-parallel-display-v11-2-1b03733c8461@pengutronix.de>
+References:
+ <20260303-v6-18-topic-imx93-parallel-display-v11-0-1b03733c8461@pengutronix.de>
+ <20260303-v6-18-topic-imx93-parallel-display-v11-2-1b03733c8461@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mo2fc5oalscfgagdrj67aa7xssnugsara4dartp4ycsdvoyvwv@swzmdnwtij6u>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDExNiBTYWx0ZWRfX1XWe32+jpxOz
- +XLBv/+kGXf8RTUuxnZB8spVk0E6LiyJjEhJ2LW2+D3iyLOHXRWeF78eM5LBN/RdKHUC7XvJVS8
- LODltNre4IEQ9MpJXBkZe3lGe/KXOU045c52xpp/6KOuDwFz71MGR4wvK+ROY0PnUnvIU+OIibJ
- EZHc1yejtLRzob4hqzci6g3bahn+qW4L3N7hCaYFvfmdFWrKZkHENFeIEzfJcX0MXw12PaLBMbV
- 9FBqHbL8Wny/I6m0qN4/tVnW6MDa5ki6Gg7MBYSOMVDBjo8EbD0WI7zaH4bHymrXB/O8W54FsLK
- u8m4JO3uWOJfbpJHhXw568kqYTou6vthE9AUaA78AmRY9oa7lw9AKpzqR2mdooqK0NtNg7fkpz/
- ywCVeOR/wTicqG6B+z4wJkHOz0ohm3uLMOKcZNP5FfigFx8vuz8eBYhBjttMAhV2oeHoHreTF4/
- kgTUwubBs+Bo2selEsg==
-X-Proofpoint-ORIG-GUID: sLq_9ijENc4mjDRMkLNbI-m3XeZabpEW
-X-Authority-Analysis: v=2.4 cv=Ddsaa/tW c=1 sm=1 tr=0 ts=69a993f1 cx=c_pps
- a=wuOIiItHwq1biOnFUQQHKA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=EUspDBNiAAAA:8
- a=RHq2fkPijMoWQiYS0DMA:9 a=CjuIK1q_8ugA:10 a=XD7yVLdPMpWraOa8Un9W:22
-X-Proofpoint-GUID: sLq_9ijENc4mjDRMkLNbI-m3XeZabpEW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-05_04,2026-03-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 suspectscore=0 bulkscore=0 impostorscore=0
- malwarescore=0 spamscore=0 adultscore=0 phishscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050116
-X-Rspamd-Queue-Id: E758C213C1F
+Content-Type: multipart/signed; boundary="nextPart7029791.LvFx2qVVIh";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27931/Thu Mar  5 08:24:23 2026)
+X-Rspamd-Queue-Id: CFB2B214353
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	TAGGED_FROM(0.00)[bounces-271593-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,ffwll.ch,linux.intel.com,suse.de,quicinc.com,marek.ca,linaro.org,vger.kernel.org,lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271607-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,bootlin.com,lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email,bootlin.com:email,ew.tq-group.com:dkim,tq-group.com:url,tq-group.com:email]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 04:29:43PM +0200, Dmitry Baryshkov wrote:
-> On Wed, Mar 04, 2026 at 01:58:49PM +0100, Krzysztof Kozlowski wrote:
-> > Add support for DPU (v12.4) on Qualcomm Eliza SoC, with one
-> > incomplete/skipped part: HDMI interface (INT_4).
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > 
-> > ---
-> > 
-> > Changes in v2:
-> > 1. Drop stale comment
-> > 2. Fix INTF_3 controller_id -> DP0 (Dmitry)
-> > ---
-> >  .../gpu/drm/msm/disp/dpu1/catalog/dpu_12_4_eliza.h | 365 +++++++++++++++++++++
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c     |   1 +
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h     |   1 +
-> >  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c            |   1 +
-> >  4 files changed, 368 insertions(+)
-> > 
-> > +	}, {
-> > +		.name = "intf_3", .id = INTF_3,
-> > +		.base = 0x37000, .len = 0x4bc,
-> > +		.type = INTF_DP,
-> 
-> This should be INTF_NONE until we support MST.
+--nextPart7029791.LvFx2qVVIh
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"; protected-headers="v1"
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+Date: Thu, 05 Mar 2026 15:37:51 +0100
+Message-ID: <7394538.31r3eYUQgx@steina-w>
+Organization: TQ-Systems GmbH
+MIME-Version: 1.0
 
-After checking more, this is fine.
+Am Dienstag, 3. M=E4rz 2026, 11:34:27 CET schrieb Marco Felsch:
+> From: Liu Ying <victor.liu@nxp.com>
+>=20
+> NXP i.MX93 mediamix blk-ctrl contains one DISPLAY_MUX register which
+> configures parallel display format by using the "PARALLEL_DISP_FORMAT"
+> field. Add a DRM bridge driver to support the display format configuratio=
+n.
+>=20
+> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> [m.felsch@pengutronix.de: port to v7.0-rc1]
+> [m.felsch@pengutronix.de: add review feedback (Alexander)]
+> [m.felsch@pengutronix.de: fix to short Kconfig description (checkpath)]
+> [m.felsch@pengutronix.de: use "GPL" instead of "GPL v2" (checkpatch)]
+> [m.felsch@pengutronix.de: add bus-width support]
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+
+Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+on TQMa93xxCA on MBa91xxCA
+
+> ---
+>  drivers/gpu/drm/bridge/imx/Kconfig      |  11 ++
+>  drivers/gpu/drm/bridge/imx/Makefile     |   1 +
+>  drivers/gpu/drm/bridge/imx/imx93-pdfc.c | 225 ++++++++++++++++++++++++++=
+++++++
+>  3 files changed, 237 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/=
+imx/Kconfig
+> index b9028a5e5a065c3237b404111d8df57e8e017f9d..47829300a4486a090514ebe91=
+4b7667a703039a9 100644
+> --- a/drivers/gpu/drm/bridge/imx/Kconfig
+> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
+> @@ -99,4 +99,15 @@ config DRM_IMX93_MIPI_DSI
+>  	  Choose this to enable MIPI DSI controller found in Freescale i.MX93
+>  	  processor.
+> =20
+> +config DRM_IMX93_PARALLEL_DISP_FMT_CONVERTER
+> +	tristate "NXP i.MX91/i.MX93 parallel display format converter"
+> +	depends on OF
+> +	select DRM_KMS_HELPER
+> +	help
+> +	  On i.MX93 and i.MX91 SoCs the parallel display format output is
+> +	  controlled via the MEDIAMIX BLK-CTRL DISPLAY_MUX.
+> +
+> +	  Say 'Y' or 'M' if you use the parallel display output path on a
+> +	  i.MX93 or i.MX91 SoC.
+> +
+>  endif # ARCH_MXC || COMPILE_TEST
+> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge=
+/imx/Makefile
+> index 8d01fda25451aaa1bf51a068da18948094327116..da57fde2d813b88cdde89115c=
+a801b4cfc69afbd 100644
+> --- a/drivers/gpu/drm/bridge/imx/Makefile
+> +++ b/drivers/gpu/drm/bridge/imx/Makefile
+> @@ -9,3 +9,4 @@ obj-$(CONFIG_DRM_IMX8QXP_PIXEL_COMBINER) +=3D imx8qxp-pix=
+el-combiner.o
+>  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) +=3D imx8qxp-pixel-link.o
+>  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) +=3D imx8qxp-pxl2dpi.o
+>  obj-$(CONFIG_DRM_IMX93_MIPI_DSI) +=3D imx93-mipi-dsi.o
+> +obj-$(CONFIG_DRM_IMX93_PARALLEL_DISP_FMT_CONVERTER) +=3D imx93-pdfc.o
+> diff --git a/drivers/gpu/drm/bridge/imx/imx93-pdfc.c b/drivers/gpu/drm/br=
+idge/imx/imx93-pdfc.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..27a54424319838517b206ab7d=
+7447538aa1489eb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/imx/imx93-pdfc.c
+> @@ -0,0 +1,225 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +
+> +/*
+> + * Copyright 2022-2025 NXP
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/media-bus-format.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <drm/drm_atomic_state_helper.h>
+> +#include <drm/drm_bridge.h>
+> +
+> +#define IMX93_DISPLAY_MUX_REG		0x60
+> +#define PARALLEL_DISP_FORMAT		GENMASK(10, 8)
+> +#define FORMAT_RGB888_TO_RGB888		FIELD_PREP(PARALLEL_DISP_FORMAT, 0)
+> +#define FORMAT_RGB888_TO_RGB666		FIELD_PREP(PARALLEL_DISP_FORMAT, 1)
+> +#define FORMAT_RGB565_TO_RGB565		FIELD_PREP(PARALLEL_DISP_FORMAT, 2)
+> +
+> +struct imx93_pdfc {
+> +	struct drm_bridge bridge;
+> +	struct device *dev;
+> +	struct regmap *regmap;
+> +	u32 phy_bus_width;
+> +};
+> +
+> +static struct imx93_pdfc *bridge_to_imx93_pdfc(struct drm_bridge *bridge)
+> +{
+> +	return container_of(bridge, struct imx93_pdfc, bridge);
+> +}
+> +
+> +static int
+> +imx93_pdfc_bridge_attach(struct drm_bridge *bridge, struct drm_encoder *=
+encoder,
+> +			 enum drm_bridge_attach_flags flags)
+> +{
+> +	return drm_bridge_attach(bridge->encoder, bridge->next_bridge, bridge, =
+flags);
+> +}
+> +
+> +static void imx93_pdfc_bridge_atomic_enable(struct drm_bridge *bridge,
+> +					    struct drm_atomic_state *state)
+> +{
+> +	struct imx93_pdfc *pdfc =3D bridge_to_imx93_pdfc(bridge);
+> +	const struct drm_bridge_state *bridge_state;
+> +	unsigned int mask =3D PARALLEL_DISP_FORMAT;
+> +	unsigned int val;
+> +
+> +	bridge_state =3D drm_atomic_get_new_bridge_state(state, bridge);
+> +
+> +	switch (bridge_state->output_bus_cfg.format) {
+> +	case MEDIA_BUS_FMT_RGB888_1X24:
+> +	case MEDIA_BUS_FMT_FIXED:
+> +		val =3D FORMAT_RGB888_TO_RGB888;
+> +		if (pdfc->phy_bus_width =3D=3D 18) {
+> +			/*
+> +			 * Can be valid if physical bus limitation exists,
+> +			 * therefore use dev_dbg().
+> +			 */
+> +			dev_dbg(pdfc->dev, "Truncate two LSBs from each color\n");
+> +			val =3D FORMAT_RGB888_TO_RGB666;
+> +		}
+> +		break;
+> +	case MEDIA_BUS_FMT_RGB666_1X18:
+> +		val =3D FORMAT_RGB888_TO_RGB666;
+> +		break;
+> +	case MEDIA_BUS_FMT_RGB565_1X16:
+> +		val =3D FORMAT_RGB565_TO_RGB565;
+> +		break;
+> +	}
+> +
+> +	regmap_update_bits(pdfc->regmap, IMX93_DISPLAY_MUX_REG, mask, val);
+> +}
+> +
+> +/* TODO: Add YUV formats */
+> +static const u32 imx93_pdfc_bus_output_fmts[] =3D {
+> +	MEDIA_BUS_FMT_FIXED,
+> +	MEDIA_BUS_FMT_RGB888_1X24,
+> +	MEDIA_BUS_FMT_RGB666_1X18,
+> +	MEDIA_BUS_FMT_RGB565_1X16,
+> +};
+> +
+> +static bool imx93_pdfc_bus_output_fmt_supported(u32 fmt)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(imx93_pdfc_bus_output_fmts); i++) {
+> +		if (imx93_pdfc_bus_output_fmts[i] =3D=3D fmt)
+> +			return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static u32 *
+> +imx93_pdfc_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+> +					    struct drm_bridge_state *bridge_state,
+> +					    struct drm_crtc_state *crtc_state,
+> +					    struct drm_connector_state *conn_state,
+> +					    u32 output_fmt,
+> +					    unsigned int *num_input_fmts)
+> +{
+> +	struct imx93_pdfc *pdfc =3D bridge_to_imx93_pdfc(bridge);
+> +	u32 *input_fmts;
+> +
+> +	*num_input_fmts =3D 0;
+> +
+> +	input_fmts =3D kmalloc_obj(*input_fmts);
+> +	if (!input_fmts)
+> +		return NULL;
+> +
+> +	*num_input_fmts =3D 1;
+> +
+> +	if (!imx93_pdfc_bus_output_fmt_supported(output_fmt)) {
+> +		dev_dbg(pdfc->dev, "No valid output bus-fmt detected, fallback to MEDI=
+A_BUS_FMT_RGB888_1X24\n");
+> +		input_fmts[0] =3D MEDIA_BUS_FMT_RGB888_1X24;
+> +		return input_fmts;
+> +	}
+> +
+> +	switch (output_fmt) {
+> +	case MEDIA_BUS_FMT_RGB888_1X24:
+> +	case MEDIA_BUS_FMT_RGB565_1X16:
+> +		input_fmts[0] =3D output_fmt;
+> +		break;
+> +	case MEDIA_BUS_FMT_RGB666_1X18:
+> +	case MEDIA_BUS_FMT_FIXED:
+> +		input_fmts[0] =3D MEDIA_BUS_FMT_RGB888_1X24;
+> +		break;
+> +	}
+> +
+> +	return input_fmts;
+> +}
+> +
+> +static int imx93_pdfc_bridge_atomic_check(struct drm_bridge *bridge,
+> +					  struct drm_bridge_state *bridge_state,
+> +					  struct drm_crtc_state *crtc_state,
+> +					  struct drm_connector_state *conn_state)
+> +{
+> +	struct imx93_pdfc *pdfc =3D bridge_to_imx93_pdfc(bridge);
+> +	u32 format =3D bridge_state->output_bus_cfg.format;
+> +
+> +	if (imx93_pdfc_bus_output_fmt_supported(format))
+> +		return 0;
+> +
+> +	dev_warn(pdfc->dev, "Unsupported output bus format: 0x%x\n", format);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static const struct drm_bridge_funcs funcs =3D {
+> +	.attach			=3D imx93_pdfc_bridge_attach,
+> +	.atomic_enable		=3D imx93_pdfc_bridge_atomic_enable,
+> +	.atomic_duplicate_state	=3D drm_atomic_helper_bridge_duplicate_state,
+> +	.atomic_destroy_state	=3D drm_atomic_helper_bridge_destroy_state,
+> +	.atomic_get_input_bus_fmts	=3D imx93_pdfc_bridge_atomic_get_input_bus_f=
+mts,
+> +	.atomic_check		=3D imx93_pdfc_bridge_atomic_check,
+> +	.atomic_reset		=3D drm_atomic_helper_bridge_reset,
+> +};
+> +
+> +static int imx93_pdfc_bridge_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct drm_bridge *next_bridge;
+> +	struct imx93_pdfc *pdfc;
+> +	struct device_node *ep;
+> +	int err;
+> +
+> +	pdfc =3D devm_drm_bridge_alloc(dev, struct imx93_pdfc, bridge, &funcs);
+> +	if (IS_ERR(pdfc))
+> +		return PTR_ERR(pdfc);
+> +
+> +	pdfc->regmap =3D syscon_node_to_regmap(dev->of_node->parent);
+> +	if (IS_ERR(pdfc->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(pdfc->regmap),
+> +				     "failed to get regmap\n");
+> +
+> +	/* No limits per default */
+> +	pdfc->phy_bus_width =3D 24;
+> +
+> +	/* Get output ep (port1/endpoint) */
+> +	ep =3D of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
+> +	if (ep) {
+> +		err =3D of_property_read_u32(ep, "bus-width", &pdfc->phy_bus_width);
+> +		of_node_put(ep);
+> +
+> +		/* bus-width is optional but it must have valid data if present */
+> +		if (err && err !=3D -EINVAL)
+> +			return dev_err_probe(dev, err,
+> +					     "failed to query bus-width\n");
+> +	}
+> +
+> +	next_bridge =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
+> +	if (IS_ERR(next_bridge))
+> +		return dev_err_probe(dev, PTR_ERR(next_bridge),
+> +				     "failed to get next bridge\n");
+> +	pdfc->dev =3D dev;
+> +	pdfc->bridge.of_node =3D dev->of_node;
+> +	pdfc->bridge.type =3D DRM_MODE_CONNECTOR_DPI;
+> +	pdfc->bridge.next_bridge =3D next_bridge;
+> +
+> +	return devm_drm_bridge_add(dev, &pdfc->bridge);
+> +}
+> +
+> +static const struct of_device_id imx93_pdfc_dt_ids[] =3D {
+> +	{ .compatible =3D "nxp,imx93-pdfc", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, imx93_pdfc_dt_ids);
+> +
+> +static struct platform_driver imx93_pdfc_bridge_driver =3D {
+> +	.probe	=3D imx93_pdfc_bridge_probe,
+> +	.driver	=3D {
+> +		.of_match_table =3D imx93_pdfc_dt_ids,
+> +		.name =3D "imx93_pdfc",
+> +	},
+> +};
+> +module_platform_driver(imx93_pdfc_bridge_driver);
+> +
+> +MODULE_DESCRIPTION("NXP i.MX93 parallel display format configuration dri=
+ver");
+> +MODULE_AUTHOR("Liu Ying <victor.liu@nxp.com>");
+> +MODULE_LICENSE("GPL");
+>=20
+>=20
 
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+--nextPart7029791.LvFx2qVVIh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEByESxqszIvkmWRwbaS+g2M0Z/iUFAmmplT8ACgkQaS+g2M0Z
+/iV9CQf9GbkFbECiKid6I+rC64yA+LJqh/LDST9e/Od7twCmc+YoVCt3R3pNndtQ
+thAqMQjaMG+eVzbSX5OfqthFZViLArJlc38Djn7DiQq077jRgBe1xFLLgw73SYCo
+q50o7b/ugu4nWYRSI/XfNzfRuGh0iIIXtUYuJkJlOmN5ZIar2tm5zSehH98jViOa
+PpAsXZMRrkHck0TQut17YXMHUtJGjoWW5EqSS0g/VodNVnQF5wfnJDtZmbyqiP6g
+yOTz2uSfZq6nH1cO2nj3Ohqo5DErryLE3z1sNtqDXvR89fbbyiQnd9tMqVv1kHnZ
+8+Z1XPYNVoNsoJudp3K25YWd0fYldg==
+=Leit
+-----END PGP SIGNATURE-----
+
+--nextPart7029791.LvFx2qVVIh--
 
 
 
-> 
-> > +		.controller_id = MSM_DP_CONTROLLER_0,	/* pair with intf_0 for DP MST */
-> > +		.prog_fetch_lines_worst_case = 24,
-> > +		.intr_underrun = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 30),
-> > +		.intr_vsync = DPU_IRQ_IDX(MDP_SSPP_TOP0_INTR, 31),
-> > +	}
-> > +};
-> > +
-> 
-> -- 
-> With best wishes
-> Dmitry
-
--- 
-With best wishes
-Dmitry
 
