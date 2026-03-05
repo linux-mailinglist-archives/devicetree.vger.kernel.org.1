@@ -1,196 +1,167 @@
-Return-Path: <devicetree+bounces-271580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271581-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gHhDDxeIqWki+gAAu9opvQ
-	(envelope-from <devicetree+bounces-271580-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:41:43 +0100
+	id APfpNwWJqWki+gAAu9opvQ
+	(envelope-from <devicetree+bounces-271581-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:45:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88B70212B17
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:41:42 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A3E9212B92
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:45:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C87A2302BE22
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:41:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A8475308A14D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:45:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21D039E18D;
-	Thu,  5 Mar 2026 13:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8A1A3A5E76;
+	Thu,  5 Mar 2026 13:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3gviU/h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LB//sRAq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFD5237E2EE
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 13:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5CCF1F099C;
+	Thu,  5 Mar 2026 13:45:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772718090; cv=none; b=oA6Ue8o85/j7Gxr0QdIoExh1/QHVFC9N9uNmQ4CWWnhQKrQ7HMYarnK9QnhqufJi7tnTy2vZptqgY9YmIW1pJtdrokFw6ibt7MG62amsz6nNHJ2+Mk/JsJ/2+6K+rBWZ0p0L53fnGifdFnyTgbXCTHYwPYAx1aAyV2kqJ9DrSFQ=
+	t=1772718323; cv=none; b=AxfccWpzCb5W3RpEk/8F0VpikVu0gFYIptM+cxf+1BtbC1hZFsHwcx0seJiC/RJ+f7LXALiFb3wGnsTVGr92FECMEBYA7Sno0Bs9kwTl6xEkuqEufavNpiFmoU0PSsU5R0GdBrRfq779puBo1+RhWj6j9ZpZlEKBT45h5QRcrc4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772718090; c=relaxed/simple;
-	bh=nQ0TL66BvmGTxU4P/K19cUkjZF7VrlRWe+4oIDFI9cs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZgaR9MurjcCvr5alzK7SZtU7KbNfQmbtlb7H895sHjChLcvjr0W/Re1p0LQ/0aTQxEj5xdDqliUeZftnWeDJSGkz2jCVQLXql3zBXzqv34ATeGUaYo3Cf+5p1uH0djL8iFaCS5eyUj5Kk1DCbPzdRrLYedB7D/Y6GoMp1UjGanI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3gviU/h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2553C2BCB0
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 13:41:30 +0000 (UTC)
+	s=arc-20240116; t=1772718323; c=relaxed/simple;
+	bh=OItzwbM1kWf/k111FzhV0ryoidvsVkmrmFKOuyzTRBA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=lvGRphIgUM71XGZr2gzassvN5FEnisKKChxnk/yAkBSESJc29OJWtKVKAkJ3PR/4M+zRDBiQzHM+aObzlNkHT/2l89zcLRmFCrQ0YMGpwOdEicOmMZOlQ4jk96DZ077q5x7uaNKfK59mP8jEtNmsMQoA/xcsfdR/DDDS1CL5y9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LB//sRAq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F620C116C6;
+	Thu,  5 Mar 2026 13:45:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772718090;
-	bh=nQ0TL66BvmGTxU4P/K19cUkjZF7VrlRWe+4oIDFI9cs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=a3gviU/h6COsyvtnM03E/mUVslzF6/qF358oxk8ufPDD8eIn1by0819SrzlD192uA
-	 1Sma8UaYjGAwc8p57mNGa5jDK7+B2vUi1anibEXYGaSBlVVjfpsRG0yOsnDKb+AxIc
-	 uUu51jDzjlHY95yHlv1CuM2EdtOqhjD3EbhqFS+94XAvm/lf7hnbFySCiZKa8DTiGa
-	 rUWgZ+2zx6Fu0KN0mFsKJFQiKtsiihSNm9Io6TIcoe+gExhP9r1BZ3mSPYcSuIvDFU
-	 ljAiZg1u+eRBZ0tJJIU1Zrk5m1iUPRefNdEQipldflK9EPUL9ujoE0mps7Y03inzoS
-	 DkQJzRkUaR4jQ==
-Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-64caaacb9bcso7724537d50.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 05:41:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU5EPd6/nCJP/i1fbjNnhKVzpTJk1esq4v1TY898Y3GiXao4MmgiCk51x2ui9+feGi/voYw2zq7Erc9@vger.kernel.org
-X-Gm-Message-State: AOJu0YynkscEEmgmi6t2G4DnS0xvlDky3nThywhvBi9QqQqvcNg63cyA
-	7Ts8cMgnoUHdccTIql1hW9zwUz/RPVR+UDdywcJEZqN6L0TE7QIeF83a3pw413GtDNbqTpPOktn
-	TGVOUiZYwLjwB0F1esnWbeoeKj3w8kUA=
-X-Received: by 2002:a05:690e:e25:b0:64a:d539:1b50 with SMTP id
- 956f58d0204a3-64cf9b97783mr3920949d50.38.1772718089942; Thu, 05 Mar 2026
- 05:41:29 -0800 (PST)
+	s=k20201202; t=1772718323;
+	bh=OItzwbM1kWf/k111FzhV0ryoidvsVkmrmFKOuyzTRBA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=LB//sRAqF22s63HNrBHamLSG8+BH0+Cws/VmCppeOuyzHovaM84NrUtkJsx+88eMG
+	 Kvy7oUUO/Gg12APg9N8DkBlWImapQBu7dMHKgBJYtvB28KLJjr5jDtxmBqrUqHyQZ+
+	 4U1ZcaYZk0WmqFuQJwX0RfhS4zcfd1vacfTFEO7I+/D5qd7qklmBBEqFUgJ49I4Wl/
+	 ySo0JzoulrRF3VGczcDCsYTbOVvu9gMamxOM+loEdhxA0RGIIVJ9p+jT1Ho6e6Iyob
+	 WalmR0IgSb/JqAvs0dVVhdifrH4lIOHrXvqlOj0tvB4vynmKdRhTC+emWryJQ+lgt1
+	 xuNUqq5FPr66A==
+Date: Thu, 05 Mar 2026 07:45:22 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260303133947.1123575-1-o.rempel@pengutronix.de> <20260303133947.1123575-5-o.rempel@pengutronix.de>
-In-Reply-To: <20260303133947.1123575-5-o.rempel@pengutronix.de>
-From: Linus Walleij <linusw@kernel.org>
-Date: Thu, 5 Mar 2026 14:41:17 +0100
-X-Gmail-Original-Message-ID: <CAD++jL=ZYwZ4qCBCnaUPKXGFpNvBgTr3Cyg2ZtrE0ZqAhK1e=w@mail.gmail.com>
-X-Gm-Features: AaiRm52QfYDonYBknli9ovJN02qNn7gBdrQenWct8xubGHAgrt_G8nsy7xblEwo
-Message-ID: <CAD++jL=ZYwZ4qCBCnaUPKXGFpNvBgTr3Cyg2ZtrE0ZqAhK1e=w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] pinctrl: add NXP MC33978/MC34978 pinctrl driver
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Peter Rosin <peda@axentia.se>, David Jander <david@protonic.nl>, kernel@pengutronix.de, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 88B70212B17
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Mark Brown <broonie@kernel.org>, Chuanhong Guo <gch981213@gmail.com>, 
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org, 
+ Bayi Cheng <bayi.cheng@mediatek.com>, sirius.wang@mediatek.com, 
+ Matthias Brugger <matthias.bgg@gmail.com>, linux-kernel@vger.kernel.org, 
+ vince-wl.liu@mediatek.com, linux-mediatek@lists.infradead.org, 
+ Project_Global_Chrome_Upstream_Group@mediatek.com, 
+ linux-arm-kernel@lists.infradead.org, jh.hsu@mediatek.com, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Meiker Gao <ot_meiker.gao@mediatek.com>
+In-Reply-To: <20260305071546.2603378-1-ot_meiker.gao@mediatek.com>
+References: <20260305071546.2603378-1-ot_meiker.gao@mediatek.com>
+Message-Id: <177271832061.3486624.7931849295651115643.robh@kernel.org>
+Subject: Re: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Add clock
+ bindings for mt8189
+X-Rspamd-Queue-Id: 4A3E9212B92
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271580-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-271581-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,vger.kernel.org,mediatek.com,lists.infradead.org,collabora.com];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,pengutronix.de:email]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Hi Oleksij,
 
-this is starting to look good!
+On Thu, 05 Mar 2026 15:15:42 +0800, Meiker Gao wrote:
+> Update mediatek,spi-mtk-nor.yaml to add conditional clock and
+> clock-names bindings for the mt8189-nor platform. The mt8189-nor
+> controller requires five specific clocks and corresponding clock-names
+> ("spi", "sf", "axi_f", "axi_h", "axi_p"). This change enforces these
+> requirements in the device tree binding schema.
+> 
+> For other platforms, the minimum number of clocks and clock-names
+> remains unchanged. The patch also adds an example for mt8189-nor,
+> illustrating the new clock configuration.
+> 
+> This update ensures correct hardware description and validation for
+> mt8189-nor, improving compatibility and reducing configuration errors.
+> 
+> Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
+> (cherry picked from commit c3180d35e52b5213764a89403e71f9a34d7bb842)
+> ---
+>  .../bindings/spi/mediatek,spi-mtk-nor.yaml    | 69 ++++++++++++++++---
+>  1 file changed, 58 insertions(+), 11 deletions(-)
+> 
 
-One thing bothers me:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-On Tue, Mar 3, 2026 at 2:40=E2=80=AFPM Oleksij Rempel <o.rempel@pengutronix=
-.de> wrote:
+yamllint warnings/errors:
 
-> - Add a comment to mc33978_gpio_to_irq() explaining why it must act as a
->   proxy to the parent MFD's irq_domain (shared physical INT_B line with h=
-wmon).
-(...)
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml: allOf:1:then:properties:clock-names: 'oneOf' conditional failed, one must be fixed:
+	False schema does not allow 5
+	[{'const': 'spi'}, {'const': 'sf'}, {'const': 'axi_f'}, {'const': 'axi_h'}, {'const': 'axi_p'}] is too long
+	[{'const': 'spi'}, {'const': 'sf'}, {'const': 'axi_f'}, {'const': 'axi_h'}, {'const': 'axi_p'}] is too short
+	1 was expected
+	5 is greater than the maximum of 2
+	5 is greater than the maximum of 3
+	5 is greater than the maximum of 4
+	hint: "minItems" is only needed if less than the "items" list length
+	from schema $id: http://devicetree.org/meta-schemas/items.yaml
+Lexical error: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dts:79.32-50 Unexpected 'CLK_PERAO_SFLASH_F'
+Lexical error: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dts:79.64-82 Unexpected 'CLK_PERAO_SFLASH_H'
+Lexical error: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dts:80.32-50 Unexpected 'CLK_PERAO_SFLASH_P'
+FATAL ERROR: Syntax error parsing input tree
+make[2]: *** [scripts/Makefile.dtbs:140: Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1597: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-> +static int mc33978_set(struct gpio_chip *chip, unsigned int offset, int =
-value)
-> +{
-> +       struct mc33978_pinctrl *mpc =3D gpiochip_get_data(chip);
-> +       int pull;
-> +       int ret;
-> +
-> +       /*
-> +        * We emulate open-drain/-source outputs by routing or isolating =
-the
-> +        * active wetting current sources.
-> +        * To drive the line, we apply the current source.
-> +        * To turn the line OFF (achieve High-Impedance), we MUST use the
-> +        * hardware TRI_SP / TRI_SG tri-state registers to physically iso=
-late
-> +        * it.
-> +        */
-> +       if (mc33978_is_sp(offset)) {
-> +               pull =3D value ? MC33978_PU : MC33978_PD;
-> +               value =3D 1;
-> +       } else {
-> +               pull =3D MC33978_PU;
-> +       }
-> +
-> +       mutex_lock(&mpc->lock);
+doc reference errors (make refcheckdocs):
 
-Have you considered using guards for this to avoid the goto:s?
+See https://patchwork.kernel.org/project/devicetree/patch/20260305071546.2603378-1-ot_meiker.gao@mediatek.com
 
-> +static int mc33978_gpio_to_irq(struct gpio_chip *chip, unsigned int offs=
-et)
-> +{
-> +       struct mc33978_pinctrl *mpc =3D gpiochip_get_data(chip);
-> +       int virq;
-> +
-> +       if (!mpc->domain)
-> +               return -ENXIO;
-> +
-> +       /*
-> +        * The hardware shares a single physical INT_B line for both GPIO=
- pin
-> +        * changes and internal hardware faults (hwmon). Therefore, the I=
-RQ
-> +        * domain and threaded handler are centrally managed by the MFD c=
-ore.
-> +        */
-> +       virq =3D irq_create_mapping(mpc->domain, offset);
-> +       if (!virq) {
-> +               dev_err(mpc->dev, "Failed to map hwirq %u to virq\n", off=
-set);
-> +               return -ENXIO;
-> +       }
-> +
-> +       return virq;
-> +}
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-I don't know about this.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-If it is clear from internal registers which bits represents the hwmon
-IRQs and which bits are GPIO IRQs, the modern way to handle this
-is hierarchical irqchip. Have you looked into that?
+pip3 install dtschema --upgrade
 
-For a simple example c.f. drivers/gpio/gpio-ixp4xx.c how this
-is registered with a parent irqchip using
-girq->parent_domain =3D parent;
-girq->child_to_parent_hwirq =3D ixp4xx_gpio_child_to_parent_hwirq;
-and
-ixp4xx_gpio_child_to_parent_hwirq().
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-This way a unique irqchip for GPIO can be created as a child
-of the MFD irqchip.
-
-Yours,
-Linus Walleij
 
