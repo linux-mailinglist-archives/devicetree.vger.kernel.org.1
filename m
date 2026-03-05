@@ -1,238 +1,194 @@
-Return-Path: <devicetree+bounces-271452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271451-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LLeJspLqWk14AAAu9opvQ
-	(envelope-from <devicetree+bounces-271452-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:24:26 +0100
+	id 6EA6BpdLqWk14AAAu9opvQ
+	(envelope-from <devicetree+bounces-271451-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:23:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB23120E514
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6777220E4DB
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:23:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E26B23039CA7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:19:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3FC0D30C29DE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772E5377572;
-	Thu,  5 Mar 2026 09:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8663750CC;
+	Thu,  5 Mar 2026 09:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gJRjmJRT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nWK+TsJp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC173750CC;
-	Thu,  5 Mar 2026 09:19:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663B6BA3D;
+	Thu,  5 Mar 2026 09:19:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772702388; cv=none; b=O9wqUxiG6a839dutx2CaUkWHtU5LgCTVLp73tEf0aYUlfAX+U2QEk/Q+Yis9aUIe7IE2OdcUNX8rHhYlpnt5wBoUtNerUZqlyxb3uxJ0WxpU6dYorfGlbAebfJuywDO7dzqkDiFd3BqDUWaWN7FUSB7JuGFC7ajXbwzEeEoAsvo=
+	t=1772702379; cv=none; b=ibSTLRaJ8WQ+cF8rb5SjUKEmxgkRxfK4lY+Hor9V+UGCE91jGmh2dWOAVz1Lbst1jit/mbaLvzU8TeICBS48F9Z5xN4bV36o3a3N1S5GPGFPobOuBQJYqz+g2Y6sC93f7JJ26rL5L4fi3y9kd4KvfATDVOZwaZjCk/qXYSUpCOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772702388; c=relaxed/simple;
-	bh=yVVOJTE/zUJqhnidUw+HOA7ZyLMPee+UqnKATnAGtjc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JDOa5fBc4+ndSGJ6mWMBMB1oOn8O3XzFrGepTpnBspc5ZaWXAySHdXdw/yHo6MTjO6ZypVnGiMwD7q8DutJ8IzcEkSO2Ff4Q6fACHbRZA6VZuZpwcei5Rq1PBYrs2LW8pdWYF7ALdiT7KOhcYN106UXzHDNj7Se826i+Rt1Xfj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gJRjmJRT; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772702386; x=1804238386;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yVVOJTE/zUJqhnidUw+HOA7ZyLMPee+UqnKATnAGtjc=;
-  b=gJRjmJRT2eGlb1hE/xYqr5hp42ntuqMFrbEO2KFDsRbA7HrbN93dxckt
-   ok0BfScce3YxijthRoCRnqVnWWg29LTqWCBSgWBHoM5o2b1YLGHvZ3/s8
-   RRF9V/rZjlF8DQ4Joi9A8TaW+egXDgpXAEyTAhw0vCd5qWnR5QaAV5H0p
-   XI+Q5zv2upDAW04Bkmx1adbZpxOXKXCJHCZNLvs9WHDhX05xueyesykE3
-   Ki9dEifEM63nRbVKdCS0724vgmFcGgzRNGbrKHmCvHxfknt2cQSpioM+t
-   Bhra67JYMj+NV/JKQegcuMWbQlr3tbDT9vMZwd7zFnFknpXgKYkNFMZAv
-   A==;
-X-CSE-ConnectionGUID: 0Pml6mrFSJeuXCdGAo3Ccw==
-X-CSE-MsgGUID: CcfxC3aWQpCHCBM99waL+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="91172597"
-X-IronPort-AV: E=Sophos;i="6.23,325,1770624000"; 
-   d="scan'208";a="91172597"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2026 01:19:46 -0800
-X-CSE-ConnectionGUID: 3dYZ3uZqRW2W1VQJXXPtuQ==
-X-CSE-MsgGUID: oj9nWylPSQyWZXvbMNo52w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,325,1770624000"; 
-   d="scan'208";a="245123518"
-Received: from lkp-server01.sh.intel.com (HELO cadc4577a874) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 05 Mar 2026 01:19:43 -0800
-Received: from kbuild by cadc4577a874 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vy4rs-000000000Ow-1L25;
-	Thu, 05 Mar 2026 09:19:40 +0000
-Date: Thu, 5 Mar 2026 17:18:55 +0800
-From: kernel test robot <lkp@intel.com>
-To: Christian Marangi <ansuelsmth@gmail.com>, Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v5 4/4] phy: airoha: Add support for Airoha AN7581 USB PHY
-Message-ID: <202603051725.x2cR2ynI-lkp@intel.com>
-References: <20260304005843.2680-5-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1772702379; c=relaxed/simple;
+	bh=xQwOgv/G8l9dzbEEx4qGcbPy6wxWtCaAhpuA8HFWyjM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XWBOGWdaNsghIFJpZWf5SstoIRSawM4wghMVz47XlCYEo3vPafZ+Da3LjJWI8eilhb22usmT5X2WCeQoJYqRf2FH3bTMZPj1hFiroXgztK3pepo8kRr2JtUGRMLCudenTPMEa6QqQ/lbFO1mar6r+WcY6mF/XB1jGRNJjJpdjY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nWK+TsJp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 829E5C116C6;
+	Thu,  5 Mar 2026 09:19:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772702379;
+	bh=xQwOgv/G8l9dzbEEx4qGcbPy6wxWtCaAhpuA8HFWyjM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nWK+TsJpKJP8VXsr+TDSKgHSXBrl36P0bdvVXASBhllGksuib6AKv2ENc2BSOXMdq
+	 2axX4nFdjkMkdykhmb6gbnp3iQAMxEEpfKW+DtoDiM0hnSI1R25vmPQasXwxXZRgKB
+	 +g56pR1aDGaTsQhONgLh+eN03S0rbF22mIO81mUOtAOu6dabd2x7IyhM/X3YbPiXWD
+	 i6r7+hhknfaMj9bBAlqWLuHEgX45hhd8RijGVmiNweB/giCeEfBUtyDt8sGUWckbWc
+	 fNVZcbvx47phN1ECZyMxWHXl4fJirwtuKdKTfV0NGXqDn3a4SL2ohNhrFMxdbL4BSW
+	 QNCxN3JYEcKSQ==
+Message-ID: <476695b1-0627-4b8e-9adf-96595ef74b86@kernel.org>
+Date: Thu, 5 Mar 2026 10:19:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260304005843.2680-5-ansuelsmth@gmail.com>
-X-Rspamd-Queue-Id: EB23120E514
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: verisilicon: Fix kernel panic due to __initconst
+ misuse
+To: ming.qian@oss.nxp.com, linux-media@vger.kernel.org
+Cc: mchehab@kernel.org, hverkuil-cisco@xs4all.nl, nicolas@ndufresne.ca,
+ benjamin.gaignard@collabora.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, sebastian.fricke@collabora.com,
+ shawnguo@kernel.org, ulf.hansson@linaro.org, s.hauer@pengutronix.de,
+ kernel@pengutronix.de, festevam@gmail.com, m.felsch@pengutronix.de,
+ fra.schnyder@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de,
+ Frank.li@nxp.com, peng.fan@nxp.com, eagle.zhou@nxp.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20260305080354.639-1-ming.qian@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260305080354.639-1-ming.qian@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 6777220E4DB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,xs4all.nl,ndufresne.ca,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-271451-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271452-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,lists.infradead.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.994];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	TO_DN_NONE(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,git-scm.com:url,01.org:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:email]
 X-Rspamd-Action: no action
 
-Hi Christian,
+On 05/03/2026 09:03, ming.qian@oss.nxp.com wrote:
+> From: Ming Qian <ming.qian@oss.nxp.com>
+> 
+> Fix a kernel panic when probing the driver as a module:
+> 
+>   Unable to handle kernel paging request at virtual address
+>   ffffd9c18eb05000
+>   of_find_matching_node_and_match+0x5c/0x1a0
+>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
+> 
+> The imx8mq_vpu_shared_resources array is referenced by variant
+> structures through their shared_devices field. When built as a
+> module, __initconst causes this data to be freed after module
+> init, but it's later accessed during probe, causing a page fault.
+> 
+> Use __initconst_or_module to keep the data available when built
+> as a module while still allowing it to be freed when built-in.
+> 
+> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
+> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
+> ---
+>  drivers/media/platform/verisilicon/imx8m_vpu_hw.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
+> index 6f8e43b7f157..fa429e6e8281 100644
+> --- a/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
+> +++ b/drivers/media/platform/verisilicon/imx8m_vpu_hw.c
+> @@ -343,7 +343,7 @@ const struct hantro_variant imx8mq_vpu_variant = {
+>  	.num_regs = ARRAY_SIZE(imx8mq_reg_names)
+>  };
+>  
+> -static const struct of_device_id imx8mq_vpu_shared_resources[] __initconst = {
+> +static const struct of_device_id imx8mq_vpu_shared_resources[] __initconst_or_module = {
+>  	{ .compatible = "nxp,imx8mq-vpu-g1", },
 
-kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on next-20260303]
-[cannot apply to robh/for-next linus/master v7.0-rc2 v7.0-rc1 v6.19 v7.0-rc2]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I have some doubts this was tested with section mismatch analysis. It is
+still referenced by non initconst data, but it should not. You have a
+dangling pointer.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Christian-Marangi/dt-bindings-soc-Add-bindings-for-Airoha-SCU-Serdes-lines/20260304-090107
-base:   next-20260303
-patch link:    https://lore.kernel.org/r/20260304005843.2680-5-ansuelsmth%40gmail.com
-patch subject: [PATCH v5 4/4] phy: airoha: Add support for Airoha AN7581 USB PHY
-config: powerpc64-randconfig-r131-20260305 (https://download.01.org/0day-ci/archive/20260305/202603051725.x2cR2ynI-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 9a109fbb6e184ec9bcce10615949f598f4c974a9)
-sparse: v0.6.5-rc1
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260305/202603051725.x2cR2ynI-lkp@intel.com/reproduce)
+And build test would probably point it out.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603051725.x2cR2ynI-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/phy/airoha/phy-an7581-usb.c:569:14: sparse: sparse: incorrect type in assignment (different address spaces) @@     expected void *base @@     got void [noderef] __iomem * @@
-   drivers/phy/airoha/phy-an7581-usb.c:569:14: sparse:     expected void *base
-   drivers/phy/airoha/phy-an7581-usb.c:569:14: sparse:     got void [noderef] __iomem *
->> drivers/phy/airoha/phy-an7581-usb.c:573:24: sparse: sparse: incorrect type in argument 3 (different address spaces) @@     expected void [noderef] __iomem *regs @@     got void *base @@
-   drivers/phy/airoha/phy-an7581-usb.c:573:24: sparse:     expected void [noderef] __iomem *regs
-   drivers/phy/airoha/phy-an7581-usb.c:573:24: sparse:     got void *base
-
-vim +569 drivers/phy/airoha/phy-an7581-usb.c
-
-   545	
-   546	static int an7581_usb_phy_probe(struct platform_device *pdev)
-   547	{
-   548		struct phy_provider *phy_provider;
-   549		struct an7581_usb_phy_priv *priv;
-   550		struct device *dev = &pdev->dev;
-   551		unsigned int index;
-   552		void *base;
-   553		int ret;
-   554	
-   555		priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-   556		if (!priv)
-   557			return -ENOMEM;
-   558	
-   559		priv->dev = dev;
-   560	
-   561		ret = of_property_read_u32(dev->of_node, "airoha,usb2-monitor-clk-sel",
-   562					   &priv->monclk_sel);
-   563		if (ret)
-   564			return dev_err_probe(dev, ret, "Monitor clock selection is mandatory for USB PHY calibration\n");
-   565	
-   566		if (priv->monclk_sel > 3)
-   567			return dev_err_probe(dev, -EINVAL, "only 4 Monitor clock are selectable on the SoC\n");
-   568	
- > 569		base = devm_platform_ioremap_resource(pdev, 0);
-   570		if (IS_ERR(base))
-   571			return PTR_ERR(base);
-   572	
- > 573		priv->regmap = devm_regmap_init_mmio(dev, base, &an7581_usb_phy_regmap_config);
-   574		if (IS_ERR(priv->regmap))
-   575			return PTR_ERR(priv->regmap);
-   576	
-   577		platform_set_drvdata(pdev, priv);
-   578	
-   579		for (index = 0; index < AIROHA_PHY_USB_MAX; index++) {
-   580			enum an7581_usb_phy_instance_type phy_type;
-   581			struct an7581_usb_phy_instance *instance;
-   582	
-   583			switch (index) {
-   584			case AIROHA_PHY_USB2:
-   585				phy_type = PHY_TYPE_USB2;
-   586				break;
-   587			case AIROHA_PHY_USB3:
-   588				phy_type = PHY_TYPE_USB3;
-   589				break;
-   590			}
-   591	
-   592			if (phy_type == PHY_TYPE_USB3) {
-   593				ret = of_property_read_u32(dev->of_node, "airoha,usb3-serdes",
-   594							   &priv->serdes_port);
-   595				if (ret)
-   596					return dev_err_probe(dev, ret, "missing serdes line for USB 3.0\n");
-   597	
-   598				priv->scu = syscon_regmap_lookup_by_compatible("airoha,en7581-scu");
-   599				if (IS_ERR(priv->scu))
-   600					return dev_err_probe(dev, PTR_ERR(priv->scu), "failed to get SCU syscon\n");
-   601			}
-   602	
-   603			instance = devm_kzalloc(dev, sizeof(*instance), GFP_KERNEL);
-   604			if (!instance)
-   605				return -ENOMEM;
-   606	
-   607			instance->type = phy_type;
-   608			priv->phys[index] = instance;
-   609	
-   610			instance->phy = devm_phy_create(dev, NULL, &airoha_phy);
-   611			if (IS_ERR(instance->phy))
-   612				return dev_err_probe(dev, PTR_ERR(instance->phy), "failed to create phy\n");
-   613	
-   614			phy_set_drvdata(instance->phy, instance);
-   615		}
-   616	
-   617		phy_provider = devm_of_phy_provider_register(&pdev->dev, an7581_usb_phy_xlate);
-   618	
-   619		return PTR_ERR_OR_ZERO(phy_provider);
-   620	}
-   621	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
