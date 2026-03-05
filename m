@@ -1,306 +1,436 @@
-Return-Path: <devicetree+bounces-271614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271615-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SP81D12gqWnGAwEAu9opvQ
-	(envelope-from <devicetree+bounces-271614-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:25:17 +0100
+	id sNg3HHahqWl5BQEAu9opvQ
+	(envelope-from <devicetree+bounces-271615-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:29:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F22F7214778
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:25:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F1C12148B3
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:29:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C554330ACE22
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 15:19:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2FE73301E218
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 15:28:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF1C3C3C1D;
-	Thu,  5 Mar 2026 15:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A755B3BED4F;
+	Thu,  5 Mar 2026 15:28:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="wgwjxtWO"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="LNx5kzsZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010064.outbound.protection.outlook.com [52.101.228.64])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC5F3C6A2E;
-	Thu,  5 Mar 2026 15:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772723923; cv=fail; b=utKbS4bNk4JRsE5cc4bt+oJedM7isyg7iMBg3SQDcJVqeRgRyUQmvNsZpwSucsICQlA4ZqZHfYCRqG3zwxU0EK3+4O1Kn57wmRti0du3o4hdmQEV3ue+ttMWvmpI6GXbKNeFN5O/uKxCosstdV0AriFNm2huPFc3WJP4km1cBPk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772723923; c=relaxed/simple;
-	bh=sX/vfjyk3E99kEgRyqWYtW+IpByWN9BBjU6ZiWoKTbM=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=mj+nSHaY8oc7ZdeW7lXq1Z0rCR8wK3Eo1o8ntFulgBi9ZERbbFSKXmE5hcqNNQgIbYP5C5q2/5nYIa09TN8uIldekM6H2V8Q8uC09I03MPFI3XXs1/Qq+nvfaWZCh9q3Kw+nE64BR7piGK3dEZuNqyRsnW6ZddNtlOjVlhs/85Y=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=wgwjxtWO; arc=fail smtp.client-ip=52.101.228.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FUR3d1qCLtXr1F9n/D7njz9V8NxWRFtoYl5h2qfQSQOFKWbm0et85jypXUm+po5d5IsYRUit2UeDORfJYJumE4I8skVC0V8qeErJiW+y+oUJgbwoQUxw6nIYv3EP2Fr3zRmKOGePZyuZ4guxQchKo9PcXdBg76Hd0Ei9RJAJGcJSjVTsXiBoRFbG1FEHoO27a7R83VcC9lTNax1p32K/BLDPfK2mAwbRrjk8693OflUSV2U5oZ7kEAQ1zvQSPaA8GPdPKLYEodvWMKoxPYclX+tDXTeIAtYuio+b32WcSPEuEL/8uc0eXtFmj+Gw2V/hFRjbJuePlyzDhQ/w9Q6ZbA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sX/vfjyk3E99kEgRyqWYtW+IpByWN9BBjU6ZiWoKTbM=;
- b=ZJ8BqMXNMLrtuiHdhIYK4ZFF+ouEBqzBFQgSjMkB4wXnVMGNVCd0AuHWRqTPzvshGjT2+xH7242SjamMge9uExMGaqXkaplRm3tdsfn57nfNnDyaZmUicErbK5+y7qH+nFDIl1nOSb7jrPbp3afvpWZCMIqex7kLwfszn9doTrIwGbQtUCBYbtPJGM/qEY5j/sXDak9ha72vxH9oxTfyM1DJvqY2m9use3YT6IRD87ivsoIuT+NxM6zFf7NalaPS6gARuLV+yTKa5euZ/9n+7QIr3JiT2Pt2REWgO6QQ9RjuSb0ZLRFICKYs1SnINz0BKw4QqvlV25lkc1yHTl538g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sX/vfjyk3E99kEgRyqWYtW+IpByWN9BBjU6ZiWoKTbM=;
- b=wgwjxtWOA5P0A2j+Emf96cJZwc7UHef5dK8fmeZZCdnET4ngfs1gd9ncUpiYZggOikWK4FOf68p8RgVn/K3buoSYGnJ0i2Fv42LR8Z2/PD89OVFJGgHUtbo8hljyFU2ni0dj99UReP9Z0Zme4jAmE1rS3jp6nvCttsrSq7iJPMA=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYWPR01MB11706.jpnprd01.prod.outlook.com (2603:1096:400:400::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
- 2026 15:18:35 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::87d1:4928:d55:97de%4]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
- 15:18:31 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: geert <geert@linux-m68k.org>, biju.das.au <biju.das.au@gmail.com>
-CC: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, magnus.damm
-	<magnus.damm@gmail.com>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Conor Dooley
-	<conor.dooley@microchip.com>
-Subject: RE: [PATCH v3 05/10] dt-bindings: clock: Document RZ/G3L SoC
-Thread-Topic: [PATCH v3 05/10] dt-bindings: clock: Document RZ/G3L SoC
-Thread-Index: AQHclPgnnEkoF8XdO06GH+Sodqqfy7WgLMSAgAACCtA=
-Date: Thu, 5 Mar 2026 15:18:31 +0000
-Message-ID:
- <TY3PR01MB113464F7D135B2CB24B91140F867DA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com>
- <20260203103031.247435-6-biju.das.jz@bp.renesas.com>
- <CAMuHMdXPuBEODa0Uyhuv7u9ERY+YajsECTa0=XKY6WcE-VnaGA@mail.gmail.com>
-In-Reply-To:
- <CAMuHMdXPuBEODa0Uyhuv7u9ERY+YajsECTa0=XKY6WcE-VnaGA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYWPR01MB11706:EE_
-x-ms-office365-filtering-correlation-id: 7c947410-513c-4f2f-1921-08de7aca75bf
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700021;
-x-microsoft-antispam-message-info:
- m5CpyxXOe8aJe8aqw6usPOR35FAWOk2hNKfGDPpzfvDFACd5/eJeKo1KjlLiEjkfEjILtMJJRuievnG1K2vNgqZAoLJC724k5bOTWJN85x4qMZtOvnARpFInY/BQDfHi4xpBk7BTj4m+sTe5yPYAFdLJL2ggaI+2ooKXUramoNLGYEC1NBsq7a1z1/yqtvo8fuAXNSgSEcGwnbatEFgjSKY/DvDVflyBqpx8+rwBuQoceTnNj5YovjjBHole/PebyCcKejUIQOimSJtAmAAtNoXWhclOwHnrNsYT3Eevy4hKxGe7Mf6oGNWX1p6rcWqXRirj+1GdyVWxejzNGy4k9Pqad/Sje4gceqUIAybOPwoMw+FJYo/CaGbXRhe0I/gzH4dHfV8opMOn619dhaHHTayR5pCQpyYiu3vDGKl9DMFPrmnBZH0lZoRr3TicfiT/KWE1CJ5zjgcrfxw6Fqn0TCjAcxGJljO4g2qaHK6MbCSrJ3n6+PGAmx22aAA96QQDN0RUjvPdbcj7TWlx8ET6vj59tzVr4W6FsnDdSxJv23y+zXPvfmrwFGpcGsxSnaHmS2odDGWPw0yN8+xMZkW54jPA7a5pvUEWMIvWz0iDUkb03qMIXdCc5cbGXEN5aUUhhMNhFAKe8JQAEmuuDssZyCoh5B79U/k1kNzZvXXW9ehgo+03M10M/zS4xohPCCbObZA/9pTdJab4jG9HJq/6S94H0Ityffi6J+/uToAGMaxiA2BsxMBuArcI/plD9pNFY4Ih7mUCMX+A0eh4Uv8O3Qj9hPIjtapG/vttWOo9Frs=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?NGh3SjQ4bmlqOWxHYVRQSkJGODN4b3h0ZWNqbzdtMjdWa1BFYTM3ak1XWHdm?=
- =?utf-8?B?Rk9NVmZUd0tDejVOZkFsdGlEdUlWWTFWWDlHdC9TSTNFaS9sTE5rMWJoN2ZB?=
- =?utf-8?B?QllQYWY3SStPd1p5cDFXTVIvbWFNbGNEUXlXSlZjZGtaTHlFVGJNRUdBYVpz?=
- =?utf-8?B?QlREUlJuRXEwOERUajMxNERvbXg4RjJ3VkkzYTFKWmEweEVNOHNwVzYrT0l1?=
- =?utf-8?B?MHltaVczcVRjZ2FhaHlIQjVKTG9mN2dnS3hLRWlHdDEwWDkydjFuc0RwUFpC?=
- =?utf-8?B?Nkpvd2NORGI5cmRvbC9QOXdKb3pJWmc2TXhpeHhmUHRTSGR3ZllKOVRENXJE?=
- =?utf-8?B?Q0kwLzZzMDFkZklZNmQrMjV6YWJlWDJwVWxKNHFtbWNzS1dxVnZiT2dLM2NE?=
- =?utf-8?B?WFlmMkYvT08zZDBGaHNWYzMzTGhRQjFsOVRZVjZ6TEI1TFpJS0poVUhwVXhP?=
- =?utf-8?B?cWZXQXJIM3crMHBiOTZ1UUZ0L3ZudTlJQ0ZPNWh5WXhRZnF3WWFBSFg5Z3NL?=
- =?utf-8?B?N2JEZkpoNktoVndyeHc5c2pRbU4zZEczdmFvWTNKYkcySEtRVkxHK2U0cFRq?=
- =?utf-8?B?cDRyV29qQlBMdnE2elhvNnBHZXJPSk9pZUkyRTZVUTlPQ2JhUWxobVVGSDkv?=
- =?utf-8?B?dlNFTGJzYllaRlFFMFk4azNFeXJaT2pKM29rZlhhRE9RSXBqeDNEck9qNE4w?=
- =?utf-8?B?Qy9LaTVWNzF2YjU0ZUVOVE9ZSHVoNHRkWlVBdGp4TnAvQ003UVdBNUIwTnRZ?=
- =?utf-8?B?MExhQ3dxZVJCTUI4QWVueEVOVnVuYndreE1wL09tMHVzMzZxWHpaUElKL0c5?=
- =?utf-8?B?bnJZaEord3EvdDhIQ2F0U0ZyMmFuNGgrazNzREh6UzlGRmJCdGd6U1QwQXBz?=
- =?utf-8?B?NWprVnV5Q3pJQTI2anFnOVJEdGhiVS9xaTZLWGpvd290NUdwc25PUUFUVnVP?=
- =?utf-8?B?L1g3S215d2kyTVFvOC9oaGpab1BXWGgzR0c3bzM3RDFjVmcvOWxpRGN4TGg4?=
- =?utf-8?B?VERXVzczbXhqT1Qzdm5kMmFZUDB0WWI5U2NlOHlSM0RsU2FZTGZHeWZ6cmEw?=
- =?utf-8?B?TmtxWXhaQVYzT0pzZStUc1ArbFJmckVKYS91bFRWQ21KMFMwdkFxbDZYdEk3?=
- =?utf-8?B?ZmtWWjl2WE1paDFMc2dXWUFnTWVBdmxQQlB0RXVrNDQ3MjBiWmp1aTA3VEpN?=
- =?utf-8?B?K0FWQnNEMWppclRHNWMvT09oT0ZtOFE5bGFtK2diN1dmOGZJSkh2RGk1MW1J?=
- =?utf-8?B?UUYvN1d2ckIyMGRORjJRbExHc00zc2d1UXpzeFE2TWxyQ29Tc3ZiYmFSMHUx?=
- =?utf-8?B?UWhtNjYvK1pCKzJrczNIb1dMLzRsamtQZ2g1WnlzeVczSXZkelhLcE1nY2V5?=
- =?utf-8?B?R1hTYVRsVDVwc0d4eEhPbXZvNytDR2Y0b0FkV3VxekhsT1Mwak9hRUVVT0ZZ?=
- =?utf-8?B?WVZQYzc4ZGU2eERqMHJUcmlrcWxua2N5bFFocTl3ME5DSGdldk9OZUtFQWtC?=
- =?utf-8?B?SUVCTGt0cUtiRmVRQXlQQ0p4aDY1bU9VNkJnRnhXMndCVXFXTHRpZGdWTzdo?=
- =?utf-8?B?YW5SeGlxQXZjZHVyN2Y3aFZjTEZiWnhLaG14K0luNmd0SXBxcVBMTXdPRXMw?=
- =?utf-8?B?QysyUG9lMzlucDV6WDRHUmlqaGlTTmJMcG5td1hVSk9ZY2N2UlBVSjdwdUdl?=
- =?utf-8?B?eVZyV2NWTWVUdmY2QTdBTU1jekdMbnlNTVpKRXIzRUtkenk3OXM2dUF5eENM?=
- =?utf-8?B?WjM5RHJIM2tJOWl3cjJxZDVST2hTNGV0ZUtOVnE4RVFiRHJBWUNUR1BDU01h?=
- =?utf-8?B?VkNxdGV6bFNveTd3cGZWVkdkR3pUdDgvVVVXemNDMVFIenV6ZkdKYWErMWN3?=
- =?utf-8?B?bTB2U2tidFRMMW9xNHZ4K3l3V01aVUxhWjR2WEVndmNhWVVmWXlkUE80a2ty?=
- =?utf-8?B?K1Q2YUJCeVFiTXl4dUs2TURINlNneGFFdVRmckNLUEhQcUNjUjFtMVVxN05x?=
- =?utf-8?B?Rllha3E4SndXQUVxbUk1ZjBnb1RSYjZ2Nkx5VnVUbmNzdGpnNSsvbzVXNHNv?=
- =?utf-8?B?Y1lnRG9TLzhJWEp0SjVwVEpkSUdqU0RwZTVyUmVIV3dPUzZXS0s0M2NNQVV1?=
- =?utf-8?B?UE1LOE0xanJSaXhyK0JGdlZGL1l2Q2k5cTROM09FRW5VL1pnUjJDcGN2TnhP?=
- =?utf-8?B?ejNRdzkwVUZMVnk5anB0Y3FSR3lIenNmelgvSjhSYjFKb2ZYaTlkdDlGVEtV?=
- =?utf-8?B?SkdSNlR6RFRoUWorNWlJR1dsaytGR2h6Z1AzaWJnWlh2d2pMbWJjejBLcEVU?=
- =?utf-8?B?WEo3SlZoR3dtemVqWitEbFdha1pNOWxtak1ZYWhJVXNTazM0a1BPZz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9C2139E6C0;
+	Thu,  5 Mar 2026 15:28:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772724499; cv=none; b=ByPhSYnKtQcn/kaq9zmP7q61QDrPTsXCBolTO0XZD6umPQlUqGE/4mFqf2ZZrmJtHHr+1qNquvLVFwaUI1BXXS5IPbIOYbE53LvfXTvLN1SgbMC7f9JHbYbnTRCh4W3ozU1SL5nBmR34fHX1UWMeD/a1uko0n+DHChtpeGNCDeY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772724499; c=relaxed/simple;
+	bh=a4+tYvjegW9WAovr1voFCbPfh0sPS43HpuJb5he5JuA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=CVV7yuOWfLLQ9KvW7H3iKtEQVe0WmhKo9kraoNtJ4nU1aIF6mCKg76kBN7pFa6Ma+uPpKa8TqknauiE4iE7nck1HNpZRXI3qP6dYJapJZq/kTHY+E4MUWU2w0c3bUfAIAg8iqj0q14nm6iyocovmxyj3WxyKy/pC+xnoE4Ip2xE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=LNx5kzsZ; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772724497; x=1804260497;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=a4+tYvjegW9WAovr1voFCbPfh0sPS43HpuJb5he5JuA=;
+  b=LNx5kzsZLm20FRYU3NmtDZmwMv+fAb3/jScoA/EkyZM98DwnzgC3oXrN
+   9Jrkd+hz0T3FiAxBrXrmVZolEAPuUieaol/XojqOHm1xyt3xlom+KqAej
+   eVIlMYtZZuapd+EQk45pyrbPZ1/xVuGGPhaVz+zXj99Oqn65QMonCi7us
+   uP0WD/sIWiokov7sNnJFdv/rWVbPUIh9rhLAdm4RlvFYgJwRsB6/XU8s6
+   v5JOnXoyl6LurrOUsCA0hdBrvdGTLd3zlP8jFhvBxeuU+0XT0lTajfGj9
+   Z+NiToo8H5mkk7JkXU3jgCHGGFigi4S6XXvwcfJFewriuIrCclFVUR9ou
+   w==;
+X-CSE-ConnectionGUID: LCs7HLkxStyCc3wBuEkvQA==
+X-CSE-MsgGUID: zYPBCWxXQ3GupXfgN3+AfQ==
+X-IronPort-AV: E=Sophos;i="6.23,103,1770620400"; 
+   d="scan'208";a="221541615"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Mar 2026 08:28:16 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Thu, 5 Mar 2026 08:27:46 -0700
+Received: from [127.0.1.1] (10.10.85.11) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Thu, 5 Mar 2026 08:27:44 -0700
+From: Victor Duicu <victor.duicu@microchip.com>
+Subject: [PATCH v11 0/2] add support in hwmon for MCP998X
+Date: Thu, 5 Mar 2026 17:26:03 +0200
+Message-ID: <20260305-add-mcp9982-hwmon-v11-0-6e914ba63239@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c947410-513c-4f2f-1921-08de7aca75bf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Mar 2026 15:18:31.0367
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QC450qO0cNJz0XtcZNEyz8fe4slGv+JBnH14R4F6xUw/2awWY46J4Q6V5phFDsDrH5Cbht0120O7cQZ3abznhIRiQU5J4OSPDWGwarXqJtQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYWPR01MB11706
-X-Rspamd-Queue-Id: F22F7214778
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIugqWkC/x2MywqAIBAAfyX23ILag7ZfiQ6iW+0hC4UKpH9PO
+ s7ATIbEUTjBWGWIfEmSIxTQuq7AbTasjOKLAKNMrxrVofUed3cSDQa3ez8CknXUt842mjSU7oy
+ 8yPNPp/l9P9vcPqxkAAAA
+X-Change-ID: 20260305-add-mcp9982-hwmon-9ac964ca3191
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+CC: <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<marius.cristea@microchip.com>, <victor.duicu@microchip.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772724465; l=14334;
+ i=victor.duicu@microchip.com; s=20260213; h=from:subject:message-id;
+ bh=a4+tYvjegW9WAovr1voFCbPfh0sPS43HpuJb5he5JuA=;
+ b=5SBtAPhIiwdP38v8+T3sGox9d8TxFgKmP09VS1cDErkaJnGnXwUhxsPslJMK6Sz4GjBDJi3W0
+ PHu3QhXLgO5Dw1C8qxS+jE8pEJJHtD/15G7m/ax+993JfCCG4wqVwBl
+X-Developer-Key: i=victor.duicu@microchip.com; a=ed25519;
+ pk=/o+aE26HN3Piv9T5t+efqb0aeJw9ErwMPeSC8lYXQsA=
+X-Rspamd-Queue-Id: 0F1C12148B3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.44 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[renesas.com,none];
-	R_DKIM_ALLOW(-0.20)[bp.renesas.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-271614-lists,devicetree=lfdr.de];
+	URIBL_MULTI_FAIL(0.00)[microchip.com:server fail,sea.lore.kernel.org:server fail];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[linux-m68k.org,gmail.com];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	TAGGED_FROM(0.00)[bounces-271615-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[bp.renesas.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[biju.das.jz@bp.renesas.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,vger.kernel.org,bp.renesas.com,microchip.com];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,renesas.com:email,TY3PR01MB11346.jpnprd01.prod.outlook.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bp.renesas.com:dkim,linux-m68k.org:email]
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[victor.duicu@microchip.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:dkim,microchip.com:email,microchip.com:mid]
 X-Rspamd-Action: no action
 
-SGkgR2VlcnQsDQoNClRoYW5rcyBmb3IgdGhlIGZlZWRiYWNrLg0KDQo+IC0tLS0tT3JpZ2luYWwg
-TWVzc2FnZS0tLS0tDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnRAbGludXgtbTY4
-ay5vcmc+DQo+IFNlbnQ6IDA1IE1hcmNoIDIwMjYgMTQ6MjENCj4gU3ViamVjdDogUmU6IFtQQVRD
-SCB2MyAwNS8xMF0gZHQtYmluZGluZ3M6IGNsb2NrOiBEb2N1bWVudCBSWi9HM0wgU29DDQo+IA0K
-PiBIaSBCaWp1LA0KPiANCj4gVGhhbmtzIGZvciB5b3VyIHBhdGNoIQ0KPiANCj4gT24gVHVlLCAz
-IEZlYiAyMDI2IGF0IDExOjMwLCBCaWp1IDxiaWp1LmRhcy5hdUBnbWFpbC5jb20+IHdyb3RlOg0K
-PiA+IEZyb206IEJpanUgRGFzIDxiaWp1LmRhcy5qekBicC5yZW5lc2FzLmNvbT4NCj4gPg0KPiA+
-IERvY3VtZW50IHRoZSBkZXZpY2UgdHJlZSBiaW5kaW5ncyBmb3IgdGhlIFJlbmVzYXMgUlovRzNM
-IFNvQyBDbG9jaw0KPiA+IFB1bHNlIEdlbmVyYXRvciAoQ1BHKS4gUlovRzNMIENQRyBpcyBzaW1p
-bGFyIHRvIFJaL0cyTCBDUEcgYnV0IGhhcyA1DQo+ID4gY2xvY2tzIGNvbXBhcmVkIHRvIDEgY2xv
-Y2sgb24gb3RoZXIgU29Dcy4NCj4gPg0KPiA+IEFsc28gZGVmaW5lIFJaL0czTCAoUjlBMDhHMDQ2
-KSBDbG9jayBQdWxzZSBHZW5lcmF0b3IgQ29yZSBDbG9jaywNCj4gPiBtb2R1bGUNCj4gDQo+IENv
-cmUgQ2xvY2tzLCBhcyBsaXN0ZWQgaW4gc2VjdGlvbiA0LjQuMSAoIkJsb2NrIERpYWdyYW0gb2Yg
-dGhlIENsb2NrIFN5c3RlbSIpDQoNCk9LLCB3aWxsIHVwZGF0ZS4NCg0KPiANCj4gPiBjbG9jayBv
-dXRwdXRzLCBhcyBsaXN0ZWQgaW4gc2VjdGlvbiA0LjQuMiAoIkNsb2NrIExpc3QgcjEuMDAiKSBh
-bmQgYWRkDQo+ID4gUmVzZXQgZGVmaW5pdGlvbnMgcmVmZXJyaW5nIHRvIHJlZ2lzdGVycyBDUEdf
-UlNUXyogaW4gU2VjdGlvbiA0LjQuMw0KPiA+ICgiUmVnaXN0ZXIiKSBvZiB0aGUgUlovRzNMIEhh
-cmR3YXJlIFVzZXIncyBNYW51YWwgKFJldi4xLjAwIE9jdCwgMjAyNSkuDQo+ID4NCj4gPiBBY2tl
-ZC1ieTogQ29ub3IgRG9vbGV5IDxjb25vci5kb29sZXlAbWljcm9jaGlwLmNvbT4NCj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBCaWp1IERhcyA8YmlqdS5kYXMuanpAYnAucmVuZXNhcy5jb20+DQo+IA0KPiA+
-IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9jay9yZW5lc2FzLHJ6
-ZzJsLWNwZy55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L2Nsb2NrL3JlbmVzYXMscnpnMmwtY3BnLnlhbWwNCj4gPiBAQCAtMjgsMTkgKzI4LDMwIEBAIHBy
-b3BlcnRpZXM6DQo+ID4gICAgICAgIC0gcmVuZXNhcyxyOWEwN2cwNDQtY3BnICMgUlovRzJ7TCxM
-Q30NCj4gPiAgICAgICAgLSByZW5lc2FzLHI5YTA3ZzA1NC1jcGcgIyBSWi9WMkwNCj4gPiAgICAg
-ICAgLSByZW5lc2FzLHI5YTA4ZzA0NS1jcGcgIyBSWi9HM1MNCj4gPiArICAgICAgLSByZW5lc2Fz
-LHI5YTA4ZzA0Ni1jcGcgIyBSWi9HM0wNCj4gPiAgICAgICAgLSByZW5lc2FzLHI5YTA5ZzAxMS1j
-cGcgIyBSWi9WMk0NCj4gPg0KPiA+ICAgIHJlZzoNCj4gPiAgICAgIG1heEl0ZW1zOiAxDQo+ID4N
-Cj4gPiAgICBjbG9ja3M6DQo+ID4gLSAgICBtYXhJdGVtczogMQ0KPiA+ICsgICAgbWluSXRlbXM6
-IDENCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBDbG9jayBzb3Vy
-Y2UgdG8gQ1BHIGNhbiBiZSBlaXRoZXIgZnJvbSBleHRlcm5hbCBjbG9jaw0KPiA+ICsgICAgICAg
-ICAgICAgICAgICAgICBpbnB1dCAoRVhDTEspIG9yIGNyeXN0YWwgb3NjaWxsYXRvciAoWElOL1hP
-VVQpLg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBFVEgwIFRYQyBjbG9jayBpbnB1dA0KPiA+
-ICsgICAgICAtIGRlc2NyaXB0aW9uOiBFVEgwIFJYQyBjbG9jayBpbnB1dA0KPiA+ICsgICAgICAt
-IGRlc2NyaXB0aW9uOiBFVEgxIFRYQyBjbG9jayBpbnB1dA0KPiA+ICsgICAgICAtIGRlc2NyaXB0
-aW9uOiBFVEgxIFJYQyBjbG9jayBpbnB1dA0KPiA+DQo+ID4gICAgY2xvY2stbmFtZXM6DQo+ID4g
-LSAgICBkZXNjcmlwdGlvbjoNCj4gPiAtICAgICAgQ2xvY2sgc291cmNlIHRvIENQRyBjYW4gYmUg
-ZWl0aGVyIGZyb20gZXh0ZXJuYWwgY2xvY2sgaW5wdXQgKEVYQ0xLKSBvcg0KPiA+IC0gICAgICBj
-cnlzdGFsIG9zY2lsbGF0b3IgKFhJTi9YT1VUKS4NCj4gPiAtICAgIGNvbnN0OiBleHRhbA0KPiA+
-ICsgICAgbWluSXRlbXM6IDENCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNvbnN0OiBl
-eHRhbA0KPiA+ICsgICAgICAtIGNvbnN0OiBldGgwX3R4Y190eF9jbGsNCj4gPiArICAgICAgLSBj
-b25zdDogZXRoMF9yeGNfcnhfY2xrDQo+ID4gKyAgICAgIC0gY29uc3Q6IGV0aDFfdHhjX3R4X2Ns
-aw0KPiA+ICsgICAgICAtIGNvbnN0OiBldGgxX3J4Y19yeF9jbGsNCj4gDQo+IEFyZSB5b3Ugc3Vy
-ZSBhYm91dCB0aGVzZSBmb3VyIGNsb2Nrcz8gT24gd2hpY2ggcGlucyBhcmUgdGhleSBpbnB1dD8N
-Cg0KRnJvbSBGaWd1cmUgNC40LTUgQmxvY2sgRGlhZ3JhbSBvZiB0aGUgRGVmb3JtZWQgQ2xvY2sg
-U3lzdGVtICg0KSwgcGFnZSA3ODkNCg0KVGhlc2UgY2xrcyBhcmUgZXh0ZXJuYWwgc291cmNlIGNs
-a3MgY29ubmVjdGVkIHRvIENQR19FVEhfU1NFTCBtdXggZm9yDQpzZWxlY3RpbmcgcngvdHggY2xr
-cy4NCg0KSW4gUkdNSUkgY2FzZSwgY3VycmVudGx5IG9uIFJaL0czTCBTTUFSQyBFVks6DQoNCkZv
-ciBUeDogd2Ugc2VsZWN0IERJVl9FVEgwX1RSIChTRUxfRVRIMEFfU0VUKQ0KRm9yIFJ4OiB3ZSBz
-ZWxlY3QgRVRIMF9SWENfUlhfQ0xLX0lOIChTRUxfRVRIMEJfU0VUKQ0KDQo+IA0KPiA+DQo+ID4g
-ICAgJyNjbG9jay1jZWxscyc6DQo+ID4gICAgICBkZXNjcmlwdGlvbjogfA0KPiANCj4gPiAtLS0g
-L2Rldi9udWxsDQo+ID4gKysrIGIvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9yOWEwOGcwNDYt
-Y3BnLmgNCj4gPiBAQCAtMCwwICsxLDM0MyBAQA0KPiA+ICsvKiBTUERYLUxpY2Vuc2UtSWRlbnRp
-ZmllcjogKEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQo+ID4gKyAqDQo+ID4gKyAqIENv
-cHlyaWdodCAoQykgMjAyNiBSZW5lc2FzIEVsZWN0cm9uaWNzIENvcnAuDQo+ID4gKyAqLw0KPiA+
-ICsjaWZuZGVmIF9fRFRfQklORElOR1NfQ0xPQ0tfUjlBMDhHMDQ2X0NQR19IX18NCj4gPiArI2Rl
-ZmluZSBfX0RUX0JJTkRJTkdTX0NMT0NLX1I5QTA4RzA0Nl9DUEdfSF9fDQo+ID4gKw0KPiA+ICsj
-aW5jbHVkZSA8ZHQtYmluZGluZ3MvY2xvY2svcmVuZXNhcy1jcGctbXNzci5oPg0KPiA+ICsNCj4g
-PiArLyogUjlBMDhHMDQ2IENQRyBDb3JlIENsb2NrcyAqLw0KPiANCj4gWy4uLl0NCj4gDQo+ID4g
-KyNkZWZpbmUgUjlBMDhHMDQ2X09TQ0NMSyAgICAgICAgICAgICAgIDUyDQo+ID4gKyNkZWZpbmUg
-UjlBMDhHMDQ2X09TQ0NMSzIgICAgICAgICAgICAgIDUzDQo+ID4gKyNkZWZpbmUgUjlBMDhHMDQ2
-X0NMS19QNF9ESVYyICAgICAgICAgIDU0DQo+IA0KPiBDTEtfUDRfRElWMiBsb29rcyBsaWtlIGEg
-cHVyZWx5IGludGVybmFsIGNsb2NrIHRvIG1lLg0KDQpQYWdlIDM5MTggRmlndXJlIDcuOS0xIEJs
-b2NrIERpYWdyYW0gb2YgQ0FOLUZEDQoNClBlcmlwaGVyYWwgY2xrLA0KUkFNIGNsaywNCkNBTiBl
-eHRlcm5hbCBjbGsNCg0KVGhlbiwgQ0FORkQgY2xrIHdoaWNoIGlzIERJVjIgY2xrIG9mIFBlcmlw
-aGVyYWwgY2xrLCBzbyB0aG91Z2h0IG9mDQptb2RlbGxpbmcgdGhpcyBhcyBDb3JlIGNsay4gSSBt
-YXkgYmUgd3JvbmcgaGVyZT8/DQoNCk1heWJlIEkgd2lsbCBkcm9wIHRoaXMgbm93IGFuZCByZXZp
-c2l0IGxhdGVyIHdoZW4gd2UgYWRkIHN1cHBvcnQgZm9yIENBTkZEPz8NCg0KPiANCj4gDQo+ID4g
-Kw0KPiA+ICsvKiBSOUEwOEcwNDYgTW9kdWxlIENsb2NrcyAqLw0KPiANCj4gWy4uLl0NCj4gDQo+
-ID4gKyNkZWZpbmUgUjlBMDhHMDQ2X0NSVV9QQ0xLICAgICAgICAgICAgIDY1DQo+ID4gKyNkZWZp
-bmUgUjlBMDhHMDQ2X0NSVV9BQ0xLICAgICAgICAgICAgIDY2DQo+ID4gKyNkZWZpbmUgUjlBMDhH
-MDQ2X01JUElfRFNJX1BMTENMSyAgICAgIDY3DQo+IA0KPiBNSVBJX0RTSV9QTExDTEsgaXMgaW5k
-ZWVkIG5vdCBhIGdhdGVhYmxlIGNsb2NrLCBzbyBpdCBzaG91bGQgYmUgYSBjb3JlIGNsb2NrLg0K
-DQpBZ3JlZWQuDQoNCj4gDQo+ID4gKyNkZWZpbmUgUjlBMDhHMDQ2X01JUElfRFNJX1NZU0NMSyAg
-ICAgIDY4DQo+ID4gKyNkZWZpbmUgUjlBMDhHMDQ2X01JUElfRFNJX0FDTEsgICAgICAgICAgICAg
-ICAgNjkNCj4gPiArI2RlZmluZSBSOUEwOEcwNDZfTUlQSV9EU0lfUENMSyAgICAgICAgICAgICAg
-ICA3MA0KPiA+ICsjZGVmaW5lIFI5QTA4RzA0Nl9NSVBJX0RTSV9WQ0xLICAgICAgICAgICAgICAg
-IDcxDQo+ID4gKyNkZWZpbmUgUjlBMDhHMDQ2X01JUElfRFNJX0xQQ0xLICAgICAgIDcyDQo+ID4g
-KyNkZWZpbmUgUjlBMDhHMDQ2X0xWRFNfUExMQ0xLICAgICAgICAgIDczDQo+ID4gKyNkZWZpbmUg
-UjlBMDhHMDQ2X0xWRFNfQ0xLX0RPVDAgICAgICAgICAgICAgICAgNzQNCj4gPiArI2RlZmluZSBS
-OUEwOEcwNDZfTFZEU19QQ0xLICAgICAgICAgICAgNzUNCj4gDQo+IExWRFNfUENMSyBkb2VzIG5v
-dCBzZWVtIHRvIGV4aXN0LCB0aGVyZSBpcyBvbmx5IGEgc2luZ2xlIHJlZmVyZW5jZSB0byBpdCAo
-YnV0IEkgY2FuIHNlZSB3aGVyZSBpdHMgZ2F0ZQ0KPiBiaXQgdXNlZCB0byBiZSA7LSkNCg0KT0ss
-IHdpbGwgZHJvcCB0aGlzIGNsayBhcyB0aGVyZSBpcyBubyBjb250cm9sIGJpdHMgaW4gdGhlIEhX
-IG1hbnVhbC4NCg0KPiANCj4gPiArI2RlZmluZSBSOUEwOEcwNDZfTENEQ19DTEtfQSAgICAgICAg
-ICAgNzYNCj4gPiArI2RlZmluZSBSOUEwOEcwNDZfTENEQ19DTEtfRCAgICAgICAgICAgNzcNCj4g
-PiArI2RlZmluZSBSOUEwOEcwNDZfTENEQ19DTEtfUCAgICAgICAgICAgNzgNCj4gPiArI2RlZmlu
-ZSBSOUEwOEcwNDZfU1NJMF9QQ0xLMiAgICAgICAgICAgNzkNCj4gPiArI2RlZmluZSBSOUEwOEcw
-NDZfU1NJMF9QQ0xLX1NGUiAgICAgICAgICAgICAgICA4MA0KPiA+ICsjZGVmaW5lIFI5QTA4RzA0
-Nl9TU0kxX1BDTEsyICAgICAgICAgICA4MQ0KPiA+ICsjZGVmaW5lIFI5QTA4RzA0Nl9TU0kxX1BD
-TEtfU0ZSICAgICAgICAgICAgICAgIDgyDQo+ID4gKyNkZWZpbmUgUjlBMDhHMDQ2X1NTSTJfUENM
-SzIgICAgICAgICAgIDgzDQo+ID4gKyNkZWZpbmUgUjlBMDhHMDQ2X1NTSTJfUENMS19TRlIgICAg
-ICAgICAgICAgICAgODQNCj4gPiArI2RlZmluZSBSOUEwOEcwNDZfU1NJM19QQ0xLMiAgICAgICAg
-ICAgODUNCj4gPiArI2RlZmluZSBSOUEwOEcwNDZfU1NJM19QQ0xLX1NGUiAgICAgICAgICAgICAg
-ICA4Ng0KPiA+ICsjZGVmaW5lIFI5QTA4RzA0Nl9VU0JfVTJIMF9IQ0xLICAgICAgICAgICAgICAg
-IDg3DQo+ID4gKyNkZWZpbmUgUjlBMDhHMDQ2X1VTQl9VMkgxX0hDTEsgICAgICAgICAgICAgICAg
-ODgNCj4gPiArI2RlZmluZSBSOUEwOEcwNDZfVVNCX1UyUDBfRVhSX0NQVUNMSyAgODkgI2RlZmlu
-ZQ0KPiA+ICtSOUEwOEcwNDZfVVNCX1UyUDFfRVhSX0NQVUNMSyAgOTANCj4gPiArI2RlZmluZSBS
-OUEwOEcwNDZfVVNCX1BDTEsgICAgICAgICAgICAgOTENCj4gPiArI2RlZmluZSBSOUEwOEcwNDZf
-VVNCX1NDTEsgICAgICAgICAgICAgOTINCj4gDQo+IFVTQl9TQ0xLIGlzIG5vdCBnYXRlYWJsZSwg
-c28gaXQgc2hvdWxkIGJlIGEgY29yZSBjbG9jay4NCg0KT0ssIHdpbGwgYWRkIHRoaXMgYXMgY29y
-ZSBjbG9jay4NCg0KPiANCj4gWy4uLl0NCj4gDQo+ID4gKy8qIFI5QTA4RzA0NiBSZXNldHMgKi8N
-Cj4gDQo+IFsuLi5dDQo+IA0KPiA+ICsjZGVmaW5lIFI5QTA4RzA0Nl9SU0NJMl9UUkVTRVROICAg
-ICAgICAgICAgICAgIDExNA0KPiA+ICsjZGVmaW5lIFI5QTA4RzA0Nl9SU0NJM19UUkVTRVROICAg
-ICAgICAgICAgICAgIDExNQ0KPiA+ICsjZGVmaW5lIFI5QTA4RzA0Nl9MVkRTX1JFU0VUX04gICAg
-ICAgICAxMTYNCj4gDQo+IE1pc3NpbmcgQlNDX1hfUFJFU0VUX0JTQz8NCj4gSXQgY291bGQgYmUg
-YWRkZWQgbGF0ZXIsIGJ1dCB5b3UgZG8gbGlzdCB0aGUgY29ycmVzcG9uZGluZyBtb2R1bGUgY2xv
-Y2suDQoNCkkgbWlzc2VkIGl0LiBXaWxsIGFkZCBpdCBpbiBuZXh0IHZlcnNpb24uIA0KDQpDaGVl
-cnMsDQpCaWp1DQo=
+Add support in hwmon for Microchip MCP998X/33 and MCP998XD/33D
+Multichannel Automotive Temperature Monitor Family.
+
+The chips in the family have different numbers of external channels,
+ranging from 1(MCP9982) to 4 channels (MCP9985).
+Reading diodes in anti-parallel connection is supported by MCP9984/85/33
+and MCP9984D/85D/33D.
+Dedicated hardware shutdown circuitry is present only in MCP998XD
+and MCP9933D.
+
+The driver supports reading the temperature channels, the temperature
+limits, the limit hysteresis and their corresponding alarms. The user can
+set the limits, the update interval and the hysteresis value through
+the critical limit hysteresis.
+
+Differences related to previous patch:
+v11:
+- in devicetree set minItems to interrupts.
+- in interrupt-names define both items and remove maxItems.
+- in conditionals list the items that must be present.
+- in driver in mcp9982_write_limit() calculate regh and regl
+  at the start of the function.
+- link to v10: https://lore.kernel.org/all/20260217-add-mcp9982-hwmon-v10-0-5e0aaae6f289@microchip.com/
+
+v10:
+- in devicetree rework interrupt-names.
+- rework conditionals to disable the channels that are not used.
+- in patternProperties remove minItems from reg and change maxItems to 1.
+- in mcp9982.rst fix indentation errors and clarify sysfs entries
+  regarding limit hysteresis.
+- add power state in the list of devicetree parameters.
+- in driver change default high and critical temperature limit
+  value to 85000.
+- rework driver to not force wait until the next conversion is done.
+  Only in Standby state wait the wake up time.
+- fix typo in comment about mcp9982_priv.
+- remove bitwise operations with mask FF.
+- remove clamp_val() from limit hysteresis calculation.
+- edit comments regarding block read and write.
+- in mcp9982_write_limit() replace bulk write with two writes.
+- in mcp9982_write() remove pointless assignment to ret.
+- in mcp9982_init() do not override update interval.
+- define mcp998x_chip_info as static const struct.
+- link to v9: https://lore.kernel.org/all/20260127151823.9728-1-victor.duicu@microchip.com/
+
+v9:
+- update copyright year.
+- add tempX_max_hyst and tempX_crit_hyst attributes and document
+  them in mcp9982.rst.
+- in include list add byteorder/generic.h and remove unaligned.h.
+- remove definitions for temperature memory block
+  and status memory block.
+- remove individual definitions for register addresses 1Dh->21h.
+- add constants MCP9982_WAKE_UP_TIME_MAX_US and
+  MCP9982_TIMER_BUFFER_US.
+- add checks to ensure that values read from registers are on 8 bits.
+- in mcp9982_read_limit() simplify calculation, replace bulk read
+  with individual operations and add comment.
+- in mcp9982_read_limit() add explicit case branches for limits
+  that are on 16 bits.
+- in mcp9982_read() replace mdelay() with usleep_range().
+- in mcp9982_read() replace block reading for temperature values with
+  individual operations, add comment and remove unnecessary
+  mask variable.
+- in regmap_read_poll_timeout() add final timeout.
+- in mcp9982_read_label() remove label check.
+- in mcp9982_write_limit() replace put_unaligned_be16() with cpu_to_be16().
+- in mcp9982_write_limit() add explicit case branches for limits
+  that are on 16 bits.
+- in mcp9982_init() write default value for diode alert mask register.
+- in mcp9982_parse_fw_config() replace E2BIG with EINVAL.
+- link to v8: https://lore.kernel.org/all/20251120071248.3767-1-victor.duicu@microchip.com/
+
+v8:
+- in Kconfig add select REGMAP_I2C.
+- in yaml add power state attribute. For chips with "D" in the name
+  check that Run mode is set in yaml and driver.
+- in the include list: remove cleanup.h, add math.h, minmax.h and
+  util_macros.h.
+- add min, max and crit limits for all channels. These attributes can
+  be read and written. In mcp9982_init() set default values for limits.
+- add alarms for limits.
+- edit regmap ranges to add the limit registers.
+- when writing update interval, don't force the user to set exact value.
+  Search for closest valid value.
+- in mcp9982_parse_fw_config() check value from fwnode_property_read_u32().
+- edit coding style and comments.
+- remove constant MCP9982_SCALE.
+- rename variable sampl_idx from mcp9982_priv to interval_idx.
+- in mcp9982_write() rename variable use_previous_freq
+  to use_previous_interval.
+- link to v7: https://lore.kernel.org/all/20251031155831.42763-1-victor.duicu@microchip.com/
+
+v7:
+- send driver to hwmon subsystem.
+- include index.rst and mcp9982.rst.
+- in microchip,mcp9982.yaml set microchip,parasitic-res-on-channel1-2
+  and 3-4 to required.
+- in mcp9982.c rework read raw, read label and write raw functions.
+- remove avail parameters.
+- rework sampling frequency to update interval.
+- lock running average filter to off.
+- rework definition of channels.
+- add cache type Maple to mcp9982_regmap_config().
+- define constants for the numerical values used.
+- in include list add: bitops.h, cleanup.h, device.h, hwmon.h,
+  time64.h, unaligned.h. Remove iio.h, math64.h, string.h, units.h.
+- add explicit definitions for beta and ideality registers.
+- add definitions for status memory block registers.
+- add mcp9982_is_visible() and set visible only the channels
+  that are enabled.
+- in mcp9982_parse_fw_config() add branch with default values for
+  systems that do not have devicetree or firmware nodes.
+- remove mutex.
+- link to v6: https://lore.kernel.org/all/20250930133131.13797-1-victor.duicu@microchip.com/
+
+Differences related to the IIO patch:
+
+v6:
+- in yaml first condition list part numbers instead
+  of regular expression. Add ^ to regular expression.
+- edit coding style and comments.
+- use hex values in defines.
+- remove MCP9982_TEMP_MEM_BLOCK_LOW and
+  MCP9982_TEMP_MEM_BLOCK_HIGH.
+- in MCP9982_CHAN() place macro parameters in ().
+- move all variable definitions at the start of functions.
+- in mcp9982_parse_fw_config() initialise iio_idx to 0.
+- remove bit flags.
+- in MCP9982_CHAN remove outer ().
+- remove variable start in mcp9982_write_raw().
+- replace constant in .max_register.
+- use get_unaligned_be16 in mcp9982_read_raw().
+- link to v5: https://lore.kernel.org/all/20250918111937.5150-1-victor.duicu@microchip.com/
+
+v5:
+- in yaml edit description of interrupts.
+- add min and maxItems to reg.
+- remove ideality parameter.
+- use pattern recognition in conditionals.
+- group conditions based on the chip.
+- correct microchip,parasitic-res-on-channel3-4 to true.
+- in driver include bitops.h.
+- change name of some variables.
+- rename mcp9982_parse_of_config() to mcp9982_parse_fw_config().
+- implement bulk reading of temp registers.
+- lock ideality parameter to default value.
+- implement bit flags.
+- add compound literal to MCP9982_CHAN.
+- remove hysteresis parameter.
+- edit comments.
+- change values from int to bool in mcp9982_features.
+- remove mcp9982_calc_all_3db_values() and hardcode values.
+  When filter is OFF the 3db value is equal to frequency.
+- add .max_register to regmap_config.
+- remove devm_kcalloc().
+- in mcp9982_read_avail() add an else branch to hw_thermal_shutdown
+  check.
+- in mcp9982_read_raw use USEC_PER_MSEC and set regmap_read_poll_timeout
+  to never timeout.
+  Replace switch with bitmap_weight.
+- in mcp9982_read_label() remove unnecessary if.
+- in mcp9982_write_raw() remove duplicated code.
+- in mcp9982_init add error messages when APDD and RECD are incorrectly
+  set.
+- in mcp9982_parse_fw_config() add default for reg_nr.
+- link to v4: https://lore.kernel.org/all/20250829143447.18893-1-victor.duicu@microchip.com/
+
+v4:
+- lock beta parameters to default value of beta-autodetect.
+  Remove beta parameters and checks from devicetree.
+- lock temperature range to extended.
+  This change avoids the issue of the average filter using raw values
+  with different scales when changing the range.
+- change driver to wait an amount of time before reading a raw value
+  to ensure it is valid.
+- change driver to stop calculating the physical temp when reading
+  in_tempx_raw. Reading from in_tempx_raw will return the raw value.
+  The physical temp will be calculated with in_tempx_raw, scale and
+  offset parameters.
+- add scale parameter to channel definition.
+- initialise chips with "D" to work in Run state and those without
+  in Standby state.
+- when activating the low pass filter for chips without "D",
+  set the power state to RUN to ensure fresh values for the average.
+- add minimum and maximum to microchip,beta1 and microchip,beta2 in yaml.
+- rename microchip,resistance-comp-ch1-2-enable and
+  microchip,resistance-comp-ch3-4-enable to
+  microchip,parasitic-res-on-channel1-2
+  and microchip,parasitic-res-on-channel3-4
+  and edit description in yaml.
+- add conditional logic to check if the chip supports APDD
+  and force default values where necessary in yaml.
+- edit comments and coding style.
+- replace asm/div64.h with linux/math64.h.
+- add delay.h to includes.
+- redefine mcp9982_sampl_fr with new structure division.
+- in mcp9982_priv remove dev_name,extended_temp_range and beta_values.
+  Add run_state, wait_before_read, time_limit and pointer to chip
+  structure to remove all instances of matching strings.
+  Reorder parameters for memory optimization.
+- in mcp9982_features add flags to know if the chip has thermal shutdown
+  circuitry and supports APDD.
+- in mcp9982_read_avail() rework verification of chip type in sampling
+  frequency case.
+- in mcp9982_read_raw() rework switch in low pass filter case.
+- in mcp9982_parse_of_config() replace generic -EINVAL code
+  with -E2BIG and -EOVERFLOW.
+- link to v3: https://lore.kernel.org/all/20250613130207.8560-1-victor.duicu@microchip.com/
+
+v3:
+- move beta parameters to devicetree.
+- change the name of the interrupts and add
+  check to match them to the device in yaml.
+- remove label for device and remove "0x" from
+  channel registers in example in yaml.
+- edit comments in yaml and driver.
+- add minItems to interrupts in yaml.
+- rename microchip,recd12 and microchip,recd34 to
+  microchip,resistance-comp-ch1-2-enable
+  and microchip,resistance-comp-ch3-4-enable.
+- rename microchip,apdd-state to microchip,enable-anti-parallel.
+- add static to mcp9982_3db_values_map_tbl to fix
+  kernel test robot warning.
+- in mcp9982_init() add check to ensure that hardware
+  shutdown feature can't be overridden.
+- replace div_u64_rem with do_div and add
+  asm/div64.h to includes.
+- remove unused includes.
+- add iio_chan_spec in the macro definition of MCP9982_CHAN.
+- remove MCP9982_EXT_BETA_ENBL.
+- in mcp9982_init() replace regmap_assign_bits
+  with regmap_write when setting beta compensation.
+- remove custom attribute enable_extended_temp_range and
+  map it to IIO_CHAN_INFO_OFFSET.
+- add unsigned to int variables that allow it.
+- reorder parameters in mcp9982_priv, change some
+  from int to bool, add const to labels and add dev_name.
+- add check for chips with "D" in the name to not
+  allow sampling frequencies lower than 1 to
+  prevent overriding of hardware shutdown.
+- remove mcp9982_attributes.
+- move mcp9982_calc_all_3db_values() to before
+  mcp9982_init().
+- use MICRO instead of number constant.
+- in mcp9982_write_raw replace ">=" with "==".
+- rename index2 to idx in mcp9982_read_raw().
+- remove i2c_set_clientdata() in mcp9982_probe().
+- since there are no more custom ABI attributes
+  the testing file was removed.
+- link to v2: https://lore.kernel.org/all/20250529093628.15042-1-victor.duicu@microchip.com/
+
+v2:
+- move hysteresis, extended temperature range and beta parameters
+  from devicetree into user space.
+- edit comments in yaml and driver.
+- remove "|" in descpriptions, remove "+" from PatternProperties in yaml.
+- add default to microchip,ideality-factor, delete blank lines and wrap to
+  80 chars in yaml.
+- remove variables with upper case.
+- add check for microchip,apdd-state and microchip,recd34 in yaml.
+- improve coding style in driver code.
+- add includes for all functions used.
+- rename MCP9982_INT_HIGH_BYTE_ADDR to MCP9982_INT_VALUE_ADDR and
+  MCP9982_INT_LOW_BYTE_ADDR to MCP9982_FRAC_VALUE_ADDR.
+- remove custom attribute running_average_window and
+  running_average_window_available and map them to a low pass filter.
+- update sysfs-bus-iio-temperature-mcp9982 to reflect current
+  driver attributes and point to next kernel version (6.17).
+- use compound literal to define driver channels.
+- replace device_property_read_string() with i2c_get_match_data() to read
+  chip name from devicetree.
+- remove MCP9982_DEV_ATTR and mcp9982_prep_custom_attributes().
+- remove client, chip_name, iio_info from mcp9982_priv.
+- replace sprintf() with sysfs_emit().
+- remove error messages which are triggered by keyboard input.
+- replace devm_kzalloc() with devm_kcalloc(), array mcp9982_chip_config[]
+  with individual structures, device_property_present() with
+  device_property_read_bool().
+- reordered parameters in mcp9982_features and mcp9982_priv to optimize
+  memory allocation.
+- remove .endianness from channel properties.
+- change name of some parameters in mcp9982_priv.
+- add check for reg value 0 from devicetree (channel 0 is for internal
+  temperature and can't be disabled).
+- link to v1: https://lore.kernel.org/all/20250415132623.14913-1-victor.duicu@microchip.com/
+
+v1:
+- initial version.
+
+Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
+---
+Victor Duicu (2):
+      dt-bindings: hwmon: add support for MCP998X
+      hwmon: add support for MCP998X
+
+ .../bindings/hwmon/microchip,mcp9982.yaml          | 222 +++++
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/mcp9982.rst                    | 111 +++
+ MAINTAINERS                                        |   8 +
+ drivers/hwmon/Kconfig                              |  11 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/mcp9982.c                            | 952 +++++++++++++++++++++
+ 7 files changed, 1306 insertions(+)
+---
+base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
+change-id: 20260305-add-mcp9982-hwmon-9ac964ca3191
+
+Best regards,
+-- 
+Victor Duicu <victor.duicu@microchip.com>
+
 
