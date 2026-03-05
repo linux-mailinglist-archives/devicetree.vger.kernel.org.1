@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-271336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271337-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oF8cB5b6qGnVzwAAu9opvQ
-	(envelope-from <devicetree+bounces-271336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 04:37:58 +0100
+	id KLXyIJj6qGnVzwAAu9opvQ
+	(envelope-from <devicetree+bounces-271337-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 04:38:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1DAA20A984
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 04:37:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE9720A992
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 04:38:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D5E083047011
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 03:34:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 363E7305BAB4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 03:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D7E27603F;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66A126CE1E;
 	Thu,  5 Mar 2026 03:34:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kdzX1E95"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gHtc/9li"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8408D3368B8
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 03:34:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75958189B84
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 03:34:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772681654; cv=none; b=KA4gb5EyxMXa/Om3GNLg4MnpAaRCQNXOjoOj/djrzzLPUWvcsQGQUqwkmmrZcdERmb8npVgN4RxNZveuxMr+7kswrfo6rHyHMnxyqXcLc8UQlUbK8pmdPEEGuCe96Mu2XmjCDKjQSdLBzSNXF3ZqlHYlTRSpA/9WFXHUU3ttBJo=
+	t=1772681654; cv=none; b=S6eSYn5ksZSyRbKPhAXTEKN70Bph8xU6RcjJoFLvI26ERYQrGn7tEtPOy4Z0akQoUSx1e0CzDIEaAQBY4qPu4bzR5xF5XVsh204nyGe4a9EVlmtPoIdpoSpR9PXHfNzcAkEzvPRVRJ3N0vROGIPndUcWMtwa5bCqP4MWSt0Hj1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772681654; c=relaxed/simple;
-	bh=NMf/UuC+6nAcyqNjQFRCqhg1UGaJWlr8nrgTlWj+vis=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=S9Cb556rVBPxW7HT2/u9RgwuFuvnCD2vkTquCHThy0Jcf73pWHXZGfAgKV15j/Oj37ID3SAAeeZX9ncfHl4Ng3E4TaBmk08JJPuDjRaIQUEbYVbnYyx+//ryp3Y02hkdwPW9ppRTvVBRn2UtNBNfjIltp5U2AE2+UL691iYNyJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kdzX1E95; arc=none smtp.client-ip=209.85.219.49
+	bh=G93cII+3A1u7CvKJrZXIJlpca2wo8XCXaCLCELHybVQ=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=aIRObmsNe2q9n0A+Ndjh9CxgnbDm5K9KupQxht+Y/9bCuPxEu6Pcxe3g+0LSrvdVL+QeQ3hoY5aB7Xu7KgWjifoBVgO+4vkQGx6EBNHp5UR2nXWimr3PyeEZdFlo+9JtH1cQt/NBAJXN4Y/z9dVUAAd9d/LgKlNmssP3kJRIz6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gHtc/9li; arc=none smtp.client-ip=209.85.160.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-89a05955720so46788716d6.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 19:34:12 -0800 (PST)
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-506bad34f51so65344011cf.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 19:34:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772681651; x=1773286451; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=lRmZpXw1Na1Jt0sZYZ3Dk4vuOehC4OWy1CGhTN9jzyk=;
-        b=kdzX1E95jC5i2I8BeTXMJd/3I+S9bGzgXdoqz9QZGF6br+fpg3DsueLAAsPff7MKmd
-         DoVrcJ2VgvrfQ9GHYMz6Ijxu3Q17244rW/F80t8xE5YWv9xqubok8whEcdkgmDtRjChK
-         r2CLY/AOWwFkQdT1qbOor23GLuUKMLS1O/UyQWgP74GK9LFmEBj3udYF7Qh7gewsQZKo
-         BiDmeyBRYEbpQY3Gbh0eYDB0hKBDIJxlEY+r/Uv5rhyxEV5FOTe51azXb560cyqbU1nA
-         OQXZrmJmZttVWNdslX78MrPlMkVHEXlkVCpsfGV55M+4FRgwF15PSvGzOB3D4OnlL9WC
-         35/A==
+        d=gmail.com; s=20230601; t=1772681652; x=1773286452; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GoyJS43DjogCNIlYUyLOl9RH46vOQLUOd3a+06hfz+Q=;
+        b=gHtc/9liE0Xz/URCsAUZ/VJmEMYRNykrH0X2KvPxyN+gND8W5aEEgP2fHox/Q/FzGv
+         gqqWtahGYLEpP2BmRtqJd15wOxQj7mTWSnNe86F+nxd06KKh1kAi2tk0d7c5RSi+dIAx
+         dI4IXsgWvhiV9mYFHcMUvZdI8MUfPnR64bG5UFVRkGbJtn2Y3bm6MzzcxbWfX9cuChSi
+         n87L+2x+5GDXWp0xItnNLYzJBg1FTdAUdHa6SDSIQxB0Mgg+ALB9oigI6TnED23sFexu
+         VhD+KFiUX80qxJCdtvzL4k+sb9kdq0lO3d+j3V5CIlWqxeLG8UKn8qRNwCDKvJ8fN70r
+         ZFcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772681651; x=1773286451;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lRmZpXw1Na1Jt0sZYZ3Dk4vuOehC4OWy1CGhTN9jzyk=;
-        b=UYESW4crVMb/FyYPktmHl0eTmxsnKVixFGqZN30u+HwAZojByH7Se5lKPRhDn/+yEh
-         7pQn94TE8zunJ01DohuYRb26ej2XBlPabnATFi8BxYZBhKkwWUM4ztG/15KJk0EMgqho
-         wOgyKRbnWL7muNP5LhbSEuYZmRJHPJjXQugXz0NA0hev5q4d43DLjBs0VbHuUUw4GtnC
-         anonjjA4cHgNrLG5oV8GvEVE5yyTlX+d5g6nwcQAhfh75Nwck2DMvKX+XMlZhvzeJ1/j
-         XII8FQ4STEVD6ttCBZvencYQGJaKrD1IyPP8ok/AZ9olMNPa4x13eKJhsBzikwckVQQB
-         et/A==
-X-Gm-Message-State: AOJu0YwgjycS40gOtVqTFVXb2UFhkFs1bBuIEEpJh8a74QeY8XW8xT8I
-	jRI9URiupI2P2ReSszNQRZuqT7V4vShnvAgGHnChWOi+QlanzNSJ6VSv
-X-Gm-Gg: ATEYQzxrbbwWxjCJgo+9psteM199j5GZdXABV79MnW637WlZUSHOr+9vEhDGxF5JkUd
-	N7bM/sLPaOh+EYttOcC9gFoLLxWIEJOspQWF2iMvVyT1rHnFwC0U4Mamkm0aun+AmzeVp2FCw43
-	R0BJ15heRNrsW2DW4sRW3YtsNpWg9F1haAYK13Gs9sfLvvjiCZ3JXKBY61npq6a9OpIhvAVEjEb
-	R/IzeavIj+UhJgE4hmQqr6+UhxfuA8OPoH5WVqo5gm9KxXP1IrVGqfsRZGjitoFNGF2/zQUdGAG
-	XDH9Mh1L6BNcgl/FOrh0I/vV5hn4IiDY6XJG+V0d3x5ZCfBdOWGR+q+qCYTyZ+PxcDuXdJ3sRkt
-	6M3C9svbN7rl8wHklNKKABD9VmO9vUlHnvlAkDgbm1dHhhr5e8LLNVku7y9lR2EdX1lSmFmrU49
-	YJwCCb//9KoS3chqvnyqoWGLe7xKUmE4XzSXMtOA==
-X-Received: by 2002:ac8:5f11:0:b0:4f1:dfc8:50b with SMTP id d75a77b69052e-508db3fe6f9mr57487911cf.76.1772681651474;
-        Wed, 04 Mar 2026 19:34:11 -0800 (PST)
+        d=1e100.net; s=20230601; t=1772681652; x=1773286452;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GoyJS43DjogCNIlYUyLOl9RH46vOQLUOd3a+06hfz+Q=;
+        b=laueLOIBViWG2qPseMIWvZzNnwShwzKHsaSwEXGpH6Hf90ifTXmOjmib9L/0h48u5p
+         BSjd8Dh4ve18q0NChxqg7mLYV+OoOKyWiUR4GyEjZjt/aVwlzubNwDXNrzrl7nqnXlbn
+         PIW43/RUiDFFyuYWWuxidk7a5rV3mdG0L+KvdFCqyfq7jdfataCnD1kNOjK6n9YLfEFI
+         +Ej/JIh8UuIpDa2ArVe7Gio/r9Mys4BkwzV1KkPxNJ21LkOcml3hsjhp/7I9Wadv3ySu
+         6kY0vv22/7VsXOo3fUcqNEy+yDgAiu0cLkzpf4E8FkMfcO8ho2kcBvkk4X7wAXpbeFQh
+         dDSg==
+X-Gm-Message-State: AOJu0YzAnbnzLfn0ACFAImMiD/CHzybPIJAoZx+rQ6q9dsJluSpREq9X
+	KXDVCunOv0X74b/Odwr4egOXA/MholZCqA2AsWe2ZA/382YkhNKeeXxI
+X-Gm-Gg: ATEYQzzNNUrhrDun2FMacmKtIh8QzcB0yq/LRYZZGsmIti0d8Jzm9LFcQ9JGSm1S8bN
+	HR1p2PCx6Nt/CnC1FCZgT+xA0HiFriMGJVcYw0MmNm34Sj0tggOmEesC5LKFKGYyrT6PMpPhhD8
+	QP6tCjVyDQRXWnEfTBCMlC48JCPcpwYgGob4XkU/naOK71R9OXKRvV9eNztP2U4cORkUCPviXqV
+	g7m2yDvDjMk1EH1Q7y62wYrJgxfWfYgWIWSX2aquAE1d8wKf/5OWJYvKenVU7LMj/bNTsL1Vc6Q
+	t1Ev52/zu553ClTc/+QICEf73tb2xF8oG3pNekUt0VkorzQ4d0I47vC9imnCnh2L7MAhK62MfFk
+	hc8wgyq3Yy3olapoRDXcQoSDrJdML4NOb8rqw2FTgV7veHv8ApobwS9z87WMCyAVi2TAXibCJUV
+	3KOg85gM/7T394zKPrQ7TS8xDqQjg=
+X-Received: by 2002:ac8:5a82:0:b0:502:9e93:617d with SMTP id d75a77b69052e-508db36395dmr51002631cf.46.1772681652477;
+        Wed, 04 Mar 2026 19:34:12 -0800 (PST)
 Received: from [172.17.0.2] ([134.128.219.200])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-507449630b6sm190667601cf.7.2026.03.04.19.34.10
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-507449630b6sm190667601cf.7.2026.03.04.19.34.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 19:34:11 -0800 (PST)
+        Wed, 04 Mar 2026 19:34:12 -0800 (PST)
 From: Yuanshen Cao <alex.caoys@gmail.com>
-Subject: [PATCH v2 0/2] allwinner: a733: Add A733 PCK600 Power Domain
- Controller Support
-Date: Thu, 05 Mar 2026 03:34:06 +0000
-Message-Id: <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
+Date: Thu, 05 Mar 2026 03:34:07 +0000
+Subject: [PATCH v2 1/2] dt-bindings: power: Add Support for Allwinner A733
+ PCK600 Power Domain Controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,10 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAK/5qGkC/3XMyw6CMBCF4Vchs3bMUCoXV76HYVHKFCYKJa0hG
- sK7W9m7/E9yvg0iB+EI12yDwKtE8XMKdcrAjmYeGKVPDYpUSQVp7DQu9lESoamKAvOqISbWda8
- bSKclsJP3Ad7b1KPElw+fw1/z3/qXWnMkVO6i2fVdba26DZOR59n6Cdp937++DMi5rAAAAA==
-X-Change-ID: 20260304-b4-pck600-a733-1790e0e48d49
+Message-Id: <20260305-b4-pck600-a733-v2-1-ba6bbed7d253@gmail.com>
+References: <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
+In-Reply-To: <20260305-b4-pck600-a733-v2-0-ba6bbed7d253@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>, 
  Jernej Skrabec <jernej.skrabec@gmail.com>, 
@@ -99,7 +99,7 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-pm@vger.kernel.org, Yuanshen Cao <alex.caoys@gmail.com>, 
  Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: B1DAA20A984
+X-Rspamd-Queue-Id: 2EE9720A992
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -110,7 +110,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271336-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271337-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,sholland.org,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -130,48 +130,88 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-Hi everyone,
+The A733 PCK600, similar to A523 PCK600, is likely a customized version
+of ARM PCK-600 power controller. They share the same BSP drivers in the
+package provided by Radxa, with the only difference being the lack of
+resets.
 
-This series is to introduce Allwinner A733 PCK600 Power Domain
-Controller.
+Therefore, document A733 compatible and make resets required only for
+the other models, as well as prepare the PD definitions for future
+device trees.
 
-Allwinner A733 has this one power domain controller, PCK600, which
-shares the same BSP drivers according to the package provided by
-Radxa[1]. Unlike A523, A733 does not require the resets, and it also has
-different delay values. Apart from these, driver wise, everything else
-is the same. 
-
-Add support for A733 power domain controller by making resets optional
-on sun55i-pck600 driver, adding A733 sunxi_pck600_desc and dt-bindings 
-definitions.
-Tested on Radxa Cubie A7Z.
-
-[1] https://github.com/radxa/allwinner-bsp
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Yuanshen Cao <alex.caoys@gmail.com>
 ---
-Changes in v2:
-- Fit the pd_names into two lines
-- Link to v1: https://lore.kernel.org/r/20260304-b4-pck600-a733-v1-0-2f54efdb8cc2@gmail.com
+ .../bindings/power/allwinner,sun20i-d1-ppu.yaml        | 17 ++++++++++++++++-
+ .../dt-bindings/power/allwinner,sun60i-a733-pck-600.h  | 18 ++++++++++++++++++
+ 2 files changed, 34 insertions(+), 1 deletion(-)
 
----
-Yuanshen Cao (2):
-      dt-bindings: power: Add Support for Allwinner A733 PCK600 Power Domain Controller
-      pmdomain: sunxi: Add support for A733 to Allwinner PCK600 driver
+diff --git a/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
+index a28e75a9cb6a..b97361ce2a00 100644
+--- a/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
++++ b/Documentation/devicetree/bindings/power/allwinner,sun20i-d1-ppu.yaml
+@@ -20,6 +20,7 @@ properties:
+       - allwinner,sun20i-d1-ppu
+       - allwinner,sun55i-a523-pck-600
+       - allwinner,sun55i-a523-ppu
++      - allwinner,sun60i-a733-pck-600
+ 
+   reg:
+     maxItems: 1
+@@ -38,9 +39,23 @@ required:
+   - compatible
+   - reg
+   - clocks
+-  - resets
+   - '#power-domain-cells'
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - allwinner,sun8i-v853-ppu
++              - allwinner,sun20i-d1-ppu
++              - allwinner,sun55i-a523-pck-600
++              - allwinner,sun55i-a523-ppu
++
++    then:
++      required:
++        - resets
++
+ additionalProperties: false
+ 
+ examples:
+diff --git a/include/dt-bindings/power/allwinner,sun60i-a733-pck-600.h b/include/dt-bindings/power/allwinner,sun60i-a733-pck-600.h
+new file mode 100644
+index 000000000000..cf476a005b55
+--- /dev/null
++++ b/include/dt-bindings/power/allwinner,sun60i-a733-pck-600.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++
++#ifndef _DT_BINDINGS_POWER_SUN60I_A733_PCK600_H_
++#define _DT_BINDINGS_POWER_SUN60I_A733_PCK600_H_
++
++#define PD_VI			0
++#define PD_DE_SYS		1
++#define PD_VE_DEC		2
++#define PD_VE_ENC		3
++#define PD_NPU			4
++#define PD_GPU_TOP		5
++#define PD_GPU_CORE		6
++#define PD_PCIE			7
++#define PD_USB2			8
++#define PD_VO			9
++#define PD_VO1			10
++
++#endif /* _DT_BINDINGS_POWER_SUN60I_A733_PCK600_H_ */
 
- .../bindings/power/allwinner,sun20i-d1-ppu.yaml    | 17 ++++++++++-
- drivers/pmdomain/sunxi/sun55i-pck600.c             | 35 +++++++++++++++++++---
- .../power/allwinner,sun60i-a733-pck-600.h          | 18 +++++++++++
- 3 files changed, 65 insertions(+), 5 deletions(-)
----
-base-commit: 0031c06807cfa8aa51a759ff8aa09e1aa48149af
-change-id: 20260304-b4-pck600-a733-1790e0e48d49
-
-Best regards,
 -- 
-Yuanshen Cao <alex.caoys@gmail.com>
+2.53.0
 
 
