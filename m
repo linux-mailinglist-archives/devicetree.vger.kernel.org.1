@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-271557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271558-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KEnA915qWl77wAAu9opvQ
-	(envelope-from <devicetree+bounces-271557-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:41:01 +0100
+	id qGwdKNV7qWkg8gAAu9opvQ
+	(envelope-from <devicetree+bounces-271558-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:49:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 635EF211D8C
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:41:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 631F121210D
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:49:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BBDF030CD596
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:39:37 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BDF0930CA3CE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D699371054;
-	Thu,  5 Mar 2026 12:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE38E39E6D1;
+	Thu,  5 Mar 2026 12:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DCIJdZtN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LDxIZTHJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5EB78F3A;
-	Thu,  5 Mar 2026 12:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91A639B4A9;
+	Thu,  5 Mar 2026 12:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772714377; cv=none; b=i2mRHSATR+xagcLnjVAbRGbqS7zlOKhWArUZp+EkevDczZwiUjF/PtFx3zHHqdZO12tySObRx8Vy+1Y/emf4op8Cq3j6fwZBH8T2pN+3BND8kZfT2UKwviKUl7GcoWGArvrzIh/fGxUb1DR7e5ChFFSVt7Gxq/0aXNCLMid6KIk=
+	t=1772714668; cv=none; b=rYCIaF0iWB2jJLB34MX8Leaij/+QFhcG4wk59dhb35BycVKNcIwCS+FKIHtYnq1heJswqdLza3FgR5Nlrd51e++Ew+ryR/7BYdtO2K/Tu5dw2oYqkZc8NdmwBseGocdxbjwTruii3YilqhYiQm4p2/UegYquLTXjfh4bcUgCgSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772714377; c=relaxed/simple;
-	bh=Gcla6dk7HKtcPXm/uEjdADuBF2XFedUxob0vlvhB3lA=;
+	s=arc-20240116; t=1772714668; c=relaxed/simple;
+	bh=1w1RB447ldnhlv8Hxu9zjeDMNtNYv/NPl51WMASJdHA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EukiVeYYFTb5Am00v6gqc4tMuzcQ2oH8De1FudHRBvXnYyv4BFj0pY97RFxD4FkSA6qCmsK6W7Z7MuPBI6DATUGzbd1v9Dg3VZFSxdd+U7ptBD5JdDRUr+ed5RvAVvCuazHPacZfFQJbeOR1zot4Pg9volkP2V+e0gx+Q89q+Fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DCIJdZtN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE62EC116C6;
-	Thu,  5 Mar 2026 12:39:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=tGcSQVLaLf6PoU9KSijosV1RXLeVCHeDXSmeD8EPGnyu2VCi2urciYYPhYHp5PSDKWDwzr1VJi/Vb+OH6ZGtsjfbM49TS2TVW8wag2Nib2yJ3qns3e1XDyLgJqLkBtYzV5o5iQ1OHSS2zz5V0NNevmviXCrLrIjpEOjtrCKf+VU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LDxIZTHJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DB4FC116C6;
+	Thu,  5 Mar 2026 12:44:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772714376;
-	bh=Gcla6dk7HKtcPXm/uEjdADuBF2XFedUxob0vlvhB3lA=;
+	s=k20201202; t=1772714668;
+	bh=1w1RB447ldnhlv8Hxu9zjeDMNtNYv/NPl51WMASJdHA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DCIJdZtN9n/FZ1K2dR1eS6YttnLrjzkCayO9RoJGt0DidNJ+0klcKHQvdzMZOf+1w
-	 2K4f1hBgfJouqTvwTikU0tWq9uW8ifxBuaSMOMJ6XQWkdpEyqX8XlF2O9gDqJ6omiJ
-	 jYvx8K7Tcmsd0hAlXx7+f/qn0FEHiejgCiW71fBfk+OnXqILC6ueTBqHa+/PsRQN/2
-	 gOPJXI/BTMtnnLa2xQIVIj+ebDOc2+9UFvF1Ehm8kffeZCMcJJm3qZ22lvNUwRwPlv
-	 U9QWyW+hDnlB2eHQFWCsQ3S9Qeb1wFs6vSAKbo8HRPENJDST4KXr7OX2EvZaTfLwOW
-	 KjuWYuzopxJig==
-Message-ID: <e400bb73-3f80-4fcd-91a1-6b9b966c5e2d@kernel.org>
-Date: Thu, 5 Mar 2026 13:39:29 +0100
+	b=LDxIZTHJ2mYAqUYUpM4rqzZqtOy9udLdU1nPT/u3StPVOAxHfd1HkkpzQVNBSMNCH
+	 tHAAbXHXvchUiXKghhZ/gTWDIczkMPjXTj5SXEg2l6KA5uZ9T7SNE2pTHnkOPGiC/N
+	 R+jvYfQZkT5R0zYOrUApdyIuMpJE2gaQKcjZiWS0aIapVW/Gl7pvBkItwBaJNBWaqY
+	 DspG8lnPxmxXQfJlwIaAI4BIe1+2wKsNdNXPNfblQVleHP6DcEQPVv0LznMOrZKC6L
+	 i1iJ3VLPsiU1NRIuHz9lNYrs/PLJjveniEzGFvjojTShf9jVCLI39Fudl1ICZ2sB7K
+	 1RYQ3uYn/pX2A==
+Message-ID: <d77de930-d988-40ad-9b29-9bfe8f4584df@kernel.org>
+Date: Thu, 5 Mar 2026 13:44:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,27 +53,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/7] dt-bindings: interrupt-controller: fsl,irqsteer:
- add S32N79 support
-To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
- Haibo Chen <haibo.chen@nxp.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, s32@nxp.com,
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
- Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>,
- Larisa Grigore <larisa.grigore@nxp.com>
-References: <20260225133858.8026-1-ciprianmarian.costea@oss.nxp.com>
- <20260225133858.8026-2-ciprianmarian.costea@oss.nxp.com>
- <20260226-ingenious-shiny-axolotl-e0e6d2@quoll>
- <e8e258fb-23c0-44d1-bf4d-e2fed92ad90d@oss.nxp.com>
- <6a481490-28dc-4b62-9782-95a32d0e2857@kernel.org>
- <aba2401e-e26c-44d1-b321-56cd18f11a37@oss.nxp.com>
+Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: add bindings for AD4691 family
+To: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
+ <20260305-ad4692-multichannel-sar-adc-driver-v1-1-336229a8dcc7@analog.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -119,99 +114,304 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aba2401e-e26c-44d1-b321-56cd18f11a37@oss.nxp.com>
+In-Reply-To: <20260305-ad4692-multichannel-sar-adc-driver-v1-1-336229a8dcc7@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 635EF211D8C
+X-Rspamd-Queue-Id: 631F121210D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271557-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271558-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
-	RCPT_COUNT_TWELVE(0.00)[25];
+	FREEMAIL_TO(0.00)[analog.com,metafoo.de,kernel.org,baylibre.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,i.mx:url]
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On 05/03/2026 13:25, Ciprian Marian Costea wrote:
-> On 3/5/2026 2:12 PM, Krzysztof Kozlowski wrote:
->> On 05/03/2026 13:02, Ciprian Marian Costea wrote:
->>> On 2/26/2026 9:31 AM, Krzysztof Kozlowski wrote:
->>>> On Wed, Feb 25, 2026 at 02:38:52PM +0100, Ciprian Costea wrote:
->>>>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->>>>>
->>>>> Add compatible string for the interrupt steering controller used in NXP
->>>>> S32N79 SoC.
->>>>>
->>>>> The S32N79 SoC differs from the i.MX version by not implementing the
->>>>> CHANCTRL register, but otherwise maintains the same programming model and
->>>>> register layout.
->>>>>
->>>>> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
->>>>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
->>>>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
->>>>> ---
->>>>>    .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml   | 1 +
->>>>>    1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
->>>>> index 5c768c1e159c..caf3e4a1f26f 100644
->>>>> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
->>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
->>>>> @@ -22,6 +22,7 @@ properties:
->>>>>                  - fsl,imx94-irqsteer
->>>>>                  - fsl,imx95-irqsteer
->>>>>              - const: fsl,imx-irqsteer
->>>>> +      - const: nxp,s32n79-irqsteer
->>>>
->>>> So that should be part of enum with the first entry.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>
->>> Hello Krzysztof,
->>>
->>> Thanks for your review. Regarding this change, I was thinking since
->>> S32N79 irqsteer does not implement the 'CHANCTRL' register, it should
->>> not fallback to 'fsl,imx-irqsteer'. If the driver were to match on the
->>> fallback compatible, it would attempt to write to the non-existent
->>> CHANCTRL register.
->>>
->>> Am I wrong?
->>
->> No clue, I did not say anything about fallbacks.
->>
->> Best regards,
->> Krzysztof
+On 05/03/2026 13:23, Radu Sabau via B4 Relay wrote:
+> From: Radu Sabau <radu.sabau@analog.com>
 > 
-> Indeed, but your suggestion of moving 'nxp,s32n79-irqsteer' under the
-> enum would fallback on 'fsl,imx-irqsteer'.
-> 
-> Am I misunderstanding your suggestion ?
+> Add YAML bindings and dt-bindings header for the Analog Devices AD4691
 
-Open the code. What is the first entry?
+There are no such thing as YAML bindings. DT bindings.
+
+
+> family of multichannel SAR ADCs (AD4691, AD4692, AD4693, AD4694).
+> 
+> The binding describes five operating modes selectable via the
+
+No, describe the hardware, not binding.
+
+
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+
+
+> adi,spi-mode property, optional PWM/clock for CNV Clock and CNV Burst
+> modes, GPIO pins, voltage supplies and the trigger-source interface for
+> SPI Engine offload operation.
+> 
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad4691.yaml    | 278 +++++++++++++++++++++
+>  MAINTAINERS                                        |   8 +
+>  include/dt-bindings/iio/adc/adi,ad4691.h           |  13 +
+>  3 files changed, 299 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4691.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4691.yaml
+> new file mode 100644
+> index 000000000000..b0d8036184b0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4691.yaml
+> @@ -0,0 +1,278 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad4691.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD4691 Family Multichannel SAR ADCs
+> +
+> +maintainers:
+> +  - Radu Sabau <radu.sabau@analog.com>
+> +
+> +description: |
+> +  The AD4691 family are high-speed, low-power, multichannel successive
+> +  approximation register (SAR) analog-to-digital converters (ADCs) with
+> +  an SPI-compatible serial interface. The family supports multiple operating
+> +  modes including CNV Clock Mode, CNV Burst Mode, Autonomous Mode, SPI Burst
+> +  Mode, and Manual Mode.
+> +
+> +  The driver supports both standard SPI and SPI Engine (offload) operation.
+
+Driver is irrelevant. If you change mode, you change bindings?
+
+> +
+> +  Datasheets:
+> +    * https://www.analog.com/en/products/ad4692.html
+> +    * https://www.analog.com/en/products/ad4691.html
+> +    * https://www.analog.com/en/products/ad4694.html
+> +    * https://www.analog.com/en/products/ad4693.html
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad4691
+> +      - adi,ad4692
+> +      - adi,ad4693
+> +      - adi,ad4694
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 40000000
+> +
+> +  spi-cpol: true
+> +  spi-cpha: true
+> +
+> +  adi,spi-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Nope. You already have such property, so you cannot redefine it. Look at
+other sources.
+
+...
+
+
+> +  clocks:
+> +    description: Reference clock for PWM timing in CNV Clock and CNV Burst modes.
+> +    maxItems: 1
+> +
+> +  clock-names:
+
+Drop clock-names. Not useful if you call it just ref.
+
+> +    items:
+> +      - const: ref_clk
+> +
+> +  pwms:
+> +    description:
+> +      PWM connected to the CNV pin. Required for CNV Clock Mode and CNV Burst
+> +      Mode to control conversion timing.
+> +    maxItems: 1
+> +
+> +  pwm-names:
+> +    items:
+> +      - const: cnv
+> +
+> +  interrupts:
+> +    description:
+> +      Interrupt from the GP0 pin configured as DATA_READY or BUSY. Required
+> +      for non-offload operation in all modes except Manual Mode (mode 4),
+> +      where CNV is tied to CS and no DATA_READY signal is generated.
+> +    maxItems: 1
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: DRDY
+
+Lowercase. Or actually drop names...
+
+> +
+> +  '#trigger-source-cells':
+> +    description: |
+> +      For SPI Engine offload operation, this node acts as a trigger source.
+> +      Two cells are required:
+> +        - First cell: Trigger event type (0 = BUSY, 1 = DATA_READY)
+> +        - Second cell: GPIO pin number (only 0 = GP0 is supported)
+> +
+> +      Macros are available in dt-bindings/iio/adc/adi,ad4691.h:
+> +        AD4691_TRIGGER_EVENT_BUSY, AD4691_TRIGGER_EVENT_DATA_READY
+> +        AD4691_TRIGGER_PIN_GP0
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - adi,spi-mode
+> +  - vio-supply
+> +  - reset-gpios
+> +
+> +allOf:
+> +  # vref-supply and vrefin-supply are mutually exclusive, one is required
+> +  - oneOf:
+> +      - required:
+> +          - vref-supply
+> +      - required:
+> +          - vrefin-supply
+> +
+> +  # AD4694 (20-bit) does not support Manual Mode
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          const: adi,ad4694
+> +    then:
+> +      properties:
+> +        adi,spi-mode:
+> +          enum: [0, 1, 2, 3]
+> +
+> +  # CNV Clock Mode and CNV Burst Mode require PWM and clock
+> +  - if:
+> +      properties:
+> +        adi,spi-mode:
+> +          enum: [0, 1]
+> +    then:
+> +      required:
+> +        - clocks
+> +        - clock-names
+> +        - pwms
+> +        - pwm-names
+> +
+> +  # Non-Manual modes (0-3) without SPI offload require a DRDY interrupt.
+> +  # Offload configurations expose '#trigger-source-cells' instead.
+> +  - if:
+> +      properties:
+> +        adi,spi-mode:
+> +          enum: [0, 1, 2, 3]
+> +      not:
+> +        required:
+> +          - '#trigger-source-cells'
+> +    then:
+> +      required:
+> +        - interrupts
+> +        - interrupt-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/iio/adc/adi,ad4691.h>
+> +
+> +    /* Example: AD4692 in CNV Clock Mode with standard SPI */
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@0 {
+> +            compatible = "adi,ad4692";
+> +            reg = <0>;
+> +            spi-cpol;
+> +            spi-cpha;
+> +            spi-max-frequency = <40000000>;
+> +
+> +            adi,spi-mode = <0>; /* CNV Clock Mode */
+> +
+> +            vio-supply = <&vio_supply>;
+> +            vref-supply = <&vref_5v>;
+> +
+> +            reset-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>;
+> +            gp0-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
+> +
+> +            clocks = <&ref_clk>;
+> +            clock-names = "ref_clk";
+> +
+> +            pwms = <&pwm_gen 0 0>;
+> +            pwm-names = "cnv";
+> +
+> +            interrupts = <12 4>;
+> +            interrupt-names = "DRDY";
+> +        };
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/iio/adc/adi,ad4691.h>
+> +
+> +    /* Example: AD4692 in Manual Mode with SPI Engine offload */
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@0 {
+> +            compatible = "adi,ad4692";
+> +            reg = <0>;
+> +            spi-cpol;
+> +            spi-cpha;
+> +            spi-max-frequency = <31250000>;
+> +
+> +            adi,spi-mode = <4>; /* Manual Mode */
+> +
+> +            vio-supply = <&vio_supply>;
+> +            vrefin-supply = <&vrefin_supply>;
+> +
+> +            reset-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/iio/adc/adi,ad4691.h>
+
+Where do you use the header?
+
+Anyway, drop example, two are enough.
+
 
 Best regards,
 Krzysztof
