@@ -1,178 +1,246 @@
-Return-Path: <devicetree+bounces-271378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271384-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uP4/DgEtqWlN2wAAu9opvQ
-	(envelope-from <devicetree+bounces-271378-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:13:05 +0100
+	id UDf+H3AuqWlN2wAAu9opvQ
+	(envelope-from <devicetree+bounces-271384-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:19:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 913CC20C496
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:13:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DFE20C7FA
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:19:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E9CBE301691C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:11:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 4BAC63024400
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5E8313E05;
-	Thu,  5 Mar 2026 07:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA27831AA87;
+	Thu,  5 Mar 2026 07:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QjcfWv0L"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="OyCZjFKe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB30C3101B2;
-	Thu,  5 Mar 2026 07:11:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AAA30C62D;
+	Thu,  5 Mar 2026 07:16:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772694708; cv=none; b=s1IlQM8OApo1vatRxQuCkiBA6UCc0gXbOm/SwoPlUfb/r0GQc5YobgkJEGvebKpatzYH0+TqeReoPRHh7KxXW78ixVCkR4QC4kF2HoxQmnFZ0zjNpFoJ7yOwXnK8qh6cDfdRV4uvvrr4oUULEnmfcJpiuK2MkOTk2U4VO6TqZx8=
+	t=1772694963; cv=none; b=b7wEg5QtGOsKsiw/9Jzle/jIZurYvURp/xdxEI3qYaoSjoIdYh1PpDDQp2s1IWOfuODvDQeGDu4cF2S8rSWN/Hww9g3mBTTokhF+gGaAB/hJO5SNKTT/TmTBXqD1f2F0B3gdBOcVMngoWZfq+xDYAukA7+536YyM0V6JaqvT+NE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772694708; c=relaxed/simple;
-	bh=mh7TqYGtwyz8BNhFD30DS+eTl5ENs1RwMsa8SpKQyfA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WUDYgFHmt8YkxTDbx4bXeyN6+lI2Tph772MBw48lW59GUROYQUtIpCdbbs6nzEoy+iqVOTpjkqkyMB7ypJWOUPkvGcZmbTHl+9JUFCPFQgx/ay3hpYL2JFvVLqVKGIFtc4+HfJ+3ulpQvYT3A9RR1zWaNLXsdu8dlFuvft9xIY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QjcfWv0L; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772694707; x=1804230707;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=mh7TqYGtwyz8BNhFD30DS+eTl5ENs1RwMsa8SpKQyfA=;
-  b=QjcfWv0L8UzoMjC9zl2GmwGsLypqTWpedVkMe4DdWTWg4Qu5CqAQawAg
-   0Hew030BZEEDf5paPV7Bqc36JvDw8mRhXoxa6Fb0E6Uqhv6EAnHotmxNU
-   0FrbTcGY87qhTR7kxZKMlKSbQE8Fdg62QrUSynVyLP1h/7M1go0EwwRze
-   rp13Tsx40ouXHbrRe/reU4oasN4ddG9DBfwUHtXjBpG0b188428FxtbYz
-   uQaC18XBqFQ54RlWt1IUZOhlgMjFTLlKWTb9P7+9eJJgFJnF0FVe5qIfs
-   5qk2s+RMbSXVy6oWI+45yGstrzyqVM9tdZRmHBjs9hJdcEYj3uW1+vOxk
-   Q==;
-X-CSE-ConnectionGUID: tOyStoCbT0aS9ZOgm8iNkA==
-X-CSE-MsgGUID: TxLf4fUlSamGMeckgXYsiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73687281"
-X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; 
-   d="scan'208";a="73687281"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 23:11:47 -0800
-X-CSE-ConnectionGUID: 4I7EZlacT7CX44ivW2zzbA==
-X-CSE-MsgGUID: tDPbyxNBSTmeAN8d90KA2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; 
-   d="scan'208";a="241600936"
-Received: from igk-lkp-server01.igk.intel.com (HELO 9958d990ccf2) ([10.211.93.152])
-  by fmviesa002.fm.intel.com with ESMTP; 04 Mar 2026 23:11:41 -0800
-Received: from kbuild by 9958d990ccf2 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vy2rz-000000001y1-2aM6;
-	Thu, 05 Mar 2026 07:11:39 +0000
-Date: Thu, 5 Mar 2026 08:11:29 +0100
-From: kernel test robot <lkp@intel.com>
-To: Shenwei Wang <shenwei.wang@nxp.com>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
-	arnaud.pouliquen@foss.st.com
-Cc: oe-kbuild-all@lists.linux.dev, Shuah Khan <skhan@linuxfoundation.org>,
-	linux-gpio@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shenwei Wang <shenwei.wang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-	devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-imx@nxp.com
-Subject: Re: [PATCH v9 1/5] docs: driver-api: gpio: rpmsg gpio driver over
- rpmsg bus
-Message-ID: <202603050819.478UbJ2l-lkp@intel.com>
-References: <20260304211808.1437846-2-shenwei.wang@nxp.com>
+	s=arc-20240116; t=1772694963; c=relaxed/simple;
+	bh=fYhKUJF3oaLR4akuniouuHVW8lVuDqzwj0GKB6Gbtak=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GBuEmXO6YrAwFcZyrgYFtqpEoeQNcJQRZNK9zDxMAFKvVbMLi4oUko3QcMM8WEaJj9qGr+rrrEMjCKspfghB5wDYd8YCmzlTMxG8I0g3kjhIoegU7eOUXWJyl2v5zkjhYnCsRotnyzA70QZP6q2AMtsV/KK7MkUtYJctsohTMgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=OyCZjFKe; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 27e2ef1a186311f1bcd7499a721e883d-20260305
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=hwgqbmMSY3cSHc4GhC0gL/PpPTLaj95cN2wGFjzRcWI=;
+	b=OyCZjFKeBhT/nNH7LIWcilCg5loHiWpyweuJkc2HPaZpQ/+4pCnZ5BPhTxbOmws2YyniFU2XDX+eJ7x0brFx7lGSZKiYbyV8t+exfNvTAzyM0YNGS2E4UjWnjB+TZXL7tWqPZO8jEp1XE+I7ngHkJs37sAnvgTlqXFq62Yhw/4w=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.11,REQID:ea6cafec-8f25-4ff3-90ac-27c5058f4db8,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:89c9d04,CLOUDID:ba18e35b-a957-4259-bcca-d3af718d7034,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:0,Bulk:nil,QS:nil,BEC:-1,COL:0,OSI:0,OSA
+	:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: 27e2ef1a186311f1bcd7499a721e883d-20260305
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <ot_meiker.gao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 977209944; Thu, 05 Mar 2026 15:15:57 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.29; Thu, 5 Mar 2026 15:15:55 +0800
+Received: from mtksitap99.mediatek.inc (10.233.130.16) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.2562.29 via Frontend Transport; Thu, 5 Mar 2026 15:15:55 +0800
+From: Meiker Gao <ot_meiker.gao@mediatek.com>
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Bayi Cheng
+	<bayi.cheng@mediatek.com>, Chuanhong Guo <gch981213@gmail.com>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<sirius.wang@mediatek.com>, <vince-wl.liu@mediatek.com>,
+	<jh.hsu@mediatek.com>, Meiker Gao <ot_meiker.gao@mediatek.com>
+Subject: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Add clock bindings for mt8189
+Date: Thu, 5 Mar 2026 15:15:42 +0800
+Message-ID: <20260305071546.2603378-1-ot_meiker.gao@mediatek.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260304211808.1437846-2-shenwei.wang@nxp.com>
-X-Rspamd-Queue-Id: 913CC20C496
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 84DFE20C7FA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mediatek.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[mediatek.com:s=dk];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	FREEMAIL_CC(0.00)[lists.linux.dev,linuxfoundation.org,vger.kernel.org,pengutronix.de,gmail.com,nxp.com,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-271378-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-271384-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[ot_meiker.gao@mediatek.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mediatek.com:+];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,01.org:url,intel.com:dkim,intel.com:email,intel.com:mid,git-scm.com:url]
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,0.0.0.0:email,1100d000:email,mediatek.com:dkim,mediatek.com:email,mediatek.com:mid]
 X-Rspamd-Action: no action
 
-Hi Shenwei,
+Update mediatek,spi-mtk-nor.yaml to add conditional clock and
+clock-names bindings for the mt8189-nor platform. The mt8189-nor
+controller requires five specific clocks and corresponding clock-names
+("spi", "sf", "axi_f", "axi_h", "axi_p"). This change enforces these
+requirements in the device tree binding schema.
 
-kernel test robot noticed the following build warnings:
+For other platforms, the minimum number of clocks and clock-names
+remains unchanged. The patch also adds an example for mt8189-nor,
+illustrating the new clock configuration.
 
-[auto build test WARNING on brgl/gpio/for-next]
-[also build test WARNING on remoteproc/rproc-next robh/for-next next-20260304]
-[cannot apply to linus/master v6.16-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+This update ensures correct hardware description and validation for
+mt8189-nor, improving compatibility and reducing configuration errors.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Shenwei-Wang/docs-driver-api-gpio-rpmsg-gpio-driver-over-rpmsg-bus/20260305-052440
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/brgl/linux.git gpio/for-next
-patch link:    https://lore.kernel.org/r/20260304211808.1437846-2-shenwei.wang%40nxp.com
-patch subject: [PATCH v9 1/5] docs: driver-api: gpio: rpmsg gpio driver over rpmsg bus
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-docutils: docutils (Docutils 0.21.2, Python 3.13.5, on linux)
-reproduce: (https://download.01.org/0day-ci/archive/20260305/202603050819.478UbJ2l-lkp@intel.com/reproduce)
+Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
+(cherry picked from commit c3180d35e52b5213764a89403e71f9a34d7bb842)
+---
+ .../bindings/spi/mediatek,spi-mtk-nor.yaml    | 69 ++++++++++++++++---
+ 1 file changed, 58 insertions(+), 11 deletions(-)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603050819.478UbJ2l-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   .. code-block:: none
-   +-----+-----+-----+-----+-----+----+
-   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-   | 1   | 2   |port |line | err | dir|
-   +-----+-----+-----+-----+-----+----+ [docutils]
->> Documentation/driver-api/gpio/gpio-rpmsg.rst:115: WARNING: Title underline too short.
-
-
-vim +115 Documentation/driver-api/gpio/gpio-rpmsg.rst
-
-   112	
-   113	
-   114	GET_VALUE (Cmd=4)
- > 115	~~~~~~~~~~~~~~~~
-   116	
-
+diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+index a453996c13f2..587f77d3f8d1 100644
+--- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
++++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+@@ -17,9 +17,6 @@ description: |
+   for devices other than SPI NOR flash due to limited transfer
+   capability of this controller.
+ 
+-allOf:
+-  - $ref: /schemas/spi/spi-controller.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -39,6 +36,7 @@ properties:
+       - items:
+           - enum:
+               - mediatek,mt8188-nor
++              - mediatek,mt8189-nor
+           - const: mediatek,mt8186-nor
+ 
+   reg:
+@@ -56,14 +54,8 @@ properties:
+                      design, so this is optional.
+       - description: clock used for controller axi slave bus.
+                      this depends on hardware design, so it is optional.
+-
+-  clock-names:
+-    minItems: 2
+-    items:
+-      - const: spi
+-      - const: sf
+-      - const: axi
+-      - const: axi_s
++      - description: clock used for controller axi_f, axi_h, and
++                     axi_p to support the new platform.
+ 
+ required:
+   - compatible
+@@ -71,6 +63,37 @@ required:
+   - clocks
+   - clock-names
+ 
++allOf:
++  - $ref: /schemas/spi/spi-controller.yaml#
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt8189-nor
++    then:
++      properties:
++        clocks:
++          minItems: 5
++        clock-names:
++          minItems: 5
++          items:
++            - const: spi
++            - const: sf
++            - const: axi_f
++            - const: axi_h
++            - const: axi_p
++    else:
++      properties:
++        clocks:
++          minItems: 2
++        clock-names:
++          items:
++            - const: spi
++            - const: sf
++            - const: axi
++            - const: axi_s
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -97,3 +120,27 @@ examples:
+         };
+       };
+     };
++
++  - |
++
++    soc {
++      #address-cells = <2>;
++      #size-cells = <2>;
++
++      nor_flash: spi@1100d000 {
++        compatible = "mediatek,mt8189-nor";
++        reg = <0 0x1100d000 0 0xe0>;
++        interrupts = <1>;
++        clocks = <&pericfg CLK_PERI_SPI>, <&topckgen CLK_TOP_SPINFI_IFR_SEL>,
++                 <&pericfg CLK_PERAO_SFLASH_F>, <&topckgen CLK_PERAO_SFLASH_H>,
++                 <&pericfg CLK_PERAO_SFLASH_P>;
++        clock-names = "spi", "sf", "axi_f", "axi_h", "axi_p";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        flash@0 {
++          compatible = "jedec,spi-nor";
++          reg = <0>;
++        };
++      };
++    };
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.2
+
 
