@@ -1,214 +1,196 @@
-Return-Path: <devicetree+bounces-271737-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271738-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGAsMg/9qWl+JAEAu9opvQ
-	(envelope-from <devicetree+bounces-271737-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 23:00:47 +0100
+	id gMSECZUAqmm9JQEAu9opvQ
+	(envelope-from <devicetree+bounces-271738-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 23:15:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C945B218BE4
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 23:00:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10E26218D3E
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 23:15:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8FD6A3009828
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 22:00:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9028A300AD60
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 22:15:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D83C3361651;
-	Thu,  5 Mar 2026 22:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0342D322E;
+	Thu,  5 Mar 2026 22:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="WbmwTcln"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="Juj1hjda"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41C9334C08
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 22:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5010E2D7BF;
+	Thu,  5 Mar 2026 22:15:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772748041; cv=none; b=BRZuV1GAioWwYh+mPcsUu+sxeqyhP+h6UcYvR78g1F0sJDvRfGvFP9Sgxfkvae+e14517Aw1UTdpzf3fnBVTm9AvqUlVIrufbAlwClx77H1wR6jKE7+qzMLRfur92fMkTQJh3rutZzGRIcha5K2OJE7+4zW5TZCkRBOfC6HEkg8=
+	t=1772748941; cv=none; b=AmNKd4hCgSWooNow4fyEnnAtNa/rq5oHSUqTP0z/bz76LJEv8+AT2VgDEE47cwo8fDzKBklPqwJSsiIo/wkCJFfxc4LMokWFwK120Fqb+ddrjjc8KAo3vs4XRD6vNwbcPmm80ertRms/CEAOGYWDU/dgk+zdTv3nmiWrVmqvzCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772748041; c=relaxed/simple;
-	bh=NcyaCipCrb3L7ejX/E+xZZI3B4F+Kcp8rHWDP8HnOeU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Gh+LU9MNk1/O48BusQmRuAkVEQfgr2RKj5mCxzS1xe7Hhh7kSEKXOU8G+1AzMEFAbciEu3CfQ1zBDbJ4Bi9vFeBDzJswFNeZp2CghYVppCB5Aab0WJWTCBNpi9KoppXJCojqM/6t5sXAr8sLhr6NivTS9NrJaGvb/U+ooNxivxA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=WbmwTcln; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=38fUtNK13Iz/fi
-	0tPvgUDoQHQMIMQNDReTs8VIdeB5s=; b=WbmwTcln677sVckY2ZW9/zKaG2dj4p
-	6tSyIINHtTI4+2lPaZrSjWyD0Vrgvf1eajH0EN12gblf4KE4v3LUqDiQEiA01dwV
-	glU3xxuWvnlma1xbLnZ5SsPTFGxXYz/FNbnZduB29NkRN8dMRmJbQHPIaoYTRqmW
-	WAqsLkzTOJw3KMmJJwCV03udQhX6t/hi90GI8efe9W+7IqiZxfceQ0L9oQETxZUI
-	E93KJlm+fYbA/fF3OOq6QppIBpux1aph+5nW8dlXVGDHEa31+K6X9h07vUuUY0At
-	hHS3izh+ZFWaPUuf+teyYAasqnVSCr6mO3Pi4r9SK+NzeGkzrGZILjaw==
-Received: (qmail 1349977 invoked from network); 5 Mar 2026 23:00:33 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Mar 2026 23:00:33 +0100
-X-UD-Smtp-Session: l3s3148p1@x57OEE5MHOMujns5
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2] ARM: dts: renesas: r9a06g032-rzn1d400-db: add QSPI node including NOR flash
-Date: Thu,  5 Mar 2026 22:54:04 +0100
-Message-ID: <20260305220023.28257-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.3
+	s=arc-20240116; t=1772748941; c=relaxed/simple;
+	bh=MDPDvWX54EIzBiBuHUn/Aek5yD+kq27hlEvXjqO8q9U=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dMDBjAMpD3xJbrk5p/kMD0iJ3vzWrxYOLeceeY+e9nEt65SpOH4+UrcZ3d+x+bEazXQxYxWFH8wWAFbf8N1OO0cZpJALA+jTxFlxfxxi8MtButzrYTnW+umpV8Sxzu5v9qEzA7Oz5KlZ1/4bYfkX0+M14gBdMbd/JEf5iDRQqt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=Juj1hjda; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+Received: from 34.1.168.192.in-addr.arpa (2A02-842b-8136-0001-1033-1579-E8Cc-83D5.rev.sfr.net [IPv6:2a02:842b:8136:1:1033:1579:e8cc:83d5])
+	by courrier.aliel.fr (Postfix) with ESMTPSA id BB5CF4A56F;
+	Thu, 05 Mar 2026 22:15:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1772748930;
+	bh=MDPDvWX54EIzBiBuHUn/Aek5yD+kq27hlEvXjqO8q9U=;
+	h=From:Date:Subject:To:Cc;
+	b=Juj1hjdaTS4gqtBfcUQrRis7u4eJ/vkB3H7heQkhR8aTp831SXwMbTVpheuwa5Es5
+	 fOZGbwPGN9fccgQRNJOZw7iPENvnY3dQstHJ6zmTwL5WJGboFM5/sXwscpGd6xHsNa
+	 EIDlBquD+vfKvdweTFgUt077tu65RRligBXbhK00=
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Date: Thu, 05 Mar 2026 23:11:25 +0100
+Subject: [PATCH] arm64: dts: amlogic: Fix GIC register ranges for Amlogic
+ T7
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: C945B218BE4
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260305-fix-amlt7-gic-dts-v1-1-5944415c74bf@aliel.fr>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MWwqAIBAAryL73YIPSOoq0UfoZgtloRKBdPekz
+ 4GZqZApMWUYRYVEN2c+YwPVCXDbEgMh+8agpe6lkQZXfnA59mIxsENfMlrv3GBImV5paN2VqEn
+ /c5rf9wMyw58RYwAAAA==
+X-Change-ID: 20260303-fix-amlt7-gic-dts-7dcc93e13612
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Ronald Claveau <linux-kernel-dev@aliel.fr>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openssh-sha256; t=1772748929; l=2389;
+ i=linux-kernel-dev@aliel.fr; s=id_ed25519; h=from:subject:message-id;
+ bh=MDPDvWX54EIzBiBuHUn/Aek5yD+kq27hlEvXjqO8q9U=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgMGec55oxeeisqykQiUedekMYyOnR9
+ BG9E/7rDWyqdNoAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QBlVSZU1SuoR80Cb0Pf7o9GsnKQNlDlTZVb8I9zS9pOyAJmcu0zAhwete0dfovrGxBWCmaGC44T
+ Y7HZa3INOTQc=
+X-Developer-Key: i=linux-kernel-dev@aliel.fr; a=openssh;
+ fpr=SHA256:kch4osYZ6A1BrPps5AUs6KnfdE2wm4ocMtyTc8TmZMs
+X-Rspamd-Queue-Id: 10E26218D3E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271737-lists,devicetree=lfdr.de,renesas];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[sang-engineering.com];
-	FREEMAIL_CC(0.00)[sang-engineering.com,glider.be,gmail.com,kernel.org,vger.kernel.org];
+	DMARC_NA(0.00)[aliel.fr];
+	FREEMAIL_TO(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-271738-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	FROM_HAS_DN(0.00)[]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Enable the QSPI controller to access the connected SPI NOR flash. The
-NOR datasheet may suggest faster tuning parameters but those did not
-work on my board.
+This patch aims to fix the GIC register ranges for Amlogic T7 SoC family.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+- Context
+Kernel log shows a warning about GIC
+[    0.000000] GIC: GICv2 detected, but range too small and irqchip.gicv2_force_probe not set
+
+Using cat /proc/interrupts command shows GIC as GIC-0
+
+Adding some peripherals sometimes causes hangs on interrupts.
+
+- According to the GIC-400 ARM doc, the memory map is like:
+0x1000-0x1FFF Distributor
+0x2000-0x3FFF CPU interfaces
+0x4000-0x5FFF Virtual interface control block
+0x6000-0x7FFF Virtual CPU interfaces
+
+- Identify GIC model from distributor register
+
+Offset | Name | Type | Reset
+0x008 | GICD_IIDR | RO | 0x0200143B
+
+kvim4# md.l 0xFFF01008 1
+fff01008: 0200143b
+
+- Identify CPU interface from CPU interface register
+
+Offset | Name | Type | Reset
+0x00FC | GICC_IIDR | RO | 0x0202143B
+
+kvim4# md.l 0xFFF020FC 1
+fff020fc: 0202143b
+
+- Virtual interface control register check
+
+Offset | Name | Type | Reset
+0x004 | GICH_VTR | RO | 0x90000003
+
+kvim4# md.l 0xFFF04004 1
+fff04004: 90000003
+
+- Virtual CPU interfaces check
+
+Offset | Name | Type | Reset
+0x00FC | GICV_IIDR | RO | 0x0202143B
+
+kvim4# md.l 0xFFF060FC 1
+fff060fc: 0202143b
+
+- After this patch there is no warning anymore.
+GICv2 is correctly identified.
+
+[    0.000000] GIC: Using split EOI/Deactivate mode
+
+Using cat /proc/interrupts command shows GIC as GICv2
+
+Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 ---
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Depends on "[v5,4/4] ARM: dts: r9a06g032: Describe the QSPI controller":
-https://patchwork.kernel.org/project/linux-renesas-soc/patch/20260205-schneider-6-19-rc1-qspi-v5-4-843632b3c674@bootlin.com/
-
-Changes since RFC v1:
-* dropped RFC status, QSPI driver updates are upstream now
-* use KiB and MiB
-* use reg address in node names
-* dropped "qspi0:" prefix from partition names
-* explicitly describe size in the "remaining" partition
-
-Thanks, Geert, for all the suggestions!
-
-Works on my N1D board and patch passes 'dtbs_check'.
-
- .../dts/renesas/r9a06g032-rzn1d400-db.dts     | 78 +++++++++++++++++++
- 1 file changed, 78 insertions(+)
-
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-index 4a72aa7663f2..80f78998500b 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-+++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-@@ -300,6 +300,84 @@ pins_mdio1: pins_mdio1 {
- 		pinmux = <RZN1_PINMUX(152, RZN1_FUNC_MDIO1_SWITCH)>,
- 			 <RZN1_PINMUX(153, RZN1_FUNC_MDIO1_SWITCH)>;
- 	};
-+
-+	pins_qspi0: pins_qspi0 {
-+		pinmux = <RZN1_PINMUX(74, RZN1_FUNC_QSPI)>,
-+			 <RZN1_PINMUX(75, RZN1_FUNC_QSPI)>,
-+			 <RZN1_PINMUX(76, RZN1_FUNC_QSPI)>,
-+			 <RZN1_PINMUX(77, RZN1_FUNC_QSPI)>,
-+			 <RZN1_PINMUX(78, RZN1_FUNC_QSPI)>,
-+			 <RZN1_PINMUX(79, RZN1_FUNC_QSPI)>;
-+		bias-disable;
-+	};
-+};
-+
-+&qspi0 {
-+	pinctrl-0 = <&pins_qspi0>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	bootph-all;
-+
-+	flash@0 {
-+		reg = <0>;
-+		compatible = "jedec,spi-nor";
-+		spi-max-frequency = <62500000>;
-+		spi-rx-bus-width = <4>;
-+		spi-tx-bus-width = <4>;
-+		cdns,read-delay = <1>;
-+		cdns,tshsl-ns = <200>;
-+		cdns,tsd2d-ns = <255>;
-+		cdns,tchsh-ns = <20>;
-+		cdns,tslch-ns = <20>;
-+		bootph-all;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				/* 64KiB */
-+				label = "spl";
-+				reg = <0x0000000 0x00010000>;
-+			};
-+			partition@10000 {
-+				/* 64KiB */
-+				label = "pkgt";
-+				reg = <0x0010000 0x00010000>;
-+			};
-+			partition@20000 {
-+				/* 512KiB */
-+				label = "u-boot";
-+				reg = <0x0020000 0x00080000>;
-+			};
-+			partition@a0000 {
-+				/* 64KiB */
-+				label = "env";
-+				reg = <0x00a0000 0x00010000>;
-+			};
-+			partition@b0000 {
-+				/* 128KiB */
-+				label = "dtb";
-+				reg = <0x00b0000 0x00020000>;
-+			};
-+			partition@d0000 {
-+				/* 1MiB */
-+				label = "cm3";
-+				reg = <0x00d0000 0x00100000>;
-+			};
-+			partition@1d0000 {
-+				/* 6MiB */
-+				label = "kernel";
-+				reg = <0x01d0000 0x00600000>;
-+			};
-+			partition@7d0000 {
-+				/* Remaining */
-+				label = "data";
-+				reg = <0x07d0000 0x1830000>;
-+			};
-+		};
-+	};
- };
+diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+index 6510068bcff92..d523cbc0ed22a 100644
+--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
++++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+@@ -213,7 +213,9 @@ gic: interrupt-controller@fff01000 {
+ 			#address-cells = <0>;
+ 			interrupt-controller;
+ 			reg = <0x0 0xfff01000 0 0x1000>,
+-			      <0x0 0xfff02000 0 0x0100>;
++			      <0x0 0xfff02000 0 0x2000>,
++			      <0x0 0xfff04000 0 0x2000>,
++			      <0x0 0xfff06000 0 0x2000>;
+ 			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+ 		};
  
- &rtc0 {
+
+---
+base-commit: c025f6cf4209e1542ec2afebe49f42bbaf1a5c7b
+change-id: 20260303-fix-amlt7-gic-dts-7dcc93e13612
+
+Best regards,
 -- 
-2.47.3
+Ronald Claveau <linux-kernel-dev@aliel.fr>
 
 
