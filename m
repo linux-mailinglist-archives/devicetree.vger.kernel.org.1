@@ -1,103 +1,103 @@
-Return-Path: <devicetree+bounces-271442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271443-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iA8MDMVJqWlZ3wAAu9opvQ
-	(envelope-from <devicetree+bounces-271442-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:15:49 +0100
+	id EN2xFYVIqWnw3gAAu9opvQ
+	(envelope-from <devicetree+bounces-271443-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:10:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10C220E209
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:15:48 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 510C920E0A3
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 10:10:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C4C9E30518DF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:09:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CE794303D4C0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:09:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E517C376BEA;
-	Thu,  5 Mar 2026 09:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2978D377ECA;
+	Thu,  5 Mar 2026 09:09:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pxD5fvTF";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="c5ctAdCp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P9fqzOeH";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Cgi5SFEx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652D837649B
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 09:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C28377029
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 09:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772701776; cv=none; b=LH8/KJqG4nB0MAh1CkxAGgqJjbTNSxPqpEke00gMbZ7SukmFRXK6ASLYAxucHW5WS9L6n5B2O+VzPgcs+QP71UVfLdCKOo6rdMgH6zo+iZKp+AYYlA7TiHGdJ7Jhen8zsWqoJyu9E0lifMBHeO8l/ngsN1hA4IpD1tzsIrYFcjs=
+	t=1772701779; cv=none; b=caUOqv5/BywDX0PiZ3SVrTpq2cuC7AoSGA59Z0MYLSQIBksK7gZF3ixqtcE868reOatgmHA0eG0ae0jHs261jl3EJHuHq0bciNW2Dbx92xCLjSF8CbiplaICGYEt6giNJb2/blUC1B73yD/jv/6WZ05ZwdrdmkI0mAu/uP1zSfM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772701776; c=relaxed/simple;
-	bh=+Vu0U+uodQM2vRCCFHaRzh/6ti+sDJbXFNI3AqN6BW4=;
+	s=arc-20240116; t=1772701779; c=relaxed/simple;
+	bh=qkwvOBIjVKY+jX5sOdQlNLj1HsD1JTAivWXbCCNysDg=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WAVAtSHdyYifnwV5RazBBXo1Fyy91uz1yFWBb1GKHnLyx6SBcWSwFwTbnmUc8DFRwBadg1t0wUWE7/QLaMxg+nlFeKQWOUtrpUNor/o7Pkd7g3U37BrGSa2ULP5gQ5pd8CLixQqNC/uqUXsV/G8LljdYdH4tgXtidt8mUNLTfHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pxD5fvTF; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=c5ctAdCp; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=BHxhevXfnW0ni2TPzzyxw0FhgPTMVbiUKsV6mN96UsPzStapS7c1cxBugwscn9Lt/jdne0NQMEqPMghlSnWSTNKhjtX4jkex9MQrmd8sZ4xJP5AnSRcvbEMVu/csQazBk2XwUloRwiBDwgGsNksnSN5DAjvZs9awWaol7DBa9PY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P9fqzOeH; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Cgi5SFEx; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6254ta2U218456
-	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 09:09:34 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62590QwR3160464
+	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 09:09:36 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ErWliXlFzZLPiPi+HOPVdOq1nti1MLUqJWvk2Mt+DVc=; b=pxD5fvTFh6pv09Mh
-	mmG1JNtDSiZN3bF9ckWmy7iusYCqkkpq5wDOYgtTLNJBkM1uJYPplE/hELFSLqYD
-	IZN/ysIhzTFA84bj2CifG5fAkRc0F1vTcdw0qEAT1JFNCfAA39g4kUcMO+LAseIV
-	jqEDf6QQO8P+IgIYyXNjdE33WRTYjcFSUnxSl0f5QYfKQCIgujTu5rhRh/KO0Qom
-	YA+PNwmTtHYabrXYeep8LOHbiduqJd06jShvWqJq81Bm7M1EZ8uO4UiRX+AIB543
-	O4CO2s1NPSStza4c323vlr0DL6xxOS1pbhSP4yHQrqAZdidW6wui37F9fE1zpBAc
-	F0AsJw==
+	3NSqAxF3r0Iieh2WUFeA3eHT3sx6AFCO5GTCkL4uXVs=; b=P9fqzOeHiMFU3pVm
+	SS3hs3HuOLA0t9IOKqUyOodq9WYGCZ0z8BZUs0pgEU99MRnGq3j1Si/B1Fzzb02R
+	1sjht9ljwLbkW2mpMsB2itIYxkyUvuOi9menhPzPl6Rz31pVJQDo8j2Uyy8YmhWF
+	skhJ6HPZa1KnKFLA/B250RlC2Qx9QW1v2F0/aBMc0kOUaZaGmoLxkI4uGlzo8msC
+	E4GGaqgRmKaqNv7o4J7Oyq60inL6fEc81kdEFWcYIeuJQCzljCgXctuaeetBLEY5
+	hOWxsP2XBneG0+4AwDk1f176UlgUWTt5Q/XiW5bbGMAbh67tVkshWCnikEj9kMMm
+	ttiVCw==
 Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cq380rtae-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cpjh5uyny-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 09:09:34 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cb3fae6f60so5392842485a.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 01:09:34 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 09:09:36 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8c711251ac5so4581281185a.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 01:09:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772701774; x=1773306574; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1772701775; x=1773306575; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ErWliXlFzZLPiPi+HOPVdOq1nti1MLUqJWvk2Mt+DVc=;
-        b=c5ctAdCpkK34HXuwfH1tY6+x1aJL6XLtWDawj7DE3PEXREUw70m/YUiCZsHbe3EymU
-         LrSDyGeBA6SRA4s2xXuRy+o1nGQJEv/p//5JlM3prW8LpWqwpm5gkAwA712cWhJKvbgk
-         XjMHpYe+HQTtpishCHQpkGGbIiSF1Idjx3DcCTMBQztIsHtCPvjBGhuUW0GFNDqgIaJC
-         azIUTn1c9BuhAJzrhzyBpnIw4WQKeAfQtt1LwVnsZjxmdJ1m3fhgH8Vm4Nph+4OUF6PN
-         XVR9EkXm6/fyJ0FPJhpVqZPWrsGsAt24WIN5sHcJXq/WLjTxx7f/5Bjza15U1/lv1bzv
-         yqCg==
+        bh=3NSqAxF3r0Iieh2WUFeA3eHT3sx6AFCO5GTCkL4uXVs=;
+        b=Cgi5SFExY/IuU2K92SmpLhjA434edw3c00B2ilvG8x7rMEVvM9pY4HOAraKVK0nfPF
+         2xMKTlmTclupppVo9tXBxJel9PCed2ehQarZqGvajJmCGVlzVIh96hGjQoJBdzXoMegu
+         ANk8Xrb08dw92P2P/eJQIQstX0j6t/9IfWNcy59T1fSpHdyNTOAb73bu2VwlndQbAWeL
+         DUps6qhquJYBpxEuFPMN5ZBjwxPrufKqbDvEd6BLwJdOT6V3pXbvidpgqXP5kRu87IPW
+         ZjIYmgZuCVt2AbSJaRVnkLVX+vTF2K+AVJw37uRO4wCaHRIMvtj3azcni4pBeVbkd/6R
+         Y6iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772701774; x=1773306574;
+        d=1e100.net; s=20230601; t=1772701775; x=1773306575;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ErWliXlFzZLPiPi+HOPVdOq1nti1MLUqJWvk2Mt+DVc=;
-        b=E8+4qhbrnel95+LdpwB+KoGeKQ8pN60wU+rYfC/PIPgtsLW/hYIAM9Vk9fu61v/e92
-         tAswPyGR6/Org7Agjvps7gSDjWaGkFZUJWeq4smPG9zwNYJ4IPAaZreQcxyJtW5U0DnJ
-         wQxzHlBLvTCb6TkgXyQEbkfyTMk4hJKVG21ROdCmXCFjnK7NWE6Oqu357P/wQ6Mk0BbY
-         WXvcVcAe7oVOop6FlTnzYGy1/tG99UNlH1gc4sENZ2aEgOc8OzmQC5yxy8RDu4fBw9jJ
-         +dVTDhW3KkdiHxLARaQAVRzjxIDzDr63j30UtKiTLhLgsm6XNeCkFsTzyGFnd9T//cjC
-         9rzA==
-X-Gm-Message-State: AOJu0Yx5lDOv3PO73bCD7zOq6ZhF11QnzTztaLFm/dDT3xW908Qj2lHa
-	CwucDtMr+gziZQ1InIF8mbXzJzT65zq3BZAdFBkjHxyBr2oCu9CF+JsMRPnLAp2EcPlsD0j34eO
-	35IQw0O+IvXD41jvT2rudtJ5LalFif0pGNtj6PngwSKsTrAIrUh4EUBBEhyNTRuYt
-X-Gm-Gg: ATEYQzwLslCTJyOjomkdPGNdIEKIFfSxbJMON2tzoE3qhMhsqk83VEiO5duTt0m6g42
-	kokbIWgB2YaA42Tvhh/KSvsuiOLqED8fBnSaMfs17kWyVVvJQhF45eb4yyZ71eZfIz+3bqTpIzq
-	vnszvmykQTtb0IHepS9cWHRHUcWmHuf89xxCgNzq0q7sw4uP/KJwKZdSFeZVQKYlO99Zvv9XOfY
-	XrllNOYjCQaye0Ldft0rE7F1YJX+gSs/jKAA1s9hSFQ8WojSYYWwteKibjCNV3h393WEpIXaCQd
-	5fVPwXvd2caqbk+KTy+qgYCW4JRyUXU/zncPlHWigk7okadbGOy6mdmTySUMoIxoEWtFs77ZWOX
-	jYv5ymkpS9RVK4TdJBmTWebQzr1cEkGA+wgLAxbnAooWU
-X-Received: by 2002:a05:620a:269a:b0:8c6:df6b:93fa with SMTP id af79cd13be357-8cd6352e2a3mr159774985a.43.1772701773710;
-        Thu, 05 Mar 2026 01:09:33 -0800 (PST)
-X-Received: by 2002:a05:620a:269a:b0:8c6:df6b:93fa with SMTP id af79cd13be357-8cd6352e2a3mr159773285a.43.1772701773230;
-        Thu, 05 Mar 2026 01:09:33 -0800 (PST)
+        bh=3NSqAxF3r0Iieh2WUFeA3eHT3sx6AFCO5GTCkL4uXVs=;
+        b=iRyFCV2QAEck6cteqUCMqDALl58F1gXv19RWM0AXdVHaPNcS7bB7l2ekSw33R41Y7H
+         MBObUvk41rgYXw4WMNfbzF3QFkDB/nVOAKJmLzET/aUP3j5lBfK67wKVCGV7wWuGEFUL
+         ig6MgRfDWOo/jyE/74ZoXLxmkMj3hH3GeF8izVtMpb9TKThlMzYoEzlbi4BYDE2+ggFQ
+         Ov9wmyiHZgLxdB2UpN8yTul4qTB46F16jct4mG/6b7PfkAMW4dQMvGYJYHHSyJQUAjYt
+         dn/97UjPnNax4F2go5tE6PINLMUBRrq8pEjXhr03yvnRD3XJbiYctKX7In/3FurQ60oa
+         E7pg==
+X-Gm-Message-State: AOJu0YyMBMB62zPFeNSr2XlG8d3mJ7o/I7ZhKbRHcrBniZJPtko14a7O
+	eJhcLKh14sTrSeoaQjveaKPTzFXPzYvtEUvx6NLYS1ikNFOIyhunwKr66F9gOdNTEGpBkDCocrS
+	GgUzZ4iGiFRP8YR7hfkOhC1zEZgRocRjmlDylJKHkp3SLws5zR38nboKeUwvO7Z9f
+X-Gm-Gg: ATEYQzz591h4Dd7RRqYs4NnePaTfHfLb6v9/n/AkKb/AnyDLHsbKX1dmKkBkDTX/A6g
+	QmD8ZY2Vs4uWbTvbrTDaPW9OOJxBnrDGhpEk/IiVtlTJVyKwP7E5QpwwqfhSx0dDayAcT4eu5nr
+	cuLTz+hKP7bgK/H3RAUcUpwAFkcjsJbC1LG453ouCm4e0sMeQ7+9rECPfzessO3HAt5Fl6cfRaX
+	zbsDfiIjaDI4GOpbQ0IIvz9NqxSU6WGyybBhGFSYveX5QrIltnHVvn55OC2t7nQGF+FEvkUQAkn
+	ED95VqESfhF4fwisQwrRB2q6LtausHlPqmM97h2o3AEpfLDq7R3Pg6X4t8Iu/545splUwYM0W9c
+	i+GU0DT+hEziIdp1tP1OMAIsa+PSaNmwE5VKUewXE5FRH
+X-Received: by 2002:a05:620a:c4b:b0:8cb:4543:c5cc with SMTP id af79cd13be357-8cd5aeea4e4mr678426485a.20.1772701775325;
+        Thu, 05 Mar 2026 01:09:35 -0800 (PST)
+X-Received: by 2002:a05:620a:c4b:b0:8cb:4543:c5cc with SMTP id af79cd13be357-8cd5aeea4e4mr678423485a.20.1772701774882;
+        Thu, 05 Mar 2026 01:09:34 -0800 (PST)
 Received: from [127.0.1.1] ([178.197.219.94])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439abded86esm38817703f8f.6.2026.03.05.01.09.31
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439abded86esm38817703f8f.6.2026.03.05.01.09.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 01:09:32 -0800 (PST)
+        Thu, 05 Mar 2026 01:09:34 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Thu, 05 Mar 2026 10:09:24 +0100
-Subject: [PATCH 1/5] arm64: dts: exynos7870: Move I2C address/size-cells to
+Date: Thu, 05 Mar 2026 10:09:25 +0100
+Subject: [PATCH 2/5] arm64: dts: exynos8895: Move I2C address/size-cells to
  DTSI
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -107,7 +107,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-dts-exynos-i2c-v1-1-2c8d3df3b9ca@oss.qualcomm.com>
+Message-Id: <20260305-dts-exynos-i2c-v1-2-2c8d3df3b9ca@oss.qualcomm.com>
 References: <20260305-dts-exynos-i2c-v1-0-2c8d3df3b9ca@oss.qualcomm.com>
 In-Reply-To: <20260305-dts-exynos-i2c-v1-0-2c8d3df3b9ca@oss.qualcomm.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -117,75 +117,76 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7820;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=9622;
  i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=+Vu0U+uodQM2vRCCFHaRzh/6ti+sDJbXFNI3AqN6BW4=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpqUhG7rT1a7SSEsIbPl+uSbgi21hzQIWjQOQeb
- WQHt99Voy+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaalIRgAKCRDBN2bmhouD
- 17OcD/9Qc+iFQXmVgMw7CDXgIImMcP66CuOSMRASFlzz4OH1y6yJmd9aGQ6tp80da/PhHNEOCX9
- f3j4A7PExFNP6NzqkvNJnxaIV9UEnsAY6ytmI0oZbdG+mgLjiBoaEkT6JM/BvOtdEvru+PQWdOh
- ak+6GuNMK8BuXiB8yX5kUrRcDBFKpCpw4YlMwNvgoyA3APHiILYYBIJ+fVM/YQQHEA+Wd7PYccM
- OI5DoVij5CQyu0n+EqtAVqtmwlSPkQiJqoiwcdRShitiZ5S28zx5CK9Zvsq1W/gZ1HgkWsujMKD
- fbGH5q7CcLdTkp/c0ysNjTkfJgVmSGFNafmTtqUkTWklfrLOgmhievdYreptTTfW8ufRvO01JzO
- aBervUfaKTYPqUUS5cF33/HDauHmfKCgitiiZiiBAMbtHUeORCktmitcstZhU3vBIoNS29o23D7
- d/v/767S7Go5kPdJCAFWxVd2xYtjRa7fUjsBw1i9KGuct+VPJ8f39jHRieUI0fcf2K+/eyvfruC
- a6TyH2HozXjDe8kLnyhSuYUGEWmCZYOAgNKWg1J6rlklQGAbg3B6nj+u8na+GVVZdi6PU9whhmi
- RCL3yqqX09eZx6v3TWjzxUSAE7Prd0dTa6f3/UICAVnx2uQCHwTg5SoIU2lVx2rYAzoxHkJvixr
- pKMIdNqQay/jIGw==
+ bh=qkwvOBIjVKY+jX5sOdQlNLj1HsD1JTAivWXbCCNysDg=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpqUhGeownSnEhVD4uNo77/EysGV8haRBVi6gue
+ 04tpfN5TCqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaalIRgAKCRDBN2bmhouD
+ 12lvD/oCHl5sKqK+y1S4uef9jsHOvxti/Z1DN9Z4wtTICWqMV2ih3tCF5bvXNUh5cfUEyPJNDk+
+ e539pPAyz54mX3ORNAtjMxdnE0PhwSwsM6SDF6c9rIneLS4kxiS8ILfUZBtx1zlTiWdpapIY3AJ
+ sb8rZBu0hSgQcNHVSS1scWw/E6mCp9wStDYD+Y1m/QL8/7nJcUw+bkA6BWXNV1QYR6jnK2wzxWi
+ NGOiC16v7fqgNYE478C8RBXhv5jvwbULCsc0sQldl3EyxoH29rMpmfe7cjXD3x5VUXWb4zfrIBf
+ EYQUZgeqC/BFaDRBE7uEzhhpqGl6Qyx5lH+xhejTgwXHfSQMTKTX72DImtHE3ZP3J+NRIt8yC7M
+ AEKNLxlIceZ3kr8y2Z4m/cKYfu2RCsBWPxozhblthmpOr/gZ8mva+7h2RkHiKsuc1IrMca0Nxtx
+ hLcejm8j0g++1KEoVH9gXR2RF+2e4mUDXNqVzPZf+hjivESBXwny2yw0fcqMQIAitCpJ/l2Nvtj
+ EKaL8XQ6cWWmiJYTCzLfZbJb/AlIqasgH+mNg7MQKv1Xq9Ria+B5J4EKsJ7//dS5bG49qbRkFQq
+ rZ9bM5D8w0C72eK2Pwf+9Ls/F9OFkcfZzuA9vHjIBmytu5zcnWuA/71SxZ8gJHOTMepmTm7GXFP
+ g4p3Oi4IJa+mYeQ==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Authority-Analysis: v=2.4 cv=I5Johdgg c=1 sm=1 tr=0 ts=69a9484e cx=c_pps
+X-Proofpoint-GUID: kVqxMxs9OrPhfSedAuUqNC0E0uHb_LAB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDA3MyBTYWx0ZWRfX6rfImEoPq870
+ 7Zyra5iQioAiycDKwntrEjU0ltHw8CfukBBXGDtRR/Xh9Td0byeuOS26M2pARN1j6Wzi8psS1Ei
+ 5kHTSW8CFyBdlszOgpYYDViecZ4eLyS0Q8rHG1XFO/pwzmlFPXQKDJJ5hORogKWi/ayLVoZjykU
+ a+xmPf+Ixr6SnAeNIG4JAbjpFOc7QvKvXpZvgnvgQuVcvcmTVfuxiozlg5ahDoVTj16pBJnlukP
+ rFV5QvVbr4tGGWlKDQNJ6xShvlB0wG8PZZqWigOi0WgvWqYeXwN6hAotW04tpYwz6E3B9mmV8G7
+ NPwc8oL467xDOxTrFcnb4gP8ow+9x48E3+cg7n2KIeSeqZeSE0/zDzo4e7LDxggWtr9Y0G/MgIh
+ cScPzGpsUV2s/AhZ4snLnHrKTGZjPDvqXCtXU9Xweb3AxKzegBQA9p33jMrtlO7V6K7cfAXMeS8
+ tsXwr5HXWW5+w1wyO5g==
+X-Authority-Analysis: v=2.4 cv=JK82csKb c=1 sm=1 tr=0 ts=69a94850 cx=c_pps
  a=50t2pK5VMbmlHzFWWp8p/g==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
  a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=5Z7oIvSdy9aBhWt1b4QA:9 a=QEXdDO2ut3YA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=DzUSkR2MQIpuhHpr3ioA:9 a=QEXdDO2ut3YA:10
  a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-ORIG-GUID: MFMIx0lBObTQ9Ehph7-4xWiqcQcwuEJv
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDA3MyBTYWx0ZWRfXyV2+9Qo1qQCg
- awWiFuxdqzzZCA6OT8uKxOBONYrxc0mDFTCD77RAf4he5L7bPN937GrLG5d5TlSwJn2FkPNtEjp
- KDpPzAGCevflbRwiX7o/AmG8q5Xwn79G2Yq0E6RlB9HwQir4AmAtZfrZxzjezuJGqKZHutufitZ
- HQbzP0rIvvvaJhUsEneLuDOOJmtT+PdTgf4SB686Z7eiP6C6YQDdgjaI0Fih3coigO3rvW9MTUv
- nePiDHdGpugafA+15r9dBMppzCFM4hAGPwwot0PqA2IGv25wgNI15IHfCV8s+WS+BbyjiMVg+Cs
- 87jJT/j3ktXsDboTH8WJVQRt4bOVJdud2r49+l6QQcJq2/b6/gjBSBTDKhm+4grhX+H0A+bqlBW
- VV0WygpO8mh5ay9buIzfCL18UR8zK2/D4HRZxKt5wFBEmD9vTpErbcJTY4QmY78LET7Jz2uKtAt
- Ak6ZfCUH/iLPRyDmApA==
-X-Proofpoint-GUID: MFMIx0lBObTQ9Ehph7-4xWiqcQcwuEJv
+X-Proofpoint-ORIG-GUID: kVqxMxs9OrPhfSedAuUqNC0E0uHb_LAB
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-05_02,2026-03-04_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 bulkscore=0 malwarescore=0 suspectscore=0
- adultscore=0 clxscore=1015 impostorscore=0 spamscore=0 lowpriorityscore=0
+ spamscore=0 phishscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ clxscore=1015 bulkscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050073
-X-Rspamd-Queue-Id: E10C220E209
+X-Rspamd-Queue-Id: 510C920E0A3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271442-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,109b0000:email,0.167.177.176:email,109c0000:email];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271443-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.48:email];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
@@ -196,301 +197,373 @@ children, even if the bus is enabled without the nodes.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 ---
- .../arm64/boot/dts/exynos/exynos7870-a2corelte.dts |  9 ----
- arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts |  5 ---
- arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts    |  6 ---
- arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts  |  3 --
- arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts |  9 ----
- arch/arm64/boot/dts/exynos/exynos7870.dtsi         | 48 ++++++++++++++++++++++
- 6 files changed, 48 insertions(+), 32 deletions(-)
+ arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts |   2 -
+ arch/arm64/boot/dts/exynos/exynos8895.dtsi         | 128 +++++++++++++++++++++
+ 2 files changed, 128 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-a2corelte.dts b/arch/arm64/boot/dts/exynos/exynos7870-a2corelte.dts
-index 6f40ca4350ed..0888cd2faca4 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-a2corelte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-a2corelte.dts
-@@ -158,9 +158,6 @@ &gpu {
+diff --git a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
+index 61e064af3337..305dc72f93d8 100644
+--- a/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
++++ b/arch/arm64/boot/dts/exynos/exynos8895-dreamlte.dts
+@@ -103,8 +103,6 @@ reg_placeholder: regulator-0 {
  };
  
- &hsi2c0 {
+ &hsi2c_23 {
 -	#address-cells = <1>;
 -	#size-cells = <0>;
--
  	status = "okay";
  
- 	pmic@66 {
-@@ -394,9 +391,6 @@ vdd_ldo35: ldo35 {
- };
+ 	touchscreen@48 {
+diff --git a/arch/arm64/boot/dts/exynos/exynos8895.dtsi b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+index f92d2a8a20a2..ff114cd6c9ea 100644
+--- a/arch/arm64/boot/dts/exynos/exynos8895.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos8895.dtsi
+@@ -266,6 +266,10 @@ hsi2c_5: i2c@0 {
+ 				interrupts = <GIC_SPI 364 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c5_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- &i2c5 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
+@@ -305,6 +309,10 @@ hsi2c_6: i2c@10000 {
+ 				interrupts = <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c6_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -328,6 +336,10 @@ hsi2c_7: i2c@0 {
+ 				interrupts = <GIC_SPI 368 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c5_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
-@@ -428,9 +422,6 @@ proximity@48 {
- };
+@@ -367,6 +379,10 @@ hsi2c_8: i2c@10000 {
+ 				interrupts = <GIC_SPI 369 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c8_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -390,6 +406,10 @@ hsi2c_9: i2c@0 {
+ 				interrupts = <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c9_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- &i2c6 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
+@@ -429,6 +449,10 @@ hsi2c_10: i2c@10000 {
+ 				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c10_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -452,6 +476,10 @@ hsi2c_11: i2c@0 {
+ 				interrupts = <GIC_SPI 376 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c11_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts b/arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts
-index d685bc0703cf..36c327668db5 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts
-@@ -129,8 +129,6 @@ &gpu {
+@@ -491,6 +519,10 @@ hsi2c_12: i2c@10000 {
+ 				interrupts = <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c12_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -565,6 +597,10 @@ hsi2c_13: i2c@0 {
+ 				interrupts = <GIC_SPI 390 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c13_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- &hsi2c0 {
- 	status = "okay";
--	#address-cells = <1>;
--	#size-cells = <0>;
+@@ -604,6 +640,10 @@ hsi2c_14: i2c@10000 {
+ 				interrupts = <GIC_SPI 391 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c14_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -627,6 +667,10 @@ hsi2c_15: i2c@0 {
+ 				interrupts = <GIC_SPI 394 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c15_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- 	pmic@66 {
- 		compatible = "samsung,s2mpu05-pmic";
-@@ -358,9 +356,6 @@ vdd_ldo35: ldo35 {
- };
+@@ -666,6 +710,10 @@ hsi2c_16: i2c@10000 {
+ 				interrupts = <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c16_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -689,6 +737,10 @@ hsi2c_17: i2c@0 {
+ 				interrupts = <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c17_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- &i2c2 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
+@@ -728,6 +780,10 @@ hsi2c_18: i2c@10000 {
+ 				interrupts = <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c18_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -751,6 +807,10 @@ hsi2c_19: i2c@0 {
+ 				interrupts = <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c19_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts b/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-index 09f2367cfec9..de30d0970336 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts
-@@ -383,9 +383,6 @@ vdd_ldo35: ldo35 {
- };
+@@ -790,6 +850,10 @@ hsi2c_20: i2c@10000 {
+ 				interrupts = <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c20_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -813,6 +877,10 @@ hsi2c_21: i2c@0 {
+ 				interrupts = <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c21_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- &i2c5 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
+@@ -852,6 +920,10 @@ hsi2c_22: i2c@10000 {
+ 				interrupts = <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c22_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -875,6 +947,10 @@ hsi2c_23: i2c@0 {
+ 				interrupts = <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c23_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
-@@ -409,9 +406,6 @@ accelerometer@1d {
- };
+@@ -914,6 +990,10 @@ hsi2c_24: i2c@10000 {
+ 				interrupts = <GIC_SPI 411 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c24_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -937,6 +1017,10 @@ hsi2c_25: i2c@0 {
+ 				interrupts = <GIC_SPI 414 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c25_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- &i2c6 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
+@@ -976,6 +1060,10 @@ hsi2c_26: i2c@10000 {
+ 				interrupts = <GIC_SPI 415 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c26_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -999,6 +1087,10 @@ hsi2c_27: i2c@0 {
+ 				interrupts = <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c27_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts b/arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts
-index 1da826ca1087..079b2b581307 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-j7xelte.dts
-@@ -334,9 +334,6 @@ vdd_ldo35: ldo35 {
- };
+@@ -1038,6 +1130,10 @@ hsi2c_28: i2c@10000 {
+ 				interrupts = <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c28_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -1061,6 +1157,10 @@ hsi2c_29: i2c@0 {
+ 				interrupts = <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c29_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
- &i2c1 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
+@@ -1100,6 +1200,10 @@ hsi2c_30: i2c@10000 {
+ 				interrupts = <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c30_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -1123,6 +1227,10 @@ hsi2c_31: i2c@0 {
+ 				interrupts = <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c31_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
  
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts b/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts
-index 29e124c72e9d..29be4764f84d 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts
-@@ -398,9 +398,6 @@ vdd_ldo35: ldo35 {
- };
- 
- &i2c1 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
- 
-@@ -438,9 +435,6 @@ rmi4-f12@12 {
- };
- 
- &i2c7 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
- 
-@@ -464,9 +458,6 @@ accelerometer@1d {
- };
- 
- &i2c8 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--
- 	samsung,i2c-sda-delay = <100>;
- 	samsung,i2c-max-bus-freq = <400000>;
- 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870.dtsi b/arch/arm64/boot/dts/exynos/exynos7870.dtsi
-index 2827e10d6962..19f9ae783587 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7870.dtsi
-@@ -220,6 +220,9 @@ hsi2c0: i2c@10510000 {
- 			clock-names = "hsi2c";
- 			clocks = <&cmu_mif CLK_GOUT_MIF_HSI2C_IPCLK>;
- 
+@@ -1162,6 +1270,10 @@ hsi2c_32: i2c@10000 {
+ 				interrupts = <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>;
+ 				pinctrl-0 = <&hsi2c32_bus>;
+ 				pinctrl-names = "default";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
+ 				status = "disabled";
+ 			};
+ 		};
+@@ -1180,6 +1292,10 @@ hsi2c_1: i2c@10990000 {
+ 			interrupts = <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>;
+ 			pinctrl-0 = <&hsi2c1_bus>;
+ 			pinctrl-names = "default";
++
 +			#address-cells = <1>;
 +			#size-cells = <0>;
 +
  			status = "disabled";
  		};
  
-@@ -422,6 +425,9 @@ i2c0: i2c@13830000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C0_PCLK>;
- 
+@@ -1191,6 +1307,10 @@ hsi2c_2: i2c@109a0000 {
+ 			interrupts = <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>;
+ 			pinctrl-0 = <&hsi2c2_bus>;
+ 			pinctrl-names = "default";
++
 +			#address-cells = <1>;
 +			#size-cells = <0>;
 +
  			status = "disabled";
  		};
  
-@@ -437,6 +443,9 @@ i2c1: i2c@13840000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C1_PCLK>;
- 
+@@ -1202,6 +1322,10 @@ hsi2c_3: i2c@109b0000 {
+ 			interrupts = <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>;
+ 			pinctrl-0 = <&hsi2c3_bus>;
+ 			pinctrl-names = "default";
++
 +			#address-cells = <1>;
 +			#size-cells = <0>;
 +
  			status = "disabled";
  		};
  
-@@ -452,6 +461,9 @@ i2c2: i2c@13850000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C2_PCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
+@@ -1213,6 +1337,10 @@ hsi2c_4: i2c@109c0000 {
+ 			interrupts = <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>;
+ 			pinctrl-0 = <&hsi2c4_bus>;
+ 			pinctrl-names = "default";
 +
- 			status = "disabled";
- 		};
- 
-@@ -467,6 +479,9 @@ i2c3: i2c@13860000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C3_PCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -482,6 +497,9 @@ i2c4: i2c@13870000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C4_PCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -497,6 +515,9 @@ i2c5: i2c@13880000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C5_PCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -512,6 +533,9 @@ i2c6: i2c@13890000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C6_PCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -527,6 +551,9 @@ hsi2c1: i2c@138a0000 {
- 			clock-names = "hsi2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_HSI2C1_IPCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -542,6 +569,9 @@ hsi2c2: i2c@138b0000 {
- 			clock-names = "hsi2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_HSI2C2_IPCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -557,6 +587,9 @@ hsi2c3: i2c@138c0000 {
- 			clock-names = "hsi2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_HSI2C3_IPCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -572,6 +605,9 @@ i2c7: i2c@138d0000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C7_PCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -587,6 +623,9 @@ i2c8: i2c@138e0000 {
- 			clock-names = "i2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_I2C8_PCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -602,6 +641,9 @@ hsi2c4: i2c@138f0000 {
- 			clock-names = "hsi2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_HSI2C4_IPCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -617,6 +659,9 @@ hsi2c5: i2c@13950000 {
- 			clock-names = "hsi2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_HSI2C5_IPCLK>;
- 
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
- 			status = "disabled";
- 		};
- 
-@@ -632,6 +677,9 @@ hsi2c6: i2c@13960000 {
- 			clock-names = "hsi2c";
- 			clocks = <&cmu_peri CLK_GOUT_PERI_HSI2C6_IPCLK>;
- 
 +			#address-cells = <1>;
 +			#size-cells = <0>;
 +
