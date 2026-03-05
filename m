@@ -1,342 +1,218 @@
-Return-Path: <devicetree+bounces-271556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271557-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IPJOJtB4qWl77wAAu9opvQ
-	(envelope-from <devicetree+bounces-271556-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:36:32 +0100
+	id 6KEnA915qWl77wAAu9opvQ
+	(envelope-from <devicetree+bounces-271557-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:41:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D96211C55
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:36:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 635EF211D8C
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 13:41:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 09BB93087FE6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:30:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BBDF030CD596
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 12:39:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA4639FCC9;
-	Thu,  5 Mar 2026 12:30:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D699371054;
+	Thu,  5 Mar 2026 12:39:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="X0wPEB93";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="S1K6Uk0i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DCIJdZtN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7BA39FCA6
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 12:30:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED5EB78F3A;
+	Thu,  5 Mar 2026 12:39:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772713813; cv=none; b=Oubf6sHb0sHZanPAzsjZbErlG8CWpmBaqnuH02eUUd9E/FTZxjQgT/fUxhJ0/t5ALcUNjv0/8AuCLoweDA7r6b8HZWgt3Oeqg+rlfKRa8wrgKaaQzwVw+Nc9fmTLoiLxIfW0/l2ZZL6abCyj/fkij9f9GrNE8064+BlG5F+LvNc=
+	t=1772714377; cv=none; b=i2mRHSATR+xagcLnjVAbRGbqS7zlOKhWArUZp+EkevDczZwiUjF/PtFx3zHHqdZO12tySObRx8Vy+1Y/emf4op8Cq3j6fwZBH8T2pN+3BND8kZfT2UKwviKUl7GcoWGArvrzIh/fGxUb1DR7e5ChFFSVt7Gxq/0aXNCLMid6KIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772713813; c=relaxed/simple;
-	bh=Lg95G1xu+NEVn/pWaaP1EFWLbKdl8JNBbyWopZXFGhg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h6hBF0oS+N2BKm0bCSI2fJ6q50IcFNgtVvHLdPmgXAaeYMZ0613E4ezgM7dpASDEOeqkw70S98vcxXj/Qzq/9Y41tZENEWoJ1nMefx2S6v5id27TYcifndPTZCWnpHEtKpucB3CgL2w3E4rZLFWnHqkk6u3UQvuLF9zfbHAAFOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=X0wPEB93; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=S1K6Uk0i; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1772713810;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=n4h7C/mVddSBf5SlRktQxYvLNWZ3n2LVuIMNQt34HFE=;
-	b=X0wPEB93IEajUz0A2g6HSP7hGEjVZfKf5SQk+w47OE41tznRCbdnVt+dqNrgHdEKyQC+Rv
-	d7POpEKcmrQq6Fn2dhGPPDi2xfAtXXhZNkB7u1qSIlHjwmqZR8bhypsoMhC/PL1Fqb8o5P
-	Upl3T6egc0NgIPcbguYIPtLQ8+gxYVo=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-529-gGpJ3pdTM1uvpRmcTDyi_Q-1; Thu, 05 Mar 2026 07:30:08 -0500
-X-MC-Unique: gGpJ3pdTM1uvpRmcTDyi_Q-1
-X-Mimecast-MFC-AGG-ID: gGpJ3pdTM1uvpRmcTDyi_Q_1772713807
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-483a2db68caso65577995e9.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 04:30:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1772713807; x=1773318607; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=n4h7C/mVddSBf5SlRktQxYvLNWZ3n2LVuIMNQt34HFE=;
-        b=S1K6Uk0iCJGCqMeyRbQHRJ7FHgs0W4J6sf0MiJP0TQEuIcpeAGCiDSpMq+utgupnXm
-         GclkAv84BBT+3qPEpPJ9/wewwAH2MycdayY8Nuf7+CdLiVgge98vCjS5sa/At21MeTMu
-         c0+MSx7/9Eu8NEi81jv0ignkNQwSgi6ihmRxAyZUPf1lOs85ndWs0Ce6FruiOyoDf6Jp
-         OmkUbX07fuPLFrHU7f5ZrAA1GxLgMxUmFviAJFB0C46oehFl23YvAblimj5w57AVgXC5
-         uAfjW+gmwWng5QSAH2r5eo3LBEAwfMc9md8vstZa4meqZtvYDKaFb9SrGV08w0B5Gug9
-         XBaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772713807; x=1773318607;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n4h7C/mVddSBf5SlRktQxYvLNWZ3n2LVuIMNQt34HFE=;
-        b=C8Y6v67nM30cM+HzNH/QohogtKThMduXbXDrPV/zK6Y+YVAcJDZdRlkRiQJFwnd2qX
-         hBKrjCha9U34gTU4mm1NNEul2rUTBIpMOipe22L9doJ7f3TxvL60PROW9DxaWaVvLx92
-         BviEOkxS9SZekY0ssIY0nOsepmQ48rpk0VM8/3IwzcEI7mq/7s3H+XoiX3sDlhKvYHy0
-         trmo1i0XMnIjppnk+UWSFqPVY+tUIuNJ+i0X52txj/0o9WlaWKx1u5sGiaiH51IFMPpB
-         yogqTp7uq1WNBioBAszaI2CVHnPgDNvqd0TY0fUFMtyo3HKFd1UkB7lsH+P12hFLrxr4
-         K6rw==
-X-Forwarded-Encrypted: i=1; AJvYcCVZNCuom3jbP8DwCeU2tEO1W4vJUvGWytHIIsSWbz9F+djbnlAB33eutRNUStCiSDou0mb4IZsofQRm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8SBRFkEtgxjoh6RlDDnyTYssUfGIlqj83ybILkpVRD2FZzhch
-	x7mlgy5s2MpXjSQonsdrxvNao5AmcICx1aRBP2e3JgOe7yKYfzerKqKgA/ocwOhSBDLfeIqvJE3
-	Yr5HqSpGTkAy4udBVNJ9vJ1xVBiNqGtg4OvGv4lu8J1ke8OdXJE9Zvn8icsJ2J1w=
-X-Gm-Gg: ATEYQzyW1rpidaRUxoPseqPF+5T24v/wPuXg45FFycuQpk2cnEQ6gyN3NqetLo1PeRR
-	Kd4eWC3kjLwZOh2X/5zEwsRlCEgSAA2D9gksZQf6D+3DhmDo/SJS3CJ6HAC9rjZ4WaW5AGIbWVt
-	BmK60AnyKG8kcM/y9Yp3aNPnS34YES8ViXHc+eDOf263UtWu8hL/Pw7qow+b9jwqZV7HDdxp+js
-	0BYXQYwC/wgZRSxx2lT1Rx3oX74slc8SybZ+VPYIYMTOMdifwqE5QOpZXthsZg/TcpBj56gILX9
-	klWLSpeBoLOerwFPglx/FLWd7mELcxawGGM+EZsiGowGfHvTUKK57jC24y3nbDRaXJ8nKL5U5g=
-	=
-X-Received: by 2002:a05:600c:1e0d:b0:483:3380:ca11 with SMTP id 5b1f17b1804b1-485198c81e4mr91451245e9.33.1772713807328;
-        Thu, 05 Mar 2026 04:30:07 -0800 (PST)
-X-Received: by 2002:a05:600c:1e0d:b0:483:3380:ca11 with SMTP id 5b1f17b1804b1-485198c81e4mr91450615e9.33.1772713806762;
-        Thu, 05 Mar 2026 04:30:06 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851ad1656bsm39645565e9.24.2026.03.05.04.30.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 04:30:05 -0800 (PST)
-Date: Thu, 5 Mar 2026 13:30:05 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Albert Esteve <aesteve@redhat.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>, 
-	Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
-	Saravana Kannan <saravanak@kernel.org>, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev, 
-	devicetree@vger.kernel.org, echanude@redhat.com
-Subject: Re: [PATCH v2 4/6] dma-buf: heaps: Add Coherent heap to dmabuf heaps
-Message-ID: <20260305-antique-flying-gopher-4cbe34@houat>
-References: <20260303-b4-dmabuf-heap-coherent-rmem-v2-0-65a4653b3378@redhat.com>
- <20260303-b4-dmabuf-heap-coherent-rmem-v2-4-65a4653b3378@redhat.com>
- <20260303-rigorous-cow-of-saturation-23f87b@houat>
- <CADSE00+jCZSHi=OLbmOebBwnue5tjG7AFPKN76CbYDWYBcP+AA@mail.gmail.com>
+	s=arc-20240116; t=1772714377; c=relaxed/simple;
+	bh=Gcla6dk7HKtcPXm/uEjdADuBF2XFedUxob0vlvhB3lA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EukiVeYYFTb5Am00v6gqc4tMuzcQ2oH8De1FudHRBvXnYyv4BFj0pY97RFxD4FkSA6qCmsK6W7Z7MuPBI6DATUGzbd1v9Dg3VZFSxdd+U7ptBD5JdDRUr+ed5RvAVvCuazHPacZfFQJbeOR1zot4Pg9volkP2V+e0gx+Q89q+Fg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DCIJdZtN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE62EC116C6;
+	Thu,  5 Mar 2026 12:39:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772714376;
+	bh=Gcla6dk7HKtcPXm/uEjdADuBF2XFedUxob0vlvhB3lA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DCIJdZtN9n/FZ1K2dR1eS6YttnLrjzkCayO9RoJGt0DidNJ+0klcKHQvdzMZOf+1w
+	 2K4f1hBgfJouqTvwTikU0tWq9uW8ifxBuaSMOMJ6XQWkdpEyqX8XlF2O9gDqJ6omiJ
+	 jYvx8K7Tcmsd0hAlXx7+f/qn0FEHiejgCiW71fBfk+OnXqILC6ueTBqHa+/PsRQN/2
+	 gOPJXI/BTMtnnLa2xQIVIj+ebDOc2+9UFvF1Ehm8kffeZCMcJJm3qZ22lvNUwRwPlv
+	 U9QWyW+hDnlB2eHQFWCsQ3S9Qeb1wFs6vSAKbo8HRPENJDST4KXr7OX2EvZaTfLwOW
+	 KjuWYuzopxJig==
+Message-ID: <e400bb73-3f80-4fcd-91a1-6b9b966c5e2d@kernel.org>
+Date: Thu, 5 Mar 2026 13:39:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="hngdcoke4k7khock"
-Content-Disposition: inline
-In-Reply-To: <CADSE00+jCZSHi=OLbmOebBwnue5tjG7AFPKN76CbYDWYBcP+AA@mail.gmail.com>
-X-Rspamd-Queue-Id: 10D96211C55
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/7] dt-bindings: interrupt-controller: fsl,irqsteer:
+ add S32N79 support
+To: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ Haibo Chen <haibo.chen@nxp.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Shawn Guo <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, s32@nxp.com,
+ Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
+ Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>,
+ Larisa Grigore <larisa.grigore@nxp.com>
+References: <20260225133858.8026-1-ciprianmarian.costea@oss.nxp.com>
+ <20260225133858.8026-2-ciprianmarian.costea@oss.nxp.com>
+ <20260226-ingenious-shiny-axolotl-e0e6d2@quoll>
+ <e8e258fb-23c0-44d1-bf4d-e2fed92ad90d@oss.nxp.com>
+ <6a481490-28dc-4b62-9782-95a32d0e2857@kernel.org>
+ <aba2401e-e26c-44d1-b321-56cd18f11a37@oss.nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aba2401e-e26c-44d1-b321-56cd18f11a37@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 635EF211D8C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271557-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271556-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mripard@redhat.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,bootlin.com:url]
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,i.mx:url]
 X-Rspamd-Action: no action
 
+On 05/03/2026 13:25, Ciprian Marian Costea wrote:
+> On 3/5/2026 2:12 PM, Krzysztof Kozlowski wrote:
+>> On 05/03/2026 13:02, Ciprian Marian Costea wrote:
+>>> On 2/26/2026 9:31 AM, Krzysztof Kozlowski wrote:
+>>>> On Wed, Feb 25, 2026 at 02:38:52PM +0100, Ciprian Costea wrote:
+>>>>> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>>>>>
+>>>>> Add compatible string for the interrupt steering controller used in NXP
+>>>>> S32N79 SoC.
+>>>>>
+>>>>> The S32N79 SoC differs from the i.MX version by not implementing the
+>>>>> CHANCTRL register, but otherwise maintains the same programming model and
+>>>>> register layout.
+>>>>>
+>>>>> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+>>>>> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+>>>>> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>>>>> ---
+>>>>>    .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml   | 1 +
+>>>>>    1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+>>>>> index 5c768c1e159c..caf3e4a1f26f 100644
+>>>>> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+>>>>> @@ -22,6 +22,7 @@ properties:
+>>>>>                  - fsl,imx94-irqsteer
+>>>>>                  - fsl,imx95-irqsteer
+>>>>>              - const: fsl,imx-irqsteer
+>>>>> +      - const: nxp,s32n79-irqsteer
+>>>>
+>>>> So that should be part of enum with the first entry.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>
+>>> Hello Krzysztof,
+>>>
+>>> Thanks for your review. Regarding this change, I was thinking since
+>>> S32N79 irqsteer does not implement the 'CHANCTRL' register, it should
+>>> not fallback to 'fsl,imx-irqsteer'. If the driver were to match on the
+>>> fallback compatible, it would attempt to write to the non-existent
+>>> CHANCTRL register.
+>>>
+>>> Am I wrong?
+>>
+>> No clue, I did not say anything about fallbacks.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> Indeed, but your suggestion of moving 'nxp,s32n79-irqsteer' under the
+> enum would fallback on 'fsl,imx-irqsteer'.
+> 
+> Am I misunderstanding your suggestion ?
 
---hngdcoke4k7khock
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 4/6] dma-buf: heaps: Add Coherent heap to dmabuf heaps
-MIME-Version: 1.0
+Open the code. What is the first entry?
 
-On Tue, Mar 03, 2026 at 03:47:14PM +0100, Albert Esteve wrote:
-> On Tue, Mar 3, 2026 at 2:20=E2=80=AFPM Maxime Ripard <mripard@redhat.com>=
- wrote:
-> > On Tue, Mar 03, 2026 at 01:33:47PM +0100, Albert Esteve wrote:
-> > > Add a dma-buf heap for DT coherent reserved-memory
-> > > (i.e., 'shared-dma-pool' without 'reusable' property),
-> > > exposing one heap per region for userspace buffers.
-> > >
-> > > The heap binds the heap device to each memory region so
-> > > coherent allocations use the correct dev->dma_mem, and
-> > > it defers registration until module_init when normal
-> > > allocators are available.
-> > >
-> > > Signed-off-by: Albert Esteve <aesteve@redhat.com>
-> > > ---
-> > >  drivers/dma-buf/dma-heap.c            |   4 +-
-> > >  drivers/dma-buf/heaps/Kconfig         |   9 +
-> > >  drivers/dma-buf/heaps/Makefile        |   1 +
-> > >  drivers/dma-buf/heaps/coherent_heap.c | 426 ++++++++++++++++++++++++=
-++++++++++
-> > >  include/linux/dma-heap.h              |  11 +
-> > >  include/linux/dma-map-ops.h           |   7 +
-> > >  6 files changed, 456 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
-> > > index 88189d4e48561..ba87e5ac16ae2 100644
-> > > --- a/drivers/dma-buf/dma-heap.c
-> > > +++ b/drivers/dma-buf/dma-heap.c
-> > > @@ -390,8 +390,8 @@ struct dma_heap *dma_heap_add(const struct dma_he=
-ap_export_info *exp_info)
-> > >
-> > >       heap =3D dma_heap_create(exp_info);
-> > >       if (IS_ERR(heap)) {
-> > > -             pr_err("dma_heap: failed to create heap (%d)\n", PTR_ER=
-R(heap));
-> > > -             return PTR_ERR(heap);
-> > > +             pr_err("dma_heap: failed to create heap (%ld)\n", PTR_E=
-RR(heap));
-> > > +             return ERR_CAST(heap);
-> >
-> > This looks unrelated and should possibly be squashed into the previous
-> > patch that introduces dma_heap_create()?
-> >
-> > > +static int coherent_heap_init_dma_mask(struct device *dev)
-> > > +{
-> > > +     int ret;
-> > > +
-> > > +     ret =3D dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(64));
-> > > +     if (!ret)
-> > > +             return 0;
-> > > +
-> > > +     /* Fallback to 32-bit DMA mask */
-> > > +     return dma_coerce_mask_and_coherent(dev, DMA_BIT_MASK(32));
-> > > +}
-> >
-> > Why do you need to mess with the DMA mask? I'd expect that device to be
-> > able to access everything.
->=20
-> When I tested I was getting: "reserved memory is beyond device's set
-> DMA address range", so I tested if it was fixed with
-> dma_coerce_mask_and_coherent() and/or dma_set_mask_coherent(). I did
-> not debug the value of coherent_dma_mask, but given the error I assume
-> it was not set properly? Ultimately, using the 64 bit mask fixed it,
-> and I added a 32-bit fallback to ensure support for 32-bit systems.
-
-So you don't need to handle the fallback because
-dma_coerce_mask_and_coherent will truncate the generated mask to
-dma_addr_t, which is 64bits on 64 bits platforms, and 32 bits on 32 bits
-platforms.
-
-https://elixir.bootlin.com/linux/v6.19.3/source/kernel/dma/mapping.c#L908
-
-But I think my point was more than there's nothing specific to the
-coherent heap itself: the device allocated for the heap should have the
-right mask for any heap, so it's something I'd rather put in
-dma_heap_add.
-
-> > > +static int __coherent_heap_register(struct reserved_mem *rmem)
-> > > +{
-> > > +     struct dma_heap_export_info exp_info;
-> > > +     struct coherent_heap *coh_heap;
-> > > +     struct device *heap_dev;
-> > > +     int ret;
-> > > +
-> > > +     if (!rmem || !rmem->name)
-> > > +             return -EINVAL;
-> > > +
-> > > +     coh_heap =3D kzalloc_obj(*coh_heap);
-> > > +     if (!coh_heap)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     coh_heap->rmem =3D rmem;
-> > > +     coh_heap->name =3D kstrdup(rmem->name, GFP_KERNEL);
-> > > +     if (!coh_heap->name) {
-> > > +             ret =3D -ENOMEM;
-> > > +             goto free_coherent_heap;
-> > > +     }
-> > > +
-> > > +     exp_info.name =3D coh_heap->name;
-> > > +     exp_info.ops =3D &coherent_heap_ops;
-> > > +     exp_info.priv =3D coh_heap;
-> > > +
-> > > +     coh_heap->heap =3D dma_heap_create(&exp_info);
-> > > +     if (IS_ERR(coh_heap->heap)) {
-> > > +             ret =3D PTR_ERR(coh_heap->heap);
-> > > +             goto free_name;
-> > > +     }
-> > > +
-> > > +     heap_dev =3D dma_heap_get_dev(coh_heap->heap);
-> > > +     ret =3D coherent_heap_init_dma_mask(heap_dev);
-> > > +     if (ret) {
-> > > +             pr_err("coherent_heap: failed to set DMA mask (%d)\n", =
-ret);
-> > > +             goto destroy_heap;
-> > > +     }
-> > > +
-> > > +     ret =3D of_reserved_mem_device_init_with_mem(heap_dev, rmem);
-> > > +     if (ret) {
-> > > +             pr_err("coherent_heap: failed to initialize memory (%d)=
-\n", ret);
-> > > +             goto destroy_heap;
-> > > +     }
-> > > +
-> > > +     ret =3D dma_heap_register(coh_heap->heap);
-> > > +     if (ret) {
-> > > +             pr_err("coherent_heap: failed to register heap (%d)\n",=
- ret);
-> > > +             goto destroy_heap;
-> > > +     }
-> >
-> > I guess it's more of a comment about your previous patch, but it's not
-> > clear to me why you needed to split dma_heap_add into dma_heap_create /
-> > _register. Can you expand a bit?
->=20
-> So first I tried to just use dma_heap_add() and then use the heap_dev
-> afterward to call of_reserved_mem_device_init_with_mem(), but if that
-> call failed, the error path required some kind dma_heap_remove()
-> function as the heap was already registered by then.
->=20
-> In the CMA heap for example, dma_heap_add() is invoked at the end of
-> the `init` function. Therefore, you do not have this issue, if it
-> failed it means the heap was not added and you just need to clean
-> everything else.
->=20
-> However, performing a remove() does not sound like something that can
-> be done safely. I've spent some time thinking on alternatives, but
-> splitting felt the best pattern.
->=20
-> This way I can:
-> 1. Create the device
-> 2. Call of_reserved_mem_device_init_with_mem
-> 3. Register the heap
->=20
-> This places registration at the end, making every error path and
-> cleanup easy to handle.
->=20
-> Also, the `dma_heap_add()` code already seemed to handle these two
-> parts/phases implicitly with device_create(), so splitting felt
-> architecturally sound.
-
-That makes sense, thanks!
-
-Maxime
-
---hngdcoke4k7khock
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaal3SAAKCRAnX84Zoj2+
-dn3QAX9E8YO33rmROOTGm7jbkHqsOZ8TA0MZtGRMovqQZMantYBJIMKP5dURZuMJ
-oYoU8x4BgLjR9qQ/3rZv2lePDmMzvq1bRUaeUiPuJqKtDmMVvUOIXTdhGEcO1s7+
-wnCWMipN7A==
-=F33u
------END PGP SIGNATURE-----
-
---hngdcoke4k7khock--
-
+Best regards,
+Krzysztof
 
