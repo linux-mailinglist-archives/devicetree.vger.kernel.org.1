@@ -1,144 +1,157 @@
-Return-Path: <devicetree+bounces-271603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271604-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SF3xCVCbqWnGAwEAu9opvQ
-	(envelope-from <devicetree+bounces-271603-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:03:44 +0100
+	id SAU5OLqbqWn7AwEAu9opvQ
+	(envelope-from <devicetree+bounces-271604-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:05:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5919A2141C2
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:03:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBF3214243
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:05:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1458E31835FF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:58:25 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 361E330A3CAC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:58:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22EC3B5858;
-	Thu,  5 Mar 2026 14:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 005BC3B5308;
+	Thu,  5 Mar 2026 14:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GS+cMH0u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C438E3B3BEB
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:58:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1E139C621;
+	Thu,  5 Mar 2026 14:58:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772722695; cv=none; b=sVkiHIp/3rXRkLrk7wSGCyImvAXk/zZ7vWrYaJdpvOsiMUNpBHceUpxCHkp2++fEsiSrHsvLqovIZRPK+oZh3E6smElA/3HhbszeCVNNbdoP4GBoEOIzgQA5+9dTV1a2PEoyhtXgrZTKtuWUAOTrOMecvExsObOTKUh77wwFbmg=
+	t=1772722708; cv=none; b=IfBT5GNzfATB5MzWrnIJwxdi94r+n83qqk19d5TOHDBYoiP3AnFJ8hTDPuf/mxpt+azmJM0/ohIR3YVt+sYnNo0YqhKtRaMK/kzCoPlE1LQTcLUInxvLdNqgroLOxNssEgIgua6lKK+DYnYBXAyHmcmseUQB1JD5PWMqWW6irco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772722695; c=relaxed/simple;
-	bh=5vD4Kg/M6WLs7JWJ9iOz9JD4pJnjd1OxEmi1NYB0Vic=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u+59wCoDput/zT0bcG28ymQus09dbKJI5A2PxjLbGIfuPgdg7KQJRQco60FbfSGbM+RlAC3Fu0yiAPOWDk/RFsDf6ZDBaBU8ReA+KFn19eLCgEa8ffg7VxDbMeg/skMV+4iFtLrzmbseYvz6NS4zca5ZU4B2z5kqTKOOpF5RWGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-94dea0e029fso2394331241.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:58:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772722694; x=1773327494;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fqSOZpWNO3C/9wQ4B5UwddHacEUZVZn8oPi7wE7jo6I=;
-        b=FaKgZi9lKjZ1VX1QaTkLw+TZWuOTbPMs+FybubKLWLbgw3eUFAsNz+ZOfmk81UQrv6
-         rel/m7j1jvz7gnjGLmh3qoIJlMlpXDH8F0a0h/RkZDwNzpjrEwRu//NhtxrJRzlakK3r
-         itMdRafdRW0PkzBIes63tLmApqqUuMqeQjHywFfMRF6zx1uKag09P7gxTqUZzwqw+ReE
-         WkekPZy4rNiSndOr1IjqRBcKNCB8lMCd/I2mqwMs3OcwAT/jf4B2JP+3T9akneSMx6vU
-         MxpjEcy2SoGA9bGKsIM/+3M7LQ92q/6BYRd877yOJ0w/UHbTFyxC2CAjUlT8LTffu+93
-         jnMw==
-X-Forwarded-Encrypted: i=1; AJvYcCWWEC0gRbWTs7eYgMkghZPtM41Nrx7EYCu1DpQkoMDQjm5IgTkpwHla9UK12ushThf5ezGOmhjRYoPx@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywdnc60eDkEWqqnJS+vjjXfZdsz5JjhiUYXYqk68rPGARl0Ovsr
-	s0tZ5Qj0TARBaVuKRv49I6r83n1CU+4AH4WKDGFU+K/7PDOa7jaM7JQhTHPuo/2koHM=
-X-Gm-Gg: ATEYQzwcgZEQ4CDR90yAs0lNKKgI/jc2BFoQq9quSBCWPcVmsumbQRBe0po7qAPoLoh
-	nAwVGV2zcfhaEKExnFcXcEmwOwC4JzYxRQ+p7OSdPpIuHmS5lGn53/zROPc+oyHwugpZ6yCCFyY
-	TkJYIRP/plZTpnnn7H8PQL3UneEiPIIwRRhOG4Hu6npXgLPdmyuQtsga7/6ugtP/tAak3JBX4Ic
-	8rSpgJ0R/dZkeBdiCqTM24rUtPdW34rvTXqJfO+aUAD+nIZPHP1ds1sk0o1WIhnkHB/XkKx8j/w
-	myuCoV2oK//E1IWM/aJHQtTWjoG6yU29TJXSt39egsM5G0Y22ZW+hHC3zXDolz7yRclajzpjRFO
-	XOPLnUA14jslOx2t7pMBIVclmFXiovbKgUT62rTksQor7odOW1j3w3NzhA1umgWUT+JNATX3ECB
-	Oy/0A4ZP30WjIYC7Z6LXjvOOQY9FsANY0PzRa7aj0fZG7BukQKCvUwHPQ3Z0i/co1ZgG4qVkY=
-X-Received: by 2002:a05:6102:1458:b0:5ff:c59d:67db with SMTP id ada2fe7eead31-5ffc59d7cb5mr799353137.3.1772722693532;
-        Thu, 05 Mar 2026 06:58:13 -0800 (PST)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ffa300c3f8sm6666654137.6.2026.03.05.06.58.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Mar 2026 06:58:13 -0800 (PST)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-94de4f5531eso2635156241.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:58:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV1IX60XndCXMnEWzRRNvvOLkbQ+tfyrWMuRplXkt/szoIBPx/EofmQVnia9eFWNVBuEyKeyvsCM3vZ@vger.kernel.org
-X-Received: by 2002:a05:6102:f06:b0:5f1:4fc3:855d with SMTP id
- ada2fe7eead31-5ffab26e129mr2408811137.38.1772722691995; Thu, 05 Mar 2026
- 06:58:11 -0800 (PST)
+	s=arc-20240116; t=1772722708; c=relaxed/simple;
+	bh=hz6nHUvavp9qE3wnfR9Q16aFCS/det6SPcPFwoAqDxg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WiO96/h9SbAGyqMAb6BY4urKnAdwzhn/rySCqtuZtPSJAFRSipbfs5MNvTbUEmBuS7XhNXHII9VRtpFjnuAZjKpahy8o6NpqOeIILSHBmSPiquWRof7+5xZDe19Aydu7SV6QeVmvGbWGuRKrwgF3XMiigWLsju/KS3Gk8Jw3Hvg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GS+cMH0u; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Rr7zogytiXL931QjRnSg1sWBY/f8/mK1a99OXMJXVgE=; b=GS+cMH0ui+heX7pFZKovFYZLwI
+	HNSnhMBrADaiXQLvAiEbpqIsz5hqs/pGB2XZZO7bND7qFoxjCe6gapKDACkOn8pvjEa4DRIeswfsL
+	Ea1Ra0q38SPe//jCyN1wZVaTrFq9nXA2J+aPMNfJwPm2hznO5m0wiU3Zt0Bv6nMxCUBA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vyA9Y-00AKje-Dr; Thu, 05 Mar 2026 15:58:16 +0100
+Date: Thu, 5 Mar 2026 15:58:16 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	UNGLinuxDriver@microchip.com, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Woojung Huh <woojung.huh@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 4/8] net: dsa: lan9645x: add basic dsa driver
+ for LAN9645X
+Message-ID: <052cf8c8-c60b-461a-86ce-aac8d7ebf4d9@lunn.ch>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+ <20260303-dsa_lan9645x_switch_driver_base-v1-4-bff8ca1396f5@microchip.com>
+ <aahWu2-3YT92vMuC@shell.armlinux.org.uk>
+ <32b7267f84b60a4632eb643fd0b999d03c630a1d.camel@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com> <20260203103031.247435-9-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20260203103031.247435-9-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 5 Mar 2026 15:58:00 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW3zMqMxevkP5DLrRiUY0DMb+yngFf=yayzkeHZpq-4uQ@mail.gmail.com>
-X-Gm-Features: AaiRm52qa0hxXfUT-U-AmnVbAfPkSS5Tat4oKezMmKZoi-V1pVPBaxiOn7gK0BU
-Message-ID: <CAMuHMdW3zMqMxevkP5DLrRiUY0DMb+yngFf=yayzkeHZpq-4uQ@mail.gmail.com>
-Subject: Re: [PATCH v3 08/10] arm64: dts: renesas: Add initial support for
- RZ/G3L SMARC SoM
-To: Biju <biju.das.au@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 5919A2141C2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <32b7267f84b60a4632eb643fd0b999d03c630a1d.camel@microchip.com>
+X-Rspamd-Queue-Id: 7EBF3214243
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,bp.renesas.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-271603-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271604-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[armlinux.org.uk,microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.326];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	TO_DN_SOME(0.00)[]
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, 3 Feb 2026 at 11:30, Biju <biju.das.au@gmail.com> wrote:
-> From: Biju Das <biju.das.jz@bp.renesas.com>
->
-> Add initial support for the RZ/G3L SMARC SoM with 2GB memory and
-> extal clk.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > +     /* We configure delays on the MAC side. When the PHY is not responsible
+> > > +      * for delays, the MAC is, which is why RGMII_TXID results in
+> > > +      * rx_delay=true.
+> > > +      */
+> > > +     if (mode == PHY_INTERFACE_MODE_RGMII ||
+> > > +         mode == PHY_INTERFACE_MODE_RGMII_TXID)
+> > > +             rx_delay = true;
+> > > +
+> > > +     if (mode == PHY_INTERFACE_MODE_RGMII ||
+> > > +         mode == PHY_INTERFACE_MODE_RGMII_RXID)
+> > > +             tx_delay = true;
+> > 
+> > PHY_INTERFACE_MODE_RGMII means that the delays are provided by the
+> > board layout, so this seems wrong to me. Please review the phylib
+> > documentation concerning RGMII delays. I'd like Andrew to comment on
+> > this too.
+> > 
+> 
+> The idea with this was, if the PHY does not provide internal delay, then
+> we do it in the MAC.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+That is not really what we want. The default in Linux is that the PHY
+adds the delays. In general, MAC drivers read the phy-mode, and pass
+it directly to the PHY. The MAC does not add delays. There are a small
+number of boards which don't respect this. In the past, there was been
+claims that an RDK used a PHY which was not capable of adding the
+needed delays, so the MAC had to. In practice, all the PHY drivers in
+linux which supporting RGMII support all four configurations of
+delays.
 
-Gr{oetje,eeting}s,
+So, the best thing to do is hard code the delays in the MAC to 0, and
+pass phy-mode to the PHY.
 
-                        Geert
+Now, this is a switch, so there is one complexity. Some switches make
+use of an RGMII port to connect to the host. You then have the host
+RGMII MAC connected to the switch RGMII MAC. Delays have to be added
+somewhere. Since the switch MAC is playing the role of the PHY, in the
+eyes of the host, we allow such a port to add delays.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+However, this is a multi-giga switch, with high speed SERDES ports. My
+guess is, a SERDES port is used to connect to the host, not RGMII. So
+i would not implement this, until somebody reports having a board with
+RGMII connecting to the host. KISS.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+      Andrew
 
