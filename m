@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-271760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271761-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCe0EM0YqmlfLAEAu9opvQ
-	(envelope-from <devicetree+bounces-271760-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:59:09 +0100
+	id aAw8NvMYqmlfLAEAu9opvQ
+	(envelope-from <devicetree+bounces-271761-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:59:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D8221995E
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 77308219979
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:59:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CF4DA3019FC5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:59:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3486F301BA4B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76725369962;
-	Thu,  5 Mar 2026 23:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB44936996C;
+	Thu,  5 Mar 2026 23:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2LkzCaM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HlSJpWSd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F2835AC23;
-	Thu,  5 Mar 2026 23:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8747E34EEE2;
+	Thu,  5 Mar 2026 23:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772755146; cv=none; b=Y0U7sVpWQaI/VmTrgTjg0GMlv0kbznEQ0KoF2rg0qOVbodP690YfaM4Apry8BXA0ICnPtOpIeVDKicVOWpuvk1f4DhDZBxWfIlXnZZGA9i/UQDzlcP4nyCOgJGBz8klnzyH8LF2Y08Gs7ZzCe3GOc/VKJqnn50DOcAllmxgkRMk=
+	t=1772755183; cv=none; b=V8tTrYLcXFCcRapEDTZiKwY83bbNHAp/lwnCOa+yVDMAOxX1rDAyp8U5K1aV/fD2wfBHONuqwuI7prP7X0dAZ8eI1HwIK9oA+aNjddpM8IhYZGXqXp84/5B/TbNo0n8AdUknsWQ/YM9fDYLooBpM9QYsZlMig7RW5+UoWr/mYD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772755146; c=relaxed/simple;
-	bh=Ah4m7LLMEaYgGTcAWdKvHDt/vYnmXbiN4uWHziw73Hk=;
+	s=arc-20240116; t=1772755183; c=relaxed/simple;
+	bh=DSnXthiQElUsXocyUJXAnl5SEPNCOYpFYSUyb42s6XQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z3yqjjgioms+R21kF7UzjfFxO0gohR6omZQY5dlkdgWGCxSXYYslUF4o5pW3clPkRWfJt5KjMMOvP4uNeEbm5IjwcUe+eZ/++wmTOJqnZ6sQgdD6sepsfjOjqiTqNdWVj75o65gpG4/82bMspN8UPQMBZIsAoaYeIy9kGzJ6nU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2LkzCaM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7962C19423;
-	Thu,  5 Mar 2026 23:59:05 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MoES29EVAP9rIN1RvWHqY4tBkhsxcXJt9/GOydxfRHSWL9EWhalB/ZJaRQT3v/Gz9kFSTvRi7niXQ6+3kYs/+W8kPXmM9wmc9nvYTL/6Lqaz8xnqU65MjhoMOdOuAm8xpR51dzIu5nXpk0jxaK1dOq7gRg78QKr1vU2qu/BQ+NU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HlSJpWSd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FB9BC19423;
+	Thu,  5 Mar 2026 23:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772755145;
-	bh=Ah4m7LLMEaYgGTcAWdKvHDt/vYnmXbiN4uWHziw73Hk=;
+	s=k20201202; t=1772755183;
+	bh=DSnXthiQElUsXocyUJXAnl5SEPNCOYpFYSUyb42s6XQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h2LkzCaMShUO6Hd720cQDLdBdPgWuaxD3/5OUAEY4bNLRil+XWHk5MxgIJv++tbSR
-	 pBQAVdyaxrE026BsgBDU6N0I34FTudRbro8TPU9NhxYLd+KD0Ox6V1n46+u8UFuXYU
-	 XaEuYtb4OLHfUIGbMhx+GONuN0WculrBBewxlck44LwiRLYf3FZikeqptzImb2Lytl
-	 PRRJo4ZTsM/nGhlvsbiq9ticRwTOQ1qERTITeT/lXHqqNA9MJ2Tokb0Xwt8/OeQqbq
-	 6pwFkEOlldYeNfglGOuWLQ6fqbg/cjzyg3/KYIvIQq+CTfbeiUgAyBnDa8x3NkNeIX
-	 SjAWAHg8YLNuQ==
-Date: Thu, 5 Mar 2026 17:59:05 -0600
+	b=HlSJpWSds3IuvpkAaKqw5CCn6UwMwqX5agno+m2OQNeexyIXwuVgi6IYKYU4S1VtE
+	 5y3dHXeM7NDP1GuJFAYAILyGT1ePoKxYCmRw9AFCGqqsf9pdPAq6wOoUkL5hRFmabN
+	 CyqFnQm0CtriRIT9Ht8JGFhT4ftpy/j8G/E4RR1zY3Ye3n7Q9kANVMZVkxDHPK2Fkh
+	 FFYppKdKVqA622arHMs6H+bh+stIJXsbMJ6Viuu5dE0x+NpwOpEDFVfkcnIR7jkAwi
+	 L/oknkSH8xDds7yP4maVAoGi2p5zWX2dr1HT/Tj/nrsAz3xioGh+rIJmXwtB0EhCC8
+	 rKu7dLyO9AhLw==
+Date: Thu, 5 Mar 2026 17:59:40 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org,
-	Thierry Reding <treding@nvidia.com>,
-	dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-	Simona Vetter <simona@ffwll.ch>,
-	Jonathan Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-	Maxime Ripard <mripard@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	David Airlie <airlied@gmail.com>,
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: tegra: document Tegra20
- HDMI port
-Message-ID: <177275514466.813292.350070778005908471.robh@kernel.org>
-References: <20260223065500.13357-1-clamor95@gmail.com>
- <20260223065500.13357-2-clamor95@gmail.com>
+	Thomas Gleixner <tglx@kernel.org>
+Subject: Re: [PATCH] dt-bindings: qcom,pdc: document the Eliza Power Domain
+ Controller
+Message-ID: <177275517856.814250.1751178649585762621.robh@kernel.org>
+References: <20260223-eliza-pdc-v1-1-fcb17464fee2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,11 +64,10 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260223065500.13357-2-clamor95@gmail.com>
-X-Rspamd-Queue-Id: D4D8221995E
+In-Reply-To: <20260223-eliza-pdc-v1-1-fcb17464fee2@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 77308219979
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
@@ -84,38 +76,36 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271760-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271761-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[suse.de,vger.kernel.org,nvidia.com,lists.freedesktop.org,ffwll.ch,kernel.org,gmail.com,linux.intel.com];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
 
-On Mon, 23 Feb 2026 08:54:59 +0200, Svyatoslav Ryhel wrote:
-> Tegra HDMI can be modeled using an OF graph. Reflect this in the bindings.
+On Mon, 23 Feb 2026 10:39:47 +0200, Abel Vesa wrote:
+> Document the Power Domain Controller on the Qualcomm Eliza SoC.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 > ---
->  .../bindings/display/tegra/nvidia,tegra20-hdmi.yaml | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
