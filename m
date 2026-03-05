@@ -1,450 +1,339 @@
-Return-Path: <devicetree+bounces-271656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271657-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4ASnD768qWnNDQEAu9opvQ
-	(envelope-from <devicetree+bounces-271656-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:26:22 +0100
+	id WCIvMxa9qWnNDQEAu9opvQ
+	(envelope-from <devicetree+bounces-271657-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:27:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F9C62162B1
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:26:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7179C2162F4
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 01F5D304621C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 17:25:27 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2CA743006B7D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 17:26:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666C13E5ECD;
-	Thu,  5 Mar 2026 17:25:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997BD3E3DBA;
+	Thu,  5 Mar 2026 17:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fRthiVUe"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MKbC6gIm";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ObE9jYNB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613283E558E
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 17:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 415EC3A0E98
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 17:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772731506; cv=none; b=ULkacGoJmKvC24l1U451WzEtEPCnECfolHn7ywG4hr3pgiZ5HydT7bNPbSgjiMy2wWAfui7iOAI3YHpas72knI8rl/FSLrNixS8b83dOAssY1wO+PZ6pMC9gNwudHIYsf0UQ3RHU6wkpl1GfXFnpRFjdUNVFomckhbxgw4Jzwu8=
+	t=1772731613; cv=none; b=XfuMdCW6hu3U3ADtBHFkoIgNPDmAEzl47rbk9ERKTL5bBHDMiQJ1Mq3yTlHnzzKBgd5AJY1NzUiVe3LwqgUurMMBQ3Pu9KS59w92nwZ68rgTgEgKvSJQx+UCvSZV/6aNhS+/lGYi+NzwBjKHjd+SMpa+EEyOUdTu6+22A2g/+Ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772731506; c=relaxed/simple;
-	bh=wkoi1v2b0irRWpaxmJ+Uncv1RjSBVMfii+W5TgwM24U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ni+izYqPZ0sJHHkqYA+nQA2mzmfLzdThqx+TgUJkAuiNg5seK7zFliCsRRXbxt60I38Nji7K3ut0ZSuK66yRAIUo4bVKtWyL/VD59duzwm4nZb+1EzfW2oVqFm2rN0ox+MV75+TqLSErUy7Toa2hD9fLIcfFIe/AOmBzwS6Uwus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fRthiVUe; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-480706554beso90328575e9.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 09:25:04 -0800 (PST)
+	s=arc-20240116; t=1772731613; c=relaxed/simple;
+	bh=i51oMRM39b4zkPD5v1JZCUBphGiNCQBhDYu8AT0JFFU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bwilJu+wLZdHlwr87eLibKeiUGGuR2QII7VYmsJqoNFduprZ4NKxz4o7dektbRGHl4bfJ+y1iXsYpmOrGw7C6/HDHLUclOFIoNf5Y5uVG2vnsHnLDQ8U4BiW3dp8veav2eaJdeYzqaH01kaGs5odF75no1tUkf58xnkdXWc4vu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MKbC6gIm; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ObE9jYNB; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 625AFbZ42922186
+	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 17:26:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tk4/hiWtP/NVhogneiRF45j/bTrlav0gUX1qihLjIkU=; b=MKbC6gImGeSGJy8a
+	LGzOMcp5qxkuydwP19LM4Zpfip9t9Vbz6bn1UOtpH5mDsWbwPNyXxFK+KCparumq
+	gk+w6ktG5uCZzF+y5MMAD5MQJ0EUHpT08mcutJ1YhihJjy2w5niS1kHlyOJaLCwc
+	gas9+uODdBgQb2piFSiYqIzGG14B5zXKH8FHB3pkFCrnygrgkawe+JrXX9/HW+n/
+	qIk8YzkTe8GNmB20kYlGeDcqDkkc9nQYHLfX+xZ2So3Tt2KEu5+drAfsi51mFJIh
+	NgaPb1FVBI6VankCKKeFJmNQUd3YkGRKIJgeRnQcfrsRamuaYy5d0E6wFtKoZ/IA
+	hgdXsA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cq2q82jgs-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 17:26:51 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2ae42659a39so330827535ad.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 09:26:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772731502; x=1773336302; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FwXBW1bvnuKHtKAFJ+iQrOF7DvoRn1hnFgEXCS4/FD4=;
-        b=fRthiVUe7AAYT/WlM8X7JUkxiTrpTUcJp+d2gWPnMMAuHMgK1oSCHS4fVQDjaV+Xt3
-         xlIIfwLx8NFDJeQVOJUnh0sIowXVtyT5LSh/AnpgPtzYdEVQrtJUsjZOObxQTtEemvav
-         YKSRYXb8k/ZLN4YgdIEQyb57A7JfBbNbN/aaL6HhYEnm7rbpHe0hpTGn0ldUnOoWNZav
-         jYY42KE3yVkMrpc8zPbxAGiokBL0pz+UF9rtlngIZCh3gSiiKBlPP8VwXhnbIgVvXMNH
-         z/FJWOla8kU4suXERbCtBNmtX1G6WOdggoqd5tKMXTUY3uzZs2bkWg9TgHGePIQ8ZuuD
-         fa+g==
+        d=oss.qualcomm.com; s=google; t=1772731611; x=1773336411; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tk4/hiWtP/NVhogneiRF45j/bTrlav0gUX1qihLjIkU=;
+        b=ObE9jYNB9EeS804Fz7aDMfUmOTu6dMnW8qeg+z31ns11jhrCdZTW6dcIHlZx+Bm1Mt
+         ah03QVqTLXWQ2qSh6Ux/6Bd7ZXA5SZQ/BHzxAl6T/cD4NdYrw4b0kFcKoBTx5kMHAqmd
+         sFBtLoNyZ2faoxri6P01AeNoKVYrG5mq8LSSLfDxv7UG21i7byefcaaE/R85MdjYFUZa
+         /aiW7wnkVIA/C+qeEmkhYEqnXFBieXvt6tYsJZGs2c1iFovnjSKQW2Zq2LG8n6WkAQ2t
+         h3BprQT+pplElxCpyWJI7p9uLJfiVFzdg/uZY9jc5lUCECLB+DLS1teZD1bGc7cylvU+
+         1Zmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772731502; x=1773336302;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=FwXBW1bvnuKHtKAFJ+iQrOF7DvoRn1hnFgEXCS4/FD4=;
-        b=P4C/JmG4vxUSDWCdZRamtH2i1+FhR3PO58mR+MaQu51brZeCMFEReRkWvX+X37tHVb
-         dfO7IIQevGweniZIocW+chVx1QrU9ouWTWHPrGHX5UqH7J3lhBa+sxLi5LbSbnpYAmzP
-         sNrzSHfyQRZeE1+0TR3fQUXkZG+FWUCaMKJIpwL+phRCV5W2RfiPEmxDbPgAP9fbWqkr
-         f4iSU2RbjtlQBwXBI8LExKfALY/ybzkP9S0+SNdzCMQIaEjW6XB3i8FPGrOzNzl0W68g
-         j6yt76hOgeKCJVaTXuMbzikovoS3zQZsPhqmPxu5u/e4BXQjhfWvMxtgCikISmtSajJ2
-         89hg==
-X-Forwarded-Encrypted: i=1; AJvYcCXL/9CFiZgjiol9H5/xetNZ/GFM27K7x61dCerAuaiYu6TpaTBoDLlTA2p12yw2t1IQoXzfpP97vP5X@vger.kernel.org
-X-Gm-Message-State: AOJu0YzI37War1OEI4Hx6a4ZZPxYGpYIEeyJl1PF+WQL9+vE8Gaa49Pu
-	DEgwcUfAdFjZ8wT1ngPpkRoMarTdCE/IWYZIOPASbqxlRDj6wHLGnsQ9xq7fp2/h
-X-Gm-Gg: ATEYQzzEwaFvEZ4pMZNeIh8YydrgHPm4OBdXMTsA6PBhCatxnckiT73sPn33dAgidDm
-	EefG6QGoBU9TVQK6c0qSInkKHBNI7Vbv+o7dOOa5tjA2hSF4Z8McatRfc0qGrMfm5emI3Hb4nH7
-	YxPU9XbMABnAdvvs3DmOXYhD46HU1nTB69X4qGCr3+bamydW60vGKEP6eXpRX2MkN5QfwC6BV9l
-	JsRwG8+fEqUsZ1rQotClcEiF4nx3j9gqNY0vAV2regToNgwDVcUTca3hjIQIQtFXawz12oJHEyf
-	JhjiptNJwLvvsAmQCTrJahboaDSGVOCLeBlHzSeQgDVCxXrhEARNXeCUOiI4eI6uzveO4/NrW0y
-	oRRUrfOj5aEV3Vn8xsL1oUJeMiE+CGtYipLmdcMWWRri47zvtWJq2HkSoYIb2mpeg1L5JspgaHn
-	wrvrhgnyziUcvQPwWkq6ZBZbEZuNCRiatWpABPpOFjUeGj5CVYAUkPx7VlBHabVEwszkfIEBU9o
-	QFiqTc5yh25hk7aDBeGfajbEvs=
-X-Received: by 2002:a05:600c:34d6:b0:477:58af:a91d with SMTP id 5b1f17b1804b1-4851983936cmr122599795e9.5.1772731502386;
-        Thu, 05 Mar 2026 09:25:02 -0800 (PST)
-Received: from ernest.hoecke-nb (248.201.173.83.static.wline.lns.sme.cust.swisscom.ch. [83.173.201.248])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4851fafe4c9sm67153495e9.15.2026.03.05.09.25.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 09:25:01 -0800 (PST)
-From: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
-Date: Thu, 05 Mar 2026 18:24:34 +0100
-Subject: [PATCH 6/6] arm64: dts: freescale: imx95-verdin: Add Yavia carrier
- board
+        d=1e100.net; s=20230601; t=1772731611; x=1773336411;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tk4/hiWtP/NVhogneiRF45j/bTrlav0gUX1qihLjIkU=;
+        b=iMhTKaTiAVYUQi+n4GhvyJlN/E9PL/SGF5awd8dtf9NlMgKaYLhAfjWNbvuztMcs2u
+         mcI/x85rW5dESxUdZ3OSIVB/xCXORexBI7d8pbUEEnnhr++AUseSqO9IUtr9AvrSPQ69
+         aeQNjpz5a9UDuwKC35NbMoqD8dNq6oKPfyDkJ8hFsRY7jRXW1qmm74xXB3quQenxj+9v
+         5ghUgGqYqB/UzrwUccpgQZsPrQdx5H44V1VpLs5fobR6Fnymabqxl3YkI0sMpOwdzEKj
+         G4plI7NK2GugwPULtQTq4dYndICUGVaj7qdFlb4aittkSnaN6ZoySttrcphvGYKIWdxU
+         g/zg==
+X-Forwarded-Encrypted: i=1; AJvYcCXU7cxF+y0YRk3+aF8IlAOQRJ+Jg3qlbqe5M3qObMf35l8Mvuek20PACJpeM7lHzXyvbKAI25O+oe6G@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSgCSJxtbWRWl/Uo+dBo5+aPuRDnvmyfer2ir/b1Uxggkukix0
+	Blh6hdNeOp8bKyFKjAtadGNE64GviGqWHdNF5owOP52yrp/dzvxIo62HD9f02ghsZNmshW/t4Ak
+	+nsBOxZmbOJuUKFxqgrkMdR1r7XdqYOKs7wJwyHVsXZvCWhYLjEG+sqgYTYVVUs1Q
+X-Gm-Gg: ATEYQzwDvkpPE5QGuTvdaT+nMsQ80G1Rkjhgg9gJPBzqVxAGkPDEXHztTplCzmw/wUo
+	BdH0kFfQ8HOTr6HVnR1Kk8GL8Bq47CUNepHeNr/KCSMYjoI/IyJuVREfsknDGGgo47oEw0C8TWO
+	P0o00krjmpDkCpwZdOJHXloir75Q0EcS2LhIR/uMEmBErpK412K2nFEwYYBYcKJHlHeIYqsDln4
+	X2N1+eWJ+fsMXsBdyDpVt9J0oNjDjmSLr26OseilP7YScZb9RaBdo22KIINh3n8B84qHenmRs1J
+	dauvlj8MayuqcZl85IUcv4sPE1ZibgOy/vSt1MLq0NRJm2jPI7J7LhTmiLZFv8Uk7EWqWeQ8H+i
+	nc4C8xcD+Jm6YilQiFw1u3llQUEBaywGQAhznviIwyf4+pFFxCKcuFIU=
+X-Received: by 2002:a17:902:f60e:b0:2ae:4732:2859 with SMTP id d9443c01a7336-2ae6a9ed194mr65585985ad.3.1772731610591;
+        Thu, 05 Mar 2026 09:26:50 -0800 (PST)
+X-Received: by 2002:a17:902:f60e:b0:2ae:4732:2859 with SMTP id d9443c01a7336-2ae6a9ed194mr65585505ad.3.1772731609912;
+        Thu, 05 Mar 2026 09:26:49 -0800 (PST)
+Received: from [192.168.0.172] ([49.205.248.49])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae46500068sm148080625ad.52.2026.03.05.09.26.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Mar 2026 09:26:49 -0800 (PST)
+Message-ID: <1d2b55d9-42e3-4459-971b-e276a87fb843@oss.qualcomm.com>
+Date: Thu, 5 Mar 2026 22:56:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/7] media: iris: add context bank devices using
+ iommu-map
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Saravana Kannan <saravanak@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Stefan Schmidt <stefan.schmidt@linaro.org>,
+        Hans Verkuil <hverkuil@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vishnu Reddy <busanna.reddy@oss.qualcomm.com>,
+        Hans Verkuil <hverkuil+cisco@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+References: <20260227-kaanapali-iris-v2-0-850043ac3933@oss.qualcomm.com>
+ <20260227-kaanapali-iris-v2-4-850043ac3933@oss.qualcomm.com>
+ <rzi7qmzsofocwcqxhsqz3f3tl4ahqnwn34of6qcc54odpben5d@7okuqabxgdqh>
+ <e12da06d-cad5-4967-af07-64c7c6e540f4@oss.qualcomm.com>
+ <vi5v5bczg2wx2adfpr6ppqcad76oecitoyc7zd2i4lahla4buw@mqnppboxcyrs>
+ <6553cfcb-9399-4d17-a529-b07b421ed7e8@oss.qualcomm.com>
+ <mqyg7cebyahkrngvnxcrenkdd3dybpnkecago4lqonfwqzize7@yawbtcsli3vi>
+Content-Language: en-US
+From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+In-Reply-To: <mqyg7cebyahkrngvnxcrenkdd3dybpnkecago4lqonfwqzize7@yawbtcsli3vi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-verdin-imx95-upstream-frank-li-base-v1-6-823fad02def9@toradex.com>
-References: <20260305-verdin-imx95-upstream-frank-li-base-v1-0-823fad02def9@toradex.com>
-In-Reply-To: <20260305-verdin-imx95-upstream-frank-li-base-v1-0-823fad02def9@toradex.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, 
- Emanuele Ghidoli <emanuele.ghidoli@toradex.com>, 
- Francesco Dolcini <francesco.dolcini@toradex.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-X-Mailer: b4 0.13.0
-X-Rspamd-Queue-Id: 1F9C62162B1
+X-Proofpoint-GUID: l3FBh1E4w3SNXyj4nWDcvWNsTPGDWwjR
+X-Proofpoint-ORIG-GUID: l3FBh1E4w3SNXyj4nWDcvWNsTPGDWwjR
+X-Authority-Analysis: v=2.4 cv=GecaXAXL c=1 sm=1 tr=0 ts=69a9bcdb cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=KPiuay1jFzAquJblYynD6w==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=aqFQw3FEyG5UwdlagGoA:9 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDE0MiBTYWx0ZWRfXwqMbfnEf3wjR
+ 0dr9bqvwbl4JeQpqKz0VXBoCr6XFcMXg4mprfUT7gdY1ngwudkRlwAgul0bTpRoks0ut9sI1F9E
+ J2y91+7A3o+E7krsVRteE1IxbxE4Z5REdzYlwSf6VseRJIJe8Av+M9+aNxu61lxMflpBjCkLveW
+ Y/oDXnX53hpoCAeYb8WcjyGFrmSsip6MaGp49/Pd1Sj/Dl9a5GG6DQGSvWiZ5HYeVHu7tecjTvp
+ kngFEsy/pg76HN4xoQk9/aLNj6+Qd29VIQfjSOj+vPtL+ZDMpEJdfQOhsKb+bMEgMvDS5KONvsk
+ ituQFyAnrA1a+k7MLwJhi2YspidK9+ZMWhqoaMDR1aYtY6C64uDuP5tugXKafEoFXCcFKAIIobm
+ nUWxPl8ye0xGNq6TLgETUHkrq4qZQ0WsmjFxL6fBXGkGHmKMc3yTq71H6604YVO/kNI5dzXp/Nc
+ 59mcDw/qA13kfLxahRA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-05_05,2026-03-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 spamscore=0 suspectscore=0
+ clxscore=1015 lowpriorityscore=0 adultscore=0 malwarescore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050142
+X-Rspamd-Queue-Id: 7179C2162F4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271656-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-271657-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ernestvanhoecke@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NEQ_ENVFROM(0.00)[vikash.garodia@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,cisco];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TO_DN_SOME(0.00)[]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 
-Add support for the Verdin i.MX95 SoM mated with the Yavia carrier
-board.
+On 3/5/2026 7:51 PM, Dmitry Baryshkov wrote:
+> On Thu, Mar 05, 2026 at 06:19:52PM +0530, Vikash Garodia wrote:
+>>
+>> On 3/4/2026 3:55 AM, Dmitry Baryshkov wrote:
+>>> On Wed, Mar 04, 2026 at 12:16:50AM +0530, Vikash Garodia wrote:
+>>>>
+>>>> On 2/28/2026 1:50 AM, Dmitry Baryshkov wrote:
+>>>>> On Fri, Feb 27, 2026 at 07:41:20PM +0530, Vikash Garodia wrote:
+>>>>>> Introduce different context banks(CB) and the associated buffer region.
+>>>>>> Different stream IDs from VPU would be associated to one of these CB.
+>>>>>> Multiple CBs are needed to increase the IOVA for the video usecases like
+>>>>>> higher concurrent sessions.
+>>>>>>
+>>>>>> Co-developed-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+>>>>>> Signed-off-by: Vishnu Reddy <busanna.reddy@oss.qualcomm.com>
+>>>>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+>>>>>> ---
+>>>>>>     .../platform/qcom/iris/iris_platform_common.h      | 18 +++++++
+>>>>>>     drivers/media/platform/qcom/iris/iris_probe.c      | 60 ++++++++++++++++++++--
+>>>>>>     drivers/media/platform/qcom/iris/iris_resources.c  | 36 +++++++++++++
+>>>>>>     drivers/media/platform/qcom/iris/iris_resources.h  |  1 +
+>>>>>>     4 files changed, 111 insertions(+), 4 deletions(-)
+>>>>>>
+>>>>>> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>>>>>> index 5a489917580eb10022fdcb52f7321a915e8b239d..03c50d6e54853fca34d7d32f65d09eb80945fcdd 100644
+>>>>>> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+>>>>>> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+>>>>>> @@ -204,6 +204,22 @@ struct icc_vote_data {
+>>>>>>     	u32 fps;
+>>>>>>     };
+>>>>>> +enum iris_buffer_region {
+>>>>>> +	IRIS_BITSTREAM_REGION		= BIT(0),
+>>>>>> +	IRIS_NON_PIXEL_REGION		= BIT(1),
+>>>>>> +	IRIS_PIXEL_REGION		= BIT(2),
+>>>>>> +	IRIS_SECURE_BITSTREAM_REGION	= BIT(3),
+>>>>>> +	IRIS_SECURE_NON_PIXEL_REGION	= BIT(4),
+>>>>>> +	IRIS_SECURE_PIXEL_REGION	= BIT(5),
+>>>>>
+>>>>> Can a context bank belong to multiple regions at the same time?
+>>>>
+>>>> yes, they would.
+>>>
+>>> How? Each set of CBs is defined by a separate function in the DT. How
+>>> can CB belong to multiple regions? Could you please provide an example?
+>>
+>> SM8550 would have same stream id for VPU hardwares (tensilica and vcodec)
+>> accessing bitstream and non pixel regions. Thereby non_pixel and bitstream
+>> regions would map to one CB.
+> 
+> In my opinion it means only one thing: you will have two CBs (one for
+> non_pixel and one for bitstream) having the same SIDs. An alternative
+> would be to define fallback rules (if CB foo doesn't exist, use CB bar).
+> 
+>> While kaanapali would have different stream id for tensilica accessing non
+>> pixel region and vcodec accessing bitstream region, thereby having different
+>> CB.
+>>
+>>>
+>>>>
+>>>>>
+>>>>>> +};
+>>>>>> +
+>>>>>> +struct iris_context_bank {
+>>>>>> +	struct device *dev;
+>>>>>
+>>>>> Separate data and the actual device. Define a wrapper around struct
+>>>>> device for the actual runtime usage.
+>>>>
+>>>> we still have to store the list of dynamically created device. Name can be
+>>>> used to fetch the device from the list, i think the existing approach is
+>>>> simpler ?
+>>>
+>>> You don't need a list. You have an array of the size, which is known and
+>>> fixed. You have at most 9 functions, which means less than 9 devices.
+>>>
+>>
+>> as mentioned above, its not the same for all platforms to have one to one
+>> mapping between CBs and buffer region. Thereby indexing based on array would
+>> be an issue here
+>> It would end up something like this, considering [dev region] array,
+>>
+>> SM8550
+>> non_pixel_device  non_pixel_region
+>> non_pixel_device  bitstream_region
+>> pixel_device      pixel_region
+>>
+>> kaanapali
+>> non_pixel_device  non_pixel_region
+>> bitstream_device  bitstream_region
+>> pixel_device      pixel_region
+> 
+> I'm sorry, I'm not sure I follow here. Could you please explain? Maybe
+> by explititly mapping DT function values to iris_buffer_region values?
+> 
 
-Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-Link: https://www.toradex.com/products/carrier-board/yavia
-Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
----
- arch/arm64/boot/dts/freescale/Makefile             |   2 +
- .../dts/freescale/imx95-verdin-nonwifi-yavia.dts   |  21 ++
- .../boot/dts/freescale/imx95-verdin-wifi-yavia.dts |  21 ++
- .../boot/dts/freescale/imx95-verdin-yavia.dtsi     | 217 +++++++++++++++++++++
- 4 files changed, 261 insertions(+)
+Kaanapali
+IRIS_BITSTREAM IRIS_BITSTREAM_REGION
+IRIS_NON_PIXEL IRIS_NON_PIXEL_REGION	
+IRIS_PIXEL     IRIS_PIXEL_REGION
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index e3c34f8f40cd..48e5711526d6 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -456,10 +456,12 @@ dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-ivy.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-mallow.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-ivy.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-mallow.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx95-verdin-wifi-yavia.dtb
- 
- imx95-15x15-evk-pcie0-ep-dtbs = imx95-15x15-evk.dtb imx-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_MXC) += imx95-15x15-evk-pcie0-ep.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx95-verdin-nonwifi-yavia.dts b/arch/arm64/boot/dts/freescale/imx95-verdin-nonwifi-yavia.dts
-new file mode 100644
-index 000000000000..4f7b4e3a518b
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-verdin-nonwifi-yavia.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx95-verdin.dtsi"
-+#include "imx95-verdin-nonwifi.dtsi"
-+#include "imx95-verdin-yavia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX95 on Yavia Board";
-+	compatible = "toradex,verdin-imx95-nonwifi-yavia",
-+		     "toradex,verdin-imx95-nonwifi",
-+		     "toradex,verdin-imx95",
-+		     "fsl,imx95";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx95-verdin-wifi-yavia.dts b/arch/arm64/boot/dts/freescale/imx95-verdin-wifi-yavia.dts
-new file mode 100644
-index 000000000000..43d35b770db2
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-verdin-wifi-yavia.dts
-@@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx95-verdin.dtsi"
-+#include "imx95-verdin-wifi.dtsi"
-+#include "imx95-verdin-yavia.dtsi"
-+
-+/ {
-+	model = "Toradex Verdin iMX95 WB on Yavia Board";
-+	compatible = "toradex,verdin-imx95-wifi-yavia",
-+		     "toradex,verdin-imx95-wifi",
-+		     "toradex,verdin-imx95",
-+		     "fsl,imx95";
-+};
-diff --git a/arch/arm64/boot/dts/freescale/imx95-verdin-yavia.dtsi b/arch/arm64/boot/dts/freescale/imx95-verdin-yavia.dtsi
-new file mode 100644
-index 000000000000..6403ae584e70
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx95-verdin-yavia.dtsi
-@@ -0,0 +1,217 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) Toradex
-+ *
-+ * Common dtsi for Verdin iMX95 SoM on Yavia carrier board
-+ *
-+ * https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
-+ * https://www.toradex.com/products/carrier-board/yavia
-+ */
-+
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	aliases {
-+		eeprom1 = &carrier_eeprom;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_qspi1_clk_gpio>,
-+			    <&pinctrl_qspi1_cs_gpio>,
-+			    <&pinctrl_qspi1_io0_gpio>,
-+			    <&pinctrl_qspi1_io1_gpio>,
-+			    <&pinctrl_qspi1_io2_gpio>,
-+			    <&pinctrl_qspi1_io3_gpio>;
-+
-+		/* SODIMM 52 - LD1_RED */
-+		led-0 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio5 9 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 54 - LD1_GREEN */
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio5 10 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 56 - LD1_BLUE */
-+		led-2 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <1>;
-+			gpios = <&gpio5 0 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 58 - LD2_RED */
-+		led-3 {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 60 - LD2_GREEN */
-+		led-4 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio5 2 GPIO_ACTIVE_HIGH>;
-+		};
-+		/* SODIMM 62 - LD2_BLUE */
-+		led-5 {
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_DEBUG;
-+			function-enumerator = <2>;
-+			gpios = <&gpio5 3 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+};
-+
-+/* Verdin ADC_1, ADC_2, ADC_3 and ADC_4 */
-+&adc1 {
-+	status = "okay";
-+};
-+
-+/* Verdin ETH_1 (On-module PHY) */
-+&enetc_port0 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_1 */
-+&flexcan1 {
-+	status = "okay";
-+};
-+
-+/* Verdin CAN_2 */
-+&flexcan2 {
-+	status = "okay";
-+};
-+
-+&gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ctrl_sleep_moci>;
-+};
-+
-+&gpio2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio1>,
-+		    <&pinctrl_gpio2>,
-+		    <&pinctrl_gpio3>;
-+};
-+
-+&gpio3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio6>;
-+};
-+
-+&gpio4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio5>;
-+};
-+
-+&gpio5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_gpio4>,
-+		    <&pinctrl_qspi1_cs2_gpio>,
-+		    <&pinctrl_qspi1_dqs_gpio>;
-+};
-+
-+/* Verdin I2C_3_HDMI */
-+&i3c2 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_2_DSI */
-+&lpi2c3 {
-+	status = "okay";
-+};
-+
-+/* Verdin I2C_1 */
-+&lpi2c4 {
-+	status = "okay";
-+
-+	temperature-sensor@4f {
-+		compatible = "ti,tmp75c";
-+		reg = <0x4f>;
-+	};
-+
-+	carrier_eeprom: eeprom@57 {
-+		compatible = "st,24c02", "atmel,24c02";
-+		reg = <0x57>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+/* Verdin I2C_4_CSI */
-+&lpi2c5 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_3, used as the Linux console */
-+&lpuart1 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_4 */
-+&lpuart2 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_1 */
-+&lpuart7 {
-+	status = "okay";
-+};
-+
-+/* Verdin UART_2 */
-+&lpuart8 {
-+	status = "okay";
-+};
-+
-+/* Verdin PCIE_1 */
-+&pcie0 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_1 */
-+&tpm4 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_2 */
-+&tpm5 {
-+	status = "okay";
-+};
-+
-+/* Verdin PWM_3_DSI */
-+&tpm6 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_1 */
-+&usb2 {
-+	status = "okay";
-+};
-+
-+/* Verdin USB_2 */
-+&usb3 {
-+	fsl,permanently-attached;
-+
-+	status = "okay";
-+};
-+
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+/* Verdin SD_1 */
-+&usdhc2 {
-+	status = "okay";
-+};
-+
-+/* Verdin CTRL_WAKE1_MICO# */
-+&verdin_gpio_keys {
-+	status = "okay";
-+};
+SM8550
+IRIS_NON_PIXEL IRIS_NON_PIXEL_REGION | IRIS_BITSTREAM_REGION
+IRIS_PIXEL     IRIS_PIXEL_REGION
 
--- 
-2.43.0
+>>
+>>
+>>>>
+>>>>>
+>>>>>> +	const char *name;
+>>>>>> +	const u32 f_id;
+>>>>>> +	const enum iris_buffer_region region;
+>>>>>> +};
+>>>>>> +
+>>>>>>     enum platform_pm_domain_type {
+>>>>>>     	IRIS_CTRL_POWER_DOMAIN,
+>>>>>>     	IRIS_HW_POWER_DOMAIN,
+>>>>>> @@ -246,6 +262,8 @@ struct iris_platform_data {
+>>>>>>     	u32 inst_fw_caps_enc_size;
+>>>>>>     	const struct tz_cp_config *tz_cp_config_data;
+>>>>>>     	u32 tz_cp_config_data_size;
+>>>>>> +	struct iris_context_bank *cb_data;
+>>>>>> +	u32 cb_data_size;
+>>>>>
+>>>>> Do they differ from platform to platform?
+>>>> Yes
+>>>>
+>>>>> Mark them as const, it should be data only.
+>>>>
+>>>> cb_data_size can be marked as const
+>>>
+>>> Why is cb_data non-const?
+>>
+>> dev is being updated once created dynamically.
+> 
+> That's a bad idea. Please make the platform description constant.
+> 
 
+I can give it a try to move CBs in core struct out of platform data and 
+have a buffer region based lookup array to fetch the device.
+
+Regards,
+Vikash
 
