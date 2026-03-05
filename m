@@ -1,199 +1,162 @@
-Return-Path: <devicetree+bounces-271707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271708-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IIEkA6fYqWlXGQEAu9opvQ
-	(envelope-from <devicetree+bounces-271707-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:25:27 +0100
+	id 6AMnOJnYqWlXGQEAu9opvQ
+	(envelope-from <devicetree+bounces-271708-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:25:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 164542177A5
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:25:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A57E217786
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 84532300A24C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:24:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E9761302337B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43EDE30DEA9;
-	Thu,  5 Mar 2026 19:23:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D84E3148D0;
+	Thu,  5 Mar 2026 19:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="FQ/tvoAE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+NAxxnl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073D430FC1E;
-	Thu,  5 Mar 2026 19:23:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1395F30FC1E
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:25:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772738638; cv=none; b=mi6pXXMbNVvTB6+Uii525WvOuvnKLZ435kZhytLk91qWAQSdv+X82/hBiQujomwtjcDvDBkaknopte46lQ933qlxPLS84mIGvkbK7kkQ65qkkh9rfPLoC1fpPrcQDrO3PnFDemE1LCN5BALRbxsGSb9W5o3aldXCmmrrOj6L4Hs=
+	t=1772738711; cv=none; b=Y29wYmIPnVaiL6kzPBe7/YZuFy1TBddeducTnDJzJ/OHSyx/RhQ7mwgrQzIm7wdH+ZdzDy+0VECEX3hEzBEQyJXAjxvO7afIECTiKUpv2WanA9vwdSwFvZ25xNjGwQ06RS7CBz/Kj4+RSWeA3vKQgoxBMvfjAKM2Rhx6LD+1K8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772738638; c=relaxed/simple;
-	bh=nvp719tYC967D+fO5wFgApFhr2z6APK2AIc9WPkJLNU=;
-	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
-	 Content-Type:Subject; b=OZirTTMDhxbnWg/30ueIf4CfT570Y25iA4ObGnpym9Ury4VTCNiGvtmd4klr79x2CbfrL7pXWBsYKUOADTl98zgmrOL4uDoEdQq9ySWCMuHjo6S6UZ52VV+LA6iGjCmWDHGeWVqNIPqeRQht7JLgKEqApCPLZN35xlLi9JTOLrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=FQ/tvoAE; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
-	:Date:subject:date:message-id:reply-to;
-	bh=T/6FQsMLnCGkibjJw9JyQAihdbLawYlk2aY7GuhBV/I=; b=FQ/tvoAE3+CW29cdkBlkTr+ymc
-	u+GZKHBdVaRp8zLyuciuoQad+jje36JbHkBjzMKldzouBa+MRr8HoApvDQqA+Cl8xzsU3l0MxWz9f
-	HU/zCz6c5n+qLIYAkobroWWRfecuD6W5ZSBtzEPmXgFdrLExYuR9vzu3zYXfsePDeV1Q=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:40032 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vyEIZ-0003Lc-Kv; Thu, 05 Mar 2026 14:23:52 -0500
-Date: Thu, 5 Mar 2026 14:23:50 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Hugo Villeneuve <hugo@hugovil.com>
-Cc: robin@protonic.nl, andy@kernel.org, geert@linux-m68k.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dmitry.torokhov@gmail.com, hvilleneuve@dimonoff.com,
- mkorpershoek@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, lee@kernel.org,
- alexander.sverdlin@gmail.com, marek.vasut@gmail.com, akurz@blala.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Message-Id: <20260305142350.fbc6e19c89215c3a7da2a6c0@hugovil.com>
-In-Reply-To: <20260305192101.2125660-1-hugo@hugovil.com>
-References: <20260305192101.2125660-1-hugo@hugovil.com>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772738711; c=relaxed/simple;
+	bh=j/R/iwET2wgzpAYTEu3h+q1rcTJ0HRFP4ocmUyG0R6g=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rQNHUx6fTn70vws3Vdk/ZnJ2eLPLiqWE8dY5OgZhL5KFp69i+4QmpaknsBf59SXPgO3HHu2IEpEeazcTeKNVDBwTjJkMCw1DpVUSIB7HNLbfc0bvyu/pgfdB074KdJFkoaayUOWQVCd23VMwtWRnrkHlcaS5+4r5vP5tL+z6Ks0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+NAxxnl; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4836e3288cdso56418135e9.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 11:25:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772738708; x=1773343508; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=udVO1surJnvY1exphvxwwJnv4iP2usXfpIsdzxZNz4A=;
+        b=J+NAxxnlgjq48lxFPzpirtMLIG+vjzJTYMU+xUccQooBxCe9NtKMyx2YAgNCEDnabH
+         OW4RHTEjkwGjTc6RPn9vaiLzqKfjiTtL2QRsHBn7lS/8yO/nimI+XMKcT7fZOuGHrY7V
+         1MnH3VHMze7ky77eJ6Gw4itNbFFWZArNlm3zV9Iv4LnGnWkTuOSPaqOc5y6O4UihoXz1
+         UeqS4aCf+rzg1ZA7x2hnR+O2+GlSZJhmuYOApOiwJu+DsXy5dkI5Wt7O6sy2eda7N4V4
+         szKi9aOnRZmQ4vxgeA4bNUDUFXwAOfbyFt9oVtCcJXOIDIDLF2UfjfPV6QbiB84fN6dB
+         u7BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772738708; x=1773343508;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=udVO1surJnvY1exphvxwwJnv4iP2usXfpIsdzxZNz4A=;
+        b=etCAIUKnIVOPl7TJIwoeJaafkhS+U6QMa1V5PAgOfjCgkbeoKuQ2HDhXcDNakLBjDi
+         kUxNd4eMHZ8j5gNLnorXDxblA7/b/5WPqh2IkazBDanOvwJpTL/CZGWBeIv7ONMfxVPH
+         lC1mSGtzAlvjWUUG2Apkz8AkoISlcesWjjnskFn7j4RSyYxxg9N0jjwfnSBxrzk18sQ9
+         rYyaSEXErNN/AtSZ+pcprgXJImU1cBVBDw77j7BeDOiVlS7NmKuKARpdUxN5ENKdjzJn
+         5klCBxb8R/D/+d8GgD+xvvGkcW8m76X1YP/ALN9kLwGQfiNEUd6B/0DtpGeG5533Pv8h
+         bi9w==
+X-Forwarded-Encrypted: i=1; AJvYcCVX08UmkZDogT63/5/3CUY0mcy5Z8bXASQFJkI2UfwuW9W7gMLAdxoCuQ2YlkC6pNFACAeYGiTctxI4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxGAYUGlrN7Aqjgg7klL2ohICkb2mp7T2uOl36rBK99YpSIxF1
+	aR+Lav4x7ZoVTJ18SsSYCgyORPfX8B2XT7uTxo/LbvXDCbPRN6Fa6LD3
+X-Gm-Gg: ATEYQzxurfWmS9v6lzxPW9J8UcastSkiQt4AOs2MbZOlYtuBlnwJdU6mlgnSLmPlRdk
+	Yd2u/wXbAYfrJBXntTf1FXuL1YKiKSRN6V0kMr5G48y3eHnFpDO06bREFmmc8DWSxRC5hkwrhZV
+	s8qhyY9sG8kBGRm13IgDWmvAM2zzxFHWATk/rTtlvhEd1YLC59aJcom21RxVCIUQDhwkCdbHNlE
+	YNaCY1QCn6EfVjrquj74kyT9xND+rVJELiplMosfwgPf/1s72ESVVmvFTai1wTCmbIm+MXfzP5+
+	QVsz56lDEBzRA1HxvjOknjedMLylIv14Mpf+0V6aOxj8jLkMC3CipboHhrUyHaucD4QhlFQDDH+
+	GMzltCMy3bhrtsj0ZZKQA4sZjOHGM1nGXHmiyuXIPVoFuOQkv8pPiLvggdeDfu4rTJjCcl28HDm
+	fGaXGQYEQ1YoYV11Ah6p4=
+X-Received: by 2002:a05:600c:8b6c:b0:483:29f4:26b3 with SMTP id 5b1f17b1804b1-4851ee7b559mr62874405e9.1.1772738708010;
+        Thu, 05 Mar 2026 11:25:08 -0800 (PST)
+Received: from luca-vm.lan ([154.61.61.58])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4852378dc51sm7755285e9.1.2026.03.05.11.25.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 11:25:07 -0800 (PST)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: display: panel: Document the rotation property
+Date: Thu,  5 Mar 2026 19:24:04 +0000
+Message-ID: <20260305192405.111152-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -3.3 NICE_REPLY_A Looks like a legit reply (A)
-Subject: Re: [PATCH v4 0/4] input: add GPIO-based charlieplex keypad
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: 164542177A5
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4A57E217786
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271707-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[gmail.com,edgeble.ai,linaro.org,linux.intel.com,kernel.org,suse.de,ffwll.ch,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de,vger.kernel.org,lists.infradead.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271708-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[hugovil.com:+];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[dimonoff.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,hugovil.com:dkim,hugovil.com:email,hugovil.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Thu,  5 Mar 2026 14:20:46 -0500
-Hugo Villeneuve <hugo@hugovil.com> wrote:
+The Jadard jd9365da-h3 driver reads and reports to DRM the orientation
+property from panel-common. Document it.
 
-> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> 
-> Hello,
-> this patch series add a new GPIO charlieplex keypad driver.
-> 
-> The first two patches simply commonize two properties that are present in
-> a few bindings, so that the actual patches for the charlieplex keypad driver
-> can reuse them instead of also redefining them.
-> 
-> I have tested the driver on a custom board with a Solidrun RZ/G2LC SOM
-> with three charlieplex keyboards, all connected thru a single PCAL6416 I2C GPIO
-> expander.
-> 
-> Link: [v1] https://lore.kernel.org/all/20260203155023.536103-1-hugo@hugovil.com/
-> Link: [v2] https://lore.kernel.org/all/20260213171431.2228814-1-hugo@hugovil.com/
-> Link: [v3] https://lore.kernel.org/all/20260225155409.612478-1-hugo@hugovil.com/
-> 
-> Changes for v4:
-> - Fix indentation in comments (Andy)
-> - Add missing includes (Andy)
-> - Remove OF dependency (Andy/Dmitry)
-> - Uniformize return code variables to "err" (Andy/Dmitry)
-> - Change signed iterator to unsigned and move within loop (Andy)
-> - Remove unused platform_set_drvdata() (Andy)
-> - Fixed typo in cover letter PCAL6416 (Geert)
-> - Changed name in bindings example (Geert)
-> - Added pull resistors to bindings doc and example (Geert)
-> - Add debounce-delay-ms common property
-> - Add settling-time-us common property
+Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+---
+ .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml   | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Please ignore the last two lines that were already mentioned for V3.
-
-Hugo.
-
-
-> 
-> Changes for v3:
-> - Add ASCII diagram in bindings, and reference to it in example
-> - Reorder properties alphabetically
-> - Add patch to define common input settling-time-us property
-> - Add patch to define common input debounce-delay-ms property
-> 
-> Changes for v2:
-> - Fix yamllint error for example
-> - Remove unused debug variable (nkeys)
-> - Remove support for custom linux,no-autorepeat DT property
-> - Remove support for custom gpio-activelow DT property
-> 
-> Thank you.
-> 
-> Hugo Villeneuve (4):
->   dt-bindings: input: add debounce-delay-ms common property
->   dt-bindings: input: add settling-time-us common property
->   dt-bindings: input: add GPIO charlieplex keypad
->   Input: charlieplex_keypad: add GPIO charlieplex keypad
-> 
->  .../bindings/auxdisplay/holtek,ht16k33.yaml   |   5 +-
->  .../bindings/input/cirrus,ep9307-keypad.yaml  |   7 +-
->  .../input/gpio-charlieplex-keypad.yaml        | 108 +++++++++
->  .../bindings/input/gpio-matrix-keypad.yaml    |   5 +-
->  .../devicetree/bindings/input/input.yaml      |  16 ++
->  .../input/mediatek,mt6779-keypad.yaml         |   1 +
->  .../devicetree/bindings/mfd/fsl,mc13xxx.yaml  |   2 -
->  MAINTAINERS                                   |   7 +
->  drivers/input/keyboard/Kconfig                |  14 ++
->  drivers/input/keyboard/Makefile               |   1 +
->  drivers/input/keyboard/charlieplex_keypad.c   | 214 ++++++++++++++++++
->  11 files changed, 368 insertions(+), 12 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
->  create mode 100644 drivers/input/keyboard/charlieplex_keypad.c
-> 
-> 
-> base-commit: 3bf5404fc93825ddde89992acad095a297ed9a31
-> -- 
-> 2.47.3
-> 
-> 
-
-
+diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+index b8783eba3ddc..179401ce3aeb 100644
+--- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
++++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+@@ -36,6 +36,8 @@ properties:
+ 
+   backlight: true
+ 
++  rotation: true
++
+   port: true
+ 
+ required:
 -- 
-Hugo Villeneuve
+2.43.0
+
 
