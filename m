@@ -1,425 +1,352 @@
-Return-Path: <devicetree+bounces-271705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271706-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCjrAx3aqWneGQEAu9opvQ
-	(envelope-from <devicetree+bounces-271705-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:31:41 +0100
+	id 4Ku8NNTXqWl5GAEAu9opvQ
+	(envelope-from <devicetree+bounces-271706-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:21:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BC402178FB
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:31:40 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78DEB217695
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:21:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C5A873046F32
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:21:35 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 98B04303052B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:21:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CC1439C653;
-	Thu,  5 Mar 2026 19:21:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 376DF3E3DBA;
+	Thu,  5 Mar 2026 19:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="LtbZ9HE8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K6Ohvbvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F57830F816;
-	Thu,  5 Mar 2026 19:21:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11E37308F0A;
+	Thu,  5 Mar 2026 19:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772738480; cv=none; b=lcBkscUcHFMMUYXH8FrCkR7crXO4jJOQkNM4e/eNtqAiv5jcur0BvmjVYFDieGcwalVuxhACPbPmrQzko3LL+hzJEJ/tKSuChAaPeZG5sD122j+XBsDYsmrF8TiV+RBhbkfCg1OWM+5Kyd5aW2Sj3qXQXGSENOdNlhPqKyvIzuQ=
+	t=1772738485; cv=none; b=nwtjHSlVkiLzOuIQcP3uyVstgrB497KJLAQrrlsUfDm4fGZXasNOMv1XoLhAZdqr/5oUBKDyS8NTTi4tiX+ak8K26m1zHvOi7itmB8nEjvyE6Pk0QDUad3IkRu6PFbFGlsPIezrNdzBT6hQdCn7OLFT7eblQA6bl0GwQ2YvWkwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772738480; c=relaxed/simple;
-	bh=/6fCnV1Pxd1Rm9tt0TRXoPAHyGqnhffsmQSgtJjUarc=;
-	h=From:To:Cc:Date:Message-ID:In-Reply-To:References:MIME-Version:
-	 Subject; b=CGFnKcAJFO00phRXpLylS3mqPrPraT4NbkDwJ9IDfGf8LsWNGIaDW3p9U+IOVrnAL4sQofqRXqEb2PLHemqLQ8NQYQyeSHPwGVR4AHGGiHQWMZspQ3bM0JopC37piBgTgvQgpPNBcumIsI4QKdOv3WGVIZO1jvsKKLO7/TBmrj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=LtbZ9HE8; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
-	:From:subject:date:message-id:reply-to;
-	bh=WlfBZBfy+QU0L5O0GfwIiyS7VHoS5h2DdaD1PoGMWjQ=; b=LtbZ9HE8PfLmg+8ZtFQJ7gKPl6
-	oDCcuFVArfuggzBHNPxs+reOS5f+lnHjpT5E3r+CM/yoBdGZeOoUNhLuY8Eyka8OnK6yIs3zdBxCT
-	ZE4vDm8jeU6HhzwL+mI0jNU9olHRlNrzynyCJeAOWTajCBkqGBK4A9j7oCjSyk5uLcCQ=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:42592 helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.92)
-	(envelope-from <hugo@hugovil.com>)
-	id 1vyEG1-0002na-W4; Thu, 05 Mar 2026 14:21:15 -0500
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: robin@protonic.nl,
-	andy@kernel.org,
-	geert@linux-m68k.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dmitry.torokhov@gmail.com,
-	hvilleneuve@dimonoff.com,
-	mkorpershoek@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	lee@kernel.org,
-	alexander.sverdlin@gmail.com,
-	marek.vasut@gmail.com,
-	akurz@blala.de
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	hugo@hugovil.com
-Date: Thu,  5 Mar 2026 14:20:50 -0500
-Message-ID: <20260305192101.2125660-5-hugo@hugovil.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260305192101.2125660-1-hugo@hugovil.com>
-References: <20260305192101.2125660-1-hugo@hugovil.com>
+	s=arc-20240116; t=1772738485; c=relaxed/simple;
+	bh=ZvZf9oMArKx4NsbpQdDg8H/ozTDCkeCO/N3r+LjJGTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=F4lAB0iXpYBDmjVQU17/tC2t8CX/6ZGfTak30iCoqBvevi18rZpqbnJlxM0KEpiRjVUcZtN7qOCeRpfQdwfGNcTaZyk/IcXsMkZy1xfYzwAQ0bytBlDt7ujpMoyg0iCQR+KScC/sWBAzIFuStv6qV5Od79Gte+Wu6oniX1X/a3Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K6Ohvbvh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8908C2BC9E;
+	Thu,  5 Mar 2026 19:21:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772738484;
+	bh=ZvZf9oMArKx4NsbpQdDg8H/ozTDCkeCO/N3r+LjJGTI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=K6OhvbvhrvUUnyvzm7ThziiqZrLqP51Fc282xoDYAYUTtQaagTtpGS21UWLGuDzUa
+	 xwmOENV93sUAOGQmwlK1A0fzmQnA38+OvmOHB3/voE4rEGrESvMbNpHrFKwZN7TFqr
+	 HQUFEb0xfA3jTdfXMBDIrlTXkLwi60m4kUzK6tgKBkaTjyVzTNqv719EcSaCQxxR8i
+	 yH4L55UOxRqw1D329LV2CaIgH0P9x3Wn7w4QCPAPG6JKOEQzvuLv9+igNsB21tk2sf
+	 sySQw8sN3dxYTSCmONwmt4oLLBPHVzbf4TUc421BE0J2//mAJ+H8G9xgAQQQHgY1Xk
+	 PdCppAh32RrcQ==
+Date: Thu, 5 Mar 2026 19:21:13 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+Cc: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+ <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 3/4] iio: adc: ad4691: add triggered buffer support
+Message-ID: <20260305192113.5ea46240@jic23-huawei>
+In-Reply-To: <20260305-ad4692-multichannel-sar-adc-driver-v1-3-336229a8dcc7@analog.com>
+References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
+	<20260305-ad4692-multichannel-sar-adc-driver-v1-3-336229a8dcc7@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 70.80.174.168
-X-SA-Exim-Mail-From: hugo@hugovil.com
-X-Spam-Level: 
-X-Spam-Report: 
-	*  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
-	*      [URIs: perches.com]
-	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Subject: [PATCH v4 4/4] Input: charlieplex_keypad: add GPIO charlieplex keypad
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
-X-Rspamd-Queue-Id: 5BC402178FB
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 78DEB217695
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [10.34 / 15.00];
-	URIBL_BLACK(7.50)[perches.com:email];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271706-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	TAGGED_FROM(0.00)[bounces-271705-lists,devicetree=lfdr.de];
-	R_DKIM_ALLOW(0.00)[hugovil.com:s=x];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[hugovil.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de];
-	DKIM_TRACE(0.00)[hugovil.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[analog.com,metafoo.de,baylibre.com,kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.982];
-	R_SPF_ALLOW(0.00)[+ip4:172.105.105.114:c];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	ARC_ALLOW(0.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[hugovil.com:dkim,hugovil.com:mid,mosaic-industries.com:url,perches.com:email,canonical.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,dimonoff.com:email]
-X-Rspamd-Action: add header
-X-Spam: Yes
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,analog.com:email]
+X-Rspamd-Action: no action
 
-From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+On Thu, 05 Mar 2026 14:23:29 +0200
+Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org> wrote:
 
-Add support for GPIO-based charlieplex keypad, allowing to control
-N^2-N keys using N GPIO lines.
+> From: Radu Sabau <radu.sabau@analog.com>
+> 
+> Add buffered capture support using the IIO triggered buffer framework.
+> 
+> For CNV Clock, CNV Burst, Autonomous and SPI Burst modes the GP0 pin
+> is configured as DATA_READY output and an interrupt is registered on
+> its falling edge. Each interrupt fires the trigger, which reads
+> accumulated results from the internal accumulator registers via regmap.
+> 
+> For Manual Mode (pipelined SPI protocol) there is no DATA_READY
+> signal, so an hrtimer-based IIO trigger is used instead. The timer
+> period is derived from the requested sampling frequency and validated
+> against the minimum SPI transfer time for the active channel count.
 
-Reuse matrix keypad keymap to simplify, even if there is no concept
-of rows and columns in this type of keyboard.
+This needs an explanation of why you can't just use a normal hrtimer trigger.
+Those always run the risk of being set too fast, but we normally don't care
+about that corner case. We don't want to have the equivalent code in every
+driver.
 
-Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
----
- MAINTAINERS                                 |   7 +
- drivers/input/keyboard/Kconfig              |  14 ++
- drivers/input/keyboard/Makefile             |   1 +
- drivers/input/keyboard/charlieplex_keypad.c | 214 ++++++++++++++++++++
- 4 files changed, 236 insertions(+)
- create mode 100644 drivers/input/keyboard/charlieplex_keypad.c
+> The trigger handler walks the active scan mask issuing one 3-byte SPI
+> transfer per channel (selecting the next channel while reading the
+> previous result) and pushes samples to the IIO buffer.
+> 
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 9ed6d11a77466..0b2d71f32b400 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5765,6 +5765,13 @@ S:	Maintained
- F:	Documentation/hwmon/powerz.rst
- F:	drivers/hwmon/powerz.c
- 
-+CHARLIEPLEX KEYPAD DRIVER
-+M:	Hugo Villeneuve <hvilleneuve@dimonoff.com>
-+S:	Supported
-+W:	http://www.mosaic-industries.com/embedded-systems/microcontroller-projects/electronic-circuits/matrix-keypad-scan-decode
-+F:	Documentation/devicetree/bindings/input/gpio-charlieplex-keypad.yaml
-+F:	drivers/input/keyboard/charlieplex_keypad.c
-+
- CHECKPATCH
- M:	Andy Whitcroft <apw@canonical.com>
- M:	Joe Perches <joe@perches.com>
-diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
-index 2ff4fef322c24..ae54b4b7e2d8a 100644
---- a/drivers/input/keyboard/Kconfig
-+++ b/drivers/input/keyboard/Kconfig
-@@ -289,6 +289,20 @@ config KEYBOARD_MATRIX
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called matrix_keypad.
- 
-+config KEYBOARD_CHARLIEPLEX
-+	tristate "GPIO driven chearlieplex keypad support"
-+	depends on GPIOLIB || COMPILE_TEST
-+	select INPUT_MATRIXKMAP
-+	help
-+	  Enable support for GPIO driven charlieplex keypad. A charlieplex
-+	  keypad allows to use fewer GPIO lines to interface to key switches.
-+	  For example, an N lines charlieplex keypad can be used to interface
-+	  to N^2-N different key switches. However, this type of keypad
-+	  cannot detect more than one key press at a time.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called charlieplex_keypad.
-+
- config KEYBOARD_HIL_OLD
- 	tristate "HP HIL keyboard support (simple driver)"
- 	depends on GSC || HP300
-diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
-index 2d906e14f3e27..40b5cf5d374d2 100644
---- a/drivers/input/keyboard/Makefile
-+++ b/drivers/input/keyboard/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_KEYBOARD_LOCOMO)		+= locomokbd.o
- obj-$(CONFIG_KEYBOARD_LPC32XX)		+= lpc32xx-keys.o
- obj-$(CONFIG_KEYBOARD_MAPLE)		+= maple_keyb.o
- obj-$(CONFIG_KEYBOARD_MATRIX)		+= matrix_keypad.o
-+obj-$(CONFIG_KEYBOARD_CHARLIEPLEX)	+= charlieplex_keypad.o
- obj-$(CONFIG_KEYBOARD_MAX7359)		+= max7359_keypad.o
- obj-$(CONFIG_KEYBOARD_MAX7360)		+= max7360-keypad.o
- obj-$(CONFIG_KEYBOARD_MPR121)		+= mpr121_touchkey.o
-diff --git a/drivers/input/keyboard/charlieplex_keypad.c b/drivers/input/keyboard/charlieplex_keypad.c
-new file mode 100644
-index 0000000000000..53d6060e83fe9
---- /dev/null
-+++ b/drivers/input/keyboard/charlieplex_keypad.c
-@@ -0,0 +1,214 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * GPIO driven charlieplex keypad driver
-+ *
-+ * Copyright (c) 2025 Hugo Villeneuve <hvilleneuve@dimonoff.com>
-+ *
-+ * Based on matrix_keyboard.c
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/delay.h>
-+#include <linux/dev_printk.h>
-+#include <linux/device/devres.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/input.h>
-+#include <linux/input/matrix_keypad.h>
-+#include <linux/math.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/types.h>
-+
-+struct charlieplex_keypad {
-+	struct input_dev *input_dev;
-+	struct gpio_descs *line_gpios;
-+	unsigned int nlines;
-+	unsigned int settling_time_us;
-+	unsigned int debounce_threshold;
-+	unsigned int debounce_count;
-+	int debounce_code;
-+	int current_code;
-+};
-+
-+static void charlieplex_keypad_report_key(struct input_dev *input)
-+{
-+	struct charlieplex_keypad *keypad = input_get_drvdata(input);
-+	const unsigned short *keycodes = input->keycode;
-+
-+	if (keypad->current_code > 0) {
-+		input_event(input, EV_MSC, MSC_SCAN, keypad->current_code);
-+		input_report_key(input, keycodes[keypad->current_code], 0);
-+	}
-+
-+	if (keypad->debounce_code) {
-+		input_event(input, EV_MSC, MSC_SCAN, keypad->debounce_code);
-+		input_report_key(input, keycodes[keypad->debounce_code], 1);
-+	}
-+
-+	input_sync(input);
-+	keypad->current_code = keypad->debounce_code;
-+}
-+
-+static void charlieplex_keypad_check_switch_change(struct input_dev *input,
-+						   int code)
-+{
-+	struct charlieplex_keypad *keypad = input_get_drvdata(input);
-+
-+	if (code != keypad->debounce_code) {
-+		keypad->debounce_count = 0;
-+		keypad->debounce_code = code;
-+	} else if (keypad->debounce_count < keypad->debounce_threshold) {
-+		keypad->debounce_count++;
-+
-+		if (keypad->debounce_count >= keypad->debounce_threshold &&
-+		    keypad->debounce_code != keypad->current_code)
-+			charlieplex_keypad_report_key(input);
-+	}
-+}
-+
-+static void charlieplex_keypad_poll(struct input_dev *input)
-+{
-+	struct charlieplex_keypad *keypad = input_get_drvdata(input);
-+	int oline;
-+	int code;
-+
-+	for (code = 0, oline = 0; oline < keypad->nlines; oline++) {
-+		DECLARE_BITMAP(values, MATRIX_MAX_ROWS);
-+		int iline;
-+		int err;
-+
-+		/* Activate only one line as output at a time. */
-+		gpiod_direction_output(keypad->line_gpios->desc[oline], 1);
-+
-+		if (keypad->settling_time_us)
-+			fsleep(keypad->settling_time_us);
-+
-+		/* Read input on all other lines. */
-+		err = gpiod_get_array_value_cansleep(keypad->line_gpios->ndescs,
-+						     keypad->line_gpios->desc,
-+						     keypad->line_gpios->info, values);
-+		if (err)
-+			return;
-+
-+		for (iline = 0; iline < keypad->nlines; iline++) {
-+			if (iline == oline)
-+				continue; /* Do not read active output line. */
-+
-+			/* Check if GPIO is asserted. */
-+			if (test_bit(iline, values)) {
-+				code = MATRIX_SCAN_CODE(oline, iline,
-+							get_count_order(keypad->nlines));
-+				/*
-+				 * Exit loop immediately since we cannot detect
-+				 * more than one key press at a time.
-+				 */
-+				break;
-+			}
-+		}
-+
-+		gpiod_direction_input(keypad->line_gpios->desc[oline]);
-+
-+		if (code)
-+			break;
-+	}
-+
-+	charlieplex_keypad_check_switch_change(input, code);
-+}
-+
-+static int charlieplex_keypad_init_gpio(struct platform_device *pdev,
-+					struct charlieplex_keypad *keypad)
-+{
-+	keypad->line_gpios = devm_gpiod_get_array(&pdev->dev, "line", GPIOD_IN);
-+	if (IS_ERR(keypad->line_gpios))
-+		return PTR_ERR(keypad->line_gpios);
-+
-+	keypad->nlines = keypad->line_gpios->ndescs;
-+
-+	if (keypad->nlines > MATRIX_MAX_ROWS)
-+		return -EINVAL;
-+
-+	for (unsigned int i = 0; i < keypad->nlines; i++)
-+		gpiod_set_consumer_name(keypad->line_gpios->desc[i], "charlieplex_kbd_line");
-+
-+	return 0;
-+}
-+
-+static int charlieplex_keypad_probe(struct platform_device *pdev)
-+{
-+	struct charlieplex_keypad *keypad;
-+	unsigned int debounce_interval_ms;
-+	unsigned int poll_interval_ms;
-+	struct input_dev *input_dev;
-+	int err;
-+
-+	keypad = devm_kzalloc(&pdev->dev, sizeof(*keypad), GFP_KERNEL);
-+	if (!keypad)
-+		return -ENOMEM;
-+
-+	input_dev = devm_input_allocate_device(&pdev->dev);
-+	if (!input_dev)
-+		return -ENOMEM;
-+
-+	keypad->input_dev = input_dev;
-+
-+	device_property_read_u32(&pdev->dev, "poll-interval", &poll_interval_ms);
-+	device_property_read_u32(&pdev->dev, "debounce-delay-ms", &debounce_interval_ms);
-+	device_property_read_u32(&pdev->dev, "settling-time-us", &keypad->settling_time_us);
-+
-+	keypad->current_code = -1;
-+	keypad->debounce_code = -1;
-+	keypad->debounce_threshold = DIV_ROUND_UP(debounce_interval_ms, poll_interval_ms);
-+
-+	err = charlieplex_keypad_init_gpio(pdev, keypad);
-+	if (err)
-+		return err;
-+
-+	input_dev->name		= pdev->name;
-+	input_dev->id.bustype	= BUS_HOST;
-+
-+	err = matrix_keypad_build_keymap(NULL, NULL, keypad->nlines,
-+					 keypad->nlines, NULL, input_dev);
-+	if (err)
-+		dev_err_probe(&pdev->dev, -ENOMEM, "failed to build keymap\n");
-+
-+	if (device_property_read_bool(&pdev->dev, "autorepeat"))
-+		__set_bit(EV_REP, input_dev->evbit);
-+
-+	input_set_capability(input_dev, EV_MSC, MSC_SCAN);
-+
-+	err = input_setup_polling(input_dev, charlieplex_keypad_poll);
-+	if (err)
-+		dev_err_probe(&pdev->dev, err, "unable to set up polling\n");
-+
-+	input_set_poll_interval(input_dev, poll_interval_ms);
-+
-+	input_set_drvdata(input_dev, keypad);
-+
-+	err = input_register_device(keypad->input_dev);
-+	if (err)
-+		return err;
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id charlieplex_keypad_dt_match[] = {
-+	{ .compatible = "gpio-charlieplex-keypad" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, charlieplex_keypad_dt_match);
-+
-+static struct platform_driver charlieplex_keypad_driver = {
-+	.probe		= charlieplex_keypad_probe,
-+	.driver		= {
-+		.name	= "charlieplex-keypad",
-+		.of_match_table = charlieplex_keypad_dt_match,
-+	},
-+};
-+module_platform_driver(charlieplex_keypad_driver);
-+
-+MODULE_AUTHOR("Hugo Villeneuve <hvilleneuve@dimonoff.com>");
-+MODULE_DESCRIPTION("GPIO driven charlieplex keypad driver");
-+MODULE_LICENSE("GPL");
--- 
-2.47.3
+A few other comments inline.
+
+> diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
+> index dee8bc312d44..ab48f336e46c 100644
+> --- a/drivers/iio/adc/ad4691.c
+> +++ b/drivers/iio/adc/ad4691.c
+
+>  
+> @@ -287,6 +294,8 @@ struct ad4691_state {
+>  
+>  	struct regulator_bulk_data	regulators[AD4691_NUM_REGULATORS];
+>  
+> +	struct iio_trigger		*trig;
+> +
+>  	enum ad4691_adc_mode		adc_mode;
+>  
+>  	int				vref;
+> @@ -297,6 +306,8 @@ struct ad4691_state {
+>  	 */
+>  	struct mutex			lock;
+>  
+> +	/* hrtimer for MANUAL_MODE triggered buffer (non-offload) */
+> +	struct hrtimer			sampling_timer;
+>  	ktime_t				sampling_period;
+>  
+>  	/* DMA (thus cache coherency maintenance) may require the
+> @@ -306,6 +317,11 @@ struct ad4691_state {
+>  	 */
+>  	unsigned char rx_data[ALIGN(3, sizeof(s64)) + sizeof(s64)]	__aligned(IIO_DMA_MINALIGN);
+>  	unsigned char tx_data[ALIGN(3, sizeof(s64)) + sizeof(s64)]	__aligned(IIO_DMA_MINALIGN);
+> +	/* Scan buffer for triggered buffer push (one sample + timestamp) */
+> +	struct {
+> +		u32 val;
+> +		s64 ts __aligned(8);
+> +	} scan __aligned(IIO_DMA_MINALIGN); 
+
+Same question as earlier on whether we need more padding from aligning yet again.
+Maybe we do for this one, I haven't checked.
+
+
+>  };
+
+
+> +
+> +static irqreturn_t ad4691_irq(int irq, void *private)
+> +{
+> +	struct iio_dev *indio_dev = private;
+> +	struct ad4691_state *st = iio_priv(indio_dev);
+> +
+> +	/*
+> +	 * DATA_READY has asserted: stop conversions before reading so the
+> +	 * accumulator does not continue sampling while the trigger handler
+> +	 * processes the data. Then fire the IIO trigger to push the sample
+> +	 * to the buffer.
+> +	 *
+> +	 * In direct (read_raw) mode the buffer is not enabled; read_raw uses
+> +	 * a timed delay and stops conversions itself, so skip the trigger poll.
+> +	 */
+> +	ad4691_sampling_enable(st, false);
+> +
+> +	if (iio_buffer_enabled(indio_dev))
+
+How did we get here otherwise?
+
+> +		iio_trigger_poll(st->trig);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+> +
+> +static irqreturn_t ad4691_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct ad4691_state *st = iio_priv(indio_dev);
+> +	unsigned int val;
+> +	int ret, i;
+> +
+> +	mutex_lock(&st->lock);
+> +
+> +	if (st->adc_mode == AD4691_MANUAL_MODE) {
+> +		unsigned int prev_val;
+> +		int prev_chan = -1;
+> +
+> +		/*
+> +		 * MANUAL_MODE with CNV tied to CS: each transfer triggers a
+> +		 * conversion AND returns the previous conversion's result.
+> +		 * First transfer returns garbage, so we do N+1 transfers for
+> +		 * N channels.
+> +		 */
+> +		iio_for_each_active_channel(indio_dev, i) {
+> +			ret = ad4691_transfer(st, AD4691_ADC_CHAN(i), &val);
+> +			if (ret)
+> +				goto done;
+> +
+> +			/* Push previous channel's data (skip first - garbage) */
+> +			if (prev_chan >= 0) {
+> +				st->scan.val = prev_val;
+> +				iio_push_to_buffers_with_ts(indio_dev,
+> +					&st->scan, sizeof(st->scan),
+> +					iio_get_time_ns(indio_dev));
+
+We don't push one channel at a time... You need to build up a scan locally
+and push it in one go.
+
+> +			}
+> +			prev_val = val;
+> +			prev_chan = i;
+> +		}
+> +
+> +		/* Final NOOP transfer to get last channel's data */
+> +		ret = ad4691_transfer(st, AD4691_NOOP, &val);
+> +		if (ret)
+> +			goto done;
+> +
+> +		st->scan.val = val;
+> +		iio_push_to_buffers_with_ts(indio_dev, &st->scan, sizeof(st->scan),
+> +					    iio_get_time_ns(indio_dev));
+> +		goto done;
+> +	}
+> +
+> +	for (i = 0; i < st->chip->num_channels; i++) {
+> +		if (BIT(i) & *indio_dev->active_scan_mask) {
+> +			ret = regmap_read(st->regmap, AD4691_AVG_IN(i), &val);
+> +			if (ret)
+> +				goto done;
+> +
+> +			st->scan.val = val;
+> +			iio_push_to_buffers_with_ts(indio_dev, &st->scan, sizeof(st->scan),
+> +						    iio_get_time_ns(indio_dev));
+As above.
+
+> +		}
+> +	}
+> +
+> +	regmap_write(st->regmap, AD4691_STATE_RESET_REG, AD4691_STATE_RESET_ALL);
+> +
+> +	/* START next conversion. */
+> +	switch (st->adc_mode) {
+> +	case AD4691_CNV_CLOCK_MODE:
+> +	case AD4691_CNV_BURST_MODE:
+> +	case AD4691_AUTONOMOUS_MODE:
+> +	case AD4691_SPI_BURST_MODE:
+> +		ad4691_sampling_enable(st, true);
+> +		break;
+> +	case AD4691_MANUAL_MODE:
+> +	default:
+> +		break;
+> +	}
+> +
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	mutex_unlock(&st->lock);
+
+Why hold the lock over the notify done?  Having moved it up you can share the done label
+code block and this one.
+
+> +	return IRQ_HANDLED;
+> +done:
+> +	mutex_unlock(&st->lock);
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	return IRQ_HANDLED;
+> +}
+> +
+>  static const struct iio_info ad4691_info = {
+>  	.read_raw = &ad4691_read_raw,
+>  	.read_avail = &ad4691_read_avail,
+> @@ -1121,6 +1364,75 @@ static void ad4691_setup_channels(struct iio_dev *indio_dev,
+>  	indio_dev->num_channels = st->chip->num_channels;
+>  }
+>  
+> +static int ad4691_setup_triggered_buffer(struct iio_dev *indio_dev,
+> +					 struct ad4691_state *st)
+> +{
+> +	struct device *dev = &st->spi->dev;
+> +	int irq, ret;
+> +
+> +	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+> +					  indio_dev->name,
+> +					  iio_device_id(indio_dev));
+> +	if (!st->trig)
+> +		return dev_err_probe(dev, -ENOMEM,
+> +				     "Failed to allocate IIO trigger\n");
+> +
+> +	st->trig->ops = &ad4691_trigger_ops;
+> +	iio_trigger_set_drvdata(st->trig, st);
+> +
+> +	ret = devm_iio_trigger_register(dev, st->trig);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "IIO trigger register failed\n");
+> +
+> +	indio_dev->trig = iio_trigger_get(st->trig);
+> +
+> +	switch (st->adc_mode) {
+> +	case AD4691_CNV_CLOCK_MODE:
+> +	case AD4691_CNV_BURST_MODE:
+> +	case AD4691_AUTONOMOUS_MODE:
+> +	case AD4691_SPI_BURST_MODE:
+> +		/*
+> +		 * DATA_READY asserts at end-of-conversion (or when the
+> +		 * accumulator fills in AUTONOMOUS_MODE). The IRQ handler stops
+> +		 * conversions and fires the IIO trigger so the trigger handler
+> +		 * can read and push the sample to the buffer.
+> +		 */
+> +		irq = fwnode_irq_get_byname(dev_fwnode(dev), "DRDY");
+> +		if (irq <= 0)
+> +			return dev_err_probe(dev, irq ? irq : -ENOENT,
+> +					     "failed to get DRDY interrupt\n");
+> +
+> +		ret = devm_request_threaded_irq(dev, irq, NULL,
+> +						&ad4691_irq,
+> +						IRQF_ONESHOT | IRQF_TRIGGER_FALLING,
+Interrupt direction is a question for firmware. A driver should
+not be setting it. We have some historical bugs in this area that we can't
+fix because board maybe relying on the driver overriding but we don't want to
+introduce more of them!
+> +						indio_dev->name, indio_dev);
 
 
