@@ -1,136 +1,171 @@
-Return-Path: <devicetree+bounces-271750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271751-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AI3MI5wVqmnFKgEAu9opvQ
-	(envelope-from <devicetree+bounces-271750-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:45:32 +0100
+	id SCYHNX8WqmnFKgEAu9opvQ
+	(envelope-from <devicetree+bounces-271751-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:49:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF1C21975D
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:45:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 236612197DD
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 00:49:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D8066300E3C1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:45:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 284F2304019D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 23:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F0D369209;
-	Thu,  5 Mar 2026 23:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D399F369216;
+	Thu,  5 Mar 2026 23:47:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c1AFspK8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WQNy1YGO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C803537D2;
-	Thu,  5 Mar 2026 23:45:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7DE7310763
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 23:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772754329; cv=none; b=s6mnFdzDuz47F/yeudxvp1oubXpllZycwaa83q8oghtAkzDjL9/ax9GG+wb921BNYviQLevvcFfVF7gDlgKaslv967D9iLyLprhdKlW80V4A1lmOH5amOJ2EGkPJ+RWtzmYdbO0B7yO8XLE4tr4ZLMF+Rt7spSQ8PGgmZbuiKmg=
+	t=1772754457; cv=none; b=Jcu+p52LXjwdJXSeOhSmlJR/54/HTqDm6M/YfGlFv7G0lDrRykDT3uFRMFLVeY4KNydTW7AQXtt023G+bxdoDeDrPOXSrTCO3pgIw31vaVwKC/ImHvr+KsqTPgWTk1IcNWdsr212e5y90bR7nW8Ay8UxkAkWsDqxYO8IqUpsI7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772754329; c=relaxed/simple;
-	bh=8Gida/5KmXiIal+WTdJpBd5LsJd7XHfAR3ah2xYSoPk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P6GaJOuiDlgRJlG9iSBZQxMXI4D9SiTdLukax2kaH6oM920hVIIJs6AYpoQg+Elhe3K7lY161c09MIfnNv7D88hSkMLjlths/6B/79YymqalffwzNRl/iXX7UfXCE4+n8NQUbPVAu9v/gha38rW+G2sVIp4GrS4VYD20GN+sDAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c1AFspK8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37BB9C116C6;
-	Thu,  5 Mar 2026 23:45:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772754329;
-	bh=8Gida/5KmXiIal+WTdJpBd5LsJd7XHfAR3ah2xYSoPk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c1AFspK8dTr4bH79JK6ZjhB39ddUisVOvtv4vT3/0bbOeckpUm3MuP2a9vqWj+JTn
-	 opPgn4D1T7ArFlnRURcn1jbh2wKxfgVG6tXjmXG6VzXKBFKSy+PdvxZPmbVUUPW4bt
-	 rgAai555+pXL/M0Vtr6/M+zKRAExeeR9aHYGQuAK62P80pQt8d+Y+OTf0Sjihc8cz8
-	 kzlAsC922HGr0D20++mNYhfe+JjyjZNWYHEy/CNckMBVchmoXIIPJxMjIjJq0PaD+B
-	 8zAH1ayuipAY4dbLut6CruAQ7i5vvgpyaupfyiniNRR1TtNeR5UGVeGBD+3RzjdOT6
-	 AdFHWWtpj9sTw==
-Date: Thu, 5 Mar 2026 17:45:28 -0600
-From: Rob Herring <robh@kernel.org>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: gpio: gpio-delay: Use Alexander's email
-Message-ID: <20260305234528.GA796613-robh@kernel.org>
-References: <20260212110905.52842-2-krzysztof.kozlowski@oss.qualcomm.com>
- <CAMRc=Me14BeYBgy5_bNk+2riQzGhfTu_5nQhU1R8sXMbO5s8TQ@mail.gmail.com>
+	s=arc-20240116; t=1772754457; c=relaxed/simple;
+	bh=7uHrOrdZ5KHepAEYUTDsM0EnVX+c6J7LoR0QeJ1n0N4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=cFaECSn1tYdQyIBtEH0UnaH+t2gtvumIAGYKpOd2KBmB8VBFZ7JTscrHWisjc4mP0D4YUSWG/h3RYGskz4SD1OQI+9FcSjsWKW9+/FSZTK7QFaf1v0n9SuWUTX/QNdYMzY+UEmqqn5e8wC3vWHqjOeWUfY8jArdYeNEe42d6TqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WQNy1YGO; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2ae41544dcfso62737655ad.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 15:47:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772754456; x=1773359256; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zcZpnrWcDjcweOn1Um75L9TOaVFcEi5KqxXQxmAOFC8=;
+        b=WQNy1YGOZogMaXCJmBEPmcvwSIdkXLG2Mx7a3hYD2+Gi8GfaRX6oSJTgUuqXayq1ys
+         nfiXzXou4XlK3aIHtscd7mqEQZWERSrRuKD+o+1/uw6VsyxpdjlnvXh/ESsgpsHSQOcw
+         pqxocZ1xqfuT1+fslhtUnTwGZBk//K8DlKjeB2I+yZRkFuCPLlyRcHAQqCeRvm3IBolX
+         Zy4hu8Tu2m4HYWqc19X8mDbiibXjL76Q3lEpL8V0Vj6XOAtDndpNi2wV0dOIA+sSd2QJ
+         hyJxWEQCU2GcKP9B1TT9fw0HErklhuOuxbEYQ3RDetwv1WZBjGZurJrOKJumVC2ZroCc
+         Qj2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772754456; x=1773359256;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zcZpnrWcDjcweOn1Um75L9TOaVFcEi5KqxXQxmAOFC8=;
+        b=rXfbDUgac+JEPSk8YcXYfaqzf5nDfpAwr4xyor4NQZWmYZA/bIRd19BiCi6hUpGMNg
+         umSHr57VSfvVZTojbmNpUKiyb3z8OWTcUGFnZkNOISmgqcAbZCw/su3T6wMUTkncIxVd
+         WeTyG15X11uasMHB62GI1r5vF+fA+GMS2r8Us5okIuhTdMJw6N8R1h9Rcvlu8kNI2mg6
+         bi5+ZO57WZZypSvUPdwM7grd7ygHUnAIuXJSikBHRwtCmE2/00bCHPsKk4Fu0XFiNq63
+         VsjWnFRdIYW97u0hBVRLumLRF+pxxsRmP4/15TOkJncvFGzz0SqwlsidqONuSPnasi21
+         7sKw==
+X-Forwarded-Encrypted: i=1; AJvYcCU8qMfT06LzkGvNp/7a0ktOxB3uyr8Q8JqwGWPh9GVdFKDWl103DH/dqpA6RmcOIMRzUFPsoelOXP9U@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpRHAgo4ehrWOUaDCZ2GTyyjPR6973UlhGNi+1SMo61gYHgTdC
+	qpidv3T1/Snns2JxXDn6Y2SbPBGbzb7PKmh5tfjNqUUsZYou6tEMA+gY
+X-Gm-Gg: ATEYQzy4RSvaNzsBVtuEjU4x0NfniojMZ3PwYv8CsCr/TMKt13MMDDHbRn+LWqo2ahz
+	1fiv+nCnRonMS0ob53+3N1dGl+oqgAnMui6oxHW8xkOz0I5IcZzeDsWO03cuGyovSRWiVUNxqjr
+	VzRh4c5v25oxS6GG7uZwS8X7nGFo5GFl/ZCEmeId4PKyFnt3Hhdm5aENT9z1XRzXXp6D6DjKt5v
+	mLP9aMW6K2MRpFXUYV6R9gAxa9ZMovml3QAA3Cyz7XGhAiJOA85x01atWdCZ8cKmbE36keXd7k6
+	lqV0qy0xKh8KhldrekY5lxlSJNV/OgFyZZSOzZOgqtbw8P/9YVqfbtdc48Oa6l0+DdpZiIYxjOp
+	knpC+IUdTweAYO15smPplT59kLf5lPEpOnPEGIaKLtJgzwOEOq1J7bUlnHVu2BeKQ+1WgjWvlXX
+	1vAGbvwBi8Ia+CMCdL93/bdgWATjNn
+X-Received: by 2002:a17:903:1986:b0:2ae:4847:cace with SMTP id d9443c01a7336-2ae8242cf7dmr3033205ad.28.1772754456050;
+        Thu, 05 Mar 2026 15:47:36 -0800 (PST)
+Received: from localhost.localdomain ([1.212.70.3])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c73917b4000sm2515316a12.15.2026.03.05.15.47.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 15:47:35 -0800 (PST)
+From: Lee Yongjun <jun85566@gmail.com>
+To: ulf.hansson@linaro.org,
+	robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rjui@broadcom.com,
+	sbranden@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	nsaenz@kernel.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Lee Yongjun <jun85566@gmail.com>
+Subject: [PATCH] dt-bindings: mmc: brcm,iproc-sdhci: allow dma-coherent property
+Date: Fri,  6 Mar 2026 08:47:03 +0900
+Message-Id: <20260305234703.38490-1-jun85566@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMRc=Me14BeYBgy5_bNk+2riQzGhfTu_5nQhU1R8sXMbO5s8TQ@mail.gmail.com>
-X-Rspamd-Queue-Id: DDF1C21975D
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 236612197DD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271750-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,broadcom.com,vger.kernel.org,lists.infradead.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-271751-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jun85566@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,devicetree.org:url,qualcomm.com:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,3.245.125.32:email,3.245.164.48:email]
 X-Rspamd-Action: no action
 
-On Thu, Feb 12, 2026 at 03:10:57AM -0800, Bartosz Golaszewski wrote:
-> On Thu, 12 Feb 2026 12:09:06 +0100, Krzysztof Kozlowski
-> <krzysztof.kozlowski@oss.qualcomm.com> said:
-> > Group/anonymous mailboxes are not accepted for bindings maintainers, so
-> > switch from such linux @TQ mailbox to Alexander's email.
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> > ---
-> >  Documentation/devicetree/bindings/gpio/gpio-delay.yaml | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-> > index 1cebc4058e27..b99ceff6c5f6 100644
-> > --- a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-> > +++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
-> > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  title: GPIO delay controller
-> >
-> >  maintainers:
-> > -  - Alexander Stein <linux@ew.tq-group.com>
-> > +  - Alexander Stein <alexander.stein@ew.tq-group.com>
-> >
-> >  description: |
-> >    This binding describes an electrical setup where setting an GPIO output
-> > --
-> > 2.51.0
-> >
-> >
-> 
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+The Broadcom iProc SDHCI controller supports DMA, but its binding
+schema does not allow the 'dma-coherent' property.
 
-Are you going to pick this up?
+As a result, dtbs_check reports the following validation errors
+on the Northstar2 SoC:
 
-Rob
+  mmc@66420000 (brcm,sdhci-iproc-cygnus): Unevaluated properties
+  are not allowed ('dma-coherent' was unexpected)
+  mmc@66430000 (brcm,sdhci-iproc-cygnus): Unevaluated properties
+  are not allowed ('dma-coherent' was unexpected)
+
+Allow the 'dma-coherent' property in the schema to fix the validation
+errors and accurately reflect the hardware capability.
+
+Signed-off-by: Lee Yongjun <jun85566@gmail.com>
+---
+ Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
+index 2f63f2cdeb71..579e44843404 100644
+--- a/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/brcm,iproc-sdhci.yaml
+@@ -38,6 +38,8 @@ properties:
+     type: boolean
+     description: Specifies that controller should use auto CMD12
+ 
++  dma-coherent: true
++
+ required:
+   - compatible
+   - reg
+-- 
+2.34.1
+
 
