@@ -1,261 +1,147 @@
-Return-Path: <devicetree+bounces-271374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271375-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FCZHXsjqWkL2gAAu9opvQ
-	(envelope-from <devicetree+bounces-271374-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:32:27 +0100
+	id QOKsEvUjqWkL2gAAu9opvQ
+	(envelope-from <devicetree+bounces-271375-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:34:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFBA120BA25
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:32:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C42CD20BA6B
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 07:34:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0219430151EF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 06:31:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BBFC4302FEB8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 06:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEEDA2EC0A2;
-	Thu,  5 Mar 2026 06:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FDC2304BDE;
+	Thu,  5 Mar 2026 06:34:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iiL/1lGU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JGkdP6PT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC14E1E1A33;
-	Thu,  5 Mar 2026 06:31:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4632F0C62;
+	Thu,  5 Mar 2026 06:34:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772692299; cv=none; b=KkitRqiTGOW3DFQDYvNHQ1MHhdte1xODR0cn6aBGVtTp/2X6t8tUi8h2DifzvHAHbRB0dA9D4qLWbYhkXY4XAPuWDCNdPsKAuaD45WsgWAYZCI8OWRitcP+Dwu+BrnxQGwTCdXTRckP4ptPHsynvRiGv01hXUys0r37QYgTJOcc=
+	t=1772692465; cv=none; b=bw8s1J+IeGohXEGgU9W2RNd7ltb1Cf0DIWx1SXr+Y2DhvmxBXjwXt51711+QHLBQEBUnYptq5wSKT7C2NmZjm3piBZ05veVpTz5MW9bP6q+Q29B+2rpsWMA5togOTqC++HQsr14o9RZi+m50mivbQkbKLeL/R+2GIZx6onmavfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772692299; c=relaxed/simple;
-	bh=vYqKAjigSGK+e2mJl4KSQ7Ay4nPe/Fhoh8VuBDSDuPw=;
+	s=arc-20240116; t=1772692465; c=relaxed/simple;
+	bh=f2dopSibfdiIHFBquHFXrfBYdoRAd/vshIkU1FaNDgM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TYanMPvMxvJsB130vsCcubS6tWLxi/ZAtSCl5xIBoQd2h/He+T97w4CbHKHO4fpIXTz3Ba1fo78bUbdIDlO/tsE/Bbd8JvSrSBcPU0vozf5V2RYhodjgPzt8/AQCJRKAKtvf6WflJuSikTS78w5Dpj5KqDdLbda4L9nY550oTo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iiL/1lGU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B2AEC116C6;
-	Thu,  5 Mar 2026 06:31:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=k8K3XxCEYXA+rCXG2i5Sfs4JLEf9g4YOQ8GMnpyWQTmoj2qdlt5caTQvCDdRXTUDP/PhvEG4bV7Tks4I2OAg5XqkOyisxLYsoD/qMmD7y5QbUg657wpUymWrZ+k/u/KlzmJAHkpOXXsrORoreYtXpEMBsl2rkGexcAzVrZIX1zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JGkdP6PT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46858C116C6;
+	Thu,  5 Mar 2026 06:34:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772692299;
-	bh=vYqKAjigSGK+e2mJl4KSQ7Ay4nPe/Fhoh8VuBDSDuPw=;
+	s=k20201202; t=1772692464;
+	bh=f2dopSibfdiIHFBquHFXrfBYdoRAd/vshIkU1FaNDgM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iiL/1lGU9jqMT97ePehSNPRel+pHwzNy8Sc211RvK7J4OxNjf8ET3jCFjdTbLqUWK
-	 uPlDf4XuWj0ZPK8jTSmKEAArWxC5yDFB6tNypcTjtflbYxTtaBPgK/6jPMQmV58ulB
-	 zQC0s9sMf2vjaMJch9hFxWKmtUs7QwgdSOC37VAKlpEcqLO+EySgoco/taryGwruTe
-	 KJfMxQPazaMns29WtfW/dZRYHB2iKn3PidkF/IRuWb+htj53x/SOLTow+gLXLB624n
-	 +B8DMER6GZB52uLa+7oQOxSFe/h16LXi94UPWjC+M/3sMaQybd2ukllEf86GCtOLP5
-	 V+aJEbSEDOPag==
-Date: Thu, 5 Mar 2026 12:01:20 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Randolph <randolph@andestech.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, jingoohan1@gmail.com, 
-	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr, aou@eecs.berkeley.edu, 
-	palmer@dabbelt.com, paul.walmsley@sifive.com, ben717@andestech.com, 
-	inochiama@gmail.com, thippeswamy.havalige@amd.com, namcao@linutronix.de, 
-	shradha.t@samsung.com, pjw@kernel.org, christian.bruel@foss.st.com, 
-	Ghennadi.Procopciuc@nxp.com, quic_wenbyao@quicinc.com, qiang.yu@oss.qualcomm.com, 
-	vincent.guittot@linaro.org, vidyas@nvidia.com, elder@riscstar.com, s-vadapalli@ti.com, 
-	ciprianmarian.costea@nxp.com, randolph.sklin@gmail.com, tim609@andestech.com
-Subject: Re: [PATCH v11 2/4] riscv: dts: qilai: Add PCIe node into the QiLai
- SoC
-Message-ID: <rkrado7sb3vevzacprcyphk3amvvognvgqbt74ti6nvk65iqzm@kthkqssjonx6>
-References: <20260225085504.3757601-1-randolph@andestech.com>
- <20260225085504.3757601-3-randolph@andestech.com>
+	b=JGkdP6PTrdNMtWjYk8OM9NLtZmow8GIMiOceeF+o3zCQSczvRqMUuXJZxCBsapJnc
+	 Jt78NqvznjZzahrcDE0SPu70E2euUIPR/JvGi+1iUQh1H4ROs1WrR5NiB4Jq2DgoJM
+	 2jVVTADCzgFgtPMrWalu/HLEg29Y0fvUDHf/bxlnzKo3FmdgajGY1ZNiVd4oYFZbBw
+	 C5edFxHBFRj+fGEknAGf07T33nGe+pfptTGsOTVjBKmGNgXz5m+pfYSJY1LBcJ/ke2
+	 J+Kdp5rrlZ9MuCGrIMnxqR21lzhJFrUE/NfDzTJl9IYk2esMvaYhf6kmjobuobQMih
+	 sQwGLnyAYbpdw==
+Date: Thu, 5 Mar 2026 12:04:15 +0530
+From: Sumit Garg <sumit.garg@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, konradybcio@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, akhilpo@oss.qualcomm.com,
+	vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+	robin.clark@oss.qualcomm.com, lumag@kernel.org,
+	loic.poulain@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
+	linux-kernel@vger.kernel.org,
+	Sumit Garg <sumit.garg@oss.qualcomm.com>
+Subject: Re: [PATCH v3 0/3] arm64: dts: qcom: agatti: Fix IOMMU DT properties
+Message-ID: <aakj55LZW_maz6UJ@sumit-xelite>
+References: <20260122121042.579270-1-sumit.garg@kernel.org>
+ <20260122172222.GA2670019-robh@kernel.org>
+ <aaWIPgKd-_cm4t7X@sumit-xelite>
+ <6yafwubiwtjnpao2crgi3wnfgj5546e3vjcpjnwsnj3y7q76m4@ej3ldry6fbki>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260225085504.3757601-3-randolph@andestech.com>
-X-Rspamd-Queue-Id: CFBA120BA25
+In-Reply-To: <6yafwubiwtjnpao2crgi3wnfgj5546e3vjcpjnwsnj3y7q76m4@ej3ldry6fbki>
+X-Rspamd-Queue-Id: C42CD20BA6B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271374-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,google.com,ghiti.fr,eecs.berkeley.edu,dabbelt.com,sifive.com,andestech.com,amd.com,linutronix.de,samsung.com,foss.st.com,nxp.com,quicinc.com,oss.qualcomm.com,linaro.org,nvidia.com,riscstar.com,ti.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271375-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[1.206.87.96:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[a0000000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,4.196.180.0:email,andestech.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 04:55:02PM +0800, Randolph wrote:
-> From: Randolph Lin <randolph@andestech.com>
+On Wed, Mar 04, 2026 at 01:09:31PM -0600, Bjorn Andersson wrote:
+> On Mon, Mar 02, 2026 at 06:23:18PM +0530, Sumit Garg wrote:
+> > Hey Bjorn,
+> > 
+> > On Thu, Jan 22, 2026 at 11:22:22AM -0600, Rob Herring wrote:
+> > > On Thu, Jan 22, 2026 at 05:40:39PM +0530, Sumit Garg wrote:
+> > > > From: Sumit Garg <sumit.garg@oss.qualcomm.com>
+> > > > 
+> > > > Fix IOMMU DT propeties for GPU, display and video peripherals via
+> > > > dropping SMMU stream IDs which relates to secure context bank.
+> > > > 
+> > > > This problem only surfaced when the Gunyah based firmware stack is
+> > > > ported on Agatti replacing the legacy QHEE based firmware stack. Assigning
+> > > > Linux kernel (HLOS) VMID to secure context bank stream IDs is treated
+> > > > as a fault by Gunyah hypervisor which were previously ignored by QHEE
+> > > > hypervisor.
+> > > > 
+> > > > The DT changes should be backwards compatible with legacy QHEE based
+> > > > firmware stack too.
+> > > 
+> > > To avoid intermittent warnings, Bjorn should pick up the whole series.
+> > > 
+> > 
+> > Just a gentle reminder in case it slipped your attention. Can we pick
+> > this as part of fixes for v7.0 release?
+> > 
 > 
-> Add the Andes QiLai PCIe node, which includes 3 Root Complexes.
-> 
-> Signed-off-by: Randolph Lin <randolph@andestech.com>
+> Thanks for the ping. Is the Gunyah firmware generally available and
+> would this thereby be considered a regression that we need to fix for
+> v7.0?
 
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+Yeah it's already available internally and we are just waiting for a
+public release of the Gunyah firmware which is expected to come before
+v7.0 gets released.
 
-One nit below.
+So, please get these fixes in v7.0 as these are boot critical ones.
 
-> ---
->  arch/riscv/boot/dts/andes/qilai.dtsi | 109 +++++++++++++++++++++++++++
->  1 file changed, 109 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/andes/qilai.dtsi b/arch/riscv/boot/dts/andes/qilai.dtsi
-> index de3de32f8c39..731ba12ccc95 100644
-> --- a/arch/riscv/boot/dts/andes/qilai.dtsi
-> +++ b/arch/riscv/boot/dts/andes/qilai.dtsi
-> @@ -123,6 +123,7 @@ cpu3_intc: interrupt-controller {
->  	soc {
->  		compatible = "simple-bus";
->  		ranges;
-> +		dma-ranges;
->  		interrupt-parent = <&plic>;
->  		#address-cells = <2>;
->  		#size-cells = <2>;
-> @@ -182,5 +183,113 @@ uart0: serial@30300000 {
->  			reg-io-width = <4>;
->  			no-loopback-test;
->  		};
-> +
-> +		bus@80000000 {
-> +			compatible = "simple-bus";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x44 0x00000000 0x04 0x00000000 0x04 0x00000000>;
-> +			ranges = <0x00 0x80000000 0x00 0x80000000 0x00 0x20000000>,
-> +				 <0x00 0x04000000 0x00 0x04000000 0x00 0x00001000>,
-> +				 <0x00 0x00000000 0x20 0x00000000 0x20 0x00000000>;
-> +
-> +			pcie@80000000 {
-> +				compatible = "andestech,qilai-pcie";
-> +				device_type = "pci";
-> +				reg = <0x00 0x80000000 0x00 0x20000000>, /* DBI registers */
-> +				      <0x00 0x04000000 0x00 0x00001000>, /* APB registers */
-> +				      <0x00 0x00000000 0x00 0x00010000>; /* Configuration registers */
+-Sumit
 
-No need to add comments about the register name space. You have reg-names below.
-
-- Mani
-
-> +				reg-names = "dbi", "apb", "config";
-> +				dma-coherent;
-> +
-> +				linux,pci-domain = <0>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
-> +					 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
-> +
-> +				#interrupt-cells = <1>;
-> +				interrupts = <0xf 0x4>;
-> +				interrupt-names = "msi";
-> +				interrupt-parent = <&plic>;
-> +				interrupt-map-mask = <0 0 0 0>;
-> +				interrupt-map = <0 0 0 1 &plic 0xf 0x4>,
-> +						<0 0 0 2 &plic 0xf 0x4>,
-> +						<0 0 0 3 &plic 0xf 0x4>,
-> +						<0 0 0 4 &plic 0xf 0x4>;
-> +			};
-> +		};
-> +
-> +		bus@a0000000 {
-> +			compatible = "simple-bus";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x44 0x00000000 0x04 0x00000000 0x04 0x00000000>;
-> +			ranges = <0x00 0xa0000000 0x00 0xa0000000 0x00 0x20000000>,
-> +				 <0x00 0x04001000 0x00 0x04001000 0x00 0x00001000>,
-> +				 <0x00 0x00000000 0x10 0x00000000 0x08 0x00000000>;
-> +
-> +			pcie@a0000000 {
-> +				compatible = "andestech,qilai-pcie";
-> +				device_type = "pci";
-> +				reg = <0x00 0xa0000000 0x00 0x20000000>, /* DBI registers */
-> +				      <0x00 0x04001000 0x00 0x00001000>, /* APB registers */
-> +				      <0x00 0x00000000 0x00 0x00010000>; /* Configuration registers */
-> +				reg-names = "dbi", "apb", "config";
-> +				dma-coherent;
-> +
-> +				linux,pci-domain = <1>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
-> +					 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
-> +
-> +				#interrupt-cells = <1>;
-> +				interrupts = <0xe 0x4>;
-> +				interrupt-names = "msi";
-> +				interrupt-parent = <&plic>;
-> +				interrupt-map-mask = <0 0 0 0>;
-> +				interrupt-map = <0 0 0 1 &plic 0xe 0x4>,
-> +						<0 0 0 2 &plic 0xe 0x4>,
-> +						<0 0 0 3 &plic 0xe 0x4>,
-> +						<0 0 0 4 &plic 0xe 0x4>;
-> +			};
-> +		};
-> +
-> +		bus@c0000000 {
-> +			compatible = "simple-bus";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			dma-ranges = <0x44 0x00000000 0x04 0x00000000 0x04 0x00000000>;
-> +			ranges = <0x00 0xc0000000 0x00 0xc0000000 0x00 0x20000000>,
-> +				 <0x00 0x04002000 0x00 0x04002000 0x00 0x00001000>,
-> +				 <0x00 0x00000000 0x18 0x00000000 0x08 0x00000000>;
-> +
-> +			pcie@c0000000 {
-> +				compatible = "andestech,qilai-pcie";
-> +				device_type = "pci";
-> +				reg = <0x00 0xc0000000 0x00 0x20000000>, /* DBI registers */
-> +				      <0x00 0x04002000 0x00 0x00001000>, /* APB registers */
-> +				      <0x00 0x00000000 0x00 0x00010000>; /* Configuration registers */
-> +				reg-names = "dbi", "apb", "config";
-> +				dma-coherent;
-> +
-> +				linux,pci-domain = <2>;
-> +				#address-cells = <3>;
-> +				#size-cells = <2>;
-> +				ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
-> +					 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x02 0x00000000>;
-> +
-> +				#interrupt-cells = <1>;
-> +				interrupts = <0xd 0x4>;
-> +				interrupt-names = "msi";
-> +				interrupt-parent = <&plic>;
-> +				interrupt-map-mask = <0 0 0 0>;
-> +				interrupt-map = <0 0 0 1 &plic 0xd 0x4>,
-> +						<0 0 0 2 &plic 0xd 0x4>,
-> +						<0 0 0 3 &plic 0xd 0x4>,
-> +						<0 0 0 4 &plic 0xd 0x4>;
-> +			};
-> +		};
->  	};
->  };
-> -- 
-> 2.34.1
-> 
-
--- 
-மணிவண்ணன் சதாசிவம்
+> Or can I just pick it for v7.1?
+>
+> Regards,
+> Bjorn
 
