@@ -1,187 +1,364 @@
-Return-Path: <devicetree+bounces-271585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271586-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBv6CdeKqWl3/AAAu9opvQ
-	(envelope-from <devicetree+bounces-271585-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:53:27 +0100
+	id wKBuEo+KqWki+gAAu9opvQ
+	(envelope-from <devicetree+bounces-271586-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:52:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E4AD212CFB
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:53:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BBA0212C57
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:52:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 98FAF3024178
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:50:52 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 27D33301DA6F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689233A4537;
-	Thu,  5 Mar 2026 13:50:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15EA3A4F3E;
+	Thu,  5 Mar 2026 13:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VVvrLvja"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hSjVAMBW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C0237F725;
-	Thu,  5 Mar 2026 13:50:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772718651; cv=none; b=acLh08gP4QDwrZjetsFurB6KE06h0KSU2MZiCuy7T4gGXOR5C+KxyBq9LeAqplaCF/gNFx/V0NH3gnPBbsgd4HgItGRxkZQ1VF4AeThTqHm//5M79ZhP/dMMiYTLprcZIlUSLUM75rcM7Qp8YovnTZ+hnJibPH7h+FNJ7rkcCMk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772718651; c=relaxed/simple;
-	bh=MRnhDM/nvYdG4p30PJohAW2wuLKCIiSzbKBttMzOJ+4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LiyeRjbXSf7ISkrmnc1rpmN/i3DF7M7lga58yORVo/5M/7LA4DLBfwhGmI/EPe+3CeEYv9lGbP96Z3UC/uh7WxC3CntUbCJlriYX25jVzqbPRZU90qcysrv5jC5AR3NTzX6F6+a3Dkum2k10RVO4GCMOQiOeknyFOul+WigC4uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VVvrLvja; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 674E4C116C6;
-	Thu,  5 Mar 2026 13:50:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772718650;
-	bh=MRnhDM/nvYdG4p30PJohAW2wuLKCIiSzbKBttMzOJ+4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VVvrLvjawxqwOmFUkab3JDvVpIE4SEgNU13yoHo3oYksyG05q64XctNefeA1A9cVx
-	 GyJUKRS5JR7TuoKUjbAIxlZpthP++M/dnhJzwqbDtM1W+mZC8NOOIHmBoM+Gn6LOus
-	 TXg9VOb1LNf9udQJ6dU2JKdGJdPst6PLuQriH+EKa5Whxz3EO7PcQM6fsmF7e234WK
-	 /HC29XKDKdhGR33ZDas8i6XEr+88xOFJiyTodDwEROWGAYruc9D4k3zntWbGoa7fbA
-	 LgjaMjfC9IAgipN+seM3/rFgJlSCIarpXNfOBDjxVxCIIdGiSA9QpHrNbilMq8j3lC
-	 Vjta+b2imp5eA==
-Message-ID: <d86e5b24-f497-473e-a7dd-a7d3c9199239@kernel.org>
-Date: Thu, 5 Mar 2026 14:50:46 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F66F3876AF
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 13:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772718728; cv=pass; b=Wsj2fwVXH3C+AAc/rPBV3YMl7zldCyp9am2uxFgeIOmxWVtWNmNw9FXTKY5p0s4kzua4IJZAkQhViiMl4TdrkVC5MY/2PjzWoONqjTov3RLhYQuMN2gJpU2NeFeA1t0pEZRvnCgZRujxaIVMES9Qtck3lCF4t12RdqKlJEVBa1k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772718728; c=relaxed/simple;
+	bh=7nQxQrQcVoedGHXekMdQmt0PnChsID8+XSzvyS0i5/g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f5vD3BL0Lii3GsrEou2xjTreZQ6gbZl4Ha3cOVIXde20bkwsWgmUdu8ZHFps+djabiikwyJ2KLYjmXGOy7am2Mi+EOsTdzDu+Y3cBTNGl2/vYzSRi58FeFdLNV5M7qs30ACI0dF6dZus0hRO9SfUMzlgo0R/rfaiwbpgWMEOaCA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hSjVAMBW; arc=pass smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b8f9568e074so1422334166b.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 05:52:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772718725; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NH32kYWNgrIyXXwjMe/TCa+1KtDZvu1cLpwgS8rl+iAZzF/hHVnmWFcJ6fGWc+vzFG
+         UDOT2VtfUkIb2cJrBPWjQpEfdx7th4ExMNtJiTDP0gEJqMUQPrBOnxvYE4HFaf3LiTX8
+         7NmIzcihEv54qOTK3CpHjFvQJgqlLa2GyCyXXRPOKd9xwFR2EKGTTlbBrkGz9b3ZGhIy
+         CL7W5WRhZe8ifROlKUtjZzZWQSoMfq7cDp6OiVdUGLlXH90zMEnlAZeBIjb2xyJD5v6w
+         AIQ+aHf8vDCu1XIUCIKBUqtar/udEYY6wtTWMdbdv+b9ZSX34h4YtNVYmo985K9iUQ6D
+         B9rA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=NZyEoKNZ9+FBEZoQGrBgOEAt7Mvz4sJQ58VTFJSuB4U=;
+        fh=oEmJ+4VU4+rZ0m3yruv3ZOvLucN/Dc24WLriSKWElyc=;
+        b=H5WtKUgltge3SqWfRoxGGSlertqK29n94fgPQnxiQ1s1HL1VVjDlKbSDpb8xIvkcUg
+         Qr0WdnSrgzgN46pWqQwkg8qxGszHl4A1ZaJkXF23WkPbawxuH+fzJQZ/Z5giAMhA2wOP
+         mropZUtNx+3bjvEBi+KuTr3TjFH2oOXnc6PjfaKzerbN30FaLmzmcv6DrVq0wjpMBriq
+         Wy1cyI6UwSesrh7lebQhvUtUjM3l4m9pO1xj8NVVg7T9pF7A6eXQw0J2M5VokALek8xp
+         MG64Qngt3rfMkJUaOkXAv2A9+j3/Nqd+nLmd91nOzmhwi+OiEWUYQVnar2ybKExe+lgx
+         o2Gw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772718725; x=1773323525; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NZyEoKNZ9+FBEZoQGrBgOEAt7Mvz4sJQ58VTFJSuB4U=;
+        b=hSjVAMBWOc8/UAqVDw4/hRqucAjcy6eFJ42n9K1tmsUUBpl1xj4LpzIbXaAgA6YmsC
+         m6M9JTBtoztFy00IF6fW/Hse80sJmtS5wHFZ2iAWYUx2eXocXJfnCFpTPlMeDlH6KX2q
+         CC1cHUmjrVXCn7r/nqwn4w1Yzge0H8JfKH1V+ESIsNx202V8kShQ2k7wZGKR6G7Him1u
+         CPLvz/R5LPZEgMTGssqePxVGiMpYecnkU1ex8Qja6ckqohxH0bqdrEqT9JtWI6aRDIY7
+         KceXUbWd4+U7nHIWD6SHlhNtRJ6Bl0lHxtMk7926d5ypEtN9scX/HzO8eUCl5gkhzZML
+         4qXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772718725; x=1773323525;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=NZyEoKNZ9+FBEZoQGrBgOEAt7Mvz4sJQ58VTFJSuB4U=;
+        b=W4pALecE25CKggpZCp8EHmrlljVKb1uCB1P5Iq+vWuoG8fAVzuym/dfXIRObiPirqj
+         FmWTIHrDqVxRZzTNMuiHZCdOMrMInJ4PTzi8FWvfMLNtA9VaEjM/3zLAmRPgJ4CHCZ1F
+         96n4UyQy4xc+vwnXsfga6EmLDKdJbi/trBZCoCLNebZqJEnf+k2kRiY/5duUaT755mb1
+         XEiGUqsl4OjMc23sWifu/v+rPpG0IY9BJYqpoNOE9pR2PyicarPfxk6l2z2pvcgPrj29
+         BEWCKoJnaD78Gi6BuYwT8Y5SJI99TJtvYZRt5DyeG68ieOW57cdfKRISecWwfzsbILDg
+         1UuA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0RtKFgBZ1/S/jToKqCJPSpgJXBWgIUCMRZiLFXlR19Urv3IsGAtC8d7exKZmZ7hbCbFEvWQBe2FUF@vger.kernel.org
+X-Gm-Message-State: AOJu0YytjHGjPvISpN0o4yC1VZkQPCWfxBZsckqac/zyda+mROi2hcPN
+	vT8CpVrrXl23eBxlrCsrMT7yh10/8iBEjtoz5gkVTSqsYkRqZ4EI4MULgW6cwXl2/KRsaWs1+27
+	Wd5O3g8JXHWIhdTsHIeAB/0BCdtPpgtw=
+X-Gm-Gg: ATEYQzzvXj1pGUYFC6RExJqtG0D6r6DMkW/+RXcIZ5KqYxdCVoK2qoubL+HehoZGIHR
+	8o5Tziy/DY1HZUNVwCR3WuOwHwoH8GcyO7PCdaAgfoXhMB+8d7KwdB9GQBlHJ85qaqPe4YSgzrc
+	NYYNQ81pv7jxCDD+3mBABA+aId6rrMEfcNXrfudl7YXR4tSZnMdKJG1Uwv+IWHs7uG40sTXXKuk
+	gVOFduEcrIvJD90E3puwTGfth7c6iB2+jvbRPe9UUoyscqQ3yAIzeODBLu14A2dn46zkWeRCLp3
+	Ag9YsHoIttpUYR8NZ9c2+wYJUX0fwfJzrQ4dhhmtaz1Ulte9NWhRJqbtulPMcNnsldTLBcaCgrV
+	TFsXbA6Q=
+X-Received: by 2002:a17:907:3c8c:b0:b87:701d:341a with SMTP id
+ a640c23a62f3a-b93f1372c8bmr367272966b.25.1772718725247; Thu, 05 Mar 2026
+ 05:52:05 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] arm64: dts: qcom:
- qcs6490-rb3gen2-industrial-mezzanine: Add TC9563 PCIe switch node for PCIe0
-To: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260305-industrial-mezzanine-pcie-v4-0-1f2c9d1344d7@oss.qualcomm.com>
- <20260305-industrial-mezzanine-pcie-v4-1-1f2c9d1344d7@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260305-industrial-mezzanine-pcie-v4-1-1f2c9d1344d7@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 7E4AD212CFB
+References: <cover.1772714348.git.zhoubinbin@loongson.cn> <8b8dbdc580fd2e2ebf1d5990e55e4a50db1b253a.1772714348.git.zhoubinbin@loongson.cn>
+In-Reply-To: <8b8dbdc580fd2e2ebf1d5990e55e4a50db1b253a.1772714348.git.zhoubinbin@loongson.cn>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Thu, 5 Mar 2026 15:51:27 +0200
+X-Gm-Features: AaiRm51vh4mEPHUkSIfvf4ZLeVmD0p7aetq1ZB0tT3uMdF2f-JUBdgLw69Qz0Bg
+Message-ID: <CAHp75VfmupH=dE=L3+vboo7D9DDEMvU-Hwy6HwuVFsg1iB7hcw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 4BBA0212C57
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271585-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271586-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,sang-engineering.com,vger.kernel.org,xen0n.name,lists.linux.dev];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	FROM_NEQ_ENVFROM(0.00)[andyshevchenko@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 05/03/2026 14:39, Sushrut Shree Trivedi wrote:
-> Add a node for the TC9563 PCIe switch connected to PCIe0. The switch
-> has three downstream ports.Two embedded Ethernet devices are present
-> on one of the downstream ports. All the ports present in the
-> node represent the downstream ports and embedded endpoints.
-> 
-> Power to the TC9563 is supplied through two LDO regulators, which
-> are on by default and are added as fixed regulators. TC9563 can be
-> configured through I2C.
-> 
-> Signed-off-by: Sushrut Shree Trivedi <sushrut.trivedi@oss.qualcomm.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->  .../qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso | 159 +++++++++++++++++++++
->  1 file changed, 159 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> index 619a42b5ef48..c58a9ad5c331 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> @@ -5,9 +5,33 @@
->  
->  /dts-v1/;
->  /plugin/;
-> +#include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/clock/qcom,gcc-sc7280.h>
->  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
->  
-> +&{/} {
+On Thu, Mar 5, 2026 at 2:57=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn>=
+ wrote:
+>
+> This I2C module is integrated into the Loongson-2K0300 SoCs.
+>
+> It provides multi-master functionality and controls all I2C bus-specific
+> timing, protocols, arbitration, and timing. It supports both standard
+> and fast modes.
+
+...
+
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+
++ time.h // for USEC_PER_* et alia.
+
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+
+...
+
+> +/**
+> + * struct loongson2_i2c_priv - private data of the controller
+> + * @adapter: I2C adapter for this controller
+> + * @complete: completion of I2C message
+> + * @clk: hw i2c clock
+> + * @regmap: regmap of the I2C device
+> + * @parent_rate: I2C clock parent rate in MHz
+> + * @msg: I2C transfer information
+> + */
+> +struct loongson2_i2c_priv {
+> +       struct i2c_adapter              adapter;
+> +       struct completion               complete;
+> +       struct clk                      *clk;
+> +       struct regmap                   *regmap;
+> +       unsigned long                   parent_rate;
+
+it's better to keep units in the variable name
+
+       unsigned long                   parent_rate_MHz;
+
+// yes, it's fine to spell the unit suffix as it's in physics.
+
+> +       struct loongson2_i2c_msg        msg;
+> +};
+
+...
+
+> +static void loongson2_i2c_handle_rx_done(struct loongson2_i2c_priv *priv=
+)
+> +{
+> +       struct loongson2_i2c_msg *msg =3D &priv->msg;
+
+> +       u32 i;
+
+Not needed to be here (see below how).
+
+> +       switch (msg->count) {
+> +       case 2:
+> +               /*
+> +                * The STOP/START bit has to be set before reading the la=
+st two bytes.
+> +                * After that, we could read the last two bytes.
+> +                */
+> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
+SON2_I2C_CR1_OP_MASK,
+> +                                  msg->stop ? LOONGSON2_I2C_CR1_STOP : L=
+OONGSON2_I2C_CR1_START);
+
+> +               for (i =3D 2; i > 0; i--)
+> +                       loongson2_i2c_read_msg(priv);
+
+First of all, in another case the type of iterator is unsigned int.
+Second, this iterator is not used outside of the for-loop, third, the
+upper limit is already known, no need to use magic, hence
+
+               for (unsigned int i =3D 0; i < msg->count; i++)
+
+> +               loongson2_i2c_disable_irq(priv);
 > +
-> +	vreg_0p9: regulator-vreg-0p9 {
+> +               complete(&priv->complete);
+> +               break;
+> +       case 3:
+> +               /*
+> +                * In order to generate the NACK after the last received =
+data byte, enable NACK
+> +                * before reading N-2 data
+> +                */
+> +               regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONG=
+SON2_I2C_CR1_ACK, 0);
+> +               loongson2_i2c_read_msg(priv);
+> +               break;
+> +       default:
+> +               loongson2_i2c_read_msg(priv);
+> +               break;
+> +       }
+> +}
 
-Same comment as for other patches recently - drop "vreg". The remaining
-part should follow existing coding style, not your own, so this is 0v9.
+...
 
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> +static int loongson2_i2c_xfer(struct i2c_adapter *i2c_adap, struct i2c_m=
+sg msgs[], int num)
+> +{
+> +       struct loongson2_i2c_priv *priv =3D i2c_get_adapdata(i2c_adap);
+> +       struct device *dev =3D priv->adapter.dev.parent;
+> +       unsigned int i, status;
+> +       int ret;
+> +
+> +       /* Wait I2C bus free */
+> +       ret =3D regmap_read_poll_timeout(priv->regmap, LOONGSON2_I2C_SR2,=
+ status,
+> +                                      !(status & LOONGSON2_I2C_SR2_BUSY)=
+,
+> +                                      LOONGSON2_I2C_FREE_SLEEP_US,
+> +                                      LOONGSON2_I2C_FREE_TIMEOUT_US);
+> +       if (ret) {
+> +               dev_dbg(dev, "The I2C bus is busy now.\n");
+> +               return ret;
+> +       }
+> +
+> +       /* Start generation */
+> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C=
+_CR1_START,
+> +                          LOONGSON2_I2C_CR1_START);
 
+> +       for (i =3D 0; i < num; i++) {
 
-Best regards,
-Krzysztof
+       for (unsigned int i =3D 0; i < num; i++) {
+
+> +               ret =3D loongson2_i2c_xfer_msg(priv, &msgs[i], i =3D=3D n=
+um - 1);
+> +               if (ret < 0)
+> +                       return ret;
+> +       }
+> +
+> +       return num;
+> +}
+
+...
+
+> +static int loongson2_i2c_adjust_bus_speed(struct loongson2_i2c_priv *pri=
+v)
+> +{
+> +       struct device *dev =3D priv->adapter.dev.parent;
+> +       struct i2c_timings i2c_t;
+> +       u32 val, freq_mhz, ccr;
+
+freq_MHz
+(or at least make the parent_rate and this one consistent with the
+suffixes in use)
+
+> +       i2c_parse_fw_timings(dev, &i2c_t, true);
+> +       priv->parent_rate =3D clk_get_rate(priv->clk);
+> +
+> +       if (i2c_t.bus_freq_hz =3D=3D I2C_MAX_STANDARD_MODE_FREQ) {
+> +                /* Select Standard mode */
+> +               ccr =3D 0;
+> +               val =3D DIV_ROUND_UP(priv->parent_rate, i2c_t.bus_freq_hz=
+ * 2);
+> +       } else if (i2c_t.bus_freq_hz =3D=3D I2C_MAX_FAST_MODE_FREQ) {
+> +               /* Select Fast mode */
+> +               ccr =3D LOONGSON2_I2C_CCR_FS;
+> +               val =3D DIV_ROUND_UP(priv->parent_rate, i2c_t.bus_freq_hz=
+ * 3);
+> +       } else {
+
+> +               dev_err(dev, "Unsupported speed (%uhz)\n", i2c_t.bus_freq=
+_hz);
+
+hz --> Hz (in the message)
+
+> +               return -EINVAL;
+> +       }
+
+It seems part of the probe phase, so why not
+
+  return dev_err_probe(...);
+
+?
+
+> +       FIELD_MODIFY(LOONGSON2_I2C_CCR_CCR, &ccr, val);
+> +       regmap_write(priv->regmap, LOONGSON2_I2C_CCR, ccr);
+> +
+> +       freq_mhz =3D DIV_ROUND_UP(priv->parent_rate, HZ_PER_MHZ);
+> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C=
+_CR2_FREQ,
+> +                          FIELD_GET(LOONGSON2_I2C_CR2_FREQ, freq_mhz));
+> +
+> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_TRISE, LOONGSON2_I=
+2C_TRISE_SCL,
+> +                          LOONGSON2_I2C_TRISE_SCL);
+> +
+> +       /* Enable I2C */
+> +       regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C=
+_CR1_PE,
+> +                          LOONGSON2_I2C_CR1_PE);
+> +
+> +       return 0;
+> +}
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
