@@ -1,171 +1,167 @@
-Return-Path: <devicetree+bounces-271479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271481-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eE8iAq9UqWkj4wAAu9opvQ
-	(envelope-from <devicetree+bounces-271479-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:02:23 +0100
+	id EMEmJl9WqWkh5wAAu9opvQ
+	(envelope-from <devicetree+bounces-271481-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:09:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7188320F3D1
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:02:22 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B4920F6FF
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:09:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7BDC430FBB0F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 09:57:47 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C6A0C304FC1D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 10:00:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31437374E6F;
-	Thu,  5 Mar 2026 09:57:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C8837B017;
+	Thu,  5 Mar 2026 10:00:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="J/301NWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F236E37AA79
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 09:57:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772704667; cv=none; b=RlE8mvM5o4Xku6vQL9qWALgc/mZFp4n4CWUx4GwI3jUe50rU86f+gy4sCH/WPJYD3uODZhL7oQPdojQucqlA3i9RkUixvaL9ACvxRSMhClpl+0ECGwuSkTZ/AQBkQuIvoeztOPY+V5M7IrvRb3VJUI2ya1tSHNuhtg/hC3rf1kw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772704667; c=relaxed/simple;
-	bh=uBvyWVTQJgEJMinbZzCcQyA6ExC1ldyFrsgOrBO2ZGA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mxP5o92ZVsyRnYov+L3nJIAjBs27uPODKdCUJfR1COPa/haXeKFDbmE8WGl+VJLxQm914uUqlQTtZQ7VyFsqyx4fvpVSl8U9NDCDcxD0JW+ATTxlV4ZiDzpYVsyY5UCKuqGLGbXfY/aPYrf3h7GLEFCqA8cdiH3JGjZ1B4FTEFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vy5SO-0005fW-Ni; Thu, 05 Mar 2026 10:57:24 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vy5SM-003rSo-2D;
-	Thu, 05 Mar 2026 10:57:24 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vy5SN-00000002FW3-3jOJ;
-	Thu, 05 Mar 2026 10:57:23 +0100
-Date: Thu, 5 Mar 2026 10:57:23 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: ming.qian@oss.nxp.com, linux-media@vger.kernel.org, mchehab@kernel.org, 
-	hverkuil-cisco@xs4all.nl, nicolas@ndufresne.ca, benjamin.gaignard@collabora.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
-	sebastian.fricke@collabora.com, shawnguo@kernel.org, ulf.hansson@linaro.org, 
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
-	fra.schnyder@gmail.com, linux-imx@nxp.com, l.stach@pengutronix.de, Frank.li@nxp.com, 
-	peng.fan@nxp.com, eagle.zhou@nxp.com, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] media: verisilicon: Fix kernel panic due to __initconst
- misuse
-Message-ID: <ayefolxtgwfmvs5h5ln7u4hdope4rdthvpiacdbfbnxe33lgzb@vts2vnib3t7w>
-References: <20260305080354.639-1-ming.qian@oss.nxp.com>
- <j4h65w6rwsd227gooa437qfp43z3vtiyaegehbe5md3f22anae@lprbmtart3km>
- <68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A9E933F374;
+	Thu,  5 Mar 2026 10:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772704829; cv=pass; b=rYqKn7CBH5Sc+LKSs6OcqiA1YxApJxjWRldMBNRYs8sXipsEvVfs7N+A1kjuy+1MT+iJpRaL75AxUMuqvKaoNnmpe0kzjNz98pogLKDpurEdNhMxlaXqGdEMIE2IgvFQCxykOg1gh/ABX5mmFrd0gaJ4uicoURII+hJ+w2XoRjY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772704829; c=relaxed/simple;
+	bh=yTf9GYa92CxOR0v1gm9TC/TaEGiV9h9oOyqTiChyhQc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CeGNdwp89J4HgoEqukjQw0SH4cjuCInkA2wODUUWWuPRQumX422Bxxdcie9keod117lAKGoXhqKohsFSLOFKIVM42uameIKpmntcV5okj3T3Xif6d3E9J6B+6MDIV6g8TtNbpijfygH/hIxRq3zegUrjD2vS4UyryjzgN6LI700=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=J/301NWa; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1772704683; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=kBoMhSSPZC5RsRfS4lwUYt+DXbeKYd998viSF8OfQgMUxb/zXbxyemZauGhuLeYTbPBelQjuTfEL9D0+cWo40OIheo5HwWCwpwlhtF3FhqUusAxKkTY416Dmd3KJxG3Sfv/E4HjLm8ThGO3Xq0gjfknscHV4kjjKHfgvW8ob+Yc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1772704683; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=t+dM/ivqOh9qFQC6P4MhMScrDFmdYfA44gwq4G7yKZA=; 
+	b=fK4RwTEpB/dukN63XUnC6gB0R4xTNhIruor1iiIurQIm8TsF4kKFxi+gMjRHWSoxFymTAVKJ+sVEYYCSrvj5kS8FLsPP41vixq+SkwRlXPTwlKClaT5CvK20ffWU7wnncuAFyu8PJwB95ylrXrsozTseCxJZpS1ZLScgCqos7R4=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772704683;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=t+dM/ivqOh9qFQC6P4MhMScrDFmdYfA44gwq4G7yKZA=;
+	b=J/301NWaZdxu3OBlGpm+tcT8tF32LtInDWcbPlcVv41C/2xK55Pi9n2RO8pJgD/l
+	wkCpA7kwqrt9OFuobYiiO8tC+AKWML/dxJuO+AITRr9jlC6DgJvNBBrTSC2C5FGya/f
+	yyvNJiQC2PXlDeManSvq/+q1AWUAAinyKmpE1e2Y=
+Received: by mx.zohomail.com with SMTPS id 1772704680982221.39391748095557;
+	Thu, 5 Mar 2026 01:58:00 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>,
+ Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
+ "kishon@kernel.org" <kishon@kernel.org>,
+ "James.Bottomley@HansenPartnership.com"
+ <James.Bottomley@hansenpartnership.com>,
+ "bvanassche@acm.org" <bvanassche@acm.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "vkoul@kernel.org" <vkoul@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+ "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "avri.altman@wdc.com" <avri.altman@wdc.com>,
+ "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+ "broonie@kernel.org" <broonie@kernel.org>,
+ Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>
+Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+ "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ "kernel@collabora.com" <kernel@collabora.com>
+Subject:
+ Re: [PATCH v8 11/23] scsi: ufs: mediatek: Remove undocumented downstream
+ reset cruft
+Date: Thu, 05 Mar 2026 10:57:53 +0100
+Message-ID: <3472277.mvXUDI8C0e@workhorse>
+In-Reply-To: <3aeee75e78fed2be92038c776463a231b94462f3.camel@mediatek.com>
+References:
+ <20260304-mt8196-ufs-v8-0-5b0eac23314f@collabora.com>
+ <20260304-mt8196-ufs-v8-11-5b0eac23314f@collabora.com>
+ <3aeee75e78fed2be92038c776463a231b94462f3.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <68ef934f-baa0-4bf6-93d8-834bbc441e66@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: 7188320F3D1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Rspamd-Queue-Id: A0B4920F6FF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271479-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271481-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,mediatek.com,hansenpartnership.com,acm.org,collabora.com,linaro.org,pengutronix.de,samsung.com,wdc.com,oracle.com];
+	RCPT_COUNT_TWELVE(0.00)[28];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_CC(0.00)[oss.nxp.com,vger.kernel.org,kernel.org,xs4all.nl,ndufresne.ca,collabora.com,pengutronix.de,linaro.org,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.956];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:email,nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-0.993];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 26-03-05, Krzysztof Kozlowski wrote:
-> On 05/03/2026 10:01, Marco Felsch wrote:
-> > Hi Ming,
-> > 
-> > On 26-03-05, ming.qian@oss.nxp.com wrote:
-> >> From: Ming Qian <ming.qian@oss.nxp.com>
-> >>
-> >> Fix a kernel panic when probing the driver as a module:
-> >>
-> >>   Unable to handle kernel paging request at virtual address
-> >>   ffffd9c18eb05000
-> >>   of_find_matching_node_and_match+0x5c/0x1a0
-> >>   hantro_probe+0x2f4/0x7d0 [hantro_vpu]
-> >>
-> >> The imx8mq_vpu_shared_resources array is referenced by variant
-> >> structures through their shared_devices field. When built as a
-> >> module, __initconst causes this data to be freed after module
-> >> init, but it's later accessed during probe, causing a page fault.
-> >>
-> >> Use __initconst_or_module to keep the data available when built
-> >> as a module while still allowing it to be freed when built-in.
-> > 
-> > would be nice if I get at least some credit for pointing to the correct
-> > fix ;)
-> > 
-> >> Fixes: e0203ddf9af7 ("media: verisilicon: Avoid G2 bus error while decoding H.264 and HEVC")
-> >> Signed-off-by: Ming Qian <ming.qian@oss.nxp.com>
-> > 
-> > However, patch looks fine:
-> > 
-> > Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> 
-> Patch is not correct. This is being referenced from other data where
-> nothing is __init. Section mismatch might not point it, but I don't
-> think the code is readable and actually correct.
-> 
-> You can exercise it by rebinding device when built-in.
+On Thursday, 5 March 2026 10:14:47 Central European Standard Time Peter Wan=
+g (=E7=8E=8B=E4=BF=A1=E5=8F=8B) wrote:
+> On Wed, 2026-03-04 at 15:53 +0100, Nicolas Frattaroli wrote:
+> > @@ -2383,38 +2383,12 @@ MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
+> >  static int ufs_mtk_probe(struct platform_device *pdev)
+> >  {
+> >  	int err;
+> > -	struct device *dev =3D &pdev->dev, *phy_dev =3D NULL;
+> >=20
+>=20
+> Will there be a build error if phy_dev is removed?
+> Please make sure that each patch can build successfully, one by one.
+>=20
+> Thanks
+> Peter
+>=20
+>=20
+>=20
+>=20
 
-That's correct, I didn't consider the manual unbind for the built-in
-case in which you will trigger the issue again! Dropping the annotation
-is the correct fix, thanks!
+Yes, these are the kinds of mistakes that happen when you ask someone
+to pick apart patches for your downstream convenience.
 
-Regards,
-  Marco
+I'll hand dealing with any further fixups and variable naming concerns
+you have over to Angelo, as I can't be bothered to deal with you
+anymore.
 
 
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-#gernperDu 
-#CallMeByMyFirstName
-
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
