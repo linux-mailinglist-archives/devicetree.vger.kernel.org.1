@@ -1,167 +1,195 @@
-Return-Path: <devicetree+bounces-271481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271480-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EMEmJl9WqWkh5wAAu9opvQ
-	(envelope-from <devicetree+bounces-271481-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:09:35 +0100
+	id aKNELUpWqWli5gAAu9opvQ
+	(envelope-from <devicetree+bounces-271480-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:09:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0B4920F6FF
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E8520F6D7
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:09:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C6A0C304FC1D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 10:00:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3A0AB303419A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 10:00:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C8837B017;
-	Thu,  5 Mar 2026 10:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B5937B41E;
+	Thu,  5 Mar 2026 10:00:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="J/301NWa"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BnOIzXBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A9E933F374;
-	Thu,  5 Mar 2026 10:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772704829; cv=pass; b=rYqKn7CBH5Sc+LKSs6OcqiA1YxApJxjWRldMBNRYs8sXipsEvVfs7N+A1kjuy+1MT+iJpRaL75AxUMuqvKaoNnmpe0kzjNz98pogLKDpurEdNhMxlaXqGdEMIE2IgvFQCxykOg1gh/ABX5mmFrd0gaJ4uicoURII+hJ+w2XoRjY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772704829; c=relaxed/simple;
-	bh=yTf9GYa92CxOR0v1gm9TC/TaEGiV9h9oOyqTiChyhQc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CeGNdwp89J4HgoEqukjQw0SH4cjuCInkA2wODUUWWuPRQumX422Bxxdcie9keod117lAKGoXhqKohsFSLOFKIVM42uameIKpmntcV5okj3T3Xif6d3E9J6B+6MDIV6g8TtNbpijfygH/hIxRq3zegUrjD2vS4UyryjzgN6LI700=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=J/301NWa; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1772704683; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=kBoMhSSPZC5RsRfS4lwUYt+DXbeKYd998viSF8OfQgMUxb/zXbxyemZauGhuLeYTbPBelQjuTfEL9D0+cWo40OIheo5HwWCwpwlhtF3FhqUusAxKkTY416Dmd3KJxG3Sfv/E4HjLm8ThGO3Xq0gjfknscHV4kjjKHfgvW8ob+Yc=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1772704683; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=t+dM/ivqOh9qFQC6P4MhMScrDFmdYfA44gwq4G7yKZA=; 
-	b=fK4RwTEpB/dukN63XUnC6gB0R4xTNhIruor1iiIurQIm8TsF4kKFxi+gMjRHWSoxFymTAVKJ+sVEYYCSrvj5kS8FLsPP41vixq+SkwRlXPTwlKClaT5CvK20ffWU7wnncuAFyu8PJwB95ylrXrsozTseCxJZpS1ZLScgCqos7R4=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772704683;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=t+dM/ivqOh9qFQC6P4MhMScrDFmdYfA44gwq4G7yKZA=;
-	b=J/301NWaZdxu3OBlGpm+tcT8tF32LtInDWcbPlcVv41C/2xK55Pi9n2RO8pJgD/l
-	wkCpA7kwqrt9OFuobYiiO8tC+AKWML/dxJuO+AITRr9jlC6DgJvNBBrTSC2C5FGya/f
-	yyvNJiQC2PXlDeManSvq/+q1AWUAAinyKmpE1e2Y=
-Received: by mx.zohomail.com with SMTPS id 1772704680982221.39391748095557;
-	Thu, 5 Mar 2026 01:58:00 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: "chu.stanley@gmail.com" <chu.stanley@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>,
- Chunfeng Yun =?UTF-8?B?KOS6keaYpeWzsCk=?= <Chunfeng.Yun@mediatek.com>,
- "kishon@kernel.org" <kishon@kernel.org>,
- "James.Bottomley@HansenPartnership.com"
- <James.Bottomley@hansenpartnership.com>,
- "bvanassche@acm.org" <bvanassche@acm.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Chaotian Jing =?UTF-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "vkoul@kernel.org" <vkoul@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "avri.altman@wdc.com" <avri.altman@wdc.com>,
- "martin.petersen@oracle.com" <martin.petersen@oracle.com>,
- "broonie@kernel.org" <broonie@kernel.org>,
- Peter Wang =?UTF-8?B?KOeOi+S/oeWPiyk=?= <peter.wang@mediatek.com>
-Cc: "linux-scsi@vger.kernel.org" <linux-scsi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
- "kernel@collabora.com" <kernel@collabora.com>
-Subject:
- Re: [PATCH v8 11/23] scsi: ufs: mediatek: Remove undocumented downstream
- reset cruft
-Date: Thu, 05 Mar 2026 10:57:53 +0100
-Message-ID: <3472277.mvXUDI8C0e@workhorse>
-In-Reply-To: <3aeee75e78fed2be92038c776463a231b94462f3.camel@mediatek.com>
-References:
- <20260304-mt8196-ufs-v8-0-5b0eac23314f@collabora.com>
- <20260304-mt8196-ufs-v8-11-5b0eac23314f@collabora.com>
- <3aeee75e78fed2be92038c776463a231b94462f3.camel@mediatek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB3637BE62;
+	Thu,  5 Mar 2026 10:00:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772704822; cv=none; b=YNrsaCA7f78scYNTtAVgghWpAOqDkd0kC6EWTYD2/Ozb4B79gn57OirMTISl33BAoFdq+KMJg8HtLzxJw2HIYt+NEBgm6l1FojtrMySB2d5f5rN7w+7R+wbSWMiD/uTFdmCL78oSAYi3zgYYPnPQN6a7QwIREdaxR7zSR7WbLDo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772704822; c=relaxed/simple;
+	bh=muWXstEZMbN15XeFJxSS5x5tVzgZ4DuCk2XfgcGs3Vs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DITr0B1ZclkqVTurVV+8KZgAp9+c4S1iqaUpgJYbnmIhMb/rrIZw2YQiA+EimQ/97qHvXeW/a8oKyTFii3GrUBvAH3339iCy5lZgjAVdvUdVsLr0lStyUXGGxa7F4p10V7dxANW3x65WLU25pjdQyW1Br3CT1Klz0FAVyjFCfzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BnOIzXBB; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772704821; x=1804240821;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=muWXstEZMbN15XeFJxSS5x5tVzgZ4DuCk2XfgcGs3Vs=;
+  b=BnOIzXBBjqMJzcAl5Jl5GMXeEJ4eOxBt8P/di06C8TTQYtv8/aWg95lT
+   AXkLII6XZr59N5HM7BQm6iFRDjgu/DZeqz3kJh+ANrPGErEqTwRurZknV
+   baO7bP9aYif01ZiJNaf4KXGbWpCOTj6LkNGB9pHkdBqmVmEZDeRdmoMvA
+   mMQmJC9IYApZhN1QP6uWBJZwgTGyP4sfiHBLAUYE7YgcvQefiYJ2hhzHl
+   olmX1fyUr6Wvs6a/jfuAT7RpEppH+uvhgcFO+GgH4GB0/09//N+yEFMht
+   5GZodv+fbp/KlswkVUOQI3JJzk4W3k60vpV9b/Kbxyy7JbX9Lf2qZon6/
+   w==;
+X-CSE-ConnectionGUID: prNdTJMxSVmeSP+Tv1PcCg==
+X-CSE-MsgGUID: v0i89a1kQrCqAcym5RHoHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="77632653"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; 
+   d="scan'208";a="77632653"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2026 02:00:21 -0800
+X-CSE-ConnectionGUID: 03LJrpzXQySu3FvLOVrAMQ==
+X-CSE-MsgGUID: zjhrG/lQQMSdy6XVQvxq2g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; 
+   d="scan'208";a="218637267"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.65])
+  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2026 02:00:18 -0800
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with ESMTP id CBE2D121D19;
+	Thu, 05 Mar 2026 12:00:46 +0200 (EET)
+Date: Thu, 5 Mar 2026 12:00:46 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] media: i2c: mt9m114: add support for Aptina MI1040
+Message-ID: <aalUTnqTFAWR6nPo@kekkonen.localdomain>
+References: <20260304185001.82988-1-clamor95@gmail.com>
+ <20260304185001.82988-3-clamor95@gmail.com>
+ <aainoYv6RXkXFcHv@kekkonen.localdomain>
+ <CAPVz0n2e3HCJRo0_Q5zbYp4w_-=ZCypoaw9vaN0NTfFr7qgorw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: A0B4920F6FF
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPVz0n2e3HCJRo0_Q5zbYp4w_-=ZCypoaw9vaN0NTfFr7qgorw@mail.gmail.com>
+X-Rspamd-Queue-Id: B6E8520F6D7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271481-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,mediatek.com,hansenpartnership.com,acm.org,collabora.com,linaro.org,pengutronix.de,samsung.com,wdc.com,oracle.com];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-271480-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.993];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_TO(0.00)[gmail.com];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.963];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kekkonen.localdomain:mid,intel.com:dkim,intel.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Thursday, 5 March 2026 10:14:47 Central European Standard Time Peter Wan=
-g (=E7=8E=8B=E4=BF=A1=E5=8F=8B) wrote:
-> On Wed, 2026-03-04 at 15:53 +0100, Nicolas Frattaroli wrote:
-> > @@ -2383,38 +2383,12 @@ MODULE_DEVICE_TABLE(of, ufs_mtk_of_match);
-> >  static int ufs_mtk_probe(struct platform_device *pdev)
-> >  {
-> >  	int err;
-> > -	struct device *dev =3D &pdev->dev, *phy_dev =3D NULL;
-> >=20
->=20
-> Will there be a build error if phy_dev is removed?
-> Please make sure that each patch can build successfully, one by one.
->=20
-> Thanks
-> Peter
->=20
->=20
->=20
->=20
+Hi Svyatoslav,
 
-Yes, these are the kinds of mistakes that happen when you ask someone
-to pick apart patches for your downstream convenience.
+On Thu, Mar 05, 2026 at 10:36:25AM +0200, Svyatoslav Ryhel wrote:
+> ср, 4 бер. 2026 р. о 23:43 Sakari Ailus <sakari.ailus@linux.intel.com> пише:
+> >
+> > Hi Svyatoslav,
+> >
+> > One more thing...
+> >
+> > On Wed, Mar 04, 2026 at 08:50:01PM +0200, Svyatoslav Ryhel wrote:
+> > > @@ -2646,9 +2658,18 @@ static void mt9m114_remove(struct i2c_client *client)
+> > >       pm_runtime_set_suspended(dev);
+> > >  }
+> > >
+> > > +static const struct mt9m114_model_info mt9m114_models_default = {
+> > > +     .state_standby_polling = true,
+> > > +};
+> > > +
+> > > +static const struct mt9m114_model_info mt9m114_models_aptina = {
+> > > +     .state_standby_polling = false,
+> > > +};
+> > > +
+> > >  static const struct of_device_id mt9m114_of_ids[] = {
+> > > -     { .compatible = "onnn,mt9m114" },
+> > > -     { /* sentinel */ },
+> > > +     { .compatible = "onnn,mt9m114", .data = &mt9m114_models_default },
+> > > +     { .compatible = "aptina,mi1040", .data = &mt9m114_models_aptina },
+> > > +     { /* sentinel */ }
+> >
+> > The driver also supports ACPI. mt9m114_models_default needs to be added to
+> > the ACPI data, too; otherwise ACPI support breaks.
+> >
+> 
+> So turn into
+> 
+> static const struct acpi_device_id mt9m114_acpi_ids[] = {
+>     { "INT33F0" },
+>     { /* sentinel */ },
+> };
+> 
+> into
+> 
+> static const struct acpi_device_id mt9m114_acpi_ids[] = {
+>     { "INT33F0", (kernel_ulong_t)&mt9m114_models_default },
+>     { /* sentinel */ }
+> };
 
-I'll hand dealing with any further fixups and variable naming concerns
-you have over to Angelo, as I can't be bothered to deal with you
-anymore.
+Looks good to me.
 
+> 
+> I want to be as specific as possible to avoid any misunderstandings.
+> Additionally, please ensure these are all the required changes to
+> avoid unwanted reiterations, as I may not be as familiar with the
+> media framework as you are. Thank you!
 
+That's what I noticed after going through this once more.
+
+Review won't make patches perfect (mostly) but the more issues can be found
+during review, the better.
+
+> 
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, mt9m114_of_ids);
+> > >
+> >
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
