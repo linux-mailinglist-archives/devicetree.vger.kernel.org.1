@@ -1,194 +1,175 @@
-Return-Path: <devicetree+bounces-271516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271517-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KI4rI1dlqWlN6wAAu9opvQ
-	(envelope-from <devicetree+bounces-271516-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:13:27 +0100
+	id gARuEkNpqWlN6wAAu9opvQ
+	(envelope-from <devicetree+bounces-271517-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:30:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31829210648
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:13:27 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28A39210975
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 12:30:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 023EC302651F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 11:12:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D53313028506
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 11:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB77384231;
-	Thu,  5 Mar 2026 11:12:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75DFC388373;
+	Thu,  5 Mar 2026 11:30:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from sgoci-sdnproxy-4.icoremail.net (sgoci-sdnproxy-4.icoremail.net [129.150.39.64])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF71B248F66;
-	Thu,  5 Mar 2026 11:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.150.39.64
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66F7317141
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 11:30:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772709171; cv=none; b=UJrxL/YIUE66aP4uKJuiBRTbOy+sTbWVgOmbbfJkh5YxxP6zrCwG/xDaEdDIOqLMWUdCvCQkRNPZShxCeoOfr+ETB1PoKMFYdSFxJuj9eOYGy2yWgBgtmsCMq7LRdE6u06R8k0vpxAyYuCBc1sIIJrSYCYbIRw3LOmq8t6FVvl8=
+	t=1772710206; cv=none; b=uTc0ilYQ9PNmEOWVGZSpDsdEbJ0BZVPqPdw3VWTkKFUgqQlf95UrmVj8nx8s/LpIdOoiHgnpZW84AYFnrE3yyJkGOUbXWtIwCidfBM/KMpYXj1whBFpscEVCHny6U4B7nzLyngfkb2w1MUhvHIkmKvOVRaVVQ7c7yDXiahIwPOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772709171; c=relaxed/simple;
-	bh=nYaHsF7AslIOlshqZI+a0bPZ+z/2Rs0fxX3RmakdcoQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=LUfwyTFyjZvnU4cNGZLmOBeO6+DzxP3t4q3tYXvJ8dndjTlR5lULTSOHMs1C+uQyzJ8pfLXy7qcKbWcudLPpqGxGLlXemBsTR/CSscTPJygh+msIAyOaMFcwiQ4jp+2ttgdhWa0J6dd/HjUW545QTZfC8cJDXvVMQn0i5j87ykk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=129.150.39.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from hehuan1$eswincomputing.com ( [10.12.96.103] ) by
- ajax-webmail-app2 (Coremail) ; Thu, 5 Mar 2026 19:12:37 +0800 (GMT+08:00)
-Date: Thu, 5 Mar 2026 19:12:37 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Huan He" <hehuan1@eswincomputing.com>
-To: "Guenter Roeck" <linux@roeck-us.net>
-Cc: "Krzysztof Kozlowski" <krzk@kernel.org>, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
-	luyulin@eswincomputing.com
-Subject: Re: Re: Re: Re: [PATCH v2 0/2] Add driver support for ESWIN EIC7700
- PVT controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2026 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <46752141.375d.19c5ae8161e.Coremail.hehuan1@eswincomputing.com>
-References: <20260128101400.859-1-hehuan1@eswincomputing.com>
- <1a08e50a.362b.19c4c20db59.Coremail.hehuan1@eswincomputing.com>
- <e648565e-59a9-4270-bbbd-7c53f5f65c6c@kernel.org>
- <2c43c2a.366b.19c5017e58a.Coremail.hehuan1@eswincomputing.com>
- <0183a68b-f8e9-48b8-b77f-5ae0a048a2bf@roeck-us.net>
- <46752141.375d.19c5ae8161e.Coremail.hehuan1@eswincomputing.com>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1772710206; c=relaxed/simple;
+	bh=i49Cs4XafC1S95n14RluXR/r2KJdT5Jfa5LHpWXYbe4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rSyWaxIw4Gy6W7YjhJIPR8kYsScWBXeZkE+Lb2ROTRvkV0KrZ4klrlSXKloSN/ZT+FtR6qiVgH6X1rnNlmM6M07OGDRYmBxSKhNwlWBvbq7ESSuHNE6ng2S4EEXnvmanLCHa2p3HzkOImffSK9DNHK4XP+MIBCiA/t4jDvktCuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vy6td-0000OG-Ap; Thu, 05 Mar 2026 12:29:37 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vy6tb-003sKU-10;
+	Thu, 05 Mar 2026 12:29:36 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1vy6tc-00000002JRi-2K2H;
+	Thu, 05 Mar 2026 12:29:36 +0100
+Date: Thu, 5 Mar 2026 12:29:36 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+	Matthias Kaehlcke <mka@chromium.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, huang.ze@linux.dev
+Cc: linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v5 0/4] Add onboard-dev USB hub host managed vbus
+ handling support
+Message-ID: <shnrtu77frks3yd5r66tzpeca3bxxuu4jpfaqxzerc3tl7j6hr@4ewe2trbh746>
+References: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <6803a67f.3e27.19cbdb318ff.Coremail.hehuan1@eswincomputing.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID:TQJkCgDH3aAlZalpyOIFAA--.1499W
-X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/1tbiAQERCmmoXpIKGwAE
-	sD
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
-X-Rspamd-Queue-Id: 31829210648
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: 28A39210975
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.14 / 15.00];
+X-Spamd-Result: default: False [0.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,gmail.com,chromium.org,linux.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271517-lists,devicetree=lfdr.de];
 	RCPT_COUNT_TWELVE(0.00)[13];
-	DMARC_NA(0.00)[eswincomputing.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-271516-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_SPAM(0.00)[0.018];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hehuan1@eswincomputing.com,devicetree@vger.kernel.org];
-	HAS_X_PRIO_THREE(0.00)[3];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email]
 X-Rspamd-Action: no action
 
-SGkgR3VlbnRlciwKClRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgZGV0YWlsZWQgcmV2aWV3
-IGFuZCB2YWx1YWJsZSBmZWVkYmFjay4gSQphcG9sb2dpemUgZm9yIHRoZSBkZWxheWVkIHJlc3Bv
-bnNlLgoKPiA+IAo+ID4gIyBDb21taXQgNmY0ZDU2OThmMzM0ICgiaHdtb246IEFkZCBFc3dpbiBF
-SUM3NzAwIFBWVCBzZW5zb3IgZHJpdmVyIikKPiA+IDEuICBlaWM3NzAwLXB2dC5jOjQ4NzogRVJS
-T1I6IFVuYmFsYW5jZWQgY2xvY2sgcmVmY291bnQgd2l0aCBSdW50aW1lIFBNCj4gPiAgICAgPiAr
-CXB2dC0+Y2xrID0gZGV2bV9jbGtfZ2V0X2VuYWJsZWQoJnBkZXYtPmRldiwgTlVMTCk7Cj4gPiAK
-PiA+ICAgICBVc2luZyBgZGV2bV9jbGtfZ2V0X2VuYWJsZWQoKWAgZW5hYmxlcyB0aGUgY2xvY2sg
-YW5kIHJlZ2lzdGVycyBhIGRldm0gYWN0aW9uCj4gPiAgICAgdG8gZGlzYWJsZSBpdCBvbiByZW1v
-dmFsLiBIb3dldmVyLCB0aGUgZHJpdmVyIGFsc28gdXNlcyBSdW50aW1lIFBNIHRvIG1hbmFnZQo+
-ID4gICAgIHRoZSBzYW1lIGNsb2NrOgo+ID4gCj4gPiAgICAgPiArc3RhdGljIGludCBfX21heWJl
-X3VudXNlZCBlaWM3NzAwX3B2dF9ydW50aW1lX3N1c3BlbmQoc3RydWN0IGRldmljZSAqZGV2KQo+
-ID4gICAgID4gK3sKPiA+ICAgICA+ICsJc3RydWN0IHB2dF9od21vbiAqcHZ0ID0gZGV2X2dldF9k
-cnZkYXRhKGRldik7Cj4gPiAgICAgPiArCj4gPiAgICAgPiArCWNsa19kaXNhYmxlX3VucHJlcGFy
-ZShwdnQtPmNsayk7Cj4gPiAKPiA+ICAgICBJZiB0aGUgZGV2aWNlIGlzIHJ1bnRpbWUgc3VzcGVu
-ZGVkIHdoZW4gYHJlbW92ZSgpYCBpcyBjYWxsZWQ6Cj4gPiAgICAgMS4gYHByb2JlKClgOiBgY2xr
-X3ByZXBhcmVfZW5hYmxlKClgIChSZWY6IDEpCj4gPiAgICAgMi4gYHJ1bnRpbWVfc3VzcGVuZCgp
-YDogYGNsa19kaXNhYmxlX3VucHJlcGFyZSgpYCAoUmVmOiAwKQo+ID4gICAgIDMuIGByZW1vdmUo
-KWAgKHZpYSBkZXZtKTogYGNsa19kaXNhYmxlX3VucHJlcGFyZSgpYCAoUmVmOiAtMSkKPiA+IAo+
-ID4gICAgIFRoaXMgbGVhZHMgdG8gYSByZWZjb3VudCB1bmRlcmZsb3cgYW5kIHdhcm5pbmcuCj4g
-PiAKPiA+ICAgICBGaXg6IFVzZSBgZGV2bV9jbGtfZ2V0KClgIGFuZCBtYW51YWxseSBjYWxsIGBj
-bGtfcHJlcGFyZV9lbmFibGUoKWAgaW4gcHJvYmUuCj4gPiAgICAgRW5zdXJlIHRoYXQgdGhlIG1h
-bnVhbCBlbmFibGUgaXMgYmFsYW5jZWQgY29ycmVjdGx5LCBvciByZWx5IG9uIFJ1bnRpbWUgUE0K
-PiA+ICAgICAoYW5kIGBwbV9ydW50aW1lX2dldF9zeW5jYCBpbiBwcm9iZSkgdG8gaGFuZGxlIHRo
-ZSBjbG9jaywgZW5zdXJpbmcKPiA+ICAgICBgcG1fcnVudGltZV9wdXRgIGJhbGFuY2VzIGl0LiBT
-aW5jZSBgY2hlY2tfcHdyYCBuZWVkcyB0aGUgY2xvY2sgYmVmb3JlCj4gPiAgICAgUnVudGltZSBQ
-TSBpcyBlbmFibGVkLCB5b3Ugc2hvdWxkIGVuYWJsZSBpdCBtYW51YWxseSBhbmQgdGhlbiBwb3Nz
-aWJseQo+ID4gICAgIGRpc2FibGUgaXQgYmVmb3JlIGVuYWJsaW5nIFJ1bnRpbWUgUE0sIG9yIGtl
-ZXAgaXQgZW5hYmxlZCBhbmQgbGV0IFJ1bnRpbWUgUE0KPiA+ICAgICB0YWtlIG92ZXIgKGJ1dCBl
-bnN1cmUgYHJlbW92ZWAgZG9lc24ndCBkb3VibGUgZGlzYWJsZSkuCj4gPiAKPiA+ICAgICBBIGNv
-bW1vbiBwYXR0ZXJuOgo+ID4gICAgIGBgYGMKPiA+ICAgICBwdnQtPmNsayA9IGRldm1fY2xrX2dl
-dChkZXYsIE5VTEwpOwo+ID4gICAgIC4uLgo+ID4gICAgIGNsa19wcmVwYXJlX2VuYWJsZShwdnQt
-PmNsayk7Cj4gPiAgICAgLi4uCj4gPiAgICAgcG1fcnVudGltZV9lbmFibGUoZGV2KTsKPiA+ICAg
-ICBwbV9ydW50aW1lX2dldF9ub3Jlc3VtZShkZXYpOwo+ID4gICAgIC4uLgo+ID4gICAgIHBtX3J1
-bnRpbWVfcHV0KGRldik7Cj4gPiAgICAgYGBgCj4gPiAgICAgQW5kIGVuc3VyZSBgcmVtb3ZlYCAo
-b3IgZGV2bSBhY3Rpb24pIGRpc2FibGVzIGl0IE9OTFkgaWYgbm90IHN1c3BlbmRlZD8KPiA+ICAg
-ICBBY3R1YWxseSwgc2ltcGxlciBpczoKPiA+ICAgICBEb24ndCB1c2UgYGRldm1fY2xrX2dldF9l
-bmFibGVkYCBpZiB5b3UgdXNlIGBydW50aW1lX3N1c3BlbmRgIHRvIGRpc2FibGUgaXQuCj4gPiAg
-ICAgVXNlIGBkZXZtX2Nsa19nZXRgLgo+ID4gICAgIEluIHByb2JlOiBgY2xrX3ByZXBhcmVfZW5h
-YmxlYC4KPiA+ICAgICBSZWdpc3RlciBhIGBkZXZtX2FkZF9hY3Rpb25gIHRoYXQgY2FsbHMgYGNs
-a19kaXNhYmxlX3VucHJlcGFyZWAgKm9ubHkgaWYqIHRoZQo+ID4gICAgIGRyaXZlciBpcyBub3Qg
-dXNpbmcgUnVudGltZSBQTSB0byBjb250cm9sIGl0PyBObywgdGhhdCdzIG1lc3N5Lgo+ID4gCj4g
-PiAgICAgQmV0dGVyIGZpeDoKPiA+ICAgICBVc2UgYGRldm1fY2xrX2dldGAuCj4gPiAgICAgSW4g
-cHJvYmU6IGBjbGtfcHJlcGFyZV9lbmFibGVgLgo+ID4gICAgIEluIHJlbW92ZSAoZGV2bSBhY3Rp
-b24/KTogYGNsa19kaXNhYmxlX3VucHJlcGFyZWAgKGJ1dCB0aGlzIHN0aWxsIGhhcyB0aGUgaXNz
-dWUpLgo+ID4gCj4gPiAgICAgQ29ycmVjdCBGaXg6Cj4gPiAgICAgRG8gbm90IHVzZSBgY2xrX2Rp
-c2FibGVfdW5wcmVwYXJlYCBpbiBgcnVudGltZV9zdXNwZW5kYCBpZiB5b3UgdXNlZAo+ID4gICAg
-IGBkZXZtX2Nsa19nZXRfZW5hYmxlZGAuCj4gPiAgICAgT1IKPiA+ICAgICBEb24ndCB1c2UgYGRl
-dm1fY2xrX2dldF9lbmFibGVkYC4gVXNlIGBkZXZtX2Nsa19nZXRgLgo+ID4gICAgIE1hbmFnZSB0
-aGUgY2xvY2sgZW50aXJlbHkgdmlhIFJ1bnRpbWUgUE0uCj4gPiAgICAgSW4gcHJvYmU6Cj4gPiAg
-ICAgYGNsa19wcmVwYXJlX2VuYWJsZShwdnQtPmNsayk7YCAoVGVtcG9yYXJ5IGZvciBjaGVja19w
-d3IpCj4gPiAgICAgYGNoZWNrX3B3ci4uLmAKPiA+ICAgICBgY2xrX2Rpc2FibGVfdW5wcmVwYXJl
-KHB2dC0+Y2xrKTtgCj4gPiAgICAgYHBtX3J1bnRpbWVfZW5hYmxlKGRldik7YAo+ID4gICAgIC4u
-Lgo+IAo+IFdlIHdpbGwgcmVwcm9kdWNlIGFuZCBmdXJ0aGVyIGFuYWx5emUgdGhlIGNsb2NrIHJl
-ZmNvdW50IGltYmFsYW5jZQo+IHNjZW5hcmlvLgoKUmVnYXJkaW5nIHRoZSBSdW50aW1lIFBNIGlz
-c3VlIHBvdGVudGlhbGx5IGNhdXNpbmcgY2xvY2sgcmVmY291bnQKaW1iYWxhbmNlLCB3ZSBoYXZl
-IGludmVzdGlnYXRlZCBpdCBhbmQgd2lsbCBhZGRyZXNzIHRoaXMgaW4gdGhlIHYzIHBhdGNoLgoK
-PiAKPiA+IAo+ID4gMy4gIGVpYzc3MDAtcHZ0LmM6MzY4OiBXQVJOOiBTcHVyaW91cyBpbnRlcnJ1
-cHRzIG9uIHNoYXJlZCBJUlEgbGluZQo+ID4gICAgID4gKwllaWM3NzAwX3B2dF91cGRhdGUocHZ0
-LT5yZWdzICsgUFZUX0VOQSwgUFZUX0VOQV9FTiwgUFZUX0VOQV9FTik7Cj4gPiAKPiA+ICAgICBg
-Y2hlY2tfcHdyYCBlbmFibGVzIHRoZSBkZXZpY2UgKGFuZCB0aHVzIHBvdGVudGlhbCBpbnRlcnJ1
-cHRzKSBiZWZvcmUKPiA+ICAgICBgcmVxdWVzdF9pcnFgIGlzIGNhbGxlZC4gSWYgdGhlIElSUSBs
-aW5lIGlzIHNoYXJlZCBhbmQgdGhlIGRldmljZSBhc3NlcnRzCj4gPiAgICAgYW4gaW50ZXJydXB0
-IGltbWVkaWF0ZWx5LCB0aGUgaW50ZXJydXB0IHdpbGwgYmUgdW5oYW5kbGVkIChzcHVyaW91cykg
-YmVjYXVzZQo+ID4gICAgIG5vIGhhbmRsZXIgaXMgcmVnaXN0ZXJlZCB5ZXQuCj4gPiAKPiA+ICAg
-ICBGaXg6IFJlcXVlc3QgdGhlIElSUSBiZWZvcmUgZW5hYmxpbmcgdGhlIGRldmljZSwgb3IgZW5z
-dXJlIGludGVycnVwdHMgYXJlIG1hc2tlZAo+ID4gICAgIGF0IHRoZSBjb250cm9sbGVyIGxldmVs
-IChpZiBwb3NzaWJsZSkgYmVmb3JlIGVuYWJsaW5nIHRoZSBibG9jay4gU2luY2UgYGNoZWNrX3B3
-cmAKPiA+ICAgICByZWxpZXMgb24gcG9sbGluZyBhbmQgSVNSIGNsZWFycyB0aGUgc3RhdHVzLCBt
-b3ZpbmcgYHJlcXVlc3RfaXJxYCBpcyB0cmlja3kuCj4gPiAgICAgVmVyaWZ5IGlmIGBQVlRfRU5B
-YCBoYXMgYSBzZXBhcmF0ZSBpbnRlcnJ1cHQgZW5hYmxlIGJpdCBvciBpZiBgUFZUX0lOVGAgaGFz
-IGEgbWFzay4KPiA+ICAgICBJZiBub3QsIHRoaXMgaXMgYSBoYXJkd2FyZS9kcml2ZXIgZGVzaWdu
-IHJpc2suCj4gPiAKPiAKPiBDb25maXJtZWQgd2l0aCB0aGUgaGFyZHdhcmUgdGVhbSwgdGhlIFBW
-VF9FTkEgcmVnaXN0ZXIgaGFzIG5vIGluZGVwZW5kZW50Cj4gaW50ZXJydXB0IGVuYWJsZSwgYW5k
-IFBWVF9JTlQgZG9lcyBub3Qgc3VwcG9ydCBtYXNraW5nLgo+IEVuYWJsaW5nIHRoZSBkZXZpY2Ug
-YmVmb3JlIHJlcXVlc3RfaXJxIG1heSBnZW5lcmF0ZSBpbnRlcnJ1cHRzLCBidXQgdGhlCj4gZHJp
-dmVyIGRpc2FibGVzIHRoZSBQVlQgbW9kdWxlIChQVlRfRU5BX0VOID0gMCkgYW5kIGNsZWFycyBp
-bnRlcnJ1cHRzIGJ5Cj4gd3JpdGluZyBQVlRfSU5UX0NMUi4gSW4gcHJhY3RpY2UsIG5vIGlzc3Vl
-cyBoYXZlIGJlZW4gb2JzZXJ2ZWQuCj4gCgpGb3IgdGhlIHNwdXJpb3VzIGludGVycnVwdCBjb25j
-ZXJuOiBhZnRlciBjb25maXJtaW5nIHdpdGggdGhlIGhhcmR3YXJlCnRlYW0sIHRoZSBQVlRfRU5B
-IHJlZ2lzdGVyIGhhcyBubyBpbmRlcGVuZGVudCBpbnRlcnJ1cHQgZW5hYmxlLCBhbmQKUFZUX0lO
-VCBkb2VzIG5vdCBzdXBwb3J0IG1hc2tpbmcuIEluIHRoZSBjdXJyZW50IGltcGxlbWVudGF0aW9u
-LCBlbmFibGluZwp0aGUgZGV2aWNlIGR1cmluZyBjaGVja19wd3IgbWF5IGdlbmVyYXRlIGFuIGlu
-dGVycnVwdCwgYnV0IHRoZSBkcml2ZXIKc3Vic2VxdWVudGx5IGRpc2FibGVzIHRoZSBQVlQgbW9k
-dWxlIChQVlRfRU5BX0VOID0gMCkgYW5kIGNsZWFycyB0aGUKaW50ZXJydXB0IHN0YXR1cyBieSB3
-cml0aW5nIFBWVF9JTlRfQ0xSLiBJbiBwcmFjdGljZSwgbm8gaXNzdWVzIGhhdmUgYmVlbgpvYnNl
-cnZlZC4KCkNvdWxkIHlvdSBwbGVhc2UgY29uZmlybSB3aGV0aGVyIGl0IGlzIGFjY2VwdGFibGUg
-dG8ga2VlcCB0aGUgY3VycmVudAppbXBsZW1lbnRhdGlvbiB1bmRlciB0aGVzZSBjb25kaXRpb25z
-PwogCkJlc3QgcmVnYXJkcywKSHVhbiBIZQo=
+Hi,
+
++To: huang.ze@linux.dev
+
+On 26-02-23, Marco Felsch wrote:
+> Hi,
+> 
+> the whole purpose of this series is to make it possible to control the
+> USB VBUS regulators of an USB hub via host managed regulators.
+> 
+> Regards,
+>   Marco
+> 
+> ---
+> Changes in v5:
+> - Link to v4: https://lore.kernel.org/r/20250911-v6-16-topic-usb-onboard-dev-v4-0-1af288125d74@pengutronix.de
+> - rebase on top of v7.0-rc1
+> - dt-bindings: fix typo
+> - dt-bindings: move example into usb-device.yaml
+> 
+> Changes in v4:
+> - dt-bindings: change to vbus-supply and shift doc to usb-device.yaml
+> - onboard_dev: make use of new regulator API to parse child device
+>                regulators.
+> - onboard_dev: drop hard coded downstream port number and make it more
+>                dynamic
+> - onboard_dev: drop limiting support to SMSC hubs
+> - Link to v3: https://lore.kernel.org/r/20250821-v6-16-topic-usb-onboard-dev-v3-0-6d2b38a5d818@pengutronix.de
+> 
+> Changes in v3:
+> - fix dt-bindings issues
+> - Link to v2: https://lore.kernel.org/all/20250327172803.3404615-1-m.felsch@pengutronix.de/
+> 
+> Changes in v2:
+> - fix compile time errors in case the module builds
+> - Link to v1: https://lore.kernel.org/all/20240807-b4-v6-10-topic-usb-onboard-dev-v1-0-f33ce21353c9@pengutronix.de/
+> 
+> ---
+> Marco Felsch (4):
+>       usb: port: track the disabled state
+>       usb: hub: add infrastructure to pass onboard_dev port features
+>       dt-bindings: usb: usb-device: add usb hub port vbus-supply suppport
+>       usb: misc: onboard_dev: add hub downstream port host vbus-supply handling
+> 
+>  .../devicetree/bindings/usb/usb-device.yaml        |  15 +++
+>  drivers/usb/core/hub.c                             |  55 +++++++++-
+>  drivers/usb/core/hub.h                             |   4 +
+>  drivers/usb/core/port.c                            |   6 ++
+>  drivers/usb/misc/onboard_usb_dev.c                 | 117 +++++++++++++++++++++
+>  include/linux/usb.h                                |   3 +
+>  6 files changed, 198 insertions(+), 2 deletions(-)
+> ---
+> base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+> change-id: 20250821-v6-16-topic-usb-onboard-dev-b8d4d1d8a086
+> 
+> Best regards,
+> -- 
+> Marco Felsch <m.felsch@pengutronix.de>
+> 
+
+-- 
+#gernperDu 
+#CallMeByMyFirstName
+
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
