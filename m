@@ -1,145 +1,258 @@
-Return-Path: <devicetree+bounces-271599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271600-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mN91HO2WqWlKAgEAu9opvQ
-	(envelope-from <devicetree+bounces-271599-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:45:01 +0100
+	id SNX7BNaZqWm7AgEAu9opvQ
+	(envelope-from <devicetree+bounces-271600-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:57:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEB7C213BEA
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:45:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAE29213F8F
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 15:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A53CA30B68E7
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:41:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3376D30E98F6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 14:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39D693A7F5E;
-	Thu,  5 Mar 2026 14:41:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 626153A9D8E;
+	Thu,  5 Mar 2026 14:47:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EGhuVJdY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com [74.125.82.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 512F43A7F56;
-	Thu,  5 Mar 2026 14:41:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B27A3A962C
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 14:47:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772721675; cv=none; b=Y7FDJ+YLSvTk/utde6x9qeRZ9ZUpEjUwrPIUCQ8H5E+G6P0puAKTwraew3y0pOHOkOnhKiQSQZiE3OK2z2/A4EnYA2nonsicfZVCIWMbrfBX2MiDHWRm3He7bYOt0Zo4eOolDnPqd8iT1eBZvBgt9s0z0kY5Fp0YDl83EhjaCaw=
+	t=1772722026; cv=none; b=fBLFibop4wmxi7Zx8pcaDqBt9Ta6nimV/u+jG/lrmfo6XOp8kJuKFUdNtFidHmxuJZ0loxc/yGPl850hxHX64lzJwA11UsNyQy/P0zvCzFNYIKUOak7bDij1esWgOM9p9VD8IhIiyEnLCEZ+vEWKg2K62do4wBUapn2ZJaklc/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772721675; c=relaxed/simple;
-	bh=hAT3ItrZbJ3/rLJDOV+a4uv/6PitPVglKopYcJDVXzA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KG7UBj4TCig9sMOoytVVPWnL82yZhxIK5qU5iJK8GlLOH3U4lQLfG5xynjEeg3MSjpWXazE/6s3BKnEyGcDF74njC7OUKP34Q6ZzhqvHnW8GCWzM5jLRCUP0FKtB+oC0xzDLEZ/vYjedzNC0bPKgMjPamL7pTK3Cp3cm4aieg9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.14])
-	by APP-03 (Coremail) with SMTP id rQCowABnhNvulalpTx7iCQ--.24548S4;
-	Thu, 05 Mar 2026 22:41:02 +0800 (CST)
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Rahul Tanwar <rtanwar@maxlinear.com>
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v2 2/2] riscv: dts: thead: th1520: add coefficients to the PVT node
-Date: Thu,  5 Mar 2026 22:40:44 +0800
-Message-ID: <20260305144044.44208-3-zhengxingda@iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260305144044.44208-1-zhengxingda@iscas.ac.cn>
-References: <20260305144044.44208-1-zhengxingda@iscas.ac.cn>
+	s=arc-20240116; t=1772722026; c=relaxed/simple;
+	bh=uBxvabcAKKc9GycYpWhTNkvX6gKDgXPi95h/49nUPcg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mwAz7kZuaQBmjS+fDAb60UHaXrObh/mwpMKG6jis2fl0xNodRpl2KlOgfUYqT5TTOxzZ+O7kHDOjDJNyr+/66nbtBr4Oit81dw7u9hKC0TaGRg3WKOn+N6YiGCk+5bz+3JhiLgwI7C2lS1YmkFPey1AMHICNevUXfHknjo/20rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EGhuVJdY; arc=none smtp.client-ip=74.125.82.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f175.google.com with SMTP id 5a478bee46e88-2be3bdfda8eso1091922eec.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 06:47:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772722024; x=1773326824; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mepahCioLN4Jzp1BA0LfxlHW1z/eoqVkae7lBDykJ7Q=;
+        b=EGhuVJdYAKt+7Z8N4iT6Cf/P6Doa6tATISTFTcA77CDBgKfNPln8qtUzD7TFxqgI7Q
+         zlO75JntMHT9BX9P0Hzq2hC5C9T55Z+S6YtBkdFJ/7AdrZulEM4RrjAPe6ECskS7AQkj
+         6PjHKV3ZPIMY/2sGELB3RiJIbTnjmITrsnnzKJX7uy+qQ35SY1s4n5G9/N3bRYuG89bV
+         EItQHnGWLwW1gbinqSSTRY3BPF1Lo17DgnBCg+0f1mpR1QQp0mvOJcM7OtdazxNbCM6S
+         +hOGrW4I+bkw3kD3wW8Rk7/FOEuU6UdUXcBpiB6ni3zYx5CuIFffW4eDcIj7i3Om7UKL
+         afhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772722024; x=1773326824;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mepahCioLN4Jzp1BA0LfxlHW1z/eoqVkae7lBDykJ7Q=;
+        b=R/5ZGEOgaCtzKVIwX/1yy35beBtw4FoYCGLthmWB67eKQEtDGtuEl5BdarkYui2WOt
+         GQcHjxg3I/zLwahAWeVb+cD5ZsIfNi6XQbq5v01TsaSTKhJ4dh9IP4G/TZN5ODW48yiH
+         vUPbVmUPadZ2n90tw0EHs2F3MSgdPlyWXchrSe1Fbye5NXC5mAtIypOaOfy0VXnOdTGM
+         Gu5ElkoucHIoRTy6npyqtK532I+6fRSOgkle4bsvsgw0nCh7pNOznVTxKB6jgEBjiuIH
+         Io3Es4IYlxY7PC2mhNZMTFw8l5ajCMtRNv5P7ELkjdpuBWyYaXeo9JmPSV+IaTeGmref
+         U3DA==
+X-Forwarded-Encrypted: i=1; AJvYcCXtiN1SaPaP5lWxuN74GV02HL1vmWw8t2Trtxbc763fHB3wi1fpe5Ap+5Z82E2mUq2eqYQggffJwsVx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/LuYIL4qf7eTuAwcblYfGecHvH8PHj99xSLgOsJe3olgDYlLw
+	M7Ikoe+bi26142Ry3822SEYgp+cWbClBpJRz0LvUZO0L42ipsU4r5k3u
+X-Gm-Gg: ATEYQzybRIe7ixfSLOwJ8gs2Q7GnGh+Hfy3zlNBDnfb+SMap1rkmaysmy3dJvzwZeUZ
+	HxUkIxlI0psk8yr5++FTbyNYX3e6Ob5WVeR/oLm0qngblisg/UQQbtOyHEmInIvJ/dUNmooBWyQ
+	IqvyEG7CB2uFZYdaZkx9XP5A03oY7JUq20q9787OTzSDRFaNEpDqx7V1KgIKGimSbOSHAhowBbd
+	P2Jz/oYrp00ZoLrEfCdUtgnwkFP1kDHAztXykGUEg5r0LflME89uj1a8OLjNaTY0KZDNUqbQoqs
+	sgHXLnyYeLjuJqFeBbCSM9OMDorkG1C+bwSFiS9n1klmeE1fWYEBq7LU8UqqFxQ9dvV4U90WDla
+	SUlF/9aqXSqeSro1UbrVGgx7X7KdQoa8IZRaq3IerdyFJdwVnpEKYdEw8dN/S7HpZ9Qvuz4cWL7
+	UZSMxkIN3dSiKIc1izt6A1I3YBA1rU9mgiOWpf
+X-Received: by 2002:a05:7300:a887:b0:2be:2b8d:3992 with SMTP id 5a478bee46e88-2be30fa55e3mr2534933eec.4.1772722023898;
+        Thu, 05 Mar 2026 06:47:03 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be2c9c67dbsm3900031eec.19.2026.03.05.06.47.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 06:47:03 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 5 Mar 2026 06:47:02 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Huan He <hehuan1@eswincomputing.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	luyulin@eswincomputing.com
+Subject: Re: Re: Re: Re: [PATCH v2 0/2] Add driver support for ESWIN EIC7700
+ PVT controller
+Message-ID: <be51fbe2-d2c6-4421-b268-2c2b34128f34@roeck-us.net>
+References: <20260128101400.859-1-hehuan1@eswincomputing.com>
+ <1a08e50a.362b.19c4c20db59.Coremail.hehuan1@eswincomputing.com>
+ <e648565e-59a9-4270-bbbd-7c53f5f65c6c@kernel.org>
+ <2c43c2a.366b.19c5017e58a.Coremail.hehuan1@eswincomputing.com>
+ <0183a68b-f8e9-48b8-b77f-5ae0a048a2bf@roeck-us.net>
+ <46752141.375d.19c5ae8161e.Coremail.hehuan1@eswincomputing.com>
+ <6803a67f.3e27.19cbdb318ff.Coremail.hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowABnhNvulalpTx7iCQ--.24548S4
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw18KFW5Ar4DCw4fKw4DJwb_yoWfZrX_KF
-	1fGa15Za1fAFWfXF9rZrn5XFy5A34Yyw4Fyr9avr1UKas8Ww40qayqgas5Cw1DuFW5tFn7
-	Aw47XFW8t39FyjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbkxFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUXwA2048vs2IY02
-	0Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-	wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l84
-	ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_GcCE3s1le2I2
-	62IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcV
-	AFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG
-	0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI
-	1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_
-	Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17
-	CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0
-	I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I
-	8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4UJVWxJrUvcSsGvfC2Kfnx
-	nUUI43ZEXa7VUbH5lUUUUUU==
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
-X-Rspamd-Queue-Id: DEB7C213BEA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6803a67f.3e27.19cbdb318ff.Coremail.hehuan1@eswincomputing.com>
+X-Rspamd-Queue-Id: AAE29213F8F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-271599-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271600-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DMARC_NA(0.00)[iscas.ac.cn];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	FROM_HAS_DN(0.00)[]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[roeck-us.net:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-The manual of TH1520 contains a set of coefficients a little different
-to the driver default ones.
+On Thu, Mar 05, 2026 at 07:12:37PM +0800, Huan He wrote:
+> Hi Guenter,
+> 
+> Thank you very much for your detailed review and valuable feedback. I
+> apologize for the delayed response.
+> 
+> > > 
+> > > # Commit 6f4d5698f334 ("hwmon: Add Eswin EIC7700 PVT sensor driver")
+> > > 1.  eic7700-pvt.c:487: ERROR: Unbalanced clock refcount with Runtime PM
+> > >     > +	pvt->clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> > > 
+> > >     Using `devm_clk_get_enabled()` enables the clock and registers a devm action
+> > >     to disable it on removal. However, the driver also uses Runtime PM to manage
+> > >     the same clock:
+> > > 
+> > >     > +static int __maybe_unused eic7700_pvt_runtime_suspend(struct device *dev)
+> > >     > +{
+> > >     > +	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
+> > >     > +
+> > >     > +	clk_disable_unprepare(pvt->clk);
+> > > 
+> > >     If the device is runtime suspended when `remove()` is called:
+> > >     1. `probe()`: `clk_prepare_enable()` (Ref: 1)
+> > >     2. `runtime_suspend()`: `clk_disable_unprepare()` (Ref: 0)
+> > >     3. `remove()` (via devm): `clk_disable_unprepare()` (Ref: -1)
+> > > 
+> > >     This leads to a refcount underflow and warning.
+> > > 
+> > >     Fix: Use `devm_clk_get()` and manually call `clk_prepare_enable()` in probe.
+> > >     Ensure that the manual enable is balanced correctly, or rely on Runtime PM
+> > >     (and `pm_runtime_get_sync` in probe) to handle the clock, ensuring
+> > >     `pm_runtime_put` balances it. Since `check_pwr` needs the clock before
+> > >     Runtime PM is enabled, you should enable it manually and then possibly
+> > >     disable it before enabling Runtime PM, or keep it enabled and let Runtime PM
+> > >     take over (but ensure `remove` doesn't double disable).
+> > > 
+> > >     A common pattern:
+> > >     ```c
+> > >     pvt->clk = devm_clk_get(dev, NULL);
+> > >     ...
+> > >     clk_prepare_enable(pvt->clk);
+> > >     ...
+> > >     pm_runtime_enable(dev);
+> > >     pm_runtime_get_noresume(dev);
+> > >     ...
+> > >     pm_runtime_put(dev);
+> > >     ```
+> > >     And ensure `remove` (or devm action) disables it ONLY if not suspended?
+> > >     Actually, simpler is:
+> > >     Don't use `devm_clk_get_enabled` if you use `runtime_suspend` to disable it.
+> > >     Use `devm_clk_get`.
+> > >     In probe: `clk_prepare_enable`.
+> > >     Register a `devm_add_action` that calls `clk_disable_unprepare` *only if* the
+> > >     driver is not using Runtime PM to control it? No, that's messy.
+> > > 
+> > >     Better fix:
+> > >     Use `devm_clk_get`.
+> > >     In probe: `clk_prepare_enable`.
+> > >     In remove (devm action?): `clk_disable_unprepare` (but this still has the issue).
+> > > 
+> > >     Correct Fix:
+> > >     Do not use `clk_disable_unprepare` in `runtime_suspend` if you used
+> > >     `devm_clk_get_enabled`.
+> > >     OR
+> > >     Don't use `devm_clk_get_enabled`. Use `devm_clk_get`.
+> > >     Manage the clock entirely via Runtime PM.
+> > >     In probe:
+> > >     `clk_prepare_enable(pvt->clk);` (Temporary for check_pwr)
+> > >     `check_pwr...`
+> > >     `clk_disable_unprepare(pvt->clk);`
+> > >     `pm_runtime_enable(dev);`
+> > >     ...
+> > 
+> > We will reproduce and further analyze the clock refcount imbalance
+> > scenario.
+> 
+> Regarding the Runtime PM issue potentially causing clock refcount
+> imbalance, we have investigated it and will address this in the v3 patch.
+> 
+> > 
+> > > 
+> > > 3.  eic7700-pvt.c:368: WARN: Spurious interrupts on shared IRQ line
+> > >     > +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, PVT_ENA_EN);
+> > > 
+> > >     `check_pwr` enables the device (and thus potential interrupts) before
+> > >     `request_irq` is called. If the IRQ line is shared and the device asserts
+> > >     an interrupt immediately, the interrupt will be unhandled (spurious) because
+> > >     no handler is registered yet.
+> > > 
+> > >     Fix: Request the IRQ before enabling the device, or ensure interrupts are masked
+> > >     at the controller level (if possible) before enabling the block. Since `check_pwr`
+> > >     relies on polling and ISR clears the status, moving `request_irq` is tricky.
+> > >     Verify if `PVT_ENA` has a separate interrupt enable bit or if `PVT_INT` has a mask.
+> > >     If not, this is a hardware/driver design risk.
+> > > 
+> > 
+> > Confirmed with the hardware team, the PVT_ENA register has no independent
+> > interrupt enable, and PVT_INT does not support masking.
+> > Enabling the device before request_irq may generate interrupts, but the
+> > driver disables the PVT module (PVT_ENA_EN = 0) and clears interrupts by
+> > writing PVT_INT_CLR. In practice, no issues have been observed.
+> > 
+> 
+> For the spurious interrupt concern: after confirming with the hardware
+> team, the PVT_ENA register has no independent interrupt enable, and
+> PVT_INT does not support masking. In the current implementation, enabling
+> the device during check_pwr may generate an interrupt, but the driver
+> subsequently disables the PVT module (PVT_ENA_EN = 0) and clears the
+> interrupt status by writing PVT_INT_CLR. In practice, no issues have been
+> observed.
+> 
+> Could you please confirm whether it is acceptable to keep the current
+> implementation under these conditions?
 
-Add them to the device tree node of PVT.
+Yes, but please explain in the code.
 
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
----
-No changes in v2.
-
- arch/riscv/boot/dts/thead/th1520.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index bd5d33840884e..2160c8b6c2261 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -753,6 +753,10 @@ pvt: pvt@fffff4e000 {
- 			reg-names = "common", "ts", "pd", "vm";
- 			clocks = <&aonsys_clk>;
- 			#thermal-sensor-cells = <1>;
-+			moortec,ts-coeff-g = <42740>;
-+			moortec,ts-coeff-h = <220500>;
-+			moortec,ts-coeff-j = <(-160)>;
-+			moortec,ts-coeff-cal5 = <4094>;
- 		};
- 
- 		gpio@fffff52000 {
--- 
-2.52.0
-
+Thanks,
+Guenter
 
