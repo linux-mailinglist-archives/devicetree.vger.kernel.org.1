@@ -1,297 +1,309 @@
-Return-Path: <devicetree+bounces-271382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271379-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SAItBuotqWl12wAAu9opvQ
-	(envelope-from <devicetree+bounces-271382-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:16:58 +0100
+	id sPzTAZouqWlN2wAAu9opvQ
+	(envelope-from <devicetree+bounces-271379-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:19:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1547F20C74D
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:16:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6547320C85C
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 08:19:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7D8BE305DBAF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:13:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5AC78311BE6E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 07:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE21732ED2E;
-	Thu,  5 Mar 2026 07:12:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55CDB317155;
+	Thu,  5 Mar 2026 07:12:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="brAf8d27"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AAq7K6bH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77633329E46
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 07:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E024E315D40;
+	Thu,  5 Mar 2026 07:12:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772694775; cv=none; b=kZfixYuQ2Pwv+oGetFnhpvogEAfQyRam+aCz1T9xM9DatpPPVZwipoocfZ+WlieWLuYlbJt31IKybBxofx28801L1xbMOdEp97+bfNoP5KRvZIhHLFzbo3KVY7FP0WP2bYLbxMjn3JcJm3to6fHp708x7OPYEUy05q0Ll2W8C1g=
+	t=1772694738; cv=none; b=UG/ShZHzhdKM4W1+pSX7GvqgBiTSpnqNrsvlcqUVs868w2+ENkwXMIQpW2RA2wzuVMLUtgFDrJEyZO0QddbqrKJPy623Z/1LGJrlsHrff4spiHuwF3QL94ieQFJypYu82PHmYpcGsygYg8rSqGFEsCqjWhx5G8bCpI6GgfXMyxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772694775; c=relaxed/simple;
-	bh=zSey4JmxR0mKtyd7baVSEA6f7u4t3leuToTkJw1Iazk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=uFE3AU1+Ub8tuDo2e8JMkseUduOnGyD4LWwY60AEy5RZlArTiIYI+mxw7rHCcPlay9i8LUAcbFSR+aX1pX0Z14B6LObcETiV8griLUVncaNzhoB2wSrIWqqulJCJWKECEnLC4MR49GD1GqHFQZhIi2jSAz47Pyl0ovbVJUixSQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=brAf8d27; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-82742aa5a3eso3913037b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 04 Mar 2026 23:12:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772694774; x=1773299574; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8aIGlyOzKqFOkPBlr/GKgJ5SMsPwq+ibKKXshl+7xEI=;
-        b=brAf8d27JEVqJLNQC0wHPRwCpgYWbOZ3bJXVjcQ0zm3FERtvLgPDg0ncSA2t2OgGem
-         PCBw033AI/vOHiNfJcHGbVSdwm8rT6jUQiaq5gXaWziz/ud2xNY1gakAQTXGGs+zvSAG
-         QTB0hyBM3s217xl1+paKy9VzVbiAeuqsj3TpSDDW2DaVCTZyZq7OXjU1OlHfBkkpyu9q
-         ABp5sxZM20CHyoSTMHbB9gZH8LchaG3S9tn0rBMmeHZdmSQHVJON8V+5KfK9C+uTu2Dm
-         kMJ69Ai0JtOHe7xmZ8pFmN0fe6ta04PgaDGwoxOrtgFnyKVy93MWuqgorjN5qk0kdqUu
-         hrAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772694774; x=1773299574;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=8aIGlyOzKqFOkPBlr/GKgJ5SMsPwq+ibKKXshl+7xEI=;
-        b=qGf5Axtb/MPYEqSrt+7h8rLiE0Jaf+AV27oufQdQywb5PP/iFAw7CQLyKcf6Jal98L
-         RpAiij6iGVZmBwn4nbQpHclox1FDjc8Rv85jv10Oc2UeQPQEQ2faQGJglKNZO0mCHLyd
-         43Gthy3rKaMa/lrF15IAHv8mQcnjwBO7WKPzqH8Rk4bAAjagSh/XkBy9+uw4IWZCi+h2
-         T583tBSwb1j6PLf5/iPplYuOK8QKlHbXbp6L8eSXuE7B+j1epKjcdB3H/92SSUsoS5dP
-         WECCcnIlC/wlvxjZnKkAKw8PtGSC06JfvD2DzayPZkvwzWqLQTkTFBXAJxaYVtUyv31K
-         WbcA==
-X-Forwarded-Encrypted: i=1; AJvYcCVxI4r3DwyLhXplvNnVLO0c1jFLIkTPLRX17ltqz0QHtnqwSDq8PCs2muns7hj/49wFAK0VfWG871fU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJsiPKTHP1avZV+mph9iM/c610pC1Sag4yPp//70MHIjwsLK8z
-	eMr19GqtTINuYWfrrJftTjnm0vZt4Axw5/4t/MRMtt9iGACOi18piwYo
-X-Gm-Gg: ATEYQzyzZAdszjRB1TOI9+PUVQJyJBzvnRwTRcruDMlJ+ERsFu1Du/6AbOmHo/W1LDF
-	xfhwidcLG5+y1bourszkpsYcqydIeYsCNuDJRdT051JaaQecOA08w4JzLXOWMIDDLaHYio2lOCp
-	+1ym7cf0XCzW27E61j5fTCy+Wtypxf7S3uB4/wNkGwUzDRra+L8G/VSr+wvLd7sb1ffboPMXBGc
-	QXDd8aHvwgdBt3KzPIuJ7O5WNQ+UxFiH9d0wDyX8WhZqFTo4ICwAzpUC/lXCrv8fx7bFENlTwCS
-	7BvKjfuDPl2a5seIUxmdejSuc31tEpPd8gG3Byp4Piqz77cUwW29Y7hvveaTnXeN5xFexYQF6GX
-	23mg6q3z0H/qORupETLORsoXo9Sn+DvJFjBiZwC5nBoFD+aOWqLUptdPwa+70Ulo0YIj0c6bqGm
-	w9X3wT3rnBBqweXdKv7xBVkyoZxf+7VHy5vFblxSq5Cd2CcSA2F3zv9O03
-X-Received: by 2002:a05:6a20:ce4d:b0:38e:53cc:3bb0 with SMTP id adf61e73a8af0-3982deb4e17mr4746429637.19.1772694773785;
-        Wed, 04 Mar 2026 23:12:53 -0800 (PST)
-Received: from twhmp6px (mxsmtp211.mxic.com.tw. [211.75.127.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c7378d24c99sm3488488a12.6.2026.03.04.23.12.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 23:12:53 -0800 (PST)
-Received: from hqs-appsw-a2o.mp600.macronix.com (unknown [172.17.236.67])
-	by twhmp6px (Postfix) with ESMTPS id BC2534163B76;
-	Thu,  5 Mar 2026 15:12:50 +0800 (CST)
-From: Cheng Ming Lin <linchengming884@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
-	Pablo Martin-Gomez <pmartin-gomez@freebox.fr>,
-	Tianling Shen <cnsztl@gmail.com>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	linux-mtd@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	alvinzhou@mxic.com.tw,
-	Cheng Ming Lin <chengminglin@mxic.com.tw>
-Subject: [PATCH v8 3/3] mtd: spi-nand: macronix: Enable randomizer support
-Date: Thu,  5 Mar 2026 15:10:42 +0800
-Message-Id: <20260305071042.1193522-4-linchengming884@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260305071042.1193522-1-linchengming884@gmail.com>
-References: <20260305071042.1193522-1-linchengming884@gmail.com>
+	s=arc-20240116; t=1772694738; c=relaxed/simple;
+	bh=ckd6RCQ6IONLsgaMWgrBIGYHcBsTJjJ9DdtVhSQ9KCA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iQep7AwxFdErX/sHV+ree84QZbF2S43j0LiQsPbI/MU5ZeBoeLIpzOctAK9oV+FIZdgImENEpnYc/PBsXY7SMADMAdGNYYNAi+l2KU0WLh/cYmXGAm1WAPuxs/E4iYV8n4fgT3c1AEaLiQJ5Otf8Oba9vIvBNrmjSZfHB4TwrIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AAq7K6bH; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772694736; x=1804230736;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ckd6RCQ6IONLsgaMWgrBIGYHcBsTJjJ9DdtVhSQ9KCA=;
+  b=AAq7K6bHTDzfEC2IaKsokyzBLAS3rBe8ZAU/SSD4eBiMaKEgqkmMvk1i
+   pPXe6QAOOfQZTvjx0y9N7Ym4wKhsIuzd3jzHnDKr+JbAuF2hENWnGdQP3
+   WwZPlBBxKkJpE1USIqNsLQ0aw2Q0Mn9S+wmAiC0ffelzxvs32mfk9ZQ98
+   nFCoAD2Hw0Pl9qQCJ/mETZ11r+TUfv4hoLMeplwUv+tkOgSTsoApPCTTi
+   S0T7pJMkZ7wGgOxKmSAH9MyA/ItfVn8STRuaRK9bpGdMwRjf3AFu6h1k2
+   v4Gk2DuJxHEm6gip6EntkQjeCdbfkxPNwYhM8iMZ3D6propUgWhAy+ttJ
+   Q==;
+X-CSE-ConnectionGUID: HPWBuqszSdiey9T2qPMI8g==
+X-CSE-MsgGUID: jYM9qDKMSoSiPlJh0HewXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73472877"
+X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; 
+   d="scan'208";a="73472877"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2026 23:12:15 -0800
+X-CSE-ConnectionGUID: 20c1cHnATj2V3cSCBoXeAg==
+X-CSE-MsgGUID: TSBDjWCGSiSURjZallYWzg==
+X-ExtLoop1: 1
+Received: from lkp-server01.sh.intel.com (HELO cadc4577a874) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 04 Mar 2026 23:12:08 -0800
+Received: from kbuild by cadc4577a874 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vy2sP-0000000007i-0QK2;
+	Thu, 05 Mar 2026 07:12:05 +0000
+Date: Thu, 5 Mar 2026 15:11:13 +0800
+From: kernel test robot <lkp@intel.com>
+To: lizhi2@eswincomputing.com, devicetree@vger.kernel.org,
+	andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, netdev@vger.kernel.org, pabeni@redhat.com,
+	mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
+	rmk+kernel@armlinux.org.uk, wens@kernel.org, pjw@kernel.org,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	linux-riscv@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com,
+	pritesh.patel@einfochips.com, weishangjuan@eswincomputing.com,
+	Zhi Li <lizhi2@eswincomputing.com>
+Subject: Re: [PATCH net-next v3 2/3] net: stmmac: eic7700: enable clocks
+ before syscon access and correct RX sampling timing
+Message-ID: <202603051555.5m64TOiy-lkp@intel.com>
+References: <20260303061711.895-1-lizhi2@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 1547F20C74D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260303061711.895-1-lizhi2@eswincomputing.com>
+X-Rspamd-Queue-Id: 6547320C85C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,iopsys.eu,freebox.fr,gmail.com,kernel.org,lists.infradead.org,vger.kernel.org,mxic.com.tw];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-271379-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[eswincomputing.com,vger.kernel.org,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,armlinux.org.uk,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,st-md-mailman.stormreply.com];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TAGGED_FROM(0.00)[bounces-271382-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linchengming884@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mxic.com.tw:url,mxic.com.tw:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.994];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-From: Cheng Ming Lin <chengminglin@mxic.com.tw>
+Hi,
 
-Implement the 'set_randomizer' callback for Macronix SPI NAND chips.
-The randomizer is enabled by setting bit 1 of the Configuration Register
-(address 0x10).
+kernel test robot noticed the following build errors:
 
-This patch adds support for the following chips:
-  - MX35LFxG24AD series
-  - MX35UFxG24AD series
+[auto build test ERROR on net-next/main]
 
-When the randomizer is enabled, data is scrambled internally during
-program operations and automatically descrambled during read operations.
-This helps reduce bit errors caused by program disturbance.
+url:    https://github.com/intel-lab-lkp/linux/commits/lizhi2-eswincomputing-com/dt-bindings-ethernet-eswin-add-clock-sampling-control/20260303-142311
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/20260303061711.895-1-lizhi2%40eswincomputing.com
+patch subject: [PATCH net-next v3 2/3] net: stmmac: eic7700: enable clocks before syscon access and correct RX sampling timing
+config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20260305/202603051555.5m64TOiy-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260305/202603051555.5m64TOiy-lkp@intel.com/reproduce)
 
-Please refer to the following link for randomizer feature:
-Link: https://www.mxic.com.tw/Lists/ApplicationNote/Attachments/2151/AN1051V1-The%20Introduction%20of%20Randomizer%20Feature%20on%20MX30xFxG28AD_MX35xFxG24AD.pdf
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603051555.5m64TOiy-lkp@intel.com/
 
-Signed-off-by: Cheng Ming Lin <chengminglin@mxic.com.tw>
----
- drivers/mtd/nand/spi/macronix.c | 38 ++++++++++++++++++++++++---------
- 1 file changed, 28 insertions(+), 10 deletions(-)
+All errors (new ones prefixed by >>):
 
-diff --git a/drivers/mtd/nand/spi/macronix.c b/drivers/mtd/nand/spi/macronix.c
-index 67cafa1bb8ef..7dfcc34e9b72 100644
---- a/drivers/mtd/nand/spi/macronix.c
-+++ b/drivers/mtd/nand/spi/macronix.c
-@@ -14,6 +14,8 @@
- #define MACRONIX_ECCSR_BF_LAST_PAGE(eccsr) FIELD_GET(GENMASK(3, 0), eccsr)
- #define MACRONIX_ECCSR_BF_ACCUMULATED_PAGES(eccsr) FIELD_GET(GENMASK(7, 4), eccsr)
- #define MACRONIX_CFG_CONT_READ         BIT(2)
-+#define MACRONIX_CFG_RANDOMIZER_EN     BIT(1)
-+#define MACRONIX_FEATURE_ADDR_RANDOMIZER 0x10
- #define MACRONIX_FEATURE_ADDR_READ_RETRY 0x70
- #define MACRONIX_NUM_READ_RETRY_MODES 5
- 
-@@ -170,6 +172,12 @@ static int macronix_set_read_retry(struct spinand_device *spinand,
- 	return spi_mem_exec_op(spinand->spimem, &op);
- }
- 
-+static int macronix_set_randomizer(struct spinand_device *spinand, bool enable)
-+{
-+	return spinand_write_reg_op(spinand, MACRONIX_FEATURE_ADDR_RANDOMIZER,
-+				    enable ? MACRONIX_CFG_RANDOMIZER_EN : 0);
-+}
-+
- static const struct spinand_info macronix_spinand_table[] = {
- 	SPINAND_INFO("MX35LF1GE4AB",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x12),
-@@ -231,7 +239,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_QE_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF2G24AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x24, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 2, 1, 1),
-@@ -243,7 +252,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_PROG_PLANE_SELECT_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF2G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x64, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 1, 1, 1),
-@@ -254,7 +264,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_QE_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF4G24AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x35, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 2, 1, 1),
-@@ -266,7 +277,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_PROG_PLANE_SELECT_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35LF4G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x75, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 1, 1, 1),
-@@ -277,7 +289,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_HAS_QE_BIT,
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout, NULL),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX31LF1GE4BC",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x1e),
- 		     NAND_MEMORG(1, 2048, 64, 64, 1024, 20, 1, 1, 1),
-@@ -327,7 +340,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF4G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xf5, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 1, 1, 1),
-@@ -340,7 +354,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF4GE4AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xb7, 0x03),
- 		     NAND_MEMORG(1, 4096, 256, 64, 2048, 40, 1, 1, 1),
-@@ -381,7 +396,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF2G24AD-Z4I8",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xe4, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 1, 1, 1),
-@@ -394,7 +410,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF2GE4AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0xa6, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 2048, 40, 1, 1, 1),
-@@ -444,7 +461,8 @@ static const struct spinand_info macronix_spinand_table[] = {
- 		     SPINAND_ECCINFO(&mx35lfxge4ab_ooblayout,
- 				     macronix_ecc_get_status),
- 		     SPINAND_READ_RETRY(MACRONIX_NUM_READ_RETRY_MODES,
--					macronix_set_read_retry)),
-+					macronix_set_read_retry),
-+		     SPINAND_RANDOMIZER(macronix_set_randomizer)),
- 	SPINAND_INFO("MX35UF1GE4AD",
- 		     SPINAND_ID(SPINAND_READID_METHOD_OPCODE_DUMMY, 0x96, 0x03),
- 		     NAND_MEMORG(1, 2048, 128, 64, 1024, 20, 1, 1, 1),
+   drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c: In function 'eic7700_dwmac_probe':
+>> drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c:290:33: error: assignment to 'void (*)(void *, phy_interface_t,  int,  unsigned int)' from incompatible pointer type 'void (*)(void *, int,  unsigned int)' [-Wincompatible-pointer-types]
+     290 |         plat_dat->fix_mac_speed = eic7700_dwmac_fix_speed;
+         |                                 ^
+   drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c:129:13: note: 'eic7700_dwmac_fix_speed' declared here
+     129 | static void eic7700_dwmac_fix_speed(void *priv, int speed, unsigned int mode)
+         |             ^~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +290 drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
+
+   149	
+   150	static int eic7700_dwmac_probe(struct platform_device *pdev)
+   151	{
+   152		const struct eic7700_dwmac_data *data;
+   153		struct plat_stmmacenet_data *plat_dat;
+   154		struct stmmac_resources stmmac_res;
+   155		struct eic7700_qos_priv *dwc_priv;
+   156		u32 delay_ps, val;
+   157		int i, ret;
+   158	
+   159		ret = stmmac_get_platform_resources(pdev, &stmmac_res);
+   160		if (ret)
+   161			return dev_err_probe(&pdev->dev, ret,
+   162					"failed to get resources\n");
+   163	
+   164		plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
+   165		if (IS_ERR(plat_dat))
+   166			return dev_err_probe(&pdev->dev, PTR_ERR(plat_dat),
+   167					"dt configuration failed\n");
+   168	
+   169		dwc_priv = devm_kzalloc(&pdev->dev, sizeof(*dwc_priv), GFP_KERNEL);
+   170		if (!dwc_priv)
+   171			return -ENOMEM;
+   172	
+   173		dwc_priv->dev = &pdev->dev;
+   174	
+   175		data = device_get_match_data(&pdev->dev);
+   176		if (!data)
+   177			return dev_err_probe(&pdev->dev,
+   178					     -EINVAL, "no match data found\n");
+   179	
+   180		dwc_priv->eth_rx_clk_inv = data->rgmii_rx_clk_invert;
+   181	
+   182		/* Read rx-internal-delay-ps and update rx_clk delay */
+   183		if (!of_property_read_u32(pdev->dev.of_node,
+   184					  "rx-internal-delay-ps", &delay_ps)) {
+   185			if (delay_ps % EIC7700_DELAY_STEP_PS)
+   186				return dev_err_probe(&pdev->dev, -EINVAL,
+   187					"rx delay must be multiple of %dps\n",
+   188					EIC7700_DELAY_STEP_PS);
+   189	
+   190			if (delay_ps > EIC7700_MAX_DELAY_PS)
+   191				return dev_err_probe(&pdev->dev, -EINVAL,
+   192					"rx delay out of range\n");
+   193	
+   194			val = delay_ps / EIC7700_DELAY_STEP_PS;
+   195	
+   196			dwc_priv->eth_clk_dly_param &= ~EIC7700_ETH_RX_ADJ_DELAY;
+   197			dwc_priv->eth_clk_dly_param |=
+   198					 FIELD_PREP(EIC7700_ETH_RX_ADJ_DELAY, val);
+   199		}
+   200	
+   201		/* Read tx-internal-delay-ps and update tx_clk delay */
+   202		if (!of_property_read_u32(pdev->dev.of_node,
+   203					  "tx-internal-delay-ps", &delay_ps)) {
+   204			if (delay_ps % EIC7700_DELAY_STEP_PS)
+   205				return dev_err_probe(&pdev->dev, -EINVAL,
+   206					"tx delay must be multiple of %dps\n",
+   207					EIC7700_DELAY_STEP_PS);
+   208	
+   209			if (delay_ps > EIC7700_MAX_DELAY_PS)
+   210				return dev_err_probe(&pdev->dev, -EINVAL,
+   211					"tx delay out of range\n");
+   212	
+   213			val = delay_ps / EIC7700_DELAY_STEP_PS;
+   214	
+   215			dwc_priv->eth_clk_dly_param &= ~EIC7700_ETH_TX_ADJ_DELAY;
+   216			dwc_priv->eth_clk_dly_param |=
+   217					 FIELD_PREP(EIC7700_ETH_TX_ADJ_DELAY, val);
+   218		}
+   219	
+   220		dwc_priv->eic7700_hsp_regmap =
+   221				syscon_regmap_lookup_by_phandle(pdev->dev.of_node,
+   222								"eswin,hsp-sp-csr");
+   223		if (IS_ERR(dwc_priv->eic7700_hsp_regmap))
+   224			return dev_err_probe(&pdev->dev,
+   225					PTR_ERR(dwc_priv->eic7700_hsp_regmap),
+   226					"Failed to get hsp-sp-csr regmap\n");
+   227	
+   228		ret = of_property_read_u32_index(pdev->dev.of_node,
+   229						 "eswin,hsp-sp-csr",
+   230						 1, &dwc_priv->eth_phy_ctrl_offset);
+   231		if (ret)
+   232			return dev_err_probe(&pdev->dev, ret,
+   233					     "can't get eth_phy_ctrl_offset\n");
+   234	
+   235		ret = of_property_read_u32_index(pdev->dev.of_node,
+   236						 "eswin,hsp-sp-csr",
+   237						 2, &dwc_priv->eth_axi_lp_ctrl_offset);
+   238		if (ret)
+   239			return dev_err_probe(&pdev->dev, ret,
+   240					     "can't get eth_axi_lp_ctrl_offset\n");
+   241	
+   242		ret = of_property_read_u32_index(pdev->dev.of_node,
+   243						 "eswin,hsp-sp-csr",
+   244						 3, &dwc_priv->eth_txd_offset);
+   245		if (ret)
+   246			return dev_err_probe(&pdev->dev, ret,
+   247					     "can't get eth_txd_offset\n");
+   248	
+   249		ret = of_property_read_u32_index(pdev->dev.of_node,
+   250						 "eswin,hsp-sp-csr",
+   251						 4, &dwc_priv->eth_clk_offset);
+   252		if (ret)
+   253			return dev_err_probe(&pdev->dev, ret,
+   254					     "can't get eth_clk_offset\n");
+   255	
+   256		ret = of_property_read_u32_index(pdev->dev.of_node,
+   257						 "eswin,hsp-sp-csr",
+   258						 5, &dwc_priv->eth_rxd_offset);
+   259		if (ret)
+   260			return dev_err_probe(&pdev->dev, ret,
+   261					     "can't get eth_rxd_offset\n");
+   262	
+   263		plat_dat->num_clks = ARRAY_SIZE(eic7700_clk_names);
+   264		plat_dat->clks = devm_kcalloc(&pdev->dev,
+   265					      plat_dat->num_clks,
+   266					      sizeof(*plat_dat->clks),
+   267					      GFP_KERNEL);
+   268		if (!plat_dat->clks)
+   269			return -ENOMEM;
+   270	
+   271		for (i = 0; i < ARRAY_SIZE(eic7700_clk_names); i++)
+   272			plat_dat->clks[i].id = eic7700_clk_names[i];
+   273	
+   274		ret = devm_clk_bulk_get_optional(&pdev->dev,
+   275						 plat_dat->num_clks,
+   276						 plat_dat->clks);
+   277		if (ret)
+   278			return dev_err_probe(&pdev->dev, ret,
+   279					     "Failed to get clocks\n");
+   280	
+   281		plat_dat->clk_tx_i = stmmac_pltfr_find_clk(plat_dat, "tx");
+   282		plat_dat->set_clk_tx_rate = stmmac_set_clk_tx_rate;
+   283		plat_dat->clks_config = eic7700_clks_config;
+   284		plat_dat->bsp_priv = dwc_priv;
+   285		dwc_priv->plat_dat = plat_dat;
+   286		plat_dat->init = eic7700_dwmac_init;
+   287		plat_dat->exit = eic7700_dwmac_exit;
+   288		plat_dat->suspend = eic7700_dwmac_suspend;
+   289		plat_dat->resume = eic7700_dwmac_resume;
+ > 290		plat_dat->fix_mac_speed = eic7700_dwmac_fix_speed;
+   291	
+   292		return devm_stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
+   293	}
+   294	
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
