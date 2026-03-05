@@ -1,249 +1,235 @@
-Return-Path: <devicetree+bounces-271670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271674-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aOL7LNjDqWm2EQEAu9opvQ
-	(envelope-from <devicetree+bounces-271670-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:56:40 +0100
+	id oK5HD7fGqWmcEgEAu9opvQ
+	(envelope-from <devicetree+bounces-271674-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:08:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56636216A0E
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 18:56:40 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9BB2216D0E
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:08:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9EF8B300749F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 17:53:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id F08353028C0E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33EA02853E0;
-	Thu,  5 Mar 2026 17:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C749D3E5EE3;
+	Thu,  5 Mar 2026 18:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JgU6YTaT";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="WHp/+bbQ"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="CxWr7cc6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEF7226CE1E
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 17:53:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C733803EB;
+	Thu,  5 Mar 2026 18:08:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772733194; cv=none; b=OSCEbFiVfKVF423f5lk+AAa8SVMsrzw64jMu/ynYoizGT5wQRQcMqadeON2c2RRkMUh3+Q0E5fin60wVVuqSXj+SU+u8sLxmg9aUMU+mV7kx6nXf6Y5UQfD/w7l1JCVYh5L7gPhqAbgEZVIph3cP4c4nAtREMUQiYDcG5MNy1ZY=
+	t=1772734120; cv=none; b=e1c8dANa07wmZyGjcram7o6urJqgtgpkC9cOs6O67fEg+KOohy1EOBtyZk1hPaJq1IdA35FqabPf1qXr3wk2Y606MiyZ+nn19MGsaJKh4CkeS4tiAj/zM6vIl8AZKYO/fiku/7tFNOlXYfxFMdAWNmHdHtUNaxh7OidNvTQC52o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772733194; c=relaxed/simple;
-	bh=ROWnuy6Rn+2HRwecaqRc3kEQ3SqRfK+w/L6FaAqeaAU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gJD3vwdBcQrX2hNh88h+xHJSmTQmoC4TejcSFF2Qjx1VdSwbUsDTuUhAfdRyBvJNdK9lJncG0KtUUylj8X2OyMY+zJLYHDLqG2Va4+5T0nhEJ/FiTxuUGkfpnx8HrqK8zq73e9En3mVshFiNdMkjyXVjtMXnv0RwhNI7HFrtYsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JgU6YTaT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=WHp/+bbQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 625AUFSJ169125
-	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 17:53:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	V5Ga9dDil/3B9VR9KlURzGCWzoPjqQ+IyQcq9xHkWKU=; b=JgU6YTaTq7fpD4MU
-	S/8pEqJlucTfas4yiL+8tyzScKEy0/aBWrrcE0EfohZ+97WBx+BPQyOZR29zvIm1
-	5dfddeY0o5VWpFmTWiZvgbfARXYvWeMTDZLYa9btBL2LwmFwK47woY+EPLQ+IyL5
-	V4xkLgxANLR6ltvz9YyPvhjy+lN6ElrHGRGEoNDdER0Up1nC0R7JgnqxQAAusJqk
-	7Ac+lej1DB1166lHFOs0TLSdK1rrjNB/UJ+ztoXj4CBFyRvNsXpjma6FO8SW/J6Q
-	vi3Z67EvA7QUT4PdpMbcQ3gS+xjH/XSQ/j2QIHOrG5REshh5g5PUAQBCjVmwi0hN
-	J4iS7w==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cq84w9cv4-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 17:53:11 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2ae669a8ff1so119725695ad.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 09:53:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772733191; x=1773337991; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=V5Ga9dDil/3B9VR9KlURzGCWzoPjqQ+IyQcq9xHkWKU=;
-        b=WHp/+bbQ+t6tATg13HGHbrx0E5NO0SZyKD6Y6T2d/lEqnvYD9uPJJNkV5ULeh8/e5V
-         N3dexkeqJQT8c03g/c629DBj5gFkPHBZu+lbwUFUm6AH8NI9igTiRCkTW2AKvIrsQM81
-         f98W2MnnxJbmivwaRqxIRncaeIhK6qWd9ia/Kt1HyOZ0Gw2lkInRjB2yVWfL/3VzNbNl
-         v30O41wcCl6vLL1+1Uo1OIF1CQcMkseMm57N3GtfVwpuhdv4Ju5QDhc/S8eo9nHojXpv
-         407+6vmBpye0FPLbU3o/IG7Ry/AsCKfmgDeK3VYQWi3veRnfk09ouD4SWGVIntve/tns
-         af/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772733191; x=1773337991;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V5Ga9dDil/3B9VR9KlURzGCWzoPjqQ+IyQcq9xHkWKU=;
-        b=AEAHuKvNfbg6vKjCemv2qTdjfQnLDV4o597S9GiajT3VVNXTH9B0o3sUrfjviEau/x
-         9K4iGkTTmmYMLjdJvfa0nhNiir6D1tWOqfTXOYmkeQcWdG0Gv+z5JJ0r9c6n7UCVKKQD
-         MGP0+vqC0OBIzTQ75J+p+y2ar4NWHLaIi6EjveiN0t8+cqkdinqL/JQF9cL99az+0MWg
-         Ubyzs3KCMWPgJ0W/Pk4x9RIJbjamtS0vBXfqJtEu2MtzaUBD/gYiIgB4QxXatm95rlDZ
-         JJMl3ojjmvrEMLUnLTpA8MqECrXKWHKhLiHCf1FoPncQZhrVk2XkYx7k2xBNvhVS2UvE
-         TCcg==
-X-Forwarded-Encrypted: i=1; AJvYcCUtDxZztRJ2tUdquGqcE21yEaT3GTaVjOp/xMJrlJS+rB5WopaRmARuPLE9gQpMLGUOYd9JKcLOnHjD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpB1TEmHPn5qaLyLBN+xzmbz9RGLcfYgSuVFNTF2VMdMhpE23Z
-	wpqqgKkULIxwol8niXfwc/QmClIVJ+kPyIK9I5O497Yby1hSsb0XEtfXd8OWxm8eMFZX4uutfXr
-	3HEulQgYJ1RJNqNsd8KEGAynjbEf/89yq2TDTY32M8DJ4/fp241bIWWfubiYIwbfZ
-X-Gm-Gg: ATEYQzw6sMs9RzCmueBCM8vRXGjxzFXjavfnP+eHmAKl/oS82IcFUGqGNFLiYCskHEi
-	EbtjFJkqdz9t4q/n6zWWStLtzsl7yLq4XmKXHaS0vYwxVqeXNK0Egc+tyvyzMY26kqDc9Wi9t19
-	rI0MZYhwT8Pp9bhaOpdo0suaxEzC6Zu2HUtWYzDdyiOi2iaIYdMdyhNH3jS3bwKTuaqeTMqShKB
-	Yq6KdoMqCCkJdSxBxeeLS+33mEpTBqL/SnmPgkoJN5M0imNdM7PQ6tWocwO1wZOp8CSx/PaWvQt
-	Nf6/e79HLx+4uuQ2CA5AkPI++XteO2gx0Khx+/COO0Rf2iLAifbh2QgXPO0UvbSDj7jkQkOH5kc
-	GNs9pK4QF/g5FFKRO+MlRhvaBzXm5DB5Wg3vqvVG9Qw3VVqDjddt5OAU=
-X-Received: by 2002:a17:903:38c8:b0:2ae:57e2:9b32 with SMTP id d9443c01a7336-2ae6a9ed5ffmr69921675ad.8.1772733190696;
-        Thu, 05 Mar 2026 09:53:10 -0800 (PST)
-X-Received: by 2002:a17:903:38c8:b0:2ae:57e2:9b32 with SMTP id d9443c01a7336-2ae6a9ed5ffmr69921425ad.8.1772733190225;
-        Thu, 05 Mar 2026 09:53:10 -0800 (PST)
-Received: from [192.168.29.31] ([49.43.226.5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae464ffff3sm143642605ad.42.2026.03.05.09.53.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Mar 2026 09:53:09 -0800 (PST)
-Message-ID: <c3e94089-bad0-4cd7-bde2-c17e16712467@oss.qualcomm.com>
-Date: Thu, 5 Mar 2026 23:22:59 +0530
+	s=arc-20240116; t=1772734120; c=relaxed/simple;
+	bh=qVDR4r0RNnpyFTaBID79WKMftRjHbNVK0loosyYv41o=;
+	h=From:To:Cc:Date:Message-ID:MIME-Version:Subject; b=bcUw5MzzgjFPAzxVOYmw5f3Xc2sWF4Ig+k5P+3xCmp9rzpWmi1nP1frEPo0QKAO/GDnchNWDk2kMf3CK079J2+1fIZ573xT+HxGRC9vg6DIa8ISOgaNurUhvSpkdlj06LCfZXgnfHNKS170X1i2zQGgp2BvaCDLtjwnIYcJyWlk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=CxWr7cc6; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Cc:To
+	:From:subject:date:message-id:reply-to;
+	bh=xlv9aSBDN9dBeajKyuHQxLmuBfwuhVHupzGXgcU9K58=; b=CxWr7cc6/pd/qdgtGA7o5nsQWP
+	zGWH7xN3y7bhDNaKluN4rX2wMiLrJmL+Qz2ny8Yt1FzaNMj2VuM8K31ZgolY9h/Nf80b7++wFXGsd
+	Rs9x2z9g/iRsoOSq0Sqgw01i4s3N+H9je+iuwu5+o1lmSxZfLEfH5jE6DXhR0HfjlLDo=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37706 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1vyD7T-0002aR-Vo; Thu, 05 Mar 2026 13:08:20 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	shawnguo@kernel.org,
+	laurent.pinchart+renesas@ideasonboard.com,
+	antonin.godard@bootlin.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	hugo@hugovil.com,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date: Thu,  5 Mar 2026 13:06:15 -0500
+Message-ID: <20260305180651.1827087-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v20 08/10] arm64: dts: qcom: lemans: Add psci reboot-modes
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andy Yan
- <andy.yan@rock-chips.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        John Stultz
- <john.stultz@linaro.org>,
-        Moritz Fischer <moritz.fischer@ettus.com>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Sudeep Holla <sudeep.holla@kernel.org>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Andre Draszik <andre.draszik@linaro.org>,
-        Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Srinivas Kandagatla <srini@kernel.org>
-References: <20260304-arm-psci-system_reset2-vendor-reboots-v20-0-cf7d346b8372@oss.qualcomm.com>
- <20260304-arm-psci-system_reset2-vendor-reboots-v20-8-cf7d346b8372@oss.qualcomm.com>
- <4d4cb697-17c0-4610-b498-04a3bb252923@oss.qualcomm.com>
-Content-Language: en-US
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <4d4cb697-17c0-4610-b498-04a3bb252923@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 7G9w5CZx4cPCqJEd_QcQk8sq24GeUf8x
-X-Proofpoint-GUID: 7G9w5CZx4cPCqJEd_QcQk8sq24GeUf8x
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDE0NyBTYWx0ZWRfX1WdC/asNgfUc
- G4t5ERVPUUAtQV8UrxRa5WYrkCDTbNpJ5wsW70MxFzQ0zeTKlWOk0b5mqplVd/qcwHSHsDBJSCw
- UYmmFzlzfTm4eOxw7kvprhAZpBkMT1NHxCYQmF651WGoK5AuvFIZ0IJR4TzNv04qSMlMNkH5KKC
- OQhp+oUaxrohsGbg/sIG1J+4fd0xbKRMlFl2bRIO4I5bj6+Mx+GNn9OeKBl+UWkdvJHGS8wz8Gj
- MPJRuHAokoS1n54kBBHKbcJ7pXBCNJIXXHSYVLL97HTxVQ9TbhXoxRjoTXckI4L+nWQoIOilr0U
- lgTBNBFCvZo87k7vqgonQHyh2NgF4XSyglxLHozW2Nz05O9LthWWArgVRYoVOgeLEPsMR6tV9gu
- oByPxXpIxkcdbDlOw6s53rvI54fykEFC1tqE7KY5u6FglAsfSiKGvAB3qs6e2zEa+dnGB4Yg4lW
- ap/bky6+gUgAHIcFJIQ==
-X-Authority-Analysis: v=2.4 cv=N64k1m9B c=1 sm=1 tr=0 ts=69a9c307 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=mvMbtr4cKWCpcPtdaitTtQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
- a=JqnQEXjPz3xb6-exIXoA:9 a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-05_05,2026-03-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 bulkscore=0 clxscore=1015 adultscore=0
- suspectscore=0 spamscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050147
-X-Rspamd-Queue-Id: 56636216A0E
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Subject: [PATCH v2 00/15] var-som-6ul: improve support for variants
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
+X-Rspamd-Queue-Id: B9BB2216D0E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hugovil.com:s=x];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271670-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,arndb.de,arm.com,rock-chips.com,gmail.com,linaro.org,ettus.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,nxp.com,pengutronix.de,bootlin.com];
+	DMARC_NA(0.00)[hugovil.com];
+	TAGGED_FROM(0.00)[bounces-271674-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[hugovil.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shivendra.pratap@oss.qualcomm.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+
+Hello,
+this patch series improves support for Variscite VAR-SOM-6UL based boards.
+
+The first two patches fix DT/dmesg warnings.
+
+The next patches fix the incorrect use of VAR-SOM-MX6UL to refer to the
+VAR-SOM-6UL.
+
+The next patches add support for the imx6ull CPU variant of the VAR-SOM-6UL.
+
+Then improves/fixes the following features/options that are currently not
+working on the concerto EVK board:
+  - ethernet ports ENET1
+  - LVDS display panel
+  - Wifi/Bt
+
+Note that the previous configuration of the optional Wifi/Bluetooth module
+was copied from the original Variscite kernel tree, and required custom
+shell scripts to properly configure the Wifi/Bluetooth module.
+
+Also factor out optional features into separate DTSI include files, so it will
+be easier to support them for other boards, and to make sure they are not
+unconditionnally enabled.
+
+I have tested these changes on a Variscite concerto EVK board using a
+VAR-SOM-6UL with the following options:
+  - EC (ethernet phy on SOM)
+  - LD (LVDS encoder assembled on SOM)
+  - WBD (Wi-Fi 802.11 ac/a/b/g/n and Bluetooth 5.2/BLE on SOM)
+Result of tests:
+  - Both ethernet ports Ok
+  - LVDS display panel Ok
+  - Wifi/Bt Ok
+
+Also tested on a custom board with a VAR-SOM-6UL SOM (will be submitted in
+a future series).
+
+Thank you.
+
+Link: [v1] https://lore.kernel.org/all/20260302190953.669325-1-hugo@hugovil.com/
+
+Changes for v2:
+- Place imx6ull-var-som-concerto.dtb in alphabetical order (Frank)
+- s/include/dtsi in commit msgs (Frank)
+- Clarify and improve patches to change VAR-SOM-MX6UL (Krzysztof)
+- Collect tags for some acked patches (Krzysztof)
+- Reorder pinctrl_gpio_leds in separate patch (Frank)
+- Improve git commit messages ((Frank)/Krzysztof)
+
+Hugo Villeneuve (15):
+  ARM: dts: imx6ul-var-som: fix warning for non-existent dc-supply
+    property
+  ARM: dts: imx6ul-var-som: fix warning for boolean property with a
+    value
+  ARM: dts: imx6ul-var-som: change incorrect VAR-SOM-MX6UL references
+  dt-bindings: arm: fsl: change incorrect VAR-SOM-MX6UL references
+  dt-bindings: arm: fsl: add variscite,var-som-imx6ull
+  ARM: dts: imx6ul-var-som: Factor out common parts for all CPU variants
+  ARM: dts: imx6ul-var-som-concerto: Factor out common parts for all CPU
+    variants
+  ARM: dts: imx6ul-var-som-concerto: order DT properties
+  ARM: dts: imx6ul-var-som: factor out SD card support
+  ARM: dts: imx6ul-var-som: add proper Wifi and Bluetooth support
+  ARM: dts: imx6ul-var-som: factor out ENET2 ethernet support
+  ARM: dts: imx6ul-var-som: add support for EC configuration option
+    (ENET1)
+  ARM: dts: imx6ul-var-som: factor out audio support
+  dt-bindings: display/lvds-codec: add ti,sn65lvds93
+  ARM: dts: imx6ul-var-som: add support for LVDS display panel
+
+ .../devicetree/bindings/arm/fsl.yaml          |   8 +-
+ .../bindings/display/bridge/lvds-codec.yaml   |   1 +
+ arch/arm/boot/dts/nxp/imx/Makefile            |   3 +
+ .../dts/nxp/imx/imx6ul-var-som-audio.dtsi     |  30 ++
+ ...ar-som.dtsi => imx6ul-var-som-common.dtsi} | 140 +++-----
+ ...ts => imx6ul-var-som-concerto-common.dtsi} | 159 ++-------
+ .../nxp/imx/imx6ul-var-som-concerto-full.dts  |  22 ++
+ .../dts/nxp/imx/imx6ul-var-som-concerto.dts   | 318 +-----------------
+ .../dts/nxp/imx/imx6ul-var-som-enet1.dtsi     |  44 +++
+ .../dts/nxp/imx/imx6ul-var-som-enet2.dtsi     |  79 +++++
+ .../nxp/imx/imx6ul-var-som-lvds-panel.dtsi    | 112 ++++++
+ .../boot/dts/nxp/imx/imx6ul-var-som-sd.dtsi   |  27 ++
+ .../boot/dts/nxp/imx/imx6ul-var-som-wifi.dtsi |  75 +++++
+ arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi | 219 +-----------
+ .../nxp/imx/imx6ull-var-som-concerto-full.dts |  22 ++
+ .../dts/nxp/imx/imx6ull-var-som-concerto.dts  |  21 ++
+ .../arm/boot/dts/nxp/imx/imx6ull-var-som.dtsi |  36 ++
+ 17 files changed, 575 insertions(+), 741 deletions(-)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-audio.dtsi
+ copy arch/arm/boot/dts/nxp/imx/{imx6ul-var-som.dtsi => imx6ul-var-som-common.dtsi} (60%)
+ copy arch/arm/boot/dts/nxp/imx/{imx6ul-var-som-concerto.dts => imx6ul-var-som-concerto-common.dtsi} (50%)
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto-full.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-enet1.dtsi
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-enet2.dtsi
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-lvds-panel.dtsi
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-sd.dtsi
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ul-var-som-wifi.dtsi
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto-full.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-var-som-concerto.dts
+ create mode 100644 arch/arm/boot/dts/nxp/imx/imx6ull-var-som.dtsi
 
 
-On 05-03-2026 17:03, Konrad Dybcio wrote:
-> On 3/4/26 7:03 PM, Shivendra Pratap wrote:
->> Add PSCI SYSTEM_RESET2 reboot-modes for lemans based boards, for use by
->> the psci_reboot_mode driver.
->>
->> The following modes are defined:
->> - bootloader: reboot into fastboot mode for fastboot flashing.
->> - edl: reboot into emergency download mode for image loading via
->>    the Firehose protocol.
->>
->> Support for these modes is firmware dependent.
-> 
-> The previous patch only enabled it on a subset of kodiak boards,
-> the remaining ones do it globally, even though you claim it's fw
-> dependent.. this changed in in v17 apparently
-> 
+base-commit: c107785c7e8dbabd1c18301a1c362544b5786282
+-- 
+2.47.3
 
-Thanks. Let me review this and make it board specific wherever required.
-Will update this in next patch.
-
-> My fear is that those may conflict with other methods providing
-> identical identification names, i.e.:
-> 
-> psci {
-> 	reboot-mode {
-> 		mode-bootloader = <0x80010001 0x2>;
-> 		mode-edl = <0x80000000 0x1>;
-> 	};
-> };
-> 
-> imem@f000 {
-> 	reboot-mode {
-> 		compatible = "syscon-reboot-mode";
-> 		offset = <0x65c>;
-> 
-> 		mode-normal = <0x77665501>;
-> 		mode-bootloader = <0x77665500>; // conflict
-> 		mode-recovery = <0x77665502>;
-> 	};
-> };
-> 
-> will the syscon write apply and the (unsupported) PSCI_RESET2 gracefully
-> fall through?
-If a SOC/board wants to use "syscon-reboot-mode" / "nvmem-reboot-mode" / 
-psci->reboot-mode, has to be taken care in the DT as per support. Will 
-make it board specific wherever required after re-review of the DTs.
-
-thanks,
-Shivendra
 
