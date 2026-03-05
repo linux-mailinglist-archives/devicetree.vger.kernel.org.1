@@ -1,276 +1,235 @@
-Return-Path: <devicetree+bounces-271410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eI0EKN88qWmW3QAAu9opvQ
-	(envelope-from <devicetree+bounces-271410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 09:20:47 +0100
+	id iIC7BDs9qWmn3QAAu9opvQ
+	(envelope-from <devicetree+bounces-271411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 09:22:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0873320D610
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 09:20:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6625220D63F
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 09:22:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 871DC300B9E2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 08:17:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44279301C8B4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 08:22:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60BA72D060C;
-	Thu,  5 Mar 2026 08:17:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1931F372EC7;
+	Thu,  5 Mar 2026 08:22:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UsGUHSeJ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="ASRjMsBB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JCXNaCh8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FC59372EC7
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 08:17:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8C0A366DDE;
+	Thu,  5 Mar 2026 08:22:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772698674; cv=none; b=RQDYgZ7ZU9SOvsQu+C0wAXNI752EauDk3bT2O8dLpVf6Hw1u5EXQBHPTGWft94sKNOfhSDm0GYjzv9L0QcFUxGDG7KwjZk3gsfVBXC+jYbUO20Fq0NbdIt7X9KCXJ9Z78CF3ZJBqZqKBe1fn7jLKGKcQa5/fi51tC1fsSLFgNuc=
+	t=1772698934; cv=none; b=AU6aeokrfnUmxlrwrfopA+Z77PtnXUXIn07K8XBgbro2Dwf+amHT0b/nB9CPreTz5XU8BWcPj23iYCUCRKSBN4UEOdPMwX72AW+3Q/jMHCHUYFYBMqScl4MhB8bhU0ZRiXwUzQGDhG+oIIhvB9pu/L2Oe1U5eZ23uafqlo1gggo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772698674; c=relaxed/simple;
-	bh=WRZLFG+RVdOf4OFvX5feKep4K50fCWaJEMHMD5rzrzw=;
+	s=arc-20240116; t=1772698934; c=relaxed/simple;
+	bh=WNQaYbqsWl5GcqsRD9xTGJysvUcTpIBJXQIESqnEV2g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dNc7XK19ok250VGb2p87J4jfO6PFs5z8cmB7en+ob/u1j3gDbio80r0zFn/BLvHyoQEFcpmrB4vKAJadApbcZgbcH9ldFyeq/xxAhwfkVT6SxE7WxXfl3ULxV2xtM1NQJNKv/1dQvarT3BVNcuNq61hpAhR133vIEdKcTaLd1mo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UsGUHSeJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=ASRjMsBB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6251O2eD3665281
-	for <devicetree@vger.kernel.org>; Thu, 5 Mar 2026 08:17:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=q4sUrbxHy2pMOYEs+LSTZiBd
-	Zk/ji3z+RNUVNHVIhhw=; b=UsGUHSeJ2RRCGjK/0qyLbT1eImVu4HIo3GdgngQv
-	4N14c2vIsnysb2Y3QWY1Nldaza+6Vio6sS/yhBtFBbggydlR7FgBDf1h38JEWwCf
-	oBhcLcmotyjpAD85dvbfFqJC1mfg2ZMg7UChjZZ8s744Ws/85yy/L4kaOl5Fjed1
-	Pk7RTJCBfV6Ep1LY20BeGDWYCCh/JuVXiSOH3T/WhgJtnD2ogGKVDOn5pGHzzinC
-	T1Lnt6s00KOCqhTJOFrDYO6tyLLDJAKW7Ok04nOu9SfF8fRSUC7IWySQkzP4KL6v
-	txs+wUyeps5KFciBKGMw4/f8lnX0hgTF7xPHVjJ0YAbRiw==
-Received: from mail-dy1-f199.google.com (mail-dy1-f199.google.com [74.125.82.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cq04u169t-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 08:17:48 +0000 (GMT)
-Received: by mail-dy1-f199.google.com with SMTP id 5a478bee46e88-2bdff07d8f4so6767419eec.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 00:17:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772698667; x=1773303467; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=q4sUrbxHy2pMOYEs+LSTZiBdZk/ji3z+RNUVNHVIhhw=;
-        b=ASRjMsBBO5YDf875rzTs51W29mVOvFIpqA5ZVolyi1771hOT2k70VZbxMN2FmXI5FW
-         o6s93HD9a8F5VMmGjsc5VzSMWKs6D5G5yqzLfF71D0P5VjA4JHaIsRv3mkeBRjsN1FPT
-         XoZIAVAX+HOC2Ov3+VluflAxm5sBl4iEsbzo3htu1/TlxmmGI/K0IpdQnkTYKP4Z+/yx
-         /7agtyxq2w0b5BHPTQpU3Ymwwa+Kx01Qs5nqRRwbh2ZKzFInogbvOA11wc8U8LL/eHvH
-         faYazYCy9a9YhwWjfZxv/+Vpi61GdeXaWr3I7UOEBMXHNi7/LV96Xvj4H+NOPQ7Bqb4o
-         stHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772698667; x=1773303467;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=q4sUrbxHy2pMOYEs+LSTZiBdZk/ji3z+RNUVNHVIhhw=;
-        b=daSbEHHel85IIpkhGLh3x5vA94FPi8TUCitxWyZHtAeTa8OPKNLPcTgSVBPYFAyn8+
-         tW4aMEhICDauzJSgLSwZyxlmVXFZQDoJSwQ879n5d4HStp/nRsTpAYBTXEQZTM7m4QLJ
-         VSRbfB+VxXEhfQM0PLa3I7RTKxnPJhKtVt2ay/g+FsTl3z5M+AdxMjxCywCHGdmGlhH7
-         khmrEIgDFdqvie9PIftqAZovaFLQ055LSBR8ADmQtI0TcHlc6nb32mNVNF+pc5SnBcjl
-         ePq0hlc2VgH9XexhPLWoXR0PYFVmch+nASNAsCym7u/uQdC9WPi4qQwWcRq6aILE1BR3
-         nEUg==
-X-Forwarded-Encrypted: i=1; AJvYcCXRENGqQ5Rp5rYnn4KmbriqGdtCg9nbltWVC1rbgejCjVbghO4hmPhKDy7bgxWt+fh1vPvapGup2NCr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOSp88/cLT629BKKbN2jrSvaBkKSI/FmyDXDx+bkzJH4Rm6Ww8
-	C4QM2SYjep9La2AeCDP2f46RJ29Utb5sTFdRGRYRWjw3ePTdYazNwXSex2HihunAayi1sIzu1VR
-	fhIAuHSAHY20L6unVdX3HwhrRw2AytyUF5Ofl8s408+rs5u5nVGExyGXna0ZQcBPvFkQAVUHu
-X-Gm-Gg: ATEYQzxC3TDfJuZS6xxw0GcM6DhNOb63PYTuX0CHbD2iwxqivYQl9MLHHp4h+vDGWxR
-	bof7tw9+nNwIPvMQIt0FQtIdBqpNFKOiONQNwv0MFISEz4D3NddHDY6eohRIjWpsLwVh41JSI0b
-	KCWdjuzuNfK1YkTrbAV8BrmG6ElngqGGfAAx+R45oT6tRXrGypyUMVIr+G2izOfLjF0nMlHtGgZ
-	hqgGdANLbN65yKeCE5GEa4eCVI8AQQuHtLp+OJYDM2KGohgrZRPLCYI6qnSdqzuQKpk4/ZwMWoS
-	4+gRgT1R173eFOLjcNwonMQfwOpsw7mRrF5I0oc3QrIHSFzTqPeZG0TQ4HH+NJCyDdJJ9Af+0ot
-	kK6BsjmHmP6H5e6aMZDYpYbygV8xaZLhRvHjjpBi4w8REh7cuip5u205r8GUwPywGfhtW
-X-Received: by 2002:a05:7300:72d5:b0:2b7:35c8:32cf with SMTP id 5a478bee46e88-2be311c3691mr1682128eec.28.1772698667412;
-        Thu, 05 Mar 2026 00:17:47 -0800 (PST)
-X-Received: by 2002:a05:7300:72d5:b0:2b7:35c8:32cf with SMTP id 5a478bee46e88-2be311c3691mr1682100eec.28.1772698666798;
-        Thu, 05 Mar 2026 00:17:46 -0800 (PST)
-Received: from hu-qianyu-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be2800c89asm4204838eec.31.2026.03.05.00.17.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 00:17:46 -0800 (PST)
-Date: Thu, 5 Mar 2026 00:17:44 -0800
-From: Qiang Yu <qiang.yu@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/5] phy: qcom: qmp-pcie: Add multiple power-domains
- support
-Message-ID: <aak8KGKjD8/Hsndp@hu-qianyu-lv.qualcomm.com>
-References: <20260304-glymur_gen5x8_phy-v1-0-849e9a72e125@oss.qualcomm.com>
- <20260304-glymur_gen5x8_phy-v1-2-849e9a72e125@oss.qualcomm.com>
- <qmtl3j7czisocywmkwgaxxuzhc6e6zzvaqmqjs5p2phcpk2q3x@rocbjxeguv4g>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Nuywwf6H+b3wncmoDltkP/kqNRh1HSv0FZVJ1kLe/l8rW6r8OFkkoakc6Gd8i0+gWXM2+ddhj8ZmJloVFjJLSLoz/hCByHzCbMLD03wD2qCo8bIhwtATmpUvmWzA4q/NHqmfUBbcOzvAnhQLSFDFQ5q7KiUdPJ8VlseF9NjButY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JCXNaCh8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6EC5C19423;
+	Thu,  5 Mar 2026 08:22:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772698933;
+	bh=WNQaYbqsWl5GcqsRD9xTGJysvUcTpIBJXQIESqnEV2g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JCXNaCh8NDzazx2GC3TYspB6/Yro1LA51C2/VZsUC94X3UhWCLZ5+89NkpmxyNcHb
+	 WZwX9Vv+q1kLJIINsrTKHa6xPepwK4aFRdDIUuv3pBwZ89xwYvugHdn8q1KrbbN+3X
+	 4ixS/Wf6lFW5404jQMC36jH9YSYV+qsSqRrWQE66By8OYv3MaVRjx3meEFE4tYvwn6
+	 eUuVox3CM64qqurrmmHzOUQRLmYLPg52WGjJkVRUnquj98C7EfkdIMGq5IWYDB6pcS
+	 UhhMczVPC0uM11zlsuxx0RmloJ7A/giL1d8j2rBA42dgjZgwFpGhpoQjobeAewtPmF
+	 4w99n2IXxxtdQ==
+Date: Thu, 5 Mar 2026 09:22:09 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, Andras Sebok <sebokandris2009@gmail.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: exynos: add initial support for
+ samsung-j5y17lte
+Message-ID: <20260305-gentle-important-starling-48ca1b@quoll>
+References: <20260304-exynos7870-j5y17lte-v1-0-eb25902c84c8@disroot.org>
+ <20260304-exynos7870-j5y17lte-v1-2-eb25902c84c8@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <qmtl3j7czisocywmkwgaxxuzhc6e6zzvaqmqjs5p2phcpk2q3x@rocbjxeguv4g>
-X-Proofpoint-GUID: i8-M0Qxdk3k85Yw95pFWYG0K8_bqyeKz
-X-Authority-Analysis: v=2.4 cv=eqTSD4pX c=1 sm=1 tr=0 ts=69a93c2c cx=c_pps
- a=cFYjgdjTJScbgFmBucgdfQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
- a=EUspDBNiAAAA:8 a=E1WQ5AqD19wTCYbunv0A:9 a=CjuIK1q_8ugA:10
- a=scEy_gLbYbu1JhEsrz4S:22
-X-Proofpoint-ORIG-GUID: i8-M0Qxdk3k85Yw95pFWYG0K8_bqyeKz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA1MDA2NSBTYWx0ZWRfX15aqhC0WRI2G
- qtLKvy8WrIkeP7JJdqLZcDH/eS/xmRtbOnQelolM5Kh6RmqP0hArGTfMeP4XwrRm0gdnSzmlZkW
- 0qpdKKfDa2gAE6TxcbC9QYXM0x4apHFA2mIl1qoTgTDp4tliN0m9lDb4GFt4CQ1Hg6dlei2AxGG
- hWA5lN+LJxHIWkuDWuL1fWQMoJAIPcxpzyg+9TXJ3/nBdsh8JggbkiXNi/EyYaZ7IMEsTGqSo2r
- +U6SSVPDpkqc/qGS2A2oaL0e3tYUu+oFEE5f5Wk7HgDFE3YwzXNHLplPHLVN+lJJJqoYeBvvdnW
- LG4A7K5SCQ81G3yLLaoS2r/JyDnSu2yoHwLL3oz0l4cHsUj0DI/Cjqi9EWPutt7IGFNW30YdfJX
- L4YwlD5TgtOWXUbkKo/okeGjY69aNDXYo6yAocY1CAtMtk3D8jl0ROwJ6WW9ZK2LcOWgoyLtZXw
- 9nyW8Mx1E3abJ35yQbQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-05_02,2026-03-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 malwarescore=0
- lowpriorityscore=0 spamscore=0 impostorscore=0 adultscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603050065
-X-Rspamd-Queue-Id: 0873320D610
+In-Reply-To: <20260304-exynos7870-j5y17lte-v1-2-eb25902c84c8@disroot.org>
+X-Rspamd-Queue-Id: 6625220D63F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271410-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:email,hu-qianyu-lv.qualcomm.com:mid];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271411-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[samsung.com,kernel.org,intel.com,igalia.com,gmail.com,lists.infradead.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[qiang.yu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[3.254.86.192:email,2.98.90.0:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,disroot.org:email]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 02:46:22PM -0600, Bjorn Andersson wrote:
-> On Wed, Mar 04, 2026 at 12:21:56AM -0800, Qiang Yu wrote:
-> > The Glymur SoC's 3rd PCIe instance supports 8-lane mode using two PHYs in
-> > a bifurcated configuration. Each PHY has its own power domain (phy_gdsc)
-> > that must be powered on before initialization per hardware requirements.
-> > 
-> > Current PHY power management assumes a single power domain per PHY,
-> > preventing proper setup for this dual-PHY scenario. Add support for
-> > multiple power domains by using devm_pm_domain_attach_list() to attach
-> > power domains manually, while maintaining compatibility with single
-> > power domain PHYs.
-> > 
-> > Enable runtime PM to allow power domain control when the PCIe driver
-> > calls phy_power_on/phy_power_off:
-> > 
+On Wed, Mar 04, 2026 at 10:56:54PM +0530, Kaustabh Chakraborty wrote:
+> From: Andras Sebok <sebokandris2009@gmail.com>
 > 
-> Enabling runtime PM seems like a separate change that impacts all
-> existing targets, while adding multiple power domains should only affect
-> the specific ones.
+> Add initial devicetree support for samsung-j5y17lte (exynos7870)
 > 
-> I'm not sure if it's too picky, but it would be nice to separate this -
-> so that any issues that might arise can be bisected down to one or the
-> other of these two changes?
+> Signed-off-by: Andras Sebok <sebokandris2009@gmail.com>
+> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> ---
+>  arch/arm64/boot/dts/exynos/Makefile                |   1 +
+>  arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts | 528 +++++++++++++++++++++
+>  2 files changed, 529 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/exynos/Makefile b/arch/arm64/boot/dts/exynos/Makefile
+> index fa6e6308e30a9..76cc23acb9b29 100644
+> --- a/arch/arm64/boot/dts/exynos/Makefile
+> +++ b/arch/arm64/boot/dts/exynos/Makefile
+> @@ -8,6 +8,7 @@ dtb-$(CONFIG_ARCH_EXYNOS) += \
+>  	exynos5433-tm2e.dtb		\
+>  	exynos7-espresso.dtb		\
+>  	exynos7870-a2corelte.dtb	\
+> +	exynos7870-j5y17lte.dtb		\
+>  	exynos7870-j6lte.dtb		\
+>  	exynos7870-j7xelte.dtb		\
+>  	exynos7870-on7xelte.dtb		\
+> diff --git a/arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts b/arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts
+> new file mode 100644
+> index 0000000000000..d685bc0703cff
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/exynos/exynos7870-j5y17lte.dts
+> @@ -0,0 +1,528 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung Galaxy J5 (2017) (j5y17lte) device tree source
+> + *
+> + * Copyright (c) 2024 Andras Sebok <sebokandris2009@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "exynos7870.dtsi"
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
 
-The devm_pm_domain_attach_list() function calls genpd_dev_pm_attach_by_id,
-which in turn calls __genpd_dev_pm_attach() with power_on=false. This
-means the attached power domains are not powered on during attachment.
+These are ordered by name so interrupt < input.
 
-> 
-> > - Single power domain: QMP PHY platform device directly attaches to
-> >   power domain and controls it during runtime resume/suspend
-> > - Multiple power domains: devm_pm_domain_attach_list() creates virtual
-> >   devices as power domain suppliers, linked to the QMP PHY platform
-> >   device as consumer
-> > 
-> > This ensures power domains are properly attached and turned on/off
-> > for both single and multiple power domain configurations.
-> > 
-> > Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-> > ---
-> >  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
-> > 
-> > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > index fed2fc9bb31108d51f88d34f3379c7744681f485..7369c291be51aa1ad7a330459dcb857f5a1988f6 100644
-> > --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-> > @@ -17,6 +17,7 @@
-> >  #include <linux/phy/pcie.h>
-> >  #include <linux/phy/phy.h>
-> >  #include <linux/platform_device.h>
-> > +#include <linux/pm_domain.h>
-> >  #include <linux/regmap.h>
-> >  #include <linux/regulator/consumer.h>
-> >  #include <linux/reset.h>
-> > @@ -3334,6 +3335,8 @@ struct qmp_pcie {
-> >  
-> >  	struct clk_fixed_rate pipe_clk_fixed;
-> >  	struct clk_fixed_rate aux_clk_fixed;
-> > +
-> > +	struct dev_pm_domain_list *pd_list;
-> 
-> This is just an pointer to the list allocated inside
-> devm_pm_domain_attach_list(), as far as I can tell you don't need to
-> keep this in the qmp_pcie struct - as you're not using it anyways.
+> +
+> +/ {
+> +	model = "Samsung Galaxy J5 (2017)";
+> +	compatible = "samsung,j5y17lte", "samsung,exynos7870";
+> +	chassis-type = "handset";
+> +
+> +	aliases {
+> +		mmc0 = &mmc0;
+> +		mmc1 = &mmc1;
+> +		mmc2 = &mmc2;
+> +		serial0 = &serial0;
+> +		serial1 = &serial1;
+> +		serial2 = &serial2;
+> +	};
+> +
+> +	chosen {
+> +		#address-cells = <2>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		stdout-path = &serial2;
+> +
+> +		framebuffer@67000000 {
+> +			compatible = "simple-framebuffer";
+> +			reg = <0x0 0x67000000 (720 * 1280 * 4)>;
+> +			width = <720>;
+> +			height = <1280>;
+> +			stride = <(720 * 4)>;
+> +			format = "a8r8g8b8";
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&key_power &key_voldown &key_volup>;
+> +
+> +		key-home {
+> +			interrupt-parent = <&gpa1>;
+> +			linux,code = <KEY_HOMEPAGE>;
+> +			label = "gpio-keys: KEY_HOMEPAGE";
+> +			gpios = <&gpa1 7 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		key-power {
+> +			interrupt-parent = <&gpa0>;
+> +			linux,code = <KEY_POWER>;
+> +			label = "gpio-keys: KEY_POWER";
+> +			gpios = <&gpa0 0 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		key-voldown {
+> +			interrupt-parent = <&gpa2>;
+> +			linux,code = <KEY_VOLUMEDOWN>;
+> +			label = "gpio-keys: KEY_VOLUMEDOWN";
+> +			gpios = <&gpa2 1 GPIO_ACTIVE_LOW>;
+> +		};
+> +
+> +		key-volup {
+> +			interrupt-parent = <&gpa2>;
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			label = "gpio-keys: KEY_VOLUMEUP";
+> +			gpios = <&gpa2 0 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	memory@40000000 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x40000000 0x3e400000>,
+> +		      <0x0 0x80000000 0x40000000>;
+> +	};
+> +
+> +	pwrseq_mmc1: pwrseq-mmc1 {
+> +		compatible = "mmc-pwrseq-simple";
+> +		reset-gpios = <&gpd3 6 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	vdd_fixed_mmc2: regulator-fixed-mmc2 {
 
-Okay, will remove this part in next version.
+And this should be regulator-1 or regulator-xvx (see bindings).
 
-- Qiang Yu
-> 
-> Regards,
-> Bjorn
-> 
-> >  };
-> >  
-> >  static bool qphy_checkbits(const void __iomem *base, u32 offset, u32 val)
-> > @@ -5348,6 +5351,16 @@ static int qmp_pcie_probe(struct platform_device *pdev)
-> >  	WARN_ON_ONCE(!qmp->cfg->pwrdn_ctrl);
-> >  	WARN_ON_ONCE(!qmp->cfg->phy_status);
-> >  
-> > +	ret = devm_pm_domain_attach_list(dev, NULL, &qmp->pd_list);
-> > +	if (ret < 0 && ret != -EEXIST) {
-> > +		dev_err(dev, "Failed to attach power domain\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = devm_pm_runtime_enable(dev);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >  	ret = qmp_pcie_clk_init(qmp);
-> >  	if (ret)
-> >  		return ret;
-> > 
-> > -- 
-> > 2.34.1
-> > 
+No need to resend for these.
+
+Best regards,
+Krzysztof
+
 
