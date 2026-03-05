@@ -1,423 +1,213 @@
-Return-Path: <devicetree+bounces-271621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SEXjDPajqWl5BQEAu9opvQ
-	(envelope-from <devicetree+bounces-271621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:40:38 +0100
+	id AMaLDVClqWl5BQEAu9opvQ
+	(envelope-from <devicetree+bounces-271622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:46:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B3C214B31
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:40:37 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFECD214CA2
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 16:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 165D0310FAF1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 15:36:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 906993034C44
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 15:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22FFE3C6A3C;
-	Thu,  5 Mar 2026 15:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C633C6A3A;
+	Thu,  5 Mar 2026 15:40:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="pvGfxYX7"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="HepzXd8X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013069.outbound.protection.outlook.com [52.101.83.69])
+Received: from CH4PR04CU002.outbound.protection.outlook.com (mail-northcentralusazon11013017.outbound.protection.outlook.com [40.107.201.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 799513C2786;
-	Thu,  5 Mar 2026 15:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.69
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E325C3CC9EE;
+	Thu,  5 Mar 2026 15:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.201.17
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772725017; cv=fail; b=udQmpUNGb1/XmCFG2ZLSr0JNOI3asR6wgm2fCeLQxtp6xt+Zk2M7GTZ8KeLlkevQL4IQNA8nd+6+ngDIIwpIFuxlR5saDELx8bI/MusdTz4CipbHmB6vlAG0ohsoveKy9m61c5YIMVC6Rh6vKthgHNBddrLpY2X9N7ludq1/7pw=
+	t=1772725206; cv=fail; b=u1aMA7mmbfQKOcC05t8boRdg3xjiz4dCB6KlBEd2Q8SRpUZE59Gkj0pyvrKfk/izZBKu8rmsIJA3vdoMCQYOtgJx5OLvT6Q0QticyME2QEKmpomSWky3Pr+c678r+p+QA2wXkYayPUfsxzsU6FwRF6ahB1pD64iYwP9lYcC/wyk=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772725017; c=relaxed/simple;
-	bh=WOTZbMJjw1i7YGgJjxM0t/VVuCVVl2WWGMyYeuxGzG0=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=vGl2/a7X9r0SxL7XeYwALWVnIVpMxNbT1fsPHU2lkD/ILgHRAMoXzktnJQUwWqE0mpmvX032VGgXjx/alArVmzM9vH7sbaHsfcOlPNJJCO7qNGd4bl/TpxXwS8qA3ssfnQH8KtK6WQxEY2G+Bg60w0C9oaSHW/7GPEATBuGU/7w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=pvGfxYX7; arc=fail smtp.client-ip=52.101.83.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+	s=arc-20240116; t=1772725206; c=relaxed/simple;
+	bh=PwsW+YhJfgoEbi3iOx0L+OqxkUa8T7Tf+HzvhVtdtU4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GliS9gOmgHCEFmdlQfZ4gNk6GDehkNrkurvvCgtppLUDvcTz6/gsh8tKIAGA7Z6+Q1v1cOFV2dN8bOQT6b2rkH9pfElWdQeHWFIAs1CUYpPA/4Fy6y1r5h6ncJZOhc1CA57Lyfb2Q2/xRPyPJvHPRq1PM+m+OJCKJYakJaQR34s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=HepzXd8X; arc=fail smtp.client-ip=40.107.201.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jBwxKc4yVhw5XQCaDiBUoOAGWvU1jpSEegdBBoD0LmlYnsQfbCaam96lXVeQhVuMk/P2NLMEapFUKj+OajKgs+UFgMtSNEz9l649UfBCvGb2FGpdXcvYDjTsM84OrsAsA+sVXER6jNh2KVSBU+a4d0e080RolvfRVSIUPoyIr3zwuFvJYnHOiF3kxg2bbC0kTVhvNDf2HXutQVwi1tICSrjlBVvGKuZbGilARs5fmLqW1OExAmgmK5V3Pvrz/AjyI347oYYhQRvm9/s1qddeqgdVKSSn+R+tIx0khD8M5/MiIUyQhyR8Q4Voz/4Xm45oczRpFCWG64+uvFBij00RMw==
+ b=HTzgliMw0XkGttkZaqQZeJwH/KO4jK6XvUQLqeid38ZfoIItpvh7PBvLOTR5xgxi8eAYRbYYey+BxjRS6QQ3QLY7LRq1q4+JtIGwVngJ5LD1L5njTyIZIFwBzXrpFz+4rY1H1ovjWcdqNAc1IXUdvomB2L8cddq2h/Axg6l6/1Dod32WWk2pRPbgKHO9L9dRtZLQq3oETfD7T/xqyilTAvqGTHxaDFPfW+8CapENkhUoImuBXLg//Chl0v93gA0OapaPpnFADvFIA2IRcySQd1bxpH85AoGBsu8mQfxz1mDDhN+Uao5mEi1hLGFUP2LLncbwlzMgHiy2XKDD7usEXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7FLnrjtHtkTm3gDsK9QSPnZhS2xt8dN4MonrCmPC1yc=;
- b=N+9sFecMhaPlvT6f23NvaUZFLt4/TD1r6QLFmrtjAYG2iHlzOlY4GGrQKw7q7+YjKEk1w2XQmyLorwu9NJITR5HeXtibHpNLWTuD2EzYktxarsYljfsj61Lg/5Xgv9yxLfjhLDc34Nv73Q56nbftA4+aUEGghkjlsNWPookJjQHPcp04fSGr0hGn/LWVditLjA8DkW6znBxiTQW9bdPzS7OC3Gck6MGbDB1KLpcU/Gj9RLhQ/N04raYBu1j1QBQ/gtFNPO3snkyF8QDhzg0xCPAp9kQ4hGjmLfdLdRoC5OE7hcGbI97YeBBswIMbvSXGJ3z80RdeZBURcNCPa2q+uw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
+ bh=tzL60usZhkk4yHashNQZMVaOvIuH8wriyGwpFHTcp30=;
+ b=nlj3kocWvCvX4A6yV4KIAa4HNWNBl4Xox5DEzObmb82AaWjAPxu1OSvYUzeptgOjoYCxxERh6c0IGLy3x9dsUYY1N5gCPvohi4Hg4Q3aqxIYb8TITAkBY34g9jytyjYVeUcSwBXvODFJE87TVPdYbSlzDmZx2aLMHhh9LZA7yBXToE29gUtEpAbizn8Xyy5ALkHHW0PhrkZuWn2ImDQfA9mkXH2Zec0ActYvkT9fns7T72JAJT/0XGLRGUV5jsQnH7EvTxUjvOHCL7Q1hQ1PGblNfRPBcxAs8iHP7NTLMLuNK4b4lKZZu8USOePjMWizqqTlvIXaGKAUFMgX6zBFbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7FLnrjtHtkTm3gDsK9QSPnZhS2xt8dN4MonrCmPC1yc=;
- b=pvGfxYX7sdTwp5mmcRTnpeKQ5KjxBFPP6w/VAB7hZI7k1qGg3nI6a3ap+kmq0FZ6Kj016XqF3QUm9tw8ctSJtmTRnkEh4J/lsCT+8z6T/3KM4pEtoE3VIbC8WvJ8b/Lx9UixP5GVqlkkL7D5I+3XXrqquW5SDn73C2TtEhz4w5mzghv4ewwpvfoqzprTuj7nFM2/igIlgax1hYyU7xbksSter4DY2okbskO517af1+ewj0ekCC1c+L+di3q6bwEIXwu7RpIhb6i6rfqxeDPPBMKgNXzrEbj19dYD5of0wktFzF3CWrG4oe/ZyBIMMhn2j2gQt1NpYq+GfhX1tqPy4A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com (2603:10a6:20b:3f2::13)
- by DU4PR04MB10624.eurprd04.prod.outlook.com (2603:10a6:10:592::6) with
+ bh=tzL60usZhkk4yHashNQZMVaOvIuH8wriyGwpFHTcp30=;
+ b=HepzXd8XVuDnz154xOnCe+N3qvy4HUfsaLkQ4Y0JvhGDmxAA7jkxRnmDN8oGSKsRnSKWbzTmYtfTxTtl8aZbNAp9YgDzeoBvzVGIbqni3KO892NBJzAvdCziax5lUzbd3EO8Z3Tm45Bmjiw537OS5u5Nic8JjTp7qHMhSfZzMzE=
+Received: from SJ0PR05CA0162.namprd05.prod.outlook.com (2603:10b6:a03:339::17)
+ by LV2PR12MB5967.namprd12.prod.outlook.com (2603:10b6:408:170::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Thu, 5 Mar
- 2026 15:36:51 +0000
-Received: from AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed]) by AS8PR04MB8247.eurprd04.prod.outlook.com
- ([fe80::e99:f504:ce75:9bed%3]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
- 15:36:51 +0000
-Message-ID: <7f66aa76-394f-4478-88a0-f2dbf3a19d45@oss.nxp.com>
-Date: Thu, 5 Mar 2026 17:39:47 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 1/5] docs: driver-api: gpio: rpmsg gpio driver over
- rpmsg bus
-To: Shenwei Wang <shenwei.wang@nxp.com>, Linus Walleij <linusw@kernel.org>,
- Bartosz Golaszewski <brgl@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Frank Li <Frank.Li@nxp.com>,
- Sascha Hauer <s.hauer@pengutronix.de>, arnaud.pouliquen@foss.st.com
-Cc: Shuah Khan <skhan@linuxfoundation.org>, linux-gpio@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
- devicetree@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com
-References: <20260304211808.1437846-1-shenwei.wang@nxp.com>
- <20260304211808.1437846-2-shenwei.wang@nxp.com>
-Content-Language: en-US
-From: Daniel Baluta <daniel.baluta@oss.nxp.com>
-In-Reply-To: <20260304211808.1437846-2-shenwei.wang@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AS4P195CA0003.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:20b:5e2::9) To AS8PR04MB8247.eurprd04.prod.outlook.com
- (2603:10a6:20b:3f2::13)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
+ 2026 15:40:00 +0000
+Received: from MWH0EPF000C6184.namprd02.prod.outlook.com
+ (2603:10b6:a03:339:cafe::33) by SJ0PR05CA0162.outlook.office365.com
+ (2603:10b6:a03:339::17) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.19 via Frontend Transport; Thu,
+ 5 Mar 2026 15:40:00 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ MWH0EPF000C6184.mail.protection.outlook.com (10.167.249.116) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Thu, 5 Mar 2026 15:39:59 +0000
+Received: from Satlexmb09.amd.com (10.181.42.218) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 5 Mar
+ 2026 09:39:59 -0600
+Received: from satlexmb08.amd.com (10.181.42.217) by satlexmb09.amd.com
+ (10.181.42.218) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 5 Mar
+ 2026 07:39:58 -0800
+Received: from localhost (10.180.168.240) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17 via Frontend
+ Transport; Thu, 5 Mar 2026 09:39:57 -0600
+From: Michal Simek <michal.simek@amd.com>
+To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@amd.com>, <git@amd.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, "Rob
+ Herring" <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, "open list:OPEN
+ FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"moderated list:ARM/ZYNQ ARCHITECTURE"
+	<linux-arm-kernel@lists.infradead.org>, "open list:COMMON CLK FRAMEWORK"
+	<linux-clk@vger.kernel.org>
+Subject: [PATCH 0/2] clock: versal-clk: Fix Versal NET clock binding and switch to CCF
+Date: Thu, 5 Mar 2026 16:39:48 +0100
+Message-ID: <cover.1772725183.git.michal.simek@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2205; i=michal.simek@amd.com; h=from:subject:message-id; bh=PwsW+YhJfgoEbi3iOx0L+OqxkUa8T7Tf+HzvhVtdtU4=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWSuXHxM0OjcNr/6u7saVm/+q/cqg+3TTJOGxj9HKtNP7 ptjlLQ7saOUhUGMg0FWTJFlOpOOw5pv15aKLY/Mh5nDygQyhIGLUwAmYtzDyLDiclxfubBnxoon PDcdT7iVOKjJcesL/+8+tKbUub376lxGhu7tpoXTV1hZ/WmQmiDW/GVKTV0iV9AFR03Nk5XWu+7 MYwAA
+X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8247:EE_|DU4PR04MB10624:EE_
-X-MS-Office365-Filtering-Correlation-Id: a3128f45-65d8-406c-4848-08de7acd03ec
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-TrafficTypeDiagnostic: MWH0EPF000C6184:EE_|LV2PR12MB5967:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3893faa6-5b66-462e-c7d3-08de7acd75f6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|7416014|376014|366016|1800799024|921020;
+	BCL:0;ARA:13230040|82310400026|7416014|376014|36860700016|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	tRWxib4ZZZrmDQ/WYK1Ev6MMoDDo512BbeE9FS5tP2l4GUFi1b0q1p4DcOjIEgoHL0iJqbRiUvCzBZ/CAEQD4Ca0he35nHx/mVXvcKf9jYpVy2PQ1b7JnrFRaBWPtE9Jp2/eUNYlF98m7S69yyUWZTyEec+CeN2ZWCbKnMvOfKN/Nng57O8sZxsTH/uxrKhxlUVl3c6jICkPj62LP69Z+3Yo+4ALmV8gu5MtWjKTS4GMQyq2Cl5TWsJ/PecR7jya2K+2jyDgbsisc7ro8Cb8fZ94+N1WqdH5ubhKAqT60viBfHmUcZCLIW77bpjxZjBkWR27EbO3a/xQPCfI15cOqxNTGDif7Qo1IrWd3o9D/U3OSrz17C1HxEJxh+BHzWC6wf1Ik/G1uzgfk5iubZLkyOLctyWAEwNzCvXs0LKF72QdJh9gsvkTP/md1jmiSyjAJyYetshntuV0qVlz4OEGai64K0/jK8T153mpxs+uEMaqQk7h+SUyldjMgn60yZhE5bSRUF//jlrnlUwKnR5ROqiXe9WmKCex9inZh+xvGMbjEGpM6ykjlUH3QD11YvxsAd252jSBjnX0Wmmi/VEB95R8RNupWBVGZ/0lLTerhNQ3OFvnUW7toYGr05AbJJ0HB6GExjT5fPqrFRl1eTCy+7iZH+YJaM1xX53c3V1bcpQFqv6vzDwVe6NU6//YYY9DEP9UjHoILWrYbfityXtzBy8U2faI2jp2Og0Eh0eHwD/lThm4Qk/4nDT7IMbnflvC8AlbJxTrWIDcMbIRLVri7g==
+	+L45pi7h9TRY7hhi/j1ydeXVXiplUhSM9+kXerjOSoTkLA1HNjSPb62G6fgPcI/Pq96d4yWnRMkLNxo7NZEjrYL48S5TcJ/hmcnJQrFwUee0Nq4royo6Fnx7AnVrwSoHVbnxhB14W4CiI0KyqeiwalXTud2QWwkNeAsVBcU+Zh//occodhxb3Q/NTzdLB751Cqa6T7DZY1MthuWuIuPZQYSzX3sJmex0/+J4eRtiLFTFFJKmFt9QNEinm0n2Ox+6s+TBoQ2QPfF4vf3GoIZuk4uLw+3L476+iE08epU0oi+/vH7bCXdudQUK37pqd/u4YkV7UbqowWQM1gYEKbo7QkKXJgEmZPuhey9LRndnmZZ8Slpw8kE9Og4gxcDAyvyFnEbV3qvVQT31R9GLtgEBXmGNK5NQYkmD0E5WakK1dD6bsfPt2Nhhx52UHoDE/bdmAJB4kXXyhairy9qAqOQcn+vKzKdXuSlhaM8+I+DXtDZAbYq0W4xFNVghX+DkcHgSrZjPv7vy0lx6xxmuJTlJzLFhRGQIvRNB8mcAS0rbj/WOAy3imB3NOukL3D4ImzSf6tphOJByFT9odZit4ZYT8yIIEGIG/WtuDYIFtcPGixA1Q5C9p6+59Nro239hB01zg+tNWkLLcxvsXfaJaKBcweKaUrlI+7UFVGOHyoldxxCGzQpRVKNru3V7hsbQ79v2HXGFm7/wjFaOlIFzRaHoSxUBXYFSXzGC6bGZtP+B6Z/qGKqkRVV1wFt9ahSH2vFXk+9+Y+78E6DdoMxwXF/0pQ==
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8247.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(7416014)(376014)(366016)(1800799024)(921020);DIR:OUT;SFP:1101;
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(36860700016)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?TVBqNHBzaUs1NFZWRDN5MHhHVEEvdGEvY1RBd3RnVkh6am9mNlVuSDRZcjh3?=
- =?utf-8?B?M0xBcFlCdW5pV0pOZGdQa1NHejJTcjdhamZZSXB5QlZSYnp3NEZkOUxjVVlQ?=
- =?utf-8?B?eXZuRUEzK09PbklkblN2ZWpHdXBqN0xZMlVxRjRsN1EvYnpHOWFmZnRnRFZE?=
- =?utf-8?B?V2ZhelR0QzJEWmJnK2d4MW9jUkNNcDJuRFZVMFVubHhNc01uZWtuZGNUbTda?=
- =?utf-8?B?RytoR3g0LzQxNUROeXhzK1VxNnc3K2hsazNqR3FKSGlZbDlLQTlCWTc0dmZ3?=
- =?utf-8?B?NVFvektVUTN2VzJob1BVeTkwZjIvMStXdnhReTJlZklqeEFhRk1rWVNkOXhS?=
- =?utf-8?B?QTJXZFRkTGRPcy92d0NGTmVwY3NMcVU0YWdGL2Y4OWkvUHoxc0xQd3Y2eS95?=
- =?utf-8?B?TDdiOU9iaGdISmZQZzdGbi9wNUtacjhvdWJBTzFsbkNCUlcvR3o4dzB4OTlX?=
- =?utf-8?B?aTJvM2lnQWU4UGNTQ0gvMk1oWDdBYXJZTzhVc3FhTzJOc0RWS3o5ZDB3M0Zo?=
- =?utf-8?B?ZzNvMVVpK3pydTByYVU2enBrZzRzek9FOWh4ZWJRbXZITlMwYVQrVmpqT1lB?=
- =?utf-8?B?V1N6d1VVeFJsVjd3bERPdWJ4TjFoQlVWcGRwV3lmaWl2aWcreXlabVlxbUZl?=
- =?utf-8?B?UzAyODRDZ2d4RU40QXpmOUNHOFZNT2NJQ1A4cWJlL2VXb3M4Ny9ranVCcTgr?=
- =?utf-8?B?dHMySUszakFSZy9OcWFjeHdFU0Q1aGlOQW90dWR0ZFE2ZWdCNGN4UE5yTmFk?=
- =?utf-8?B?elBJRmxxZmJUdXlPakFCY0Z5YzA4RXA5bmpyZ1lIYksweXZkQi9UbmQvdHZP?=
- =?utf-8?B?MUN6MENLcHBpRnp5dEJlaFBONU5zMGdGQlRuS1pUOTlCVytGcmg2YUhGU1Vj?=
- =?utf-8?B?QWRnRWlNNkR3cWFqWGpBMmJQVER4MWo2aTNHWTFjaGRhYjJxLytqc0JWcDBu?=
- =?utf-8?B?TjRkdjlYK1NOVkhSK1dFOEtWL2FMaUtQMU9rRlE2UVpNVTlPOWNoNGpvT0Jk?=
- =?utf-8?B?SXRqR3Z4bVByTnFWb0tOVHVzSm82czdxL2tZWjdLT0laRVRCVSs3VXdKdVBn?=
- =?utf-8?B?NS9qanlhZXViYmw2QTlLdGRzVHluTXI4VHo4QmFiZFdDVHRBZnNxditOYjhC?=
- =?utf-8?B?ZzJiMWVzd0xQK0dwaUVVYVk0TjlvdWxTTEdiYlc2UzJwQndtMFYyNUxSVXht?=
- =?utf-8?B?RWdqZ0hzTDQvSzJhSUFldEdwUVE2dk9lQ2FkMENrTVFxQ2JQYWxqSWZmUnVH?=
- =?utf-8?B?emdqOHlpTDdhNis4UG9EWWp2YUhTeng0cytTMzR1N1dXejdYcnlyeW5zWHNa?=
- =?utf-8?B?TDE5aGxITmQ2SFdwNlNtM2NZVWlhQTE5dlkwdHkyTG12ME1OMlp6aVVVelN3?=
- =?utf-8?B?akludXdIbVRTV1RGOW9ZTE1WL3V1QlB5czNJTFhhRWdKb0w0TjJBcUNMeUlq?=
- =?utf-8?B?aEI4clV5dFF4NjFBSW5LSzNtQ0JjS3RJeTBqSXhkTmdvanRjTWdEaUNoSXpr?=
- =?utf-8?B?b3Y1eDZUMTVjTlBOTksrT0NaZGovaFRKYzQ2SlJuYXhVSFVtRGpZWmc5S2Fs?=
- =?utf-8?B?dk0zaEprZHlvZWRVa0JpNnVlb1JUWk1NRWk0bDduZXp5MW5hckM4L1NONGRv?=
- =?utf-8?B?L2w2WVpYUy9YbFpYc01NSHYraVdQNU12Zmttb0lMZWRvd2V4NE5EQ2diTHdU?=
- =?utf-8?B?NXR4S0ZxSDhUTVljNUZYUmFWdzdLdnZzQk9MbWIrUlBPQm9MOVMzUmE2aWh5?=
- =?utf-8?B?NE1Wa0pqMFFYTmhVUzJKTkVWMzNXQ0xOOFdKZHBsQTFrWW1wNnl3eks5ZnVm?=
- =?utf-8?B?dWZGcXRDc2taeEZSL0x3Y2R0VGs0a0pLa1JmaUtuQk02OE1EbE91ekwyVGZL?=
- =?utf-8?B?a2RVOHJXaG5NMnpBcnViZHZjRlpXajdFSmFjT1A2ZTZuSkNvT0xPcERYeVo5?=
- =?utf-8?B?dFp0bVp4ODJja0dCSUhvaGNYMEo3OXp3YVJJM0lBeXpXMUM4T0luU2lCbjhQ?=
- =?utf-8?B?SncwNStIVU9UY0NZTXlhV3R5VFk3Q2hsZDIzRVFsUXk4RFo5NUNmcjZYaGQv?=
- =?utf-8?B?WGxZczJ1aHVFL0VBVFRscS9CVUI4R0s0Tkx5aTFSNFBPWVpxRFM4ZmNjVTA4?=
- =?utf-8?B?dys0Qy9XNEU4NjZhM2RMRFlwWWVPV1BsL1loUmwrRWVRb3l5cFpiUVQ1eXJ1?=
- =?utf-8?B?dlRDZ2hrUXpVZTdCTFRyYXZTTkZocDhzVGpYZm1BSzNQb0d4eHUwc3ZxZGI4?=
- =?utf-8?B?dG10aG1DL1ljbUQ1aE5GYTNETU1GSzcrbGo2SGhNL0pHSE5BbjB6ZDJaeUlU?=
- =?utf-8?B?eUx1QVJ3alhINzlzMmsyb2t4MFE5K0dJczZDanZGeDc5bWp1Zkt2QT09?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a3128f45-65d8-406c-4848-08de7acd03ec
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8247.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 15:36:51.2931
+	uJAPa7Iw/MM4Xqo8Qbb/LsSaesm7U3O8Dxrdi7D/fJiIpSin2DaL1GjXkuO1XAUdTlsUPtJRNuit87bK97o7hKyLfZWZCmOgrI1UhV2o3GVyXBqbEOHNNzQuDje06VjxG6iyt9OAG1Hb9giNac/1+hnQ5WaAnezH8alW71LLEFoRksP/eysP3HSBi3x38D6qf9Bt3WO4gMMC5CKJ0QeduPZost9mWInvYa6ZRkG74rlwf2F47wQCrydGt4sYxV2qyVZjDE80LVLEad8K4sr31IeetoXfQ1ecAZxGiMaQsoo5i4vYXNQaOeLltFxy57t3Z/HQPXvVI37WYKr4V1ODfkNOkxttH4NK/C0419HkeTArhP8mzzBHhWkcAGfMMHpvGgFu+pI0WUQfYX93agTh1yG0Rt2DQbeawgDv3TYdOmA+LkM69jnCeB3rgZlnrkIt
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 15:39:59.7834
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Q4Q87KxZHIw6hrUWApS9bAfxWthaLn5BelseZv+y2+XW+7bX763Jr3nc13RWEJlDB5f0KYvY+qTo3Ak2IbekPw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10624
-X-Rspamd-Queue-Id: D1B3C214B31
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3893faa6-5b66-462e-c7d3-08de7acd75f6
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	MWH0EPF000C6184.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5967
+X-Rspamd-Queue-Id: CFECD214CA2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.94 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271621-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[24];
-	FREEMAIL_CC(0.00)[linuxfoundation.org,vger.kernel.org,pengutronix.de,gmail.com,nxp.com,lists.linux.dev,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-271622-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[amd.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel.baluta@oss.nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[michal.simek@amd.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,amd.com:dkim,amd.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,NXP1.onmicrosoft.com:dkim]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Action: no action
 
-On 3/4/26 23:18, Shenwei Wang wrote:
+This series fixes the Versal NET clock controller DT binding validation
+and switches the platform to use the firmware-based CCF clock interface.
+
+Patch 1 restructures the if/then conditions in the versal-clk binding
+schema so that xlnx,versal-net-clk is matched first before falling back
+to xlnx,versal-clk. This fixes false "too long" validation errors caused
+by both conditions matching simultaneously when the fallback compatible
+is present. A dedicated example for the Versal NET 3-clock configuration
+is added and all examples are split into separate blocks for independent
+validation.
+
+Patch 2 switches Versal NET from static fixed-clock definitions to the
+firmware-based CCF clock interface, enabling proper clock management
+through platform firmware. DT macro headers for clocks, power domains
+and resets are added.
+
+Thanks,
+Michal
 
 
-[...]
+Michal Simek (2):
+  dt-bindings: clock: versal-clk: Reorder if/then conditions for Versal
+    NET
+  arm64: zynqmp: Switch Versal NET to firmware clock interface
 
-> +GPIO RPMSG Protocol
-> +===================
-> +
-> +The GPIO RPMSG transport protocol is used for communication and interaction
-> +with GPIO controllers located on remote cores on the RPMSG bus.
-> +
-> +Message Format
-> +--------------
-> +
-> +The RPMSG message consists of a 6-byte packet with the following layout:
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   |type |cmd  |port |line |  data    |
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +- **Type (Message Type)**: The message type can be one of:
-> +
-> +  - 0: GPIO_RPMSG_SEND
-> +  - 1: GPIO_RPMSG_REPLY
-> +  - 2: GPIO_RPMSG_NOTIFY
+ .../bindings/clock/xlnx,versal-clk.yaml       |  49 ++-
+ .../boot/dts/xilinx/versal-net-clk-ccf.dtsi   | 378 ++++++++++++++++++
+ .../xilinx/versal-net-vn-x-b2197-01-revA.dts  |   3 +-
+ arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h  | 123 ++++++
+ .../boot/dts/xilinx/xlnx-versal-net-clk.h     |  78 ++++
+ .../boot/dts/xilinx/xlnx-versal-net-power.h   |  38 ++
+ .../boot/dts/xilinx/xlnx-versal-net-resets.h  |  53 +++
+ .../arm64/boot/dts/xilinx/xlnx-versal-power.h |  54 +++
+ .../boot/dts/xilinx/xlnx-versal-resets.h      | 105 +++++
+ 9 files changed, 858 insertions(+), 23 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/xilinx/versal-net-clk-ccf.dtsi
+ create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-clk.h
+ create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-net-clk.h
+ create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-net-power.h
+ create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-net-resets.h
+ create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-power.h
+ create mode 100644 arch/arm64/boot/dts/xilinx/xlnx-versal-resets.h
 
-I think would make sense to display the type in hexa.  e.g : 0x00, 0x01, etc.
+-- 
+2.43.0
 
-Also, would it make sense to display the byte index as follows outside of the boxes?
-> +
-> +- **Cmd**: Command code, used for GPIO_RPMSG_SEND messages.
-
-Are there any specific commands? Also please either use upper-case first 
-
-letter (e.g Type, Cmd) or lower-case letter (port, line) but do not mix them.
-
-
-> +
-> +- **line**: The GPIO line(pin) index of the port.
-
-In message format line comes after port so switch the order here.
-
-> +
-> +- **port**: The GPIO port(bank) index.
-> +
-> +- **data**: See details in the command description below.
-> +
-> +- **reply err**: Error code from the remote core.
-> +
-> +  - 0: Success
-> +  - 1: General error (Early remote software only returns this unclassified error)
-> +  - 2: Not supported (A command is not supported by the remote firmware)
-> +  - 3: Resource not available (The resource is not allocated to Linux)
-> +  - 4: Resource busy (The resource is already in use)
-> +  - 5: Parameter error
-
-Is this part of the 6-byte packet? Are these standard errors or you defined them as is?
-
-> +
-> +
-> +GPIO Commands
-> +-------------
-> +
-> +Commands are specified in the **Cmd** field for **GPIO_RPMSG_SEND** (Type=0) messages.
-> +
-> +The SEND message is always sent from Linux to the remote firmware. Each
-> +SEND corresponds to a single REPLY message. The GPIO driver should
-
-Wouldn't be the other way around? Each REPLY corresponds to a single SEND msg?
-
-> +serialize messages and determine whether a REPLY message is required. If a
-> +REPLY message is expected but not received within the specified timeout
-> +period (currently 1 second in the Linux driver), the driver should return
-> +-ETIMEOUT.
-> +
-> +GET_DIRECTION (Cmd=2)
-> +~~~~~~~~~~~~~~~~~~~~~
-> +
-> +**Request:**
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 0   | 2   |port |line | 0   | 0  |
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +**Reply:**
-> +
-> +.. code-block:: none
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 1   | 2   |port |line | err | dir|
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +- **err**: See above for definitions.
-> +
-> +- **dir**: Direction.
-> +
-> +  - 0: Output
-> +  - 1: Input
-> +
-> +SET_DIRECTION (Cmd=3)
-> +~~~~~~~~~~~~~~~~~~~~~
-> +
-> +**Request:**
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 0   | 3   |port |line | dir | 0  |
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +- **dir**: Direction.
-> +
-> +  - 0: None
-> +  - 1: Output
-> +  - 2: Input
-> +
-> +**Reply:**
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 1   | 3   |port |line | err | 0  |
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +- **err**: See above for definitions.
-> +
-> +
-> +GET_VALUE (Cmd=4)
-> +~~~~~~~~~~~~~~~~
-> +
-> +**Request:**
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 0   | 4   |port |line | 0   | 0  |
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +**Reply:**
-> +
-> +.. code-block:: none
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 1   | 4   |port |line | err | val|
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +- **err**: See above for definitions.
-> +
-> +- **val**: Direction.
-Why is direction High or Low? Or I'm missing something.
-> +
-> +  - 0: High
-> +  - 1: Low
-> +
-> +SET_VALUE (Cmd=5)
-> +~~~~~~~~~~~~~~~~~
-> +
-> +**Request:**
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 0   | 5   |port |line | val | 0  |
-> +   +-----+-----+-----+-----+-----+----+
-
-So when getting replies val is at index 5, but when sending requests val is at index 4. Wonder
-
-if we make this consistent? Or at least explain why did you choose this layout.
-
-> +
-> +- **val**: Output Level.
-> +
-> +  - 0: High
-> +  - 1: Low
-> +
-> +**Reply:**
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 1   | 5   |port |line | err | 0  |
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +- **err**: See above for definitions.
-> +
-> +SET_IRQ_TYPE (Cmd=6)
-
-Is there a cmd for gpio polarity?
-
-[...]
-> +
-> +NOTIFY_REPLY (Cmd=10)
-> +~~~~~~~~~~~~~~~~~~~~
-> +The reply message for the notification is optional. The remote firmware can
-> +implement it to simulate the interrupt acknowledgment behavior.
-> +
-> +**Request:**
-> +
-> +.. code-block:: none
-> +
-> +   +-----+-----+-----+-----+-----+----+
-> +   |0x00 |0x01 |0x02 |0x03 |0x04 |0x05|
-> +   | 0   | 10  |port |line |level| 0  |
-> +   +-----+-----+-----+-----+-----+----+
-> +
-> +- **line**: The GPIO line(pin) index of the port.
-> +- **port**: The GPIO port(bank) index.
-> +- **level**: GPIO line status.
-> +
-> +Notification Message
-> +--------------------
-> +
-> +Notifications are sent with **Type=2 (GPIO_RPMSG_NOTIFY)**:
-
-Here you should clarify who sends the notification messages.
-
-... Notifications are messages sent by the remote core and they have Type=0x02...
-
-
-[..]
+base-commit: fbf33803618ad4f531f78fe15cf328fe6c7f9978
+branch: zynqmp/dt
 
