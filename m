@@ -1,200 +1,177 @@
-Return-Path: <devicetree+bounces-271692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271693-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJhiHkTPqWk+FgEAu9opvQ
-	(envelope-from <devicetree+bounces-271692-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:45:24 +0100
+	id GFOIGwLRqWmYFgEAu9opvQ
+	(envelope-from <devicetree+bounces-271693-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:52:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74162171AB
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:45:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4EE821723F
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 19:52:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D49663012CF2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:45:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 39BA03060ACC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 18:51:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83BA227FD52;
-	Thu,  5 Mar 2026 18:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5F9E2DCC13;
+	Thu,  5 Mar 2026 18:51:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AeYrGP7M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bjrCoMaE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 607B9246781;
-	Thu,  5 Mar 2026 18:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93EAE2D0603
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 18:51:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772736319; cv=none; b=lKYmHCcDfEKs5MCQyQYvVd7wmHCMS4klUU9lmetBvzxf/AgTMsVnSxpFFuLzEw06x0RoXI5hRvrpdSqj5Z0GbSDqjat8ryBlKAlseWn5qKf4tD64yMckAHjLc33GxDJWVIh5Cgx7z5sPbV2DmobAjiz+6mPiFsplkO8uF8e8L3k=
+	t=1772736707; cv=none; b=lmaeENnnfRB1WEV1fmM8YmWlNJD73wUA3AU8zfWhnWYXnM8IxZD0i1H82+CM7CGncTxgX1EhzndO9MGFyFcGNdoNrzYG7811U/3GZSrlqxosVFedj3KyGD/2YGYzUzExqUxDbVzv37OCqQeYjGjBWATHkYk6odF0kryWFNJomMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772736319; c=relaxed/simple;
-	bh=wsYjqB9J7mzSdi2vE2GDXREsczkZV08MQoRRhEFx/Zg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YYXNf9dqkiEOiYr4FzPo+29feyQxGpHvZEDjEnX4mjSSRD8XLe90LZsFc3/ibvPbwDe2JFwSmGgo9dxcKbcF06mQ3Bxb9mbbdahL0lgv92Pe9VbW5poIwmLfy//xC1lcWiDPqt7IQJZeok3+7EYi1AAs/p+YSlpO4y1f30Pimz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AeYrGP7M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AE9AC116C6;
-	Thu,  5 Mar 2026 18:45:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772736319;
-	bh=wsYjqB9J7mzSdi2vE2GDXREsczkZV08MQoRRhEFx/Zg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AeYrGP7M0an4uOihoCpIV2Hx/7WzsK7ff/SgCGJw16K6G2oFLhZ0zvztBCNlutzcN
-	 UohbRvo5wMVeeee+GkQ4Jd1DFP67pZBdQO23uYgNedDUmSzyVmAlnNcZYtNcTbMJK0
-	 xSPHqCuHvOqtTcaZk+rk234gctsdffCB67Fmg1yPifvGLb6ZOdFVc0jYXjmQYckycn
-	 N6jhhpz5UrN6fbqy35duwZ8hFhYuU8PNLB2YPfzMfGG03H351EK+jqNl+X0WUMNAk8
-	 iKnTiaCO49k3/ZjcwTKcDvBcz+uT4MmYK1Gx2a51uVB9gbTO177rF+QU7NHLUqOqL0
-	 rtGBdHC2ABY8g==
-Date: Thu, 5 Mar 2026 18:45:14 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Icenowy Zheng <uwu@icenowy.me>
-Cc: Drew Fustini <fustini@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rahul Tanwar <rtanwar@maxlinear.com>,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: hwmon: moortec,mr75203: adapt
- multipleOf for T-Head TH1520
-Message-ID: <20260305-rocklike-deplored-bb2677f5b97c@spud>
-References: <20260305144044.44208-1-zhengxingda@iscas.ac.cn>
- <20260305144044.44208-2-zhengxingda@iscas.ac.cn>
- <aanNQSHxLh2OsbvK@x1>
- <94d742d9ace2ce58ed31525a58973b3a13257577.camel@icenowy.me>
+	s=arc-20240116; t=1772736707; c=relaxed/simple;
+	bh=Mf73wjbCDOc/R+sRsjS0v6XS+MRUI43Q+JY9FyoFjF8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bW+ewQwt58s7jgIv4cTvMNO98jOPxgrGLMzd9rziDmIDlpWAt873b4Y4rcfUh5ceuTRyDqbf84erSpUouJsKB1R4IqdHlqWFOAYwmITgt9l6PDo4McRc/hydeCAC+hfgcbtL5wJzU5YR85mA69hutiwksSIm9b9dvAeY62EcCYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bjrCoMaE; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-3567e2b4159so4570098a91.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 10:51:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772736705; x=1773341505; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0eRVptHtpjhyZI71FfT0Vrndbtw4GySKW+NrEZWIDWQ=;
+        b=bjrCoMaEh6nCVVNYQT+7LbJMHRfMCliblZ/xx4G6mFGgGnfcmu05+Xkfevq1tNawSs
+         1m3z9W5CGeCB4ekAx+Ox7OzvRO6NMmkBSBFPevt+cGif790IVs+riiN1uyT/rUJb9h8J
+         KWBDbBdPK1FuIt9AVa0RIzDHrI1yPHNU8fqdFQxGXyGQ4l9EI1hdFatOfkPMzT/eYIlP
+         5aNq2DaC/a662/Xjop5Q8vt77gbkVpO0eyf10yNmkHHBA5CEiCPJw0HG+WVw32VJWOXz
+         SYKFlV3p1378at6tVxxnjljBoQU150aoJ80rtFw+dACW19vTIz8HKMKt6ui6cQDVis0W
+         UGLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772736705; x=1773341505;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0eRVptHtpjhyZI71FfT0Vrndbtw4GySKW+NrEZWIDWQ=;
+        b=bgyAqneb63bNa5bk3Vjk5iZMl2tJA2n1sRfs/BLYgEWfVjneiTvlWy4wz6YIDdopkr
+         0GEzg8ndWX4KwWmf0Ib2LMN7ZENP9Otyciu6VMAw5IWHQjRjVsrSC6tWH6WTtRc7eL0f
+         juITNIOcMJJtr/NSciDPzLdkR9QL1wXwmmZBTGYUHMjouOx0zOqCJFh5T8Bu7At6a7Yn
+         Z0lqHoq7NymNYVIOaMkxc9JkLdBOVBNng+LY0g9rDdX4wE8YAUf9Z7aPQRpy+g5zE1JQ
+         JxdzNVgZpMI9RRq8SlozAu0hy1hp/2WwNhIY0GDkvH1fNMb9x/5DFUHRFL4brEQsuiOo
+         ILfw==
+X-Gm-Message-State: AOJu0Yyd7BJBde9jThCoF/06qKK8Xq9pzddT3U5j93oh2S1d63e4m70x
+	9dH5eXapo+PrxZMCmWnpxYlIODUSTGBT3MnRjIN4KcmAYZo7Heo/c6CW
+X-Gm-Gg: ATEYQzxRJ3BIR0iLYiXDCjB6DH2nvQEDWHipQEKaNd0uhog4R9/7JCf5jSkUAhNyQnd
+	ogO2uqGlb2b1E7yIdNxzi0eyOWbmHICkZB8RlQDhRrbBqM2xK5S1sQYfzRm1UJfrTBrgGxddgQr
+	VZW2ztn/GQUkjhQEHXJrbxXNfTm+PNcM/IUk6zSUW0JmBZbic+CHxOkeGf/sOWNDssj0VZWoepi
+	M4mU+qnf2ngmYEfFg5askB7Yk+CPIqnarH3FxrQIRjprM1wErOI/b4x0+nBtUdjL1Vtee8dG+VX
+	iFgppEZhO03Hi+ZjZI6oKGD863nuQ0rlHdr5e5vcK2mGd/h0+5nXIwI9oVJ60AU8xbHk1LP11tq
+	8piovOw/vm31smjxeM5ELlTFgtQ+oxRoP54hFE8xkMdnKZOonuElMw14PPgQnbHlTidSZwp2QU/
+	m7S9KCMMsD/kKuysgb4BFjO+wtBrT4QonJ0dkbCiNiFhyoXOurgx4dycQ32eJGfFjYXdPpEHvUc
+	roWiwA=
+X-Received: by 2002:a17:90b:2683:b0:356:7b41:d348 with SMTP id 98e67ed59e1d1-359bb3dd804mr401448a91.20.1772736704777;
+        Thu, 05 Mar 2026 10:51:44 -0800 (PST)
+Received: from buffalo-ssd.taila54753.ts.net (M014013071096.v4.enabler.ne.jp. [14.13.71.96])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-359b2e14821sm2769158a91.17.2026.03.05.10.51.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 10:51:44 -0800 (PST)
+From: Akari Tsuyukusa <akkun11.open@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	sean.wang@mediatek.com
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Akari Tsuyukusa <akkun11.open@gmail.com>
+Subject: [PATCH v2 0/2] Add initial support for Lenovo YOGA Tablet 10 (Wi-Fi)
+Date: Fri,  6 Mar 2026 03:51:14 +0900
+Message-ID: <20260305185116.781184-1-akkun11.open@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="41/65V20v5C4L0rA"
-Content-Disposition: inline
-In-Reply-To: <94d742d9ace2ce58ed31525a58973b3a13257577.camel@icenowy.me>
-X-Rspamd-Queue-Id: E74162171AB
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: C4EE821723F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271692-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271693-lists,devicetree=lfdr.de];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[akkun11open@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+This series of patches adds basic support to
+Lenovo YOGA Tablet 10 (Wi-Fi).
 
---41/65V20v5C4L0rA
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+- removed lenovo,b6000-f, lenovo,b6000-h, lenovo,b8000-h, lenovo,blade
+  compatible strings
+- remove "0x" prefix from memory Device Tree node
+- remove "compatible" property from mt6589-lenovo-blade.dtsi
+- dt-bindings commit message explains this product family in detail
 
-On Fri, Mar 06, 2026 at 02:39:40AM +0800, Icenowy Zheng wrote:
-> =E5=9C=A8 2026-03-05=E5=9B=9B=E7=9A=84 10:36 -0800=EF=BC=8CDrew Fustini=
-=E5=86=99=E9=81=93=EF=BC=9A
-> > On Thu, Mar 05, 2026 at 10:40:43PM +0800, Icenowy Zheng wrote:
-> > > The G and J coefficients provided by T-Head TH1520 manual (which
-> > > calls
-> > > them A and C coefficients and calls H coefficient in the binding as
-> > > B)
-> > > has the 1/100 degree Celsius bit (the values are 42.74 and -0.16
-> > > correspondingly), however the binding currently only allows
-> > > cofficients
-> > > as precise as 100 milli-Celsius (1/10 degree Celsius).
-> > >=20
-> > > Change the multipleOf value of these two cofficients to 10 (in the
-> > > unit
-> > > of milli-Celsius) to satisfy the need of TH1520.
-> > >=20
-> > > Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> > > ---
-> > > New patch in v2.
-> > >=20
-> > > =C2=A0Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 4
-> > > ++--
-> > > =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > > b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > > index 56db2292f062d..7d57c2934a8a1 100644
-> > > --- a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > > +++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
-> > > @@ -105,7 +105,7 @@ properties:
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 G coefficient for temperature eq=
-uation.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 5 =3D 60000
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 6 =3D 57400
-> > > -=C2=A0=C2=A0=C2=A0 multipleOf: 100
-> > > +=C2=A0=C2=A0=C2=A0 multipleOf: 10
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 minimum: 1000
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
-> > > =C2=A0
-> > > @@ -131,7 +131,7 @@ properties:
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 J coefficient for temperature eq=
-uation.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 5 =3D -100
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Default for series 6 =3D 0
-> > > -=C2=A0=C2=A0=C2=A0 multipleOf: 100
-> > > +=C2=A0=C2=A0=C2=A0 multipleOf: 10
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 maximum: 0
-> > > =C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types.yaml#/definitions/int32
-> > > =C2=A0
-> > > --=20
-> > > 2.52.0
-> > >=20
-> >=20
-> > I am wondering if there is any backwards compatibility issue but
-> > there
-> > are no other users of this compatible in mainline other than th1520.
-> > There is also the precendent 030d2a0ce5dc ("dt-bindings: hwmon:
-> > moortec,mr75203: fix multipleOf for coefficients") having change the
-> > property. I suppose it is a not a problem unless other people on the
-> > list raise an objection.
->=20
-> Well mathematically any number that is a multiple of 100 is a multiple
-> of 10?
->=20
-> So theoretically there should be no compatibility issue.
+Note:
+$ make CHECK_DTBS=y mediatek/mt6589-lenovo-b8000-f.dtb
+says that
 
-Ye I don't think this is likely worth worrying about. The restrictions
-exist in these kinds of cases to tell users they're doing the wrong
-thing and using a value the hardware doesn't support, the driver almost
-certainly will never care and just "blindly" use the number without
-doing any validation, so as long as the multipleOf matches the
-capability of the hardware you're okay.
+  DTC [C] arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dtb
+/home/akku/tmp/linux/arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dtb: clocks (simple-bus): dummy32k: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+/home/akku/tmp/linux/arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dtb: clocks (simple-bus): dummy13m: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+/home/akku/tmp/linux/arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dtb: clocks (simple-bus): dummy26m: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
+/home/akku/tmp/linux/arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dtb: clocks (simple-bus): $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml
 
---41/65V20v5C4L0rA
-Content-Type: application/pgp-signature; name="signature.asc"
+These warnings originate from existing mt6589.dtsi definitions and are
+not introduced by this patch series.
 
------BEGIN PGP SIGNATURE-----
+Akari Tsuyukusa (2):
+  dt-bindings: arm: mediatek: Add Lenovo YOGA Tablet 10 (Wi-Fi)
+  arm: dts: mediatek: mt6589: add basic support for Lenovo B8000-F
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaanPOgAKCRB4tDGHoIJi
-0smCAP98dLDeRbRIrJ9YocU71BJXE7G4/X1hmSsR8bNPPvdI7wEAsVy+w8bkDBhX
-jbjjUIx7vVJCswO7wS4wXgtVcFg4HAM=
-=Sx1C
------END PGP SIGNATURE-----
+ .../devicetree/bindings/arm/mediatek.yaml     |  1 +
+ arch/arm/boot/dts/mediatek/Makefile           |  1 +
+ .../dts/mediatek/mt6589-lenovo-b8000-f.dts    | 15 ++++++++
+ .../dts/mediatek/mt6589-lenovo-blade.dtsi     | 37 +++++++++++++++++++
+ 4 files changed, 54 insertions(+)
+ create mode 100644 arch/arm/boot/dts/mediatek/mt6589-lenovo-b8000-f.dts
+ create mode 100644 arch/arm/boot/dts/mediatek/mt6589-lenovo-blade.dtsi
 
---41/65V20v5C4L0rA--
+-- 
+2.52.0
+
 
