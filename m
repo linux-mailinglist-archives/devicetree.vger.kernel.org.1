@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-271483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271485-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SGjZJZhXqWkh5wAAu9opvQ
-	(envelope-from <devicetree+bounces-271483-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:14:48 +0100
+	id 2CwCNeRVqWli5gAAu9opvQ
+	(envelope-from <devicetree+bounces-271485-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:07:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D285F20F858
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:14:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E2120F637
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 11:07:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 518F0307993F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 10:03:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3CC17301F494
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 10:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 871C037CD20;
-	Thu,  5 Mar 2026 10:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F95137BE8B;
+	Thu,  5 Mar 2026 10:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kc38H1iA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rrk1MOcb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F3637C0EC
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 10:02:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C98A3793DF
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 10:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772704949; cv=none; b=F3cUh4YxVfsNLXOuX3R4POlOc5IGvsZydNynL7jnQFEm4LaZNFOVSuwAC5yIwvhgq57xjffiIz7WmEvHByvWENt0NUWxoB4LXkc4VZkYUvsvRv4DkV4AhxYCZd0mlFhQKjX5d1uWsA0FUuOm1iQVrLE/e4LUm2iiCWixT6ypet4=
+	t=1772705124; cv=none; b=QjpniLbju05jebPDCtPiXmgY9qHdiU8i/uWMjEhVaMFb8Vr20O2nZ7Yx8vcaplfD1XA0pJHaxV7w6E1H/1ppBzxZEK6QIctGy2ayf2qhRu39YnvbuZ6FmD/SMRLkAV/lIEaiS+pymukVD1jd4A5TKzzUBh5Ur1dtoNLQGtvDalA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772704949; c=relaxed/simple;
-	bh=qancUPGQlWGf8hQxZmA2OZYFGJe2twK4fVy4hczDVK8=;
+	s=arc-20240116; t=1772705124; c=relaxed/simple;
+	bh=lQ0T9bUE9C/9y8Vs6pywRcQ3tiB0ev9f4VxMdnV+hAk=;
 	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Adz+iycrsXW4lHoIQzeVpElVX+z2A+xTbdckVUjNwSLuOt107RX5Om5SCWslmBQcP++xYsxiI7whyK3cfLoZiK1ETU76J/9piYtxHri1GzY69WwEEJuMwf6pdyvb5wIZEfyIS4TH8XpXKbLuE/Lz5tPjVc4iT7XA1Rkb2YzAVpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kc38H1iA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BC35C2BCB1
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 10:02:29 +0000 (UTC)
+	 To:Cc:Content-Type; b=Ar40oasfXA+WChFV41r2dg/I3HCbmK11OiplqRmFlf5CThE0AvpybztMdpB7EXet+tm8fRztqBH1a/IDEvODAqAUTUIWvsBQbs5BSiLHSl+1tbnX8DPJjtdZebQOlXWv932lo0IH1tU3X6MaSm25pWPIpuqSYsHP+7IqFkohvfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rrk1MOcb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60D68C2BC9E
+	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 10:05:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772704949;
-	bh=qancUPGQlWGf8hQxZmA2OZYFGJe2twK4fVy4hczDVK8=;
+	s=k20201202; t=1772705124;
+	bh=lQ0T9bUE9C/9y8Vs6pywRcQ3tiB0ev9f4VxMdnV+hAk=;
 	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=Kc38H1iAv9fLqRNrQYjFQV/jfuvCSyDroN7z6gupuUQ2S33kswfJalFOuU/xd3vZN
-	 uiRd1zMshnhrfwemnIHd8aW8Y3c2miVrw6/MYstXe/f6Z7jN7ttOK589C9RhQjRG2u
-	 X5sZFUcrkutBve7vN5bXPCaTl6W8kU9Se+AW5CrQB599KuLDMMXuyvMgD2q30iXbNc
-	 +OjCKpcCWhNzARCiCwIQuk6H8V1HIeTNyH82u6uT1rvoUMj/QqcLlLhRSrx73bFsL6
-	 YDKFSFVd4TGkglXomapJE+IcAz4luQ3qAPuBwJig1EIpIPGU6Ph0KDAz51iyGqocRO
-	 mtU176lxxg7UQ==
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-59dea72099eso2340073e87.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 02:02:28 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVGE4dV2FUkNLKPU0r9g3c0xepvaXMP8+wS6SVYX6e5cr1jVxSGD616vGVu5t34774QIeX1ip3MKfLQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwU1m5uoVYnw+/Gk1XgbSEa2D+vI9RL4JvEJZrBATZXPlVBcLOa
-	Ila8D8V0DhgQI5v79MjrryXLWdtmSNshAFoHqs4hzgeOLV2iP7gHI5tigVQlyyrNn5rB4EJb9Xs
-	YEFBFAh1httttDS7iWsQCdpT9WmWUGc40awBuFgIBIA==
-X-Received: by 2002:a05:6512:24c4:20b0:5a1:2f0d:f31b with SMTP id
- 2adb3069b0e04-5a12f0df52cmr468009e87.21.1772704946649; Thu, 05 Mar 2026
- 02:02:26 -0800 (PST)
+	b=Rrk1MOcbJC7diGpkgHuAM97vXMc8P/tAN1MFcvPsz7M8WIioAvB9XmrQqu5l+dSOg
+	 aqOzcPXh6wSPUm4OVtyZxFCi+cRg9dF2mhjO7HfmL6gRHmrm4l6E+qtIfIiBx3RM8d
+	 dkaAfVCb4KCX0Q53zYLrv8P7wUElGWhYZn9npg6tk4bytkPMfj/oDiiZoqr9PVQNyZ
+	 XrwRcUKB0ctZvgOj+MPTqa6r76dEWwCKo97NqFJlBdWXE4eLOzRIGpzVIrspHKuzwN
+	 +UsuV5+xp7XgdQWqMORe8SoS+IHXb9l30Aw1JZGDBSl0dJkLjmhcnKw+1mfgfnpvhQ
+	 y7sT9ETdlhkPQ==
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-38a38ccc217so1363121fa.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 02:05:24 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVT0fT3E0GMm6+OqPLV4oBrpk5miFr9CJVYOKWDKtvjASjDIzbakAQyZY7XRtFomOc5KciQO1fg9se/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxG1PlVTa5wcfkvivw+W6RtrUA8tF1/11q8dpNulJ4UoHsDIGFa
+	UC2XUYdCQ1+T0FmgJAKeE6ULzc3znhqLXLVJPUkV7Z8U0Ihx6MwRVekX2MuIlLoRvGIpepCQHom
+	hJldRHaQN1ATHzCb7IlDgRsLzWqsWWbT4QonFdxTJog==
+X-Received: by 2002:a05:651c:41d6:b0:387:4ee2:1cbe with SMTP id
+ 38308e7fff4ca-38a2c564d92mr31840641fa.2.1772705122833; Thu, 05 Mar 2026
+ 02:05:22 -0800 (PST)
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 5 Mar 2026 02:02:25 -0800
+ HTTPREST; Thu, 5 Mar 2026 05:05:20 -0500
 Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 5 Mar 2026 02:02:24 -0800
+ HTTPREST; Thu, 5 Mar 2026 05:05:20 -0500
 From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260304-arm-psci-system_reset2-vendor-reboots-v20-6-cf7d346b8372@oss.qualcomm.com>
+In-Reply-To: <20260304-arm-psci-system_reset2-vendor-reboots-v20-1-cf7d346b8372@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,12 +66,12 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20260304-arm-psci-system_reset2-vendor-reboots-v20-0-cf7d346b8372@oss.qualcomm.com>
- <20260304-arm-psci-system_reset2-vendor-reboots-v20-6-cf7d346b8372@oss.qualcomm.com>
-Date: Thu, 5 Mar 2026 02:02:24 -0800
-X-Gmail-Original-Message-ID: <CAMRc=MewwLTsaHCOR2iVYZRM6kWptQfZuTe=2i_pfpTwjFKEpQ@mail.gmail.com>
-X-Gm-Features: AaiRm50EHWCJJDWv4SLBavCKeEqVwYW6a5qLRhI6LypsfduB5BiXJsaabZSs-7g
-Message-ID: <CAMRc=MewwLTsaHCOR2iVYZRM6kWptQfZuTe=2i_pfpTwjFKEpQ@mail.gmail.com>
-Subject: Re: [PATCH v20 06/10] power: reset: Add psci-reboot-mode driver
+ <20260304-arm-psci-system_reset2-vendor-reboots-v20-1-cf7d346b8372@oss.qualcomm.com>
+Date: Thu, 5 Mar 2026 05:05:20 -0500
+X-Gmail-Original-Message-ID: <CAMRc=Mdnf_F2JtSOaz4AkZT6EErYhMcVT8HZ+bf_zO+FCH+OUA@mail.gmail.com>
+X-Gm-Features: AaiRm52_Ghl_cyrpx4-PLseenakv1wMTEmeY_ZbSCiMyp4qVQG4KYHqTiXWk5K0
+Message-ID: <CAMRc=Mdnf_F2JtSOaz4AkZT6EErYhMcVT8HZ+bf_zO+FCH+OUA@mail.gmail.com>
+Subject: Re: [PATCH v20 01/10] power: reset: reboot-mode: Remove devres based allocations
 To: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
 Cc: Florian Fainelli <florian.fainelli@broadcom.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
 	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
@@ -88,20 +88,20 @@ Cc: Florian Fainelli <florian.fainelli@broadcom.com>, Krzysztof Kozlowski <krzk@
 	Moritz Fischer <moritz.fischer@ettus.com>, Bartosz Golaszewski <brgl@kernel.org>, 
 	Sudeep Holla <sudeep.holla@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: D285F20F858
+X-Rspamd-Queue-Id: 84E2120F637
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271483-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271485-lists,devicetree=lfdr.de];
 	FREEMAIL_CC(0.00)[broadcom.com,kernel.org,oss.qualcomm.com,linaro.org,vger.kernel.org,lists.infradead.org,arndb.de,arm.com,rock-chips.com,gmail.com,ettus.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,mail.gmail.com:mid,qualcomm.com:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[29];
@@ -116,205 +116,26 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Wed, 4 Mar 2026 19:03:06 +0100, Shivendra Pratap
+On Wed, 4 Mar 2026 19:03:01 +0100, Shivendra Pratap
 <shivendra.pratap@oss.qualcomm.com> said:
-> PSCI supports different types of resets like COLD reset, ARCH WARM
-> reset, vendor-specific resets. Currently there is no common driver that
-> handles all supported psci resets at one place. Additionally, there is
-> no common mechanism to issue the supported psci resets from userspace.
+> Devres APIs are intended for use in drivers, where the managed lifetime
+> of resources is tied directly to the driver attach/detach cycle. In
+> shared subsystem code, there is no guarantee that the subsystem
+> functions will only be called after a driver has been attached, nor that
+> they will not be referenced after the managed resources have been
+> released during driver detach.
 >
-> Add a PSCI reboot mode driver and define two types of PSCI resets in the
-> driver as reboot-modes: predefined resets controlled by Linux
-> reboot_mode and customizable resets defined by SoC vendors in their
-> device tree under the psci:reboot-mode node.
+> To ensure correct lifetime handling, avoid using devres-based
+> allocations in the reboot-mode and explicitly handle allocation and
+> cleanup of resources.
 >
-> Register the driver with the reboot-mode framework to interface these
-> resets to userspace. When userspace initiates a supported command, pass
-> the reset arguments to the PSCI driver to enable command-based reset.
->
-> This change allows userspace to issue supported PSCI reset commands
-> using the standard reboot system calls while enabling SoC vendors to
-> define their specific resets for PSCI.
->
+> Fixes: 4fcd504edbf7 ("power: reset: add reboot mode driver")
 > Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
 > ---
->  drivers/power/reset/Kconfig            |  10 +++
->  drivers/power/reset/Makefile           |   1 +
->  drivers/power/reset/psci-reboot-mode.c | 119 +++++++++++++++++++++++++++++++++
->  3 files changed, 130 insertions(+)
->
-> diff --git a/drivers/power/reset/Kconfig b/drivers/power/reset/Kconfig
-> index f6c1bcbb57deff3568d6b1b326454add3b3bbf06..529d6c7d3555601f7b7e6199acd29838030fcef2 100644
-> --- a/drivers/power/reset/Kconfig
-> +++ b/drivers/power/reset/Kconfig
-> @@ -348,6 +348,16 @@ config NVMEM_REBOOT_MODE
->  	  then the bootloader can read it and take different
->  	  action according to the mode.
->
-> +config PSCI_REBOOT_MODE
-> +	bool "PSCI reboot mode driver"
-> +	depends on OF && ARM_PSCI_FW
-> +	select REBOOT_MODE
-> +	help
-> +	  Say y here will enable PSCI reboot mode driver. This gets
-> +          the PSCI reboot mode arguments and passes them to psci
-> +	  driver. psci driver uses these arguments for issuing
-> +	  device reset into different boot states.
-> +
->  config POWER_MLXBF
->  	tristate "Mellanox BlueField power handling driver"
->  	depends on (GPIO_MLXBF2 || GPIO_MLXBF3) && ACPI
-> diff --git a/drivers/power/reset/Makefile b/drivers/power/reset/Makefile
-> index 0e4ae6f6b5c55729cf60846d47e6fe0fec24f3cc..49774b42cdf61fd57a5b70f286c65c9d66bbc0cb 100644
-> --- a/drivers/power/reset/Makefile
-> +++ b/drivers/power/reset/Makefile
-> @@ -40,4 +40,5 @@ obj-$(CONFIG_REBOOT_MODE) += reboot-mode.o
->  obj-$(CONFIG_SYSCON_REBOOT_MODE) += syscon-reboot-mode.o
->  obj-$(CONFIG_POWER_RESET_SC27XX) += sc27xx-poweroff.o
->  obj-$(CONFIG_NVMEM_REBOOT_MODE) += nvmem-reboot-mode.o
-> +obj-$(CONFIG_PSCI_REBOOT_MODE) += psci-reboot-mode.o
->  obj-$(CONFIG_POWER_MLXBF) += pwr-mlxbf.o
-> diff --git a/drivers/power/reset/psci-reboot-mode.c b/drivers/power/reset/psci-reboot-mode.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..86bef195228b0924704c2936b99f6801c14ff1b1
-> --- /dev/null
-> +++ b/drivers/power/reset/psci-reboot-mode.c
-> @@ -0,0 +1,119 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#include <linux/device/faux.h>
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/of.h>
-> +#include <linux/psci.h>
-> +#include <linux/reboot.h>
-> +#include <linux/reboot-mode.h>
-> +#include <linux/types.h>
-> +
-> +/*
-> + * Predefined reboot-modes are defined as per the values
-> + * of enum reboot_mode defined in the kernel: reboot.c.
-> + */
-> +static struct mode_info psci_resets[] = {
-> +	{ .mode = "warm", .magic = REBOOT_WARM},
-> +	{ .mode = "soft", .magic = REBOOT_SOFT},
-> +	{ .mode = "cold", .magic = REBOOT_COLD},
-> +};
-> +
-> +static void psci_reboot_mode_set_predefined_modes(struct reboot_mode_driver *reboot)
-> +{
-> +	INIT_LIST_HEAD(&reboot->predefined_modes);
-> +	for (u32 i = 0; i < ARRAY_SIZE(psci_resets); i++) {
-> +		/* Prepare the magic with arg1 as 0 and arg2 as per pre-defined mode */
-> +		psci_resets[i].magic = REBOOT_MODE_MAGIC(0, psci_resets[i].magic);
-> +		INIT_LIST_HEAD(&psci_resets[i].list);
-> +		list_add_tail(&psci_resets[i].list, &reboot->predefined_modes);
-> +	}
-> +}
-> +
-> +/*
-> + * arg1 is reset_type(Low 32 bit of magic).
-> + * arg2 is cookie(High 32 bit of magic).
-> + * If reset_type is 0, cookie will be used to decide the reset command.
-> + */
-> +static int psci_reboot_mode_write(struct reboot_mode_driver *reboot, u64 magic)
-> +{
-> +	u32 reset_type = REBOOT_MODE_ARG1(magic);
-> +	u32 cookie = REBOOT_MODE_ARG2(magic);
-> +
-> +	if (reset_type == 0) {
-> +		if (cookie == REBOOT_WARM || cookie == REBOOT_SOFT)
-> +			psci_set_reset_cmd(true, 0, 0);
-> +		else
-> +			psci_set_reset_cmd(false, 0, 0);
-> +	} else {
-> +		psci_set_reset_cmd(true, reset_type, cookie);
-> +	}
-> +
-> +	return NOTIFY_DONE;
-> +}
-> +
-> +static int psci_reboot_mode_register_device(struct faux_device *fdev)
-> +{
-> +	struct reboot_mode_driver *reboot;
-> +	int ret;
-> +
-> +	reboot = devm_kzalloc(&fdev->dev, sizeof(*reboot), GFP_KERNEL);
 
-Have you verified that the faux device is actually getting bound? This is not
-probe(), you don't supply any faux operations when calling faux_device_create().
-
-You should pass the address of this function in faux_device_ops instead of
-calling it directly.
-
-Bartosz
-
-> +	if (!reboot)
-> +		return -ENOMEM;
-> +
-> +	psci_reboot_mode_set_predefined_modes(reboot);
-> +	reboot->write = psci_reboot_mode_write;
-> +	reboot->dev = &fdev->dev;
-> +
-> +	ret = devm_reboot_mode_register(&fdev->dev, reboot);
-> +	if (ret) {
-> +		dev_err_probe(&fdev->dev, ret, "devm_reboot_mode_register failed %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int __init psci_reboot_mode_init(void)
-> +{
-> +	struct device_node *psci_np;
-> +	struct faux_device *fdev;
-> +	struct device_node *np;
-> +	int ret;
-> +
-> +	psci_np = of_find_compatible_node(NULL, NULL, "arm,psci-1.0");
-> +	if (!psci_np)
-> +		return -ENODEV;
-> +	/*
-> +	 * Look for reboot-mode in the psci node. Even if the reboot-mode
-> +	 * node is not defined in psci, continue to register with the
-> +	 * reboot-mode driver and let the dev.ofnode be set as NULL.
-> +	 */
-> +	np = of_find_node_by_name(psci_np, "reboot-mode");
-> +
-> +	fdev = faux_device_create("psci-reboot-mode", NULL, NULL);
-> +	if (!fdev) {
-> +		ret = -ENODEV;
-> +		goto error;
-> +	}
-> +
-> +	device_set_node(&fdev->dev, of_fwnode_handle(np));
-> +	ret = psci_reboot_mode_register_device(fdev);
-> +	if (ret)
-> +		goto error;
-> +
-> +	return 0;
-> +
-> +error:
-> +	of_node_put(np);
-> +	if (fdev) {
-> +		device_set_node(&fdev->dev, NULL);
-> +		faux_device_destroy(fdev);
-> +	}
-> +
-> +	return ret;
-> +}
-> +device_initcall(psci_reboot_mode_init);
->
-> --
-> 2.34.1
->
->
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
