@@ -1,162 +1,235 @@
-Return-Path: <devicetree+bounces-271708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271709-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6AMnOJnYqWlXGQEAu9opvQ
-	(envelope-from <devicetree+bounces-271708-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:25:13 +0100
+	id SJ6QBk7ZqWmaGQEAu9opvQ
+	(envelope-from <devicetree+bounces-271709-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:28:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A57E217786
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:25:13 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14E94217891
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 20:28:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E9761302337B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:25:11 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9FA803016B29
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 19:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D84E3148D0;
-	Thu,  5 Mar 2026 19:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EC1396583;
+	Thu,  5 Mar 2026 19:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J+NAxxnl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t808lmHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1395F30FC1E
-	for <devicetree@vger.kernel.org>; Thu,  5 Mar 2026 19:25:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA72037D11F;
+	Thu,  5 Mar 2026 19:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772738711; cv=none; b=Y29wYmIPnVaiL6kzPBe7/YZuFy1TBddeducTnDJzJ/OHSyx/RhQ7mwgrQzIm7wdH+ZdzDy+0VECEX3hEzBEQyJXAjxvO7afIECTiKUpv2WanA9vwdSwFvZ25xNjGwQ06RS7CBz/Kj4+RSWeA3vKQgoxBMvfjAKM2Rhx6LD+1K8A=
+	t=1772738811; cv=none; b=Bndw+rD1U+gR85+j4q7sQmEcgTShXOZ3l8FBpWKPVTUaRMmmocpkjkbvzwyWgQUZllW/ppb2o2NvOIfF1HvgyZScPXacFZKFURpZQRs1HqkI8pzj3ahCphHG1uIM7N1x+cpR2mKpbWxtfBCUy02E+AKPyGdrP92kOoZ3NjnwpVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772738711; c=relaxed/simple;
-	bh=j/R/iwET2wgzpAYTEu3h+q1rcTJ0HRFP4ocmUyG0R6g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rQNHUx6fTn70vws3Vdk/ZnJ2eLPLiqWE8dY5OgZhL5KFp69i+4QmpaknsBf59SXPgO3HHu2IEpEeazcTeKNVDBwTjJkMCw1DpVUSIB7HNLbfc0bvyu/pgfdB074KdJFkoaayUOWQVCd23VMwtWRnrkHlcaS5+4r5vP5tL+z6Ks0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J+NAxxnl; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4836e3288cdso56418135e9.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 11:25:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772738708; x=1773343508; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=udVO1surJnvY1exphvxwwJnv4iP2usXfpIsdzxZNz4A=;
-        b=J+NAxxnlgjq48lxFPzpirtMLIG+vjzJTYMU+xUccQooBxCe9NtKMyx2YAgNCEDnabH
-         OW4RHTEjkwGjTc6RPn9vaiLzqKfjiTtL2QRsHBn7lS/8yO/nimI+XMKcT7fZOuGHrY7V
-         1MnH3VHMze7ky77eJ6Gw4itNbFFWZArNlm3zV9Iv4LnGnWkTuOSPaqOc5y6O4UihoXz1
-         UeqS4aCf+rzg1ZA7x2hnR+O2+GlSZJhmuYOApOiwJu+DsXy5dkI5Wt7O6sy2eda7N4V4
-         szKi9aOnRZmQ4vxgeA4bNUDUFXwAOfbyFt9oVtCcJXOIDIDLF2UfjfPV6QbiB84fN6dB
-         u7BQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772738708; x=1773343508;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=udVO1surJnvY1exphvxwwJnv4iP2usXfpIsdzxZNz4A=;
-        b=etCAIUKnIVOPl7TJIwoeJaafkhS+U6QMa1V5PAgOfjCgkbeoKuQ2HDhXcDNakLBjDi
-         kUxNd4eMHZ8j5gNLnorXDxblA7/b/5WPqh2IkazBDanOvwJpTL/CZGWBeIv7ONMfxVPH
-         lC1mSGtzAlvjWUUG2Apkz8AkoISlcesWjjnskFn7j4RSyYxxg9N0jjwfnSBxrzk18sQ9
-         rYyaSEXErNN/AtSZ+pcprgXJImU1cBVBDw77j7BeDOiVlS7NmKuKARpdUxN5ENKdjzJn
-         5klCBxb8R/D/+d8GgD+xvvGkcW8m76X1YP/ALN9kLwGQfiNEUd6B/0DtpGeG5533Pv8h
-         bi9w==
-X-Forwarded-Encrypted: i=1; AJvYcCVX08UmkZDogT63/5/3CUY0mcy5Z8bXASQFJkI2UfwuW9W7gMLAdxoCuQ2YlkC6pNFACAeYGiTctxI4@vger.kernel.org
-X-Gm-Message-State: AOJu0YxxGAYUGlrN7Aqjgg7klL2ohICkb2mp7T2uOl36rBK99YpSIxF1
-	aR+Lav4x7ZoVTJ18SsSYCgyORPfX8B2XT7uTxo/LbvXDCbPRN6Fa6LD3
-X-Gm-Gg: ATEYQzxurfWmS9v6lzxPW9J8UcastSkiQt4AOs2MbZOlYtuBlnwJdU6mlgnSLmPlRdk
-	Yd2u/wXbAYfrJBXntTf1FXuL1YKiKSRN6V0kMr5G48y3eHnFpDO06bREFmmc8DWSxRC5hkwrhZV
-	s8qhyY9sG8kBGRm13IgDWmvAM2zzxFHWATk/rTtlvhEd1YLC59aJcom21RxVCIUQDhwkCdbHNlE
-	YNaCY1QCn6EfVjrquj74kyT9xND+rVJELiplMosfwgPf/1s72ESVVmvFTai1wTCmbIm+MXfzP5+
-	QVsz56lDEBzRA1HxvjOknjedMLylIv14Mpf+0V6aOxj8jLkMC3CipboHhrUyHaucD4QhlFQDDH+
-	GMzltCMy3bhrtsj0ZZKQA4sZjOHGM1nGXHmiyuXIPVoFuOQkv8pPiLvggdeDfu4rTJjCcl28HDm
-	fGaXGQYEQ1YoYV11Ah6p4=
-X-Received: by 2002:a05:600c:8b6c:b0:483:29f4:26b3 with SMTP id 5b1f17b1804b1-4851ee7b559mr62874405e9.1.1772738708010;
-        Thu, 05 Mar 2026 11:25:08 -0800 (PST)
-Received: from luca-vm.lan ([154.61.61.58])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4852378dc51sm7755285e9.1.2026.03.05.11.25.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 11:25:07 -0800 (PST)
-From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: display: panel: Document the rotation property
-Date: Thu,  5 Mar 2026 19:24:04 +0000
-Message-ID: <20260305192405.111152-1-l.scorcia@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1772738811; c=relaxed/simple;
+	bh=Fl+xG8f3V1m4AHOqnKP1lKLxgOPU2ocJ0lJuwUzAE00=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dyx+8G1wKC7cljFk+0oqZ0fq5MYJAO9qlCRYIhyCbiS/KRraGAdJ4X/KwkD/ZRrE7tC3LyVQhKKrq1MjGWWEE99EyMUzi+c0pDg+RKjB1YswY0aVQUKeK8tGvXAEcQj1gYvg9zSe4CGxQ/8EzGLS6CyYi9FJwqprfD+kbQIvd5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t808lmHO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76FADC19425;
+	Thu,  5 Mar 2026 19:26:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772738811;
+	bh=Fl+xG8f3V1m4AHOqnKP1lKLxgOPU2ocJ0lJuwUzAE00=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=t808lmHOtJGp+XoEZMeQIZVg7/0o/3HSErU+RY/5F+5J0NqG1L34Jvj0iBBc/+DDE
+	 r/7MIgLiyGYStNkVQBdbqZEoD5M4CaLlHQqoKGZyFu0nd51YpqzNkTRhCL/TasAH+G
+	 7fpNxcQgiZVNXgdMt+0N7wyvqwwfGU6epofo3YLOaP64x8TyoZtUoDwLMbsmi5VXTP
+	 8yWCdKrfSiNdn5/Jl2hhYxnqTNDqVrogglSvo0IJcBJn2B39nbudvyT3Ihfm5G+HUQ
+	 Lw/I37tWB1s/cOI8nrxDwqppsyUoGECSHCrw4hkFCiq0UrNmgsgHWMM8Cj4fEbALBB
+	 ixTfHC06jvDIg==
+Date: Thu, 5 Mar 2026 19:26:41 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+Cc: radu.sabau@analog.com, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+ <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 4/4] iio: adc: ad4691: add SPI offload support
+Message-ID: <20260305192641.3c7c653f@jic23-huawei>
+In-Reply-To: <20260305-ad4692-multichannel-sar-adc-driver-v1-4-336229a8dcc7@analog.com>
+References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
+	<20260305-ad4692-multichannel-sar-adc-driver-v1-4-336229a8dcc7@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4A57E217786
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 14E94217891
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[gmail.com,edgeble.ai,linaro.org,linux.intel.com,kernel.org,suse.de,ffwll.ch,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271709-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271708-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[analog.com,metafoo.de,baylibre.com,kernel.org,gmail.com,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,analog.com:email]
 X-Rspamd-Action: no action
 
-The Jadard jd9365da-h3 driver reads and reports to DRM the orientation
-property from panel-common. Document it.
+On Thu, 05 Mar 2026 14:23:30 +0200
+Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org> wrote:
 
-Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
----
- .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml   | 2 ++
- 1 file changed, 2 insertions(+)
+> From: Radu Sabau <radu.sabau@analog.com>
+> 
+> Add SPI offload support to the AD4691 family driver to enable
+> DMA-based RX stream acquisition. When an SPI offload is available,
+> the driver switches to a pre-built SPI message with 32-bit transfers
+> (4-byte frames aligned to DMA width) and registers a periodic
+> offload trigger for autonomous, CPU-independent sampling.
+> 
+> The offload path implements its own buffer setup ops
+> (ad4691_offload_buffer_postenable/predisable) that enable the
+> offload trigger and wire the DMAengine buffer, while the existing
+> software triggered buffer path is retained as a fallback for
+> non-offload configurations.
+> 
+> Offload channel specs use a 32-bit storage/repeat with a 16-bit
+> shift to extract ADC data from the MSBytes of each DMA word,
+> matching the wire format in Manual Mode where SDO outputs ADC data
+> directly without a command echo.
+> 
+> Kconfig gains a dependency on IIO_BUFFER_DMAENGINE.
+> 
+> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
 
-diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-index b8783eba3ddc..179401ce3aeb 100644
---- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-@@ -36,6 +36,8 @@ properties:
- 
-   backlight: true
- 
-+  rotation: true
-+
-   port: true
- 
- required:
--- 
-2.43.0
+Just a few really quick comments as I'm out of time for today.
 
+J
+
+> diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
+> index ab48f336e46c..7ec0a2555a4b 100644
+> --- a/drivers/iio/adc/ad4691.c
+> +++ b/drivers/iio/adc/ad4691.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/clk.h>
+>  #include <linux/delay.h>
+>  #include <linux/device.h>
+> +#include <linux/dmaengine.h>
+>  #include <linux/err.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/hrtimer.h>
+> @@ -21,11 +22,15 @@
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/spi/spi.h>
+> +#include <linux/spi/offload/consumer.h>
+> +#include <linux/spi/offload/provider.h>
+
+This is a provider and a consumer?
+
+>  #include <linux/util_macros.h>
+>  #include <linux/units.h>
+>  #include <linux/unaligned.h>
+
+> @@ -719,7 +871,9 @@ static int ad4691_set_sampling_freq(struct iio_dev *indio_dev, unsigned int freq
+>  		 * count. The exact period is refined at buffer enable time when
+>  		 * the active channel count is known.
+>  		 */
+> -		period_ns = ad4691_cnv_burst_period_ns(st, st->chip->num_channels);
+> +		period_ns = ad4691_cnv_burst_period_ns(st,
+> +							st->chip->num_channels,
+Check for reformatting like occurred for 1st two lines here and try and
+tweak earlier patches to reduce the churn.
+> +							false);
+
+> +
+> +static int ad4691_offload_buffer_predisable(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4691_state *st = iio_priv(indio_dev);
+> +	struct spi_offload_trigger *trigger;
+> +	int ret = 0, tmp;
+> +
+> +	trigger = (st->adc_mode == AD4691_MANUAL_MODE) ?
+> +		  st->offload_trigger_periodic : st->offload_trigger;
+> +
+> +	spi_offload_trigger_disable(st->offload, trigger);
+> +	spi_unoptimize_message(&st->offload_msg);
+> +
+> +	/* Stop conversions and reset sequencer state (not needed for MANUAL_MODE) */
+> +	if (st->adc_mode != AD4691_MANUAL_MODE) {
+> +		tmp = ad4691_sampling_enable(st, false);
+> +		if (!ret)
+> +			ret = tmp;
+> +
+> +		tmp = regmap_write(st->regmap, AD4691_STD_SEQ_CONFIG,
+> +				   AD4691_SEQ_ALL_CHANNELS_OFF);
+> +		if (!ret)
+
+If that failed, all bets are off.  May be better to just return the error.
+
+> +			ret = tmp;
+> +
+> +		tmp = regmap_write(st->regmap, AD4691_STATE_RESET_REG,
+> +				   AD4691_STATE_RESET_ALL);
+> +		if (!ret)
+> +			ret = tmp;
+> +	}
+> +
+> +	return ret;
+> +}
+
+>  static irqreturn_t ad4691_irq(int irq, void *private)
+>  {
+>  	struct iio_dev *indio_dev = private;
+> @@ -1353,10 +1802,17 @@ static void ad4691_setup_channels(struct iio_dev *indio_dev,
+>  				  struct ad4691_state *st)
+>  {
+>  	if (st->adc_mode == AD4691_MANUAL_MODE) {
+> -		if (st->chip->num_channels == 8)
+> -			indio_dev->channels = ad4693_manual_channels;
+> -		else
+> -			indio_dev->channels = ad4691_manual_channels;
+> +		if (st->offload) {
+
+Add more pointers to channel arrays to the chip_info structures and just look them
+up from there.
+
+> +			if (st->chip->num_channels == 8)
+> +				indio_dev->channels = ad4693_manual_offload_channels;
+> +			else
+> +				indio_dev->channels = ad4691_manual_offload_channels;
+> +		} else {
+> +			if (st->chip->num_channels == 8)
+> +				indio_dev->channels = ad4693_manual_channels;
+> +			else
+> +				indio_dev->channels = ad4691_manual_channels;
+> +		}
 
