@@ -1,161 +1,169 @@
-Return-Path: <devicetree+bounces-271574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271575-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QLMsOpCCqWkd9gAAu9opvQ
-	(envelope-from <devicetree+bounces-271574-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:18:08 +0100
+	id 6GUkGvSEqWkd9gAAu9opvQ
+	(envelope-from <devicetree+bounces-271575-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:28:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F6121286D
-	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:18:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D4EA212969
+	for <lists+devicetree@lfdr.de>; Thu, 05 Mar 2026 14:28:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 793013007B21
-	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:18:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 94B933023780
+	for <lists+devicetree@lfdr.de>; Thu,  5 Mar 2026 13:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2357B22D785;
-	Thu,  5 Mar 2026 13:18:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80093A450B;
+	Thu,  5 Mar 2026 13:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="pOhzD+7T"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="BAYSc8DI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD8E225775;
-	Thu,  5 Mar 2026 13:18:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB9233A1E9D;
+	Thu,  5 Mar 2026 13:28:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772716683; cv=none; b=VtT289eEdRMTyHt2nhwFTDYRvQN1TYWv0Wo2du3IUQGPBT8AB3iP3yF2LfbVnmAjm0hNjM7vx48jDOTsXhmrZuV8H0E3+dwbzD8sulq4vsHoqlyus6SjUGEVjzPbuBS+w/jzdtoiXg19v+1jegu51wVmOgS2S0SbXWHz1B3Gc/w=
+	t=1772717293; cv=none; b=tg6DcEQuUXR6gsPQ5W44KQiKHYus3zMqw1YHeMsIWl5Gc9nBZY5tTW6pNkxIlW8eFhM/wmyzeMJsO/5AoNVdKRbog3e+DrpIzrDt7cILEWJFHiLxVYojws3aHdtymnG55XRjhTnh9mnbucJVWcgdn+PVk50FBtHePRihfq/EBR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772716683; c=relaxed/simple;
-	bh=pRlHYaIuWKOt/AY7PrVqRWrifQrg94NcWB6EgwXGMeM=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qSjSwOe/MQ5dxX3sZ/YoO8aIICLBS+nr1BCFo5i301FYrqEcAWf5fZVh8tfD2nby5snjC1sWPrRwAiDTVb3XsIZdNNffGRgTXpn8JhXNaR4F9L7NpPQXVgQoI/pquYylrlMx9a9P82rffTRoJt01E2UlZXitetJViAiwR5LIcIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=pOhzD+7T; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772716682; x=1804252682;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=pRlHYaIuWKOt/AY7PrVqRWrifQrg94NcWB6EgwXGMeM=;
-  b=pOhzD+7T1GX/AuzjSK1YFVxach3pIh4JlMzEkJcSmTIaNpqPGl+5Mr8a
-   KEelMp4x1NhMIzPJbShBit6WesyL1Y6GMkDsbe6AqXb0kMvkDPaCctMI3
-   pNEZeUMi5qJZrdyOkJsqav8CIdgiWHm4UHhpONgA+7/H+uZ3mVWrXBgE0
-   ea61xGDFxIXQeRdAZSXiIBMt8g8qEBsZEO3qfhI1YQm3hjxKosyIbKlrb
-   eLASvGk8rsjhXBbEyYhOBMuoJKadO+86mmfvJsOA01UzYatykkm19rDXr
-   R1hEO6nATDl84Rd9xcSPAjpY6R/9qVMPAcd3XRHLOXeCOsBVtAsdbFHqU
-   w==;
-X-CSE-ConnectionGUID: qvYQB2/bTLWgzctEAuslXg==
-X-CSE-MsgGUID: ASJayziXQkmbRE54OTJYBg==
-X-IronPort-AV: E=Sophos;i="6.23,103,1770620400"; 
-   d="scan'208";a="285649053"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 05 Mar 2026 06:18:01 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Thu, 5 Mar 2026 06:17:40 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Thu, 5 Mar 2026 06:17:37 -0700
-Message-ID: <acb32c15be9625716a899c2b955ed0c8a59a4eed.camel@microchip.com>
-Subject: Re: [PATCH net-next 7/8] net: dsa: lan9645x: add mac table
- integration
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Vladimir Oltean <olteanv@gmail.com>, <UNGLinuxDriver@microchip.com>,
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, "Simon
- Horman" <horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung
- Huh <woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
- Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
-	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Thu, 5 Mar 2026 14:17:36 +0100
-In-Reply-To: <8a08bb19-f565-4363-9617-a752c83a762e@lunn.ch>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-7-bff8ca1396f5@microchip.com>
-	 <20260303152709.nospd2qq3dju2tev@skbuf>
-	 <67a34d22b8f59964fd3bfaee99c8418a21526f3e.camel@microchip.com>
-	 <8a08bb19-f565-4363-9617-a752c83a762e@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1772717293; c=relaxed/simple;
+	bh=9LreBdYQ2S5vRvRmxuyVnmsYsBnt7pZZlnhg9tNnJC0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I5rQ9L/jV9640BLfA9kozkg4Gc7J6xjpuks9qVSXu1TiHUfVfu7JWjKbzXNHxyLwPhY2oSD934Avca2iu9ww12DA0BYZfxdFpYYwHBA3Ccs786P3qEBMC27pSfWWCk6ASEViqoVwjc3zMIkpO2RM9Va6gFjzS0IeMuBbcJIoGAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=BAYSc8DI; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=1dMeUX2Xk9StLIqbGPYXzES8zoDvxqM6/CpgP+M7sCk=; b=BAYSc8DI/atjiwBSNuMx04jOlC
+	WyE5kJjHsIJb/FolbwHzzh5FxYMude3XTNFs1PzECU8uOsZB9jnfsIi3ZQCZ3KiqZpwnCADAWTVHl
+	mpV2ahH+/fWWIZDR918qn4oUm25sYfRWUq++LNJ0kllVTtJZ0Hl3uTujp2dXhW4EocEw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vy8kG-00AJok-91; Thu, 05 Mar 2026 14:28:04 +0100
+Date: Thu, 5 Mar 2026 14:28:04 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Gabor Juhos <j4g8y7@gmail.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: armada-37xx: drop
+ 'marvell,usb-misc-reg' properties
+Message-ID: <cacefc69-dba3-4ff6-a039-85fe35a91e0b@lunn.ch>
+References: <20260304-armada-37xx-drop-usb-misc-reg-v1-1-800c1b746b7a@gmail.com>
+ <db997887-2431-4baa-8e96-04f53ea59060@lunn.ch>
+ <874imug18l.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: F1F6121286D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <874imug18l.fsf@BLaptop.bootlin.com>
+X-Rspamd-Queue-Id: 6D4EA212969
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271574-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,microchip.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,lists.infradead.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-271575-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MISSING_XM_UA(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.226.144:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,microchip.com:dkim,microchip.com:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,bootlin.com:email,devicetree.org:url]
 X-Rspamd-Action: no action
 
-On Wed, 2026-03-04 at 16:34 +0100, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> > > > @@ -6,3 +6,4 @@ mchp-lan9645x-objs :=3D lan9645x_main.o \
-> > > >       lan9645x_port.o \
-> > > >       lan9645x_phylink.o \
-> > > >       lan9645x_vlan.o \
-> > > > +     lan9645x_mac.o \
-> > >=20
-> > > Is there some particular ordering here? Because it's surely not
-> > > alphabetical.
-> > >=20
-> >=20
-> > I just add new files at the end, I thought that made the most sense. Sh=
-ould they be
-> > sorted by name?
->=20
-> This is part of the whole 'sorted' story of lists in Linux. By keeping
-> lists sorted, insertions are spread out across the list. That reduced
-> merge conflicts. Within one driver, conflicts are less likely, but
-> always adding to the end of Makefile, Kconfig, core code, etc will see
-> merge conflicts if we have two developers adding drivers at the same
-> time.
->=20
-> So if you have any sort of list of items, please try to keep it
-> sorted.
->=20
->         Andrew
+On Thu, Mar 05, 2026 at 08:54:34AM +0100, Gregory CLEMENT wrote:
+> Hello Andrew,
+> 
+> > On Wed, Mar 04, 2026 at 08:12:43PM +0100, Gabor Juhos wrote:
+> >> The 'marvell,usb-misc-reg' property is present both in the EHCI and
+> >> in the XHCI USB host device nodes, however it is not documented. Thus
+> >> 'make dtbs_check' produces warnings like these:
+> >> 
+> >>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@58000 (marvell,armada3700-xhci): Unevaluated properties are not allowed ('marvell,usb-misc-reg' was unexpected)
+> >>           from schema $id: http://devicetree.org/schemas/usb/generic-xhci.yaml
+> >>   /arch/arm64/boot/dts/marvell/armada-3720-db.dtb: usb@5e000 (marvell,armada-3700-ehci): Unevaluated properties are not allowed ('marvell,usb-misc-reg' was unexpected)
+> >>           from schema $id: http://devicetree.org/schemas/usb/generic-ehci.yaml
+> >> 
+> >> Apart from the fact that the properties are not documented, those are
+> >> not even used by any USB host drivers. At least 'git grep' says this:
+> >> 
+> >>   $ git grep -n 'marvell.usb-misc-reg' v7.0-rc2
+> >>   v7.0-rc2:Documentation/devicetree/bindings/phy/marvell,armada-3700-utmi-phy.yaml:30:  marvell,usb-misc-reg:
+> >>   v7.0-rc2:Documentation/devicetree/bindings/phy/marvell,armada-3700-utmi-phy.yaml:41:  - marvell,usb-misc-reg
+> >>   v7.0-rc2:Documentation/devicetree/bindings/phy/marvell,armada-3700-utmi-phy.yaml:50:      marvell,usb-misc-reg = <&usb2_syscon>;
+> >>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:372:                              marvell,usb-misc-reg = <&usb32_syscon>;
+> >>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:383:                              marvell,usb-misc-reg = <&usb32_syscon>;
+> >>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:396:                              marvell,usb-misc-reg = <&usb2_syscon>;
+> >>   v7.0-rc2:arch/arm64/boot/dts/marvell/armada-37xx.dtsi:406:                              marvell,usb-misc-reg = <&usb2_syscon>;
+> >>   v7.0-rc2:drivers/phy/marvell/phy-mvebu-a3700-utmi.c:231:                                                         "marvell,usb-misc-reg");
+> >
+> 
+> I don't follow:
+> 
+> > The phy-mvebu-a3700-utmi.c does use it, and does document it:
+> >
+> >   marvell,usb-misc-reg:
+> >     description:
+> >       Phandle on the "USB miscellaneous registers" shared region
+> >       covering registers related to both the host controller and
+> >       the PHY.
+> >     $ref: /schemas/types.yaml#/definitions/phandle
+> >
+> > And the patch which added the property to the USB nodes also added the
+> > PHY nodes.
+> >
+> > commit 05d168a56fae8ff50432d5dfe6e7423b989455a8
+> > Author: Miquel Raynal <miquel.raynal@bootlin.com>
+> > Date:   Tue Jan 29 10:36:34 2019 +0100
+> >
+> >     arm64: dts: marvell: armada-37xx: declare USB2 UTMI PHYs
+> >
+> 
+> You stated that the property is used and was properly added.
 
-Ok that makes a lot of sense. I will make sure my lists are sorted.
+I can understand your confusion. The commit message is not great. I
+had to read quite a bit of code to convince myself the change is
+correct.
 
-Thanks,
-Emil
+The property is used and documented in the Generic PHY driver,
+phy-mvebu-a3700-utmi.c. And the properties being removed are in USB
+nodes. The properties in the PHY node are not removed.
+
+The properties in the USB node have never been used, as far as i can
+see.
+
+	Andrew
+
 
