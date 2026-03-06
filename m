@@ -1,162 +1,125 @@
-Return-Path: <devicetree+bounces-272295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uEQ0FYQMq2k/ZgEAu9opvQ
-	(envelope-from <devicetree+bounces-272295-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:19:00 +0100
+	id ODE8D6cLq2k/ZgEAu9opvQ
+	(envelope-from <devicetree+bounces-272294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:15:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AFF225D83
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:18:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E267225C4C
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:15:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8F7A330906A1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 17:13:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1BA483175533
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 17:09:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EDBC47D93A;
-	Fri,  6 Mar 2026 17:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C79407598;
+	Fri,  6 Mar 2026 17:09:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="IOyBgq+i"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="l9YUV9Hd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F1C41C0AF;
-	Fri,  6 Mar 2026 17:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4B74014B8;
+	Fri,  6 Mar 2026 17:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772817077; cv=none; b=cnMg4zhXIPhcldkDSousegPKihLWFLaxmsdMEjipd9OFDVbo8hINoSpYkBTNH+oro6IMn/RZ8yucFnt09oi6PrBhSnHGHqfWFOGGkI9tFfiCVtxgxr/da6PSBzz+cluUD6lMObqpPbWO0aHl3hOmhLB3kX4qEm5XFp0+MbkiwQc=
+	t=1772816991; cv=none; b=l0ihmQPckRO22nfzTH9WPrkSvqNK1TZoQ7QoOxdKTzgLziSNdikTxqyLwhpRmQUOU2i3nTHEeuy6m9L76a4pq0HbU64JbM0UsBNTuJ4+tk2vdxEEHBYPbavUMAJSOPHqlrcSdJVkMl9Z1ngDRgOwu/f/lhd0K1edkmiGBCxUWBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772817077; c=relaxed/simple;
-	bh=8C3Jfb3dYINRYDrI1wDXrhPs7b4uNE3bVTMtddNK20Y=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=QzPh/7EGZn5hBc51NsdTUbAtkgEYlM6I0jovUBxoTSMnlPfafHqsGLPyqVNiY080xk5593ggnIzOvsgFXmlwrVKFllmB/Y/Nb0IwnggrFHhuHWSRvRvAD12u2UjMRIBsOBKFVc/dLj93o1av5rH9D3TxREWeewk67NKDHXZ25js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=IOyBgq+i; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id CE8C47791E7D;
-	Fri,  6 Mar 2026 11:04:10 -0600 (CST)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id AZ1jICwx1IIR; Fri,  6 Mar 2026 11:04:10 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 080347791C4E;
-	Fri,  6 Mar 2026 11:04:10 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 080347791C4E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1772816650; bh=3zUPbJA2VVfOb0tOV9nmaQxzk2J1jQ+DczUqlRJgqSs=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=IOyBgq+idDFNql5l7TtpqY3oMlvdlO7DutfZxMNk5pgS/wNeXL71k/LBb1CJLof2r
-	 6yupF3jlxYiSFbezDV0rFbh4B0CEGdZAsiwCRbV+K7+d9ljwaI/NQzqpdrTN3xPS/6
-	 cUN7XjQBKnZkNqdssi7+xFnvXlXMLyyCtku3Vtiw=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id eHN9uKFnAxSB; Fri,  6 Mar 2026 11:04:09 -0600 (CST)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id C90217790702;
-	Fri,  6 Mar 2026 11:04:09 -0600 (CST)
-Date: Fri, 6 Mar 2026 11:04:06 -0600 (CST)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, robh <robh@kernel.org>, 
-	Raptor Engineering Development Team <support@raptorengineering.com>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>, 
-	Shawn Anastasio <sanastasio@raptorengineering.com>, 
-	Timothy Pearson <tpearson@raptorengineering.com>
-Message-ID: <1360170183.286029.1772816646737.JavaMail.zimbra@raptorengineeringinc.com>
-In-Reply-To: <20260306-kept-shelving-67e5d74dbf5d@spud>
-References: <20260129192047.562540-1-support@raptorengineering.com> <20260129192047.562540-2-support@raptorengineering.com> <20260209174912.GA1474958-robh@kernel.org> <20260306083101.GC183676@google.com> <20260306-kept-shelving-67e5d74dbf5d@spud>
-Subject: Re: [PATCH v7 1/4] dt-bindings: mfd: Add sony,cronos-smc
+	s=arc-20240116; t=1772816991; c=relaxed/simple;
+	bh=VsXE+svD0ozIQDDFOgt45cd6eXjH7nxp9XTye3IloGc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h035zultPsT4InoJpkLCl861Arvom5sVh0Fu6JycdYyJFc1lpU3WYEMX+D8VwA2PrUgq9/tFF6tmpOwHpaNdkhAfdyMHXM7XjDGzTPPN4k6cIfFkO/aod7rBxfWMmLkja69+8Qy+l3kjlXokq4pFSt3ZhKyoeUAOBzXULvdjhh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=l9YUV9Hd; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:Content-Type:
+	In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=VsXE+svD0ozIQDDFOgt45cd6eXjH7nxp9XTye3IloGc=; b=l9YUV9HdlLX1HfeKUqfDNoU5YI
+	CXhnjJjxxN09CLqR+AHoeDH8353f4NYCDNtqXDEfiaFOjMVS4l462dWrRo+KWmhB31SnQTbSbVxI6
+	IuZbWb/nuh/8t51OhOr5Jb7TkinDYH7E2qeTXj/mwjLQ9uVuXCvtsWTaGC5Jr/vO1sHx3u73RSoUy
+	CFhzNduiEBY388G13kQaPZ7HCk5ToAxKoqm6QjV2AnlpPrr7bjSb2r6XnCP0xgcTmyYKcq9x+oLJL
+	do97pKp8inQqRzyTOyo+PqAlaa08/Hsh/yxXEJlxrLgz3RN09y+HSieY0rW4+uQA60JCsGVoA1yh+
+	SuCUKsKw==;
+Received: from sslproxy07.your-server.de ([78.47.199.104])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.feilke@ew.tq-group.com>)
+	id 1vyYgG-000JfL-16;
+	Fri, 06 Mar 2026 18:09:40 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.feilke@ew.tq-group.com>)
+	id 1vyYgF-000KT5-2p;
+	Fri, 06 Mar 2026 18:09:39 +0100
+Message-ID: <6db90740-5a89-47dd-a789-98b96b202a1a@ew.tq-group.com>
+Date: Fri, 6 Mar 2026 18:09:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla Thunderbird
+Subject: [PATCH v2 0/3] ARM: dts: TQMa7: modify for use in bootloaders
+To: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>
+References: <20260220145917.1797286-1-Alexander.Feilke@ew.tq-group.com>
+From: "Feilke, Alexander" <alexander.feilke@ew.tq-group.com>
+In-Reply-To: <20260220145917.1797286-1-Alexander.Feilke@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC143 (Linux)/8.5.0_GA_3042)
-Thread-Topic: dt-bindings: mfd: Add sony,cronos-smc
-Thread-Index: yhFatKV/+d8A3WJc/w3kl1GlC6ujig==
-X-Rspamd-Queue-Id: 61AFF225D83
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27932/Fri Mar  6 08:24:27 2026)
+X-Rspamd-Queue-Id: 8E267225C4C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[raptorengineering.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[raptorengineering.com:s=B8E824E6-0BE2-11E6-931D-288C65937AAD];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272295-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	DKIM_TRACE(0.00)[raptorengineering.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,raptorengineering.com:dkim,raptorengineering.com:email,sony.com:email];
+	TAGGED_FROM(0.00)[bounces-272294-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[pengutronix.de,gmail.com,ew.tq-group.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[tpearson@raptorengineering.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[alexander.feilke@ew.tq-group.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
 	NEURAL_HAM(-0.00)[-0.995];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
 
-
------ Original Message -----
-> From: "Conor Dooley" <conor@kernel.org>
-> To: "Lee Jones" <lee@kernel.org>
-> Cc: "robh" <robh@kernel.org>, "Raptor Engineering Development Team" <support@raptorengineering.com>, "devicetree"
-> <devicetree@vger.kernel.org>, "linux-kernel" <linux-kernel@vger.kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
-> "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Georgy Yakovlev" <Georgy.Yakovlev@sony.com>, "Shawn
-> Anastasio" <sanastasio@raptorengineering.com>, "Timothy Pearson" <tpearson@raptorengineering.com>
-> Sent: Friday, March 6, 2026 10:49:56 AM
-> Subject: Re: [PATCH v7 1/4] dt-bindings: mfd: Add sony,cronos-smc
-
-> On Fri, Mar 06, 2026 at 08:31:01AM +0000, Lee Jones wrote:
->> On Mon, 09 Feb 2026, Rob Herring wrote:
->> 
->> > On Thu, Jan 29, 2026 at 01:20:44PM -0600, Raptor Engineering Development Team
->> > wrote:
->> > > From: Shawn Anastasio <sanastasio@raptorengineering.com>
->> > > 
->> > > The Sony Cronos Platform Controller is a multi-purpose platform controller
->> > > that provides both a watchdog timer and an LED controller for the Sony
->> > > Interactive Entertainment Cronos x86 server platform. As both functions
->> > > are provided by the same CPLD, a multi-function device is exposed as the
->> > > parent of both functions.
->> > 
->> > Why do we have DT bindings for a x86 server platform?
->> 
->> This looks like an ARM device that connects to an x86 platform.
-> 
-> I dunno. The text talks about "this" being a cpld, so at best it would
-> have to be connected to an arm SoC that's on the x86 platform's board,
-> acting as a BMC or something similar.
-> Unless by "this" you don't mean the device in the binding, but rather
-> the platform that the device in the binding is connected to.
-> 
-> I've kept this in my mailbox for the last month, because I was wondering
-> the same thing as Rob, and there's been no engagement from the submitter
-> at all. I don't think that that should be rewarded by trying to give the
-> benefit of the doubt.
-
-Apologies for the lack of response, I hadn't seen the initial Email.
-
-As suspected, this patch set is required to enable the ARM-based BMC SoC on the custom x86 server platform.  The peripherals in question are attached directly to the BMC, hence the need to have DT bindings for their drivers.  The BMC runs the OpenBMC firmware stack, which does not accept downstream patches to the Linux kernel and thus the Linux kernel itself ends up as a gate for new BMC platform enablement.
-
-Thank you!
+> This series contains modifications for using Linux device trees
+> in bootloaders. Changes from U-Boot bootloader are incorporated
+> directly into the Linux device trees.
+>
+> V2:
+> - Updated commit messages
+> - Added missing QSPI bootph properties to imx7-tqma7.dtsi
+Any update on this?
 
