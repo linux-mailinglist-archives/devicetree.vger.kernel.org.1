@@ -1,293 +1,184 @@
-Return-Path: <devicetree+bounces-271852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271863-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBcDGcKGqmkhTAEAu9opvQ
-	(envelope-from <devicetree+bounces-271852-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:48:18 +0100
+	id 0MAMJvKIqmmjTAEAu9opvQ
+	(envelope-from <devicetree+bounces-271863-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:57:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE4CE21C9C7
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:48:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3F0F21CB51
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:57:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1FEF23019B95
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 07:47:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDF733089991
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 07:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAE26337BBC;
-	Fri,  6 Mar 2026 07:47:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A781379EE4;
+	Fri,  6 Mar 2026 07:55:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="X+ZZyijX"
+	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="wh24hjK6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8207733509E;
-	Fri,  6 Mar 2026 07:47:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E60374748;
+	Fri,  6 Mar 2026 07:55:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772783276; cv=none; b=oE8T2IRZ6bLxel8ZF11wJxkBjgMLdKs8D+ry1kI8Ep5tCo0x86ysA0R2VYYNqBBqdYWH9FfRlFi/Wh476ECZwiwoWHZm9xtseOfot37G3D7iIRCmaCcY84dkEQ0LZyExR7EddemNd3ttFx17a5G8mN2CnHB16Ptm6Irb4nk9ofI=
+	t=1772783731; cv=none; b=nTlvF5Sf6fe4Pb09uIKbiqCiSz/ZXGD+qE8f8qY9jLzwYAaErIXwqnRqsuTtTG29GlNZZGWdGTwjih2vqIuK4OvgAweGCrr6drIvg9A/ubZ5amXtL5aDelSeAaRT92GetXzCaVYNdO+/9rMb2qauBlkrihESjmMTzmV3ZpEwKgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772783276; c=relaxed/simple;
-	bh=GJbk3EYD30NiOVRPHD92mUzUsX2DdDJmKW1uLLv40cM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=gW+qepaT+I+d4IOq4oxRv9kg8vNrCzZQr0A5KkFYbkh8loc+6HliGpwKiFhvcfDRZkAGTK86N03bUBUWQKYKreX1fbIjhMCDPRN6dvGN/qFyMuT1mTcN/XggZ5jxDHIezfGt2MsD5wAjeT9cDtYMEf5U31c+Tv6LzPOpaYchLz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=X+ZZyijX; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Received: from [IPV6:2a02:842b:8136:1:1033:1579:e8cc:83d5] (2A02-842B-8136-0001-1033-1579-E8CC-83d5.rev.sfr.net [IPv6:2a02:842b:8136:1:1033:1579:e8cc:83d5])
-	by courrier.aliel.fr (Postfix) with ESMTPSA id 73C97426E9;
-	Fri, 06 Mar 2026 07:47:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1772783271;
-	bh=GJbk3EYD30NiOVRPHD92mUzUsX2DdDJmKW1uLLv40cM=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=X+ZZyijXUwzAj7llgamkLWbvZoAsd+G/6EU2ebWkYEr5VMpHrE7z548GvmOGpN944
-	 rLWajxtjJ3UuALx81J7/uu/KOB3vP9ydbw7uSAf4Pm4SHrRzitOMIfSjR3nCLvVFSw
-	 Ay/G3kjnEiATTYlEGeaSaYgpzXi51cGytYFLHnSE=
-Message-ID: <e8d1ee42-2e57-423e-a431-90b241709158@aliel.fr>
-Date: Fri, 6 Mar 2026 08:47:49 +0100
+	s=arc-20240116; t=1772783731; c=relaxed/simple;
+	bh=zLU921ZFhF9f56oSiA8DEdFlhZLlCAc64EjM8o4e5RE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Xgk/XZWHB/UCmS4cIC/2LuBE82cVOofjCQOJeeTwCZWKrYB7QCZyjqdkmIxjE2jYuNFcDWVftcoAxWoYA4aKDmMkxTdqmWcMJLaSS05kAzlCQs86XPxQRkAhryTPiNB9ikRkQDfIGVH81SgSflCfAP2Z1hpXC0Wwlq5VXJwbiAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=wh24hjK6; arc=none smtp.client-ip=211.75.126.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
+X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6267qjPgB2977146, This message is accepted by code: ctloc85258
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
+	t=1772783565; bh=UvHj03h/I8V3RUfnYlEIf/a5TXOtj70U30QVaTzHzeU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:
+	 Content-Transfer-Encoding:Content-Type;
+	b=wh24hjK662OtagrS9+2N4beB0XgB1RyFamThbEqSxYgOu2OqJ8NoxH5RgfEcWy5kR
+	 A75lGQfbyHovj4lwSLh7e2ohjw3APkiK1F+Jg5YxjgWxZc9nMj51BAPneKaXnyRj8E
+	 OwFPYxNg1tFvIFw0Y2v/wGH06CQe7+2msM8DHko5o56X++nMKCzeYu+5RD2Tb2ZNdu
+	 HSFfBr6yO/jb2TFVgYhvkeWqsdIMq6UtNrecwq+eBL3WRZfQU2pNovKj6hlwZRwtgm
+	 AnxNipMGe4bhQR+KdSv1EBXDlX9sQYg/maNaYCBMV7Q/uXB2UYRnRPSsNz9H+AWqt5
+	 4EwHNY+I1IgPA==
+Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
+	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 6267qjPgB2977146
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Fri, 6 Mar 2026 15:52:45 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 6 Mar 2026 15:52:45 +0800
+Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
+ RTKEXHMBS06.realtek.com.tw (10.21.1.56) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 6 Mar 2026 15:52:44 +0800
+Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
+ (10.21.1.56) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 6 Mar 2026 15:52:44 +0800
+From: Yu-Chun Lin <eleanor.lin@realtek.com>
+To: <linusw@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <bartosz.golaszewski@oss.qualcomm.com>,
+        <afaerber@suse.com>
+CC: <james.tai@realtek.com>, <cy.huang@realtek.com>,
+        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>,
+        <tychang@realtek.com>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-realtek-soc@lists.infradead.org>
+Subject: [PATCH v2 00/14] pinctrl: realtek: Core improvements and RTD1625 support
+Date: Fri, 6 Mar 2026 15:52:30 +0800
+Message-ID: <20260306075244.1170399-1-eleanor.lin@realtek.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
-To: Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20260305074328.639993-1-jian.hu@amlogic.com>
- <20260305074328.639993-4-jian.hu@amlogic.com>
-Content-Language: en-US
-In-Reply-To: <20260305074328.639993-4-jian.hu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: BE4CE21C9C7
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Rspamd-Queue-Id: F3F0F21CB51
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_ALL(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[aliel.fr];
-	TAGGED_FROM(0.00)[bounces-271852-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[amlogic.com,baylibre.com,linaro.org,googlemail.com,kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271863-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[realtek.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:dkim,realtek.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On 3/5/26 8:43 AM, Jian Hu wrote:
-> Add the required clock controller nodes for Amlogic T7 SoC family:
-> - SCMI clock controller
-> - PLL clock controller
-> - Peripheral clock controller
-> 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
->  1 file changed, 125 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 6510068bcff9..6ea1b583b13d 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -6,6 +6,9 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/power/amlogic,t7-pwrc.h>
->  #include "amlogic-t7-reset.h"
-> +#include <dt-bindings/clock/amlogic,t7-scmi.h>
-> +#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
-> +#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
->  
->  / {
->  	interrupt-parent = <&gic>;
-> @@ -201,6 +204,33 @@ pwrc: power-controller {
->  		};
->  	};
->  
-> +	sram@f7042000 {
-> +		compatible = "mmio-sram";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0x0 0xf7042000 0x100>;
-> +
-> +		scmi_shmem: sram@0 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x0 0x100>;
-> +		};
-> +	};
-> +
-> +	firmware {
-> +		scmi: scmi {
-> +			compatible = "arm,scmi-smc";
-> +			arm,smc-id = <0x820000c1>;
-> +			shmem = <&scmi_shmem>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +			};
-> +		};
-> +	};
-> +
->  	soc {
->  		compatible = "simple-bus";
->  		#address-cells = <2>;
-> @@ -224,6 +254,42 @@ apb4: bus@fe000000 {
->  			#size-cells = <2>;
->  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->  
-> +			clkc_periphs:clock-controller@0 {
-> +				compatible = "amlogic,t7-peripherals-clkc";
-> +				reg = <0x0 0x0 0x0 0x1c8>;
-> +				#clock-cells = <1>;
-> +				clocks = <&xtal>,
-> +					 <&scmi_clk CLKID_SYS_CLK>,
-> +					 <&scmi_clk CLKID_FIXED_PLL>,
-> +					 <&scmi_clk CLKID_FCLK_DIV2>,
-> +					 <&scmi_clk CLKID_FCLK_DIV2P5>,
-> +					 <&scmi_clk CLKID_FCLK_DIV3>,
-> +					 <&scmi_clk CLKID_FCLK_DIV4>,
-> +					 <&scmi_clk CLKID_FCLK_DIV5>,
-> +					 <&scmi_clk CLKID_FCLK_DIV7>,
-> +					 <&hifi CLKID_HIFI_PLL>,
-> +					 <&gp0 CLKID_GP0_PLL>,
-> +					 <&gp1 CLKID_GP1_PLL>,
-> +					 <&mpll CLKID_MPLL1>,
-> +					 <&mpll CLKID_MPLL2>,
-> +					 <&mpll CLKID_MPLL3>;
-> +				clock-names = "xtal",
-> +					      "sys",
-> +					      "fix",
-> +					      "fdiv2",
-> +					      "fdiv2p5",
-> +					      "fdiv3",
-> +					      "fdiv4",
-> +					      "fdiv5",
-> +					      "fdiv7",
-> +					      "hifi",
-> +					      "gp0",
-> +					      "gp1",
-> +					      "mpll1",
-> +					      "mpll2",
-> +					      "mpll3";
-> +			};
-> +
->  			reset: reset-controller@2000 {
->  				compatible = "amlogic,t7-reset";
->  				reg = <0x0 0x2000 0x0 0x98>;
-> @@ -234,6 +300,7 @@ watchdog@2100 {
->  				compatible = "amlogic,t7-wdt";
->  				reg = <0x0 0x2100 0x0 0x10>;
->  				clocks = <&xtal>;
-> +
->  			};
+This series introduces pinctrl support for the Realtek RTD1625 SoC and adds device
+nodes for the platform.
 
-Did you forget to add something here for watchdog ?
-If not I think you can remove that blank line.
+In addition to the new SoC support, this series improves the common Realtek pinctrl
+library by:
 
->  
->  			periphs_pinctrl: pinctrl@4000 {
-> @@ -269,6 +336,64 @@ uart_a: serial@78000 {
->  				status = "disabled";
->  			};
->  
-> +			gp0:clock-controller@8080 {
-> +				compatible = "amlogic,t7-gp0-pll";
-> +				reg = <0x0 0x8080 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			gp1:clock-controller@80c0 {
-> +				compatible = "amlogic,t7-gp1-pll";
-> +				reg = <0x0 0x80c0 0x0 0x14>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			hifi:clock-controller@8100 {
-> +				compatible = "amlogic,t7-hifi-pll";
-> +				reg = <0x0 0x8100 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			pcie:clock-controller@8140 {
-> +				compatible = "amlogic,t7-pcie-pll";
-> +				reg = <0x0 0x8140 0x0 0x1c>;
-> +				clocks = <&scmi_clk CLKID_PCIE_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			mpll:clock-controller@8180 {
-> +				compatible = "amlogic,t7-mpll";
-> +				reg = <0x0 0x8180 0x0 0x28>;
-> +				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			hdmi:clock-controller@81c0 {
-> +				compatible = "amlogic,t7-hdmi-pll";
-> +				reg = <0x0 0x81c0 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			mclk:clock-controller@8300 {
-> +				compatible = "amlogic,t7-mclk-pll";
-> +				reg = <0x0 0x8300 0x0 0x18>;
-> +				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
-> +					 <&xtal>,
-> +					 <&scmi_clk CLKID_FCLK_50M>;
-> +				clock-names = "in0", "in1", "in2";
-> +				#clock-cells = <1>;
-> +			};
-> +
->  			sec_ao: ao-secure@10220 {
->  				compatible = "amlogic,t7-ao-secure",
->  					     "amlogic,meson-gx-ao-secure",
+1. Cleaning up license strings and correcting grammar error in error messages.
+2. Simplifying error handling in probe() and switching to devm functions.
+3. Adding support for slew rate, input voltage parameters, and system
+suspend/resume.
+4. Fixing return values for unsupported configurations to ensure proper interaction
+with gpiolib.
+5. Introducing the generic 'input-voltage-microvolt' property to pincfg and
+pinconf-generic.
+6. Refactoring existing properties (renaming 'realtek,duty-cycle') to improve
+clarity.
 
+Best regards,
+Yu-Chun Lin
+---
+Changes in v2:
+- Add relevant mailing lists to CC.
+- Add a grammar fix in error messages.
+- Move the "support system suspend and resume" patch after the fix patches.
+- Introduce the generic 'input-voltage-microvolt' property.
+- Add patches for renaming property 'realtek,duty-cycle' to 'realtek,pulse-width-adjust'.
+- Improve realtek,rtd1625-pinctrl.yaml description and properties.
+- Add RTD1625 pinctrl device nodes to the DTS.
+
+Yu-Chun Lin (14):
+  pinctrl: realtek: cleanup license string
+  pinctrl: realtek: Fix return value and silence log for unsupported
+    configs
+  pinctrl: realtek: Switch to use devm functions
+  pinctrl: realtek: Simplify error handling with dev_err_probe()
+  pinctrl: realtek: Fix grammar in error messages
+  pinctrl: realtek: support system suspend and resume
+  dt-bindings: pincfg-node: Add input-voltage-microvolt property
+  pinctrl: pinconf-generic: Add properties 'input-voltage-microvolt'
+  dt-bindings: pinctrl: realtek: Rename 'realtek,duty-cycle' to
+    'realtek,pulse-width-adjust'
+  pinctrl: realtek: Rename 'realtek,duty-cycle' to
+    'realtek,pulse-width-adjust'
+  dt-bindings: pinctrl: realtek: add RTD1625 pinctrl binding
+  pinctrl: realtek: add support for slew rate, input voltage and high
+    VIL
+  pinctrl: realtek: add rtd1625 pinctrl driver
+  arm64: dts: realtek: Add pinctrl support for RTD1625
+
+ .../bindings/pinctrl/pincfg-node.yaml         |    4 +
+ .../pinctrl/realtek,rtd1315e-pinctrl.yaml     |    9 +-
+ .../pinctrl/realtek,rtd1319d-pinctrl.yaml     |    9 +-
+ .../pinctrl/realtek,rtd1619b-pinctrl.yaml     |    9 +-
+ .../pinctrl/realtek,rtd1625-pinctrl.yaml      |  260 ++
+ arch/arm64/boot/dts/realtek/kent.dtsi         |   39 +
+ drivers/pinctrl/pinconf-generic.c             |    2 +
+ drivers/pinctrl/realtek/Kconfig               |   14 +
+ drivers/pinctrl/realtek/Makefile              |    1 +
+ drivers/pinctrl/realtek/pinctrl-rtd.c         |  205 +-
+ drivers/pinctrl/realtek/pinctrl-rtd.h         |   50 +
+ drivers/pinctrl/realtek/pinctrl-rtd1625.c     | 3148 +++++++++++++++++
+ include/linux/pinctrl/pinconf-generic.h       |    3 +
+ 13 files changed, 3709 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1625-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1625.c
 
 -- 
-Best regards,
-Ronald
+2.34.1
+
 
