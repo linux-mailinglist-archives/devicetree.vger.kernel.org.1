@@ -1,133 +1,211 @@
-Return-Path: <devicetree+bounces-271871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271872-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LdVCxyLqml0TQEAu9opvQ
-	(envelope-from <devicetree+bounces-271871-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:06:52 +0100
+	id CMSHEMmLqml0TQEAu9opvQ
+	(envelope-from <devicetree+bounces-271872-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:09:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95DCF21CD60
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:06:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EABC21CDF9
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:09:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DE5C930D2D7D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:01:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F1D83300CC06
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:07:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C74813793A9;
-	Fri,  6 Mar 2026 08:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqReoOJE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1456A372ECB;
+	Fri,  6 Mar 2026 08:07:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F373783D1;
-	Fri,  6 Mar 2026 08:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D063783B2;
+	Fri,  6 Mar 2026 08:07:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772784079; cv=none; b=mp7MD5AwQxrtt7aGXXZqe9JlZASjtvYAhyD+oJ+ayOwezEuZ7Msl4D0XlFY0Zr6OVV6rdPoXkYmvUfEv9vfD7V4jOHClqUXmqswFS4S2SoSD5goF5uoBNrgn1/OQH6MPQkHGjxD3KzRxznN9KHL7ErVv2pVMLkYAJJC1PSy2ZrQ=
+	t=1772784452; cv=none; b=sK3NXdmjisNjjlOnIUZM1k4tDDum73etg6zapKW3JpfRyshdC/9oylo+A2vJ2+jY79FXBQEF8dofL7c/vey9UlaCtRPDqchwP31m4H+a6qomw4ErnhKD4B1nMXnewCl1U+zrwXMnqmgWL2g2mblpGHGHCbz0kX924qdGIAvlVu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772784079; c=relaxed/simple;
-	bh=z7GuIddY8w4eOeyIOVuf/F2Vpmv/31m+Oo3tvI0XjDg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tuor/fhwQDXaQ+XF4MESLRTk2dgeXPgzf/qkudPEMIBIBoKzJqT/vKTprpka3im8KijLMiJu6KYveM/f1v6Yr6VECi8FTmrIU6Twexj2vFmPgIM/pMy4xTWUklm/CMF3nQEpSwrlEzixtW/LKG03STPCRF151TOqzkeJoBfA7DI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqReoOJE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B70F1C19425;
-	Fri,  6 Mar 2026 08:01:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772784079;
-	bh=z7GuIddY8w4eOeyIOVuf/F2Vpmv/31m+Oo3tvI0XjDg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YqReoOJE4FOn31hWw+3JjLNnI20RUEQjLX4i7kquWAVrTFAMsjtpX7gV/k1wA4pGp
-	 NwCepZwtgadzvHJlYgeXwVBHhH4MK20usRyAu733RpUjVHDtryMbRwq/guJFDhjNZM
-	 UUodwo9alMJcCwFbIR+UUgnlXShPUpcKXCRxw2vXPQphSRbYogS8jqZoUiEgVsHG+v
-	 vSZT/ZmBE8mKx8UBjG/idblEV3LL4fIc4CqLiuR38p6ndMxKuDfi9rWdT5px01GBYb
-	 q/CvfdhLs2AGqGKXCDCNTLOoRS/AmCiXGScCz8DmKpvnW7K0X2WaD0u8woOtmRpc7F
-	 /eRQutuA0LfMA==
-Date: Fri, 6 Mar 2026 09:01:16 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Akari Tsuyukusa <akkun11.open@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, sean.wang@mediatek.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: mediatek: Add Lenovo YOGA
- Tablet 10 (Wi-Fi)
-Message-ID: <20260306-frisky-colorful-weasel-1af3ea@quoll>
-References: <20260305185116.781184-1-akkun11.open@gmail.com>
- <20260305185116.781184-2-akkun11.open@gmail.com>
+	s=arc-20240116; t=1772784452; c=relaxed/simple;
+	bh=0PSUCIPceUqNzFeYd1+hSJLenT9NIokGGifSUmTxB5I=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=LOa5PJg3bvKR4Gvf5BaFsgNh/gvcy3y0axiIrYxDlolywlZ/JNw7UtbiRdAY4dWrDULm54OFNDsgft5jdJ08Jo1JriByGF/4cxRm6TX+/XgPfSqrgRFAfnxeljFBXjvsrRApmsv4sDRtzUu+lGvql6vTuNRaX2Skizw/sCvn4bE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 6 Mar
+ 2026 16:07:24 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 6 Mar 2026 16:07:24 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: [PATCH v2 0/5] AST2700-A2 interrupt controller hierarchy and route
+ support
+Date: Fri, 6 Mar 2026 16:07:22 +0800
+Message-ID: <20260306-irqchip-v2-0-f8512c09be63@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260305185116.781184-2-akkun11.open@gmail.com>
-X-Rspamd-Queue-Id: 95DCF21CD60
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADqLqmkC/2XMQQ7CIBCF4as0sxYzUAV15T1MFwhTmYUtQkM0D
+ XcXu3X5v7x8K2RKTBku3QqJCmeepxZq14ELdnqQYN8aFCqNCo+C08sFjsKQpbHX5uDpDO0dE43
+ 83qTb0DpwXub02eAif+u/UaRAccdeIqF2eDJXmyORX8iFvZufMNRav9yPHkKjAAAA
+X-Change-ID: 20260205-irqchip-7eaef3674de9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
+ Jeffery" <andrew@codeconstruct.com.au>, Paul Walmsley <pjw@kernel.org>,
+	"Palmer Dabbelt" <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+	"Alexandre Ghiti" <alex@ghiti.fr>, Thomas Gleixner <tglx@kernel.org>, Thomas
+ Gleixner <tglx@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-riscv@lists.infradead.org>, Ryan Chen <ryan_chen@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772784443; l=5168;
+ i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
+ bh=0PSUCIPceUqNzFeYd1+hSJLenT9NIokGGifSUmTxB5I=;
+ b=hJTAyRqnx1y8giHIs4LBYSt2euROumgnoG8e0HkfV1lxs6iTbtkRMlwrhD0i7o1btjlrxMIcC
+ whJbq90d7RCC1pXHt3+FNmDXpc4frGwSoJc9s4cNFY45C+sZ+XtdyXz
+X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
+ pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
+X-Rspamd-Queue-Id: 8EABC21CDF9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-271871-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,collabora.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271872-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.979];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aspeedtech.com:mid,aspeedtech.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 03:51:15AM +0900, Akari Tsuyukusa wrote:
-> Add an entry for Lenovo YOGA Tablet 10 (Wi-Fi) tablet board,
-> named b8000-f.
-> 
-> It belongs to Lenovo's "blade" product family, a codename found in the
-> stock Android "ro.product.board" property (e.g., "blade10_row_wifi" for
-> B8000-F and "blade8_row_3gdata" for B6000-H).
-> 
-> The "blade" family includes several variants with different screen sizes
-> and connectivity:
-> 
-> YOGA Tablet 8 (8-inch display)
-> B6000-F  : Wi-Fi
-> B6000-H  : Wi-Fi + 3G (Data only)
-> B6000-HV : Wi-Fi + 3G (Voice)
-> 
-> YOGA Tablet 10 (10-inch display)
-> B8000-F  : Wi-Fi
-> B8000-H  : Wi-Fi + 3G (Data only)
-> 
-> These devices feature 1GB of RAM and powered by MediaTek MT8125 or MT8389
-> SoC. Since these SoCs are tablet-oriented variants of MT6589,
-> they are grouped under the "mediatek,mt6589" compatible string.
-> 
-> Signed-off-by: Akari Tsuyukusa <akkun11.open@gmail.com>
+The AST2700 SoC has undergone multiple silicon revisions (A0, A1, A2)
+prior to mass production.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+A0 laid the ground-work with a split controller design (INTC0 and
+INTC1) used for early development and bring-up. The interrupt
+architecture was substantially reworked in the A1 to introduce an
+explicit routing model and clearer hierarchy, though the split
+controllers remained. The A1 interrupt architecture is unchanged in A2.
+
+A2 is the production design. A0 and A1 are pre-production silicon and
+are no longer intended for deployment outside of ASPEED.
+
+The existing binding and driver were written against A0 prior to the A1
+rework. The A0 design directly wired INTC1 instances to INTC0, and
+INTC0 to the GIC of the Primary Service Processor (PSP, a Cortex-A35).
+The A0 binding and driver therefore do not account for the alternative
+destinations of the Secondary and Tertiary Service Processors (SSP,
+TSP) and BootMCU, or the necessary route selection logic present in the
+production design.
+
+With the above context, this series replaces the existing binding and
+driver.
+
+It is not necessary for projects to maintain support for A0 due to its
+pre-production nature, and between Linux, U-Boot and Zephyr there are
+no upstream devicetree users of the current binding.
+
+The new binding uses localised interrupt numbers and models the
+hardware connectivity between interrupt controllers using the
+aspeed,interrupt-ranges property. It is introduced in a new file before
+the existing binding is removed in order to keep the diff readable.
+
+The INTC0 driver creates a hierarchical irqdomain under the selected
+upstream interrupt controller and implements route resolution logic.
+INTC1 driver instances defer route selection to INTC0 and expose a
+linear interrupt namespace to their parent.
+
+A brief history of related submissions
+--------------------------------------
+
+Some modifications to the existing binding were sent to the lists in
+the past. Due to process choices the revisions were difficult to track.
+They are listed below.
+
+The approaches took several forms but ended in the minor adjustment in
+v6 being applied. This enabled use of the A1 design but requires
+assumptions about platform route configuration defined in firmware.
+These assumptions are removed by this current series.
+
+* [PATCH] dt-bindings: interrupt-controller: aspeed: Refine AST2700 binding description and example
+  https://lore.kernel.org/all/20250714071753.2653620-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v2] dt-bindings: interrupt-controller: aspeed: Add parent node compatibles and refine documentation
+  https://lore.kernel.org/all/20250715024258.2304665-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v3 0/2] irqchip: aspeed: Add AST2700 INTC debugfs support and yaml update
+  https://lore.kernel.org/all/20250722095156.1672873-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v4 0/2] irqchip/ast2700-intc: Add AST2700 INTC debugfs support and yaml update
+  https://lore.kernel.org/all/20250812100830.145578-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v5 0/3] AST2700 interrupt controller hierarchy support
+  https://lore.kernel.org/all/20251022065507.1152071-1-ryan_chen@aspeedtech.com/
+
+* [PATCH v6 0/1] Update correct AST2700 interrupt controller binding
+  https://lore.kernel.org/all/20251030060155.2342604-1-ryan_chen@aspeedtech.com/
+
+Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+---
+Changes in v2:
+- Change suject to "AST2700-A2 interrupt controller hierarchy and route
+  support".
+- Describe timeline for (pre-)production design evolution and
+  binding development to support the break in compatibility.
+- fix "make dt_binding_check" compatible string consistance with
+  example.
+- Split KUnit coverage out of the main driver patch.
+- Link to v1: https://lore.kernel.org/r/20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com
+
+---
+Ryan Chen (5):
+      dt-bindings: interrupt-controller: aspeed: Add AST2700-A2 support
+      irqchip/ast2700-intc: Add AST2700-A2 support
+      irqchip/ast2700-intc: Add KUnit tests for route resolution
+      irqchip/aspeed-intc: Remove AST2700-A0 support
+      dt-bindings: interrupt-controller: aspeed: Remove AST2700-A0 support
+
+ .../interrupt-controller/aspeed,ast2700-intc.yaml  |  90 ----
+ .../aspeed,ast2700-interrupt.yaml                  | 189 +++++++
+ drivers/irqchip/.kunitconfig                       |   5 +
+ drivers/irqchip/Kconfig                            |  23 +
+ drivers/irqchip/Makefile                           |   3 +-
+ drivers/irqchip/irq-aspeed-intc.c                  | 139 -----
+ drivers/irqchip/irq-ast2700-intc0-test.c           | 473 +++++++++++++++++
+ drivers/irqchip/irq-ast2700-intc0.c                | 584 +++++++++++++++++++++
+ drivers/irqchip/irq-ast2700-intc1.c                | 282 ++++++++++
+ drivers/irqchip/irq-ast2700.c                      | 106 ++++
+ drivers/irqchip/irq-ast2700.h                      |  47 ++
+ 11 files changed, 1711 insertions(+), 230 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260205-irqchip-7eaef3674de9
 
 Best regards,
-Krzysztof
+-- 
+Ryan Chen <ryan_chen@aspeedtech.com>
 
 
