@@ -1,281 +1,148 @@
-Return-Path: <devicetree+bounces-272029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272030-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBz7K3+9qmlXWQEAu9opvQ
-	(envelope-from <devicetree+bounces-272029-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:41:51 +0100
+	id QJxvLJS/qmlXWQEAu9opvQ
+	(envelope-from <devicetree+bounces-272030-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:50:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1737521FC37
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:41:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E83621FE42
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id ADA9230F52CC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 11:40:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DCCBE3068F36
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 11:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACEE38B7C5;
-	Fri,  6 Mar 2026 11:40:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 274FE364045;
+	Fri,  6 Mar 2026 11:49:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K/7TjQCO"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="dRRi9AoR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF64366804;
-	Fri,  6 Mar 2026 11:40:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB76A3382F0
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 11:49:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772797221; cv=none; b=URN+Gl9Zr/yO8GKhg4zgPHyy8Mu4LdqbTl4veaOw+QJZ2NQwzsYLGz4o5/bK+PoPN5pcoF5z8ivGBTUAzbkjb+3fajC/+cSjPcEsNMbW1zNpCbJlK+uUscgLrDMHmJPFYjSfPNkrB0Tw4jYfRGRrN0BHDprObgXQTjZTCnLGsfw=
+	t=1772797778; cv=none; b=Oby8/Z/eW1n+Nu57e5YPrgfbbbJdb2qBScS7kqkKsrEoEOy3Q5zpdEduEt9aMAc63JuhZtQvYLJhq191sYI1C92MG7YyVdfqFYQjy0bvMxYrp42xmB9d+f6QafpfbmiPtBJv9kd8CwE9YAjoEaxi2Yk/6A3pRoeAS1HQNN8lPCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772797221; c=relaxed/simple;
-	bh=N1JF/sGoAcVE0/yOhipHhqIRwMZ/HZouTJK9nBKXFS4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uEPEsyDB29j5G1oXATIXi8AZVlzkehz4oNjQ1mVPPvMdazsLXieijHIFdayCPXv5Q2wtc9tSJXlNsRksynt+lM341msfWt28fm/q5IMhroZjTW0aPoAUMRdxXZZAtmacBTG4g7ZW0KLm+M1Qxmz22oQHQML1e8F7eXcvBRxExks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K/7TjQCO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 626BbSkA1189522;
-	Fri, 6 Mar 2026 11:40:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4jrLW0SU2/xlHZkGDJYRWaUYcZ2N8900DMdWvovsgqI=; b=K/7TjQCOLNb0rVv9
-	IkXea8+vNUF+548CPZ1caWXbq/5tWODu4JwfVcjW9z/f1z/Ua3vx2kzeNWrmmvQk
-	oX+KC+Snj3OAq9oV4ysl2b4rno4Ul6EEWi2Bpva8PC4OohyIssjGJN+iWSuo/c44
-	k9CIIUwrSOpo/G+aoAwQJ1yAPLpFbQjUT8BhSOCLpHvZvru02axfInai3nnOsSR6
-	XsitpY8zGJv8Urh/Kbi/dw6CJt4h4U2dEW9iQNIha+5SbNhUBCYlttU1eNnUZbjh
-	npwg4kCVkv8jZ5Pmju/ceodJsv4N9ySftRxHVIj30Mk1CVg0FZU/jL8A3iVtIoWE
-	ejy5IQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cqx14g1kc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Mar 2026 11:40:17 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 626BeGOD027640
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 6 Mar 2026 11:40:16 GMT
-Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Fri, 6 Mar 2026 03:40:13 -0800
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <varadarajan.narayanan@oss.qualcomm.com>, <quic_mdalam@quicinc.com>
-Subject: [PATCH v6 4/4] arm64: dts: qcom: pq5332-rdp-common: Enable QPIC SPI NAND support
-Date: Fri, 6 Mar 2026 17:09:40 +0530
-Message-ID: <20260306113940.1654304-5-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260306113940.1654304-1-quic_mdalam@quicinc.com>
-References: <20260306113940.1654304-1-quic_mdalam@quicinc.com>
+	s=arc-20240116; t=1772797778; c=relaxed/simple;
+	bh=Wjq113QW0k+KgsnYyZwGU0Xj1t4ADCVrZtdHXKgwzx8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cZzqXVxpHjlDMTmvWQY4gSARQr1aQWsPEXXj1IRtw/TPnDcPGT5EgGNBt+KtE8eFhU9/e/zhk8OlFGwbMLwuQKK+khb0a2ktcm1lHBqGBJVe0mkJ/lTsGA2zVv+YowtJcKWt/6UI+aHtfPc/Svvj/5pasaeQ/Ge0cM64ZqlqMsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=dRRi9AoR; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=Wjq1
+	13QW0k+KgsnYyZwGU0Xj1t4ADCVrZtdHXKgwzx8=; b=dRRi9AoR7gRVGd251cTE
+	dHVicZ7trstUtUl3yYzsOtVT5SX8UyfZRZYEb2dC9lGH0Zz20jj6lmUqXJXCMlqY
+	6ug2WCNbMhICS036H6M1yyNtA3hPB6m0XHb5lYmRgTZI/KvO8UaMifrsffKfQsnE
+	Ay+nFRrjGHu1s+X4bKSzvJqKPfN6OOzC/PpIDxXjJUNGv5WSJolkIwQHKENu4ztw
+	Z++URVXQ5YzCI2EXsjJ3Dy5r8bx2Mq2mLW8R8AlZbBeb2oIVYl0cQTDZKQzGx1cl
+	K8Bu0wq7Kbrkj/12vIuLmGU8CIaj6yXotg34EmEHUj7/qyfpbE0Y31DMmhcK11U1
+	DQ==
+Received: (qmail 1611070 invoked from network); 6 Mar 2026 12:49:26 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 6 Mar 2026 12:49:26 +0100
+X-UD-Smtp-Session: l3s3148p1@9uYapVlMmNsgAwDPXzF+ANZpdrMKUeLI
+Date: Fri, 6 Mar 2026 12:49:25 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: phucduc.bui@gmail.com
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Jeff LaBundy <jeff@labundy.com>, Bastian Hecht <hechtb@gmail.com>,
+	Javier Carrasco <javier.carrasco@wolfvision.net>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Input: st1232 - add system wakeup support
+Message-ID: <aaq_Rft0gvVqxmMD@shikoro>
+References: <20260306104025.43970-1-phucduc.bui@gmail.com>
+ <20260306111912.58388-1-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA2MDExMCBTYWx0ZWRfX5rbz/rAeW0BW
- ZxnNvUjjdIREPt3LosBWbZk6dBBTRQAYF9+5byFsvCt15f7YVcMJ3Vp9twK+VUBu2l6szGlKeCI
- VRik6sMtITxUfOdvqGlbwcpvwMsVtU6sAjRcyMIOEYbRIMy1VxZW5I4XqCbf/slkUvZU5rHzn8g
- cSRjiqeqkkQjayAJJs64/57/Bu69cBd2lZyoAUxixYugCWGM5qIregdizHO4vwfwpSAU0SoTVr8
- zddElp7+MLtYldOqa8gCgR1hz0q6/cUaCdTagNG06Aokd/yebvEEVpSzKZa03/z/bWgKWjmbnkB
- ocGBgDkgBuv8FeDNdY6j0HS9IVKdwK63cF4JdKHfsJwO1mLxk+pZOjgGn6sro2qTEWoJnZNfbrN
- o74pxG7QSrQvi3IoZOp9GxHLW6pj+MMffmiKp6OHeXhwNxBvEaMO4FpaDY9NMJtQYn14GyOcJqR
- +AwFjy9zvT7Sw2CV1fA==
-X-Proofpoint-GUID: 5mADhFkxCwTtgteiJdPkqBBXWZhegGhd
-X-Proofpoint-ORIG-GUID: 5mADhFkxCwTtgteiJdPkqBBXWZhegGhd
-X-Authority-Analysis: v=2.4 cv=e/MLiKp/ c=1 sm=1 tr=0 ts=69aabd21 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=EUspDBNiAAAA:8
- a=COk6AnOGAAAA:8 a=GMCKaWqv3SNeHD9qFv0A:9 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-06_04,2026-03-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 adultscore=0 clxscore=1015 spamscore=0
- phishscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603060110
-X-Rspamd-Queue-Id: 1737521FC37
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="GiP2FLOrzOJ6xXEk"
+Content-Disposition: inline
+In-Reply-To: <20260306111912.58388-1-phucduc.bui@gmail.com>
+X-Rspamd-Queue-Id: 1E83621FE42
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-1.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[quicinc.com,none];
-	R_DKIM_ALLOW(-0.20)[quicinc.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[quicinc.com:+];
-	TAGGED_FROM(0.00)[bounces-272029-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,quicinc.com:dkim,quicinc.com:email,quicinc.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email];
-	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[quic_mdalam@quicinc.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-272030-lists,devicetree=lfdr.de,renesas];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DMARC_NA(0.00)[sang-engineering.com];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,glider.be,labundy.com,wolfvision.net,vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:url,sang-engineering.com:dkim]
 X-Rspamd-Action: no action
 
-Enable QPIC SPI NAND flash controller support on the IPQ5332 reference
-design platform.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
----
+--GiP2FLOrzOJ6xXEk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Change in [v6]
 
-* Squash the eMMC removal changes
+Krzysztof already adviced you to not attach new series to old threads.
+Please follow this suggestion:
 
-Change in [v5]
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets. See also:
+https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
 
-* No change
 
-Change in [v4]
+--GiP2FLOrzOJ6xXEk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-* No change
+-----BEGIN PGP SIGNATURE-----
 
-Change in [v3]
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmmqv0EACgkQFA3kzBSg
+Kbbo6A//YpGu96Gn41EiQBLt67gdeLRRmQVTEg60skkWpxPhAtqQiqF8vTIb+jXo
+DuTrk5LJttrqkSTImDpOSIqU8BaM/R6jcJuUaMj+2idFJw5U/krC5pzB5PpbE+DZ
+LCIDviIpvL88CZApBziiQGSQeQPSXCOZThTw1uu84OxoGFccsoWyHD/cryg3Nk47
+6Z1oNyYrzpWxASSjZMxZyHElJyCWADvm8CUdczIkES/hwuiylQE4m+SvuypUg/Gb
+WpA+nHrQTM42U0E98Gew3CssKnjQFKwDQO2agd9YNAujwSCT9GfLfD/J9Fv6M9nX
+l69PjOayu5+Y/lt6ij7qVf/2Nuez0tqLtRzKuuKHA+BD5IWx9upzGhpLd5q3IfWI
+5IW6wcwt+t8X/uF9rGSbn39ltUZfqIZjtFs8N0qjAwZQtCtoXWqH20Nmj1eNt3M2
+23+LXThZlA5vP9fs8cjANBdWf7Wx+9OV0aemReWMA1KsPxoThnqaW9hE9xvDEklQ
+Go4xk+OKUi8FwJSJp70ve+L0wmHv6iFrzRFYBaLcqQcZ+j5AUWJEaAay+EwyKfRb
+1L7045oF4U8Q/XhF4yr/9FQF63njbdeVH9jsn9uC/2WnMDhvqENoAh4lgcTpSsbd
+t2dFptv8kGc7tA5OwPmimuNmXXyXcCdr6AswimzABUddjrpAQWo=
+=zukW
+-----END PGP SIGNATURE-----
 
-* Added Reviewed-by tag
-
-Change in [v2]
-
-* No change
-
-Change in [v1]
-
- .../boot/dts/qcom/ipq5332-rdp-common.dtsi     | 44 +++++++++++++++++++
- arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts   | 34 --------------
- 2 files changed, 44 insertions(+), 34 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
-index b37ae7749083..8967861be5fd 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
-@@ -78,4 +78,48 @@ gpio_leds_default: gpio-leds-default-state {
- 		drive-strength = <8>;
- 		bias-pull-down;
- 	};
-+
-+	qpic_snand_default_state: qpic-snand-default-state {
-+		clock-pins {
-+			pins = "gpio13";
-+			function = "qspi_clk";
-+			drive-strength = <8>;
-+			bias-disable;
-+		};
-+
-+		cs-pins {
-+			pins = "gpio12";
-+			function = "qspi_cs";
-+			drive-strength = <8>;
-+			bias-disable;
-+		};
-+
-+		data-pins {
-+			pins = "gpio8", "gpio9", "gpio10", "gpio11";
-+			function = "qspi_data";
-+			drive-strength = <8>;
-+			bias-disable;
-+		};
-+	};
-+};
-+
-+&qpic_bam {
-+	status = "okay";
-+};
-+
-+&qpic_nand {
-+	pinctrl-0 = <&qpic_snand_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		nand-ecc-engine = <&qpic_nand>;
-+		nand-ecc-strength = <4>;
-+		nand-ecc-step-size = <512>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-index ed8a54eb95c0..6e2abde9ed89 100644
---- a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
-@@ -35,17 +35,6 @@ flash@0 {
- 	};
- };
- 
--&sdhc {
--	bus-width = <4>;
--	max-frequency = <192000000>;
--	mmc-ddr-1_8v;
--	mmc-hs200-1_8v;
--	non-removable;
--	pinctrl-0 = <&sdc_default_state>;
--	pinctrl-names = "default";
--	status = "okay";
--};
--
- &tlmm {
- 	i2c_1_pins: i2c-1-state {
- 		pins = "gpio29", "gpio30";
-@@ -54,29 +43,6 @@ i2c_1_pins: i2c-1-state {
- 		bias-pull-up;
- 	};
- 
--	sdc_default_state: sdc-default-state {
--		clk-pins {
--			pins = "gpio13";
--			function = "sdc_clk";
--			drive-strength = <8>;
--			bias-disable;
--		};
--
--		cmd-pins {
--			pins = "gpio12";
--			function = "sdc_cmd";
--			drive-strength = <8>;
--			bias-pull-up;
--		};
--
--		data-pins {
--			pins = "gpio8", "gpio9", "gpio10", "gpio11";
--			function = "sdc_data";
--			drive-strength = <8>;
--			bias-pull-up;
--		};
--	};
--
- 	spi_0_data_clk_pins: spi-0-data-clk-state {
- 		pins = "gpio14", "gpio15", "gpio16";
- 		function = "blsp0_spi";
--- 
-2.34.1
-
+--GiP2FLOrzOJ6xXEk--
 
