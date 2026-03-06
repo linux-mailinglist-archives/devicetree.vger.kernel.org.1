@@ -1,237 +1,146 @@
-Return-Path: <devicetree+bounces-271835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271836-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eKmyJs16qmkqSQEAu9opvQ
-	(envelope-from <devicetree+bounces-271835-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 07:57:17 +0100
+	id sEAsKVJ7qmkqSQEAu9opvQ
+	(envelope-from <devicetree+bounces-271836-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 07:59:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04EA221C367
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 07:57:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B57721C388
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 07:59:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7402302D5E2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 06:57:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BDF8F3037D62
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 06:59:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C904B371D10;
-	Fri,  6 Mar 2026 06:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED21371D1A;
+	Fri,  6 Mar 2026 06:59:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="QlU+Gouk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sUP2PwYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022109.outbound.protection.outlook.com [52.101.126.109])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CAB826FD9A;
-	Fri,  6 Mar 2026 06:57:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.109
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772780234; cv=fail; b=q8CuqO3TboLFVMPbs+rWo0Sk7W3832Uw1BHxgmgWBcuoDrK/y7yk2UbzCexcKqChpjF1MvGLlyrk8wpZ6vri1vlqnj9GaVs02Fjpqvn/9Fitu+iZsBVKHVO3Lu4IH+R6WmCAV4TE3F2bLV4Rlvnhz2FxrHA9aFmnTXQvKgfc1jU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772780234; c=relaxed/simple;
-	bh=F201bpScoSR/L+tMLGHF4bqf6afbKXwbGKAe4u5aKDM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=ZXhrWQ/Pbx1ZNbyEOaqN80bYq/ww1OOI50kpVnpBP2UpldpYnPFrTcxKbVxWuN5KS0yPI+nWhX4llk966C/YkEibpmHi61ZH6J4M4TKE19rAR1QjMYdNg91rl7qiog31M9xAuu6rQbMxR4tJrDQxfkrpQlZjaZW8KBeA5xJcOFo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=QlU+Gouk; arc=fail smtp.client-ip=52.101.126.109
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f8MZJpjoPJHGDUShtynLTl32ILMRJMWR720M8v+QC+IkhYBGcQBNDgsuVgbtSUjKpVeoMf71zybHntrVzYSrONF+Lp3W7XAWLPyFUbUA9NGmzTBKJEpEanYUCUa8q1pBzrz35jnJmuw+8rG18duA7Y3Dm2tX/vI4OqNpY0fP1ICFmPsFBJNNojvRGjPB/wqvxk8s71QfO1aadrWhamDWQ+WQX/ussaVT5od6haTin6TYK/6yRknxv2THZZ0faqH/6whWw94KaNpzf+JjYV3DJPhZ300d8svyZQpqxvt2SMLHD0kC5+HZKRYIsu8xxWZUgHHhb+njGLVmyl39x77YGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CXroqFF9upJkAKuAHDuierwgiOZ6VTjVsUMHwogF8tU=;
- b=bPtQySLkx7MqJGwOKElBDNbt8YAXGZGd5T7EkNJMXxrpC0Zot32WJ4467+h9u9Cq+NEFbeY87tTSQDPFcMUBzBZm0St3gRxvSXfvG2e7Vn/39f5IAWFPBvHUyfije4twkOeMVbSmEJilQHSTJO1nJCk4KJfcASK7a9Pazt769htNXZPGrpJXnZ2ByOtsPKKBn4BAISLYqsiUCRIwSDwJSuREpqokA1HJDouu5Ucb1COxGM9U30bCRgyuO0AIBq4mT1ScL3AXRhIXs+5s3FcDVLJHdzxKTApmpMLKrBKfPXtouOJ4QEs0KZDhdzSf3mjLI5fuI/7cE4/WVunK5HcbfQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CXroqFF9upJkAKuAHDuierwgiOZ6VTjVsUMHwogF8tU=;
- b=QlU+GoukxuYbsjJ7G6WEngogs2FZYdMcPEBfxJTl+CcRPjGw+TmKa8zGglc49b0+c5nktMWRgsdK/1zJAztLhmtyluI08DNyvg7cy8zegT8UW/d+qkZY65SBsrn8KveIMMwti+zIHsFx2kUPP3ysUghgq7dysJfEil5/IiRjQD0fz9Io8eLww3awnHYmmB/k8ewklMJbGQkAefm2E26WlTcQMcNXQ1dMVvWhABv0ndqhb+qiUlNCqXUfrYkzD4tGA2ijMgvGetEbEhcXM3yG48ssq3euxUyloQzoSbQK43gYHd0nEIMgTyUmbMtT2rvIur1/n1uw0Tha6N3Q3ClCtg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
- by TYZPR03MB7347.apcprd03.prod.outlook.com (2603:1096:400:423::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
- 2026 06:57:07 +0000
-Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
- ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
- 06:57:07 +0000
-Message-ID: <c8b21feb-1317-40df-aa55-026ec0c1aaf7@amlogic.com>
-Date: Fri, 6 Mar 2026 14:57:04 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: amlogic: Fix a typo
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Ronald Claveau <linux-kernel-dev@aliel.fr>
-References: <20260305074328.639993-1-jian.hu@amlogic.com>
- <20260305074328.639993-2-jian.hu@amlogic.com>
- <1ja4wmbqn1.fsf@starbuckisacylon.baylibre.com>
-From: Jian Hu <jian.hu@amlogic.com>
-In-Reply-To: <1ja4wmbqn1.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0040.apcprd02.prod.outlook.com
- (2603:1096:4:1f6::7) To KL1PR03MB7149.apcprd03.prod.outlook.com
- (2603:1096:820:ca::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DD926FD9A
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 06:59:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772780366; cv=none; b=YcgDl/oLUR11nnpz6qnEjlBczc8MZIzMCzZ/RqYnEagd9vxv02JqIxZCdvqKolSackPlP4r6YaAt9alKqxUZ7GeNPraTCVZXdf0OrwJToAbotUzvMxskZUrbX5DD0TKyvChJZUjWxGktV1FHGgE7pJoie4phzzbs07zMUyhdFJI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772780366; c=relaxed/simple;
+	bh=o6UzmXKeeCe44GvgiQXGEXz7ViU57Sx4ETdclGODk5U=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=C0pU67bfGulyqcfO8N4DuaAjsQoqmcuJaHP+1raboLG4sH8ThvpHStuJQ9eFH2KvPE5KZdy1t9VvC1nWRw9FFqazpNPDqo4c61R8SDIF6uPwSITOlO+8kSxL2sT2DKzNH7pyKJiapYaVVgQiyygS3Sgp32lK0E8py0CaRek6D8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sUP2PwYE; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-439aeed8a5bso5955957f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 22:59:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772780364; x=1773385164; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=o6UzmXKeeCe44GvgiQXGEXz7ViU57Sx4ETdclGODk5U=;
+        b=sUP2PwYEm4Ugy/4/P9CvSY3k9J1msgHnFtT9fftQbsls/rTV9lBIu2WL+/nEZsvUSk
+         j9DsMxYwVIjPe5XNsRiZe9ntR1XbDdbOUPrqbIMPCUgobxcnvVT3lTmlsKdzsSCk3b6J
+         eDn0EjDqYm0D+vu9tPoq9NLD7CSQLSmpnj34ND7oS+XiUfBbL1ZnE8DFZwR6Swgz7hk3
+         cI0bZC+eU3K8KIGgjtAJugPvnwUCu2Hc3o5F7pCxwChVPHdTaxopj/UQ1mb+roYkPwTs
+         Zfvy+SvETGsniA9rwQ+Az7TwfqOfyz+RralV3YSwjJQOUDmBwhwYTRpZK0FkOPBvD/Vd
+         9m5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772780364; x=1773385164;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o6UzmXKeeCe44GvgiQXGEXz7ViU57Sx4ETdclGODk5U=;
+        b=KoJ7/Rbve9I8Qbm0bVns6EfgAmEZu/FP+nrkRg745lgwkl5zb+BtFnCDWZM2jXPkRC
+         i2IqhcqMxhoJvpMWMoUG/La0w57pr7nXzfbCevpKJwBGQwUwDHNarmo0EqGBIHLPCtTU
+         PikW94K0MHmLVBwTcBnESc4KEUj/kplshsI//n1yfsK6hZZg4su5NsFrZyDTvESspqV+
+         Gvotj1xi9XY+dV6vcczmVA4+jEOKWOBkzhZIu0wTjl/F/jbeIUsa0JXc6wm75i4ydDZ+
+         2iKh46Q+mr5MAgpKPYdzBSEeeOLJnt4txMb41jci8y0tC7dHw/3olUmlE9ue2iTi31LP
+         VsrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU03LVHnCvq458hq9/INVn/jreTYcWPLMfUVsUx6y9NCIi0Lg0ZPtwVKmyUJl6GuZL0S2WflthwX14z@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLpHK8okt+eSyaYu332BWpCk9GekU7yiRq5U+1lMtaserRpNHW
+	1A50e1YF0Oeonw6l6oL573cTGxTZkn4eQlE76JR+ilXC5WOUH4uq48DrYyLOMuZHlNk=
+X-Gm-Gg: ATEYQzy47R/WWy1vLuaXla1kc6YBCRB3LKZOWu4CvdwK1KkjZewN69TJmhpKUkYY3h5
+	OeSCQznNyN6IFd2UgGPso+iPpuaCQu0ijwP05S23cozhIGfYka/Kcx7tUhsJRN2EsXa0y4w6MzL
+	aOfLE9tXHAadW/OCeBg+Gp0MHvvwlRcJ/6gg3S+jBDnvP1aZMgFfvJzCUJEq705yRhW1S37EEXI
+	rn8yMH98Tg5UARVxTS4L32tV/QzUosZDcQqnFv0IPj82PePl9A5P4Jx1IKoUjS1FSUThgvdp9dF
+	EplQo/2qa36UDJ4x1Slpt6ry+Cfl+yUx02PGUJumJ46Zp4s2IpNWKiH5TxnBuBRSBKy7HJ9BJZs
+	tIzS6J6EKF3eYXVq/HexlovmIBs3HBmL45mOOVQECGovkYcsEp0j1XXgYw64QjZ5e8IxqnN5lDT
+	LqAqjj486E9qDz7F71T8F4Exh3qOEG1YPt2YjsmQM=
+X-Received: by 2002:a05:6000:4009:b0:439:c8a3:45f3 with SMTP id ffacd0b85a97d-439da555695mr1568221f8f.6.1772780363666;
+        Thu, 05 Mar 2026 22:59:23 -0800 (PST)
+Received: from draszik.lan ([212.129.78.78])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae2ba06sm1701166f8f.24.2026.03.05.22.59.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 22:59:23 -0800 (PST)
+Message-ID: <c323298f8a16d62aae47fdbd24d28d3d3c302d46.camel@linaro.org>
+Subject: Re: [PATCH v2] arm64: dts: exynos: gs101-pixel-common: add Maxim
+ MAX77759 fuel gauge
+From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
+To: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus	
+ <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim
+ Akhtar	 <alim.akhtar@samsung.com>
+Cc: Juan Yescas <jyescas@google.com>, Amit Sunil Dhamne <amitsd@google.com>,
+ 	kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Date: Fri, 06 Mar 2026 07:00:45 +0000
+In-Reply-To: <20260302-max77759-fg-dts-v2-1-12f1109a6fee@linaro.org>
+References: <20260302-max77759-fg-dts-v2-1-12f1109a6fee@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-2+build4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|TYZPR03MB7347:EE_
-X-MS-Office365-Filtering-Correlation-Id: 495ecef6-333e-4689-ec27-08de7b4d947e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	MQU1HF8BeVLH+MzqUvwXMziIt+ou7BqfvMB6SWZml2osGHnjhQJmUz2mAv+VUuUQPCH61Vd1AWi8BBRFTDoKvxozl4wTB4eAr93X33x9H5E8Aq8aPKJasfCIzCoz0BvopIo7NS9g3W/XQhpjwqiQ4SyQR0wxBoE3h6XKKZr6QV5+4nwbjPCZsBcOivMEF1uO6Oe2RUusqLIsrSbdGfK/QQ1OM4ylujv51Dze9f93UZCjgJ2xcv3PpgMjvk/VjQ4SdVgs8JtLBV+OccGWkAEhZtcMssum4sx0cJ60GkCTtXu5OhIAU0/l0cBV/bhSqw8KIcKX9puHvDppahBH0OE2wkZMnTg3XBPYQpbFCvRlP/NjQG1+1bTioZNJv7+3chHlUq6vwe3Ogp3uZKLv4HNpBnMA0EStBcHgs0Faa0Q6GmBNCJdm1vEN+PZbHtApmkcw0Q2n7yJVn7paEHfOFf9U3jygDDLt9FbAzRV/s+QjIxlf58GGRkbuhYz8TkWU8XMR9l8wwE1dLUm54uBPS4XktRkRrrQg1BHKe4en5OR0he8RewAsrB29HZHOdgaHZndGn7UbR4Azn8gq7FhC3BE/36hGb6/rcDlpW5iArexccLTfBJdD1EFnxYhsUOUUT2ysnd5hC/grmpB+YCVW+2J9yNUYnJ4n6rnPrKhVGkzZ0bN8IesZaO+h5SxQrWDwUXpWfhkuoU5RZOpqJfhf2+7V9ppfD4ElKC77J/pO1cyQNCE=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RFlrcDdBNGtFK1N4alVSeVJZNEVvYTZlMlNtNVp6Sk5qUWdLWWpGbFdtQ0NZ?=
- =?utf-8?B?RG1DamN4ZTNtWkRkTGlzMDBvYWhEUVZtdXRZS1p5QUdrVHgzOEhKVDZyTWtV?=
- =?utf-8?B?UDgrWEpBTUROdzF1NVVOUDBEZ3hPNXhEbmxVZHV5SExVRkZodG5UNmRDbjla?=
- =?utf-8?B?MXpZRGxPTFYyMFFubEtBRlFwcGt5cUlqc0pBNVlOY1NGL090S0ZITG5rd2FB?=
- =?utf-8?B?TEdhRE02MUEwUVNNMkhQdzc0WVNFaWZvbzAxSkQvMGxpOGZhaWlreldzS1Jq?=
- =?utf-8?B?eWsybC9YN2VJZy9FeDdGZEYwTkxSZXNJYWFEM2tLY3AyMkRvZmNKbGRydG4r?=
- =?utf-8?B?TXB5VCtzZWo3eERBRkRueU9OcjZoT2x0MXNaZHVmMU0wVlE4di9ockJoM0Zy?=
- =?utf-8?B?ek9LOWt2TGNpTkJtblM5MFhNZnBXR3BCL2JvRzVLSkVyeGphOHZwdWl6Mkg5?=
- =?utf-8?B?dGFRWXVEaW1oS0pOUnhPWVp4NVN0NDczYVRDYlNVc3V4M1RDaW1XdmdlNTJk?=
- =?utf-8?B?S0Q4T0lrbW5RdFFJcnA0OTk4VG93aHVFa2FtcG05NzE3b2ZHaUdqYjYydGt4?=
- =?utf-8?B?OFBaaHdoNkhrQUdOYjB0SU53VnFsbTZ6OC9zcXJ5ZVYzVkNvbGJDUHpjTTFJ?=
- =?utf-8?B?R1hQem51TnE4K0M0b2tSQjI0MmxNYit4cWl6ampadEZtMWNKRWk4TG5kbEh4?=
- =?utf-8?B?c1dlajQ3bmNSWkhCSzhRQlloQ2VsMDZLeXZGcXNoUmJQMGt0RUZlZmVQRjQ5?=
- =?utf-8?B?T0dSZGE2dVJqdUpMY0h3VUVRV3ZHTWNTTzd0NEpBRU5Hck5BUFYvcVBVd01M?=
- =?utf-8?B?dGZ4aGxRM0x4NG96amN0bytWTnZqZndoQlgvVWs4NlZlc3pxVk5jVEQzbnZR?=
- =?utf-8?B?RFhqbGlJc2M2VFJOVkxza0lnMnZULzVKQzNTL201dG9WZnBQMjJORktWeU1J?=
- =?utf-8?B?Tkdkbi8yeURwRWZkVTZBMFdmaUsxdUJYOTZrd3lWbXphbjB6NGlvcXZTdHQv?=
- =?utf-8?B?Z0J0YjMwM1h2NlErWGV1UzlYL0F4ejFDMjZLVmFZTmZYcGZTbGVRc2pGdFNr?=
- =?utf-8?B?bm43bERjZVFHNzhNdnRQY00vM0xzTmJYMlI2ajVOT0todnd3VWZ0cjQwclJG?=
- =?utf-8?B?eHVNS0pvQjBSTzRwbDgvaDZBK2tUOW1LWDFtN0tZOVB4Tys5NnBrekZWcTg4?=
- =?utf-8?B?SG5Yekd5NThaYno4aUhIVXVzOTlqYXRwVnJyVElkc0wvTm5aT2FWUlcycVJI?=
- =?utf-8?B?Ni9TajIzdzZxK293TUF0VDFyTy9RT09JR0VaQW0vc1l4V21DOFVqOUJGMnEy?=
- =?utf-8?B?b1VObmdTOG9FcWNoek1jQkhuTDhhanluSDFxQ0h2c3BKN3VtSzBnRnViQThI?=
- =?utf-8?B?UEM5U0RPRW84SGd0QVFYNmpHYjZmcVcrT3Y4S1RmVUo5YmtSalFsekRWcDRY?=
- =?utf-8?B?bFBHZG5FZVVUZFdwdEd3b2o5NXVwdXVxR3V2cUlIN3oraWdMVXdZQlNqdnpU?=
- =?utf-8?B?ZEpiaWFjQ2g5V09SWkpkRlAzVHlTSk40WHhxbHZUVWhieVZpK2tHK0xuR3NO?=
- =?utf-8?B?L2VLZWZIMlBpdEd6SFlZak1tdkVReUtoSjB0WEQwUzVxdXd0WXUrNmFoYk0z?=
- =?utf-8?B?WWZILzR5SlRFd3ZQMFpYcGFBQkNvQnZrUmNHNlh6emdGSDhPa0oweEttaVR6?=
- =?utf-8?B?M05NbGlaUVNQNDBiQ2g5K0s4d1gwT1o1dExPMGRpUE12M3dqcmt3aXNSZ1hD?=
- =?utf-8?B?NHhQUlFLZFM4aDh5ekxkaHNtV2JsRjFwZzc5Q3Erc0c4V2psUjI0UkRINXhY?=
- =?utf-8?B?cFd2SjhQN0VPN05sdTcxczU2b0poREdIZmZzdkVmd0YzcE1sQmNTcTNlcSs0?=
- =?utf-8?B?Z09MMWJKT0lDZnpwSjF6T3l1QUtFamhpZDBoR1RHU2RGbzFUb2daV1FHSUFI?=
- =?utf-8?B?cHhnOFJidGUzL2ZXVnNHRXdxTWkvQTBaZHpGeGJnQlAzWWV4M3IwVGFuM1ZX?=
- =?utf-8?B?ZkxZUGZ1Q0pVU1AzbjRxV1lpY0dXTElVYmM4VWE1SG1sNzFKdGhCRHlGRUZX?=
- =?utf-8?B?Z2VWYUY0c2YvR3FSYnZwUkhZdys1R2tFR3pqUWdocUNnVHRBcXVFSVdiekN1?=
- =?utf-8?B?eHlwd0NOc29HLzc3UXB6R3l2RnNMeWtJZ0xwZVhRaS80ekFIS1UrQi9xNHgw?=
- =?utf-8?B?bmsxNlQ4MFFMcVl1S3lrYWJ1YUtKZGFKTEFvSzVqMnBrUnB1QUFzSENoVEJ2?=
- =?utf-8?B?T0JhMFJYb1VvaEMwRTM4bTR4QThrRFFkUTFOdFB2NTUxZWwyb0hJZy8zN29H?=
- =?utf-8?B?QlF0aUVtWlR6OWttR0lEZUlPbnEzYTA4MkVGeFhaZERCTk1YQXpOZz09?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 495ecef6-333e-4689-ec27-08de7b4d947e
-X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 06:57:06.8728
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Qmr7hbJOwreuJ1W09UqwRFvB2jbO5++AmPsKoFuideqnyhURW+MbIGh5GXft7+cYQGSTiASCdwLpX3V/ulDn0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB7347
-X-Rspamd-Queue-Id: 04EA221C367
+X-Rspamd-Queue-Id: 0B57721C388
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271835-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linaro.org,baylibre.com,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org,aliel.fr];
-	TO_DN_ALL(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271836-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[amlogic.com:+];
+	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi, Jerome
+On Mon, 2026-03-02 at 12:35 +0000, Andr=C3=A9 Draszik wrote:
+> For DT validation purposes, this patch depends on the binding updates
+> from https://lore.kernel.org/r/20260226-max77759-fg-v1-0-ff0a08a70a9f@lin=
+aro.org
+> They have been ACKed, but not merged yet.
 
+Just FYI, that series (including binding updates) has been merged and is av=
+ailable
+in linux-next.
 
-Thanks for your review.
-
-On 3/5/2026 4:57 PM, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
->
-> On jeu. 05 mars 2026 at 15:43, Jian Hu <jian.hu@amlogic.com> wrote:
->
->> Fix a typo for T7 gp1 pll.
-> Patch title is too vague
->
-> Credit is due to Ronald for finding and reporting the issue initially.
-> This can be viewed as a clean of his original patch so the change should
-> have his Signed-off-by IMO.
-
-
-OK, I will update the patch title to:
-
-Fix redundant hyphen in "amlogic,t7-gp1--pll" string.
-
-Thanks to Ronald for finding and reporting this issue.
-
-I had obtained his consent before submitting this patch.
-
-I agree with you and will add his Signed-off-by in the next version.
-
->> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
->> ---
->>   .../devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml          | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
->> index 49c61f65deff..b488d92b7984 100644
->> --- a/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-pll-clkc.yaml
->> @@ -72,7 +72,7 @@ allOf:
->>             contains:
->>               enum:
->>                 - amlogic,t7-gp0-pll
->> -              - amlogic,t7-gp1--pll
->> +              - amlogic,t7-gp1-pll
->>                 - amlogic,t7-hifi-pll
->>                 - amlogic,t7-pcie-pll
->>                 - amlogic,t7-mpll
-> --
-> Jerome
+Cheers,
+Andre'
 
