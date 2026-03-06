@@ -1,442 +1,198 @@
-Return-Path: <devicetree+bounces-272039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272040-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8DddG6vCqmmgWwEAu9opvQ
-	(envelope-from <devicetree+bounces-272039-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:03:55 +0100
+	id qFvcGk7EqmnhWwEAu9opvQ
+	(envelope-from <devicetree+bounces-272040-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:10:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD702200F2
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:03:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A9142203C3
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:10:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id EBB583063430
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 12:03:22 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9CC2230B8E60
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 12:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A774638C2BB;
-	Fri,  6 Mar 2026 12:03:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B7738E11F;
+	Fri,  6 Mar 2026 12:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LdXcIVPc";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="EblWVR40"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FqBKTlNH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F543815E4
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 12:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F222F872
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 12:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772798602; cv=none; b=QmkzLJfLlRD/2e3C+0huj+LU48rV7IoR73z/GLv9QqPuTarN96VWM+0lEmlOv4AL+t4vao45U0Un5FPsc8l0CBOLrZTaNM7PfGh1Gk9kzfdoKk/iISk8yLCW/0we6sgto8GObaQ10JeRGysLDXkwuhlukeeEMJWCw2WuC4ahrQw=
+	t=1772798755; cv=none; b=iojRY62RmvRk91/bnYSsOjHg7fvA1lFSBgMCC7mIZXKeUzYUuopzzCDx6xH57aMSeKLdiDb8OcnHGJpwZx1+hEdGSahcagCHskcFWbFwzGaBPYQetEwevTp1cdzbobZn5vbQNBj57DCaV7AprAUXA+XE30y28qAVq+FX3WA6MHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772798602; c=relaxed/simple;
-	bh=eOMtL1pudAxDLN8GeGr6PmJf215rpqL51x1GL5PbJIc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=L3LDfB1bzeuIaL2u5OF4o4qEQUcE3SjE6cN1DOPzVhj0z6hV+CavJr0i2wjEXyrAJZQNK1sYEbmuJtvBCr0hv7mXF9VM4BWe1LHWOjtieDmbiYjCzCC80NOYCzNc9Jt64A8r9IblOinpnyY9xOKzqposCfzbzNR3HWVJY9hw/9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LdXcIVPc; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=EblWVR40; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 626BatXQ4186265
-	for <devicetree@vger.kernel.org>; Fri, 6 Mar 2026 12:03:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qsIhiDYqrYhyPHQhfvVcO7ffM//NdCFDfvQA4djkeYg=; b=LdXcIVPcF6oBAPeL
-	ppHTobtohVIPcESYYqfiTGnSkzigTSitfQsaVJDYoKkeOZeiCXvxUuKpGmeSWjV5
-	BAMq+rVvT1QNpGWsvzTl7BtyOfBRqitIcLN02Gr9vAARLuyjxRbh8znuRY8lF7Zz
-	KRfhI22YgQYKXftPUp4Va1VxviUCs6SeSBByzJ0dUJuTuN9wLVSuITMzzAQ4kfOc
-	fMlYevq89sF3MAKKzhI+ac8HKTVO0ayJrQ9nKuSxCjdrcDMitm530tsaORlm+HAi
-	H0V9LotCfxrR+OsyYLCpj1CXOV4bEDfO+rdypjBa4zvLI8zwytsoy5aV1nModZY/
-	bCBsuw==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cqruk98hp-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 12:03:19 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-89a0249d51aso292579926d6.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 04:03:19 -0800 (PST)
+	s=arc-20240116; t=1772798755; c=relaxed/simple;
+	bh=1OGPesTTQ6PdHg6rziXwtnglSKn5QCyc2GI25XQeshs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N8DSeYMt8D4vMMfSaU5RJcYVmYo2zwt3+h6F3vUR6v9UIcZrWXJ/duDRHGOJr9Tlrw2oIqVqdoyKSd26GXuAx0Gq5sZTy2Inp2SDj+grcjKbBi4FhfvU2etkWU9l0+l8txxZoRyZeUTbA8GdNldF6vskGlZECnnvjnXb8/LnM6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FqBKTlNH; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-48373a4bca3so57791045e9.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 04:05:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772798599; x=1773403399; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qsIhiDYqrYhyPHQhfvVcO7ffM//NdCFDfvQA4djkeYg=;
-        b=EblWVR40ze8MJX4w/+6n++vyHfvTqgYpfQgZm83M/NfVOD99QzVVhKqTIP30awh7U4
-         jwOh1do/y7wluYKL4CsD1Ant7sX/Zk7ZL/gXpAyz3Im9ZDQ7hrsPk5pqp1KtN9WxPTvI
-         lryKEp690Cu6fM1cAJlvuAPFGQqzu4V6O5HvNE+6Vu+kcA0OEfqWXLqyskHbreJBDPco
-         Id8BrxBP0aglkwoC80zM8JI5/AbYiA7Of9UYcX20QAwJRHsFpj4N4r3PYfYUkSmENkXj
-         SMlGJJSoqeNQcTGzJnWGDcKTIVVZHrcjbF5qD9AUR4HX6pzsOrB3Z0J12yNzKIxFawKi
-         NCeA==
+        d=gmail.com; s=20230601; t=1772798751; x=1773403551; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mTkk7uiuigPho3KVdrJ5hWiT++sJi9u25O2m/ZkmXhs=;
+        b=FqBKTlNHodQghvPRUQQuvUXRcNRwclphFXeubRab5/d6hOXFyG3JF+j2b1/hOIqODh
+         fVU0apcCXG2S6SLCC+dH1aPPp+ID0Q27MX92FqgJ+hT4rY59FZngNaGe8RWeTV+sWFIj
+         +M6IN4Fop6/LYSiebKwsqxKyDP2VAWgOfELb5hQPl+Z+rPjLjHV6SRZLw61l2MMKOWjv
+         4yaMA3C9UwnOrtERp5kBaLNj+VJV0vhTGlhNhVlATTir5wAmYeEoWhMnHacF4pQsKiY/
+         NW0DEFSmZC4pauV5PUo1ZPWPhP8OvzFXxVkT+ZsBaxkLAXPAajm7Jpx2fMyJwl7hXlOB
+         HDUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772798599; x=1773403399;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=qsIhiDYqrYhyPHQhfvVcO7ffM//NdCFDfvQA4djkeYg=;
-        b=IneILAhWYKuhjpyL+vMbhj3neD78Gx/XrqJ32QfzNiYrhOkMoC4iciGK3GHQPvLRZr
-         kj2r2n5xUL4HS8xtdW6W9OyIZNKnIJdOTd2OeG28gEu/oq3Wo0D1UYapx5glcM91tWQF
-         lR3uvdO3r8i62qsZ7F79sFnsm0KGFC3QBLvj6All1y17zd6idftXSL5ku26m8/o1nbsl
-         dHiouLfAAbtjrqNpIpq2/xZkN05XrlQ9m0DxsAmr5ZaMvdh7E8nXxxwfAsihe5M4z1qH
-         EjuqTnJkqmHl0JGUvjX4vporPGxa8EgxS7k23J7J3RwwCmdRnKuf2wsPD/E4keUYmWq9
-         ewAw==
-X-Forwarded-Encrypted: i=1; AJvYcCWzh9pLD7mTwJfsrx4jNsIRuOolBUpDiMyJX5Pa33YIWmy5ZO0iJ7uEoXFyhHxjLDx8NYeJSRP9rPqu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzcWtzFBMcyncFcPGm7a1iGjlNwVxzc5qT+ty/eORAYuGu7x28+
-	28pqeGGEWq2DkWqSa2rxW4K4OU3D32QCT1oMIsfEcPyn463psj9bSSa9Ikvvzvwa7TIY6INBSsT
-	lk+fKNHrcimSakF/NpqbBCAP8Vci4sJK4lHu2cIENwLauL4jz99v+QwIe8swAPlM/
-X-Gm-Gg: ATEYQzxqlM4UavzV4eA5+rTXPLJClE43bIPeMbodEJYePtGD4XlKJMrA2VKtdyzJtpE
-	rfKWRRMbrHAQAkMMz972pPvZ+nhvNfuBvfy4O/3xFzgsNHdiKRMVRG7IK482OLHA/cfa3Q0jDvq
-	l6lx+T6tQ6wPpGiZBIAUzcnPdw4IUKsTZhK6TrD9rxP3+WlN17l2HYw2OHCp+Nb53uhpEvXfLSH
-	rI4sIqyaUnXO01ZEcvi9pol4L9l59T0xALHV8mfinj7zfezytj7jnPpz9noCSgA1ndv946ZB0az
-	0hukps4N2c4WZEv8IBfIfHwv3EPkepkkovBRtYXPpiqn1pPrxQrjZm42p4zanQScWEAzv6ABlTv
-	t5dwoH8p32OzapCRCy0FliYyZ67GlDILyIvbKq6QYl5FX
-X-Received: by 2002:a05:620a:4691:b0:8cb:3a1d:79f9 with SMTP id af79cd13be357-8cd6d40d2f4mr232421185a.6.1772798599072;
-        Fri, 06 Mar 2026 04:03:19 -0800 (PST)
-X-Received: by 2002:a05:620a:4691:b0:8cb:3a1d:79f9 with SMTP id af79cd13be357-8cd6d40d2f4mr232416285a.6.1772798598558;
-        Fri, 06 Mar 2026 04:03:18 -0800 (PST)
-Received: from [127.0.1.1] ([178.197.219.94])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad1cb7csm3410129f8f.0.2026.03.06.04.03.16
+        d=1e100.net; s=20230601; t=1772798751; x=1773403551;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mTkk7uiuigPho3KVdrJ5hWiT++sJi9u25O2m/ZkmXhs=;
+        b=aMM2FJZt9lBp90qmU8mz1x5R632uk/5CnWT2UOYFSTBgjxPUNGO0Rpmgh6B39LdLqQ
+         sX/XeXeVGfLkQqp9L9vH8RFn2bEEBgovMNSLLbXmQsi5QYY3fQ3je1YUDaBrs21DZM3q
+         YuL+ow6SOYlt6j2zcYxb1mI+b6omhZjsVecOg/bjRBkeOs5vETFocidsgiu4hgQDzrVv
+         z/ulaJDxl1DhGiZm1Qo4JEYhwr6jWRD9Pu/r0fyz8BGr4ksZuPwEey9RWWsvqQMdeGMJ
+         WJSVbz6BSwTAJEXY0zjSeVVfgzIxqLwpnTX7nPw1p3BnHrEAYVfoarlghNiYWSE8x2aE
+         1HZw==
+X-Forwarded-Encrypted: i=1; AJvYcCW5piyLcCxjkyYd5HCvOjflWUtNIkpWDRP/OyX7pW9tx6xK1e/fD0yF411fUhjHYrDhp9YSryNk4Ill@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzry81KCAVdBdaoakLvJetjUzhcSVpI53GsYegBJdme+YJ3E+jD
+	giM+KKG9uo6p9PptXShI4satfWT4taIc6/2YXgXQW5p6pzwr1nZURURq
+X-Gm-Gg: ATEYQzyt3Lk1nLjwLTL52Z4fpe8zmikSSB2FpuQ3zh9loPDxZFbzGjjWzsLjCp2Jkkl
+	6UG02KDC3Tm9yAZxTYo+PmaSvA+DjOJ8RAIet4uUvcRLVxLiaGUwhFtfr0upxJW5wX2M0K6J7dR
+	BQd7b9lIw/n43F+KIosS+MVH4Z4s9GMY728QsftiLWCBXovXxvDTptARPyWaNnhuatXyrADleix
+	x6AZwGntMKkRrgKf5C8o5K1llzsWUo3kwOmZpg4XqTgK/OOqQ5gcrtJqGtlz1LMAnLxlUf152eg
+	WxQkewl/AjQMrDlkAHKEYSgqVDEFyns0iD5yAnB4GzM143V+Uq9o7GyJnhRgzdKg8aLyGm9Dd4e
+	2P7CfxyZKsAVULU0j3agbfQo/ZNN8ogAqKiwx8SdovfpYn4dUiggWnqbNeINzM48VGW6A7b8gBb
+	mp+t6LcXo60HXoQKEBDWA=
+X-Received: by 2002:a05:600c:a403:b0:485:2969:cd9f with SMTP id 5b1f17b1804b1-4852969d02emr7858575e9.12.1772798751250;
+        Fri, 06 Mar 2026 04:05:51 -0800 (PST)
+Received: from luca-vm.lan ([154.61.61.58])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae2b9d8sm3457225f8f.21.2026.03.06.04.05.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 04:03:17 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Fri, 06 Mar 2026 13:02:58 +0100
-Subject: [PATCH 5/5] dt-bindings: display: panel: Align style of "true"
- properties
+        Fri, 06 Mar 2026 04:05:50 -0800 (PST)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: linux-mediatek@lists.infradead.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sen Chu <sen.chu@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>,
+	Lee Jones <lee@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Val Packett <val@packett.cool>,
+	Gary Bisson <bisson.gary@gmail.com>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Fabien Parent <parent.f@gmail.com>,
+	Chen Zhong <chen.zhong@mediatek.com>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/7] Add support for mt6392 PMIC
+Date: Fri,  6 Mar 2026 12:03:04 +0000
+Message-ID: <20260306120521.163654-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260306-dt-bindings-display-panel-clean-v1-5-3086eda1efaf@oss.qualcomm.com>
-References: <20260306-dt-bindings-display-panel-clean-v1-0-3086eda1efaf@oss.qualcomm.com>
-In-Reply-To: <20260306-dt-bindings-display-panel-clean-v1-0-3086eda1efaf@oss.qualcomm.com>
-To: Artur Weber <aweber.kernel@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <jesszhan0024@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dzmitry Sankouski <dsankouski@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8793;
- i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=eOMtL1pudAxDLN8GeGr6PmJf215rpqL51x1GL5PbJIc=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpqsJ2egJADa1wD/I3+dbMeZPrxGfxjU6pK3X3Z
- HOZtmfjJcGJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaarCdgAKCRDBN2bmhouD
- 16ASEACankKcaY8YWF8NbeZ0RXRJtmVxWwnfhbOAW8jOU2YvRF9BuWTEmIvLeiSs0aT4LfsxbnJ
- rXKcqHapTug3l5fQs0Xavf0/iaPKEQtbRT/wS4dCy16ecZzybwigHyyilQlYbrQjzAZjDqtE8XX
- KYaJZHUQl3XurOX1AEQMT1t+QE9LGEaYMK//y5ESuUO3mrDAgF/YYrJS+Sa29mu8Z36dluxz1Xc
- fiEesnABLeS2I3fjDsG2K66mNoiFF0zTz0y3oQVKHWRpzoQ36G0J+sE6MytRYyBzqg0C73TyOrr
- sYR1JDrUUHkKcnBojPAAlegsfr7nJfr6ZYQL6BASi8WS+cqH0wFro0ciGTHIKDyNjsvXAmK8tHh
- lXOcOvzaawDizbkaq3xyWgAkEGuEiEcARRSAOyS6i3qPo/RjQ7jdRMuCrQf4QFiipT/9Srrswww
- qpIHIaLW3otUe/BhPch2hwnCkcsWE8464mWYSs0VzDNQSuNlXaj4r3gBr7/mOWvS2iGtaCuo+oN
- 7uoed6sg0XzbX5GpNH6unrSdwCcAlzGpfsqfs2fgTVowZBZrT5+XrhZbASSgPvbmtLNXypqTWFq
- +kX3I/DfFkM/mInvRZCd/kuQGBeiBYO/2dp0kIy5aRU/kYE7Jd9dbJVgcYVgp0Q2GhI4+dGKhFl
- OfmsXAoc0VgIa5Q==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA2MDExNSBTYWx0ZWRfX1pFgp40BUKq6
- Qh5Dk33BOwI0c/SPsvWO2MESh3QL29gHJEWzsODS49oFuS7unx06bD3NbSryUDPJ/wmRvPXka3n
- qfVCOs2HdE54MrwoGhm2uPXkPn3jJ24pkhYhPJdg0XUXB/E5NGUMGQRYIYlwKNVAcAj7dKFRd0o
- 0142Ev/B/NHepRxLgYnycCzhGjgTqeQoYqvdzS0PbSqXCCPWWSrYtXb87bNbt40TZwqZ7m7ad1+
- xdNiLKYt3qVqSrwhfMETSCdQrCAIvC6L3vlC2v4Ki2JkEhKqtkTj7+icOC1v3FDXEGfX5B2xoVl
- id2NAiKUvN5lc7jYlYH2cbucJs4rwDhGHraZtYnC9yC4Q1E4atVF+wAkd+U7Fi2gG/bb0nxgY+3
- 07mtMJq+2RuKXmU9iHhc4NbmrTQEGOLB578QO7RcfCXaFemqFz5G7TY3aKNTRtUD13bF2MqusVY
- vRRMF8yfObBUOa0W1Hg==
-X-Proofpoint-ORIG-GUID: XUKByBi9M3MtKCGN-kBwj7K_niIG-f1Y
-X-Authority-Analysis: v=2.4 cv=DvZbOW/+ c=1 sm=1 tr=0 ts=69aac287 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
- a=EUspDBNiAAAA:8 a=y7DYbA0_Xfvc-Urf_C0A:9 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-GUID: XUKByBi9M3MtKCGN-kBwj7K_niIG-f1Y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-06_04,2026-03-04_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 impostorscore=0 malwarescore=0 bulkscore=0 adultscore=0
- suspectscore=0 clxscore=1015 phishscore=0 priorityscore=1501 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603060115
-X-Rspamd-Queue-Id: 1DD702200F2
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 0A9142203C3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272039-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
-	FREEMAIL_TO(0.00)[gmail.com,linaro.org,linux.intel.com,kernel.org,suse.de,ffwll.ch,ti.com,ideasonboard.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272040-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,mediatek.com,collabora.com,packett.cool,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-For code readability, several bindings which list allowed properties
-with ": true" syntax group them in one place, without line breaks
-between each.  Align a few bindings to match this style.  No functional
-impact.
+The MediaTek mt6392 PMIC is usually found on devices powered by
+the mt8516/mt8167 SoC, and is yet another mt6397 variant.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- .../devicetree/bindings/display/panel/feiyang,fy07024di26a30d.yaml | 1 -
- Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml  | 3 ---
- .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml      | 2 --
- .../devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml    | 1 +
- .../devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml    | 1 +
- .../devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml    | 5 ++---
- .../devicetree/bindings/display/panel/novatek,nt35510.yaml         | 3 ++-
- .../devicetree/bindings/display/panel/renesas,r61307.yaml          | 3 +--
- .../devicetree/bindings/display/panel/renesas,r69328.yaml          | 1 -
- .../devicetree/bindings/display/panel/rocktech,jh057n00900.yaml    | 5 ++---
- .../bindings/display/panel/sony,tulip-truly-nt35521.yaml           | 2 --
- .../devicetree/bindings/display/panel/startek,kd070fhfid015.yaml   | 7 ++-----
- 12 files changed, 11 insertions(+), 23 deletions(-)
+This series is mostly based around patches submitted a couple
+years ago by Fabien Parent and not merged and from Val Packett's
+submission from Jan 2025 that included extra cleanups, fixes, and a
+new dtsi file similar to ones that exist for other PMICs. Some
+comments weren't addressed and the series was ultimately not merged.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30d.yaml b/Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30d.yaml
-index 92df69e80a82..f288fa2390c9 100644
---- a/Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30d.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/feiyang,fy07024di26a30d.yaml
-@@ -28,7 +28,6 @@ properties:
- 
-   port: true
-   reset-gpios: true
--
-   backlight: true
- 
- required:
-diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-index 182a2b825e1c..84e840e0224f 100644
---- a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-@@ -33,11 +33,8 @@ properties:
-     maxItems: 1
- 
-   reset-gpios: true
--
-   backlight: true
--
-   rotation: true
--
-   port: true
- 
-   vcc-supply:
-diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-index 5802fb3c9ffe..2fa07ec55b08 100644
---- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-@@ -35,9 +35,7 @@ properties:
-     description: supply regulator for VCCIO, usually 1.8V
- 
-   reset-gpios: true
--
-   backlight: true
--
-   port: true
- 
- required:
-diff --git a/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml b/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml
-index 5fcea62fd58f..2f49a6bbf3d7 100644
---- a/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/leadtek,ltk050h3146w.yaml
-@@ -25,6 +25,7 @@ properties:
-   backlight: true
-   port: true
-   reset-gpios: true
-+
-   iovcc-supply:
-     description: regulator that supplies the iovcc voltage
-   vci-supply:
-diff --git a/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml b/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
-index b0e2c82232d3..3f56047f4469 100644
---- a/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/leadtek,ltk500hd1829.yaml
-@@ -24,6 +24,7 @@ properties:
-   backlight: true
-   port: true
-   reset-gpios: true
-+
-   iovcc-supply:
-     description: regulator that supplies the iovcc voltage
-   vcc-supply:
-diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-index 74ff772973d6..b8b153a6e6cc 100644
---- a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-@@ -22,7 +22,6 @@ properties:
-       - mantix,mlaf057we51-x
-       - ys,ys57pss36bh5gq
- 
--  port: true
-   reg:
-     maxItems: 1
-     description: DSI virtual channel
-@@ -36,13 +35,13 @@ properties:
-   vddi-supply:
-     description: 1.8V I/O voltage supply
- 
--  reset-gpios: true
--
-   mantix,tp-rstn-gpios:
-     maxItems: 1
-     description: second reset line that triggers DSI config load
- 
-   backlight: true
-+  port: true
-+  reset-gpios: true
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
-index b39fd0c5a48a..43d134daf0ac 100644
---- a/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/novatek,nt35510.yaml
-@@ -28,13 +28,14 @@ properties:
-   reg:
-     maxItems: 1
- 
--  reset-gpios: true
-   vdd-supply:
-     description: regulator that supplies the vdd voltage
-   vddi-supply:
-     description: regulator that supplies the vddi voltage
-+
-   backlight: true
-   port: true
-+  reset-gpios: true
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml b/Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml
-index 90cce221c0d1..3d7761717b74 100644
---- a/Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/renesas,r61307.yaml
-@@ -33,8 +33,6 @@ properties:
-   iovcc-supply:
-     description: Regulator for 1.8V IO power supply.
- 
--  backlight: true
--
-   renesas,gamma:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description:
-@@ -51,6 +49,7 @@ properties:
-     type: boolean
-     description: digital contrast adjustment
- 
-+  backlight: true
-   reset-gpios: true
-   port: true
- 
-diff --git a/Documentation/devicetree/bindings/display/panel/renesas,r69328.yaml b/Documentation/devicetree/bindings/display/panel/renesas,r69328.yaml
-index 1cd219b510ee..740185f778a1 100644
---- a/Documentation/devicetree/bindings/display/panel/renesas,r69328.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/renesas,r69328.yaml
-@@ -33,7 +33,6 @@ properties:
-     description: Regulator for 1.8V IO power supply.
- 
-   backlight: true
--
-   reset-gpios: true
-   port: true
- 
-diff --git a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-index 4ae152cc55e0..ebfc825b8346 100644
---- a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-@@ -33,7 +33,6 @@ properties:
-       # Xingbangda XBD599 5.99" 720x1440 TFT LCD panel
-       - xingbangda,xbd599
- 
--  port: true
-   reg:
-     maxItems: 1
-     description: DSI virtual channel
-@@ -44,9 +43,9 @@ properties:
-   iovcc-supply:
-     description: I/O voltage supply
- 
--  reset-gpios: true
--
-   backlight: true
-+  port: true
-+  reset-gpios: true
-   rotation: true
- 
- required:
-diff --git a/Documentation/devicetree/bindings/display/panel/sony,tulip-truly-nt35521.yaml b/Documentation/devicetree/bindings/display/panel/sony,tulip-truly-nt35521.yaml
-index a58a31349757..85c5dee65383 100644
---- a/Documentation/devicetree/bindings/display/panel/sony,tulip-truly-nt35521.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sony,tulip-truly-nt35521.yaml
-@@ -31,9 +31,7 @@ properties:
-     description: Negative 5V supply
- 
-   reset-gpios: true
--
-   enable-gpios: true
--
-   port: true
- 
- required:
-diff --git a/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml b/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
-index 0819f38a9d2c..7fd9364fa385 100644
---- a/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
-@@ -16,8 +16,6 @@ properties:
-   compatible:
-     const: startek,kd070fhfid015
- 
--  enable-gpios: true
--
-   iovcc-supply:
-     description: Reference to the regulator powering the panel IO pins.
- 
-@@ -25,11 +23,10 @@ properties:
-     maxItems: 1
-     description: DSI virtual channel
- 
--  reset-gpios: true
--
-+  enable-gpios: true
-   port: true
--
-   power-supply: true
-+  reset-gpios: true
- 
- required:
-   - compatible
+This series only enables three functions: regulators, keys, and RTC.
+
+I have added a handful of device tree improvements to fix some
+dtbs_check errors and addressed the comments from last year's
+reviews. The series has been tested on Xiaomi Mi Smart Clock x04g.
+
+v2: Review feedback - replaced explicit compatibles with fallbacks
+
+Fabien Parent (5):
+  dt-bindings: mfd: mt6397: Add bindings for MT6392 PMIC
+  dt-bindings: regulator: add support for MT6392
+  dt-bindings: input: mtk-pmic-keys: add MT6392 binding definition
+  mfd: mt6397: Add support for MT6392 pmic
+  regulator: mt6392: Add support for MT6392 regulator
+
+Val Packett (2):
+  input: keyboard: mtk-pmic-keys: add MT6392 support
+  arm64: dts: mt6392: add mt6392 PMIC dtsi
+
+ .../bindings/input/mediatek,pmic-keys.yaml    |   1 +
+ .../bindings/mfd/mediatek,mt6397.yaml         |   9 +
+ arch/arm64/boot/dts/mediatek/mt6392.dtsi      | 134 +++++
+ drivers/input/keyboard/mtk-pmic-keys.c        |  15 +
+ drivers/mfd/mt6397-core.c                     |  43 ++
+ drivers/mfd/mt6397-irq.c                      |   8 +
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/mt6392-regulator.c          | 491 ++++++++++++++++++
+ include/linux/mfd/mt6392/core.h               |  42 ++
+ include/linux/mfd/mt6392/registers.h          | 487 +++++++++++++++++
+ include/linux/mfd/mt6397/core.h               |   1 +
+ include/linux/regulator/mt6392-regulator.h    |  40 ++
+ 13 files changed, 1281 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6392.dtsi
+ create mode 100644 drivers/regulator/mt6392-regulator.c
+ create mode 100644 include/linux/mfd/mt6392/core.h
+ create mode 100644 include/linux/mfd/mt6392/registers.h
+ create mode 100644 include/linux/regulator/mt6392-regulator.h
 
 -- 
-2.51.0
+2.43.0
 
 
