@@ -1,303 +1,135 @@
-Return-Path: <devicetree+bounces-272308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272309-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8IUyIGQUq2lzZwEAu9opvQ
-	(envelope-from <devicetree+bounces-272308-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:52:36 +0100
+	id cM2GMYoXq2nMZwEAu9opvQ
+	(envelope-from <devicetree+bounces-272309-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 19:06:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 004AA226755
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:52:35 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4298B2268C1
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 19:06:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8D11A302291E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 17:52:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 330E5301A2AB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 18:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60C141C0AD;
-	Fri,  6 Mar 2026 17:52:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7151E3ACF0C;
+	Fri,  6 Mar 2026 18:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="ITiXMpQk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BFd1W30D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8AC93A9DB6;
-	Fri,  6 Mar 2026 17:52:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D55D346E55;
+	Fri,  6 Mar 2026 18:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772819551; cv=none; b=SG7qY5eDh+sFdvx4WdIh6yzj1p0LgZ5PwYDG4+8j7vwf7BgmCcMQWR1GFUDZdpsZ9wzwDfj6wN/rI0kIqY7fWZGYxPc8To4Sd81SpX+qRHg7BYIaXV/ULQp535XlazPayv3x3KxGlKJgMz9iqGftmZt/0kwAddq0bxceKhjzpzU=
+	t=1772820358; cv=none; b=QP6vezXzO3SR492913lKPnrYfUCPAtv6EsBoB+Bwrxvi04hymhlVsUHtybToJ/CO8p3ycOGT7PLDLeTImfz+I2Q3+KG7dGAJ2X7T27jEp673Wp/ZhBvBkVeXa/LM6XombVukEeoRKV/xAXqAHMLSOfjmr7SepTZj+Ys+8hkfcPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772819551; c=relaxed/simple;
-	bh=EB/U3fWV1qGZzzcoIIuqMRDh1ydn2eVijuVLbb1xY+A=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=hfnOOjWibBCdbPFOeQ+JGXmNLPjZs9RAfZ5tl4326LFnwh4O4BysjpD05zFnkLQln68xNAa82BVyKMxc3OO0lm71+ix2d2GNF31qAb1nkMSGbI0OqC9EbO762FgYrGH6UcbHzVI4R7+sSYlIWKXhRpqCxvHUpvubtdvsPpguMPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=ITiXMpQk; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id E31A8779093C;
-	Fri,  6 Mar 2026 11:52:27 -0600 (CST)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id UOtMyRmtu1ZA; Fri,  6 Mar 2026 11:52:27 -0600 (CST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id EAEFB7790BD2;
-	Fri,  6 Mar 2026 11:52:26 -0600 (CST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com EAEFB7790BD2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1772819547; bh=KLvDy/vbC8ZuLGHlxb6+t6yVhKPrZuWhS1+HrkR6M1w=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=ITiXMpQkomHCSIGQDWB8gxI0PmkfJYP9YDG8D5sL552/YlSXvr0vvt3SimeBHY6c1
-	 FUqAz9M0VDveK318GlXYuSqTGyf2C+ulAJ6TZjs60hIklUIpUPYuy7fcVS9hAIPT1x
-	 PHQLCspI1c4Vrd8oFPq+v5zI6SMCmpSGCP9tXboc=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id Se_47NLpTj6h; Fri,  6 Mar 2026 11:52:26 -0600 (CST)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id BECF67790901;
-	Fri,  6 Mar 2026 11:52:26 -0600 (CST)
-Date: Fri, 6 Mar 2026 11:52:23 -0600 (CST)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Raptor Engineering Development Team <support@raptorengineering.com>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Lee Jones <lee@kernel.org>, 
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>, 
-	Shawn Anastasio <sanastasio@raptorengineering.com>, 
-	Timothy Pearson <tpearson@raptorengineering.com>
-Message-ID: <530063102.286103.1772819543617.JavaMail.zimbra@raptorengineeringinc.com>
-In-Reply-To: <20260306-playtime-glorifier-9dc7838283f4@spud>
-References: <20260129192047.562540-1-support@raptorengineering.com> <20260129192047.562540-2-support@raptorengineering.com> <20260306-playtime-glorifier-9dc7838283f4@spud>
-Subject: Re: [PATCH v7 1/4] dt-bindings: mfd: Add sony,cronos-smc
+	s=arc-20240116; t=1772820358; c=relaxed/simple;
+	bh=IygDcXKohU1K+tHMhM4KsbtkEUocwFSeiRZwcISIc38=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cHGW91VLaKetXnjLhNZRK3ccp7ACA/R/cpSvuDwPgVypxVq5j3I+NSrQyXtresrgcyfXjo2tvQ0gT54wWUN5EdQHG/zI9egyUgmctc0QHa/JTqsU4wZRiLFaROJWiClrBdM05oX6ONMJG6vh8j8ECf1UfoEUHDou4Pp4DD3jz0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BFd1W30D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA847C4CEF7;
+	Fri,  6 Mar 2026 18:05:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772820358;
+	bh=IygDcXKohU1K+tHMhM4KsbtkEUocwFSeiRZwcISIc38=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=BFd1W30DQloIPhj2BsMXh4t6JPkRYpJGLbKt0KNmLQJdKzl8E5UdujOxOT1zzRJyg
+	 peTl0Yzaob1wjDi7gGg+IBlSMe7JtfEL9rlpjpEVJrlcm9vy4me3EvH+ltd5ZO0y26
+	 lZHiGIPsPLfSg5h4gaqL6OklQnG+//IMHssSZ9INP3vzP4zWdaK6Q8Yj0xQMbydEbu
+	 HUA4gUFlj43LJVTdg6CQe1xY47f/wU70JaMBUxeR65vLVf7/0w89JbL0FKaf+9d9HD
+	 PkMNKubuMC5JL99gG9oNCJDBUoH95TQ2XwC38P4pQtqQSYFRfJ8TP4NqwwjoN9Lu//
+	 ZMU+hSQ8uamYg==
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Evan Green <evan@rivosinc.com>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Guodong Xu <guodong@riscstar.com>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 0/3] riscv: cpufeature: Add Supm extension id and validation
+Date: Fri,  6 Mar 2026 18:05:44 +0000
+Message-ID: <20260306-contort-pendant-8ae839e37152@spud>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260125-supm-ext-id-v2-0-1e3b9714c860@riscstar.com>
+References: <20260125-supm-ext-id-v2-0-1e3b9714c860@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC143 (Linux)/8.5.0_GA_3042)
-Thread-Topic: dt-bindings: mfd: Add sony,cronos-smc
-Thread-Index: 5EegI8XKUv1OaYITpQaNRsPAO3WX9w==
-X-Rspamd-Queue-Id: 004AA226755
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=697; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=LaY49zJBvbvl6tvTaufJTQzDycrEND5DwMf0LJ8MZEQ=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJmrxSsu3GuW+3KmyGvPS15bO8Fne2wm7mdhcysz3CC85 mm50Nm6jlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExkgxcjw7Y1vs1XZnmwR8b3 HGWPczNbsCDsf1Tzf8ZVwc46TBu0+IEqCqes5c1fdqCC773tKxG37CsTvUNviD7YvNmkoDN1kgo bAA==
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4298B2268C1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[raptorengineering.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[raptorengineering.com:s=B8E824E6-0BE2-11E6-931D-288C65937AAD];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272308-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272309-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_ALL(0.00)[];
-	DKIM_TRACE(0.00)[raptorengineering.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[3f:email,sony.com:email,devicetree.org:url,0.0.0.0:email,linaro.org:email,raptorengineering.com:dkim,raptorengineering.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[tpearson@raptorengineering.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.971];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,microchip.com:email]
 X-Rspamd-Action: no action
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
-
------ Original Message -----
-> From: "Conor Dooley" <conor@kernel.org>
-> To: "Raptor Engineering Development Team" <support@raptorengineering.com>
-> Cc: "devicetree" <devicetree@vger.kernel.org>, "linux-kernel" <linux-kernel@vger.kernel.org>, "Rob Herring"
-> <robh+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-> "Lee Jones" <lee@kernel.org>, "Georgy Yakovlev" <Georgy.Yakovlev@sony.com>, "Shawn Anastasio"
-> <sanastasio@raptorengineering.com>, "Timothy Pearson" <tpearson@raptorengineering.com>
-> Sent: Friday, March 6, 2026 11:49:18 AM
-> Subject: Re: [PATCH v7 1/4] dt-bindings: mfd: Add sony,cronos-smc
-
-> On Thu, Jan 29, 2026 at 01:20:44PM -0600, Raptor Engineering Development Team
-> wrote:
->> From: Shawn Anastasio <sanastasio@raptorengineering.com>
->> 
->> The Sony Cronos Platform Controller is a multi-purpose platform controller
->> that provides both a watchdog timer and an LED controller for the Sony
->> Interactive Entertainment Cronos x86 server platform. As both functions
->> are provided by the same CPLD, a multi-function device is exposed as the
->> parent of both functions.
->> 
->> Add a DT binding for this device.
->> 
->> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
->> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
->> ---
->>  .../bindings/mfd/sony,cronos-smc.yaml         | 128 ++++++++++++++++++
->>  1 file changed, 128 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml
->> 
->> diff --git a/Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml
->> b/Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml
->> new file mode 100644
->> index 000000000000..a7e88fd42d39
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mfd/sony,cronos-smc.yaml
->> @@ -0,0 +1,128 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright 2025-2026 Raptor Engineering, LLC
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mfd/sony,cronos-smc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Sony Cronos Platform Controller CPLD multi-function device
->> +
->> +maintainers:
->> +  - Georgy Yakovlev <Georgy.Yakovlev@sony.com>
->> +
->> +description:
->> +  The Sony Cronos Platform Controller CPLD is a multi-purpose platform
->> +  controller that provides both a watchdog timer and an LED controller for the
->> +  Sony Interactive Entertainment Cronos x86 server platform. As both functions
->> +  are provided by the same CPLD, a multi-function device is exposed as the
->> +  parent of both functions.
->> +
->> +properties:
->> +  compatible:
->> +    const: sony,cronos-smc
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  leds:
->> +    type: object
->> +    $ref: /schemas/leds/common.yaml#
->> +    additionalProperties: false
->> +    description: |
->> +      The Cronos LED controller is a subfunction of the Cronos platform
->> +      controller, which is a multi-function device.
->> +
->> +      Each led is represented as a child node of sony,cronos-led. Fifteen RGB
->> +      LEDs are supported by the platform.
->> +
->> +    properties:
->> +      compatible:
->> +        const: sony,cronos-led
->> +
->> +      reg:
->> +        maxItems: 1
->> +
->> +      "#address-cells":
->> +        const: 1
->> +
->> +      "#size-cells":
->> +        const: 0
->> +
->> +    patternProperties:
->> +      "^multi-led@[0-9a-f]$":
->> +        type: object
->> +        $ref: /schemas/leds/leds-class-multicolor.yaml#
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          reg:
->> +            description:
->> +              LED channel number (0..14)
->> +            minimum: 0
->> +            maximum: 14
->> +
->> +        required:
->> +          - reg
->> +
->> +    required:
->> +      - compatible
->> +      - "#address-cells"
->> +      - "#size-cells"
->> +
->> +  watchdog:
->> +    type: object
->> +
->> +    $ref: /schemas/watchdog/watchdog.yaml
->> +
->> +    properties:
->> +      compatible:
->> +        const: sony,cronos-watchdog
->> +
->> +      timeout-sec: true
+On Sun, 25 Jan 2026 09:36:05 +0800, Guodong Xu wrote:
+> Supm as an extension indicates pointer-masking support for user mode
+> (U-mode). It relies on Ssnpm or Smnpm for the underlying hardware
+> implementation.
 > 
-> Why is there a child node to just add timeout-sec?
-
-When I tried Krzysztof's solution, the validation tools threw an error, and this was the only way I found to get them to stop throwing errors.
-
-> Didn't Krzysztof ask
-> you to come up with a generic node name for the mfd to use instead of
-> "smc", and to modify watchdog.yaml to accept the new node name? See
-> here:
-> https://lore.kernel.org/all/c7630eb1-2686-491e-81ed-fb43fff2dd31@linaro.org/
+> Major change in v2 is added dependency check for Supm in bindings.
 > 
-> Something like "platform-controller" sounds generic to me, in a way that
-> "smc" doesn't.
-
-SMC is the name of the hardware block in question.  platform-controller generates some other confusion as there would be multiple separate hardware blocks that could fit that name.
-
+> As a ratified feature, define a dedicated RISCV_ISA_EXT_ id for Supm.
+> However, since Supm is targeting U-mode, it should not be added into
+> devicetrees that describe hardware running privileged system softwares.
 > 
->> +
->> +    required:
->> +      - compatible
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/leds/common.h>
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        smc@3f {
->> +            compatible = "sony,cronos-smc";
->> +            reg = <0x3f>;
->> +
->> +            watchdog {
->> +                compatible = "sony,cronos-watchdog";
->> +
->> +                timeout-sec = <20>;
->> +            };
->> +
->> +            leds {
->> +                compatible = "sony,cronos-led";
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                multi-led@0 {
->> +                    /*
->> +                     * No subnodes are needed, this controller only supports
->> RGB
->> +                     * LEDs.
->> +                     */
->> +                    reg = <0>;
->> +                    color = <LED_COLOR_ID_MULTI>;
->> +                    function = LED_FUNCTION_STATUS;
->> +                };
->> +            };
->> +        };
->> +    };
->> +
->> --
->> 2.39.5
+> [...]
+
+Applied to riscv-dt-for-next, thanks!
+
+[1/3] dt-bindings: riscv: Add Supm extension description
+      https://git.kernel.org/conor/c/5932c871e067
+
+Thanks,
+Conor.
 
