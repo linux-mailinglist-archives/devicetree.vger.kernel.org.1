@@ -1,201 +1,224 @@
-Return-Path: <devicetree+bounces-272217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272218-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wM3nB5nxqmncYwEAu9opvQ
-	(envelope-from <devicetree+bounces-272217-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:24:09 +0100
+	id +PJ/CMDxqmncYwEAu9opvQ
+	(envelope-from <devicetree+bounces-272218-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:24:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA44B223B5A
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:24:08 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4990223B91
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:24:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AE85D30913FB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:21:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7BA1730985A9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF503624AF;
-	Fri,  6 Mar 2026 15:20:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD40F3624AF;
+	Fri,  6 Mar 2026 15:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J0uFKeBR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZNLCmAag"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6632D3537FA;
-	Fri,  6 Mar 2026 15:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772810455; cv=none; b=oD4Do8/4bzL2txP8ee229LP8hHHaiDuNIYMCnqRFcwbuw+tvRWsAvSFRHTJVTPO6z8NNBexjyDGKZ3mhBitFfEwmggWlLauOhhWo6Q+bZvE5Cx4hg6j3ReOStMup+qtLYF5SSr9NkRdgOM4GYG+Qoiic053bk8EyrxLdby4uzhQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772810455; c=relaxed/simple;
-	bh=hvXgGkf2qu+jqR+sgY8DakribYb85aMMllz2F4DP0wk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QNuYPQEgNf1hiS0n6LYcnnx6TSkqykxrH3PzEZMK2oYt4KKESOFZNHnkzCw8rQxTD+23UV6AhX6p5WsgtiV74NoZ+RToBiwlszznXG3qRgitZwSEKuzDxVEK4J2+aUB3ztdQmH1uUtW7xi2+VuF2cbPW5A0LfEyqBATLcfnfrYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J0uFKeBR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29E42C4CEF7;
-	Fri,  6 Mar 2026 15:20:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772810454;
-	bh=hvXgGkf2qu+jqR+sgY8DakribYb85aMMllz2F4DP0wk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J0uFKeBR838wZP2L+gn1tFYR1pp3O0vli6BXg5dyDv8PN/I6WR3oh7MVJbVB0431b
-	 9l4GNBfabH3/dN6XVbUp8AUNikkn524uPLJt3THgfe6IY7GuydW4QxZbfPHlFES1Ik
-	 GDQ72WdIAa6ducWYHHkhov9T4/h6QE3IAxAdDbp71rzlaOr5pTrSO6bfZ8xvkUopBo
-	 j15R8RE8eaak4c2W022F7coAtxzswahcuNBHvf1nJTHNS/niETg2dbu7CGAqzgtJCe
-	 hid+bMfPNBYkFndY9iL+hicEIN3FWXILXjMBQfHlaxURfx6Xl14S+9TZotvg82doQ+
-	 cCVQs/T7fD1Ew==
-Date: Fri, 6 Mar 2026 15:20:48 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, UNGLinuxDriver@microchip.com,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Simon Horman <horms@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Woojung Huh <woojung.huh@microchip.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-Message-ID: <20260306-pointless-purr-210540d4dc64@spud>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
- <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
- <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
- <20260303-mosaic-debate-90cf8c8bbb33@spud>
- <1db45715a3a12b76b838d20c0e5904c3222053e7.camel@microchip.com>
- <20260305-reliant-parchment-0ff685a9c78e@spud>
- <7b62ace495084794336b19a9685d6b14ea3981a0.camel@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C45368279
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 15:21:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772810486; cv=pass; b=UeGc1uyQykJx1S98KhY/wsRKdGafv8q5uBElL/NLr+JwgJx0lI3azlOdTsmGqv7zRdqxrmz70VRgxCh9niOhGo3LnuMaPmF59A1mtMSmrnXhbEB91fBJ6hpxYRXTlIxJJX8lAHsOMcAaDucbEZHIAv4VxHaBsJBuFUQV9JeLEh0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772810486; c=relaxed/simple;
+	bh=clDN9Q/ggH6IxCcQFM2Fua/woNyxwC6yrqnlD16EscQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oNVjFMyStVX4Hq1mEm9d9eLN1GeeLJfBJ309o0ziNCqEj0Nb/JxDpl9wR10/7w7+HitYo4x1QReZKkLO8oh7QY4ta4dwAWh4v0s1Hzq6aC5JT6SgPmGy/Zhjzk6nPZtwbQXIZ8o2OhXRHZOK2BH73l1/dGL0vL/fg0IBaJQGGLU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZNLCmAag; arc=pass smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b9382e59c0eso499938166b.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 07:21:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772810478; cv=none;
+        d=google.com; s=arc-20240605;
+        b=XecDehTQWRBmjeoelX9uSi1w7QYXlFdPQzIrpeCUykeFTWKGMT4Ku+I22Xxeot9+6I
+         THF4XW5hmI7b1CNJjSECz6ziLAmDHNXMruHnCDmlRy7uwIxlVxtj82l0daE+vgIotj3c
+         IOFM7cxKz6X+wwK9pdAqSus4Zulw4OMuekENVedCOBd3ep0Hdw7BIPKIiaclhKhDbL4i
+         TVmgK4KaMU2p38XIVfs0rWYqc/8HOhoVlpiHuzJW1AR2Iqk2PHelOtmyU+fXCoAeITRh
+         Lx3yHMaZk4NrhNGNzxL95JNNaI6EshQjh371A53WzzlDIGGZ6b7TfsWKGQpEj/lCaMzi
+         xuQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=fVf18GuOCj4KUJQyL5+kDdyR0nQ8PeWTy0/PXRvmRP0=;
+        fh=JPCKM7qDWzgN9p+T5jtnAD9TxQA1dG2qUq40Kzi6Tqw=;
+        b=IloAVWdGARhHL/LzENuVaA/g8atdI5nbOMIyhMvyIuGTegnfvWYeJmR1adoVsvbBTX
+         +sF5VNrutHAHwlHXIhWpzQ4L/Z6VBagFanHZQigXM5d3mgVi4eJPTO8CtrtvVniFpXRu
+         WjdzPl4cUxuowNge1Mrvh37UY6nUnWxvhFcMBwF09kx+W/WKtB8uYjiRZyRKWe89LgPp
+         f7Ljk4txYxtMwcHGWIfyeSrBQTB3yecHMSO42fsqDNoJWuiyZx/Glreu81tSJLn9BYP2
+         B2U5O588R/+O/YP6BysZq/kind2vDsEaSpQANBjJiopxL4D6ePQQOHZHxurRV680GNNk
+         zgug==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772810478; x=1773415278; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fVf18GuOCj4KUJQyL5+kDdyR0nQ8PeWTy0/PXRvmRP0=;
+        b=ZNLCmAagGeCgfsW7k7dfrDPZU9Pz5OCW0dPv84z6mZ8Y7bvXNC2GedgDhbGi+AAMbj
+         VfaqdgP7PHzF64KBl/Nvbr/IjhMuv1KZlm5mNpL2muvGt5IauVZ6FGtea+Ru3vz6aZKw
+         R+c9U4jxZrQkilY0P6PfuEf48KYvXanQzxvLKHg6cTcE3QWKr+YaWQwdaOETSE+OU+Jk
+         0xAb6UdItKQ3zCNFB4WLazMHlieqwHL1G4GdbZtykyfTUBjyU0BGrZD8/ZGlY7Vvvr2L
+         yALj4c7O+UsaNjPiw9IR5rJshgvBC+Op8veKALmgpxqOkr4fn/0RloMb4O9YzyGaY8vh
+         BPpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772810478; x=1773415278;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=fVf18GuOCj4KUJQyL5+kDdyR0nQ8PeWTy0/PXRvmRP0=;
+        b=DKoyomsJxJmb6HMdMNq36ggCBcbQat1abS1ZxJTMz1exGfEZ8mMr5gpyYUnvdMeV00
+         ARG1DKO8Ic/9Ep4dWTNrxTsV9H7UbUXxCu+xNeGm9y/JULg6he1869zN1C5j1WbC9uVd
+         paCGiNTZMy5EJsMMvgMlDJUiAytgEoRvdC2yVeBD0Zq2k8UNxNL2o89Q2y1kPqE8l7Uc
+         O7cOrMCHSTtEpZchePbyRE7Uzloko0Rz8ekVwHMiypaqGwz2Pe4A5aT3lMgqN8Zp8GDu
+         +sudGhWl5LQby+mR0oep4kM4J0gBbreDnRJqLHFwkhDZcestZkW95JqZkBrTA7QQ/XMe
+         v2Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCUmOuojs6uKwY/43Ji2dXNq+LnA9nBgJbJUDbz5iHcNYv6+pe/iOPHchJ/d0lEGln0ZL+bMlrhqIEdy@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUTijVvQ5s0qcCnHcq5Ff2bfUPuK5Xtb7DXMsmnORbSq8L8L3k
+	VyIdudxL/VRkMNfxMZphXiA00FKNhwtA19E92V1XfFY/5cXozM3bIrBDTPkDGw/5DYKZzGcJHIL
+	t8sj0Mlbs6+4jdyvev6IolJbOT1kg4jrznh59XmGyvg==
+X-Gm-Gg: ATEYQzwoBoylLXSafVEege/IZWBNxfL2eOYhMcuRuFTTFSDjsG0FN6zcLFyPautrOEL
+	rCXvjP6VuZ3tWzgJ5AlPOjHJqYDKLujs4mAng7AKz0lWImLLSokRdwTcv/5khmcqJvhyrjIxaPu
+	AL5xjqrphmhQKSpfGyr0xABB0UBfUaiAigNQHY73fgkbWKOoJZ4wsI8FObPsEjdj5Zvv8BzdVH1
+	0W4bCdpKzEviQmG8QqR7BVf9cHxU7N7ZXaOfuguvwvaVCCz0A+QLeyq0Mq3tW3b4zVN2xzzXOcP
+	f7a0aG2qpHINyfANZ0ljuRLxs5Dgg3oZOMw8pKiM9g==
+X-Received: by 2002:a17:906:6a0c:b0:b8e:3d49:25db with SMTP id
+ a640c23a62f3a-b942e00db25mr143796466b.54.1772810477794; Fri, 06 Mar 2026
+ 07:21:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kHmiwYOF/7ZYzZNz"
-Content-Disposition: inline
-In-Reply-To: <7b62ace495084794336b19a9685d6b14ea3981a0.camel@microchip.com>
-X-Rspamd-Queue-Id: CA44B223B5A
+References: <20260306-gs101-pd-v7-0-03f7c7965ba5@linaro.org> <20260306-gs101-pd-v7-8-03f7c7965ba5@linaro.org>
+In-Reply-To: <20260306-gs101-pd-v7-8-03f7c7965ba5@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 6 Mar 2026 15:21:06 +0000
+X-Gm-Features: AaiRm53NoJSram8HquKNMruwU8Hhr-XYeKCTUDRI7ADZLhZOeyB6oV1YUnbVV6A
+Message-ID: <CADrjBPqnf9YVeOgY=uSETnbcQLgi5OY2N3usPOjzJx4o0hGEPA@mail.gmail.com>
+Subject: Re: [PATCH v7 08/10] pmdomain: samsung: use dev_err() instead of pr_err()
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: D4990223B91
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272217-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272218-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[lunn.ch,microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.992];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,samsung.com:email,linaro.org:dkim,linaro.org:email,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
+On Fri, 6 Mar 2026 at 10:29, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
+wrote:
+>
+> dev_err() gives us more consistent error messages, which include the
+> device. Switch to using dev_err().
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+> ---
 
---kHmiwYOF/7ZYzZNz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-On Fri, Mar 06, 2026 at 04:08:01PM +0100, Jens Emil Schulz Ostergaard wrote:
-> On Thu, 2026-03-05 at 18:31 +0000, Conor Dooley wrote:
-> > On Thu, Mar 05, 2026 at 01:57:37PM +0100, Jens Emil Schulz Ostergaard w=
-rote:
-> > > On Tue, 2026-03-03 at 19:04 +0000, Conor Dooley wrote:
-> > > > On Tue, Mar 03, 2026 at 03:18:45PM +0100, Andrew Lunn wrote:
-> > > > > > +        properties:
-> > > > > > +          microchip,led-drive-mode:
-> > > > > > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > > +            description: |
-> > > > > > +              Set the LED drive mode for the copper PHY associ=
-ated with
-> > > > > > +              this port.
-> > > > > > +
-> > > > > > +                0 - LED1 and LED2 in open-drain mode
-> > > > > > +                1 - LED1 in active drive mode (can be used for=
- single-LED
-> > > > > > +                    configurations requiring active drive)
-> > > > > > +                2 - Reserved
-> > > > > > +                3 - LED1 and LED2 in active drive mode
-> > > > > > +            minimum: 0
-> > > > > > +            maximum: 3
-> > > > >=20
-> > > > > I doubt the DT Maintainers will accept that. This looks a lot lik=
-e a
-> > > > > value you write into a register. How are active drive and open-dr=
-ain
-> > > > > described in other DT bindings? Is there something you can reuse?
-> > > >=20
-> > > > I had a quick look and I didn't see anything really that stood out =
-to me
-> > > > that would be a drop-in replacement.
-> > > > I also tried looking in the datasheet for more information on these
-> > > > modes, but I couldn't see anything obvious. For example, there were=
- zero
-> > > > hits for "drain" in either LAN9645xS or LAN9645xF datasheets.
-> > > >=20
-> > > > That said, yea you're right about DT maintainer feelings about it.
-> > > > There's a couple things I could suggest, but I'd like to know about=
- what
-> > > > mode 1 means for LED2 first. If there's actually nothing similar, w=
-hat
-> > > > about representing each led with a child node and having open-drain=
- be
-> > > > the default with a property in the child for active-drive?
-> > > >=20
-> > > > >=20
-> > > > > For 1, what happens to LED2? Not used at all?
-> > >=20
-> > > In mode 1 LED2 will be open-drain. This mode only makes sense if you =
-have
-> > > just 1 LED. With two LEDs mode 0 or mode 3 should be used.
-> >=20
-> > Could we then have child nodes for each led, and have a property in each
-> > that sets the mode to either open-drain or active-drive? Or am I just
-> > inserting complexity by asking for that?
->=20
-> I think it sounds sensible, I will add this.
-
-
-You don't need a property for each, just make one mode the default (prob
-open-drain given it's the 0 setting, but whatever is default out of
-reset for the part) and have the property for the other mode. Just
-some bool property like "microchip,active-drive" or whatever.
-
---kHmiwYOF/7ZYzZNz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaarwuwAKCRB4tDGHoIJi
-0mLvAP4niib63KhKJfXuRrVQ7tpWk5NdXsr7ixxEWKIyPCECQAEAoOiaNn9WsgYu
-8OkUBffwCl7j3bkqGx3lsEB2giDELAM=
-=4Erg
------END PGP SIGNATURE-----
-
---kHmiwYOF/7ZYzZNz--
+>  drivers/pmdomain/samsung/exynos-pm-domains.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/pmdomain/samsung/exynos-pm-domains.c b/drivers/pmdom=
+ain/samsung/exynos-pm-domains.c
+> index 2214d9f32d59..41a232b3cdaf 100644
+> --- a/drivers/pmdomain/samsung/exynos-pm-domains.c
+> +++ b/drivers/pmdomain/samsung/exynos-pm-domains.c
+> @@ -30,6 +30,7 @@ struct exynos_pm_domain_config {
+>   */
+>  struct exynos_pm_domain {
+>         struct regmap *regmap;
+> +       struct device *dev;
+>         struct generic_pm_domain pd;
+>         u32 local_pwr_cfg;
+>         u32 configuration_reg;
+> @@ -47,8 +48,9 @@ static int exynos_pd_power(struct generic_pm_domain *do=
+main, bool power_on)
+>         pwr =3D power_on ? pd->local_pwr_cfg : 0;
+>         err =3D regmap_write(pd->regmap, pd->configuration_reg, pwr);
+>         if (err) {
+> -               pr_err("Regmap write for power domain %s %sable failed: %=
+d\n",
+> -                      domain->name, power_on ? "en" : "dis", err);
+> +               dev_err(pd->dev,
+> +                       "Regmap write for power domain %s %sable failed: =
+%d\n",
+> +                       domain->name, power_on ? "en" : "dis", err);
+>                 return err;
+>         }
+>
+> @@ -71,8 +73,8 @@ static int exynos_pd_power(struct generic_pm_domain *do=
+main, bool power_on)
+>                 /* Only return timeout if no other error also occurred. *=
+/
+>                 err =3D -ETIMEDOUT;
+>         if (err)
+> -               pr_err("Power domain %s %sable failed: %d\n", domain->nam=
+e,
+> -                      power_on ? "en" : "dis", err);
+> +               dev_err(pd->dev, "Power domain %s %sable failed: %d\n",
+> +                       domain->name, power_on ? "en" : "dis", err);
+>
+>         return err;
+>  }
+> @@ -140,6 +142,8 @@ static int exynos_pd_probe(struct platform_device *pd=
+ev)
+>         if (!pd)
+>                 return -ENOMEM;
+>
+> +       pd->dev =3D dev;
+> +
+>         pd->pd.name =3D exynos_get_domain_name(dev, np);
+>         if (!pd->pd.name)
+>                 return -ENOMEM;
+>
+> --
+> 2.53.0.473.g4a7958ca14-goog
+>
 
