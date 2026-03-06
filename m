@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-271997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271998-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CKvnGaivqmm6VQEAu9opvQ
-	(envelope-from <devicetree+bounces-271997-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:42:48 +0100
+	id WOwDEhGwqmnZVQEAu9opvQ
+	(envelope-from <devicetree+bounces-271998-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:44:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6877321F08D
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:42:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E040621F10B
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:44:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C6D133024A2D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:41:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8494A3046028
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:42:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D172C364041;
-	Fri,  6 Mar 2026 10:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FF0363C7E;
+	Fri,  6 Mar 2026 10:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HlqAXWcd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kryygtY7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC96235B12B;
-	Fri,  6 Mar 2026 10:41:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E4A934AAE9;
+	Fri,  6 Mar 2026 10:42:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772793689; cv=none; b=SjFWDXOZdnFfrk1GtxE2BA0bPlvEsf4kotWimEb+J9lpSFzjYyKr31kYxqMOmRrRED32x9ZM2/ENFSjaMdoQK8zIML1gR1IgQeKyZQ1JeZ49OxrqkPyxr8ehqYCa/kz9Zd3zsGyuLL/ruE9iNjUsOiBqXBqXhVx6FsrGOrgNMfs=
+	t=1772793749; cv=none; b=BV3SA6/OrGrQEbuHDNGOpwPNkS2DsS4kou+pc7tW/d8J9BVlX8DIcHZh0CUX+CMpX6vFyQqB9jLZLbKnyF1o9BUb7Kov2RVjV/vszl34FYOS0hLx+C7KAoVPJF61+xpKbCscm+O/GI4dLRz29PMGyF4voNBhoeafq3M12D34vqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772793689; c=relaxed/simple;
-	bh=wUC14RnhdvcAhcWHU9TzbgcAedD2DWvQjmFMdi8UmZ0=;
+	s=arc-20240116; t=1772793749; c=relaxed/simple;
+	bh=pYI9yvFGAFxgvdf8BJTBovGGmqHXBbeG0GwwmRztm3c=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UfqUhzVp05YD5z/+G0F5334PgpLO07Uvu9t3q7QROhNZUQ+a1QA5QbyoQLK9jFBaCP7Evew+F2H1tJAPTfrGEOR1csfk5peZgh+tqrug8lQegRo4ipsYMmm3hbxiRNYsQJuyRGpRfJyD2/Ef0YmnxvjKC29A+U8PRFRucf9eNBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HlqAXWcd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E47CC19422;
-	Fri,  6 Mar 2026 10:41:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p1peWlbDsjgKI+WO2jbCCj0BlCG2ce4avhJKFJI6Z8Xz9H/eyWDYc6/GZvP7vxdNfreQqe95N4WA8///kS5vKzCVUTfCqBI+2mo7PAr8bGIF0KvJjY0cTy9fy/bRsM9xZ5/8GtvVW5rYK783PdYEdlgPM+Rq6mMbwjWsQYU/T+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kryygtY7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8669C4CEF7;
+	Fri,  6 Mar 2026 10:42:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772793689;
-	bh=wUC14RnhdvcAhcWHU9TzbgcAedD2DWvQjmFMdi8UmZ0=;
+	s=k20201202; t=1772793749;
+	bh=pYI9yvFGAFxgvdf8BJTBovGGmqHXBbeG0GwwmRztm3c=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HlqAXWcdQBTWqkBU+RvjncHg2W2umlwoZVD32c3UXJcQPcr+23oeH/8yjmfdfqM3U
-	 19wihtbQXOhwACWoSBDh69qhginNXcXV8dBtlYgDXnNCiqirYoBqqoDfFYCkvD+uRE
-	 dx104NBd1oc5EJmukGDFTHcUQ+JO54vNElmJm3tomEH4gwCkeTF0zF0+AJbJrL/SJF
-	 GJvlxr4NpnZbhT7hzedjYNuvWXu27IFwIu1/8EMfKOY9lDqdLYIqwOEoxD/LlF4aXa
-	 766PV8+6CC7jF2rTWnVJY+TaviOzRbo/OIfPQ33CjfI70Q+mC308VevW9opsngxIXQ
-	 k5hN2wL9ZbgHQ==
-Message-ID: <f16d2a7f-04e2-4d99-9239-caca9fd1f7b5@kernel.org>
-Date: Fri, 6 Mar 2026 11:41:23 +0100
+	b=kryygtY7b++5tmfWupeISmwUFu+pyZZCWqcXBKdKrxWQU8G6vd0YLE0j5xv7xnL8z
+	 YGU8PTywOk8OyL7nm6i7IOV3YmubzpFlEq3mGC/PGK9zxx2G6z4lQFido8O5obvnEA
+	 Y+EjnEueshLo68rM+we/fSReDYktZ08PfGwGEDbx1sD+z8rbJNmPZmYqSaBFmJ6Krm
+	 D2ESSznwnfljFgc9iOrCN+z/0XkuXH0v8DoLFh7rwThaZLxWCMx7bXZrRPv8RM797h
+	 sXD0V1/AFpT3DnV+abfCbV03odBCm35EwR0/BM0/J3KbjyoCW4sWQEAoXmXRmn7XaN
+	 tfKIRsPcrktpw==
+Message-ID: <45fc7e39-3174-432a-9994-9de528759348@kernel.org>
+Date: Fri, 6 Mar 2026 11:42:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,35 +53,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
-To: "Ding, Shenghao" <shenghao-ding@ti.com>,
- "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-Cc: "Xu, Baojun" <baojun.xu@ti.com>, "broonie@kernel.org"
- <broonie@kernel.org>, "tiwai@suse.de" <tiwai@suse.de>,
- "13916275206@139.com" <13916275206@139.com>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "Yi, Ken" <k-yi@ti.com>, "Lo, Henry" <henry.lo@ti.com>,
- "Chen, Robin" <robinchen@ti.com>, "Wang, Will" <will-wang@ti.com>,
- "jim.shil@goertek.com" <jim.shil@goertek.com>,
- "toastcheng@google.com" <toastcheng@google.com>,
- "chinkaiting@google.com" <chinkaiting@google.com>
-References: <20260226075737.405-1-baojun.xu@ti.com>
- <20260226075737.405-2-baojun.xu@ti.com>
- <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
- <9f861c7df09c4434a98a203ecff913bc@ti.com>
- <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
- <a7316acf9ba248f9ad1fab0313a95654@ti.com>
- <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
- <4865c7f626a340d7847354512367577e@ti.com>
- <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
- <aaVcDvYvi28wFR2S@ashevche-desk.local>
- <c46a8bf5-7a6a-41a9-b18f-9a7ad7a60bb9@kernel.org>
- <3af19ebaf32d482ab5cf575b831b2d9d@ti.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: input: touchscreen: sitronix,st1232:
+ Add wakeup-source
+To: phucduc.bui@gmail.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Jeff LaBundy <jeff@labundy.com>, Bastian Hecht <hechtb@gmail.com>,
+ Javier Carrasco <javier.carrasco@wolfvision.net>,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260305113512.227269-1-phucduc.bui@gmail.com>
+ <20260306104025.43970-1-phucduc.bui@gmail.com>
+ <20260306104025.43970-2-phucduc.bui@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -127,103 +114,58 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <3af19ebaf32d482ab5cf575b831b2d9d@ti.com>
+In-Reply-To: <20260306104025.43970-2-phucduc.bui@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6877321F08D
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: E040621F10B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[ti.com,kernel.org,suse.de,139.com,vger.kernel.org,gmail.com,goertek.com,google.com];
-	TAGGED_FROM(0.00)[bounces-271997-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271998-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,sang-engineering.com,labundy.com,wolfvision.net,vger.kernel.org,oss.qualcomm.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:url,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On 06/03/2026 11:08, Ding, Shenghao wrote:
-> Hi, Krzysztof & Andy,
+On 06/03/2026 11:40, phucduc.bui@gmail.com wrote:
+> From: bui duc phuc <phucduc.bui@gmail.com>
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Monday, March 2, 2026 6:09 PM
->> To: andriy.shevchenko@linux.intel.com
->> Cc: Xu, Baojun <baojun.xu@ti.com>; broonie@kernel.org; tiwai@suse.de;
->> 13916275206@139.com; Ding, Shenghao <shenghao-ding@ti.com>; linux-
->> sound@vger.kernel.org; linux-kernel@vger.kernel.org; lgirdwood@gmail.com;
->> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
->> devicetree@vger.kernel.org; Yi, Ken <k-yi@ti.com>; Lo, Henry
->> <henry.lo@ti.com>; Chen, Robin <robinchen@ti.com>; Wang, Will <will-
->> wang@ti.com>; jim.shil@goertek.com; toastcheng@google.com;
->> chinkaiting@google.com
->> Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832
->> support
->>
-> ...
->>> ...
->>>
->>>>>>>>>>> static const struct of_device_id tasdevice_of_match[] = {
->>>
->>>>>>>>>>>       { .compatible = "ti,tas5827" },
->>>>>>>>>>>       { .compatible = "ti,tas5828" },
->>>>>>>>>>>       { .compatible = "ti,tas5830" },
->>>>>>>>>>> +     { .compatible = "ti,tas5832" },
->>>>>>>>>>
-> ...
->>>
->>> I don't know what you are trying to get from them, but I²C enumeration
->>> on DT platforms works in a way that it takes two tables into account,
->>> hence, if there is no compatible (with given part number) there will
->>> be no matching name.
->>>
->>> AFAIK it has to have a compatible to make it work in such a case.
->>> What did I miss?
->>
->> Show me please then how the OF table is used here at all to get the name.
+> Document the 'wakeup-source' property for Sitronix ST1232 touchscreen
+> controllers to allow the device to wake the system from suspend.
 > 
-> This code will also be used for ACPI devices. To ensure consistent bin file 
-> naming between ACPI and DTS devices, the mapping table tasdevice_id[]
-> has been introduced.
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
+> ---
+> 
 
-We need to stop discussing with irrelevant arguments, really.
 
-I asked to show me how this is going to be used in DT. No answer to this
-part.
-
-Now you claim this OF ID will be used for ACPI devices, but YOU HAVE
-already ACPI table there, so that's clearly invalid argument. Do you
-understand how patch/email review works? Where the comments appear and
-what is being discussed?
-
-> The code retrieves the corresponding name of the chip from tasdevice_id[]
-> based on its order in tasdevice_of_match[] or tasdevice_acpi_match[].
-
-Based on the order in table? No, that's crazy buggy solution to tie
-order of entries in both tables. And it makes no sense... and I am sure
-code does not do it, so again irrelevant argument.
-
-NAK, because all the replies so far are off-topic.
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets. See also:
+https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
 
 Best regards,
 Krzysztof
