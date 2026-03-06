@@ -1,33 +1,34 @@
-Return-Path: <devicetree+bounces-271872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271873-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMSHEMmLqml0TQEAu9opvQ
-	(envelope-from <devicetree+bounces-271872-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:09:45 +0100
+	id +A/uIlCLqml0TQEAu9opvQ
+	(envelope-from <devicetree+bounces-271873-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:07:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EABC21CDF9
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:09:44 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 945D221CD87
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:07:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F1D83300CC06
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:07:33 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 784BF300809B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:07:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1456A372ECB;
-	Fri,  6 Mar 2026 08:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3C02EB856;
+	Fri,  6 Mar 2026 08:07:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D063783B2;
-	Fri,  6 Mar 2026 08:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BAC0376493;
+	Fri,  6 Mar 2026 08:07:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772784452; cv=none; b=sK3NXdmjisNjjlOnIUZM1k4tDDum73etg6zapKW3JpfRyshdC/9oylo+A2vJ2+jY79FXBQEF8dofL7c/vey9UlaCtRPDqchwP31m4H+a6qomw4ErnhKD4B1nMXnewCl1U+zrwXMnqmgWL2g2mblpGHGHCbz0kX924qdGIAvlVu4=
+	t=1772784455; cv=none; b=S883dSHK/z5Q/rzTfSU7v6pxOUpiju04rVIdiEnpbPoA2qiV+H5eOSNTJNK0hOLoLEld+If7cuutXRKRpBqPc2vt8T57DBF6nPyHhTu/i9ikQhOkDM7S90QoquILs1x0Qnx71xiOXfrxm0+rBpqbE4bqORqgd9uvSOWGoQTgUgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772784452; c=relaxed/simple;
-	bh=0PSUCIPceUqNzFeYd1+hSJLenT9NIokGGifSUmTxB5I=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=LOa5PJg3bvKR4Gvf5BaFsgNh/gvcy3y0axiIrYxDlolywlZ/JNw7UtbiRdAY4dWrDULm54OFNDsgft5jdJ08Jo1JriByGF/4cxRm6TX+/XgPfSqrgRFAfnxeljFBXjvsrRApmsv4sDRtzUu+lGvql6vTuNRaX2Skizw/sCvn4bE=
+	s=arc-20240116; t=1772784455; c=relaxed/simple;
+	bh=rA0xsKEWLoSL7d6YL/W1K60UqPk7UAphRD9sgfecE0E=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
+	 In-Reply-To:To:CC; b=UBzDa9rvEeHQ/4BwbdVw2v9Tm+Kqqjl4+xvv8QHxJ9JkFHzvASiALvfXFE6UA/dhogxuvezz8MI5QldBo9+mqO6CkTk0uB8BpYPLlZAEhEPRwAvmv9nvIg1vvKhGoRqQkyjKfjnE/zOuAsJvchGxG3OomQyTmzHR3gToMSq+BrY=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
@@ -39,10 +40,9 @@ Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
  (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
  Transport; Fri, 6 Mar 2026 16:07:24 +0800
 From: Ryan Chen <ryan_chen@aspeedtech.com>
-Subject: [PATCH v2 0/5] AST2700-A2 interrupt controller hierarchy and route
- support
-Date: Fri, 6 Mar 2026 16:07:22 +0800
-Message-ID: <20260306-irqchip-v2-0-f8512c09be63@aspeedtech.com>
+Date: Fri, 6 Mar 2026 16:07:23 +0800
+Subject: [PATCH v2 1/5] dt-bindings: interrupt-controller: aspeed: Add
+ AST2700-A2 support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -51,10 +51,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADqLqmkC/2XMQQ7CIBCF4as0sxYzUAV15T1MFwhTmYUtQkM0D
- XcXu3X5v7x8K2RKTBku3QqJCmeepxZq14ELdnqQYN8aFCqNCo+C08sFjsKQpbHX5uDpDO0dE43
- 83qTb0DpwXub02eAif+u/UaRAccdeIqF2eDJXmyORX8iFvZufMNRav9yPHkKjAAAA
-X-Change-ID: 20260205-irqchip-7eaef3674de9
+Message-ID: <20260306-irqchip-v2-1-f8512c09be63@aspeedtech.com>
+References: <20260306-irqchip-v2-0-f8512c09be63@aspeedtech.com>
+In-Reply-To: <20260306-irqchip-v2-0-f8512c09be63@aspeedtech.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, "Andrew
  Jeffery" <andrew@codeconstruct.com.au>, Paul Walmsley <pjw@kernel.org>,
@@ -65,147 +64,274 @@ CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
 	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
 	<linux-riscv@lists.infradead.org>, Ryan Chen <ryan_chen@aspeedtech.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772784443; l=5168;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772784443; l=9398;
  i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
- bh=0PSUCIPceUqNzFeYd1+hSJLenT9NIokGGifSUmTxB5I=;
- b=hJTAyRqnx1y8giHIs4LBYSt2euROumgnoG8e0HkfV1lxs6iTbtkRMlwrhD0i7o1btjlrxMIcC
- whJbq90d7RCC1pXHt3+FNmDXpc4frGwSoJc9s4cNFY45C+sZ+XtdyXz
+ bh=rA0xsKEWLoSL7d6YL/W1K60UqPk7UAphRD9sgfecE0E=;
+ b=/qb6MI+j8NIkYFb/d31oTYZ4V2/gZ64YXf6Z9Zfs4Kbzka9bHU/ZiHcHzMmh3QKgfkZWivx7s
+ 4UtFkEayK0hBsWKGyj4YgBxj5OGSiMw5G1J1a0KhUxU5sSErNDU2nxL
 X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
  pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
-X-Rspamd-Queue-Id: 8EABC21CDF9
+X-Rspamd-Queue-Id: 945D221CD87
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.54 / 15.00];
-	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271872-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-271873-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.184.161.160:email];
 	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.979];
+	NEURAL_HAM(-0.00)[-0.973];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[aspeedtech.com:mid,aspeedtech.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,aspeedtech.com:mid,aspeedtech.com:email]
 X-Rspamd-Action: no action
 
+Introduce a new binding describing the AST2700 interrupt controller
+architecture implemented in the A2 production silicon.
+
 The AST2700 SoC has undergone multiple silicon revisions (A0, A1, A2)
-prior to mass production.
+prior to mass production. The interrupt architecture was substantially
+reworked after the A0 revision for A1, and the A1 design is retained
+unchanged in the A2 production silicon.
 
-A0 laid the ground-work with a split controller design (INTC0 and
-INTC1) used for early development and bring-up. The interrupt
-architecture was substantially reworked in the A1 to introduce an
-explicit routing model and clearer hierarchy, though the split
-controllers remained. The A1 interrupt architecture is unchanged in A2.
+The existing AST2700 interrupt controller binding was written against
+the pre-production A0 design. That binding does not accurately describe
+the interrupt hierarchy and routing model present in A1/A2, where
+interrupts can be routed to multiple processor-local interrupt
+controllers (Primary Service Processor (PSP) GIC, Secondary Service
+Processor (SSP)/Tertiary Service Processor (TSP) NVICs, and BootMCU
+APLIC) depending on the execution context.
 
-A2 is the production design. A0 and A1 are pre-production silicon and
-are no longer intended for deployment outside of ASPEED.
-
-The existing binding and driver were written against A0 prior to the A1
-rework. The A0 design directly wired INTC1 instances to INTC0, and
-INTC0 to the GIC of the Primary Service Processor (PSP, a Cortex-A35).
-The A0 binding and driver therefore do not account for the alternative
-destinations of the Secondary and Tertiary Service Processors (SSP,
-TSP) and BootMCU, or the necessary route selection logic present in the
-production design.
-
-With the above context, this series replaces the existing binding and
-driver.
-
-It is not necessary for projects to maintain support for A0 due to its
-pre-production nature, and between Linux, U-Boot and Zephyr there are
-no upstream devicetree users of the current binding.
-
-The new binding uses localised interrupt numbers and models the
-hardware connectivity between interrupt controllers using the
-aspeed,interrupt-ranges property. It is introduced in a new file before
-the existing binding is removed in order to keep the diff readable.
-
-The INTC0 driver creates a hierarchical irqdomain under the selected
-upstream interrupt controller and implements route resolution logic.
-INTC1 driver instances defer route selection to INTC0 and expose a
-linear interrupt namespace to their parent.
-
-A brief history of related submissions
---------------------------------------
-
-Some modifications to the existing binding were sent to the lists in
-the past. Due to process choices the revisions were difficult to track.
-They are listed below.
-
-The approaches took several forms but ended in the minor adjustment in
-v6 being applied. This enabled use of the A1 design but requires
-assumptions about platform route configuration defined in firmware.
-These assumptions are removed by this current series.
-
-* [PATCH] dt-bindings: interrupt-controller: aspeed: Refine AST2700 binding description and example
-  https://lore.kernel.org/all/20250714071753.2653620-1-ryan_chen@aspeedtech.com/
-
-* [PATCH v2] dt-bindings: interrupt-controller: aspeed: Add parent node compatibles and refine documentation
-  https://lore.kernel.org/all/20250715024258.2304665-1-ryan_chen@aspeedtech.com/
-
-* [PATCH v3 0/2] irqchip: aspeed: Add AST2700 INTC debugfs support and yaml update
-  https://lore.kernel.org/all/20250722095156.1672873-1-ryan_chen@aspeedtech.com/
-
-* [PATCH v4 0/2] irqchip/ast2700-intc: Add AST2700 INTC debugfs support and yaml update
-  https://lore.kernel.org/all/20250812100830.145578-1-ryan_chen@aspeedtech.com/
-
-* [PATCH v5 0/3] AST2700 interrupt controller hierarchy support
-  https://lore.kernel.org/all/20251022065507.1152071-1-ryan_chen@aspeedtech.com/
-
-* [PATCH v6 0/1] Update correct AST2700 interrupt controller binding
-  https://lore.kernel.org/all/20251030060155.2342604-1-ryan_chen@aspeedtech.com/
+Hardware connectivity between interrupt controllers is expressed using
+the aspeed,interrupt-ranges property.
 
 Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+
 ---
 Changes in v2:
-- Change suject to "AST2700-A2 interrupt controller hierarchy and route
-  support".
-- Describe timeline for (pre-)production design evolution and
-  binding development to support the break in compatibility.
-- fix "make dt_binding_check" compatible string consistance with
-  example.
-- Split KUnit coverage out of the main driver patch.
-- Link to v1: https://lore.kernel.org/r/20260205-irqchip-v1-0-b0310e06c087@aspeedtech.com
-
+- Describe AST2700 A0/A1/A2 design evolution.
+- Drop the redundant '-ic' suffix from compatible strings.
+- Expand commit message to match the series cover letter context.
+- fix ascii diagram
+- remove intc0 label
+- remove spaces before >
+- drop intc1 example
 ---
-Ryan Chen (5):
-      dt-bindings: interrupt-controller: aspeed: Add AST2700-A2 support
-      irqchip/ast2700-intc: Add AST2700-A2 support
-      irqchip/ast2700-intc: Add KUnit tests for route resolution
-      irqchip/aspeed-intc: Remove AST2700-A0 support
-      dt-bindings: interrupt-controller: aspeed: Remove AST2700-A0 support
+ .../aspeed,ast2700-interrupt.yaml                  | 189 +++++++++++++++++++++
+ 1 file changed, 189 insertions(+)
 
- .../interrupt-controller/aspeed,ast2700-intc.yaml  |  90 ----
- .../aspeed,ast2700-interrupt.yaml                  | 189 +++++++
- drivers/irqchip/.kunitconfig                       |   5 +
- drivers/irqchip/Kconfig                            |  23 +
- drivers/irqchip/Makefile                           |   3 +-
- drivers/irqchip/irq-aspeed-intc.c                  | 139 -----
- drivers/irqchip/irq-ast2700-intc0-test.c           | 473 +++++++++++++++++
- drivers/irqchip/irq-ast2700-intc0.c                | 584 +++++++++++++++++++++
- drivers/irqchip/irq-ast2700-intc1.c                | 282 ++++++++++
- drivers/irqchip/irq-ast2700.c                      | 106 ++++
- drivers/irqchip/irq-ast2700.h                      |  47 ++
- 11 files changed, 1711 insertions(+), 230 deletions(-)
----
-base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-change-id: 20260205-irqchip-7eaef3674de9
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-interrupt.yaml b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-interrupt.yaml
+new file mode 100644
+index 000000000000..13398ff8be12
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/aspeed,ast2700-interrupt.yaml
+@@ -0,0 +1,189 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/aspeed,ast2700-interrupt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ASPEED AST2700 Interrupt Controllers (INTC0/INTC1)
++
++description: |
++  The ASPEED AST2700 SoC integrates two interrupt controller designs:
++
++    - INTC0: Primary controller that routes interrupt sources to upstream,
++      processor-specific interrupt controllers
++
++    - INTC1: Secondary controller whose interrupt outputs feed into
++      INTC0
++
++  The SoC contains four processors to which interrupts can be routed:
++
++    - PSP: Primary Service Processor (Cortex-A35)
++    - SSP: Secondary Service Processor (Cortex-M4)
++    - TSP: Tertiary Sevice Processor (Cortex-M4)
++    - BMCU: Boot MCU (a RISC-V microcontroller)
++
++  The following diagram illustrates the overall architecture of the
++  ASPEED AST2700 interrupt controllers:
++
++                  +-----------+                +-----------+
++                  |   INTC0   |                | INTC1(0)  |
++                  +-----------+                +-----------+
++                  |   Router  | +-----------+  |   Router  |
++                  | out   int | +Peripheral +  | out   int |
++  +-----------+   |  0     0  <-+Controllers+  | INTM      | +-----------+
++  |PSP GIC  <-|---+  .     .  | +-----------+  |  .     .  <-+Peripheral +
++  +-----------+   |  .     .  |                |  .     .  | +Controllers+
++  +-----------+   |  .     .  |                |  .     .  | +-----------+
++  |SSP NVIC <-|---+  .     .  <----------------+  .     .  |
++  +-----------+   |  .     .  |                |  .     .  |
++  +-----------+   |  .     .  <--------        |  .     .  |
++  |TSP NVIC <-|---+  .     .  |       |    ----+  .     .  |
++  +-----------+   |  .     .  |       |    |   |  O     P  |
++                  |  .     .  |       |    |   +-----------+
++                  |  .     .  <----   |    --------------------
++                  |  .     .  |   |   |        +-----------+  |
++                  |  M     N  |   |   ---------+  INTC1(1) |  |
++                  +-----------+   |            +-----------+  |
++                                  |                  .        |
++                                  |            +-----------+  |
++                                  -------------+  INTC1(N) |  |
++                                               +-----------+  |
++  +--------------+                                            |
++  + BMCU APLIC <-+---------------------------------------------
++  +--------------+
++
++  INTC0 supports:
++    - 128 local peripheral interrupt inputs
++    - Fan-in from up to three INTC1 instances via banked interrupt lines (INTM)
++    - Local peripheral interrupt outputs
++    - Merged interrupt outputs
++    - Software interrupt outputs (SWINT)
++    - Configurable interrupt routes targeting the PSP, SSP, and TSP
++
++  INTC1 supports:
++    - 192 local peripheral interrupt inputs
++    - Banked interrupt outputs (INTM, 5 x 6 banks x 32 interrupts per bank)
++    - Configurable interrupt routes targeting the PSP, SSP, TSP, and BMCU
++
++  One INTC1 instance is always present, on the SoC's IO die. A further two
++  instances may be attached to the SoC's one INTC0 instance via LTPI (LVDS
++  Tunneling Protocol & Interface).
++
++  Interrupt numbering model
++  -------------------------
++  The binding uses a controller-local numbering model. Peripheral device
++  nodes use the INTCx local interrupt number (hwirq) in their 'interrupts' or
++  'interrupts-extended' properties.
++
++  For AST2700, INTC0 exposes the following (inclusive) input ranges:
++
++    - 000..479: Independent interrupts
++    - 480..489: INTM0-INTM9
++    - 490..499: INTM10-INTM19
++    - 500..509: INTM20-INTM29
++    - 510..519: INTM30-INTM39
++    - 520..529: INTM40-INTM49
++
++  INTC0's (inclusive) output ranges are as follows:
++
++    - 000..127: 1:1 local peripheral interrupt output to PSP
++    - 144..151: Software interrupts from the SSP output to PSP
++    - 152..159: Software interrupts from the TSP output to PSP
++    - 192..201: INTM0-INTM9 banked outputs to PSP
++    - 208..217: INTM30-INTM39 banked outputs to PSP
++    - 224..233: INTM40-INTM49 banked outputs to PSP
++    - 256..383: 1:1 local peripheral interrupt output to SSP
++    - 384..393: INTM10-INTM19 banked outputs to SSP
++    - 400..407: Software interrupts from the PSP output to SSP
++    - 408..415: Software interrupts from the TSP output to SSP
++    - 426..553: 1:1 local peripheral interrupt output to TSP
++    - 554..563: INTM20-INTM29 banked outputs to TSP
++    - 570..577: Software interrupts from the PSP output to TSP
++    - 578..585: Software interrupts from the SSP output to TSP
++
++  Inputs and outputs for INTC1 instances are context-dependent. However, for the
++  first instance of INTC1, the (inclusive) output ranges are:
++
++    - 00..05: INTM0-INTM5
++    - 10..15: INTM10-INTM15
++    - 20..25: INTM20-INTM25
++    - 30..35: INTM30-INTM35
++    - 40..45: INTM40-INTM45
++    - 50..50: BootMCU
++
++maintainers:
++  - ryan_chen@aspeedtech.com
++  - andrew@codeconstruct.com.au
++
++properties:
++  compatible:
++    enum:
++      - aspeed,ast2700-intc0
++      - aspeed,ast2700-intc1
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 1
++    description: Single cell encoding the INTC local interrupt number (hwirq).
++
++  aspeed,interrupt-ranges:
++    description: |
++      Describes how ranges of controller output pins are routed to a parent
++      interrupt controller.
++
++      Each range entry is encoded as:
++
++        <out count phandle parent-specifier...>
++
++      where:
++        - out:     First controller interrupt output index in the range.
++        - count:   Number of consecutive controller interrupt outputs and parent
++                   interrupt inputs in this range.
++        - phandle: Phandle to the parent interrupt controller node.
++        - parent-specifier: Interrupt specifier, as defined by the parent
++                            interrupt controller binding.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 3
++    items:
++      description: Range descriptors with a parent interrupt specifier.
++
++required:
++  - compatible
++  - reg
++  - interrupt-controller
++  - '#interrupt-cells'
++  - aspeed,interrupt-ranges
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    interrupt-controller@12100000 {
++        compatible = "aspeed,ast2700-intc0";
++        reg = <0x12100000 0x3b00>;
++        interrupt-parent = <&gic>;
++        interrupt-controller;
++        #interrupt-cells = <1>;
++
++        aspeed,interrupt-ranges =
++          <0 128 &gic GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++          <144 8 &gic GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++          <152 8 &gic GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
++          <192 10 &gic GIC_SPI 192 IRQ_TYPE_LEVEL_HIGH>,
++          <208 10 &gic GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>,
++          <224 10 &gic GIC_SPI 224 IRQ_TYPE_LEVEL_HIGH>,
++          <256 128 &ssp_nvic 0 0>,
++          <384 10 &ssp_nvic 160 0>,
++          <400 8 &ssp_nvic 144 0>,
++          <408 8 &ssp_nvic 152 0>,
++          <426 128 &tsp_nvic 0 0>,
++          <554 10 &tsp_nvic 160 0>,
++          <570 8 &tsp_nvic 144 0>,
++          <578 8 &tsp_nvic 152 0>;
++    };
 
-Best regards,
 -- 
-Ryan Chen <ryan_chen@aspeedtech.com>
+2.34.1
 
 
