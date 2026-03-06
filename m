@@ -1,212 +1,1001 @@
-Return-Path: <devicetree+bounces-272257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272258-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SBnNAwr9qmmcZAEAu9opvQ
-	(envelope-from <devicetree+bounces-272257-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:12:58 +0100
+	id gGGAAiH9qmkIZQEAu9opvQ
+	(envelope-from <devicetree+bounces-272258-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:13:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 678662249C1
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:12:57 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57DC32249DD
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:13:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 502BF3016C80
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 16:07:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3E42830BD4CF
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 16:08:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC5B53ED11E;
-	Fri,  6 Mar 2026 16:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0712536922B;
+	Fri,  6 Mar 2026 16:08:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="UUMSEGvB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VKFNhjXV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013064.outbound.protection.outlook.com [52.101.72.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFEA936680B;
-	Fri,  6 Mar 2026 16:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.64
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772813263; cv=fail; b=llX5GKqdc+XW4pUQ3Umg9AWNe9WqPup2JpIVe/uA35u47cFqzgXpPc77tV0Ma9xl1XBsjJRBI36aqszeO31AJwUwb7a4TK97TQo/JGc/8Xr+TwThOnfdiUyqVebIFuHihR/wAomX5KSCDNz6kw4VCZ3EHDcsNRuw1Ky/8bd9RUs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772813263; c=relaxed/simple;
-	bh=0hfg06xeXSXicFHjDN4vRIAkUAiuE0cJmUzl1jQmEPs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Cqp9ne8cOGoGEOYX/u9wVRgwF1Y4KOQF6lEftXgvgn0VYXzMaV9o3qqQdK3owCYqsAna+qq9aUjkgnZNg6zLu/m4ghiZn0pKT19p+jZCRvWPHe0xeFr2Qwkgxe6+U7dUnWdcN4pInA16t718Unx6DVRnTWEW4sGNd4P7ewoIREI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=UUMSEGvB; arc=fail smtp.client-ip=52.101.72.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=i5ib8zrfhx73VQm0oe7+exMCyICoKDDRaAEUDrZcIFMjvltr0Shkol97r2/Vp5D4RuLu0AeMuv9kgiYGocsS+OPu5rKRntxsdavlgGqj5b05jXE6JTer2iSIGVZqhKIpWqAJxHZkZTmN2UIQOKwH9kKSv1U62WzRwimy/M4EGDq/ZqVGUpillxBuPGwclrdwCRG1Hl0v9lFWvvw4fm79pX7qIDzcyQFRWkjtpNR1PkvrHB75PXyKl2r99vhPxM++qyldRb9KflQwPkXvt44VMEPIwCPftvDb9CXjS1cBShv961u7c95BU9AdaixkHQjO8RAyIUUMKqT/igkRtveXTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=13teqRpAijEkDHrBYLtnQL5M72RTqMo0xCMUPrUjwBI=;
- b=x98XEAR//9UUagScZ1Xy4tLNyi2EPIXpfJ84PkIqAn9aqIWY2VpKsuPU7jFuSbPOeccEyhS6WPWlmgUo1TXzXPgWWStrAG7d7kkg+QivHHgMjmKULAU3P+CtkUkQTvOquwN8BMgI6ITCxJxdJMHkZIzv5Ng+5eaFJcWU0qd9PoUADmeUsdPY7/P0Uw/1RYwhl4BBRDy6iWSAT08QOnmfoJ7YZzNdXzLP00oikgpdxU4XQ6tWA1GA86n20lBNNjfcpHXqa74Wl3Qd+riIpgLS4hCJZy/HD9DAbjgkdkArAap7/FrwmoNWayWmXnvfP0+sBRyGYaBGYfkZg7BDmxy62g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=13teqRpAijEkDHrBYLtnQL5M72RTqMo0xCMUPrUjwBI=;
- b=UUMSEGvBR0aSkqX3cBkyUYYvkujTiHSAz9+Hms1QSOKkVWWKnJSUddyAO/hazKW+TCbTIFsAUSV3XxwVOTqbhoO84pQjE7M5QK9Wym983EqjWhWq44wFtxcZCjkkfKbaiZrQpjNdREuJg8hMhyR1h7AoExBRtR1/mcD69KlVeN93l00aYwLP2cbsn58mz3O0SIM0BM3jEtTO9s+ZgLJ7YXwEHKOIR3P0hkA0bBvlFMBWdcBTrG5fmLPgmq5k9pRBzaflE72LqvTQztVPKzc7zJSDv9gMZ4Hay3mrWUpVtTEAFDwWD15ggIr0p3lgkf/5nbLEwFgMbIEBWh6C7BxfRg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by GV4PR04MB11822.eurprd04.prod.outlook.com (2603:10a6:150:2d8::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
- 2026 16:07:36 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Fri, 6 Mar 2026
- 16:07:35 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] ARM: dts: TQMa6: modify for use in bootloaders
-Date: Fri,  6 Mar 2026 11:07:18 -0500
-Message-ID: <177281321975.269574.15412276944981439762.b4-ty@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260220143008.186851-1-Max.Merchel@ew.tq-group.com>
-References: <20260220143008.186851-1-Max.Merchel@ew.tq-group.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH5P222CA0011.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:34b::15) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816D533C188
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 16:08:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772813301; cv=none; b=AMZ9BgSraN1/xX308PHYrkgi6RDWxR4FsQ36M2vJ5SccY8r17oZlquupI72HxzMDLGiZdCmryPYTwl9juyhD2r6BGaKbqPQJ+8x+pCE0VcmI2IdLHD4W2GUP8paTLv8BLfS+CgQxKMuKcgGUDmGsbPj5WCgNVSTBTMcpe1Z5I/U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772813301; c=relaxed/simple;
+	bh=6pjbvKg/HIEpaFR9Dy1akYWpmr5bnjK8Ppo+DkAOGDk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kZkVlcrzmndNzPSAJDj9JdhXiZcjh0UKpD9bi3KDIS4DxdO6uYMu5YuYpW1RhJT2eBaovsb421oacxmh5ngKOTCWi2VGdq9QkVBHIU8L1V/ug8K/ebx2IKoaoH6SDcTkb2D89cnAV1yMmoiADf8PumUvrmTpWMP8Nr5BVePK1mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VKFNhjXV; arc=none smtp.client-ip=74.125.82.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f53.google.com with SMTP id a92af1059eb24-128b9b7e3edso3163680c88.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 08:08:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772813297; x=1773418097; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CAVlKUH9jpvj5WlAQmACH0A2lh2Tdjs98foQfVfPePU=;
+        b=VKFNhjXV+CmT8y9uYgtYv09YTJ5ihxU2eoCts6dDihieQJU3Rc3eKLxrEQvZNzrXMY
+         upG/WUZ/VtQJ05Yhz4bfBk0jo8kAmEasPl0YB+lCFX2JJ/mkZ0HX4huq60ohloEWFhq0
+         gmQFblcOXUq+fYN/k4qz0Guu/X8Q9lnB2dIz2BdM19hUC5yU372IRgdfTvUy0AotPQBd
+         Wx4xjJeXD+CD/2+N0DPf+rojidiRLXrbj0EV3wa3uUqy6V9T/Wu90RRm2n5hAmbX99i2
+         hWodvA+b4XRSgFplV32/GX9V1e/2+riwHH5Mp/OITI/F6Lub+06We3DB67Y+Yw8anA9w
+         gbhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772813297; x=1773418097;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:sender
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CAVlKUH9jpvj5WlAQmACH0A2lh2Tdjs98foQfVfPePU=;
+        b=nD0dCoYMIqgy3++OjGrCJ5VgIdPlgBGkrL8b9EceVmj1Ba58Dbt9mLxvVDtQbB5qEn
+         3hCWFJif8ckSVnsDdiD5R2n8+PI/rKa9cLIJQkLj+StSfZspJqvL226/lcWLozXaSwi1
+         JaO6uaSTQndZq+sQWQbWMmJeyaKYPDD/j7zWLN+jmaB7ZNazX81ymAiwBX/i10g84WvY
+         qEk3hba18kCGq02X1VBXfuf/CoQ+GbOjucTjGomNldWwfNsGASj5AIZfmrOPKlfCHNEN
+         FT04A0eMpMNjpC74RqFboDewTjTH1jFyaVKUatRcCx25S7JPKcdNJv+xV4fZRDr2BFR7
+         761A==
+X-Forwarded-Encrypted: i=1; AJvYcCUnClu1n53c+WFYCPmVdHKtaWIy0c0rI3bPfisNB5rfenlk68ly8GCI2OVM1lMFYHOf9ru2L2f69Wpy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvG8bx37HzuRiDp5oaf8Y9iZbez9gLkfYalTASw1tf/+0wGnxa
+	doXIxBB8tyENDpSuZnz4DF/hAvdJWxLJHSaelB8d562xHhW8yNnKAPkC
+X-Gm-Gg: ATEYQzz5L2FeldS9kCEmAWVrd2AIexyzoQ9bV00nI4oA14NHxN/J+MrP39MPyg6+0Ef
+	78RuCxeKMvDb8HVAL0Vgc73dIxJPjibvtdSjr5u/rkXHRiVn+HvwvN0MqcO6+XNsEn/cKJx0f7t
+	BHHTjWLdRSZikNAJDUx5YYCuBvejob9nr8IZ5UboYE1ou0b5m4y3iu1yDALMACenb9MnJ8ASVMu
+	obb5OtZd8+rs38QxcNZf3/lQm3RC9KxR9NPjQJSjCfvCaOF8QBuiAxwvBiGjZmPHKM+YZ90EM38
+	SR9FbThzEjgHpyBuGe8ZehB6rd8NcpiUSQb7b7/Uq62f2Xp6I3mT3Tt5IHIrtg6ty74N0jUIVDL
+	/wqx9rIoGUIQu1JI/HdsFk5T3vBtYd5cHqCALJu3mued907dpxRxDmlGohgs3B66v73hLyTU8wg
+	bGBo3CaIPxZsPEgPPTgvqCchTsGdL8CXAb44CC
+X-Received: by 2002:a05:7300:cd90:b0:2be:d62:abeb with SMTP id 5a478bee46e88-2be4e0948bamr1012209eec.39.1772813297016;
+        Fri, 06 Mar 2026 08:08:17 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be4f96aa32sm1416533eec.26.2026.03.06.08.08.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Mar 2026 08:08:16 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Fri, 6 Mar 2026 08:08:14 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: hehuan1@eswincomputing.com
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, luyulin@eswincomputing.com
+Subject: Re: [PATCH v3 2/2] hwmon: Add Eswin EIC7700 PVT sensor driver
+Message-ID: <b0ba418b-a291-456f-a7d8-b1350955864e@roeck-us.net>
+References: <20260306094312.1043-1-hehuan1@eswincomputing.com>
+ <20260306094718.1203-1-hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GV4PR04MB11822:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc5e6811-8801-45f7-5e4e-08de7b9a7ad1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|19092799006|52116014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	/udeURXeUeRMjLTHHtYMQcvLdY+sAeLvqFffq6YMp/M+q4u1ky206ZAnfGMJIxxJMwvCfu3+bJ0dflXB3Kok7KINw6FTKNOHQYuDbUJjBcj582H8J/i1jRrxtLWc3kpbdxSTEYhgrZvSeuiwvW+ypB/YT6OBlQGEIV4R9PKozjJ8sIJwf4kgn1HttCkGkh4NUvTcxQUwCf3tvq08ePF/+HJikyoxipaakkJ2JDkqjcGmuW2xkz4z5a17rClOTtKf2/dUOhYFDfIJLoiIqaerY7L1f6getwIQNwel7PFCsduuGHs6MnqeO9QkO8wetKF4Cg62VzqbUzEtcVbOpxssWPRCnsS1bqi8++7tE5bkOuDTk+cZMhSzmip969PsL2dxggUDEJlm540NyIuEsIaa8iwJw334bviLtSHiitdEw4eybkJIESuGt5ca9BcZkPk1JVRw+4C4Eh+AbHLztreprF4/MaN7fBa2Gz6N7fFRCHPG1lND1muW6kKiVVUnfttnCHkVCvZL87J4JamO3uTVxUj7ykVLveYkkmLXbs4ELSvDynZC5l2jkOtin0RXARQNrB+RH+jA3wmjh0lIz2T9e8grEK/IaRRobNHqQdGbkQjE/xzpatVpzHCD9XB7ESvsO1XcGcE8bbkIJTvGKmaJAt6idbZ6En53HM5AS7DV2IpSDWZm13HoT56aOXDtC1Ybnubyu/rOfEMlr92XAtKwQgf3tvMH9xOedov5oT+Gv6fumkVO+AcUFc9vh4MdhUoa0ze9E2NbgXpOM2s+KGjUyB7Sp0Wd45dLp9U7izhOx3Y=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(19092799006)(52116014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?b2h2MG5jOURQeEZ5L2pDWlpzdUF3cEYxQWtUUkZCa015YmVkMUtRRG1lZVNF?=
- =?utf-8?B?aGRaZCtEOW54YytJOG01WFQwQ2pMeGF5dkdnS1ZhMDNLWE1nNWJteEFrVkpu?=
- =?utf-8?B?MzdYYlVrTnVRb0ZEZmhMU3NLd3FQSkt1aVN2d2gxbnRRZVhkZXJ6T3hxSmth?=
- =?utf-8?B?Ymh5Q1p3Wks0YlM5T2lqMkFNQ0dld1hQSjFMd0x4T3BPczc5dEYzcFZocUlk?=
- =?utf-8?B?Y3A4NEt5cWtjY3ZGUW0wY3ZIZW5ZNUdEbnpVWkZ2ZGN6V1dXMW40eDB1N09B?=
- =?utf-8?B?S2l0Q2VLWmxvUEtjWC9Ga0x2dnlVSlQ5SWdWU1FzU1BuTzhTby91VHVOSVJF?=
- =?utf-8?B?OVV6UWdYT01HSzVPQmQ5WVA4aitPVXQzZVc2L0g2QzVpWWo4OTQ3U2lma2Zk?=
- =?utf-8?B?KzlwS09SZnNVWVBxS1cveTZ0ektYWlFoOWhocFRJNDRsUXJhaVNxRm92S3pl?=
- =?utf-8?B?ZjIvc2p3d0pzdTgvMmJFZmRhS2tDWWE2d2RWaWZmaTV0Q1M3eWF4MFFVb1Q2?=
- =?utf-8?B?bGRQUTA3bjUyUmlnRVRrRUlTZ0tPaUlrTGRaNlJXWExXZUdaTnlOakxxY0hU?=
- =?utf-8?B?N1A1eWRscysxRjdtRENBYXVZUUMxNkJQd0ttMTVEVG5DNmFReS9WWVBwTmx3?=
- =?utf-8?B?QmtUYjhBUWhINmEvMHlDNlJzZ3crZ0JLTEZNdjFyeVJzSTg0OEpQbU50WXBI?=
- =?utf-8?B?VW5KZE5aR2hFTStHaGF2Zm1kU0RqVERBNlFxRUJxdFRvV2VEZDBpVWJZTmwx?=
- =?utf-8?B?UEhKa2JESldkTG96andDbEpocCtZeWNtVTJEUnQwbGZqeHBvWFpIK0xFQ2JQ?=
- =?utf-8?B?MkdGN2VsbU5MTnFoejNOTVY5aE1XYVdIVmx4QUttbGlFYlJBcWh0SWdTbXdD?=
- =?utf-8?B?MEVrbVNIaTNheVV6L2dHVmYyVjlObVllZE1vdVdOYXR2bHc2YTE2VmJkNW9l?=
- =?utf-8?B?d0JBQ3RadjBUa3lCRFZsdXNPVXhkV3lwNlRvVWRjT3VhcmhVcFNVbGRJSVZT?=
- =?utf-8?B?Y1FmTytKNXZGS2ZhSmdIMUwyTERlUGdHeE1OYU1RMjd4SjZvWFZMMDRoYzRs?=
- =?utf-8?B?d3Z5L0ZZUnMvNnU5M1luZjJEMWI4Uk5vY0FINDBzdlRmL1g3UDVnRVczUnF2?=
- =?utf-8?B?NHlSeThtN2lZcHlnbHplUU50TUowNWFBbVhYTkxjR2ZRbUVHUTFhZTVxSlpM?=
- =?utf-8?B?b0YvRXp4eHlLUXBiOW1QUklISTVETHBqaEF3d2pscmRnaGpFMEREM3V6RDNy?=
- =?utf-8?B?NU52M1lDazArN1JuS1daR1pxejJLWDRaTlBsa09XR041SXJtc0lCdnZxTnAx?=
- =?utf-8?B?T2VnWFpjK2JQMEFvR3UvZGtRTSs5NVhRMGN0eDZZdjErOW41a2tPbnUwenZq?=
- =?utf-8?B?MHNlVHdtWkNoNFlrMTlNcTQrQUFJOXBsajdoOHJZVnFGRVhhVTZQbmJrdGp4?=
- =?utf-8?B?RVYxM3dLb3FuczI2RkFlQ1Q5RG0yeUMveXZGd0l5RHdMVGgycStVYUtraW5N?=
- =?utf-8?B?bmNxdER5WXI1MUZlNFJPNENiOHlpNlJBb3h4ZFh3R0lYYlRlSlBJODB5OU43?=
- =?utf-8?B?Z1dKMEZ0aEdsdFBldXQ5Y0xuTWhMbXdybkxFT1RqcGtWSFRXUGVzNTR1Rit0?=
- =?utf-8?B?T2QwYXRPNm9GVkx6U21NcDBCY3lsZ04rMnNGNzZlczlyM1hGQWtyQ0Fhb01o?=
- =?utf-8?B?L09LLzkvbUF4Mm5UbWErSjhpMzBaSll1KzhXNERVSER0TVRWbzliOXJZY2JN?=
- =?utf-8?B?bEp1NDJkN2JIYW1iS1FoNVJKODJjRkZJZytSenNLRkp5ZlR6Z1lFeUQ5eERu?=
- =?utf-8?B?RG5DVUsxbldtTUxJb2R0Qkx4RWVmY1ZQYURYcldKK2dmV090ekE5RmFXc1VJ?=
- =?utf-8?B?WEVzdUpDYjhVQS8ydG1wcHJQOFhEVFhFY3pxS0Rid2xEVzJyVEttMFFTYmkr?=
- =?utf-8?B?Qkg2YWxQQ2FVRkpvWFJWVUxmOG42d09PQ3B1clB0eGhBRGdBbHpIR1NXOEM3?=
- =?utf-8?B?TVlRRkdQWk12OXBlb1RpZzdzTWdaOGtuaEJLQnVQdHM5K0tnZ05zTXZHOUpG?=
- =?utf-8?B?Z0tyQ1ZSbHkzZEpDQTEzbXlIcHFBWjFtbjVqMmlLRkZKVjJqSnV6enpYOFlX?=
- =?utf-8?B?N2hrWk1NdHF3cHVpakpFeVIxZEwwbnAzam55YlpscjZIZ1RtZXE5NWZjbDVJ?=
- =?utf-8?B?cTNSU2x2U1Z4SVBYYktGUy9NcytnK0lkQ3FUVmFCK0xqLzdrNWE3UkNNTkdu?=
- =?utf-8?B?Y1lzNjhBOHgzZENnaHM3dEJ2dXFURGRibVFsam9hUk02YzgrNDdEQSt5SjB1?=
- =?utf-8?B?QnhsSGZ0Ump5clV6a2QrdGU2TTVSQkNVcWVpZmJlU0RyVWFGVE54dz09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc5e6811-8801-45f7-5e4e-08de7b9a7ad1
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 16:07:35.2295
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9gyrutyBFAa/QNB8vs298YlGTes/2OIGuOMmAWlW7XRlgCkY0QIr+ljPNtEt2g6SY8NpRYZa/1yxEIDsW/wgQA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11822
-X-Rspamd-Queue-Id: 678662249C1
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260306094718.1203-1-hehuan1@eswincomputing.com>
+X-Rspamd-Queue-Id: 57DC32249DD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272257-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,ew.tq-group.com];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272258-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[roeck-us.net];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-0.978];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_NONE(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid]
+	NEURAL_HAM(-0.00)[-0.973];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,roeck-us.net:mid,eswincomputing.com:email]
 X-Rspamd-Action: no action
 
-
-On Fri, 20 Feb 2026 15:30:01 +0100, Max Merchel wrote:
-> This series contains modifications for using Linux device trees
-> in bootloaders. Changes from U-Boot bootloader are incorporated
-> directly into the Linux device trees.
+On Fri, Mar 06, 2026 at 05:47:18PM +0800, hehuan1@eswincomputing.com wrote:
+> From: Huan He <hehuan1@eswincomputing.com>
 > 
-> Changes in v2:
-> Improved commit messages for commits that add boot-phase properties.
+> Add support for ESWIN EIC7700 Process, Voltage and Temperature sensor. The
+> driver supports temperature and voltage monitoring with polynomial
+> conversion, and provides sysfs interface for sensor data access.
 > 
-> [...]
+> The PVT IP contains one temperature sensor and four voltage sensors for
+> process variation monitoring.
+> 
+> Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
+> Signed-off-by: Huan He <hehuan1@eswincomputing.com>
 
-Applied, thanks!
+Feedback from AI review inline.
 
-[1/4] ARM: dts: imx6qdl-tqma6: add missing labels
-      commit: 1153d2e24eb466c73bc12eeaa6045781d8c32b72
-[2/4] ARM: dts: imx6qdl: add boot phase properties
-      commit: 60d7f4ad760bd6803756e2ef4bfe3d716de8a2bd
-[3/4] ARM: dts: imx6qdl-tqma6: add boot phase properties
-      commit: 3ff92e7fbbaeab51dd54b22774353ede11ef4b72
-[4/4] ARM: dts: imx6qdl-mba6: add boot phase properties
-      commit: 8ef9e4c3306a22ab760d9c8f5514c6f315091f6e
+> ---
+>  drivers/hwmon/Kconfig       |  12 +
+>  drivers/hwmon/Makefile      |   1 +
+>  drivers/hwmon/eic7700-pvt.c | 634 ++++++++++++++++++++++++++++++++++++
+>  drivers/hwmon/eic7700-pvt.h | 108 ++++++
+>  4 files changed, 755 insertions(+)
+>  create mode 100644 drivers/hwmon/eic7700-pvt.c
+>  create mode 100644 drivers/hwmon/eic7700-pvt.h
+> 
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 41c381764c2b..d2dbf70f04c1 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2043,6 +2043,18 @@ config SENSORS_DME1737
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called dme1737.
+>  
+> +config SENSORS_EIC7700_PVT
+> +	tristate "Eswin EIC7700 Process, Voltage, Temperature sensor driver"
+> +	depends on ARCH_ESWIN || COMPILE_TEST
+> +	depends on HWMON
+> +	select POLYNOMIAL
+> +	help
+> +	  If you say yes here you get support for Eswin EIC7700 PVT sensor
+> +	  embedded into the SoC.
+> +
+> +	  This driver can also be built as a module. If so, the module will be
+> +	  called eic7700-pvt.
+> +
+>  config SENSORS_EMC1403
+>  	tristate "SMSC EMC1403/23 thermal sensor"
+>  	depends on I2C
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index eade8e3b1bde..1b2845bd5a54 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -72,6 +72,7 @@ obj-$(CONFIG_SENSORS_DME1737)	+= dme1737.o
+>  obj-$(CONFIG_SENSORS_DRIVETEMP)	+= drivetemp.o
+>  obj-$(CONFIG_SENSORS_DS620)	+= ds620.o
+>  obj-$(CONFIG_SENSORS_DS1621)	+= ds1621.o
+> +obj-$(CONFIG_SENSORS_EIC7700_PVT) += eic7700-pvt.o
+>  obj-$(CONFIG_SENSORS_EMC1403)	+= emc1403.o
+>  obj-$(CONFIG_SENSORS_EMC2103)	+= emc2103.o
+>  obj-$(CONFIG_SENSORS_EMC2305)	+= emc2305.o
+> diff --git a/drivers/hwmon/eic7700-pvt.c b/drivers/hwmon/eic7700-pvt.c
+> new file mode 100644
+> index 000000000000..c4ac4f504080
+> --- /dev/null
+> +++ b/drivers/hwmon/eic7700-pvt.c
+> @@ -0,0 +1,634 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * ESWIN EIC7700 Process, Voltage, Temperature sensor driver
+> + *
+> + * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd.
+> + *
+> + * Authors:
+> + *   Yulin Lu <luyulin@eswincomputing.com>
+> + *   Huan He <hehuan1@eswincomputing.com>
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/polynomial.h>
+> +#include <linux/reset.h>
+> +#include "eic7700-pvt.h"
+> +
+> +static const struct pvt_sensor_info pvt_info[] = {
+> +	PVT_SENSOR_INFO(0, "Temperature", hwmon_temp, TEMP),
+> +	PVT_SENSOR_INFO(0, "Voltage", hwmon_in, VOLT),
+> +	PVT_SENSOR_INFO(1, "Low-Vt", hwmon_in, LVT),
+> +	PVT_SENSOR_INFO(2, "UltraLow-Vt", hwmon_in, ULVT),
+> +	PVT_SENSOR_INFO(3, "Standard-Vt", hwmon_in, SVT),
 
-Best regards,
--- 
-Frank Li <Frank.Li@nxp.com>
+[not from AI]
+
+Are those limits reported as voltages ? If so, that would violate the ABI.
+
+> +};
+> +
+> +/*
+> + * The original translation formulae of the temperature (in degrees of Celsius)
+> + * to PVT data and vice-versa are following:
+> + * N = 6.0818e-8*(T^4) +1.2873e-5*(T^3) + 7.2244e-3*(T^2) + 3.6484*(T^1) +
+> + *     1.6198e2,
+> + * T = -1.8439e-11*(N^4) + 8.0705e-8*(N^3) + -1.8501e-4*(N^2) +
+> + *     3.2843e-1*(N^1) - 4.8690e1,
+> + * where T = [-40, 125]C and N = [27, 771].
+> + * They must be accordingly altered to be suitable for the integer arithmetics.
+> + * The technique is called 'factor redistribution', which just makes sure the
+> + * multiplications and divisions are made so to have a result of the operations
+> + * within the integer numbers limit. In addition we need to translate the
+> + * formulae to accept millidegrees of Celsius. Here what they look like after
+> + * the alterations:
+> + * N = (60818e-20*(T^4) + 12873e-14*(T^3) + 72244e-9*(T^2) + 36484e-3*T +
+> + *     16198e2) / 1e4,
+> + * T = -18439e-12*(N^4) + 80705e-9*(N^3) - 185010e-6*(N^2) + 328430e-3*N -
+> + *     48690,
+> + * where T = [-40000, 125000] mC and N = [27, 771].
+> + */
+> +static const struct polynomial poly_N_to_temp = {
+> +	.total_divider = 1,
+> +	.terms = {
+> +		{4, -18439, 1000, 1},
+> +		{3, 80705, 1000, 1},
+> +		{2, -185010, 1000, 1},
+> +		{1, 328430, 1000, 1},
+> +		{0, -48690, 1, 1}
+> +	}
+> +};
+> +
+> +/*
+> + * Similar alterations are performed for the voltage conversion equations.
+> + * The original formulae are:
+> + * N = 1.3905e3*V - 5.7685e2,
+> + * V = (N + 5.7685e2) / 1.3905e3,
+> + * where V = [0.72, 0.88] V and N = [424, 646].
+> + * After the optimization they looks as follows:
+> + * N = (13905e-3*V - 5768.5) / 10,
+> + * V = (N * 10^5 / 13905 + 57685 * 10^3 / 13905) / 10.
+> + * where V = [720, 880] mV and N = [424, 646].
+> + */
+> +static const struct polynomial poly_N_to_volt = {
+> +	.total_divider = 10,
+> +	.terms = {
+> +		{1, 100000, 13905, 1},
+> +		{0, 57685000, 1, 13905}
+> +	}
+> +};
+> +
+> +static inline u32 eic7700_pvt_update(void __iomem *reg, u32 mask, u32 data)
+> +{
+> +	u32 old;
+> +
+> +	old = readl_relaxed(reg);
+> +	writel((old & ~mask) | (data & mask), reg);
+> +
+> +	return old & mask;
+> +}
+> +
+> +static inline void eic7700_pvt_set_mode(struct pvt_hwmon *pvt, u32 mode)
+> +{
+> +	u32 old;
+> +
+> +	mode = FIELD_PREP(PVT_MODE_MASK, mode);
+> +
+> +	old = eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, 0);
+> +	eic7700_pvt_update(pvt->regs + PVT_MODE, PVT_MODE_MASK, mode);
+> +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, old);
+> +}
+> +
+> +static inline void eic7700_pvt_set_trim(struct pvt_hwmon *pvt, u32 val)
+> +{
+> +	u32 old;
+> +
+> +	old = eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, 0);
+> +	writel(val, pvt->regs + PVT_TRIM);
+> +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, old);
+> +}
+> +
+> +static irqreturn_t eic7700_pvt_hard_isr(int irq, void *data)
+> +{
+> +	struct pvt_hwmon *pvt = data;
+> +	u32 val;
+> +
+> +	eic7700_pvt_update(pvt->regs + PVT_INT, PVT_INT_CLR, PVT_INT_CLR);
+
+Since the IRQ is registered with IRQF_SHARED, it can be triggered by other
+devices while this PVT sensor is runtime suspended and its clock is disabled.
+Will accessing pvt->regs here cause a bus fault?
+
+Should the handler use pm_runtime_get_if_active() to verify the device is
+powered before touching its registers?
+
+Additionally, the handler does not verify if the interrupt originated from
+this device before clearing it. Should it check PVT_INT_STAT and return
+IRQ_NONE if the interrupt is not ours?
+
+> +	/*
+> +	 * Read the data, update the cache and notify a waiter of this event.
+> +	 */
+> +	val = readl(pvt->regs + PVT_DATA);
+> +	WRITE_ONCE(pvt->data_cache, FIELD_GET(PVT_DATA_OUT, val));
+> +	complete(&pvt->conversion);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int eic7700_pvt_read_data(struct pvt_hwmon *pvt,
+> +				 enum pvt_sensor_type type, long *val)
+> +{
+> +	unsigned long timeout;
+> +	u32 data;
+> +	int ret;
+> +
+> +	/*
+> +	 * Wait for PVT conversion to complete and update the data cache. The
+> +	 * data read procedure is following: set the requested PVT sensor mode,
+> +	 * enable conversion, wait until conversion is finished, then disable
+> +	 * conversion and IRQ, and read the cached data.
+> +	 */
+> +	reinit_completion(&pvt->conversion);
+> +
+> +	eic7700_pvt_set_mode(pvt, pvt_info[type].mode);
+> +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, PVT_ENA_EN);
+> +
+> +	/*
+> +	 * Wait with timeout since in case if the sensor is suddenly powered
+> +	 * down the request won't be completed and the caller will hang up on
+> +	 * this procedure until the power is back up again. Multiply the
+> +	 * timeout by the factor of two to prevent a false timeout.
+> +	 */
+> +	timeout = 2 * usecs_to_jiffies(ktime_to_us(pvt->timeout));
+> +	ret = wait_for_completion_timeout(&pvt->conversion, timeout);
+> +
+> +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, 0);
+> +	eic7700_pvt_update(pvt->regs + PVT_INT, PVT_INT_CLR, PVT_INT_CLR);
+> +
+> +	data = READ_ONCE(pvt->data_cache);
+> +
+> +	if (!ret)
+> +		return -ETIMEDOUT;
+> +
+> +	if (type == PVT_TEMP)
+> +		*val = polynomial_calc(&poly_N_to_temp, data);
+> +	else if (type == PVT_VOLT)
+> +		*val = polynomial_calc(&poly_N_to_volt, data);
+> +	else
+> +		*val = data;
+
+For PVT_LVT, PVT_ULVT, and PVT_SVT (which are exported as hwmon_in channels),
+this returns the raw data. Does this violate the hwmon ABI, which requires
+voltage readings to be in millivolts? Should poly_N_to_volt be applied to all
+voltage channels?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct hwmon_channel_info *pvt_channel_info[] = {
+> +	HWMON_CHANNEL_INFO(chip, HWMON_C_REGISTER_TZ),
+> +	HWMON_CHANNEL_INFO(temp,
+> +			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_OFFSET),
+> +	HWMON_CHANNEL_INFO(in,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL,
+> +			   HWMON_I_INPUT | HWMON_I_LABEL),
+> +	NULL
+> +};
+> +
+> +static umode_t eic7700_pvt_hwmon_is_visible(const void *data,
+> +					    enum hwmon_sensor_types type,
+> +					    u32 attr, int ch)
+> +{
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		switch (attr) {
+> +		case hwmon_temp_input:
+> +		case hwmon_temp_label:
+> +			return 0444;
+> +		case hwmon_temp_offset:
+> +			return 0644;
+> +		}
+> +		break;
+> +	case hwmon_in:
+> +		switch (attr) {
+> +		case hwmon_in_input:
+> +		case hwmon_in_label:
+> +			return 0444;
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int eic7700_pvt_read_trim(struct pvt_hwmon *pvt, long *val)
+> +{
+> +	u32 data;
+> +
+> +	data = readl(pvt->regs + PVT_TRIM);
+> +	*val = data;
+> +
+> +	return 0;
+> +}
+> +
+> +static int eic7700_pvt_write_trim(struct pvt_hwmon *pvt, long val)
+> +{
+> +	/*
+> +	 * Update PVT trim register safely while the controller is temporarily
+> +	 * disabled.
+> +	 */
+> +	eic7700_pvt_set_trim(pvt, val);
+> +
+> +	return 0;
+> +}
+> +
+> +static int eic7700_pvt_hwmon_read(struct device *dev,
+> +				  enum hwmon_sensor_types type, u32 attr,
+> +				  int ch, long *val)
+> +{
+> +	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = pm_runtime_get_sync(pvt->dev);
+> +	if (ret < 0) {
+> +		dev_err(pvt->dev, "Failed to resume PVT device: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		switch (attr) {
+> +		case hwmon_temp_input:
+> +			ret = eic7700_pvt_read_data(pvt, ch, val);
+> +			break;
+> +		case hwmon_temp_offset:
+> +			ret = eic7700_pvt_read_trim(pvt, val);
+> +			break;
+> +		default:
+> +			ret = -EOPNOTSUPP;
+> +		}
+> +		break;
+> +	case hwmon_in:
+> +		if (attr == hwmon_in_input)
+> +			ret = eic7700_pvt_read_data(pvt, PVT_VOLT + ch, val);
+> +		else
+> +			ret = -EOPNOTSUPP;
+> +		break;
+> +	default:
+> +		ret = -EOPNOTSUPP;
+> +	}
+> +
+> +	pm_runtime_mark_last_busy(pvt->dev);
+> +	pm_runtime_put_autosuspend(pvt->dev);
+> +	return ret;
+> +}
+> +
+> +static int eic7700_pvt_hwmon_read_string(struct device *dev,
+> +					 enum hwmon_sensor_types type, u32 attr,
+> +					 int ch, const char **str)
+> +{
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		if (attr == hwmon_temp_label) {
+> +			*str = pvt_info[ch].label;
+> +			return 0;
+> +		}
+> +		break;
+> +	case hwmon_in:
+> +		if (attr == hwmon_in_label) {
+> +			*str = pvt_info[PVT_VOLT + ch].label;
+> +			return 0;
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	return -EOPNOTSUPP;
+> +}
+> +
+> +static int eic7700_pvt_hwmon_write(struct device *dev,
+> +				   enum hwmon_sensor_types type, u32 attr,
+> +				   int ch, long val)
+> +{
+> +	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = pm_runtime_get_sync(pvt->dev);
+> +	if (ret < 0) {
+> +		dev_err(pvt->dev, "Failed to resume PVT device: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (type == hwmon_temp && attr == hwmon_temp_offset)
+> +		ret = eic7700_pvt_write_trim(pvt, val);
+> +	else
+> +		ret = -EOPNOTSUPP;
+> +
+> +	pm_runtime_mark_last_busy(pvt->dev);
+> +	pm_runtime_put_autosuspend(pvt->dev);
+> +	return ret;
+> +}
+> +
+> +static const struct hwmon_ops pvt_hwmon_ops = {
+> +	.is_visible = eic7700_pvt_hwmon_is_visible,
+> +	.read = eic7700_pvt_hwmon_read,
+> +	.read_string = eic7700_pvt_hwmon_read_string,
+> +	.write = eic7700_pvt_hwmon_write
+> +};
+> +
+> +static const struct hwmon_chip_info pvt_hwmon_info = {
+> +	.ops = &pvt_hwmon_ops,
+> +	.info = pvt_channel_info
+> +};
+> +
+> +static void pvt_clear_data(void *data)
+> +{
+> +	struct pvt_hwmon *pvt = data;
+> +
+> +	complete_all(&pvt->conversion);
+> +}
+> +
+> +static struct pvt_hwmon *eic7700_pvt_create_data(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pvt_hwmon *pvt;
+> +	int ret;
+> +
+> +	pvt = devm_kzalloc(dev, sizeof(*pvt), GFP_KERNEL);
+> +	if (!pvt)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	pvt->dev = dev;
+> +	init_completion(&pvt->conversion);
+> +
+> +	ret = devm_add_action(dev, pvt_clear_data, pvt);
+> +	if (ret) {
+> +		dev_err(dev, "Can't add PVT data clear action\n");
+> +		return ERR_PTR(ret);
+> +	}
+> +
+> +	return pvt;
+> +}
+> +
+> +static int eic7700_pvt_check_pwr(struct pvt_hwmon *pvt)
+> +{
+> +	unsigned long tout;
+> +	int ret = 0;
+> +
+> +	/*
+> +	 * Test out the sensor conversion functionality. If it is not done on
+> +	 * time then the domain must have been unpowered and we won't be able
+> +	 * to use the device later in this driver.
+> +	 */
+> +	eic7700_pvt_update(pvt->regs + PVT_INT, PVT_INT_CLR, PVT_INT_CLR);
+> +	/*
+> +	 * Enable the PVT block to test if the sensor domain is powered.
+> +	 *
+> +	 * This happens before request_irq(). Enabling the block may generate
+> +	 * an interrupt on shared IRQ lines before a handler is registered.
+> +	 *
+> +	 * The hardware does not provide a dedicated interrupt enable bit in
+> +	 * PVT_ENA and PVT_INT does not support interrupt masking. After the
+> +	 * test, the driver disables the PVT block and clears the interrupt
+> +	 * status via PVT_INT_CLR, preventing stale interrupts.
+> +	 */
+> +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, PVT_ENA_EN);
+> +	readl(pvt->regs + PVT_DATA);
+> +
+> +	tout = PVT_TOUT_MIN / NSEC_PER_USEC;
+> +	usleep_range(tout, 2 * tout);
+
+Since this IRQ is shared and level-triggered, won't generating an interrupt
+before the handler is registered cause an IRQ storm? The interrupt controller
+will fire continuously during the usleep_range(), which could cause the
+kernel's spurious IRQ detector to permanently disable the shared IRQ line.
+
+> +
+> +	readl(pvt->regs + PVT_DATA);
+> +	if (!(readl(pvt->regs + PVT_INT) & PVT_INT_STAT)) {
+> +		ret = -ENODEV;
+> +		dev_err(pvt->dev,
+> +			"Sensor is powered down - no interrupt generated\n");
+> +	}
+> +
+> +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, 0);
+> +	eic7700_pvt_update(pvt->regs + PVT_INT, PVT_INT_CLR, PVT_INT_CLR);
+> +
+> +	return ret;
+> +}
+> +
+> +static int eic7700_pvt_init_iface(struct pvt_hwmon *pvt)
+> +{
+> +	/*
+> +	 * Make sure controller are disabled so not to accidentally have ISR
+> +	 * executed before the driver data is fully initialized. Clear the IRQ
+> +	 * status as well.
+> +	 */
+> +	eic7700_pvt_update(pvt->regs + PVT_INT, PVT_INT_CLR, PVT_INT_CLR);
+> +	eic7700_pvt_update(pvt->regs + PVT_ENA, PVT_ENA_EN, 0);
+> +	readl(pvt->regs + PVT_INT);
+> +	readl(pvt->regs + PVT_DATA);
+> +
+> +	/* Setup default sensor mode and temperature trim. */
+> +	eic7700_pvt_set_mode(pvt, pvt_info[PVT_TEMP].mode);
+> +
+> +	/*
+> +	 * Max conversion latency (~333 µs) derived from PVT spec:
+> +	 * maximum sampling rate = 3000 samples/sec.
+> +	 */
+> +	pvt->timeout = ns_to_ktime(PVT_TOUT_MIN);
+> +
+> +	eic7700_pvt_set_trim(pvt, PVT_TRIM_DEF);
+> +
+> +	return 0;
+> +}
+> +
+> +static int eic7700_pvt_request_irq(struct pvt_hwmon *pvt)
+> +{
+> +	struct platform_device *pdev = to_platform_device(pvt->dev);
+> +	int ret;
+> +
+> +	pvt->irq = platform_get_irq(pdev, 0);
+> +	if (pvt->irq < 0)
+> +		return pvt->irq;
+> +
+> +	ret = devm_request_threaded_irq(pvt->dev, pvt->irq,
+> +					eic7700_pvt_hard_isr, NULL,
+> +					IRQF_SHARED | IRQF_TRIGGER_HIGH, "pvt",
+> +					pvt);
+> +	if (ret) {
+> +		dev_err(pvt->dev, "Couldn't request PVT IRQ\n");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int eic7700_pvt_create_hwmon(struct pvt_hwmon *pvt)
+> +{
+> +	struct device *dev = pvt->dev;
+> +	struct device_node *np = dev->of_node;
+> +	const char *node_label;
+> +	int type;
+> +	const char *names[2] = {"soc_pvt", "ddr_pvt"};
+> +
+> +	if (of_property_read_string(np, "label", &node_label)) {
+> +		dev_err(dev, "Missing 'label' property in DTS node\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (strcmp(node_label, "pvt0") == 0) {
+> +		type = 0;
+> +	} else if (strcmp(node_label, "pvt1") == 0) {
+> +		type = 1;
+> +	} else {
+> +		dev_err(pvt->dev, "Unsupported label: %s\n", node_label);
+> +		return -EINVAL;
+> +	}
+> +
+> +	pvt->hwmon = devm_hwmon_device_register_with_info(pvt->dev, names[type],
+> +							  pvt, &pvt_hwmon_info,
+> +							  NULL);
+> +	if (IS_ERR(pvt->hwmon)) {
+> +		dev_err(pvt->dev, "Couldn't create hwmon device\n");
+> +		return PTR_ERR(pvt->hwmon);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void eic7700_pvt_disable_pm_runtime(void *data)
+> +{
+> +	struct pvt_hwmon *pvt = data;
+> +
+> +	pm_runtime_dont_use_autosuspend(pvt->dev);
+> +	pm_runtime_disable(pvt->dev);
+> +}
+> +
+> +static int eic7700_pvt_probe(struct platform_device *pdev)
+> +{
+> +	struct pvt_hwmon *pvt;
+> +	int ret;
+> +
+> +	pvt = eic7700_pvt_create_data(pdev);
+> +	if (IS_ERR(pvt))
+> +		return PTR_ERR(pvt);
+> +
+> +	platform_set_drvdata(pdev, pvt);
+> +
+> +	pvt->regs = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(pvt->regs))
+> +		return PTR_ERR(pvt->regs);
+> +
+> +	pvt->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(pvt->clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(pvt->clk),
+> +				     "Couldn't get clock\n");
+> +
+> +	pvt->rst = devm_reset_control_get_exclusive_deasserted(&pdev->dev,
+> +							       NULL);
+> +	if (IS_ERR(pvt->rst))
+> +		return dev_err_probe(pvt->dev, PTR_ERR(pvt->rst),
+> +				     "Couldn't get reset control\n");
+> +
+> +	clk_prepare_enable(pvt->clk);
+> +
+> +	ret = eic7700_pvt_check_pwr(pvt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	clk_disable_unprepare(pvt->clk);
+> +
+> +	ret = eic7700_pvt_init_iface(pvt);
+> +	if (ret)
+> +		return ret;
+
+In eic7700_pvt_init_iface(pvt), the code accesses the device's registers.
+Since clk_disable_unprepare(pvt->clk) is called right before it, won't
+accessing the hardware registers here cause a bus fault? Should the clock be
+disabled after initialization instead?
+
+> +
+> +	ret = eic7700_pvt_request_irq(pvt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	pm_runtime_enable(&pdev->dev);
+> +	pm_runtime_set_autosuspend_delay(&pdev->dev, 3000);
+> +	pm_runtime_use_autosuspend(&pdev->dev);
+> +	pm_runtime_get_noresume(&pdev->dev);
+> +
+> +	ret = devm_add_action_or_reset(pvt->dev, eic7700_pvt_disable_pm_runtime,
+> +				       pvt);
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "Can't register PM cleanup\n");
+> +
+> +	ret = eic7700_pvt_create_hwmon(pvt);
+> +	if (ret)
+> +		return ret;
+
+If eic7700_pvt_create_hwmon() fails, the function returns early. The devres
+action disables runtime PM, but it doesn't balance the
+pm_runtime_get_noresume(). Does this leak the usage counter on probe failure?
+
+> +
+> +	pm_runtime_put_autosuspend(&pdev->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused eic7700_pvt_runtime_resume(struct device *dev)
+> +{
+> +	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(pvt->clk);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to enable clock: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused eic7700_pvt_runtime_suspend(struct device *dev)
+> +{
+> +	struct pvt_hwmon *pvt = dev_get_drvdata(dev);
+> +
+> +	clk_disable_unprepare(pvt->clk);
+> +
+Does this need a synchronize_irq(pvt->irq) before disabling the clock? Since
+the IRQ is shared, a handler might be executing mid-flight on another CPU
+when the clock is disabled, which could cause a bus fault.
+
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused eic7700_pvt_suspend(struct device *dev)
+> +{
+> +	int ret = 0;
+> +
+> +	if (!pm_runtime_status_suspended(dev)) {
+> +		ret = eic7700_pvt_runtime_suspend(dev);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to suspend: %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused eic7700_pvt_resume(struct device *dev)
+> +{
+> +	int ret = 0;
+> +
+> +	if (!pm_runtime_status_suspended(dev)) {
+> +		ret = eic7700_pvt_runtime_resume(dev);
+> +		if (ret) {
+> +			dev_err(dev, "Failed to resume: %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops eic7700_pvt_pm_ops = {
+> +	SYSTEM_SLEEP_PM_OPS(eic7700_pvt_suspend, eic7700_pvt_resume)
+> +	RUNTIME_PM_OPS(eic7700_pvt_runtime_suspend, eic7700_pvt_runtime_resume,
+> +		       NULL)
+> +};
+> +
+> +static const struct of_device_id pvt_of_match[] = {
+> +	{ .compatible = "eswin,eic7700-pvt"},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, pvt_of_match);
+> +
+> +static struct platform_driver pvt_driver = {
+> +	.probe = eic7700_pvt_probe,
+> +	.driver = {
+> +		.name = "eic7700-pvt",
+> +		.of_match_table = pvt_of_match,
+> +		.pm = pm_sleep_ptr(&eic7700_pvt_pm_ops),
+
+Since eic7700_pvt_pm_ops contains runtime PM callbacks, using pm_sleep_ptr()
+will drop the entire structure if CONFIG_PM_SLEEP is disabled but CONFIG_PM
+is enabled. Should this use pm_ptr() instead?
+
+> +	},
+> +};
+> +module_platform_driver(pvt_driver);
+> +
+> +MODULE_AUTHOR("Yulin Lu <luyulin@eswincomputing.com>");
+> +MODULE_AUTHOR("Huan He <hehuan1@eswincomputing.com>");
+> +MODULE_DESCRIPTION("Eswin eic7700 PVT driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/hwmon/eic7700-pvt.h b/drivers/hwmon/eic7700-pvt.h
+> new file mode 100644
+> index 000000000000..1e4cb27e4254
+> --- /dev/null
+> +++ b/drivers/hwmon/eic7700-pvt.h
+> @@ -0,0 +1,108 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * ESWIN EIC7700 Process, Voltage, Temperature sensor driver
+> + *
+> + * Copyright 2026, Beijing ESWIN Computing Technology Co., Ltd.
+> + */
+> +#ifndef __HWMON_EIC7700_PVT_H__
+> +#define __HWMON_EIC7700_PVT_H__
+> +
+> +#include <linux/completion.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/kernel.h>
+> +#include <linux/time.h>
+> +
+> +/* ESWIN EIC7700 PVT registers and their bitfields */
+> +#define PVT_TRIM		0x04
+> +#define PVT_MODE		0x08
+> +#define PVT_MODE_MASK		GENMASK(2, 0)
+> +#define PVT_CTRL_MODE_TEMP	0x0
+> +#define PVT_CTRL_MODE_VOLT	0x4
+> +#define PVT_CTRL_MODE_LVT	0x1
+> +#define PVT_CTRL_MODE_ULVT	0x2
+> +#define PVT_CTRL_MODE_SVT	0x3
+> +#define PVT_ENA			0x0c
+> +#define PVT_ENA_EN		BIT(0)
+> +#define PVT_INT			0x10
+> +#define PVT_INT_STAT		BIT(0)
+> +#define PVT_INT_CLR		BIT(1)
+> +#define PVT_DATA		0x14
+> +#define PVT_DATA_OUT		GENMASK(9, 0)
+> +
+> +/*
+> + * PVT sensors-related limits and default values
+> + * @PVT_TEMP_CHS: Number of temperature hwmon channels.
+> + * @PVT_VOLT_CHS: Number of voltage hwmon channels.
+> + * @PVT_TRIM_DEF: Default temperature sensor trim value (set a proper value
+> + *		  when one is determined for ESWIN EIC7700 SoC).
+> + * @PVT_TOUT_MIN: Minimal timeout between samples in nanoseconds.
+> + */
+> +#define PVT_TEMP_CHS		1
+> +#define PVT_VOLT_CHS		4
+> +#define PVT_TRIM_DEF		0
+> +#define PVT_TOUT_MIN		(NSEC_PER_SEC / 3000)
+> +
+> +/*
+> + * enum pvt_sensor_type - ESWIN EIC7700 PVT sensor types (correspond to each PVT
+> + *			  sampling mode)
+> + * @PVT_TEMP: PVT Temperature sensor.
+> + * @PVT_VOLT: PVT Voltage sensor.
+> + * @PVT_LVT: PVT Low-Voltage threshold sensor.
+> + * @PVT_ULVT: PVT UltraLow-Voltage threshold sensor.
+> + * @PVT_SVT: PVT Standard-Voltage threshold sensor.
+> + */
+> +enum pvt_sensor_type {
+> +	PVT_TEMP = 0,
+> +	PVT_VOLT,
+> +	PVT_LVT,
+> +	PVT_ULVT,
+> +	PVT_SVT
+> +};
+> +
+> +/*
+> + * struct pvt_sensor_info - ESWIN EIC7700 PVT sensor informational structure
+> + * @channel: Sensor channel ID.
+> + * @label: hwmon sensor label.
+> + * @mode: PVT mode corresponding to the channel.
+> + * @type: Sensor type.
+> + */
+> +struct pvt_sensor_info {
+> +	int channel;
+> +	const char *label;
+> +	u32 mode;
+> +	enum hwmon_sensor_types type;
+> +};
+> +
+> +#define PVT_SENSOR_INFO(_ch, _label, _type, _mode)	\
+> +	{						\
+> +		.channel = _ch,				\
+> +		.label = _label,			\
+> +		.mode = PVT_CTRL_MODE_ ##_mode,		\
+> +		.type = _type,				\
+> +	}
+> +
+> +/*
+> + * struct pvt_hwmon - Eswin EIC7700 PVT private data
+> + * @dev: device structure of the PVT platform device.
+> + * @hwmon: hwmon device structure.
+> + * @regs: pointer to the Eswin EIC7700 PVT registers region.
+> + * @irq: PVT events IRQ number.
+> + * @clk: PVT core clock (1.2MHz).
+> + * @rst: pointer to the reset descriptor.
+> + * @data_cache: data cache in raw format.
+> + * @conversion: data conversion completion.
+> + * @timeout: conversion timeout.
+> + */
+> +struct pvt_hwmon {
+> +	struct device *dev;
+> +	struct device *hwmon;
+> +	void __iomem *regs;
+> +	int irq;
+> +	struct clk *clk;
+> +	struct reset_control *rst;
+> +	u32 data_cache;
+> +	struct completion conversion;
+> +	ktime_t timeout;
+> +};
+> +
+> +#endif /* __HWMON_EIC7700_PVT_H__ */
+> -- 
+> 2.25.1
+> 
+> 
 
