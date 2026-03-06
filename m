@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-272336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272340-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oHbZFD8yq2n2agEAu9opvQ
-	(envelope-from <devicetree+bounces-272336-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 20:59:59 +0100
+	id QAOxBqYyq2n2agEAu9opvQ
+	(envelope-from <devicetree+bounces-272340-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 21:01:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB37C227555
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 20:59:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 78C3A22758D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 21:01:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3B89130FC93E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 19:58:49 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B0D123142A02
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 19:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73C6243E9C2;
-	Fri,  6 Mar 2026 19:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1615547AF65;
+	Fri,  6 Mar 2026 19:58:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="naPU6MYd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J5Ez/uRR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0C2743DA5C
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 19:58:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98FD644BCBB
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 19:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772827127; cv=none; b=ES/OW1Wzs8wj/YGJTND+pcMik1C7u1ho2VeSFPs1rmIzqfI04vMWI24p9xQ4ZMA6A1cZPP9YT3+44t1GP5EbVqboH34k05AsGOs+Jze7V50uZ6B3Qylm4EXvoq1ANfMdOhYcrk1LHzC1FXgVr7QUQt9M5+wvgDgO/dK0fk2ACLw=
+	t=1772827134; cv=none; b=up02PAuMoELBctbesK4gwBnA+0Z2aA+TBehQQt++R6oqBywsxcVxe727j+VBwH80xbzSFB+uhQj9/5tR4Xzc9BQUQ0zqMRMPvN4psnbUwwr6Bpy5lf/mklxRFrHOeJdyCi/6kIyj/1QiEdevjRdQO13DfEBQmBQgqr1LDD1P26U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772827127; c=relaxed/simple;
-	bh=zlCzFQV4Y1ccEM4u67hbvrmKWgTrQCbHVkFvjqcghM0=;
+	s=arc-20240116; t=1772827134; c=relaxed/simple;
+	bh=FywE9I2jgu/E9dUJjkL1LNg3FZZX/2ACIJR6RrAbSZw=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WuwP1nr2D3ua68EJAbmQfT8ZZB3QbBYnfH/+HdSmsDRiDStwS2Ru5Z3c6AZGohhqudZNUUhx4uCwyt9QVA5RBUY/0Hgq8K5OWMnykINQ0PhaYMq/K3Lqf6qEfV6tNvEpiHl1FofRj0Dnd3EJ63xsnFPy42Ulsm3mHJ+nEARu5NM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=naPU6MYd; arc=none smtp.client-ip=209.85.128.45
+	 MIME-Version; b=DtI/cNFX7M2SJpzXDPXFYR/w1Js1HTOOCiIcGgfx8rXOf8G637MhfLh0GFzog5FJqIPnNOc90Zxe5vJ/8mmucz3JVGoFfSgn6IV0mXJ85HiQtsTmR7XiFyIZKK2i1NXdjmgSL8FxpA6xElbMW3v9i768ioHy0R0GcSocMWAa+yA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J5Ez/uRR; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4836f4cbe0bso83838895e9.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 11:58:45 -0800 (PST)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-439c4bde55cso2642431f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 11:58:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772827124; x=1773431924; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772827126; x=1773431926; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nQRz3vom4i98v5hOr3xa41qzBpQfTuX5yERFzQc6reQ=;
-        b=naPU6MYdAAeXVToHshy9nB8MLstPUPLrVNnHVeQC/QvugJi8hXt0bFpYGV01IXEAXf
-         hwsL4IUQ/+9gaYqflFsbO0woJeuwKzdJu/C/ygZXgsk23JVB00sxgQv+hQEqc0lzTPCs
-         R3K9awtrvEaQDcRiYMpKM9U3d8XR1rXTX6+dulTmH8pJfJelQQSA7CFSeBidpFAfqOvY
-         mz7QLSz6GrSu8GIn5wgOMh59VjJJyZi+csN92DRqCQ4Rxtj5lwUhRa3tZCDL3K/8SDBj
-         SMYmPxVk8A/K91RSeCa+ucMkcmbAWJQ4w23QstsgMsD8OpFhRYr5Dv3qTLt6l/LCkzsb
-         TAPA==
+        bh=Q40sieppdqWC0Pb0LgkBOiCq1+WdogMkkdM87+FLk/0=;
+        b=J5Ez/uRR3KLQe9t6IpeA+nOL0v5MIdDRsHABFPtUiklZlpdxFFGhK/86bVP2zMdTcg
+         HseqrxSMR/3OHoIV9c3/sHlhicQEQaIft8WPqj/HM3OO6wrSXaK8q66qkTNIYxnBD6S7
+         bAVC+Qy+BsDkVjpuokmkEZFt+w6MY8iYPzI3/OmgJrWqpqtjxWT83gQ0A4qJrxKsO0DM
+         1VbpwSNvykvhUl42RSIFFgwUQlUal4XhinIsKMq4z0zEtkyQVkRFnmH8qNDwN/BVn/MD
+         mwAY8MyHsD3qboysiaK0dgP1UYd/tnoHU0ipzzslMpPvPm6ktWkeCtgPTFscgZymhZTb
+         IEjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772827124; x=1773431924;
+        d=1e100.net; s=20230601; t=1772827126; x=1773431926;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=nQRz3vom4i98v5hOr3xa41qzBpQfTuX5yERFzQc6reQ=;
-        b=TN8m+8XzX9oMeFy8LhWrtDU8VaH2qN9l2vyfGsnWLjwHn/bWJacAGqd9ctpibe2Bf8
-         Y+JNsflxeXFTCYPmn3dOgXG5AqU5z6XGeEj9aX4N48IG4xiD8m4Oq0sUp5667ujBYboN
-         T1j+3CgeROOumkPPDfAXtCJn9j6nT2XVokr1RYz04FX9I3a8pdnPfTzny0uHhkUVAixl
-         CSAwJRnQz0exKLlSznCLUF9NkkSiFTmwTlEHfqIv5xeeXEZmz3tePXYo8F1e5biYNwi8
-         vgugg09g7qjOas3cVIDtnjhSBFsJ/paev9tQ3sSxU6yz/Q07s6mq7nt5OCaedqiwF+dp
-         7mHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVNm5pFQTIzHnp7d2v7QBrirxwt81u3le/rjlcZ2/HBAKNHJQRn9q4Z14+Q3+vDeOu+I6j02kp0gO/L@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTsGzp6uLPOTUg3/pGTWH6sk/+F3gyZbXJPntm+VD7oJ6Nwq2X
-	BGEo/AmoMk8MUQxrzH7VYJShpXOiZ04q+FvE9QhrEitLJxz/c6JHbhOl
-X-Gm-Gg: ATEYQzwembSzNDs88+1vX+bPMSdo2y8XvPRF6P1LEScd1DQrBGw1SsWS7RIfxuBUX/Y
-	mqfbWnoYddCz/itNh8LklRUwiWc/h9tNsrxExJqtWi1s2rKEeEQ7yMyWMVK8FHtBrcs/m7RhEnW
-	g770OMkQWjMngP6PrOXvIhsAHljmy2SI9/C/dYzA9UCX4J2Y9zP2TQeigNMfMLtSHXjP828tD7o
-	1mV3fcdXokAOOwXtIgqD1Dvt3aBfmHdQQhOceFPw0KFC+AGH4mPOOGHuDhQIafkZGMEBbkq5ane
-	kuBYPNEsvte9A014E71BUQHe+HU9A6Q9Ph6AyxyohiWBE72IpdIa8lRoSM7c8DPi8TY4Pv9CVfN
-	ic2/1yHHJRgWbNwtKF5xSaWr7q7WkLYkEmpnEkXTjOXG262wLsYn5V6gIhaawabm/jJlEP5GiYk
-	Y7eDq5V2EyRgGiNC6FKAYizf4VEU8MHzvfGcrGPtpAfAa9rhAaL7NRRTYpAZ22VELTebr1SAnBh
-	vLvklQR48Ln2U0lHlTYlzx5WInQ6m4gBXEuQPY=
-X-Received: by 2002:a05:600c:3b17:b0:483:64b4:79da with SMTP id 5b1f17b1804b1-4852695d236mr59709085e9.26.1772827124293;
-        Fri, 06 Mar 2026 11:58:44 -0800 (PST)
+        bh=Q40sieppdqWC0Pb0LgkBOiCq1+WdogMkkdM87+FLk/0=;
+        b=FXjR7Y5Zs6pYx6aW25oKaPrKUDdTstRQblu2cNVvaO8rZvFo2iussCpS4dpfkYtEry
+         l3m43CxdvqwUwrRV3zbxJwIQskHmRG0Dd61gLkQDIu/rBiQCDxQWwEq58J2J2XUMFaA5
+         CO0hf5bFNlFstF3KcbhTXuqpn/6pihr3C+IjR8QRG/hYfRN0OnDrKpVl0XW7X/WIwl8L
+         oOdolZ33Gbqk4RFEaiW4zQk0YAvd3t6of7YQhxH62U24crWucQLVHCmSNO1omHVWEENK
+         /DnUmRgUWnx+ZLyqMbGrbhZFGBGGkxFkRirHslS2YdEczqmw1mUNaHXE/9CTPQvtFtyU
+         /h+w==
+X-Forwarded-Encrypted: i=1; AJvYcCW811wsCmwvC75jRdRh2gfYHpXD17AfHVBVolsnpXQKtwGIDRYu/EM0QjMuwZeUd7Pjf5Qupe1467Vc@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywzngksvee7b6U9Ppz6e1Fo+VaczBu2cTeRaMi3N1+f+wFz4C9Q
+	5NqV0RIvEWE/utKf1DriHnV/9a1r5Mv6yFYnYLbukNp5Df+9/GsZyIwL
+X-Gm-Gg: ATEYQzx1BPq1jxGJQ9Q6CV5UndqfJuuoFD4pSgusg9fKmOaPSQt6kNTHPMn9ObIZFNV
+	J4myBzYQCI+fhuys3EkTxC+qsIepdXKJ9EIkYCeg9gYHU3oEAc6srF15GpZTx+QehaC+pEwGnYd
+	5yAJeX85Rl0kZBE5NB0nALL3I53HQ+tdq4bJ0BI8UqG+EszEWX9NZVTq4lFlXGq+XOZB0lcPDMc
+	NGXM72oqOLRG4EEWbMNLFecesdx5709HGhgT4kyvprYOQ/oJ1nlCtaTMXfDTZGprOuz/la2yZvp
+	wzr5Ry0A7izmmwtU+25CcOU15cBAIMN7CjOTHjddncKYNmRKEsxPAb2drRezV1a0uVatd3um8fI
+	O4afWUSI3xoOoMORakXvE4au3X/U3j2MrR7Y0FN0GZR6WmKu51LzKdU16y8LklgvA/7Hrj/XthG
+	p+z3m4Lxt2PgBL7DI46jvbEyl6IxbhcvgJyKmmrrciRCK2gtCaGRRk1w6d8zEB4e3UNlHROwETo
+	0RQOrTmLe3CLO7SMuj1o0bwUMvFSfUcfDsyVnw=
+X-Received: by 2002:a05:600c:8b0d:b0:483:c490:8ed with SMTP id 5b1f17b1804b1-48526982c54mr51288945e9.32.1772827126037;
+        Fri, 06 Mar 2026 11:58:46 -0800 (PST)
 Received: from Lord-Beerus.station (net-188-152-100-94.cust.dsl.teletu.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48523803b5fsm25167265e9.7.2026.03.06.11.58.43
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48523803b5fsm25167265e9.7.2026.03.06.11.58.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 11:58:43 -0800 (PST)
+        Fri, 06 Mar 2026 11:58:45 -0800 (PST)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -92,9 +92,9 @@ Cc: pierluigi.p@variscite.com,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v2 05/11] arm64: dts: freescale: imx8mm-var-som: Add MCP251xFD CAN controller
-Date: Fri,  6 Mar 2026 20:58:24 +0100
-Message-ID: <d007d05d5927820aa06389c07dad55357d5f8d4e.1772826534.git.stefano.r@variscite.com>
+Subject: [PATCH v2 06/11] arm64: dts: freescale: imx8mm-var-som: Update WiFi/BT with variants
+Date: Fri,  6 Mar 2026 20:58:25 +0100
+Message-ID: <7c84625f82c562bb9cd2b455465d63a1a25bf19e.1772826534.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772826534.git.stefano.r@variscite.com>
 References: <cover.1772826534.git.stefano.r@variscite.com>
@@ -105,7 +105,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: DB37C227555
+X-Rspamd-Queue-Id: 78C3A22758D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -119,7 +119,7 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-272336-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272340-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
 	MIME_TRACE(0.00)[0:+];
@@ -132,83 +132,147 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.993];
+	NEURAL_HAM(-0.00)[-0.992];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,2.98.90.0:email,variscite.com:mid,variscite.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.1:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[variscite.com:mid,variscite.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.1:email]
 X-Rspamd-Action: no action
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-Add support for the Microchip MCP251xFD CAN-FD controller connected
-to the SPI bus on the i.MX8MM VAR-SOM.
+The VAR-SOM-MX8MM currently integrates the NXP IW61x wireless module,
+providing WiFi over SDIO and Bluetooth over UART.
 
-The controller uses a 40 MHz external oscillator and requires an
-interrupt line and a dedicated RX interrupt GPIO.
+Move the wireless module configuration out of the base
+imx8mm-var-som.dtsi and provide dedicated variant includes.
+The IW61x configuration is moved to imx8mm-var-som-wifi-bt-iw61x.dtsi
+and used by the Symphony evaluation board device tree.
 
-This patch adds the fixed clock, the MCP251xFD device node with the
-required properties, and the corresponding pinctrl configuration.
+A separate imx8mm-var-som-wifi-brcm-legacy.dtsi include is added to keep
+the configuration for the legacy Broadcom SDIO WiFi module used on
+earlier SOM revisions.
+The Broadcom-based SOM revision is no longer in production, but the
+configuration is kept separately to preserve compatibility with existing
+boards.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
 v1->v2:
- - 
+ - Added Wifi/BT dtsi variants for both iw61x and brcm legacy modules
 
- .../boot/dts/freescale/imx8mm-var-som.dtsi    | 27 +++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ .../dts/freescale/imx8mm-var-som-symphony.dts |  1 +
+ .../imx8mm-var-som-wifi-brcm-legacy.dtsi      | 12 +++++
+ .../imx8mm-var-som-wifi-bt-iw61x.dtsi         | 45 +++++++++++++++++++
+ .../boot/dts/freescale/imx8mm-var-som.dtsi    |  6 ---
+ 4 files changed, 58 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-brcm-legacy.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-bt-iw61x.dtsi
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-index 7cedef8add32..21a4d87c0e26 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-@@ -14,6 +14,13 @@ memory@40000000 {
- 		reg = <0x0 0x40000000 0 0x80000000>;
- 	};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+index 712892edba8f..51ac8ee34c3b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+@@ -7,6 +7,7 @@
  
-+	clk40m: oscillator {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <40000000>;
-+		clock-output-names = "can_osc";
-+	};
+ #include <dt-bindings/leds/common.h>
+ #include "imx8mm-var-som.dtsi"
++#include "imx8mm-var-som-wifi-bt-iw61x.dtsi"
+ 
+ / {
+ 	model = "Variscite VAR-SOM-MX8MM Symphony evaluation board";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-brcm-legacy.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-brcm-legacy.dtsi
+new file mode 100644
+index 000000000000..f44a846ea6f9
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-brcm-legacy.dtsi
+@@ -0,0 +1,12 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2026 Variscite Ltd.
++ */
 +
- 	reg_audio_supply: regulator-3p3v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wm8904-supply";
-@@ -139,6 +146,19 @@ touchscreen@0 {
- 		ti,keep-vref-on;
- 		wakeup-source;
- 	};
-+
-+	/* CAN controller */
-+	can0: can@1 {
-+		compatible = "microchip,mcp251xfd";
++/* WIFI */
++&usdhc1 {
++	brcmf: wifi@1 {
 +		reg = <1>;
-+		clocks = <&clk40m>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_can>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
-+		microchip,rx-int-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+		spi-max-frequency = <20000000>;
++		compatible = "brcm,bcm4329-fmac";
 +	};
- };
- 
- &fec1 {
-@@ -424,6 +444,13 @@ &wdog1 {
- };
- 
- &iomuxc {
-+	pinctrl_can: cangrp {
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-bt-iw61x.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-bt-iw61x.dtsi
+new file mode 100644
+index 000000000000..15990d141d2a
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-wifi-bt-iw61x.dtsi
+@@ -0,0 +1,45 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2026 Variscite Ltd.
++ */
++
++/ {
++	iw61x_pwrseq: wifi-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		post-power-on-delay-ms = <100>;
++		power-off-delay-us = <10000>;
++		reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>, /* WIFI_RESET */
++			      <&gpio2 20 GPIO_ACTIVE_LOW>; /* WIFI_PWR_EN */
++	};
++};
++
++&uart2 {
++	pinctrl-0 = <&pinctrl_uart2>, <&pinctrl_bt>;
++
++	bluetooth_iw61x: bluetooth {
++		compatible = "nxp,88w8987-bt";
++	};
++};
++
++/* WIFI */
++&usdhc1 {
++	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_wifi>;
++	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_wifi>;
++	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_wifi>;
++	mmc-pwrseq = <&iw61x_pwrseq>;
++};
++
++&iomuxc {
++	pinctrl_bt: bluetoothgrp {
 +		fsl,pins = <
-+			MX8MM_IOMUXC_GPIO1_IO05_GPIO1_IO5		0x16
-+			MX8MM_IOMUXC_SD2_CD_B_GPIO2_IO12		0x16
++			MX8MM_IOMUXC_SD1_DATA4_GPIO2_IO6	0xc1
 +		>;
 +	};
 +
- 	pinctrl_ecspi1: ecspi1grp {
- 		fsl,pins = <
- 			MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK		0x13
++	pinctrl_wifi: wifigrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SD2_WP_GPIO2_IO20		0x140
++			MX8MM_IOMUXC_SD1_RESET_B_GPIO2_IO10	0xc1
++		>;
++	};
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+index 21a4d87c0e26..c37badc4cf27 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+@@ -390,7 +390,6 @@ &usbotg2 {
+ 	status = "okay";
+ };
+ 
+-/* WIFI */
+ &usdhc1 {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+@@ -402,11 +401,6 @@ &usdhc1 {
+ 	non-removable;
+ 	keep-power-in-suspend;
+ 	status = "okay";
+-
+-	brcmf: wifi@1 {
+-		reg = <1>;
+-		compatible = "brcm,bcm4329-fmac";
+-	};
+ };
+ 
+ /* SD */
 -- 
 2.47.3
 
