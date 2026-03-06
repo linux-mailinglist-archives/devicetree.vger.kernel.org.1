@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-271763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271764-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YEgVAfMZqmkqLQEAu9opvQ
-	(envelope-from <devicetree+bounces-271763-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:04:03 +0100
+	id qEWNDMQZqmkqLQEAu9opvQ
+	(envelope-from <devicetree+bounces-271764-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:03:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54FEB219A84
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:04:02 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8BC0219A7B
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:03:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3FEFE30BDEFD
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:01:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A80AA302B817
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6251120E03F;
-	Fri,  6 Mar 2026 00:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC7414F9FB;
+	Fri,  6 Mar 2026 00:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HPEHyRqH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n1/vLycs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3BD1F9ECB;
-	Fri,  6 Mar 2026 00:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AABE12FF69;
+	Fri,  6 Mar 2026 00:02:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772755307; cv=none; b=DExm1xpYBGUYUTG6HKPJxxRfyqy9F7IczJlCiPEaCWxYeihynWZuQTeaOltlELVOq7zXxYb2wGqFo13aq9wzFZbQNDfTOOcvpZjk/d/rxQhlAZnylskaYKbTH0BeAebYHDZZSk2OdoNemvQz0l8DEGlyyKaduBkQyjCTfqjBnqU=
+	t=1772755367; cv=none; b=Nd/X/C/+kR2Ntr/KajY0eblmG8grEUcfa8WspLn/PBwuGKHhC9ptgI/i1LERaU7gp1RtcdClHzPUWzdKtLwHX1stIYSTyQ2ecqLkMF1zj6EKQELtEAxxhDR5kZcQvPBYi3+HgKr4psG8YzMdfy05jLdFFP4DbyRI5TSQFQUbIqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772755307; c=relaxed/simple;
-	bh=c1lXhQ1N4Yqb0fQb9aV00aSe2DFNy8bdG2Lt1TmCyHQ=;
+	s=arc-20240116; t=1772755367; c=relaxed/simple;
+	bh=EhfHXHxDfxR/qaV5FxkQiDzYCsLKWMDgc1aNFHRMSiM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bA0usKN6QHX4LPgAPOteJDmYONO74v1lNm5o4YsPfNJfiIOtrNd29pAtIUuo81PC5eoTMKEQjQYMwogz29wmZ4odolDhIYfX6dpceF+uzEsEdDdOUacFsllXjpF+xgCAB93W518CXFeoMGpPiBaakt/laV/bI+jZ+f6QhU4MgHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HPEHyRqH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03336C116C6;
-	Fri,  6 Mar 2026 00:01:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UQB+r8A1OgC7i1oaBsTwmQaeRn3LLtKfdU46AUh5c72HRLXtG6tkHqKALwA2QUuplY5dxRDDfGHEGUzfRamzMkfyTk95StMxmuEeA0pDTtE3DBuYvJsatr0kyyeNNd+2n+4iRhcPfceVr2lnJGXjlxlbNQQ8qXQ5hspMplRE3iw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n1/vLycs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9AA2C116C6;
+	Fri,  6 Mar 2026 00:02:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772755307;
-	bh=c1lXhQ1N4Yqb0fQb9aV00aSe2DFNy8bdG2Lt1TmCyHQ=;
+	s=k20201202; t=1772755367;
+	bh=EhfHXHxDfxR/qaV5FxkQiDzYCsLKWMDgc1aNFHRMSiM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HPEHyRqHM85385bHXpusyN0ZSAaW3V6Sgds6cNUoqc7kzgEq1x1YQ1NGltn0SDLtb
-	 m0vHtw0BGIOFfgDgQXIE/wde/SIPVRn/D/qixBYVmjcOkR209o29/SwZtCoa2Twdo5
-	 4qE0WtDpy4lLWUwb864B1EZwFgaNbp8sQHqKre1dqrFPhFF7ailrDp6pW9p5kb42Yx
-	 3l5tmL21+GRrR72QSRykv3L9lykouQR+PImRHtuxFJPo9+uEu+R/E0LF3UsVALy4yA
-	 hGkXil6GlEVOyBhUrHOSRg0abqG0zMmSW5V+M7fBGZX0YWGd8vB+jNdBAYeP+LJfQn
-	 2HyE9tHa5wjEA==
-Date: Thu, 5 Mar 2026 18:01:46 -0600
+	b=n1/vLycsCOTERpw3hwSwSJHPg5K21Du+QMVVwR8CL/wYCOGw2Z4oJkCfblJtqqndS
+	 MBvqz8asmSO2w7MmOXn+iXcAEzj6iQ3WR1PhqB989UklWaRKrZ3e9HbFRBF2QiHPO7
+	 RLhreFWAcG8o1MvICSlrgGdwiQs1/Rt+XQAWzeC9+1VIbcFrBtliejQoCxHvZeOyfZ
+	 E+42VqzuKebbG8pvyLYYT+upxphw/mUEVwso5aB47GRSuLFeMSQO1Af0DrIkixBXCw
+	 2bR1NrurtzcO3Ge6J4ITtzgoxlubaliHa7bdq8s1o3I/yBAZqFZYx6XXRgoi90ymUV
+	 7jgrG+cgPn6fA==
+Date: Thu, 5 Mar 2026 18:02:46 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-	kernel@pengutronix.de,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-usb@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Kaehlcke <mka@chromium.org>
-Subject: Re: [PATCH v5 3/4] dt-bindings: usb: usb-device: add usb hub port
- vbus-supply suppport
-Message-ID: <177275530574.816904.418893942836777116.robh@kernel.org>
-References: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
- <20260223-v6-16-topic-usb-onboard-dev-v5-3-28d3018a8026@pengutronix.de>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Jon Hunter <jonathanh@nvidia.com>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 01/10] dt-bindings: phy: tegra-xusb: Document Type C
+ support
+Message-ID: <177275536541.818159.7267619787621636242.robh@kernel.org>
+References: <20260223143305.3771383-1-thierry.reding@kernel.org>
+ <20260223143305.3771383-2-thierry.reding@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,50 +63,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260223-v6-16-topic-usb-onboard-dev-v5-3-28d3018a8026@pengutronix.de>
-X-Rspamd-Queue-Id: 54FEB219A84
+In-Reply-To: <20260223143305.3771383-2-thierry.reding@kernel.org>
+X-Rspamd-Queue-Id: D8BC0219A7B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,pengutronix.de,linuxfoundation.org,chromium.org];
-	TAGGED_FROM(0.00)[bounces-271763-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271764-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pengutronix.de:email]
+	RCPT_COUNT_FIVE(0.00)[6];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
 
-On Mon, 23 Feb 2026 12:27:36 +0100, Marco Felsch wrote:
-> Some PCB designs don't use the dedicated USB hub port power control GPIO
-> to control the port VBUS supply. Instead host managed GPIOs are used to
-> control the VBUS supply.
+On Mon, 23 Feb 2026 15:32:56 +0100, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> Each XUSB PHY can be hooked up to a Type C controller via a port
+> property, so document this in the bindings accordingly.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/usb/usb-device.yaml | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
+> Changes in v2:
+> - make one of port or connector a dependency of usb-role-switch
+> 
+>  .../phy/nvidia,tegra194-xusb-padctl.yaml      | 39 ++++++++++++++++++-
+>  1 file changed, 38 insertions(+), 1 deletion(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
