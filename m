@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-271882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271883-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCtqE3eMqml0TQEAu9opvQ
-	(envelope-from <devicetree+bounces-271882-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:12:39 +0100
+	id cOhXBMaNqml0TQEAu9opvQ
+	(envelope-from <devicetree+bounces-271883-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:18:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B553D21CE6A
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:12:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6277921CF77
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:18:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9C16D3016D1D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:12:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B338730547FD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA7437757C;
-	Fri,  6 Mar 2026 08:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E959C37883C;
+	Fri,  6 Mar 2026 08:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P/MtQQK3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QNXyP+do"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08301375F93;
-	Fri,  6 Mar 2026 08:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4C2D378805;
+	Fri,  6 Mar 2026 08:14:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772784756; cv=none; b=mMrcyBDWIS4fcdu4XGbzFV60OGqsYHef02DJbhlJj2gIeKq5AK2eFwI75NFuB0NwpQBpglvqlFKCqjRi30nER9jqaJEj2R45w1phEN8z58wOfp8wCktCHzMH3ZZ1saEp+g6FrjQsco8OR3FIONaOzwZ/Nr8Ciz7esKR0OEu5Z/I=
+	t=1772784863; cv=none; b=sOvZa7ysA+oVDmG/z9E6JLDTCerNIlywq1iVPh64diH+d0GRB5QwS0CcWoZkX3zo+vVZaEfjJYme+BrvatBZNHy9ijGBjFKWww9AFLMdJyYszj33BHJHN1ousD0BtDlwJTXGadvqdW/+hPtLd4GEQVuFvFZoy8PDTz2XeYnOs5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772784756; c=relaxed/simple;
-	bh=h+z249gV6PAJH9owWYSdR8qaCEpXc1fgT56hlLiF91g=;
+	s=arc-20240116; t=1772784863; c=relaxed/simple;
+	bh=A948579zvWl86p8orwo3k2nV+y6GeQHABHAcfPNG4t0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bJLr68eghadw/FpWBVjOzBcZcF7PVRR/f2Bn4pVvxfKmegNbolmSlRbu/qE4z8wT8yXIcre5/FNm8uvvtiBp7TZno2xLjiMH94boDyJKzkvv0Rtvfkkzw4g42dygJ73z2x8M72XEXVk//NCSDqjBk3x8N/0cNvSMncdfgBDqsCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P/MtQQK3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15C86C4CEF7;
-	Fri,  6 Mar 2026 08:12:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ho7bOCbLvCHwdSplTwSAhYh6sMVqjPvUH3Bm6B+F/j9KHJ75Oizb1v4aRRdCgAzomf1JWero7IRqfJ/Zn7rZrHiooyYDUPmIx/hTAvo3371YvUoe76IWUa0bYdIuiJUx/mYRSFlBxopZyBpyZS3QugfNJj/+Di0O/2c4GLPMQXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QNXyP+do; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F201C4CEF7;
+	Fri,  6 Mar 2026 08:14:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772784755;
-	bh=h+z249gV6PAJH9owWYSdR8qaCEpXc1fgT56hlLiF91g=;
+	s=k20201202; t=1772784863;
+	bh=A948579zvWl86p8orwo3k2nV+y6GeQHABHAcfPNG4t0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P/MtQQK35+UL1G4MEUOMiP/QhBn6qCoG3+kg/aoqkPqouo2jWMblRH/6EOGkkbYFB
-	 qdR3LE7bD2m0x6N/IjNNV05sB4U9aACZi0azgBxYIaPgNpRSHbeYJpSJLZdOIM29tl
-	 t+4vnDaYJmATS0YHs8zKjM2wIHqv/aqKTPkcFMwMGiVF37DKcGyyfwbKDeBvn94Rpy
-	 wtw9d7Lhs7/cOjx9iHwkfFNpXyyTewj7qTiQYDSGpXnB3g01YZa8evSzIDQR6VNu2w
-	 uY3OHPQWnRNQ7d1HveUYrcvaXnztZg+6vjXhgiQMN1lXzgCoP61/p8mXGhN/QpAH0J
-	 KHenjzGkj7y1g==
-Date: Fri, 6 Mar 2026 09:12:33 +0100
+	b=QNXyP+doCw3LCMa9HXmzrYDlbaintfckjEXeOiqTJV98tbcEavLIO1YBTnYIhGvjV
+	 0c8CjbdIgkVSGa6AW/WraYVvDvOB9RH7cYrwY8Ny7GG0tuthd7CUqTts8YiDciS/gD
+	 4rwo3xS6TbrT6Jdil1k9PlBB2sjczN4xQ030RJkJTjbNk17SRZzpzL+cgu2abbJF4A
+	 HcubuaGefxkXqilBF8uGo9GFhBLwmODWwFNEXIBOlYuRAbCgySTuVq5XoIi+lIc3E3
+	 f/+RtATUML+O7OaQlo4rbmox2MEtATRdhYAdkOrmjJ3hsdhy/8ierSrXbp7jSVWr+Z
+	 BnGfAg0daA05Q==
+Date: Fri, 6 Mar 2026 09:14:21 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, 
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Jian Hu <jian.hu@amlogic.com>, 
 	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
 	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Stephen Boyd <sboyd@kernel.org>, 
 	Michael Turquette <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -57,9 +57,10 @@ Cc: Jerome Brunet <jbrunet@baylibre.com>,
 	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, Ronald Claveau <linux-kernel-dev@aliel.fr>
 Subject: Re: [PATCH 2/3] dt-bindings: clock: amlogic: t7: Add missing mpll3
  parent clock
-Message-ID: <20260306-monumental-nuthatch-from-avalon-bf108b@quoll>
+Message-ID: <20260306-artichoke-parakeet-of-innovation-af5b36@quoll>
 References: <20260305074328.639993-1-jian.hu@amlogic.com>
  <20260305074328.639993-3-jian.hu@amlogic.com>
+ <1j4imubqcb.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,8 +69,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260305074328.639993-3-jian.hu@amlogic.com>
-X-Rspamd-Queue-Id: B553D21CE6A
+In-Reply-To: <1j4imubqcb.fsf@starbuckisacylon.baylibre.com>
+X-Rspamd-Queue-Id: 6277921CF77
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -77,18 +78,18 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_ALL(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271882-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271883-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[baylibre.com,linaro.org,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org,aliel.fr];
+	FREEMAIL_CC(0.00)[amlogic.com,linaro.org,baylibre.com,googlemail.com,kernel.org,vger.kernel.org,lists.infradead.org,aliel.fr];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -96,43 +97,33 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,amlogic.com:email]
 X-Rspamd-Action: no action
 
-On Thu, Mar 05, 2026 at 03:43:26PM +0800, Jian Hu wrote:
-> The mpll3 clock is a valid parent clock for sd_emmc and mipi_isp on
-> the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
-> Add it to enable proper clock parent configuration for these peripherals.
+On Thu, Mar 05, 2026 at 10:03:32AM +0100, Jerome Brunet wrote:
+> On jeu. 05 mars 2026 at 15:43, Jian Hu <jian.hu@amlogic.com> wrote:
 > 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  .../bindings/clock/amlogic,t7-peripherals-clkc.yaml       | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+> > The mpll3 clock is a valid parent clock for sd_emmc and mipi_isp on
+> > the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
+> > Add it to enable proper clock parent configuration for these peripherals.
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
-> index 55bb73707d58..27cc1f331587 100644
-> --- a/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.yaml
-> @@ -24,7 +24,7 @@ properties:
->      const: 1
->  
->    clocks:
-> -    minItems: 14
-> +    minItems: 15
->      items:
->        - description: input oscillator
->        - description: input sys clk
-> @@ -40,12 +40,13 @@ properties:
->        - description: input gp1 pll
->        - description: input mpll1
->        - description: input mpll2
-> +      - description: input mpll3
+> ... but this changes the index of the clocks after this mpll3, and those
+> index are supposed to be stable if I'm not mistaken.
+> 
+> It is indeed more convenient to have the optional clocks at the end
+> as it avoids writing multiple <0> in DT when we do not have them.
+> 
+> At the very least, your commit description should say that this change
+> will not break any existing DT because these bindings are not used yet.
+> 
+> I leave it to the DT folks to say if the change is OK in such case.
 
-Nah, ABI break. You add it to the end of the list or provide arguments
-on ABI impact.
+Based on commit msg it is not OK, that's why we ask about explaining
+true problem and actual impact, IOW whether this did not work in the
+first place and authors did not bother to test it...
 
 Best regards,
 Krzysztof
