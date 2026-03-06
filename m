@@ -1,332 +1,184 @@
-Return-Path: <devicetree+bounces-271777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jha5KDkjqmkOMAEAu9opvQ
-	(envelope-from <devicetree+bounces-271777-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:43:37 +0100
+	id UC+UI20jqmkOMAEAu9opvQ
+	(envelope-from <devicetree+bounces-271778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:44:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2342219E68
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 324F0219EDA
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:44:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 683AE300F104
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:43:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F1FE53058734
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6FA2D876B;
-	Fri,  6 Mar 2026 00:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542B02E7165;
+	Fri,  6 Mar 2026 00:43:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PeJMMxwo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LCIl/OnO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8E12D6E5A;
-	Fri,  6 Mar 2026 00:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 969A32DF155
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 00:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772757814; cv=none; b=iq9yks5WqJh8G5WawlJXNu++pVRxxtteHWKZD7BV5kzeZF7dJcrLlkuAmZ/bk10qeHXPQ9k4O6Di5S7Igsw+ge262r3r8PTrHP7HfNM2RlCheNZ+WGF8i47zB3xFdRaT3l5p6SsBKg8vilmG9qYYMpk9KYmEtTVxi9ZE3L/X7z8=
+	t=1772757839; cv=none; b=CAcUb9fe1ctB6pBeY46e+viYrSTuWZM2dBLgNNBRuBbbYSBlI3JEqBygnPEX5E/dZJtTV9Dj5HyWjnsFuRrxlNZCLp9w8OciYncbPqYvEEe9rFY3Stylr/ihUyQM+JGHpkxvJsphl4s4pm7/JiHelpfWsyOipzXGOFOORVFfcLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772757814; c=relaxed/simple;
-	bh=uynp/F1TEhsuEQvaU0KZCrYdvfuryfR+sRqkbJZUsSE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FIgTMVuP5/M2rZWT1S42wqjq17HSHbjZle/lRuv+BtPwSXakAS2J9YeSvLrj/YEAaD0g/ddiL06BxdUuYJMzvIark6WtwlJ4DAvkJE8eUdDpDyElrgfA+XoPnjbUch9KmDmVcResY6KEIBwxE482NRfA64ZFrAGQwJH+ZJXi90U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PeJMMxwo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5595AC116C6;
-	Fri,  6 Mar 2026 00:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772757814;
-	bh=uynp/F1TEhsuEQvaU0KZCrYdvfuryfR+sRqkbJZUsSE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PeJMMxwo+BgL99hg9XvB8qmgZgDFQkBXJmOov9LE7YGicxw23xXh9YtRw0A5UGuEf
-	 yPCYZps0UfU5La7gvtaXHwIv5jb8SniDhy6BQYQrm0fwX46d2xebX5k+U20NC5rXBJ
-	 WeXjjWmn47YT9De+fJNjMWy+1gJqC2dPNpdoU0zdvhx5MGc525EYR+DxbZUpqO+FgT
-	 MmKjnS5ZlVtipmyQyoIuvE6rnda7YgAd+D1GBRdKBsx6pz6JLPIJcZy2gjM7zu365a
-	 orqRhbynoK/q+Ht8/xaKNseXbumoud5WWzkArxnwe7ppsNuFGjkhG/046+OBZnixey
-	 zFlkv7dSiUBFg==
-Date: Thu, 5 Mar 2026 18:43:33 -0600
-From: Rob Herring <robh@kernel.org>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Aaron Kling <webgeek1234@gmail.com>,
-	"open list:PCI DRIVER FOR NVIDIA TEGRA" <linux-tegra@vger.kernel.org>,
-	"open list:PCI DRIVER FOR NVIDIA TEGRA" <linux-pci@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/5] dt-bindings: PCI: Convert nvidia,tegra-pcie to DT
- schema
-Message-ID: <20260306004333.GA863798-robh@kernel.org>
-References: <20260224121948.25218-1-linux.amoon@gmail.com>
- <20260224121948.25218-2-linux.amoon@gmail.com>
+	s=arc-20240116; t=1772757839; c=relaxed/simple;
+	bh=SwKQHqFPugEY5LBsRfzbny5oSAeUyqfWxPylHIWs5QQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jZBC1iOFzNgxVAT+sQj3wduuXEqiL/HqULthcN9Fd9NJw/RxouMVd+kOuPvAobXfJHRdaoUMmww9U5ou3nrJcQ1heU1KSoKKN+tZsYF/CCJ3uQWkWHkBLIfkrDg01O5K6L58KGdcgfllzPFCyCKQYs8Vgc5LPZsvRHhg3rCPGUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LCIl/OnO; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-463901a0accso2668082b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 16:43:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772757835; x=1773362635; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5AiypmAgBLdMR9CuIx3DJ9/2CMWwdsmjB28iBee1fMM=;
+        b=LCIl/OnOy9RfQ10XhstZa5HsHrYgab5cv0xfEj/fDZeK3CUE48bZCzHkBtYXcQqZCb
+         IJwtYhijdoqpLeVEjuMyQGziuR/C9jLrxYHBWfRSR/AFX1a0OLBG72rfMBS6SHE0ubEG
+         12PqrIdDBBe1z7CPa9as4c/5BuctiMaWbFGFvRRxdqFc+BAA+bDAvw8FdGJCs2ZNGio4
+         B+QGzpyGw9oJOvVGT0M/Tir4fpPlJPxVO1DNJUArw71Lm/bOhIIXFOFqKIwL/yXHBY0d
+         d8qebC5glmdhtf93nvj02Fc/hD+BCgbZIjPhx+QQdKqhU9l4cvpt7s3VJAcsotcflZUG
+         5/PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772757835; x=1773362635;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5AiypmAgBLdMR9CuIx3DJ9/2CMWwdsmjB28iBee1fMM=;
+        b=nMiLyy1ptTELRWjPnJlFwz47SumuruuLFI58xmHX9ricHDBQZ+4sNGDjo0u8BGqzr1
+         4g/WfBaOkwGhINyVoZKF8J/bpAGImP8mnEpM+9kl3s29R57IlkSBwsKMZMSwvzykZABm
+         3NsFbRR5gs26BhUWSidXeHB300/3cdxeXMvvO6cP5UwllJSSWZ1YpoBK+p9APaIzp5/D
+         0WuxYv57jCG14TgAIybD0Imapj2qHHHh77fTnfNZDFbU1tyBfSwhPVqxdAmq9/kIR7Hc
+         GCgy7IxXCinRQ2ysduBnOaLMYn8G/OATQINsMExWqKekEzQGfG4vB7wFT7Yqu0DrRzyt
+         o1BA==
+X-Forwarded-Encrypted: i=1; AJvYcCWY6NH0Pj7rFVybtq9TeJ9XejEWs5mfXjJdm1zz4ACxqCHpO1l7JfhmXIVaXdio+7O+68yeIuLsScMv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ8k1gNLXA5wJt1ElTYElOneggpmJGublUn+jBXE5D9pOeyDqb
+	gyr20RqNE6FDX/M+S+N3yfk/LFHQIkrXHjIlmhmUWf8a7O0URkRfWdV0
+X-Gm-Gg: ATEYQzyL4UbyVhmzOX+ivulDdfK2TFqU+Isf4PFv+hdE1ADwJcwGuZqazDCz5jhi5C1
+	Sg+D90DUzhawa1bCVFky2/HiRbSiq0vEh1ZIJtINhQfFmhiMRHeGcPqkgozextFmRd4/BgvidIF
+	zRwEvXFAnH5QBoGK+3CS2EMRCE8XmW28ivr/cHvDxfo40Vv6SzShgX1R9XDL5UvuHQSMmaCpVaR
+	5KJkIprgI1IBkxJwwUAES9DZObZej1VOw/60jiRt9PsE9unqRqOGklEC1al6OEhkkTFreqJjQPh
+	7AepAvMBGHx5S1zyvu+ZjHnrBAeAucmkFygwDDe6MJucwh3qlHOrbXpAtpEqs1UIFs0sjO+VnzB
+	8TBHioUzn3+rp/uUUk7nfy1BgkCtJdGWgoLnW1zhqh/1EV+JmETf6MXbz8B4KRMy7FHBnZYWd0r
+	J+9WvUdvUhxFK3DjnQN4lxtSV5txBDW/BjavthTCRslGp3FaCHtpIqBOpnLehW/hLZd0ZV0xFeu
+	miXum9Dw+DLdM23qu4IiFsoFdBZHtH9dUPhvDi/kg==
+X-Received: by 2002:a05:6808:c3d5:b0:45f:13fe:4a2d with SMTP id 5614622812f47-466dc9f4738mr204774b6e.4.1772757835483;
+        Thu, 05 Mar 2026 16:43:55 -0800 (PST)
+Received: from framework.misc.iastate.edu ([2610:130:110:25d:2aa4:4aff:fed7:9b19])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-416e65b1c82sm69335fac.5.2026.03.05.16.43.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Mar 2026 16:43:55 -0800 (PST)
+From: Kerigan Creighton <kerigancreighton@gmail.com>
+To: linux-wireless@vger.kernel.org
+Cc: loic.poulain@oss.qualcomm.com,
+	wcn36xx@lists.infradead.org,
+	andersson@kernel.org,
+	mathieu.poirier@linaro.org,
+	linux-remoteproc@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Kerigan Creighton <kerigancreighton@gmail.com>
+Subject: [PATCH v3 0/3] Add support for Qualcomm WCN3610
+Date: Thu,  5 Mar 2026 18:43:41 -0600
+Message-ID: <20260306004344.10968-1-kerigancreighton@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260224121948.25218-2-linux.amoon@gmail.com>
-X-Rspamd-Queue-Id: E2342219E68
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 324F0219EDA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271777-lists,devicetree=lfdr.de];
-	TO_DN_ALL(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,google.com,kernel.org,nvidia.com,vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,lists.infradead.org,kernel.org,linaro.org,vger.kernel.org,gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-271778-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_NEQ_ENVFROM(0.00)[kerigancreighton@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Feb 24, 2026 at 05:48:57PM +0530, Anand Moon wrote:
-> Convert the existing text-based DT bindings documentation for the
-> NVIDIA Tegra PCIe host controller to a DT schema format.
+The WCN3610 is a 2.4GHz-only WLAN/BT combo chip used in some 
+cheaper Android and Windows phones such as the Lumia 550, and 
+IoT devices like the Anki Vector robot. It shares a lot in 
+common with the WCN3620.
 
-I just reviewed the same thing from Thierry... This one looks a bit 
-better for overall structure (fewer if/then schemas), but I think misses 
-some things like deprecated supplies. Please resolve the differences 
-between the 2 and coordinate who is going to send the next version.
+This series adds support for the WCN3610 across the necessary 
+subsystems:
 
-> 
-> Also update the MAINTAINERS file to reflect this change.
-> 
-> Cc: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v3: Tried to address the issues Krzysztof pointed out.
->    Added missing regulator binding as suggeested by Jon.
-> v2: Tried to address the isssue Rob pointed
-> [1] https://lkml.org/lkml/2025/9/26/704
-> improve the $suject and commit message
-> drop few examples only nvidia,tegra20-pcie and nvidia,tegra210-pcie
-> 
-> $ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
-> ---
->  .../bindings/pci/nvidia,tegra-pcie.yaml       | 528 ++++++++++++++
->  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ------------------
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 529 insertions(+), 671 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra20-pcie.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
-> new file mode 100644
-> index 000000000000..0675bec205e8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
-> @@ -0,0 +1,528 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra PCIe Controller
-> +
-> +maintainers:
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +  - Thierry Reding <treding@nvidia.com>
-> +
-> +description:
-> +  PCIe controller found on NVIDIA Tegra SoCs which supports multiple
-> +  root ports and platform-specific clock, reset, and power supply
-> +  configurations.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra20-pcie
-> +      - nvidia,tegra30-pcie
-> +      - nvidia,tegra124-pcie
-> +      - nvidia,tegra210-pcie
-> +      - nvidia,tegra186-pcie
-> +
-> +  reg:
-> +    items:
-> +      - description: PADS registers
-> +      - description: AFI registers
-> +      - description: Configuration space region
-> +
-> +  reg-names:
-> +    items:
-> +      - const: pads
-> +      - const: afi
-> +      - const: cs
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Controller interrupt
-> +      - description: MSI interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: intr
-> +      - const: msi
-> +
-> +  clocks:
-> +    minItems: 3
-> +    items:
-> +      - description: PCIe clock
-> +      - description: AFI clock
-> +      - description: PLL_E clock
-> +      - description: Optional CML clock
-> +
-> +  clock-names:
-> +    description: Names of clocks used by the PCIe controller
-> +    minItems: 3
-> +    items:
-> +      - const: pex
-> +      - const: afi
-> +      - const: pll_e
-> +      - const: cml
-> +
-> +  resets:
-> +    items:
-> +      - description: PCIe reset
-> +      - description: AFI reset
-> +      - description: PCIe-X reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: pex
-> +      - const: afi
-> +      - const: pcie_x
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  interconnects:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interconnect-names:
-> +    items:
-> +      - const: dma-mem
-> +      - const: write
-> +
-> +  pinctrl-names:
-> +    items:
-> +      - const: default
-> +      - const: idle
-> +
-> +  pinctrl-0: true
-> +  pinctrl-1: true
-> +
-> +  operating-points-v2:
-> +    description:
-> +      Defines operating points with required frequency and voltage values,
-> +      and the opp-supported-hw property.
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  avdd-pex-supply:
-> +    description: Power supply for analog PCIe logic. Must supply 1.05 V.
-> +
-> +  vdd-pex-supply:
-> +    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
-> +
-> +  avdd-pex-pll-supply:
-> +    description: Power supply for dedicated (internal) PCIe PLL. Must supply 1.05 V.
-> +
-> +  avdd-plle-supply:
-> +    description: Power supply for PLLE, which is shared with SATA. Must supply 1.05 V.
-> +
-> +  vddio-pex-clk-supply:
-> +    description: Power supply for PCIe clock. Must supply 3.3 V.
-> +
-> +  vddio-pex-ctl-supply:
-> +    description: Power supply for PCIe control I/O partition. Must supply 1.8 V.
-> +
-> +  hvdd-pex-supply:
-> +    description: High-voltage supply for PCIe I/O and PCIe output clocks. Must supply 3.3 V.
-> +
-> +  avdd-pexa-supply:
-> +    description: Power supply for analog PCIe logic. Must supply 1.05 V.
-> +
-> +  vdd-pexa-supply:
-> +    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
-> +
-> +  avdd-pexb-supply:
-> +    description: Power supply for analog PCIe logic. Must supply 1.05 V.
-> +
-> +  vdd-pexb-supply:
-> +    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
-> +
-> +  avddio-pex-supply:
-> +    description: Power supply for analog PCIe logic. Must supply 1.05 V.
-> +
-> +  dvddio-pex-supply:
-> +    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
-> +
-> +  hvddio-pex-supply:
-> +    description: High-voltage supply for PCIe I/O and PCIe output clocks. Must supply 1.8 V.
-> +
-> +  dvdd-pex-supply:
-> +    description: Power supply for digital PCIe I/O. Must supply 1.05 V.
-> +
-> +  hvdd-pex-pll-supply:
-> +    description: High-voltage supply for PLLE (shared with USB3). Must supply 1.8 V.
-> +
-> +  vddio-pexctl-aud-supply:
-> +    description: Power supply for PCIe side band signals. Must supply 1.8 V.
-> +
-> +patternProperties:
-> +  "^pci@[0-9a-f]+(,[0-9a-f]+)?$":
-> +    type: object
-> +    allOf:
+   * Document the new compatible string (patch 1).
+   * Add compatible string in qcom_wcnss_iris (patch 2).
+   * Add rf_id and CFGs for the WCN3610 in wcn36xx, disable
+     powersave for this specific chip, ensure it is 2.4GHz-only
+     (patch 3).
 
-Don't need allOf.
+Tested on an Anki Vector 1.0 and 2.0 robot. Support for other 
+WCN36xx chips has not been affected.
 
-> +      - $ref: /schemas/pci/pci-pci-bridge.yaml#
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      nvidia,num-lanes:
-> +        description: Number of lanes used by this PCIe port
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [1, 2, 4]
-> +
-> +      phys:
-> +        description: Phandles to PCIe PHYs
-> +        items:
-> +          maxItems: 1
+Changes in v2:
+ - Move the Documentation patch to the beginning of the patch set.
+ - Move remoteproc compatible string addition to the middle of 
+   the patch set.
+ - Add Reviewed-by Dmitry (thanks!) to remoteproc compatible patch.
+ - Move wcn36xx driver changes to the end of the patch set.
 
-How many cells a phy entry has depends on the provider which is outside 
-the scope of this binding.
+Changes in v3:
+ - Describe the hardware rather than the driver in the 
+   dt-bindings patch [Krzysztof].
+ - Describe why we need a new compatible in the remoteproc 
+   patch [Krzysztof].
+ - Describe where the CFG values came from in the wcn36xx 
+   driver patch [Konrad].
 
-> +        minItems: 1
-> +        maxItems: 4
+Kerigan Creighton (3):
+  dt-bindings: remoteproc: qcom,wcnss-pil: Add wcn3610 compatible
+  remoteproc: qcom_wcnss_iris: Add support for WCN3610
+  wifi: wcn36xx: Add support for WCN3610
+
+ .../bindings/remoteproc/qcom,wcnss-pil.yaml   |  1 +
+ drivers/net/wireless/ath/wcn36xx/main.c       |  4 +-
+ drivers/net/wireless/ath/wcn36xx/smd.c        | 61 ++++++++++++++++++-
+ drivers/net/wireless/ath/wcn36xx/wcn36xx.h    |  1 +
+ drivers/remoteproc/qcom_wcnss_iris.c          |  1 +
+ 5 files changed, 66 insertions(+), 2 deletions(-)
+
+-- 
+2.53.0
 
 
