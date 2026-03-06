@@ -1,129 +1,171 @@
-Return-Path: <devicetree+bounces-271933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271934-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOR9LAafqmmjUgEAu9opvQ
-	(envelope-from <devicetree+bounces-271933-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:31:50 +0100
+	id 4BphIc+eqmmjUgEAu9opvQ
+	(envelope-from <devicetree+bounces-271934-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:30:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B01121DF62
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:31:50 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30D9F21DF37
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:30:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 85B2B30166D1
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:27:25 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8CF0C3031381
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C14344D83;
-	Fri,  6 Mar 2026 09:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722BE304BA3;
+	Fri,  6 Mar 2026 09:30:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E987630E838;
-	Fri,  6 Mar 2026 09:27:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403612BD587;
+	Fri,  6 Mar 2026 09:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772789244; cv=none; b=RxPmT7bhNaiWiwapsuYaoH6XnvVYOMKQPsRX18/kqQxBpIcOZ+dHZ3vPrlZVUFnUGDwJNdrhGu/CFT1s4J6yfgZdjVRyzl1+Oj7r7yrGourU/l3atyX8YGO9bL32ZD35bfHtpBKXo5gb2v3lFThKZ2v0gm1yNU1nGR5R5wHERyg=
+	t=1772789452; cv=none; b=R8WvG/K1BjFTdoXt0ujTEIybx44M7cvdNq4hENtKlUn8gmgy0d6Re4pUU8w8apIDZlOuqJoxh9hCuQvdxRhDLJiMbBZMwJ/kbIvGMRqOl59ykSVnroZ6UGQ40ohHBf1ZY7+IBJJLB+LTu4jRtf/XuoBrLPnpd7HryaTPwbr+KSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772789244; c=relaxed/simple;
-	bh=N8PkD5YdhmsvHajDts89F7EBedN8BvcsAD/2Zip9Q1Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X7P6ZN6X+MkcpSBBp2AAv7WzGfrlyYeGIyPTVgWnI2kadZRkInRv1Do9BsraaOsqMsYIGxOb+suVa8HLDL1uH1ub7HTbgZa6ogVhMAR30XKCRCZRPQMT8JLzbLKHQ9nCx3U7piy7SiqbK2u2rPUNqXqeT1qD/LnTWHlE9FswAqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DA0CC497;
-	Fri,  6 Mar 2026 01:27:14 -0800 (PST)
-Received: from [10.57.11.75] (unknown [10.57.11.75])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6D44E3F836;
-	Fri,  6 Mar 2026 01:27:18 -0800 (PST)
-Message-ID: <6dbace26-8d7f-4fac-ae33-4dd0bc1d0a6d@arm.com>
-Date: Fri, 6 Mar 2026 09:27:29 +0000
+	s=arc-20240116; t=1772789452; c=relaxed/simple;
+	bh=G87MZlRCEh3ibHw01hOa/FGyjGQvzv88dSRlrph6e8g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hDIfUjdiI7/v0S8zmA2b2PTzR1kioOuXH5SAYnCcaD545MK7RmZjmHSIyOc/jLCOqyl2zgySUpQNhKi0Kw0qEsdc8b1d0XNFqIF0+MVBV1aq0KB7YczaThQjxrSI8jj4dnZyb1ldeoNEHmBSLnPuZr4zCoLX5f7obWLxNHowBEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
+	by app1 (Coremail) with SMTP id TAJkCgDXbHGtnqppxC0GAA--.25521S2;
+	Fri, 06 Mar 2026 17:30:22 +0800 (CST)
+From: dongxuyang@eswincomputing.com
+To: ukleinek@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	ben-linux@fluff.org,
+	ben.dooks@codethink.co.uk,
+	p.zabel@pengutronix.de,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	xuxiang@eswincomputing.com,
+	wangguosheng@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Xuyang Dong <dongxuyang@eswincomputing.com>
+Subject: [PATCH v2 0/2] Update designware pwm driver
+Date: Fri,  6 Mar 2026 17:30:00 +0800
+Message-Id: <20260306093000.2065-1-dongxuyang@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/8] thermal: Add Remote Proc cooling driver
-To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>,
- Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
-Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com,
- konradybcio@kernel.org, mani@kernel.org, casey.connolly@linaro.org,
- amit.kucheria@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, manaf.pallikunhi@oss.qualcomm.com
-References: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
- <20260127155722.2797783-2-gaurav.kohli@oss.qualcomm.com>
- <aaqcE5jk-JCoBVG7@mai.linaro.org>
-Content-Language: en-US
-From: Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <aaqcE5jk-JCoBVG7@mai.linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4B01121DF62
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgDXbHGtnqppxC0GAA--.25521S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Ww43uF1DKFW5KF1UWr4rZrb_yoW8KF48pa
+	1kGrWakr95WryIgr93W3W8CFy5t3WxJrW7Kw4fJw1UZan0vrWUZ3yvgFy5tF9F93WFgry2
+	kryfWw42ka45ArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r1q6r43MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUmjgxUUUUU=
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-Rspamd-Queue-Id: 30D9F21DF37
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.36 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lukasz.luba@arm.com,devicetree@vger.kernel.org];
-	NEURAL_HAM(-0.00)[-0.987];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_FROM(0.00)[bounces-271934-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271933-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[eswincomputing.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_NO_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.976];
+	PRECEDENCE_BULK(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	R_DKIM_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dongxuyang@eswincomputing.com,devicetree@vger.kernel.org]
 X-Rspamd-Action: no action
 
+From: Xuyang Dong <dongxuyang@eswincomputing.com>
 
+There is already a patch [1] for the DesignWare PWM driver, 
+which is posted by Ben and still under review. 
+Based on this patch, this series is a continuation of [1] 
+to add support for IP versions 2.11a and later, which 
+includes support for "Pulse Width Modulation with 0% 
+and 100% Duty Cycle".
 
-On 3/6/26 09:19, Daniel Lezcano wrote:
-> On Tue, Jan 27, 2026 at 09:27:15PM +0530, Gaurav Kohli wrote:
->> Add a new generic driver for thermal cooling devices that control
->> remote processors (modem, DSP, etc.) through various communication
->> channels.
->>
->> This driver provides an abstraction layer between the thermal
->> subsystem and vendor-specific remote processor communication
->> mechanisms.
->>
->> Advantage of this to avoid duplicating vendor-specific logic
->> in the thermal subsystem and make it easier for different vendors
->> to plug in their own cooling mechanisms via callbacks.
-> 
-> These changes add a layer on top of another existing without bringing
-> a real benefit. At the first glance, it appears to be an ops calling
-> an ops with an extra unneeded lock.
-> 
-> IMO, a remote proc cooling device should at least group all common
-> rproc calls found in the different SoC doing the same thing. Otherwise
-> it is not worth to add it.
-> 
+Supported chips:
+ESWIN EIC7700 series SoC.
 
-I agree with Daniel here. I thought we would have many such SoCs and
-a common problem to solve in the fwk layer. When we discussed at LPC25
-this needed feature I got an impression this is the case.
+Test:
+Tested this patch on the Sifive HiFive Premier P550 (which uses the EIC7700
+SoC).
 
-Do we have other SoCs which would benefit from this design approach?
+[1] https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
 
-If not, then it would be better to put this code next to the SoC's
-driver code and not expose it.
+Updates:
+  Change in v2:
+  - YAML:
+    - Remove eswin,eic7700-pwm.yaml. Use snps,dw-apb-timers-pwm2.yaml.
+      The description in snps,dw-apb-timers-pwm2.yaml is better.
+    - Add the resets property as optional, as defined in the databook.
+    - Remove snps,pwm-full-range-enable as no additional property is needed.
+  - Driver:
+    - Change the file from pwm-dwc-eic7700.c to pwm-dwc-of.c from [1].
+    - Define DWC_TIM_VERSION_ID_2_11A 2.11a as the baseline version.
+    - Enable the 0% and 100% duty cycle mode by setting dwc->feature if
+      the version read from the TIMERS_COMP_VERSION register is later
+      than or equal to DWC_TIM_VERSION_ID_2_11A.
+    - Use the DIV_ROUND_UP_ULL() to calculate width in the .apply and
+      .get_state.
+    - Additionally, Power Management (PM) support has been added to the
+      pwm-dwc-of.c driver.
+    - Drop the headers that are not used.
+    - Use devm_clk_get_enabled() instead of devm_clk_get().
+    - Drop of_match_ptr.
+    - Fix build error with 1ULL << 32.
+      Reported-by: kernel test robot <lkp@intel.com>
+      Closes: https://lore.kernel.org/oe-kbuild-all/202512061720.j31AsgM7-lkp@intel.com/
 
-Regards,
-Lukasz
+  - Link to v1: https://lore.kernel.org/all/20251205090411.1388-1-dongxuyang@eswincomputing.com/
+  - Link to v9: https://lore.kernel.org/lkml/20230907161242.67190-1-ben.dooks@codethink.co.uk/
+
+Xuyang Dong (2):
+  dt-bindings: pwm: dwc: add reset optional
+  pwm: dwc: add of/platform support
+
+ .../bindings/pwm/snps,dw-apb-timers-pwm2.yaml |   3 +
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-dwc-core.c                    | 101 ++++++--
+ drivers/pwm/pwm-dwc-of.c                      | 216 ++++++++++++++++++
+ drivers/pwm/pwm-dwc.h                         |  25 +-
+ 6 files changed, 327 insertions(+), 29 deletions(-)
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+
+--
+2.34.1
+
 
