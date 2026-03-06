@@ -1,728 +1,223 @@
-Return-Path: <devicetree+bounces-272019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272020-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gLOKBWS3qml9VgEAu9opvQ
-	(envelope-from <devicetree+bounces-272019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:15:48 +0100
+	id kPNwGtS4qmlpVwEAu9opvQ
+	(envelope-from <devicetree+bounces-272020-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:21:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8844021F866
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:15:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C9721F974
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 12:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1D6F830027A8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 11:15:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8245B30D9277
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 11:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96804366DC0;
-	Fri,  6 Mar 2026 11:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C2BB35D5E2;
+	Fri,  6 Mar 2026 11:19:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J1ZBN11f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jlxhHXd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712EA34DB79;
-	Fri,  6 Mar 2026 11:15:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1CDA37C90C
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 11:19:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772795745; cv=none; b=fcZPlo92uYMYFyRUBjbozXlojAnedzSIspo+jFnSVilg7vI2h9kPSKcVipbAAimtUn1vVsgVfDa/dgbVLN2NnAElkmJyaM/c6WJFIXTvJl5n0lCQrnUZJLN8lWsrEn5+08fr9y9t2jZ8mKYtI9hbsCQFIor0V/idv8LB1e38WUY=
+	t=1772795981; cv=none; b=mcvx709+9dWbg7btY9sCTHwb9Wm7YsyFKMkLFTdKSEwRHVYQ6ZTKG7p55xc7CON4oPiDiP7TMAQX9tyFYkt6FHW3qWLRe2EnT/ZvSctL2HhaCUbELAN7Wi+rqMxiraPSPrjZAtz2FKhGN1641v0Y3cksFOZsC8QF8waW7yld9ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772795745; c=relaxed/simple;
-	bh=RSjfcZt9syRWNqDmt/ZZSNfUdaIWH+NKLuOV8TszUG8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qb27Y5hkbvui7bRziTKtgyWHcUvhru1X2DLQBUQ870AqIvVL2249cUfkXWpwqvRrtb1b37hiX81hsGddfrxxlbdnF3MXRQVm7yQ8gz3g/zZm9A439vIMcnEwaXWohoclciIGupwn72mubpfEwEWc1xkgz6u1yo3xm5SzL6BEOc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J1ZBN11f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34055C2BC86;
-	Fri,  6 Mar 2026 11:15:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772795745;
-	bh=RSjfcZt9syRWNqDmt/ZZSNfUdaIWH+NKLuOV8TszUG8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J1ZBN11fpCXPf6tpK/e2plwgMZYex/wlRIPwnURTOCrU8AxoPnEVxSMPHwqxb8RPv
-	 GY4lFDaQcoYfInUnMnx0CeNNwR9Fa0Z5nRmXsVV+LwMFAkQYmDv7Khru0pBbEf4eAn
-	 Ma1Ogy6hNw9DWElOuBEHy7xHCuKXin+DfCUeCFaqFtzn1zp96PaZGTCdpyvJSzQmOk
-	 GQCJx8o96/YhCDLUOVtZ8JhbKMOl5AH2jCbyVwcQnlsSYPX0w1L5Ja/Oz/QFYVN6Dy
-	 WbJJ0hV/UHc+aq71xXoMpWfmOFADfBv5Anb6to7FkeIc6CFCOPqDNIjia3lRRXiIoC
-	 Ruq3kRo0Fv5jg==
-Date: Fri, 6 Mar 2026 11:15:40 +0000
-From: Lee Jones <lee@kernel.org>
-To: Edelweise Escala <edelweise.escala@analog.com>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1772795981; c=relaxed/simple;
+	bh=IhHBDjBNblh3SGioE59ahxJ5i5rETskes7udyfMIjwg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=SmaeLMK11fkEmbl8KNvIQ4YgFWgyQGH09/WS30LHm4j5BYDHDxyfk1nD7J7xf0LbkAzYj4067cklXIRIrhzrmy7sPs9cLWQWXC4Dt4JhFFWKh1yaCBvwJ9AWV6EC1BpLEiuDlnOzo5bHVfm/T9OovTUjRgtzq3cEEUWzg/pD8h4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jlxhHXd/; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-827546f228aso6834325b3a.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 03:19:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772795980; x=1773400780; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=X0jykUN0/tKr1Iorg3HvmMPc1TMCQY6y1V9ModxJUJY=;
+        b=jlxhHXd/NGrSQ1nvRmh1oSOT7gotHVvdSYCloX//S0jbrAsnoz873qynDx3PzwI8rZ
+         aDtTzT1TZ+7Npl7NeA7K80LDZdafOFQ4r00oBtsrT/55VYcTE72ct267O2E/kK0e+tFd
+         MydLm/G2CLy4oEsMptYhCC+Qwm+cvfvk2zdg/TaI4/0assv8dPPyu0WSdnTJvO/148vM
+         Bi0dobeBMJ6ElqtQDhc6/XgRt6B1gJtl+hZ4gFUnPbUFcz4yEO0ZEQzq2BbkhEtxDSK4
+         zsxWZgMN18H2Tbk8mDDeBaFLlPT/BZoIc9ZL46OqZcDS2Jqv9zQ0aLf5Uwf5dlIRy8P4
+         zkbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772795980; x=1773400780;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=X0jykUN0/tKr1Iorg3HvmMPc1TMCQY6y1V9ModxJUJY=;
+        b=APVLZeohofuRrhKVD+ckRZv5/q9gFWT45MnwDb+PLovwQuZ9XwOD/ujcYcy4QOrvkS
+         fsAqkOoeZBOqqC0rAfnJRoKMHRC0v8Moz16OzRYUoRmtf37nzmizVGgvi5jGfdUfEKnO
+         TSCOCaLo5/DXvnbB/FBxhCzGeJ8xlO010mpO44VKHWJEU+qpInTpk1qnOUpLFuOZer0Y
+         Uzjx5UVrAnkNxogXrsjsKgpA2fh8LgpKLtAhslLLqh6sG3SCzg0eSil2vsV8R+vRWMyW
+         Vd2Nt4rURiYFaXjTvQvzRkoNeAjGkEmlJ0aZcVOw2OwnZHi6Qz94wkwAyMHZRoKGpQSu
+         O+fg==
+X-Forwarded-Encrypted: i=1; AJvYcCWT1O+29ccDwNONx/jeOs6OK4sy9zYZJ5QGPdwLbpecept785jQq1cbPmHIkFkHQG1WTGq/+p4X9LoF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhQBNSmp3/DCxlJt+NEq70owi5Oqfjazt9Yo1eRgatRIC4Iqi7
+	hgUa/mX77GUjhSd5ISWv81z0YGGlqVkBNM7unIubJPnWd+jwQjPm9SaB
+X-Gm-Gg: ATEYQzxDFOCTjIyu+/Fm5Wg4yactrU8opyYKAXFY8QxqxBNlJt+Ni1QjOb06s4j4QR7
+	P7+zRT4yTyZbBvmJ+L33F8XmjIKUI4Ol2ej8tXCUZ4v13A5hCZoTFHunVqX5tWjhQwgQZ8QsFzX
+	SgRbJjb4FPTE/6YRmahWb/WjpfgJH7jSj+TGUlFvME3E+4HGFdJolpgzR+P1Wl8LsLFMn9XVJ5l
+	P4BCMgcIJr2ZNQC4wqUchXNA4QkhRzTL4dOwv+UFkcIcZklpHBBr7no8ylRJbLB0lTVsp+25XNZ
+	D6hjsdJEjhz4uvRFLxp//DKdeUHGPCCVRNp5R2eFzk7cVK+cru/aln8ZLcEp7FtDD9LX0oTyFra
+	nTJdWD11Pd6YxUcUU+oLJhvLGUvB8Bn73+NUQLcEbdSoFUd3YYakbZuHzi9kZmWbBTVgwwPbuup
+	H9osyWA8hfoTjsQDaQZpot7dGgKBnl/ZQ0g7AsbhslCPTATgfABCGTL3zi6Q==
+X-Received: by 2002:a05:6a00:1c84:b0:827:343a:a1ef with SMTP id d2e1a72fcca58-829a30c2008mr1778823b3a.52.1772795980067;
+        Fri, 06 Mar 2026 03:19:40 -0800 (PST)
+Received: from phuc-desktop.. ([183.91.15.56])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829a4636cfbsm1475973b3a.13.2026.03.06.03.19.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Mar 2026 03:19:39 -0800 (PST)
+From: phucduc.bui@gmail.com
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] leds: ltc3220: Add Support for LTC3220 18 channel
- LED Driver
-Message-ID: <20260306111540.GF183676@google.com>
-References: <20260126-ltc3220-driver-v5-0-152a30e98ab7@analog.com>
- <20260126-ltc3220-driver-v5-2-152a30e98ab7@analog.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Jeff LaBundy <jeff@labundy.com>,
+	Bastian Hecht <hechtb@gmail.com>,
+	Javier Carrasco <javier.carrasco@wolfvision.net>,
+	linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	bui duc phuc <phucduc.bui@gmail.com>
+Subject: [PATCH v3 0/3] Input: st1232 - add system wakeup support
+Date: Fri,  6 Mar 2026 18:19:09 +0700
+Message-ID: <20260306111912.58388-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260306104025.43970-1-phucduc.bui@gmail.com>
+References: <20260306104025.43970-1-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260126-ltc3220-driver-v5-2-152a30e98ab7@analog.com>
-X-Rspamd-Queue-Id: 8844021F866
+X-Rspamd-Queue-Id: 05C9721F974
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-272019-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272020-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,sang-engineering.com,labundy.com,wolfvision.net,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FROM_NO_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, 26 Jan 2026, Edelweise Escala wrote:
+From: bui duc phuc <phucduc.bui@gmail.com>
 
-> Add driver for the LTC3220 18-channel LED driver
-> with I2C interface, individual brightness control, and hardware-assisted
-> blink/gradation features.
+Hi all,
 
-Odd line breaks.
+This patch series adds system wakeup support for the ST1232 touchscreen
+controller.
 
-> Signed-off-by: Edelweise Escala <edelweise.escala@analog.com>
-> ---
->  MAINTAINERS                 |   1 +
->  drivers/leds/Kconfig        |  10 +
->  drivers/leds/Makefile       |   1 +
->  drivers/leds/leds-ltc3220.c | 455 ++++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 467 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5c10cc3e3022..7467537938bf 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14961,6 +14961,7 @@ L:	linux-leds@vger.kernel.org
->  S:	Maintained
->  W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/leds/adi,ltc3220.yaml
-> +F:	drivers/leds/leds-ltc3220.c
->  
->  LTC4282 HARDWARE MONITOR DRIVER
->  M:	Nuno Sa <nuno.sa@analog.com>
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 597d7a79c988..a1c34b2deded 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -1001,6 +1001,16 @@ config LEDS_ST1202
->  	  Say Y to enable support for LEDs connected to LED1202
->  	  LED driver chips accessed via the I2C bus.
->  
-> +config LEDS_LTC3220
-> +	tristate "LED Driver for LTC3220/LTC3220-1"
+During development it was observed that the device did not expose the
+"power/wakeup" sysfs attribute, preventing it from being configured as
+a wakeup source for system suspend.
 
-Manufacturer?
+To address this, the Devicetree node for the touchscreen is updated to
+include the "wakeup-source" property, and the st1232 driver is extended
+to initialize the device wakeup capability and report wakeup events
+to the PM core.
 
-> +	depends on I2C && LEDS_CLASS
-> +	help
-> +	  If you have an 18-Channel LED Driver connected to LTC3220, or LTC3220-1
-> +	  say Y here to enable this driver.
+Testing
 
-More info.  What features does it have?  How is it driven?  Protocol?
+The changes were tested on the
+Armadillo800EVA board based on the Renesas R8A7740 SoC.
 
-> +	  To compile this driver as a module, choose M here: the module will
-> +	  be called ltc3220.
-> +
->  config LEDS_TPS6105X
->  	tristate "LED support for TI TPS6105X"
->  	depends on LEDS_CLASS
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index 8fdb45d5b439..5301568d9e00 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -61,6 +61,7 @@ obj-$(CONFIG_LEDS_LP8788)		+= leds-lp8788.o
->  obj-$(CONFIG_LEDS_LP8860)		+= leds-lp8860.o
->  obj-$(CONFIG_LEDS_LP8864)		+= leds-lp8864.o
->  obj-$(CONFIG_LEDS_LT3593)		+= leds-lt3593.o
-> +obj-$(CONFIG_LEDS_LTC3220)		+= leds-ltc3220.o
->  obj-$(CONFIG_LEDS_MAX5970)		+= leds-max5970.o
->  obj-$(CONFIG_LEDS_MAX77650)		+= leds-max77650.o
->  obj-$(CONFIG_LEDS_MAX77705)		+= leds-max77705.o
-> diff --git a/drivers/leds/leds-ltc3220.c b/drivers/leds/leds-ltc3220.c
-> new file mode 100644
-> index 000000000000..6a5d967ae7e8
-> --- /dev/null
-> +++ b/drivers/leds/leds-ltc3220.c
-> @@ -0,0 +1,455 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * LTC3220 18-Channel LED Driver
-> + *
-> + * Copyright 2026 Analog Devices Inc.
-> + *
-> + * Author: Edelweise Escala <edelweise.escala@analog.com>
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/delay.h>
-> +#include <linux/device.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/leds.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/types.h>
-> +
-> +/* LTC3220 Registers */
+The system successfully resumes from suspend when the LCD panel is
+touched.
 
-This can be made more clear with "REG" in the define names.
+Due to the interrupt hierarchy on this platform, the parent interrupt
+controller (GIC, IRQ 24) is recorded as the primary source that wakes
+the SoC, followed by the device interrupt (IRQ 35).
 
-> +#define LTC3220_COMMAND				0x00
-> +#define LTC3220_ULED(x)				(0x01 + (x))
-> +#define LTC3220_GRAD_BLINK			0x13
-> +
-> +#define LTC3220_GRAD_COUNT_UP		BIT(0)
-> +#define LTC3220_COMMAND_QUICK_WRITE	BIT(0)
-> +#define LTC3220_COMMAND_SHUTDOWN	BIT(3)
+Example kernel log during wakeup:
 
-These don't look like registers to me!
+PM: suspend-to-idle
+PM: Triggering wakeup from IRQ 24
+PM: Triggering wakeup from IRQ 35
 
-It can sometimes help to put the bits under the "REG"s and intent them:
+Verified functionality
 
-#define LTC3220_COMMAND_REG			0x00
-#define   LTC3220_COMMAND_QUICK_WRITE		BIT(0)
-#define   LTC3220_COMMAND_SHUTDOWN		BIT(3)
+* The "power/wakeup" sysfs attribute is present for the device.
+* The system resumes correctly from 'mem' and 'freeze' states when the
+  touchscreen is touched.
 
-> +#define LTC3220_LED_CURRENT_MASK	GENMASK(5, 0)
-> +#define LTC3220_LED_MODE_MASK		GENMASK(7, 6)
-> +#define LTC3220_BLINK_MASK			GENMASK(4, 3)
-> +#define LTC3220_GRADATION_MASK		GENMASK(2, 1)
-> +
-> +#define LTC3220_NUM_LEDS 18
+Changes in v3:
+* Patch 3: Removed debug dev_info() log messages for a cleaner
+  production-ready implementation.
+* No changes to Patch 1 and Patch 2.
 
-Tab with the rest
+Changes in v2
+* Drop description for wakeup-source property as suggested by
+  Krzysztof Kozlowski.
+* Updated commit messages for clarity.
+* Added driver-side wakeup handling in st1232.c.
 
-> +struct ltc3220_command_cfg {
-> +	bool is_aggregated;
-> +	bool is_shutdown;
-> +};
-> +
-> +struct ltc3220_uled_cfg {
-> +	struct ltc3220_state *ltc3220_state;
-> +	struct led_classdev led_cdev;
-> +	u8 reg_value;
-> +	u8 led_index;
-> +};
-> +
-> +struct ltc3220_grad_cfg {
+Patch series
 
-What is "grad"  Any reason to shorten it?
+1. dt-bindings: input: touchscreen: st1232: document wakeup-source
+2. arm: dts: r8a7740: armadillo800eva: add wakeup-source to st1232
+3. Input: st1232: add wakeup support
 
-> +	bool is_increasing;
-> +	u8 gradation_period_ms;
-> +};
-> +
-> +struct ltc3220_state {
-> +	struct ltc3220_command_cfg command_cfg;
-> +	struct ltc3220_uled_cfg uled_cfg[LTC3220_NUM_LEDS];
-> +	struct ltc3220_grad_cfg grad_cfg;
-> +	struct i2c_client *client;
+This series depends on the following patch which has been
+submitted but not yet merged:
 
-Nit: Put this at the top.
+drm: shmobile: Fix blank screen after resume when LCDC is stopped
+Link: https://lore.kernel.org/all/20260226054035.30330-1-phucduc.bui@gmail.com/
 
-> +	u8 blink_mode;
-> +};
-> +
-> +static int ltc3220_set_command(struct ltc3220_state *ltc3220_state)
-> +{
-> +	struct i2c_client *client = ltc3220_state->client;
-> +	u8 reg_val;
-> +
-> +	reg_val = FIELD_PREP(LTC3220_COMMAND_SHUTDOWN,
-> +			     ltc3220_state->command_cfg.is_shutdown);
-> +	reg_val |= FIELD_PREP(LTC3220_COMMAND_QUICK_WRITE,
-> +			      ltc3220_state->command_cfg.is_aggregated);
+Feedback and review are welcome.
 
-Open these out to use 100-chars to improve readability.
 
-> +	return i2c_smbus_write_byte_data(client, LTC3220_COMMAND, reg_val);
-> +}
-> +
-> +static int ltc3220_shutdown(struct ltc3220_state *ltc3220_state)
-> +{
-> +	int ret;
-> +
-> +	ltc3220_state->command_cfg.is_shutdown = true;
+bui duc phuc (3):
+  dt-bindings: input: touchscreen: sitronix,st1232: Add wakeup-source
+  arm: dts: renesas: r8a7740-armadillo800eva: Add wakeup-source to
+    st1232
+  input: touchscreen: st1232: add system wakeup support
 
--ENOSQUISH - '\n' here.
-
-> +	ret = ltc3220_set_command(ltc3220_state);
-> +	if (ret < 0)
-> +		ltc3220_state->command_cfg.is_shutdown = false;
-> +
-> +	return ret;
-> +}
-> +
-> +static int ltc3220_resume_from_shutdown(struct ltc3220_state *ltc3220_state)
-> +{
-> +	int ret;
-> +
-> +	ltc3220_state->command_cfg.is_shutdown = false;
-
--ENOSQUISH - '\n' here.
-
-> +	ret = ltc3220_set_command(ltc3220_state);
-> +	if (ret < 0)
-> +		ltc3220_state->command_cfg.is_shutdown = true;
-> +
-> +	return ret;
-> +}
-> +
-> +/*
-> + * Set LED brightness and mode.
-> + * The brightness value determines both the LED current and operating mode:
-> + * 0-63:    Normal mode - LED current from 0-63 (off to full brightness)
-> + * 64-127:  Blink mode - LED blinks with current level (brightness - 64)
-> + * 128-191: Gradation mode - LED gradually changes brightness (brightness - 128)
-> + * 192-255: GPO mode - LED operates as general purpose output (brightness - 192)
-> + */
-> +static int ltc3220_set_led_data(struct led_classdev *led_cdev,
-> +				enum led_brightness brightness)
-> +{
-> +	struct ltc3220_state *ltc3220_state;
-> +	struct ltc3220_uled_cfg *uled_cfg;
-> +	int ret;
-> +	int i;
-> +
-> +	uled_cfg = container_of(led_cdev, struct ltc3220_uled_cfg, led_cdev);
-> +	ltc3220_state = uled_cfg->ltc3220_state;
-> +
-> +	ret = i2c_smbus_write_byte_data(ltc3220_state->client,
-> +			LTC3220_ULED(uled_cfg->led_index), brightness);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	uled_cfg->reg_value = brightness;
-
-Tell us what we're doing here.
-
-Tell us why it's okay for this to be over-written below.
-
-> +	/*
-> +	 * When aggregated LED mode is enabled, writing to LED 1 updates all
-> +	 * LEDs simultaneously via quick-write mode. Update cached values for
-> +	 * all LEDs to reflect the synchronized state.
-> +	 */
-> +	if (ltc3220_state->command_cfg.is_aggregated && uled_cfg->led_index == 0) {
-> +		for (i = 0; i < LTC3220_NUM_LEDS; i++)
-> +			ltc3220_state->uled_cfg[i].reg_value = brightness;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static enum led_brightness ltc3220_get_led_data(struct led_classdev *led_cdev)
-> +{
-> +	struct ltc3220_uled_cfg *uled_cfg;
-> +
-> +	uled_cfg = container_of(led_cdev, struct ltc3220_uled_cfg, led_cdev);
-
-Do this on the allocation line.
-
-> +	return uled_cfg->reg_value;
-> +}
-> +
-> +static int ltc3220_set_blink_and_gradation(struct ltc3220_state *ltc3220_state,
-> +		    u8 blink_cfg, u8 gradation_period_ms, bool is_increasing)
-
-Should line-up with the '('.
-> +{
-> +	struct i2c_client *client = ltc3220_state->client;
-> +	u8 reg_val;
-> +
-> +	reg_val = FIELD_PREP(LTC3220_BLINK_MASK, blink_cfg);
-> +	reg_val |= FIELD_PREP(LTC3220_GRADATION_MASK, gradation_period_ms);
-> +	reg_val |= FIELD_PREP(LTC3220_GRAD_COUNT_UP, is_increasing);
-> +
-> +	return i2c_smbus_write_byte_data(client, LTC3220_GRAD_BLINK, reg_val);
-> +}
-> +
-> +/*
-> + * LTC3220 pattern support for hardware-assisted breathing/gradation.
-> + * The hardware supports 3 gradation ramp time 240ms, 480ms, 960ms)
-> + * and can ramp up or down.
-> + *
-> + * Pattern array interpretation:
-> + *   pattern[0].brightness = start brightness (0-63)
-> + *   pattern[0].delta_t = ramp time in milliseconds
-> + *   pattern[1].brightness = end brightness (0-63)
-> + *   pattern[1].delta_t = (optional, can be 0 or same as pattern[0].delta_t)
-> + */
-> +static int ltc3220_pattern_set(struct led_classdev *led_cdev,
-> +			       struct led_pattern *pattern,
-> +			       u32 len, int repeat)
-> +{
-> +	struct ltc3220_state *ltc3220_state;
-> +	struct ltc3220_uled_cfg *uled_cfg;
-> +	u8 gradation_period;
-> +	u8 start_brightness;
-> +	u8 end_brightness;
-> +	bool is_increasing;
-> +	int ret;
-> +
-> +	if (len != 2)
-> +		return -EINVAL;
-> +
-> +	uled_cfg = container_of(led_cdev, struct ltc3220_uled_cfg, led_cdev);
-> +	ltc3220_state = uled_cfg->ltc3220_state;
-
-Do both of these on the allocation line.
-
-> +
-> +	start_brightness = pattern[0].brightness & LTC3220_LED_CURRENT_MASK;
-> +	end_brightness = pattern[1].brightness & LTC3220_LED_CURRENT_MASK;
-
-Define these magic numbers.
-
-> +
-> +	is_increasing = end_brightness > start_brightness;
-> +
-> +	if (pattern[0].delta_t == 0)
-> +		gradation_period = 0;
-> +	else if (pattern[0].delta_t <= 240)
-> +		gradation_period = 1;
-> +	else if (pattern[0].delta_t <= 480)
-> +		gradation_period = 2;
-> +	else
-> +		gradation_period = 3;
-> +
-> +	ret = ltc3220_set_blink_and_gradation(ltc3220_state,
-> +					       ltc3220_state->blink_mode,
-> +					       gradation_period,
-> +					       is_increasing);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ltc3220_state->grad_cfg.gradation_period_ms = gradation_period;
-> +	ltc3220_state->grad_cfg.is_increasing = is_increasing;
-
-It's confusing to have is_increasing as a local variable, a function
-parameter and a struct attribute.  Do you really need all of them,
-particularly the last 2?
-
-> +	ret = ltc3220_set_led_data(led_cdev, start_brightness);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return ltc3220_set_led_data(led_cdev, 128 + end_brightness);
-
-No magic numbers.
-
-> +}
-> +
-> +static int ltc3220_pattern_clear(struct led_classdev *led_cdev)
-> +{
-> +	struct ltc3220_state *ltc3220_state;
-> +	struct ltc3220_uled_cfg *uled_cfg;
-> +	int ret;
-> +
-> +	uled_cfg = container_of(led_cdev, struct ltc3220_uled_cfg, led_cdev);
-> +	ltc3220_state = uled_cfg->ltc3220_state;
-> +
-> +	ret = ltc3220_set_blink_and_gradation(ltc3220_state,
-> +					       ltc3220_state->blink_mode,
-> +					       0, false);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ltc3220_state->grad_cfg.gradation_period_ms = 0;
-> +	ltc3220_state->grad_cfg.is_increasing = false;
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + * LTC3220 has a global blink configuration that affects all LEDs.
-> + * This implementation allows per-LED blink requests, but the blink timing
-> + * will be shared across all LEDs. The delay values are mapped to the
-> + * hardware's discrete blink rates.
-> + */
-> +static int ltc3220_blink_set(struct led_classdev *led_cdev,
-> +			     unsigned long *delay_on,
-> +			     unsigned long *delay_off)
-> +{
-> +	struct ltc3220_state *ltc3220_state;
-> +	struct ltc3220_uled_cfg *uled_cfg;
-> +	unsigned long period;
-> +	u8 blink_mode;
-> +	int ret;
-> +
-> +	uled_cfg = container_of(led_cdev, struct ltc3220_uled_cfg, led_cdev);
-> +	ltc3220_state = uled_cfg->ltc3220_state;
-
-As above.
-
-> +	if (*delay_on == 0 && *delay_off == 0) {
-> +		blink_mode = 1;
-> +		*delay_on = 500;
-> +		*delay_off = 500;
-> +	} else {
-> +		period = *delay_on + *delay_off;
-> +
-> +		if (period <= 750) {
-> +			blink_mode = 0;
-
-Define the blink mode.
-
-> +			*delay_on = 250;
-> +			*delay_off = 250;
-> +		} else if (period <= 1500) {
-> +			blink_mode = 1;
-> +			*delay_on = 500;
-> +			*delay_off = 500;
-> +		} else if (period <= 3000) {
-> +			blink_mode = 2;
-> +			*delay_on = 1000;
-> +			*delay_off = 1000;
-> +		} else {
-> +			blink_mode = 3;
-> +			*delay_on = 2000;
-> +			*delay_off = 2000;
-> +		}
-> +	}
-> +
-> +	ret = ltc3220_set_blink_and_gradation(ltc3220_state, blink_mode,
-> +					       ltc3220_state->grad_cfg.gradation_period_ms,
-> +					       ltc3220_state->grad_cfg.is_increasing);
-
-Alignment.
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ltc3220_state->blink_mode = blink_mode;
-
-Again, do we really need this as a function param AND a struct property?
-
-> +	return 0;
-> +}
-> +
-> +static void ltc3220_reset_gpio_action(void *data)
-> +{
-> +	struct gpio_desc *reset_gpio = data;
-> +
-> +	gpiod_set_value_cansleep(reset_gpio, 1);
-> +}
-> +
-> +static int ltc3220_reset(struct ltc3220_state *ltc3220_state, struct i2c_client *client)
-> +{
-> +	struct gpio_desc *reset_gpio;
-> +	int ret;
-> +	int i;
-> +
-> +	reset_gpio = devm_gpiod_get_optional(&client->dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(reset_gpio))
-> +		return dev_err_probe(&client->dev, PTR_ERR(reset_gpio), "Failed on reset GPIO\n");
-> +
-> +	if (reset_gpio) {
-> +		gpiod_set_value_cansleep(reset_gpio, 0);
-> +
-> +		ret = devm_add_action_or_reset(&client->dev, ltc3220_reset_gpio_action, reset_gpio);
-> +		if (ret)
-> +			return ret;
-> +
-
-Do:
-
-return devm_add_action_or_reset(&client->dev, ltc3220_reset_gpio_action, reset_gpio);
-
-And remove the else.
-
-> +	} else {
-> +		ret = ltc3220_set_command(ltc3220_state);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		for (i = 0; i < LTC3220_NUM_LEDS; i++) {
-> +			ret = i2c_smbus_write_byte_data(client, LTC3220_ULED(i), 0);
-> +			if (ret < 0)
-> +				return ret;
-> +		}
-> +
-> +		ret = ltc3220_set_blink_and_gradation(ltc3220_state, 0, 0, 0);
-
-return ltc3220_set_blink_and_gradation(ltc3220_state, 0, 0, 0);
-
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-
-Drop.
-
-> +}
-> +
-> +static int ltc3220_suspend(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct ltc3220_state *ltc3220_state = i2c_get_clientdata(client);
-
-Replace these lines with:
-
-struct ltc3220_state *ltc3220_state = i2c_get_clientdata(to_i2c_client(dev));
-
-> +
-> +	return ltc3220_shutdown(ltc3220_state);
-> +}
-> +
-> +static int ltc3220_resume(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct ltc3220_state *ltc3220_state = i2c_get_clientdata(client);
-
-As above.
-
-> +
-> +	return ltc3220_resume_from_shutdown(ltc3220_state);
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(ltc3220_pm_ops, ltc3220_suspend, ltc3220_resume);
-> +
-> +static int ltc3220_probe(struct i2c_client *client)
-> +{
-> +	struct ltc3220_state *ltc3220_state;
-> +	bool aggregated_led_found = false;
-> +	int num_leds = 0;
-> +	u8 i = 0;
-> +	int ret;
-> +
-> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
-> +		return dev_err_probe(&client->dev, -EIO, "SMBUS Byte Data not Supported\n");
-> +
-> +	ltc3220_state = devm_kzalloc(&client->dev, sizeof(*ltc3220_state), GFP_KERNEL);
-> +	if (!ltc3220_state)
-> +		return -ENOMEM;
-> +
-> +	ltc3220_state->client = client;
-> +	i2c_set_clientdata(client, ltc3220_state);
-> +
-> +	ret = ltc3220_reset(ltc3220_state, client);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "Failed to reset device\n");
-> +
-> +	device_for_each_child_node_scoped(&client->dev, child) {
-> +		struct led_init_data init_data = {};
-> +		struct ltc3220_uled_cfg *led;
-> +		u32 source;
-> +
-> +		ret = fwnode_property_read_u32(child, "reg", &source);
-> +		if (ret)
-> +			return dev_err_probe(&client->dev, ret, "Couldn't read LED address\n");
-> +
-> +		if (!source || source > LTC3220_NUM_LEDS)
-> +			return dev_err_probe(&client->dev, -EINVAL, "LED address out of range\n");
-> +
-> +		init_data.fwnode = child;
-> +		init_data.devicename = "ltc3220";
-> +
-> +		if (fwnode_property_present(child, "led-sources")) {
-> +			if (source != 1)
-> +				return dev_err_probe(&client->dev, -EINVAL,
-> +							"Aggregated LED out of range\n");
-> +
-> +			if (aggregated_led_found)
-
-What is an aggregated LED.
-
-Find somewhere to document this.
-
-> +				return dev_err_probe(&client->dev, -EINVAL,
-> +							"One Aggregated LED only\n");
-> +
-> +			aggregated_led_found = true;
-> +			ltc3220_state->command_cfg.is_aggregated = true;
-> +			ret = ltc3220_set_command(ltc3220_state);
-> +			if (ret < 0)
-> +				return dev_err_probe(&client->dev, ret, "Failed to set command\n");
-
-In English please.  This will mean nothing to a user.
-
-> +		}
-> +
-> +		num_leds++;
-> +
-> +		/* LED node reg/index/address goes from 1 to 18 */
-> +		i = source - 1;
-
-This is not an iterator.  'i' is a terrible variable name for !iterators.
-
-> +		led = &ltc3220_state->uled_cfg[i];
-> +		led->led_index = i;
-> +		led->reg_value = 0;
-> +		led->ltc3220_state = ltc3220_state;
-> +		led->led_cdev.brightness_set_blocking = ltc3220_set_led_data;
-> +		led->led_cdev.brightness_get = ltc3220_get_led_data;
-> +		led->led_cdev.max_brightness = 255;
-> +		led->led_cdev.blink_set = ltc3220_blink_set;
-> +		led->led_cdev.pattern_set = ltc3220_pattern_set;
-> +		led->led_cdev.pattern_clear = ltc3220_pattern_clear;
-> +
-> +		ret = devm_led_classdev_register_ext(&client->dev, &led->led_cdev, &init_data);
-> +		if (ret)
-> +			return dev_err_probe(&client->dev, ret, "Failed to register LED class\n");
-> +	}
-> +
-> +	if (aggregated_led_found && num_leds > 1)
-> +		return dev_err_probe(&client->dev, -EINVAL,
-> +					"Aggregated LED must be the only LED node\n");
-
-Must it?  Why?  Where does it say that?
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id ltc3220_of_match[] = {
-> +	{ .compatible = "adi,ltc3220" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, ltc3220_of_match);
-> +
-> +static struct i2c_driver ltc3220_led_driver = {
-> +	.driver = {
-> +		.name = "ltc3220",
-> +		.of_match_table = ltc3220_of_match,
-> +		.pm	= pm_sleep_ptr(&ltc3220_pm_ops),
-
-Odd tabbing.
-
-> +	},
-> +	.probe = ltc3220_probe,
-> +};
-> +module_i2c_driver(ltc3220_led_driver);
-> +
-> +MODULE_AUTHOR("Edelweise Escala <edelweise.escala@analog.com>");
-> +MODULE_DESCRIPTION("LED driver for LTC3220 controllers");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.43.0
-> 
+ .../input/touchscreen/sitronix,st1232.yaml    |  4 ++++
+ .../dts/renesas/r8a7740-armadillo800eva.dts   |  1 +
+ drivers/input/touchscreen/st1232.c            | 22 ++++++++++++++-----
+ 3 files changed, 21 insertions(+), 6 deletions(-)
 
 -- 
-Lee Jones [李琼斯]
+2.43.0
+
 
