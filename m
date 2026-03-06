@@ -1,61 +1,65 @@
-Return-Path: <devicetree+bounces-271762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271763-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mO93NyUZqmlfLAEAu9opvQ
-	(envelope-from <devicetree+bounces-271762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:00:37 +0100
+	id YEgVAfMZqmkqLQEAu9opvQ
+	(envelope-from <devicetree+bounces-271763-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:04:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B22D2199BD
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:00:36 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54FEB219A84
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:04:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 192D53003BFB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:00:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3FEFE30BDEFD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14FE74502A;
-	Fri,  6 Mar 2026 00:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6251120E03F;
+	Fri,  6 Mar 2026 00:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kdBAzlra"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HPEHyRqH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E58584A0C;
-	Fri,  6 Mar 2026 00:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3BD1F9ECB;
+	Fri,  6 Mar 2026 00:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772755232; cv=none; b=rNQJE36z162GFrapL7w5+GMf6G1eZUFaVbaQ3lhck3CdEpMf3hRUv8hYq4C4v2Wj/QmOwwhuH4GTwQxU7wYyKYfTb0ODqQaSCKg9gHXwIV3GinJp+xyNY3lOkreJg64QJuKXRtprRJvXxn5tGNjLFOed/Icr/BjCTtT2jmQkryU=
+	t=1772755307; cv=none; b=DExm1xpYBGUYUTG6HKPJxxRfyqy9F7IczJlCiPEaCWxYeihynWZuQTeaOltlELVOq7zXxYb2wGqFo13aq9wzFZbQNDfTOOcvpZjk/d/rxQhlAZnylskaYKbTH0BeAebYHDZZSk2OdoNemvQz0l8DEGlyyKaduBkQyjCTfqjBnqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772755232; c=relaxed/simple;
-	bh=CTb2hC2lLdOPKHXZKqC2oj1apJLsYH2fv+0Gg5r2wWc=;
+	s=arc-20240116; t=1772755307; c=relaxed/simple;
+	bh=c1lXhQ1N4Yqb0fQb9aV00aSe2DFNy8bdG2Lt1TmCyHQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FmosWP9xUIasCJz16dKdkwxyHYLBwt5jHb4YaRMOVIeyjQHCuhX0N+yDybWUYUvBHJKB1mH8xk31ATldyAYmsEj6arszUKPGm5FtgHEFl1KUK8OaTV5NAXSkLwZ8rMTTqeR70nysaGvtHvlidykvL5EY0nnaM2M84jIah+Zu11Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kdBAzlra; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 623A4C116C6;
-	Fri,  6 Mar 2026 00:00:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bA0usKN6QHX4LPgAPOteJDmYONO74v1lNm5o4YsPfNJfiIOtrNd29pAtIUuo81PC5eoTMKEQjQYMwogz29wmZ4odolDhIYfX6dpceF+uzEsEdDdOUacFsllXjpF+xgCAB93W518CXFeoMGpPiBaakt/laV/bI+jZ+f6QhU4MgHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HPEHyRqH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03336C116C6;
+	Fri,  6 Mar 2026 00:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772755231;
-	bh=CTb2hC2lLdOPKHXZKqC2oj1apJLsYH2fv+0Gg5r2wWc=;
+	s=k20201202; t=1772755307;
+	bh=c1lXhQ1N4Yqb0fQb9aV00aSe2DFNy8bdG2Lt1TmCyHQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kdBAzlrax82aIF5fwKNMWtXxe+o2/2hT1EJc7j9V02PKVMnHrHSIKNi0k/mYNld4r
-	 y5PBAvpoPS5dP3BYBCE4W+LblI1tfcFmPI4QHvhx6piwNc4Y85NYwYtW21I5/6kdW5
-	 30eFl/pq1NqtKbG8inBXaqvoesWZBWP89MP2oCyU+eDTsLSnW56QvPDq/DHtdI3kOx
-	 9vt9RZTh5/NYgt8Eff+Ys4IIcIsbTxmABEO9HqBM3YCHu28+mH7tUPnP2NIxxobdqC
-	 hoqe2ODC5TXZAdUuww7EIJcyFG9b0hbr266SoRnUCGsNuzKACVccAfiIb5K0i1uQ+v
-	 oJjq138X9PMeQ==
-Date: Thu, 5 Mar 2026 18:00:30 -0600
+	b=HPEHyRqHM85385bHXpusyN0ZSAaW3V6Sgds6cNUoqc7kzgEq1x1YQ1NGltn0SDLtb
+	 m0vHtw0BGIOFfgDgQXIE/wde/SIPVRn/D/qixBYVmjcOkR209o29/SwZtCoa2Twdo5
+	 4qE0WtDpy4lLWUwb864B1EZwFgaNbp8sQHqKre1dqrFPhFF7ailrDp6pW9p5kb42Yx
+	 3l5tmL21+GRrR72QSRykv3L9lykouQR+PImRHtuxFJPo9+uEu+R/E0LF3UsVALy4yA
+	 hGkXil6GlEVOyBhUrHOSRg0abqG0zMmSW5V+M7fBGZX0YWGd8vB+jNdBAYeP+LJfQn
+	 2HyE9tHa5wjEA==
+Date: Thu, 5 Mar 2026 18:01:46 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-	Joerg Roedel <joro@8bytes.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, iommu@lists.linux.dev,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Robin Murphy <robin.murphy@arm.com>
-Subject: Re: [PATCH] dt-bindings: arm-smmu: Add compatible for Eliza SoC
-Message-ID: <177275522958.815424.2683283742395688918.robh@kernel.org>
-References: <20260223-eliza-bindings-arm-smmu-v1-1-7a35a76201a5@oss.qualcomm.com>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	kernel@pengutronix.de,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-usb@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Kaehlcke <mka@chromium.org>
+Subject: Re: [PATCH v5 3/4] dt-bindings: usb: usb-device: add usb hub port
+ vbus-supply suppport
+Message-ID: <177275530574.816904.418893942836777116.robh@kernel.org>
+References: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
+ <20260223-v6-16-topic-usb-onboard-dev-v5-3-28d3018a8026@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,8 +68,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260223-eliza-bindings-arm-smmu-v1-1-7a35a76201a5@oss.qualcomm.com>
-X-Rspamd-Queue-Id: 3B22D2199BD
+In-Reply-To: <20260223-v6-16-topic-usb-onboard-dev-v5-3-28d3018a8026@pengutronix.de>
+X-Rspamd-Queue-Id: 54FEB219A84
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -73,40 +77,43 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271762-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,kernel.org,pengutronix.de,linuxfoundation.org,chromium.org];
+	TAGGED_FROM(0.00)[bounces-271763-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pengutronix.de:email]
 X-Rspamd-Action: no action
 
 
-On Mon, 23 Feb 2026 10:46:39 +0200, Abel Vesa wrote:
-> Qualcomm Eliza SoC implements arm,mmu-500. Document its compatible.
+On Mon, 23 Feb 2026 12:27:36 +0100, Marco Felsch wrote:
+> Some PCB designs don't use the dedicated USB hub port power control GPIO
+> to control the port VBUS supply. Instead host managed GPIOs are used to
+> control the VBUS supply.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/usb/usb-device.yaml | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
