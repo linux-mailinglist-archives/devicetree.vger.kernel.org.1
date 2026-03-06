@@ -1,174 +1,167 @@
-Return-Path: <devicetree+bounces-271911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IA/iJbeUqmkkUAEAu9opvQ
-	(envelope-from <devicetree+bounces-271911-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:47:51 +0100
+	id 2L8oNUaWqmkkUAEAu9opvQ
+	(envelope-from <devicetree+bounces-271912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:54:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38ED221D526
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:47:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DCB721D7BA
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:54:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A6BA5303206D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:47:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D737630C7D1F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:51:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D0032FFDE2;
-	Fri,  6 Mar 2026 08:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB364330659;
+	Fri,  6 Mar 2026 08:51:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A9E3321BF
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 08:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECBA3264D5
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 08:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772786857; cv=none; b=Uq3Sfl4Q7lMsaIvp1lu59nhBJhd8eABXqKcjdcu8czEEaAzo5RJ+/Qz8JBZ0VADXeO36pV3CCKMTa3Sbg6UhWt06zsf8UANP1c4ppmF5NRYS4zZLeCZ01JClBq7PEipEdOkVqMvQSlr6x6gvLoxJ2gmVorLebe9/BiHxj+pn7UM=
+	t=1772787065; cv=none; b=G+NeCaB028NiV8nkDZn4eEwPU6TZuqONdJaeCr0gwvZiOI8KjLXy3JzTkxPhDAMgTRdtofPFE4k6MNvs5y7otkVNjx/oHYH4OGci82foAzjiChmMtBOgObvNzpUWij3wu1aU96ucIR7DxqzIXsfq+UxWwJIX1JreDH8wOJoe29Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772786857; c=relaxed/simple;
-	bh=vQpsQyeraXy8poqd5yMRL6Sa9sAOtHpCCKJT1+3qt7I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vc7RdDtNWhIkJ14EvzZF55j0x7GqXJ29jrEnZMuHY8mj6/GBC5kVi0yLuouGA6Br+lgTlYndF1gs9FDh2q1yuQXCfBtZgIiINBRHd0x9tROQ5ijVVxWTXiBpj3rsgQlfLhffKIBsBQlKaEyOlGFi4s8B1t6xkwiTLuA7tYcm1RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vyQpn-0003Ng-6C; Fri, 06 Mar 2026 09:46:59 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vyQpj-0041QC-2g;
-	Fri, 06 Mar 2026 09:46:57 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1vyQpl-00000004801-0Cgq;
-	Fri, 06 Mar 2026 09:46:57 +0100
-Date: Fri, 6 Mar 2026 09:46:57 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>, imx@lists.linux.dev, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>, 
-	dri-devel@lists.freedesktop.org, Frank Li <Frank.Li@nxp.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 1/9] dt-bindings: display: fsl,ldb: Add i.MX94 LDB
-Message-ID: <dmqbmmpyi3ssvq67iqwbt6ww7tsaik7ifi5dnupmuhep7u5saz@ads5g7ette3y>
-References: <20260304-dcif-upstreaming-v8-0-bec5c047edd4@oss.nxp.com>
- <20260304-dcif-upstreaming-v8-1-bec5c047edd4@oss.nxp.com>
- <b7968f1a-c4bc-4bad-bcf8-407ff2d8db27@nxp.com>
+	s=arc-20240116; t=1772787065; c=relaxed/simple;
+	bh=6/mMZ+MgPEeLwb1d3/FQsDG0e2BICfOtY4c5Gb44pYM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aJEnrJKGBEEmCV8RcrwpeorO3uuwKwuPJcQmVW35yxTP1n6T6mL7IFponAFVkKGSQO4PrOgwXF7sykzMx8O/yL2MRyPbDGxvE3j6P7gbCrqA7W8sTsGCmNMRH0REmPrYiCCcNTv6ZuD/h1vxv6AQGbTANQmtRqGzgQAJObO/JK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-56af4aad3e5so645747e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 00:51:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772787063; x=1773391863;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ePV9psSdR4DIeo2PZEv+MlIoxsc+MKL5m0kUhXFRmHs=;
+        b=rxaufliizsAbZ00CIC2cnUsXuwl3IIcw1JuNFlIXTaWKQdc/aWERbCDlRmq2DVNq4f
+         ygx2tw6w9rzyBesAdjLVzpsTNk5o/QCWJjucYnBAoi3opKVs+jWbShyZQd9h4KhlIguY
+         NtEGam8Xyp3Y4pbJQDnbiEH4TkYrDqng3TubthPTVr67X6FMNmUgsqbrTfYnvg07+Jg0
+         xoeKzHDxC+RUUT0kOZBLA1AgRc1i6a2rDQzLMH3kf6hZ8u39Yzd4Sxt7Q6joWIcUcHX/
+         e5t1n22RfOTx+DO+w7l/Je1Ew+/ZzVkq5DPzp3m8CG495TwfH/pZIMQQg1M/ru5Rf/KG
+         +X1g==
+X-Forwarded-Encrypted: i=1; AJvYcCUpZFKejY+LO0zDhAzzLBaCp8OIvHrll4YwYvCfunxL41n9rnNrirJ0B49wT4zpdsyufRIm7kcGEZ41@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzd4X+46X9cn2v7SpknA2r9SrQPYi8OJ0wHdew//ubAM3W2WoNo
+	oSwSJKoTwFs3NsbmBrEr+agTTMGrAPEBcMfvmjl/kRlp0E6bC7GOfqyBU/7P1saJYgg=
+X-Gm-Gg: ATEYQzzLJ662oDxQvggu4yvFivgWEfpq9Qw0etPBiMThoEFdM+vM1VZQP+hlRcljX9q
+	FRONgZENNPlRsKK+lpwPPSG81sL7MIhos46nT3WeD8u0f8PI95r9R6hkx81HZsR273OssWsFsIH
+	lxOeGPJ1x/u17u9H6u4AKFKmhaNilIdYakK7VrNXNvgBXf360HOUgSTCFYsxH4Ewxx3XmMDAmX/
+	agfzZLKuJ0sNmCojxD2sxua8+KrxBGCkBDdzGBL0y3je1fqbpslQuGecZmFs3PaNEYHfmSG2YHN
+	QqKrciTAH0ZAc/XptCEaIeiMskwP+AKW979cDooEUrG/ZfOv2J4k4zmHNWkcLBgCxWvGwzaB3wS
+	+B7pm516CI0lsj9Gbi4Ax0P1C2/evuU472oXYvCP+PguqgYx7Xt03exkIBN6VxlNw08kQGvZ7ki
+	63fT1Hf267b2Sj9y84wGYhaLoXxtbfmGbIuAf98KLUZWcrtAuU8icYEsXza56xIA8N
+X-Received: by 2002:a05:6122:4f87:b0:56a:eb30:4e77 with SMTP id 71dfb90a1353d-56b07f721c3mr422489e0c.19.1772787063154;
+        Fri, 06 Mar 2026 00:51:03 -0800 (PST)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56b09a260e5sm771998e0c.5.2026.03.06.00.51.02
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Mar 2026 00:51:02 -0800 (PST)
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-5673804da95so3705632e0c.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 00:51:02 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWU4danC7227xISqX19FV1bV97et+cC3TeeXH0b/XnM5j9V7zHBdPb6q0txFnbeU4LqgxmPkFp3eaJj@vger.kernel.org
+X-Received: by 2002:a05:6122:4d05:b0:56a:feae:fc2c with SMTP id
+ 71dfb90a1353d-56b07f210d7mr358876e0c.14.1772787062507; Fri, 06 Mar 2026
+ 00:51:02 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b7968f1a-c4bc-4bad-bcf8-407ff2d8db27@nxp.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: 38ED221D526
+References: <20260203103031.247435-1-biju.das.jz@bp.renesas.com>
+ <20260203103031.247435-8-biju.das.jz@bp.renesas.com> <CAMuHMdW20h=D9Tk5T=6rxNanEiON1ZL35CJ6cqzrX12UeDcdPg@mail.gmail.com>
+ <TY3PR01MB11346EEC0D9D7391EEE7ED27C867DA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB11346EEC0D9D7391EEE7ED27C867DA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 6 Mar 2026 09:50:51 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV_WiB8graMNeJRVbNZczDetd+fA_4yxt5MV-h7Htzoeg@mail.gmail.com>
+X-Gm-Features: AaiRm51qt1E27KD9Lsk97oOtY587H6FKJzOmGVnYf1lOMFnKJRu2iLrNOBXxz1M
+Message-ID: <CAMuHMdV_WiB8graMNeJRVbNZczDetd+fA_4yxt5MV-h7Htzoeg@mail.gmail.com>
+Subject: Re: [PATCH v3 07/10] arm64: dts: renesas: Add initial DTSI for RZ/G3L SoC
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: "biju.das.au" <biju.das.au@gmail.com>, "magnus.damm" <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 3DCB721D7BA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271911-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com];
+	TAGGED_FROM(0.00)[bounces-271912-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[oss.nxp.com,lists.linux.dev,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de,denx.de,lists.freedesktop.org,nxp.com,vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.956];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.983];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	R_DKIM_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nxp.com:email,pengutronix.de:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux-m68k.org:email,mail.gmail.com:mid,0.180.91.224:email]
 X-Rspamd-Action: no action
 
-On 26-03-06, Liu Ying wrote:
-> On Wed, Mar 04, 2026 at 11:34:10AM +0000, Laurentiu Palcu wrote:
-> > i.MX94 has a single LVDS port and share similar LDB and LVDS control
-> > registers as i.MX8MP and i.MX93.
-> > 
-> > Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> > index 7f380879fffdf..fb70409161fc0 100644
-> > --- a/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> > +++ b/Documentation/devicetree/bindings/display/bridge/fsl,ldb.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> >        - fsl,imx6sx-ldb
-> >        - fsl,imx8mp-ldb
-> >        - fsl,imx93-ldb
-> > +      - fsl,imx94-ldb
-> 
-> Cc'ing Marco.
-> 
-> Recently, Marco said that LDB node should not have a reg property...
-> 
-> https://lore.kernel.org/all/4sofljffovrorpxe2os3jl745qfjoglvl54oqf3v7r5bk5f6aq@6y3jwn4abiqy/
+Hi Biju,
 
-Yes, this has to be dropped. All variants of this specific "IP" use the
-same approach. This "IP" is part of a general purpose register layout
-with very loose reg-field definitions: e.g. resets and clk-gatting share
-the same register. Or a mux reg-field shares the same register as a
-MIPI-{C,D}SI configuration reg-field. Therefore this "IP" is part of a
-syscon and should be abstracted as such within the DT.
+On Thu, 5 Mar 2026 at 17:58, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > From: Geert Uytterhoeven <geert@linux-m68k.org>
+> > On Tue, 3 Feb 2026 at 11:30, Biju <biju.das.au@gmail.com> wrote:
+> > > Add the initial DTSI for the RZ/G3L SoC.
+> > > The files in this commit have the following meaning:
+> > >   - r9a08g046.dtsi:    RZ/G3L family SoC common parts
+> > >   - r9a08g046l48.dtsi: RZ/G3L R0A08G046L{46,48} SoC specific parts
+> > >
+> > > Added place holders to reuse the code for Renesas SMARC II carrier
+> > > board.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-Regards,
-  Marco
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a08g046.dtsi
+=
+> > > +               dmac: dma-controller@11820000 {
+> >
+> > Unused. Surely you can wire up scif0?
+>
+> Yes, but I don't get login prompt, as SCIF0 interrupts have dependency on
+> DMA reset/clocks to route the interrupts to CPU.
 
-> >    clocks:
-> >      maxItems: 1
-> > @@ -78,6 +79,7 @@ allOf:
-> >              enum:
-> >                - fsl,imx6sx-ldb
-> >                - fsl,imx93-ldb
-> > +              - fsl,imx94-ldb
-> >      then:
-> >        properties:
-> >          ports:
-> > 
-> 
-> -- 
-> Regards,
-> Liu Ying
+Aha ;-)
+
+So you need to enable the DMA clock and deassert the DMA reset in the
+clock/reset driver, and mark them critical.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
