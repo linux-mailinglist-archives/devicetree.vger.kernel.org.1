@@ -1,91 +1,120 @@
-Return-Path: <devicetree+bounces-272145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272146-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8EEmFvTiqmkTYAEAu9opvQ
-	(envelope-from <devicetree+bounces-272145-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:21:40 +0100
+	id eKA7BlLjqmkTYAEAu9opvQ
+	(envelope-from <devicetree+bounces-272146-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:23:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4C5722287F
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:21:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 814E5222904
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:23:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 515B03187530
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:09:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 425A5309876F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:13:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 835C03A9628;
-	Fri,  6 Mar 2026 14:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D03E395DAE;
+	Fri,  6 Mar 2026 14:13:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZaPS2e7v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y5hBOUHU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DE2139FCB8;
-	Fri,  6 Mar 2026 14:09:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAED238E133;
+	Fri,  6 Mar 2026 14:12:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772806191; cv=none; b=hl8A8EGUNZSib17PRFSN6baHqReBT3Pc7y81xIA+h3Ipa8bn/t7gR1M22JOWbuits5Lqn3zzWx6NbLnvVuFcjVFH3awiPW6DUc3kRyu86IuUpt1apcT+zRYeIcBA4PSuUYgYcZw+uDmxKHpUtlkPFXOHeWgJvwlsoSmFljrPW7Y=
+	t=1772806380; cv=none; b=ExQKNFFhoL8dLPKaPTbK8K1XmyrG8v+k2cguYGB85/O8kRSdZcT+j4bTVO+Ie1C0PFsqUE5HMN+bJD1NK6M0UqWCpupcCs6gMkjBy6E2hMKwYZHwL7XD71qAEUeLsxMZCv+F0/sRhVvWYBD4nLBrBvb6o0CFKFA21jU/TJJjs60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772806191; c=relaxed/simple;
-	bh=R4f7GwP17S/vNlT+BNapwLhpCEyH4tsEw3c06ByslKo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fbmlXC9VNYG27OKK8atHLHI6I8keDt/MocJ/UWeFZWzZF9fSNutQyVRmKs7NZL25qgIYoysewkEWTHbEPOZ1kAp/k7EQekaNuwO+1m1lyXW0YBTuVYK0eMn9kRUx2+3dusL4qGWeVs1Xr7Ah87MlUie0H94ZpmmwezAh/bd1Z6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZaPS2e7v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 27CD6C2BCB1;
-	Fri,  6 Mar 2026 14:09:51 +0000 (UTC)
+	s=arc-20240116; t=1772806380; c=relaxed/simple;
+	bh=TVG+Zf5EBR+Hc0BUuVwUMFxh1cfQpzOyH4YiLwic/gg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=teTC3NsAoJ8E8CUf0opCq3JVg9t7Z9x9NlFLa0QnySD+gQeOKDkeNg3mfPHSxlasE6yviC7TZ9Li2i9Pn8ErGVO0o4XesXjTSJWX+qUHPuMu/CgBfXYvKnQdCo+I7lW00rYmGb2qYo02PCLVe5Q+4Bapz3EpmtwYSkH/LSHRj7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y5hBOUHU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CEF0C4CEF7;
+	Fri,  6 Mar 2026 14:12:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772806191;
-	bh=R4f7GwP17S/vNlT+BNapwLhpCEyH4tsEw3c06ByslKo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ZaPS2e7vzbvxa+5YZETMWMMdhyObQEgcXT7AhD2NUjN+SfHmEvI0FflTciRQWMYOz
-	 McBl4r9n1VasTcclGd2TnEefjk/KumJEKv8S8tiuIW3jg+E5xX+y99JdDTPW6RBWon
-	 iEZuehYeczRDlJj+2BSkMmvvxNXhMwz0+kQOLQnU4bqeK1F/uLOtHIXfzQYpTRo8UM
-	 4JionCFPpEdFA3hDD7IBbJythqrnkjwnuzOZWa4u+ovRqpoiJdtg85WR8nfPUkfxaS
-	 7xbzUbbe3tNLgYHhKcsQWmdrPx7WL5HHP4CaeFw/vxVP8CffFunBa3sgWICC7IUIoc
-	 oP/dR5Yt7vPNw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 19652F33A92;
-	Fri,  6 Mar 2026 14:09:51 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Fri, 06 Mar 2026 15:09:51 +0100
-Subject: [PATCH 4/4] arm64: defconfig: enable designware mipi csi-2
- receiver
+	s=k20201202; t=1772806379;
+	bh=TVG+Zf5EBR+Hc0BUuVwUMFxh1cfQpzOyH4YiLwic/gg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Y5hBOUHUc6WTCkBDUQVZcl6hI+ZbN0Y4rvaKVEl4D18giUtCCr/AUiEp3kJ4PF3EB
+	 sHKB7f0J7OORuIMIisymAhWTsT3o688klNJGffmk6o1S1dIwu1p2abJIQBsVhKC6HF
+	 gd9AaFCxcjMB5x2QhNsv3a2Ltn5zbJpA6tvO3ucYoMd68sLic8FVHqyf+Br/20H20Z
+	 gHJ9GbKxHSHiD/SeCKaO1LafQiNO09BThQScj+yok+2ln8qcVyDoB4nQZbLSszKq4h
+	 72YyqEShvdCd4RM5pp9zR60Yp/2uJ+t8+exWvP+xB182uequKacauzE2SF61MlxbPb
+	 kmoQ+s6CFjGFg==
+Message-ID: <c8d9258a-04d8-4841-be4e-7751acac2dae@kernel.org>
+Date: Fri, 6 Mar 2026 15:12:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: remoteproc: qcom: Drop types for
+ firmware-name
+To: Shawn Guo <shengchao.guo@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+ Bartosz Golaszewski <brgl@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260306140306.1328719-1-shengchao.guo@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260306140306.1328719-1-shengchao.guo@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-rk3588-csi2rx-v1-4-0cd8d2bf28c0@collabora.com>
-References: <20260305-rk3588-csi2rx-v1-0-0cd8d2bf28c0@collabora.com>
-In-Reply-To: <20260305-rk3588-csi2rx-v1-0-0cd8d2bf28c0@collabora.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Collabora Kernel Team <kernel@collabora.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772806189; l=786;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=uRAmSPCQ0k5tkcEXE2zVJCarB/CYi0KTB5WBAKhQlug=;
- b=L3K7EAcFM8aMDpYBYUS40ucFmXxoCxR7prpiR7bGI8zrRqCT8z+p4jJHjlA5DdNY8rfl+Q2lD
- IgOJ8rx3BdTCqvgHr9YBtqDWKSBPN5uwTFxPERwVzVxEJInp/IYDiFY
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
-X-Rspamd-Queue-Id: E4C5722287F
+X-Rspamd-Queue-Id: 814E5222904
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -97,54 +126,69 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272145-lists,devicetree=lfdr.de,michael.riesch.collabora.com];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272146-lists,devicetree=lfdr.de];
 	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[172.234.253.10:from];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[michael.riesch@collabora.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received,10.30.226.201:received];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:replyto,collabora.com:email,collabora.com:mid]
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-From: Michael Riesch <michael.riesch@collabora.com>
+On 06/03/2026 15:03, Shawn Guo wrote:
+> The type of firmware-name is already defined by core schemas.  Some of
+> qcom remoteproc bindings define it redundantly, while others do not.
+> Drop it to be consistent and avoid it being copied over to new files.
+> 
+> Signed-off-by: Shawn Guo <shengchao.guo@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml     | 1 -
+>  .../devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml     | 1 -
+>  .../devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml         | 1 -
+>  .../devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml      | 1 -
+>  .../devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml      | 1 -
+>  .../devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml        | 1 -
+>  Documentation/devicetree/bindings/remoteproc/qcom,sdx55-pas.yaml | 1 -
+>  .../devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml          | 1 -
 
-The Synopsys DesignWare MIPI CSI-2 Receiver is integrated into
-recent Rockchip SoCs, such as the RK3568 and the RK3588.
-Enable the driver for it in the default configuration.
+I was fixing all remoteprocs here:
+https://lore.kernel.org/all/20240115182031.1610088-1-krzysztof.kozlowski@linaro.org/#r
 
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+so I am a bit confused how I missed these. Maybe at that time the
+dtschema did not have definition and I postponed fixing these for later?
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index b67d5b1fc45b..a93ff73ae52c 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -907,6 +907,7 @@ CONFIG_SDR_PLATFORM_DRIVERS=y
- CONFIG_V4L_MEM2MEM_DRIVERS=y
- CONFIG_VIDEO_AMPHION_VPU=m
- CONFIG_VIDEO_CADENCE_CSI2RX=m
-+CONFIG_VIDEO_DW_MIPI_CSI2RX=m
- CONFIG_VIDEO_MEDIATEK_JPEG=m
- CONFIG_VIDEO_MEDIATEK_VCODEC=m
- CONFIG_VIDEO_WAVE_VPU=m
-
--- 
-2.39.5
+And then more wrong addons like sa8775p appeared...
 
 
+> -    $ref: /schemas/types.yaml#/definitions/string-array
+>      items:
+>        - description: Name of MBA firmware
+>        - description: Name of modem firmware
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
+> index 5dbda3a55047..63ae3a30f626 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
+> @@ -42,7 +42,6 @@ properties:
+>      description: Reference to the reserved-memory for the Hexagon core
+>  
+>    firmware-name:
+> -    $ref: /schemas/types.yaml#/definitions/string
+>      description: Firmware name for the Hexagon core
+
+This and other needs fixes, look at my commit.
+
+Best regards,
+Krzysztof
 
