@@ -1,86 +1,85 @@
-Return-Path: <devicetree+bounces-272131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272132-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKsxN0jbqmkZXwEAu9opvQ
-	(envelope-from <devicetree+bounces-272131-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:48:56 +0100
+	id +GhxI/HcqmlqXwEAu9opvQ
+	(envelope-from <devicetree+bounces-272132-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:56:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBE4322215C
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:48:56 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B06F82222E3
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:56:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 8A2A6301DD6C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:48:54 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3F6C83049CB3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:48:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AE6F3612FC;
-	Fri,  6 Mar 2026 13:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5411133C51A;
+	Fri,  6 Mar 2026 13:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="z+axEiQK"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="rLGgAIJw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6407234D917
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 13:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885B73939CF
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 13:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772804926; cv=none; b=dKyOFBbNqwaYlCAHcPnNsQxXn0Jon/bvFRDO8ntS7LjT/eV/pfdc32Zhp7oxYT1Pbr39JImTWXmGJI4v/4vu07WkMIK2Qpd83Uz6pBtJXoW8b62KP3iDmc5W9TU35Om3NeRG+pAbae7AAKFNTR0bHP98MYhrRuDZ3YKbgFZQa6Q=
+	t=1772804928; cv=none; b=EOAKT6yTMqK2PWdWMTc7DruxUu+mjrW6nbh1tcnzPU/3WRPV6WH/BBS7vXReSRNg9lRLSz/4mcEsZQnNoUW8YS7rM5YzsGGQJGmNG084yIwYKUQz3Ub16Emk/+XSRTx/ZVPZ+C3ZENOKHdfvnVTlNDK14Syp2sB/FX71ZapyDG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772804926; c=relaxed/simple;
-	bh=S4AYyFcTsusx6JymB78ndk1LzxPjBUj/RxkWMGbPmis=;
+	s=arc-20240116; t=1772804928; c=relaxed/simple;
+	bh=tHyTmNiv3FTZ/H61OgV2oLKpsfPNjLHaPzrbeiCniH4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JThXjyKA2mzpFpk8OjaAzlVotbEFY2aP+FHYlMZm3TL6nUaAMUFE5QeInOg8tRcLoYmvnC/5qV2NjP+YKpfWAAL43I2xXnRzBoxMv+v7ER040iv9V5/NNpEldUiCK0Y7Lujimy3iFXM0cNhkg8rjWQnpByCGuijSDAZhVp1sKxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=z+axEiQK; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:To:Cc; b=qjskBI6rKdbxnv3dLej/C6rUPzhWsSzYvXSmWsYyWVqsHuHZ/YbPQiflP/uMXg87VTVwZvFMloMfJereK0TJRRS7+qvRRJGVNqjoIkT3oY2tyKCkLBVzv0KvXguSxCeJjLdc4QD8o5Rnw3QwG7TQWNvUFSqYNUaNfW8w6gvKPbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=rLGgAIJw; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-439b9b190easo3752633f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 05:48:44 -0800 (PST)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-439bc14dcf4so3568725f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 05:48:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1772804923; x=1773409723; darn=vger.kernel.org;
+        d=fairphone.com; s=fair; t=1772804924; x=1773409724; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Ix3uV33RQkJIwlvd9fVLf03DEoMJ43/Z6jDu2eagGtM=;
-        b=z+axEiQKsxnQ517nvve/uhAJapQ7CMCQEyCeDQ3MdFAqjR++TUU1Q+woOwN/F6zEpN
-         z8R0iJn+Hpor4agBzVj+ZfX5hOzhO1d/wfMswIjBKyIF47OZZdIGzhckPWucdMXJbkus
-         P3yz/2qNiopibjBJDPkXQgKRo//Qxfx/RwXWS/1/Zvi8F8ujLgv5vmwpi6Fx35LvDV+0
-         VLgwOkKpbsOixER+ZljUGEpaz1l0WrSAIZMqdnLpZ7L5KGjoJc/+BfucRMC8q9rmOgz5
-         cdL5mblYSCRERnCqdj8HA+i5WhQggaGRnTZ+jJmoM4dhoo7nS9kbMxsKbQr+4Z+TmZSU
-         nwTw==
+        bh=EHspA1nMRRBKEdBmLpX8hhFfkCXZ2adzsDZvyJnXm0g=;
+        b=rLGgAIJw7BXlVX6FxlAkIh2yZ3H27oHy/DkVDrW9N/dDCIujL7maXI0XuJ39WQJhOv
+         g0EqpwRP0EJ183KR/QHVpce1NncGU8pPwqz8vTgehOtAdEtuObSIhRnQkwahZCByN0uf
+         0MshdaYGM89XkqlS5SuTuh8N4x8zRnRfsg3wOSGxBMqG0FCPj/rh4br0R1j1uSo0epdH
+         u7Fatw35uyWroEk9w84RUwDs35nh8Q+SaJMIzCkUni4Jm74/pGLNSIj62Ba70A4K6Im9
+         0s19HIekXYnfSfX8EVCpeSaw9ZdiS1FAJRB0b97Ybbie7LkWrS3wKGrruH0X7yiEw13B
+         uNqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772804923; x=1773409723;
+        d=1e100.net; s=20230601; t=1772804924; x=1773409724;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=Ix3uV33RQkJIwlvd9fVLf03DEoMJ43/Z6jDu2eagGtM=;
-        b=uV4Q7ZqICyZRhpF/R3T2IS/h9gSG0KE7YL+ioiGiJUZsDXvsVnIlBMbkIPYZfojFNz
-         oBXMSF9JuOeUHUVxcEmCzrHPbad7KsAeSJ8gPBZDlXaYyxlRSBcLEtghT91t/GcUCJxv
-         4ZZehAqU4Q+rKi9LPlML/OARknLT+UuqBxTeF3ZcD31ETSWFPD01rqNvOGTi5S3tbRtr
-         fl7NaAKa5L0h7CUI5j/mlLF8Cx3fnPLZlhP8TMh0mQImrjEaByThX5GwtZVTZFb80UJZ
-         zUAyhRXN6abQuxnHoSg0GYSpWnpVQvuRjwKUL7cQsWyRfIA1SZ4vfxexjVr+ZGNsveKF
-         bDww==
-X-Forwarded-Encrypted: i=1; AJvYcCVtSbtgPVPsbqaF+Rf5Fu1wrFxrnAlXMd8j0Eu1vzHZSY1wilo2l7hxZLWmYVpvVr0gyUpbUbAvxDqH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUZm5y6Sri/sQRJef9IF7u7jaTjmH1YZ7jUppaGDGX7T1fIeYr
-	GtDM3Ftye/F9p53JaIad62lR91uCMW/nCVULEu2ApGw/db+ViIV0NbTFZ3k2Z3NzqOc=
-X-Gm-Gg: ATEYQzwT63KW9N2gY0kX6bNtaKcerH8rt5Te32kVoBSauaP+tlf7gjaGTZjws/kq29y
-	uYcx5hy44+eW/3H5rOrNskws8vxStcnCvXgjhw7ryj/tke6kzPO/gR57uTRUhK/fOnqx+dVOzsB
-	uZuju+dd6/EZUT2IIJZ2c5ROCr4dOK73nCDbomXrkcJ2ysxn9ISY6ZoFSBUik+Q1IKb3BLj5itT
-	uVQr6cAkwDsvZNyyawbTd7+zHQKhKle7nqkbWw7R/pwHoe8Qc0bYxfX+T5vPdF9/OS+XjHp6iLE
-	4m1ysvzK1KVKFWXKDKGvPrEEwAN4N+XUk826NHvjZTS9NUJ5oak725V85FXKJsKDO2llYISlncd
-	Nv30czXmDicG/W7Hf5GP7f8xDXayOA/hv+cn+YfiYkJcLUKHkxEcdlIBfI5H1nu3ltnCsC/Jllc
-	h5Gllg7JzjoHkLDCM321wlwaRXRgURyFa2KhFeEp5hLLfnrtjSbPN5OA9z2qlvSn0tvfSsZaMDu
-	v59MwhE7GYT2XQ=
-X-Received: by 2002:a05:6000:2911:b0:439:beee:43aa with SMTP id ffacd0b85a97d-439da351b41mr4056912f8f.16.1772804922768;
-        Fri, 06 Mar 2026 05:48:42 -0800 (PST)
+        bh=EHspA1nMRRBKEdBmLpX8hhFfkCXZ2adzsDZvyJnXm0g=;
+        b=U41x1y/5AieUDnPIYAVSHRBmd6x5cqfqZpnokBlpt813wq0CssAYyWnU5tdq6Dr25r
+         6DV2P6yuw1FqdvyClIi3546UKXpii7McluMbtFP6qfjuL+hQvZQ1PjxB1l8PwyMvuRbf
+         QBbLkGdh/tv102nh++myAJhK+GETBEwWjGliYzQl0uXPbC3l1p6/VAJGRT0bLQVlVtRr
+         Cemv4U7vkkKcw3F4Go5t3u/jeMj97twe9A+cVUbkcV5XZyGofZgm8zDbHCR3Lk/kfAQL
+         oQkTXsdZi8gtAiqYLuFLreAIabBssfD47zE7qgkHo/IIqiNJT9UxTkrONWxYXkMKT/Mc
+         w/WQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWJh/dtDOaUK1RGCBaHPB0Pm304UnCk0onu/NfSGkraprcMZpWytrrDhagbrFT7aMt3aj9NpgVY6SfM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzA/cZh9nrgjsGEMCvvGbQQbedenBYzXziSmZuDUk/Y3B6Ovh2w
+	zxwk/c4I+ZxBL+d5goabxpEilqMyMuhpaiMl5gqNiGXbk+xICdBvbwX5bdt1S6RaC8g=
+X-Gm-Gg: ATEYQzz7UApwIOUjxCob0hLuyz+7fySlm+WsGnTZf6SxsnC9Sye6NKt/Nh5XgEBj69L
+	jc7kIp+UWC3zc2KFHbCXLtjKEHKjSJgovVIABpxJk0v0D3oFapWLHNBbCqTPO2DS3fYz0R42NIt
+	oOrU4ej3MgbftnuCenq/leGWsLM7l/9vSSw4eBKc1XL34Uzv7v22A9CpkA8ff5Kl1mFT0kNOghf
+	puVKEfsf6ZM097gyzdf4A+nbMLM+yd6TtxbzzixVSxiU4BjrUN72fUO/jM/eBV1795E2OY3Xt/e
+	69kuSOCRMR2yB9EQGH/+nzvcEowEt1jD2NHNdwXnY/ToPV6cZet2vl00I/jmmLq3BLlbY+R7Oz/
+	5p8kDzo0zAFdZ4gFPhYu2cBNtRKQzY3fmU76sRPQIuMYMrhP/w6C51Cua0blKhX2aBlIrOZvSvo
+	tOkGuB9N16zPncESyZdGTGm3RuzxHk21ScuIqy7Vycvptrq2RWdYlju7Ite4vrOQwq3W3p4Rw+Z
+	0TQ
+X-Received: by 2002:a05:6000:1a8d:b0:439:b79d:b9a6 with SMTP id ffacd0b85a97d-439cfc2e4d2mr11182498f8f.11.1772804923848;
+        Fri, 06 Mar 2026 05:48:43 -0800 (PST)
 Received: from [172.16.240.99] (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8daf2sm4304767f8f.2.2026.03.06.05.48.41
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8daf2sm4304767f8f.2.2026.03.06.05.48.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 05:48:42 -0800 (PST)
+        Fri, 06 Mar 2026 05:48:43 -0800 (PST)
 From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Fri, 06 Mar 2026 14:48:37 +0100
-Subject: [PATCH 1/3] dt-bindings: clock: qcom: document the Milos GX clock
- controller
+Date: Fri, 06 Mar 2026 14:48:38 +0100
+Subject: [PATCH 2/3] clk: qcom: Add support for GXCLK for Milos
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +88,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260306-milos-gxclkctl-v1-1-00b09ee159a7@fairphone.com>
+Message-Id: <20260306-milos-gxclkctl-v1-2-00b09ee159a7@fairphone.com>
 References: <20260306-milos-gxclkctl-v1-0-00b09ee159a7@fairphone.com>
 In-Reply-To: <20260306-milos-gxclkctl-v1-0-00b09ee159a7@fairphone.com>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -102,20 +101,20 @@ Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Luca Weiss <luca.weiss@fairphone.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772804920; l=2517;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1772804920; l=1876;
  i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=S4AYyFcTsusx6JymB78ndk1LzxPjBUj/RxkWMGbPmis=;
- b=kTbKHsy8jRCEnPD2m5k97hP71fQLFbaGxDIxGv0EHdi8iyAguyE0P3/OXLbhWgeCUxmf6Letx
- C6vAaAw7wgHAHz6VS+U+eRiZmOrn0Q3QwZXfYemKr7ZsfwtKizk9pHi
+ bh=tHyTmNiv3FTZ/H61OgV2oLKpsfPNjLHaPzrbeiCniH4=;
+ b=4pe087HcAY+QR4HJ6YGSGYK4ICTRgOj/8Hw/nMu1G9mRpX2w56izbXTkcBw02XWagU9dot/cB
+ 1Z9e0EOR3KdBBc9jDo0Ezlux02aqD0/0sCLmPhx36LU7cxbb6QH6+Mf
 X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
  pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
-X-Rspamd-Queue-Id: CBE4322215C
+X-Rspamd-Queue-Id: B06F82222E3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -123,7 +122,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[14];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272131-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272132-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[fairphone.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -132,94 +131,54 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,3d64000:email,devicetree.org:url,fairphone.com:dkim,fairphone.com:email,fairphone.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,fairphone.com:dkim,fairphone.com:email,fairphone.com:mid]
 X-Rspamd-Action: no action
 
-Qualcomm GX(graphics) is a clock controller which has PLLs, clocks and
-Power domains (GDSC), but the requirement from the SW driver is to use
-the GDSC power domain from the clock controller to recover the GPU
-firmware in case of any failure/hangs. The rest of the resources of the
-clock controller are being used by the firmware of GPU. This module
-exposes the GDSC power domains which helps the recovery of Graphics
-subsystem.
+GXCLKCTL (Graphics GX Clock Controller) is a block dedicated to managing
+clocks for the GPU subsystem on GX power domain. The GX clock controller
+driver manages only the GX GDSC and the rest of the resources of the
+controller are managed by the firmware.
+
+We can use the existing kaanapali driver for Milos as well since the
+GX_CLKCTL_GX_GDSC supported by the Linux driver requires the same
+configuration.
 
 Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 ---
- .../bindings/clock/qcom,milos-gxclkctl.yaml        | 61 ++++++++++++++++++++++
- 1 file changed, 61 insertions(+)
+ drivers/clk/qcom/Makefile             | 2 +-
+ drivers/clk/qcom/gxclkctl-kaanapali.c | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,milos-gxclkctl.yaml b/Documentation/devicetree/bindings/clock/qcom,milos-gxclkctl.yaml
-new file mode 100644
-index 000000000000..47dc6bb66120
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,milos-gxclkctl.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,milos-gxclkctl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Graphics power domain Controller on Milos
-+
-+maintainers:
-+  - Luca Weiss <luca.weiss@fairphone.com>
-+
-+description: |
-+  Qualcomm GX(graphics) is a clock controller which has PLLs, clocks and
-+  Power domains (GDSC). This module provides the power domains control
-+  of gxclkctl on Qualcomm SoCs which helps the recovery of Graphics subsystem.
-+
-+  See also:
-+    include/dt-bindings/clock/qcom,kaanapali-gxclkctl.h
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,milos-gxclkctl
-+
-+  power-domains:
-+    description:
-+      Power domains required for the clock controller to operate
-+    items:
-+      - description: GFX power domain
-+      - description: GPUCC(CX) power domain
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - power-domains
-+  - '#power-domain-cells'
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/power/qcom,rpmhpd.h>
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        clock-controller@3d64000 {
-+            compatible = "qcom,milos-gxclkctl";
-+            reg = <0x0 0x03d64000 0x0 0x6000>;
-+            power-domains = <&rpmhpd RPMHPD_GFX>,
-+                            <&gpucc 0>;
-+            #power-domain-cells = <1>;
-+        };
-+    };
-+...
+diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+index 90ea21c3b7cf..155830140d26 100644
+--- a/drivers/clk/qcom/Makefile
++++ b/drivers/clk/qcom/Makefile
+@@ -182,7 +182,7 @@ obj-$(CONFIG_SM_GPUCC_8350) += gpucc-sm8350.o
+ obj-$(CONFIG_SM_GPUCC_8450) += gpucc-sm8450.o
+ obj-$(CONFIG_SM_GPUCC_8550) += gpucc-sm8550.o
+ obj-$(CONFIG_SM_GPUCC_8650) += gpucc-sm8650.o
+-obj-$(CONFIG_SM_GPUCC_MILOS) += gpucc-milos.o
++obj-$(CONFIG_SM_GPUCC_MILOS) += gpucc-milos.o gxclkctl-kaanapali.o
+ obj-$(CONFIG_SM_LPASSCC_6115) += lpasscc-sm6115.o
+ obj-$(CONFIG_SM_TCSRCC_8550) += tcsrcc-sm8550.o
+ obj-$(CONFIG_SM_TCSRCC_8650) += tcsrcc-sm8650.o
+diff --git a/drivers/clk/qcom/gxclkctl-kaanapali.c b/drivers/clk/qcom/gxclkctl-kaanapali.c
+index 3ee512f34967..d3899420d6f2 100644
+--- a/drivers/clk/qcom/gxclkctl-kaanapali.c
++++ b/drivers/clk/qcom/gxclkctl-kaanapali.c
+@@ -54,6 +54,7 @@ static const struct qcom_cc_desc gx_clkctl_kaanapali_desc = {
+ static const struct of_device_id gx_clkctl_kaanapali_match_table[] = {
+ 	{ .compatible = "qcom,glymur-gxclkctl" },
+ 	{ .compatible = "qcom,kaanapali-gxclkctl" },
++	{ .compatible = "qcom,milos-gxclkctl" },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, gx_clkctl_kaanapali_match_table);
 
 -- 
 2.53.0
