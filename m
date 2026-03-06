@@ -1,169 +1,168 @@
-Return-Path: <devicetree+bounces-271992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271985-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NnoEhyvqmluVQEAu9opvQ
-	(envelope-from <devicetree+bounces-271992-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:40:28 +0100
+	id 0G2UI2GuqmluVQEAu9opvQ
+	(envelope-from <devicetree+bounces-271985-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:37:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id D851521EFB2
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:40:27 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EC6021EDFE
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:37:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0944A30525E9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:38:07 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 982163007A71
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50BC337E313;
-	Fri,  6 Mar 2026 10:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F17FC35B642;
+	Fri,  6 Mar 2026 10:37:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="WBkttFjt"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="IIPRPf/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA8C737F73A
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:37:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29DE137C0FF
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:37:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772793473; cv=none; b=TFo5gsDO18TF/oRf6KokQbtHUwXsjfwj8wa+aXZpQ+or8/w+2mKMHC7tNDbvns23RfZ5x9iMB7ZdQ1Xv1slzVwKRMeyNI13HmDZJmC7ZUrO9XHukGCQwPH1MjzQj97Gx2Ds3IzN2zFAscgM+DgnVdFKoLQobyapjaK3/KKazJjQ=
+	t=1772793433; cv=none; b=FrzTvxNjokBN5c3znGjt4rrgMdBdWOt07T2H1HhhH3RUO/j4WocS/RFz7rkKqsYj90cdLLxKnddCDU8iEzMchPaytdjKQFI+kqKyTFKEER4K4gQ0nDZWqmOvynlM3q3mFT2D3gXRSHFxSvKCTbJwoQQNaJ9mxwUhzzi5S5TvqX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772793473; c=relaxed/simple;
-	bh=8dYJXakMo93Mc3lLZ5xLZ8QfYkIluXNTvVn7oLOYyd0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=h74VXN86xahubxUsQNNZ2KUw45nI1thYhrmwHyNyS87I+gmAMcN+V1HL11EscSXf8BW9gkEH2mA/j7HZFzCO87OLVN3Z5QVfRWlfV1LLRK4hiN8ZQqbrFRvJXhAb4XAqJBiiDxw6PXzyRTGMt+hxlEY/9Z4wXpJMOoMyEJEXFjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=WBkttFjt; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1772793471;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QlzQWM0pQarIoPqm3Nl91hQ8QPCgoigzmRIhUlpi9M8=;
-	b=WBkttFjt3Rz418ZWIbJ/OxGFPjHq928ims1NrJ9/X6+8iHuXIlfDtJLtE5ZQwPS70QuWij
-	19nsKt41cJYhP1ZNNPZ3OVVNwCK6ui+tW2+a77T/fo7RwAJMJt2r5bp8kqCZW1Ka3KCyHc
-	yV3kzenZW8Ypj6yWrR++7enCVCXpLFs=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-588-UUtSeqiXMbu1DAjH5sRbQg-1; Fri,
- 06 Mar 2026 05:37:47 -0500
-X-MC-Unique: UUtSeqiXMbu1DAjH5sRbQg-1
-X-Mimecast-MFC-AGG-ID: UUtSeqiXMbu1DAjH5sRbQg_1772793465
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id BBFDE1956088;
-	Fri,  6 Mar 2026 10:37:45 +0000 (UTC)
-Received: from [192.168.1.153] (unknown [10.45.226.103])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id D4D89180035F;
-	Fri,  6 Mar 2026 10:37:39 +0000 (UTC)
-From: Albert Esteve <aesteve@redhat.com>
-Date: Fri, 06 Mar 2026 11:36:37 +0100
-Subject: [PATCH v3 6/6] dma-buf: heaps: coherent: Turn heap into a module
+	s=arc-20240116; t=1772793433; c=relaxed/simple;
+	bh=9mQW205gegUibeTid/1e5hyvVPikyOjbbJTshSUvqqE=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=ti0TEgtyH/XFcB+6qm9bAPDB3EcYHzfXd4KEKlEIoCOqs7IX6GnaG0il1vQV9flyuBjOX2EdE/xiFsN8g0owl9E3gQoT5zooX8usMitpwwNealp0WEiPVNdrNTKUtPHNryAQEOazygtduVGcNBTRzDKogVm4QQ0dW0nUYHuBDPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=IIPRPf/V; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b936331786dso984129066b.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:37:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1772793429; x=1773398229; darn=vger.kernel.org;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9mQW205gegUibeTid/1e5hyvVPikyOjbbJTshSUvqqE=;
+        b=IIPRPf/VjAEUXK8IyQI6dB7AJahg7RWN0BIknY7cs1Al2aaH1qimHs6i7pawIGUrqX
+         aBc1Nslf7Kg9oY+W2vanwvTGk3ltaRcuCiCopK8wVNr8zNYLxxk4meZJPXmk9utElSw8
+         F41of/pPfqErHw2h00WlD4cOll990+Tze/4WHyv7MeabOpmirywwPV/uhtInqJkH0CFa
+         AOqTCp4ibA+NSsget7w2J3A683K91Rnzv9I5FxK9jwggUTGeUo8/lyxTzPUluFcavX+g
+         YuamSImqSprJnKZTqCh2xY094YPt5lgYF0eI498QHjdNiqLKSMboazlBT/PPI8hVjVbo
+         44Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772793429; x=1773398229;
+        h=in-reply-to:references:from:subject:cc:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9mQW205gegUibeTid/1e5hyvVPikyOjbbJTshSUvqqE=;
+        b=a1Hceu/tyvGtzIQXA75fMuK2xgx773DIZHJ+GPzr43q0skz+E5+KuDSQQddnz9q0He
+         RinTWwUyyhT3rHWfnC+o7PTb/24DQKcx7ADTR4PGemI9v0vbZAHOrLCQigc3rBNiPd9n
+         LaK8097WXno1OmQTNo9WqX27PhZ74MGXJvXZ1ITVgZcx5nUt8PBpbrgIcA0dHJ1CUVII
+         MZNjx0ZIa25oIJwQ62EevmF3oJ1uaYtAQsirSxZ1SKv5hbpeLFqYfzpZ4tDTIU/GK5iv
+         +Q0yhki0a58Oi340I4eQ+FhvAsaOt/I0/N/0ghzmTZ7JRawhfwwnNsbEzqcpqUJUik6L
+         c3sw==
+X-Forwarded-Encrypted: i=1; AJvYcCVrnz1FKDBY8jN9NDJmP/zFJVRpCchaZGVa47MIiJ0y1Ng9OenKv59phrtR+fhiXhSPr3SgF4gvQR6h@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhCfFncE7OpCOsLYMpXT+acGXsqpXYC5fILSAOCbx2AUEhj1CD
+	e99l9akBNwIaPHPP7ANvovTCdsnKK1+RxSYje9BQKaevzAaXG25K8/SiPN1i9tXcXOk=
+X-Gm-Gg: ATEYQzyok+1/BEFfhMuCgKm74GPtj79jJm7hUDD8uututPrHCUvE786a1tKz7BSVYaH
+	yR3vFEEzOJrBRnRIhA8U0FkSwcj+RTvFb75G7SZ9tqNaZbSUxcVcZdKwQRtngpMgMbZ96ISVPIG
+	E2qgmFS20FGyJJiRO9DYdBrYD6HD36D44JVzYFdJ6na9OtL7Sd8Io8C9eESoMWnct/+HWnDDv/Q
+	VkSVt6pzJzh7blaVYA+4obR1+2BzquBHtNzCgCfl/k8eojED2pmnfpVv2NQ6R0IDYY4tOVwMzx8
+	fv5FpEieitxIHHB4Swa7LVbH3qjNLk4Y4f8jk9US0SZB3ZBkCGw8PcSuhehDzkd/1/uv7Z6XR/K
+	R3G6iZuiAYNjg5XS3nlvN/xUml5VHAB5nPM7P0FO16/EOL3/Xjf6wHfKVEeQ3wr4+GjxIqIE/fO
+	mNSRiuIhw3Bw/8v+DS3NrdR+eU5ZaLANDZux2VXgCDqHmDtB+wbVpYIaW8s2s68ragyirv
+X-Received: by 2002:a17:907:9486:b0:b73:572d:3b07 with SMTP id a640c23a62f3a-b942dfb4369mr108342766b.28.1772793429277;
+        Fri, 06 Mar 2026 02:37:09 -0800 (PST)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef8ad0fsm46007966b.19.2026.03.06.02.37.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Mar 2026 02:37:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260306-b4-dmabuf-heap-coherent-rmem-v3-6-3d00d36c9bc4@redhat.com>
-References: <20260306-b4-dmabuf-heap-coherent-rmem-v3-0-3d00d36c9bc4@redhat.com>
-In-Reply-To: <20260306-b4-dmabuf-heap-coherent-rmem-v3-0-3d00d36c9bc4@redhat.com>
-To: Sumit Semwal <sumit.semwal@linaro.org>, 
- Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
- Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
- "T.J. Mercier" <tjmercier@google.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org, 
- iommu@lists.linux.dev, devicetree@vger.kernel.org, 
- Albert Esteve <aesteve@redhat.com>, mripard@redhat.com, echanude@redhat.com
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772793417; l=1661;
- i=aesteve@redhat.com; s=20260303; h=from:subject:message-id;
- bh=8dYJXakMo93Mc3lLZ5xLZ8QfYkIluXNTvVn7oLOYyd0=;
- b=Qm2/NTv+NibwQ4NUgIiBv1ELR84Zemc1608Ij5MBU+ZNmcVHDkvPQnkB17rRPklxBL/kLazKf
- 4Fi3uUXQDF+CAD44A2H9aDZK/GjsuL7JYH0er/9W85JKFYPQp+70MJH
-X-Developer-Key: i=aesteve@redhat.com; a=ed25519;
- pk=YSFz6sOHd2L45+Fr8DIvHTi6lSIjhLZ5T+rkxspJt1s=
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Rspamd-Queue-Id: D851521EFB2
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 06 Mar 2026 11:37:08 +0100
+Message-Id: <DGVMTLXR7VVA.3UCTHBGDDIKL7@fairphone.com>
+To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Krzysztof Kozlowski"
+ <krzk@kernel.org>, "Luca Weiss" <luca.weiss@fairphone.com>, "Taniya Das"
+ <taniya.das@oss.qualcomm.com>
+Cc: "Georgi Djakov" <djakov@kernel.org>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, <~postmarketos/upstreaming@lists.sr.ht>,
+ <phone-devel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/5] dt-bindings: clock: qcom,milos-camcc: Document
+ interconnect path
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260116-milos-camcc-icc-v1-0-400b7fcd156a@fairphone.com>
+ <20260116-milos-camcc-icc-v1-2-400b7fcd156a@fairphone.com>
+ <20260117-efficient-fractal-sloth-aaf7c2@quoll>
+ <59d9f7ff-4111-4304-a76c-40f4000545f5@oss.qualcomm.com>
+ <9f8619d4-43ac-4bc0-9598-c498d59a27b8@oss.qualcomm.com>
+In-Reply-To: <9f8619d4-43ac-4bc0-9598-c498d59a27b8@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 8EC6021EDFE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
+	DMARC_POLICY_ALLOW(-0.50)[fairphone.com,quarantine];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[fairphone.com:s=fair];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[redhat.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271992-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271985-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[fairphone.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aesteve@redhat.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[luca.weiss@fairphone.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Following the current efforts to make CMA heap as module,
-we can do the same and turn the Coherent heap into
-a module as well, by changing the Kconfig into a tristate
-and importing the proper dma-buf namespaces.
+Hi Taniya,
 
-This heap won't be able to unload (same as happens with
-the CMA heap), since we're missing a big part of the
-infrastructure that would allow to make it safe.
+On Mon Jan 19, 2026 at 11:28 AM CET, Konrad Dybcio wrote:
+> On 1/19/26 11:20 AM, Konrad Dybcio wrote:
+>> On 1/17/26 12:46 PM, Krzysztof Kozlowski wrote:
+>>> On Fri, Jan 16, 2026 at 02:17:21PM +0100, Luca Weiss wrote:
+>>>> Document an interconnect path for camcc that's required to enable
+>>>> the CAMSS_TOP_GDSC power domain.
+>>>
+>>> I find it confusing. Enabling GDSC power domains is done via power
+>>> domains, not via interconnects. Do not represent power domains as
+>>> interconnects, it's something completely different.
+>>=20
+>> The name of the power domains is CAMSS_TOP_GDSC (seems you misread)
+>>=20
+>> For the power domain to successfully turn on, the MNoC needs to be
+>> turned on (empirical evidence). The way to do it is to request a
+>> nonzero vote on this interconnect path
+>>=20
+>> (presumably because the GDSC or its invisible providers require
+>> something connected over that bus to carry out their enable sequences).
 
-Signed-off-by: Albert Esteve <aesteve@redhat.com>
----
- drivers/dma-buf/heaps/Kconfig         | 2 +-
- drivers/dma-buf/heaps/coherent_heap.c | 3 +++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+Do you have any details you can share for this discussion?
 
-diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
-index aeb475e585048..2f84a1018b900 100644
---- a/drivers/dma-buf/heaps/Kconfig
-+++ b/drivers/dma-buf/heaps/Kconfig
-@@ -14,7 +14,7 @@ config DMABUF_HEAPS_CMA
- 	  regions, you should say Y here.
- 
- config DMABUF_HEAPS_COHERENT
--	bool "DMA-BUF Coherent Reserved-Memory Heap"
-+	tristate "DMA-BUF Coherent Reserved-Memory Heap"
- 	depends on DMABUF_HEAPS && OF_RESERVED_MEM && DMA_DECLARE_COHERENT
- 	help
- 	  Choose this option to enable coherent reserved-memory dma-buf heaps.
-diff --git a/drivers/dma-buf/heaps/coherent_heap.c b/drivers/dma-buf/heaps/coherent_heap.c
-index 55f53f87c4c15..fdb3f5d907e88 100644
---- a/drivers/dma-buf/heaps/coherent_heap.c
-+++ b/drivers/dma-buf/heaps/coherent_heap.c
-@@ -412,3 +412,6 @@ static int __init coherent_heap_register(void)
- }
- module_init(coherent_heap_register);
- MODULE_DESCRIPTION("DMA-BUF heap for coherent reserved-memory regions");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("DMA_BUF");
-+MODULE_IMPORT_NS("DMA_BUF_HEAP");
-
--- 
-2.52.0
-
+Regards
+Luca
 
