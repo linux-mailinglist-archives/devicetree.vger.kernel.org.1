@@ -1,158 +1,126 @@
-Return-Path: <devicetree+bounces-271794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271795-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aF5eNegoqmmQMQEAu9opvQ
-	(envelope-from <devicetree+bounces-271794-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 02:07:52 +0100
+	id eMNVGUcpqmmQMQEAu9opvQ
+	(envelope-from <devicetree+bounces-271795-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 02:09:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B98721A206
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 02:07:52 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED2D21A271
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 02:09:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3355730364E3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 01:07:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 841FD3065337
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 01:08:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 818803019AA;
-	Fri,  6 Mar 2026 01:07:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D24B301717;
+	Fri,  6 Mar 2026 01:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jL55B+fZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EVBdL4Jb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B35A3002A0
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 01:07:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D532F25F3;
+	Fri,  6 Mar 2026 01:07:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772759246; cv=none; b=ULCAim15GdpQ39Alp+s7NMmqd7Ty5tumZ0lT7dFduw8NELs89kriHjmSef132yc6H1JUNowXoIZeeEYrp39Xq7OYG085WBu1ap0eA/Mrzm96V3vYnaUpWZ4bcJT9gUqBP9u4B8FTzE+ocU6w59bwN2T+bwA12YD9yWtg/cCyq+o=
+	t=1772759256; cv=none; b=ALCdWgQLLlbUSNK2DpNt1jSAwUNiyAetWAvHjreVEUsHUvISSIrmfsu83OmsaBGBOrd4bm9v+xAT89U8PxaY1WM+Rs+nE1mr4UaupTO7hSCd6YOQbOs+9HkFjGuYWvu7cPnI/N+Ei2n0slvWChcXQaAvahpZ2yBWs6CylaDa+d8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772759246; c=relaxed/simple;
-	bh=AwYvrtyXn5t42Evv8Q1//vnY4MBFvm88APyJ6xccnHo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=uPx7ZjeZGymgBCpWR9m1A0nncHcBhA3kZaxQ6DcaKsoiFLDOO5yFdvUQYtALutrzZhKuXXePtspVBauGx7b5AhTGwpNwpohSlLVzogkeFIQPH2md5H6ALis/qg1tVkw7QKuTWq7mK9hWwj/Gwf8wdyG83W8PfDAi9++4ie4JgQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jL55B+fZ; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2ad4d639db3so39546855ad.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 17:07:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772759245; x=1773364045; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Tt65nlyH2+056MIjJR2mDSU6Xjc3S4OPgUVzwFjh2sg=;
-        b=jL55B+fZc2lG37UlJqcJtZufUmygMSpRm2szwruI8WrIayPHEC6NZLqtNnKk8/0XYO
-         ib21yl0RgijVRF2QnFQlyakj2JQ7lyIIA9Wz3bQFIivCYx65W5NI4XBx4ChmQIZeGtkM
-         5nEtFjf4w2x6FMIVEkf+SuqDCOihht+8Lm2h+rKDVj+7TO5X6WJV0iRYuUniAAxiTH8E
-         PVD8uumZAx/0Bio7hf6AzA5FXAwrhOJbiwEy02YfhS7b6YcFv5m2Ag/CPzOpyC8HWKyL
-         AJCGOlBhqEGNFnsCAtEGiMn+vPFSGmE5+kF3OOKtRDSodeTUIN7PFSLyYPztz2C04R7B
-         M/Ng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772759245; x=1773364045;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Tt65nlyH2+056MIjJR2mDSU6Xjc3S4OPgUVzwFjh2sg=;
-        b=vf5mb6M1A6x1PY4QD1IhOqT/XbgLdCcwTz+b8Fa1dFMiQWjiW2XnEqBcxHNHBpeoqX
-         HD0/fg0HjJ1J+rC/G8jQ8IhKeIdpRf5213LmK+K2VhnCQvS6Qw5V7buRsnGP3kUWDN85
-         +4s+0u4RF2aJRJC0p2dv4BNzkzJhp8DVdhSxzUC+KbxkA26aYOIx2qYwI4wb1Mpr3O3O
-         NJL+3+JJxeHCPdbtcZf9UQL6sofX2Ao5qLMfEA1HJQdAeVmfHffB30pYxnsu21g0YJ5T
-         V9uRK4umdHVeG981jl0atKMXpTyG+alB0GkjUlQMOWXF6X2ffg5g2OvGmUDtbMPy5OD0
-         eKhA==
-X-Forwarded-Encrypted: i=1; AJvYcCXwIVsuYIhvTJ+blZUSqaSy7pZIYlgbUThjxgTxThhYGeFTwAWK8oV+s43CTMq8D/gJeOD9XxWi7vtd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTwltorUmdf7kll47m1BBsUIYBj/BNaXR125/yoD2X04ULV5vo
-	VVwFtCGoJA2nB3VePbIy++J6p3iyrAdHtjxEnOXsKcvW1tTc3K0CRd35BrIeYJpyA8M=
-X-Gm-Gg: ATEYQzw3gsJrIP5wP7/Pr4CEaZ1L2Hm9wNgFiwyVjqvjcNsF+V2kayOFCL+9XVwKTf/
-	VdV2Y8WMjheO/Ln1GhErMTKXaTnd0ww/VkBf3fyQ00VhgvQLF7zqzFMIb0SPK88XPMOGaVC8Fxq
-	J+HjgGlF1z9k6E1r6gjQn3YFvTXp+4lUNqSaa4XykXCTUZ77yGsQh7WmcUeHu3Wq/L2xiJ/XDP0
-	czC9fDUyiJ3+ERSP288hnB7dvRzwymXfmS6W284fPPbO/16WmPprcp2oz2JoLUCDYPrp/75UAzw
-	O9Ojl2gtnBGEciKqooSZOuUv/5SiMw0MFsgfdYcryc6Uk0TtElHXnCTNUrzYykDGJlt74BQcIp/
-	s3ewAas2pmsgJUOHc3UWF+8F9fXcDehQlVT/vKQuhRsgniOHoQ5qEy5GyORa/Has5OHoTR9dlXL
-	fvCI7cA5z9hpiLIv1v8bFk
-X-Received: by 2002:a17:902:e80b:b0:2ae:54b2:27d1 with SMTP id d9443c01a7336-2ae82467157mr4766475ad.44.1772759244771;
-        Thu, 05 Mar 2026 17:07:24 -0800 (PST)
-Received: from localhost ([71.212.200.220])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae45e07626sm172535595ad.39.2026.03.05.17.07.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 17:07:24 -0800 (PST)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, 
- Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Russell King <linux@armlinux.org.uk>, 
- "Kory Maincent (TI)" <kory.maincent@bootlin.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- dri-devel@lists.freedesktop.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Bajjuri Praneeth <praneeth@ti.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>
-In-Reply-To: <20260216-feature_bbge-v2-1-22805cfdbf62@bootlin.com>
-References: <20260216-feature_bbge-v2-1-22805cfdbf62@bootlin.com>
-Subject: Re: [PATCH v2 1/3] ARM: dts: ti: Enable overlays for am335x
- BeagleBoard devicetrees
-Message-Id: <177275924369.1445909.1029086854461649971.b4-ty@baylibre.com>
-Date: Thu, 05 Mar 2026 17:07:23 -0800
+	s=arc-20240116; t=1772759256; c=relaxed/simple;
+	bh=z4HAlmfWQOzRiBcoGIB7Q03RvJNuqThL39CBgE2qsQU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lxd7Z08TO34a/0RAHSj6rCwLNLmqUphS9L/rMNRNohyIXHn5pj1sNUxZfIi/xMJ0zwJECjn7btjaHpV3vkdM93+nPFNjethtIf4K/+dfNpiTmH9vIA/hseQh2rbT44H8UpNXIML+SV8Fhv9CcJowtSDDCDIej9x6n6o5cXWAbfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EVBdL4Jb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDE7BC116C6;
+	Fri,  6 Mar 2026 01:07:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772759256;
+	bh=z4HAlmfWQOzRiBcoGIB7Q03RvJNuqThL39CBgE2qsQU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=EVBdL4JbvNDpAyuFRvZ4/vfZMSnu/DOz00U914ktPjcw25bz52wXCvzP6ewL5u6R5
+	 Nx7uVkwPkXEP//pyRcA2eI1OLDS1VwRRzl+c4dV/Cdxolaf7GgEJsz5MgP1gUrSfeD
+	 VU3koytaulSA8xghO/zH0OymywkkRdjnuu2N6v4vQcLOZ1ueg6Uw5kMp2VzijUqK5d
+	 qIFFD6RZYUIQM+QB3c+1ctLSWojQ64qRo8dX3Bh+mGaTDMf6RDtO+6vxacaipPCp0G
+	 zEaeTrAO4YQYJCt5BpK/cn5xZvpwbb2uEyab5r8eKA19i1U668Fo8aVvW8oDWBdmlI
+	 A5KDJ4s3leZJg==
+Date: Thu, 5 Mar 2026 19:07:34 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: James Calligeros <jcalligeros99@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	imx@lists.linux.dev, Mark Brown <broonie@kernel.org>,
+	Kevin Lu <kevin-lu@ti.com>, Baojun Xu <baojun.xu@ti.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	asahi@lists.linux.dev, Shenghao Ding <shenghao-ding@ti.com>,
+	linux-sound@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, devicetree@vger.kernel.org,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Takashi Iwai <tiwai@suse.com>, Frank Li <Frank.Li@nxp.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/7] ASoC: dt-bindings: update tdm-slot.txt references
+ to tdm-slot.yaml
+Message-ID: <177275925396.907435.14412144819851551606.robh@kernel.org>
+References: <20260301-tdm-idle-slots-v3-0-c6ac5351489a@gmail.com>
+ <20260301-tdm-idle-slots-v3-2-c6ac5351489a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
-X-Rspamd-Queue-Id: 5B98721A206
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260301-tdm-idle-slots-v3-2-c6ac5351489a@gmail.com>
+X-Rspamd-Queue-Id: CED2D21A271
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271794-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271795-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,lists.linux.dev,ti.com,renesas.com,vger.kernel.org,perex.cz,nxp.com,pengutronix.de,suse.com,lists.infradead.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20230601.gappssmtp.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,baylibre.com:mid,baylibre.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
 
-On Mon, 16 Feb 2026 17:55:52 +0100, Kory Maincent (TI) wrote:
-> Allow overlays to be applied to am335x BeagleBoard boards. This adds
-> around ~40% to the total size of the DTB files on average.
+On Sun, 01 Mar 2026 18:05:21 +1000, James Calligeros wrote:
+> Ensure that all references to tdm-slot.txt have been updated to
+> tdm-slot.yaml, and are schema-compliant.
 > 
+> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
+> ---
+>  .../bindings/sound/imx-audio-card.yaml   |  9 +++------
+>  .../bindings/sound/simple-card.yaml      | 14 ++------------
+>  2 files changed, 5 insertions(+), 18 deletions(-)
 > 
 
-Applied, thanks!
-
-[1/3] ARM: dts: ti: Enable overlays for am335x BeagleBoard devicetrees
-      commit: 18161bb01ede109fed41c66efa2624a4c27377f7
-
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
