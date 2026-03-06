@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-271960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QOLbH6yoqmnIVAEAu9opvQ
-	(envelope-from <devicetree+bounces-271960-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:13:00 +0100
+	id GCIbMsOoqmmzVAEAu9opvQ
+	(envelope-from <devicetree+bounces-271961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:13:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D504E21E82D
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:12:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B53321E83B
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:13:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8A1AE302A6C8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:11:00 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D16323041BE7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:11:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B003359714;
-	Fri,  6 Mar 2026 10:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0A0B35C19A;
+	Fri,  6 Mar 2026 10:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J1o/44sq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ihaHAfUv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 931D5351C04
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78037359A98
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:11:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772791859; cv=none; b=H6B5WzCjnnZB+zf75r9NAtrBHIf/jYnOM/HL9FIxAd8xUvc7DMIm5/bH2hNB2us/vPB6iaIMSuqowUYeU0vO5R827A6l+9ZvGUR1j2gIxf7VAcyJ1wr40YFZUTxY79Yl/nOCJd3fzAP/XTchzjNDwb9WqaAFVDX+Y5BBasJxyAs=
+	t=1772791873; cv=none; b=OE9iUIOzCaYy4kH79CalDdIpObd/0xAUy+FAArtRpktrMd7+OF6PX83ZJxUgm4+uTcSj40zf5yKKmrOsyoLUyrD8NZqa3nHsIw/pcL4qwojO6PADEbj1Aj6qwWIHAJn2+NKvRH3jYKx6uGsEbmZV5cItiXpfQ5i0m02iGr7Ihjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772791859; c=relaxed/simple;
-	bh=doZNkp50A2vlx/Y6TzLm2sx4v5BW4N4e+Wq4WpVjj84=;
+	s=arc-20240116; t=1772791873; c=relaxed/simple;
+	bh=d1G7Wue+u9XU70K7Y0xMbdhKPQwuczQMxgBCvQLoE9c=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=g8jcUcRmmN29Kojr5+hDsjeKWsqWro1dKsCcEP6DxPC9dL5eJexnQNpcXUodgVG99Ej2n+Qfpw2sZcYCnkcux6KwlLEKeytpOFHrQ6U3E4c2x1yTBnl4zJYdCv96c2SsjJsBgEbRhfha0M5xNm961LZN5mtWAi8e8bNw3yfso4c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J1o/44sq; arc=none smtp.client-ip=209.85.128.50
+	 In-Reply-To:Content-Type; b=ebutKWJR13TccrrYl0VFjtvURyOxnUMDrbQj85IheKOKQjIjyOUOMnlw82CC3s+mOZtl5xtGqPS8dZ+FwhWcqiVgD4+kL25JkL+k3f/BxFjfcVfURXtQMtLQAkYi/dcpMoycqX3iZYzLKPVZ6n13k5c3ZeZs4fqGEUz6ewMivv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ihaHAfUv; arc=none smtp.client-ip=209.85.128.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-483a2338616so57859895e9.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:10:58 -0800 (PST)
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-48372efa020so80060045e9.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:11:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772791857; x=1773396657; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1772791871; x=1773396671; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ufjDysk6Eerr8tO0qTbtZ9z+W0GoRqYATTCMzifDeHs=;
-        b=J1o/44sqYuvK04faFfvXmWXkILmKMncdGNF7rNgMkZgJfiQX8W+duAlQnDwuz4w1lj
-         tPahRMwoYA6pzQEQpYWEHqHuQpSgc5cnNWOsIn+7rGRLLs6AfL8tPdRKZVggkXVG/chE
-         /nhtawayN3DukR+Poj8p/wLy7FbWVUvG0KDUFzD8RgKJY7R9jt0nenTUyMbZ7zAnEUNY
-         WwWfsBt6USKTXWXRpWjZz4Ze/zMjJxyT8sxLBOl/A4HteyoCwtUDyRDKYbUCGqdo8YXg
-         qqKeHop2OBrtV2mizN2sFXVNml3UV44iN26gsEAeMJ+RsLg5zZOQ+2FqHJoN/OzRm0e2
-         b+Fw==
+        bh=bDramHPwwOtrk7+TNdEDdypzFChqVP3oIoB1XiKknTY=;
+        b=ihaHAfUvd79a8iwgMKjJ0uGqXazE70h7QjopWHZcd88tcNbOQAK3topMuCCF8les8C
+         bsHReYaDG8HZ5e7qjWXN7h5x33daR9Jw6j4+Qm3PovrfALo4NVNsxrGRge0Zv8dZpoD5
+         gmvidgacpEcB0uJRc8RF1swBjCUOEf9/5x8qyfD6CC07AaKrZ0mfWsR03WwX+uiNeQDS
+         lYQYvVMDZLChIYLN/sl3eSrearM0YNIfsnQZMRC/otGO40ivxYq3zftylY/2iOoEK9qZ
+         7Zv7AfvdcqcnK2L79mbvWjnJNib2QYamWab70XecNnUJRd1LtMHE2VhL+dc9by1yc/Sg
+         BjDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772791857; x=1773396657;
+        d=1e100.net; s=20230601; t=1772791871; x=1773396671;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ufjDysk6Eerr8tO0qTbtZ9z+W0GoRqYATTCMzifDeHs=;
-        b=vUQv3LUv5PjQBkbIJDw/zAAecjyYyiMw9J09QY2YcTmk3PP0YVZJ5GPmz9ekgSh8fy
-         ebf4zbUzfysyw9UiAOrCw9UPN7eb2P/WkA8BX4xSJbUl+S71U7xucVH7DWDr0/lXmrz/
-         58yl1mJrFdKgLiyqiNjzKKl9BuVQzmSxK2k3X97dhBClgn0KaJ+/rlwXReHOk39ywZhF
-         JvgFZABOb0j83pzoBgxUdZbyonE5K65UaG8jE7L8MXHL0Y1ltZairiXC7j68uQVGShqc
-         zmTwpPmYTQ8SmSL9UlnTxyZmWfkbrE1FpCDx1YYupqzAg8fuAoUbrpYspquzLAr9SGoo
-         KyXA==
-X-Forwarded-Encrypted: i=1; AJvYcCU1yvtDl9xxdXhdEW4RQdeI3+vfwOR64ypddkaPqAUQ/s/xswyikZsnRGt5y2/pDIN5dcd4QnI3jgMb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuMZ2ydduhHxLbcnhizC5PJSShqaYCF9l0gw1C8hsByGphXTqQ
-	GPdHPlvHBxnr4B7KWG2jjooUQ20Wsov0uVJcvhCuWfJwJiQP8xcv95HOIbg2zHZSlFw=
-X-Gm-Gg: ATEYQzzZi/RFsPqCSBiVbZDReX4FVoVJGvrtZBOgvBgS+5PCkHCSpX2VN1D/46hwQZ+
-	6nLygI0oJEzwngbaEe7R9F1hpaJ9hYxDxyqvOXMFxSEin9geECaLLwSZVloXso2jsBnoyYyZl+T
-	76wiOlTCJpd3yBEszd6N5JXeNfdCcLCFWlUbyJUO/XuuHU7QNrK5xKo7wY63eh7+mQQ2M5Bc1Yx
-	3rUy+269ksaA3cFSut09iNGsx17eySEaI+ntjzOLM3dKKwTuzOENe97kG0UDIj0GbinGHcESmUh
-	XUn9sAauSHKA2MCaUJWMTJVyuKRLud8/M4+9UBn2FU/i9RpXkqGRJuOMqd8oy1jA+EQhJn41Ouz
-	wliYHDyR44mGp7k6i5e1y7YZWid4YAd1dA96fWIMejB50N7XLRdtLvMYm4xvDkDdbsutEbvOLbD
-	4yCnHeOJQH5pvL083RY8cQviTABDeWADHcuctoudmGKMSuA+p+Nff7q9rurgSeGvALtIEQ7tU/r
-	4XS
-X-Received: by 2002:a05:600c:5253:b0:483:456a:514b with SMTP id 5b1f17b1804b1-4852692f158mr23151645e9.12.1772791856930;
-        Fri, 06 Mar 2026 02:10:56 -0800 (PST)
+        bh=bDramHPwwOtrk7+TNdEDdypzFChqVP3oIoB1XiKknTY=;
+        b=cjYc7MJQq8giivREykPHzEjmcFabjVqO7ZAmNceqpSgT4MSCfX+2XGG6qXXq6kgVIh
+         UhHOVt0q1Jo/ZaHK4LUZ5vK1pNeAPkYpv6zV1LwsYTXa7ZOgXGBSvRFEsprwDNeiQdqj
+         3VnJmOLH5SD2zNSjAZcJ+ht+v28q3QA34ojpTIpjFbEL7RdK+nRikGNk9vA30P8xBS4D
+         /o6OJZR6xAO5GQkBybwXg9JK0VJPK8PfivT+aA99lBu+hZlswoxUHl2VAulQbqBSoVkE
+         Dhiwa9YOoMxVKaAeM6yVC79ePIgzidq4yWDaIoaXoooRxtqrfdkAibzrEGUZlLOMVyVd
+         UhiA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGboAld0vn698z6LuYn5fz9Ay2J5X1T0ypWkc+dJp+Wktv+kO9Ny9ol39GDN5guKGEm3+1ZT9eqf5P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqVw79uxubTic1PpWoI9nxCp9W1R9GNzEOVbzyO+34R7ZVWzoQ
+	JirNEb4I+KX8Vnnm5wnwGJM1kSPHZ3b6zUuWcQ/gSrUqpZz5xh2gu6WUPmcW9K+EvI8=
+X-Gm-Gg: ATEYQzyt5+w2ONLRUWoJeVE+JK1egenuvEExXi95ovXXbmfbQ5hcPSW/Nudta+VyEuC
+	XktE1b5WHoANTjvmnwXY1Vx3zCmqCwbnYW3R2N4fvaQax3pwpooNLELYxFebIww+dehB5RugAKk
+	+Q08go+2tmgSyjStXBXtMY8T07o9yqbXvaqjMmlLc65y614+cOtCfGHuzVybS7yGJhAuN6RJ3pf
+	TqGBGInEHiL5vanxkC739jP9FMFICaywcxJTq75svh/tOBmb1O09zqc98cgvAU2xNoGTGK6GOT3
+	P+kuQPEjmAKibLyFiORV+HT4a1JUndy/ofz128dbmx5R0Ft/iq3xgrtmL60CyZu3Q/26ZzS7lv/
+	K1R7KQpRexIHEq9WQiC8aGBnP9FeN3i2oXfbh79spNZNr7mneTx1gYTAoz3wpsLQR4g63N/RX6O
+	/wM39itby3+7q1vuj4274/+cgpvmsTjLU0u9TxPZvTQy7dc2bYdz6XFjoAFYcRQaHmH1cUO0+iw
+	JQF
+X-Received: by 2002:a05:600c:609a:b0:477:63a4:88fe with SMTP id 5b1f17b1804b1-48526919691mr24609515e9.2.1772791870474;
+        Fri, 06 Mar 2026 02:11:10 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:106d:1080:cbfe:649:7f17:8b95? ([2a01:e0a:106d:1080:cbfe:649:7f17:8b95])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485276b75eesm20784925e9.14.2026.03.06.02.10.56
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4852967d9f8sm1234355e9.32.2026.03.06.02.11.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Mar 2026 02:10:56 -0800 (PST)
-Message-ID: <ae8c3d8d-93dd-4c96-a336-6bec73d2f194@linaro.org>
-Date: Fri, 6 Mar 2026 11:10:55 +0100
+        Fri, 06 Mar 2026 02:11:09 -0800 (PST)
+Message-ID: <ec8d4eca-c130-4100-9fd5-b8597c4a1c2e@linaro.org>
+Date: Fri, 6 Mar 2026 11:11:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,16 +88,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
+From: Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] arm64: dts: amlogic: t7: khadas-vim4: fix board model
- name
-To: Nick Xie <nick@khadas.com>, khilman@baylibre.com,
- martin.blumenstingl@googlemail.com, jbrunet@baylibre.com
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+Subject: Re: [PATCH] arm64: dts: amlogic: Fix GIC register ranges for Amlogic
+ T7
+To: Ronald Claveau <linux-kernel-dev@aliel.fr>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260306030756.2421841-1-nick@khadas.com>
+References: <20260305-fix-amlt7-gic-dts-v1-1-5944415c74bf@aliel.fr>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -124,66 +126,124 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20260306030756.2421841-1-nick@khadas.com>
+In-Reply-To: <20260305-fix-amlt7-gic-dts-v1-1-5944415c74bf@aliel.fr>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: D504E21E82D
+X-Rspamd-Queue-Id: 2B53321E83B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	TAGGED_FROM(0.00)[bounces-271960-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271961-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FREEMAIL_TO(0.00)[khadas.com,baylibre.com,googlemail.com];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[aliel.fr,baylibre.com,googlemail.com,kernel.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	RCVD_COUNT_FIVE(0.00)[5];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NO_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org]
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Action: no action
 
-On 3/6/26 04:07, Nick Xie wrote:
-> Update the model property to "Khadas VIM4" to match the official
-> product branding and maintain consistency with other Khadas boards
-> (e.g., VIM1, VIM2, VIM3) in the kernel tree.
+On 3/5/26 23:11, Ronald Claveau wrote:
+> This patch aims to fix the GIC register ranges for Amlogic T7 SoC family.
 > 
-> Signed-off-by: Nick Xie <nick@khadas.com>
+> - Context
+> Kernel log shows a warning about GIC
+> [    0.000000] GIC: GICv2 detected, but range too small and irqchip.gicv2_force_probe not set
+> 
+> Using cat /proc/interrupts command shows GIC as GIC-0
+> 
+> Adding some peripherals sometimes causes hangs on interrupts.
+> 
+> - According to the GIC-400 ARM doc, the memory map is like:
+> 0x1000-0x1FFF Distributor
+> 0x2000-0x3FFF CPU interfaces
+> 0x4000-0x5FFF Virtual interface control block
+> 0x6000-0x7FFF Virtual CPU interfaces
+> 
+> - Identify GIC model from distributor register
+> 
+> Offset | Name | Type | Reset
+> 0x008 | GICD_IIDR | RO | 0x0200143B
+> 
+> kvim4# md.l 0xFFF01008 1
+> fff01008: 0200143b
+> 
+> - Identify CPU interface from CPU interface register
+> 
+> Offset | Name | Type | Reset
+> 0x00FC | GICC_IIDR | RO | 0x0202143B
+> 
+> kvim4# md.l 0xFFF020FC 1
+> fff020fc: 0202143b
+> 
+> - Virtual interface control register check
+> 
+> Offset | Name | Type | Reset
+> 0x004 | GICH_VTR | RO | 0x90000003
+> 
+> kvim4# md.l 0xFFF04004 1
+> fff04004: 90000003
+> 
+> - Virtual CPU interfaces check
+> 
+> Offset | Name | Type | Reset
+> 0x00FC | GICV_IIDR | RO | 0x0202143B
+> 
+> kvim4# md.l 0xFFF060FC 1
+> fff060fc: 0202143b
+> 
+> - After this patch there is no warning anymore.
+> GICv2 is correctly identified.
+> 
+> [    0.000000] GIC: Using split EOI/Deactivate mode
+> 
+> Using cat /proc/interrupts command shows GIC as GICv2
+> 
+> Signed-off-by: Ronald Claveau <linux-kernel-dev@aliel.fr>
 > ---
->   arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 4 +++-
+>   1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> index fffdab96b12eb..25b478e106451 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> @@ -8,7 +8,7 @@
->   #include "amlogic-t7.dtsi"
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> index 6510068bcff92..d523cbc0ed22a 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> @@ -213,7 +213,9 @@ gic: interrupt-controller@fff01000 {
+>   			#address-cells = <0>;
+>   			interrupt-controller;
+>   			reg = <0x0 0xfff01000 0 0x1000>,
+> -			      <0x0 0xfff02000 0 0x0100>;
+> +			      <0x0 0xfff02000 0 0x2000>,
+> +			      <0x0 0xfff04000 0 0x2000>,
+> +			      <0x0 0xfff06000 0 0x2000>;
+>   			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
+>   		};
 >   
->   / {
-> -	model = "Khadas vim4";
-> +	model = "Khadas VIM4";
->   	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
->   
->   	aliases {
+> 
+> ---
+> base-commit: c025f6cf4209e1542ec2afebe49f42bbaf1a5c7b
+> change-id: 20260303-fix-amlt7-gic-dts-7dcc93e13612
+> 
+> Best regards,
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
