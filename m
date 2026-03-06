@@ -1,153 +1,159 @@
-Return-Path: <devicetree+bounces-271895-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271896-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oFt0MPuRqml0TQEAu9opvQ
-	(envelope-from <devicetree+bounces-271895-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:36:11 +0100
+	id eAOALJmSqml0TQEAu9opvQ
+	(envelope-from <devicetree+bounces-271896-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:38:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5430421D2E4
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:36:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 172F721D321
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:38:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DBCEC302F400
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:36:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 92E303016EDE
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:38:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 176B0378D99;
-	Fri,  6 Mar 2026 08:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F411D375F93;
+	Fri,  6 Mar 2026 08:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cutZbGR/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QZ1uQjOi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E907737754C;
-	Fri,  6 Mar 2026 08:36:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE62219FC;
+	Fri,  6 Mar 2026 08:38:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772786165; cv=none; b=nFU0fgyLwZmL7oYrxypLNkR9iqNFE24coC7zDGtb3PKh0czNoUMEmla1KpuEvQ05okjtRBv8E8xpfaeqmvFygLWA0NmD0yRjoeXASQoIM405cwjwoXGD8fTqe8LpvAB8g76/Iz8/CvV1A+FVtTZCdQ541ZFlnxjJbhBgrJvE5v4=
+	t=1772786326; cv=none; b=aaPL/fc+F9G37SEgyGwK+BBiCMV+qDVI4/TjI2QKmE7p3mDbZ828NDp6QDEuf65sE/tfoQAL5deZr8T54XGNv1WsggsrByWklh2sUVmkagCADbGUaV9OJHoH3Ht6xjYa5JfVXKk6WRONpF31iRjECbDwr63KjxdlTK2nI9vdTZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772786165; c=relaxed/simple;
-	bh=K6vWm4Ec3elJaHEqFrSeZKTSxPieMkgFj2xoEzsCz0s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BbrzPeUE9iAETdVFt7HtiQ3LMzmpdUD76Z9zjJte4CD0OhAW2B/7hiE2UBmV7NfzCBUG1FXekjET7ETLcPHJK2TBc7urve2dfuuRpY4ibwtdAV2PTC5GSfAVep6UPrA/Sjk6I7iTpsLMCISWuEjNVpURIE62GnEG26NzGshXb94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cutZbGR/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4B1BC4CEF7;
-	Fri,  6 Mar 2026 08:36:03 +0000 (UTC)
+	s=arc-20240116; t=1772786326; c=relaxed/simple;
+	bh=ZTRHzpR1DJxqxAes6tEdtSIz9VzmncBu5zPLwomZ/ok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TVztJdcXMGx5c6HfzRrTvbS6flSRrWVx4uBSF+KYzE51AU9P6sTaoRRy7ChaIb8XeQDBv8PguKPt3+myREi9tzCikQTRLMm0gD+oxOa5VprJiJ8THJ7K2LSVSuxzWw80dnm/XNXhaQOnFRSbsfurpRnlVcJjdFUYDcPGyqQLbuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QZ1uQjOi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 319BEC4CEF7;
+	Fri,  6 Mar 2026 08:38:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772786164;
-	bh=K6vWm4Ec3elJaHEqFrSeZKTSxPieMkgFj2xoEzsCz0s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cutZbGR/ygpZA5ybvB2DGVZDuyw9lv3zZ8r3Y4MLZwO8KmuKWyaVbSBjQAb6Ckc6u
-	 VEvBkY82/FmyrMQy3EvS+TBqNzxzPyDskXtwgon5n/r9KKHtJkhS2hU9IyNFDzmEpG
-	 NvczH3cw/TvDKXnkC9O7J0wo1cRhSt6VHnMrsxhOQDR3FJ8kA1QzrzZ2Nw4Deuvgs7
-	 y433yjWQvPkXOTdBor5y8MPdUnK/k/YBZe17HKf/vPpWxZiQzKrqKAW+6G7khux/1s
-	 blDdazOOBy8MwQCgevvUqxcZ1jxRC15iR8XaZP/lwCltyomQZ0k4RRimOrIuJAke6v
-	 onLZWnDiBm8vA==
-Date: Fri, 6 Mar 2026 09:36:02 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, Jagan Teki <jagan@edgeble.ai>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Marek Vasut <marex@nabladev.com>, Kael D'Alcamo <dev@kael-k.io>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Add compatibles for
- Zhunyi Z40046
-Message-ID: <20260306-rugged-coati-of-brotherhood-e2cee2@quoll>
-References: <20260305195650.119196-1-l.scorcia@gmail.com>
- <20260305195650.119196-2-l.scorcia@gmail.com>
+	s=k20201202; t=1772786326;
+	bh=ZTRHzpR1DJxqxAes6tEdtSIz9VzmncBu5zPLwomZ/ok=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QZ1uQjOipeQEn1yWvd40hEs3QG3YW4p2bI8K/AB7RZ19Zk+s2K7pnrtfb4yZ7a90/
+	 /E0iJH0EIuilW6X/61fFdIlPyQAq0pVMUrble+722YU48YH+oV6Tvkap+vsE9XaTI0
+	 Lhn6euOAWQwj5cC40xSII84X58BAJsybrchP3kV/1+k4MUZUshLzO7ksUmF37OZLNW
+	 i0ljKWrqLTnrE56UDIhj3Q37txqGuqGSTxL+M+/MvhW4cmKStvj4JePbD4xMWI3ezI
+	 OPyR7d9K51aAIHDx471VC+p0XY8muaesDq8RHeHGlWijbSJ+hRuHAFrWaG7F1ORKSJ
+	 JEscKu2cm5Weg==
+Message-ID: <f9cbe47f-eed0-4109-bac4-1ff7f99e491c@kernel.org>
+Date: Fri, 6 Mar 2026 09:38:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260305195650.119196-2-l.scorcia@gmail.com>
-X-Rspamd-Queue-Id: 5430421D2E4
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j7200: Make MAIN domain system
+ control bus a simple-bus
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260303205224.108217-1-afd@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260303205224.108217-1-afd@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 172F721D321
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271896-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271895-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,edgeble.ai,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,sntech.de,nabladev.com,kael-k.io,bp.renesas.com,vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, Mar 05, 2026 at 07:56:30PM +0000, Luca Leonardo Scorcia wrote:
-> The Zhunyi Z40046 is a 480x800 24-bit WVGA DSI panel based on the
-> Fitipower JD9161Z DSI controller found in the Xiaomi Mi Smart Clock
-> x04g, apparently in two different variants.
+On 03/03/2026 21:52, Andrew Davis wrote:
+> This node describes a memory address range containing several sub-regions
+> with control registers for various IP in the MAIN domain of this SoC. It
+> was described as a "ti,j721e-system-controller" but this is a J7200 SoC
+> with is not compatible with the system controller region found in J721e.
 > 
-> The Fitipower JD9161Z LCD driver IC is very similar to the Jadard
-> JD9365DA-H3, it just uses a different initialization sequence.
-> 
-> Since this is the first supported device from this vendor, document its
-> name to the vendor-prefixes.yaml file as well.
-> 
-> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-> ---
->  .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml   | 2 ++
->  Documentation/devicetree/bindings/vendor-prefixes.yaml          | 2 ++
->  2 files changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-> index 5802fb3c9ffe..da17072ffaaa 100644
-> --- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
-> @@ -23,6 +23,8 @@ properties:
->            - melfas,lmfbx101117480
->            - radxa,display-10hd-ad001
->            - radxa,display-8hd-ad002
-> +          - zhunyi,z40046v1
-> +          - zhunyi,z40046v2
->        - const: jadard,jd9365da-h3
->  
->    reg:
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index ee7fd3cfe203..18121440dc22 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1913,6 +1913,8 @@ patternProperties:
->      description: Shenzhen Zkmagic Technology Co., Ltd.
->    "^zte,.*":
->      description: ZTE Corp.
-> +  "^zhunyi,.*":
+> No project consuming this DT has been found that makes use of the syscon
+> compatible for this region, to prevent any from using this node like a
+> generic syscon region in the future, make this a normal simple-bus as
+> it should have been from the start.
 
-Don't mix up the order.
-
-Domain is zhunyikeji, so should be the prefix.
+So that's v2. You should mark the patch correctly and provide the
+changelog, even if you do not keep original authorship.
 
 Best regards,
 Krzysztof
-
 
