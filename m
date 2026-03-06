@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-271839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271840-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SFpML1x/qmlhSgEAu9opvQ
-	(envelope-from <devicetree+bounces-271839-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:16:44 +0100
+	id ONl6AJ2BqmkHSwEAu9opvQ
+	(envelope-from <devicetree+bounces-271840-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:26:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A8921C51C
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:16:44 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72FEE21C6F1
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:26:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9FFA4301C16E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 07:16:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 24CF1305D2C9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 07:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B976030DECC;
-	Fri,  6 Mar 2026 07:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15F0374194;
+	Fri,  6 Mar 2026 07:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sjbtmlt5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jnn1/jAH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95294EEBA;
-	Fri,  6 Mar 2026 07:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBEC30F7EA;
+	Fri,  6 Mar 2026 07:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772781401; cv=none; b=cVeiuxB0rsiS09WlwO5X7S8Gg76r2eryLn1krtcnn5ERtU3AQ23XGVwGV0SDyVBw/XfVeOX1kUbhbdpSPWYvoEv27FYOsqsn+BxgOnMurBmggYcPSFUUXC/r2g3aGPfJI4uAvbBKM/brejgdlq9j9LeWUb7MXZOfbhO6EuVRB5c=
+	t=1772781845; cv=none; b=B0HN6o1EOQJXEM4u9K43Q/gcz1nCnGn9uHWSWQPSiYVWmxRP78h/X+2pUuVrd3OFYt6tvSmLIHQ1vyqtPaHRdqQusonxj8KBvizwuip94HecCywHokW1Hda15YRliNcGZ3QtQWXuVB5+pzRBkPDA3EWI58+HSQIjHX9rrZvMjsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772781401; c=relaxed/simple;
-	bh=+CSZ/lxHhezXtn9zq2t5/nDJXac/JaET+DDAkLJYycM=;
+	s=arc-20240116; t=1772781845; c=relaxed/simple;
+	bh=Lj5SCGuo+7sbAhd95GFWDmURIHYhOxe3wX7NmPQPLoI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P/7NTWDuJGY6Efodfi70O9kROcxgIumsM3IyDYJMcf4AUnODp/72Fw9Xxq6p7l3jxupK2OBl79LobNR12HIth64fefy58h7hE6e/vnzLM/aIswRNuWOUFfY5TbdjFpLFdsaE6GGClA7alXpfx/zd/jDl0ucLWWmy5TJVwPUbseA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sjbtmlt5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D2B6C19422;
-	Fri,  6 Mar 2026 07:16:38 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ixp97Lkj8nwyvjpvDj73tHOkFkAwHy5uwHjCEXjM3cKf7TbA32sUEFSXSGroCb6oj03joMCaUUCv1gcnr98XcsW661U4+txp8JQDNZJXk/aZGLTbPUoyP651o/RgLysDjOn/APN0YCo3icMubBha8PhbO7eerecb1tphjE8nV/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jnn1/jAH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CD64C4AF09;
+	Fri,  6 Mar 2026 07:24:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772781401;
-	bh=+CSZ/lxHhezXtn9zq2t5/nDJXac/JaET+DDAkLJYycM=;
+	s=k20201202; t=1772781845;
+	bh=Lj5SCGuo+7sbAhd95GFWDmURIHYhOxe3wX7NmPQPLoI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Sjbtmlt5YVdHFOSshJZ5HUZpMCqZtEGBKB2AkNyder91svEkNhhdFoKhyqyT80TSr
-	 6OTFazsF+J5SNAsWos1xgowhROzVYR9QWgeT8QvhB5IgFCYArQEfzWi6BPQZwaRfGP
-	 2To+qJgVm/slYjcJv1Vsm6O3DemMy8sauAoCzWoJt3pVHk1h+lXBIqSdyYedL7bxOc
-	 H3bPT+3EFocULYjL6D3KT9zyr6UBRzM6mFsZIxo1g5x9SrKvsTRezrEaYiJ2CLgHjZ
-	 zo1BKzp6HT6QTfJXzdvEcxC2n3TVytdKUysP6j8Ucs8NmaIvmmjyrRX3J33/oqzbmS
-	 o3LeLmyze2cFg==
-Message-ID: <20d37ab7-308e-4f07-96dc-7ae011af76d0@kernel.org>
-Date: Fri, 6 Mar 2026 08:16:37 +0100
+	b=Jnn1/jAH4recGbYIFZ4sSiKeOTVMLsDaW21tYhQzYkwJC861EtI+ZjsiRwO31FEBe
+	 GZq3+HMradhEqgFbRT+PFXDWen9F08316Qr9lWCSiN8ufZnUTz7kuA7HhCStzdT5iO
+	 CMNjLv+v2LQpwSmM3MNxo0fihfniXwTxTblVLp2gfBgZHkV7tT2Y9/LmrCXMMnspeo
+	 7rsuIpe5j81tAPQF+fYcwaY4YsBzyVXbU3rQfWWDI+8gkz3boGzHInoVw+Us6P3+fy
+	 dzq+ktVWK5ssMK5uIq8cez10XBg7ru36Liayu2uU0Vjmdvv16X3cBMIjWdjdwKG9N8
+	 i34N7IH+Qtktw==
+Message-ID: <900f7a40-70f1-42dc-b98f-845c53169127@kernel.org>
+Date: Fri, 6 Mar 2026 08:24:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,22 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] ARM: dts: imx6sx: remove fallback compatible string
- fsl,imx28-lcdif
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
- "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE"
- <linux-arm-kernel@lists.infradead.org>,
- open list <linux-kernel@vger.kernel.org>, Liu Ying <victor.liu@nxp.com>
-References: <20260305212312.4053922-1-Frank.Li@nxp.com>
- <c64ee6d6-d948-4146-8463-0e68ba542404@kernel.org>
- <aaoIKmhcgIZdFvbz@lizhi-Precision-Tower-5810>
+Subject: Re: [PATCH] dt-bindings: nvmem: qfprom: Add Kaanapali compatible
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260305-knp-qfprom-binding-v1-1-1b3effb09cad@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,65 +107,48 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aaoIKmhcgIZdFvbz@lizhi-Precision-Tower-5810>
+In-Reply-To: <20260305-knp-qfprom-binding-v1-1-1b3effb09cad@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 16A8921C51C
+X-Rspamd-Queue-Id: 72FEE21C6F1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271840-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271839-lists,devicetree=lfdr.de];
-	TO_DN_ALL(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pengutronix.de:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On 05/03/2026 23:48, Frank Li wrote:
-> On Thu, Mar 05, 2026 at 10:34:18PM +0100, Krzysztof Kozlowski wrote:
->> On 05/03/2026 22:23, Frank Li wrote:
->>> i.MX6SX uses the v6 LCDIF controller, while i.MX28 uses the older v4
->>> version. The driver has supported the "fsl,imx6sx-lcdif" compatible string
->>> since the initial commit:
->>>
->>>    commit 45d59d704080 ("drm: Add new driver for MXSFB controller")
->>>
->>> Therefore the fallback compatible string "fsl,imx28-lcdif" is not required
->>> and can be removed.
->>
->> It is required - you are changing the ABI and possibly impacting other
->> users without valid reason ("not required and can be removed" is not a
->> reason).
+On 06/03/2026 07:40, Jingyi Wang wrote:
+> Document compatible string for the QFPROM on Kaanapali platform.
 > 
-> In https://lore.kernel.org/imx/42eb2d42-47b0-46b6-92e9-c59473113c2d@nxp.com/
-> 
-> other known user barebox/uboot already fix it.
-> 
-> https://lore.barebox.org/barebox/20251107210033.2229781-3-a.fatoum@barebox.org/T/#u
-> https://git.pengutronix.de/cgit/barebox/commit/?id=c99b937f3a31
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-And you have entire commit msg to explain the ABI impact...
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
