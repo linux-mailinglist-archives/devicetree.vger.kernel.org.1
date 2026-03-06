@@ -1,853 +1,230 @@
-Return-Path: <devicetree+bounces-272173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272174-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CqWUObXpqmm8YAEAu9opvQ
-	(envelope-from <devicetree+bounces-272173-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:50:29 +0100
+	id oDoxCJ/mqmlgYAEAu9opvQ
+	(envelope-from <devicetree+bounces-272174-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:37:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A09223130
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:50:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09174222CAE
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:37:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DC68531A16F5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:34:54 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AFFA53063833
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F05B3B3BE0;
-	Fri,  6 Mar 2026 14:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="KrpqSm2A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDD323ACA62;
+	Fri,  6 Mar 2026 14:34:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50ADE3B4EBA
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 14:33:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A00F34B404;
+	Fri,  6 Mar 2026 14:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772807625; cv=none; b=g+2qb1BYIEQ1O/cvuzLNxoIC6oITj4VWP9MmWzGVQBBs74WTzFc6H5essdOV7AHSQFC8M9D3gt9J1pjlRuPi+XJmzt6yNJrgUD+wtxc90MDOH6Uhe577fJRzPHwJMHeVPuC5wIRSInu6GGEbAG/xgkG3a9giJHYmMzNcBpA82/E=
+	t=1772807692; cv=none; b=l/rydN+YPs/dk5XR0pdV3iwLhVSE3HygMizThOVlxf49zHv3oywxRXd7oqvx+/0thcPfyXR3UIydWael8RXKFzpmsymhCv6Gn9u2KpAVs/sqltO1dZZXSF3xaOK0MWTVG2R2nfs8Ee9SczrUqQQQ1ZFL3j+YGgFzjPHMYBJB5E4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772807625; c=relaxed/simple;
-	bh=2FRt1CMOeDBi+ujSYpU8g2MoZjv4gg2WASiAGR4BCTE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=VPttnxK5hYNurxT3Z7GE4wIiEGI++GH6Z/w3zBTCne8S4eInQpNq+u0s+djaV82b888deCuAvXWsVt7BhLubecSfAICQ+P8Tl630BJItXDjcsE1vjsvlOFMkTPprymim8iYVYda9KqFdbR1ax5F2kvWk/q217OubKpqcOa8muqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=KrpqSm2A; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-439cd6b0aedso1774630f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 06:33:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1772807621; x=1773412421; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IJMru6MZkUAstlWRCj83fHNH00MaKj2n7fewPDh1WhI=;
-        b=KrpqSm2AqQbMEpZ97X7YBb9b9OYa0i7OK6dNVe1YJ8dAxQGXX6KbCY+JD0GA+lKrIS
-         FR1Gishzf8zuimrT6agzkltVpaSmEihibPRZJFxwieX4qjOpKH1LctNA8Exou7zdXQPW
-         kuYfx/LJnifxgy+B531A/+eYkoRG8tXq0kF8te+0aXzI02jkIbh5ey6no+ktRavcPE2M
-         QNJ9rhwrb+kEt7eRyh87TqI4mCC7Wd528t1KmzgkN3EnVrYb/rwKiJSnicXevuiQ0+2g
-         hDVV6Bnjv7Wb/N5RUu1Bx8tOytSpdo5zin0LrleKcZZWeeRbssEnzCacvx0WI1dlUHxD
-         RVvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772807621; x=1773412421;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=IJMru6MZkUAstlWRCj83fHNH00MaKj2n7fewPDh1WhI=;
-        b=Y6jDWEKzI++SN3C6eVuaOTjQA/Tn09ooqfpjxe/frG17VknyzQTX09zJetDdtWliEu
-         AQRYuJtp8QkdmHafZ7iopC5GOTvjjNasXjw7lznvsoC3Ab57xH8g6aRok33JUsPM1LqU
-         JXdzbH6/D6E55eP4AQHAHZMvwuPrg3DYX4/LcHD2VSjrfdzvGldTNYdmxAA92RAgXAVe
-         qlD/HJgGwtRSYLgsaVx2nT0DyGcEzXHZoWTN3KgMkgMpfkjG0JEzSzGgf/IiITxpjHrj
-         p7dw0MPt0Tlfe+oB3MXWmTy2qSbf7qG2zWTh6Ek2I0rsf1kuGP8Do15HoppjUP2y57ie
-         LNxQ==
-X-Gm-Message-State: AOJu0Yzg399DCgRdS3Yqx9fLZZo2zlZy9SgFQNOlyNzDOgFOgDXVxhc8
-	VfDKg7InshfvjyD5xD1+KzH6lRxcJSLqD7pmx2T03OZHUiNYvtSypd1cBxhFwv50p/c=
-X-Gm-Gg: ATEYQzyc1/G+Q3GVKYQ24HT2pLl3Pr5osGmFfa2mbXN1yVzk12fqZrTYpLDJ9PV35YH
-	TMyPWwpDUVZsVW1bSD7Fs5B3oPjBvp2JmjtA8OoH1abuCJ99xSzR8gwSnwrIn9iT3KQVwPGZFlp
-	bWZ/xgL3Q84U0w7v0B1kY/THI9KMcymSXy6L0m2jk/whqQjprudgpJD7GxkQZSD+QeziGwd4fZP
-	6ri1dGAI5M3DtfMN2uOP1pAYncbC258AoFm2vjrkvTKwlu5TUlA5tHPcfSXPPdVOEJ0MyDwamP5
-	S744ZRgi3r9aBe6Qj/96kcTEPDgbbHr5NgNIaxoGRl8Y04aKwwAAQbOf1fSAxPwrGSW27d7Khcb
-	+2bnn6i3LNVMWdwtyS95aFGuh5aeY+wZAoheRCuQ+hmEzUDWRLL5L4+Nimuzkl489gEeJQ/f1z+
-	ndB2hdlrYH1Os4OZ9bMd/AoHT2vodFS6+Gg6Unv1EutWtOa5tRTMKNh5crylXbrwYK9BNbpxEAi
-	+bjVg==
-X-Received: by 2002:a05:6000:228a:b0:439:c202:99aa with SMTP id ffacd0b85a97d-439da885b6dmr4425282f8f.38.1772807619433;
-        Fri, 06 Mar 2026 06:33:39 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8daf2sm4635281f8f.2.2026.03.06.06.33.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 06:33:39 -0800 (PST)
-From: Alexey Charkov <alchark@flipper.net>
-Date: Fri, 06 Mar 2026 18:33:11 +0400
-Subject: [PATCH v2 11/11] power: supply: bq257xx: Add support for BQ25792
+	s=arc-20240116; t=1772807692; c=relaxed/simple;
+	bh=ILGA1yWRCt/iDfGqQQYx6Go5uTQ7XXxi7LKZ5RIpGyI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sztbqqZMmZRo0dIXNz7NpXX1YK6cVXsZdkp04g2BaDUa/Clsq0pQ47pw9yZrkT8tKAytEDgKqYWTFfWGsti7inllfh4WBOnZY6mvhThGL5oLZ9Qg3LlaKwNQddKXaNFsS6m5ZWe6fx1zH3QhQPLPqqNwF5uDZYQ5ZODWCwIGhGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: 8tX+YHfOQ4mxcAT1M280aw==
+X-CSE-MsgGUID: VAjP0/8ASr6OL0bw4O9aMQ==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 06 Mar 2026 23:34:43 +0900
+Received: from ubuntu.adwin.renesas.com (unknown [10.226.92.98])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 16B074008546;
+	Fri,  6 Mar 2026 23:34:37 +0900 (JST)
+From: John Madieu <john.madieu.xa@bp.renesas.com>
+To: claudiu.beznea.uj@bp.renesas.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	geert+renesas@glider.be,
+	krzk+dt@kernel.org
+Cc: robh@kernel.org,
+	bhelgaas@google.com,
+	conor+dt@kernel.org,
+	magnus.damm@gmail.com,
+	biju.das.jz@bp.renesas.com,
+	linux-pci@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	john.madieu@gmail.com,
+	John Madieu <john.madieu.xa@bp.renesas.com>
+Subject: [PATCH v8 00/15] PCI: renesas: Add RZ/G3E PCIe controller support
+Date: Fri,  6 Mar 2026 15:34:07 +0100
+Message-ID: <20260306143423.19562-1-john.madieu.xa@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260306-bq25792-v2-11-6595249d6e6f@flipper.net>
-References: <20260306-bq25792-v2-0-6595249d6e6f@flipper.net>
-In-Reply-To: <20260306-bq25792-v2-0-6595249d6e6f@flipper.net>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Sebastian Reichel <sre@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- linux-pm@vger.kernel.org, Alexey Charkov <alchark@flipper.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=22800; i=alchark@flipper.net;
- h=from:subject:message-id; bh=2FRt1CMOeDBi+ujSYpU8g2MoZjv4gg2WASiAGR4BCTE=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWSuerpE6XUex9WfJ50S7f1C1x1LNo+12v/s7betn6JEl
- or7T5t3qmMiC4MYF4OlmCLL3G9LbKca8c3a5eHxFWYOKxPIEGmRBgYgYGHgy03MKzXSMdIz1TbU
- MzTUMdYxYuDiFICpzuVl+B9/n336LasXl1/khDTtjEjz8F0k4f9nQ8hNx986DxdbbHNl+F+3b8G
- OkrKDnyxtdqk+63739My7H3tyruSvv5dzovnQxCx2AA==
-X-Developer-Key: i=alchark@flipper.net; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
-X-Rspamd-Queue-Id: 79A09223130
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 09174222CAE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.64 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
-	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[renesas.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272173-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,hotmail.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[flipper.net:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272174-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,google.com,gmail.com,bp.renesas.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,flipper.net:dkim,flipper.net:email,flipper.net:mid]
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.985];
+	FROM_NEQ_ENVFROM(0.00)[john.madieu.xa@bp.renesas.com,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add support for TI BQ25792 integrated battery charger and buck-boost
-converter.
+The Renesas RZ/G3E SoC features a PCIe controller that shares similarities with
+the existing RZ/G3S PCIe controller, but with several key differences.
+This series adds support for the RZ/G3E PCIe controller by extending the existing
+RZ/G3S driver and device tree bindings.
 
-It shares high-level logic of operation with the already supported
-BQ25703A, but has a different register map, bit definitions and some of
-the lower-level hardware states.
+Key differences between RZ/G3E and RZ/G3S PCIe controllers:
 
-Signed-off-by: Alexey Charkov <alchark@flipper.net>
----
- drivers/power/supply/bq257xx_charger.c | 491 ++++++++++++++++++++++++++++++++-
- include/linux/mfd/bq257xx.h            |   6 +-
- 2 files changed, 492 insertions(+), 5 deletions(-)
+Link Speed Support:
+ - RZ/G3E: Supports PCIe Gen3 (8.0 GT/s) alongside Gen2 (5.0 GT/s)
+ - RZ/G3S: Supports PCIe Gen2 (5.0 GT/s) only
 
-diff --git a/drivers/power/supply/bq257xx_charger.c b/drivers/power/supply/bq257xx_charger.c
-index 951abd035fc5..55337a9607fc 100644
---- a/drivers/power/supply/bq257xx_charger.c
-+++ b/drivers/power/supply/bq257xx_charger.c
-@@ -5,6 +5,7 @@
-  */
- 
- #include <linux/bitfield.h>
-+#include <linux/byteorder/generic.h>
- #include <linux/i2c.h>
- #include <linux/interrupt.h>
- #include <linux/mfd/bq257xx.h>
-@@ -18,12 +19,19 @@ struct bq257xx_chg;
- 
- /**
-  * struct bq257xx_chip_info - chip specific routines
-+ * @default_iindpm_uA: default input current limit in microamps
-  * @bq257xx_hw_init: init function for hw
-  * @bq257xx_hw_shutdown: shutdown function for hw
-  * @bq257xx_get_state: get and update state of hardware
-+ * @bq257xx_get_ichg: get maximum charge current (in uA)
-  * @bq257xx_set_ichg: set maximum charge current (in uA)
-+ * @bq257xx_get_vbatreg: get maximum charge voltage (in uV)
-  * @bq257xx_set_vbatreg: set maximum charge voltage (in uV)
-+ * @bq257xx_get_iindpm: get maximum input current (in uA)
-  * @bq257xx_set_iindpm: set maximum input current (in uA)
-+ * @bq257xx_get_cur: get battery current from ADC (in uA)
-+ * @bq257xx_get_vbat: get battery voltage from ADC (in uV)
-+ * @bq257xx_get_min_vsys: get minimum system voltage (in uV)
-  */
- struct bq257xx_chip_info {
- 	int default_iindpm_uA;
-@@ -47,8 +55,10 @@ struct bq257xx_chip_info {
-  * @bq: parent MFD device
-  * @charger: power supply device
-  * @online: charger input is present
-+ * @charging: charger is actively charging the battery
-  * @fast_charge: charger is in fast charge mode
-  * @pre_charge: charger is in pre-charge mode
-+ * @overvoltage: overvoltage fault detected
-  * @ov_fault: charger reports over voltage fault
-  * @batoc_fault: charger reports battery over current fault
-  * @oc_fault: charger reports over current fault
-@@ -79,6 +89,53 @@ struct bq257xx_chg {
- 	u32 vsys_min;
- };
- 
-+/**
-+ * bq25792_read16() - Read a 16-bit value from device register
-+ * @pdata: driver platform data
-+ * @reg: register address to read from
-+ * @val: pointer to store the register value
-+ *
-+ * Read a 16-bit big-endian value from the BQ25792 device via regmap
-+ * and convert to CPU byte order.
-+ *
-+ * Return: Returns 0 on success or error on failure to read.
-+ */
-+static int bq25792_read16(struct bq257xx_chg *pdata, unsigned int reg, u16 *val)
-+{
-+	__be16 regval;
-+	int ret;
-+
-+	ret = regmap_raw_read(pdata->bq->regmap, reg, &regval, sizeof(regval));
-+	if (ret)
-+		return ret;
-+
-+	*val = be16_to_cpu(regval);
-+	return 0;
-+}
-+
-+/**
-+ * bq25792_write16() - Write a 16-bit value to device register
-+ * @pdata: driver platform data
-+ * @reg: register address to write to
-+ * @val: 16-bit value to write in CPU byte order
-+ *
-+ * Convert the value to big-endian and write a 16-bit value to the
-+ * BQ25792 device via regmap.
-+ *
-+ * Return: Returns 0 on success or error on failure to write.
-+ */
-+static int bq25792_write16(struct bq257xx_chg *pdata, unsigned int reg, u16 val)
-+{
-+	__be16 regval = cpu_to_be16(val);
-+	int ret;
-+
-+	ret = regmap_raw_write(pdata->bq->regmap, reg, &regval, sizeof(regval));
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
- /**
-  * bq25703_get_state() - Get the current state of the device
-  * @pdata: driver platform data
-@@ -110,6 +167,43 @@ static int bq25703_get_state(struct bq257xx_chg *pdata)
- 	return 0;
- }
- 
-+/**
-+ * bq25792_get_state() - Get the current state of the device
-+ * @pdata: driver platform data
-+ *
-+ * Get the current state of the BQ25792 charger by reading status
-+ * registers. Updates the online, charging, overvoltage, and fault
-+ * status fields in the driver data structure.
-+ *
-+ * Return: Returns 0 on success or error on failure to read device.
-+ */
-+static int bq25792_get_state(struct bq257xx_chg *pdata)
-+{
-+	unsigned int reg;
-+	int ret;
-+
-+	ret = regmap_read(pdata->bq->regmap, BQ25792_REG1B_CHARGER_STATUS_0, &reg);
-+	if (ret)
-+		return ret;
-+
-+	pdata->online = reg & BQ25792_REG1B_PG_STAT;
-+
-+	ret = regmap_read(pdata->bq->regmap, BQ25792_REG1C_CHARGER_STATUS_1, &reg);
-+	if (ret)
-+		return ret;
-+
-+	pdata->charging = reg & BQ25792_REG1C_CHG_STAT_MASK;
-+
-+	ret = regmap_read(pdata->bq->regmap, BQ25792_REG20_FAULT_STATUS_0, &reg);
-+	if (ret)
-+		return ret;
-+
-+	pdata->overvoltage = reg & BQ25792_REG20_OVERVOLTAGE_MASK;
-+	pdata->oc_fault = reg & BQ25792_REG20_OVERCURRENT_MASK;
-+
-+	return 0;
-+}
-+
- /**
-  * bq25703_get_min_vsys() - Get the minimum system voltage
-  * @pdata: driver platform data
-@@ -133,6 +227,31 @@ static int bq25703_get_min_vsys(struct bq257xx_chg *pdata, int *intval)
- 	return ret;
- }
- 
-+/**
-+ * bq25792_get_min_vsys() - Get the minimum system voltage
-+ * @pdata: driver platform data
-+ * @intval: pointer to store the minimum voltage value
-+ *
-+ * Read the current minimum system voltage setting from the device
-+ * and return it in microvolts.
-+ *
-+ * Return: Returns 0 on success or error on failure to read.
-+ */
-+static int bq25792_get_min_vsys(struct bq257xx_chg *pdata, int *intval)
-+{
-+	unsigned int reg;
-+	int ret;
-+
-+	ret = regmap_read(pdata->bq->regmap, BQ25792_REG00_MIN_SYS_VOLTAGE, &reg);
-+	if (ret)
-+		return ret;
-+
-+	reg = FIELD_GET(BQ25792_REG00_VSYSMIN_MASK, reg);
-+	*intval = (reg * BQ25792_MINVSYS_STEP_UV) + BQ25792_MINVSYS_MIN_UV;
-+
-+	return ret;
-+}
-+
- /**
-  * bq25703_set_min_vsys() - Set the minimum system voltage
-  * @pdata: driver platform data
-@@ -157,6 +276,29 @@ static int bq25703_set_min_vsys(struct bq257xx_chg *pdata, int vsys)
- 			    reg);
- }
- 
-+/**
-+ * bq25792_set_min_vsys() - Set the minimum system voltage
-+ * @pdata: driver platform data
-+ * @vsys: voltage value to set in uV
-+ *
-+ * Set the minimum system voltage by clamping the requested value
-+ * between device limits and writing to the appropriate register.
-+ *
-+ * Return: Returns 0 on success or error on failure to write.
-+ */
-+static int bq25792_set_min_vsys(struct bq257xx_chg *pdata, int vsys)
-+{
-+	unsigned int reg;
-+	int vsys_min = pdata->vsys_min;
-+
-+	vsys = clamp(vsys, vsys_min, BQ25792_MINVSYS_MAX_UV);
-+	reg = ((vsys - BQ25792_MINVSYS_MIN_UV) / BQ25792_MINVSYS_STEP_UV);
-+	reg = FIELD_PREP(BQ25792_REG00_VSYSMIN_MASK, reg);
-+
-+	return regmap_write(pdata->bq->regmap,
-+			    BQ25792_REG00_MIN_SYS_VOLTAGE, reg);
-+}
-+
- /**
-  * bq25703_get_cur() - Get the reported current from the battery
-  * @pdata: driver platform data
-@@ -186,6 +328,30 @@ static int bq25703_get_cur(struct bq257xx_chg *pdata, int *intval)
- 	return ret;
- }
- 
-+/**
-+ * bq25792_get_cur() - Get the reported current from the battery
-+ * @pdata: driver platform data
-+ * @intval: pointer to store the battery current value
-+ *
-+ * Read the current ADC value from the device representing the battery
-+ * charge or discharge current and return it in microamps.
-+ *
-+ * Return: Returns 0 on success or error on failure to read.
-+ */
-+static int bq25792_get_cur(struct bq257xx_chg *pdata, int *intval)
-+{
-+	u16 reg;
-+	int ret;
-+
-+	ret = bq25792_read16(pdata, BQ25792_REG33_IBAT_ADC, &reg);
-+	if (ret < 0)
-+		return ret;
-+
-+	*intval = (s16)reg * BQ25792_ADCIBAT_STEP_UA;
-+
-+	return ret;
-+}
-+
- /**
-  * bq25703_get_ichg_cur() - Get the maximum reported charge current
-  * @pdata: driver platform data
-@@ -209,6 +375,30 @@ static int bq25703_get_ichg_cur(struct bq257xx_chg *pdata, int *intval)
- 	return ret;
- }
- 
-+/**
-+ * bq25792_get_ichg_cur() - Get the maximum reported charge current
-+ * @pdata: driver platform data
-+ * @intval: pointer to store the maximum charge current value
-+ *
-+ * Read the programmed maximum charge current limit from the device.
-+ *
-+ * Return: Returns 0 on success or error on failure to read value.
-+ */
-+static int bq25792_get_ichg_cur(struct bq257xx_chg *pdata, int *intval)
-+{
-+	u16 reg;
-+	int ret;
-+
-+	ret = bq25792_read16(pdata, BQ25792_REG03_CHARGE_CURRENT_LIMIT, &reg);
-+	if (ret)
-+		return ret;
-+
-+	*intval = FIELD_GET(BQ25792_REG03_ICHG_MASK, reg) *
-+		  BQ25792_ICHG_STEP_UA;
-+
-+	return ret;
-+}
-+
- /**
-  * bq25703_set_ichg_cur() - Set the maximum charge current
-  * @pdata: driver platform data
-@@ -233,6 +423,28 @@ static int bq25703_set_ichg_cur(struct bq257xx_chg *pdata, int ichg)
- 			    reg);
- }
- 
-+/**
-+ * bq25792_set_ichg_cur() - Set the maximum charge current
-+ * @pdata: driver platform data
-+ * @ichg: current value to set in uA
-+ *
-+ * Set the maximum charge current by clamping the requested value
-+ * between device limits and writing to the appropriate register.
-+ *
-+ * Return: Returns 0 on success or error on failure to write.
-+ */
-+static int bq25792_set_ichg_cur(struct bq257xx_chg *pdata, int ichg)
-+{
-+	int ichg_max = pdata->ichg_max;
-+	u16 reg;
-+
-+	ichg = clamp(ichg, BQ25792_ICHG_MIN_UA, ichg_max);
-+	reg = FIELD_PREP(BQ25792_REG03_ICHG_MASK,
-+			 (ichg / BQ25792_ICHG_STEP_UA));
-+
-+	return bq25792_write16(pdata, BQ25792_REG03_CHARGE_CURRENT_LIMIT, reg);
-+}
-+
- /**
-  * bq25703_get_chrg_volt() - Get the maximum set charge voltage
-  * @pdata: driver platform data
-@@ -256,6 +468,30 @@ static int bq25703_get_chrg_volt(struct bq257xx_chg *pdata, int *intval)
- 	return ret;
- }
- 
-+/**
-+ * bq25792_get_chrg_volt() - Get the maximum set charge voltage
-+ * @pdata: driver platform data
-+ * @intval: pointer to store the maximum charge voltage value
-+ *
-+ * Read the current charge voltage limit from the device.
-+ *
-+ * Return: Returns 0 on success or error on failure to read value.
-+ */
-+static int bq25792_get_chrg_volt(struct bq257xx_chg *pdata, int *intval)
-+{
-+	u16 reg;
-+	int ret;
-+
-+	ret = bq25792_read16(pdata, BQ25792_REG01_CHARGE_VOLTAGE_LIMIT, &reg);
-+	if (ret)
-+		return ret;
-+
-+	*intval = FIELD_GET(BQ25792_REG01_VREG_MASK, reg) *
-+		  BQ25792_VBATREG_STEP_UV;
-+
-+	return ret;
-+}
-+
- /**
-  * bq25703_set_chrg_volt() - Set the maximum charge voltage
-  * @pdata: driver platform data
-@@ -282,6 +518,29 @@ static int bq25703_set_chrg_volt(struct bq257xx_chg *pdata, int vbat)
- 			    reg);
- }
- 
-+/**
-+ * bq25792_set_chrg_volt() - Set the maximum charge voltage
-+ * @pdata: driver platform data
-+ * @vbat: voltage value to set in uV
-+ *
-+ * Set the maximum charge voltage by clamping the requested value
-+ * between device limits and writing to the appropriate register.
-+ *
-+ * Return: Returns 0 on success or error on failure to write.
-+ */
-+static int bq25792_set_chrg_volt(struct bq257xx_chg *pdata, int vbat)
-+{
-+	int vbat_max = pdata->vbat_max;
-+	u16 reg;
-+
-+	vbat = clamp(vbat, BQ25792_VBATREG_MIN_UV, vbat_max);
-+
-+	reg = FIELD_PREP(BQ25792_REG01_VREG_MASK,
-+			 (vbat / BQ25792_VBATREG_STEP_UV));
-+
-+	return bq25792_write16(pdata, BQ25792_REG01_CHARGE_VOLTAGE_LIMIT, reg);
-+}
-+
- /**
-  * bq25703_get_iindpm() - Get the maximum set input current
-  * @pdata: driver platform data
-@@ -310,6 +569,30 @@ static int bq25703_get_iindpm(struct bq257xx_chg *pdata, int *intval)
- 	return ret;
- }
- 
-+/**
-+ * bq25792_get_iindpm() - Get the maximum set input current
-+ * @pdata: driver platform data
-+ * @intval: pointer to store the maximum input current value
-+ *
-+ * Read the current input current limit from the device.
-+ *
-+ * Return: Returns 0 on success or error on failure to read value.
-+ */
-+static int bq25792_get_iindpm(struct bq257xx_chg *pdata, int *intval)
-+{
-+	u16 reg;
-+	int ret;
-+
-+	ret = bq25792_read16(pdata, BQ25792_REG06_INPUT_CURRENT_LIMIT, &reg);
-+	if (ret)
-+		return ret;
-+
-+	reg = FIELD_GET(BQ25792_REG06_IINDPM_MASK, reg);
-+	*intval = reg * BQ25792_IINDPM_STEP_UA;
-+
-+	return ret;
-+}
-+
- /**
-  * bq25703_set_iindpm() - Set the maximum input current
-  * @pdata: driver platform data
-@@ -335,6 +618,29 @@ static int bq25703_set_iindpm(struct bq257xx_chg *pdata, int iindpm)
- 			    FIELD_PREP(BQ25703_IINDPM_MASK, reg));
- }
- 
-+/**
-+ * bq25792_set_iindpm() - Set the maximum input current
-+ * @pdata: driver platform data
-+ * @iindpm: current value in uA
-+ *
-+ * Set the maximum input current by clamping the requested value
-+ * between device limits and writing to the appropriate register.
-+ *
-+ * Return: Returns 0 on success or error on failure to write.
-+ */
-+static int bq25792_set_iindpm(struct bq257xx_chg *pdata, int iindpm)
-+{
-+	u16 reg;
-+	int iindpm_max = pdata->iindpm_max;
-+
-+	iindpm = clamp(iindpm, BQ25792_IINDPM_MIN_UA, iindpm_max);
-+
-+	reg = iindpm / BQ25792_IINDPM_STEP_UA;
-+
-+	return bq25792_write16(pdata, BQ25792_REG06_INPUT_CURRENT_LIMIT,
-+			       FIELD_PREP(BQ25792_REG06_IINDPM_MASK, reg));
-+}
-+
- /**
-  * bq25703_get_vbat() - Get the reported voltage from the battery
-  * @pdata: driver platform data
-@@ -359,6 +665,30 @@ static int bq25703_get_vbat(struct bq257xx_chg *pdata, int *intval)
- 	return ret;
- }
- 
-+/**
-+ * bq25792_get_vbat() - Get the reported voltage from the battery
-+ * @pdata: driver platform data
-+ * @intval: pointer to store the battery voltage value
-+ *
-+ * Read the current ADC value representing the battery voltage
-+ * and return it in microvolts.
-+ *
-+ * Return: Returns 0 on success or error on failure to read value.
-+ */
-+static int bq25792_get_vbat(struct bq257xx_chg *pdata, int *intval)
-+{
-+	u16 reg;
-+	int ret;
-+
-+	ret = bq25792_read16(pdata, BQ25792_REG3B_VBAT_ADC, &reg);
-+	if (ret)
-+		return ret;
-+
-+	*intval = reg * BQ25792_ADCVSYSVBAT_STEP_UV;
-+
-+	return ret;
-+}
-+
- /**
-  * bq25703_hw_init() - Set all the required registers to init the charger
-  * @pdata: driver platform data
-@@ -425,6 +755,61 @@ static int bq25703_hw_init(struct bq257xx_chg *pdata)
- 	return ret;
- }
- 
-+/**
-+ * bq25792_hw_init() - Initialize BQ25792 hardware
-+ * @pdata: driver platform data
-+ *
-+ * Initialize the BQ25792 by disabling the watchdog, enabling discharge
-+ * current sensing with 5A limit, and configuring input current regulation.
-+ * Set the charge current, charge voltage, minimum system voltage, and
-+ * input current limit from platform data. Enable and configure the ADC
-+ * to measure all available channels.
-+ *
-+ * Return: Returns 0 on success or error code on error.
-+ */
-+static int bq25792_hw_init(struct bq257xx_chg *pdata)
-+{
-+	struct regmap *regmap = pdata->bq->regmap;
-+	int ret = 0;
-+
-+	/* Disable watchdog (TODO: make it work instead) */
-+	regmap_write(regmap, BQ25792_REG10_CHARGER_CONTROL_1, 0);
-+
-+	/*
-+	 * Enable battery discharge current sensing, 5A discharge current
-+	 * limit, input current regulation
-+	 */
-+	regmap_write(regmap, BQ25792_REG14_CHARGER_CONTROL_5,
-+		     BQ25792_REG14_EN_IBAT |
-+		     BQ25792_IBAT_5A |
-+		     BQ25792_REG14_EN_IINDPM);
-+
-+	ret = pdata->chip->bq257xx_set_ichg(pdata, pdata->ichg_max);
-+	if (ret)
-+		return ret;
-+
-+	ret = pdata->chip->bq257xx_set_vbatreg(pdata, pdata->vbat_max);
-+	if (ret)
-+		return ret;
-+
-+	ret = bq25792_set_min_vsys(pdata, pdata->vsys_min);
-+	if (ret)
-+		return ret;
-+
-+	ret = pdata->chip->bq257xx_set_iindpm(pdata, pdata->iindpm_max);
-+	if (ret)
-+		return ret;
-+
-+	/* Enable the ADC. */
-+	regmap_write(regmap, BQ25792_REG2E_ADC_CONTROL, BQ25792_REG2E_ADC_EN);
-+
-+	/* Clear per-channel ADC disable bits - enable all channels */
-+	regmap_write(regmap, BQ25792_REG2F_ADC_FUNCTION_DISABLE_0, 0);
-+	regmap_write(regmap, BQ25792_REG30_ADC_FUNCTION_DISABLE_1, 0);
-+
-+	return ret;
-+}
-+
- /**
-  * bq25703_hw_shutdown() - Set registers for shutdown
-  * @pdata: driver platform data
-@@ -437,6 +822,30 @@ static void bq25703_hw_shutdown(struct bq257xx_chg *pdata)
- 			   BQ25703_EN_LWPWR, BQ25703_EN_LWPWR);
- }
- 
-+/**
-+ * bq25792_hw_shutdown() - Shutdown BQ25792 hardware
-+ * @pdata: driver platform data
-+ *
-+ * Perform hardware shutdown for the BQ25792. Currently a no-op
-+ * as the device does not require special shutdown configuration.
-+ */
-+static void bq25792_hw_shutdown(struct bq257xx_chg *pdata)
-+{
-+	/* Nothing to do here */
-+}
-+
-+/**
-+ * bq257xx_set_charger_property() - Set a power supply property
-+ * @psy: power supply device
-+ * @prop: power supply property to set
-+ * @val: value to set for the property
-+ *
-+ * Handle requests to set power supply properties such as input current
-+ * limit, constant charge voltage, and constant charge current. Routes
-+ * the request to the chip-specific implementation.
-+ *
-+ * Return: Returns 0 on success or -EINVAL if property is not supported.
-+ */
- static int bq257xx_set_charger_property(struct power_supply *psy,
- 		enum power_supply_property prop,
- 		const union power_supply_propval *val)
-@@ -460,6 +869,19 @@ static int bq257xx_set_charger_property(struct power_supply *psy,
- 	return -EINVAL;
- }
- 
-+/**
-+ * bq257xx_get_charger_property() - Get a power supply property
-+ * @psy: power supply device
-+ * @psp: power supply property to get
-+ * @val: pointer to store the property value
-+ *
-+ * Handle requests to get power supply properties, including status,
-+ * health, manufacturer, online state, and various voltage/current
-+ * measurements. Reads current device state and routes chip-specific
-+ * property requests to appropriate handlers.
-+ *
-+ * Return: Returns 0 on success or -EINVAL if property is not supported.
-+ */
- static int bq257xx_get_charger_property(struct power_supply *psy,
- 				enum power_supply_property psp,
- 				union power_supply_propval *val)
-@@ -541,6 +963,17 @@ static enum power_supply_property bq257xx_power_supply_props[] = {
- 	POWER_SUPPLY_PROP_USB_TYPE,
- };
- 
-+/**
-+ * bq257xx_property_is_writeable() - Check if a property is writeable
-+ * @psy: power supply device
-+ * @prop: power supply property to check
-+ *
-+ * Determines which power supply properties can be written to. Only
-+ * charge current limit, charge voltage limit, and input current
-+ * limit are writeable.
-+ *
-+ * Return: Returns 1 if property is writeable, 0 otherwise.
-+ */
- static int bq257xx_property_is_writeable(struct power_supply *psy,
- 					 enum power_supply_property prop)
- {
-@@ -613,6 +1046,17 @@ static void bq257xx_external_power_changed(struct power_supply *psy)
- 	power_supply_changed(psy);
- }
- 
-+/**
-+ * bq257xx_irq_handler_thread() - Handle charger interrupt
-+ * @irq: interrupt number
-+ * @private: pointer to driver private data
-+ *
-+ * Thread handler for charger interrupts. Triggers re-evaluation of
-+ * external power status and updates power supply state in response
-+ * to charger events.
-+ *
-+ * Return: Returns IRQ_HANDLED if interrupt was processed.
-+ */
- static irqreturn_t bq257xx_irq_handler_thread(int irq, void *private)
- {
- 	struct bq257xx_chg *pdata = private;
-@@ -653,6 +1097,22 @@ static const struct bq257xx_chip_info bq25703_chip_info = {
- 		.bq257xx_get_min_vsys = &bq25703_get_min_vsys,
- };
- 
-+static const struct bq257xx_chip_info bq25792_chip_info = {
-+		.default_iindpm_uA = BQ25792_IINDPM_DEFAULT_UA,
-+		.bq257xx_hw_init = &bq25792_hw_init,
-+		.bq257xx_hw_shutdown = &bq25792_hw_shutdown,
-+		.bq257xx_get_state = &bq25792_get_state,
-+		.bq257xx_get_ichg = &bq25792_get_ichg_cur,
-+		.bq257xx_set_ichg = &bq25792_set_ichg_cur,
-+		.bq257xx_get_vbatreg = &bq25792_get_chrg_volt,
-+		.bq257xx_set_vbatreg = &bq25792_set_chrg_volt,
-+		.bq257xx_get_iindpm = &bq25792_get_iindpm,
-+		.bq257xx_set_iindpm = &bq25792_set_iindpm,
-+		.bq257xx_get_cur = &bq25792_get_cur,
-+		.bq257xx_get_vbat = &bq25792_get_vbat,
-+		.bq257xx_get_min_vsys = &bq25792_get_min_vsys,
-+};
-+
- /**
-  * bq257xx_parse_dt() - Parse the device tree for required properties
-  * @pdata: driver platform data
-@@ -698,10 +1158,22 @@ static int bq257xx_parse_dt(struct bq257xx_chg *pdata,
- 	return 0;
- }
- 
-+/**
-+ * bq257xx_charger_probe() - Probe routine for charger platform device
-+ * @pdev: platform device
-+ *
-+ * Probe the charger device, allocate driver data structure, select the
-+ * appropriate chip-specific function pointers, register the power supply,
-+ * parse device tree properties for battery limits, initialize hardware,
-+ * and set up the interrupt handler if available.
-+ *
-+ * Return: Returns 0 on success or error code on failure.
-+ */
- static int bq257xx_charger_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct bq257xx_device *bq = dev_get_drvdata(pdev->dev.parent);
-+	struct bq257xx_plat *plat = dev_get_platdata(dev);
- 	struct bq257xx_chg *pdata;
- 	struct power_supply_config psy_cfg = { };
- 	int ret;
-@@ -713,7 +1185,17 @@ static int bq257xx_charger_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 
- 	pdata->bq = bq;
--	pdata->chip = &bq25703_chip_info;
-+
-+	switch (plat->type) {
-+	case BQ25703A:
-+		pdata->chip = &bq25703_chip_info;
-+		break;
-+	case BQ25792:
-+		pdata->chip = &bq25792_chip_info;
-+		break;
-+	default:
-+		return dev_err_probe(dev, -EINVAL, "Unknown chip type\n");
-+	}
- 
- 	platform_set_drvdata(pdev, pdata);
- 
-@@ -751,6 +1233,13 @@ static int bq257xx_charger_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
-+/**
-+ * bq257xx_charger_shutdown() - Shutdown routine for charger platform device
-+ * @pdev: platform device
-+ *
-+ * Called during system shutdown to perform charger cleanup, including
-+ * disabling watchdog timers or other chip-specific shutdown procedures.
-+ */
- static void bq257xx_charger_shutdown(struct platform_device *pdev)
- {
- 	struct bq257xx_chg *pdata = platform_get_drvdata(pdev);
-diff --git a/include/linux/mfd/bq257xx.h b/include/linux/mfd/bq257xx.h
-index b2e38a4a4738..0d568e8b1835 100644
---- a/include/linux/mfd/bq257xx.h
-+++ b/include/linux/mfd/bq257xx.h
-@@ -353,12 +353,10 @@
- #define BQ25792_REG20_VAC2_OVP_STAT		BIT(1)
- #define BQ25792_REG20_VAC1_OVP_STAT		BIT(0)
- 
--#define BQ25792_REG20_OVERVOLTAGE_MASK		(BQ25792_REG20_VBUS_OVP_STAT | \
--						 BQ25792_REG20_VBAT_OVP_STAT | \
-+#define BQ25792_REG20_OVERVOLTAGE_MASK		(BQ25792_REG20_VBAT_OVP_STAT | \
- 						 BQ25792_REG20_VAC2_OVP_STAT | \
- 						 BQ25792_REG20_VAC1_OVP_STAT)
--#define BQ25792_REG20_OVERCURRENT_MASK		(BQ25792_REG20_IBUS_OCP_STAT | \
--						 BQ25792_REG20_IBAT_OCP_STAT | \
-+#define BQ25792_REG20_OVERCURRENT_MASK		(BQ25792_REG20_IBAT_OCP_STAT | \
- 						 BQ25792_REG20_CONV_OCP_STAT)
- 
- /* FAULT Status 1 */
+Reset Control:
+ - RZ/G3E: Uses register-based reset control mechanism
+ - RZ/G3S: Uses exclusively external reset control signals
+
+Inbound Window Configuration:
+ - RZ/G3E: Requires precise power-of-2 window coverage with strict address
+   alignment constraints. Non-power-of-2 memory regions must be split into
+   multiple windows to avoid over-mapping, ensuring proper hardware address
+   decoding for DMA operations.
+ - RZ/G3S: Uses a simpler approach that rounds up to the next power-of-2,
+   creating single larger windows. The hardware tolerates over-mapped regions.
+
+Class/Revision IDs:
+ - RZ/G3E: Requires explicit setting of class/revision values
+ - RZ/G3S: Has default values in hardware
+
+Clock Naming:
+ - RZ/G3E: Uses "clkpmu" clock for power management
+ - RZ/G3S: Uses "clkl1pm" PM control clock while CLKREQ_B is deasserting
+
+Phy Settings:
+ - RZ/G3E: Does not need PHY settings as it works with default hw values
+ - RZ/G3S: Requires explicit PHY settings
+
+This series extends the existing driver to detect the SoC type from the device
+tree compatible string and configure the controller appropriately. The updates
+are minimal and focused on the hardware-specific differences while keeping the
+common code paths unified.
+
+Changes:
+
+v8:
+ - Collected additional Rb tags on remaining code patches
+ - Fixed typos in patch descriptions
+ - Fixed checkpatch warnings
+
+v7:
+ - Removed former patch [04/16] adding support for init[off|asserted] clocks
+   and resets as these steps are not required anymore
+ - Renamed RZG3E_PCI_RESET* register defines to RZG3S_PCI_RESET* for
+   consistency, as upcoming SoCs (RZ/V2H, RZ/T2N, RZ/N2H) share these
+   registers
+ - Dropped some useless comments and reduced verbose descriptions to
+   concise forms 
+ - Unified function naming: rzg3s_pcie_config_{post_init,deinit}() and
+   rzg3e_pcie_config_{pre_init,post_init,deinit}()
+ - Used local mask variables in rzg3e_pcie_config_{pre_init,post_init}()
+   for compactness within 80-char line limit
+ - Fixed resume_noirq: reordered MODE before RST_RSM_B to match probe
+   sequence, fixing error path handling
+ - Fixed checkpatch commit message line length warnings
+
+v6:
+ - Replaced rzg3s_sysc_config() with enum-based rzg3s_sysc_config_func()
+   as suggested by Claudiu, dropping the -1 skip pattern
+ - Introduced enum rzg3s_sysc_func_id and array-based SYSC function
+   descriptors in patch 08
+ - Used regmap_update_bits() consistently for all SYSC accesses
+ - Fixed config_reinit error path in suspend_noirq: call config_pre_init
+   before config_post_init as spotted by Claudiu
+ - Fixed double config_deinit in rzg3s_pcie_host_init() error path by
+   separating config_deinit_post into a non-fall-through path
+ - Shortened comments as per Claudiu's suggestions
+ - Reordered patchset, moving v5's patch 09/16 to 02/16 and added Fixes tag 
+
+v5:
+ - Introduced new patch to reorder reset handling
+ - Introduced rzg3s_sysc_config() helper to handle SYS config
+ - Collected Tags on documentation
+
+v4:
+ - Collected Ab tag
+ - Fixed binding clock name constraint
+
+v3:
+ - Removed extra MaxItems in binding causing warnings
+ - Fix potential crash for non-initialized rcdev in CPG driver
+ - Fix binding contraints replacing 'description' with 'const' as per
+   Geert and Rob's comment
+
+v2:
+ - Address Bjorn typo comments
+ - Address Claidiu's comment on stylish
+ - Use single inbound-window-configuration function for both G3E/G3S
+ - Refactor goto laballing as per Claudiu's comments
+ - Update bindings and reused G3S's interrupt ordering
+   * This involves reordering interrupts in dt
+ - Remove Board-specific PCIe dma-range.
+
+
+John Madieu (15):
+  PCI: rzg3s-host: Fix reset handling in probe error path
+  PCI: rzg3s-host: Reorder reset assertion during suspend
+  PCI: rzg3s-host: Rework inbound window algorithm for multi-SoC support
+  clk: renesas: r9a09g047: Add PCIe clocks and reset
+  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Fix naming properties
+  dt-bindings: PCI: renesas,r9a08g045s33-pcie: Document RZ/G3E SoC
+  PCI: rzg3s-host: Make SYSC register offsets SoC-specific
+  PCI: rzg3s-host: Make configuration reset lines optional
+  PCI: rzg3s-host: Add SoC-specific configuration and initialization
+    callbacks
+  PCI: rzg3s-host: Explicitly set class code for RZ/G3E compatibility
+  PCI: rzg3s-host: Add PCIe Gen3 (8.0 GT/s) link speed support
+  PCI: rzg3s-host: Add support for RZ/G3E PCIe controller
+  arm64: dts: renesas: r9a09g047: Add PCIe node
+  arm64: dts: renesas: r9a09g047e57-smarc-som: Add PCIe reference clock
+  arm64: dts: renesas: r9a09g047e57-smarc: Enable PCIe
+
+ .../bindings/pci/renesas,r9a08g045-pcie.yaml  | 121 ++++--
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  69 ++++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  16 +
+ .../boot/dts/renesas/renesas-smarc2.dtsi      |   4 +
+ .../boot/dts/renesas/rzg3e-smarc-som.dtsi     |  11 +
+ drivers/clk/renesas/r9a09g047-cpg.c           |   5 +
+ drivers/pci/controller/pcie-rzg3s-host.c      | 362 ++++++++++++++----
+ 7 files changed, 478 insertions(+), 110 deletions(-)
 
 -- 
-2.52.0
+2.25.1
 
 
