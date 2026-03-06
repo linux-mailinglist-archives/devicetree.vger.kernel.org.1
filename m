@@ -1,92 +1,107 @@
-Return-Path: <devicetree+bounces-271939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271940-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6L7cJm6fqmlLUgEAu9opvQ
-	(envelope-from <devicetree+bounces-271939-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:33:34 +0100
+	id YHoYDaefqmlLUgEAu9opvQ
+	(envelope-from <devicetree+bounces-271940-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:34:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1158721DFD2
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:33:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA96821E00D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:34:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 70C7130166E5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:32:56 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D2D4730166F0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:33:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09116341AAE;
-	Fri,  6 Mar 2026 09:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED23634572B;
+	Fri,  6 Mar 2026 09:33:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QYYyDliv";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cInA46VN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023135.outbound.protection.outlook.com [52.101.127.135])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B71A2F1FE4;
-	Fri,  6 Mar 2026 09:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.135
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772789566; cv=fail; b=A6keX9yc6RqwifRkubiyNHNbwDnR5aphqg/aPK4NU9m2MpErDthyAPz3ijMwH66WJ+ewbz/y42X47RCeBc3MqfhOUvoHaryEWnDTNSLrNAX6j/j4+5V2E5ACwuNOcAheTFHHo+eHDv8bsiESLquuhuYrbtMdGdZNa4aM2sIRp8M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772789566; c=relaxed/simple;
-	bh=yVvWmPQMTh56dnH6K/Bk1u71VjFswKNaJNAFOLEU1fk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hXZ0BQ3fh+jrGfKwfSIgINkjGGc2/fugTU3p0dxj3YjY9KGpw0q3i29K47MbJB9Q43mnl9+sIItfRQQuTCp/sjgNKJSMa8mhJDJSD7E66MY6phFjm8NN6Nt5dM2FWO7IO7nHB+DlXVMYPZnVgUqI6m3cKIz5Tm0c9VGUnMu0/OU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.127.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UBZP0rBaoU3NG8/6S0+CIG9baUuCwVSyIBVCuuCm/2aze0S1x1Sxbo4CsJZQLJ8OmRuClScA5EXpSqcofGgbos8j9LjXP6ljkb3GRlTS07GC9XthBWemw1HlIgjuuehULLRsXlo2ac1Go1DWdGAh+e/E8NNLjrjHXIxeshMliWZvmAMOvBqiVxrZ/5lsZ2pjcM4XFmThXRh0h4dDl4q2CiYt/Uj/pcrNV600yLuI+TZsDq21QZRubzhuZIkijwG0RnFNkxbrgkg54Ii08JN/OljfLnbA78j+hgJX/P+U9QbpAo/4dBViilFxpRLN36EhwQfsIlnrwIZ9e63wnWHB2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kDsOvGswv5MMXjq36By3O+u8td88SJvXaTYMt3I0Qs0=;
- b=j31ohKT02+MH2RX8qj0euJi1Mo+VvMvqFJhFZFXQF8AfxvQTTa+TLxe4dAF2V/A8J0bgY08/XQkHB3TQ7UohKOmyWLKVklupiWWDh7Q+5U1GpWEJ/Ag3SF5QVKvXQ/LLvM+h9agmb6m4ojZ5U11MsfMXCwdk4ucWQGcUWBsOa0deEmgD+dxR4nKFfrEh7KE69+KaU9YoGRLDbekGxcRYi5QOMZE+u2pGbOL//wNJROAakwSYWLkVfacuuQSFMFVs0XuNw9kJakDPUpbqCwndvJKD2ML9vF7sOhpz8ZGEC4RgJmbYPPvtXP6zL/tZMTAybBIlXouc95hTeMsJ8iCROA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SI1PR02CA0034.apcprd02.prod.outlook.com (2603:1096:4:1f6::10)
- by TYQPR06MB8086.apcprd06.prod.outlook.com (2603:1096:405:2fa::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.19; Fri, 6 Mar
- 2026 09:32:42 +0000
-Received: from SG2PEPF000B66CB.apcprd03.prod.outlook.com
- (2603:1096:4:1f6:cafe::bc) by SI1PR02CA0034.outlook.office365.com
- (2603:1096:4:1f6::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.19 via Frontend Transport; Fri,
- 6 Mar 2026 09:32:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CB.mail.protection.outlook.com (10.167.240.24) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Fri, 6 Mar 2026 09:32:40 +0000
-Received: from ZicharPC.. (unknown [172.16.64.205])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 13DCF41604E2;
-	Fri,  6 Mar 2026 17:32:39 +0800 (CST)
-From: Zichar Zhang <zichar.zhang@cixtech.com>
-To: linusw@kernel.org,
-	brgl@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	peter.chen@cixtech.com,
-	fugang.duan@cixtech.com,
-	jank@cadence.com
-Cc: cix-kernel-upstream@cixtech.com,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	"Zichar.Zhang" <zichar.zhang@cixtech.com>
-Subject: [PATCH 2/2] arm64: dts: cix: add FCH(S0)/S5 GPIO controllers for sky1
-Date: Fri,  6 Mar 2026 17:32:38 +0800
-Message-Id: <20260306093238.2715269-2-zichar.zhang@cixtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A85344D9D
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 09:33:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772789622; cv=none; b=WvDlWksAbzJmZzMpJRcccrVQ8j7fhWW+4eTkq915+EVmGWynx7s9c9KdmHfk/wsnYVqHkxkduCHzkEzepZ5+ggey79lVTbI0r3XJOWBhjZ0ysjM5LQa3Ux5E2N10ubseC6T0utw/jMKoRG7DyaY0wVVZC0JoBT7NQnMwV+T1SWQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772789622; c=relaxed/simple;
+	bh=tHi2a8QE8KKwNz5asvYMfGoRfMO8gx2jo+W2jzVkLWk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JFIveh6Csn+7bJJ84hA2NKwSgXnzJe7vdY16U4xQXf5OWfT5nOYpYx2YitJ93zGMq723RcsWn/5qNWG9olfB/MvzmEhY4Clhol/KSiI30wEvsmrKUJFrcW7BC7wBT0Vjag2lM9JmZ7j2y6vCAvwAGmsiHCLWdLHNBYXff/LagAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QYYyDliv; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cInA46VN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6269QHO53121610
+	for <devicetree@vger.kernel.org>; Fri, 6 Mar 2026 09:33:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=HdK/+DyIPdjo8vnqeEhYuvYJ5G6b5jLU/xm
+	ncGgF7IA=; b=QYYyDliviaKNV/BNNBMA3+IBDO5yTlsFOhkvWy7jYmmIa/YpgQT
+	87zvz7LSU29bHfPZa8dIvzQ0UZkDro3EmY+2wM/lPyueqn0bcpJHIjLI+onr9lW1
+	YODQyDk6CeIctl9YqaxalUzIkcDKLIGjyQ6Ly7IyywzHdk1Cfaw08p4D/s+UH435
+	2o/GVx+hq25JSY7E3iJlwxY8h0Oe3uUKxq0bt9ZTR+ZUzbFhUTsezyElSYSZlgQe
+	8ppJjBLxmKkYGVoyp5igZpRsWBMKe2kp2SH7bp8wChUKabRErOhyTrk9c3+mnZ35
+	nks8S/Sj/nD0HmmQ2DvmVpuABZomm1aLWXw==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cqv9u80vj-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 09:33:39 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-359887aece0so6118452a91.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 01:33:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772789618; x=1773394418; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HdK/+DyIPdjo8vnqeEhYuvYJ5G6b5jLU/xmncGgF7IA=;
+        b=cInA46VNNcDaLzUTOK2dohckdeEtq5qEEsop+eOLHh2TAZk2ePYcYMogdJxRqTTh/t
+         3tBElsd8E4Zwc9HjLFcNHWnC+A4YQwr3URzi0pREH7ivzJCAfCZTD2jdKoYmz4wJFQJT
+         kqTpIYLAGB4YYRA4czxiZUM2sqg4JQRds6jaXavwTRF5wblLl0PqfmHuqPNQvAeS2Jgp
+         v5X15g5QmQWwNrvgdk8N3rVB1OYFev/d6W7F9LVKTqUppuX+brePetnYSLeWuRR+BoDi
+         VW+jJmCYffiWNN/N2ep6audKLKAP5qOhzn6bQG4Eclwg/Uthkp7K/aWV4e/qO5g9kRqz
+         jUHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772789618; x=1773394418;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HdK/+DyIPdjo8vnqeEhYuvYJ5G6b5jLU/xmncGgF7IA=;
+        b=Zdg9k2E8YybxXQcjB11IQtnYO66WDMrCK3tb0b/s90b1QET3oyQ3tNBOvv7kcfwytV
+         NfLTl4GAzNSXcvQLMvxsRpZOcJHyXp3rWOK7ZtAobzGPcAzcEidpRu+SyNA8yxDmU8Jq
+         GGqwmMAnbqTHOXAOPlp88FYq/CKJ0KNiKX3HfnD0BYNY+pAncyr40nk9frhjBTK7nrtb
+         P6kY9h88z2jR/4HhEiBpU0Q60h1zQPYriWYTZrOIjblDhTYpQatfMFSYPcGfpmP7pay2
+         1gBXtpSBqAXNuB/A4bOEnifkKUFw0mhuRXED8/hkcuFJbKhfsxAkJoKoHGUMlSzweBub
+         PMsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWynHg5jMIzW4WG+/QxlSmpObHfvqt0pBgJp+ZjUte5kT4gHT1WlHotFoxvYS6wB27PtULAH7mCCthS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwsCUswUXNH9osb/MJLLy/YYJzvHas23YEH07seZdL88BOywpHk
+	O1sSnFxwUrHfLIg2IXFDfsfKYRDrjiWHVg68JOvSTUCNkssY03iDYIlUS85pBE6H1wFTZGpUk9K
+	azvEg8MerIj/KBwGPOSrjA9QNymBtsw9zXVbD5taH0BetcBK/WEXXM1bwK2mP+Hae
+X-Gm-Gg: ATEYQzyRQb2AvKhSRdCH/7ulAKpw7J3CRWIktdx4doVrGK3ADMMZAeFOL7P6z1hhOhD
+	sYIRU5ij/U/4ncK2MQzmmMgHP5H4+uR4FqNx5sn381Cxyt84ZP0ocdtLj1RYbCYlRF8E6AwE8vb
+	srf5RoNMvMNTthsPxcxlIwQoTdgjGukEq5rm+4BwfxqQoC1hDhgJBda/BwImrJoQmVkg7zx1RfB
+	lF0lDw58Azc4V2fM8A4cKx6TA8Bv3tqZoMbQwBowenv7pfdoWSa8wcXi+q3X4FmtquBIqCHVEus
+	bZZQg3/Lgbq0KwO4IeOniO4LwJRbhfJGM0P3uCaGlrVYLUmV98YrSH3PTtc3r5CmHyhMG7uGA08
+	5H+82pehOkhm9qd6Vl3UdGpT8ninGc1MdAEg+CnHuetGFZ1G/2GYW
+X-Received: by 2002:a17:90b:17d1:b0:359:8d23:af5f with SMTP id 98e67ed59e1d1-359be384d2fmr1336188a91.35.1772789618435;
+        Fri, 06 Mar 2026 01:33:38 -0800 (PST)
+X-Received: by 2002:a17:90b:17d1:b0:359:8d23:af5f with SMTP id 98e67ed59e1d1-359be384d2fmr1336172a91.35.1772789617960;
+        Fri, 06 Mar 2026 01:33:37 -0800 (PST)
+Received: from hu-neersoni-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-359bbcacf06sm647549a91.4.2026.03.06.01.33.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Mar 2026 01:33:37 -0800 (PST)
+From: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+To: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, neeraj.soni@oss.qualcomm.com
+Subject: [PATCH v5 0/3] Enable Inline crypto engine for kodiak and monaco
+Date: Fri,  6 Mar 2026 15:03:29 +0530
+Message-Id: <20260306093332.4193993-1-neeraj.soni@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260306093238.2715269-1-zichar.zhang@cixtech.com>
-References: <20260306093238.2715269-1-zichar.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,259 +109,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CB:EE_|TYQPR06MB8086:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 3056bb17-be06-4867-24b2-08de7b634fdd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|7416014|376014|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	7rrqwBC0hvTQ8DvLS52x/d+LaG2kEv+0sL4OO6fgIRCVXPjGV1hQQQ9EPgHx/VImethJHgYh3gwiBPj1tWwHoVa7OYGye5mmVCivDQIal7JdzD4x5En2Ll/A/AohlWdkSad+unRc1465nslazbhFByhFYJJpy/0xYMI6cd8wsSTmVHcivWG31vpZhCiJ4f/ioHJi20QjM3Gjpd4fp86y7TGKtriIWqxth8boZ8Nj7xIQbEayZ0Fo3Oy3NBqeijiwHIPh/wFFm81wSZjyo4+YcHev20AmhktkfnH/41teOVl/Xy9ytKA6UTIvAyp4jGhBVdk0b+Oz28zVUbi1zFvGcv14eTPWCwhI+ImllCIWELT9KHrXpWhg2WuQUHM4izoTNMsdjP+yqGYo7qGKpd08czLTlvRBRvwpf/1aMNy1t0p5ruzMBYR+kwmR3A/dZ2IWcTjvaFyLR2xAZBAiPL+DJ2UH5MisZMSkLM24ZuwqqZzsLFff5iulMr9KOVm7Dja0ibLbLXXjg5g0g1m9H6KWsjm4kmqgkmZFoO1Oq5GQRt5dvTQA0Q81NjdDGk1DETXJD6J6F4PgCMHodPewkB2j6SmEKh4tAapkuq0NJpMhi9ghXR0oGuoL1iX11Z9UsP/6AxSHJCx9ByM9ruP7ktgfLtEUakkg9HM3OXJc66ikPPgnPLlO8cnxWqQ1RPJI+BeKKP1JwiHF46s2ujKDJC0EdrnSNB5xzbVbImDjLxTm7MZ4gc8HRrH5M2/KD2LdeWgBP2N/oSCerEkkT1lbzRz7jA==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(7416014)(376014)(82310400026);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	izl1Ss5JSNLo8+R4QKLfyZFTMHkRvgz5UYHK/BN/T+V/+6sWHZezOcjNW5PASYPpk5BUY/iRCqxiFxsCss724HR9EpqvZM5RtOEIYortvpjnqp+MeHM/QsYni3g8p9h7IbROhxYW1eHfuPz3MVfq9VvmqS2LCd3vfWs2GX1GahMxPJR4GPqe91UtAXnnk5nMaMblm4iEP6fimi3X4brhQWt4iNdBHE/BuCKdflM1aHpry8YsH+gpk060+b7uWEh+E/G4P/uX78B4zebOVLGsYa+yY7RIBR2eK9UipSJCso+wLYRgdHMHWWpmZN8pw/pXWsFr6F4sw51CqiUFAXJn6xVeHqyCIrwkouCodWuY8gDZTCiuxsoMfZKO9eKZG8M4ywYOguE/3vkNFLhhSqtKl9optzpanVEaDYjT63aBB/q57h6SEQyG6YblpWmYk4Co
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 09:32:40.0078
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3056bb17-be06-4867-24b2-08de7b634fdd
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CB.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYQPR06MB8086
-X-Rspamd-Queue-Id: 1158721DFD2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA2MDA5MCBTYWx0ZWRfX8a9TUtk37hwF
+ ST3GVUyeO79UcTHgJyatpZJVcbGyZhwH2HvvrtyM43PKZ+pHUJ13GNpWAFjVUb0HTimGtJNQlwD
+ 9UCMKhYXKfljhfxmHiYc/GJ9Pm0YLHUbGzm0Kedr3zqoUuWaIqkPIsogD/FBWOClDwG5ogI+GAY
+ yFdZRxKg5s1BO+OuJQjn0ml4dcXIXI4o5NQl7pWB6G93VuOm1RY8PRFXmgYrPuzEy0d0loX8/4+
+ AtLZvppQdRJlo3Qb1yDTAFOLdzxcDF7QPHPnIv5piQBJFDlAG49dzMthN3aj1H0yFafgq6ZJMMS
+ LeMrGqVhl6hNs4zX0OeV7KpeZ4EhZeG1EBDPpkG/8hg7LT6csMJS17Ir9XL0UAHprbFkcSMc+lc
+ A0EWBkVThyPeUrkx4aXlnuoEuDGWvwGVosVriOYoAjDVE24bxztyTS3YLThCIHN7yJYaxu7W+T+
+ jtLj1a8PKqwDk5ItwBA==
+X-Proofpoint-ORIG-GUID: YCpB7OipKjl8QN3HdzwV3GrU8nTro-Pq
+X-Proofpoint-GUID: YCpB7OipKjl8QN3HdzwV3GrU8nTro-Pq
+X-Authority-Analysis: v=2.4 cv=eJoeTXp1 c=1 sm=1 tr=0 ts=69aa9f73 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=OaewepulewRRD3_FMPAA:9
+ a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-06_03,2026-03-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 spamscore=0 adultscore=0 lowpriorityscore=0 suspectscore=0
+ priorityscore=1501 malwarescore=0 impostorscore=0 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603060090
+X-Rspamd-Queue-Id: AA96821E00D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.54 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DMARC_NA(0.00)[cixtech.com];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-271939-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271940-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zichar.zhang@cixtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neeraj.soni@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: "Zichar.Zhang" <zichar.zhang@cixtech.com>
+Document Inline Crypto Engine (ICE) handle for SDHC and add its device-tree
+node to enable it for kodiak and monaco.
 
-Add Cadence GPIO controller nodes for Sky1 FCH(S0) and S5 domains in
-sky1.dtsi, and enable those controllers on sky1-orion-o6.
+How this patch was tested:
+- export ARCH=arm64
+- export CROSS_COMPILE=aarch64-linux-gnu-
+- make menuconfig
+- make defconifg
+- make DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/sdhci-msm.yaml dt_binding_check
+- make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CHECK_DTBS=y dtbs
 
-Signed-off-by: Zichar Zhang <zichar.zhang@cixtech.com>
 ---
- arch/arm64/boot/dts/cix/sky1-orion-o6.dts |  28 +++++
- arch/arm64/boot/dts/cix/sky1.dtsi         | 123 ++++++++++++++++++++++
- 2 files changed, 151 insertions(+)
+Changes in v5:
+- Updated the constraint for SDHCI 'v4' vs rest to reflect the 'qcom,ice'
+  constraint.
 
-diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-index 4dee8cd0b86d..4dc76e0135ee 100644
---- a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-+++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-@@ -89,3 +89,31 @@ &pcie_x1_1_rc {
- &uart2 {
- 	status = "okay";
- };
-+
-+&s5_gpio0 {
-+	status = "okay";
-+};
-+
-+&s5_gpio1 {
-+	status = "okay";
-+};
-+
-+&s5_gpio2 {
-+	status = "okay";
-+};
-+
-+&fch_gpio0 {
-+	status = "okay";
-+};
-+
-+&fch_gpio1 {
-+	status = "okay";
-+};
-+
-+&fch_gpio2 {
-+	status = "okay";
-+};
-+
-+&fch_gpio3 {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index 72f3b195a927..9ceaf8f68e83 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -185,6 +185,13 @@ psci {
- 		method = "smc";
- 	};
- 
-+	s5_gpio_apb_clk: s5-gpio-apb-clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <100000000>;
-+		clock-output-names = "s5_gpio_apb_clk";
-+	};
-+
- 	soc@0 {
- 		compatible = "simple-bus";
- 		ranges = <0 0 0 0 0x20 0>;
-@@ -354,6 +361,74 @@ syscon: syscon@4160000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		fch_gpio0: gpio-controller@4120000 {
-+			compatible = "cdns,gpio-r1p02";
-+			reg = <0x0 0x4120000 0x0 0x1000>;
-+			clocks = <&scmi_clk CLK_TREE_FCH_GPIO_APB>;
-+			clock-names = "fch_gpio_apb_clk";
-+
-+			interrupts = <GIC_SPI 304 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <32>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		fch_gpio1: gpio-controller@4130000 {
-+			compatible = "cdns,gpio-r1p02";
-+			reg = <0x0 0x4130000 0x0 0x1000>;
-+			clocks = <&scmi_clk CLK_TREE_FCH_GPIO_APB>;
-+			clock-names = "fch_gpio_apb_clk";
-+
-+			interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <32>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		fch_gpio2: gpio-controller@4140000 {
-+			compatible = "cdns,gpio-r1p02";
-+			reg = <0x0 0x4140000 0x0 0x1000>;
-+			clocks = <&scmi_clk CLK_TREE_FCH_GPIO_APB>;
-+			clock-names = "fch_gpio_apb_clk";
-+
-+			interrupts = <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <32>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		fch_gpio3: gpio-controller@4150000 {
-+			compatible = "cdns,gpio-r1p02";
-+			reg = <0x0 0x4150000 0x0 0x1000>;
-+			clocks = <&scmi_clk CLK_TREE_FCH_GPIO_APB>;
-+			clock-names = "fch_gpio_apb_clk";
-+
-+			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <17>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			status = "disabled";
-+		};
-+
- 		iomuxc: pinctrl@4170000 {
- 			compatible = "cix,sky1-pinctrl";
- 			reg = <0x0 0x04170000 0x0 0x1000>;
-@@ -587,6 +662,54 @@ s5_syscon: syscon@16000000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		s5_gpio0: gpio-controller@16004000 {
-+			compatible = "cdns,gpio-r1p02";
-+			reg = <0x0 0x16004000 0x0 0x1000>;
-+			clocks = <&s5_gpio_apb_clk>;
-+
-+			interrupts = <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <32>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		s5_gpio1: gpio-controller@16005000 {
-+			compatible = "cdns,gpio-r1p02";
-+			reg = <0x0 0x16005000 0x0 0x1000>;
-+			clocks = <&s5_gpio_apb_clk>;
-+
-+			interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <10>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			status = "disabled";
-+		};
-+
-+		s5_gpio2: gpio-controller@16006000 {
-+			compatible = "cdns,gpio-r1p02";
-+			reg = <0x0 0x16006000 0x0 0x1000>;
-+			clocks = <&s5_gpio_apb_clk>;
-+
-+			interrupts = <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH 0>;
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			ngpios = <10>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			status = "disabled";
-+		};
-+
- 		iomuxc_s5: pinctrl@16007000 {
- 			compatible = "cix,sky1-pinctrl-s5";
- 			reg = <0x0 0x16007000 0x0 0x1000>;
--- 
+Changes in v4:
+- Added a new patch (3/3) for device tree changes for Monaco SoC.
+- Updated commit subject of cover letter to reflect "monaco".
+- Removed the text description of constraints from "description:" for "qcom,ice" and
+  wrapped the code.
+- Corrected the schema code to reflect the constraint of "qcom,ice" usage properly.
+
+Changes in v3:
+- Described the purpose for phandle in "description:" for "qcom,ice".
+- Re-added the "if: required:" description for "qcom,ice" with proper
+  encoding.
+- Corrected the uppercase for base address and reg address space for ICE DT node.
+
+Changes in v2:
+- Removed the "if: required:" description for "qcom,ice" dt-binding
+  as the ICE node is optional.
+- Corrected the ICE dt node entry according to the dt-binding description.
+- Added test details.
+
+Changes in v1:
+- Updated the dt-binding for ICE node.
+- Added the dt node for ICE for kodiak.
+
+Neeraj Soni (3):
+  dt-bindings: mmc: sdhci-msm: Add ICE phandle
+  arm64: dts: qcom: kodiak: enable the inline crypto engine for SDHC
+  arm64: dts: qcom: monaco: enable the inline crypto engine for SDHC
+
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    | 95 +++++++++++++------
+ arch/arm64/boot/dts/qcom/kodiak.dtsi          |  9 ++
+ arch/arm64/boot/dts/qcom/monaco.dtsi          |  9 ++
+ 3 files changed, 85 insertions(+), 28 deletions(-)
+
+--
 2.34.1
 
 
