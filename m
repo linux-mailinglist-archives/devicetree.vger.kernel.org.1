@@ -1,238 +1,251 @@
-Return-Path: <devicetree+bounces-271915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271916-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sBAWLqKZqmkxUQEAu9opvQ
-	(envelope-from <devicetree+bounces-271915-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:08:50 +0100
+	id gJRcEeyZqmkxUQEAu9opvQ
+	(envelope-from <devicetree+bounces-271916-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:10:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1938221DA14
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:08:50 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B50D21DA4A
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:10:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 502C63047343
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:07:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 295D5300AD42
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:10:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B510533DED1;
-	Fri,  6 Mar 2026 09:07:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 579E7273D8F;
+	Fri,  6 Mar 2026 09:09:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="i0Pn+ALU";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YBwWaKOD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022141.outbound.protection.outlook.com [40.107.75.141])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9F5B33D508;
-	Fri,  6 Mar 2026 09:07:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.141
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772788031; cv=fail; b=SeVlITbT1tsqDc0AzinfKqCbkKCqv/5Y3rIyYWELufDqwUIK3kx62xWgJ8+5cxJT0tq1FS3skZKITc6w1Ic0RyBqL3NQ5+fOAbPHOxzmhLaflYOtdG5VlhZ05kQCRsROsKFuErowBeUByeIYFdBO92q4fUFAyo1LSaRg4sVcjj4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772788031; c=relaxed/simple;
-	bh=f4ESOBYDOM63cDDdepjx30SYOTaCXs27a468vuCpcU8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WXBSj9k+VFFfHUha/DN0k+Gycvl1rf0RO5jT/D6hG/o0+gW0R3cdkFovME7QZ7r1OBfC8HPBPFglinEYj+ihj9/FyHGadLKuuKCQZVtzO7fjwGJJbPZmL5pfkjG1OB9+ho4rN1UVAtod8J8XcJwhE0+UdnvhuBxxl5ETQ1nHexE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fazaYfxLBaedJjwsIsL3vOzGedOP+a6M4/sqvQO1+Q0oWcKYf2Erwx6xyOzTeJWmN8rIzF2ZcL2wnBUm0f6NOm7RXMnpwyTiSmiFFkyWe9FoeaKNSUoh9IEfFq4imsVqqZ+25keH62D2hvgeMwqPLi+VANsnZuC3usQPjwnwM/Ohr7q3np5pOFhiIi5zp4AJ9s7hnPlGcH16A43UxDBHRwXW1c7rawrciPyGmg/cbf/PahpRhZWIB1+ztsbZoGpYLVyeNDVoZRXLANDT/lU+P+mkV9WN7PmrKgsxzlmRbW7tj7sDryzT0/N3u4yl+UqFLSaHuJbGlQx/mpskB3qlPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=py/o6k0kY+IUYpIWRpIGTq1SpEeerbRk4nqi6/sW3IM=;
- b=O4oi53CZ7JKGIXwmruoXMk4y81Ez2tsGr3I8nlaaNNwVx5/pyY8I3FypJjz1waoEGo8JjCXbP2kFdVy5/0dDMl/b11L+5q13LLAu5A9CC6s93JrE980/iGvJoAcl0GC40kLoUoEgUUMrpfFntK+Wq7PjmFwMds7dn/yI4eXh8z1vmAY6A5rEmV39yLDppRz7pV4ggdin7vGMbvc0S2oRW6hxsp43RqDTqI+4Hmg5gisPyedXTg0CIcX3CCdE7tmkTh6bu6i/ngT7qUYufFg9yMw2A/tfAodcxxW/o/bVPJEln6REBck0DJrIbTCuXa25DHAFypEWw05XtH6Ou2vEXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 222.71.101.198) smtp.rcpttodomain=cixtech.com smtp.mailfrom=cixtech.com;
- dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
- not signed); arc=none (0)
-Received: from SGXP274CA0001.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::13) by
- TYZPR06MB6769.apcprd06.prod.outlook.com (2603:1096:400:453::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
- 2026 09:07:01 +0000
-Received: from SG2PEPF000B66CC.apcprd03.prod.outlook.com
- (2603:1096:4:b8:cafe::a8) by SGXP274CA0001.outlook.office365.com
- (2603:1096:4:b8::13) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.19 via Frontend Transport; Fri,
- 6 Mar 2026 09:07:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
- smtp.mailfrom=cixtech.com; dkim=none (message not signed)
- header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
-Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
- 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
-Received: from smtprelay.cixcomputing.com (222.71.101.198) by
- SG2PEPF000B66CC.mail.protection.outlook.com (10.167.240.25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Fri, 6 Mar 2026 09:07:00 +0000
-Received: from localhost.localdomain (unknown [172.16.64.196])
-	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 87B7F40A5A01;
-	Fri,  6 Mar 2026 17:06:59 +0800 (CST)
-From: Gary Yang <gary.yang@cixtech.com>
-To: peter.chen@cixtech.com,
-	fugang.duan@cixtech.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com,
-	Gary Yang <gary.yang@cixtech.com>
-Subject: [PATCH] arm64: dts: cix: Add scmi powerdomain nodes for sky1
-Date: Fri,  6 Mar 2026 17:06:59 +0800
-Message-ID: <20260306090659.990527-1-gary.yang@cixtech.com>
-X-Mailer: git-send-email 2.49.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7381FC7C5
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 09:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772788196; cv=none; b=k4iysqbZYHzrdKiAahDD9eGY9pTeLs4XwptoX2RaU8Yug7mcWWo7XbMW/D8HVW4QJyMCEXUVNckY5Cyz/Hu1PpDC+2aJ/Hn7L7MzP6BWzM8WuIZDj7uVcrKnjv5h2mnwHhiu4CMuw57LsnOmg8DsRFCVKhpdLFUPQR+k5Mts3M0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772788196; c=relaxed/simple;
+	bh=pCa8b3toS7RG9BmdZ7X/9GmU2dLW5RF5ner7prNf3qQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jXCiurKM4YJo5/CDjkt5yqEY5RZWkB/PPMvZP0l5qP4LWjNwqGJITmIqwBny59upstfloRPWWS8029+Mw5XI6fSnZj06gzmMS7pQ4U3CYQ+RFCLnk/rPAnqS932CZxh3qkGTdmMSifmNqyp6qkgdzqwHlgPda0zo4PytKa87Rdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=i0Pn+ALU; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YBwWaKOD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6265V8HK3383015
+	for <devicetree@vger.kernel.org>; Fri, 6 Mar 2026 09:09:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=RZKZrAcFTOeJr1xaGBJRZ6iF
+	90MID8G0fZfMTF88d9w=; b=i0Pn+ALU0zXGPl2eX91IZPn3/4cljK9IhpUk1MHx
+	CIvhrrOodi9/lXQZ7+DsIvgoAXF9MQn/y2cBdX2bBpD8S9rcnATTEuXDlCkZvRh2
+	ST4EvrcTtOmXF+sPSgeKhU4rQraXaO+7UXuY2XS0akDtUyVyWl6TVB4pWt40ntlK
+	ldDIACuQv5eMEPKWuJ2AQHQY0Q96+9Jwg09ueBufR7KVM2JeWVv7Piyy5SJ6pPE/
+	KBGGdcaaUN9rdFGSGTiSPaFn8VzLnVeVqz5kC9wnY19efBtODUQCFwxbuwJ6gO9x
+	T87GNSFsWLVCzYokPDu5bZIiK5O3gNsFiNHth2A8Ki6Fsw==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cqruk8ptx-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 09:09:53 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8c71655aa11so7282764685a.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 01:09:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772788193; x=1773392993; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=RZKZrAcFTOeJr1xaGBJRZ6iF90MID8G0fZfMTF88d9w=;
+        b=YBwWaKODO0ADBsFgZOYA5DXYSeuDS3ODPPVaKi1Z+Aup7Mx4ODfd8ayNYRDo11TLDW
+         SvOmCyXYjiJWT+RFe0AUcGahRpbhgnv/uBaiD+eLCikbfMBfG1exUYd0TEyPaztENaXg
+         t9+tcHjSw66CD2LLLvRTyNFT0kpTmZLSJkRUeQYspvqLJsgwJv8zq+HX4bL5BMcz+c90
+         RjRrwQZbv36cXCgIBFg6MN2O45hLlQwJ7f3lh7VzRiA7DEHWe6ngWyQrPs4uZUaz4OoB
+         i91YZjE3hrN3Be6hUHjtGYu/SP0FLvDP4/RCCHQIMdXaDOMPO7VsiQhFLFXCIDV5W3+j
+         yshw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772788193; x=1773392993;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RZKZrAcFTOeJr1xaGBJRZ6iF90MID8G0fZfMTF88d9w=;
+        b=PdpfUPQcNo7LL/gyBr0lSa6WIVdXxVr/XaUOtfz34hWz3AkgkcM1LhwVzBY7bVyUtH
+         OezCYiA5FpWtXVQxp/RnaqrF7FcNLtvoXOyMS7koeEtxmS0sLO671qsevEGWP73X5EAy
+         rsBy85hNe1W0s5B8eSKgNbKBVW2gSoSgxgisDzARSntoHJ5Y5dJ4nsg78mn0oKw+5Gpi
+         ke82B+JD5iY836gFNFF+9xEboANZ1MDIVjQYjxhkaBaYr64323/cCbXsoDvazNlgMMSJ
+         H4Vreq34+dTBFerj1pVzTvTCc9wlbOKNwy0n3vCnoW2tHRPuOKrmxpTSfg0bsbWhontB
+         Ho5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV0sbgK0o4kpt9gwxdGOdj+Kf0gn8KcmVfnRoA/RDJ+YkNotspiNbTOKBN2+7J0EBL2pvYSYkIx1++u@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywy9X+IN7typYfmQ2aJmTspliuwo/jl0hikdjG8eTEr4/In6Xl8
+	GSHqYWdL/pgpsjYRV8IPCZv7aeal3bdOCr7HJ4whh8f8vrm98gcL3cocpGpqWAzguSsgK+3/68d
+	MaCc79AiOBlZAVkf8iRhyaYsoW2blAlOs+EOuZKowLU5+oUR/8VzYZTkuXKZZ4HuW
+X-Gm-Gg: ATEYQzwfrx5TqIvklF5EsEfm13RHWt3blPFNPHFULUTAbOORt9+KIjgebt88/YNBL3G
+	9QykwU1g5y8mmyDwkqkFwUKlvn/QwGwj1icpkQWFWB2P2FgI6os7Kgv7AGcXepJF7vyfj7MDRwV
+	IMDwYFQ5fEW9fAG/RksdAO/I9jEMm88kQ4O17XhHl6aRrs2ZbDr1hAwIFuF6DP9sNXpzl/hxtge
+	tcCyR6MkLjqf8W8q4UEnfx0ADce+wLMdozvFNF+D1/aj9FIQWtv5qxzw9cTRgfVFhXG/AsLB26k
+	qFkGJFbCZiHsP38ld/BHbdz/kuYp/XJ1VMdzFuWJuvTzAZfXyp0s4/xrAxGR0ijLVGKjybUzxWi
+	avCmTtkjxWlx5oN1MFq1o7Yg5KzQD
+X-Received: by 2002:a05:620a:1a84:b0:8c7:17b3:ae1a with SMTP id af79cd13be357-8cd6d437897mr181706885a.45.1772788193248;
+        Fri, 06 Mar 2026 01:09:53 -0800 (PST)
+X-Received: by 2002:a05:620a:1a84:b0:8c7:17b3:ae1a with SMTP id af79cd13be357-8cd6d437897mr181704985a.45.1772788192837;
+        Fri, 06 Mar 2026 01:09:52 -0800 (PST)
+Received: from mai.linaro.org ([2a05:6e02:1041:c10:1265:158c:17d1:c76e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae2b9fbsm2393780f8f.23.2026.03.06.01.09.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Mar 2026 01:09:52 -0800 (PST)
+Date: Fri, 6 Mar 2026 10:09:50 +0100
+From: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+To: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com,
+        lukasz.luba@arm.com, konradybcio@kernel.org, mani@kernel.org,
+        casey.connolly@linaro.org, amit.kucheria@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        manaf.pallikunhi@oss.qualcomm.com
+Subject: Re: [PATCH v2 0/8] Add RemoteProc cooling support
+Message-ID: <aaqZ3uO9wB3Dundi@mai.linaro.org>
+References: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PEPF000B66CC:EE_|TYZPR06MB6769:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: ef5f505d-aec5-448e-51c4-08de7b5fba3e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700016;
-X-Microsoft-Antispam-Message-Info:
-	RgRtSMV8f5VyUdNcxaSwwz3fQOXWVmVcNsX7otJJjEINF8NVmV8eTLMv6J9cipvIYgJZbwcaLgW5y2ThPsmDh5x/6OWvExFnunI1tkYk4POgrWGZJaiyObrIzRcPOiTVwg+VjG70NeX8naaffVkkv54gWbAajafiMJtaFP4SXKEHdYBgpiFc0nHah8pkJvjShKJzlW+VhKP9RF5L66nyKFHE+bNZ8ahfas+7/d8csQIVWyIsgcfcTOSHwPUG9lqSOTgOMo3K7dFeWgPpOl1z/jxRWq3h/hd3t3jknmtUeV3I+RYari8wIYh78t3hdtHFObk5ZA4mtrgBoSTLaBIAjlLB6aVJaRV3r9+afVG4gDmsHBwpOlft1Iqh7aqa2BM/MEwdVCt+6Rx67hCbdP9T0o9aIdKRwUX9YXJiMB/z9eAv7x7zutkDucbT23KQGn0Ol+L1JX0eL0spiKf//MncMuFeQPMw0/5Gv3a68JDaNWf+53nu3cdf3RZ8YuYJ9mGFkaEGdRuwYlflFmAEZKpWTSFuU6m8EpqQH1g3GmnhyJiWommDg9SRUiBHbsRY/2j7K/+GsP9Y1/A/mwKAd54iTyL6/BUzSst82cCrj5InZ4od3dKiMrMW7pW3/6Td6eeci4Nc7EtyV+Evt7DcbVtRUXdJn1UgENUBi8S1t5XAUponc+V0KSYHJ2t+TdVi9Nd3CwomqiX6lgRSosZ+JbelDgvPQ+S92mRttC1DHxI2OeXD9FDsm1vMLnkxF54rlSj0Thb/P41Sn3bv3DNn+VePcg==
-X-Forefront-Antispam-Report:
-	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	T/vFtJRM0h2ZmgQPfGiKdz7GjBXChbrNLGQ/2140vGniTNk5fMyiNdyHu3O6JdaCn4osVcEhznaHqVBaKIIqVSYBLjhkFqqC9jtq5VZydr+xgGYWGEohT2YJXq5OJzu0ZgbVHJcx+sS4tHpxjSfjiaazBfzt8Eg9OzouoDyKxQUS0pg1q+FU1I+MohH5qId+00xRV4VlE1hxcIz9Jk1oNBVJqTx0PZS9a0sTBchFRr+ZksTEy3fnW5oFTy7tcenCjwbbAVdgHgHDZsdwnlYGWGsCUzrrYupI8XA+/zsWHuoiyovKqnJA+sKTzGNGud+MlbDSPPRBjXUDfCsZtf7elLZrDNF4lWKEBZ/yjYkKB4yw3XD/DoR6pi+EcnOTe2BuUjpeU8sTA/iAeSru2CFM2cMIIqff28HajtOcL51OYq8GxIydysk+X1sjNuz3E7l0
-X-OriginatorOrg: cixtech.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 09:07:00.8079
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ef5f505d-aec5-448e-51c4-08de7b5fba3e
-X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG2PEPF000B66CC.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6769
-X-Rspamd-Queue-Id: 1938221DA14
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA2MDA4NiBTYWx0ZWRfXzI/NoGV+ADo0
+ 6hZhX1s/Iv1veL64QnRmkHboZLKZBgJhxQxzGPogOivrSnDjaQkhZeWWW4h3g/MLsXvXADDT2HU
+ n5A9heGCwswsF6mwYbyGHsPi60r8qyvUqAGtmyygQGLKVuOfsIlsKKwnVqoJFNs0/B5ld1FpOQ4
+ BVb8lt1g61SABEqNMkLjBArvihDPiyf4KQClmpGuy2iVdGjFpgH708eh4p3qFOYRLkdCyvFkJRf
+ Jrwg3NVRhdYvaT2LRix2LGeT24UVJhaQFk1MDbXsKym/Puunncy5nBGlgYtPux+E57+VMx8vwSS
+ iAS7OztkMnWi94ztgvhJeQeDJotap5abFYE7jyAi+hGjY96xdRaVG8csYcrSYI3G/T5vub3xI68
+ RgkHxHezSivXbjCPVcrioT474q/JJOjSKCw98eehImzoW1dVrXWOoFhUA3yrm2oxfOXYlvtdgPD
+ TAEiKNzMq8GHHeFjfdw==
+X-Proofpoint-ORIG-GUID: 33uuHwHP37ctzeES3Qui0WOxXgJSTEGL
+X-Authority-Analysis: v=2.4 cv=DvZbOW/+ c=1 sm=1 tr=0 ts=69aa99e1 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=BEq6MHY0i-NMwquLpTMA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: 33uuHwHP37ctzeES3Qui0WOxXgJSTEGL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-06_03,2026-03-04_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ suspectscore=0 clxscore=1015 phishscore=0 priorityscore=1501 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603060086
+X-Rspamd-Queue-Id: 0B50D21DA4A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.04 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_FROM(0.00)[bounces-271915-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	DMARC_NA(0.00)[cixtech.com];
+	TAGGED_FROM(0.00)[bounces-271916-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.qualcomm.com:dkim,mai.linaro.org:mid,qualcomm.com:dkim];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel.lezcano@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gary.yang@cixtech.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7];
-	NEURAL_HAM(-0.00)[-0.997];
-	DBL_PROHIBIT(0.00)[5.7.137.96:email,0.244.63.88:email,0.0.0.14:email];
-	R_DKIM_NA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.0.11:email]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Add a second SCMI channel using SMC transport to communicate with TF-A
-for power domain management on the Sky1 SoC.
+Hi Gaurav,
 
-Signed-off-by: Gary Yang <gary.yang@cixtech.com>
----
- arch/arm64/boot/dts/cix/sky1-power.h | 34 ++++++++++++++++++++++++++++
- arch/arm64/boot/dts/cix/sky1.dtsi    | 19 ++++++++++++++++
- 2 files changed, 53 insertions(+)
- create mode 100644 arch/arm64/boot/dts/cix/sky1-power.h
+On Tue, Jan 27, 2026 at 09:27:14PM +0530, Gaurav Kohli wrote:
+> This series introduces a generic remote proc cooling framework to control 
+> thermal sensors located on remote subsystem like modem, dsp etc.
+> Communications with these subsystems occurs through various channels, for example, 
+> QMI interface for Qualcomm.
 
-diff --git a/arch/arm64/boot/dts/cix/sky1-power.h b/arch/arm64/boot/dts/cix/sky1-power.h
-new file mode 100644
-index 000000000000..743c0e5558ee
---- /dev/null
-+++ b/arch/arm64/boot/dts/cix/sky1-power.h
-@@ -0,0 +1,34 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright 2026 Cix Technology Group Co., Ltd.
-+ */
-+
-+#ifndef __SKY1_POWER_H__
-+#define __SKY1_POWER_H__
-+
-+/* The Rich OS need flow the macro */
-+#define SKY1_PD_AUDIO		0
-+#define SKY1_PD_PCIE_CTRL0	1
-+#define SKY1_PD_PCIE_DUMMY	2
-+#define SKY1_PD_PCIEHUB		3
-+#define SKY1_PD_MMHUB		4
-+#define SKY1_PD_MMHUB_SMMU	5
-+#define SKY1_PD_DPU0		6
-+#define SKY1_PD_DPU1		7
-+#define SKY1_PD_DPU2		8
-+#define SKY1_PD_DPU3		9
-+#define SKY1_PD_DPU4		10
-+#define SKY1_PD_VPU_TOP		11
-+#define SKY1_PD_VPU_CORE0	12
-+#define SKY1_PD_VPU_CORE1	13
-+#define SKY1_PD_VPU_CORE2	14
-+#define SKY1_PD_VPU_CORE3	15
-+#define SKY1_PD_NPU_CORE0	16
-+#define SKY1_PD_NPU_CORE1	17
-+#define SKY1_PD_NPU_CORE2	18
-+#define SKY1_PD_NPU_TOP		19
-+#define SKY1_PD_ISP0		20
-+#define SKY1_PD_GPU		21
-+#define SKY1_PD_MAX		22
-+
-+#endif
-diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-index 64b76905cbff..d37ab16ad9b6 100644
---- a/arch/arm64/boot/dts/cix/sky1.dtsi
-+++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-@@ -168,6 +168,19 @@ scmi_clk: protocol@14 {
- 				#clock-cells = <1>;
- 			};
- 		};
-+
-+		ap_to_tfa_scmi: scmi-1 {
-+			compatible = "arm,scmi-smc";
-+			arm,smc-id = <0xc2000001>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			shmem = <&ap_tfa_scmi_mem>;
-+
-+			smc_devpd: protocol@11 {
-+				reg = <0x11>;
-+				#power-domain-cells = <1>;
-+			};
-+		};
- 	};
- 
- 	pmu-a520 {
-@@ -572,6 +585,12 @@ iomuxc_s5: pinctrl@16007000 {
- 			compatible = "cix,sky1-pinctrl-s5";
- 			reg = <0x0 0x16007000 0x0 0x1000>;
- 		};
-+
-+		ap_tfa_scmi_mem: shmem@84380000 {
-+			compatible = "arm,scmi-shmem";
-+			reg = <0x0 0x84380000 0x0 0x80>;
-+			reg-io-width = <4>;
-+		};
- 	};
- 
- 	timer {
+Can you clarify the semantic of the driver ? It is described as
+controlling the thermal sensors, except I'm missing something my
+understanding it controls the level of performance of a subsystem
+where a thermal sensor is tied to.
+
+> The Framework provides an abstraction layer between thermal subsytem and vendor
+> specific remote subsystem. Vendor drivers are expected to implement callback 
+> and registration mechanisms with cooling framework to control cooling
+> devices.
+>
+> This patchset also revives earlier discussions of QMI based TMD cooling
+> devices discussion posted on below series by Casey: 
+> https://lore.kernel.org/linux-devicetree/20230905-caleb-qmi_cooling-v1-0-5aa39d4164a7@linaro.org/
+> 
+> That series introduced Qualcomm QMI-based TMD cooling devices which used
+> to mitigate thermal conditions across multiple remote subsystems. These 
+> devices operate based on junction temperature sensors (TSENS) associated 
+> with thermal zones for each subsystem and registering with remoteproc 
+> cooling framework for cooling registration.
+> ---
+> Changes in v2:
+> - Update Remoreproc thermal config to tristate and removed unnecessary NULL checks.
+> - Fixed dt binding file format and added generic name support for cdsp.
+> - Fixed memory leak and cleaned up qmi-cooling driver file.
+> - Corrected DT formatting errors and commit descriptions for all targets.
+> - Link to v1: https://lore.kernel.org/linux-devicetree/20251223123227.1317244-1-gaurav.kohli@oss.qualcomm.com/
+> ---
+> 
+> Casey Connolly (2):
+>   remoteproc: qcom: probe all child devices
+>   thermal: qcom: add qmi-cooling driver
+> 
+> Gaurav Kohli (6):
+>   thermal: Add Remote Proc cooling driver
+>   dt-bindings: thermal: Add qcom,qmi-cooling yaml bindings
+>   arm64: dts: qcom: lemans: Enable CDSP cooling
+>   arm64: dts: qcom: talos: Enable CDSP cooling
+>   arm64: dts: qcom: kodiak: Enable CDSP cooling
+>   arm64: dts: qcom: monaco: Enable CDSP cooling
+> 
+>  .../bindings/remoteproc/qcom,pas-common.yaml  |   6 +
+>  .../bindings/thermal/qcom,qmi-cooling.yaml    |  72 +++
+>  MAINTAINERS                                   |   7 +
+>  arch/arm64/boot/dts/qcom/kodiak.dtsi          |  37 ++
+>  arch/arm64/boot/dts/qcom/lemans.dtsi          | 138 ++++-
+>  arch/arm64/boot/dts/qcom/monaco.dtsi          |  93 ++++
+>  arch/arm64/boot/dts/qcom/talos.dtsi           |  24 +
+>  drivers/remoteproc/qcom_q6v5.c                |   4 +
+>  drivers/remoteproc/qcom_q6v5_mss.c            |   8 -
+>  drivers/soc/qcom/Kconfig                      |  13 +
+>  drivers/soc/qcom/Makefile                     |   1 +
+>  drivers/soc/qcom/qmi-cooling.c                | 510 ++++++++++++++++++
+>  drivers/soc/qcom/qmi-cooling.h                | 429 +++++++++++++++
+>  drivers/thermal/Kconfig                       |  10 +
+>  drivers/thermal/Makefile                      |   2 +
+>  drivers/thermal/remoteproc_cooling.c          | 143 +++++
+>  include/linux/remoteproc_cooling.h            |  52 ++
+>  17 files changed, 1529 insertions(+), 20 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/qcom,qmi-cooling.yaml
+>  create mode 100644 drivers/soc/qcom/qmi-cooling.c
+>  create mode 100644 drivers/soc/qcom/qmi-cooling.h
+>  create mode 100644 drivers/thermal/remoteproc_cooling.c
+>  create mode 100644 include/linux/remoteproc_cooling.h
+> 
+> -- 
+> 2.34.1
+> 
+
 -- 
-2.49.0
-
 
