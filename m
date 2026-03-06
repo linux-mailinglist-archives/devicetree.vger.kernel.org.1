@@ -1,85 +1,86 @@
-Return-Path: <devicetree+bounces-271979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271980-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SAZIMmyuqmmLVQEAu9opvQ
-	(envelope-from <devicetree+bounces-271979-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:37:32 +0100
+	id gEJSDhquqmluVQEAu9opvQ
+	(envelope-from <devicetree+bounces-271980-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:36:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BD2B21EE47
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:37:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADBDB21ED93
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:36:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7318D301FA73
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:34:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C354F303EFD3
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5452DF6E6;
-	Fri,  6 Mar 2026 10:34:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D6F303A26;
+	Fri,  6 Mar 2026 10:34:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oQEe+1/k"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kUrNjmir"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010052.outbound.protection.outlook.com [52.101.69.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF50D21C160;
-	Fri,  6 Mar 2026 10:34:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772793244; cv=fail; b=E8qrFf/qIlnEbYj84Rzypr5+sZXvoSStDHhUYooMEhAYly+tRNnCW2Ykv0AY2Fi76lHw9gp70vw8PmzfzBYGNXsRmabvVNED2bLBNJetJdij5e6FO+r1kLlc6ThLCBgWczLUXGSwBCCZRYCvRTUQnd7kXT4A9MV0wKW560PUao8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772793244; c=relaxed/simple;
-	bh=k4Ae5MsBUYY8MYT6lHQ3cZ9rVHBmvkIc+Cx1bwmSGBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JdRT+nLahb19FJERFnbh16kKx27cld7EiDbFo/Suoy6EhdDPi2TlQKGdYVQb58UvXe+XG38QtyVWkMKe7wXofaClGkKWQhWcS3i2RtFyIYjDpt9gSUyqpA0kcAtz/K9sjOWTMB1JutKWJVAAosyGGdl2clvatxlcr8jwX7qPDKA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oQEe+1/k; arc=fail smtp.client-ip=52.101.69.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fSbQdIY45kyc4Sl0HLQ8jNCtWj5G5hI3PO2AThZUH7wCQIM3v+AeG58KjUceABtv0iLnyo9IUotfrFoIx203V7sdZjMvfHaQVHT8JUyBNcqg8aR4T/V4bOMp1isLSEJA9ztVc7kWzpA3zZttyJIc/rC/8BuiPR0O0t/YLSpsAiFWhQN9SdlqUz7hSRls183sReSr/mqptChpaS5mFsDIDeNNf1iSSwXJGgxkbQmHMAze1aE4FsqlANLJfQWKtlqsZEbQgSyznNGCSU0+IX5UH4wZjb0wxdIbBxc3kD85M95tLmsBXRhNUNKwCutTsyqhh1Lt1gNnlG3wMhQtF/B5XQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EIDMk5sYIxM9jDjgEtc6H1BIuvRMY37EOJ0pNtPs2r0=;
- b=VhAhQSn9MD8hQo+pGKofPsYE71LlsUQ0WNFvDvwT37h4U5zkrsoiynAc7bDkkHottMpUD9HbkK7SOUPScyDjMACc6K1aAc7isLeML4IMQDi5bxBzXheuU38rJPNUfSWnq3SbIx5ijx6XGshYzkgeLyrNK7477YvBr1dOfmfakAzoXVPxEpq2MN9TlogCytTBBjK8B6W6TTbkxBd1pGGNeEescfTK2eEs9BvY81LqbOKJ7bkNY9xYm8tVmWCrXlIfqLn5ESe+2kkx2fqzpYS+OJiK3rOTkuUnkuus/8n2itGdJnr6pFL4zd2OSkJU2i4yDtAaGFprrgWIVpJZvF5beA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=arm.com smtp.mailfrom=foss.st.com; dmarc=fail
- (p=none sp=none pct=100) action=none header.from=foss.st.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EIDMk5sYIxM9jDjgEtc6H1BIuvRMY37EOJ0pNtPs2r0=;
- b=oQEe+1/kOZNo2W9T7vK3lmZAOHcyL2E0WJJqtBSkPyOqLiLmfSBqpOFS1yLmG3hp9Qwx0hqHgCCW6EYxgtrspP9hU5y364yIYg3NEsNKrC8csOvkOaMUTf4T82s1bctRxuw8oCD3USPavnTo4NAGANzMFHX+5hyUs+3g2Nv8qrqVV9JE1Yv/qCI5C0MWRrV3SDHBOtSnhzyAIMj+TucFkjpqGHG2Jtxffb6ekLKWg4mJS9ndCUq/kz4mOYLedddbuqnncGGS5FRoFHmBDnvLSndB5ku5x4QF2KjfuDt+dUBeqElXgiaz6v1m6RbMDOFshV1ipKBtGRQHkjQ8KkUGiw==
-Received: from DU2PR04CA0173.eurprd04.prod.outlook.com (2603:10a6:10:2b0::28)
- by VI1PR10MB3327.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:803:12e::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
- 2026 10:33:56 +0000
-Received: from DU2PEPF0001E9C4.eurprd03.prod.outlook.com
- (2603:10a6:10:2b0:cafe::1f) by DU2PR04CA0173.outlook.office365.com
- (2603:10a6:10:2b0::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.23 via Frontend Transport; Fri,
- 6 Mar 2026 10:33:56 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DU2PEPF0001E9C4.mail.protection.outlook.com (10.167.8.73) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.16 via Frontend Transport; Fri, 6 Mar 2026 10:33:56 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 6 Mar
- 2026 11:36:19 +0100
-Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 6 Mar
- 2026 11:33:53 +0100
-Message-ID: <00ca27b8-e1ae-475f-8082-92c8fd3da08a@foss.st.com>
-Date: Fri, 6 Mar 2026 11:33:52 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBE621C160
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:34:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772793282; cv=none; b=naRGm84txEQd7apzCJY5XFIBM0kkKqiQs08QFngb5G4W2HHpqCzfM90aeg6U3o1zo7NYnp2ZG4UCgILMBWvr7E4x233lp1eRLGWNc1Kqb7oU4m88kd9Ieam4BFNFLh61tm3/Gr8YTIWHji0YVv+MG8QEgGJF7r5mcG0khupTVaw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772793282; c=relaxed/simple;
+	bh=+zOzOlL8vyWgdMGmYx4ROrBCU7Rz9pYzTFon1zhtWeY=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=BoiTkoVn9K5uj7zRHgJOUwnSXuOZ5sFGig64a3xQmrx9vINMhl+PN/txK5+V8Pt+H5u4LGEB4Qdl/KBiwI6GZZ2QZrs+xl2PMVXi6agz1kWx6YS8rT6hDUNaZARQqtCdRBK2wAvefya2V6qxzYYMJ+TO68urgQORhT4oDXbMN3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kUrNjmir; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-48374014a77so109487035e9.3
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:34:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772793279; x=1773398079; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vkkHpa9La9cb+M6Z0UUZsGUfrfqDbpK8tOGQLDZgWkU=;
+        b=kUrNjmirc7Ze9CBsa1idBE/jpAukZup7OAaHTupOoEV753ZCazl3HpeiXnMrkeMMus
+         g+ZS3p48AYw5i8ua98R7k81FDkdAim+XD3vzlR84ZVSougLrqVHb97bMe04ciubVHBb5
+         p3vNGV358IUse8AleXFjog2y4ti0DyJAYKnvzzLHhf9BFHyYX+ULxhwC2sBeGN/R5OaT
+         6+ThZbMvH2I5uloY9WUDXl/TC+8fXJgM23mCDmP7wErH6oVVq07KftDPl9Qa+ut/d/+a
+         4nqeGMp8OK9z75392+SrREYpvZFbOC8y2EP6KcXfmelQRbtFXnDIJCaf33ulNOgovJbu
+         3jaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772793279; x=1773398079;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vkkHpa9La9cb+M6Z0UUZsGUfrfqDbpK8tOGQLDZgWkU=;
+        b=wjD4r91HI193O1RY0a98IzGH+frwPm5Pvmby6K/nB8AugASthF3q2cv/oq3GFsmqGf
+         uzharWAs0E4s283F54RX30SCzmJUh51iPQFGQG5MA+zxlBUZqsmLeAdONgjCf19uyjwR
+         esS8v8e3APH6k1tW01ms7VVmHYB/yX58LhQtRat1uWeSXnA/9H8FWNBoFP5MKSP/92qX
+         JuH8oAZWlEzKwthE6UjHnPQabo57dCjFipf27DkaV2I2QeYWJGr/Af5FrtvVYOUitEOj
+         u1eJGV4BrQwVW1nZp5jphDbNOh8LTH/7W4SEr4+12CxaF0Qylh5PKn0lUBEUFD31okR2
+         UydQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXMqtPJMg1hgl1a0crGqybPKjgcGXHhb2twMNbLCvnJ14A7zQyLFyvHLeKIuQ2BpqvhxGW1lXOzBu7u@vger.kernel.org
+X-Gm-Message-State: AOJu0YxuYrCr8P7Mc01/4iyOHqUvJq96y5cNJofGIIWWEG+vONTGm8hZ
+	9XmAtdkiekKHxrJl7khrw84zOGL78PJFESbClvaquCrdkotGUF9Rcvrmfm/uemrpFMM=
+X-Gm-Gg: ATEYQzyamt/yd6t7fW7pIZy91Q7eNpoOnPxDV938aBIx8Gs6dIXI/feSqxh6K2hc4N5
+	HRNgnvRp9i9O5hnU+lpMltlpBmkkv3iUM5P2+EE/u/f9deoQeD1U9TPipxSmOdN/q/56ecpzBc0
+	Xd+z7dEa4WSG4aYFGXEaJ9ldGr7FJsIpzQ8VohETULQ8m6kMmB06jXTQfbLQ8/KW0BGcnJ7DZyD
+	0vnZg+xjqiPXfI8B+5EeVMlJC+EZZcyPySP8XllrI2jFb/Lw8HBkatL9KlnxIN/sK6C2+9GfBjw
+	I9EwYDM0W4A4IWZg+7fMJR56E/Q+d0aPv0IqOqBKkavs+pjQc5PmxuYr3X9hMzwlZDhokNSR/fA
+	K2AN67r8ylwoKxj4ftoAQcKdjBHeyMOry1zXJqEzjkXWRKo/Tgg6kDSHesL0/8HxI2nbMDxYa00
+	fkotzeXkEOwMkmV2GMsQ5paxOBpZCOmcZBQqlHmedYADIJcijI4E5mO9afJ/WCclLBqmYnlT31c
+	TKd
+X-Received: by 2002:a05:600c:8184:b0:480:6999:27ec with SMTP id 5b1f17b1804b1-48526930cdbmr28598765e9.13.1772793278683;
+        Fri, 06 Mar 2026 02:34:38 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:106d:1080:cbfe:649:7f17:8b95? ([2a01:e0a:106d:1080:cbfe:649:7f17:8b95])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48527686bcesm39742425e9.7.2026.03.06.02.34.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Mar 2026 02:34:38 -0800 (PST)
+Message-ID: <fb75023e-8fac-49c1-a8b7-2eb8b70fda3e@linaro.org>
+Date: Fri, 6 Mar 2026 11:34:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,164 +88,189 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/12] bus: add stm32 debug bus and coresight support
- for stm32mp1x platforms
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>, Suzuki K Poulose
-	<suzuki.poulose@arm.com>, Mike Leach <mike.leach@linaro.org>, James Clark
-	<james.clark@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
-	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, "Linus
- Walleij" <linusw@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	<cristian.marussi@arm.com>, <jens.wiklander@linaro.org>,
-	<etienne.carriere@foss.st.com>, Sudeep Holla <sudeep.holla@kernel.org>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	Antonio Borneo <antonio.borneo@foss.st.com>
-References: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 0/5] phy: qcom: qmp-pcie: Add PCIe Gen5 8-lane bifurcation
+ support for Glymur
+To: Qiang Yu <qiang.yu@oss.qualcomm.com>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260304-glymur_gen5x8_phy-v1-0-849e9a72e125@oss.qualcomm.com>
+ <42a9dd4d-eb96-42c0-b836-dcd7cb9405ff@oss.qualcomm.com>
+ <aaqdv7Zx5AODzg6P@hu-qianyu-lv.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <aaqdv7Zx5AODzg6P@hu-qianyu-lv.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PEPF0001E9C4:EE_|VI1PR10MB3327:EE_
-X-MS-Office365-Filtering-Correlation-Id: 599d778c-1f38-42c1-1183-08de7b6bdebd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|376014|7416014|82310400026|921020|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	OKyi5QyjofA+aNQzBjI5hcImYdWMkhboK/5S99Ro2Qz9eKTtpp6qDfDGlRZMepXkXHrb9ECGqe0WxLw0BumFydz8wXOQt8MAhqL1Hj0nUn79qR9uq87vqfsV7gTBNkUcDc/GPJfL5rd2wG9RSg3wtubQu/BpgkXDi0wY5wI4SxycyE+AllNl3TtLziEY/QHSVrqsT3xxfh5xey774SI4SUD9wqa/8/y56/XgVwGYXNv7MVT3qRgpfFvszMmNpae0gJlLJtAM6xN3fs3Z0NfuBPM6Se8UPZrtiLjdTJF4ZP7TrXtj6QJzUuupxhyclHZFmAygfqMg/yJKt9xu60shPHuwZSQ8Q0guP5Cf8vxOm5iMptgcwNQm/uzUxjVK30KLU1RZ+xEVwvSq1MWcxjxiWkKPa3ncReL+FjAQChW6CSnRLDiTw+RZeUhppc7PdDydfdbX1q0UnmpAIWhIN3DRdmW8I0iq03KzyMKQxSY/Ky+LZ4eygmzU/TznOvtYGC8iDw/bMMZ+3vhYcxUD4taXt+iRlDtgby34SNMqRRa8PkuT10mOv3jQpLaivh0jgeqBLjOXPjOenVmseIR4nHZmtihItIEPAas6LEp0Z7ZD6dbBkAkNqLmoTfHg89tjmm+Axl9/gu0RU6PHcEkYvbEZgU+ztN8tV6Aus4TWBSsLPXiCFhvy5YNi8iqPa0tcPBvzQ7lxR4jUqh9AOs8200LWqvlsZz5Tr+xMsjajZN1TDA+e1noD4LbQDFH8PvLDtOTTlwCfpnV5AEOEDacZovIB2v0Bz+e/459IwhPlaB1l+1U8aYRz+T2V/IiVZauTlyy80U/6sDx+B7AgGHSIYBk1kQ==
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(376014)(7416014)(82310400026)(921020)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	f+WdFzAXdXaW9R4ZQSF2rPAF+L/e1yMvJjWu1vQER1JQT87ahnyal+jME9Zz5EwAMp5dWQADAO/7JNCOXOzVkSqVBvOy9h5maqhT66uW8+RGJENumXXSYW2c4kE4plXUMdEE3o1IELNFm9+ZG4x/AIzu6JBiGEI3MUWqPks8ZSUMQG1dy/1EXYEjtD2yhnMAFdwF8RyHoqoUt/I7z1ajXfEMStc3CzB5y6sPgtUIkWW6nbTIPgbjs9CvX7CA2XvjCpBF4yd5DHPvpSLaZIhhQoFk7NLvYFF0z/uFK513eft0SdctKV0M7sLnl3gS7lxSb3EfuyV6Yu2G15I/yGqauHXXSmO5mlZwzOXL8fARVFIpVBVPMU41x3CNQz7IsfBbSl80zPzTPFyx5mxcn4iLvQzZG4xgdLKL365JfYuBDlVCJx6azRw6YtzgfD08s2WJ
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 10:33:56.0673
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 599d778c-1f38-42c1-1183-08de7b6bdebd
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DU2PEPF0001E9C4.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3327
-X-Rspamd-Queue-Id: 2BD2B21EE47
+X-Rspamd-Queue-Id: ADBDB21ED93
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271979-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[foss.st.com,arm.com,linaro.org,kernel.org,linux.dev,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.torgue@foss.st.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-271980-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Action: no action
 
-Hi Linus
+On 3/6/26 10:26, Qiang Yu wrote:
+> On Thu, Mar 05, 2026 at 10:14:05AM +0100, Konrad Dybcio wrote:
+>> On 3/4/26 9:21 AM, Qiang Yu wrote:
+>>> This patch series adds support for PCIe Gen5 8-lane bifurcation mode on
+>>> the Glymur SoC's third PCIe controller. In this configuration, pcie3a PHY
+>>> acts as leader and pcie3b PHY as follower to form a single 8-lane PCIe
+>>> Gen5 interface.
+>>>
+>>> To support 8-lanes mode, this patch series add multiple power domain and
+>>> multi nocsr reset infrastructure as the hardware programming guide
+>>> specifies a strict initialization sequence for bifurcation mode that
+>>> requires coordinated multi-PHY resource management:
+>>>
+>>> 1. Turn on both pcie3a_phy_gdsc and pcie3b_phy_gdsc power domains
+>>> 2. Assert both pcie3a and pcie3b nocsr resets, then deassert them together
+>>> 3. Enable all pcie3a PHY clocks and pcie3b PHY aux clock (bifur_aux)
+>>> 4. Poll for PHY ready status
+>>
+>> I think we never concluded the discussion where I suggested the
+>> bifurcated PHY may be better expressed as a single node with
+>> #phy-cells = <1>, removing the need for duplicated resource references
 
-On 2/26/26 11:30, Gatien Chevallier wrote:
-> Stm32 SoCs embed debug peripherals such as Coresight. These peripherals
-> can monitor the activity of the cores. Because of that, they can be
-> used only if some features in the debug configuration are enabled.
-> Else, errors or firewall exceptions can be observed. Similarly to
-> the ETZPC(on stm32mp1x platforms) or the RIFSC(on stm32mp2x platforms),
-> debug-related peripherals access can be assessed at bus level to
-> prevent these issues from happening.
-> 
-> The debug configuration can only be accessed by the secure world.
-> That means that a service must be implemented in the secure world for
-> the kernel to check the firewall configuration. On OpenSTLinux, it is
-> done through a Debug access PTA in OP-TEE [1].
-> To represent the debug peripherals present on a dedicated debug bus,
-> create a debug bus node in the device tree and the associated driver
-> that will interact with this PTA.
-> 
-> [1]: https://github.com/OP-TEE/optee_os/pull/7673
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
-> Changes in v6:
-> - Fix use of platform_driver_register() in probe of the stm32 debug bus
->    (unusable since dc23806a7c47 ("driver core: enforce device_lock for driver_match_device()"))
-> - Added all review tags
-> - Link to v5: https://lore.kernel.org/r/20260123-debug_bus-v5-0-90b670844241@foss.st.com
-> 
-> Changes in v5:
-> - Take into account Rob's comments for the debug bus documentation
-> - Link to v4: https://lore.kernel.org/r/20260122-debug_bus-v4-0-28f0f2a25f2c@foss.st.com
-> 
-> Changes in v4:
-> - Remove reg property from the debug bus and use ranges.
-> - Link to v3: https://lore.kernel.org/r/20260121-debug_bus-v3-0-4d32451180d0@foss.st.com
-> 
-> Changes in v3:
-> - Collect Rob's review tags
-> - Add stm32_firewall_get_grant_all_access() API and use it in the HDP
->    driver.
-> - Link to v2: https://lore.kernel.org/r/20260114-debug_bus-v2-0-5475c7841569@foss.st.com
-> 
-> Changes in v2:
-> - Fix kernel robot error by documenting the access-controllers property
->    in the missing coresight peripheral binding files.
-> - List the access controller items for HDP
-> - Various minor fixes in the debug bus binding file.
-> - Remove clock documentation and its presence in the DT node and driver.
->    Bus clock will be handled by the child nodes' drivers.
-> - stm32 debug bus driver:
-> 	- Depopulate the bus when .remove() is called
-> 	- Remove trace when error on devm_kzalloc() as the trace
-> 	function does nothing in case of ENOMEM.
-> 	- Remove use of of_match_ptr()
-> 	- Use tee bus callbacks
-> - Link to v1: https://lore.kernel.org/r/20260109-debug_bus-v1-0-8f2142b5a738@foss.st.com
-> 
-> ---
-> Gatien Chevallier (12):
->        dt-bindings: document access-controllers property for coresight peripherals
->        dt-bindings: pinctrl: document access-controllers property for stm32 HDP
->        dt-bindings: bus: document the stm32 debug bus
->        bus: stm32_firewall: allow check on different firewall controllers
->        bus: stm32_firewall: add stm32_firewall_get_grant_all_access() API
->        drivers: bus: add the stm32 debug bus driver
->        arm: dts: stm32: introduce the debug bus for stm32mp1x platforms
->        arm: dts: stm32: enable the debug bus on stm32mp1x boards
->        arm: dts: stm32: enable CoreSight on stm32mp15xx-dkx boards
->        arm: dts: stm32: enable CoreSight on the stm32mp157c-ev1 board
->        arm: dts: stm32: enable CoreSight on the stm32mp135f-dk board
->        pinctrl: stm32: add firewall checks before probing the HDP driver
-> 
+DT requires strict hardware description, no abstraction for HW, so if there's
+2 PHYs, then add 2 separate phys and reference them from the PCie controller.
 
-I plan to take DT & bus driver patches in my tree. Do you plan to take 
-pinctrl one or would you prefer I take it also ?
+On platforms where you want 2x4, then add 2 pcie_ports using 2 phys, on platforms
+with 1x8 a single pcie_port with 2 phys.
 
-regards
-Alex
+Neil
 
+>>
+> I understand your suggestion would look like below. I agree that the
+> unified PHY approach being more elegant from a device tree perspective,
+> provide better DT flexibility and eliminate the need for different
+> compatibles and dupicated resources between 1x8 and 2x4 modes.
+> 
+> However, this will include implementation complexity to phy driver.
+> The driver would need conditional logic to selectively enable different
+> clocks/resets based on the PHY parameter and maintain mode-specific
+> resource arrays. There's also the issue that assigned-clocks
+> GCC_PCIE_3A_PHY_RCHNG_CLK and GCC_PCIE_3B_PHY_RCHNG_CLK will be set before
+> probe no matter which mode is used, even though in 1x8 mode or only one of
+> them is actually needed. For pipe clock outputs, only pcie3a_pipe_clk would
+> be needed in 1x8 mode while pcie3b_pipe_clk would be unused. For
+> powerdomain, we also need to add additional logic to attach and turn
+> on/off them.
+> 
+> While these challenges could be resolved, I'm not sure the benefits
+> justify the added complexity.
+> 
+> pcie3_unified_phy {
+>      compatible = "qcom,glymur-qmp-gen5-pcie-phy";
+>      reg = <0 0x00f00000 0 0x10000>, <0 0x00f10000 0 0x10000>;  /* Both PHY ranges */
+> 
+>      clocks = <&gcc GCC_PCIE_PHY_3A_AUX_CLK>,
+>               <&gcc GCC_PCIE_3A_CFG_AHB_CLK>,
+>               <&tcsr TCSR_PCIE_3_CLKREF_EN>,
+>               <&gcc GCC_PCIE_3A_PHY_RCHNG_CLK>,
+>               <&gcc GCC_PCIE_3A_PIPE_CLK>,
+>               <&gcc GCC_PCIE_PHY_3B_AUX_CLK>,
+>               <&gcc GCC_PCIE_3B_CFG_AHB_CLK>,
+>               <&gcc GCC_PCIE_3B_PHY_RCHNG_CLK>,
+>               <&gcc GCC_PCIE_3B_PIPE_CLK>,
+>               <&gcc GCC_PCIE_3B_PIPE_DIV2_CLK>;
+> 
+>      power-domains = <&gcc GCC_PCIE_3A_PHY_GDSC>,
+>                      <&gcc GCC_PCIE_3B_PHY_GDSC>;
+> 
+>      resets = <&gcc GCC_PCIE_3A_PHY_BCR>,
+>               <&gcc GCC_PCIE_3A_NOCSR_COM_PHY_BCR>,
+>               <&gcc GCC_PCIE_3B_PHY_BCR>,
+>               <&gcc GCC_PCIE_3B_NOCSR_COM_PHY_BCR>;
+> 
+> 	#clock-cells = <1>;
+>      clock-output-names = "pcie3a_pipe_clk", "pcie3b_pipe_clk";
+>      assigned-clocks = <&gcc GCC_PCIE_3A_PHY_RCHNG_CLK>,
+>                        <&gcc GCC_PCIE_3B_PHY_RCHNG_CLK>;
+>      assigned-clock-rates = <100000000>, <100000000>;
+> 
+>      #phy-cells = <1>;  /* Parameter: 0=PHY_A, 1=PHY_B, 2=UNIFIED_8LANE */
+> };
+> 
+> For 2x4 mode (independent 4-lane PHYs):
+> &pcie3a {
+>      phys = <&pcie3_unified_phy PHY_A>;  /* PHY A only */
+>      status = "okay";
+> };
+> 
+> &pcie3b {
+>      phys = <&pcie3_unified_phy PHY_B>;  /* PHY B only */
+>      status = "okay";
+> };
+> 
+> For 1x8 mode (unified 8-lane PHY):
+> 
+> &pcie3a {
+>      phys = <&pcie3_unified_phy PHY_AB>;
+>      num-lanes = <8>;
+>      status = "okay";
+> };
+> 
+> &pcie3b {
+>      status = "disabled";
+> };
+> 
+> - Qiang Yu
 
 
