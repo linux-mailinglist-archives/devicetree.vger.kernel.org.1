@@ -1,265 +1,250 @@
-Return-Path: <devicetree+bounces-271978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271979-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMtpIxKtqmnjVAEAu9opvQ
-	(envelope-from <devicetree+bounces-271978-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:31:46 +0100
+	id SAZIMmyuqmmLVQEAu9opvQ
+	(envelope-from <devicetree+bounces-271979-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:37:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB73421EC52
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:31:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD2B21EE47
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:37:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CEE21306DFF2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:30:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7318D301FA73
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A39BF381AE7;
-	Fri,  6 Mar 2026 10:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5452DF6E6;
+	Fri,  6 Mar 2026 10:34:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kd3VvyYW"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="oQEe+1/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010052.outbound.protection.outlook.com [52.101.69.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9933437D11A
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:30:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772793009; cv=none; b=W2pD47ToWvLBaB+rUX3/3plLHd2OLpPWTsVitHfcqPjPCmxWa2rNP+jqygTqdKqm2eXhNp6f8LAmId8HiYAgdeeH8URtpkRQLFHRPLSdtHAiJDA7FligT5TC8hEGXq6FK1o0wTjGX9AZAjcnCAYGeCHNzP4puimiB/NQbS8R9P0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772793009; c=relaxed/simple;
-	bh=NS+1Od4aVlTq9Wx7bCSooHKRSz+R9G4t7LsBp+nXiI4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=vEV9AU/rPcPW5oFX09FvA8ecD793VXLuqXc9PwuAJJC9tFBKnIa7NmQgy/fewZZsnciNgHMX38TVO+nDfsnS1RqKO4VmYnhRXBYJ3kmBTMqqhr5gv5KVhonQRI9TU8emPg0L3yHTc48fUdCkxslRMEgnjPUCr/kGQ6WPR3/5h40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kd3VvyYW; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b941d924534so120590466b.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:30:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772793000; x=1773397800; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z+RpBQOuQW07kF7dgJNXDXfeT4g3XJJZS09GBpqTzzg=;
-        b=kd3VvyYWfgTIZljFCayYYyW27MR5lMv1Y9tXR/l0Y22CxXXBuiiuhKWVsYJ5UgKgkn
-         2PyZV7X/8pOzdzZEVX+m99zJL/l+l7zJ3rTS8mh8hUFog/a4xTp9gWTj9kNUH0KfoNWs
-         SX8DrchN2PeZTtICDSiVFKufVGNiBLk8V+Kvz9A2Gl0x6K361REAh0zikTVZUHZ9KgB7
-         QhuXdF+iZ5V3/4rzBRomQgPfus9RTFGj5R18nrkbC2YF7Ycj5r/iRCzbfOPtZ4Y1b5d/
-         DgyQwb/B0+mcojCD1JrLbqmzNxjANPKsn6b35jCoIwl/C+GUwsdBRZJ232ClR+Y2bCIL
-         zi0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772793000; x=1773397800;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Z+RpBQOuQW07kF7dgJNXDXfeT4g3XJJZS09GBpqTzzg=;
-        b=fpuK+aSEI8cwainhFnt80VTBox7orOzqa6d9DWadBxm1xu+vFIZrzRgqCA1V1sbOqu
-         zmw+m5QBkdK2CMiHbCBYd8tOyv8X63M9PehARtcdiEtUKZPHx66Xk5XJh1ttHzPlamfa
-         lQf+LLgnZGjA7C2afPbXFLGkUHQDXVDeDKKcYmtdAh/zerptCCjClPJYtoC7IELMkqvz
-         dt/R9YK7ytvVrjxrjmQfEWdsVFs65EqmEn0/U+YeGBMQhnnrwdC73sgPOk1Dnsxr3bVz
-         nTVf91r7BJFA/uaLRf9Nik5IYQfMljfqrt95Pfq5IQ4o/55eqPJR5fYdz+FV8gtYlBz1
-         YW2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVns+0z59461UAUzJtBBgBwLjI9ZuLVz4ZK/i7A5P2TFhBmdHr5zs43RJOygXTFMRd3NMpZ/WmTCv5l@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzh/D+syguUwIRMkmYZvxzwYy3peibDmMZyFiB+QK77rM7wKAVk
-	sKO/VKf+WqmRl9jKEgWaJONen974nom35mrfnOWnbnTkoH1b543CxXSadOWVKJtukVM=
-X-Gm-Gg: ATEYQzxaCGwZ42Bwb1cLaxf691QirsiiHdGaRO/I9tCJRRVCDZVaoF64HZ1Lfph0nbh
-	w2ZpQBojq33Qgw4Q25QJrzlqWgGTHMZlFvNV8eJG4eMnIdvpn3AR7TgsOBbkqKjYxRe8A6aFLeJ
-	zXqaolimshtaxcRLwOtIbD332u/VRIMNFQO2GsyqdTgIic4O51C3YKk38WLzzgNfR2GEzaEDhkh
-	9b+pqLJqf7Dv7F3W9vXQoIPD/OALXrDce/qBSuqYH+2aHYh/6ZPVQ5p+rdzu66SumfRIWlXNXf8
-	Idss4vyEtCVdHM+Jdc+RKifvcRoOuIF8FsMaRRafI+DIhh3tvQYsLxspLwQrj3rR8dd8ZiRCx+N
-	V+Pl9RZuboPKiuUKINnk+86Hzw5lCTDhzB4ylZJhBx0AZunVIKO1fE0XbD6Qz+1CrEexWwGECGg
-	2jrPtyUjyRGYdR7LDdxuFhFdonLlUaHPksl6aXndB+twVEiqFGqp/Svhgt9iHzoljC8uSfse1XI
-	pn2lE/5kWdZjqE=
-X-Received: by 2002:a17:906:f59a:b0:b93:4d73:e8af with SMTP id a640c23a62f3a-b942e0315e5mr100179566b.58.1772793000481;
-        Fri, 06 Mar 2026 02:30:00 -0800 (PST)
-Received: from puffmais2.c.googlers.com (221.210.91.34.bc.googleusercontent.com. [34.91.210.221])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef8c95csm42907266b.21.2026.03.06.02.30.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 02:30:00 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 06 Mar 2026 10:30:01 +0000
-Subject: [PATCH v7 10/10] pmdomain: samsung: implement domain-supply
- regulator
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF50D21C160;
+	Fri,  6 Mar 2026 10:34:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772793244; cv=fail; b=E8qrFf/qIlnEbYj84Rzypr5+sZXvoSStDHhUYooMEhAYly+tRNnCW2Ykv0AY2Fi76lHw9gp70vw8PmzfzBYGNXsRmabvVNED2bLBNJetJdij5e6FO+r1kLlc6ThLCBgWczLUXGSwBCCZRYCvRTUQnd7kXT4A9MV0wKW560PUao8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772793244; c=relaxed/simple;
+	bh=k4Ae5MsBUYY8MYT6lHQ3cZ9rVHBmvkIc+Cx1bwmSGBY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JdRT+nLahb19FJERFnbh16kKx27cld7EiDbFo/Suoy6EhdDPi2TlQKGdYVQb58UvXe+XG38QtyVWkMKe7wXofaClGkKWQhWcS3i2RtFyIYjDpt9gSUyqpA0kcAtz/K9sjOWTMB1JutKWJVAAosyGGdl2clvatxlcr8jwX7qPDKA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=oQEe+1/k; arc=fail smtp.client-ip=52.101.69.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fSbQdIY45kyc4Sl0HLQ8jNCtWj5G5hI3PO2AThZUH7wCQIM3v+AeG58KjUceABtv0iLnyo9IUotfrFoIx203V7sdZjMvfHaQVHT8JUyBNcqg8aR4T/V4bOMp1isLSEJA9ztVc7kWzpA3zZttyJIc/rC/8BuiPR0O0t/YLSpsAiFWhQN9SdlqUz7hSRls183sReSr/mqptChpaS5mFsDIDeNNf1iSSwXJGgxkbQmHMAze1aE4FsqlANLJfQWKtlqsZEbQgSyznNGCSU0+IX5UH4wZjb0wxdIbBxc3kD85M95tLmsBXRhNUNKwCutTsyqhh1Lt1gNnlG3wMhQtF/B5XQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EIDMk5sYIxM9jDjgEtc6H1BIuvRMY37EOJ0pNtPs2r0=;
+ b=VhAhQSn9MD8hQo+pGKofPsYE71LlsUQ0WNFvDvwT37h4U5zkrsoiynAc7bDkkHottMpUD9HbkK7SOUPScyDjMACc6K1aAc7isLeML4IMQDi5bxBzXheuU38rJPNUfSWnq3SbIx5ijx6XGshYzkgeLyrNK7477YvBr1dOfmfakAzoXVPxEpq2MN9TlogCytTBBjK8B6W6TTbkxBd1pGGNeEescfTK2eEs9BvY81LqbOKJ7bkNY9xYm8tVmWCrXlIfqLn5ESe+2kkx2fqzpYS+OJiK3rOTkuUnkuus/8n2itGdJnr6pFL4zd2OSkJU2i4yDtAaGFprrgWIVpJZvF5beA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.59) smtp.rcpttodomain=arm.com smtp.mailfrom=foss.st.com; dmarc=fail
+ (p=none sp=none pct=100) action=none header.from=foss.st.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EIDMk5sYIxM9jDjgEtc6H1BIuvRMY37EOJ0pNtPs2r0=;
+ b=oQEe+1/kOZNo2W9T7vK3lmZAOHcyL2E0WJJqtBSkPyOqLiLmfSBqpOFS1yLmG3hp9Qwx0hqHgCCW6EYxgtrspP9hU5y364yIYg3NEsNKrC8csOvkOaMUTf4T82s1bctRxuw8oCD3USPavnTo4NAGANzMFHX+5hyUs+3g2Nv8qrqVV9JE1Yv/qCI5C0MWRrV3SDHBOtSnhzyAIMj+TucFkjpqGHG2Jtxffb6ekLKWg4mJS9ndCUq/kz4mOYLedddbuqnncGGS5FRoFHmBDnvLSndB5ku5x4QF2KjfuDt+dUBeqElXgiaz6v1m6RbMDOFshV1ipKBtGRQHkjQ8KkUGiw==
+Received: from DU2PR04CA0173.eurprd04.prod.outlook.com (2603:10a6:10:2b0::28)
+ by VI1PR10MB3327.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:803:12e::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
+ 2026 10:33:56 +0000
+Received: from DU2PEPF0001E9C4.eurprd03.prod.outlook.com
+ (2603:10a6:10:2b0:cafe::1f) by DU2PR04CA0173.outlook.office365.com
+ (2603:10a6:10:2b0::28) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.23 via Frontend Transport; Fri,
+ 6 Mar 2026 10:33:56 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.59; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.59) by
+ DU2PEPF0001E9C4.mail.protection.outlook.com (10.167.8.73) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Fri, 6 Mar 2026 10:33:56 +0000
+Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
+ (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 6 Mar
+ 2026 11:36:19 +0100
+Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
+ (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Fri, 6 Mar
+ 2026 11:33:53 +0100
+Message-ID: <00ca27b8-e1ae-475f-8082-92c8fd3da08a@foss.st.com>
+Date: Fri, 6 Mar 2026 11:33:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260306-gs101-pd-v7-10-03f7c7965ba5@linaro.org>
-References: <20260306-gs101-pd-v7-0-03f7c7965ba5@linaro.org>
-In-Reply-To: <20260306-gs101-pd-v7-0-03f7c7965ba5@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: EB73421EC52
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 00/12] bus: add stm32 debug bus and coresight support
+ for stm32mp1x platforms
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>, Suzuki K Poulose
+	<suzuki.poulose@arm.com>, Mike Leach <mike.leach@linaro.org>, James Clark
+	<james.clark@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
+	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, "Linus
+ Walleij" <linusw@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	<cristian.marussi@arm.com>, <jens.wiklander@linaro.org>,
+	<etienne.carriere@foss.st.com>, Sudeep Holla <sudeep.holla@kernel.org>
+CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+	Antonio Borneo <antonio.borneo@foss.st.com>
+References: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
+ (10.75.128.133)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PEPF0001E9C4:EE_|VI1PR10MB3327:EE_
+X-MS-Office365-Filtering-Correlation-Id: 599d778c-1f38-42c1-1183-08de7b6bdebd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700016|376014|7416014|82310400026|921020|13003099007;
+X-Microsoft-Antispam-Message-Info:
+	OKyi5QyjofA+aNQzBjI5hcImYdWMkhboK/5S99Ro2Qz9eKTtpp6qDfDGlRZMepXkXHrb9ECGqe0WxLw0BumFydz8wXOQt8MAhqL1Hj0nUn79qR9uq87vqfsV7gTBNkUcDc/GPJfL5rd2wG9RSg3wtubQu/BpgkXDi0wY5wI4SxycyE+AllNl3TtLziEY/QHSVrqsT3xxfh5xey774SI4SUD9wqa/8/y56/XgVwGYXNv7MVT3qRgpfFvszMmNpae0gJlLJtAM6xN3fs3Z0NfuBPM6Se8UPZrtiLjdTJF4ZP7TrXtj6QJzUuupxhyclHZFmAygfqMg/yJKt9xu60shPHuwZSQ8Q0guP5Cf8vxOm5iMptgcwNQm/uzUxjVK30KLU1RZ+xEVwvSq1MWcxjxiWkKPa3ncReL+FjAQChW6CSnRLDiTw+RZeUhppc7PdDydfdbX1q0UnmpAIWhIN3DRdmW8I0iq03KzyMKQxSY/Ky+LZ4eygmzU/TznOvtYGC8iDw/bMMZ+3vhYcxUD4taXt+iRlDtgby34SNMqRRa8PkuT10mOv3jQpLaivh0jgeqBLjOXPjOenVmseIR4nHZmtihItIEPAas6LEp0Z7ZD6dbBkAkNqLmoTfHg89tjmm+Axl9/gu0RU6PHcEkYvbEZgU+ztN8tV6Aus4TWBSsLPXiCFhvy5YNi8iqPa0tcPBvzQ7lxR4jUqh9AOs8200LWqvlsZz5Tr+xMsjajZN1TDA+e1noD4LbQDFH8PvLDtOTTlwCfpnV5AEOEDacZovIB2v0Bz+e/459IwhPlaB1l+1U8aYRz+T2V/IiVZauTlyy80U/6sDx+B7AgGHSIYBk1kQ==
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(376014)(7416014)(82310400026)(921020)(13003099007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	f+WdFzAXdXaW9R4ZQSF2rPAF+L/e1yMvJjWu1vQER1JQT87ahnyal+jME9Zz5EwAMp5dWQADAO/7JNCOXOzVkSqVBvOy9h5maqhT66uW8+RGJENumXXSYW2c4kE4plXUMdEE3o1IELNFm9+ZG4x/AIzu6JBiGEI3MUWqPks8ZSUMQG1dy/1EXYEjtD2yhnMAFdwF8RyHoqoUt/I7z1ajXfEMStc3CzB5y6sPgtUIkWW6nbTIPgbjs9CvX7CA2XvjCpBF4yd5DHPvpSLaZIhhQoFk7NLvYFF0z/uFK513eft0SdctKV0M7sLnl3gS7lxSb3EfuyV6Yu2G15I/yGqauHXXSmO5mlZwzOXL8fARVFIpVBVPMU41x3CNQz7IsfBbSl80zPzTPFyx5mxcn4iLvQzZG4xgdLKL365JfYuBDlVCJx6azRw6YtzgfD08s2WJ
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 10:33:56.0673
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 599d778c-1f38-42c1-1183-08de7b6bdebd
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DU2PEPF0001E9C4.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3327
+X-Rspamd-Queue-Id: 2BD2B21EE47
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
+	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,samsung.com,linaro.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-271978-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271979-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[foss.st.com,arm.com,linaro.org,kernel.org,linux.dev,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[foss.st.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[alexandre.torgue@foss.st.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[8]
 X-Rspamd-Action: no action
 
-Some power domains on Exynos are fed by a regulator rail and therefore
-regulator control needs be implemented for Exynos power domains.
+Hi Linus
 
-On Google gs101, HSI0 (USB) is one example of such a power domain.
+On 2/26/26 11:30, Gatien Chevallier wrote:
+> Stm32 SoCs embed debug peripherals such as Coresight. These peripherals
+> can monitor the activity of the cores. Because of that, they can be
+> used only if some features in the debug configuration are enabled.
+> Else, errors or firewall exceptions can be observed. Similarly to
+> the ETZPC(on stm32mp1x platforms) or the RIFSC(on stm32mp2x platforms),
+> debug-related peripherals access can be assessed at bus level to
+> prevent these issues from happening.
+> 
+> The debug configuration can only be accessed by the secure world.
+> That means that a service must be implemented in the secure world for
+> the kernel to check the firewall configuration. On OpenSTLinux, it is
+> done through a Debug access PTA in OP-TEE [1].
+> To represent the debug peripherals present on a dedicated debug bus,
+> create a debug bus node in the device tree and the associated driver
+> that will interact with this PTA.
+> 
+> [1]: https://github.com/OP-TEE/optee_os/pull/7673
+> 
+> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> ---
+> Changes in v6:
+> - Fix use of platform_driver_register() in probe of the stm32 debug bus
+>    (unusable since dc23806a7c47 ("driver core: enforce device_lock for driver_match_device()"))
+> - Added all review tags
+> - Link to v5: https://lore.kernel.org/r/20260123-debug_bus-v5-0-90b670844241@foss.st.com
+> 
+> Changes in v5:
+> - Take into account Rob's comments for the debug bus documentation
+> - Link to v4: https://lore.kernel.org/r/20260122-debug_bus-v4-0-28f0f2a25f2c@foss.st.com
+> 
+> Changes in v4:
+> - Remove reg property from the debug bus and use ranges.
+> - Link to v3: https://lore.kernel.org/r/20260121-debug_bus-v3-0-4d32451180d0@foss.st.com
+> 
+> Changes in v3:
+> - Collect Rob's review tags
+> - Add stm32_firewall_get_grant_all_access() API and use it in the HDP
+>    driver.
+> - Link to v2: https://lore.kernel.org/r/20260114-debug_bus-v2-0-5475c7841569@foss.st.com
+> 
+> Changes in v2:
+> - Fix kernel robot error by documenting the access-controllers property
+>    in the missing coresight peripheral binding files.
+> - List the access controller items for HDP
+> - Various minor fixes in the debug bus binding file.
+> - Remove clock documentation and its presence in the DT node and driver.
+>    Bus clock will be handled by the child nodes' drivers.
+> - stm32 debug bus driver:
+> 	- Depopulate the bus when .remove() is called
+> 	- Remove trace when error on devm_kzalloc() as the trace
+> 	function does nothing in case of ENOMEM.
+> 	- Remove use of of_match_ptr()
+> 	- Use tee bus callbacks
+> - Link to v1: https://lore.kernel.org/r/20260109-debug_bus-v1-0-8f2142b5a738@foss.st.com
+> 
+> ---
+> Gatien Chevallier (12):
+>        dt-bindings: document access-controllers property for coresight peripherals
+>        dt-bindings: pinctrl: document access-controllers property for stm32 HDP
+>        dt-bindings: bus: document the stm32 debug bus
+>        bus: stm32_firewall: allow check on different firewall controllers
+>        bus: stm32_firewall: add stm32_firewall_get_grant_all_access() API
+>        drivers: bus: add the stm32 debug bus driver
+>        arm: dts: stm32: introduce the debug bus for stm32mp1x platforms
+>        arm: dts: stm32: enable the debug bus on stm32mp1x boards
+>        arm: dts: stm32: enable CoreSight on stm32mp15xx-dkx boards
+>        arm: dts: stm32: enable CoreSight on the stm32mp157c-ev1 board
+>        arm: dts: stm32: enable CoreSight on the stm32mp135f-dk board
+>        pinctrl: stm32: add firewall checks before probing the HDP driver
+> 
 
-While at it, add a to_exynos_pd() to avoid direct use of
-container_of() in various additional places, and update existing code
-to use it.
+I plan to take DT & bus driver patches in my tree. Do you plan to take 
+pinctrl one or would you prefer I take it also ?
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- drivers/pmdomain/samsung/exynos-pm-domains.c | 53 +++++++++++++++++++++++++---
- 1 file changed, 48 insertions(+), 5 deletions(-)
+regards
+Alex
 
-diff --git a/drivers/pmdomain/samsung/exynos-pm-domains.c b/drivers/pmdomain/samsung/exynos-pm-domains.c
-index f59986b56213..ed7a5807555b 100644
---- a/drivers/pmdomain/samsung/exynos-pm-domains.c
-+++ b/drivers/pmdomain/samsung/exynos-pm-domains.c
-@@ -20,12 +20,15 @@
- #include <linux/of_address.h>
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
- 
- #define EXYNOS_SMC_CMD_PREPARE_PD_ONOFF		0x82000410
- #define EXYNOS_GET_IN_PD_DOWN			0
- #define EXYNOS_WAKEUP_PD_DOWN			1
- #define EXYNOS_RUNTIME_PM_TZPC_GROUP		2
- 
-+#define to_exynos_pd(gpd) container_of_const(gpd, struct exynos_pm_domain, pd)
-+
- struct exynos_pm_domain_config {
- 	/* Value for LOCAL_PWR_CFG and STATUS fields for each domain */
- 	u32 local_pwr_cfg;
-@@ -39,6 +42,7 @@ struct exynos_pm_domain_config {
- struct exynos_pm_domain {
- 	struct regmap *regmap;
- 	struct device *dev;
-+	struct regulator *supply;
- 	struct generic_pm_domain pd;
- 	const struct exynos_pm_domain_config *cfg;
- 	u32 configuration_reg;
-@@ -64,12 +68,10 @@ static int exynos_pd_access_controller_power(struct exynos_pm_domain *pd,
- 
- static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
- {
--	struct exynos_pm_domain *pd;
-+	struct exynos_pm_domain *pd = to_exynos_pd(domain);
- 	u32 timeout, pwr;
- 	int err;
- 
--	pd = container_of(domain, struct exynos_pm_domain, pd);
--
- 	if (!power_on) {
- 		err = exynos_pd_access_controller_power(pd, power_on);
- 		if (err) {
-@@ -126,14 +128,45 @@ static int exynos_pd_power(struct generic_pm_domain *domain, bool power_on)
- 	return err;
- }
- 
-+static int exynos_pd_regulator_enable(struct regulator *supply)
-+{
-+	return supply ? regulator_enable(supply) : 0;
-+}
-+
-+static int exynos_pd_regulator_disable(struct regulator *supply)
-+{
-+	return supply ? regulator_disable(supply) : 0;
-+}
-+
- static int exynos_pd_power_on(struct generic_pm_domain *domain)
- {
--	return exynos_pd_power(domain, true);
-+	struct exynos_pm_domain *pd = to_exynos_pd(domain);
-+	int ret;
-+
-+	ret = exynos_pd_regulator_enable(pd->supply);
-+	if (ret)
-+		return ret;
-+
-+	ret = exynos_pd_power(domain, true);
-+	if (ret)
-+		exynos_pd_regulator_disable(pd->supply);
-+
-+	return ret;
- }
- 
- static int exynos_pd_power_off(struct generic_pm_domain *domain)
- {
--	return exynos_pd_power(domain, false);
-+	struct exynos_pm_domain *pd = to_exynos_pd(domain);
-+	int ret;
-+
-+	ret = exynos_pd_power(domain, false);
-+	if (ret)
-+		return ret;
-+
-+	/* Ignore regulator errors - the domain was disabled after all. */
-+	exynos_pd_regulator_disable(pd->supply);
-+
-+	return 0;
- }
- 
- static const struct exynos_pm_domain_config exynos4210_cfg = {
-@@ -283,6 +316,16 @@ static int exynos_pd_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	/* get the domain power supply if required */
-+	pd->supply = devm_regulator_get_optional(dev, "domain");
-+	if (IS_ERR(pd->supply)) {
-+		if (PTR_ERR(pd->supply) != -ENODEV)
-+			return dev_err_probe(dev, PTR_ERR(pd->supply),
-+					     "failed to get domain supply");
-+
-+		pd->supply = NULL;
-+	}
-+
- 	/*
- 	 * Some Samsung platforms with bootloaders turning on the splash-screen
- 	 * and handing it over to the kernel, requires the power-domains to be
-
--- 
-2.53.0.473.g4a7958ca14-goog
 
 
