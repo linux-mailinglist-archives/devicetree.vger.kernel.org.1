@@ -1,175 +1,165 @@
-Return-Path: <devicetree+bounces-271901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271902-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eJ8CE8iTqml0TQEAu9opvQ
-	(envelope-from <devicetree+bounces-271901-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:43:52 +0100
+	id oETnGheUqml0TQEAu9opvQ
+	(envelope-from <devicetree+bounces-271902-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:45:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4183A21D3DB
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:43:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5CDA21D449
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:45:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5CCE6300B8F0
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:43:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 411FF300AB2B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:44:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 166D737AA94;
-	Fri,  6 Mar 2026 08:43:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C3C8379974;
+	Fri,  6 Mar 2026 08:44:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="af2CbTMW"
+	dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b="HXX1rf/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp16.bhosted.nl (smtp16.bhosted.nl [94.124.121.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A541637A4AB;
-	Fri,  6 Mar 2026 08:43:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E02378D7E
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 08:44:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.124.121.27
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772786624; cv=none; b=fyK1Af9v/O4D0uqmefw5vsr1S/Jh5aEXVe4CEhWFrLI05UHCICQFlRVmC4VspuzZYcPOVDcYwoPHaarqxsGBoJxrxcpRZ94WJ68cO+1RuEgKSaAfq8242MueMSbNVWWzBJmHu9UzJfeyJGIOhMChiK0Cxm78/tLvGRAsGdLjai0=
+	t=1772786659; cv=none; b=PE+6g/6hj0d/dGnh8I1BQsV3t56kTWExK+/xq+iYirjMgEceC+mdAkhX8I62ZZ7PzQqGfgn6UYOPvKycMosMP4VDfxxcPSrz1Dqb+S+KGJDyPpnsNdMnn0mQGeH8Lhbgxco1owRYvAOts1uOnlEU4Z04gedKHxsbJLIq4x68E2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772786624; c=relaxed/simple;
-	bh=OTgdg/XCGoYZy+xep+wVKM9jEFaHlVUgaDX/IuK1wXc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=WLWugZjpthkLp8UWUsqCB/xU200qJaDKAJKdcA0jpSU/rP3rA4E49tvOZg2lDSJik0YBDm4hLsvkOvmahWTyTZHwPu1OGvTTS46jmIavRj0EniENgp91YYPdlc7gHAdTNMETDSA+/K5ahwK1z2BSqnmwsJoULieHUd+Y8rK99fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=af2CbTMW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B1A3C19422;
-	Fri,  6 Mar 2026 08:43:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772786624;
-	bh=OTgdg/XCGoYZy+xep+wVKM9jEFaHlVUgaDX/IuK1wXc=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=af2CbTMW57UVbxi3suJLxr+n67sfvJlxuyr7ufUmt1/3cDup8fW7JdaZByknlJL4t
-	 qrtt96+8MrtJbk0NMc1hVDFvXoksInGtvEEL4UpJvTDvYD2vXqIQHti3OPgNWWBem1
-	 7AGiwM78t+uUhyXyBn1YsnAMuNK/lz5uL/KlxiVQgRcdv1pduQoXQqmbqAv1ZM7zew
-	 E2Zud+N7j5jalwyFexA8YMOLTUXL+0OD7rI53JXYDYwGGUxUNpaeqLO+iM/FOXooIR
-	 aiz8UoWLvSt56zawL+YlJBQ1UFnE5ro9hF2Zky/TA35TSkKybDbanw6lyJp86eMxUG
-	 BgQu8H2gvy1vA==
-Message-ID: <aa5093fc-18a9-4f23-ac18-0057204fe5b4@kernel.org>
-Date: Fri, 6 Mar 2026 09:43:39 +0100
+	s=arc-20240116; t=1772786659; c=relaxed/simple;
+	bh=D6F0UJ2ZkvqTPyGd9m4PkTYYRFrED8lZB9Mn0Ev+ROU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VB8DU4LsJ8PZDwWkKKaEGQndCa1bONzd3N4SZAxPguGibdw4e3LNkypB5B1h4K++RYUnRiUFr+4VkbZLstDQ8dyFXNDpHBaW4m4vQNx+fyaYtk3ajAPbDPQq3nDsAb8myeZtX/hCy3s+xbYh08tgpfs7mUAPhYiNA2n0WmzpJTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl; spf=pass smtp.mailfrom=protonic.nl; dkim=pass (2048-bit key) header.d=protonic.nl header.i=@protonic.nl header.b=HXX1rf/2; arc=none smtp.client-ip=94.124.121.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=protonic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonic.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=protonic.nl; s=202111;
+	h=content-transfer-encoding:content-type:mime-version:references:in-reply-to:
+	 message-id:subject:cc:to:from:date:from;
+	bh=tAcuA+a1KykKeZ1RijPONIr+jxmrxZBNuPK76HmvjIs=;
+	b=HXX1rf/24Zgl1mtZxcRUn2OX63+U873JJnduIY9pDgl3eIAHHpph0LV6CYUFvfR+wm7qMZD2OpxdE
+	 P9zxqm0HkuuT2ZWsTk2GcJeMX0aeDj+C/r5IrD/tM2mSpB31az8OZhJY7pDC2861BykSYEM+QjimK8
+	 eP6dJT707TCRoFjjfCwpjkXJlp1G5NKXh33oGOD7KCVPbw2woH9ExbNhyijyjJoIxiffOS0Vf7Ylhx
+	 aS0bO+2uEwIRU+MWAw8qEeIrY9cIBFp2xrUaLfK84+qDRGdLSSeUF+mGW95pPW+mJHNE+YHuy8C3gk
+	 R+XsGW6BWFDW9KKkmUq8Gkz1X9zT3xQ==
+X-MSG-ID: a304989c-1938-11f1-9155-005056817704
+Date: Fri, 6 Mar 2026 09:44:06 +0100
+From: David Jander <david@protonic.nl>
+To: Linus Walleij <linusw@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, "Rob Herring (Arm)" <robh@kernel.org>,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>,
+ kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, Guenter Roeck
+ <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
+Message-ID: <20260306094406.6cafaeea@erd003.prtnl>
+In-Reply-To: <CAD++jL=Gaaq0_20wDjjPkYwpyL6HWx7bmKqBmy_tieYu4scB6Q@mail.gmail.com>
+References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
+	<20260303133947.1123575-2-o.rempel@pengutronix.de>
+	<177254885509.3251575.14819823286886805862.robh@kernel.org>
+	<aacH7NmkOzZued0Y@pengutronix.de>
+	<20260304-graceful-sweet-bittern-98efdb@quoll>
+	<20260304100642.44d00b99@erd003.prtnl>
+	<4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
+	<20260304112500.4766f21b@erd003.prtnl>
+	<98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
+	<20260304131731.4d54f051@erd003.prtnl>
+	<CAD++jLkK5od7cODqQ2BsEKE7tvp8vVAsv6erLu1dEzcn35F8QA@mail.gmail.com>
+	<20260305161019.09b67af2@erd003.prtnl>
+	<CAD++jL=Gaaq0_20wDjjPkYwpyL6HWx7bmKqBmy_tieYu4scB6Q@mail.gmail.com>
+Organization: Protonic Holland
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: brcm,iproc-sdhci: allow dma-coherent
- property
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lee Yongjun <jun85566@gmail.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, rjui@broadcom.com, sbranden@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com, nsaenz@kernel.org,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260305234703.38490-1-jun85566@gmail.com>
- <20260306-phenomenal-hamster-of-memory-819b2b@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260306-phenomenal-hamster-of-memory-819b2b@quoll>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4183A21D3DB
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: C5CDA21D449
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[protonic.nl:s=202111];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271901-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[protonic.nl];
+	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271902-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[3.245.164.48:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[3.245.125.32:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[david@protonic.nl,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[protonic.nl:+];
+	PRECEDENCE_BULK(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,protonic.nl:dkim,protonic.nl:email]
 X-Rspamd-Action: no action
 
-On 06/03/2026 09:42, Krzysztof Kozlowski wrote:
-> On Fri, Mar 06, 2026 at 08:47:03AM +0900, Lee Yongjun wrote:
->> The Broadcom iProc SDHCI controller supports DMA, but its binding
->> schema does not allow the 'dma-coherent' property.
->>
->> As a result, dtbs_check reports the following validation errors
->> on the Northstar2 SoC:
->>
->>   mmc@66420000 (brcm,sdhci-iproc-cygnus): Unevaluated properties
->>   are not allowed ('dma-coherent' was unexpected)
->>   mmc@66430000 (brcm,sdhci-iproc-cygnus): Unevaluated properties
->>   are not allowed ('dma-coherent' was unexpected)
->>
->> Allow the 'dma-coherent' property in the schema to fix the validation
->> errors and accurately reflect the hardware capability.
-> 
-> So is the hardware capable of coherent DMA or not? Entire commit msg is
-> silent about this and says how you fix warning without actually telling
-> us that it is a correct fix.
-> 
+On Fri, 6 Mar 2026 00:40:16 +0100
+Linus Walleij <linusw@kernel.org> wrote:
 
-Heh, why am I reviewing it, it's obviously non-tested. Code is already
-there!
+> On Thu, Mar 5, 2026 at 4:10=E2=80=AFPM David Jander <david@protonic.nl> w=
+rote:
+>=20
+> > I am tempted to think that hardware developers that use this chip might=
+ expect
+> > the GPIO driver to report the state as it is read from the register. Bu=
+t I
+> > suspect that the Linux kernel GPIO framework might enforce strictly the
+> > logical state to be equal to the voltage at the pin (i.e. logic 0 =3D=
+=3D zero volt,
+> > and logic 1 =3D=3D positive non-zero voltage), but is this true? =20
+>=20
+> GPIO assumes all values are expressing the (raw) voltage on the pin
+> clamped to [0,1] logic level.
 
-NAK
+This sounds like a good, usable definition. I like it, but I can't find it =
+in
+the documentation. To make it more complete, I'd add one more clarification=
+ in
+case we deal with negative voltage levels (0 and -5V for example), but it is
+usable for this case. Where can I find it? Or.. should we add it to the
+documentation if it isn't documented this way yet?
+
+> It can further invert the meaning of this using GPIO_ACTIVE_LOW,
+> ACTIVE LOW means the same as  "overstrike"  or #VAL in schematic
+> so if a signal is active low and low voltage on the board it is
+> presented as active (1) to the consumers in the kernel or
+> userspace.
+>=20
+> If it represents anything else than the raw logic voltage on the line,
+> the semantics of GPIO_ACTIVE_LOW would be completely
+> confusing.
+>=20
+> To represent switch states, I think using drivers or userspace code
+> should interpret this.
+>=20
+> You can also add a custom debugfs file to your driver to help
+> users by providing the actual switch state and more.
+
+Thanks for clarifying. This makes sense taking into account the above
+definition of raw logic-level =3D=3D raw voltage on pin clamped to [0,1].
+But for the future users of this driver I would need this officially defined
+somewhere, so I can point there to avoid confusion.
 
 Best regards,
-Krzysztof
+
+--=20
+David Jander
 
