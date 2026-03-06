@@ -1,232 +1,230 @@
-Return-Path: <devicetree+bounces-271996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271997-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oADbEKCvqmm6VQEAu9opvQ
-	(envelope-from <devicetree+bounces-271996-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:42:40 +0100
+	id CKvnGaivqmm6VQEAu9opvQ
+	(envelope-from <devicetree+bounces-271997-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:42:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B27EF21F06C
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:42:39 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6877321F08D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:42:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9233C305289F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:41:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id C6D133024A2D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:41:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8DA537B014;
-	Fri,  6 Mar 2026 10:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D172C364041;
+	Fri,  6 Mar 2026 10:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BLgPePDX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HlqAXWcd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806AF35B642
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:41:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC96235B12B;
+	Fri,  6 Mar 2026 10:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772793679; cv=none; b=N/0odeag40nIPto/IRzdFjiyK8T2TD/NC2ki6EOqjtMd+ubn7ZolE8lmU6PskL6VjL5/80BFKLgkrN1/Ss1o7CSNtmRUfWzy/FhwQKEcNO8q2MJG6C0ORddKSP9bahfG9rKzodYp5+VLVFAFhVCwS7Rt66u3tS7huW0wkXMmffQ=
+	t=1772793689; cv=none; b=SjFWDXOZdnFfrk1GtxE2BA0bPlvEsf4kotWimEb+J9lpSFzjYyKr31kYxqMOmRrRED32x9ZM2/ENFSjaMdoQK8zIML1gR1IgQeKyZQ1JeZ49OxrqkPyxr8ehqYCa/kz9Zd3zsGyuLL/ruE9iNjUsOiBqXBqXhVx6FsrGOrgNMfs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772793679; c=relaxed/simple;
-	bh=j89JCgy6of4V0fq9wi2FeaIYUxjh/hwtijKH+XS9D/0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gW71ZsMCvL1oJpSb3u2CRA7hOCdxmGktU8KZ08ZflElqv31+kmvg8e+cNncfC6SCphL+c2X56BeCe33jDCSvGrwlIiWHIf8aX/Tvs8yzDiASCEnJevchr1yZbtnc9pZ0BiHhpPmmhWoQcdoYlRabXBN1GL06sY/qhsE7hngN1xE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BLgPePDX; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-c73a12af63cso72506a12.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:41:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772793678; x=1773398478; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ofKRD1G9zZU7DDlNqf7frnTT5WNqLPVC7ZVN1jMSp0g=;
-        b=BLgPePDXuKu37KhR8u6XOcnIyL1ATgnpl2Ws//xghr0k3x9qSn0JB2C8TBnkTa+7D3
-         Lncf6uG3nqjDut5TrynrpB/dP0zdot6EBW6a+bbnSXI204ocWfDa/bI9PRnPsdorZ7ER
-         /tilVGqhd4Q34fR18eunXjhY7AIUvSFSE+XB6WDobED0jA6HkDE72Up+ok068kD3DZoB
-         yZeC0g5ZtjNS1boTpD/t1FgqTTVRG69Es6ET7FJaw0aSKp6O6Nf6pStbTGRUDrFMTM2y
-         Gk3yxD2arhGhTqOqjvNTxu4P7W7tPcH9LtdXJgYMtqIcta4OXB86lm21F/Fn2duVIVKV
-         ZtYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772793678; x=1773398478;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=ofKRD1G9zZU7DDlNqf7frnTT5WNqLPVC7ZVN1jMSp0g=;
-        b=LSVEzejo4hOb9cRm6kzyGj7SJ/chww9JeybWxlGzBf/W7eNwO95ReidviApdNLuni6
-         156sUT2wl/KYUydiU4Ac4mwY6weqdFVBg7aeCAVofX0U0+SYRC24BiCuzEbIKuCiUlky
-         iI39MBnyIDuP5X2lvO29YL9jdgU7EXAq96Hkcb13MEQfSx9G4tZCnT7FSkOQcghmtQmi
-         JQ4leVG71wdX4QvWkqsfu1XImlh17PzymEweDI94T4+QyriYU4Zu70nZ1uqo8rc5A0ZU
-         wXTe5vFNWsKGYExqSvX4pIZPi483r0zHAi1qzvzsfDtPqVC5F+2Gt2B5MyGIlkuoeXEI
-         GEew==
-X-Forwarded-Encrypted: i=1; AJvYcCXRGmk2klclG2aeSrjHwzDP4koBZg6WDKxI7U54v1bDc3At6fuzS4Ogo/eD14aAKOOhTVqh3aGFzlyk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRxQblaJNC2uwgg5zCvo2Z5KM/6gX3bnnAX78smA2/XXHdpnVX
-	+B9CC+8ttCl9Y0KQphRPOhpRmpG6iYOLM098w7pVAPvVcs8+AkfhbhUF
-X-Gm-Gg: ATEYQzwWOZV/RRqGpW/aKMR1vKXV5Tx7K4mh3f+x74xGzUd84/LxQhKe5WfO18cLcEM
-	gMi0hhHy3lFK306hkfDVMgooehaO+kuqcPxwS2YnXsDfEZJpQbkIc0VInsmlTYwBJFByQhdRxDO
-	e5QDb0kQVWYK8vbmRqKtGgdkvi8E8Jbp5CBxhSGoIrZfi9gFmsC3krocPYpofOkmdL7CAhAlB5e
-	HHjI86O7OpvZJcPw/Io/gVZ8wAujt2oeWu9zVvKG+KOCnGVH4uIsOIv9qSiKusqNgxzpA7tu1lX
-	m0zes6/+4sUaiGxrKq9OuR0OedVTMzTlJDh5X8P3lJ48RSB/GxMJe5GqLhbvZptFOFUCLUlWgK+
-	0WXqtFwD8HxvgUC0rzFrX5iWRnHJiPkae07EdvWyfvRgdSmlFp90T3pW3CUoYu/kdzhLHLDEy0e
-	ws04UmSpEHfd46vBuElrfrEfOYQrd8QPXv7n5AFj1rn5WfMViFIlQNYXW3bw==
-X-Received: by 2002:a17:902:c401:b0:2ae:4f15:1aba with SMTP id d9443c01a7336-2ae82443f7cmr19874155ad.30.1772793677800;
-        Fri, 06 Mar 2026 02:41:17 -0800 (PST)
-Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae83fa2fa5sm16107775ad.70.2026.03.06.02.41.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 02:41:17 -0800 (PST)
-From: phucduc.bui@gmail.com
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Jeff LaBundy <jeff@labundy.com>,
-	Bastian Hecht <hechtb@gmail.com>,
-	Javier Carrasco <javier.carrasco@wolfvision.net>,
-	linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	bui duc phuc <phucduc.bui@gmail.com>
-Subject: [PATCH v2 3/3] input: touchscreen: st1232: add system wakeup support
-Date: Fri,  6 Mar 2026 17:40:25 +0700
-Message-ID: <20260306104025.43970-4-phucduc.bui@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260306104025.43970-1-phucduc.bui@gmail.com>
-References: <20260305113512.227269-1-phucduc.bui@gmail.com>
- <20260306104025.43970-1-phucduc.bui@gmail.com>
+	s=arc-20240116; t=1772793689; c=relaxed/simple;
+	bh=wUC14RnhdvcAhcWHU9TzbgcAedD2DWvQjmFMdi8UmZ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UfqUhzVp05YD5z/+G0F5334PgpLO07Uvu9t3q7QROhNZUQ+a1QA5QbyoQLK9jFBaCP7Evew+F2H1tJAPTfrGEOR1csfk5peZgh+tqrug8lQegRo4ipsYMmm3hbxiRNYsQJuyRGpRfJyD2/Ef0YmnxvjKC29A+U8PRFRucf9eNBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HlqAXWcd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E47CC19422;
+	Fri,  6 Mar 2026 10:41:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772793689;
+	bh=wUC14RnhdvcAhcWHU9TzbgcAedD2DWvQjmFMdi8UmZ0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HlqAXWcdQBTWqkBU+RvjncHg2W2umlwoZVD32c3UXJcQPcr+23oeH/8yjmfdfqM3U
+	 19wihtbQXOhwACWoSBDh69qhginNXcXV8dBtlYgDXnNCiqirYoBqqoDfFYCkvD+uRE
+	 dx104NBd1oc5EJmukGDFTHcUQ+JO54vNElmJm3tomEH4gwCkeTF0zF0+AJbJrL/SJF
+	 GJvlxr4NpnZbhT7hzedjYNuvWXu27IFwIu1/8EMfKOY9lDqdLYIqwOEoxD/LlF4aXa
+	 766PV8+6CC7jF2rTWnVJY+TaviOzRbo/OIfPQ33CjfI70Q+mC308VevW9opsngxIXQ
+	 k5hN2wL9ZbgHQ==
+Message-ID: <f16d2a7f-04e2-4d99-9239-caca9fd1f7b5@kernel.org>
+Date: Fri, 6 Mar 2026 11:41:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832 support
+To: "Ding, Shenghao" <shenghao-ding@ti.com>,
+ "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
+Cc: "Xu, Baojun" <baojun.xu@ti.com>, "broonie@kernel.org"
+ <broonie@kernel.org>, "tiwai@suse.de" <tiwai@suse.de>,
+ "13916275206@139.com" <13916275206@139.com>,
+ "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "Yi, Ken" <k-yi@ti.com>, "Lo, Henry" <henry.lo@ti.com>,
+ "Chen, Robin" <robinchen@ti.com>, "Wang, Will" <will-wang@ti.com>,
+ "jim.shil@goertek.com" <jim.shil@goertek.com>,
+ "toastcheng@google.com" <toastcheng@google.com>,
+ "chinkaiting@google.com" <chinkaiting@google.com>
+References: <20260226075737.405-1-baojun.xu@ti.com>
+ <20260226075737.405-2-baojun.xu@ti.com>
+ <20260227-ubiquitous-dashing-copperhead-b2c6a0@quoll>
+ <9f861c7df09c4434a98a203ecff913bc@ti.com>
+ <63b0f42e-56e8-474f-8805-4e01bb2f189e@kernel.org>
+ <a7316acf9ba248f9ad1fab0313a95654@ti.com>
+ <3cfa4036-e7a7-4cde-9dab-a171a63bdee3@kernel.org>
+ <4865c7f626a340d7847354512367577e@ti.com>
+ <596f90d0-8dbd-4afe-a722-bf2ba65e1776@kernel.org>
+ <aaVcDvYvi28wFR2S@ashevche-desk.local>
+ <c46a8bf5-7a6a-41a9-b18f-9a7ad7a60bb9@kernel.org>
+ <3af19ebaf32d482ab5cf575b831b2d9d@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <3af19ebaf32d482ab5cf575b831b2d9d@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: B27EF21F06C
+X-Rspamd-Queue-Id: 6877321F08D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271996-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[kernel.org,glider.be,gmail.com,sang-engineering.com,labundy.com,wolfvision.net,vger.kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[ti.com,kernel.org,suse.de,139.com,vger.kernel.org,gmail.com,goertek.com,google.com];
+	TAGGED_FROM(0.00)[bounces-271997-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org]
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-From: bui duc phuc <phucduc.bui@gmail.com>
+On 06/03/2026 11:08, Ding, Shenghao wrote:
+> Hi, Krzysztof & Andy,
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Monday, March 2, 2026 6:09 PM
+>> To: andriy.shevchenko@linux.intel.com
+>> Cc: Xu, Baojun <baojun.xu@ti.com>; broonie@kernel.org; tiwai@suse.de;
+>> 13916275206@139.com; Ding, Shenghao <shenghao-ding@ti.com>; linux-
+>> sound@vger.kernel.org; linux-kernel@vger.kernel.org; lgirdwood@gmail.com;
+>> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
+>> devicetree@vger.kernel.org; Yi, Ken <k-yi@ti.com>; Lo, Henry
+>> <henry.lo@ti.com>; Chen, Robin <robinchen@ti.com>; Wang, Will <will-
+>> wang@ti.com>; jim.shil@goertek.com; toastcheng@google.com;
+>> chinkaiting@google.com
+>> Subject: Re: [EXTERNAL] Re: [PATCH v1 2/2] ASoC: tas2781: Add tas5832
+>> support
+>>
+> ...
+>>> ...
+>>>
+>>>>>>>>>>> static const struct of_device_id tasdevice_of_match[] = {
+>>>
+>>>>>>>>>>>       { .compatible = "ti,tas5827" },
+>>>>>>>>>>>       { .compatible = "ti,tas5828" },
+>>>>>>>>>>>       { .compatible = "ti,tas5830" },
+>>>>>>>>>>> +     { .compatible = "ti,tas5832" },
+>>>>>>>>>>
+> ...
+>>>
+>>> I don't know what you are trying to get from them, but I²C enumeration
+>>> on DT platforms works in a way that it takes two tables into account,
+>>> hence, if there is no compatible (with given part number) there will
+>>> be no matching name.
+>>>
+>>> AFAIK it has to have a compatible to make it work in such a case.
+>>> What did I miss?
+>>
+>> Show me please then how the OF table is used here at all to get the name.
+> 
+> This code will also be used for ACPI devices. To ensure consistent bin file 
+> naming between ACPI and DTS devices, the mapping table tasdevice_id[]
+> has been introduced.
 
-The ST1232 touchscreen controller can generate an interrupt when the
-panel is touched, which may be used as a wakeup source for the system.
+We need to stop discussing with irrelevant arguments, really.
 
-Add support for system wakeup by initializing the device wakeup
-capability in probe() based on the "wakeup-source" device property.
-When wakeup is enabled, the driver enables IRQ wake during suspend
-so that touch events can wake the system.
+I asked to show me how this is going to be used in DT. No answer to this
+part.
 
-Additionally, report wakeup events from the interrupt handler when
-the device is allowed to wake the system. This allows the PM core to
-track touch-generated wakeup events and helps avoid potential races
-with system suspend.
+Now you claim this OF ID will be used for ACPI devices, but YOU HAVE
+already ACPI table there, so that's clearly invalid argument. Do you
+understand how patch/email review works? Where the comments appear and
+what is being discussed?
 
-If wakeup is not enabled, the driver retains the existing behavior of
-disabling the IRQ and powering down the controller during suspend.
+> The code retrieves the corresponding name of the chip from tasdevice_id[]
+> based on its order in tasdevice_of_match[] or tasdevice_acpi_match[].
 
-Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
----
- drivers/input/touchscreen/st1232.c | 27 ++++++++++++++++++++++-----
- 1 file changed, 22 insertions(+), 5 deletions(-)
+Based on the order in table? No, that's crazy buggy solution to tie
+order of entries in both tables. And it makes no sense... and I am sure
+code does not do it, so again irrelevant argument.
 
-diff --git a/drivers/input/touchscreen/st1232.c b/drivers/input/touchscreen/st1232.c
-index 9b3901eec0a5..2bab06cf099b 100644
---- a/drivers/input/touchscreen/st1232.c
-+++ b/drivers/input/touchscreen/st1232.c
-@@ -183,6 +183,9 @@ static irqreturn_t st1232_ts_irq_handler(int irq, void *dev_id)
- 	int count;
- 	int error;
- 
-+	if (device_may_wakeup(&ts->client->dev))
-+		pm_wakeup_event(&ts->client->dev, 0);
-+
- 	error = st1232_ts_read_data(ts, REG_XY_COORDINATES, ts->read_buf_len);
- 	if (error)
- 		goto out;
-@@ -356,6 +359,9 @@ static int st1232_ts_probe(struct i2c_client *client)
- 
- 	i2c_set_clientdata(client, ts);
- 
-+	device_init_wakeup(&client->dev,
-+			device_property_read_bool(&client->dev, "wakeup-source"));
-+
- 	return 0;
- }
- 
-@@ -363,11 +369,20 @@ static int st1232_ts_suspend(struct device *dev)
- {
- 	struct i2c_client *client = to_i2c_client(dev);
- 	struct st1232_ts_data *ts = i2c_get_clientdata(client);
-+	int ret;
- 
--	disable_irq(client->irq);
-+	dev_info(dev, "st1232: suspend called\n");
-+	dev_info(dev, "st1232: irq=%d wakeup=%d\n", client->irq, device_may_wakeup(dev));
- 
--	if (!device_may_wakeup(&client->dev))
-+	if (device_may_wakeup(dev)) {
-+		ret = enable_irq_wake(client->irq);
-+		dev_info(dev, "st1232: Supend use wakeup\n");
-+		dev_info(dev, "enable_irq_wake ret=%d\n", ret);
-+	} else {
-+		dev_info(dev, "st1232: Suspend Don't use wakeup\n");
-+		disable_irq(client->irq);
- 		st1232_ts_power(ts, false);
-+	}
- 
- 	return 0;
- }
-@@ -377,10 +392,12 @@ static int st1232_ts_resume(struct device *dev)
- 	struct i2c_client *client = to_i2c_client(dev);
- 	struct st1232_ts_data *ts = i2c_get_clientdata(client);
- 
--	if (!device_may_wakeup(&client->dev))
-+	if (device_may_wakeup(dev)) {
-+		disable_irq_wake(client->irq);
-+	} else {
- 		st1232_ts_power(ts, true);
--
--	enable_irq(client->irq);
-+		enable_irq(client->irq);
-+	}
- 
- 	return 0;
- }
--- 
-2.43.0
+NAK, because all the replies so far are off-topic.
 
+Best regards,
+Krzysztof
 
