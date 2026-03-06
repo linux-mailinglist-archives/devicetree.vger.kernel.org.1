@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-272119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272120-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0ChEE+3aqmk3XwEAu9opvQ
-	(envelope-from <devicetree+bounces-272119-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:47:25 +0100
+	id +FVlKQHYqmn3XgEAu9opvQ
+	(envelope-from <devicetree+bounces-272120-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:34:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 958682220B2
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:47:24 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FD55221C33
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:34:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9780C31A1E7A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:34:31 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 843DE303BFBC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C1EA30AD1C;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95C330C372;
 	Fri,  6 Mar 2026 13:34:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hgXNISbF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y5HWFk3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C136E301717
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 13:34:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15022F8BC3
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 13:34:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772804061; cv=none; b=H4CJKPgMubvSTho7tciEpBPAdVXC34mi19wKAo1G7QT5YOG9SMhnp/4n7fV7jbElf9PfOzA+nH/ELJ126nfIN8Cyg8xNtT9n7F0MJ/RStAVMPfIC/4O2RhaYFBNyyqlDlHpanr4YS5kZyBhKbu9YNGzz6GjWSAJSYjwONnhI2/k=
+	t=1772804061; cv=none; b=ZLVAN3vn03ikma+1cIHRTF+xncMpxyfAL2mEXNY503lW1Vkmhtsh7iJTdxbl6Ba7M22T+i31CQJvEnwLocW5a4G/CvP+KVDyzksL7+hrMZ5LftWNV8SAbT/cap8sAULtVE+ZMMLMNTsrNNdLU10ex+PuwS6obwUhtLZxMkbHVXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1772804061; c=relaxed/simple;
-	bh=hIwaVNY63BTTBq9X+Fl95oFfSfz7quQ71GvgE8hGl8c=;
+	bh=NpF8QL91yqldScG2XxQn8+rb+qg1VM07w+yITLk8tqk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X/pafby7WTRMf+oZb6+PSFxLeNbYQNlp/GGt3Ne4jjbqxLE/DwwSraHvZ2j4kkrIUdhpcBTcaPysMh0wwKItGcnBaCBOumPGvrPLB3FVJ4adBROyiF+W2FO9VWCU5Nej3sPOuCZxcwkqzWGN3xEZsRyjYGiA3YXTpOsji8XMFdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hgXNISbF; arc=none smtp.client-ip=209.85.128.47
+	 MIME-Version; b=OoV4DS5UaLo/rAPmuYCexKn3vq8yh9puhDDv3PZoBpdmM2nArW0hxWwGNkU33PsXlurK6PRLM+qFg+eNfBJbE4DAOCe4HJ/tzEudK1tSjpaYc2MUiH1njvglrtAnM2DGAnWvxDdcYxMfYxszdKoVL7uQ8MPXyb6qWWBfjbSTH8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y5HWFk3C; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4833115090dso95311015e9.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 05:34:18 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-483703e4b08so90243525e9.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 05:34:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772804057; x=1773408857; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772804058; x=1773408858; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=F6xzGFA+B9jNT4audLsSR5XvefLJ8EAoTN/auQX0Deg=;
-        b=hgXNISbF68OZksKQOn7P5meLaQiTe6E5kdg2wjxkXY+y3uKbDI5F93yr7ViZ/EkxWB
-         8Q4PwBrfkQAM8KZ4r3TDmURvu6TMjDJLJBojml+zppn/3HuiBk3zYuny1Altlgdg4smg
-         zgr84xiL/P+gniK3Blr9ExrlFmZGSQ/26QDK9uUb/7kHrZ+BdlTlyEhoDORlZHo0ouf7
-         607PDF17DnAZUmxd8oTJ4eLTN4DoJSgugvzQ2yW6qXNi32uGW3QoRxN6BJwEo5kHFirx
-         I3g59MQGJpbDo965OUTd5gti1PtEDWaHGhe+c3vE7PgkJUoXN6K2JVE1ZR27fojY4yek
-         TuXw==
+        bh=c3xPqNAmdyvkw2Jw1GpTd5bQavc5+xFaOAaBqhAj8JY=;
+        b=Y5HWFk3CCMqmVuHog/VIr4ktnP++eh3t4U0FwKw+cbuKqvBcZa7xB+4rv0gMg4bO5u
+         OSpnXdecmFDO78ANTaKITRCMxAOQlb4PQnqg+vYIKFleTzUyXmwaJl7p0MIVYxGLZxpW
+         EsyDobk/2UUw2kIRfv19NJJk2aWh2Lujc/IKP0K/rqZEqQZKXWYytONl8BEC0m7/P318
+         dc7eSRL+9A5qeIvdfSScK/GAtYgKdDctvk8YEWFTYqNADD4dGj0U/HHavYdy03+uce6f
+         stp9G4yDvAYtR7CxYk741S7NDMMmKA3UzBKb06gOHRkXERlTtCI39gYeLCUjrqRwjG9n
+         RbDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772804057; x=1773408857;
+        d=1e100.net; s=20230601; t=1772804058; x=1773408858;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=F6xzGFA+B9jNT4audLsSR5XvefLJ8EAoTN/auQX0Deg=;
-        b=YG3zyfHXjwHfRDGEgl+fAp6Skxm4HgwP0hP5/tlCOrmP5g7qwwyUjiI9OIdyqv8AbZ
-         YDqh3G6slKKaO+c12XfbZTFetChipp5h99bkc2bpBaynL6ZbH8dkhw1x7UfCYBEdoS3q
-         qni9tTm0buTJlFi5qvRMT+i2rAUpgNoPK4meafJ4+mgN1P/KnFTu89qfT5VesUx2XKr3
-         tizpDEN/EFoQJKk+RBDkgzEz2+SzLCPOqc+DwuYqpbSEiYxxXfiw2NrpvK2xotayGX0w
-         z4S0i+NwcdyNz98WgnuU5YFWYe+Ia8KDLVuGMTvQ3tuM325bhBtGbhENPi9+I4V9CtyD
-         CgEA==
-X-Forwarded-Encrypted: i=1; AJvYcCXqXJ0eYOrdBSn3WMt6Ibw1TyEPegxwpsSWwfT86zXm9ahBJnJVtVg3pFXrCFcNBn8fNblSWUf7+jYp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9P6hPDfNbofylpX50/elgrytfDzIjq3UfZSzkyOeOKte7ENet
-	BRxmJVb2Qg2+f+GUskrLt9kJcCKQikjU5oqmlE34a5SUgqrvcz2Vw7j3
-X-Gm-Gg: ATEYQzzj1ACsO4JbOjEwmDDCJKtKEYyPHX8GfnIUraFnd4vuZMTdWfTEXhM4olNz4KS
-	s1mv1DFsAoFOyLBk3PaClI5G6QICN8Fd4QAxpVuz7vx+OpBuUfVEiYl0rctBPMr/xhSqxrjic+G
-	kzcAoJopnIlDKJ2AvtALBd4tSLDewLUxdV+O8FPoGujfI0na+xnZ4vtGzcOUoYCM3Ob7Eg8aEV5
-	MebOSGICpfTgT4KhDkiLSGnsHtuPziiifLfXs4th0E2NkAm/msIkMQLr31wTT3hlu8yyR35Rrkf
-	ouNGnk5I7eyA9gSB9qsWUGJBDmO5Q2656NK11Y4AFkEPgIB9yjs/utLttQ77YNdPh4Z31KwEioC
-	fqGDRHMHGWbK44blmZs0Ivo0bWA+YaGocw36tbDiNJSP8ILg4WQcXWD1zPLPzA6CwJ4GMkan/zF
-	7KF8Iv4GIoZ5lB
-X-Received: by 2002:a05:600c:1908:b0:480:3a72:524a with SMTP id 5b1f17b1804b1-4852695943emr36730255e9.19.1772804056908;
-        Fri, 06 Mar 2026 05:34:16 -0800 (PST)
+        bh=c3xPqNAmdyvkw2Jw1GpTd5bQavc5+xFaOAaBqhAj8JY=;
+        b=tu9+Hh26huyDz2lozxyoForIRgAqGMOJFqRAgU17daTjhj9LlluwUiClWgfY0wt98V
+         LDvMsnNu2gWd3aibd4TqdW3kkqzlCb6zBDzjGu+lCwaOCfSX1Gg5nKoz+Y3sffXB0lro
+         bKJKTA5MaifVxCWbW4UVRNNrovwpJIJP8KZ6QyWTACLC3hcEeCtmSBWff+v2BZ30xxL8
+         fFWilyl5gMmVZiNqvVBk4ZDEvP/IvbTt8RSkdJYw/A+ImnfSUfJH7LvurZ+aZJqO8szy
+         N3JiM8c5K9ryhu2f32cIvlQipa9DJMNjVQhm/wnbRxDVoSIGgqLOEZ7Zslz0xSG1MrTR
+         k9TA==
+X-Forwarded-Encrypted: i=1; AJvYcCXPykZfV79Wj9DM54ZJXavjPQJffZoEefKRI0LszurS3Brg+2k4Aulb6oicCh9lERBDzIgoWAziexld@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoWdw1mSjuNj9Mm56M3R8eJPOUXFMXiQb5fOHJG6Fvjl+xB7le
+	9cUx3NU9CuoamE4QiNnVEjhghuHoIXzKzwCO6j/960RaZaDzE+8F5xnI
+X-Gm-Gg: ATEYQzwpL0bHC+Ya5ecOWORdMJxvgwy92xC7W48jq5EigBTjaJL7uy2ocRA3BBqhrjG
+	SbYeIm8I6rKMLa45/p7Ehsn88j6cAxzDdq+XMMcSNDjTIYHxOunI6/c3tLCWQfGNUQuHGrDWOcS
+	LILN15noYxsCn8huMGYYjx/foZjedfNfRKZxyqRsCSYL2imm839O5CsNTNgxIDFKaFDI33qfGWj
+	GqYlQ/5NHBKzAej1MeqFcOalyeCvfxvkVI/BHnfbcZ4fZSrU0Whm0CqoY2BZpj/Sjs5fzZpK4qD
+	NMOs298NXJkstJhsHYKczokGEt8d2cLj+4CeprNFEx8dB0YA7O5ZxaDMKtUDT6JLMzk6RkKHUcD
+	w7HkpA46DB/9wzwA2+Hlobn1Ei412WD1WsAjG3MzdvF19XtMGIO6nhS8iT6XkXpdg7D9i49Eq/I
+	rdfDH6nNoyBxhC9T36pGFtg4M=
+X-Received: by 2002:a05:600c:8705:b0:479:1348:c63e with SMTP id 5b1f17b1804b1-4852674e8camr33569795e9.9.1772804058447;
+        Fri, 06 Mar 2026 05:34:18 -0800 (PST)
 Received: from xeon ([188.163.112.72])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48527681a3esm80856735e9.4.2026.03.06.05.34.15
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48527681a3esm80856735e9.4.2026.03.06.05.34.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 05:34:16 -0800 (PST)
+        Fri, 06 Mar 2026 05:34:18 -0800 (PST)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Linus Walleij <linusw@kernel.org>,
 	Bartosz Golaszewski <brgl@kernel.org>,
@@ -97,9 +97,9 @@ Cc: linux-gpio@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-pm@vger.kernel.org,
 	linux-rtc@vger.kernel.org
-Subject: [PATCH v3 2/6] dt-binding: pinctrl: pinctrl-max77620: convert to DT schema
-Date: Fri,  6 Mar 2026 15:33:47 +0200
-Message-ID: <20260306133351.31589-3-clamor95@gmail.com>
+Subject: [PATCH v3 3/6] dt-bindings: gpio: trivial-gpio: remove max77620 compatible
+Date: Fri,  6 Mar 2026 15:33:48 +0200
+Message-ID: <20260306133351.31589-4-clamor95@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260306133351.31589-1-clamor95@gmail.com>
 References: <20260306133351.31589-1-clamor95@gmail.com>
@@ -110,7 +110,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 958682220B2
+X-Rspamd-Queue-Id: 5FD55221C33
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -118,7 +118,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -126,7 +126,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272119-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272120-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[20];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,intel.com,arm.com,samsung.com,bootlin.com];
@@ -139,259 +139,40 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,3c:email,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Convert pinctrl-max77620 devicetree bindings for the MAX77620 PMIC from
-TXT to YAML format. This patch does not change any functionality; the
-bindings remain the same.
+Binding for MAX77620 GPIO function is covered by the MAX77620 schema. GPIO
+controller function in MAX77620 has no dedicated node and is folded into
+the parent node itself.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- .../pinctrl/maxim,max77620-pinctrl.yaml       |  97 +++++++++++++
- .../bindings/pinctrl/pinctrl-max77620.txt     | 127 ------------------
- 2 files changed, 97 insertions(+), 127 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/maxim,max77620-pinctrl.yaml
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt
+ Documentation/devicetree/bindings/gpio/trivial-gpio.yaml | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/maxim,max77620-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/maxim,max77620-pinctrl.yaml
-new file mode 100644
-index 000000000000..7364a8bdd7d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/maxim,max77620-pinctrl.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/maxim,max77620-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Pinmux controller function for Maxim MAX77620 Power management IC
-+
-+maintainers:
-+  - Svyatoslav Ryhel <clamor95@gmail.com>
-+
-+description:
-+  Device has 8 GPIO pins which can be configured as GPIO as well as the
-+  special IO functions.
-+
-+allOf:
-+  - $ref: /schemas/pinctrl/pincfg-node.yaml
-+  - $ref: /schemas/pinctrl/pinmux-node.yaml
-+
-+patternProperties:
-+  "^(pin_gpio|gpio)[0-7_]+$":
-+    type: object
-+
-+    properties:
-+      pins:
-+        enum: [ gpio0, gpio1, gpio2, gpio3, gpio4, gpio5, gpio6, gpio7 ]
-+        minItems: 1
-+        maxItems: 8
-+
-+      function:
-+        enum: [ gpio, lpm-control-in, fps-out, 32k-out1, sd0-dvs-in, sd1-dvs-in,
-+                reference-out ]
-+
-+      drive-push-pull: true
-+      drive-open-drain: true
-+      bias-pull-up: true
-+      bias-pull-down: true
-+
-+      maxim,active-fps-source:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: |
-+          FPS source for the GPIOs to get enabled/disabled when system is in
-+          active state. Valid values are:
-+          - MAX77620_FPS_SRC_0: FPS source is FPS0.
-+          - MAX77620_FPS_SRC_1: FPS source is FPS1
-+          - MAX77620_FPS_SRC_2: FPS source is FPS2
-+          - MAX77620_FPS_SRC_NONE: GPIO is not controlled by FPS events and
-+                                   it gets enabled/disabled by register access.
-+          Absence of this property will leave the FPS configuration register
-+          for that GPIO to default configuration.
-+
-+      maxim,active-fps-power-up-slot:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Sequencing event slot number on which the GPIO get enabled when
-+          master FPS input event set to HIGH. This is applicable if FPS source
-+          is selected as FPS0, FPS1 or FPS2.
-+        enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+
-+      maxim,active-fps-power-down-slot:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Sequencing event slot number on which the GPIO get disabled when
-+          master FPS input event set to LOW. This is applicable if FPS source
-+          is selected as FPS0, FPS1 or FPS2.
-+        enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+
-+      maxim,suspend-fps-source:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          This is same as property "maxim,active-fps-source" but value get
-+          configured when system enters in to suspend state.
-+
-+      maxim,suspend-fps-power-up-slot:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          This is same as property "maxim,active-fps-power-up-slot" but this
-+          value get configured into FPS configuration register when system
-+          enters into suspend. This is applicable if suspend state FPS source
-+          is selected as FPS0, FPS1 or FPS2.
-+        enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+
-+      maxim,suspend-fps-power-down-slot:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          This is same as property "maxim,active-fps-power-down-slot" but this
-+          value get configured into FPS configuration register when system
-+          enters into suspend. This is applicable if suspend state FPS source
-+          is selected as FPS0, FPS1 or FPS2.
-+        enum: [0, 1, 2, 3, 4, 5, 6, 7]
-+
-+    required:
-+      - pins
-+
-+additionalProperties: false
-+
-+# see maxim,max77620.yaml for an example
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt
-deleted file mode 100644
-index 28fbca180068..000000000000
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-max77620.txt
-+++ /dev/null
-@@ -1,127 +0,0 @@
--Pincontrol driver for MAX77620 Power management IC from Maxim Semiconductor.
--
--Device has 8 GPIO pins which can be configured as GPIO as well as the
--special IO functions.
--
--Please refer file <devicetree/bindings/pinctrl/pinctrl-bindings.txt>
--for details of the common pinctrl bindings used by client devices,
--including the meaning of the phrase "pin configuration node".
--
--Optional Pinmux properties:
----------------------------
--Following properties are required if default setting of pins are required
--at boot.
--- pinctrl-names: A pinctrl state named per <pinctrl-bindings.txt>.
--- pinctrl[0...n]: Properties to contain the phandle for pinctrl states per
--		<pinctrl-bindings.txt>.
--
--The pin configurations are defined as child of the pinctrl states node. Each
--sub-node have following properties:
--
--Required properties:
--------------------
--- pins: List of pins. Valid values of pins properties are:
--		      gpio0, gpio1, gpio2, gpio3, gpio4, gpio5, gpio6, gpio7.
--
--Optional properties:
---------------------
--Following are optional properties defined as pinmux DT binding document
--<pinctrl-bindings.txt>. Absence of properties will leave the configuration
--on default.
--	function,
--	drive-push-pull,
--	drive-open-drain,
--	bias-pull-up,
--	bias-pull-down.
--
--Valid values for function properties are:
--	gpio, lpm-control-in, fps-out, 32k-out, sd0-dvs-in, sd1-dvs-in,
--	reference-out
--
--There are also customised properties for the GPIO1, GPIO2 and GPIO3. These
--customised properties are required to configure FPS configuration parameters
--of these GPIOs. Please refer <devicetree/bindings/mfd/max77620.txt> for more
--detail of Flexible Power Sequence (FPS).
--
--- maxim,active-fps-source:		FPS source for the GPIOs to get
--					enabled/disabled when system is in
--					active state.  Valid values are:
--					- MAX77620_FPS_SRC_0,
--						FPS source is FPS0.
--					- MAX77620_FPS_SRC_1,
--						FPS source is FPS1
--					- MAX77620_FPS_SRC_2 and
--						FPS source is FPS2
--					- MAX77620_FPS_SRC_NONE.
--						GPIO is not controlled
--						by FPS events and it gets
--						enabled/disabled by register
--						access.
--					Absence of this property will leave
--					the FPS configuration register for that
--					GPIO to default configuration.
--
--- maxim,active-fps-power-up-slot:	Sequencing event slot number on which
--					the GPIO get enabled when
--					master FPS input event set to HIGH.
--					Valid values are 0 to 7.
--					This is applicable if FPS source is
--					selected as FPS0, FPS1 or FPS2.
--
--- maxim,active-fps-power-down-slot:	Sequencing event slot number on which
--					the GPIO get disabled when master
--					FPS input event set to LOW.
--					Valid values are 0 to 7.
--					This is applicable if FPS source is
--					selected as FPS0, FPS1 or FPS2.
--
--- maxim,suspend-fps-source:		This is same as property
--					"maxim,active-fps-source" but value
--					get configured when system enters in
--					to suspend state.
--
--- maxim,suspend-fps-power-up-slot:	This is same as property
--					"maxim,active-fps-power-up-slot" but
--					this value get configured into FPS
--					configuration register when system
--					enters into suspend.
--					This is applicable if suspend state
--					FPS source is selected as FPS0, FPS1 or
--
--- maxim,suspend-fps-power-down-slot:	This is same as property
--					"maxim,active-fps-power-down-slot" but
--					this value get configured into FPS
--					configuration register when system
--					enters into suspend.
--					This is applicable if suspend state
--					FPS source is selected as FPS0, FPS1 or
--					FPS2.
--
--Example:
----------
--#include <dt-bindings/mfd/max77620.h>
--...
--max77620@3c {
--
--	pinctrl-names = "default";
--	pinctrl-0 = <&spmic_default>;
--
--	spmic_default: pinmux@0 {
--		pin_gpio0 {
--			pins = "gpio0";
--			function = "gpio";
--		};
--
--		pin_gpio1 {
--			pins = "gpio1";
--			function = "fps-out";
--			maxim,active-fps-source = <MAX77620_FPS_SRC_0>;
--		};
--
--		pin_gpio2 {
--			pins = "gpio2";
--			function = "fps-out";
--			maxim,active-fps-source = <MAX77620_FPS_SRC_1>;
--		};
--	};
--};
+diff --git a/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml b/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml
+index 3f4bbd57fc52..fe9b14a72d69 100644
+--- a/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/trivial-gpio.yaml
+@@ -27,7 +27,6 @@ properties:
+           - gateworks,pld-gpio
+           - ibm,ppc4xx-gpio
+           - loongson,ls1x-gpio
+-          - maxim,max77620
+           - nintendo,hollywood-gpio
+           - nxp,pca9570
+           - nxp,pca9571
+@@ -86,7 +85,6 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - maxim,max77620
+               - rockchip,rk3328-grf-gpio
+               - ti,lp3943-gpio
+               - ti,palmas-gpio
 -- 
 2.51.0
 
