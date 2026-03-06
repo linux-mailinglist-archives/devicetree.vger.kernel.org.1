@@ -1,188 +1,148 @@
-Return-Path: <devicetree+bounces-272083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272084-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YB/VMpjSqmn3XQEAu9opvQ
-	(envelope-from <devicetree+bounces-272083-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:11:52 +0100
+	id VMkyNYnVqmnQXgEAu9opvQ
+	(envelope-from <devicetree+bounces-272084-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:24:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D18982216C3
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:11:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B103D221863
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:24:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6C61330011A5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:08:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4B46130459F5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6031B30EF88;
-	Fri,  6 Mar 2026 13:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D02396B91;
+	Fri,  6 Mar 2026 13:24:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dOgoep/+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o492Mygh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A71524E016;
-	Fri,  6 Mar 2026 13:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F5439658E
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 13:24:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772802496; cv=none; b=mUUOr/l08MLJYEwh19wYGirwMxyKUP10vSVziBlg/dQfs4aljPznjZ+xlV6uteTW3ZrIstEG09E5N0wWdlSwufrqDSkuB4juIfWx7Lmr6zalyTsGDi2pM2GyeZ6nGI3TTL/p9uAVNkliB2Q+csvu2mWB9bf3hF3YIP1QZeA3fSM=
+	t=1772803460; cv=none; b=jjwUrvHDX4MINHXPpTX+VLn4T5sVa75IrgKXyZ9/b4DsRTSSRVa/7yMLFqkmJgdfIhnz7y4FmMhaxzf8nIdCHp+SQZIRb9uRSjEAZ786BQkGS8+VQyvwSK02oHuP0z0kZ7KNGNzE1oX3rWpL4GXyQXpkRWs9ah5qi0hzdFBIh+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772802496; c=relaxed/simple;
-	bh=X33DmcoobMWBjEwpsJyBbUD2aCD20Mj1tSw9gJzI7Jw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lDczkMc04DDhRV5OGdxMnYfsnmQ0SI195EF2FWZmPTX/OKw7duwwnQSru9dSFWSi0wdJbcukiyXp6UPWCfFQ50Rfz0HGwoC0TxFf52uaPa0GOUPdpTtyR2byTGY8/Ozw30hBKQBYiO3hfWsJ5bBTrnHZiZymHS2sI2j06CKBgSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dOgoep/+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFCB6C4CEF7;
-	Fri,  6 Mar 2026 13:08:13 +0000 (UTC)
+	s=arc-20240116; t=1772803460; c=relaxed/simple;
+	bh=2Tg8c9NGCSfmldFmWgaUNjrLa0Dc9VIFZxjhyqX/Ulo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u6kzowaWZPJxRl4t9fhg1Xchyk4iTmmjrmG5H3WBjt3XXCgCmimEw8YzrXQczZ8Y1zFz4r93GCGa3nQwjXSqbOKZTvtBxDzYtm8ZxDlaZQbOLs2bOkJwKjzs39NHpzO/OlrF+3+oHwWIDNTk66VK10WfTZnfCh4dX4PjF1b7zU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o492Mygh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CA4BC2BCAF
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 13:24:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772802495;
-	bh=X33DmcoobMWBjEwpsJyBbUD2aCD20Mj1tSw9gJzI7Jw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dOgoep/+4phJj0umQVQUS86utVKKBhD/Y2RplvBXHJHFlIntcP7F3VFoLhSCurnsx
-	 JfgreDgqnixgEzRJYJBad4SWt8L/Rtfp7/dLqRh2JjsZAQ56dgvR/OTYzOFvQaT49w
-	 aBmj08fG84p5R9/Slzy50lj4rp22jkqnA4ukRSmOeaxyvyhI5/PtHl4W/yFO6R7ls3
-	 4byowxRgWlzwNWGbUH0gQBTL9K+H9hXaSCsfwrdjRAMYbFrg0CjBJmszGT1O8T76yd
-	 46NPFnHF/TBtWt5qxEwlsephriCRW0oBYSBUPewrPGehsQenO6y3B5YcmRS6wj/WT8
-	 wsVGN7cSGcgdw==
-Message-ID: <aa85df27-ebbb-472a-a300-f8ae87080ee3@kernel.org>
-Date: Fri, 6 Mar 2026 14:08:11 +0100
+	s=k20201202; t=1772803459;
+	bh=2Tg8c9NGCSfmldFmWgaUNjrLa0Dc9VIFZxjhyqX/Ulo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=o492MyghB/tp8dXmhNHfymNJbAraq7z9hMeH9lOOj7MxMotyPaAnXeZusXf6hZx8e
+	 NnBLCDKrHKFbRSufS6UyHqVmpmX5W0QmEGUgX1aHKtAeHCvWrSluubEG8eqO5kIBDm
+	 gcbXb467gumlcFleVjrdNuE2JrY1Mk8DbKIkGJ8LwtUX3XbPZ2PWDH7Tr9iiZkCYBg
+	 I/e7lwvQw8xSM2TzpvufeyaggZkEgzQf+aOxE+64jmUL7z9v1XTcNLTjmjgAk8SbUf
+	 VJdN+nzetb9HIykrliTCfJA0Q0E4QGAREe0wP5PiW0AFoLadnR9bBA6r/lZh7I8Q57
+	 Fdal8HEf3b85A==
+Received: by mail-yx1-f41.google.com with SMTP id 956f58d0204a3-64ca1ba0089so8430604d50.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 05:24:19 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU6VUMDBN8ru6Par/PZ9o5CKcGvekaSqmUIOq/WXvqNL1NUep9MBtUzWNvlUBIL7KeCpMIhPPT50+s7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2oBdclUL7bTTNb0HYrgcGi6E/fNi+2hz4xn8z9RmJ+dyaWgCt
+	ERItmTbScUcSzC0J7csDAFdgnvT4HMmdhPS/v43L1iC/dN1biaG2cNb/kSSubdgBAKeKn3KbvGU
+	zpn5EHVYLAfjqt0QzRAAGRROxFy26bCM=
+X-Received: by 2002:a53:b44b:0:b0:64c:f001:f6b with SMTP id
+ 956f58d0204a3-64d140a41bfmr1547217d50.9.1772803458885; Fri, 06 Mar 2026
+ 05:24:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: samsung,exynos-dw-mshc: Make both
- clocks required
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Ping Gao <ping.gao@samsung.com>
-References: <20260306112742.64235-1-ulf.hansson@linaro.org>
- <3eb61c4b-2902-4a62-8246-4bed683fe326@kernel.org>
- <CAPDyKFosu5=gAb0QzhkACO6RhXkOFNiKKOSdwrDsezT-bx4U2w@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAPDyKFosu5=gAb0QzhkACO6RhXkOFNiKKOSdwrDsezT-bx4U2w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: D18982216C3
+References: <20260303133947.1123575-1-o.rempel@pengutronix.de>
+ <20260303133947.1123575-2-o.rempel@pengutronix.de> <177254885509.3251575.14819823286886805862.robh@kernel.org>
+ <aacH7NmkOzZued0Y@pengutronix.de> <20260304-graceful-sweet-bittern-98efdb@quoll>
+ <20260304100642.44d00b99@erd003.prtnl> <4d4c6ebc-698b-44c2-9a91-607381d6ece1@kernel.org>
+ <20260304112500.4766f21b@erd003.prtnl> <98debf2d-cc29-42dc-bb93-ee97439683fd@kernel.org>
+ <20260304131731.4d54f051@erd003.prtnl> <CAD++jLkK5od7cODqQ2BsEKE7tvp8vVAsv6erLu1dEzcn35F8QA@mail.gmail.com>
+ <20260305161019.09b67af2@erd003.prtnl> <CAD++jL=Gaaq0_20wDjjPkYwpyL6HWx7bmKqBmy_tieYu4scB6Q@mail.gmail.com>
+ <20260306094406.6cafaeea@erd003.prtnl>
+In-Reply-To: <20260306094406.6cafaeea@erd003.prtnl>
+From: Linus Walleij <linusw@kernel.org>
+Date: Fri, 6 Mar 2026 14:24:07 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkT2me3xCTjUf7hoO7oxfjp4h7ff+pxL4=Zf6zs45bz2A@mail.gmail.com>
+X-Gm-Features: AaiRm50-l3MIo10Bj62OpNeCt8sqzr-ZXHm52j4AORSue8KDhp7pl4ctiIG0mXM
+Message-ID: <CAD++jLkT2me3xCTjUf7hoO7oxfjp4h7ff+pxL4=Zf6zs45bz2A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
+To: David Jander <david@protonic.nl>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>, 
+	"Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter Rosin <peda@axentia.se>, 
+	kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Lee Jones <lee@kernel.org>, 
+	Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: B103D221863
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272083-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272084-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[samsung.com:email,linaro.org:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,protonic.nl:email]
 X-Rspamd-Action: no action
 
-On 06/03/2026 13:55, Ulf Hansson wrote:
-> On Fri, 6 Mar 2026 at 12:50, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 06/03/2026 12:27, Ulf Hansson wrote:
->>> The current binding allows one or two clocks to be specified, which is
->>
->> It allows only 2 clocks, unless you meant that referenced dw-mshc schema
->> allows one clock. I don't see it there, so I am a bit confused.
->>
->>> wrong, as both clocks are needed. This is also confirmed by looking at the
->>> exiting upstream DTS files. Let's update the binding to fix this.
->>>
->>> Cc: Ping Gao <ping.gao@samsung.com>
->>> Reported-by: Krzysztof Kozlowski <krzk@kernel.org>
->>> Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
->>> ---
->>>  .../devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml          | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
->>> index 27c4060f2f91..3e560dde714e 100644
->>> --- a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
->>> @@ -42,6 +42,7 @@ properties:
->>>      maxItems: 1
->>>
->>>    clocks:
->>> +    minItems: 2
->>
->> That's redundant, 2 clocks are already implied.
-> 
-> Doesn't maxItems mean the maximum number of clocks? And since clocks
-> are required, it means that it's perfectly fine to only have one?
-> 
-> My points is, we seems to be requiring *exactly* two clocks, no?
+On Fri, Mar 6, 2026 at 9:44=E2=80=AFAM David Jander <david@protonic.nl> wro=
+te:
 
-minItems is already (implied) at 2, so I don't see what is different
-here. You can open any other binding and see exactly same pattern
-everywhere, so that's why it would be good to see here explanation why
-this binding is different than others. IOW, what set here the number of
-items to 1?
+> > GPIO assumes all values are expressing the (raw) voltage on the pin
+> > clamped to [0,1] logic level.
+>
+> This sounds like a good, usable definition. I like it, but I can't find i=
+t in
+> the documentation.
 
-Best regards,
-Krzysztof
+I sent a patch, thanks for noting that.
+
+> To make it more complete, I'd add one more clarification in
+> case we deal with negative voltage levels (0 and -5V for example), but it=
+ is
+> usable for this case. Where can I find it? Or.. should we add it to the
+> documentation if it isn't documented this way yet?
+
+We don't really do upfront design, we deal with this case the day
+we have a driver that needs it.
+
+> Thanks for clarifying. This makes sense taking into account the above
+> definition of raw logic-level =3D=3D raw voltage on pin clamped to [0,1].
+> But for the future users of this driver I would need this officially defi=
+ned
+> somewhere, so I can point there to avoid confusion.
+
+See proposed patch, it may need some debate but it's in there.
+
+Yours,
+Linus Walleij
 
