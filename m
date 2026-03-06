@@ -1,121 +1,144 @@
-Return-Path: <devicetree+bounces-272134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0J6nG/jdqmlqXwEAu9opvQ
-	(envelope-from <devicetree+bounces-272134-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:00:24 +0100
+	id yDQhMlPeqmlqXwEAu9opvQ
+	(envelope-from <devicetree+bounces-272137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:01:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7224222374
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:00:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F6B62223B8
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:01:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2B2FC300DDF2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:58:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1EBA03002289
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:01:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D421231D730;
-	Fri,  6 Mar 2026 13:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0453A9DAD;
+	Fri,  6 Mar 2026 14:01:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hKAaqO+K"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QUMireeO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEACB23EA89;
-	Fri,  6 Mar 2026 13:58:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E5073A6EEA;
+	Fri,  6 Mar 2026 14:01:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772805510; cv=none; b=ce/l4K4nlqnBCgfRgd2AL51mCtfCaLdO0Ic3OEWAxMGOyXYx/wTWisqNlRzKLejFbI0wYfcL3QxgIYSvaKRrBhw0fB2zrYZoq35a/XDqU3i1PEFrlK7X4uUW+C5MOXsB4KAHm0DH/4aOBnAXn/DhGzzVXY9MAd5x5daIwgsjVAI=
+	t=1772805698; cv=none; b=Kv0V17fFSjxImFxhi00BFlJc2bS2BDAyhWOAfak1U8Cr/7D/73YqAR5obcd8NlPHDnY2Fu3b7eH/22dYPPaHkOf49bV6EqgbvHTg80MaC+klwtpD4+gettsbwqKGzAIayivqF4I3eaUaK0MHkESYcSfKtIMCda0Nskvgstmd4nQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772805510; c=relaxed/simple;
-	bh=k7TNUTyJ8Qy2hb3cE4GSCYUsttb3iIMTE1H5MBhb+oc=;
+	s=arc-20240116; t=1772805698; c=relaxed/simple;
+	bh=63zKECe4DXmb408odUP+uE9C37xIRUftI6U2nqTWygg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VXDRX+zgqb/w6zAPsOt+YnHjPN0uU7NTZFiCHv54Y0MgwBmRk5CMPu0uK54rsAoCWeJEZ04bZmti61c0jkOprBtKtoY+bgLwYfaiLVTtct+IgHEm4E+rTGG/NMJs0LgOkAX5oIMofDFSq27kmCaUvMKwFBE9Yc3kP36ISDDaI+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hKAaqO+K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 038C6C4CEF7;
-	Fri,  6 Mar 2026 13:58:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772805510;
-	bh=k7TNUTyJ8Qy2hb3cE4GSCYUsttb3iIMTE1H5MBhb+oc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hKAaqO+KEBRXrmvyN+l5BaK59A9ldzQ7Iql59jPvOUzryvGwTZgljcfDABCb0nYlz
-	 zQy2vQS/sNFD5qHgACeF1cbjtERdopd3sGbQFT0kw57KnU0Gsi8YA9CnFd7wQA2/Rp
-	 HSgoT4qRa7M5zQcm+AHHluJARqmuYdhCEn5qGl3hQsYXPkrE857sgscciGMmrQ+poc
-	 Cnh9KuKeiTdWIKMJefFGHENR0SrEPECQR+yjM8jlf1O2AJgFjXJAcNE2TImRy07Cli
-	 C9NqRhtex3vMbp+EBzkNg4LhvTgeNdFgbSrIwzsnVT0YFHPchOAjHHbh7LLCvVrfDo
-	 wqd1+GsZC1djQ==
-Date: Fri, 6 Mar 2026 13:58:25 +0000
-From: Lee Jones <lee@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Maciej Strozek <mstrozek@opensource.cirrus.com>,
-	Takashi Iwai <tiwai@suse.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=HDsoiYpnQ2LG1tbBNQcXG6GYXe+rnOZ7j+hd+Glx4MKZLsZdp+Wbd6B6gnpCGqZKveu54CBLrTVH0faBxZxCwdPcNe7B2l0+iGMoQ6l7GbFao++x6IKQqI6ld9KMxwU4cWm1RWVER+8TYmYLntlKRimtVaJujQsqD4lLPk+G/3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QUMireeO; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=MirfIR7Fld7DvyfLq9p3EnVSzA7tLEd1Eqq9yuQL0IE=; b=QUMireeO4aEf+KSITfWawFA2LF
+	tNODAY3TgouFyFnjIaz/qRnEmmVmogpGG2NJ6UqEqrsu0060jU5jWIdfnkdCdR3GSRf8aVDmY7Ysa
+	G8UxqUuGORMrtXu7Om66TDY6wGkMfm89B87fMBKkiTUGEs6g0vw7DTdGj07qIPhff2eA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vyVjh-00AU97-OX; Fri, 06 Mar 2026 15:01:01 +0100
+Date: Fri, 6 Mar 2026 15:01:01 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jacky Chou <jacky_chou@aspeedtech.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Bard Liao <yung-chuan.liao@linux.intel.com>,
-	Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
-	linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
-	patches@opensource.cirrus.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 RESEND 3/4] mfd: cs42l43: Add support for the B variant
-Message-ID: <20260306135825.GO183676@google.com>
-References: <20260227130120.3070893-1-mstrozek@opensource.cirrus.com>
- <20260227130120.3070893-4-mstrozek@opensource.cirrus.com>
- <a141da68-35a7-491e-bb6f-ca9b448030ff@sirena.org.uk>
+	Conor Dooley <conor+dt@kernel.org>,
+	Po-Yu Chuang <ratbert@faraday-tech.com>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+	"taoren@meta.com" <taoren@meta.com>
+Subject: Re: [PATCH net-next v6 5/5] ARM: dts: aspeed: ast2600-evb: Configure
+ RGMII delay for MAC
+Message-ID: <344e1aed-f2a5-4249-90c1-2b848ee39d7c@lunn.ch>
+References: <20260302-rgmii_delay_2600-v6-0-68319a4c4110@aspeedtech.com>
+ <20260302-rgmii_delay_2600-v6-5-68319a4c4110@aspeedtech.com>
+ <d38f54b2-4a99-4a54-8403-e4f4a9704386@lunn.ch>
+ <SEYPR06MB5134AE0B0042E05E8E58A5239D7DA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <70ed84fd-ac9d-4157-ad20-36deec0c5f82@lunn.ch>
+ <SEYPR06MB51341775B041AF86CC8769F69D7AA@SEYPR06MB5134.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a141da68-35a7-491e-bb6f-ca9b448030ff@sirena.org.uk>
-X-Rspamd-Queue-Id: C7224222374
+In-Reply-To: <SEYPR06MB51341775B041AF86CC8769F69D7AA@SEYPR06MB5134.apcprd06.prod.outlook.com>
+X-Rspamd-Queue-Id: 7F6B62223B8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272134-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272137-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[lunn.ch:+];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid]
 X-Rspamd-Action: no action
 
-On Mon, 02 Mar 2026, Mark Brown wrote:
+> Could you please help confirm how we should proceed with this project?
 
-> On Fri, Feb 27, 2026 at 01:01:00PM +0000, Maciej Strozek wrote:
-> > Introducing CS42L43B codec, a variant of CS42L43 which can be driven by
-> > the same driver.
+That is up to you.
+
+If you do lots of small patches with good comments, you probably can
+do it in Linux. But you need to convince reviewers you are not
+breaking backwards compatibility.
+
+I think the bootloader change is simpler. But i've not worked on
+bootloaders for a long time.
+
+> 3. Send a patch to correct the phy-mode settings in aspeed-ast2600-evb.dts so that they 
+> match the bootloader after the fix.
 > 
-> Lee, this seems like it's mostly an ASoC series - does it make sense for
-> me to apply this along with everything else and send a tag (assuming
-> it's OK of course, I just scanned this patch very quickly rather than
-> reviewing it)?
+> mac0: "rgmii-rxid" -> "rgmii-id"
+> mac1: "rgmii-rxid" -> "rgmii-id"
+> mac2: "rgmii" -> "rgmii-id"
+> mac3: "rgmii" -> "rgmii-id"
 
-Yes, that's fine.
+You will do this anyway. However, just so that backwards comparability
+gets tested all the time, i would suggest you only change mac0 and
+mac3. Leave mac1 and mac2 with old settings, and add comments that old
+values are being used for testing, and they should not be cut/paste
+into new .dts files. And add a comment that mac0 and mac3 require the
+new bootloader, if you decide to solve it that way.
 
-Acked-by: Lee Jones <lee@kernel.org>
-
--- 
-Lee Jones [李琼斯]
+	Andrew
 
