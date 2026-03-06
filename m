@@ -1,139 +1,176 @@
-Return-Path: <devicetree+bounces-272285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272287-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Fm3ILYCq2nDZQEAu9opvQ
-	(envelope-from <devicetree+bounces-272285-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:37:10 +0100
+	id AD3rJ8cBq2msZQEAu9opvQ
+	(envelope-from <devicetree+bounces-272287-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:33:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2DF4225378
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:37:09 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D747224F30
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:33:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 18247319BEE3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 16:31:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 94433300B191
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 16:33:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D50E3EB818;
-	Fri,  6 Mar 2026 16:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4FE430F7F2;
+	Fri,  6 Mar 2026 16:33:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b="SFRD93kN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CfhEK+zV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out3.simply.com (smtp-out3.simply.com [94.231.106.210])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7F82BE65B;
-	Fri,  6 Mar 2026 16:30:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.231.106.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8274429B781;
+	Fri,  6 Mar 2026 16:33:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772814612; cv=none; b=tCqpl+b1FA2mpgC6c4OojznkAuSa0ajYJVkhcUrCvpFdCuJMneK9FMbIAYib21pTsLNvO4fcXK/2/WzXTRyV1GCjK/uZwjya9dosSMorHs9RJ9umip9VwVMsocmiqf2U63G0gl4wZItRhUU0iRD5L45QbRL/KdPO60/Ep1JFNCI=
+	t=1772814787; cv=none; b=KO6ozikKAnzDchMaKpu8IY4fBOEgDhLQiS4yVxlqZf3L43moiQVf1V5fx6aiaIbxQXitzioR3E9DU6HDG/59KMGxg2O5AFSzLxTBdRUwJaZcW1CsMOCxLLcwxo2gask5+Gxls4qbNL4LBp5w912fcNPcVlid0z0HQDzPFP/sgzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772814612; c=relaxed/simple;
-	bh=mnI5oDMgftj6ROv25d9OoO3w8YnN1pQpJUb6cxATwdc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WaWSDM9UCDhJCmtkzgxfGr4gxhehm0qM7UuBA9CvW7kOHxtZU1LDXgJPJHdwy/pn5m313WdUZkPJwpzOosw4hI1R1D/DzCUK5Sw0aCI5T56WjSyKRFhlYMSW98xhdMLSpOjB1s8wuCTplxfLm3tSwCOaUUCqDj5SM83Gg1Of6TE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com; spf=pass smtp.mailfrom=gaisler.com; dkim=fail (0-bit key) header.d=gaisler.com header.i=@gaisler.com header.b=SFRD93kN reason="key not found in DNS"; arc=none smtp.client-ip=94.231.106.210
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gaisler.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gaisler.com
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.simply.com (Simply.com) with ESMTP id 4fSBhD3Xnmz1Fljg;
-	Fri,  6 Mar 2026 17:29:48 +0100 (CET)
-Received: from d-5xj5g74.got.gaisler.com.com (h-98-128-223-123.NA.cust.bahnhof.se [98.128.223.123])
-	by smtp.simply.com (Simply.com) with ESMTPA id 4fSBhD1Rxyz1DDgW;
-	Fri,  6 Mar 2026 17:29:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gaisler.com;
-	s=simplycom2; t=1772814588;
-	bh=HEHS4MCK05/7iplJTF+QJ7BrkPa/UogpKyHpuJ4BN8E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=SFRD93kNH0cpLrxRiys1ijob71KeDQW9Jo/4gUUSdaM49J5q2Vq3NBo6pNxp5eJSv
-	 wsk3A+sRVJcqUbhqkbS7XFA9u0VY3VYz83jKDy3vTIEPc6Va9QHUVxfu+BN1U6pJvL
-	 T3qkjQF2riPUpdbGGEkR5dCLg4UjjsS7BqCG78fp6tMYweJ6Gh06uPLRqUeTcvoTt+
-	 6kdOQMog/Km3KokYALj/g0knicHgm3r5hcb97qbRJtybCI5Dkeb2ifZYShdQGBOATv
-	 k4OK4Utc9Hy8g0QfKROrrF5GsEnBvjkF4Et7fK3pE84X/p12R59rGx1QZ0fnpA3jSq
-	 8x0U+oSWBKZLw==
-From: Arun Muthusamy <arun.muthusamy@gaisler.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mkl@pengutronix.de,
-	mailhol@kernel.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-can@vger.kernel.org,
-	Arun Muthusamy <arun.muthusamy@gaisler.com>
-Subject: [PATCH v6 15/15] can: grcan: Advertise CANFD capability
-Date: Fri,  6 Mar 2026 17:29:34 +0100
-Message-ID: <20260306162934.22955-16-arun.muthusamy@gaisler.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260306162934.22955-1-arun.muthusamy@gaisler.com>
-References: <20260306162934.22955-1-arun.muthusamy@gaisler.com>
+	s=arc-20240116; t=1772814787; c=relaxed/simple;
+	bh=CnQoePDGbm0PHXBOJYOu5eMNk8PFbwki0J91SPH+ipw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YBPwdKtodLorY6HcUUXGS3AN+ihWeSLB/DweI5yv6hoxg00DbtSRXh0zLqGh5UwsziPDSvFw2LIfudY6rJr4G1AjzoubkT7bPXxhL9m/UGcgD3ky8XgfRwgFNmsB6itZNJvIUtFoF8RznKgBCj/pLFiqlhW4XVyAapxcAFK5NH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CfhEK+zV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC168C4CEF7;
+	Fri,  6 Mar 2026 16:33:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772814787;
+	bh=CnQoePDGbm0PHXBOJYOu5eMNk8PFbwki0J91SPH+ipw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CfhEK+zVvjIgeRlPT1wuB79AM2+Dd9id+GxlsrUhswzSVDVUu9UDDm4qe2NH9faZG
+	 9H1TXikDsT4sJaDwGccf/iVUWw1WaLTxkkO5CtoF6payK6po9/yuH3tALljqDQBrnh
+	 qI+ZmpGDndHmXj60/uJMWHmrWkVwRhNHKVIlSOnAE0ZEXhW4QnGHTpdcm29b5sKceW
+	 wS58IrVfEBLrFojjoFgbGC4bvmXP2TJCpE3FfalC7meebPH8WyEfQpfGAtVd55i5pf
+	 B8FYa3oY6Sgq+SWcqf1mDZ+H49BzKN42/3/e03c0lTfooVRXt7laYoN6DoDk/6KRYH
+	 fOJ+dWIRF9Yog==
+Date: Fri, 6 Mar 2026 10:33:05 -0600
+From: Rob Herring <robh@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Peter Wang <peter.wang@mediatek.com>,
+	Stanley Jhu <chu.stanley@gmail.com>,
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+	"Martin K. Petersen" <martin.petersen@oracle.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Chaotian Jing <Chaotian.Jing@mediatek.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	kernel@collabora.com, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v9 03/23] dt-bindings: ufs: mediatek,ufs: Add mt8196
+ variant
+Message-ID: <20260306163305.GA2680515-robh@kernel.org>
+References: <20260306-mt8196-ufs-v9-0-55b073f7a830@collabora.com>
+ <20260306-mt8196-ufs-v9-3-55b073f7a830@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: D2DF4225378
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260306-mt8196-ufs-v9-3-55b073f7a830@collabora.com>
+X-Rspamd-Queue-Id: 3D747224F30
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[gaisler.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272285-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[samsung.com,wdc.com,acm.org,kernel.org,gmail.com,collabora.com,mediatek.com,hansenpartnership.com,oracle.com,pengutronix.de,linaro.org,vger.kernel.org,lists.infradead.org,microchip.com];
+	TAGGED_FROM(0.00)[bounces-272287-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	R_DKIM_PERMFAIL(0.00)[gaisler.com:s=simplycom2];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[arun.muthusamy@gaisler.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.986];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	NEURAL_HAM(-0.00)[-0.868];
-	DKIM_TRACE(0.00)[gaisler.com:~];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gaisler.com:mid,gaisler.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,collabora.com:email,microchip.com:email]
 X-Rspamd-Action: no action
 
-Advertise CANFD capability for GRCANFD hardware by enabling
-CAN_CTRLMODE_FD flag and providing CANFD timing operations.
+On Fri, Mar 06, 2026 at 02:24:44PM +0100, Nicolas Frattaroli wrote:
+> The MediaTek MT8196 SoC's UFS controller uses three additional clocks
+> compared to the MT8195, and a different set of supplies. It is therefore
+> not compatible with the MT8195.
+> 
+> While it does have a AVDD09_UFS_1 pin in addition to the AVDD09_UFS pin,
+> it appears that these two pins are commoned together, as the board
+> schematic I have access to uses the same supply for both, and the
+> downstream driver does not distinguish between the two supplies either.
+> 
+> Add a compatible for it, and modify the binding correspondingly.
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Acked-by: Vinod Koul <vkoul@kernel.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  .../devicetree/bindings/ufs/mediatek,ufs.yaml      | 58 +++++++++++++++++++++-
+>  1 file changed, 57 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> index e0aef3e5f56b..a82119ecbfe8 100644
+> --- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> @@ -16,10 +16,11 @@ properties:
+>        - mediatek,mt8183-ufshci
+>        - mediatek,mt8192-ufshci
+>        - mediatek,mt8195-ufshci
+> +      - mediatek,mt8196-ufshci
+>  
+>    clocks:
+>      minItems: 1
+> -    maxItems: 13
+> +    maxItems: 16
+>  
+>    clock-names:
+>      minItems: 1
+> @@ -37,6 +38,9 @@ properties:
+>        - const: crypt_perf
+>        - const: ufs_rx_symbol0
+>        - const: ufs_rx_symbol1
+> +      - const: ufs_sel
 
-Signed-off-by: Arun Muthusamy <arun.muthusamy@gaisler.com>
----
- drivers/net/can/grcan.c | 3 +++
- 1 file changed, 3 insertions(+)
+"ufs" is redundant as all the clocks are for UFS. Same comment on prior 
+patch.
 
-diff --git a/drivers/net/can/grcan.c b/drivers/net/can/grcan.c
-index 9204fcb93b2d..bc1f205e10a5 100644
---- a/drivers/net/can/grcan.c
-+++ b/drivers/net/can/grcan.c
-@@ -1767,11 +1767,14 @@ static int grcan_setup_netdev(struct platform_device *ofdev,
- 	priv->ofdev_dev = &ofdev->dev;
- 	priv->regs = base;
- 	priv->can.bittiming_const = hwcap->bt_const;
-+	priv->can.fd.data_bittiming_const = hwcap->bt_const;
- 	priv->can.do_set_mode = grcan_set_mode;
- 	priv->can.do_get_berr_counter = grcan_get_berr_counter;
- 	priv->can.clock.freq = ambafreq;
- 	priv->can.ctrlmode_supported =
- 		CAN_CTRLMODE_LISTENONLY | CAN_CTRLMODE_ONE_SHOT;
-+	if (hwcap->fd)
-+		priv->can.ctrlmode_supported |= CAN_CTRLMODE_FD;
- 	priv->need_txbug_workaround = txbug;
- 	priv->hwcap = hwcap;
- 
--- 
-2.51.0
+> +      - const: ufs_sel_min_src
+> +      - const: ufs_sel_max_src
 
+"src" sounds like a parent clock? If so, probably shouldn't be in the 
+clocks list. 'assigned-clocks' is for dealing with parent clocks.
+
+Rob
 
