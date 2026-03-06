@@ -1,186 +1,268 @@
-Return-Path: <devicetree+bounces-272205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272206-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4OSaBA7vqmmOYAEAu9opvQ
-	(envelope-from <devicetree+bounces-272205-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:13:18 +0100
+	id IJVmL8DuqmmOYAEAu9opvQ
+	(envelope-from <devicetree+bounces-272206-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:12:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2BF2223935
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:13:16 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6212C22389F
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:12:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3209F3097BCC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:08:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D3DCF3001FF9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:11:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14AA3B5842;
-	Fri,  6 Mar 2026 15:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 407E23A8753;
+	Fri,  6 Mar 2026 15:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="yxwmALe9"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="JT0bytKN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013043.outbound.protection.outlook.com [40.107.159.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC4F386C01;
-	Fri,  6 Mar 2026 15:08:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772809731; cv=none; b=OQTDGFm6WKg2nUo6T205cFPR9eTznKgsbaTraHvSCM+uBET8JMv7g7+gaAj5lLGcYdkyFvYYTCZt3GeYTOEdsWiDelWdx1tV/XQsRYrGT3kdQrrD126WfDc1iEbA0gTQRtOYTi8uglg+9k0FpDTz49u6zXKL3YdQYPz21L+daj8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772809731; c=relaxed/simple;
-	bh=yJ8sU+TlFrKAlG4A6/aiSfMrlmTqlIQlugJhyc4OtBU=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=dy46yTSdxeoyXJY8sTCHLVJJ1M6GP0cYQPFqwk9LoSZmUbfg1xUwK9/bMMDqh0pC9ZAMCcabUQYx5SFML7hwe+y3dtvWyfm8GwvCIbZP8OIpGuhGMgEPCAyslQhNZXh5pqmU835odI4VX02DPkwVo+47EMIpRfO2ePqZO9f6B2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=yxwmALe9; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772809728; x=1804345728;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=yJ8sU+TlFrKAlG4A6/aiSfMrlmTqlIQlugJhyc4OtBU=;
-  b=yxwmALe9whHctm/YxT4sNSWxbQYjhxCEKY5H3BfLSZJ6yTQ78dv/niL1
-   xSbAb69C1Pkrk+bO9BgwQbsq10Fb73sBrYHDLipWhawQb6JeDG1RlCnkG
-   M3+OdUW1npyh++dp6vEookqvF/Id7vB7Z2HU5tJ5lvYpKqk7nrK7pEZLz
-   zjbIJHa+i/vARvE7m4+JAYeieYG+tkoBmm0PAYVn+jJlZL7/FJhufDvfg
-   JHP8mwppAsn0Ckptwi3Be9xVVHXFU5aR93p6wbPyu+c9NQYBHfwX2dmGg
-   qXkLOZjVYe+nvl/syiKOwCo71U1+WK+K6a25+7SmLP2tuV7e+RVgSw2e3
-   w==;
-X-CSE-ConnectionGUID: WXv/RLoQTAqlOa+UztsPjQ==
-X-CSE-MsgGUID: t/zBgwaJRIiPQp71I3wxzA==
-X-IronPort-AV: E=Sophos;i="6.23,105,1770620400"; 
-   d="scan'208";a="285701041"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Mar 2026 08:08:40 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Fri, 6 Mar 2026 08:08:04 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Fri, 6 Mar 2026 08:08:01 -0700
-Message-ID: <7b62ace495084794336b19a9685d6b14ea3981a0.camel@microchip.com>
-Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
- switch bindings
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Conor Dooley <conor@kernel.org>
-CC: Andrew Lunn <andrew@lunn.ch>, <UNGLinuxDriver@microchip.com>, "Vladimir
- Oltean" <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
- Abeni" <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, "Russell
- King" <linux@armlinux.org.uk>, Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Fri, 6 Mar 2026 16:08:01 +0100
-In-Reply-To: <20260305-reliant-parchment-0ff685a9c78e@spud>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
-	 <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
-	 <20260303-mosaic-debate-90cf8c8bbb33@spud>
-	 <1db45715a3a12b76b838d20c0e5904c3222053e7.camel@microchip.com>
-	 <20260305-reliant-parchment-0ff685a9c78e@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888B03A5E92;
+	Fri,  6 Mar 2026 15:11:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772809916; cv=fail; b=OximVD41tgHUGUK3VNm0sqxQg7RSYhksHRFMU1LZzm5CkciT0w11WLpf/c1WhO1kqRh/9UY/WvCEV7noiTcC9+JGSW/5yUtM3EmY1LsHMqrvFChvbluDmYcUNQMEx/+5uxqNgY3dzWVblFZI64iD28KFcqAzKdNu+edC9LDsF+w=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772809916; c=relaxed/simple;
+	bh=KAZH+F+dEwUQBPaP/XA9VEhr1i+Wr4grN8iWStcd7U4=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=u6vQZsAyx5WcrpF1oudX47uQEUVmbI0Zcx1MtD+LeIjupbr8e0Q3GVL5ebzGYA7HmoFhvCe0AGYpGH7swdGdWLe58XMcTunzme+LvFG1Yj/okzmv2GyGeF5eBXYZ4xmpwYfnWI+72ibsmEc2fPx5+9z27Jr6KphxTMMvTzFMHEU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=JT0bytKN; arc=fail smtp.client-ip=40.107.159.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Gt8YhMDE2PE9IBQiNasv4i/x1hAJt3DzXI+NtIRxR/Y7xWg3m3JR2S/dY3JDWGScqpH5CVn36Filp6Jnfe4GK9wFapqULw/0onqFzOmxI/6OPwOTohQMahmfNvGcGK6lUOl+XZjwEJIXaVK6COHaHdHbdR2Hk+LA6oUCrTJ6Kkg5w/qD716BKSj6tzEI2eULTQ1IIiA1lxniLcnzvfeFn+mCsj5ggg0r0TD175ubIILPIqmh21bycRpdoeEfYBaVkJDl3A+/trKlATFhto9omYQucWi0Gu2HAmfVMq+vIoHb9Obx/6uxH5HUvhzy/iYyJDJAPtPCYWXh5cjjlGBv1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vlFRRb52j6fQV3xLc0/cExy8OrDKJcQvtwB8my/TLyw=;
+ b=FoueVB0+KrSrbOMDdH9k16NL3E8XHk+xWFfRthgThxn+pP7DBA0x+YVP72MKxirK8jDUrYpOhBPEMktMtU3FhfJhPbQPdfs29S6Ls4kipFHYY2onHxrNxPLU1QL5SgCoy9ZSB36IzanLG8YuKUniKK8Jgx4GhtPibH0lP3L9Xnl9Y9wowk+jFV14IKNs6aG5CpXGhZfRgpN6p9lYPgL0p1iQLY5Pg/eUujAiE7+s9lAeBu6iHhHEu7Jr2KduMVMaulxLXVm1b8recHTGTmdwNSAgrNflDVFryoDHpzIgqe2qFvStDNQNSnI4YneFQ2lPYWMzoth8dMr/jX3yTK0bKA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vlFRRb52j6fQV3xLc0/cExy8OrDKJcQvtwB8my/TLyw=;
+ b=JT0bytKNI2uf7b/HuWhBCD8UCt0o9TpC11+rvAqL84g6MgBdqMw0MtCJsi5ECCtgsSkH5yIRkNPu2ZFp7UNGonJBRMVhZ9A2A2+J5BHM7wtEGIQdLGuphUgNYUc9UcUIXo4dDgqlGkFavrEYGQUdgxcgRP126wckBC5JX9VLIL36zP2wmbMBerOeWZ2muELl+vQj5bjHf8JoQGYJyyd9Ya283F17VsqOxjwB9sBmSc5lZimzJCDMRzP/WIioPHkeJVqghDL+JLseJUIxtdvD/4/Bc7143AmJXMWlQ0RAxIOR4z/lq8czBJ0RBYvSSyeCzMZK6jOPkA/h+nfdEoJPwQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com (2603:10a6:10:352::15)
+ by AM0PR04MB7092.eurprd04.prod.outlook.com (2603:10a6:208:19c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.14; Fri, 6 Mar
+ 2026 15:11:50 +0000
+Received: from DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::5c3a:1a67:2e02:20d0]) by DU0PR04MB9251.eurprd04.prod.outlook.com
+ ([fe80::5c3a:1a67:2e02:20d0%5]) with mapi id 15.20.9654.022; Fri, 6 Mar 2026
+ 15:11:49 +0000
+From: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Gleixner <tglx@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Haibo Chen <haibo.chen@nxp.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Lucas Stach <l.stach@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	s32@nxp.com,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>,
+	Eric Chanudet <echanude@redhat.com>,
+	Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+Subject: [PATCH v3 0/8] arm64: Add initial support for NXP S32N79 SoC
+Date: Fri,  6 Mar 2026 16:11:39 +0100
+Message-ID: <20260306151147.24446-1-ciprianmarian.costea@oss.nxp.com>
+X-Mailer: git-send-email 2.43.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR4P281CA0152.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ba::19) To DU0PR04MB9251.eurprd04.prod.outlook.com
+ (2603:10a6:10:352::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: A2BF2223935
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9251:EE_|AM0PR04MB7092:EE_
+X-MS-Office365-Filtering-Correlation-Id: f4874998-14e1-4575-69fd-08de7b92b0d0
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|19092799006|366016|921020;
+X-Microsoft-Antispam-Message-Info:
+	OnP6LhxkgKfrt3UNoV00ZzH7VJstIB0VgKIwX19m8SAVEQlKXFZLJRLhFxtlS1xFJck78spktJPNgqoSjCC/0q8g9SIrgHU8yHE7DNRh34pNqBEdeeK433MU/18li2eSdDONy8cpSs077Cc/qivjvwCzhtfUFZcZ88sub6SZsJ5Ld2YZ7DnpdddvivYPTAP4qo048yzDE9F2TVHEb/43/+U43oCsQRSUyL/0Kmg/Vz65fS+jkSNKYq+bjweGVBZr33n5PWS3eNl9IpNoLatjmugTpaw3WDTSM6rgiFB1y8nLDtHUNQJDKJrDZG3s/YGp00Fn5VfATC9r1ntIFoNcbLnsjCnC9XRwJqEwVC6R7T0tiuxqzBdpOMU1ETsWEeO/xtVJb+IyVMkWzyfx2SPJ7yfQbKpFYspKSMdeHa5X5TQDdfrXDpS1GIqlWOXNw76uTwLs4szQVQFWiqML+PHirPkgEKzTYJYeBX1R7HPuRqJ7M7g6W1yZykoEzOzp5i5v0Gw66u5PXVKBwPY2mlqtCXnpMdI4NEgH7tnnZhMgfeZZfgLzcNhU4nsBLsXRY27RluIx9iBAXPZdWSzX3unQB3/Pyy4P5T3ggqF5/mX7Vhg+/6frhlRBKyW51QM87Rl+v+U/MbxWbRb3Su/iRRwy62EUWRXITN5O5ge7CkhOmYkUxo2IACeTxlgEsklBkQMCufDVQAZ7k6ShFGA05TR8ImwUmLzt8y52oCJEnLJfLAQeGNLubPLt3fSJJSr5/GM7yBKo551fTxSInaHKcOrY0eeuMbcFlyAXKOaz+2OUUkE=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9251.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(19092799006)(366016)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?emtFNGEyWkZPaEY4RlkvSHlLU3pES25waEZIUW4vTlo5MzN2ZDNaUGZxNFps?=
+ =?utf-8?B?TlRzK0NmVW5yUDhPYmkxN0x2aTJJRG9aNDhXQ1JmckNGVStYcXk0d2RRNmdy?=
+ =?utf-8?B?cCtoNE5uRXVnY2dLZmZBVTE5QnN0MEFMNHp3UEJlWXpuc0U3bm1xdVJOaVJa?=
+ =?utf-8?B?VVdUeFRFYkRRWFNOZXdUZ2pzM1RlOXllTGhsYldpMFRqWkE2SW5HTGs5dlow?=
+ =?utf-8?B?c1l3bU9jWHZEcGdwU082WWoybUk3eVhiOG0xNGgyN0UrUmlPK0lSWUdTZTZ3?=
+ =?utf-8?B?V3duV0wrRi85MDdZZVpaVC91STl5NTZKbHFzSG1BN3V2emtEWHBBSGNvdmN0?=
+ =?utf-8?B?QS9XU25GTkJ6WXRnTmRIeFZPUGZ3Mjc3TXMrZThjaHdZQlpDUTVWS0dSd09I?=
+ =?utf-8?B?RnI1bXdKeGt6MzZCc0E3bW9wMlJuZ0Ryc3drdWFSMnBhaHFOYTg1WlR6WjZT?=
+ =?utf-8?B?MHdsMVZLV0RYTU9xUkVYWm50dXpYT01IbXVuMUpFRVhaWldURFo1UnhGQko1?=
+ =?utf-8?B?L043aW5WTHBaV3pvTnpGWjV6R3lkN1QrLzd0bW8rSS9VNS9yWHl2WGlOMHVa?=
+ =?utf-8?B?MmM4aHhlMU8zTURMMTRsbU1KNkJ3N2NjZkdlSjc0RzhsNEdNRUZxRitQRWpI?=
+ =?utf-8?B?djgwVy9ubFFLSzBYSmgyUHhIWEh0cVpNZmhyNjBNdEc4cklRc0V4dkNBTUNr?=
+ =?utf-8?B?MFBrSEplaUE0REpTaVI1SGRWQ3dmMC9DMG9SSmMxYXROaGpwVW1STmJkSlVr?=
+ =?utf-8?B?bldRRW9ZZXh2VjVVV1pQMDlzUDBqdkEvUUZaWXVLYXlnb2RwQ0pOdHBrS0JU?=
+ =?utf-8?B?cDRZdTMvTG1pWXhzTzJ3Y0Z3OC83eTZXeTlQamNyODkvZDdWWWx0VStEMVBh?=
+ =?utf-8?B?Vmc5ZDAzVHZaZmQ2SlFJT0JoVGtsRUFuc0I2UWJZMGd5YUxSMFhIcUxDbHY2?=
+ =?utf-8?B?UlJpYlNYSFdiNTJEa3piK2JyOTBGOTZDUFgxbGRWYXlPUXFoOGpQdTlyOEdq?=
+ =?utf-8?B?THlxS1FEVzIzNG9tVGg0bHRqc1FWVGlUeU9wRXNNdW9XenRianVHWXNFZmox?=
+ =?utf-8?B?bEZmaGRJcjNPV2k5L1JkMXEybVBnUWI3N0lrVlNNUDFQRE0rTlQ1cUkwODJI?=
+ =?utf-8?B?Wi82Vlo0SFJIT3lGSE1JSzVJYWw2L1VwR2FLcG1TMWJvMmRIc2swN3dSeFdr?=
+ =?utf-8?B?V05SeFZMNVhXNTMzVHU5c0hMcGxCSFFzS3Z6dlJKRjdFek1zU3Rydm8yY0Z3?=
+ =?utf-8?B?eHBTT3gyWW8vR0t0VmZMUmhSUHJ6NXdsM0toMEhNVFBwcGpTQXJ5ZmxBWkN5?=
+ =?utf-8?B?Z055N1dEYi9MZnd4eXIycDlUWVpHSUZaZXNhcXpOMDdtNXZ0S2FVK1MwMG5V?=
+ =?utf-8?B?VUVlYmJnMmJYYnR4OUVtc2doaElEL3ptUVFxRnQ5RVh2T2Q0bXhsb0lmYVNO?=
+ =?utf-8?B?VXJ5Q3lsYkIxa2VZMENZbjlBS0NIblRDcERVR0VQYjEyTzd2OVM3M3Y1NGp4?=
+ =?utf-8?B?NEZuVWRBY3BaT0xaMU9WU0RqblJGL3hjWDhVTVVKbjNab1ZVUDBaMHNTMmlj?=
+ =?utf-8?B?SXZxVE9rNEdnTk52UFNkUytNaXVmSGZNaEFVbkxRWTlvQzl2QVJMdWxXbTdk?=
+ =?utf-8?B?Zk1TU0JyNFlDeWpUTVZIUjRrUDlqQkM4NFo2b3N3eTFYbGR3bDYyNEFBdi92?=
+ =?utf-8?B?TDNRcXU0RWVVSWpaVUdzcVBKN3JKRjY1R09RQ2o0UFBCNTAxNHJlQXArQ3Y1?=
+ =?utf-8?B?TFIzSm9kd3RJWjYxRFB2TXA1b3gzazlkbjJjdHU0bTJhZjVvZ0krM081MEVh?=
+ =?utf-8?B?L0tXUy9SQjd0UGJxaEo1WUl0TThNTEJKWnM1dVo4eDlnQkFhWlNzWWkxM1Zo?=
+ =?utf-8?B?bXd0SnJQSTQvamYzQTVkcWdjYlFQTEVIb3RrSm5hVGlJd1hTYkxWSElwM2VM?=
+ =?utf-8?B?bk5OMk43SDZ1OGRiN1Z0bVFxdGZpNHRlblJ3RUhkL3JJaUhhV2NiNVBaTFQz?=
+ =?utf-8?B?QnZ6R3Z1SlQwbzU3U1pzWklOQWpDM1RaWmV6ekVPT1l5TnJEQnRURXV0cG5F?=
+ =?utf-8?B?VGZMTndlTFByc3RkKzdtcTVhS0JpV3lQb0JXRk51MU5vcUVORzZ5a0tUSUZv?=
+ =?utf-8?B?NWJDUmlybk1Wc2w3Rm5pQ0dIMXZzVzJ4UVVlbnk5M3ZQQ201QnZqZ3MweEdS?=
+ =?utf-8?B?R2RzTUprVGk4MW9kS0VTN0NOTENyemR0S3hjRnpDOUhmOUtDU0ozWnVkSkVx?=
+ =?utf-8?B?OFE4OXdqTDFKbVVoTU93TU5NRE9lTWk4TmM2Mm9od0FTU3crN21yREE2ZlBE?=
+ =?utf-8?B?a3lmYWU3UWlnV2tTc0pkWEN6bmhlYXpZL0lIaEU3Z2tNMTZETjlNaGJZbjll?=
+ =?utf-8?Q?G5nnAmECw7eH7TY4=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4874998-14e1-4575-69fd-08de7b92b0d0
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9251.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 15:11:49.7793
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GyXU6J8FddY/Hp7d+YygjTDUAgfpyn2pPzclqDcC2ZFnbyWaNzvL3KMq1Yh0VS35h5F6fcOp6ny64BIR77tDip4HsmS5yt6F/Mtkwv5dqYI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7092
+X-Rspamd-Queue-Id: 6212C22389F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.94 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272205-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[lunn.ch,microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-272206-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,intel.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[24];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.995];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ciprianmarian.costea@oss.nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.980];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, 2026-03-05 at 18:31 +0000, Conor Dooley wrote:
-> On Thu, Mar 05, 2026 at 01:57:37PM +0100, Jens Emil Schulz Ostergaard wro=
-te:
-> > On Tue, 2026-03-03 at 19:04 +0000, Conor Dooley wrote:
-> > > On Tue, Mar 03, 2026 at 03:18:45PM +0100, Andrew Lunn wrote:
-> > > > > +        properties:
-> > > > > +          microchip,led-drive-mode:
-> > > > > +            $ref: /schemas/types.yaml#/definitions/uint32
-> > > > > +            description: |
-> > > > > +              Set the LED drive mode for the copper PHY associat=
-ed with
-> > > > > +              this port.
-> > > > > +
-> > > > > +                0 - LED1 and LED2 in open-drain mode
-> > > > > +                1 - LED1 in active drive mode (can be used for s=
-ingle-LED
-> > > > > +                    configurations requiring active drive)
-> > > > > +                2 - Reserved
-> > > > > +                3 - LED1 and LED2 in active drive mode
-> > > > > +            minimum: 0
-> > > > > +            maximum: 3
-> > > >=20
-> > > > I doubt the DT Maintainers will accept that. This looks a lot like =
-a
-> > > > value you write into a register. How are active drive and open-drai=
-n
-> > > > described in other DT bindings? Is there something you can reuse?
-> > >=20
-> > > I had a quick look and I didn't see anything really that stood out to=
- me
-> > > that would be a drop-in replacement.
-> > > I also tried looking in the datasheet for more information on these
-> > > modes, but I couldn't see anything obvious. For example, there were z=
-ero
-> > > hits for "drain" in either LAN9645xS or LAN9645xF datasheets.
-> > >=20
-> > > That said, yea you're right about DT maintainer feelings about it.
-> > > There's a couple things I could suggest, but I'd like to know about w=
-hat
-> > > mode 1 means for LED2 first. If there's actually nothing similar, wha=
-t
-> > > about representing each led with a child node and having open-drain b=
-e
-> > > the default with a property in the child for active-drive?
-> > >=20
-> > > >=20
-> > > > For 1, what happens to LED2? Not used at all?
-> >=20
-> > In mode 1 LED2 will be open-drain. This mode only makes sense if you ha=
-ve
-> > just 1 LED. With two LEDs mode 0 or mode 3 should be used.
->=20
-> Could we then have child nodes for each led, and have a property in each
-> that sets the mode to either open-drain or active-drive? Or am I just
-> inserting complexity by asking for that?
+From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-I think it sounds sensible, I will add this.
+This series introduces initial device tree support for the NXP S32N79
+automotive SoC and its Reference Design Board (RDB).
 
-Thanks,
-Emil
+The S32N79 is an automotive-grade system-on-chip featuring eight Arm
+Cortex-A78AE cores organized in four dual-core clusters. It is designed
+for high-performance networking and gateway applications vehicle
+architectures [1]
+
+Hardware features included in this initial support:
+- 8x Arm Cortex-A78AE cores (4 clusters of 2 cores each)
+- 32GB DRAM Memory. 28GB are usable and 4GB are reserved for ECC logic
+- Three-level cache hierarchy (L1/L2 per core, L3 per cluster)
+- GICv3 interrupt controller with ITS
+- SMMUv3 for IOMMU support
+- Generic Timer
+- IRQ steering controller
+- PL011 UART controllers
+- uSDHC controller
+
+This series also includes the necessary driver updates:
+- sdhci-esdhc-imx: Add S32N79 uSDHC controller support
+- irq-imx-irqsteer: Add S32N79 IRQ steering support
+- irqchip Kconfig: Add ARCH_S32 dependency for IMX_IRQSTEER
+
+Future patches will add support for additional peripherals such as
+networking controllers, PCIe, and other IP blocks.
+
+[1] https://www.nxp.com/products/processors-and-microcontrollers/s32-automotive-platform/s32n-vehicle-super-integration-processors:S32N
+
+v3 -> v2
+- Split S32N79 SoC dtsi into separate standalone commit
+- Renamed a memory node in the S32N79 board dts
+- Fixed IRQ STEER DT-Bindings support for S32N79 addition
+- Updated S32N79 usdhc driver support commit message
+
+v2 -> v1
+- added driver changes required for S32N79 uSDHC support
+- added driver changes required for S32N79 IRQ_STEER support
+- updated commit message for uSDHC dt-bindings
+- implemented fixes for 'dt-format' tool findings on newly added S32N79 dts files
+
+Ciprian Marian Costea (8):
+  dt-bindings: interrupt-controller: fsl,irqsteer: add S32N79 support
+  dt-bindings: mmc: fsl-imx-esdhc: add S32N79 support
+  dt-bindings: arm: fsl: Add NXP S32N79 SoC and RDB board
+  mmc: sdhci-esdhc-imx: add NXP S32N79 support
+  irqchip/imx-irqsteer: add NXP S32N79 support
+  irqchip: add ARCH_S32 dependency to Kconfig
+  arm64: dts: freescale: Add NXP S32N79 SoC support
+  arm64: dts: freescale: Add NXP S32N79-RDB board support
+
+ .../devicetree/bindings/arm/fsl.yaml          |   6 +
+ .../interrupt-controller/fsl,irqsteer.yaml    |   4 +-
+ .../bindings/mmc/fsl-imx-esdhc.yaml           |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ arch/arm64/boot/dts/freescale/s32n79-rdb.dts  |  70 ++++
+ arch/arm64/boot/dts/freescale/s32n79.dtsi     | 362 ++++++++++++++++++
+ drivers/irqchip/Kconfig                       |   6 +-
+ drivers/irqchip/irq-imx-irqsteer.c            |  35 +-
+ drivers/mmc/host/sdhci-esdhc-imx.c            |   9 +
+ 9 files changed, 487 insertions(+), 7 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/s32n79-rdb.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/s32n79.dtsi
+
+-- 
+2.43.0
+
 
