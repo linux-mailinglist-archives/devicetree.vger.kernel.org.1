@@ -1,155 +1,173 @@
-Return-Path: <devicetree+bounces-272203-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272204-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNO+Dpjtqmm5YwEAu9opvQ
-	(envelope-from <devicetree+bounces-272203-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:07:04 +0100
+	id OO5bD3juqmnNYwEAu9opvQ
+	(envelope-from <devicetree+bounces-272204-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:10:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92912223771
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:07:03 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C928A223859
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:10:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 700EC3008D33
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:04:06 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 30F3830774D8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:06:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66A2F3AE702;
-	Fri,  6 Mar 2026 15:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E153B4EB4;
+	Fri,  6 Mar 2026 15:06:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Oq3Gq5UA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TQ67U/Hj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFCA234CFAC;
-	Fri,  6 Mar 2026 15:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43043B4E83;
+	Fri,  6 Mar 2026 15:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772809445; cv=none; b=pJ+w+EnJpZTN/Ca+W3I6adyq6FH92rkIa+GqkyCrbiNVy78BLS0bqlZsnhoIkBZ0UiKGA7CfGTkDAqPOThgk/MDAwT1h0OPFucWFurG6zYbil7+sJsxPrsoxY05PzlGKwGiBTwc3mPnn6CdVxjGDgR0TMt6vpbjabSsIDf11U2c=
+	t=1772809583; cv=none; b=BEbpHFzHAr4+nxMNULUfNmYG4xj4SLPS72qGKATYIMrPW8ldrxU8pMc0Juew0rX/vuNahoKN48vGK123MSt5wUQJXyjzrPYgKG0jTXZDvJaloO27iA6ErANgkYuYWsG3YSkXBskJkT59w3j8zQh8C3WVBtGhRhP6RHj7vAwgkNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772809445; c=relaxed/simple;
-	bh=+GSPKsX+wiZt0TDUlAbsZ6opCaFV0CJfbkG8Q8nCa00=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=iCKY8pmJo8hw9Whvezadw8/g0YKPiTh+jlp2dg8fXZ+wdtzK5gOBxSI5VE/aoyWvEfigea1rI3XO/Fk+GyII1p3dCseOfD4pzq5FHFryHd8IPxqllVNLM/Mq7dtuqLjerzoABb+NWwQyLFZ2//iz0AQXLI4Q493AQ0RY1yPsrWs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Oq3Gq5UA; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1772809442; x=1804345442;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=+GSPKsX+wiZt0TDUlAbsZ6opCaFV0CJfbkG8Q8nCa00=;
-  b=Oq3Gq5UAcHIt+j2zjVNhaAy8c//6gtmmFsbdgt4FxIuY9mExzwNQL8dA
-   cKZrbKXxb+J9YGISXouX0gjlJ2Y2It383axdI6/xLuj5BDdvWdbB4DgVg
-   N13yFXW7B10A1Vr+mm71VXLYMhIL8Ivd0jZJW0bVv4GCjA8svgIPX+rQG
-   TJKhyK1h+s2+HL7RtEx+VzbHza9s8opNfzBj0R4ef5eapXeuDZ8YWbAfn
-   cIPBMFv1oJTYonZSCBCSlR7dgYf+ahzI1Dz9sFgl9RfMFZ05EP/99y7AZ
-   2OCJNdKj7cJCljIzKj1+E0DD8Mq7HpxDTIpZO1UoNLSUf+0T8AlL1+p9v
-   Q==;
-X-CSE-ConnectionGUID: yLYBE7KDSpW0bGTGyPDRgQ==
-X-CSE-MsgGUID: IZo8rPJtTGKLzpnGaenkgw==
-X-IronPort-AV: E=Sophos;i="6.23,105,1770620400"; 
-   d="scan'208";a="54322423"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Mar 2026 08:04:01 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Fri, 6 Mar 2026 08:03:39 -0700
-Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Fri, 6 Mar 2026 08:03:36 -0700
-Message-ID: <b61fd4b0b7b371e1113b2c16873799ff1f745722.camel@microchip.com>
-Subject: Re: [PATCH net-next 4/8] net: dsa: lan9645x: add basic dsa driver
- for LAN9645X
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Andrew Lunn <andrew@lunn.ch>, Alexander Stein
-	<alexander.stein@ew.tq-group.com>
-CC: "Russell King (Oracle)" <linux@armlinux.org.uk>,
-	<UNGLinuxDriver@microchip.com>, Vladimir Oltean <olteanv@gmail.com>, "David
- S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman
-	<horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung Huh
-	<woojung.huh@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>,
-	Daniel Machon <daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Fri, 6 Mar 2026 16:03:36 +0100
-In-Reply-To: <3de08c66-adc8-455d-b23c-b3464153b38c@lunn.ch>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <32b7267f84b60a4632eb643fd0b999d03c630a1d.camel@microchip.com>
-	 <052cf8c8-c60b-461a-86ce-aac8d7ebf4d9@lunn.ch>
-	 <7365618.GXAFRqVoOG@steina-w>
-	 <3de08c66-adc8-455d-b23c-b3464153b38c@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4-0ubuntu2.1 
+	s=arc-20240116; t=1772809583; c=relaxed/simple;
+	bh=qrYak/gF5ly1P1Zm8s0TIGrBCScCa4d5IvZs1NzvlyM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tTH3TvUKO7hpC48P3Qyl9AF3pPhCANTsh4nAX+e4x+vnkYYXmv20oHpTzFbKl4Zzmv/keNVnSE1elpQ8BvGABbN4zfT3eFhct8YSJZrLl6cF2T91xZy3uFfOY54AUZWCS0h/qeHt0OjYoWsHLxjhapAVgTaMtZIcsUoXPCMR95Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TQ67U/Hj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59BA6C2BCB1;
+	Fri,  6 Mar 2026 15:06:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772809583;
+	bh=qrYak/gF5ly1P1Zm8s0TIGrBCScCa4d5IvZs1NzvlyM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TQ67U/HjwokYuZjQzJYpoiskK8H+nYuJEIHmNT3cdhT64wLBLAqFPRhtfXuNme933
+	 ukW2x74QBaoGKwG+qr2i78xSPvWztDNjYBAntjkMqXIx6awzewjggr3Yqhc3hvu66U
+	 cy4+IBV73QUHzx+V2v7n0K2eFvy00jEhixVX9wzlqjuPHUi6Nv9T+Go2IB01shE/m7
+	 fkx3hzbermeFh3KkoiqWj9MBnhud3cJFZt2z6f1i3n8UNz6dRfJHgiXxcUnkMXoxLQ
+	 5E1dyJ0rilT8JXKf1+IA3TeXaGjCUnR5MPCtp9XxEKs22/ICmhBooPN2HckmIbmCxd
+	 /GzcA/XSAyoQQ==
+Message-ID: <17c90382-e01d-40cf-bcbb-bfb26f3c18f3@kernel.org>
+Date: Fri, 6 Mar 2026 16:06:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 92912223771
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: nvmem: qfprom: Add Kaanapali compatible
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260305-knp-qfprom-binding-v1-1-1b3effb09cad@oss.qualcomm.com>
+ <dd14f8dd-254d-42a8-944d-f667153bea12@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <dd14f8dd-254d-42a8-944d-f667153bea12@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C928A223859
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272203-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[armlinux.org.uk,microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272204-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.993];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.924];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:dkim,microchip.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, 2026-03-05 at 18:37 +0100, Andrew Lunn wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> > > However, this is a multi-giga switch, with high speed SERDES ports. M=
-y
-> > > guess is, a SERDES port is used to connect to the host, not RGMII. So
-> > > i would not implement this, until somebody reports having a board wit=
-h
-> > > RGMII connecting to the host. KISS.
-> >=20
-> > We intend to do exactly that with this switch, just because the host
-> > doesn't support SGMII, just RMII/RGMII.
->=20
-> :-)
->=20
-> Then i suggest using {rx|tx}-internal-delay-ps as Vladimir suggested.
->=20
->      Andrew
+On 06/03/2026 07:55, Akhil P Oommen wrote:
+> On 3/6/2026 12:10 PM, Jingyi Wang wrote:
+>> Document compatible string for the QFPROM on Kaanapali platform.
+>>
+>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>> ---
+>>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> index 839513d4b499..2ab047f2bb69 100644
+>> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+>> @@ -26,6 +26,7 @@ properties:
+>>            - qcom,ipq8064-qfprom
+>>            - qcom,ipq8074-qfprom
+>>            - qcom,ipq9574-qfprom
+>> +          - qcom,kaanapali-qfprom
+> 
+> A question to the maintainers.
+> 
+> Do we need a new compatible for every chipset? If there are no KMD
 
-OK, I will use {rx|tx}-internal-delay-ps instead. I can add that the=C2=A0
-current EVB board for lan9645x also uses RGMI mac2mac to the host, so there
-are already users who would appreciate this. This is the LAN96459 EDS2=C2=
-=A0
-Daughter Card with part number EV14H52A.
+Yes, you need.
 
-
-Thanks,
-Emil
+Best regards,
+Krzysztof
 
