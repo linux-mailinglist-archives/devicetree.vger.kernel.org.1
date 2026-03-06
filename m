@@ -1,186 +1,136 @@
-Return-Path: <devicetree+bounces-272079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272080-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id utoMJTPPqmnVXQEAu9opvQ
-	(envelope-from <devicetree+bounces-272079-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:57:23 +0100
+	id APEbG/rPqmn3XQEAu9opvQ
+	(envelope-from <devicetree+bounces-272080-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:00:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32B042212B7
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:57:23 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A21422138F
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 14:00:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id B260B30089B9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 12:56:26 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9B82F3013451
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 13:00:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 850EE39280C;
-	Fri,  6 Mar 2026 12:56:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1331E2E8897;
+	Fri,  6 Mar 2026 13:00:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ogXpuob8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nzXGg6rV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060953921F6
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 12:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772801785; cv=pass; b=PymBLTQ3xg+tvy2zaIKXSG+l1+Ing0aDsAgIdipclmhPe5vv5sT0+RUVuE1l/A1Z/PgyDpBkKxiMOrPz06JjITr/woayl5D3/Op0ME4VyQYrasOSvg101H0K0WMBwUkjhEd3xg3EJg79Sc80byRvldB2dcGHTpMXPTv0Tg7CuxU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772801785; c=relaxed/simple;
-	bh=wJffGy7LYKR+jQmMe1VSnAs6VxFS/EDydi1YlF5GWZE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YEE8pkhsePSAcdQCDkdr8kGG684O4FH6vgm/+JODdIA8Dmzj6ocWOT57TGd69cwhNoqpCS2lhM6AFobw5g91WM9oZfY3qNCdss8Wva326Vp9BqB6xxEgJIGlRcGJdMLevQ97rfCgbss+PrA53WgvAxLewAlav51xfRcv2TRUFP4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ogXpuob8; arc=pass smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5a13e1cfa45so341116e87.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 04:56:23 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772801782; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Q3s6m87CGiIzUDdkKu33tw0cNe1yIz7kOwt5HOVSvYNz3Zti/q8NWedsfGBwd5ewxg
-         Fnm5mi4pnbJwia4I5/MrYW4r3QRa+dRXAYKUXSdMlhAurOdxYLR3jFGRQgblBEkNvV7N
-         3Xj1NeDCVeNCvigTBNbn122jTJNNFToyoNMbSb+dfXR5dyDPBTaeEtkcr/BccNFoiHpu
-         1muNW0ot1KAs58ew8h6Ft80bl5gg9cWng8D0ghPXIAXQHf+Bp7F+Irm0ydp/C031I/QC
-         sSIP54WCluiyrd72sWu/5fYyplFY5kwvi8aKsQVzP2I+3mNMHMgec+6eiQKQuoWlE89M
-         o1fQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=G1h3CA12TR3DUwT2sEpGipCt2aGRjxneEfQ3TJDN9mA=;
-        fh=wAUOnCsWffnzQgMEvutRD1AwuMQ42vAMmMJGiSldP7Q=;
-        b=H/QX7zR1lxxN+WBiOjC9iyNSpLx7Y+fYnbMQSI/0sMHiQ+DneuLWyn0lBr8Xg5Xv9Q
-         7zhycf9FITmmKi+8E2lTu0haM9hdXgG7RZ7WeU0pkT6NuCoYMrlRWRP3tei70DCkVP69
-         +8XaIVlLl3JQYD4Jy9TGl1nXsqJGvsgl90n5f5COFds0X8BmjT5TFWA9lo0dAmQcxKNC
-         EUW33H9pOZNh88oUOhduDTBoyXaigIl18N16lkuHlVz8WfywTDoyDEANGyTgyquywSdZ
-         1ksnKRasX74nOIqU91f7GCDgyia877ViO/GBMAyLNgpzrKu19DkpBcIL+yqOsif5xBFZ
-         6Jlw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772801782; x=1773406582; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=G1h3CA12TR3DUwT2sEpGipCt2aGRjxneEfQ3TJDN9mA=;
-        b=ogXpuob8Idaca+LX/SbzjmftcU/lYUJ8ZI9oZBLY9GwwtjBzdxSBB3kCOMONwIuPoB
-         YsSmTx4syeXgTNQTU0VAiLfiLXzfHFcOMiayOfUvex4R2c5ZCjyheMkDrKaYYduilwHH
-         h+T1nWxilohlQFfY1aeRLPHR1LvAGBQwrr2NmRO3GGHcWAK3D1WBDIGmPL7+LOpPRmEs
-         hw0Eq2cDJylOYrSf3mLUpd1CKTCAwflaFzaBQEm0g5yMgq3yzGlWKSqayzyrNNvbjRvy
-         K00ybSHzxdrEB7GIrskGHuYnqdBGtk2q/0Q2P6Z8xim1akUzhFcOyvHJmtoSLRJtJTmV
-         RTDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772801782; x=1773406582;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=G1h3CA12TR3DUwT2sEpGipCt2aGRjxneEfQ3TJDN9mA=;
-        b=lp/QsiE8DO+u3OblRT31X0p3Z0LWtvaqdjt7fdzSUjIzK9C1qBUMb3I61MfqVs+NvF
-         YHGXRHw50hW1dXmdhR9I7rMKhKhmai1xeBwN6EvR+zIBsg17T1bqHAZOu4H/ZUAI0JzV
-         ue+hpiRUVVd3gIVhlGgt/dXkbUlXrsIT0wT9LXvivHqe0GoE6H2/DCeWzv7Y8JeEoihn
-         amVC/FplJEV5/hdhXvsd67QiSaoQJS4cshAIqG1+38oJh+Vu+92UZKz1LeRk1BFlPIKD
-         aHGJV44R9g1DCHcaC1seGyLpUKSJyhk76+28siIAnlsTWoIALGcu5i0DX+cR57WwRlLb
-         hsag==
-X-Forwarded-Encrypted: i=1; AJvYcCUoNfNfff2elp9GwqoKzBxoNiuGuEOHmSEe+K8sOS9qa5zRYdAsdl1IagCRhUDWCCT5l+d6MfTfMa6s@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJg11KO7eCvncI++O6SpZk6/rFZOIFFCnBWmlYWVlvxmwcL9uy
-	5I0pSqhpAKDjKU0bIwAxH2GUkDi8htoPnhfrd9PL7OhhhHuvdW6mD64AKQn1RhQAZmh+qGoy4RF
-	6Qh6Jxvfu/R33A3x8/vTlanm7aaWzxC3jGHwDvHcPeQ==
-X-Gm-Gg: ATEYQzzBECgA1jbrNEVgUmIcPWca1LfOksPfmGzh5KVwAXz6EYCHHd+VXYi+gnqK+B7
-	VgtjjWwN1Q8pkC6blhPzj1q+S/DnlyTpSpinDa5MQ040KfVo81mOtP1TldLXFT3juCOQOr76Ty0
-	TbxTBGKuDVL7foNQAVlQbojQ3hpHxbdoXtYx1b+TIkgrN7zX77XlRI+cBZdtHMl5ujm3ueMoer5
-	fIjetjF0UEc9UVS3UGkBC4dHQEeVP2DAbstZ3RVKfGfPMoLhNmF+h+dSogA9aHOWFvwQXSjRuD2
-	O+/gNC1XakaBrJlT4RE=
-X-Received: by 2002:a05:6512:3042:b0:5a1:1d8c:42a6 with SMTP id
- 2adb3069b0e04-5a13caae68emr693718e87.4.1772801782038; Fri, 06 Mar 2026
- 04:56:22 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E344B2E54BD;
+	Fri,  6 Mar 2026 13:00:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772802039; cv=none; b=rS3zqM4mYm+5R/+E2zIVl9cn6ZRsPlQ8PpdGuWz9AZapTF7d/y1hE04FE9J/yvM7oqra9U9zZDKwGE3Et6480o9cjj/6Go2v+KJOSC/+0bGKRnzgIJ2WvX3fgjUKy80E2tR7vBcmGmwNo7cSX8bI3zXSnwyOflCwP5ZSo8gEcuU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772802039; c=relaxed/simple;
+	bh=SUilmRyxi9rSQ2L8Zu1tUGBe9n/KlEBwjbmt8lTSZZs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kf7qaBjA3m87qdZsHg44Q+pJlk6ivrP92XjNEe0D5lsGcRrlLgfpKFs3BDNsoljQydbXLJ7BjnI7kt2ZlVAfJaCyXhF/kyMdUs8+OG9GUckkNJd398yxJFebBrRJQ1va341dF2/u7pdSM2UvtfJGVoV4I7Qn6tSwtXv30+bIBgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nzXGg6rV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C1EC4CEF7;
+	Fri,  6 Mar 2026 13:00:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772802038;
+	bh=SUilmRyxi9rSQ2L8Zu1tUGBe9n/KlEBwjbmt8lTSZZs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nzXGg6rVmEJJG6AygVVVyC5TblHizjVm0/fiTm/TAugIDMsSYhg5s5vU4fdpnvQL1
+	 lLWB1P9pUgPZ5fFLbjxnh1Zh5swrJmEEomAzl+WOu1XH1rti0ulKpuzmiW3Def6Wxh
+	 fJvIYXw2QUG/UOyUol8+3BsSYK/JVrghOF4O1WOl4LeRazwSx4EqT6Xi0+MOv/gZmq
+	 ouHiiLJdgZyKoRETncAhoajKoboLNKuG9Gxi+M3qEK/YV4mfAXfIQbjX7vkB50oeTF
+	 jT+H55kOfCxtBjluOlRP2ToS/1wBfsDU6t+vWPukoJicc4pdk3P4VtAvRJukRjaqeg
+	 suq05TtmZZeWQ==
+Date: Fri, 6 Mar 2026 13:00:31 +0000
+From: Lee Jones <lee@kernel.org>
+To: amitsd@google.com
+Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
+Subject: Re: [PATCH v8 3/6] mfd: max77759: add register bitmasks and modify
+ irq configs for charger
+Message-ID: <20260306130031.GK183676@google.com>
+References: <20260224-max77759-charger-v8-0-eb86bd570e9c@google.com>
+ <20260224-max77759-charger-v8-3-eb86bd570e9c@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306112742.64235-1-ulf.hansson@linaro.org> <3eb61c4b-2902-4a62-8246-4bed683fe326@kernel.org>
-In-Reply-To: <3eb61c4b-2902-4a62-8246-4bed683fe326@kernel.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 6 Mar 2026 13:55:45 +0100
-X-Gm-Features: AaiRm53jQNANP_kwu30hFxjm3QLAerKyKf8WmQi4bAp-DnbOlj-A2lK700SBqDI
-Message-ID: <CAPDyKFosu5=gAb0QzhkACO6RhXkOFNiKKOSdwrDsezT-bx4U2w@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: samsung,exynos-dw-mshc: Make both
- clocks required
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Jaehoon Chung <jh80.chung@samsung.com>, linux-mmc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Ping Gao <ping.gao@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 32B042212B7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260224-max77759-charger-v8-3-eb86bd570e9c@google.com>
+X-Rspamd-Queue-Id: 4A21422138F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_MATCH_TO(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272079-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[23];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272080-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,linuxfoundation.org,google.com,linux.intel.com,samsung.com,gmail.com,linux-foundation.org,vger.kernel.org,lists.infradead.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,linaro.org:dkim,linaro.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,samsung.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, 6 Mar 2026 at 12:50, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 06/03/2026 12:27, Ulf Hansson wrote:
-> > The current binding allows one or two clocks to be specified, which is
->
-> It allows only 2 clocks, unless you meant that referenced dw-mshc schema
-> allows one clock. I don't see it there, so I am a bit confused.
->
-> > wrong, as both clocks are needed. This is also confirmed by looking at the
-> > exiting upstream DTS files. Let's update the binding to fix this.
-> >
-> > Cc: Ping Gao <ping.gao@samsung.com>
-> > Reported-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > ---
-> >  .../devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml          | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> > index 27c4060f2f91..3e560dde714e 100644
-> > --- a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> > @@ -42,6 +42,7 @@ properties:
-> >      maxItems: 1
-> >
-> >    clocks:
-> > +    minItems: 2
->
-> That's redundant, 2 clocks are already implied.
+On Tue, 24 Feb 2026, Amit Sunil Dhamne via B4 Relay wrote:
 
-Doesn't maxItems mean the maximum number of clocks? And since clocks
-are required, it means that it's perfectly fine to only have one?
+> From: Amit Sunil Dhamne <amitsd@google.com>
+> 
+> Add register bitmasks for charger function.
+> In addition split the charger IRQs further such that each bit represents
+> an IRQ downstream of charger regmap irq chip. In addition populate the
+> ack_base to offload irq ack to the regmap irq chip framework.
+> 
+> Signed-off-by: Amit Sunil Dhamne <amitsd@google.com>
+> Reviewed-by: André Draszik <andre.draszik@linaro.org>
+> ---
+>  drivers/mfd/max77759.c       |  91 ++++++++++++++++++++--
+>  include/linux/mfd/max77759.h | 176 ++++++++++++++++++++++++++++++++++++-------
+>  2 files changed, 230 insertions(+), 37 deletions(-)
 
-My points is, we seems to be requiring *exactly* two clocks, no?
+Does this patch have any dependents or dependencies?
 
->
-> >      maxItems: 2
-> Best regards,
-> Krzysztof
-
-Kind regards
-Uffe
+-- 
+Lee Jones [李琼斯]
 
