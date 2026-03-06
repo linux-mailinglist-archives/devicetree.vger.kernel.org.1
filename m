@@ -1,276 +1,210 @@
-Return-Path: <devicetree+bounces-271980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271982-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gEJSDhquqmluVQEAu9opvQ
-	(envelope-from <devicetree+bounces-271980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:36:10 +0100
+	id iLi7Ov2uqmluVQEAu9opvQ
+	(envelope-from <devicetree+bounces-271982-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:39:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADBDB21ED93
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:36:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E53521EF8A
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:39:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C354F303EFD3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:34:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3400730CA25C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D6F303A26;
-	Fri,  6 Mar 2026 10:34:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49C6B340283;
+	Fri,  6 Mar 2026 10:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kUrNjmir"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iaf2w4mh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBE621C160
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:34:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4FFE35B642
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:36:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772793282; cv=none; b=naRGm84txEQd7apzCJY5XFIBM0kkKqiQs08QFngb5G4W2HHpqCzfM90aeg6U3o1zo7NYnp2ZG4UCgILMBWvr7E4x233lp1eRLGWNc1Kqb7oU4m88kd9Ieam4BFNFLh61tm3/Gr8YTIWHji0YVv+MG8QEgGJF7r5mcG0khupTVaw=
+	t=1772793399; cv=none; b=mafudG5Zscxdqu5UIMsXPsNvn1dXpdesAIZzMnNCFP39M3HVmVqVcODoanaXUGbVetEIcSqr6ml6sVf7WSe7tseE/kIWTGBbmw75PM/EiuezGT7zu3AyctJB2jm29r65WRjo7xEH9Z6IJ5Cs9ygmNPIElgHmP3NyrEXQMIFiHoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772793282; c=relaxed/simple;
-	bh=+zOzOlL8vyWgdMGmYx4ROrBCU7Rz9pYzTFon1zhtWeY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=BoiTkoVn9K5uj7zRHgJOUwnSXuOZ5sFGig64a3xQmrx9vINMhl+PN/txK5+V8Pt+H5u4LGEB4Qdl/KBiwI6GZZ2QZrs+xl2PMVXi6agz1kWx6YS8rT6hDUNaZARQqtCdRBK2wAvefya2V6qxzYYMJ+TO68urgQORhT4oDXbMN3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kUrNjmir; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-48374014a77so109487035e9.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:34:40 -0800 (PST)
+	s=arc-20240116; t=1772793399; c=relaxed/simple;
+	bh=aaWtfuMIlwXcj8wRx+r/8nYmCfr9QmP6cTAQtbDeFr0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jZgaTvwTU+4T3TKUCOA9KSmJ4JZCine6e4mh0T4fdk1XueaJY73fXq1Quh3oAteI0wmhdljmuhA44QdKSb7sBeT0vvpRk2X+WMzDe2o+4vb2I69LcAN7WLMQaNNcdJ/6Uvu2THIFdR4nJ4OucgXTQg08v4w22QSfmKU3ItGiQVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iaf2w4mh; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5a12c19affeso2156773e87.1
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:36:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772793279; x=1773398079; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vkkHpa9La9cb+M6Z0UUZsGUfrfqDbpK8tOGQLDZgWkU=;
-        b=kUrNjmirc7Ze9CBsa1idBE/jpAukZup7OAaHTupOoEV753ZCazl3HpeiXnMrkeMMus
-         g+ZS3p48AYw5i8ua98R7k81FDkdAim+XD3vzlR84ZVSougLrqVHb97bMe04ciubVHBb5
-         p3vNGV358IUse8AleXFjog2y4ti0DyJAYKnvzzLHhf9BFHyYX+ULxhwC2sBeGN/R5OaT
-         6+ThZbMvH2I5uloY9WUDXl/TC+8fXJgM23mCDmP7wErH6oVVq07KftDPl9Qa+ut/d/+a
-         4nqeGMp8OK9z75392+SrREYpvZFbOC8y2EP6KcXfmelQRbtFXnDIJCaf33ulNOgovJbu
-         3jaA==
+        d=gmail.com; s=20230601; t=1772793396; x=1773398196; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zJml/yLnnjSPJKQY6M87aIBCO5slyXTHcl3eiCEqAKo=;
+        b=iaf2w4mhwsidB2Rl0k+o1Qu4n5Y6jdozW87OWU7ut0Hi1RObel7zpYAMgDrIuFojGC
+         UV7JOoZ32pEIdecru5g6bix+Ig3DfEhnyonjU/xR3gvZnMcjye+G53xjGr8K8ZKdKTQF
+         426s3VungCSGv5mzjL2Uy0TRuEwQdHfHmqP80oUI46TI0Nji/AGjB3QsI3RMdjbpi4mn
+         IrRKkKhJUbUhGq3wA0HyHnHAe1KBBJ0xvBQQ8p3Xi/547a++BafaaTVLe3JElG6Dqurb
+         tEFdCT7gmGcLQNZ84ayaelljgyiQb+Mc0h1wvCps9NZp1uVjo0Sm6BYRApbyRKWLeRtx
+         eeyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772793279; x=1773398079;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vkkHpa9La9cb+M6Z0UUZsGUfrfqDbpK8tOGQLDZgWkU=;
-        b=wjD4r91HI193O1RY0a98IzGH+frwPm5Pvmby6K/nB8AugASthF3q2cv/oq3GFsmqGf
-         uzharWAs0E4s283F54RX30SCzmJUh51iPQFGQG5MA+zxlBUZqsmLeAdONgjCf19uyjwR
-         esS8v8e3APH6k1tW01ms7VVmHYB/yX58LhQtRat1uWeSXnA/9H8FWNBoFP5MKSP/92qX
-         JuH8oAZWlEzKwthE6UjHnPQabo57dCjFipf27DkaV2I2QeYWJGr/Af5FrtvVYOUitEOj
-         u1eJGV4BrQwVW1nZp5jphDbNOh8LTH/7W4SEr4+12CxaF0Qylh5PKn0lUBEUFD31okR2
-         UydQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMqtPJMg1hgl1a0crGqybPKjgcGXHhb2twMNbLCvnJ14A7zQyLFyvHLeKIuQ2BpqvhxGW1lXOzBu7u@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuYrCr8P7Mc01/4iyOHqUvJq96y5cNJofGIIWWEG+vONTGm8hZ
-	9XmAtdkiekKHxrJl7khrw84zOGL78PJFESbClvaquCrdkotGUF9Rcvrmfm/uemrpFMM=
-X-Gm-Gg: ATEYQzyamt/yd6t7fW7pIZy91Q7eNpoOnPxDV938aBIx8Gs6dIXI/feSqxh6K2hc4N5
-	HRNgnvRp9i9O5hnU+lpMltlpBmkkv3iUM5P2+EE/u/f9deoQeD1U9TPipxSmOdN/q/56ecpzBc0
-	Xd+z7dEa4WSG4aYFGXEaJ9ldGr7FJsIpzQ8VohETULQ8m6kMmB06jXTQfbLQ8/KW0BGcnJ7DZyD
-	0vnZg+xjqiPXfI8B+5EeVMlJC+EZZcyPySP8XllrI2jFb/Lw8HBkatL9KlnxIN/sK6C2+9GfBjw
-	I9EwYDM0W4A4IWZg+7fMJR56E/Q+d0aPv0IqOqBKkavs+pjQc5PmxuYr3X9hMzwlZDhokNSR/fA
-	K2AN67r8ylwoKxj4ftoAQcKdjBHeyMOry1zXJqEzjkXWRKo/Tgg6kDSHesL0/8HxI2nbMDxYa00
-	fkotzeXkEOwMkmV2GMsQ5paxOBpZCOmcZBQqlHmedYADIJcijI4E5mO9afJ/WCclLBqmYnlT31c
-	TKd
-X-Received: by 2002:a05:600c:8184:b0:480:6999:27ec with SMTP id 5b1f17b1804b1-48526930cdbmr28598765e9.13.1772793278683;
-        Fri, 06 Mar 2026 02:34:38 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:106d:1080:cbfe:649:7f17:8b95? ([2a01:e0a:106d:1080:cbfe:649:7f17:8b95])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48527686bcesm39742425e9.7.2026.03.06.02.34.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Mar 2026 02:34:38 -0800 (PST)
-Message-ID: <fb75023e-8fac-49c1-a8b7-2eb8b70fda3e@linaro.org>
-Date: Fri, 6 Mar 2026 11:34:37 +0100
+        d=1e100.net; s=20230601; t=1772793396; x=1773398196;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zJml/yLnnjSPJKQY6M87aIBCO5slyXTHcl3eiCEqAKo=;
+        b=ID8jA17eZdxAKxNBeNRvw98bGnKaDvHR/fnkhOdHZAEX2md6LqJDA31n6g1RecRp3x
+         6LUuc1Dx1WlmKf5yt7rapLrvk/pmazS+1DnwxV3eAot3C7y1z2Hgg0T1MRkzy5sGYTmy
+         79bsfq5XMUo+rnJALoKzuttShHbVA2fYr8VSiLiYc/GHEQZQGVOCgieG7rXL2bVemeKb
+         2fYry7uzc8z0J2C9YoSQwEjTzPHuUnwH6EioW7mxbaV60DOaojD09bpygKFDzQk5e+Kn
+         I04qrsazOpTy3OFRle9Z91NAw+jniSdx1yMWYEcMympcLxAXTu5RMmQ99An7dZgGshdQ
+         Y8Aw==
+X-Forwarded-Encrypted: i=1; AJvYcCVx+mUrwn3mQdC2620hjiRx0gynlhvBwsqDEiM/ZLHG29UQskIHnCbk1ZmYxy2cj079r7S9npm7bTaq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZDkZvC6tTzAzyMdADy1A1xrZrvoQzlDCInDPjgj3kfyvHTtt0
+	wA1Yt4DvuyYAkpPcCfiEth65/K/c9i6gF3AATm/U37qZL5UDfsdGGr+r
+X-Gm-Gg: ATEYQzyt/XY9wvp6234aTkAXfjSOgs/iSVhEVxNtGJlr4eQ7NnZxuSLWtE7JohtChID
+	rGyo3IjDf1qbUWzOndDbM+wkptKDGtLVO2gXrZQDLSW+R2fBnCh/SDnQYBh9OVTiccERlJSSypt
+	n2LxbmJ3nWTrNJ3fYt6EcP6QBDW4Z+Tb7DgT+GLcX6ul7KOKnKP750fjgr2GQwi2/p5j6hCu00q
+	0d3juWq88Nj2u8HDBc3R3wUWH1ERlJtY47KuAH33iUK6n81VgytlZWKgziWTx6vDS6nGAZhsQEa
+	UQLiNQq2Yox4+LNu6gZWl1xCLKtq5ESXh/5KV0CEUOAWiiy1jtfWRrrQs6CaycftW2rK08sMOcz
+	r5VSVQotXLRxQUy69W6uh53nX6fG3D1fz5hP3aoMqB/g4ipTZ0qpOKrvkB/8pf8oiDpeyKVpMRG
+	L2INbi47WBt2wPgtkgihXspswLnmVXAnxWES0m41s=
+X-Received: by 2002:ac2:5694:0:b0:5a1:1de6:bc66 with SMTP id 2adb3069b0e04-5a13c93d9e3mr562049e87.18.1772793395649;
+        Fri, 06 Mar 2026 02:36:35 -0800 (PST)
+Received: from gentoo.sknt.ru ([95.161.221.172])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a13d03da54sm258243e87.40.2026.03.06.02.36.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Mar 2026 02:36:33 -0800 (PST)
+From: Alexander Shiyan <eagle.alexander923@gmail.com>
+To: linux-media@vger.kernel.org
+Cc: Isaac Scott <isaac.scott@ideasonboard.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Dongcheng Yan <dongcheng.yan@intel.com>,
+	devicetree@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <johannes.goede@oss.qualcomm.com>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Mehdi Djait <mehdi.djait@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Jingjing Xiong <jingjing.xiong@intel.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>
+Subject: [RFC PATCH v3 0/2] media: i2c: Add onsemi AR0234 camera sensor driver
+Date: Fri,  6 Mar 2026 13:36:12 +0300
+Message-ID: <20260306103614.3208182-1-eagle.alexander923@gmail.com>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 0/5] phy: qcom: qmp-pcie: Add PCIe Gen5 8-lane bifurcation
- support for Glymur
-To: Qiang Yu <qiang.yu@oss.qualcomm.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260304-glymur_gen5x8_phy-v1-0-849e9a72e125@oss.qualcomm.com>
- <42a9dd4d-eb96-42c0-b836-dcd7cb9405ff@oss.qualcomm.com>
- <aaqdv7Zx5AODzg6P@hu-qianyu-lv.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <aaqdv7Zx5AODzg6P@hu-qianyu-lv.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: ADBDB21ED93
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 8E53521EF8A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-271980-lists,devicetree=lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-271982-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,raspberrypi.com,intel.com,vger.kernel.org,kernel.org,linux.intel.com,oss.qualcomm.com,linaro.org,foss.st.com,gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[eaglealexander923@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_EQ_FROM(0.00)[]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-On 3/6/26 10:26, Qiang Yu wrote:
-> On Thu, Mar 05, 2026 at 10:14:05AM +0100, Konrad Dybcio wrote:
->> On 3/4/26 9:21 AM, Qiang Yu wrote:
->>> This patch series adds support for PCIe Gen5 8-lane bifurcation mode on
->>> the Glymur SoC's third PCIe controller. In this configuration, pcie3a PHY
->>> acts as leader and pcie3b PHY as follower to form a single 8-lane PCIe
->>> Gen5 interface.
->>>
->>> To support 8-lanes mode, this patch series add multiple power domain and
->>> multi nocsr reset infrastructure as the hardware programming guide
->>> specifies a strict initialization sequence for bifurcation mode that
->>> requires coordinated multi-PHY resource management:
->>>
->>> 1. Turn on both pcie3a_phy_gdsc and pcie3b_phy_gdsc power domains
->>> 2. Assert both pcie3a and pcie3b nocsr resets, then deassert them together
->>> 3. Enable all pcie3a PHY clocks and pcie3b PHY aux clock (bifur_aux)
->>> 4. Poll for PHY ready status
->>
->> I think we never concluded the discussion where I suggested the
->> bifurcated PHY may be better expressed as a single node with
->> #phy-cells = <1>, removing the need for duplicated resource references
+This series adds a driver for the onsemi AR0234 CMOS image sensor.
+The AR0234 is a 1/2.6-inch global-shutter sensor with a 1940x1220
+pixel array, capable of 1920x1200 resolution at up to 120 fps.
+It supports MIPI CSI-2 output with 1 to 4 data lanes, raw Bayer
+(8/10-bit) and monochrome formats, as well as DPCM 10->8 compression.
 
-DT requires strict hardware description, no abstraction for HW, so if there's
-2 PHYs, then add 2 separate phys and reference them from the PCie controller.
+The driver has been tested with 2 and 4 lanes on an ARM64 Rockchip
+RK3568 platform with a 27 MHz external clock. Both 8-bit and 10-bit
+raw Bayer modes are functional.
 
-On platforms where you want 2x4, then add 2 pcie_ports using 2 phys, on platforms
-with 1x8 a single pcie_port with 2 phys.
+Notes:
+- 1-lane mode is currently disabled; attempts to use it produced no
+  valid image. Further investigation is needed.
+- The driver uses a private streaming flag to protect cropping changes
+  during streaming. Is this the recommended approach, or should we
+  rely solely on the subdev state?
+- The DPCM (10->8 compression) mode is included in the code but could
+  not be tested due to lack of suitable hardware; any testing help
+  would be appreciated.
 
-Neil
+Changes since v2:
+- Added devicetree binding documentation for the onsemi AR0234 sensor.
+- Added support for 8-bit raw Bayer output (verified working).
+- Added DPCM 10->8 compression mode (untested, included for
+  completeness).
+- Reworked mode handling: each mode now specifies input/output bpp,
+  DPCM flag, MIPI data type, and link frequency index.
+- Reworked link frequency handling: the driver now accepts any valid
+  link frequencies from the device tree. It expects two frequencies -
+  one for 8-bit mode and one for 10-bit mode - but does not enforce
+  a fixed set; frequencies are validated by attempting PLL calculation.
+  This makes the driver compatible with a wider range of system
+  configurations.
+- Updated ar0234_calculate_pll() to use a temporary structure and
+  update cached PLL only on success.
 
->>
-> I understand your suggestion would look like below. I agree that the
-> unified PHY approach being more elegant from a device tree perspective,
-> provide better DT flexibility and eliminate the need for different
-> compatibles and dupicated resources between 1x8 and 2x4 modes.
-> 
-> However, this will include implementation complexity to phy driver.
-> The driver would need conditional logic to selectively enable different
-> clocks/resets based on the PHY parameter and maintain mode-specific
-> resource arrays. There's also the issue that assigned-clocks
-> GCC_PCIE_3A_PHY_RCHNG_CLK and GCC_PCIE_3B_PHY_RCHNG_CLK will be set before
-> probe no matter which mode is used, even though in 1x8 mode or only one of
-> them is actually needed. For pipe clock outputs, only pcie3a_pipe_clk would
-> be needed in 1x8 mode while pcie3b_pipe_clk would be unused. For
-> powerdomain, we also need to add additional logic to attach and turn
-> on/off them.
-> 
-> While these challenges could be resolved, I'm not sure the benefits
-> justify the added complexity.
-> 
-> pcie3_unified_phy {
->      compatible = "qcom,glymur-qmp-gen5-pcie-phy";
->      reg = <0 0x00f00000 0 0x10000>, <0 0x00f10000 0 0x10000>;  /* Both PHY ranges */
-> 
->      clocks = <&gcc GCC_PCIE_PHY_3A_AUX_CLK>,
->               <&gcc GCC_PCIE_3A_CFG_AHB_CLK>,
->               <&tcsr TCSR_PCIE_3_CLKREF_EN>,
->               <&gcc GCC_PCIE_3A_PHY_RCHNG_CLK>,
->               <&gcc GCC_PCIE_3A_PIPE_CLK>,
->               <&gcc GCC_PCIE_PHY_3B_AUX_CLK>,
->               <&gcc GCC_PCIE_3B_CFG_AHB_CLK>,
->               <&gcc GCC_PCIE_3B_PHY_RCHNG_CLK>,
->               <&gcc GCC_PCIE_3B_PIPE_CLK>,
->               <&gcc GCC_PCIE_3B_PIPE_DIV2_CLK>;
-> 
->      power-domains = <&gcc GCC_PCIE_3A_PHY_GDSC>,
->                      <&gcc GCC_PCIE_3B_PHY_GDSC>;
-> 
->      resets = <&gcc GCC_PCIE_3A_PHY_BCR>,
->               <&gcc GCC_PCIE_3A_NOCSR_COM_PHY_BCR>,
->               <&gcc GCC_PCIE_3B_PHY_BCR>,
->               <&gcc GCC_PCIE_3B_NOCSR_COM_PHY_BCR>;
-> 
-> 	#clock-cells = <1>;
->      clock-output-names = "pcie3a_pipe_clk", "pcie3b_pipe_clk";
->      assigned-clocks = <&gcc GCC_PCIE_3A_PHY_RCHNG_CLK>,
->                        <&gcc GCC_PCIE_3B_PHY_RCHNG_CLK>;
->      assigned-clock-rates = <100000000>, <100000000>;
-> 
->      #phy-cells = <1>;  /* Parameter: 0=PHY_A, 1=PHY_B, 2=UNIFIED_8LANE */
-> };
-> 
-> For 2x4 mode (independent 4-lane PHYs):
-> &pcie3a {
->      phys = <&pcie3_unified_phy PHY_A>;  /* PHY A only */
->      status = "okay";
-> };
-> 
-> &pcie3b {
->      phys = <&pcie3_unified_phy PHY_B>;  /* PHY B only */
->      status = "okay";
-> };
-> 
-> For 1x8 mode (unified 8-lane PHY):
-> 
-> &pcie3a {
->      phys = <&pcie3_unified_phy PHY_AB>;
->      num-lanes = <8>;
->      status = "okay";
-> };
-> 
-> &pcie3b {
->      status = "disabled";
-> };
-> 
-> - Qiang Yu
+Changes since v1:
+- Improved error handling: use cci_write() with &ret chaining for
+  sequential register writes, as suggested by Isaac Scott.
+- Refactored format and cropping support:
+  Replaced static format list with dynamic cropping rectangle
+  (struct v4l2_rect crop).
+  Implemented get_selection and set_selection for V4L2_SEL_TGT_CROP,
+  allowing runtime selection of the active sensor area.
+- Migrated to modern streaming model: replaced s_stream with
+  enable_streams/disable_streams using v4l2_subdev_s_stream_helper.
+- Corrected blanking constants: replaced ambiguous AR0234_HBLANK_DEF
+  with AR0234_LINE_LENGTH_PCK_MIN; updated min/max ranges.
+- Added ACPI match table (untested).
+- Style fixes.
+
+Any further comments or test results would be greatly appreciated.
+
+Alexander Shiyan (2):
+  dt-bindings: media: i2c: Add onsemi AR0234 image sensor binding
+  media: i2c: Add onsemi AR0234 image sensor driver
+
+ .../bindings/media/i2c/onnn,ar0234.yaml       |  109 ++
+ drivers/media/i2c/Kconfig                     |   12 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/ar0234.c                    | 1309 +++++++++++++++++
+ 4 files changed, 1431 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,ar0234.yaml
+ create mode 100644 drivers/media/i2c/ar0234.c
+
+-- 
+2.52.0
 
 
