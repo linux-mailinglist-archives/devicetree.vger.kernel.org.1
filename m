@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-271891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271892-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2OueLtKQqml0TQEAu9opvQ
-	(envelope-from <devicetree+bounces-271891-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:31:14 +0100
+	id 0AgyCVGRqml0TQEAu9opvQ
+	(envelope-from <devicetree+bounces-271892-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:33:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4447221D17D
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:31:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF1121D1DC
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:33:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E64E5301E94E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:31:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DE9653016922
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:33:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B50033783C2;
-	Fri,  6 Mar 2026 08:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281F3370D66;
+	Fri,  6 Mar 2026 08:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oTQgPK7r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D33jCfOz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926F3296BBA;
-	Fri,  6 Mar 2026 08:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053CB17A31E;
+	Fri,  6 Mar 2026 08:33:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772785866; cv=none; b=OUkqS6aPE4OIWw/TrnKpKrR7TmNeSlPf/507MKUAVNnOHfsnlrA7YDpIV4V1wGeDLeMDfE1pPVlRKzz/4Og8umFcdpJ0NiTLiPJ1dUQz8MnL/mOLemL4gCqyKJ1JVE8Ia0J49bdwQPcloTdNiALnL1K8smjSEEhBSskwkULQMF4=
+	t=1772785994; cv=none; b=b8t5E//qMwovmNZNB5MrauOjytC/bCngHHQ97iYgPhQCGaoak9du0yCOdbEgjGSGHektwcZ7+9GBvHIj1r7jEKiSvW+aW7ogmq9CtVZmwGwIcUZFAZ39BPKw2wZBHJHsBQ0pCIGxAlTAxkaxejkZ/4Oq3DRGnx1joB+1X/yUBlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772785866; c=relaxed/simple;
-	bh=76SMo+Ztb/Ih+x5l4XSQyU7tG+144cVv9puts39MSLo=;
+	s=arc-20240116; t=1772785994; c=relaxed/simple;
+	bh=SN5+pzGWNBQz6tOepDPonTQdUd634bUktGHyYoxmwEE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uk0VO4uS0LpbNWhYrK3WnV6mGhL4wKtXhkibm4kft8CC5tCI29s0Qz+JsTGm2X168XRY93nXqCTg6Bl7b6WKhsy9POo53cbln/xYJ85nkjotD+fu/ttpzn5kl88Zhf4nU8tTZSSgm+nQQY8wK2x2/9scI5gKmLxOInEOSb/drVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oTQgPK7r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F1AFC4CEF7;
-	Fri,  6 Mar 2026 08:31:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QfGH9HZ5iTCfvMFopQMrwq+Z+fpwuVwXYUmhuXHxHWNu+jF36mNE4lKCS16S/yydGSiaNT6v5L8B1KbhwDgqS5bpyDkQLtlfDmsP+Vd1jZomkOaXv1XtNcjGllZwkqYS/9lp9OFjwBn2V75E/Br3HCI3wwaN3YPPhkByIWcqi4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D33jCfOz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05709C19422;
+	Fri,  6 Mar 2026 08:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772785866;
-	bh=76SMo+Ztb/Ih+x5l4XSQyU7tG+144cVv9puts39MSLo=;
+	s=k20201202; t=1772785993;
+	bh=SN5+pzGWNBQz6tOepDPonTQdUd634bUktGHyYoxmwEE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oTQgPK7rQAGfkVav5KgF2xxN1j8wkvkWWxFN30eD173xvcXaMLGcyuNxVnpWAZety
-	 l7q0uctNjm64ToggtppScRbJMNP3klnT3oGKBz0mcqK/nS8zDTRgc7SkIXpkZDbtbP
-	 INQlrEez0ttwB6RLU/lTB2CrJjXK77ne+VEK+Xa3VkmNBN3Cc1jmalnjTCp4O3TH4V
-	 FHTBw11FHfPXK0bAtL7UBxb73vbrljCwAC+NCtkZft5V3XHAwbV2V3Ggb7bVdVN0+Y
-	 CECe6o1BQNQfy4jUXgxi1i3Zxai6qf50xx9p2j54qu/oEO8TKIVi72mwGqeT4Z6udR
-	 z8SqhjYNIf+eg==
-Date: Fri, 6 Mar 2026 08:31:01 +0000
-From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Raptor Engineering Development Team <support@raptorengineering.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	Georgy.Yakovlev@sony.com, sanastasio@raptorengineering.com,
-	Timothy Pearson <tpearson@raptorengineering.com>
-Subject: Re: [PATCH v7 1/4] dt-bindings: mfd: Add sony,cronos-smc
-Message-ID: <20260306083101.GC183676@google.com>
-References: <20260129192047.562540-1-support@raptorengineering.com>
- <20260129192047.562540-2-support@raptorengineering.com>
- <20260209174912.GA1474958-robh@kernel.org>
+	b=D33jCfOzP6hQmRqt0yEZJ81e7N++jbMf+uMWy2FBD75wnT3/xVstWsPVT37htqmMg
+	 dVbfJk5I49PrB1dm5u/RutRJvG0A/G47n83jMN7eKhxhjoK1T+NNnwfeyszXecRBb7
+	 sPptfG2Oo8Gxb2g3B+XUjj4Rr4LhQlO1/B1jP+vqROd6454zhZ4Mbl0Ci2o7kNIMFs
+	 nho66IXZqp4Bf95Y/DwAkiLCGyZdlvPHGk5qhvTOqOHuxDKcMOlmJHFZzbIs+6qpoa
+	 Eiz4d/GVnSCuMLTWOBe2K12b187MAc+GMzhfwSuQBtQxEqeEOTSPDjweDVoSsyp7pV
+	 WT875zij2TRGw==
+Date: Fri, 6 Mar 2026 09:33:10 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Ernest Van Hoecke <ernest.vanhoecke@toradex.com>, 
+	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>, Francesco Dolcini <francesco.dolcini@toradex.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/6] dt-bindings: arm: fsl: add Verdin iMX95
+Message-ID: <20260306-berserk-dormouse-of-efficiency-dd4dbe@quoll>
+References: <20260305-verdin-imx95-upstream-frank-li-base-v1-0-823fad02def9@toradex.com>
+ <20260305-verdin-imx95-upstream-frank-li-base-v1-1-823fad02def9@toradex.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,55 +67,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260209174912.GA1474958-robh@kernel.org>
-X-Rspamd-Queue-Id: 4447221D17D
+In-Reply-To: <20260305-verdin-imx95-upstream-frank-li-base-v1-1-823fad02def9@toradex.com>
+X-Rspamd-Queue-Id: 9FF1121D1DC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-271891-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-271892-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,toradex.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,raptorengineering.com:email]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Mon, 09 Feb 2026, Rob Herring wrote:
-
-> On Thu, Jan 29, 2026 at 01:20:44PM -0600, Raptor Engineering Development Team wrote:
-> > From: Shawn Anastasio <sanastasio@raptorengineering.com>
-> > 
-> > The Sony Cronos Platform Controller is a multi-purpose platform controller
-> > that provides both a watchdog timer and an LED controller for the Sony
-> > Interactive Entertainment Cronos x86 server platform. As both functions
-> > are provided by the same CPLD, a multi-function device is exposed as the
-> > parent of both functions.
+On Thu, Mar 05, 2026 at 06:24:29PM +0100, Ernest Van Hoecke wrote:
+> From: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
 > 
-> Why do we have DT bindings for a x86 server platform?
+> Add DT compatible strings for the Verdin i.MX95 SoM and its supported
+> carrier boards: the Verdin Development Board, and the Dahlia, Ivy,
+> Mallow and Yavia carrier boards.
+> 
+> Link: https://www.toradex.com/computer-on-modules/verdin-arm-family/nxp-imx95
+> Link: https://www.toradex.com/products/carrier-board/verdin-development-board-kit
+> Link: https://www.toradex.com/de/products/carrier-board/dahlia-carrier-board-kit
+> Link: https://www.toradex.com/products/carrier-board/ivy-carrier-board
+> Link: https://www.toradex.com/products/carrier-board/mallow-carrier-board
+> Link: https://www.toradex.com/products/carrier-board/yavia
+> Signed-off-by: Ernest Van Hoecke <ernest.vanhoecke@toradex.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 
-This looks like an ARM device that connects to an x86 platform.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-Note: The drivers look okay, but we need a DT Ack to merged them.
+Best regards,
+Krzysztof
 
--- 
-Lee Jones [李琼斯]
 
