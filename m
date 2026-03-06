@@ -1,155 +1,137 @@
-Return-Path: <devicetree+bounces-272290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272291-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MqiD1oGq2kMZgEAu9opvQ
-	(envelope-from <devicetree+bounces-272290-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:52:42 +0100
+	id WPshF4MIq2k/ZgEAu9opvQ
+	(envelope-from <devicetree+bounces-272291-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:01:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF3B22580E
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 17:52:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B72342259A4
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 18:01:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7FF68304200D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 16:50:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 64E2A301D32B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 16:56:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66AC03A1E96;
-	Fri,  6 Mar 2026 16:50:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6941139B4B2;
+	Fri,  6 Mar 2026 16:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iqb/GBLs"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="EnZ7nDp6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4336930CDBC;
-	Fri,  6 Mar 2026 16:50:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE97C39E6D6;
+	Fri,  6 Mar 2026 16:56:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772815801; cv=none; b=kbelgLW+VZlhZxE0MzHeYFMHstsjaa89yG9raVOmeQ79CvqkznlL7GgO734Eqx4632nxMmc4tvv9iZnvDIKaFrj547JSGzcZLU88g/FoJQELtoYK/sF8WeDspjJRcqNYEbUp5AJnPcNIVXeUy3OmnMtQ8PJR91z29CCt16jhteY=
+	t=1772816218; cv=none; b=pQo3YmO1rgfjNLjoJTETifVHf2X/dDpfzCCq0q9u7w3+AkP8LeU3CnwR7yjvXFB7ISex2aIyYblx5BLblUqtLhFCF8HbiES8t+O9N0z7EmU5mS1PVJ9fIGAyNr9NmZXRvc2KuAiPTA5TB8zA9WEi4oAg+JQi+bDnPSWA2uQ8fFc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772815801; c=relaxed/simple;
-	bh=LDvErnsSviSKWmsnP/i1WUe5RN+oPcvEl6IZb6brtwM=;
+	s=arc-20240116; t=1772816218; c=relaxed/simple;
+	bh=ICmXdsuRx9SCp63uA3rtTqclNutbwaaYpNgkn73RSRM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K+19HcncULRwipvOA7yveUYshCSWA1p8CA7sHLDyo4Toyc2SkK2Kq8q7q4MhNl9k3TRKwyE8kMfB7+uAd4kUSwEP7WW1o2lRh1WbkdVOxAtnHCPhpQgffplLDBkSjZRy2r2uNTt4SB+mtKiEsfZ8mftt+fCHvcu9DqnUFiLYbgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iqb/GBLs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECE3FC4CEF7;
-	Fri,  6 Mar 2026 16:49:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772815800;
-	bh=LDvErnsSviSKWmsnP/i1WUe5RN+oPcvEl6IZb6brtwM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iqb/GBLscIvX2eAgLxU85ftpAEVvKQ/IYAHxvSAAhHLoaRCwOhhcTpjuIw+fOPeee
-	 R0uEz6hxWhR8aLX3oUwPM3Ns03hdLP5QB6d+VyBfv8M5v0v11gy2rJwOI37bKk7ytE
-	 0wBfgmYy3pNeBnrwWE8SRNlRNyExs6cOhj3WIXxv3XIO+YlFCUpa0Y+4AN+GCmzkfb
-	 kcFdbeuSqCoeBS7CUcXk2zNjfQcA3pxiYb5eo/qXP2IG60XbdYMkY96kdAbwOkFx9n
-	 1JRbNH+n8R3FJvnhbzSqU2oZeEqYG5wynRlTXNwYL29Rr8mjuJkRMzKL9Jj4i4D0D4
-	 r+fVpMcb0enaQ==
-Date: Fri, 6 Mar 2026 16:49:56 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Raptor Engineering Development Team <support@raptorengineering.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	Georgy.Yakovlev@sony.com, sanastasio@raptorengineering.com,
-	Timothy Pearson <tpearson@raptorengineering.com>
-Subject: Re: [PATCH v7 1/4] dt-bindings: mfd: Add sony,cronos-smc
-Message-ID: <20260306-kept-shelving-67e5d74dbf5d@spud>
-References: <20260129192047.562540-1-support@raptorengineering.com>
- <20260129192047.562540-2-support@raptorengineering.com>
- <20260209174912.GA1474958-robh@kernel.org>
- <20260306083101.GC183676@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TLxvVLSCsJN47WmeaHqDmTpEtmQR9CZ31AN48CzmRw7YKySuNN/VoJIyzeculT8qAYCF4doi2+dGO/XJjL+LqH1IR0ZuK6hBjqTy+Ds2NyQAFN4svEJhkjslf40+tTrA3jy9GHns64pPbQK28VqiechzOhCJLpAPFs5dJ4k7wLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=EnZ7nDp6; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=WshcvYtkXXe1rUX6+z4QlVhkmQAJ3iSCBEssBtgD1BA=; b=EnZ7nDp6Vhm1GkvWzTfn4nSwP4
+	mvy9s71m8Cs6pMx1IfA1XvwYAqK6/kE2I9a2dvQEdd8snSHf7S6XwypDUc5YHR/HCEC/3cqhV3/Km
+	tyZCeMQkwyu4NMLtloJ/XsLkhVXfb8//uCGLIMSr86y/atlcUay6U7O21y2nOUA0bPXI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vyYTl-00AVkK-Sf; Fri, 06 Mar 2026 17:56:45 +0100
+Date: Fri, 6 Mar 2026 17:56:45 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Shenwei Wang <shenwei.wang@nxp.com>
+Cc: Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Frank Li <frank.li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
+	"arnaud.pouliquen@foss.st.com" <arnaud.pouliquen@foss.st.com>,
+	Shuah Khan <skhan@linuxfoundation.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH v9 4/5] gpio: rpmsg: add support for NXP legacy firmware
+ protocol
+Message-ID: <8f83ba5c-bda0-485c-bf9b-052f1fc33879@lunn.ch>
+References: <20260304211808.1437846-1-shenwei.wang@nxp.com>
+ <20260304211808.1437846-5-shenwei.wang@nxp.com>
+ <676cee35-b5ba-4a3c-a6d4-b9e06e0886dc@lunn.ch>
+ <AS8PR04MB91764DFDA8D3BEF64F583969897AA@AS8PR04MB9176.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="Fr1r9n0pnYC2H/10"
-Content-Disposition: inline
-In-Reply-To: <20260306083101.GC183676@google.com>
-X-Rspamd-Queue-Id: 8DF3B22580E
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272290-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.938];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
-X-Rspamd-Action: no action
-
-
---Fr1r9n0pnYC2H/10
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <AS8PR04MB91764DFDA8D3BEF64F583969897AA@AS8PR04MB9176.eurprd04.prod.outlook.com>
+X-Rspamd-Queue-Id: B72342259A4
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-272291-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,lwn.net,linaro.org,nxp.com,pengutronix.de,foss.st.com,linuxfoundation.org,vger.kernel.org,gmail.com,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[24];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	NEURAL_HAM(-0.00)[-0.989];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lunn.ch:dkim,lunn.ch:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 08:31:01AM +0000, Lee Jones wrote:
-> On Mon, 09 Feb 2026, Rob Herring wrote:
->=20
-> > On Thu, Jan 29, 2026 at 01:20:44PM -0600, Raptor Engineering Developmen=
-t Team wrote:
-> > > From: Shawn Anastasio <sanastasio@raptorengineering.com>
-> > >=20
-> > > The Sony Cronos Platform Controller is a multi-purpose platform contr=
-oller
-> > > that provides both a watchdog timer and an LED controller for the Sony
-> > > Interactive Entertainment Cronos x86 server platform. As both functio=
-ns
-> > > are provided by the same CPLD, a multi-function device is exposed as =
-the
-> > > parent of both functions.
-> >=20
-> > Why do we have DT bindings for a x86 server platform?
->=20
-> This looks like an ARM device that connects to an x86 platform.
+> Other vendors may add fixed up handlers in the same way to support
+> their existing products.
 
-I dunno. The text talks about "this" being a cpld, so at best it would
-have to be connected to an arm SoC that's on the x86 platform's board,
-acting as a BMC or something similar.
-Unless by "this" you don't mean the device in the binding, but rather
-the platform that the device in the binding is connected to.
+But that is exactly what we don't want. Why bother adding a generic
+protocol, if vendors then hack it around to make it compatible with
+whatever their legacy systems have? We want to discourage such bad
+behaviour.
 
-I've kept this in my mailbox for the last month, because I was wondering
-the same thing as Rob, and there's been no engagement from the submitter
-at all. I don't think that that should be rewarded by trying to give the
-benefit of the doubt.
+How do we discourage this? We add the label 'legacy' everywhere we
+can, so it looks bad. We put the legacy code into a module, behind a
+symbol with LEGACY in its name, which is disabled by default.
 
-> Note: The drivers look okay, but we need a DT Ack to merged them.
+The messaging i've seen from ST is that they will use the generic
+protocol. We reward them for doing this by not bloating the code they
+need with legacy support for other vendors...
 
---Fr1r9n0pnYC2H/10
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaasFtAAKCRB4tDGHoIJi
-0sFjAQCbM6mX0NM3nQ5j5PfdYBKJpb1Wuv2vRAM/pHNXGOdgEgD8Dg+x9GZ4EBiI
-4rfXNomUuRaW35u71FRHBMTjS8lBaQ8=
-=i3ZI
------END PGP SIGNATURE-----
-
---Fr1r9n0pnYC2H/10--
+     Andrew
 
