@@ -1,142 +1,135 @@
-Return-Path: <devicetree+bounces-271880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271870-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sPJ5MxWMqml0TQEAu9opvQ
-	(envelope-from <devicetree+bounces-271880-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:11:01 +0100
+	id oPkTIK6JqmlDTQEAu9opvQ
+	(envelope-from <devicetree+bounces-271870-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:00:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6637E21CE34
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:11:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119FA21CC0E
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 09:00:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id ABA2E3006470
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:11:00 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DB4BA301FA92
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 08:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BFE537757C;
-	Fri,  6 Mar 2026 08:10:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC718376486;
+	Fri,  6 Mar 2026 08:00:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="lw2O4qJ5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aGLxPXBE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 11.511.mail-out.ovh.net (11.511.mail-out.ovh.net [178.33.248.74])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EED053101D4
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 08:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.33.248.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E4D374748;
+	Fri,  6 Mar 2026 08:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772784658; cv=none; b=UTp/tuVZj72aAlHRTaT4ODF+bOkvAix517KIT6Vo0zPHBTGj44oL3+vsOVa3z9iOFjaiUY8+gN160tt10Lvlfx9DclEPaO+TbZWfZtnttlmnqqiiiwbnzhdq9tueAgXN6JzeF1/SIvJlUJq6lAiiXiN8UraewQ5gZi3h9V1GUxk=
+	t=1772784021; cv=none; b=K1zq14/8cDY3jUdyW/h7r186SAeRAxbGx5MPhtfn5yU/6E1A/RO95/RkaQeE9EIqD/Am70ZFQJCZA2WrYmBTCaMyChdUUuRHqrMBv3GqPbAP0ooPrEpbJ/E6bt3Gyrx9ftmGAkGSVHcS/HjcO1CSkr1spjDqRmp2DA/muUBW18E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772784658; c=relaxed/simple;
-	bh=Oex71e2rNirvwXkD1R+tdV6/7nZIW2OYdxW8SPnlB0I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=G/b1YfuJgUGrcOXWZRscAWdC3ff1iT2cruZNu+UoBW5rxJSz8YYeZHcXS6Cmp4Ir+fs3vELm8ApKwQ9UIIxuDGOLeW8kTi1IGWb/7KUOxX3+FP6J2Fy2pWh5v91iS0imCIUuoRRpdTAB34gB+r5PiluSgN5Ei5sSDYdjchmcJek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (2048-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=lw2O4qJ5; arc=none smtp.client-ip=178.33.248.74
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Received: from ex.mail.ovh.net (unknown [10.108.42.185])
-	by mo511.mail-out.ovh.net (Postfix) with SMTP id 4fRzFM6XDqz9tg2;
-	Fri,  6 Mar 2026 07:54:15 +0000 (UTC)
-Message-ID: <439033a9-6f4b-478d-9317-f16167d138b8@aliel.fr>
-Date: Fri, 6 Mar 2026 08:54:14 +0100
+	s=arc-20240116; t=1772784021; c=relaxed/simple;
+	bh=iD/VzlwDTwkJdaLubLGKVtxVDTiATyldptYt3Eq4+W4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A2TlDm5rWaz5A3UVVLL2se+SKHIKT7nEaUwhzfHGyuzW9+Aaq3WtCLisHTdq4D9+BUyb/ZsLTVtd4PYHmrX89BLkUm2ru8VnMt8+gSXFJyDomsiGGAPNXakPlp+PQjKk4VHdnGv13vrd1vyh3llu8HfgOK8nahlVdR5eXTRd+bE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aGLxPXBE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA98CC4CEF7;
+	Fri,  6 Mar 2026 08:00:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772784021;
+	bh=iD/VzlwDTwkJdaLubLGKVtxVDTiATyldptYt3Eq4+W4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aGLxPXBEPp4RLYM+7FzuxdhtMJt2EG85Qr6Y7+8IOyLDCQ5sdzHvaxmcZMw4zeUHq
+	 O/rMnUHNJxeACFOaI7z6W5N0C6QjPjpuMt1qK03C8NVzvn1xqisygTzEP+mO/Lggm5
+	 XQryoRPXV5Byzv8ON+wizR5s9ENCmsYLiWClAmL2BA/84MKyPPdo4Wlgive7/2pNMU
+	 DQMbN+EL+vy2HKkGb8J2fdNaaR+qBCz5cEGfZMQ5ydBQeCYfq+m7e8ONO8636bYqd4
+	 rk8fCVoteI0IPeDkQJOXw6Z74wVIWgpsroBs9lVXCAYgDk7cTd0Nl2KAFRuhBrOmON
+	 bN87DPyCATJOQ==
+Date: Fri, 6 Mar 2026 09:00:18 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Hugo Villeneuve <hugo@hugovil.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, 
+	simona@ffwll.ch, Frank.Li@nxp.com, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, shawnguo@kernel.org, laurent.pinchart+renesas@ideasonboard.com, 
+	antonin.godard@bootlin.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Subject: Re: [PATCH v2 04/15] dt-bindings: arm: fsl: change incorrect
+ VAR-SOM-MX6UL references
+Message-ID: <20260306-observant-banana-wapiti-90adef@quoll>
+References: <20260305180651.1827087-1-hugo@hugovil.com>
+ <20260305180651.1827087-5-hugo@hugovil.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH] arm64: dts: amlogic: t7: khadas-vim4: fix memory layout
- for 8GB RAM
-To: Nick Xie <nick@khadas.com>
-CC: <krzk+dt@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-	<khilman@baylibre.com>, <neil.armstrong@linaro.org>
-References: <20260306031014.2421875-1-nick@khadas.com>
-Content-Language: en-US
-From: Ronald Claveau <ronald.claveau@aliel.fr>
-In-Reply-To: <20260306031014.2421875-1-nick@khadas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CAS7.indiv.local (172.16.1.7) To DAG11EX2.indiv.local
- (172.16.2.112)
-DKIM-Signature: v=1; a=rsa-sha256; d=aliel.fr; s=ovhex24454-selector1;
- c=relaxed/relaxed; t=1772783655; h=from:to:subject:date;
- bh=51bKZp8HGwWRddd1tNSHXaubft5ibHLxsbZndwLhhBE=;
- b=lw2O4qJ5j7aJ3hE4MaFONiW2cYTLYJlv4989G5cYp2+YsZDj7lbPYzzPPRDzLbQBckbkG6JymkbZ1FVc5L9Sa43jOqM34X9n8iiA87lJ7K6olKwXeQ9M0pZc2gnrLeZKVhck8qB7xQQ1qOMvSyldpWONraTjK+6ghHH5/Hy1LJKenLcO5nTbtW9VhQ63vqZywMdmL7zqdP5Daalub1295OVdXjiPBpbp8SaDd7lusC5AG6FQc3CJbl2JAR+hfR25jl4CuZeakKS2eEkQXD9mhrroyjY0ll4GqYZlyztZDb2JWw8m+ln+GnIfThGfhkTazznhCfsQKs+ByPDctAvJXw==
-x-ovh-tracer-id: 9811091791627160995
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTEO47OSnav7wHMO6VHKQJYw5sS6E1e0dYLi3aOM6XwWvW+BSO5iAnSyXpDTvn1oG6KJjf4G2oPkJMUwvkq2sKBzmJS+e508dKIWeUZ61hmeH//FXxRIrm6M8y6Um7Hs+J92kq7PB6I88a08R607cdwV1iGBxKfjwv7MEHzwXWKMQeZ2Fva5/DJ5huPnlMsK+1reqtqT9vWQDSAbOXap04ilYp6tzIaFU9FOLlHOZRflY8zux8lbJwgB+Pc/OJakQZarkL/VVoZLBhVbJ6zS0A/YDb2Q1H+zCC9hhoj9H4FtnVb5YFUvfqbLmq0Qg6LtNthW5djX3NRKQrYgnp8e5mz/t98llNdJdNLHyfrZeTUTzVloxKRxbh61lfS5YMf7zu7oqT2/k0LUi4W9SqVCujxGP2UhsKcwWbu/8jKSEWcDvNHjZCqVdM1jQJZWv4+yfey0yAQSGC4cf+BaVdCvYf3ccJ8P7VfoPuD4yJ2cWyW+lih46CAp3DP7hBNuZ8/bmYzOISl//Y4TpKNIvqNpYdMXXTy9ubuUJdftZZDnLcjQPmKmay2PzMus2ThE0xHtzMty7KJEFdbmEDrQActRMrH+kv3Y0LjyMqCW/+X555lpEvfNn89Na9xSHNsqi60fBkEbryrv8YQ0XXscrXS55KmFMDOKBemrknUs/Lm2b1naLg
-X-Rspamd-Queue-Id: 6637E21CE34
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260305180651.1827087-5-hugo@hugovil.com>
+X-Rspamd-Queue-Id: 119FA21CC0E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=ovhex24454-selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271870-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[aliel.fr];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271880-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,nxp.com,pengutronix.de,bootlin.com,vger.kernel.org,lists.freedesktop.org,lists.linux.dev,lists.infradead.org,dimonoff.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[aliel.fr:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ronald.claveau@aliel.fr,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,lists.infradead.org,vger.kernel.org,baylibre.com,googlemail.com,linaro.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,aliel.fr:dkim,aliel.fr:mid]
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dimonoff.com:email,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 3/6/26 4:10 AM, Nick Xie wrote:
-> The Khadas VIM4 features 8GB of LPDDR4X RAM. The previous memory node
-> mapped a single incorrect region. This caused the kernel to map MMIO
-> and secure firmware (ATF/TrustZone) memory holes as standard RAM,
-> leading to an Asynchronous SError Interrupt during early boot
-> (paging_init) when the kernel attempted to clear those pages.
+On Thu, Mar 05, 2026 at 01:06:19PM -0500, Hugo Villeneuve wrote:
+> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > 
-> Fix this by splitting the 8GB memory layout into three separate
-> regions to properly avoid the memory holes (e.g., 0xe0000000 -
-> 0xffffffff):
-> - 3.5GB @ 0x000000000
-> - 3.5GB @ 0x100000000
-> - 1.0GB @ 0x200000000
+> There is no Variscite module named VAR-SOM-MX6UL, but there is VAR-SOM-MX6
+
+And binding does not speak about VAR-SOM-MX6UL, so I find your commit
+msg extra confusing. It took me way too much time to decipher why you
+are doing this and this should be just simple correction of name to
+match the product expressed by compatible.
+
+BTW, the DTSI also has wrong name.
+
+> and also VAR-SOM-6UL, so it is confusing at first to know to which one it
+> refers to. The imx6ul-var-som* dts/dtsi supports only the VAR-SOM-6UL [1],
+> not VAR-SOM-MX6 [2], so modify comments and model descriptions accordingly.
 > 
-> Signed-off-by: Nick Xie <nick@khadas.com>
+> Link  https://dev.variscite.com/var-som-6ul [1]
+> Link: https://dev.variscite.com/var-som-mx6 [2]
+> 
+> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 > ---
->  arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> index 25b478e106451..106eab2b4c2e2 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> @@ -17,7 +17,9 @@ aliases {
->  
->  	memory@0 {
->  		device_type = "memory";
-> -		reg = <0x0 0x0 0x2 0x0>; /* 8 GB */
-> +		reg = <0x00000000 0x00000000 0x00000000 0xE0000000
-> +			0x00000001 0x00000000 0x00000000 0xE0000000
-> +			0x00000002 0x00000000 0x00000000 0x40000000>;
->  	};
->  
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-I suggest to remove the leading zeroes here.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
->  	reserved-memory {
+Best regards,
+Krzysztof
 
 
