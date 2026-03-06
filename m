@@ -1,213 +1,198 @@
-Return-Path: <devicetree+bounces-272220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272221-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFNgITDyqmkJZAEAu9opvQ
-	(envelope-from <devicetree+bounces-272220-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:26:40 +0100
+	id 0HDlC0fyqmncYwEAu9opvQ
+	(envelope-from <devicetree+bounces-272221-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:27:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00B11223C54
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:26:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3E2223C70
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:27:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 338B2303AF0B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:25:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 813373012D17
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D431D3BA22C;
-	Fri,  6 Mar 2026 15:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9261D39E6F2;
+	Fri,  6 Mar 2026 15:26:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IMDA5Fd6"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="qb3VX0Gl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011071.outbound.protection.outlook.com [40.107.130.71])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6137B3B7B8B;
-	Fri,  6 Mar 2026 15:24:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.71
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772810699; cv=fail; b=jlUoGVk5cggLzFU0PpcxKYRBDuIKeSqEfN1SnXOpi/FOSxNfTgBnKFNecX3DgJ8fb1vHSjtFHxhlZi7WkiI3BkvAIU7I+cizuYZ+jfa5pJY7cHK95609mcO9a32VGK5x7DkFUeUM2ww85nYTA+me8uc1NV8TmccvADxWkK9wDeA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772810699; c=relaxed/simple;
-	bh=mZ23DYhCNWeaHmWtTU99uEsWwsCVNGYKoXciGB1yXOQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZJk+R0rui4HtS2UeUSMdg56PnzwVlSh8r4yLHlUi70O+PJidxw3guwMwwYPRez1LL7UWvMuxDCGrgCvmYiWyLMLyAmpdrl2okh5gPF2PNyPFDMoMcanI0pED2rmf3o3xuccWVVrwF7xz9QI/fNu23VEh0rCpG10wA4rDn5E56tw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IMDA5Fd6; arc=fail smtp.client-ip=40.107.130.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Bb6QbAUUNS2OBkjSOmXZ5kzu2L5ikhm5j2SOrPMUQtFOu2FTMlnVhwgNo6qlNQQlF2KUIonMEkuX+rRJdv2QzugzcVxW45JUfPQ3mMjVqQTBen+IGWXvW181rRv4CglnMdU0FToYtkoCsNUCq3wJIqazEU0xTJH8lnoGAsbA6XOhl3vo5KIVLwnt8yLq/wGd745N1KmwixLiMMZKz8EvcgVYZIaVtzl54BFxBw+ydTeWRpKCsL5QBvr9oHfevJiH3Daqq4bx+i2fcMQ/wDgkSKIleUUqcCxPt9xv4vBmdldaifWW1x6l3OmYiXAQUeFtPrxIAHVqVWW50O++/XD4kA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rvhvNxOzINcRBOKdRJborYwS50UWY/SJ1tAg4JyXXKA=;
- b=BukWVLR1RH6zhQIX9O8pDsB+uJSbLsbTVcBR16bpDzZu9/NVPQGk8pXhWJMHF8jFB3S4aOgzjqwQ9Uwb/G2EmHXHZycVprUdByW4jqxpN31TmNqBtqyAmISw5zF/ezt0aUI/UymCHbvN0Ta9uRDhYXekE2KimgzvPXfRn6WmzTjB/v+IB9OZnccJKqL3tezfe9Kl5Zz6d3/aY+95wedqTA1hI5HDRtlvifOWZ6VccuCw13HMEtb7fHu7fI6hACz+83/2dxigshiEyM1s5RgSrzSa0NTr4Y3AakByQ8z11mCbsvF0Ij0PDVL1Wdls2Ld2VgHo0K430Qf4DYI+OERDUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rvhvNxOzINcRBOKdRJborYwS50UWY/SJ1tAg4JyXXKA=;
- b=IMDA5Fd6n9+sz8k03wk4sGIYXwmRpo3NbLJDgk28czc/YdMuyQX3xEHHy6IHafhh0Q3dZNkn3R0kvRhcYvXUewkcgxmpW/t1/CjLsVRYwB7W8ikGX6e6/bMruSNYXF59ICH178kWgU/2CCgm4Lo2SSPG8mam6Hu3wrnaWTvVWWMMvgCum37hJ9QipItbtXM/K95rdIrMTRLyBWN+qOHS7FdM/OPCJTpng80uUq+M639L8qzHBFV9XwNcwg8t7nRdRCNfA+Ykl1TWYDK8pv75bBDHsUtkGZqfN1299j1zvHAxqGruEXtCh1RIlLC8lAue53E0YgaQJbQeT3MneQ0DWw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by VI2PR04MB11219.eurprd04.prod.outlook.com (2603:10a6:800:29a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Fri, 6 Mar
- 2026 15:24:49 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9654.020; Fri, 6 Mar 2026
- 15:24:48 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	max.oss.09@gmail.com
-Cc: Frank Li <Frank.Li@nxp.com>,
-	Max Krummenacher <max.krummenacher@toradex.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "ARM: dts: imx: move nand related property under nand@0"
-Date: Fri,  6 Mar 2026 10:24:28 -0500
-Message-ID: <177281063848.253518.12995342124719933118.b4-ty@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260219151157.2549198-1-max.oss.09@gmail.com>
-References: <20260219151157.2549198-1-max.oss.09@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SA0PR11CA0045.namprd11.prod.outlook.com
- (2603:10b6:806:d0::20) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15FE539903D;
+	Fri,  6 Mar 2026 15:26:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772810780; cv=none; b=RyVHjn+cn08Rv861mfPnHFOkUhTEIQC/MaWTIRchFc3JdEVn08CrIVWvfMJXOuXzvftt9z00/YfIqiLtwOwBz/BFPKeTzAF8v2zLZaMZrJzLHnkhwE5xLpZGjCqZZ6M7I9LiANW6Z+7422Ma+wLV4iKsXBL38CNSNdD3zZH6n0M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772810780; c=relaxed/simple;
+	bh=qiABN6m1k9LOGbUrfqnjBgOX07AhRsDYCYIXNOJwowE=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aN+ZovdlP7Z14xi0PCqHTIN/xHpG6WLIfaD+l8Kfo+1dc0RJpIpzo5zgIeMzwA2t6t6GvGqXAvTKLowc5z7FCIvL778Empz0NUH+CHUISDHNIt223oVLPoWVixESRltxbOFBYGhqJ+/W5vvCSLpStkEq0ZgXZoSwVXK+uFwinKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=qb3VX0Gl; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772810777; x=1804346777;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=qiABN6m1k9LOGbUrfqnjBgOX07AhRsDYCYIXNOJwowE=;
+  b=qb3VX0GlwnVGFe4dX9oS6IJSeTDCN6P0yJeJlIt9KyV0y3JAumRs9xNK
+   qzCarOyfE7CU0EV+D3tTcE0XslIFWIlnhe4yo6FekMl1llcQqcbFYcFjp
+   GnklXTZnfs/owAsjEJq4paKPdKC+4A5n3+WKlLhzct13b/QJFSxsTzp0U
+   lAkFaGaILozOw/rBtnScdUTadrGc/+OWpX3dwgt4xTlNmYq3ZGCbz+YJr
+   3wwp75YCVTQgjuGIlJbT6+jBI6Fr48pasgMEQkrJfV8HK0qTELemjaco5
+   W7m/fVmu1zaKrHqhMbcxSkY6KbM0kaHYit+PhqZ/syN7cCi8hptmibFlc
+   g==;
+X-CSE-ConnectionGUID: wO5DHGa6TM+9jOTWtJbq4A==
+X-CSE-MsgGUID: lldLq4CZSwem9Acc4a3lGw==
+X-IronPort-AV: E=Sophos;i="6.23,105,1770620400"; 
+   d="scan'208";a="61833322"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2026 08:26:16 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
+ chn-vm-ex3.mchp-main.com (10.10.87.32) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.2.2562.35; Fri, 6 Mar 2026 08:25:37 -0700
+Received: from bby-cbu-swbuild03.eng.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58 via Frontend Transport; Fri, 6 Mar 2026 08:25:37 -0700
+Date: Fri, 6 Mar 2026 07:25:35 -0800
+From: Charles Perry <charles.perry@microchip.com>
+To: Simon Horman <horms@kernel.org>
+CC: <netdev@vger.kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
+ Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, "Claudiu
+ Beznea" <claudiu.beznea@tuxon.dev>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <charles.perry@microchip.com>
+Subject: Re: [PATCH net-next 3/4] net: macb: add safeguards for jumbo frame
+ larger than 10240
+Message-ID: <aarx70c8gbzGs/KS@bby-cbu-swbuild03.eng.microchip.com>
+References: <20260303180318.1814791-1-charles.perry@microchip.com>
+ <20260303180318.1814791-4-charles.perry@microchip.com>
+ <20260305114010.GD90938@kernel.org>
+ <aamSGKwG4i+7zBqV@bby-cbu-swbuild03.eng.microchip.com>
+ <20260306130426.GA461701@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VI2PR04MB11219:EE_
-X-MS-Office365-Filtering-Correlation-Id: 086244bc-6108-4026-3138-08de7b948123
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|19092799006|52116014|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
- WirtLYmN5y0Wz+O2ARLTgcpWTzlEatVwsRjlw0HxW6sUYDWmqwAW3naAhIYL1kXOkF4HvY4m0g5zZQCx/U5ZK4Bhhyv0xttl7sKsKbsg/OpfKxeM1bCDadkrYUyahbWpapacdz0yDR8n1sWv5fQFLCXN7DhPUVJB5ygc6B8W8X3Kkdz1iYPdpLg5ebwWnjIYdtwrf4fu+0/5AywaTxUlbMfrK1Sz+XJhMe13RsqL4RnwYfCXNTf5GN8/E3BCg+Ox1NK088rUh0N623Q+VzdJtywWwZeIoH2K/3B37lNHtsn0UUs9Nio8IDdJL5Ki1p0NYtiiYj/x2iIaY2jrBv+6dd4LZQogg9RW9Q8k52AdDUUJ9h4r9R4t/tYOUd/fsYTdhA8M/kTwSyVYgY4Vq/US1DeM/fg47Kv8cDxd73lIB99r0jg+TIEpy48lek0DLarrrmdd1Ms7MuutbsBn6Fwxdt1zU2SjqpDvkNyu2AqbXFEvrKDsyulOsQonV3RGOjAw+oRvNt/0Oz0BMuVwHRcug0VZp/nuSSr5r/jVh8T3poJZAHzrYuv4VaDApN/++U+ThYDqGRbZI7tcRLpckb2ZQghi2tbOrtZsUeCGZAIyjO28Z3brIurN3vddS3j4iUWxnul9tUAfkSOMBGjxFen+FbyWDsH3ZnJaPPnOxoReF1kuemWvMFwsqiItwdijexWFS+LFz5asYNT7RalnQlgenkKK5ui+PgOjUvIeo3KYIT22CAThx6x8ueh5ITUEgCdUzb98p3l2A3q/6pxCoy4YHINwM14H78dI4kSL3kTtjX8=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(19092799006)(52116014)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?utf-8?B?Q25xWVhRcEE5Y0s2VHVKbmJFeWlVYXI3OVU5UGh5dTRHdThUVjFueEpNeHhL?=
- =?utf-8?B?RHJ4VEJZUmpkdG1kaWF3eTM3dklpNmRLTlErTVdhcUZxbWsveVFtM3Y1Z2tX?=
- =?utf-8?B?Nk96d1ZvKy8yNVh5bk5lVlFXKzYyWVd2WXpJeE9ZQlRlUUxxWExCMXBUVFpB?=
- =?utf-8?B?OE9JL0JSdUgzcG1xNEN2ME5RUmdXbW1uZURqblVvajBqSWpPVUVjcEV5dktG?=
- =?utf-8?B?eGV4VlU1UzNWVnU1K3hQVlBDRFFTWnFpOVZ3VTVxK01TcFV3L1FBVVNKM25w?=
- =?utf-8?B?dlZ3TXpzZlpDU0kyVG9NOXZGOVZ3THVIZkt4NzkzV1ZPU2JxNFdaMC9tWTNR?=
- =?utf-8?B?OE5oNmlIeFB4Si90SnVKdi9NT1JvQzU5V2Eyd2YxQlB3Z3lJUWlFN1dHeVY0?=
- =?utf-8?B?c1lGb1M5RjBSTWdEQzdRUCtLV0kwOHpwSGpQa3VPMDR0UVp1eDRkNlh6Q3or?=
- =?utf-8?B?cXhWNXVGbkJMakxMdEgzWHQ3VWZxT0l6Q2ROeVBDL2dQUy8vQ1FQT2RhSVVH?=
- =?utf-8?B?RzdqSDVNckI1c2NNQUIyQ2dFVEV3OFBhS1F2ckxXMTZKVzNjdm1RVDBMd2Nt?=
- =?utf-8?B?QVhYWUJuZ2lPVnRYUk1BbzlFYW54c1JxS01xekZ6S2RTWGJkRnl2clpGRnd1?=
- =?utf-8?B?bVI1Z1hadUhqQjI4N1piTmtwZ0RJZzJ3WmwwSXBmbEVHZVlLdTJMc0JrVFBi?=
- =?utf-8?B?RDJyQXJ1bFI4M2lrb0hXUElBcDFsZ1lacDEza0pFS0htWDJBY0FadGtpNlJP?=
- =?utf-8?B?NlRVSVdURUxXUWNCWTRKaWJlMmMwWDVETkx2NGtRSStTTEtQVVJ0RVl4R0Fr?=
- =?utf-8?B?eTRuWUF2UFZVTmcvSzh1R1ZCOHNUdy9WMFg5S1pmQmorUW10UmtQcHdCM2lw?=
- =?utf-8?B?dFlyN0IzWGVaR1V2TzhCT1JaQW9jeDdKVHpiSzZRb2Z4UmZJSE11dWJISHlr?=
- =?utf-8?B?YkRka0JVMnV5UTFDeTZMYTlGVnhsSkhwYTFPVVZUUzh6UkJNemN1TXBGQUFM?=
- =?utf-8?B?OFRyWDdIaUVteTZseXRuYlJvYVZCZEcrSTRqWkdSOFFBSUMxZXBPSnN6N0tK?=
- =?utf-8?B?bTFYZ0JkNVRwYndneDljSjlldlJlNWhNNVJsYU4rSUVZZkFNU2FlbXVDRHZx?=
- =?utf-8?B?dlpnNkNQRCt6cVBkMzdIOEpjanFyRlhKSktsL0RFN3RENktTeUlRREpvdkFq?=
- =?utf-8?B?aVVqYS9PaXpKa2dvVFJyaURaTEJHOWkxT3o4T01PVTRWZUZia3d0Tm1IYVZT?=
- =?utf-8?B?VHJveDJ3MGRodlRoWmdRTitDTEFIWEpJWkxWaUdWR1JDV3dVSnlnTzQya0FQ?=
- =?utf-8?B?QUpIdnRTMS9aT0dUc2VIOXA4V2xpeVhzMXJKYkg4M1FRSEZzanZ6OXc3YXk4?=
- =?utf-8?B?cVZ1R2xzV0x1U0dDdFhJa0YwamQ5UG10WkV3UVEydXlIcXVGRUdEMUZUTW1Q?=
- =?utf-8?B?amRrbXhxTFdBdXRZdFdvQmNGaTU4cy9BTlVvd1ptZVZ3bHk1dFBUSXIwN0xW?=
- =?utf-8?B?T2ZmQzNFU3ArNnluNHd0c1p4NmJYTzdTV3Rmcm83aEFKNHAyS01sZWRsNG5M?=
- =?utf-8?B?MEIzUW9sTk8rQTFGbXd1Y0dUc0FqZGNsQTlDRDdkcDQyMkthUjJDMGg3NDhH?=
- =?utf-8?B?R1A1WjI1eWIyUlFCcjNFeHp6Wmw3NmtESXk1TkZUVFowZDVzZ0R6OUZHUGJC?=
- =?utf-8?B?T1RxQlpXL3BnSC9JQkxmT1BKclhqQldoejdVb2RVeEZEYVVJMEF5TTVncStP?=
- =?utf-8?B?WXVtdVlXd0llU2hyMTRwT096a3RqcHF5b0NaTVZNYVN3R0ZtbTF4MVgzREUv?=
- =?utf-8?B?RU1DYVh3T0ZTc2dQZ2NXcHQ5ZGJadHBrTmpzWGtOanExZXltREpvUW5TODNJ?=
- =?utf-8?B?WHJNWDNPOHArZFJXc1NVZ0g5dFBOUmJVSkovK1JHNHl0cDlSTXVQSmtncDJR?=
- =?utf-8?B?VjN5Y1hIdk5DejFWVkdQOEhKWEVVdVo5eE1XNGcrbWF6bm9mWFQ5bGhjTGJr?=
- =?utf-8?B?Mkx1d0Q1YzUyZ1RqblN3azU1SURmNWZpR2p2TUIwYit6Ukxua04vRVRrVGh6?=
- =?utf-8?B?ZHZMUzNJU0xuVGVYbG9rdFpzRi9rbEJwazV0Rk5aM2lZNEtuU3pLTy9FM3dF?=
- =?utf-8?B?UnpIUDA3cWtHdnhsMnR6REtRei9qREtXUkxsNG9xRjM4U0o0aXVWazFxSjEy?=
- =?utf-8?B?ZzdUd3B0LzBBTGppQ21OU25UTGNzeXNkeVNMSHQ5TlFZTmU3U2JMNzR3Q1dk?=
- =?utf-8?B?aGFici8vUGVER2xVNmtXR1hPZVdDQ1hyVE41aGtHSUZDSzY4WW9sWG42NFlU?=
- =?utf-8?Q?5rY8JorFKIUW/4DiIf?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 086244bc-6108-4026-3138-08de7b948123
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 15:24:48.8844
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t7OLx1+fvucTQm9SJO2VrWhaQ0P+HnwcapU8PgGlNBwE7mBkBrm0JedpbeUNVp3QiRMT4qL6lBX4pbfS2JioXA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB11219
-X-Rspamd-Queue-Id: 00B11223C54
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260306130426.GA461701@kernel.org>
+X-Rspamd-Queue-Id: DB3E2223C70
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272220-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272221-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[toradex.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[nxp.com,toradex.com,kernel.org,gmail.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[charles.perry@microchip.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.982];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid,0.0.0.0:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:dkim,microchip.com:email]
 X-Rspamd-Action: no action
 
-
-On Thu, 19 Feb 2026 16:11:49 +0100, max.oss.09@gmail.com wrote:
-> This reverts commit 8124b4a4a96b57d6cc3705a9df9623c52baa047b.
+On Fri, Mar 06, 2026 at 01:04:26PM +0000, Simon Horman wrote:
+> On Thu, Mar 05, 2026 at 06:24:24AM -0800, Charles Perry wrote:
+> > On Thu, Mar 05, 2026 at 11:40:10AM +0000, Simon Horman wrote:
+> > > On Tue, Mar 03, 2026 at 10:03:17AM -0800, Charles Perry wrote:
+> > > > The RX buffers for GEM can have a maximum size of 16320 bytes
+> > > > (0xff in the RXBS field of the DMACFG register means 255*64 =
+> > > > 16320 bytes).
+> > > > 
+> > > > The "jumbo_max_length" field (bits 0..13) of the DCFG2 register
+> > > > can take a value of up to 16383 (0x3FFF). This field is not used
+> > > > when determining the max MTU, instead an hardcoded value
+> > > > (jumbo_max_len) is used for each platform. Right now the maximum
+> > > > value for jumbo_max_len is 10240 (0x2800).
+> > > > 
+> > > > GEM uses one buffer per packet which means that one buffer must
+> > > > allow room for the max MTU plus L2 encapsulation and alignment.
+> > > > 
+> > > > This commit adds a limit to max_mtu and rx_buffer_size so that
+> > > > the RXBS field can never overflow when a large MTU is used.
+> > > > 
+> > > > With this commit, it is now possible to add new platforms that
+> > > > have their gem_jumbo_max_length set to 16383.
+> > > > 
+> > > > Signed-off-by: Charles Perry <charles.perry@microchip.com>
+> > > 
+> > > Hi Charles,
+> > > 
+> > > I am sorry if this question is a bit naïve.
+> > > 
+> > > I understand the need to clamp the max_mtu to avoid overflowing RXBS.
+> > > And that this hasn't been an issue up until now due to the maximum
+> > > value of jumbo_max_len used in the driver.
+> > > 
+> > > But I'm unclear on the relationship between DCFG2 and the max_mtu.
+> > > Why does it need to be set to a value larger than that corresponding to
+> > > the maximum mtu and RX buf size?
+> > > 
+> > 
+> > Hello Simon,
+> > 
+> > The DCFG2 register is the max_mtu value, there's some public documentation
+> > for this for AMD versal [1]. "gem_jumbo_max_length" is a define in the RTL
+> > code, the hardware designer probably makes a tradeoff between gate count
+> > and the max_mtu. The maximum value for this is 0x3FFF (16383).
+> > 
+> > The maximum buffer size is 255 * 64 = 16320
+> > 
+> > The GEM driver, in its current state, uses one buffer per frame, so the MTU
+> > needs to be clamped at the maximum buffer size.
+> > 
+> > We could just set 16320 instead of 16383 into the "jumbo_max_len" of
+> > "struct macb_config" but it would mix information about what the hardware
+> > supports vs what the software support. My approach is to put what the
+> > hardware support in "struct macb_config" and clamp it later when
+> > calculating max_mtu because we know we have a software limitation.
 > 
-> The change introduced a regression: at least Colibri iMX6ULL and
-> Colibri iMX7 no longer boot with that commit applied, while they boot
-> again after reverting it.
+> Hi Charles,
 > 
-> Although this has only been verified on these two modules, the issue
-> is expected to affect all device trees using the gpmi-nand driver.
+> Thanks for the explanation. I agree that it is best not to conflate
+> software and hardware support. And that the approach you have taken
+> here makes sense.
 > 
-> [...]
+> I do think it would be nice to add a bit more detail to the commit message,
+> along the lines of the text above. But I'll leave that call up to you.
+> 
 
-Applied, thanks!
+Ok, I'll clarify what is hardware specific vs software specific.
 
-[1/1] Revert "ARM: dts: imx: move nand related property under nand@0"
-      commit: 33f0dbd4b895e49add0c2543e5dd2ff5b872121c
+Thank you for the review,
+Charles
 
-Best regards,
--- 
-Frank Li <Frank.Li@nxp.com>
+> Overall, this looks good to me.
+> 
+> Reviewed-by: Simon Horman <horms@kernel.org>
 
