@@ -1,290 +1,233 @@
-Return-Path: <devicetree+bounces-272139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272140-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gERKMsXhqmkJYAEAu9opvQ
-	(envelope-from <devicetree+bounces-272139-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:16:37 +0100
+	id iFQJFaLfqmlqXwEAu9opvQ
+	(envelope-from <devicetree+bounces-272140-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:07:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66C24222704
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:16:37 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD2C2224DC
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:07:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6AD0331C9A22
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:05:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 783C6306D8FD
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:06:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D363B4EBB;
-	Fri,  6 Mar 2026 14:03:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83586221FB1;
+	Fri,  6 Mar 2026 14:06:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gcX/xm6H";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="b3PBfxXE"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="k2wmXZHr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD0AD3B3C0A
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 14:03:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134D72FD696;
+	Fri,  6 Mar 2026 14:06:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772805832; cv=none; b=RvFWhGWpg4wnWoRJyemfnD2veb/2DPZ+WsbYK9ZnduhE5bjRC2bd/fEmq/X2GbsO7uJuNgu/bBAIL4PCD+s39DXMk91WH49goKOnu9M9vfaY2Y66EMrnM+jHI5F00o9EUn0ZMupjkpaxP1h7YNlFpxTa9OAj/8gu+bs34ujFtVQ=
+	t=1772805986; cv=none; b=nhUm6B33xhqjZ/dJE4Pqm5/Zu970SOBr2brsFg5k7KSUB6bQXhdyax+HMHuapUGY7t+s/U/XqEWZPmeeDMnKX4H8hIcQJMiZRpQSwhH1Xhfeh2UfABqRhPtBNvtIGG7yG9XRuCAS5XqzJXK+uZLTi6ZKflwDDm8e50loHHaVBss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772805832; c=relaxed/simple;
-	bh=kJAc7f5m5jxavMkgdIHdotCTd133ITydGJDsM8ctX+g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pPz4jUuBhQYJ1VFTPkEY/5gXRF98mRl19yNNNggsjE7K1iv/2gflOWl7tPo1hUs/hFkwlKVIkPYxyQ6vq22SnhcrCqTWsNMK2jKKBsIhi7HE+ip8AgytwqD9aBBvxMQPE3JfL4ahp2ExGRSP5iwuiU/oZulWz2myENFcpznoF54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gcX/xm6H; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=b3PBfxXE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 626BajNS3716442
-	for <devicetree@vger.kernel.org>; Fri, 6 Mar 2026 14:03:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=thDMk6e40n+6IH98mjP5Yb1qMk17Ss9qvkj
-	Pv6/pb60=; b=gcX/xm6HmU67074MVmE9teSdUwGPWt3J/qIS1GhXSsOazi/ExHV
-	pJk6bTRxemgeDPsKFShQXxKJiAabAE5ssaIzRoi89goD5LalNGSCnMPuCYPx6JTW
-	PbNQkBJtoeNaWYXo9HtvOtYnw9gNM/gWcTqO3rCWksNEPaySjg+sIObP8Qe+89W6
-	uxff01OfydmJkr3AP7qge1bWiN31Et+sidktV/B9kYKJonuye7fa3DDKD1I9kBUd
-	7oBQn5lZlYMN4PxhpT/7PjK8wSXJQyQxzIsLNkrWMT2sQvAtx++zpaO0acSwvYd9
-	oGyiTQSa91e+U03q4t5jKKKaIiQPi9h7djw==
-Received: from mail-dy1-f197.google.com (mail-dy1-f197.google.com [74.125.82.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cqv98gtmm-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 14:03:48 +0000 (GMT)
-Received: by mail-dy1-f197.google.com with SMTP id 5a478bee46e88-2be0575e290so5102998eec.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 06:03:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1772805828; x=1773410628; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=thDMk6e40n+6IH98mjP5Yb1qMk17Ss9qvkjPv6/pb60=;
-        b=b3PBfxXEkMzotgAN2Qmfi9ZZb+arIbOZnvUruvLXzNQS2H0Njfo44VkwyazMezlKxG
-         9kM+IecUUG+c25VFZc+TZw/9VLOk2T9+MCu+Vra/+6zO4sM7GPQDk9S9b7o+2fCpXjq9
-         /RXP5BHqqXySdYtlbsDAg0w2iPziWr2UefwBM4Cj7gqLBqTG1R6ANijkgDPmTdsFApZ4
-         +oiNnDjADZ4BgHdY3eS3G5bKtXiERJcB6lL5nhHZqK3Hr3s43RD28QoAWZoDYtSTsBKW
-         sKR+x/uCY/ohbgE6UxxfVUM1vpSmHWWnVXvuVBRT3vFTK0kjRDk5MiDCj/mG+3GLSh1b
-         E8Fg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772805828; x=1773410628;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=thDMk6e40n+6IH98mjP5Yb1qMk17Ss9qvkjPv6/pb60=;
-        b=BY7Ne5UBlPsRjpw14ML8OzsSxga9+lknO4tdPUiNelcdbVV4rFWkpmR58Hn2uRFVBe
-         JB0kM9wIWRkqD7zrEprstCebaqk912PeMDgjzRLh2MusbC258TKIpQ2DIKsi9biJG5mN
-         zaYuL6gbi4WkTydrlQiS+Oy1I9THqFQbYTuWAdWPyVZCx3Te2Cb5+ZH5P8fkMwiG8wDX
-         JUyHZP68W9KLEy7LMFAM2W4ELvMHsfi5fFPOJYoGcVz3jK2NMehPuJ6RLD1J481co6B8
-         q0Ll0AEonOTF2wA3b2rmBdqlJdZqeuzklToU2XwcM72r9OUfvbTqaDU9b+Cg6mNr+uno
-         wSXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWu2lDg3CKrzLSrIuE9bbWqu990Sx2CTuqi3BhlfoBBEMVfYhh4wAbG4AemsoWMwbOhixq6BqLcZKkM@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiVQy+qg/4per2rnYtPkmr3q+tEPZwvl3y7eV96wcnHUk8inK0
-	qz3Sy3KbDN1Rp7qomYpT1LdhrY8sr9hFEIFHLjMg/EBh/+hphjoFkqoj1unM1eute9ucICxuql/
-	38P2grr4ZdDzQp7x0k8JfynwGgqD1h61Gxbr8lNilyGXKG27S34+VfVXQvRdtatdI
-X-Gm-Gg: ATEYQzzk9stUoCYg/+V6/EqP6BwGGIHoKnCs1pQlf59x6ZngqqPBCbzfcmkp0EgcOX2
-	2zpNX2frqV0cLudEbaHMeoJ5o5d7fOmtNKRNercFnJS0DTCqQ3ChQrOyfA1mloyXVG0Z8ImjiTA
-	SAqC7Njv4pTxQ3m6aymK12LiDYavaLkfC8kYittXJ2K2xxSPXXa/YZF8hSMKavIL2x+imJdJVPC
-	TiJzPRG5fjfLt7tAutN7to7wj/tgCE7ccEom5LRnsr9B5//KSZmLlDqSd5L7KVm+K1FcvhqeN8a
-	S9t65BAIgTjXqqUTjRPa5bzp76ckZkCfCOp0ttBSDOZoXFDFHOqa+LzZImMd+keFFfgviYWkR0I
-	mIYwHtecw+fMb//inYOn00X+o+k4IGRV8d1EKZ235BOGUQigkCv+8M701sjqw234FhL22pK6nRz
-	xCVp5rCA==
-X-Received: by 2002:a05:7300:a44d:b0:2b8:6ad3:804e with SMTP id 5a478bee46e88-2be4e0555a3mr767859eec.22.1772805826481;
-        Fri, 06 Mar 2026 06:03:46 -0800 (PST)
-X-Received: by 2002:a05:7300:a44d:b0:2b8:6ad3:804e with SMTP id 5a478bee46e88-2be4e0555a3mr767820eec.22.1772805825537;
-        Fri, 06 Mar 2026 06:03:45 -0800 (PST)
-Received: from QCOM-aGQu4IUr3Y.qualcomm.com (i-global052.qualcomm.com. [199.106.103.52])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be4f948631sm1200531eec.19.2026.03.06.06.03.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 06:03:44 -0800 (PST)
-From: Shawn Guo <shengchao.guo@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Bartosz Golaszewski <brgl@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Shawn Guo <shengchao.guo@oss.qualcomm.com>
-Subject: [PATCH] dt-bindings: remoteproc: qcom: Drop types for firmware-name
-Date: Fri,  6 Mar 2026 22:03:06 +0800
-Message-ID: <20260306140306.1328719-1-shengchao.guo@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1772805986; c=relaxed/simple;
+	bh=KxkuNcTNtwFFBbBEE6JntkXBu0J6pcUOGJNm9O+XtBA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qZseMQcs3CyL029zVsP/PaGttC2eQlbcpd+xUxHN1HdNTJR1nwq+Elb5oplAlGVbJK2wNo23lYySyzaEky20tEMCP83htA4IARtQkZzqIJKLBkrSfLtogPW2CYW62upKhoUikbEEBQkJkubJ9CnlKCkU93YqHLdkIuJwZ7pKcR0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=k2wmXZHr; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1772805977;
+	bh=KxkuNcTNtwFFBbBEE6JntkXBu0J6pcUOGJNm9O+XtBA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=k2wmXZHrG7GI1x85gXFhg1mHU8cPh3cbwtIljogJFm52FsUHN5wydW1/I/EnSv3q7
+	 Wrm3YRy+2PcAbOnNji8+zj3ZtM9P7nlrCsJboj8P5fEvf90+4vnKr3/ntgvH+7xWbM
+	 QLFbXseWnKkLCH+qaOczOYHw0kY6frGriPMP6VcgG8ujGNpnELKvuvMCW116Zm9g2f
+	 OJI7TywGKiYKXhdXNIeh0B1X5/h6WM1FTef4fys14Ra0H7Z1uHzUhm2Jn6hhouou2a
+	 sBEJ1s0lUTx+C1MCT8m0zYPK8DRHigTtZgCHUL2qIA9+flZpqDCj6l5+xhYjZtc5AK
+	 SkROGa9hKvtLQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A014217E05B5;
+	Fri,  6 Mar 2026 15:06:16 +0100 (CET)
+Message-ID: <0994fef0-88f2-4277-aa46-0b6a33c53bfa@collabora.com>
+Date: Fri, 6 Mar 2026 15:06:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm: dts: mediatek: mt6589: add basic support for
+ Lenovo B8000-F
+To: Akari Tsuyukusa <akkun11.open@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, sean.wang@mediatek.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20260304192417.818211-1-akkun11.open@gmail.com>
+ <20260304192417.818211-3-akkun11.open@gmail.com>
+ <94465ca7-b3dc-4736-9d58-4024f2494e54@collabora.com>
+ <CAKr_iV5cmE-GBp679Q-=bZi+186BvMvD41ctxnxNC3mTKEzuRw@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAKr_iV5cmE-GBp679Q-=bZi+186BvMvD41ctxnxNC3mTKEzuRw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: W-zGQPysM1Z6_RAbhf5jyN1DoOZBx0PI
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA2MDEzNCBTYWx0ZWRfX7aEoFk3Y/rTy
- h+9d7gaaHk8C5gP9F7Av4Gi93sPk4NTN1XcVGbqIZ2P0Ek7ZdA1FwuO9FgdP5lvX/qhZhgT0Qef
- HdIAA0kXl4gmBgOjccUNdQHfYCHsSrzRDfwzKC98cK9VrVwypoIwFhlka0SrHuAvMKRvsBLLa0+
- 4fQsoqGDYFfXrJ3lgZ6dF9MvutvT0wEC82hWafxnhLZbmbiEPRYUUa+zhnr/4CgDOCvCsr0HLlw
- GNC8qV2FsomXTnb5ppL68pct/OBbP9ZLVFKTA0R9sSzqK4HLqRWy62dOeOd++Ykc/6mM9v4hj8B
- 7YUpcpEqH1Dkd348pb1pilJeiDHxkk1AIgX/JWy1HPOjwmn0QbKsYe8ybmw/uZoiVmyCP0xVF6A
- 618dYZNbzoIq2y+0J8jXk5Q+oj4U5NvFOSAtWdA+AWARKghM0Buie2zOCOXoGzDXLZXIGled9aZ
- VEuNFOmneC+CzmWTceA==
-X-Authority-Analysis: v=2.4 cv=LbcxKzfi c=1 sm=1 tr=0 ts=69aadec5 cx=c_pps
- a=Uww141gWH0fZj/3QKPojxA==:117 a=b9+bayejhc3NMeqCNyeLQQ==:17
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=EUspDBNiAAAA:8
- a=nzWYI2exGoiye4W2V5EA:9 a=PxkB5W3o20Ba91AHUih5:22
-X-Proofpoint-ORIG-GUID: W-zGQPysM1Z6_RAbhf5jyN1DoOZBx0PI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-06_04,2026-03-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
- phishscore=0 adultscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603060134
-X-Rspamd-Queue-Id: 66C24222704
+X-Rspamd-Queue-Id: DCD2C2224DC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-272140-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,mediatek.com,vger.kernel.org,lists.infradead.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272139-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shengchao.guo@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[angelogioacchino.delregno@collabora.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-The type of firmware-name is already defined by core schemas.  Some of
-qcom remoteproc bindings define it redundantly, while others do not.
-Drop it to be consistent and avoid it being copied over to new files.
+Il 05/03/26 16:49, Akari Tsuyukusa ha scritto:
+> Hi Angelo, thanks for the feedback.
+> 
+> On Thu, Mar 5, 2026 at 6:46 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>> Okay, but this is just a simple framebuffer and a UART; while it may be in some
+>> way useful, there's already one device based on MT6589 that was upstreamed with
+>> just a framebuffer and a serial port, but then didn't receive any more support.
+>>
+>> Could you please extend your efforts a little and push at least some support for
+>> clock controllers and power domains for the MT6589 SoC to make it at least barely
+>> useful?
+> 
+> Your point is valid. I saw similar minimal Device Trees in
+> "arch/arm/boot/dts/mediatek/" . Currently, I am actively working on
+> MT6589 kernel mainlining and Lenovo YOGA Tablet support, so I submitted
+> this patch as initial support for this device.
+> 
+> I will send patches to add the following features in the near future
+> (preferably within this month):
+> 
+> - Clock
+> I wrote drivers and they seem to be working.
+> However, some parent clocks are unknown.
 
-Signed-off-by: Shawn Guo <shengchao.guo@oss.qualcomm.com>
----
- .../devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml     | 1 -
- .../devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml     | 1 -
- .../devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml         | 1 -
- .../devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml      | 1 -
- .../devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml      | 1 -
- .../devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml        | 1 -
- Documentation/devicetree/bindings/remoteproc/qcom,sdx55-pas.yaml | 1 -
- .../devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml          | 1 -
- 8 files changed, 8 deletions(-)
+Ouch. Well, it's mostly done then, hopefully sooner than later :-)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
-index c179b560572b..1e7c165f925e 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8916-mss-pil.yaml
-@@ -137,7 +137,6 @@ properties:
-       - description: MPSS reserved region
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string-array
-     items:
-       - description: Name of MBA firmware
-       - description: Name of modem firmware
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-index 4d2055f283ac..1b65813cc8ad 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-@@ -126,7 +126,6 @@ properties:
-       - description: Metadata reserved region
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string-array
-     items:
-       - description: Name of MBA firmware
-       - description: Name of modem firmware
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml
-index 188a25194000..bcd2bcf96e24 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sa8775p-pas.yaml
-@@ -51,7 +51,6 @@ properties:
-     description: Reference to the AOSS side-channel message RAM.
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string-array
-     items:
-       - description: Firmware name of the Hexagon core
- 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-index b1402bef0ebe..7c9accac92d0 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7180-mss-pil.yaml
-@@ -98,7 +98,6 @@ properties:
-       - description: metadata reserved region
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string-array
-     items:
-       - description: Name of MBA firmware
-       - description: Name of modem firmware
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-index 005cb21732af..f349c303fa07 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc7280-mss-pil.yaml
-@@ -98,7 +98,6 @@ properties:
-       - description: metadata reserved region
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string-array
-     items:
-       - description: Name of MBA firmware
-       - description: Name of modem firmware
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
-index 5dbda3a55047..63ae3a30f626 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sc8280xp-pas.yaml
-@@ -42,7 +42,6 @@ properties:
-     description: Reference to the reserved-memory for the Hexagon core
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sdx55-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sdx55-pas.yaml
-index 5d463272165f..7e67eda13240 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sdx55-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sdx55-pas.yaml
-@@ -56,7 +56,6 @@ properties:
-   smd-edge: false
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string
-     description: Firmware name for the Hexagon core
- 
- required:
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-index 11b056d6a480..27b8c127d74f 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-@@ -52,7 +52,6 @@ properties:
-   smd-edge: false
- 
-   firmware-name:
--    $ref: /schemas/types.yaml#/definitions/string-array
-     items:
-       - description: Firmware name of the Hexagon core
-       - description: Firmware name of the Hexagon Devicetree
--- 
-2.43.0
+> 
+> - Pinctrl
+> I refactored it to common-v2, paris and it's working.
+> A little more work is needed to add support for R0, TDSEL, RDSEL, and
+> device tree binding.
 
+Okay, almost done there too, then.
+
+> 
+> - PWRAP and MT6320 PMIC RTC
+> PWRAP is working fine. This seems to be almost the same as MT8135.
+> MT6320 PMIC has confirmed RTC operation, but it will take a little more
+> time as I haven't written the regulator driver yet.
+> 
+
+Start upstreaming the RTC (and MFD parts) right now maybe?
+That all depends on the actual state of things, of course.
+
+Remember that you can upstream whatever is clean and works fine, that doesn't
+have hard dependencies on other components.
+
+> Additional time is required to add the following features:
+> 
+> - Power Domains (scpsys)
+> I've written a driver, but I haven't checked that it works yet.
+> And, some features are missing for full support.
+> 
+
+The power domains should be handled by mtk-pm-domains.c - not sure what you wrote
+but if you did it on mtk-scpsys.c that's wrong.
+
+> - eMMC/SD (MSDC)
+> Likely compatible with "mtk-sd.c". I have written in Device Tree, but
+> it is not working on the device. It needs debug mode.
+> 
+
+I can confirm that the MSDC controller in MT6589 will work with mtk-sd, there may
+be some very small modifications to be done.... if any.
+The mtk-sd driver does support "very old" SoCs already :-)
+
+> - USB
+> Almost certainly compatible with "mediatek,mtk-musb" and
+> "mediatek,generic-tphy-v1". The device is not recognized by the PC,
+> and there are logs saying "couldn't find an available UDC".
+> It may take more time.
+> 
+
+I can suggest to try host mode. Usually that's the one that easily wants to work.
+That may help you to validate that the PHY is actually working.
+
+> - UART DMA
+> Boots without any errors, but I can't confirm its operation because
+> I haven't soldered UART.
+> 
+
+UART DMA on smartphones and tablets is usually used by Bluetooth, but if your
+device does not have any UART DMA device, you will be unable to validate.
+
+Soldering a UART for the console won't help you to validate UART DMA, as the
+one you select for that excludes DMA.
+
+> - I2C
+> I don't know the details, but the clock is supplied from the PMIC,
+> but PMIC clock driver does not exist. Fortunately, MediaTek engineers
+> implemented MT6589 compatibility in the I2C driver (but it is not added
+> in the MT6589 Device Tree).
+> 
+> - I2C devices (only in mainline)
+> Touchscreen: syna,rmi4-i2c
+> Accelerometer: bosch,bma255
+> Magnetometer: bosch,bmm150
+> Fuel Gauge: ti,bq27541
+> Battery Charger: ti,bq24196
+> 
+> - SPI
+> Like I2C, there is a driver (it seems that the PMIC clock is not
+> required for SPI), but  I don't know what devices are connected.
+> 
+
+For SPI and I2C, the IPs didn't really change all that much from the old era
+to MT6795/MT8173, so I'm confident that you won't have any problem with the
+IP driver itself (be it SPI or I2C).
+
+> I am committed to making MT6589 and the Lenovo YOGA Tablet fully
+> functional in the mainline kernel. I will send these additional patches
+> as soon as they are ready for review.
+> 
+
+I really appreciate seeing those old devices getting new life with upstream,
+as much as seeing new ones upstreamed. That's really nice.
+
+Keep up the good work!
+
+Cheers,
+Angelo
 
