@@ -1,299 +1,177 @@
-Return-Path: <devicetree+bounces-271781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271782-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMshNKAjqmkOMAEAu9opvQ
-	(envelope-from <devicetree+bounces-271781-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:45:20 +0100
+	id cBk6GfAjqmkPMAEAu9opvQ
+	(envelope-from <devicetree+bounces-271782-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:46:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6710A219F21
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:45:20 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C54AC219F47
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:46:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DF25130A455A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:44:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F061305ED08
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:45:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 982B92EA168;
-	Fri,  6 Mar 2026 00:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35962EB840;
+	Fri,  6 Mar 2026 00:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPAgmMwV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F7PFHuzx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0EEA2D876B
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 00:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0894288C30;
+	Fri,  6 Mar 2026 00:45:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772757843; cv=none; b=nUHcneTjxeU3YsmQ0NLBTy9R4oqg/pzCQ8VXFrDvBrnB3oUH0BTT+wUS+3T3Q5UKrZpeGRz3a6CN/5fW2ZIvBrsnAxIkV7q0lCUmord27FL2XdQaH7iW0RT//204ZG+4IwXt34uivNgTHupNMIK5oZh0l935nghEclzavftgS0E=
+	t=1772757934; cv=none; b=Pk4In4E2skqGxbRwJPEFdQ+urEdBSDiV+JApikRr+Dj5i429YT/CGcIdvQjyEuWniYCuvY6OSLR9oCH/gBpv3hCzHlW1Y+DL1EgYEOx5iLP/f5pekajOFQ4PXILi1eFoMC+4wb21g3nO5VYL8UOzco70EdVvLXaqyzhq2djf1s4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772757843; c=relaxed/simple;
-	bh=Pbo6Ncs2XH45+RiMK+FfG7zzkVbxY7P2JwHYAbhBwq4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hys+J4qE4NhB3LKoHUwAEsoJdFekKIFjr3pbV36I10A6JG3D8WDOzXdtGMkH4chwZdrv47TfXgeoLL2YD79C36oE95cSSBfUPJEOlgaKCHAraGNfaWZpPqBDYNlDRoUyyMvcptwj9DHMTwh9G/uZ/9gYitpASef97RAbpQuQgG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KPAgmMwV; arc=none smtp.client-ip=209.85.160.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-4043b27ddeaso2602886fac.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Mar 2026 16:44:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772757841; x=1773362641; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XaIluGXx/Vhq+ZEeriR1MIRiJ/bHLPjLpQYgZ6GDJVY=;
-        b=KPAgmMwVvUVDI/orvIxpyx3FSLFlwLlv2Dkv4DHb0wPviju2X4qAWandEZL25ag1+W
-         1nsvlfNoEUt24V98kHPZdde1x/kFn5uAbZKtfl6UQjWkzJN30YZf8Itg2kV/nsSJkV94
-         nKXz9vWoUDlcOGLeVzJvAhfbEJ4G/I+evGinSTVGingNamLag4uQ2iypRP2XzdRmAQEY
-         eyGFlDAZSJo4Kl2ozs53tBj8PVELNegdIybO8ipddXk2Oxeup8fK2u7RxM+IT1y5De7m
-         zOtrnZQ12mTK2hMzkJCEURVk/8U8XkL2UxXt9F1+ujUKB9XHIwLzqnmMf9yA+RwhRGY+
-         aAxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772757841; x=1773362641;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=XaIluGXx/Vhq+ZEeriR1MIRiJ/bHLPjLpQYgZ6GDJVY=;
-        b=qflY1+rhu7ecKj7Cn61M9A0YmmMcGMbPH9WDqNf3GelHew4ROR9zcFsFcgrgrNtgZI
-         RHpQgM4QsY7c8K8940fQuvGfXm64OY2nUV0qTcRyEz64GX0+u3aU76R+AOBgI49Uk3rD
-         1W7L4mQ6L1USR5fJAN/O6FS1ysUmB2I7UYqaGQiPQHHKigoMYILDO8cJ+p4HeH+wdCSb
-         ViKdy/4WslZOZq7rFUzCLn7cuYqKM3I3BtQZJgYBQ/Jo8iq1kJsNue89mpRfs9FLGelk
-         zJ8U2QHVEdXBEd1AFxrAFT0U/XP5v+FCL0WksulXB8QHAwSvQX5FYy+fWvHGtlWmt5yP
-         6v5A==
-X-Forwarded-Encrypted: i=1; AJvYcCXYC0bAoRKUkIQjnv3nGI2Xm4BgDN4Z9r2TdSq1g3r+9Nx9gFGxANVqHcEeuLyDg27lOm3GByhY7mjy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE7QTRcf9zetdd3YYYNYwRA2bNrD02gIwsUVRryyq9Czz88roS
-	EYvrzzQemiwMU9VTsX3h5dfteD7ij9/UOHU//hZSfzCQ2yN5Qg74zKgq
-X-Gm-Gg: ATEYQzy3mgZV0MDLWQG+5oRQuTdlS7c0aZVP71vNXHOCslUgNzBePpG8d3Dw8jal7Q8
-	75kTcnklCvPTd8HthIhDioy242YufyHd05PnBw3ox7dd5Va3ipTrRJdHGqYku99OJeULjWp4/GN
-	koJ7pwSqC37vhAJheYVJpnmGD7ZbCaP2gE2++sTV1u9PUxpZfUvlMY8lUlb29BWcGWH0fuuc2Ls
-	iEyAe1Wt2bpE9mBkZVYoe1O+e7bX6TKynDmbFmFyJEcLh6pgPW77iIFj7D97oDHE7mtopGqB58R
-	Dhu6cNioFDlbDWBujHpxKg74c3sIYFBrZ4D6nWqP3HIv8qY8eZDOKc40kASiZx/jnjJ1q/xg+2E
-	Qo//RpAuszj6N8zpCRTb5XCaTiydWH8U9YeK2Qr2OuXatGnZrhFQH0/AD10oVArr6rF/+OSSEyL
-	Y1MQPJivOFh9sflEhs+gMqct/3kj8XX8rrIjMbWHcpn0Y7FP1EUbC7rd036dSGbp5g1KUfqrkJi
-	5hpRxHK4pXBEWhuUJC5DE1y699PPuaTKhYoDEzyUw==
-X-Received: by 2002:a05:6870:34a:b0:409:5ad9:67d5 with SMTP id 586e51a60fabf-416e452461emr222992fac.40.1772757840712;
-        Thu, 05 Mar 2026 16:44:00 -0800 (PST)
-Received: from framework.misc.iastate.edu ([2610:130:110:25d:2aa4:4aff:fed7:9b19])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-416e65b1c82sm69335fac.5.2026.03.05.16.43.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Mar 2026 16:43:59 -0800 (PST)
-From: Kerigan Creighton <kerigancreighton@gmail.com>
-To: linux-wireless@vger.kernel.org
-Cc: loic.poulain@oss.qualcomm.com,
-	wcn36xx@lists.infradead.org,
-	andersson@kernel.org,
-	mathieu.poirier@linaro.org,
-	linux-remoteproc@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Kerigan Creighton <kerigancreighton@gmail.com>
-Subject: [PATCH v3 3/3] wifi: wcn36xx: Add support for WCN3610
-Date: Thu,  5 Mar 2026 18:43:44 -0600
-Message-ID: <20260306004344.10968-4-kerigancreighton@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260306004344.10968-1-kerigancreighton@gmail.com>
-References: <20260306004344.10968-1-kerigancreighton@gmail.com>
+	s=arc-20240116; t=1772757934; c=relaxed/simple;
+	bh=RfZ6JfMteBUvtPa+L1il2dXvDwwhTUW7cGhcZfzVpl0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ELyxKiJglmJN5N4RNOBpc2ilvi5FBHFrLlu7ezRPExXkJ8D8YtgM5v0yDiPUGr8OcVjLSuaJF4JVmJmdbQLQ3g/lfQ/eIDKEMVFhFXV8qgYdZABDuFU6+u5EOE4pUoTgEnSVe+5H8mq+VqYULw/4sGNhQU1PwxqKPYpyrKSOZu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F7PFHuzx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49A96C116C6;
+	Fri,  6 Mar 2026 00:45:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772757934;
+	bh=RfZ6JfMteBUvtPa+L1il2dXvDwwhTUW7cGhcZfzVpl0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F7PFHuzxFF2xXjeSHFWX9UKCutem6Sp6gftOvOM80oDAJlI5qKbdGXhziaAjxDOqb
+	 juukfdodr41K3ImYrEeas+GnrL9FrrcyveNHXn5tgXQpPIW1YHOY/kFFYf+YXfBVY9
+	 sRYMqE6K/uim4woWg8ygo8Dot5HRkAquC/LH5D8+qKEuKN+SvXgInXAPgVrRj2d+32
+	 OxtYCaadBseZsR/VmsTYmIwZmBFwUP/OgMGjjrDIkgdZfJpQ2TNSGHy5OXQjfQbOAL
+	 1U4qAnFk5mKaMzfPbuVJMoQrzfUdBa03R1oy9uJUiiZJPosuE0rnVzjcVVyCuuyuS+
+	 MMeqIALwU9PXQ==
+Date: Thu, 5 Mar 2026 18:45:33 -0600
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: generic-ohci: add AT91RM9200
+ OHCI binding support
+Message-ID: <20260306004533.GA870954-robh@kernel.org>
+References: <20260224-atmel-usb-v2-0-6d6a615c9c47@gmail.com>
+ <20260224-atmel-usb-v2-1-6d6a615c9c47@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6710A219F21
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260224-atmel-usb-v2-1-6d6a615c9c47@gmail.com>
+X-Rspamd-Queue-Id: C54AC219F47
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,lists.infradead.org,kernel.org,linaro.org,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-271782-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	TAGGED_FROM(0.00)[bounces-271781-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kerigancreighton@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-The WCN3610 has a lot in common with the other wcn36xx
-chips, so much of that code was reused.
+On Tue, Feb 24, 2026 at 01:12:58PM +0000, Charan Pedumuru wrote:
+> Add binding support for the Atmel AT91RM9200 OHCI USB host controller
+> to the generic OHCI schema.
+> 
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+> ---
+>  .../devicetree/bindings/usb/generic-ohci.yaml      | 27 ++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/generic-ohci.yaml b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> index 961cbf85eeb5..ab8a49142386 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-ohci.yaml
+> @@ -55,6 +55,7 @@ properties:
+>            - ti,ohci-omap3
+>        - items:
+>            - enum:
+> +              - atmel,at91rm9200-ohci
+>                - cavium,octeon-6335-ohci
+>                - nintendo,hollywood-usb-ohci
+>                - nxp,ohci-nxp
+> @@ -137,6 +138,16 @@ properties:
+>        The associated ISP1301 device. Necessary for the UDC controller for
+>        connecting to the USB physical layer.
+>  
+> +  atmel,vbus-gpio:
+> +    description: GPIO used to control or sense the USB VBUS power.
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  atmel,oc-gpio:
+> +    description: GPIO used to signal USB overcurrent condition.
+> +    minItems: 1
+> +    maxItems: 3
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -144,6 +155,22 @@ required:
+>  
+>  allOf:
+>    - $ref: usb-hcd.yaml
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: atmel,at91rm9200-ohci
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: ohci_clk
+> +            - const: hclk
+> +            - const: uhpck
+> +
+> +      required:
+> +        - clocks
+> +        - clock-names
 
-The WCN3610 requires specific configuration values for
-stable Wi-Fi. Without these values, there's packet loss.
-An extra CFG table was made so other chips are not affected.
+       else:
+         properties:
+           atmel,vbus-gpio: false
+           atmel,oc-gpio: false
 
-ENABLE_DYNAMIC_RA_START_RATE=0 was discovered from the
-downstream prima driver. That brought it from 95% to 5%
-packet loss. The rest of the CFG values came from my own
-observations and experimentation. The current settings
-allow for 0% packet loss.
-
-STA_POWERSAVE resulted in BMPS errors and unstable
-functionality, thus it has been disabled for just this
-chip.
-
-Tested on an Anki Vector 1.0 and 2.0 robot with 3
-different APs. Support for other WCN36xx chips has not
-been affected.
-
-Signed-off-by: Kerigan Creighton <kerigancreighton@gmail.com>
----
-Changes in v2:
- - Move wcn36xx driver changes to the end of the patch set.
-
-Changes in v3:
- - Describe where the CFG values came from in the wcn36xx
-   driver patch [Konrad].
----
- drivers/net/wireless/ath/wcn36xx/main.c    |  4 +-
- drivers/net/wireless/ath/wcn36xx/smd.c     | 61 +++++++++++++++++++++-
- drivers/net/wireless/ath/wcn36xx/wcn36xx.h |  1 +
- 3 files changed, 64 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/wireless/ath/wcn36xx/main.c b/drivers/net/wireless/ath/wcn36xx/main.c
-index c3f0860873..6c90c13251 100644
---- a/drivers/net/wireless/ath/wcn36xx/main.c
-+++ b/drivers/net/wireless/ath/wcn36xx/main.c
-@@ -1438,7 +1438,7 @@ static int wcn36xx_init_ieee80211(struct wcn36xx *wcn)
- 		BIT(NL80211_IFTYPE_MESH_POINT);
- 
- 	wcn->hw->wiphy->bands[NL80211_BAND_2GHZ] = &wcn_band_2ghz;
--	if (wcn->rf_id != RF_IRIS_WCN3620)
-+	if (wcn->rf_id != RF_IRIS_WCN3620 && wcn->rf_id != RF_IRIS_WCN3610)
- 		wcn->hw->wiphy->bands[NL80211_BAND_5GHZ] = &wcn_band_5ghz;
- 
- 	if (wcn->rf_id == RF_IRIS_WCN3680)
-@@ -1535,6 +1535,8 @@ static int wcn36xx_platform_get_resources(struct wcn36xx *wcn,
- 	/* External RF module */
- 	iris_node = of_get_child_by_name(mmio_node, "iris");
- 	if (iris_node) {
-+		if (of_device_is_compatible(iris_node, "qcom,wcn3610"))
-+			wcn->rf_id = RF_IRIS_WCN3610;
- 		if (of_device_is_compatible(iris_node, "qcom,wcn3620"))
- 			wcn->rf_id = RF_IRIS_WCN3620;
- 		if (of_device_is_compatible(iris_node, "qcom,wcn3660") ||
-diff --git a/drivers/net/wireless/ath/wcn36xx/smd.c b/drivers/net/wireless/ath/wcn36xx/smd.c
-index 813553edcb..8d5a746de7 100644
---- a/drivers/net/wireless/ath/wcn36xx/smd.c
-+++ b/drivers/net/wireless/ath/wcn36xx/smd.c
-@@ -83,6 +83,61 @@ static struct wcn36xx_cfg_val wcn36xx_cfg_vals[] = {
- 	WCN36XX_CFG_VAL(LINK_FAIL_TX_CNT, 1000),
- };
- 
-+static struct wcn36xx_cfg_val wcn3610_cfg_vals[] = {
-+	WCN36XX_CFG_VAL(CURRENT_TX_ANTENNA, 1),
-+	WCN36XX_CFG_VAL(CURRENT_RX_ANTENNA, 1),
-+	WCN36XX_CFG_VAL(LOW_GAIN_OVERRIDE, 0),
-+	WCN36XX_CFG_VAL(POWER_STATE_PER_CHAIN, 785),
-+	WCN36XX_CFG_VAL(CAL_PERIOD, 5),
-+	WCN36XX_CFG_VAL(CAL_CONTROL, 1),
-+	WCN36XX_CFG_VAL(PROXIMITY, 0),
-+	WCN36XX_CFG_VAL(NETWORK_DENSITY, 3),
-+	WCN36XX_CFG_VAL(MAX_MEDIUM_TIME, 6000),
-+	WCN36XX_CFG_VAL(MAX_MPDUS_IN_AMPDU, 64),
-+	WCN36XX_CFG_VAL(RTS_THRESHOLD, 2347),
-+	WCN36XX_CFG_VAL(SHORT_RETRY_LIMIT, 15),
-+	WCN36XX_CFG_VAL(LONG_RETRY_LIMIT, 15),
-+	WCN36XX_CFG_VAL(FRAGMENTATION_THRESHOLD, 8000),
-+	WCN36XX_CFG_VAL(DYNAMIC_THRESHOLD_ZERO, 5),
-+	WCN36XX_CFG_VAL(DYNAMIC_THRESHOLD_ONE, 10),
-+	WCN36XX_CFG_VAL(DYNAMIC_THRESHOLD_TWO, 15),
-+	WCN36XX_CFG_VAL(FIXED_RATE, 0),
-+	WCN36XX_CFG_VAL(RETRYRATE_POLICY, 4),
-+	WCN36XX_CFG_VAL(RETRYRATE_SECONDARY, 131),
-+	WCN36XX_CFG_VAL(RETRYRATE_TERTIARY, 129),
-+	WCN36XX_CFG_VAL(FORCE_POLICY_PROTECTION, 5),
-+	WCN36XX_CFG_VAL(FIXED_RATE_MULTICAST_24GHZ, 1),
-+	WCN36XX_CFG_VAL(FIXED_RATE_MULTICAST_5GHZ, 5),
-+	WCN36XX_CFG_VAL(DEFAULT_RATE_INDEX_5GHZ, 5),
-+	WCN36XX_CFG_VAL(DEFAULT_RATE_INDEX_24GHZ, 6),
-+	WCN36XX_CFG_VAL(MAX_BA_SESSIONS, 40),
-+	WCN36XX_CFG_VAL(PS_DATA_INACTIVITY_TIMEOUT, 200),
-+	WCN36XX_CFG_VAL(PS_ENABLE_BCN_FILTER, 1),
-+	WCN36XX_CFG_VAL(PS_ENABLE_RSSI_MONITOR, 1),
-+	WCN36XX_CFG_VAL(NUM_BEACON_PER_RSSI_AVERAGE, 20),
-+	WCN36XX_CFG_VAL(STATS_PERIOD, 10),
-+	WCN36XX_CFG_VAL(CFP_MAX_DURATION, 30000),
-+	WCN36XX_CFG_VAL(FRAME_TRANS_ENABLED, 0),
-+	WCN36XX_CFG_VAL(BA_THRESHOLD_HIGH, 128),
-+	WCN36XX_CFG_VAL(MAX_BA_BUFFERS, 2560),
-+	WCN36XX_CFG_VAL(DYNAMIC_PS_POLL_VALUE, 0),
-+	WCN36XX_CFG_VAL(TX_PWR_CTRL_ENABLE, 1),
-+	WCN36XX_CFG_VAL(ENABLE_CLOSE_LOOP, 1),
-+	WCN36XX_CFG_VAL(ENABLE_LPWR_IMG_TRANSITION, 0),
-+	WCN36XX_CFG_VAL(BTC_EXECUTION_MODE, 2),
-+	WCN36XX_CFG_VAL(BTC_STATIC_OPP_WLAN_ACTIVE_WLAN_LEN, 90000),
-+	WCN36XX_CFG_VAL(BTC_STATIC_OPP_WLAN_ACTIVE_BT_LEN, 60000),
-+	WCN36XX_CFG_VAL(BTC_STATIC_OPP_WLAN_IDLE_WLAN_LEN, 30000),
-+	WCN36XX_CFG_VAL(BTC_STATIC_OPP_WLAN_IDLE_BT_LEN, 120000),
-+	WCN36XX_CFG_VAL(BTC_FAST_WLAN_CONN_PREF, 1),
-+	WCN36XX_CFG_VAL(BTC_STATIC_LEN_LE_BT, 120000),
-+	WCN36XX_CFG_VAL(BTC_STATIC_LEN_LE_WLAN, 30000),
-+	WCN36XX_CFG_VAL(MAX_ASSOC_LIMIT, 10),
-+	WCN36XX_CFG_VAL(ENABLE_MCC_ADAPTIVE_SCHEDULER, 0),
-+	WCN36XX_CFG_VAL(ENABLE_DYNAMIC_RA_START_RATE, 0),
-+	WCN36XX_CFG_VAL(LINK_FAIL_TX_CNT, 1000),
-+};
-+
- static struct wcn36xx_cfg_val wcn3680_cfg_vals[] = {
- 	WCN36XX_CFG_VAL(CURRENT_TX_ANTENNA, 1),
- 	WCN36XX_CFG_VAL(CURRENT_RX_ANTENNA, 1),
-@@ -632,6 +687,9 @@ int wcn36xx_smd_start(struct wcn36xx *wcn)
- 	if (wcn->rf_id == RF_IRIS_WCN3680) {
- 		cfg_vals = wcn3680_cfg_vals;
- 		cfg_elements = ARRAY_SIZE(wcn3680_cfg_vals);
-+	} else if (wcn->rf_id == RF_IRIS_WCN3610) {
-+		cfg_vals = wcn3610_cfg_vals;
-+		cfg_elements = ARRAY_SIZE(wcn3610_cfg_vals);
- 	} else {
- 		cfg_vals = wcn36xx_cfg_vals;
- 		cfg_elements = ARRAY_SIZE(wcn36xx_cfg_vals);
-@@ -2380,7 +2438,8 @@ int wcn36xx_smd_feature_caps_exchange(struct wcn36xx *wcn)
- 	mutex_lock(&wcn->hal_mutex);
- 	INIT_HAL_MSG(msg_body, WCN36XX_HAL_FEATURE_CAPS_EXCHANGE_REQ);
- 
--	wcn36xx_firmware_set_feat_caps(msg_body.feat_caps, STA_POWERSAVE);
-+	if (wcn->rf_id != RF_IRIS_WCN3610)
-+		wcn36xx_firmware_set_feat_caps(msg_body.feat_caps, STA_POWERSAVE);
- 	if (wcn->rf_id == RF_IRIS_WCN3680) {
- 		wcn36xx_firmware_set_feat_caps(msg_body.feat_caps, DOT11AC);
- 		wcn36xx_firmware_set_feat_caps(msg_body.feat_caps, WLAN_CH144);
-diff --git a/drivers/net/wireless/ath/wcn36xx/wcn36xx.h b/drivers/net/wireless/ath/wcn36xx/wcn36xx.h
-index 7ee79593cd..cb409d48f7 100644
---- a/drivers/net/wireless/ath/wcn36xx/wcn36xx.h
-+++ b/drivers/net/wireless/ath/wcn36xx/wcn36xx.h
-@@ -96,6 +96,7 @@ enum wcn36xx_ampdu_state {
- #define WCN36XX_MAX_POWER(__wcn) (__wcn->hw->conf.chandef.chan->max_power)
- 
- #define RF_UNKNOWN	0x0000
-+#define RF_IRIS_WCN3610	0x3610
- #define RF_IRIS_WCN3620	0x3620
- #define RF_IRIS_WCN3660	0x3660
- #define RF_IRIS_WCN3680	0x3680
--- 
-2.53.0
-
+>    - if:
+>        not:
+>          properties:
+> 
+> -- 
+> 2.53.0
+> 
 
