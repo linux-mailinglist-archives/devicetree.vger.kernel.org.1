@@ -1,178 +1,191 @@
-Return-Path: <devicetree+bounces-271913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271914-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UJJkCciXqmmIUAEAu9opvQ
-	(envelope-from <devicetree+bounces-271913-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:00:56 +0100
+	id MDkzDhSYqmmIUAEAu9opvQ
+	(envelope-from <devicetree+bounces-271914-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:02:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7133221D8CA
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:00:50 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9065A21D913
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 10:02:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 84ED63010838
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:00:47 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E4FC7300A30A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 09:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777C83264E1;
-	Fri,  6 Mar 2026 09:00:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D6E337105;
+	Fri,  6 Mar 2026 09:02:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGSJ+++g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33BA5273D8F;
-	Fri,  6 Mar 2026 09:00:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BF173264E1;
+	Fri,  6 Mar 2026 09:02:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772787645; cv=none; b=kmbf7F/EXl+2IerXAOX+B1JNN6Bc8iy6iCRKNl8nPtd2nUh0TH2QMqDfAy1A9/jmgYdnVoQoqF/K2zqgzpf9YE2u7Lj2pqfPKjdwJmWm9vXeT7qvy20cbk2K4lQAeCNqo1zkM9G8Xri75pAK+OmjX7MxKr8HT8T44vHwONmhWEA=
+	t=1772787729; cv=none; b=rgLq8US115Ipp/P8GJTxHhgmR2E4wzRd5Uv/QESnGYdRiidFXagHZCL0oqCW+e4u44TqNepSkTnaDdzvW0Q/rqmE4SZJCKKipQcCC3tjuA4AV0NJPOozZMpA8ksZmzFb7N2Dbc3lVZp4H8igXOiGz9wCP2yTIc/ORK4LXgar4rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772787645; c=relaxed/simple;
-	bh=r5WbhW7BWGrMH/5ijE23YqHk4pSOchr8zr8N1ZQkDME=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qc58mJ0wbbQn4gJLSQqhvDULzw28i/UmNY/PI9auNLibEch68arkJ0haF/lw67RyZSoJ7Kk6G0WMjoCU5pn3m2tNm+j+LkWXycZjs74qeaTD+OoIeWvYwhVoQl9EL7S7SEDp6o4ZRu0dDi3/pY4Y5kBCd4Y6rS+jDWWrthrmbLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn; spf=pass smtp.mailfrom=isrc.iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=isrc.iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=isrc.iscas.ac.cn
-Received: from duge-virtual-machine (unknown [183.192.221.67])
-	by APP-05 (Coremail) with SMTP id zQCowADXaQ2ol6ppQLO+CQ--.47488S2;
-	Fri, 06 Mar 2026 17:00:26 +0800 (CST)
-Date: Fri, 6 Mar 2026 17:00:23 +0800
-From: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: krzk@kernel.org, adrian.hunter@intel.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, pjw@kernel.org,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	gaohan@iscas.ac.cn, me@ziyao.cc
-Subject: Re: [PATCH v2 2/3] mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC
- controller support
-Message-ID: <aaqXpzEPeKfSYF41@duge-virtual-machine>
-References: <20260226115923.75670-1-jiayu.riscv@isrc.iscas.ac.cn>
- <20260226115923.75670-3-jiayu.riscv@isrc.iscas.ac.cn>
- <CAPDyKFrxJ0oWuMWoUEYGO0t-WOYU+G7p5eFw8cUY7xyPaREB5Q@mail.gmail.com>
+	s=arc-20240116; t=1772787729; c=relaxed/simple;
+	bh=3c8A2MIXXhCuwnh4g8UmjPKHvPX5NQqDTLdynnNajWI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Y7trOibr8H/U5FESQBcQHjutlWBMzFq3zwpihYRsqo4QbYPeY23QtQaKMOaaHVYNFoetiyyFKyyg7m0CMjNXncE5x/yml7KeNgqRR1cppHffJioYgcAoqWzyNnmohoRlIHqDvF3bQ2+TH9Xgd6wMe/SM52hlBdExNSLX/7kijaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGSJ+++g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCD4AC4CEF7;
+	Fri,  6 Mar 2026 09:02:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772787729;
+	bh=3c8A2MIXXhCuwnh4g8UmjPKHvPX5NQqDTLdynnNajWI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oGSJ+++g7iwR+jLQf8D2oiM8y/LAGN3rM4HlQODIHXyp8Jzp2qxtWLLGOHkmUfQ5H
+	 G5PqA/5TlFN3eCl7IY6ZDm82vt1YQVgWJQ7UDYT6i3hJmPXO5S5El45971a0XFDHgv
+	 8yiRsy1UzGasDdYeKi4BUU0FphjsWqqF5LYxl0tdjm8SVVRRlpmkLSrRhtQRNFHAPO
+	 aduSHO46/GzRXmDvVblELsthn0l4fq/K2Tn+TIc1U0KhDSSUFmorxCIYsfQ4p1d1E1
+	 TmF2DI2CI6/Jdm529y1Q0+xnSfNs72iPEv+onAOI5E0MBxWZwfFFZl93n+Vvstgpbf
+	 t31bDw/LGJC2Q==
+Message-ID: <1e58955c-3e79-4503-8670-85e689bf8acb@kernel.org>
+Date: Fri, 6 Mar 2026 10:02:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFrxJ0oWuMWoUEYGO0t-WOYU+G7p5eFw8cUY7xyPaREB5Q@mail.gmail.com>
-X-CM-TRANSID:zQCowADXaQ2ol6ppQLO+CQ--.47488S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7KFW7GF1kAw1kJw4rXrWUJwb_yoW8KF1fpa
-	yDXrnIkrWUJF4Sgwnxuw1Duas0qw4Sk3sxtFy3Gw1xZrZ2kF1jqry8Ka4093ZaqrWrGF1j
-	vr1jqr95urnIyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_KF4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
-	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
-	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
-	c7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
-	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
-	14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
-	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
-	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
-	IFyTuYvjxU2VbyDUUUU
-X-CM-SenderInfo: 5mld534oul2uny6l223fol2u1dvotugofq/
-X-Rspamd-Queue-Id: 7133221D8CA
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: Introduce Eliza Soc base dtsi
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+References: <20260224-eliza-base-dt-v1-0-54e8e3a5fe43@oss.qualcomm.com>
+ <20260224-eliza-base-dt-v1-2-54e8e3a5fe43@oss.qualcomm.com>
+ <521fcb9d-6538-430a-910e-0e4e9df2c693@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <521fcb9d-6538-430a-910e-0e4e9df2c693@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 9065A21D913
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271914-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271913-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jiayu.riscv@isrc.iscas.ac.cn,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.870];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,iscas.ac.cn:email]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Thu, Mar 05, 2026 at 12:48:29PM +0100, Ulf Hansson wrote:
-> On Thu, 26 Feb 2026 at 12:59, Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn> wrote:
-> >
-> > Add SDHCI controller driver for Canaan k230 SoC. Implement custom
-> > sdhci_ops for set_clock, phy init, init and reset.
-> >
-> > Signed-off-by: Jiayu Du <jiayu.riscv@isrc.iscas.ac.cn>
-> > ---
-> >  drivers/mmc/host/sdhci-of-dwcmshc.c | 288 ++++++++++++++++++++++++++++
-> >  1 file changed, 288 insertions(+)
-> >
-> > diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > index 2b75a36c096b..21c77e908d77 100644
-> > --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> > +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-...
-> >  struct dwcmshc_pltfm_data {
-> > +       const void *match_data;
+On 24/02/2026 14:06, Konrad Dybcio wrote:
+> On 2/24/26 1:13 PM, Abel Vesa wrote:
+>> Introduce the initial support for the Qualcomm Eliza SoC.
+>> It is a high-tier SoC designed for mobile platforms.
+>>
+>> The initial submission enables support for:
+>> - CPU nodes with cpufreq and cpuidle support
+>> - Global Clock Controller (GCC)
+>> - Resource State Coordinator (RSC) with clock controller & genpd provider
+>> - Interrupt controller
+>> - Power Domain Controller (PDC)
+>> - Vendor specific SMMU
+>> - SPMI bus arbiter
+>> - Top Control and Status Register (TCSR)
+>> - Top Level Mode Multiplexer (TLMM)
+>> - Debug UART
+>> - Reserved memory nodes
+>> - Interconnect providers
+>> - System timer
+>> - UFS
+>>
+>> Co-developed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+>> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+>> ---
 > 
-> This makes sense to me!
+> [...]
 > 
-> Although, I realized that dwcmshc_rk35xx_init() could also move its
-> assignment of "devtype" into this match_data.
+>> +		cpu-map {
+>> +			cluster0 {
+>> +				core0 {
+>> +					cpu = <&cpu0>;
 > 
-> Can you please create a follow-up patch to fixup this and to avoid
-> storing this type of data in two different ways?
-> 
-...
-> > +static int dwcmshc_k230_init(struct device *dev, struct sdhci_host *host,
-> > +                            struct dwcmshc_priv *dwc_priv)
-> > +{
-> > +       static const char * const clk_ids[] = {"block", "timer", "axi"};
-> > +       const struct dwcmshc_k230_match_data *match_data;
-> > +       const struct dwcmshc_pltfm_data *pltfm_data;
-> > +       struct device_node *usb_phy_node;
-> > +       struct k230_priv *k230_priv;
-> > +       u32 data;
-> > +       int ret;
-> > +
-> > +       pltfm_data = device_get_match_data(dev);
-> > +
-> > +       if (!pltfm_data || !pltfm_data->match_data) {
-> > +               dev_err(dev, "No vendor data found for K230\n");
-> > +               return -EINVAL;
-> > +       }
-> > +       match_data = pltfm_data->match_data;
-> 
-> I don't think this should be specific to dwcmshc_k230_init().
-> 
-> Instead I suggest adding a "const void *match_data" to the "struct
-> dwcmshc_priv" - and copy the pointer in the common dwcmshc_probe()
-> instead. In this way, all variants will be able to use it.
+> The values of the MPIDR register (also present in 'reg' of CPU nodes)
+> suggest all these CPUs form a single logical cluster
 
-Your suggestions make perfect sense. I'll prepare a new version to add
-the "const void *match_data" to "struct dwcmshc_priv", assign it in
-"dwcmshc_probe()", and adjust the K230 init accordingly.
+For reference:
 
-I'll also migrate the rk35xx devtype assignment to match_data for
-consistency. Once ready, I'll post the link as a reply to this k230 mmc
-series.
+Data presented by firmware lies and different, e.g. fixed, firmware will
+give you different results. All resources I found (several of them -
+multiple docs, Block diagram from datasheet) say these are separate
+clusters, so this is the topology we should be using currently.
 
 Best regards,
-Jiayu Du
-
-> 
-> Kind regards
-> Uffe
-
+Krzysztof
 
