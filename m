@@ -1,200 +1,160 @@
-Return-Path: <devicetree+bounces-272162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272160-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MBoXF5/mqmlgYAEAu9opvQ
-	(envelope-from <devicetree+bounces-272162-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:37:19 +0100
+	id qKvCKk7mqmkTYAEAu9opvQ
+	(envelope-from <devicetree+bounces-272160-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:35:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F47222CAD
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:37:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5543F222C42
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 15:35:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 05A4A3144F31
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:33:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 96D873052BB5
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 14:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61D91363C74;
-	Fri,  6 Mar 2026 14:33:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E15E347534;
+	Fri,  6 Mar 2026 14:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="JvuDaMDY"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H/VOkmsT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C398F34C9AD
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 14:33:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E3F271A94;
+	Fri,  6 Mar 2026 14:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772807595; cv=none; b=cO7F1n2PA5cyumRvmh9vmkxCzOaMgAsTmJWQ9iWhze1ke0nkIJhRJ7M7TdwS2c+0CVOWYiT2aE16KcUhDEMxNisZqhiAhtrkw+5nd7itTFecDt49fRDSCODXE/PgkI9QBG9nRDB2P18PCMacedQ0gZ0eWmibpEB/pKpc41DjuOc=
+	t=1772807592; cv=none; b=MhiJcfTERLv/RksU/yRBsY91kIfOYTA4uag2QP+XDIbJeIBfMPnZM5YvLoh7aDCMe0pEOOfvvrRfreXcsexgZe4LrrcALvJZF9VqijeNTw9GlLPOOZj3UY6BfF73v5MyRLV1mudWo+mA48ffC1CQnFsS2G/2abUs2ggaH0lGu/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772807595; c=relaxed/simple;
-	bh=V5+a72ZC6NLwNlJPuRbxmZ4cdjnC0AK1Zw75NzX2EUE=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ff2lwWSJEmBaLtaHR0OEtQh/2Q+YZzrTYdPprKG8HftuWsPD00+oUMaed+nAxN0Do4j8kMIBfGwM4qpd2E12EgIt88YH41LlD7rSYU55Hk6gdzrik0cRwbr26ny8gtEj5ZrgIlYugKK/ZwqkhnxKeWtgJwaKBQ9I+t4JyasIApY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=JvuDaMDY; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-439b94a19fdso5319057f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 06:33:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1772807591; x=1773412391; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AMFiA7z3ai1QGEzG7JWM4eDTrrfS1PgbZ2wKh/4AWAw=;
-        b=JvuDaMDY4+QQYN8MpK7ZnPuHjigbI0jyrWMDZ+prCp4CrQ2FkuEIOsDwCMqUQT1QTI
-         BQxMODtWcwnsefOmT6hhFvIw8vid1vHZ1F2v/go21iucry+YhK0yvCVDqLWSgcUeDDfO
-         BvCqKM6O1Tv0jn8yNA1ZEmuSBfRXbekvsrtp+kurE+KFQepBeIqVEwUi1ee5Kq84Oqt2
-         iad7Jmmetefa2ZeVkyP7x27F6Bsudxk9ZMJ8wWogI49oZniX4LX/2NQ74B4JgjQkHo1z
-         Q2SKxgN22qFQ7A7N4cCCdF5vtRaFWmllSBLsIVcb+EAEOfOuNJG5OAH+6omP04uqdLcw
-         942Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772807591; x=1773412391;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AMFiA7z3ai1QGEzG7JWM4eDTrrfS1PgbZ2wKh/4AWAw=;
-        b=T3nvXBe9XlqKq1REqCszkuXzE9W+7nOtNGYM5CYZz3mI0z/pcQKSH53AB2b/jeCHLg
-         yQPwD4azv7c/qg5mhb03EAO1QHuDM9bT+5sn/E1Pj8wFOuQSK9BmRkFYHu8Ob3W3MbaD
-         pjGK1wMUY00xya8/5NpSY6Y7L7wG5GGkb6ZQe9m8K0w3kwpWgBu5YwiSDwdcIYa3YXd+
-         h3REIogJxGaAD6hu0urBbyFO//TbvkQ+3nk2y0RsAG5pSPH3GAAZh/8GDvAakOrhE5gy
-         oFLtu8xQJwDc6MU7Pudl7sEwRKQ405t+iyzS9uFZjXYZZB5xT7LNpQ013JoUrYAZ/kDi
-         BgMw==
-X-Gm-Message-State: AOJu0Yy9EaNL7PhPnviM5NKixDUx0SGpxxfw8R7Mm3Ab0/LoPRmHT5IZ
-	Le61XmJv5dYqUxCDrXhliYLT/F9DPgT7G/UAHZibXGf5xiYnkXAGyKdXyRY1LmRfYyE=
-X-Gm-Gg: ATEYQzywhURoHZPLBcTjGmskQKWjwrglfY7/KfokuzbjUH9V0E+cEHqDbxpQuDECI1X
-	LXegwt7eJZ5vomOm6TpxQNRy7ob/qXn5X8WO0Py9KLzajY47m2onqmLTGzudefe6Bks7jt9jYkU
-	i43fKrP76PanLYdJjYuDjYLKcf+SmKq+ZKI/62pnxwgu7CVEQpsDdth56sTsKGY7cQY7hc6rGHJ
-	Nmo3SgD40tYc0t5GQSJc+gV4LytsXCEhhunYuA+VE7kA/74eAPR9lgCeLn3gn4wm0N6xq93ohwg
-	QyCwn5CzgDhvmggbv32aS2xE39BeeLg2HWV+pTr3QlqWqXlgbjlaAjIDG9AIyqKqBw0os87JVs8
-	ehMgzr2kq3j0u9IZXiJy5smse9Xq9f81LK8y4cyhOIf3SKs87a1asr2e6De013tPD4ucI7yz9Dq
-	KzSUXp5/5C/t4N6Mu3rL5r0kIyakrkt57n7uZRXhxhjb4YBLmUZrL9MQj1echvU3n13XRGk6rYV
-	c4wNQ==
-X-Received: by 2002:a05:6000:144e:b0:439:d8cc:3628 with SMTP id ffacd0b85a97d-439da89d71bmr3657783f8f.49.1772807591084;
-        Fri, 06 Mar 2026 06:33:11 -0800 (PST)
-Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8daf2sm4635281f8f.2.2026.03.06.06.33.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 06:33:10 -0800 (PST)
-From: Alexey Charkov <alchark@flipper.net>
-Subject: [PATCH v2 00/11] Add support for the TI BQ25792 battery charger
-Date: Fri, 06 Mar 2026 18:33:00 +0400
-Message-Id: <20260306-bq25792-v2-0-6595249d6e6f@flipper.net>
+	s=arc-20240116; t=1772807592; c=relaxed/simple;
+	bh=6bpb8U4o1pj6JShYNq2ftR3yy8sMU1tPrbz8tpbfjDw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T8pmTt2tljy6MtgyryvXPs3lTnqzfueD0nAbp0Pdtt/WreQGrvobbdoReGtMNyMuJT7ygFzXQHDf/b/FtwXH3u4gDfX+OQUyguFPKEuZzyUdMl6+i9A7p1MwLbvXz9hGNfUmbMDGW01UjuDFxJgekMq4ytng3FmvBaCyJ3477+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H/VOkmsT; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772807591; x=1804343591;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6bpb8U4o1pj6JShYNq2ftR3yy8sMU1tPrbz8tpbfjDw=;
+  b=H/VOkmsTRzdgOWf0yJoj0dA1/DLqOAE9fOSZuZu4qHOf5jfDfh7K3/b7
+   DYiYLUg3dLyTCowv15f4dj0+fIdG0dJgrj67DNSI/LbnPNhxYoDzbo6Rq
+   ROUIDkjTzmiCc1sq7rl3KA9cYysZZY7Z/XNAjJnNn9xXAmjBccFVlhB5J
+   ihmZYhvgTZDuVCCQRpDne5EX2n+qdytE2I2NLnFSzPU1TLV4TLzyoZCfO
+   n6sJCl0I6ZB+aucZGBWAXXDBTKEErMCPwSqqlTZ4we4XKvqVmiPysVv9+
+   1jK/L3lgY7kUxXXWFlY8tXiW3nEIo0IX5k6H4zcsq1HRIKMBRrM2tzQSM
+   A==;
+X-CSE-ConnectionGUID: 5DrlXQoLT9+m15QXptD/aw==
+X-CSE-MsgGUID: GThIlJLjSW+jLtF+jFoZOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="84627349"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; 
+   d="scan'208";a="84627349"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2026 06:33:09 -0800
+X-CSE-ConnectionGUID: Ky+8fPOMQrC10urVEQ+gjg==
+X-CSE-MsgGUID: pUyz7LejTYaWQilWDsiUNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; 
+   d="scan'208";a="223510755"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost) ([10.245.245.1])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2026 06:33:04 -0800
+Date: Fri, 6 Mar 2026 16:33:01 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	"Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH 0/4] iio: adc: ad4691: add driver for AD4691 multichannel
+ SAR ADC family
+Message-ID: <aarlnZUR984DH98V@ashevche-desk.local>
+References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
+ <aarDJicasFlUnOkx@ashevche-desk.local>
+ <LV9PR03MB84149EAE41DE73C61B81091FF77AA@LV9PR03MB8414.namprd03.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJzlqmkC/2XMQQ7CIBCF4as0sxYzQEF05T1MF7Wd2kkMRWiIp
- uHuYrcu/5eXb4NEkSnBpdkgUubEi6+hDg0Mc+8fJHisDQqVRY1a3F/KnM5KoNSqH5x1rR2hvkO
- kid+7dOtqz5zWJX52OMvf+m9kKVCQJUOIWrfGXacnh0Dx6GmFrpTyBbO2JJegAAAA
-X-Change-ID: 20260303-bq25792-0132ac86846d
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Sebastian Reichel <sre@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- linux-pm@vger.kernel.org, Alexey Charkov <alchark@flipper.net>, 
- stable@vger.kernel.org
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2808; i=alchark@flipper.net;
- h=from:subject:message-id; bh=V5+a72ZC6NLwNlJPuRbxmZ4cdjnC0AK1Zw75NzX2EUE=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWSuerr4XrRZXd4t/c4DBdMKF78/KlCg+ElWsUU1u6Aq7
- 8AukY57HRNZGMS4GCzFFFnmfltiO9WIb9YuD4+vMHNYmUCGSIs0MAABCwNfbmJeqZGOkZ6ptqGe
- oaGOsY4RAxenAEz1ui8M/+M2HKnQ/5y6kGfH8i3qEkckg/97Pd1rMe+N7AmHWiuWLWKMDIeM1Et
- 3vs6+cGyC0MtQwycazkq2a3uZp9bsKTm1zojHgBsA
-X-Developer-Key: i=alchark@flipper.net; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
-X-Rspamd-Queue-Id: D0F47222CAD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <LV9PR03MB84149EAE41DE73C61B81091FF77AA@LV9PR03MB8414.namprd03.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 5543F222C42
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
-	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272162-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,hotmail.com,gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[flipper.net:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-272160-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,flipper.net:dkim,flipper.net:email,flipper.net:mid]
+	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid]
 X-Rspamd-Action: no action
 
-This adds support for the TI BQ25792 battery charger, which is similar in
-overall logic to the BQ25703A, but has a different register layout and
-slightly different lower-level programming logic.
+On Fri, Mar 06, 2026 at 12:39:30PM +0000, Sabau, Radu bogdan wrote:
+> > -----Original Message-----
+> > From: Andy Shevchenko <andriy.shevchenko@intel.com>
+> > Sent: Friday, March 6, 2026 2:06 PM
+> > On Thu, Mar 05, 2026 at 02:23:26PM +0200, Radu Sabau via B4 Relay wrote:
 
-The series is organized as follows:
-- Patch 1 adds the new variant to the existing DT binding, including the
-  changes in electrical characteristics
-- Patches 2-4 are minor cleanups to the existing BQ25703A OTG regulator
-  driver, slimming down the code and making it more reusable for the new
-  BQ25792 variant
-- Patch 5 is a logical fix to the BQ25703A clamping logic for VSYSMIN
-  (this is a standalone fix which can be applied independently and may be
-  backported to stable)
-- Patches 6-8 are slight refactoring of the existing BQ25703A charger
-  driver to make it more reusable for the new BQ25792 variant
-- Patch 9 adds platform data to distinguish between the two variants in
-  the parent MFD driver, and binds it to the new compatible string
-- Patches 10-11 add variant-specific code to support the new BQ25792
-  variant in the regulator part and the charger part respectively,
-  selected by the platform data added in patch 9
+...
 
-Signed-off-by: Alexey Charkov <alchark@flipper.net>
----
-Changes in v2:
-- Fix an error in DT schema (thanks Rob's bot)
-- Ensure the broadest constraints for all variants remain in the common
-  part of the schema, per writing-schema doc (thanks Krzysztof)
-- Link to v1: https://lore.kernel.org/r/20260303-bq25792-v1-0-e6e5e0033458@flipper.net
+> > This cover letter doesn't answer to the first important question: Why a brand
+> > new driver? Do your homework and check what is already in the kernel and
+> > explain in the next version why no other existing driver can be reused (refactored).
+> 
+> Indeed at first glance I thought about adding support for these parts in the existing
+> AD4965 driver. The registers indeed are a bit similar between them, but the
+> channel specific registers are completely different, and more than this the
+> conversion modes are different.
+> With this being said, I will try and make things more clear by answering this
+> question in the cover letter of the next patch. Thank you for pointing this out.
 
----
-Alexey Charkov (11):
-      dt-bindings: mfd: ti,bq25703a: Expand to include BQ25792
-      regulator: bq257xx: Remove reference to the parent MFD's dev
-      regulator: bq257xx: Drop the regulator_dev from the driver data
-      regulator: bq257xx: Make OTG enable GPIO really optional
-      power: supply: bq257xx: Fix VSYSMIN clamping logic
-      power: supply: bq257xx: Make the default current limit a per-chip attribute
-      power: supply: bq257xx: Consistently use indirect get/set helpers
-      power: supply: bq257xx: Add fields for 'charging' and 'overvoltage' states
-      mfd: bq257xx: Add BQ25792 support
-      regulator: bq257xx: Add support for BQ25792
-      power: supply: bq257xx: Add support for BQ25792
+Good, the summary of the above will fulfil the request, thanks.
 
- .../devicetree/bindings/mfd/ti,bq25703a.yaml       |  73 ++-
- drivers/mfd/bq257xx.c                              |  60 ++-
- drivers/power/supply/bq257xx_charger.c             | 534 ++++++++++++++++++++-
- drivers/regulator/bq257xx-regulator.c              | 123 ++++-
- include/linux/mfd/bq257xx.h                        | 415 ++++++++++++++++
- 5 files changed, 1164 insertions(+), 41 deletions(-)
----
-base-commit: d517cb8cea012f43b069617fc8179b45404f8018
-change-id: 20260303-bq25792-0132ac86846d
-
-Best regards,
 -- 
-Alexey Charkov <alchark@flipper.net>
+With Best Regards,
+Andy Shevchenko
+
 
 
