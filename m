@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-271971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271972-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KIYCMZOtqmnjVAEAu9opvQ
-	(envelope-from <devicetree+bounces-271971-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:33:55 +0100
+	id SJtACdCsqmnjVAEAu9opvQ
+	(envelope-from <devicetree+bounces-271972-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:30:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E33921ECF5
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:33:55 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id A85D821EBE2
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 11:30:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4EEAC3082649
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:30:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0DF2A303D887
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 10:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D16D37C114;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF41037CD25;
 	Fri,  6 Mar 2026 10:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vCc/8i0T"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zacejEse"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33DBA37CD25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B7F37BE8E
 	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 10:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772793002; cv=none; b=XJMB9mUZSwE3R3nNgHBwe3F3aL6xTq7lK2XqKt0XRbfWFs5mZcsjlJt+EciukzmWoBbLZ2RJc5ta+DZZKyJxqH7ApEd/jGFC1M6xyNYhYujTevsIQv2IvUoFNBP0kE6FRfVZtexvBytehFlcP/5sEjXY2JH6YWerJPwMcqoGCRM=
+	t=1772793003; cv=none; b=mxnP6cCOgR+C5AcIa2oNRthykYpeANS0kxXuiqVL54pmTGQSk8auM5bGfrv9q96vUlg6LMGRQm43H5vI8l06TDbCxEt/bVKeg8KARFcVVFaeIxeAzLhAS9dOjYDzWx3obuVY+Y3R29Ovsjsse4iGC5ih46i5wWJzu3i68Yxf8E4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772793002; c=relaxed/simple;
-	bh=rQimVWIJS5wU+wNLCWMKgCOW5DPxO8PvrErq53XFv5s=;
+	s=arc-20240116; t=1772793003; c=relaxed/simple;
+	bh=gEkS+KNCFb0DbKDNC52RYY6aT/xJwnLizD3yMfs/RpA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uqAi1wU13PMcdXU99a8IZx82vnPu7DsAJdzHZ35uyOewxMEvfrRaz41+BYD2UbVQs6EqU97YaRAsAh5Prg9ZG2y7DAh/JroMSQp7AD/bURGzyaG72YhuZ8EZy1X24kV/dq/XACMeMPWG97XSUfLH1wqnxleeCW7WltdTm7yrhV8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vCc/8i0T; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:To:Cc; b=SlaHeK4VxOPBu6M34NM7rGk/OCNdia/FoTtFVp70VQ5CW9qbWT+ZHiRfQZ8tmCxGV/N0hesugm9pdHDyLz8zCQ4HCKgL2mzNqzTNzfeA1xAPJwDfO2Hko0PWU7lmhNPLoLQhTncu4WX/T2ED4Ja2OREnikQFTafWiTyVSaOtt2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zacejEse; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b8f97c626aaso1559898566b.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:29:57 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b8fbb24a9a9so1481433966b.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 02:29:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1772792996; x=1773397796; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1772792997; x=1773397797; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=piJ92bCcZbzXtfYOaOOoHhs9Euyr6xn5G8q2SxoNOHc=;
-        b=vCc/8i0T9FCtxsfB+aVfD2BwqXeKeRSjLJkVBjmFZg3+JMAyFMVhzNx4nsKqp09Gpn
-         GDXq8fxd3Jj1rDAijc5h7xTGiNW0QUmROsLmtObZ8JzlMED3GQYB2LPl7Lfj0iE3B4c3
-         htZSyPmGRGfWRWDLiR9/NFsCtUGemQiIN51MOzhalC+X8ys722ezvXKazDOk+sfSi6Wg
-         3D4dEtWPn9ctVwRcmhSUUI79UTWQMmFR0jdTuHltHeGPOYpcoP07NBRdoDeHujT3KwaL
-         AJaFsd84E/rdX0WYZ5SHAfrKtG6+6NMQZVdFHFVE3l7JCnAcoopc7iaIlTz+4Zrk4gP4
-         s3xQ==
+        bh=bsgk7ZObqyZr/3jbiTlB5XfU/jafWS+xFJNQ3TVojOs=;
+        b=zacejEsez5XKEYwcdnSN9M0+cmTz6cSMr7jO6/iSt2Kgn9c/XkERN7efuDnd9s6pDc
+         u/isEHYn/csrdC1Kwk+ay3cdQYcR65wQ+3FcfHAcfHAe3cBjLFPHl8XsMfx0NKjTTLzd
+         YH4wgeDWqkVFDsajhkJ7dCvZ3z4T/2rj3p3+AVbEkDA7cdvSvHMD7uQzqjVHKj1bpcK9
+         QH5LAQU3ut/pmEKjIh8u51nooHLgQIar3vAk6TzYj2yHTBqBz7VlP9Je5Folxo6FX5Qk
+         EP7jOLyBKCj6URoR7os9exnsqdy2UQxYiWr2QiYpWipsAPSQqox4g3FixM5nxlcnIdKz
+         xFNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772792996; x=1773397796;
+        d=1e100.net; s=20230601; t=1772792997; x=1773397797;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=piJ92bCcZbzXtfYOaOOoHhs9Euyr6xn5G8q2SxoNOHc=;
-        b=Up3wJgQpj5WpKZT4SapeJfEs0TKZA1Q9m97Ciu4g3egkPgQRPDQPXjlKBJ2dFz9NHg
-         Qe+pLhMz/a/WINGL36DQA9Zoo4EXvUAMI7KzYRM7+5AtgpkvQ8S3aYrmqz937NWWM3Bz
-         b66aiYt5bBKBO+dIkGWwDTm0zdQvLiVy7zwHaOveeYnl4EK5sTDXCJz1Wc37SOvDuxKt
-         UIlWuwO41DTho6KuV5Z9vZ2DldWQ5VJOGcU6hcb24K/cNIjlF7f8wWxofZPw7YI9oFep
-         xy12WuFWYWy+zIjfsprhQbDgSezrIk2Pl9iTqGH2FQUrpYZG7w8BYcfm9Ls+F3XEkRDS
-         XCAw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYIs5mnHQXq4crEdqyxDg3z/Ef6U1rv1uL9Is66ZVWLsCLLSQxtbfbqWKgztJuQp2/w++CZUuiKjnW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPl2/8ld1lJEq03h4xIhXzniL7E8zGKRNOGJdFHgNeg5atejTh
-	Qox2zQDfr1QqoyZhMOJpDDPzIkSI/+UVdVioz+3C9oMFTFGZC8Rrs3dbURKntXhj/sM=
-X-Gm-Gg: ATEYQzwWc4tqwy3UFCBMgu10OHoBgFOo1KXWJNKfa5kHUfyzRvV76H0bANFpIftQGQL
-	3gs7C+b9XwhkDs0lATDGYb5yc106a/ONlR8KJkM1IRzUkLzyRGUnYbXOOHPHEbS3HIUlh/GPELp
-	0o7WvFKt9dK6FPJ0Qq+8yiqbYJiJMXc8J2Ag/HQanRwvc4U6Scx0Pht9MNwLw6Dq2O8nB7gz4TN
-	Ddl11Gbrv5pec4SEffLc1GtsNwzFtU6gqCZRZxoky3UvOj/V2O2g4ofWnSjVcqF+YNNo60saPrk
-	E8wobDIZbIUKOBFVvy0lT+9caA2Q503Z5tRVzFvwJvVHlfoXIHL/lZkEtWYFQFJWyxclbq4HU0I
-	9yJpfgjJeAwjzbLEl+5Iupb8RaBUCk49/MRQf1c6v0r9g1Ga5+uu8s6mbPDZmarh+1Lh5trLCZL
-	gdDE4ISoAhpVUDcxgk2QNwngY919L4iLrZoX6ygir3JrlLvcywzKW0OJcGSKfEn1SfsVWcoYRe8
-	surlXCJfYI/9I8xrGS5GfOnvQ==
-X-Received: by 2002:a17:907:6d29:b0:b87:10fd:b590 with SMTP id a640c23a62f3a-b942e05ddbcmr87217966b.60.1772792996324;
-        Fri, 06 Mar 2026 02:29:56 -0800 (PST)
+        bh=bsgk7ZObqyZr/3jbiTlB5XfU/jafWS+xFJNQ3TVojOs=;
+        b=lqjQBW6aMwO44sD09tV8S6rr8GqMpI1WxEYarg7NWdKTv8G9DAn5pDiW3Zbj+rw0QV
+         vRX5QhduxRWViS/nyAIZbAO2oKj5Jsv7ZRahiKea/aUbTHvSWkSHnoiq6zI/keV+lgdK
+         H8HRgOrcmQm+gNfJkXQUTGDFToKDEiJe63JKe4+cGMviFJnLJvi86HBFloHWFIqjInSd
+         guiJP0DTyb+sV6fwwvOSf4imCn78jUbtJIK5cxB0b/n4rVJnczgeD+gcqvtNrl0VI9id
+         /rIB/YoGLRUy/YaJMWA4xVhCc86tv1Ucjftw8++x3sBlUM9Gn0Owm+GKlYetv0H19WaP
+         1HPg==
+X-Forwarded-Encrypted: i=1; AJvYcCXKz9+zkkjx/pedVAcj75PqfNet3KSB4YMVTFjXMOlP4KU+EiMLyQioMtN+A/IH70fXjCibaGY9rYBN@vger.kernel.org
+X-Gm-Message-State: AOJu0YycffKojs/b5HJPOVSN2YlDAVcCBa5nUq5lZpA1TS3/ecPr3ZxU
+	rrTET6L6IYv4NnSitqUViUF27k1fCIIyU/FQg92oSBkaH06isKZksDTiVnEuBH7Cg68=
+X-Gm-Gg: ATEYQzxOkqpnH3yad4wU+J610zz08WgMbG0UwKjE8Q9Sd2lDtpTp7nchAuwUfBZYjOl
+	Kjby8fOG+0q5QZ51yOmRrzmUesczqyIageBOhaWnH3ITehY4MYrUzrL9hmh7Rv2W+GGXkGoFQLu
+	NaSuwU+4lNL8XYKmPWAEYaHoAc/nRRtIkdNXoWuXJ4gsZdSHAbDvZXJAfup7R+JQE55zx9lZfJP
+	Bryh1OsTxRK1T/OTY5N13TPkKdiTw/wWEO3UsJMpK3S4iFGi7fk7OJ3kM9kj+wE2F/QhcaiXM5P
+	aNyMsWltvf/03S8nILp1yPYB59asMopFOjOTZRlwpujUSoc4XaXdwNTTvL737lbfss3T1kuL9xI
+	NZcOmMn121OAffCifKPvXH86YDzW8xsbdMX/g30RCmd/c64/f2kCq17HL/4Lk7a/FeAIdXBrd7y
+	GuzNINrdB7ymvTi9VZXrnSu3AQ3tIxHX35X3vEJ3L1KhgboFcCfET1F57h8YyXbVhynQyqEYQ/I
+	5dUbPWZ3mm/S1760Ym3v/rDZw==
+X-Received: by 2002:a17:907:8690:b0:b8f:c684:db28 with SMTP id a640c23a62f3a-b942d06f624mr92068866b.12.1772792997027;
+        Fri, 06 Mar 2026 02:29:57 -0800 (PST)
 Received: from puffmais2.c.googlers.com (221.210.91.34.bc.googleusercontent.com. [34.91.210.221])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef8c95csm42907266b.21.2026.03.06.02.29.55
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef8c95csm42907266b.21.2026.03.06.02.29.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 06 Mar 2026 02:29:56 -0800 (PST)
 From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 06 Mar 2026 10:29:54 +0000
-Subject: [PATCH v7 03/10] dt-bindings: soc: samsung: exynos-pmu: move
- gs101-pmu into separate binding
+Date: Fri, 06 Mar 2026 10:29:55 +0000
+Subject: [PATCH v7 04/10] dt-bindings: soc: google: gs101-pmu: allow power
+ domains as children
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,7 +89,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260306-gs101-pd-v7-3-03f7c7965ba5@linaro.org>
+Message-Id: <20260306-gs101-pd-v7-4-03f7c7965ba5@linaro.org>
 References: <20260306-gs101-pd-v7-0-03f7c7965ba5@linaro.org>
 In-Reply-To: <20260306-gs101-pd-v7-0-03f7c7965ba5@linaro.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>, 
@@ -106,13 +106,13 @@ Cc: Peter Griffin <peter.griffin@linaro.org>,
  linux-pm@vger.kernel.org, 
  =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
 X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: 6E33921ECF5
+X-Rspamd-Queue-Id: A85D821EBE2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -120,7 +120,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FREEMAIL_TO(0.00)[kernel.org,samsung.com,linaro.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-271971-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271972-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -129,7 +129,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andre.draszik@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
@@ -137,150 +137,100 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-The gs101-pmu binding is going to acquire various additional (pattern)
-properties that don't apply to other PMUs supported by this binding.
+The power domains are a property of / implemented in the PMU. As such,
+they should be modelled as child nodes of the PMU.
 
-To enable this, move google,gs101-pmu into a separate binding.
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: André Draszik <andre.draszik@linaro.org>
 ---
 v7:
+- really be consistent with quoting (Krzysztof)
 - drop invalid tested-by tag (Krzysztof)
 
 v4:
-- update since 'syscon' was removed from gs101-pmu compatibles
-- update since 'select:' was removed from google,gs101-pmu.yaml
+- consistent quoting using " (Krzysztof)
+- add samsung,dtzpc to example
 
-v3:
-- use additionalProperties, not unevaluatedProperties
-- fix path in $id (Rob)
-- drop comment around 'select' (Rob)
+Note:
+Because the properties added are 'required', this commit breaks DT
+validation of the existing DT for Pixel 6, but a) that's simply because
+the DT is incomplete and b) a DT update will be posted once the binding
+is accepted.
+It is not possible to write the binding such that it supports old
+(incomplete) DTs in addition to the full version, but as per above
+it's not required to keep supporting old DTs.
 ---
- .../bindings/soc/google/google,gs101-pmu.yaml      | 56 ++++++++++++++++++++++
- .../bindings/soc/samsung/exynos-pmu.yaml           | 20 --------
- MAINTAINERS                                        |  1 +
- 3 files changed, 57 insertions(+), 20 deletions(-)
+ .../bindings/soc/google/google,gs101-pmu.yaml      | 41 ++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-new file mode 100644
-index 000000000000..a06bd8ec3c20
---- /dev/null
+index a06bd8ec3c20..dfe6f87e5949 100644
+--- a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
 +++ b/Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
-@@ -0,0 +1,56 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/google/google,gs101-pmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Google GS101 Power Management Unit (PMU)
-+
-+maintainers:
-+  - André Draszik <andre.draszik@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: google,gs101-pmu
-+
-+  reg:
-+    maxItems: 1
-+
-+  reboot-mode:
-+    $ref: /schemas/power/reset/syscon-reboot-mode.yaml
-+    type: object
-+    description:
-+      Reboot mode to alter bootloader behavior for the next boot
-+
-+  syscon-poweroff:
-+    $ref: /schemas/power/reset/syscon-poweroff.yaml#
-+    type: object
-+    description:
-+      Node for power off method
-+
-+  syscon-reboot:
-+    $ref: /schemas/power/reset/syscon-reboot.yaml#
-+    type: object
-+    description:
-+      Node for reboot method
-+
-+  google,pmu-intr-gen-syscon:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      Phandle to PMU interrupt generation interface.
-+
-+required:
-+  - compatible
-+  - reg
-+  - google,pmu-intr-gen-syscon
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    system-controller@17460000 {
-+        compatible = "google,gs101-pmu";
-+        reg = <0x17460000 0x10000>;
-+
-+        google,pmu-intr-gen-syscon = <&pmu_intr_gen>;
-+    };
-diff --git a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-index 76ce7e98c10f..09368dbb6de6 100644
---- a/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-+++ b/Documentation/devicetree/bindings/soc/samsung/exynos-pmu.yaml
-@@ -12,8 +12,6 @@ maintainers:
- properties:
-   compatible:
-     oneOf:
--      - enum:
--          - google,gs101-pmu
-       - items:
-           - enum:
-               - samsung,exynos3250-pmu
-@@ -110,11 +108,6 @@ properties:
-     description:
-       Node for reboot method
+@@ -16,6 +16,14 @@ properties:
+   reg:
+     maxItems: 1
  
--  google,pmu-intr-gen-syscon:
--    $ref: /schemas/types.yaml#/definitions/phandle
--    description:
--      Phandle to PMU interrupt generation interface.
--
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  ranges: true
++
+   reboot-mode:
+     $ref: /schemas/power/reset/syscon-reboot-mode.yaml
+     type: object
+@@ -39,9 +47,23 @@ properties:
+     description:
+       Phandle to PMU interrupt generation interface.
+ 
++patternProperties:
++  "^power-domain@[0-9a-f]+$":
++    type: object
++    description: Child node describing one power domain within the PMU
++
++    additionalProperties: true
++
++    properties:
++      compatible:
++        const: google,gs101-pd
++
  required:
    - compatible
    - reg
-@@ -176,19 +169,6 @@ allOf:
-       properties:
-         dp-phy: false
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
+   - google,pmu-intr-gen-syscon
  
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - google,gs101-pmu
--    then:
--      required:
--        - google,pmu-intr-gen-syscon
--    else:
--      properties:
--        google,pmu-intr-gen-syscon: false
--
- examples:
-   - |
-     #include <dt-bindings/clock/exynos5250.h>
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 611fa8fb9f8f..6a00d97ccd09 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10884,6 +10884,7 @@ C:	irc://irc.oftc.net/pixel6-kernel-dev
- F:	Documentation/devicetree/bindings/clock/google,gs101-clock.yaml
- F:	Documentation/devicetree/bindings/phy/google,lga-usb-phy.yaml
- F:	Documentation/devicetree/bindings/soc/google/google,gs101-dtzpc.yaml
-+F:	Documentation/devicetree/bindings/soc/google/google,gs101-pmu.yaml
- F:	Documentation/devicetree/bindings/soc/google/google,gs101-pmu-intr-gen.yaml
- F:	Documentation/devicetree/bindings/usb/google,lga-dwc3.yaml
- F:	arch/arm64/boot/dts/exynos/google/
+ additionalProperties: false
+@@ -51,6 +73,25 @@ examples:
+     system-controller@17460000 {
+         compatible = "google,gs101-pmu";
+         reg = <0x17460000 0x10000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges;
+ 
+         google,pmu-intr-gen-syscon = <&pmu_intr_gen>;
++
++        pd_g3d: power-domain@1e00 {
++            compatible = "google,gs101-pd";
++            reg = <0x1e00 0x80>;
++            #power-domain-cells = <0>;
++            label = "g3d";
++            samsung,dtzpc = <&pd_g3d>;
++        };
++
++        power-domain@2000 {
++            compatible = "google,gs101-pd";
++            reg = <0x2000 0x80>;
++            #power-domain-cells = <0>;
++            power-domains = <&pd_g3d>;
++            label = "embedded_g3d";
++        };
+     };
 
 -- 
 2.53.0.473.g4a7958ca14-goog
