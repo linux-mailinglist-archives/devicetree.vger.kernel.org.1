@@ -1,426 +1,325 @@
-Return-Path: <devicetree+bounces-272239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272216-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AEyeKdr1qmlaZAEAu9opvQ
-	(envelope-from <devicetree+bounces-272239-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:42:18 +0100
+	id KMDtJHzxqmncYwEAu9opvQ
+	(envelope-from <devicetree+bounces-272216-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:23:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24BA02240E9
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:42:18 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD80223B3E
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:23:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AE55A30821FB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:40:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C22023005EA1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F2953E95B8;
-	Fri,  6 Mar 2026 15:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97FDA3644AF;
+	Fri,  6 Mar 2026 15:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="YUb2l4qo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qJQglw1/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D6E3E5EC9;
-	Fri,  6 Mar 2026 15:39:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772811592; cv=none; b=akrx5lIucIzvxoEiEdfdpcn4gteJB2ifoZsIZhZgrgpYWU7TFQ7jNAHY5yeuLRf+ejP0ssw3pqDPQdqBm9weN/FgjsJgjaZST8z4IXT9COH2mO2osy54Qi1197gpgRrObrlCgxwQOkzLEfLk+ORjaYhKSU8JiSFPHb19iJZdPKc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772811592; c=relaxed/simple;
-	bh=FTLFRXVngdJdOkdGv/z4nImU+oEaB91CvL4PjW3I54w=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=usqzfFQXMXNPtx+ZGyRbypbCJG1DgxJmPaRpGanq91NcNLGaBxhKPIiF9AD3u9RfRmGvR7vdJtNQ5Q5TbSn2LEeVp2V4exwFUJIuUHnDc+92wYPeXJqBC+lLwykiSfiVfSrG4ehDJ1LhG7iF6DTtAmKVj+GlQc+JxDx+3o5iU8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=YUb2l4qo; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 626E4QnW3363772;
-	Fri, 6 Mar 2026 10:39:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=W26Z8
-	Ce2MtOVaR+SXZt1k6wqXYerxSJg3Zi7iktwDTs=; b=YUb2l4qo2qqt4y1EZKhAG
-	jDtimCMteMOZDa1t452ma21YPzbnc2q5vGtpQW5tteMKhfAPwCqn13gdPyBmZuJj
-	SqMVHRGdE/zxD+qfWikWwAunRFt7/H/ADzbg/RPFdVS+LoRh/OesYULPOPB16FUe
-	zVTykDsVSBIZtgVmfIMjzSRxHBBOzsh7zfwZq2ilO5kbaD/+JD7tJoBrAEQccFJk
-	mxM/sBsg/ySSk1wd/ssm9JhHWYlI5JW4oRMeFIEUNFc+1J9P/3kxP0AaIxUycNy4
-	butIChNa1e5rBz3osjuKjXVJ1QFJOV21RosOdJqtstCxOP+ofVTmv/YpxeL71aVK
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 4cpdyx3t19-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 06 Mar 2026 10:39:32 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 626FdVvb045314
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 6 Mar 2026 10:39:31 -0500
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.37; Fri, 6 Mar
- 2026 10:39:31 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Fri, 6 Mar 2026 10:39:31 -0500
-Received: from HYB-b1tGeUj4GP1.ad.analog.com (HYB-b1tGeUj4GP1.ad.analog.com [10.48.65.247])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 626FctKx002837;
-	Fri, 6 Mar 2026 10:39:24 -0500
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich
-	<Michael.Hennerich@analog.com>,
-        Marcelo Schmitt <marcelo.schmitt@analog.com>,
-        =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
-        Antoniu Miclaus
-	<antoniu.miclaus@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        David
- Lechner <dlechner@baylibre.com>,
-        Andy Shevchenko <andy@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Petre Rodan <petre.rodan@subdimension.ro>,
-        Jorge Marques <jorge.marques@analog.com>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 4/4] iio: accel: adxl372: add support for ADXL371
-Date: Fri, 6 Mar 2026 17:18:24 +0200
-Message-ID: <20260306151859.131934-5-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260306151859.131934-1-antoniu.miclaus@analog.com>
-References: <20260306151859.131934-1-antoniu.miclaus@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530A435CB9B
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 15:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772810445; cv=pass; b=P6JM2EI9oKj8MEPx418Z8tDZKfX1EPDyGX1UJJzhsApHh/oawx+0KKiRRVEvwGsBP1Yd6xnTSnyks4KoQzLMr7hxdbRMxxz9ak/N/IqAfMMrs6I4zYqASDdgpzzSIP87srbPLe2dkFdDvbaiw0lcVMOXgzLYDKEwC4suJ8XyjeE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772810445; c=relaxed/simple;
+	bh=KOsZndq2fxFvV5ZjjA90mg2yR7mJTcoSEakFrOShe1o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CAbNbBl6gjUeY3mcs+2azCOLa8mGLLM5FEXZDESBdopXRBH1zjZnjlf769FQGshqBsZDsw5EAiNijgA9/SNwqc+dCh3Avk77Euzf1Ra6907qd7RvcTIO0PGX1wmpRuZZELYiv6iYke0XXN1MtjQ7HviaDMn7m3bmDpwH2I4qwHQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qJQglw1/; arc=pass smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-66174cf4549so1024270a12.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 07:20:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772810442; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ipk0GoRGzTyHPwJ7Esm31rZWqrG+sr3RSbCpA/6VEc4d85SUV1Mvbwlm418m19T36u
+         Qd+u0gzKoUIF+J+b5pF/r8RC308JWCVIDesfwWmU2ORxXgycvtsLI47j22IqzNuiz6Q6
+         9DNdP+4x26kxBLVSes9IzmfcWhRHxUDTKJTeFOH3HSYZGYAnQyC/2xAtIA7LjDPqqUpJ
+         x6PYvz9sx1lwrRL0AisgXGRv2o67bWTVPHJyFZesG+CZ0J71Ti1G8L9Sh0y87MU8/VA/
+         9uKD4qU+zZyu7/iVOA8K95ebTGumhCC2lXPbyCwDP63J+l4UdJIUTxW9t7Uf4LH1T62U
+         sjng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=oPFMUflif2PcoprUWa7OFxGTQSn7UEMXyNiXbjIMxgc=;
+        fh=pcM6fAeJLAEqZbULgZrZbcXmlK7aNn7qY/JzDBXbIGs=;
+        b=QyUiwMd1tAfhbHJZIYfAKjfS/NayeOLBoRg0g4/RFAchUJqYkdlOujTHiopGuoEM+e
+         eeSKo3Kd/2s5wjqYeyoO3GqWuJoP+FeX0qNZIhhqQfqnjrTOcmRGTCrjjKzJ3r0D57dk
+         xnzo5e5BkayDfXLUbamRI4Cg5VKsBjrOqfZqPiWgLCXASdbgxeTr2gJvu9R3vfKdgId+
+         GMk2NhReh1kBP0L0t74x+hcNgheTUQyoVV0eu+lEhkqkOZiwgXFhT+b2DmzJk3m3OV1U
+         16I4vvHg4bBwJ1eoMKF0FQNtM0HwpPW/EpeGKhj69HKbOQeIGxihmDB+dB/k9wi+NvVF
+         6lTw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1772810442; x=1773415242; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oPFMUflif2PcoprUWa7OFxGTQSn7UEMXyNiXbjIMxgc=;
+        b=qJQglw1/2i7Vrc/qxZO66X7wS1a+J79HX8FaACL138laP5SjsSG7lOtf9KOeXCH9+9
+         NEAfmb3sGqhV2AUDJ1dhlIvwt0xXoEoLrvcAWR9VyXeFXQz8WTk/WRztXF5ZGQPf1yEn
+         VSqQokMB0SrfvMs+K17dDWKZnQU/x2UvljL4oHWx6QtB9PAAhMycSJt2fBaKw1l4V5WC
+         pMty4HWPLxUFOIpzETbAIumJujnIHPu6xFIU7DU0ok+FNFJrunfGQ515/H7frh+1Iytj
+         WplKJgEthW2Q/dhpHmmvHP6cZJ5lYEn9WEpIrfDzhqjJ1jJBg5LI2k4WWmRJyWDsWNBD
+         tPFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772810442; x=1773415242;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=oPFMUflif2PcoprUWa7OFxGTQSn7UEMXyNiXbjIMxgc=;
+        b=HUY4idmRY/2Fz782+TtrxkHWSn3S1Kq3bhy8Arz+syg7U/xKcuMySNYgq6WpNZph9h
+         X3okwGJktLe4c469Ibt3y/GWI6W4bPpVqe5vAEYeDv/xooYkUe4WNCwfWyaCbJyaMRkQ
+         VMRtw2BD4ft3NMMj0QOrcxO4/DL633em1b8zxnR8o7tAQ16mH+gBj2IcdFpn1FokEJNO
+         DegnIU/INM+grzVZxbRMT+WngId4tsqFG/cJTU+keD0EKF+cJF7ANQLKXDgNAQpdhDcv
+         /zhtjzgzeXWpDl4a/c7Dsah+h0QBLv5tyNK0EDH6ABou3v/irqgv9QCobcOj3Xaoe/i5
+         +e9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV+hixDDXq7NKqZafjA3m7jBq35Mj8nSeNL5R0GB/+WpdkvdGfPUtcXiKHKnHCZt5swKjjKxN0bi0rw@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU2ttyk3EqO2lcYPAgn/cfZZfqcf2UfppANMQVjCJqWJg9m5H+
+	p6zPdcWtWthHE87jj0CrV+kZM2OqoJfathAZJy+40pdUxggtZtCGM03LGo7IOn8vdVPNbfD8qlL
+	RDy8jGN85tht3EFvnNNZELGMPOaF9XjAbQK6DxV0W7w==
+X-Gm-Gg: ATEYQzwBfEciGgR+XrJq2XpH+tgsoVM9J7IWgjSS9DWquiSM8beiGgVhRoTGDup2PfG
+	KRwK+3cjWYS6rlLtzAVdbyeFH9bymp++aPTgktvMNCZGHcUadc2w6UkkOjlrRQU/gGZvSk3VRMz
+	bzOSojvTRCb8rPBPUG0L8CLdEYadcd36bsXqndL3uWtVhFbGvw8SY4sDF8aypgosfXcinPbubeE
+	PvRRcZG5Tubty3n3wY1FRDP/7Ls4uHNnCj4TzYSVqzn2VV5DCHFQJlN7Z7C8+Ggm1vnSXeHasU8
+	fb+2USTRqleWXGxlZJfFa+q2TA6T45OfYywwOJAFxQ==
+X-Received: by 2002:a05:6402:719:b0:65f:76d7:d507 with SMTP id
+ 4fb4d7f45d1cf-66142d406c4mr2730888a12.8.1772810441112; Fri, 06 Mar 2026
+ 07:20:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Authority-Analysis: v=2.4 cv=Mc9hep/f c=1 sm=1 tr=0 ts=69aaf534 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=0sLvza09kfJOxVLZPwjg:22
- a=N--XFCr6TIEc_64PeIT2:22 a=gAnH3GRIAAAA:8 a=1I6Wr64xNoAqNp8NlDkA:9
- a=mpv_7z2a4kGo0ltCk4E8:22
-X-Proofpoint-ORIG-GUID: nFAuUbVUKJXOatLQiZUPDC9vqdlEgNY6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA2MDE0NyBTYWx0ZWRfX/OU2lUjV0rBH
- hVh2XhJX+e8W+NMyv6THIrvvUr56KVgfxk1K8O5CHxB2kEA9hq5XxlUgkLDshnCNIMu4Z52+NNx
- OEdXj/HRDT747Sp+RIgFYf8IqoAh1jPFlrOXwopGm8Ll6UGlRd/dQ3M8F3DeOPqG+Dp9Vyeo9kB
- cmC7+yFlZyfGnv/2OUPXsmca//aqYwMUBBNoIWNaIfgK4kDmvJfKAqPnsWzy1eCNQGuKstTnGdp
- vaRaQBhhXepvKxujbijnYF1UgvGbjhQ6+XG+lB69XHbd15O0TSfMSzNQK1S96iVt7p6GNh9Izu9
- a3lsNGZPU0JJFshh9plwlbHlxoPhBn732x1i1mLKWTGKE03n4g/r9VUEE3QjHdyS0UZD50KoqBq
- 6pD2lSeS9q6m0/sd/50nDBS/T1nsDii59uVdWC8nlOh+McklLH+Asgp5R6SX6rFrmrE+GXra4mw
- wMfsmXPAMCw3mXEa7GQ==
-X-Proofpoint-GUID: nFAuUbVUKJXOatLQiZUPDC9vqdlEgNY6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-06_05,2026-03-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
- phishscore=0 suspectscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603060147
-X-Rspamd-Queue-Id: 24BA02240E9
+References: <20260306-gs101-pd-v7-0-03f7c7965ba5@linaro.org> <20260306-gs101-pd-v7-7-03f7c7965ba5@linaro.org>
+In-Reply-To: <20260306-gs101-pd-v7-7-03f7c7965ba5@linaro.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Fri, 6 Mar 2026 15:20:29 +0000
+X-Gm-Features: AaiRm52gkTQ-LvYEyU8OUxVKlY-XzL8CHFqDj2nv7Gqx-ZbbUqON9JYJP7oOtB8
+Message-ID: <CADrjBPrAK6-76u1vPUkc5BLTugHCa+Fk=Rvr9uOQDie7Avfd7w@mail.gmail.com>
+Subject: Re: [PATCH v7 07/10] pmdomain: samsung: add support for google,gs101-pd
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Juan Yescas <jyescas@google.com>, 
+	Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 0FD80223B3E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[analog.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[analog.com:s=DKIM];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272239-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[antoniu.miclaus@analog.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-272216-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[analog.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[analog.com:dkim,analog.com:email,analog.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.995];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,gmail.com,google.com,android.com,lists.infradead.org,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.griffin@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.994];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,samsung.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add support for the Analog Devices ADXL371, a +-200g 3-axis MEMS
-accelerometer sharing the same register map as the ADXL372 but with
-different ODR values (320/640/1280/2560/5120 Hz vs 400/800/1600/3200/
-6400 Hz), different bandwidth values, and different timer scale
-factors for activity/inactivity detection.
+On Fri, 6 Mar 2026 at 10:29, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
+wrote:
+>
+> On Google gs101, direct mmio register access to the PMU registers
+> doesn't work and access must happen via a regmap created by the PMU
+> driver instead.
+>
+> Add a flag to the device match data to denote this case, and obtain
+> the regmap using the parent node in DT if true, while keeping to use
+> the traditional direct mmio regmap otherwise.
+>
+> Additionally, the status is just one bit on gs101.
+>
+> Tested-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+>
+> ---
 
-Due to a silicon anomaly (er001) causing FIFO data misalignment on
-all current ADXL371 silicon, FIFO and triggered buffer support is
-disabled for the ADXL371 - only direct mode reads are supported.
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-Changes in v2:
- - Use adxl372_buffer_setup() helper instead of inlining buffer/trigger
-   conditional logic in probe.
- - Use designated initializers for ADXL371 frequency tables.
-
- drivers/iio/accel/Kconfig       | 12 +++----
- drivers/iio/accel/adxl372.c     | 62 +++++++++++++++++++++++++++++----
- drivers/iio/accel/adxl372.h     |  4 ++-
- drivers/iio/accel/adxl372_i2c.c |  7 ++--
- drivers/iio/accel/adxl372_spi.c |  7 ++--
- 5 files changed, 74 insertions(+), 18 deletions(-)
-
-diff --git a/drivers/iio/accel/Kconfig b/drivers/iio/accel/Kconfig
-index 3d3f8d8673dd..4094299e2ed8 100644
---- a/drivers/iio/accel/Kconfig
-+++ b/drivers/iio/accel/Kconfig
-@@ -158,24 +158,24 @@ config ADXL372
- 	select IIO_TRIGGERED_BUFFER
- 
- config ADXL372_SPI
--	tristate "Analog Devices ADXL372 3-Axis Accelerometer SPI Driver"
-+	tristate "Analog Devices ADXL371/ADXL372 3-Axis Accelerometer SPI Driver"
- 	depends on SPI
- 	select ADXL372
- 	select REGMAP_SPI
- 	help
--	  Say yes here to add support for the Analog Devices ADXL372 triaxial
--	  acceleration sensor.
-+	  Say yes here to add support for the Analog Devices ADXL371/ADXL372
-+	  triaxial acceleration sensor.
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called adxl372_spi.
- 
- config ADXL372_I2C
--	tristate "Analog Devices ADXL372 3-Axis Accelerometer I2C Driver"
-+	tristate "Analog Devices ADXL371/ADXL372 3-Axis Accelerometer I2C Driver"
- 	depends on I2C
- 	select ADXL372
- 	select REGMAP_I2C
- 	help
--	  Say yes here to add support for the Analog Devices ADXL372 triaxial
--	  acceleration sensor.
-+	  Say yes here to add support for the Analog Devices ADXL371/ADXL372
-+	  triaxial acceleration sensor.
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called adxl372_i2c.
- 
-diff --git a/drivers/iio/accel/adxl372.c b/drivers/iio/accel/adxl372.c
-index adb9e42653f1..7a1ee2fef618 100644
---- a/drivers/iio/accel/adxl372.c
-+++ b/drivers/iio/accel/adxl372.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * ADXL372 3-Axis Digital Accelerometer core driver
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer core driver
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -182,6 +182,14 @@ enum adxl372_odr {
- 	ADXL372_ODR_6400HZ,
- };
- 
-+enum adxl371_odr {
-+	ADXL371_ODR_320HZ,
-+	ADXL371_ODR_640HZ,
-+	ADXL371_ODR_1280HZ,
-+	ADXL371_ODR_2560HZ,
-+	ADXL371_ODR_5120HZ,
-+};
-+
- enum adxl372_bandwidth {
- 	ADXL372_BW_200HZ,
- 	ADXL372_BW_400HZ,
-@@ -222,6 +230,37 @@ static const int adxl372_bw_freq_tbl[5] = {
- 	200, 400, 800, 1600, 3200,
- };
- 
-+static const int adxl371_samp_freq_tbl[5] = {
-+	[ADXL371_ODR_320HZ] = 320,
-+	[ADXL371_ODR_640HZ] = 640,
-+	[ADXL371_ODR_1280HZ] = 1280,
-+	[ADXL371_ODR_2560HZ] = 2560,
-+	[ADXL371_ODR_5120HZ] = 5120,
-+};
-+
-+static const int adxl371_bw_freq_tbl[5] = {
-+	[ADXL371_ODR_320HZ] = 160,
-+	[ADXL371_ODR_640HZ] = 320,
-+	[ADXL371_ODR_1280HZ] = 640,
-+	[ADXL371_ODR_2560HZ] = 1280,
-+	[ADXL371_ODR_5120HZ] = 2560,
-+};
-+
-+const struct adxl372_chip_info adxl371_chip_info = {
-+	.name = "adxl371",
-+	.samp_freq_tbl = adxl371_samp_freq_tbl,
-+	.bw_freq_tbl = adxl371_bw_freq_tbl,
-+	.num_freqs = ARRAY_SIZE(adxl371_samp_freq_tbl),
-+	.act_time_scale_us = 4125,
-+	.act_time_scale_low_us = 8250,
-+	.inact_time_scale_ms = 16,
-+	.inact_time_scale_low_ms = 32,
-+	.max_odr = ADXL371_ODR_5120HZ,
-+	/* Silicon erratum (er001) causes FIFO data misalignment on ADXL371 */
-+	.fifo_supported = false,
-+};
-+EXPORT_SYMBOL_NS_GPL(adxl371_chip_info, "IIO_ADXL372");
-+
- const struct adxl372_chip_info adxl372_chip_info = {
- 	.name = "adxl372",
- 	.samp_freq_tbl = adxl372_samp_freq_tbl,
-@@ -232,6 +271,7 @@ const struct adxl372_chip_info adxl372_chip_info = {
- 	.inact_time_scale_ms = 13,
- 	.inact_time_scale_low_ms = 26,
- 	.max_odr = ADXL372_ODR_6400HZ,
-+	.fifo_supported = true,
- };
- EXPORT_SYMBOL_NS_GPL(adxl372_chip_info, "IIO_ADXL372");
- 
-@@ -1252,10 +1292,15 @@ int adxl372_probe(struct device *dev, struct regmap *regmap,
- 
- 	indio_dev->channels = adxl372_channels;
- 	indio_dev->num_channels = ARRAY_SIZE(adxl372_channels);
--	indio_dev->available_scan_masks = adxl372_channel_masks;
- 	indio_dev->name = chip_info->name;
- 	indio_dev->info = &adxl372_info;
--	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
-+
-+	if (chip_info->fifo_supported) {
-+		indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
-+		indio_dev->available_scan_masks = adxl372_channel_masks;
-+	} else {
-+		indio_dev->modes = INDIO_DIRECT_MODE;
-+	}
- 
- 	ret = adxl372_setup(st);
- 	if (ret < 0) {
-@@ -1263,14 +1308,17 @@ int adxl372_probe(struct device *dev, struct regmap *regmap,
- 		return ret;
- 	}
- 
--	ret = adxl372_buffer_setup(indio_dev);
--	if (ret < 0)
--		return ret;
-+	if (chip_info->fifo_supported) {
-+		ret = adxl372_buffer_setup(indio_dev);
-+		if (ret < 0)
-+			return ret;
-+	}
- 
- 	return devm_iio_device_register(dev, indio_dev);
- }
- EXPORT_SYMBOL_NS_GPL(adxl372_probe, "IIO_ADXL372");
- 
- MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
--MODULE_DESCRIPTION("Analog Devices ADXL372 3-axis accelerometer driver");
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADXL371/ADXL372 3-axis accelerometer driver");
- MODULE_LICENSE("GPL");
-diff --git a/drivers/iio/accel/adxl372.h b/drivers/iio/accel/adxl372.h
-index 3ce06609446c..353a8b3a9d76 100644
---- a/drivers/iio/accel/adxl372.h
-+++ b/drivers/iio/accel/adxl372.h
-@@ -1,6 +1,6 @@
- /* SPDX-License-Identifier: GPL-2.0+ */
- /*
-- * ADXL372 3-Axis Digital Accelerometer
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -20,8 +20,10 @@ struct adxl372_chip_info {
- 	unsigned int inact_time_scale_ms;
- 	unsigned int inact_time_scale_low_ms;
- 	unsigned int max_odr;
-+	bool fifo_supported;
- };
- 
-+extern const struct adxl372_chip_info adxl371_chip_info;
- extern const struct adxl372_chip_info adxl372_chip_info;
- 
- int adxl372_probe(struct device *dev, struct regmap *regmap,
-diff --git a/drivers/iio/accel/adxl372_i2c.c b/drivers/iio/accel/adxl372_i2c.c
-index 3f97126a87a1..40acfa611c83 100644
---- a/drivers/iio/accel/adxl372_i2c.c
-+++ b/drivers/iio/accel/adxl372_i2c.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * ADXL372 3-Axis Digital Accelerometer I2C driver
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer I2C driver
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -46,12 +46,14 @@ static int adxl372_i2c_probe(struct i2c_client *client)
- }
- 
- static const struct i2c_device_id adxl372_i2c_id[] = {
-+	{ "adxl371", (kernel_ulong_t)&adxl371_chip_info },
- 	{ "adxl372", (kernel_ulong_t)&adxl372_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, adxl372_i2c_id);
- 
- static const struct of_device_id adxl372_of_match[] = {
-+	{ .compatible = "adi,adxl371", .data = &adxl371_chip_info },
- 	{ .compatible = "adi,adxl372", .data = &adxl372_chip_info },
- 	{ }
- };
-@@ -69,6 +71,7 @@ static struct i2c_driver adxl372_i2c_driver = {
- module_i2c_driver(adxl372_i2c_driver);
- 
- MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
--MODULE_DESCRIPTION("Analog Devices ADXL372 3-axis accelerometer I2C driver");
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADXL371/ADXL372 3-axis accelerometer I2C driver");
- MODULE_LICENSE("GPL");
- MODULE_IMPORT_NS("IIO_ADXL372");
-diff --git a/drivers/iio/accel/adxl372_spi.c b/drivers/iio/accel/adxl372_spi.c
-index 0e199feb405e..438e2bef5b77 100644
---- a/drivers/iio/accel/adxl372_spi.c
-+++ b/drivers/iio/accel/adxl372_spi.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * ADXL372 3-Axis Digital Accelerometer SPI driver
-+ * ADXL371/ADXL372 3-Axis Digital Accelerometer SPI driver
-  *
-  * Copyright 2018 Analog Devices Inc.
-  */
-@@ -37,12 +37,14 @@ static int adxl372_spi_probe(struct spi_device *spi)
- }
- 
- static const struct spi_device_id adxl372_spi_id[] = {
-+	{ "adxl371", (kernel_ulong_t)&adxl371_chip_info },
- 	{ "adxl372", (kernel_ulong_t)&adxl372_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, adxl372_spi_id);
- 
- static const struct of_device_id adxl372_of_match[] = {
-+	{ .compatible = "adi,adxl371", .data = &adxl371_chip_info },
- 	{ .compatible = "adi,adxl372", .data = &adxl372_chip_info },
- 	{ }
- };
-@@ -60,6 +62,7 @@ static struct spi_driver adxl372_spi_driver = {
- module_spi_driver(adxl372_spi_driver);
- 
- MODULE_AUTHOR("Stefan Popa <stefan.popa@analog.com>");
--MODULE_DESCRIPTION("Analog Devices ADXL372 3-axis accelerometer SPI driver");
-+MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
-+MODULE_DESCRIPTION("Analog Devices ADXL371/ADXL372 3-axis accelerometer SPI driver");
- MODULE_LICENSE("GPL");
- MODULE_IMPORT_NS("IIO_ADXL372");
--- 
-2.43.0
-
+> v4:
+> - add 'use_parent_regmap' flag instead of going by 'syscon' compatible
+>   in parent, as it's not a given that the parent provides a syscon-
+>   compatible regmap (it actually doesn't anymore after recent changes
+>   on gs101)
+>
+> I've still kept Marek's Tested-by from v3, as legacy Exynos code
+> doesn't change.
+> ---
+>  drivers/pmdomain/samsung/exynos-pm-domains.c | 66 +++++++++++++++++++---=
+------
+>  1 file changed, 46 insertions(+), 20 deletions(-)
+>
+> diff --git a/drivers/pmdomain/samsung/exynos-pm-domains.c b/drivers/pmdom=
+ain/samsung/exynos-pm-domains.c
+> index 8df46b41f9bc..2214d9f32d59 100644
+> --- a/drivers/pmdomain/samsung/exynos-pm-domains.c
+> +++ b/drivers/pmdomain/samsung/exynos-pm-domains.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/err.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/slab.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/pm_domain.h>
+>  #include <linux/delay.h>
+>  #include <linux/of.h>
+> @@ -21,6 +22,7 @@
+>  struct exynos_pm_domain_config {
+>         /* Value for LOCAL_PWR_CFG and STATUS fields for each domain */
+>         u32 local_pwr_cfg;
+> +       bool use_parent_regmap;
+>  };
+>
+>  /*
+> @@ -93,8 +95,16 @@ static const struct exynos_pm_domain_config exynos5433=
+_cfg =3D {
+>         .local_pwr_cfg          =3D 0xf,
+>  };
+>
+> +static const struct exynos_pm_domain_config gs101_cfg =3D {
+> +       .local_pwr_cfg          =3D BIT(0),
+> +       .use_parent_regmap      =3D true,
+> +};
+> +
+>  static const struct of_device_id exynos_pm_domain_of_match[] =3D {
+>         {
+> +               .compatible =3D "google,gs101-pd",
+> +               .data =3D &gs101_cfg,
+> +       }, {
+>                 .compatible =3D "samsung,exynos4210-pd",
+>                 .data =3D &exynos4210_cfg,
+>         }, {
+> @@ -122,17 +132,9 @@ static int exynos_pd_probe(struct platform_device *p=
+dev)
+>         struct of_phandle_args child, parent;
+>         struct exynos_pm_domain *pd;
+>         struct resource *res;
+> -       void __iomem *base;
+>         unsigned int val;
+>         int on, ret;
+>
+> -       struct regmap_config reg_config =3D {
+> -               .reg_bits =3D 32,
+> -               .val_bits =3D 32,
+> -               .reg_stride =3D 4,
+> -               .use_relaxed_mmio =3D true,
+> -       };
+> -
+>         pm_domain_cfg =3D of_device_get_match_data(dev);
+>         pd =3D devm_kzalloc(dev, sizeof(*pd), GFP_KERNEL);
+>         if (!pd)
+> @@ -143,25 +145,49 @@ static int exynos_pd_probe(struct platform_device *=
+pdev)
+>                 return -ENOMEM;
+>
+>         /*
+> -        * The resource typically points into the address space of the PM=
+U.
+> +        * The resource typically points into the address space of the PM=
+U and
+> +        * we have to consider two cases:
+> +        *   1) some implementations require a custom regmap (from PMU pa=
+rent)
+> +        *   2) this driver might map the same addresses as the PMU drive=
+r
+>          * Therefore, avoid using devm_platform_get_and_ioremap_resource(=
+) and
+> -        * instead use platform_get_resource() and devm_ioremap() to avoi=
+d
+> +        * instead use platform_get_resource() here, and below for case 1=
+) use
+> +        * syscon_node_to_regmap() while for case 2) use devm_ioremap() t=
+o avoid
+>          * conflicts due to address space overlap.
+>          */
+>         res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>         if (!res)
+>                 return dev_err_probe(dev, -ENXIO, "missing IO resources")=
+;
+>
+> -       base =3D devm_ioremap(dev, res->start, resource_size(res));
+> -       if (!base)
+> -               return dev_err_probe(dev, -ENOMEM,
+> -                                    "failed to ioremap PMU registers");
+> -
+> -       reg_config.max_register =3D resource_size(res) - reg_config.reg_s=
+tride;
+> -       pd->regmap =3D devm_regmap_init_mmio(dev, base, &reg_config);
+> -       if (IS_ERR(pd->regmap))
+> -               return dev_err_probe(dev, PTR_ERR(base),
+> -                                    "failed to init regmap");
+> +       if (pm_domain_cfg->use_parent_regmap) {
+> +               pd->regmap =3D syscon_node_to_regmap(dev->parent->of_node=
+);
+> +               if (IS_ERR(pd->regmap))
+> +                       return dev_err_probe(dev, PTR_ERR(pd->regmap),
+> +                                            "failed to acquire PMU regma=
+p");
+> +
+> +               pd->configuration_reg =3D res->start;
+> +               pd->status_reg =3D res->start;
+> +       } else {
+> +               void __iomem *base;
+> +
+> +               const struct regmap_config reg_config =3D {
+> +                       .reg_bits =3D 32,
+> +                       .val_bits =3D 32,
+> +                       .reg_stride =3D 4,
+> +                       .use_relaxed_mmio =3D true,
+> +                       .max_register =3D (resource_size(res)
+> +                                        - reg_config.reg_stride),
+> +               };
+> +
+> +               base =3D devm_ioremap(dev, res->start, resource_size(res)=
+);
+> +               if (!base)
+> +                       return dev_err_probe(dev, -ENOMEM,
+> +                                            "failed to ioremap PMU regis=
+ters");
+> +
+> +               pd->regmap =3D devm_regmap_init_mmio(dev, base, &reg_conf=
+ig);
+> +               if (IS_ERR(pd->regmap))
+> +                       return dev_err_probe(dev, PTR_ERR(base),
+> +                                            "failed to init regmap");
+> +       }
+>
+>         pd->pd.power_off =3D exynos_pd_power_off;
+>         pd->pd.power_on =3D exynos_pd_power_on;
+>
+> --
+> 2.53.0.473.g4a7958ca14-goog
+>
 
