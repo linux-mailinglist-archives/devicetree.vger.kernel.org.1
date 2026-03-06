@@ -1,152 +1,142 @@
-Return-Path: <devicetree+bounces-272064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272065-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QG0QEC7MqmnwXAEAu9opvQ
-	(envelope-from <devicetree+bounces-272064-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:44:30 +0100
+	id 4MJKNTDMqmnwXAEAu9opvQ
+	(envelope-from <devicetree+bounces-272065-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:44:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D2C2220E13
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:44:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66FB9220E1D
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 13:44:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D46B3199E0B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 12:36:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4C812319A9F1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 12:36:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD278277007;
-	Fri,  6 Mar 2026 12:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5107E23F417;
+	Fri,  6 Mar 2026 12:36:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="sLaiao33"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9332264D6
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 12:35:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208B022579E
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 12:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772800544; cv=none; b=sasvNiyJvcUSRsK6/oIZpm8y9fnIM6gDMSictiZpERxweRFqe0dViaCt4Vz3FCBV90uDpNfY2kqyCBtdF50iewxYA5I1C5AmnKhqqbnHkik0PAo/l6l7DkUjUz/gVoKqcGnbtZ0xaof+7XS0qlKt1Toxax5nn/92q+I2uxUt4IY=
+	t=1772800562; cv=none; b=TOHNgMm+Vtty6ykEkOG+KyH16YjGP3WGWVVc94MIlDQPP0vL0SMRkFRkbNMUy++1LtUrmGBqeHTISqHmmF+smrzlbq8S4ysk1P/BSU72Hy9EJ+ihTnDDczWs0wEZJQOe0NXMamg6y1lwbVE5tSvAMjdbquCpJPcv77cU1h14SJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772800544; c=relaxed/simple;
-	bh=t+zhrRtHdxJ0egPar6qDHLUgu1o7nIbY/t2grbrBnTw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c5E+wUUieQD2UIzNIl/Jlovz/XzP6A4fNyIi8dmVat9ztfNGKKtqMOzOlzbsgc7XWE/Y4GBWuG1TtDjZB/2ATjM1z/mkW2txGtLinKieiCeNP08U+GQKLbMHjJVdrB7/cmKE+/z1teN6d8I2Wa3Z5dumMzLDd22IO7H+2RzG7eA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-56a857578a8so3124265e0c.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 04:35:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772800542; x=1773405342;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=96m0o8Clxl4fOeYKH2P2MIwu6gx/EjFZuUHZ+Kn4U/g=;
-        b=jDILYAdnRzJbJO6ld8rkXwVPC1MGB2Y9Gbp19Qo3ARsnCdZEV6Aw+0C1FKpkzbPiPc
-         d9xfGIBMiWyn7qPtXVvhGNV5Y1lcKe2qJEvEy8WOW6EkJIoui0/w6eTPr/obKighDIT2
-         rrLMUTACFPpGTWLvSuRlMgi484+Q2UGuckZ9nu+agjiInGK2cGakaIhpc2uqZXlO3onp
-         qXisD8do9ESbez4MPjYVXTDd237f6rBZ5BwDh/HPZMeJwlkEREYry5NnAXFhVAn8RPvo
-         wSxZvdHPVl4VqxoGqamktqzo+NPFtD96wXvdO2u3tmH4LklV+XFE5dgapewD3EGmudVn
-         pvZw==
-X-Forwarded-Encrypted: i=1; AJvYcCX+DxPhufZJvrEvFpTgKT6RstPQ2rRBsrsp42BHIm2fs3cY5kmTawzzbPtowCJ7saBxUGaYUDyB7QGs@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiLkntrVFLxv4wAVr9SF93pgvKynq8NhPIaBFKAO08OPRzjI5k
-	lIdT3wyCfySl4bHuzM+cTTxCd83E45etI9CzGYr07RkkUsFhVDd6AXn4Mc209m1lQuA=
-X-Gm-Gg: ATEYQzwk8Mz/4kSpvLhPc/I47XqomsEAkE0UlGsvmBr864EwIuM4nKK1Nl+dOy3E6SP
-	DJS9DpOJSlfhaIpo/9YhtH/5bke3lzWDUHYuAgR2IsT0eQ5QtQPSZklJVpPPUjEYgxyMIQJax9a
-	vgCPIvEPmGJ1GqrfN7G3yOJAeuyKAFF9W/owauwj+sp9tKs9HTMTFq81o2dTJ0yu0pdQN8FW7W1
-	wdhcU/idx3y3VswqVDvOqxU+K5AfqmByJ5smlTDmpGWWmud1Dq7I+0lokyjsLv2m0XUYj7aCfnP
-	umBI5h5RHFko77IloxGlFxqjCo8n3JsdZmqW77pENdiQV7yPsmL/5uRObHnb0J2K6a32bdFqZSV
-	ooSQ248p2Ea4M4lI8kEyRQWulGNfIonRX8Jxm1Ub4WOOxWbWIpHX8asN95dDnocLBxyGV/ov0h0
-	9gK/lghkJT/sEOxxGhI5/oZ77t+ROeiEVOwIVfUzuhGK5Or48zHaJEISBQUXgntK8OHXeVI3o=
-X-Received: by 2002:a05:6122:1797:b0:55f:c318:1afa with SMTP id 71dfb90a1353d-56b07d247ffmr573472e0c.6.1772800542131;
-        Fri, 06 Mar 2026 04:35:42 -0800 (PST)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-94e7b520673sm1228237241.10.2026.03.06.04.35.40
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Mar 2026 04:35:40 -0800 (PST)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5ffbcfbcec4so782570137.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 04:35:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWWk0G7k/nGxL5wYTKVNr7MvZ4OL+zgj79toyU/A3STjSk6M0fpKne+hE0aIvdBurvsGZvyMWpHnIut@vger.kernel.org
-X-Received: by 2002:a05:6102:2908:b0:5fd:ee19:8b30 with SMTP id
- ada2fe7eead31-5ffe632e0d7mr598649137.35.1772800540255; Fri, 06 Mar 2026
- 04:35:40 -0800 (PST)
+	s=arc-20240116; t=1772800562; c=relaxed/simple;
+	bh=gegZ9SG2L3nOQJJmvEQTFjDNAgWMFAacpiJJTUXKdvI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
+	 Content-Type:References; b=KchusDsy/21JbTz4HOGw331WNxx5BMbt4wLPQq+yut738B5hD9WwS75n2VUwQ9zgMFVmj28cxLk0flqgpXQ/EC86X1AhmQpNtzlMiM7IZ0aWsYlyF2m6o/wlU+bMn2d+wRaBR9qwtL152eMzRV4lQodZf7lii7rDkIpF9RIvA+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=sLaiao33; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20260306123558euoutp0211ef8f16e534617015ac261e6485bdae~aQLcHI5cT1025410254euoutp02V
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 12:35:58 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20260306123558euoutp0211ef8f16e534617015ac261e6485bdae~aQLcHI5cT1025410254euoutp02V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1772800558;
+	bh=gegZ9SG2L3nOQJJmvEQTFjDNAgWMFAacpiJJTUXKdvI=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=sLaiao33xhUOgGnDGBAnaOEIpORJl6kQOkBg+H5o1IQDzTP99ueXcBg9Zjn6EykTP
+	 JtxxU5K9H82tphiwb+ji+BnS9OjIZH0WKHAeZvNdy6CqNa3PgHtwRaS8D3gLDCAax3
+	 IqiB9WMz02wupUBKdm7p46fppFApRj2wvPTAWs3w=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20260306123557eucas1p1f4157568a9856c4fbe0b08e6c1a11548~aQLbsktHx1284812848eucas1p11;
+	Fri,  6 Mar 2026 12:35:57 +0000 (GMT)
+Received: from AMDC4515.digital.local (unknown [106.120.51.28]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20260306123556eusmtip1874801b0bb1d934e665cc7522deb78ed~aQLazW1zx1557315573eusmtip11;
+	Fri,  6 Mar 2026 12:35:56 +0000 (GMT)
+From: Mateusz Majewski <m.majewski2@samsung.com>
+To: Alexey Klimov <alexey.klimov@linaro.org>
+Cc: Mateusz Majewski <m.majewski2@samsung.com>,
+	linux-samsung-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Bartlomiej Zolnierkiewicz
+	<bzolnier@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, "Rafael J.
+ Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob
+	Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, Anand
+	Moon <linux.amoon@gmail.com>, Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v4 0/7] Add initial Exynos850 support to the thermal
+ driver
+Date: Fri,  6 Mar 2026 13:35:42 +0100
+Message-ID: <20260306123543.1748910-1-m.majewski2@samsung.com>
+X-Mailer: git-send-email 2.51.2
+In-Reply-To: <20260303090211.673143-1-m.majewski2@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260125192706.27099-1-ovidiu.panait.rb@renesas.com>
- <20260125192706.27099-2-ovidiu.panait.rb@renesas.com> <CAMuHMdWZKUjptQCqe_DK3C_g5d9Zhp3r3j6+dAfE1g==NH+ofw@mail.gmail.com>
-In-Reply-To: <CAMuHMdWZKUjptQCqe_DK3C_g5d9Zhp3r3j6+dAfE1g==NH+ofw@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 6 Mar 2026 13:35:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXyo3hYbWYzdYUUzk=OQJzKn4Q4DdxXZi_0C2zH_goK3w@mail.gmail.com>
-X-Gm-Features: AaiRm526yeK4Pkoal5L7g4NriLGd-kQ5uifyBQ0CVN8Qd9yNZfzNgOUcuHaBmPw
-Message-ID: <CAMuHMdXyo3hYbWYzdYUUzk=OQJzKn4Q4DdxXZi_0C2zH_goK3w@mail.gmail.com>
-Subject: Re: [PATCH 1/5] clk: renesas: r9a09g056: Fix ordering of module
- clocks array
-To: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, alexandre.belloni@bootlin.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	prabhakar.mahadev-lad.rj@bp.renesas.com, linux-rtc@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: 9D2C2220E13
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20260306123557eucas1p1f4157568a9856c4fbe0b08e6c1a11548
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20240911121149eucas1p29b9ccf99a545cfaa924b122cd8dd3183
+X-EPHeader: CA
+X-CMS-RootMailID: 20240911121149eucas1p29b9ccf99a545cfaa924b122cd8dd3183
+References: <CGME20240911121149eucas1p29b9ccf99a545cfaa924b122cd8dd3183@eucas1p2.samsung.com>
+	<20240911121136.1120026-1-m.majewski2@samsung.com>
+	<DGIAUIFPUHN8.35B5MNEUK1JW5@linaro.org>
+	<20260303090211.673143-1-m.majewski2@samsung.com>
+X-Rspamd-Queue-Id: 66FB9220E1D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[samsung.com,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[samsung.com:s=mail20170921];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,bootlin.com,kernel.org,gmail.com,baylibre.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-272064-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[samsung.com,vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,linaro.org,intel.com,arm.com];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272065-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.939];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[m.majewski2@samsung.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[samsung.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,glider.be:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux-m68k.org:email,renesas.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,samsung.com:dkim,samsung.com:mid]
 X-Rspamd-Action: no action
 
-On Mon, 26 Jan 2026 at 16:27, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Sun, 25 Jan 2026 at 20:27, Ovidiu Panait
-> <ovidiu.panait.rb@renesas.com> wrote:
-> > The r9a09g056_mod_clks array is sorted by CPG_CLKON register number and
-> > bit position. Move the RSPI 0/1/2 module clock entries to their correct
-> > position to restore the array sort order.
-> >
-> > Fixes: 1f76689d1715 ("clk: renesas: r9a09g056: Add entries for RSCIs")
-> > Signed-off-by: Ovidiu Panait <ovidiu.panait.rb@renesas.com>
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-clk for v6.21.
+> Honestly not sure. If any other patches are merged that conflict with
+> this series, I definitely can resolve the commits (for now it applies
+> just fine to next-20260227, though I haven't compiled the result yet).
+> Correct me if I am wrong, but I don't recall anything to be done in this
+> series otherwise. If there is interest in this series, I can retest this
+> on the other boards and re-submit this later this week.
 
-Promoting to renesas-clk-fixes for v7.0, as I have other fixes.
+I see that others are working on different SoCs actively and that my
+series conflict with theirs. Probably would make more sense to
+re-submit/rebase when the dust settles, unless somebody wants to use
+these patches now (I am assuming that you are just cleaning up the
+review queue for now).
 
-Gr{oetje,eeting}s,
+(Also, I somehow managed to break threading by sending my previous
+message with only In-Reply-To: and without References:. Sorry about
+that...)
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Kind regards,
+Mateusz Majewski
 
