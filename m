@@ -1,173 +1,186 @@
-Return-Path: <devicetree+bounces-272204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272205-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OO5bD3juqmnNYwEAu9opvQ
-	(envelope-from <devicetree+bounces-272204-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:10:48 +0100
+	id 4OSaBA7vqmmOYAEAu9opvQ
+	(envelope-from <devicetree+bounces-272205-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:13:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C928A223859
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:10:47 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2BF2223935
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 16:13:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 30F3830774D8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:06:29 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 3209F3097BCC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 15:08:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7E153B4EB4;
-	Fri,  6 Mar 2026 15:06:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14AA3B5842;
+	Fri,  6 Mar 2026 15:08:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TQ67U/Hj"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="yxwmALe9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B43043B4E83;
-	Fri,  6 Mar 2026 15:06:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC4F386C01;
+	Fri,  6 Mar 2026 15:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772809583; cv=none; b=BEbpHFzHAr4+nxMNULUfNmYG4xj4SLPS72qGKATYIMrPW8ldrxU8pMc0Juew0rX/vuNahoKN48vGK123MSt5wUQJXyjzrPYgKG0jTXZDvJaloO27iA6ErANgkYuYWsG3YSkXBskJkT59w3j8zQh8C3WVBtGhRhP6RHj7vAwgkNA=
+	t=1772809731; cv=none; b=OQTDGFm6WKg2nUo6T205cFPR9eTznKgsbaTraHvSCM+uBET8JMv7g7+gaAj5lLGcYdkyFvYYTCZt3GeYTOEdsWiDelWdx1tV/XQsRYrGT3kdQrrD126WfDc1iEbA0gTQRtOYTi8uglg+9k0FpDTz49u6zXKL3YdQYPz21L+daj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772809583; c=relaxed/simple;
-	bh=qrYak/gF5ly1P1Zm8s0TIGrBCScCa4d5IvZs1NzvlyM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tTH3TvUKO7hpC48P3Qyl9AF3pPhCANTsh4nAX+e4x+vnkYYXmv20oHpTzFbKl4Zzmv/keNVnSE1elpQ8BvGABbN4zfT3eFhct8YSJZrLl6cF2T91xZy3uFfOY54AUZWCS0h/qeHt0OjYoWsHLxjhapAVgTaMtZIcsUoXPCMR95Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TQ67U/Hj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59BA6C2BCB1;
-	Fri,  6 Mar 2026 15:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772809583;
-	bh=qrYak/gF5ly1P1Zm8s0TIGrBCScCa4d5IvZs1NzvlyM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TQ67U/HjwokYuZjQzJYpoiskK8H+nYuJEIHmNT3cdhT64wLBLAqFPRhtfXuNme933
-	 ukW2x74QBaoGKwG+qr2i78xSPvWztDNjYBAntjkMqXIx6awzewjggr3Yqhc3hvu66U
-	 cy4+IBV73QUHzx+V2v7n0K2eFvy00jEhixVX9wzlqjuPHUi6Nv9T+Go2IB01shE/m7
-	 fkx3hzbermeFh3KkoiqWj9MBnhud3cJFZt2z6f1i3n8UNz6dRfJHgiXxcUnkMXoxLQ
-	 5E1dyJ0rilT8JXKf1+IA3TeXaGjCUnR5MPCtp9XxEKs22/ICmhBooPN2HckmIbmCxd
-	 /GzcA/XSAyoQQ==
-Message-ID: <17c90382-e01d-40cf-bcbb-bfb26f3c18f3@kernel.org>
-Date: Fri, 6 Mar 2026 16:06:18 +0100
+	s=arc-20240116; t=1772809731; c=relaxed/simple;
+	bh=yJ8sU+TlFrKAlG4A6/aiSfMrlmTqlIQlugJhyc4OtBU=;
+	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=dy46yTSdxeoyXJY8sTCHLVJJ1M6GP0cYQPFqwk9LoSZmUbfg1xUwK9/bMMDqh0pC9ZAMCcabUQYx5SFML7hwe+y3dtvWyfm8GwvCIbZP8OIpGuhGMgEPCAyslQhNZXh5pqmU835odI4VX02DPkwVo+47EMIpRfO2ePqZO9f6B2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=yxwmALe9; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1772809728; x=1804345728;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=yJ8sU+TlFrKAlG4A6/aiSfMrlmTqlIQlugJhyc4OtBU=;
+  b=yxwmALe9whHctm/YxT4sNSWxbQYjhxCEKY5H3BfLSZJ6yTQ78dv/niL1
+   xSbAb69C1Pkrk+bO9BgwQbsq10Fb73sBrYHDLipWhawQb6JeDG1RlCnkG
+   M3+OdUW1npyh++dp6vEookqvF/Id7vB7Z2HU5tJ5lvYpKqk7nrK7pEZLz
+   zjbIJHa+i/vARvE7m4+JAYeieYG+tkoBmm0PAYVn+jJlZL7/FJhufDvfg
+   JHP8mwppAsn0Ckptwi3Be9xVVHXFU5aR93p6wbPyu+c9NQYBHfwX2dmGg
+   qXkLOZjVYe+nvl/syiKOwCo71U1+WK+K6a25+7SmLP2tuV7e+RVgSw2e3
+   w==;
+X-CSE-ConnectionGUID: WXv/RLoQTAqlOa+UztsPjQ==
+X-CSE-MsgGUID: t/zBgwaJRIiPQp71I3wxzA==
+X-IronPort-AV: E=Sophos;i="6.23,105,1770620400"; 
+   d="scan'208";a="285701041"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Mar 2026 08:08:40 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Fri, 6 Mar 2026 08:08:04 -0700
+Received: from DEN-DL-M77643.microsemi.net (10.10.85.11) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Fri, 6 Mar 2026 08:08:01 -0700
+Message-ID: <7b62ace495084794336b19a9685d6b14ea3981a0.camel@microchip.com>
+Subject: Re: [PATCH net-next 2/8] dt-bindings: net: lan9645x: add LAN9645X
+ switch bindings
+From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Andrew Lunn <andrew@lunn.ch>, <UNGLinuxDriver@microchip.com>, "Vladimir
+ Oltean" <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Woojung Huh <woojung.huh@microchip.com>, "Russell
+ King" <linux@armlinux.org.uk>, Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
+Date: Fri, 6 Mar 2026 16:08:01 +0100
+In-Reply-To: <20260305-reliant-parchment-0ff685a9c78e@spud>
+References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
+	 <20260303-dsa_lan9645x_switch_driver_base-v1-2-bff8ca1396f5@microchip.com>
+	 <4088b0ff-b718-4137-8518-4c9b9764d56d@lunn.ch>
+	 <20260303-mosaic-debate-90cf8c8bbb33@spud>
+	 <1db45715a3a12b76b838d20c0e5904c3222053e7.camel@microchip.com>
+	 <20260305-reliant-parchment-0ff685a9c78e@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4-0ubuntu2.1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: nvmem: qfprom: Add Kaanapali compatible
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260305-knp-qfprom-binding-v1-1-1b3effb09cad@oss.qualcomm.com>
- <dd14f8dd-254d-42a8-944d-f667153bea12@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <dd14f8dd-254d-42a8-944d-f667153bea12@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: C928A223859
+X-Rspamd-Queue-Id: A2BF2223935
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272204-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-272205-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[lunn.ch,microchip.com,gmail.com,davemloft.net,google.com,kernel.org,redhat.com,armlinux.org.uk,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.924];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[microchip.com:+];
+	NEURAL_HAM(-0.00)[-0.995];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:dkim,microchip.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 06/03/2026 07:55, Akhil P Oommen wrote:
-> On 3/6/2026 12:10 PM, Jingyi Wang wrote:
->> Document compatible string for the QFPROM on Kaanapali platform.
->>
->> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> ---
->>  Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
->> index 839513d4b499..2ab047f2bb69 100644
->> --- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
->> +++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
->> @@ -26,6 +26,7 @@ properties:
->>            - qcom,ipq8064-qfprom
->>            - qcom,ipq8074-qfprom
->>            - qcom,ipq9574-qfprom
->> +          - qcom,kaanapali-qfprom
-> 
-> A question to the maintainers.
-> 
-> Do we need a new compatible for every chipset? If there are no KMD
+On Thu, 2026-03-05 at 18:31 +0000, Conor Dooley wrote:
+> On Thu, Mar 05, 2026 at 01:57:37PM +0100, Jens Emil Schulz Ostergaard wro=
+te:
+> > On Tue, 2026-03-03 at 19:04 +0000, Conor Dooley wrote:
+> > > On Tue, Mar 03, 2026 at 03:18:45PM +0100, Andrew Lunn wrote:
+> > > > > +        properties:
+> > > > > +          microchip,led-drive-mode:
+> > > > > +            $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > +            description: |
+> > > > > +              Set the LED drive mode for the copper PHY associat=
+ed with
+> > > > > +              this port.
+> > > > > +
+> > > > > +                0 - LED1 and LED2 in open-drain mode
+> > > > > +                1 - LED1 in active drive mode (can be used for s=
+ingle-LED
+> > > > > +                    configurations requiring active drive)
+> > > > > +                2 - Reserved
+> > > > > +                3 - LED1 and LED2 in active drive mode
+> > > > > +            minimum: 0
+> > > > > +            maximum: 3
+> > > >=20
+> > > > I doubt the DT Maintainers will accept that. This looks a lot like =
+a
+> > > > value you write into a register. How are active drive and open-drai=
+n
+> > > > described in other DT bindings? Is there something you can reuse?
+> > >=20
+> > > I had a quick look and I didn't see anything really that stood out to=
+ me
+> > > that would be a drop-in replacement.
+> > > I also tried looking in the datasheet for more information on these
+> > > modes, but I couldn't see anything obvious. For example, there were z=
+ero
+> > > hits for "drain" in either LAN9645xS or LAN9645xF datasheets.
+> > >=20
+> > > That said, yea you're right about DT maintainer feelings about it.
+> > > There's a couple things I could suggest, but I'd like to know about w=
+hat
+> > > mode 1 means for LED2 first. If there's actually nothing similar, wha=
+t
+> > > about representing each led with a child node and having open-drain b=
+e
+> > > the default with a property in the child for active-drive?
+> > >=20
+> > > >=20
+> > > > For 1, what happens to LED2? Not used at all?
+> >=20
+> > In mode 1 LED2 will be open-drain. This mode only makes sense if you ha=
+ve
+> > just 1 LED. With two LEDs mode 0 or mode 3 should be used.
+>=20
+> Could we then have child nodes for each led, and have a property in each
+> that sets the mode to either open-drain or active-drive? Or am I just
+> inserting complexity by asking for that?
 
-Yes, you need.
+I think it sounds sensible, I will add this.
 
-Best regards,
-Krzysztof
+Thanks,
+Emil
 
