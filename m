@@ -1,160 +1,246 @@
-Return-Path: <devicetree+bounces-271865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271853-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QD6jH4aIqmmjTAEAu9opvQ
-	(envelope-from <devicetree+bounces-271865-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:55:50 +0100
+	id CHJSKSCIqmmjTAEAu9opvQ
+	(envelope-from <devicetree+bounces-271853-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:54:08 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22D8721CAC4
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:55:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1131821CA41
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 08:54:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BBB093031355
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 07:55:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7B2853015C8A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 07:54:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2350837B033;
-	Fri,  6 Mar 2026 07:55:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CAB345CC9;
+	Fri,  6 Mar 2026 07:54:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="VOqvE78s"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="zQftM4lZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYDPR03CU002.outbound.protection.outlook.com (mail-japaneastazon11023115.outbound.protection.outlook.com [52.101.127.115])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90642378D8B;
-	Fri,  6 Mar 2026 07:55:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772783732; cv=none; b=u+SSbu28fjETLIN97LTC2SeiYahEXUsE6N79DBn8P3bc1bQOiuxs4JDsfBlxtG68Fq81ocKeLEv/aHl2caVCuB2r0Uy3FnpE25QmOJlPgLjGmu0JUE16Oe3t4+BhJ/CGyLKO0cWPCtGEd+T6EmrrTXJz8IBmk2rRXDXMEzL9JEQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772783732; c=relaxed/simple;
-	bh=fOJ5uzakIs3h+hUG4tt3tStOZoAYmn90iGrSafMTcXY=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Hqg/KSFPv474npIubR+gGXVYP+b5BKlwEv3spOMTH/mPLpZLgXECYu3Ped7DGsNdATfeiGUPs7uNhRA0Z+4fA9X1pMr62AdPUeq2+j4K7FMtf8XHa94RrM/K6JFCJvaINJwru9uQKT07AHaEyBtVm6X9Yn13QsNZmce0aibVLds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=VOqvE78s; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6267qp3gB2977175, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1772783571; bh=UX38X/TMKiyHQPxwjnR2AzsYEQMHir2CvQcMkoM7b+4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Transfer-Encoding:Content-Type;
-	b=VOqvE78sgvIDcl7zxLGSTJIX48Sfbmv9hLVRu8krchdks9SdiFnwvZU7kin0pHQgp
-	 A1gzQYgoDw7QZSl4aiIGBOhzi5GAquC+09ePfLGbxGeT1FNvpQhGHkQn+C5uVHnsLj
-	 DtXV1kOFkkmx605opuxDTHlKRjcAda456htFfWsglH7RLP2EV19fwOD9zuln4YFiRa
-	 v3ovq7lSIkPtMUD/V/qSezVaOcfU0XNIrSBe9aruBZ9c25mFLNWWE8xPYegdSVnkEA
-	 nN/mjCKCQC7cw771soOwhHPkBzobAyDKqIHvInhldvRRGdTq9tV5ebejeKF21mM6EX
-	 owXrfpS84NTaw==
-Received: from mail.realtek.com (rtkexhmbs02.realtek.com.tw[172.21.6.41])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 6267qp3gB2977175
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 6 Mar 2026 15:52:51 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS02.realtek.com.tw (172.21.6.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 6 Mar 2026 15:52:50 +0800
-Received: from cn1dhc-k02 (172.21.252.101) by RTKEXHMBS06.realtek.com.tw
- (10.21.1.56) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 6 Mar 2026 15:52:50 +0800
-From: Yu-Chun Lin <eleanor.lin@realtek.com>
-To: <linusw@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <bartosz.golaszewski@oss.qualcomm.com>,
-        <afaerber@suse.com>
-CC: <james.tai@realtek.com>, <cy.huang@realtek.com>,
-        <stanley_chang@realtek.com>, <eleanor.lin@realtek.com>,
-        <tychang@realtek.com>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-realtek-soc@lists.infradead.org>
-Subject: [PATCH v2 14/14] arm64: dts: realtek: Add pinctrl support for RTD1625
-Date: Fri, 6 Mar 2026 15:52:44 +0800
-Message-ID: <20260306075244.1170399-15-eleanor.lin@realtek.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260306075244.1170399-1-eleanor.lin@realtek.com>
-References: <20260306075244.1170399-1-eleanor.lin@realtek.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1D633067F;
+	Fri,  6 Mar 2026 07:54:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.127.115
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772783645; cv=fail; b=VCAmkZmlWw3iqDyGkKMNGs/KWCiQD+ndO0B/PrphMN9STHMf2/Y5oTkKzS+JtMu51yo9OBwip1mjm2Ukk554NiYT4bmBnZAFB0BVI4FvLvCMQ12Y1LpDIGewG9LSa4B8iz/VkymNba6rdiAKEeb0Pj5O7J9ksfcf9IBzvi901ko=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772783645; c=relaxed/simple;
+	bh=z9mL3EFMFH1PejGfggPcYzJh8l8P2XLkNiSrNcScze4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Ox4Z+UqaZfwTxemo2WWe9Hf4BnGgur61hFHSHmJJK08oz8YbPbj1bg+2y0AYSfr3wNtlb3523pLL8Ns7NiGdttV5kMnDv+YVm03J7AgWCpa4POWHy13zAeQYKMQmjydSdmL4IRHpq1ta2ETHCRt3SDFdY0wG1Y+gPwK8eELzthg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=zQftM4lZ; arc=fail smtp.client-ip=52.101.127.115
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qb8cDrZeqMrszflZf3iLAcIsLYGtVlCPa3Svg+B6PN74i3mFCZFp42LQGSZ198JuRupi1+g90eO+rVMSgESCFFvfV6im7uMRWZ1RPu2ENVBtA0s3NvvYUlG6yNLjeMegfqWgao58wgTOjFJ8akoe0zbb88LhMC8sEPK311qnkMzvRACneGbkHqWGZFU32OFaxPgzOYHbMtJfJ0RlX32sdKB6dW4oxah55QI6k71OmpzvsA+i1WDODPa1knQj905rmh6JZr3hLhecPzDE7lBECIxsNPpykoEAcgeWJ+H9+iWOZvy5fijBBVEQWFkgkF2qz5YpulVEmoaH+wKON3IesA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2sjILeWf+I556ni+oIn62uBsm/WIriMIL6WbQRIF6s0=;
+ b=E+dr9F4kbIOBcAwtfCf7g9GCSPIrF0NBuYZF/G9HoAi9z8X8ZDTTbXFBRdykXu1yvVegAuh6jarhufmABZGs6zqiDApotuP8w/2L+b0ohURbNb1UbXsZ5p+pUYMBE//qwdv/HITYH+ZHSj8l52hICy/um+IjU3TBsugOp3+O6jYblb0T+k2gfjoVq0WZhBPyh+sbTXKqvnOWmyIFyBQFDHwm4AZ05AqPnRAnmqUDT+hxtwtnPij7QlUDuzuTG2tEPL66snIwg6aDpq4BQJV95XVmq+8u3srLCEJ/03bz3lYkjn3pFPwqFAtYw6HxZtcoIaLzNhaoD/9pvXuELnj6vA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2sjILeWf+I556ni+oIn62uBsm/WIriMIL6WbQRIF6s0=;
+ b=zQftM4lZa+WKDoh0F4zKIc1n3YDeXixrBWuDuNkxMCjEudhEqVtfgd1GPJ02IdBWGubYj2s8aEAoSrHQszX6PAvapf47WBxyRy+TVOKeZ1Vdf4d3NsxZnrEc7p8GqaOjMA1yxsZZgAKuHeN9gE8T+AD56lZJ0nhP3PWQ9Ok35NBf2qUPC1huWOi9d0/FwtL4UDs1p8YRa5rDq7UOQZTuto4/JY4OdpxUM9HcYS/qPHbI9iT6l10g6eY2L0RtOH7pxy8ooVxsoLghaEysrIe5CTe5Ko43ie4X9pCrUGMKyywzyFjs7PFfqok6ow1sP1CbxKW/Kk7uuOSiorWtGkq42g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com (2603:1096:820:ca::7)
+ by TYSPR03MB8132.apcprd03.prod.outlook.com (2603:1096:400:475::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
+ 2026 07:54:01 +0000
+Received: from KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506]) by KL1PR03MB7149.apcprd03.prod.outlook.com
+ ([fe80::2f06:12a:fff0:6506%5]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
+ 07:54:01 +0000
+Message-ID: <4d49b0a0-fb31-4b30-9f59-141ebe479b3a@amlogic.com>
+Date: Fri, 6 Mar 2026 15:53:56 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] dt-bindings: clock: amlogic: t7: Add missing mpll3
+ parent clock
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>,
+ Stephen Boyd <sboyd@kernel.org>, Ronald Claveau <linux-kernel-dev@aliel.fr>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-clk <linux-clk@vger.kernel.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ devicetree <devicetree@vger.kernel.org>, robh+dt <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Kevin Hilman <khilman@baylibre.com>
+References: <20260305074328.639993-1-jian.hu@amlogic.com>
+ <20260305074328.639993-3-jian.hu@amlogic.com>
+ <177271832223.3486876.11276313304536737957.robh@kernel.org>
+From: Jian Hu <jian.hu@amlogic.com>
+In-Reply-To: <177271832223.3486876.11276313304536737957.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SE2P216CA0103.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2c4::13) To KL1PR03MB7149.apcprd03.prod.outlook.com
+ (2603:1096:820:ca::7)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Rspamd-Queue-Id: 22D8721CAC4
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB7149:EE_|TYSPR03MB8132:EE_
+X-MS-Office365-Filtering-Correlation-Id: f654913b-052b-4291-3547-08de7b5587cb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	rOmXT3ZkkgecZcWzPNBQKpf7LzEjKfkOqH76qTiY7PVVHWrcflqdrfximLi7T/RAIgqJ2p2air+pD5zd7csyUalQbOdX8tCWCJrYRiQOyBbliyRUCkrxkrEnNtbbTSsX4WT47Y5VF+ZHt24jQmIUk42Ag4m1P0oJzs/h5o7DwUR84RhdBUkxoREaV1+W+IsZUhCzlXpONtyfeS4IAu4b97dNwFOUk0JrFqgzegPBfwJR4GCtYyL0KUjefimYDViE3swHTtPkoUeZ38YKJQ9U1AhjGt+Dci9wVH0ujCW6W8d3ZWqDuJGSlmVf4S44euLYXStZdTNLUgW0YSyFcUPbZmdtArNIKqfz6NwTR1flBywjMjOYDs3Sd9DNLshEVRvMRK25npITN077X6Z5v0HZGCMjBXQ/Dj0kQqolt8J+5+8LQ8ziczo0UqB4/21piGTbgfHJBXEyJRIoJl2+WQSPQpy1doLuoILOEgZe4+eQb1spyH1bzHxodlt4eT0UGROi/hGefxLgSEjU/wtBAI5IsSvyrcPTq936VxxcfAD4Aef97WPtxmHC0cJo3Nk+8TLLwe+ouXVKaqhAoC1OSRIwmXJMeSe1T3c3k6qvsDpOv+rcVQcEt5+iqrA7x9D0hSfxAKUP9baanVFoKScUGNLECKJ9WEUGWhG4SuzRJwzNfIslIIkKEuL5flHBD5KfU70zg1hKqJyQcVYR+QeNWyvS/R59eCKaY7utDy01q7WKMzs=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB7149.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OGFJQ0tGaUtrNFJqTGtWN3lhelRhOXZEVEFSM21ZOUxsQjJNSHptSjBLQWpM?=
+ =?utf-8?B?cDFWMEUwaEhsVktINlE1c0xyb3Z4VGpSTWFpQ2JCKzBBQ0M4bzVreHFjaHpm?=
+ =?utf-8?B?TW03NEsvbXNkM3l2b0wwVUNDa0lFQyt6RS9KVFoycXlhV0o4cUp4Z3plSWdr?=
+ =?utf-8?B?SGh6MythMXZ4aTNvSnpBeDhwc3orQ2VHMWtmTnhGQTlNRXpXU2tvYnV6UGtS?=
+ =?utf-8?B?bEFhZFBqelVYWVhnS1lhZHpvS09FT0hIb3JGWUIwWEM3cStXMzVIR3JzVm9Z?=
+ =?utf-8?B?T1dqcEYxSjRVMGd5YWpKMkM3azlvZTd2WkxsN0JmVVpKZ0VPWUJTRGFWRzMz?=
+ =?utf-8?B?M0JuTG5pT0pjbzJWUzlGNkZ4R1V0YXBNQlZKbzYrcGh2eUJUSHB1eEg2cDJX?=
+ =?utf-8?B?VjlHa3FaY2hBMDE3M0tCVTIwTGk1cWpUdG1KSGt6M2lpQ216Z0h0TEJOeURr?=
+ =?utf-8?B?aFZTdjdwSjcxb3BVaTMraGJyTnNCYm5HVm9zcG0yODVaSW16SWMvNG1vaS9P?=
+ =?utf-8?B?ZXQ0LytHbllLcldTb3BiOVBjQlVRcWZ4cG4rUHRkYzVGR2x2N2VhekVtcDJ6?=
+ =?utf-8?B?eW9HK1YyTDNhQzhwZ1pyZER1ZWhGZnovdkdiSThYbjh5dnpQc2tTRUc4ODQz?=
+ =?utf-8?B?U3FNNk1OdWJXM3RVOENpK2RHaDc1L25VQ2JyTFRoK3lYSUhhOGtMc0gvR0FI?=
+ =?utf-8?B?QWJYNXZoZkphQ2ZKQlNIcm1FcXEzM0xId3pCbVRpaE1GSm41dzQ2SzhyRFgz?=
+ =?utf-8?B?VjJQVE02eE41QVZGZTh4Z1JlNnQrMWI1NE82NklJUHZNUTFNajlTM0lZN3RE?=
+ =?utf-8?B?TzZxdjRNOXYyWVZrd2Z2VHdUNGc3RmdRRkFNM0VYTlc4NnZiRkxoa3FQMVZi?=
+ =?utf-8?B?SFNPSHI1N0FWRjJ0QUREU01scUF1YlFrZy85eDU2T0lrMkp0bExQYUVSaTg2?=
+ =?utf-8?B?ejBQc2xNSS9YOVpjSCtQWnpSNXhUSUxhYnlyZVQzb0N4dXJvVnJzYThrM0lK?=
+ =?utf-8?B?WHhZbDdNQXBYa3lhZDhBMU1pOEl6ZmNsUkQ2NUgvSUlPai9TZ3ROYWZVTXVC?=
+ =?utf-8?B?ZWkvTDRFKzBodFpYbTFOa3I3OHJpUmlsRDlMSTBQMi9jUnZzeXBWQVh4MG9K?=
+ =?utf-8?B?NHdHL1pNWGVhWGF0QWt5b2FjdGFsQ3piVzZCeS8xeTN2T044M3h0enRGaE1P?=
+ =?utf-8?B?b2FKenVIM08rSGRVUzJDTHRTenNVa2pzM0xIMVlVekt3WE9qKzc4MFdtbHJS?=
+ =?utf-8?B?b2R2RHh0OWJyZ3VWWkgrNUF4WVFGc29ZSk03ajZTbkZiS3pObDd6NHltZ2Np?=
+ =?utf-8?B?cEgyUGJ6SG9GbjJOMWNrSW9yTHRHS01mTklUeVo2MHYxVTAxVFh5UExnYUZj?=
+ =?utf-8?B?Uk1xZUtrbmU1UytHZGtVTzZjYncwVE04bERZRzEyWTM1cjV3SmgxWVplMEZs?=
+ =?utf-8?B?UHdjeWp3VmtGWlhTRUJZU25DdWRFblBReTJsRHo1elU3Kzh0bi9UR2ZRL3pJ?=
+ =?utf-8?B?RFJLSTZUTTZOWEx4dWMwOFh6ZjJpRVFMNk9NeVVhbmhVM2ZlMU1vVTUzQU5m?=
+ =?utf-8?B?UXMvMVFPZVo3RWlBWnNHMHQxcmJkSVdBVUdtcTFuMitQRTdhbU0xa0ZqSnR6?=
+ =?utf-8?B?dlZFempycVZYVDV1K3lwOWsxQW14VGdDY0s3elpTLzU3eXpUVmVjSE1RakU0?=
+ =?utf-8?B?T1o2NHJlWlhZODdvbzc1Wm5KZ2VCcFlSdGVGaUt5clJndExxeFpkbnk2eklP?=
+ =?utf-8?B?UVVaL0tpL0hFTHVZZ1FZendPcUQrQXNYai9zMzZSa2IzVExSVTM0RnhPYnVI?=
+ =?utf-8?B?M21MVjg5SlQvazl1c2h0VGx0Uy93d1dKSDVWV1A0clRDaDgzQTRSd2g4MnBh?=
+ =?utf-8?B?N0hmRU5mVE1uUWpwZzRnRUdBdlJLTWhueTMxNVV0ekJOazdoY3JBS1hoQ252?=
+ =?utf-8?B?WlZrYWVENmdwandqNmJGa2hWamQ4ZnJ6ZkljTWlLaGs0eUFHRlNBWWc5U1U3?=
+ =?utf-8?B?NDhLVDZic2dBRnFnYkhmU2ZLOGQ5c2kyZjA1Y3RnbkwxYlpteGNMOW5YRHUy?=
+ =?utf-8?B?OXFFVWFZWnlSSVlrZU5LeFozMHdCMExoODNCVGRXUDQ0RUJQYmtQK0RtOGsv?=
+ =?utf-8?B?aWo0NTlhbWJUNUpwQzVVSUdlMDNLMU1UendWYVpvWmRzZ2xTNk0rSElDWE5n?=
+ =?utf-8?B?VERrTWxhMXBZV2NYZ1BJbjZOTDRVUTJsdTE1MmlEbjk3dzh5Nm92NzQvdGM1?=
+ =?utf-8?B?SUg5MEF6V2QvR1NlSEV4c0J5ckNvRHowVXVDenhlaVdsck1DdHQxcnk0bWNI?=
+ =?utf-8?B?TFNMb3VmMlJrd0dnZkE5TUd0WjVmazBvZUJYdGYrWk1uN2pWYnVWZz09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f654913b-052b-4291-3547-08de7b5587cb
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB7149.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 07:54:01.5918
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NYYu2pWZOFH4zyjwwsoATHgDcKgNtLVTMV4JjmIXdCpkmCYnKEOOoatbnCWwyk7SyaGiX0fEUJe9HbeOtwOLfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8132
+X-Rspamd-Queue-Id: 1131821CA41
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-271853-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271865-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[baylibre.com,lists.infradead.org,kernel.org,linaro.org,aliel.fr,googlemail.com,vger.kernel.org];
+	TO_DN_ALL(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	PRECEDENCE_BULK(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_PROHIBIT(0.00)[0.2.59.24:email,0.0.30.120:email];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCPT_COUNT_TWELVE(0.00)[16];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,4e000:email]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[amlogic.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[amlogic.com:dkim,amlogic.com:email,amlogic.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Tzuyi Chang <tychang@realtek.com>
+Hi, rob
 
-Add the pinctrl nodes for the Realtek RTD1625 SoC.
 
-Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
----
- arch/arm64/boot/dts/realtek/kent.dtsi | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
+Thanks for your review.
 
-diff --git a/arch/arm64/boot/dts/realtek/kent.dtsi b/arch/arm64/boot/dts/realtek/kent.dtsi
-index ae006ce24420..8d4293cd4c03 100644
---- a/arch/arm64/boot/dts/realtek/kent.dtsi
-+++ b/arch/arm64/boot/dts/realtek/kent.dtsi
-@@ -150,6 +150,26 @@ uart0: serial@7800 {
- 				reg-shift = <2>;
- 				status = "disabled";
- 			};
-+
-+			iso_pinctrl: pinctrl@4e000 {
-+				compatible = "realtek,rtd1625-iso-pinctrl";
-+				reg = <0x4e000 0x1a4>;
-+			};
-+
-+			main2_pinctrl: pinctrl@4f200 {
-+				compatible = "realtek,rtd1625-main2-pinctrl";
-+				reg = <0x4f200 0x50>;
-+			};
-+
-+			isom_pinctrl: pinctrl@146200 {
-+				compatible = "realtek,rtd1625-isom-pinctrl";
-+				reg = <0x146200 0x34>;
-+			};
-+
-+			ve4_pinctrl: pinctrl@14e000 {
-+				compatible = "realtek,rtd1625-ve4-pinctrl";
-+				reg = <0x14e000 0x84>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@ff100000 {
--- 
-2.34.1
+On 3/5/2026 9:45 PM, Rob Herring (Arm) wrote:
+> [ EXTERNAL EMAIL ]
+>
+> On Thu, 05 Mar 2026 15:43:26 +0800, Jian Hu wrote:
+>> The mpll3 clock is a valid parent clock for sd_emmc and mipi_isp on
+>> the Amlogic T7 SoC, but was missing from t7-peripherals-clkc.yaml.
+>> Add it to enable proper clock parent configuration for these peripherals.
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> ---
+>>   .../bindings/clock/amlogic,t7-peripherals-clkc.yaml       | 8 ++++++--
+>>   1 file changed, 6 insertions(+), 2 deletions(-)
+>>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.example.dts:40.26-27 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[2]: *** [scripts/Makefile.dtbs:140: Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.example.dtb] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1597: dt_binding_check] Error 2
+> make: *** [Makefile:248: __sub-make] Error 2
 
+
+I will fix the DTS syntax issue in 
+Documentation/devicetree/bindings/clock/amlogic,t7-peripherals-clkc.example.dts 
+(line 40)
+
+and include this fix in the v2 patch, along with the previously 
+discussed updated commit description.
+
+> doc reference errors (make refcheckdocs):
+>
+> See https://patchwork.kernel.org/project/devicetree/patch/20260305074328.639993-3-jian.hu@amlogic.com
+>
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+>
 
