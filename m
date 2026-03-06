@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-272332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272333-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MMuENAcyq2n2agEAu9opvQ
-	(envelope-from <devicetree+bounces-272332-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 20:59:03 +0100
+	id +CDzOREyq2n2agEAu9opvQ
+	(envelope-from <devicetree+bounces-272333-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 20:59:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E2F82274FE
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 20:59:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 868CE22750C
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 20:59:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31BF430AB8D6
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 19:58:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9E09B30BE2FB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 19:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B9C843CEC2;
-	Fri,  6 Mar 2026 19:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D3D43C046;
+	Fri,  6 Mar 2026 19:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fH/xAtkR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j3SJ6uci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A1143C040
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 19:58:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D383128C9
+	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 19:58:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772827122; cv=none; b=POcz5aZSlfZ9Cd8pRtsziAJ2LUke7F2O3VehppDTGe+P12dyFNh+vKgKUEk1/mOHdQvLSIxwFsASnSRqIPcDnHChxYo/LP9uuyUwOYfXLhlVZ6Ghg5oPQqc+5yszCj0VM5CUKcqHGwjjsLHur+jEABGcawwmT96wRQiU9Cjtr+4=
+	t=1772827124; cv=none; b=oT9H6Xg4/WxJXu7y8A81Zt7VI5XYqjIDLsiDm0VnMvjSzSVuosxo7/Jyur1ToRX4g78HTyvp1CJVpUTFFbAtf8gGQ+KJb/vmkx33ERegEPGyDJx7uxmKxoYHIkBTxaQSDDyQ/GfquhoDd/DoNyejNt0355Vf4B1VZnVPOSC5/rs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772827122; c=relaxed/simple;
-	bh=VXFoPt6FDk0uTYR1HveyNp607pXL841lrETZO/GFuoo=;
+	s=arc-20240116; t=1772827124; c=relaxed/simple;
+	bh=WV327nTvYeKxsAK+km48/lyT8LcPjAemMVz29T66zrE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OonAnAJyW2XKpIPRdPwD/Lq6+tsMRAHt7/7qn9DzRe3z0JdjXfuBbkeQkM4XCUct6f7zWOb8kG9a55h2BjSX+hDNm6Rewgu1VTfhcEtdDUEAQ13FgdKNTgRwMsexTZyN63TX5qXKk4hmHkULuy4TZ/MULfxnNAsRMR6a83xQQNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fH/xAtkR; arc=none smtp.client-ip=209.85.128.50
+	 MIME-Version; b=JIFtEFzeKxH1qFCeAQdq3AdMqwx/27dCVC5WeeYysU8ow/qbx/083UlcgLR7SRmZmroX7Pu+Lk7f2l6Zuk9Q/q5lELzHXe1PL8k5pbXLpjt+rudovSITvRnh6z95tvbTqDFOEf/hIlIr6IC0XpbZ3lAfp52m9Y9bio0Rm1LMgXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j3SJ6uci; arc=none smtp.client-ip=209.85.221.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4838c15e3cbso88347505e9.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 11:58:41 -0800 (PST)
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-439c9eb5d36so3125004f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 11:58:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772827120; x=1773431920; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1772827121; x=1773431921; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tvM/p0ei/4Q87LGneFYY4Bf76uB4N3gLQRtuf5Hkp24=;
-        b=fH/xAtkRy5btnRIocr713cCbp/GhM0ogflme4Avuc2ww9QirxNzkrLvo0PDgW4c91a
-         htWuzRQ0vGVymyNiRtmw7kl5OMjYluul/zFDBdO152n4RCrHdOeGxBrXb64p3GxRhjmD
-         1kIq6eZYGJeQcNtn1KwBTuxQEBgdVM40ketvWD0Lpu1DKSk7P9pqghNNB4sTPgHr7ZiD
-         yrlKfnAJpXKa/o43YaZUwQ/EigDBAMlNixOoIZmqyAedCs4qWDbLR3TIz4h8OPb01TA6
-         Wpfb0ZgZk3hdadBnQmLSbTmIp6xez1ahBN1bG+VCPG4dXizAC6Wz0W6lO3RSvLJhNHlj
-         ldfg==
+        bh=JDz0WHVW2N4V2HWmoS34pFp7znP0+3/04WrwmBmNnZg=;
+        b=j3SJ6uciZeIsVrBlkLysxNROJ86VoQpu7Z3eTeS2ayPhpwYYTBmusuDA7cWjaVSZwR
+         GZ/i4RUV5e1TooIARM1I7FM++VzF1VdssRgDHkRNqlfudqPXIEiKQnerj5zz6yAmHTC5
+         0jnBHPlgigVyIqXWiy2rp4ASBSjRJq8csq+hC8/e1EEsb2lMAez37Eh04V8bns1YVT41
+         bzfFY9DX4/yYN/dp0M0ViOhRCS40xWLHJZvV3c5iMBE3XSeu24owk3vrOe+m3Rwwvdvg
+         DhdOC3NeVSij1EEZTa1X+tiIyeaF77gyu0TRYMrR1xPkr2plr6Tw3VOpC15gNnb82JGm
+         XTKw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772827120; x=1773431920;
+        d=1e100.net; s=20230601; t=1772827121; x=1773431921;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=tvM/p0ei/4Q87LGneFYY4Bf76uB4N3gLQRtuf5Hkp24=;
-        b=RgwsBOqcHwm7P+s6vKpORbmabP6lQKcfVxm9D7zYXwqE3byZCs8tKpftS8smbo6wVT
-         JYjnkiZCPfV0rLifP1vQGZohEQqEYAZblbF/QXOMtSk0QpR+1SksA20JkutR5HjOV1q4
-         Q0uxYNOOGW8AsR+Bumyf1zV9Vr6hZZsnlQRr1+kGSCCGNehG3pZNVFyB2EMFenf2ne2U
-         SfmjYjYjHiKkA0aU1d6l0xUKRJ4cuQS14uBcpt8sdILLwF9W2vqs4+2ApKWOcdD48Kxc
-         ROfRMBd5G+joRUQgqMcYtQB17U5Xh+kHi/kqvO2EnEQ+lbf9DObSYdabIQIzvJU/xjDD
-         N/yg==
-X-Forwarded-Encrypted: i=1; AJvYcCXtQY7RvdQq9TtuX7ajTRzSM0P2zBDFqsOyDaPrSvtC+mbBhDjTKkmb+fDzfI7Q3e+0PrUoaRYZXKA2@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHqDcWpoUaJcxG/f88xGkJa5UFu71v7wTt1DRk0YUbdf2TwrNJ
-	1XFKnyhiZNwYVUl6TQxP4ti7NV9OfOfN1TGWW5sJi0c3HYsYjbQWgPX8
-X-Gm-Gg: ATEYQzz59lBfvoaRyprgs+j0FpOI0ThLt+Y737uxr0uGTn6swUb8Y13SFZPIf4N9R5W
-	B9B++b6pxAyZ2a4P98fz34AhZMaotwBMgepAtxxk59B1iUwIFKJKT2JYRn3viZDOLhJSUy3SvWV
-	+KTqiAy//poIQ4pid7ZmrVUbzOn196i1k4/IEFlYUZ2Q5eeZkV4xUEuaeMBPWQP2femNissDi1d
-	pnu4qk31NONFDdRzd7Ll8j6PWJMESDiNHBuXRES7rpfOLn7AvNHuXt775Ka/Esu6K4Tlyg0RL/T
-	NYeGGQ8ehvdmHuF+jcj9Ceh8luVBLgwyf8jYRwJH2Jf2zUq5As0pTBQSW9gncGwJlDES2Eocw2w
-	PwOrru4xsYNtiXTiIUqB5R1pe+TVwGtivNblHVQNrSOZx/eF1hDwxpcCISeG1IpADDMMZcHsla7
-	PnZiqsozIMlt/rAIfU4xL62xAq2n1c8QBFubMTLEdoPj1bG4PvS4vuDJIAWzPhUAlK6HRBgLUuC
-	OA3w/6yXLaT65k4SMVzq+mx9vaxMyyw25aeMow=
-X-Received: by 2002:a05:600c:5253:b0:475:da1a:53f9 with SMTP id 5b1f17b1804b1-4852692c99bmr54384485e9.14.1772827119887;
-        Fri, 06 Mar 2026 11:58:39 -0800 (PST)
+        bh=JDz0WHVW2N4V2HWmoS34pFp7znP0+3/04WrwmBmNnZg=;
+        b=TAigZYWFO3VgwzTtQloDNW0uOHbqWLHC07pTxgwy2x+c8OQhf/L+DhkY2rxtNPiMI8
+         /BuxejX387y1RSdf9VSuqRSHehSTL2k4OWg5fRfJd4dkMUddoz7m+IEMuxjqkdRmgVVw
+         Wy8CPLx4Cd1h+puJmytcjNV9YSCf+PQHqVBJAK1iJhpJtvycwiXoMzUTsiByX3FyCaQP
+         7zXOucoLsi+g/AGKecWpDAiXiNKULYbdJqUdPk5nueBEhDNckWP2FTe+HXzuU81Bb9PU
+         EAWrqoXgpE7HHsZTNr1RPvm973AYHWfHz5zusIYbMZGxjo15/aS8zIJpmp7vocLHHYfi
+         w4qQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8cae87Aouuk5XGcyRQTBIKY26UAmz5t6JULboXsjl12xBXvu93HidN4IGDhEi4qfoUm3ZCZ6pFjxq@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNAsx072qYsNcUtvSglUm6NmpVZv/RCSk4HyDurlZ3kVM0dqRo
+	A3QpE6w7Azy+y7wtIo2bi+UjoLyZ1oCF2KL5jLY75D2bA5WDVWCbmRK+
+X-Gm-Gg: ATEYQzwqh81TaJfFvnzsuuPGYw68cWDyyXtkuXqPK7jutpPIPhm+FKLOgYMvayaBCM0
+	WG5ddzIEk7Fk7iEqqnAGWG2dUzYFL8iexYbT1jzslaVo2a9ekaIxZQ/sOg9eNdglfzRP9a1Dn3y
+	dsYUYivB+KkvZ1Dw+wRdpeTYwRYyFNtxMhAJOfV0YU26r6WnALpm5acCLWc2M84/XM74vqIgseK
+	nc3F/ao+BIPxuZbgA11FD+MppgteznFoRjyNAIujAVPXMwIMTqCrc+zYWCHI5qfVu2OFwTNF6TC
+	vIkO0xf51FtlNMhcy2DQtIxUfj3gf4HCFNb8AzW0z0QY3gEwIZh+hQ1GKfdqdBsQFJdUbNS8V4p
+	XucW8xxGUdywGfT5pCF7kGokvxytE9MqJ4qzOgsmp9IXoXhivQR0UQscVUOmIqc+BOfiRbO1ZAb
+	NoNJdxVDtaGQlWxik+SLdnj9QfAmF5pOq2TsfoI/na1F5OQ767R0dweDWKYF2/KIQv9jgzRvii9
+	+MLwg8AMh3jYZfGUYKtxOXmM+3cXJPUf4K5afg=
+X-Received: by 2002:a05:600c:6085:b0:479:2f95:5179 with SMTP id 5b1f17b1804b1-4852692fec0mr57882155e9.15.1772827120909;
+        Fri, 06 Mar 2026 11:58:40 -0800 (PST)
 Received: from Lord-Beerus.station (net-188-152-100-94.cust.dsl.teletu.it. [188.152.100.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48523803b5fsm25167265e9.7.2026.03.06.11.58.37
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48523803b5fsm25167265e9.7.2026.03.06.11.58.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Mar 2026 11:58:38 -0800 (PST)
+        Fri, 06 Mar 2026 11:58:40 -0800 (PST)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 X-Google-Original-From: Stefano Radaelli <stefano.r@variscite.com>
 To: linux-kernel@vger.kernel.org,
@@ -92,9 +92,9 @@ Cc: pierluigi.p@variscite.com,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH v2 01/11] arm64: dts: freescale: imx8mm-var-som: Move UART4 description to Symphony
-Date: Fri,  6 Mar 2026 20:58:20 +0100
-Message-ID: <b2ac5175ec9ddb308261746b967d13557958ba0a.1772826534.git.stefano.r@variscite.com>
+Subject: [PATCH v2 02/11] arm64: dts: freescale: imx8mm-var-som: Align fsl,pins tables
+Date: Fri,  6 Mar 2026 20:58:21 +0100
+Message-ID: <50ac6fc845dbfeae428c89f35eb3d42b2ced9489.1772826534.git.stefano.r@variscite.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772826534.git.stefano.r@variscite.com>
 References: <cover.1772826534.git.stefano.r@variscite.com>
@@ -105,7 +105,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6E2F82274FE
+X-Rspamd-Queue-Id: 868CE22750C
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -113,18 +113,18 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[bounces-272332-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272333-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_CC(0.00)[variscite.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[stefanoradaelli21@gmail.com,devicetree@vger.kernel.org];
@@ -132,115 +132,292 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.993];
+	NEURAL_HAM(-0.00)[-0.994];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[2.98.90.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,variscite.com:mid,variscite.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,variscite.com:mid,variscite.com:email]
 X-Rspamd-Action: no action
 
 From: Stefano Radaelli <stefano.r@variscite.com>
 
-The VAR-SOM-MX8MM module does not provide an onboard debug console.
-UART4 is routed and exposed only on the Symphony carrier board, while
-custom carrier designs may choose to expose a different UART.
+Reformat the fsl,pins tables in the i.MX8MM VAR-SOM device tree to use
+consistent column alignment across all pinctrl groups.
 
-Move the UART4 node from the SOM device tree to the
-imx8mm-var-som-symphony.dts, keeping the SOM dtsi limited to hardware
-present on the module itself.
+Align the entries to match the formatting already used in the
+pinctrl_fec1 group, which contains the longest pin definitions,
+for improved readability and consistency.
+
+No functional changes intended.
 
 Signed-off-by: Stefano Radaelli <stefano.r@variscite.com>
 ---
 v1->v2:
  - 
 
- .../dts/freescale/imx8mm-var-som-symphony.dts  | 18 ++++++++++++++++++
- .../boot/dts/freescale/imx8mm-var-som.dtsi     | 18 ------------------
- 2 files changed, 18 insertions(+), 18 deletions(-)
+ .../boot/dts/freescale/imx8mm-var-som.dtsi    | 170 +++++++++---------
+ 1 file changed, 85 insertions(+), 85 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
-index affbc67c2ef6..819707e6f3bf 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
-@@ -11,6 +11,10 @@ / {
- 	model = "Variscite VAR-SOM-MX8MM Symphony evaluation board";
- 	compatible = "variscite,var-som-mx8mm-symphony", "variscite,var-som-mx8mm", "fsl,imx8mm";
- 
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
- 		compatible = "regulator-fixed";
- 		pinctrl-names = "default";
-@@ -156,6 +160,13 @@ &uart3 {
- 	status = "okay";
- };
- 
-+/* Console */
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
- &usbotg1 {
- 	disable-over-current;
- 	extcon = <&extcon_usbotg1>, <&extcon_usbotg1>;
-@@ -251,4 +262,11 @@ MX8MM_IOMUXC_UART3_RXD_UART3_DCE_RX	0x140
- 			MX8MM_IOMUXC_UART3_TXD_UART3_DCE_TX	0x140
- 		>;
- 	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX8MM_IOMUXC_UART4_RXD_UART4_DCE_RX	0x140
-+			MX8MM_IOMUXC_UART4_TXD_UART4_DCE_TX	0x140
-+		>;
-+	};
- };
 diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-index 190bde4edcd7..b6560c03639e 100644
+index b6560c03639e..da3c7332ec34 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-@@ -9,10 +9,6 @@
- / {
- 	model = "Variscite VAR-SOM-MX8MM module";
+@@ -368,171 +368,171 @@ MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9		0x19
  
--	chosen {
--		stdout-path = &uart4;
--	};
--
- 	memory@40000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x40000000 0 0x80000000>;
-@@ -274,13 +270,6 @@ &uart2 {
- 	status = "okay";
- };
- 
--/* Console */
--&uart4 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_uart4>;
--	status = "okay";
--};
--
- &usbotg1 {
- 	dr_mode = "otg";
- 	usb-role-switch;
-@@ -418,13 +407,6 @@ MX8MM_IOMUXC_SAI3_RXD_UART2_DCE_RTS_B	0x140
+ 	pinctrl_i2c1: i2c1grp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
+-			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
++			MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL			0x400001c3
++			MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA			0x400001c3
  		>;
  	};
  
--	pinctrl_uart4: uart4grp {
--		fsl,pins = <
--			MX8MM_IOMUXC_UART4_RXD_UART4_DCE_RX	0x140
--			MX8MM_IOMUXC_UART4_TXD_UART4_DCE_TX	0x140
--		>;
--	};
--
+ 	pinctrl_i2c3: i2c3grp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL		0x400001c3
+-			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA		0x400001c3
++			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL			0x400001c3
++			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA			0x400001c3
+ 		>;
+ 	};
+ 
+ 	pinctrl_pmic: pmicirqgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8	0x141
++			MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8		0x141
+ 		>;
+ 	};
+ 
+ 	pinctrl_reg_eth_phy: regethphygrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD1_DATA7_GPIO2_IO9	0x41
++			MX8MM_IOMUXC_SD1_DATA7_GPIO2_IO9		0x41
+ 		>;
+ 	};
+ 
+ 	pinctrl_restouch: restouchgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x1c0
++			MX8MM_IOMUXC_GPIO1_IO03_GPIO1_IO3		0x1c0
+ 		>;
+ 	};
+ 
+ 	pinctrl_uart2: uart2grp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX	0x140
+-			MX8MM_IOMUXC_SAI3_TXC_UART2_DCE_TX	0x140
+-			MX8MM_IOMUXC_SAI3_RXC_UART2_DCE_CTS_B	0x140
+-			MX8MM_IOMUXC_SAI3_RXD_UART2_DCE_RTS_B	0x140
++			MX8MM_IOMUXC_SAI3_TXFS_UART2_DCE_RX		0x140
++			MX8MM_IOMUXC_SAI3_TXC_UART2_DCE_TX		0x140
++			MX8MM_IOMUXC_SAI3_RXC_UART2_DCE_CTS_B		0x140
++			MX8MM_IOMUXC_SAI3_RXD_UART2_DCE_RTS_B		0x140
+ 		>;
+ 	};
+ 
  	pinctrl_usdhc1: usdhc1grp {
  		fsl,pins = <
- 			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
+-			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x190
+-			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d0
+-			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d0
+-			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d0
+-			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d0
+-			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d0
++			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK			0x190
++			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD			0x1d0
++			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d0
++			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d0
++			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d0
++			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d0
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x194
+-			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d4
+-			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d4
+-			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d4
+-			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d4
+-			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d4
++			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK			0x194
++			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD			0x1d4
++			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d4
++			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d4
++			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d4
++			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d4
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK		0x196
+-			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD		0x1d6
+-			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0	0x1d6
+-			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1	0x1d6
+-			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2	0x1d6
+-			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3	0x1d6
++			MX8MM_IOMUXC_SD1_CLK_USDHC1_CLK			0x196
++			MX8MM_IOMUXC_SD1_CMD_USDHC1_CMD			0x1d6
++			MX8MM_IOMUXC_SD1_DATA0_USDHC1_DATA0		0x1d6
++			MX8MM_IOMUXC_SD1_DATA1_USDHC1_DATA1		0x1d6
++			MX8MM_IOMUXC_SD1_DATA2_USDHC1_DATA2		0x1d6
++			MX8MM_IOMUXC_SD1_DATA3_USDHC1_DATA3		0x1d6
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10	0xc1
++			MX8MM_IOMUXC_GPIO1_IO10_GPIO1_IO10		0xc1
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc2: usdhc2grp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
+-			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
+-			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
+-			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
+-			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
+-			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
+-			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
++			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x190
++			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d0
++			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d0
++			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d0
++			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d0
++			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d0
++			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x194
+-			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d4
+-			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
+-			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
+-			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
+-			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
+-			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
++			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x194
++			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d4
++			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d4
++			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d4
++			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d4
++			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d4
++			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x196
+-			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d6
+-			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
+-			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
+-			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
+-			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
+-			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
++			MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK			0x196
++			MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD			0x1d6
++			MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0		0x1d6
++			MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1		0x1d6
++			MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2		0x1d6
++			MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3		0x1d6
++			MX8MM_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0x1d0
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc3: usdhc3grp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x190
+-			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d0
+-			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d0
+-			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d0
+-			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d0
+-			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d0
+-			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4	0x1d0
+-			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5	0x1d0
+-			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6	0x1d0
+-			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7	0x1d0
+-			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE	0x190
++			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x190
++			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d0
++			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d0
++			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d0
++			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d0
++			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d0
++			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d0
++			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d0
++			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d0
++			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d0
++			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x190
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc3_100mhz: usdhc3-100mhzgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x194
+-			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d4
+-			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d4
+-			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d4
+-			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d4
+-			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d4
+-			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4	0x1d4
+-			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5	0x1d4
+-			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6	0x1d4
+-			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7	0x1d4
+-			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE	0x194
++			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x194
++			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d4
++			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d4
++			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d4
++			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d4
++			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d4
++			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d4
++			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d4
++			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d4
++			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d4
++			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x194
+ 		>;
+ 	};
+ 
+ 	pinctrl_usdhc3_200mhz: usdhc3-200mhzgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK	0x196
+-			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD	0x1d6
+-			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0	0x1d6
+-			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1	0x1d6
+-			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2	0x1d6
+-			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3	0x1d6
+-			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4	0x1d6
+-			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5	0x1d6
+-			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6	0x1d6
+-			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7	0x1d6
+-			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE	0x196
++			MX8MM_IOMUXC_NAND_WE_B_USDHC3_CLK		0x196
++			MX8MM_IOMUXC_NAND_WP_B_USDHC3_CMD		0x1d6
++			MX8MM_IOMUXC_NAND_DATA04_USDHC3_DATA0		0x1d6
++			MX8MM_IOMUXC_NAND_DATA05_USDHC3_DATA1		0x1d6
++			MX8MM_IOMUXC_NAND_DATA06_USDHC3_DATA2		0x1d6
++			MX8MM_IOMUXC_NAND_DATA07_USDHC3_DATA3		0x1d6
++			MX8MM_IOMUXC_NAND_RE_B_USDHC3_DATA4		0x1d6
++			MX8MM_IOMUXC_NAND_CE2_B_USDHC3_DATA5		0x1d6
++			MX8MM_IOMUXC_NAND_CE3_B_USDHC3_DATA6		0x1d6
++			MX8MM_IOMUXC_NAND_CLE_USDHC3_DATA7		0x1d6
++			MX8MM_IOMUXC_NAND_CE1_B_USDHC3_STROBE		0x196
+ 		>;
+ 	};
+ 
+ 	pinctrl_wdog: wdoggrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B	0x166
++			MX8MM_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B		0x166
+ 		>;
+ 	};
+ };
 -- 
 2.47.3
 
