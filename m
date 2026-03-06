@@ -1,61 +1,76 @@
-Return-Path: <devicetree+bounces-271771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-271772-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CML9LR4fqmlLLgEAu9opvQ
-	(envelope-from <devicetree+bounces-271771-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:26:06 +0100
+	id OCtbCscfqmn0LgEAu9opvQ
+	(envelope-from <devicetree+bounces-271772-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:28:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29D7219C76
-	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:26:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC1D219C83
+	for <lists+devicetree@lfdr.de>; Fri, 06 Mar 2026 01:28:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 9892A300E18C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:26:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 251C430305C7
+	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 00:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EB352BE7B6;
-	Fri,  6 Mar 2026 00:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4045C2BE7D1;
+	Fri,  6 Mar 2026 00:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W8RdX9m2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k1fWMiSV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE3461D5AD4;
-	Fri,  6 Mar 2026 00:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 193A629A309;
+	Fri,  6 Mar 2026 00:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772756761; cv=none; b=s4l8sJs/sxYj9jjOyZhLj1cDAsYZZdGmkc5tYn/CPLhKtWLfyG99YuHul5PsB+gTDLMD+fDG/LTgJdC7x4EN00wL5HcPuzKIYsaEPMPtbVsY3jxupA1vMJDS4UngZXSCrx2a3BHPkBYveG0xIKRxTcT/z+tV8ekZoiyA36pcsKI=
+	t=1772756931; cv=none; b=g0UGfPdbWredwRxEmKkS8Af52Sa7NFIFGiyL4rMTxCIoPSKsd8BBk1Jo6F4JYi95SIMi4d4wMtRDE5hsaWDmRuNFRp0BGlq9HVfydobuyFp73yqy2R8IxhB7lJObEs0ofaz1aAys0HQxcRi6+RNlWxhWrcHno7H8fBcIZRhCxKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772756761; c=relaxed/simple;
-	bh=hLTjbohcX++HuCEe9TQZXe9wa3AMHRKt2yzOkZFpv8o=;
+	s=arc-20240116; t=1772756931; c=relaxed/simple;
+	bh=EXIStN1B/izsA6vGyFCAGh+w3xMM+thmSuO0J4C0Xvo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O2y4+3pPj2RpgTvIYHaQaSmNXZik9oeqj9DyEoTsPArt+QvQeJG+OtQhsukyhVrSexeKiVgOTGAxtzPbWk3ztrp5c+5IrOTnmSW0gkVH1cbvo9rERdfUbJSxowH6aLN7DBoANqXfH6fwREU/X/r5MAkGv5oM2foJbsBdT1TZrJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W8RdX9m2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00425C116C6;
-	Fri,  6 Mar 2026 00:25:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=s5+yWMgA6v8sSqlkGkM2+u0n47cYSy4oQp7Ju8Z/7BwDBl7u0bJV1GL6vLc3pUdDiSfWo9ILuggZauXl2lv7XoruczEIdq39RlXijP24rRcALwJ50sBd4N4E31vDUpzzw20dLB58OYMYjZfaVH/x1gdOYEJuEwQSo/pQ4E21UR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k1fWMiSV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6E4EC116C6;
+	Fri,  6 Mar 2026 00:28:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772756760;
-	bh=hLTjbohcX++HuCEe9TQZXe9wa3AMHRKt2yzOkZFpv8o=;
+	s=k20201202; t=1772756930;
+	bh=EXIStN1B/izsA6vGyFCAGh+w3xMM+thmSuO0J4C0Xvo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W8RdX9m2Ekitru0dDoa+cBiXDJ2M3GzOax5u4yzy3az5gQ3viwL+WrvVwahmYwCMy
-	 VM+UT07M9HhkapIcB6gRRGrWyFA64kYj0+bw9cBeeI1e2RKM2/nkhCVu3SPus5I3Yy
-	 X81F17FxWVve0Cmb1C0raoRS2Nc5oce3iOheKDDyqgXfw/RowyK8tHYRkVu3/NVAi/
-	 wxszKC0dHbrVdTxbgMvf54qdUdh2FZzsQG2XBdt2vZEtBC1fXZP6wLIsZh9c5g2cpg
-	 1vtiyncvGYANo8VYo/sdJIPp9Yarm9cYHV0Ak5U4JHP9vr6+alBGjuOykc607eS4YD
-	 6+vZnMxVxGK7Q==
-Date: Thu, 5 Mar 2026 18:25:59 -0600
-From: Rob Herring <robh@kernel.org>
-To: Thierry Reding <thierry.reding@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	b=k1fWMiSVv9ZBMUvKy4qYRdIOqJzOmk3HXhNYLX4RKFCXSipyjH8GD9CkxuqVaOYd3
+	 t0ehgvplc3/7pGkWH/WKQVUtxj5l+8MkWdS8AnScmPCNhTJb8Lnrw2pa8IV8TVjKXM
+	 WdN19c/dGxbKjTwtmtLdNOmaSa9igq5318juqOVuFvEfQ9lUa/pyx11nHRO3m90EpW
+	 zFbvnnIAj8jJpkRDYodTJwgJrzcMzIqixXoUVCRSGBeASZqqAquFt8cjnndVjNEYIt
+	 NTkA+HFiCEKxhzxqbX2bC+I/kSZisc0mD+NlPJEI6P1cGjKrE5vb4KgJUNcy3K2CvR
+	 F2V0H94O8MlZQ==
+Date: Thu, 5 Mar 2026 18:28:49 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>, Chen Zhong <chen.zhong@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, linux-pm@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+	devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+	Julien Massot <julien.massot@collabora.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Fabien Parent <parent.f@gmail.com>, linux-input@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Val Packett <val@packett.cool>, Sen Chu <sen.chu@mediatek.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v2 07/10] dt-bindings: memory: Add Tegra210 memory
- controller bindings
-Message-ID: <20260306002559.GA848291-robh@kernel.org>
-References: <20260223143305.3771383-1-thierry.reding@kernel.org>
- <20260223143305.3771383-8-thierry.reding@kernel.org>
+	linux-arm-kernel@lists.infradead.org,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Gary Bisson <bisson.gary@gmail.com>,
+	Eddie Huang <eddie.huang@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>
+Subject: Re: [PATCH 2/9] dt-bindings: regulator: add support for MT6392
+Message-ID: <177275692938.853845.10496663055638089922.robh@kernel.org>
+References: <cover.1771865014.git.l.scorcia@gmail.com>
+ <b7664f4d9a7b038b0603b6bba79cfab4e18cbdd6.1771865015.git.l.scorcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,83 +79,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260223143305.3771383-8-thierry.reding@kernel.org>
-X-Rspamd-Queue-Id: A29D7219C76
+In-Reply-To: <b7664f4d9a7b038b0603b6bba79cfab4e18cbdd6.1771865015.git.l.scorcia@gmail.com>
+X-Rspamd-Queue-Id: 6FC1D219C83
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-271771-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-271772-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[27];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,mediatek.com,vger.kernel.org,gmail.com,collabora.com,lists.infradead.org,bootlin.com,packett.cool];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nvidia.com:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Feb 23, 2026 at 03:33:02PM +0100, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+
+On Mon, 23 Feb 2026 17:12:41 +0000, Luca Leonardo Scorcia wrote:
+> From: Fabien Parent <parent.f@gmail.com>
 > 
-> Document the bindings for the memory controller found on Tegra210 SoCs.
+> Add binding documentation of the regulator for MT6392 SoCs.
 > 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Fabien Parent <parent.f@gmail.com>
+> Signed-off-by: Val Packett <val@packett.cool>
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
 > ---
-> Changes in v2:
-> - drop unneeded node alias
+>  Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
->  .../nvidia,tegra210-mc.yaml                   | 77 +++++++++++++++++++
->  1 file changed, 77 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml
-> new file mode 100644
-> index 000000000000..7f003fc422ab
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra210-mc.yaml
-> @@ -0,0 +1,77 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra210-mc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra210 SoC Memory Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +description: |
-> +  The NVIDIA Tegra210 SoC features a 64 bit memory controller that is split into two 32 bit
-> +  channels to support LPDDR3 and LPDDR4 with x16 subpartitions. The MC handles memory requests for
-> +  34-bit virtual addresses from internal clients and arbitrates among them to allocate memory
-> +  bandwidth.
-> +
-> +  Up to 8 GiB of physical memory can be supported. Security features such as encryption of traffic
-> +  to and from DRAM via general security apertures are available for video and other secure
-> +  applications.
 
-Wrap lines at 80.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Otherwise,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
