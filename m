@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-272454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272455-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLH+EIE+rGmingEAu9opvQ
-	(envelope-from <devicetree+bounces-272454-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:04:33 +0100
+	id sA3mAbc+rGnwngEAu9opvQ
+	(envelope-from <devicetree+bounces-272455-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:05:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B89D22C4A4
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:04:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E0122C4C3
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:05:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F2197300C557
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 15:04:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 377AD302A2EF
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 15:05:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F9E3A450B;
-	Sat,  7 Mar 2026 15:04:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F001F392C45;
+	Sat,  7 Mar 2026 15:05:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rDbxv9Ds"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p+u3PVQk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C9493A4505;
-	Sat,  7 Mar 2026 15:04:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD8AC186E58;
+	Sat,  7 Mar 2026 15:05:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772895867; cv=none; b=O82BwU5eqzPVgKGenRZGLkrnGswKymP4luK0FlQG37ykznCqY5OMiT7bQ1UJW0cokOT2ePxXKFVas+S1y8Tg6SB6Dh+ozOiT+G+4l+1VxFiNWNx9Q5FBx/aMOfIr40GlifEEOgUHrrOzikI4QlTz/AZhnfrgjmzKGjstDZnFEZA=
+	t=1772895914; cv=none; b=AQJs0smWyHitZf3Tyjf1asM/pO6IjbfDx5CSKhdHWr2Sod1AFFANqbg3K99RFyCg4VrxYp9oUa9r6z1xhNxzPK7t2/APQPImPriO/VViJDr2py9zB59CATKrwMqWyoxlkNL/MHyV59x7QXvy2IdfbVsGXqEX9aBeR4dQx75pdxc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772895867; c=relaxed/simple;
-	bh=oCfkRjhztakwBoRUIlo4c4xfYh6OciAHaZzWwJwhHWg=;
+	s=arc-20240116; t=1772895914; c=relaxed/simple;
+	bh=0hbBsl1lGdmRWPCfaDt1GzEaXdDJHOpPTiYFPKe55qs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bnzbS3DICCbS4tM24+Kjrcos89akankdFrp8Q1JzGpcYfZirDWHkLdE1M6lTbLzI7WZfNI3HL/iX1HygA4FU5SdVi1s4Uc+dysEwC7xY9qQs9L+aMrL+nl19dwp0bIDGu+zVTiywmMcOGHTl9Teo+yGyjMWkadt67W4VGFCmIzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rDbxv9Ds; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43197C19422;
-	Sat,  7 Mar 2026 15:04:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZD6JhYI6Z9+/+BgJcwUpI1NxDWqUOHOA0yEbosSOvgo69t19aqvbSkXYr+jlLLSmtHsRHgKuX/0Mm5odycZ65YYwN0xUGgtnSYMogFa4q9IKCAtClN5s8CBnt1RyZU/ihaZw1vWoo574k2M6o9wJ4NJBdviy+rPpIG+dxpzTm3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p+u3PVQk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E24F9C19422;
+	Sat,  7 Mar 2026 15:05:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772895866;
-	bh=oCfkRjhztakwBoRUIlo4c4xfYh6OciAHaZzWwJwhHWg=;
+	s=k20201202; t=1772895914;
+	bh=0hbBsl1lGdmRWPCfaDt1GzEaXdDJHOpPTiYFPKe55qs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rDbxv9DsATZ11dBfMILI/t2am5ClvAF40FJqSfHCikzMfW0aHrXr0VO56g13BnB08
-	 7wKm/N7a3WfRNon/eprTWUGK4ZE4zWeMxUmffKWE/Y+lCXdy42IJONdJ7FHjQCp5BX
-	 omLNwzvYzlRFnnE/4HRBD6LYPVsTtPDE2uJVKP0C7SxZa4dXyz3XIvM2wlvoUEbAz+
-	 TJwJFtqJUCnfM4ZpNz+uMjew7MACArz+joSsuJuVZdBUo6SHD4I5DbvBMGwJ6d8/dy
-	 znHksHALaCJBaYHyz75/DpmGBjZJFzypLFBS3YAQI4FPEreldLhBbWtm/bU3PuWa+M
-	 WNxQsjcC4eVWQ==
-Date: Sat, 7 Mar 2026 16:04:24 +0100
+	b=p+u3PVQkYAROhrqZbLlUrMu9E9QCXmhSlwcpk8J1+R8IoIo7R6fdlG8LulK7OfNy0
+	 XyH/m28DuIdXQPiH/VqTqTdSzPIMb+gHu/OaREJLnjRvFyb7ie9cAv2AWoSZWl4UjA
+	 fX9LxX0ojxuwyHG5odpeHnLfP6d9vEx/jvntfXVTD+kYjPuPwBAk+bHym4+mUkkYLC
+	 LT1SqbglXMD0s3/+NpeAz9K7Gxkz/PAxBWltJCT0cIos2QoiG4VUG3VN8/oNaeoq7j
+	 sLoAyU9ZuKarObDFqh1/hdeMxTTeqrZtu0BRmqQ5SiO6SbY5EhSlc0sOCD8MY7KLFS
+	 wE5bbz/e6LtoA==
+Date: Sat, 7 Mar 2026 16:05:12 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Luca Leonardo Scorcia <l.scorcia@gmail.com>
-Cc: linux-mediatek@lists.infradead.org, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, 
-	Macpaul Lin <macpaul.lin@mediatek.com>, Lee Jones <lee@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Val Packett <val@packett.cool>, 
-	Gary Bisson <bisson.gary@gmail.com>, Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, 
-	Julien Massot <julien.massot@collabora.com>, Fabien Parent <parent.f@gmail.com>, 
-	Chen Zhong <chen.zhong@mediatek.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 0/7] Add support for mt6392 PMIC
-Message-ID: <20260307-sensible-enigmatic-crab-7680d4@quoll>
-References: <20260306120521.163654-1-l.scorcia@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, Jagan Teki <jagan@edgeble.ai>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: display: panel: Document the rotation
+ property
+Message-ID: <20260307-dingo-of-nonconcrete-opportunity-ea70bd@quoll>
+References: <20260306124808.166776-1-l.scorcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,63 +66,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260306120521.163654-1-l.scorcia@gmail.com>
-X-Rspamd-Queue-Id: 4B89D22C4A4
+In-Reply-To: <20260306124808.166776-1-l.scorcia@gmail.com>
+X-Rspamd-Queue-Id: 64E0122C4C3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272454-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,gmail.com,kernel.org,mediatek.com,collabora.com,packett.cool,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272455-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.967];
+	NEURAL_HAM(-0.00)[-0.986];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,edgeble.ai,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,bootlin.com:url]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 12:03:04PM +0000, Luca Leonardo Scorcia wrote:
-> The MediaTek mt6392 PMIC is usually found on devices powered by
-> the mt8516/mt8167 SoC, and is yet another mt6397 variant.
-> 
-> This series is mostly based around patches submitted a couple
-> years ago by Fabien Parent and not merged and from Val Packett's
-> submission from Jan 2025 that included extra cleanups, fixes, and a
-> new dtsi file similar to ones that exist for other PMICs. Some
-> comments weren't addressed and the series was ultimately not merged.
-> 
-> This series only enables three functions: regulators, keys, and RTC.
-> 
-> I have added a handful of device tree improvements to fix some
-> dtbs_check errors and addressed the comments from last year's
-> reviews. The series has been tested on Xiaomi Mi Smart Clock x04g.
-> 
-> v2: Review feedback - replaced explicit compatibles with fallbacks
-> 
-> Fabien Parent (5):
->   dt-bindings: mfd: mt6397: Add bindings for MT6392 PMIC
->   dt-bindings: regulator: add support for MT6392
+On Fri, Mar 06, 2026 at 12:44:21PM +0000, Luca Leonardo Scorcia wrote:
+> The Jadard jd9365da-h3 driver already allows DRM to get the panel orientation
 
-This is incomplete - where is the actual schema for the regulators?
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
+
+> via the device tree rotation property (described in panel-common.yaml),
+> but it's currently not documented.
+> Describe it in the driver documentation to fix a dtbs_check error in
+> Xiaomi Mi Smart Clock x04g, where the panel is landscape-oriented.
+> 
+> Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+> ---
+> v2: Review feedback: improved commit message to explain how the rotation
+>     property is used by the driver and why it's needed in the driver
+>     documentation.
+> 
+>  .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml  | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+
+ONLY after these fixed:
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
