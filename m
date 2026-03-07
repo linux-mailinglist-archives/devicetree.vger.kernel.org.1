@@ -1,141 +1,251 @@
-Return-Path: <devicetree+bounces-272426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272427-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFXiE8wfrGlXlQEAu9opvQ
-	(envelope-from <devicetree+bounces-272426-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 13:53:32 +0100
+	id emKYAgAhrGkglgEAu9opvQ
+	(envelope-from <devicetree+bounces-272427-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 13:58:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C027D22BCA0
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 13:53:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FC5D22BCCC
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 13:58:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1479B3012CCE
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 12:53:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CAB333019444
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 12:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF2239C628;
-	Sat,  7 Mar 2026 12:53:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C81639C63D;
+	Sat,  7 Mar 2026 12:58:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MJa2mXuj"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="LCsawahp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A86639527F;
-	Sat,  7 Mar 2026 12:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A1E391822
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 12:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772888007; cv=none; b=P/c//MFy5FdwyyQhwNuz3VRspxcVcdHQAuglO913IkiXn1DxhctosVUsmw5hjWKnGg0Ht/Fapn4IBWDMPjIbTY87AKieFyx9XVkmm7FiIPmKcemw5NzHcDYMuaNSlPTQOIHITef7M8whTRH+DX2LQU7ysnL3KIeZj5499OzpYtQ=
+	t=1772888315; cv=none; b=i/ridUgBkzBmuZlQ3PNifNGpJOqdL5pSYx4wbGRn0GTdWcjGp32vRP6aHRsUgvplyxxIfA7EJBcpZhjymqQWJDYgtePowOqdoYsYig/dAa060sEsFZrU+t1rDTJexbfBu3kXCdc8pCtB/lly5RGtO5YmOpaoj4NN3e1a4VK7IGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772888007; c=relaxed/simple;
-	bh=NkU8Z7BJW6IMqFyOQfV2xg9wnLMdZ94S1srnXoDa+2U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KnsZ2kZzSUtJpB8JvSWA75uTI/meqyivjj+t4jEj24VmfzxQPa4Wzk+TxaneL3+BHXCKKAInJB+eRqxcJdmh8OBDoIqOeoY41Axvp4HyZ2Mr86v5ASTNNoBz/tCiuXZtMOQ9t0cmVIsdqYvoudlx6+3xsMeiTHo9BJkVt2S1Khk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MJa2mXuj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F8A6C19422;
-	Sat,  7 Mar 2026 12:53:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772888006;
-	bh=NkU8Z7BJW6IMqFyOQfV2xg9wnLMdZ94S1srnXoDa+2U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MJa2mXujjMivItr7He25l3aRJMra5ArgA9ylye2kejRpGXXoaG+EdtHG44jdXLZ2U
-	 xfnayY6gdJePSrCV1+FdCv5yMvUIvbOQ1sT0YyebUV/FbYYdtaAwdi5U3tQwdTRoAd
-	 aAWZxrW11TKXeqlHb69RT/jIbDFeFEHJgD3DNBeHcT8XTkE/q2te3kXMox25ni8Sh2
-	 BHm2/bBx5NiMzFzeiMPtsYUpkCo0En+uOY+MG/2penhTVFMVBzuXp6PGQ9kC2jJD+1
-	 LtIWHuBthAlQoaHLa7QNLn8YI0p7mBXPbfzwNX7GSmcMPhvsLREa4B5NmSfFX2z19N
-	 RXqCoJj+hOaOw==
-Date: Sat, 7 Mar 2026 13:53:24 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yu-Chun Lin <eleanor.lin@realtek.com>
-Cc: linusw@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, bartosz.golaszewski@oss.qualcomm.com, afaerber@suse.com, 
-	james.tai@realtek.com, cy.huang@realtek.com, stanley_chang@realtek.com, 
-	tychang@realtek.com, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-realtek-soc@lists.infradead.org
-Subject: Re: [PATCH v2 09/14] dt-bindings: pinctrl: realtek: Rename
- 'realtek,duty-cycle' to 'realtek,pulse-width-adjust'
-Message-ID: <20260307-purring-kind-binturong-1fcb37@quoll>
-References: <20260306075244.1170399-1-eleanor.lin@realtek.com>
- <20260306075244.1170399-10-eleanor.lin@realtek.com>
+	s=arc-20240116; t=1772888315; c=relaxed/simple;
+	bh=Fj+OrpPXWH4i0peZ38llrgnJu7mnjMoWLPvt0OuLv4Y=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=J4Vb5g3vyNfYkNHiM6wl5A/XRzMiQiytoDf9G56gATgTfc0aAce913Fv+ZWAgCyXcvKIREHbWnDlioR0I2b77Akr7cXBSREEg0WdsqCgDSZV0OyVBdGq+NT/54q4d3q4rR1fKYPeNCTdHJTWD2D2QNnXqRf7qg4EhGQd60NgnWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=LCsawahp; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 2301F240029
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 13:58:32 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1772888312; bh=Opr1f1ATZy2cRkzInxq0gxGUxnt6PVN0pwyqViGilD8=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=LCsawahpDw94cYYZ7W0tJCUmYuvpxawppXoDfBJipstI5VURA1XhGqsT2OGhUOWen
+	 6m1vLQY7zZ6Q9NQq3exhwGYMOJ32+qnlPNvdjrlX+N+hhnYnbSwXxGkvue3hJ9zusf
+	 iWgeNwYBhlVX83PyXet9Nf5vfNDApQvAdGiJEXb4R/2RHsFH4cU7RulAoJPsvqHABR
+	 0jSlkFuLO50UT8C/7RnFLCf35hGQgZClKI2vyTNUYxIivLDwkZGWWEqvdE+BCTDzD8
+	 hx9t5Nkzx2D6MAmJ03BjSjzsyZNyffiINy1vLTjDt4Pe1wkzsJULpnILOKdAIqHu74
+	 alpwxa2lgDV1A==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fSjxx752Pz6v13;
+	Sat,  7 Mar 2026 13:58:29 +0100 (CET)
+Message-ID: <938755087c25b0b4eb6e32b84c1dd25cc2d71439.camel@posteo.de>
+Subject: Re: [PATCH 2/2] staging: Add initial synology microp driver
+From: Markus Probst <markus.probst@posteo.de>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel
+ Ojeda <ojeda@kernel.org>,  Boqun Feng <boqun@kernel.org>, Gary Guo
+ <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
+ Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-staging@lists.linux.dev, rust-for-linux@vger.kernel.org
+Date: Sat, 07 Mar 2026 12:58:31 +0000
+In-Reply-To: <2026030742-concave-dastardly-801e@gregkh>
+References: <20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de>
+	 <20260306-synology_microp_initial-v1-2-fcffede6448c@posteo.de>
+	 <2026030742-concave-dastardly-801e@gregkh>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-UEj1ciT76eIznC7lX4dC"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260306075244.1170399-10-eleanor.lin@realtek.com>
-X-Rspamd-Queue-Id: C027D22BCA0
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Rspamd-Queue-Id: 5FC5D22BCCC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272426-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-272427-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.964];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,posteo.de:dkim,posteo.de:email,posteo.de:mid]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 03:52:39PM +0800, Yu-Chun Lin wrote:
-> From: Tzuyi Chang <tychang@realtek.com>
-> 
-> Rename 'realtek,duty-cycle' to 'realtek,pulse-width-adjust'.
-> 
-> The previous name was misleading because this hardware block is not a PWM
-> generator. It does not generate a signal with a specific frequency and
-> duty ratio.
-> 
-> Instead, it provides a fixed nanosecond-level adjustment to the rising/
-> falling edges of an existing signal.
-> 
-> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-> Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
-> ---
->  .../bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml       | 9 ++++++---
->  .../bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml       | 9 ++++++---
->  .../bindings/pinctrl/realtek,rtd1619b-pinctrl.yaml       | 9 ++++++---
->  3 files changed, 18 insertions(+), 9 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml
-> index 90bd49d87d2e..7b3888b2cea8 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml
-> @@ -133,10 +133,13 @@ patternProperties:
->          minimum: 0
->          maximum: 7
->  
-> -      realtek,duty-cycle:
-> +      realtek,pulse-width-adjust:
 
-No, that's ABI break without explanation. "misleading" is not the
-sufficient argument for breaking ABI.
-You are stuck with the ABI you added back in 2023.
+--=-UEj1ciT76eIznC7lX4dC
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Sat, 2026-03-07 at 08:15 +0100, Greg Kroah-Hartman wrote:
+> On Fri, Mar 06, 2026 at 07:38:30PM +0000, Markus Probst wrote:
+> > Add a initial synology microp driver, written in Rust, to the staging t=
+ree.
+> > The driver targets a microcontroller found in Synology NAS devices. It
+> > currently only supports controlling of the power led, status led, alert
+> > led and usb led. Other components such as fan control or handling
+> > on-device buttons will be added once the required rust abstractions are
+> > there.
+> > ---
+> >  MAINTAINERS                                        |   6 +
+> >  drivers/staging/Kconfig                            |   2 +
+> >  drivers/staging/Makefile                           |   1 +
+> >  drivers/staging/synology_microp/Kconfig            |   4 +
+> >  drivers/staging/synology_microp/Makefile           |   2 +
+> >  drivers/staging/synology_microp/TODO               |   8 +
+> >  drivers/staging/synology_microp/command.rs         |  48 +++++
+> >  drivers/staging/synology_microp/led.rs             | 229 +++++++++++++=
+++++++++
+> >  drivers/staging/synology_microp/synology_microp.rs |  73 +++++++
+> >  rust/uapi/uapi_helper.h                            |   2 +
+> >  10 files changed, 375 insertions(+)
+>=20
+> No signed-off-by?
+Signed-off-by: Markus Probst <markus.probst@posteo.de>
 
+>=20
+> And why staging?  That's for stuff that needs obvious cleanups done to
+> it, you don't list that here.
+Because the driver is not done yet. There are components that do not
+exist yet, because the rust abstractions are missing.
+
+Merging an initial version of this driver into staging makes it
+possible for the serdev and led rust abstractions to be merged (as
+their now exists a driver). After this I can work on the missing rust
+abstractions.
+
+Once the driver is complete, is can be moved into the mfd tree.
+
+>=20
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index e9e83ab552c7..a1f8dec31db2 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -25143,6 +25143,12 @@ L:	linux-fbdev@vger.kernel.org
+> >  S:	Maintained
+> >  F:	drivers/staging/sm750fb/
+> > =20
+> > +STAGING - SYNOLOGY MICROP DRIVER
+> > +M:  Markus Probst <markus.probst@posteo.de>
+> > +S:  Maintained
+> > +F: Documentation/devicetree/bindings/mfd/synology,microp.yaml
+> > +F: drivers/staging/synology_microp/
+>=20
+> No tabs?
+Will be fixed.
+
+>=20
+> thanks,
+>=20
+> greg k-h
+
+Thanks
+- Markus Probst
+
+--=-UEj1ciT76eIznC7lX4dC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmsIPIbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSvsYQAIEgoTQripeEonZYf2T+
+I11oZrrA0SUhwn/jkGjIjlT7l+4DLf2cchXwnBs8PpRXk0RWh+ujD3VmhZp+sbZ8
+IvfEHg1djnWT804ytrHYoeL8/DiQQuOdpkElqn8JeqIasL0CL1KMFaNoaEoCQgU1
+BgWI7hPkObgoNTa67OWJTq8co9OX/E6Cs80FtpD+8Y2Wbwg+c7+bM85Opt6lEzDR
+ZcxsfJKRyF64bJVjZr3SlBk4QDT3Gr62Et87DRk9ydI/U1lFv1LEcZ9baEfHX35F
+CK4Z/l3CUfEBNYi97+RKeE3neBTvEZc3mvXxDbuk/jZi5ltU3NFkjij+E3LNG1TS
+IAzGenjxpFXLQgq4HWvfGPHT+6+hnN6Ba1yM38l7xn9sWMac8hxeBBEsEGNgJ12m
+UlFcTaymHmNXrGR+oPrCbk8+QYiZeJdWqpYJG6ZyH4tndx2olqphGj678rCjAz3t
+lAeF+hycyVoWPQZ8tEVaPzNP6N+OH6KDibDByVv0YIRgA2LLdCrBciBkRjRlChiM
+0K4Eprc8WPmHryp2o1JIXWv4IpK0RDjsLYS4csZaYjjh4Ue0YkJX35sxwp8DDFJH
+b8azPrU0m1TvpFqnbwNNUZ7WzeqJuhs/0+9fvBM3Kd0qlQwzxDDQcOVCEObr1Gm/
+WTx2OyRxSU6FDU9eTsmICUEj
+=5+ov
+-----END PGP SIGNATURE-----
+
+--=-UEj1ciT76eIznC7lX4dC--
 
