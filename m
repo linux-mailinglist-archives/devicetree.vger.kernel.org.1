@@ -1,209 +1,257 @@
-Return-Path: <devicetree+bounces-272514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272515-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCXnNuRyrGkQpwEAu9opvQ
-	(envelope-from <devicetree+bounces-272514-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 19:48:04 +0100
+	id eAR+FBNzrGkQpwEAu9opvQ
+	(envelope-from <devicetree+bounces-272515-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 19:48:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B91922D440
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 19:48:03 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 421F522D44F
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 19:48:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DDDD93011064
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 18:48:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 15E1030074EB
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 18:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40A2372B44;
-	Sat,  7 Mar 2026 18:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D3A38E11C;
+	Sat,  7 Mar 2026 18:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ik86ib/k"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yUgq4Yl+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69CB21ADC83
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 18:47:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4D23603E7
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 18:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772909280; cv=none; b=mymtV7uGuxFQf+UJCYyPqkmQRk+E1GplMavaf2GEhRs4I1HbNo54qfJJvxd50bSS933ubmF+ALpQWmrHbyj7gRvzLdjVhflALGs9/mcmbjG+q7gEam/QmkyGbKza8qaKIcPX8crWDW4agMY3EdwsgckKbJWbGYSF+KL+cOr3J5A=
+	t=1772909326; cv=none; b=UgF9t0WxXdNnNm+TWr4Yo0B4gzp01hbMFQSyFdVqiI3MxhwS4hFCKOZjjqNyf9CGwlBzVcDmQk49NUSrwEJBY+oU8q+oI/0yHCTEsU7tFrhUegXg4s/kvcbgYPdp+UJ0auj8JV3GqwRnxLgTmlHx3X1roAOsTUEi1S0OQFOHlmg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772909280; c=relaxed/simple;
-	bh=YdVEPVjV6iHxtNwNNftWEYvRTufEH+5D6Xi8HPm8yZ0=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nBSPJUvzJaPgDw3Rpme1N2A/5BxQvChuHaAY1kKwCpC3o6XjI7Kr5gikyye5K42DDFfcrKiOyZEA7xvFJ3Hwehul88AvxLZjbOHcmYKLpXiLkuHQ4znU2r+dR9CyTqNqo0Cz8VvgCDXC5ko6d5paV6jYUMSZoAAHD/moWVpEbec=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ik86ib/k; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-439cd6b09f8so2542291f8f.3
-        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 10:47:59 -0800 (PST)
+	s=arc-20240116; t=1772909326; c=relaxed/simple;
+	bh=bvfLL6leUe4v0YQLR29E1NV0KASf+WoG0ivWe/d+DYE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=G2h0rTiJYRLeABGvpd/MJlDxIRNdpNcyQ2dnOuZtnQtEutD6+Fni+clGvKduRLq+z8qD/OlOKFV8Or4ko+O7DhQkUrwQJlFqxW+MMBxzEHFtW9mof36wQOVJQXCu2qlkRUtJXS4k/bdBxE9izxkV6nniAVvRV/X8bsbMpIFjMqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yUgq4Yl+; arc=none smtp.client-ip=209.85.167.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f175.google.com with SMTP id 5614622812f47-466effa81c6so337880b6e.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 10:48:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772909278; x=1773514078; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fePtVH1XrSdcxkm/f3Lu86HTCbPhsyR6IapTe3JHplY=;
-        b=ik86ib/kulNvjYDMX19tyWaTGAHSiPP2Srb4IJJqR9QG2/5vRGHbWajSvdVZZfhnux
-         0fjlvJKw6l7yRJ5WZJAPI+fFW9R3XwkI+niv9t8QqEm0vZbNs4SEyOnauzvbYdYkq28J
-         76PA6Q8EEXp3aXDIDuU0FIZH4iDLS+Dqczi+/AIge434xrLjV+kf0MJ6hljAR2GC0TJd
-         HOJ2LqR1z8ge0Tq6agU3y/Qdo90GYCoIt+bGFX5NeBJxfIsMSOybUEwbytpDJkZEiCGT
-         vr/rZE7zkMvxkf9PbHW9CPq368t6HapYtV+me6HoGZzMlzHukbd4EfpnhDrzBBUqtvHV
-         dp6A==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772909323; x=1773514123; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QlZl3jF6Nh0Vyp4ww6yN7e366IjMVaugVNe/3eEWvKY=;
+        b=yUgq4Yl+l5N9hLx0mBM11VFPHyeNqV7JRkiWhEj6Uycm35A75C2tNpO3R58XL99OgN
+         ZOc/oDSYY7aWwegtq/9S/3K+g+Sr6aYeeuBRhw8oJlZs0RlkoDXgV39W9PUWUX3kN3MX
+         z4XkS/HhYTS2u8DaGYAxRIDKaMig8H4MPcympxkK7IK76k2bz1ySiGYXFe/fIWYOqO/t
+         sd5Oe2ewRa5lUyhuj9loPeXdgavZ4QMnPS4/LXM2Ic1MF28iBc6tCv9jNEEDdCPIiWwT
+         Zpczsz8lb5xjIpeJK8OCwFCuosC57RoDriTwIuZ8ToF/typXPt/WfFbxWOD9RNixh0bJ
+         TmyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772909278; x=1773514078;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fePtVH1XrSdcxkm/f3Lu86HTCbPhsyR6IapTe3JHplY=;
-        b=uZvI11kNXcqC2vEwRWhj7ry/91UpgrBpugZUQjnqaO9gz34GC2rADpkezOky88xLzG
-         4ZLqTv8bsmFR8Hng1VCA0uo+S8CAZD/dcI551gg/bsLA8qMcaCoixQakm1mJGHime/V4
-         Jjw1KmjRO+xLIfj6CS8RgIs2UhVrA8i73GZw2lz9vYUcgQmQXr3uU2fiMCopdKdEiUOv
-         Q8AmZYtbZG4C2xlH6kcXuvr2luxnrve1lnki/JM9BRifx8zjEPguLy8bhRMI0Ty84bAE
-         ZJ12pSUm9RNjb5rOpa9PTCDh/poSDFfg2QeqyDYpZe+9BBqgFfuCAA7qkJ3y3UclejmI
-         RShg==
-X-Forwarded-Encrypted: i=1; AJvYcCUI5Mx++Qn08/r4RbZk+Z8jEgF58ZGWtU6YU9BAjWzY1sGJ0BTLz8z8i+jP+tIv2XhMxFyObOgjptCj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyO59v8JaMY88k/CyAC9a0QLYaMrgefqN055k6+i4fWgf2oGiHy
-	ez0wVmfgO9ZiQlZzVGnZMcq9MEXxGCzbVgV3a7CJTA9nBghq5BOe16NP
-X-Gm-Gg: ATEYQzxwjM809AtMiUG/vmrjIishu2JQTrvmNRlFOlQ9C+3iI68DfUSb5HSxYbsKd6l
-	GY7LjP3ziEdJ6u9+jzB249ht4QdJ2vF+6SaAi7PXsC5xmpdFo266+xmMHmNW4G9slTU4bmQsAox
-	iHwIDTc8Ct2qkyGYNq9lpOqLAiKhnTaHHmkxVc74nu2CMMMOXKoXREp60EFnYeb+4tnmb1W8QkT
-	oOUP8XeewB9Y/2mPeljSI4Q65ukE5zrqlwQ8GzW7Z+q9OiYKe6RGoIs/VYIR76d0hgFUqDO7xB1
-	lLCOt/ksTsgxSF7pObGFyNC/qDkgd96Gjoiby+PjJuX9RjCcZxym3ZRyteXGLLvL3jihGYHzJAq
-	YUuYOKNA6zUzzQdjHKixoNwLL14lpmvqx+8gg800ahz+iYgC8MmxdSiiWZi9EYOcUh5VVSQ23J4
-	FTUevoKePMis9Bv/N/DUr0wrQ0S9earTR9qvZOTOg3rZrS+v3XCALiOQ==
-X-Received: by 2002:a05:6000:401e:b0:439:b3f1:8011 with SMTP id ffacd0b85a97d-439da35f838mr11120861f8f.29.1772909277570;
-        Sat, 07 Mar 2026 10:47:57 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-88-122.ip49.fastwebnet.it. [93.34.88.122])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae3c80esm11455641f8f.29.2026.03.07.10.47.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Mar 2026 10:47:57 -0800 (PST)
-Message-ID: <69ac72dd.df0a0220.a3fa6.8d4f@mx.google.com>
-X-Google-Original-Message-ID: <aaxy2m9QxsbU0hRM@Ansuel-XPS.>
-Date: Sat, 7 Mar 2026 19:47:54 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/4] phy: airoha: Add support for Airoha AN7581 USB PHY
-References: <20260306190156.22297-1-ansuelsmth@gmail.com>
- <20260306190156.22297-5-ansuelsmth@gmail.com>
- <20260307-otter-of-imminent-merriment-d3475d@quoll>
- <69abffe6.050a0220.18164c.58d6@mx.google.com>
- <52123051-0d2d-42b2-b677-99a5de0f2c4e@kernel.org>
- <69ac04a6.5d0a0220.2969f9.9d81@mx.google.com>
- <abbf81f7-556b-4fb0-9fb7-41f4c730f1d6@kernel.org>
+        d=1e100.net; s=20230601; t=1772909323; x=1773514123;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QlZl3jF6Nh0Vyp4ww6yN7e366IjMVaugVNe/3eEWvKY=;
+        b=FeKc7YJPlbTXfj+6t6EylJDK7qQo+ZseKfCgSUSECejOjzICEqt9EHt7hjhC3eh0is
+         dfAElIfl7lgmnXj8lrXPDOJRZjvQClAvHesHzlacr0CyXRcnZbXgdXNpBoeqO3u5q64Y
+         PsmG0iIu9rG9AYC4mTJjtRAvUELjXBpQCxE36OV7EDH8n87PnfISad8wRO+9/hdrjZFH
+         Y+z+PlHopvuMM9HVqIOjf9XOdWY1yRe68oivu0Ykdsj8vNFa7cdoeBngS86mmVdIkZ7E
+         YKl7qR+H7jtmiANH0tLHloPJDRQquXAZWmqNo635p9+HGQAaIuY0OjwTmNLbuF7g+nmj
+         JQsA==
+X-Forwarded-Encrypted: i=1; AJvYcCXoMSHIMFVzllB9R26ic1NlLiR04ZO6oM79VsU40IHVVkWw6lKCaYATuR5MlJjmO+zY7lVUVJMwfpP2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnG75hbhVnT8rgPi5/le4+PYbhuuHmRMvJZbO6u1i2OKziIiO6
+	0IL+3LyRINxIHrl/drpMSJsj3jRTCzw9kian+8czh2X50SKazzB7DqVYCGbNi/nCUiA=
+X-Gm-Gg: ATEYQzxlyUaD2Og7qDjoQ9Rpoz46oAcq1YFdrr+LmWzcRdxVyQtPc2UihzHFjSHkNfE
+	m3fCBZBIKkuRo9gHGeaT7/Oa1+eIQg91AqHFmCXxAbSu6Pb9lWZgXpYawBzObuImBr2jLft0OEX
+	VEl6RlM0JQFPtFz8AxQadbIB4OjibXi3AOW9Qs1ChHwj3n8NWqJ+RDSBknEMHPIapeaXd+dwN6V
+	GifOYo/pTUPfmMiwL6BnKjP/wU4OsNWwIF30Lz6MNvbXtPF4e8SCUqKOM8Ug+unC7qbbGc6fAuu
+	h+30Z1iTqb/ezsMvfiXyrlAHPUn7Gz/HHFQzT1cbCh8fnnTA87o2khbLh3DWI/bOnBaV4Iu+Frb
+	TqA11ot0PCKMFPb4bwQYdBHHSyVc3LIOGaI6WChkW1l3lFG9YkgD0ZSPyIaIBBWKSI5hqmyDPQ/
+	lPT++k5zZsxr8QxGL11ojcoUcOQXjiY3KV69kcojNTlSqbbvQ1VUbI74jhpargUq2R/DxSmbnA1
+	w==
+X-Received: by 2002:a05:6808:830d:b0:466:ee4c:6f13 with SMTP id 5614622812f47-466ee4cb6a3mr844147b6e.2.1772909322858;
+        Sat, 07 Mar 2026 10:48:42 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:cccf:5174:fa72:c520? ([2600:8803:e7e4:500:cccf:5174:fa72:c520])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-466df96b093sm2925084b6e.5.2026.03.07.10.48.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Mar 2026 10:48:42 -0800 (PST)
+Message-ID: <08717cd6-a732-4f06-a6f1-8cbdaa755b78@baylibre.com>
+Date: Sat, 7 Mar 2026 12:48:39 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <abbf81f7-556b-4fb0-9fb7-41f4c730f1d6@kernel.org>
-X-Rspamd-Queue-Id: 5B91922D440
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: add bindings for AD4691 family
+To: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>,
+ Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+ "Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bartosz Golaszewski <brgl@kernel.org>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
+ <20260305-ad4692-multichannel-sar-adc-driver-v1-1-336229a8dcc7@analog.com>
+ <20260305174559.1ded5173@jic23-huawei>
+ <LV9PR03MB84149F32D4CABA4D2827D85BF77AA@LV9PR03MB8414.namprd03.prod.outlook.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <LV9PR03MB84149F32D4CABA4D2827D85BF77AA@LV9PR03MB8414.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 421F522D44F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,gmail.com,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272514-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
+	TAGGED_FROM(0.00)[bounces-272515-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ansuelsmth@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.864];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Sat, Mar 07, 2026 at 05:38:25PM +0100, Krzysztof Kozlowski wrote:
-> On 07/03/2026 11:57, Christian Marangi wrote:
-> > On Sat, Mar 07, 2026 at 11:40:48AM +0100, Krzysztof Kozlowski wrote:
-> >> On 07/03/2026 11:37, Christian Marangi wrote:
-> >>>>> +
-> >>>>> +		if (phy_type == PHY_TYPE_USB3) {
-> >>>>> +			ret = of_property_read_u32(dev->of_node, "airoha,usb3-serdes",
-> >>>>> +						   &priv->serdes_port);
-> >>>>> +			if (ret)
-> >>>>> +				return dev_err_probe(dev, ret, "missing serdes line for USB 3.0\n");
-> >>>>> +
-> >>>>> +			priv->scu = syscon_regmap_lookup_by_compatible("airoha,en7581-scu");
-> >>>>
-> >>>> Nope, you need phandle to express proper device links.
-> >>>>
-> >>>> Don't sprinkle compatible lookups for new code which does not need to
-> >>>> keep things backwards compatible. How do you manage device links
-> >>>> without phandle? How do you manage device probe ordering?
-> >>>>
-> >>>
-> >>> Hi,
-> >>>
-> >>> the phandle to SCU was present in old implementation but later dropped as it was
-> >>> said that it wouldn't describe the HW.
-> >>
-> >>
-> >> I went through v3 review and I did not find such said arguments. Can you
-> >> point me to it?
-> >>
-> >>
-> > 
-> > Here was v2 [0] that was clock + USB PHY. (there were clock stuff as the SCU
-> > implementation was different) The link wasn't added in the changelog as it's
-> > quite different than this current series.
-> > 
-> > In patch 7 Rob pointed out that serdes-port + scu was a bit unusual.
-> > 
-> > Then the implementation changed in favor of a more simple one where it's the PHY
-> > that configure everything and in this new version the usage of the SCU phandle
-> > is really to just get the regmap and modify the single bit to select the PHY
-> > path/mode for USB 3.0. (it's mainly the reason the SCU is referenced directly
-> > with a compatible instead of a phandle, in the previous implementation we used a
-> > function exposed by the SCU SSR, while in this it's just a regmap that can
-> > PROBE_DEFER)
-> > 
-> > Rob suggested an additional layer (a PHY) to handle this but I don't feel it
-> > would actually describe the HW this way as that bit doesn't modify another PHY
-> > but it just toggle the mode to the related USB 3.0 PHY.
-> > 
-> > This is really another case of not-so-organized register mapping on the SoC.
-> > 
-> > [0] https://lore.kernel.org/all/20250320130054.4804-1-ansuelsmth@gmail.com/
+On 3/6/26 5:55 AM, Sabau, Radu bogdan wrote:
 > 
 > 
-> That's the cover letter. I guess you did not implement Rob's feedback,
-> either. This is either phy (for phy) as Rob asked or scu phandle.
-> Removing scu phandle and not implementing phy is not what Rob proposed.
+>> -----Original Message-----
+>> From: Jonathan Cameron <jic23@kernel.org>
+>> Sent: Thursday, March 5, 2026 7:46 PM
+>> To: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+>> Cc: Sabau, Radu bogdan <Radu.Sabau@analog.com>; Lars-Peter Clausen <lars@metafoo.de>; Hennerich, Michael
+>> <Michael.Hennerich@analog.com>; David Lechner <dlechner@baylibre.com>; Sa, Nuno <Nuno.Sa@analog.com>; Andy Shevchenko
+>> <andy@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+>> Uwe Kleine-König <ukleinek@kernel.org>; Liam Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>; Linus Walleij
+>> <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>; linux-iio@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-pwm@vger.kernel.org; linux-gpio@vger.kernel.org
+>> Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: add bindings for AD4691 family
+>>
+>> [External]
+>>
+>> On Thu, 05 Mar 2026 14:23:27 +0200
+>> Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org> wrote:
+>>
+>>> From: Radu Sabau <radu.sabau@analog.com>
+>>>
+>>> Add YAML bindings and dt-bindings header for the Analog Devices AD4691
+>>> family of multichannel SAR ADCs (AD4691, AD4692, AD4693, AD4694).
+>>>
+>>> The binding describes five operating modes selectable via the
+>>> adi,spi-mode property, optional PWM/clock for CNV Clock and CNV Burst
+>>> modes, GPIO pins, voltage supplies and the trigger-source interface for
+>>> SPI Engine offload operation.
+>>>
+>>> Signed-off-by: Radu Sabau <radu.sabau@analog.com>
+>>
+>> Hi Radu, I'm going to focus on mode... Mostly because things called
+>> mode are usually a sign of mixing up different aspects of the board
+>> design...
+>>
+> Hi Jonathan, Krysztof,
+> 
+> Thank you guys so much for your review.
+> 
+> Regarding 'mode', I agree that it should be something that could be modified
+> at run-time, especially since all register modes (CNV_CLOCK, CNV_BURST,
+> AUTONOMOUS and SPI_BURST) rely on the same principles of reading the
+> ADC result from the registers, the main difference being that PWM on the
+> CNV pin is required for CNV_CLOCK and CNV_BURST, but the board design
+> stays the same. Perhaps this PWM can be initialized at start-time and only
+> be used when CNV modes are being used. This would mean mode can
+> become an IIO attribute that could be set by the user at run-time.
+
+More likely, it would be two different ways of doing a buffered read,
+so maybe two different buffers? Or just pick the "best" one and only
+implement that mode.
+
+> 
+> However for MANUAL, modifications of jumper resistors on the physical
+> board is required for proper functionality, since the CNV pin needs to be
+> tied to CS in this mode. Would it be preferred if bindings would have a
+> 'register-mode' attribute (the name could be better) which can have values
+> like 1(register modes are used) and 1(manual mode is used), and for
+> register modes, have a global IIO attribute that can switch between
+> them?
 > 
 
-It was to give the full series. The specific comment from Rob was [0].
+The binding should describe how the chip is wired up. So rather than thinking
+about modes, try thinking in terms of connections. Based on what the devicetree
+says is connected, the driver can then infer which modes are actually possible.
 
-SCU phandle is going back to the old dual binding that Rob was against but PHY
-for PHY would not be descriptive of the HW.
+Bringing back some context that was trimmed:
 
-I can do that but would it be correct?
++  adi,spi-mode:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3, 4]
++    description: |
++      Selects the ADC operating mode:
++        0 - CNV Clock Mode: External PWM drives CNV pin, samples at PWM rate.
++        1 - CNV Burst Mode: PWM triggers burst cycles, internal oscillator
++            drives conversions within each burst.
++        2 - Autonomous Mode: Internal oscillator drives conversions, software
++            starts/stops via register write.
++        3 - SPI Burst Mode: Similar to Autonomous Mode but optimized for
++            SPI burst reads.
++        4 - Manual Mode: CNV is directly tied to SPI CS. Each SPI transfer
++            triggers a conversion and returns previous result (pipelined).
 
-[0] https://lore.kernel.org/all/20250324154919.GA101272-robh@kernel.org/
 
--- 
-	Ansuel
+It sounds like there are 3 ways that the CNV pin could be wired up:
+
+1. Wired to PWM
+2. Not connected
+3. Wired to CS
+
+On some other chips we've seen where CNV could be wired up different ways,
+"not connected" was not an option. In those cases, we could infer that if
+that no other properties indicated what CNV was connected to, then we would
+assume CNV was connected to SPI CS.
+
+In this case, if "not connected" is an option, we might need a bool/flag
+property adi,cnv-is-cs to describe that the CNV pin is wired to the CS pin.
+And we already have the pwms property to know when CNV is connected to a
+PWM.
+
+
+> Please let me know your thoughts on this before addressing the other
+> Comments and preparing other patches.
+> 
+> Best regards,
+> Radu
+> 
 
