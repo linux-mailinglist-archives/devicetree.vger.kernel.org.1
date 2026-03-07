@@ -1,158 +1,162 @@
-Return-Path: <devicetree+bounces-272356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272357-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPK7EVBoq2kfcwEAu9opvQ
-	(envelope-from <devicetree+bounces-272356-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 00:50:40 +0100
+	id wP1mMM1rq2kHdAEAu9opvQ
+	(envelope-from <devicetree+bounces-272357-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:05:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2794228DBB
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 00:50:39 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23CF4228E59
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:05:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 19AF8302796F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Mar 2026 23:50:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A1940301829C
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 00:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62B473A4F2D;
-	Fri,  6 Mar 2026 23:50:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B88381C4;
+	Sat,  7 Mar 2026 00:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="WLz4UxpZ"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="NztodOTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B261C72627
-	for <devicetree@vger.kernel.org>; Fri,  6 Mar 2026 23:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23201C13B;
+	Sat,  7 Mar 2026 00:05:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772841034; cv=none; b=sCcWe6L0C/GQNbasmuWCQPAFjdwA7RfFd7CatxSqChytx/dXlrCiSlVWK3u2B9fk1pAZUa2NvgHAKLVNrsMWOg+P7iHewQypR9Mnh0vkrIbL4OPfIJ5WjF3q77ain+eT4fImyrfSKDkJj4y1eF7CMM+rDVkVwRqQSiNZDfzrLLY=
+	t=1772841931; cv=none; b=M6rGDqflgAQz+/WAuyTmkWNwbmrMy3d1z80/Yig13rCZmR6vyicW/iOLg9BVZ+Wo0WStNMXM77ONYuvVglZz8iApNx3QPxuHVb2+5Omk8ui4CJthw9uRgHRkyN+jjfwF1s0xqOtFxPH7yQQtZBt8FIHF4VwhWVq4ubm0MW0YK2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772841034; c=relaxed/simple;
-	bh=kg8aIkN5/Mlt50kCLPideDh+dyMujVE5N17P9dlBFOA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=JmlKq46vCwnUNvd+zfI+kNIl/3tmDtGhGYQwZpMtxywjX/rzeurFdoj0Mp9eqkCb9GpIyZInIZWtvI1S57Lj9EWW6IgaKNWHAtn/gGADU1Z9kNqxYihUkPRQvo9dWTk2Vxyt2/Ekkn09MRzVu1WOw5xGw+fTHh1vpL9DH0OjQBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=WLz4UxpZ; arc=none smtp.client-ip=121.127.44.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: References: Cc:
- To: From: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1772841025;
- bh=7TpbWWX1cj1QogQtOXMz884aeH8NNZvqQ7fJ4Elb1a4=;
- b=WLz4UxpZz2cHHWeIlEpaCrfGVGI6FsAwm7Uvq+dNTfgASzhQLiBkt9QYdpJ0q8WPyOaF8Yqzl
- wOwQWc8akhsYi94HwyDVYK/UPVgPIEnZM1ru9OE4X7hDztLtE4ChcS5MQxVFNlDe2mnAeDxPsjZ
- dzQqhWgpo9+L5RhImdSwRMU4s1Z/boRMRKDRlJ1nDPRqGPjfSwZFQc7gTavlaDz9qYCCC34NXww
- aA7aURNXjEPkZwEeok+dNx844lSZFcUBqv3Hj8GuCpyK0oQ8xA6ud76HLCuaP2Bat/kbZgEcOeB
- 2J5gPvwjelC4ORK3nbojiOKMqo62Bq85wMDi5pfkRyiw==
-X-Forward-Email-ID: 69ab683dce06037f1b6bb7be
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 121.127.44.73
-X-Forward-Email-Version: 2.6.39
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <3a42ce98-b552-43d2-aaf3-8ca071c3afd3@kwiboo.se>
-Date: Sat, 7 Mar 2026 00:50:16 +0100
+	s=arc-20240116; t=1772841931; c=relaxed/simple;
+	bh=h1a75gdjqpmW7z6/ZJFcSnXVV4clbTBNT+a53CyNqlw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GrqneUwxF/xKqc9r8l2X8GE4YB66GvpWE/afRce0XdRpqWXBt1nZUIUGhswU+IOISgq5QNZZ+L14xkyKJ/UkrawuUI2nFCTHHG18W+TPeYHeExtA6q7ZDfHB4lh+p8MJBWJ+utdIv2eUOev2zfqMWAJ9gb8oQEOJSJgfrEJeQUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=NztodOTZ; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=FsRPNID5PAvwSRgv4YV66cyR8EgMHDZN2LmKg1jcxCM=; b=NztodOTZPF9ce0GYVQJAZ+0fjy
+	KV4HTH+asXGOH0lQE3k6M2wop9lFdAzefd7jR5MM3xj6q8N9PcSjGV0+uf+jrpaeoFvji0BdL9dnf
+	SANdQViLj+hPkphrXXTiUBm3G8E8vFbOOT/tw9VmMZNTdPJfmulOohOFPbs1aoVq0Vv34oDYuT5tu
+	+p0BYZlh2rO8i4xrXVofszwbHZYp/eak0RGso5AItkqLKHWlhNHGaookuQCJEXpp06fCnenMRzzop
+	Zb7/tyfFyNR6UPxCNJ4KbGbLWyGo+0L9VgPy+xt/01N1ztatymJKwIGpIEOAG6JGhh7bXGKEfUovm
+	2YYtpyPg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59864)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1vyfAY-000000001gD-1Kzj;
+	Sat, 07 Mar 2026 00:05:22 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1vyfAU-000000001pI-2HLV;
+	Sat, 07 Mar 2026 00:05:18 +0000
+Date: Sat, 7 Mar 2026 00:05:18 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jakub Kicinski <kuba@kernel.org>, Jose Abreu <joabreu@synopsys.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mark unimplemented AXI snps,kbbe snps,mb
+ and snps,rb
+Message-ID: <aatrvmyW-SaHuVN7@shell.armlinux.org.uk>
+References: <E1vxq3L-0000000BsQm-4C8v@rmk-PC.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/6] Raspberry Pi HEVC decoder driver
-From: Jonas Karlman <jonas@kwiboo.se>
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: John Cox <john.cox@raspberrypi.com>, Dom Cobley <dom@raspberrypi.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- review list <kernel-list@raspberrypi.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- John Cox <jc@kynesim.co.uk>, Stefan Wahren <wahrenst@gmx.net>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Krzysztof Kozlowski <krzk@kernel.org>
-References: <20260304-media-rpi-hevc-dec-v6-0-93868ae6dff8@raspberrypi.com>
- <1d666c43-688b-4cc1-aeed-5296d2608327@kwiboo.se>
-Content-Language: en-US
-In-Reply-To: <1d666c43-688b-4cc1-aeed-5296d2608327@kwiboo.se>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: C2794228DBB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <E1vxq3L-0000000BsQm-4C8v@rmk-PC.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Rspamd-Queue-Id: 23CF4228E59
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kwiboo.se,quarantine];
-	R_DKIM_ALLOW(-0.20)[kwiboo.se:s=fe-e1b5cab7be];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272356-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272357-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[armlinux.org.uk:-];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[raspberrypi.com,linux.intel.com,ideasonboard.com,kernel.org,broadcom.com,vanguardiasur.com.ar,collabora.com,kynesim.co.uk,gmx.net,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonas@kwiboo.se,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kwiboo.se:+];
-	NEURAL_HAM(-0.00)[-0.988];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,kwiboo.se:dkim,kwiboo.se:mid,ffmpeg.org:url]
+	NEURAL_SPAM(0.00)[0.107];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi again,
+Any chance of a review from the DT maintainers please?
 
-[snip]
+Thanks.
 
->> Testing is with a downstream patchset to FFmpeg. I'm told FFmpeg
->> currently has no stateless decode support, but we will be reviewing
->> works that have been in progress and our downstream patches to see
->> whether that can be pushed onwards.
+On Wed, Mar 04, 2026 at 05:30:32PM +0000, Russell King (Oracle) wrote:
+> Mark the AXI snps,kbbe snps,mb and snps,rb properties as not
+> implemented. These were introduced by commit afea03656add ("stmmac:
+> rework DMA bus setting and introduce new platform AXI structure").
+> While stmmac has code to parse these properties and save their values,
+> these are written to write-only struct members - no code in stmmac
+> has ever read their value. Hence, these properties have been non-
+> functional from day one.
 > 
-> Please see FFmpeg PR20847 "Add V4L2 Request API hwaccels for MPEG2,
-> H.264, HEVC, VP8, VP9 and AV1" [1] for pending upstream FFmpeg work.
+> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
+> ---
+>  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> My 4l2request-v3-pixfmts branch [2] also contains extra commit to make
-> it work with downstream rpi kernel version, using non-MT pixfmts.
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index 38bc34dc4f09..45dba6533458 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -202,11 +202,11 @@ title: Synopsys DesignWare MAC
+>          * snps,xit_frm, unlock on WoL
+>          * snps,wr_osr_lmt, max write outstanding req. limit
+>          * snps,rd_osr_lmt, max read outstanding req. limit
+> -        * snps,kbbe, do not cross 1KiB boundary.
+> +        * snps,kbbe, do not cross 1KiB boundary (not implemented)
+>          * snps,blen, this is a vector of supported burst length.
+>          * snps,fb, fixed-burst
+> -        * snps,mb, mixed-burst
+> -        * snps,rb, rebuild INCRx Burst
+> +        * snps,mb, mixed-burst (not implemented)
+> +        * snps,rb, rebuild INCRx Burst (not implemented)
+>  
+>    snps,mtl-rx-config:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+> -- 
+> 2.47.3
 > 
-> I will give this a spin together with the FFmpeg PR, adding support for
-> the MT based pixfmts should hopefully be easy.
-
-My FFmpeg v4l2request-v3-pixfmts branch [2] got a small update that adds
-support for this decoder and pix formats. Tested on a rpi5 using the
-downstream rpi-6.18 kernel and kodi-gbm for visual playback confirmation.
-
-  [AVHWFramesContext @ 0x7ffeb81abc50] Using V4L2 media driver rpi-hevc-dec (6.18.15) for S265
-  [AVHWFramesContext @ 0x7ffeb81abc50] Using CAPTURE buffer format Nc12 (1920x1088)
-  [V4L2RequestContext @ 0x7ffeb81abb00] frame-based decoder with SLICE_PARAMS=600, ENTRY_POINT_OFFSETS=0 and SCALING_MATRIX=1 controls
-
-Will update the main FFmpeg PR (and backport branches) with the required
-changes after some more testing.
-
-Regards,
-Jonas
-
-> [1] https://code.ffmpeg.org/FFmpeg/FFmpeg/pulls/20847
-> [2] https://code.ffmpeg.org/Kwiboo/FFmpeg/commits/branch/v4l2request-v3-pixfmts
 > 
-> Regards,
-> Jonas
 
-[snip]
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
