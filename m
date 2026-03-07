@@ -1,204 +1,189 @@
-Return-Path: <devicetree+bounces-272386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272387-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCSnAYLgq2mEhgEAu9opvQ
-	(envelope-from <devicetree+bounces-272386-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 09:23:30 +0100
+	id Cid+AO/sq2lziAEAu9opvQ
+	(envelope-from <devicetree+bounces-272387-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 10:16:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C13422AB90
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 09:23:29 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 669B622AD6F
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 10:16:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81C77302336F
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 08:23:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 439AE302428F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 09:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1322387343;
-	Sat,  7 Mar 2026 08:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCDE387568;
+	Sat,  7 Mar 2026 09:16:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="E9nxnjkB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mHZ0QwA3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEEE1D5CFE;
-	Sat,  7 Mar 2026 08:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3098929B20D
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 09:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772871806; cv=none; b=E8xb3mIrie4VScCk9shWyszMiCnFom9cDqdOfa1fHS6rpseyr/ati/wDq3RdTeSq7An8ajogS6GjuRn7h72CPx6K4FvYRKnHzbXtDk4VDFt4ZMCRZx/Fp99UflO8E3oBweRp2XzfWk9LqHSyBV/vLBuQ6pITgHGTmsDWmp1qAdY=
+	t=1772874987; cv=none; b=UcgPIy625oJccXBTXc42Fslbr7ZmT6uVr3Hsia2des4MGLxzmUS4RT2p2IZDIq1/CO2GA12Mi/603VLzjNnkH9+VIJ0XweUp5ndmxoXq5ATed/kN4lqZht0ct0qZfG3PxjmqxMA2SDLh1K+SOhdDie5vzFBaKl1UtUUNXmcxDMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772871806; c=relaxed/simple;
-	bh=2A4UKo2YAqS57Y107N17+GsBt/7b4pueiNXpK/kc18s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a4lTcVkSJz/7azX4jX77mrHItxPLhj4XJtndKeU/8BoSyg22cHKxpIHnJZQU75kLfC+cJZLHQp8ZLHL7o1D3eDLDZwQ1iDpCGTZkSb97azXEZ1vSc9pySbIuUYP9y349fbvBm6dB2Hx3BQ93ylQIUJhGQoSPwYLSOpYGg1YiT+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=E9nxnjkB; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 3BB0D53412FB;
-	Sat, 07 Mar 2026 09:23:15 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1772871795;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=aAypqRBqp9/ve2X/R0yGMfpB4RQj/AD1xn5rsrsNCNo=;
-	b=E9nxnjkBYw3yN6vccoRJ3wNRxDx3eE5ARI4STvlL9iq680QFDipmzaqGDjb/H69o/M47l1
-	90Imn/HV57OXQovxxMQYfQDigMO4PctJdKk2srbt889Q/W+u/reQ/VUXCqk+Jwn9uisZ7O
-	qcJ6z+jeODlS9n+L7NtfSb90tdQOjxI=
-Message-ID: <b2cbd264-55c8-4dda-9545-fa79ce6517c6@ixit.cz>
-Date: Sat, 7 Mar 2026 09:23:14 +0100
+	s=arc-20240116; t=1772874987; c=relaxed/simple;
+	bh=0BeJbyK6IYV+W6lKVToAFbaJYfCIAXJ18MXUNpzvUrk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=l7MkQqH9rFKzknTxnHK2gGK7ObA2+HVZAECejaWbt0/ZPEpJqDhcYU4IzZtdA2oF8umXi1GO3Izk4Lt9lVWJmc/bE6lBgG4H6/aApMUNDQF+7kzh9T8t6yiJVJsQK255N6h+4hYeKhVSQ3ZZkCDD1/JmjkGgOgw/R4B4r8VUPRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mHZ0QwA3; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-2ae4d48dc2fso29609715ad.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 01:16:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772874985; x=1773479785; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pM4veKlw7sYc5J7DCc/SxORcyDfB/eynQvq/fzVIvsk=;
+        b=mHZ0QwA3r7WF5CU7+1hFj1av9+lj/Vt4Mj931T/B2uis9T9p1lF1iUJfygIVNyYoxD
+         2OBDSOvkV5sOu/HCrOxUOBjWdnBj4unIHmwUDEGtdIuFUlgJelR0rjL08i/2Yxwmalz6
+         /vUD1VLBrPdAd5JVWfcBSiJf5BitIw1E4OornHu4b7a6uvfvemxM2ZxOyFCsuc/T7n+1
+         1F5EeDpH/vSAVTzFMS7OnDsPpmOGY7F+KoKRJT45M/EpJRvasbFd/suyFm4XF79ZRnnT
+         ND6h0xYQnwafkHZs6dYZMqGK5eeA60iPx1V8FryKXD29V+kW6s++4emdy96swNxetKD2
+         XT0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772874985; x=1773479785;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pM4veKlw7sYc5J7DCc/SxORcyDfB/eynQvq/fzVIvsk=;
+        b=tjzLFGjuCou4kE8ndWredcWa/wnXh2JsekC9FEK3KD3SCt7eRYluWM+B6bdb4QO5St
+         hz/Gnbwd7cfxGBIYftXHjKC+/3wffSxJiVsg777qOMpE3U0sWbSwKTY0gnXuzZs6uuUG
+         3f307ya6grJt9nqdgRd/KV8YYD/hN6cmS3O+QXiP8C6ClDfsF7OWlfB7iCcS6mWjt1VV
+         8SNpT+sz+2SxWFkLu3LYjhvYyuQx5msEjZFEDIL4amtGKLkSzYAfAYOwo1mZ8B4oKxmn
+         aykQdXwBtRQz3g2R4CzajWtmTNq4t+Ot+jGFr5BI+fXdrB+nNO5dO2t9WOYFFrlzLM4d
+         Klcg==
+X-Forwarded-Encrypted: i=1; AJvYcCVbmf8kj5KzlTNyGmyPJZMJ+pqTUGwJjDLFx5z7k5IqbJHEk06RSZ0kF1sLf4vR93o0itBzVQ9suiDY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPXgjsGSjVUs0gFXVLXue9IwE4nQXU0btcaKlYkqS4mgXRBUaL
+	umumxY9w91V/bVY9AzLzrt5vkbYOJmAMS89YiZTO5S1BaRe46hAs+zbG
+X-Gm-Gg: ATEYQzwi2NqwHyRJswtTonAEiHoLcgNEKi8JNeya0bhLAvHqiM3kgSqceBpZH4d5fjq
+	ODHmkeX0ooKLULg/TsCudLQoA08lRCHQ4pASkNUtF7wB3c2jN0WD/o5ujsWEEQ+ruJI1jA/KvUk
+	knCxBqJJxKFtxsa6AhiCfo1ED9JDkAQnYKfYPEqByBktecIrTzNLUxOETZRUig9Vrp4ur2PVTOM
+	S2FHMowVTPEOjPEQ4vDjO/eqnNWykerspJU/2L/4B0ryXPpFF/5zXDI3zSiEsL0irMVUWTPfw5z
+	sKiILKD5j1c2xgOG1vqb+SShMLHJzL5ekxiOnWkqhK3jx8ZQj1JiUA4/CTmIR71RV/WQaJC5YMf
+	HArmKMLsFitXSuqVUg5Yp2rHKOhU+27vTotAO3v/vfAb33wtHVXKnVBhfyQMDLWYgMIki7oGT7/
+	mOWD+48DFKNC0GalV5S1oNBOy3oZLV9g/5ynLyMizoRhI=
+X-Received: by 2002:a17:903:b4b:b0:2ae:3a77:a1f4 with SMTP id d9443c01a7336-2ae8247ed08mr49240215ad.24.1772874985576;
+        Sat, 07 Mar 2026 01:16:25 -0800 (PST)
+Received: from Black-Pearl.localdomain ([27.7.215.222])
+        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ae83f74e4fsm45569385ad.58.2026.03.07.01.16.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Mar 2026 01:16:24 -0800 (PST)
+From: Charan Pedumuru <charan.pedumuru@gmail.com>
+Subject: [PATCH v3 0/5] dt-bindings: usb: atmel: convert Atmel USB
+ controller bindings to YAML
+Date: Sat, 07 Mar 2026 09:16:17 +0000
+Message-Id: <20260307-atmel-usb-v3-0-3dc48fe772be@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: msm8960: expressatt: Add camera flash
-To: guptarud@gmail.com, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20260306-expressatt_camera_flash-v1-0-b1996f7cdfdd@gmail.com>
- <20260306-expressatt_camera_flash-v1-3-b1996f7cdfdd@gmail.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- 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
-In-Reply-To: <20260306-expressatt_camera_flash-v1-3-b1996f7cdfdd@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 2C13422AB90
+X-B4-Tracking: v=1; b=H4sIAOHsq2kC/02MQQ6DIBQFr2JYl4YPFKWr3qPpguJXSVQasKSN8
+ e5Fu2E5L29mJRGDw0iu1UoCJhednzOIU0XsYOYeqWszE864YsA1NcuEI33HJxV112gDElA2JP9
+ fATv3OVr3R+bBxcWH75FOsK//CmdQVBJQRlswArVgTHRw6yfjxrP1E9kriRcml6XJs6laZRRcr
+ LayLs1t23577oIC3AAAAA==
+X-Change-ID: 20260129-atmel-usb-37f89a141e48
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Herve Codina <herve.codina@bootlin.com>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Charan Pedumuru <charan.pedumuru@gmail.com>
+X-Mailer: b4 0.14.3
+X-Rspamd-Queue-Id: 669B622AD6F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-272387-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272386-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.911];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.975];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ixit.cz:dkim,ixit.cz:email,ixit.cz:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 07/03/2026 01:58, Rudraksha Gupta via B4 Relay wrote:
-> From: Rudraksha Gupta <guptarud@gmail.com>
-> 
-> Add camera flash support for the Samsung Galaxy Express (expressatt).
-> 
-> The flash IC uses a one-wire pulse-count protocol on GPIO 3, gated by
-> PMIC MPP 4 which must be driven high to unlock the flash circuit.
-> 
-> Downstream references:
-> Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/leds/Makefile#L51
-> Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/arch/arm/mach-msm/board-apexq-camera.c#L591
-> 
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
-> ---
->   .../dts/qcom/qcom-msm8960-samsung-expressatt.dts   | 31 ++++++++++++++++++++++
->   1 file changed, 31 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-> index c4b98af6955d..96460775a4ec 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-> @@ -1,5 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
->   #include <dt-bindings/reset/qcom,gcc-msm8960.h>
->   
->   #include "qcom-msm8960.dtsi"
-> @@ -61,6 +62,20 @@ touchkey_enable: touchkey-enable {
->   		regulator-boot-on;
->   	};
->   
-> +	camera_flash: led-controller {
-> +		compatible = "richtek,rt8515";
-> +		enf-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
-> +		unlock-gpios = <&pm8921_mpps 4 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&cam_flash_en>;
-> +
+This patch series converts the legacy text-based Device Tree bindings for
+Atmel/Microchip USB controllers to DT schema (YAML) format.
 
-LGTM, just please order pinctrl-n before pinctrl-names :)
+Note:
+The patch "dt-bindings: usb: atmel,at91sam9rl-udc: convert to DT schema"
+depends on the patch "arm: dts: at91: remove unused #address-cells/#size-cells
+from sam9x60 UDC node". If the DT schema patch is applied before the DTS
+cleanup patch, `dtbs_check` will fail due to the presence of the removed
+properties in the existing DTS.
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
+Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
+---
+Changes in v3:
+- sam9x60: Add a new patch removing the unnecessary #address-cells and
+  #size-cells properties from the sam9x60 UDC node.
+- atmel,at91sam9rl-udc: Remove #address-cells and #size-cells from the
+  atmel,at91sam9rl-udc binding properties.
+- generic-ohci: Add an else condition to the generic-ohci schema properties
+  for improved validation precision.
+- Link to v2: https://lore.kernel.org/r/20260224-atmel-usb-v2-0-6d6a615c9c47@gmail.com
 
-Nitpick: if you can, add phone-devel@vger.kernel.org for next time,
-it's easier to distinguish the phone patches in huge linux-arm-msm pile :)
+Changes in v2:
+- Drop the separate YAML patches for OHCI and EHCI.
+- Add the compatibles "atmel,at91rm9200-ohci" and "atmel,at91sam9g45-ehci"
+  to the existing generic OHCI and EHCI binding files.
+- Link to v1: https://lore.kernel.org/r/20260201-atmel-usb-v1-0-d1a3e93003f1@gmail.com
 
-David
+---
+Charan Pedumuru (5):
+      arm: dts: at91: remove unused #address-cells/#size-cells from sam9x60 udc node
+      dt-bindings: usb: generic-ohci: add AT91RM9200 OHCI binding support
+      dt-bindings: usb: generic-ehci: fix schema structure and add at91sam9g45 constraints
+      dt-bindings: usb: atmel,at91rm9200-udc: convert to DT schema
+      dt-bindings: usb: atmel,at91sam9rl-udc: convert to DT schema
 
+ .../bindings/usb/atmel,at91rm9200-udc.yaml         |  77 +++++++++++++
+ .../bindings/usb/atmel,at91sam9rl-udc.yaml         |  75 +++++++++++++
+ .../devicetree/bindings/usb/atmel-usb.txt          | 125 ---------------------
+ .../devicetree/bindings/usb/generic-ehci.yaml      |  46 +++++---
+ .../devicetree/bindings/usb/generic-ohci.yaml      |  33 ++++++
+ arch/arm/boot/dts/microchip/sam9x60.dtsi           |   2 -
+ 6 files changed, 218 insertions(+), 140 deletions(-)
+---
+base-commit: 3f24e4edcd1b8981c6b448ea2680726dedd87279
+change-id: 20260129-atmel-usb-37f89a141e48
+
+Best regards,
 -- 
-David Heidelberg
+Charan Pedumuru <charan.pedumuru@gmail.com>
 
 
