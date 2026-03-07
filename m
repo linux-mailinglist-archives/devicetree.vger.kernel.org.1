@@ -1,162 +1,215 @@
-Return-Path: <devicetree+bounces-272357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272358-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wP1mMM1rq2kHdAEAu9opvQ
-	(envelope-from <devicetree+bounces-272357-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:05:33 +0100
+	id jU43EaRvq2mRdAEAu9opvQ
+	(envelope-from <devicetree+bounces-272358-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:21:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23CF4228E59
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:05:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86295228F51
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:21:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A1940301829C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 00:05:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BF33D3024165
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 00:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10B88381C4;
-	Sat,  7 Mar 2026 00:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B9E262FC0;
+	Sat,  7 Mar 2026 00:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="NztodOTZ"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZkmODoD8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010013.outbound.protection.outlook.com [52.101.61.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23201C13B;
-	Sat,  7 Mar 2026 00:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772841931; cv=none; b=M6rGDqflgAQz+/WAuyTmkWNwbmrMy3d1z80/Yig13rCZmR6vyicW/iOLg9BVZ+Wo0WStNMXM77ONYuvVglZz8iApNx3QPxuHVb2+5Omk8ui4CJthw9uRgHRkyN+jjfwF1s0xqOtFxPH7yQQtZBt8FIHF4VwhWVq4ubm0MW0YK2M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772841931; c=relaxed/simple;
-	bh=h1a75gdjqpmW7z6/ZJFcSnXVV4clbTBNT+a53CyNqlw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GrqneUwxF/xKqc9r8l2X8GE4YB66GvpWE/afRce0XdRpqWXBt1nZUIUGhswU+IOISgq5QNZZ+L14xkyKJ/UkrawuUI2nFCTHHG18W+TPeYHeExtA6q7ZDfHB4lh+p8MJBWJ+utdIv2eUOev2zfqMWAJ9gb8oQEOJSJgfrEJeQUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=NztodOTZ; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=FsRPNID5PAvwSRgv4YV66cyR8EgMHDZN2LmKg1jcxCM=; b=NztodOTZPF9ce0GYVQJAZ+0fjy
-	KV4HTH+asXGOH0lQE3k6M2wop9lFdAzefd7jR5MM3xj6q8N9PcSjGV0+uf+jrpaeoFvji0BdL9dnf
-	SANdQViLj+hPkphrXXTiUBm3G8E8vFbOOT/tw9VmMZNTdPJfmulOohOFPbs1aoVq0Vv34oDYuT5tu
-	+p0BYZlh2rO8i4xrXVofszwbHZYp/eak0RGso5AItkqLKHWlhNHGaookuQCJEXpp06fCnenMRzzop
-	Zb7/tyfFyNR6UPxCNJ4KbGbLWyGo+0L9VgPy+xt/01N1ztatymJKwIGpIEOAG6JGhh7bXGKEfUovm
-	2YYtpyPg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59864)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1vyfAY-000000001gD-1Kzj;
-	Sat, 07 Mar 2026 00:05:22 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1vyfAU-000000001pI-2HLV;
-	Sat, 07 Mar 2026 00:05:18 +0000
-Date: Sat, 7 Mar 2026 00:05:18 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jakub Kicinski <kuba@kernel.org>, Jose Abreu <joabreu@synopsys.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mark unimplemented AXI snps,kbbe snps,mb
- and snps,rb
-Message-ID: <aatrvmyW-SaHuVN7@shell.armlinux.org.uk>
-References: <E1vxq3L-0000000BsQm-4C8v@rmk-PC.armlinux.org.uk>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A3225EFBB;
+	Sat,  7 Mar 2026 00:21:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.13
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772842912; cv=fail; b=kUcJ6VmfonL25TcpcYLd2RNLIuQ66ULGZGwTj5PIWzHPYEjZlDq1C1zCDLv16/iD6xnThoSKz1Tjfk9pTuphFtODvoESGlF+vsgY/bf0SeFlBxBdxhyeOZNhdEwj8bpE2KeX6LRiEw19qhcl0GeJ5QRuv/VSoSZMuXG5j0DM1xc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772842912; c=relaxed/simple;
+	bh=XTpGZQMRJIN04+wIi23SwbVFlO1xBKSsdiGM//HF3xM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bD36iqpMTfYPT6oN6pIGQojZSLiMkKln+7S0yZ112/SnXjv+PV630KtbjXWqCS2DDltz8QK8WHXXxQxk/M9/M+P1Mq8IuJfNEVLD7QZnX/PuuqmLwS7/aFRVyDJgHl72tYYORdvsrg7c8JCoOnrRxMHWI81mgdocPv/QgzoDsco=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZkmODoD8; arc=fail smtp.client-ip=52.101.61.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=u/PtUVzmxySFie1lfFy71CF6RWB9vb+YYc+Ah192NmRJsbD+wl7WPRR4Ry3uTuX/j5GWnudI2o/dWIvM0Lj0Df2H0q80rtuDYussDD3xXTb4wy0LKfTAzrA1lLLpopXm4Y8hC64ipj+OQ//Xh1DyDKw8xfVQCdiYQ1CKpEDq+POv/uhoYJDBj64wup1IsK12RfzFAjETgDqGcgruEOEjS0C7Kw+MJ0JRSrhikRhXvHpqbfDoIXJRSdfvzMCe1Gq0Z1WEtc6vT8CBwT9KP87QInXXqXCTkIaJuNlQJpTM4yYmSe39G23id7164AwaWvGvo1koNFADwyEQiYt70LYPhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YzRtkAQPwqXMDZ5UjTIfIVlRBorv50+ohKl44Jb7Cm4=;
+ b=pysAhh4Uj4HjNzWw2Ad1t9KKj5wgPXQ8yJX/6DyEvf0OtkpZaef0DLaZMcQl7pPQN1mnkHHfkTa58zXepT4BI3WYSXtWz4BUOHRCfpuUnOQwZ5ZX+T15M35f6gyufMAG9gW5TNrZWVY3EtkcRY6pYf2vKLHqE7WERStHLvLdpVpBNzDLVUtFat3K9ujs6ZKKWOAuWq9i3I9ug4jmvk8dPK3NugX+GOHBh/4VTEcmAzeBnsmbc7/zbjZpA+NtGwrErDdT2/DOZmWBJeZmJuCG26TFsV/wNmgimrShzd47MXgD+Pmj7yKREDwSpFhoCva2odPuBGk9n/xSUCX4LMR6vA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YzRtkAQPwqXMDZ5UjTIfIVlRBorv50+ohKl44Jb7Cm4=;
+ b=ZkmODoD8tNMEkQ/Rsvxd8XmhkmBrWALItROP7xq4DkEO7ucppgZ/GAztJmLbD1jkZPKwPqnsqhP4wrAtlVANqk6HcJuogg8rihOuj03Kyo6HX1wPgBOjRd+TmW8/xcSoR/2qBUzWpTmNQYxIeqNFja/WQVVF4ozQHLKZFYD1eTg=
+Received: from BN9PR03CA0145.namprd03.prod.outlook.com (2603:10b6:408:fe::30)
+ by SJ0PR10MB4559.namprd10.prod.outlook.com (2603:10b6:a03:2d0::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.19; Sat, 7 Mar
+ 2026 00:21:48 +0000
+Received: from BN2PEPF000055DE.namprd21.prod.outlook.com
+ (2603:10b6:408:fe:cafe::b9) by BN9PR03CA0145.outlook.office365.com
+ (2603:10b6:408:fe::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.19 via Frontend Transport; Sat,
+ 7 Mar 2026 00:21:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ BN2PEPF000055DE.mail.protection.outlook.com (10.167.245.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.0 via Frontend Transport; Sat, 7 Mar 2026 00:21:48 +0000
+Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 6 Mar
+ 2026 18:21:47 -0600
+Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 6 Mar
+ 2026 18:21:47 -0600
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 6 Mar 2026 18:21:47 -0600
+Received: from [128.247.77.204] (a0500327ws.dhcp.ti.com [128.247.77.204])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6270Ll8K526879;
+	Fri, 6 Mar 2026 18:21:47 -0600
+Message-ID: <996246e4-b902-40f2-8ce6-c0fefe64d693@ti.com>
+Date: Fri, 6 Mar 2026 18:21:47 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <E1vxq3L-0000000BsQm-4C8v@rmk-PC.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Rspamd-Queue-Id: 23CF4228E59
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Add ICSSG0 dual EMAC support for AM642 EVM
+To: Krzysztof Kozlowski <krzk@kernel.org>, Meghana Malladi <m-malladi@ti.com>,
+	<nm@ti.com>, <vigneshr@ti.com>
+CC: <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
+	<kristo@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<netdev@vger.kernel.org>, <srk@ti.com>, Roger Quadros <rogerq@kernel.org>,
+	<danishanwar@ti.com>
+References: <20260228113203.498839-1-m-malladi@ti.com>
+ <811312d5-a48a-4ce9-80a2-7c04d0b34a67@ti.com>
+ <e787a907-f8cc-4f31-9019-c07f5f1d4fdd@kernel.org>
+Content-Language: en-US
+From: Daolin Qiu <d-qiu@ti.com>
+In-Reply-To: <e787a907-f8cc-4f31-9019-c07f5f1d4fdd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000055DE:EE_|SJ0PR10MB4559:EE_
+X-MS-Office365-Filtering-Correlation-Id: 43288b2d-7e7b-445b-6d96-08de7bdf85ac
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700016;
+X-Microsoft-Antispam-Message-Info:
+	Sih2KHDwwatY47fB4EQsT0gQAmPdxwW33hkVSaEBn/cB+VpbnNfJVxGjYjohkRPlnDSWLgYW8Ksrsd1xzb5T58fJMfkq/Hqp8UyTxQHibJTR0/Indfi+Cngs9eud6xU+JGemWcX2/46uv0KT+FJ/OluK111teG/1BAm6cF0FuId6Bg6FANKvXgrY2zbdcIT/+rWJysfkY1dhjna+5t3CPP/IUJaj9ju1bN53Z0j776QMVJX7vgTZv59w7gasNQcHaCTMMGoWtCxBXJEgYf6wKPrkiN4mN5Dd3wzBLOorKZIrrTUH9Dq0aZtM1Ta08VZ7yyTXTkGheizuZYJnAq18p0JgCZLfFc49UEIW4urGtPDS1IGesozmvtD5inhISqLIVkWrLWjaYoeGFImU2kVImhZ+JPC0M9F1HmtOO521bHpASS94QvWrWbtgCduBKWjU+TA+TqUUCGdJ6I4k6uok1TvFnAvY6KgAc41fsOAqL0DCCSX/Hvg129TYtvGMZx1E7JEHFytoKxLtxSAf3ta+S1Q7NEugbJZwSeXkQjz4A4GzvnN5AtKQFECeVlsW7z3kBXiFOWqnyUI9W1jBL6PmpPGkQz3mN6VYATty4Ks/qFtV+S1haZsyXdL71tqXriNyDX+GBwkPHOYJtqFYGRSp5nAVrSJV0S9eBy720JGUd7z8achAKW0+9Q6yotjlYrs/n4v44gvlkwyu/Ma8cVarFgfrZDORHJYgoTo7QNOMr38=
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	I3YAfTvCJ1vtycf4CN5odnOJtfaOfXJHUm/2rc8mgMbshhkEhEDCe3juVBBZwmmVhlk0kXVz6w5bPtj4cY7FU7VPLKiGH5F5SFLUYm2bDoV7TFte25KYpa+jecfZWBP/WtnxVa8/yVKr8KrkwqWQsft7Km2k32U9UeNrwjJxx7eK3C+7hGgDQwF0yla+Fv+qjNdvaYJJbdYqVffFyTjzSb0YA5mMTlwkmx42f8BeIlgdYq0gU5lK/vqxD4yJQ+KpAehz1awdcPwse5E98uRr7VKjl+zfKR/c8+zYX14hNk+6ocG39PRLgx+DqjLMGz1jpMI5ipKZ9ZXP9sKYs0HBKbXrUjcHTk0xpKAREx76q0EkrYJ3+/jUNT8oUSE3uZmUKRTkmY0lrNPjKudpwrJIRNlVgKZV3CGYy6S6cP/3ALjittGlP+h5KCdrlDAA+oZb
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2026 00:21:48.2582
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43288b2d-7e7b-445b-6d96-08de7bdf85ac
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000055DE.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4559
+X-Rspamd-Queue-Id: 86295228F51
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.14 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[armlinux.org.uk:s=pandora-2019];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[armlinux.org.uk : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272357-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[armlinux.org.uk:-];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-272358-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:dkim,ti.com:email,ti.com:mid];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[linux@armlinux.org.uk,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[d-qiu@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	NEURAL_SPAM(0.00)[0.107];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.969];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
-Any chance of a review from the DT maintainers please?
 
-Thanks.
+On 3/4/26 09:44, Krzysztof Kozlowski wrote:
+> On 04/03/2026 16:32, Daolin Qiu wrote:
+>> On 2/28/26 05:32, Meghana Malladi wrote:
+>>> This series adds device tree overlay support for enabling ICSSG0 dual EMAC
+>>> on the AM642 EVM, along with the necessary PHY driver configuration.
+>>>
+>>> The overlay enables both ICSSG0 Ethernet interfaces (port0 and port1) in
+>>> dual EMAC mode and can be combined with the existing ICSSG1 overlay to
+>>> enable all four ICSSG interfaces if needed.
+>>>
+>>> The series also enables the DP83TG720 PHY driver required for the
+>>> DP83TG720-IND-SPE-EVM daughter card used with the ICSSG0 interface.
+>>>
+>>> Meghana Malladi (2):
+>>>     arm64: dts: ti: k3-am642-evm: Add ICSSG0 overlay for dual EMAC support
+>>>     arm64: defconfig: Enable DP83TG720 PHY driver
+>>>
+>>>    arch/arm64/boot/dts/ti/Makefile               |   4 +
+>>>    .../boot/dts/ti/k3-am642-evm-icssg0.dtso      | 203 ++++++++++++++++++
+>>>    arch/arm64/configs/defconfig                  |   1 +
+>>>    3 files changed, 208 insertions(+)
+>>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg0.dtso
+>>>
+>>>
+>>> base-commit: 4916f2e2f3fc9aef289fcd07949301e5c29094c2
+>> Tested both ipv6 and ipv4 ping to be functional with the following
+>> topology.
+>>
+>> DUT 1 eth3 <---> eth2 DUT2
+>>
+>> DUT1 log: https://gist.github.com/dao-qiu/f261147110b6b05d1fb989ee74e1d694
+>>
+>> DUT2 log: https://gist.github.com/dao-qiu/3add536e2370d6afe36145f46df784e6
+>>
+>> Tested-by: Daolin Qiu <d-qiu@ti.com>
+>>
+> You cannot test defconfig, so please don't post it to cover letter. Same
+> effort for you - one Tb tag - but now you require maintainers to handle
+> it specially when applying.
 
-On Wed, Mar 04, 2026 at 05:30:32PM +0000, Russell King (Oracle) wrote:
-> Mark the AXI snps,kbbe snps,mb and snps,rb properties as not
-> implemented. These were introduced by commit afea03656add ("stmmac:
-> rework DMA bus setting and introduce new platform AXI structure").
-> While stmmac has code to parse these properties and save their values,
-> these are written to write-only struct members - no code in stmmac
-> has ever read their value. Hence, these properties have been non-
-> functional from day one.
-> 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 38bc34dc4f09..45dba6533458 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -202,11 +202,11 @@ title: Synopsys DesignWare MAC
->          * snps,xit_frm, unlock on WoL
->          * snps,wr_osr_lmt, max write outstanding req. limit
->          * snps,rd_osr_lmt, max read outstanding req. limit
-> -        * snps,kbbe, do not cross 1KiB boundary.
-> +        * snps,kbbe, do not cross 1KiB boundary (not implemented)
->          * snps,blen, this is a vector of supported burst length.
->          * snps,fb, fixed-burst
-> -        * snps,mb, mixed-burst
-> -        * snps,rb, rebuild INCRx Burst
-> +        * snps,mb, mixed-burst (not implemented)
-> +        * snps,rb, rebuild INCRx Burst (not implemented)
->  
->    snps,mtl-rx-config:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> -- 
-> 2.47.3
-> 
-> 
+Apologies for this, I was not aware the problem with testing defconfig. 
+I will keep this in mind when I add the Tb tag in any future patches.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+>
+> Best regards,
+> Krzysztof
 
