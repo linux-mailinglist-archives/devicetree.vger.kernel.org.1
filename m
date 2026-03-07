@@ -1,215 +1,188 @@
-Return-Path: <devicetree+bounces-272358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272359-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id jU43EaRvq2mRdAEAu9opvQ
-	(envelope-from <devicetree+bounces-272358-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:21:56 +0100
+	id aGMDCdB2q2l+dQEAu9opvQ
+	(envelope-from <devicetree+bounces-272359-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:52:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86295228F51
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:21:55 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C809229208
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:52:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF33D3024165
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 00:21:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id BDBCA303BA4B
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 00:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6B9E262FC0;
-	Sat,  7 Mar 2026 00:21:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7786E286405;
+	Sat,  7 Mar 2026 00:52:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZkmODoD8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y69B5nb+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DM1PR04CU001.outbound.protection.outlook.com (mail-centralusazon11010013.outbound.protection.outlook.com [52.101.61.13])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A3225EFBB;
-	Sat,  7 Mar 2026 00:21:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.61.13
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772842912; cv=fail; b=kUcJ6VmfonL25TcpcYLd2RNLIuQ66ULGZGwTj5PIWzHPYEjZlDq1C1zCDLv16/iD6xnThoSKz1Tjfk9pTuphFtODvoESGlF+vsgY/bf0SeFlBxBdxhyeOZNhdEwj8bpE2KeX6LRiEw19qhcl0GeJ5QRuv/VSoSZMuXG5j0DM1xc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772842912; c=relaxed/simple;
-	bh=XTpGZQMRJIN04+wIi23SwbVFlO1xBKSsdiGM//HF3xM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bD36iqpMTfYPT6oN6pIGQojZSLiMkKln+7S0yZ112/SnXjv+PV630KtbjXWqCS2DDltz8QK8WHXXxQxk/M9/M+P1Mq8IuJfNEVLD7QZnX/PuuqmLwS7/aFRVyDJgHl72tYYORdvsrg7c8JCoOnrRxMHWI81mgdocPv/QgzoDsco=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZkmODoD8; arc=fail smtp.client-ip=52.101.61.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u/PtUVzmxySFie1lfFy71CF6RWB9vb+YYc+Ah192NmRJsbD+wl7WPRR4Ry3uTuX/j5GWnudI2o/dWIvM0Lj0Df2H0q80rtuDYussDD3xXTb4wy0LKfTAzrA1lLLpopXm4Y8hC64ipj+OQ//Xh1DyDKw8xfVQCdiYQ1CKpEDq+POv/uhoYJDBj64wup1IsK12RfzFAjETgDqGcgruEOEjS0C7Kw+MJ0JRSrhikRhXvHpqbfDoIXJRSdfvzMCe1Gq0Z1WEtc6vT8CBwT9KP87QInXXqXCTkIaJuNlQJpTM4yYmSe39G23id7164AwaWvGvo1koNFADwyEQiYt70LYPhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YzRtkAQPwqXMDZ5UjTIfIVlRBorv50+ohKl44Jb7Cm4=;
- b=pysAhh4Uj4HjNzWw2Ad1t9KKj5wgPXQ8yJX/6DyEvf0OtkpZaef0DLaZMcQl7pPQN1mnkHHfkTa58zXepT4BI3WYSXtWz4BUOHRCfpuUnOQwZ5ZX+T15M35f6gyufMAG9gW5TNrZWVY3EtkcRY6pYf2vKLHqE7WERStHLvLdpVpBNzDLVUtFat3K9ujs6ZKKWOAuWq9i3I9ug4jmvk8dPK3NugX+GOHBh/4VTEcmAzeBnsmbc7/zbjZpA+NtGwrErDdT2/DOZmWBJeZmJuCG26TFsV/wNmgimrShzd47MXgD+Pmj7yKREDwSpFhoCva2odPuBGk9n/xSUCX4LMR6vA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
- (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YzRtkAQPwqXMDZ5UjTIfIVlRBorv50+ohKl44Jb7Cm4=;
- b=ZkmODoD8tNMEkQ/Rsvxd8XmhkmBrWALItROP7xq4DkEO7ucppgZ/GAztJmLbD1jkZPKwPqnsqhP4wrAtlVANqk6HcJuogg8rihOuj03Kyo6HX1wPgBOjRd+TmW8/xcSoR/2qBUzWpTmNQYxIeqNFja/WQVVF4ozQHLKZFYD1eTg=
-Received: from BN9PR03CA0145.namprd03.prod.outlook.com (2603:10b6:408:fe::30)
- by SJ0PR10MB4559.namprd10.prod.outlook.com (2603:10b6:a03:2d0::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.19; Sat, 7 Mar
- 2026 00:21:48 +0000
-Received: from BN2PEPF000055DE.namprd21.prod.outlook.com
- (2603:10b6:408:fe:cafe::b9) by BN9PR03CA0145.outlook.office365.com
- (2603:10b6:408:fe::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.19 via Frontend Transport; Sat,
- 7 Mar 2026 00:21:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- BN2PEPF000055DE.mail.protection.outlook.com (10.167.245.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.0 via Frontend Transport; Sat, 7 Mar 2026 00:21:48 +0000
-Received: from DLEE204.ent.ti.com (157.170.170.84) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 6 Mar
- 2026 18:21:47 -0600
-Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 6 Mar
- 2026 18:21:47 -0600
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 6 Mar 2026 18:21:47 -0600
-Received: from [128.247.77.204] (a0500327ws.dhcp.ti.com [128.247.77.204])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6270Ll8K526879;
-	Fri, 6 Mar 2026 18:21:47 -0600
-Message-ID: <996246e4-b902-40f2-8ce6-c0fefe64d693@ti.com>
-Date: Fri, 6 Mar 2026 18:21:47 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79243272813;
+	Sat,  7 Mar 2026 00:52:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772844746; cv=none; b=l12q+nsdeCw9PzH9+19FZlpBcsc0ix+4GrWXfxoRfG52BPGytInnLn3IVx0HERVy/+moVJrax6vT/D12BdUN8RGcs4yXjpenvr4ZhkqWCsQRoOkOtdrLX3DnmxXwHjAsHoa/qVGyzpRsb3YDlj+JckOnSabsg+eqx31wS0aempE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772844746; c=relaxed/simple;
+	bh=gxSunjcvBRErBew/28rdha/zcYzd5detHG3z951c4Vk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QHE5B+G+SypCHXnw0hqbpFODz/f5Zkr21iVhQrcw5PF8EXXgbk2SgSO5X1wfJuu5ry13bAhGgChthTbigSHxKhE3L50t48PK3ZPUvpuJkZdHovzKZwVJjZnBmTw/BDnrrwdiOcDuO1YU+0BqvMN/sg1svKjq5IF2PlG0XEiQ0yY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y69B5nb+; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772844744; x=1804380744;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gxSunjcvBRErBew/28rdha/zcYzd5detHG3z951c4Vk=;
+  b=Y69B5nb+Q/xRvQrEbTDXnMIbmHEN4+6+l8fZPvgdO2ZfLscl2bX9YmBt
+   45g7eakwZ2BCFuMnDKsSEQo4X/MQ/xi5WzNOsSbHB/OgGo/+EW83mcXdO
+   Ets9ufM+XozOaB5N2KauLM8ItsoTOctrroFSxDMi59WgjUmToxd9m5tXx
+   fqtM9zbxkwRO+yFaTXAP1m0k86hsXCBYTqWNb+RfOZVt/nrnlA0o0ASFg
+   NdPiE5KhtDW56RE5LzmUlm6K8N2LZIxDk+n9yCz6AsopqDhrCzEbj5hfJ
+   0Vt19bMiCtLBExmgQ9wrj5xXO/aI4Ls+vbeEY0TRCjYNwO+7k+/voKgSw
+   w==;
+X-CSE-ConnectionGUID: ynHhHKJ8Q3mxFma1RrMKEg==
+X-CSE-MsgGUID: 4XE1whecQMK2y1+75eLbow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="73861669"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; 
+   d="scan'208";a="73861669"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Mar 2026 16:52:23 -0800
+X-CSE-ConnectionGUID: mDquklK+T9SW69HyvsN3Zg==
+X-CSE-MsgGUID: Vmru8usbRN6VOsUsgTzISQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; 
+   d="scan'208";a="216893402"
+Received: from lkp-server01.sh.intel.com (HELO 058beb05654c) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 06 Mar 2026 16:52:20 -0800
+Received: from kbuild by 058beb05654c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vyftx-000000001Wr-283S;
+	Sat, 07 Mar 2026 00:52:17 +0000
+Date: Sat, 7 Mar 2026 08:51:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	Sebastian Reichel <sre@kernel.org>, Ion Agorria <ion@agorria.com>,
+	=?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 2/7] mfd: Add driver for ASUS Transformer embedded
+ controller
+Message-ID: <202603070848.ib570eG8-lkp@intel.com>
+References: <20260304185751.83494-3-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] Add ICSSG0 dual EMAC support for AM642 EVM
-To: Krzysztof Kozlowski <krzk@kernel.org>, Meghana Malladi <m-malladi@ti.com>,
-	<nm@ti.com>, <vigneshr@ti.com>
-CC: <conor+dt@kernel.org>, <krzk+dt@kernel.org>, <robh@kernel.org>,
-	<kristo@kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<netdev@vger.kernel.org>, <srk@ti.com>, Roger Quadros <rogerq@kernel.org>,
-	<danishanwar@ti.com>
-References: <20260228113203.498839-1-m-malladi@ti.com>
- <811312d5-a48a-4ce9-80a2-7c04d0b34a67@ti.com>
- <e787a907-f8cc-4f31-9019-c07f5f1d4fdd@kernel.org>
-Content-Language: en-US
-From: Daolin Qiu <d-qiu@ti.com>
-In-Reply-To: <e787a907-f8cc-4f31-9019-c07f5f1d4fdd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF000055DE:EE_|SJ0PR10MB4559:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43288b2d-7e7b-445b-6d96-08de7bdf85ac
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|7416014|376014|36860700016;
-X-Microsoft-Antispam-Message-Info:
-	Sih2KHDwwatY47fB4EQsT0gQAmPdxwW33hkVSaEBn/cB+VpbnNfJVxGjYjohkRPlnDSWLgYW8Ksrsd1xzb5T58fJMfkq/Hqp8UyTxQHibJTR0/Indfi+Cngs9eud6xU+JGemWcX2/46uv0KT+FJ/OluK111teG/1BAm6cF0FuId6Bg6FANKvXgrY2zbdcIT/+rWJysfkY1dhjna+5t3CPP/IUJaj9ju1bN53Z0j776QMVJX7vgTZv59w7gasNQcHaCTMMGoWtCxBXJEgYf6wKPrkiN4mN5Dd3wzBLOorKZIrrTUH9Dq0aZtM1Ta08VZ7yyTXTkGheizuZYJnAq18p0JgCZLfFc49UEIW4urGtPDS1IGesozmvtD5inhISqLIVkWrLWjaYoeGFImU2kVImhZ+JPC0M9F1HmtOO521bHpASS94QvWrWbtgCduBKWjU+TA+TqUUCGdJ6I4k6uok1TvFnAvY6KgAc41fsOAqL0DCCSX/Hvg129TYtvGMZx1E7JEHFytoKxLtxSAf3ta+S1Q7NEugbJZwSeXkQjz4A4GzvnN5AtKQFECeVlsW7z3kBXiFOWqnyUI9W1jBL6PmpPGkQz3mN6VYATty4Ks/qFtV+S1haZsyXdL71tqXriNyDX+GBwkPHOYJtqFYGRSp5nAVrSJV0S9eBy720JGUd7z8achAKW0+9Q6yotjlYrs/n4v44gvlkwyu/Ma8cVarFgfrZDORHJYgoTo7QNOMr38=
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(7416014)(376014)(36860700016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	I3YAfTvCJ1vtycf4CN5odnOJtfaOfXJHUm/2rc8mgMbshhkEhEDCe3juVBBZwmmVhlk0kXVz6w5bPtj4cY7FU7VPLKiGH5F5SFLUYm2bDoV7TFte25KYpa+jecfZWBP/WtnxVa8/yVKr8KrkwqWQsft7Km2k32U9UeNrwjJxx7eK3C+7hGgDQwF0yla+Fv+qjNdvaYJJbdYqVffFyTjzSb0YA5mMTlwkmx42f8BeIlgdYq0gU5lK/vqxD4yJQ+KpAehz1awdcPwse5E98uRr7VKjl+zfKR/c8+zYX14hNk+6ocG39PRLgx+DqjLMGz1jpMI5ipKZ9ZXP9sKYs0HBKbXrUjcHTk0xpKAREx76q0EkrYJ3+/jUNT8oUSE3uZmUKRTkmY0lrNPjKudpwrJIRNlVgKZV3CGYy6S6cP/3ALjittGlP+h5KCdrlDAA+oZb
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2026 00:21:48.2582
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43288b2d-7e7b-445b-6d96-08de7bdf85ac
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF000055DE.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4559
-X-Rspamd-Queue-Id: 86295228F51
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260304185751.83494-3-clamor95@gmail.com>
+X-Rspamd-Queue-Id: 2C809229208
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [0.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272358-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:dkim,ti.com:email,ti.com:mid];
+	TAGGED_FROM(0.00)[bounces-272359-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[d-qiu@ti.com,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,agorria.com,rere.qmqm.pl];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.969];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.975];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
+Hi Svyatoslav,
 
-On 3/4/26 09:44, Krzysztof Kozlowski wrote:
-> On 04/03/2026 16:32, Daolin Qiu wrote:
->> On 2/28/26 05:32, Meghana Malladi wrote:
->>> This series adds device tree overlay support for enabling ICSSG0 dual EMAC
->>> on the AM642 EVM, along with the necessary PHY driver configuration.
->>>
->>> The overlay enables both ICSSG0 Ethernet interfaces (port0 and port1) in
->>> dual EMAC mode and can be combined with the existing ICSSG1 overlay to
->>> enable all four ICSSG interfaces if needed.
->>>
->>> The series also enables the DP83TG720 PHY driver required for the
->>> DP83TG720-IND-SPE-EVM daughter card used with the ICSSG0 interface.
->>>
->>> Meghana Malladi (2):
->>>     arm64: dts: ti: k3-am642-evm: Add ICSSG0 overlay for dual EMAC support
->>>     arm64: defconfig: Enable DP83TG720 PHY driver
->>>
->>>    arch/arm64/boot/dts/ti/Makefile               |   4 +
->>>    .../boot/dts/ti/k3-am642-evm-icssg0.dtso      | 203 ++++++++++++++++++
->>>    arch/arm64/configs/defconfig                  |   1 +
->>>    3 files changed, 208 insertions(+)
->>>    create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-icssg0.dtso
->>>
->>>
->>> base-commit: 4916f2e2f3fc9aef289fcd07949301e5c29094c2
->> Tested both ipv6 and ipv4 ping to be functional with the following
->> topology.
->>
->> DUT 1 eth3 <---> eth2 DUT2
->>
->> DUT1 log: https://gist.github.com/dao-qiu/f261147110b6b05d1fb989ee74e1d694
->>
->> DUT2 log: https://gist.github.com/dao-qiu/3add536e2370d6afe36145f46df784e6
->>
->> Tested-by: Daolin Qiu <d-qiu@ti.com>
->>
-> You cannot test defconfig, so please don't post it to cover letter. Same
-> effort for you - one Tb tag - but now you require maintainers to handle
-> it specially when applying.
+kernel test robot noticed the following build warnings:
 
-Apologies for this, I was not aware the problem with testing defconfig. 
-I will keep this in mind when I add the Tb tag in any future patches.
+[auto build test WARNING on sre-power-supply/for-next]
+[also build test WARNING on robh/for-next linus/master v7.0-rc2 next-20260305]
+[cannot apply to dtor-input/next dtor-input/for-linus]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->
-> Best regards,
-> Krzysztof
+url:    https://github.com/intel-lab-lkp/linux/commits/Svyatoslav-Ryhel/dt-bindings-embedded-controller-document-ASUS-Transformer-EC/20260305-030907
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git for-next
+patch link:    https://lore.kernel.org/r/20260304185751.83494-3-clamor95%40gmail.com
+patch subject: [PATCH v5 2/7] mfd: Add driver for ASUS Transformer embedded controller
+config: powerpc64-randconfig-r133-20260305 (https://download.01.org/0day-ci/archive/20260307/202603070848.ib570eG8-lkp@intel.com/config)
+compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 9a109fbb6e184ec9bcce10615949f598f4c974a9)
+sparse: v0.6.5-rc1
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260307/202603070848.ib570eG8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603070848.ib570eG8-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/mfd/asus-transformer-ec.c:482:9: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const * @@     got char const [noderef] __user *buf @@
+   drivers/mfd/asus-transformer-ec.c:482:9: sparse:     expected void const *
+   drivers/mfd/asus-transformer-ec.c:482:9: sparse:     got char const [noderef] __user *buf
+>> drivers/mfd/asus-transformer-ec.c:482:9: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const * @@     got char const [noderef] __user *buf @@
+   drivers/mfd/asus-transformer-ec.c:482:9: sparse:     expected void const *
+   drivers/mfd/asus-transformer-ec.c:482:9: sparse:     got char const [noderef] __user *buf
+   drivers/mfd/asus-transformer-ec.c:482:9: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void const * @@     got char const [noderef] __user *buf @@
+   drivers/mfd/asus-transformer-ec.c:482:9: sparse:     expected void const *
+   drivers/mfd/asus-transformer-ec.c:482:9: sparse:     got char const [noderef] __user *buf
+   drivers/mfd/asus-transformer-ec.c:476:16: sparse: sparse: dereference of noderef expression
+
+vim +482 drivers/mfd/asus-transformer-ec.c
+
+   467	
+   468	static int dockram_write_one(struct i2c_client *client, int reg,
+   469				     const char __user *buf, size_t count)
+   470	{
+   471		struct dockram_ec_data *priv = i2c_get_clientdata(client);
+   472		int ret;
+   473	
+   474		if (!count || count > DOCKRAM_ENTRY_SIZE)
+   475			return -EINVAL;
+   476		if (buf[0] != count - 1)
+   477			return -EINVAL;
+   478	
+   479		guard(mutex)(&priv->ctl_lock);
+   480	
+   481		priv->ctl_data[0] = (u8)count;
+ > 482		memcpy(priv->ctl_data + 1, buf, count);
+   483		ret = asus_dockram_write(client, reg, priv->ctl_data);
+   484	
+   485		return ret;
+   486	}
+   487	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
