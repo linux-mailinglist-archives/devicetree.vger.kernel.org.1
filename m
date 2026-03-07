@@ -1,246 +1,296 @@
-Return-Path: <devicetree+bounces-272490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272491-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMgZC+9VrGlvowEAu9opvQ
-	(envelope-from <devicetree+bounces-272490-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 17:44:31 +0100
+	id KKbgGcdXrGnNowEAu9opvQ
+	(envelope-from <devicetree+bounces-272491-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 17:52:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 820DA22CB78
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 17:44:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F2522CBFF
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 17:52:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E8DCF3023522
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 16:44:06 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 04090302D963
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 16:50:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 298993A640F;
-	Sat,  7 Mar 2026 16:44:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A573731352A;
+	Sat,  7 Mar 2026 16:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LVLJIhKS"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="FcUn2hNM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF41830FC34
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 16:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6038332E729
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 16:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772901846; cv=none; b=UTxIaW89mIAM29oEMztUkJE+IJllkZtyEYvl7KyrX86HZDPFtm6yGovWunOSJMeACLn8xtdhxALh1x4C0CMnZbgC9Sm+QQP7kBpFmRbcB9CcuBTniWZp//zyr0AzXcfGxk97pXoJRZ2CX6Ungg6qvFZRzEW/pV+enEoe96gsuYs=
+	t=1772902221; cv=none; b=DxplrosPpm0pdtzsfHsWKMoAXCvSeH9MculAPhj9TV/jbpUVJlEwW/WcF6kJFB46t9SPd9Ff0ZfObTfEXtcreYsyFlxKWiqkKvZVIJAO128Ca0Nx+fZX25Z8pdxCg45D8NPE+2AGi3qVIKcz03UBETgzeerqNp+r0sdIvwOcMJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772901846; c=relaxed/simple;
-	bh=CQg0toMSFYq6yF8AaEclHF2YkRSPj5ekBKstEk9cOSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=EcRdCkjiyJVMQbpGrj/5TLwuRPx308Yg/LcIE1aUmGQoiJVecpXTOC6R/Lb2Na2t9meRUC0o72cZhe+anQmiDFC/X9ijF0FmhFedQS+LMXLCK937IOqd1askOJ1GpniUbHkngmJfQVNI5L07g+vfdAID2MUy71HJkmZ42s4FmUc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LVLJIhKS; arc=none smtp.client-ip=209.85.216.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-358ed696623so4271877a91.0
-        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 08:44:04 -0800 (PST)
+	s=arc-20240116; t=1772902221; c=relaxed/simple;
+	bh=cNks/tp+AMRyN6sp5KytIVoOfz22YIR8StH2a4NjKG8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EkGlWkv7eyuj8dLvRElzcZj7DIDX/0s2Nt0StJ3aWQB95gbRkWzhxVhor6qO9qERucDbfLdDhL+L+zpGabLfQyDbruQtS4wfZl90Nj1Q2Qa+aO2EJrosVv4O4U/qWDZ80fQqs4I2Ja2LMsVC7T02IN1v5sA4VGPLTQg0xxtfWkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=FcUn2hNM; arc=none smtp.client-ip=209.85.210.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f49.google.com with SMTP id 46e09a7af769-7d4c7d04890so8733471a34.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 08:50:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772901844; x=1773506644; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=exLZd+GeOjjoDlmDFTtKZ0DsTRh93LFRdOVuSHV1/eE=;
-        b=LVLJIhKS5ewMArXiLW6SaFQedEu9Z0tE37AIo9fwN6yHq+Ro7JDvIlvQUVUISx1Bu8
-         WB7PN3/tdjWTnYHrLDoGd93WyA1y9FHnZR7PTC+CmcTZQwCsi+XrTOqbqtLf7hf/N3Ay
-         C2GonockUN/x7RuTqf8vIEa3IrTWg71SFVR+wdZq07xZY2nG5QACU2GAR+3BqQ4NI/kG
-         ViHWkCwelaJoCCpd1QExz/MEpXdnkwJRXEBALI6sZ/KIfCT+iSELFgc/ZhpwaxhB/M6s
-         eFqfeFqv7haaWbAUbPad00bhNsSo1iNi09ps658OVnw6qoFLaSnpfEsVFcPCo08DYt1H
-         eECA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772902216; x=1773507016; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Z/82J0F6BsrTq+dl8XoJ9fpKY1YIojB94UrmWOeex5k=;
+        b=FcUn2hNMuFw8q5cjDxl46XptIDKYrJsz8lJvkpzLyXPBSzXEjepT+vl4lxh80kZuFG
+         vIRuNgk49nV7V+w2cctfLbM0adzyHL9AqKrxY7GsQlCtjKw4GA1vLigDcfB+7K9kUjbI
+         2ibFfKxJJTp2uKuON9zgHww/JV4GzjnGd3E5UK7mpeoLVIyJ895K7kXaa+O3R0k5WObs
+         3B7u9UiZhUqwPuiBXUEYDwdvtbfFkxuvrrmbh3gZUzA0BRXxjCNB9z2xkKvIfy8zqtx1
+         48D4zCVAYhapqbIQa+GFWKVz5DaXvspgrAf0KP8PtpSYEifKaMK8k1yOs4ykYLdf5UCs
+         dgrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772901844; x=1773506644;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=exLZd+GeOjjoDlmDFTtKZ0DsTRh93LFRdOVuSHV1/eE=;
-        b=NWFYIe039NQDMlyGGcGn5hh3pFXURPZ/lrB6/mEz4u0ieN4Uo3mz7jrXuO3f0WEEMR
-         /Dmj0IT0tw+AEKSNn2wsf5QQoaQJ4Vda+6wbTtfTYEy7D6Z/wLqXDhMOiwSWJ+7IYIVR
-         VH8Kjf/e/h7KjXBYzTbIbYLqbBWa+Y+4topaBbgZ7hyyx12ws+SoT4FuY0cr9K1A8Gx+
-         JTvJMxdf1JQFk/v6usfMBfUchl562H4f7R0YBwK541qahpsUWlVKJ/cXkNG0mbYDS/Da
-         z7vBnk6PWPDD2a5Ut+elJnb+9CvsG3PKqFr7CO0hCnBXot9NumXuWS1UOPL1gZcxGQfv
-         Ek9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWVFH44d0Fi80SycMoUwxZsI9OGLT/gQ3j94JJ0N4I7ubd7RqXTqmnGsRW8kTL56v95SCrjoqmA7NUv@vger.kernel.org
-X-Gm-Message-State: AOJu0YzP8BT7n516W2meG0NryNB5lcZ1+4Lc6c03qU7HZDxsZgQAuoHB
-	Am+LcEGRIImQDMxEICElMndWNo41LdMSA9BEWxjqILD14aRp0BrLhe4i
-X-Gm-Gg: ATEYQzzrxCZB9Xt7AIDrWTWf5N0Vh3bCIY7Zj+kULbWHGXcNOkq5dmaVWWhjsuKGnVq
-	K2dGHtxfTZKGmV6crzewlKuLX8Hw58R0a4oAVP7t3RcwKqg1g3SdODgpJg//zfPd8Mqy6JdTJkt
-	lBs6r53dVWgeDZaSI9D+kxQI7JZWbVof643wvgWbmGxiILNy6WhWbvPrDADRTC9DJZvujVnZiiW
-	L7suBSaeCiaUeofro/YLcj3hirwIOeOmW0Nyo0GzjubHm6FFMP9F6tWrHz3PHuV1wFOePu3XiEy
-	0TeHXajJi2QqZminq75S0vY3O4d1q3DcEsoCh9B6nCDRswA5CsqaNaKoWSCrEmZZTbz5gO4DYAL
-	UDHa9Qu8NVGH6LKQF6l3w6mm1AcJSaQ5jkcHWAuZpKPIW1JAEQv+idOuen56IJ5hCAG/ppYV/K+
-	aBcMBaTG0ubxh2Mzk4MtbH3WjxN4+i2ug0LrvyYefx2NjKJ+E0lwjP
-X-Received: by 2002:a17:90b:3cc3:b0:359:8c21:ef46 with SMTP id 98e67ed59e1d1-359be2cbeb0mr5198014a91.13.1772901844258;
-        Sat, 07 Mar 2026 08:44:04 -0800 (PST)
-Received: from LAPTOP-872M7T80.localdomain ([157.50.205.238])
-        by smtp.googlemail.com with ESMTPSA id 98e67ed59e1d1-359c003bd46sm5434460a91.4.2026.03.07.08.43.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Mar 2026 08:44:03 -0800 (PST)
-From: Akhila YS <akhilayalmati@gmail.com>
-Date: Sat, 07 Mar 2026 16:43:56 +0000
-Subject: [PATCH] dt-bindings: mtd: hisilicon,504-nfc: convert to DT schema
+        d=1e100.net; s=20230601; t=1772902216; x=1773507016;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z/82J0F6BsrTq+dl8XoJ9fpKY1YIojB94UrmWOeex5k=;
+        b=CComeRKviC05mEHdeq28a1zyB70aOLGQ9IgOVmNMKWVAhFeRROvT0wu9hv8Pg4Wu0F
+         pCBpJ3uCG2PvYD0gQDwN3VYfeNIUScslYCzFZyLrjYkE2DAg2YiTOnER9cTvLLDkwN2G
+         q6Wr7oCNSRctzgSm632gs1tcr4nr4d02RmAuToF63kHJlYCtE+y3A0MrExwCSWe6iqVu
+         z0FoQ+4xQ+VnNhWFKZfn2yuAD+Pa+e2Gkcm/fO3AK98HuDAJneqFnNsqR11GHVBV26Al
+         t6XhUrHX8cWhegwnzaw57xBIBRImEHv9+Lm56n35lgR1iac4EkFRYLTTnND3ujtspw5I
+         aWhA==
+X-Forwarded-Encrypted: i=1; AJvYcCVQkij5dFhkK9RkmHHWPQaILuVIWK9ojj9pFfpDnAcCMJOSqYiTnBVGITYmZ4PyNmfHKe7pd18A3ry7@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLTgxSy40Y7Kpm50bhi7//mte4vWX4cv0dzUP+dCDWKLOElHBr
+	3GEvpw5BofaDZHeeCaj58Rp+TD4EODKeRiCJraO8/DGq+uY/lOxbEpswX8cg2weSGxI=
+X-Gm-Gg: ATEYQzxtTs5drst7a1FymaqDxLksCJGmWisNMmcasUxSqlWB24qSXYpZ2uFmLF0x0aj
+	a2M71RhIZBu/k+DYBwAfyGZD9Wp2rBsU5ve19ab3udx3+8k95JQXj/f05VT+TgdmNB+p8H90LJG
+	KovBLDn+OoolNyk8F21kjBQB3ThXFm3wtw9ELHiaUBek0p/jrLSQOG6iJRvvrjCas0yow1e+Vra
+	AQAl2HpTGjgs6+C/JHE/08Sa8PRVqQeJeCpUnAbYtWRPXpJeVjWOtNSBJy8AuO7Hdqs0/RamiPF
+	rFBNDT8utKRK3dvxXv9SB+b1SiaUeWSc6vRC+T7qJ6x+gihRtB+L3djto+ET0P6uMf/jtMPPFx2
+	ah6XQgfwT3W3lsGV+cif/P3IqEwMp5cVUmNAVt+ETXfLdVhgVDDa2ezgvq5GBl/axhruZqbRsOX
+	bqWwjKsWlJy/7ZkHcID+Vvq0j59hSk3kiaJEhZl5tSfyUktMMa+Dm6TpSILX1DyJ1F7NfqsnwEc
+	EVdgKGrxR0Q
+X-Received: by 2002:a05:6830:410f:b0:7cf:dbb4:320a with SMTP id 46e09a7af769-7d726fe1a6bmr3617425a34.27.1772902216297;
+        Sat, 07 Mar 2026 08:50:16 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:cccf:5174:fa72:c520? ([2600:8803:e7e4:500:cccf:5174:fa72:c520])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d728c5b75csm3349388a34.2.2026.03.07.08.50.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Mar 2026 08:50:15 -0800 (PST)
+Message-ID: <7cc67826-3a8a-4190-9447-62b7d68e4445@baylibre.com>
+Date: Sat, 7 Mar 2026 10:50:14 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260307-hisi504-1-v1-1-8bf9a186faf2@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAMtVrGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDYwMz3QygElMDE11D3RTzxEQDy2RzgxRLYyWg+oKi1LTMCrBZ0bG1tQC
- YED75WwAAAA==
-X-Change-ID: 20260306-hisi504-1-d7aa09c70d93
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Akhila YS <akhilayalmati@gmail.com>
-X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: 820DA22CB78
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 0/8] AD9910 Direct Digital Synthesizer
+To: Jonathan Cameron <jic23@kernel.org>,
+ Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
+Cc: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+ <a72b2d62-3b91-4789-a1b1-ff1429e80ed5@baylibre.com>
+ <2k4ouimpaxjuhnk67qmrues2375zj43ehru7h5as6w6kf7yak3@2ndr72co5trh>
+ <bdc973e5-df74-48f2-8884-439b03565940@baylibre.com>
+ <9392fea00a9c3b23d1bc9468faa1b3cc20904398.camel@gmail.com>
+ <20260301133806.5e706756@jic23-huawei>
+ <pohirub7gjqu7xtq5qakkmr3wlek2rgj6kdgltjvir6g4jwgbr@hmjflsplni4o>
+ <20260307140953.46db3c19@jic23-huawei>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260307140953.46db3c19@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: C0F2522CBFF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272491-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272490-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,metafoo.de,kernel.org,pengutronix.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	DBL_PROHIBIT(0.00)[0.61.87.32:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akhilayalmati@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.981];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	NEURAL_HAM(-0.00)[-0.990];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:email,nod.at:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre-com.20230601.gappssmtp.com:dkim,baylibre.com:mid,bootlin.com:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Convert Hisilicon Hip04 Soc NAND controller DT binding to YAML format.
+On 3/7/26 8:09 AM, Jonathan Cameron wrote:
+> On Mon, 2 Mar 2026 10:22:47 +0000
+> Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
+> 
+>> On 26/03/01 01:38PM, Jonathan Cameron wrote:
+>>> On Mon, 23 Feb 2026 10:02:00 +0000
+>>> Nuno Sá <noname.nuno@gmail.com> wrote:
+>>>   
+>>>> On Sun, 2026-02-22 at 14:32 -0600, David Lechner wrote:  
+>>>>> On 2/22/26 4:01 AM, Rodrigo Alencar wrote:    
+>>>>>> On 26/02/21 02:16PM, David Lechner wrote:    
+>>>>>>> On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:    
+>>>>>>>> This patch series adds support for the Analog Devices AD9910 DDS.
+>>>>>>>> This is an RFC so that we can agree/discuss on the design that follows:
+>>>>>>>>     
+>>>>>
+>>>>> ...
+>>>>>     
+>>>>>>>> represents a distinct signal path into the DDS accumulator, so the driver
+>>>>>>>> models them as separate IIO output channels (all IIO_ALTVOLTAGE type).    
+>>>>>>>
+>>>>>>> Generally IIO channels represent the physical input/output, not the
+>>>>>>> internal channels.    
+>>>>>>
+>>>>>> That is part of the reason for this RFC. Dividing those top-level modes
+>>>>>> into channels allows for better organization, as they can operate together,
+>>>>>> i.e., phase or scale can be provided by single-tone profile, while
+>>>>>> frequency is controlled by the digital ramp generator (see Mode Priority
+>>>>>> section in the datasheet). Also, it allows to explore the most of standard
+>>>>>> ABIs like, scale, frequency, phase, sampling_frequency and enable.
+>>>>>> Putting everything into a single channel would make things a lot messy
+>>>>>> to interface with.
+>>>>>>     
+>>>>>>> Ideally we would just have the one channel here with a mode selection
+>>>>>>> attribute. Documentation can tell us which modes use which attributes.
+>>>>>>>     
+>>>>>>>> This per-channel separation allows userspace to configure each mode
+>>>>>>>> independently through its own set of sysfs attributes, and to
+>>>>>>>> enable/disable modes individually via IIO_CHAN_INFO_ENABLE, relying on
+>>>>>>>> the hardware's own mode selection architecture.
+>>>>>>>>     
+>>>>>
+>>>>> Looking at Table 5 in the datasheet really helped me understand this better.
+>>>>> I think this series could benefit from a documentation patch that explains
+>>>>> more about how the driver works with some diagrams.
+>>>>>
+>>>>> So really what we have here are a bunch of digital data generators rather
+>>>>> than a bunch of altvotlage output channels. And the same data channels can be
+>>>>> mixed and match as the source for up to 3 different components of the output
+>>>>> (frequency, phase, amplitude) depending on the priority rules defined in
+>>>>> Table 5.    
+>>>>
+>>>> More bellow... But note that all of the (or most of it) generators are going to
+>>>> be feed into a DAC. Your output is altvoltage but maybe we can treat the
+>>>> internals as voltage. Not sure.
+>>>>    
+>>>>>
+>>>>> Digital data sources are really more like a buffer in IIO terms than a
+>>>>> channel. And before we added the IIO backend stuff, there wasn't really
+>>>>> any other digital data source/sink that I am aware of other than buffers
+>>>>> (but there are certainly a lot of odd corners of IIO that I haven't explored
+>>>>> yet, so maybe I missed some).
+>>>>>
+>>>>> In a recent discussion, the idea of possibly needing a way to provide
+>>>>> some userspace interface to be able to tweak knobs of an IIO backend
+>>>>> was also brought up.
+>>>>>
+>>>>> Putting those ideas together, I'm wondering if we need some new channel
+>>>>> type or even a whole new interface (e.g. a new sysfs directory like buffers
+>>>>> and events) for managing these digital data sources/sinks that are not an
+>>>>> IIO buffer.
+>>>>>     
+>>>>
+>>>> But what would be that channel? In the end of the day, we typically have voltage or
+>>>> current DACs and a DDS primary function is indeed to generate alternating waveforms
+>>>> that you then typically feed into a DAC (and in some cases from the DAC into a
+>>>> power amplifier). So the DDS is just part of the data/signal path. Anyways, not sure
+>>>> on the new type and I think we already have the "blocks" in IIO for dealing with this:
+>>>>
+>>>> . frequency
+>>>> . phase
+>>>> . amplitude (raw + scale + offset)
+>>>>
+>>>> But you're right that maybe it's time to think in a better way to fit them together. 
+>>>> Maybe a new type (as buffers or events) can make sense where the above are treated as, example, scan
+>>>> elements. Maybe it's overcomplicating, not sure. It surely needs  discussion and thinking :).
+>>>>
+>>>> And spoiler alert, as you might have guessed already, the parallel port stuff is to be
+>>>> used with DMA buffers (and IIO backends). At least, that was the plan IIRC. But Rodrigo
+>>>> can confirm it.
+>>>>   
+>>>>> I think we've seen enough of these already to know that things like a
+>>>>> "tone generator" and a "ramp generator" are going to be common and could
+>>>>> share some standard attributes. 
+>>>>>     
+>>>>
+>>>> I tend to agree. For example, there already some DACs (with dithering) that make use of a similar
+>>>> interface (but with a custom prefix). Though the end goal is different, the interface is not that
+>>>> far off:
+>>>>
+>>>>
+>>>> https://elixir.bootlin.com/linux/v6.19.3/source/Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
+>>>>
+>>>> Anyways, I knew this one would be an interesting one for upstream :)  
+>>>
+>>> For history buffs, we had a bunch of DDS chips in staging at one point and never
+>>> manage to figure out the questions being raised here :(  They are complex
+>>> beasts.  Clarity of ABI proposal and documentation is going to be key to driving
+>>> this series forwards. In a sense the code is the easy part.  
+>>
+>> Does that mean that once good documentation is provided, the presented design can
+>> be accepted? Even though data generators/sources might not be interpreted as
+>> altvoltage channels?
+> 
+> I'm not sure yet :(  It's a pretty complex design and we haven't really come to a conclusion
+> on how to handle this channel 'mixing' case.
+> 
+> If we did go this way, we'd need to figure out a way to describe the mixing part.
+> So either we describe it as one channel (which is going to be really complex)
+> or we describe it as multiple channels but add extra ABI to make it clear they
+> are mixed into a single 'physical' channel.
+> 
+> Jonathan
+> 
+>>
+> 
 
-Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
----
- .../devicetree/bindings/mtd/hisilicon,504-nfc.yaml | 90 ++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
+Some ideas have crossed my mind, like adding new option to the in_/out_
+prefix for "internal" channels. But I it would take a long time to teach
+existing generic userspace libraries/tools about this.
 
-diff --git a/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml b/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml
-new file mode 100644
-index 000000000000..805ef0af0e04
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml
-@@ -0,0 +1,90 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/hisilicon,504-nfc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HiSilicon Hip04 NAND Flash Controller
-+
-+maintainers:
-+  - Miquel Raynal <miquel.raynal@bootlin.com>
-+  - Richard Weinberger <richard@nod.at>
-+
-+description:
-+  The HiSilicon 504 NFC is a NAND flash memory controller used in the
-+  Hip04 SoC. It supports hardware ECC for NAND devices and provides
-+  register and buffer regions for NAND operations.
-+
-+allOf:
-+  - $ref: nand-controller.yaml#
-+
-+properties:
-+  compatible:
-+    const: hisilicon,504-nfc
-+
-+  reg:
-+    minItems: 2
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  nand-bus-width:
-+    enum: [8, 16]
-+
-+  nand-ecc-mode:
-+    enum:
-+      - none
-+      - hw
-+
-+  nand-ecc-strength:
-+    const: 16
-+
-+  nand-ecc-step-size:
-+    const: 1024
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  partitions:
-+    $ref: /schemas/mtd/partitions/fixed-partitions.yaml#
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - nand-bus-width
-+  - nand-ecc-mode
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    nand-controller@4020000 {
-+        compatible = "hisilicon,504-nfc";
-+        reg = <0x04020000 0x10000>, <0x05000000 0x1000>;
-+        interrupts = <0 379 4>;
-+        nand-bus-width = <8>;
-+        nand-ecc-mode = "hw";
-+        nand-ecc-strength = <16>;
-+        nand-ecc-step-size = <1024>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        partitions {
-+             compatible = "fixed-partitions";
-+             #address-cells = <1>;
-+             #size-cells = <1>;
-+
-+             partition@0 {
-+                 label = "nand_text";
-+                 reg = <0x0 0x400000>;
-+            };
-+        };
-+    };
-+...
+What has popped into my head just now is that perhaps we could do like
+Rodrigo is proposing here reusing existing channels and standard attributes
+as much as possible and add a new "subcomponent_of" attribute to provide
+the link, similar to "current_trigger" for triggers.
 
----
-base-commit: d4906ae14a5f136ceb671bb14cedbf13fa560da6
-change-id: 20260306-hisi504-1-d7aa09c70d93
+This way, it would still work with existing userspace tools (even if it
+looks a bit confusing). And userspace tools could eventually be taught
+to present the channels as a tree-like structure with the main channel
+and subcomponents nested under it.
 
-Best regards,
--- 
-Akhila YS <akhilayalmati@gmail.com>
+We would want to spell out up front what all of the anticipated ways of
+using it are. For example, I suspect eventually someone will want this
+attribute to be writeable to assign a specific limited resource to a
+specific channel. An I expect that we would eventually see something were
+a single subcomponent is shared between multiple physical channels. In
+this case, we would want the value of the "subcomponent_of" attribute to
+be able to be a list.
 
 
