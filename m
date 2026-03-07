@@ -1,198 +1,132 @@
-Return-Path: <devicetree+bounces-272361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272364-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mAjeDR94q2l+dQEAu9opvQ
-	(envelope-from <devicetree+bounces-272361-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:58:07 +0100
+	id CIA/EFR9q2lUdgEAu9opvQ
+	(envelope-from <devicetree+bounces-272364-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 02:20:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634082292A3
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 01:58:06 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 955FC229543
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 02:20:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0605B3047E69
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 00:58:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9EE3830238DB
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 01:19:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373042D8793;
-	Sat,  7 Mar 2026 00:58:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1EA228C87D;
+	Sat,  7 Mar 2026 01:19:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hnaPiWkb"
+	dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b="aOkayWuS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFA3293B5F;
-	Sat,  7 Mar 2026 00:58:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AC4C3770B;
+	Sat,  7 Mar 2026 01:19:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772845084; cv=none; b=choi1jGHRpitdX3Qufabn/CU5m4V6YHjijGvfoHUCGt6zV4iuscQrbwdMARu1F+kB/exbbfGxpsEvqs13KFD855AF24Yxz2EyTMG/Di7I7ezOTtDEQFUemVGzgzEEFyGScAFmqp07JZfbs/iUEw+5qk2LKQcDewcheeknrw9Bdc=
+	t=1772846354; cv=none; b=ZE5u/wmRBdr84nwK6b42RZCjRYYbPURqpPMp0Z9nNEfq85d+p98sCH+/nz/Kec/5hJInlSm8hQ7Hl+mshUPD9Mj0ZThSVYqjEeuQ5L8YHv/KUGAghfckX/3TCtF/KFylzY/3xcU6pWR2zZTKdB6ir3+Bphq6HKj8IFY33bRdTqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772845084; c=relaxed/simple;
-	bh=ND57kbsJYsDJH/Ykaz8RaKMHxJbv09SilGF1X9TaUM0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cfCKoH5MVwtM6bO31oAgiaUw1zpXqGeDvhrmjZ0n3Wd94AlFdUBB02NLQWwSst/tdsnq+M++ij76bxrndmua/oHBWih4oVmfGOESH0am2DiGWZfn2JTWrKkqtJ4qVGZXJKECXQySV4U5loQ5+jP485S1e77WYQak7t2BIjMie/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hnaPiWkb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C0FD3C2BCB5;
-	Sat,  7 Mar 2026 00:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772845083;
-	bh=ND57kbsJYsDJH/Ykaz8RaKMHxJbv09SilGF1X9TaUM0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=hnaPiWkbaWUD48wCZ5LaIFZENdxVWmFtPxM1sQZZCk+zVkqF6O7cI0J/VggTotznm
-	 LnN5UD3htS+lt6RO0VN+yZ1wuvwUxZehZMm6pfZFgA8IOEV/CCPONOEeCyweiRsK44
-	 EL7b8/XHKoN9rHKmb8SYJV8BFhoNYnskzUv+Q3pQ9xTOImP9VjKdok0ioR6p87hW57
-	 uXVy34NU3Ab8O2+U6r1n3i+yoRZmPgwAlpTprnnKBdwriPIrfZpb+jsXW6jZ75ZnQj
-	 2K4oNfZhwUgQznPUkeWKAzND4F6EGZnrQQOUnnnAvpkPY9TvUKI77HMeh78b0MSmAj
-	 OqCdTttQyI1NQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B260DFC9EC9;
-	Sat,  7 Mar 2026 00:58:03 +0000 (UTC)
-From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
-Date: Fri, 06 Mar 2026 16:58:04 -0800
-Subject: [PATCH 3/3] ARM: dts: qcom: msm8960: expressatt: Add camera flash
+	s=arc-20240116; t=1772846354; c=relaxed/simple;
+	bh=wxgbKGT1EqgXq+zw8rGKOUxOFQwJnilipuO+pbXJc1M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YLdkpYI2j6hawTeRd3iYAfXBEZHkMZ4DAY9LW/VhBqIukk8wPT0uW4ESGdOKQJrgIvPsTpYWIIES/4Wtrr8DG6bW/cVKJuLtM7k6PXdiFhgOmaSLXo9u9/Jp/t69C/7GKueK0gNuYa15bBW/eDTCxeFY9KJ3ExTVCest6O11wKI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=gondor.apana.org.au header.i=@gondor.apana.org.au header.b=aOkayWuS; arc=none smtp.client-ip=180.181.231.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=gondor.apana.org.au; s=h01; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:cc:to:subject:message-id:date:
+	from:content-type:reply-to; bh=o/ZxNyA3pn29ikifVsDAjNTe1Wnut0ABulyc6uImSnA=; 
+	b=aOkayWuSeO9roHu0iEiaWXlKkxuFRfUXO0oir9srfykWQsP7lDypQQqAtMLZuhM/3zjgYX9n7sO
+	+wuz3XYzdgcNSPlNArEwaJB8uneoyCBjKnc6wnyVFWCux1b6k/wL3xB+LWJAMDoCNFrTOkqfTdyB3
+	ZjsA9dnQdvG564cimvvpoD2flKRel/FSpFbssA1Ow6aFoHtchlG5q4h+UBbnyE8TKedmHlnI9b+Di
+	zTrqw+/YT1Sx/K9x6Bv+F68c9NXD1G7BcwxHsApSo61AESg1SEuEmw1q1NdlyKyxeFanxR6E0LCxM
+	LwovuJyAswxf648s3tMctkXx/YDiHRakenGQ==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1vygJv-00CHVo-2e;
+	Sat, 07 Mar 2026 09:19:08 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sat, 07 Mar 2026 10:19:07 +0900
+Date: Sat, 7 Mar 2026 10:19:07 +0900
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Cc: linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Ruud.Derwig@synopsys.com,
+	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
+	navami.telsang@vayavyalabs.com, bhoomikak@vayavyalabs.com
+Subject: Re: [PATCH v10 2/4] crypto: spacc - Add SPAcc ahash support
+Message-ID: <aat9C91EwAj2GRhd@gondor.apana.org.au>
+References: <20260219114130.779720-1-pavitrakumarm@vayavyalabs.com>
+ <20260219114130.779720-3-pavitrakumarm@vayavyalabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260306-expressatt_camera_flash-v1-3-b1996f7cdfdd@gmail.com>
-References: <20260306-expressatt_camera_flash-v1-0-b1996f7cdfdd@gmail.com>
-In-Reply-To: <20260306-expressatt_camera_flash-v1-0-b1996f7cdfdd@gmail.com>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- Rudraksha Gupta <guptarud@gmail.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1772845083; l=2268;
- i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
- bh=m8KzHTR6SVXyCK/3SUO/rHRnAapxb/9fTcFjEI6HQ28=;
- b=Bqqb8k0+8JBKt2d4AiB+WtjmC335yhw4VSqawv2OtkoBfOe49d0X3+SbLdDy6RT+WEDI764qj
- /yXwDX//3jTC4cjAao5RbQcnoR2PNxkYTjkIHJQF/ErNwysEaJgUWxf
-X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
- pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
-X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
- auth_id=211
-X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
-Reply-To: guptarud@gmail.com
-X-Rspamd-Queue-Id: 634082292A3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260219114130.779720-3-pavitrakumarm@vayavyalabs.com>
+X-Rspamd-Queue-Id: 955FC229543
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[apana.org.au,quarantine];
+	R_DKIM_ALLOW(-0.20)[gondor.apana.org.au:s=h01];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272361-lists,devicetree=lfdr.de,guptarud.gmail.com];
+	TAGGED_FROM(0.00)[bounces-272364-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_REPLYTO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	HAS_REPLYTO(0.00)[guptarud@gmail.com];
+	DKIM_TRACE(0.00)[gondor.apana.org.au:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.976];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[herbert@gondor.apana.org.au,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,2e:email]
+	NEURAL_HAM(-0.00)[-0.978];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gondor.apana.org.au:dkim,gondor.apana.org.au:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,apana.org.au:url,apana.org.au:email,hash.base:url]
 X-Rspamd-Action: no action
 
-From: Rudraksha Gupta <guptarud@gmail.com>
+On Thu, Feb 19, 2026 at 05:11:28PM +0530, Pavitrakumar Managutte wrote:
+>
+> +static int spacc_hash_init_tfm(struct crypto_ahash *tfm)
+> +{
+> +	int rc = 0;
+> +	const struct spacc_alg *salg = container_of(crypto_ahash_alg(tfm),
+> +						    struct spacc_alg,
+> +						    alg.hash.base);
+> +	struct spacc_crypto_ctx *tctx = crypto_ahash_ctx(tfm);
+> +
+> +	tctx->handle    = -1;
+> +	tctx->ctx_valid = false;
+> +	tctx->keylen    = 0;
+> +	tctx->fb.hash   = NULL;
+> +	tctx->tmp_sgl   = NULL;
+> +	tctx->tmp_sgl_buff = NULL;
+> +	tctx->dev       = get_device(salg->dev);
+> +
+> +	tctx->fb.hash = crypto_alloc_ahash(crypto_ahash_alg_name(tfm), 0,
+> +			CRYPTO_ALG_NEED_FALLBACK);
 
-Add camera flash support for the Samsung Galaxy Express (expressatt).
+Every async ahash algorithm automatically gets a fallback from
+the API so there is no need to allocate one yourself.
 
-The flash IC uses a one-wire pulse-count protocol on GPIO 3, gated by
-PMIC MPP 4 which must be driven high to unlock the flash circuit.
-
-Downstream references:
-Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/leds/Makefile#L51
-Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/arch/arm/mach-msm/board-apexq-camera.c#L591
-
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
----
- .../dts/qcom/qcom-msm8960-samsung-expressatt.dts   | 31 ++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-index c4b98af6955d..96460775a4ec 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
-@@ -1,5 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/reset/qcom,gcc-msm8960.h>
- 
- #include "qcom-msm8960.dtsi"
-@@ -61,6 +62,20 @@ touchkey_enable: touchkey-enable {
- 		regulator-boot-on;
- 	};
- 
-+	camera_flash: led-controller {
-+		compatible = "richtek,rt8515";
-+		enf-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
-+		unlock-gpios = <&pm8921_mpps 4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&cam_flash_en>;
-+
-+		led {
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+			flash-max-timeout-us = <250000>;
-+		};
-+	};
-+
- 	i2c-gpio-touchkey {
- 		compatible = "i2c-gpio";
- 		#address-cells = <1>;
-@@ -247,6 +262,13 @@ touchkey_irq_pin: touchkey-irq-state {
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
-+
-+	cam_flash_en: cam-flash-en-state {
-+		pins = "gpio3";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-pull-down;
-+	};
- };
- 
- &pm8921 {
-@@ -572,3 +594,12 @@ magnetometer@2e {
- 		/* TODO: Figure out Mount Matrix */
- 	};
- };
-+
-+&pm8921_mpps {
-+	flash_led_unlock: flash-led-unlock-state {
-+		pins = "mpp4";
-+		function = "digital";
-+		output-low;
-+		power-source = <PM8921_GPIO_S4>;
-+	};
-+};
-
+Cheers,
 -- 
-2.53.0
-
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
