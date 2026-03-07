@@ -1,161 +1,184 @@
-Return-Path: <devicetree+bounces-272497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272498-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJC+Cl9arGkwpAEAu9opvQ
-	(envelope-from <devicetree+bounces-272497-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:03:27 +0100
+	id wM/JBYNarGkwpAEAu9opvQ
+	(envelope-from <devicetree+bounces-272498-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:04:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84E0422CCE4
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:03:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF99C22CCFC
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:04:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9E5D1301981F
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 17:03:12 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E715D30078AF
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 17:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E777A332634;
-	Sat,  7 Mar 2026 17:03:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 783A9332634;
+	Sat,  7 Mar 2026 17:03:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b="gjzd2HMN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cDc1bDBJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pdx-out-010.esa.us-west-2.outbound.mail-perimeter.amazon.com (pdx-out-010.esa.us-west-2.outbound.mail-perimeter.amazon.com [52.12.53.23])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA8F33260F;
-	Sat,  7 Mar 2026 17:03:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.12.53.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53B5B32BF5D;
+	Sat,  7 Mar 2026 17:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772902991; cv=none; b=da8QvpP3SyXffvXTFdLXQuJfmeC8DpmAX8TSSix/zWMfV19h58TI5nh5JA1quNIGkOnwsnd8Ja7xIlvQE/ivMi7k5fTN2/zQI8k1V2fvQGWCiRveu48EnZVdZcC7cPGQuB34YrO1rVDWc789oX2HtknIWMVmB/QilRB3vwiiXrg=
+	t=1772903038; cv=none; b=rm7UionlhrJ0esMbo40pDxOT2Xb8SVFvGZ/eu05NwGoQoHAk98ClghDw4zPY2+/xX4MUy7FRQyW79SkmPBiqWIciD9nj5hkT40gL1xdmFqnoQ2rnFiXPlwkIOuGo+GZUi1W56GptSRNFEUEAhCFSyoBfu+AO7AwCFRYwqynKisI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772902991; c=relaxed/simple;
-	bh=wvkD7PmKVor5qWsXU1Wx/LvlXnzQBgwJVQXNn1GZpwQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sTTCtwnY+GxyWyFaxVKQa/F1oKt3s1eLG2TyasQWxq5sqF04LooMAVuF19X5LE3+TeI8XFC8lWoiO0c3bxooE46Vveijuh/HPOE8qByKL6V8XLzQ7pBQv/NS013qc11HpMRfouaAaRF/F7KaWFKnDhhzFhjTae9SqzfnsZtKdu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.com; dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b=gjzd2HMN; arc=none smtp.client-ip=52.12.53.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
-  t=1772902990; x=1804438990;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1hUeG+gVwGZ+FlvP7RVlGS1em+6sgkvmyaJZpvZ0smU=;
-  b=gjzd2HMNAorf/Yi4LTf+UUTPkg352NLcapAx+XZHvyCB2qEfNjTt8n6m
-   9drHubLmDbrmGY7ke48iyke9w7rGjNTOjvI8uMoMHe0ichkCJVwYf+U9n
-   TmZNx/e5FftxoPvRiV+ZeEffisy+RiSX4hqWywSA5SiBGbd40M0XMuIWS
-   d0ZBKado3mB7IfpQQKza5hUrAyoS/P9U056TnJ0eL5UTpFJu1uHE9+VnA
-   +vPeZZenV/Ozwh8RQUxW1y/1FKFzvc00CChMgd61p4jxiqpUrn5+Js4cJ
-   E9i7xH8zHndxQ8XoIezTKD4JqU9Jh2klhLsKaH3HFRAFQ/IFlHGN8jCV9
-   Q==;
-X-CSE-ConnectionGUID: p/xIXsQST364+iGSnRxPdw==
-X-CSE-MsgGUID: 1NvykfWVQX+xs2B53pblRg==
-X-IronPort-AV: E=Sophos;i="6.23,107,1770595200"; 
-   d="scan'208";a="14412486"
-Received: from ip-10-5-6-203.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.6.203])
-  by internal-pdx-out-010.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2026 17:03:10 +0000
-Received: from EX19MTAUWB002.ant.amazon.com [205.251.233.111:14680]
- by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.31.3:2525] with esmtp (Farcaster)
- id 116db2dc-68d6-4730-9bfa-64f7924d15c4; Sat, 7 Mar 2026 17:03:10 +0000 (UTC)
-X-Farcaster-Flow-ID: 116db2dc-68d6-4730-9bfa-64f7924d15c4
-Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
- EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37;
- Sat, 7 Mar 2026 17:03:09 +0000
-Received: from localhost (10.119.200.184) by EX19D001UWA001.ant.amazon.com
- (10.13.138.214) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37; Sat, 7 Mar 2026
- 17:03:09 +0000
-Date: Sat, 7 Mar 2026 09:03:08 -0800
-From: Cory Keitz <ckeitz@amazon.com>
-To: <dumitru.ceclan@analog.com>
-CC: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, "Mauro Carvalho
- Chehab" <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Julien Massot
-	<julien.massot@collabora.com>, Rob Herring <robh@kernel.org>, Niklas
- =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, <linux-staging@lists.linux.dev>,
-	<mitrutzceclan@gmail.com>, Cosmin Tanislav <demonsingur@gmail.com>, Niklas
- =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: Re: [PATCH RESEND v8 16/21] media: i2c: maxim-serdes: add MAX96724
- driver
-Message-ID: <aaxWATynXaVFglvS@bcd074ae11bb>
-References: <20251208-gmsl2-3_serdes-v8-0-7b8d457e2e04@analog.com>
- <20251208-gmsl2-3_serdes-v8-16-7b8d457e2e04@analog.com>
+	s=arc-20240116; t=1772903038; c=relaxed/simple;
+	bh=5mPlRe/ZYZnl/VdSxSulrqJu0MPlNaPz6Ia1xin693w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gt/J+jF+Pk/78t4Unrpi/xXsUPfPxjIxCa6rxcVPITSi+uXLc7xu0tVHv9cva1lwDSXZVdk2pQXC/SQ0187604MQAi87kFzwdh/lre14+1bx0p6aRyUJYmeHSWv2MIn0W7gz1/iqqwfP3WQp16+yeDCwAIoHD/yKd1zBS9h0NPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cDc1bDBJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DB3FC19422;
+	Sat,  7 Mar 2026 17:03:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772903037;
+	bh=5mPlRe/ZYZnl/VdSxSulrqJu0MPlNaPz6Ia1xin693w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=cDc1bDBJYAXvHI+R5aY2f3El3zDD5Uu8YvIDvKPVJRZfJPT0LKMJkkt1YhFMU3Eo2
+	 akuB65qlZba0U9FXMa/MnIx45otcK7dxBzR41bk+7++iu7vM0DxPctUVi7nbA8b9EB
+	 WSFOBYuJYDBcuuEdmGAyjhzb4xEIioAEIhtgT4lDdMpxUXdEnr9R5FoM3Oikocn3an
+	 f8KXe1SmQ2tmGq1dPpYGoHztpBKDUlt1z7tS1XHKYWnOAMfuIhWu/THhb3f5LaAN8u
+	 vBWubZ0MKZXWZJnBRcqpqGLYtijlyfo7YUMG364EJkm1k+9OgJVGV4Oi6dxTHHGK6l
+	 2rQxc0s6HJoUw==
+Message-ID: <b02f06e1-dac7-4521-bf5e-471b5575467d@kernel.org>
+Date: Sat, 7 Mar 2026 18:03:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20251208-gmsl2-3_serdes-v8-16-7b8d457e2e04@analog.com>
-X-ClientProxiedBy: EX19D041UWA003.ant.amazon.com (10.13.139.105) To
- EX19D001UWA001.ant.amazon.com (10.13.138.214)
-X-Rspamd-Queue-Id: 84E0422CCE4
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/8] dt-bindings: soc: move and rename
+ google,gs101-pmu-intr-gen schema under soc/samsung/
+To: Alexey Klimov <alexey.klimov@linaro.org>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ linux-samsung-soc@vger.kernel.org, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260226-exynos850-cpuhotplug-v1-0-71d7c4063382@linaro.org>
+ <20260226-exynos850-cpuhotplug-v1-1-71d7c4063382@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260226-exynos850-cpuhotplug-v1-1-71d7c4063382@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: AF99C22CCFC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-7.16 / 15.00];
-	WHITELIST_DMARC(-7.00)[amazon.com:D:+];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amazon.com,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[amazon.com:s=amazoncorp2];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272497-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-272498-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kernel.org,linux.intel.com,collabora.com,ragnatech.se,linuxfoundation.org,vger.kernel.org,lists.linux.dev,gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ckeitz@amazon.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[amazon.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,renesas];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.965];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Dec 08, 2025 at 04:13:08PM +0200, Dumitru Ceclan via B4 Relay wrote:
-> +static int max96724_init_phy(struct max_des *des, struct max_des_phy *phy)
-> +{
-> +	struct max96724_priv *priv = des_to_priv(des);
-> +	bool is_cphy = phy->bus_type == V4L2_MBUS_CSI2_CPHY;
-> +	unsigned int num_data_lanes = phy->mipi.num_data_lanes;
-> +	unsigned int dpll_freq = phy->link_frequency * 2;
+On 26/02/2026 16:47, Alexey Klimov wrote:
+> The GS101 PMU interrupts generation block is actually a standard Samsung
+> Exynos IP block found in older SoCs like the Exynos 850 and others and
+> not exclusive to Google SoCs. Thus, renaming to
+> samsung,exynos850-pmu-intr-gen, moving the schema file to soc/samsung
+> directory to reflect its origin, since Exynos850 predates GS101 SoCs,
+> and preparing for adding Exynos850 description.
+> 
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> ---
+>  .../samsung,exynos850-pmu-intr-gen.yaml}                              | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu-intr-gen.yaml b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos850-pmu-intr-gen.yaml
+> similarity index 80%
+> rename from Documentation/devicetree/bindings/soc/google/google,gs101-pmu-intr-gen.yaml
+> rename to Documentation/devicetree/bindings/soc/samsung/samsung,exynos850-pmu-intr-gen.yaml
+> index 2be022ca6a7d..f9b40f3fd165 100644
+> --- a/Documentation/devicetree/bindings/soc/google/google,gs101-pmu-intr-gen.yaml
+> +++ b/Documentation/devicetree/bindings/soc/samsung/samsung,exynos850-pmu-intr-gen.yaml
+> @@ -1,10 +1,10 @@
+>  # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>  %YAML 1.2
+>  ---
+> -$id: http://devicetree.org/schemas/soc/google/google,gs101-pmu-intr-gen.yaml#
+> +$id: http://devicetree.org/schemas/soc/samsung/samsung,exynos850-pmu-intr-gen.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Google Power Management Unit (PMU) Interrupt Generation
+> +title: Samsung Power Management Unit (PMU) Interrupt Generation
 
-This unconditionally doubles the link frequency for the DPLL, which is
-correct for D-PHY (DDR clocking) but incorrect for C-PHY. Per the
-MAX96724 User Guide:
+Rename is fine if you add here compatible, otherwise the name does not
+match the compatible.
 
-  D-PHY: "Clock freq is half; Data rate is equivalent bps/lane."
-         e.g. 00010 = 200MHz DPLL, 200Mbps/lane data rate.
-
-  C-PHY: "2.28bits/symbol."
-         e.g. 00010 = 200MHz DPLL, 456Mbps/lane data rate.
-
-For C-PHY the DPLL value equals the symbol rate, which is the link
-frequency directly. Should be:
-
-        unsigned int dpll_freq = is_cphy ? phy->link_frequency
-                                       : phy->link_frequency * 2;
-
-The same pattern exists in max9296a_init_phy() in patch 17.
-
-I've tested the full series (backported to 6.6) with the above fix on
-SA8775P + MAX96724 + MAX96717 with C-PHY 3-trio @ 700MHz.
-
-Tested-by: Cory Keitz <ckeitz@amazon.com>
+Best regards,
+Krzysztof
 
