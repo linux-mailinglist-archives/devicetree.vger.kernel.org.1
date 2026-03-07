@@ -1,104 +1,60 @@
-Return-Path: <devicetree+bounces-272369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272370-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id LHqzGjmTq2n3eQEAu9opvQ
-	(envelope-from <devicetree+bounces-272369-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 03:53:45 +0100
+	id S8HsJbmaq2kJewEAu9opvQ
+	(envelope-from <devicetree+bounces-272370-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 04:25:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD20A229B02
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 03:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 138C3229DCC
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 04:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6E1763024512
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 02:53:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2A7CE30417AE
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 03:25:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C362DCF41;
-	Sat,  7 Mar 2026 02:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bi7yN71A"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00B5730C61F;
+	Sat,  7 Mar 2026 03:25:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDFF5281369
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 02:53:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4F0A309DC4;
+	Sat,  7 Mar 2026 03:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772852021; cv=none; b=UAWCivrGNujIpyLmhJHI4HwI3KnuA8B3VPIihBd0DnfMsOMpnAhEieMBPD/ulFUNQ2GYnJ6cmvY2lIG/kXHYPuIQdtLfd26QXUTdXpvXpFGTvwLqtaz9/4uBsBq92w3pfCQcmq61Ak0hLGWxzNi0JAMsfO1p+u6UfaOHBxQHT0k=
+	t=1772853941; cv=none; b=EQR6jVIO6DK3rpkVuL7ESoUnLHavNwMYI8UI0j1oLw5JuT6l3U/v80LGlcC2A9Rb4i3vbFn7+3LtWLCBCFU8TaS3qNSA3BEc9YXzb8szSxz0SQPH2XuQd54i3nlo1dhe3ECYflQb0pITIx0A4VaoQPnWSKAIr6n9Un6hkYo6rBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772852021; c=relaxed/simple;
-	bh=Vco7MCJ15Eb1qsmLNHaRLNzt184+FcP2M9jgKlhN0p4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=IWyAbd+AMeyZxwBctRzmKQmpHQqmiZEHT0xwkViGbYwoSaWrIwhxKhv3UZG/PNohQXMjcusH6LlaSUhCGbK3Xuk70kQ1FoAIrWNGeg7eKa3J6vLTeD1GRrImf9KE1ZvZh2jL13H672PtLnR2i0hfAgVYgN2dfWVYzMWcWxCOjBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bi7yN71A; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2ad617d5b80so64553695ad.1
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 18:53:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772852020; x=1773456820; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=193j15XFage9v8e5Pr/9GKmDx9DMdhLg6v6zvLBCC/Q=;
-        b=bi7yN71A8TSHS6TpgcDYwNcsXLL1VXB22LAdR7VksENPzPfkIu9KeSl5ahYZ3q5Lj7
-         iW4hCq+FSARdr1tGdDkZ4U4yxELnZIF7K6fTFeU9poo4E2bOTCw4In6zoTStFgzr+ywo
-         67dFHcAS8wYbs0gQ8hpGm+HYAUtW58T9/Ur4AjtUMpw0PAh7cz4iRQSO6M6UM7jQ9OJJ
-         Vpc3tSO4Wz9VzWIzkDdItI8agL71V157vWBgRsHwZb/DAsN7F2bFmmRcdbld/xERrbMX
-         Y/bgJIlW41GI3ypFzbZOUIGRNfVCkZdJ2V1tFdvpZWwRd760BylHU2jMIRHltz8Rrdh9
-         fqjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772852020; x=1773456820;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=193j15XFage9v8e5Pr/9GKmDx9DMdhLg6v6zvLBCC/Q=;
-        b=wiDJprgpwKAfctpXwWQA+Dq5sxAgyoog/QKR3gme92veFoN+MhHdfGAmxcVtW06iTb
-         0X4AMWsodo8DTLYg8jfoVBTflszAnB8yROBpbRTtCfCJ8eHKojBU3jYHRL4ziFbpu7Ni
-         e34zcyWZVr0mSuLvYkMAdZ33uXon+NiURnbWUFs9by8aN7Ixfq2jBKQLm/Wt7AFZqwPj
-         Q/JgUHKlk6V6jHNGgGmCFPfVxkmSznXO73poN/WaiFOnwso0Q/5f8U4/qoWTGWr+W/MD
-         UczVHJSAieH2JD4Ad4Pe8j1y2U72BL9SicviqIApcZaZdHbPRD+XdzYHXS4SoWbSrB4N
-         XJ/g==
-X-Forwarded-Encrypted: i=1; AJvYcCUU7GS1eWO3zmY8SrT+PJsgPdFSkMb2em052rUWo98jt3eYKJNhTVdntIvShwHvNaZQq4TAE/jszScL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvE97CfjCyb5Y4/KjmyKBG1cbXTdi7ZHZiXjgweuIqdAvPUNr3
-	WovKv4+I9cxdsUR8/f0Q0NX/mWsHU7D5DNKzmqTgxY5nFjEgVV8AgmSg
-X-Gm-Gg: ATEYQzzb+DruilpTUAxeET1vW5BResPeibWYqRaFuJLqugrFF8nqbJjgzn335avY8ko
-	Ay/T5v8MtxXfnoEWlzYCt9/ZvceKhoX/IzbkVM5bOb8CpInrwpBzO7g/smy0/3WE6DXcfUFc3ZX
-	2j6HilSGO8RT/urJTrgXKQoEOQEAjqzkOgPUj09YwVHQBXdFGSMR+xTx5Lde9kBX76Pqo2lWf8T
-	AjM18Kbliw7i/X26Hv8FzCTBsz5Z0aq4WzXoMFXOH9wpq32eICjqKI+EIu0PD1DDKwQuCY15vCg
-	h7GlQbtUHnvVNZVbrRm8Ae1RbEFo1kTUgUHMoFuHeLF3OF7i6UBDl/QuX7xERjjJttRc5xPiCCz
-	63Rm2oV7Yz/wWrVQ9LaLJ9lc2O6ih3Ip2+QIrUFt3b5Tu8StvNm1GdhGSGurqrorKDBOAb1Hm9a
-	+g5BhLZOrR+4QwQ58fHurc02QVl2Tc3qqxvqAFZJw38ZGxI9ifDKF1FBY1uvEIgofE8xP8oVbnQ
-	dtaiNJkjTWXpUfpkA==
-X-Received: by 2002:a17:903:2308:b0:2ae:606b:bd98 with SMTP id d9443c01a7336-2ae824dd28amr46174205ad.26.1772852020288;
-        Fri, 06 Mar 2026 18:53:40 -0800 (PST)
-Received: from localhost.localdomain ([2001:ee0:8207:3134:c1c0:ef7d:b1c8:1597])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae840ccb6csm45528445ad.92.2026.03.06.18.53.36
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Fri, 06 Mar 2026 18:53:39 -0800 (PST)
-From: phucduc.bui@gmail.com
-To: wsa+renesas@sang-engineering.com
-Cc: conor+dt@kernel.org,
+	s=arc-20240116; t=1772853941; c=relaxed/simple;
+	bh=Xi6c1dAck5ti3ckerzYqQncj4PWvRvHDU6pbAFkcqmY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PjOcVKIE7ETwyW25ntNJqbZ8d4puDtxiofe0AEEYUkZxnf7jiQNNPVXSKnll8F2ozPhgdI6l/C09bWWqbjgs44i+EkhFOlNmmPi+wWnPoVlO7B6+oyXpdvix95Nxu9m80++qQXCKigNEKAThlW13J5SHRZpDTBdE8tgEPWAozAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.227])
+	by gateway (Coremail) with SMTP id _____8CxacKpmqtpC2cYAA--.6584S3;
+	Sat, 07 Mar 2026 11:25:29 +0800 (CST)
+Received: from kernelserver (unknown [223.64.68.227])
+	by front1 (Coremail) with SMTP id qMiowJCx2+ClmqtpI+BPAA--.21248S2;
+	Sat, 07 Mar 2026 11:25:26 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Frank Li <Frank.Li@kernel.org>,
+	dmaengine@vger.kernel.org
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
 	devicetree@vger.kernel.org,
-	dmitry.torokhov@gmail.com,
-	geert+renesas@glider.be,
-	hechtb@gmail.com,
-	javier.carrasco@wolfvision.net,
-	jeff@labundy.com,
-	krzk+dt@kernel.org,
-	linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	magnus.damm@gmail.com,
-	phucduc.bui@gmail.com,
-	robh@kernel.org
-Subject: Re: [PATCH v3 0/3] Input: st1232 - add system wakeup support
-Date: Sat,  7 Mar 2026 09:53:33 +0700
-Message-Id: <20260307025333.1594-1-phucduc.bui@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <aaq_Rft0gvVqxmMD@shikoro>
-References: <aaq_Rft0gvVqxmMD@shikoro>
+	Keguang Zhang <keguang.zhang@gmail.com>,
+	linux-mips@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v4 0/6] dmaengine: Add Loongson Multi-Channel DMA controller support
+Date: Sat,  7 Mar 2026 11:25:09 +0800
+Message-ID: <cover.1772853681.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,63 +62,164 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: BD20A229B02
+X-CM-TRANSID:qMiowJCx2+ClmqtpI+BPAA--.21248S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQETCGmqbMIYzgAAsg
+X-Coremail-Antispam: 1Uk129KBj93XoWxJF1xtry3ZFy7GF43CF1xJFc_yoW5KFW7pF
+	WfA3s3GFWUtF43uwn3JFy8Ar15Aa4fJrZxWa9rZw1UCryDu3yUZr1Fk3WjqF47ArW5GFW2
+	qFWkGF48CF4UGrcCm3ZEXasCq-sJn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUkjb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+	Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx1l5I
+	8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AK
+	xVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l42xK82IYc2Ij64
+	vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8G
+	jcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2I
+	x0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK
+	8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I
+	0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jUsqXUUUUU=
+X-Rspamd-Queue-Id: 138C3229DCC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,glider.be,wolfvision.net,labundy.com];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-272369-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-272370-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[loongson.cn];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,xen0n.name,lists.linux.dev,vger.kernel.org,gmail.com,loongson.cn];
+	FREEMAIL_TO(0.00)[gmail.com,loongson.cn,kernel.org,vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
-	FROM_NO_DN(0.00)[];
-	TO_DN_NONE(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:url]
+	FROM_NEQ_ENVFROM(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.893];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,loongson.cn:mid]
 X-Rspamd-Action: no action
 
-Hi Wolfram,
+Hi all:
 
-> Krzysztof already adviced you to not attach new series to old threads.
-> Please follow this suggestion:
-> 
-> Do not attach (thread) your patchsets to some other threads (unrelated
-> or older versions). This buries them deep in the mailbox and might
-> interfere with applying entire sets. See also:
-> 
-> https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
->
+This patchset introduces the Loongson multi-channel DMA controller,
+which is present in the Loongson-2K0300 and Loongson-2K3000 processors.
 
-You are right, and I apologize for the duplication of the mistake.
+It is a multi-channel controller that enables data transfers from memory
+to memory, device to memory, and memory to device, as well as channel
+prioritization configurable through the channel configuration registers.
 
-I missed Krzysztof's earlier reply while I was preparing v3, which led to 
-this incorrect threading again. I have already replied to Krzysztof's 
-thread to acknowledge the error.
+Additionally, since multiple distinct types of DMA controllers exist on
+the Loongson platform, I have attempted to consolidate all Loongson DMA
+drivers into a new directory named `Loongson` for easier management.
 
-I will follow the proper process by starting a fresh, un-threaded series 
-for v4.
+Thanks.
+Binbin
 
-Thank you for the reminder.
+===========
+V4:
+- Rebase on dmaengine/next tree;
+- Add Reviewed-by tags from Frank and Rob, thanks;
 
-Best regards,
-Phuc
+patch(1/6):
+ - Add `depends on` restrictions.
+
+patch(6/6):
+ - Move loongson2_cmc_dma_config{..} close to its users.
+
+Link to V3:
+https://lore.kernel.org/dmaengine/cover.1771989595.git.zhoubinbin@loongson.cn/
+
+V3:
+- Rebase on dmaengine/next tree;
+
+patch(1/6):
+ - Keep alphabet order;
+
+patch(2/6):
+ - Add Reviewed-by tag from Frank, thanks;
+
+patch(3/6)/(4/6):
+ - New patches, format loongson2-apb-dma driver code;
+
+patch(5/6):
+ - Add description for `interrupts` property;
+
+patch(6/6):
+ - Use ffs() helper make the code cleaner;
+ - Refact loongson2_cmc_dma_chan_irq();
+ - Simplify locking with guard() and scoped_guard();
+ - kzalloc()->kzalloc_flex().
+
+Link to V2:
+https://lore.kernel.org/all/cover.1770605931.git.zhoubinbin@loongson.cn/
+
+V2:
+patch(1/4):
+ - Update loongson1-apb-dma.c entry in MAINTAINERS.
+
+patch(2/4):
+ - New patch, use dmaenginem_async_device_register() helper.
+
+patch(3/4):
+ - `additionalProperties: false` replaced by
+   `unevaluatedProperties: false`.
+
+patch(4/4):
+ - Rename filename as loongson2-apb-cmc-dma.c;
+ - Rename Kconfig item as LOONGSON2_APB_CMC_DMA;
+ - Rename the variable prefix as `loongson2_cmc_dma`;
+ - Use dmaenginem_async_device_register() helper;
+ - Drop 'dma_' prefix in struct loongson2_mdma_chan_reg;
+ - Use struct_size();
+
+Link to V1:
+https://lore.kernel.org/all/cover.1770119693.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (6):
+  dmaengine: loongson: New directory for Loongson DMA controllers
+    drivers
+  dmaengine: loongson: loongson2-apb: Convert to
+    dmaenginem_async_device_register()
+  dmaengine: loongson: loongson2-apb: Convert to devm_clk_get_enabled()
+  dmaengine: loongson: loongson2-apb: Simplify locking with guard() and
+    scoped_guard()
+  dt-bindings: dmaengine: Add Loongson Multi-Channel DMA controller
+  dmaengine: loongson: New driver for the Loongson Multi-Channel DMA
+    controller
+
+ .../bindings/dma/loongson,ls2k0300-dma.yaml   |  81 ++
+ MAINTAINERS                                   |   7 +-
+ drivers/dma/Kconfig                           |  25 +-
+ drivers/dma/Makefile                          |   3 +-
+ drivers/dma/loongson/Kconfig                  |  41 +
+ drivers/dma/loongson/Makefile                 |   4 +
+ .../dma/{ => loongson}/loongson1-apb-dma.c    |   4 +-
+ drivers/dma/loongson/loongson2-apb-cmc-dma.c  | 730 ++++++++++++++++++
+ .../dma/{ => loongson}/loongson2-apb-dma.c    |  93 +--
+ 9 files changed, 903 insertions(+), 85 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2k0300-dma.yaml
+ create mode 100644 drivers/dma/loongson/Kconfig
+ create mode 100644 drivers/dma/loongson/Makefile
+ rename drivers/dma/{ => loongson}/loongson1-apb-dma.c (99%)
+ create mode 100644 drivers/dma/loongson/loongson2-apb-cmc-dma.c
+ rename drivers/dma/{ => loongson}/loongson2-apb-dma.c (91%)
+
+
+base-commit: c8e9b1d9febc83ee94944695a07cfd40a1b29743
+-- 
+2.52.0
+
 
