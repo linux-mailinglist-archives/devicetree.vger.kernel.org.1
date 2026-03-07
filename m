@@ -1,138 +1,161 @@
-Return-Path: <devicetree+bounces-272496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272497-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEJgOuVZrGkwpAEAu9opvQ
-	(envelope-from <devicetree+bounces-272496-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:01:25 +0100
+	id iJC+Cl9arGkwpAEAu9opvQ
+	(envelope-from <devicetree+bounces-272497-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:03:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514FB22CCAF
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:01:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84E0422CCE4
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:03:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 941A930166C1
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 17:01:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9E5D1301981F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 17:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F9AF332604;
-	Sat,  7 Mar 2026 17:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E777A332634;
+	Sat,  7 Mar 2026 17:03:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SgEaTdd9"
+	dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b="gjzd2HMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pdx-out-010.esa.us-west-2.outbound.mail-perimeter.amazon.com (pdx-out-010.esa.us-west-2.outbound.mail-perimeter.amazon.com [52.12.53.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC8B28BA95;
-	Sat,  7 Mar 2026 17:01:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEA8F33260F;
+	Sat,  7 Mar 2026 17:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=52.12.53.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772902882; cv=none; b=MMtv9t8ovFc8SpGC3N6QlIXz6l7GNCyeeQPXnTQ6ERyc0tZ+pMiwXVS6FJXGY7NCyScmd5pAXWe6RZEux+lUDmj/LndUbbuGk69tTp82JyCB5pdD3dHpq+Roes0ukkmfrNTZG5YgLdkX7+g9m8pLmhPYGj+EJ6StfKK8sJM96PY=
+	t=1772902991; cv=none; b=da8QvpP3SyXffvXTFdLXQuJfmeC8DpmAX8TSSix/zWMfV19h58TI5nh5JA1quNIGkOnwsnd8Ja7xIlvQE/ivMi7k5fTN2/zQI8k1V2fvQGWCiRveu48EnZVdZcC7cPGQuB34YrO1rVDWc789oX2HtknIWMVmB/QilRB3vwiiXrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772902882; c=relaxed/simple;
-	bh=4PQOnmZE4i7nYeFONjFfq74mV+vHbWSwVxp7l/wzkaw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=JhBmCgosO9bwjyHXx3swkASrKYL7ADCs5knofe+VdSflRW418W/+dKIp4LQTEmr4hdv4SXsc/ZsLn4cjhd9/5KsNmmrMV1uVb/AEmszXIy+rPbSW0asZoP28BLDMO9ESBhG8UUt0J6aEFzsG9W+1aPVechv5ki9K3TTrbmCsxEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SgEaTdd9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE612C19422;
-	Sat,  7 Mar 2026 17:01:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772902881;
-	bh=4PQOnmZE4i7nYeFONjFfq74mV+vHbWSwVxp7l/wzkaw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SgEaTdd9owY9gaipmUFAdiEQAffCZa19dogkaDlZHM9+jh6EAsehq+QB29YCBvPRa
-	 TN/OTrYg0RFwVc+6OMW8zuOMwocr4lIjIjUhoYoOMj+kQ9Gfa/Y3wiXPZuPvaybjWp
-	 h/+1gXryINAy8Z1jmHaDq5/HGxjmsVJr1NFgi2JYcYX3qqSRPjzpMWmQbDq5HIvsqc
-	 Ycz5gkC0Na33RtwpO/VMLt+gH76rKbrPhEcYfy57rzgZwk3ay1HbcldJIeIrfLClou
-	 TJi+PHBxHnO75cUCrgaLNTX/3r47KEB+hc7rV7yaEm9GmVSRKj8QjlQHNLQ8NaYNyd
-	 Tlo6uf1qYyQDw==
-Date: Sat, 7 Mar 2026 17:01:11 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Jonathan Santos
- <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- cosmin.tanislav@analog.com, lars@metafoo.de, Michael.Hennerich@analog.com,
- nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Subject: Re: [PATCH 3/3] iio: adc: ad4130: add new supported parts
-Message-ID: <20260307170111.4a6af284@jic23-huawei>
-In-Reply-To: <18438082-8efc-475f-acde-be3cb313f2ab@baylibre.com>
-References: <cover.1772078999.git.Jonathan.Santos@analog.com>
-	<1d5baeec27724a1c8ebf909c29c3599d583948a1.1772078999.git.Jonathan.Santos@analog.com>
-	<aaWH1wL8odeCmE6w@ashevche-desk.local>
-	<18438082-8efc-475f-acde-be3cb313f2ab@baylibre.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772902991; c=relaxed/simple;
+	bh=wvkD7PmKVor5qWsXU1Wx/LvlXnzQBgwJVQXNn1GZpwQ=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sTTCtwnY+GxyWyFaxVKQa/F1oKt3s1eLG2TyasQWxq5sqF04LooMAVuF19X5LE3+TeI8XFC8lWoiO0c3bxooE46Vveijuh/HPOE8qByKL6V8XLzQ7pBQv/NS013qc11HpMRfouaAaRF/F7KaWFKnDhhzFhjTae9SqzfnsZtKdu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.com; dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b=gjzd2HMN; arc=none smtp.client-ip=52.12.53.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
+  t=1772902990; x=1804438990;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=1hUeG+gVwGZ+FlvP7RVlGS1em+6sgkvmyaJZpvZ0smU=;
+  b=gjzd2HMNAorf/Yi4LTf+UUTPkg352NLcapAx+XZHvyCB2qEfNjTt8n6m
+   9drHubLmDbrmGY7ke48iyke9w7rGjNTOjvI8uMoMHe0ichkCJVwYf+U9n
+   TmZNx/e5FftxoPvRiV+ZeEffisy+RiSX4hqWywSA5SiBGbd40M0XMuIWS
+   d0ZBKado3mB7IfpQQKza5hUrAyoS/P9U056TnJ0eL5UTpFJu1uHE9+VnA
+   +vPeZZenV/Ozwh8RQUxW1y/1FKFzvc00CChMgd61p4jxiqpUrn5+Js4cJ
+   E9i7xH8zHndxQ8XoIezTKD4JqU9Jh2klhLsKaH3HFRAFQ/IFlHGN8jCV9
+   Q==;
+X-CSE-ConnectionGUID: p/xIXsQST364+iGSnRxPdw==
+X-CSE-MsgGUID: 1NvykfWVQX+xs2B53pblRg==
+X-IronPort-AV: E=Sophos;i="6.23,107,1770595200"; 
+   d="scan'208";a="14412486"
+Received: from ip-10-5-6-203.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.6.203])
+  by internal-pdx-out-010.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2026 17:03:10 +0000
+Received: from EX19MTAUWB002.ant.amazon.com [205.251.233.111:14680]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.31.3:2525] with esmtp (Farcaster)
+ id 116db2dc-68d6-4730-9bfa-64f7924d15c4; Sat, 7 Mar 2026 17:03:10 +0000 (UTC)
+X-Farcaster-Flow-ID: 116db2dc-68d6-4730-9bfa-64f7924d15c4
+Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
+ EX19MTAUWB002.ant.amazon.com (10.250.64.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37;
+ Sat, 7 Mar 2026 17:03:09 +0000
+Received: from localhost (10.119.200.184) by EX19D001UWA001.ant.amazon.com
+ (10.13.138.214) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37; Sat, 7 Mar 2026
+ 17:03:09 +0000
+Date: Sat, 7 Mar 2026 09:03:08 -0800
+From: Cory Keitz <ckeitz@amazon.com>
+To: <dumitru.ceclan@analog.com>
+CC: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, "Mauro Carvalho
+ Chehab" <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Julien Massot
+	<julien.massot@collabora.com>, Rob Herring <robh@kernel.org>, Niklas
+ =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+	<mitrutzceclan@gmail.com>, Cosmin Tanislav <demonsingur@gmail.com>, Niklas
+ =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: Re: [PATCH RESEND v8 16/21] media: i2c: maxim-serdes: add MAX96724
+ driver
+Message-ID: <aaxWATynXaVFglvS@bcd074ae11bb>
+References: <20251208-gmsl2-3_serdes-v8-0-7b8d457e2e04@analog.com>
+ <20251208-gmsl2-3_serdes-v8-16-7b8d457e2e04@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 514FB22CCAF
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20251208-gmsl2-3_serdes-v8-16-7b8d457e2e04@analog.com>
+X-ClientProxiedBy: EX19D041UWA003.ant.amazon.com (10.13.139.105) To
+ EX19D001UWA001.ant.amazon.com (10.13.138.214)
+X-Rspamd-Queue-Id: 84E0422CCE4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-7.16 / 15.00];
+	WHITELIST_DMARC(-7.00)[amazon.com:D:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amazon.com,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[amazon.com:s=amazoncorp2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272496-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272497-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kernel.org,linux.intel.com,collabora.com,ragnatech.se,linuxfoundation.org,vger.kernel.org,lists.linux.dev,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.973];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[ckeitz@amazon.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amazon.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Sat, 7 Mar 2026 10:27:41 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+On Mon, Dec 08, 2025 at 04:13:08PM +0200, Dumitru Ceclan via B4 Relay wrote:
+> +static int max96724_init_phy(struct max_des *des, struct max_des_phy *phy)
+> +{
+> +	struct max96724_priv *priv = des_to_priv(des);
+> +	bool is_cphy = phy->bus_type == V4L2_MBUS_CSI2_CPHY;
+> +	unsigned int num_data_lanes = phy->mipi.num_data_lanes;
+> +	unsigned int dpll_freq = phy->link_frequency * 2;
 
-> On 3/2/26 6:51 AM, Andy Shevchenko wrote:
-> > On Sat, Feb 28, 2026 at 09:39:04AM -0300, Jonathan Santos wrote:  
-> >> Add support for AD4129-4/8, AD4130-4, and AD4131-4/8 variants.
-> >>  
-> 
-> ...
-> 
-> >   
-> >> +	/* Triggered buffer data structure */
-> >> +	struct {
-> >> +		u32 channels[AD4130_MAX_CHANNELS];
-> >> +		s64 timestamp;  
-> > 
-> > Use aligned_s64 type...
-> >   
-> >> +	} scan __aligned(8);  
-> > 
-> > ...instead of this.
-> >   
-> 
-> This is used with SPI, so it actually needs to be:
-> 
-> 	IIO_DECLARE_DMA_BUFFER_WITH_TS(u32, channels, AD4130_MAX_CHANNELS);
-Whilst you are correct, that reasoning is partial.
+This unconditionally doubles the link frequency for the DPLL, which is
+correct for D-PHY (DDR clocking) but incorrect for C-PHY. Per the
+MAX96724 User Guide:
 
-We could have marked it as sufficiently aligned.
-The buffer part make sense because we may have only a few channels enabled
-so the timestamp may be much earlier in memory than the structure suggests.
+  D-PHY: "Clock freq is half; Data rate is equivalent bps/lane."
+         e.g. 00010 = 200MHz DPLL, 200Mbps/lane data rate.
 
-Thanks,
+  C-PHY: "2.28bits/symbol."
+         e.g. 00010 = 200MHz DPLL, 456Mbps/lane data rate.
 
-J
+For C-PHY the DPLL value equals the symbol rate, which is the link
+frequency directly. Should be:
+
+        unsigned int dpll_freq = is_cphy ? phy->link_frequency
+                                       : phy->link_frequency * 2;
+
+The same pattern exists in max9296a_init_phy() in patch 17.
+
+I've tested the full series (backported to 6.6) with the above fix on
+SA8775P + MAX96724 + MAX96717 with C-PHY 3-trio @ 700MHz.
+
+Tested-by: Cory Keitz <ckeitz@amazon.com>
 
