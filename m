@@ -1,129 +1,122 @@
-Return-Path: <devicetree+bounces-272518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272519-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ELmlGPeUrGnQqwEAu9opvQ
-	(envelope-from <devicetree+bounces-272518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 22:13:27 +0100
+	id 0HnBMN2mrGkZsQEAu9opvQ
+	(envelope-from <devicetree+bounces-272519-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 23:29:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AB8822DA22
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 22:13:26 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id A741822DD63
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 23:29:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 011AD301D041
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 21:13:24 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E88EB300D0DC
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 22:29:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A8A736C9CE;
-	Sat,  7 Mar 2026 21:13:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30C9B37E319;
+	Sat,  7 Mar 2026 22:29:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="EZzFyUEA"
+	dkim=pass (2048-bit key) header.d=flordal.net header.i=@flordal.net header.b="wQKDI2aL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from mail-06.mail-europe.com (mail-06.mail-europe.com [85.9.210.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C72E7260F
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 21:13:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57C74376BC4
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 22:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.9.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772918003; cv=none; b=VaIVKeGj2sK0FlurGfPh/lZ+n54M+VmcEBQpntSFkgdE4H4Dnjv8gRF/vZdsjTm6+DNvGxeBVZRmzvqXiyEkCeRW8/uWhRkVVsfbv0QV7V5vjb/g0++yHf0Q+Jx0+2R4Zztl4jZccmSYKLroU7L/srnRy575gsjVfA/dD9Zk104=
+	t=1772922581; cv=none; b=J/MTcQLxqay+wn85Ck49PYdqknFRRUNlXXXhaTw35b6noLdMci9s2PV0IYHZsdxToJlLjhJgrjx1NM4JN8c9xeqcGZNmOZojY3tXZBk5Qemue3j5tB8vkn7BD7846PMsejvlgcEo/iwfK8J+DCwqfgsfp3HCWDxCZhY3N1DJ28Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772918003; c=relaxed/simple;
-	bh=w8t269qI4kdA1DU9l5jve4mAHmOdAC9k1jnaSrHc+Rc=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=iCuoAIWRbE873WerC4683rEzmW1x9gVpVm2mG3aMXZzeu2lSSchjJtk7kJrMvxXMBJ5E5HGEX2BiG0k5wHPKHnUjptlq+ygG2dUO3vU9H475BgOPO6O2llUT5kWVgMCssi+qn+vdNEHWOOTuDMilaX8ehlKwYKr9pGshvA2louk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=EZzFyUEA; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id B282D240027
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 22:13:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1772917993; bh=w8t269qI4kdA1DU9l5jve4mAHmOdAC9k1jnaSrHc+Rc=;
-	h=Date:From:To:cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 From;
-	b=EZzFyUEAq2uqG/6OGRQs8oqeu2csiqUvX/OLFUdfWkLyOgjmVq8I+mScUV1NRAZ/f
-	 C5T6/eMv/ym7ZcOT25lmknOsFDgkZxHKQ5yRVEHOLsayQUitGlI2JZ7RFtMCXOoLvf
-	 1Gv2oAvt8tZ/gWyOmvJM0/cLOLlwhFvDlOkWxqzO5fw8+QWXH9wa+r0ix/NwcJ2EL2
-	 MF8HGUdeHL8G2zABFK/9betnYVIHK96q9LHOrQLltXuig4o6CMrESJhhezm8RP+SpA
-	 89N5dcxbAQ0IYydFluJqjXnz+PPcX0xsglF/slA1U6Ap5IFIvoN69hs0u268bRU2P5
-	 eJJy4FO3+PjHA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fSwwl4JjWz6tw2;
-	Sat,  7 Mar 2026 22:13:11 +0100 (CET)
-Date: Sat, 07 Mar 2026 21:13:12 +0000
-From: Marc Dietrich <marvin24@posteo.de>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-cc: Thierry Reding <thierry.reding@gmail.com>, Arnd Bergmann <arnd@kernel.org>, 
-    Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, Jonathan Hunter <jonathanh@nvidia.com>, 
-    devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-    linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: tegra: paz00: configure WiFi rfkill switch through
- device tree
-In-Reply-To: <aaSsgDqmTLEQQqK0@google.com>
-Message-ID: <78b4684a-0e97-ebac-c955-6c77c3edc47f@posteo.de>
-References: <aY_BpRQmLdqOOW2K@google.com> <82f24afb-1fd2-bfc9-2215-4526aff372ba@gmx.de> <07c024a6-d2f9-5805-4ae7-cbc89cda53bf@gmx.de> <aZvdDIYlCjg8sVGT@google.com> <99ddd816-f19f-cda8-15a9-6273e26e9e8b@gmx.de> <4a1bcdfd-e308-e357-2409-8bc82f115928@gmx.de>
- <aaSsgDqmTLEQQqK0@google.com>
+	s=arc-20240116; t=1772922581; c=relaxed/simple;
+	bh=ww15vaTJjdZ7MrV/BXZpR/uprbDnj+9QEvykXyyCvbo=;
+	h=Date:To:From:Subject:Message-ID:MIME-Version:Content-Type; b=izMBD5Z6L8AHGmiKXv4f/cryGSfNNnKbwIXACMuiieB3Fss16PKBnpKx20lV9N17o9mxgweOcq4WXjqhQU/h5pvPCj0lKKldkjlNDmdms/xrIwkjf7Z1h2Ki7+2bCS/GsxxExnznPbjaag1Ehv37lMLfLYmyh5mLIIK/krMgb4c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flordal.net; spf=pass smtp.mailfrom=flordal.net; dkim=pass (2048-bit key) header.d=flordal.net header.i=@flordal.net header.b=wQKDI2aL; arc=none smtp.client-ip=85.9.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flordal.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flordal.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flordal.net;
+	s=protonmail; t=1772922562; x=1773181762;
+	bh=ww15vaTJjdZ7MrV/BXZpR/uprbDnj+9QEvykXyyCvbo=;
+	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=wQKDI2aLIaPjAENuzYajsCNO+yQsG0RO9Jv0tNEXkcUldxfkYXaPTowrzziI8z+C8
+	 JGPoSynx1T/tfCxMLmb+RHiKBYakgLvBf4/A+QFqMzCZyRDnFCQM1i43FGDNtEKJfX
+	 v09yqnphxPan7UCn56A4kPeJeTiiuRxq/R3jQCtbC1OZy3q+fN7FuFDMPqN18a0Iv+
+	 pyXsD2wKss7nyoH/k2/P2v93I0erGYoJAAACfxY6kRLiLHEBqIQ5twYXceCysPOBOR
+	 8ncvifYcva65FuV0zJ/58w8O5SErSqOowoL+2/GNbwzfPxHR18dMe5f8dHnzuhMlPh
+	 zTB3OhpeOYrkw==
+Date: Sat, 07 Mar 2026 22:29:17 +0000
+To: Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel-janitors@vger.kernel.org
+From: Axel Flordal <axel@flordal.net>
+Subject: [PATCH] arm64: dts: apple: fix spelling error
+Message-ID: <2838895.vuYhMxLoTh@fedora>
+Feedback-ID: 166586150:user:proton
+X-Pm-Message-ID: 9ac85a73064bd3323c4451d6f38cf526ec28ef2f
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII; format=flowed
-X-Rspamd-Queue-Id: 5AB8822DA22
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: A741822DD63
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[flordal.net,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[flordal.net:s=protonmail];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,nvidia.com,vger.kernel.org,lists.infradead.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272519-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[posteo.de:+];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272518-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marvin24@posteo.de,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.963];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[axel@flordal.net,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[flordal.net:+];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:dkim,posteo.de:mid]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,flordal.net:dkim,flordal.net:email]
 X-Rspamd-Action: no action
 
+Change "configiguration" to "configuration".
+
+Signed-off-by: Axel Flordal <axel@flordal.net>
+---
+ arch/arm64/boot/dts/apple/spi1-nvram.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/apple/spi1-nvram.dtsi b/arch/arm64/boot/dt=
+s/apple/spi1-nvram.dtsi
+index 9740fbf200f0..d2720b307774 100644
+--- a/arch/arm64/boot/dts/apple/spi1-nvram.dtsi
++++ b/arch/arm64/boot/dts/apple/spi1-nvram.dtsi
+@@ -2,7 +2,7 @@
+ //
+ // Devicetree include for common spi-nor nvram flash.
+ //
+-// Apple uses a consistent configiguration for the nvram on all known M1* =
+and
++// Apple uses a consistent configuration for the nvram on all known M1* an=
+d
+ // M2* devices.
+ //
+ // Copyright The Asahi Linux Contributors
+--=20
+2.53.0
 
 
-On Sun, 1 Mar 2026, Dmitry Torokhov wrote:
 
-> Hi Marc,
->
-> On Sun, Mar 01, 2026 at 09:55:45PM +0100, Marc Dietrich wrote:
->>
->> thinking about all this a bit more, I guess your approach to just convert
->> the driver to device-tree and not change any functionally beside it, is the
->> best solution for now (and good pratice in general).
->> Maybe I can get access to a machine with bluetooth (or some other user steps
->> up), so we can try to find a better solution, if required at all.
->
-> Thank you. I believe your tested-by is applicable to the current version
-> of the patch as well, so maybe Thierry can simply pick it up.
-
-yes sure, thanks!
-
-Marc
 
 
