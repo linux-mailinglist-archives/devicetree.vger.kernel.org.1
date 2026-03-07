@@ -1,198 +1,153 @@
-Return-Path: <devicetree+bounces-272463-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272464-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id xye6BMZCrGndoAEAu9opvQ
-	(envelope-from <devicetree+bounces-272463-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:22:46 +0100
+	id +M53NA9DrGndoAEAu9opvQ
+	(envelope-from <devicetree+bounces-272464-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:23:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E7722C5E5
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:22:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C81422C60D
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:23:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 90D41301159D
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 15:22:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 845733012EA7
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 15:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A333A4526;
-	Sat,  7 Mar 2026 15:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28CC23A4F2D;
+	Sat,  7 Mar 2026 15:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bFSPckRd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hbKHCrTK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1DBA39E6C5;
-	Sat,  7 Mar 2026 15:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 050163A4526;
+	Sat,  7 Mar 2026 15:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772896962; cv=none; b=Sk/Nklgqu7K30x0sVgbr5f4l5Lr8+gu1TOJUaotMF+WHnIFDQMhS4rqTJvt9Gfc+QKg5IYLUi4I37tf/vWjNbhhWqYhHcXJvYDAdEQY7AbtuDT7Bu//pH46rE/b1m70a6L33Xbs1lYLWy6QbDTuZpWjRj717HI52wY0byoU50yg=
+	t=1772897022; cv=none; b=XtzE4+EiysLQmlUQ+jN0w6WCXaDvnT6wkDv0HNaW8UqJXC6vKkaRbk6NVChpT0t2MN//GkHKb//e0d6dJ3KABaADvf/alD47KSuqqX42yO1bgGeAKy6Esk10KKe6RHSB0IKCi9rpO3iPQyLixg+T8S2c6qKpUvV8fuYwE56BvTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772896962; c=relaxed/simple;
-	bh=V4gJkObjDah6lfhZK4kMUJ5jS923Ftcsg+YsORY2fqE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BhvIR4/FM4A5Oy8SpxWbJrTLRgvHJhUlgQ0VSPgkw3e/ipO1DdpBcT08+BEsSBACkXkEMXTpcywdQcJDaNGxMBHuyTUo2ks2YQ5kHeB9pH5tI27tTX2Je85ERkCQrpTqO0ZW17LYmEy0SQX6crDfx3Bud0NggsTxEYm683VJPVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bFSPckRd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1808C19422;
-	Sat,  7 Mar 2026 15:22:41 +0000 (UTC)
+	s=arc-20240116; t=1772897022; c=relaxed/simple;
+	bh=MfZR6S73sEsp+jf7xj5PPPDQE092erWE28ESxMn8NMI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nHZu/2FoSV1lpvnOQEOaT8ju25Hlv75REMs+NuLCUFbwiSAQXaeO4Wra0IE2YEe+KV7oU0kCssr1JDH0XAMssOkNs5rjZN8QxeaZWN/9Hinz/L9urnpI8rU/p3UtDAaR6/rpxSsGaY4xNR3EkHmbdDGt8AbhZlJYAs2jD1Icl8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hbKHCrTK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB2B6C19422;
+	Sat,  7 Mar 2026 15:23:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772896962;
-	bh=V4gJkObjDah6lfhZK4kMUJ5jS923Ftcsg+YsORY2fqE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bFSPckRdirXEZoprnvirmE+J4vPSBEGLeS/jigwnzsPrQTBxL9YaxgNdTwy7fjFMy
-	 Gb8h8+O5EZ7uY/QhgAIjiNsoeTzD4ESeYIlIhndF69pDk6A6Z4aAtezxS7e0uEi14C
-	 jh4FZjmGQJzmp08WlOb4hLuFeLyHDeFSJpTo8RgWPFCXZ0XrV1bWtl5+dhYnnNc1Jp
-	 K/lkSnbpAK+Qmq707U+Ixa96Fi5WjqatwPpov5mygZGQqnOO4UaxUqtXM80U66Dvoe
-	 b8ZyCGYx1e3t8b26GB0NtbGwzW+e1+2I75XxQwDSXglb2zJ1QeuBar6uspqis88oBE
-	 Ppurrsmwk8HtA==
-Date: Sat, 7 Mar 2026 16:22:39 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zichar Zhang <zichar.zhang@cixtech.com>
-Cc: linusw@kernel.org, brgl@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, peter.chen@cixtech.com, 
-	fugang.duan@cixtech.com, jank@cadence.com, cix-kernel-upstream@cixtech.com, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: cix: add FCH(S0)/S5 GPIO controllers for
- sky1
-Message-ID: <20260307-efficient-fancy-gaur-db7df8@quoll>
-References: <20260306093238.2715269-1-zichar.zhang@cixtech.com>
- <20260306093238.2715269-2-zichar.zhang@cixtech.com>
+	s=k20201202; t=1772897021;
+	bh=MfZR6S73sEsp+jf7xj5PPPDQE092erWE28ESxMn8NMI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hbKHCrTKY3VvRhzs/U+GWv/lXW6XTxboc3yzou+3VhStOWjjPhqugB23laE5cKViT
+	 ubB5AJoLFnKyCw62P7WXq0NWe1l4PIBy7W06FQmMWQ859r/HZq8ydxJGIKbx/c1Qto
+	 wJi3nKz6iWdG/Hjzf+V9e5mvdwL9j9wRp08irni9KmA3cWJ5zhdA9rVso4O3ORsLUR
+	 DXSlSP6leIzhAsQ4iQqWezIaMdFo3Mq5jfnsm2WUuxIRF5Kmipdn3HLHp6CmqK787A
+	 l8Realey2phIbZ2pltmY9lWatwXDa++ANMllo4z0lbJLnJvC39gSmeocY2Gff9EjaQ
+	 vktc9d4Xg/iwg==
+Message-ID: <e09f1c6c-bf5d-4ebe-8a61-74f76830248c@kernel.org>
+Date: Sat, 7 Mar 2026 16:23:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260306093238.2715269-2-zichar.zhang@cixtech.com>
-X-Rspamd-Queue-Id: 54E7722C5E5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: cix: Add scmi powerdomain nodes for sky1
+To: Gary Yang <gary.yang@cixtech.com>, peter.chen@cixtech.com,
+ fugang.duan@cixtech.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, cix-kernel-upstream@cixtech.com
+References: <20260306090659.990527-1-gary.yang@cixtech.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20260306090659.990527-1-gary.yang@cixtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 3C81422C60D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-272464-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272463-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.972];
+	NEURAL_HAM(-0.00)[-0.931];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,cixtech.com:email,0.0.0.0:email,0.62.221.192:email,0.63.122.0:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,cixtech.com:email]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 05:32:38PM +0800, Zichar Zhang wrote:
-> From: "Zichar.Zhang" <zichar.zhang@cixtech.com>
+On 06/03/2026 10:06, Gary Yang wrote:
+> Add a second SCMI channel using SMC transport to communicate with TF-A
+> for power domain management on the Sky1 SoC.
 > 
-> Add Cadence GPIO controller nodes for Sky1 FCH(S0) and S5 domains in
-> sky1.dtsi, and enable those controllers on sky1-orion-o6.
-> 
-> Signed-off-by: Zichar Zhang <zichar.zhang@cixtech.com>
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
 > ---
->  arch/arm64/boot/dts/cix/sky1-orion-o6.dts |  28 +++++
->  arch/arm64/boot/dts/cix/sky1.dtsi         | 123 ++++++++++++++++++++++
->  2 files changed, 151 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-> index 4dee8cd0b86d..4dc76e0135ee 100644
-> --- a/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-> +++ b/arch/arm64/boot/dts/cix/sky1-orion-o6.dts
-> @@ -89,3 +89,31 @@ &pcie_x1_1_rc {
->  &uart2 {
->  	status = "okay";
->  };
-> +
-> +&s5_gpio0 {
+>  arch/arm64/boot/dts/cix/sky1-power.h | 34 ++++++++++++++++++++++++++++
 
-I already asked cixtech contributors to read DTS coding style. More than
-once. Does it mean I need to ask EACH contributor that? Maybe create
-internal guideline to avoid trivial mistakes?
-
-> +	status = "okay";
-> +};
-> +
-> +&s5_gpio1 {
-> +	status = "okay";
-> +};
-> +
-> +&s5_gpio2 {
-> +	status = "okay";
-> +};
-> +
-> +&fch_gpio0 {
-> +	status = "okay";
-> +};
-> +
-> +&fch_gpio1 {
-> +	status = "okay";
-> +};
-> +
-> +&fch_gpio2 {
-> +	status = "okay";
-> +};
-> +
-> +&fch_gpio3 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/cix/sky1.dtsi b/arch/arm64/boot/dts/cix/sky1.dtsi
-> index 72f3b195a927..9ceaf8f68e83 100644
-> --- a/arch/arm64/boot/dts/cix/sky1.dtsi
-> +++ b/arch/arm64/boot/dts/cix/sky1.dtsi
-> @@ -185,6 +185,13 @@ psci {
->  		method = "smc";
->  	};
->  
-> +	s5_gpio_apb_clk: s5-gpio-apb-clk {
-
-Please use name for all fixed clocks which matches current format
-recommendation: 'clock-<freq>' (see also the pattern in the binding for
-any other options).
-https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
-
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <100000000>;
-> +		clock-output-names = "s5_gpio_apb_clk";
-> +	};
-> +
->  	soc@0 {
->  		compatible = "simple-bus";
->  		ranges = <0 0 0 0 0x20 0>;
-> @@ -354,6 +361,74 @@ syscon: syscon@4160000 {
->  			#reset-cells = <1>;
->  		};
->  
-> +		fch_gpio0: gpio-controller@4120000 {
-
-Again, read DTS coding style.
-
-> +			compatible = "cdns,gpio-r1p02";
-> +			reg = <0x0 0x4120000 0x0 0x1000>;
-> +			clocks = <&scmi_clk CLK_TREE_FCH_GPIO_APB>;
-> +			clock-names = "fch_gpio_apb_clk";
-
-This is pointless name. GPIO block does not take some "fch" input. You
-just called the input clock based on clock output which is completely
-misunderstanding of the DTS.
+Why do you add dead code?
 
 Best regards,
 Krzysztof
-
 
