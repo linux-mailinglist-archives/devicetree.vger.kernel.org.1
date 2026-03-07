@@ -1,66 +1,60 @@
-Return-Path: <devicetree+bounces-272414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272415-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJuoHV8GrGkxjAEAu9opvQ
-	(envelope-from <devicetree+bounces-272414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 12:05:03 +0100
+	id AMUbOCIOrGkbjgEAu9opvQ
+	(envelope-from <devicetree+bounces-272415-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 12:38:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21EDB22B561
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 12:05:03 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4F422B73B
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 12:38:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7A4E030151E6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 11:05:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C6633026C25
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 11:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF1433BBD2;
-	Sat,  7 Mar 2026 11:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B34E134EEFB;
+	Sat,  7 Mar 2026 11:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fHkZWmAf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dnfGNmg8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A175330B2F;
-	Sat,  7 Mar 2026 11:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908CC34EEE4;
+	Sat,  7 Mar 2026 11:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772881499; cv=none; b=HyyhjJPyOIHD/Us9Z589b3YdhboBVguaXX43cH7hql4lTSTAR2AAk2GrDd4cQGzc5kNewRMrcVSsIT+Z2H8MzvdJxQdtNlO9MEGJ1IzoKbUTTH+WS2X0FoMaFNS3zXH3fYdaMl7Uu5yCnjUU8WWBt1yRmIHyV/GcpGxhj3czFRM=
+	t=1772883486; cv=none; b=ceVajqR9x5ykxt9Ew1gCypOzVgzw20ForRXKHUS8C3wyVjC5JTzfpLnr0M+0Cw3oQt+X8wSgywGxfhPYKQJ1K+JV8mxByG8+SIJmwyZhpDxcagcdZIm7aZc01m1STe3mDhjGHE7nZJ25FlOeKj4asc3F9o3fqyAYYFZPstk0zwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772881499; c=relaxed/simple;
-	bh=XP6D85GhIBaITwpzbgv/w6t/vLSCQdMXX2P7pdKHrRU=;
+	s=arc-20240116; t=1772883486; c=relaxed/simple;
+	bh=4vEmIvT6/hd6IrLoExqkfyoQm4aseR8ycMrBsF7re7M=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=G/Bm4wnUY80TBKy9cz8+HwoFI594ta6YgJxpZlRtL2tCddq9ZiPckP5nctMlIm6E5yMCmqtzZ5x5F7yIy+uQ/p0/I8QyuUj7/fbiCezkd+ti/viRVrA0SoL79tbFp9N1NAJB/3dhTu58ouapNCLPIslPhNeO5RpmllnOEixt3a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fHkZWmAf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2637FC19422;
-	Sat,  7 Mar 2026 11:04:52 +0000 (UTC)
+	 MIME-Version:Content-Type; b=d9uZ47COiv/iPnx/agEIslPn1em0sh5PZEAbmxZUcv7bBzJBMJ75h6geYeXrGJ9Lvf7U+pFUtPrqfTBZ1GXndTe7tSCCHDTsurdaWCNpbWIUK+t1A4NhXlA7pd6Fe7+4+5xOKKYyx6d7+nJfX604JxhRCQxSWvaJOgzxHi4vKXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dnfGNmg8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC3A0C19422;
+	Sat,  7 Mar 2026 11:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772881498;
-	bh=XP6D85GhIBaITwpzbgv/w6t/vLSCQdMXX2P7pdKHrRU=;
+	s=k20201202; t=1772883486;
+	bh=4vEmIvT6/hd6IrLoExqkfyoQm4aseR8ycMrBsF7re7M=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=fHkZWmAfmdokglinbp4GAEne3OLFd8hxurBOuHx1wfp3m027z6HQUarG5+zdfdnWX
-	 Vd9yUvbRQwZuZu4kQZPMyeHaEmanoxKW2BSCugj+gPb2LC17doypUqmZCu1AS5oQVN
-	 YcOslooCK6kEYLxMDUueIfg0sSTynGtHcUjSToe+8ENkS+mZBntSFHi41IYk2cP8WJ
-	 FrwQG/jDm33MWB0kKBR+zqCL8ExXWs8hcjGgGlhHhkredJ8NfnyS3SgrjEpS3HeeXo
-	 Jz/XqzBNZus8GdNFUG9lr2EFGXLyWcLDJ/9H0s6MrwjJmhWKy/f1mW/KKu9+t/0TRL
-	 8KbYekSvPT9Kw==
-Date: Sat, 7 Mar 2026 11:04:47 +0000
+	b=dnfGNmg8z5QIgwvwihbNXmE+Cgu7rzfv6CThYcbnKdoiEgGHDr90C0If0+2JdHXCz
+	 5EUIJhggaB34bDwPI1DlE7RqEMQPsBL2BELJ3gH/bcohET6qo5ToQVqqvIw45sYjEP
+	 1mdpcJct9cp3tiVNE+o435fVkIvPymQBRXGPxPuIhVYjJpRDCDOj3/reNDr3VsJtoj
+	 s4Gwo2RXKs1HoVa40rex7mSQA2Ewg3zclOXRw5DzmFtN26iLW6mYkeVMPlIZTsN53b
+	 +b4V5XWbl0M2Ipim2RvSHG/S5XZ9bljdzzCGM3aK1BoO+oP1UFHT/SSIDDup+GNnuw
+	 vmlr8AuEetAYQ==
+Date: Sat, 7 Mar 2026 11:37:57 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Marcelo Schmitt
- <marcelo.schmitt@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- David Lechner <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Petre Rodan
- <petre.rodan@subdimension.ro>, Jorge Marques <jorge.marques@analog.com>,
+To: Andrew Davis <afd@ti.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Nikita Travkin <nikita@trvn.ru>,
  <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
  <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 4/4] iio: accel: adxl372: add support for ADXL371
-Message-ID: <20260307110447.189b98c0@jic23-huawei>
-In-Reply-To: <20260306151859.131934-5-antoniu.miclaus@analog.com>
-References: <20260306151859.131934-1-antoniu.miclaus@analog.com>
-	<20260306151859.131934-5-antoniu.miclaus@analog.com>
+Subject: Re: [PATCH] dt-bindings: iio: light: ltr501: Add liteon,ltr303
+Message-ID: <20260307113757.69abe0f1@jic23-huawei>
+In-Reply-To: <20260305195917.831104-1-afd@ti.com>
+References: <20260305195917.831104-1-afd@ti.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -70,110 +64,66 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 21EDB22B561
+X-Rspamd-Queue-Id: 4F4F422B73B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272414-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272415-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.971];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.970];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,analog.com:email]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, 6 Mar 2026 17:18:24 +0200
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+On Thu, 5 Mar 2026 13:59:17 -0600
+Andrew Davis <afd@ti.com> wrote:
 
-> Add support for the Analog Devices ADXL371, a +-200g 3-axis MEMS
-> accelerometer sharing the same register map as the ADXL372 but with
-> different ODR values (320/640/1280/2560/5120 Hz vs 400/800/1600/3200/
-> 6400 Hz), different bandwidth values, and different timer scale
-> factors for activity/inactivity detection.
+> This device is already supported by the driver and this compatible
+> string was added to the of_device_id list but was not documented
+> here in the binding, fix this.
 > 
-> Due to a silicon anomaly (er001) causing FIFO data misalignment on
-> all current ADXL371 silicon, FIFO and triggered buffer support is
-> disabled for the ADXL371 - only direct mode reads are supported.
+
+Needs a brief note on why it is different enough from all other supported
+devices that we can't do a fallback compatible.
+
+Seems it has a mix of scaling and channels that doesn't match any other device.
+
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-A couple of small formatting things. Otherwise looks good to me.
-
-Thanks,
-
-Jonathan
-
+> diff --git a/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml b/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml
+> index c8074f180a793..ab9bb68dd7363 100644
+> --- a/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/liteon,ltr501.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - liteon,ltr501
+>        - liteon,ltr559
+>        - liteon,ltr301
+> +      - liteon,ltr303
 >  
-> diff --git a/drivers/iio/accel/adxl372.c b/drivers/iio/accel/adxl372.c
-> index adb9e42653f1..7a1ee2fef618 100644
-> --- a/drivers/iio/accel/adxl372.c
-> +++ b/drivers/iio/accel/adxl372.c
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0+
->  /*
-> - * ADXL372 3-Axis Digital Accelerometer core driver
-> + * ADXL371/ADXL372 3-Axis Digital Accelerometer core driver
->   *
->   * Copyright 2018 Analog Devices Inc.
->   */
-> @@ -182,6 +182,14 @@ enum adxl372_odr {
->  	ADXL372_ODR_6400HZ,
->  };
->  
-> +enum adxl371_odr {
-> +	ADXL371_ODR_320HZ,
-> +	ADXL371_ODR_640HZ,
-> +	ADXL371_ODR_1280HZ,
-> +	ADXL371_ODR_2560HZ,
-> +	ADXL371_ODR_5120HZ,
-Might be worth a
-	ADXL371_ODR_NUM
-entry so you can size the array from it below.
-
-> +};
-> +
->  enum adxl372_bandwidth {
->  	ADXL372_BW_200HZ,
->  	ADXL372_BW_400HZ,
-> @@ -222,6 +230,37 @@ static const int adxl372_bw_freq_tbl[5] = {
->  	200, 400, 800, 1600, 3200,
->  };
->  
-> +static const int adxl371_samp_freq_tbl[5] = {
-> +	[ADXL371_ODR_320HZ] = 320,
-> +	[ADXL371_ODR_640HZ] = 640,
-> +	[ADXL371_ODR_1280HZ] = 1280,
-> +	[ADXL371_ODR_2560HZ] = 2560,
-> +	[ADXL371_ODR_5120HZ] = 5120,
-> +};
-> +
-> +static const int adxl371_bw_freq_tbl[5] = {
-> +	[ADXL371_ODR_320HZ] = 160,
-> +	[ADXL371_ODR_640HZ] = 320,
-> +	[ADXL371_ODR_1280HZ] = 640,
-> +	[ADXL371_ODR_2560HZ] = 1280,
-> +	[ADXL371_ODR_5120HZ] = 2560,
-> +};
-Style wise, why not do the same for adxl372_bw_freq_tbl[] as here?
-I slightly prefer this style, but key is consistency so if you'd
-gone the other way for both that would have been fine as well.
+>    reg:
+>      maxItems: 1
 
 
