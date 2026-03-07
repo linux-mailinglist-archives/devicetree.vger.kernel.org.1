@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-272410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272411-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KNlFJ9kErGkxjAEAu9opvQ
-	(envelope-from <devicetree+bounces-272410-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:58:33 +0100
+	id SE5WBOQErGkxjAEAu9opvQ
+	(envelope-from <devicetree+bounces-272411-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:58:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6352A22B3CD
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:58:33 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E91C22B3E4
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:58:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 759033012D0B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 10:58:32 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0FCB93013269
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 10:58:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31F8934A3CC;
-	Sat,  7 Mar 2026 10:58:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643F734A3CC;
+	Sat,  7 Mar 2026 10:58:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Yk4RKLsK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dEtEiiKp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DDF0346E41;
-	Sat,  7 Mar 2026 10:58:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BC82066DE;
+	Sat,  7 Mar 2026 10:58:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772881111; cv=none; b=H95UJ0QEhe9lLlNt2CP1DlC1+P/qrRNfpV4HKlydIaT8Ir2cJunxsAiXnlBHELLeabIBdhRJslIKlCzF688/kXzxoJ7ZjmH2R9a6LnYr6rYsqB5l0gH0DbyTK4ggnW+hOplbAZOnBrnh9vyFdN7ej6Re/VVyfqe5xXYOkx0eNM0=
+	t=1772881121; cv=none; b=XWSWwCMbLn7O5UFTl1YuOCJ8mb+FaAB91Qb+WQBw9ACm8ZHjONFzRT0gr9x28L/Mqc1Qetkrn71qXFv/Gbali46UlMsKP8s6TYbp8bQqUSsJ6kBGuZhP5ndNsVe5cFzE4NbHuY7DE2Gbz5ONqZzWN22Ps74wuj+RtbsE3ukQJOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772881111; c=relaxed/simple;
-	bh=T+DInVoVYcTQuJxe+itH4ZSL1wK4q6WToZhQ3bulP9s=;
+	s=arc-20240116; t=1772881121; c=relaxed/simple;
+	bh=Ionuc70jSLfmmprV1aKJDSZDnPZ8MojStxxeRXicepU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=prKqkoyJUFrIsNxDv0ZEax3nfDv7C79fanXIcaFuQSCj3PXCnwKlEo2mjZF91xljawvsTh075pz4g5lkv4KlUMNkUf4uQeRpYLM++/+RjKd/zJ0OCCizj8AdGtzNiSyg4GNR5yJ6WOwSldOPRCyljvy0m4PSgSS1e0/3ocA1bjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Yk4RKLsK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FECBC19422;
-	Sat,  7 Mar 2026 10:58:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XtlTPi3n5PpDyD0a+NAIcX+5g3xBA+bxnTpZ/9gnB/19yHXlCjr5gV+AdWaRMAnvHXw1ey894+P2JIrn1CfWhAC8uqsZ6kb6gBOscp55EGngPYA2qoFKYEMYsbh5smiB8u55iGEriP0wfEuCBPeVNVcBmmOUZstEUyEdnRzL3RM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dEtEiiKp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55D1EC19425;
+	Sat,  7 Mar 2026 10:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772881110;
-	bh=T+DInVoVYcTQuJxe+itH4ZSL1wK4q6WToZhQ3bulP9s=;
+	s=k20201202; t=1772881120;
+	bh=Ionuc70jSLfmmprV1aKJDSZDnPZ8MojStxxeRXicepU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Yk4RKLsKh0PVPQd0DBKglnZnVwLA50kpPa0uiheB37siWsDO0CWYubZiKqv+hpILK
-	 u3b3JXLVwesb6sbtdLSlQzhrbb433VzcYFrYGTj0kuMfYr3WhP+JO8jBuptJGPmVio
-	 fR/h6jo35pJpFuGIIPbzwfuun+1iVT8zb0qgY7tWTmm6LcWd5RptuUqnMAziMD/jNp
-	 DSBY+cLM/RMzbE/vm4UEng4qEti+hfP2LFAHH514hgAgXUjRvBm7LsznY5Jrfw6AaF
-	 6TuUnzh/jiFaMZtmv9DaRRwAv5zM7NLL9oYbELaxyHZBU755fvBLPQXXEYejwIZDb0
-	 fFsI/RrbRmcWg==
-Date: Sat, 7 Mar 2026 11:58:28 +0100
+	b=dEtEiiKpAEb+n96mbEzQTIiREcREP+9eTE0PJRTbtZ2MiUPTEuJWT9is67QzMC/Se
+	 pobTAeI3jvSQ9zwppaiEEujN2WC0sMxtEDbDlo1ReLnZuF3bkz0Gi3q+cQyCHDTmBC
+	 lDY4MWZv6Ghwl3zUqxeQQskJRsakr4Xqq8ctanRTVBcEzKJ2j1ba+1FH5w4F2id2kg
+	 rdlCyQCoZUmwSn0iCC3tHZjijmyOoITEyQbYfTbP7Uuehk4LAwMYs9+kQvmvDg2b3X
+	 VDlDHcz6RNHQvk+a47trCID2LP3bqYeR+YZPklZanCVAbkTqwawGNaoxEj31Qv5L3e
+	 IxW6QLlzm6/Tg==
+Date: Sat, 7 Mar 2026 11:58:38 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
 Cc: Rob Herring <robh@kernel.org>, 
@@ -59,11 +59,11 @@ Cc: Rob Herring <robh@kernel.org>,
 	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
 	Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>, 
 	Larisa Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH v4 2/8] dt-bindings: mmc: fsl-imx-esdhc: add S32N79
- support
-Message-ID: <20260307-tremendous-hot-toad-63ec2e@quoll>
+Subject: Re: [PATCH v4 3/8] dt-bindings: arm: fsl: Add NXP S32N79 SoC and RDB
+ board
+Message-ID: <20260307-tentacled-antique-agama-e8a80b@quoll>
 References: <20260306161555.9000-1-ciprianmarian.costea@oss.nxp.com>
- <20260306161555.9000-3-ciprianmarian.costea@oss.nxp.com>
+ <20260306161555.9000-4-ciprianmarian.costea@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,8 +72,8 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260306161555.9000-3-ciprianmarian.costea@oss.nxp.com>
-X-Rspamd-Queue-Id: 6352A22B3CD
+In-Reply-To: <20260306161555.9000-4-ciprianmarian.costea@oss.nxp.com>
+X-Rspamd-Queue-Id: 9E91C22B3E4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -81,11 +81,11 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272410-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272411-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -100,24 +100,25 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email,nxp.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 05:15:49PM +0100, Ciprian Costea wrote:
+On Fri, Mar 06, 2026 at 05:15:50PM +0100, Ciprian Costea wrote:
 > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 > 
-> Add compatible string "nxp,s32n79-usdhc" for the uSDHC controller found in
-> NXP S32N79 series automotive SoCs.
+> Add device tree binding documentation for the NXP S32N79 automotive SoC
+> and the S32N79 Reference Design Board (S32N79-RDB).
+> 
+> The S32N79 is an automotive-grade SoC featuring eight ARM Cortex-A78AE
+> cores organized for high-performance networking and gateway applications
+> in vehicles.
 > 
 > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
 > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
 > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
->  1 file changed, 1 insertion(+)
 
 Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
