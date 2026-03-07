@@ -1,262 +1,413 @@
-Return-Path: <devicetree+bounces-272500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272501-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +0xcC1xcrGlvpAEAu9opvQ
-	(envelope-from <devicetree+bounces-272500-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:11:56 +0100
+	id QEOmDbNdrGl/pAEAu9opvQ
+	(envelope-from <devicetree+bounces-272501-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:17:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DB2322CD7A
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:11:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A5DB22CDD2
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 18:17:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0A5DB3007A5B
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 17:11:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 59615301AD1D
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 17:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5F4334C31;
-	Sat,  7 Mar 2026 17:11:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5815630EF92;
+	Sat,  7 Mar 2026 17:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="m4DTktsw"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BXDUau7i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF78933343C;
-	Sat,  7 Mar 2026 17:11:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32E2450276
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 17:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772903510; cv=none; b=ePpnRVi7IrlVUu8vWgJdyMlmkolUsO/8Vz9sbmAh7WOuLpa/V7c2ap0kr/ixOHeJqgHMx47Lk4T7Bx0AtYMT+SbxYMNdFcbMFdEnskJ0IrXg8v3Ye7i0JyHD3LnKvHcTAjmHdTvqmYmf6hH85dZudDF0ql4kymx5RRA9RqhxvcA=
+	t=1772903840; cv=none; b=fd8jRs6qnMy5MPld/ybIAGqLw/cG51DsLpOzWOrpVI0crW7/Uhc42sdLheUpqkq5lK7Th/E8ZdG4IGE3TQ2gCg6SqU9F3TDF8Gquqewoji+jogvl8k4LT5uZxktXHsF+12kzrad7WhkgvZZ0lnJtNFWlLdaFfUlrgAndjGQpSAQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772903510; c=relaxed/simple;
-	bh=1Upl/vSZXikmLvrf8euL0M4KnEULXG3M021PnJOqZK4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jKUyRM6Za/WW3SXDjihtE4smBJQ2HYYKlTM3gr2qjOPllywmPBGJW8nDPAK5qdGsfsxz+K32v6PizuolW6g+Blwxuz78vX1E2/y210dCwbilxCj7Jo5C+sNY1vWhWLXvdZ7kdHc1xHq7N37MDyvtbeHxiIoxB8ijjrcL5L5Ug10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=m4DTktsw; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772903509; x=1804439509;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1Upl/vSZXikmLvrf8euL0M4KnEULXG3M021PnJOqZK4=;
-  b=m4DTktsw745e76VGP6S5vdS9JhZryFMFsetkEBJRDNOXwzFGYF/qtF38
-   VUdaI6+NjMXVljlNPge7591x/RqUKHUWhmoXlbcIU4x1eskarnQWiOO2Z
-   uF7e5zL0+juhFivvlDdaqYvPjBN7AtQfVTZRrycmSGcYffTVLzlgRI6Jr
-   P0ka8KekGrg9e2GiFtA5ThKt3oA4MI81OM0JD5RXmKyobH3IgsmWzssIh
-   VjztnjYjtWktbWgA5idaBhWHsg3nPUmyA//XhDM49JrYcCNyeOP0Cn6of
-   umjsGVzQQmfskskvlelVvLFvPpP2pit5wpzmvFKadBc3JZUInx9REPobK
-   w==;
-X-CSE-ConnectionGUID: smUWIupVQoeq6seMptqrnw==
-X-CSE-MsgGUID: i1OZg8DxRRSJxN8Iju3hxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="85461580"
-X-IronPort-AV: E=Sophos;i="6.23,107,1770624000"; 
-   d="scan'208";a="85461580"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2026 09:11:48 -0800
-X-CSE-ConnectionGUID: oVZq2jZ0QEyEh51POX8f0A==
-X-CSE-MsgGUID: XAAjmCEJRHSLi859DC3Dtg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,107,1770624000"; 
-   d="scan'208";a="222070478"
-Received: from lkp-server01.sh.intel.com (HELO 058beb05654c) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 07 Mar 2026 09:11:44 -0800
-Received: from kbuild by 058beb05654c with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vyvBm-000000002Mz-17Bz;
-	Sat, 07 Mar 2026 17:11:42 +0000
-Date: Sun, 8 Mar 2026 01:11:04 +0800
-From: kernel test robot <lkp@intel.com>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v5 4/4] iio: adc: ad4080: add support for AD4880
- dual-channel ADC
-Message-ID: <202603080146.6a7IzS7i-lkp@intel.com>
-References: <20260305113756.47243-5-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1772903840; c=relaxed/simple;
+	bh=q2HQcfiT/KoQa7CVQjSe9h4G+/m15DVdnGvuTp+vQTc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E6MhbWwp29y+KcxN6Bb/JQPeY4xqIYLAOpv41AOsbmgtTBtffg+47mYReRCHvDimiXa55oH+i2DHzZ3rY7o3llV5LlR14tdpS4ZI7C3ExJ2oDySyKZuPU5p8MK1l+yURgHzLLG++a/dRoLrCQ/GLY65zGncgCx0olC6qeOPYPd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BXDUau7i; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-466eaeda27aso446103b6e.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 09:17:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772903837; x=1773508637; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uLqbBF+LpizOINU7hVvdD1525Ju0a1AaHblaI6jxaPo=;
+        b=BXDUau7irOnfFiTavMo2iTXcArn411Bc0S6cLgYkwFoZ8v0KG2gsZRXLB9T+RW8mGS
+         3g7FCsqytpsc9BIilmZ8POvmKEnGaLKeku1I5OPBw81gNjTUcKueXJpUjN+by807qHGT
+         ZSRcS7WByOgZyA11hJKDnykgjroRzVYyZ7A94WKCinj3BDuAMFsl6/sGNSRhkWYvdtKa
+         exy076ci+ByJhRsSUE8i3weYW4FcFAkHOPNE9MKTiVRQYJK0gKkZpDPGAehnrqp6I7PB
+         ru8wsuARRnGGTO+jp+N48K99OjQEtG7SYMalohLEI1zQxTKP6/01mx+6JCfTw4Isj5xY
+         UNfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772903837; x=1773508637;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uLqbBF+LpizOINU7hVvdD1525Ju0a1AaHblaI6jxaPo=;
+        b=P9V45hVBBujG0JGj2rRqU/SDbj+PDeaiwsrHjMUDxdkbhUnzy7N/h8Yf/a6Us9UDGj
+         LSR1WSdg2/2zqm6p/3SY6GypekTnnNx0GB5wIOBIuzFVZeI2Tsk9Sm2s0nMYJjhMQ5ns
+         q/YZUufb5SUNUvqWyjtez0gEPTnkmWdgaXQ7x+I3rGmWtgSgy1VPhjtUADH27tXpKeqO
+         uqsMH0yGpUSyp14n3likxM/HieJJ8IqOm0hci8AmWKb2/qPQDCLO+0tyQGOCjMIC7g0y
+         R2Yn4XGNDKXG/NYjkYDsMlTC5TYM19GG74yXTCEwrbkHhVYt5TdzQFBNf4cdF7qKKyxh
+         93GA==
+X-Forwarded-Encrypted: i=1; AJvYcCXuB61SF2vk0vb4qwQZXuh2Xz8f36fmeEgQCR5+fEIw9ThV9jZmzSWTkj8qGM9v8i563Ve1nARHyJud@vger.kernel.org
+X-Gm-Message-State: AOJu0YwdUWPPX/Q7hU0dc3xaH1B1Bnx97v93R4znG5Ev1KVqijPgR4+N
+	3aEvUyPgTfb1EGlkkgprxMH8KZQjOZrhKacxtLyuZrboLdFcqZWASfQFj2PCA0n3Nco=
+X-Gm-Gg: ATEYQzxsjGWmSlRMo5TGiVjoOQxtxsYsJDjc5B+0/1sWK/9pEatVlhI8/5KiZinXVcT
+	+iQjOp7dF1BZr14zp3MBXnkvi0ks9XHYCByRCXO9MIH7bwK9pf1J4b/3H+5lBfCjxSvaThSvIZv
+	5MEz2HUMQamU6Ea30XK+tgRQD2lNe3gRjSrSqXzcygffA3C4SxvL4WUGtbaVnfq6qsrFcJlxKXP
+	bvMXzXAMZlP8MG4eMv0en34lEw8ieBEKtsA+94ATfsrkeGIYnOUfKR2RnpsEWKkxp1bjIl7EKKy
+	Cq50oX0pWFEVko8DRtPel87GWvM/m9Y5OKSODPCWio/Iex7WCwDMn0YKi7TUhbWBekOLYClWiaW
+	3TxJ7VLdDGAG6YQmzoksCdIxDA6J5XkYwHPldir6QBiKnBuT3+YVOzJd+JRIM7vdOh7Je2RfX34
+	n3bfRwth/fWENyVcGxc+CP3WD7xskVu1p0UUR6eVHtG4RSLgpsYTSHTbNr+xire0w/yuJ9B8ykr
+	g==
+X-Received: by 2002:a05:6808:838b:b0:466:efb5:9434 with SMTP id 5614622812f47-466efb59cc0mr768015b6e.31.1772903837147;
+        Sat, 07 Mar 2026 09:17:17 -0800 (PST)
+Received: from ?IPV6:2600:8803:e7e4:500:cccf:5174:fa72:c520? ([2600:8803:e7e4:500:cccf:5174:fa72:c520])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-466df93e85fsm2677663b6e.2.2026.03.07.09.17.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Mar 2026 09:17:15 -0800 (PST)
+Message-ID: <3181de17-d3f6-479e-9500-f5d552bb4151@baylibre.com>
+Date: Sat, 7 Mar 2026 11:17:15 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260305113756.47243-5-antoniu.miclaus@analog.com>
-X-Rspamd-Queue-Id: 1DB2322CD7A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] iio: proximity: add driver for ST VL53L1X ToF sensor
+To: Siratul Islam <email@sirat.me>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org
+References: <20260303090253.42076-1-email@sirat.me>
+ <20260303090253.42076-3-email@sirat.me>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20260303090253.42076-3-email@sirat.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 8A5DB22CDD2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272500-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	TAGGED_FROM(0.00)[bounces-272501-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DMARC_NA(0.00)[baylibre.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.981];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,01.org:url,git-scm.com:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.976];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Antoniu,
+On 3/3/26 3:02 AM, Siratul Islam wrote:
+> Add support for the STMicroelectronics VL53L1X Time-of-Flight
+> ranging sensor with I2C interface.
+> 
 
-kernel test robot noticed the following build errors:
+...
 
-[auto build test ERROR on v7.0-rc2]
-[also build test ERROR on linus/master]
-[cannot apply to jic23-iio/togreg next-20260306]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +static int vl53l1x_set_distance_mode(struct vl53l1x_data *data,
+> +				     enum vl53l1x_distance_mode mode)
+> +{
+> +	int ret;
+> +
+> +	switch (mode) {
+> +	case VL53L1X_SHORT:
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_PHASECAL_CONFIG__TIMEOUT_MACROP,
+> +				   0x14);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_RANGE_CONFIG__VCSEL_PERIOD_A, 0x07);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_RANGE_CONFIG__VCSEL_PERIOD_B, 0x05);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_RANGE_CONFIG__VALID_PHASE_HIGH,
+> +				   0x38);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap, VL53L1X_SD_CONFIG__WOI_SD0,
+> +				   0x07);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap, VL53L1X_SD_CONFIG__WOI_SD1,
+> +				   0x05);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_SD_CONFIG__INITIAL_PHASE_SD0, 6);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_SD_CONFIG__INITIAL_PHASE_SD1, 6);
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Antoniu-Miclaus/iio-backend-use-__free-fwnode_handle-for-automatic-cleanup/20260305-194647
-base:   v7.0-rc2
-patch link:    https://lore.kernel.org/r/20260305113756.47243-5-antoniu.miclaus%40analog.com
-patch subject: [PATCH v5 4/4] iio: adc: ad4080: add support for AD4880 dual-channel ADC
-config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20260308/202603080146.6a7IzS7i-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260308/202603080146.6a7IzS7i-lkp@intel.com/reproduce)
+Maybe worth using regmap_multi_reg_write() above and below?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603080146.6a7IzS7i-lkp@intel.com/
+> +		break;
+> +	case VL53L1X_LONG:
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_PHASECAL_CONFIG__TIMEOUT_MACROP,
+> +				   0x0A);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_RANGE_CONFIG__VCSEL_PERIOD_A, 0x0F);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_RANGE_CONFIG__VCSEL_PERIOD_B, 0x0D);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_RANGE_CONFIG__VALID_PHASE_HIGH,
+> +				   0xB8);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap, VL53L1X_SD_CONFIG__WOI_SD0,
+> +				   0x0F);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap, VL53L1X_SD_CONFIG__WOI_SD1,
+> +				   0x0D);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_SD_CONFIG__INITIAL_PHASE_SD0, 14);
+> +		if (ret)
+> +			return ret;
+> +		ret = regmap_write(data->regmap,
+> +				   VL53L1X_SD_CONFIG__INITIAL_PHASE_SD1, 14);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	data->distance_mode = mode;
+> +	return 0;
+> +}
+> +
 
-All errors (new ones prefixed by >>):
+...
 
-   drivers/iio/adc/ad4080.c: In function 'ad4080_probe':
->> drivers/iio/adc/ad4080.c:739:31: error: implicit declaration of function 'devm_spi_new_ancillary_device'; did you mean 'spi_new_ancillary_device'? [-Wimplicit-function-declaration]
-     739 |                 st->spi[ch] = devm_spi_new_ancillary_device(spi,
-         |                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-         |                               spi_new_ancillary_device
->> drivers/iio/adc/ad4080.c:739:29: error: assignment to 'struct spi_device *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-     739 |                 st->spi[ch] = devm_spi_new_ancillary_device(spi,
-         |                             ^
+> +	return ret;
+> +}
+> +
+> +static const struct iio_chan_spec vl53l1x_channels[] = {
+> +	{
+> +		.type = IIO_DISTANCE,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_SCALE),
+> +		.scan_index = 0,
+> +		.scan_type = {
+> +			.sign = 'u',
+> +			.realbits = 16,
+> +			.storagebits = 16,
+> +		},
+> +	},
+> +	IIO_CHAN_SOFT_TIMESTAMP(1),
+> +};
+> +
+> +static int vl53l1x_read_raw(struct iio_dev *indio_dev,
+> +			    const struct iio_chan_spec *chan, int *val,
+> +			    int *val2, long mask)
+> +{
+> +	struct vl53l1x_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	if (chan->type != IIO_DISTANCE)
+> +		return -EINVAL;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+
+What is here is perfectly fine, but I'm sure someone will eventually
+want to change it to IIO_DEV_ACQUIRE_DIRECT_MODE().
+
+> +		if (!iio_device_claim_direct(indio_dev))
+> +			return -EBUSY;
+> +		ret = vl53l1x_read_proximity(data, val);
+> +		iio_device_release_direct(indio_dev);
+> +		if (ret)
+> +			return ret;
+> +		return IIO_VAL_INT;
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val = 0;
+> +		*val2 = 1000;
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int vl53l1x_validate_trigger(struct iio_dev *indio_dev,
+> +				    struct iio_trigger *trig)
+> +{
+> +	struct vl53l1x_data *data = iio_priv(indio_dev);
+> +
+> +	return data->trig == trig ? 0 : -EINVAL;
+> +}
+> +
+> +static const struct iio_info vl53l1x_info = {
+> +	.read_raw = vl53l1x_read_raw,
+> +	.validate_trigger = vl53l1x_validate_trigger,
+> +};
+> +
+> +static irqreturn_t vl53l1x_trigger_handler(int irq, void *priv)
+> +{
+> +	struct iio_poll_func *pf = priv;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct vl53l1x_data *data = iio_priv(indio_dev);
+> +	struct {
+> +		u16 distance;
+> +		aligned_s64 timestamp;
+> +	} scan = {};
+> +	unsigned int range_status;
+> +	int ret;
+> +
+> +	ret = regmap_read(data->regmap, VL53L1X_RESULT__RANGE_STATUS,
+> +			  &range_status);
+> +	if (ret || (range_status & VL53L1X_RANGE_STATUS_MASK) !=
+
+Probably best to use FIELD_GET() here and redefine VL53L1X_RANGE_STATUS_VALID
+accrodingly.
+
+> +			   VL53L1X_RANGE_STATUS_VALID)
+> +		goto done;
+> +
+> +	ret = vl53l1x_read_u16(data,
+> +			       VL53L1X_RESULT__FINAL_CROSSTALK_CORRECTED_RANGE_MM_SD0,
+> +				   &scan.distance);
+> +	if (ret)
+> +		goto done;
+> +
+> +	iio_push_to_buffers_with_timestamp(indio_dev, &scan,
+> +					   iio_get_time_ns(indio_dev));
+> +
+> +done:
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	vl53l1x_clear_irq(data);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t vl53l1x_threaded_irq(int irq, void *priv)
+> +{
+> +	struct iio_dev *indio_dev = priv;
+> +	struct vl53l1x_data *data = iio_priv(indio_dev);
+> +
+> +	if (iio_buffer_enabled(indio_dev))
+> +		iio_trigger_poll_nested(indio_dev->trig);
+> +	else
+> +		complete(&data->completion);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int vl53l1x_configure_irq(struct i2c_client *client,
+> +				 struct iio_dev *indio_dev)
+
+Would be more logical to move this function closer to probe.
+
+> +{
+> +	struct vl53l1x_data *data = iio_priv(indio_dev);
+> +	int irq_flags = irq_get_trigger_type(client->irq);
+> +	int ret;
+> +
+> +	if (!irq_flags)
+> +		irq_flags = IRQF_TRIGGER_FALLING;
+> +
+> +	ret = devm_request_threaded_irq(&client->dev, client->irq, NULL,
+> +					vl53l1x_threaded_irq,
+> +					irq_flags | IRQF_ONESHOT,
+> +					indio_dev->name, indio_dev);
+> +	if (ret) {
+> +		dev_err(&client->dev, "devm_request_irq error: %d\n", ret);
 
 
-vim +739 drivers/iio/adc/ad4080.c
+Can use return dev_err_probe() here since this is only called in probe.
 
-   705	
-   706	static int ad4080_probe(struct spi_device *spi)
-   707	{
-   708		struct iio_dev *indio_dev;
-   709		struct device *dev = &spi->dev;
-   710		struct ad4080_state *st;
-   711		struct clk *clk;
-   712		int ret;
-   713	
-   714		indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-   715		if (!indio_dev)
-   716			return -ENOMEM;
-   717	
-   718		st = iio_priv(indio_dev);
-   719	
-   720		ret = devm_regulator_bulk_get_enable(dev,
-   721						     ARRAY_SIZE(ad4080_power_supplies),
-   722						     ad4080_power_supplies);
-   723		if (ret)
-   724			return dev_err_probe(dev, ret,
-   725					     "failed to get and enable supplies\n");
-   726	
-   727		/* Setup primary SPI device (channel 0) */
-   728		st->spi[0] = spi;
-   729		st->regmap[0] = devm_regmap_init_spi(spi, &ad4080_regmap_config);
-   730		if (IS_ERR(st->regmap[0]))
-   731			return PTR_ERR(st->regmap[0]);
-   732	
-   733		st->info = spi_get_device_match_data(spi);
-   734		if (!st->info)
-   735			return -ENODEV;
-   736	
-   737		/* Setup ancillary SPI devices for additional channels */
-   738		for (unsigned int ch = 1; ch < st->info->num_channels; ch++) {
- > 739			st->spi[ch] = devm_spi_new_ancillary_device(spi,
-   740								    spi_get_chipselect(spi, ch));
-   741			if (IS_ERR(st->spi[ch]))
-   742				return dev_err_probe(dev, PTR_ERR(st->spi[ch]),
-   743						     "failed to register ancillary device\n");
-   744	
-   745			st->regmap[ch] = devm_regmap_init_spi(st->spi[ch],
-   746							      &ad4080_regmap_config);
-   747			if (IS_ERR(st->regmap[ch]))
-   748				return PTR_ERR(st->regmap[ch]);
-   749		}
-   750	
-   751		ret = devm_mutex_init(dev, &st->lock);
-   752		if (ret)
-   753			return ret;
-   754	
-   755		indio_dev->name = st->info->name;
-   756		indio_dev->channels = st->info->channels;
-   757		indio_dev->num_channels = st->info->num_channels;
-   758		indio_dev->info = st->info->num_channels > 1 ?
-   759				  &ad4880_iio_info : &ad4080_iio_info;
-   760	
-   761		ret = ad4080_properties_parse(st);
-   762		if (ret)
-   763			return ret;
-   764	
-   765		clk = devm_clk_get_enabled(&spi->dev, "cnv");
-   766		if (IS_ERR(clk))
-   767			return PTR_ERR(clk);
-   768	
-   769		st->clk_rate = clk_get_rate(clk);
-   770	
-   771		/* Get backends for all channels */
-   772		for (unsigned int ch = 0; ch < st->info->num_channels; ch++) {
-   773			st->back[ch] = devm_iio_backend_get_by_index(dev, ch);
-   774			if (IS_ERR(st->back[ch]))
-   775				return PTR_ERR(st->back[ch]);
-   776	
-   777			ret = devm_iio_backend_enable(dev, st->back[ch]);
-   778			if (ret)
-   779				return ret;
-   780		}
-   781	
-   782		/*
-   783		 * Request buffer from the first backend only. For multi-channel
-   784		 * devices (e.g., AD4880), all backends share a single IIO buffer
-   785		 * as data from all ADC channels is interleaved into one stream.
-   786		 */
-   787		ret = devm_iio_backend_request_buffer(dev, st->back[0], indio_dev);
-   788		if (ret)
-   789			return ret;
-   790	
-   791		ret = ad4080_setup(indio_dev);
-   792		if (ret)
-   793			return ret;
-   794	
-   795		return devm_iio_device_register(&spi->dev, indio_dev);
-   796	}
-   797	
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +		return ret;
+> +	}
+> +
+> +	ret = regmap_write(data->regmap, VL53L1X_SYSTEM__INTERRUPT_CONFIG_GPIO,
+> +			   VL53L1X_INT_NEW_SAMPLE_READY);
+> +	if (ret)
+> +		dev_err(&client->dev, "failed to configure IRQ: %d\n", ret);
+
+ditto
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int vl53l1x_buffer_postenable(struct iio_dev *indio_dev)
+> +{
+> +	struct vl53l1x_data *data = iio_priv(indio_dev);
+> +
+> +	return vl53l1x_start_ranging(data);
+> +}
+> +
+> +static int vl53l1x_buffer_postdisable(struct iio_dev *indio_dev)
+> +{
+> +	struct vl53l1x_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	ret = vl53l1x_stop_ranging(data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	reinit_completion(&data->completion);
+> +	wait_for_completion_timeout(&data->completion, HZ / 10);
+> +
+> +	return vl53l1x_clear_irq(data);
+> +}
+> +
+> +static const struct iio_buffer_setup_ops vl53l1x_buffer_setup_ops = {
+> +	.postenable = &vl53l1x_buffer_postenable,
+> +	.postdisable = &vl53l1x_buffer_postdisable,
+> +};
+
+These are not symetric. It either needs to be postenable/predisable
+or preenable/postdisable.
+
 
