@@ -1,196 +1,174 @@
-Return-Path: <devicetree+bounces-272443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272444-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNFdECQ0rGmgmwEAu9opvQ
-	(envelope-from <devicetree+bounces-272443-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:20:20 +0100
+	id ZNCSDlc1rGnfmwEAu9opvQ
+	(envelope-from <devicetree+bounces-272444-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:25:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97BAB22C22C
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:20:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DB3522C26B
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:25:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E8B63027972
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 14:20:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 09DD1301F4AB
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 14:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34CF239185E;
-	Sat,  7 Mar 2026 14:20:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2E039283F;
+	Sat,  7 Mar 2026 14:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tr0zmgXz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UD1OBLxM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8B7261B9B;
-	Sat,  7 Mar 2026 14:20:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D021A9F93;
+	Sat,  7 Mar 2026 14:25:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772893215; cv=none; b=VTV2JH033jisLfinWQHuIxstAO58j4YFE7PkJCZa6HX1OyMsW0KV0yNXVkFQeKe6V8LIkWz9E+j8lqq7tSIrnQu8GvCoyswAD5eE/Ci49XUP7EnPCswwsoee8GKs3XewKw1Gj1OTVAoeVJDU0ttt7c1YVxtNXaLhpxlLxhSvXuU=
+	t=1772893524; cv=none; b=fw/G1JOSPdl+wZLICHQHUD1uRCM6Qc8SuyGHVYiAt+tveJ1Fir3ByAF5aVQJas+GdhK2MDEP09B8UjmuTwKQVP24EBXdNOmZy25Hdf/8T1AMjz1NQ9AYzThkl1wOOiZDF29soywCpFVmlBwGzVie+7mfbGgaBMqAHnwFFeRsp5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772893215; c=relaxed/simple;
-	bh=a5jVNnEzNzRgAOkThx17Lm/fR+3+iFoZser1WqgJoZE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Y2TsbUFj4IMjOCVgXottARVmSXutoyRzagCdXfxGBOtUE8tOUH5b4t88vxouBbZYSZvsKS3X9jCYYFAgvJBihpTmfMKKhzalVZP833rW/tda87XXtJ6luAz3dywPJy3ZvccWLv5RUfsE4oguo2UxEA2+tsn2xFEsplo/Qw4rStg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tr0zmgXz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 311ECC19422;
-	Sat,  7 Mar 2026 14:20:09 +0000 (UTC)
+	s=arc-20240116; t=1772893524; c=relaxed/simple;
+	bh=dyaikMDRcuh7WGu9u+GrGNEviLKbG6y120CO0l2gfKc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=OrAVfLK1kZOknJuI2Qd0GWTbxJOxgca/7LYBc37KR36Uj3L5YB3mFys+kygVCTCSviORd6mvwHl1xipiEjy4d/ZL4qY1uMsBo9ARC7zSS6FQn3/Ie59Vx8o72KRttXfQKeA/NIl8awFREl3abMQl94i3IeNYPTaDqM95GNOlCGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UD1OBLxM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D130C19422;
+	Sat,  7 Mar 2026 14:25:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772893214;
-	bh=a5jVNnEzNzRgAOkThx17Lm/fR+3+iFoZser1WqgJoZE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=tr0zmgXzPq4pdzVp/WO1b5jtLPurs39ZW1JPWLMstsB+++ggnyLspKPTg5Q1de4Aw
-	 NCW30gLKb7+w/q0IzMy1BB7gGYZttOf11SD8PUxh2Tfw+FEDgaQFuvGXp0VmtFlhw5
-	 Tt+Hx2msLLCo7/W0AsscgqdMxs6V7SRBgXF99/JUjxYC0ajVwKS2XGpjH4rEgVZl8l
-	 EpxCgmr1kCNI2G95rNUaKP9wZsGDkMhGaHoWsouKrGQcf1cGzwooVOphw6PlqJRZ6W
-	 BqVUf+BS1eT/8neIMP9acVtKaTXdYFqSXpelT8xTZAPDU/EvpMp+YMD1gjL97DBERP
-	 n2fRfMMV9ZWcg==
-Date: Sat, 7 Mar 2026 14:20:04 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <cosmin.tanislav@analog.com>,
- <lars@metafoo.de>, <Michael.Hennerich@analog.com>, <dlechner@baylibre.com>,
- <nuno.sa@analog.com>, <andy@kernel.org>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-Subject: Re: [PATCH 3/3] iio: adc: ad4130: add new supported parts
-Message-ID: <20260307142004.7bfd5de1@jic23-huawei>
-In-Reply-To: <1d5baeec27724a1c8ebf909c29c3599d583948a1.1772078999.git.Jonathan.Santos@analog.com>
-References: <cover.1772078999.git.Jonathan.Santos@analog.com>
-	<1d5baeec27724a1c8ebf909c29c3599d583948a1.1772078999.git.Jonathan.Santos@analog.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=k20201202; t=1772893524;
+	bh=dyaikMDRcuh7WGu9u+GrGNEviLKbG6y120CO0l2gfKc=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=UD1OBLxMjenMBRBz3T2eeo8kSHkDxf8Rtm0sDvD7FufjvcgMzc644K4OVogHrRN0c
+	 9q+YG3U2/e5FeqGBUDRPrgPj2vBKKeI8DuhKps0q1wPitwya7obms5NPHcaoYDt8sl
+	 dLYmJ6wfJLQlyx8u1yAF3nZbrI2K4OLdqJR6WeyujWmZ2iDAFF9lxdYDej+T19XJ/O
+	 V70Z/+FNKWAMRF9Eq8DLdwbL/UMc6Z31p/QMjvfVc/5doh7MeTVgKI3y/HqqIHWsXs
+	 ndfNPRR7C3Fn7H1zDIVK0/itooviFSNx+iEeBwQIXTwm7td9LSMvoj6xVlQUQM5y2k
+	 bHvXMPNexZnnw==
+Message-ID: <1b603382-273e-48c7-841e-aaf505187ece@kernel.org>
+Date: Sat, 7 Mar 2026 15:25:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add binding for synology,microp
+ devices
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Markus Probst <markus.probst@posteo.de>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-staging@lists.linux.dev, rust-for-linux@vger.kernel.org
+References: <20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de>
+ <20260306-synology_microp_initial-v1-1-fcffede6448c@posteo.de>
+ <be179573-edc3-4b6c-8c91-ae7b0c61c1b1@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <be179573-edc3-4b6c-8c91-ae7b0c61c1b1@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 97BAB22C22C
+X-Rspamd-Queue-Id: 7DB3522C26B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272443-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272444-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[posteo.de,kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.965];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.968];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Sat, 28 Feb 2026 09:39:04 -0300
-Jonathan Santos <Jonathan.Santos@analog.com> wrote:
-
-> Add support for AD4129-4/8, AD4130-4, and AD4131-4/8 variants.
+On 07/03/2026 11:20, Krzysztof Kozlowski wrote:
+>> +  power-led:
+>> +    $ref: /schemas/leds/common.yaml
+>> +    unevaluatedProperties: false
+>> +  status-led:
+>> +    $ref: /schemas/leds/common.yaml
+>> +    unevaluatedProperties: false
+>> +  alert-led:
+>> +    $ref: /schemas/leds/common.yaml
+>> +    unevaluatedProperties: false
+>> +  usb-led:
+>> +    $ref: /schemas/leds/common.yaml
+>> +    unevaluatedProperties: false
 > 
-> The AD4129 series supports the same FIFO interface as the AD4130 but with
-> reduced resolution (16-bit). The AD4131 series lacks FIFO support, so
-> triggered buffer functionality is introduced.
+> That's pretty unreadable code.
+
+... and could be simpler with patternProperties and regex
 > 
-> The 4-channel variants feature fewer analog inputs, GPIOs, and sparse pin
-> mappings for VBIAS, analog inputs, and excitation currents. The driver now
-> handles these differences with chip-specific configurations, including pin
-> mappings and GPIO counts.
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-A couple of things inline.
 
-> +static irqreturn_t ad4130_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct ad4130_state *st = iio_priv(indio_dev);
-> +	unsigned int data_reg_size = ad4130_data_reg_size(st);
-> +	unsigned int num_en_chn = bitmap_weight(indio_dev->active_scan_mask,
-> +						iio_get_masklength(indio_dev));
-> +	struct spi_transfer xfer = {
-> +		.rx_buf = st->scan.channels,
-> +		.len = data_reg_size * num_en_chn,
-> +	};
-> +	int ret;
-> +
-> +	ret = spi_sync_transfer(st->spi, &xfer, 1);
-> +	if (ret < 0)
-> +		goto err_unlock;
-> +
-> +	iio_push_to_buffers_with_timestamp(indio_dev, &st->scan,
-> +					   iio_get_time_ns(indio_dev));
-> +
-> +err_unlock:
 
-Needs a rename seeing as no locks involved.
-
-> +	iio_trigger_notify_done(indio_dev->trig);
->  
->  	return IRQ_HANDLED;
->  }
-> @@ -1300,12 +1416,77 @@ static const struct iio_info ad4130_info = {
->  	.debugfs_reg_access = ad4130_reg_access,
->  };
-
-> @@ -2100,34 +2383,46 @@ static int ad4130_probe(struct spi_device *spi)
->  	if (ret)
->  		return dev_err_probe(dev, ret, "Failed to request irq\n");
->  
-> -	/*
-> -	 * When the chip enters FIFO mode, IRQ polarity is inverted.
-> -	 * When the chip exits FIFO mode, IRQ polarity returns to normal.
-> -	 * See datasheet pages: 65, FIFO Watermark Interrupt section,
-> -	 * and 71, Bit Descriptions for STATUS Register, RDYB.
-> -	 * Cache the normal and inverted IRQ triggers to set them when
-> -	 * entering and exiting FIFO mode.
-> -	 */
-> -	st->irq_trigger = irq_get_trigger_type(spi->irq);
-> -	if (st->irq_trigger & IRQF_TRIGGER_RISING)
-> -		st->inv_irq_trigger = IRQF_TRIGGER_FALLING;
-> -	else if (st->irq_trigger & IRQF_TRIGGER_FALLING)
-> -		st->inv_irq_trigger = IRQF_TRIGGER_RISING;
-> -	else
-> -		return dev_err_probe(dev, -EINVAL, "Invalid irq flags: %u\n",
-> -				     st->irq_trigger);
-> +	if (st->chip_info->has_fifo) {
-> +		/*
-> +		 * When the chip enters FIFO mode, IRQ polarity is inverted.
-> +		 * When the chip exits FIFO mode, IRQ polarity returns to normal.
-> +		 * See datasheet pages: 65, FIFO Watermark Interrupt section,
-> +		 * and 71, Bit Descriptions for STATUS Register, RDYB.
-> +		 * Cache the normal and inverted IRQ triggers to set them when
-> +		 * entering and exiting FIFO mode.
-
-That's special.   The binding doc needs an update to say which state we are
-expecting an irq description for.  Obviously not a result of this
-series but nice to add that none the less!
-
-> +		 */
-> +		st->irq_trigger = irq_get_trigger_type(spi->irq);
-> +		if (st->irq_trigger & IRQF_TRIGGER_RISING)
-> +			st->inv_irq_trigger = IRQF_TRIGGER_FALLING;
-> +		else if (st->irq_trigger & IRQF_TRIGGER_FALLING)
-> +			st->inv_irq_trigger = IRQF_TRIGGER_RISING;
-> +		else
-> +			return dev_err_probe(dev, -EINVAL, "Invalid irq flags: %u\n",
-> +					     st->irq_trigger);
-> +	}
->  
->  	return devm_iio_device_register(dev, indio_dev);
->  }
+Best regards,
+Krzysztof
 
