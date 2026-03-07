@@ -1,84 +1,57 @@
-Return-Path: <devicetree+bounces-272385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272386-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JhcIyrYq2kUhQEAu9opvQ
-	(envelope-from <devicetree+bounces-272385-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 08:47:54 +0100
+	id OCSnAYLgq2mEhgEAu9opvQ
+	(envelope-from <devicetree+bounces-272386-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 09:23:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11AFB22AA3D
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 08:47:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C13422AB90
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 09:23:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 13F663033F83
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 07:46:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 81C77302336F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 08:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84C852F9998;
-	Sat,  7 Mar 2026 07:46:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1322387343;
+	Sat,  7 Mar 2026 08:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fe3lequ6"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="E9nxnjkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ixit.cz [185.100.197.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54DD7377ED6
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 07:46:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEEEE1D5CFE;
+	Sat,  7 Mar 2026 08:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772869614; cv=none; b=hwI9gj/d/TwTBhnSRuUmPV7dabAK45zPqI3PimVrO9KWGx5PmX/+5g1rQ4d+F9eLGXHDtOdNRGHBbep78XRw9z3V1Aqwodd+tLHnfGNnbBDrDBBSO8U7GxRiHws3WRVlqWNid5WErc6I0qkU4E4YagaNAG0ZFwtDMaLkUCOTXwk=
+	t=1772871806; cv=none; b=E8xb3mIrie4VScCk9shWyszMiCnFom9cDqdOfa1fHS6rpseyr/ati/wDq3RdTeSq7An8ajogS6GjuRn7h72CPx6K4FvYRKnHzbXtDk4VDFt4ZMCRZx/Fp99UflO8E3oBweRp2XzfWk9LqHSyBV/vLBuQ6pITgHGTmsDWmp1qAdY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772869614; c=relaxed/simple;
-	bh=2oTgVph5w+Ah3wlW7kSH6XV3kIdw0AkZH+4Q/GQuaEM=;
+	s=arc-20240116; t=1772871806; c=relaxed/simple;
+	bh=2A4UKo2YAqS57Y107N17+GsBt/7b4pueiNXpK/kc18s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kPQSdeLlWPafdqlSF/sGAW2v1TznlX3mbumX7Wposwo756+2gVtliCF2L/rPKC4cRNgTpGCpy7ZaAbzMD1nLwi9r849mfiW1Fp3cEhY7m3EsaubL1kEGZHS4IwWuJMZlvO5XylOqzKYJiT4LgFJ5ElZ0DfnzmaRGsBGkT0AI6cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fe3lequ6; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2ae3a2f6007so53231705ad.2
-        for <devicetree@vger.kernel.org>; Fri, 06 Mar 2026 23:46:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772869613; x=1773474413; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uO/7x1mKXgItzdyCiS372PCikfzpIVhgGhN++3lTYuc=;
-        b=Fe3lequ6H2o+7ZzzMOcBOxIPPqAfPyaP6RCfayFEJrFMMizP78tyy59ChZA2WbEtsn
-         lm+DqkuDKUi9FTDvvZVrskGBCSItXr0IQ1TbNbQWm6Qdqxm62m0HddyjPB1p3TeqjFLL
-         BwXLRjeXL4qyVvnXmZ5DpBqMJKS5QH/aAXxpfcgva0Y/KYAEFEM2MkCQPZSoyjq5czNo
-         M8+QWuwixbe/lQLXDbc6+QaufihGYWG7+HTZqR3F8y9xY6dfAN5Wp9DWV3d4KUFi3Pt6
-         YFTM2EopEToM4iTulfLN/lRRCUO044XwXWGhbcy53Vez6z658owNJmr1dNnMHtCR+qQE
-         jxpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772869613; x=1773474413;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uO/7x1mKXgItzdyCiS372PCikfzpIVhgGhN++3lTYuc=;
-        b=VtvdnW3mOzmsuaO3Np7qFD09NAlEZI9tZ8dXtkpN4kxJvHcll97pJpSqPp2pRuovX8
-         3r9eXR72rHmfATLS5rZXTlI1Xnr5GsxvG22W8aNnCXI4awgME1HtnRPnE2M7Xu/lsxJu
-         /E1hGDU3nuHVnt63zQ8P2DDJ7Q8pzTOYZW8Et9AEEpHBu0EVgCNT89AEG4P1MLTT/Znd
-         uz8kC5e1g1fY5QGX8ejoDW7ptmLH/uwb4LjbCblQxdd9ZUVTy4CQkBEQMdbXRJT2pEHx
-         HyZ4ECsmzyQntBmTsE3fsE28Sm3OcznXJG0QMgO8lME3VRNQ7lncRfrLVQoGnIMPI4TW
-         8kUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXhreYyAc+sgA8NuNES/iE2268IAScLsE0LFnpnvfqzKs3UCjUp0mmxk8nyQGPsGrbeB36IYCP4pi6y@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCaQQI32W5N/3YisJgyuBZIkWjubIYbWK+301SDVE8K9JFh4Fw
-	psbfstwVX6Rylnn/vuwYV7em3caSW7O6hj6THwrB0xdD+YTd4Ygr3T5K
-X-Gm-Gg: ATEYQzwUES4VpNONwdN4JLQPEEwUo1UGLv8sEXJcpyNTiEpZzGtY4jXc81ho4ao1EAM
-	AuOCw/JKcviNEik3MIbuY1XBq3AJiu+H+EoCn1S9HJYchD1hfIjNEon3YXRs2KBzdPu/B3Jdt1J
-	Bbf2g323Zsux+h18TlRYS4aZn4a6fMJ92eEB7T0b2TSbtVnM2pWWXun+LpZiU1NFhLBwoUecnzb
-	qKzOidz8EZAtQc+sHl4MySCRmyCjwmssmm02R9ucLnlmMgLc+lQKbUaRDGdloNt5CN7AnMtXzvm
-	3C3T4HeenRTAYNBu6+8TvwyabUxiI8hbR4kpurd2pn2lmjdzMTduaryOgRKhp563fGNiQ6QPffH
-	4zKSU3xMft855J+EfWOgyAXPOA+fmcNDDZcieI5SSaeVn/pBVtjjA8waAA38//644oj1ocLJDfP
-	XE8orZ1//xPMOwF2sHa0ql2ru+IFirVR9aasgkrz+kjpK/
-X-Received: by 2002:a17:903:244f:b0:2a7:6aa5:68f3 with SMTP id d9443c01a7336-2ae824eb3d1mr48380995ad.34.1772869612670;
-        Fri, 06 Mar 2026 23:46:52 -0800 (PST)
-Received: from [192.168.1.5] ([27.7.215.222])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae83f9d4d3sm41634435ad.69.2026.03.06.23.46.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Mar 2026 23:46:52 -0800 (PST)
-Message-ID: <924b7631-0b75-4ecc-bae2-162abb4bdc31@gmail.com>
-Date: Sat, 7 Mar 2026 13:16:46 +0530
+	 In-Reply-To:Content-Type; b=a4lTcVkSJz/7azX4jX77mrHItxPLhj4XJtndKeU/8BoSyg22cHKxpIHnJZQU75kLfC+cJZLHQp8ZLHL7o1D3eDLDZwQ1iDpCGTZkSb97azXEZ1vSc9pySbIuUYP9y349fbvBm6dB2Hx3BQ93ylQIUJhGQoSPwYLSOpYGg1YiT+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=E9nxnjkB; arc=none smtp.client-ip=185.100.197.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 3BB0D53412FB;
+	Sat, 07 Mar 2026 09:23:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1772871795;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=aAypqRBqp9/ve2X/R0yGMfpB4RQj/AD1xn5rsrsNCNo=;
+	b=E9nxnjkBYw3yN6vccoRJ3wNRxDx3eE5ARI4STvlL9iq680QFDipmzaqGDjb/H69o/M47l1
+	90Imn/HV57OXQovxxMQYfQDigMO4PctJdKk2srbt889Q/W+u/reQ/VUXCqk+Jwn9uisZ7O
+	qcJ6z+jeODlS9n+L7NtfSb90tdQOjxI=
+Message-ID: <b2cbd264-55c8-4dda-9545-fa79ce6517c6@ixit.cz>
+Date: Sat, 7 Mar 2026 09:23:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,74 +59,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] dt-bindings: usb: atmel,at91sam9rl-udc: convert to
- DT schema
-To: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+Subject: Re: [PATCH 3/3] ARM: dts: qcom: msm8960: expressatt: Add camera flash
+To: guptarud@gmail.com, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Herve Codina <herve.codina@bootlin.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260224-atmel-usb-v2-0-6d6a615c9c47@gmail.com>
- <20260224-atmel-usb-v2-4-6d6a615c9c47@gmail.com>
- <20260306004931.GA875708-robh@kernel.org>
+ <conor+dt@kernel.org>, Linus Walleij <linusw@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20260306-expressatt_camera_flash-v1-0-b1996f7cdfdd@gmail.com>
+ <20260306-expressatt_camera_flash-v1-3-b1996f7cdfdd@gmail.com>
 Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <20260306004931.GA875708-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20260306-expressatt_camera_flash-v1-3-b1996f7cdfdd@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 11AFB22AA3D
+X-Rspamd-Queue-Id: 2C13422AB90
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272385-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272386-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.942];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.911];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[ixit.cz:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ixit.cz:dkim,ixit.cz:email,ixit.cz:mid]
 X-Rspamd-Action: no action
 
-
-
-On 06-03-2026 06:19, Rob Herring wrote:
-> On Tue, Feb 24, 2026 at 01:13:01PM +0000, Charan Pedumuru wrote:
->> Convert Atmel High-Speed USB Device Controller (USBA) binding to DT schema.
->> Changes during conversion:
->> - Include "#address-cells" and "#size-cells" in the properties since they
->>   are required by existing in-tree DTS definitions.
+On 07/03/2026 01:58, Rudraksha Gupta via B4 Relay wrote:
+> From: Rudraksha Gupta <guptarud@gmail.com>
 > 
-> The DTS files are wrong unless there are child nodes and there aren't.
+> Add camera flash support for the Samsung Galaxy Express (expressatt).
+> 
+> The flash IC uses a one-wire pulse-count protocol on GPIO 3, gated by
+> PMIC MPP 4 which must be driven high to unlock the flash circuit.
+> 
+> Downstream references:
+> Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/drivers/leds/Makefile#L51
+> Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/cm-12.0-YNG4N/arch/arm/mach-msm/board-apexq-camera.c#L591
+> 
+> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+> ---
+>   .../dts/qcom/qcom-msm8960-samsung-expressatt.dts   | 31 ++++++++++++++++++++++
+>   1 file changed, 31 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
+> index c4b98af6955d..96460775a4ec 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
+> +++ b/arch/arm/boot/dts/qcom/qcom-msm8960-samsung-expressatt.dts
+> @@ -1,5 +1,6 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>   #include <dt-bindings/reset/qcom,gcc-msm8960.h>
+>   
+>   #include "qcom-msm8960.dtsi"
+> @@ -61,6 +62,20 @@ touchkey_enable: touchkey-enable {
+>   		regulator-boot-on;
+>   	};
+>   
+> +	camera_flash: led-controller {
+> +		compatible = "richtek,rt8515";
+> +		enf-gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
+> +		unlock-gpios = <&pm8921_mpps 4 GPIO_ACTIVE_HIGH>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&cam_flash_en>;
+> +
 
-Yes, there is no child node but these properties are defined in sam9x60.dtsi for the compatible "microchip,sam9x60-udc" and the yaml fails dtbs_check if I remove them, can I send an another patch for removing these properties from sam9x60.dtsi?
+LGTM, just please order pinctrl-n before pinctrl-names :)
 
-> Drop those.
+Reviewed-by: David Heidelberg <david@ixit.cz>
+
+Nitpick: if you can, add phone-devel@vger.kernel.org for next time,
+it's easier to distinguish the phone patches in huge linux-arm-msm pile :)
+
+David
 
 -- 
-Best Regards,
-Charan.
+David Heidelberg
 
 
