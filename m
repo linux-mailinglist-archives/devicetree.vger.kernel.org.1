@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-272457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272458-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id T9JyO9o/rGleoAEAu9opvQ
-	(envelope-from <devicetree+bounces-272457-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:10:18 +0100
+	id UHCBE3NArGl8oAEAu9opvQ
+	(envelope-from <devicetree+bounces-272458-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:12:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F03D22C534
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:10:17 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA9A322C565
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 16:12:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AA7973013A86
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 15:10:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0662C3047BC8
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 15:12:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07EFA3A1E9B;
-	Sat,  7 Mar 2026 15:10:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4473A4F20;
+	Sat,  7 Mar 2026 15:12:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qz/ym52V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jAlw8U1d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62F328C874;
-	Sat,  7 Mar 2026 15:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C453A4531;
+	Sat,  7 Mar 2026 15:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772896215; cv=none; b=rBWCAywo8pkwi3cWJcpJS3sTvs6vkjppB47TAZGOFqFCtfY8952xg7BOLa00wX28iAtHl3XzbgT0SAmo48SrEdp6lYR3bwAp/sjR9I389XZgcVE5mTnOB7l+D5fWoJ9vvMJa5QcKKlyX1/MsmX5QQBIOGQ9nppoO17CBiiuIjmw=
+	t=1772896326; cv=none; b=qrgqWCbeJlVourjONXC+XwsjJjmZ5qO/1NY6mel0RnwMSr5c1p1spRHo3+yd63yHvvVVdp/EPsDalaqELn45Ii+w9mWiap+Bc238/Ha6XPn9CwGjTQfwSszCzKDR2kym+LNKAYtbdJTR+vXtciT7qUgrQ/lS4Q0whC0nrOZsYvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772896215; c=relaxed/simple;
-	bh=tn8PUgoU+srka3WO/YJede7DjByimvY2CCWMbBTm3RU=;
+	s=arc-20240116; t=1772896326; c=relaxed/simple;
+	bh=VResUl6ZPrrbBqrCutAMUK+6DdFoN8EOfBG0giZUGe0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oIdFG8TwNl7OBCoyo8UARN14+gDfe7UTR/Cr/cA7c+3nIiQFlWJQONp6kHc+hB7Yzy3pRzDye0rQvowYepJwwuBWPWTMxLaqv5JhqzDKxtQW1SP40fPAe6y/vZh9VJFn+9YvM/CYGs0aHOoAaUrOfXbc/1tH0wWBnXVe4gji580=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qz/ym52V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 954ABC19422;
-	Sat,  7 Mar 2026 15:10:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=r7bja3yYuWJxiCJi7T9jQsFxNMrcBfp+T8ff75GBw6AbdB4e3NUp8E4SdTm6LIKgdxKAAdvSvSgFcWAAaNB08Y1ltPby63OUYV0czJJ0pA4JaceMM4u7hJOMX5xD9dB7yqjxDwSlsgbeie3kgwksj6YwPWRcRirPI4tlXsqFJ/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jAlw8U1d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6128C19422;
+	Sat,  7 Mar 2026 15:12:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772896215;
-	bh=tn8PUgoU+srka3WO/YJede7DjByimvY2CCWMbBTm3RU=;
+	s=k20201202; t=1772896325;
+	bh=VResUl6ZPrrbBqrCutAMUK+6DdFoN8EOfBG0giZUGe0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Qz/ym52VFrrMHIE9B6DkXI1IFNbdTAIZ32DnLYzmT0zGgbXNSMBZSQqhxyWmhiwwQ
-	 bhRvaeH6cPvfL0vTneRnRwAlwbp4/4d5xXf59L1/5ySqlPYtgtS9LGJkPJqb7cI4+C
-	 eCK7SFB14xw4QliTOgyHkxJ0mH1BPY7DYtUXZ1AiRDrSeQKIKDQvhEKkwSpJcIVmwj
-	 WR9zoPXXpFqKVYqQe1vGQC90mWhT40JFrYCsHVpmrTnocA0F8Sz4XOo3D5lbt0bWcJ
-	 PwKGV1zO4RGgoMQmAc9cooocqMhAuVc0p0Kt0fn1ixr6PiSeUKzajytjUVDyZQG5hK
-	 lWkk11samZcsg==
-Message-ID: <7a04eb7c-3c0d-4363-b972-3641688d8a86@kernel.org>
-Date: Sat, 7 Mar 2026 16:10:09 +0100
+	b=jAlw8U1dyC70s7AXpeuRZKfoWgrN9Fihj1/7CvW8LmUme47RQR+U4nn/GVz0+aCNM
+	 ULzLQkvnN0BAqPcTFWXDqeHtL/S10bdOPfy7hJF+q4StXbNOdtUjZunxkhLFoyaJjv
+	 cMsnDZEu2xZMAMrUpUWuK1ybtaMKpNiQfucJjAOWt5zdHP2VcSmOrvgJMFi6UhhdYm
+	 uway5Yer8qKOUYL5+QaBrIC88SpDxIJMCAVy3ByAVjmoOz7oNCpqmpPLRavPs7BgvP
+	 AFcmZol48G89glMtJPsuQPzZqTFeH1Jr1rd9o7MmZf2JkNQ7JSIKD9Aoc9fPEUUFuY
+	 6fc15iamgJRgw==
+Message-ID: <97c0b406-64eb-4a10-b3a9-a857ff698091@kernel.org>
+Date: Sat, 7 Mar 2026 16:12:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,7 +69,7 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 References: <20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de>
  <20260306-synology_microp_initial-v1-1-fcffede6448c@posteo.de>
  <be179573-edc3-4b6c-8c91-ae7b0c61c1b1@kernel.org>
- <347d1d2c676c70dd041e287e83b4bbe6a2784a9f.camel@posteo.de>
+ <91a80c27dd3a2bad819a8537187a9d9adfa4a123.camel@posteo.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,30 +115,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <347d1d2c676c70dd041e287e83b4bbe6a2784a9f.camel@posteo.de>
+In-Reply-To: <91a80c27dd3a2bad819a8537187a9d9adfa4a123.camel@posteo.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 4F03D22C534
+X-Rspamd-Queue-Id: DA9A322C565
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272457-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272458-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[posteo.de,kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.967];
+	NEURAL_HAM(-0.00)[-0.965];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -149,48 +149,55 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On 07/03/2026 15:43, Markus Probst wrote:
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/leds/common.h>
->>> +
->>> +    uart {
+On 07/03/2026 16:03, Markus Probst wrote:
+>>> +  usb-led:
+>>> +    $ref: /schemas/leds/common.yaml
+>>> +    unevaluatedProperties: false
 >>
->> Drop, unuesed
-> The device uses the serial device bus. Thus the device node needs to be
-> inside a uart device node. The uart node represents a serial device
-> port in that example.
+>> That's pretty unreadable code.
+>>
+>>> +  no-check-fan:
+>>
+>> Vendor prefix
+> 
+> In the documentation it says
+> 
+> "
+> Nonstandard property names should specify a unique string prefix, such
+> as a stock ticker symbol, identifying the name of the company or
+> organization that defined the property.
+> "
+> 
+> I am not sure whether to use synology or linux as vendor prefix here.
 
-Still not used.
+You cannot have linux prefix - you are not adding bindings for a
+abstracted/generalized device.
 
 > 
-> This is also done the same way in
-> - Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
-> - Documentation/devicetree/bindings/net/nfc/marvell,nci.yaml
-> - Documentation/devicetree/bindings/net/bluetooth/brcm,bluetooth.yaml
+> The property itself was not defined by synology,
+> 
+> but the property also is not necessarily specific to linux.
+> The driver has to tell the device whether it should even check for fan
+> failures. The property wouldn't alter behaviour of the driver, but of
 
-Plenty of poor examples...
+Driver stuff so not really suitable for bindings in the first place.
 
-
+> the device. The device itself would not check for fan failures anymore.
+> 
+> Thanks
+> - Markus Probst
 > 
 >>
->>> +      microp {
+>>> +    type: boolean
+>>> +    description: |
+>>> +      Disable fan failure check.
 >>
->> Node names should be generic. See also an explanation and list of
->> examples (not exhaustive) in DT specification:
->> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->> If you cannot find a name matching your device, please check in kernel
->> sources for similar cases or you can grow the spec (via pull request to
->> DT spec repo).
-> "mcu" seems the most fitting, altough it is not part of the list.
-> It it used here though:
-> - Documentation/devicetree/bindings/mfd/qnap,ts433-mcu.yaml
+>> You described the desired Linux feature or behavior, not the actual
+>> hardware. The bindings are about the latter, so instead you need to
+>> rephrase the property and its description to match actual hardware
+>> capabilities/features/configuration etc.
 
-Depending what this is. MCU is generic purpose unit where you load your
-different FW for different purposes and you have here specific - to
-handle certain aspects of this entire machine. This looks like EC, so
-should be called embedded-controller and placed in that directory.
+Do not ignore the comments.
 
 
 Best regards,
