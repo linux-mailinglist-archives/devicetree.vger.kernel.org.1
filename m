@@ -1,128 +1,185 @@
-Return-Path: <devicetree+bounces-272411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272412-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SE5WBOQErGkxjAEAu9opvQ
-	(envelope-from <devicetree+bounces-272411-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:58:44 +0100
+	id uHRPJFIFrGkxjAEAu9opvQ
+	(envelope-from <devicetree+bounces-272412-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 12:00:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E91C22B3E4
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:58:43 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A1922B44D
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 12:00:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0FCB93013269
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 10:58:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8FB9C301E5D6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 11:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 643F734A3CC;
-	Sat,  7 Mar 2026 10:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23EE306B05;
+	Sat,  7 Mar 2026 11:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dEtEiiKp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K6CSn4Ib"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40BC82066DE;
-	Sat,  7 Mar 2026 10:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF517274B58;
+	Sat,  7 Mar 2026 11:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772881121; cv=none; b=XWSWwCMbLn7O5UFTl1YuOCJ8mb+FaAB91Qb+WQBw9ACm8ZHjONFzRT0gr9x28L/Mqc1Qetkrn71qXFv/Gbali46UlMsKP8s6TYbp8bQqUSsJ6kBGuZhP5ndNsVe5cFzE4NbHuY7DE2Gbz5ONqZzWN22Ps74wuj+RtbsE3ukQJOE=
+	t=1772881210; cv=none; b=ZNwcmYkeOvlq3I5jwvKjmfJNT53p2usfO1+kdfOHZRDyZp/bzauJKXx/cqfRiObhHwoIx/Qci1QWH/jKbU2jgznrfiWYCVzCwDM4vNNMuNC/ebjaJUbPr8vKKeh3iWNdwDfQOpAQaEnTeBhYwQ/BPFWL5/PDSbR46DKsdTFAnnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772881121; c=relaxed/simple;
-	bh=Ionuc70jSLfmmprV1aKJDSZDnPZ8MojStxxeRXicepU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XtlTPi3n5PpDyD0a+NAIcX+5g3xBA+bxnTpZ/9gnB/19yHXlCjr5gV+AdWaRMAnvHXw1ey894+P2JIrn1CfWhAC8uqsZ6kb6gBOscp55EGngPYA2qoFKYEMYsbh5smiB8u55iGEriP0wfEuCBPeVNVcBmmOUZstEUyEdnRzL3RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dEtEiiKp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55D1EC19425;
-	Sat,  7 Mar 2026 10:58:40 +0000 (UTC)
+	s=arc-20240116; t=1772881210; c=relaxed/simple;
+	bh=M0d9Pl4EXKENXdlrYGKAe19iW4l2z+VxMe/CDDorEq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=T0fJrdTfU+vf+N75fNIEwOHUdMo6NcuHH1xmWlaw/TEA7fCcbodQPvwq6vADHgkGL63K3twVyPmW0U7hM3QzBaCAfxqAUhdqXKvpwlMm5bNOX4pMroF/7vqx4wZrbkdWXgwqD9F10qaTBB/Uc2HibRy0En/S03RnnckHThgqEmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K6CSn4Ib; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5269C19422;
+	Sat,  7 Mar 2026 11:00:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772881120;
-	bh=Ionuc70jSLfmmprV1aKJDSZDnPZ8MojStxxeRXicepU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dEtEiiKpAEb+n96mbEzQTIiREcREP+9eTE0PJRTbtZ2MiUPTEuJWT9is67QzMC/Se
-	 pobTAeI3jvSQ9zwppaiEEujN2WC0sMxtEDbDlo1ReLnZuF3bkz0Gi3q+cQyCHDTmBC
-	 lDY4MWZv6Ghwl3zUqxeQQskJRsakr4Xqq8ctanRTVBcEzKJ2j1ba+1FH5w4F2id2kg
-	 rdlCyQCoZUmwSn0iCC3tHZjijmyOoITEyQbYfTbP7Uuehk4LAwMYs9+kQvmvDg2b3X
-	 VDlDHcz6RNHQvk+a47trCID2LP3bqYeR+YZPklZanCVAbkTqwawGNaoxEj31Qv5L3e
-	 IxW6QLlzm6/Tg==
-Date: Sat, 7 Mar 2026 11:58:38 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Gleixner <tglx@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Haibo Chen <haibo.chen@nxp.com>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Lucas Stach <l.stach@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, s32@nxp.com, 
-	Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, 
-	Enric Balletbo <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>, 
-	Larisa Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH v4 3/8] dt-bindings: arm: fsl: Add NXP S32N79 SoC and RDB
- board
-Message-ID: <20260307-tentacled-antique-agama-e8a80b@quoll>
-References: <20260306161555.9000-1-ciprianmarian.costea@oss.nxp.com>
- <20260306161555.9000-4-ciprianmarian.costea@oss.nxp.com>
+	s=k20201202; t=1772881210;
+	bh=M0d9Pl4EXKENXdlrYGKAe19iW4l2z+VxMe/CDDorEq4=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=K6CSn4Ibm7R9244ykpCyHqzbxr7ZrE9E62cwXDQ69CWSEs3AflO5PNwnHnIQnB9u/
+	 2KKZ76pNDaQb1830g4DLwtRMp06GPR3i5EUabw/iiJQWml3kdkCrNN2wZFEXCZhPXV
+	 0V8o3cO9PIzicyIGUNAaJKDgVjtnkk3LU/YQomcS6y7htAJ+tfYQN8vT48HPWmgzYE
+	 rHK7ziWVM3T5eFZ0HLEugSlcYT+nP+mxTP1M7pV5736AWLRQCkko4Pzu2VwOx8+Ls0
+	 JEH9dcSmEEOK5KA9z8pSl6ni5Nc9QkdQTRO/0sDz7iPZYSE1i4eYMhsWW+4M7AIUkv
+	 oz5w2GMilK7rA==
+Date: Sat, 7 Mar 2026 10:59:59 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Michael Hennerich <michael.hennerich@analog.com>, Marcelo Schmitt
+ <marcelo.schmitt@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Lechner
+ <dlechner@baylibre.com>, Andy Shevchenko <andy@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, Petre Rodan <petre.rodan@subdimension.ro>, Jorge
+ Marques <jorge.marques@analog.com>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/4] iio: accel: adxl372: introduce chip_info
+ structure
+Message-ID: <20260307105959.33167730@jic23-huawei>
+In-Reply-To: <20260306151859.131934-2-antoniu.miclaus@analog.com>
+References: <20260306151859.131934-1-antoniu.miclaus@analog.com>
+	<20260306151859.131934-2-antoniu.miclaus@analog.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260306161555.9000-4-ciprianmarian.costea@oss.nxp.com>
-X-Rspamd-Queue-Id: 9E91C22B3E4
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 54A1922B44D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272411-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272412-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[25];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,redhat.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.985];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.967];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 05:15:50PM +0100, Ciprian Costea wrote:
-> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> 
-> Add device tree binding documentation for the NXP S32N79 automotive SoC
-> and the S32N79 Reference Design Board (S32N79-RDB).
-> 
-> The S32N79 is an automotive-grade SoC featuring eight ARM Cortex-A78AE
-> cores organized for high-performance networking and gateway applications
-> in vehicles.
-> 
-> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+On Fri, 6 Mar 2026 17:18:21 +0200
+Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Introduce a chip_info structure to parameterize device-specific
+> properties such as ODR/bandwidth frequency tables, activity/inactivity
+> timer scale factors, and the maximum ODR value. This refactors the
+> driver to use chip_info lookups instead of hardcoded values, preparing
+> the driver to support multiple device variants.
+> 
+> The sampling_frequency and filter_low_pass_3db_frequency available
+> attributes are switched from custom sysfs callbacks to read_avail()
+> based handling via info_mask_shared_by_type_available. This enforces
+> consistent formatting through the IIO framework and makes the values
+> accessible to in-kernel consumers.
+> 
+> The SPI/I2C probe functions are updated to pass a chip_info pointer
+> instead of a device name string.
+> 
+> No functional change intended.
+> 
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+One really minor request for a comment on where the 3db frequency
+number of entries comes from + some musing on whether it would have
+been sensible to do the read_avail stuff as a precursor.
+Otherwise LGTM.
 
-Best regards,
-Krzysztof
+> ---
+> Changes in v2:
+>  - Switch sampling_frequency and filter_low_pass_3db_frequency available
+>    attributes from custom sysfs callbacks to read_avail() with
+>    info_mask_shared_by_type_available.
+> 
+>  drivers/iio/accel/adxl372.c     | 125 +++++++++++++++++---------------
+>  drivers/iio/accel/adxl372.h     |  16 +++-
+>  drivers/iio/accel/adxl372_i2c.c |  12 ++-
+>  drivers/iio/accel/adxl372_spi.c |  12 ++-
+>  4 files changed, 96 insertions(+), 69 deletions(-)
+> 
+> diff --git a/drivers/iio/accel/adxl372.c b/drivers/iio/accel/adxl372.c
+> index 28a8793a53b6..6918a5834d74 100644
+> --- a/drivers/iio/accel/adxl372.c
+> +++ b/drivers/iio/accel/adxl372.c
+
+
+> +static int adxl372_read_avail(struct iio_dev *indio_dev,
+> +			      struct iio_chan_spec const *chan,
+> +			      const int **vals, int *type, int *length,
+> +			      long mask)
+> +{
+> +	struct adxl372_state *st = iio_priv(indio_dev);
+>  
+> -static const struct attribute_group adxl372_attrs_group = {
+
+In ideal patch break up I'd have liked to have seen the switch to the
+read_avail as a precursor patch but given there would be a fair bit
+of churn as a result maybe it wasn't worth it.
+
+> -	.attrs = adxl372_attributes,
+> -};
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		*vals = st->chip_info->samp_freq_tbl;
+> +		*type = IIO_VAL_INT;
+> +		*length = st->chip_info->num_freqs;
+> +		return IIO_AVAIL_LIST;
+> +	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
+> +		*vals = st->chip_info->bw_freq_tbl;
+> +		*type = IIO_VAL_INT;
+> +		*length = st->odr + 1;
+I know there wasn't one in the original code, but this length is odd enough
+that I'd like to see a brief comment saying why.  My assumption is because
+you can't filter above half the sampling frequency (Nyquist and all that
+would mean it was at best pointless) but good to state that.
+
+> +		return IIO_AVAIL_LIST;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
 
 
