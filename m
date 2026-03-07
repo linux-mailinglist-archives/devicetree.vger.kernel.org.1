@@ -1,179 +1,229 @@
-Return-Path: <devicetree+bounces-272438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272439-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aEuCM4cnrGlBmAEAu9opvQ
-	(envelope-from <devicetree+bounces-272438-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:26:31 +0100
+	id CFLiBIQorGlSmAEAu9opvQ
+	(envelope-from <devicetree+bounces-272439-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:30:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36CBD22BF36
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:26:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A746422BF84
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:30:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9612C3020A64
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 13:26:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 413E2302AC37
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 13:30:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C985626ED5D;
-	Sat,  7 Mar 2026 13:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8A324E4C3;
+	Sat,  7 Mar 2026 13:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lb7LYNl1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bUFOnMi4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51BB79CD;
-	Sat,  7 Mar 2026 13:26:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772889988; cv=none; b=dYlPFW74WvE4vbjy8PmZav/dJoI6tDRIwqkflC4o1HLgqI8n7Te1GC8s0KR67T1GXuj0axgQItSzByPO8NPeW7hb4f9ikrHZVYyGGkG0xFuh3rqTmirEN5dgP39bVx4PbF1q19WsyICC2YubO0cSUYVfputLp/slIB/LH4Z04ak=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772889988; c=relaxed/simple;
-	bh=Y2vIJ4YFJJzdAZ/+Z31VI0tTKEMjAR8PynOtS7zS7Cg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=SazT7os+4CyKKkbbM4UuXyXB4Bh/UJydWsQUMZvzAn1FBffSARGaqG0G8f2m/pB13Azm/juso+Nc6ST9a+ULLHBXJqP1dsjxgeNBM1qnD/xUwVaW7W7jdJPl8hmMcI+lOitihBdXUPu96rInDxU5urMyIX4cyAHJNZBh0SfxDtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lb7LYNl1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01277C19422;
-	Sat,  7 Mar 2026 13:26:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772889988;
-	bh=Y2vIJ4YFJJzdAZ/+Z31VI0tTKEMjAR8PynOtS7zS7Cg=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=lb7LYNl1mc6s/fT0GlLDjroAZUgcDwr2aFr36AXeWVaiYcqhWyqaMunkQ+szQui36
-	 JgIpFozl4JK6YjnpiQRhvj6wT+ORp64s91KwkhGlO/bKF8/ERIMS0yH41hbJkN4kZ5
-	 cwo5ux8GHb4Kwlq6Yy6K45/sglUXvJvVOaZp282gaGvsVCyBONqZn5b5f+psyncUdo
-	 U5tGaU/6qedLVKOjmfl1ul5l4ysJR+iNBs7u4Btm29IyWBHmDuDzUukeQZ56sgarY+
-	 6mCBp0SE7H8OAHICxJMxGRU8/G6XmllmjEKRgVqXLl/vI4hEjjlKu1fAEsoUPi2hK6
-	 U224u/ZXZSTyQ==
-Message-ID: <a88fa91a-20e8-4391-824b-8e16c910430d@kernel.org>
-Date: Sat, 7 Mar 2026 14:26:23 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D82326290
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 13:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772890236; cv=pass; b=nnj5xPYdR/q6/Di2K79vEkp8nysqqXFV8FJWWWLSnb38GH09KkPqFAVoipu4EUDTtgRefkq7b46xHc29PyZPyvS+YAo1po4G8LAJpsvild+ZYDu+9NhNRyqDGnjSL9sHU9veiMQEAyVYvgoYh2w6uDZ2JJmAswNnlxRSQj9whV8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772890236; c=relaxed/simple;
+	bh=G6kNegQKBFYwnygE7hIWLaa6frsBBELEiBKJ771TxG0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=auYQ2hdMcfzKWM+TcebLipU/aCub0j0EBoxQnOsIxTMX+RsaTqlP5tVcag9cV2u4hcKyw14S24DCFQDq9SOXrsRpfDNuB+APU3Vn5v47RQ1PvZVyHEooVLAr2ywAxJdolhBiSxj+hTsMeHgRJ/BApjyyXecx09xIUYq0lvXVgio=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bUFOnMi4; arc=pass smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-439afc58ac7so7284040f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 05:30:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772890233; cv=none;
+        d=google.com; s=arc-20240605;
+        b=QCJFnLpaQWmgxZ72TCmXLxZ+ofu2te3tSXDQ2r3g7E4qVbf46611SXrzhuR/M3Swv5
+         mQDoPiQW/PTMlHrI05l5vTZGREtpO4F7ivQ2RvynzsS0zIbKvsxZdUTic4zu3r0UdEZK
+         k8g2jUzgukEsNTk8NY5LtxfBgRA0A+HZd2BvPbka6mBmdJFI9NGfjOnO2elexkjVA0JV
+         U2BETPTxNpc2X83EOw2cKgIsSQph8fsllLSg0s0rNcq+Gbfv9mlVypujpymChyWMuMk7
+         B1YnuHhVqLzX8R2cD+CUjYakqC3A8nrCg2lBOxHXEqch7IhCwFiAXwMcoTLNRKqJC0hv
+         EaNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=9vxg1zKKw5eRGATryRLQmdjvykX+/jqWfKws1Yp5Hqk=;
+        fh=veiS0mzCgO4z6wRcLZd7SHkT4FM3XA6ogE5AwP3y+54=;
+        b=CjNku4kABEWFv2BaNieqjcyJ/crpHT7uDJE9sh7s+AZUwnsQ4pTxgwkIIckGKuZT0q
+         BNcLogVnWE9FNeCIpApG3Am5uV+uz/3Ll9cWko1N30bgRpr33R5AhIJj1MluzozfzunY
+         wi161Jj5YDhdFX9JaChzrHFlRuy1viMQp6n3Mf3gnl14YoCsmRMpWheqXImEqLDlL60o
+         ifCiQAElhci33ZeGdyW5yWoPHjyHFJKd6zWxwb9hIZVwBaTBdVWpE/AszHEQO8cLgXgF
+         2eFlkjKNiutKmA5Ync9+1lhNUZ6PptVQNI8f0Iaqevwdn2fBlFLD0Ryw+rhsTxRgj2Jc
+         6LHw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772890233; x=1773495033; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9vxg1zKKw5eRGATryRLQmdjvykX+/jqWfKws1Yp5Hqk=;
+        b=bUFOnMi4MPR0wHADjkPGTcwezfzOOsx+6SCp2Za8p3WQjIt5a4Oq+XyPyShsvwGpvX
+         DbGdbetRlaLjmlOJotLVmgcG9P91aOyDc9hZ6Z/RwHDEYhnPIv4cf+O05uMMCaIZjPgj
+         kbwIwzTNPexvfFvWSbO0U2xfjg/0x8m7/3KT1JofDa2oDCO3LmxSsyFZSnyAEigVijFK
+         pvKiA8aUGTRTReF8+pLJ9A5wefMh22YNwtBB/ucjBZDyMbb9tUPnyNmb32qDbAwO8Pvi
+         V/tHHd9VpG83ILVzeUg6Bf+CCC3jn/MIu2bWbZpl2qF7MzwiIaWukANBRUY/WhRldufQ
+         68JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772890233; x=1773495033;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=9vxg1zKKw5eRGATryRLQmdjvykX+/jqWfKws1Yp5Hqk=;
+        b=Klt97EtED5y/e+pedrrerHHkqG28C4zVMvq0X1ONJNHjmEUysq3VxuwbEeg8pzQPRP
+         w/8fZr+Q5+PS2KCltYzYDf3ugPMeeF8qfIRc3po1s+MN+d3/Akkw2B/UowjO5OEaKqCR
+         AACGxGYXAbWT37gZ4pbwhm1QODU41eX2Vca6JOrIpVMthlROUwJeelY9ATJx+8ZqCRuB
+         SXkkBuyMEzs+Ifo1MTum1RRDd6x6Hc57spx5oktH75JXxXxbLB4oARlwjIJBeCyQiKG4
+         GamTNkWQRQRC0yRgp4kGDHVmyNY+bU+3K7Pco+W+JxUCz4W/rhSjMuI/uAkBAGSG4Q3g
+         qlPw==
+X-Forwarded-Encrypted: i=1; AJvYcCV1WztLFc0/sohFV13prRwKD1NO3LttfiyaJlEgtXcyIZTkzsRSElqTcmx/vdstO7s3TwevNV893EX6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8rTln9FIwNfx22MNXyBIGZJ2xNlRSaNlWoWp8zyTVB7XyJNXi
+	wUr1RzEmtNxSgPBpkBdKddKI4+OUIwL0TtN5SqZLwcqb9ZWBRaNnDjip6GZtGKTbE0IYd6kDug/
+	4GXm6NUCSugVdbi4yX3fBo3oqS6jHNJY=
+X-Gm-Gg: ATEYQzzZY375VQtg4S8T7HJ+WghGxPY1vGQOxYceP53mP3DKT0Fq9xphxo8unUdcwtL
+	mR8zKALuYgH5jeyCJks0KxqhV1hobv+lFuqFvlLpf/73NEz+yOrN3m67nDCkWPxHlEZuQwyAxXx
+	6F3RDckOlUXLZr19d+hr32I7tTc7LMkyjpj2cVW7yrNfCYp5vrVKCCU06ptVwulfqpCZrFyZ96Z
+	yAz72csixyBh+3LOg/JiOc/nw5g1VJfLESE/Xr/mS6f/LmqaNx7EzWUdBTAxcEDhHHWFbzqt/yp
+	sZ+3IOlH
+X-Received: by 2002:a5d:5c8a:0:b0:439:be82:1fd9 with SMTP id
+ ffacd0b85a97d-439da555622mr9640492f8f.12.1772890232456; Sat, 07 Mar 2026
+ 05:30:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] Update designware pwm driver
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: dongxuyang@eswincomputing.com
-Cc: ukleinek@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, ben-linux@fluff.org, ben.dooks@codethink.co.uk,
- p.zabel@pengutronix.de, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ningyu@eswincomputing.com, linmin@eswincomputing.com,
- xuxiang@eswincomputing.com, wangguosheng@eswincomputing.com,
- pinkesh.vaghela@einfochips.com
-References: <20260306093000.2065-1-dongxuyang@eswincomputing.com>
- <20260307-intrepid-curly-seagull-e036c4@quoll>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260307-intrepid-curly-seagull-e036c4@quoll>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 36CBD22BF36
+References: <20260306133351.31589-1-clamor95@gmail.com> <20260306133351.31589-3-clamor95@gmail.com>
+ <20260307-smiling-coyote-of-economy-317afe@quoll>
+In-Reply-To: <20260307-smiling-coyote-of-economy-317afe@quoll>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Sat, 7 Mar 2026 15:30:21 +0200
+X-Gm-Features: AaiRm52hvDWp-hTuU970bgp3X7ZySQtnac9bE5SZT5ZlBfWPeg_o_bRZtEnvaRs
+Message-ID: <CAPVz0n2QXSFnrkLPFVDbUjNAkp2_dTumeXh4EsB11ca0jHEC-g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] dt-binding: pinctrl: pinctrl-max77620: convert to
+ DT schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
+	Chanwoo Choi <cw00.choi@samsung.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-rtc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: A746422BF84
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-272438-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272439-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	TO_DN_NONE(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,intel.com,arm.com,samsung.com,bootlin.com,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.975];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.970];
+	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[eswincomputing.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 07/03/2026 14:24, Krzysztof Kozlowski wrote:
-> On Fri, Mar 06, 2026 at 05:30:00PM +0800, dongxuyang@eswincomputing.com wrote:
->> From: Xuyang Dong <dongxuyang@eswincomputing.com>
->>
->> There is already a patch [1] for the DesignWare PWM driver, 
-> 
-> So provide review there instead of allowing Ben to post incomplete
-> hardware description which you want to correct here...
-> 
-> I don't understand why posting this change.
+=D1=81=D0=B1, 7 =D0=B1=D0=B5=D1=80. 2026=E2=80=AF=D1=80. =D0=BE 14:48 Krzys=
+ztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Fri, Mar 06, 2026 at 03:33:47PM +0200, Svyatoslav Ryhel wrote:
+> > Convert pinctrl-max77620 devicetree bindings for the MAX77620 PMIC from
+> > TXT to YAML format. This patch does not change any functionality; the
+> > bindings remain the same.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  .../pinctrl/maxim,max77620-pinctrl.yaml       |  97 +++++++++++++
+> >  .../bindings/pinctrl/pinctrl-max77620.txt     | 127 ------------------
+> >  2 files changed, 97 insertions(+), 127 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/pinctrl/maxim,max=
+77620-pinctrl.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-m=
+ax77620.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/maxim,max77620-p=
+inctrl.yaml b/Documentation/devicetree/bindings/pinctrl/maxim,max77620-pinc=
+trl.yaml
+> > new file mode 100644
+> > index 000000000000..7364a8bdd7d3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pinctrl/maxim,max77620-pinctrl.=
+yaml
+> > @@ -0,0 +1,97 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pinctrl/maxim,max77620-pinctrl.yaml=
+#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Pinmux controller function for Maxim MAX77620 Power management =
+IC
+> > +
+> > +maintainers:
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +
+> > +description:
+> > +  Device has 8 GPIO pins which can be configured as GPIO as well as th=
+e
+> > +  special IO functions.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pinctrl/pincfg-node.yaml
+> > +  - $ref: /schemas/pinctrl/pinmux-node.yaml
+> > +
+> > +patternProperties:
+> > +  "^(pin_gpio|gpio)[0-7_]+$":
+>
+> Underscores are not allowed in general, so pattern needs fixes. Does
+> anything actually rely on this name? Is this ABI? I don't see old
+> binding and driver using the name, thus this should be just ^pin-[0-7]$
+> (+ is also not correct if you have max 8 gpios)
+>
 
-I see now Ben did not post the bindings change, so this message here
-just confused me.
+Old txt schema uses pin_gpio[0-7] hence it is here, but greping trees
+did not reveal use of pin_gpio so it may be dropped.
 
-> 
-> 
-> 
->> which is posted by Ben and still under review. 
->> Based on this patch, this series is a continuation of [1] 
->> to add support for IP versions 2.11a and later, which 
->> includes support for "Pulse Width Modulation with 0% 
->> and 100% Duty Cycle".
+No this is not ABI, name may be any. Including gpio0-1-2-3, gpio2-4
+etc which is why + is there. or maybe you know better way to cover
+those names?
 
-But does this mean the patchset cannot be even tested?
+There are device trees which use gpio5_6 with the underscore
+(tegra210-smaug.dts; tegra210-p2894.dtsi for example). Should the
+schema account for those?
 
-> 
+>
 > Best regards,
 > Krzysztof
-> 
-
-
-Best regards,
-Krzysztof
+>
 
