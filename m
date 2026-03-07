@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-272446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272447-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aP3nOaU2rGkbnAEAu9opvQ
-	(envelope-from <devicetree+bounces-272446-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:31:01 +0100
+	id eIMfCLc2rGkbnAEAu9opvQ
+	(envelope-from <devicetree+bounces-272447-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:31:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6263822C2B4
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:31:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9404A22C2C3
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 15:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id F35CC301E98C
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 14:30:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id DE89F302DA37
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 14:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3DF92E282B;
-	Sat,  7 Mar 2026 14:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640892BEFEE;
+	Sat,  7 Mar 2026 14:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="i/wcu+Ce"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="DOoc/W70"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B30E02BEFEE
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 14:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A2438248B
+	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 14:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772893857; cv=none; b=nTFA893UpXNvLIXl5vm0R1Oyess/40eKtBWWMgrySG6U0/TNEBGoPaDpM4wNfyUpqiZ09vqcmBt4a9r2ERVvy9dsk1eFu3Cx/ejLDzBkgmCoeEpWC7/gTrIq+6lzA74fYe31ppTDaZY58Rfhpgta5WUFt3SkrhCbzkLgQuIY1qI=
+	t=1772893876; cv=none; b=P8D4W80DQqJgPuwYxHfXFIawaW6YUkIsB26KmO6+MVMGgwypsPkE3l59OiJU/v1hOF+mvidr1rUV+d3yKIO3hvwTIpwk91ccbddoOJNuhX9en9wjObCL6XiZzpnBAH8rFJQlYHqGuAWemOnvwGHQaqBu7P/Uso4/X6Ttw8gjzQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772893857; c=relaxed/simple;
-	bh=rjG3r04eLpPztW5jLD6sPPC2gU4cZe1HwShupMNUyTI=;
+	s=arc-20240116; t=1772893876; c=relaxed/simple;
+	bh=T7SGNesARXU/UDQl70OG/rRh1m8dgJWlvY27K6o/aSE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NlWtsXGH0oqRqxZdfHQxL/0MedC5T1HEl35Sd9gmGX/9KgzcH7yeLc4N3fhiCyKoeEkv9D1bVNuEHZW0lv67IcYTWUmm1z00h7omua5mDEWHrEUVdd6ID3YmG5JvlcKslF3UlGvxVxqsxHkP0QONQqa8ONIGVHNhNF0qS0mFmbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=i/wcu+Ce; arc=none smtp.client-ip=209.85.222.176
+	 In-Reply-To:Content-Type; b=b4l7fXpsxDiTqQWZ8JcbbOZ4QsX0oF35/xGeWinjULAZwVT3knopXVmKjRaFS/jv9AMT141HGVYH1Z3vunhlStu3pgpZV8mGT6bxse5bXE9QtZ0RUSjvbQj8MCxljrA1f+KHRlsHNO3eslNJRX2/a+Do00XHGJQiGpnhfgpFUZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=DOoc/W70; arc=none smtp.client-ip=209.85.128.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-8cd751a4e93so57963085a.0
-        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 06:30:56 -0800 (PST)
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4852a8482fcso10288645e9.3
+        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 06:31:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1772893856; x=1773498656; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1772893873; x=1773498673; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZuAHly0ED4Nxo1iGo0eqHkUi7nPY8vgZtVUsYNCIxXU=;
-        b=i/wcu+CeYr9WsqsKRqSJm105lnJmXzhUneZ2LXC6+exRrS8owU9VF5J6L43qM7bazm
-         5YAxn9CuoQL/SlE7pJQAV2PpnhUv5YTuwAYqQQCohZz96yXslxyg/Ag/9Y6P9hpaDAyY
-         mJD1TGp2jPJsXK9hcGQY9oBvLEBDmHvDFdlVCp3BEYc9X5/1kudqq2a4SoW2tN0QC+n/
-         D6aAtfdEt8PQdyyGaBAeScwXmm8fNpnJJQDOqXaxzNj6FroTq2YA7/bo4VpHCK29Lkvr
-         azKfXuMBWQ6WVB9RJIO6u2wBD3YGoM4vVlZiCNAq70nGORcGqGw+nPiEFZroouwYWDki
-         T2gQ==
+        bh=MDQMkVUFxT5s/n+9ZbWq4xqHcwWRUDj7wNkJNtnMF90=;
+        b=DOoc/W70j3iDOVGEm1tLlsXer/SuqNEIwBHwYGugCDlY3L4oSVx32qb/wPKw6kQCnR
+         z+0p4yATbjm6tFs6cNEWBZNpDj0hP8LBSxvaZ+KAwSc1l9DTD0E3MJ4CSXtGvBd9Wvgu
+         dXI8q5/W0D2HrZzOj4HnwCrOBHEx9gjE/ENXlfZ8o/dwH3GCu81z8cYtlJgj2rGkEfwa
+         AskxAKidPqeTNexrCgQ2sFxda6DOta+Chq2ZBAxRJ1anGMHicchcJTpuMfZ16Ndwd781
+         ole2FP/u/uHq3SJp8pc/POQhU1rrqwdDQ0hXRmEi+AScEETSrV0N9T8hA/SojRqAGGNn
+         xCMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772893856; x=1773498656;
+        d=1e100.net; s=20230601; t=1772893873; x=1773498673;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ZuAHly0ED4Nxo1iGo0eqHkUi7nPY8vgZtVUsYNCIxXU=;
-        b=FTN3NBK7jiYjWWU/E7g1pYHp9zowaaVBrtbM9ybqPLVWLU24KFl1cSE7k38+lgH8Cu
-         fR6Z+iyK2GEca2aiqMfCPqrBak1MU+5936xvk9ldYXzv45FLsO2e/bqZt1U5BFs7L1Fz
-         K7+3Twv3BTn8fB5BMrlQy+41wnjR3Yg02TwBf+Mq78vVjAW15eH4k0AabVorulmP4GST
-         ZmlABY9VksOUuRGrmoSfIVhbMlJbRn/gENNKyL+A5TPrHKvBZ/HO7QKjxdp789PUwmcJ
-         jXIITudOgZko1vOmq7lwGAJJ40O1+Ae5KnZ6cKxOpP3RSXxmh1Blwbqwya6bCOrzKcwu
-         b5Dw==
-X-Gm-Message-State: AOJu0YzRcfyPkbVYfvyehFxrGXRGMVtq6ZytpKu9+0StVui//XoQ1q6W
-	Y9AX9nv+juNHAIChCS4ACC5Bh90AK89dkw7U1P4k0pwgWohoQvTpsg3JxxHbLMagsW4=
-X-Gm-Gg: ATEYQzx+cd3GCB0z1jUEGiFA+nptoD88/XF/TGOXCRWkjWu+wCaDgpYodjPzEyLUBfu
-	bv7kpbK54NO/E0b25ExoEKr4tpxpIuOGyU5D5exQ5xjH3kTkBKmfj90zaR7/0W3Ea3oVA3h8ZKt
-	+GZBX0k8i09ENYEW4ELIncaDixrwBbLAXtX8yr2TYeDEhzaOvpxlIHrnHhiq3H1/Bfpnhx+dDXR
-	9Y/pk4Bxp3Q+lVl440DGpR1TQpE+ltYz+jzc7RUh0Esbu4z5r60Icsx+yGA6UTQz5X29YYgEyKm
-	HHZTrlUPSYWY+uN02zRtT+0RRqb48feSXoiqhJ/16Vk2UiV4MixMIrMq8399W+djgrsHE2JJeyk
-	ZnjWJwIEB5n9r/0VYLnc7dyiiPkY8tmLzKPLTZai6cTSMZ3sA2XpmG4jnsGP7rtjUuG6pM83rzf
-	tNKxiSVGv993NGG9k+J/F6B8bJnQ2exQ==
-X-Received: by 2002:a05:622a:15d4:b0:4fc:8ed0:d4a4 with SMTP id d75a77b69052e-508f4979a66mr69234281cf.64.1772893855568;
-        Sat, 07 Mar 2026 06:30:55 -0800 (PST)
+        bh=MDQMkVUFxT5s/n+9ZbWq4xqHcwWRUDj7wNkJNtnMF90=;
+        b=wNxsuu/ggMwKMmH4umCWA2jchSDTcQ8nJlPdQCEKJeuN4vOLJQz54DCev2NxbXlInK
+         UygBdw9a4g9TPAIPnHvhjAMywOlnsWF2bRo0PsppDe+1zo+X+pPYPahXKxpgL9oq9d9d
+         3cDHQ73EzKfMZGNQjF+mb7fC05AJ0fgMftl8tdVtYaNw5TsTBHbtl6eU+rvL8/D6BGGq
+         v6gtfBdEnLAwi5Sxpxx+fXLABgRrxSf7Ld/ClaDM8Ph7S0KRT1caGdKBsg/Cjnqbg9vx
+         +NjQphMosxAwx04P2NHGjgST4q2uU4Yh+87TbWRBg39PlLOJYpqZwGyDu9kZ912MQ6if
+         fKZg==
+X-Gm-Message-State: AOJu0Yx0FEFJt+Dp3vi0GNOlx242G9qqaLgYw9CF3vk3Ct92OpxusdkG
+	aWAjREzzgmpQNNX4LwROmQ73rFNSlXW+XS2WEjlEoWZhJwT2/ATnauogdocMwDtF618tBf/KFw0
+	RYAvq
+X-Gm-Gg: ATEYQzxRbwpeRjgUHg9wlhxH/21wvpCRuiO0IBRoIt4zSnlIUPxCNfSoyjitrwCFxp/
+	xnI5UTLWBe59zeIu4r02BnIVzK8YcFMHjU607Dj/cWVwizwSP/lLOgOKpmemZWyRYeIdNsROXg1
+	gLYGFjQUNMvBnuc4mrEoyEu/WJOQgc8b+HMHV0OBfj2ZBt846DULOPs70KqiV/udpCfqeZcwjK1
+	qAQWx6VMfvqMJyUi2IWVWCslrCm4BtXST1LjRESbS3lDIRd+lzZwAEmLuYegrjs17lpD4QzMPSS
+	NypUQpoRhZHkNHg1TXHaDUaaCGOQEPHEGc332+Dr1UQq7tIPChTjKcAzX1egZ9LfiFFj6y+we2V
+	F+dyl/sBX09AdSV5ZOXb0dCPkmMWQmv1OYiJD+Et2/JTw+zzwD6AKvqu87xT/JsbqRhOdFt0MW9
+	Y6A1GOLG0gVFbNanR7FrBXDzMFCoqL9w==
+X-Received: by 2002:a05:600c:348c:b0:480:1c69:9d36 with SMTP id 5b1f17b1804b1-4852695941dmr96370335e9.17.1772893873187;
+        Sat, 07 Mar 2026 06:31:13 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.98])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-508fd904d51sm21915021cf.4.2026.03.07.06.30.53
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485237dcf04sm65165115e9.1.2026.03.07.06.31.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Mar 2026 06:30:55 -0800 (PST)
-Message-ID: <13a56dce-00ed-439a-ab6f-178a5205bb37@tuxon.dev>
-Date: Sat, 7 Mar 2026 16:30:51 +0200
+        Sat, 07 Mar 2026 06:31:12 -0800 (PST)
+Message-ID: <071925cd-a7dd-45dc-b7c3-4a4723edc6ff@tuxon.dev>
+Date: Sat, 7 Mar 2026 16:31:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,8 +86,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] dt-bindings: arm: atmel,at91sam9260-pit: convert
- to DT schema
+Subject: Re: [PATCH v4 4/5] dt-bindings: arm: atmel,at91rm9200-st: convert to
+ DT schema
 To: Akhila YS <akhilayalmati@gmail.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>,
@@ -95,23 +96,23 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org,
  Conor Dooley <conor.dooley@microchip.com>
 References: <20260227-arm-microchip-v4-0-7e2ae1c5b5d6@gmail.com>
- <20260227-arm-microchip-v4-2-7e2ae1c5b5d6@gmail.com>
+ <20260227-arm-microchip-v4-4-7e2ae1c5b5d6@gmail.com>
 Content-Language: en-US
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260227-arm-microchip-v4-2-7e2ae1c5b5d6@gmail.com>
+In-Reply-To: <20260227-arm-microchip-v4-4-7e2ae1c5b5d6@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 6263822C2B4
+X-Rspamd-Queue-Id: 9404A22C2C3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272446-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272447-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	DMARC_NA(0.00)[tuxon.dev];
 	FREEMAIL_TO(0.00)[gmail.com,kernel.org,microchip.com,bootlin.com];
@@ -124,22 +125,28 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.972];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.974];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,tuxon.dev:dkim,tuxon.dev:email,tuxon.dev:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tuxon.dev:dkim,tuxon.dev:email,tuxon.dev:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
 
 
 On 2/27/26 17:14, Akhila YS wrote:
-> Convert Atmel Periodic interval timer (PIT) binding to YAML format.
+> Convert System Timer binding to YAML format.
+> Changes during conversion:
+> - Add "#address-cells" and "#size-cells" to the properties and required as
+>    watchdog is defined as a child node to the timer parent node.
+> - Define watchdog as a pattern property along with unit address in
+>    examples.
 > 
 > Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
 
 Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+
 
