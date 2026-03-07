@@ -1,245 +1,272 @@
-Return-Path: <devicetree+bounces-272433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272434-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mJW4BYQlrGnnlwEAu9opvQ
-	(envelope-from <devicetree+bounces-272433-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:17:56 +0100
+	id eImCIb0lrGnnlwEAu9opvQ
+	(envelope-from <devicetree+bounces-272434-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:18:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B50EE22BE5D
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:17:55 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E3A122BE74
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 14:18:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C47BE3024149
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 13:17:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 62C00301AE46
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 13:18:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC2824BBFD;
-	Sat,  7 Mar 2026 13:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C2CA256C6C;
+	Sat,  7 Mar 2026 13:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cZ+3V2Ul"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BXBa6ASp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56362417E0
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 13:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772889467; cv=pass; b=d0XaZ/be/3V1R2kXehW+Gc3ZvgaKMP8vxAAk91x+CGagv/apkjNDyAUBt0jkobUnsjHbpE30bZwQ88qipH8GwX7TfhCwe2fH6jz/wGQiXnpMvWAHg4QUlU7BDUO5kTO1T34cn/EnNAlDvkQph88AufXlx7NZFGlbCowCE5qvtDg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772889467; c=relaxed/simple;
-	bh=BGH5fw1KTyI0IIpta/ctbnM5IMYss8VocaP1z86Flns=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HPxN7y+U722C696qeewu1tKxt0yrtO71r6ahTK6FzRDDpV029wed/Mq2ogGMEGKmY8npAroDgqBDrh9E5TlGNuPY4FvpawrDvZUCTDomie2yhUNLDjhP6jxFCdVWkws3ZZ6ug6JumbpF1DNC7rIUPEpOQJrlsJazGdsPiCKMa1E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cZ+3V2Ul; arc=pass smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-439afc58ac7so7276225f8f.0
-        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 05:17:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772889464; cv=none;
-        d=google.com; s=arc-20240605;
-        b=fqOQMIKKbriXHIn2h0BwLaCIaqZntM9avzepJfr0+IMrN0+mhHMmZcuxv6LKPhYDzN
-         MOFaNdBEnYlrRGlBjclGKg8FWZYOI50+vDpDN1GbwUZu0ytmuoRJdLIwS9wj1Z2Q0l+P
-         G1+X0UDSJ2MOzMSNOQJmM2fNCYYojCXjetm5V8KfhZGePxTYzcYTGvTpNdAlv9bfuikP
-         ChY7pv+6AJkFmhADpmclSqflGtlwHeS94UHONcAJ+RF4WH0CZoDGJnUOuonM6Sork08T
-         qS1hVUDNGUx5h6+uRG4wOXFwZ1wGKdxaYyvwcI9O4RMHGIPGSk2mcr8JtWyquW9lMLZB
-         /R1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=GjwpvT6wtYJv8QceRQPyk3jFj/BRY6zuY97whk5Cwg0=;
-        fh=QNb3VAUmh9o+gUH93KfAPXGX7ig0PUXNk/p9Xw0zEsg=;
-        b=RdDqaJBwKG4dhNVPL2HwEhOo5EOW877wnRzsuhS8Sj3vqpzto02pUQGzQlCag/YxMD
-         XJh9fZsCuV7Kv92y+bQ7pMQdib5cIEapyvp/IcAindApPppB6hL5qZc92PHf6ypyinrB
-         SUdj1X4MJbWoDcwGNATVEd2WFa5MiPoQnAr+Z3iBhX/kkR8A7oEwrb6o5jLgzuIEeh0R
-         O4Ts7eLgNXtyeEk9Va8Iiq/6Q8JQYBhD19/ajX1rYnfQ1NpDzHg/Tj941aDH3NP6Hy64
-         gycTgpWJcOGzgwDjB+03d3/+7m4wzVgpQmj1GeaAECnzZoOLAfZoCtsMdrLNGQhR0h8Z
-         +i0w==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772889464; x=1773494264; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GjwpvT6wtYJv8QceRQPyk3jFj/BRY6zuY97whk5Cwg0=;
-        b=cZ+3V2UlBKXkxskZn/S5bW2/UthLRJU36cWn8UpQOyqj6mYbssGEBjAhD44JwZfqjK
-         nAlhV/x3iY5cZ8UhRDe1OPcd2zrcq+4C8nz6AwfLDG5HcfAxhhJzbvet7W9VYa6wFbKi
-         sl4EPnb7ROE9cUHk1WDUh2XwlBILsoHr0lHPuOxMkeb7bJxwZX5wAvG8ABocP+Y7Ty/K
-         kPHjk0lN/3H/7YKIbT6VBPumPusLYSGyYXPANg+bDLLVyNyyuGV7aa4kxy9ImXY3+uzs
-         dqMQWjaFRi41vJwdNbfQqAIf9gfeuvGznpfZAfYHFwvg/2GBCyBYDMvd8g2NBnYTHUsr
-         aJJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772889464; x=1773494264;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=GjwpvT6wtYJv8QceRQPyk3jFj/BRY6zuY97whk5Cwg0=;
-        b=N2OybibhYNPG3gYOaEBtTRv7fwY12XUfGgaI6Q5aent9Fqq0Jqt3QSE9SQ0ERSx4D8
-         7G5Pv6cw9FvKFVYVpygB1K5U/Rn4kua9A1SJmeFB0Y9MInfe/LyclAECPEzXTuLQx3gi
-         t4TDGMZeIkGxNdqnQpGARgZ70LPL9Nrfoo7Om1bSdJvPLZzyYKmfjpLpljICzktyWt97
-         malXlLq8IIPLflsqLz5J95WhkHdPhznL31yY3SPHFxmbjNi75MzgpPYo9QBQpMPBmHlb
-         JhtYJk39YeAihw4ySQ9HTU0QZOwc6vXjK9wZg7jTupaTtDphpav6lr8pqOltl35lBtab
-         n/YQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW8MMb8PEcD9gG8C1vDkSOSXSG3niunObjw69CXLdv2dXj4/pN7sRytgx9zdkyg4LsOb1rDgYev5xU7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwWEbnWX1t5JHb7YgMs2d63a6J4KqEHfZG6A1/MYd3/ENNSQoTu
-	t9nY5JEsV1x8kLnOpXsaCRuEZ8dsdaQGaVGlDcZosHgBoU+GevLtdWeBr2PRbitXyq4JSg6dC6v
-	Iqo4p212f6eQmLRWJoeACmuSH2O8JmKY=
-X-Gm-Gg: ATEYQzxp5pyb03khswJOdHZCN3ubMNwGHXwNOXVEQTOJ7jt3c/F/aokBF3xkKrmdkol
-	pf8KrAj3f/OY8ziClTMNwOgp07poAO32r5wf1pkphS4tPbvqmEJ8C62/EJXgpAwKwe0awt9D4ka
-	LxGxeiNB46zQ74MWO7gPm7Fd6idzykjYhkIjGxajogGZr4sebrWk1q/DlRft6I3FJBQBW5KiR1/
-	0d533IcaxhUukNtDtOUuyD2ptgPYZteaMWli55xW20LWg5Gb75tf7EcoQvcGqf6WHPOxmZTmPis
-	DVvOhzZz
-X-Received: by 2002:a05:6000:2509:b0:439:b7c9:2eee with SMTP id
- ffacd0b85a97d-439da656ae8mr9474585f8f.13.1772889463755; Sat, 07 Mar 2026
- 05:17:43 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37CF1246774;
+	Sat,  7 Mar 2026 13:18:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1772889530; cv=none; b=W16T9IxYi9R3UNi/2A+6VUyVKMTGuPI3BCAVdSfArjaGv20oTIHHcetkAL01b27SpMvUEhJ00QrIuWtLFa7MtKBJEpO32hSi7RtVuK9GYTkOEXBFhAA932D+lAWmsCwgg+qBbSQxNIN5Ay992BpTDHpz5O8y9K/vgtonbjcODuk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1772889530; c=relaxed/simple;
+	bh=QZXxLPBHntF+vLD7uqKs9SQIti+fSk6TrNuInv4oxgU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ab2oOIx0zyMJ30mlFkNos+0XhcLK5mh3Q1fzq7QkhS4v8LSG3HftLD+MgviyKPA3VBe3+DslnMOrct0Z1lc/PF+53/ycWFqsc2sLCG655Vqheo/QPv8CUgIkpm7xYbrV1kH6ngr0ecHfpJpoMaKbD64hoTruK2hdgWvbGg7nFig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BXBa6ASp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44E10C19422;
+	Sat,  7 Mar 2026 13:18:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772889529;
+	bh=QZXxLPBHntF+vLD7uqKs9SQIti+fSk6TrNuInv4oxgU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BXBa6ASpU8uBvhfOja6Mg78haIbtuV+PJfqAMCZyEXuk03AHm/ZBuoqKL0XFhVqoS
+	 QmsOV+zRDRsTY5gFzXGxen/8YmKiXq8Vit4qXrdVY/bc97dKLvNX0bnwFA52wd30Q9
+	 eiQmfpamrgnEY3GOYWOE0v38n4IqFmAvgGo4wnDFsDbY+zj2m+LESqt7ki+3JM/RY1
+	 H2fpiSngyWfedb/3nzRwaOLt0z+CbowQzD8xtrVoV6xIEuMmWKUcpqR94cI8G4PreU
+	 KjxUaiYrRZ8IqrotVRQHvftg589KLH4WJ1gYTH/DUXUT4Ts4KOAtfExJdCffnxEgTT
+	 57xa0uCJwkK/g==
+Date: Sat, 7 Mar 2026 14:18:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wangao Wang <wangao.wang@oss.qualcomm.com>
+Cc: Bryan O'Donoghue <bod@kernel.org>, 
+	Vikash Garodia <vikash.garodia@oss.qualcomm.com>, Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>, 
+	Abhinav Kumar <abhinav.kumar@linux.dev>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/5] media: iris: Add platform data for X1P42100
+Message-ID: <20260307-curious-skilled-ibis-fffadf@quoll>
+References: <20260306-enable_iris_on_purwa-v2-0-75fa80a0a9e3@oss.qualcomm.com>
+ <20260306-enable_iris_on_purwa-v2-4-75fa80a0a9e3@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306133351.31589-1-clamor95@gmail.com> <20260306133351.31589-5-clamor95@gmail.com>
- <20260307-huge-excellent-tench-0afefc@quoll>
-In-Reply-To: <20260307-huge-excellent-tench-0afefc@quoll>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Sat, 7 Mar 2026 15:17:32 +0200
-X-Gm-Features: AaiRm50GLCk_SOmhHd2bvwAI0azWxfEbywfHqltNh_WJ56961YJKr2R5TU7KTzo
-Message-ID: <CAPVz0n0Mfzt_rXKxQisrOmNqiEaZKE19yXFqJbgCWzcrFpHwAA@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] dt-bindings: mfd: max77620: convert to DT schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@kernel.org>, 
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
-	Chanwoo Choi <cw00.choi@samsung.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: B50EE22BE5D
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260306-enable_iris_on_purwa-v2-4-75fa80a0a9e3@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 1E3A122BE74
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-1.66 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272433-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,intel.com,arm.com,samsung.com,bootlin.com,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[clamor95@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_FROM(0.00)[bounces-272434-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[3c:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.906];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-=D1=81=D0=B1, 7 =D0=B1=D0=B5=D1=80. 2026=E2=80=AF=D1=80. =D0=BE 14:46 Krzys=
-ztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Fri, Mar 06, 2026 at 03:33:49PM +0200, Svyatoslav Ryhel wrote:
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/mfd/max77620.h>
-> > +
-> > +    i2c {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        pmic@3c {
-> > +            compatible =3D "maxim,max77620";
-> > +            reg =3D <0x3c>;
-> > +
-> > +            interrupts =3D <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
->
-> This is odd interrupt. It's I2C device, so how can it be GIC?
->
+On Fri, Mar 06, 2026 at 04:44:32PM +0800, Wangao Wang wrote:
+> Introduce platform data for X1P42100, derived from SM8550 but using a
+> different clock configuration and a dedicated OPP setup.
+> 
+> Signed-off-by: Wangao Wang <wangao.wang@oss.qualcomm.com>
+> ---
+>  .../platform/qcom/iris/iris_platform_common.h      |  1 +
+>  .../media/platform/qcom/iris/iris_platform_gen2.c  | 97 ++++++++++++++++++++++
+>  .../platform/qcom/iris/iris_platform_x1p42100.h    | 22 +++++
+>  drivers/media/platform/qcom/iris/iris_probe.c      |  4 +
+>  4 files changed, 124 insertions(+)
+> 
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> index 5a489917580eb10022fdcb52f7321a915e8b239d..2e97360ddcd56a4b61fb296782b0c914b6154784 100644
+> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> @@ -47,6 +47,7 @@ extern const struct iris_platform_data sm8250_data;
+>  extern const struct iris_platform_data sm8550_data;
+>  extern const struct iris_platform_data sm8650_data;
+>  extern const struct iris_platform_data sm8750_data;
+> +extern const struct iris_platform_data x1p42100_data;
+>  
+>  enum platform_clk_type {
+>  	IRIS_AXI_CLK, /* AXI0 in case of platforms with multiple AXI clocks */
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
+> index 5da90d47f9c6eab4a7e6b17841fdc0e599397bf7..3194bb9465aec4764d5f75a7f68c9f2f33232687 100644
+> --- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
+> @@ -15,6 +15,7 @@
+>  #include "iris_platform_qcs8300.h"
+>  #include "iris_platform_sm8650.h"
+>  #include "iris_platform_sm8750.h"
+> +#include "iris_platform_x1p42100.h"
+>  
+>  #define VIDEO_ARCH_LX 1
+>  #define BITRATE_MAX				245000000
+> @@ -1317,3 +1318,99 @@ const struct iris_platform_data qcs8300_data = {
+>  	.enc_op_int_buf_tbl = sm8550_enc_op_int_buf_tbl,
+>  	.enc_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_enc_op_int_buf_tbl),
+>  };
+> +
+> +const struct iris_platform_data x1p42100_data = {
+> +	.get_instance = iris_hfi_gen2_get_instance,
+> +	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
+> +	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
+> +	.get_vpu_buffer_size = iris_vpu_buf_size,
+> +	.vpu_ops = &iris_vpu3_ops,
+> +	.set_preset_registers = iris_set_sm8550_preset_registers,
+> +	.icc_tbl = sm8550_icc_table,
+> +	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
+> +	.clk_rst_tbl = sm8550_clk_reset_table,
+> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8550_clk_reset_table),
+> +	.bw_tbl_dec = sm8550_bw_table_dec,
+> +	.bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
+> +	.pmdomain_tbl = sm8550_pmdomain_table,
+> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8550_pmdomain_table),
+> +	.opp_pd_tbl = sm8550_opp_pd_table,
+> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
+> +	.clk_tbl = x1p42100_clk_table,
+> +	.clk_tbl_size = ARRAY_SIZE(x1p42100_clk_table),
+> +	.opp_clk_tbl = x1p42100_opp_clk_table,
+> +	/* Upper bound of DMA address range */
+> +	.dma_mask = 0xe0000000 - 1,
+> +	.fwname = "qcom/vpu/vpu30_p4.mbn",
+> +	.pas_id = IRIS_PAS_ID,
+> +	.inst_iris_fmts = platform_fmts_sm8550_dec,
+> +	.inst_iris_fmts_size = ARRAY_SIZE(platform_fmts_sm8550_dec),
+> +	.inst_caps = &platform_inst_cap_sm8550,
+> +	.inst_fw_caps_dec = inst_fw_cap_sm8550_dec,
+> +	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8550_dec),
+> +	.inst_fw_caps_enc = inst_fw_cap_sm8550_enc,
+> +	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8550_enc),
+> +	.tz_cp_config_data = tz_cp_config_sm8550,
+> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8550),
+> +	.core_arch = VIDEO_ARCH_LX,
+> +	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
+> +	.ubwc_config = &ubwc_config_sm8550,
+> +	.num_vpp_pipe = 4,
+> +	.max_session_count = 16,
+> +	.max_core_mbpf = NUM_MBS_8K * 2,
+> +	.max_core_mbps = ((7680 * 4320) / 256) * 60,
+> +	.dec_input_config_params_default =
+> +		sm8550_vdec_input_config_params_default,
+> +	.dec_input_config_params_default_size =
+> +		ARRAY_SIZE(sm8550_vdec_input_config_params_default),
+> +	.dec_input_config_params_hevc =
+> +		sm8550_vdec_input_config_param_hevc,
+> +	.dec_input_config_params_hevc_size =
+> +		ARRAY_SIZE(sm8550_vdec_input_config_param_hevc),
+> +	.dec_input_config_params_vp9 =
+> +		sm8550_vdec_input_config_param_vp9,
+> +	.dec_input_config_params_vp9_size =
+> +		ARRAY_SIZE(sm8550_vdec_input_config_param_vp9),
+> +	.dec_input_config_params_av1 =
+> +		sm8550_vdec_input_config_param_av1,
+> +	.dec_input_config_params_av1_size =
+> +		ARRAY_SIZE(sm8550_vdec_input_config_param_av1),
+> +	.dec_output_config_params =
+> +		sm8550_vdec_output_config_params,
+> +	.dec_output_config_params_size =
+> +		ARRAY_SIZE(sm8550_vdec_output_config_params),
+> +
+> +	.enc_input_config_params =
+> +		sm8550_venc_input_config_params,
+> +	.enc_input_config_params_size =
+> +		ARRAY_SIZE(sm8550_venc_input_config_params),
+> +	.enc_output_config_params =
+> +		sm8550_venc_output_config_params,
+> +	.enc_output_config_params_size =
+> +		ARRAY_SIZE(sm8550_venc_output_config_params),
+> +
+> +	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
+> +	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
+> +	.dec_output_prop_avc = sm8550_vdec_subscribe_output_properties_avc,
+> +	.dec_output_prop_avc_size =
+> +		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_avc),
+> +	.dec_output_prop_hevc = sm8550_vdec_subscribe_output_properties_hevc,
+> +	.dec_output_prop_hevc_size =
+> +		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_hevc),
+> +	.dec_output_prop_vp9 = sm8550_vdec_subscribe_output_properties_vp9,
+> +	.dec_output_prop_vp9_size =
+> +		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_vp9),
+> +	.dec_output_prop_av1 = sm8550_vdec_subscribe_output_properties_av1,
+> +	.dec_output_prop_av1_size =
+> +		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_av1),
+> +
+> +	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
+> +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
+> +	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
+> +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
+> +
+> +	.enc_ip_int_buf_tbl = sm8550_enc_ip_int_buf_tbl,
+> +	.enc_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_enc_ip_int_buf_tbl),
+> +	.enc_op_int_buf_tbl = sm8550_enc_op_int_buf_tbl,
+> +	.enc_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_enc_op_int_buf_tbl),
+> +};
+> \ No newline at end of file
 
-I have used layout from Tegra device. I will switch to smth simpler.
+You have patch warnings. Check your patches before you send them.
 
-> > +            #interrupt-cells =3D <2>;
-> > +            interrupt-controller;
-> > +
-> > +            #gpio-cells =3D <2>;
-> > +            gpio-controller;
-> > +
-> > +            #thermal-sensor-cells =3D <0>;
-> > +
-> > +            system-power-controller;
-> > +
-> > +            pinctrl-names =3D "default";
-> > +            pinctrl-0 =3D <&max77620_default>;
-> > +
-> > +            max77620_default: pinmux {
-> > +                gpio0 {
-> > +                    pins =3D "gpio0";
-> > +                    function =3D "gpio";
-> > +                };
-> > +
-> > +                gpio1 {
-> > +                    pins =3D "gpio1";
-> > +                    function =3D "fps-out";
-> > +                    maxim,active-fps-source =3D <MAX77620_FPS_SRC_0>;
-> > +        };
->
-> Messed indentation.
->
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_x1p42100.h b/drivers/media/platform/qcom/iris/iris_platform_x1p42100.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..d89acfbc1233dad0692f6c13c3fc22b10e5bdd80
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_x1p42100.h
+> @@ -0,0 +1,22 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> + */
+> +
+> +#ifndef __IRIS_PLATFORM_X1P42100_H__
+> +#define __IRIS_PLATFORM_X1P42100_H__
+> +
+> +static const struct platform_clk_data x1p42100_clk_table[] = {
+> +	{IRIS_AXI_CLK,		"iface"			},
+> +	{IRIS_CTRL_CLK,		"core"			},
+> +	{IRIS_HW_CLK,		"vcodec0_core"		},
+> +	{IRIS_BSE_HW_CLK,	"vcodec0_bse"		},
 
-Acknowledged.
+And maybe that's just IRIS_AXI_CLK clock?
 
-> > +
-> > +                gpio2 {
-> > +                    pins =3D "gpio2";
-> > +                    function =3D "fps-out";
-> > +                    maxim,active-fps-source =3D <MAX77620_FPS_SRC_1>;
-> > +                };
-> > +
-> > +                gpio3 {
-> > +                    pins =3D "gpio3";
-> > +                    function =3D "gpio";
-> > +                };
-> > +
-> > +                gpio4 {
-> > +                    pins =3D "gpio4";
-> > +                    function =3D "32k-out1";
-> > +                };
-> > +
-> > +                gpio5_6 {
->
-> No underscoers in node names. Use hyphen.
->
+People keep sending downstream code and name such stuff because they
+found it in downstream, so I have doubts.
 
-Acknowledged.
+It looks like you just duplicate what was for sm8750 in
+iris_vpu35_power_on_hw().
 
-> > +                    pins =3D "gpio5", "gpio6";
-> > +                    function =3D "gpio";
-> > +                    drive-push-pull =3D <1>;
-> > +                };
-> > +
-> > +                gpio7 {
-> > +                    pins =3D "gpio7";
-> > +                    function =3D "gpio";
-> > +                };
-> > +            };
->
-> Best regards,
-> Krzysztof
->
+Best regards,
+Krzysztof
+
 
