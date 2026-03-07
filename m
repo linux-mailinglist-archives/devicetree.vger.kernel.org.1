@@ -1,362 +1,292 @@
-Return-Path: <devicetree+bounces-272392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272393-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iObeJWLtq2lziAEAu9opvQ
-	(envelope-from <devicetree+bounces-272392-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 10:18:26 +0100
+	id +NJHLv/7q2kqiwEAu9opvQ
+	(envelope-from <devicetree+bounces-272393-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:20:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3E122ADE5
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 10:18:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E67522AFE7
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:20:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9D9EF30698D3
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 09:17:10 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D43B7303A3EB
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 10:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4A8384226;
-	Sat,  7 Mar 2026 09:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7C634DCC8;
+	Sat,  7 Mar 2026 10:20:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXuTpC/8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lqhDR3si"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4A5538A73B
-	for <devicetree@vger.kernel.org>; Sat,  7 Mar 2026 09:16:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343023019C3;
+	Sat,  7 Mar 2026 10:20:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772875011; cv=none; b=EeobephPhGGQ0VZ5K6yvwAnA0XB3DUITdtduQ7JhH9NAqNSHxMxuX6IBRWheFvlG8uQlrcPjOJlgpQeETZt2QX/jxd4t47MiWTgp1kNRUL/5IoZkyibsBK0X7KxEAcXUj/HIGh8JLPTu26QBtOHCbaR5kxA89pKRVDrWRhMiLL4=
+	t=1772878809; cv=none; b=ZdS1ihM6VQsHC+u5B4WghGkhc3Lay3yzhlwO+3+ejgmWgPCDyhpdlzDjK4wM1OZqpgGV0TaSTWnr+yB8hqJnP2CaTW4OZr70jCMyHToa5R2DTiqHcgJrO5w+xJ/+YWL9gUKUYxgiE72s75X89Pi8hTkuc/INgAzutklAV+HyEm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772875011; c=relaxed/simple;
-	bh=Ou/iWbGxGfkOAQnnYdsiwLR4UjSRY4YpC1Wp6DcAXIU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XyQ3CTobh8ff7wIdzVXnd/rJPMCKCJoA5EBdlLum9SCu8QeNVjdVEptOO3g9XKqnkayagnnHKdar2mgEEQuLIuNZkr6kkgpkZTV/fpfS3uOksAWPj/uIzy5VYQPx6YvnEbuHxn/6wT4XhH3RnrsP5u4u/ZlacCBCi7NpViV/nvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXuTpC/8; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2aaed195901so46351865ad.0
-        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 01:16:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772875009; x=1773479809; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=x7aE/ahuMqPx7JTjIMjRyrjOLyXEOk45Uib8bjVom3c=;
-        b=BXuTpC/8WMaKt09i6SZ2B0YgiDxUb4K/wuKRkcAUZH/uWxvgZpTNJYbwDylcgimYoq
-         mfLb47CgtM4jzqFN+odLFKEXVdaF/AOXwqpZsjt70wAvOxWkvk8PUUApgUGLrIw/xTcw
-         82QAhAyPH3o1Bu4UMXsU5/+NdGHN6BRLCi+8HNPLmgI/GifjV6Q08vczEC8Zd+0losVL
-         QlcsbNcF2TRAU5n2i/FOnM99a3i8ZUWvcPnHhJ57EENUR6uIuSUMsyiHZ49HsggjqOJr
-         3yJTyzfok8U0TltQEhfK6TcjjiraHZy6pXy+8WHBY/KcAmRNtCGrO08iy6xtykU3tiCW
-         mNXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772875009; x=1773479809;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=x7aE/ahuMqPx7JTjIMjRyrjOLyXEOk45Uib8bjVom3c=;
-        b=LeSbnt1QEgda1AMTQa68Z5h6zXmKJ6AtOOboWFVTkawu3kxrSc5J5RmMDdAMQGScAV
-         alOBBE4BQZ4ZnXsq6fjyJ2t/yJ5wjXvGoiB+fVpXxd2AHpXNOm9o72llz8HBkbSGcAwZ
-         tDHsCi3yDumCNgd/NbACJTWrG+5UJV5o78i79JZ/RMw/VOk3r2M7LkTzX1jxXU9ahfRC
-         QznFOee9xLAjmshDer9PhcmOhttW2A9Q59j7JmRNyH/7LH6hrGnS44g72aUBCyCievph
-         tCeP3O/0JDNCJKPipdtLVADxqtvLFuN2QATJNqU2h5/bhwtUUUrxlQQDdXNBa/TqdLzx
-         cbVA==
-X-Forwarded-Encrypted: i=1; AJvYcCV2IgRxdudjqLr02Vq6i3v4ZzVPiS+sQTHo7H0236yaqFHptUBLVgAmIqK0BSdv4XamZQmLyWS1FSED@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywj9wRws7mbQjTpKpBSo+4Srr8PmBeNzuvOpsisw4A7N73K+y4+
-	mZEQqUhvWoqOS+mTX1Jli3ZycAdhlYCD/E4tOpKytxcx18jpXtF1AeHfPK9z4Q==
-X-Gm-Gg: ATEYQzyogtXFmJdtUqUgVP9wLBwTMw3n8s6seSh06vGbJZtdWylyyqMQysp9lrrIJgJ
-	9Lgqw2F/R/VBdvAg87IhLJSNfuW1NAf3+Ms4dmK4HRkkpKoF6SjI6VIosoI97O2zooFFIsvr5Mx
-	Y1cDOgQPuw1VoVmuZHeiglZ3Mvqk+OSiBYd9KywvzlzN81iKu9EKphECjaGdtfLFVKAOrybDt8y
-	026fz8XKb5O47/mXvahlzWIGiezLwRaEC+xInccLS2WtLhdBKjfv0XaKciKPsuC9ubz1Jx6uI7f
-	+1XATXqnKvGnY51Cq6wxEZ5Vi9X7zHZklOhdwbH0KNfJVcwF98oN75zEREAu3FrdsSAGi+DBymz
-	YXVm03RV4rayE7nMpeOkwn81nwDLcqHqwUZR4MDuPGrVJtXrcbJqGXkUZ3jp//gF3I3WxS8EQ+p
-	9n1bBqXEJu0Te0JgE1+iGaaTkA9/I0Lz4tDWw66wv2a5I=
-X-Received: by 2002:a17:903:234a:b0:2ae:5eab:1338 with SMTP id d9443c01a7336-2ae82366c81mr45397995ad.8.1772875009109;
-        Sat, 07 Mar 2026 01:16:49 -0800 (PST)
-Received: from Black-Pearl.localdomain ([27.7.215.222])
-        by smtp.googlemail.com with ESMTPSA id d9443c01a7336-2ae83f74e4fsm45569385ad.58.2026.03.07.01.16.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Mar 2026 01:16:48 -0800 (PST)
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-Date: Sat, 07 Mar 2026 09:16:22 +0000
-Subject: [PATCH v3 5/5] dt-bindings: usb: atmel,at91sam9rl-udc: convert to
- DT schema
+	s=arc-20240116; t=1772878809; c=relaxed/simple;
+	bh=1Mh2rqhRPnqmxmIBmAiHS535F1nX9kdU/Nh+Rfg8sW4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IC/IyOYM/EWTw8OIP5CoamJNRKGoLWb3QiyaisMRfHbQByDa2H4ownHQY8sy9gi3JJ2futoI5zb4YFpsCkNK5lKjExnAFYiw5NFQZLn16QkPdOQr2ZPWHKu1FKVTN0CdzqzP0mMyKaiIpA1B3cIl8Fv+RBVbdjJMzYGNbiG9PNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lqhDR3si; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B39A9C19425;
+	Sat,  7 Mar 2026 10:20:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772878808;
+	bh=1Mh2rqhRPnqmxmIBmAiHS535F1nX9kdU/Nh+Rfg8sW4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=lqhDR3siPi3sHP/N2jkBVMGL+Bd9CHlr+qhspLzwkYxkYBFXH6XGVJyW7ZRTDvrVp
+	 h+DkvzdVDhg9EKaFVG4AaoTORbPXASI5u9oJ7tMfvxu4/bGUH6wwsbId/SWuPcJD9u
+	 Ui3eDozFcAA6dgd3GT4l5E8ZIN76weYBJ//f1UHwTXy6Lrh9GcHLqzrciP9Fybqajw
+	 wiqZ/Q97aRfnVKkmra3QWgbbb92VD42XpRlsOUnVGfNxlrvrzNDvPkT+4vNlrmeW++
+	 QjmuadIHJrn/X7FvfrhJdnQClV6GDFPisYRw+w0U3WsKm/IXeEgERc89J7+zrxjchl
+	 OKjowqWPGIepg==
+Message-ID: <be179573-edc3-4b6c-8c91-ae7b0c61c1b1@kernel.org>
+Date: Sat, 7 Mar 2026 11:20:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add binding for synology,microp
+ devices
+To: Markus Probst <markus.probst@posteo.de>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-staging@lists.linux.dev, rust-for-linux@vger.kernel.org
+References: <20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de>
+ <20260306-synology_microp_initial-v1-1-fcffede6448c@posteo.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260306-synology_microp_initial-v1-1-fcffede6448c@posteo.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260307-atmel-usb-v3-5-3dc48fe772be@gmail.com>
-References: <20260307-atmel-usb-v3-0-3dc48fe772be@gmail.com>
-In-Reply-To: <20260307-atmel-usb-v3-0-3dc48fe772be@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
- Herve Codina <herve.codina@bootlin.com>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: 0F3E122ADE5
+X-Rspamd-Queue-Id: 1E67522AFE7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272392-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272393-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[posteo.de,kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[charanpedumuru@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.975];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.968];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[devicetree.org:url,0.12.53.0:email,microchip.com:email,0.7.161.32:email,fffa4000:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,bootlin.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,devicetree.org:url,devicetree-specification.readthedocs.io:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Convert Atmel High-Speed USB Device Controller (USBA) binding to DT schema.
+On 06/03/2026 20:38, Markus Probst wrote:
+> Add the Synology Microp devicetree bindings. Those devices are
+> microcontrollers found on Synology NAS devices. They are connected to a
+> serial port on the host device.
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
----
- .../bindings/usb/atmel,at91sam9rl-udc.yaml         |  75 +++++++++++++
- .../devicetree/bindings/usb/atmel-usb.txt          | 125 ---------------------
- 2 files changed, 75 insertions(+), 125 deletions(-)
+A nit, subject: drop second/last, redundant "binding for". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-diff --git a/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml b/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml
-new file mode 100644
-index 000000000000..55a0e062b04d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/atmel,at91sam9rl-udc.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/atmel,at91sam9rl-udc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel High-Speed USB Device Controller (USBA)
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+description:
-+  The Atmel High-Speed USB Device Controller (USBA) provides USB 2.0
-+  high-speed gadget functionality on several Atmel and Microchip SoCs.
-+  The controller requires a peripheral clock and a host clock for operation
-+  and may optionally use a GPIO to detect VBUS presence.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,at91sam9rl-udc
-+          - atmel,at91sam9g45-udc
-+          - atmel,sama5d3-udc
-+      - items:
-+          - const: microchip,lan9662-udc
-+          - const: atmel,sama5d3-udc
-+      - const: microchip,sam9x60-udc
-+
-+  reg:
-+    maxItems: 2
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 2
-+    maxItems: 2
-+
-+  clock-names:
-+    minItems: 2
-+    maxItems: 2
-+    items:
-+      enum: [pclk, hclk]
-+
-+  atmel,vbus-gpio:
-+    description: GPIO used to detect the presence of VBUS, indicating that
-+      the USB cable is connected.
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    gadget@fff78000 {
-+        compatible = "atmel,at91sam9g45-udc";
-+        reg = <0x00600000 0x80000
-+               0xfff78000 0x400>;
-+        interrupts = <27 IRQ_TYPE_LEVEL_HIGH 0>;
-+        clocks = <&pmc PMC_TYPE_PERIPHERAL 27>, <&pmc PMC_TYPE_CORE PMC_UTMI>;
-+        clock-names = "pclk", "hclk";
-+        atmel,vbus-gpio = <&pioC 15 GPIO_ACTIVE_HIGH>;
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/usb/atmel-usb.txt b/Documentation/devicetree/bindings/usb/atmel-usb.txt
-deleted file mode 100644
-index 12183ef47ee4..000000000000
---- a/Documentation/devicetree/bindings/usb/atmel-usb.txt
-+++ /dev/null
-@@ -1,125 +0,0 @@
--Atmel SOC USB controllers
--
--OHCI
--
--Required properties:
-- - compatible: Should be "atmel,at91rm9200-ohci" for USB controllers
--   used in host mode.
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain ohci interrupt
-- - clocks: Should reference the peripheral, host and system clocks
-- - clock-names: Should contain three strings
--		"ohci_clk" for the peripheral clock
--		"hclk" for the host clock
--		"uhpck" for the system clock
-- - num-ports: Number of ports.
-- - atmel,vbus-gpio: If present, specifies a gpio that needs to be
--   activated for the bus to be powered.
-- - atmel,oc-gpio: If present, specifies a gpio that needs to be
--   activated for the overcurrent detection.
--
--usb0: ohci@500000 {
--	compatible = "atmel,at91rm9200-ohci", "usb-ohci";
--	reg = <0x00500000 0x100000>;
--	clocks = <&uhphs_clk>, <&uhphs_clk>, <&uhpck>;
--	clock-names = "ohci_clk", "hclk", "uhpck";
--	interrupts = <20 4>;
--	num-ports = <2>;
--};
--
--EHCI
--
--Required properties:
-- - compatible: Should be "atmel,at91sam9g45-ehci" for USB controllers
--   used in host mode.
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain ehci interrupt
-- - clocks: Should reference the peripheral and the UTMI clocks
-- - clock-names: Should contain two strings
--		"ehci_clk" for the peripheral clock
--		"usb_clk" for the UTMI clock
--
--Optional properties:
-- - phy_type : For multi port host USB controllers, should be one of
--   "utmi", or "hsic".
--
--usb1: ehci@800000 {
--	compatible = "atmel,at91sam9g45-ehci", "usb-ehci";
--	reg = <0x00800000 0x100000>;
--	interrupts = <22 4>;
--	clocks = <&utmi>, <&uhphs_clk>;
--	clock-names = "usb_clk", "ehci_clk";
--};
--
--AT91 USB device controller
--
--Required properties:
-- - compatible: Should be one of the following
--	       "atmel,at91rm9200-udc"
--	       "atmel,at91sam9260-udc"
--	       "atmel,at91sam9261-udc"
--	       "atmel,at91sam9263-udc"
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain macb interrupt
-- - clocks: Should reference the peripheral and the AHB clocks
-- - clock-names: Should contain two strings
--		"pclk" for the peripheral clock
--		"hclk" for the AHB clock
--
--Optional properties:
-- - atmel,vbus-gpio: If present, specifies a gpio that needs to be
--   activated for the bus to be powered.
--
--usb1: gadget@fffa4000 {
--	compatible = "atmel,at91rm9200-udc";
--	reg = <0xfffa4000 0x4000>;
--	interrupts = <10 4>;
--	clocks = <&udc_clk>, <&udpck>;
--	clock-names = "pclk", "hclk";
--	atmel,vbus-gpio = <&pioC 5 0>;
--};
--
--Atmel High-Speed USB device controller
--
--Required properties:
-- - compatible: Should be one of the following
--	       "atmel,at91sam9rl-udc"
--	       "atmel,at91sam9g45-udc"
--	       "atmel,sama5d3-udc"
--	       "microchip,sam9x60-udc"
--	       "microchip,lan9662-udc"
--	       For "microchip,lan9662-udc" the fallback "atmel,sama5d3-udc"
--	       is required.
-- - reg: Address and length of the register set for the device
-- - interrupts: Should contain usba interrupt
-- - clocks: Should reference the peripheral and host clocks
-- - clock-names: Should contain two strings
--		"pclk" for the peripheral clock
--		"hclk" for the host clock
--
--Deprecated property:
-- - ep childnode: To specify the number of endpoints and their properties.
--
--Optional properties:
-- - atmel,vbus-gpio: If present, specifies a gpio that allows to detect whether
--   vbus is present (USB is connected).
--
--Deprecated child node properties:
-- - name: Name of the endpoint.
-- - reg: Num of the endpoint.
-- - atmel,fifo-size: Size of the fifo.
-- - atmel,nb-banks: Number of banks.
-- - atmel,can-dma: Boolean to specify if the endpoint support DMA.
-- - atmel,can-isoc: Boolean to specify if the endpoint support ISOC.
--
--usb2: gadget@fff78000 {
--	#address-cells = <1>;
--	#size-cells = <0>;
--	compatible = "atmel,at91sam9rl-udc";
--	reg = <0x00600000 0x80000
--	       0xfff78000 0x400>;
--	interrupts = <27 4 0>;
--	clocks = <&utmi>, <&udphs_clk>;
--	clock-names = "hclk", "pclk";
--	atmel,vbus-gpio = <&pioB 19 0>;
--};
+> 
+> Those devices are used to control certain LEDs, fan speeds, a beeper, to
+> handle buttons, fan failures and to properly shutdown and reboot the
+> device.
+> 
+> Signed-off-by: Markus Probst <markus.probst@posteo.de>
+> ---
+>  .../devicetree/bindings/mfd/synology,microp.yaml   | 75 ++++++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/synology,microp.yaml b/Documentation/devicetree/bindings/mfd/synology,microp.yaml
+> new file mode 100644
+> index 000000000000..0fcb0b750bf0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/synology,microp.yaml
+> @@ -0,0 +1,75 @@
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/synology,microp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Synology NAS on-board Microcontroller
+> +
+> +maintainers:
+> +  - Markus Probst <markus.probst@posteo.de>
+> +
+> +description: |
 
--- 
-2.53.0
+Do not need '|' unless you need to preserve formatting.
 
+> +  Synology devices contain a microcontroller on their device to control
+> +  certain leds, fan speeds, a beeper, to properly handle system shutdown
+> +  and reboot, buttons and fan failures.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - synology,microp
+
+Missing blank line. Look at other bindings how to write one.
+
+> +  power-led:
+> +    $ref: /schemas/leds/common.yaml
+> +    unevaluatedProperties: false
+> +  status-led:
+> +    $ref: /schemas/leds/common.yaml
+> +    unevaluatedProperties: false
+> +  alert-led:
+> +    $ref: /schemas/leds/common.yaml
+> +    unevaluatedProperties: false
+> +  usb-led:
+> +    $ref: /schemas/leds/common.yaml
+> +    unevaluatedProperties: false
+
+That's pretty unreadable code.
+
+> +  no-check-fan:
+
+Vendor prefix
+
+> +    type: boolean
+> +    description: |
+> +      Disable fan failure check.
+
+You described the desired Linux feature or behavior, not the actual
+hardware. The bindings are about the latter, so instead you need to
+rephrase the property and its description to match actual hardware
+capabilities/features/configuration etc.
+
+> +
+> +      The fan failure event is triggered on the device, even if the fan
+> +      has been intentionally set to a low speed. This property prevents a
+> +      hardware protection shutdown if a fan failure event is reported.
+> +  no-check-cpu-fan:
+
+You described the desired Linux feature or behavior, not the actual
+hardware. The bindings are about the latter, so instead you need to
+rephrase the property and its description to match actual hardware
+capabilities/features/configuration etc.
+
+> +    type: boolean
+> +    description: |
+> +      Disable cpu fan failure check.
+> +
+> +      The cpu fan failure event is triggered on the device, even if the cpu
+> +      fan has been intentionally set to a low speed. This property prevents
+> +      a hardware protection shutdown if a cpu fan failure event is
+> +      reported.
+> +
+> +required:
+> +  - compatible
+> +  - power-led
+> +  - status-led
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    uart {
+
+Drop, unuesed
+
+> +      microp {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+If you cannot find a name matching your device, please check in kernel
+sources for similar cases or you can grow the spec (via pull request to
+DT spec repo).
+
+> +        compatible = "synology,microp";
+> +
+> +        power-led {
+> +          color = <LED_COLOR_ID_BLUE>;
+> +          function = LED_FUNCTION_POWER;
+> +        };
+> +
+> +        status-led {
+> +          color = <LED_COLOR_ID_MULTI>;
+> +          function = LED_FUNCTION_STATUS;
+> +        };
+> +      };
+> +    };
+> 
+
+
+Best regards,
+Krzysztof
 
