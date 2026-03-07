@@ -1,292 +1,169 @@
-Return-Path: <devicetree+bounces-272393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272394-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NJHLv/7q2kqiwEAu9opvQ
-	(envelope-from <devicetree+bounces-272393-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:20:47 +0100
+	id YMAwDib9q2mgiwEAu9opvQ
+	(envelope-from <devicetree+bounces-272394-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:25:42 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E67522AFE7
-	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:20:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id C02BA22B041
+	for <lists+devicetree@lfdr.de>; Sat, 07 Mar 2026 11:25:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D43B7303A3EB
-	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 10:20:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0896D3018AF6
+	for <lists+devicetree@lfdr.de>; Sat,  7 Mar 2026 10:25:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B7C634DCC8;
-	Sat,  7 Mar 2026 10:20:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6804736F43B;
+	Sat,  7 Mar 2026 10:25:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lqhDR3si"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dpunLiy6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343023019C3;
-	Sat,  7 Mar 2026 10:20:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF872F25E4;
+	Sat,  7 Mar 2026 10:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772878809; cv=none; b=ZdS1ihM6VQsHC+u5B4WghGkhc3Lay3yzhlwO+3+ejgmWgPCDyhpdlzDjK4wM1OZqpgGV0TaSTWnr+yB8hqJnP2CaTW4OZr70jCMyHToa5R2DTiqHcgJrO5w+xJ/+YWL9gUKUYxgiE72s75X89Pi8hTkuc/INgAzutklAV+HyEm4=
+	t=1772879114; cv=none; b=M5VZtFgzQCRQnSMiHgLEkFUhCWWnB3/9WiBKWRvVJfEJZFDo8kjwISQP5uAMXj6QfFe/MBGWH7MO5jr2ffBGvZ3NbShgyGawAYdNtiYIx5j8rBZA2sMf3Ujg2LEEAGWh4NI5mp2Qy0eX6yu9cRnCahz9Y2s7nBB5ivgDvdZez+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772878809; c=relaxed/simple;
-	bh=1Mh2rqhRPnqmxmIBmAiHS535F1nX9kdU/Nh+Rfg8sW4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IC/IyOYM/EWTw8OIP5CoamJNRKGoLWb3QiyaisMRfHbQByDa2H4ownHQY8sy9gi3JJ2futoI5zb4YFpsCkNK5lKjExnAFYiw5NFQZLn16QkPdOQr2ZPWHKu1FKVTN0CdzqzP0mMyKaiIpA1B3cIl8Fv+RBVbdjJMzYGNbiG9PNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lqhDR3si; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B39A9C19425;
-	Sat,  7 Mar 2026 10:20:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772878808;
-	bh=1Mh2rqhRPnqmxmIBmAiHS535F1nX9kdU/Nh+Rfg8sW4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=lqhDR3siPi3sHP/N2jkBVMGL+Bd9CHlr+qhspLzwkYxkYBFXH6XGVJyW7ZRTDvrVp
-	 h+DkvzdVDhg9EKaFVG4AaoTORbPXASI5u9oJ7tMfvxu4/bGUH6wwsbId/SWuPcJD9u
-	 Ui3eDozFcAA6dgd3GT4l5E8ZIN76weYBJ//f1UHwTXy6Lrh9GcHLqzrciP9Fybqajw
-	 wiqZ/Q97aRfnVKkmra3QWgbbb92VD42XpRlsOUnVGfNxlrvrzNDvPkT+4vNlrmeW++
-	 QjmuadIHJrn/X7FvfrhJdnQClV6GDFPisYRw+w0U3WsKm/IXeEgERc89J7+zrxjchl
-	 OKjowqWPGIepg==
-Message-ID: <be179573-edc3-4b6c-8c91-ae7b0c61c1b1@kernel.org>
-Date: Sat, 7 Mar 2026 11:20:02 +0100
+	s=arc-20240116; t=1772879114; c=relaxed/simple;
+	bh=7zO7aGmPRNM/2d2bS4B3dOXbH9VOChey5Vf66yraSW8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yd+oRENFC4QxA7cD+TxpxTWEtIakd+/cyGJ7SUS0kR8/9TSjxlehtj9MykYqvdgr7wCBz44JE3+SKKc2jsV/EFbOhivPGMpRc4Uw1kAze1pI8+PKuz0BEG9ME2WzbusDwcfikxQgi60scs4ymLRff2V0QJ7i+pHs9CBZl85lflc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dpunLiy6; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1772879111; x=1804415111;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7zO7aGmPRNM/2d2bS4B3dOXbH9VOChey5Vf66yraSW8=;
+  b=dpunLiy6yJB3dPIjFIylz3JiZN/YBUQB2fJ8PG+Ekp9F3pZQQYTIsI7N
+   Lg9KDvUnOVVWrJGBiCnhAVp6jTx8NgOFCNUR3R/IWC1avThZrM7TRiNFb
+   +t7apsB6eloqWN3mXQgnCH1NdB/yUL5YM096X2jwyEaV1tLtAM4gXQWHr
+   MKopPelCnY5va7KgtKK5pPsZm0hIDqMY3VswUaXJkzFyfbcr9bFznsBFr
+   43mkynpCw3wWd9WMr+YaTssKU73FXsJ47o/r+dLfORtiQ3+HYkVMJsFDN
+   5gh4EE2If3AAtNf81jHAYNkvW6SRJaLf7AxDltnmRFxVocKv/gxqivxAS
+   w==;
+X-CSE-ConnectionGUID: 7osKlMegQAiUFCnQnqsyww==
+X-CSE-MsgGUID: MEG4IvxnQRy2Pm87BgzE4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="73000704"
+X-IronPort-AV: E=Sophos;i="6.23,106,1770624000"; 
+   d="scan'208";a="73000704"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2026 02:25:11 -0800
+X-CSE-ConnectionGUID: 9FH9KpraQdys52Tf5oiftA==
+X-CSE-MsgGUID: 6ba6qCt1Tr+VmIMv2h+chQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,106,1770624000"; 
+   d="scan'208";a="257175900"
+Received: from lkp-server01.sh.intel.com (HELO 058beb05654c) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 07 Mar 2026 02:25:05 -0800
+Received: from kbuild by 058beb05654c with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vyoqD-000000001sf-1dCb;
+	Sat, 07 Mar 2026 10:25:01 +0000
+Date: Sat, 7 Mar 2026 18:24:51 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pengyu Luo <mitltlatltl@gmail.com>,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	Jonathan Marek <jonathan@marek.ca>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Tianyu Gao <gty0622@gmail.com>, White Lewis <liu224806@gmail.com>,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: Re: [PATCH v3 4/4] arm64: dts: qcom: sc8280xp: Add dsi nodes on
+ SC8280XP
+Message-ID: <202603071819.Xjfeftm2-lkp@intel.com>
+References: <20260228141715.35307-5-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add binding for synology,microp
- devices
-To: Markus Probst <markus.probst@posteo.de>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-staging@lists.linux.dev, rust-for-linux@vger.kernel.org
-References: <20260306-synology_microp_initial-v1-0-fcffede6448c@posteo.de>
- <20260306-synology_microp_initial-v1-1-fcffede6448c@posteo.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260306-synology_microp_initial-v1-1-fcffede6448c@posteo.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 1E67522AFE7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260228141715.35307-5-mitltlatltl@gmail.com>
+X-Rspamd-Queue-Id: C02BA22B041
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[lists.linux.dev,vger.kernel.org,lists.freedesktop.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-272394-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272393-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[posteo.de,kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com,kernel.org,linux.dev,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,quicinc.com,marek.ca];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.968];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.989];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:email,devicetree.org:url,devicetree-specification.readthedocs.io:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[git-scm.com:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,01.org:url,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-On 06/03/2026 20:38, Markus Probst wrote:
-> Add the Synology Microp devicetree bindings. Those devices are
-> microcontrollers found on Synology NAS devices. They are connected to a
-> serial port on the host device.
+Hi Pengyu,
 
-A nit, subject: drop second/last, redundant "binding for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+kernel test robot noticed the following build errors:
 
-> 
-> Those devices are used to control certain LEDs, fan speeds, a beeper, to
-> handle buttons, fan failures and to properly shutdown and reboot the
-> device.
-> 
-> Signed-off-by: Markus Probst <markus.probst@posteo.de>
-> ---
->  .../devicetree/bindings/mfd/synology,microp.yaml   | 75 ++++++++++++++++++++++
->  1 file changed, 75 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/synology,microp.yaml b/Documentation/devicetree/bindings/mfd/synology,microp.yaml
-> new file mode 100644
-> index 000000000000..0fcb0b750bf0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/synology,microp.yaml
-> @@ -0,0 +1,75 @@
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/synology,microp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synology NAS on-board Microcontroller
-> +
-> +maintainers:
-> +  - Markus Probst <markus.probst@posteo.de>
-> +
-> +description: |
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on drm/drm-next robh/for-next linus/master v7.0-rc2 next-20260305]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Do not need '|' unless you need to preserve formatting.
+url:    https://github.com/intel-lab-lkp/linux/commits/Pengyu-Luo/dt-bindings-display-msm-dsi-phy-7nm-Add-SC8280XP/20260228-222044
+base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
+patch link:    https://lore.kernel.org/r/20260228141715.35307-5-mitltlatltl%40gmail.com
+patch subject: [PATCH v3 4/4] arm64: dts: qcom: sc8280xp: Add dsi nodes on SC8280XP
+config: arm64-randconfig-002-20260307 (https://download.01.org/0day-ci/archive/20260307/202603071819.Xjfeftm2-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 11.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260307/202603071819.Xjfeftm2-lkp@intel.com/reproduce)
 
-> +  Synology devices contain a microcontroller on their device to control
-> +  certain leds, fan speeds, a beeper, to properly handle system shutdown
-> +  and reboot, buttons and fan failures.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - synology,microp
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603071819.Xjfeftm2-lkp@intel.com/
 
-Missing blank line. Look at other bindings how to write one.
+All errors (new ones prefixed by >>):
 
-> +  power-led:
-> +    $ref: /schemas/leds/common.yaml
-> +    unevaluatedProperties: false
-> +  status-led:
-> +    $ref: /schemas/leds/common.yaml
-> +    unevaluatedProperties: false
-> +  alert-led:
-> +    $ref: /schemas/leds/common.yaml
-> +    unevaluatedProperties: false
-> +  usb-led:
-> +    $ref: /schemas/leds/common.yaml
-> +    unevaluatedProperties: false
+   Error: arch/arm64/boot/dts/qcom/sc8280xp.dtsi:4898.11-37 syntax error
+>> FATAL ERROR: Unable to parse input tree
 
-That's pretty unreadable code.
-
-> +  no-check-fan:
-
-Vendor prefix
-
-> +    type: boolean
-> +    description: |
-> +      Disable fan failure check.
-
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
-
-> +
-> +      The fan failure event is triggered on the device, even if the fan
-> +      has been intentionally set to a low speed. This property prevents a
-> +      hardware protection shutdown if a fan failure event is reported.
-> +  no-check-cpu-fan:
-
-You described the desired Linux feature or behavior, not the actual
-hardware. The bindings are about the latter, so instead you need to
-rephrase the property and its description to match actual hardware
-capabilities/features/configuration etc.
-
-> +    type: boolean
-> +    description: |
-> +      Disable cpu fan failure check.
-> +
-> +      The cpu fan failure event is triggered on the device, even if the cpu
-> +      fan has been intentionally set to a low speed. This property prevents
-> +      a hardware protection shutdown if a cpu fan failure event is
-> +      reported.
-> +
-> +required:
-> +  - compatible
-> +  - power-led
-> +  - status-led
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    uart {
-
-Drop, unuesed
-
-> +      microp {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
-
-> +        compatible = "synology,microp";
-> +
-> +        power-led {
-> +          color = <LED_COLOR_ID_BLUE>;
-> +          function = LED_FUNCTION_POWER;
-> +        };
-> +
-> +        status-led {
-> +          color = <LED_COLOR_ID_MULTI>;
-> +          function = LED_FUNCTION_STATUS;
-> +        };
-> +      };
-> +    };
-> 
-
-
-Best regards,
-Krzysztof
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
