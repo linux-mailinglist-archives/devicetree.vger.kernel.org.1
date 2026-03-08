@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-272597-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272598-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yPmOCRanrWlm5gEAu9opvQ
-	(envelope-from <devicetree+bounces-272597-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:43:02 +0100
+	id uGbILEynrWlm5gEAu9opvQ
+	(envelope-from <devicetree+bounces-272598-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:43:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 179FA23119B
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:43:00 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B964F2311AD
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:43:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 79800300699B
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 16:42:57 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AC312300844B
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 16:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8DF3358BC;
-	Sun,  8 Mar 2026 16:42:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5086533859B;
+	Sun,  8 Mar 2026 16:43:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="mDvkB83m"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="Jf/4yAhp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D8D3346BF
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 16:42:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3333382E2
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 16:43:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772988174; cv=none; b=L8E2/xoMG7ZEil7XFyTy5bNdeXQKsMNubYiFJYJ9S1hpwQulWxPqSHEWAO7HBuaI2thpEXaVrCYDDKS502LbsW22ZXbwYWeL/5YSVzEwCos7fKHeJY3+KtRi7JQtZj/uNuHl4hkPXjrA9l4LztHlrmEbJzZdycwBTCtY5obT2lw=
+	t=1772988232; cv=none; b=Hfw5z2ep0woFnW27hYtUcNnAx/w4qLjlzbs7n82UekP5//WcUdorANIaBK197ULhey7igiko5ek5ydn0jJWYHZI2yFwTuOpo9C0x8AiPJoRRKedQZF41Q070QdPtJBTGJqdY4cu9uGOoWkjfJ/uqe68nNnM+DOhp9Y2CedLhuGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772988174; c=relaxed/simple;
-	bh=OeH0I8DlVaArA4exlIvdQ30+K74/rg+TRPmWoK5JWtA=;
+	s=arc-20240116; t=1772988232; c=relaxed/simple;
+	bh=5PdK8ZH0OApCvGCUau4fGFklsQxnHjUokWQFkZsjW+w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=G+aSXAnErD2/PNQFX4Gxf8LLA71JRZYYsC903D+9xuWxPK4FTHwJoDzaC81hMl+nJuNHWAsQEDUDPz98TKzPT1u+kVFQYQA4ouFkXR57qYzv8yJ/UctyM+lqNEx8TiRLIW/BcdipE8sgiTjSQDyhKKC18XjdN/goc7GIq68Ntl8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=mDvkB83m; arc=none smtp.client-ip=209.85.221.52
+	 In-Reply-To:Content-Type; b=rpJ2WIsUG7vGEC3gBPzGPA/d1iZctLaH0FYiJVXHH5IP4hGvmsGqvD5bHU2ZXB5J3gno6EbVg0DJSpupxCWghrj43MJYZVvCjQNIwYEt6Zc5+m1MLQhUcR5mvW4ZRXnVlkMhnH97ZkaIGRfaR27cmwDPrDrxf8nY5Zz4WUdxZIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=Jf/4yAhp; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-439c56e822eso5259122f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 09:42:53 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-439c944bb62so3371912f8f.3
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 09:43:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1772988172; x=1773592972; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1772988228; x=1773593028; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=A2k+tUSmAU+cizjj171ExMhB4UUnW5oz5jUnwF8rErI=;
-        b=mDvkB83mUBgNloaTdKGjkcgYcD/GayY6OlIB8d+xtiAaGONSF9DTjFjZKT8uakAr3F
-         X5Ro03Fh7sR6gdag0ihpyXd0Ogn0uJ38xxTtjOhmVcPlPBlvfqn2ziubQrKSHp1e5syf
-         y23lHN5yEtUoiJyFxy8K1GNxFzCnGtjbov67weXqQUEcdPUTspSDXKM8dbhK8aN+Di1J
-         DCBG491yycGE6ZeCs6FQ7IbVZAeJyQbpxWjywz39x1/bRwrO7dIXkpDWiUBp2hrb+oJo
-         WgaYPkJYqGOVjsW/os40d5ORoAHEerKCxhpywYhphqi+uts7mwFC+IlAy6dGb9ZVEL3S
-         Kg+Q==
+        bh=ptNfJY13rqncPY9fxaxMY/4N9QDNKhiHCS/yjgnBkUM=;
+        b=Jf/4yAhp0pHKyPXb6YSU5ivEM1yRSzsM4WiGp8L62ieZhjqcx2BNXQU3+22OqYNYkP
+         CU5cI564n3DJRImEMIKbxnxIZyqhRyElbSDyF9u7X0Kl23bJNrr/w4/5BCkMvTvRMYmd
+         OuTJ40LSV1bLQRwgvsSKLWw30WnMUu8esvUSDEDjpm8fKEUk+Lt2ZyVPqR3YPHypqrgn
+         dnudXf9eglsE0kXAoY3q7xSJK7GOaBkFLw2F94yJJNMPlHTYLlJA1vs1W6aR8w71Jjo9
+         kg522LZ4atMz/inQBWJpEfF8xYJ6kdY3nOaDgTvvVfFivOJwVnBLimPo7tdHc6HF6VYK
+         yEgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772988172; x=1773592972;
+        d=1e100.net; s=20230601; t=1772988228; x=1773593028;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=A2k+tUSmAU+cizjj171ExMhB4UUnW5oz5jUnwF8rErI=;
-        b=D76dgN6kGmPZrqQwHiaXsKyZZM5icxrlH+gPv9jfnhzaGpcBzSc2/4WQZ34P0CtEzz
-         97y6t7xlICdhw8tNnSHfBn5b+sQs1aO9iTN0X/2nsL9FwGUlFxbgWc0c0+2JJmWqPdCg
-         QLa0BLY6Il7IuxC9V1C/gOQKoKdpeMG6C8uy/5BISzf7H78d9bPz/dQ7G6ZSvOCTvAjm
-         Uxmzc7pY1Q3cHKgxQKgb0TFIUB1g9mdtNGvq64NXX2blsBneELJh4aPNnUhRM1SVYPvv
-         QpiFroCODXhwwsjuStJilDMqPH/j47KzxsRjPQAFa94nEmQLzEFIGeW33A1CV7vJj7GH
-         NLTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZjhdSnX1Tqks7xJny4v1Z4dp9m2rZL/1YfZNV3GLxMJqdWXm/6FIepKyKYAymlRNpZg3604B57yzF@vger.kernel.org
-X-Gm-Message-State: AOJu0YzW5XDZUvqyXi1xT+aoK2rSU72hh//nsdoX/aEqoVV9zY7sf5HP
-	+UeVBaOzryDiQf5OO0haGfCPIbWxMojsIztKHYnPoQK3cXlR/+IGNK4LRMc8yG5Q2HI=
-X-Gm-Gg: ATEYQzzXC1gtUSIPOQ4n7KUoPVUD9KkVorxyXE9Ne6fMgzWu03ySXc+De0Ao0uLbLbf
-	IOVb4d4KcFTfD28TFCHUlWA4oBwuJENE4jUfxTe59/MQQe9L/+o0zpYYvNEk6RROH/gHevRlBba
-	s2M6LX/skibpp47wrVHrymr9UxOYATzPp+/WMj5DUWRKr7fPLiylS4dk2nKFx2magDQz3vU+ESD
-	h0doP8YVufTMeUlHGdPgS4KnFXwvpF3+e/nzaNxVf2tggKMRPw6hdWiO1Pbu437/3lYtrl+XjQB
-	NKSvc9YHcPpsrHLXbBi41TCEP2ikfJKDecJ/GrwH6pB2ioedqh8S8/P64Gtb2PENFKNS5v0koc1
-	dQz3I+5+90+guKO2zMCD4p8MQv6flKhNZwov4EtGfV05E9suIElJZP/c/DpAQBfYGahAonTBSHg
-	tqWxnKnn8UwfI+9GcL3PYnVlIJVmxdHg==
-X-Received: by 2002:a5d:5f93:0:b0:439:b791:f920 with SMTP id ffacd0b85a97d-439da656af4mr15645490f8f.17.1772988171670;
-        Sun, 08 Mar 2026 09:42:51 -0700 (PDT)
+        bh=ptNfJY13rqncPY9fxaxMY/4N9QDNKhiHCS/yjgnBkUM=;
+        b=fq4ucONir0DxnOQ6wC7UZwN5wIZfR7rKe9mb2U+FGhRUILQuvGAQBLr6exxXiUiVv/
+         eniAeP3YbefFiJZy3zG086PQ4rkHSyUVv2ogid8GXvM5UFwzqDJv0dCYseSePcyzNg6/
+         FN9LKEUaEx20hqeKlMPqKpyCA5wJyyvs7qsUBp0XDaFBiv/F6sy0/xXjQ4wP12byoE9v
+         aG0iWu1wiXoSzyxntspfArGOWJQAVKSQhTIDbGwmtM77ybqovnaTi2wMLJMpidYQpj8w
+         mnKcdfqlEJbwTJqp4OcnKwO0psB8fKmIi+0QWJAxDoyvWZeeFux5mbR1BTcoNXd4e5o3
+         tw8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWt1MIgxMZ/ensMUVnXyANyMdsOjNn7TqaDGqwrKmgUii7m7zyfbQHM8jG2WDAnlz8/BnVih2xACVFY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOMkvw+nMLtELIhvFxbQhie560fOyC6X7ZBFtlf7QXnobu24bM
+	ZlWyUaluM6afXe92Ztd2Ays+OfMhccIEwwGhLhsJ85XCUOC3Yhqmk73RAHcfAJWcJNY=
+X-Gm-Gg: ATEYQzzlj31ajJLhMDsRq8DfxMES/Eh5T6IbN4L/C2N9+HwRANzV5N1QuSseUruhB3m
+	py+8aY1OkYRDiSpj7HcmMuGVAqgcN+6RDvE1daSO/26wzofbwBA44pHQTp1K8p9RZMAZeo2bpdK
+	TBydbwnZupfZUr1RiassReobA/ygW3v9WaTp++g/di3EkPynQcQWeCIPloe8za9MFL+cVGxwxAK
+	08nakgAs0PMiBKeTnJUxK0awYV9xGq4YRAHh9oAXlb0QnKeNv0/qUkSh90HMiBN0cF05eiHbayx
+	GdsN5gFRoXLm9MsQv6iB4MI7ByEu59K10+lADoDxBP8B8F8bH530iMx+aqDQxN4JNvdP269wEnW
+	DQGdF2gXywzizdo2T+0+ZfzlYJBEIkD11C15dJddDI981RM0k8NexmmCUQqeVnBPW/l/VNUm7Q5
+	nvsdaIvkZYpBkoBd4WIo1ihO8DehkIPQ==
+X-Received: by 2002:a05:6000:2681:b0:439:c38e:66cc with SMTP id ffacd0b85a97d-439da88ffdamr14319927f8f.46.1772988228077;
+        Sun, 08 Mar 2026 09:43:48 -0700 (PDT)
 Received: from [192.168.50.4] ([82.78.167.98])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dadb85b8sm19331707f8f.17.2026.03.08.09.42.50
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad977f8sm19297489f8f.9.2026.03.08.09.43.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Mar 2026 09:42:51 -0700 (PDT)
-Message-ID: <cebf4298-4dff-481d-9a77-09d4fb4f7fbd@tuxon.dev>
-Date: Sun, 8 Mar 2026 18:42:49 +0200
+        Sun, 08 Mar 2026 09:43:47 -0700 (PDT)
+Message-ID: <f9de5355-0eb4-4a1c-82f5-bb7a20566e0d@tuxon.dev>
+Date: Sun, 8 Mar 2026 18:43:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,99 +86,160 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 09/19] dt-bindings: nvmem: microchip-otpc: Add required
- clocks
+Subject: Re: [PATCH v3 03/19] dt-bindings: clock: at91: Allow referencing main
+ rc oscillator in DT
 To: Nicolas Ferre <nicolas.ferre@microchip.com>,
  Alexandre Belloni <alexandre.belloni@bootlin.com>,
  Ryan Wanner <ryan.wanner@microchip.com>,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alexander Dahl <ada@thorsis.com>
 References: <20260120143759.904013-1-ada@thorsis.com>
- <20260120154502.1280938-1-ada@thorsis.com>
- <20260120154502.1280938-3-ada@thorsis.com>
- <f406abde-c7d1-4ed6-b7dd-5336956bc795@tuxon.dev>
- <20260220-bloomers-runny-e69ab1966b9c@thorsis.com>
+ <20260120143759.904013-4-ada@thorsis.com>
+ <b932cdfb-9197-462b-abb8-e7b4c7ecab6f@tuxon.dev>
+ <20260209-amulet-customize-08ef8dfa1c38@thorsis.com>
 Content-Language: en-US
 From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260220-bloomers-runny-e69ab1966b9c@thorsis.com>
+In-Reply-To: <20260209-amulet-customize-08ef8dfa1c38@thorsis.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 179FA23119B
+X-Rspamd-Queue-Id: B964F2311AD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[tuxon.dev:+];
-	TAGGED_FROM(0.00)[bounces-272597-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[tuxon.dev];
+	TAGGED_FROM(0.00)[bounces-272598-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[tuxon.dev];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[tuxon.dev:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.977];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.980];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,thorsis.com:email,tuxon.dev:dkim,tuxon.dev:mid]
 X-Rspamd-Action: no action
 
 Hi, Alexander,
 
-On 2/20/26 11:58, Alexander Dahl wrote:
+Sorry for the late reply.
+
+On 2/9/26 10:08, Alexander Dahl wrote:
 > Hello Claudiu,
 > 
-> Am Sat, Jan 31, 2026 at 05:47:05PM +0200 schrieb Claudiu Beznea:
+> Am Sat, Jan 31, 2026 at 05:44:18PM +0200 schrieb Claudiu Beznea:
+>> Hi, Alexander,
 >>
->>
->> On 1/20/26 17:44, Alexander Dahl wrote:
->>> The OTPC requires both the peripheral clock through PMC and the main RC
->>> oscillator.  Seemed to work without explicitly enabling those clocks on
->>> sama7g5 before, but did not on sam9x60.
+>> On 1/20/26 16:37, Alexander Dahl wrote:
+>>> The main rc oscillator will be needed for the OTPC to work properly.
 >>>
->>> Older datasheets were not clear and explicit about this, but recent are,
->>> e.g. SAMA7G5 series datasheet (DS60001765B),
->>> section 30.4.1 Power Management:
+>>> The new index introduced here was not used on the four affected SoC
+>>> clock drivers before, but for sama5d2 only (PMC_I2S1_MUX).
 >>>
->>>> The OTPC is clocked through the Power Management Controller (PMC).
->>>> The user must power on the main RC oscillator and enable the
->>>> peripheral clock of the OTPC prior to reading or writing the OTP
->>>> memory.
+>>> Link: https://lore.kernel.org/linux-devicetree/20250207-jailbird-circus-bcc04ee90e05@thorsis.com/T/#u
+>>> Signed-off-by: Alexander Dahl <ada@thorsis.com>
+>>> ---
+>>>
+>>> Notes:
+>>>       v3:
+>>>       - adapt to different base changes, added lines are the same
+>>>       v2:
+>>>       - new patch, not present in v1
+>>>
+>>>    include/dt-bindings/clock/microchip,sam9x60-pmc.h  | 1 +
+>>>    include/dt-bindings/clock/microchip,sam9x7-pmc.h   | 1 +
+>>>    include/dt-bindings/clock/microchip,sama7d65-pmc.h | 1 +
+>>>    include/dt-bindings/clock/microchip,sama7g5-pmc.h  | 1 +
+>>>    4 files changed, 4 insertions(+)
+>>>
+>>> diff --git a/include/dt-bindings/clock/microchip,sam9x60-pmc.h b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+>>> index 91f8f863ea076..1f6bb51780d09 100644
+>>> --- a/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+>>> +++ b/include/dt-bindings/clock/microchip,sam9x60-pmc.h
+>>> @@ -10,6 +10,7 @@
+>>>    #define SAM9X60_PMC_MCK		1
+>>>    #define SAM9X60_PMC_UTMI	2
+>>>    #define SAM9X60_PMC_MAIN	3
+>>> +#define SAM9X60_PMC_MAIN_RC	6
 >>
->> As this was not mentioned in the previous datasheet versions, the current
->> driver don't handle those clocks, and it probably worked as the clocks were
->> enabled by bootloaders, I think the clocks should be marked as required and
->> this patch to be propagated as a fix along with fixes on driver and device
->> trees.
+>> Why 6 and not another index? In theory, now, you should be able to define
+>> here all the core clocks IDs (as these are known from the manuals) and
+>> prepare the driver to allocate memory for all of them such that the driver
+>> will have to be able to work with old and new device trees w/o further
+>> changes.
 > 
-> What do you mean by "clocks should be marked as required"?  Where?
+> Was the first common free index for these four clocks.  Before split
+> up would have been nice to have a common index, because it was all
+> together in include/dt-bindings/clock/at91.h in one file.  After
+> splitup one could just use the first free index, as Krzysztof already
+> suggested.
 
-In the bindings as you found that the IP don't work if the clocks are not enabled?
+OK, sounds good.
 
-> How?  Is something more necessary, than already done here?
+> 
+>  From my reading of the SAM9X60 manual, there's no such thing as core
+> clock IDs in the manual.  If there is a section in the manual, please
+> point it out.
 
-Update the required section in the yaml file with clocks, at least for the 
-sam9x60, as you found it is not working w/o it.
+There is no such section, AFAIK.
 
-I presume it has to be done for SAMA7G5 as well (as this is what the newer 
-datasheets states) but that would involve adding required clocks now which were 
-not needed later. I'm not sure what is the procedure here. I'll let DT 
-maintainers comment on this.
+> 
+>  From my interpretation for SAM9X60 these clocks are provided by the
+> clock generator (section 40 in the manual):
+> 
+> - TD_SLCK
+> - MD_SLCK
+> - MAINCK
+> - UPLLCK
+> - PLLACK
+> 
+> The "main rc oscillator" clock is somewhat internal here, but for OTPC
+> we must be able to enable it.
+> 
+> MCK (not MAINCK) is generated in the Processor Clock Controller block
+> of the PMC (section 41 in the manual) from one of the above clocks.
+> 
+> So it's all mixed up from different blocks from Clock Generator and
+> Power Management Controller already.  These indexes are
+> arbitrary and just for the driver, right?  Or am I missing something?
+
+If I got your question, some are only internally (currently), some are also used 
+by DT (e.g. the PLL ones).
+
+> 
+> Besides, if it is renamed now anyway:
+> 
+> - Why that PMC prefix? (most of these core clocks come from the
+>    clock controller, not the pmc)
+
+The control interface for all of them are on PMC. So, they are all considered to 
+be part of the PMC. From manual, chapter "Description" of "Clock generator":
+The Clock Generator user interface is embedded within the Power Management 
+Controller and is described in the
+
+> 
+> - Why not rename PMC_UTMI to something like xyz_UPLLCK to match the
+>    datasheet/manual (likewise for the other definitions)?
+
+That could be done for the SoCs where this applies.
 
 Thank you,
 Claudiu
-
 
