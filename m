@@ -1,181 +1,157 @@
-Return-Path: <devicetree+bounces-272647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272650-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SLE0Oz0IrmkN/AEAu9opvQ
-	(envelope-from <devicetree+bounces-272647-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 00:37:33 +0100
+	id tPOeDQoLrmlj/AEAu9opvQ
+	(envelope-from <devicetree+bounces-272650-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 00:49:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C855232B9D
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 00:37:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B11F232C9C
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 00:49:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 28BFE301F780
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 23:37:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 38FC5300889D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 23:49:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9B0E35CB98;
-	Sun,  8 Mar 2026 23:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80AAD1D5ABA;
+	Sun,  8 Mar 2026 23:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sXuqJk0U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XSaYAqWz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924E635C188
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 23:37:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D55E19CD03
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 23:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773013035; cv=none; b=pmgQc+QYy+Xy68R6O6VhdUlK884YFPUGD3P4U3VrQdbIYyGjw5khODuuHGDQ9IevcEUNrWqrr4L6gZfy0MWnnooWndw/DkGlFYEC1ETkCasmTcWqWrLEJptSmiyDjuwpuZ0FS1Tm2MKHx6WaNlUmPExyvXODSi3E8kWtjHw+Puw=
+	t=1773013767; cv=none; b=bes1xXLfHCP5uoIV532RT+Fmja7L8ijdFpYS9tXJlRBAhqpMZIxUlDtq0D/MseL3RpwG2j3rDTTwGm6BnnN2jWjUq3A6AXo8u13hj6Cpsz9rMFuIVDs6PKRWiWdvOVo7uqZdITKfRziMntNJJ4TE39sPX1SDPGEkMI5gXEkcY9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773013035; c=relaxed/simple;
-	bh=Y1OEgdq6oxx/yUdJofc5WjQU71h2hY0jeep/Kt+ouww=;
+	s=arc-20240116; t=1773013767; c=relaxed/simple;
+	bh=s/L3to3kG0f/uxJHIuUQNKS0TutAor3MzlG+ldsVbWY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CPJVlU9QidceQDkwRefs9NVZ+yAxIV/kughc5l1NX0FTjqcRrd8UEIeohYPSmHe7Z8c4L82cTDvDkKTNtEsJt9c0D0TDqW+TNFc2aHeit7VWwp8Db26LW1lCUda6Pj3HjUAKgj13XwBl5DyPtYfWbXH/UsFz0hYWBx1/OgxyCAo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sXuqJk0U; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DE55C2BC87
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 23:37:15 +0000 (UTC)
+	 To:Cc:Content-Type; b=LzWAHdKnlgjodSQXC7AoV0+KGKJEEHfjCFyj/eao/kkKx+9GWgm/plQHNrhXTMretlSh4yfkz8QP4Jfkwu5A5PCA/WgpN8uTxZ25EqEWnC8P40Fy+sxm+ha833RE/eq5u3blDvBgm2PWk8gJFcwh68LVpWoGqan+fEKsyPE8/qo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XSaYAqWz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35F4BC2BCB2
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 23:49:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773013035;
-	bh=Y1OEgdq6oxx/yUdJofc5WjQU71h2hY0jeep/Kt+ouww=;
+	s=k20201202; t=1773013767;
+	bh=s/L3to3kG0f/uxJHIuUQNKS0TutAor3MzlG+ldsVbWY=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sXuqJk0UxkQ2fLoIcTQQYBKIZzzKxVvHeMtgKMUMTXQE9J2gxM3e6dFKeNsyFUEWf
-	 XkH9+xiMRoWFLhiIGZmRRQQZbBNla5oB2EHotVb3CvpB1Rx7PFCyPJJ+Llhp8sEc+w
-	 mrlOcfMMN4UjemD/0YG06TEW02auA/gVCJqz9OgxR0dg5pLcY9Dg6o3HtHKTqvtg/a
-	 uxwyR/zvMGfGIbLVmxoJy9k0cIBKDypXjUj5RQLVIulM/7E7RF3aikCaPVJ5zaKbwx
-	 G61hjS/k6+fDAVaHjuiX6I1Vr2EahN4+jcfvMOaMTwYIZN/2wB0UEaZYda2xte00Mz
-	 MnBF4/xA5BNcQ==
-Received: by mail-yx1-f45.google.com with SMTP id 956f58d0204a3-64ad9238d8fso10772525d50.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 16:37:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW1TVEcjoqfXEtx4PQNOOE/ueaEcAvqDb2gyGUKVk+6Z0wbGnzmhFyozobKHMI/Tb9U2+2c5uVWtMJP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9xN8ZfDlLultWK4591gBH9iFS+WsgId118qo/VcWsxcVOKmIX
-	qrA2s9fOd1aZUET8+yqDeRzzTMOb/jVdXcDYXG8Aj8hcY74S2YlAIcE9uW9lXQutI+fSZokR6z/
-	SKXNzV54TlLw2NY6PeuSS5BvBzbG0rPU=
-X-Received: by 2002:a53:b44f:0:b0:64a:cf8e:47f6 with SMTP id
- 956f58d0204a3-64d14350c6amr6887787d50.68.1773013034641; Sun, 08 Mar 2026
- 16:37:14 -0700 (PDT)
+	b=XSaYAqWzQp3fZE8+EsfBXHsSdukgD1O91AJ9WQW9g6p1vb1lciyfkvidyl1g64Kno
+	 o6WXMJbjEtLPXMeAk++lTl7N66JIBLIgyCRxkfvhS2gvCj/bckOO45Pu/sNPC8wbSw
+	 WTXrSx1BI7ygY/8DiU8/hTfMz+pcsBCKmdUGulIkX3lFE5jZw7bGW236QjqBf0j9YG
+	 tuFc9uPwisGV1l+/R+9JPbRVsq1J2jVkgnQr7vLkqMu/S0XvzESO1OcxQXJqZPkM7T
+	 gSTvrXLFkVEDs/prZr4+GUFeuspclhP6Q/mGozGv/+8146AfVZk1GtSBoqMPh8HyJf
+	 RnHC3w035H2Gg==
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-798578e2918so100629377b3.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 16:49:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU0UZV6tKPGqG2rdkke6H6qV78xOOfWW9focccyPKAl3wQDYLUWTRYAcPWq4remeh6GRW72QrMjoGli@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8UpYdbhZVDwqFDMNBNbYdIGc4tWUdhxh7vqLCPHILwN1OGUt4
+	JKZQlEpL4wXOoiTYKAc9ya2YunwZKF7Rja5bEgoBtXNQxjH8i5cMXe5bzBSgeCyyFq5tI5Pav6f
+	kNjAJZOtiO+KPZAcAKSaURh7FTIoNmMA=
+X-Received: by 2002:a05:690c:6891:b0:798:3051:2f25 with SMTP id
+ 00721157ae682-798dd7bee25mr101650097b3.59.1773013766532; Sun, 08 Mar 2026
+ 16:49:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306-expressatt_camera_flash-v1-0-b1996f7cdfdd@gmail.com> <20260306-expressatt_camera_flash-v1-3-b1996f7cdfdd@gmail.com>
-In-Reply-To: <20260306-expressatt_camera_flash-v1-3-b1996f7cdfdd@gmail.com>
+References: <20260225-pinctrl-mux-v2-0-1436a25fa454@nxp.com>
+ <20260225-pinctrl-mux-v2-4-1436a25fa454@nxp.com> <CAD++jLkT83xz+PSzZZv_Mv+Mqx_+W30d_xk68EDG-sdmFF3x3A@mail.gmail.com>
+ <aaG2xQDnMVGGAOJE@lizhi-Precision-Tower-5810> <CAD++jLm=6pTh7N5UAXFaaYWCs5DhfQdb+8TnM5XLcYC886=kLw@mail.gmail.com>
+ <aam_cZhlCSxu5WHS@lizhi-Precision-Tower-5810>
+In-Reply-To: <aam_cZhlCSxu5WHS@lizhi-Precision-Tower-5810>
 From: Linus Walleij <linusw@kernel.org>
-Date: Mon, 9 Mar 2026 00:37:03 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkbDAx3x4jRy5DjWmZHVJ_DwHEBSBbOOPB34P6WtmAS=A@mail.gmail.com>
-X-Gm-Features: AaiRm53H04DqIiqJZMOp22bNjrTYCtVSyTSkQUP-gMpoGaKl6snzd2vAfDw672Q
-Message-ID: <CAD++jLkbDAx3x4jRy5DjWmZHVJ_DwHEBSBbOOPB34P6WtmAS=A@mail.gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: qcom: msm8960: expressatt: Add camera flash
-To: guptarud@gmail.com
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+Date: Mon, 9 Mar 2026 00:49:15 +0100
+X-Gmail-Original-Message-ID: <CAD++jLkKsTfFUUD42TKorHLWUAt8=w-kW7Q9bxbU1bgaaig77Q@mail.gmail.com>
+X-Gm-Features: AaiRm53eOVEff0Ia4ZtRk5C2doZUsMB119btrlySbICQI0ZMg3eVD5n5sc91D_k
+Message-ID: <CAD++jLkKsTfFUUD42TKorHLWUAt8=w-kW7Q9bxbU1bgaaig77Q@mail.gmail.com>
+Subject: Re: [PATCH v2 4/6] pinctrl: add generic board-level pinctrl driver
+ using mux framework
+To: Frank Li <Frank.li@nxp.com>, Fan Wu <fwu@marvell.com>
+Cc: Peter Rosin <peda@axentia.se>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, Haibo Chen <haibo.chen@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 7C855232B9D
+X-Rspamd-Queue-Id: 9B11F232C9C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272647-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272650-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[axentia.se,kernel.org,milecki.pl,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.956];
+	NEURAL_HAM(-0.00)[-0.991];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email]
 X-Rspamd-Action: no action
 
-Hi Rudraksha,
+On Thu, Mar 5, 2026 at 6:38=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
 
-thanks for your patch!
-
-On Sat, Mar 7, 2026 at 1:58=E2=80=AFAM Rudraksha Gupta via B4 Relay
-<devnull+guptarud.gmail.com@kernel.org> wrote:
-
-> From: Rudraksha Gupta <guptarud@gmail.com>
+> init state is before probe if exist, which not fit this case because:
+> - on board mux need be enabled before probe, some device need communicate
+> with periphal at probe, such as SD card. SD data/cmd line must be ready
+> to scan SD, similar case for all mtd devices.
 >
-> Add camera flash support for the Samsung Galaxy Express (expressatt).
+> if add new state "release",  when the pinctrl may switch between default,
+> sleep, ... , "release" have to switch between switch state, such as defau=
+lt
+>  -> sleep have to change to default->release->sleep.
 >
-> The flash IC uses a one-wire pulse-count protocol on GPIO 3, gated by
-> PMIC MPP 4 which must be driven high to unlock the flash circuit.
+> mux device also have idle state, which map to pinctrl's "init" or "sleep"
+> state.
 >
-> Downstream references:
-> Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/=
-cm-12.0-YNG4N/drivers/leds/Makefile#L51
-> Link: https://github.com/LineageOS/android_kernel_samsung_d2/blob/stable/=
-cm-12.0-YNG4N/arch/arm/mach-msm/board-apexq-camera.c#L591
+> The key difference should be
+> - pinctrl can uncondtional switch state.
+> - mux frame have to use pair mux_control_(de)select() to switch state.
 >
-> Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
+> So, I think just need a hook in pinctrl system to call mux_control_desele=
+ct()
+> when switch state and release resource.
 
-(...)
+The problem is that this becomes essentially a revert of:
+commit 2243a87d90b42eb38bc281957df3e57c712b5e56
+"pinctrl: avoid duplicated calling enable_pinmux_setting for a pin"
+from 2014.
 
-> +       camera_flash: led-controller {
-> +               compatible =3D "richtek,rt8515";
-> +               enf-gpios =3D <&tlmm 3 GPIO_ACTIVE_HIGH>;
+.set_mux() used to be called .enable() and when .disable() was
+deleted in this commit, only .enable() remained and that was later
+renamed to .set_mux().
 
-I think you should ideally define richtek,rfs-ohms, if it's impossible
-to find this information then use the default,
-richtek,rfs-ohms =3D <16000>;
+By essentially adding back the .disable() callback under a new
+name, you risk to re-introduce the problem solved by this
+committ.
 
-> +               unlock-gpios =3D <&pm8921_mpps 4 GPIO_ACTIVE_HIGH>;
-
-As mentioned I don't think this is right. The chip has no "unlock"
-signal. I think this is a simple regulator (such as a switch).
-
-I would do:
-
-vin-supply =3D <&flash_gpio_reg>;
-
-Then something like (better if you reserarch it a bit):
-
-flash_gpio_reg: regulator-gpio-ldo-3v3 {
-    compatible =3D "regulator-fixed";
-    /* Supplied in turn by VBAT? I guess so. It is between 2.8 and 5V */
-    regulator-name =3D "FLASH_3V3"; // Or whatever the rail is best called?
-    regulator-min-microvolt =3D <3300000>; // If you have better guesses, u=
-se them
-    regulator-max-microvolt =3D <3300000>; // If you know VBAT then use
-that voltage
-    gpio =3D <&pm8921_mpps 4 GPIO_ACTIVE_HIGH>;
-    startup-delay-us =3D <5000>; // FIXME
-    enable-active-high;
-    pinctrl-names =3D "default";
-    pinctrl-0 =3D <&flash_led_unlock>;
-};
-
-Notice:
-
-+&pm8921_mpps {
-+       flash_led_unlock: flash-led-unlock-state {
-+               pins =3D "mpp4";
-+               function =3D "digital";
-+               output-low;
-+               power-source =3D <PM8921_GPIO_S4>;
-+       };
-
-This seems completely unused in the current patch, but my addition
-above uses it.
+So you need to analyse that committ log a bit, reference it
+and explain why you are *not* re-introducing this problem by
+adding back the callback.
 
 Yours,
 Linus Walleij
