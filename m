@@ -1,575 +1,186 @@
-Return-Path: <devicetree+bounces-272544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272545-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KL9PLUQRrWm8xwEAu9opvQ
-	(envelope-from <devicetree+bounces-272544-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 07:03:48 +0100
+	id cKQCG+gbrWlxyQEAu9opvQ
+	(envelope-from <devicetree+bounces-272545-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 07:49:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 459D222EA3F
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 07:03:47 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B886E22EC01
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 07:49:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2574D3006F3A
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 06:03:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5F9CF3014C0F
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 06:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AE04267B89;
-	Sun,  8 Mar 2026 06:03:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE412224B15;
+	Sun,  8 Mar 2026 06:49:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="Wj4w2Ebb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5epL4Z8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24416.protonmail.ch (mail-24416.protonmail.ch [109.224.244.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC8A2417E0
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 06:03:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1191E7C23
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 06:49:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772949823; cv=none; b=oETb7pCatFrpPJBoqSwuy2sXAYH4BDzh29TEsRaqxNf4UIwvQi+HKWRC11WSCst1DenCpjfMkYOaptEzw7EZZJdO7b02TBaVOZHz4AH8/f7TVwLT0HOLa4uRT7vPwX3KWoXjGLpU4fyHKRWQhTJ9z4nCmnXfCk+XYCTPzo2NHvA=
+	t=1772952549; cv=none; b=njGDVge+85qEzZfM/OClCYLMIVmUHAovk9DHp01IgaMU0q8NQHKrtmKlcJwMzdAeLnUKoM7aFo+9UhStGM/ncamRukljC2aOdFm2ehSFpv1t7Ti1YI+yUMp1DvA0FnVE3rakAf1pbDS1IBbxlqZ70un4OKxfIOpA6STkCRRL44I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772949823; c=relaxed/simple;
-	bh=suR2WNLWsRQ+Q0ylyyk0xbD1f0pyrvjQBdM6DIKIMaI=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J9LohJeRwYYGTnivwKV+r587u35A0tJxo8cHmT2qCP4J2u3d69kGFyY28penSD2QZMeujGP2mTGv11RCsb0QLEzkmhaoYuepxtufSLJm5vYAnlcA4/K1ojW922gkr9+X3Xpx5qtZGdiIddiwycLo9vOjwNV/bgsIn8nB08HLviY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=Wj4w2Ebb; arc=none smtp.client-ip=109.224.244.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1772949819; x=1773209019;
-	bh=+qUQ1t3DtqtA2Zf/97h87l9wY8KdSwv+cLyDWVmX3FI=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=Wj4w2EbbDVlR1ai/DL2M1rvHGXydQiMd3douPaa6SWUSEPP7PW9fK1pYJIug04jAI
-	 LPTHb+rqdf6aXUAFL3zka4ViRPlFx2f5LLKITfr8Z7lXMH+zMP2Hwx/8RJm1KOvRJG
-	 R46TR0aDFgzoUcdB0jxacG9YRri5YQGfCoSYIjpZ3ydbGIceKC6CkiJKIWvZnbZlAb
-	 SXV9lBqAiApNnA8uNS6Rt7u9Z0gQcTiSwtksqVa7C80p0R5cPiY7OEo/nWBycCc0pY
-	 bshXbeMlnvCcfweKmtDUUzlCtROFa9c0azcAQyQx9FXAT9c5dgGx95c0KCEABAaeNT
-	 WKBBlhDTgVABw==
-Date: Sun, 08 Mar 2026 06:03:33 +0000
-To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-From: Alexander Koskovich <AKoskovich@pm.me>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
-Subject: [PATCH 2/2] drm/panel: Add support for Tianma TA066VVHM03 panel
-Message-ID: <20260308-tianma-ta066vvhm03-v1-2-869fac443b20@pm.me>
-In-Reply-To: <20260308-tianma-ta066vvhm03-v1-0-869fac443b20@pm.me>
-References: <20260308-tianma-ta066vvhm03-v1-0-869fac443b20@pm.me>
-Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: e83f9bb694c25aa7d64a6059815fec195314e122
+	s=arc-20240116; t=1772952549; c=relaxed/simple;
+	bh=SVaTT9VVB/RsaHe6KVeVDmHl9hoZiBubbZwO1KwYBnE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AQo0/LhXcLPrU4SEwcBLZzVf52EDprYM8nAt/OelIPqRJckN43h8+D7S/4Jra5kn0hJO3bPO8Wzt2J7dbEHs0KpQW41ayfjnuvl4dAXkgY2RdDtPeISJNpOxBmVS5nB7+rFofeaWy8XjW8riXNt+Odm4VjP4+gVuU9t53UP+4PU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i5epL4Z8; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2ae41544dcfso84563045ad.1
+        for <devicetree@vger.kernel.org>; Sat, 07 Mar 2026 22:49:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1772952548; x=1773557348; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aNIHEpkAqWiAErrHYpSRHcsVSQ/YY6yHFTO8cE3ikuA=;
+        b=i5epL4Z8zKPzaU7/Us8G1uJAdGVTHGu1+ci1mTslhOUZmzoQFpCnxFwIqEjOlo1I+Q
+         yLB8aPUg/mIK/uvOSlnU0kUC+dvAhg0asNiiv+tshGwMQ8V24Fp5iFKUbQFuxtMwdkLw
+         PuyPeBzF4pMji8AlhUq6qtSAS/mjS/Gmj62DljaM65lTZOn54FM02FOTUVTB0zYig3p+
+         LRTMnbY8VF8CJKiX+DLzO9ORBEPOi4VhRiaFlAMOYXdLGssyT4OkST0T4By4j2/86xIk
+         o7d06xOuxbyX0uxTVjFYYpo9DEnLu/6vRv8RbMOHfL85T1P8TdvD47PaTXxBwi5wWYus
+         mfXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772952548; x=1773557348;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aNIHEpkAqWiAErrHYpSRHcsVSQ/YY6yHFTO8cE3ikuA=;
+        b=W2O1iqJe+ZVwVZtBcRKl09flF9xmqfb/4qKN2pqGo7iiwuN+ZKYQA4OguVz3ATLQc7
+         rxIkFZJMiAtO0gIbyIBk+8xxopyc4mJOEGcCknuUQyh8JvxkezlWf50nHMCLCt3I6PhC
+         C9InRWF2HVclUOo8vCVbI8o1nTm5Z/wNP5hCHnuFiqgstOrEZJyzLLeEbtUaoW/ejeJM
+         NlYb1RPaZ6h5Jeukf71+K7LZadpGjmlJ/IKunvyZ4NNDHYVHBhlmQvIatN/spB3Q8HpI
+         oMEmgXSvjzs2vUcCYbXaj7JIB3DcJ4ywIVa7/86ewVk8SIgy6QE46nm7WPPdy+X6TFfv
+         wZqA==
+X-Forwarded-Encrypted: i=1; AJvYcCU+Fh1MrEOti99CFB8Yls/6RcbDlanJPVy4IHConlHzFri/V/bLEFxh3AuEJh6lnU5EU89fM12DIZtu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8XMBLR7AQCNmRZGGtBYU2y7KF4wSNa8T8yCdLSZ5y4kLDW1ig
+	yqepmoNFvBP/naNwlY7zvRzUkfv8Jspuf7ZrO5y04gw9wlVtTsHUrmz1
+X-Gm-Gg: ATEYQzwhq2sJXOChMRxQNDCED9Vk1Y8J8G4zr3BTx7n/IV6MsUSpGk8HcW3pPW4tr3J
+	bZfbIHK/A+q2sL6Hx7bBV5laVR03qeA4Rhl2K/jkYZ+CK2HgsQASxGAwk16IPc2GUKvueNfEvLq
+	yYHQQ0RqxfqJOAcpVtnqUWg+fuXwmX4w2dCpL0tB9Qxlgm3XuHmdoqaAjRnHP6GfjqfFCdFwNuF
+	yMohCYKMKBkgrFBoXSwujZ7S7z1vD0NpM9YGRdXFfu5l0QufqmdV6Suu2JqmOqqoDAg6mg+Hi+B
+	7nU53U3YuaPkHhi8goQdTMnPXX9QDf9ozawAUvlVc+iV1NlnCpm8x78BCGloR8sBN5tGnoCH6Mb
+	KZeYvm0tyQUcJa92+WJIyJCAq3UlLpMdVT/GzodIqc9PHsM6g1BX6iYJeSilUtY2J4UGGt6lBnj
+	U0hwfMqcevl3QeMyInVA==
+X-Received: by 2002:a17:902:f70a:b0:2ae:8253:1a78 with SMTP id d9443c01a7336-2ae82531aeemr77776095ad.17.1772952548110;
+        Sat, 07 Mar 2026 22:49:08 -0800 (PST)
+Received: from nuvole ([109.166.36.159])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae840c9a0csm72503225ad.91.2026.03.07.22.48.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Mar 2026 22:49:07 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krishna Manikandan <quic_mkrishn@quicinc.com>,
+	Jonathan Marek <jonathan@marek.ca>
+Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tianyu Gao <gty0622@gmail.com>,
+	White Lewis <liu224806@gmail.com>,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: [PATCH v4 0/4] Add DSI display support for SC8280XP
+Date: Sun,  8 Mar 2026 14:48:31 +0800
+Message-ID: <20260308064835.479356-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 459D222EA3F
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: B886E22EC01
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
-	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,gmail.com];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-272545-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272544-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,kernel.org,linux.dev,gmail.com,poorly.run,somainline.org,linux.intel.com,suse.de,ffwll.ch,quicinc.com,marek.ca];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.961];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[AKoskovich@pm.me,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[pm.me:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,pm.me:dkim,pm.me:email,pm.me:mid,amarulasolutions.com:email]
+	NEURAL_HAM(-0.00)[-0.993];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add driver for the Tianma TA066VVHM03 6.59" 1080x2340 AMOLED DSI
-panel with DSC compression, found in the ASUS ROG Phone 3.
-
-Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+Add DSI display support for SC8280XP.
 ---
- MAINTAINERS                                      |   6 +
- drivers/gpu/drm/panel/Kconfig                    |  11 +
- drivers/gpu/drm/panel/Makefile                   |   1 +
- drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c | 387 +++++++++++++++++++=
-++++
- 4 files changed, 405 insertions(+)
+Changes in v4:
+- add missing comma in DT
+- collect tags
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20260228141715.35307-1-mitltlatltl@gmail.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 61bf550fd37c..6b729300daf5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8385,6 +8385,12 @@ F:=09Documentation/devicetree/bindings/display/rockc=
-hip/rockchip,dw-dp.yaml
- F:=09drivers/gpu/drm/bridge/synopsys/dw-dp.c
- F:=09include/drm/bridge/dw_dp.h
-=20
-+DRM DRIVER FOR TIANMA TA066VVHM03 PANELS
-+M:=09Alexander Koskovich <akoskovich@pm.me>
-+S:=09Maintained
-+F:=09Documentation/devicetree/bindings/display/panel/tianma,ta066vvhm03.ya=
-ml
-+F:=09drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c
-+
- DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
- M:=09Jagan Teki <jagan@amarulasolutions.com>
- S:=09Maintained
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index 307152ad7759..c818c701bdf6 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -1122,6 +1122,17 @@ config DRM_PANEL_TDO_TL070WSH30
- =09  24 bit RGB per pixel. It provides a MIPI DSI interface to
- =09  the host, a built-in LED backlight and touch controller.
-=20
-+config DRM_PANEL_TIANMA_TA066VVHM03
-+=09tristate "Tianma TA066VVHM03 panel driver"
-+=09depends on OF
-+=09depends on DRM_MIPI_DSI
-+=09depends on BACKLIGHT_CLASS_DEVICE
-+=09help
-+=09  Say Y if you want to enable support for the Tianma TA066VVHM03 panel
-+=09  driver. The panel has a 1080x2340 resolution and uses 24 bit RGB per
-+=09  pixel. It provides a MIPI DSI interface to the host and has a
-+=09  built-in touch controller.
-+
- config DRM_PANEL_TPO_TD028TTEC1
- =09tristate "Toppoly (TPO) TD028TTEC1 panel driver"
- =09depends on OF && SPI
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefil=
-e
-index aeffaa95666d..db257778b9f1 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -110,6 +110,7 @@ obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) +=3D panel-sony=
--td4353-jdi.o
- obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) +=3D panel-sony-tulip-tru=
-ly-nt35521.o
- obj-$(CONFIG_DRM_PANEL_STARTEK_KD070FHFID015) +=3D panel-startek-kd070fhfi=
-d015.o
- obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) +=3D panel-tdo-tl070wsh30.o
-+obj-$(CONFIG_DRM_PANEL_TIANMA_TA066VVHM03) +=3D panel-tianma-ta066vvhm03.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) +=3D panel-tpo-td028ttec1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) +=3D panel-tpo-td043mtea1.o
- obj-$(CONFIG_DRM_PANEL_TPO_TPG110) +=3D panel-tpo-tpg110.o
-diff --git a/drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c b/drivers/gpu=
-/drm/panel/panel-tianma-ta066vvhm03.c
-new file mode 100644
-index 000000000000..9bf0f4ab6792
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c
-@@ -0,0 +1,387 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Generated with linux-mdss-dsi-panel-driver-generator from vendor device=
- tree.
-+ * Copyright (c) 2026 Alexander Koskovich <akoskovich@pm.me>
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/display/drm_dsc.h>
-+#include <drm/display/drm_dsc_helper.h>
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+
-+struct tianma_ta066vvhm03 {
-+=09struct regulator_bulk_data *supplies;
-+=09struct gpio_desc *enable_gpio;
-+=09struct gpio_desc *reset_gpio;
-+=09struct mipi_dsi_device *dsi;
-+=09struct drm_dsc_config dsc;
-+=09struct drm_panel panel;
-+};
-+
-+static const struct regulator_bulk_data tianma_ta066vvhm03_supplies[] =3D =
-{
-+=09{ .supply =3D "vddio" },
-+=09{ .supply =3D "vci" },
-+=09{ .supply =3D "vdd" },
-+};
-+
-+static inline
-+struct tianma_ta066vvhm03 *to_tianma_ta066vvhm03(struct drm_panel *panel)
-+{
-+=09return container_of(panel, struct tianma_ta066vvhm03, panel);
-+}
-+
-+static void tianma_ta066vvhm03_reset(struct tianma_ta066vvhm03 *ctx)
-+{
-+=09gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+=09usleep_range(1000, 2000);
-+=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+=09usleep_range(5000, 6000);
-+=09gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+=09usleep_range(10000, 11000);
-+}
-+
-+static int tianma_ta066vvhm03_on(struct tianma_ta066vvhm03 *ctx)
-+{
-+=09struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
-+
-+=09ctx->dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
-+
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x04);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb3, 0x00);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0x2a);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0x0c);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1,
-+=09=09=09=09     0x94, 0x42, 0x00, 0x16, 0x05, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x10, 0x00, 0x10, 0x00, 0xaa, 0x8a,
-+=09=09=09=09     0x02, 0x10, 0x00, 0x10, 0x00, 0x00, 0x3f,
-+=09=09=09=09     0x3f, 0x03, 0xff, 0x03, 0xff, 0x23, 0xff,
-+=09=09=09=09     0x03, 0xff, 0x23, 0xff, 0x03, 0xff, 0x00,
-+=09=09=09=09     0x40, 0x40, 0x00, 0x00, 0x10, 0x01, 0x00,
-+=09=09=09=09     0x0c);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2,
-+=09=09=09=09     0x09, 0x24, 0x0e, 0x00, 0x00, 0x0e);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4,
-+=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x2f, 0x00, 0x01);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcf,
-+=09=09=09=09     0x64, 0x0b, 0x00, 0xc0, 0x02, 0xa6, 0x04,
-+=09=09=09=09     0x7f, 0x0b, 0x77, 0x0b, 0x8b, 0x04, 0x04,
-+=09=09=09=09     0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04,
-+=09=09=09=09     0x05, 0x05, 0x05, 0x00, 0x10, 0x01, 0x68,
-+=09=09=09=09     0x01, 0x68, 0x01, 0x68, 0x01, 0x68, 0x01,
-+=09=09=09=09     0x68, 0x01, 0x69, 0x03, 0x98, 0x03, 0x70,
-+=09=09=09=09     0x03, 0x70, 0x03, 0x70, 0x03, 0x70, 0x00,
-+=09=09=09=09     0x10, 0x01, 0x68, 0x01, 0x68, 0x01, 0x68,
-+=09=09=09=09     0x01, 0x68, 0x01, 0x68, 0x01, 0x68, 0x03,
-+=09=09=09=09     0x98, 0x03, 0x70, 0x03, 0x70, 0x03, 0x70,
-+=09=09=09=09     0x03, 0x70, 0x01, 0x42, 0x01, 0x42, 0x01,
-+=09=09=09=09     0x42, 0x01, 0x42, 0x01, 0x42, 0x01, 0x42,
-+=09=09=09=09     0x01, 0x42, 0x01, 0x42, 0x01, 0x42, 0x01,
-+=09=09=09=09     0x42, 0x01, 0x42, 0x01, 0x42, 0x1c, 0x1c,
-+=09=09=09=09     0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c,
-+=09=09=09=09     0x1c, 0x1c, 0x00, 0x01, 0x9a, 0x01, 0x9a,
-+=09=09=09=09     0x01, 0x9a, 0x05, 0xae, 0x05, 0xae, 0x09,
-+=09=09=09=09     0xa4, 0x09, 0xa4, 0x09, 0xa4, 0x09, 0xa4,
-+=09=09=09=09     0x09, 0xa4, 0x09, 0xa4, 0x0f, 0xc3, 0x19);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd7,
-+=09=09=09=09     0x00, 0xa9, 0x34, 0x00, 0x20, 0x02, 0x00,
-+=09=09=09=09     0x00, 0x30, 0x00, 0x40, 0x00, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x00, 0x10, 0x02, 0x00, 0x40,
-+=09=09=09=09     0x09, 0x00, 0x00, 0x30);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd8,
-+=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x30, 0x00, 0x30, 0x00, 0x30,
-+=09=09=09=09     0x00, 0x30, 0x00, 0x30, 0x05, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x30, 0x00, 0x00, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x0f, 0x00, 0x2f, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00,
-+=09=09=09=09     0x00, 0x00, 0x00);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbb,
-+=09=09=09=09     0x59, 0xc8, 0xc8, 0xc8, 0xc8, 0xc8, 0xc8,
-+=09=09=09=09     0xc8, 0xc8, 0xc8, 0x4a, 0x48, 0x46, 0x44,
-+=09=09=09=09     0x42, 0x40, 0x3e, 0x3c, 0x3a, 0x00, 0xff,
-+=09=09=09=09     0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
-+=09=09=09=09     0xff, 0x04, 0x00, 0x04, 0x04, 0x42, 0x04,
-+=09=09=09=09     0x69, 0x5a, 0x00, 0x0a, 0xb0, 0x0f, 0xff,
-+=09=09=09=09     0x0f, 0xff, 0x0f, 0xff, 0x14, 0x81, 0xf4);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe8, 0x00, 0x02);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe4, 0x00, 0x0a);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x80);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4, 0x93);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xde, 0x30);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x04);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xdf, 0x50, 0x40);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3,
-+=09=09=09=09     0x50, 0x00, 0x00, 0x00, 0x00);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x11);
-+=09mipi_dsi_usleep_range(&dsi_ctx, 1000, 2000);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3,
-+=09=09=09=09     0x01, 0x00, 0x00, 0x00, 0x01);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf4, 0x00, 0x02);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x19);
-+=09mipi_dsi_usleep_range(&dsi_ctx, 1000, 2000);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xdf, 0x50, 0x42);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
-+=09=09=09=09     0x24);
-+=09mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK)=
-;
-+=09mipi_dsi_dcs_set_column_address_multi(&dsi_ctx, 0x0000, 0x0437);
-+=09mipi_dsi_dcs_set_page_address_multi(&dsi_ctx, 0x0000, 0x0923);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x80);
-+=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x01);
-+=09mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-+=09mipi_dsi_msleep(&dsi_ctx, 100);
-+=09mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-+
-+=09return dsi_ctx.accum_err;
-+}
-+
-+static int tianma_ta066vvhm03_off(struct tianma_ta066vvhm03 *ctx)
-+{
-+=09struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
-+
-+=09ctx->dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
-+
-+=09mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-+=09mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-+=09mipi_dsi_msleep(&dsi_ctx, 120);
-+
-+=09return dsi_ctx.accum_err;
-+}
-+
-+static int tianma_ta066vvhm03_prepare(struct drm_panel *panel)
-+{
-+=09struct tianma_ta066vvhm03 *ctx =3D to_tianma_ta066vvhm03(panel);
-+=09struct drm_dsc_picture_parameter_set pps;
-+=09struct device *dev =3D &ctx->dsi->dev;
-+=09int ret;
-+
-+=09ret =3D regulator_bulk_enable(ARRAY_SIZE(tianma_ta066vvhm03_supplies), =
-ctx->supplies);
-+=09if (ret < 0) {
-+=09=09dev_err(dev, "Failed to enable regulators: %d\n", ret);
-+=09=09return ret;
-+=09}
-+
-+=09gpiod_set_value_cansleep(ctx->enable_gpio, 1);
-+
-+=09tianma_ta066vvhm03_reset(ctx);
-+
-+=09ret =3D tianma_ta066vvhm03_on(ctx);
-+=09if (ret < 0) {
-+=09=09dev_err(dev, "Failed to initialize panel: %d\n", ret);
-+=09=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+=09=09gpiod_set_value_cansleep(ctx->enable_gpio, 0);
-+=09=09regulator_bulk_disable(ARRAY_SIZE(tianma_ta066vvhm03_supplies), ctx-=
->supplies);
-+=09=09return ret;
-+=09}
-+
-+=09drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
-+
-+=09ret =3D mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
-+=09if (ret < 0) {
-+=09=09dev_err(panel->dev, "failed to transmit PPS: %d\n", ret);
-+=09=09return ret;
-+=09}
-+
-+=09ret =3D mipi_dsi_compression_mode(ctx->dsi, true);
-+=09if (ret < 0) {
-+=09=09dev_err(dev, "failed to enable compression mode: %d\n", ret);
-+=09=09return ret;
-+=09}
-+
-+=09return 0;
-+}
-+
-+static int tianma_ta066vvhm03_unprepare(struct drm_panel *panel)
-+{
-+=09struct tianma_ta066vvhm03 *ctx =3D to_tianma_ta066vvhm03(panel);
-+=09struct device *dev =3D &ctx->dsi->dev;
-+=09int ret;
-+
-+=09ret =3D tianma_ta066vvhm03_off(ctx);
-+=09if (ret < 0)
-+=09=09dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
-+
-+=09gpiod_set_value_cansleep(ctx->enable_gpio, 0);
-+=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+=09regulator_bulk_disable(ARRAY_SIZE(tianma_ta066vvhm03_supplies), ctx->su=
-pplies);
-+
-+=09return 0;
-+}
-+
-+static const struct drm_display_mode tianma_ta066vvhm03_mode =3D {
-+=09.clock =3D (1080 + 24 + 4 + 10) * (2340 + 12 + 1 + 4) * 160 / 1000,
-+=09.hdisplay =3D 1080,
-+=09.hsync_start =3D 1080 + 24,
-+=09.hsync_end =3D 1080 + 24 + 4,
-+=09.htotal =3D 1080 + 24 + 4 + 10,
-+=09.vdisplay =3D 2340,
-+=09.vsync_start =3D 2340 + 12,
-+=09.vsync_end =3D 2340 + 12 + 1,
-+=09.vtotal =3D 2340 + 12 + 1 + 4,
-+=09.width_mm =3D 70,
-+=09.height_mm =3D 152,
-+=09.type =3D DRM_MODE_TYPE_DRIVER,
-+};
-+
-+static int tianma_ta066vvhm03_get_modes(struct drm_panel *panel,
-+=09=09=09=09=09struct drm_connector *connector)
-+{
-+=09return drm_connector_helper_get_modes_fixed(connector, &tianma_ta066vvh=
-m03_mode);
-+}
-+
-+static const struct drm_panel_funcs tianma_ta066vvhm03_panel_funcs =3D {
-+=09.prepare =3D tianma_ta066vvhm03_prepare,
-+=09.unprepare =3D tianma_ta066vvhm03_unprepare,
-+=09.get_modes =3D tianma_ta066vvhm03_get_modes,
-+};
-+
-+static int tianma_ta066vvhm03_bl_update_status(struct backlight_device *bl=
-)
-+{
-+=09struct mipi_dsi_device *dsi =3D bl_get_data(bl);
-+=09u16 brightness =3D backlight_get_brightness(bl);
-+=09int ret;
-+
-+=09dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
-+
-+=09ret =3D mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
-+=09if (ret < 0)
-+=09=09return ret;
-+
-+=09dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
-+
-+=09return 0;
-+}
-+
-+static const struct backlight_ops tianma_ta066vvhm03_bl_ops =3D {
-+=09.update_status =3D tianma_ta066vvhm03_bl_update_status,
-+};
-+
-+static struct backlight_device *
-+tianma_ta066vvhm03_create_backlight(struct mipi_dsi_device *dsi)
-+{
-+=09struct device *dev =3D &dsi->dev;
-+=09const struct backlight_properties props =3D {
-+=09=09.type =3D BACKLIGHT_RAW,
-+=09=09.brightness =3D 4095,
-+=09=09.max_brightness =3D 4095,
-+=09};
-+
-+=09return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
-+=09=09=09=09=09      &tianma_ta066vvhm03_bl_ops, &props);
-+}
-+
-+static int tianma_ta066vvhm03_probe(struct mipi_dsi_device *dsi)
-+{
-+=09struct device *dev =3D &dsi->dev;
-+=09struct tianma_ta066vvhm03 *ctx;
-+=09int ret;
-+
-+=09ctx =3D devm_drm_panel_alloc(dev, struct tianma_ta066vvhm03, panel,
-+=09=09=09=09   &tianma_ta066vvhm03_panel_funcs,
-+=09=09=09=09   DRM_MODE_CONNECTOR_DSI);
-+=09if (IS_ERR(ctx))
-+=09=09return PTR_ERR(ctx);
-+
-+=09ret =3D devm_regulator_bulk_get_const(dev,
-+=09=09=09=09=09    ARRAY_SIZE(tianma_ta066vvhm03_supplies),
-+=09=09=09=09=09    tianma_ta066vvhm03_supplies,
-+=09=09=09=09=09    &ctx->supplies);
-+=09if (ret < 0)
-+=09=09return ret;
-+
-+=09ctx->enable_gpio =3D devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-+=09if (IS_ERR(ctx->enable_gpio))
-+=09=09return dev_err_probe(dev, PTR_ERR(ctx->enable_gpio),
-+=09=09=09=09     "Failed to get enable-gpios\n");
-+
-+=09ctx->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-+=09if (IS_ERR(ctx->reset_gpio))
-+=09=09return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+=09=09=09=09     "Failed to get reset-gpios\n");
-+
-+=09ctx->dsi =3D dsi;
-+=09mipi_dsi_set_drvdata(dsi, ctx);
-+
-+=09dsi->lanes =3D 4;
-+=09dsi->format =3D MIPI_DSI_FMT_RGB888;
-+=09dsi->mode_flags =3D MIPI_DSI_MODE_NO_EOT_PACKET |
-+=09=09=09  MIPI_DSI_CLOCK_NON_CONTINUOUS;
-+
-+=09ctx->panel.prepare_prev_first =3D true;
-+
-+=09ctx->panel.backlight =3D tianma_ta066vvhm03_create_backlight(dsi);
-+=09if (IS_ERR(ctx->panel.backlight))
-+=09=09return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
-+=09=09=09=09     "Failed to create backlight\n");
-+
-+=09drm_panel_add(&ctx->panel);
-+
-+=09/* This panel only supports DSC; unconditionally enable it */
-+=09dsi->dsc =3D &ctx->dsc;
-+=09dsi->dsc_slice_per_pkt =3D 2;
-+
-+=09ctx->dsc.dsc_version_major =3D 1;
-+=09ctx->dsc.dsc_version_minor =3D 1;
-+
-+=09ctx->dsc.slice_height =3D 20;
-+=09ctx->dsc.slice_width =3D 540;
-+=09WARN_ON(1080 % ctx->dsc.slice_width);
-+=09ctx->dsc.slice_count =3D 1080 / ctx->dsc.slice_width;
-+=09ctx->dsc.bits_per_component =3D 10;
-+=09ctx->dsc.bits_per_pixel =3D 8 << 4; /* 4 fractional bits */
-+=09ctx->dsc.block_pred_enable =3D true;
-+
-+=09ret =3D mipi_dsi_attach(dsi);
-+=09if (ret < 0) {
-+=09=09drm_panel_remove(&ctx->panel);
-+=09=09return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
-+=09}
-+
-+=09return 0;
-+}
-+
-+static void tianma_ta066vvhm03_remove(struct mipi_dsi_device *dsi)
-+{
-+=09struct tianma_ta066vvhm03 *ctx =3D mipi_dsi_get_drvdata(dsi);
-+=09int ret;
-+
-+=09ret =3D mipi_dsi_detach(dsi);
-+=09if (ret < 0)
-+=09=09dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
-+
-+=09drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id tianma_ta066vvhm03_of_match[] =3D {
-+=09{ .compatible =3D "tianma,ta066vvhm03" },
-+=09{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, tianma_ta066vvhm03_of_match);
-+
-+static struct mipi_dsi_driver tianma_ta066vvhm03_driver =3D {
-+=09.probe =3D tianma_ta066vvhm03_probe,
-+=09.remove =3D tianma_ta066vvhm03_remove,
-+=09.driver =3D {
-+=09=09.name =3D "panel-tianma-ta066vvhm03",
-+=09=09.of_match_table =3D tianma_ta066vvhm03_of_match,
-+=09},
-+};
-+module_mipi_dsi_driver(tianma_ta066vvhm03_driver);
-+
-+MODULE_AUTHOR("Alexander Koskovich <akoskovich@pm.me>");
-+MODULE_DESCRIPTION("DRM driver for Tianma TA066VVHM03-00");
-+MODULE_LICENSE("GPL");
+Changes in v3:
+- add the missing refgen supply to DSI (Dmitry)
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20260228101907.18043-1-mitltlatltl@gmail.com
 
---=20
+Changes in v2:
+- fallback to SA8775P compatible (Krzysztof, Konrad, Dmitry)
+- fix DT styles[a newline between property and subnode, property order] (Konrad)
+- use one dsi_opp_table and all dsi controllers reference it (Konrad)
+- resize dsi_pll region to 0x280 (Konrad)
+- update commit message
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20260225054525.6803-1-mitltlatltl@gmail.com
+
+
+Pengyu Luo (4):
+  dt-bindings: display: msm-dsi-phy-7nm: Add SC8280XP
+  dt-bindings: display/msm: dsi-controller-main: Add SC8280XP
+  dt-bindings: display: msm: Document DSI controller and DSI PHY on
+    SC8280XP
+  arm64: dts: qcom: sc8280xp: Add dsi nodes on SC8280XP
+
+ .../display/msm/dsi-controller-main.yaml      |   1 +
+ .../bindings/display/msm/dsi-phy-7nm.yaml     |   1 +
+ .../display/msm/qcom,sc8280xp-mdss.yaml       |  30 ++
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 404 +++++++++++++++++-
+ 4 files changed, 428 insertions(+), 8 deletions(-)
+
+-- 
 2.53.0
-
 
 
