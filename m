@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-272552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272553-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sHWqFrU2rWkdzgEAu9opvQ
-	(envelope-from <devicetree+bounces-272552-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:43:33 +0100
+	id IODfOGk3rWlfzgEAu9opvQ
+	(envelope-from <devicetree+bounces-272553-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:46:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FABA22F0E3
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:43:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93D3422F10E
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:46:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 2FADD3007AFB
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 08:43:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B791C300D444
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 08:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9E02D8798;
-	Sun,  8 Mar 2026 08:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E5733556E;
+	Sun,  8 Mar 2026 08:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LXo89Vdg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FCn1btzd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B564833689C;
-	Sun,  8 Mar 2026 08:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD893368BD;
+	Sun,  8 Mar 2026 08:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772959407; cv=none; b=SrdrxZ/1fTbpk32Mw4EAN+d3zMTOHUeJy3Ga2Ps+ezMr9XQZnI0n8ze1kqP6XoC/MBiDiZmwdi3wKNGqre66M8HiZ49S6pVEPvWZxy4YP7u0GO7nI51ydpIGqbS4gaojkESLherbtDfzhI7fiHtrGUhUh+/uKgwNitX7I+fDJGs=
+	t=1772959590; cv=none; b=DUy8Is/4Sc57L66z7JvqAHhvztbt9JenvZP6Dn4f/CrsieNmi9v6EAOfbnyit+vkkAvcXmxFb+8JxI7PUqH9yT8tsvl0WNKNragF+WcjkHdzBHC3Nn2iUXTkvfxwIWVjs69EIMgAGv732Mp+rMQiBlD0HSgJvQp33I+Af33IV0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772959407; c=relaxed/simple;
-	bh=wBJY5rzFDw2qSjmsNIfNn/LBfLOokhBatWku10VNP2U=;
+	s=arc-20240116; t=1772959590; c=relaxed/simple;
+	bh=IczzHoLtCIZefFO9iUsBq5WWFhnGUC6RW0p1iBGJjnQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nsVVDX1BmfiwOQEtiHvBcjllSRXkBg+iCln7nwLQPtihYHE/fw2X5hFem8kDzF4SdSaGbYOw+YlICJiykj08DX6UwVEpMDzY2hq0sYtylHg0vw/w7MA55x/T+Lvgeh22Ckq8oetb9LvysuELej0AVQcifcTaexpqqZDEMRlEcoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LXo89Vdg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B12FC116C6;
-	Sun,  8 Mar 2026 08:43:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=d6ix7kFLTw8HMmGW5DM1H3YFnnes82pNCK+ksWTOD7vpbsbBivUMHH+UmwVacb4g2OISi6N0Q8K518YDJV1MhpvgL+J95Bqom1/HF0VPQi3I/aXzkyBtP4QBDjKkoKGhMjLGlxb8JNRZDMeHmklJzvUOKVnz1GgQ11EoxNrtqDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FCn1btzd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E923C116C6;
+	Sun,  8 Mar 2026 08:46:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772959407;
-	bh=wBJY5rzFDw2qSjmsNIfNn/LBfLOokhBatWku10VNP2U=;
+	s=k20201202; t=1772959590;
+	bh=IczzHoLtCIZefFO9iUsBq5WWFhnGUC6RW0p1iBGJjnQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LXo89Vdgft2lKAePhnklJsK/DrOC44pUAo+LzHUESmEwcsvqXYlIK017nexWDeiPB
-	 L0SwywvsVwVsMn054y5r6ebUdxvlpgd5xnbx57b6DgAi7hKo1HX3XsSSToZc4M9oO3
-	 Qp2dG5LmdDuQKMZfuk8dlEikJLCcaGrMr2YMTNwoocCea2W/U7dH+xeSGE+Xj6j4a4
-	 UpDBuywkaum9zrpEqustmgsjKR1XdOeZfpuapH9UK1mP7bYQ8pW3KmkevBjCkP4nKM
-	 YBqum7fkwFOQbSUl5aY/jXO0HXr7qIli0kVfC3mc294EDSHp8RFgqeF1mCM1Ey8ePl
-	 mBjiFVCP+sq1Q==
-Message-ID: <bf67a30a-c051-4877-904e-5c583bc673c7@kernel.org>
-Date: Sun, 8 Mar 2026 09:43:22 +0100
+	b=FCn1btzdfPZsjsOWcmvxwED3JFYAnEFSkji2sDIu40NaXGjk8MwJIzjRglxDqt1L7
+	 UneDFV6dmPIl0OZC7CZd1sS+jpJXB46ghmoseZJBXqvz0uGg7m53gK46ipMFXH+yKk
+	 eEdtJpWdk05DJlsI/CWZF4B2wa8siCAb7quMURH9t5MkDM4ccAj5xBPgR3+NH2quTz
+	 FNsmk1+2+fkllcOgvcZRoSetpA3zfkAe1IlU6BwH5uOiMMEMPI4Q3vI9ME3MIR+ptT
+	 wQUK/L1aonU+AsskqKfUTS0Btehw0wJibqvmFmw15fcoUbZ3raGtI8MmIU7OcPTEvG
+	 /f/iVWYWWB0jg==
+Message-ID: <2b260d55-71cd-442f-bf9f-a9771a2765c7@kernel.org>
+Date: Sun, 8 Mar 2026 09:46:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,20 +53,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Document Tianma
- TA066VVHM03
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250: Add label for reserved-memory
+ node
 To: Alexander Koskovich <AKoskovich@pm.me>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20260308-tianma-ta066vvhm03-v1-0-869fac443b20@pm.me>
- <20260308-tianma-ta066vvhm03-v1-1-869fac443b20@pm.me>
+References: <20260308-sm8250-reserved-mem-v1-1-889eca3c11ca@pm.me>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,65 +107,64 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260308-tianma-ta066vvhm03-v1-1-869fac443b20@pm.me>
+In-Reply-To: <20260308-sm8250-reserved-mem-v1-1-889eca3c11ca@pm.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 5FABA22F0E3
+X-Rspamd-Queue-Id: 93D3422F10E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-272553-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272552-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[pm.me,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.968];
+	NEURAL_HAM(-0.00)[-0.930];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 08/03/2026 07:03, Alexander Koskovich wrote:
-> +
-> +  vddio-supply: true
-> +  vci-supply: true
-> +  vdd-supply: true
-> +  port: true
-> +  enable-gpios: true
-> +  reset-gpios: true
-> +
-> +additionalProperties: false
+On 08/03/2026 06:05, Alexander Koskovich wrote:
+> For some devices it makes more sense to just redefine reserved-memory,
+> for example on the ASUS ROG Phone 3 it is completely different with the
+> exception of hyp_mem, xbl_aop_mem, cmd_db and smem_mem.
+> 
+> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> index c7dffa440074..3298c36c3e55 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> @@ -763,7 +763,7 @@ opp-120000000 {
+>  		};
+>  	};
+>  
+> -	reserved-memory {
+> +	reserved_memory: reserved-memory {
 
-This should be placed after "required:" block.
+There is no user for this, so change is pointless. labels do not exist
+in DTBs, so drop the entire patch or provide here - in the same commit -
+proper user.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vddio-supply
-> +  - vci-supply
-> +  - vdd-supply
-> +  - reset-gpios
-> +  - port
 Best regards,
 Krzysztof
 
