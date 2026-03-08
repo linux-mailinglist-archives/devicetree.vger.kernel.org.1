@@ -1,219 +1,119 @@
-Return-Path: <devicetree+bounces-272575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272576-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8PtrL4aCrWnO3gEAu9opvQ
-	(envelope-from <devicetree+bounces-272575-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:07:02 +0100
+	id wHd4DrSErWkx3wEAu9opvQ
+	(envelope-from <devicetree+bounces-272576-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:16:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A36F5230865
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:07:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CFE72309C8
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8ED4B3006D41
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 14:06:58 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2932830115A5
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 14:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B053358BC;
-	Sun,  8 Mar 2026 14:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61EEE18A921;
+	Sun,  8 Mar 2026 14:16:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UalE9LU/"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="pHvZdSX3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62A826C3BD
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 14:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29ECBCA4E;
+	Sun,  8 Mar 2026 14:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772978814; cv=none; b=jvP+uguKb3a99SU9ymHdxQggt6y3Er4pCL+xLcpLVK7f/Cjc5rh4KzkBe0xGswi5OeVrYAYxa5RY2yJ2M7PJPjKqgzswoFOlQ331aB+2DMF2F2mySTfB2IeoQUXpjGgWpB1H9onFMbq5SA/p70oF7GTGvIbFPpm9DCF8ZMcfchk=
+	t=1772979377; cv=none; b=T5YYp/qGxq/dQUsOCtusGSGHWIR8lEYF/euIKG//vCOZIqumD7AP452GbW9Vu0rvwdX/Q+Tj3lHamepxXKMF/6GbWdxnq9CbTMwO8i03+IGzYb9wzFB4r82QHMLVtpiMlV0ioJVIRlOL5qpwnEwe+VUbvdfp/3qz3TDoA0346TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772978814; c=relaxed/simple;
-	bh=1w83uARMWyGYvc/JmuNnyMOi7ETtApPzlejCC63kRgI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pzA7NdX5zyQKA3trqrWbIH4YrKyJEP8HpwOdovmaN6n1HZp7G3whsGWGb2mt4zDfVVhxKqTx0+zhEk/aiCD20EuY4H9T8hGyp96lZT3w/4fcCrhMvxj8za7l/uqTfQDPG20CchsZa25qhhrDgeC9BLw3+UR7T8GCIJUjEN41NRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UalE9LU/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5B24C2BCB0
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 14:06:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772978814;
-	bh=1w83uARMWyGYvc/JmuNnyMOi7ETtApPzlejCC63kRgI=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=UalE9LU/eZgvrRqA+FuYt5n9XFHboNIf9MT5oyXSZp4P1qumjycdbefhOxZtLm3DG
-	 z2QrLCRWoUMsG29GtKFgoImaQUQoIn7uWJKy3oC1KJhpe1Nvh4mcKG9E+eONPTJw1x
-	 kY+kY1/ojnUF3odnJ+bYsiOErkNb5TaObkOH7wiQ/Yptz+haYYv8lok0BwOAwq//bW
-	 SjtjwfK64JWRT/zXHJ/CO66AoOZOgrlymTFYC+KQR8GIDhRb16bxhIhaRLtIs67QUU
-	 +C0MKojQyMYwkBuyD6aDOWcbnUHlXTXRmsK4FWgkocXMquqpM2P5E3avJ15hx9cG7D
-	 bgPRiYTiu13NQ==
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-38a2a59baa6so40690531fa.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 07:06:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUF7iZOMq59NiSiKVLlu/dEAYrk+Kw4Qw5/h1GteSqmlPSS54zCdqUgAfyWNly+mes+zUCXSHFpKQaM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUrI/cV248cBLn+jQORGUK8l1YxuXSM4N7Ikyztgcj9FU5kDSq
-	zbA2zWse6olQdVrhB0dydVg1uKf9GhXz3aeU6fxygx8z+2ymctvswDO4DOC0luarUUFHM0eyte9
-	BR4unoLdserp5gy5eUvuo1snMsxHp5SQ=
-X-Received: by 2002:a05:651c:12c8:b0:387:1c06:f742 with SMTP id
- 38308e7fff4ca-38a40db0c27mr30556971fa.38.1772978812861; Sun, 08 Mar 2026
- 07:06:52 -0700 (PDT)
+	s=arc-20240116; t=1772979377; c=relaxed/simple;
+	bh=IqBeFl/EJ4lS4GvTQGTHlzzIz15G3xY/I2F3K22XmpQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pXAbjGJZWrdIt9lLHY6Zzp6E2ykhyDiqpuYKHxFjFS3vLE1P6M7aNMZ8g/SEZHnMqTvwCVvCRPQsh7sc8KkiHGPsXsFK6F/12Z5xzVKMmNJw7YtlGdL1OZUysQnx5XkDQGRvLCqd0rUENypmQyedc0LkOPmC1q3dhrRCQaVLP5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=pHvZdSX3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72ABAC116C6;
+	Sun,  8 Mar 2026 14:16:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1772979376;
+	bh=IqBeFl/EJ4lS4GvTQGTHlzzIz15G3xY/I2F3K22XmpQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pHvZdSX3NRPLH6SEOWffdsu8SL8HPsmpwYfcVMK7GIcASajSYlB/xJetc80OANTmy
+	 VL8cR8zgioAUqDVQ0vK9ZFjjMtK10qCaPtvUzD1oKCY1VILretngPISWlllO1hN7BB
+	 o3rqOmrTYMft/GW+9vBIwU5TERW8fyNMVi4yVKJU=
+Date: Sun, 8 Mar 2026 15:16:14 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Julian Braha <julianbraha@gmail.com>
+Cc: jcmvbkbc@gmail.com, rdunlap@infradead.org,
+	ilpo.jarvinen@linux.intel.com, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+	jirislaby@kernel.org, linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drivers/tty/serial: move ESP32 UART drivers into staging
+Message-ID: <2026030845-chastise-briskness-3317@gregkh>
+References: <20260308131412.1102749-1-julianbraha@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260308-rc2-boot-hang-v2-1-516fdb820953@mmpsystems.pl>
-In-Reply-To: <20260308-rc2-boot-hang-v2-1-516fdb820953@mmpsystems.pl>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Sun, 8 Mar 2026 22:06:42 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67FO1bt3yee2SXn1LTt7O10z1EHHw7F0xQ0bKbpUqch4w@mail.gmail.com>
-X-Gm-Features: AaiRm53PKegPTzYpVROQgRjOlGoQDyf6kO6816n6Q7tMTIhfOGBvZddqUzGRf9w
-Message-ID: <CAGb2v67FO1bt3yee2SXn1LTt7O10z1EHHw7F0xQ0bKbpUqch4w@mail.gmail.com>
-Subject: Re: [PATCH v2] pinctrl: sunxi: fix gpiochip_lock_as_irq() failure
- when pinmux is unknown
-To: Michal Piekos <michal.piekos@mmpsystems.pl>
-Cc: Linus Walleij <linusw@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Samuel Holland <samuel@sholland.org>, linux-gpio@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	linux-kernel@vger.kernel.org, Andrey Skvortsov <andrej.skvortzov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org, 
-	Bartosz Golaszewski <brgl@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: A36F5230865
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260308131412.1102749-1-julianbraha@gmail.com>
+X-Rspamd-Queue-Id: 7CFE72309C8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,sholland.org,vger.kernel.org,lists.infradead.org,lists.linux.dev,arm.com];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-272575-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272576-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[gmail.com,infradead.org,linux.intel.com,kernel.org,linaro.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wens@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.534];
 	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.990];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	HAS_REPLYTO(0.00)[wens@kernel.org]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linuxfoundation.org:dkim]
 X-Rspamd-Action: no action
 
-On Sun, Mar 8, 2026 at 9:42=E2=80=AFPM Michal Piekos
-<michal.piekos@mmpsystems.pl> wrote:
->
-> Fixes kernel hang during boot due to inability to set up IRQ on AXP313a.
->
-> The issue is caused by gpiochip::get_direction() which was returning
-> -ENODEV when gpio is in unitialized state.
->
-> Instead of failing when the current muxval is at default value, report
-> the line as input.
+On Sun, Mar 08, 2026 at 01:14:12PM +0000, Julian Braha wrote:
+> These drivers were added about 3 years ago, and depend on the
+> XTENSA_PLATFORM_ESP32 config option which has never existed,
+> so no device can actually use them.
+> They can only be compiled with COMPILE_TEST.
+> 
+> As you can see, this config option is still undefined
+> in the downstream tree:
+> https://github.com/search?q=repo%3Ajcmvbkbc%2Flinux-xtensa%20XTENSA_PLATFORM_ESP32&type=code
+> 
+> I propose moving these drivers into staging
+> until there is a device that can boot the mainline kernel and use them.
 
-I don't really like this "fix". It's really lying.
+Why not just delete them?  What can staging do to help out here?  If
+these can't be built, or used, don't drop them in staging, that's not
+what that part of the kernel is for, sorry.
 
-Also, this problem only occurs if the interrupt is taken directly using
-the DT "interrupts" property, as that mostly bypasses the GPIO subsystem,
-especially the gpio request part.
+thanks,
 
-If the consumer does gpiod_request() followed by gpiod_to_irq(), then
-the pin is already muxed to either one of the GPIO functions and this
-won't error out.
-
-I also found that if the interrupt is taken directly through the device
-tree, the pin itself is not locked out (like for GPIOs, on sunxi we also
-don't do pinctrl settings for pins used for interrupts).
-
-I think the proper fix would be to somehow be able to request the pin
-as GPIO if it hasn't been requested already. And then either
-sunxi_pinctrl_irq_request_resources() can use that to request the pin
-and mux the pin before calling gpiochip_lock_as_irq().
-
-Hope Linus and Bartosz have some suggestions.
-
-
-Thanks
-ChenYu
-
-
-> Tested on Orange Pi Zero 3.
->
-> Signed-off-by: Michal Piekos <michal.piekos@mmpsystems.pl>
-> Suggested-by: Andrey Skvortsov <andrej.skvortzov@gmail.com>
-> ---
-> This fixes a kernel hang during boot on the Orange Pi Zero 3 caused by
-> inability to set up interrupt for the AXP313A PMIC.
->
-> The issue is caused by gpiochip::get_direction() which was returning
-> -ENODEV when gpio is in unitialized state and its muxval is at default
-> value.
->
-> Instead of failing, report the line as input.
->
-> To: Rob Herring <robh@kernel.org>
-> To: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> To: Conor Dooley <conor+dt@kernel.org>
-> To: Chen-Yu Tsai <wens@kernel.org>
-> To: Jernej Skrabec <jernej.skrabec@gmail.com>
-> To: Samuel Holland <samuel@sholland.org>
-> To: Andre Przywara <andre.przywara@arm.com>
-> To: Linus Walleij <linusw@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-sunxi@lists.linux.dev
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
->
-> Changes in v2:
-> - Dropped the previous faulty solution which was forcing the axp313 to
->   use r_pio as interrupt controller as pointed out by Jernej =C5=A0krabec=
-.
-> - Implemented suggestion from Andrey Skvortsov to return default
->   direction as input
-> - Link to v1: https://lore.kernel.org/r/20260308-rc2-boot-hang-v1-0-d792d=
-1a78dfd@mmpsystems.pl
-> ---
->  drivers/pinctrl/sunxi/pinctrl-sunxi.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunx=
-i/pinctrl-sunxi.c
-> index c990b6118172..e438cf35ff28 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> @@ -971,7 +971,7 @@ static int sunxi_pinctrl_gpio_get_direction(struct gp=
-io_chip *chip,
->
->         func =3D sunxi_pinctrl_desc_find_function_by_pin_and_mux(pctl, pi=
-n, muxval);
->         if (!func)
-> -               return -ENODEV;
-> +               return GPIO_LINE_DIRECTION_IN;
->
->         if (!strcmp(func->name, "gpio_out"))
->                 return GPIO_LINE_DIRECTION_OUT;
->
-> ---
-> base-commit: 4ae12d8bd9a830799db335ee661d6cbc6597f838
-> change-id: 20260308-rc2-boot-hang-269e8546635b
->
-> Best regards,
-> --
-> Michal Piekos <michal.piekos@mmpsystems.pl>
->
->
+greg k-h
 
