@@ -1,194 +1,176 @@
-Return-Path: <devicetree+bounces-272551-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272552-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id /ojPLO4xrWmVzQEAu9opvQ
-	(envelope-from <devicetree+bounces-272551-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:23:10 +0100
+	id sHWqFrU2rWkdzgEAu9opvQ
+	(envelope-from <devicetree+bounces-272552-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:43:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CEB722F06D
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:23:09 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FABA22F0E3
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 09:43:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8E5F43010B9D
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 08:23:08 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2FADD3007AFB
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 08:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AAF1336EF8;
-	Sun,  8 Mar 2026 08:23:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9E02D8798;
+	Sun,  8 Mar 2026 08:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fTPnETMF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LXo89Vdg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37B730E838
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 08:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B564833689C;
+	Sun,  8 Mar 2026 08:43:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772958186; cv=none; b=cqqWBNMsU5FwEhf1ptt7ECh2pZTqrGjojEe9rhP1QIew+1pmp7qOCafeTtomzEhMH8HZTuY/FHTyt+ugn6QlTwyigU2VPNJfbSzc6kuMGZtQqH8jGsvss+pvSXH0e2f3cXPL5a7KS35jrVIMu/HVUvD18Apq/gAx4KW5YtpbHSI=
+	t=1772959407; cv=none; b=SrdrxZ/1fTbpk32Mw4EAN+d3zMTOHUeJy3Ga2Ps+ezMr9XQZnI0n8ze1kqP6XoC/MBiDiZmwdi3wKNGqre66M8HiZ49S6pVEPvWZxy4YP7u0GO7nI51ydpIGqbS4gaojkESLherbtDfzhI7fiHtrGUhUh+/uKgwNitX7I+fDJGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772958186; c=relaxed/simple;
-	bh=hvDoSy3zhLMt2PSWtXgqb4w044bqYBFn3QDnwo7J0wA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=leH8jwWOlauBF2tDm5Lm4aTE8YRezv0gp5NpgHbQQ45SrOKOQOWtFgvAohwOJLidjsUKePfCqsFKyoxWPaSi5XPzyTxxiswvc8pVwKjKDk8AtFIf46FtLNvvLORbR/FLcKONCQ1Y/xTAyUVLU3xtAIJiz2KtJnjKtdfbW2y8sWM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fTPnETMF; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-439c5b40f60so3748301f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 00:23:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772958183; x=1773562983; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z8aMocQM9u6X2gsio5xSbmOAH1sSfPIdUgMQJD6cnQY=;
-        b=fTPnETMFkmUCC1ekvcRV0UJMjYQmXW10UelAsIXXBrrHiPGMUAgA4ghi04JuDnEBGc
-         T5TOuSEdoW4cHjTs52JlMEXhsNVpyOPcSga3A3vEY3QyVqJ5kWbikUVB8F75MLkiA5L1
-         9rX+/2GDmgj3Ya8UStuHCw7TcL45T4/DzIRIW2akUtHwjR43eyeAT+6s9uH1vCOaBO0Y
-         2e+XrYcqRzl6i51pZJ+yOwJ8sv3LrJoy/oYLbzFjJRSZvzKpD9Y1Jacpj1KyVbfRTetT
-         Z2k/bqc6cL2J0tSHB+SFDvW/M6twPaVYkAA1D14B/b/1AJLXGeUtrO8tET6U4mKEbxET
-         FLxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772958183; x=1773562983;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=z8aMocQM9u6X2gsio5xSbmOAH1sSfPIdUgMQJD6cnQY=;
-        b=TH07L2u8A/5dl3ZRZpkELbzHkbAKdHhTMflIh0yhsL1dF3aHezPL7h9d4qaWoDMlg5
-         SG014zV5URDCZeaNfM+/meNJdWtvXMTH8SAaMqBgzyqkj6UVdCcle7wpGwdESEBA7ISm
-         V6tkRDtbKwLfo1Bj+rlFYgItrgkUeZjrvD2w5LK01Kt5VNLxJ6TvG3tanJS6+Npo4YFS
-         vFxZ1Bp+TrF0FOwmzyf15swZjdOgKeT6IcYdx7DEPy4IctZdAtUt2ElgSp7GYj7lT3ku
-         3Q2k+rG1Hs+2Bx/EluMeHP3dfzyHZSg00QFsdGshD8wI270/Qw+DbiQpVku4UUK+kEOr
-         hjaw==
-X-Gm-Message-State: AOJu0YwkTMmnIFY6WktyirCKoQ5Rkl1pAr5xWCSkp7VzDkhlE6KmesSN
-	2VxnB7XSHKIeWVatzqPwGpKUAN8LTw0moxZ8L5AQQa+/10QIdIiqD91n
-X-Gm-Gg: ATEYQzw/Gd243OefJWJA1LXyngYpZ4Qb1uInlJDAelflRy0vxmFxAE/Fr833tRiyHPi
-	qj7W5u1HN0/FMmh+PCV2osUh/j8NZ8zf7njF0dV3mmRA9ji76hmkM3LPQlhNw0RlSTS2/+1cmob
-	vm1/wAxoS+hfR5UiXVdUkCDzxs/9qD6uauAf7fELWROhrZpjk36d9mU5qA0F+NZWUIW5s6nonvM
-	7J+eiDPbsEB0FFbAzcW82XCRcpkn0TpVy9nXcT0+cxmSNLPB7ox7q7YPi7pR/hfhoLDHC0MgXny
-	L7ep9UAHAtuotVUWN2AmZRMP7EeoZ1U0wRj+lSRSI5d0jqBsK/OnlBrYwYQVuf42pTBwsbcvpDo
-	SVV5CGKTlkWGiWVGArFi6l5SZfRyU1BelOuyPjAMG+Reg23qQP26GgSR+o49m0RR+eO9Qg6k+Ud
-	RchYKXOBUIyZOhpqpVFNHgmH5DyV0y9UdzW4x0hy77LSQvFut1g6OLcK6JKW1Yb4y8wigYnKl2n
-	Up9kA==
-X-Received: by 2002:a05:6000:609:b0:439:cb10:dfcd with SMTP id ffacd0b85a97d-439da67982fmr12882158f8f.39.1772958182927;
-        Sun, 08 Mar 2026 00:23:02 -0800 (PST)
-Received: from jernej-laptop.localnet (86-58-12-163.dynamic.telemach.net. [86.58.12.163])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae2bdf8sm16891038f8f.25.2026.03.08.00.23.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Mar 2026 00:23:02 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>,
- Andre Przywara <andre.przywara@arm.com>,
- Michal Piekos <michal.piekos@mmpsystems.pl>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- Michal Piekos <michal.piekos@mmpsystems.pl>
-Subject:
- Re: [PATCH 0/2] arm64: dts: allwinner: fix Orange Pi Zero 3 PMIC interrupt
- routing
-Date: Sun, 08 Mar 2026 09:23:01 +0100
-Message-ID: <3404622.44csPzL39Z@jernej-laptop>
-In-Reply-To: <20260308-rc2-boot-hang-v1-0-d792d1a78dfd@mmpsystems.pl>
-References: <20260308-rc2-boot-hang-v1-0-d792d1a78dfd@mmpsystems.pl>
+	s=arc-20240116; t=1772959407; c=relaxed/simple;
+	bh=wBJY5rzFDw2qSjmsNIfNn/LBfLOokhBatWku10VNP2U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nsVVDX1BmfiwOQEtiHvBcjllSRXkBg+iCln7nwLQPtihYHE/fw2X5hFem8kDzF4SdSaGbYOw+YlICJiykj08DX6UwVEpMDzY2hq0sYtylHg0vw/w7MA55x/T+Lvgeh22Ckq8oetb9LvysuELej0AVQcifcTaexpqqZDEMRlEcoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LXo89Vdg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B12FC116C6;
+	Sun,  8 Mar 2026 08:43:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772959407;
+	bh=wBJY5rzFDw2qSjmsNIfNn/LBfLOokhBatWku10VNP2U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LXo89Vdgft2lKAePhnklJsK/DrOC44pUAo+LzHUESmEwcsvqXYlIK017nexWDeiPB
+	 L0SwywvsVwVsMn054y5r6ebUdxvlpgd5xnbx57b6DgAi7hKo1HX3XsSSToZc4M9oO3
+	 Qp2dG5LmdDuQKMZfuk8dlEikJLCcaGrMr2YMTNwoocCea2W/U7dH+xeSGE+Xj6j4a4
+	 UpDBuywkaum9zrpEqustmgsjKR1XdOeZfpuapH9UK1mP7bYQ8pW3KmkevBjCkP4nKM
+	 YBqum7fkwFOQbSUl5aY/jXO0HXr7qIli0kVfC3mc294EDSHp8RFgqeF1mCM1Ey8ePl
+	 mBjiFVCP+sq1Q==
+Message-ID: <bf67a30a-c051-4877-904e-5c583bc673c7@kernel.org>
+Date: Sun, 8 Mar 2026 09:43:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: 1CEB722F06D
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: display: panel: Document Tianma
+ TA066VVHM03
+To: Alexander Koskovich <AKoskovich@pm.me>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260308-tianma-ta066vvhm03-v1-0-869fac443b20@pm.me>
+ <20260308-tianma-ta066vvhm03-v1-1-869fac443b20@pm.me>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260308-tianma-ta066vvhm03-v1-1-869fac443b20@pm.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 5FABA22F0E3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272551-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272552-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[pm.me,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.968];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jernejskrabec@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.933];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Michal,
+On 08/03/2026 07:03, Alexander Koskovich wrote:
+> +
+> +  vddio-supply: true
+> +  vci-supply: true
+> +  vdd-supply: true
+> +  port: true
+> +  enable-gpios: true
+> +  reset-gpios: true
+> +
+> +additionalProperties: false
 
-Dne nedelja, 8. marec 2026 ob 06:16:50 Srednjeevropski standardni =C4=8Das =
-je Michal Piekos napisal(a):
-> This fixes a kernel hang during boot on the Orange Pi Zero 3 caused by
-> incorrect interrupt routing for the AXP313A PMIC.
->=20
-> The PMIC interrupt on is connected to PL bank GPIO handled by the R_PIO
-> controller. However current dts routes the interrupts to PIO controller.
-> This causes the kernel to select wrong pinctrl instance when configuring
-> the interrupt which leads to invalid register access and a kernel hang
-> during boot.
+This should be placed after "required:" block.
 
-Where did you get that info? Publicly available schematic clearly shows
-PMIC interrupt pin being connected to PC9. Additionally, R_PIO controller
-on H616 is very basic and has only pins PL0 and PL1, which are used for
-PMIC communication already. Neither of those pins is interrupt capable.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
->=20
-> The problem existed previously but became visible after the commit
-> 01e10d0272b9 (pinctrl: sunxi: Implement gpiochip::get_direction()),
-> which causes gpiolib to call the gpiochip::get_direction() callback
-> during interrupt setup.
-
-I think proposed solution just bypasses the problem, not actually fixes
-it. Can you share kernel crash report?
-
-Sidenote: Tested-by: tag doesn't have any value if you're also the author
-of the patch. It's already implied that you tested your solution/improvemen=
-ts.
-
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vddio-supply
+> +  - vci-supply
+> +  - vdd-supply
+> +  - reset-gpios
+> +  - port
 Best regards,
-Jernej
-
->=20
-> Patch 1 declares R_PIO node as interrupt controller so it can be used as
-> interrupt parrent.
->=20
-> Patch 2 fixes the board device tree by routing the interrupt to R_PIO
->=20
-> ---
-> Michal Piekos (2):
->       arm64: dts: allwinner: h616: declare r_pio as interrupt controller
->       arm64: dts: allwinner: orangepi-zero3: fix axp313 interrupt parrent
->=20
->  arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi               | 2 ++
->  arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts | 2 +-
->  2 files changed, 3 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 4ae12d8bd9a830799db335ee661d6cbc6597f838
-> change-id: 20260308-rc2-boot-hang-269e8546635b
->=20
-> Best regards,
->=20
-
-
-
-
+Krzysztof
 
