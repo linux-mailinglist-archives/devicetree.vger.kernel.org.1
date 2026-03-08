@@ -1,277 +1,256 @@
-Return-Path: <devicetree+bounces-272614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272615-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iMOsFuy9rWla6wEAu9opvQ
-	(envelope-from <devicetree+bounces-272614-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:20:28 +0100
+	id 2DyaN3XArWnq6wEAu9opvQ
+	(envelope-from <devicetree+bounces-272615-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:31:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EEB823198E
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:20:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48161231A9B
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:31:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EFEBD3002521
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 18:20:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A2E513010DB2
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 18:28:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD0930CD81;
-	Sun,  8 Mar 2026 18:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281953947B1;
+	Sun,  8 Mar 2026 18:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="V7hy7/S4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MGZ1YOW/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71E42110E
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 18:20:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011B739448C;
+	Sun,  8 Mar 2026 18:28:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772994021; cv=none; b=mypPGUVo2ge3dTfnxFlEKuq5QOxUsZGPvpp74M2aNwIpcqm+k/xdBT9B616+JD3u8PqGjJOtDNk9im9Ic9iyXW+oenaUeAQSEw6VcyxSA5rctwdc32BfcNIzDnf924UENFn3twIEPoU0CsbkSetzZACwB8/CifG/1m7Q20GHAIc=
+	t=1772994532; cv=none; b=K5ST7bIVBl3FT6Q3Yr0wLQs2Iigraok8vt0L69RjkoB/B69KKOfRZYPidapo8Y/QOsKuyZ+rXra3yC/6On2Y7lBsRzUA+0vZtYL+COYWEdDZkT9qj6kk9NAsphcONClUvgqdZRcpQJrkPSglXadXJR0PAfn0E4c/BR0Okd46uBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772994021; c=relaxed/simple;
-	bh=Jy4NFTwiCpQ5Ymy/1VB5BryAZPUczW+7GPF6HVfH2Fs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QswJj2a2MDVyOXFFRXjL1HOfgBpXUBI/t8nQMvMprgYJ9tSlgTkJeeNpHyPlvf32BaMpzi+E658xQkwglrcYkb8soOut3m+Q3Z4sQfa5dxZkghEZ3BmjhXo1/dtIUYH8m+aUCRxHS3gT2RgNgfGwRvKyRIWOHb10VSXWx4Uj4Xo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=V7hy7/S4; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-798617c0ad5so60326467b3.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 11:20:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1772994019; x=1773598819; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ebNKnkiCdgWGG7d84Dx/mjbwarrbx79g9Rc6LzAJfuU=;
-        b=V7hy7/S4G50K44iMdcGmiiRxaVbndhtzvvKYjKoFO+1Zow/8Sg66HdeyG9Wp8PqV0A
-         jmwvBozDDGqKK6iAnppjK/rkS18txUKW5AxDV42qqNNVYmDLScfqkqL4FUyeashAB2iC
-         A8VrERRcUkyS/lkCvNilNZJgCSxVLWAEAJUvFpctuEZhODvgP1uVKnJ4DQPVRBcuVLJl
-         TKlA1eiwRJ742tXc5nw0Jxt0ZDa6uJdmFIcVEV6a0CBAoIoYaRsVlDwTP8lTwP9xVydD
-         Z9QOgs+M9iNOWG/cyxDsWU/CFnU9xcUDTpQuxzqLDH1zKoVl48DxTdqqsMaseEA58Mro
-         npIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772994019; x=1773598819;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ebNKnkiCdgWGG7d84Dx/mjbwarrbx79g9Rc6LzAJfuU=;
-        b=UQzR2f9cGsie+rs0ezpkqrI9QQC9dgh5g7xY8CqUELx84OtURNN3ALN8srb3AGWXXA
-         xa4tdadbbzvTnVXvIMv5DR6C019mCTtEYeiPESG01FJoG6rzQYSpHikSatyNJpMbMUAB
-         jvCaLjnP+gTlCjegoJUhYHLwNClklezh3PNXYHcDDKPtoKIZ7ZzDqM8JcuERyRUbW1mr
-         SkD07IyZC/HNFuvf3H1pleAK79uZq5vh/8r7hiyT4cDjMMiet+3BTOqmwXGrL6VXFB7V
-         rJyTxl+PRGha93ep3OSNHAsoaumbeoG5liO1pUHqb+heuiw8iDDZVFLIn26EA8YrpI5I
-         dxJg==
-X-Forwarded-Encrypted: i=1; AJvYcCU7qb8zBcgmFUgCclWSK2fc83trpW7ziBx+RF9okVVdkDnhT07B49MDmdPTFwd/SKWvwVaXpWLImFWa@vger.kernel.org
-X-Gm-Message-State: AOJu0YweA+hYYAzHt1jNXaCh+ZtrgNv+bc5aqtxjXtIbqVvctYo/9/Sz
-	6D5aiHe//NPZQdbiPonA8lbpynayaAVompCLKLnkFbH1mMhacbAq4JDv3fqxRcYuRa4=
-X-Gm-Gg: ATEYQzwy5HawZ76nUx80Isl3E+q7A9iXufyV/AEwOokp60/wwsNoXO0B30lpoKFUhEv
-	Ce32O2+hKm3x+HSAUtBaKYzx04BA76xHznfKN32WXTAMOg5gOeuoBYSsYGm5wQqZEaAHOR2eoic
-	6tJxrLJpYTCWdtsm7W3ZbeL7Mg0LJppPzhrCbqxjuZ3dLigfrJD8Upb7GKz8YOr4FHQLMnr6I3M
-	S0YcPCA/0rFaFNHTtT23F99/QNqIGjp15Ff1fA02x6xUmXjObm4NHpLP21piEecTcfTgR0u+ecP
-	DZQRsHO1w8Xy59jzzfegLYJEj1hSrUaBiXQe0KgQZI/TO4lOghukNRVeoOAEw5u47zbmtZQ2djB
-	EGGLITloSDLR+kQ5hz80GJLCbvAM6cpu2Ir4FkRLRNhWOxbjxKMjXiZyI9Qmxvn2IYWGXLJUTO3
-	XawZG7o0Vt75MNhmcqke5bLOhqrXXhZ7XXbaqMqiU3
-X-Received: by 2002:a05:690c:6902:b0:798:d9a3:e723 with SMTP id 00721157ae682-798dd7433acmr81222947b3.49.1772994018987;
-        Sun, 08 Mar 2026 11:20:18 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.103.33])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-798dec8de45sm35617467b3.9.2026.03.08.11.20.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Mar 2026 11:20:18 -0700 (PDT)
-Message-ID: <f1b541f4-6d34-4080-b322-f097c4e2f48d@sifive.com>
-Date: Sun, 8 Mar 2026 13:20:17 -0500
+	s=arc-20240116; t=1772994532; c=relaxed/simple;
+	bh=AbZ2VMFdeOP37VjLR8TQ3qomr0Qrf1mNdZHRI7FOsjI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZS7Y+YvgRWJTJlQTBGmEh7kYnSfUx9XdX4EZzliOcnI6C5w0ZyRlZsws0jroCEwsbe04aKSD3AL7Ij2b7qM8Uw07u2uCEjdbr1x01RKCMFVWeQySW18jSWWnrUIoSnSz9/GFdLex5ViUYFD/aI+AAPPN/5aeTo6dMfxeFZs8mBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MGZ1YOW/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA070C2BC86;
+	Sun,  8 Mar 2026 18:28:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772994531;
+	bh=AbZ2VMFdeOP37VjLR8TQ3qomr0Qrf1mNdZHRI7FOsjI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=MGZ1YOW/qsgNg0RzngBxjg0yJgjBa2R2LOujqjn8gWZCF8N/mJhxihLqusGTrTS8q
+	 GBF7hjByYDc4KHMn9B7H6CEHV42+EJC5Gr7TM8GglPXHAhE//hnee2+cyVQ8JUJphc
+	 I8B+rmylibYq/kNSRDvtYT9QNZKuvtDZd5uZrI5P0DWp8yGkuJzn+MeAlxIr1k5xsM
+	 MNNuxeWn0cb/4n8L3/24uZGIPEoZivxkYVdZ+q0inBEhJVAFqwkd2n0BCxOHhcEY1O
+	 K2tyYUReoieAsa3Ln/cWl5hQcfOVB+n4fKeEQElUIiZ/YglEcIWRbAL7GaA8sdI9+b
+	 JTWIIUDyJy6Iw==
+Date: Sun, 8 Mar 2026 18:28:39 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: "Sabau, Radu bogdan" <Radu.Sabau@analog.com>, Radu Sabau via B4 Relay
+ <devnull+radu.sabau.analog.com@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+ "Sa, Nuno" <Nuno.Sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <ukleinek@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
+ <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>, Bartosz
+ Golaszewski <brgl@kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org"
+ <linux-pwm@vger.kernel.org>, "linux-gpio@vger.kernel.org"
+ <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: add bindings for AD4691
+ family
+Message-ID: <20260308182839.19587743@jic23-huawei>
+In-Reply-To: <08717cd6-a732-4f06-a6f1-8cbdaa755b78@baylibre.com>
+References: <20260305-ad4692-multichannel-sar-adc-driver-v1-0-336229a8dcc7@analog.com>
+	<20260305-ad4692-multichannel-sar-adc-driver-v1-1-336229a8dcc7@analog.com>
+	<20260305174559.1ded5173@jic23-huawei>
+	<LV9PR03MB84149F32D4CABA4D2827D85BF77AA@LV9PR03MB8414.namprd03.prod.outlook.com>
+	<08717cd6-a732-4f06-a6f1-8cbdaa755b78@baylibre.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] riscv: cpufeature: Add ISA extension parsing for
- Supm
-To: Guodong Xu <guodong@riscstar.com>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley
- <conor@kernel.org>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Evan Green <evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>,
- Conor Dooley <conor.dooley@microchip.com>
-References: <20260125-supm-ext-id-v2-0-1e3b9714c860@riscstar.com>
- <20260125-supm-ext-id-v2-2-1e3b9714c860@riscstar.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <20260125-supm-ext-id-v2-2-1e3b9714c860@riscstar.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 5EEB823198E
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 48161231A9B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272614-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[sifive.com:+];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272615-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[analog.com,kernel.org,metafoo.de,gmail.com,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[samuel.holland@sifive.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.977];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.988];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sifive.com:dkim,sifive.com:mid,microchip.com:email]
+	TAGGED_RCPT(0.00)[devicetree,radu.sabau.analog.com,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Guodong,
+On Sat, 7 Mar 2026 12:48:39 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-On 2026-01-24 7:36 PM, Guodong Xu wrote:
-> Supm has been ratified in the RISC-V Pointer Masking specification
-> (Version 1.0, 10/2024) and is mandated in RVA23 Profiles (Version 1.0,
-> 2024-10-17) for RVA23U64. Supm indicates userspace pointer masking
-> support.
-> 
-> Remove the previous macro aliasing of Supm to Ssnpm/Smnpm in hwcap.h,
-> treating Supm as a distinct RISC-V ISA extension ID.
-> 
-> Add ISA parsing logic for Supm, and implement a validator to ensure
-> that Supm is only reported as available if Kconfig allows it and the
-> underlying Ssnpm (for supervisor mode) or Smnpm (for machine mode)
-> extension is present. Supm relies on Ssnpm or Smnpm to provide the
-> underlying hardware implementation.
-> 
-> With this change, "supm" will be reported (when available) in
-> /proc/cpuinfo as part of the "isa" and "hart isa" string.
-> 
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Link: https://lore.kernel.org/lkml/20260101-legume-engraved-0fae8282cfbe@spud/#r [1]
-> Link: https://lore.kernel.org/all/4ebbe14b-2579-4ba6-808d-d50c24641d04@sifive.com/#r [2]
-> Signed-off-by: Guodong Xu <guodong@riscstar.com>
-> ---
-> v2: Add Reviewed-by from Conor.
->     Update RISCV_ISA_EXT_SUPM id to solve rebase conflict.
-> ---
->  arch/riscv/include/asm/hwcap.h |  3 +--
->  arch/riscv/kernel/cpufeature.c | 35 +++++++++++++++++++++++++++++++++--
->  2 files changed, 34 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index 7ef8e5f55c8d..aa2af21f3bd3 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -112,6 +112,7 @@
->  #define RISCV_ISA_EXT_ZCLSD		103
->  #define RISCV_ISA_EXT_ZICFILP		104
->  #define RISCV_ISA_EXT_ZICFISS		105
-> +#define RISCV_ISA_EXT_SUPM		106
->  
->  #define RISCV_ISA_EXT_XLINUXENVCFG	127
->  
-> @@ -120,10 +121,8 @@
->  
->  #ifdef CONFIG_RISCV_M_MODE
->  #define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SMAIA
-> -#define RISCV_ISA_EXT_SUPM		RISCV_ISA_EXT_SMNPM
->  #else
->  #define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SSAIA
-> -#define RISCV_ISA_EXT_SUPM		RISCV_ISA_EXT_SSNPM
->  #endif
->  
->  #endif /* _ASM_RISCV_HWCAP_H */
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 1734f9a4c2fd..e1f7ad882289 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -317,6 +317,27 @@ static int riscv_cfiss_validate(const struct riscv_isa_ext_data *data,
->  	return 0;
->  }
->  
-> +static int riscv_ext_supm_validate(const struct riscv_isa_ext_data *data,
-> +				   const unsigned long *isa_bitmap)
-> +{
-> +	if (!IS_ENABLED(CONFIG_RISCV_ISA_SUPM))
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * Supm requires Ssnpm for S-mode or Smnpm for M-mode to provide
-> +	 * pointer masking for the U-mode execution environment.
-> +	 */
-> +	if (IS_ENABLED(CONFIG_RISCV_M_MODE)) {
-> +		if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SMNPM))
-> +			return 0;
-> +	} else {
-> +		if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SSNPM))
-> +			return 0;
-> +	}
-> +
-> +	return -EPROBE_DEFER;
-> +}
-> +
->  static const unsigned int riscv_a_exts[] = {
->  	RISCV_ISA_EXT_ZAAMO,
->  	RISCV_ISA_EXT_ZALRSC,
-> @@ -450,6 +471,15 @@ static const unsigned int riscv_c_exts[] = {
->  	RISCV_ISA_EXT_ZCD,
->  };
->  
-> +/*
-> + * Smnpm and Ssnpm provide pointer masking for the next lower privilege mode
-> + * (U-mode), thus enabling Supm. Both extensions imply the same subset.
+> On 3/6/26 5:55 AM, Sabau, Radu bogdan wrote:
+> >=20
+> >  =20
+> >> -----Original Message-----
+> >> From: Jonathan Cameron <jic23@kernel.org>
+> >> Sent: Thursday, March 5, 2026 7:46 PM
+> >> To: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
+> >> Cc: Sabau, Radu bogdan <Radu.Sabau@analog.com>; Lars-Peter Clausen <la=
+rs@metafoo.de>; Hennerich, Michael
+> >> <Michael.Hennerich@analog.com>; David Lechner <dlechner@baylibre.com>;=
+ Sa, Nuno <Nuno.Sa@analog.com>; Andy Shevchenko
+> >> <andy@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski =
+<krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>;
+> >> Uwe Kleine-K=C3=B6nig <ukleinek@kernel.org>; Liam Girdwood <lgirdwood@=
+gmail.com>; Mark Brown <broonie@kernel.org>; Linus Walleij
+> >> <linusw@kernel.org>; Bartosz Golaszewski <brgl@kernel.org>; linux-iio@=
+vger.kernel.org; devicetree@vger.kernel.org; linux-
+> >> kernel@vger.kernel.org; linux-pwm@vger.kernel.org; linux-gpio@vger.ker=
+nel.org
+> >> Subject: Re: [PATCH 1/4] dt-bindings: iio: adc: add bindings for AD469=
+1 family
+> >>
+> >> [External]
+> >>
+> >> On Thu, 05 Mar 2026 14:23:27 +0200
+> >> Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org> wro=
+te:
+> >> =20
+> >>> From: Radu Sabau <radu.sabau@analog.com>
+> >>>
+> >>> Add YAML bindings and dt-bindings header for the Analog Devices AD4691
+> >>> family of multichannel SAR ADCs (AD4691, AD4692, AD4693, AD4694).
+> >>>
+> >>> The binding describes five operating modes selectable via the
+> >>> adi,spi-mode property, optional PWM/clock for CNV Clock and CNV Burst
+> >>> modes, GPIO pins, voltage supplies and the trigger-source interface f=
+or
+> >>> SPI Engine offload operation.
+> >>>
+> >>> Signed-off-by: Radu Sabau <radu.sabau@analog.com> =20
+> >>
+> >> Hi Radu, I'm going to focus on mode... Mostly because things called
+> >> mode are usually a sign of mixing up different aspects of the board
+> >> design...
+> >> =20
+> > Hi Jonathan, Krysztof,
+> >=20
+> > Thank you guys so much for your review.
+> >=20
+> > Regarding 'mode', I agree that it should be something that could be mod=
+ified
+> > at run-time, especially since all register modes (CNV_CLOCK, CNV_BURST,
+> > AUTONOMOUS and SPI_BURST) rely on the same principles of reading the
+> > ADC result from the registers, the main difference being that PWM on the
+> > CNV pin is required for CNV_CLOCK and CNV_BURST, but the board design
+> > stays the same. Perhaps this PWM can be initialized at start-time and o=
+nly
+> > be used when CNV modes are being used. This would mean mode can
+> > become an IIO attribute that could be set by the user at run-time. =20
+>=20
+> More likely, it would be two different ways of doing a buffered read,
+> so maybe two different buffers? Or just pick the "best" one and only
+> implement that mode.
 
-If Linux is running in S-mode, then Smnpm does _not_ imply Supm. So this list
-cannot be shared between Ssnpm and Smnpm. (When running Linux in M-mode, I think
-we assume S-mode isn't supported, so the opposite case isn't possible. If you do
-run M-mode Linux on M/S/U hardware, I think there are other things that explode
-spectacularly, since we will touch for example the wrong envcfg register.)
+I 'think' burst mode is really an oversampling thing as you read back from
+either the output of an averaging filter or an accumulator.=20
+I doubt there is reason to support both the oversampled and raw
+readings at the same time.
 
-> + */
-> +static const unsigned int riscv_supm_exts[] = {
-> +	RISCV_ISA_EXT_XLINUXENVCFG,
-> +	RISCV_ISA_EXT_SUPM
-> +};
-> +
->  /*
->   * The canonical order of ISA extension names in the ISA string is defined in
->   * chapter 27 of the unprivileged specification.
-> @@ -577,12 +607,13 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
->  	__RISCV_ISA_EXT_DATA_VALIDATE(zvkt, RISCV_ISA_EXT_ZVKT, riscv_ext_vector_crypto_validate),
->  	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
->  	__RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
-> -	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_xlinuxenvcfg_exts),
-> +	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_supm_exts),
->  	__RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
->  	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
->  	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
-> -	__RISCV_ISA_EXT_SUPERSET(ssnpm, RISCV_ISA_EXT_SSNPM, riscv_xlinuxenvcfg_exts),
-> +	__RISCV_ISA_EXT_SUPERSET(ssnpm, RISCV_ISA_EXT_SSNPM, riscv_supm_exts),
->  	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
-> +	__RISCV_ISA_EXT_DATA_VALIDATE(supm, RISCV_ISA_EXT_SUPM, riscv_ext_supm_validate),
-
-I don't think this quite matches what we want either. We don't want to accept
-Supm from the devicetree at all, so it shouldn't be in this array (just like
-Xlinuxenvcfg is not in this array). You'll need new code in riscv_resolve_isa()
-(or its callers) to set the RISCV_ISA_EXT_SUPM bit under the right conditions.
-
-Regards,
-Samuel
-
->  	__RISCV_ISA_EXT_DATA(svade, RISCV_ISA_EXT_SVADE),
->  	__RISCV_ISA_EXT_DATA_VALIDATE(svadu, RISCV_ISA_EXT_SVADU, riscv_ext_svadu_validate),
->  	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
-> 
+>=20
+> >=20
+> > However for MANUAL, modifications of jumper resistors on the physical
+> > board is required for proper functionality, since the CNV pin needs to =
+be
+> > tied to CS in this mode. Would it be preferred if bindings would have a
+> > 'register-mode' attribute (the name could be better) which can have val=
+ues
+> > like 1(register modes are used) and 1(manual mode is used), and for
+> > register modes, have a global IIO attribute that can switch between
+> > them?
+> >  =20
+>=20
+> The binding should describe how the chip is wired up. So rather than thin=
+king
+> about modes, try thinking in terms of connections. Based on what the devi=
+cetree
+> says is connected, the driver can then infer which modes are actually pos=
+sible.
+>=20
+> Bringing back some context that was trimmed:
+>=20
+> +  adi,spi-mode:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3, 4]
+> +    description: |
+> +      Selects the ADC operating mode:
+> +        0 - CNV Clock Mode: External PWM drives CNV pin, samples at PWM =
+rate.
+> +        1 - CNV Burst Mode: PWM triggers burst cycles, internal oscillat=
+or
+> +            drives conversions within each burst.
+> +        2 - Autonomous Mode: Internal oscillator drives conversions, sof=
+tware
+> +            starts/stops via register write.
+> +        3 - SPI Burst Mode: Similar to Autonomous Mode but optimized for
+> +            SPI burst reads.
+> +        4 - Manual Mode: CNV is directly tied to SPI CS. Each SPI transf=
+er
+> +            triggers a conversion and returns previous result (pipelined=
+).
+>=20
+>=20
+> It sounds like there are 3 ways that the CNV pin could be wired up:
+>=20
+> 1. Wired to PWM
+> 2. Not connected
+> 3. Wired to CS
+>=20
+> On some other chips we've seen where CNV could be wired up different ways,
+> "not connected" was not an option. In those cases, we could infer that if
+> that no other properties indicated what CNV was connected to, then we wou=
+ld
+> assume CNV was connected to SPI CS.
+>=20
+> In this case, if "not connected" is an option, we might need a bool/flag
+> property adi,cnv-is-cs to describe that the CNV pin is wired to the CS pi=
+n.
+> And we already have the pwms property to know when CNV is connected to a
+> PWM.
+>=20
+>=20
+> > Please let me know your thoughts on this before addressing the other
+> > Comments and preparing other patches.
+> >=20
+> > Best regards,
+> > Radu
+> >  =20
 
 
