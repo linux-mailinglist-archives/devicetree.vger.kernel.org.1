@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-272577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272578-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YIvnLAqFrWkx3wEAu9opvQ
-	(envelope-from <devicetree+bounces-272577-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:17:46 +0100
+	id 4BGzHryJrWnL4AEAu9opvQ
+	(envelope-from <devicetree+bounces-272578-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:37:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1FEB2309E2
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:17:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1EA230B8C
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 15:37:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7EF4B300F113
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 14:17:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C75DD300950D
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 14:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18CC91F3D56;
-	Sun,  8 Mar 2026 14:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764FE220F2A;
+	Sun,  8 Mar 2026 14:37:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lv0xnwrJ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GoWVOWpw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71318191F98;
-	Sun,  8 Mar 2026 14:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6143E21ABD7;
+	Sun,  8 Mar 2026 14:37:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772979464; cv=none; b=fzb1JDihh/lIgRsaMvgUztvZHsXC+2Z2WNoP0EwJ6r0kZiDCuUD3oXEgFJlkJStG2ezs8TIjxZg6qhuGViUfLwwVrgszht6O3AKO+obKPYO9A4jv/gYRbGNxhBBHIOu0is2u5P1A1CC114+ktJK/KVNVoJCV4p02fIhzN9hMbCs=
+	t=1772980664; cv=none; b=fKr9HaW7NPM1O3g+IcgsXu1yyZBF1sP6awoE5eJd/hKo1GD5ihtM99T8l8T9frNFeCClGPlW0bZ744vtFzOdckQrl4ZPvrhZpVpG5cxCNBj5u1aSvMJiDET2G1ZKUNORL865WDH4+mbB325l89al0cFcpNQWYoikE1tuYzM+zgc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772979464; c=relaxed/simple;
-	bh=8qeFutWw+BB4rroxVqdEPs7a3s6Ta8CazCTn6Ie2wzc=;
+	s=arc-20240116; t=1772980664; c=relaxed/simple;
+	bh=texYecOx1G6VAtPnt/oo5M8yOZE/OMC31g9BmuVmDjo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QC2TNa/EziqfyTej0/ZGgpTaHcI/tdrFkPDfb5CMSNwlimQJurn/05DBfMBk4S5IT0CVrGwowQqKD/OpTDAO8GLFupk3bT9XcuUTImfRhqN9LFQ7ysw+QRoDy9vviZ5KOCJnKxp39Hejm8sqIzRCNdsXiR/YawcoQbqhPcA33SY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lv0xnwrJ; arc=none smtp.client-ip=192.198.163.12
+	 Content-Type:Content-Disposition:In-Reply-To; b=umYH6IDfQJGehMqy1x7Z/YXFGDuAcHFo8ttMQzZZHwcc8alRxLpEmNUBV5Fim7UFywBMHGLvm84+H/GC/uQzzgEjjZRuNDEPAaaLjrcrrDfh8omC74OaGrm30zFYg5RVmT7TB1m3PyxRqwhTDWLcpAjcHT/z2hzsk8zC1Jxi89A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GoWVOWpw; arc=none smtp.client-ip=198.175.65.14
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1772979462; x=1804515462;
+  t=1772980662; x=1804516662;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=8qeFutWw+BB4rroxVqdEPs7a3s6Ta8CazCTn6Ie2wzc=;
-  b=lv0xnwrJ6/KdS8EV8g9w8V3A3j3yleTceETtPf0UbthsOl3cgeQPVSXE
-   6fpNK4QUw6XqSN8jFAPA3ofQz2arN5kv8I8bAL2fX/mEL2qS13enjblub
-   fNloCe1/TBo3JOecp9m076jW4D7IeNt9pkCHvlp0mh56vBt1NjHr016uf
-   LhJ/nxwYLSoxbYDjDa8geBJGpjo9TE+Viqr4xT776KFipm5IPAPDEaQPQ
-   QQJj/vXkV5LubbX7G2Uaw+bWsdhw/6Hr/iCNougi1WHKfCXshS/JqtGGZ
-   F16wtxtms2345FKK1PwOEs5iB87hMtG0VSP2Wbmt4yZ8oVtKAQbpd1nXa
-   g==;
-X-CSE-ConnectionGUID: BpaFgigjTleHIKdwsjX6Vw==
-X-CSE-MsgGUID: GAFD6J6zTpyMw5m4imQ1+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="77898212"
+  bh=texYecOx1G6VAtPnt/oo5M8yOZE/OMC31g9BmuVmDjo=;
+  b=GoWVOWpwg22BHqQyK9L0InPLAn2p1CSpIOQ0G6Eocm4XRDQm2rj4R9+Z
+   PeYmkU21ovli0pGB9Cc54feF8XaLGjQUKgummBt/MdQE7in9Y52TzSdm9
+   5Y9DoxMR5pmBkI0tNE/CAz/HMly9bALHO1yTLBJH9llnJ5Vd550G8yD3I
+   86NI0E9DsSVVVLHQ/wKeG/3nxPmdpvI9SObtUxKCnVdjpCRd3t38BiHzS
+   V4X0LfRvxqrfPVrCUQct3kuXZAR6P3z4QjLjWPsrImr8lPuc6zoUNsCjO
+   rP+qCT4S4kDa8DdtzjGKYAAu5qx7LJ30P8eTi8YIx7lNkiZ5FYmVfSDuo
+   w==;
+X-CSE-ConnectionGUID: FXuRI/xxT42g04CaPtK/9g==
+X-CSE-MsgGUID: MXOleFFaR0C+Cycwp1iyHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="77874571"
 X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; 
-   d="scan'208";a="77898212"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2026 07:17:41 -0700
-X-CSE-ConnectionGUID: vK5RaDZZTU+P8ecYkBrL4g==
-X-CSE-MsgGUID: KN9S+TStSV65E+A7SP3bog==
+   d="scan'208";a="77874571"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2026 07:37:42 -0700
+X-CSE-ConnectionGUID: WQ/8v7cSQzGZqRBE+4dG4g==
+X-CSE-MsgGUID: CT/JL0eFTuavVzxt61I/Fw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; 
-   d="scan'208";a="222211592"
+   d="scan'208";a="219455261"
 Received: from lkp-server01.sh.intel.com (HELO 058beb05654c) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 08 Mar 2026 07:17:36 -0700
+  by orviesa009.jf.intel.com with ESMTP; 08 Mar 2026 07:37:37 -0700
 Received: from kbuild by 058beb05654c with local (Exim 4.98.2)
 	(envelope-from <lkp@intel.com>)
-	id 1vzEwn-000000003AW-3Wna;
-	Sun, 08 Mar 2026 14:17:33 +0000
-Date: Sun, 8 Mar 2026 22:16:57 +0800
+	id 1vzFGA-000000003Am-0sOb;
+	Sun, 08 Mar 2026 14:37:34 +0000
+Date: Sun, 8 Mar 2026 22:37:32 +0800
 From: kernel test robot <lkp@intel.com>
 To: Alexander Koskovich <AKoskovich@pm.me>,
 	Neil Armstrong <neil.armstrong@linaro.org>,
@@ -77,12 +77,11 @@ To: Alexander Koskovich <AKoskovich@pm.me>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	Alexander Koskovich <akoskovich@pm.me>
 Subject: Re: [PATCH 2/2] drm/panel: Add support for Tianma TA066VVHM03 panel
-Message-ID: <202603082210.FAhPnZOe-lkp@intel.com>
+Message-ID: <202603082223.61KVemAP-lkp@intel.com>
 References: <20260308-tianma-ta066vvhm03-v1-2-869fac443b20@pm.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -93,7 +92,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 In-Reply-To: <20260308-tianma-ta066vvhm03-v1-2-869fac443b20@pm.me>
-X-Rspamd-Queue-Id: C1FEB2309E2
+X-Rspamd-Queue-Id: 2F1EA230B8C
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -101,16 +100,16 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272577-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272578-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[pm.me,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -119,10 +118,10 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-0.978];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,01.org:url]
 X-Rspamd-Action: no action
 
 Hi Alexander,
@@ -135,21 +134,21 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Alexander-Koskovich/dt-bi
 base:   11439c4635edd669ae435eec308f4ab8a0804808
 patch link:    https://lore.kernel.org/r/20260308-tianma-ta066vvhm03-v1-2-869fac443b20%40pm.me
 patch subject: [PATCH 2/2] drm/panel: Add support for Tianma TA066VVHM03 panel
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260308/202603082210.FAhPnZOe-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260308/202603082210.FAhPnZOe-lkp@intel.com/reproduce)
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20260308/202603082223.61KVemAP-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260308/202603082223.61KVemAP-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603082210.FAhPnZOe-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603082223.61KVemAP-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
->> drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c:335:7: error: no member named 'dsc_slice_per_pkt' in 'struct mipi_dsi_device'
+   drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c: In function 'tianma_ta066vvhm03_probe':
+>> drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c:335:12: error: 'struct mipi_dsi_device' has no member named 'dsc_slice_per_pkt'
      335 |         dsi->dsc_slice_per_pkt = 2;
-         |         ~~~  ^
-   1 error generated.
+         |            ^~
 
 
 vim +335 drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c
