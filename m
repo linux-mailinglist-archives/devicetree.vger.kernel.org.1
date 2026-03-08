@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-272635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272636-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iF1SE5TlrWlU9AEAu9opvQ
-	(envelope-from <devicetree+bounces-272635-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 22:09:40 +0100
+	id eK23LITlrWlU9AEAu9opvQ
+	(envelope-from <devicetree+bounces-272636-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 22:09:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD96423244A
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 22:09:39 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 490D9232442
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 22:09:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AAC23300A77F
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 21:09:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6CCB0300AB0A
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 21:09:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F129B34F479;
-	Sun,  8 Mar 2026 21:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18ADB351C12;
+	Sun,  8 Mar 2026 21:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="YhewsJq/"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="qrv/QOj8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-244123.protonmail.ch (mail-244123.protonmail.ch [109.224.244.123])
+Received: from mail-43100.protonmail.ch (mail-43100.protonmail.ch [185.70.43.100])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FFDD34C80D
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 21:09:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4ED3502A9
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 21:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.100
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773004153; cv=none; b=ij81DdAKsXIZappwJRmMFQfNj0flPRvB6WqCCHh1KjR8y78HMqkPGjL+vDcgjJ+eANDlU6dHsF8VJxo9YuiVrFo/w+NtVdKdmtuSHAXND1qYJRMa4PRhngEtzX6FrOLaJ9VyMSQuqUUXoaUBEIry4t43xUbeEFn9KdNokJ30+rY=
+	t=1773004161; cv=none; b=e8YbVFGxFqtwcirJ2J9xzq/5KIPgnDmZqGAlzvmZHgKAeRthjrQEBbSXt7tZ85d9IOnHv94DgQn1aX1eQXhFeyOyzxSfclEyQN4vRgffph96OUFqcNIRwSRgLbnUogF43DLSLGRVatOyO8+m1d3X/Cq8qzP9pzFCqfM4hoX5uUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773004153; c=relaxed/simple;
-	bh=3Mmv1R9qvWVEqJedc5CfyNu/IEx4SdhW7tRnZAt3z18=;
+	s=arc-20240116; t=1773004161; c=relaxed/simple;
+	bh=suR2WNLWsRQ+Q0ylyyk0xbD1f0pyrvjQBdM6DIKIMaI=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U3QXBuqhBpLwrmBdm/rvNvETqv6fLoNZ4EFn2cFsKBLeGZhbUc0ImzAtCEbMbCpWX2agzoUgeaBD+xOFGQlLmt3YlxwDYaP64VT+gBkGhivEViGUD39nVzf1hgA+LT/tRG0ozCBOcX60Jhs3+UW2yw2ahsZEVfj7oQtUVfBBAU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=YhewsJq/; arc=none smtp.client-ip=109.224.244.123
+	 MIME-Version:Content-Type; b=R2RaxFZWVC0OFSpTOCSoHijrE2eeEwgpyfHAkjQJnDxUr8eR3ZKCvauBXgT95oAPUYWeR6FsfuNGhcF3KizbInL4FAl808hYpfcTRguYLlrXCeWKaSjEfU8b5//zPSCUXpuBJ6q337l4z4L80DfTmDH85cB45VobH3Elyoz5naY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=qrv/QOj8; arc=none smtp.client-ip=185.70.43.100
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
-	s=protonmail3; t=1773004149; x=1773263349;
-	bh=ylYirvG0pCdKrhFohTLSFDQQsmpzpzqTWZprJJA21os=;
+	s=protonmail3; t=1773004150; x=1773263350;
+	bh=+qUQ1t3DtqtA2Zf/97h87l9wY8KdSwv+cLyDWVmX3FI=;
 	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
 	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
 	 Message-ID:BIMI-Selector;
-	b=YhewsJq/GX3BN8xIfaA2j1PKN6oSLsAgFru0GkPM9hGl+osA2yQldYfjniEANNtGm
-	 X/z/OLq4BAJOXRCj7ocouqly8h+O6bodA1tX/exmaMPidwdDjeBpKPz5+v4Fjid0gc
-	 GQShBje5XwYePq4JoEyjZaGfCa7d8RKFcpCQQ4CfzXgWqeVY+tkpI5drb91S807DOf
-	 PzaX/sFgXRONRj5aV4bKZhEuud8o1y6CUHpLF8RCh+dSTJY+mKj3voKJ0L34ynM9S8
-	 c365LZ1R61id8tLSdQu53COBA2Oujon0Ub2KixbkL99aFbFOHdiIRLvdVSYWTdHiwN
-	 aiRnCqY8R40OQ==
-Date: Sun, 08 Mar 2026 21:09:00 +0000
+	b=qrv/QOj8JqpVhzFrBQj94cfzuIRe85Ap3Gc9TLSLHFbxjRitf/xIkkRJ3WlHHVMub
+	 LnvqR6zmF9zsCmkc2dtuF8zLLTehEen27thKwg5B19iwUwuNhZqAhjXT2bKl8JXG3h
+	 sxTX2nzRGpLyua6GBXuagMZEFCduKh3h28xxS5ocoZICypn792F+oz1DIg3/a0kpVF
+	 qBptUdJXIggF8AjJDatJKu27FCM+z8Ld7ycXgGpZZaSnK0+uzd7AtMVlyMikKzWIWD
+	 TMKgJlpp9+xkSjoWVoIISfDXQdf/NG2bJh8QKaF0evJBgxPUf0Dz6pH4Epq/vcx2sp
+	 UAph3PV0IZcYg==
+Date: Sun, 08 Mar 2026 21:09:05 +0000
 To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 From: Alexander Koskovich <AKoskovich@pm.me>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: [PATCH v2 1/2] dt-bindings: display: panel: Document Tianma TA066VVHM03
-Message-ID: <20260308-tianma-ta066vvhm03-v2-1-5f2344685133@pm.me>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Alexander Koskovich <akoskovich@pm.me>
+Subject: [PATCH v2 2/2] drm/panel: Add support for Tianma TA066VVHM03 panel
+Message-ID: <20260308-tianma-ta066vvhm03-v2-2-5f2344685133@pm.me>
 In-Reply-To: <20260308-tianma-ta066vvhm03-v2-0-5f2344685133@pm.me>
 References: <20260308-tianma-ta066vvhm03-v2-0-5f2344685133@pm.me>
 Feedback-ID: 37836894:user:proton
-X-Pm-Message-ID: c734d556b6de900124e0acead05e36a4b0cb7dc6
+X-Pm-Message-ID: cac6cf0c745a054b04f121037a75871bedb3ad0f
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,124 +64,509 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: AD96423244A
+X-Rspamd-Queue-Id: 490D9232442
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
 	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272635-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272636-lists,devicetree=lfdr.de];
 	FREEMAIL_TO(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.974];
+	NEURAL_HAM(-0.00)[-0.963];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[AKoskovich@pm.me,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[pm.me:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,pm.me:dkim,pm.me:email,pm.me:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,devicetree.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:dkim,pm.me:email,pm.me:mid,amarulasolutions.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add bindings for the Tianma TA066VVHM03 6.59" 1080x2340 AMOLED DSI
+Add driver for the Tianma TA066VVHM03 6.59" 1080x2340 AMOLED DSI
 panel with DSC compression, found in the ASUS ROG Phone 3.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 ---
- .../bindings/display/panel/tianma,ta066vvhm03.yaml | 67 ++++++++++++++++++=
+ MAINTAINERS                                      |   6 +
+ drivers/gpu/drm/panel/Kconfig                    |  11 +
+ drivers/gpu/drm/panel/Makefile                   |   1 +
+ drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c | 387 +++++++++++++++++++=
 ++++
- 1 file changed, 67 insertions(+)
+ 4 files changed, 405 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/tianma,ta066vv=
-hm03.yaml b/Documentation/devicetree/bindings/display/panel/tianma,ta066vvh=
-m03.yaml
-new file mode 100644
-index 000000000000..9bd80cd9662f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/tianma,ta066vvhm03.ya=
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 61bf550fd37c..6b729300daf5 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -8385,6 +8385,12 @@ F:=09Documentation/devicetree/bindings/display/rockc=
+hip/rockchip,dw-dp.yaml
+ F:=09drivers/gpu/drm/bridge/synopsys/dw-dp.c
+ F:=09include/drm/bridge/dw_dp.h
+=20
++DRM DRIVER FOR TIANMA TA066VVHM03 PANELS
++M:=09Alexander Koskovich <akoskovich@pm.me>
++S:=09Maintained
++F:=09Documentation/devicetree/bindings/display/panel/tianma,ta066vvhm03.ya=
 ml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/tianma,ta066vvhm03.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++F:=09drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c
 +
-+title: Tianma TA066VVHM03 AMOLED DSI Panel
+ DRM DRIVER FOR TI DLPC3433 MIPI DSI TO DMD BRIDGE
+ M:=09Jagan Teki <jagan@amarulasolutions.com>
+ S:=09Maintained
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index 307152ad7759..c818c701bdf6 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -1122,6 +1122,17 @@ config DRM_PANEL_TDO_TL070WSH30
+ =09  24 bit RGB per pixel. It provides a MIPI DSI interface to
+ =09  the host, a built-in LED backlight and touch controller.
+=20
++config DRM_PANEL_TIANMA_TA066VVHM03
++=09tristate "Tianma TA066VVHM03 panel driver"
++=09depends on OF
++=09depends on DRM_MIPI_DSI
++=09depends on BACKLIGHT_CLASS_DEVICE
++=09help
++=09  Say Y if you want to enable support for the Tianma TA066VVHM03 panel
++=09  driver. The panel has a 1080x2340 resolution and uses 24 bit RGB per
++=09  pixel. It provides a MIPI DSI interface to the host and has a
++=09  built-in touch controller.
 +
-+maintainers:
-+  - Alexander Koskovich <akoskovich@pm.me>
+ config DRM_PANEL_TPO_TD028TTEC1
+ =09tristate "Toppoly (TPO) TD028TTEC1 panel driver"
+ =09depends on OF && SPI
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefil=
+e
+index aeffaa95666d..db257778b9f1 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -110,6 +110,7 @@ obj-$(CONFIG_DRM_PANEL_SONY_TD4353_JDI) +=3D panel-sony=
+-td4353-jdi.o
+ obj-$(CONFIG_DRM_PANEL_SONY_TULIP_TRULY_NT35521) +=3D panel-sony-tulip-tru=
+ly-nt35521.o
+ obj-$(CONFIG_DRM_PANEL_STARTEK_KD070FHFID015) +=3D panel-startek-kd070fhfi=
+d015.o
+ obj-$(CONFIG_DRM_PANEL_TDO_TL070WSH30) +=3D panel-tdo-tl070wsh30.o
++obj-$(CONFIG_DRM_PANEL_TIANMA_TA066VVHM03) +=3D panel-tianma-ta066vvhm03.o
+ obj-$(CONFIG_DRM_PANEL_TPO_TD028TTEC1) +=3D panel-tpo-td028ttec1.o
+ obj-$(CONFIG_DRM_PANEL_TPO_TD043MTEA1) +=3D panel-tpo-td043mtea1.o
+ obj-$(CONFIG_DRM_PANEL_TPO_TPG110) +=3D panel-tpo-tpg110.o
+diff --git a/drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c b/drivers/gpu=
+/drm/panel/panel-tianma-ta066vvhm03.c
+new file mode 100644
+index 000000000000..9bf0f4ab6792
+--- /dev/null
++++ b/drivers/gpu/drm/panel/panel-tianma-ta066vvhm03.c
+@@ -0,0 +1,387 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Generated with linux-mdss-dsi-panel-driver-generator from vendor device=
+ tree.
++ * Copyright (c) 2026 Alexander Koskovich <akoskovich@pm.me>
++ */
 +
-+allOf:
-+  - $ref: panel-common.yaml#
++#include <linux/backlight.h>
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/mod_devicetable.h>
++#include <linux/module.h>
++#include <linux/regulator/consumer.h>
 +
-+properties:
-+  compatible:
-+    const: tianma,ta066vvhm03
++#include <video/mipi_display.h>
 +
-+  reg:
-+    maxItems: 1
-+    description: DSI virtual channel
++#include <drm/display/drm_dsc.h>
++#include <drm/display/drm_dsc_helper.h>
++#include <drm/drm_mipi_dsi.h>
++#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
++#include <drm/drm_probe_helper.h>
 +
-+  vddio-supply: true
-+  vci-supply: true
-+  vdd-supply: true
-+  port: true
-+  enable-gpios: true
-+  reset-gpios: true
++struct tianma_ta066vvhm03 {
++=09struct regulator_bulk_data *supplies;
++=09struct gpio_desc *enable_gpio;
++=09struct gpio_desc *reset_gpio;
++=09struct mipi_dsi_device *dsi;
++=09struct drm_dsc_config dsc;
++=09struct drm_panel panel;
++};
 +
-+required:
-+  - compatible
-+  - reg
-+  - vddio-supply
-+  - vci-supply
-+  - vdd-supply
-+  - reset-gpios
-+  - port
++static const struct regulator_bulk_data tianma_ta066vvhm03_supplies[] =3D =
+{
++=09{ .supply =3D "vddio" },
++=09{ .supply =3D "vci" },
++=09{ .supply =3D "vdd" },
++};
 +
-+additionalProperties: false
++static inline
++struct tianma_ta066vvhm03 *to_tianma_ta066vvhm03(struct drm_panel *panel)
++{
++=09return container_of(panel, struct tianma_ta066vvhm03, panel);
++}
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
++static void tianma_ta066vvhm03_reset(struct tianma_ta066vvhm03 *ctx)
++{
++=09gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++=09usleep_range(1000, 2000);
++=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++=09usleep_range(5000, 6000);
++=09gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++=09usleep_range(10000, 11000);
++}
 +
-+    dsi {
-+        #address-cells =3D <1>;
-+        #size-cells =3D <0>;
++static int tianma_ta066vvhm03_on(struct tianma_ta066vvhm03 *ctx)
++{
++=09struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
 +
-+        panel@0 {
-+            compatible =3D "tianma,ta066vvhm03";
-+            reg =3D <0>;
++=09ctx->dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
 +
-+            enable-gpios =3D <&tlmm 12 GPIO_ACTIVE_HIGH>;
-+            reset-gpios =3D <&tlmm 75 GPIO_ACTIVE_LOW>;
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x04);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb3, 0x00);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0x2a);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1, 0x0c);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc1,
++=09=09=09=09     0x94, 0x42, 0x00, 0x16, 0x05, 0x00, 0x00,
++=09=09=09=09     0x00, 0x10, 0x00, 0x10, 0x00, 0xaa, 0x8a,
++=09=09=09=09     0x02, 0x10, 0x00, 0x10, 0x00, 0x00, 0x3f,
++=09=09=09=09     0x3f, 0x03, 0xff, 0x03, 0xff, 0x23, 0xff,
++=09=09=09=09     0x03, 0xff, 0x23, 0xff, 0x03, 0xff, 0x00,
++=09=09=09=09     0x40, 0x40, 0x00, 0x00, 0x10, 0x01, 0x00,
++=09=09=09=09     0x0c);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc2,
++=09=09=09=09     0x09, 0x24, 0x0e, 0x00, 0x00, 0x0e);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xc4,
++=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00,
++=09=09=09=09     0x00, 0x2f, 0x00, 0x01);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcf,
++=09=09=09=09     0x64, 0x0b, 0x00, 0xc0, 0x02, 0xa6, 0x04,
++=09=09=09=09     0x7f, 0x0b, 0x77, 0x0b, 0x8b, 0x04, 0x04,
++=09=09=09=09     0x04, 0x04, 0x04, 0x04, 0x04, 0x04, 0x04,
++=09=09=09=09     0x05, 0x05, 0x05, 0x00, 0x10, 0x01, 0x68,
++=09=09=09=09     0x01, 0x68, 0x01, 0x68, 0x01, 0x68, 0x01,
++=09=09=09=09     0x68, 0x01, 0x69, 0x03, 0x98, 0x03, 0x70,
++=09=09=09=09     0x03, 0x70, 0x03, 0x70, 0x03, 0x70, 0x00,
++=09=09=09=09     0x10, 0x01, 0x68, 0x01, 0x68, 0x01, 0x68,
++=09=09=09=09     0x01, 0x68, 0x01, 0x68, 0x01, 0x68, 0x03,
++=09=09=09=09     0x98, 0x03, 0x70, 0x03, 0x70, 0x03, 0x70,
++=09=09=09=09     0x03, 0x70, 0x01, 0x42, 0x01, 0x42, 0x01,
++=09=09=09=09     0x42, 0x01, 0x42, 0x01, 0x42, 0x01, 0x42,
++=09=09=09=09     0x01, 0x42, 0x01, 0x42, 0x01, 0x42, 0x01,
++=09=09=09=09     0x42, 0x01, 0x42, 0x01, 0x42, 0x1c, 0x1c,
++=09=09=09=09     0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c, 0x1c,
++=09=09=09=09     0x1c, 0x1c, 0x00, 0x01, 0x9a, 0x01, 0x9a,
++=09=09=09=09     0x01, 0x9a, 0x05, 0xae, 0x05, 0xae, 0x09,
++=09=09=09=09     0xa4, 0x09, 0xa4, 0x09, 0xa4, 0x09, 0xa4,
++=09=09=09=09     0x09, 0xa4, 0x09, 0xa4, 0x0f, 0xc3, 0x19);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd7,
++=09=09=09=09     0x00, 0xa9, 0x34, 0x00, 0x20, 0x02, 0x00,
++=09=09=09=09     0x00, 0x30, 0x00, 0x40, 0x00, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x00, 0x10, 0x02, 0x00, 0x40,
++=09=09=09=09     0x09, 0x00, 0x00, 0x30);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd8,
++=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x30, 0x00, 0x30, 0x00, 0x30,
++=09=09=09=09     0x00, 0x30, 0x00, 0x30, 0x05, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x30, 0x00, 0x00, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x0f, 0x00, 0x2f, 0x00, 0x00,
++=09=09=09=09     0x00, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00,
++=09=09=09=09     0x00, 0x00, 0x00);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xbb,
++=09=09=09=09     0x59, 0xc8, 0xc8, 0xc8, 0xc8, 0xc8, 0xc8,
++=09=09=09=09     0xc8, 0xc8, 0xc8, 0x4a, 0x48, 0x46, 0x44,
++=09=09=09=09     0x42, 0x40, 0x3e, 0x3c, 0x3a, 0x00, 0xff,
++=09=09=09=09     0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
++=09=09=09=09     0xff, 0x04, 0x00, 0x04, 0x04, 0x42, 0x04,
++=09=09=09=09     0x69, 0x5a, 0x00, 0x0a, 0xb0, 0x0f, 0xff,
++=09=09=09=09     0x0f, 0xff, 0x0f, 0xff, 0x14, 0x81, 0xf4);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe8, 0x00, 0x02);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe4, 0x00, 0x0a);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x80);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xd4, 0x93);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xde, 0x30);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x04);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xdf, 0x50, 0x40);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3,
++=09=09=09=09     0x50, 0x00, 0x00, 0x00, 0x00);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x11);
++=09mipi_dsi_usleep_range(&dsi_ctx, 1000, 2000);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf3,
++=09=09=09=09     0x01, 0x00, 0x00, 0x00, 0x01);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf4, 0x00, 0x02);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x19);
++=09mipi_dsi_usleep_range(&dsi_ctx, 1000, 2000);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xdf, 0x50, 0x42);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, MIPI_DCS_WRITE_CONTROL_DISPLAY,
++=09=09=09=09     0x24);
++=09mipi_dsi_dcs_set_tear_on_multi(&dsi_ctx, MIPI_DSI_DCS_TEAR_MODE_VBLANK)=
+;
++=09mipi_dsi_dcs_set_column_address_multi(&dsi_ctx, 0x0000, 0x0437);
++=09mipi_dsi_dcs_set_page_address_multi(&dsi_ctx, 0x0000, 0x0923);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x80);
++=09mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xe6, 0x01);
++=09mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
++=09mipi_dsi_msleep(&dsi_ctx, 100);
++=09mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
 +
-+            vci-supply =3D <&vreg_l10a>;
-+            vdd-supply =3D <&vreg_l3c>;
-+            vddio-supply =3D <&vreg_l14a>;
++=09return dsi_ctx.accum_err;
++}
 +
-+            port {
-+                panel_in: endpoint {
-+                    remote-endpoint =3D <&mdss_dsi0_out>;
-+                };
-+            };
-+        };
-+    };
-+...
++static int tianma_ta066vvhm03_off(struct tianma_ta066vvhm03 *ctx)
++{
++=09struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
++
++=09ctx->dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
++
++=09mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
++=09mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
++=09mipi_dsi_msleep(&dsi_ctx, 120);
++
++=09return dsi_ctx.accum_err;
++}
++
++static int tianma_ta066vvhm03_prepare(struct drm_panel *panel)
++{
++=09struct tianma_ta066vvhm03 *ctx =3D to_tianma_ta066vvhm03(panel);
++=09struct drm_dsc_picture_parameter_set pps;
++=09struct device *dev =3D &ctx->dsi->dev;
++=09int ret;
++
++=09ret =3D regulator_bulk_enable(ARRAY_SIZE(tianma_ta066vvhm03_supplies), =
+ctx->supplies);
++=09if (ret < 0) {
++=09=09dev_err(dev, "Failed to enable regulators: %d\n", ret);
++=09=09return ret;
++=09}
++
++=09gpiod_set_value_cansleep(ctx->enable_gpio, 1);
++
++=09tianma_ta066vvhm03_reset(ctx);
++
++=09ret =3D tianma_ta066vvhm03_on(ctx);
++=09if (ret < 0) {
++=09=09dev_err(dev, "Failed to initialize panel: %d\n", ret);
++=09=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++=09=09gpiod_set_value_cansleep(ctx->enable_gpio, 0);
++=09=09regulator_bulk_disable(ARRAY_SIZE(tianma_ta066vvhm03_supplies), ctx-=
+>supplies);
++=09=09return ret;
++=09}
++
++=09drm_dsc_pps_payload_pack(&pps, &ctx->dsc);
++
++=09ret =3D mipi_dsi_picture_parameter_set(ctx->dsi, &pps);
++=09if (ret < 0) {
++=09=09dev_err(panel->dev, "failed to transmit PPS: %d\n", ret);
++=09=09return ret;
++=09}
++
++=09ret =3D mipi_dsi_compression_mode(ctx->dsi, true);
++=09if (ret < 0) {
++=09=09dev_err(dev, "failed to enable compression mode: %d\n", ret);
++=09=09return ret;
++=09}
++
++=09return 0;
++}
++
++static int tianma_ta066vvhm03_unprepare(struct drm_panel *panel)
++{
++=09struct tianma_ta066vvhm03 *ctx =3D to_tianma_ta066vvhm03(panel);
++=09struct device *dev =3D &ctx->dsi->dev;
++=09int ret;
++
++=09ret =3D tianma_ta066vvhm03_off(ctx);
++=09if (ret < 0)
++=09=09dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
++
++=09gpiod_set_value_cansleep(ctx->enable_gpio, 0);
++=09gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++=09regulator_bulk_disable(ARRAY_SIZE(tianma_ta066vvhm03_supplies), ctx->su=
+pplies);
++
++=09return 0;
++}
++
++static const struct drm_display_mode tianma_ta066vvhm03_mode =3D {
++=09.clock =3D (1080 + 24 + 4 + 10) * (2340 + 12 + 1 + 4) * 160 / 1000,
++=09.hdisplay =3D 1080,
++=09.hsync_start =3D 1080 + 24,
++=09.hsync_end =3D 1080 + 24 + 4,
++=09.htotal =3D 1080 + 24 + 4 + 10,
++=09.vdisplay =3D 2340,
++=09.vsync_start =3D 2340 + 12,
++=09.vsync_end =3D 2340 + 12 + 1,
++=09.vtotal =3D 2340 + 12 + 1 + 4,
++=09.width_mm =3D 70,
++=09.height_mm =3D 152,
++=09.type =3D DRM_MODE_TYPE_DRIVER,
++};
++
++static int tianma_ta066vvhm03_get_modes(struct drm_panel *panel,
++=09=09=09=09=09struct drm_connector *connector)
++{
++=09return drm_connector_helper_get_modes_fixed(connector, &tianma_ta066vvh=
+m03_mode);
++}
++
++static const struct drm_panel_funcs tianma_ta066vvhm03_panel_funcs =3D {
++=09.prepare =3D tianma_ta066vvhm03_prepare,
++=09.unprepare =3D tianma_ta066vvhm03_unprepare,
++=09.get_modes =3D tianma_ta066vvhm03_get_modes,
++};
++
++static int tianma_ta066vvhm03_bl_update_status(struct backlight_device *bl=
+)
++{
++=09struct mipi_dsi_device *dsi =3D bl_get_data(bl);
++=09u16 brightness =3D backlight_get_brightness(bl);
++=09int ret;
++
++=09dsi->mode_flags &=3D ~MIPI_DSI_MODE_LPM;
++
++=09ret =3D mipi_dsi_dcs_set_display_brightness_large(dsi, brightness);
++=09if (ret < 0)
++=09=09return ret;
++
++=09dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
++
++=09return 0;
++}
++
++static const struct backlight_ops tianma_ta066vvhm03_bl_ops =3D {
++=09.update_status =3D tianma_ta066vvhm03_bl_update_status,
++};
++
++static struct backlight_device *
++tianma_ta066vvhm03_create_backlight(struct mipi_dsi_device *dsi)
++{
++=09struct device *dev =3D &dsi->dev;
++=09const struct backlight_properties props =3D {
++=09=09.type =3D BACKLIGHT_RAW,
++=09=09.brightness =3D 4095,
++=09=09.max_brightness =3D 4095,
++=09};
++
++=09return devm_backlight_device_register(dev, dev_name(dev), dev, dsi,
++=09=09=09=09=09      &tianma_ta066vvhm03_bl_ops, &props);
++}
++
++static int tianma_ta066vvhm03_probe(struct mipi_dsi_device *dsi)
++{
++=09struct device *dev =3D &dsi->dev;
++=09struct tianma_ta066vvhm03 *ctx;
++=09int ret;
++
++=09ctx =3D devm_drm_panel_alloc(dev, struct tianma_ta066vvhm03, panel,
++=09=09=09=09   &tianma_ta066vvhm03_panel_funcs,
++=09=09=09=09   DRM_MODE_CONNECTOR_DSI);
++=09if (IS_ERR(ctx))
++=09=09return PTR_ERR(ctx);
++
++=09ret =3D devm_regulator_bulk_get_const(dev,
++=09=09=09=09=09    ARRAY_SIZE(tianma_ta066vvhm03_supplies),
++=09=09=09=09=09    tianma_ta066vvhm03_supplies,
++=09=09=09=09=09    &ctx->supplies);
++=09if (ret < 0)
++=09=09return ret;
++
++=09ctx->enable_gpio =3D devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
++=09if (IS_ERR(ctx->enable_gpio))
++=09=09return dev_err_probe(dev, PTR_ERR(ctx->enable_gpio),
++=09=09=09=09     "Failed to get enable-gpios\n");
++
++=09ctx->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
++=09if (IS_ERR(ctx->reset_gpio))
++=09=09return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
++=09=09=09=09     "Failed to get reset-gpios\n");
++
++=09ctx->dsi =3D dsi;
++=09mipi_dsi_set_drvdata(dsi, ctx);
++
++=09dsi->lanes =3D 4;
++=09dsi->format =3D MIPI_DSI_FMT_RGB888;
++=09dsi->mode_flags =3D MIPI_DSI_MODE_NO_EOT_PACKET |
++=09=09=09  MIPI_DSI_CLOCK_NON_CONTINUOUS;
++
++=09ctx->panel.prepare_prev_first =3D true;
++
++=09ctx->panel.backlight =3D tianma_ta066vvhm03_create_backlight(dsi);
++=09if (IS_ERR(ctx->panel.backlight))
++=09=09return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
++=09=09=09=09     "Failed to create backlight\n");
++
++=09drm_panel_add(&ctx->panel);
++
++=09/* This panel only supports DSC; unconditionally enable it */
++=09dsi->dsc =3D &ctx->dsc;
++=09dsi->dsc_slice_per_pkt =3D 2;
++
++=09ctx->dsc.dsc_version_major =3D 1;
++=09ctx->dsc.dsc_version_minor =3D 1;
++
++=09ctx->dsc.slice_height =3D 20;
++=09ctx->dsc.slice_width =3D 540;
++=09WARN_ON(1080 % ctx->dsc.slice_width);
++=09ctx->dsc.slice_count =3D 1080 / ctx->dsc.slice_width;
++=09ctx->dsc.bits_per_component =3D 10;
++=09ctx->dsc.bits_per_pixel =3D 8 << 4; /* 4 fractional bits */
++=09ctx->dsc.block_pred_enable =3D true;
++
++=09ret =3D mipi_dsi_attach(dsi);
++=09if (ret < 0) {
++=09=09drm_panel_remove(&ctx->panel);
++=09=09return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
++=09}
++
++=09return 0;
++}
++
++static void tianma_ta066vvhm03_remove(struct mipi_dsi_device *dsi)
++{
++=09struct tianma_ta066vvhm03 *ctx =3D mipi_dsi_get_drvdata(dsi);
++=09int ret;
++
++=09ret =3D mipi_dsi_detach(dsi);
++=09if (ret < 0)
++=09=09dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
++
++=09drm_panel_remove(&ctx->panel);
++}
++
++static const struct of_device_id tianma_ta066vvhm03_of_match[] =3D {
++=09{ .compatible =3D "tianma,ta066vvhm03" },
++=09{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, tianma_ta066vvhm03_of_match);
++
++static struct mipi_dsi_driver tianma_ta066vvhm03_driver =3D {
++=09.probe =3D tianma_ta066vvhm03_probe,
++=09.remove =3D tianma_ta066vvhm03_remove,
++=09.driver =3D {
++=09=09.name =3D "panel-tianma-ta066vvhm03",
++=09=09.of_match_table =3D tianma_ta066vvhm03_of_match,
++=09},
++};
++module_mipi_dsi_driver(tianma_ta066vvhm03_driver);
++
++MODULE_AUTHOR("Alexander Koskovich <akoskovich@pm.me>");
++MODULE_DESCRIPTION("DRM driver for Tianma TA066VVHM03-00");
++MODULE_LICENSE("GPL");
 
 --=20
 2.53.0
