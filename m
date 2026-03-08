@@ -1,84 +1,51 @@
-Return-Path: <devicetree+bounces-272594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272595-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id y6YCCuGfrWm45AEAu9opvQ
-	(envelope-from <devicetree+bounces-272594-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:12:17 +0100
+	id EBOTLRugrWnJ5AEAu9opvQ
+	(envelope-from <devicetree+bounces-272595-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:13:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70AC023107C
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:12:16 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 238FE231095
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 17:13:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0529D3012EB8
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 16:12:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8C3F6300A7D4
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 16:13:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEFF31328C;
-	Sun,  8 Mar 2026 16:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03F930F808;
+	Sun,  8 Mar 2026 16:13:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="FlEmjmFv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rix8lANN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B54431328B
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 16:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B344248F62;
+	Sun,  8 Mar 2026 16:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772986334; cv=none; b=ttdkSxaoU44Bq3NJLlQ1IGE/mwEBDcDHIiY+ip5/6Q2Yr4fQKLttkgPG/iz1V5R29Y6hYb21m2S3qirSTTFOw4DMfchE5/2n+/qvEFea25cJ3FZxb3MrA3le5X7YnwVyHj3s48Gupk00U0qJlirohPZ9IFh201sVJq0jwY68r7w=
+	t=1772986392; cv=none; b=B8e7eWiAQj762e9vKc9MEHSpPzMxyDcIDo57AjFhvVtkJJK4l931Q2940YbmHl0kErBOaJI8fOrk1cjVwwSTfKBZUrvZe4wCTEqQqpCoMrPs5FUyC2xd2SfvB2YbYrSnaU7NXWRUg64uQh39aIwVku6Bxtnr13LUBmLMJueAq7w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772986334; c=relaxed/simple;
-	bh=LjFlqG3/syx+R7HqVGg5skm86j3H1h7rW3ze72w6frM=;
+	s=arc-20240116; t=1772986392; c=relaxed/simple;
+	bh=BoBFYGkLL7TqDk+DfDcEAGsEN0Uye9/mFOlOrFnCLhM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CWj80YVeiDL66s20oIxJhXTjE0sEcD5gbUKcznQSAZKUp3ymKmHgkNaWZZitP3XgDAPhFn+53OORvrKERl9CL1il2Od3iemwj06heS7l8Uzp+QOELqmbO3jGR5mz9RJeDGcBYbke5v1LpTTig+bpmKOgxZOOMekZupWwjEyO9vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=FlEmjmFv; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4806ce0f97bso96693005e9.0
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 09:12:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1772986331; x=1773591131; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MCvFjV8EVaef8yL+ehrSZi3neS4JtlD4VmzZ+01tNOs=;
-        b=FlEmjmFvcnmNOQvtP7rW2P9zsKXSq5C0pcQmGRM4Y2Z0p7wEWt8pVBCp/kGLv0eW4k
-         JP/pvOJVVMn2lJaqNhuKC7W/mVQLd5UvaEPrtdf7YaB89ztFjTsfxZYLO+lrsonQ7GV9
-         nHmhIp9TPPr+4MyIbfIBrd9ik77Fna7fTS6tjqKH7K1tFiadE8tPhnBIqXERhiUbsj2Z
-         n5vB1U7OgiriDdqYp5z7+5Rqb4+G16KVtfWCL56OSSvmWTtVGdgv6NTE+hhumNPjCTou
-         yHRxdnrJedSFUTau5UAHbEr5mDNFaFMAESIhIwhaFMvX0/0q3CmTnoVUwyOtEpQ5400h
-         SySA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772986331; x=1773591131;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MCvFjV8EVaef8yL+ehrSZi3neS4JtlD4VmzZ+01tNOs=;
-        b=QcAaN+5Ukxjc408ty/yav23H0CtWy0BCR+Ij/XEL4CLSUM5PZ4mpVQICdnOwVYUGUQ
-         bjU2ksu2EcDWFPANg+1Wdv3GldMDx3TomqzkJM38aTXZfAj0vs7rj65Qk3DpUgBh1A0e
-         Pqcl71zwdbwKMK6I1/EB1izV9MHWo3HNEiShcGZb2A6maWzxOZIYrUFMPtt25cdkyfwj
-         9P+EyUPulLPvXfTGhuCnw6UZ4sHrBXILfAKVHf+999AZs6oRRyLQ908PP+BvKjyokgVW
-         GbD6GvyHDtImADPgHkzXz7UNTEL6XYqdVBUL0BN3kOmiDU5dmCxTp661YP5YRyfA4DNn
-         Zkhg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOsVj3j6ljrfvZglu5P5nTYGmGNQVQp6SQRpvSHGpVWFeEcfNpw7f0hipAu2e3fjgap6cuqGfv5okW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxTDUHSuGzkcBF2IHAaUS/bCAFyzRlVa+jxq2B/SMFtAmMm075d
-	2kSCE8ago/8FlB+X5VDL6KNe3A60Bu8Tckms80m2CLBc7nIgnIHIyM9FMCBhY1WfAPk=
-X-Gm-Gg: ATEYQzxiyTnxIk0zfyLrrD0cIMqPhFtvY1UHtoEDd12WocphevN2Vk9KT6bXikLMdnZ
-	DUzNcWcp4csX4LflStUB3+opT5pDhtUoroNad11TxbYdXATmuB6jiNjkmT7IzaJI5+xZQElIA/X
-	gBh24abAcyEvA/vJABLKl/Fl9Nx29PWmiGZaEq9AIqONYtN/TyzMj7Cpx7aTonvewUmLRVYzAla
-	AilWm9o6r4eK+kTDObzBdilV/SIkjjcTknz8lecT/Xy2u9PjS0NglZi7bPNNqNzVMl0zZM7zynr
-	I0BryLm9MfW5J20fPIJ/qzH8gNaM4yxhmL4LVVQFhrgGAGqJiSurbaUAoiH0QdjHPqUXpwJCrEr
-	eKJSrfwq3hyx8yriY+GFdrY7youCz/plmIo06TGlTZ6WRAoQz0Xl3pLSuZ+3jH4wimdFb+UXFTt
-	reR0T7E5IF34lNdPRsCeBTE0W79Hv/Z0j0WmfGXybe
-X-Received: by 2002:a05:600c:8b5b:b0:46e:4e6d:79f4 with SMTP id 5b1f17b1804b1-48526927a4dmr139650865e9.15.1772986330688;
-        Sun, 08 Mar 2026 09:12:10 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.98])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4853149caffsm37960475e9.1.2026.03.08.09.12.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Mar 2026 09:12:09 -0700 (PDT)
-Message-ID: <7de6368c-0b9b-46dd-a752-e063f88ae164@tuxon.dev>
-Date: Sun, 8 Mar 2026 18:12:07 +0200
+	 In-Reply-To:Content-Type; b=pqwf/uKmUSEjfVI8SkWjMJxrlWzn52DUHdloknjYWjcAovuldn/TlWvbGI7MghSlsHceVhdK3K4QM1eXrIFvc76Q6kR/tzthQKp5CYnCOWUlUJH3CMK4mmFC97FF3Q4hN220BArl8EAOzVEJKRPQPWsACgoSFPGt60LIctCW/Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rix8lANN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 548C8C116C6;
+	Sun,  8 Mar 2026 16:13:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772986392;
+	bh=BoBFYGkLL7TqDk+DfDcEAGsEN0Uye9/mFOlOrFnCLhM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rix8lANNMQAoky1lSyN0azZs2Q8vJuU1MZThKadEbAeNWDDUkY4iBVxhdwyANOAWf
+	 EB6x7xjp8HmOh/ug/u3OLR4ksfjUJ4d1jdXR64WzM1wzQmgppNXkfHesv7uPZaCb4L
+	 hj4nFMp41Z40bfJVxALNT+9P67go3eNJJplc7b4+3dOs7r0lckqxe94nAQ6qMqoV6A
+	 dnDSfu69itoGqjqriG8BanV0LqdZtR7r3qqlZ8oFZTb4VH6G7iwm9q5s7hh8TD8irI
+	 LB/uJet+rIoBTLaNtO6FBM6RRu+emzcf/SuAhjZhO3jCN9EP5b7++KoU6i7NLeD1QF
+	 8yx3KJ3s194VQ==
+Message-ID: <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org>
+Date: Sun, 8 Mar 2026 17:13:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,64 +53,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] clk: at91: sam9x7: Fix gmac_gclk clock definition
-To: Mihai Sain <mihai.sain@microchip.com>, mturquette@baylibre.com,
- sboyd@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, varshini.rajendran@microchip.com,
- cristian.birsan@microchip.com, balamanikandan.gunasundar@microchip.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ryan.wanner@microchip.com
-References: <20260302142008.3253-1-mihai.sain@microchip.com>
- <20260302142008.3253-4-mihai.sain@microchip.com>
+Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD
+ DSI
+To: cristian_ci@protonmail.com, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com>
+ <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20260302142008.3253-4-mihai.sain@microchip.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 70AC023107C
+X-Rspamd-Queue-Id: 238FE231095
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[tuxon.dev:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272594-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[tuxon.dev];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[tuxon.dev:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272595-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.967];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[claudiu.beznea@tuxon.dev,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.977];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-Hi, Mihai,
+On 08/03/2026 16:52, Cristian Cozzolino via B4 Relay wrote:
+> +
+> +  backlight: true
+> +  reset-gpios: true
+> +
+> +  vsn-supply:
+> +    description: negative voltage supply for analog circuits
 
-On 3/2/26 16:20, Mihai Sain wrote:
-> According with datasheet [1] table 12.1 the instance ID 24 is used
-> for gmac generic clock.
-> This patch adds the correct gmac_gclk entry at ID 24, aligned with the
-> SoC clock layout, and removes the old misplaced 67 entry.
->
+Blank line
 
-Something is wrong with this patch and the next one. I suppose it's the missing 
-version number in title as I cannot grab it with b4. Can you please re-send?
+> +  vsp-supply:
+> +    description: positive voltage supply for analog circuits
 
-Thank you,
-Claudiu
+Both are odd. Datasheet says vci, vddi, vddam and optional avdd, avee.
+
+There is no VSN and VSP. Otherwise please point the page in datasheet or
+some schematics.
+
+Best regards,
+Krzysztof
 
