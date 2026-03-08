@@ -1,167 +1,152 @@
-Return-Path: <devicetree+bounces-272605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272606-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAbVBoCyrWkW6QEAu9opvQ
-	(envelope-from <devicetree+bounces-272605-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 18:31:44 +0100
+	id +hjkA+iyrWk/6QEAu9opvQ
+	(envelope-from <devicetree+bounces-272606-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 18:33:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FEBF2316CC
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 18:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 329BD2316FB
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 18:33:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 54299300A11E
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 17:31:42 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 0EC9C300A508
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 17:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EF32D839C;
-	Sun,  8 Mar 2026 17:31:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0653559CF;
+	Sun,  8 Mar 2026 17:33:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j3P3wEUr"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="yqkAQXht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f181.google.com (mail-dy1-f181.google.com [74.125.82.181])
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9AF43148AE
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 17:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A44C2F60A7
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 17:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772991101; cv=none; b=IzTpMfTq8gZi1XT21iGeAxjLNue8uxl7gT+J4VwnxwFzQMBMdl+LoZxDN7yjBzXqvmuN8plledpNCKlazM0NzoJj50KDUqER1NrFkP/Ie1LcLjVu8C6uMxFWXi2bjlzSrNUU7EBxiqF99QSNt36K0MQ+W1SCfJaad7+5laPM4bk=
+	t=1772991204; cv=none; b=iP4loIcOVCJhzmllAzq0DemtO4jwkR52Eqys6O+dtpkRhO5q/x/r6NKtiQYpgOsi3gI47wha8si9mwGUU5u1fvaa71gUdrzzq32OYByVDjh3QkxZ8p8Xrsxx46Cbi/7VQqkMJezp7bgqtqkDdMw2Hiu5OHGeXeQhXzodFhtGWyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772991101; c=relaxed/simple;
-	bh=BAd7md9tw6EfRKEG5QtWON+EHxe1egsLBG33S3XVfdg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UGV5eInT3a/Ep0V2llV1pKdtjBJ+yip0OxkNrfyPrnQtYiID6j6dxAYkCV7NBpOgrb0IBO5z0xre/ZFnXUfglNXzXjW14hkv7G7tFZQD5W+I6XZ+wVAVUNiCC92PmFg6NhxXTXGCtzakyrFbGJu6J2xtz9VicRFUz7/uCVDQQMU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j3P3wEUr; arc=none smtp.client-ip=74.125.82.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f181.google.com with SMTP id 5a478bee46e88-2bdd40d3c61so9224306eec.1
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 10:31:39 -0700 (PDT)
+	s=arc-20240116; t=1772991204; c=relaxed/simple;
+	bh=mUMp90urU2smYO/9qSB4myeg8wLSBmUovYNVfjwBMU4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tBLyfELEdV+utKb6Hhy77VGnHmx7dNAqT0appyu3mtzwCqW++QjxBLFiMm47x6EZq+7tt6Gr/IXQPh/6srfczQmdVOER+hLJuT+ykTANxFyErBrKFtafPWGk2m4yySjJA7QV8rrc/9WpMCCLG85aFOZF9hAxmfcwmEytp6F1v+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=yqkAQXht; arc=none smtp.client-ip=209.85.210.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7d73be007a1so1361468a34.0
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 10:33:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772991099; x=1773595899; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wtq9/lhU2REDT28M9py6Cq5xxsx16xGsyDZF6Ur883M=;
-        b=j3P3wEUrKT2eqO/PrLai6VeftX3dJG+bVwnCoB4JYCtlbhhoC5oiQuyhrqimsFg0rv
-         WI16mZPjusZPyE/11UAloeNKNNgysKjDv9EV5uVjj17zq2xbX25zB0ZamFCPb0EXbDAv
-         pgNlCF+h/NUmA6C81lz2VFCHt/6O6V2GkHb10rCZx5r4zvXIQI9QsPxG7r2GAE/dZTUT
-         ANlyQGwescbxWJR0f/IuiLnmSWn0X8+K5HrQkLFSvr1hHNMTjGOkntIVz4xdr2Q0NAcc
-         z0S1MuLgptkuQlwIVF6RgM3idLGHALJb5a70MB9aMy4u0JTvljH5U+GlbMQMYWkkdIhc
-         /PHw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1772991201; x=1773596001; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mUMp90urU2smYO/9qSB4myeg8wLSBmUovYNVfjwBMU4=;
+        b=yqkAQXhtcFcjW/bg9YEPSMWcPHYjN9L2pW0lxgUa6rG5zXqVd6R+IcHblzWSHgKqRe
+         qojNfM+ff8grWQovOAfvKy2P7qGq6QMHm83qjulDy6Pjgc4JsdiEgLNejmMqmg11bTF9
+         nMVIUd0qshHBCy6tn9qI0SbhBs+wVM1Yh+bOtSUsygwOhNLIkttVTmGpAjJvn1j8G0zP
+         uVwXZwBxoYvzgpjYyg83kavJgF5pQEY0sJwwYOxkBGSU9JechZwafCHymGroMqByn+5B
+         fcEsaBo1gJiFQErRskpfq+oNuRUODFYRZgE7oWXdmlsSeY25MWunxEwwem3JrJG7vz4S
+         8cEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772991099; x=1773595899;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=wtq9/lhU2REDT28M9py6Cq5xxsx16xGsyDZF6Ur883M=;
-        b=fR5zuHxUFQacr8SeMleRS5CSXHwHkqAyLIObJJWwz/TGSoV78VQogQE9qUdOIBkYKl
-         L1re/qKlKqM8Dr/5RwZPZ3hc8hMoHTOknLiJ4g383xjpaCwNUZpH1CPDSLyQXcwKItk+
-         JIuFhCfIK2v44bkTxlrOzlwPCPMrLHgQVtkkB04FcxZELE50QcuPZOfV/UD9O35mOpkM
-         hpZ8Vs+zITvEBowzkU56NAlPgZ3P0nyi0TrKiYexthayzSe3D50Yxn7toW1g1CsWJ85a
-         v5CDhdoLMeQMVDp/0Jp67hOYcOmQs/bgi7DglxS+BedAP1Iz5QTVGAJRYxswAkgc56Bt
-         UMsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCyHgPdffZmiBrzj4yOeKLBhi1UlReRNHy3migO52BoRRYdtyYHtq5uZlZ4bTkr3Tljfj6SmZdaZQI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwT2a+NnBUXtVB8VOQsQ2nWQnbAKLH2/PJkIfBystKTBQPBya04
-	9qtHd2iEJLGGHWdxISxKkOifjl1zV6HHWTjTvGlbtwBdkw8MKxGAEGNA
-X-Gm-Gg: ATEYQzwkwVMHk2MfKx+ygytTNapNCA36zqsdBtURyD/um80WXWWUam3WkNF6YqHtIE3
-	yVzKgKMFM3OsFjLVcc2j74zE46eAHo4jYDVOqWwKgo5exEJwghorHXv+h+pQS2fcrv7VGtV+cDl
-	hhoidhyZl1cCm/bJk/Lejptqb2FiCtlDltZI+YRyHmYmiQp5drGdm18gKPqCJvsH0ylwF+/49pU
-	ptpJ401crvSSyv4ooKUyp7zVEDLhgL9sC5qVX989OWDLBhRU5sFjnSafQ6mxmNuMzCUWW7CrJ1l
-	2fepidVHtx59amRZSECzraHgQR/E+xJYrReOZiFE25zrLj+EUMo4LBliSpvz392b9KaEyoRx0WH
-	QxkMftNIE5/flxKrTXGTwzfhA3DyuGcxlz5jxCAMiJRCtGHQP3wZm7B7gNgV5irtoBzw8UyvvUa
-	iGmymQDZ5XvoW0/9ytjfhyi64r626RccJzHLPd
-X-Received: by 2002:a05:693c:8086:b0:2be:6709:3d97 with SMTP id 5a478bee46e88-2be67094029mr502015eec.17.1772991098821;
-        Sun, 08 Mar 2026 10:31:38 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be4f80d6dcsm6838747eec.2.2026.03.08.10.31.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Mar 2026 10:31:38 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sun, 8 Mar 2026 10:31:37 -0700
-From: Guenter Roeck <linux@roeck-us.net>
-To: Stoyan Bogdanov <sbogdanov@baylibre.com>
-Cc: jbrunet@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, corbet@lwn.net, skhan@linuxfoundation.org,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: hwmon: pmbus/tps1689: Add TPS1689
-Message-ID: <326f3dad-b2d4-44fb-a4b1-d09fb0dc5024@roeck-us.net>
-References: <20260217081203.1792025-1-sbogdanov@baylibre.com>
- <20260217081203.1792025-3-sbogdanov@baylibre.com>
+        d=1e100.net; s=20230601; t=1772991201; x=1773596001;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mUMp90urU2smYO/9qSB4myeg8wLSBmUovYNVfjwBMU4=;
+        b=WN9mZv6lmG/yTWfy30qvzJ3F4QCFH49JrioT7nxeGLZ46X0EoJ7RTRJYzx2S29Xtbs
+         9y+fP/cVEPXN2DY1A5RKF5C6V2MtVxedUT9Gcsv/6HdJCoP6udD2AewIYIbcJ2gP7Ndj
+         Vt7gMI338H8tXy/hFNJA5OeNe4QMuRuIKl9fgi+Y/eKr9YM8n4BuKB/y60gKWQbYFsk6
+         fzO00v4j/wg/rNUGR+pVyoKn6hJjVwwuet+mzHcsAgk/vWgR0g1xlx9orfJK2toyC+0j
+         CiSrFhK+qR43Nwd5Pgyre6mp8bOm7/EKNW+GwMjtzo+Amq79jBa0nntRvSeCvYZ5+x5m
+         4a9g==
+X-Forwarded-Encrypted: i=1; AJvYcCWMenMIE4SQFyAk1NAfycl+4iwzCfcL60hAB6GvuPb2OER8CuGsiGKhTMtofYTrDp5qLurlnNTeaiZU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWTPMc75lArPh0xoZ86xKX6685XoNlsSySMaYlDQRFQ5lzrCSh
+	H7yMDmN6SQe92pBpWtsg9njLB6gx41P2wt7qQTpMAI1zjXUZy0zJ02KeqwZRGoKWoAY=
+X-Gm-Gg: ATEYQzzgQjpLKBrv9CneunBF7Jvs7pauD03GQYG0V/bzSIG7ZJnBRRUIEmWHQenSB6q
+	G0L9bSwuqmiCHFAj5LdznJuibnhmfl+8IKh5B0onLusVS6GVxTUh1Kj3/RcIlCILb6aYxF2hDHK
+	R1RuKkb+NHn5U5+XxP7VygymhfEO+3qqRpVWtDhSWOCYQT5AhgHYrzKpzueUrvop/Mpaob/SU9j
+	3cOdkIpfg128r4E9rilgQREaLGqhNJFM8oG79KRLiserHWXUNj24pGiugb3xUKwwd7SmvRPl7k2
+	dDs5r2t5h3L3TVD+LVrhaGs5tpP/IBe8owkNUwajGyYr193yS9ebGE6gQNGjSIN2+gNFPVr2VSd
+	v8TUu/nEWnX+3Bc/m79zHjHjhqzaNoWwKX9t2I7oH21AIGTrs3UGYoZvN3t767weqfl8f8x6bje
+	x2eCzVDg/8b7mgRZ2Zrkbuz3+b5Hsm86HGc43QcbtveJlQ114wcTnRvlHH3ssRW+26edEh2Zvzr
+	w==
+X-Received: by 2002:a05:6830:d04:b0:7cf:d168:2107 with SMTP id 46e09a7af769-7d727081459mr5346472a34.36.1772991201453;
+        Sun, 08 Mar 2026 10:33:21 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:a7b4:e550:6d81:e067? ([2600:8803:e7e4:500:a7b4:e550:6d81:e067])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d74062da77sm2129323a34.18.2026.03.08.10.33.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Mar 2026 10:33:20 -0700 (PDT)
+Message-ID: <f789045c-4c6f-4201-bd26-5bda587b5384@baylibre.com>
+Date: Sun, 8 Mar 2026 12:33:20 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260217081203.1792025-3-sbogdanov@baylibre.com>
-X-Rspamd-Queue-Id: 8FEBF2316CC
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] iio: proximity: add driver for ST VL53L1X ToF sensor
+To: Sirat <email@sirat.me>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org
+References: <20260303090253.42076-1-email@sirat.me>
+ <20260303090253.42076-3-email@sirat.me>
+ <3181de17-d3f6-479e-9500-f5d552bb4151@baylibre.com>
+ <CANn+LW+uLQuoRbN4UMq1-pVcsJqzc0sMQNGwfwuSrTR-pNdLog@mail.gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CANn+LW+uLQuoRbN4UMq1-pVcsJqzc0sMQNGwfwuSrTR-pNdLog@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 329BD2316FB
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	TAGGED_FROM(0.00)[bounces-272606-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272605-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[baylibre.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[roeck-us.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux@roeck-us.net,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.973];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-0.978];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,roeck-us.net:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,baylibre.com:mid,baylibre.com:email]
 X-Rspamd-Action: no action
 
-On Tue, Feb 17, 2026 at 10:12:02AM +0200, Stoyan Bogdanov wrote:
-> Add device compatible support for TPS1689
-> 
+On 3/8/26 6:04 AM, Sirat wrote:
+> On Sat, Mar 7, 2026 at 11:17 PM David Lechner <dlechner@baylibre.com> wrote:
+>>
+>> On 3/3/26 3:02 AM, Siratul Islam wrote:
+>>> Add support for the STMicroelectronics VL53L1X Time-of-Flight
+>>> ranging sensor with I2C interface.
+>>>
+>>
+>> ...
+>>
+> Hi, Thank you for reviewing the patch! Please find my responses below.
+>>
+To save everyone's time, you should not bother to respond to comments that
+you agree with. We will be able to see in the changelog what you did.
 
-The title and description of this patch are really misleading
-since they don't mention that support is added to ti,tps25990.yaml.
+It's not meant to be rude, we just get way too many emails every day.
 
-Also, the "title" field in the .yaml file still refers to "Texas
-Instruments TPS25990 Stackable eFuse" which isn't really accurate
-anymore.
-
-Guenter
-
-> Signed-off-by: Stoyan Bogdanov <sbogdanov@baylibre.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> ---
->  .../devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml          | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml
-> index f4115870e450..973ee00c2c49 100644
-> --- a/Documentation/devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/ti,tps25990.yaml
-> @@ -16,7 +16,9 @@ description:
->  
->  properties:
->    compatible:
-> -    const: ti,tps25990
-> +    enum:
-> +      - ti,tps1689
-> +      - ti,tps25990
->  
->    reg:
->      maxItems: 1
 
