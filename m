@@ -1,222 +1,329 @@
-Return-Path: <devicetree+bounces-272622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272623-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MI7zHrTMrWlI7gEAu9opvQ
-	(envelope-from <devicetree+bounces-272622-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:23:32 +0100
+	id OGtUOrrNrWmL7gEAu9opvQ
+	(envelope-from <devicetree+bounces-272623-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:27:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE9E0231E24
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:23:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73AD1231E81
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:27:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7A61430038F3
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 19:23:30 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E95853015A75
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 19:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C9A33BBAA;
-	Sun,  8 Mar 2026 19:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4AA36CE1B;
+	Sun,  8 Mar 2026 19:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="fQ/GYSR+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oFSPuFoJ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="gC4GUuU9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92830318B96
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 19:23:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0061F30CDB6
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 19:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772997809; cv=none; b=sLCZD1NhtbQdxsztHhbBH+af6f0eII9bc9ZJIzG4fZUHv+zBq88rqvQUDG2GdKf57TMLZSYZghjUPw22ePRAHQBaE4GVUVAZU5sNkVeHInDu42z9ToMxFDYLiPfKyG/oZF2fHFM67gmaBWLC9q5VYPfH5NxQ8kZFIuCEXUlr310=
+	t=1772998068; cv=none; b=MAm3T8XHwBMr1kYbZIOJjRLRS9jiTgx2yB5i3xRz4qv5kgz24GoS8PVOY19iIkw8+Hce9i5uhfGKj1HSBcfaNCMQmMSVk3ofm7xAZQYoAbyJW5deaxaCDs4MCJVdgOnOf2H0ZQgux+SbMUIu+UNG/NmNkvEw8gTL8+2Q0yHYnaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772997809; c=relaxed/simple;
-	bh=xihVpT5t3yGzukukyCC5y7BNAC5zNdc1OPNdh7cS9HQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=II/HaPBXTcdXqrpgUtwUNRbNYYbHxOEgBoIefmcKRHKbP0hvX7ct7B6iB/ucSXrzHGQYPuRvQ32BWoWIpYCsRzew7fQTEDKQFo9SY5YwiDFl1bJukAok8WizF9/q8ZUECqCVpSYYMd+RSmmTaWtpubZJ8kj6bntJQnlEaXmGeEc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=fQ/GYSR+; arc=none smtp.client-ip=185.67.36.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 1D172240029
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 20:23:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1772997806; bh=VMIAFOgNSso9aT66tTAOxXE8s8eAGET6wZgGMCzMmW8=;
-	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
-	 MIME-Version:OpenPGP:From;
-	b=fQ/GYSR+xjemUMrTa52mx+8SMqDa9FDJ2EgwPbQygiTCwj6s0x5jKJ1bSzXgP9LCq
-	 mEkeeX3BEOk9+ZCu56da3N6WD6Paiu/1v0IHVsvsdEgYrerwDFJzLocLROlHpZ8BOV
-	 xAs1A/giAoqFZJofQUm4OmMmxwn5T1cmryMtskaykUjmuMyxQBxT8rgi1Aj9mfG03b
-	 Pn3VJKQWOnjnmGesOnV40/+975H6aV8xZQ+JaF1LcjJlm3gr0yarrLZBGle34VmZQl
-	 Gmc/YPjcfrNJbafsKawf7sdq43cdX30KCkjvge49bR7NmhE94fpE/rAh92rhOko2k/
-	 WW8l9w/jqJ0WQ==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fTVRc1YsWz9rxG;
-	Sun,  8 Mar 2026 20:23:24 +0100 (CET)
-Message-ID: <33a7bfd923ebf118714dd79f4af0d4d8c4120d73.camel@posteo.de>
-Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
-From: Markus Probst <markus.probst@posteo.de>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel
- Ojeda <ojeda@kernel.org>,  Boqun Feng <boqun@kernel.org>, Gary Guo
- <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
- Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	rust-for-linux@vger.kernel.org
-Date: Sun, 08 Mar 2026 19:23:25 +0000
-In-Reply-To: <2026030850-quickstep-blinking-b853@gregkh>
-References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
-	 <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
-	 <2026030850-quickstep-blinking-b853@gregkh>
-Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
- keydata=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
- jfGillcaQOqFZ3WwVqyzG1BUfTow==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-OkxVV+ihTBYocaFXg3Ag"
+	s=arc-20240116; t=1772998068; c=relaxed/simple;
+	bh=/7Sn8DxPT3KkxIrltZkAY2FehAZ3oqRtWCKEqwtg1bg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YHJdUPu+t8OFIlCzLqQrIDE4dfYkb1aKak6AwQLFxegILwPStDPptmPBm1DO4lHk+xqKtDd/MFK1zLQ/WfRyYCcxbVw45Hx2wroZuzZqCDzZvqyDS34w+5f7WCnyAstukgPyDrIX88hOs77IKFivu9M2gAL+pLBfeQptSUSWh+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oFSPuFoJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=gC4GUuU9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 628ISH4V2021578
+	for <devicetree@vger.kernel.org>; Sun, 8 Mar 2026 19:27:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=yvhx0hHAKfkZNVagkFb9Vhg0
+	n3xxbR9f3Gh39D0w35g=; b=oFSPuFoJloQVraPqj+MjVcOxkYVlbs8mVdJ6pbYq
+	t60RM9jHlPydfzUeO1VD5BBK3rZJvLE7Q3kEeRrFFI90Xy8boYK/Io5jzByRPfgq
+	4P9QdpaXfnW+BhKsHOTAdo0zGO20xSNCilUDAX/G//kFdPjsLP1zcZ46gqHnkrSn
+	5sQo8rjd0PaWPUDvIAdRzQzeYzIqtY/sunn1lq6DhzjDHzH+nGwxLNZp192YqOOe
+	mvzAvK6aEkw8i3/Rwjd9lLrGGKvZLzkFXuaIJbuH8V12q5RZ7iThQcrfpAEuHVPr
+	I6JfordXVPvYpdCfPvqRt8u8cruwkY9qR41AWurll0LRyw==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4crbbg32qv-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 19:27:44 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cd77e5e187so790197085a.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 12:27:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1772998064; x=1773602864; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yvhx0hHAKfkZNVagkFb9Vhg0n3xxbR9f3Gh39D0w35g=;
+        b=gC4GUuU9ok/uNNLP8YtnFix1vM6SrsY57Yjv39VwD8Qut/R83o+6RxKCIIMvpfSPlq
+         BdwfNWefL2Qq0hrZEUxAfOqfpSbdoGqxFOQ6BZmKbu9qBbGcOvObnAm3CwbVMnNx1tXQ
+         lgTf5ABkd4MBYhCUPwzsiRd/e8zqRbKbaGtcavMQjunHRrEgUvkj8yEZxrs208pxO25U
+         sgGn/qNrSP+18qp6O9+33wknsU6r25h7EvDBJ8qkMG2H1OWZ0qNlvS2eWbq+QOsQzE8F
+         vQ0RE6le3B49JUlw9jjyjUmIVJS/LIpqgaWIM6j5phvGSujH05V8TYAXyfEG8vJG/VbV
+         VCaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772998064; x=1773602864;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yvhx0hHAKfkZNVagkFb9Vhg0n3xxbR9f3Gh39D0w35g=;
+        b=TIr6EjUpzpqTNUS5LObhNBhQAt5UTNkFzu+HeVOv9qJ+5/f+gXGnHY8VdrSOhmkFkc
+         xjs6jC/W0pd5FA7r2zn49jdCQBqq4truZFpeuKopZxi7LItulsGgiot0LyJxxPsxdTkZ
+         EXbIziQ3FFh2odBCAJnQ2gpVitXRE3/PfnaYrtxJJE0za9kWnBNl8fJEsKh8IyNtchZE
+         VXvLqEcamVIkFaptly869PBjSqMDKKy+eSUln1cx030e6YmRwGEH7bLYt5Qdx0rhB416
+         IO4cggJ6oIx90x3PMNenNpGDaVvd2oGx+etxLq4/Glm5uliVIfTnAoex+/jmcTri5FAB
+         7eWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXEH10Q4q+7VAj8TqeKTW8ubjh9hcDAXaRdfAiFgMdKvucn3pLq/lMinYcxoOqAN6smBN4bg+PwT/ka@vger.kernel.org
+X-Gm-Message-State: AOJu0YzT6xsGvLQZOlpOgms9+dzIVzfrmC+M4r1t5pmWazME/dK5ajex
+	m2Fu1M+MA05rQuqLy9mKzUbLDRv7LxVgujZKGB9C7rQF9iBYzb3k4e5qPJL9+JEx82V/pas8j+X
+	bejLpGx4oi7m4h7tpUoCPMPrSJixkoBVV8cjjEygEPYNfNVR23gUpV/E8nn5GhhrT
+X-Gm-Gg: ATEYQzzMsYk9Er84FuT3J9asW2u3D9oW6jjmA90+iVhK9/o6cxMgNKpAQsLyu2EeMSg
+	tJtTsEmqqRbxg8bi8920wygjlJP57YnFUvJnAncAAmBdFK46HRQVIQxaPsoyhe71VrIQst2b4yJ
+	j/RmN9G7GgI71u+nE0qAStACPzE4Lai47VNtz+StuHvUHsKjdKoi757QbsnhV9IRkJ3/3Doapnz
+	/z0OCjTb2UxS8aDr0zsu6CY3VBBdtyl3+2y8ErQL6YqhBDWMXqq8z3N4aNobbjkU24wjPfTjiIx
+	CoUSS7bwTWDcW/BSpc+BzdWS4xJ6aVRGY7yo1kl1UyF/RY1tDk8jc39NAD0aU55gjg4PCtM+kjx
+	Qmc3XEsmYjbbeSEH1Hd4//suOYM8RW8K8e1rRrX79oiCZZuwtSxYaEUsrWpB8DoJAU9zaX+7s4i
+	AjT9WhD7wUUIOeSsnznakCvkQqfJyDJ381pTQ=
+X-Received: by 2002:a05:620a:4bc4:b0:8cd:7cea:ae9f with SMTP id af79cd13be357-8cd7ceac583mr374001385a.36.1772998064076;
+        Sun, 08 Mar 2026 12:27:44 -0700 (PDT)
+X-Received: by 2002:a05:620a:4bc4:b0:8cd:7cea:ae9f with SMTP id af79cd13be357-8cd7ceac583mr374000485a.36.1772998063516;
+        Sun, 08 Mar 2026 12:27:43 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a13d03d319sm1603817e87.38.2026.03.08.12.27.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 08 Mar 2026 12:27:41 -0700 (PDT)
+Date: Sun, 8 Mar 2026 21:27:39 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: cristian_ci@protonmail.com
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 2/6] drm/panel: Add driver for Novatek NT35532
+Message-ID: <kvq4py5svidg7c4tu2kxwpj6fnsod66kq555pwchd44nfdjejk@yvpk4ismso7r>
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com>
+ <20260308-rimob-new-features-v1-2-aa2c330572c0@protonmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
-X-Rspamd-Queue-Id: CE9E0231E24
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260308-rimob-new-features-v1-2-aa2c330572c0@protonmail.com>
+X-Proofpoint-GUID: pxxcku7Qs94CQYIbOMxVH3HBFszdC-9s
+X-Proofpoint-ORIG-GUID: pxxcku7Qs94CQYIbOMxVH3HBFszdC-9s
+X-Authority-Analysis: v=2.4 cv=SumdKfO0 c=1 sm=1 tr=0 ts=69adcdb0 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=ZpdpYltYx_vBUK5n70dp:22 a=sfOm8-O8AAAA:8
+ a=VwQbUJbxAAAA:8 a=43JGVj5kcgoAPVrWvbgA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=TvTJqdcANYtsRzA46cdi:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA4MDE4MCBTYWx0ZWRfX/lWDoiE/xLY6
+ 3dGa/PUa3j882AAjjjY9Nubd+8z5RT9rZiWLWZxwrIRcWki0W2/VZscVKOPPDrQc1iSP7rD0vEw
+ 7dfOV23rYgthtq/bg6DzZJk9Z5PLBRrnn8pV1AgpJ97Q18oBGjQxyPtELHrOdiuXDyKv0k8mN9W
+ MzGRw1A9laCWbhNFtH5iK161xjL8ggdFa1PGSAYHB2uRRYtund4ZO4giVy9S97DLiMJj4uvLrdK
+ gO5LK47Uc8PKpkH/TmB4oPLmIqm4xW5Pu1PNMQ2KHGqZDqtpYhja3DanoaKiBhiSMg8sLQMv0FN
+ hl/FdyGfQOlyf7fuvyMKzkTJen9ANS9bm04kTR2UKjXEAteuWVJc4HNx8kmyZC+RyGeeLkzpdJx
+ prW70bcNoC6PA2h2mCDf++ZUYXKPCSbuVeVr0HZapTnHCtfzXHrwt+piephZjf7Ij3nsHh13l7i
+ 8hYmwvDl4LAcUsi20iw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-08_05,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 priorityscore=1501 impostorscore=0 spamscore=0 adultscore=0
+ phishscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603080180
+X-Rspamd-Queue-Id: 73AD1231E81
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-272622-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[posteo.de:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-272623-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:dkim,oss.qualcomm.com:dkim];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-0.988];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.de:dkim,posteo.de:email,posteo.de:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
+On Sun, Mar 08, 2026 at 04:52:42PM +0100, Cristian Cozzolino via B4 Relay wrote:
+> From: Cristian Cozzolino <cristian_ci@protonmail.com>
+> 
+> Add support for Novatek NT35532-based 1080p video mode DSI panel.
+> 
+> Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+> ---
+>  MAINTAINERS                                   |   1 +
+>  drivers/gpu/drm/panel/Kconfig                 |  11 +
+>  drivers/gpu/drm/panel/Makefile                |   1 +
+>  drivers/gpu/drm/panel/panel-novatek-nt35532.c | 767 ++++++++++++++++++++++++++
+>  4 files changed, 780 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 12243feb0b27..d854804dc8cc 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8143,6 +8143,7 @@ DRM DRIVER FOR NOVATEK NT35532 PANELS
+>  M:	Cristian Cozzolino <cristian_ci@protonmail.com>
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/display/panel/novatek,nt35532.yaml
+> +F:	drivers/gpu/drm/panel/panel-novatek-nt35532.c
+>  
+>  DRM DRIVER FOR NOVATEK NT35560 PANELS
+>  M:	Linus Walleij <linusw@kernel.org>
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 307152ad7759..4eb9691ab552 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -500,6 +500,17 @@ config DRM_PANEL_NOVATEK_NT35510
+>  	  around the Novatek NT35510 display controller, such as some
+>  	  Hydis panels.
+>  
+> +config DRM_PANEL_NOVATEK_NT35532
+> +	tristate "Novatek NT35532-based DSI video mode panel"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	select VIDEOMODE_HELPERS
+> +	select DRM_KMS_HELPER
+> +	help
+> +	  Say Y or M here if you want to enable support for Novatek
+> +	  NT35532-based 1080p video mode DSI panels.
+> +
+>  config DRM_PANEL_NOVATEK_NT35560
+>  	tristate "Novatek NT35560 DSI command mode panel"
+>  	depends on OF
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index aeffaa95666d..f2b3d9b7abee 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -49,6 +49,7 @@ obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
+>  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
+>  obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
+>  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35510) += panel-novatek-nt35510.o
+> +obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35532) += panel-novatek-nt35532.o
+>  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35560) += panel-novatek-nt35560.o
+>  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT35950) += panel-novatek-nt35950.o
+>  obj-$(CONFIG_DRM_PANEL_NOVATEK_NT36523) += panel-novatek-nt36523.o
+> diff --git a/drivers/gpu/drm/panel/panel-novatek-nt35532.c b/drivers/gpu/drm/panel/panel-novatek-nt35532.c
+> new file mode 100644
+> index 000000000000..51ba548d0a8b
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-novatek-nt35532.c
+> @@ -0,0 +1,767 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Generated with linux-mdss-dsi-panel-driver-generator from vendor device tree.
+> + * Copyright (c) 2026 Cristian Cozzolino <cristian_ci@protonmail.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +struct novatek_nt35532 {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi;
+> +	struct regulator_bulk_data *supplies;
+> +	struct gpio_desc *reset_gpio;
+> +};
+> +
+> +static const struct regulator_bulk_data nt35532_supplies[] = {
+> +	{ .supply = "vsn" },
+> +	{ .supply = "vsp" },
+> +};
+> +
+> +static inline struct novatek_nt35532 *to_novatek_nt35532(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct novatek_nt35532, panel);
+> +}
+> +
+> +static void nt35532_reset(struct novatek_nt35532 *ctx)
+> +{
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(10000, 11000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	usleep_range(5000, 6000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(10000, 11000);
+> +}
+> +
+> +static int nt35532_on(struct novatek_nt35532 *ctx)
+> +{
+> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
+> +
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xff, 0x01);
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x6e, 0x80);
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x68, 0x13);
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xfb, 0x01);
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xff, 0x02);
 
---=-OkxVV+ihTBYocaFXg3Ag
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+If this goes to be resent for any reason, could you please insert an
+empty line before 0xff, 0xNN wries?
 
-On Sun, 2026-03-08 at 19:56 +0100, Greg Kroah-Hartman wrote:
-> On Sun, Mar 08, 2026 at 06:41:20PM +0000, Markus Probst wrote:
-> > +kernel::module_serdev_device_driver! {
-> > +    type: SynologyMicropDriver,
-> > +    name: "synology_microp",
-> > +    authors: ["Markus Probst <markus.probst@posteo.de>"],
-> > +    description: "Synology Microp driver",
-> > +    license: "GPL v2",
-> > +    params: {
-> > +        check_fan: i32 {
-> > +            default: 1,
-> > +            description: "Check for cpu fan failures",
-> > +        },
-> > +    },
->=20
-> This is not the 1990's, please do not add new module parameters for no
-> good reason.  This should be dynamic and per-device, not per-module.
-agreed.
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xfb, 0x01);
 
-> why would you NOT want to check for cpu fan failures?
+[...]
 
-Because it is also triggered at low fan speeds, even if they are
-intentionally set by the driver. While the parameter is 1, the driver
-would enable those checks for fan failures and would prevent low fan
-speeds. The parameter would allow it to disable this check and allow
-for low fan speeds.
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x11, 0x00);
 
->=20
-> thanks,
->=20
-> greg k-h
+I suppose this is MIPI_DCS_EXIT_SLEEP_MODE,
 
+> +	mipi_dsi_msleep(&dsi_ctx, 120);
+> +	mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x29, 0x00);
 
-Thanks
-- Markus Probst
+MIPI_DCS_SET_DISPLAY_ON
 
---=-OkxVV+ihTBYocaFXg3Ag
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+> +	mipi_dsi_msleep(&dsi_ctx, 50);
+> +
+> +	return dsi_ctx.accum_err;
+> +}
+> +
 
------BEGIN PGP SIGNATURE-----
-
-iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmtzKkbFIAAAAAABAAO
-bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSc1oP/i2i9L1poaiTYuQWgWeo
-SxGi5N4hZYJZ24TNnMIWkZUNmAFvfQD71UUzBLhN+M8GuLJwLeIjaO7LMHnDJf7z
-6JdNh4RZ1kIRRt1tz/xJzZkQcCmqC9vKruHQjtY0DqK/BhOvVWO8BE3fgg2rYyRq
-GJPa4/gGG+LbRE58S+P/O+iTzhcyVYbgFCpyDl28n4gI0kRsYXoaK5g/yRROho/1
-Tau+zNxS+Ikw1MTAVQqapp3hAGQOfl/zUVFoxEAUAfeOIBUqOZRFm4qZjdLYp6xA
-fBJAR2QvWZw3rUifBWceEN27ivNJgTdWBJ6lRVT+4TEllICXpYDWgIjtyQQs7CAq
-GmYLDpedg3f413mdMFPEN90xX1OTL/J4RkrqIgpZ/6qS3eWMtg1ItzwGGxyUSqWJ
-TePxkJAlaR7hbtQZwOPopt6oNZDb+D5pbRlRwPeg3Qmp7dXrbQKubB6ft/frqfXu
-si6DCET47fg+VXkoBu0yLxlAUtLD1u8z+AqMphDbyWZX7VZ8VQuV41ZZgRNwYCfa
-j+gRFBhA97TeMTCsBeU8flH0BKAxIM699MNEpErdB9Pb/MtE9xUBQWSj1Fuzzei/
-cJJZk9kA1ZJ6rV60R7nB8nVk6ll/Q2TyTt1QHcA5DBYYHDUZEWhoRS0cGAv4Ia58
-LiPYVjBz1y/L5QtJAv7WtDxM
-=T8rS
------END PGP SIGNATURE-----
-
---=-OkxVV+ihTBYocaFXg3Ag--
+-- 
+With best wishes
+Dmitry
 
