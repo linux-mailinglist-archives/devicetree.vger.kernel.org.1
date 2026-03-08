@@ -1,131 +1,141 @@
-Return-Path: <devicetree+bounces-272555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272556-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KPcvFU8+rWlV0AEAu9opvQ
-	(envelope-from <devicetree+bounces-272555-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 10:15:59 +0100
+	id oIONCPc+rWmN0AEAu9opvQ
+	(envelope-from <devicetree+bounces-272556-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 10:18:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACB2122F218
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 10:15:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F81D22F23C
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 10:18:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7DA46301112A
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 09:15:34 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7C379301179B
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 09:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91AE2F361F;
-	Sun,  8 Mar 2026 09:15:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="idVhnbav"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74C535EDBD;
+	Sun,  8 Mar 2026 09:18:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63B9186E58;
-	Sun,  8 Mar 2026 09:15:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A73B322A1F;
+	Sun,  8 Mar 2026 09:18:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772961333; cv=none; b=pCUa9BqGa6S+7a/u+DlEMDO6u7vIzJ5CzMcU992CY1ZF2s0ftvH3NBWbq+5mp9wab6EBCHZI0p0L34x/4TDGoPhNIC6Lw7CC4sLFPTxgwUUc9IWCevaXMz6UXPqJ+MDFjX9IXvuGu73sMEVYBUs9F9nDQenx0gy04H5SeoWSwCM=
+	t=1772961522; cv=none; b=PU2skjsmgQOFPIr4i3CLUZA5iN+xnEe8er6FIREPdrNDV3eS8V1K4/M97rqTqu/P5/h99ngZqjUYK1zbkbw0IbekhR4Bk0djf3TzpDnq06jhdX+xW1mP9+jOYU1d9DnIWKe/rS/aYfLm4bSgsQeMTUZTIjeSyFxA3QuoPloI74E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772961333; c=relaxed/simple;
-	bh=XWI+ZHoUAT3ctskDKws+HHdePkXTEbH72ogQ7cjOWWc=;
+	s=arc-20240116; t=1772961522; c=relaxed/simple;
+	bh=fucfSpewJjtYamNzccfFHnQoOzbrgPVJyeoJ4Inkuh4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cQaDmI4PII37TWtjiGh52CnaY8cJjycH1AG9Jy3dak4R+EP06yp2WW7LxycQUbEu7zaUPOQNvleMO3yHa4fHsuTlDWz7O+aV3YFRNIznBVY+KnzYiDyzmRjgFqVC/vHYGE45lpgHP6jvcNwLDeSAo8fI7kxYGqkolD7FohXPXNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=idVhnbav; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07A34C116C6;
-	Sun,  8 Mar 2026 09:15:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772961333;
-	bh=XWI+ZHoUAT3ctskDKws+HHdePkXTEbH72ogQ7cjOWWc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=idVhnbav/XOwlumIv3+Uf/JNcHhq76ZoBvHozfMckJ4bF9h+cDAZf/Zz+JTfl69Ek
-	 nv5QEBFlJqDQwHUAyCK7x9oRzBMFgPCmdl2ouzjvo0vVwKX7I6mDBnfZYfSoRazGQJ
-	 oKlFQNK/3V4pjEd58SVefBl0vApoOEg+lwOedsQkB+h/9DnG+BRSBERp3dDoco/Kt7
-	 skYma1ib5R/P6X14OcBDg6vE6kElezZo4px3Y0WB4RhC7Vj3ERe/mzUEOUfqzcLHWv
-	 6lQsKCObsnISjHVMlubGU9v7pJ+WsqzAeCJI2+MnSmMmE/IyCV+OCIee/bWQ+twdk0
-	 6DjSs63mfWYlA==
-Date: Sun, 8 Mar 2026 10:15:31 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Hendrik Noack <hendrik-noack@gmx.de>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Ferass El Hafidi <funderscore@postmarketos.org>, 
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: Input: Add Wacom W9000-series
- penabled touchscreens
-Message-ID: <20260308-vivacious-coucal-of-current-2d7ac8@quoll>
-References: <20260307181557.66927-1-hendrik-noack@gmx.de>
- <20260307181557.66927-2-hendrik-noack@gmx.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=buJcbqZvSdMCNtrhWEjHLmsZeQLhBaiGZV1rbngfYx5mfZ8eOW+KhYamI2HeWW1stCZZXFwOaWSImS5fADgoGu2nyERFFE1jhDuSHML9CThXarKI0bNzHSwhhZh77T525dpO5EcmTfEKanQjQoGyuh+zS276GD+zwi06sr1BQ8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [116.232.48.232])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id ADAF03417BD;
+	Sun, 08 Mar 2026 09:18:39 +0000 (UTC)
+Date: Sun, 8 Mar 2026 17:18:26 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: alex@ghiti.fr, aou@eecs.berkeley.edu, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, dlan@kernel.org, krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	palmer@dabbelt.com, pjw@kernel.org, robh@kernel.org,
+	spacemit@lists.linux.dev
+Subject: Re: [PATCH 1/1] riscv: dts: spacemit: Add 'linux,pci-domain' to PCIe
+ nodes for K1
+Message-ID: <20260308091826-GYA318052@gentoo.org>
+References: <20260302074235-GYB288339@gentoo.org>
+ <20260307043806.957175-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260307181557.66927-2-hendrik-noack@gmx.de>
-X-Rspamd-Queue-Id: ACB2122F218
+In-Reply-To: <20260307043806.957175-1-amadeus@jmu.edu.cn>
+X-Rspamd-Queue-Id: 8F81D22F23C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.14 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
+	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmx.de];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272555-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272556-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,postmarketos.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
+	NEURAL_HAM(-0.00)[-0.766];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gmx.de:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,ca800000:email,ca400000:email]
 X-Rspamd-Action: no action
 
-On Sat, Mar 07, 2026 at 07:15:32PM +0100, Hendrik Noack wrote:
-> Add bindings for Wacom W9002 and two Wacom W9007 variants which can be
-> found in tablets.
+Hi Chukun,
+
+On 12:38 Sat 07 Mar     , Chukun Pan wrote:
+> Hi,
 > 
-> Co-developed-by: Ferass El Hafidi <funderscore@postmarketos.org>
-> Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
-> Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
-> ---
+> > You describe what's has been done here, but no why?
+> 
+> Because the PCIe boot order is random, if there are two R8125
+> network cards, their interface names will not be fixed.
+> 
+> For example:
+> First boot:
+> pcie@ca400000 -> eth2
+> pcie@ca800000 -> eth3
+> 
+> Second boot:
+> pcie@ca400000 -> eth3
+> pcie@ca800000 -> eth2
+> 
+Ok, I can understand your problem
 
-You received review and instruction what to do. Did you read it?
+> If their PCI domain numbers are fixed, I can fix the interface
+> names by matching /sys/devices using a script.
+> 
+If you want to have a fixed interface name, you could setup a udev
+rules according to mac address? something like:
 
-Your way of organizing your work makes it difficult for us. Look, try
-yourself:
+$ cat /etc/udev/rules.d/70-network.rules
+SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="01:02:03:12:34:56", NAME="eth2"
 
-b4 diff '20260307181557.66927-2-hendrik-noack@gmx.de'
-Checking for older revisions
-Grabbing search results from lore.kernel.org
-  Added from v3: 2 patches
----
-Analyzing 16 messages in the thread
-Preparing fake-am for v3: dt-bindings: Input: Add Wacom W9000-series penabled touchscreens
-ERROR: v3 series incomplete; unable to create a fake-am range
----
-Could not create fake-am range for lower series v3
+but, I see no harm to add a pci domain property..
 
+> > Can you add description about why problem with random domain,
+> > and the motivation of the change behind?
+> 
+> Should I improve the commit messages?
+> 
+Yes, please, thanks
 
-Best regards,
-Krzysztof
+> Thanks,
+> Chukun
+> 
 
+-- 
+Yixun Lan (dlan)
 
