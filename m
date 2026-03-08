@@ -1,170 +1,120 @@
-Return-Path: <devicetree+bounces-272570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272571-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eC/YKgxorWmF2gEAu9opvQ
-	(envelope-from <devicetree+bounces-272570-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 13:14:04 +0100
+	id iNF5LH9vrWme2wEAu9opvQ
+	(envelope-from <devicetree+bounces-272571-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 13:45:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03F3A2302C0
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 13:14:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5774B230493
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 13:45:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 81C83300C582
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 12:14:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 8685C300463B
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 12:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A7932EC08C;
-	Sun,  8 Mar 2026 12:14:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CED7E2F0C6A;
+	Sun,  8 Mar 2026 12:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="KyjIBFlh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gdBHFTv1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0AD8186E58;
-	Sun,  8 Mar 2026 12:13:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA96E258EF9;
+	Sun,  8 Mar 2026 12:45:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772972041; cv=none; b=DueR3ubEq0LlLcQQnRfBF886q/hcnuD4FKGC+DB32GLdsZDAJcUop7R6NmK/5VvaNkLFN2YpEx7L74YwJTPrRyaPjJI3yVucJJIieVQvMe751pMf53a2GCFFE6iM/UjRHidVxl02XyZt+5FYqyJmOSmFLm1igT5SBQ47TSPdXd0=
+	t=1772973948; cv=none; b=ADdyg/Lbg9UfUFznAJU0B7WBnQRecA1zONLVnsRdqIKdseETnZqdcKFatJHy1ZmGBe38xewdVYRcdz7bdPEdEtGDhDZlBIQF4TMHWXDMpLMuhXP0bP2WBuZD7EJLfKK1Y0f5wKH3iW26bFxEBmyzem7xlJcNOdhbDexqTr0sWKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772972041; c=relaxed/simple;
-	bh=KlM4hl1KhneCR8S8wwL3AsgMH81tqTiQtLEzLpcTFB8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=SBsPfs4FrCayHhapXCVBQUEDjxEmog6qY4Wwwq/F9gdQCiA/Ga5aaO5K9se67+cr2Wn4tpxnZ6PIduqC0SmUXXpjgqRHcGcgAkCeOPzJdb1/VzqLdr8zadmfUXCkM7icEulraJ50qj+XPYs7Lo4w5t3K6j7sgGvGPVXr4LlhiMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=KyjIBFlh; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id DDFE326EFE;
-	Sun,  8 Mar 2026 13:13:49 +0100 (CET)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 0qODxsH7oPNB; Sun,  8 Mar 2026 13:13:49 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1772972029; bh=KlM4hl1KhneCR8S8wwL3AsgMH81tqTiQtLEzLpcTFB8=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To;
-	b=KyjIBFlhaggFLByg0qYTM3R9UKdLN4gTJoVWxYMGCTO1AiAcHGG3puAma8c7K7iBm
-	 P9ZyoJYeYwgWy6noq0JJD18uvLOh1I1iPAvkF2IpxFmh2brEhVsF3antyOKShJKK8J
-	 UynPrM1MMQsLSkCEdxnvBxfyvZZhaMkW/FFMd/Zlvm3vkvzURROeTGX9bkw41grD8d
-	 xzFD2lu6n52eR3qGpUMPs8Xh0CKIVtObiwABALQnVhItYrEb3+6lL4ZTEXP4mt7ZNI
-	 m0G0IFI8jwnlkexuJbdlCb50yBqBShATich6U79uyfer27E0ydBBFrHKr+KXUVf+F9
-	 39sDGFV1tNhcA==
+	s=arc-20240116; t=1772973948; c=relaxed/simple;
+	bh=ZFIV8Ee9/6ASXXuHKe4ooqhpMJfSkTQUrYAxVmmta4A=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nnZjNDNt7HGd2++hd5YAqlnIvx9+nSBaK5xV3PxEctGP9OblDqvp8QTcwTDTfHZM8p7+qJyJdUU+ODU1rWii2X3o6dUZf/4+rf/Jac7VfJIslFwU86RPpxBHc08cDPo5UEWkTa87mKgumy5GyTipoPw5XQEAtGO6z0rctQ6N6gU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gdBHFTv1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E05C116C6;
+	Sun,  8 Mar 2026 12:45:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772973948;
+	bh=ZFIV8Ee9/6ASXXuHKe4ooqhpMJfSkTQUrYAxVmmta4A=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=gdBHFTv1xkV6UQK8IfOdpwNthbwz7Q/Zu83ZG6Jl1KW2DYyncU3xoE3KQit9Skztr
+	 p9jN4QRjm/gdlppqnsELjQBxottcA+TWBuXKx/FwNjAKT2fxaHPeF/qAQxG8k3aVqF
+	 v2ebx9KYWWvHVxVyy23Gah2IZzzWnUtS0IZHbcXZqWyvTR8JpMAfWQ/IK/ZAhQYn8H
+	 M/9RMHU8v0L/2Mr4L4tqVAYpPV3sQloTxeR/9QoxK38t/1JREKV7kqiOGX5RrWIc44
+	 SwKJvTvD497WSVktLNkH93Hy0UWBx4JdmbBbKf91KX3nrzXxYTcEiHwHU+Wt4msvx8
+	 F+9D2jqHjHhZg==
+From: Sudeep Holla <sudeep.holla@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Sudeep Holla <sudeep.holla@kernel.org>,
+	Debbie Horsfall <debbie.horsfall@arm.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 0/2] Add Arm Zena CSS support
+Date: Sun,  8 Mar 2026 12:45:41 +0000
+Message-ID: <177297386811.1084512.762352333880367472.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260212-zena-css-v2-0-d33ea23cb9c2@arm.com>
+References: <20260212-zena-css-v2-0-d33ea23cb9c2@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 08 Mar 2026 17:43:34 +0530
-Message-Id: <DGXE4J5UJKGM.2R9HM21UDP13L@disroot.org>
-Cc: "Krzysztof Kozlowski" <krzk@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Pavel Machek" <pavel@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "MyungJoo Ham"
- <myungjoo.ham@samsung.com>, "Chanwoo Choi" <cw00.choi@samsung.com>,
- "Sebastian Reichel" <sre@kernel.org>, =?utf-8?q?Andr=C3=A9_Draszik?=
- <andre.draszik@linaro.org>, "Alexandre Belloni"
- <alexandre.belloni@bootlin.com>, "Jonathan Corbet" <corbet@lwn.net>, "Shuah
- Khan" <skhan@linuxfoundation.org>, "Nam Tran" <trannamatk@gmail.com>,
- <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <linux-samsung-soc@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
- <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v3 04/13] dt-bindings: power: supply: document Samsung
- S2M series PMIC charger device
-From: "Kaustabh Chakraborty" <kauschluss@disroot.org>
-To: "Rob Herring" <robh@kernel.org>, "Kaustabh Chakraborty"
- <kauschluss@disroot.org>
-References: <20260225-s2mu005-pmic-v3-0-b4afee947603@disroot.org>
- <20260225-s2mu005-pmic-v3-4-b4afee947603@disroot.org>
- <20260225-secret-amusing-cuttlefish-d3bee5@quoll>
- <DGPTBRX09EU5.1D1ZSR7EUV7AT@disroot.org>
- <20260306005057.GA877725-robh@kernel.org>
-In-Reply-To: <20260306005057.GA877725-robh@kernel.org>
-X-Rspamd-Queue-Id: 03F3A2302C0
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 5774B230493
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[disroot.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[disroot.org:s=mail];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272570-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272571-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[22];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.929];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kauschluss@disroot.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[disroot.org:+];
+	FROM_NEQ_ENVFROM(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.999];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 2026-03-05 18:50 -06:00, Rob Herring wrote:
-> On Fri, Feb 27, 2026 at 07:56:58PM +0530, Kaustabh Chakraborty wrote:
->> On 2026-02-25 11:44 +01:00, Krzysztof Kozlowski wrote:
->> > On Wed, Feb 25, 2026 at 12:45:06AM +0530, Kaustabh Chakraborty wrote:
->> >> +
->> >> +  This is a part of device tree bindings for S2M and S5M family of P=
-ower
->> >> +  Management IC (PMIC).
->> >> +
->> >> +  See also Documentation/devicetree/bindings/mfd/samsung,s2mps11.yam=
-l for
->> >> +  additional information and example.
->> >> +
->> >> +allOf:
->> >> +  - $ref: power-supply.yaml#
->> >> +
->> >> +properties:
->> >> +  compatible:
->> >> +    enum:
->> >> +      - samsung,s2mu005-charger
->> >
->> > Review from v1 still applies. I think you ignored several reviews, so =
-I
->> > will mark entire patchset as changes requested.
->>=20
->> Somehow I missed this one... anyways I address them here:
->>=20
->>   Why do you need a dedicated child node for this? It's got one property=
-,
->>   other than the compatible, that you're using. It could easily just go
->>   in the parent without a dedicated node etc.
->>=20
->> The dt node also references a simple-battery node, that's why it's
->> required.
->
-> That can go in the parent.
+On Thu, 12 Feb 2026 11:16:50 +0000, Debbie Horsfall wrote:
+> This series adds the Arm Zena Compute Subsystem schemas and
+> Devicetree. Currently, the only platform variant is the Fixed
+> Virtual Platform. More information on Arm Zena CSS can be found
+> at https://www.arm.com/products/automotive/compute-subsystems/zena
+> 
 
-So the parent MFD has the following?
+Applied to sudeep.holla/linux (for-next/juno/updates), thanks!
 
-  allOf:
-    - $ref: power-supply.yaml#
-
-I'm kind of not sold on this one.
-
-Moreover, I was planning to introduce a port to/from the MUIC in the
-next revision so that would've been included here too.
-
->
-> Rob
+[1/2] dt-bindings: arm: Add Zena CSS compatibility
+      https://git.kernel.org/sudeep.holla/c/96a43d3325e3
+[2/2] arm64: dts: zena: Add support for Zena CSS
+      https://git.kernel.org/sudeep.holla/c/164148d0a163
+--
+Regards,
+Sudeep
 
 
