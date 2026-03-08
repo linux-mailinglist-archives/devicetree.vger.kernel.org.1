@@ -1,416 +1,277 @@
-Return-Path: <devicetree+bounces-272613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272614-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id PIkDACG8rWni6gEAu9opvQ
-	(envelope-from <devicetree+bounces-272613-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:12:49 +0100
+	id iMOsFuy9rWla6wEAu9opvQ
+	(envelope-from <devicetree+bounces-272614-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:20:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D3D523195A
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:12:47 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EEB823198E
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 19:20:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A08C2300F5C4
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 18:12:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EFEBD3002521
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 18:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC07393DDD;
-	Sun,  8 Mar 2026 18:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD0930CD81;
+	Sun,  8 Mar 2026 18:20:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m8aWi1It"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="V7hy7/S4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95122765ED;
-	Sun,  8 Mar 2026 18:12:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71E42110E
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 18:20:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772993565; cv=none; b=HuRjRd2iKBK/2NwFN4IiZ8VWdLI9u35uL8tAZx3FfliAFTDU0c6DgWLZVPzaEnXhz57T5ZVyWbEuDRJ4YgXi0YX/5vE3hnPVSwbGe7j05bjHi1Aai/Q+MXwsiBzIjJ+yJwuF84htq1HzpgmVI5J8wCLrsHbNKRsZ351AhnaInmc=
+	t=1772994021; cv=none; b=mypPGUVo2ge3dTfnxFlEKuq5QOxUsZGPvpp74M2aNwIpcqm+k/xdBT9B616+JD3u8PqGjJOtDNk9im9Ic9iyXW+oenaUeAQSEw6VcyxSA5rctwdc32BfcNIzDnf924UENFn3twIEPoU0CsbkSetzZACwB8/CifG/1m7Q20GHAIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772993565; c=relaxed/simple;
-	bh=BAVK6/WzrAdg2vhQDRiaGen1VnJjqGRGepdevwj41vE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=brMRKMGYbONOWEk6d6Dco1LLj+kK+5fHZzWZGehXR/DOC+TTeLDvb8MJx52tXztYSSJzcfexg/QrfjZ4vF2XAFYuBKuiHtqg3RQoAyyURO58Sqf86V/ACuDH2mRUnjgV9nL9t/b0uP6dJciELAirLmHm5zkBORTB9ME2xJoN+jo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m8aWi1It; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1C5DC116C6;
-	Sun,  8 Mar 2026 18:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772993565;
-	bh=BAVK6/WzrAdg2vhQDRiaGen1VnJjqGRGepdevwj41vE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=m8aWi1ItDAw3AofUdwN1HxZeFh81ShngEE4Le+nfSXChaWRtrWtluttxM1kdbXq1V
-	 wCBzpkOHUy49m7YUQrl6Ec6Nil+1s7soBQY2pCLpzj24cSSR2u4z521nhplCkr1DB2
-	 CUESvjQc1svjDZiCRu5pFfLTenZ7rzPsML2ZD2z0bumE5otLbLYHDxMdVL5CYIAWga
-	 /AQuYyaHsZshC7tj8YrB75J7yKNxWn39liLLYbAs2WS8e6ROwNbPvti1iBJr+RbVOd
-	 MiIIUmSMO0HnuCFFJNzzuW2SsSbAy1waHl8ofn94201PZATsyAIAWjzlnLSc70W5LN
-	 E+Q5L04BuL9xw==
-Date: Sun, 8 Mar 2026 18:12:34 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, Nuno =?UTF-8?B?U8Oh?=
- <noname.nuno@gmail.com>, rodrigo.alencar@analog.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Philipp Zabel
- <p.zabel@pengutronix.de>
-Subject: Re: [PATCH RFC 0/8] AD9910 Direct Digital Synthesizer
-Message-ID: <20260308181234.2e7ac4b9@jic23-huawei>
-In-Reply-To: <42fe94df-ff8c-49d2-9a03-7d00e48eb22b@baylibre.com>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
-	<a72b2d62-3b91-4789-a1b1-ff1429e80ed5@baylibre.com>
-	<2k4ouimpaxjuhnk67qmrues2375zj43ehru7h5as6w6kf7yak3@2ndr72co5trh>
-	<bdc973e5-df74-48f2-8884-439b03565940@baylibre.com>
-	<9392fea00a9c3b23d1bc9468faa1b3cc20904398.camel@gmail.com>
-	<20260301133806.5e706756@jic23-huawei>
-	<pohirub7gjqu7xtq5qakkmr3wlek2rgj6kdgltjvir6g4jwgbr@hmjflsplni4o>
-	<20260307140953.46db3c19@jic23-huawei>
-	<7cc67826-3a8a-4190-9447-62b7d68e4445@baylibre.com>
-	<20260307165816.46a98d34@jic23-huawei>
-	<zurbjiq5nqbcid5h6kfworkmhczigirkzsqqsczfkatpg3bbe3@t7ssv76d3t4a>
-	<42fe94df-ff8c-49d2-9a03-7d00e48eb22b@baylibre.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1772994021; c=relaxed/simple;
+	bh=Jy4NFTwiCpQ5Ymy/1VB5BryAZPUczW+7GPF6HVfH2Fs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QswJj2a2MDVyOXFFRXjL1HOfgBpXUBI/t8nQMvMprgYJ9tSlgTkJeeNpHyPlvf32BaMpzi+E658xQkwglrcYkb8soOut3m+Q3Z4sQfa5dxZkghEZ3BmjhXo1/dtIUYH8m+aUCRxHS3gT2RgNgfGwRvKyRIWOHb10VSXWx4Uj4Xo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=V7hy7/S4; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-798617c0ad5so60326467b3.1
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 11:20:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1772994019; x=1773598819; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ebNKnkiCdgWGG7d84Dx/mjbwarrbx79g9Rc6LzAJfuU=;
+        b=V7hy7/S4G50K44iMdcGmiiRxaVbndhtzvvKYjKoFO+1Zow/8Sg66HdeyG9Wp8PqV0A
+         jmwvBozDDGqKK6iAnppjK/rkS18txUKW5AxDV42qqNNVYmDLScfqkqL4FUyeashAB2iC
+         A8VrERRcUkyS/lkCvNilNZJgCSxVLWAEAJUvFpctuEZhODvgP1uVKnJ4DQPVRBcuVLJl
+         TKlA1eiwRJ742tXc5nw0Jxt0ZDa6uJdmFIcVEV6a0CBAoIoYaRsVlDwTP8lTwP9xVydD
+         Z9QOgs+M9iNOWG/cyxDsWU/CFnU9xcUDTpQuxzqLDH1zKoVl48DxTdqqsMaseEA58Mro
+         npIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772994019; x=1773598819;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ebNKnkiCdgWGG7d84Dx/mjbwarrbx79g9Rc6LzAJfuU=;
+        b=UQzR2f9cGsie+rs0ezpkqrI9QQC9dgh5g7xY8CqUELx84OtURNN3ALN8srb3AGWXXA
+         xa4tdadbbzvTnVXvIMv5DR6C019mCTtEYeiPESG01FJoG6rzQYSpHikSatyNJpMbMUAB
+         jvCaLjnP+gTlCjegoJUhYHLwNClklezh3PNXYHcDDKPtoKIZ7ZzDqM8JcuERyRUbW1mr
+         SkD07IyZC/HNFuvf3H1pleAK79uZq5vh/8r7hiyT4cDjMMiet+3BTOqmwXGrL6VXFB7V
+         rJyTxl+PRGha93ep3OSNHAsoaumbeoG5liO1pUHqb+heuiw8iDDZVFLIn26EA8YrpI5I
+         dxJg==
+X-Forwarded-Encrypted: i=1; AJvYcCU7qb8zBcgmFUgCclWSK2fc83trpW7ziBx+RF9okVVdkDnhT07B49MDmdPTFwd/SKWvwVaXpWLImFWa@vger.kernel.org
+X-Gm-Message-State: AOJu0YweA+hYYAzHt1jNXaCh+ZtrgNv+bc5aqtxjXtIbqVvctYo/9/Sz
+	6D5aiHe//NPZQdbiPonA8lbpynayaAVompCLKLnkFbH1mMhacbAq4JDv3fqxRcYuRa4=
+X-Gm-Gg: ATEYQzwy5HawZ76nUx80Isl3E+q7A9iXufyV/AEwOokp60/wwsNoXO0B30lpoKFUhEv
+	Ce32O2+hKm3x+HSAUtBaKYzx04BA76xHznfKN32WXTAMOg5gOeuoBYSsYGm5wQqZEaAHOR2eoic
+	6tJxrLJpYTCWdtsm7W3ZbeL7Mg0LJppPzhrCbqxjuZ3dLigfrJD8Upb7GKz8YOr4FHQLMnr6I3M
+	S0YcPCA/0rFaFNHTtT23F99/QNqIGjp15Ff1fA02x6xUmXjObm4NHpLP21piEecTcfTgR0u+ecP
+	DZQRsHO1w8Xy59jzzfegLYJEj1hSrUaBiXQe0KgQZI/TO4lOghukNRVeoOAEw5u47zbmtZQ2djB
+	EGGLITloSDLR+kQ5hz80GJLCbvAM6cpu2Ir4FkRLRNhWOxbjxKMjXiZyI9Qmxvn2IYWGXLJUTO3
+	XawZG7o0Vt75MNhmcqke5bLOhqrXXhZ7XXbaqMqiU3
+X-Received: by 2002:a05:690c:6902:b0:798:d9a3:e723 with SMTP id 00721157ae682-798dd7433acmr81222947b3.49.1772994018987;
+        Sun, 08 Mar 2026 11:20:18 -0700 (PDT)
+Received: from [100.64.0.1] ([170.85.103.33])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-798dec8de45sm35617467b3.9.2026.03.08.11.20.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Mar 2026 11:20:18 -0700 (PDT)
+Message-ID: <f1b541f4-6d34-4080-b322-f097c4e2f48d@sifive.com>
+Date: Sun, 8 Mar 2026 13:20:17 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] riscv: cpufeature: Add ISA extension parsing for
+ Supm
+To: Guodong Xu <guodong@riscstar.com>
+Cc: Paul Walmsley <paul.walmsley@sifive.com>, Conor Dooley
+ <conor@kernel.org>, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Heinrich Schuchardt <heinrich.schuchardt@canonical.com>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Evan Green <evan@rivosinc.com>, Andrew Jones <ajones@ventanamicro.com>,
+ Conor Dooley <conor.dooley@microchip.com>
+References: <20260125-supm-ext-id-v2-0-1e3b9714c860@riscstar.com>
+ <20260125-supm-ext-id-v2-2-1e3b9714c860@riscstar.com>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <20260125-supm-ext-id-v2-2-1e3b9714c860@riscstar.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 4D3D523195A
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 5EEB823198E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[sifive.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[sifive.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272613-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jic23@kernel.org,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[gmail.com,analog.com,vger.kernel.org,metafoo.de,kernel.org,pengutronix.de];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272614-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[sifive.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,baylibre.com:email]
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[samuel.holland@sifive.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.977];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,sifive.com:dkim,sifive.com:mid,microchip.com:email]
 X-Rspamd-Action: no action
 
-On Sat, 7 Mar 2026 14:01:14 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+Hi Guodong,
 
-> On 3/7/26 12:54 PM, Rodrigo Alencar wrote:
-> > On 26/03/07 04:58PM, Jonathan Cameron wrote: =20
-> >> On Sat, 7 Mar 2026 10:50:14 -0600
-> >> David Lechner <dlechner@baylibre.com> wrote:
-> >> =20
-> >>> On 3/7/26 8:09 AM, Jonathan Cameron wrote: =20
-> >>>> On Mon, 2 Mar 2026 10:22:47 +0000
-> >>>> Rodrigo Alencar <455.rodrigo.alencar@gmail.com> wrote:
-> >>>>    =20
-> >>>>> On 26/03/01 01:38PM, Jonathan Cameron wrote:   =20
-> >>>>>> On Mon, 23 Feb 2026 10:02:00 +0000
-> >>>>>> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
-> >>>>>>      =20
-> >>>>>>> On Sun, 2026-02-22 at 14:32 -0600, David Lechner wrote:     =20
-> >>>>>>>> On 2/22/26 4:01 AM, Rodrigo Alencar wrote:       =20
-> >>>>>>>>> On 26/02/21 02:16PM, David Lechner wrote:       =20
-> >>>>>>>>>> On 2/20/26 10:46 AM, Rodrigo Alencar via B4 Relay wrote:      =
- =20
-> >>>>>>>>>>> This patch series adds support for the Analog Devices AD9910 =
-DDS.
-> >>>>>>>>>>> This is an RFC so that we can agree/discuss on the design tha=
-t follows:
-> >>>>>>>>>>>        =20
-> >>>>>>>>
-> >>>>>>>> ...
-> >>>>>>>>        =20
-> >>>>>>>>>>> represents a distinct signal path into the DDS accumulator, s=
-o the driver
-> >>>>>>>>>>> models them as separate IIO output channels (all IIO_ALTVOLTA=
-GE type).       =20
-> >>>>>>>>>>
-> >>>>>>>>>> Generally IIO channels represent the physical input/output, no=
-t the
-> >>>>>>>>>> internal channels.       =20
-> >>>>>>>>>
-> >>>>>>>>> That is part of the reason for this RFC. Dividing those top-lev=
-el modes
-> >>>>>>>>> into channels allows for better organization, as they can opera=
-te together,
-> >>>>>>>>> i.e., phase or scale can be provided by single-tone profile, wh=
-ile
-> >>>>>>>>> frequency is controlled by the digital ramp generator (see Mode=
- Priority
-> >>>>>>>>> section in the datasheet). Also, it allows to explore the most =
-of standard
-> >>>>>>>>> ABIs like, scale, frequency, phase, sampling_frequency and enab=
-le.
-> >>>>>>>>> Putting everything into a single channel would make things a lo=
-t messy
-> >>>>>>>>> to interface with.
-> >>>>>>>>>        =20
-> >>>>>>>>>> Ideally we would just have the one channel here with a mode se=
-lection
-> >>>>>>>>>> attribute. Documentation can tell us which modes use which att=
-ributes.
-> >>>>>>>>>>        =20
-> >>>>>>>>>>> This per-channel separation allows userspace to configure eac=
-h mode
-> >>>>>>>>>>> independently through its own set of sysfs attributes, and to
-> >>>>>>>>>>> enable/disable modes individually via IIO_CHAN_INFO_ENABLE, r=
-elying on
-> >>>>>>>>>>> the hardware's own mode selection architecture.
-> >>>>>>>>>>>        =20
-> >>>>>>>>
-> >>>>>>>> Looking at Table 5 in the datasheet really helped me understand =
-this better.
-> >>>>>>>> I think this series could benefit from a documentation patch tha=
-t explains
-> >>>>>>>> more about how the driver works with some diagrams.
-> >>>>>>>>
-> >>>>>>>> So really what we have here are a bunch of digital data generato=
-rs rather
-> >>>>>>>> than a bunch of altvotlage output channels. And the same data ch=
-annels can be
-> >>>>>>>> mixed and match as the source for up to 3 different components o=
-f the output
-> >>>>>>>> (frequency, phase, amplitude) depending on the priority rules de=
-fined in
-> >>>>>>>> Table 5.       =20
-> >>>>>>>
-> >>>>>>> More bellow... But note that all of the (or most of it) generator=
-s are going to
-> >>>>>>> be feed into a DAC. Your output is altvoltage but maybe we can tr=
-eat the
-> >>>>>>> internals as voltage. Not sure.
-> >>>>>>>       =20
-> >>>>>>>>
-> >>>>>>>> Digital data sources are really more like a buffer in IIO terms =
-than a
-> >>>>>>>> channel. And before we added the IIO backend stuff, there wasn't=
- really
-> >>>>>>>> any other digital data source/sink that I am aware of other than=
- buffers
-> >>>>>>>> (but there are certainly a lot of odd corners of IIO that I have=
-n't explored
-> >>>>>>>> yet, so maybe I missed some).
-> >>>>>>>>
-> >>>>>>>> In a recent discussion, the idea of possibly needing a way to pr=
-ovide
-> >>>>>>>> some userspace interface to be able to tweak knobs of an IIO bac=
-kend
-> >>>>>>>> was also brought up.
-> >>>>>>>>
-> >>>>>>>> Putting those ideas together, I'm wondering if we need some new =
-channel
-> >>>>>>>> type or even a whole new interface (e.g. a new sysfs directory l=
-ike buffers
-> >>>>>>>> and events) for managing these digital data sources/sinks that a=
-re not an
-> >>>>>>>> IIO buffer.
-> >>>>>>>>        =20
-> >>>>>>>
-> >>>>>>> But what would be that channel? In the end of the day, we typical=
-ly have voltage or
-> >>>>>>> current DACs and a DDS primary function is indeed to generate alt=
-ernating waveforms
-> >>>>>>> that you then typically feed into a DAC (and in some cases from t=
-he DAC into a
-> >>>>>>> power amplifier). So the DDS is just part of the data/signal path=
-. Anyways, not sure
-> >>>>>>> on the new type and I think we already have the "blocks" in IIO f=
-or dealing with this:
-> >>>>>>>
-> >>>>>>> . frequency
-> >>>>>>> . phase
-> >>>>>>> . amplitude (raw + scale + offset)
-> >>>>>>>
-> >>>>>>> But you're right that maybe it's time to think in a better way to=
- fit them together.=C2=A0
-> >>>>>>> Maybe a new type (as buffers or events) can make sense where the =
-above are treated as, example, scan
-> >>>>>>> elements. Maybe it's overcomplicating, not sure. It surely needs =
- discussion and thinking :).
-> >>>>>>>
-> >>>>>>> And spoiler alert, as you might have guessed already, the paralle=
-l port stuff is to be
-> >>>>>>> used with DMA buffers (and IIO backends). At least, that was the =
-plan IIRC. But Rodrigo
-> >>>>>>> can confirm it.
-> >>>>>>>      =20
-> >>>>>>>> I think we've seen enough of these already to know that things l=
-ike a
-> >>>>>>>> "tone generator" and a "ramp generator" are going to be common a=
-nd could
-> >>>>>>>> share some standard attributes.=20
-> >>>>>>>>        =20
-> >>>>>>>
-> >>>>>>> I tend to agree. For example, there already some DACs (with dithe=
-ring) that make use of a similar
-> >>>>>>> interface (but with a custom prefix). Though the end goal is diff=
-erent, the interface is not that
-> >>>>>>> far off:
-> >>>>>>>
-> >>>>>>>
-> >>>>>>> https://elixir.bootlin.com/linux/v6.19.3/source/Documentation/ABI=
-/testing/sysfs-bus-iio-dac-ltc2688
-> >>>>>>>
-> >>>>>>> Anyways, I knew this one would be an interesting one for upstream=
- :)     =20
-> >>>>>>
-> >>>>>> For history buffs, we had a bunch of DDS chips in staging at one p=
-oint and never
-> >>>>>> manage to figure out the questions being raised here :(  They are =
-complex
-> >>>>>> beasts.  Clarity of ABI proposal and documentation is going to be =
-key to driving
-> >>>>>> this series forwards. In a sense the code is the easy part.     =20
-> >>>>>
-> >>>>> Does that mean that once good documentation is provided, the presen=
-ted design can
-> >>>>> be accepted? Even though data generators/sources might not be inter=
-preted as
-> >>>>> altvoltage channels?   =20
-> >>>>
-> >>>> I'm not sure yet :(  It's a pretty complex design and we haven't rea=
-lly come to a conclusion
-> >>>> on how to handle this channel 'mixing' case.
-> >>>>
-> >>>> If we did go this way, we'd need to figure out a way to describe the=
- mixing part.
-> >>>> So either we describe it as one channel (which is going to be really=
- complex)
-> >>>> or we describe it as multiple channels but add extra ABI to make it =
-clear they
-> >>>> are mixed into a single 'physical' channel.
-> >>>>
-> >>>> Jonathan
-> >>>>    =20
-> >>>>>   =20
-> >>>>    =20
-> >>>
-> >>> Some ideas have crossed my mind, like adding new option to the in_/ou=
-t_
-> >>> prefix for "internal" channels. But I it would take a long time to te=
-ach
-> >>> existing generic userspace libraries/tools about this.
-> >>>
-> >>> What has popped into my head just now is that perhaps we could do like
-> >>> Rodrigo is proposing here reusing existing channels and standard attr=
-ibutes
-> >>> as much as possible and add a new "subcomponent_of" attribute to prov=
-ide
-> >>> the link, similar to "current_trigger" for triggers.
-> >>>
-> >>> This way, it would still work with existing userspace tools (even if =
-it
-> >>> looks a bit confusing). And userspace tools could eventually be taught
-> >>> to present the channels as a tree-like structure with the main channel
-> >>> and subcomponents nested under it.
-> >>>
-> >>> We would want to spell out up front what all of the anticipated ways =
-of
-> >>> using it are. For example, I suspect eventually someone will want this
-> >>> attribute to be writeable to assign a specific limited resource to a
-> >>> specific channel. An I expect that we would eventually see something =
-were
-> >>> a single subcomponent is shared between multiple physical channels. In
-> >>> this case, we would want the value of the "subcomponent_of" attribute=
- to
-> >>> be able to be a list. =20
-> >>
-> >> Something along those lines might work. I'd not thought about the case
-> >> of one 'internal' going to multiple 'external'.  Otherwise I was wonde=
-ring
-> >> if something informal related to labels would work.  We've done that w=
-here
-> >> we've been associating things like voltage and power measurement from =
-a single
-> >> pin.  It's rather adhoc though.  Possibly we could roll it into a newer
-> >> more general scheme. =20
->=20
-> Hmm... in this case, it sounds more flat where there isn't a clear channel
-> that would be the "root" of a tree relation.
->=20
-> >>
-> >> If the association is done as meta data attributes alongside existing
-> >> channels then as you say existing tools will kind of work, just need s=
-ome
-> >> human understanding of what is actually being controlled until they ca=
-tch
-> >> up with the newer schemes.
-> >>
-> >> Lots of ways we could actually represent the graphs.  Going to take so=
-me
-> >> figuring out! =20
-> >=20
-> > I like the idea of subchannels to create logical tree-structures. It op=
-ens
-> > up for other possibilities.
-> >=20
-> > I wonder if the varying channel index would still confuse a user, even
-> > with this metadata attribute, like:
-> > - out_altvoltage0
-> > - out_altvoltage1
-> > 	- out_altvoltage1_subcomponent_of =3D out_altvoltage0
-> >=20
-> > would there be a different way to name the full_postfix in
-> > __iio_device_attr_init() that would allow to keep channel index the same
-> > (e.g. altvoltage0 for multiple internal sub-channel) and still be
-> > compatible with userspace tools? I don't know, something like:
-> > - out_altvoltage0
-> > - out_altvoltage0_0
-> > - out_altvoltage0_1
-> > - out_altvoltage0_2
-> >=20
-> > userspace tools would understand out_altvoltage0_0_frequency as:
-> > - direction: out
-> > - type: altvoltage
-> > - channel idx: 0
-> > - attr name: 0_frequency
-> >=20
-> > and that would be a problem?
-> >  =20
->=20
-> I have a feeling that could be problematic for existing attribute
-> parsers.
+On 2026-01-24 7:36 PM, Guodong Xu wrote:
+> Supm has been ratified in the RISC-V Pointer Masking specification
+> (Version 1.0, 10/2024) and is mandated in RVA23 Profiles (Version 1.0,
+> 2024-10-17) for RVA23U64. Supm indicates userspace pointer masking
+> support.
+> 
+> Remove the previous macro aliasing of Supm to Ssnpm/Smnpm in hwcap.h,
+> treating Supm as a distinct RISC-V ISA extension ID.
+> 
+> Add ISA parsing logic for Supm, and implement a validator to ensure
+> that Supm is only reported as available if Kconfig allows it and the
+> underlying Ssnpm (for supervisor mode) or Smnpm (for machine mode)
+> extension is present. Supm relies on Ssnpm or Smnpm to provide the
+> underlying hardware implementation.
+> 
+> With this change, "supm" will be reported (when available) in
+> /proc/cpuinfo as part of the "isa" and "hart isa" string.
+> 
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Link: https://lore.kernel.org/lkml/20260101-legume-engraved-0fae8282cfbe@spud/#r [1]
+> Link: https://lore.kernel.org/all/4ebbe14b-2579-4ba6-808d-d50c24641d04@sifive.com/#r [2]
+> Signed-off-by: Guodong Xu <guodong@riscstar.com>
+> ---
+> v2: Add Reviewed-by from Conor.
+>     Update RISCV_ISA_EXT_SUPM id to solve rebase conflict.
+> ---
+>  arch/riscv/include/asm/hwcap.h |  3 +--
+>  arch/riscv/kernel/cpufeature.c | 35 +++++++++++++++++++++++++++++++++--
+>  2 files changed, 34 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> index 7ef8e5f55c8d..aa2af21f3bd3 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -112,6 +112,7 @@
+>  #define RISCV_ISA_EXT_ZCLSD		103
+>  #define RISCV_ISA_EXT_ZICFILP		104
+>  #define RISCV_ISA_EXT_ZICFISS		105
+> +#define RISCV_ISA_EXT_SUPM		106
+>  
+>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>  
+> @@ -120,10 +121,8 @@
+>  
+>  #ifdef CONFIG_RISCV_M_MODE
+>  #define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SMAIA
+> -#define RISCV_ISA_EXT_SUPM		RISCV_ISA_EXT_SMNPM
+>  #else
+>  #define RISCV_ISA_EXT_SxAIA		RISCV_ISA_EXT_SSAIA
+> -#define RISCV_ISA_EXT_SUPM		RISCV_ISA_EXT_SSNPM
+>  #endif
+>  
+>  #endif /* _ASM_RISCV_HWCAP_H */
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 1734f9a4c2fd..e1f7ad882289 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -317,6 +317,27 @@ static int riscv_cfiss_validate(const struct riscv_isa_ext_data *data,
+>  	return 0;
+>  }
+>  
+> +static int riscv_ext_supm_validate(const struct riscv_isa_ext_data *data,
+> +				   const unsigned long *isa_bitmap)
+> +{
+> +	if (!IS_ENABLED(CONFIG_RISCV_ISA_SUPM))
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Supm requires Ssnpm for S-mode or Smnpm for M-mode to provide
+> +	 * pointer masking for the U-mode execution environment.
+> +	 */
+> +	if (IS_ENABLED(CONFIG_RISCV_M_MODE)) {
+> +		if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SMNPM))
+> +			return 0;
+> +	} else {
+> +		if (__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_SSNPM))
+> +			return 0;
+> +	}
+> +
+> +	return -EPROBE_DEFER;
+> +}
+> +
+>  static const unsigned int riscv_a_exts[] = {
+>  	RISCV_ISA_EXT_ZAAMO,
+>  	RISCV_ISA_EXT_ZALRSC,
+> @@ -450,6 +471,15 @@ static const unsigned int riscv_c_exts[] = {
+>  	RISCV_ISA_EXT_ZCD,
+>  };
+>  
+> +/*
+> + * Smnpm and Ssnpm provide pointer masking for the next lower privilege mode
+> + * (U-mode), thus enabling Supm. Both extensions imply the same subset.
 
-Agreed.  This smells like extend_name and that caused all sorts
-of annoying problems for the userspace folk.
+If Linux is running in S-mode, then Smnpm does _not_ imply Supm. So this list
+cannot be shared between Ssnpm and Smnpm. (When running Linux in M-mode, I think
+we assume S-mode isn't supported, so the opposite case isn't possible. If you do
+run M-mode Linux on M/S/U hardware, I think there are other things that explode
+spectacularly, since we will touch for example the wrong envcfg register.)
 
->=20
-> How about using higher numbered channel indexes instead?
->=20
-> out_altvoltage100_* =3D physical channel
->=20
-> out_altvoltage101_* =3D subcomponent
-> out_altvoltage102_* =3D subcomponent
-> ...
-Have to be careful we don't run out of space for events.
-#define IIO_EVENT_CODE_EXTRACT_CHAN(mask) ((__s16)(mask & 0xFFFF))
-So we do have 16 bits hence this might work.
+> + */
+> +static const unsigned int riscv_supm_exts[] = {
+> +	RISCV_ISA_EXT_XLINUXENVCFG,
+> +	RISCV_ISA_EXT_SUPM
+> +};
+> +
+>  /*
+>   * The canonical order of ISA extension names in the ISA string is defined in
+>   * chapter 27 of the unprivileged specification.
+> @@ -577,12 +607,13 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+>  	__RISCV_ISA_EXT_DATA_VALIDATE(zvkt, RISCV_ISA_EXT_ZVKT, riscv_ext_vector_crypto_validate),
+>  	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
+>  	__RISCV_ISA_EXT_DATA(smmpm, RISCV_ISA_EXT_SMMPM),
+> -	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_xlinuxenvcfg_exts),
+> +	__RISCV_ISA_EXT_SUPERSET(smnpm, RISCV_ISA_EXT_SMNPM, riscv_supm_exts),
+>  	__RISCV_ISA_EXT_DATA(smstateen, RISCV_ISA_EXT_SMSTATEEN),
+>  	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
+>  	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
+> -	__RISCV_ISA_EXT_SUPERSET(ssnpm, RISCV_ISA_EXT_SSNPM, riscv_xlinuxenvcfg_exts),
+> +	__RISCV_ISA_EXT_SUPERSET(ssnpm, RISCV_ISA_EXT_SSNPM, riscv_supm_exts),
+>  	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
+> +	__RISCV_ISA_EXT_DATA_VALIDATE(supm, RISCV_ISA_EXT_SUPM, riscv_ext_supm_validate),
 
-I'm not sure we want to make rules around this though.
+I don't think this quite matches what we want either. We don't want to accept
+Supm from the devicetree at all, so it shouldn't be in this array (just like
+Xlinuxenvcfg is not in this array). You'll need new code in riscv_resolve_isa()
+(or its callers) to set the RISCV_ISA_EXT_SUPM bit under the right conditions.
 
-Jonathan
+Regards,
+Samuel
 
-
->=20
+>  	__RISCV_ISA_EXT_DATA(svade, RISCV_ISA_EXT_SVADE),
+>  	__RISCV_ISA_EXT_DATA_VALIDATE(svadu, RISCV_ISA_EXT_SVADU, riscv_ext_svadu_validate),
+>  	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+> 
 
 
