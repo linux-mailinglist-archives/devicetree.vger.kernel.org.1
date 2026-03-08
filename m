@@ -1,56 +1,56 @@
-Return-Path: <devicetree+bounces-272621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MOELENTKrWnv7QEAu9opvQ
-	(envelope-from <devicetree+bounces-272621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:15:32 +0100
+	id MI7zHrTMrWlI7gEAu9opvQ
+	(envelope-from <devicetree+bounces-272622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:23:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BF18231DBC
-	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:15:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE9E0231E24
+	for <lists+devicetree@lfdr.de>; Sun, 08 Mar 2026 20:23:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0F67A3019B95
-	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 19:15:23 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7A61430038F3
+	for <lists+devicetree@lfdr.de>; Sun,  8 Mar 2026 19:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD9AB2F068C;
-	Sun,  8 Mar 2026 19:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C9A33BBAA;
+	Sun,  8 Mar 2026 19:23:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="fiHq3o/u"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="fQ/GYSR+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5073223EA93
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 19:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92830318B96
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 19:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1772997321; cv=none; b=LabP4Uu/uFEfD18eRW5Ait/EcJsD5Yp3ZMglAGPn1zf1ynRV9fj8p6+Y7xWu9NeP5ADV5sLNFeQBPepgUQ6+HgORC0TqkVdN+qaGhsh2FExOfTJieHYa9yp5diVtQNUB7MP7saHc1CJuqpzsgl4VWAiUaKv5wNyp588eTW+3CHw=
+	t=1772997809; cv=none; b=sLCZD1NhtbQdxsztHhbBH+af6f0eII9bc9ZJIzG4fZUHv+zBq88rqvQUDG2GdKf57TMLZSYZghjUPw22ePRAHQBaE4GVUVAZU5sNkVeHInDu42z9ToMxFDYLiPfKyG/oZF2fHFM67gmaBWLC9q5VYPfH5NxQ8kZFIuCEXUlr310=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1772997321; c=relaxed/simple;
-	bh=7UvTC6xCZ3yeIe4Ffa62LfvXczu2vC3C8jGopGE8bQQ=;
+	s=arc-20240116; t=1772997809; c=relaxed/simple;
+	bh=xihVpT5t3yGzukukyCC5y7BNAC5zNdc1OPNdh7cS9HQ=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=EJdj518icJ1eILrgYcG5TqRKOBPePkzr86mfu8rc7AKamg5isFLdJAd57MYHh/7JA1dpNMrp56dQ04pp7w/WPApCUsU+aw9qrLzf+t6wLmOBRhCKwwic6NAlZeOap+JxUuL8iDdP2OHUU96SfdkM1Jh1/+n67HCrzG3k3HALXfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=fiHq3o/u; arc=none smtp.client-ip=185.67.36.65
+	 Content-Type:MIME-Version; b=II/HaPBXTcdXqrpgUtwUNRbNYYbHxOEgBoIefmcKRHKbP0hvX7ct7B6iB/ucSXrzHGQYPuRvQ32BWoWIpYCsRzew7fQTEDKQFo9SY5YwiDFl1bJukAok8WizF9/q8ZUECqCVpSYYMd+RSmmTaWtpubZJ8kj6bntJQnlEaXmGeEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=fQ/GYSR+; arc=none smtp.client-ip=185.67.36.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
 Received: from submission (posteo.de [185.67.36.169]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id 856F324002B
-	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 20:15:17 +0100 (CET)
+	by mout01.posteo.de (Postfix) with ESMTPS id 1D172240029
+	for <devicetree@vger.kernel.org>; Sun,  8 Mar 2026 20:23:26 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1772997317; bh=g5HgZFXY3ZvnL63FgQ0uIHeXkwnilTEMYDmvJLJe3NY=;
+	t=1772997806; bh=VMIAFOgNSso9aT66tTAOxXE8s8eAGET6wZgGMCzMmW8=;
 	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
 	 MIME-Version:OpenPGP:From;
-	b=fiHq3o/u5qkraUNjVzgP2Fa4WlUH3Jc0Kjl7H4+a5Ycwwk+m1PAn/ZvcBv3ZngpC9
-	 SLvUFZPXHHG0uxDqqFtCvxMFFmEjphfQbSh4g0voXoBxg3m5X3Cnm12HC5OaVIufSl
-	 Tu2GjqxrPWF4Dk3OLyu8x0FAb/zVd1oGePhs3V1qZrNrlaLQpsZ/ngKhzBsIbWuyRW
-	 RyqangyjugyT2PZGdg2LAKtAWyW0uxd7KcHK/SF6dMarRdu3JMpTgIoV9ETjj5P1s9
-	 /wZ18Wk2wNTQ9jnOz8es0fYSkWc1fncEGBgAVfu2b99KJEkJQOI6Y5PIBIRXFNUYl6
-	 B9uKNMSHA9ieA==
+	b=fQ/GYSR+xjemUMrTa52mx+8SMqDa9FDJ2EgwPbQygiTCwj6s0x5jKJ1bSzXgP9LCq
+	 mEkeeX3BEOk9+ZCu56da3N6WD6Paiu/1v0IHVsvsdEgYrerwDFJzLocLROlHpZ8BOV
+	 xAs1A/giAoqFZJofQUm4OmMmxwn5T1cmryMtskaykUjmuMyxQBxT8rgi1Aj9mfG03b
+	 Pn3VJKQWOnjnmGesOnV40/+975H6aV8xZQ+JaF1LcjJlm3gr0yarrLZBGle34VmZQl
+	 Gmc/YPjcfrNJbafsKawf7sdq43cdX30KCkjvge49bR7NmhE94fpE/rAh92rhOko2k/
+	 WW8l9w/jqJ0WQ==
 Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fTVGC3S8Rz6twH;
-	Sun,  8 Mar 2026 20:15:15 +0100 (CET)
-Message-ID: <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
+	by submission (posteo.de) with ESMTPSA id 4fTVRc1YsWz9rxG;
+	Sun,  8 Mar 2026 20:23:24 +0100 (CET)
+Message-ID: <33a7bfd923ebf118714dd79f4af0d4d8c4120d73.camel@posteo.de>
 Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
 From: Markus Probst <markus.probst@posteo.de>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
@@ -63,11 +63,11 @@ Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
  Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
 	rust-for-linux@vger.kernel.org
-Date: Sun, 08 Mar 2026 19:15:16 +0000
-In-Reply-To: <2026030827-nautical-overplant-399c@gregkh>
+Date: Sun, 08 Mar 2026 19:23:25 +0000
+In-Reply-To: <2026030850-quickstep-blinking-b853@gregkh>
 References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
 	 <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
-	 <2026030827-nautical-overplant-399c@gregkh>
+	 <2026030850-quickstep-blinking-b853@gregkh>
 Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
  keydata=mQINBGiDvXgBEADAXUceKafpl46S35UmDh2wRvvx+UfZbcTjeQOlSwKP7YVJ4JOZrVs93
  qReNLkOWguIqPBxR9blQ4nyYrqSCV+MMw/3ifyXIm6Pw2YRUDg+WTEOjTixRCoWDgUj1nOsvJ9tVA
@@ -113,7 +113,7 @@ Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
  dQNGrZ91M9nlIBKw8Y7c7xZ4098qX2b8JX/CxD+gC1r4C8vuA3GkhFLx+KlkON7LyiJPkrePp6Qky
  jfGillcaQOqFZ3WwVqyzG1BUfTow==
 Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-R8hoP/UhcjTj/XsnmBb2"
+	protocol="application/pgp-signature"; boundary="=-OkxVV+ihTBYocaFXg3Ag"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -121,7 +121,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
-X-Rspamd-Queue-Id: 9BF18231DBC
+X-Rspamd-Queue-Id: CE9E0231E24
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.76 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -129,19 +129,19 @@ X-Spamd-Result: default: False [-2.76 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-272621-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272622-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	DKIM_TRACE(0.00)[posteo.de:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -152,147 +152,71 @@ X-Spamd-Result: default: False [-2.76 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,infradead.org:email,posteo.de:dkim,posteo.de:email,posteo.de:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.de:dkim,posteo.de:email,posteo.de:mid]
 X-Rspamd-Action: no action
 
 
---=-R8hoP/UhcjTj/XsnmBb2
+--=-OkxVV+ihTBYocaFXg3Ag
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, 2026-03-08 at 19:55 +0100, Greg Kroah-Hartman wrote:
+On Sun, 2026-03-08 at 19:56 +0100, Greg Kroah-Hartman wrote:
 > On Sun, Mar 08, 2026 at 06:41:20PM +0000, Markus Probst wrote:
-> > Add a initial synology microp driver, written in Rust.
-> > The driver targets a microcontroller found in Synology NAS devices. It
-> > currently only supports controlling of the power led, status led, alert
-> > led and usb led. Other components such as fan control or handling
-> > on-device buttons will be added once the required rust abstractions are
-> > there.
+> > +kernel::module_serdev_device_driver! {
+> > +    type: SynologyMicropDriver,
+> > +    name: "synology_microp",
+> > +    authors: ["Markus Probst <markus.probst@posteo.de>"],
+> > +    description: "Synology Microp driver",
+> > +    license: "GPL v2",
+> > +    params: {
+> > +        check_fan: i32 {
+> > +            default: 1,
+> > +            description: "Check for cpu fan failures",
+> > +        },
+> > +    },
 >=20
-> Why is this a mfd device?  Shouldn't it be an aux device?
->=20
-> But this is just a serial port connection, so why is a kernel driver
-> needed at all?
-I am not sure what you mean.
+> This is not the 1990's, please do not add new module parameters for no
+> good reason.  This should be dynamic and per-device, not per-module.
+agreed.
 
-It has multiple functions (leds, hwmon, power/reset, input etc.) and
-does is a multifunction device (mfd).
+> why would you NOT want to check for cpu fan failures?
 
-It does not however use mfd-core or anything from the auxiliary device
-and instead implements its functionality directly in this driver.
-
->=20
-> > Signed-off-by: Markus Probst <markus.probst@posteo.de>
-> > ---
-> >  MAINTAINERS                                    |   6 +
-> >  drivers/mfd/Kconfig                            |   2 +
-> >  drivers/mfd/Makefile                           |   2 +
-> >  drivers/mfd/synology_microp/Kconfig            |  14 ++
-> >  drivers/mfd/synology_microp/Makefile           |   2 +
-> >  drivers/mfd/synology_microp/TODO               |   7 +
-> >  drivers/mfd/synology_microp/command.rs         |  50 +++++
-> >  drivers/mfd/synology_microp/led.rs             | 275 +++++++++++++++++=
-++++++++
-> >  drivers/mfd/synology_microp/synology_microp.rs |  82 ++++++++
-> >  rust/uapi/uapi_helper.h                        |   2 +
-> >  10 files changed, 442 insertions(+)
-> >=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index e9e83ab552c7..092cd9e8a730 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -25550,6 +25550,12 @@ F:	drivers/dma-buf/sync_*
-> >  F:	include/linux/sync_file.h
-> >  F:	include/uapi/linux/sync_file.h
-> > =20
-> > +SYNOLOGY MICROP DRIVER
-> > +M:	Markus Probst <markus.probst@posteo.de>
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/mfd/synology,microp.yaml
-> > +F:	drivers/mfd/synology_microp/
-> > +
-> >  SYNOPSYS ARC ARCHITECTURE
-> >  M:	Vineet Gupta <vgupta@kernel.org>
-> >  L:	linux-snps-arc@lists.infradead.org
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 7192c9d1d268..bc269719749f 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -2580,5 +2580,7 @@ config MFD_MAX7360
-> >  	  additional drivers must be enabled in order to use the functionalit=
-y
-> >  	  of the device.
-> > =20
-> > +source "drivers/mfd/synology_microp/Kconfig"
-> > +
-> >  endmenu
-> >  endif
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index e75e8045c28a..0a6fa33d5c35 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -304,3 +304,5 @@ obj-$(CONFIG_MFD_RSMU_SPI)	+=3D rsmu_spi.o rsmu_cor=
-e.o
-> >  obj-$(CONFIG_MFD_UPBOARD_FPGA)	+=3D upboard-fpga.o
-> > =20
-> >  obj-$(CONFIG_MFD_LOONGSON_SE)	+=3D loongson-se.o
-> > +
-> > +obj-$(CONFIG_MFD_SYNOLOGY_MICROP)	+=3D synology_microp/
-> > diff --git a/drivers/mfd/synology_microp/Kconfig b/drivers/mfd/synology=
-_microp/Kconfig
-> > new file mode 100644
-> > index 000000000000..4bbbcf0b6e94
-> > --- /dev/null
-> > +++ b/drivers/mfd/synology_microp/Kconfig
-> > @@ -0,0 +1,14 @@
-> > +
-> > +config MFD_SYNOLOGY_MICROP
-> > +	tristate "Synology Microp driver"
-> > +	depends on RUST
-> > +	depends on SERIAL_DEV_BUS
->=20
-> We don't have rust serdev bindings yet, but if we do, shouldn't you just
-> depend on them instead of two different things here?
-I will add a `RUST_SERDEV_ABSTRACTIONS` Kconfig entry in the next
-serdev rust abstraction patch revision then.
->=20
->=20
-> > +	depends on LEDS_CLASS && LEDS_CLASS_MULTICOLOR
-> > +	default n
->=20
-> n is always the default, no need to say it again :)
-I took some inspiration from the NOVA_CORE Kconfig entry, since that
-driver is work in progress too.
+Because it is also triggered at low fan speeds, even if they are
+intentionally set by the driver. While the parameter is 1, the driver
+would enable those checks for fan failures and would prevent low fan
+speeds. The parameter would allow it to disable this check and allow
+for low fan speeds.
 
 >=20
 > thanks,
 >=20
 > greg k-h
 
+
 Thanks
 - Markus Probst
 
---=-R8hoP/UhcjTj/XsnmBb2
+--=-OkxVV+ihTBYocaFXg3Ag
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: This is a digitally signed message part
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmtyr4bFIAAAAAABAAO
-bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSj84P/3So/v/4BtnwrDs1HrpO
-ZcnCndSBLbo/c/bd9WwsZ/NL+svAPel05jA2rLrhqwI/K9Hi8XCkjXFKUcbyQkX+
-w9zFeVJDMoAAl965nHFSz/fnK6wgb91n0Uc6Fo3psyDU9m5Rk8AHuTHMlSq5wymU
-mRA7nS082FyVS/fVygjbNQU8AtpXn4yuQVqhVH3Xc/QaXbq/qeEbhcejg+pSBnZP
-PzhbWZZXKbjNzIOSjGddl/24691Cv6kz0yQfsAely0t+7QPu3Exjqwbf4RmyVvTl
-uwaYSyBcG6fHc5zvXBX0llqB7xE+vaITOyA6uThc16uH8qfd7AmcdP2+CbqqCLY5
-fVcJgch+Xhb2ifJNM+YUwutpZ5XYs5obUIxDn1ewhCRzxtD9fe+dKFp0gECC6hbW
-EjmY1MXH3MHe6GCgRm59v7ZOUCJPyKf0IW/Wv49cOk5etp3Mb9yOi+02eL4HhMpo
-uTL2xItsyohdTYZJGgyao38cS/oJGX4J+paeMnPKvuJuZBjrdZEvuF7iLHJCwJIp
-NiEpln2LAnqV3XPkvCO4e0shtuvNbW1WBaO0B+Qpf3mYMI1Xcirm8YJQDaVPvXMO
-W0dBXAoL9k3WPO2lp537rw/xlw6EjDcLIdBIUq14QljrVgQYHJR/vDlhGkRZDTub
-sh8CuV3krLvtx7Fwma1kqVHA
-=Vqq5
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmtzKkbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSc1oP/i2i9L1poaiTYuQWgWeo
+SxGi5N4hZYJZ24TNnMIWkZUNmAFvfQD71UUzBLhN+M8GuLJwLeIjaO7LMHnDJf7z
+6JdNh4RZ1kIRRt1tz/xJzZkQcCmqC9vKruHQjtY0DqK/BhOvVWO8BE3fgg2rYyRq
+GJPa4/gGG+LbRE58S+P/O+iTzhcyVYbgFCpyDl28n4gI0kRsYXoaK5g/yRROho/1
+Tau+zNxS+Ikw1MTAVQqapp3hAGQOfl/zUVFoxEAUAfeOIBUqOZRFm4qZjdLYp6xA
+fBJAR2QvWZw3rUifBWceEN27ivNJgTdWBJ6lRVT+4TEllICXpYDWgIjtyQQs7CAq
+GmYLDpedg3f413mdMFPEN90xX1OTL/J4RkrqIgpZ/6qS3eWMtg1ItzwGGxyUSqWJ
+TePxkJAlaR7hbtQZwOPopt6oNZDb+D5pbRlRwPeg3Qmp7dXrbQKubB6ft/frqfXu
+si6DCET47fg+VXkoBu0yLxlAUtLD1u8z+AqMphDbyWZX7VZ8VQuV41ZZgRNwYCfa
+j+gRFBhA97TeMTCsBeU8flH0BKAxIM699MNEpErdB9Pb/MtE9xUBQWSj1Fuzzei/
+cJJZk9kA1ZJ6rV60R7nB8nVk6ll/Q2TyTt1QHcA5DBYYHDUZEWhoRS0cGAv4Ia58
+LiPYVjBz1y/L5QtJAv7WtDxM
+=T8rS
 -----END PGP SIGNATURE-----
 
---=-R8hoP/UhcjTj/XsnmBb2--
+--=-OkxVV+ihTBYocaFXg3Ag--
 
