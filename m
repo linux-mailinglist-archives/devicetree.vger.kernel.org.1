@@ -1,252 +1,198 @@
-Return-Path: <devicetree+bounces-272924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBNYJFPDrmn2IgIAu9opvQ
-	(envelope-from <devicetree+bounces-272924-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:55:47 +0100
+	id GIj+MxDDrmmRIgIAu9opvQ
+	(envelope-from <devicetree+bounces-272925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:54:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E819239424
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:55:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40BFE2393AE
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id D9AD430116B9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:49:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E24F3018743
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:50:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F02C3BA249;
-	Mon,  9 Mar 2026 12:49:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF5C332633;
+	Mon,  9 Mar 2026 12:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PFCT4IqV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jFTFkS4v";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="V5CVdQ4I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D0C33AEF22;
-	Mon,  9 Mar 2026 12:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A243BA24D
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 12:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773060557; cv=none; b=WprJbljklu9k20u3DO7dUp98G7FJIthpb9qlqC/mPjPy35Jmv5EnY2vkFNAPIuXUeGrq8gL0GfM6KbNH0zwa8q9auCwHMCvaznlTfHgt9wetadliptRUnwe015kJ2HejVlTnDkktlH3jFz9ln8bSKcazHTi1yjG7C4vyqUPnUOk=
+	t=1773060623; cv=none; b=OS87/2mX2Kkp29yXvaDfhq+azh11YK3wNRrDH+o4bDQGeajQEa7pLvIijjzW+DDVpIq5TgL1st6MFqSnA77UQsczX31mxPV1kgipDT07vX0Sya3e1hp1sMqSvB99Q4Y8HwWE0E1obnF/1so7sKYW1Wj5bMgSDgDP4RGDiL9Pt0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773060557; c=relaxed/simple;
-	bh=BEPKUiX9C2NLT53pj8DEV+NcgtIg5P0UEE6zZFiAmoc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Efx0eW0QcFcp/nvKM3hEsd3j3XfAWM3iTgdFnLjH/lguBq9ZvkVT+1iVlgpEbNqAu75vMXicpnskO7QoSLQNQE3Uvw4BRnAjt1/TJLn6XccTPcEA6xW6vspQB/V4vLou5Nh0Nq7D80EZYQ2txA3RbAWuLPYVohccdl0kPS+cTfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PFCT4IqV; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773060555; x=1804596555;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=BEPKUiX9C2NLT53pj8DEV+NcgtIg5P0UEE6zZFiAmoc=;
-  b=PFCT4IqV0lRpkclHEVboCqd8Zl5zNOWkMsvyIpQ6ouc/IiDgsM+PGwYV
-   wgqJ9HYl2FcShj6R7QF7+0r7dmeILa7SAMn1svOGHXdbabFIcVY7wrNXk
-   GRIuk7qgb+qCT2d6rNoQbjVxx8DR7dzwYVICS3hzAqOfbQAalrzKGlZ/A
-   1a30+F1UOFQJ79njD066O51BtuFEbdxG0GlLkudiRHkc/fZXvaEELG9lo
-   /gV2P/bo2PoiedUcd8BYc8eOnMhTrKn7gkFH/1HlB4KNM6v9Z4j6HOmLn
-   QmvjTXqGc2fPfMTEoTj3mi9RR7F8v1jCTFvT24AxOgXwy667iyZ2POYS9
-   Q==;
-X-CSE-ConnectionGUID: y8LVjZ+/TvGMVD6W9j6peg==
-X-CSE-MsgGUID: C823S2eqT3uTvvzVgpaEzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="99551575"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
-   d="scan'208";a="99551575"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 05:49:14 -0700
-X-CSE-ConnectionGUID: 1QcdUI6TTxKDbBhgORdo5A==
-X-CSE-MsgGUID: fLFYJct2Sx6PwOAOmx+9KA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
-   d="scan'208";a="219722028"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.148])
-  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 05:49:11 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 37EC5121D1F;
-	Mon, 09 Mar 2026 14:49:42 +0200 (EET)
-Date: Mon, 9 Mar 2026 14:49:42 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jimmy Su <jimmy.su@intel.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH 3/8] media: i2c: ov08d10: add support for reset and power
- management
-Message-ID: <aa7B5qjfKqYQ9fx0@kekkonen.localdomain>
-References: <20260226-ov08d10-v1-0-c3a916368123@emfend.at>
- <20260226-ov08d10-v1-3-c3a916368123@emfend.at>
- <6a63b27e567d854e8459bc3a31d99e2d01cd1dd6.camel@pengutronix.de>
- <215f5ff5-0751-4074-9353-dcb5d3c63833@emfend.at>
+	s=arc-20240116; t=1773060623; c=relaxed/simple;
+	bh=4jULtj9REnh5AmwKY5zTwWslZ8dxgKTzR+k6mD1vXAE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RZXNorulTCd02oE5KazDcJ9WuS+GzTlySXx+nMjCCGLAi3jQ0SLs1EbOu52i2hKeFzmQLEKiOUPDgiEVtpjyH3xchYPc3ZgUpXRkRbnrMOCGP1nH6Q/GvqhoRlMP54Vohg0DwL46owE0q6pCZ0fac1iJFva7pzD1d/A4c4Hwgw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jFTFkS4v; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=V5CVdQ4I; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6297dQMu2910558
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 12:50:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PJadw+jBAO48uJuNSV3hWYxV0ahs5+z2DeWDEr7t8Ho=; b=jFTFkS4vEM0vzqKN
+	J+chGBygG3E/RHwNJ7eqFwJVZVrxOSodpQLS1mFM77AmK128gMC2kHqFsC750f0U
+	+aCHVrge+Ow0bXYhbgTTVNSt0/TGroPrDRcEeKUY6jRKj+oyX9EWXWEhdpp2M26m
+	0bMC4xs5EQMkzd3ZedE+57tPU08HKefriRajcs+A1AsmTuw+YgE1yqby1Kqwemvx
+	J6Dh1GNZ9cYqIsUfPiAbziASJ1DB4ntTZap6OEMgs6g4Jstu7gMMe+5/qKJ68CX8
+	tFaXoKUp6+d1NEmlItbd5vJ5W+2gNuYpdoFfFd2qlSPo/PA6Io/UwFdDxGuuOFbv
+	72ImZA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4crc83ddeh-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 12:50:20 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cd8e89d19bso34842785a.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 05:50:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773060620; x=1773665420; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PJadw+jBAO48uJuNSV3hWYxV0ahs5+z2DeWDEr7t8Ho=;
+        b=V5CVdQ4IyjEMebEPYX/Owx51hsLtimMuJx3RSM410eQM+sTcn6VAYpYGzbJ1/vh6Eb
+         FoIJg8I6YyGjTMc4kJV0fK/opX2Gwdr4oo4pxHzvBwId/vvO0g+qWKWUbdFADjlapBOD
+         h3D9deKAaiwCqmJYq6/+v0jMBimVqXtlOuSBrik8LOmeNzSCP0mngRi/UGClIy9uFpxa
+         0E/TsmFeGU+pF3t0tpekGFtJ3lcUWK3lEyJ0pKCzQWZbGaR8Pdz/8Pyx6CWM2E+XEtYk
+         S3c/3u/h/HU7iBSDC4550uoh6QD86c3hLhpdv4hgjJ2fGMHLJvyKY5um9aOHEhHLqevJ
+         RCYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773060620; x=1773665420;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PJadw+jBAO48uJuNSV3hWYxV0ahs5+z2DeWDEr7t8Ho=;
+        b=VD49DxTtM8BjF2+G4RACjDIVQS4OfCxO6r9dy8VHx/oPeoNyMXXPQjCknC9Z/qzI/i
+         f9vcNBqba24j+Jj/wFFf/vMQDUoMQscnoraDN3dovqyOWC6VdXDdx3URjo14MRfl8lkY
+         o/fqCRQiOBJDF1cXQA8rvirIAM0IxEmlmSc39C3/zMyzwuu/8Y8X314WU2j8ekSFyGpE
+         Ys7lJzb4DQdMwf5LfV8lCwneMq2gxJJ50SZFqwF/P2pePFKirOufrX9fndKEcRlV3HoH
+         /HCs3lMIj8usEaMoUUwzPwpJdx4iqfrSPHWwTGCmn/dShxwf14YYLzQI6666+t87ZxqT
+         VClg==
+X-Forwarded-Encrypted: i=1; AJvYcCXmOp6XzMflqrlT+hbh0jCr8vyHfIOBg45nvHq3juQaCImSig1EXberU9jNxE2Zte+E3VKWNoAxf+7D@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy979NNrWizdiloXt1bk8BwThj/hlb4m2GSJ+8qLeIi8GAQmGBy
+	ZRJfSM4y9LNghKXgcXVPKnYTKbGoo8xqYzmJOrGdVUQff+H+LWcJmMTA5+XzOyKrVF/3SeUpEEY
+	fxcGwPr8SMx5IirHtI4Jz2eWK9f3dirqCrJAw8bv2BT6IbYxEkQNY8mw2XKXoKtzi
+X-Gm-Gg: ATEYQzyhy62h9q1dZP23P1HNils4ek3eufxV2hISZ4KElAjsDs/2Y9CLyC/H9jkd4Wj
+	wBnmOl+FMHDqk2WppOqINYAsYZbL5ZRUWxAZRYkE4ypUImr85R6X8MqNL6E6Xzx3FbSrzA3FfWQ
+	0dR/2/532oeyDETdHclmDl4vcpMj9zSaWRTmmJzxajCBiO7mi/idez0BBe9sQUussy4cjKe2dfl
+	v888HAw4igM+aS2f2iZRpH0qcFm6LPbJeH8YercpYQ8qc1q/ffpWDe21BayM/jlceeRoG6L0+65
+	YOt244cZbpWKXKjMrw87/AfAg8oGubWQ1JmV0hzE5WeVYQYZM4zAcoNsgqS+ZMX6ch0e+Vfo1Uq
+	cii5of9msy/2Zsh+xZL0kHYpn0JnLpGPS66YyjUQ2cBWChzr06GyOZfdhuXiJM20k4ZoNNtYgqh
+	OTyME=
+X-Received: by 2002:a05:620a:6cc2:b0:8c6:ca3d:4e0a with SMTP id af79cd13be357-8cd6d350fa7mr1066739485a.3.1773060619618;
+        Mon, 09 Mar 2026 05:50:19 -0700 (PDT)
+X-Received: by 2002:a05:620a:6cc2:b0:8c6:ca3d:4e0a with SMTP id af79cd13be357-8cd6d350fa7mr1066736085a.3.1773060619163;
+        Mon, 09 Mar 2026 05:50:19 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef42addsm375925666b.14.2026.03.09.05.50.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Mar 2026 05:50:18 -0700 (PDT)
+Message-ID: <7b085eb9-972b-49a2-9b82-25b76fd9ba6f@oss.qualcomm.com>
+Date: Mon, 9 Mar 2026 13:50:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: arm: qcom: Add Redmi 4A
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        linux@mainlining.org, phone-devel@vger.kernel.org
+References: <20260305-riva-common-v1-0-436f1f4b7399@mainlining.org>
+ <20260305-riva-common-v1-2-436f1f4b7399@mainlining.org>
+ <e174b1ac-380a-41fc-a1c7-d522e8e75c70@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <e174b1ac-380a-41fc-a1c7-d522e8e75c70@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <215f5ff5-0751-4074-9353-dcb5d3c63833@emfend.at>
-X-Rspamd-Queue-Id: 9E819239424
+X-Authority-Analysis: v=2.4 cv=R9UO2NRX c=1 sm=1 tr=0 ts=69aec20c cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=OuZLqq7tAAAA:8 a=9Zh9aq47Bl5YVDQUYeQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDExNyBTYWx0ZWRfX7TOjs/2gXf48
+ dMjmzFNGFiSglXTubYPaYsXPHhcy8TNICFdIvWyM2iu6Egu+iF583OGxlVlQ6mXlE6DqBU0U+uY
+ OYJPq4deUGVwRbg6J4KN3798Uk8h7cyEISlN/B13cVApHT7OR0V5aJuHmEHNgfJQ+naGjW38lVG
+ iF3e0HgQA1HXZBM+0NSN8HjTy4hJy7zuk5l9jdQn41d5I6ou/sC/BsxaueZyKxItxeXXZE27VMS
+ LqCxcLjlp6kYyb4253DA9juUhLSNhZyojE5XFyl6EbjdqGFaBZis2P53PwDxY9H7JX1ZaT9zRAp
+ sZk2QBS8dzpb42V6lKk5BB2mE5FxBpqvnyKAjlqPGNJcDnAtyFLJE2rhRV+L3blDFeaUyMqTyfy
+ 5Jk6ezyBLFVNoQsb1lbQbsIdAVcNdMYuJidXGZnsDI+kJRUN5g9sMoz7B84Y9bvvgWTECU3gv/g
+ oZczxMZkeW7SMAgmEIg==
+X-Proofpoint-ORIG-GUID: eXrHe-mK2DYN775JrkdQhQ4Ib6Vu2Zuc
+X-Proofpoint-GUID: eXrHe-mK2DYN775JrkdQhQ4Ib6Vu2Zuc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 impostorscore=0 lowpriorityscore=0 phishscore=0 bulkscore=0
+ adultscore=0 priorityscore=1501 spamscore=0 malwarescore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090117
+X-Rspamd-Queue-Id: 40BFE2393AE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272924-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-272925-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[emfend.at:email,kekkonen.localdomain:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.945];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Hi Matthias,
+On 3/9/26 11:57 AM, Krzysztof Kozlowski wrote:
+> On 05/03/2026 18:28, Barnabás Czémán wrote:
+>> Add Redmi 4A (rolex).
+>>
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+> 
+> Do not Cc linux@mainlining.org. It causes multiple bounces and is not
+> even necessary. It's some distribution list only growing the CC list
+> negatively affecting spam scores of sending patches.
 
-On Thu, Feb 26, 2026 at 09:30:08PM +0100, Matthias Fend wrote:
-> Hi Philipp,
-> 
-> thanks for your feedback.
-> 
-> Am 26.02.2026 um 11:13 schrieb Philipp Zabel:
-> > On Do, 2026-02-26 at 09:56 +0100, Matthias Fend wrote:
-> > > Add support for the required power supplies as well as the control of an
-> > > optional sensor reset.
-> > > 
-> > > Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> > > ---
-> > >   drivers/media/i2c/ov08d10.c | 104 +++++++++++++++++++++++++++++++++++++++++---
-> > >   1 file changed, 97 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/drivers/media/i2c/ov08d10.c b/drivers/media/i2c/ov08d10.c
-> > > index cfe18dcde174ddc1f198cb2aaa6b4a3b34045508..4dba264488b3e1950016deb3fa34732871cc34fc 100644
-> > > --- a/drivers/media/i2c/ov08d10.c
-> > > +++ b/drivers/media/i2c/ov08d10.c
-> > [...]
-> > > @@ -1379,6 +1442,7 @@ static int ov08d10_probe(struct i2c_client *client)
-> > >   {
-> > >   	struct ov08d10 *ov08d10;
-> > >   	unsigned long freq;
-> > > +	unsigned int i;
-> > >   	int ret;
-> > >   	ov08d10 = devm_kzalloc(&client->dev, sizeof(*ov08d10), GFP_KERNEL);
-> > > @@ -1404,12 +1468,32 @@ static int ov08d10_probe(struct i2c_client *client)
-> > >   		return ret;
-> > >   	}
-> > > +	ov08d10->reset = devm_reset_control_get_optional(ov08d10->dev, NULL);
-> > 
-> > Please use devm_reset_control_get_optional_exclusive() directly.
-> 
-> ACK
-> 
-> > 
-> > > +	if (IS_ERR(ov08d10->reset))
-> > > +		return dev_err_probe(ov08d10->dev, PTR_ERR(ov08d10->reset),
-> > > +				     "failed to get reset\n");
-> > > +	reset_control_assert(ov08d10->reset);
-> > > +
-> > > +	for (i = 0; i < ARRAY_SIZE(ov08d10_supply_names); i++)
-> > > +		ov08d10->supplies[i].supply = ov08d10_supply_names[i];
-> > > +
-> > > +	ret = devm_regulator_bulk_get(ov08d10->dev,
-> > > +				      ARRAY_SIZE(ov08d10->supplies),
-> > > +				      ov08d10->supplies);
-> > > +	if (ret)
-> > > +		return dev_err_probe(ov08d10->dev, ret,
-> > > +				     "failed to get regulators\n");
-> > > +
-> > >   	v4l2_i2c_subdev_init(&ov08d10->sd, client, &ov08d10_subdev_ops);
-> > > +	ret = ov08d10_power_on(ov08d10->dev);
-> > > +	if (ret)
-> > > +		return dev_err_probe(ov08d10->dev, ret, "failed to power on\n");
-> > > +
-> > >   	ret = ov08d10_identify_module(ov08d10);
-> > >   	if (ret) {
-> > >   		dev_err(ov08d10->dev, "failed to find sensor: %d", ret);
-> > > -		return ret;
-> > > +		goto probe_error_power_off;
-> > >   	}
-> > >   	mutex_init(&ov08d10->mutex);
-> > > @@ -1430,6 +1514,9 @@ static int ov08d10_probe(struct i2c_client *client)
-> > >   		goto probe_error_v4l2_ctrl_handler_free;
-> > >   	}
-> > > +	pm_runtime_set_active(ov08d10->dev);
-> > > +	pm_runtime_enable(ov08d10->dev);
-> > > +
-> > >   	ret = v4l2_async_register_subdev_sensor(&ov08d10->sd);
-> > >   	if (ret < 0) {
-> > >   		dev_err(ov08d10->dev, "failed to register V4L2 subdev: %d",
-> > > @@ -1437,26 +1524,28 @@ static int ov08d10_probe(struct i2c_client *client)
-> > >   		goto probe_error_media_entity_cleanup;
-> > >   	}
-> > > -	/*
-> > > -	 * Device is already turned on by i2c-core with ACPI domain PM.
-> > > -	 * Enable runtime PM and turn off the device.
-> > > -	 */
-> > 
-> > The commit message does not explain why this comment is dropped.
-> 
-> I didn't find the comment particularly helpful and since other sensors
-> manage without it and there's now more than just ACPI, and "turn off"
-> happens later, I thought it was fine to just drop the comment.
-> 
-> If you think it should still be included, I'd be happy to change it.
+Custom mailing lists are great for keeping track of patches within a
+team or otherwise a group of people. They definitely shouldn't bounce
+though.
 
-I'd drop it and mention this in the commit message, there's nothing
-specific to this driver here (nor even camera sensors in general).
-
-> 
-> > 
-> > > -	pm_runtime_set_active(ov08d10->dev);
-> > > -	pm_runtime_enable(ov08d10->dev);
-> > >   	pm_runtime_idle(ov08d10->dev);
-> > >   	return 0;
-> > >   probe_error_media_entity_cleanup:
-> > > +	pm_runtime_disable(ov08d10->dev);
-> > > +	pm_runtime_set_suspended(ov08d10->dev);
-> > 
-> > Does this do the correct thing if v4l2_async_register_subdev_sensor()
-> > returns -EPROBE_DEFER (for example via privacy led) and then it probes
-> > a second time? It looks like the assumption pm_runtime_set_active()
-> > doesn't hold then.
-> 
-> At least it works as expected for me. But as mentioned, I don't have an ACPI
-> hardware setup available. Does your point maybe refer to ACPI, or what
-> exactly do you mean?
-> To me, it now looks very similar to other Omnivision ACPI drivers – do you
-> perhaps have a specific suggestion for what should be changed?
-
-Moving pm_runtime_set_active() and pm_runtime_enable() calls above
-v4l2_async_register_subdev_sensor() (and related teardown changes) are
-actually a bugfix (the driver's external APIs are exposed before runtime PM
-is enabled and thus e.g. streaming on will fail). It'd be nice to post that
-separately from non-ACPI power management changes.
-
--- 
-Kind regards,
-
-Sakari Ailus
+Konrad
 
