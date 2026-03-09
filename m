@@ -1,261 +1,141 @@
-Return-Path: <devicetree+bounces-273101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273102-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oO4TCCEpr2mzOgIAu9opvQ
-	(envelope-from <devicetree+bounces-273101-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 21:10:09 +0100
+	id SOlWGGIpr2mzOgIAu9opvQ
+	(envelope-from <devicetree+bounces-273102-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 21:11:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5470B240A9C
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 21:10:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9482240AD1
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 21:11:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F216B3051CBD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 20:04:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C7819300E3F1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 20:11:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A057A368970;
-	Mon,  9 Mar 2026 20:04:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE68936A007;
+	Mon,  9 Mar 2026 20:11:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="elb5z1ex"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XVFZwKzB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013012.outbound.protection.outlook.com [40.107.162.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40001366831;
-	Mon,  9 Mar 2026 20:04:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773086681; cv=fail; b=tUM9uf+Gq/X86Dt2dL3m/sMWVy53NsAmAxDRMRMqrow67twsNLOiwlZ1U8smg6FsKy2nkRlN+sMzLf8DyfNZPGVzKLth2nDJXgbj3Dlj+4w5mSIFpKkTpECLhZeT7xmIvv+7KSNOFkuxiWqwNlevx7pyoYvZOkjbIzIjEezdy4I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773086681; c=relaxed/simple;
-	bh=/H8nEeFLYGmOmrTDAgvFuWwwhLXNB9qY/UmMxM3s7D8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=JQIGtptysKq8wWPyPCxc8MGCXTZGrcavWsP1zreNwmBtoAxN0/HAbU7wmzEj+h8J13v5voiaqQv4/5LFdBEpUconSQeVGf1R5sP0EmQTNk+eUaEQEgbrK8RzGUnMeZ+rx3E3ouGMd0lDUQorbhPPzrFw19VCsU0EMdrcmb3YO6s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=elb5z1ex; arc=fail smtp.client-ip=40.107.162.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=T4fMgWLqsKJOKHNhR+Goz+7Y1dEINpK86+S76Ctc6IowSb0uPbsT1y5CKHayAwMm0LoKsgg8P1Y7wJfMFQSjqpcP+Y5y5AWa7UncZ1zrY34QaWloUxZVXiqrVb/6HErepAU74Nj3VvNJ+nCpCf66EAPbwOufgkmH0NWt2uMT+SczoGHw4J4qKZn09VIr3CBKiaQPQ/h1DrOLfNvD0AGBKrVAMsIepeIHcV5zbuCH0xS0BW5yZ95ISxpOjBY3PtvvDcoBzowPa3apfPVXbnhpF/RbdG65UreJc/qDR+ufi67IEIQZCgIg7I4kU+sRL9yV8cj/TiobvqKJBOEtRZU4ag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xLz+JdaK1h7LNsrboNwLyQvHuNruttFneXvlMhaazd4=;
- b=q9N9tj2bKBxLUOVO5GdBciuSPaw9+HU/ya2tRrkoVK6JIXfNPR9JQYBdm658S/mYrh+LekZaiZaLgONTgn1QlktiJGg0hOZlBqveSEKByNC1U7grEHB8Qx9DMrdz+XeHUobuL47mxQRQQ8g2uKcW9rfyinXkKsFpVU8FtebID+x4PWNzFoTr35UZqpELwEdMUt8jDUydg89dZQihy29XII0rvvGzmPO6fGPRY4Ua/pVe9f6pH9Y2mU37gQKTnyxQCJM4i9dTQxOnfCedx1J3VW5l6uSE2RH5PAuf96RhW6Kq1X3N7RGy4fR6PUM7M1Qr+Ruhvpckiyvx5gEKDdJxqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xLz+JdaK1h7LNsrboNwLyQvHuNruttFneXvlMhaazd4=;
- b=elb5z1ex1+O+TADDqmI3ZL44GlT65gNEeI7KKE0z9zgIqv0j3Da5EwU7BKCLSJ09vb1IiWNwXORJVBn382CVaI697k6MTm4pl3A/km1zWmhBNA6t3SoCGea5s9Ng0fa92W8vR1nc2P/RE+oc58qGGcnf7bJP1sIEjKnET98/ycq0uuxi+eWmtuFOGYwG6bbCSXwCVqnBN3gZtZWow80IqvMJILLPKhx7fCqhwcGmmGRSiFDx+ZRHqM2YMjsf5J4Nh2Jq3cQswJw0YUfZksUPoh3IZn8M9b3x/ulyUv6m+ykK2l/dH7IDpAgvBcCHc6980Ba7ZCA7luaq37MFHr5gxA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU0PR04MB9372.eurprd04.prod.outlook.com (2603:10a6:10:35b::7)
- by GV2PR04MB11934.eurprd04.prod.outlook.com (2603:10a6:150:2f3::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.22; Mon, 9 Mar
- 2026 20:04:36 +0000
-Received: from DU0PR04MB9372.eurprd04.prod.outlook.com
- ([fe80::4f6:1e57:c3b9:62b4]) by DU0PR04MB9372.eurprd04.prod.outlook.com
- ([fe80::4f6:1e57:c3b9:62b4%4]) with mapi id 15.20.9678.020; Mon, 9 Mar 2026
- 20:04:32 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41259368959;
+	Mon,  9 Mar 2026 20:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773087065; cv=none; b=roNT+5qzf3dxRmpemDs90+DDnOB7pdALBCcH8EP6CzROcOwB8VIIuvsvtuLP7gRP4+/Edu2X5slquVH2iFVHKNIunAcaE3FICtdbmyoaKNox2rcj/0cfzmMkeFIljLF+B1SwpXoAkw04qpcpjL43tVtAcTP1JlwzdIa8NM/Vw+Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773087065; c=relaxed/simple;
+	bh=yF27ep3TepsukCbOCYKesTSmadiqW5lxWjZ7XDNmC/M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lHz53ic9YV3Ka4DXFJR6bidzzYwmLaB99BwMmNk4yk6GjziKcSzhDTqYZhrKAIjr8c31j52g+tpEDTAq2du0NKrenYOkh7QvJrexd5iWAQP6yN5hSWqhE0yGVohNZc6+PxeBelpOvgeUflhvm4j9gt8uL7HbRBhgZvZf1ODrnCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XVFZwKzB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61A2EC2BC87;
+	Mon,  9 Mar 2026 20:11:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773087064;
+	bh=yF27ep3TepsukCbOCYKesTSmadiqW5lxWjZ7XDNmC/M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XVFZwKzB9jRPszDrFhg3z6AwV0gwFcyJ3g2n6z0w+Yf02G1RytIOx+/mGRjRCl4NU
+	 kpOTDJocSOHERiAvVdIYIyz4gLj3Gstuxj/Q8bVORzYaJ9OaCdZVyG9l61n7HnSdon
+	 djU5LnciJLvVsH2fq2RhZYhKuc9kOBiq2Uu+5b0fAJvyj627dVGpae180F88ZItr6f
+	 TFhI6QAKe9oNqeI4uCsgI4a7y0qXDFyJtDvp/aZ49S6yX2KghEJMnb+QgC71VQZxg1
+	 3LvaaTpHBWF2NCNRTGKQ7ez/ARINX4Nne8dS0jvGAv3pJ5QE+3tJ7lio5paaiD8WQA
+	 wWO8E7tt62sNQ==
+Date: Mon, 9 Mar 2026 13:11:02 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>,
+	Drew Fustini <dfustini@oss.tenstorrent.com>,
+	Joel Stanley <jms@oss.tenstorrent.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-mtd@lists.infradead.org (open list:MEMORY TECHNOLOGY DEVICES (MTD)),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 3/3] dt-bindings: mtd: mxc-nand: add missing compatible string and ref to nand-controller-legacy.yaml
-Date: Mon,  9 Mar 2026 16:03:44 -0400
-Message-ID: <20260309200351.1791162-3-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260309200351.1791162-1-Frank.Li@nxp.com>
-References: <20260309200351.1791162-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0220.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::15) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	Michael Turquette <mturquette@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+	joel@jms.id.au, mpe@kernel.org, mpe@oss.tenstorrent.com,
+	npiggin@oss.tenstorrent.com, agross@kernel.org,
+	agross@oss.tenstorrent.com, bmasney@redhat.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v8 3/3] clk: tenstorrent: Add Atlantis clock controller
+ driver
+Message-ID: <aa8pVqupeZr67bEd@x1>
+References: <20260306-atlantis-clocks-v8-0-6c9b14a4aa8e@oss.tenstorrent.com>
+ <20260306-atlantis-clocks-v8-3-6c9b14a4aa8e@oss.tenstorrent.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9372:EE_|GV2PR04MB11934:EE_
-X-MS-Office365-Filtering-Correlation-Id: 086bab13-b7f8-47c1-dec4-08de7e17164c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|1800799024|7416014|52116014|366016|376014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	pNoDnaB3f/6HnHQNryQqqVkm039X/Ar9MI8xriNyfdDyG3daLsNVz+wbu0A7Rlbhpx0x8skLsKzIfjRNDvi7N97yqY5Y8wiPQp7fm7PYHy83jC7c1/fGPkneN51E+dCY6FfmtiU8veZrEgannHlZE/IZTh9JF4DAsLjzd6etBLzcN/XWXkBkMIFcK/z/B0Srmw6HpI+6zTHi+xgMmJzoXbmTtZrNrkqkG70rusWHmrIvTAid46Neg/X+w9CEm3BIAm4cOOdST16z7fFqQf4oPKIlVqUboM8g01diwPu6Y85Gk7CsrxpE0ta2Kh08Cv6gPBn2JPaCnGWFOeTNZ/nJJ5TdkyEy1FiFw1iAGVev9AI4XL+gHwtG38czV4jM5W8u8wAXwjW3FenYuNxbLgiNrULFAUGFGBS8sgH/h/x73DC4+3CIt28pleNAND8Sy4tu7LvAlNVkGnCi7Ao4m9a2TZWK9JrW9ppzTNwaQfnxLDjqPh09C2STU5EYqU405FKjHBi2qp+nAfuYKk0s1ymojCUB5oNvTT9snCUQ9v/OCxMkKF5FARaWOEnWLp/ZuHxVsM3HE3EbIHCdd74ppCEA/OD6agG/JotnrbbOtBS92KC+sb096krsLQhhnGadNCTs0A9YKoEsAE1DWkV6AqF9YDB1H9hnpB+13g/9PkmYt8Sw5OOuq9CRtsIfioKgC79pMVtvFQwezwWoZ7FIzd0dkkdCqqm3rBUnxYzpg8TbI9QE9+cHjdeE/C01XTD8eLoaAYistEPTPIyJIH/hcbHOeTxm9IlG72Zg6n+lpQj0hIrDnj/6OoYBMH4mxOgUn10A
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9372.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(1800799024)(7416014)(52116014)(366016)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?SklLajV3MnowWTRHWFA3OEthem90WVNWL0JOb0VNRmtXaWVUVU9RS2VSdTk4?=
- =?utf-8?B?bnpxSGpxU3RFTVB3NlhGTE5GVFBpUVR6Ny9EY2UzcFEzaDJjYjYrTW9LcmFR?=
- =?utf-8?B?MFpDUlQxQUR3Nk9iZWZFclBrRWtQQUFac1Y5RXdDa1FOSUo0ZFRyU3lVbEtU?=
- =?utf-8?B?MkJzWk8rYytBeXpOazR0Zk1ObEI0dmk3Z3U3TVQ4a1d1ditPL3dDSjFQaXJS?=
- =?utf-8?B?ZHVIQWJRUVdnWWxqRStMM3R1aFdCVFp0cHdDbEY3OWxSaUZCc3NsNHFUOEFF?=
- =?utf-8?B?QVRLaXlIeEhiS1BlaEhYTWJsMXJhZ0ZoUGhLaWlxaE9rc0ZjNnBycUFIa2g0?=
- =?utf-8?B?aXFFaDdjeFNOblB0QUNldG1WbEFQUktCZ0pFYStDK3BhVzM1akl3Q3JQblMx?=
- =?utf-8?B?dWdEOXpMcFFyeStVanprRWpldVJET1RTQXJ1ZWRiVjl6VUJxeVJqZlE3OUpV?=
- =?utf-8?B?aGxXZ09DT2g5OVB3eHZsbG0zVUh4UHU5SENQc3lsTndsckNSVjlIZ0c0Y3Zz?=
- =?utf-8?B?b1FhZG5wWW9RNFZaUENGUEJPOEdnb3VhSGZySXc3U1diYUFpdUpYRy9wUmha?=
- =?utf-8?B?d2svTXRGbE1xT0FqdHdvSE5Lcm5LOUhmcDVtZnlrcHUrUkpoQnFFQkVVQzl2?=
- =?utf-8?B?Rm15cThzakpWOVBQQ2FyY1lsK2VVYnNxRGFncUVyRTNkSzE4WG5ib1VtVHZq?=
- =?utf-8?B?L3JuV3dKUVdYUXNVbW1SamVGUHcrcCtmd284NE9CR1N0OXVnUFl1eG1vb2JN?=
- =?utf-8?B?YUZDMXAwSG1Obm1GRlVlNXFINzM3NFdBTVoxa3ZYTXRDblJjSlVvYVR4a2U4?=
- =?utf-8?B?azZmNUdXazdZcFlrWXg1OFBReWpWS3pMRlM0Y0hBNXhlVVZzWmMvcDNIZjRw?=
- =?utf-8?B?a05qME9HbWkzMkJVUXBoSHdqelMrVDNwOEFVUnA5NnpJTWJkSU5xUVB0bERX?=
- =?utf-8?B?aVUyaUVzUTU3YzBOeWthQXk0ZmVMZFBZVFUrWEJzdWZNdlZFSjI2czByTHp1?=
- =?utf-8?B?aW5oWUJmZ0c5TkZmMUJlVUtHcGtrWktkTXIvZS90SWQwU3psb0ZnSkpjdmo3?=
- =?utf-8?B?R1h0cTRxWWVjWUdEcm9FWHpRSWpVeWllWEt2ZnlhWEpEZGM0b0ptbG1MZit6?=
- =?utf-8?B?SFNKZ1Z6U0VjbGdJejEzSklsVFIvVnR4eWN0OVhHNzBSRjEvbGp6K3ZUaW5u?=
- =?utf-8?B?eGp0OUo3K2dqa29UdkNQd25kejIxN3dkSUE5UzZYclAxRS90MDlPSW5wNUlm?=
- =?utf-8?B?WkdXWTE5SU1MbXhOZEwxck41WnRrS29FUDJmd2Iva2dlTlZyb0Mzc2JXMUNt?=
- =?utf-8?B?UkNMeVRUVWVWRVo5WmNsTkZ5YTNndVo1NTBiS2F1Z1RXVGVEcGlNK2hCbkJB?=
- =?utf-8?B?QXVIRHNzZ3ZMU0ZmU3BvMnI4UUU1VFB0NC90UFhaREtjc3NFY2RhejIvaXNU?=
- =?utf-8?B?cGNQVFVkNVdkdVp5cDZNdzRHc1YvMFlmSU1tODlKN0ZtYlhyTEtKY3NMSjFL?=
- =?utf-8?B?dEdvVXczbklpNUlOZTBwaUlxNWhzdHYxUGFRSnFncVFNaUtkVnQ2UlFxb08w?=
- =?utf-8?B?alNibG4rZktvYisycVJkZWpCekI3NVhwR21kRFlWc1FWam1EdGNUTS94OVVm?=
- =?utf-8?B?SCtKeFIvcHh6N3l5N3doSmdtcE1aWUJGZnNTMzhuVW1zem5JUFQrQVhGN0JG?=
- =?utf-8?B?UUd4UDlKNDc2cGhlZEc3SjZndklHK1pyMUFDbk00L09RQ2J4M0N3dThZSGVy?=
- =?utf-8?B?SmFaOGVEbWNCWFZzRms4Ui9BVEFSVnJjejRwbkc2RnBwWS9PRWQ4QTkrdEsw?=
- =?utf-8?B?YzN6L2hxeVZjclVxajZMVDRrSlZTWUR6L25WNW9Zb0tkTSt3bW5MbkpmdE4w?=
- =?utf-8?B?d0N4WTR0YXQzczV4dkExY3dBT1JJak52WHJXaXBLdTZ3eFVzeDV6WjRTeEJ6?=
- =?utf-8?B?SkdqZXMzVUdNWnZyckZLSE95YUxHbjR6TzdBUHkreFdLQUJuTkdaME4ydWhR?=
- =?utf-8?B?MDR0NFN1NFZFZkNVMWEvcDZhcWxtVThsL3FONHEzbE9CWDYwQkoyR09uRjNm?=
- =?utf-8?B?eXh4OGpUbThoN051T2dYRExudUI5Vy9YeEJ6akc4Z2R3dThBWEJNUmMwakNJ?=
- =?utf-8?B?QTM2ODl3WkFGM1B2RFp3bFlQd2tsSlJtZ1ZNS1d1K1d0QTlNZDUxQ0M4d1Qz?=
- =?utf-8?B?anh5Mzg1dXYyM1NZK0UxL3lDTUVXSHpZT2szQndBMXV0NndlMTNuVXlSTXpm?=
- =?utf-8?B?dXZmbzRtUlFIdGFOMm43M0hTUUZ6bm1JRnJwVGdLcGc4WGZJMDR6VitGZkJ6?=
- =?utf-8?B?Z1NBRTJ5bjMrOEhCWUJwWnZaQWdEN05WT2hMUHFFWnBzV2Fzb3ZyUT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 086bab13-b7f8-47c1-dec4-08de7e17164c
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 20:04:32.3821
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: V0LXa6BbsFaMUKoCF4zlP4uXcWyg9Yj/h3mgV8WCiBf8jOGt2S4EXIoZtZL52pVnF2Kq+fnOI9GLNZYx6gUx1g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11934
-X-Rspamd-Queue-Id: 5470B240A9C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260306-atlantis-clocks-v8-3-6c9b14a4aa8e@oss.tenstorrent.com>
+X-Rspamd-Queue-Id: D9482240AD1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273101-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[bootlin.com,nod.at,ti.com,kernel.org,nxp.com,pengutronix.de,gmail.com,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-273102-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid,pengutronix.de:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fustini@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tenstorrent.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add compatible string fsl,imx51-nand, fsl,imx53-nand and fsl,imx35-nand.
+On Fri, Mar 06, 2026 at 11:12:19AM -0600, Anirudh Srinivasan wrote:
+> Add driver for clock controller in Tenstorrent Atlantis SoC. This version
+> of the driver covers clocks from RCPU subsystem.
+> 
+> 5 types of clocks generated by this controller: PLLs (PLLs
+> with bypass functionality and an additional Gate clk at output), Shared
+> Gates (Multiple Gate clks that share an enable bit), standard Muxes,
+> Dividers and Gates. All clocks are implemented using custom clk ops and
+> use the regmap interface associated with the syscon. All clocks are derived
+> from a 24 Mhz oscillator.
+> 
+> The reset controller is also setup as an auxiliary device of the clock
+> controller.
+> 
+> Signed-off-by: Anirudh Srinivasan <asrinivasan@oss.tenstorrent.com>
+> ---
+>  MAINTAINERS                             |   1 +
+>  drivers/clk/Kconfig                     |   1 +
+>  drivers/clk/Makefile                    |   1 +
+>  drivers/clk/tenstorrent/Kconfig         |  14 +
+>  drivers/clk/tenstorrent/Makefile        |   3 +
+>  drivers/clk/tenstorrent/atlantis-prcm.c | 870 ++++++++++++++++++++++++++++++++
+>  6 files changed, 890 insertions(+)
 
-Add missinge properties dmas and dma-names.
+Hi Stephen, does it make sense for me to create clk branches [1] in the
+tenstorrent repo on kernel.org for Atlantis patches to go through?
 
-Change reg's maxItems to 2 because i.MX53 have addition NAND flash internal
-buffer space.
+Thanks,
+Drew
 
-Change ref to nand-controller-legacy.yaml allow legacy DT layout.
-
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Changes in v2:
-- use items for regs.
----
- .../devicetree/bindings/mtd/mxc-nand.yaml     | 20 +++++++++++++++++--
- 1 file changed, 18 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml b/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-index 433ae5727ad85..fbaff7d3eda85 100644
---- a/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-+++ b/Documentation/devicetree/bindings/mtd/mxc-nand.yaml
-@@ -10,7 +10,7 @@ maintainers:
-   - Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
- 
- allOf:
--  - $ref: nand-controller.yaml
-+  - $ref: nand-controller-legacy.yaml
- 
- properties:
-   compatible:
-@@ -18,12 +18,21 @@ properties:
-       - enum:
-           - fsl,imx25-nand
-           - fsl,imx27-nand
-+          - fsl,imx51-nand
-+          - fsl,imx53-nand
-+      - items:
-+          - enum:
-+              - fsl,imx35-nand
-+          - const: fsl,imx25-nand
-       - items:
-           - enum:
-               - fsl,imx31-nand
-           - const: fsl,imx27-nand
-   reg:
--    maxItems: 1
-+    minItems: 1
-+    items:
-+      - description: IP register space
-+      - description: Nand flash internal buffer space
- 
-   interrupts:
-     maxItems: 1
-@@ -31,6 +40,13 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  dmas:
-+    maxItems: 1
-+
-+  dma-names:
-+    items:
-+      - const: rx-tx
-+
- required:
-   - compatible
-   - reg
--- 
-2.43.0
-
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/tenstorrent/linux.git/
 
