@@ -1,718 +1,409 @@
-Return-Path: <devicetree+bounces-272711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272712-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MF5NGl1urmnCEAIAu9opvQ
-	(envelope-from <devicetree+bounces-272711-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:53:17 +0100
+	id WDQ5HKxurmn8EAIAu9opvQ
+	(envelope-from <devicetree+bounces-272712-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:54:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3232346EF
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 354632347A0
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:54:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 3ED2C3022059
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 06:52:39 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 603983004627
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 06:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CA4368945;
-	Mon,  9 Mar 2026 06:52:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AY8AsToY";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="U0PxOd1h"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A75F83624A7;
+	Mon,  9 Mar 2026 06:53:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A98E36494C
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 06:52:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11DE36FC3;
+	Mon,  9 Mar 2026 06:53:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773039124; cv=none; b=UfKBzKcnva56t5QewL4ZFpNsJKFBZRI6XKTutd1o0ma9rEAkcsFy6/uzbStXGaaPAD/GBd5fkcmyakClRvpmUq0NuELK7TkjxbZfZRoFHPZE0/NcejchLBMKXD5Bdkj3bM8eE2KeExmg1LA0A2c5h1t5lNM9tJpeoAHWhwGk/Og=
+	t=1773039237; cv=none; b=g95Tmhx5WhXfKesSiCbj7rq+9YQRib4+/NOVlZbHYqUc6z7Ttj5SBcKddVNuS/aYtJtZO0STTYGFrkHqHqmiVSCqvsOsX92RNpfS80glfoWMjhhkBlhgDxldRXNMVGM4OZn7PWN2U5HXSFmsgElnQ+8qGm85aPgwXgbRmRKbQmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773039124; c=relaxed/simple;
-	bh=DvFP/wvaJ5CtBSK4QE/DhIGDUkVqOv8tT7vU0VUqQmU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=gYKo+IDXgIIfmWGLTZvZ2CUuZ/pqH1eCSEpUjx5GrJnWHSCVoGlgHRJarSRbBleB129iH5VOOtXGH6C1ZNnAotbu0ssIlQdQGdkctLqOdmsw5dstjnqJV365XbxxwyhdaE7Mz+Wy8FPoMQIPCOZIvwPxmjvSTjCtUGM3DM9er40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AY8AsToY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=U0PxOd1h; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 628MxlFo755770
-	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 06:52:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=jvoT3l7ozYp
-	q4t2jEp63vepOyrzL4M48KQbe9Tm5zvE=; b=AY8AsToY8uiA4Yw2LcKgnMfU7b7
-	5RBnUPU51prEmVYBZLUpCTD1OBZupFisXq+CRX9cXEDn4hxIr7fWvz2i5cTxhPxo
-	Ea7sZGpctvOpy4HvnZ6WlOxBlvQKmA8g1S31Xa2VDVVsZ6Hsww8dYBfItkwZIISf
-	L8GXbSvshuDW6a3KsY64H2evTeVvSq07fKHD1ZJX4aOBuGHa+UGA2gci4wMgyc3P
-	Nig3ilUfQcB00yt5aPz0PUlqEXM7F2Zo0fpovZhym0GVz4dDQ1A5fcTjlZVFlkXU
-	k5CjSeS3+gA1yZ5rlhc3x593XNSHkKLpSm1tm1IRuwnfNpNk2Au4P2MqyhQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4crb14vbjw-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 06:52:01 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-506549eb4b7so808904961cf.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 23:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773039121; x=1773643921; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jvoT3l7ozYpq4t2jEp63vepOyrzL4M48KQbe9Tm5zvE=;
-        b=U0PxOd1h81HdfoRxTeS75Z87vD52FIm+DQYf7R/Jw7UGFu3QC287dIC1efF9cCmcR2
-         ary9BN/0dPKaj55X3OnnreWp13qoUPylvlMaEPBo4o5QIouei6vYYPU3dO97idgC/aS7
-         w5A0ZRKKbsKpPuBI2fcDsIlh8MOfQDWdK+qQJP7wsgRL3jM5yujv7prFIJfwVDLzUQ7r
-         fPpWTn+q1nY64ZA5C3GuCf4fbEnoXDWO5FrofJF9ZMDHvzHmnHVfuk4CJGuBPADSNQb5
-         muXuIWX/nT5fFZw/mKSyTG+1oZCFbN98UaH/E4y7rSg6Fhr+wSNaN97DXkjJEK+Q6BWO
-         9Vyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773039121; x=1773643921;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=jvoT3l7ozYpq4t2jEp63vepOyrzL4M48KQbe9Tm5zvE=;
-        b=MS4do9h/yqw2UV/OD+OXsKiqg4ZvNVWagpA8oLoFHwae0J3UoqbyjsIS5WV8f4yzzE
-         YRQF3K1tVpiM8LY4D11tiPc5k6WQd5c6jy1hpIx0iilyxqjut1KN/C91ap7g6N1c79q2
-         N+cvIEKvJYgEWIYXJuGAQa0n9xZOYJPwtZVhiXke7e/tHVQfbdXTRm88LW5mSbdfpmMb
-         WrSgJmcUgFHF+0i5C8UZyTpNesh0v+AUBOhLzGqtpaLY0/INgOAS6NIkTZx9jMm/q1at
-         zKbYPDreUsde9Sjj3rDO/FGwhUl83cMxcv8vH3TgAafTIC7SAi787mYYgNxMXnOD3tRU
-         DIjw==
-X-Forwarded-Encrypted: i=1; AJvYcCXFPwgHfU6GLeJluyhTonPR0/Itm3MAjbQKVcfPJ9JrWdkX7qqqKhYJ9V5VziUAsfanxJzIK/PbmNKl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwb6/zI1ytprxUk0MG07iauDGRpDEFpze38apRGUkRbDQYSNes
-	n89ibMI8bDeyMavj40p/ARuz8EMXj/41W3DebUgFvZznbrMvyL92SApfflF1Oqmybxg6vYGzJhe
-	+W4MJAA+LqdABB+/faGocvIPcuCXVTj3tA9mZjKGthBmN5OK0FN80e9yxu1GVal1x
-X-Gm-Gg: ATEYQzw9hifqjgDw2kCb4A4E2WiZYm51FwrokOs90MuHwcQOtwOo9acv+WokmGu48uJ
-	9B5lIpY1Xrau1dP3WER5Ae5CpLgtPwbQNxbOw7vraOXbZknm1GWgftbH2T010pnNikpW5GQClF9
-	99c188epXqSS6UImB8zFuc6PvBhOAU5U5oN9b/kxHuDst4yX4E9PJ3b/pUFyiS5pA+ldIrdSjJL
-	eJc6tmuFWIOcziXvqv+h20Mgn0CqVkaK/xx8a80ujLSMKoYTFHDRBSZ24w3D3+eExAQZyhz0W9l
-	sxEaj8wUHVrRRbEoyPD0c3OhKG2pv+y6DURXU2NK1PgX7IY//70qAq6XV2Wwk1kzItVdPI7gpOm
-	S7uuYmYHf/8T6mtZdSputnHC7L/CG3Xu42ytTPGnghkJBJrDyGZ1O2H8=
-X-Received: by 2002:a05:620a:1711:b0:8cd:8fb7:7b13 with SMTP id af79cd13be357-8cd8fb77fc1mr31689085a.10.1773039120431;
-        Sun, 08 Mar 2026 23:52:00 -0700 (PDT)
-X-Received: by 2002:a05:620a:1711:b0:8cd:8fb7:7b13 with SMTP id af79cd13be357-8cd8fb77fc1mr31686085a.10.1773039119826;
-        Sun, 08 Mar 2026 23:51:59 -0700 (PDT)
-Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48529f01997sm80449975e9.14.2026.03.08.23.51.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Mar 2026 23:51:59 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-To: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org
-Cc: mohammad.rafi.shaik@oss.qualcomm.com, linux-sound@vger.kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, johan@kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mailingradian@gmail.com,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH v5 13/13] ASoC: qcom: q6apm: Add support for early buffer mapping on DSP
-Date: Mon,  9 Mar 2026 06:51:37 +0000
-Message-ID: <20260309065137.949053-14-srinivas.kandagatla@oss.qualcomm.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260309065137.949053-1-srinivas.kandagatla@oss.qualcomm.com>
-References: <20260309065137.949053-1-srinivas.kandagatla@oss.qualcomm.com>
+	s=arc-20240116; t=1773039237; c=relaxed/simple;
+	bh=TUvt7xWl6Qkv3+Sod/WS115fEfzYoCpjCn74Z5XgclQ=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=nYx03vLBuqHaE2p45xpkCfUzPvWHRSYE2m6bdFdN0pTZVKsCCKHSc6bvb+x9JTiYgUuP6yC6nYqgK9nSFSCA5V/tue4yWYzj9ZxYdb1TPsklqxfEuVW5qGBpJn2gB892mxJGf9QhRX4idukNHgai2s9jigQuz2D+mmz9nYl6KqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Mon, 9 Mar
+ 2026 14:53:52 +0800
+Received: from [127.0.1.1] (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Mon, 9 Mar 2026 14:53:52 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: [PATCH v26 0/4] Add ASPEED AST2600 I2C controller driver
+Date: Mon, 9 Mar 2026 14:53:51 +0800
+Message-ID: <20260309-upstream_i2c-v26-0-5fedcff8ffe8@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=IYSKmGqa c=1 sm=1 tr=0 ts=69ae6e11 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8
- a=Lmls0Cg-LgRrrh2KKlkA:9 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: qD-5Yj2vcf0DyZMi0oN8AHouLg05P7qy
-X-Proofpoint-ORIG-GUID: qD-5Yj2vcf0DyZMi0oN8AHouLg05P7qy
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDA2MSBTYWx0ZWRfXxXGaS2t+fLb+
- mjc+AW2h/oDxVrJ6haD6IuqCA54Mue6y2wGy02W9CQn1kAL+2LrK0a0vyTnun5FBqLIx3zfhVSc
- ETvWaY3hciwIJ2jkKPY1FAxYS8Ac3XXB9i4bLupv8lQah4VPkO9TuDHro0EH9Y3IhItf0ffivs6
- lO+PDd4arKs7tR0CABWBsDBVE6eaKk2cC9PQdJa0gF85HV7QemoQWDlVaOzjtsN0YJXsLojYSS8
- x4NP4iZDDLx36lxUTlCeLG6uCZ617+Vp/5E4NUagm///F1SopkUiCcWfvcWPdKI/FoiE5zyWHYK
- optbma09bZbahjgML0hPMXD1NO8mNlpJkuUBII2JZ+c5CvpnWtYgWhK9PF+lQFs1M6dcxJ34KlU
- JFjNtSs3KUBuhfx2dAy9uiklaqAHiU2aQy1LXS8iL7wenz8SeZTWf/FVS4ba/buf7Y28XqD069L
- P6sQl/SvtM4QESDADMg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-09_02,2026-03-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0
- phishscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090061
-X-Rspamd-Queue-Id: 2A3232346EF
+X-B4-Tracking: v=1; b=H4sIAH9urmkC/1WMQQ6CMBBFr0JmbU0zULCuuIchBtqpzAJo2ko0h
+ LtbSVy4fO/nvw0iBaYI12KDQCtHXuYMWJ8KMGM/P0iwzQJQYi0RS/H0MQXqpzujETRY2biLbkp
+ tIF98IMevo3frMo8c0xLeR35F9dW/kvov5VVIoV01WKtV5UrX9tET2URmPJtlgm7f9w+PW1hBs
+ AAAAA==
+X-Change-ID: 20260223-upstream_i2c-ebd07f89739c
+To: <jk@codeconstruct.com.au>, <andriy.shevchenko@linux.intel.com>, Andi Shyti
+	<andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
+	<joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>, "Benjamin
+ Herrenschmidt" <benh@kernel.crashing.org>, Rayn Chen
+	<rayn_chen@aspeedtech.com>, Philipp Zabel <p.zabel@pengutronix.de>
+CC: <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <openbmc@lists.ozlabs.org>, Ryan Chen
+	<ryan_chen@aspeedtech.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773039232; l=13257;
+ i=ryan_chen@aspeedtech.com; s=20251126; h=from:subject:message-id;
+ bh=TUvt7xWl6Qkv3+Sod/WS115fEfzYoCpjCn74Z5XgclQ=;
+ b=1P8L88ksIMJ2Y9NIFQRiNIHjyCdO2UnbeR19ZcHmUnmXO7ItB5b5pYgCrzV8OH1xei9R/gb8q
+ oRPWxEvaAaDCIkTYNb+zeiwfJo5ooDbOzwHv8PsqWaOU53CWZc+2guo
+X-Developer-Key: i=ryan_chen@aspeedtech.com; a=ed25519;
+ pk=Xe73xY6tcnkuRjjbVAB/oU30KdB3FvG4nuJuILj7ZVc=
+X-Rspamd-Queue-Id: 354632347A0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
+	DMARC_POLICY_QUARANTINE(1.50)[aspeedtech.com : SPF not aligned (relaxed), No valid DKIM,quarantine];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,vger.kernel.org,gmail.com,perex.cz,suse.com,kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272711-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272712-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.997];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ryan_chen@aspeedtech.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_COUNT_FIVE(0.00)[5];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.164];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,aspeedtech.com:mid,aspeedtech.com:email,linaro.org:email]
 X-Rspamd-Action: no action
 
-Buffers are allocated on pcm_new and mapped in the dsp on every
-prepare call, which is inefficient and unnecessary.
+This series adds support for the AST2600 I2C controller “new register
+set” implementation.
 
-Add new functions q6apm_[un]map_memory_fixed_region to map it on
-to dsp only once after allocation.
+The AST2600 I2C controller introduces a revised register layout which
+separates controller and target functionality into distinct register
+blocks, and extends clock divider configuration, packet-based transfer
+support, and DMA capabilities compared to the legacy mixed register
+layout used on earlier ASPEED SoCs.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+The current driver implementation for the AST2600 I2C peripheral is
+through the hardware's "compatibility mode", which exposes a register
+set that matches the previous generation hardware (AST2500 and earlier).
+
+Instead, add a driver that works in new-register-set mode, to allow the
+new features, and will provide support for future hardware that will
+not implement compatibility mode.
+
+In order to support the new mode, we need a couple of DT binding changes
+to reflect the expanded hardware interfaces: references to a global
+register set, and buffer mode selection. Since the binding still
+represents the same (AST2600 SoC) physical hardware, we continue to use
+the existing compatible string of "aspeed,ast2600-i2c-bus".
+
+However: since we're changing semantics for an existing binding, we
+allow backwards compatibility by selecting on presence/absence of the
+newly-added properties, and fall back to the old driver (ie., in
+compatibility mode) when we detect a DT using the old binding spec.
+
+Specifically:
+
+- ast2600-i2c-bus nodes that provide the `aspeed,global-regs` property
+  (which is mandatory in the new binding and absent in the legacy
+  binding) will be successfully probed by the new driver
+
+- ast2600-i2c-bus nodes without `aspeed,global-regs` continue to use the
+  existing driver (in legacy register mode), ensuring that platforms
+  with the current DTBs remain functional
+
+Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
 ---
- sound/soc/qcom/qdsp6/audioreach.c |  60 ------------
- sound/soc/qcom/qdsp6/audioreach.h |   5 +-
- sound/soc/qcom/qdsp6/q6apm-dai.c  |  95 +++++++++++++++---
- sound/soc/qcom/qdsp6/q6apm.c      | 157 ++++++++++++++++++++----------
- sound/soc/qcom/qdsp6/q6apm.h      |  15 ++-
- 5 files changed, 203 insertions(+), 129 deletions(-)
+Changes in v26:
+- 1/4: binding reworks based on review feedback
+- Link to v25: https://lore.kernel.org/r/20260225-upstream_i2c-v25-0-9f4bdd954f3f@aspeedtech.com
 
-diff --git a/sound/soc/qcom/qdsp6/audioreach.c b/sound/soc/qcom/qdsp6/audioreach.c
-index 241c3b4479c6..b2975eebab71 100644
---- a/sound/soc/qcom/qdsp6/audioreach.c
-+++ b/sound/soc/qcom/qdsp6/audioreach.c
-@@ -1396,66 +1396,6 @@ void audioreach_graph_free_buf(struct q6apm_graph *graph)
- }
- EXPORT_SYMBOL_GPL(audioreach_graph_free_buf);
- 
--int audioreach_map_memory_regions(struct q6apm_graph *graph, unsigned int dir, size_t period_sz,
--				  unsigned int periods, bool is_contiguous)
--{
--	struct apm_shared_map_region_payload *mregions;
--	struct apm_cmd_shared_mem_map_regions *cmd;
--	uint32_t num_regions, buf_sz, payload_size;
--	struct audioreach_graph_data *data;
--	struct gpr_pkt *pkt __free(kfree) = NULL;
--	void *p;
--	int i;
--
--	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
--		data = &graph->rx_data;
--	else
--		data = &graph->tx_data;
--
--	if (is_contiguous) {
--		num_regions = 1;
--		buf_sz = period_sz * periods;
--	} else {
--		buf_sz = period_sz;
--		num_regions = periods;
--	}
--
--	/* DSP expects size should be aligned to 4K */
--	buf_sz = ALIGN(buf_sz, 4096);
--
--	payload_size = sizeof(*cmd) + (sizeof(*mregions) * num_regions);
--
--	pkt = audioreach_alloc_apm_pkt(payload_size, APM_CMD_SHARED_MEM_MAP_REGIONS, dir,
--				     graph->port->id);
--	if (IS_ERR(pkt))
--		return PTR_ERR(pkt);
--
--	p = (void *)pkt + GPR_HDR_SIZE;
--	cmd = p;
--	cmd->mem_pool_id = APM_MEMORY_MAP_SHMEM8_4K_POOL;
--	cmd->num_regions = num_regions;
--
--	cmd->property_flag = 0x0;
--
--	mregions = p + sizeof(*cmd);
--
--	mutex_lock(&graph->lock);
--
--	for (i = 0; i < num_regions; i++) {
--		struct audio_buffer *ab;
--
--		ab = &data->buf[i];
--		mregions->shm_addr_lsw = lower_32_bits(ab->phys);
--		mregions->shm_addr_msw = upper_32_bits(ab->phys);
--		mregions->mem_size_bytes = buf_sz;
--		++mregions;
--	}
--	mutex_unlock(&graph->lock);
--
--	return audioreach_graph_send_cmd_sync(graph, pkt, APM_CMD_RSP_SHARED_MEM_MAP_REGIONS);
--}
--EXPORT_SYMBOL_GPL(audioreach_map_memory_regions);
--
- int audioreach_shared_memory_send_eos(struct q6apm_graph *graph)
- {
- 	struct data_cmd_wr_sh_mem_ep_eos *eos;
-diff --git a/sound/soc/qcom/qdsp6/audioreach.h b/sound/soc/qcom/qdsp6/audioreach.h
-index 89f172aab8c0..6ddc287f0fb4 100644
---- a/sound/soc/qcom/qdsp6/audioreach.h
-+++ b/sound/soc/qcom/qdsp6/audioreach.h
-@@ -722,6 +722,7 @@ struct audioreach_connection {
- 
- struct audioreach_graph_info {
- 	int id;
-+	uint32_t mem_map_handle;
- 	uint32_t num_sub_graphs;
- 	struct list_head sg_list;
- 	/* DPCM connection from FE Graph to BE graph */
-@@ -838,10 +839,6 @@ int audioreach_tplg_init(struct snd_soc_component *component);
- 
- /* Module specific */
- void audioreach_graph_free_buf(struct q6apm_graph *graph);
--int audioreach_map_memory_regions(struct q6apm_graph *graph,
--				  unsigned int dir, size_t period_sz,
--				  unsigned int periods,
--				  bool is_contiguous);
- int audioreach_send_cmd_sync(struct device *dev, gpr_device_t *gdev, struct gpr_ibasic_rsp_result_t *result,
- 			     struct mutex *cmd_lock, gpr_port_t *port, wait_queue_head_t *cmd_wait,
- 			     struct gpr_pkt *pkt, uint32_t rsp_opcode);
-diff --git a/sound/soc/qcom/qdsp6/q6apm-dai.c b/sound/soc/qcom/qdsp6/q6apm-dai.c
-index bdd4cc458acd..f4a9098fde10 100644
---- a/sound/soc/qcom/qdsp6/q6apm-dai.c
-+++ b/sound/soc/qcom/qdsp6/q6apm-dai.c
-@@ -228,11 +228,10 @@ static int q6apm_dai_prepare(struct snd_soc_component *component,
- 	cfg.bit_width = prtd->bits_per_sample;
- 	cfg.fmt = SND_AUDIOCODEC_PCM;
- 	audioreach_set_default_channel_mapping(cfg.channel_map, runtime->channels);
--
- 	if (prtd->state) {
- 		/* clear the previous setup if any  */
- 		q6apm_graph_stop(prtd->graph);
--		q6apm_unmap_memory_regions(prtd->graph, substream->stream);
-+		q6apm_free_fragments(prtd->graph, substream->stream);
- 	}
- 
- 	prtd->pcm_count = snd_pcm_lib_period_bytes(substream);
-@@ -247,8 +246,8 @@ static int q6apm_dai_prepare(struct snd_soc_component *component,
- 	if (ret < 0)
- 		dev_err(dev, "%s: CMD Format block failed\n", __func__);
- 
--	ret = q6apm_map_memory_regions(prtd->graph, substream->stream, prtd->phys,
--				       (prtd->pcm_size / prtd->periods), prtd->periods);
-+	ret = q6apm_alloc_fragments(prtd->graph, substream->stream, prtd->phys,
-+				(prtd->pcm_size / prtd->periods), prtd->periods);
- 
- 	if (ret < 0) {
- 		dev_err(dev, "Audio Start: Buffer Allocation failed rc = %d\n",	ret);
-@@ -403,6 +402,8 @@ static int q6apm_dai_open(struct snd_soc_component *component,
- 	else
- 		prtd->phys = substream->dma_buffer.addr | (pdata->sid << 32);
- 
-+	q6apm_set_memory_map_handle(prtd->graph, substream->stream);
-+
- 	return 0;
- err:
- 	kfree(prtd);
-@@ -416,9 +417,10 @@ static int q6apm_dai_close(struct snd_soc_component *component,
- 	struct snd_pcm_runtime *runtime = substream->runtime;
- 	struct q6apm_dai_rtd *prtd = runtime->private_data;
- 
--	if (prtd->state) { /* only stop graph that is started */
-+	if (prtd->state) {
-+		/* only stop graph that is started */
- 		q6apm_graph_stop(prtd->graph);
--		q6apm_unmap_memory_regions(prtd->graph, substream->stream);
-+		q6apm_free_fragments(prtd->graph, substream->stream);
- 	}
- 
- 	q6apm_graph_close(prtd->graph);
-@@ -467,11 +469,80 @@ static int q6apm_dai_hw_params(struct snd_soc_component *component,
- 	return 0;
- }
- 
-+static int q6apm_dai_memory_map(struct snd_soc_component *component,
-+				struct snd_pcm_substream *substream, int graph_id)
-+{
-+	struct q6apm_dai_data *pdata;
-+	struct device *dev = component->dev;
-+	phys_addr_t phys;
-+	int ret;
-+
-+	pdata = snd_soc_component_get_drvdata(component);
-+	if (!pdata) {
-+		dev_err(component->dev, "Drv data not found ..\n");
-+		return -EINVAL;
-+	}
-+
-+	if (pdata->sid < 0)
-+		phys = substream->dma_buffer.addr;
-+	else
-+		phys = substream->dma_buffer.addr | (pdata->sid << 32);
-+
-+	ret = q6apm_map_memory_fixed_region(dev, graph_id, phys, BUFFER_BYTES_MAX);
-+	if (ret < 0)
-+		dev_err(dev, "Audio Start: Buffer Allocation failed rc = %d\n",	ret);
-+
-+	return ret;
-+}
-+
- static int q6apm_dai_pcm_new(struct snd_soc_component *component, struct snd_soc_pcm_runtime *rtd)
- {
-+	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-+	struct snd_pcm *pcm = rtd->pcm;
- 	int size = BUFFER_BYTES_MAX;
-+	int graph_id, ret;
-+	struct snd_pcm_substream *substream;
-+
-+	graph_id = cpu_dai->driver->id;
- 
--	return snd_pcm_set_fixed_buffer_all(rtd->pcm, SNDRV_DMA_TYPE_DEV, component->dev, size);
-+	ret = snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV, component->dev, size);
-+	if (ret)
-+		return ret;
-+
-+	if (pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream) {
-+		substream = pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream;
-+		ret = q6apm_dai_memory_map(component, substream, graph_id);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	if (pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream) {
-+		substream = pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream;
-+		q6apm_dai_memory_map(component, substream, graph_id);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void q6apm_dai_pcm_destruct(struct snd_soc_component *component, struct snd_pcm *pcm)
-+{
-+	struct snd_pcm_substream *substream;
-+	struct snd_soc_pcm_runtime *soc_prtd;
-+	struct snd_soc_dai *cpu_dai;
-+	int graph_id;
-+
-+	if (pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream)
-+		substream = pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream;
-+	else
-+		substream = pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream;
-+
-+	soc_prtd = snd_soc_substream_to_rtd(substream);
-+	cpu_dai = snd_soc_rtd_to_cpu(soc_prtd, 0);
-+
-+	graph_id = cpu_dai->driver->id;
-+	q6apm_unmap_memory_fixed_region(component->dev, graph_id);
- }
- 
- static int q6apm_dai_compr_open(struct snd_soc_component *component,
-@@ -530,7 +601,8 @@ static int q6apm_dai_compr_free(struct snd_soc_component *component,
- 	struct q6apm_dai_rtd *prtd = runtime->private_data;
- 
- 	q6apm_graph_stop(prtd->graph);
--	q6apm_unmap_memory_regions(prtd->graph, SNDRV_PCM_STREAM_PLAYBACK);
-+	q6apm_free_fragments(prtd->graph, SNDRV_PCM_STREAM_PLAYBACK);
-+	q6apm_unmap_memory_fixed_region(component->dev, prtd->graph->id);
- 	q6apm_graph_close(prtd->graph);
- 	snd_dma_free_pages(&prtd->dma_buffer);
- 	prtd->graph = NULL;
-@@ -679,9 +751,9 @@ static int q6apm_dai_compr_set_params(struct snd_soc_component *component,
- 		if (ret)
- 			return ret;
- 
--		ret = q6apm_map_memory_regions(prtd->graph, SNDRV_PCM_STREAM_PLAYBACK,
--					       prtd->phys, (prtd->pcm_size / prtd->periods),
--					       prtd->periods);
-+		ret = q6apm_alloc_fragments(prtd->graph, SNDRV_PCM_STREAM_PLAYBACK,
-+					prtd->phys, (prtd->pcm_size / prtd->periods),
-+					prtd->periods);
- 		if (ret < 0)
- 			return -ENOMEM;
- 
-@@ -834,6 +906,7 @@ static const struct snd_soc_component_driver q6apm_fe_dai_component = {
- 	.close		= q6apm_dai_close,
- 	.prepare	= q6apm_dai_prepare,
- 	.pcm_construct	= q6apm_dai_pcm_new,
-+	.pcm_destruct	= q6apm_dai_pcm_destruct,
- 	.hw_params	= q6apm_dai_hw_params,
- 	.pointer	= q6apm_dai_pointer,
- 	.trigger	= q6apm_dai_trigger,
-diff --git a/sound/soc/qcom/qdsp6/q6apm.c b/sound/soc/qcom/qdsp6/q6apm.c
-index 7ef6ae0b1759..286b3d2c589d 100644
---- a/sound/soc/qcom/qdsp6/q6apm.c
-+++ b/sound/soc/qcom/qdsp6/q6apm.c
-@@ -200,13 +200,59 @@ int q6apm_graph_media_format_shmem(struct q6apm_graph *graph,
- }
- EXPORT_SYMBOL_GPL(q6apm_graph_media_format_shmem);
- 
--int q6apm_map_memory_regions(struct q6apm_graph *graph, unsigned int dir, phys_addr_t phys,
--			     size_t period_sz, unsigned int periods)
-+void q6apm_set_memory_map_handle(struct q6apm_graph *graph, unsigned int dir)
-+{
-+	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
-+		graph->rx_data.mem_map_handle = graph->info->mem_map_handle;
-+	else
-+		graph->tx_data.mem_map_handle = graph->info->mem_map_handle;
-+}
-+EXPORT_SYMBOL_GPL(q6apm_set_memory_map_handle);
-+
-+int q6apm_map_memory_fixed_region(struct device *dev, unsigned int graph_id, phys_addr_t phys,
-+				  size_t sz)
-+{
-+	struct audioreach_graph_info *info;
-+	struct q6apm *apm = dev_get_drvdata(dev->parent);
-+	struct apm_shared_map_region_payload *mregions;
-+	struct apm_cmd_shared_mem_map_regions *cmd;
-+	int payload_size = sizeof(*cmd) + (sizeof(*mregions));
-+	uint32_t buf_sz;
-+	void *p;
-+	struct gpr_pkt *pkt __free(kfree) = audioreach_alloc_apm_cmd_pkt(payload_size,
-+						APM_CMD_SHARED_MEM_MAP_REGIONS, graph_id);
-+	if (IS_ERR(pkt))
-+		return PTR_ERR(pkt);
-+
-+	info = idr_find(&apm->graph_info_idr, graph_id);
-+	if (!info)
-+		return -ENODEV;
-+
-+	/* DSP expects size should be aligned to 4K */
-+	buf_sz = ALIGN(sz, 4096);
-+
-+	p = (void *)pkt + GPR_HDR_SIZE;
-+	cmd = p;
-+	cmd->mem_pool_id = APM_MEMORY_MAP_SHMEM8_4K_POOL;
-+	cmd->num_regions = 1;
-+	cmd->property_flag = 0x0;
-+
-+	mregions = p + sizeof(*cmd);
-+
-+	mregions->shm_addr_lsw = lower_32_bits(phys);
-+	mregions->shm_addr_msw = upper_32_bits(phys);
-+	mregions->mem_size_bytes = buf_sz;
-+
-+	return q6apm_send_cmd_sync(apm, pkt, APM_CMD_RSP_SHARED_MEM_MAP_REGIONS);
-+}
-+EXPORT_SYMBOL_GPL(q6apm_map_memory_fixed_region);
-+
-+int q6apm_alloc_fragments(struct q6apm_graph *graph, unsigned int dir, phys_addr_t phys,
-+				size_t period_sz, unsigned int periods)
- {
- 	struct audioreach_graph_data *data;
- 	struct audio_buffer *buf;
- 	int cnt;
--	int rc;
- 
- 	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
- 		data = &graph->rx_data;
-@@ -248,21 +294,37 @@ int q6apm_map_memory_regions(struct q6apm_graph *graph, unsigned int dir, phys_a
- 
- 	mutex_unlock(&graph->lock);
- 
--	rc = audioreach_map_memory_regions(graph, dir, period_sz, periods, 1);
--	if (rc < 0) {
--		dev_err(graph->dev, "Memory_map_regions failed\n");
--		audioreach_graph_free_buf(graph);
--	}
--
--	return rc;
-+	return 0;
- }
--EXPORT_SYMBOL_GPL(q6apm_map_memory_regions);
-+EXPORT_SYMBOL_GPL(q6apm_alloc_fragments);
- 
--int q6apm_unmap_memory_regions(struct q6apm_graph *graph, unsigned int dir)
-+int q6apm_unmap_memory_fixed_region(struct device *dev, unsigned int graph_id)
- {
- 	struct apm_cmd_shared_mem_unmap_regions *cmd;
-+	struct q6apm *apm = dev_get_drvdata(dev->parent);
-+	struct audioreach_graph_info *info;
-+	struct gpr_pkt *pkt __free(kfree) = audioreach_alloc_apm_cmd_pkt(sizeof(*cmd),
-+						APM_CMD_SHARED_MEM_UNMAP_REGIONS, graph_id);
-+	if (IS_ERR(pkt))
-+		return PTR_ERR(pkt);
-+
-+	info = idr_find(&apm->graph_info_idr, graph_id);
-+	if (!info)
-+		return -ENODEV;
-+
-+	if (!info->mem_map_handle)
-+		return 0;
-+
-+	cmd = (void *)pkt + GPR_HDR_SIZE;
-+	cmd->mem_map_handle = info->mem_map_handle;
-+
-+	return q6apm_send_cmd_sync(apm, pkt, APM_CMD_SHARED_MEM_UNMAP_REGIONS);
-+}
-+EXPORT_SYMBOL_GPL(q6apm_unmap_memory_fixed_region);
-+
-+int q6apm_free_fragments(struct q6apm_graph *graph, unsigned int dir)
-+{
- 	struct audioreach_graph_data *data;
--	int rc;
- 
- 	if (dir == SNDRV_PCM_STREAM_PLAYBACK)
- 		data = &graph->rx_data;
-@@ -272,22 +334,11 @@ int q6apm_unmap_memory_regions(struct q6apm_graph *graph, unsigned int dir)
- 	if (!data->mem_map_handle)
- 		return 0;
- 
--	struct gpr_pkt *pkt __free(kfree) =
--		audioreach_alloc_apm_pkt(sizeof(*cmd), APM_CMD_SHARED_MEM_UNMAP_REGIONS,
--					 dir, graph->port->id);
--	if (IS_ERR(pkt))
--		return PTR_ERR(pkt);
--
--	cmd = (void *)pkt + GPR_HDR_SIZE;
--	cmd->mem_map_handle = data->mem_map_handle;
--
--	rc = audioreach_graph_send_cmd_sync(graph, pkt, APM_CMD_SHARED_MEM_UNMAP_REGIONS);
--
- 	audioreach_graph_free_buf(graph);
- 
--	return rc;
-+	return 0;
- }
--EXPORT_SYMBOL_GPL(q6apm_unmap_memory_regions);
-+EXPORT_SYMBOL_GPL(q6apm_free_fragments);
- 
- int q6apm_remove_initial_silence(struct device *dev, struct q6apm_graph *graph, uint32_t samples)
- {
-@@ -494,7 +545,6 @@ static int graph_callback(const struct gpr_resp_pkt *data, void *priv, int op)
- {
- 	struct data_cmd_rsp_rd_sh_mem_ep_data_buffer_done_v2 *rd_done;
- 	struct data_cmd_rsp_wr_sh_mem_ep_data_buffer_done_v2 *done;
--	struct apm_cmd_rsp_shared_mem_map_regions *rsp;
- 	const struct gpr_ibasic_rsp_result_t *result;
- 	struct q6apm_graph *graph = priv;
- 	const struct gpr_hdr *hdr = &data->hdr;
-@@ -529,18 +579,6 @@ static int graph_callback(const struct gpr_resp_pkt *data, void *priv, int op)
- 				done->buf_addr_msw);
- 		}
- 
--		break;
--	case APM_CMD_RSP_SHARED_MEM_MAP_REGIONS:
--		graph->result.opcode = hdr->opcode;
--		graph->result.status = 0;
--		rsp = data->payload;
--
--		if (hdr->token == SNDRV_PCM_STREAM_PLAYBACK)
--			graph->rx_data.mem_map_handle = rsp->mem_map_handle;
--		else
--			graph->tx_data.mem_map_handle = rsp->mem_map_handle;
--
--		wake_up(&graph->cmd_wait);
- 		break;
- 	case DATA_CMD_RSP_RD_SH_MEM_EP_DATA_BUFFER_V2:
- 		if (!graph->ar_graph)
-@@ -571,16 +609,6 @@ static int graph_callback(const struct gpr_resp_pkt *data, void *priv, int op)
- 		break;
- 	case GPR_BASIC_RSP_RESULT:
- 		switch (result->opcode) {
--		case APM_CMD_SHARED_MEM_UNMAP_REGIONS:
--			graph->result.opcode = result->opcode;
--			graph->result.status = 0;
--			if (hdr->token == SNDRV_PCM_STREAM_PLAYBACK)
--				graph->rx_data.mem_map_handle = 0;
--			else
--				graph->tx_data.mem_map_handle = 0;
--
--			wake_up(&graph->cmd_wait);
--			break;
- 		case APM_CMD_SHARED_MEM_MAP_REGIONS:
- 		case DATA_CMD_WR_SH_MEM_EP_MEDIA_FORMAT:
- 		case APM_CMD_SET_CFG:
-@@ -778,7 +806,9 @@ struct audioreach_module *q6apm_find_module_by_mid(struct q6apm_graph *graph, ui
- static int apm_callback(const struct gpr_resp_pkt *data, void *priv, int op)
- {
- 	gpr_device_t *gdev = priv;
-+	struct audioreach_graph_info *info;
- 	struct q6apm *apm = dev_get_drvdata(&gdev->dev);
-+	struct apm_cmd_rsp_shared_mem_map_regions *rsp;
- 	struct device *dev = &gdev->dev;
- 	struct gpr_ibasic_rsp_result_t *result;
- 	const struct gpr_hdr *hdr = &data->hdr;
-@@ -795,6 +825,7 @@ static int apm_callback(const struct gpr_resp_pkt *data, void *priv, int op)
- 		break;
- 	case GPR_BASIC_RSP_RESULT:
- 		switch (result->opcode) {
-+		case APM_CMD_SHARED_MEM_MAP_REGIONS:
- 		case APM_CMD_GRAPH_START:
- 		case APM_CMD_GRAPH_OPEN:
- 		case APM_CMD_GRAPH_PREPARE:
-@@ -809,10 +840,38 @@ static int apm_callback(const struct gpr_resp_pkt *data, void *priv, int op)
- 					result->opcode);
- 			wake_up(&apm->wait);
- 			break;
-+		case APM_CMD_SHARED_MEM_UNMAP_REGIONS:
-+			apm->result.opcode = hdr->opcode;
-+			apm->result.status = 0;
-+			rsp = data->payload;
-+
-+			info = idr_find(&apm->graph_info_idr, hdr->token);
-+			if (info)
-+				info->mem_map_handle = 0;
-+			else
-+				dev_err(dev, "Error (%d) Processing 0x%08x cmd\n", result->status,
-+					result->opcode);
-+
-+			wake_up(&apm->wait);
-+			break;
- 		default:
- 			break;
- 		}
- 		break;
-+	case APM_CMD_RSP_SHARED_MEM_MAP_REGIONS:
-+		apm->result.opcode = hdr->opcode;
-+		apm->result.status = 0;
-+		rsp = data->payload;
-+
-+		info = idr_find(&apm->graph_info_idr, hdr->token);
-+		if (info)
-+			info->mem_map_handle = rsp->mem_map_handle;
-+		else
-+			dev_err(dev, "Error (%d) Processing 0x%08x cmd\n", result->status,
-+				result->opcode);
-+
-+		wake_up(&apm->wait);
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/sound/soc/qcom/qdsp6/q6apm.h b/sound/soc/qcom/qdsp6/q6apm.h
-index 7c646ffcf956..67acbf0ce178 100644
---- a/sound/soc/qcom/qdsp6/q6apm.h
-+++ b/sound/soc/qcom/qdsp6/q6apm.h
-@@ -134,11 +134,16 @@ int q6apm_write_async(struct q6apm_graph *graph, uint32_t len, uint32_t msw_ts,
- 		      uint32_t lsw_ts, uint32_t wflags);
- 
- /* Memory Map related */
--int q6apm_map_memory_regions(struct q6apm_graph *graph,
--			     unsigned int dir, phys_addr_t phys,
--			     size_t period_sz, unsigned int periods);
--int q6apm_unmap_memory_regions(struct q6apm_graph *graph,
--			       unsigned int dir);
-+int q6apm_map_memory_fixed_region(struct device *dev,
-+			     unsigned int graph_id, phys_addr_t phys,
-+			     size_t sz);
-+void q6apm_set_memory_map_handle(struct q6apm_graph *graph,
-+			     unsigned int dir);
-+int q6apm_alloc_fragments(struct q6apm_graph *graph,
-+			unsigned int dir, phys_addr_t phys,
-+			size_t period_sz, unsigned int periods);
-+int q6apm_free_fragments(struct q6apm_graph *graph, unsigned int dir);
-+int q6apm_unmap_memory_fixed_region(struct device *dev, unsigned int graph_id);
- /* Helpers */
- int q6apm_send_cmd_sync(struct q6apm *apm, struct gpr_pkt *pkt,
- 			uint32_t rsp_opcode);
+Changes in v25:
+- Use b4 to send series.
+- Rebase on v7.0-rc1.
+- Clarify cover letter and commit logs based on review feedback.
+- Remove the i2c-aspeed-core multiplexer infrastructure and
+  implement driver selection via conditional -ENODEV handling
+  in individual probe() functions.
+- 3/4: incorporate review feedback and refactor new driver
+- Link to v24: https://lore.kernel.org/r/20251118014034.820988-1-ryan_chen@aspeedtech.com
+
+Changes in v24:
+- aspeed,ast2600-i2c.yaml
+ - fix make dt_binding_check blank warning.
+- Link to v23: https://lore.kernel.org/all/20251117025040.3622984-1-ryan_chen@aspeedtech.com/
+
+Changes in v23:
+- update typo patch (1/4) commit message.
+- aspeed,ast2600-i2c.yaml
+ - update reg and description.
+- i2c-ast2600.c controller
+ - replace ast2600_select_i2c_clock to ast2600_i2c_ac_timing_config.
+- i2c-ast2600.c target
+ - I2C_TARGET_MSG_BUF_SIZE 256 to 4096
+ - remove blank line.
+ - refine Master comment description to controller
+- Link to v22: https://lore.kernel.org/all/20251112085649.1903631-1-ryan_chen@aspeedtech.com/
+
+Changes in v22:
+- update patch (1/4) commit message add dts example reason.
+- aspeed,ast2600-i2c.yaml @patch (1/4)
+ - rename ast2600-i2c.yaml to aspeed,ast2600-i2c.yaml.
+ - update reg, clock-frequency description.
+- aspeed,ast2600-i2c.yaml @patch (2/4)
+ - aspeed,transfer-mode, aspeed,transfer-mode add for ast2600.
+- i2c-aspeed-core.c,h @patch (3/4)
+ - add i2c-aspeed-core allow both old and new device trees using the
+   same compatible string "aspeed,ast2600-i2c-bus".
+- Link to v21: https://lore.kernel.org/all/20251027061240.3427875-1-ryan_chen@aspeedtech.com/
+
+Changes in v21:
+- update patch (1/4) commit message
+- i2c-ast2600.c
+ - move rst to local variable in ast2600_i2c_probe().
+- Link to v20: https://lore.kernel.org/all/20251021013548.2375190-1-ryan_chen@aspeedtech.com/
+
+Changes in v20:
+- ast2600-i2c.yaml
+ - fix warning at make dt_binding_check.
+- Link to v19: https://lore.kernel.org/all/20251020013200.1858325-1-ryan_chen@aspeedtech.com/
+
+Changes in v19:
+- Split AST2600 binding into its own YAML file
+ - Removed `aspeed,ast2600-i2c-bus` from `aspeed,i2c.yaml`
+ - Added `aspeed,global-regs` and `aspeed,transfer-mode` to AST2600 binding
+- Link to v18: https://lore.kernel.org/all/20250820051832.3605405-1-ryan_chen@aspeedtech.com/
+
+Changes in v18:
+- refine patch (1/3) commit message (reason for commit not list.)
+- i2c-ast2600.c
+ - remove redundant reset_control_deassert in driver probe.
+ - remove reset_control_assert(i2c_bus->rst) in driver remove.
+- Link to v17: https://lore.kernel.org/all/20250814084156.1650432-1-ryan_chen@aspeedtech.com/
+
+Changes in v17:
+- move i2c new mode register and feature into driver commit message.
+- aspeed,i2c.yaml
+ - remove multi-master properties.
+ - use aspeed,transfer-mode properties for aspeed,enable-byte/enable-dma.
+-i2c-ast2600.c
+ - rename dma_safe_buf to controller_dma_safe_buf.
+ - fix ast2600_i2c_recover_bus return overflow warnings.
+ - add ast2600_i2c_target_packet_buff_irq unhandle case.
+ - add parameter "cmd" in ast2600_i2c_setup_dma_rx,
+   ast2600_i2c_setup_buff_rx, ast2600_i2c_setup_byte_rx
+ - use reset_control_deassert replace
+   devm_reset_control_get_shared_deasserted.
+ - useaspeed,transfer-mode properties for transfer mode setting.
+ - change compatible = "aspeed,ast2600-i2cv2" to "aspeed,ast2600-i2c-bus".
+- Link to v16: https://lore.kernel.org/all/20250224055936.1804279-1-ryan_chen@aspeedtech.com/
+
+Changes in v16:
+- aspeed,i2c.yaml: add aspeed,enable-byte properties for force byte mode.
+- i2c-ast2600.c
+ - change include asm/unaligned.h to linux/unaligned.h.
+ - add reset timeout councter when slave active timeout.
+ - modify issue i2c_recovery_bus before slave re-enable.
+ - add aspeed,enable-byte properties.
+- Link to v15: https://lore.kernel.org/all/20241007035235.2254138-1-ryan_chen@aspeedtech.com/
+
+Changes in v15:
+- i2c-ast2600.c
+ - add include unaligned.h
+ - rename all master -> controller, slave -> target.
+ - keep multi-master to align property.
+ - remove no used element in ast2600_i2c_bus.
+- Link to v14: https://lore.kernel.org/all/20241002070213.1165263-1-ryan_chen@aspeedtech.com/
+
+Changes in v14:
+- aspeed,i2c.yaml
+ - v13 change people reviewed-by tag, v14 fixed to original people tag,
+   modify to Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ - struct ast2600_i2c_bus layout optimal.
+ - ast2600_select_i2c_clock refine.
+ - ast2600_i2c_recover_bus overridden fix.
+ - dma_mapping_error() returned error code shadowed modify.
+ - buffer register in a 4-byte aligned simplified
+ - remove smbus alert
+- Link to v13: https://lore.kernel.org/all/20240819092850.1590758-1-ryan_chen@aspeedtech.com/
+
+Changes in v13:
+ - separate i2c master and slave driver to be two patchs.
+ - modify include header list, add bits.h include. remove of*.h
+ - modify (((x) >> 24) & GENMASK(5, 0)) to (((x) & GENMASK(29, 24)) >> 24)
+ - modify ast2600_select_i2c_clock function implement.
+ - modify ast2600_i2c_recover_bus function u32 claim to
+   u32 state = readl(i2c_bus->reg_base + AST2600_I2CC_STS_AND_BUFF);
+- Link to v12: https://lore.kernel.org/all/20230714074522.23827-1-ryan_chen@aspeedtech.com/
+
+Changes in v12:
+- aspeed,i2c.yaml
+ - add Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+- i2c-ast2600.c
+ - update include by alphabetical order
+ - make just a one TAB and put the last two lines on the single one
+ - remove no used timing_table structre
+ - remove enum explicit assinment
+ - rewritten to avoid this and using loop in ast2600_select_i2c_clock
+ - use GENMASK for most 0xffff
+ - remove too many parentheses
+ - use str_read_write replace read write string
+ - remove redundant blank line after ast2600_i2c_bus_of_table
+ - fix wrong multi-line style of the comment
+ - use macro for i2c standard speeds
+ - remove useless noise dev_info
+- Link to v11: https://lore.kernel.org/all/20230430041712.3247998-1-ryan_chen@aspeedtech.com/
+
+Changes in v11:
+- aspeed,i2c.yaml
+ - no change, the same with v10.
+- i2c-ast2600.c
+ - modify alert_enable from int -> boolean.
+ - modify dbg string recovery -> recover.
+ - remove no need to init 0.
+ - remove new line after break.
+ - remove unneeded empty line.
+ - modify dma_alloc_coherent to dmam_alloc_coherent
+ - modify probe nomem return dev_err_probe
+ - modify i2c_add_adapter to devm_i2c_adapter
+ - modify checkpatch: Alignment should match open parenthesis
+ - modify checkpatch: braces {} should be used on all arms of this statement
+ - modify checkpatch: Unbalanced braces around else statement
+- Link to v10: https://lore.kernel.org/all/20230415012848.1777768-1-ryan_chen@aspeedtech.com/
+
+Changes in v10:
+- aspeed,i2c.yaml
+ - move unevaluatedProperties after allOf.
+ - remove extra one blank line.
+- i2c-ast2600.c
+ - no change, the same with v8.
+- Link to v9: https://lore.kernel.org/all/20230405022825.333246-1-ryan_chen@aspeedtech.com/
+
+Changes in v9:
+- aspeed,i2c.yaml
+ - backoff to v7.
+  - no fix typo in maintainer's name and email. this would be another patch.
+  - no remove address-cells, size-cells, this would be another patch.
+ - use aspeed,enable-dma property instead of aspeed,xfer-mode selection.
+ - fix allOf and else false properties for aspeed,ast2600-i2cv2.
+- i2c-ast2600.c
+ - no change, the same with v8
+- Link to v8: https://lore.kernel.org/all/20230330073259.485606-1-ryan_chen@aspeedtech.com/
+
+Changes in v8:
+- aspeed,i2c.yaml
+ - modify commit message.
+ - Fix typo in maintainer's name and email.
+ - remove address-cells, size-cells.
+- i2c-ast2600.c
+ - move "i2c timeout counter" comment description before property_read.
+ - remove redundant code "return ret" in probe end.
+- Link to v7: https://lore.kernel.org/all/20230327092524.3916389-1-ryan_chen@aspeedtech.com/
+
+Changes in v7:
+- aspeed,i2c.yaml
+ - Update ASPEED I2C maintainers email.
+ - use aspeed,enable-dma property instead of aspeed,xfer-mode selection.
+ - fix allOf and else false properties for aspeed,ast2600-i2cv2.
+- i2c-ast2600.c
+ - remove aspeed,xfer-mode instead of aspeed,enable-dma mode. buffer mode
+   is default.
+ - remove aspeed,timeout instead of i2c-scl-clk-low-timeout-us for
+   timeout setting.
+- Link to v6: https://lore.kernel.org/all/20230226031321.3126756-1-ryan_chen@aspeedtech.com/
+
+Changes in v6:
+- remove aspeed,i2cv2.yaml, merge to aspeed,i2c.yaml -add support for
+  i2cv2 properites.
+- i2c-ast2600.c
+ - fix ast2600_i2c_remove ordering.
+ - remove ast2600_i2c_probe goto labels, and add dev_err_probe -remove
+   redundant deb_dbg debug message.
+ - rename gr_regmap -> global_regs
+- Link to v5: https://lore.kernel.org/all/20230220061745.1973981-1-ryan_chen@aspeedtech.com/
+
+Changes in v5:
+- remove ast2600-i2c-global.yaml, i2c-ast2600-global.c.
+- i2c-ast2600.c
+ - remove legacy clock divide, all go for new clock divide.
+ - remove duplicated read isr.
+ - remove no used driver match
+ - fix probe return for each labels return.
+ - global use mfd driver, driver use phandle to regmap read/write.
+- rename aspeed,i2c-ast2600.yaml to aspeed,i2cv2.yaml -remove bus-frequency.
+- add required aspeed,gr
+- add timeout, byte-mode, buff-mode properites.
+- Link to v4: https://lore.kernel.org/all/20230201103359.1742140-1-ryan_chen@aspeedtech.com/
+
+Changes in v4:
+- fix i2c-ast2600.c driver buffer mode use single buffer conflit in
+  master slave mode both enable.
+- fix kmemleak issue when use dma mode.
+- fix typo aspeed,i2c-ast2600.yaml compatible is "aspeed,ast2600-i2c"
+- fix typo aspeed,i2c-ast2600.ymal to aspeed,i2c-ast2600.yaml
+- Link to v3: https://lore.kernel.org/all/20220516064900.30517-1-ryan_chen@aspeedtech.com/
+
+Changes in v3:
+- fix i2c global clock divide default value.
+- remove i2c slave no used dev_dbg info.
+- Link to v2: https://lore.kernel.org/all/20220413101735.27678-1-ryan_chen@aspeedtech.com/
+
+Changes in v2:
+- add i2c global ymal file commit.
+- rename file name from new to ast2600.
+  aspeed-i2c-new-global.c -> i2c-ast2600-global.c
+  aspeed-i2c-new-global.h -> i2c-ast2600-global.h
+  i2c-new-aspeed.c -> i2c-ast2600.c
+- rename all driver function name to ast2600.
+- Link to v1: https://lore.kernel.org/all/20220323004009.943298-1-ryan_chen@aspeedtech.com/
+
+---
+Ryan Chen (4):
+      dt-bindings: i2c: Split AST2600 binding into a new YAML
+      dt-bindings: i2c: ast2600-i2c.yaml: Add global-regs and transfer-mode properties
+      i2c: ast2600: Add controller driver for AST2600 new register set
+      i2c: ast2600: Add target mode support
+
+ .../bindings/i2c/aspeed,ast2600-i2c.yaml           |   91 ++
+ .../devicetree/bindings/i2c/aspeed,i2c.yaml        |    3 +-
+ drivers/i2c/busses/Makefile                        |    2 +-
+ drivers/i2c/busses/i2c-aspeed.c                    |    5 +
+ drivers/i2c/busses/i2c-ast2600.c                   | 1551 ++++++++++++++++++++
+ 5 files changed, 1649 insertions(+), 3 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20260223-upstream_i2c-ebd07f89739c
+
+Best regards,
 -- 
-2.47.3
+Ryan Chen <ryan_chen@aspeedtech.com>
 
 
