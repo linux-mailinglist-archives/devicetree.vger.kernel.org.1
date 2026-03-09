@@ -1,258 +1,391 @@
-Return-Path: <devicetree+bounces-272661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272662-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eAepLGUurmlrAQIAu9opvQ
-	(envelope-from <devicetree+bounces-272661-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 03:20:21 +0100
+	id g+poB4I0rmkuAgIAu9opvQ
+	(envelope-from <devicetree+bounces-272662-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 03:46:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28139233299
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 03:20:20 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51E1C2335A9
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 03:46:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id C5539300824D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 02:20:19 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 55E933008D56
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 02:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E7DB22A1D4;
-	Mon,  9 Mar 2026 02:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2EA22773DA;
+	Mon,  9 Mar 2026 02:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="T3cQKr/r"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="EXmgdsAa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013049.outbound.protection.outlook.com [52.101.72.49])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBEF720C490;
-	Mon,  9 Mar 2026 02:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773022817; cv=fail; b=bqHglrs27g5nMS4O3RnBwhldliH09X87o2cvm1WpQ8spwBgI+Y3Yr8FW+XcIT0XOxYDAtx2Xjqw4ClSo1a7Y63GASwyQduxx92gORlnuEZlrCMcEvNLEXuP0oCnPJCsWtpvdh7amxhyUYG16hHorTKybLLry+QfG8sbfVHqOT7E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773022817; c=relaxed/simple;
-	bh=Oj91N+WHRfitfRQCmduW8AaKAy3NHK3g2wtC7+DK7N8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=JyrpVnBKlI1yxL8pLtTQe6Fs6tvyf2t8F/Tf82mFENqX2YAI+OhVDXtURGwrwOl9+mY6BOxr41A/i7s0mODzioX/HpO5wGvuaYEijzEl9goDhwsi4E/ucjZ9P+WyzweS3Iw1av5ePPsjyr261OEGbDRyH8Igbu0BlvIX36ZvIAk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=T3cQKr/r; arc=fail smtp.client-ip=52.101.72.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O1YCZjKRuZ44+R+XeMZbXriFh9JgxsNJqD1gvVfJ5sZztvcS1GeyHs1D8PcuQ8hucjExPgVLI1fhu3kj7TXaUtNOuI7TCJMH4jXB2YShryXvXoH5971boxQjmfBs7dOE7/GX4o59V2QL3rj8/Tdo5UKNNlTWQUY2K861ib+NGTx4KnPesDTz/dDo6k1H2Db6DmSQjL1uur+Nmb0ty1T60KmcOmaQnPeIZSMi9gYgTW1aoAivniEys+0dQj7/KadkCmJ42z6JYgwSyRxClNs+sfc0TrkClASak1M0Ce3x5zhOEAeFaxkmRT9KaOdPvOT1LAmwdH3gocxXA/95LCfFbQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vfxyeuaZmVSulXvcgZW4ieJTCBScnVJSWwp4Mx+yqak=;
- b=iW/Vtc6iEnF+Fpz5e/c61VprYw8pm1fLNLr6NWu3EddMaedLWXxC9dpJgI2DQMUPbVoh5tfj25N3FlwtkVEyW1U6hzINwa3YFZTnSPimEGkHEMyE8yWvmRr2PBwOjlplcuQq8ZgJP4K1v1CONIurg3AlmQ8ri0hA69V9AeNBQHBEndk33klx1jy4RkAxILh1gCDUUNyXrO13cc4w9OLv6RAc3hCPsH/1IFMY9KNbs6R1uJ/Q8+4FzEgVrDlR9nqGNnk1oLzzLyGgMbsF693VBxYDdhmhI/1U6YqihiU7/bA9UpJ3IMFfnVCFKTovWeOrxN1eBIAyX5V62yHiqn+MeQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vfxyeuaZmVSulXvcgZW4ieJTCBScnVJSWwp4Mx+yqak=;
- b=T3cQKr/rcGX9jgcFZ3x2QHC8qvTA23XPm0AHjKJWgtApdQ+S9gKqmR8bmgEx5t+eirigh5PDl1DZL0exlikfDWN0btryo8/8pDbVXxZl7T7ymhi5dtui/X7kl5yHJw21+JUmQNKVUgUwYcZB3SQpWqe+fJp196q4vXyXoHTCeNCNTjEgBjtaaO6E5keLeiZbtOgX4f+nvRL77fPiHR0aE9ZVlO2k26mgYMZEnOwGkOGFLibYHWL5n/49WNUEBfAc7z99PGE6LbUskaV2sb2719Y0ICE35qOU5Hbm1urUYyR1Qkr+kkwXSufg/c7f9954QFdYvK5LI13W97N1ROURsg==
-Received: from AM6PR04MB4903.eurprd04.prod.outlook.com (2603:10a6:20b:6::26)
- by VI2PR04MB10740.eurprd04.prod.outlook.com (2603:10a6:800:27a::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.20; Mon, 9 Mar
- 2026 02:20:01 +0000
-Received: from AM6PR04MB4903.eurprd04.prod.outlook.com
- ([fe80::9b36:3ebd:4263:3875]) by AM6PR04MB4903.eurprd04.prod.outlook.com
- ([fe80::9b36:3ebd:4263:3875%3]) with mapi id 15.20.9632.017; Mon, 9 Mar 2026
- 02:20:10 +0000
-From: Forrest Shi <xuelin.shi@nxp.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>, "Peng Fan (OSS)"
-	<peng.fan@oss.nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Frank Li <frank.li@nxp.com>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-CC: Peter Robinson <pbrobinson@gmail.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [EXT] [PATCH v2] arm64: dts: freescale: imx93: Add Ethos-U65 NPU
- and SRAM nodes
-Thread-Topic: [EXT] [PATCH v2] arm64: dts: freescale: imx93: Add Ethos-U65 NPU
- and SRAM nodes
-Thread-Index: AQHcragustIHGrdsxEmZwy+wCleagLWleSPw
-Date: Mon, 9 Mar 2026 02:20:10 +0000
-Message-ID:
- <AM6PR04MB49036F39D57F4A0A6D3F94438C79A@AM6PR04MB4903.eurprd04.prod.outlook.com>
-References: <20260306203103.3119790-1-robh@kernel.org>
-In-Reply-To: <20260306203103.3119790-1-robh@kernel.org>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AM6PR04MB4903:EE_|VI2PR04MB10740:EE_
-x-ms-office365-filtering-correlation-id: 9d5190fc-7a59-49ce-9a8b-08de7d8263c6
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|366016|376014|7416014|19092799006|38070700021;
-x-microsoft-antispam-message-info:
- oXi5QUX3zW2OSbjZv/qS0XW1ofdH8AEoEU/OSySiE+pdwTc2O8S4hyJumTVtQUfpmlmRL3DLgmFiQgfZkPYHITvqlRb66bzsFkux4CLFSi+qFATqxRQYYmioWeC0f/7cNprDpfOAuIj7c9YhglpZzO7Lp6ujyxQx4qhz0ialhSR23t4u/iZP+pqv5e5cYijfSC9BhQ1FBtGahfWugvx82VB4Ar8qD4es3yhuDQ0/ZAE6Xg6r2Aq3iugDDY1cJSDFyGVBvIp768XMMlCgecPXADY/DAwgigvItCrUGOSdLAMG188LiBW8PaVnZVsPjbyi+Xh8Wimch6N4Z2Ix4PWqi3moBrO5/k9fxPyd4CI1lV1fipejNnJZSTBFabNK1HPWKj96Oz+a+2fx2ukbFEElDqIKbFQ04vT4jbZ88SnC1f0Rk30csbfplFQUucyitv43+kUFGh/6rDN7CyiloZCaYAVYbSvymsgiVAftYvf03LeV0ihZvwpmq7YjWjOYe/9JNKeWlxBsuomQyb4BHwbT2C3l35wkvIozCWHGEzHhqh7FlWc3zrARp5X2dxxzUHF4JS776o9olZb146CEUz/ZWkL/okLNTQhfqp3458gdjRWYe0nOETNO9uflH+g1ydlG8oYsQVhWRTkmPNemSgV0attD1c1mzQnDlZpoTAR2SXGm24WPZyGHPkdkkGhWGJKtkKpssyW8K0nikQOPE1StA5wRRoJK8gq5LESpnJ41bKc8WDKPsi2DxMrEJzTvKlj15Xc87u3SRhLlWhXGL16iGsnP4XOTIgTDjrsNq2NjE4Q=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4903.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(19092799006)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Za1pu1R9B+Fo32OncbVjq6baODv9KnvowfKXDowW/+55KvdruzPF1kpGCEi3?=
- =?us-ascii?Q?9YSbCOJUgOrZg9wdciLGexsqxvfnGgUCS6laTfP/v4E1s5LxU3BA4i4Xg0GW?=
- =?us-ascii?Q?4MxxsmaxKIn1DxGkNoPzJ9sBEKsbdA2lwDuuOaus/XmmrP06W0xPqmq1AxXy?=
- =?us-ascii?Q?xQ60Ci4YrwsPhIvswDptyOSd8On6mQ5h96nV+JcAgxp/9oX1Mt/6sOePzVoc?=
- =?us-ascii?Q?d3VzI4Qz9k6XAVzofd/I5IoYMIGmCG8kmw/sKZ/H/Ur0//pSdzFF86lrA7me?=
- =?us-ascii?Q?bTSOtxjoKAZEl8YOOPsPk2TM985hddytQNTo1JxJYHwEZaDwERyml9QMzto8?=
- =?us-ascii?Q?kRiJxsrWcM1GkXEF4Omz4F3hYcj7ZQSNFS0rvUgCYy72NDLOwuNUDBeI7xyP?=
- =?us-ascii?Q?/U6eNXE9PPwCscshyA56nQSMiPqVxy7eP9eiR1KwEzJp2saX39RGJ3NCiHbQ?=
- =?us-ascii?Q?g23Eg06lMIzGjkn0oTxY8TTpbi6RpGHl+lz5hYM/zQPqwUHBzk2FbzPgwILU?=
- =?us-ascii?Q?STqe8ZqPJYwDzzBjXdWQR2Q9eU/M6gISsZYUkibxYXsaL3a+sJRu3BlUHYfJ?=
- =?us-ascii?Q?kvQusD/KOVDNq0ae7v2nj9dLOk3PeMwitSfB6xJuDz/ABe0hJOY17np4PQwK?=
- =?us-ascii?Q?767sF+bYZl714RGAHrjz2XGdc13UJuJhBgjNRPr3LrvMgOFDfOZV6jTRL6FX?=
- =?us-ascii?Q?q9QfVYfrGCvTIUalCKgcu+76rwLsbqU5HJfebjilPO499M7pwbl98A+mDuWE?=
- =?us-ascii?Q?vIescMkFWSAU4zBL3sthqHHKbGl6iF3gQilUkhR7AASAtMqJ7E0dj7LmSNfs?=
- =?us-ascii?Q?bnpMKBKAvQkX0Ho3/28FmiNYpFaA9rqsXdhLqHmVNuDLs4zzzcN5naukbFhs?=
- =?us-ascii?Q?gfH2K0+Vf10qeSSuKubk2UVnlASGo7a66wMlLEltdQfv3ppu6BoDlFIJNVVk?=
- =?us-ascii?Q?qLsBpaQLIuam98vqhokPNfn29Gh2cZYK5WtOuChpJPeNc/2pg5IuyIFnHVZF?=
- =?us-ascii?Q?30pBdtV8UyoELIv5xeevruCooFwsyMlI7ZPan16WTKRBFXRQ2ydgu6gigUnR?=
- =?us-ascii?Q?HXuvAmcOh86IFIgfaAzL1/o/DqnxCoYMt9O/yt8JxyVrra5tn/h4SH+RHVaZ?=
- =?us-ascii?Q?gidAnt0Xp5QrMtactBkIZ2yqtsmJznbLVtwPBIQCb4vNwDNROhqbiA0HZciU?=
- =?us-ascii?Q?7+X0KZhuC42Yzpg6TFJ2JiLALlxeINrGiAyqwyVW/qz6Dj2EIaSfm9R+7/sF?=
- =?us-ascii?Q?e8Hza2cUv5gv0jXWyOkIlQHsxCbOVTg3NGbLUu8fcloInPLtyUUXG5VNkbZv?=
- =?us-ascii?Q?UcV6y4dm1vIatLWSTdIOtwDXMdMbRoRiJH5jRfMwzXcvaZgdfEtC9O5M237+?=
- =?us-ascii?Q?/B90jHV6cp4ZsvXrSTVV8VrmUrflg0fE+A5edGRAlYCHDBKp/BHwEpVVBJMr?=
- =?us-ascii?Q?swi0iAvSfoDfMyNHhQtZAbOQ/wed7wfFn6q3Gv9Hc4HP93BcoMS3W0BbIIdw?=
- =?us-ascii?Q?TFjbIS+TyKkfz86PC9PkYIMoNYit2ioDWf3wsAvKUKfVTv+eFSygAtYkkyw4?=
- =?us-ascii?Q?vQ5xGl+tNjwL+DMSPr1ARXBP9oj0VijI2F1RFccM+AcIHWQd+euGFtMnI9tV?=
- =?us-ascii?Q?HrFzU0mVFzbuykk4mpk/8I+VPfoN+uUJPHNOAIAkVWB8jdaQCRaUyR4A/j7E?=
- =?us-ascii?Q?+NLduroveQx4OUFLo1zMdEHpjeucPcB34tYK6AbAwxmhNnwm?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26756217659;
+	Mon,  9 Mar 2026 02:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773024382; cv=none; b=Y9F8PR9e1a9NX/QDGS3zkdAKU1oy5VreL29uP3gB1nxBh4rCiXVkfN5ow/LFnYYc5nO3w0SoAvpiRRg289Id2ajX+KT3NIr2m6a/HjdmyxNhjtm6MpLw5jS44sfmWWYqFzbGxXrncdSCH/0B1T/bSs5hGGEwbIUilo91yU894tM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773024382; c=relaxed/simple;
+	bh=o+ARsR8chCtiW/jAcIZoAmTru8DDd/CefzS85Y9zhrc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=LshqyCjdSGd+5XBxfSOwS3rb5crPZ7xsV5/d1bFg0NQqYpWHSgbm27yqP8sNCeBIKaTb/BlXa235AVHkMFfMLb3YTwLt9VJyOELrl2c0zaCGWI32Qzg7kX/jUmrK5Yl8boTOiP8NPB7hSgp+7UfkBShvXRN3YbW73qkqrGf+vIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=EXmgdsAa; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4fThGT6SsVz9tYN;
+	Mon,  9 Mar 2026 03:46:09 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1773024370;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=M1BjM0rf2n3gTAxYcEyrznxi8WA9wRDhAUvOuuf5WIM=;
+	b=EXmgdsAajz8XB2ziZCvpNjOlSNjG0zxQUN48lyeA/eoR6QGJzpXx5qV5AL2SN7wolcquBj
+	3kPK1BCdzmDv8ANZ7JKlG9ZIgK9A7env/8uoGypAiNN2RpSDjHfDxH4liEDKmc4I9L6jfm
+	H8DNsIe2knW8NQzbG/rogB43MCvGYj7pEbM/jo+D0rpJR5F0ix/vkxNwy/18xyIksRTVc/
+	r0R+FhwpIdBQOrFZqbrAB33cS7nnwcRw3tC33ZPJYSDUqH1T0aD0PjT5pas60TLxN6NSmD
+	2GmEX+fOUnyyYDcl8eDYJ/C9aik+tk/K5G+rXKRC41OUhvJCMsQfs/bm6qKBow==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4903.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d5190fc-7a59-49ce-9a8b-08de7d8263c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2026 02:20:10.6307
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2OxJRE1k4I6hYffxAWNRX610nfyqaGxbCNvi4UvqnAmsYyG+VxFQWSc9x8pQa/cgYHaHXsEnVtfAji4Bz9umTg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2PR04MB10740
-X-Rspamd-Queue-Id: 28139233299
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 09 Mar 2026 10:45:49 +0800
+Message-Id: <DGXWODJ8CGUN.KZFJ9JDJMEM3@mailbox.org>
+Cc: <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-riscv@lists.infradead.org>, <spacemit@lists.linux.dev>,
+ <devicetree@vger.kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ "Viresh Kumar" <viresh.kumar@linaro.org>, "Yixun Lan" <dlan@gentoo.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Paul Walmsley"
+ <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou"
+ <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>
+Subject: Re: [PATCH 2/2] riscv: dts: spacemit: Add cpu scaling for K1 SoC
+From: "Shuwei Wu" <shuwei.wu@mailbox.org>
+To: "Samuel Holland" <samuel.holland@sifive.com>
+References: <20260308-shadow-deps-v1-0-0ceb5c7c07eb@mailbox.org>
+ <20260308-shadow-deps-v1-2-0ceb5c7c07eb@mailbox.org>
+ <610da0d3-1dc0-4f4f-afb4-869d3ed81321@sifive.com>
+In-Reply-To: <610da0d3-1dc0-4f4f-afb4-869d3ed81321@sifive.com>
+X-MBO-RS-ID: 4718965d707e9392835
+X-MBO-RS-META: w3n6rf7qzhqwy6xkdx5zhxepjgn57kz8
+X-Rspamd-Queue-Id: 51E1C2335A9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,oss.nxp.com,nxp.com,pengutronix.de,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272661-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xuelin.shi@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-272662-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.993];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shuwei.wu@mailbox.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-0.950];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Action: no action
 
+Hi Samuel,
 
------Original Message-----
-From: Rob Herring (Arm) <robh@kernel.org>=20
-Sent: Saturday, March 7, 2026 4:31 AM
-To: Forrest Shi <xuelin.shi@nxp.com>; Peng Fan (OSS) <peng.fan@oss.nxp.com>=
-; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.o=
-rg>; Frank Li <frank.li@nxp.com>; Sascha Hauer <s.hauer@pengutronix.de>; Pe=
-ngutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam <festevam@gmai=
-l.com>
-Cc: Peter Robinson <pbrobinson@gmail.com>; devicetree@vger.kernel.org; imx@=
-lists.linux.dev; linux-arm-kernel@lists.infradead.org; linux-kernel@vger.ke=
-rnel.org
-Subject: [EXT] [PATCH v2] arm64: dts: freescale: imx93: Add Ethos-U65 NPU a=
-nd SRAM nodes
+On Mon Mar 9, 2026 at 1:59 AM CST, Samuel Holland wrote:
+> Hi Shuwei,
+>
+> On 2026-03-07 11:17 PM, Shuwei Wu wrote:
+>> Add Operating Performance Points (OPP) tables and CPU clock properties
+>> for the two clusters in the SpacemiT K1 SoC.
+>>=20
+>> Also assign the CPU power supply (cpu-supply) for the Banana Pi BPI-F3
+>> board to fully enable CPU DVFS.
+>>=20
+>> Signed-off-by: Shuwei Wu <shuwei.wu@mailbox.org>
+>> ---
+>>  arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts | 34 +++++++++-
+>>  arch/riscv/boot/dts/spacemit/k1.dtsi            | 86 ++++++++++++++++++=
++++++++
+>>  2 files changed, 119 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/risc=
+v/boot/dts/spacemit/k1-bananapi-f3.dts
+>> index 444c3b1e6f44..b87bf9d51cb1 100644
+>> --- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>> +++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
+>> @@ -86,6 +86,38 @@ &combo_phy {
+>>  	status =3D "okay";
+>>  };
+>> =20
+>> +&cpu_0 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>> +&cpu_1 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>> +&cpu_2 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>> +&cpu_3 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>> +&cpu_4 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>> +&cpu_5 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>> +&cpu_6 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>> +&cpu_7 {
+>> +	cpu-supply =3D <&buck1_3v45>;
+>> +};
+>> +
+>>  &emmc {
+>>  	bus-width =3D <8>;
+>>  	mmc-hs400-1_8v;
+>> @@ -201,7 +233,7 @@ pmic@41 {
+>>  		dldoin2-supply =3D <&buck5>;
+>> =20
+>>  		regulators {
+>> -			buck1 {
+>> +			buck1_3v45: buck1 {
+>>  				regulator-min-microvolt =3D <500000>;
+>>  				regulator-max-microvolt =3D <3450000>;
+>>  				regulator-ramp-delay =3D <5000>;
+>> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/=
+spacemit/k1.dtsi
+>> index 529ec68e9c23..5c7bb5d85fc0 100644
+>> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
+>> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
+>> @@ -54,6 +54,8 @@ cpu_0: cpu@0 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <0>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C0_CORE>;
+>> +			operating-points-v2 =3D <&cluster0_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -84,6 +86,8 @@ cpu_1: cpu@1 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <1>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C0_CORE>;
+>> +			operating-points-v2 =3D <&cluster0_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -114,6 +118,8 @@ cpu_2: cpu@2 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <2>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C0_CORE>;
+>> +			operating-points-v2 =3D <&cluster0_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -144,6 +150,8 @@ cpu_3: cpu@3 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <3>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C0_CORE>;
+>> +			operating-points-v2 =3D <&cluster0_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -174,6 +182,8 @@ cpu_4: cpu@4 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <4>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C1_CORE>;
+>> +			operating-points-v2 =3D <&cluster1_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -204,6 +214,8 @@ cpu_5: cpu@5 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <5>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C1_CORE>;
+>> +			operating-points-v2 =3D <&cluster1_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -234,6 +246,8 @@ cpu_6: cpu@6 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <6>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C1_CORE>;
+>> +			operating-points-v2 =3D <&cluster1_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -264,6 +278,8 @@ cpu_7: cpu@7 {
+>>  			compatible =3D "spacemit,x60", "riscv";
+>>  			device_type =3D "cpu";
+>>  			reg =3D <7>;
+>> +			clocks =3D <&syscon_apmu CLK_CPU_C1_CORE>;
+>> +			operating-points-v2 =3D <&cluster1_opp_table>;
+>>  			riscv,isa =3D "rv64imafdcbv_zicbom_zicbop_zicboz_zicntr_zicond_zicsr=
+_zifencei_zihintpause_zihpm_zfh_zba_zbb_zbc_zbs_zkt_zvfh_zvkt_sscofpmf_sstc=
+_svinval_svnapot_svpbmt";
+>>  			riscv,isa-base =3D "rv64i";
+>>  			riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c", "b", "v", "zi=
+cbom",
+>> @@ -339,6 +355,76 @@ osc_32k: clock-32k {
+>>  		};
+>>  	};
+>> =20
+>> +	cluster0_opp_table: opp-table-cluster0 {
+>> +		compatible =3D "operating-points-v2";
+>> +		opp-shared;
+>> +
+>> +		opp-614400000 {
+>> +			opp-hz =3D /bits/ 64 <614400000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-819000000 {
+>> +			opp-hz =3D /bits/ 64 <819000000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-1000000000 {
+>> +			opp-hz =3D /bits/ 64 <1000000000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-1228800000 {
+>> +			opp-hz =3D /bits/ 64 <1228800000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-1600000000 {
+>> +			opp-hz =3D /bits/ 64 <1600000000>;
+>> +			opp-microvolt =3D <1050000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +	};
+>> +
+>> +	cluster1_opp_table: opp-table-cluster1 {
+>> +		compatible =3D "operating-points-v2";
+>> +		opp-shared;
+>> +
+>> +		opp-614400000 {
+>> +			opp-hz =3D /bits/ 64 <614400000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-819000000 {
+>> +			opp-hz =3D /bits/ 64 <819000000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-1000000000 {
+>> +			opp-hz =3D /bits/ 64 <1000000000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-1228800000 {
+>> +			opp-hz =3D /bits/ 64 <1228800000>;
+>> +			opp-microvolt =3D <950000>;
+>> +			clock-latency-ns =3D <200000>;
+>> +		};
+>> +
+>> +		opp-1600000000 {
+>> +			opp-hz =3D /bits/ 64 <1600000000>;
+>> +			opp-microvolt =3D <1050000>;
+>> +			clock-latency-ns =3D <200000>;
+>
+> What is the initial voltage set by firmware before Linux boots? If it is =
+1.05V,
+> this is fine, but if the default is 950mV, then you cannot enable the OPP=
+ table
+> in the SoC .dtsi file. Boards other than the BananaPi F3 are missing the
+> cpu-supply property, so they won't raise the CPU voltage before switching=
+ to the
+> higher frequency. The usual solution is to put the OPP table (or at least=
+ the
+> OPPs that require a higher voltage) in a separate .dtsi file, and only in=
+clude
+> that file from boards that provide the cpu-supply.
+>
+> Regards,
+> Samuel
 
-Caution: This is an external email. Please take care when clicking links or=
- opening attachments. When in doubt, report the message using the 'Report t=
-his email' button
+Thanks for the suggestion!
+I confirmed the firmware sets the initial voltage to 1.05V at the default b=
+oot
+frequency before any scaling occurs:
 
+~ # cat /sys/class/regulator/regulator.4/name
+buck1
+~ # cat /sys/class/regulator/regulator.4/microvolts
+1050000
 
-i.MX93 contains an Arm Ethos-U65 NPU. The NPU uses the internal SRAM for te=
-mporary buffers. The SRAM is larger than 96KB, but that is all that is avai=
-lable to non-secure world.
+But I agree that moving the OPP tables to a separate .dtsi is a much safer
+and more robust approach for boards without cpu-supply.
+I will implement this in v2.
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
-v2:
- - Increase the APB freq to 133MHz
----
- arch/arm64/boot/dts/freescale/imx93.dtsi | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts=
-/freescale/imx93.dtsi
-index 7b27012dfcb5..95cc60158349 100644
---- a/arch/arm64/boot/dts/freescale/imx93.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-@@ -43,6 +43,29 @@ map0 {
-                        };
-                };
-        };
-+
-+       sram: sram@20480000 {
-+               compatible =3D "mmio-sram";
-+               reg =3D <0x0 0x20480000 0x0 0x18000>;
-[Forrest Shi]  should it be 0x60000, 384KB? From NXP imx93 reference manual=
-, there is one dedicated OCRAM for ethosu usage.
-                       And this area is managed and accessed only by ethosu=
- via command stream.
-+               #address-cells =3D <1>;
-+               #size-cells =3D <1>;
-+               ranges =3D <0x0 0x0 0x20480000 0x18000>;
-[Forrest Shi]  same as above, 384KB?
-+       };
-+
-+       soc@0 {
-+               npu@4a900000 {
-+                       compatible =3D "fsl,imx93-npu", "arm,ethos-u65";
-+                       reg =3D <0x4a900000 0x1000>;
-+                       interrupts =3D <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
-+                       power-domains =3D <&mlmix>;
-+                       clocks =3D <&clk IMX93_CLK_ML>, <&clk IMX93_CLK_ML_=
-APB>;
-+                       clock-names =3D "core", "apb";
-+                       sram =3D <&sram>;
-+                       assigned-clocks =3D <&clk IMX93_CLK_ML>, <&clk IMX9=
-3_CLK_ML_APB>;
-+                       assigned-clock-parents =3D <&clk IMX93_CLK_SYS_PLL_=
-PFD1>, <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
-+                       assigned-clock-rates =3D <800000000>, <133000000>;
-+               };
-+       };
- };
-
- &aips1 {
---
-2.51.0
-
+Best regards,
+--=20
+Shuwei Wu
 
