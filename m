@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-272726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272727-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDQbIS94rmlwFAIAu9opvQ
-	(envelope-from <devicetree+bounces-272726-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 08:35:11 +0100
+	id ECi7B2x5rmmPFAIAu9opvQ
+	(envelope-from <devicetree+bounces-272727-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 08:40:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E299234D6E
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 08:35:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDFB0234E37
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 08:40:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 962CE300372E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 07:35:07 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5CA90303A6C8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 07:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB175363C56;
-	Mon,  9 Mar 2026 07:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD5A366DD9;
+	Mon,  9 Mar 2026 07:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hcjFjqSX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A+RjrOxr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8DFE35838C;
-	Mon,  9 Mar 2026 07:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56E01364926;
+	Mon,  9 Mar 2026 07:38:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773041705; cv=none; b=P1Mwnt28YSwkjcwnsZmEaVa33wHSB/zQmqPB5xYa6eEtNAVyu+gBwnhYe7vER1S9UW68JyX3heLnDPFYvp3kTdizy3Yxziu/vtazLULwNN3F6ekZbPaZHRch3brw9wLrTHVDHOtDELMsz++wzx9WtgFJ4ROO3/Zdpexfmn4zA4s=
+	t=1773041937; cv=none; b=J1XCo1TSnuTxdldtP1/2ZxlOLtauywyBw7yKRa6R2LUjcEobML9qVS5uiMAJ+2s7OCiezeMIIFn2twpdN90XUwIiiL44JPfdbOkpBlCrALf05Aa6eNNmjZrq3A5OXPShBXI1K49RQkXDYslneeB3Yv6hCy9ZzVhO/HfUzByuKBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773041705; c=relaxed/simple;
-	bh=5VeOzXca6/kjHrEIF1cdtKl5a2Gl4a0YxWY3vzaZEwM=;
+	s=arc-20240116; t=1773041937; c=relaxed/simple;
+	bh=/6q+MChbRb+7dC7KWa0xw1Pg+Ojy5G+IcYU3x0F3ahU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TWs21OHifPpmdv+V/cFOx05uj7vHH4qx5DV0dWGlppjgpjgLi8omgCBqpSqWesoWDPML2D93NesmVzWnOo6CBL0Bw89Y6iiUQmITConoVnWr5qn1bRNCL0ug/y2zBCfizyh1boOvU9dhjBz3zhpKmCbJ0imBcJe81Fjr1LHtAkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hcjFjqSX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9331C4CEF7;
-	Mon,  9 Mar 2026 07:35:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=S0WYQziaP8SNs1Y7st6dzeK3OpvWcaT3vMMMLVe/Z1ia/7jvN0kAj9AxxUyHlOwliaFC/MDvvYjv456YpM5k3sg8ImMKdbFc3M1kYM/4EhCrvBN2fgGLZXiq/ripCSXPsNURWQ+MGuIGbL5pvJo2cFSCOkxWGLaJHdppAVOmucQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A+RjrOxr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C980C4CEF7;
+	Mon,  9 Mar 2026 07:38:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773041705;
-	bh=5VeOzXca6/kjHrEIF1cdtKl5a2Gl4a0YxWY3vzaZEwM=;
+	s=k20201202; t=1773041937;
+	bh=/6q+MChbRb+7dC7KWa0xw1Pg+Ojy5G+IcYU3x0F3ahU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hcjFjqSXK4b8wlyWQWtjlht8cavALF7zg67IK+0i21wdaVlqctXyga/xS+q3Kwm1z
-	 WS5I1KQ69T0dFkRfQZzYrSBrfQwu6BW3rj0W5MtsbOUCZO6AaEifNSQo2dx3+4vp3x
-	 YiQbRdk80W3gTHYAScTWuSToZt+dQ3q3r2bXqKOkfQx+IkM0u8iH+fnSjO62E8juKL
-	 pSOqewwvXyn/lFLsrp4HGwEJckw9ZP4t46EELENHak0l4MZkMlO68dnL4Q6uGDaN2U
-	 WP0FSlzTMezsV5w9nXrr3+rkxL/i5IQIIrh0LPxNgy67xDPaBeXUSuA+V6o26fp1Gg
-	 ubf0+Fbs5i9wQ==
-Date: Mon, 9 Mar 2026 08:35:02 +0100
+	b=A+RjrOxrREyCbCknoG08Pkef9Gwa06CP8bHNsHsi1JbYxUIq7Suml2ASO/wgp1ATI
+	 Y6vVcbm6pQRNb0DtJ+XryQKaCgmr8xEY1xy/WVTJj4jDrgr62FmBmtP393vimTfuMN
+	 RdTf6aK7/+MBoRUSuEFkI+ZJt2z53M58QF84nVfyD00WoFGvwNkVqi7Jy8fBjOSERl
+	 amg0h023uOzOkiXBuZnnK9uEYEcNARFAfU05G/tCdW/7hYKxKpMTaT3STVY45eBc3m
+	 ueeYCP+Eh0QNY2ObIP2qgWMPieUdCNbbivxUOo4DWl94wlM0X/0NlZNNTmdEPNvR05
+	 5oQgxwbtcQznw==
+Date: Mon, 9 Mar 2026 08:38:54 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Alexander Koskovich <AKoskovich@pm.me>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Document Tianma
- TA066VVHM03
-Message-ID: <20260309-idealistic-dingo-from-venus-c443af@quoll>
-References: <20260308-tianma-ta066vvhm03-v2-0-5f2344685133@pm.me>
- <20260308-tianma-ta066vvhm03-v2-1-5f2344685133@pm.me>
+To: Aelin Reidel <aelin@mainlining.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux@mainlining.org, 
+	phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: document the Fillmore
+ Global Clock Controller
+Message-ID: <20260309-quirky-heavy-armadillo-9f92bc@quoll>
+References: <20260308-fillmore-clks-v1-0-976d9a6bebe7@mainlining.org>
+ <20260308-fillmore-clks-v1-1-976d9a6bebe7@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,55 +66,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260308-tianma-ta066vvhm03-v2-1-5f2344685133@pm.me>
-X-Rspamd-Queue-Id: 7E299234D6E
+In-Reply-To: <20260308-fillmore-clks-v1-1-976d9a6bebe7@mainlining.org>
+X-Rspamd-Queue-Id: BDFB0234E37
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272726-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272727-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.987];
+	NEURAL_HAM(-0.00)[-0.970];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:email,devicetree.org:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Sun, Mar 08, 2026 at 09:09:00PM +0000, Alexander Koskovich wrote:
-> Add bindings for the Tianma TA066VVHM03 6.59" 1080x2340 AMOLED DSI
-> panel with DSC compression, found in the ASUS ROG Phone 3.
+On Sun, Mar 08, 2026 at 01:39:27AM +0100, Aelin Reidel wrote:
+> Add bindings documentation for the Fillmore (e.g. SM7450) Global Clock
+> Controller.
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+> Signed-off-by: Aelin Reidel <aelin@mainlining.org>
+> ---
+>  .../bindings/clock/qcom,fillmore-gcc.yaml          |  60 +++++++
+>  include/dt-bindings/clock/qcom,fillmore-gcc.h      | 195 +++++++++++++++++++++
+>  2 files changed, 255 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,fillmore-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,fillmore-gcc.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..0eb12a52968edc7961681f0e965b4d6da0858b9c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,fillmore-gcc.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,fillmore-gcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Global Clock & Reset Controller on Fillmore
+> +
+> +maintainers:
+> +  - Aelin Reidel <aelin@mainlining.org>
+> +
+> +description: |
+> +  Qualcomm global clock control module provides the clocks, resets and power
+> +  domains on Fillmore.
+> +
+> +  See also: include/dt-bindings/clock/qcom,fillmore-gcc.h
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,fillmore-gcc
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +      - description: Sleep clock source
+> +      - description: PCIE 0 Pipe clock source
 
-BTW, all of your patches have mismatched From and SoB cases. It passes
-the checks but I do not see reason why different case should be used.
-Especially that it is manual process to achieve that - none of the
-standard ways of using git produce such result, because SoB is added
-automatically based on From name. Unless your mail server is changing
-these, but that's also odd.
-
-This should be fixed in all of your patches, IMO.
+Aer you sure there is no PCIE 1? Because I would be dissapointed if it
+is being added later. With PCIE 1 clock this would be basically Milos
+GCC.
 
 Best regards,
 Krzysztof
