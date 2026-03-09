@@ -1,105 +1,105 @@
-Return-Path: <devicetree+bounces-272876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272877-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CjcGoazrmkSHwIAu9opvQ
-	(envelope-from <devicetree+bounces-272876-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:48:22 +0100
+	id CAJkN6izrmkSHwIAu9opvQ
+	(envelope-from <devicetree+bounces-272877-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:48:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8783623826D
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:48:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8101B2382AB
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:48:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 050A1301072A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:47:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A795130512B5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100853A63FD;
-	Mon,  9 Mar 2026 11:47:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C9B3A784A;
+	Mon,  9 Mar 2026 11:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R24xypqw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K7Hf/4db"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nh/djnMY";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GmkzfSk2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA113A2542
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49B813A782B
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773056861; cv=none; b=UnhQWag+7Q+v1c7gr5590R9qfrNoXtNoHD5pTvHaP9M6sAb9JwqFgCPHGJ+em6DKmM8FaXwoiHPWl+6ODjpL+hwrTTqykZMErlwe5y4ImiKvd1zoXjvuoV6nyC8KKRkCAytn3edLTkzEaupW7fcQL/2voRzFl6CmquLaSq4T8Eo=
+	t=1773056924; cv=none; b=cNaXZiU5Vo4WCgsfLnEBZvHa7CbLM3us3tigs25JM4PfKl/mVSIRxGcZ2Za7j4kY0F6pV/buJ9qsTs0ILhYGeM4BCGdZ82azAjEeAfPac27vUYr5zr4aAz158EkmZHqaWjNsGSiyijOat3m04sbduiM0OXUx+L4xGq3GvFdolV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773056861; c=relaxed/simple;
-	bh=DoPEjWwBLqtm/JvLlriuTdp8La2V/cu6HD0tfJ/3KN8=;
+	s=arc-20240116; t=1773056924; c=relaxed/simple;
+	bh=PSAtaabDHOBf7+GnO4Oo5se4Ft7UAUwgseGnnqtgjZ4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C2vJj1cN9uy2Fxg/g/nKwYxf1HHG+AIc0KEOMlBBtI7rOQflnLbtDsNxv9hpXrLuEfViEQufGtwTSQwrOZibr/W/VRmJZMMiDLuJvNui5Li8S3mnHeR+J/XBJST/CGL7WamNBwLF0sJDAx8GfZndflyOVTSr4QKozCztnCrf5oI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R24xypqw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K7Hf/4db; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:Content-Type; b=ZIl9scDN2NUJihd++PecC4tvOWJKgqQJDKf5OnlV4RRE/84WqFg804Ca2yrI3+Vk0US3VnzSSD8rS7nazol6VqXI8KNbixp8eYrwoonnvuin6jZ3/uIMa+A1G33jLLupPC3uogJtszyRkn/0GN68pWD04iDeMPEU9TRoMROK70Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nh/djnMY; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=GmkzfSk2; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 629A6dbw2195104
-	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 11:47:38 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6298R45R2660360
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 11:48:40 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YmnxHX2UxVycu4QZL6Ds7pUS/n7cTEB4IxSrk7IZsB4=; b=R24xypqwO/7XKgkG
-	PhWHf5THjkrKedfP0WorwxvB2EjS0FsibcJJyla0gxIQwaDAoKiHrolcBc4Mkqsg
-	uI4xiZYqghEepgf6lj8c1nZQIboPcGRNlVsItyT4s7easUrRVbeuhlRg00ogJU6i
-	61wy96FKWMJ+EiM4w9J8a2VhN/RAcQ2kUGH2Yp/QEYJWfgqbLzoigSRHSM1ZGiQG
-	g7Ixt2NgYDHZyG3qxtdz1t5K3J0qYZi5SsVuwkR+/omsuMfm73qC8x3OPan44HUF
-	wTjV9vfxncxuZ/Ub662XG3+I/3jkPRRloocbENSvc9sNPyUjbMxkEKDxrghNaECz
-	APMrNA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4csv5u8aag-1
+	4plS8DiT8nd8Y8ivbbOmNRR2e17OUs340VYiwNRUAU8=; b=nh/djnMYrVI/XTG3
+	8jglzIziPGZDErYJLD5mVwRS9GyvjMQO7Qo99zb3ox+/6+xYKkD3lnZdNX9ypGfk
+	g+zS84wA9qyhzCb4JU95SPDxThFD1tXYUdN+HFNh9b/XduwQq1WucC+24mJ9X4EW
+	ud9iJCssKGnim6qb2FZUA51vvkJbJbZGl7bgvI0MJJn0GtU5YewtQBUMTqyGAXxI
+	tdFHgu2cDYlOISs5hw4vEkc9PvXjdNVBbako45JUH2uxmkQgVlcUC21AY0gbVmne
+	vQprZwxUXdZf2FN5iSL+9CNPmckrlLNlIiTOPwVlLD+7cdxLp7bdB+rDlrWAi9Qh
+	PG+LUQ==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cr9cpnhf4-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 11:47:38 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8cb38346fdbso823881285a.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:47:38 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 11:48:39 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-89a09f050feso40159946d6.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:48:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773056858; x=1773661658; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1773056919; x=1773661719; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YmnxHX2UxVycu4QZL6Ds7pUS/n7cTEB4IxSrk7IZsB4=;
-        b=K7Hf/4dbAqZSlUaKkMAN8kxzrpKIGyo8nk/wj4W7C7VPBM7xKHtKBrXT5ZfP0MOFHt
-         ETazJ9USj0eXCRPjF4Z0jlx+XWKChvDc5lm6kH2qYWZQBXSvHomdl0t+/32dVHcbjEn8
-         TcGeAL6ict07cU9qETcxz560p+k6D838ljIRPF0Q6UZu8v3ziDlaxUUb7vm9NMzQttof
-         cf83lXwWhDD2ihv4fHD5sxvOcGy2CEFjy/bxHy3hCnJquzILtzaji7YOhdssyztpAZgm
-         gHg9qj/CGp7ODR1rU+dLVOFcya9EeD8Ev6kfRAyuhfkvPJvnYKR7q438WcAjOv+JZL4+
-         vr8Q==
+        bh=4plS8DiT8nd8Y8ivbbOmNRR2e17OUs340VYiwNRUAU8=;
+        b=GmkzfSk2FtDBVFp3Md4375MezWWHx7khnHCrdwPnkBOree5ydWh9JxyZWB+sCrEnhG
+         Z7stqiVciOQZDe1e92z6p1Z0HUxMEqc8yLJxiAcJqkbmzqW14OttQY8BopIdzJ8t1eJX
+         Ti1f+EVQvs9eAYKYFYNN6SfxGjYazBhHM7xulc6Q5FsTJaAibF9dN/Xv5k3vPE/tmte3
+         4UkIlfMJzJJmSxJQgYUzOknn0f2rJ+WqghX8MlhPaMO74BM73sh7AwP6mLf1Iyuaj+Ba
+         hHk8s0Jxaceh561do9Xg1YfqZKzAFtUpl6vtcmDc6nMxIVpgbc1Y9coxRUzrBdEFJbBt
+         QXEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773056858; x=1773661658;
+        d=1e100.net; s=20230601; t=1773056919; x=1773661719;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YmnxHX2UxVycu4QZL6Ds7pUS/n7cTEB4IxSrk7IZsB4=;
-        b=A6SgLwKHB2t/I5UA+5krgYPimwskiPF1eROPJBSigFSoVpx3LekLy9aqIOy8RzJ6o/
-         XiUaHhhaMK3HJU0G7VgSvi+A9ZupLUDdX/CC2njkkKfFVvvJ3wTVjyKS/Fk/hYwWCJS5
-         EJeBbSaCCnxlqSfvOw4K1vInB3dMKVQf2fnxngOy++9DVN/EOypAGI/6DW5p6sgmbs5M
-         PfI4tcmUruGQIcgSCI8MuTwIUA4v3OT0rQiRey+gvdDNjQQzIyeOCVv7pwRvWtUAj/xe
-         D0EOERGdRtqrV/m77yhEA8GGOf0IFH1IDzd2ksLGyEyDn5MwE01j8k8X5SakfDRcOv7A
-         MT3w==
-X-Forwarded-Encrypted: i=1; AJvYcCVyVy2zgGh6tdm7pMr9kdT6ykJAKDKQjha4EDWp18+ixzjkN6Y7uHNHIV2RkXBl1GXbIoFdebuOhzSK@vger.kernel.org
-X-Gm-Message-State: AOJu0YxDYHDM+rQ1hHxaADVev1G7v/G/gDnmlnIhyfYkm23S8HQ2Svqt
-	ZPSyumENJ/ptl8SQOeIggsokAweQmZd1+O+G94SCoqSqy1EQaZSD5Q6KMuoufFxsfGzI0nzdXx5
-	e7t/BGwgP3IuCFm2r4CGiwC9rjBUNry2Olp/NBT7OYGEb3OLil4vZ8TFdsHbcW5TbVOc8CksF
-X-Gm-Gg: ATEYQzwlJtlEx+gGfOk9vao21CDwoXDzYtExi4i4bNJNe5MpYtK97Ix9z1fcJnK3enM
-	FE3ztDsoetiFhSPJLWa0hwXoacjYbjVvjTX7swn5/iT3giOgF4iKByx2uHzuNX8C8tBQl9cL3FX
-	8TF3uWmo6EfNRrOowMhwZkkKcjD00gHqVJPMDYF0CfP0FD7lu/Ghrc2lVCCmFx4+1mcu8DlBgeA
-	AK6bmDpUEm+omfHKunCOeBoIDfGWurSBkdhktiIRReerFe0Wwz1ol5IsXaJI0TETn91uGzHuqIP
-	7HlYA0D5URUgtFFNnFkmpB0NBaWxEAjEwouFOtS9L2XEUI/EZCHhuACICptUnAIeeUFKQBQBD1S
-	OMrseTF7Yz2RWvBffYQ39pnfK7ReIR9APP4FCTImK8N8Qt8/Xo5LNDG9Z5Q6VNCIqkpjH1RtUc4
-	Ig8gw=
-X-Received: by 2002:a05:620a:4087:b0:8cd:7fc0:ee15 with SMTP id af79cd13be357-8cd7fc0f6dbmr641726785a.5.1773056857751;
-        Mon, 09 Mar 2026 04:47:37 -0700 (PDT)
-X-Received: by 2002:a05:620a:4087:b0:8cd:7fc0:ee15 with SMTP id af79cd13be357-8cd7fc0f6dbmr641723185a.5.1773056857247;
-        Mon, 09 Mar 2026 04:47:37 -0700 (PDT)
+        bh=4plS8DiT8nd8Y8ivbbOmNRR2e17OUs340VYiwNRUAU8=;
+        b=wC0GEgs8NBe5qvC2zBd0RTW1ZMtLLb241gUUGkN8UinB5FL3rroc7D8D7qpsmbLDok
+         Yhc4FXu39fS0s1m8ZT37uahEMBnOFTlgkqfX9W1voJ70VGAMfDJttctN0NjENcLIEdwF
+         gThL3IAjtCMCORqP1YacNklsKVz23Oc2OyybNLPR4CAmGDP/c6SCkA+UWZjXB1nE0W4i
+         8qUkyzuHHwQCfzHYhLk4il38GsboqOg6HUJW++DWNl4N+sxIGNX/QNosfJ0zUOCJr0S1
+         LkwZnI14QstyMUI+m7czLfsPQuKh7ly5eT5WFytlkbQ2wDhYw087B+surETOkJhAprKM
+         fj+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWE6ZIVBZWhkVLNQyZM+XVHHFt9LC+HIehOI5fqWiKbgNworgvxQ1Iv0Uuo6wnVgJDfRNmVLkXNQ+gn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1R2zMDbP7w1Afg53Cw92d8K5Jg7TW7EYkVHtWObRdKMQ2S8UM
+	u4oTzpoAEXFnuC64xJXKX1FwxspQO6tafxVZcW0ooIWRhCDObJAcMEvdJKvHwCEEs/5xBsYdEiH
+	sznXNbrhlT89Q8Xc+CLs10gbf8u1EsB0+j/srqDMBhoiN88QpdB5GoiOYNxkKDtQdJ/W6XlGv
+X-Gm-Gg: ATEYQzzWvVc09ru4kWe6Bc3D+jj9XjO+bqif+nPkFfi0YZWnB62MekfAj+3a647WjV3
+	sCeFyQSZHnORQs7bshWl7WVRg/gcREehvRu9F1TJ4AL++TPI413eN8mfMD7KYeeNey3U1Ja1OIY
+	C9y4rtciunbF6LRrACecSHxBjo4adkVHvgC691oFjHgDV8PPedkNksC7H9Lvp+z8v7Kv2eQiLlC
+	8iiOogC59OL/xFFgqcZHHKHKWDjLKx0ZPmU3uIifdEP/I/1B7b6DatA8htCAiTbxBWO3sbMH3yT
+	Oc8+zPjdoZNSMWIyf+au71eRzOqdAOBwh4FoZLUDSkRlsAjxhUGdG0ExBZ0oPODefbr/oVpT6wu
+	apLglKAAURSdoIELFEMdm6/HN3l7qgarauUGHIRzL0xx67FyK6pMJ3PK68XcbDYXls7kaxGLy+G
+	1fPd0=
+X-Received: by 2002:a05:6214:4413:b0:89a:44d7:6591 with SMTP id 6a1803df08f44-89a44d76b9fmr59337506d6.4.1773056919226;
+        Mon, 09 Mar 2026 04:48:39 -0700 (PDT)
+X-Received: by 2002:a05:6214:4413:b0:89a:44d7:6591 with SMTP id 6a1803df08f44-89a44d76b9fmr59337136d6.4.1773056918803;
+        Mon, 09 Mar 2026 04:48:38 -0700 (PDT)
 Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-661a3c66e0dsm3162371a12.7.2026.03.09.04.47.34
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef8a861sm361026366b.16.2026.03.09.04.48.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Mar 2026 04:47:36 -0700 (PDT)
-Message-ID: <805525cb-ef53-4bdd-a73b-6fe7513228ce@oss.qualcomm.com>
-Date: Mon, 9 Mar 2026 12:47:33 +0100
+        Mon, 09 Mar 2026 04:48:37 -0700 (PDT)
+Message-ID: <6fb8cc16-d339-4913-b1d7-5d114f0a1ed6@oss.qualcomm.com>
+Date: Mon, 9 Mar 2026 12:48:35 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,197 +107,145 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/5] platform: arm64: Add driver for EC found on
- Qualcomm reference devices
-To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Stephan Gerhold <stephan.gerhold@linaro.org>
+Subject: Re: [PATCH V3 4/5] arm64: dts: qcom: x1-crd: Add Embedded controller
+ node
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
 Cc: robh@kernel.org, krzk+dt@kernel.org, andersson@kernel.org,
         konradybcio@kernel.org, bryan.odonoghue@linaro.org,
         ilpo.jarvinen@linux.intel.com, hansg@kernel.org, conor+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-        Maya Matuszczyk <maccraft123mc@gmail.com>
+        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
 References: <20260308233646.2318676-1-sibi.sankar@oss.qualcomm.com>
- <20260308233646.2318676-3-sibi.sankar@oss.qualcomm.com>
- <aa6M2QSXW72xqYiB@linaro.org>
- <96f8738f-9baa-4528-8bc6-6ce20030e391@oss.qualcomm.com>
+ <20260308233646.2318676-5-sibi.sankar@oss.qualcomm.com>
+ <20260309-festive-prudent-ibex-f8b601@quoll>
+ <ff241b01-c7f4-433b-a822-c5cd14e3e696@oss.qualcomm.com>
+ <3eaceb96-003b-47d2-9ae5-bb676dde0240@kernel.org>
+ <ad3485df-5570-4631-9d6e-2f0b90a47235@oss.qualcomm.com>
+ <441a72fc-b81b-4fb6-b032-867752b3c773@kernel.org>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <96f8738f-9baa-4528-8bc6-6ce20030e391@oss.qualcomm.com>
+In-Reply-To: <441a72fc-b81b-4fb6-b032-867752b3c773@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: r3chDI58vdlaExvp6jCCeXMXmEcwG_Qx
-X-Proofpoint-ORIG-GUID: r3chDI58vdlaExvp6jCCeXMXmEcwG_Qx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEwOCBTYWx0ZWRfX3ofArZR1tssN
- ZLWifaFas58n+KdCVc5TDSOZLteX8BPoycR4OGqYI1TMTW8at9mvryuIHlcOQHx+yXL8xLeiv3F
- mrB9Di9jBS5M176FLz0Wok4DZM7VXszFSZjvSuwOD7U7ktntZqqkPADSTFm32yffyXRjvXqLXgU
- aidx4clvOUEYJr1imVO7t4IllPAdSIq9v46K0V3CFbZqRNkiZTKEOlD2QlxFp0AqMhjwRMdSgLB
- sREeU2sXNuz2KWoP3Cvx58nP5iDgA8bXttRFF1wmL9BmUq1mw+zomGVeaL1jFP+tlDyKUrTRoNy
- RJuTnePXgIBwIc4//FBZTNQiEWaiYAIlaRF1a2MkiWkx3Ffp9fXPP9PDhlhjzrG/lRkNDCcUyib
- 0pIXnToJrEzGcAoheZJUY9Fq5uYR4xiJXQccAomnKa7mueZvEQ3hI3twxVMBS2RKJDrB9XWseQI
- Uw7rRjLuPYeS254q62w==
-X-Authority-Analysis: v=2.4 cv=Xr/3+FF9 c=1 sm=1 tr=0 ts=69aeb35a cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEwOCBTYWx0ZWRfXyToU764dpSRz
+ ykIH+1emfsmlawmuWqDCD6vHpYNkmqVBwUHjIo2KRisu+Sq3O52+nnhI6HLMOFaVyLAtwQBvz9Y
+ w0/z3j90/bWXYeDKUgk9rlBlOhkSheBiEYhRe+ZNm/eVopLneTNfOCK4e+VrrdwzsYo8D4Q76ZH
+ 6u0M/evOirJw7TXmvOP6/Fs1+b3dQZVQFg8KARzDEgTluXAFvzxSr06DnGNZvDd7SxFMPKEiXMM
+ uUjgtDUZSIkOw5/ZMczSNiMrG3i/bBc49BAibBg6XyXSJYguSJ5mbHvrOoakmtmwu6se2i0100g
+ 6fLXkEk0uOtnpDyZR8ykDAdbPVqNPCUZVTVCaubycVOn8NKPiK1XEXT+dkd+fSaEEX/aFa2cmr4
+ t6QJZM/k2uqFW/nGaTMBRZrnriosOZA/ICM6G35mS7++WiNw+d/3XeNjM3ns8zJWnwI8SJPn51o
+ I0LZ4ia3KtfQlHoKC0g==
+X-Proofpoint-ORIG-GUID: 305pCQx5wcSgQJ2GzMazkOMBzharRpGM
+X-Proofpoint-GUID: 305pCQx5wcSgQJ2GzMazkOMBzharRpGM
+X-Authority-Analysis: v=2.4 cv=e7sLiKp/ c=1 sm=1 tr=0 ts=69aeb397 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
  a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
- a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=uGzmvu1gi_0XBBI2Y4EA:9 a=3ZKOabzyN94A:10
- a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=EUspDBNiAAAA:8 a=CZwadPU-L3mGcov22fYA:9 a=QEXdDO2ut3YA:10
+ a=pJ04lnu7RYOZP9TFuWaZ:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090108
-X-Rspamd-Queue-Id: 8783623826D
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
+ suspectscore=0 spamscore=0 bulkscore=0 impostorscore=0 malwarescore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603090108
+X-Rspamd-Queue-Id: 8101B2382AB
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,linux.intel.com,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-272876-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272877-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,0.0.0.76:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.991];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.975];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On 3/9/26 11:04 AM, Sibi Sankar wrote:
-> 
-> On 3/9/2026 2:33 PM, Stephan Gerhold wrote:
->> On Mon, Mar 09, 2026 at 05:06:43AM +0530, Sibi Sankar wrote:
->>> Add Embedded controller driver support for Hamoa/Purwa/Glymur qualcomm
->>> reference boards. It handles fan control, temperature sensors, access
->>> to EC state changes and supports reporting suspend entry/exit to the
->>> EC.
->>>
->>> Co-developed-by: Maya Matuszczyk <maccraft123mc@gmail.com>
->>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
->>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
->>> ---
->>>   MAINTAINERS                            |   7 +
->>>   drivers/platform/arm64/Kconfig         |  12 +
->>>   drivers/platform/arm64/Makefile        |   1 +
->>>   drivers/platform/arm64/qcom-hamoa-ec.c | 462 +++++++++++++++++++++++++
->>>   4 files changed, 482 insertions(+)
->>>   create mode 100644 drivers/platform/arm64/qcom-hamoa-ec.c
->>>
->>> [...]
->>> diff --git a/drivers/platform/arm64/qcom-hamoa-ec.c b/drivers/platform/arm64/qcom-hamoa-ec.c
->>> new file mode 100644
->>> index 000000000000..83aa869fad8f
->>> --- /dev/null
->>> +++ b/drivers/platform/arm64/qcom-hamoa-ec.c
->>> @@ -0,0 +1,462 @@
->>> [...]
->>> +static int qcom_ec_read(struct qcom_ec *ec, u8 cmd, u8 resp_len, u8 *resp)
->>> +{
->>> +    int ret;
->>> +
->>> +    mutex_lock(&ec->lock);
->>> +    ret = i2c_smbus_read_i2c_block_data(ec->client, cmd, resp_len, resp);
->>> +    mutex_unlock(&ec->lock);
->> This mutex looks redundant to me for the current implementation. You
->> don't have any read-modify-write sequences and I think the I2C core
->> already has internal locking for the bus itself.
-> 
-> Hey Stephan,
-> Thanks for taking time to review the series :)
-> 
-> Will remove this in the next re-spin.
-> 
+On 3/9/26 11:53 AM, Krzysztof Kozlowski wrote:
+> On 09/03/2026 11:51, Sibi Sankar wrote:
 >>
->>> [...]
->>> +/*
->>> + * Fan Debug control command:
->>> + *
->>> + * Command Payload:
->>> + * ------------------------------------------------------------------------------
->>> + * | Offset    | Name        | Description                    |
->>> + * ------------------------------------------------------------------------------
->>> + * | 0x00    | Command    | Fan control command                |
->>> + * ------------------------------------------------------------------------------
->>> + * | 0x01    | Fan ID    | 0x1 : Fan 1                    |
->>> + * |        |        | 0x2 : Fan 2                    |
->>> + * ------------------------------------------------------------------------------
->>> + * | 0x02    | Byte count = 4| Size of data to set fan speed            |
->>> + * ------------------------------------------------------------------------------
->>> + * | 0x03    | Mode        | Bit 0: Debug Mode On/Off (0 - OFF, 1 - ON )    |
->>> + * |        |        | Bit 1: Fan On/Off (0 - Off, 1 - ON)        |
->>> + * |        |        | Bit 2: Debug Type (0 - RPM, 1 - PWM)        |
->>> + * ------------------------------------------------------------------------------
->>> + * | 0x04 (LSB)    | Speed in RPM    | RPM value, if mode selected is RPM        |
->>> + * | 0x05    |        |                        |
->>> + * ------------------------------------------------------------------------------
->>> + * | 0x06    | Speed in PWM    | PWM value, if mode selected is PWM (0 - 255)    |
->>> + * ______________________________________________________________________________
->>> + *
->>> + */
->>> +static int qcom_ec_fan_set_cur_state(struct thermal_cooling_device *cdev, unsigned long state)
->>> +{
->>> +    struct qcom_ec_cooling_dev *ec_cdev = cdev->devdata;
->>> +    struct device *dev = ec_cdev->parent_dev;
->>> +    struct i2c_client *client = to_i2c_client(dev);
->>> +
->>> +    u8 request[6] = { ec_cdev->fan_id, EC_FAN_SPEED_DATA_SIZE,
->>> +              EC_FAN_DEBUG_MODE_ON | EC_FAN_ON | EC_FAN_DEBUG_TYPE_PWM,
->>> +              0, 0, state };
->>> +    int ret;
->>> +
->>> +    ret = i2c_smbus_write_i2c_block_data(client, EC_FAN_DBG_CONTROL_CMD,
->>> +                         sizeof(request), request);
->> I think it's nice to provide users a way to override the fan speed, but
->> is this really the main interface of the EC that we want to use for
->> influencing the fan speed?
+>> On 3/9/2026 2:39 PM, Krzysztof Kozlowski wrote:
+>>> On 09/03/2026 10:03, Sibi Sankar wrote:
+>>>> On 3/9/2026 12:55 PM, Krzysztof Kozlowski wrote:
+>>>>> On Mon, Mar 09, 2026 at 05:06:45AM +0530, Sibi Sankar wrote:
+>>>>>> Add embedded controller node for Hamoa/Purwa CRDs which adds fan control,
+>>>>>> temperature sensors, access to EC internal state changes and suspend
+>>>>>> entry/exit notifications to the EC.
+>>>>>>
+>>>>>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>>>>>> ---
+>>>>>>    arch/arm64/boot/dts/qcom/x1-crd.dtsi | 16 ++++++++++++++++
+>>>>>>    1 file changed, 16 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/x1-crd.dtsi b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+>>>>>> index ded96fb43489..29a1aeb98353 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/x1-crd.dtsi
+>>>>>> @@ -1042,6 +1042,16 @@ eusb6_repeater: redriver@4f {
+>>>>>>    
+>>>>>>    		#phy-cells = <0>;
+>>>>>>    	};
+>>>>>> +
+>>>>>> +	embedded-controller@76 {
+>>>>>> +		compatible = "qcom,hamoa-it8987-ec", "qcom,hamoa-ec";
+>>>>> I don't see updates to other x1e boards, thus my arguments from v2 stay
+>>>>> valid. It's wrong to call it "hamoa-ec" since only one Hamoa board has
+>>>>> it. All of other Hamoa boards apparently do not have it.
+>>>>
+>>>> Hey Krzysztof,
+>>>> Thanks for taking time to review the series :)
+>>>>
+>>>> What other Hamoa boards are you referring to? The series
+>>>> mentions that the driver and bindings is meant for Qualcomm
+>>>> Hamoa/Purwa/Glymur "reference" devices, so it only covers
+>>>> CRD and IOT-EVK. It definitely does not cover all Hamoa boards
+>>>> boards like you are assuming.
+>>> hamoa-ec compatible implies that and that's something I raised in v2
+>>> already. You need a specific compatible.
 >>
->> As the name of the command suggests, this is a debug command that
->> essentially overrides the internal fan control algorithm of the EC. If
->> you use this to turn the fan off and then Linux hangs, I would expect
->> that the fan stays off until the device will eventually overheat.
 >>
->> I think it would be more reliable if:
->>
->>   (1) The default mode of operation does not make use of the "debug mode"
->>       command and instead sends the internal SoC temperatures to the EC
->>       to help optimize the fan control. (This is what Windows does on
->>       Hamoa, not sure if this is still needed on Glymur?)
+>> Hamoa/Glymur reference devices can have different EC MCUs
+>> depending on the SKU. This introduces the need to deal with
+>> possibility of quirks and bugs introduced by these differences.
+>> Hamoa/Purwa CRDs and IOT EVK runs on IT8987, while Glymur
+>> reference devices run on NPCX498/488. This pretty much was
 > 
-> That's true, Glymur already has a way to access average SoC
-> temperature and even on Hamoa it can still be functional without
-> SoC temperature i.e. with thermistors it has access to.
+> None of these answer my comments from here and v2.
 > 
-> The aim of the series is to expose fans as a cooling device so
-> that linux has a way of fan control independent to the algorithm
-> running on the EC.
+>> the rationale to make the MCU part of the compatible. Anyway
+>> I can keep it as qcom,hamoa-ec and qcom,glymur-ec for now
+> 
+> No. You cannot add a generic compatible when you claim it is not even
+> correct - "different EC depending on the SKU".
 
-I suppose the main question here is "what happens if i set the fan to zero
-and put the laptop in my backpack"
+I agree, this name isn't really the best. We don't really have a better
+"official one" though. Perhaps something like "qcom,compute-ec"?
 
-The driver for M-series Macs for example, 785205fd8139 ("hwmon: Add Apple
-Silicon SMC hwmon driver") hides that behind a cmdline param, since they
-have no certainty. I would *assume* that if the CPU hits thermal junction
-temperatures, our boards will reset, but we should be able to get a definitive
-answer here.
+"qcom,reference-compute-ec-that-happens-to-be-found-on-boards-featuring-
+hamoa-glymur-and-derivative-socs-running-windows-by-design"?
 
 Konrad
 
