@@ -1,378 +1,158 @@
-Return-Path: <devicetree+bounces-272998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272999-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WM3+KyPlrmmsJwIAu9opvQ
-	(envelope-from <devicetree+bounces-272998-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:20:03 +0100
+	id 2F8PJ/PkrmmsJwIAu9opvQ
+	(envelope-from <devicetree+bounces-272999-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:19:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1058E23B8AD
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:20:02 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D73023B870
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A5018305F315
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:13:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1682930BB516
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:14:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1541C3D3D1F;
-	Mon,  9 Mar 2026 15:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CD433D3D1F;
+	Mon,  9 Mar 2026 15:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kynesim.co.uk header.i=@kynesim.co.uk header.b="u9kS5GoN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fI7FgrJl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5843AEF45
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:13:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377AD3A7F49;
+	Mon,  9 Mar 2026 15:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773069213; cv=none; b=Dl9hXZmWBU0VekP6HO4gqOMo97rCx66kvrs+IXS2rPh2SK01UBPRb+IuQMcKUr/HGkBWucl6DrBgfHwcPxBaXbW8DCYJx5tn+Svu0rw20l2kIuVZn7+goxnkoI9JzLU0wAwyjcEQ1pN0XfeesQrv4RTMnSAAvLuSiNUQHGAZ66c=
+	t=1773069251; cv=none; b=HoeWdrPm/WwzGxYwYzgUQfyKQxR3Hzi2o4t0VR5TV5Lm7MYcLjiLEEnMJewIx038hFTqNm74YOr0rxpIpd4MlJHm7xIq9A3pK8+jOCaMU9WDhG1QaLLWhQazZZ43BxZJfrhC3aaAOj711h+y9PcO+fKY2ilBn/P4kHZcfbydurI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773069213; c=relaxed/simple;
-	bh=mVxr2Vw4Zk1kAgLJ2mR35vYaEWfrmi4QB1Hy8BIJM24=;
-	h=From:To:Cc:Subject:Date:Message-ID:References:In-Reply-To:
-	 MIME-Version:Content-Type; b=PkV5CLAams216TbD5SjRnZehIUPGqWdyOY+lCjjnqtfBLaXfcXkVCorDKDqOzIh0CTFoC5nQWnu9kabW+i8t9uGxFAuEfj2BNOU0qzPi+bTyDe/DlwO+PyeZ7qV780XccAlzItl8OFxFa01NA3N5mTbLbPfkJnFMmkz//XRA1Dw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kynesim.co.uk; spf=pass smtp.mailfrom=kynesim.co.uk; dkim=pass (2048-bit key) header.d=kynesim.co.uk header.i=@kynesim.co.uk header.b=u9kS5GoN; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kynesim.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kynesim.co.uk
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-48534e9076fso10473265e9.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 08:13:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kynesim.co.uk; s=google; t=1773069210; x=1773674010; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:user-agent:in-reply-to
-         :references:message-id:date:subject:cc:to:from:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=j3dPRMbHhjlBqmmhnyVPSXrV9NMmStYxWYwctCoc6i0=;
-        b=u9kS5GoNXtMUv1QJRrR/I44MRlBZZrtbyfqoV3U+xsojFlrWkAjLndDWOU2ODbPNl5
-         30bc+iZOH8vcznrpS2PBxodehga0tqqRIDy303jpbHvXFTy7uma34VUhSHsS6Jr/MWTd
-         kpjxcyp0iwJhtHrdvfGNnLuUIndUChWAGRNlsyC0nEdcoAr5IVFJxSBxuPEXWJzO0IdU
-         67MdvvxIhNalQh6W6b8YZLUyhtHPrI9AblpcD0/PjZ2+hssIM22QJGoog/A5VmesC4H1
-         /EQxg1eMTEiYCj0RSpNx/WXAJ9/neRM8Di3qE61lQeiRFgT3WXHw4XbvWrmt3cqSCgDH
-         nY1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773069210; x=1773674010;
-        h=content-transfer-encoding:mime-version:user-agent:in-reply-to
-         :references:message-id:date:subject:cc:to:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j3dPRMbHhjlBqmmhnyVPSXrV9NMmStYxWYwctCoc6i0=;
-        b=ZrxualfpjmHC9bqcYLxAHYiN95KDvxXP6jpY+TboEbYERDpHpxroctAztXNJ91pQkp
-         Q/+NbjnuMibzDNEhaob9iDK7dJrwn7zjZfvKNtKY6psGaqBbC6cotmu1WudPsR0DgX6i
-         26gAAsUWw9nW53VnRsjB7FMF+dEwXesHNqwQYJkRZdFLLgFnxIBOMwZKWVlgxM3URyBL
-         V4MXib+3tPN/CnErVJ37Ibf9CXjV42O7UygzBC9H/cRZoz+0t11H0ki/e7paMwV+hjLO
-         jebatPhRxRjxTMoyFq78DYxm1MfjcVQvpijKT3oAcJY6E/gReWzAzMNVoyJu6NLVApMs
-         vlKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXx3kJaicjuEcwA+58aWqxsUxbFUzxX0VJXkAQ+OlQ52mZ0WnaofCw2gCXe4pI/G2gnrPyrurBcNSU0@vger.kernel.org
-X-Gm-Message-State: AOJu0YynFLj7HQ5DGe2+lLRONRCgGsKJLhJ5pX7f2lEqAyS/N8NgAVdk
-	EzEIBNCEMjKiBQO3iB3yzcWGrwYbMbKa4dA0nwWNi2DJhq+XqF5vYWbU22bZAMoGZ7I=
-X-Gm-Gg: ATEYQzyXzdqubimrGZneQnJdFfqbouUA5okU6pzbN9yB2Y7XKPVU1lrhV120AXa7AGt
-	Q60u8mWUhNCXxm+Nwn3uFUa8E/RFP4j9q9ONPoXin0cGhi7XpmjNxZEU2NPh/wJ+hhwWIKdBYxq
-	guf1cAPHFsiZuqYmlDh++Rz3LWvSSICyVswEZDDqvRafTR3DnCPMEOaZn+6KWXnTOd7UH1cr54U
-	YTo6uzO7OiAtaCfwTJBjo8x0oAqKAyNK+TV10dZO9RUvTlrCb5EIG/M2rsYR5+CPnrUhKKo1RbG
-	GBt1gx6/Pa7VjiPp2nL1IuvwmLnhezayIO+WAaotwiNBC+P0n4euXnp5Y/CDHW2lK2acyRlS3Ux
-	VJ0UqHtDcWP5sCzoqi97n8a4THMwwSRSGOC7YzhXBbvsRuKKXllbrgw1fIS7dMiB97te3caPaGH
-	IQbP0DcJnbE+D0P9hYIfYgGiyl2vibGEqVFgEFa+7B8zhUX/jHBmQ6+ZRdfSVtnfx9LcExBL7CD
-	nHwSHnS06jdtlQQ7u6yuCdW+0nlq6ga
-X-Received: by 2002:a05:600c:358e:b0:485:3ec6:e634 with SMTP id 5b1f17b1804b1-4853ec6e713mr39780495e9.15.1773069209257;
-        Mon, 09 Mar 2026 08:13:29 -0700 (PDT)
-Received: from CTHALPA.outer.uphall.net (cpc92886-cmbg20-2-0-cust122.5-4.cable.virginm.net. [82.20.18.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8ec97sm30024898f8f.5.2026.03.09.08.13.28
-        (version=TLS1 cipher=ECDHE-ECDSA-AES128-SHA bits=128/128);
-        Mon, 09 Mar 2026 08:13:28 -0700 (PDT)
-From: John Cox <jc@kynesim.co.uk>
-To: =?utf-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, John Cox <john.cox@raspberrypi.com>, Dom Cobley <dom@raspberrypi.com>, review list <kernel-list@raspberrypi.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Nicolas Dufresne <nicolas.dufresne@collabora.com>, Stefan Wahren <wahrenst@gmx.net>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 5/6] media: platform: Add Raspberry Pi HEVC decoder driver
-Date: Mon, 09 Mar 2026 15:13:27 +0000
-Message-ID: <0nntqkl5vfiobr911s4fehl8sj9g6iidkc@4ax.com>
-References: <20260304-media-rpi-hevc-dec-v6-0-93868ae6dff8@raspberrypi.com> <20260304-media-rpi-hevc-dec-v6-5-93868ae6dff8@raspberrypi.com> <f65f6e40-39f4-4744-bd92-46b38618c6f9@igalia.com>
-In-Reply-To: <f65f6e40-39f4-4744-bd92-46b38618c6f9@igalia.com>
-User-Agent: ForteAgent/8.00.32.1272
+	s=arc-20240116; t=1773069251; c=relaxed/simple;
+	bh=SfzCjRWDTLPJZAa31M/Kdkb6/IUxHrYWTKlmWePFetc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jujDMlRHpUvYAOpy/cSfbJS9jUgQtFdAVEZPC+YZlgN+1GcKhP28orz+vsJpiQAinYlodudtuajXqyvCQwVYcvQiWVh30gSY2v021Dt8JWs8T/j37kgso5jIEBmMsgauyLz+b7PP2HsF+VohyF/0xz6AT2X8mmXrfzTjmN0/p6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fI7FgrJl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19216C2BC9E;
+	Mon,  9 Mar 2026 15:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773069251;
+	bh=SfzCjRWDTLPJZAa31M/Kdkb6/IUxHrYWTKlmWePFetc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fI7FgrJlK/7OfkMVM2nZats3ICl1NO3BT3anmn5LMojZ2wv/oi3wXu94OP1w85NHi
+	 yB1c5XrjkVBrsQbad6wRga/e+y5fNeoyExorjw/EuTVYQY7JUU8Ytm6B2oUrSlF2qF
+	 AuD/ot/l9I3Nc/bK05k4jU4HL+6LOAcVEkVAXcuttkGVZbAkJDYZJP1B7uLdwe1Y1e
+	 i92Py+KgAibg5YL47iToNFdfa0RikYLdjJ3LVeztubaVZNhiJAdR36axprStzeZz+F
+	 SGw9JGxV1FSY+XF6sbXjNnGPDVIqrK0fhi/fCgT3WyYbgmeILare4vkgdPZOXJtQ36
+	 qCLhS6HVYPczg==
+Message-ID: <075c9e46-1361-4e10-aa6c-bf649253f025@kernel.org>
+Date: Mon, 9 Mar 2026 16:14:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 1058E23B8AD
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: rtc: microcrystal,rv3028: Allow to
+ specify vdd-supply
+To: Frieder Schrempf <frieder@fris.de>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-rtc@vger.kernel.org, Rob Herring <robh@kernel.org>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+References: <20260309085749.25747-1-frieder@fris.de>
+ <20260309085749.25747-2-frieder@fris.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260309085749.25747-2-frieder@fris.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 1D73023B870
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kynesim.co.uk,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kynesim.co.uk:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-272998-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[raspberrypi.com,linux.intel.com,ideasonboard.com,kernel.org,broadcom.com,vanguardiasur.com.ar,collabora.com,gmx.net,vger.kernel.org,lists.infradead.org];
+	TAGGED_FROM(0.00)[bounces-272999-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jc@kynesim.co.uk,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kynesim.co.uk:+];
-	NEURAL_HAM(-0.00)[-0.990];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kynesim.co.uk:dkim,4ax.com:mid,raspberrypi.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,bootlin.com:email]
+	NEURAL_HAM(-0.00)[-0.968];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,kontron.de:email]
 X-Rspamd-Action: no action
 
-Hi
+On 09/03/2026 09:57, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> In case the VDD supply voltage regulator of the RTC needs to be
+> specified explicitly, allow to set vdd-supply.
+> 
+> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+> ---
 
->Hi Dave,
->
->On 3/4/26 11:05, Dave Stevenson wrote:
->> From: John Cox <john.cox@raspberrypi.com>
->>=20
->> The BCM2711 and BCM2712 SoCs used on Rapsberry Pi 4 and Raspberry
->
->s/Rapsberry/Raspberry
->
->> diff --git a/drivers/media/platform/raspberrypi/hevc_dec/Kconfig =
-b/drivers/media/platform/raspberrypi/hevc_dec/Kconfig
->> new file mode 100644
->> index 000000000000..ae1fd079e5c9
->> --- /dev/null
->> +++ b/drivers/media/platform/raspberrypi/hevc_dec/Kconfig
->> @@ -0,0 +1,17 @@
->> +# SPDX-License-Identifier: GPL-2.0
->> +
->> +config VIDEO_RPI_HEVC_DEC
->> +	tristate "Rasperry Pi HEVC decoder"
->
->s/Rapsberry/Raspberry
->
->> +	depends on VIDEO_DEV && VIDEO_DEV
->
->VIDEO_DEV is listed twice.
->
->
->[...]
->
->> +
->> +/*
->> + * Stop the clock for this context
->> + * clk_disable_unprepare does ref counting so this will not actually
->> + * disable the clock if there are other running contexts
->> + */
->> +void hevc_d_hw_stop_clock(struct hevc_d_dev *dev)
->
->I believe it would be more idiomatic if you use runtime PM to handle
->this stop_clock()/start_clock() semantics.
->
->> +{
->> +	clk_disable_unprepare(dev->clock);
->
->In the case that the clock is actually disabled (no other running
->contexts), I believe the IRQs should be also disabled before disabling
->the clock.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-I'll fix that
-
->> +}
->> +
->> +/* Always starts the clock if it isn't already on this ctx */
->> +int hevc_d_hw_start_clock(struct hevc_d_dev *dev)
->> +{
->> +	int rv;
->> +
->> +	rv =3D clk_set_min_rate(dev->clock, dev->max_clock_rate);
->> +	if (rv) {
->> +		dev_err(dev->dev, "Failed to set clock rate\n");
->> +		return rv;
->> +	}
->
->After I land [1], you will be able to drop this call and just add
->`maximize =3D true` to the HEVC clock.
->
->[1]=20
->https://lore.kernel.org/dri-devel/20260218-v3d-power-management-v6-1-406=
-83fd39865@igalia.com/
->
->> +
->> +	rv =3D clk_prepare_enable(dev->clock);
->> +	if (rv) {
->> +		dev_err(dev->dev, "Failed to enable clock\n");
->> +		return rv;
->> +	}
->
->Considering that the clock was disabled, I believe you should re-enable
->IRQs and reset any pending interrupts here, just like you do in
->hw_setup().
->
->> +	return 0;
->> +}
->> +
-
-I'll fix that
-
->[...]
->
->> diff --git =
-a/drivers/media/platform/raspberrypi/hevc_dec/hevc_d_video.c =
-b/drivers/media/platform/raspberrypi/hevc_dec/hevc_d_video.c
->> new file mode 100644
->> index 000000000000..d39a2e228595
->> --- /dev/null
->> +++ b/drivers/media/platform/raspberrypi/hevc_dec/hevc_d_video.c
->> @@ -0,0 +1,634 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Raspberry Pi HEVC driver
->> + *
->> + * Copyright (C) 2026 Raspberry Pi Ltd
->> + *
->> + * Based on the Cedrus VPU driver, that is:
->> + *
->> + * Copyright (C) 2016 Florent Revest =
-<florent.revest@free-electrons.com>
->> + * Copyright (C) 2018 Paul Kocialkowski =
-<paul.kocialkowski@bootlin.com>
->> + * Copyright (C) 2018 Bootlin
->> + */
->> +
->> +#include <media/videobuf2-dma-contig.h>
->> +#include <media/v4l2-device.h>
->> +#include <media/v4l2-ioctl.h>
->> +#include <media/v4l2-event.h>
->> +#include <media/v4l2-mem2mem.h>
->> +
->> +#include "hevc_d.h"
->> +#include "hevc_d_h265.h"
->> +#include "hevc_d_hw.h"
->> +#include "hevc_d_video.h"
->> +
->> +static inline struct hevc_d_ctx *hevc_d_file2ctx(struct file *file)
->> +{
->> +	return container_of(file->private_data, struct hevc_d_ctx, fh);
->> +}
->> +
->> +/* constrain x to y,y*2 */
->> +static inline unsigned int constrain2x(unsigned int x, unsigned int =
-y)
->> +{
->> +	return (x < y) ?
->> +			y :
->> +			(x > y * 2) ? y : x;
->> +}
->
->constrain2x() doesn't seem to be used anywhere in the driver.
-
-Good point - I'll remove it
-
->[...]
->
->> +
->> +void hevc_d_prepare_src_format(struct v4l2_pix_format_mplane =
-*pix_fmt)
->> +{
->> +	size_t size;
->> +	u32 w;
->> +	u32 h;
->> +
->> +	w =3D pix_fmt->width;
->> +	h =3D pix_fmt->height;
->> +	if (!w || !h) {
->> +		w =3D HEVC_D_DEFAULT_WIDTH;
->> +		h =3D HEVC_D_DEFAULT_HEIGHT;
->> +	}
->> +	if (w > HEVC_D_MAX_WIDTH)
->> +		w =3D HEVC_D_MAX_WIDTH;
->> +	if (h > HEVC_D_MAX_HEIGHT)
->> +		h =3D HEVC_D_MAX_HEIGHT;
->> +
->> +	if (!pix_fmt->plane_fmt[0].sizeimage ||
->> +	    pix_fmt->plane_fmt[0].sizeimage > SZ_32M) {
->> +		/* Unspecified or way too big - pick max for size */
->> +		size =3D hevc_d_bit_buf_size(w, h, 2);
->> +	}
->> +	/* Set a minimum */
->> +	size =3D max_t(u32, SZ_4K, pix_fmt->plane_fmt[0].sizeimage);
->
->The size computed by hevc_d_bit_buf_size() inside the if-block is
->immediately overwritten here unconditionally.
->
->Should the else case be explicit? Something like:
->
->     if (!pix_fmt->plane_fmt[0].sizeimage ||
->         pix_fmt->plane_fmt[0].sizeimage > SZ_32M) {
->         size =3D hevc_d_bit_buf_size(w, h, 2);
->     } else {
->         size =3D pix_fmt->plane_fmt[0].sizeimage;
->     }
->     size =3D max_t(u32, SZ_4K, size);
-
-Yes that would be correct - I'll fix that
-
->[...]
->
->> +
->> +static int hevc_d_start_streaming(struct vb2_queue *vq, unsigned int =
-count)
->> +{
->> +	struct hevc_d_ctx *ctx =3D vb2_get_drv_priv(vq);
->> +	struct hevc_d_dev *dev =3D ctx->dev;
->> +	int ret =3D 0;
->> +
->> +	v4l2_m2m_update_start_streaming_state(ctx->fh.m2m_ctx, vq);
->> +
->> +	if (V4L2_TYPE_IS_OUTPUT(vq->type)) {
->> +		ret =3D hevc_d_hw_start_clock(dev);
->> +		if (ret)
->> +			goto fail_cleanup;
->> +
->> +		ret =3D hevc_d_h265_start(ctx);
->> +		if (ret)
->> +			goto fail_stop_clock;
->> +	}
->> +
->> +	return 0;
->> +
->> +fail_stop_clock:
->> +	hevc_d_hw_stop_clock(dev);
->> +fail_cleanup:
->> +	v4l2_err(&dev->v4l2_dev, "%s: qtype=3D%d: FAIL\n", __func__, =
-vq->type);
->> +	hevc_d_queue_cleanup(vq, VB2_BUF_STATE_QUEUED);
->> +	return ret;
->> +}
->> +
->> +static void hevc_d_stop_streaming(struct vb2_queue *vq)
->> +{
->> +	struct hevc_d_ctx *ctx =3D vb2_get_drv_priv(vq);
->> +	struct hevc_d_dev *dev =3D ctx->dev;
->> +
->> +	if (V4L2_TYPE_IS_OUTPUT(vq->type)) {
->> +		hevc_d_h265_stop(ctx);
->> +		hevc_d_hw_stop_clock(dev);
->> +	}
->> +
->> +	hevc_d_queue_cleanup(vq, VB2_BUF_STATE_ERROR);
->> +
->> +	vb2_wait_for_all_buffers(vq);
->> +
->> +	v4l2_m2m_update_stop_streaming_state(ctx->fh.m2m_ctx, vq);
->
->The order here looks a bit odd to me. Shouldn't we stop the clock after
->we stop the streaming state and wait for all buffers?
-
-I don't believe that is in fact broken. the call to
-hevc_d_h265_stop(ctx) should ensure the hardware has stopped so it
-should be safe to stop the clocks, the subsequent calls tidy up the
-remaining state.
-
-Many thanks
-
-John Cox
-
->Best regards,
->- Ma=C3=ADra
+Best regards,
+Krzysztof
 
