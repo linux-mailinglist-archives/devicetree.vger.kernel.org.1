@@ -1,211 +1,194 @@
-Return-Path: <devicetree+bounces-272995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272997-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJqKAtnirmmoJgIAu9opvQ
-	(envelope-from <devicetree+bounces-272995-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:10:17 +0100
+	id qJiqMufjrmmsJwIAu9opvQ
+	(envelope-from <devicetree+bounces-272997-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:14:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A9C723B549
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:10:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3069F23B77F
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:14:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 902FE3018050
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:07:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 61E0D30D6388
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:08:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA58B3D7D8D;
-	Mon,  9 Mar 2026 15:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E6903D7D71;
+	Mon,  9 Mar 2026 15:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+jMxgTt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YEDf3dSN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C589E3D7D80
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781063D75D8;
+	Mon,  9 Mar 2026 15:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773068838; cv=none; b=H/0P4VDJQWB4ag3ZR5DCRE3A+BwhwfjryCaAfG8P/bDGu3JFRp17LJ5bOYtWog5297FL6Mo3U3Ves2gLju6jWxk90uN4MhOXZ1Mlvlr4fqKru6Ien+M62dislEQsrqPw17HiaYvwvJl48vwPqhBEI6ytiwz9ZmbUIrbCsR/Mheo=
+	t=1773068900; cv=none; b=U9X9yY0OG00rsTm328d+ls9+C5HOG74m3gvRUZltdcPL1rTio2ijfylKFV0S6eGjpWytI20l9VpR/rbeOuosthts/4UjF0SMI+A2HWVgpQoj9aXPa6YiJ2piZCisVPEVO230mIroYdPJN0vBLzg1UgSPH8DfRt/K9f65YgP9CPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773068838; c=relaxed/simple;
-	bh=GdeMPNlEReEt5c3TbQB5zQABnqKdWHPzQr6+VSniZPU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=bdTYx6rB/XfxxqYcMRKZbuKKbcP22zS4ekjneCKkCP9y6UK9lSh362a3aV4BcvCOBMCxLSjeKIdQZ2DtTbpslE1fjQ1yVvoCWABHXellzwgELmjHGtelacbARhU/h5MQIhXnKEx0TszuQHg8p31LNNOHlenzS5YnjsSqVgdc1YA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+jMxgTt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46592C4AF0B;
-	Mon,  9 Mar 2026 15:07:18 +0000 (UTC)
+	s=arc-20240116; t=1773068900; c=relaxed/simple;
+	bh=o71zWr73UmeR1geQrWGKSkrHTsiQNJJdoI/lavYifzw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=u+qc/PMCB49aiv1Z7hADrVJo7a+TymXthANSKxLiHrBTZDJfxEb04sRg0bKY+l2FCCWbOvCNu+EHh8lIK8Do4vDEqCMkPTF05swSXE0mu+YN8cJApioGwQ8wksFK7ljAaolDPtBWADl9XwSo+Wvd6YJ7bazXvggpjgf2+sIcTU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YEDf3dSN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 117FDC4CEF7;
+	Mon,  9 Mar 2026 15:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773068838;
-	bh=GdeMPNlEReEt5c3TbQB5zQABnqKdWHPzQr6+VSniZPU=;
-	h=From:Date:Subject:To:Cc:From;
-	b=m+jMxgTteOqY+Vth7Dvs9wyoCR4Q8NylkAbt2g2eTL+vPR+xuq2cyI46nvHaTj/wf
-	 5IyqHm4Ut6Dv/avs+1fFeNUM5mm3s4qyNg2Cdq/dicEthSxkXEEX7zeD2V5KjTIntn
-	 yR9pLeffuUGIKQWqwujInprHXCwz3KHTWuw43X0ZtRctOakv6yil1nFBZfSgmfr//z
-	 TYP1muwsAP7ZfJBM3YJHVsJS+zBAvQrVHrNCRgutzV7csv1RBVivPyWXyQOiv05fAh
-	 JuFJAMZ1vMxdIDa7PnDe+gLM/fv9fPYjIksg6arf7PqLxDtKsNO2xFoMP5k2jGYbuh
-	 JmIkKVvWURBJg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Mon, 09 Mar 2026 16:07:03 +0100
-Subject: [PATCH] arm64: dts: airoha: en7581: Add npu node to to EN7581 SoC
+	s=k20201202; t=1773068900;
+	bh=o71zWr73UmeR1geQrWGKSkrHTsiQNJJdoI/lavYifzw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YEDf3dSNEXFGUZ0kJERSL771joxkF/AGHUqCLzz50rZOyJs1ReFi5aUKlW7fHFEEN
+	 wyz+Fm8xwiVN5wBvvdshvgsPgnxF7RD3/OyaNKuxG+YA3uoM5V1mq9oWer67gySdp7
+	 g2EKQ6D/ZEiOepqUuudGiNK9Z99YZxTWwIi1kt9R4HCco6SD+pSCKHGc2b0gtLtmKU
+	 tG3aOJo8/0UkCvFy70DpMtVrXhb38jyDC997jqEb7uQhK0Y4h8FPvmOeRiz+1cXb+K
+	 E/yfBRaD27TejI+YKVMmFuTUmxWn5YBARMmTvSVrI0upuiXbx/cN9k3OJCWjHd2RTM
+	 hRzIaQ7HakmrQ==
+Message-ID: <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org>
+Date: Mon, 9 Mar 2026 16:08:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD
+ DSI
+To: cristian_ci <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com>
+ <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com>
+ <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org>
+ <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-airoha-7581-npu-v1-1-856a360ae9f6@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MQQqAIBBA0avErBswS8uuEi0Gm2o2JkoRRHdPW
- r7F/w9kTsIZxuqBxJdkOUJBU1fgdwoboyzFoJW2qlUOSdKxE/ZmaDDEE72hnrTT1lMHpYqJV7n
- /4zS/7weYEy2JYQAAAA==
-X-Change-ID: 20260309-airoha-7581-npu-c5a7a2926ca4
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
-X-Rspamd-Queue-Id: 0A9C723B549
+X-Rspamd-Queue-Id: 3069F23B77F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272995-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272997-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.967];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.985];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Introduce npu controller node to EN7581 SoC and EN7581 evaluation board.
-Adjust reserved memory parameters to the values used by the npu
-controller.
+On 09/03/2026 15:52, cristian_ci wrote:
+> On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+>>> +  vsp-supply:
+>>> +    description: positive voltage supply for analog circuits
+>>
+>> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, avee.
+>>
+>> There is no VSN and VSP. Otherwise please point the page in datasheet or
+>> some schematics.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> I'm not sure about that. Writing panel dt-bindings has been based pretty mostly on vendor devicetree - which also describes somehow the panel and makes that working with the final product released to the market - so I've to necessarily consider that.
+> Then, I could agree that vendor devicetree might be not compliant with upstream rules and could possibly make mistakes with describing the hardware, so I'd like to find a way to describe that in a more proper way, according to upstream rules.
+> 
+> That said, vendor devicetree describes lists four power supplies for  DSI: 'vdd', 'vddio', 'lab' and 'ibb' (which have the following property names, respectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-supply', 'lab-supply' and 'ibb-supply'.
+> Two of these are related to ds/controller (apparently, 'vddio' should match VDDI power supply in NT35532 datasheet.
+> 
+> The remaining two supplies are related to panel ('lab' and 'ibb'). These ones are two 'external ' regulators ('external' from NT35532 perspective), which provide power supply to display, located in the qcom PMIC (in this case, that should be PMI8950). WRT to power supply names described in the bindings ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' and 'ibb-supply', just named differently in the vendor devicetrees.
+> 
+> Usage of 'vsp'/'vsn' naming for power supply properties is grounded on they commonly being used at upstream (different panel bindings make use of these properties), on one side, and also described on schematics of devices with the same hardware configuration (LCD_VSN and LCD_VSP), on the other.
+> 
+> In the meantime, I've found out schematics for 'xiaomi-mido' (another MSM8953 device) - a variant of this device is shipped with a panel also using NT35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly shown there too.
+> 
+> I couldn't find much more information about the display on my device and the only resources available about that are those listed above, as of today. In light of my reply, I ask if it is still necessary to describe, in the bindings, power supply properties properties not used currently in the board DTS file.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/boot/dts/airoha/en7581-evb.dts |  4 +++
- arch/arm64/boot/dts/airoha/en7581.dtsi    | 43 ++++++++++++++++++++++++-------
- 2 files changed, 38 insertions(+), 9 deletions(-)
+Please wrap your answers so this will be possible to parse.
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-index 886e2e4b5f64ce1a2a5496d35b8379fb4ac27dc2..b1a41d1e7eb676beb0e42c949c70362125ec6f0b 100644
---- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-+++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-@@ -99,6 +99,10 @@ &i2c0 {
- 	status = "okay";
- };
- 
-+&npu {
-+	status = "okay";
-+};
-+
- &eth {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index ff6908a76e8eb6cf91343495d1fe531a868e41fb..3ea00b3b0a35ce1f466cbe89fefd05abef20056d 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -15,29 +15,29 @@ reserved-memory {
- 		#size-cells = <2>;
- 		ranges;
- 
--		npu-binary@84000000 {
-+		npu_binary: npu-binary@84000000 {
- 			no-map;
- 			reg = <0x0 0x84000000 0x0 0xa00000>;
- 		};
- 
--		npu-flag@84b0000 {
-+		npu_pkt: npu-pkt@8a000000 {
- 			no-map;
--			reg = <0x0 0x84b00000 0x0 0x100000>;
-+			reg = <0x0 0x8a000000 0x0 0x2c00000>;
- 		};
- 
--		npu-pkt@85000000 {
-+		npu_txpkt: npu-txpkt@8cc00000 {
- 			no-map;
--			reg = <0x0 0x85000000 0x0 0x1a00000>;
-+			reg = <0x0 0x8cc00000 0x0 0x4000000>;
- 		};
- 
--		npu-phyaddr@86b00000 {
-+		npu_txbufid: npu-txbufid@90c00000 {
- 			no-map;
--			reg = <0x0 0x86b00000 0x0 0x100000>;
-+			reg = <0x0 0x90c00000 0x0 0x6800>;
- 		};
- 
--		npu-rxdesc@86d00000 {
-+		npu_ba: npu-ba@90c06800 {
- 			no-map;
--			reg = <0x0 0x86d00000 0x0 0x100000>;
-+			reg = <0x0 0x90c06800 0x0 0x200000>;
- 		};
- 	};
- 
-@@ -347,6 +347,31 @@ i2c1: i2c@1fbf8100 {
- 			status = "disabled";
- 		};
- 
-+		npu: npu@1e900000 {
-+			compatible = "airoha,en7581-npu";
-+			reg = <0x0 0x1e900000 0x0 0x313000>;
-+			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 113 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 134 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 135 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 137 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-+			memory-region = <&npu_binary>, <&npu_pkt>, <&npu_txpkt>,
-+					<&npu_txbufid>, <&npu_ba>;
-+			memory-region-names = "firmware", "pkt", "tx-pkt",
-+					      "tx-bufid", "ba";
-+			status = "disabled";
-+		};
-+
- 		eth: ethernet@1fb50000 {
- 			compatible = "airoha,en7581-eth";
- 			reg = <0 0x1fb50000 0 0x2600>,
-
----
-base-commit: 405c09548a695ca7be58b5b9d3ac8388630e907f
-change-id: 20260309-airoha-7581-npu-c5a7a2926ca4
+You write bindings matching the hardware and for the hardware, not for
+the downstream code. You cannot add supplies which do not exist
+regardless what some vendor wrote somewhere and yes, you must describe
+all known supplies for this device, especially that datasheet is
+available publicly.
 
 Best regards,
--- 
-Lorenzo Bianconi <lorenzo@kernel.org>
-
+Krzysztof
 
