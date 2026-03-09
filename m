@@ -1,174 +1,490 @@
-Return-Path: <devicetree+bounces-272694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272695-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8OwlB2xqrmkgEAIAu9opvQ
-	(envelope-from <devicetree+bounces-272694-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:36:28 +0100
+	id gCwYO/5prmkGEAIAu9opvQ
+	(envelope-from <devicetree+bounces-272695-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:34:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B35623441A
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:36:27 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5452D2343EB
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 07:34:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 244283031E93
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 06:34:28 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id D12973010278
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 06:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAF1D35CB81;
-	Mon,  9 Mar 2026 06:34:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9398435CB7A;
+	Mon,  9 Mar 2026 06:34:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AxMKdj71";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T6568o9c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47C04358380;
-	Mon,  9 Mar 2026 06:34:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36DA2329391
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 06:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773038067; cv=none; b=hTtRtZX8U45lt+4AbkpKhK+dpiN4S0BaP5J4cC67Z2hvfUFahTW/VXr6VchyCCDXjWqESVEq5LgJE4SOKg776thNBvv0nmRES5reO0sZ5wL5Hbf6YYtRbM+TWEloj0IXdmeyl7WIV1Uq7/Cpv6rzQBrViFhc+Wd6P0jnDOYm3KY=
+	t=1773038074; cv=none; b=kgHfrp4YasipiFwz4VcNmyPdzprUqDDvy4cwrJpZWfCJ+xdZK4gd1mO6bTgVqKytWoYdjo5CYdIXyqyJKWgm1u+QjurQtE7u6GkSw8z9JaPWvml2lqIhMQajpKYOZflnYAlDcyh9YaKn8knEjFrUjbsa7gToz6bRv/741LiJr50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773038067; c=relaxed/simple;
-	bh=3Wnjim6yO+itYQGtawQz3xTRie9Znb5BqvmJhBhwVYs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ae1Psti1rypxRWMXwWcXGuSeyb9Hcg4ZnJjwMLcX2UzglktOgX7n9Af5G1Ied90pjzWIXDsZlwtm33sxOcnbxNA8CyvZ3Q+4k9sP2Qfm/WVG/ysS/qEpiGuxWE3LCA1OKEm/M3PZgngjfuRLVZ4xv2xKuJtBM/9BW3FiVQvijV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from localhost (unknown [116.232.48.232])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id AC5C4335DB5;
-	Mon, 09 Mar 2026 06:34:23 +0000 (UTC)
-Date: Mon, 9 Mar 2026 14:34:16 +0800
-From: Yixun Lan <dlan@gentoo.org>
-To: Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
-	Javier Martinez Canillas <javierm@redhat.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/10] mmc: sdhci-of-k1: add regulator framework support
-Message-ID: <20260309063416-GYB318052@gentoo.org>
-References: <20260302-orangepi-sd-card-uhs-v1-0-89c219973c0c@gmail.com>
- <20260302-orangepi-sd-card-uhs-v1-3-89c219973c0c@gmail.com>
+	s=arc-20240116; t=1773038074; c=relaxed/simple;
+	bh=icUBj0qp3uuBRZN/eVTM+2O0OtMd+31sH8uVSKfXz2c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lv9LMRtQOSbVpkzcws+lmXQjU3rW24DsLEKQDPL4vwi9+a88mbrW3mA0YvK1Pyt95SMLGoDEudrAiS1l7gjVgFPAU+3h9kByAlY1Dt4BHHQe3d5G4NK8cKnh5IlVrcj82o/LL0x0YnPiw/sA6uSrYHjRGbYVVCM3CVI5AXe/S1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AxMKdj71; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=T6568o9c; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6294f0761587409
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 06:34:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0I+w+n9z5EIDtru8upH+708VjeIrlFx6quJobrk4ltA=; b=AxMKdj71OJI+PSuM
+	iITS9pAwifujzI+mPdbfmNjSAqQNp4EyQVd0d3gfu+sHyJvlMMN+5SI1OeCZfN3k
+	0sJ0zywX7Hk6lqyTwsRIXQkUr/3UVGS0DWc5MC0O4suKYDg3OWfPEwTW3Okb0Y5f
+	TK38xukZPlc+3S4N9fbGsEyrkTQS8HE22Tz1wFHcmzGtu8bBjeWOq8DW0esVQvYg
+	CPmjGRd9P1fn8d86qagTbOIfUfDqPEPA4/U8fBEt+BGkKrIBM3Ijld3LVu4vbu0e
+	wDr68ycZFCF9HbNfLafo4Nk0oQpr9Q5TXTWc6t7L0s0JolVfvbQEtfKEnQN8RQ6G
+	KKkfTg==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4csqcy89fm-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 06:34:31 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-829ae358238so726566b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 23:34:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773038071; x=1773642871; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0I+w+n9z5EIDtru8upH+708VjeIrlFx6quJobrk4ltA=;
+        b=T6568o9cf4omHooslTDxvtCmi3l4cFxoJHcCMr3BTBylyolqVYqiQJeMeq3CHtIiiD
+         pUv3Xa3B6YhhKlO/fOvAdOo1HN2fNi6VB9fuV1ddbVW5NkCJKmHJBaetdAJ8DVwZO1vU
+         M5hZ07aOdP29rZJoXUB4xCv/w5VrKBFRMjj1fUROpYRfpoXkGOTYKLmHLN2iIUSEi9aA
+         mrgDFFMi97tvste6LQStGD597oFXQcG5aEvN2doN6wSnOHX8VXYul0JBaOUKEDvijQu+
+         yrf6zOuepwKwD9UzCey+/OJ0R9VMtqMKz4t1oZ/NQjFeyV5t8wQxmGoqHrp1SVzhtPtm
+         PKow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773038071; x=1773642871;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0I+w+n9z5EIDtru8upH+708VjeIrlFx6quJobrk4ltA=;
+        b=FuWWxGtnR1bgJcvRFGh6WNhlk5NhydmVgJVx6+EQn8p4Lwih434ArqiphOCRGGMI3G
+         Oj5fwOEzWHVtxGZdYUMD6T8RC0dVXVpzCB4iIc3g6g+2VcCv7Q75qIaeUrOIVLHm7Bj7
+         yYnA1gJ6A2gI+E5xdOBdkJbsY4QdJAldLtDF/fQm7hjqlJCmeO8prSvQPQc5nx15msi3
+         oySSDgKb2hB2R7le04bcMTkUvHf7rlXJhOVkqVtmfrNi3o8mLYz3SI1zBPBJN8OedKUf
+         ANz6qH2PFE6lZWyYfoY+RQVoeCh71ONF+wff8tXbB8DcVU1V6cAT7ZktxEfOLh+eATCV
+         xq/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUjcFp1zBUX0Q698ptmA3ayt+SxOnLaJ32VQ2y+utwfmHLi3sBWKXQ/mCGyFuKPTIb7LJk138Dr1WTG@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywfb+zAr1qR9mo9gs+USAQbFGIOjThqK9AijgMiXYK4YU/xUOrX
+	JvX/a9v/adSRPeLRAYfJssni/I5vsEYyDjxpuNEcxUB/1qHR9D5wCbhX9x/roVleB3klOqO/+cD
+	gztckzzw9kRcjtTmVV8r1ypZyziBAoLE6O26oicUFI5/DdAjfIQpc9ZRSnxRRgHVc
+X-Gm-Gg: ATEYQzyOZKrbQISMd0yCZpW+JcGIBsvAfgnaxtSWeLWMTv3929oqTuUQlTcF9yNH3PP
+	LpFnAr0fdtip9H4kfYAP5lqabyFOg4JT2tLSTA45puVUY9qByp/3JfyoZDTNDDAPAg2hJNj6m/e
+	OWsUCz3dwx8LeaIwtxE08dySJCgs0XIedqwdi7CABZbM3eBGi0YM5VPUawS27zRXAbOFjHg6yUN
+	GUk6yKeww83KQs2j9DC314DvgqNfcVa30qZt3J5/NM2HcfPUWGkCCarQvPP4PE3F1pFruEBNapU
+	Na4Jni/Z2iohVmgQOtodlP0iHwuOAbQ34199kU12T0vzddIWwbFAwgcvu1l2pfi/lUd4Pm4lJqV
+	XzqidZV7AUVJvxx+sE0QrCET5qDb/+CXNvkfFp3o0m1ZAHKnT/Aw=
+X-Received: by 2002:a05:6a00:21d4:b0:823:64e:9e52 with SMTP id d2e1a72fcca58-829a2df475fmr7784511b3a.21.1773038070630;
+        Sun, 08 Mar 2026 23:34:30 -0700 (PDT)
+X-Received: by 2002:a05:6a00:21d4:b0:823:64e:9e52 with SMTP id d2e1a72fcca58-829a2df475fmr7784481b3a.21.1773038070103;
+        Sun, 08 Mar 2026 23:34:30 -0700 (PDT)
+Received: from [10.218.12.237] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829a48b406csm9447886b3a.53.2026.03.08.23.34.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Mar 2026 23:34:29 -0700 (PDT)
+Message-ID: <9cd46129-4cb6-47cf-b59e-454b980e01a1@oss.qualcomm.com>
+Date: Mon, 9 Mar 2026 12:04:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260302-orangepi-sd-card-uhs-v1-3-89c219973c0c@gmail.com>
-X-Rspamd-Queue-Id: 9B35623441A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/8] thermal: Add Remote Proc cooling driver
+To: Daniel Lezcano <daniel.lezcano@oss.qualcomm.com>
+Cc: andersson@kernel.org, mathieu.poirier@linaro.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, rui.zhang@intel.com,
+        lukasz.luba@arm.com, konradybcio@kernel.org, mani@kernel.org,
+        casey.connolly@linaro.org, amit.kucheria@oss.qualcomm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        manaf.pallikunhi@oss.qualcomm.com
+References: <20260127155722.2797783-1-gaurav.kohli@oss.qualcomm.com>
+ <20260127155722.2797783-2-gaurav.kohli@oss.qualcomm.com>
+ <aaqcE5jk-JCoBVG7@mai.linaro.org>
+Content-Language: en-US
+From: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+In-Reply-To: <aaqcE5jk-JCoBVG7@mai.linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDA1OSBTYWx0ZWRfX/LcO0Uhm2+fk
+ LMdGjcjc+Xl2dViOBoqoYN5RAc0BPWd8RgSFQZV2RrtO40gPihYtRTBB2dxtWqNSuwJmenXbZDn
+ u/ORV2rWgHq66QHrbhS7/V28R3LchXqeDjkFa54z5G36XtMBG+aojzhIBqHUp7kfajlAcJ3BbcD
+ lg6wNI3N+5mqqCYTsUaC35S/5MqMidNnvR+rjPOWmdPLp2xwA0GWbxrJfFbmzTyUUK3R1uAFp9J
+ jb1XhSzQyLz0XlLN9tW/w9QoQ2dJcVeDafoT43qDyFrFBu4TvaKtAuXjmMTCVwy/fV/2/DThunH
+ EGxwBPUikVSG46Z+LEAM2Qy72Ulji8P4QluGl9LjMj3YCExfEMCLVzxULN7KRWtUQg96K+97QLG
+ 9Hu9F4DO80ejC1dcQqYfMVeYGqSc3TdmWifDSfOfnE9cVfjiZUkMHLDdToZBG1gl8MT7Re0Ilqw
+ ZKXz/CsxSTVm5v485CQ==
+X-Authority-Analysis: v=2.4 cv=QJtlhwLL c=1 sm=1 tr=0 ts=69ae69f7 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=7CQSdrXTAAAA:8 a=a4_5xkhM6FseDPdgHKsA:9
+ a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-ORIG-GUID: Certs0p4TFLFX8bNzEnHpr3Lr9Mwgr2k
+X-Proofpoint-GUID: Certs0p4TFLFX8bNzEnHpr3Lr9Mwgr2k
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_02,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 adultscore=0 spamscore=0 phishscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 bulkscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603090059
+X-Rspamd-Queue-Id: 5452D2343EB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[gentoo.org : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272694-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.721];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@gentoo.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272695-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	R_DKIM_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,arm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gaurav.kohli@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.975];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Hi IKer,
 
-On 16:13 Mon 02 Mar     , Iker Pedrosa wrote:
-> Add regulator framework support for voltage switching operations. This
-> enables proper PMIC control for UHS voltage switching between 3.3V and
-> 1.8V signaling levels.
+
+On 3/6/2026 2:49 PM, Daniel Lezcano wrote:
+> On Tue, Jan 27, 2026 at 09:27:15PM +0530, Gaurav Kohli wrote:
+>> Add a new generic driver for thermal cooling devices that control
+>> remote processors (modem, DSP, etc.) through various communication
+>> channels.
+>>
+>> This driver provides an abstraction layer between the thermal
+>> subsystem and vendor-specific remote processor communication
+>> mechanisms.
+>>
+>> Advantage of this to avoid duplicating vendor-specific logic
+>> in the thermal subsystem and make it easier for different vendors
+>> to plug in their own cooling mechanisms via callbacks.
 > 
-> - Add regulator supply parsing
-> - Implement voltage switching callback
-> - Enable mmc regulator framework integration
+> These changes add a layer on top of another existing without bringing
+> a real benefit. At the first glance, it appears to be an ops calling
+> an ops with an extra unneeded lock.
 > 
-> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
-> ---
->  drivers/mmc/host/sdhci-of-k1.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
-> index b703b78282ed8d89183c816477c149c0a565618a..c260cb89704ae7a25bec0f07831d495553405bbd 100644
-> --- a/drivers/mmc/host/sdhci-of-k1.c
-> +++ b/drivers/mmc/host/sdhci-of-k1.c
-> @@ -216,6 +216,12 @@ static void spacemit_sdhci_pre_hs400_to_hs200(struct mmc_host *mmc)
->  			       SPACEMIT_SDHC_PHY_CTRL_REG);
->  }
->  
-> +static int spacemit_sdhci_start_signal_voltage_switch(struct mmc_host *mmc,
-> +						      struct mmc_ios *ios)
-> +{
-> +	return sdhci_start_signal_voltage_switch(mmc, ios);
-> +}
-I'd suggest to implement voltage_switch() instead of start_signal_voltage_switch(),
-and put the pinctrl state switch here, which will be called by
-start_signal_voltage_switch(), see drivers/mmc/host/sdhci.c for more detail
-
-sdhci_start_signal_voltage_switch() -> voltage_switch()
-
-static const struct sdhci_ops spacemit_sdhci_ops = {
-..
-	.voltage_switch         = spacemit_sdhci_voltage_switch,
-..
-
-> +
->  static inline int spacemit_sdhci_get_clocks(struct device *dev,
->  					    struct sdhci_pltfm_host *pltfm_host)
->  {
-> @@ -291,6 +297,12 @@ static int spacemit_sdhci_probe(struct platform_device *pdev)
->  
->  	host->mmc->caps |= MMC_CAP_NEED_RSP_BUSY;
->  
-..
-> +	ret = mmc_regulator_get_supply(host->mmc);
-I think this is unnecessary which already handled in core framework, see
-spacemit_sdhci_probbe() -> sdhci_add_host() -> sdhci_setup_host()
-
-https://github.com/torvalds/linux/blob/v7.0-rc3/drivers/mmc/host/sdhci.c#L4289
-
-> +	if (ret)
-> +		dev_warn(dev, "Failed to get regulators: %d\n", ret);
-> +
-> +	host->mmc_host_ops.start_signal_voltage_switch = spacemit_sdhci_start_signal_voltage_switch;
-> +
-with above, this line can be dropped too
-
->  	ret = spacemit_sdhci_get_clocks(dev, pltfm_host);
->  	if (ret)
->  		goto err_pltfm;
-> 
-> -- 
-> 2.53.0
+> IMO, a remote proc cooling device should at least group all common
+> rproc calls found in the different SoC doing the same thing. Otherwise
+> it is not worth to add it.
 > 
 
--- 
-Yixun Lan (dlan)
+Thanks, Daniel, for the review.
+
+Since this cooling driver is only invoked after the remote processor 
+(rproc) has started, there are no additional callbacks to consolidate. 
+The only interaction remaining is the registration with the thermal 
+cooling framework.
+
+>> Suggested-by: Amit Kucheria <amit.kucheria@oss.qualcomm.com>
+>> Signed-off-by: Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+>> ---
+>>   MAINTAINERS                          |   7 ++
+>>   drivers/thermal/Kconfig              |  10 ++
+>>   drivers/thermal/Makefile             |   2 +
+>>   drivers/thermal/remoteproc_cooling.c | 143 +++++++++++++++++++++++++++
+>>   include/linux/remoteproc_cooling.h   |  52 ++++++++++
+>>   5 files changed, 214 insertions(+)
+>>   create mode 100644 drivers/thermal/remoteproc_cooling.c
+>>   create mode 100644 include/linux/remoteproc_cooling.h
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 414f44093269..5ebc7819d2cf 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -26169,6 +26169,13 @@ F:	drivers/thermal/cpufreq_cooling.c
+>>   F:	drivers/thermal/cpuidle_cooling.c
+>>   F:	include/linux/cpu_cooling.h
+>>   
+>> +THERMAL/REMOTEPROC_COOLING
+>> +M:	Gaurav Kohli <gaurav.kohli@oss.qualcomm.com>
+>> +L:	linux-pm@vger.kernel.org
+>> +S:	Supported
+>> +F:	drivers/thermal/remoteproc_cooling.c
+>> +F:	include/linux/remoteproc_cooling.h
+>> +
+>>   THERMAL/POWER_ALLOCATOR
+>>   M:	Lukasz Luba <lukasz.luba@arm.com>
+>>   L:	linux-pm@vger.kernel.org
+>> diff --git a/drivers/thermal/Kconfig b/drivers/thermal/Kconfig
+>> index b10080d61860..dfc52eed64de 100644
+>> --- a/drivers/thermal/Kconfig
+>> +++ b/drivers/thermal/Kconfig
+>> @@ -229,6 +229,16 @@ config PCIE_THERMAL
+>>   
+>>   	  If you want this support, you should say Y here.
+>>   
+>> +config REMOTEPROC_THERMAL
+>> +	tristate "Remote processor cooling support"
+>> +	help
+>> +	  This implements a generic cooling mechanism for remote processors
+>> +	  (modem, DSP, etc.) that allows vendor-specific implementations to
+>> +	  register thermal cooling devices and provide callbacks for thermal
+>> +	  mitigation.
+>> +
+>> +	  If you want this support, you should say Y here.
+>> +
+>>   config THERMAL_EMULATION
+>>   	bool "Thermal emulation mode support"
+>>   	help
+>> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+>> index bb21e7ea7fc6..ae747dde54fe 100644
+>> --- a/drivers/thermal/Makefile
+>> +++ b/drivers/thermal/Makefile
+>> @@ -34,6 +34,8 @@ thermal_sys-$(CONFIG_DEVFREQ_THERMAL) += devfreq_cooling.o
+>>   
+>>   thermal_sys-$(CONFIG_PCIE_THERMAL) += pcie_cooling.o
+>>   
+>> +thermal_sys-$(CONFIG_REMOTEPROC_THERMAL) += remoteproc_cooling.o
+>> +
+>>   obj-$(CONFIG_K3_THERMAL)	+= k3_bandgap.o k3_j72xx_bandgap.o
+>>   # platform thermal drivers
+>>   obj-y				+= broadcom/
+>> diff --git a/drivers/thermal/remoteproc_cooling.c b/drivers/thermal/remoteproc_cooling.c
+>> new file mode 100644
+>> index 000000000000..f958efa691b3
+>> --- /dev/null
+>> +++ b/drivers/thermal/remoteproc_cooling.c
+>> @@ -0,0 +1,143 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Remote Processor Cooling Device
+>> + *
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+>> +
+>> +#include <linux/err.h>
+>> +#include <linux/export.h>
+>> +#include <linux/module.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/of.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/thermal.h>
+>> +
+>> +#define REMOTEPROC_PREFIX		"rproc_"
+>> +
+>> +struct remoteproc_cooling_ops {
+>> +	int (*get_max_level)(void *devdata, unsigned long *level);
+>> +	int (*get_cur_level)(void *devdata, unsigned long *level);
+>> +	int (*set_cur_level)(void *devdata, unsigned long level);
+>> +};
+>> +
+>> +/**
+>> + * struct remoteproc_cdev - Remote processor cooling device
+>> + * @cdev: Thermal cooling device handle
+>> + * @ops: Vendor-specific operation callbacks
+>> + * @devdata: Private data for vendor implementation
+>> + * @np: Device tree node associated with this cooling device
+>> + * @lock: Mutex to protect cooling device operations
+>> + */
+>> +struct remoteproc_cdev {
+>> +	struct thermal_cooling_device *cdev;
+>> +	const struct remoteproc_cooling_ops *ops;
+>> +	void *devdata;
+>> +	struct mutex lock;
+>> +};
+>> +
+>> +/* Thermal cooling device callbacks */
+>> +
+>> +static int remoteproc_get_max_state(struct thermal_cooling_device *cdev,
+>> +				    unsigned long *state)
+>> +{
+>> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+>> +	int ret;
+>> +
+>> +	mutex_lock(&rproc_cdev->lock);
+>> +	ret = rproc_cdev->ops->get_max_level(rproc_cdev->devdata, state);
+>> +	mutex_unlock(&rproc_cdev->lock);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int remoteproc_get_cur_state(struct thermal_cooling_device *cdev,
+>> +				    unsigned long *state)
+>> +{
+>> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+>> +	int ret;
+>> +
+>> +	mutex_lock(&rproc_cdev->lock);
+>> +	ret = rproc_cdev->ops->get_cur_level(rproc_cdev->devdata, state);
+>> +	mutex_unlock(&rproc_cdev->lock);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int remoteproc_set_cur_state(struct thermal_cooling_device *cdev,
+>> +				    unsigned long state)
+>> +{
+>> +	struct remoteproc_cdev *rproc_cdev = cdev->devdata;
+>> +	int ret;
+>> +
+>> +	mutex_lock(&rproc_cdev->lock);
+>> +	ret = rproc_cdev->ops->set_cur_level(rproc_cdev->devdata, state);
+>> +	mutex_unlock(&rproc_cdev->lock);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static const struct thermal_cooling_device_ops remoteproc_cooling_ops = {
+>> +	.get_max_state = remoteproc_get_max_state,
+>> +	.get_cur_state = remoteproc_get_cur_state,
+>> +	.set_cur_state = remoteproc_set_cur_state,
+>> +};
+>> +
+>> +struct remoteproc_cdev *
+>> +remoteproc_cooling_register(struct device_node *np,
+>> +			    const char *name, const struct remoteproc_cooling_ops *ops,
+>> +			     void *devdata)
+>> +{
+>> +	struct remoteproc_cdev *rproc_cdev;
+>> +	struct thermal_cooling_device *cdev;
+>> +	int ret;
+>> +
+>> +	if (!name || !ops)
+>> +		return ERR_PTR(-EINVAL);
+>> +
+>> +	rproc_cdev = kzalloc(sizeof(*rproc_cdev), GFP_KERNEL);
+>> +	if (!rproc_cdev)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	rproc_cdev->ops = ops;
+>> +	rproc_cdev->devdata = devdata;
+>> +	mutex_init(&rproc_cdev->lock);
+>> +
+>> +	char *rproc_name __free(kfree) =
+>> +		kasprintf(GFP_KERNEL, REMOTEPROC_PREFIX "%s", name);
+>> +	/* Register with thermal framework */
+>> +	if (np)
+>> +		cdev = thermal_of_cooling_device_register(np, rproc_name, rproc_cdev,
+>> +							  &remoteproc_cooling_ops);
+>> +	else
+>> +		cdev = thermal_cooling_device_register(rproc_name, rproc_cdev,
+>> +						       &remoteproc_cooling_ops);
+>> +
+>> +	if (IS_ERR(cdev)) {
+>> +		ret = PTR_ERR(cdev);
+>> +		goto free_rproc_cdev;
+>> +	}
+>> +
+>> +	rproc_cdev->cdev = cdev;
+>> +
+>> +	return rproc_cdev;
+>> +
+>> +free_rproc_cdev:
+>> +	kfree(rproc_cdev);
+>> +	return ERR_PTR(ret);
+>> +}
+>> +EXPORT_SYMBOL_GPL(remoteproc_cooling_register);
+>> +
+>> +void remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev)
+>> +{
+>> +	if (!rproc_cdev)
+>> +		return;
+>> +
+>> +	thermal_cooling_device_unregister(rproc_cdev->cdev);
+>> +	mutex_destroy(&rproc_cdev->lock);
+>> +	kfree(rproc_cdev);
+>> +}
+>> +EXPORT_SYMBOL_GPL(remoteproc_cooling_unregister);
+>> +
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_DESCRIPTION("Remote Processor Cooling Device");
+>> diff --git a/include/linux/remoteproc_cooling.h b/include/linux/remoteproc_cooling.h
+>> new file mode 100644
+>> index 000000000000..721912d1a5ec
+>> --- /dev/null
+>> +++ b/include/linux/remoteproc_cooling.h
+>> @@ -0,0 +1,52 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * Remote Processor Cooling Device
+>> + *
+>> + * Copyright (c) 2025, Qualcomm Innovation Center
+>> + */
+>> +
+>> +#ifndef __REMOTEPROC_COOLING_H__
+>> +#define __REMOTEPROC_COOLING_H__
+>> +
+>> +#include <linux/thermal.h>
+>> +
+>> +struct device;
+>> +struct device_node;
+>> +
+>> +struct remoteproc_cooling_ops {
+>> +	int (*get_max_level)(void *devdata, unsigned long *level);
+>> +	int (*get_cur_level)(void *devdata, unsigned long *level);
+>> +	int (*set_cur_level)(void *devdata, unsigned long level);
+>> +};
+>> +
+>> +struct remoteproc_cdev;
+>> +
+>> +#ifdef CONFIG_REMOTEPROC_THERMAL
+>> +
+>> +struct remoteproc_cdev *
+>> +remoteproc_cooling_register(struct device_node *np,
+>> +			    const char *name,
+>> +			     const struct remoteproc_cooling_ops *ops,
+>> +			     void *devdata);
+>> +
+>> +void remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev);
+>> +
+>> +#else /* !CONFIG_REMOTEPROC_THERMAL */
+>> +
+>> +static inline struct remoteproc_cdev *
+>> +remoteproc_cooling_register(struct device_node *np,
+>> +			    const char *name,
+>> +			     const struct remoteproc_cooling_ops *ops,
+>> +			     void *devdata)
+>> +{
+>> +	return ERR_PTR(-EINVAL);
+>> +}
+>> +
+>> +static inline void
+>> +remoteproc_cooling_unregister(struct remoteproc_cdev *rproc_cdev)
+>> +{
+>> +}
+>> +
+>> +#endif /* CONFIG_REMOTEPROC_THERMAL */
+>> +
+>> +#endif /* __REMOTEPROC_COOLING_H__ */
+>> -- 
+>> 2.34.1
+>>
+> 
+
 
