@@ -1,300 +1,169 @@
-Return-Path: <devicetree+bounces-273136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OD96J5g7r2kPQQIAu9opvQ
-	(envelope-from <devicetree+bounces-273136-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:28:56 +0100
+	id MIrIJ9A7r2kPQQIAu9opvQ
+	(envelope-from <devicetree+bounces-273137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:29:52 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13FC241AD2
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:28:55 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 037E0241AF8
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:29:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF68530C5807
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 21:25:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 862D03112049
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 21:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D61C346AE5;
-	Mon,  9 Mar 2026 21:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27B643612FB;
+	Mon,  9 Mar 2026 21:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m65ga86f"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="KCJkrSX2";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="MC0VjuVv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9548186E2E;
-	Mon,  9 Mar 2026 21:25:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFA7134D4CC;
+	Mon,  9 Mar 2026 21:25:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773091518; cv=none; b=H99PlmR9UaupVw1rm5Z98lZxRULRi8pMZqG4NvQYfjkgdl4RAlXRPAyUtk8UaRzEgEa1NMP1hlx5rQvj1rufp/pCIiIruVo2OmbVFbLm0sRpGaKBqBmGDz1YrcMjWhaH2Nu0Sa8uSuj6RYOy1qX/WuagRu9tJMLu0aHaIy0Y5Zg=
+	t=1773091529; cv=none; b=HHoPR+BmY/Fd3itG+Yci/YdExWcBCGQRqV75vgLJwTafERf5DRkM0EIo/oMT7jao/PiJZ6uG9RkxmPK4Vpa6aQ8uRSGcJaYI3ryktmHDmcDLhgDMW6sosY+m9074cWO379FuRn2qczEeMRjECstNYC3qAf7G6dEfe583OtJcSJM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773091518; c=relaxed/simple;
-	bh=ujQK643kLxI8ypozZ6kgFDr24kkA0/c25uQkwkV05tE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Kw9R+HruHdtxnoDnDz3OXUPNiYqJMsw4hyjxEEmFLwkRk8aDPWV/JOYNtoVYdWwuhWm64t9e8ShB33qTq1mCdp1eBAIN+eEJQ4d0nMchKbXTllXSSsz8mCVW5BEz1CVzglGRiSNUT8XEMsvzxtGojQqmjl4XiDzL1v6p1JLI9Oc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m65ga86f; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=oVHmmg5PbGhBJcH1DiEgCgltbKf4t8SXuZF/r8goSLw=; b=m65ga86fwWwLPFyKsNOsIcX0n5
-	t+hFSKHitbRnnM6HTltcGkOw/tM+icOJ6Po2iUWNNoMiJy7a7u9GvU+ZLT4CbtQ+QmzRISrhVkYzh
-	cQUak1ZcIUurAZjCLi4UO0smzo1imi2Ysvh7okKiSYqWTtGPpv+8yHWpsPWHuuieDuCO75OyKuHvz
-	DjrRpGK2Pp1QNKhrQVJeKkstBhNDvU/Rw0wPiS/sDuXiraKj1nOI0eE+ovUGNXPsnWjN7qtXi8EdK
-	/oH4O1VDXio5inTRlf0oHSGLGY+jUWpVOtYVGr0BGnBIW1yQQKz1UMNJeiXOCIUocG6Kmbv/tNul7
-	KHMXW2IQ==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: jonas@kwiboo.se, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Fabio Estevam <festevam@nabladev.com>
-Subject: Re: [PATCH v5 2/4] ARM: dts: rockchip: Add support for RV1103B
-Date: Mon, 09 Mar 2026 22:24:52 +0100
-Message-ID: <47923648.fMDQidcC6G@phil>
-In-Reply-To: <20260216010219.2131484-2-festevam@gmail.com>
-References:
- <20260216010219.2131484-1-festevam@gmail.com>
- <20260216010219.2131484-2-festevam@gmail.com>
+	s=arc-20240116; t=1773091529; c=relaxed/simple;
+	bh=MfTYYsBjuYjwkubIxnClz67/wJMFbeq5ZhlkbIa404g=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=gwlDQeMfbvtTe6jkc+DkwaQT2yIZGfWSH1LwEhuE8/mNKs3+j6tlueNPxgYGKgNQNnERQ9WHLeD2uaClzMpK57HXhc//e+JFrEGUP/TfQI78KKUtICHUvct+wZgOX+ygy0NSkB7L/lYNm6aZ6R7uUxI+3YkT8QEaOkm1F5pXr0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=KCJkrSX2; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=MC0VjuVv; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1773091523; bh=6DwB0wP6j6EuiclIrWzl5Cb
+	Ue7lYN55AgnaxEuuWBN4=; b=KCJkrSX2asQFXOJfZnCTShLc4V/2vfDYxBLkWsAosIyZsE15/2
+	pRi/NOOPd0z5hVPkB7O3gjij0fV67z+NNTjthtOKwawhW66XOtUxCs418O5hinXol8xqBdSFJAO
+	wc1sHBAOx+g3D8YbqXypWrL+4Do4spprsuh3jt/2LanxMpCBc3uXoQBtcJCwhwmFG/BASJpGno2
+	xuiHVj6R2v8c4JcSpd1QFehx9Xedn2yCiSuXq/SgiBCUg0BrgeKc8Uc0HYokYKIdewuon/Foiuj
+	jVp9UeOty5KtgUA/i3+92fcNxh7Va2/2FT+A0GnH8ZPT+R9D5BXcZlCNIqKEIpZ6rhw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1773091523; bh=6DwB0wP6j6EuiclIrWzl5Cb
+	Ue7lYN55AgnaxEuuWBN4=; b=MC0VjuVvtKDdztyQCQzxu3f+7vOGsGUIFEnwhzXPX7A3/EVnMu
+	nuCzB7Fng46Qx9clMAtqh8AWynwMQN5zvDCQ==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: F13FC241AD2
+Date: Mon, 09 Mar 2026 22:25:23 +0100
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: Add Redmi 4A
+In-Reply-To: <098cf81c-d3a4-4591-948f-0517b0430343@oss.qualcomm.com>
+References: <20260305-riva-common-v1-0-436f1f4b7399@mainlining.org>
+ <20260305-riva-common-v1-3-436f1f4b7399@mainlining.org>
+ <098cf81c-d3a4-4591-948f-0517b0430343@oss.qualcomm.com>
+Message-ID: <d17c54c18af7734fbf218af399efa8ea@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 037E0241AF8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273136-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273137-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[1.62.115.112:email,0.0.0.0:email];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[mainlining.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NO_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[1.57.28.64:email,1.49.45.0:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,1.61.254.64:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:dkim,mainlining.org:email,mainlining.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,5d:email,0.0.0.38:email]
 X-Rspamd-Action: no action
 
-Am Montag, 16. Februar 2026, 02:02:17 Mitteleurop=C3=A4ische Normalzeit sch=
-rieb Fabio Estevam:
-> From: Fabio Estevam <festevam@nabladev.com>
->=20
-> Add the initial RV1103B devicetree.
->=20
-> Based on the 5.10 Rockchip vendor kernel.
->=20
-> Signed-off-by: Fabio Estevam <festevam@nabladev.com>
-> ---
-> The <dt-bindings/clock/rockchip,rv1103b-cru.h> header comes from another
-> series:
->=20
-> https://lore.kernel.org/linux-devicetree/20260210022620.172570-1-festevam=
-@gmail.com/
->=20
-> Maybe Heiko could apply the clock series as well?
->=20
-> Changes since v4:
-> - None.
->=20
->  .../boot/dts/rockchip/rv1103b-pinctrl.dtsi    | 816 ++++++++++++++++++
->  arch/arm/boot/dts/rockchip/rv1103b.dtsi       | 257 ++++++
->  2 files changed, 1073 insertions(+)
->  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b-pinctrl.dtsi
->  create mode 100644 arch/arm/boot/dts/rockchip/rv1103b.dtsi
-
-
-> diff --git a/arch/arm/boot/dts/rockchip/rv1103b.dtsi b/arch/arm/boot/dts/=
-rockchip/rv1103b.dtsi
-> new file mode 100644
-> index 000000000000..5955b249d4ce
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/rockchip/rv1103b.dtsi
-> @@ -0,0 +1,257 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2024 Rockchip Electronics Co., Ltd.
-> + */
-> +
-> +#include <dt-bindings/clock/rockchip,rv1103b-cru.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/pinctrl/rockchip.h>
-> +#include <dt-bindings/soc/rockchip,boot-mode.h>
-> +
-> +/ {
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +
-> +	compatible =3D "rockchip,rv1103b";
-> +
-> +	interrupt-parent =3D <&gic>;
-> +
-> +	arm-pmu {
-> +		compatible =3D "arm,cortex-a7-pmu";
-> +		interrupts =3D <GIC_SPI 127 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity =3D <&cpu0>;
-> +	};
-> +
-> +	xin32k: oscillator-32k {
-> +		compatible =3D "fixed-clock";
-> +		clock-frequency =3D <32768>;
-> +		clock-output-names =3D "xin32k";
-> +		#clock-cells =3D <0>;
-> +	};
-
-Please double-check where that xin32k is coming from in device-schematics.
-Yes the xin24m is normally a dedicated oscillator, but the xin32k in
-most cases is generated from the system-pmic.
-
-So please check and most likely move that to the board dts.
-
-Also, please sort node-names alphabetically (if there is no address)
-
-
-> +	xin24m: oscillator-24m {
-> +		compatible =3D "fixed-clock";
-> +		clock-frequency =3D <24000000>;
-> +		clock-output-names =3D "xin24m";
-> +		#clock-cells =3D <0>;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type =3D "cpu";
-> +			compatible =3D "arm,cortex-a7";
-> +			reg =3D <0x0>;
-> +			clocks =3D <&cru ARMCLK>;
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible =3D "arm,armv7-timer";
-> +		interrupts =3D <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HI=
-GH)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_HIGH)>;
-> +		clock-frequency =3D <24000000>;
-> +	};
-> +
-> +	pinctrl: pinctrl {
-> +		compatible =3D "rockchip,rv1103b-pinctrl";
-> +		rockchip,grf =3D <&ioc>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <1>;
-> +		ranges;
-> +
-> +		gpio0: gpio@20520000 {
-> +			compatible =3D "rockchip,gpio-bank";
-> +			reg =3D <0x20520000 0x200>;
-> +			interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&cru PCLK_PMU_GPIO0>, <&cru DBCLK_PMU_GPIO0>;
-> +			gpio-controller;
-> +			#gpio-cells =3D <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <2>;
-> +		};
-> +
-> +		gpio1: gpio@20d80000 {
-> +			compatible =3D "rockchip,gpio-bank";
-> +			reg =3D <0x20d80000 0x200>;
-> +			interrupts =3D <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&cru PCLK_GPIO1>, <&cru DBCLK_GPIO1>;
-> +			gpio-controller;
-> +			#gpio-cells =3D <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <2>;
-> +		};
-> +
-> +		gpio2: gpio@20840000 {
-> +			compatible =3D "rockchip,gpio-bank";
-> +			reg =3D <0x20840000 0x200>;
-> +			interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&cru PCLK_GPIO2>, <&cru DBCLK_GPIO2>;
-> +			gpio-controller;
-> +			#gpio-cells =3D <2>;
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <2>;
-> +		};
-> +	};
-> +
-> +	soc {
-> +		compatible =3D "simple-bus";
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <1>;
-> +		ranges;
-> +
-> +		cru: clock-controller@20000000 {
-> +			compatible =3D "rockchip,rv1103b-cru";
-> +			reg =3D <0x20000000 0x81000>;
-> +			#clock-cells =3D <1>;
-> +			#reset-cells =3D <1>;
-> +			bootph-all;
-
-I don't think we want u-boot-specific properties in mainline.
-They are normally kept in separate -u-boot.dtsi files
-
-> +		};
-
-[...]
-
-> +		uart1: serial@20870000 {
-> +			compatible =3D "rockchip,rv1103b-uart", "snps,dw-apb-uart";
-
-uart compatible, does not seem to have landed in the uart tree
-
-> +			reg =3D <0x20870000 0x100>;
-> +			interrupts =3D <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-> +			reg-shift =3D <2>;
-> +			reg-io-width =3D <4>;
-> +			clocks =3D <&cru SCLK_UART1>, <&cru PCLK_UART1>;
-> +			clock-names =3D "baudclk", "apb_pclk";
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&uart1m0_xfer>;
-> +			status =3D "disabled";
-> +		};
-
-[...]
-
-> +		wdt: watchdog@208d0000 {
-> +			compatible =3D "snps,dw-wdt";
-
-please add a new compatible to the dw-wdt watchdog binding
-
-> +			reg =3D <0x208d0000 0x100>;
-> +			clocks =3D <&cru TCLK_WDT_NS>, <&cru PCLK_WDT_NS>;
-> +			clock-names =3D "tclk", "pclk";
-> +			interrupts =3D <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> +			status =3D "disabled";
-> +		};
-> +
-
-
-Heiko
-
-
+On 2026-03-09 13:52, Konrad Dybcio wrote:
+> On 3/5/26 6:28 PM, Barnabás Czémán wrote:
+>> Redmi 4A (rolex) is like Redmi 5A with small differences like 
+>> charging,
+>> fuel gauge, different speaker codec configuration and display.
+>> 
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/Makefile                     |  1 +
+>>  .../boot/dts/qcom/msm8917-xiaomi-riva-common.dtsi     | 16 
+>> ++++++++++++++++
+>>  arch/arm64/boot/dts/qcom/msm8917-xiaomi-rolex.dts     | 19 
+>> +++++++++++++++++++
+>>  3 files changed, 36 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/Makefile 
+>> b/arch/arm64/boot/dts/qcom/Makefile
+>> index 6d87be639aac..20e161e843ed 100644
+>> --- a/arch/arm64/boot/dts/qcom/Makefile
+>> +++ b/arch/arm64/boot/dts/qcom/Makefile
+>> @@ -82,6 +82,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= 
+>> msm8916-wingtech-wt86528.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-riva.dtb
+>> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-rolex.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8937-xiaomi-land.dtb
+>>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-asus-z00t.dtb
+>> diff --git a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva-common.dtsi 
+>> b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva-common.dtsi
+>> index f0a534106e11..50868c679693 100644
+>> --- a/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva-common.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva-common.dtsi
+>> @@ -104,6 +104,22 @@ edt_ft5306: touchscreen@38 {
+>> 
+>>  		status = "disabled";
+>>  	};
+>> +
+>> +	goodix_gt911: touchscreen@5d {
+>> +		compatible = "goodix,gt911";
+>> +		reg = <0x5d>;
+>> +		interrupts-extended = <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
+>> +		irq-gpios = <&tlmm 65 GPIO_ACTIVE_HIGH>;
+>> +		reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+>> +		pinctrl-0 = <&tsp_int_rst_default>;
+>> +		pinctrl-names = "default";
+>> +		AVDD28-supply = <&pm8937_l10>;
+>> +		VDDIO-supply = <&pm8937_l5>;
+>> +		touchscreen-size-x = <720>;
+>> +		touchscreen-size-y = <1280>;
+>> +
+>> +		status = "disabled";
+>> +	};
+> 
+> I think an easier thing would be to just add a 'touchscreen' label
+> to the original one, /delete-node/ &touchscreen from rolex.dts and
+> add the new node there (seems like it's the only used) and do nothing
+> in the other two using EDT_FT5306
+There is focaltech variant from rolex, and there is goodix variant from 
+riva and tiare,
+maybe i should disable both node by default.
+> 
+> Konrad
 
