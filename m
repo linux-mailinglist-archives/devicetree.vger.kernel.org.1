@@ -1,233 +1,179 @@
-Return-Path: <devicetree+bounces-273020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273021-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QNwZATrtrmkWKQIAu9opvQ
-	(envelope-from <devicetree+bounces-273020-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:54:34 +0100
+	id 0KtnDZnurmkWKQIAu9opvQ
+	(envelope-from <devicetree+bounces-273021-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:00:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53B2E23C2CC
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:54:33 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DDA423C4F2
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:00:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E06243019F06
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:50:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 043CA3047378
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA103612ED;
-	Mon,  9 Mar 2026 15:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D523DA7D0;
+	Mon,  9 Mar 2026 15:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HNZOM4in"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="solyXFWG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47CC525A645
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:50:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437A43D904F;
+	Mon,  9 Mar 2026 15:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773071402; cv=none; b=nZHj290Up/h13KrYQfg1sBtCk3xIkDgDv8y4ane0M/kuMIOTDqC38d9iyWS3CyLyvVPRhqHROZXULxce1Y+VgK3xtAMEmTiEZBmqWxZtKzvJj+sZwmhHy+DPKt9N8tB0utkmALB9YuB1d5lxcJnpiZVqqT/YkD9HYs5xD9K8ntI=
+	t=1773071430; cv=none; b=R0JpLf1oGWazdH171u+2o6lsFrmH/o8td06ewyaRAC+bQKur6hvZd1QajOpp5BYe3O1CBJJbrWyaXSgoeat1qteKhNZGECDw2F7hDPm1Ee0b4tQFw/G9M/hp5ZK5FSpeZbGNNaJL9IWMSGEVPKUNhsaxWOcLDivAZl7KI3BEH7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773071402; c=relaxed/simple;
-	bh=jD+HjaNHgbAd33dUrOKzWmUqIYgmr2OAzta/dFxlHAU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cHI1yolvuYo6CYlt4DQmer2hdbCTNDqqizN6UhXDskekCYb8j7ZFYOcVzvVYB5RypL3VDDAUsNe0lxC0NJkBvwl9uk43hmhRe/dC1uKULtT3sYmHipBMttjORc2mSS8Xa/AaNb19ecmMH0A5jsbs8+1qoW73OEHk7P23gyVHH3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HNZOM4in; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55FE5C2BC86;
-	Mon,  9 Mar 2026 15:50:01 +0000 (UTC)
+	s=arc-20240116; t=1773071430; c=relaxed/simple;
+	bh=9OEPxMvg4IrQclqCeEwbfs/Byz88+tQZLyysbDmgGL4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jz5AYTxsauT6S7Hfkf3skgb6Ddbh2IHnyeFVzaiaE0/jcLhOxUzuOqqqA3tF2774PbgzFM5F2FJ+dfiIH1ETOq7b9EGR8Rnwi01hmBsRnqeb7JDS4h31M10+eG4dzj/07ViyhpL/MS0aSHib3xINOvCIh4IBsqHhT1E9TCfniU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=solyXFWG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47518C2BC9E;
+	Mon,  9 Mar 2026 15:50:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773071401;
-	bh=jD+HjaNHgbAd33dUrOKzWmUqIYgmr2OAzta/dFxlHAU=;
-	h=From:Date:Subject:To:Cc:From;
-	b=HNZOM4inoAoeLVAdbE04fEzIvpjZpd+dgYRhu5cr8IA8TjG4+ZUcs3mwuNI+t2Llc
-	 EY1Pl0xqk+nFlYuMjSA/ywSaJZOlybOuvRzYLRs5OAgb8a4n91yVz6412MiKhN0WY7
-	 zF9aSHBs44HZIAt3hkfReTMgBUSTTkzLG2r1bj1wiJrzQeGg75+lE+cxBPzTFwMd7c
-	 xviK4ZIsf1phFivTzPHUmxHTKUPskZHEt554VZg/Gx5TLjKb8OaxsdG9wpW5rQqNUq
-	 PsbqEXgxYnO8pEtYrLTNfZapiNH7+pei18yuI24Lvz2C53qFzidODL5ST7uh5oVDdk
-	 2QsilGm7dr/OA==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Mon, 09 Mar 2026 16:49:49 +0100
-Subject: [PATCH] arm64: dts: airoha: en7581: Add thermal node to to EN7581
- SoC
+	s=k20201202; t=1773071429;
+	bh=9OEPxMvg4IrQclqCeEwbfs/Byz88+tQZLyysbDmgGL4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=solyXFWGvXM3hf6VyfbS/rcmIthCFMmnY+wu/fWBWBOvvSWTFU4x/x8GyoqnEJJ4D
+	 5o7FgKfnBo4UNvRY/DoFPy0WkklX7anxFQZxsZmeNSoWafTcysEMFhQ2gpP6WHyvvD
+	 4PIvb5SU8nG4z1lzXE+lDdoCRv0XWtcZNVy7D0KLzVfHHDdetXOb+aksKhh0XruG/A
+	 Y14MzzIoQT+mSjLR07/ZQdUqK3w7fZmunXKFj0b0du4bjcFX10WThYV3a39NRt+mae
+	 rLNQdROHp0ezxOYjExFVDHzu2hzdY/hb1k72NEw2DShRlgoTXfINGMVWIwtZ9HYvBE
+	 gO2PzPS10R1Lg==
+Message-ID: <82b23341-d0ac-4b44-b50d-ad0eb5509974@kernel.org>
+Date: Mon, 9 Mar 2026 16:50:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/7] dt-bindings: arm: qcom: add Arduino Monza, VENTUNOQ
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: richardcochran@gmail.com, geert+renesas@glider.be, arnd@arndb.de,
+ dmitry.baryshkov@oss.qualcomm.com, ebiggers@kernel.org,
+ michal.simek@amd.com, luca.weiss@fairphone.com, sven@kernel.org,
+ prabhakar.mahadev-lad.rj@bp.renesas.com, kuninori.morimoto.gx@renesas.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org, m.facchin@arduino.cc,
+ r.mereu@arduino.cc, loic.poulain@oss.qualcomm.com
+References: <20260309152420.1404349-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20260309152420.1404349-4-srinivas.kandagatla@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260309152420.1404349-4-srinivas.kandagatla@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-airoha-7581-thermal-zones-v1-1-f9b543981022@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MwQqDMAyA4VeRnBeIDq36KsNDsJkNaCupyJj47
- is7fof/vyCLqWQYqwtMTs2aYkH9qGAOHBdB9cXQUNPRkwZktRQYXdvXeASxjVf8pigZO6LWucH
- z7BlKv5u89fN/v6b7/gGVZRW3awAAAA==
-X-Change-ID: 20260309-airoha-7581-thermal-zones-6005779dacda
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
-X-Rspamd-Queue-Id: 53B2E23C2CC
+X-Rspamd-Queue-Id: 9DDA423C4F2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273020-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273021-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,glider.be,arndb.de,oss.qualcomm.com,kernel.org,amd.com,fairphone.com,bp.renesas.com,renesas.com,vger.kernel.org,arduino.cc];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email];
+	NEURAL_HAM(-0.00)[-0.986];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.972];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,0.0.0.2:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Introduce thermal controller node to EN7581 SoC.
-Define thermal-zones and related cpu trips and cooling-maps.
+On 09/03/2026 16:24, Srinivas Kandagatla wrote:
+> From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> 
+> Document Arduino monza, VENTUNOQ codename. It combines Monaco
+> based SoM with STMicroelectronics STM32H5 microcontroller.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/boot/dts/airoha/en7581.dtsi | 52 ++++++++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+I wonder how two people were developing simple one compatible change and...
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index ff6908a76e8eb6cf91343495d1fe531a868e41fb..092c8ab0f4322552495dbe00b9e41e087876817e 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -4,6 +4,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/en7523-clk.h>
- #include <dt-bindings/reset/airoha,en7581-reset.h>
-+#include <dt-bindings/thermal/thermal.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-@@ -74,6 +75,7 @@ cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0>;
-+			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			clock-frequency = <80000000>;
- 			next-level-cache = <&l2>;
-@@ -83,6 +85,7 @@ cpu1: cpu@1 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0x1>;
-+			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			clock-frequency = <80000000>;
- 			next-level-cache = <&l2>;
-@@ -92,6 +95,7 @@ cpu2: cpu@2 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0x2>;
-+			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			clock-frequency = <80000000>;
- 			next-level-cache = <&l2>;
-@@ -101,6 +105,7 @@ cpu3: cpu@3 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a53";
- 			reg = <0x3>;
-+			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			clock-frequency = <80000000>;
- 			next-level-cache = <&l2>;
-@@ -124,6 +129,39 @@ timer {
- 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
- 	};
- 
-+	thermal-zones {
-+		cpu_thermal: cpu-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+
-+			thermal-sensors = <&thermal 0>;
-+
-+			trips {
-+				cpu_hot: cpu-hot {
-+					temperature = <95000>;
-+					hysteresis = <1000>;
-+					type = "hot";
-+				};
-+
-+				cpu-critical {
-+					temperature = <120000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map0 {
-+					trip = <&cpu_hot>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
-+	};
-+
- 	clk20m: clock-20000000 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -173,6 +211,11 @@ spi_nand: nand@0 {
- 			};
- 		};
- 
-+		chip_scu: syscon@1fa20000 {
-+			compatible = "airoha,en7581-chip-scu", "syscon";
-+			reg = <0x0 0x1fa20000 0x0 0x388>;
-+		};
-+
- 		scuclk: clock-controller@1fb00000 {
- 			compatible = "airoha,en7581-scu";
- 			reg = <0x0 0x1fb00000 0x0 0x970>;
-@@ -300,6 +343,15 @@ rng@1faa1000 {
- 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		thermal: thermal-sensor@1efbd000 {
-+			compatible = "airoha,en7581-thermal";
-+			reg = <0x0 0x1efbd000 0x0 0xd5c>;
-+			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
-+			airoha,chip-scu = <&chip_scu>;
-+
-+			#thermal-sensor-cells = <0>;
-+		};
-+
- 		system-controller@1fbf0200 {
- 			compatible = "airoha,en7581-gpio-sysctl", "syscon",
- 				     "simple-mfd";
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 153664da91d9..2edef7e86175 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -890,6 +890,7 @@ properties:
+>            - enum:
+>                - qcom,monaco-evk
+>                - qcom,qcs8300-ride
+> +              - arduino,monza
 
----
-base-commit: 405c09548a695ca7be58b5b9d3ac8388630e907f
-change-id: 20260309-airoha-7581-thermal-zones-6005779dacda
+... still place it in wrong order.
 
 Best regards,
--- 
-Lorenzo Bianconi <lorenzo@kernel.org>
-
+Krzysztof
 
