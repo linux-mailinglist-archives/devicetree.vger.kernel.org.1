@@ -1,310 +1,230 @@
-Return-Path: <devicetree+bounces-272922-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272923-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +CLbNo/CrmmRIgIAu9opvQ
-	(envelope-from <devicetree+bounces-272922-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:52:31 +0100
+	id yLT7GDPDrmmRIgIAu9opvQ
+	(envelope-from <devicetree+bounces-272923-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:55:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EE28239327
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:52:30 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 651C02393E0
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:55:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 294F93011F01
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:47:38 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2B1373013FE4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E5A53B961C;
-	Mon,  9 Mar 2026 12:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB843BD622;
+	Mon,  9 Mar 2026 12:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="el/ScjM4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RR7gO9C1";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="NyfEUEOm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7743750D7
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 12:47:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B892B3B9610
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 12:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773060457; cv=none; b=aIFxYuTK6SZnjc3SdIKCWbcRlk1C4U9IbvwLEE6ZfT4UZfq+FpIBS1dYCeAjkKYDlTD8hY7/2/pxVQpFYhxckb+1SDAvFbWHS+nb55eIQCcWUyiI/kObrNsHuCzhO1UjeoxlPdth3Y7B9pypu8peTpO3mJVmV/4htKdZ0uW2jjs=
+	t=1773060532; cv=none; b=UqWfqYzmhYuVkNyxHpprfWetjPKIQGFu/pGEgzvSW/LpV3kqljuBU9HoiAfhdto6YRig5YSpWkqDj/on9tNMH+/BcwkXXb56DAXjmmt+3xf0SPCp71mcfpDJhOKGGCCIWhs9Sa8xdMl7fceSbXaF4TjRsw+7ou6NbNc6jTC198I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773060457; c=relaxed/simple;
-	bh=nEAiOJiRoBRADi1pbzdHOoZOqFIoLJRvwG35ofZSO8s=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=TmbyxLXs4qE/AEhXc1fEADtWRSVtV+LdnPp4HcVAGNC/TRai5XFuxghrTlMY395sALiYO4twmsfdJmUX9dQ7iAMidG/DRW3VFWNldIs37XDlWK++A+CDL4dXNIcSY0J7ZmMiUN8yX9oRjRXwHpIaPkN8J8EJvYMNjP+qAm/eO1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=el/ScjM4; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 03B721A2DAB;
-	Mon,  9 Mar 2026 12:47:33 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C9B875FFB8;
-	Mon,  9 Mar 2026 12:47:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 09B6810369B97;
-	Mon,  9 Mar 2026 13:47:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773060451; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=wCTUnhuxvulHzW4p0uUdfASMjS854LLOHF+KryEvCLg=;
-	b=el/ScjM4Ue552Q5u0YpglfOiNwlnWqvRvgPZRn0f2Rw9gC2K6miO3fjP58Kezv524ydiSu
-	TnJe8U2jt+A1EJ6DB1yTs7y0A6UQYZvTUFLzohffbj2jx9dbDYRqYRIm/DKsAlA08WUE5o
-	h+sY8NUKOa8F7OPKU7GdMADmAbHvAOWT3Xycjjt/+QEJcuQ8UijP4u56/6n693iG274Qyw
-	TW2fwFCVxVMyU/LU5PH1DEo0plMmeu9xMuFSnZIDm/fLs/dYFW8oWIDiOD5qWXRnYonHxk
-	qlKDmbIRISO2L4epJFOCo80mqRQNmcnKOiRv5ruerLteKpajtRCpOmq8Cv4YXQ==
+	s=arc-20240116; t=1773060532; c=relaxed/simple;
+	bh=Y5kd0BpVqlM3kkl09x425U0/UWww+tmz8d+mKoGJP2w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GWYSOfrv0GZtPpNMF8pe03YQY/A6pGM2bIKjEZ2qDApUTdtl+qyd/lRcaeFHYTfiJAfxjD0j04hRLN7zNg1XI9ETHaSYbs+WNQ477F39EG6drV0wPzSCCGPRN3Klbd7ZSlm+acFTuiybxwAdh/KDH9SGEqAG9ljBrqik/evc3q8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RR7gO9C1; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=NyfEUEOm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62989mQW3465974
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 12:48:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9IvbB7hdB4ddrbj6m6ZCuupWLpqGAij/RgQK3K9jqHU=; b=RR7gO9C1UxWSXaFR
+	NAKcDKJQ1KWvHwAQlLb6NXol4BL17Tosfg7DEs5npERBmv1Y7W+8OxKGkr53JPw7
+	/4qkMd7doFi1a7QP3q0gvpcMVPRHFbMQui8fqyGqjgZjxsg0k8fbl3FBHE+YkFq6
+	AkLhYzgDAKchg2tXXkLPlFE0WbsAgCSC8b+iPp6hCrQfO6kXGYL9fNpOpv1JYAVj
+	9fX62gCxcBTkaWtRlhsw3Y6cNYkEaaNmWDt7VLAGcRtbPa/Ovh8vIzcH/EXYc1VD
+	huAbErWGJ4C4qUz0NhVDYN9KTpL4oMWEv3Mmavc0cFxxuIm+bnrCeFxkZq8t4ha0
+	t93z/g==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4crcd8dc2c-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 12:48:50 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cd84cfae34so50752485a.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 05:48:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773060530; x=1773665330; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9IvbB7hdB4ddrbj6m6ZCuupWLpqGAij/RgQK3K9jqHU=;
+        b=NyfEUEOmpy3jXUsTCZ3QQK+hGtfDmABIC38xYiCyqgVb0SBOgJRiouFj/qTYvBx5q0
+         BzML/F+dyOaqPYCjTKXP2uq5qIvqHPEDTp9C53WPSE55QxhlJRL81tJAj38XR7+q5/6o
+         FN3MwxH2WMoxwvftmA87e5js9cGNWfPQzAoeirVz7Z4XQJEe60U4zKbVsRK06tAYACgl
+         QwZJG0qhmMr7inGnhHgvxvfugqFEIq08hITbBOG5uCuU71GBswJIglysZzxwSXcdIawD
+         1szuY5DMQBcmX2j57M642IDS77bz5BJLQ6qAyIyUkJ1rWKpoCalyQDoZlU0/Mi5w8UT8
+         f/5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773060530; x=1773665330;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9IvbB7hdB4ddrbj6m6ZCuupWLpqGAij/RgQK3K9jqHU=;
+        b=np9Lsxds/4akpF+AJdWEkSLHmlxwWu7tHzLpbQW4m8Klo9PVLRflcH3OY2I1M9qsPy
+         Zcc7gSW+TmOPh5bbVGLYyuPD+0L63xaB6rGwUXrFJ5wszWzhS3Rca7B/bgYi72zTyFbE
+         iJiC2Gnx+GzyTx+/4pbsjrsmAVvHiCUV78JCQfWI7oHkfh7hknFp96Wxgk+n1ZXWdrnb
+         YCLSO0WJE3wJ5XlD9mEOtLVaIwxXhqAWh4xrvlltTWr+m42tF0hD2h5hAaGun3cq24lH
+         qovdg7tW6OVk3ccVMyNuPZpVsI7c9aNTT3RswixzbiTAsv1obHbUB6blHaZ0z5LaQOfl
+         Gf2g==
+X-Forwarded-Encrypted: i=1; AJvYcCXowj96gVHpDQT7SRUbW3deP1XyO+kFKB/Ffu01gR/b2E4Xg2dKiOz/wyRyV/pGE7fj8kDv5P3YM/lG@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJ3YUbhzLkastgvEgitLfKwmJ7K5446794CtfHEdGjXzH/HOsd
+	YpMjUYpXYxPpWs3lkO5Cp1AtZAGZh/ap0ncv0/pyNAAbKzcz8iuSExykUw1du5dBpJhLmuSQTc9
+	CYBF78K4OpxxObI+ygUJAhQslsVRjPDjiyTG2Fswoq86fy9xKyjX14EQxqUCXrC7p
+X-Gm-Gg: ATEYQzwaUw2IRqsCpF3UOpltm1Bh0tIHAk1/193RNtcAEYN9hQRXWrE1htUz9XYnRk/
+	KrPJegOGtYgQdYINgQygeALVQ4nwJ/X1Ez+LtexAwU0WSHmfRWPNwgbpNQcU0AcFbWACgJikH4Y
+	FCGLHjAL0+KCxckGsKMUD6c+UowpnPyKmlMWhBxGvUlkO91lcRETN/vulO/kDXGA+qHHPDyeC9D
+	VGrnyI8rwB2vpK+b/sjqGYqowq8+GZNOUEU5S0MGtWyvY0WVpq81ls9fiNIKdrWxS5AuWayJ01H
+	UMOsEzlB0bUNY+ir0/LmEX0DaHk5QWMq7s8WOK0YKSBWT9fmyPVbxGdjm98HBF2gHbYs4U4f3Mb
+	v+W1rbIWcKCPz320fwEKUHHU+N2t058BObpg5UdicZ8eowswkTJw9MA2LzuyHU/SKCLFvgPiow2
+	zZzxQ=
+X-Received: by 2002:a05:620a:319d:b0:8b2:fe27:d2ff with SMTP id af79cd13be357-8cd6d464fb0mr1107813185a.8.1773060530109;
+        Mon, 09 Mar 2026 05:48:50 -0700 (PDT)
+X-Received: by 2002:a05:620a:319d:b0:8b2:fe27:d2ff with SMTP id af79cd13be357-8cd6d464fb0mr1107810485a.8.1773060529690;
+        Mon, 09 Mar 2026 05:48:49 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b970e8ac4f1sm2521266b.29.2026.03.09.05.48.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Mar 2026 05:48:48 -0700 (PDT)
+Message-ID: <2d3da923-b39e-4340-97a2-bf93198540a4@oss.qualcomm.com>
+Date: Mon, 9 Mar 2026 13:48:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: qcom,ipa: document qcm2290
+ compatible
+To: =?UTF-8?Q?Wojciech_Sle=C5=84ska?= <wojciech.slenska@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Andrew Lunn
+ <andrew+netdev@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Alex Elder <elder@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org
+References: <20241220073540.37631-1-wojciech.slenska@gmail.com>
+ <20241220073540.37631-2-wojciech.slenska@gmail.com>
+ <5bba973b-73fd-4e54-a7c9-6166ab7ed1f0@kernel.org>
+ <939f55e9-3626-4643-ab3b-53557d1dc5a9@oss.qualcomm.com>
+ <CAMYPSMr2JCQCX69PGUk1=7=-YfBcyFDpqQ6tMQzFP040srBA7w@mail.gmail.com>
+ <f141a098-efca-46f1-bc1a-433ff03915ca@oss.qualcomm.com>
+ <CAMYPSMr=2WUvjh9+ZDRkgqq6B3=MB9xmwp4NkKnWpdnNiNXf6A@mail.gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CAMYPSMr=2WUvjh9+ZDRkgqq6B3=MB9xmwp4NkKnWpdnNiNXf6A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 09 Mar 2026 13:47:18 +0100
-Message-Id: <DGY9GWWLXGNX.265MMEXXCG8YA@bootlin.com>
-Subject: Re: [PATCH v7 3/8] drm: verisilicon: add a driver for Verisilicon
- display controllers
-Cc: "Philipp Zabel" <p.zabel@pengutronix.de>, "Dmitry Baryshkov"
- <lumag@kernel.org>, "Michal Wilczynski" <m.wilczynski@samsung.com>, "Han
- Gao" <gaohan@iscas.ac.cn>, "Yao Zi" <ziyao@disroot.org>,
- <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>, "Icenowy
- Zheng" <uwu@icenowy.me>
-To: "Icenowy Zheng" <zhengxingda@iscas.ac.cn>, "Andrzej Hajda"
- <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
- <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Drew Fustini" <fustini@kernel.org>, "Guo
- Ren" <guoren@kernel.org>, "Fu Wei" <wefu@redhat.com>
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-X-Mailer: aerc 0.20.1
-References: <20260129023922.1527729-1-zhengxingda@iscas.ac.cn>
- <20260129023922.1527729-4-zhengxingda@iscas.ac.cn>
-In-Reply-To: <20260129023922.1527729-4-zhengxingda@iscas.ac.cn>
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 3EE28239327
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: GIQwoQ47gBUzn9fp0Mf1yQW_eEbhOeQy
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDExNyBTYWx0ZWRfXyK380NXF4WsJ
+ xDi6YVoyyJl0zZO0Kd/qGGP2L3ZLTMO+nSQOmrdNko74WJ6uy+bVr5cHydrQzvHEtjmuWWE9RRx
+ WfZ6IFkMH+Xap4COYPf4C11YMnafk5J9TZIPlmr+idgfr0LvnbGkYD+qBGnlVzfmCA7L2Bp+G1a
+ lK7clqdDzhACUmZisx5dY0TBHDsNyMhZiJpIMYmgTxUwaKJ5i6eBkS0nRAcAAcgMlx3RuUvT5jt
+ OnHlmdiiNMrPHABpakx86Nx2dbA01xNqxB6EuXgXbnTsTh9ddSTFUpMxycGqlJEZ1lvLouBRioM
+ EQtvt0SQfpVlb3cAL604ny3QjKAaHm9h6aB351jtW6SliWmLPD8p41YviAcGWER6u8dCTWhQKXq
+ gbmA2MDOiid9y19HA1eAS4bNP4ZyrIPVQWhepuDP014I5iw1hSmF59T69SchILkVAHU48H8XOkP
+ cNF6DIFzWROM4q4CFfg==
+X-Authority-Analysis: v=2.4 cv=O/w0fR9W c=1 sm=1 tr=0 ts=69aec1b2 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=KTMdOuuZfjdGBI-URmYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: GIQwoQ47gBUzn9fp0Mf1yQW_eEbhOeQy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 clxscore=1015 spamscore=0 phishscore=0 priorityscore=1501
+ lowpriorityscore=0 adultscore=0 impostorscore=0 bulkscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090117
+X-Rspamd-Queue-Id: 651C02393E0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272922-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[iscas.ac.cn,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com];
+	TAGGED_FROM(0.00)[bounces-272923-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.994];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.979];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:email,suse.de:email,bootlin.com:dkim,bootlin.com:url,bootlin.com:mid,samsung.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Hello Icenowy Zheng,
+On 3/5/26 1:57 PM, Wojciech Sleńska wrote:
+> czw., 5 mar 2026 o 11:54 Konrad Dybcio
+> <konrad.dybcio@oss.qualcomm.com> napisał(a):
+>>
+>> On 5/26/25 9:39 PM, Wojciech Sleńska wrote:
+>>> pt., 23 maj 2025 o 01:30 Konrad Dybcio
+>>> <konrad.dybcio@oss.qualcomm.com> napisał(a):
+>>>>
+>>>> On 12/21/24 9:44 PM, Krzysztof Kozlowski wrote:
+>>>>> On 20/12/2024 08:35, Wojciech Slenska wrote:
+>>>>>> Document that ipa on qcm2290 uses version 4.2, the same
+>>>>>> as sc7180.
+>>>>>>
+>>>>>> Signed-off-by: Wojciech Slenska <wojciech.slenska@gmail.com>
+>>>>>> ---
+>>
+>> [...]
+>>
+>>> Once your changes have been integrated, I will resubmit my patches.
+>>
+>> That has now finally happened!
+>>
+>> Konrad
+> 
+> Nice, almost there :)
+> Please also submit this one:
+> https://github.com/quic-kdybcio/linux/commit/cc20384c4484507fbd18b8a01c79b5e7f5b6cf8a
+> 
+> With this small correction.
+> +                       reg = <0 0x0c100000 0 0x2a000>;
+> +                       ranges = <0 0 0x0c100000 0x2a000>;
 
-On Thu Jan 29, 2026 at 3:39 AM CET, Icenowy Zheng wrote:
-> From: Icenowy Zheng <uwu@icenowy.me>
->
-> This is a from-scratch driver targeting Verisilicon DC-series display
-> controllers, which feature self-identification functionality like their
-> GC-series GPUs.
->
-> Only DC8200 is being supported now, and only the main framebuffer is set
-> up (as the DRM primary plane). Support for more DC models and more
-> features is my further targets.
->
-> As the display controller is delivered to SoC vendors as a whole part,
-> this driver does not use component framework and extra bridges inside a
-> SoC is expected to be implemented as dedicated bridges (this driver
-> properly supports bridge chaining).
->
-> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-> Tested-by: Han Gao <gaohan@iscas.ac.cn>
-> Tested-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+This seems to already be there, char-for-char in the commit you linked
+- did you intend to highlight something else?
 
-I have reviewed the bridge part of this patch and have a few remarks, see
-below.
-
-[...]
-
-> +++ b/drivers/gpu/drm/verisilicon/vs_bridge.c
-> @@ -0,0 +1,371 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
-> + */
-> +
-> +#include <linux/of.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <uapi/linux/media-bus-format.h>
-> +
-> +#include <drm/drm_atomic.h>
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
-> +#include <drm/drm_connector.h>
-> +#include <drm/drm_encoder.h>
-> +#include <drm/drm_of.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/drm_simple_kms_helper.h>
-> +
-> +#include "vs_bridge.h"
-> +#include "vs_bridge_regs.h"
-> +#include "vs_crtc.h"
-> +#include "vs_dc.h"
-> +
-> +static int vs_bridge_attach(struct drm_bridge *bridge,
-> +			    struct drm_encoder *encoder,
-> +			    enum drm_bridge_attach_flags flags)
-> +{
-> +	struct vs_bridge *vbridge =3D drm_bridge_to_vs_bridge(bridge);
-> +
-> +	return drm_bridge_attach(encoder, vbridge->next_bridge,
-> +				 bridge, flags);
-> +}
-> +
-> +struct vsdc_dp_format {
-> +	u32 linux_fmt;
-> +	bool is_yuv;
-> +	u32 vsdc_fmt;
-> +};
-
-Moving the bool after the two 'u32's would be better for packing and
-spatial locality (especially in case more fields are added in the future).
-
-> +
-> +static struct vsdc_dp_format vsdc_dp_supported_fmts[] =3D {
-> +	/* default to RGB888 */
-> +	{ MEDIA_BUS_FMT_FIXED, false, VSDC_DISP_DP_CONFIG_FMT_RGB888 },
-> +	{ MEDIA_BUS_FMT_RGB888_1X24, false, VSDC_DISP_DP_CONFIG_FMT_RGB888 },
-> +	{ MEDIA_BUS_FMT_RGB565_1X16, false, VSDC_DISP_DP_CONFIG_FMT_RGB565 },
-> +	{ MEDIA_BUS_FMT_RGB666_1X18, false, VSDC_DISP_DP_CONFIG_FMT_RGB666 },
-> +	{ MEDIA_BUS_FMT_RGB101010_1X30,
-> +	  false, VSDC_DISP_DP_CONFIG_FMT_RGB101010 },
-
-You can put up to 100 chars per line and avoid the newline here to make
-this table more readable. Same below.
-
-> +	{ MEDIA_BUS_FMT_UYVY8_1X16, true, VSDC_DISP_DP_CONFIG_YUV_FMT_UYVY8 },
-> +	{ MEDIA_BUS_FMT_UYVY10_1X20, true, VSDC_DISP_DP_CONFIG_YUV_FMT_UYVY10 }=
-,
-> +	{ MEDIA_BUS_FMT_YUV8_1X24, true, VSDC_DISP_DP_CONFIG_YUV_FMT_YUV8 },
-> +	{ MEDIA_BUS_FMT_YUV10_1X30, true, VSDC_DISP_DP_CONFIG_YUV_FMT_YUV10 },
-> +	{ MEDIA_BUS_FMT_UYYVYY8_0_5X24,
-> +	  true, VSDC_DISP_DP_CONFIG_YUV_FMT_UYYVYY8 },
-> +	{ MEDIA_BUS_FMT_UYYVYY10_0_5X30,
-> +	  true, VSDC_DISP_DP_CONFIG_YUV_FMT_UYYVYY10 },
-> +};
-> +
-
-[...]
-
-> +struct vs_bridge *vs_bridge_init(struct drm_device *drm_dev,
-> +				 struct vs_crtc *crtc)
-> +{
-> +	unsigned int output =3D crtc->id;
-> +	struct vs_bridge *bridge;
-
-In common practice a variable named 'bridge' is used to point to a 'struct
-drm_bridge', so it feels weird when it is used for another type. Can you
-rename to 'vbridge' or 'vsbridge' or similar, to clarify it's the
-"Verisilicon bridge"?
-
-This is after all what you did in vs_bridge_attach() above, where the
-ambiguity of the 'bridge' name used for a driver-specific struct is
-evident.
-
-> +	struct drm_bridge *next;
-> +	enum vs_bridge_output_interface intf;
-> +	const struct drm_bridge_funcs *bridge_funcs;
-> +	int ret, enctype;
-> +
-> +	intf =3D vs_bridge_detect_output_interface(drm_dev->dev->of_node,
-> +						 output);
-> +	if (intf =3D=3D -ENODEV) {
-> +		drm_dbg(drm_dev, "Skipping output %u\n", output);
-> +		return NULL;
-> +	}
-> +
-> +	next =3D devm_drm_of_get_bridge(drm_dev->dev, drm_dev->dev->of_node,
-> +				      output, intf);
-> +	if (IS_ERR(next)) {
-> +		ret =3D PTR_ERR(next);
-> +		if (ret !=3D -EPROBE_DEFER)
-> +			drm_err(drm_dev,
-> +				"Cannot get downstream bridge of output %u\n",
-> +				output);
-
-100 chars per line are allowed, so this could fit on a single line being
-nicer to read. This applies to a lot places in this driver, of logging
-calls in particular. I understand this would be annoying to change on an
-already reviewed patch and at v7 so up to you, but it would be good to keep
-it in mind for the future.
-
-> +		return ERR_PTR(ret);
-> +	}
-> +
-> +	if (intf =3D=3D VSDC_OUTPUT_INTERFACE_DPI)
-> +		bridge_funcs =3D &vs_dpi_bridge_funcs;
-> +	else
-> +		bridge_funcs =3D &vs_dp_bridge_funcs;
-> +
-> +	bridge =3D devm_drm_bridge_alloc(drm_dev->dev, struct vs_bridge, base,
-> +				       bridge_funcs);
-
-The 'struct drm_bridge' field embedded in a driver-specific struct is
-conventionally called 'bridge', so renaming it from 'base' to 'bridge'
-would make it more consistent with other drivers. That would go in sync
-with the coding convention I mentioned above: 'bridge' for struct
-drm_bridge, <XYZ>bridge or just <XYZZ> for a custom driver struct embedding
-a bridge.
-
-> +	if (IS_ERR(bridge))
-> +		return ERR_PTR(PTR_ERR(bridge));
-> +
-> +	bridge->crtc =3D crtc;
-> +	bridge->intf =3D intf;
-> +	bridge->next_bridge =3D next;
-
-There is now a next_bridge field in struct drm_bridge, which handles the
-bridge lifetime in a safer way and more simply [0], so you could use it:
-
-       bridge->base.next_bridge =3D next;
-
-Or, after the renames I suggested above:
-
-       vbridge->bridge.next_bridge =3D next;
-
-[0] https://elixir.bootlin.com/linux/v7.0-rc2/source/include/drm/drm_bridge=
-.h#L1269-L1278
-
-Luca
-
---
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Konrad
 
