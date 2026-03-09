@@ -1,309 +1,313 @@
-Return-Path: <devicetree+bounces-272911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272912-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WPPVFZq7rmn6IQIAu9opvQ
-	(envelope-from <devicetree+bounces-272911-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:22:50 +0100
+	id mBVaNAG8rmn6IQIAu9opvQ
+	(envelope-from <devicetree+bounces-272912-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:24:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id A845D238BC1
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:22:49 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9D5A238C0F
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:24:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B30D23164B4A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:11:31 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id DEF0030BF56C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 475843ACF0E;
-	Mon,  9 Mar 2026 12:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96CFD3A962B;
+	Mon,  9 Mar 2026 12:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="2NWOGvqC"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nrwkvq1k";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="LB/BKJQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12883A9DB0;
-	Mon,  9 Mar 2026 12:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19FC03A9621
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 12:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773058250; cv=none; b=mwDW1SIRMf1crZ2GnIm/Cide8Tmd9jg1cC1yYWfW3YqchBoojzyB/Mnnh8OFH94aW7IBLFZTaiGpqaSMqgfDSpqtFNfRcag1hVPG7IqccSreJlROt9dzdOyxO+2q+20zJmerGzMQq82FaRyn/T310iIorpp/Slx7IWQKd8q6jSs=
+	t=1773058267; cv=none; b=s0dm+FmLr8/sBRjgglfT9FWwj4mubRYgEGMgBPT3oouVNpP4K3FKnd/1NpBoZx2THCnF8aI+sQQRNhP27ATPQ5kcdJpu0ZwV7UAVjPpGviSgYfOTMzgtysDGPqmxsSL6Qfb4qtj/5bGIHc7MUl3gFmfNBY/5sJGomzpm53XgSyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773058250; c=relaxed/simple;
-	bh=CxC4gPRhEx+EnX12NY8NGaQLgGbGEevJeK1eAo6Pdx8=;
-	h=Message-ID:Subject:From:To:CC:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BaTmNTdflAbQClw8uSbmOwtJMkmm//xznwJDDV506wCrxxY4wK853BLyZnyHWBIHJeRCpoQe4NT79O4XoRd20ArOlPta/BPALxiR7c5RGdjRtTl9aBYGLA7HGDEVHEgypeTg4sf8b1DuS5qFJrIPIHsPg6wJT2C2KmF2lljBcFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=2NWOGvqC; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1773058248; x=1804594248;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=CxC4gPRhEx+EnX12NY8NGaQLgGbGEevJeK1eAo6Pdx8=;
-  b=2NWOGvqCrWmKyOaoW0poa4Qn4kmGMB4zgxHwpXKtREZknqadw8xotM3D
-   DVTpiF/s/7o8X6NLstnYMz9mh1WUydpsq7moB2n0zbLgskaDhRGlhbhyP
-   jGWkkfi7OU1Y9riZ/zXFlFVhJVlL9xUiEVzgtMc4/rOBuXbFSy8Flxq+6
-   9AKxiC6mUXB+fyS8j/OTr/TQnd/3zfnA/C6Uf5bAzgFT988/WZQFlZ0Ol
-   oH6ru05H4GdnN6c7jLTwtN/xhT3sB1O78O6ov7HWVDYqJ2HUrV3VYUA8J
-   JvltMza6bwRnwBnWuhKtjkP4w1myjl42yFUEwj8+wzPlq6hlxEGYhhyBs
-   g==;
-X-CSE-ConnectionGUID: lABlYgOLRx6xa1tNtlPVIg==
-X-CSE-MsgGUID: cDPRv21cQ2igkbk4b9k7Pg==
-X-IronPort-AV: E=Sophos;i="6.23,109,1770620400"; 
-   d="scan'208";a="61927052"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 05:10:47 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.87.71) by
- chn-vm-ex2.mchp-main.com (10.10.87.31) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Mon, 9 Mar 2026 05:10:07 -0700
-Received: from [10.205.29.43] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Mon, 9 Mar 2026 05:10:04 -0700
-Message-ID: <1d70dd8d53f976d5f189d4154049129ef0df0c38.camel@microchip.com>
-Subject: Re: [PATCH net-next 5/8] net: dsa: lan9645x: add bridge support
-From: Jens Emil Schulz Ostergaard <jensemil.schulzostergaard@microchip.com>
-To: Vladimir Oltean <olteanv@gmail.com>
-CC: <UNGLinuxDriver@microchip.com>, Andrew Lunn <andrew@lunn.ch>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Simon Horman
-	<horms@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Woojung Huh
-	<woojung.huh@microchip.com>, Russell King <linux@armlinux.org.uk>, "Steen
- Hegelund" <Steen.Hegelund@microchip.com>, Daniel Machon
-	<daniel.machon@microchip.com>, <linux-kernel@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <devicetree@vger.kernel.org>
-Date: Mon, 9 Mar 2026 13:09:53 +0100
-In-Reply-To: <20260303145130.rbp3qycr3eh5ifcp@skbuf>
-References: <20260303-dsa_lan9645x_switch_driver_base-v1-0-bff8ca1396f5@microchip.com>
-	 <20260303-dsa_lan9645x_switch_driver_base-v1-5-bff8ca1396f5@microchip.com>
-	 <20260303145130.rbp3qycr3eh5ifcp@skbuf>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.3-0ubuntu1.1 
+	s=arc-20240116; t=1773058267; c=relaxed/simple;
+	bh=BTOhTZiR+sU5XnomQReIXYrThw3LP2w3T0/+foMg2UQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ee/+J2IJARo9XeWo42CZ4GVrOovSclzh8BG3SiQbb8vpU+fu1fQo6guK+z4eiK3wug7t6R7cYPRsin1657Vy0VbPrvrh8TEQe9XFM4bvHbj+nZO8+SVSHa5UTKeQmhUy6XFse32Ohm0tdSu9a3Iq3GyiEH9D3mvvXa1IipshqiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nrwkvq1k; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=LB/BKJQF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 629A6hmh2195267
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 12:11:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	N0KUb8AFGBiIYPTEYvJInXNBz0gyDilMXYt3nEtg0rs=; b=nrwkvq1kJ1j8ilGh
+	gmlBmvYd0QJAa5CQFYDrxSpml9rKZY/bOJBt/lgx8gaK2NCKn6/LIy+zF/vbbyGl
+	3zKMCRnBUpRsdYZphKHlcnFR6opMG31Yan3+NShD3H6vOgJDrrxv0m7qTraa1Brx
+	cyD+cdd3hBY7jlimJH807j2brgwXQzz5F3mNtVRlyDljrQx0lNhJFuzYI0M9wIi9
+	3ZPnBbFwu76QWX5o9B88ahWUeKF956p0Lyubt59k4fNXPv/V8D43tOBE60oHX56e
+	hxNTMKga/fxEzf5agrhxO5wb02Az0e+cZdtkWgpCxv4gFVWZD4Le1LuTzyCZ6d85
+	ZkbRYA==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4csv5u8d6j-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 12:11:04 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cd8ea43d4eso26376485a.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 05:11:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773058264; x=1773663064; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=N0KUb8AFGBiIYPTEYvJInXNBz0gyDilMXYt3nEtg0rs=;
+        b=LB/BKJQFKF7Js/1M97Ullx7Ve4H6rtukGE53zsb76lwblTzqItoDuELdotf2qWQ6Go
+         TsHNW7MENvN3KoKpNouXXNMEM2+rHzc7xu0R2t+xwLJomwOAbdLy6V8WV2nCSIAIffuy
+         47A3Gx9q0hhHK8otK48cCGbSwF21FgPWWL21FtZ8emh3FC1ub3T4LqIPTKaWVuHgDsdu
+         Ps3O213FHKGZzYIb6StbBDtqvc5HVspLiZkS7HNqLyup2b2ezlqmB4XM9uShXvjn2dLI
+         SOGgcgeuXZNTEHwqnFXcJ0uk16JrGNz5mT0D0mZoe64NWv7lxKPlUJOZsJ/sVdE0F3KI
+         YlDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773058264; x=1773663064;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N0KUb8AFGBiIYPTEYvJInXNBz0gyDilMXYt3nEtg0rs=;
+        b=jIM9DbX1e/x+cz+hVGKdRx+mm43LesrVFcdRAHIMsCtIIcSV7r1pUFtjS1AsAq21N0
+         2Fib9y9SnZy8A3KwnWKlcgoJO+3UJAVT0XflhTKLwGUW4S6VAOwfDz8KZ0pIkTYslb8K
+         NuhbBEvtWYkPcUYnlkzs0GzStZlXW4mEeDySSOsmwnjnNTx6o02zRe6xuEunC5JVEKux
+         b6ZK+gpByBY0atvCHbQWuiKgEoozSEL6ytG7FV3BiLJVuIoCTYxwV4AAWLsok4xPp8DU
+         4nl2BXtEVmfGNX18aHmqfFaKlQrytCsf6V4CdCIyfHvAivLCqg4+yx0F/jPWFVTtfUc5
+         IFDA==
+X-Forwarded-Encrypted: i=1; AJvYcCX/EwyNJ4BQETboSZ8lWzElDCaBsoeKI1cg/r8acjV2tFJgFktczoKpiAEp1XhtAAb+m2GxHv5wdS/Z@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQw255p4YWWOHO5AgeH9AfsZV2pK1dG6aPLX8IsgU52nVrlRWg
+	HDe9tGSETfsV5+Rmv1g6mNea10dvAf8aaXdvMjNUOJaF5e+Pe+kvVeWPc/+JWP9SlGv0kxl8dpA
+	vbulVYYq6oEWON9FLoR+MZs0+Qjmeyb6Cv1J+eVNLaLzhIOOdWb/II++Gs/BEphttRnvuV91D
+X-Gm-Gg: ATEYQzxKv4/iDIkizsQohpVFKHddmUcJLcW3/Z5vITf9tij0CCd1/yxVqh1zhPiu2+X
+	4mQ+X5uce1n60DYP14MDmS6kKbWsoDVuigR4xMW586XSoZtA5214ONjZOavWcVEP6Viyty3OlXE
+	SGgnte16uGpRb0I2xaL/f910LJcseDYKM/zZPmh/QF59l+EqpxFRBgNa351HxeEdwXmtvtC9reB
+	qbeW7VMOyZZZpbCXjsS3w/byFfsYxFGdAikzzuUcxXUq5yCko2OJDReWHbuEUUz5hhwWNs0+Xxq
+	0hJQehU52iUVgrKNqRCYBjhvt01ZB5be9uxw86HXkt2ghz40p6DPQEP2R5/4EeFJxIGSXuFknFP
+	NTQn9rLFFJIeBhEFslfFD1R0Yw5sLvU9oH5aJ7CWDLa54/HVWs7o4SKOJNhnSL6nq6Cvr6yLXbp
+	rEwIA=
+X-Received: by 2002:a05:620a:7004:b0:8cd:8b9b:4581 with SMTP id af79cd13be357-8cd8b9b46a0mr243492785a.0.1773058263885;
+        Mon, 09 Mar 2026 05:11:03 -0700 (PDT)
+X-Received: by 2002:a05:620a:7004:b0:8cd:8b9b:4581 with SMTP id af79cd13be357-8cd8b9b46a0mr243488285a.0.1773058263329;
+        Mon, 09 Mar 2026 05:11:03 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef8b67dsm352544166b.15.2026.03.09.05.11.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Mar 2026 05:11:02 -0700 (PDT)
+Message-ID: <395f0607-7d6e-40fe-90b3-a7b49a6b7eea@oss.qualcomm.com>
+Date: Mon, 9 Mar 2026 13:10:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: A845D238BC1
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/5] platform: arm64: Add driver for EC found on
+ Qualcomm reference devices
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Sibi Sankar <sibi.sankar@oss.qualcomm.com>, robh@kernel.org,
+        krzk+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
+        bryan.odonoghue@linaro.org, ilpo.jarvinen@linux.intel.com,
+        hansg@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        platform-driver-x86@vger.kernel.org,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+References: <20260308233646.2318676-1-sibi.sankar@oss.qualcomm.com>
+ <20260308233646.2318676-3-sibi.sankar@oss.qualcomm.com>
+ <aa6M2QSXW72xqYiB@linaro.org>
+ <96f8738f-9baa-4528-8bc6-6ce20030e391@oss.qualcomm.com>
+ <805525cb-ef53-4bdd-a73b-6fe7513228ce@oss.qualcomm.com>
+ <aa61HZOuz42C_R7X@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <aa61HZOuz42C_R7X@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: tkJC4YL3FSkikJSGco02W_DQrWWC2112
+X-Proofpoint-ORIG-GUID: tkJC4YL3FSkikJSGco02W_DQrWWC2112
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDExMSBTYWx0ZWRfX5C969/1msSAE
+ GSIR5ksWeUlmyOWgpNR/ogrcyzhz4a6YLtH6IivyW5arWYOc5rdiF7bz9OgIJdu4I3MkWoqlork
+ 6ynPogHv5hPOmUCt5JYXgehUmJLGSVZ6vRJ7EoA/EahFhqITJMGuiX8Zr6He06VnYbyuuNPt+TC
+ 3x26swvf0vUVpObPFvYRw4UxraH4du03V3a7cikId1XI+7rZHLNWvW/x2rK04KqVXvB+Hy0hRpX
+ HNurUO05zKwKAtWnyv/1LrvyX6X/8g01e9Ea1sAYT8gUS/RJyE05A//3w52LOsGX0+sgyKZXGbj
+ 02BtKtNMW9MbA8Pm07DqA+mAhrpPgJWq5Yd6V06VKldCSWL+8NBZA3Y6qwKX75yqFAmSvh8mp2H
+ LOvVXKt/MEXv2JytL3yWtP7Gk54cQOqnSFIH3X7nBF9GBJHm6T2MHeP0fFPHE671DCymx2nFVBH
+ MigE1+/nFjnspV+prnA==
+X-Authority-Analysis: v=2.4 cv=Xr/3+FF9 c=1 sm=1 tr=0 ts=69aeb8d8 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=i9FFgL4WzkIojyinDGoA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090111
+X-Rspamd-Queue-Id: D9D5A238C0F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272911-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,linaro.org,linux.intel.com,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-272912-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jensemil.schulzostergaard@microchip.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	NEURAL_HAM(-0.00)[-0.985];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:dkim,microchip.com:email,microchip.com:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Tue, 2026-03-03 at 16:51 +0200, Vladimir Oltean wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e content is safe
->=20
-> On Tue, Mar 03, 2026 at 01:22:31PM +0100, Jens Emil Schulz =C3=98stergaar=
-d wrote:
-> > Add support for hardware offloading of the bridge. We support a single
-> > bridge device.
-> >=20
-> > Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>
-> > Signed-off-by: Jens Emil Schulz =C3=98stergaard <jensemil.schulzosterga=
-ard@microchip.com>
-> > ---
-> >  drivers/net/dsa/microchip/lan9645x/lan9645x_main.c | 196 +++++++++++++=
-++++++++
-> >  drivers/net/dsa/microchip/lan9645x/lan9645x_main.h |  11 ++
-> >  drivers/net/dsa/microchip/lan9645x/lan9645x_port.c |   2 +
-> >  3 files changed, 209 insertions(+)
-> >=20
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c b/drive=
-rs/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > index 739013f049d0..b6efaf669a3f 100644
-> > --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_main.c
-> > @@ -171,6 +171,8 @@ static int lan9645x_setup(struct dsa_switch *ds)
-> >               return err;
-> >       }
-> >=20
-> > +     mutex_init(&lan9645x->fwd_domain_lock);
-> > +
-> >       /* Link Aggregation Mode: NETDEV_LAG_HASH_L2 */
-> >       lan_wr(ANA_AGGR_CFG_AC_SMAC_ENA |
-> >              ANA_AGGR_CFG_AC_DMAC_ENA,
-> > @@ -288,6 +290,192 @@ static void lan9645x_port_phylink_get_caps(struct=
- dsa_switch *ds, int port,
-> >       lan9645x_phylink_get_caps(ds->priv, port, config);
-> >  }
-> >=20
-> > +static int lan9645x_set_ageing_time(struct dsa_switch *ds, unsigned in=
-t msecs)
-> > +{
-> > +     u32 age_secs =3D max(1, msecs / 1000 / 2);
->=20
-> s/1000/MSEC_PER_SEC/
->=20
+On 3/9/26 12:55 PM, Stephan Gerhold wrote:
+> On Mon, Mar 09, 2026 at 12:47:33PM +0100, Konrad Dybcio wrote:
+>> On 3/9/26 11:04 AM, Sibi Sankar wrote:
+>>> On 3/9/2026 2:33 PM, Stephan Gerhold wrote:
+>>>> On Mon, Mar 09, 2026 at 05:06:43AM +0530, Sibi Sankar wrote:
+>>>>> Add Embedded controller driver support for Hamoa/Purwa/Glymur qualcomm
+>>>>> reference boards. It handles fan control, temperature sensors, access
+>>>>> to EC state changes and supports reporting suspend entry/exit to the
+>>>>> EC.
+>>>>>
+>>>>> Co-developed-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>>>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>>>>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>>>>> ---
+>>>>>   MAINTAINERS                            |   7 +
+>>>>>   drivers/platform/arm64/Kconfig         |  12 +
+>>>>>   drivers/platform/arm64/Makefile        |   1 +
+>>>>>   drivers/platform/arm64/qcom-hamoa-ec.c | 462 +++++++++++++++++++++++++
+>>>>>   4 files changed, 482 insertions(+)
+>>>>>   create mode 100644 drivers/platform/arm64/qcom-hamoa-ec.c
+>>>>>
+>>>>> [...]
+>>>>> diff --git a/drivers/platform/arm64/qcom-hamoa-ec.c b/drivers/platform/arm64/qcom-hamoa-ec.c
+>>>>> new file mode 100644
+>>>>> index 000000000000..83aa869fad8f
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/platform/arm64/qcom-hamoa-ec.c
+>>>>> @@ -0,0 +1,462 @@
+>>>>> [...]
+>>>>> +/*
+>>>>> + * Fan Debug control command:
+>>>>> + *
+>>>>> + * Command Payload:
+>>>>> + * ------------------------------------------------------------------------------
+>>>>> + * | Offset    | Name        | Description                    |
+>>>>> + * ------------------------------------------------------------------------------
+>>>>> + * | 0x00    | Command    | Fan control command                |
+>>>>> + * ------------------------------------------------------------------------------
+>>>>> + * | 0x01    | Fan ID    | 0x1 : Fan 1                    |
+>>>>> + * |        |        | 0x2 : Fan 2                    |
+>>>>> + * ------------------------------------------------------------------------------
+>>>>> + * | 0x02    | Byte count = 4| Size of data to set fan speed            |
+>>>>> + * ------------------------------------------------------------------------------
+>>>>> + * | 0x03    | Mode        | Bit 0: Debug Mode On/Off (0 - OFF, 1 - ON )    |
+>>>>> + * |        |        | Bit 1: Fan On/Off (0 - Off, 1 - ON)        |
+>>>>> + * |        |        | Bit 2: Debug Type (0 - RPM, 1 - PWM)        |
+>>>>> + * ------------------------------------------------------------------------------
+>>>>> + * | 0x04 (LSB)    | Speed in RPM    | RPM value, if mode selected is RPM        |
+>>>>> + * | 0x05    |        |                        |
+>>>>> + * ------------------------------------------------------------------------------
+>>>>> + * | 0x06    | Speed in PWM    | PWM value, if mode selected is PWM (0 - 255)    |
+>>>>> + * ______________________________________________________________________________
+>>>>> + *
+>>>>> + */
+>>>>> +static int qcom_ec_fan_set_cur_state(struct thermal_cooling_device *cdev, unsigned long state)
+>>>>> +{
+>>>>> +    struct qcom_ec_cooling_dev *ec_cdev = cdev->devdata;
+>>>>> +    struct device *dev = ec_cdev->parent_dev;
+>>>>> +    struct i2c_client *client = to_i2c_client(dev);
+>>>>> +
+>>>>> +    u8 request[6] = { ec_cdev->fan_id, EC_FAN_SPEED_DATA_SIZE,
+>>>>> +              EC_FAN_DEBUG_MODE_ON | EC_FAN_ON | EC_FAN_DEBUG_TYPE_PWM,
+>>>>> +              0, 0, state };
+>>>>> +    int ret;
+>>>>> +
+>>>>> +    ret = i2c_smbus_write_i2c_block_data(client, EC_FAN_DBG_CONTROL_CMD,
+>>>>> +                         sizeof(request), request);
+>>>> I think it's nice to provide users a way to override the fan speed, but
+>>>> is this really the main interface of the EC that we want to use for
+>>>> influencing the fan speed?
+>>>>
+>>>> As the name of the command suggests, this is a debug command that
+>>>> essentially overrides the internal fan control algorithm of the EC. If
+>>>> you use this to turn the fan off and then Linux hangs, I would expect
+>>>> that the fan stays off until the device will eventually overheat.
+>>>>
+>>>> I think it would be more reliable if:
+>>>>
+>>>>   (1) The default mode of operation does not make use of the "debug mode"
+>>>>       command and instead sends the internal SoC temperatures to the EC
+>>>>       to help optimize the fan control. (This is what Windows does on
+>>>>       Hamoa, not sure if this is still needed on Glymur?)
+>>>
+>>> That's true, Glymur already has a way to access average SoC
+>>> temperature and even on Hamoa it can still be functional without
+>>> SoC temperature i.e. with thermistors it has access to.
+>>>
+>>> The aim of the series is to expose fans as a cooling device so
+>>> that linux has a way of fan control independent to the algorithm
+>>> running on the EC.
+>>
+>> I suppose the main question here is "what happens if i set the fan to zero
+>> and put the laptop in my backpack"
+>>
+>> The driver for M-series Macs for example, 785205fd8139 ("hwmon: Add Apple
+>> Silicon SMC hwmon driver") hides that behind a cmdline param, since they
+>> have no certainty. I would *assume* that if the CPU hits thermal junction
+>> temperatures, our boards will reset, but we should be able to get a definitive
+>> answer here.
+>>
+> 
+> The CPUs should automatically throttle when reaching high temperatures
+> and Linux should also do this for the GPU. So the chance of reaching a
+> overtemperature state should be low as long as Linux correctly
+> functions. The biggest risk would be probably if Linux hangs, the
+> watchdog doesn't trigger and the machine is stuck in some state.
+> 
+> As for the hardware shutdown temperature, see commit 03f2b8eed73
+> ("arm64: dts: qcom: x1e80100: Apply consistent critical thermal
+> shutdown"):
+> 
+>  "The firmware configures the TSENS controller with a maximum
+>   temperature of 120°C. When reaching that temperature, the hardware
+>   automatically triggers a reset of the entire platform."
+> 
+> The question is if you really want your device to hit 120°C. :-)
 
-I will change this.
+And whether the firmware running on *your* laptop actually configures
+these limits.. I would imagine that to be the case for Windows products
+where the TZ comes straight from qcom, but I think someone in some thread
+mentioned LMH is not properly configured on Chrome/TFA.
 
-> > +     struct lan9645x *lan9645x =3D ds->priv;
-> > +
-> > +     /* Entry is must suffer two aging scans before it is removed, so =
-an
->=20
-> "An entry must suffer (...), so it is aged"
+In any case, let's see if we can establish what/whether the EC does in
+that case
 
-I will change this.
-
->=20
-> > +      * entry is aged after 2*AGE_PERIOD, and the unit is in seconds.
-> > +      * An age period of 0 disables automatic aging.
-> > +      */
-> > +     lan_rmw(ANA_AUTOAGE_AGE_PERIOD_SET(age_secs),
-> > +             ANA_AUTOAGE_AGE_PERIOD,
-> > +             lan9645x, ANA_AUTOAGE);
-> > +     return 0;
-> > +}
-> > +
-> > +static int lan9645x_port_pre_bridge_flags(struct dsa_switch *ds, int p=
-ort,
-> > +                                       struct switchdev_brport_flags f=
-lags,
-> > +                                       struct netlink_ext_ack *extack)
-> > +{
-> > +     if (flags.mask &
-> > +         ~(BR_LEARNING | BR_FLOOD | BR_MCAST_FLOOD | BR_BCAST_FLOOD))
-> > +             return -EINVAL;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static void lan9645x_port_pgid_set(struct lan9645x *lan9645x, u16 pgid=
-,
-> > +                                int chip_port, bool enabled)
-> > +{
-> > +     u32 reg_msk, port_msk;
-> > +
-> > +     WARN_ON(chip_port > CPU_PORT);
-> > +
-> > +     port_msk =3D ANA_PGID_PGID_SET(enabled ? BIT(chip_port) : 0);
-> > +     reg_msk =3D ANA_PGID_PGID_SET(BIT(chip_port));
-> > +
-> > +     lan_rmw(port_msk, reg_msk, lan9645x, ANA_PGID(pgid));
-> > +}
-> > +
-> > +static void lan9645x_port_set_learning(struct lan9645x *lan9645x, int =
-port,
-> > +                                    bool enabled)
-> > +{
-> > +     struct lan9645x_port *p;
-> > +
-> > +     lan_rmw(ANA_PORT_CFG_LEARN_ENA_SET(enabled), ANA_PORT_CFG_LEARN_E=
-NA,
-> > +             lan9645x, ANA_PORT_CFG(port));
->=20
-> Actually, the port may be in an STP state where learning shouldn't be
-> enabled, when this function is called. Enabling the "learning" bridge
-> port flag shouldn't change that.
->=20
-
-Thank you, I will check stp_state before writing to HW, similar to=C2=A0
-set_stp_state.
-
-> > +
-> > +     p =3D lan9645x_to_port(lan9645x, port);
-> > +     p->learn_ena =3D enabled;
-> > +}
-> > +
-> > +static int lan9645x_port_bridge_flags(struct dsa_switch *ds, int port,
-> > +                                   struct switchdev_brport_flags f,
-> > +                                   struct netlink_ext_ack *extack)
-> > +{
-> > +     struct lan9645x *l =3D ds->priv;
->=20
-> Could we have some consistency in variable naming throughout the driver,
-> at least for the main private structure? I don't have an issue with it
-> being called l, it's just that I would prefer it being called the same
-> everywhere.
->=20
-
-I will use lan9645x everywhere.
-
-> > +
-> > +     if (WARN_ON(port =3D=3D l->npi))
-> > +             return -EINVAL;
-> > +
-> > +     if (f.mask & BR_LEARNING)
-> > +             lan9645x_port_set_learning(l, port, !!(f.val & BR_LEARNIN=
-G));
-> > +
-> > +     if (f.mask & BR_FLOOD)
-> > +             lan9645x_port_pgid_set(l, PGID_UC, port, !!(f.val & BR_FL=
-OOD));
-> > +
-> > +     if (f.mask & BR_MCAST_FLOOD) {
-> > +             bool ena =3D !!(f.val & BR_MCAST_FLOOD);
-> > +
-> > +             lan9645x_port_pgid_set(l, PGID_MC, port, ena);
-> > +             lan9645x_port_pgid_set(l, PGID_MCIPV4, port, ena);
-> > +             lan9645x_port_pgid_set(l, PGID_MCIPV6, port, ena);
-> > +     }
-> > +
-> > +     if (f.mask & BR_BCAST_FLOOD)
-> > +             lan9645x_port_pgid_set(l, PGID_BC, port,
-> > +                                    !!(f.val & BR_BCAST_FLOOD));
-> > +
-> > +     return 0;
-> > +}
-> > diff --git a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c b/drive=
-rs/net/dsa/microchip/lan9645x/lan9645x_port.c
-> > index 038868ae0a32..b60c64458957 100644
-> > --- a/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
-> > +++ b/drivers/net/dsa/microchip/lan9645x/lan9645x_port.c
-> > @@ -15,6 +15,8 @@ int lan9645x_port_init(struct lan9645x *lan9645x, int=
- port)
-> >               ANA_PORT_CFG_LEARN_ENA,
-> >               lan9645x, ANA_PORT_CFG(p->chip_port));
-> >=20
-> > +     p->learn_ena =3D false;
-> > +
->=20
-> This is already zero-initialized memory.
-
-Removed.
-
->=20
-> >       lan9645x_port_set_maxlen(lan9645x, port, ETH_DATA_LEN);
-> >=20
-> >       lan9645x_phylink_port_down(lan9645x, port);
-> >=20
-> > --
-> > 2.52.0
-> >=20
-
-
-
-Thanks,
-Emil
+Konrad
 
