@@ -1,85 +1,64 @@
-Return-Path: <devicetree+bounces-272873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272874-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8HaYBZmyrmkSHwIAu9opvQ
-	(envelope-from <devicetree+bounces-272873-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:44:25 +0100
+	id WK49EQOzrmkSHwIAu9opvQ
+	(envelope-from <devicetree+bounces-272874-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:46:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8478E2381AC
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:44:24 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40E58238203
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:46:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 43F633038F03
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:41:18 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2207D3008C8E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:46:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75D7C3A9DB0;
-	Mon,  9 Mar 2026 11:40:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB033A4F5F;
+	Mon,  9 Mar 2026 11:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FcnV2Fva"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W36W4/zC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE57A3A9633
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:40:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A21F3A4525;
+	Mon,  9 Mar 2026 11:46:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773056444; cv=none; b=hANwJlBhw3XMBdLyKgVh7YRz4GIDi8bTIsEgYvIqcobZf9JkST9Yjec/jEJoSteloUk7LAWorwCPZlCQkTSp2R2aArujYpAlnpDfo3mgg4UIwKTHxHmBIVi8+JpVV5ab5KhPylCQr9EgERb8BvGqU2DGwT5ZB2fDm4tsVIcyMWQ=
+	t=1773056763; cv=none; b=Zq1rvIgZLQDbMXjs5ehsItxWO7FSwZ2GZVJzZvyZGiLO0kGK7gBH1P2U1U3sw4kCCZbAaebMxkxTNO93OGCEEs1UQh9FsARA0tZnStCQlC5WnnHj9AT2QKX2rR2a408YGiWXrKf0OM+ty2DR64JaeVEMOCiq7wf1F7bW61xUD0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773056444; c=relaxed/simple;
-	bh=JfN8DfHHQxhwjIM1D93NxIpzHPkcFqd9tyZUtqUCLT8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=metfAzJGmjXgpZfYfXPXaSC+Py7/45Xge+cia8Bo0DBcBeoxLMgBT1vVQxMCIwk8nEaj55V66+PUATtS9zkhX+ITJYpUdCT8oJs76xA5XV7JVVxyjKxbLJrlHR+o8KS8joKOJAuacwLvhSwBeb5U4BLcA/f+ypjmc6rlV9JlFoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FcnV2Fva; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-439c9bdc1eeso2118771f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:40:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773056441; x=1773661241; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=njsRP4EImn90P32g9UPmNNWBlL1/zM1gb0xUIcz/r+Q=;
-        b=FcnV2FvarKhQyFysWmhzj4pSQNkaUgVhuh0J9NmTYb98sNIfQFwL7vdvrF2ouSs+dv
-         j6FPhXyruE+TE3nOneEWUPgRKqwx5eIdJI0NmnHb2bq/mSuznMzbuFQtt8bceRI4s0yr
-         6rXR9yTrMqFglK1o9IM8JISZxXguY+jVU8Q8SQnOTsjxyftkCXXj9DWYOW+bsNyQOXUD
-         CX6iqIdsWMj3um8IYyYVxusluzpZlZt8dkEItAxHytuM2jJ5WZ6ZNMcdoAMV8CECQPfv
-         ft93pZJczpHJoc1fraJl/C1RW/WDavEeqWyASnbXKiwRhZICBOoN8K7NSZRtBrVAQ0lH
-         zqVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773056441; x=1773661241;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=njsRP4EImn90P32g9UPmNNWBlL1/zM1gb0xUIcz/r+Q=;
-        b=ZohhTot1Xw19BC8cNfLO4slVT6vUBebP6OD5fa4Q7+ZQ1VGZZq+7Dk53iquqZm7BR/
-         4eRQolcHrNBSz/r2QAsoUbLqO1ylZ5sqAmaVar05i5YJFe4NXtQsI1VxIEFfloz4J3YG
-         xMwkYRQ9K+O8pEDcpb0EjnpuDKWWLnnD8sYi5bPwJVfgQl0xjt8cFLk0oH9MOyFfk05I
-         gzLxHuakoEsLELp/lxhOyBpTa1/Tq3qT+U2tGSjO4/tXZcBWFGJkcov2duzrzeC/RIBe
-         axK0yIofwMCznWsWl3CTl+G5K2k9cEnAOSE7bCqf9Zb4EdM5B5tRar5+kGPWqdGEAabP
-         ecyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjzDrQ4SrmBLx3k0/cIRCCqzGwHmEdE19wc/sJpyn451WBxyU/wt570zmyk6boXvNDNWJ0SNVCAzDN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQM+2WRY1O96qAw4/XQou22UQ0l5p0R3wwsI2WlLl2c+06gg7c
-	nzX6NAzXfEtZBLs3xGNfaFSczSQ6ej1tevfJGmN/RCXJCbVJXRfGMe+a
-X-Gm-Gg: ATEYQzz4KLqN8fnafT/7kkZBWUaLg5eDhgVmT4Ai33/lCgfNNyFiBcwYvbMQILo3vtM
-	sCW415G72vGY329a1po3+3AgXirEMPbrPa0lLB7PqwmGZv1qoOT+GRYQH2rTC2MDxGl4rEbHzVb
-	5ldWZENgDL17ozVvqQ/B4S2mAtZHWszlGgAgOF4nvFo/qvwBkt+kylusBYLkkE+YPcJyV9gI9Ku
-	HSrCKSASaTB2nqiHuoezXGsV//To8HcGPXLE78nN+wsMs2rWM8yPyCS2qEfLdjujHT17N5wKjuo
-	uff56Wrzu/WJnedD82dfDYympxUTaX8Rtt4jQpXsUkCaTqXgNjwfm/S/kodKIOjXwaBihgFBUVd
-	SWLIXgeHNCEJtoQi1Vcp/R89rtuC5ygKPT/d/QM1BNbmFLQIyb4tah0kf8cgLHctTK48vzX4oc2
-	GKnC1U2hltEU2IBY2FqJKNjpfRwakJqj22C7vpuXHXzGH9jshR1yKpqg0Mpk0MCf14
-X-Received: by 2002:a05:6000:61e:b0:439:c18f:5aaf with SMTP id ffacd0b85a97d-439da67bf28mr20283499f8f.34.1773056441001;
-        Mon, 09 Mar 2026 04:40:41 -0700 (PDT)
-Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([67.218.236.52])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8ec97sm28471699f8f.5.2026.03.09.04.40.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 04:40:40 -0700 (PDT)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Mon, 09 Mar 2026 12:40:17 +0100
-Subject: [PATCH v2 7/7] riscv: dts: spacemit: k1-orangepi-rv2: add SD card
- support with UHS modes
+	s=arc-20240116; t=1773056763; c=relaxed/simple;
+	bh=4GHo3rpAhoh7Ez68qCniCSzBJN6YciwSNLek4y7NmYA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=WrluL0cUpewtxz5uqHD/AFCZZwvoKF2x4wlzrAyTsRGBP7uk0gVO20ielvP4U870RaQ8cmDBbnTq/QDS3ICEY9ge4xym2s6pUWlksVINfXD0s5R+WVsk6f95Z+8Bmc2s8AL/EsAL050YtkUGIHEngzUfNuty2x+QA1SLMWigEmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W36W4/zC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ECDCC4CEF7;
+	Mon,  9 Mar 2026 11:45:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773056762;
+	bh=4GHo3rpAhoh7Ez68qCniCSzBJN6YciwSNLek4y7NmYA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=W36W4/zCIY1OQLpUddYgQSvcv7rfjtlmRVHyJWDp1qi5vJ8n96Owl8g6LzSuwZmv3
+	 k52gqUlkRvZUAu4nUfC0r1UID4i87J/PMR49y7ivSYsBB1e6g/VADx63uaCGWE0KtO
+	 Sa3ZGFnXiAMFTj/m5/UI9sjUs7uWanwN7NQ9JIOj+BLMVePRpwUfjHxKMuDr3sWORO
+	 6+CUY6XP2qt2372Oe3MKYdbXJASTo0PbmoXI4v0NSGIzN1M/2FIqEeHc+JmPHkygeO
+	 YAyApKuiWuDCXiWEeVEiPN/75ySCyF40zTrBDcSG/1kr20/u2AsE71oUvWhn02XKCF
+	 Autm9PxLwOCxA==
+From: Vinod Koul <vkoul@kernel.org>
+To: Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Saravana Kannan <saravanak@kernel.org>, 
+ Frank Li <Frank.Li@nxp.com>
+Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Shawn Guo <shawn.guo@freescale.com>, 
+ Jindong Yue <jindong.yue@nxp.com>
+In-Reply-To: <20260225-mxsdma-module-v3-0-8f798b13baa6@nxp.com>
+References: <20260225-mxsdma-module-v3-0-8f798b13baa6@nxp.com>
+Subject: Re: [PATCH v3 00/13] dmaegnine: freescale-dmas: small improvement
+Message-Id: <177305675929.117444.10373471649910063885.b4-ty@kernel.org>
+Date: Mon, 09 Mar 2026 12:45:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,100 +67,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-orangepi-sd-card-uhs-v2-7-5bb2b574df5d@gmail.com>
-References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
-In-Reply-To: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, 
- Yixun Lan <dlan@kernel.org>, Yixun Lan <dlan@kernel.org>
-Cc: Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
- Javier Martinez Canillas <javierm@redhat.com>, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Iker Pedrosa <ikerpedrosam@gmail.com>
-X-Mailer: b4 0.14.2
-X-Rspamd-Queue-Id: 8478E2381AC
+X-Mailer: b4 0.13.0
+X-Rspamd-Queue-Id: 40E58238203
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272873-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272874-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[rootcommit.com,redhat.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.917];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ikerpedrosam@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.966];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add complete SD card controller support with UHS high-speed modes.
 
-- Enable sdhci0 controller with 4-bit bus width
-- Configure card detect GPIO with inversion
-- Connect vmmc-supply to buck4 for 3.3V card power
-- Connect vqmmc-supply to aldo1 for 1.8V/3.3V I/O switching
-- Add dual pinctrl states for voltage-dependent pin configuration
-- Support UHS-I SDR25, SDR50, and SDR104 modes
+On Wed, 25 Feb 2026 16:41:36 -0500, Frank Li wrote:
+> Add managed API devm_of_dma_controller_register().
+> 
+> simple mxs-dma code and add build as module support.
+> Use dev_err_probe() simple freescale dmaengines.
+> 
+> 
 
-This enables full SD card functionality including high-speed UHS modes
-for improved performance.
+Applied, thanks!
 
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+[01/13] dmaengine: of_dma: Add devm_of_dma_controller_register()
+        commit: 3a005126c9d7f30093627a6f329656c358e16b3a
+[02/13] dmaengine: mxs-dma: Fix missing return value from of_dma_controller_register()
+        commit: ab2bf6d4c0a0152907b18d25c1b118ea5ea779df
+[03/13] dmaengine: mxs-dma: Use local dev variable in probe()
+        commit: 96857a90982c2a461520fadc55dda3b8051e8d96
+[04/13] dmaengine: mxs-dma: Use dev_err_probe() to simplify code
+        commit: 4a5b0a728d665b3b7b08fb5bf6b2f69c995e30ec
+[05/13] dmaengine: mxs-dma: Use managed API devm_of_dma_controller_register()
+        commit: d11544c674b64beb9948724ba27187238c52b079
+[06/13] dmaengine: mxs-dma: Add module license and description
+        commit: e1b712c9352cf74285973462ced8d60ed7a9183c
+[07/13] dmaengine: mxs-dma: Turn MXS_DMA as tristate
+        commit: 67adf1f6643d75e33509900a2cb35db3a31f0410
+[08/13] dmaengine: imx-sdma: Use devm_clk_get_prepared() to simplify code
+        commit: 5daee52d7cc87415367fa0051a80998cccbab920
+[09/13] dmaengine: imx-sdma: Use managed API to simplify code
+        commit: 8982cb214a7f29db7d28058a3b4697f436af34d2
+[10/13] dmaengine: imx-sdma: Use dev_err_probe() to simplify code
+        commit: 917edfa57783352cd491cd5759a04d7b60de1714
+[11/13] dmaengine: fsl-edma: Use managed API dmaenginem_async_device_register()
+        commit: 4035726a6b724ff0f04b4f1429c7b1a935fc2e76
+[12/13] dmaengine: fsl-edma: Use dev_err_probe() to simplify code
+        commit: 804e18f7da6d29cff7ed4e004bcc05658f51d737
+[13/13] dmaengine: fsl-qdma: Use dev_err_probe() to simplify code
+        commit: 2438deea9ff82940ebfce67e232d558199ab8a6e
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index 414b03f5e6480f05f5d7eeaaa0afb4e86425ae36..361135269801f436703b6f1d768c91325a52f07f 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -140,3 +140,22 @@ sd_vqmmc: aldo1 {
- 		};
- 	};
- };
-+
-+&sdhci0 {
-+	pinctrl-names = "default", "state_uhs";
-+	pinctrl-0 = <&mmc1_cfg>;
-+	pinctrl-1 = <&mmc1_uhs_cfg>;
-+	bus-width = <4>;
-+	cd-gpios = <&gpio K1_GPIO(80) GPIO_ACTIVE_HIGH>;
-+	cd-inverted;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	vmmc-supply = <&sd_vmmc>;
-+	vqmmc-supply = <&sd_vqmmc>;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	status = "okay";
-+};
-
+Best regards,
 -- 
-2.53.0
+~Vinod
+
 
 
