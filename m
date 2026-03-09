@@ -1,129 +1,200 @@
-Return-Path: <devicetree+bounces-273127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273131-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +B7eBVc3r2kPQQIAu9opvQ
-	(envelope-from <devicetree+bounces-273127-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:10:47 +0100
+	id eH4hLjI4r2knSQIAu9opvQ
+	(envelope-from <devicetree+bounces-273131-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:14:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3FB42416C6
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:10:46 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4748B2417B7
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:14:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4FABF30E8DCD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 21:08:52 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 01B853037C1A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 21:14:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DD640FD92;
-	Mon,  9 Mar 2026 21:08:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD1541C2E1;
+	Mon,  9 Mar 2026 21:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A0L3JiuP"
+	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="Uzm2w9B2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7DD33F8BC;
-	Mon,  9 Mar 2026 21:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A103C3BF1;
+	Mon,  9 Mar 2026 21:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.143.35
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773090530; cv=none; b=uRhB+KZkTJbWz+5BTe2Cjjs1A1VRgADFnPjKoFl3V513MralTfUY2q3rHqL6KCJ7Nklx04g4VxpwPaSh8c8NOWcYgHTNBZKuY9dhjT2MVoGlpQrcPdkPESD1lxvPGzknqPlDnpIrhdcWuPDtmGORfNd+hAvd43PAzHmEFHlfA2w=
+	t=1773090843; cv=none; b=LwCOJpIsDqGnVvtK4vtHnb8ANFdUtP1imxEBjSOiTreD48bJmuIvNQJDv08cQ6XmqJmdMW6RNHc8N/24tto4p+8OypH+B8XhhAYSLaSLpc/cKnTJ6IJiHixec15y0JFJvAkg8lCoP/GCWJPWjf9m3O7cZ+J46x0KRSlWt9GGH/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773090530; c=relaxed/simple;
-	bh=U7I3bh69J3B4cMe2WWPQdGTO1zM2gflc1SsDGP9ZT0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=YLI+CQdQw6BwC0nmn57sdI5S6XsthirNi89gRUQVnE4Nv6nfwcCEm0aDHNdZEXPQzP4VaEXfFN+Fk3TfWLzQTCCI2JgM+LV5pG5ab1pDBAC+c5P3E6muD7v8b+pYfBqRGWmlbT1Tr5YDMVhYRnA7F2z8M7bAauEZ7iXg3rDSkUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A0L3JiuP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AE8BC4CEF7;
-	Mon,  9 Mar 2026 21:08:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773090530;
-	bh=U7I3bh69J3B4cMe2WWPQdGTO1zM2gflc1SsDGP9ZT0I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=A0L3JiuPR1xjYzTSESZft46f57l2sFUINbyiBwaa6vFAi1NfK83JHNon+cdjeHKbn
-	 7dtI21fEV5QD8ro2YvLh2Si8Xpmb/17KnuNGo/q5fBhZ11PkzUawLhZoFdFNhVyGZM
-	 h/UhGimNDd/Bac8cHifHRIEZ0rQmMlZ0lNoOeU0rl8G4gzJtuuk805FkZ6Mu2QWd+Z
-	 3MmBuE34eHGaY4YmNqZFA/7GR/Hc/hOENwdlrhexbxhowZ156iiF3wnKTE7av1xp4N
-	 wTipYJkof56uIJTznJYFJZWnhgT23MKaop5kLLZPDuod/62QnQMcD8mDWMFBsMhO4/
-	 d13soJV6gfW+A==
-Date: Mon, 9 Mar 2026 16:08:49 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Vijayanand Jitta <vijayanand.jitta@oss.qualcomm.com>
-Cc: Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>, Marc Zyngier <maz@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Thomas Gleixner <tglx@kernel.org>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Juergen Gross <jgross@suse.com>,
-	Stefano Stabellini <sstabellini@kernel.org>,
-	Oleksandr Tyshchenko <oleksandr_tyshchenko@epam.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Prakash Gupta <prakash.gupta@oss.qualcomm.com>,
-	Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-pci@vger.kernel.org, imx@lists.linux.dev,
-	xen-devel@lists.xenproject.org, linux-arm-msm@vger.kernel.org,
-	Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-Subject: Re: [PATCH v10 3/3] of: Respect #{iommu,msi}-cells in maps
-Message-ID: <20260309210849.GA591344@bhelgaas>
+	s=arc-20240116; t=1773090843; c=relaxed/simple;
+	bh=teYZU6LdnxU+I5ZUvuUfNdyxcYYHAZaS9ZpNzDXd9Ac=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=haLt1RFo1lWFMnIXOLadaSwPAOVQZQAGRgCWkO+NtAMqfo/b6sUWry8pNnSYl7i8oWi58CObhw391T1KR2hJlvJeLvsZ2aPd6q0y5v+1qEgOZNCd/WMTamY74hRYyPZgStQwG+CGcehii5oeoOKPVEGwrDxfk9X7btQpbsQVduY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com; spf=pass smtp.mailfrom=hpe.com; dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b=Uzm2w9B2; arc=none smtp.client-ip=148.163.143.35
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hpe.com
+Received: from pps.filterd (m0148664.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 629IB61a2067371;
+	Mon, 9 Mar 2026 21:13:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pps0720; bh=2qHkBKOryc1V6CZA0gnY5uJLBVYQe6FvA+tCd
+	A/f+Ws=; b=Uzm2w9B2saoStbOyjw6zlQ4Wii7cKU80KTL+Cgyg2hWt/q+6xCEDa
+	H06beiH1k4Up/OZpQRrhEk+DXgOrhkbU7jlqkLnHiRyUR1coK4+vVDRMfM8KUJxG
+	7sph1dPPT/IRGkE9fp90ZggIxN2uoVmbF8PxhpXmKcP9QV0MKiNAfyMXvSUEuClp
+	eUjeyHulg53Sl6haAYe2kwi+p3NUhNC56UvN2N+dMDaGZMuAD1MVQWOm0rOPZxVz
+	JAo8IyCOih3kGS/Jtk1/Y0VDeADcDvP/HHGYBYO2GFT6dFnYAEzChUwz0FTKbkbD
+	GAwglf6Alfw8EvFuibVXytIUZYswK2t8A==
+Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
+	by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 4ct38ta0c4-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Mon, 09 Mar 2026 21:13:43 +0000 (GMT)
+Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 6815A80160B;
+	Mon,  9 Mar 2026 21:13:42 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+	by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id AE214806B32;
+	Mon,  9 Mar 2026 21:13:41 +0000 (UTC)
+From: nick.hawkins@hpe.com
+To: ulf.hansson@linaro.org, adrian.hunter@intel.com, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: jszhang@kernel.org, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nick Hawkins <nick.hawkins@hpe.com>
+Subject: [PATCH v2 0/2] mmc: sdhci-of-dwcmshc: Add HPE GSC eMMC support
+Date: Mon,  9 Mar 2026 16:13:31 -0500
+Message-Id: <20260309211333.977919-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260309-parse_iommu_cells-v10-3-c62fcaa5a1d8@oss.qualcomm.com>
-X-Rspamd-Queue-Id: A3FB42416C6
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDE4OCBTYWx0ZWRfX84GtPIsl/MLw
+ r9FWn/PEmm+PEVCVw1mnEIJdh1bDr437AcLxuJr0gEkTvuVGG7LRJjnMZ9mwJzu8NrZOC57EjTK
+ XaKto8ismwpTrFGdW/vnUQbyPi1lo+U0nXMYNhy3m7l3PgxyYfBFQOp3rb8vsxuHu6rUSms2Fl7
+ C2M3q7qv1GXBWb2E9QnyQy6MgsAlUsNq7ZylU7AEPhDYK2aCdXE9RVxH9eKz0eJTUeX7WsWgy1w
+ G0cI9PnIR1XeSimfUdzgdcooozUaKrGKLlVDoJ3dvIIn2nJ96Gw4aOzZYCEggKz8dT2Y/ha1Bc/
+ kdzh950GdyfMADT6vEnL8OTl9RP3Z3YbnGbzYDIfyDoDCYjAH0N+/6sO6Ov2zj+YwEzzPF/QANd
+ Rv49zm/8k9T2VNRzOXbteq5jxsI/+h2EmqJ0xtKaFTpfWhOqFs+iiK2mfmEIH7PnSyPM9vFuNhO
+ WjEG8XSVewtIeA1G6nw==
+X-Authority-Analysis: v=2.4 cv=dNWrWeZb c=1 sm=1 tr=0 ts=69af3807 cx=c_pps
+ a=A+SOMQ4XYIH4HgQ50p3F5Q==:117 a=A+SOMQ4XYIH4HgQ50p3F5Q==:17
+ a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gQcMVamqm3wCPoSYhaRC:22
+ a=NCWKwCw8Xy9Og0ibBRsL:22 a=MvuuwTCpAAAA:8 a=XbkwoOjMWocvkfcq9GYA:9
+X-Proofpoint-GUID: oBuJtbJzi7Mf8igKZXapcItsHnv3pXrd
+X-Proofpoint-ORIG-GUID: oBuJtbJzi7Mf8igKZXapcItsHnv3pXrd
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_06,2026-03-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0 spamscore=0
+ suspectscore=0 clxscore=1015 adultscore=0 priorityscore=1501 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090188
+X-Rspamd-Queue-Id: 4748B2417B7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[hpe.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hpe.com:s=pps0720];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273127-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	TAGGED_FROM(0.00)[bounces-273131-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[amd.com,8bytes.org,kernel.org,arm.com,nxp.com,pengutronix.de,google.com,gmail.com,suse.com,epam.com,oss.qualcomm.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.xenproject.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	DKIM_TRACE(0.00)[hpe.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,hpe.com:dkim,hpe.com:email,hpe.com:mid];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[nick.hawkins@hpe.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,arm.com:email]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Mon, Mar 09, 2026 at 01:03:39AM +0530, Vijayanand Jitta wrote:
-> From: Robin Murphy <robin.murphy@arm.com>
-> 
-> So far our parsing of {iommu,msi}-map properites has always blindly
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-s/properites/properties/
+The HPE GSC is an ARM64 (Cortex-A53) BMC SoC used on HPE ProLiant
+servers.  Its eMMC controller is based on the DesignWare Cores MSHC IP
+(snps,dwcmshc) but requires a small set of platform-specific quirks
+that cannot be expressed through the existing generic dwcmshc code
+paths.
+
+This series adds support for the 'hpe,gsc-dwcmshc' compatible:
+
+Patch 1 extends the snps,dwcmshc-sdhci.yaml binding to document the
+new compatible and the mandatory 'hpe,gxp-sysreg' syscon phandle for
+MSHCCS register access.  The HPE GSC exposes only a single 'core'
+clock, so the clocks/clock-names properties are constrained to
+maxItems: 1 for this compatible.
+
+Patch 2 adds the HPE-specific driver code in sdhci-of-dwcmshc.c:
+
+  * dwcmshc_hpe_set_clock(): SDHCI_CLOCK_CONTROL.freq_sel is wired to
+    a clock mux on the GSC SoC, not a divider.  When running at
+    200 MHz (HS200) freq_sel must be forced to 1 to select the correct
+    high-frequency source.
+
+  * dwcmshc_hpe_vendor_specific(): disables the command-conflict check
+    and programs ATCTRL = 0x021f0005 for reliable HS200 signal integrity
+    on the GSC board topology (auto-tuning enable, centre-phase mode,
+    tune-clock-stop, pre/post-change delays = 3).
+
+  * dwcmshc_hpe_reset(): calls sdhci_reset(), re-applies vendor config,
+    and unconditionally re-sets CARD_IS_EMMC.  The controller clears this
+    bit on every reset; leaving it clear causes card-detect
+    misidentification on the eMMC-only slot.
+
+  * dwcmshc_hpe_set_uhs_signaling(): mirrors upstream
+    dwcmshc_set_uhs_signaling() but always asserts CARD_IS_EMMC.
+
+  * dwcmshc_hpe_gsc_init(): obtains the SoC register block via the
+    'hpe,gxp-sysreg' syscon phandle and sets SCGSyncDis (BIT(18)) in
+    MSHCCS (offset 0x110) to allow the HS200 RX delay lines to settle
+    while the card clock is stopped.  Enables SDHCI v4 mode.
+
+  * sdhci_dwcmshc_hpe_gsc_pdata sets SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN
+    (base clock not in capabilities) and SDHCI_QUIRK2_PRESET_VALUE_BROKEN
+    (preset-value registers not populated in GSC ROM).
+
+All new symbols are exclusively selected by the 'hpe,gsc-dwcmshc' OF
+match entry.  No existing platform (Rockchip, T-Head, sg2042, Sophgo,
+etc.) has any code path change.
+
+Note: the DTS node for 'hpe,gsc-dwcmshc' will be submitted separately
+as part of the HPE GSC base platform series (arch/arm64/boot/dts/hpe/).
+
+Changes since v1:
+  - Replaced the second reg entry for MSHCCS with an 'hpe,gxp-sysreg'
+    syscon phandle + regmap access, as suggested by Conor Dooley.
+  - Driver now uses syscon_regmap_lookup_by_phandle() and
+    regmap_update_bits() instead of devm_platform_ioremap_resource().
+
+Nick Hawkins (2):
+  dt-bindings: mmc: snps,dwcmshc-sdhci: add HPE GSC dwcmshc compatible
+  mmc: sdhci-of-dwcmshc: Add HPE GSC eMMC support
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  38 ++++
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 173 ++++++++++++++++++
+ 2 files changed, 211 insertions(+)
+
+-- 
+2.34.1
+
 
