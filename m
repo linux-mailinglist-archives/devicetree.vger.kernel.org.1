@@ -1,151 +1,141 @@
-Return-Path: <devicetree+bounces-273033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273034-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHltOrX0rmnZKgIAu9opvQ
-	(envelope-from <devicetree+bounces-273033-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:26:29 +0100
+	id muYnGyf4rmkwLAIAu9opvQ
+	(envelope-from <devicetree+bounces-273034-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:41:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81D7B23CAF8
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:26:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B89E523CE2F
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:41:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6E406303B5F8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 16:25:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C6A72313479C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 16:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91613E9586;
-	Mon,  9 Mar 2026 16:25:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6493AA1BC;
+	Mon,  9 Mar 2026 16:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PUOGJRko"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F54239B490;
-	Mon,  9 Mar 2026 16:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A1C030F7F2;
+	Mon,  9 Mar 2026 16:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773073520; cv=none; b=Pp442wBCkS0MlFp45cetg2ZspgeDbWH+j5RF2/kXrW49R7NY38+gUrMO6GRXcf0ApYMia7g4vaWXRvFCc0Nr79Q/7RvbERI3NR9EYMuYMwDrANR8y0EQlnOJ1lNDCpJMs0AECfO75ezuUEAmpheR6Gy3ApZEmc03J2PopzPfrco=
+	t=1773073843; cv=none; b=b2fKWaerveJV8rZuZit1TDCg8Le3Q9oblq0YKpMtYUHIL1crnKNm1mTQmZBXh1uHEXJ+2jM5SPK2fuuCchYy2S9EQ8qGa+hNpwhaha10mwN7K7d7ABFg2793XYSzgNt4fRyANrnQEqZDA4dw0BaL3zuh73SsGO1T20BYhEPQg6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773073520; c=relaxed/simple;
-	bh=xF3DVn19Bne3hFSxydLlqYCVKj7CplgD76yq8FcuPh4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=l9xFooNZNLt/+mRL3wKwX/y6x69LOsDs94zyI2H+5WxFaQiAVsURIVaOoJM4adfxpQuFaVPewbwgGLMASkhIUgt7rrIrLVrgNTDJvd6znA0ZdpzdXPHBqbJgHYdDpMHn+Qr2IkfV+rOtF5pL459kdPI9XLJHEVw4jEDUavILz5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.14])
-	by APP-05 (Coremail) with SMTP id zQCowABH1Qhb9K5pgkP5CQ--.22703S4;
-	Tue, 10 Mar 2026 00:25:09 +0800 (CST)
-From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1773073843; c=relaxed/simple;
+	bh=ave8VaHuJdkX4Wx9StX2O4sv60limTQQ5am7zfTRfNk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q7xeNuPuga/DaD4n2y+dzPjWQagEmyDqE//+mcBOCVYV8i4WsBy2tZncdpnFG0LtUB5dyoBtBFkMxeAPgj6au0RmBB3zXDBxIjGpElGEcOBFI1XT0bb5TWmk7EQ9F8RbgSRce2l7DmxJOUsqhYgzbQbMlf2K8j+hTOKQEIIzwTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PUOGJRko; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1919C4CEF7;
+	Mon,  9 Mar 2026 16:30:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773073843;
+	bh=ave8VaHuJdkX4Wx9StX2O4sv60limTQQ5am7zfTRfNk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PUOGJRkocuFM89TqCoA90he6JWIvU394nTBjKcAkDE+rvsHFXBbHDID1zgQpQ5CMN
+	 cJ5pbSX1+Pf9CAVHv3R6XjaCTO0fdz40NuTrUigQzqaGFmSLnslkbTYrLRmJZnOVJB
+	 SXgc6NbVBHY9cv4hNP5ReRRXNGU11PMsT1Q8OkqYAtWYd2U7X3IEUVr8BSejNUfOk8
+	 rP22xS2B+Xfa4324yAHrJJmBX0n7cF/Ofz1dXUZyQ/tHXZJUk9Bd/LLCYs5VErrbXx
+	 s5Wc1EkOjg9kQ2R5MCt6sH5ZbM855cij2r3VSoqXDpL0aVd1WVDqFY7SJNC4yPbWvn
+	 9+qobCjzC+hjw==
+Date: Mon, 9 Mar 2026 16:30:37 +0000
+From: Mark Brown <broonie@kernel.org>
+To: =?iso-8859-1?Q?Andr=E9?= Svensson <andre.svensson@axis.com>
+Cc: Support Opensource <support.opensource@diasemi.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Drew Fustini <fustini@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Rahul Tanwar <rtanwar@maxlinear.com>
-Cc: linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Han Gao <rabenda.cn@gmail.com>,
-	Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Subject: [PATCH v3 2/2] riscv: dts: thead: th1520: add coefficients to the PVT node
-Date: Tue, 10 Mar 2026 00:24:57 +0800
-Message-ID: <20260309162457.4128205-3-zhengxingda@iscas.ac.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
-References: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
+	Adam Ward <Adam.Ward.opensource@diasemi.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@axis.com, Waqar Hameed <waqar.hameed@axis.com>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: dlg,da9121: Add
+ dlg,no-gpio-control
+Message-ID: <f5ee1e87-f4ef-46e1-a705-cba532e1db2e@sirena.org.uk>
+References: <20260309-no-gpio-control-v1-0-06d2365917c6@axis.com>
+ <20260309-no-gpio-control-v1-1-06d2365917c6@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:zQCowABH1Qhb9K5pgkP5CQ--.22703S4
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw18KFW5Ar4DCw4fKw4DJwb_yoWDWFb_KF
-	1fGa15Aa1fAFWfAFyDZrn5XFyFy3yYyw4rt3savr15Kas8Ww40qayqgas5Cw1DuFZ8tFs7
-	Aw47XFW8twsFyjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUIcSsGvfJTRUUUbkxFF20E14v26rWj6s0DM7CY07I20VC2zVCF04k26cxKx2IYs7xG
-	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28IrcIa0xkI8VA2jI8067AKxVWUXwA2048vs2IY02
-	0Ec7CjxVAFwI0_Xr0E3s1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2x7M28EF7xv
-	wVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1l84
-	ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AI
-	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
-	vE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xv
-	r2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04
-	v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
-	AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE
-	2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcV
-	C2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2Kfnx
-	nUUI43ZEXa7VUbH5lUUUUUU==
-X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
-X-Rspamd-Queue-Id: 81D7B23CAF8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tQVtgCPmvqIs6jmf"
+Content-Disposition: inline
+In-Reply-To: <20260309-no-gpio-control-v1-1-06d2365917c6@axis.com>
+X-Cookie: Do not dry clean.
+X-Rspamd-Queue-Id: B89E523CE2F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-4.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273033-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273034-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[diasemi.com,gmail.com,kernel.org,vger.kernel.org,axis.com];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,icenowy.me,gmail.com,iscas.ac.cn];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.972];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.832];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:mid,iscas.ac.cn:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,icenowy.me:email]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sirena.org.uk:mid]
 X-Rspamd-Action: no action
 
-The manual of TH1520 contains a set of coefficients a little different
-to the driver default ones.
 
-Add them to the device tree node of PVT.
+--tQVtgCPmvqIs6jmf
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-Signed-off-by: Icenowy Zheng <zhengxingda@iscas.ac.cn>
-Reviewed-by: Drew Fustini <fustini@kernel.org>
----
-Changes in v3:
-- Added Drew's R-b.
-No changes in v2.
+On Mon, Mar 09, 2026 at 04:52:35PM +0100, Andr=E9 Svensson wrote:
+> Add the optional boolean property dlg,no-gpio-control. When present, it
+> indicates that no DA91xx GPIO pins are configured/used with functions
+> RELOAD/DVC/EN, which can affect the output voltage control, regulator
+> mode control and enable signal control.
 
- arch/riscv/boot/dts/thead/th1520.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+> It is mutually exclusive with enable-gpios, regardless of whether the
+> referenced GPIO is connected to a GPIO pin or the IC_EN pin, since
+> enable-gpios allows the regulator to be controlled via an external
+> hardware signal.
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index bd5d33840884e..2160c8b6c2261 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -753,6 +753,10 @@ pvt: pvt@fffff4e000 {
- 			reg-names = "common", "ts", "pd", "vm";
- 			clocks = <&aonsys_clk>;
- 			#thermal-sensor-cells = <1>;
-+			moortec,ts-coeff-g = <42740>;
-+			moortec,ts-coeff-h = <220500>;
-+			moortec,ts-coeff-j = <(-160)>;
-+			moortec,ts-coeff-cal5 = <4094>;
- 		};
- 
- 		gpio@fffff52000 {
--- 
-2.52.0
+This should probably explain why we can't infer the absence of GPIOs
+=66rom the lack of any relevant GPIO properties.
 
+--tQVtgCPmvqIs6jmf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmu9a0ACgkQJNaLcl1U
+h9AuIQf8CkRlBkjWTxcPn9ocgKeD/kemU2SRXTXqKywHMOnUKhAkLX7eNvIE2DC1
+7561ix+iirGoY7W+Jwwxp+tgr8c1R2sBDUrIsN2NoU90Pm1NRRx8ISkkaafQ2Omk
+ryp8zvYHxkUZ74iMlf7rCLVp3PG+QfI2a+/yq6Yry8q13AODD5wt3Ito3DMEj76W
+4mXrGh9S3e5Ff2u8lMMspkI0djNTBaAd3YU8SDAwJhwszpRLv78de4OT+8QbBsSj
+HBpvGq+cIdaEcty1m2DyiFW86gwGELtJ1iRGyEhEKTL1IMXOqIZ0y5mzFDgCm88F
+MCRYUyYU8we9zTGf7KVMTr3qcMTMkA==
+=khWw
+-----END PGP SIGNATURE-----
+
+--tQVtgCPmvqIs6jmf--
 
