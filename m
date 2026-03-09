@@ -1,1454 +1,225 @@
-Return-Path: <devicetree+bounces-272860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272861-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFyPEfutrmkSHwIAu9opvQ
-	(envelope-from <devicetree+bounces-272860-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:24:43 +0100
+	id iBSEJZiurmkSHwIAu9opvQ
+	(envelope-from <devicetree+bounces-272861-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:27:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72744237E1B
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:24:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC599237EC1
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:27:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 93C2E30ACEEF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:19:12 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 68A61300E394
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:23:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2D439A7E6;
-	Mon,  9 Mar 2026 11:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF569392C2C;
+	Mon,  9 Mar 2026 11:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXIVRZs8"
+	dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b="UzCnE9bw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011021.outbound.protection.outlook.com [40.107.130.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEEA26FA5B
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:19:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773055151; cv=none; b=OShpomyLwvd0+xloLdc4YV5Bz9jj9MCIbPW/b3V20AdnMmPO7N6C1dJJusyrq5wc3VzqYHFgK4g44EOG3nzDaa6RsfcGCHhYyPx7oX4KWF29dxc+Bw2uHHgC6VAkuY6/UtfzXScFn9SE+xofJ2fcLrnhgfpI3dpJFjlvfeJwOIY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773055151; c=relaxed/simple;
-	bh=/QT+ZsyT1g5zM93+IVQrwcQq8LP1sj3UTRUjMHmJ/iA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eTBL75zqWzs7xgMqXj/jj4GQCNxGkpRAxrxij1NbnQ71WiaPkTjmgJgzTX3uwsXgsRq0w96P3VyD4OOJZ1xWw8PnfcrD8r0hwo2lCSxVTetE3TN1+3fS5aE2rWHDmGhVCxlUFMo2hgDx6xaoqd0ee2q0JcEMXgJi470ytPwJMgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXIVRZs8; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-660dcafc85aso9486778a12.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:19:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773055145; x=1773659945; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=UTOjzeQyqSqftgSUxo2hsCAem+/pzZYpTqKtA7wVqy8=;
-        b=BXIVRZs87U3+BS0l/MN4+Yrpuj2g8Xk1TT+s4eo58dLSUwRvd4Dpgoh7cm+wDhg232
-         X0WZ27njFdEAIDSU7IoYoKKCiMk36Yua3fEflhGhXeNMkgP5uhnIYXQRi09k4SrRXfzK
-         26P439BqUIswpOj4pv7fW9JR+hXmCEhUGxHKKmFV6Iuhae4MMb1NtaocGJSpITlEMMPN
-         Vxp5hL55BPRqAn2l5zVyYWJVw86DfN7MGnEIWS+0I+WmGdjxYDlO/fyoT46XHPQk3/jS
-         Tmab3h9G/HuPhpqaLAniRVqLMxATE/yvgAgX0DBVDjIy2MFTsyoQDD1wgrgVNNKBV332
-         dnXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773055145; x=1773659945;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UTOjzeQyqSqftgSUxo2hsCAem+/pzZYpTqKtA7wVqy8=;
-        b=cBUByJTvYrIXaykWoyIFcFw5OxECnSTbDdalT8NTRqjrxKRx4bfOUmaneN5+WwA6Kb
-         4TARjqBULM5rH32GcRpfDaBlFRyIiRs8f/mCdJkj5p4++Ef0trCztzmHLEKtetMuZrUM
-         ggK4Bt1P6Bzdsrm8FIc4UUkQs68ovlc9ZRyxTSjZpEAjOpOwcyewqaPaE9nkFEV1WVy0
-         4hT1eBPgjBvpcSMn5Z8RLuzDkQ1ZDUloyQYphWOxMK3td6+AyTGobXcbMSLxb9xbXvow
-         b+okRoKa9ziVaH6yAn9fm0UfoEdasOwaUjw75dGtpI7kjdHZ8aHwptkz+zE1dXIXhEpg
-         jOFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVkFhsjGH7K1qySq0e2vpLNlm8wv3WHEwSOxw0h4UMJCPqTQM5b8J+H+Rpvj8OoLp4fFOn8bm5AeUgd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyTw3YjcvNee9SsuerrMHEjfnZRxlb5H7Emq5ERv+zgnq4CxFtj
-	5yCRNYa3iSvA1D4OqcwolVN4c9bZ0NOMWhT3vR6+y+VZEuPhFLg+Vafc
-X-Gm-Gg: ATEYQzxGy4nPZy5SKdyouo81QqtGW7LO6gB0IuLvcOEaZyJVtosV8e4OUdnGH/fIwFT
-	zUq8fqNClQQSA2OMcQB95IXm9m5fqstIKvmIsnrhZptjol4nO1Fzu1cv0X+NedcjrYpjL8P9KmD
-	hYvrL0s5/cjNn4Ot1xdeI5kUW0XaCw0FUf452tJaoiv8ZQFXcK21qj4wXUpdKw1ccshnkw2paDx
-	mvfTStFXIO4Dz5/DsCbR58My2mjHSu54C+oEc5C/8BEAQ/TP3UalE3ZFAsb+lcozbB8jahgodxA
-	JNDqmUvbcptNPvehnumgJrhNopXntdyqJA0ZpTQpDZvqiSTneYk/JgNvvcvydcoqvaOrUuDYe7w
-	O3KRVbYHKCJHyCZqEOtvVcXXBDMEzXzA2FOBcWW5m/DyU7b6+o1lbAb6Rdk+VzGLKg0GfIFLgCE
-	oXOhOPPhdkHg0eJMef9yDTeLPNsUXaR/i83+I4bK7IdkBXuk/7Yb62TGfGWmCpnZATkr7K3w==
-X-Received: by 2002:a17:907:2d9e:b0:b97:7a:768e with SMTP id a640c23a62f3a-b97007a8663mr102441566b.12.1773055145011;
-        Mon, 09 Mar 2026 04:19:05 -0700 (PDT)
-Received: from nixos-office (98.206.213.193.static.cust.telenor.net. [193.213.206.98])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9431c02a56sm349671766b.39.2026.03.09.04.19.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 04:19:04 -0700 (PDT)
-Sender: Julian Braha <julian.braha@gmail.com>
-From: Julian Braha <julianbraha@gmail.com>
-To: gregkh@linuxfoundation.org,
-	jcmvbkbc@gmail.com
-Cc: rdunlap@infradead.org,
-	ilpo.jarvinen@linux.intel.com,
-	conor+dt@kernel.org,
-	robh+dt@kernel.org,
-	jirislaby@kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Julian Braha <julianbraha@gmail.com>
-Subject: [PATCH] serial: remove drivers for espressif esp32
-Date: Mon,  9 Mar 2026 11:18:48 +0000
-Message-ID: <20260309111848.1516412-1-julianbraha@gmail.com>
-X-Mailer: git-send-email 2.51.2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2951B1E1C02;
+	Mon,  9 Mar 2026 11:23:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.21
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773055420; cv=fail; b=ocqi7JAxByLpe/pMVtuhiZ+U74QkeYcOw9Orgorn6SrtwXzeoGcDRIFOwekFR5mHuZ6vAzISuGWU9y0LxQaMyJJ0uWHiDQkSp2ysq02n5X19F7jZIigW8jPSr0KqSLrUw2fce1wRqM1XTqxpXO04P13rfNov2nz5Z3nC+9iSdMI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773055420; c=relaxed/simple;
+	bh=DUbccoGQrFJgzeeHUl6/iYyDFGDEHU6GCqOlb8ofX9E=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pIjnD9MCKSUOC+Ou3lD/uKI4WReFIUEAerMj/iAQBB6hat90rzd8DAF44pzE0YB4T8EVVB3XfGojITDKQwC2/2zV4xpvIkrTle3ulTEfxawpZuoNTEX0ycEaq+vu+fvtFdbTDV77cYugAl0nfZlXxgUoHwarEf0hf9fyFywFpQo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=@siemens.com header.b=UzCnE9bw; arc=fail smtp.client-ip=40.107.130.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=siemens.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=MFR7cG+6/B1hlv1W4lgjG5sS+Sw+sFE88nyyBgobbF5TV4HYZ6PxtFqs1ZrbayepkEbV5XbEt3V+NbOcA8TviEiNk9iMARwy3BC5UmnQMNID9jYGY/PKkSmGpz/c9MgKL+8MLQg/h+p6b9Vdpd9VpYTZNbRg2y+lTtqOXkjaB+MLiB6h5PBe4DzHuBZlGtMHJBO8/ldMF2p84z5BxyGzY7oIvZAa0wR8uPr4YZtqyyXQBV3jM94DGmUmvEKU54iCcXe45OPFfYFjvYfzlpZObyfDb/lcXsI0H3S0zLA2UEZ1PmDKI+6gyWEVpWOdhriynpodfaC141m471TRNyrNFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DUbccoGQrFJgzeeHUl6/iYyDFGDEHU6GCqOlb8ofX9E=;
+ b=OoBvHfbkRW0VBQ7SJEDQKiQsvwXwGzECsV8hgRNQWJsWS3BYG3f1prxJJNqWZm8C2ZZumUzZF3kRNaGN5zk8NCvG8wwPzOmH4vqQ6VBs84MC1ji798kgLRRaLxjcYdfFWtxItI6KHefe9QIoYpueFIl3346c62DviFLSZwOym6Jl5hsk5gQeif+O8nt0fZDcOIyPlXlfPGwIwGD8I/MgiZW8KE77VGqkYt7lXG2Cvt7aGkPtFBBf5cHFUX9WsQc/3Dz9NgB5cPX1gUzp0nhOGukfqjsu/pErLTBDCH+4iSf/pl7A+mW1fGBBH0q/6TuEvtGjcWLzPSe78KzpxdQedg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siemens.com; dmarc=pass action=none header.from=siemens.com;
+ dkim=pass header.d=siemens.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=siemens.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DUbccoGQrFJgzeeHUl6/iYyDFGDEHU6GCqOlb8ofX9E=;
+ b=UzCnE9bwQsKV00mlFyPgLu2spLr40uQxVgEpAVP+uznF6MJMukBH8KPG2Kt8I4T9t2sd2cYlxDxzNGIVEdEQKFGlknrPBlQw13sM+Or3a2YbLYe9KKbN5cnPBloDfO7QWK14Eq2cgJ02E00VcXxdY/KsLoPjOXyqEaQtdQk74foG1SgaLbeU097BfoU6ykc/gvTsXz/G8QebvHf/bRHJ+EgotBlaOjqZYhoOia+EmnLF5m43ljixalFLFxw+vKK/1BwzJ0Dzz0f2u12ii2leP7UHWtpIDlek7lXticREB3PNWkjmVAhvLCKL5TdywMB+LF58KKTIIDaWd3VfAMnNxg==
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:5b6::22)
+ by VI1PR10MB3632.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:13f::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.24; Mon, 9 Mar
+ 2026 11:23:34 +0000
+Received: from AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f]) by AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::9126:d21d:31c4:1b9f%6]) with mapi id 15.20.9678.024; Mon, 9 Mar 2026
+ 11:23:34 +0000
+From: "Sverdlin, Alexander" <alexander.sverdlin@siemens.com>
+To: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "krzk@kernel.org" <krzk@kernel.org>
+CC: "kishon@kernel.org" <kishon@kernel.org>, "j-choudhary@ti.com"
+	<j-choudhary@ti.com>, "s-vadapalli@ti.com" <s-vadapalli@ti.com>, "afd@ti.com"
+	<afd@ti.com>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"kristo@kernel.org" <kristo@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "nm@ti.com" <nm@ti.com>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "ssantosh@kernel.org" <ssantosh@kernel.org>,
+	"vigneshr@ti.com" <vigneshr@ti.com>, "rogerq@kernel.org" <rogerq@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: soc/reset: ti: add binding for k3
+ platforms reset module
+Thread-Topic: [PATCH 1/3] dt-bindings: soc/reset: ti: add binding for k3
+ platforms reset module
+Thread-Index: AQHcr6zALlDmtI7vZ0C5otsWBhL4dbWmBggAgAAI7AA=
+Date: Mon, 9 Mar 2026 11:23:34 +0000
+Message-ID: <ee0d0b9cd2467136f0aa48ea4060e83928a50620.camel@siemens.com>
+References: <20260309100800.1134701-1-alexander.sverdlin@siemens.com>
+	 <20260309100800.1134701-2-alexander.sverdlin@siemens.com>
+	 <9f95d122-ffd5-485b-9bda-f4141a77b6ca@kernel.org>
+In-Reply-To: <9f95d122-ffd5-485b-9bda-f4141a77b6ca@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.54.3 (3.54.3-2.fc41) 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siemens.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR10MB6867:EE_|VI1PR10MB3632:EE_
+x-ms-office365-filtering-correlation-id: e5d894e5-611b-4bcd-27e9-08de7dce4d19
+x-ms-exchange-atpmessageproperties: SA
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700021;
+x-microsoft-antispam-message-info:
+ 1ZtLRHolPH8Q3y1mjiYIvjpKkW7BVeWrvfLCyC56KUysye89I3QLRzfEAgRSyvGKVp/rvj1bLYXV36BN+rm/AI0HBqgsgf3iHoHmJBtPA0X4/y/+8I90fopnPhI7KEZRlhpvchi+JQTKNWsERYemZqZWricvpoCBANucR2kTvQmNV/7FFoeAD1CHdp9QMD3bc7WJPgyMd91p6qDQnmZwxO502/6iCimJljtSZP+AZVrm60sr3zMdIe8hdVda/DIcVP8guQ32EYpFM29JDvvaJJGlBuIlUF4W+c4ViiZ2yZR9UWLlBOTl3G89h0+MKDZ/jAKAoxgtvYBKqcMxokfotgwnvL2l9fhWKFhGU9m4N9njlfyq82qDbUiambxoFLyHEPZzjuTaRtmsfn/z+G7V0qkGJH+19skmCCWHwjOoatmCBAKBwCmvO6fw/9Av/Ug1uFwYpGsop1yZo85bqBUkhrun6y2IkgsSljQyuu4VDSk6pZ8Uw2tw0pc82as9u6kebDKK3krEctnGAyf+Eh3CkS1prwjtS5GaRfVpbdLcmzcBwsarB7cdRFlld0S/LomVMFgKoX1TlSNtIWFqc+08kcnCUtO7bQc5WxIOogDxBTGx3b6EAeLmQF7LSt2FZd6Fc5wQLKGoaZSj3IKS1O9eZG0fKdEsku/wOyOMQWhmTUw4HZ3UgsCzNJRNUItjv6HnY2DEEV+gAzJbc515QAuMDA4eGvytzakJlFu2SzuqNMMUhLZjCDm+ZxQLipXGGKd5
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?TVR0djFFTUozY1JuRkdJdUxpaGVHcDg0ejBWVEdBNXl3ZHROVVBiWHdIU1hL?=
+ =?utf-8?B?RzEyejYxVFl3ZHFScHRNdGdVME4yU1VrMG9sa0VkdEc4MmJtQVdrenZlRVNV?=
+ =?utf-8?B?T1ZNenJhOFIyMlRYRDFTbWtMM3FSUUFOSG4zUUVnM3JQS3JRQXAzQ0Q3bmRx?=
+ =?utf-8?B?bFBaVm8wbjhMU1YxdndIZGs5WkswOEJ2SzRabm1yNGhkZ1BNNGpiMVhwcnIr?=
+ =?utf-8?B?Vm9CUHgwL24wV1kzMDVGdkRFdmlueGhrdGhGdk5ZU29jNEFWOTk1UGZjN1E4?=
+ =?utf-8?B?MW5kM0VwSFVWZ0o2RmRaU2tRRzFvclFuNlpraS9wbjNMZ3pCZ21qMVlWUzdP?=
+ =?utf-8?B?YXNMREI0WXowMTEyQzd4eWs5NTYvc3IzNjNVSHZ4SmEzRTRvY3dNWFM2L3BN?=
+ =?utf-8?B?Y3J5dkJiNUh4SkVWa2tsbjgrdzFSNnp2b2tFVG51WjZBRndMdFErYVlHMVBG?=
+ =?utf-8?B?ai94ZjBxcktQRmFVVHFMd00wT0lMOEYrMlFHQ3NPMzJuSHBCNVRWdEVxd2pY?=
+ =?utf-8?B?UTdGL0pYQ3NuOW1qUlZ6QVp0alBWRmZkbXFlNXBwU2hCSEM0OTU4UUk5L0Y4?=
+ =?utf-8?B?UkNNZUhKdmdJRzJqYlFrb2dOTDRuaFdlUFM4azRyNnhia2VjUHl4QysxL0Nh?=
+ =?utf-8?B?cVcxSnpnMHBmb2Z1SjFrZ3BEUXkzMGt5aWdGc2s0ZWNFWVVWaGN0VEtKWDZz?=
+ =?utf-8?B?RzUxU0tSR1lDcDdHUXhKNFZjYytWT1drTjVPd2I5NVQ0QlZjWENQQU5tZE5X?=
+ =?utf-8?B?MlozNllSbXFxaVh0cmltbnh5TC94ZG5tZEhPbWNPU21veTY4TU43akI3VlN2?=
+ =?utf-8?B?SEJFZmFpTGhpZUtWTjg1YmQvK3gveDZsQ0J2Vnh6cjlyZmdBN21SYTBYWE9p?=
+ =?utf-8?B?MlNMUkFzWjNWWXBESGRKeU55U0FrUnVkVUM4TnhJbG9mVzU2R0crbTRzZjNm?=
+ =?utf-8?B?clVxYlhiZC80TW4yU0hhQTBqWDNOSEQzeGtBMmI2QzZzTk05aWRJY2NTL2Zl?=
+ =?utf-8?B?RjdJek9XaXpIRis0WGMrQjZNS3owVkJtQUtMVmJvZlBYRWFwMnhnbVV4SWR3?=
+ =?utf-8?B?cTZ0emJsbDN2TnI5UTJCWmZOMzd3SHRpL0hZWm9uRjAvUThlNkgwR3F5SDNP?=
+ =?utf-8?B?SktVTHdOM25YZGRFVVorR3diaU04VVJSNGJPRyszbFlQeGs2U3VVSHJnTmhk?=
+ =?utf-8?B?aE1KcCtwblh2dkJjdU81d3VobDVYOHBSWnlkQlA0OW85YWJPRnZtdWZFdDFr?=
+ =?utf-8?B?WkZnSzZ0dC8wQzg0ZFdhQVdiWGV3UWx5REw2VXgrR3NnS1hWeHo1QTlzL0Uw?=
+ =?utf-8?B?dU5TRTlhUTFucldGL09jeHhUaE13L0pmR0JrVlJqRklFYTMwQU1iVHdjWEFk?=
+ =?utf-8?B?MmNkM3dTQlhLRlhiTGxXRmtPWCtFeENreDl1YTJEQTFWcmt2K25Rc2dyRHFo?=
+ =?utf-8?B?cmhGaXJrOGNKZGFrTFIxam1keWpNUXFtYlR5VnpSNzA3Z2wyWTBlUk9QREFy?=
+ =?utf-8?B?L2dZOXhBcy9TWmdhakJ5YWY1SjliWHZGcHdLMDFQbER3LzlhUERNTFpoRmlt?=
+ =?utf-8?B?d041VDF0WmtPM0VZZXNsWGFRWVJYOXBqdWFhYzlqc1UxSDVKUnJFR3hYelNE?=
+ =?utf-8?B?TUdjTmdvWCtKTXlqSnRzS2pUN0ZLTWkwZkk4bkpkY3dnc2lVNUtTYk4zOSts?=
+ =?utf-8?B?U3YvVnBYVXNoVEgxQjYzVWFidWp0aGEvNVFsZ0wxOWFzYmNGRVphS0I2RlFZ?=
+ =?utf-8?B?Q3NZVTN0MkFLOE9ibUQvQ2ZUcERtUXBDSEtJd3ZmNDBtb1dEWmV0SlkxTVA3?=
+ =?utf-8?B?d2FlMnR1LzZvUkphMEhRSEhUeGN3MGM5U2xnYnAvdEZod0lNczQwaS9weDVj?=
+ =?utf-8?B?WXptdXBGVnMvVDFEVXlROVowdTU0WU5QQ0JyRTVCNm1ZelFCS2luaWg5Z1Rr?=
+ =?utf-8?B?U1BGNU40UG9UTWhrLzdmeVo3ejM4emdTNEJTWlA2YUprNHZzN0R0cEl6VFpT?=
+ =?utf-8?B?ZllSaCs0YWVWNUlkOURqSWxROW4rK0dSb1p6RnA1THd4azJlRHduMnRZR2VK?=
+ =?utf-8?B?ZzFEM1ZSdUFCN1dWZ0FrRXJSSzBrc1Qyd3JrTGJKeWhpWEQwNmt4SWlEMzI2?=
+ =?utf-8?B?ZmQ4NUh1REV3SFp6KzFwUVMyOCs4Tkt4NVpIRVljV2dvWXQ2dmxaMHMweS9p?=
+ =?utf-8?B?NHBmazBDU2xtaVRHdHA5b3A1OHVYQTE0WUkvVTJGNEpDVXIwMXJIU0hvM1E4?=
+ =?utf-8?B?aFpNVkRRTy9YUHpjQ3JjbnRETW0rQTh6QTk5QmV0cWtSVnp4MVlmWDRDNmNk?=
+ =?utf-8?B?UytGd1B4eE9XWkpOUHJvYmhaVytDTjhwUythUnR0OWVscW5mRFVFaXhsTkhG?=
+ =?utf-8?Q?/ZeGUy6jXk3U7HkYswhZOtEUdBNA1AmO5B03o?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3D530528687CC049B5A5543838AF1D36@EURPRD10.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 72744237E1B
+X-OriginatorOrg: siemens.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR10MB6867.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: e5d894e5-611b-4bcd-27e9-08de7dce4d19
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2026 11:23:34.3225
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 38ae3bcd-9579-4fd4-adda-b42e1495d55a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KNQeMKWutw4OmWDd/srw4ccoNI2UgMaimEdEG7255PoyJ+OFnLnD5IFX/AmEMwQHG6VyXSAbGRHFE09LUKEWP0jfCE12F7D25J2NMJGVSbc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3632
+X-Rspamd-Queue-Id: EC599237EC1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[siemens.com,reject];
+	R_DKIM_ALLOW(-0.20)[siemens.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[linuxfoundation.org,gmail.com];
-	FREEMAIL_CC(0.00)[infradead.org,linux.intel.com,kernel.org,vger.kernel.org,gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272860-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-272861-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[alexander.sverdlin@siemens.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.993];
+	DKIM_TRACE(0.00)[siemens.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[siemens.com:dkim,siemens.com:url,siemens.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,2.144.103.186:email]
 X-Rspamd-Action: no action
 
-Following the conversation here:
-https://lore.kernel.org/all/20260308131412.1102749-1-julianbraha@gmail.com/
-
-There was an agreement to delete these drivers for now.
-
-Signed-off-by: Julian Braha <julianbraha@gmail.com>
----
- drivers/tty/serial/Kconfig      |  26 --
- drivers/tty/serial/Makefile     |   2 -
- drivers/tty/serial/esp32_acm.c  | 459 -------------------
- drivers/tty/serial/esp32_uart.c | 779 --------------------------------
- 4 files changed, 1266 deletions(-)
- delete mode 100644 drivers/tty/serial/esp32_acm.c
- delete mode 100644 drivers/tty/serial/esp32_uart.c
-
-diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-index f86775cfdcc9..686e7fb073b8 100644
---- a/drivers/tty/serial/Kconfig
-+++ b/drivers/tty/serial/Kconfig
-@@ -1593,32 +1593,6 @@ config SERIAL_NUVOTON_MA35D1_CONSOLE
- 	  but you can alter that using a kernel command line option such as
- 	  "console=ttyNVTx".
- 
--config SERIAL_ESP32
--	tristate "Espressif ESP32 UART support"
--	depends on XTENSA_PLATFORM_ESP32 || (COMPILE_TEST && OF)
--	select SERIAL_CORE
--	select SERIAL_CORE_CONSOLE
--	select SERIAL_EARLYCON
--	help
--	  Driver for the UART controllers of the Espressif ESP32xx SoCs.
--	  When earlycon option is enabled the following kernel command line
--	  snippets may be used:
--	    earlycon=esp32s3uart,mmio32,0x60000000,115200n8,40000000
--	    earlycon=esp32uart,mmio32,0x3ff40000,115200n8
--
--config SERIAL_ESP32_ACM
--	tristate "Espressif ESP32 USB ACM gadget support"
--	depends on XTENSA_PLATFORM_ESP32 || (COMPILE_TEST && OF)
--	select SERIAL_CORE
--	select SERIAL_CORE_CONSOLE
--	select SERIAL_EARLYCON
--	help
--	  Driver for the CDC ACM gadget controller of the Espressif ESP32S3
--	  SoCs that share separate USB controller with the JTAG adapter.
--	  When earlycon option is enabled the following kernel command line
--	  snippet may be used:
--	    earlycon=esp32s3acm,mmio32,0x60038000
--
- endmenu
- 
- config SERIAL_MCTRL_GPIO
-diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-index a2ccbc508ec5..bba7b21a4a1d 100644
---- a/drivers/tty/serial/Makefile
-+++ b/drivers/tty/serial/Makefile
-@@ -37,8 +37,6 @@ obj-$(CONFIG_SERIAL_CLPS711X)		+= clps711x.o
- obj-$(CONFIG_SERIAL_CPM)		+= cpm_uart.o
- obj-$(CONFIG_SERIAL_CONEXANT_DIGICOLOR)	+= digicolor-usart.o
- obj-$(CONFIG_SERIAL_DZ)			+= dz.o
--obj-$(CONFIG_SERIAL_ESP32)		+= esp32_uart.o
--obj-$(CONFIG_SERIAL_ESP32_ACM)		+= esp32_acm.o
- obj-$(CONFIG_SERIAL_FSL_LINFLEXUART)	+= fsl_linflexuart.o
- obj-$(CONFIG_SERIAL_FSL_LPUART)		+= fsl_lpuart.o
- obj-$(CONFIG_SERIAL_ICOM)		+= icom.o
-diff --git a/drivers/tty/serial/esp32_acm.c b/drivers/tty/serial/esp32_acm.c
-deleted file mode 100644
-index bb7cc65427f0..000000000000
---- a/drivers/tty/serial/esp32_acm.c
-+++ /dev/null
-@@ -1,459 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-or-later
--
--#include <linux/bitfield.h>
--#include <linux/bits.h>
--#include <linux/console.h>
--#include <linux/delay.h>
--#include <linux/io.h>
--#include <linux/irq.h>
--#include <linux/module.h>
--#include <linux/of.h>
--#include <linux/platform_device.h>
--#include <linux/serial_core.h>
--#include <linux/slab.h>
--#include <linux/tty_flip.h>
--#include <asm/serial.h>
--
--#define DRIVER_NAME	"esp32s3-acm"
--#define DEV_NAME	"ttyGS"
--#define UART_NR		4
--
--#define ESP32S3_ACM_TX_FIFO_SIZE	64
--
--#define USB_SERIAL_JTAG_EP1_REG		0x00
--#define USB_SERIAL_JTAG_EP1_CONF_REG	0x04
--#define USB_SERIAL_JTAG_WR_DONE				BIT(0)
--#define USB_SERIAL_JTAG_SERIAL_IN_EP_DATA_FREE		BIT(1)
--#define USB_SERIAL_JTAG_INT_ST_REG	0x0c
--#define USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST	BIT(2)
--#define USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST		BIT(3)
--#define USB_SERIAL_JTAG_INT_ENA_REG	0x10
--#define USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA	BIT(2)
--#define USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA		BIT(3)
--#define USB_SERIAL_JTAG_INT_CLR_REG	0x14
--#define USB_SERIAL_JTAG_IN_EP1_ST_REG	0x2c
--#define USB_SERIAL_JTAG_IN_EP1_WR_ADDR			GENMASK(8, 2)
--#define USB_SERIAL_JTAG_OUT_EP1_ST_REG	0x3c
--#define USB_SERIAL_JTAG_OUT_EP1_REC_DATA_CNT		GENMASK(22, 16)
--
--static const struct of_device_id esp32s3_acm_dt_ids[] = {
--	{
--		.compatible = "esp,esp32s3-acm",
--	}, { /* sentinel */ }
--};
--MODULE_DEVICE_TABLE(of, esp32s3_acm_dt_ids);
--
--static struct uart_port *esp32s3_acm_ports[UART_NR];
--
--static void esp32s3_acm_write(struct uart_port *port, unsigned long reg, u32 v)
--{
--	writel(v, port->membase + reg);
--}
--
--static u32 esp32s3_acm_read(struct uart_port *port, unsigned long reg)
--{
--	return readl(port->membase + reg);
--}
--
--static u32 esp32s3_acm_tx_fifo_free(struct uart_port *port)
--{
--	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_CONF_REG);
--
--	return status & USB_SERIAL_JTAG_SERIAL_IN_EP_DATA_FREE;
--}
--
--static u32 esp32s3_acm_tx_fifo_cnt(struct uart_port *port)
--{
--	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_IN_EP1_ST_REG);
--
--	return FIELD_GET(USB_SERIAL_JTAG_IN_EP1_WR_ADDR, status);
--}
--
--static u32 esp32s3_acm_rx_fifo_cnt(struct uart_port *port)
--{
--	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_OUT_EP1_ST_REG);
--
--	return FIELD_GET(USB_SERIAL_JTAG_OUT_EP1_REC_DATA_CNT, status);
--}
--
--/* return TIOCSER_TEMT when transmitter is not busy */
--static unsigned int esp32s3_acm_tx_empty(struct uart_port *port)
--{
--	return esp32s3_acm_tx_fifo_cnt(port) == 0 ? TIOCSER_TEMT : 0;
--}
--
--static void esp32s3_acm_set_mctrl(struct uart_port *port, unsigned int mctrl)
--{
--}
--
--static unsigned int esp32s3_acm_get_mctrl(struct uart_port *port)
--{
--	return TIOCM_CAR;
--}
--
--static void esp32s3_acm_stop_tx(struct uart_port *port)
--{
--	u32 int_ena;
--
--	int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
--	int_ena &= ~USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA;
--	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
--}
--
--static void esp32s3_acm_rxint(struct uart_port *port)
--{
--	struct tty_port *tty_port = &port->state->port;
--	u32 rx_fifo_cnt = esp32s3_acm_rx_fifo_cnt(port);
--	unsigned long flags;
--	u32 i;
--
--	if (!rx_fifo_cnt)
--		return;
--
--	spin_lock_irqsave(&port->lock, flags);
--
--	for (i = 0; i < rx_fifo_cnt; ++i) {
--		u32 rx = esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_REG);
--
--		++port->icount.rx;
--		tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
--	}
--	spin_unlock_irqrestore(&port->lock, flags);
--
--	tty_flip_buffer_push(tty_port);
--}
--
--static void esp32s3_acm_push(struct uart_port *port)
--{
--	if (esp32s3_acm_tx_fifo_free(port))
--		esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_CONF_REG,
--				  USB_SERIAL_JTAG_WR_DONE);
--}
--
--static void esp32s3_acm_put_char(struct uart_port *port, u8 c)
--{
--	esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_REG, c);
--}
--
--static void esp32s3_acm_put_char_sync(struct uart_port *port, u8 c)
--{
--	unsigned long timeout = jiffies + HZ;
--
--	while (!esp32s3_acm_tx_fifo_free(port)) {
--		if (time_after(jiffies, timeout)) {
--			dev_warn(port->dev, "timeout waiting for TX FIFO\n");
--			return;
--		}
--		cpu_relax();
--	}
--	esp32s3_acm_put_char(port, c);
--	esp32s3_acm_push(port);
--}
--
--static void esp32s3_acm_transmit_buffer(struct uart_port *port)
--{
--	u32 tx_fifo_used;
--	unsigned int pending;
--	u8 ch;
--
--	if (!esp32s3_acm_tx_fifo_free(port))
--		return;
--
--	tx_fifo_used = esp32s3_acm_tx_fifo_cnt(port);
--	pending = uart_port_tx_limited(port, ch,
--				       ESP32S3_ACM_TX_FIFO_SIZE - tx_fifo_used,
--				       true, esp32s3_acm_put_char(port, ch),
--				       ({}));
--	if (pending) {
--		u32 int_ena;
--
--		int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
--		int_ena |= USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA;
--		esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
--	}
--	esp32s3_acm_push(port);
--}
--
--static void esp32s3_acm_txint(struct uart_port *port)
--{
--	esp32s3_acm_transmit_buffer(port);
--}
--
--static irqreturn_t esp32s3_acm_int(int irq, void *dev_id)
--{
--	struct uart_port *port = dev_id;
--	u32 status;
--
--	status = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ST_REG);
--	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_CLR_REG, status);
--
--	if (status & USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST)
--		esp32s3_acm_rxint(port);
--	if (status & USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST)
--		esp32s3_acm_txint(port);
--
--	return IRQ_RETVAL(status);
--}
--
--static void esp32s3_acm_start_tx(struct uart_port *port)
--{
--	esp32s3_acm_transmit_buffer(port);
--}
--
--static void esp32s3_acm_stop_rx(struct uart_port *port)
--{
--	u32 int_ena;
--
--	int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
--	int_ena &= ~USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA;
--	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
--}
--
--static int esp32s3_acm_startup(struct uart_port *port)
--{
--	int ret;
--
--	ret = request_irq(port->irq, esp32s3_acm_int, 0, DRIVER_NAME, port);
--	if (ret)
--		return ret;
--	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG,
--			  USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA);
--
--	return 0;
--}
--
--static void esp32s3_acm_shutdown(struct uart_port *port)
--{
--	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, 0);
--	free_irq(port->irq, port);
--}
--
--static void esp32s3_acm_set_termios(struct uart_port *port,
--				    struct ktermios *termios,
--				    const struct ktermios *old)
--{
--}
--
--static const char *esp32s3_acm_type(struct uart_port *port)
--{
--	return "ESP32S3 ACM";
--}
--
--/* configure/auto-configure the port */
--static void esp32s3_acm_config_port(struct uart_port *port, int flags)
--{
--	if (flags & UART_CONFIG_TYPE)
--		port->type = PORT_GENERIC;
--}
--
--#ifdef CONFIG_CONSOLE_POLL
--static void esp32s3_acm_poll_put_char(struct uart_port *port, unsigned char c)
--{
--	esp32s3_acm_put_char_sync(port, c);
--}
--
--static int esp32s3_acm_poll_get_char(struct uart_port *port)
--{
--	if (esp32s3_acm_rx_fifo_cnt(port))
--		return esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_REG);
--	else
--		return NO_POLL_CHAR;
--}
--#endif
--
--static const struct uart_ops esp32s3_acm_pops = {
--	.tx_empty	= esp32s3_acm_tx_empty,
--	.set_mctrl	= esp32s3_acm_set_mctrl,
--	.get_mctrl	= esp32s3_acm_get_mctrl,
--	.stop_tx	= esp32s3_acm_stop_tx,
--	.start_tx	= esp32s3_acm_start_tx,
--	.stop_rx	= esp32s3_acm_stop_rx,
--	.startup	= esp32s3_acm_startup,
--	.shutdown	= esp32s3_acm_shutdown,
--	.set_termios	= esp32s3_acm_set_termios,
--	.type		= esp32s3_acm_type,
--	.config_port	= esp32s3_acm_config_port,
--#ifdef CONFIG_CONSOLE_POLL
--	.poll_put_char	= esp32s3_acm_poll_put_char,
--	.poll_get_char	= esp32s3_acm_poll_get_char,
--#endif
--};
--
--static void esp32s3_acm_string_write(struct uart_port *port, const char *s,
--				     unsigned int count)
--{
--	uart_console_write(port, s, count, esp32s3_acm_put_char_sync);
--}
--
--static void
--esp32s3_acm_console_write(struct console *co, const char *s, unsigned int count)
--{
--	struct uart_port *port = esp32s3_acm_ports[co->index];
--	unsigned long flags;
--	bool locked = true;
--
--	if (port->sysrq)
--		locked = false;
--	else if (oops_in_progress)
--		locked = spin_trylock_irqsave(&port->lock, flags);
--	else
--		spin_lock_irqsave(&port->lock, flags);
--
--	esp32s3_acm_string_write(port, s, count);
--
--	if (locked)
--		spin_unlock_irqrestore(&port->lock, flags);
--}
--
--static struct uart_driver esp32s3_acm_reg;
--static struct console esp32s3_acm_console = {
--	.name		= DEV_NAME,
--	.write		= esp32s3_acm_console_write,
--	.device		= uart_console_device,
--	.flags		= CON_PRINTBUFFER,
--	.index		= -1,
--	.data		= &esp32s3_acm_reg,
--};
--
--static void esp32s3_acm_earlycon_write(struct console *con, const char *s,
--				      unsigned int n)
--{
--	struct earlycon_device *dev = con->data;
--
--	uart_console_write(&dev->port, s, n, esp32s3_acm_put_char_sync);
--}
--
--#ifdef CONFIG_CONSOLE_POLL
--static int esp32s3_acm_earlycon_read(struct console *con, char *s, unsigned int n)
--{
--	struct earlycon_device *dev = con->data;
--	unsigned int num_read = 0;
--
--	while (num_read < n) {
--		int c = esp32s3_acm_poll_get_char(&dev->port);
--
--		if (c == NO_POLL_CHAR)
--			break;
--		s[num_read++] = c;
--	}
--	return num_read;
--}
--#endif
--
--static int __init esp32s3_acm_early_console_setup(struct earlycon_device *device,
--						   const char *options)
--{
--	if (!device->port.membase)
--		return -ENODEV;
--
--	device->con->write = esp32s3_acm_earlycon_write;
--#ifdef CONFIG_CONSOLE_POLL
--	device->con->read = esp32s3_acm_earlycon_read;
--#endif
--	return 0;
--}
--
--OF_EARLYCON_DECLARE(esp32s3acm, "esp,esp32s3-acm",
--		    esp32s3_acm_early_console_setup);
--
--static struct uart_driver esp32s3_acm_reg = {
--	.owner		= THIS_MODULE,
--	.driver_name	= DRIVER_NAME,
--	.dev_name	= DEV_NAME,
--	.nr		= ARRAY_SIZE(esp32s3_acm_ports),
--	.cons		= &esp32s3_acm_console,
--};
--
--static int esp32s3_acm_probe(struct platform_device *pdev)
--{
--	struct device_node *np = pdev->dev.of_node;
--	struct uart_port *port;
--	struct resource *res;
--	int ret;
--
--	port = devm_kzalloc(&pdev->dev, sizeof(*port), GFP_KERNEL);
--	if (!port)
--		return -ENOMEM;
--
--	ret = of_alias_get_id(np, "serial");
--	if (ret < 0) {
--		dev_err(&pdev->dev, "failed to get alias id, errno %d\n", ret);
--		return ret;
--	}
--	if (ret >= UART_NR) {
--		dev_err(&pdev->dev, "driver limited to %d serial ports\n",
--			UART_NR);
--		return -ENOMEM;
--	}
--
--	port->line = ret;
--
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	if (!res)
--		return -ENODEV;
--
--	port->mapbase = res->start;
--	port->membase = devm_ioremap_resource(&pdev->dev, res);
--	if (IS_ERR(port->membase))
--		return PTR_ERR(port->membase);
--
--	port->dev = &pdev->dev;
--	port->type = PORT_GENERIC;
--	port->iotype = UPIO_MEM;
--	port->irq = platform_get_irq(pdev, 0);
--	port->ops = &esp32s3_acm_pops;
--	port->flags = UPF_BOOT_AUTOCONF;
--	port->has_sysrq = 1;
--	port->fifosize = ESP32S3_ACM_TX_FIFO_SIZE;
--
--	esp32s3_acm_ports[port->line] = port;
--
--	platform_set_drvdata(pdev, port);
--
--	return uart_add_one_port(&esp32s3_acm_reg, port);
--}
--
--static void esp32s3_acm_remove(struct platform_device *pdev)
--{
--	struct uart_port *port = platform_get_drvdata(pdev);
--
--	uart_remove_one_port(&esp32s3_acm_reg, port);
--}
--
--
--static struct platform_driver esp32s3_acm_driver = {
--	.probe		= esp32s3_acm_probe,
--	.remove		= esp32s3_acm_remove,
--	.driver		= {
--		.name	= DRIVER_NAME,
--		.of_match_table	= esp32s3_acm_dt_ids,
--	},
--};
--
--static int __init esp32s3_acm_init(void)
--{
--	int ret;
--
--	ret = uart_register_driver(&esp32s3_acm_reg);
--	if (ret)
--		return ret;
--
--	ret = platform_driver_register(&esp32s3_acm_driver);
--	if (ret)
--		uart_unregister_driver(&esp32s3_acm_reg);
--
--	return ret;
--}
--
--static void __exit esp32s3_acm_exit(void)
--{
--	platform_driver_unregister(&esp32s3_acm_driver);
--	uart_unregister_driver(&esp32s3_acm_reg);
--}
--
--module_init(esp32s3_acm_init);
--module_exit(esp32s3_acm_exit);
--
--MODULE_AUTHOR("Max Filippov <jcmvbkbc@gmail.com>");
--MODULE_DESCRIPTION("Espressif ESP32 USB ACM gadget support");
--MODULE_LICENSE("GPL");
-diff --git a/drivers/tty/serial/esp32_uart.c b/drivers/tty/serial/esp32_uart.c
-deleted file mode 100644
-index 667c2198a03a..000000000000
---- a/drivers/tty/serial/esp32_uart.c
-+++ /dev/null
-@@ -1,779 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0-or-later
--
--#include <linux/bitfield.h>
--#include <linux/bits.h>
--#include <linux/clk.h>
--#include <linux/console.h>
--#include <linux/delay.h>
--#include <linux/io.h>
--#include <linux/irq.h>
--#include <linux/module.h>
--#include <linux/of.h>
--#include <linux/platform_device.h>
--#include <linux/property.h>
--#include <linux/serial_core.h>
--#include <linux/slab.h>
--#include <linux/tty_flip.h>
--#include <asm/serial.h>
--
--#define DRIVER_NAME	"esp32-uart"
--#define DEV_NAME	"ttyS"
--#define UART_NR		3
--
--#define ESP32_UART_TX_FIFO_SIZE	127
--#define ESP32_UART_RX_FIFO_SIZE	127
--
--#define UART_FIFO_REG			0x00
--#define UART_INT_RAW_REG		0x04
--#define UART_INT_ST_REG			0x08
--#define UART_INT_ENA_REG		0x0c
--#define UART_INT_CLR_REG		0x10
--#define UART_RXFIFO_FULL_INT			BIT(0)
--#define UART_TXFIFO_EMPTY_INT			BIT(1)
--#define UART_BRK_DET_INT			BIT(7)
--#define UART_CLKDIV_REG			0x14
--#define ESP32_UART_CLKDIV			GENMASK(19, 0)
--#define ESP32S3_UART_CLKDIV			GENMASK(11, 0)
--#define UART_CLKDIV_SHIFT			0
--#define UART_CLKDIV_FRAG			GENMASK(23, 20)
--#define UART_STATUS_REG			0x1c
--#define ESP32_UART_RXFIFO_CNT			GENMASK(7, 0)
--#define ESP32S3_UART_RXFIFO_CNT			GENMASK(9, 0)
--#define UART_RXFIFO_CNT_SHIFT			0
--#define UART_DSRN				BIT(13)
--#define UART_CTSN				BIT(14)
--#define ESP32_UART_TXFIFO_CNT			GENMASK(23, 16)
--#define ESP32S3_UART_TXFIFO_CNT			GENMASK(25, 16)
--#define UART_TXFIFO_CNT_SHIFT			16
--#define UART_CONF0_REG			0x20
--#define UART_PARITY				BIT(0)
--#define UART_PARITY_EN				BIT(1)
--#define UART_BIT_NUM				GENMASK(3, 2)
--#define UART_BIT_NUM_5				0
--#define UART_BIT_NUM_6				1
--#define UART_BIT_NUM_7				2
--#define UART_BIT_NUM_8				3
--#define UART_STOP_BIT_NUM			GENMASK(5, 4)
--#define UART_STOP_BIT_NUM_1			1
--#define UART_STOP_BIT_NUM_2			3
--#define UART_SW_RTS				BIT(6)
--#define UART_SW_DTR				BIT(7)
--#define UART_LOOPBACK				BIT(14)
--#define UART_TX_FLOW_EN				BIT(15)
--#define UART_RTS_INV				BIT(23)
--#define UART_DTR_INV				BIT(24)
--#define UART_CONF1_REG			0x24
--#define UART_RXFIFO_FULL_THRHD_SHIFT		0
--#define ESP32_UART_TXFIFO_EMPTY_THRHD_SHIFT	8
--#define ESP32S3_UART_TXFIFO_EMPTY_THRHD_SHIFT	10
--#define ESP32_UART_RX_FLOW_EN			BIT(23)
--#define ESP32S3_UART_RX_FLOW_EN			BIT(22)
--#define ESP32S3_UART_CLK_CONF_REG	0x78
--#define ESP32S3_UART_SCLK_DIV_B			GENMASK(5, 0)
--#define ESP32S3_UART_SCLK_DIV_A			GENMASK(11, 6)
--#define ESP32S3_UART_SCLK_DIV_NUM		GENMASK(19, 12)
--#define ESP32S3_UART_SCLK_SEL			GENMASK(21, 20)
--#define APB_CLK					1
--#define RC_FAST_CLK				2
--#define XTAL_CLK				3
--#define ESP32S3_UART_SCLK_EN			BIT(22)
--#define ESP32S3_UART_RST_CORE			BIT(23)
--#define ESP32S3_UART_TX_SCLK_EN			BIT(24)
--#define ESP32S3_UART_RX_SCLK_EN			BIT(25)
--#define ESP32S3_UART_TX_RST_CORE		BIT(26)
--#define ESP32S3_UART_RX_RST_CORE		BIT(27)
--
--#define ESP32S3_UART_CLK_CONF_DEFAULT \
--	(ESP32S3_UART_RX_SCLK_EN | \
--	 ESP32S3_UART_TX_SCLK_EN | \
--	 ESP32S3_UART_SCLK_EN | \
--	 FIELD_PREP(ESP32S3_UART_SCLK_SEL, XTAL_CLK))
--
--struct esp32_port {
--	struct uart_port port;
--	struct clk *clk;
--};
--
--struct esp32_uart_variant {
--	u32 clkdiv_mask;
--	u32 rxfifo_cnt_mask;
--	u32 txfifo_cnt_mask;
--	u32 txfifo_empty_thrhd_shift;
--	u32 rx_flow_en;
--	const char *type;
--	bool has_clkconf;
--};
--
--static const struct esp32_uart_variant esp32_variant = {
--	.clkdiv_mask = ESP32_UART_CLKDIV,
--	.rxfifo_cnt_mask = ESP32_UART_RXFIFO_CNT,
--	.txfifo_cnt_mask = ESP32_UART_TXFIFO_CNT,
--	.txfifo_empty_thrhd_shift = ESP32_UART_TXFIFO_EMPTY_THRHD_SHIFT,
--	.rx_flow_en = ESP32_UART_RX_FLOW_EN,
--	.type = "ESP32 UART",
--};
--
--static const struct esp32_uart_variant esp32s3_variant = {
--	.clkdiv_mask = ESP32S3_UART_CLKDIV,
--	.rxfifo_cnt_mask = ESP32S3_UART_RXFIFO_CNT,
--	.txfifo_cnt_mask = ESP32S3_UART_TXFIFO_CNT,
--	.txfifo_empty_thrhd_shift = ESP32S3_UART_TXFIFO_EMPTY_THRHD_SHIFT,
--	.rx_flow_en = ESP32S3_UART_RX_FLOW_EN,
--	.type = "ESP32S3 UART",
--	.has_clkconf = true,
--};
--
--static const struct of_device_id esp32_uart_dt_ids[] = {
--	{
--		.compatible = "esp,esp32-uart",
--		.data = &esp32_variant,
--	}, {
--		.compatible = "esp,esp32s3-uart",
--		.data = &esp32s3_variant,
--	}, { /* sentinel */ }
--};
--MODULE_DEVICE_TABLE(of, esp32_uart_dt_ids);
--
--static struct esp32_port *esp32_uart_ports[UART_NR];
--
--static const struct esp32_uart_variant *port_variant(struct uart_port *port)
--{
--	return port->private_data;
--}
--
--static void esp32_uart_write(struct uart_port *port, unsigned long reg, u32 v)
--{
--	writel(v, port->membase + reg);
--}
--
--static u32 esp32_uart_read(struct uart_port *port, unsigned long reg)
--{
--	return readl(port->membase + reg);
--}
--
--static u32 esp32_uart_tx_fifo_cnt(struct uart_port *port)
--{
--	u32 status = esp32_uart_read(port, UART_STATUS_REG);
--
--	return (status & port_variant(port)->txfifo_cnt_mask) >> UART_TXFIFO_CNT_SHIFT;
--}
--
--static u32 esp32_uart_rx_fifo_cnt(struct uart_port *port)
--{
--	u32 status = esp32_uart_read(port, UART_STATUS_REG);
--
--	return (status & port_variant(port)->rxfifo_cnt_mask) >> UART_RXFIFO_CNT_SHIFT;
--}
--
--/* return TIOCSER_TEMT when transmitter is not busy */
--static unsigned int esp32_uart_tx_empty(struct uart_port *port)
--{
--	return esp32_uart_tx_fifo_cnt(port) ? 0 : TIOCSER_TEMT;
--}
--
--static void esp32_uart_set_mctrl(struct uart_port *port, unsigned int mctrl)
--{
--	u32 conf0 = esp32_uart_read(port, UART_CONF0_REG);
--
--	conf0 &= ~(UART_LOOPBACK |
--		   UART_SW_RTS | UART_RTS_INV |
--		   UART_SW_DTR | UART_DTR_INV);
--
--	if (mctrl & TIOCM_RTS)
--		conf0 |= UART_SW_RTS;
--	if (mctrl & TIOCM_DTR)
--		conf0 |= UART_SW_DTR;
--	if (mctrl & TIOCM_LOOP)
--		conf0 |= UART_LOOPBACK;
--
--	esp32_uart_write(port, UART_CONF0_REG, conf0);
--}
--
--static unsigned int esp32_uart_get_mctrl(struct uart_port *port)
--{
--	u32 status = esp32_uart_read(port, UART_STATUS_REG);
--	unsigned int ret = TIOCM_CAR;
--
--	if (status & UART_DSRN)
--		ret |= TIOCM_DSR;
--	if (status & UART_CTSN)
--		ret |= TIOCM_CTS;
--
--	return ret;
--}
--
--static void esp32_uart_stop_tx(struct uart_port *port)
--{
--	u32 int_ena;
--
--	int_ena = esp32_uart_read(port, UART_INT_ENA_REG);
--	int_ena &= ~UART_TXFIFO_EMPTY_INT;
--	esp32_uart_write(port, UART_INT_ENA_REG, int_ena);
--}
--
--static void esp32_uart_rxint(struct uart_port *port)
--{
--	struct tty_port *tty_port = &port->state->port;
--	u32 rx_fifo_cnt = esp32_uart_rx_fifo_cnt(port);
--	unsigned long flags;
--	u32 i;
--
--	if (!rx_fifo_cnt)
--		return;
--
--	spin_lock_irqsave(&port->lock, flags);
--
--	for (i = 0; i < rx_fifo_cnt; ++i) {
--		u32 rx = esp32_uart_read(port, UART_FIFO_REG);
--
--		if (!rx &&
--		    (esp32_uart_read(port, UART_INT_ST_REG) & UART_BRK_DET_INT)) {
--			esp32_uart_write(port, UART_INT_CLR_REG, UART_BRK_DET_INT);
--			++port->icount.brk;
--			uart_handle_break(port);
--		} else {
--			if (uart_handle_sysrq_char(port, (unsigned char)rx))
--				continue;
--			tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
--			++port->icount.rx;
--		}
--	}
--	spin_unlock_irqrestore(&port->lock, flags);
--
--	tty_flip_buffer_push(tty_port);
--}
--
--static void esp32_uart_put_char(struct uart_port *port, u8 c)
--{
--	esp32_uart_write(port, UART_FIFO_REG, c);
--}
--
--static void esp32_uart_put_char_sync(struct uart_port *port, u8 c)
--{
--	unsigned long timeout = jiffies + HZ;
--
--	while (esp32_uart_tx_fifo_cnt(port) >= ESP32_UART_TX_FIFO_SIZE) {
--		if (time_after(jiffies, timeout)) {
--			dev_warn(port->dev, "timeout waiting for TX FIFO\n");
--			return;
--		}
--		cpu_relax();
--	}
--	esp32_uart_put_char(port, c);
--}
--
--static void esp32_uart_transmit_buffer(struct uart_port *port)
--{
--	u32 tx_fifo_used = esp32_uart_tx_fifo_cnt(port);
--	unsigned int pending;
--	u8 ch;
--
--	if (tx_fifo_used >= ESP32_UART_TX_FIFO_SIZE)
--		return;
--
--	pending = uart_port_tx_limited(port, ch,
--				       ESP32_UART_TX_FIFO_SIZE - tx_fifo_used,
--				       true, esp32_uart_put_char(port, ch),
--				       ({}));
--	if (pending) {
--		u32 int_ena;
--
--		int_ena = esp32_uart_read(port, UART_INT_ENA_REG);
--		int_ena |= UART_TXFIFO_EMPTY_INT;
--		esp32_uart_write(port, UART_INT_ENA_REG, int_ena);
--	}
--}
--
--static void esp32_uart_txint(struct uart_port *port)
--{
--	esp32_uart_transmit_buffer(port);
--}
--
--static irqreturn_t esp32_uart_int(int irq, void *dev_id)
--{
--	struct uart_port *port = dev_id;
--	u32 status;
--
--	status = esp32_uart_read(port, UART_INT_ST_REG);
--
--	if (status & (UART_RXFIFO_FULL_INT | UART_BRK_DET_INT))
--		esp32_uart_rxint(port);
--	if (status & UART_TXFIFO_EMPTY_INT)
--		esp32_uart_txint(port);
--
--	esp32_uart_write(port, UART_INT_CLR_REG, status);
--
--	return IRQ_RETVAL(status);
--}
--
--static void esp32_uart_start_tx(struct uart_port *port)
--{
--	esp32_uart_transmit_buffer(port);
--}
--
--static void esp32_uart_stop_rx(struct uart_port *port)
--{
--	u32 int_ena;
--
--	int_ena = esp32_uart_read(port, UART_INT_ENA_REG);
--	int_ena &= ~UART_RXFIFO_FULL_INT;
--	esp32_uart_write(port, UART_INT_ENA_REG, int_ena);
--}
--
--static int esp32_uart_startup(struct uart_port *port)
--{
--	int ret = 0;
--	unsigned long flags;
--	struct esp32_port *sport = container_of(port, struct esp32_port, port);
--
--	ret = clk_prepare_enable(sport->clk);
--	if (ret)
--		return ret;
--
--	ret = request_irq(port->irq, esp32_uart_int, 0, DRIVER_NAME, port);
--	if (ret) {
--		clk_disable_unprepare(sport->clk);
--		return ret;
--	}
--
--	spin_lock_irqsave(&port->lock, flags);
--	if (port_variant(port)->has_clkconf)
--		esp32_uart_write(port, ESP32S3_UART_CLK_CONF_REG,
--				 ESP32S3_UART_CLK_CONF_DEFAULT);
--	esp32_uart_write(port, UART_CONF1_REG,
--			 (1 << UART_RXFIFO_FULL_THRHD_SHIFT) |
--			 (1 << port_variant(port)->txfifo_empty_thrhd_shift));
--	esp32_uart_write(port, UART_INT_CLR_REG, UART_RXFIFO_FULL_INT | UART_BRK_DET_INT);
--	esp32_uart_write(port, UART_INT_ENA_REG, UART_RXFIFO_FULL_INT | UART_BRK_DET_INT);
--	spin_unlock_irqrestore(&port->lock, flags);
--
--	return ret;
--}
--
--static void esp32_uart_shutdown(struct uart_port *port)
--{
--	struct esp32_port *sport = container_of(port, struct esp32_port, port);
--
--	esp32_uart_write(port, UART_INT_ENA_REG, 0);
--	free_irq(port->irq, port);
--	clk_disable_unprepare(sport->clk);
--}
--
--static bool esp32_uart_set_baud(struct uart_port *port, u32 baud)
--{
--	u32 sclk = port->uartclk;
--	u32 div = sclk / baud;
--
--	if (port_variant(port)->has_clkconf) {
--		u32 sclk_div = div / port_variant(port)->clkdiv_mask;
--
--		if (div > port_variant(port)->clkdiv_mask) {
--			sclk /= (sclk_div + 1);
--			div = sclk / baud;
--		}
--		esp32_uart_write(port, ESP32S3_UART_CLK_CONF_REG,
--				 FIELD_PREP(ESP32S3_UART_SCLK_DIV_NUM, sclk_div) |
--				 ESP32S3_UART_CLK_CONF_DEFAULT);
--	}
--
--	if (div <= port_variant(port)->clkdiv_mask) {
--		u32 frag = (sclk * 16) / baud - div * 16;
--
--		esp32_uart_write(port, UART_CLKDIV_REG,
--				 div | FIELD_PREP(UART_CLKDIV_FRAG, frag));
--		return true;
--	}
--
--	return false;
--}
--
--static void esp32_uart_set_termios(struct uart_port *port,
--				   struct ktermios *termios,
--				   const struct ktermios *old)
--{
--	unsigned long flags;
--	u32 conf0, conf1;
--	u32 baud;
--	const u32 rx_flow_en = port_variant(port)->rx_flow_en;
--	u32 max_div = port_variant(port)->clkdiv_mask;
--
--	termios->c_cflag &= ~CMSPAR;
--
--	if (port_variant(port)->has_clkconf)
--		max_div *= FIELD_MAX(ESP32S3_UART_SCLK_DIV_NUM);
--
--	baud = uart_get_baud_rate(port, termios, old,
--				  port->uartclk / max_div,
--				  port->uartclk / 16);
--
--	spin_lock_irqsave(&port->lock, flags);
--
--	conf0 = esp32_uart_read(port, UART_CONF0_REG);
--	conf0 &= ~(UART_PARITY_EN | UART_PARITY | UART_BIT_NUM | UART_STOP_BIT_NUM);
--
--	conf1 = esp32_uart_read(port, UART_CONF1_REG);
--	conf1 &= ~rx_flow_en;
--
--	if (termios->c_cflag & PARENB) {
--		conf0 |= UART_PARITY_EN;
--		if (termios->c_cflag & PARODD)
--			conf0 |= UART_PARITY;
--	}
--
--	switch (termios->c_cflag & CSIZE) {
--	case CS5:
--		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_5);
--		break;
--	case CS6:
--		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_6);
--		break;
--	case CS7:
--		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_7);
--		break;
--	case CS8:
--		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_8);
--		break;
--	}
--
--	if (termios->c_cflag & CSTOPB)
--		conf0 |= FIELD_PREP(UART_STOP_BIT_NUM, UART_STOP_BIT_NUM_2);
--	else
--		conf0 |= FIELD_PREP(UART_STOP_BIT_NUM, UART_STOP_BIT_NUM_1);
--
--	if (termios->c_cflag & CRTSCTS)
--		conf1 |= rx_flow_en;
--
--	esp32_uart_write(port, UART_CONF0_REG, conf0);
--	esp32_uart_write(port, UART_CONF1_REG, conf1);
--
--	if (baud) {
--		esp32_uart_set_baud(port, baud);
--		uart_update_timeout(port, termios->c_cflag, baud);
--	} else {
--		if (esp32_uart_set_baud(port, 115200)) {
--			baud = 115200;
--			tty_termios_encode_baud_rate(termios, baud, baud);
--			uart_update_timeout(port, termios->c_cflag, baud);
--		} else {
--			dev_warn(port->dev,
--				 "unable to set speed to %d baud or the default 115200\n",
--				 baud);
--		}
--	}
--	spin_unlock_irqrestore(&port->lock, flags);
--}
--
--static const char *esp32_uart_type(struct uart_port *port)
--{
--	return port_variant(port)->type;
--}
--
--/* configure/auto-configure the port */
--static void esp32_uart_config_port(struct uart_port *port, int flags)
--{
--	if (flags & UART_CONFIG_TYPE)
--		port->type = PORT_GENERIC;
--}
--
--#ifdef CONFIG_CONSOLE_POLL
--static int esp32_uart_poll_init(struct uart_port *port)
--{
--	struct esp32_port *sport = container_of(port, struct esp32_port, port);
--
--	return clk_prepare_enable(sport->clk);
--}
--
--static void esp32_uart_poll_put_char(struct uart_port *port, unsigned char c)
--{
--	esp32_uart_put_char_sync(port, c);
--}
--
--static int esp32_uart_poll_get_char(struct uart_port *port)
--{
--	if (esp32_uart_rx_fifo_cnt(port))
--		return esp32_uart_read(port, UART_FIFO_REG);
--	else
--		return NO_POLL_CHAR;
--
--}
--#endif
--
--static const struct uart_ops esp32_uart_pops = {
--	.tx_empty	= esp32_uart_tx_empty,
--	.set_mctrl	= esp32_uart_set_mctrl,
--	.get_mctrl	= esp32_uart_get_mctrl,
--	.stop_tx	= esp32_uart_stop_tx,
--	.start_tx	= esp32_uart_start_tx,
--	.stop_rx	= esp32_uart_stop_rx,
--	.startup	= esp32_uart_startup,
--	.shutdown	= esp32_uart_shutdown,
--	.set_termios	= esp32_uart_set_termios,
--	.type		= esp32_uart_type,
--	.config_port	= esp32_uart_config_port,
--#ifdef CONFIG_CONSOLE_POLL
--	.poll_init	= esp32_uart_poll_init,
--	.poll_put_char	= esp32_uart_poll_put_char,
--	.poll_get_char	= esp32_uart_poll_get_char,
--#endif
--};
--
--static void esp32_uart_console_putchar(struct uart_port *port, u8 c)
--{
--	esp32_uart_put_char_sync(port, c);
--}
--
--static void esp32_uart_string_write(struct uart_port *port, const char *s,
--				    unsigned int count)
--{
--	uart_console_write(port, s, count, esp32_uart_console_putchar);
--}
--
--static void
--esp32_uart_console_write(struct console *co, const char *s, unsigned int count)
--{
--	struct esp32_port *sport = esp32_uart_ports[co->index];
--	struct uart_port *port = &sport->port;
--	unsigned long flags;
--	bool locked = true;
--
--	if (port->sysrq)
--		locked = false;
--	else if (oops_in_progress)
--		locked = spin_trylock_irqsave(&port->lock, flags);
--	else
--		spin_lock_irqsave(&port->lock, flags);
--
--	esp32_uart_string_write(port, s, count);
--
--	if (locked)
--		spin_unlock_irqrestore(&port->lock, flags);
--}
--
--static int __init esp32_uart_console_setup(struct console *co, char *options)
--{
--	struct esp32_port *sport;
--	int baud = 115200;
--	int bits = 8;
--	int parity = 'n';
--	int flow = 'n';
--	int ret;
--
--	/*
--	 * check whether an invalid uart number has been specified, and
--	 * if so, search for the first available port that does have
--	 * console support.
--	 */
--	if (co->index == -1 || co->index >= ARRAY_SIZE(esp32_uart_ports))
--		co->index = 0;
--
--	sport = esp32_uart_ports[co->index];
--	if (!sport)
--		return -ENODEV;
--
--	ret = clk_prepare_enable(sport->clk);
--	if (ret)
--		return ret;
--
--	if (options)
--		uart_parse_options(options, &baud, &parity, &bits, &flow);
--
--	return uart_set_options(&sport->port, co, baud, parity, bits, flow);
--}
--
--static int esp32_uart_console_exit(struct console *co)
--{
--	struct esp32_port *sport = esp32_uart_ports[co->index];
--
--	clk_disable_unprepare(sport->clk);
--	return 0;
--}
--
--static struct uart_driver esp32_uart_reg;
--static struct console esp32_uart_console = {
--	.name		= DEV_NAME,
--	.write		= esp32_uart_console_write,
--	.device		= uart_console_device,
--	.setup		= esp32_uart_console_setup,
--	.exit		= esp32_uart_console_exit,
--	.flags		= CON_PRINTBUFFER,
--	.index		= -1,
--	.data		= &esp32_uart_reg,
--};
--
--static void esp32_uart_earlycon_putchar(struct uart_port *port, u8 c)
--{
--	esp32_uart_put_char_sync(port, c);
--}
--
--static void esp32_uart_earlycon_write(struct console *con, const char *s,
--				      unsigned int n)
--{
--	struct earlycon_device *dev = con->data;
--
--	uart_console_write(&dev->port, s, n, esp32_uart_earlycon_putchar);
--}
--
--#ifdef CONFIG_CONSOLE_POLL
--static int esp32_uart_earlycon_read(struct console *con, char *s, unsigned int n)
--{
--	struct earlycon_device *dev = con->data;
--	unsigned int num_read = 0;
--
--	while (num_read < n) {
--		int c = esp32_uart_poll_get_char(&dev->port);
--
--		if (c == NO_POLL_CHAR)
--			break;
--		s[num_read++] = c;
--	}
--	return num_read;
--}
--#endif
--
--static int __init esp32xx_uart_early_console_setup(struct earlycon_device *device,
--						   const char *options)
--{
--	if (!device->port.membase)
--		return -ENODEV;
--
--	device->con->write = esp32_uart_earlycon_write;
--#ifdef CONFIG_CONSOLE_POLL
--	device->con->read = esp32_uart_earlycon_read;
--#endif
--	if (device->port.uartclk != BASE_BAUD * 16)
--		esp32_uart_set_baud(&device->port, device->baud);
--
--	return 0;
--}
--
--static int __init esp32_uart_early_console_setup(struct earlycon_device *device,
--						 const char *options)
--{
--	device->port.private_data = (void *)&esp32_variant;
--
--	return esp32xx_uart_early_console_setup(device, options);
--}
--
--OF_EARLYCON_DECLARE(esp32uart, "esp,esp32-uart",
--		    esp32_uart_early_console_setup);
--
--static int __init esp32s3_uart_early_console_setup(struct earlycon_device *device,
--						   const char *options)
--{
--	device->port.private_data = (void *)&esp32s3_variant;
--
--	return esp32xx_uart_early_console_setup(device, options);
--}
--
--OF_EARLYCON_DECLARE(esp32s3uart, "esp,esp32s3-uart",
--		    esp32s3_uart_early_console_setup);
--
--static struct uart_driver esp32_uart_reg = {
--	.owner		= THIS_MODULE,
--	.driver_name	= DRIVER_NAME,
--	.dev_name	= DEV_NAME,
--	.nr		= ARRAY_SIZE(esp32_uart_ports),
--	.cons		= &esp32_uart_console,
--};
--
--static int esp32_uart_probe(struct platform_device *pdev)
--{
--	struct device_node *np = pdev->dev.of_node;
--	struct uart_port *port;
--	struct esp32_port *sport;
--	struct resource *res;
--	int ret;
--
--	sport = devm_kzalloc(&pdev->dev, sizeof(*sport), GFP_KERNEL);
--	if (!sport)
--		return -ENOMEM;
--
--	port = &sport->port;
--
--	ret = of_alias_get_id(np, "serial");
--	if (ret < 0) {
--		dev_err(&pdev->dev, "failed to get alias id, errno %d\n", ret);
--		return ret;
--	}
--	if (ret >= UART_NR) {
--		dev_err(&pdev->dev, "driver limited to %d serial ports\n", UART_NR);
--		return -ENOMEM;
--	}
--
--	port->line = ret;
--
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	if (!res)
--		return -ENODEV;
--
--	port->mapbase = res->start;
--	port->membase = devm_ioremap_resource(&pdev->dev, res);
--	if (IS_ERR(port->membase))
--		return PTR_ERR(port->membase);
--
--	sport->clk = devm_clk_get(&pdev->dev, NULL);
--	if (IS_ERR(sport->clk))
--		return PTR_ERR(sport->clk);
--
--	port->uartclk = clk_get_rate(sport->clk);
--	port->dev = &pdev->dev;
--	port->type = PORT_GENERIC;
--	port->iotype = UPIO_MEM;
--	port->irq = platform_get_irq(pdev, 0);
--	port->ops = &esp32_uart_pops;
--	port->flags = UPF_BOOT_AUTOCONF;
--	port->has_sysrq = 1;
--	port->fifosize = ESP32_UART_TX_FIFO_SIZE;
--	port->private_data = (void *)device_get_match_data(&pdev->dev);
--
--	esp32_uart_ports[port->line] = sport;
--
--	platform_set_drvdata(pdev, port);
--
--	return uart_add_one_port(&esp32_uart_reg, port);
--}
--
--static void esp32_uart_remove(struct platform_device *pdev)
--{
--	struct uart_port *port = platform_get_drvdata(pdev);
--
--	uart_remove_one_port(&esp32_uart_reg, port);
--}
--
--
--static struct platform_driver esp32_uart_driver = {
--	.probe		= esp32_uart_probe,
--	.remove		= esp32_uart_remove,
--	.driver		= {
--		.name	= DRIVER_NAME,
--		.of_match_table	= esp32_uart_dt_ids,
--	},
--};
--
--static int __init esp32_uart_init(void)
--{
--	int ret;
--
--	ret = uart_register_driver(&esp32_uart_reg);
--	if (ret)
--		return ret;
--
--	ret = platform_driver_register(&esp32_uart_driver);
--	if (ret)
--		uart_unregister_driver(&esp32_uart_reg);
--
--	return ret;
--}
--
--static void __exit esp32_uart_exit(void)
--{
--	platform_driver_unregister(&esp32_uart_driver);
--	uart_unregister_driver(&esp32_uart_reg);
--}
--
--module_init(esp32_uart_init);
--module_exit(esp32_uart_exit);
--
--MODULE_AUTHOR("Max Filippov <jcmvbkbc@gmail.com>");
--MODULE_DESCRIPTION("Espressif ESP32 UART support");
--MODULE_LICENSE("GPL");
--- 
-2.51.2
-
+SGkgS3J6eXN6dG9mLA0KDQpPbiBNb24sIDIwMjYtMDMtMDkgYXQgMTE6NTEgKzAxMDAsIEtyenlz
+enRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4gK8KgwqDCoMKgwqAgLSBjb25zdDogdGksYW02NC1y
+c3QNCj4gPiArDQo+ID4gK8KgIHJlZzoNCj4gPiArwqDCoMKgIG1heEl0ZW1zOiAxDQo+ID4gKw0K
+PiA+ICtyZXF1aXJlZDoNCj4gPiArwqAgLSBjb21wYXRpYmxlDQo+ID4gK8KgIC0gcmVnDQo+ID4g
+Kw0KPiA+ICthZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCj4gPiArDQo+ID4gK2V4YW1wbGVz
+Og0KPiA+ICvCoCAtIHwNCj4gPiArwqDCoMKgIHJzdEA0MzAxODE3MCB7DQo+ID4gK8KgwqDCoMKg
+wqDCoMKgIGNvbXBhdGlibGUgPSAidGksYW02NC1yc3QiOw0KPiA+ICvCoMKgwqDCoMKgwqDCoCBy
+ZWcgPSA8MHg0MzAxODE3MCAweDEwPjsNCj4gDQo+IFRoaXMgbG9va3MgbGlrZSBqdXN0IDQgcmVn
+aXN0ZXJzLCBzbyBwYXJ0IG9mIHN5c2Nvbi4uLi4NCg0KaXQgaXMuLi4gSSd2ZSBjb3BpZWQgdGks
+YW02NTQtY2hpcGlkIGFjdHVhbGx5Li4uDQoNCj4gPiArwqDCoMKgIH07DQo+ID4gZGlmZiAtLWdp
+dCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvdGkvdGksajcyMWUtc3lz
+dGVtLWNvbnRyb2xsZXIueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9z
+b2MvdGkvdGksajcyMWUtc3lzdGVtLWNvbnRyb2xsZXIueWFtbA0KPiA+IGluZGV4IGYzYmQwYmUz
+YjI3OWYuLmEyMDcxYTE2NjhmOTYgMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3NvYy90aS90aSxqNzIxZS1zeXN0ZW0tY29udHJvbGxlci55YW1sDQo+
+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3NvYy90aS90aSxqNzIx
+ZS1zeXN0ZW0tY29udHJvbGxlci55YW1sDQo+ID4gQEAgLTg2LDYgKzg2LDEyIEBAIHBhdHRlcm5Q
+cm9wZXJ0aWVzOg0KPiA+IMKgwqDCoMKgwqAgZGVzY3JpcHRpb246DQo+ID4gwqDCoMKgwqDCoMKg
+wqAgVGhpcyBpcyB0aGUgRFNTIE9MREkgQ1RSTCByZWdpb24uDQo+ID4gwqAgDQo+ID4gK8KgICJe
+cnN0QFswLTlhLWZdKyQiOg0KPiA+ICvCoMKgwqAgdHlwZTogb2JqZWN0DQo+ID4gK8KgwqDCoCAk
+cmVmOiAvc2NoZW1hcy9yZXNldC90aSxhbTY0LXJzdC55YW1sIw0KPiANCj4gQW5kIGhlcmUgaXMg
+YSBwcm9vZi4gTm8sIGluZGl2aWR1YWwgcmVnaXN0ZXJzIGFyZSBub3Qgc2VwYXJhdGUgZGV2aWNl
+cy4NCj4gDQo+IE5vdCBhIHNlcGFyYXRlIGRldmljZSA9IG5vIGRldmljZSBub2RlLg0KDQpJIHNl
+ZSEgVGhhbmtzIGZvciB0aGUgcXVpY2sgcmV2aWV3ISBTZWVtcyB0aGF0IEkndmUgcGlja2VkIHRo
+ZSBvbmx5IGNvdW50ZXItZXhhbXBsZSwNCmFsbCB0aGUgcmVzdCBmcm9tIHRoZSBzYW1lIHN5c2Nv
+biBibG9jaywgbGlrZSAidGksYW02Mi1vcHAtZWZ1c2UtdGFibGUiLCBsaXZlcw0KaW4gbWZkL3N5
+c2Nvbi55YW1sLi4uDQoNCi0tIA0KQWxleGFuZGVyIFN2ZXJkbGluDQpTaWVtZW5zIEFHDQp3d3cu
+c2llbWVucy5jb20NCg==
 
