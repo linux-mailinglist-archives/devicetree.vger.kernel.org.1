@@ -1,271 +1,207 @@
-Return-Path: <devicetree+bounces-273002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6HznJuLmrmlRKAIAu9opvQ
-	(envelope-from <devicetree+bounces-273002-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:27:30 +0100
+	id +AoiF9bnrmlRKAIAu9opvQ
+	(envelope-from <devicetree+bounces-273003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:31:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4286123BA2C
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05CB523BB65
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:31:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9083D30DD37F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:20:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93FEC3136CA2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:22:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E363D75D8;
-	Mon,  9 Mar 2026 15:20:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C13F3D6488;
+	Mon,  9 Mar 2026 15:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="j72gDJ+U"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="Lqqr0+Ru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C103D6488
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:20:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773069612; cv=none; b=PB+V1kB7cNHw9JKIFJXhTJzQuZv2HialVqTKSGgzSirU+3RrBWnE9rFnF/3kWFd3lUvlZD+EHscTl02y+QGRONeMVMLdbkTdAAx9PQcPWFrB4mfwWZYYQrW/+eGLpalSnQ9MsTY+oWci3YzcXhYU248HQJNSrjN0bzpJcVdvo4E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773069612; c=relaxed/simple;
-	bh=dDbA88Nq/He79YvW/4a9fhCmEA3HAGYP6l3HiFyoAbo=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=l/0BA7PUUM1rp+J8E5MAKIp3FgE5LsBeJx0m8ngH04eVXbsei2qIOuNAXWlouEGhQ5zFNTMA061dibbCqjmQLWFKRm3F6A0kRLutH9DwcIAnaoHmoJdmFnuI9cYrVS5xndfztkeh74haVh7d77gWKR3prXzf/Q2wtT2/h8t+ehU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=j72gDJ+U; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id 2410D240101
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 16:20:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1773069608; bh=nULKzfUTIQMky612jlNg5QuwE8AIyUAY4F6wfaq0jVI=;
-	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
-	 MIME-Version:OpenPGP:From;
-	b=j72gDJ+UoORVvj3mdI1zJFusEDDPgR2xEPgGi4x8CzNGri9/bpwVbygo21PJYlZzc
-	 DqtCkHeOOCSl78oNqiMQk+2cgXJ/77yNNGHsSVLxzHpac5Ag0XvZmFZok0b3gLoVHW
-	 OAtkjyJYDk/b3IIvzG+N+i7yx5UtunLU2AriUMRG1wK3vJW4UmKgs0jTi5b1KiFRIx
-	 lij1Rn3FSKSb8Egr9ZPvZItjjzB/BpQWA0m9Lif38GbvjSZGDrMQ5VSGB4e4cbNTXN
-	 yGx9VrbQdIZZkjJSQYTmukKn+Mg9QFOa8aHZHuFhGJPGtLcWSieAX/s+aBD6i45Nmq
-	 5yLeHySl7X5Fw==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fV10P6VDfz6trs;
-	Mon,  9 Mar 2026 16:20:05 +0100 (CET)
-Message-ID: <2b04fdc5abc18f4344b2f15353be8d3092c60913.camel@posteo.de>
-Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
-From: Markus Probst <markus.probst@posteo.de>
-To: Lee Jones <lee@kernel.org>
-Cc: Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel
- Ojeda <ojeda@kernel.org>,  Boqun Feng <boqun@kernel.org>, Gary Guo
- <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
- Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross	 <tmgross@umich.edu>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	rust-for-linux@vger.kernel.org
-Date: Mon, 09 Mar 2026 15:20:07 +0000
-In-Reply-To: <20260309151555.GU183676@google.com>
-References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
-	 <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
-	 <2026030827-nautical-overplant-399c@gregkh>
-	 <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
-	 <2026030913-agonizing-shoptalk-ed98@gregkh>
-	 <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
-	 <DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.org>
-	 <e43ca445ec7887d3d15676adb7db04f5685f4195.camel@posteo.de>
-	 <20260309151555.GU183676@google.com>
-Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
- keydata=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
- jfGillcaQOqFZ3WwVqyzG1BUfTow==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-gvGPU8lHXtJYC70xBLES"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD053368BD;
+	Mon,  9 Mar 2026 15:22:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773069775; cv=pass; b=dIUzJOhS9F7d0EuAoW4fjzDja6i7uVQiQnzKUL5k0BhV1A1N7sBitTmhNq1p4PfEOcUIyhYVGEMGgmmOG1tCM2EOUhnKneDL6LXTe4B/4cyNgEaZTzFSUKJ0uCQmnBQd1xDcNmvAQ2ORs0nW5cEQdcfvV2pbzxeCAv0fvzNSNVk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773069775; c=relaxed/simple;
+	bh=bF+8Izpr8cBvE31iG2ObcDqk8SMLxaNyyqmn8prekcY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hbb4LRcbPSnTufXl3QaJ4C2/YAgSGBr2QtStcLrWXWZMITkg9LdtM6wSfpJKRlfmzO7YwFpmWGxMKzQhIpf299y3++JNvwMvb/avV1BtJdPumwig+iAwtxZJTAmQWAcXD+GbAbx3iPlCshJ4RZS0CIWpALGs1mGzEJ+cjy8BzhM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=Lqqr0+Ru; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1773069765; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=DeeTX2RgOTXlXkSnVJxrsnizd2XbDfgW7ko7mmzodZ5QzPLqnxIRdT1Sq8g4y3QH430/KQhpPAxhxVAmWbdGvKFkHXs3nYtXcBFa6uBfUkIwJ0ZUvphqopOSqqeph5DGCgEllMjNYtYbhSwO/es1b9YqzocEfh4UzCrT/bB1nIc=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1773069765; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=+1QeBGhfbS5fwYxIVMpwwIk42C3t6ttYT0afdo4VaxM=; 
+	b=YQ5HYmr7Kpw8L5+t58GvRsrGLHLTa7BTKW7Vy2g+gDJJ/kERmr7hBUyzzc8aN8+WEzLkk1ED34JN0aYSE5mzLAY6PeFGDlnmW9yqIKv7ElkMhPphzEldy5B6nqbHy2J/NWSDuufSY1aXhdzcPjeZecSWFeubW4kjbobOYoCkWSE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773069765;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=+1QeBGhfbS5fwYxIVMpwwIk42C3t6ttYT0afdo4VaxM=;
+	b=Lqqr0+RuMganL1WByElamVZYe4PCcb+uu25tXoDm6jsQ9O4JjiW6zhyovhVzA77F
+	GvMfXrGgLINIsZpq4TlHku70mQ/tNFZAoYVoHMeV35aNoWu8MkV7f36Bs33ANYB6KQB
+	BhRVbSgNBAgxlTjmAwKTYC3eEvsLZHEbOSWpcYzU=
+Received: by mx.zohomail.com with SMTPS id 1773069762453797.9120368836742;
+	Mon, 9 Mar 2026 08:22:42 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id BDAC9182955; Mon, 09 Mar 2026 16:22:38 +0100 (CET)
+Date: Mon, 9 Mar 2026 16:22:38 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Badhri Jagan Sridharan <badhri@google.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Amit Sunil Dhamne <amitsd@google.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] power: supply: Add PD SPR AVS support to USB type
+ enum
+Message-ID: <aa7lRufFIdqHTOMg@venus>
+References: <20260226055311.2591357-1-badhri@google.com>
+ <20260226055311.2591357-3-badhri@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
-X-Rspamd-Queue-Id: 4286123BA2C
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="fbat4zjpvgruu2i7"
+Content-Disposition: inline
+In-Reply-To: <20260226055311.2591357-3-badhri@google.com>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-0.2.1.1.4.3/273.49.35
+X-ZohoMailClient: External
+X-Rspamd-Queue-Id: 05CB523BB65
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-273002-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273003-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[posteo.de:+];
+	DKIM_TRACE(0.00)[collabora.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	NEURAL_HAM(-0.00)[-0.983];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.de:dkim,posteo.de:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim]
 X-Rspamd-Action: no action
 
 
---=-gvGPU8lHXtJYC70xBLES
-Content-Type: text/plain; charset="UTF-8"
+--fbat4zjpvgruu2i7
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v1 2/3] power: supply: Add PD SPR AVS support to USB type
+ enum
+MIME-Version: 1.0
 
-On Mon, 2026-03-09 at 15:15 +0000, Lee Jones wrote:
-> On Mon, 09 Mar 2026, Markus Probst wrote:
->=20
-> > On Mon, 2026-03-09 at 14:32 +0100, Danilo Krummrich wrote:
-> > > On Mon Mar 9, 2026 at 1:52 PM CET, Markus Probst wrote:
-> > > > Yes. I will split it into multiple drivers using the aux bus in the
-> > > > next revision.
-> > >=20
-> > > Independent of the other discussion whether this belongs into the ker=
-nel in the
-> > > first place, reading over the cover letter and commit message I under=
-stood the
-> > > following.
-> > >=20
-> > >   "Synology uses a microcontroller in their NAS devices connected to =
-a serial
-> > >   port [...]" controlling LEDs, fan speeds, a beeper, etc.
-> > >=20
-> > >   I.e. it muliplexes several physical functions that belong to differ=
-ent
-> > >   subsystems, such as hwmon, input, etc. over a single serial port.
-> > >=20
-> > > This sounds like a textbook candidate for MFD to me.
->=20
-> Then you do not know what a textbook candidate for MFD is. :)
->=20
-> What part of the MFD API does this device utilise?
->=20
-> > > I.e. there is a very loose coupling of the different functions that m=
-ake up for
-> > > entirely independent drivers, except that they share the same serial =
-port
-> > > connection.
-> > >=20
-> > > Whereas the auxiliary bus is more for very complicated devices to be =
-broken down
-> > > into more managable (sometimes optional) sub-domains, where the corre=
-sponding
-> > > drivers usually have driver specific APIs to interact with each other=
-.
-> > >=20
-> > > - Danilo
-> >=20
-> > QNAP and Synology do things very similarly.
-> > There is already a driver for QNAP devices:
-> >=20
-> > drivers/mfd/qnap-mcu.c
-> > drivers/leds/leds-qnap-mcu.c
-> > drivers/input/misc/qnap-mcu-input.c
-> > drivers/hwmon/qnap-mcu-hwmon.c
-> > drivers/nvmem/qnap-mcu-eeprom.c
-> >=20
-> > drivers/power/reset/qnap-poweroff.c (this one is not part of the mfd)
-> >=20
-> > and I try to implement the equivalent for Synology devices.
-> > Given its a MFD I would assume the same applies to this driver?
->=20
-> Of course not.
->=20
-> The QNAP driver above calls devm_mfd_add_devices().
->=20
-> This one uses none of the MFD functionality provided.
->=20
-> Linux supports 10's if not 100's of devices which do more than one
-> thing.  Only a fraction of them are Linux MFDs.  MFD in Linux is an API,
-> not a type of device.
->=20
-> Don't get me wrong, you could probably code up this device as a Linux
-> MFD, but you have chosen not to, so therefore it cannot reside here.
-=46rom what I have read so far, the way its written it probably can't
-live anywhere inside the kernel right now. So it will be restructured
-to either use mfd or auxiliary, which both involve splitting the driver
-up into multiple pieces. From what Danilo is writing, it will likely be
-mfd.
+Hi,
 
-Thanks
-- Markus Probst
+On Thu, Feb 26, 2026 at 05:53:10AM +0000, Badhri Jagan Sridharan wrote:
+> Add two new members to the power_supply_usb_type to represent the
+> USB Power Delivery (PD) Standard Power Range (SPR) Adjustable Voltage
+> Supply (AVS) charging types:
+>=20
+> POWER_SUPPLY_USB_TYPE_PD_SPR_AVS: For devices supporting only the
+> PD SPR AVS type.
+>=20
+> POWER_SUPPLY_USB_TYPE_PD_PPS_SPR_AVS: For devices that support both
+> PD Programmable Power Supply (PPS) and PD SPR AVS.
+>=20
+> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+> ---
+>  drivers/power/supply/power_supply_sysfs.c | 2 ++
+>  include/linux/power_supply.h              | 3 +++
+>  2 files changed, 5 insertions(+)
 
+This is missing an update to Documentation/ABI/testing/sysfs-class-power .
 
---=-gvGPU8lHXtJYC70xBLES
+Greetings,
+
+-- Sebastian
+
+>=20
+> diff --git a/drivers/power/supply/power_supply_sysfs.c b/drivers/power/su=
+pply/power_supply_sysfs.c
+> index dd3a48d72d2b..f30a7b9ccd5e 100644
+> --- a/drivers/power/supply/power_supply_sysfs.c
+> +++ b/drivers/power/supply/power_supply_sysfs.c
+> @@ -70,6 +70,8 @@ static const char * const POWER_SUPPLY_USB_TYPE_TEXT[] =
+=3D {
+>  	[POWER_SUPPLY_USB_TYPE_PD]		=3D "PD",
+>  	[POWER_SUPPLY_USB_TYPE_PD_DRP]		=3D "PD_DRP",
+>  	[POWER_SUPPLY_USB_TYPE_PD_PPS]		=3D "PD_PPS",
+> +	[POWER_SUPPLY_USB_TYPE_PD_SPR_AVS]	=3D "PD_SPR_AVS",
+> +	[POWER_SUPPLY_USB_TYPE_PD_PPS_SPR_AVS]	=3D "PD_PPS_SPR_AVS",
+>  	[POWER_SUPPLY_USB_TYPE_APPLE_BRICK_ID]	=3D "BrickID",
+>  };
+> =20
+> diff --git a/include/linux/power_supply.h b/include/linux/power_supply.h
+> index 360ffdf272da..7a5e4c3242a0 100644
+> --- a/include/linux/power_supply.h
+> +++ b/include/linux/power_supply.h
+> @@ -210,6 +210,9 @@ enum power_supply_usb_type {
+>  	POWER_SUPPLY_USB_TYPE_PD,		/* Power Delivery Port */
+>  	POWER_SUPPLY_USB_TYPE_PD_DRP,		/* PD Dual Role Port */
+>  	POWER_SUPPLY_USB_TYPE_PD_PPS,		/* PD Programmable Power Supply */
+> +	/* PD Standard Power Range Adjustable Voltage Supply */
+> +	POWER_SUPPLY_USB_TYPE_PD_SPR_AVS,
+> +	POWER_SUPPLY_USB_TYPE_PD_PPS_SPR_AVS,	/* Supports both PD PPS + SPR AVS=
+ */
+>  	POWER_SUPPLY_USB_TYPE_APPLE_BRICK_ID,	/* Apple Charging Method */
+>  };
+> =20
+> --=20
+> 2.53.0.414.gf7e9f6c205-goog
+>=20
+
+--fbat4zjpvgruu2i7
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
 
 -----BEGIN PGP SIGNATURE-----
 
-iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmu5RAbFIAAAAAABAAO
-bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSKBwP/3jY8Ecy41yVnY4FK/39
-KepTy+K1ImkDt5m0c9NuAVieRpbrYweDCMiw6A4PiZA47gPsbXshXBqr6KBETsJA
-UOCAr7yg4ZeUlIp3tet5nh0RKX3NL2iLxfYoT/8f5in67jkz/3qnHQS78enq9+Sc
-bx/ZnM0rQPuchHxvB109mzObquBfdsgw5uF2DWoD26ZngjAXZy008zrG9EfPElPY
-7F18956OjCAUvBoQ0XRdTrG+72e82MCDxO3sZaEc+p3KtOigpKNWyzyEhBzhAIj1
-mfh1TojAzsBt42Sq8fIZpBojfgsrNMKObMXRvCfeg/50lFXR+7ySfc3VO65e+1Ar
-i43uv4iZTet+KW4CaAxnhPltxf0L8O1Y9RSJmwW0G00EWkWOiG/Ls8rnT9bgTJrL
-1UsepZnNfxBIqLlVwnE7MKO0Xk30HYLk9ZSWzvlIW9WirYtE53tyZ6QEn9/1RgHI
-CcmAKV8XkDtMYeXFEz2yZvcl5q39Gx/Cv7nYZVu+wAbO9ap1HsddtB6/rxLq0lsc
-Z3/84rs0UYCgH908swU9TbF6OE2SzbgiKP+4Xh5SSGtAMwVmfVl4mvnoVX3vuh1A
-Hgz9jSW33HM8exNilUE/YgndkTWk4VfY46XkWzzujJJ86D9zqETYpFNS82GqidLj
-IsEOo2rSO2wR8DIydf4oIW37
-=Skj1
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmu5bcACgkQ2O7X88g7
++poP6w/9EAQf8X64v9yyi7qpDCRVPUn3XcDduahUTdSrZLtv/3NOrgSb9Nq2S0tJ
+JDifxzK++R2mGoelKtuZc8VFE1Ok3ODXb5aBxr/kptyeNWUhrVIZVolwciGMStY/
+51bbv4B0AQ5jGMaFOYpER+wtmW9Ds3C/QM/8F4kTmM2+LaO0GwgOy+1SdWRJbTai
+kgzJ7vRd/+8Cz2czrX9TpARa35jazGtP+DsVr2etcPyuCm/JITnumSzGHfnUEtM6
+eX2/P3BjrHjLw3x8N/SmsABMzVVVVTzxTmODG9d8WTHAted3pqbZr2Ps6lt1dcXc
+ZztN6OSp84TcGyUbm8ybyeCKtZWAfswVC8k20HEcAikFlMrIEVg1LsWD8IetGTkE
+DpBMKwJE2I5QCJEx6OZefBRWfTV3unoPmrVtCubsxyOazrW9z5hUKKUiHPHb9CBy
+Xkli4CURR0rCJPGVa3FiX3lYV1XvmqT6nZdMCte4nu/WTADujpTZkEZHQ/BFaXlm
+auc19VmJ9nhpzB1JeU3pQTRdMme+GbDchiEB7CVBtGGXgGE0uaXO+hBemLd1QFKP
+yMN8ngeY/Ci7A8PtHh1U8PHLbRzCVpoO0DWOFM3havXF85AejIaK8E0lD5Q8gxB3
+Wp3xbKJT/xfuNOiLgniRrGyjLBeCgbN9r935ill6xTHaqrHTwqo=
+=1o87
 -----END PGP SIGNATURE-----
 
---=-gvGPU8lHXtJYC70xBLES--
+--fbat4zjpvgruu2i7--
 
