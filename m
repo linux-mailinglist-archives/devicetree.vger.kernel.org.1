@@ -1,236 +1,186 @@
-Return-Path: <devicetree+bounces-272751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272752-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EIooAaaDrmlwFgIAu9opvQ
-	(envelope-from <devicetree+bounces-272751-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:24:06 +0100
+	id AAF4J36HrmnKFgIAu9opvQ
+	(envelope-from <devicetree+bounces-272752-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:40:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 713EB23578B
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:24:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35404235945
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:40:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C2E76300B860
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 08:23:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4330A303A902
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 08:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1522436D50D;
-	Mon,  9 Mar 2026 08:23:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D742D6401;
+	Mon,  9 Mar 2026 08:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d9WOR2OA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSEYbMLq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B733036CE14
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 08:23:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFCE282F11
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 08:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773044617; cv=none; b=BUri+hfktcG/0wuxCU3GexyGD9dBQzC/YKj4DCzq4RNsouhXOEu5VHEje7MwX2VDBg2VrOkj39Xg/kiD5qMvRrQS8/3mgidQzErCWjkxSEIko1Fl3bg7maSdB81iG8sVls86VKjl5Z50r3lxF3RcNpmLRtKL+mkxEm4Xh/L1ORg=
+	t=1773045564; cv=none; b=id09346Siitvh6TlRSJGAO1TkNYHkxlaXr6aDySrAmxkApX+rah1FufqwX+HQ5cER4mrt/8DBllc8Neegrzua9IKEIVEag6ZqwYOx8qib5FjkMAdpAgAyh1ulOwmmxLHe71T9ZwbXz7XWRS86tY+1K9f4j9kCozVVy7Ota5YP10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773044617; c=relaxed/simple;
-	bh=97GzRB0jXduRhHegNCSRNpHmwNXg1M8yUOuodzFGCYs=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qa7gk5JpoA32693VXfyy9e96gcJneZ2TpyndvQPwnUrZrpcHpUFX9mzQib7aBsZ9agotHQn6D7HbcmToUXH4E3AGJAzJDY4txAr7872ILYJTPRxMkRbSvNFzwG6yrzuc76kTQ87H88Q0HbYREXcQ5h8UQrshUxWSepSHIZhkh60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d9WOR2OA; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-82984c077b2so1799158b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 01:23:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773044615; x=1773649415; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wUXA77gyyGjfEb0uEClVpk8YIE6PesFqfd39D9DI5sw=;
-        b=d9WOR2OAxFyIhsvCILgdqRe+/JC8SJkbFTDiCQNrRnWIikE1eHsdkmgQFVzJVKOoy+
-         tkRhGCY38yHCdnSHbffFOq5v94+qA70X9+182fYnsHYbPU2W56e9YwJJVV9iNUcIKjiF
-         zou4UUdNIXXBpQ1hJPcq2Y7aRirBFhpBMsiEK/sSBWi2rL34P++wpfsNtDbp0kqLeXff
-         IN46s8doBc2te1eTA89FmG9B9YsOPMOLGodimyHfMqDsNVmdeydwcw4D487hOCczPz1+
-         6aU7O51FrzZa2BbAVjM7IA/vo9/hbuFmSmzPO/Dhfb1hqKgTF6Rw1Z7dJmPCnOiqjLgM
-         eNuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773044615; x=1773649415;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wUXA77gyyGjfEb0uEClVpk8YIE6PesFqfd39D9DI5sw=;
-        b=OhJdlPczo2+mzUYQeYTncr0LftPTCyXuM/gvo2Jet92+gnLrOvRmuCcHB8XOLfacCx
-         1Cp3TfnsuXWjy1F0qbu5VTjUqMK1hq/Pnz1Ds0Vs7k3o1Lp+j3jcarRuUb0R0838aJYA
-         jiFPbbQep8BI1zSmCHR7xH8dWuH1yWKC7KmfZBa5OFl/xjgSsia+ORG6CFs3CeRHQ9l1
-         ACYlXUlAniSw+1waI9Z/iR/1ukTcrBH4THNf72tMn+P4jY0BVosJbsWZzhkjIDIQOU0W
-         Mqi8RRWijMj/se2X5frRg3A+Q/94DOErUzpBgYg9aBIzk1Rm/fAj3z5eeKLyIwwB9Kdj
-         ZkjA==
-X-Forwarded-Encrypted: i=1; AJvYcCVwYI8w1/mA886QZbV5aN+yDtAOd+uWrhrK/+Meow1JVBJ0W2tiiGRUz65+7b3jmWem/HEh1sI1RGqN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/R7y1l8CcPjATULL3v0IKrEWPuouM38y1dl0jlQ/EUElJaaM4
-	LByyUnejcAoxhaMZMyssumhDni/AyQNGv4ttL8mH+vkJZ6ZU07sS9sgO
-X-Gm-Gg: ATEYQzzPVtVPSXxMFjZSF8xSvF9ekpZ7YaKKik8Ouwp9Hxybq/SN56s91EdlUoIwPsq
-	5wbidnhljRFtBCV1QIEPXngXSwHv1N+cAj8b4qe32pY6KuYBk+DxDqTr4xf3cqZyF4JsGUkdzqT
-	WagBErVFncnedJ8LHmkH6RMk8djnKj5eKxqnt4VSoV6cuniBL6iPnayxFaQnTGFD4gCLt4brK/B
-	Txf1k4sDPSfBjoY8m+VhxKDCm9Mhq5HULyuaJB1lfDPyYJTMfl1NUUEDRd30rN1wDTAMv8hvxWX
-	i/EnL8RvnFD09k/PAQX0pPCJcrc/gytk5sdRxwACi+wEp636RY9hzwxjsXRIWVj1ln2s+Vur9OW
-	/g2Iu/l7iPEU7PSDmtdQQOfaIwWUjHOP1YJeWvXX/FOk7bPVNT7T62nvy4/kF1rxDcZ9gS2gE25
-	/UQvm+DhTf26WoVrzFAdrXBePa
-X-Received: by 2002:a05:6a00:66c4:b0:829:a3ed:9749 with SMTP id d2e1a72fcca58-829a3ed9af8mr7947643b3a.57.1773044614992;
-        Mon, 09 Mar 2026 01:23:34 -0700 (PDT)
-Received: from fedora ([2401:4900:1f32:2ea1:a1a7:f2aa:545b:3c1e])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829a4657445sm9804383b3a.17.2026.03.09.01.23.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 01:23:34 -0700 (PDT)
-From: Shi Hao <i.shihao.999@gmail.com>
-To: linusw@kernel.org
-Cc: brgl@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	i.shihao.999@gmail.com
-Subject: [PATCH] dt-bindings: gpio: convert Cavium ThunderX GPIO binding to YAML
-Date: Mon,  9 Mar 2026 13:52:52 +0530
-Message-ID: <20260309082252.34384-1-i.shihao.999@gmail.com>
-X-Mailer: git-send-email 2.53.0
+	s=arc-20240116; t=1773045564; c=relaxed/simple;
+	bh=lmhRRii9BO7pCks+UXBWncpJDHHvOFHDr/1FU5tS2Dc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dTl/tKabmi3IaCKDcMfWc/YrZhqEdoWk5zDI2t6CokxfsTFgKMwJdah4eZbuMpLULMvjtHv7Qd/ivMdbWuUT3vM4v2C3aWrqvMCQgRFi3lizYjpm7cp78o8uI8rFDZ6LOiPlJylwUzQWNK4JSrsPh+0JgU4VQ+pI+2WOyp7x3Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSEYbMLq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDA2CC2BC87
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 08:39:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773045563;
+	bh=lmhRRii9BO7pCks+UXBWncpJDHHvOFHDr/1FU5tS2Dc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=pSEYbMLqjTDf+WvklJtHDtFgYzdsLKFAG6QBOjFWn0mdGOnAYuMCdK+RpsRmUwuB3
+	 Ftz/PSViK+eOBH1fkaEikdf+bn/AJeBIM7daWhUzfaCvddMoaKLS4hSmwkbukqdRd/
+	 nA0yF7nJ7ltBjF3BNpZD6Ng6gmDow2aNdNiWZMNV5ZUsKDiwvIFot2rtllFJ42vBam
+	 mEbTooMbS59Ech8U8A+LlVJzz5UeYtBs3qN8xC45AUDqhfGcu7ixZP+sqVe2xJPRwq
+	 6Lm1lLb0J+PSItfq7J9ytw1zsO9KCHS8sZ7JRXtUQTsbCHyWJKX0domBon+sSXVgst
+	 S8OBLo9weaNqQ==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3870778358aso114489531fa.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 01:39:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUO5BgSpkULFfgTCj9vaiT5EXpi4gHblDzoeGvEZ/0onjDVhtgNVc5yvCMfuCFDF7GK9fFRfW97cBCi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8pj8L7pFVIlDJ0R7u/JC0podVdTKVReYHuJLrw/2W9LFB2Mvx
+	26OiGNcdirQ91yuxwAkgJIlcOdYl4fayufCGX7Ls43HX9u++4umo+hCMkZIEmqe+0yDUtmyD3UY
+	cL7eMHtVwg8sPcxBNlQFB2LUsA+Dy2V3BFpot1Gbdvg==
+X-Received: by 2002:a05:651c:892:b0:38a:b18:f41e with SMTP id
+ 38308e7fff4ca-38a40b4bca5mr35053151fa.6.1773045562416; Mon, 09 Mar 2026
+ 01:39:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 713EB23578B
+References: <20260306-qcom-sa8255p-emac-v7-0-d6a3013094b7@oss.qualcomm.com>
+ <20260306-qcom-sa8255p-emac-v7-1-d6a3013094b7@oss.qualcomm.com> <20260307-boisterous-tuscan-rat-1eb9bb@quoll>
+In-Reply-To: <20260307-boisterous-tuscan-rat-1eb9bb@quoll>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Mon, 9 Mar 2026 09:39:10 +0100
+X-Gmail-Original-Message-ID: <CAMRc=MeeHP_ZjhOHu5NNLCU6Cg59EAWQAS0JngEHDQkmcDH3HQ@mail.gmail.com>
+X-Gm-Features: AaiRm50wcU1Efh35HOluVCqu3-5afwUUXiIKPiOPr6mPL4PpMSQ1J-X9POGllS8
+Message-ID: <CAMRc=MeeHP_ZjhOHu5NNLCU6Cg59EAWQAS0JngEHDQkmcDH3HQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v7 1/7] dt-bindings: net: qcom: document the
+ ethqos device for SCMI-based systems
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+	Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
+	Romain Gantois <romain.gantois@bootlin.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
+	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Maxime Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>, 
+	Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
+	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+	Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
+	Samin Guo <samin.guo@starfivetech.com>, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
+	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
+	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
+	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
+	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 35404235945
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com];
-	FROM_NEQ_ENVFROM(0.00)[ishihao999@gmail.com,devicetree@vger.kernel.org];
-	TO_DN_NONE(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272751-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,foss.st.com,st.com,synopsys.com,sholland.org,altera.com,linaro.org,baylibre.com,googlemail.com,pengutronix.de,oss.nxp.com,nxp.com,bootlin.com,bp.renesas.com,sntech.de,outlook.com,esmil.dk,starfivetech.com,mail.toshiba,glider.be,eswincomputing.com,intel.com,rock-chips.com,samsung.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272752-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.986];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[76];
+	TAGGED_RCPT(0.00)[devicetree,dt,netdev,renesas];
+	NEURAL_HAM(-0.00)[-0.989];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.6:email,devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linaro.org:email]
 X-Rspamd-Action: no action
 
-Convert Cavium ThunderX GPIO text based device tree
-node to YAML schema format, ensuring validation and
-consistency across Device Tree.
+On Sat, Mar 7, 2026 at 11:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On Fri, Mar 06, 2026 at 04:46:39PM +0100, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Describe the firmware-managed variant of the QCom DesignWare MAC. As th=
+e
+> > properties here differ a lot from the HLOS-managed variant, lets put it
+> > in a separate file. Since we need to update the maximum number of power
+> > domains, let's update existing bindings referencing the top-level
+> > snps,dwmac.yaml and limit their maxItems for power-domains to 1.
+> >
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> > Reviewed-by: Romain Gantois <romain.gantois@bootlin.com> # For RZ/N1
+>
+> Can we drop half-baked reviews? Reviewing only that piece is not even
+> possible, because it makes no sense outside of main change context. IOW,
+> it's pointless review of nothing, if you do not actually review the main
+> change impacting RZ/N1.
+>
 
-Signed-off-by: Shi Hao <i.shihao.999@gmail.com>
----
- .../gpio/cavium-thunder-8890-gpio.yaml        | 52 +++++++++++++++++++
- .../bindings/gpio/gpio-thunderx.txt           | 27 ----------
- 2 files changed, 52 insertions(+), 27 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/gpio/cavium-thunder-8890-gpio.yaml
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-thunderx.txt
+This is the first time I'm hearing we can't review individual parts of
+changesets? I see your point about this particular patch and the fact
+it only makes sense as a whole but is this the official policy for
+parts of larger DTS patches?
 
-diff --git a/Documentation/devicetree/bindings/gpio/cavium-thunder-8890-gpio.yaml b/Documentation/devicetree/bindings/gpio/cavium-thunder-8890-gpio.yaml
-new file mode 100644
-index 000000000000..16d7c347f913
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/cavium-thunder-8890-gpio.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/cavium-thunder-8890-gpio.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cavium ThunderX GPIO controller
-+
-+description: |
-+  Device Tree binding for the GPIO controller found in
-+  Cavium ThunderX and OCTEON-TX SoCs.
-+
-+maintainers:
-+  - Linus Walleij <linusw@kernel.org>
-+  - Rob Herring <robh@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - cavium,thunder-8890-gpio
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  "#gpio-cells":
-+    const: 2
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio_6_0: gpio@6,0 {
-+      compatible = "cavium,thunder-8890-gpio";
-+      reg = <0x3000 0x100>; /*  DEVFN = 0x30 (6:0) */
-+      gpio-controller;
-+      #gpio-cells = <2>;
-+      interrupt-controller;
-+      #interrupt-cells = <2>;
-+    };
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-thunderx.txt b/Documentation/devicetree/bindings/gpio/gpio-thunderx.txt
-deleted file mode 100644
-index 3f883ae29d11..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-thunderx.txt
-+++ /dev/null
-@@ -1,27 +0,0 @@
--Cavium ThunderX/OCTEON-TX GPIO controller bindings
--
--Required Properties:
--- reg: The controller bus address.
--- gpio-controller: Marks the device node as a GPIO controller.
--- #gpio-cells: Must be 2.
--  - First cell is the GPIO pin number relative to the controller.
--  - Second cell is a standard generic flag bitfield as described in gpio.txt.
--
--Optional Properties:
--- compatible: "cavium,thunder-8890-gpio", unused as PCI driver binding is used.
--- interrupt-controller: Marks the device node as an interrupt controller.
--- #interrupt-cells: Must be present and have value of 2 if
--                    "interrupt-controller" is present.
--  - First cell is the GPIO pin number relative to the controller.
--  - Second cell is triggering flags as defined in interrupts.txt.
--
--Example:
--
--gpio_6_0: gpio@6,0 {
--	compatible = "cavium,thunder-8890-gpio";
--	reg = <0x3000 0 0 0 0>; /*  DEVFN = 0x30 (6:0) */
--	gpio-controller;
--	#gpio-cells = <2>;
--	interrupt-controller;
--	#interrupt-cells = <2>;
--};
---
-2.53.0
+Bart
+
+> Also submitting patches do not really allow to apply reviewer's
+> statement of oversight to inly part of the patch.
+>
+> It's called Ack then. Use proper tags if one does not actually review
+> the patch.
+>
+
+I need to resend anyway so I'll drop it. I may also drop the two
+hundred addresses from Cc b4 added. :)
+
+Bart
 
