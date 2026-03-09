@@ -1,189 +1,179 @@
-Return-Path: <devicetree+bounces-272779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272778-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yBKYLS6QrmnVGAIAu9opvQ
-	(envelope-from <devicetree+bounces-272779-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:17:34 +0100
+	id 4JP8KraPrmnVGAIAu9opvQ
+	(envelope-from <devicetree+bounces-272778-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:15:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2419C235FF5
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:17:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D836235FB8
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:15:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0BDD9300DDEA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:15:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 991A430293FB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E9F52D8760;
-	Mon,  9 Mar 2026 09:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F127376BF2;
+	Mon,  9 Mar 2026 09:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b="N7fFowUQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gR2+4DEU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76AFE24DCF9;
-	Mon,  9 Mar 2026 09:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.75.126.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3134037757E;
+	Mon,  9 Mar 2026 09:13:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773047750; cv=none; b=YAWjxQNgB5xR/ZoC9dYrJ9b80mICrEetlSYAMFTbVrywGRulZdA/vSY3q2DnALDWMgWZFa4zfcl8BQcaHHoxmxmp6tQMiJ5sLJTqj/XglNf3+WGdP3beS5WHUeJFAXyxgw+7d9WOo88A8SZp3uvcXr836RhL6qjO/h0JieZNx/k=
+	t=1773047597; cv=none; b=BDjJnlkSNmLVRmgSdiJioFo3NZXNly0FNRCUB7HqePNgt6jyX6wsvyVKIXD0EuznR8HGRAlTZ5CgJVSfKfGjo/YzCaqNE9N1xs5JBFZFUgckjoz7ZuKc+yfBwkj0V5npR3rBCWmzC/GxW28A1asekhWrhoVY/TN5ZRrW/oA38Os=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773047750; c=relaxed/simple;
-	bh=JgjMfWaODspJLnY+C6cx+a77p1z5R63MX8u70I4pM70=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=atoqchGddGnBlOI+Rd3AAKH/g6mqHm1lI9314YQGvgUwJYDA9WdUrEknGQAKlZni09eUctWKbfumPoEff47ONKLL+ULZyEwIJvqjy1KvFTETtjtr2h81zG438NrSi64GgMPVb/z25gT8f5JrSyq2oBfU7cH9jJFxrHWRCgobKDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com; spf=pass smtp.mailfrom=realtek.com; dkim=pass (2048-bit key) header.d=realtek.com header.i=@realtek.com header.b=N7fFowUQ; arc=none smtp.client-ip=211.75.126.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=realtek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=realtek.com
-X-SpamFilter-By: ArmorX SpamTrap 5.80 with qID 6299CnnvE261338, This message is accepted by code: ctloc85258
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=realtek.com; s=dkim;
-	t=1773047569; bh=JgjMfWaODspJLnY+C6cx+a77p1z5R63MX8u70I4pM70=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:Content-Transfer-Encoding:MIME-Version;
-	b=N7fFowUQ3mQeqTSFgo4jQBDcSvxnLdDmNjiqxUPqdZxOGBW8q2R9i46IraMQjxdTp
-	 NpBStgYteoqLJsAwJamsiGjjWt9b0jFj/8gNwMe0XQwIankiytgqwd41+nDIyzDR1Z
-	 0Q1KGkFujUdNpZu9Mo57pUOubFvY8lHOLXkS2ZlsmJb03PF8tjBnjWV4A98dFqTe1c
-	 VKc14SMyapJvxN8oQ4dCY40lrNORNYxj9oeoHoX+uhmczlbmN8PW0QlOelWVJafPee
-	 K+DURJbggU6TW9i4XWdYnF93PmguecBWz2vhEmQJ9md8VesMlL7Db8jodUA1x7p7m4
-	 OhkTDDyYYe5Bw==
-Received: from mail.realtek.com (rtkexhmbs04.realtek.com.tw[10.21.1.54])
-	by rtits2.realtek.com.tw (8.15.2/3.21/5.94) with ESMTPS id 6299CnnvE261338
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 9 Mar 2026 17:12:49 +0800
-Received: from RTKEXHMBS01.realtek.com.tw (172.21.6.40) by
- RTKEXHMBS04.realtek.com.tw (10.21.1.54) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Mon, 9 Mar 2026 17:12:50 +0800
-Received: from RTKEXHMBS06.realtek.com.tw (10.21.1.56) by
- RTKEXHMBS01.realtek.com.tw (172.21.6.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.17; Mon, 9 Mar 2026 17:12:49 +0800
-Received: from RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913]) by
- RTKEXHMBS06.realtek.com.tw ([fe80::4cbd:6c6c:b92b:3913%10]) with mapi id
- 15.02.1748.010; Mon, 9 Mar 2026 17:12:49 +0800
-From: =?utf-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "linusw@kernel.org" <linusw@kernel.org>,
-        "robh@kernel.org"
-	<robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "bartosz.golaszewski@oss.qualcomm.com"
-	<bartosz.golaszewski@oss.qualcomm.com>,
-        "afaerber@suse.com"
-	<afaerber@suse.com>,
-        =?utf-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
-	<james.tai@realtek.com>,
-        =?utf-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?=
-	<cy.huang@realtek.com>,
-        =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?=
-	<stanley_chang@realtek.com>,
-        =?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?=
-	<tychang@realtek.com>,
-        "linux-gpio@vger.kernel.org"
-	<linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-realtek-soc@lists.infradead.org"
-	<linux-realtek-soc@lists.infradead.org>
-Subject: RE: [PATCH v2 07/14] dt-bindings: pincfg-node: Add
- input-voltage-microvolt property
-Thread-Topic: [PATCH v2 07/14] dt-bindings: pincfg-node: Add
- input-voltage-microvolt property
-Thread-Index: AQHcrT45a/bUsKCH9kyRea3Awrcd97WigcSAgANtK/A=
-Date: Mon, 9 Mar 2026 09:12:49 +0000
-Message-ID: <74152b7e8de7470dac6555ef22e6bc64@realtek.com>
-References: <20260306075244.1170399-1-eleanor.lin@realtek.com>
- <20260306075244.1170399-8-eleanor.lin@realtek.com>
- <20260307-astonishing-helpful-grouse-b7e968@quoll>
-In-Reply-To: <20260307-astonishing-helpful-grouse-b7e968@quoll>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1773047597; c=relaxed/simple;
+	bh=DRPUogR0IQWY0r8T87R9VU7mPwvOCe+THpB967ZnVk4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hWJYDRWqnLwAJPO9mLYrzlUFqfEhoQ0eg+i/dByb+3JU0t2r6Hpkt4/heFQECFQKIV1czYT0T7OsLXsbmCy89tVNxey/htmQHygtJFgQcysipzXL3ZsJ+6E0yjR4RJ/r1gz4clhHblg/Vd5eFBnOCRoT+ow8psedf4mc6kWGOOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gR2+4DEU; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773047595; x=1804583595;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DRPUogR0IQWY0r8T87R9VU7mPwvOCe+THpB967ZnVk4=;
+  b=gR2+4DEUGZXPTR2m+0DJsA7nUEygDFE8Z+iwajVlTgAlG4ERremXLe5g
+   ydmzwobCstzkjUxoCgtUACB8c7d+bNBgke0z3gRyoWvCAhN+UMEhpTQ06
+   ktLU5qia5yCvSvTCRwooNwrH9S+tSG7ftw20XwGMoN3SF3P/6iLHG/4r3
+   XLSoovBAi+86Suf854xF9YUibITcog5LR6yM4aaPgFpDtvLnUmuggJpSV
+   sbF/NX/6rNW5RaZeUZeBIoYyt22pMmhKLRBiHr+8nM6jyeo639mtFp6kM
+   9Vwaocpp6yObkUXXzwya9JOM+l+svw88yZ+1hJOVTjutFwwHtDxfYMjwY
+   w==;
+X-CSE-ConnectionGUID: 7ywRAoYVR1yrHjOwAiYhRA==
+X-CSE-MsgGUID: sWAGIpcxQgWUe3FBLyBIjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="99534434"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
+   d="scan'208";a="99534434"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 02:13:15 -0700
+X-CSE-ConnectionGUID: Gh950RknR4O4GwKf8LcT0Q==
+X-CSE-MsgGUID: Ck6pzTqRStayoBDD0fbAag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
+   d="scan'208";a="215281817"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.148])
+  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 02:13:12 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 2657211FA60;
+	Mon, 09 Mar 2026 11:13:44 +0200 (EET)
+Date: Mon, 9 Mar 2026 11:13:44 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Alexander Koskovich <AKoskovich@pm.me>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH 1/2] media: dt-bindings: ovti,ov8856: Allow props from
+ video-interface-devices
+Message-ID: <aa6PSHDjSRgIRR3t@kekkonen.localdomain>
+References: <20260307-ov8856-v4l2-props-v1-0-7677b4c658e4@pm.me>
+ <20260307-ov8856-v4l2-props-v1-1-7677b4c658e4@pm.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 2419C235FF5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260307-ov8856-v4l2-props-v1-1-7677b4c658e4@pm.me>
+X-Rspamd-Queue-Id: 0D836235FB8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.44 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[realtek.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[realtek.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272779-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,realtek.com:dkim,realtek.com:email,realtek.com:mid];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[realtek.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[eleanor.lin@realtek.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-272778-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pm.me:email,kekkonen.localdomain:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-PiBPbiBGcmksIE1hciAwNiwgMjAyNiBhdCAwMzo1MjozN1BNICswODAwLCBZdS1DaHVuIExpbiB3
-cm90ZToNCj4gPiBGcm9tOiBUenV5aSBDaGFuZyA8dHljaGFuZ0ByZWFsdGVrLmNvbT4NCj4gPg0K
-PiA+IEFkZCBhIGdlbmVyaWMgcGluIGNvbmZpZ3VyYXRpb24gcHJvcGVydHkgImlucHV0LXZvbHRh
-Z2UtbWljcm92b2x0IiB0bw0KPiA+IHNwZWNpZnkgdGhlIGlucHV0IHZvbHRhZ2UgbGV2ZWwgb2Yg
-YSBwaW4gaW4gbWljcm92b2x0cy4NCj4gDQo+IFdoeT8NCj4gDQo+ID4NCj4gPiBTaWduZWQtb2Zm
-LWJ5OiBUenV5aSBDaGFuZyA8dHljaGFuZ0ByZWFsdGVrLmNvbT4NCj4gPiBDby1kZXZlbG9wZWQt
-Ynk6IFl1LUNodW4gTGluIDxlbGVhbm9yLmxpbkByZWFsdGVrLmNvbT4NCj4gPiBTaWduZWQtb2Zm
-LWJ5OiBZdS1DaHVuIExpbiA8ZWxlYW5vci5saW5AcmVhbHRlay5jb20+DQo+ID4gLS0tDQo+ID4g
-IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waW5jdHJsL3BpbmNmZy1ub2RlLnlh
-bWwgfCA0ICsrKysNCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+
-ID4gZGlmZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bp
-bmN0cmwvcGluY2ZnLW5vZGUueWFtbA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL3BpbmN0cmwvcGluY2ZnLW5vZGUueWFtbA0KPiA+IGluZGV4IGE5MTZkMGZjNzlhOS4u
-ZGExODJjOGExZDAwIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9waW5jdHJsL3BpbmNmZy1ub2RlLnlhbWwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcGluY3RybC9waW5jZmctbm9kZS55YW1sDQo+ID4gQEAgLTE2
-Miw2ICsxNjIsMTAgQEAgcHJvcGVydGllczoNCj4gPiAgICAgICAgdGhpcyBhZmZlY3RzIHRoZSBl
-eHBlY3RlZCBkZWxheSBpbiBwcyBiZWZvcmUgbGF0Y2hpbmcgYSB2YWx1ZSB0bw0KPiA+ICAgICAg
-ICBhbiBvdXRwdXQgcGluLg0KPiA+DQo+ID4gKyAgaW5wdXQtdm9sdGFnZS1taWNyb3ZvbHQ6DQo+
-ID4gKyAgICBkZXNjcmlwdGlvbjogU3BlY2lmaWVzIHRoZSBpbnB1dCB2b2x0YWdlIGxldmVsIG9m
-IHRoZSBwaW4gaW4gbWljcm92b2x0cy4NCj4gPiArICAgICAgVGhpcyBkZWZpbmVzIHRoZSByZWZl
-cmVuY2UgZm9yIFZJSC9WSUwuDQo+IA0KPiBXaGF0IGlzIFZJSC9WSUw/IFdoeSBnZW5lcmljIGJp
-bmRpbmcgd291bGQgZGVmaW5lIHRoZSB2b2x0YWdlIG9mIHBpbnMgZm9yIHBpbg0KPiBjb250cm9s
-Pw0KPiANCj4gVGhpcyBwYXRjaCBtaXNzZXMgYWN0dWFsIGJhY2tncm91bmQgd2h5IHlvdSBhcmUg
-ZG9pbmcgaXQgYW5kIHdoYXQgc29ydCBvZg0KPiBjb21tb24vdHlwaWNhbCBwaW5jdHJsIHNldHVw
-IHlvdSBkZXNjcmliZS4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCkFncmVl
-ZCwgdGhlIGNvbW1pdCBtZXNzYWdlIGFuZCBkZXNjcmlwdGlvbiBsYWNrZWQgc3VmZmljaWVudCBj
-b250ZXh0LiBJDQp3aWxsIGltcHJvdmUgdGhlIGV4cGxhbmF0aW9uIGluIHYzLg0KDQpWSUggaXMg
-SW5wdXQgSGlnaCBWb2x0YWdlLCBhbmQgVklMIGlzIElucHV0IExvdyBWb2x0YWdlLg0KDQpUaGUg
-cmVhc29uIGZvciBpbnRyb2R1Y2luZyAnaW5wdXQtdm9sdGFnZS1taWNyb3ZvbHQnIGluICdwaW5j
-Zmctbm9kZS55YW1sJyBpcw0KdG8gc3VwcG9ydCBoYXJkd2FyZSBkZXNpZ25zIHdoZXJlIHRoZSAi
-SW5wdXQgTG9naWMgVGhyZXNob2xkIiBpcyBkZWNvdXBsZWQNCmZyb20gdGhlICJQb3dlciBTdXBw
-bHkgVm9sdGFnZSIuDQoNCkZvciBleGFtcGxlLCBhIHBpbiBtaWdodCBiZSBwb3dlcmVkIGJ5IGEg
-Zml4ZWQgMy4zViBzdXBwbHkgYnV0IG5lZWRzIHRvIGJlDQpjb25maWd1cmVkIHRvIGFjY2VwdCAx
-LjhWIGxvZ2ljIHNpZ25hbHMuIFRoaXMgcHJvcGVydHkgYWxsb3dzIHRoZSBwaW5jdHJsDQpkcml2
-ZXIgdG8gc2V0IHRoZSBjb3JyZWN0IGludGVybmFsIHJlZmVyZW5jZS4NCg0KVGhpcyBjaGFuZ2Ug
-Zm9sbG93cyB0aGUgc3VnZ2VzdGlvbiBmcm9tIExpbnVzIFdhbGxlaWogWzFdIHRvIG1ha2UgdGhl
-IHByb3BlcnR5DQpnZW5lcmljIGluc3RlYWQgb2YgdmVuZG9yLXNwZWNpZmljICgncmVhbHRlayxp
-bnB1dC12b2x0YWdlJyksIGFzIHRoZSBjb25jZXB0DQpvZiBzZWxlY3RpbmcgaW5wdXQgdGhyZXNo
-b2xkcyBpcyBub3QgdW5pcXVlIHRvIFJlYWx0ZWsuDQoNClsxXTogaHR0cHM6Ly9sb3JlLmtlcm5l
-bC5vcmcvYWxsL2Q1YmUzNTdjMTRiODQxNTVhZGZhOGE5ZjAwYTY0ZDgzQHJlYWx0ZWsuY29tLw0K
-DQpCZXN0IHJlZ2FyZHMsDQpZdS1DaHVuDQo=
+Hi Alexander,
+
+Thanks for the patch.
+
+On Sun, Mar 08, 2026 at 04:56:04AM +0000, Alexander Koskovich wrote:
+> There is no reason to restrict the allowed rotation degrees to 0 and 180,
+> as the sensor can be mounted with any rotation.
+> 
+> Also, as all the properties described by video-interface-devices.yaml are
+> allowed for the image sensor, make them accepted by changing
+> additionalProperties: false" to "unevaluatedProperties: false" at the
+> schema top-level.
+
+As the relevant properties depend on the device type, I believe we should
+continue to document what is relevant for a given device.
+
+Some of the properties such as the ones that get used in the 2nd patch
+could well be put into another file so we could avoid documenting each
+supported property separately for e.g. raw camera sensors.
+
+Also cc Laurent.
+
+> 
+> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+> ---
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
+> index fa71f24823f2..73a9d3288897 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
+> @@ -18,6 +18,9 @@ description: |-
+>    through I2C and two-wire SCCB. The sensor output is available via CSI-2
+>    serial data output (up to 4-lane).
+>  
+> +allOf:
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+>  properties:
+>    compatible:
+>      const: ovti,ov8856
+> @@ -94,7 +97,7 @@ required:
+>    - reset-gpios
+>    - port
+>  
+> -additionalProperties: false
+> +unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+> 
+
+-- 
+Regards,
+
+Sakari Ailus
 
