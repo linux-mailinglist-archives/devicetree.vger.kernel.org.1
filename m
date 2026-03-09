@@ -1,84 +1,94 @@
-Return-Path: <devicetree+bounces-272778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4JP8KraPrmnVGAIAu9opvQ
-	(envelope-from <devicetree+bounces-272778-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:15:34 +0100
+	id 0N92EFiQrmnVGAIAu9opvQ
+	(envelope-from <devicetree+bounces-272780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:18:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D836235FB8
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:15:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD1B3236019
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:18:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 991A430293FB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:13:18 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AD6D63044A43
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F127376BF2;
-	Mon,  9 Mar 2026 09:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0482F3783C9;
+	Mon,  9 Mar 2026 09:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gR2+4DEU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iuUL2+r/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3134037757E;
-	Mon,  9 Mar 2026 09:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29AE0256C84
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 09:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773047597; cv=none; b=BDjJnlkSNmLVRmgSdiJioFo3NZXNly0FNRCUB7HqePNgt6jyX6wsvyVKIXD0EuznR8HGRAlTZ5CgJVSfKfGjo/YzCaqNE9N1xs5JBFZFUgckjoz7ZuKc+yfBwkj0V5npR3rBCWmzC/GxW28A1asekhWrhoVY/TN5ZRrW/oA38Os=
+	t=1773047787; cv=none; b=Wl2YE2dQPAsbRASJvwt0//6hSrvXDQhnGjEhP2vMq4AjvO1iZKXuRewlBJvcy++elPO9xbk6q1ZzrI4D6ys/JcplMBZVO9/lJfHDPBP6Vl310fbSJLavzghXZuT0jSjwSjb2g1mM/TJs+6chdp3XSqubB2z3d9lf24hjiRU48/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773047597; c=relaxed/simple;
-	bh=DRPUogR0IQWY0r8T87R9VU7mPwvOCe+THpB967ZnVk4=;
+	s=arc-20240116; t=1773047787; c=relaxed/simple;
+	bh=1jGBBfInWcPlyDj77P4+i/0PqZBVJ9PiGxU0GLuAUrs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hWJYDRWqnLwAJPO9mLYrzlUFqfEhoQ0eg+i/dByb+3JU0t2r6Hpkt4/heFQECFQKIV1czYT0T7OsLXsbmCy89tVNxey/htmQHygtJFgQcysipzXL3ZsJ+6E0yjR4RJ/r1gz4clhHblg/Vd5eFBnOCRoT+ow8psedf4mc6kWGOOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gR2+4DEU; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773047595; x=1804583595;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DRPUogR0IQWY0r8T87R9VU7mPwvOCe+THpB967ZnVk4=;
-  b=gR2+4DEUGZXPTR2m+0DJsA7nUEygDFE8Z+iwajVlTgAlG4ERremXLe5g
-   ydmzwobCstzkjUxoCgtUACB8c7d+bNBgke0z3gRyoWvCAhN+UMEhpTQ06
-   ktLU5qia5yCvSvTCRwooNwrH9S+tSG7ftw20XwGMoN3SF3P/6iLHG/4r3
-   XLSoovBAi+86Suf854xF9YUibITcog5LR6yM4aaPgFpDtvLnUmuggJpSV
-   sbF/NX/6rNW5RaZeUZeBIoYyt22pMmhKLRBiHr+8nM6jyeo639mtFp6kM
-   9Vwaocpp6yObkUXXzwya9JOM+l+svw88yZ+1hJOVTjutFwwHtDxfYMjwY
-   w==;
-X-CSE-ConnectionGUID: 7ywRAoYVR1yrHjOwAiYhRA==
-X-CSE-MsgGUID: sWAGIpcxQgWUe3FBLyBIjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="99534434"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
-   d="scan'208";a="99534434"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 02:13:15 -0700
-X-CSE-ConnectionGUID: Gh950RknR4O4GwKf8LcT0Q==
-X-CSE-MsgGUID: Ck6pzTqRStayoBDD0fbAag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
-   d="scan'208";a="215281817"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.245.148])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 02:13:12 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 2657211FA60;
-	Mon, 09 Mar 2026 11:13:44 +0200 (EET)
-Date: Mon, 9 Mar 2026 11:13:44 +0200
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Alexander Koskovich <AKoskovich@pm.me>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH 1/2] media: dt-bindings: ovti,ov8856: Allow props from
- video-interface-devices
-Message-ID: <aa6PSHDjSRgIRR3t@kekkonen.localdomain>
-References: <20260307-ov8856-v4l2-props-v1-0-7677b4c658e4@pm.me>
- <20260307-ov8856-v4l2-props-v1-1-7677b4c658e4@pm.me>
+	 Content-Type:Content-Disposition:In-Reply-To; b=tNS34oGc49Le2BWpze+1aYaI0xtgw9CYy+pVwqVzJ1pxffuQrflDRGys20spE++8B25eTKS8zSLjQSyIySMkKrah2f+OD2SAEPGKe4QVAw41WlC36eOzvXkSB8rcpUYh+GYuW/MUU9xMUXNlWvRmWuEpseKUuTKopXJw3H+Owj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iuUL2+r/; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48529c325f0so17028165e9.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 02:16:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1773047784; x=1773652584; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=xEMYbYJ9NsIB337c5/AE4fq1IEFDMbJNEIOTDlDSI/U=;
+        b=iuUL2+r/GRmzHLfudJSe4dxHLMlKmWWcbPVN0mtSinWyx7VBp58eBXB0mPv7GQn6Ja
+         ifVHK+mc/sJRqChxEjoa3O5BD+YUtoa6gMp0DDXVusRKCE5q4gAZrrsXNDCfPZpkdN17
+         XEl3MWVpktGC6Zrg0XyeIEOve2S+qs/a+EsUvH2G7UwVfJMp3ZIV1+7ASyDLFalkOxLv
+         uPCdQCR5+Um6RxPgl+X77rBNu1O7mOttxbmu+8MBIMA36utedhe91zoATDMaAY2BwUGP
+         vvY+wt4Jq1j4PCyF6AE1eeiTYzpsGmhTQpD0ULWtzxDq1sDzn21SQiJzhqMElodteUsS
+         nYjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773047784; x=1773652584;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xEMYbYJ9NsIB337c5/AE4fq1IEFDMbJNEIOTDlDSI/U=;
+        b=mGv9JDsSNf7WZCdTbW16Hh7hlGxX7wWN2PFZTr+QHATOHRVX3lF6mn505EGt6XHtYg
+         RGOYjSnKgZPg4rU+MybCOy5jkg4Bo32BYRIiV4IhHjqoYJbPXaGDwkOulfyrIM+h2au8
+         t2sT70fPuaGe1Pf6datE75FV3o60rRyEGbOTje85X4O3BB0xF1wjxkl9hdevNUmRTl+x
+         HgiDnNLhkA3VIKSzcl36+m1zEFYWdayH7m59JVzsTqxr78+qhyUpYqG2ndo7bs+YTDZq
+         APhXJzlow8I1WWD1Q5Vy4UjTV2RXe/uCr5UeAlF5dorzG07vwPRbSTtr6s03bdh4d94U
+         cd7g==
+X-Forwarded-Encrypted: i=1; AJvYcCUn2RnV3QfwSJcT4YPsFIwRgECIhWhpDyNoc2xtdZNzmDEFaA5yRWnh/bT+oJApas8cwMV4Vj/63l9p@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkN/IE61BSQoPuA261Nj8AFjpDhPQ89cQxxaEXM6af9JBnYCDY
+	9AuIr5Tj8ehdeu43ivAHJlqk6z/ddgE0jWvKnj07mXP6g1es0rdH2bddROoW0cDNlfg=
+X-Gm-Gg: ATEYQzzRVXQvjXuHTrU95mAqrxG16wQMLg2C+/a1otHuW3vHiMTMqvu+PtvpMA0KcHd
+	dfUKx/kJrlSldScW2LKAdilY0HbVLfxwAiirwpAMvyRxMlzvb3YkprqQ2sdcjIGI0Kn4xTAQln9
+	xbUC0/JlDjamKesQtv78aBaGy1urVd4/EwTpVK4arVesfyYjnShg0Ex2Pqqmuzh/OtjpUm2um0d
+	RWa8AuGhnDKQcUWKgphwreHzmrQjuIFTpsuHTaY7VJCiIRHl85oVCaHN+eU1iYM64TjfqNDpKmK
+	sbnkvRRa59b9PIgH+LRNUbnXH1tP0PnL55AX8WYI5ILJ0RoZx7f8hLCJ+CExTRkHc2IksAv7soU
+	VFMHeSV+VcI4YLd4ObLxu/3UDTkEhzXWq1DtIrQ3AwPfbuK8oGHeaVeepQh2rOqKBUjEl7HA/d6
+	oDkejd6KBuYecncWJbwV0w+5CE39j3
+X-Received: by 2002:a05:600c:888c:b0:485:3812:36da with SMTP id 5b1f17b1804b1-48538123853mr47305545e9.9.1773047784401;
+        Mon, 09 Mar 2026 02:16:24 -0700 (PDT)
+Received: from linaro.org ([77.64.146.222])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4853616a085sm50557965e9.3.2026.03.09.02.16.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Mar 2026 02:16:23 -0700 (PDT)
+Date: Mon, 9 Mar 2026 10:16:18 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: adamp@posteo.de
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: msm8916-wiko-chuppito: add
+ initial devicetree
+Message-ID: <aa6P4rE7d2ftaeAw@linaro.org>
+References: <20260307-wiko-chuppito-v4-0-325ac66ae338@posteo.de>
+ <20260307-wiko-chuppito-v4-3-325ac66ae338@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,93 +97,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260307-ov8856-v4l2-props-v1-1-7677b4c658e4@pm.me>
-X-Rspamd-Queue-Id: 0D836235FB8
+In-Reply-To: <20260307-wiko-chuppito-v4-3-325ac66ae338@posteo.de>
+X-Rspamd-Queue-Id: CD1B3236019
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272778-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_FROM(0.00)[bounces-272780-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pm.me:email,kekkonen.localdomain:mid,intel.com:dkim]
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.975];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,posteo.de:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Alexander,
-
-Thanks for the patch.
-
-On Sun, Mar 08, 2026 at 04:56:04AM +0000, Alexander Koskovich wrote:
-> There is no reason to restrict the allowed rotation degrees to 0 and 180,
-> as the sensor can be mounted with any rotation.
+On Sat, Mar 07, 2026 at 06:23:12PM +0100, Paul Adam via B4 Relay wrote:
+> From: Paul Adam <adamp@posteo.de>
 > 
-> Also, as all the properties described by video-interface-devices.yaml are
-> allowed for the image sensor, make them accepted by changing
-> additionalProperties: false" to "unevaluatedProperties: false" at the
-> schema top-level.
-
-As the relevant properties depend on the device type, I believe we should
-continue to document what is relevant for a given device.
-
-Some of the properties such as the ones that get used in the 2nd patch
-could well be put into another file so we could avoid documenting each
-supported property separately for e.g. raw camera sensors.
-
-Also cc Laurent.
-
+> Add an initial device tree for Wiko PULP 4G.
+> Includes support for:
+> - UART
+> - USB (no OTG)
+> - Internal storage
+> - MicroSD
+> - Volume keys + Power button
+> - Touchscreen
+> - Backlight
+> - Accelerometer: Invensense MPU6880
+> - Magnetometer: Asahi Kasei AK09911
+> - Hall sensor: Rohm BU52021HFV
+> - Proximity sensor
+> - Vibrator
+> - Earpiece
+> - Microphone 1
+> - Headphones
+> - Wifi
+> - Bluetooth
+> - GPU
 > 
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+> Signed-off-by: Paul Adam <adamp@posteo.de>
 > ---
->  Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
+>  arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts | 315 +++++++++++++++++++++
+>  2 files changed, 316 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
-> index fa71f24823f2..73a9d3288897 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8856.yaml
-> @@ -18,6 +18,9 @@ description: |-
->    through I2C and two-wire SCCB. The sensor output is available via CSI-2
->    serial data output (up to 4-lane).
->  
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
->  properties:
->    compatible:
->      const: ovti,ov8856
-> @@ -94,7 +97,7 @@ required:
->    - reset-gpios
->    - port
->  
-> -additionalProperties: false
-> +unevaluatedProperties: false
->  
->  examples:
->    - |
-> 
+> [...]
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
+> new file mode 100644
+> index 000000000000..d927bae2b208
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
+> @@ -0,0 +1,315 @@
+> [...]
+> +&sound {
+> +	audio-routing = "AMIC1", "MIC BIAS Internal1",
+> +		"AMIC2", "MIC BIAS Internal2",
+> +		"AMIC3", "MIC BIAS Internal1";
 
--- 
-Regards,
+Sorry, just noticed this now:
 
-Sakari Ailus
+This seems a bit suspicious (I would expect "MIC BIAS Internal3"), have
+you tested if the secondary microphone works?
+
+Thanks,
+Stephan
 
