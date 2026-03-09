@@ -1,158 +1,311 @@
-Return-Path: <devicetree+bounces-272810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272809-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eBDgLWSbrmmqGgIAu9opvQ
-	(envelope-from <devicetree+bounces-272810-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:05:24 +0100
+	id aAI6Bi6brmmqGgIAu9opvQ
+	(envelope-from <devicetree+bounces-272809-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:04:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BF0A236BC3
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:05:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCE97236B94
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:04:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 751DC3007F5A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 10:05:01 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C7974300956E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 10:04:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C64C237C113;
-	Mon,  9 Mar 2026 10:05:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44FB238B7A9;
+	Mon,  9 Mar 2026 10:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="FfyXGNfa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DgQttZpp";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="F5thoob3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92296378D74;
-	Mon,  9 Mar 2026 10:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773050700; cv=pass; b=nwCHNyG+6OYJeize/j37i/tP5ZWqHLLmq31P23jJ13tqd15EWxU8MatgF4sUf9TNu+5SmIBxx7tFq8jmN9FRgfe4mt39wKsDsRDlrptzxPmIChkWluQ7UlUBqpD6TdskF0xIor4vOTtNmTUClK+KdsFVvPuoLaZ3MYSlF/GQw4k=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773050700; c=relaxed/simple;
-	bh=G+Xnxpps21amy1K7SIrWThQt4U1Ss2y48Pw6FbA82Zs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TZvYKa+wceKGYGcF75Bu8e8yJfgG0tvt33p0vNsKB9jGMdUyhOEVDDATy2NrOFzdZDKS0/pQpyjo9O+CGtvv8esLZ2S26llVcoNsXMn+m9Uk60Ao/cb86+3jkE1UOyWbd1T/Q/LvJYIqFSuxjIgp6HsfiBcYvafVd5D622lOdCg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=FfyXGNfa; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1773050663; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=WPKrdsecXgvpHVw3d3nA7UKT5PHJNT4CVQC1wG3jkoTNIrWS0kkfHp25A9EAsGTtUg3my3EIBZ9cAYhDH/7GZ87SYfPkLX9nWSV0hO7AsCEktYkMz08X1zMu77OuRIbRaX/3r1+PpRfXlG66IkdIhRZvRncGQ7Z9ascvWR05+D4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773050663; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=NlPBU6mm/vR3l3IynQJyTnSVRzr3DXJWAgerFRXKwLY=; 
-	b=ITht2xuBtAY+LyVbcl9bvvuPCXhHUIobCtTsZc5aFz2E4VdopHHB54s6J/T26V2aPee8kKx0Y8T/PCGRwsXTB5HQzkXEBUtiVmomJr13U5450kH9p11rX8gGW9jmq3SEV1GAmDKZIyxElT/VTgzgGJfOPj8GKyWMbhV1gitWc0M=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773050663;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=NlPBU6mm/vR3l3IynQJyTnSVRzr3DXJWAgerFRXKwLY=;
-	b=FfyXGNfa7BdEYR+/X2BWXaCeOR1xLNi6bU3NnS6twJjCEsBQSvH3U0tRJJlNxVin
-	EthZxVdVb5u3865e3MDpOBj6BEMpriUN0Oqy+EMI529/FmafrTz8JcGKAzykVNai9Go
-	VPM5cR5IPh4kSsAqFib03nKGO6VeWMO4YndPgj5I=
-Received: by mx.zohomail.com with SMTPS id 1773050662683221.52211658341253;
-	Mon, 9 Mar 2026 03:04:22 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: "Martin K. Petersen" <martin.petersen@oracle.com>
-Cc: Rob Herring <robh@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Peter Wang <peter.wang@mediatek.com>, Stanley Jhu <chu.stanley@gmail.com>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, kernel@collabora.com,
- linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
- Conor Dooley <conor.dooley@microchip.com>
-Subject:
- Re: [PATCH v9 03/23] dt-bindings: ufs: mediatek,ufs: Add mt8196 variant
-Date: Mon, 09 Mar 2026 11:04:14 +0100
-Message-ID: <5973984.DvuYhMxLoT@workhorse>
-In-Reply-To: <yq14imrwp3z.fsf@ca-mkp.ca.oracle.com>
-References:
- <20260306-mt8196-ufs-v9-0-55b073f7a830@collabora.com>
- <4089450.ElGaqSPkdT@workhorse> <yq14imrwp3z.fsf@ca-mkp.ca.oracle.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF8F3806A5
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 10:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773050665; cv=none; b=Pf9VujncMuBUqHS7WlgTrbODq3YHuzP3pSiuywYsmSok3AE1G4uR6bqebkGrlNTV/p5gqDeX+ALhbdbDelfTXqMcb1FRIPRRTZ84fnkkEGFqUR6RyiYzsVnhWXRGSkY363DZTroJ4wLIAQXZBHv7cw3vmJ3OP/TtOr5W2oLAZmo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773050665; c=relaxed/simple;
+	bh=S0oS8VlX0RfKXJ3mTjvN8XZGL0VduCi8cULevqBqy6U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Kgd3ugqf+vEJLqXX35vqEL5vKREJaXNCd7pEq8yFFlOElyFQ7fjPD6iU9ZdjSo3m0AKadOcHviXKbHOGz5sif/i9+1+toFqRSvhLIgn8CEK9vwazeATePfryjk/edhUDTH03ftGVkie9teSbQRjhpiuN5ncOVPezEP5CTesmEgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DgQttZpp; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=F5thoob3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62984xde757228
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 10:04:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	3qYAprgzT/EJPoiKM2WorXhnF7pm7bRD5qCZTGMuvt4=; b=DgQttZppbczhYgqN
+	C0v4PYBXcMTAvc9m5EI0TAIKgmfjJ+ZFBuC2Dbx+WEbhRemjZSbDMhklt/ZfgEte
+	gU7fIQ7GvaSKOK7MTG/8j+fKENJRRiTEqnTxW8n3t4OZI/FSV4oYyvDn6MVvDRKj
+	MpsvuKU0sdqDcu76Bpc19m9TeLSXcArjrldgRYJAxg0/iV7ZIsGVwjOZrGbYRcpL
+	wyaHtW+L9mO+XeMYvSFDiEb4ETaweWykavj9X0mf1iF2Yr1ej/Fq21x0jsrbOtHg
+	ZF5gmFno6oWVdTRu09USi+zRtKoLz+1+VmDGkfSojuaWLYdi+o5uTy8vCrhlA8oV
+	oHrKCg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4crb14w1qr-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 10:04:22 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2ae4a6bb316so81369555ad.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 03:04:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773050662; x=1773655462; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3qYAprgzT/EJPoiKM2WorXhnF7pm7bRD5qCZTGMuvt4=;
+        b=F5thoob3zeM6oVzYggc4mFesDHWzslXpdi6uq7V3Qrr6Bf6tchE+sIpCnRvWJfXSfw
+         5vvSKGV1YOkOnHyEe435h2uG8FfDMzur6fj/rT+JQjae/oCak1R52okYY2QtCkKQ1ZYL
+         0j+M9hVajGZZ33vMB6u17jKZZAeQEf0aqePvcX83gnpUj0qLy/+wB0X40+d6yfJ/L54s
+         Y0MD7Sv9yNt8N88W0sjz/ydZcm36n48QmbvR4oAHRInZ+4o2SZtCIYxv55VpnNy3/oD+
+         6XXuwboQz2qQN/qIBPZtrlCxrMTJb1tzZrlr+7lVEseyP8/CUfKtMi2TykI5BHoA+M7m
+         HEMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773050662; x=1773655462;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3qYAprgzT/EJPoiKM2WorXhnF7pm7bRD5qCZTGMuvt4=;
+        b=KzMQu8i2KbVywHXX+zwcC1R9CjvdO4dr0Tbb67O5Hkg12WqN1YpQg4I7pvR0zDuyCl
+         o4j+3tQoMTItpp+MlIi34HSaMSL+TBc7mXtaQ5dzgdcA3/dLj/JPPJPmbzZZljPoo5DW
+         2sagRAdFDcdXEKtmu80NMd9A/SNK7g8CMCEXCRrzPIsTge+XMW62h+TqAKf6nolJ8QfM
+         gPJB2WGo4OZy1Rssebk8oPhQBt8ZbyEISwlvBOMyFffB12Y+/vSieT0imL1kxLPh5/AV
+         NXmbx0Z1BtQcnPgg+LQPWRiDTW0Yqt9fsU2x2Xi/DOeceYMhs5bWCRA7n/11kZLaaUZQ
+         gVyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWUdayvwZaJH5Lj1sUL72a0G4IChGmVUMl5dU0IVuAJEZvvEfg36Fac3Wn0Cb1jt4Rljkrn0DA6E8dk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2n76VnX106mUzefnSa6vNn1UIA86e2L0TK2I4PptOS8gYf0dr
+	VNHHiaeptLzdXLhB21GVioujFG3gyDwqo4xosqDX3/Fda/FhQj2mfv2wSPbK3BdPoM0ZXByGSlP
+	475wX7Lrg/vzBrLXZIxA0IsCiLlzVbWlcFGFG55ubDS9JuZ/0zknb0S2TVkuC+XaZ
+X-Gm-Gg: ATEYQzwpmiiEbXAWXjSZu5vFgY+vdyZqHPPjaKvzL0ojItnoSnIzP0ujXFyeXn/yTfk
+	XMHwgTxwTlnX6gxFiOljiqPLnBo63t1umbQcHuby6KmRHr8OPx/V7zuW3pQ7HjC9PpKiik6yMvm
+	lS6ZZ62LevXNi0zWmz/xfZBrujApRxNKL7EoQsG6wBngd6P4kSAX+wX7MKzXCyCwcbHAcvLxXbn
+	4lIQqkvl+tv7ojIQxBt4b6JN8BgxL1+BATCG148TrSb0dTuankfDGHnBE6M8Eq0r/272p4/c10h
+	EVZy91HwUji1D7emLVHPPQHlqFMEAeLmtZ6x4/bTrWDYf7HucxMo1AvV/ONlAzr1YgXybWQFXIh
+	NGr/foJ+CirSo268lJab7+UcGLcwKXXeVx8LS1LJz1EChM4DPTpLJzfmWaQYUa+1uWJ3lKg2Lr7
+	9CZxxHomt+I1DGgpo20SJkz7Z3LGYGM+nZu/KG/2Y=
+X-Received: by 2002:a17:902:eb83:b0:2ae:7efa:d804 with SMTP id d9443c01a7336-2ae824e9c40mr98463935ad.36.1773050661677;
+        Mon, 09 Mar 2026 03:04:21 -0700 (PDT)
+X-Received: by 2002:a17:902:eb83:b0:2ae:7efa:d804 with SMTP id d9443c01a7336-2ae824e9c40mr98463515ad.36.1773050661035;
+        Mon, 09 Mar 2026 03:04:21 -0700 (PDT)
+Received: from [10.190.200.237] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae83f74272sm111632265ad.47.2026.03.09.03.04.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Mar 2026 03:04:20 -0700 (PDT)
+Message-ID: <96f8738f-9baa-4528-8bc6-6ce20030e391@oss.qualcomm.com>
+Date: Mon, 9 Mar 2026 15:34:15 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: 3BF0A236BC3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/5] platform: arm64: Add driver for EC found on
+ Qualcomm reference devices
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, bryan.odonoghue@linaro.org,
+        ilpo.jarvinen@linux.intel.com, hansg@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+References: <20260308233646.2318676-1-sibi.sankar@oss.qualcomm.com>
+ <20260308233646.2318676-3-sibi.sankar@oss.qualcomm.com>
+ <aa6M2QSXW72xqYiB@linaro.org>
+Content-Language: en-US
+From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+In-Reply-To: <aa6M2QSXW72xqYiB@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=IYSKmGqa c=1 sm=1 tr=0 ts=69ae9b26 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=TpPQHASBu_zXfcA0E6wA:9 a=QEXdDO2ut3YA:10
+ a=uG9DUKGECoFWVXl0Dc02:22
+X-Proofpoint-GUID: LCplUSD4XBCRXTzHmG5F8yKJbSG4DHGs
+X-Proofpoint-ORIG-GUID: LCplUSD4XBCRXTzHmG5F8yKJbSG4DHGs
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDA5MyBTYWx0ZWRfX2TH8Jyt2W6sc
+ 2xWpPfwJU86YbGmX/NnYmg0wV/4SSeXEtuGdWvjDPw3/FBXBbNsUcVcer+3is9sLyFbl5vkn7Yw
+ B/owdGg/14xVOoECUSS9BqyMGoNpEuPz7JgBD29X2P2VjPyryo0hBhO2FuSKsghuDu4KszvTm49
+ q0i2EaNJ1SPmEFuwwex3mQ96dVS6xYoDPIGPhNKp9PMXxwHJjmtDw0FccyAL0YkFkrQlzPSVm1D
+ oYBsFo9/nloaD/ZA0x0iJsEMm2Y4h0frkNIVVxW4UDFhKwO3CTkMvvLr1+NrdG8OIrqeTqsxG2z
+ oTB4Z04DBJpY8wmY5YM/+cjGiz3SP/1MjN0fjNxFnqwPLhfjfgOS8n2Sz0PiZL6U9XQ79oZ7IMk
+ 7kLMlAeq/A7aD2JjZbPZgAOGx2e2Ei2ZrOnRbVCgSISZx9k5nMcyfa3c8RhsBEQhumoYlfACya6
+ LzsEKQ1BbmiY5a0/3gg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 suspectscore=0 lowpriorityscore=0 spamscore=0 impostorscore=0
+ phishscore=0 clxscore=1015 priorityscore=1501 malwarescore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090093
+X-Rspamd-Queue-Id: CCE97236B94
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	CTE_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-272810-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,linux.intel.com,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-272809-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sibi.sankar@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.993];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,wdc.com,acm.org,gmail.com,collabora.com,mediatek.com,hansenpartnership.com,oracle.com,pengutronix.de,linaro.org,vger.kernel.org,lists.infradead.org,microchip.com];
+	NEURAL_HAM(-0.00)[-0.991];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Saturday, 7 March 2026 19:01:17 Central European Standard Time Martin K. Petersen wrote:
-> 
-> Nicolas,
-> 
-> >> "ufs" is redundant as all the clocks are for UFS. Same comment on prior 
-> >> patch.
-> >
-> > Is this naming a big enough concern to block this series with two
-> > explicit acks on this patch that fixes a wholly broken and useless
-> > binding?
-> 
-> It is if it comes from one of the DT maintainers.
-> 
-> > I am trying to put out this dumpster fire of a downstream turd that
-> > made its way into mainline as the review process has been completely
-> > subverted, and is only getting worse with each passing month
-> 
-> This has to stop. Please read Documentation/process/code-of-conduct.rst.
-> 
-> 
 
-I apologise for my tone, it's my frustration getting the better of me.
+On 3/9/2026 2:33 PM, Stephan Gerhold wrote:
+> On Mon, Mar 09, 2026 at 05:06:43AM +0530, Sibi Sankar wrote:
+>> Add Embedded controller driver support for Hamoa/Purwa/Glymur qualcomm
+>> reference boards. It handles fan control, temperature sensors, access
+>> to EC state changes and supports reporting suspend entry/exit to the
+>> EC.
+>>
+>> Co-developed-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>> ---
+>>   MAINTAINERS                            |   7 +
+>>   drivers/platform/arm64/Kconfig         |  12 +
+>>   drivers/platform/arm64/Makefile        |   1 +
+>>   drivers/platform/arm64/qcom-hamoa-ec.c | 462 +++++++++++++++++++++++++
+>>   4 files changed, 482 insertions(+)
+>>   create mode 100644 drivers/platform/arm64/qcom-hamoa-ec.c
+>>
+>> [...]
+>> diff --git a/drivers/platform/arm64/qcom-hamoa-ec.c b/drivers/platform/arm64/qcom-hamoa-ec.c
+>> new file mode 100644
+>> index 000000000000..83aa869fad8f
+>> --- /dev/null
+>> +++ b/drivers/platform/arm64/qcom-hamoa-ec.c
+>> @@ -0,0 +1,462 @@
+>> [...]
+>> +static int qcom_ec_read(struct qcom_ec *ec, u8 cmd, u8 resp_len, u8 *resp)
+>> +{
+>> +	int ret;
+>> +
+>> +	mutex_lock(&ec->lock);
+>> +	ret = i2c_smbus_read_i2c_block_data(ec->client, cmd, resp_len, resp);
+>> +	mutex_unlock(&ec->lock);
+> This mutex looks redundant to me for the current implementation. You
+> don't have any read-modify-write sequences and I think the I2C core
+> already has internal locking for the bus itself.
 
-I'll be handing off this series to someone else, so you won't have to
-deal with me anymore.
+Hey Stephan,
+Thanks for taking time to review the series :)
 
-I do ask however that you don't apply patches from MediaTek blindly;
-if there's code to read an OF property, and that OF property is not
-in the binding, then the patch should be rejected, even if there's an
-Ack from the MediaTek maintainer.
+Will remove this in the next re-spin.
+
+>
+>> [...]
+>> +/*
+>> + * Fan Debug control command:
+>> + *
+>> + * Command Payload:
+>> + * ------------------------------------------------------------------------------
+>> + * | Offset	| Name		| Description					|
+>> + * ------------------------------------------------------------------------------
+>> + * | 0x00	| Command	| Fan control command				|
+>> + * ------------------------------------------------------------------------------
+>> + * | 0x01	| Fan ID	| 0x1 : Fan 1					|
+>> + * |		|		| 0x2 : Fan 2					|
+>> + * ------------------------------------------------------------------------------
+>> + * | 0x02	| Byte count = 4| Size of data to set fan speed			|
+>> + * ------------------------------------------------------------------------------
+>> + * | 0x03	| Mode		| Bit 0: Debug Mode On/Off (0 - OFF, 1 - ON )	|
+>> + * |		|		| Bit 1: Fan On/Off (0 - Off, 1 - ON)		|
+>> + * |		|		| Bit 2: Debug Type (0 - RPM, 1 - PWM)		|
+>> + * ------------------------------------------------------------------------------
+>> + * | 0x04 (LSB)	| Speed in RPM	| RPM value, if mode selected is RPM		|
+>> + * | 0x05	|		|						|
+>> + * ------------------------------------------------------------------------------
+>> + * | 0x06	| Speed in PWM	| PWM value, if mode selected is PWM (0 - 255)	|
+>> + * ______________________________________________________________________________
+>> + *
+>> + */
+>> +static int qcom_ec_fan_set_cur_state(struct thermal_cooling_device *cdev, unsigned long state)
+>> +{
+>> +	struct qcom_ec_cooling_dev *ec_cdev = cdev->devdata;
+>> +	struct device *dev = ec_cdev->parent_dev;
+>> +	struct i2c_client *client = to_i2c_client(dev);
+>> +
+>> +	u8 request[6] = { ec_cdev->fan_id, EC_FAN_SPEED_DATA_SIZE,
+>> +			  EC_FAN_DEBUG_MODE_ON | EC_FAN_ON | EC_FAN_DEBUG_TYPE_PWM,
+>> +			  0, 0, state };
+>> +	int ret;
+>> +
+>> +	ret = i2c_smbus_write_i2c_block_data(client, EC_FAN_DBG_CONTROL_CMD,
+>> +					     sizeof(request), request);
+> I think it's nice to provide users a way to override the fan speed, but
+> is this really the main interface of the EC that we want to use for
+> influencing the fan speed?
+>
+> As the name of the command suggests, this is a debug command that
+> essentially overrides the internal fan control algorithm of the EC. If
+> you use this to turn the fan off and then Linux hangs, I would expect
+> that the fan stays off until the device will eventually overheat.
+>
+> I think it would be more reliable if:
+>
+>   (1) The default mode of operation does not make use of the "debug mode"
+>       command and instead sends the internal SoC temperatures to the EC
+>       to help optimize the fan control. (This is what Windows does on
+>       Hamoa, not sure if this is still needed on Glymur?)
+
+That's true, Glymur already has a way to access average SoC
+temperature and even on Hamoa it can still be functional without
+SoC temperature i.e. with thermistors it has access to.
+
+The aim of the series is to expose fans as a cooling device so
+that linux has a way of fan control independent to the algorithm
+running on the EC.
+
+The EC look table based fan control is still the default mode of
+operation (until userspace tries to set the state of the exposed
+cooling device). We have a bunch of in-flight patches which will
+provide a way to tweak the pre-programmed look up tables for
+the ec and send avg SoC temperature. This way we get the best
+of both worlds eventually.
 
 
+>
+>   (2) If we provide a way to enable the fan control debug mode, there
+>       should be also a way to disable it again at runtime (with
+>       EC_FAN_DEBUG_MODE_OFF).
+
+As described in the payload, having bit 3 set to 0 at offset 0x3
+should turn off debug mode and EC would be back to operating
+with the pre-programmed LUTs. Like you said it makes a lot of
+sense to disable debug mode on ec module removal.
+
+>
+> Thanks,
+> Stephan
 
