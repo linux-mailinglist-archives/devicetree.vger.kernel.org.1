@@ -1,241 +1,169 @@
-Return-Path: <devicetree+bounces-272954-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272956-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KGD+D4XNrmnEIwIAu9opvQ
-	(envelope-from <devicetree+bounces-272954-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:39:17 +0100
+	id gN0/OlDRrmlhJAIAu9opvQ
+	(envelope-from <devicetree+bounces-272956-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:55:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACAA4239DEB
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:39:16 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E87C23A225
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:55:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 43D1F3070ACE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:38:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D3D8331994BC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F6C39E191;
-	Mon,  9 Mar 2026 13:38:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="i4eHRj/g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67B4E3B95F6;
+	Mon,  9 Mar 2026 13:49:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC7938F249
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:38:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5430E3A9616
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:49:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773063496; cv=none; b=Fcu0EERAU+gpKhrQNJsguqfLQ0MsdPH5R+mGHTSBXDJ7CnRUqqU6zBS6AkuVIw7GwtpBi5Eu+mRIF58nikISoIJd5/7T+HYsQlZ2BDcWsfkVO1mB3pEp883m0r5J9ETqn/KlWw8/wKFhlT8YyKBlmsfHcKd1sXu+CyWAiR6coP8=
+	t=1773064185; cv=none; b=qXf0yc87cyhvizl98t8OufxTSD4QV/crEOOAwyEA5f4snD7qk3R9UFutvmBlxwUEcsoVzobHfejxbNQQMP57PDeHiZe/oFqqEddblKJ4FnlJLm62W/mFp+5VrYimcmE6Py8ZYvujpCFCjTKQPTpyPE9wZwAhvjL2/yhlu6GJBjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773063496; c=relaxed/simple;
-	bh=1yk/AaFqZ5eTtD6jLp0moB92iHRkui1C5UJ2tWvrYUY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=U0ytcoVQE/Ru2lL70j21LPkjzLKCAt+/wWXXSQm5cTZ4KhRhWz/8MUby/BRcIJJ3o3Y0YTuh0BimRG+pLNe8KR5JmmfyfxQYC7GK4QkfFMOVLm6u55fsv7XINA7hvOWDMKK+xfGKFgAq9HIGA7Reo8q5V4MoGTUiq7qv36BOBZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=i4eHRj/g; arc=none smtp.client-ip=185.67.36.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
-Received: from submission (posteo.de [185.67.36.169]) 
-	by mout02.posteo.de (Postfix) with ESMTPS id D64C7240103
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 14:38:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
-	t=1773063493; bh=gq9ebAuGGJA9NtSsveQno863GgzvqZJtZwBh9ZIL2sI=;
-	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
-	 MIME-Version:OpenPGP:From;
-	b=i4eHRj/giRDXHia4UAYMi+u8Qj8yzwtR4QxBupBKCayTmkLp+HHMV4EBV2hUWPViQ
-	 KT9IBAptvrFMwJwJeDopoN/GSUFRJULHLpBNy/RCBCCFk3nnj0eHMgz4t5fyHVw1W/
-	 K9RwpchjF6owTT/qDJsNodetOkxNwxzdBqBa3c1TmU2DNzUE79sUUW0ZObZsmAqaVz
-	 +8VGxkRE7ivhbN5epdqZr3aYK17l28GcMRVxoH1aUKskh6IsawNnK3Uv99QaM4xS8t
-	 je/QBoYsPzPuBj85+0wUBVj4a6NbeJk5TzCmU7H6FV49dC+xFJl2XgybC9K6SK4YsM
-	 dxGm2+MhLq2YA==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fTykq0hqkz6twg;
-	Mon,  9 Mar 2026 14:38:11 +0100 (CET)
-Message-ID: <e43ca445ec7887d3d15676adb7db04f5685f4195.camel@posteo.de>
-Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
-From: Markus Probst <markus.probst@posteo.de>
-To: Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman
-	 <gregkh@linuxfoundation.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel
- Ojeda <ojeda@kernel.org>,  Boqun Feng <boqun@kernel.org>, Gary Guo
- <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
- Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross	 <tmgross@umich.edu>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, 	rust-for-linux@vger.kernel.org
-Date: Mon, 09 Mar 2026 13:38:12 +0000
-In-Reply-To: <DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.org>
-References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
-	 <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
-	 <2026030827-nautical-overplant-399c@gregkh>
-	 <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
-	 <2026030913-agonizing-shoptalk-ed98@gregkh>
-	 <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
-	 <DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.org>
-Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
- keydata=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
- jfGillcaQOqFZ3WwVqyzG1BUfTow==
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature"; boundary="=-T1kMmmIZGIBf266lMpSU"
+	s=arc-20240116; t=1773064185; c=relaxed/simple;
+	bh=LtKJpqnPikpofhbIz9ppZHkNTL8KnqXyqyr//Dganwo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qZCuoxLY08YmLe9Ea0x3c9080SgtRL/XIWfPNm+1f5pGy06ysIIOhFjOki/HanHau3XhXhNYZepAO7vq3TtEFZqV3MwH02HlAUhKhExf1xEGxPS+KP5cSnPIcty2UzLH1PAUxCUY4FCW0slJs0IXJshKjoW7p1/gMwAgYFysAQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vzaz5-0006fe-Ed; Mon, 09 Mar 2026 14:49:23 +0100
+Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vzaz2-004XYb-1T;
+	Mon, 09 Mar 2026 14:49:21 +0100
+Received: from ore by dude04 with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vzaz3-0000000833W-32Qn;
+	Mon, 09 Mar 2026 14:49:21 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>,
+	Linus Walleij <linusw@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	David Jander <david@protonic.nl>
+Subject: [PATCH v3 0/8] mfd: Add support for NXP MC33978/MC34978 MSDI
+Date: Mon,  9 Mar 2026 14:49:11 +0100
+Message-ID: <20260309134920.1918294-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
-X-Rspamd-Queue-Id: ACAA4239DEB
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: 3E87C23A225
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-272954-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[posteo.de:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[pengutronix.de];
+	RCVD_COUNT_FIVE(0.00)[6];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272956-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.738];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[posteo.de:dkim,posteo.de:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+This series adds support for the NXP MC33978/MC34978 Multiple Switch Detection
+Interface (MSDI) via the MFD framework.
 
---=-T1kMmmIZGIBf266lMpSU
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Architecture overview:
+* mfd: Core driver handling 2-frame pipelined SPI, regulator sequencing, and
+  linear irq_domain. Harvests status bits from SPI MISO MSB.
+* pinctrl: Exposes 22 physical switch inputs as standard GPIOs. Proxies IRQs to
+  the MFD domain.
+* hwmon: Exposes thermal limits, VBATP/VDDQ voltage boundaries, and dynamic
+  fault alarms.
+* mux: Controls the 24-to-1 AMUX routing analog signals (switch voltages,
+  temperature, VBATP) to an external ADC.
 
-On Mon, 2026-03-09 at 14:32 +0100, Danilo Krummrich wrote:
-> On Mon Mar 9, 2026 at 1:52 PM CET, Markus Probst wrote:
-> > Yes. I will split it into multiple drivers using the aux bus in the
-> > next revision.
->=20
-> Independent of the other discussion whether this belongs into the kernel =
-in the
-> first place, reading over the cover letter and commit message I understoo=
-d the
-> following.
->=20
->   "Synology uses a microcontroller in their NAS devices connected to a se=
-rial
->   port [...]" controlling LEDs, fan speeds, a beeper, etc.
->=20
->   I.e. it muliplexes several physical functions that belong to different
->   subsystems, such as hwmon, input, etc. over a single serial port.
->=20
-> This sounds like a textbook candidate for MFD to me.
->=20
-> I.e. there is a very loose coupling of the different functions that make =
-up for
-> entirely independent drivers, except that they share the same serial port
-> connection.
->=20
-> Whereas the auxiliary bus is more for very complicated devices to be brok=
-en down
-> into more managable (sometimes optional) sub-domains, where the correspon=
-ding
-> drivers usually have driver specific APIs to interact with each other.
->=20
-> - Danilo
+Initial pinctrl implementation by David Jander, reworked into this MFD
+architecture.
 
-QNAP and Synology do things very similarly.
-There is already a driver for QNAP devices:
+Best regards,
+Oleksij
 
-drivers/mfd/qnap-mcu.c
-drivers/leds/leds-qnap-mcu.c
-drivers/input/misc/qnap-mcu-input.c
-drivers/hwmon/qnap-mcu-hwmon.c
-drivers/nvmem/qnap-mcu-eeprom.c
+David Jander (1):
+  pinctrl: add NXP MC33978/MC34978 pinctrl driver
 
-drivers/power/reset/qnap-poweroff.c (this one is not part of the mfd)
+Oleksij Rempel (6):
+  dt-bindings: mfd: add NXP MC33978/MC34978 MSDI
+  mfd: add NXP MC33978/MC34978 core driver
+  pinctrl: core: Make pin group callbacks optional
+  gpio: gpiolib: fix allocation order in hierarchical IRQ domains
+  hwmon: add NXP MC33978/MC34978 driver
+  mux: add NXP MC33978/MC34978 AMUX driver
 
-and I try to implement the equivalent for Synology devices.
-Given its a MFD I would assume the same applies to this driver?
+ .../devicetree/bindings/mfd/nxp,mc33978.yaml  | 112 +++
+ .../bindings/pinctrl/nxp,mc33978-pinctrl.yaml |  82 ++
+ drivers/gpio/gpiolib.c                        |  32 +-
+ drivers/hwmon/Kconfig                         |  10 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/mc33978-hwmon.c                 | 430 +++++++++
+ drivers/mfd/Kconfig                           |  15 +
+ drivers/mfd/Makefile                          |   2 +
+ drivers/mfd/mc33978.c                         | 870 ++++++++++++++++++
+ drivers/mux/Kconfig                           |  14 +
+ drivers/mux/Makefile                          |   2 +
+ drivers/mux/mc33978-mux.c                     | 119 +++
+ drivers/pinctrl/Kconfig                       |  14 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/core.c                        |  25 +-
+ drivers/pinctrl/pinconf.c                     |  18 +-
+ drivers/pinctrl/pinctrl-mc33978.c             | 749 +++++++++++++++
+ include/linux/mfd/mc33978.h                   |  86 ++
+ 18 files changed, 2557 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/nxp,mc33978.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nxp,mc33978-pinctrl.yaml
+ create mode 100644 drivers/hwmon/mc33978-hwmon.c
+ create mode 100644 drivers/mfd/mc33978.c
+ create mode 100644 drivers/mux/mc33978-mux.c
+ create mode 100644 drivers/pinctrl/pinctrl-mc33978.c
+ create mode 100644 include/linux/mfd/mc33978.h
 
-Thanks
-- Markus Probst
+--
+2.47.3
 
-
---=-T1kMmmIZGIBf266lMpSU
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-
------BEGIN PGP SIGNATURE-----
-
-iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmuzT8bFIAAAAAABAAO
-bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSc8wP/0Isj7yZNFcmzSeM04qd
-XJftgRON1Dgru3b3iXtVhBxQNslTe+hxxEUNwgl1Vnr1meu7R82AASIvlms8Vy2Y
-n+SpIwLj7HIAqIkmVVa9NbAquX7DgpqMUTJZKnW6oyiy1gHSzyYsG/6l2BrxqoHH
-kfgfFoZywOCigXMyRFqzNI+EHQYsnOGL++L+/pTWV4hjdPUHCjRb95ajcofHMGix
-MjA1aSpI4M+ptTlwjb9H4zrwg2YljeqvjotTHewayN6yxaRwtn5rmrmretRq9QQH
-PRMHEJqUtO54OFkM1wsyknP5dvwrBkbfDtt40O7KF2fpOrroIBXL76tL1a7InPAm
-n6qc4qWYx3q0jCNewr0unuQLxUEnq4271JGHqnx3jHqXJarVuuTg8KwE3z8oABX9
-4X9oDVozQBeK6kKv/25yqMQU4+yT4QBQu2k3ggP/21PglBg4cybFeLyU1nG1C88P
-HaStDmCy4og2MGHUjSS5wTYhQo/kOfS8TTnlTDs9eFMvdG1CFeCTDyJtxkoAwnE9
-CGKDZYRM2NvGlQx58w4mq+W7I2hvyhayHfnOwBmv9/wNi2acHBijqyYFXd93WwEG
-xybEit1Ph9I1P+hsjqhUF8sFX8aw1jQjJB1BpixgBxt2tGCuNISyYUM4DGRbot17
-y4BSwMWxg3tJ7td7E/2OeSyp
-=KSKl
------END PGP SIGNATURE-----
-
---=-T1kMmmIZGIBf266lMpSU--
 
