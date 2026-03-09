@@ -1,229 +1,278 @@
-Return-Path: <devicetree+bounces-272952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272953-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EGPACBrMrmnEIwIAu9opvQ
-	(envelope-from <devicetree+bounces-272952-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:33:14 +0100
+	id CCVvDmTMrmkDJAIAu9opvQ
+	(envelope-from <devicetree+bounces-272953-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:34:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A92B3239CB7
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:33:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4F44239D1C
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:34:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6E6B7301F3A7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:33:07 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 88F5330157C8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:34:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E223F33A703;
-	Mon,  9 Mar 2026 13:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87DA038F926;
+	Mon,  9 Mar 2026 13:34:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4wL+B0K"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="UPaDCqVy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5C42586C2
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:33:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F0D259CAF
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:34:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773063183; cv=none; b=CNQ6Alv+qokyECQ7+XER25CQURZjD9IHTLVkc0o8eKemMzoLSktm4Lhi4t2T1FvoRp/SYJevqb5CGvrLtGygeE6ZGvJi9HUrzZD3SJR4zSReQKq6z3rj9oxK3NUlBc6pfO/hfAJmXkcCrCN35bBC71HlUM3qR4Jiu5YecZww9z4=
+	t=1773063264; cv=none; b=hyMdVqske4Jpabus6/rgR0wyqmdMGXiYTnODAoqDj0Kf1UDxonEOleDyqLqdsb0iKeh61iV5OXoc3N02vLM6UK7RtdmYm4Bm5Urxm1Jpqse6plV/5A+jGtQrss/nXwa9DjaKbF2G8Xe2Bs1nHNx41xci8MYxUVlEG+YtLbeZFco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773063183; c=relaxed/simple;
-	bh=BTHtEpNf79/aZLsd9vWZFWEtV159n9Y/T5kPu0xKjDE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LykoaBR7XWDF2OzgxXcE9pW+fayfgvTACHroiShLXZZ3aGw4uzFytOvh2iptDML8ndI1r/OciG9OGtrXYqRqpxHkMVCOL5f8QGmjbeVWbxjx1PuYaeiIY91w2iNg0SLj68KnVb926PIp1LSw9ArPGGi++UUb4+AnHQV+xHjYhYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4wL+B0K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A167AC4AF0B
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:33:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773063183;
-	bh=BTHtEpNf79/aZLsd9vWZFWEtV159n9Y/T5kPu0xKjDE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=V4wL+B0KN0+mkKl6jlrce5TKebjg3Y43ayQb2agA8rlsxB2L5KrJbPRM4lffmOYVv
-	 WeoCbphnvAiSn14vJApR0DkykhCZi84KdCPucmK3ODu0eGjLqok6PdyDHKytnwBgBj
-	 CbNU5aXCnZQXzrMjw6j+NcNqh0foBwzW4aeI7pggoVoZ8ohWLocNPApwbUoMo85MFY
-	 oGTTo7w0CXdRGL0nRVVZAoudiPxXEXUTap9s9O4ghOFb505d8XzBb/FUXUrxweC0Z3
-	 PaYzMaRcgmkoxPVWNRrh+XRwyJqxfXrInguSTibxttrVEWJpgfwnDvqzFQAaapkrWb
-	 n3DnV8F/mtSjQ==
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-662b42ca0daso8596a12.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 06:33:03 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUnA54VeFew1B4RcMwzBoqCEq9IeJFky03vBSQSLOlPBI1mEHYuF1mV6CoGFTy2czHttj9ZbHj3XO/4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKmVI8+oOU4BL9I32BVppGozt517zmMf4Kvb+pn8cxaGQCLZL6
-	kmvhAofXnpNvpRLyFRO94h/LS+VA3xFpxcpnb6br5shHymeKJTN5G78z0MCiunFdbH35fjuiCDn
-	bO5FZSRCYqjvWrAJJqANz7KyZ4SJvcYQ=
-X-Received: by 2002:a05:6402:42d1:b0:661:3804:b0c2 with SMTP id
- 4fb4d7f45d1cf-6619d51d6admr5919005a12.27.1773063181991; Mon, 09 Mar 2026
- 06:33:01 -0700 (PDT)
+	s=arc-20240116; t=1773063264; c=relaxed/simple;
+	bh=0QNN8HJVsCLt3pMaP0UrdF87gLsstLUf1pALNscYM+c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aODEXcI/qp5b7lLvFxAr3Y01Ns/E5cuky3XDglaWQ6FlR1FZUDLGsqbi5bg3YPY4ex9cuC+4RV4oA8Ry3cnR4lq4370xnM3L6IItCYpeknoOJ78HpnbfmfVlYc1fODwNjEkAWEU7h69KuvNE6eD86JHm+bw4qBKS9OcNxpNksFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=UPaDCqVy; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 2D120240103
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 14:34:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1773063261; bh=78ffheznkvdd1hlXwgUlajWzxElEZrmPuuFUCA238J0=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=UPaDCqVyW6+9UdWSWkeq99kKJRBhJXOjnvwyc+shIV3qGrrV2mrSS+akTGp5Uu87j
+	 sblAHqxdGWbhF/2LgI5+lIzoMu9ZS5Tcm5/y9xv608EBrXB3YOZ/eSnTzoGOrKH999
+	 Tc53RnoT0n+rliP/49gCYPs1gF8SaTUyAr6x/0mV+EJYc/tLk9YqdakDShj6p4UHH3
+	 j0tMXGuMUgdSoxyZhO4uN/TCJGDbAPwj/m704LQQ/tFbAFZDP5nfn/Rj4sDPUea+rC
+	 j9W2T3kj1MEtruzaG45HZAshvUHLIHI917xSRrL3lDWLFjUfAVIv02hEfmchlWfcMQ
+	 NoQJyoqzGgThg==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fTyfL6JFFz9rxF;
+	Mon,  9 Mar 2026 14:34:18 +0100 (CET)
+Message-ID: <cb18efd0c3ef3be8fb71715e39a91a7b13089eca.camel@posteo.de>
+Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
+From: Markus Probst <markus.probst@posteo.de>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel
+ Ojeda <ojeda@kernel.org>,  Boqun Feng <boqun@kernel.org>, Gary Guo
+ <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
+ Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross	 <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	rust-for-linux@vger.kernel.org
+Date: Mon, 09 Mar 2026 13:34:20 +0000
+In-Reply-To: <2026030951-implant-girdle-d812@gregkh>
+References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
+	 <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
+	 <2026030827-nautical-overplant-399c@gregkh>
+	 <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
+	 <2026030913-agonizing-shoptalk-ed98@gregkh>
+	 <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
+	 <2026030951-implant-girdle-d812@gregkh>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-VAzgw3m6gYEj11zVCIkY"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1772853681.git.zhoubinbin@loongson.cn>
-In-Reply-To: <cover.1772853681.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Mon, 9 Mar 2026 21:32:52 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H65H5WjRarf8KHN3zb1jSyFpGPS1By2=0Kqd1MqnVx9ow@mail.gmail.com>
-X-Gm-Features: AaiRm53ShuE-RRVpgsb6NRxueHra0ZOJThCsn08_hzoyeP4saxxF_8G4DDjsnCc
-Message-ID: <CAAhV-H65H5WjRarf8KHN3zb1jSyFpGPS1By2=0Kqd1MqnVx9ow@mail.gmail.com>
-Subject: Re: [PATCH v4 0/6] dmaengine: Add Loongson Multi-Channel DMA
- controller support
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, dmaengine@vger.kernel.org, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	Keguang Zhang <keguang.zhang@gmail.com>, linux-mips@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: A92B3239CB7
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Rspamd-Queue-Id: A4F44239D1C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272952-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-272953-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,mail.gmail.com:mid,loongson.cn:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,posteo.de:dkim,posteo.de:mid]
 X-Rspamd-Action: no action
 
-On Sat, Mar 7, 2026 at 11:25=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Hi all:
->
-> This patchset introduces the Loongson multi-channel DMA controller,
-> which is present in the Loongson-2K0300 and Loongson-2K3000 processors.
->
-> It is a multi-channel controller that enables data transfers from memory
-> to memory, device to memory, and memory to device, as well as channel
-> prioritization configurable through the channel configuration registers.
->
-> Additionally, since multiple distinct types of DMA controllers exist on
-> the Loongson platform, I have attempted to consolidate all Loongson DMA
-> drivers into a new directory named `Loongson` for easier management.
-For the whole series,
-Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
 
->
-> Thanks.
-> Binbin
->
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> V4:
-> - Rebase on dmaengine/next tree;
-> - Add Reviewed-by tags from Frank and Rob, thanks;
->
-> patch(1/6):
->  - Add `depends on` restrictions.
->
-> patch(6/6):
->  - Move loongson2_cmc_dma_config{..} close to its users.
->
-> Link to V3:
-> https://lore.kernel.org/dmaengine/cover.1771989595.git.zhoubinbin@loongso=
-n.cn/
->
-> V3:
-> - Rebase on dmaengine/next tree;
->
-> patch(1/6):
->  - Keep alphabet order;
->
-> patch(2/6):
->  - Add Reviewed-by tag from Frank, thanks;
->
-> patch(3/6)/(4/6):
->  - New patches, format loongson2-apb-dma driver code;
->
-> patch(5/6):
->  - Add description for `interrupts` property;
->
-> patch(6/6):
->  - Use ffs() helper make the code cleaner;
->  - Refact loongson2_cmc_dma_chan_irq();
->  - Simplify locking with guard() and scoped_guard();
->  - kzalloc()->kzalloc_flex().
->
-> Link to V2:
-> https://lore.kernel.org/all/cover.1770605931.git.zhoubinbin@loongson.cn/
->
-> V2:
-> patch(1/4):
->  - Update loongson1-apb-dma.c entry in MAINTAINERS.
->
-> patch(2/4):
->  - New patch, use dmaenginem_async_device_register() helper.
->
-> patch(3/4):
->  - `additionalProperties: false` replaced by
->    `unevaluatedProperties: false`.
->
-> patch(4/4):
->  - Rename filename as loongson2-apb-cmc-dma.c;
->  - Rename Kconfig item as LOONGSON2_APB_CMC_DMA;
->  - Rename the variable prefix as `loongson2_cmc_dma`;
->  - Use dmaenginem_async_device_register() helper;
->  - Drop 'dma_' prefix in struct loongson2_mdma_chan_reg;
->  - Use struct_size();
->
-> Link to V1:
-> https://lore.kernel.org/all/cover.1770119693.git.zhoubinbin@loongson.cn/
->
-> Binbin Zhou (6):
->   dmaengine: loongson: New directory for Loongson DMA controllers
->     drivers
->   dmaengine: loongson: loongson2-apb: Convert to
->     dmaenginem_async_device_register()
->   dmaengine: loongson: loongson2-apb: Convert to devm_clk_get_enabled()
->   dmaengine: loongson: loongson2-apb: Simplify locking with guard() and
->     scoped_guard()
->   dt-bindings: dmaengine: Add Loongson Multi-Channel DMA controller
->   dmaengine: loongson: New driver for the Loongson Multi-Channel DMA
->     controller
->
->  .../bindings/dma/loongson,ls2k0300-dma.yaml   |  81 ++
->  MAINTAINERS                                   |   7 +-
->  drivers/dma/Kconfig                           |  25 +-
->  drivers/dma/Makefile                          |   3 +-
->  drivers/dma/loongson/Kconfig                  |  41 +
->  drivers/dma/loongson/Makefile                 |   4 +
->  .../dma/{ =3D> loongson}/loongson1-apb-dma.c    |   4 +-
->  drivers/dma/loongson/loongson2-apb-cmc-dma.c  | 730 ++++++++++++++++++
->  .../dma/{ =3D> loongson}/loongson2-apb-dma.c    |  93 +--
->  9 files changed, 903 insertions(+), 85 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2k03=
-00-dma.yaml
->  create mode 100644 drivers/dma/loongson/Kconfig
->  create mode 100644 drivers/dma/loongson/Makefile
->  rename drivers/dma/{ =3D> loongson}/loongson1-apb-dma.c (99%)
->  create mode 100644 drivers/dma/loongson/loongson2-apb-cmc-dma.c
->  rename drivers/dma/{ =3D> loongson}/loongson2-apb-dma.c (91%)
->
->
-> base-commit: c8e9b1d9febc83ee94944695a07cfd40a1b29743
-> --
-> 2.52.0
->
+--=-VAzgw3m6gYEj11zVCIkY
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, 2026-03-09 at 14:07 +0100, Greg Kroah-Hartman wrote:
+> On Mon, Mar 09, 2026 at 12:52:26PM +0000, Markus Probst wrote:
+> > On Mon, 2026-03-09 at 06:56 +0100, Greg Kroah-Hartman wrote:
+> > > On Sun, Mar 08, 2026 at 07:15:16PM +0000, Markus Probst wrote:
+> > > > On Sun, 2026-03-08 at 19:55 +0100, Greg Kroah-Hartman wrote:
+> > > > > On Sun, Mar 08, 2026 at 06:41:20PM +0000, Markus Probst wrote:
+> > > > > > Add a initial synology microp driver, written in Rust.
+> > > > > > The driver targets a microcontroller found in Synology NAS devi=
+ces. It
+> > > > > > currently only supports controlling of the power led, status le=
+d, alert
+> > > > > > led and usb led. Other components such as fan control or handli=
+ng
+> > > > > > on-device buttons will be added once the required rust abstract=
+ions are
+> > > > > > there.
+> > > > >=20
+> > > > > Why is this a mfd device?  Shouldn't it be an aux device?
+> > > > >=20
+> > > > > But this is just a serial port connection, so why is a kernel dri=
+ver
+> > > > > needed at all?
+> > > > I am not sure what you mean.
+> > >=20
+> > > Can't this just be controlled from userspace over the tty device to t=
+he
+> > > uart this device uses?  Why is a kernel driver needed at all?
+> > Like with any other bus device, it can be controlled by userspace.
+>=20
+> Great, then usually that means it should not be a kernel driver :)
+Not sure if this is an argument. The same would apply to the majority
+of kernel drivers.
+>=20
+> > But the kernel already provides the necessary userspace interfaces for
+> > leds, hwmon, input etc. for any userspace application to access.
+>=20
+> True, but:
+>=20
+> > Furthermore it is required for proper shutdown and reboot, which is a
+> > kernel task.
+>=20
+> What do you mean by this?  What does it do for shutdown and reboot?
+>=20
+> Is there an out-of-tree C kernel driver for this somewhere?  Or does it
+> all just work through userspace today on these devices?
+On the proprietary os of those devices,
+the shutdown and reboot part is done in their modified version of the
+4.4.x linux kernel.
+
+Most of the interactions with this device however is in a proprietary
+kernel module called "synobios" (source code not available), which
+exposes this via their own proprietary ioctls.
+
+>=20
+> > On arm devices, it completely takes care of the poweroff and reboot.
+> > There is already a driver here drivers/power/reset/qnap-poweroff.c,
+> > which seems to be primarily developed for QNAP, but works for Synology
+> > too.
+>=20
+> But that's not this device, that's a different device and driver.
+Different driver, but supports the same device. See the "Can also be
+used on Synology devices." comment on top and the "synology,power-off"
+entry in the of_match_table.
+
+>=20
+> > On x86 devices, is uses ACPI Sleep, but must still announce the
+> > poweroff / reboot prior to the firmware call to the device for proper
+> > shutdown / reboot. There is no existing driver that takes care of this
+> > yet.
+>=20
+> Then that should be a kernel driver, no need for the led blinks to be a
+> kernel driver if they don't have to, right?  We try to only put stuff in
+> the kernel that _has_ to be in the kernel, within reason.
+Are you trying to refer to the led part of this driver, or to a prior
+patch series by me regarding a more feature-rich disk trigger for led
+blinking ("leds: extend disk trigger") ?
+
+In case of the later, I have started working on a non-device-specific
+userspace daemon as replacement.
+
+>=20
+> thanks,
+>=20
+> greg k-h
+
+Thanks
+- Markus Probst
+
+--=-VAzgw3m6gYEj11zVCIkY
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmuzEsbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSHHMQAKss59Cqe9XmLAyUJrGz
+dWgxoJ3M6d7PPVxv8ZDb428gpVt7kcHUvwuDm73b9W1/HRbL0+4oIPOdfJVTJBwD
+ufcBexjhVeg460o4dpfncfEzi9PK9qJ/syv/VpPzwCpXegUsA5iVTsJrYyGnpgUw
+5DsUMQrn9ObY95dQtXcS3UL8avwbIXQT5cSrRZJ49SbbqMSPr0In8yHtqi9x74MK
+8BF4xGOjpCeya2pUH+4qnZ3CdGzswA5mWKBjBw/ebwg+pg5ypYN+NL2/r8VazLU4
+CzFcQCwNQetrzMSJVGUNFe4pNARygqlHVoAqw3AN+fq38IVF51kYD4NfDbsDibuG
+ic1BeE++scMaxBvawnYpP5gSC+wQ2lin8mZc2GfBja8RKJOpXAfVBaaNfol/j9g9
+lP97PCickr58pgyQOhF3uF4kxZ/1QcoZX61lrgWiKJCXHRMNJjzgeESpcHAL8v0V
+uKqzgX4RFaw1719ShOjuFr+EcBUPRf4zsrrau6Hh7b4Hr3NvH2wgM9BvmO60rZa3
+ZGETgqrKP9OjhqJ3E48Ug47QL6a2A07powxM79Rd6yw89KaZvc3LFBXpHVddSClI
+Jebl3JbxT8nFYyvx+Ioq5mFVacNRlqKNG75wxVo0CULX93eLY0nsxoCdl+oYroap
+gx1idLV79sqg0jEy+12+TyJ8
+=22RV
+-----END PGP SIGNATURE-----
+
+--=-VAzgw3m6gYEj11zVCIkY--
 
