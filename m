@@ -1,216 +1,226 @@
-Return-Path: <devicetree+bounces-272821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272822-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UNJYJWKermmqGwIAu9opvQ
-	(envelope-from <devicetree+bounces-272821-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:18:10 +0100
+	id kFKlJ4Sermm2GwIAu9opvQ
+	(envelope-from <devicetree+bounces-272822-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:18:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 181B6236DF9
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:18:10 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98D1B236E49
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:18:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB4EB303B4DA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 10:17:40 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1704D3012803
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 10:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E86638E10D;
-	Mon,  9 Mar 2026 10:17:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D673921C3;
+	Mon,  9 Mar 2026 10:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="NFMBhvLR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WbvrwkY6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com (mail-eastusazon11011002.outbound.protection.outlook.com [52.101.52.2])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 532453876B4;
-	Mon,  9 Mar 2026 10:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.52.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773051459; cv=fail; b=k2HSpbJjpIN1NJBP5htsLCX6iiBSilFxOZHAU03OP8ORvIrmjWmPthtKSLPl7FM1vnd5c29ZjG4pW+MOQ3kBUhecyYfdQRIXkVMy1rHGSOGuNl6Lh11218rrBzgl5/7Et7E3jWlO75AszRJJHRvPlMetgrOFTUSzdyj1+BUpvo4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773051459; c=relaxed/simple;
-	bh=CwiAxscmwIBQz5vM60nkI0Ug/aj2Tj6saRpN6Srl86s=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TcRIkeIIORo/IJU5wSKtRbYbgH1n0yIEAkHFhhlhUnUKYdHQmtjiYnSBOlxOmoOHIIEaZCAgUn6S4W232eEmmN8VkMB0FXdCouza1xm2+fjO/v0nFce5UPxNRCWzdI81IQ1U0ZXlPeHtu1fbRZjqrSLrn/XQ55NWr0RhwSOjf5I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=NFMBhvLR; arc=fail smtp.client-ip=52.101.52.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XEKHvEPJ7kRgB47DHpXHmFu6017iKzZ82czcxKi7o0BMm1vvJvHZyt13OGgto3fkmhYfg5Vsq0mNMjYnR3JnBZEfHyxF8ivADuamPjNmIiwaPJg5tdS6dIDHRKk2qWLqc0IkNwdQqbUSAFeM0zkQRG3Z8AgYyOHXGBE+vH9Qfl/VX595jKNeIbVW3Bj9G3aykosy62AOBsbknVXxUwHYi6fRL3jqitjpqUBvSytzFe8OjIoalzoieYhQTLIxE0lGDvwvT17k6kGV3zeDuwtV2mpk19AHGRyRaxvHq0OQNFZDlxiGLSdR+mnDEmOSxnL6VQxQJWicbUDaJtLNUVDsAg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Pf/jYnVYlH4kyb2Vs5i38eOOwjqK9/R3JeBfi8Pih9A=;
- b=LHJU0pYYBv3K0Nu9UfvCDyhf07cKlOppwV7JCrxu1/IEQqgW+bHYZlh0ry1F53el6OZgtAOUHFVJpNx5qH8CIL8VhWY0O9IuB5NLbGg842g0kALEZ8Yxmrp2TBqpwI8wTZYRRJeU1/ZmqSwJ9n6Xbc1qKN1bCAA7B0PKljEQ3u/bqjjTusHWCAkZQ7olyuYq18pz3agiRVHwxLC6gD/d6eVNtvxQ9usid0fj2vluVk5bSlAJf929KT5S/nXAKEbtEd4xh+H2GcTg905lEp8KjLllPKs5ryvdJ+QlGDuE4Az5LtdMQg7gg51Z8XQUsPdb80H/OSiFgvLopsI7APOxfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.194) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Pf/jYnVYlH4kyb2Vs5i38eOOwjqK9/R3JeBfi8Pih9A=;
- b=NFMBhvLRZmCoyysFx/6r1agSmvQXRhEKbSDbLcmo6QSPESrCfyTDX2RrTahrKeArJNutq1mf2RVRCFoGRVFRsyq0H1a1dz/v0OkkHw8iujsHqvhq0kHuvbxLR5yINS/wXZ38QtFL5JVp9/0k/gWVQUsNSCvSm6k+JRolrcoM9Po=
-Received: from SJ0PR13CA0199.namprd13.prod.outlook.com (2603:10b6:a03:2c3::24)
- by DS4PPF3E4368C94.namprd10.prod.outlook.com (2603:10b6:f:fc00::d18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Mon, 9 Mar
- 2026 10:17:34 +0000
-Received: from SJ5PEPF000001D7.namprd05.prod.outlook.com
- (2603:10b6:a03:2c3:cafe::ae) by SJ0PR13CA0199.outlook.office365.com
- (2603:10b6:a03:2c3::24) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.23 via Frontend Transport; Mon,
- 9 Mar 2026 10:17:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
-Received: from lewvzet200.ext.ti.com (198.47.23.194) by
- SJ5PEPF000001D7.mail.protection.outlook.com (10.167.242.59) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 10:17:34 +0000
-Received: from DLEE209.ent.ti.com (157.170.170.98) by lewvzet200.ext.ti.com
- (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
- 2026 05:17:33 -0500
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
- 2026 05:17:33 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 9 Mar 2026 05:17:33 -0500
-Received: from HP-Z2-Tower-G9.dhcp.ti.com (hp-z2-tower-g9.dhcp.ti.com [10.24.68.200])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 629AHSEH395352;
-	Mon, 9 Mar 2026 05:17:29 -0500
-From: Shiva Tripathi <s-tripathi1@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<kamlesh@ti.com>, <t-pratham@ti.com>, <afd@ti.com>, <vishalm@ti.com>,
-	<k-malarvizhi@ti.com>, <s-tripathi1@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-am62l: Add RNG node
-Date: Mon, 9 Mar 2026 15:46:50 +0530
-Message-ID: <20260309101650.1652240-1-s-tripathi1@ti.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F81E38F24E;
+	Mon,  9 Mar 2026 10:18:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773051483; cv=none; b=eErokaF2k0e1ppULE4DWzWY7FHGxmkqq78hwCIKBEs/RPqAOLdd0mr3S2nodlqlCBDLbQqWX4CCKq471i9U6mr3npuj+InyXvst31FrKJ6qbXXrOnDeHjtDDz9BGQkXibmK5fcPWGUP90nclfGGFUxqCSNR/fmkoRMh1BTbGYss=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773051483; c=relaxed/simple;
+	bh=SRnH1NwAp8w9VnUxeMdQQ22bjINRJvdOwnb+w2CyyoA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=newri/KR9BQH3eJEpmHZzFd6nAUCGDzyj+bz4KywAyEl1gIgCMZ84wNK3TdMJRQrXQC8KPijXiuRovCoXFADO3TlFF4TWF3N1KVMTQ7b2KiV+0gAjn2mTTXsB2S/IT7qMwfaFOMEs+iFCpDdcQsb7qlHM2Jt0+alwhJuGWl6Lzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WbvrwkY6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D5CDC19423;
+	Mon,  9 Mar 2026 10:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773051482;
+	bh=SRnH1NwAp8w9VnUxeMdQQ22bjINRJvdOwnb+w2CyyoA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WbvrwkY69JG/s4o3qMNFez6zGnP0aaTiwhZ6euNW7VfFe957SK4mE3Hky70kXumBX
+	 4WyaPMbTtArfbPihZMGhiqYjFUUp/49Y4vp/Et7+bkZTvscn+wBpkdzU3c8b4VmPRz
+	 PSRTkwBr/LrC6S+wpDsZ2jRP+4xm2SVSo8S+9iAhXafBTW6FilzgATwKSLZIIHsW8i
+	 i6Jwm7PmgHbXeHrULS7xLCb22+pxt7in3qIpCvD+CC3h7aqJxuetboQx9QmMwdvxU+
+	 qFsiREvlGT5VIFdokr2t+wRM9g1GbzgQPen6AhuzpqrlcGFnbXc10NnfENbHMipjD8
+	 y0NhDnxGbPh7g==
+Message-ID: <af8aa42e-8ef6-43c0-9a46-173420ffe49c@kernel.org>
+Date: Mon, 9 Mar 2026 11:17:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/14] dt-bindings: pinctrl: realtek: Rename
+ 'realtek,duty-cycle' to 'realtek,pulse-width-adjust'
+To: =?UTF-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
+Cc: "linusw@kernel.org" <linusw@kernel.org>, "robh@kernel.org"
+ <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "bartosz.golaszewski@oss.qualcomm.com"
+ <bartosz.golaszewski@oss.qualcomm.com>, "afaerber@suse.com"
+ <afaerber@suse.com>, =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?=
+ <james.tai@realtek.com>, =?UTF-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?=
+ <cy.huang@realtek.com>, =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?=
+ <stanley_chang@realtek.com>, =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?=
+ <tychang@realtek.com>,
+ "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-realtek-soc@lists.infradead.org"
+ <linux-realtek-soc@lists.infradead.org>
+References: <20260306075244.1170399-1-eleanor.lin@realtek.com>
+ <20260306075244.1170399-10-eleanor.lin@realtek.com>
+ <20260307-purring-kind-binturong-1fcb37@quoll>
+ <1baf65a11c26482cae4f7b54df1521c5@realtek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <1baf65a11c26482cae4f7b54df1521c5@realtek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001D7:EE_|DS4PPF3E4368C94:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0071801-6182-43af-8e8f-08de7dc514b9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700016|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	fRKP7WFTejx6XUmSjwfoEQjV5NfxBrYMa5tgIcSw+bIfPx4bcD0XN/ZPTQKup5VgeUBnuVVbdOnEaRcPYuZmTaWB1nUjoGVmA0yIGCFWpfsMWS+mJTonMrBYywvJ37CAiPO9B/2aEMsbJTu6K5dYCQvvrJg4UXdCAsRVzqSRf3B1fO34tUjcOcLRIPonexofLH8JgYURLSnwAzMFnMyyLZERx0LyyxY/Q6cJuOXnTvEuhxgMtsIqRIZQ2CO7hhru6mInnlyOOi880euU5PZYrpl6Jz4XILCWalO+iO4NBSTf6IBaAbSkVvYWzlF2n8q1+7BjMg7q/IXSo3P5ykPlRx1g8gHpSvyzlvToCXHzCkeKu8xwEYrejqJqY3XUGIXhph87u9ckRC1Zy6pGXV9eMrRa4ezAJBVAwda3Bu3VpBBvpkHdUdM/hGBNNSBwFuHrzJetU/kaMU3GdCdgJHFYTy06zQJzID8kvxnIY3OSfadC4/KyzS6524mwpHfLYM+aPggFTL9Upk7/7cwQKPfRJDnAhvYNJ6pN3abH+BJk5LX/VWalrJDw6CcO0Zw9LiFG28EB+bYl5itkbUfi03xi3rLU/tNCrmJiywY373jRxe/k60ASNKV1DWZdcgQSoMMsAP4D8N5BBU6n0MZcTVo3sdtTUAHTnFhohafgK05cnYpHKF52N0N/eZK27Nf+8MUqtGa3Ml/vnJnRjM+u0ugEYZUOqCfJdrAknSlyENZJVTZhItXyjGrMX6P10WACIDVEIKmja/QPDyeoQ8bERNAecg==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700016)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	7W+VVUh3eB3czomAnyulmL+rpvjTQn12RJ9JV6QZORXYvnYpZ3W/kxMt3bFb5eLOcDzl+DzOTjXeKvqc87lD4KXZBSyDN9VKqn4oawQeJ9IiJTe43CIWjjUpK+G8tA8dipuK2sWB5Z0lsZJqgSc+SKXD0rc/c/k98z401tpyoCGe4P4kHqY1CotPogvp6pIchcfkg50t1MgKlIJR3p6nh1UivB0UyrN+zER8tScLYiN37sG/oiflr8b7fIMpm3Bpr++bFgITsJdRA2B6VxbUzwa8vSUFO9NTNSxHBYoMNuZvOjo+W4e5IZffHbxokvS39roIilCSwiACOn3dsxqU4qr3m1WZ1h9J0GY231h3V3fxkuWr5fFIMbhD2cNhwEw31AMYsHgqejXUqmqJfYFXJLNshDDV9j3iOtqZobB5uS0k5FUL+syamnXTdLOyd7Rz
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 10:17:34.1701
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0071801-6182-43af-8e8f-08de7dc514b9
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001D7.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF3E4368C94
-X-Rspamd-Queue-Id: 181B6236DF9
+X-Rspamd-Queue-Id: 98D1B236E49
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272821-lists,devicetree=lfdr.de];
-	DBL_PROHIBIT(0.00)[4.56.82.128:email];
-	FROM_NEQ_ENVFROM(0.00)[s-tripathi1@ti.com,devicetree@vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272822-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[ti.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:dkim,ti.com:email,ti.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,3b000000:email];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.966];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[realtek.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add EIP76 Random Number Generator (RNG) node for AM62L SoC. Unlike
-other k3 platforms, AM62L RNG is integrated outside crypto subsystem
-at address 0x3b100000, requiring an additional entry in cbass_main
-memory map.
+On 09/03/2026 10:18, Yu-Chun Lin [林祐君] wrote:
+>> On Fri, Mar 06, 2026 at 03:52:39PM +0800, Yu-Chun Lin wrote:
+>>> From: Tzuyi Chang <tychang@realtek.com>
+>>>
+>>> Rename 'realtek,duty-cycle' to 'realtek,pulse-width-adjust'.
+>>>
+>>> The previous name was misleading because this hardware block is not a
+>>> PWM generator. It does not generate a signal with a specific frequency
+>>> and duty ratio.
+>>>
+>>> Instead, it provides a fixed nanosecond-level adjustment to the
+>>> rising/ falling edges of an existing signal.
+>>>
+>>> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
+>>> Co-developed-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+>>> Signed-off-by: Yu-Chun Lin <eleanor.lin@realtek.com>
+>>> ---
+>>>  .../bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml       | 9 ++++++---
+>>>  .../bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml       | 9 ++++++---
+>>>  .../bindings/pinctrl/realtek,rtd1619b-pinctrl.yaml       | 9 ++++++---
+>>>  3 files changed, 18 insertions(+), 9 deletions(-)
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.y
+>>> aml
+>>> b/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.y
+>>> aml index 90bd49d87d2e..7b3888b2cea8 100644
+>>> ---
+>>> a/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.y
+>>> aml
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinct
+>>> +++ rl.yaml
+>>> @@ -133,10 +133,13 @@ patternProperties:
+>>>          minimum: 0
+>>>          maximum: 7
+>>>
+>>> -      realtek,duty-cycle:
+>>> +      realtek,pulse-width-adjust:
+>>
+>> No, that's ABI break without explanation. "misleading" is not the sufficient
+>> argument for breaking ABI.
+>> You are stuck with the ABI you added back in 2023.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> The reason I renamed 'realtek,duty-cycle' to 'realtek,pulse-width-adjust' is that
+> during the v1 review, it was pointed out that the name caused confusion with
+> standard PWM bindings [1]. Since I need to modify the driver logic to address
+> this, I intended to update the binding simultaneously.
 
-Mark the RNG node with status "reserved" as it is intended for use by
-OP-TEE for secure random number generation. If required, this hardware
-can also be used through Linux kernel by enabling this node.
+Again, confusion is not reason to break ABI.
 
-Signed-off-by: Shiva Tripathi <s-tripathi1@ti.com>
----
-Changes in v2:
-- Reorder RNG node placement based on unit address (feedback from vigneshr@ti.com)
-- Link to v1: https://lore.kernel.org/all/20260210130058.3458936-1-s-tripathi1@ti.com/
+> 
+> Although the binding was added in 2023, there are currently no DTS files in the
+> mainline kernel that use the 1315e, 1319d, or 1619b pinctrl device nodes.
 
----
- arch/arm64/boot/dts/ti/k3-am62l-main.dtsi | 7 +++++++
- arch/arm64/boot/dts/ti/k3-am62l.dtsi      | 1 +
- 2 files changed, 8 insertions(+)
+Still ABI.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
-index 883beb76ba9c..80615ca1e01a 100644
---- a/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62l-main.dtsi
-@@ -564,6 +564,13 @@ gpmc0: memory-controller@3b000000 {
- 		status = "disabled";
- 	};
- 
-+	rng: rng@3b100000 {
-+		compatible = "inside-secure,safexcel-eip76";
-+		reg = <0x00 0x3b100000 0x00 0x7d>;
-+		interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+		status = "reserved"; /* Reserved for OP-TEE */
-+	};
-+
- 	oc_sram: sram@70800000 {
- 		compatible = "mmio-sram";
- 		reg = <0x00 0x70800000 0x00 0x10000>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62l.dtsi b/arch/arm64/boot/dts/ti/k3-am62l.dtsi
-index 23acdbb301fe..b7d4da303456 100644
---- a/arch/arm64/boot/dts/ti/k3-am62l.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62l.dtsi
-@@ -79,6 +79,7 @@ cbass_main: bus@f0000 {
- 			 <0x00 0x31000000 0x00 0x31000000 0x00 0x00050000>, /* USB0 DWC3 Core Window */
- 			 <0x00 0x31100000 0x00 0x31100000 0x00 0x00050000>, /* USB1 DWC3 Core Window */
- 			 <0x00 0x3b000000 0x00 0x3b000000 0x00 0x00000400>, /* GPMC0 */
-+			 <0x00 0x3b100000 0x00 0x3b100000 0x00 0x0000007d>, /* RNG */
- 			 <0x00 0x45810000 0x00 0x45810000 0x00 0x03170000>, /* DMSS */
- 			 <0x00 0x50000000 0x00 0x50000000 0x00 0x08000000>, /* GPMC DATA */
- 			 <0x00 0x60000000 0x00 0x60000000 0x00 0x08000000>, /* FSS DAT1 */
--- 
-2.34.1
+> Therefore, changing this property name will not break any existing device support
+> in the mainline tree.
 
+Yeah, but will break all other users.
+
+Best regards,
+Krzysztof
 
