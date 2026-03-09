@@ -1,229 +1,1454 @@
-Return-Path: <devicetree+bounces-272859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272860-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mPEMLWGsrmntHQIAu9opvQ
-	(envelope-from <devicetree+bounces-272859-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:17:53 +0100
+	id gFyPEfutrmkSHwIAu9opvQ
+	(envelope-from <devicetree+bounces-272860-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:24:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04DBB237BED
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:17:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72744237E1B
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:24:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 60593300B55F
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:17:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 93C2E30ACEEF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:19:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 930E7352C22;
-	Mon,  9 Mar 2026 11:17:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F2D439A7E6;
+	Mon,  9 Mar 2026 11:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BVKto9Np";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="jsgXIMDu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXIVRZs8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E02739B959
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEEA26FA5B
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:19:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773055051; cv=none; b=FrbsE2R5bAiZyCm3mpBhfIhVq7ksejId7bFhPXyLZp3bSmz2qmm7kMT8ZIpDNtlhGkumZdqALS6sltLCdvr8r1beh0x1nK0ED8hSUiASCBio/MhirXRos72rQ9P5XLssMeQ7rXoYpL/bXNp8MDHBlF/tuHvcS+mbMoly4PtOuSI=
+	t=1773055151; cv=none; b=OShpomyLwvd0+xloLdc4YV5Bz9jj9MCIbPW/b3V20AdnMmPO7N6C1dJJusyrq5wc3VzqYHFgK4g44EOG3nzDaa6RsfcGCHhYyPx7oX4KWF29dxc+Bw2uHHgC6VAkuY6/UtfzXScFn9SE+xofJ2fcLrnhgfpI3dpJFjlvfeJwOIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773055051; c=relaxed/simple;
-	bh=vIupXVvqq0aF0TbLaTcRw65mQz1unZS5rK0UxQXwVv8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s7hxrdadLo7mNKBwLz7gGhBCQD8EjVA1lLJO9rs8kSfvV75Mz9J3cax5mK7uvvLpF5cWbmTcZCkTarv78mQJPdxAK+bNS81iSnsCidCje/UKuZZJg5H4MJgyOelfHxXZQhWbHSrLoGASNoSoqZGZQuyl9gxv5QVrP9LUqe7zUFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BVKto9Np; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=jsgXIMDu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62989mPY2660352
-	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 11:17:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	/iJfBOWNK2bjijtz10fDSacvDWmfQHMuUpjyXhkkiV4=; b=BVKto9NphX8o+346
-	+v1lkz+UrJILFuEekqB/dlREsLONTKPaAf4tPmgiSdTrN1AIuE3P3Nu4OFfiLFiY
-	QZqetbc42AO8EC+alwdmjzzImaM5K5DZpzRw1sultw9uXvKcXcxBpo/0KmiMqZLd
-	JSSkUn3IOxbRXLfm619eq+a4SKe7E6DcB6f8nB58ganvw9P3CHtuqhdnEtcQ61Z8
-	C7mpm4/P4xQukJc3Gye+ZwE//T+WdYiBAtEBr5HGnss2xBYWQx/IFJryzo7argGg
-	VFjsYdbjcIx7Bzw01JpdbYAhgKhD54mcOgtUD05KV6pJEZt9eeVV5sUuw6cIE/7d
-	iFEHyA==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cr9cpnec2-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 11:17:23 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8cd8e89d19bso29287085a.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:17:23 -0700 (PDT)
+	s=arc-20240116; t=1773055151; c=relaxed/simple;
+	bh=/QT+ZsyT1g5zM93+IVQrwcQq8LP1sj3UTRUjMHmJ/iA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eTBL75zqWzs7xgMqXj/jj4GQCNxGkpRAxrxij1NbnQ71WiaPkTjmgJgzTX3uwsXgsRq0w96P3VyD4OOJZ1xWw8PnfcrD8r0hwo2lCSxVTetE3TN1+3fS5aE2rWHDmGhVCxlUFMo2hgDx6xaoqd0ee2q0JcEMXgJi470ytPwJMgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BXIVRZs8; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-660dcafc85aso9486778a12.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:19:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773055043; x=1773659843; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/iJfBOWNK2bjijtz10fDSacvDWmfQHMuUpjyXhkkiV4=;
-        b=jsgXIMDuS4puhzznkKsi7UMCytXk06rtU+0++FmbTw0A34rUQXP+c1qFFGadNLe7DC
-         zedadK7wQLWQFCDKsF34zrCT5FD8iy8Tj8tD6J5sgq8Ntxq2GK0i9rxBPB123TGJA3Zg
-         d7Fp33grRdBTF1Br6NQDeqF0/XFZvAvUKGhXc2xb8qIIFvD5GTLz/ZH2OCPduNrxrZG9
-         A+bS6A0QhaXSjZhwSb0wL1qwoGOaNiNvG+RyMujUvqImVZPYNgYRZxftjJaxTEzwNWgY
-         1b/NkGQc0OCnKO+4YQf3sGqPfRKOvQ8aoirt2dGFdITJZhAtok4ejgzQg026qPrkjUp0
-         cKsQ==
+        d=gmail.com; s=20230601; t=1773055145; x=1773659945; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=UTOjzeQyqSqftgSUxo2hsCAem+/pzZYpTqKtA7wVqy8=;
+        b=BXIVRZs87U3+BS0l/MN4+Yrpuj2g8Xk1TT+s4eo58dLSUwRvd4Dpgoh7cm+wDhg232
+         X0WZ27njFdEAIDSU7IoYoKKCiMk36Yua3fEflhGhXeNMkgP5uhnIYXQRi09k4SrRXfzK
+         26P439BqUIswpOj4pv7fW9JR+hXmCEhUGxHKKmFV6Iuhae4MMb1NtaocGJSpITlEMMPN
+         Vxp5hL55BPRqAn2l5zVyYWJVw86DfN7MGnEIWS+0I+WmGdjxYDlO/fyoT46XHPQk3/jS
+         Tmab3h9G/HuPhpqaLAniRVqLMxATE/yvgAgX0DBVDjIy2MFTsyoQDD1wgrgVNNKBV332
+         dnXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773055043; x=1773659843;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/iJfBOWNK2bjijtz10fDSacvDWmfQHMuUpjyXhkkiV4=;
-        b=NR+64fWdI/tu75OnPtAbvKgTr+3a+ZvUy1VxfArXrTIZ7w3hwSvQC/6mZj6lkNEQvk
-         TTobAc6484fA1WlnZICrhUymz0WSZGBsZqQg7pQpg3RGD+DYyWt6b14blxQv15HOhhKo
-         32//Nu0J3d2wzXutu1bcc9EBAJC5hMl3e+iO5eBrDA2DNwwUJ/f0lCW2lskeMhhNP8Io
-         FxcgLPr8zN8HdzELLQm7rHVif8iQDQvXXfik2VAwKwHy6qur+7xPSb65eOJhwAoXo2jw
-         zSJKcZDfbSVXS1HzuqL2RVQU+YHBdlvHdC15py3xiLdJ4mIsgp5Rdoz2iOx6xwjsWlWk
-         d2Rg==
-X-Forwarded-Encrypted: i=1; AJvYcCWfuojsOelx4kpCSeaKoRv5wo98pfSrb9RN5bae+UlX43UlFr67yQq5+8uZx7zFO+oAecCGS2RhLZOM@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjOhAkNgzzCcqiBJMaFlDyeGZV9ARQiynv3TQ3cVlCBRp38q5B
-	oUndGGlexLk01jxfC+JUjF0G/Ox9lb2HYJadzDYT6HWnMFTr3sTy/7JumtrKZoqdGmIzH6j71+K
-	HumrtwuYLq//tCEkthDqVka5qT7lnz5DRCoOSzqDo1AKdv8hm+F0XJH6cGUtyNI3Y
-X-Gm-Gg: ATEYQzyLDDZss7hydQ03g1Oi1JdM4KnL65SnD392uvS0UWJr1kS6VAC9dVGJ+fEswpN
-	tpuCmZTCuuxogAUxg7lyrj/OtZcb4oDbHXBYIuAlCVsI70Q6iOSb7IC9f2hsXdVV0aFDBjqUgCT
-	Nsx5fxw9h7QYDrWuwkCYDmLZUOIEl/+IWiliGVYagp5Y4LpoCEW/pRJRWmwuLwDO2G4wr0IpxU8
-	Bqc8Ll9YKaO/IDzYfkDvolsG8rty/jDMp4zO6jwhD4gtUzXRrqPbDojlS8ag1htufdG45ex6QA6
-	32SyKdUVduSV9dH1TNkzBs2XW0wByYAEEbsEGjAFLwfSLikcl08UHBa4GQBzisRX0s/xJFK3hHa
-	M3ytkMSACQxR2BXm9eBYuXT6rvhuOoCZtXT2b81U9YsuLPJLMIZdO5Wy4bYxahI7gXbtnySJ1+T
-	nC+gQ=
-X-Received: by 2002:a05:620a:7004:b0:8cd:8b9b:4581 with SMTP id af79cd13be357-8cd8b9b46a0mr225068885a.0.1773055043366;
-        Mon, 09 Mar 2026 04:17:23 -0700 (PDT)
-X-Received: by 2002:a05:620a:7004:b0:8cd:8b9b:4581 with SMTP id af79cd13be357-8cd8b9b46a0mr225065185a.0.1773055042900;
-        Mon, 09 Mar 2026 04:17:22 -0700 (PDT)
-Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-66298248bb4sm353697a12.16.2026.03.09.04.17.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Mar 2026 04:17:22 -0700 (PDT)
-Message-ID: <fa8ff125-8680-44c1-b516-66d06eda7b91@oss.qualcomm.com>
-Date: Mon, 9 Mar 2026 12:17:18 +0100
+        d=1e100.net; s=20230601; t=1773055145; x=1773659945;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UTOjzeQyqSqftgSUxo2hsCAem+/pzZYpTqKtA7wVqy8=;
+        b=cBUByJTvYrIXaykWoyIFcFw5OxECnSTbDdalT8NTRqjrxKRx4bfOUmaneN5+WwA6Kb
+         4TARjqBULM5rH32GcRpfDaBlFRyIiRs8f/mCdJkj5p4++Ef0trCztzmHLEKtetMuZrUM
+         ggK4Bt1P6Bzdsrm8FIc4UUkQs68ovlc9ZRyxTSjZpEAjOpOwcyewqaPaE9nkFEV1WVy0
+         4hT1eBPgjBvpcSMn5Z8RLuzDkQ1ZDUloyQYphWOxMK3td6+AyTGobXcbMSLxb9xbXvow
+         b+okRoKa9ziVaH6yAn9fm0UfoEdasOwaUjw75dGtpI7kjdHZ8aHwptkz+zE1dXIXhEpg
+         jOFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVkFhsjGH7K1qySq0e2vpLNlm8wv3WHEwSOxw0h4UMJCPqTQM5b8J+H+Rpvj8OoLp4fFOn8bm5AeUgd@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTw3YjcvNee9SsuerrMHEjfnZRxlb5H7Emq5ERv+zgnq4CxFtj
+	5yCRNYa3iSvA1D4OqcwolVN4c9bZ0NOMWhT3vR6+y+VZEuPhFLg+Vafc
+X-Gm-Gg: ATEYQzxGy4nPZy5SKdyouo81QqtGW7LO6gB0IuLvcOEaZyJVtosV8e4OUdnGH/fIwFT
+	zUq8fqNClQQSA2OMcQB95IXm9m5fqstIKvmIsnrhZptjol4nO1Fzu1cv0X+NedcjrYpjL8P9KmD
+	hYvrL0s5/cjNn4Ot1xdeI5kUW0XaCw0FUf452tJaoiv8ZQFXcK21qj4wXUpdKw1ccshnkw2paDx
+	mvfTStFXIO4Dz5/DsCbR58My2mjHSu54C+oEc5C/8BEAQ/TP3UalE3ZFAsb+lcozbB8jahgodxA
+	JNDqmUvbcptNPvehnumgJrhNopXntdyqJA0ZpTQpDZvqiSTneYk/JgNvvcvydcoqvaOrUuDYe7w
+	O3KRVbYHKCJHyCZqEOtvVcXXBDMEzXzA2FOBcWW5m/DyU7b6+o1lbAb6Rdk+VzGLKg0GfIFLgCE
+	oXOhOPPhdkHg0eJMef9yDTeLPNsUXaR/i83+I4bK7IdkBXuk/7Yb62TGfGWmCpnZATkr7K3w==
+X-Received: by 2002:a17:907:2d9e:b0:b97:7a:768e with SMTP id a640c23a62f3a-b97007a8663mr102441566b.12.1773055145011;
+        Mon, 09 Mar 2026 04:19:05 -0700 (PDT)
+Received: from nixos-office (98.206.213.193.static.cust.telenor.net. [193.213.206.98])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b9431c02a56sm349671766b.39.2026.03.09.04.19.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Mar 2026 04:19:04 -0700 (PDT)
+Sender: Julian Braha <julian.braha@gmail.com>
+From: Julian Braha <julianbraha@gmail.com>
+To: gregkh@linuxfoundation.org,
+	jcmvbkbc@gmail.com
+Cc: rdunlap@infradead.org,
+	ilpo.jarvinen@linux.intel.com,
+	conor+dt@kernel.org,
+	robh+dt@kernel.org,
+	jirislaby@kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Julian Braha <julianbraha@gmail.com>
+Subject: [PATCH] serial: remove drivers for espressif esp32
+Date: Mon,  9 Mar 2026 11:18:48 +0000
+Message-ID: <20260309111848.1516412-1-julianbraha@gmail.com>
+X-Mailer: git-send-email 2.51.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: glymur: Tie up the CX power domain
- to GCC
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Maulik Shah <maulik.shah@oss.qualcomm.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
-References: <20260309-glymur-fix-gcc-cx-scaling-v1-0-f682c82f116f@oss.qualcomm.com>
- <20260309-glymur-fix-gcc-cx-scaling-v1-3-f682c82f116f@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20260309-glymur-fix-gcc-cx-scaling-v1-3-f682c82f116f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEwMyBTYWx0ZWRfXw4duTPbnlkva
- TWGCKn1ZkmP6LVknWIwmlBQuIXhD2qqTc/KJWn+H89tgxLNqCSVagp1le+Tfna97V8p9YjMpnJb
- sG1A4GMa5iYk3sBESqJ8gFv4GMW4O7TpaFT8D5Ayo5vAdW7s237lddlhWK38o7tQpUirNEL+7XN
- ONk5481tqnL+U5Ymjh2LSnptIXiO1LbDg0dW3fFqZoFHW9YCKO9BkFOVuxgKks1fYoY7J0+sr0n
- OSso3+42PbxkPA7CFA6NZY0IG0JHLWt9VTsOl1zx7l4auKgK9xP/iOsStjM91FhLpOxzG/WIlqy
- AiPUiSaVY2syB9P4QrlDSnWmYClvaACfy/zgnTYVuupIifNBckt3eza70lhfeoHbreVppPSA6XW
- nn0FRWIb/x72r59qN4DknR0g8NHdbR5k+i4EQngDebYvqGkYWhOW2Rjt3A6p5HoJ2flt+XOuYBQ
- Ob3WPSNJlpSrw5KN2WA==
-X-Proofpoint-ORIG-GUID: LEd9RlKPtHTC6PPeJ019N4NRL1Ionn2A
-X-Proofpoint-GUID: LEd9RlKPtHTC6PPeJ019N4NRL1Ionn2A
-X-Authority-Analysis: v=2.4 cv=e7sLiKp/ c=1 sm=1 tr=0 ts=69aeac43 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
- a=EUspDBNiAAAA:8 a=XFCnTzhwHPFgJtnojrQA:9 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
- suspectscore=0 spamscore=0 bulkscore=0 impostorscore=0 malwarescore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603090103
-X-Rspamd-Queue-Id: 04DBB237BED
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 72744237E1B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	TAGGED_FROM(0.00)[bounces-272859-lists,devicetree=lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[linuxfoundation.org,gmail.com];
+	FREEMAIL_CC(0.00)[infradead.org,linux.intel.com,kernel.org,vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[25];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272860-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_PROHIBIT(0.00)[0.1.134.160:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.938];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.993];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 3/9/26 11:06 AM, Abel Vesa wrote:
-> It has been concluded off-list that the Global Clock Controller needs to
-> scale the RPMh CX power domain, otherwise some of the subsystems might
-> crash or be unstable. So adding the RPMh CX power domain to the clock
-> controller which will result in all GDSCs being parented by CX. This way,
-> the vote from the consumers of each GDSC will trickle all the way to CX.
-> 
-> So add the power domain and Make sure the required OPP is nominal.
-> 
-> Fixes: 41b6e8db400c ("arm64: dts: qcom: Introduce Glymur base dtsi")
-> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/glymur.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> index e269cec7942c..2d1ffbf53730 100644
-> --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> @@ -764,6 +764,8 @@ gcc: clock-controller@100000 {
->  			#clock-cells = <1>;
->  			#reset-cells = <1>;
->  			#power-domain-cells = <1>;
-> +			power-domains = <&rpmhpd RPMHPD_CX>;
-> +			required-opps = <&rpmhpd_opp_nom>;
+Following the conversation here:
+https://lore.kernel.org/all/20260308131412.1102749-1-julianbraha@gmail.com/
 
-Let's not keep the system at close-to-full power all the time.
-Please drop required-opps.
+There was an agreement to delete these drivers for now.
 
-Konrad
+Signed-off-by: Julian Braha <julianbraha@gmail.com>
+---
+ drivers/tty/serial/Kconfig      |  26 --
+ drivers/tty/serial/Makefile     |   2 -
+ drivers/tty/serial/esp32_acm.c  | 459 -------------------
+ drivers/tty/serial/esp32_uart.c | 779 --------------------------------
+ 4 files changed, 1266 deletions(-)
+ delete mode 100644 drivers/tty/serial/esp32_acm.c
+ delete mode 100644 drivers/tty/serial/esp32_uart.c
+
+diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
+index f86775cfdcc9..686e7fb073b8 100644
+--- a/drivers/tty/serial/Kconfig
++++ b/drivers/tty/serial/Kconfig
+@@ -1593,32 +1593,6 @@ config SERIAL_NUVOTON_MA35D1_CONSOLE
+ 	  but you can alter that using a kernel command line option such as
+ 	  "console=ttyNVTx".
+ 
+-config SERIAL_ESP32
+-	tristate "Espressif ESP32 UART support"
+-	depends on XTENSA_PLATFORM_ESP32 || (COMPILE_TEST && OF)
+-	select SERIAL_CORE
+-	select SERIAL_CORE_CONSOLE
+-	select SERIAL_EARLYCON
+-	help
+-	  Driver for the UART controllers of the Espressif ESP32xx SoCs.
+-	  When earlycon option is enabled the following kernel command line
+-	  snippets may be used:
+-	    earlycon=esp32s3uart,mmio32,0x60000000,115200n8,40000000
+-	    earlycon=esp32uart,mmio32,0x3ff40000,115200n8
+-
+-config SERIAL_ESP32_ACM
+-	tristate "Espressif ESP32 USB ACM gadget support"
+-	depends on XTENSA_PLATFORM_ESP32 || (COMPILE_TEST && OF)
+-	select SERIAL_CORE
+-	select SERIAL_CORE_CONSOLE
+-	select SERIAL_EARLYCON
+-	help
+-	  Driver for the CDC ACM gadget controller of the Espressif ESP32S3
+-	  SoCs that share separate USB controller with the JTAG adapter.
+-	  When earlycon option is enabled the following kernel command line
+-	  snippet may be used:
+-	    earlycon=esp32s3acm,mmio32,0x60038000
+-
+ endmenu
+ 
+ config SERIAL_MCTRL_GPIO
+diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
+index a2ccbc508ec5..bba7b21a4a1d 100644
+--- a/drivers/tty/serial/Makefile
++++ b/drivers/tty/serial/Makefile
+@@ -37,8 +37,6 @@ obj-$(CONFIG_SERIAL_CLPS711X)		+= clps711x.o
+ obj-$(CONFIG_SERIAL_CPM)		+= cpm_uart.o
+ obj-$(CONFIG_SERIAL_CONEXANT_DIGICOLOR)	+= digicolor-usart.o
+ obj-$(CONFIG_SERIAL_DZ)			+= dz.o
+-obj-$(CONFIG_SERIAL_ESP32)		+= esp32_uart.o
+-obj-$(CONFIG_SERIAL_ESP32_ACM)		+= esp32_acm.o
+ obj-$(CONFIG_SERIAL_FSL_LINFLEXUART)	+= fsl_linflexuart.o
+ obj-$(CONFIG_SERIAL_FSL_LPUART)		+= fsl_lpuart.o
+ obj-$(CONFIG_SERIAL_ICOM)		+= icom.o
+diff --git a/drivers/tty/serial/esp32_acm.c b/drivers/tty/serial/esp32_acm.c
+deleted file mode 100644
+index bb7cc65427f0..000000000000
+--- a/drivers/tty/serial/esp32_acm.c
++++ /dev/null
+@@ -1,459 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-#include <linux/bitfield.h>
+-#include <linux/bits.h>
+-#include <linux/console.h>
+-#include <linux/delay.h>
+-#include <linux/io.h>
+-#include <linux/irq.h>
+-#include <linux/module.h>
+-#include <linux/of.h>
+-#include <linux/platform_device.h>
+-#include <linux/serial_core.h>
+-#include <linux/slab.h>
+-#include <linux/tty_flip.h>
+-#include <asm/serial.h>
+-
+-#define DRIVER_NAME	"esp32s3-acm"
+-#define DEV_NAME	"ttyGS"
+-#define UART_NR		4
+-
+-#define ESP32S3_ACM_TX_FIFO_SIZE	64
+-
+-#define USB_SERIAL_JTAG_EP1_REG		0x00
+-#define USB_SERIAL_JTAG_EP1_CONF_REG	0x04
+-#define USB_SERIAL_JTAG_WR_DONE				BIT(0)
+-#define USB_SERIAL_JTAG_SERIAL_IN_EP_DATA_FREE		BIT(1)
+-#define USB_SERIAL_JTAG_INT_ST_REG	0x0c
+-#define USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST	BIT(2)
+-#define USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST		BIT(3)
+-#define USB_SERIAL_JTAG_INT_ENA_REG	0x10
+-#define USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA	BIT(2)
+-#define USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA		BIT(3)
+-#define USB_SERIAL_JTAG_INT_CLR_REG	0x14
+-#define USB_SERIAL_JTAG_IN_EP1_ST_REG	0x2c
+-#define USB_SERIAL_JTAG_IN_EP1_WR_ADDR			GENMASK(8, 2)
+-#define USB_SERIAL_JTAG_OUT_EP1_ST_REG	0x3c
+-#define USB_SERIAL_JTAG_OUT_EP1_REC_DATA_CNT		GENMASK(22, 16)
+-
+-static const struct of_device_id esp32s3_acm_dt_ids[] = {
+-	{
+-		.compatible = "esp,esp32s3-acm",
+-	}, { /* sentinel */ }
+-};
+-MODULE_DEVICE_TABLE(of, esp32s3_acm_dt_ids);
+-
+-static struct uart_port *esp32s3_acm_ports[UART_NR];
+-
+-static void esp32s3_acm_write(struct uart_port *port, unsigned long reg, u32 v)
+-{
+-	writel(v, port->membase + reg);
+-}
+-
+-static u32 esp32s3_acm_read(struct uart_port *port, unsigned long reg)
+-{
+-	return readl(port->membase + reg);
+-}
+-
+-static u32 esp32s3_acm_tx_fifo_free(struct uart_port *port)
+-{
+-	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_CONF_REG);
+-
+-	return status & USB_SERIAL_JTAG_SERIAL_IN_EP_DATA_FREE;
+-}
+-
+-static u32 esp32s3_acm_tx_fifo_cnt(struct uart_port *port)
+-{
+-	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_IN_EP1_ST_REG);
+-
+-	return FIELD_GET(USB_SERIAL_JTAG_IN_EP1_WR_ADDR, status);
+-}
+-
+-static u32 esp32s3_acm_rx_fifo_cnt(struct uart_port *port)
+-{
+-	u32 status = esp32s3_acm_read(port, USB_SERIAL_JTAG_OUT_EP1_ST_REG);
+-
+-	return FIELD_GET(USB_SERIAL_JTAG_OUT_EP1_REC_DATA_CNT, status);
+-}
+-
+-/* return TIOCSER_TEMT when transmitter is not busy */
+-static unsigned int esp32s3_acm_tx_empty(struct uart_port *port)
+-{
+-	return esp32s3_acm_tx_fifo_cnt(port) == 0 ? TIOCSER_TEMT : 0;
+-}
+-
+-static void esp32s3_acm_set_mctrl(struct uart_port *port, unsigned int mctrl)
+-{
+-}
+-
+-static unsigned int esp32s3_acm_get_mctrl(struct uart_port *port)
+-{
+-	return TIOCM_CAR;
+-}
+-
+-static void esp32s3_acm_stop_tx(struct uart_port *port)
+-{
+-	u32 int_ena;
+-
+-	int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
+-	int_ena &= ~USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA;
+-	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
+-}
+-
+-static void esp32s3_acm_rxint(struct uart_port *port)
+-{
+-	struct tty_port *tty_port = &port->state->port;
+-	u32 rx_fifo_cnt = esp32s3_acm_rx_fifo_cnt(port);
+-	unsigned long flags;
+-	u32 i;
+-
+-	if (!rx_fifo_cnt)
+-		return;
+-
+-	spin_lock_irqsave(&port->lock, flags);
+-
+-	for (i = 0; i < rx_fifo_cnt; ++i) {
+-		u32 rx = esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_REG);
+-
+-		++port->icount.rx;
+-		tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
+-	}
+-	spin_unlock_irqrestore(&port->lock, flags);
+-
+-	tty_flip_buffer_push(tty_port);
+-}
+-
+-static void esp32s3_acm_push(struct uart_port *port)
+-{
+-	if (esp32s3_acm_tx_fifo_free(port))
+-		esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_CONF_REG,
+-				  USB_SERIAL_JTAG_WR_DONE);
+-}
+-
+-static void esp32s3_acm_put_char(struct uart_port *port, u8 c)
+-{
+-	esp32s3_acm_write(port, USB_SERIAL_JTAG_EP1_REG, c);
+-}
+-
+-static void esp32s3_acm_put_char_sync(struct uart_port *port, u8 c)
+-{
+-	unsigned long timeout = jiffies + HZ;
+-
+-	while (!esp32s3_acm_tx_fifo_free(port)) {
+-		if (time_after(jiffies, timeout)) {
+-			dev_warn(port->dev, "timeout waiting for TX FIFO\n");
+-			return;
+-		}
+-		cpu_relax();
+-	}
+-	esp32s3_acm_put_char(port, c);
+-	esp32s3_acm_push(port);
+-}
+-
+-static void esp32s3_acm_transmit_buffer(struct uart_port *port)
+-{
+-	u32 tx_fifo_used;
+-	unsigned int pending;
+-	u8 ch;
+-
+-	if (!esp32s3_acm_tx_fifo_free(port))
+-		return;
+-
+-	tx_fifo_used = esp32s3_acm_tx_fifo_cnt(port);
+-	pending = uart_port_tx_limited(port, ch,
+-				       ESP32S3_ACM_TX_FIFO_SIZE - tx_fifo_used,
+-				       true, esp32s3_acm_put_char(port, ch),
+-				       ({}));
+-	if (pending) {
+-		u32 int_ena;
+-
+-		int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
+-		int_ena |= USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ENA;
+-		esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
+-	}
+-	esp32s3_acm_push(port);
+-}
+-
+-static void esp32s3_acm_txint(struct uart_port *port)
+-{
+-	esp32s3_acm_transmit_buffer(port);
+-}
+-
+-static irqreturn_t esp32s3_acm_int(int irq, void *dev_id)
+-{
+-	struct uart_port *port = dev_id;
+-	u32 status;
+-
+-	status = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ST_REG);
+-	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_CLR_REG, status);
+-
+-	if (status & USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ST)
+-		esp32s3_acm_rxint(port);
+-	if (status & USB_SERIAL_JTAG_SERIAL_IN_EMPTY_INT_ST)
+-		esp32s3_acm_txint(port);
+-
+-	return IRQ_RETVAL(status);
+-}
+-
+-static void esp32s3_acm_start_tx(struct uart_port *port)
+-{
+-	esp32s3_acm_transmit_buffer(port);
+-}
+-
+-static void esp32s3_acm_stop_rx(struct uart_port *port)
+-{
+-	u32 int_ena;
+-
+-	int_ena = esp32s3_acm_read(port, USB_SERIAL_JTAG_INT_ENA_REG);
+-	int_ena &= ~USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA;
+-	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, int_ena);
+-}
+-
+-static int esp32s3_acm_startup(struct uart_port *port)
+-{
+-	int ret;
+-
+-	ret = request_irq(port->irq, esp32s3_acm_int, 0, DRIVER_NAME, port);
+-	if (ret)
+-		return ret;
+-	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG,
+-			  USB_SERIAL_JTAG_SERIAL_OUT_RECV_PKT_INT_ENA);
+-
+-	return 0;
+-}
+-
+-static void esp32s3_acm_shutdown(struct uart_port *port)
+-{
+-	esp32s3_acm_write(port, USB_SERIAL_JTAG_INT_ENA_REG, 0);
+-	free_irq(port->irq, port);
+-}
+-
+-static void esp32s3_acm_set_termios(struct uart_port *port,
+-				    struct ktermios *termios,
+-				    const struct ktermios *old)
+-{
+-}
+-
+-static const char *esp32s3_acm_type(struct uart_port *port)
+-{
+-	return "ESP32S3 ACM";
+-}
+-
+-/* configure/auto-configure the port */
+-static void esp32s3_acm_config_port(struct uart_port *port, int flags)
+-{
+-	if (flags & UART_CONFIG_TYPE)
+-		port->type = PORT_GENERIC;
+-}
+-
+-#ifdef CONFIG_CONSOLE_POLL
+-static void esp32s3_acm_poll_put_char(struct uart_port *port, unsigned char c)
+-{
+-	esp32s3_acm_put_char_sync(port, c);
+-}
+-
+-static int esp32s3_acm_poll_get_char(struct uart_port *port)
+-{
+-	if (esp32s3_acm_rx_fifo_cnt(port))
+-		return esp32s3_acm_read(port, USB_SERIAL_JTAG_EP1_REG);
+-	else
+-		return NO_POLL_CHAR;
+-}
+-#endif
+-
+-static const struct uart_ops esp32s3_acm_pops = {
+-	.tx_empty	= esp32s3_acm_tx_empty,
+-	.set_mctrl	= esp32s3_acm_set_mctrl,
+-	.get_mctrl	= esp32s3_acm_get_mctrl,
+-	.stop_tx	= esp32s3_acm_stop_tx,
+-	.start_tx	= esp32s3_acm_start_tx,
+-	.stop_rx	= esp32s3_acm_stop_rx,
+-	.startup	= esp32s3_acm_startup,
+-	.shutdown	= esp32s3_acm_shutdown,
+-	.set_termios	= esp32s3_acm_set_termios,
+-	.type		= esp32s3_acm_type,
+-	.config_port	= esp32s3_acm_config_port,
+-#ifdef CONFIG_CONSOLE_POLL
+-	.poll_put_char	= esp32s3_acm_poll_put_char,
+-	.poll_get_char	= esp32s3_acm_poll_get_char,
+-#endif
+-};
+-
+-static void esp32s3_acm_string_write(struct uart_port *port, const char *s,
+-				     unsigned int count)
+-{
+-	uart_console_write(port, s, count, esp32s3_acm_put_char_sync);
+-}
+-
+-static void
+-esp32s3_acm_console_write(struct console *co, const char *s, unsigned int count)
+-{
+-	struct uart_port *port = esp32s3_acm_ports[co->index];
+-	unsigned long flags;
+-	bool locked = true;
+-
+-	if (port->sysrq)
+-		locked = false;
+-	else if (oops_in_progress)
+-		locked = spin_trylock_irqsave(&port->lock, flags);
+-	else
+-		spin_lock_irqsave(&port->lock, flags);
+-
+-	esp32s3_acm_string_write(port, s, count);
+-
+-	if (locked)
+-		spin_unlock_irqrestore(&port->lock, flags);
+-}
+-
+-static struct uart_driver esp32s3_acm_reg;
+-static struct console esp32s3_acm_console = {
+-	.name		= DEV_NAME,
+-	.write		= esp32s3_acm_console_write,
+-	.device		= uart_console_device,
+-	.flags		= CON_PRINTBUFFER,
+-	.index		= -1,
+-	.data		= &esp32s3_acm_reg,
+-};
+-
+-static void esp32s3_acm_earlycon_write(struct console *con, const char *s,
+-				      unsigned int n)
+-{
+-	struct earlycon_device *dev = con->data;
+-
+-	uart_console_write(&dev->port, s, n, esp32s3_acm_put_char_sync);
+-}
+-
+-#ifdef CONFIG_CONSOLE_POLL
+-static int esp32s3_acm_earlycon_read(struct console *con, char *s, unsigned int n)
+-{
+-	struct earlycon_device *dev = con->data;
+-	unsigned int num_read = 0;
+-
+-	while (num_read < n) {
+-		int c = esp32s3_acm_poll_get_char(&dev->port);
+-
+-		if (c == NO_POLL_CHAR)
+-			break;
+-		s[num_read++] = c;
+-	}
+-	return num_read;
+-}
+-#endif
+-
+-static int __init esp32s3_acm_early_console_setup(struct earlycon_device *device,
+-						   const char *options)
+-{
+-	if (!device->port.membase)
+-		return -ENODEV;
+-
+-	device->con->write = esp32s3_acm_earlycon_write;
+-#ifdef CONFIG_CONSOLE_POLL
+-	device->con->read = esp32s3_acm_earlycon_read;
+-#endif
+-	return 0;
+-}
+-
+-OF_EARLYCON_DECLARE(esp32s3acm, "esp,esp32s3-acm",
+-		    esp32s3_acm_early_console_setup);
+-
+-static struct uart_driver esp32s3_acm_reg = {
+-	.owner		= THIS_MODULE,
+-	.driver_name	= DRIVER_NAME,
+-	.dev_name	= DEV_NAME,
+-	.nr		= ARRAY_SIZE(esp32s3_acm_ports),
+-	.cons		= &esp32s3_acm_console,
+-};
+-
+-static int esp32s3_acm_probe(struct platform_device *pdev)
+-{
+-	struct device_node *np = pdev->dev.of_node;
+-	struct uart_port *port;
+-	struct resource *res;
+-	int ret;
+-
+-	port = devm_kzalloc(&pdev->dev, sizeof(*port), GFP_KERNEL);
+-	if (!port)
+-		return -ENOMEM;
+-
+-	ret = of_alias_get_id(np, "serial");
+-	if (ret < 0) {
+-		dev_err(&pdev->dev, "failed to get alias id, errno %d\n", ret);
+-		return ret;
+-	}
+-	if (ret >= UART_NR) {
+-		dev_err(&pdev->dev, "driver limited to %d serial ports\n",
+-			UART_NR);
+-		return -ENOMEM;
+-	}
+-
+-	port->line = ret;
+-
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	if (!res)
+-		return -ENODEV;
+-
+-	port->mapbase = res->start;
+-	port->membase = devm_ioremap_resource(&pdev->dev, res);
+-	if (IS_ERR(port->membase))
+-		return PTR_ERR(port->membase);
+-
+-	port->dev = &pdev->dev;
+-	port->type = PORT_GENERIC;
+-	port->iotype = UPIO_MEM;
+-	port->irq = platform_get_irq(pdev, 0);
+-	port->ops = &esp32s3_acm_pops;
+-	port->flags = UPF_BOOT_AUTOCONF;
+-	port->has_sysrq = 1;
+-	port->fifosize = ESP32S3_ACM_TX_FIFO_SIZE;
+-
+-	esp32s3_acm_ports[port->line] = port;
+-
+-	platform_set_drvdata(pdev, port);
+-
+-	return uart_add_one_port(&esp32s3_acm_reg, port);
+-}
+-
+-static void esp32s3_acm_remove(struct platform_device *pdev)
+-{
+-	struct uart_port *port = platform_get_drvdata(pdev);
+-
+-	uart_remove_one_port(&esp32s3_acm_reg, port);
+-}
+-
+-
+-static struct platform_driver esp32s3_acm_driver = {
+-	.probe		= esp32s3_acm_probe,
+-	.remove		= esp32s3_acm_remove,
+-	.driver		= {
+-		.name	= DRIVER_NAME,
+-		.of_match_table	= esp32s3_acm_dt_ids,
+-	},
+-};
+-
+-static int __init esp32s3_acm_init(void)
+-{
+-	int ret;
+-
+-	ret = uart_register_driver(&esp32s3_acm_reg);
+-	if (ret)
+-		return ret;
+-
+-	ret = platform_driver_register(&esp32s3_acm_driver);
+-	if (ret)
+-		uart_unregister_driver(&esp32s3_acm_reg);
+-
+-	return ret;
+-}
+-
+-static void __exit esp32s3_acm_exit(void)
+-{
+-	platform_driver_unregister(&esp32s3_acm_driver);
+-	uart_unregister_driver(&esp32s3_acm_reg);
+-}
+-
+-module_init(esp32s3_acm_init);
+-module_exit(esp32s3_acm_exit);
+-
+-MODULE_AUTHOR("Max Filippov <jcmvbkbc@gmail.com>");
+-MODULE_DESCRIPTION("Espressif ESP32 USB ACM gadget support");
+-MODULE_LICENSE("GPL");
+diff --git a/drivers/tty/serial/esp32_uart.c b/drivers/tty/serial/esp32_uart.c
+deleted file mode 100644
+index 667c2198a03a..000000000000
+--- a/drivers/tty/serial/esp32_uart.c
++++ /dev/null
+@@ -1,779 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-#include <linux/bitfield.h>
+-#include <linux/bits.h>
+-#include <linux/clk.h>
+-#include <linux/console.h>
+-#include <linux/delay.h>
+-#include <linux/io.h>
+-#include <linux/irq.h>
+-#include <linux/module.h>
+-#include <linux/of.h>
+-#include <linux/platform_device.h>
+-#include <linux/property.h>
+-#include <linux/serial_core.h>
+-#include <linux/slab.h>
+-#include <linux/tty_flip.h>
+-#include <asm/serial.h>
+-
+-#define DRIVER_NAME	"esp32-uart"
+-#define DEV_NAME	"ttyS"
+-#define UART_NR		3
+-
+-#define ESP32_UART_TX_FIFO_SIZE	127
+-#define ESP32_UART_RX_FIFO_SIZE	127
+-
+-#define UART_FIFO_REG			0x00
+-#define UART_INT_RAW_REG		0x04
+-#define UART_INT_ST_REG			0x08
+-#define UART_INT_ENA_REG		0x0c
+-#define UART_INT_CLR_REG		0x10
+-#define UART_RXFIFO_FULL_INT			BIT(0)
+-#define UART_TXFIFO_EMPTY_INT			BIT(1)
+-#define UART_BRK_DET_INT			BIT(7)
+-#define UART_CLKDIV_REG			0x14
+-#define ESP32_UART_CLKDIV			GENMASK(19, 0)
+-#define ESP32S3_UART_CLKDIV			GENMASK(11, 0)
+-#define UART_CLKDIV_SHIFT			0
+-#define UART_CLKDIV_FRAG			GENMASK(23, 20)
+-#define UART_STATUS_REG			0x1c
+-#define ESP32_UART_RXFIFO_CNT			GENMASK(7, 0)
+-#define ESP32S3_UART_RXFIFO_CNT			GENMASK(9, 0)
+-#define UART_RXFIFO_CNT_SHIFT			0
+-#define UART_DSRN				BIT(13)
+-#define UART_CTSN				BIT(14)
+-#define ESP32_UART_TXFIFO_CNT			GENMASK(23, 16)
+-#define ESP32S3_UART_TXFIFO_CNT			GENMASK(25, 16)
+-#define UART_TXFIFO_CNT_SHIFT			16
+-#define UART_CONF0_REG			0x20
+-#define UART_PARITY				BIT(0)
+-#define UART_PARITY_EN				BIT(1)
+-#define UART_BIT_NUM				GENMASK(3, 2)
+-#define UART_BIT_NUM_5				0
+-#define UART_BIT_NUM_6				1
+-#define UART_BIT_NUM_7				2
+-#define UART_BIT_NUM_8				3
+-#define UART_STOP_BIT_NUM			GENMASK(5, 4)
+-#define UART_STOP_BIT_NUM_1			1
+-#define UART_STOP_BIT_NUM_2			3
+-#define UART_SW_RTS				BIT(6)
+-#define UART_SW_DTR				BIT(7)
+-#define UART_LOOPBACK				BIT(14)
+-#define UART_TX_FLOW_EN				BIT(15)
+-#define UART_RTS_INV				BIT(23)
+-#define UART_DTR_INV				BIT(24)
+-#define UART_CONF1_REG			0x24
+-#define UART_RXFIFO_FULL_THRHD_SHIFT		0
+-#define ESP32_UART_TXFIFO_EMPTY_THRHD_SHIFT	8
+-#define ESP32S3_UART_TXFIFO_EMPTY_THRHD_SHIFT	10
+-#define ESP32_UART_RX_FLOW_EN			BIT(23)
+-#define ESP32S3_UART_RX_FLOW_EN			BIT(22)
+-#define ESP32S3_UART_CLK_CONF_REG	0x78
+-#define ESP32S3_UART_SCLK_DIV_B			GENMASK(5, 0)
+-#define ESP32S3_UART_SCLK_DIV_A			GENMASK(11, 6)
+-#define ESP32S3_UART_SCLK_DIV_NUM		GENMASK(19, 12)
+-#define ESP32S3_UART_SCLK_SEL			GENMASK(21, 20)
+-#define APB_CLK					1
+-#define RC_FAST_CLK				2
+-#define XTAL_CLK				3
+-#define ESP32S3_UART_SCLK_EN			BIT(22)
+-#define ESP32S3_UART_RST_CORE			BIT(23)
+-#define ESP32S3_UART_TX_SCLK_EN			BIT(24)
+-#define ESP32S3_UART_RX_SCLK_EN			BIT(25)
+-#define ESP32S3_UART_TX_RST_CORE		BIT(26)
+-#define ESP32S3_UART_RX_RST_CORE		BIT(27)
+-
+-#define ESP32S3_UART_CLK_CONF_DEFAULT \
+-	(ESP32S3_UART_RX_SCLK_EN | \
+-	 ESP32S3_UART_TX_SCLK_EN | \
+-	 ESP32S3_UART_SCLK_EN | \
+-	 FIELD_PREP(ESP32S3_UART_SCLK_SEL, XTAL_CLK))
+-
+-struct esp32_port {
+-	struct uart_port port;
+-	struct clk *clk;
+-};
+-
+-struct esp32_uart_variant {
+-	u32 clkdiv_mask;
+-	u32 rxfifo_cnt_mask;
+-	u32 txfifo_cnt_mask;
+-	u32 txfifo_empty_thrhd_shift;
+-	u32 rx_flow_en;
+-	const char *type;
+-	bool has_clkconf;
+-};
+-
+-static const struct esp32_uart_variant esp32_variant = {
+-	.clkdiv_mask = ESP32_UART_CLKDIV,
+-	.rxfifo_cnt_mask = ESP32_UART_RXFIFO_CNT,
+-	.txfifo_cnt_mask = ESP32_UART_TXFIFO_CNT,
+-	.txfifo_empty_thrhd_shift = ESP32_UART_TXFIFO_EMPTY_THRHD_SHIFT,
+-	.rx_flow_en = ESP32_UART_RX_FLOW_EN,
+-	.type = "ESP32 UART",
+-};
+-
+-static const struct esp32_uart_variant esp32s3_variant = {
+-	.clkdiv_mask = ESP32S3_UART_CLKDIV,
+-	.rxfifo_cnt_mask = ESP32S3_UART_RXFIFO_CNT,
+-	.txfifo_cnt_mask = ESP32S3_UART_TXFIFO_CNT,
+-	.txfifo_empty_thrhd_shift = ESP32S3_UART_TXFIFO_EMPTY_THRHD_SHIFT,
+-	.rx_flow_en = ESP32S3_UART_RX_FLOW_EN,
+-	.type = "ESP32S3 UART",
+-	.has_clkconf = true,
+-};
+-
+-static const struct of_device_id esp32_uart_dt_ids[] = {
+-	{
+-		.compatible = "esp,esp32-uart",
+-		.data = &esp32_variant,
+-	}, {
+-		.compatible = "esp,esp32s3-uart",
+-		.data = &esp32s3_variant,
+-	}, { /* sentinel */ }
+-};
+-MODULE_DEVICE_TABLE(of, esp32_uart_dt_ids);
+-
+-static struct esp32_port *esp32_uart_ports[UART_NR];
+-
+-static const struct esp32_uart_variant *port_variant(struct uart_port *port)
+-{
+-	return port->private_data;
+-}
+-
+-static void esp32_uart_write(struct uart_port *port, unsigned long reg, u32 v)
+-{
+-	writel(v, port->membase + reg);
+-}
+-
+-static u32 esp32_uart_read(struct uart_port *port, unsigned long reg)
+-{
+-	return readl(port->membase + reg);
+-}
+-
+-static u32 esp32_uart_tx_fifo_cnt(struct uart_port *port)
+-{
+-	u32 status = esp32_uart_read(port, UART_STATUS_REG);
+-
+-	return (status & port_variant(port)->txfifo_cnt_mask) >> UART_TXFIFO_CNT_SHIFT;
+-}
+-
+-static u32 esp32_uart_rx_fifo_cnt(struct uart_port *port)
+-{
+-	u32 status = esp32_uart_read(port, UART_STATUS_REG);
+-
+-	return (status & port_variant(port)->rxfifo_cnt_mask) >> UART_RXFIFO_CNT_SHIFT;
+-}
+-
+-/* return TIOCSER_TEMT when transmitter is not busy */
+-static unsigned int esp32_uart_tx_empty(struct uart_port *port)
+-{
+-	return esp32_uart_tx_fifo_cnt(port) ? 0 : TIOCSER_TEMT;
+-}
+-
+-static void esp32_uart_set_mctrl(struct uart_port *port, unsigned int mctrl)
+-{
+-	u32 conf0 = esp32_uart_read(port, UART_CONF0_REG);
+-
+-	conf0 &= ~(UART_LOOPBACK |
+-		   UART_SW_RTS | UART_RTS_INV |
+-		   UART_SW_DTR | UART_DTR_INV);
+-
+-	if (mctrl & TIOCM_RTS)
+-		conf0 |= UART_SW_RTS;
+-	if (mctrl & TIOCM_DTR)
+-		conf0 |= UART_SW_DTR;
+-	if (mctrl & TIOCM_LOOP)
+-		conf0 |= UART_LOOPBACK;
+-
+-	esp32_uart_write(port, UART_CONF0_REG, conf0);
+-}
+-
+-static unsigned int esp32_uart_get_mctrl(struct uart_port *port)
+-{
+-	u32 status = esp32_uart_read(port, UART_STATUS_REG);
+-	unsigned int ret = TIOCM_CAR;
+-
+-	if (status & UART_DSRN)
+-		ret |= TIOCM_DSR;
+-	if (status & UART_CTSN)
+-		ret |= TIOCM_CTS;
+-
+-	return ret;
+-}
+-
+-static void esp32_uart_stop_tx(struct uart_port *port)
+-{
+-	u32 int_ena;
+-
+-	int_ena = esp32_uart_read(port, UART_INT_ENA_REG);
+-	int_ena &= ~UART_TXFIFO_EMPTY_INT;
+-	esp32_uart_write(port, UART_INT_ENA_REG, int_ena);
+-}
+-
+-static void esp32_uart_rxint(struct uart_port *port)
+-{
+-	struct tty_port *tty_port = &port->state->port;
+-	u32 rx_fifo_cnt = esp32_uart_rx_fifo_cnt(port);
+-	unsigned long flags;
+-	u32 i;
+-
+-	if (!rx_fifo_cnt)
+-		return;
+-
+-	spin_lock_irqsave(&port->lock, flags);
+-
+-	for (i = 0; i < rx_fifo_cnt; ++i) {
+-		u32 rx = esp32_uart_read(port, UART_FIFO_REG);
+-
+-		if (!rx &&
+-		    (esp32_uart_read(port, UART_INT_ST_REG) & UART_BRK_DET_INT)) {
+-			esp32_uart_write(port, UART_INT_CLR_REG, UART_BRK_DET_INT);
+-			++port->icount.brk;
+-			uart_handle_break(port);
+-		} else {
+-			if (uart_handle_sysrq_char(port, (unsigned char)rx))
+-				continue;
+-			tty_insert_flip_char(tty_port, rx, TTY_NORMAL);
+-			++port->icount.rx;
+-		}
+-	}
+-	spin_unlock_irqrestore(&port->lock, flags);
+-
+-	tty_flip_buffer_push(tty_port);
+-}
+-
+-static void esp32_uart_put_char(struct uart_port *port, u8 c)
+-{
+-	esp32_uart_write(port, UART_FIFO_REG, c);
+-}
+-
+-static void esp32_uart_put_char_sync(struct uart_port *port, u8 c)
+-{
+-	unsigned long timeout = jiffies + HZ;
+-
+-	while (esp32_uart_tx_fifo_cnt(port) >= ESP32_UART_TX_FIFO_SIZE) {
+-		if (time_after(jiffies, timeout)) {
+-			dev_warn(port->dev, "timeout waiting for TX FIFO\n");
+-			return;
+-		}
+-		cpu_relax();
+-	}
+-	esp32_uart_put_char(port, c);
+-}
+-
+-static void esp32_uart_transmit_buffer(struct uart_port *port)
+-{
+-	u32 tx_fifo_used = esp32_uart_tx_fifo_cnt(port);
+-	unsigned int pending;
+-	u8 ch;
+-
+-	if (tx_fifo_used >= ESP32_UART_TX_FIFO_SIZE)
+-		return;
+-
+-	pending = uart_port_tx_limited(port, ch,
+-				       ESP32_UART_TX_FIFO_SIZE - tx_fifo_used,
+-				       true, esp32_uart_put_char(port, ch),
+-				       ({}));
+-	if (pending) {
+-		u32 int_ena;
+-
+-		int_ena = esp32_uart_read(port, UART_INT_ENA_REG);
+-		int_ena |= UART_TXFIFO_EMPTY_INT;
+-		esp32_uart_write(port, UART_INT_ENA_REG, int_ena);
+-	}
+-}
+-
+-static void esp32_uart_txint(struct uart_port *port)
+-{
+-	esp32_uart_transmit_buffer(port);
+-}
+-
+-static irqreturn_t esp32_uart_int(int irq, void *dev_id)
+-{
+-	struct uart_port *port = dev_id;
+-	u32 status;
+-
+-	status = esp32_uart_read(port, UART_INT_ST_REG);
+-
+-	if (status & (UART_RXFIFO_FULL_INT | UART_BRK_DET_INT))
+-		esp32_uart_rxint(port);
+-	if (status & UART_TXFIFO_EMPTY_INT)
+-		esp32_uart_txint(port);
+-
+-	esp32_uart_write(port, UART_INT_CLR_REG, status);
+-
+-	return IRQ_RETVAL(status);
+-}
+-
+-static void esp32_uart_start_tx(struct uart_port *port)
+-{
+-	esp32_uart_transmit_buffer(port);
+-}
+-
+-static void esp32_uart_stop_rx(struct uart_port *port)
+-{
+-	u32 int_ena;
+-
+-	int_ena = esp32_uart_read(port, UART_INT_ENA_REG);
+-	int_ena &= ~UART_RXFIFO_FULL_INT;
+-	esp32_uart_write(port, UART_INT_ENA_REG, int_ena);
+-}
+-
+-static int esp32_uart_startup(struct uart_port *port)
+-{
+-	int ret = 0;
+-	unsigned long flags;
+-	struct esp32_port *sport = container_of(port, struct esp32_port, port);
+-
+-	ret = clk_prepare_enable(sport->clk);
+-	if (ret)
+-		return ret;
+-
+-	ret = request_irq(port->irq, esp32_uart_int, 0, DRIVER_NAME, port);
+-	if (ret) {
+-		clk_disable_unprepare(sport->clk);
+-		return ret;
+-	}
+-
+-	spin_lock_irqsave(&port->lock, flags);
+-	if (port_variant(port)->has_clkconf)
+-		esp32_uart_write(port, ESP32S3_UART_CLK_CONF_REG,
+-				 ESP32S3_UART_CLK_CONF_DEFAULT);
+-	esp32_uart_write(port, UART_CONF1_REG,
+-			 (1 << UART_RXFIFO_FULL_THRHD_SHIFT) |
+-			 (1 << port_variant(port)->txfifo_empty_thrhd_shift));
+-	esp32_uart_write(port, UART_INT_CLR_REG, UART_RXFIFO_FULL_INT | UART_BRK_DET_INT);
+-	esp32_uart_write(port, UART_INT_ENA_REG, UART_RXFIFO_FULL_INT | UART_BRK_DET_INT);
+-	spin_unlock_irqrestore(&port->lock, flags);
+-
+-	return ret;
+-}
+-
+-static void esp32_uart_shutdown(struct uart_port *port)
+-{
+-	struct esp32_port *sport = container_of(port, struct esp32_port, port);
+-
+-	esp32_uart_write(port, UART_INT_ENA_REG, 0);
+-	free_irq(port->irq, port);
+-	clk_disable_unprepare(sport->clk);
+-}
+-
+-static bool esp32_uart_set_baud(struct uart_port *port, u32 baud)
+-{
+-	u32 sclk = port->uartclk;
+-	u32 div = sclk / baud;
+-
+-	if (port_variant(port)->has_clkconf) {
+-		u32 sclk_div = div / port_variant(port)->clkdiv_mask;
+-
+-		if (div > port_variant(port)->clkdiv_mask) {
+-			sclk /= (sclk_div + 1);
+-			div = sclk / baud;
+-		}
+-		esp32_uart_write(port, ESP32S3_UART_CLK_CONF_REG,
+-				 FIELD_PREP(ESP32S3_UART_SCLK_DIV_NUM, sclk_div) |
+-				 ESP32S3_UART_CLK_CONF_DEFAULT);
+-	}
+-
+-	if (div <= port_variant(port)->clkdiv_mask) {
+-		u32 frag = (sclk * 16) / baud - div * 16;
+-
+-		esp32_uart_write(port, UART_CLKDIV_REG,
+-				 div | FIELD_PREP(UART_CLKDIV_FRAG, frag));
+-		return true;
+-	}
+-
+-	return false;
+-}
+-
+-static void esp32_uart_set_termios(struct uart_port *port,
+-				   struct ktermios *termios,
+-				   const struct ktermios *old)
+-{
+-	unsigned long flags;
+-	u32 conf0, conf1;
+-	u32 baud;
+-	const u32 rx_flow_en = port_variant(port)->rx_flow_en;
+-	u32 max_div = port_variant(port)->clkdiv_mask;
+-
+-	termios->c_cflag &= ~CMSPAR;
+-
+-	if (port_variant(port)->has_clkconf)
+-		max_div *= FIELD_MAX(ESP32S3_UART_SCLK_DIV_NUM);
+-
+-	baud = uart_get_baud_rate(port, termios, old,
+-				  port->uartclk / max_div,
+-				  port->uartclk / 16);
+-
+-	spin_lock_irqsave(&port->lock, flags);
+-
+-	conf0 = esp32_uart_read(port, UART_CONF0_REG);
+-	conf0 &= ~(UART_PARITY_EN | UART_PARITY | UART_BIT_NUM | UART_STOP_BIT_NUM);
+-
+-	conf1 = esp32_uart_read(port, UART_CONF1_REG);
+-	conf1 &= ~rx_flow_en;
+-
+-	if (termios->c_cflag & PARENB) {
+-		conf0 |= UART_PARITY_EN;
+-		if (termios->c_cflag & PARODD)
+-			conf0 |= UART_PARITY;
+-	}
+-
+-	switch (termios->c_cflag & CSIZE) {
+-	case CS5:
+-		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_5);
+-		break;
+-	case CS6:
+-		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_6);
+-		break;
+-	case CS7:
+-		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_7);
+-		break;
+-	case CS8:
+-		conf0 |= FIELD_PREP(UART_BIT_NUM, UART_BIT_NUM_8);
+-		break;
+-	}
+-
+-	if (termios->c_cflag & CSTOPB)
+-		conf0 |= FIELD_PREP(UART_STOP_BIT_NUM, UART_STOP_BIT_NUM_2);
+-	else
+-		conf0 |= FIELD_PREP(UART_STOP_BIT_NUM, UART_STOP_BIT_NUM_1);
+-
+-	if (termios->c_cflag & CRTSCTS)
+-		conf1 |= rx_flow_en;
+-
+-	esp32_uart_write(port, UART_CONF0_REG, conf0);
+-	esp32_uart_write(port, UART_CONF1_REG, conf1);
+-
+-	if (baud) {
+-		esp32_uart_set_baud(port, baud);
+-		uart_update_timeout(port, termios->c_cflag, baud);
+-	} else {
+-		if (esp32_uart_set_baud(port, 115200)) {
+-			baud = 115200;
+-			tty_termios_encode_baud_rate(termios, baud, baud);
+-			uart_update_timeout(port, termios->c_cflag, baud);
+-		} else {
+-			dev_warn(port->dev,
+-				 "unable to set speed to %d baud or the default 115200\n",
+-				 baud);
+-		}
+-	}
+-	spin_unlock_irqrestore(&port->lock, flags);
+-}
+-
+-static const char *esp32_uart_type(struct uart_port *port)
+-{
+-	return port_variant(port)->type;
+-}
+-
+-/* configure/auto-configure the port */
+-static void esp32_uart_config_port(struct uart_port *port, int flags)
+-{
+-	if (flags & UART_CONFIG_TYPE)
+-		port->type = PORT_GENERIC;
+-}
+-
+-#ifdef CONFIG_CONSOLE_POLL
+-static int esp32_uart_poll_init(struct uart_port *port)
+-{
+-	struct esp32_port *sport = container_of(port, struct esp32_port, port);
+-
+-	return clk_prepare_enable(sport->clk);
+-}
+-
+-static void esp32_uart_poll_put_char(struct uart_port *port, unsigned char c)
+-{
+-	esp32_uart_put_char_sync(port, c);
+-}
+-
+-static int esp32_uart_poll_get_char(struct uart_port *port)
+-{
+-	if (esp32_uart_rx_fifo_cnt(port))
+-		return esp32_uart_read(port, UART_FIFO_REG);
+-	else
+-		return NO_POLL_CHAR;
+-
+-}
+-#endif
+-
+-static const struct uart_ops esp32_uart_pops = {
+-	.tx_empty	= esp32_uart_tx_empty,
+-	.set_mctrl	= esp32_uart_set_mctrl,
+-	.get_mctrl	= esp32_uart_get_mctrl,
+-	.stop_tx	= esp32_uart_stop_tx,
+-	.start_tx	= esp32_uart_start_tx,
+-	.stop_rx	= esp32_uart_stop_rx,
+-	.startup	= esp32_uart_startup,
+-	.shutdown	= esp32_uart_shutdown,
+-	.set_termios	= esp32_uart_set_termios,
+-	.type		= esp32_uart_type,
+-	.config_port	= esp32_uart_config_port,
+-#ifdef CONFIG_CONSOLE_POLL
+-	.poll_init	= esp32_uart_poll_init,
+-	.poll_put_char	= esp32_uart_poll_put_char,
+-	.poll_get_char	= esp32_uart_poll_get_char,
+-#endif
+-};
+-
+-static void esp32_uart_console_putchar(struct uart_port *port, u8 c)
+-{
+-	esp32_uart_put_char_sync(port, c);
+-}
+-
+-static void esp32_uart_string_write(struct uart_port *port, const char *s,
+-				    unsigned int count)
+-{
+-	uart_console_write(port, s, count, esp32_uart_console_putchar);
+-}
+-
+-static void
+-esp32_uart_console_write(struct console *co, const char *s, unsigned int count)
+-{
+-	struct esp32_port *sport = esp32_uart_ports[co->index];
+-	struct uart_port *port = &sport->port;
+-	unsigned long flags;
+-	bool locked = true;
+-
+-	if (port->sysrq)
+-		locked = false;
+-	else if (oops_in_progress)
+-		locked = spin_trylock_irqsave(&port->lock, flags);
+-	else
+-		spin_lock_irqsave(&port->lock, flags);
+-
+-	esp32_uart_string_write(port, s, count);
+-
+-	if (locked)
+-		spin_unlock_irqrestore(&port->lock, flags);
+-}
+-
+-static int __init esp32_uart_console_setup(struct console *co, char *options)
+-{
+-	struct esp32_port *sport;
+-	int baud = 115200;
+-	int bits = 8;
+-	int parity = 'n';
+-	int flow = 'n';
+-	int ret;
+-
+-	/*
+-	 * check whether an invalid uart number has been specified, and
+-	 * if so, search for the first available port that does have
+-	 * console support.
+-	 */
+-	if (co->index == -1 || co->index >= ARRAY_SIZE(esp32_uart_ports))
+-		co->index = 0;
+-
+-	sport = esp32_uart_ports[co->index];
+-	if (!sport)
+-		return -ENODEV;
+-
+-	ret = clk_prepare_enable(sport->clk);
+-	if (ret)
+-		return ret;
+-
+-	if (options)
+-		uart_parse_options(options, &baud, &parity, &bits, &flow);
+-
+-	return uart_set_options(&sport->port, co, baud, parity, bits, flow);
+-}
+-
+-static int esp32_uart_console_exit(struct console *co)
+-{
+-	struct esp32_port *sport = esp32_uart_ports[co->index];
+-
+-	clk_disable_unprepare(sport->clk);
+-	return 0;
+-}
+-
+-static struct uart_driver esp32_uart_reg;
+-static struct console esp32_uart_console = {
+-	.name		= DEV_NAME,
+-	.write		= esp32_uart_console_write,
+-	.device		= uart_console_device,
+-	.setup		= esp32_uart_console_setup,
+-	.exit		= esp32_uart_console_exit,
+-	.flags		= CON_PRINTBUFFER,
+-	.index		= -1,
+-	.data		= &esp32_uart_reg,
+-};
+-
+-static void esp32_uart_earlycon_putchar(struct uart_port *port, u8 c)
+-{
+-	esp32_uart_put_char_sync(port, c);
+-}
+-
+-static void esp32_uart_earlycon_write(struct console *con, const char *s,
+-				      unsigned int n)
+-{
+-	struct earlycon_device *dev = con->data;
+-
+-	uart_console_write(&dev->port, s, n, esp32_uart_earlycon_putchar);
+-}
+-
+-#ifdef CONFIG_CONSOLE_POLL
+-static int esp32_uart_earlycon_read(struct console *con, char *s, unsigned int n)
+-{
+-	struct earlycon_device *dev = con->data;
+-	unsigned int num_read = 0;
+-
+-	while (num_read < n) {
+-		int c = esp32_uart_poll_get_char(&dev->port);
+-
+-		if (c == NO_POLL_CHAR)
+-			break;
+-		s[num_read++] = c;
+-	}
+-	return num_read;
+-}
+-#endif
+-
+-static int __init esp32xx_uart_early_console_setup(struct earlycon_device *device,
+-						   const char *options)
+-{
+-	if (!device->port.membase)
+-		return -ENODEV;
+-
+-	device->con->write = esp32_uart_earlycon_write;
+-#ifdef CONFIG_CONSOLE_POLL
+-	device->con->read = esp32_uart_earlycon_read;
+-#endif
+-	if (device->port.uartclk != BASE_BAUD * 16)
+-		esp32_uart_set_baud(&device->port, device->baud);
+-
+-	return 0;
+-}
+-
+-static int __init esp32_uart_early_console_setup(struct earlycon_device *device,
+-						 const char *options)
+-{
+-	device->port.private_data = (void *)&esp32_variant;
+-
+-	return esp32xx_uart_early_console_setup(device, options);
+-}
+-
+-OF_EARLYCON_DECLARE(esp32uart, "esp,esp32-uart",
+-		    esp32_uart_early_console_setup);
+-
+-static int __init esp32s3_uart_early_console_setup(struct earlycon_device *device,
+-						   const char *options)
+-{
+-	device->port.private_data = (void *)&esp32s3_variant;
+-
+-	return esp32xx_uart_early_console_setup(device, options);
+-}
+-
+-OF_EARLYCON_DECLARE(esp32s3uart, "esp,esp32s3-uart",
+-		    esp32s3_uart_early_console_setup);
+-
+-static struct uart_driver esp32_uart_reg = {
+-	.owner		= THIS_MODULE,
+-	.driver_name	= DRIVER_NAME,
+-	.dev_name	= DEV_NAME,
+-	.nr		= ARRAY_SIZE(esp32_uart_ports),
+-	.cons		= &esp32_uart_console,
+-};
+-
+-static int esp32_uart_probe(struct platform_device *pdev)
+-{
+-	struct device_node *np = pdev->dev.of_node;
+-	struct uart_port *port;
+-	struct esp32_port *sport;
+-	struct resource *res;
+-	int ret;
+-
+-	sport = devm_kzalloc(&pdev->dev, sizeof(*sport), GFP_KERNEL);
+-	if (!sport)
+-		return -ENOMEM;
+-
+-	port = &sport->port;
+-
+-	ret = of_alias_get_id(np, "serial");
+-	if (ret < 0) {
+-		dev_err(&pdev->dev, "failed to get alias id, errno %d\n", ret);
+-		return ret;
+-	}
+-	if (ret >= UART_NR) {
+-		dev_err(&pdev->dev, "driver limited to %d serial ports\n", UART_NR);
+-		return -ENOMEM;
+-	}
+-
+-	port->line = ret;
+-
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+-	if (!res)
+-		return -ENODEV;
+-
+-	port->mapbase = res->start;
+-	port->membase = devm_ioremap_resource(&pdev->dev, res);
+-	if (IS_ERR(port->membase))
+-		return PTR_ERR(port->membase);
+-
+-	sport->clk = devm_clk_get(&pdev->dev, NULL);
+-	if (IS_ERR(sport->clk))
+-		return PTR_ERR(sport->clk);
+-
+-	port->uartclk = clk_get_rate(sport->clk);
+-	port->dev = &pdev->dev;
+-	port->type = PORT_GENERIC;
+-	port->iotype = UPIO_MEM;
+-	port->irq = platform_get_irq(pdev, 0);
+-	port->ops = &esp32_uart_pops;
+-	port->flags = UPF_BOOT_AUTOCONF;
+-	port->has_sysrq = 1;
+-	port->fifosize = ESP32_UART_TX_FIFO_SIZE;
+-	port->private_data = (void *)device_get_match_data(&pdev->dev);
+-
+-	esp32_uart_ports[port->line] = sport;
+-
+-	platform_set_drvdata(pdev, port);
+-
+-	return uart_add_one_port(&esp32_uart_reg, port);
+-}
+-
+-static void esp32_uart_remove(struct platform_device *pdev)
+-{
+-	struct uart_port *port = platform_get_drvdata(pdev);
+-
+-	uart_remove_one_port(&esp32_uart_reg, port);
+-}
+-
+-
+-static struct platform_driver esp32_uart_driver = {
+-	.probe		= esp32_uart_probe,
+-	.remove		= esp32_uart_remove,
+-	.driver		= {
+-		.name	= DRIVER_NAME,
+-		.of_match_table	= esp32_uart_dt_ids,
+-	},
+-};
+-
+-static int __init esp32_uart_init(void)
+-{
+-	int ret;
+-
+-	ret = uart_register_driver(&esp32_uart_reg);
+-	if (ret)
+-		return ret;
+-
+-	ret = platform_driver_register(&esp32_uart_driver);
+-	if (ret)
+-		uart_unregister_driver(&esp32_uart_reg);
+-
+-	return ret;
+-}
+-
+-static void __exit esp32_uart_exit(void)
+-{
+-	platform_driver_unregister(&esp32_uart_driver);
+-	uart_unregister_driver(&esp32_uart_reg);
+-}
+-
+-module_init(esp32_uart_init);
+-module_exit(esp32_uart_exit);
+-
+-MODULE_AUTHOR("Max Filippov <jcmvbkbc@gmail.com>");
+-MODULE_DESCRIPTION("Espressif ESP32 UART support");
+-MODULE_LICENSE("GPL");
+-- 
+2.51.2
+
 
