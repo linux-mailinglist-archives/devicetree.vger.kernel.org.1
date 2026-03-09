@@ -1,118 +1,95 @@
-Return-Path: <devicetree+bounces-272780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272781-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0N92EFiQrmnVGAIAu9opvQ
-	(envelope-from <devicetree+bounces-272780-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:18:16 +0100
+	id SKNPKbCQrmnVGAIAu9opvQ
+	(envelope-from <devicetree+bounces-272781-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:19:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD1B3236019
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:18:15 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A46C2360A5
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:19:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AD6D63044A43
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:16:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id ECB8C301991E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0482F3783C9;
-	Mon,  9 Mar 2026 09:16:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4370D377EC6;
+	Mon,  9 Mar 2026 09:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iuUL2+r/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k5Qe0xmw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29AE0256C84
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 09:16:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210B022127B
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 09:17:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773047787; cv=none; b=Wl2YE2dQPAsbRASJvwt0//6hSrvXDQhnGjEhP2vMq4AjvO1iZKXuRewlBJvcy++elPO9xbk6q1ZzrI4D6ys/JcplMBZVO9/lJfHDPBP6Vl310fbSJLavzghXZuT0jSjwSjb2g1mM/TJs+6chdp3XSqubB2z3d9lf24hjiRU48/o=
+	t=1773047864; cv=none; b=NaBNWytlpPDqGpLjFMgGokA+GMLWs9ahaOCgQd3rkMAlPI8LvC4hiCtVLMgzSS/Y3putlAn9CkI65KVF7AtSyNcU5K1Suy8qNm7z59isVwMCjkTeIQOucVhOZdzcP690FRDl+noWvS4h3eZ+5PGZeACDUcnWlpLA0EZUIageVg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773047787; c=relaxed/simple;
-	bh=1jGBBfInWcPlyDj77P4+i/0PqZBVJ9PiGxU0GLuAUrs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tNS34oGc49Le2BWpze+1aYaI0xtgw9CYy+pVwqVzJ1pxffuQrflDRGys20spE++8B25eTKS8zSLjQSyIySMkKrah2f+OD2SAEPGKe4QVAw41WlC36eOzvXkSB8rcpUYh+GYuW/MUU9xMUXNlWvRmWuEpseKUuTKopXJw3H+Owj0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iuUL2+r/; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48529c325f0so17028165e9.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 02:16:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773047784; x=1773652584; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xEMYbYJ9NsIB337c5/AE4fq1IEFDMbJNEIOTDlDSI/U=;
-        b=iuUL2+r/GRmzHLfudJSe4dxHLMlKmWWcbPVN0mtSinWyx7VBp58eBXB0mPv7GQn6Ja
-         ifVHK+mc/sJRqChxEjoa3O5BD+YUtoa6gMp0DDXVusRKCE5q4gAZrrsXNDCfPZpkdN17
-         XEl3MWVpktGC6Zrg0XyeIEOve2S+qs/a+EsUvH2G7UwVfJMp3ZIV1+7ASyDLFalkOxLv
-         uPCdQCR5+Um6RxPgl+X77rBNu1O7mOttxbmu+8MBIMA36utedhe91zoATDMaAY2BwUGP
-         vvY+wt4Jq1j4PCyF6AE1eeiTYzpsGmhTQpD0ULWtzxDq1sDzn21SQiJzhqMElodteUsS
-         nYjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773047784; x=1773652584;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xEMYbYJ9NsIB337c5/AE4fq1IEFDMbJNEIOTDlDSI/U=;
-        b=mGv9JDsSNf7WZCdTbW16Hh7hlGxX7wWN2PFZTr+QHATOHRVX3lF6mn505EGt6XHtYg
-         RGOYjSnKgZPg4rU+MybCOy5jkg4Bo32BYRIiV4IhHjqoYJbPXaGDwkOulfyrIM+h2au8
-         t2sT70fPuaGe1Pf6datE75FV3o60rRyEGbOTje85X4O3BB0xF1wjxkl9hdevNUmRTl+x
-         HgiDnNLhkA3VIKSzcl36+m1zEFYWdayH7m59JVzsTqxr78+qhyUpYqG2ndo7bs+YTDZq
-         APhXJzlow8I1WWD1Q5Vy4UjTV2RXe/uCr5UeAlF5dorzG07vwPRbSTtr6s03bdh4d94U
-         cd7g==
-X-Forwarded-Encrypted: i=1; AJvYcCUn2RnV3QfwSJcT4YPsFIwRgECIhWhpDyNoc2xtdZNzmDEFaA5yRWnh/bT+oJApas8cwMV4Vj/63l9p@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkN/IE61BSQoPuA261Nj8AFjpDhPQ89cQxxaEXM6af9JBnYCDY
-	9AuIr5Tj8ehdeu43ivAHJlqk6z/ddgE0jWvKnj07mXP6g1es0rdH2bddROoW0cDNlfg=
-X-Gm-Gg: ATEYQzzRVXQvjXuHTrU95mAqrxG16wQMLg2C+/a1otHuW3vHiMTMqvu+PtvpMA0KcHd
-	dfUKx/kJrlSldScW2LKAdilY0HbVLfxwAiirwpAMvyRxMlzvb3YkprqQ2sdcjIGI0Kn4xTAQln9
-	xbUC0/JlDjamKesQtv78aBaGy1urVd4/EwTpVK4arVesfyYjnShg0Ex2Pqqmuzh/OtjpUm2um0d
-	RWa8AuGhnDKQcUWKgphwreHzmrQjuIFTpsuHTaY7VJCiIRHl85oVCaHN+eU1iYM64TjfqNDpKmK
-	sbnkvRRa59b9PIgH+LRNUbnXH1tP0PnL55AX8WYI5ILJ0RoZx7f8hLCJ+CExTRkHc2IksAv7soU
-	VFMHeSV+VcI4YLd4ObLxu/3UDTkEhzXWq1DtIrQ3AwPfbuK8oGHeaVeepQh2rOqKBUjEl7HA/d6
-	oDkejd6KBuYecncWJbwV0w+5CE39j3
-X-Received: by 2002:a05:600c:888c:b0:485:3812:36da with SMTP id 5b1f17b1804b1-48538123853mr47305545e9.9.1773047784401;
-        Mon, 09 Mar 2026 02:16:24 -0700 (PDT)
-Received: from linaro.org ([77.64.146.222])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4853616a085sm50557965e9.3.2026.03.09.02.16.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 02:16:23 -0700 (PDT)
-Date: Mon, 9 Mar 2026 10:16:18 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: adamp@posteo.de
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: msm8916-wiko-chuppito: add
- initial devicetree
-Message-ID: <aa6P4rE7d2ftaeAw@linaro.org>
-References: <20260307-wiko-chuppito-v4-0-325ac66ae338@posteo.de>
- <20260307-wiko-chuppito-v4-3-325ac66ae338@posteo.de>
+	s=arc-20240116; t=1773047864; c=relaxed/simple;
+	bh=YLXhNGCsQCx1qS2BiicwkZEbN+zda8ZNiRoTS2x/QoA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=O6wreWfS5lOIrNTHLC5y1THGYzzQ/Yi61Ck6B0+6vGBmC527eE+W1Akt7rtZiSYqXFI0hk+ca4goeVWaKbINJCnia+nNkdsZjNmTC8yRzn20azZPwR1APgF47t6NFaohO18D3YynN7LVXA7vRUFD/ra3xrFB70BF3Lx7yR3I8b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k5Qe0xmw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0660CC2BCB2
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 09:17:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773047864;
+	bh=YLXhNGCsQCx1qS2BiicwkZEbN+zda8ZNiRoTS2x/QoA=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=k5Qe0xmw2AEmGlrgD5DUDGQ6NskjA3NK6aRG73abYPJe/iG8w1UyPOywZyNif1YLf
+	 HCV6SMw8H41nKiARvAe/IVazL8tOjO2LtckOujmZoCLfa5BuG1gxtSeULJc8gN7+hP
+	 FJaqcjhFSjwOuA3R6dfbTJu/RgNTxUbTB7v4e6yMlLKInY0svaNb2/90cbsC8ipD+Y
+	 DdAdlX7oEs/ETp9ZxxydSt6h03+b1fQzYebVsAatNpnkliv8Nv9ZBc1O7L5vA31tUK
+	 UaJYfOq3VwwRA8RR9vYdpe1LYYEYkZnTPjZZVqlWTnhvIm2nck952hHpdvQ8CD8e8z
+	 5m+mGXTCe3Fpw==
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-38a46657a9fso15282051fa.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 02:17:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUx6g1WnPRWoeqCBziT93OL9N2c6fP3yaFKnXujYxbwuVCc1uKfNu3oZIdJNdP0ANOmmq4wvMSXmx1I@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIWnnUx/e1pYQU9Tn7KkvQoxnt1XpBRVagGZYD1r/MKROl7lwj
+	YCvsohcnAOmq5U115evSfsCtOftpri+Q0p18n91HgVqpyRzYMah/eU60iBApkh0RBzDPvMzC0px
+	8TpYmEFseBq3it0gtM3rkH3PRZDANy/xqTdqub415gA==
+X-Received: by 2002:a2e:a991:0:b0:38a:4d20:3f7c with SMTP id
+ 38308e7fff4ca-38a4d2042eemr18701111fa.36.1773047862657; Mon, 09 Mar 2026
+ 02:17:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260307-wiko-chuppito-v4-3-325ac66ae338@posteo.de>
-X-Rspamd-Queue-Id: CD1B3236019
+References: <20260212110905.52842-2-krzysztof.kozlowski@oss.qualcomm.com>
+ <CAMRc=Me14BeYBgy5_bNk+2riQzGhfTu_5nQhU1R8sXMbO5s8TQ@mail.gmail.com> <20260305234528.GA796613-robh@kernel.org>
+In-Reply-To: <20260305234528.GA796613-robh@kernel.org>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Mon, 9 Mar 2026 10:17:29 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Mcv+LWK_skGTB0_Y0XXDNa8F19t+Pxev4iYgWFSUcv=8A@mail.gmail.com>
+X-Gm-Features: AaiRm53jgViOFPs1FPMLNJ5L0WqZqaBREnjWwRr7yfZjFgiKllRvrB0IvqdS-gg
+Message-ID: <CAMRc=Mcv+LWK_skGTB0_Y0XXDNa8F19t+Pxev4iYgWFSUcv=8A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: gpio-delay: Use Alexander's email
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, Linus Walleij <linusw@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alexander Stein <alexander.stein@ew.tq-group.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 2A46C2360A5
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272780-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272781-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -120,64 +97,58 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.975];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.982];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,posteo.de:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email,devicetree.org:url,mail.gmail.com:mid,tq-group.com:email]
 X-Rspamd-Action: no action
 
-On Sat, Mar 07, 2026 at 06:23:12PM +0100, Paul Adam via B4 Relay wrote:
-> From: Paul Adam <adamp@posteo.de>
-> 
-> Add an initial device tree for Wiko PULP 4G.
-> Includes support for:
-> - UART
-> - USB (no OTG)
-> - Internal storage
-> - MicroSD
-> - Volume keys + Power button
-> - Touchscreen
-> - Backlight
-> - Accelerometer: Invensense MPU6880
-> - Magnetometer: Asahi Kasei AK09911
-> - Hall sensor: Rohm BU52021HFV
-> - Proximity sensor
-> - Vibrator
-> - Earpiece
-> - Microphone 1
-> - Headphones
-> - Wifi
-> - Bluetooth
-> - GPU
-> 
-> Signed-off-by: Paul Adam <adamp@posteo.de>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                  |   1 +
->  arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts | 315 +++++++++++++++++++++
->  2 files changed, 316 insertions(+)
-> 
-> [...]
-> diff --git a/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
-> new file mode 100644
-> index 000000000000..d927bae2b208
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
-> @@ -0,0 +1,315 @@
-> [...]
-> +&sound {
-> +	audio-routing = "AMIC1", "MIC BIAS Internal1",
-> +		"AMIC2", "MIC BIAS Internal2",
-> +		"AMIC3", "MIC BIAS Internal1";
+On Fri, Mar 6, 2026 at 12:45=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Thu, Feb 12, 2026 at 03:10:57AM -0800, Bartosz Golaszewski wrote:
+> > On Thu, 12 Feb 2026 12:09:06 +0100, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@oss.qualcomm.com> said:
+> > > Group/anonymous mailboxes are not accepted for bindings maintainers, =
+so
+> > > switch from such linux @TQ mailbox to Alexander's email.
+> > >
+> > > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.=
+com>
+> > > ---
+> > >  Documentation/devicetree/bindings/gpio/gpio-delay.yaml | 2 +-
+> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml b=
+/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> > > index 1cebc4058e27..b99ceff6c5f6 100644
+> > > --- a/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> > > +++ b/Documentation/devicetree/bindings/gpio/gpio-delay.yaml
+> > > @@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml=
+#
+> > >  title: GPIO delay controller
+> > >
+> > >  maintainers:
+> > > -  - Alexander Stein <linux@ew.tq-group.com>
+> > > +  - Alexander Stein <alexander.stein@ew.tq-group.com>
+> > >
+> > >  description: |
+> > >    This binding describes an electrical setup where setting an GPIO o=
+utput
+> > > --
+> > > 2.51.0
+> > >
+> > >
+> >
+> > Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+>
+> Are you going to pick this up?
+>
 
-Sorry, just noticed this now:
+Yes, queued now.
 
-This seems a bit suspicious (I would expect "MIC BIAS Internal3"), have
-you tested if the secondary microphone works?
-
-Thanks,
-Stephan
+Bart
 
