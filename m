@@ -1,241 +1,174 @@
-Return-Path: <devicetree+bounces-272929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272930-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIAlFP3CrmmRIgIAu9opvQ
-	(envelope-from <devicetree+bounces-272929-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:54:21 +0100
+	id ThSvJRHDrmn2IgIAu9opvQ
+	(envelope-from <devicetree+bounces-272930-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:54:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBBED23939F
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:54:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0918B2393B8
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 13:54:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 07C683004DEA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:54:20 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id A7806301F4AF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 12:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1ABDD392C4C;
-	Mon,  9 Mar 2026 12:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9D3E3B8D72;
+	Mon,  9 Mar 2026 12:54:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b="MBSENcaf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NKjHBuNA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 716D73BE177;
-	Mon,  9 Mar 2026 12:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94A39392C4C;
+	Mon,  9 Mar 2026 12:54:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773060858; cv=none; b=SkG3bBzqgSVmF/NiQRsrL9XALYo5qrt13Qslb7d3o+lfdkAp0CRHuGtIoQqozj3ST56357bbnNmJL9tqjpCxTok4fKTlBW3cJMOjsQ9VD4rVN+8KGC4Xiv+BWLl0dC3orrjkrg269jJEPVpxS/6ey83gbA273M0x4Ttgqtsh1N0=
+	t=1773060878; cv=none; b=kpw+AnBgukBH+HWQmrW1CUqaxeyAreNH7kEAnWs2QjriKMBRF/rmkHeLDCCnW3SfmuWzOi1psQw7eYZn2NH2fdS9IA+8vqOipks8u/LmJtbc6gClM+GFkloF+l1hjEyjiugptaKWT9NoKjs5wRRr6f94tCvcatVUCuV7HVMsJbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773060858; c=relaxed/simple;
-	bh=x7XTUyTEjlyfsknKIPpydodGdMSgv3hWaBjEYFEIgXY=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=mtz4JVeJOMxClo+jdFFkU7CNzokZ1ig+3rnidE0SpKzhTQDHsttBcJIrdUJR7ihhNEjMmZ1z/YaFVd/tJVULu0L1xaRjiX9Ns58/IU4k7r1TmKTTTdzHg5ATa5mth/qb8jNp/4p8YqOIblaCuFwoOsQnEJQBYg2moSlEBg0HGkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=hendrik-noack@gmx.de header.b=MBSENcaf; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1773060847; x=1773665647; i=hendrik-noack@gmx.de;
-	bh=x7XTUyTEjlyfsknKIPpydodGdMSgv3hWaBjEYFEIgXY=;
-	h=X-UI-Sender-Class:Date:From:To:Cc:Message-ID:In-Reply-To:
-	 References:Subject:MIME-Version:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=MBSENcafam1hrwDp2EsM6ajgp9ZEp7iyDofUtO0FzAbgRUOJK+o6+Ynsl+zgC6eZ
-	 QFM74q9JB1Dt6keHgZNSZV/AKWJDRq9vlwP10Ax3cJfWpiwuXSOodyYQqrsia1skC
-	 wc23HmPTh2aXVSTb0ynU8dYKaqDAMwc5rWLrz/EqbsJqdAwD5Xidw392uS7Q+4XaX
-	 lc9iRd4TKQJ0GiSbqt84uM/93aToRT8cbj3PRURuaRoX5DYkMrYd1MprjyuIJvbRH
-	 uB3MzuTeU15luKMdj+yoOn+y9c+3quaCuDgdPTwHrtTSiAsTmh2Z6Clzkm0rvh7lw
-	 nzjunCCKI/Lg8B2iyg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MS3mt-1w5sYP3cKJ-00QG4t; Mon, 09
- Mar 2026 13:54:06 +0100
-Date: Mon, 9 Mar 2026 13:54:05 +0100
-From: Hendrik Noack <hendrik-noack@gmx.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ferass El Hafidi <funderscore@postmarketos.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Message-ID: <feae85c4-bea1-40b2-87d5-952b26ff3ee3@gmx.de>
-In-Reply-To: <20260308-vivacious-coucal-of-current-2d7ac8@quoll>
-References: <20260307181557.66927-1-hendrik-noack@gmx.de> <20260307181557.66927-2-hendrik-noack@gmx.de> <20260308-vivacious-coucal-of-current-2d7ac8@quoll>
-Subject: Re: [PATCH v4 1/2] dt-bindings: Input: Add Wacom W9000-series
- penabled touchscreens
+	s=arc-20240116; t=1773060878; c=relaxed/simple;
+	bh=Xd4U61Ysg89X46wgBgApxQzqUKx/g7M65qGCIZz/8/w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LcFggqmeZFPDWIJK3OQtpcu+jJhIlAjzt6AvRZLZqK6fDXr8PvfkVd1rBTg8mBt9BUcE2WPGbPIVQua7wjkIMdfry4S9yaiAg28fYL+jH7V+zCw/mpcWmwNmIHQj1eOsvxdcOiSR5k1nXe5GKBR3P/EhOEOu61JZgMNZjPzrkcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NKjHBuNA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73AC2C2BC86;
+	Mon,  9 Mar 2026 12:54:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773060878;
+	bh=Xd4U61Ysg89X46wgBgApxQzqUKx/g7M65qGCIZz/8/w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NKjHBuNAsLDa85xRoHxtBAtEI9SCq60BJOcWUSjzq6/cexdcIW7jDzGAqsCJsusV7
+	 RvlkZbrc44DyYzYIb/GLL1gkAu7lObouhVwr860wTiIXS2XI/rczlm5EJ+IB1oAgGI
+	 MMuAtJtAeaszZt3SKTjwmQUnOJ47YfTKeODH4DVPDlnDSMGb3w0PPRwNq6FoJM0vJj
+	 LpQeq2ftQLFIWHMD2YT3MVHbnasvggZhc29IAD5FYLOvDCp/xiHNf/Qd28A46BLsLm
+	 6sWgf6aDT/EtWFjDTKdP3SaJTGY7aM9L9jJDzK5trg5p6PZy+q+j59YR+BZ2pro34/
+	 oY+owCDgGnw0g==
+Message-ID: <38fdd989-274f-4276-ba42-1afad8d590d2@kernel.org>
+Date: Mon, 9 Mar 2026 13:54:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] dt-bindings: arm: qcom: Add Redmi 4A
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org, phone-devel@vger.kernel.org
+References: <20260305-riva-common-v1-0-436f1f4b7399@mainlining.org>
+ <20260305-riva-common-v1-2-436f1f4b7399@mainlining.org>
+ <e174b1ac-380a-41fc-a1c7-d522e8e75c70@kernel.org>
+ <7b085eb9-972b-49a2-9b82-25b76fd9ba6f@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <7b085eb9-972b-49a2-9b82-25b76fd9ba6f@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Correlation-ID: <feae85c4-bea1-40b2-87d5-952b26ff3ee3@gmx.de>
-X-Provags-ID: V03:K1:nVijRyHmk749Xxe1SaVVxZjhv78CcLPfY5Zp6VWCcVPx0LRgpAv
- YlUaMlQ2khbG0//+B/pLuxHkEtXU7Wixowg3mGJqr5oPHxCgey/1Jo5veqr7hOEjPdMG6i5
- tOp4i2in3/ccnIVMsQrfozOT6K/pD3Rkcx8hRou7ucRSOgxqj2EqdCa1pzNoM9PkxcFPlbh
- x67d4XBXngfBRCh0Q862g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:+Wdq1jJsiDw=;RzuVWuRaOrWiuFsvF6bWoXiMBZL
- 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
-X-Rspamd-Queue-Id: EBBED23939F
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 0918B2393B8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmx.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmx.de:s=s31663417];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272929-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,postmarketos.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272930-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmx.de:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.921];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hendrik-noack@gmx.de,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.970];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FREEMAIL_FROM(0.00)[gmx.de];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,gmx.de:dkim,gmx.de:email,gmx.de:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:url,mainlining.org:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hello Krzysztof,
+On 09/03/2026 13:50, Konrad Dybcio wrote:
+> On 3/9/26 11:57 AM, Krzysztof Kozlowski wrote:
+>> On 05/03/2026 18:28, Barnabás Czémán wrote:
+>>> Add Redmi 4A (rolex).
+>>>
+>>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>>> ---
+>>
+>> Do not Cc linux@mainlining.org. It causes multiple bounces and is not
+>> even necessary. It's some distribution list only growing the CC list
+>> negatively affecting spam scores of sending patches.
+> 
+> Custom mailing lists are great for keeping track of patches within a
+> team or otherwise a group of people. They definitely shouldn't bounce
+> though.
+> 
 
-08.03.2026 10:15:35 Krzysztof Kozlowski <krzk@kernel.org>:
-
-> You received review and instruction what to do. Did you read it?
-
-I read the review of Dmitry and incorporated it into this version.
-
-> Your way of organizing your work makes it difficult for us. Look, try
-> yourself:
->
-> b4 diff '20260307181557.66927-2-hendrik-noack@gmx.de'
-> Checking for older revisions
-> Grabbing search results from lore.kernel.org
-> =C2=A0 Added from v3: 2 patches
-> ---
-> Analyzing 16 messages in the thread
-> Preparing fake-am for v3: dt-bindings: Input: Add Wacom W9000-series pena=
-bled touchscreens
-> ERROR: v3 series incomplete; unable to create a fake-am range
-> ---
-> Could not create fake-am range for lower series v3
->
->
-> Best regards,
-> Krzysztof
-
-The b4 diff error might happen because git didn't add the v3 label on
-the 2/2 patch of v3. First running b4 diff on v3 with:
-b4 diff '20251205152858.14415-2-hendrik-noack@gmx.de
-resulted in a working diff on v4:
-
-b4 diff '20260307181557.66927-2-hendrik-noack@gmx.de'
-Grabbing thread from lore.kernel.org/all/20260307181557.66927-2-hendrik-noa=
-ck@gmx.de/t.mbox.gz
-Checking for older revisions
-Grabbing search results from lore.kernel.org
-=C2=A0 Added from v3: 2 patches
----
-Analyzing 17 messages in the thread
----
-Diffing v3 and v4
-=C2=A0=C2=A0=C2=A0 Running: git range-diff c371c3410e81..d467d6770a1b 0bfd1=
-357fb44..1c9f51e8b572
----
-...
+I should not be dealing with all the bounces because of
+linux@mainlining.org and/or kernel.org score in XBL lists should not be
+kept poked just because mainlining.org cannot properly forward emails
+and sends mails without proper SPF pretending it is from kernel.org. I
+don't know if the latter is actually real thing, but considering how
+@microsoft blocked kernel.org there might be some reasons for that.
 
 Best regards,
-Hendrik
+Krzysztof
 
