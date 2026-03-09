@@ -1,186 +1,206 @@
-Return-Path: <devicetree+bounces-272752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272753-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAF4J36HrmnKFgIAu9opvQ
-	(envelope-from <devicetree+bounces-272752-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:40:30 +0100
+	id mAAgH62HrmnKFgIAu9opvQ
+	(envelope-from <devicetree+bounces-272753-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:41:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35404235945
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:40:30 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C636C23596D
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:41:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4330A303A902
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 08:39:25 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 44FEF3041BCE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 08:39:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D742D6401;
-	Mon,  9 Mar 2026 08:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891F42DEA75;
+	Mon,  9 Mar 2026 08:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSEYbMLq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NCJyR/xJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFCE282F11
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 08:39:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773045564; cv=none; b=id09346Siitvh6TlRSJGAO1TkNYHkxlaXr6aDySrAmxkApX+rah1FufqwX+HQ5cER4mrt/8DBllc8Neegrzua9IKEIVEag6ZqwYOx8qib5FjkMAdpAgAyh1ulOwmmxLHe71T9ZwbXz7XWRS86tY+1K9f4j9kCozVVy7Ota5YP10=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773045564; c=relaxed/simple;
-	bh=lmhRRii9BO7pCks+UXBWncpJDHHvOFHDr/1FU5tS2Dc=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2862E2D9481
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 08:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773045572; cv=pass; b=AuMbXUtVozU3WXCMpX1iS9eIcHRlfIQbIRXGd3u+IGR3vke/iN7nu7BaQ/9tyRMwbsZL4oa/20FjCDBhwPNtlVS5NQdfe5WVOHajbrJ5q6+9KNhfa9yQJ8L4tvnvIzkJHB1FEa8O4NfQqd725Tqb/efE5lepfAmFV18ihOfdIOY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773045572; c=relaxed/simple;
+	bh=pzNX+cWDDQA86LAQdSxpqzsIgb54XY76hGtWsx5y8tU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dTl/tKabmi3IaCKDcMfWc/YrZhqEdoWk5zDI2t6CokxfsTFgKMwJdah4eZbuMpLULMvjtHv7Qd/ivMdbWuUT3vM4v2C3aWrqvMCQgRFi3lizYjpm7cp78o8uI8rFDZ6LOiPlJylwUzQWNK4JSrsPh+0JgU4VQ+pI+2WOyp7x3Mc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSEYbMLq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDA2CC2BC87
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 08:39:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773045563;
-	bh=lmhRRii9BO7pCks+UXBWncpJDHHvOFHDr/1FU5tS2Dc=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=pSEYbMLqjTDf+WvklJtHDtFgYzdsLKFAG6QBOjFWn0mdGOnAYuMCdK+RpsRmUwuB3
-	 Ftz/PSViK+eOBH1fkaEikdf+bn/AJeBIM7daWhUzfaCvddMoaKLS4hSmwkbukqdRd/
-	 nA0yF7nJ7ltBjF3BNpZD6Ng6gmDow2aNdNiWZMNV5ZUsKDiwvIFot2rtllFJ42vBam
-	 mEbTooMbS59Ech8U8A+LlVJzz5UeYtBs3qN8xC45AUDqhfGcu7ixZP+sqVe2xJPRwq
-	 6Lm1lLb0J+PSItfq7J9ytw1zsO9KCHS8sZ7JRXtUQTsbCHyWJKX0domBon+sSXVgst
-	 S8OBLo9weaNqQ==
-Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-3870778358aso114489531fa.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 01:39:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUO5BgSpkULFfgTCj9vaiT5EXpi4gHblDzoeGvEZ/0onjDVhtgNVc5yvCMfuCFDF7GK9fFRfW97cBCi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8pj8L7pFVIlDJ0R7u/JC0podVdTKVReYHuJLrw/2W9LFB2Mvx
-	26OiGNcdirQ91yuxwAkgJIlcOdYl4fayufCGX7Ls43HX9u++4umo+hCMkZIEmqe+0yDUtmyD3UY
-	cL7eMHtVwg8sPcxBNlQFB2LUsA+Dy2V3BFpot1Gbdvg==
-X-Received: by 2002:a05:651c:892:b0:38a:b18:f41e with SMTP id
- 38308e7fff4ca-38a40b4bca5mr35053151fa.6.1773045562416; Mon, 09 Mar 2026
- 01:39:22 -0700 (PDT)
+	 To:Cc:Content-Type; b=MmgCFSK7PTLc9BKv92dwsDUeUTkj7MBhQfQJjAS7vxnXJaVugYl0aJDF9G9BNufp+sRLRIahbYbOVTRrEz4SEwZR7+9TCGuLkK6UZ9lCUYJ997sgI9nMu1q8xr9W4tzEKAA8AnUW/8pfw5h/ZvfLSymnxTCq5DYlaDjEmFSPQ6U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NCJyR/xJ; arc=pass smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6611f41eebcso6080750a12.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 01:39:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773045569; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ilN5T259bAa0LoMsfcUtqE8oJkISFoCduxEhGkHTgZKJz/GC4s4r9hZN/bglxMHal+
+         6VYsR6eaPKHz1pLtHbBulMriMKgK6Jl4xLf8IXqsDzudDi2YW8Lp1mi2Qur2jKjj4m0/
+         hTAMXR3xEzmCzSl3hn3QIBJhONgIoCWci3Rfrm4WV9rHBU/PnVcjEDclfaoGdSSiGXQZ
+         OIboz/yUpspjTDzlotGAFnyVF6hwaX4KRV4soZUYAU6qBlHVzkaJCodVcXjMbbOA52Pk
+         GwMJT9TAYvs4v+4xkeAybqA5SsvcdiLKMYDbkCQbN+S91zo9XPWY+LaoTwH0SsZ6/DD+
+         43dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=i2ApLkjRL2QedGmp1n+UDf2va/yjoghU9uSXBLC6UBk=;
+        fh=6Z8WxGAOB0Yy2Y6joaGgjhjTez7sdxUikMRbnuGg8iY=;
+        b=IgcW+V7sVIqopJDssgZlcGHWPfPWFTkzYgkXoQCkNGqr8DZ3Ly4C8PMwhvreuObtq7
+         B4R9qvw9tcg1xAN3O4ft2PDM5LVOvgITkwJQJBhfNAegpeTijdMyUHQvyCGpI3Qtlkb1
+         epL+1HabCKUoxlL+xSLAMvh4sgSXHXgZnQORhJ6klWP7EMvZGKyxpitY2lzWuzdZf4NK
+         yYCXAR1BkPoM3HbsV10BHX1/y/BERTH39mHEJzNhOvLzcaRRyq+XAILOxMHoHWvXxYTS
+         Je4ywf12kTJMi9tkdNy7rxTzWMBqnL6XKMKZ6GU0ylmwEeudCjZzRqSiqAlCXHhBEZoc
+         TiNg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773045569; x=1773650369; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=i2ApLkjRL2QedGmp1n+UDf2va/yjoghU9uSXBLC6UBk=;
+        b=NCJyR/xJf0bJqz2aZn1f2IIY3hVGwdPECksh9bJvCWJHy7KN/LfYCMASQclaHV04ug
+         AfiAoD3mowpy9AiJNqn69hTOJxAwMaFOxik321hepccsBaGuH4aHbwaS9sW5QjKrGr89
+         NXSOTd/4bstH6sLCSoZEhqS1phM0DCaf/Jp9biYIMGsTNl4+dE/YAydLYSBW54XZomXY
+         zLJGyPTP/6mIWa1PD5vtCWgcPCHmWMvVhJhAauZMIEhXLPM99YmdDj2Iq4kbWG2FoJQ1
+         bUVllO1ZLNy/O8Gf+gCPW3LlC0AH9vOja45ekgDLJDCHiYeJ5tnD3Ebc6ACGSMjRzF+r
+         CVnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773045569; x=1773650369;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i2ApLkjRL2QedGmp1n+UDf2va/yjoghU9uSXBLC6UBk=;
+        b=Q0pR2eiTGFuznl+Iq+V0mFb+OD7Ob1Osz2WVzQFRPmNucUVwTItnQqA/dr9DMbO2vg
+         3QRVaBDPPfg8MfJ+M0f4Xui+QAuJDEbzUNrCcSkd2U394+UTz1kAk+3AVOdwPuTW0b4S
+         Pc0Sqxc7GR4vgYLfTfb2dI5iI1t/EWyy4us1I3sN3uFyHUwucAOSbgqWEsHnytD0Y41J
+         ubU/6bndranAumivn+8ns2Ljq06hsQ6We4BIH3ZrLpMW2fuEjhIg7dpG1q/Eu+t4fSmi
+         i+Le8ls7nKw5F3sVaDbJ4vfQeUEaV7wrdicPQvgXl9AICszc9yZi954wtWzof+jq6wb/
+         2RPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXzuXhnQInr3ogGCwVxqtbjDsPpVTlp6CGzar9N06NBqBRY7+1J9xLyZ3RcMA/6LX9jn49i4Aw0KxQF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx1moL3+BIaTEdqtntbj7H6WAsnOn4I9ucwzXXxDaGsjoiV1/l7
+	OM9uqW/Ra7F/ET+ooUKlztxuaOe/VU3tNssTyDGFlZ0AdI/lv+DzIORCKYOiv6uGpedHUeYUkl0
+	WYvfbw5xWc8AmIuN/XwJqdHTYeLr1ZSc=
+X-Gm-Gg: ATEYQzyGo+CqMDjtkz8PndFMa3MTySsdfe1JklV7Va27FyB2hakCijUaxN7bgvOloDo
+	haSEi/5bvTXCJ/kX7pM1SAGKtVZVGW2u98nbPTUvgnJd3lCe9k7IIg+v8F0V3r5jQjgyA9GNYrG
+	0DDmsnfEmR2L1DdZ/tJMcjk6I1oJCpphWYt0ciA5UnV7ughZxgbtkGrAa1fDQYxbYp/TsgNB91F
+	cWTK9OLlm//vwb0VH866k55YztTy51WJR3fbDmqSuznksstKDbVbDYuv556OsK/dwG2jLrwfFTw
+	dHe5/RP9UoKCxHCEiTisDtkCwNv+k7v6N1SwyF+SAAFXJjvIPlH6nacUrwu8fHWCqet5NdB+R7u
+	QCD3rWX/sZmnK+OP6P59RYsGldWFryJe0odHor8J/9Y4F2F8j
+X-Received: by 2002:a05:6402:1452:b0:660:b590:f4c7 with SMTP id
+ 4fb4d7f45d1cf-6619d45653dmr5529486a12.4.1773045569245; Mon, 09 Mar 2026
+ 01:39:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306-qcom-sa8255p-emac-v7-0-d6a3013094b7@oss.qualcomm.com>
- <20260306-qcom-sa8255p-emac-v7-1-d6a3013094b7@oss.qualcomm.com> <20260307-boisterous-tuscan-rat-1eb9bb@quoll>
-In-Reply-To: <20260307-boisterous-tuscan-rat-1eb9bb@quoll>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Mon, 9 Mar 2026 09:39:10 +0100
-X-Gmail-Original-Message-ID: <CAMRc=MeeHP_ZjhOHu5NNLCU6Cg59EAWQAS0JngEHDQkmcDH3HQ@mail.gmail.com>
-X-Gm-Features: AaiRm50wcU1Efh35HOluVCqu3-5afwUUXiIKPiOPr6mPL4PpMSQ1J-X9POGllS8
-Message-ID: <CAMRc=MeeHP_ZjhOHu5NNLCU6Cg59EAWQAS0JngEHDQkmcDH3HQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v7 1/7] dt-bindings: net: qcom: document the
- ethqos device for SCMI-based systems
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Chen-Yu Tsai <wens@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Matthew Gerlach <matthew.gerlach@altera.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
-	Keguang Zhang <keguang.zhang@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
+References: <20260306203103.3119790-1-robh@kernel.org>
+In-Reply-To: <20260306203103.3119790-1-robh@kernel.org>
+From: Peter Robinson <pbrobinson@gmail.com>
+Date: Mon, 9 Mar 2026 08:39:17 +0000
+X-Gm-Features: AaiRm50fyrrjHlS8KQdRyNVWL8F5ziJnajJaVmMSS-XtEGWkK0fYH3J1bfJuGuM
+Message-ID: <CALeDE9PuXTiyxkgB3OTUS1d6bJ_LSCjOSztUBFmNPuTQg-oR_Q@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: freescale: imx93: Add Ethos-U65 NPU and
+ SRAM nodes
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Forrest Shi <xuelin.shi@nxp.com>, Peng Fan <peng.fan@oss.nxp.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
 	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Romain Gantois <romain.gantois@bootlin.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heiko Stuebner <heiko@sntech.de>, 
-	Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@gmail.com>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Minda Chen <minda.chen@starfivetech.com>, 
-	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Maxime Ripard <mripard@kernel.org>, Shuang Liang <liangshuang@eswincomputing.com>, 
-	Zhi Li <lizhi2@eswincomputing.com>, Shangjuan Wei <weishangjuan@eswincomputing.com>, 
-	"G. Jaya Kumaran" <vineetha.g.jaya.kumaran@intel.com>, Clark Wang <xiaoning.wang@nxp.com>, 
-	Linux Team <linux-imx@nxp.com>, Frank Li <Frank.Li@nxp.com>, David Wu <david.wu@rock-chips.com>, 
-	Samin Guo <samin.guo@starfivetech.com>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Swathi K S <swathi.ks@samsung.com>, 
-	Mohd Ayaan Anwar <mohd.anwar@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 35404235945
+X-Rspamd-Queue-Id: C636C23596D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,foss.st.com,st.com,synopsys.com,sholland.org,altera.com,linaro.org,baylibre.com,googlemail.com,pengutronix.de,oss.nxp.com,nxp.com,bootlin.com,bp.renesas.com,sntech.de,outlook.com,esmil.dk,starfivetech.com,mail.toshiba,glider.be,eswincomputing.com,intel.com,rock-chips.com,samsung.com,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272752-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272753-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_CC(0.00)[nxp.com,oss.nxp.com,kernel.org,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email,1.56.128.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[pbrobinson@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.986];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[76];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev,renesas];
-	NEURAL_HAM(-0.00)[-0.989];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linaro.org:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,4a900000:email]
 X-Rspamd-Action: no action
 
-On Sat, Mar 7, 2026 at 11:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
+On Fri, 6 Mar 2026 at 20:31, Rob Herring (Arm) <robh@kernel.org> wrote:
 >
-> On Fri, Mar 06, 2026 at 04:46:39PM +0100, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Describe the firmware-managed variant of the QCom DesignWare MAC. As th=
-e
-> > properties here differ a lot from the HLOS-managed variant, lets put it
-> > in a separate file. Since we need to update the maximum number of power
-> > domains, let's update existing bindings referencing the top-level
-> > snps,dwmac.yaml and limit their maxItems for power-domains to 1.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > Reviewed-by: Romain Gantois <romain.gantois@bootlin.com> # For RZ/N1
+> i.MX93 contains an Arm Ethos-U65 NPU. The NPU uses the internal SRAM for
+> temporary buffers. The SRAM is larger than 96KB, but that is all that is
+> available to non-secure world.
 >
-> Can we drop half-baked reviews? Reviewing only that piece is not even
-> possible, because it makes no sense outside of main change context. IOW,
-> it's pointless review of nothing, if you do not actually review the main
-> change impacting RZ/N1.
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Peter Robinson <pbrobinson@gmail.com>
+Tested-by: Peter Robinson <pbrobinson@gmail.com> # Tested on a NXP
+i.MX93 11X11 FRDM board
+
+> ---
+> v2:
+>  - Increase the APB freq to 133MHz
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 >
-
-This is the first time I'm hearing we can't review individual parts of
-changesets? I see your point about this particular patch and the fact
-it only makes sense as a whole but is this the official policy for
-parts of larger DTS patches?
-
-Bart
-
-> Also submitting patches do not really allow to apply reviewer's
-> statement of oversight to inly part of the patch.
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index 7b27012dfcb5..95cc60158349 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -43,6 +43,29 @@ map0 {
+>                         };
+>                 };
+>         };
+> +
+> +       sram: sram@20480000 {
+> +               compatible = "mmio-sram";
+> +               reg = <0x0 0x20480000 0x0 0x18000>;
+> +               #address-cells = <1>;
+> +               #size-cells = <1>;
+> +               ranges = <0x0 0x0 0x20480000 0x18000>;
+> +       };
+> +
+> +       soc@0 {
+> +               npu@4a900000 {
+> +                       compatible = "fsl,imx93-npu", "arm,ethos-u65";
+> +                       reg = <0x4a900000 0x1000>;
+> +                       interrupts = <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>;
+> +                       power-domains = <&mlmix>;
+> +                       clocks = <&clk IMX93_CLK_ML>, <&clk IMX93_CLK_ML_APB>;
+> +                       clock-names = "core", "apb";
+> +                       sram = <&sram>;
+> +                       assigned-clocks = <&clk IMX93_CLK_ML>, <&clk IMX93_CLK_ML_APB>;
+> +                       assigned-clock-parents = <&clk IMX93_CLK_SYS_PLL_PFD1>, <&clk IMX93_CLK_SYS_PLL_PFD1_DIV2>;
+> +                       assigned-clock-rates = <800000000>, <133000000>;
+> +               };
+> +       };
+>  };
 >
-> It's called Ack then. Use proper tags if one does not actually review
-> the patch.
+>  &aips1 {
+> --
+> 2.51.0
 >
-
-I need to resend anyway so I'll drop it. I may also drop the two
-hundred addresses from Cc b4 added. :)
-
-Bart
 
