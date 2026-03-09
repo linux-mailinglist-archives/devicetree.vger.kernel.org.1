@@ -1,248 +1,225 @@
-Return-Path: <devicetree+bounces-273013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273005-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MCreJobormlRKAIAu9opvQ
-	(envelope-from <devicetree+bounces-273013-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:34:30 +0100
+	id cHNIKQPprmlRKAIAu9opvQ
+	(envelope-from <devicetree+bounces-273005-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:36:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E0823BC29
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:34:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F20B23BCBD
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:36:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 513E1309C49D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:26:11 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B26A030767BB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4040E3E715B;
-	Mon,  9 Mar 2026 15:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC2ED3D9034;
+	Mon,  9 Mar 2026 15:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I6KBtG6H"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ezxlHF0h";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="aZUm2jtW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 330803E51FC;
-	Mon,  9 Mar 2026 15:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930B33D7D67
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773069883; cv=none; b=IhmLYEYGAb1XF1WVt9miOWQP6hSzFoo4f5sJ/xcrrlNN6EIfmenMfdh4EPnJPcmQHuRpNANSVp6RyhmBgY0QanlDEH2WNs4OoZlu6zZzNCU3FttDlmO8r0HxDWZ7QP4NG2oYcI3ukzvwxonYPWQts9Ah2fttlbNP0UsQHnauM6k=
+	t=1773069870; cv=none; b=gbzqr6xDgOylcVmD9oyeQLwFljBUWsspAQ24ymzsEJYvNdfRJgB3li3QwzQWEqv6xE/tzE49CxYGFJui55PMKVWgODe9ZT4VOnpkNhdzhwLxV19YRbBUHJsN2O6mSSIV0tI2ozn2D9rYtZewpMhm9bWtbcDIcxBZGeZHWIOFDQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773069883; c=relaxed/simple;
-	bh=Zm+H19KovkZIyk2JXUEuxV8cjqsBV83xuyYTiMBB5sQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rTteofoJOOwBxQ67HURJ4ETe/4prT9eFQpiqBppirt4/eDwAA4/pWJuEEmXul6CsBFAsP0uDYXcixS/hbJBCjHXZ/f5zP5TIzm1sLGiopLuQ8paA2P/PImIF8ECoJhTad2ljZVPcoC0l7KhETmH6Z5UHcKBl/jjWVlByrjGcEWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I6KBtG6H; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773069881; x=1804605881;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Zm+H19KovkZIyk2JXUEuxV8cjqsBV83xuyYTiMBB5sQ=;
-  b=I6KBtG6H6k15gZq/TAjCvcxg8MHB/D8IckT4Ag9kc2MBZ0Ndo1Sjh8qU
-   3M2QnbUwPtQK9Q9sy6YGPX/Q4f7pYmckr+XzWyF3J67e3m7SxyWuVgXrE
-   +9jagiWdg9tdFP71DQRV28xJdcH35yE0cJBxJutJLILhw35kfus7wj21E
-   8Pgy3+wCCu09MJLgBddmlchfuRJIQFAmU8XZweF++s7l76pLucpAFS3FA
-   jCAYW3u1jC28L+n3+tQGbpn43G/Bne4pjecx3jshGmRZwFh+y3EuToN+Z
-   CFRJPxk38yKJLdZXIc0u7PDzR+Zdpw0KuyyOSG40NH3Y+BWwG01eWEbw3
-   A==;
-X-CSE-ConnectionGUID: NnM9MDQ9Sbq0q+xQwd9Jfg==
-X-CSE-MsgGUID: ZhX4hQIvSEycuAws9+hPgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="85444713"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
-   d="scan'208";a="85444713"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 08:24:40 -0700
-X-CSE-ConnectionGUID: ayXV64CsT3aJxsGeowFNCw==
-X-CSE-MsgGUID: 3KdhRDAqR827wiM7B0Hpfw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; 
-   d="scan'208";a="216700210"
-Received: from lkp-server01.sh.intel.com (HELO 434e41ea3c86) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 09 Mar 2026 08:24:35 -0700
-Received: from kbuild by 434e41ea3c86 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vzcTA-000000000Qi-0jhd;
-	Mon, 09 Mar 2026 15:24:32 +0000
-Date: Mon, 9 Mar 2026 23:23:58 +0800
-From: kernel test robot <lkp@intel.com>
-To: Hermes Wu via B4 Relay <devnull+Hermes.wu.ite.com.tw@kernel.org>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Pet.Weng@ite.com.tw, Kenneth.Hung@ite.com.tw,
-	Hermes Wu <Hermes.Wu@ite.com.tw>, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drm/bridge: Add ITE IT6162 MIPI DSI to HDMI
- bridge driver
-Message-ID: <202603092305.W1fFHKL5-lkp@intel.com>
-References: <20260309-upstream-6162-v2-2-debdb6c88030@ite.com.tw>
+	s=arc-20240116; t=1773069870; c=relaxed/simple;
+	bh=i24TgRrLoGVPLjM+/eKgUisXgQ4vL+kM6dE3Nj1V3G4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=TLujQchZr40frId8/ERulUx0cILBzTmT1qklRKQcqKSdZpOeEEPYxWxnzwcHnDMcLbJFe/OHos0PtSV3RhyeCY+k/us+a6KClChAC3FXj1yEDzoa717SR9Y4PWcGWMvQNLARC89Zqdvcq4BgGe8aDpTk3H0TB6xG2FFfE1tJwEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ezxlHF0h; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=aZUm2jtW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 629A6dex2195101
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 15:24:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=yga3XbiT8rvRu5nMdqM4/M
+	FVlYqHPYbfjWpnYtaYAOw=; b=ezxlHF0hR5ibnUmPjHNsH86x148fYh/ke8b6Qk
+	Ur3tQcRVAnIt6cM9XG4yZfxit7Sv+N9Atet7J4DwCgNpG84l6omh51jyI54dUIA3
+	8JCSrBpgEzOZiQSKrCvLqCYJO4aPoKmHzsTDR0tmDiMdF7kCTzZmFNacVmRyhd4D
+	sc1DbV/IQskTu6KFA9EBC/Fm2EUGMB3HEEp7CcPUHq0eh689hVVkP/0aLGOXECrf
+	Hvsnnk/oZAxD/W7VplJ9QsaWWVrjmO4an60s5FyGy7na7iL9T9xdHtv79GhYMToG
+	hoWPIJqIt8/xGBw1HZBDBwS0VA+cWWqMAi32HGQ/3j9Ggtaw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4csv5u90e4-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 15:24:28 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-89a08e6cd15so475248106d6.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 08:24:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773069868; x=1773674668; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yga3XbiT8rvRu5nMdqM4/MFVlYqHPYbfjWpnYtaYAOw=;
+        b=aZUm2jtWYOhlVzOFay8zKFb5ZXYCZ7TUn/rz7wsbqKTBpYCcFdX1QC4AVsPhTVyaeC
+         9TYdkWVwDiLrMy6lnd/huOhOFIfAlv+jrOL1ueiUW34mB4EIFCTUOuBaUr0mKn9yanJb
+         a8yHfqCD3QvnBbUrSYDcbu8dxb0MBhcKVtfU3z/B7eg+vahftxsPvqxiKuSZRJzXWOT5
+         ZLEx72suFIL+JFMtzJQw6vgonWGdSqed4/BlOoiD/zQGP1Ab58Y+/FoHuI9D4RUgouVU
+         G3DJK1BWHGmydW4V+NpqMHgMWmFtH5BrsK7jiqoib1S+HIfMXKozgRX90UMUPX4nb02f
+         aKKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773069868; x=1773674668;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yga3XbiT8rvRu5nMdqM4/MFVlYqHPYbfjWpnYtaYAOw=;
+        b=vObMuRDM2R2G7NLGdy6vm8ad9Fq4yY6xWLZzPthRaP4ZJ3InS8ZOmErxHqo9mdJl6r
+         8qbHrLDmIPby/0uSNIT93QWif4D8N8bcJW5cOp8Pzbu3nwDCrywwfZLLAuS9/jWLcgzW
+         etStMyvsl/5BJiLvFTpDRENGTC7OXhtO4vRzey/XQi/CsH0VoU64bHqajwfe0zIO3F58
+         BYxLGnTSy6xvT+W2c4L+/B/oUma5FO9YzNdwhDo3J9f8u4LEmONVp53ARLpMRSlK7aVN
+         kR9ye+4+5OzpKeQ09LVqgi7LN07xYh1CdnkXnJ5oI98a52If9jV+oVRP8Ehuy5PMZl8n
+         gi3A==
+X-Forwarded-Encrypted: i=1; AJvYcCVyCc6qTNeWIEoCAErCwIdWKNnPvXkgUBaK5GPnLiox5mE77vdraM8wMhsXihNt5rK092GyuyALiz7R@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwZMPNRbFF6W+sDW5o8jmBohnTqyKLyOAMbd2UOuC++Q/TTvhM
+	qaUxK7tJkyYFiXa6Td+z9Cr2U2vMdywR7KzTcORH21wBeXEQptk6bMa0pb/A0bzYjQU0ene6JgW
+	c255EUBfeGspqFselX/bdUmaz8qiSYf8Po7SVGm2eO5qENVwYusqN74r0nZqLP/73
+X-Gm-Gg: ATEYQzx4Vsa+mAAfPidwzgjMQKqpRqKxUyXrsFo9krOzQZETsqMCupl6EE83QUr65Lm
+	86t+cvv2fczcX/fO0JkZdj06iP9t3eIBlHQ+qU5QbI8sbN1bW0iRPq1dBUcm/7OwIClR8bAQBHv
+	b4rYY1FbMwtoMMx+3G5K8OqniBfCxkLv3SmRUxx14dtL8gKf+vZGmg8QTh42TOUgb0Njhsof8pp
+	7JnaAPOAyuRLiwrflGapvOX/83mUkxKjnk/9TSfMP/dcbNcGbsvSj4CdDX4hUdzs3Aqf4jy4+hP
+	zpPds3ud7xygxVxnSnC9khnqgEKqJkiiwc/lV1q3/zGYypvCEamtDKlYtbOBZ50XJXQDNVa454P
+	3Iv87zzFucqoldyUDLTHBaYiRthsuxcBy1nYfmHlUkWk2+GSGJJGxem0=
+X-Received: by 2002:a05:620a:290e:b0:8ca:2baa:6656 with SMTP id af79cd13be357-8cd6d461f63mr1458819885a.55.1773069867892;
+        Mon, 09 Mar 2026 08:24:27 -0700 (PDT)
+X-Received: by 2002:a05:620a:290e:b0:8ca:2baa:6656 with SMTP id af79cd13be357-8cd6d461f63mr1458815085a.55.1773069867392;
+        Mon, 09 Mar 2026 08:24:27 -0700 (PDT)
+Received: from localhost.localdomain ([5.133.47.210])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4853a59fc36sm192812515e9.9.2026.03.09.08.24.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Mar 2026 08:24:26 -0700 (PDT)
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: richardcochran@gmail.com, geert+renesas@glider.be, arnd@arndb.de,
+        dmitry.baryshkov@oss.qualcomm.com, ebiggers@kernel.org,
+        michal.simek@amd.com, luca.weiss@fairphone.com, sven@kernel.org,
+        prabhakar.mahadev-lad.rj@bp.renesas.com,
+        kuninori.morimoto.gx@renesas.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, m.facchin@arduino.cc, r.mereu@arduino.cc,
+        loic.poulain@oss.qualcomm.com,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH 0/7] arm64: dts: qcom: Add support for Arduino VENTUNOQ
+Date: Mon,  9 Mar 2026 15:24:11 +0000
+Message-ID: <20260309152420.1404349-1-srinivas.kandagatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260309-upstream-6162-v2-2-debdb6c88030@ite.com.tw>
-X-Rspamd-Queue-Id: 14E0823BC29
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: f8nEQOT3xMy2FO5V9WEs7bZHTQssIYC_
+X-Proofpoint-ORIG-GUID: f8nEQOT3xMy2FO5V9WEs7bZHTQssIYC_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEzOSBTYWx0ZWRfX2OQOQHcbs6zW
+ H83pXVxkdrL1Rfsjc0Zf5haCMyhpLdPAVt2kvRqYhHf2dc2WkPfX3iZZorFPuA5GOmS4IdMU1dG
+ sGB7+OoVPufo9S5HragflEkjA0ho9WRWywUhxt/kAbrhcDghoxmRv17a9Fv218LqXxwGwo/4Dha
+ C8UTg8wqe34SdOpPHiqcx+2iz0cxGHnm2EZammZEwvXrXldeUbBRD/XTfO/duzbp2yPvHfegi18
+ jZcuBDtMeqbZU43wpJAETeHJwMQctYESixoZv0Aw28j5yJw+Sf7zUIPRZcbjyY/4qtaQ/4etIdv
+ /9ZF8sG1PMbJyZ361R3n/GGtMGh4IH5G2dhHJnaDQQN5mAsjXs9RhwqbAR6vZgt5gEDiw0Hn+FA
+ vVkpN/pFxgrJY/0y7DlVwt+N1PhlUh0eRbBySaeN0C2veLCuWLwsZrzhhMNsZQiQdt5ixmKhrQQ
+ z3U282poVfy6LyxX9Lw==
+X-Authority-Analysis: v=2.4 cv=Xr/3+FF9 c=1 sm=1 tr=0 ts=69aee62c cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=NEAV23lmAAAA:8 a=Ar_5JxPjAAAA:8 a=6arpMgwqxbr1QNdnrLkA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_04,2026-03-09_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090139
+X-Rspamd-Queue-Id: 1F20B23BCBD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273013-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[23];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,glider.be,arndb.de,oss.qualcomm.com,kernel.org,amd.com,fairphone.com,bp.renesas.com,renesas.com,vger.kernel.org,arduino.cc];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273005-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,arduino.cc:url,qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.981];
+	FROM_NEQ_ENVFROM(0.00)[srinivas.kandagatla@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-0.991];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,Hermes.wu.ite.com.tw,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,01.org:url]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Hi Hermes,
+This patchset adds support for Arduino VENTUNO Q board, which is
+announced recently [1]
 
-kernel test robot noticed the following build warnings:
+VENTUNO Q board is based on Qualcomm Dragonwing™ IQ8 Series processor
+along with a dedicated STM32H5 microcontroller.
+This patchset adds support for below peripherals
+    - USB Type‑C connector with dual‑role support
+    - ADV7535 DSI‑to‑HDMI bridge
+    - MAX98091 audio codec
+    - 2.5G Ethernet PHY (HSGMII)
+    - PCIe0 (to onboard WiFi chipset and USB bridge)
+    - PCIe1 (to M2/nvme)
 
-[auto build test WARNING on 2622649ad6cdbb3e77bfafc8c0fe686090b77f70]
+To make dependencies easy for new audio dai ids, I have used numbers
+instead of defines.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Hermes-Wu-via-B4-Relay/dt-bindings-display-bridge-Add-ITE-IT6162-MIPI-DSI-to-HDMI-bridge/20260309-174457
-base:   2622649ad6cdbb3e77bfafc8c0fe686090b77f70
-patch link:    https://lore.kernel.org/r/20260309-upstream-6162-v2-2-debdb6c88030%40ite.com.tw
-patch subject: [PATCH v2 2/2] drm/bridge: Add ITE IT6162 MIPI DSI to HDMI bridge driver
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20260309/202603092305.W1fFHKL5-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260309/202603092305.W1fFHKL5-lkp@intel.com/reproduce)
+Audio tplg is available at: https://github.com/linux-msm/audioreach-topology/pull/55
+Branch based on linux-next kernel: https://github.com/Srinivas-Kandagatla/linux/tree/arduino-VENTUNOQ 
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603092305.W1fFHKL5-lkp@intel.com/
+Thanks,
+Srini
 
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/bridge/ite-it6162.c:728:7: warning: variable 'cp_status' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-     728 |                 if (it6162->hdcp_sts != hdcp_sts ||
-         |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     729 |                     it6162->hdcp_sts == NO_HDCP_STATE) {
-         |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/bridge/ite-it6162.c:759:57: note: uninitialized use occurs here
-     759 |                 drm_hdcp_update_content_protection(it6162->connector, cp_status);
-         |                                                                       ^~~~~~~~~
-   drivers/gpu/drm/bridge/ite-it6162.c:728:3: note: remove the 'if' if its condition is always true
-     728 |                 if (it6162->hdcp_sts != hdcp_sts ||
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     729 |                     it6162->hdcp_sts == NO_HDCP_STATE) {
-         |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/bridge/ite-it6162.c:703:15: note: initialize the variable 'cp_status' to silence this warning
-     703 |         u64 cp_status;
-         |                      ^
-         |                       = 0
-   1 warning generated.
+[1]: https://blog.arduino.cc/2026/03/09/introducing-arduino-ventuno-q-your-new-ai-robotics-and-actuation-platform/
 
 
-vim +728 drivers/gpu/drm/bridge/ite-it6162.c
+Loic Poulain (4):
+  arm64: dts: qcom: monaco: Add HS/SS endpoints for USB1 controller
+  arm64: dts: qcom: Add Monaco Monza SoM
+  dt-bindings: arm: qcom: add Arduino Monza, VENTUNOQ
+  arm64: dts: qcom: Add Arduino Monza (VENTUNOQ) board support
 
-   695	
-   696	static void it6162_hdcp_handler(struct it6162 *it6162)
-   697	{
-   698		struct regmap *regmap = it6162->regmap;
-   699		unsigned int tx_status, sink_cap;
-   700		enum hdcp_state hdcp_sts;
-   701		struct it6162_hdcp_cfg *hdcp_cfg = &it6162->hdcp_cfg;
-   702		u8 hdcp_ver;
-   703		u64 cp_status;
-   704	
-   705		if (hdcp_cfg->hdcp_version == NO_HDCP || !it6162->en_hdcp) {
-   706			drm_dbg(it6162->drm, "HDCP not enabled, skip hdcp check");
-   707			return;
-   708		}
-   709	
-   710		regmap_read(regmap, OFFSET_TX_STATUS, &tx_status);
-   711		regmap_read(regmap, OFFSET_SINK_CAP, &sink_cap);
-   712	
-   713		drm_dbg(it6162->drm, "Tx status %x", tx_status);
-   714		drm_dbg(it6162->drm, "SINK capability %x", sink_cap);
-   715	
-   716		if (!GET_TX_VIDEO_STATUS(tx_status)) {
-   717			drm_dbg(it6162->drm, "video not stable, skip hdcp check");
-   718			return;
-   719		}
-   720	
-   721		hdcp_sts = GET_TX_HDCP_STATUS(tx_status);
-   722		hdcp_ver = GET_SINK_CAP_HDCP_VER(sink_cap);
-   723		drm_dbg(it6162->drm, "hdcp status: %x->%x, version: %x-%x",
-   724			it6162->hdcp_sts, hdcp_sts,
-   725			it6162->hdcp_version, hdcp_ver);
-   726	
-   727		if (it6162->hdcp_version != NO_HDCP) {
- > 728			if (it6162->hdcp_sts != hdcp_sts ||
-   729			    it6162->hdcp_sts == NO_HDCP_STATE) {
-   730				it6162->hdcp_sts = hdcp_sts;
-   731				cp_status = DRM_MODE_CONTENT_PROTECTION_DESIRED;
-   732				switch (hdcp_sts) {
-   733				case AUTH_DONE:
-   734					drm_dbg(it6162->drm, "HDCP AUTH DONE");
-   735					it6162_update_hdcp(it6162);
-   736					cp_status = DRM_MODE_CONTENT_PROTECTION_ENABLED;
-   737					break;
-   738				case AUTH_FAIL:
-   739					drm_dbg(it6162->drm, "HDCP AUTH FAIL");
-   740					if (hdcp_ver == HDCP_23) {
-   741						drm_dbg(it6162->drm,
-   742							"HDCP 2.3 auth fail, change to HDCP 1.4");
-   743						it6162_tx_hdcp_setup(it6162,
-   744								     HDCP_14,
-   745								     true);
-   746					} else {
-   747						it6162_tx_hdcp_disable(it6162);
-   748					}
-   749	
-   750					break;
-   751				default:
-   752					drm_dbg(it6162->drm, "HDCP NO AUTH");
-   753					it6162_tx_hdcp_setup(it6162,
-   754							     it6162->hdcp_version,
-   755							     true);
-   756					break;
-   757				}
-   758			}
-   759			drm_hdcp_update_content_protection(it6162->connector, cp_status);
-   760		}
-   761	}
-   762	
+Srinivas Kandagatla (3):
+  arm64: dts: qcom: monaco: add dt entry for lpass lpi pinctrl
+  arm64: dts: qcom: monaco-arduino-monza: Add sound node
+  arm64: defconfig: Enable configs for Arduino VENTUNOQ
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/monaco-arduino-monza.dts    | 512 ++++++++++++++++++
+ .../arm64/boot/dts/qcom/monaco-monza-som.dtsi | 325 +++++++++++
+ arch/arm64/boot/dts/qcom/monaco.dtsi          |  89 +++
+ arch/arm64/configs/defconfig                  |   2 +
+ 6 files changed, 930 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/monaco-arduino-monza.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/monaco-monza-som.dtsi
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.3
+
 
