@@ -1,198 +1,160 @@
-Return-Path: <devicetree+bounces-273014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273015-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oBvwKxPprmlRKAIAu9opvQ
-	(envelope-from <devicetree+bounces-273014-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:36:51 +0100
+	id cKiEIfvrrmkWKQIAu9opvQ
+	(envelope-from <devicetree+bounces-273015-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:49:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C11023BCD3
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:36:51 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9879523C091
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:49:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D608B30D0D3A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:27:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id A331D30CDDE2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:35:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C369B3D7D70;
-	Mon,  9 Mar 2026 15:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DCEC3D9045;
+	Mon,  9 Mar 2026 15:35:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pACa5uA7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="adq/96lZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9AD3D4100;
-	Mon,  9 Mar 2026 15:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8143D7D7E;
+	Mon,  9 Mar 2026 15:35:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773070037; cv=none; b=i/Nh/A4DCB2Gh5zz1cRk846BLx7J59HLm/ZcDCs1HctwZNXtTpT9Zvrqm2SO5tPNTNJd4LZTbPYyl8bxbTjUaVASatpswhzVoUqfGpI7BRsdD75uzKnSPQZ8hZMv/9YFWzrdXgVNU/qbXzq7JXKAvunU63dx1NNiAAzs/CNgk+4=
+	t=1773070517; cv=none; b=ThIEDwxiuM49i04GH2ZxGZqj2KankdLFZ2vGEyFTf4Too19+s1KjhuoCDf9s17aQDO6ds+H32qDhkLCPKFjWGb+y3NkLKX9csD3O9dWzSikl2l6AvPXxP72mnsHm0CJEDCOCWfyZhwL8BKCg0h75AP7M52wTGMqQ/N8TUo6aJpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773070037; c=relaxed/simple;
-	bh=6gDovicIUbZD+h74u0zKigreYrzh7H9eTfzFVv5rm/U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H9P7TvoSlWZKQD/UtUoqJOfqVd9r1/QyJqyyqU4La9bxy9surfIP53+F4i8TdGA0bqthKB18MkmXTf5o/WxDzK0vWoh827RbcnKnV+SiUdn6muBNUYuk71oFxGBWTragoye79YiEnTdFmxbWQSMPImSH+aL0NArZFbKIYPahtKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pACa5uA7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEFF6C4CEF7;
-	Mon,  9 Mar 2026 15:27:13 +0000 (UTC)
+	s=arc-20240116; t=1773070517; c=relaxed/simple;
+	bh=u+/MI2wZ/2tYxv66P3IM2zQuv9Y6IN55qSc/ZDaUOO0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vwh1tfKSAVv/Vl2KSg+azi/EK93cC0jVKylwMlE7YkaKezZOSiQILFTKhVq2Ufs3h4Xmi+WW8gPOXV/98e4YZJs3MM+tmuFKC85KhAZF3jWx/AGeQalOrNyq1fQlXurvjBD4CE5AU55VnvZ3/dhnJTdzYqxBSarBu8f8iy2uv/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=adq/96lZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA4F9C4CEF7;
+	Mon,  9 Mar 2026 15:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773070037;
-	bh=6gDovicIUbZD+h74u0zKigreYrzh7H9eTfzFVv5rm/U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pACa5uA7ugSlUXqaf/Dz3sfa2nPMOyFe8IygSv3MX3ONXHf/Pjcf9BbBaYZdyu5JV
-	 3GMXvg8KqcNSW8eLJ+QX3v1bqkcuhom9rw7dDGfbzcLyCk3YdbCsjuI7WTY03i61+L
-	 BElZi65pvjA1VWUfSL4Y0Hk8DEOzjO//ZJ3NLQFsCXimsCyWusYAsTYZTJ/8qZJ4DQ
-	 LpA5EVpUjq4wO0ZPdwjknuZu1FjZAHYBoChqPogASJaJk0npugWEqL5Gt3TSuHLZmw
-	 SPG6un1zb/CjWeSSIkamioqIDwMPCa0Fz6P1ZnqQ0dW56nQMZ2jTKxIU14TcTQpJE4
-	 WakwCiga7PdHg==
-Date: Mon, 9 Mar 2026 15:27:11 +0000
-From: Lee Jones <lee@kernel.org>
-To: Markus Probst <markus.probst@posteo.de>
-Cc: Danilo Krummrich <dakr@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
-	Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
-Message-ID: <20260309152711.GV183676@google.com>
-References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
- <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
- <2026030827-nautical-overplant-399c@gregkh>
- <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
- <2026030913-agonizing-shoptalk-ed98@gregkh>
- <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
- <DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.org>
- <e43ca445ec7887d3d15676adb7db04f5685f4195.camel@posteo.de>
- <20260309151555.GU183676@google.com>
- <2b04fdc5abc18f4344b2f15353be8d3092c60913.camel@posteo.de>
+	s=k20201202; t=1773070517;
+	bh=u+/MI2wZ/2tYxv66P3IM2zQuv9Y6IN55qSc/ZDaUOO0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=adq/96lZzdI0wteQ0IcsUV8KQGfZBQHXjBIKCfRr7fB8YEaWOeKLl6bEqKFvs/E12
+	 Esy8Do4TUnqN2/4IIETqw9tFgzIiE/UvEiHFxZhGFtweEX3cIfiS2vsYvZqHLaUw+v
+	 SNMfmh1ur0KoIj0VuyPaj+CxBecDD7hOtAVM2yvbdU45HPBYA7JDlYRSMPS48fblK7
+	 x/VtV3B4VM8Bm6n2ov0Ca5vnHKQnZQnDPInKCqb7uj4Mgkvwj2CjXOp/sUwFTuPld8
+	 qKdQm03+k1lbHx9zX016Kd353/bclFqTWz1H+f2M2lDjCcV9w8V9jchIkklFrtGo1b
+	 iGzOSpJ4DeRmg==
+Message-ID: <2796a368-8026-4021-b11f-4dbd883ded2f@kernel.org>
+Date: Mon, 9 Mar 2026 16:35:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2b04fdc5abc18f4344b2f15353be8d3092c60913.camel@posteo.de>
-X-Rspamd-Queue-Id: 2C11023BCD3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: remoteproc: qcom: Drop types for
+ firmware-name
+To: Shawn Guo <shengchao.guo@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+ Bartosz Golaszewski <brgl@kernel.org>,
+ Manivannan Sadhasivam <mani@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260309123357.1911586-1-shengchao.guo@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260309123357.1911586-1-shengchao.guo@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 9879523C091
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273014-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273015-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.988];
+	NEURAL_HAM(-0.00)[-0.965];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Mon, 09 Mar 2026, Markus Probst wrote:
+On 09/03/2026 13:33, Shawn Guo wrote:
+> The type of firmware-name is already defined by core schemas.  Drop it
+> from individual bindings that have either a redundant definition or
+> an override as string type.  For the later cases, constrain the number
+> of expected firmware names to 1.
+> 
+> Signed-off-by: Shawn Guo <shengchao.guo@oss.qualcomm.com>
 
-> On Mon, 2026-03-09 at 15:15 +0000, Lee Jones wrote:
-> > On Mon, 09 Mar 2026, Markus Probst wrote:
-> > 
-> > > On Mon, 2026-03-09 at 14:32 +0100, Danilo Krummrich wrote:
-> > > > On Mon Mar 9, 2026 at 1:52 PM CET, Markus Probst wrote:
-> > > > > Yes. I will split it into multiple drivers using the aux bus in the
-> > > > > next revision.
-> > > > 
-> > > > Independent of the other discussion whether this belongs into the kernel in the
-> > > > first place, reading over the cover letter and commit message I understood the
-> > > > following.
-> > > > 
-> > > >   "Synology uses a microcontroller in their NAS devices connected to a serial
-> > > >   port [...]" controlling LEDs, fan speeds, a beeper, etc.
-> > > > 
-> > > >   I.e. it muliplexes several physical functions that belong to different
-> > > >   subsystems, such as hwmon, input, etc. over a single serial port.
-> > > > 
-> > > > This sounds like a textbook candidate for MFD to me.
-> > 
-> > Then you do not know what a textbook candidate for MFD is. :)
-> > 
-> > What part of the MFD API does this device utilise?
-> > 
-> > > > I.e. there is a very loose coupling of the different functions that make up for
-> > > > entirely independent drivers, except that they share the same serial port
-> > > > connection.
-> > > > 
-> > > > Whereas the auxiliary bus is more for very complicated devices to be broken down
-> > > > into more managable (sometimes optional) sub-domains, where the corresponding
-> > > > drivers usually have driver specific APIs to interact with each other.
-> > > > 
-> > > > - Danilo
-> > > 
-> > > QNAP and Synology do things very similarly.
-> > > There is already a driver for QNAP devices:
-> > > 
-> > > drivers/mfd/qnap-mcu.c
-> > > drivers/leds/leds-qnap-mcu.c
-> > > drivers/input/misc/qnap-mcu-input.c
-> > > drivers/hwmon/qnap-mcu-hwmon.c
-> > > drivers/nvmem/qnap-mcu-eeprom.c
-> > > 
-> > > drivers/power/reset/qnap-poweroff.c (this one is not part of the mfd)
-> > > 
-> > > and I try to implement the equivalent for Synology devices.
-> > > Given its a MFD I would assume the same applies to this driver?
-> > 
-> > Of course not.
-> > 
-> > The QNAP driver above calls devm_mfd_add_devices().
-> > 
-> > This one uses none of the MFD functionality provided.
-> > 
-> > Linux supports 10's if not 100's of devices which do more than one
-> > thing.  Only a fraction of them are Linux MFDs.  MFD in Linux is an API,
-> > not a type of device.
-> > 
-> > Don't get me wrong, you could probably code up this device as a Linux
-> > MFD, but you have chosen not to, so therefore it cannot reside here.
-> From what I have read so far, the way its written it probably can't
-> live anywhere inside the kernel right now.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-There is a place for everything in the kernel.
-
-> So it will be restructured
-> to either use mfd or auxiliary, which both involve splitting the driver
-> up into multiple pieces.
-
-The driver should absolutely be split up into multiple pieces with each
-part being redistributed into its associated subsystem.
-
-> From what Danilo is writing, it will likely be
-> mfd.
-
-If you use the MFD API, then it can live in drivers/mfd.  If you go with
-the Auxiliary route, then you'll have to find somewhere else to put it.
-
--- 
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
 
