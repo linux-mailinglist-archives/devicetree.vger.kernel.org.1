@@ -1,105 +1,122 @@
-Return-Path: <devicetree+bounces-272654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272655-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QD6GD3kOrmnh/AEAu9opvQ
-	(envelope-from <devicetree+bounces-272654-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 01:04:09 +0100
+	id CC4oJOEXrmny/QEAu9opvQ
+	(envelope-from <devicetree+bounces-272655-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 01:44:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9209232D30
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 01:04:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D77232E81
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 01:44:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 10CE23011340
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 00:04:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 52AAA302E323
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 00:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93F707262E;
-	Mon,  9 Mar 2026 00:04:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2CD21B918;
+	Mon,  9 Mar 2026 00:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lbp9gB87"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gWU7fE8k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33A370830
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 00:03:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60312367BA
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 00:43:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773014641; cv=none; b=bREuZ1s16ASI2kaW/j/ERI3fMF8a6eahmbdvzLfI4X0t+0j8wbAzYvqWi3SZ5gxFT+5hdr87Gb1JssYdJLaEMIB9fBCmRt2m1Foo6LkUg1Shqo23U+cZ1I4uk8zHi/SdvcbPHWDLmel64qfw1+iAFiQ+RWn4v+7B+D5SmHXyOhQ=
+	t=1773017023; cv=none; b=ahAGVt3E/cP2JNv6gmsmDT1gY8W9zarimbIETFNbx3AYANBsvhZsRYMNHnhOX1RapMBG/gnZmhBqJXtDVOpm+YWcYAyC5ZkhK29J2QJ3Jim5P9iVdsOsdENmkOHQT6+qumW0CyTiPFzaGimDiJe6r6C+NTVfK3QR9E30GBzVZNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773014641; c=relaxed/simple;
-	bh=wPZiFdqCiDOOFye8FKOQoufL7cyIaxgiXa67+xHsn0s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QoqxeXiPZXml65sRGnka5xgAyo2n/UcPOHwK4+P+nqTiGk9iwOM7maroOll//F7fsCZODeVskwp2HUZi/RlCxRno59vMY8vldY0ge1ysx0X99re+w0KmmzLkfxz0/4srj2K0/i6MJqyuLRqu8xJzASxjUR7x59tNN2Og0JQOCSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lbp9gB87; arc=none smtp.client-ip=209.85.214.175
+	s=arc-20240116; t=1773017023; c=relaxed/simple;
+	bh=F9TAPixUvya/KShKD6K8CYIlWYXDr99PHeT2pj0XyIw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=MOAIbjAwvBim04KBssaP8iX+yQ/m2Q/MjA0asd//4f3Wa6Pe4CT4plhWZLcaFr6wCQfFNCVI8cwN7HMreCsnEj9z0j18r/ZiN5U0zxAfvhHGxGNnFFkMg68g//sm9yxrHOMR5sK9TLAtIz4acw1qSlFUctCBExaPl5MMXetJhKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gWU7fE8k; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2ae4d48dc2fso33574885ad.3
-        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 17:03:59 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-82989744ee0so2957843b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 08 Mar 2026 17:43:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773014639; x=1773619439; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HkTY0vM9EzW6XUSGNuKIJpMIFfDu1qpzZf7r+qP4u6M=;
-        b=lbp9gB87GRviLuybrdKpqdO+ljmRKZY5VVQHdEu+c3QBm5XVHX7wf/cMJ0SiNngIOT
-         H9O7uQTIrHNMg056XFWtfEAhBUtN4/D7El/We2kp5b1gjiFBCF8p+MmBeIle3UlluQDK
-         t6SVaMi+tXHpV8tUMNXFuqko6n00OOvCoq6jzT0Z0+wY4m0k8CjpdnhdDS/SmekAmwVT
-         umpd6bE+4L5bB2xwL+eMr4K5ll3m9V5DQwP7U6VM/pt3E8gmXKzkixMU0cZVDIWbxNbA
-         0FWdNZ6aXscakiStpIesvrUJUPa6eAnDRxIIW67zrlQrVftOup4ZhSw3O/y75p8EfhM9
-         UdGw==
+        d=gmail.com; s=20230601; t=1773017021; x=1773621821; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oSzKv/Yso3zqJtEhQa2CN7kDXaRLoQ3igKM1IB73swc=;
+        b=gWU7fE8kTJ66Bdupf+W/uXVwFhNMKsqD8Mx25pz+PtC68b2rP3XZ4QrRK+n766DC2v
+         GfhFr3goAeYr4IvlMqZLIJhlBsJyfjQpOCPfcj7KtZmFvAFn43uCY4QD0UfvG2SYVako
+         Lj4XZ2yKxAFH9SmgVq7AVhjbQ5lnc0fzsEPgXQtM0u4DFKn8wSTZs0u8r6ndxfIjUBNO
+         wHTTJr6eJdPe5u1e0kEcVHt3Joi5nx4VUPxl5vEwM3tnoP3WRq9rFA+dAslFZf1a8R4P
+         TGa3tHzXYfN4MgojTuY5Qwn5roXnbNdoHUqeBnDEqpmnIwC/T6l7rzVFbpP9KWBwInRd
+         qf9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773014639; x=1773619439;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=HkTY0vM9EzW6XUSGNuKIJpMIFfDu1qpzZf7r+qP4u6M=;
-        b=Qs0sFucnEsJc3kNC0yBAPyEBR6RhP0CWJ5x4629LCX5pzTOHdY2hn9pIpyjOaczng3
-         0BR6V0G3amHYIVv7hAtTsR8VrFYZWiloytxukwGxdlkxqcOanJIAKTigootzixFbHPwi
-         7BVpBFICqStSvllC8an96X5/b2QbVm08ISzlQp0hs5Cz0Fs1CzBrZ+0CNFzJLv7lQ6Y3
-         jWmYaF7uVEISIQKCJ9+8End5LH+JN+SyzwBHV2Iaanj7J4WxAY1AEh6CSlwfgRWAlxZc
-         c1KjJRV6gGluVG/6cGo9L+Rq68f37OzphkdpK/rnZ8N2QyfT69TH9kZEZWw5ctQvB8Qr
-         OKyg==
-X-Forwarded-Encrypted: i=1; AJvYcCWxCvJywzzuSSffXN8c32olkoq4277oxUwuxJkOTPDjz0EH+QzzgsPZxGq3RBxDtNShc9NlSkeNuJI3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy78DR3dvqbF/8ev+60hTLrWE2lhZuMey6N4cRgpLBzjehlgy1X
-	fozSGOF++oioXHDaqzE2+E/6hkkQh+BYed5qcF+9386qYcERkYsV5dC4
-X-Gm-Gg: ATEYQzy3UHRWk3HjgWcXrvwjBsQZZ8a6cEnsHARWfsf4IrEjnxa9cjnSYfh/FHVlA5B
-	VndgXNzWlVy+Hn9GNkajiiel1egvAWj3TK0fTxu69tncz6+1EyxvxeJ/bKaomnotKdbxRP/YKMJ
-	h5x7wteiR530z+rNIGZwocGFqIBy3Tx37gvBWZd2f169uo9jb4BzALPp//sr4ketwFL7Baj5f6A
-	6VgdecwuLrNANY3AZ6pKeB9GhGnaed6nopeMDjL5mbBjJ1cVz2LrTeXFbTIA4qDIYBO2SA7KSuj
-	PbhmafZwmKEchD4Q2RhsqHn6dOemCErJuk7639swAe4uLXLcXKMHGnsXcmtEv0IY83RrLTk31vj
-	IeKRSC9nFLB9lSYV8E9xwNlgiy2+fm6jsPXjoWDlPBLH+tJMBj+3Ls3WNjUClw6hERkZH6YsS5Q
-	nLGszIUFv9c2St9IaSFbnn5d5MObmWh64X82shUT4BHh0fTUfu+mu/1wtp8jpjnQOspvU1
-X-Received: by 2002:a17:902:ce88:b0:2ae:4d23:334d with SMTP id d9443c01a7336-2ae82572cf9mr95162765ad.56.1773014639053;
-        Sun, 08 Mar 2026 17:03:59 -0700 (PDT)
-Received: from phuc-desktop.. ([183.91.15.56])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae83e9b9c6sm104845405ad.29.2026.03.08.17.03.55
+        d=1e100.net; s=20230601; t=1773017021; x=1773621821;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oSzKv/Yso3zqJtEhQa2CN7kDXaRLoQ3igKM1IB73swc=;
+        b=JAlaaNFuXASGBYllbHSm+6On9Zzz8WhPO0yyX4xMRIgt3M6lkbY3vWQzMxhTguqZuS
+         uLFQH8xc71ZmvjGFwVAM5W33wqxTFN4Er86ASfMpWl6n9oQhPug0UEFwZvBKK84Hom1D
+         0HgA66QWAeN8ZhZEUekeGvYKqMQaZhVto2zKKDG6lKnby/9lE8KCoQXtCz6Mg8c/sgxX
+         EijKKouMFEn3366ELst0JVbwPqNgtuJ+9dqWVSMPfZMvepz0oUvo6Ej647gfVPT1x9g1
+         5KY+cztsNj99lY5KaD38+vmm9uC4YJcTZi+vN9t48h2LwtlwlXh/p9DAzAToiqdBXsfE
+         al/w==
+X-Forwarded-Encrypted: i=1; AJvYcCWxaWxviCEUhJ30lXZ2fD7tLFj0vCr9C8fSb6DkK8All9faimKY411l3oVZ7vSggkq3s33QIGfJy85P@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzsiOegceggfXSf8Uq2GjWBq28G1IUj9rGafGPHcZuHTYVSmwU
+	IhrBKYB1a92AR7f8rbT0WkAfW+dIN5P9PAhjaOyvPPXNAIik9TJiE8Zq
+X-Gm-Gg: ATEYQzwxr2V98PQWkqoBuTqacDwXjLiy29q6bHhEEpUukwDhaM+p9TH1E5+6Yu+98Fk
+	84pI0M/FL7vsu0nWVFRoUKNA59tJPfEfmYzNwpB2n+6O/15wJfrIIdFasZpAYdimHFvRdZE/JNT
+	CPiPo1TYefLIU81AT4PMYwrd/cXUPOQNeJrDf8zSBz+bX4wdGgKFn+tT3DnmAywngzvxl5hn77a
+	Ct8JzL8Zot5C4cknohIunKuJeGJGek3vNTQNWhFrBNjPaGQ+wRpl3VndvZoJx7bBOtNfaN+Nrxk
+	9FCfP66W+YDblMpz+plr5/1YPlPDfvLJ8IbPsVnHuQXO4bAJKynIriTPFfEoizXa/u2CY0kVMYz
+	tMUKr/IpWnXm6Wm38X61S1l65OeQW0fxrGKrTSfjFOV0ZaV9nK0dFz4oxS9+ja1fo/FCbzMSZOb
+	1to6q0mbQVAFaTQNNtHUBVbKiwA4OH3MLmRg==
+X-Received: by 2002:a05:6a00:1a8c:b0:829:810e:8af8 with SMTP id d2e1a72fcca58-829a2dc4f99mr8946097b3a.22.1773017021121;
+        Sun, 08 Mar 2026 17:43:41 -0700 (PDT)
+Received: from localhost ([2001:19f0:8001:1b2d:5400:5ff:fefa:a95d])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829a46369d3sm8200195b3a.2.2026.03.08.17.43.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Mar 2026 17:03:58 -0700 (PDT)
-From: phucduc.bui@gmail.com
-To: krzk+dt@kernel.org,
-	geert+renesas@glider.be
-Cc: krzk@kernel.org,
-	krzysztof.kozlowski@oss.qualcomm.com,
-	conor+dt@kernel.org,
+        Sun, 08 Mar 2026 17:43:40 -0700 (PDT)
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	"Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
+	Yao Zi <me@ziyao.cc>,
+	Yanteng Si <siyanteng@cqsoftware.com.cn>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>,
+	Inochi Amaoto <inochiama@gmail.com>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	Chen-Yu Tsai <wens@kernel.org>,
+	Boon Khai Ng <boon.khai.ng@altera.com>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>
+Cc: netdev@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	dmitry.torokhov@gmail.com,
-	hechtb@gmail.com,
-	javier.carrasco@wolfvision.net,
-	jeff@labundy.com,
-	phucduc.bui@gmail.com,
-	linux-input@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	magnus.damm@gmail.com,
-	robh@kernel.org,
-	wsa+renesas@sang-engineering.com
-Subject: [PATCH v4 2/2] arm: dts: renesas: r8a7740-armadillo800eva: Add wakeup-source to st1232
-Date: Mon,  9 Mar 2026 07:03:19 +0700
-Message-ID: <20260309000319.74880-3-phucduc.bui@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260309000319.74880-1-phucduc.bui@gmail.com>
-References: <20260309000319.74880-1-phucduc.bui@gmail.com>
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Yixun Lan <dlan@gentoo.org>,
+	Longbin Li <looong.bin@gmail.com>
+Subject: [PATCH net-next v8 0/3] riscv: spacemit: Add ethernet support for K3
+Date: Mon,  9 Mar 2026 08:42:41 +0800
+Message-ID: <20260309004305.315018-1-inochiama@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,65 +124,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: D9209232D30
+X-Rspamd-Queue-Id: F2D77232E81
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272654-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,vger.kernel.org,gmail.com,wolfvision.net,labundy.com,sang-engineering.com];
-	TO_DN_NONE(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272655-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FROM_NO_DN(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	DBL_PROHIBIT(0.00)[0.0.0.55:email];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,armlinux.org.uk,ziyao.cc,cqsoftware.com.cn,nxp.com,bp.renesas.com,eswincomputing.com,bootlin.com,altera.com,cherry.de,st.com,synopsys.com];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	NEURAL_HAM(-0.00)[-0.999];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: bui duc phuc <phucduc.bui@gmail.com>
+Add initial support for ethernet controller of the Spacemit K3 SoC.
+This ethernet controller is almost a standard Synopsys DesignWare
+MAC (version 5.40a). This controller require a syscon device to
+configure some basic features, like interface type and internal delay.
 
-Add the wakeup-source property to the ST1232 touchscreen node
-in the device tree so that the touchscreen interrupt can wake
-the system from suspend when the panel is touched.
+Change from v7:
+- https://lore.kernel.org/netdev/20260304080721.1658224-1-inochiama@gmail.com
+patch 3:
+1. Remove unused parameter in spacemit_dwmac_fix_delay().
 
-Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
----
- arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts | 1 +
- 1 file changed, 1 insertion(+)
+Change from v6:
+- https://lore.kernel.org/netdev/20260303010630.567674-1-inochiama@gmail.com
+patch 1:
+1. Drop the extra blank line at the last
 
-diff --git a/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts b/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
-index 04d24b6d8056..d47a6cc3e756 100644
---- a/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7740-armadillo800eva.dts
-@@ -228,6 +228,7 @@ touchscreen@55 {
- 		pinctrl-0 = <&st1232_pins>;
- 		pinctrl-names = "default";
- 		gpios = <&pfc 166 GPIO_ACTIVE_LOW>;
-+		wakeup-source;
- 	};
- };
- 
--- 
-2.43.0
+Change from v5:
+- https://lore.kernel.org/netdev/20260227075718.2243818-1-inochiama@gmail.com
+patch 3:
+1. fix error from checkpatch
+
+Change from v4:
+- https://lore.kernel.org/netdev/20260130022705.1059214-1-inochiama@gmail.com
+patch 1:
+1 Apply Rob's tag.
+2 Adjust clock description according to Russell's suggestion.
+patch 3:
+1. Add set_phy_intf_sel() and get_interfaces() hook, suggested by Russell.
+
+Change from v3:
+- https://lore.kernel.org/netdev/20260128072931.875041-1-inochiama@gmail.com
+patch 1:
+1. fix the uncorrect compatible string postion
+patch 3:
+1. add "CTRL_" prefix to all ctrl register definition
+2. only use delay config 0 to calculate delay code.
+3. fix typo in the comment
+
+Change from v2:
+- https://lore.kernel.org/netdev/20260121071315.940130-1-inochiama@gmail.com
+patch 1:
+1. remove not needed compatible for select
+2. drop empty line in "spacemit,apmu" properties
+3. add spacemit,apmu properties to required.
+patch 3:
+1. remove misused phy_fix_phy_mode_for_mac_delays.
+2. use local tx clock instead of the clk_tx_i in the dwmac.
+
+Change from v1:
+- https://lore.kernel.org/netdev/20260120043609.910302-1-inochiama@gmail.com
+patch 1:
+1. remove phy clock
+patch 3:
+1. improve comment and include something special about Spacmit K3 dwmac
+2. reorder the included file
+3. fix wrong delay macro used in spacemit_dwmac_set_delay.
+4. add check for maximum supported delay.
+5. use DIV_ROUND_CLOSEST to calculate best delay configuration.
+6. use assign for the ctrl register initial value.
+7. fix input when calling of_property_read_u32().
+
+Inochi Amaoto (3):
+  dt-bindings: net: Add support for Spacemit K3 dwmac
+  net: stmmac: platform: Add snps,dwmac-5.40a IP compatible string
+  net: stmmac: Add glue layer for Spacemit K3 SoC
+
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   2 +
+ .../bindings/net/spacemit,k3-dwmac.yaml       | 102 ++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 227 ++++++++++++++++++
+ .../ethernet/stmicro/stmmac/stmmac_platform.c |   1 +
+ 6 files changed, 345 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/spacemit,k3-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-spacemit.c
+
+--
+2.53.0
 
 
