@@ -1,203 +1,164 @@
-Return-Path: <devicetree+bounces-272935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272936-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ODWgGoPFrmn2IgIAu9opvQ
-	(envelope-from <devicetree+bounces-272935-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:05:07 +0100
+	id gNHkCg/HrmlwIwIAu9opvQ
+	(envelope-from <devicetree+bounces-272936-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:11:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AF2239638
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D879239803
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:11:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5F6AA308AC2A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:00:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 70C0B301A38B
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:07:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A94E3C197F;
-	Mon,  9 Mar 2026 13:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB5CB3BFE4D;
+	Mon,  9 Mar 2026 13:07:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hvJn90D2"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="w2KdD64d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011049.outbound.protection.outlook.com [52.101.57.49])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390C43AEF2E;
-	Mon,  9 Mar 2026 13:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773061228; cv=fail; b=Uz3grdXvppNcDvdEteOpY1IS/ot7Y4vjciXyAn7u/8nMjC0YjP+B8OKVm06cHN/2vrDE7trAEpiSGBB90WJ9sn9B575+WuWALJtY305JzWsN+zqrsCttAMP3YR5C2/kQ/ikzshAURrpmNojLHqSx86HXMx+iJjY7Zg5yZ7NZRts=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773061228; c=relaxed/simple;
-	bh=JX4MhOGom+PlDuFhugirmZde/smaxQlWxwtMkwOvm/o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=L8iPpDSIQWTtRTpU+tEeMyxQW1NBYLG25RXDg/rX5qiB8qgDaGzPe6uBPehdMqpTuy54iDlli2ZKzgnGmtaVitFD1IW9P3qNJJPPsU2q/BVmWB9ZdB/+kJNWkYRg1jaVE9XcWnoccOROLNOT5QUSe5Itgd2VhduG1dhT9qpjNEI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hvJn90D2; arc=fail smtp.client-ip=52.101.57.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kSfS3Uz9aeqdTMQ3P2Gh30VxDh9aBcbC2H+Io0ZBRtv8/UpLQUTYsh2eASq+hdL8Tp5AGMFCcn83KypPVsm5MWTeordoIs14J+Wjxj4yLUogFfEsonfgw2sqonN0f8nIBwrBH2pU5rY2fVGBgEXwBIbrylbiUt8q0F/rw53KAWYjegyhqqB57OebLloxkbeQ/A0PLD0suidnJNBHx8GzWrLxaNJDXYxfR7m0ImMzlOMR/TfaNi45HQi4w7kwr2FSSTNUUKtCYyCq3gE18TOq3gWe02ISyLBMnG0553DcCrracMAfyxSn6Crev5oNxk5hbf0LbvgcJVaf6I2dYxkfzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zu7Nl1Yk8xxQlmJCGM0pFvX38CPzUnT1TAzJsYFYhQ8=;
- b=AbryZn+qatH+BBAgBaD+4zUFxYJsVtlW6VDtafTUFcmTICQ6yGWcuIsydWQIPZwAdnomqOuTGoiWpSwOdfECIynr4rvGERt4MT3QclGriPsW3Kw3v9gB0FOLmj6oIj18SfsSmU+fLQ+k8o+gsGYhIFtXouCTnmrDvGOujhiOwYcgPxtEh8a8Bl8NKTtLarwc6ws2nCfbv3hT5nOY6iXLCqb5lpnUR4klOghCYxS11zDriAK6OuUjd2dPZYEeEebP5bIkioqqkZmDduFHXrU6sb6j75rhzSwKWfm6k1acnXT7TdxAgU+QEoyyKWb2vTntt9AeGQXjejWDHeQm3N1pbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zu7Nl1Yk8xxQlmJCGM0pFvX38CPzUnT1TAzJsYFYhQ8=;
- b=hvJn90D2N6xEPBQWax2r6kFZNATsz2MvQZrBlhnY3EoWTc8wJSSooXi6/Ubb6UI5xlSx7ckKUjCeBE6aA96N7mmB2Yfur4N3rcwZkPkbDHAq3wGFHIuhRmaFyIUC7cpxSGuTFIMK7AtHcHl4v8q4PzQNcovQe308lXZHFfchMdU=
-Received: from CH0PR03CA0282.namprd03.prod.outlook.com (2603:10b6:610:e6::17)
- by SJ0PR10MB4638.namprd10.prod.outlook.com (2603:10b6:a03:2d8::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Mon, 9 Mar
- 2026 13:00:16 +0000
-Received: from CH2PEPF00000143.namprd02.prod.outlook.com
- (2603:10b6:610:e6:cafe::1e) by CH0PR03CA0282.outlook.office365.com
- (2603:10b6:610:e6::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Mon,
- 9 Mar 2026 12:59:55 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CH2PEPF00000143.mail.protection.outlook.com (10.167.244.100) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 13:00:16 +0000
-Received: from DLEE203.ent.ti.com (157.170.170.78) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
- 2026 08:00:15 -0500
-Received: from DLEE215.ent.ti.com (157.170.170.118) by DLEE203.ent.ti.com
- (157.170.170.78) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
- 2026 08:00:15 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE215.ent.ti.com
- (157.170.170.118) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 9 Mar 2026 08:00:15 -0500
-Received: from [10.249.42.149] ([10.249.42.149])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 629D0EXp1130425;
-	Mon, 9 Mar 2026 08:00:15 -0500
-Message-ID: <765b5e47-0092-4373-a4e9-c42763aeb4e9@ti.com>
-Date: Mon, 9 Mar 2026 08:00:14 -0500
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BC9E3B3C18;
+	Mon,  9 Mar 2026 13:07:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773061677; cv=none; b=sDK4L8280rAH8mrTpyEPA/LGo4XOIxmrYwvT7KWsMuskBLO2UuLprhz3AyNIb3NZdKbgc9Kvy+dnUPa9o4IobYzfy39N6CN3edph5cNTy9GfP5/gEeuUzu2nHm0uSwb1Xaw0qgJlIKTgprdiDxG2vbNQ0xpmflNJTttL9PsFg58=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773061677; c=relaxed/simple;
+	bh=ujn6DnVOcPrhG5BeMK0lQZ1UIHC3dRjtJ6gSxWRvNq0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IRpY1h0HiYbu8A7WnCTMbX3aFY50bnwD0VeqH0JTqC7ZwRj34P3nndu17VzqoLjoJEfTElK8bQseh5kauEGBjkjf44926NVyXcK92Ub3gOwBXbISJt1++sxG+VCGrPpoofbUbYwzgCZ+Uv1ForoHet+UBuEpxJX0cdjBRy1nC5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=w2KdD64d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8F04C4CEF7;
+	Mon,  9 Mar 2026 13:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1773061676;
+	bh=ujn6DnVOcPrhG5BeMK0lQZ1UIHC3dRjtJ6gSxWRvNq0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=w2KdD64d2rMjge0Bsb91cYlNIEIEg+04HsAx0FXRbYLGa4tkPfikT4cBURJCC2GVB
+	 66bWgezlchmq6VhKo0ZqLxsrNjdpQvAITin4iT09MFFS1+a0lEQ+MXdr7IN4e0TSb5
+	 tbuGXCc1UZB5RHoC4V5b0EtsnWlRshppeZCequX4=
+Date: Mon, 9 Mar 2026 14:07:54 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Markus Probst <markus.probst@posteo.de>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
+Message-ID: <2026030951-implant-girdle-d812@gregkh>
+References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
+ <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
+ <2026030827-nautical-overplant-399c@gregkh>
+ <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
+ <2026030913-agonizing-shoptalk-ed98@gregkh>
+ <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Fix pin name in comment
- from M19 to N22
-To: Siddharth Vadapalli <s-vadapalli@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <jm@ti.com>
-CC: <stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<srk@ti.com>
-References: <20260309045539.2070793-1-s-vadapalli@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20260309045539.2070793-1-s-vadapalli@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF00000143:EE_|SJ0PR10MB4638:EE_
-X-MS-Office365-Filtering-Correlation-Id: 36b8d536-d8db-4998-e7ef-08de7ddbcf60
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|82310400026|36860700016|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	xAicWDJf4ez08Rci0SV3gZyqSVsMSuowjtbZv2OWUXWDqvH1SGWIIiyrzVeJMDV6F8DLHH6pG9XpZ0h8KsWftEqwc3BvOPRUwvxRCUPdlYOi1ff4l3ZZ1+VuhFgnIqxMVDxVv8EfFm3jLUuGwR5s8MTRWN+B/6uh0zR1u+qtDvQCuZ4bNS9o+8epLroJdvOTVxuQ1m0DFguprXN+kvNVH6iKfjpgabcSReX2xZ+TinfjCU2gMOFceirKe65F3s2ne+i8yH+uorlJktMyYhy4fKuGbcrVyr5DrKAWle/ACsbEjRLWQ/mJNbyKQEDOi1DjHg9fKXdOCTuZVqR4BQU721PMjNFXWRmQoCeKCGV8+MGLllESb/vVV3cVlnEpP9LbaJE8t8TflA9PR/AwnDu+7xadORunnYVgMJHDa7IZB0M4Nlt5H8+Mqi98h3bpRoXjQpsj3/cDK6Xr4heaS9rtvXKLTMqCVh1ImLUpZbc1DPqlLoJdH6gBl9qXB3atlScFp9/QVkY+6v+1oIKXuTrE8fyIBoWThk46AVxSir3ZqQo+1/vCAcqDd//E+usI4zZCyaOtIq4sU0eJutvz+Dll+xdXr4BJDFTiR3nB4hLy5qsW6UMC+GqboD4UsVoxRuiJHeRxyk/b/vJsINZCyZipPzaIqs9hC2fDk0HlQ5BomJiyN7mp1yQYliO6oPt5TW05WFG/pMGzHpzpGwFxbsC06BPHcr7KU8vzxKPGP1ay09ECf2vP+34y+n4D3M/9FxQKT9aVKmoAbfmPujrHne+U4A==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(82310400026)(36860700016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	gXF6Td1U+LboPILL6swNMTHY4Y3KKwek05wyknyjynG0efKn2LwH4WxjTUBHWQa4ZEKGLeFUbDv9Ycm8XeQRFNwUK826SbyjsRtVU5/+Kr5BSRvSq5l5e7J+fGBJWauR4uN2pfXsUUQJAVpgKWvi2TnZ9r0+zxb1oPz+OEUA7RIaaIInpi5euIfETeCEED+YaGf2R281C4ORl2JA8EEH+uwcGiMM+jEsTwjtYqB1R6Jyc/OdSDFtL9+1sAE8gmOstn3Jp2+i6OWawg5RsHwwd+O66EPrYmBRAwAUdOT9Fu4LP2+IWI4HjL4maxcINuSO9mAXFxbiMzH54XhvWLAvQO8wzj5Ldm+TH307/b2gCKS6ujMV7FeBGSkoXQbQPvO8dDrzfG5WJ54iUHSCQuIaBWH/yY19ahk+IZXo4W+HogxRzW3McBdotHEBOSAbjWqt
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 13:00:16.2753
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36b8d536-d8db-4998-e7ef-08de7ddbcf60
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH2PEPF00000143.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB4638
-X-Rspamd-Queue-Id: D1AF2239638
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
+X-Rspamd-Queue-Id: 8D879239803
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+X-Spamd-Result: default: False [3.84 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272935-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	TAGGED_FROM(0.00)[bounces-272936-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DKIM_TRACE(0.00)[ti.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[afd@ti.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.493];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.969];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 3/8/26 11:55 PM, Siddharth Vadapalli wrote:
-> The pin for GPMC0_CLK.GPIO0_31 at address 0x000F407C is N22 and not M19.
-> Hence, fix the pin name in the comment to avoid confusion.
-> 
-> Fixes: 8f023012eb4a ("arm64: dts: ti: k3-am62a: Enable UHS mode support for SD cards")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> ---
+On Mon, Mar 09, 2026 at 12:52:26PM +0000, Markus Probst wrote:
+> On Mon, 2026-03-09 at 06:56 +0100, Greg Kroah-Hartman wrote:
+> > On Sun, Mar 08, 2026 at 07:15:16PM +0000, Markus Probst wrote:
+> > > On Sun, 2026-03-08 at 19:55 +0100, Greg Kroah-Hartman wrote:
+> > > > On Sun, Mar 08, 2026 at 06:41:20PM +0000, Markus Probst wrote:
+> > > > > Add a initial synology microp driver, written in Rust.
+> > > > > The driver targets a microcontroller found in Synology NAS devices. It
+> > > > > currently only supports controlling of the power led, status led, alert
+> > > > > led and usb led. Other components such as fan control or handling
+> > > > > on-device buttons will be added once the required rust abstractions are
+> > > > > there.
+> > > > 
+> > > > Why is this a mfd device?  Shouldn't it be an aux device?
+> > > > 
+> > > > But this is just a serial port connection, so why is a kernel driver
+> > > > needed at all?
+> > > I am not sure what you mean.
+> > 
+> > Can't this just be controlled from userspace over the tty device to the
+> > uart this device uses?  Why is a kernel driver needed at all?
+> Like with any other bus device, it can be controlled by userspace.
 
-Reviewed-by: Andrew Davis <afd@ti.com>
+Great, then usually that means it should not be a kernel driver :)
 
-> 
-> Base-Commit: 1f318b96cc84 Linux 7.0-rc3
-> 
-> v1:
-> https://lore.kernel.org/r/20260212130843.1054100-1-s-vadapalli@ti.com/
-> Changes since v1:
-> - Corrected pin name in comment to N22 instead of updating address to match
->    the incorrect pin M19.
-> 
->   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> index e99bdbc2e0cb..b1a6f10adf26 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
-> @@ -398,7 +398,7 @@ AM62AX_IOPAD(0x01d4, PIN_INPUT, 7) /* (C15) UART0_RTSn.GPIO1_23 */
->   
->   	vddshv_sdio_pins_default: vddshv-sdio-default-pins {
->   		pinctrl-single,pins = <
-> -			AM62AX_IOPAD(0x07c, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO0_31 */
-> +			AM62AX_IOPAD(0x07c, PIN_OUTPUT, 7) /* (N22) GPMC0_CLK.GPIO0_31 */
->   		>;
->   	};
->   
+> But the kernel already provides the necessary userspace interfaces for
+> leds, hwmon, input etc. for any userspace application to access.
 
+True, but:
+
+> Furthermore it is required for proper shutdown and reboot, which is a
+> kernel task.
+
+What do you mean by this?  What does it do for shutdown and reboot?
+
+Is there an out-of-tree C kernel driver for this somewhere?  Or does it
+all just work through userspace today on these devices?
+
+> On arm devices, it completely takes care of the poweroff and reboot.
+> There is already a driver here drivers/power/reset/qnap-poweroff.c,
+> which seems to be primarily developed for QNAP, but works for Synology
+> too.
+
+But that's not this device, that's a different device and driver.
+
+> On x86 devices, is uses ACPI Sleep, but must still announce the
+> poweroff / reboot prior to the firmware call to the device for proper
+> shutdown / reboot. There is no existing driver that takes care of this
+> yet.
+
+Then that should be a kernel driver, no need for the led blinks to be a
+kernel driver if they don't have to, right?  We try to only put stuff in
+the kernel that _has_ to be in the kernel, within reason.
+
+thanks,
+
+greg k-h
 
