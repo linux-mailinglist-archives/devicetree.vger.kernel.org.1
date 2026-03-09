@@ -1,154 +1,175 @@
-Return-Path: <devicetree+bounces-273152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273153-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDq+NHFBr2mYSwIAu9opvQ
-	(envelope-from <devicetree+bounces-273152-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:53:53 +0100
+	id MN4nAb5Er2n3TAIAu9opvQ
+	(envelope-from <devicetree+bounces-273153-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 23:07:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 744FD241F00
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 22:53:53 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B033242121
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 23:07:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id D64AE3021BA6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 21:53:52 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D165E300BBB9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 22:07:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F92836C595;
-	Mon,  9 Mar 2026 21:53:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8196D426687;
+	Mon,  9 Mar 2026 22:07:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="waWtEAQX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fQbai9Lc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E9A34B197
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 21:53:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2593F426680
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 22:07:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773093229; cv=none; b=j+YbSu9f0+5+8plp1m5pU6iQry9ia21hLVQ6tnps9jiUKT7Mszfa56ENrSxQ24jGI1y+oT1PsaPIhrhotoDPU1NlPqmndytM8Jk500TIZMQAwcPwRdG2Cz/1krncOaWUTSoSVkkkW4ThUIdB/kmkj1r38pDyvPnLluJHQPh4XS4=
+	t=1773094074; cv=none; b=qbxU8y0sxkGLgFDMBZ5PuA0Cs9E/2JAlJzO27SPAXI41qIbPCnkwj/PwbvSpIj1fzKQLVkUfvGbGKmcAhvJwp0EOGrUOBlO0IWRZcLWNFNf0ySjRkIwgT7tqzMq+uq6rYS+fOIMki+en68gwG1Tn/1aB8e/vasnz3bdiwrywECo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773093229; c=relaxed/simple;
-	bh=hW7oxczAfLOiX1UbKUB2maxX7hRC/oqrpS/3AHkjstg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=tZ1BNVkXQV+JYM4SwBwuYCa4R0N970RRN/pHaUlGezJVoF5x29jGgKvlV504POIjG1Pf7cQ5UCzgEekbkDuGTNU3WmNn+LaH52i7WvyO7jELS2KNNGsvfSFf7n5y4mnEfR2KRz07iI/nl+g6rYl5Hw0Tsjxey9FeaYqSF7ZMJlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=waWtEAQX; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-8297e0b27e5so3154261b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 14:53:47 -0700 (PDT)
+	s=arc-20240116; t=1773094074; c=relaxed/simple;
+	bh=mXuEXkQj7Rg4dutsP6ny1KP87NvfEJ0+83zK4pvYZr4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JSFnijtPwLxs5Jos1Ywn68vAuvhEb6eG1JUEsTE1BrylGTbjOj9vKusum/majOFlsE5y1HrnJQf6KaySe6YEPKPmnllifn+iM8aCZ4RsDIfFe2mYFta4B3TTQoeCGRX1ucJwTrz5uv7veJPRvlLhGsyWJSBoNw1xjVawG9vou8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fQbai9Lc; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-482f454be5bso122785245e9.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 15:07:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773093227; x=1773698027; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oksk2SC8l8gNKVZ+ppxouzhJxiVNngQ5O52QXz7r3AM=;
-        b=waWtEAQXxlBdUB56hHricTwkVs73XWdE+D6uwisg3o7l0BV3w0h6wB1R73cMvRfR3l
-         +u4XQMDN/PmsjlnevfiNSjZDwklehcg2Vs9KuoNY9lx+zG9/0cqGVBDyW679yRR0EfuU
-         D4xT/ZZfXKxVnS0iisuKzSGAxHmqbo/7W2XSWeXTDufjA/mDnRSHJrl46eBLbXUPcIQM
-         lRDdbY9hTyD2kX16rqwhsXB/3btmu13hx+2/jMd0Vyh6lRRKMDdscx+/pFpkGrwHpbxq
-         LRay9GzYAwt4mnV1O7ioXfUKwcWg6RZMMgo1oxT+A9E6olqpF1ZKSZen/jXp+V47f/1o
-         GA0A==
+        d=linaro.org; s=google; t=1773094070; x=1773698870; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Dk5accODM7ezppgmsEo6ZlVd16xDcQunTBdBDruNkNk=;
+        b=fQbai9LcJlrJp7LHta2PUOQaEWQBCKry7hgxgC9IDhjff1qTboyTCcCWWs7KeCC++5
+         Lcz6nq+tcIvWdzdKPS5M+oQTIThkzVl9P16wFdMRlHXXOy635XGyDEi+k+PMVTK4ylnF
+         6rmvMM2nbRPQORp5zJ61ElHchC9H5EPr1SSBAjemPyU1/urLFN33y1E/OuATk3DGh1oK
+         Ak8wVblBAumy7Ek2VtdJNMp/uNa3vgXMjgd6+4oEfWyn8cc+5BFrMSDyfwxV4MvobP7o
+         2QpeZnUQ3D6WHb0R+ZI4m+EsKm1osgcJyGMMY5sVM87DmOdvTTC/eaO8g/bwSIGMMYNv
+         cQVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773093227; x=1773698027;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=oksk2SC8l8gNKVZ+ppxouzhJxiVNngQ5O52QXz7r3AM=;
-        b=Qla/Jxk6iS/8JdA1aAxDrPSof5DCH27+dU+5I6ryvPyuCf62Cv6yzge+hWzu91NtH8
-         wXuKvZVhtTcd2/f4Em3RgplYhaqJRgIamfihjsjYRLb22Mpzsz3LMoghekYm5+Zp/m3q
-         4ioJvWFDUvp6AVTbpJ/PJSMVs3PDev/VLmOXLu5oNQQhbz2f5q92Cg2uNMwEJwpIY/zV
-         unexJ0MrHDprapR3IhOB/Gp4D6nhoyr1M6RehVKHuKWJferbEHz5SEMdlpRhAap9zTlN
-         ERPPXwrJM2IEAsT9jeZ0iLdle3MxCsBpgZ9Or0htPmuly63luHyDZ5Jwa7QAeVyZzHVV
-         ZmtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0zs27KMyA/tLSnQOrbSQy7OIJdg+T7PwdLlu2ylueltbaw8ws3qgP8s3918UbfaEm8P2YPwedHb09@vger.kernel.org
-X-Gm-Message-State: AOJu0YzI1LZdjmaZKzZiNmVJ6SVEbx3qgq+4sYz7jcRduflu443XWpHc
-	A0GoT9rcb4BJGXsVw0mQWXhOcgQyg7kcPxJzwRMCLpbocvCsJqE9lA90fzExPG+AzOc=
-X-Gm-Gg: ATEYQzwo1/jYxLH7qSAOGs1TB+sEDX/9wMtqcLcfYGH2+DYOiszRONmLOxM3Y7cGgSj
-	ZXZhBZEX4YMpDBzAkwhsjGsmbzenrg6lOXz5pSAN30LrVe3EtGgFqAYAgs3NMy/WOqXUGLiWA2u
-	3byu/ZI1UBmeCr8zs2IBOZQPCFOaVS11lYN57mWn8qUCWybrBQIjvbuFFZdNw9dLR0Ls3/kABHV
-	xy8suXWA56t4uhlbSOAMuv9xW+2coYBUMjrOzaaHGzmLFcSs8gf6ECmfsZJFMSa6bPiAu7GL0jU
-	erLHv7lYsxBtFemyFg47bNkeQt+syVsdCV9GTHKvTrE+0yFbOu9pfLpisr/dnjTjQDtj+OQvnNp
-	FDL+4el5IQSj1BM4I+Y7XXLMFbK/4xnCtlmLqQq37kK1aIXUma/YsZ1VCoR5PBPsxkJM+vE/hoG
-	pg0eblrT9hg9GHUUf0KKdM
-X-Received: by 2002:a05:6a00:1f10:b0:829:862d:6b46 with SMTP id d2e1a72fcca58-829a2db6622mr11130108b3a.6.1773093226656;
-        Mon, 09 Mar 2026 14:53:46 -0700 (PDT)
-Received: from localhost ([71.212.200.220])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829a48de551sm11460977b3a.57.2026.03.09.14.53.45
+        d=1e100.net; s=20230601; t=1773094070; x=1773698870;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dk5accODM7ezppgmsEo6ZlVd16xDcQunTBdBDruNkNk=;
+        b=Bb+a8Fin/VLHGIW8fwHavuCnUDu9CBEM0qKZ+W0gzUhH9CByt2paKZYNO8p7YuHAPI
+         fv47Xwbr0qd/STaqRku2WusY97LSgyYh5fJiUCxX+GhUfznMEzpg7ydgXkQTcW4jj/Oi
+         oBp4Ts274JGPOfjiz2D7FQauZp1uimSas1dDLKUJBNJWc4JK4+c84rKnweF/2D3Gi+hd
+         PzYlBRukQtoBP/EkQk2akpfPYivKToV5REkqlVEE3tZ0eRn0lCG1mnmfgg+ldHwLh0AF
+         FVR2IIeAHntXKlRbEBFdIgA80dOjYExuTzC6kyWt4yCX1mPQHVR9lj7WVFjvcGQjKboI
+         SSOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVD9yCGo7AhoMHtwWRoQSsA2AjHwHHwzjBn/lstf3k2yf4vp8QkXZZjBWT+xu4USvWyaiwlqkEhHik5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz38Uuyfy0uvFQhOWTYv1oowmQIwSFcp7UB7DgbXnDJPSaclu/c
+	JKVx8unfyjkZvHvRooKbJyDoyiscOdbh9qBOw2NeQcMpqrcg9x7j6h8H02NxcGDOe1M=
+X-Gm-Gg: ATEYQzzfbwQlWAchN6+0LpoFV/EXMgYfW9Aft7LhkK53edkjZ4iqumdioECCX0NRGvo
+	+HqsT8jK6uBX/+JvtoceMssDUm/KgaoCuwkEw5mcz7JkleuF3siRv4wTiBO3VPLkzfB6aHamI/U
+	75is9NN0AhLygNLO8jvBEFyWMd6JtJ2BMCX7LOjZs0dt+JKLheqMODSV+C0Sm83qUEemxHVi8wB
+	r2FjagxxyN7Q7hoKTHO3sNqxEXjWBTxHBtIc0hCtE9kLOAP6ow2O9Exe0PmkXC0C0ZNkACqviOu
+	cQ/ErgF1F3wYo2Je5hNsaiW10dphf4mtxaAI8kvNf6qxatkNlcPyFllcxiKJuAcvx7ONqQKqGay
+	+Ja7S0rQRHPOaAI5VXanDqQFx4FyEe+8+j2pV5nPinS9OD+JB56NZuYpThEM4br+puX+TnXvrrO
+	xm1tK2cqmK4ac6ct1CyoEmv7yaw4vNeriu0OA=
+X-Received: by 2002:a05:600d:848a:b0:485:3294:fff0 with SMTP id 5b1f17b1804b1-48541a2b9f4mr12097815e9.17.1773094070519;
+        Mon, 09 Mar 2026 15:07:50 -0700 (PDT)
+Received: from linaro.org ([2a02:2454:ff23:4441:1c2c:7aff:fe45:362e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485419c2930sm44011255e9.0.2026.03.09.15.07.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 14:53:45 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Aaro Koskinen <aaro.koskinen@iki.fi>, 
- Andreas Kemnade <andreas@kemnade.info>, Roger Quadros <rogerq@kernel.org>, 
- Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@ti.com>, 
- Charan Pedumuru <charan.pedumuru@gmail.com>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-In-Reply-To: <20260123-ti-phy-v4-1-b557e2c46e6f@gmail.com>
-References: <20260123-ti-phy-v4-1-b557e2c46e6f@gmail.com>
-Subject: Re: [PATCH v4 1/3] arm: dts: ti: omap: align node patterns with
- established convention
-Message-Id: <177309322512.4034405.1932369183802712305.b4-ty@baylibre.com>
-Date: Mon, 09 Mar 2026 14:53:45 -0700
+        Mon, 09 Mar 2026 15:07:50 -0700 (PDT)
+Date: Mon, 9 Mar 2026 23:07:33 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Paul Adam <adamp@posteo.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: msm8916-wiko-chuppito: add
+ initial devicetree
+Message-ID: <aa9Epb7MQ0qVFWGO@linaro.org>
+References: <20260307-wiko-chuppito-v4-0-325ac66ae338@posteo.de>
+ <20260307-wiko-chuppito-v4-3-325ac66ae338@posteo.de>
+ <aa6P4rE7d2ftaeAw@linaro.org>
+ <aa8__ofJBdMfavbq@MyryksLaptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-47773
-X-Rspamd-Queue-Id: 744FD241F00
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aa8__ofJBdMfavbq@MyryksLaptop>
+X-Rspamd-Queue-Id: 9B033242121
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	TAGGED_FROM(0.00)[bounces-273152-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,iki.fi,kemnade.info,atomide.com,ti.com,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273153-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[khilman@baylibre.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
+	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,baylibre.com:mid,baylibre.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-
-On Fri, 23 Jan 2026 15:39:02 +0000, Charan Pedumuru wrote:
-> Update OMAP DTS node patterns to match established conventions.
+On Mon, Mar 09, 2026 at 09:48:12PM +0000, Paul Adam wrote:
+> On 26/03/09 10:16, Stephan Gerhold wrote:
+> > > diff --git a/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
+> > > new file mode 100644
+> > > index 000000000000..d927bae2b208
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/qcom/msm8916-wiko-chuppito.dts
+> > > @@ -0,0 +1,315 @@
+> > > [...]
+> > > +&sound {
+> > > +	audio-routing = "AMIC1", "MIC BIAS Internal1",
+> > > +		"AMIC2", "MIC BIAS Internal2",
+> > > +		"AMIC3", "MIC BIAS Internal1";
+> > 
+> > Sorry, just noticed this now:
+> > 
+> > This seems a bit suspicious (I would expect "MIC BIAS Internal3"), have
+> > you tested if the secondary microphone works?
+> > 
+> > Thanks,
+> > Stephan
 > 
+> The secondary microphone does not work yet, neither with Internal1
+> nor Internal3.
+> 
+> In the downstream devicetree its Internal1 for AMIC3.
+> 
+> Is there a way for me to check which one is correct?
 > 
 
-Applied, thanks!
+To be absolutely sure, only with the schematic diagram of the board...
 
-[1/3] arm: dts: ti: omap: align node patterns with established convention
-      commit: 7adefbf4dff31e016c0edc653b85823afff541fe
+Another option would be that the secondary microphone simply does not
+exist at all (i.e. there is only one microphone). Any idea if it works
+on Android?
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+If in doubt, it would be better to remove the line for AMIC3.
 
+Thanks,
+Stephan
 
