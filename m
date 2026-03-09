@@ -1,135 +1,303 @@
-Return-Path: <devicetree+bounces-272875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272876-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJAUGRSzrmkSHwIAu9opvQ
-	(envelope-from <devicetree+bounces-272875-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:46:28 +0100
+	id 4CjcGoazrmkSHwIAu9opvQ
+	(envelope-from <devicetree+bounces-272876-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:48:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32A33238212
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:46:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8783623826D
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:48:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7BACF3010821
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:46:12 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 050A1301072A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2023D3A6EE8;
-	Mon,  9 Mar 2026 11:46:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100853A63FD;
+	Mon,  9 Mar 2026 11:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jFgUomhz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R24xypqw";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="K7Hf/4db"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A963A4525;
-	Mon,  9 Mar 2026 11:46:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DA113A2542
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773056767; cv=none; b=jFgawD++MYcWpVPWayp+vYCti9eLs/Emv1mCEmAxt6ikLMXQc/3p0elHh0aOMBBqPnPxY76kn9zNaJH8egCZdl0RcTCs/t3XQlxDBe45qFFXRKGjQy60PIzvLejYKNieUXpnDq/RBcv59Qjg70e7CRZNql/GEmNCS2UmmGPyF7Y=
+	t=1773056861; cv=none; b=UnhQWag+7Q+v1c7gr5590R9qfrNoXtNoHD5pTvHaP9M6sAb9JwqFgCPHGJ+em6DKmM8FaXwoiHPWl+6ODjpL+hwrTTqykZMErlwe5y4ImiKvd1zoXjvuoV6nyC8KKRkCAytn3edLTkzEaupW7fcQL/2voRzFl6CmquLaSq4T8Eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773056767; c=relaxed/simple;
-	bh=OFaoYkaIS2OUPZTnhJvnVH45ZPvyME10c7jysg+0Lqw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=umADiMuRNn/ZBlUoQMFoVAsqbbEp8yGFl3rkycOIleBhEVDOpIUlcJdNOcr3f29v1Paz42DbPeWiKjagHGlBYqju+XCKIgZA+dyi3VuguMhSszu7HdyB0XA/6TEppWEO/RZemalW0pTMlX3Xym+xPFWjYYtbxjcwl8g8XSrtjxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jFgUomhz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61D90C2BC86;
-	Mon,  9 Mar 2026 11:46:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773056766;
-	bh=OFaoYkaIS2OUPZTnhJvnVH45ZPvyME10c7jysg+0Lqw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jFgUomhzQqjG5UMQFH3E6sAG/T9ZXlFQIvH7NZXVZIp6KqO0SJBmfDn0nqmWa2U+o
-	 Z5A6+lnGE67YF/LT7oZ06wAzZydFya5zKOaF2HfI1qIckl+WGP2NfkDHcXczjqRBkk
-	 +MiOSk4da5dt6YVGPUGq9JAyhxKyv/6Db8RZ4CsL6x/oy6phCtXcQcbf4E75/EjdUx
-	 HmG3r+vvSwc99OAlft1bqnOWViuDkns6cFBwF4QiV3MW6XXC9xnTI17sfJn5s/5sCi
-	 JNA8tXeOnW6v3Feh3UGX66tyEPYRoRWjmjlaAw4RzjRl6xT/5r3WBNYB/ckC9Upb9q
-	 HN7iLGbMnqdFg==
-From: Vinod Koul <vkoul@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Johan Hovold <johan@kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>, 
- Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20260105114445.878262-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20260105114445.878262-1-cosmin-gabriel.tanislav.xa@renesas.com>
-Subject: Re: [PATCH v4 0/4] Add DMA support for RZ/T2H and RZ/N2H
-Message-Id: <177305676317.117444.8305717666981280954.b4-ty@kernel.org>
-Date: Mon, 09 Mar 2026 12:46:03 +0100
+	s=arc-20240116; t=1773056861; c=relaxed/simple;
+	bh=DoPEjWwBLqtm/JvLlriuTdp8La2V/cu6HD0tfJ/3KN8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=C2vJj1cN9uy2Fxg/g/nKwYxf1HHG+AIc0KEOMlBBtI7rOQflnLbtDsNxv9hpXrLuEfViEQufGtwTSQwrOZibr/W/VRmJZMMiDLuJvNui5Li8S3mnHeR+J/XBJST/CGL7WamNBwLF0sJDAx8GfZndflyOVTSr4QKozCztnCrf5oI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R24xypqw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=K7Hf/4db; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 629A6dbw2195104
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 11:47:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YmnxHX2UxVycu4QZL6Ds7pUS/n7cTEB4IxSrk7IZsB4=; b=R24xypqwO/7XKgkG
+	PhWHf5THjkrKedfP0WorwxvB2EjS0FsibcJJyla0gxIQwaDAoKiHrolcBc4Mkqsg
+	uI4xiZYqghEepgf6lj8c1nZQIboPcGRNlVsItyT4s7easUrRVbeuhlRg00ogJU6i
+	61wy96FKWMJ+EiM4w9J8a2VhN/RAcQ2kUGH2Yp/QEYJWfgqbLzoigSRHSM1ZGiQG
+	g7Ixt2NgYDHZyG3qxtdz1t5K3J0qYZi5SsVuwkR+/omsuMfm73qC8x3OPan44HUF
+	wTjV9vfxncxuZ/Ub662XG3+I/3jkPRRloocbENSvc9sNPyUjbMxkEKDxrghNaECz
+	APMrNA==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4csv5u8aag-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 11:47:38 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8cb38346fdbso823881285a.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:47:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773056858; x=1773661658; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YmnxHX2UxVycu4QZL6Ds7pUS/n7cTEB4IxSrk7IZsB4=;
+        b=K7Hf/4dbAqZSlUaKkMAN8kxzrpKIGyo8nk/wj4W7C7VPBM7xKHtKBrXT5ZfP0MOFHt
+         ETazJ9USj0eXCRPjF4Z0jlx+XWKChvDc5lm6kH2qYWZQBXSvHomdl0t+/32dVHcbjEn8
+         TcGeAL6ict07cU9qETcxz560p+k6D838ljIRPF0Q6UZu8v3ziDlaxUUb7vm9NMzQttof
+         cf83lXwWhDD2ihv4fHD5sxvOcGy2CEFjy/bxHy3hCnJquzILtzaji7YOhdssyztpAZgm
+         gHg9qj/CGp7ODR1rU+dLVOFcya9EeD8Ev6kfRAyuhfkvPJvnYKR7q438WcAjOv+JZL4+
+         vr8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773056858; x=1773661658;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YmnxHX2UxVycu4QZL6Ds7pUS/n7cTEB4IxSrk7IZsB4=;
+        b=A6SgLwKHB2t/I5UA+5krgYPimwskiPF1eROPJBSigFSoVpx3LekLy9aqIOy8RzJ6o/
+         XiUaHhhaMK3HJU0G7VgSvi+A9ZupLUDdX/CC2njkkKfFVvvJ3wTVjyKS/Fk/hYwWCJS5
+         EJeBbSaCCnxlqSfvOw4K1vInB3dMKVQf2fnxngOy++9DVN/EOypAGI/6DW5p6sgmbs5M
+         PfI4tcmUruGQIcgSCI8MuTwIUA4v3OT0rQiRey+gvdDNjQQzIyeOCVv7pwRvWtUAj/xe
+         D0EOERGdRtqrV/m77yhEA8GGOf0IFH1IDzd2ksLGyEyDn5MwE01j8k8X5SakfDRcOv7A
+         MT3w==
+X-Forwarded-Encrypted: i=1; AJvYcCVyVy2zgGh6tdm7pMr9kdT6ykJAKDKQjha4EDWp18+ixzjkN6Y7uHNHIV2RkXBl1GXbIoFdebuOhzSK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDYHDM+rQ1hHxaADVev1G7v/G/gDnmlnIhyfYkm23S8HQ2Svqt
+	ZPSyumENJ/ptl8SQOeIggsokAweQmZd1+O+G94SCoqSqy1EQaZSD5Q6KMuoufFxsfGzI0nzdXx5
+	e7t/BGwgP3IuCFm2r4CGiwC9rjBUNry2Olp/NBT7OYGEb3OLil4vZ8TFdsHbcW5TbVOc8CksF
+X-Gm-Gg: ATEYQzwlJtlEx+gGfOk9vao21CDwoXDzYtExi4i4bNJNe5MpYtK97Ix9z1fcJnK3enM
+	FE3ztDsoetiFhSPJLWa0hwXoacjYbjVvjTX7swn5/iT3giOgF4iKByx2uHzuNX8C8tBQl9cL3FX
+	8TF3uWmo6EfNRrOowMhwZkkKcjD00gHqVJPMDYF0CfP0FD7lu/Ghrc2lVCCmFx4+1mcu8DlBgeA
+	AK6bmDpUEm+omfHKunCOeBoIDfGWurSBkdhktiIRReerFe0Wwz1ol5IsXaJI0TETn91uGzHuqIP
+	7HlYA0D5URUgtFFNnFkmpB0NBaWxEAjEwouFOtS9L2XEUI/EZCHhuACICptUnAIeeUFKQBQBD1S
+	OMrseTF7Yz2RWvBffYQ39pnfK7ReIR9APP4FCTImK8N8Qt8/Xo5LNDG9Z5Q6VNCIqkpjH1RtUc4
+	Ig8gw=
+X-Received: by 2002:a05:620a:4087:b0:8cd:7fc0:ee15 with SMTP id af79cd13be357-8cd7fc0f6dbmr641726785a.5.1773056857751;
+        Mon, 09 Mar 2026 04:47:37 -0700 (PDT)
+X-Received: by 2002:a05:620a:4087:b0:8cd:7fc0:ee15 with SMTP id af79cd13be357-8cd7fc0f6dbmr641723185a.5.1773056857247;
+        Mon, 09 Mar 2026 04:47:37 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-661a3c66e0dsm3162371a12.7.2026.03.09.04.47.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Mar 2026 04:47:36 -0700 (PDT)
+Message-ID: <805525cb-ef53-4bdd-a73b-6fe7513228ce@oss.qualcomm.com>
+Date: Mon, 9 Mar 2026 12:47:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13.0
-X-Rspamd-Queue-Id: 32A33238212
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 2/5] platform: arm64: Add driver for EC found on
+ Qualcomm reference devices
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, bryan.odonoghue@linaro.org,
+        ilpo.jarvinen@linux.intel.com, hansg@kernel.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+        Maya Matuszczyk <maccraft123mc@gmail.com>
+References: <20260308233646.2318676-1-sibi.sankar@oss.qualcomm.com>
+ <20260308233646.2318676-3-sibi.sankar@oss.qualcomm.com>
+ <aa6M2QSXW72xqYiB@linaro.org>
+ <96f8738f-9baa-4528-8bc6-6ce20030e391@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <96f8738f-9baa-4528-8bc6-6ce20030e391@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: r3chDI58vdlaExvp6jCCeXMXmEcwG_Qx
+X-Proofpoint-ORIG-GUID: r3chDI58vdlaExvp6jCCeXMXmEcwG_Qx
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEwOCBTYWx0ZWRfX3ofArZR1tssN
+ ZLWifaFas58n+KdCVc5TDSOZLteX8BPoycR4OGqYI1TMTW8at9mvryuIHlcOQHx+yXL8xLeiv3F
+ mrB9Di9jBS5M176FLz0Wok4DZM7VXszFSZjvSuwOD7U7ktntZqqkPADSTFm32yffyXRjvXqLXgU
+ aidx4clvOUEYJr1imVO7t4IllPAdSIq9v46K0V3CFbZqRNkiZTKEOlD2QlxFp0AqMhjwRMdSgLB
+ sREeU2sXNuz2KWoP3Cvx58nP5iDgA8bXttRFF1wmL9BmUq1mw+zomGVeaL1jFP+tlDyKUrTRoNy
+ RJuTnePXgIBwIc4//FBZTNQiEWaiYAIlaRF1a2MkiWkx3Ffp9fXPP9PDhlhjzrG/lRkNDCcUyib
+ 0pIXnToJrEzGcAoheZJUY9Fq5uYR4xiJXQccAomnKa7mueZvEQ3hI3twxVMBS2RKJDrB9XWseQI
+ Uw7rRjLuPYeS254q62w==
+X-Authority-Analysis: v=2.4 cv=Xr/3+FF9 c=1 sm=1 tr=0 ts=69aeb35a cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22
+ a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=uGzmvu1gi_0XBBI2Y4EA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 adultscore=0 spamscore=0 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 clxscore=1015 phishscore=0 priorityscore=1501 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090108
+X-Rspamd-Queue-Id: 8783623826D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[kernel.org,glider.be,gmail.com,renesas.com,bp.renesas.com];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,linux.intel.com,vger.kernel.org,gmail.com];
+	TAGGED_FROM(0.00)[bounces-272876-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272875-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.919];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vkoul@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.991];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-
-On Mon, 05 Jan 2026 13:44:41 +0200, Cosmin Tanislav wrote:
-> The Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs have three
-> DMAC instances. Compared to the previously supported RZ/V2H, these SoCs
-> are missing the error interrupt line and the reset lines, and they use
-> a different ICU IP.
+On 3/9/26 11:04 AM, Sibi Sankar wrote:
 > 
-> V4:
->  * drop device tree patches already queued up by Geert
->  * pick up Geert's Reviewed-by
->  * dma_req_no_default -> default_dma_req_no
->  * register_dma_req -> icu_register_dma_req
->  * rz_dmac_common_info -> rz_dmac_generic_info
+> On 3/9/2026 2:33 PM, Stephan Gerhold wrote:
+>> On Mon, Mar 09, 2026 at 05:06:43AM +0530, Sibi Sankar wrote:
+>>> Add Embedded controller driver support for Hamoa/Purwa/Glymur qualcomm
+>>> reference boards. It handles fan control, temperature sensors, access
+>>> to EC state changes and supports reporting suspend entry/exit to the
+>>> EC.
+>>>
+>>> Co-developed-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>>> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
+>>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>>> ---
+>>>   MAINTAINERS                            |   7 +
+>>>   drivers/platform/arm64/Kconfig         |  12 +
+>>>   drivers/platform/arm64/Makefile        |   1 +
+>>>   drivers/platform/arm64/qcom-hamoa-ec.c | 462 +++++++++++++++++++++++++
+>>>   4 files changed, 482 insertions(+)
+>>>   create mode 100644 drivers/platform/arm64/qcom-hamoa-ec.c
+>>>
+>>> [...]
+>>> diff --git a/drivers/platform/arm64/qcom-hamoa-ec.c b/drivers/platform/arm64/qcom-hamoa-ec.c
+>>> new file mode 100644
+>>> index 000000000000..83aa869fad8f
+>>> --- /dev/null
+>>> +++ b/drivers/platform/arm64/qcom-hamoa-ec.c
+>>> @@ -0,0 +1,462 @@
+>>> [...]
+>>> +static int qcom_ec_read(struct qcom_ec *ec, u8 cmd, u8 resp_len, u8 *resp)
+>>> +{
+>>> +    int ret;
+>>> +
+>>> +    mutex_lock(&ec->lock);
+>>> +    ret = i2c_smbus_read_i2c_block_data(ec->client, cmd, resp_len, resp);
+>>> +    mutex_unlock(&ec->lock);
+>> This mutex looks redundant to me for the current implementation. You
+>> don't have any read-modify-write sequences and I think the I2C core
+>> already has internal locking for the bus itself.
 > 
-> [...]
+> Hey Stephan,
+> Thanks for taking time to review the series :)
+> 
+> Will remove this in the next re-spin.
+> 
+>>
+>>> [...]
+>>> +/*
+>>> + * Fan Debug control command:
+>>> + *
+>>> + * Command Payload:
+>>> + * ------------------------------------------------------------------------------
+>>> + * | Offset    | Name        | Description                    |
+>>> + * ------------------------------------------------------------------------------
+>>> + * | 0x00    | Command    | Fan control command                |
+>>> + * ------------------------------------------------------------------------------
+>>> + * | 0x01    | Fan ID    | 0x1 : Fan 1                    |
+>>> + * |        |        | 0x2 : Fan 2                    |
+>>> + * ------------------------------------------------------------------------------
+>>> + * | 0x02    | Byte count = 4| Size of data to set fan speed            |
+>>> + * ------------------------------------------------------------------------------
+>>> + * | 0x03    | Mode        | Bit 0: Debug Mode On/Off (0 - OFF, 1 - ON )    |
+>>> + * |        |        | Bit 1: Fan On/Off (0 - Off, 1 - ON)        |
+>>> + * |        |        | Bit 2: Debug Type (0 - RPM, 1 - PWM)        |
+>>> + * ------------------------------------------------------------------------------
+>>> + * | 0x04 (LSB)    | Speed in RPM    | RPM value, if mode selected is RPM        |
+>>> + * | 0x05    |        |                        |
+>>> + * ------------------------------------------------------------------------------
+>>> + * | 0x06    | Speed in PWM    | PWM value, if mode selected is PWM (0 - 255)    |
+>>> + * ______________________________________________________________________________
+>>> + *
+>>> + */
+>>> +static int qcom_ec_fan_set_cur_state(struct thermal_cooling_device *cdev, unsigned long state)
+>>> +{
+>>> +    struct qcom_ec_cooling_dev *ec_cdev = cdev->devdata;
+>>> +    struct device *dev = ec_cdev->parent_dev;
+>>> +    struct i2c_client *client = to_i2c_client(dev);
+>>> +
+>>> +    u8 request[6] = { ec_cdev->fan_id, EC_FAN_SPEED_DATA_SIZE,
+>>> +              EC_FAN_DEBUG_MODE_ON | EC_FAN_ON | EC_FAN_DEBUG_TYPE_PWM,
+>>> +              0, 0, state };
+>>> +    int ret;
+>>> +
+>>> +    ret = i2c_smbus_write_i2c_block_data(client, EC_FAN_DBG_CONTROL_CMD,
+>>> +                         sizeof(request), request);
+>> I think it's nice to provide users a way to override the fan speed, but
+>> is this really the main interface of the EC that we want to use for
+>> influencing the fan speed?
+>>
+>> As the name of the command suggests, this is a debug command that
+>> essentially overrides the internal fan control algorithm of the EC. If
+>> you use this to turn the fan off and then Linux hangs, I would expect
+>> that the fan stays off until the device will eventually overheat.
+>>
+>> I think it would be more reliable if:
+>>
+>>   (1) The default mode of operation does not make use of the "debug mode"
+>>       command and instead sends the internal SoC temperatures to the EC
+>>       to help optimize the fan control. (This is what Windows does on
+>>       Hamoa, not sure if this is still needed on Glymur?)
+> 
+> That's true, Glymur already has a way to access average SoC
+> temperature and even on Hamoa it can still be functional without
+> SoC temperature i.e. with thermistors it has access to.
+> 
+> The aim of the series is to expose fans as a cooling device so
+> that linux has a way of fan control independent to the algorithm
+> running on the EC.
 
-Applied, thanks!
+I suppose the main question here is "what happens if i set the fan to zero
+and put the laptop in my backpack"
 
-[1/4] dmaengine: sh: rz_dmac: make error interrupt optional
-      commit: b34f3fcae72a0afdd1a966fd68309b461bf678e6
-[2/4] dmaengine: sh: rz_dmac: make register_dma_req() chip-specific
-      commit: bbb8b402d798f9f211376cee3d649d64dfc17880
-[3/4] dt-bindings: dma: renesas,rz-dmac: document RZ/{T2H,N2H}
-      commit: 40dd470a95c0674515ca606757ffe174bd7d3f90
-[4/4] dmaengine: sh: rz_dmac: add RZ/{T2H,N2H} support
-      commit: c03d8b5462bcb0022f9477d09eb37dae66c3a769
+The driver for M-series Macs for example, 785205fd8139 ("hwmon: Add Apple
+Silicon SMC hwmon driver") hides that behind a cmdline param, since they
+have no certainty. I would *assume* that if the CPU hits thermal junction
+temperatures, our boards will reset, but we should be able to get a definitive
+answer here.
 
-Best regards,
--- 
-~Vinod
-
-
+Konrad
 
