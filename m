@@ -1,177 +1,244 @@
-Return-Path: <devicetree+bounces-272949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272950-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8DDwG4DKrmnEIwIAu9opvQ
-	(envelope-from <devicetree+bounces-272949-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:26:24 +0100
+	id OKLdMynKrmnEIwIAu9opvQ
+	(envelope-from <devicetree+bounces-272950-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:24:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB025239B6E
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:26:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE56239B24
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id DEBAE301CCC0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:21:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 523983025E65
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:22:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 431223AE6E2;
-	Mon,  9 Mar 2026 13:21:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101FF3AE6E2;
+	Mon,  9 Mar 2026 13:22:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S55YjqZz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DIpq8FKk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1888F3A7831;
-	Mon,  9 Mar 2026 13:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF4023A6EE4;
+	Mon,  9 Mar 2026 13:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773062498; cv=none; b=CEVV1GI1owoh5gU61S0xo9tmIp3nzJ4twNglLJnq0ZqIonWP5V1bVT3OKuqjCvHOcUiyz65EdRDR/IIViOOPHLucC5DHMWDG5RYs4/5wr3gyku22R3philEcIHV8r0PXr3zChoF02XtzbcdtvbGudHt/LMY37dgxv9RymdZGVpA=
+	t=1773062542; cv=none; b=Y+X2ME8Lj0M8Y5Keu8I8CVz0RGEU1YJ/8nCBqXNUldcvhxBiCH2LBQ3fXtULwxiZXzTHV1pG8raTld+fsNzMg2JIRsazQNqff9bHFysP4a0Xw/O60kaYHGdHmmb09AtyL9XxxIVTS15HfUtFiuUb1MHRmFvBydEL80Lbzvk35Bk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773062498; c=relaxed/simple;
-	bh=3F/fI5thMfuBBVoNAR4FYpBtt1TUxHNHWF4T4AlGAoI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WRJ2+0nal8/ou9yfLiH7OhihPeF7buDxdr0HCvg0UmicJTQ3KuceUOUmTSAFkhNecp0VlKnk7LrTMZiDNVcvJKVlYtAjO1/avczVVrOosjf0V0XBVnQjYC6ZMLBpX69jTkJQt8cMo4sQmZE/OW6pyyTNxFZZWid1k92iqdE5WZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S55YjqZz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5FC3C2BC86;
-	Mon,  9 Mar 2026 13:21:35 +0000 (UTC)
+	s=arc-20240116; t=1773062542; c=relaxed/simple;
+	bh=d5MLBrQ/18Asiku/cVf2NDC2Dc4/7wsqetgjS+f9zfw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QgmyHQBRGtUlmOx//nqta75C5z8njmSeCPHwZta8W8QHCbgkgppLGsAg0wYNBV3Ym7R8RkEvCc4DD3Ws9IAPJGU3aFppbtRiRL6FCw18TA7Z4hfYIC9+7DVxizNRObZ67Kk+bZbK/h1yHuOudXtKlXgaUc/gg//+Q7YoPYKLZRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DIpq8FKk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C3FCC4CEF7;
+	Mon,  9 Mar 2026 13:22:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773062497;
-	bh=3F/fI5thMfuBBVoNAR4FYpBtt1TUxHNHWF4T4AlGAoI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S55YjqZzDsDpLB/KfhueN5GqMGJky456hslMvnFqAqOTzPjvlUGUbj0iFxEH13HBy
-	 eNk39SFmEL+agfth2iauhy6E/djRXfFtEw5+t2zQAvQ5nn++AYJ4HXB0ImjPoznObP
-	 oY4V+YZKZ/O9sSDLtqa7k+elIwpEv7S+vSHjWVxTLpcdlxCWo6SD0fFoXHCq6oQGVl
-	 THBqoA+CK00lTDeOUt0jNUSH+bF63JhVr7xjJoU1b61RTk7bwRWOCIkVgKGa3pjC+U
-	 +0eu/h1PQj5LR89jf/IeE2FIJ7Qo8JEdqUywTO3P3K9jlO/WOvTjRRb3p3bZdBk0Gy
-	 cQpT3+3sPHj/g==
-Message-ID: <21aec29b-595d-4889-a71e-abe9e5ce834f@kernel.org>
-Date: Mon, 9 Mar 2026 14:21:33 +0100
+	s=k20201202; t=1773062541;
+	bh=d5MLBrQ/18Asiku/cVf2NDC2Dc4/7wsqetgjS+f9zfw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DIpq8FKkp8gZe5TXhH+XWS6+eZZq3rrI20iVYUZPh7qAhdi/+gfhB7yVXBbU3QWCl
+	 jbfq3r+nc0SvI/WEjbo0harlbVe5UVB6j82MfAmwC3kr2omqwF/tzGil/1IdPQOnxN
+	 BMlm90MXkgxGi0xu3m1yGUY7OxzYunldqBcwSNJYdml75Jru/lHipdourq3OkgKLAg
+	 zwaagSUvrIyJVXuSGmXSLp/n9M4VlvLgtoX6+82xEKOo84PEj2G8DYakk5oyo0N4yH
+	 BofV2f9P7AevI5Nw8re7Mwql7zoP89UoaNaXpzPmErMOlinlIuhoE61RuEuO2QfPjj
+	 FG5Qda63Vw3gw==
+Date: Mon, 9 Mar 2026 21:22:19 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Iker Pedrosa <ikerpedrosam@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Michael Opdenacker <michael.opdenacker@rootcommit.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/7] mmc: sdhci-of-k1: add regulator and pinctrl
+ voltage switching support
+Message-ID: <20260309132219-GKE302167@kernel.org>
+References: <20260309-orangepi-sd-card-uhs-v2-0-5bb2b574df5d@gmail.com>
+ <20260309-orangepi-sd-card-uhs-v2-2-5bb2b574df5d@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: Input: Add Wacom W9000-series
- penabled touchscreens
-To: Hendrik Noack <hendrik-noack@gmx.de>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Ferass El Hafidi <funderscore@postmarketos.org>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20260307181557.66927-1-hendrik-noack@gmx.de>
- <20260307181557.66927-2-hendrik-noack@gmx.de>
- <20260308-vivacious-coucal-of-current-2d7ac8@quoll>
- <feae85c4-bea1-40b2-87d5-952b26ff3ee3@gmx.de>
- <fddf0e3b-707e-41b3-805b-2abeffed6c05@kernel.org>
- <f067754d-229c-4418-a367-6df5feb6cee0@gmx.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <f067754d-229c-4418-a367-6df5feb6cee0@gmx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: CB025239B6E
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260309-orangepi-sd-card-uhs-v2-2-5bb2b574df5d@gmail.com>
+X-Rspamd-Queue-Id: 6DE56239B24
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272949-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmx.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,postmarketos.org,vger.kernel.org];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272950-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.989];
+	NEURAL_HAM(-0.00)[-0.961];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 09/03/2026 14:12, Hendrik Noack wrote:
-> Hello Krzysztof,
-> 
-> 09.03.2026 13:56:41 Krzysztof Kozlowski <krzk@kernel.org>:
-> 
->> On 09/03/2026 13:54, Hendrik Noack wrote:
->>> Hello Krzysztof,
->>>
->>> 08.03.2026 10:15:35 Krzysztof Kozlowski <krzk@kernel.org>:
->>>
->>>> You received review and instruction what to do. Did you read it?
->>>
->>> I read the review of Dmitry and incorporated it into this version.
->>
->> So you ignored my email completely or it did not reach you (it is on
->> lore.kernel.org though)?
-> 
-> I don't know what email you mean. You gave reviews on my first verison, which I already incorporated in v2 and then gave a review-by on v2, which I also added on v3, but now dropped, because I added a property to the DT binding.
+Hi Iker,
 
-The instruction I gave you when giving review.
+On 12:40 Mon 09 Mar     , Iker Pedrosa wrote:
+> Add voltage switching infrastructure for UHS-I modes by integrating both
+> regulator framework (for supply voltage control) and pinctrl state
+> switching (for pin drive strength optimization).
+> 
+> - Add regulator supply parsing and voltage switching callback
+> - Add optional pinctrl state switching between "default" (3.3V) and
+>   "state_uhs" (1.8V) configurations
+> - Enable coordinated voltage and pin configuration changes for UHS modes
+> 
+> This provides complete voltage switching support while maintaining
+> backward compatibility when pinctrl states are not defined.
+> 
+> Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+> ---
+>  drivers/mmc/host/sdhci-of-k1.c | 59 ++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/drivers/mmc/host/sdhci-of-k1.c b/drivers/mmc/host/sdhci-of-k1.c
+> index 585c7eca6ebf253aac466dd37cef029deb63f692..8af117a8e271c04a80d8dc7bb5ce12075652dd7a 100644
+> --- a/drivers/mmc/host/sdhci-of-k1.c
+> +++ b/drivers/mmc/host/sdhci-of-k1.c
+> @@ -15,6 +15,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/of_device.h>
+> +#include <linux/pinctrl/consumer.h>
+>  #include <linux/platform_device.h>
+>  
+>  #include "sdhci.h"
+> @@ -70,6 +71,9 @@
+>  struct spacemit_sdhci_host {
+>  	struct clk *clk_core;
+>  	struct clk *clk_io;
+> +	struct pinctrl *pinctrl;
+> +	struct pinctrl_state *pinctrl_default;
+> +	struct pinctrl_state *pinctrl_uhs;
+>  };
+>  
+>  /* All helper functions will update clr/set while preserve rest bits */
+> @@ -218,6 +222,42 @@ static void spacemit_sdhci_pre_hs400_to_hs200(struct mmc_host *mmc)
+>  			       SPACEMIT_SDHC_PHY_CTRL_REG);
+>  }
+>  
+> +static void spacemit_sdhci_voltage_switch(struct sdhci_host *host)
+> +{
+> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+> +	struct spacemit_sdhci_host *sdhst = sdhci_pltfm_priv(pltfm_host);
+> +	struct mmc_ios *ios = &host->mmc->ios;
+> +	struct pinctrl_state *state;
+> +	int ret;
+> +
+> +	/* Select appropriate pinctrl state based on signal voltage */
+> +	if (sdhst->pinctrl) {
+do a sanity check, then abort it early, the advantage is that you can get rid of
+one indetation for next code..
 
-Please wrap your emails to standard email style, so reading will be easier.
+	if (!sdhst->pinctrl)
+		return;
 
-Best regards,
-Krzysztof
+
+> +		switch (ios->signal_voltage) {
+> +		case MMC_SIGNAL_VOLTAGE_330:
+> +			state = sdhst->pinctrl_default;
+> +			break;
+> +		case MMC_SIGNAL_VOLTAGE_180:
+> +			state = sdhst->pinctrl_uhs;
+> +			break;
+> +		default:
+> +			dev_warn(mmc_dev(host->mmc), "unsupported voltage %d\n",
+> +				 ios->signal_voltage);
+> +			return;
+> +		}
+> +
+> +		if (state) {
+> +			ret = pinctrl_select_state(sdhst->pinctrl, state);
+> +			if (ret) {
+> +				dev_warn(mmc_dev(host->mmc),
+> +					 "failed to select pinctrl state: %d\n", ret);
+> +				return;
+> +			}
+> +			dev_dbg(mmc_dev(host->mmc), "switched to %s pinctrl state\n",
+> +				ios->signal_voltage == MMC_SIGNAL_VOLTAGE_180 ? "UHS" : "default");
+> +		}
+> +	}
+> +}
+> +
+>  static inline int spacemit_sdhci_get_clocks(struct device *dev,
+>  					    struct sdhci_pltfm_host *pltfm_host)
+>  {
+> @@ -242,6 +282,7 @@ static const struct sdhci_ops spacemit_sdhci_ops = {
+>  	.set_bus_width		= sdhci_set_bus_width,
+>  	.set_clock		= spacemit_sdhci_set_clock,
+>  	.set_uhs_signaling	= spacemit_sdhci_set_uhs_signaling,
+> +	.voltage_switch         = spacemit_sdhci_voltage_switch,
+>  };
+>  
+>  static const struct sdhci_pltfm_data spacemit_sdhci_k1_pdata = {
+> @@ -293,6 +334,24 @@ static int spacemit_sdhci_probe(struct platform_device *pdev)
+>  
+>  	host->mmc->caps |= MMC_CAP_NEED_RSP_BUSY;
+>  
+> +	sdhst = sdhci_pltfm_priv(pltfm_host);
+..
+> +	sdhst->pinctrl = devm_pinctrl_get(dev);
+> +	if (!IS_ERR(sdhst->pinctrl)) {
+> +		sdhst->pinctrl_default = pinctrl_lookup_state(sdhst->pinctrl, "default");
+> +		if (IS_ERR(sdhst->pinctrl_default))
+> +			sdhst->pinctrl_default = NULL;
+> +
+> +		sdhst->pinctrl_uhs = pinctrl_lookup_state(sdhst->pinctrl, "state_uhs");
+> +		if (IS_ERR(sdhst->pinctrl_uhs))
+> +			sdhst->pinctrl_uhs = NULL;
+> +
+> +		dev_dbg(dev, "pinctrl setup: default=%p, uhs=%p\n",
+> +			sdhst->pinctrl_default, sdhst->pinctrl_uhs);
+> +	} else {
+> +		sdhst->pinctrl = NULL;
+> +		dev_dbg(dev, "pinctrl not available, voltage switching will work without it\n");
+> +	}
+> +
+how about creating a function spacemit_sdhci_get_pins()? similar as get
+resource for clock, will more readable.
+
+>  	ret = spacemit_sdhci_get_clocks(dev, pltfm_host);
+>  	if (ret)
+>  		goto err_pltfm;
+> 
+> -- 
+> 2.53.0
+> 
+
+-- 
+Yixun Lan (dlan)
 
