@@ -1,106 +1,94 @@
-Return-Path: <devicetree+bounces-273156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273157-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJe7OC1Jr2krTgIAu9opvQ
-	(envelope-from <devicetree+bounces-273156-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 23:26:53 +0100
+	id YKN0AHBJr2krTgIAu9opvQ
+	(envelope-from <devicetree+bounces-273157-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 23:28:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id D853E242352
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 23:26:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03395242371
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 23:27:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EB666300C6C7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 22:26:49 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1ADAD3010230
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 22:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEEBE38F242;
-	Mon,  9 Mar 2026 22:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0270A38F245;
+	Mon,  9 Mar 2026 22:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="C/4Ury2o"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ALQJ/E9S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 891FF38F251
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 22:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A6138F23C;
+	Mon,  9 Mar 2026 22:27:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773095207; cv=none; b=Y21QgKI2aGEzGme+220LpdAEP6sQGdYU53BD1gMugA+bS4OGd89jaWsZ/2Cxf6hl3+v0++QEVYl+/Iaadh7h0pQg5dexdxUodwx3kjMw0olb4XgZdjLnXGM+Bz20uz33m0tSSac5jpL9nDxpNDoyCnByMvXxT73MfF26Oxun8OE=
+	t=1773095274; cv=none; b=VUMr9FwheVqGc0iR9w4U4UeRJ97Zv2eSS2i3V979J/CF/XPBKGFvTkCSCRAFSOeZ3PffokuoC2r+6dPhsVMC0ssE+kSAKMmF/4mFDyYfefMoEP+Ukq2aZf8Ak3HbxQFbCfXazC5D6dHKnAYNoqViTEr/zd6eY0DgxHRFxKBJCHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773095207; c=relaxed/simple;
-	bh=i0GRJfSHh/D61KwItNe6fb7adZHJMaGkMix9ht+i3A0=;
+	s=arc-20240116; t=1773095274; c=relaxed/simple;
+	bh=SeFI68hOQ+Hno9j67R7i+Kg/IXRLeVuczTVHTEBBTt4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Re1OlPiSMdvQtdj4U727PWtjmng2i6Dowl7fHjVbUJRFOUcHQ2qKXDITk5cXP5xRVXZJ+Jyd7j0vI5M8rpZzz9JNORlnK0I7SZIBjD6a+bvAsWIkRNobhp5DwgVFaqkFRJ1OX/xwIkPqr1cosQN3OtnmdBiGJ+yayKdEv84Wj7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=C/4Ury2o; arc=none smtp.client-ip=209.85.222.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-8cd7ecedf2cso198234385a.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 15:26:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773095205; x=1773700005; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=b0qmAnC6DnZWfkO5AOHdxhn/T13J7DQN3esTSP9cxW4=;
-        b=C/4Ury2oopotKm4qQe5ULNnB41cyLLpNkR2VwqK3MczAcqUb7MHZ3lNd9wt1yUxOn3
-         ULpsbAx/v0MrbHPh/ZGuR7E40U0dMcJmHVbFmaR3zidTpKjvVW/c/CvxhnzlKaQEd9TH
-         QdSKViAMLpfz//6F6jKX2EnCw3POpeKqmL0hkH+6vUeLeyZA/UDwUq3XDPald81m0RTT
-         Cf63g7mzXZfoLx3G0PrWF1Zx1OvY7IFNSNW6+pmu6h2fwuMfAKgjGQODZ0XItscgWkxW
-         qxXwJqZ9WH0zT4grYRuzGrDqi50x/RsHV2rWHk8xLPrGAEytC1OOAnw9JTdQ1LARc9Ox
-         BEew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773095205; x=1773700005;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b0qmAnC6DnZWfkO5AOHdxhn/T13J7DQN3esTSP9cxW4=;
-        b=wA49NG0OFg/1A4fQCL3JdBLF7kuE2lw3glYuTnuYNgrk572Cmd8aFKC3NntzZ4BUPu
-         jwFCDd9u1bNqdGtKFek2zRxgUpm7E9n8VRyLZiS6WKYBtuIjzjtBXnhlNoTUP65GqYng
-         hXLP8d1MXUzmxwic3QR/oH0bmuTQ3omZGwtIYl1fPggSMhPIhaDp/aTY/6QUam6MJxyL
-         xAktGqLXhoH2TWHXZhF48orjfLyVLjUmbWu8cQcv+XPOK74tJEpFI9mxuyiluq+PcMUn
-         xXhfY2MpybooWIt5+btOgeXs7Mvgg9wYaFeyiR+4Obm1dU+Y321/dAEUi5MaxkLV/i8c
-         802w==
-X-Forwarded-Encrypted: i=1; AJvYcCXm9VV/l395tVR9ivWkybAOiGWbpi8jyHu0EIUGuXaLT1E56MJdu2oKpl4768fjh2W1mmdF8Z4/9tGD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLHq82jcWBW0QtXR2i+0xANXUmoCKmNphTIXGgbNjPwcnqZj6V
-	WMerVeTU/u7/L3s55q2L7JCD563Fhq5o/dOpanymrPU/QTUkwX3YZs87
-X-Gm-Gg: ATEYQzzKASa4prDcM8oYc6l2B0xoJ5X0YZIJ16rrdLGxjF8EhH0n2+LjPb6tN+OWZdi
-	Ry4s1osW4nXnvrYmcrkdC1Yv821KrdlQXwb7Pd2r3WOYm3coWAqCtfOLZC50NnB8h37rQdgvgYm
-	1BRDmfBh7MXC2DMC32PGGEH2JrQaE+aXL/4KEMZenhM7Dx1EV6yb55Jm8hVW0hpappKEMaPN/DQ
-	4b4QnM4YcHAZp78Jm+eK9UVLTfnyCFtKd8KD51wY/uG3U0x6BhoWwjPVOwvZheY+Yk8V3cMjVtS
-	wnt2lbNFQtqdvjobIrUOwnlOwTVqAz/yvFO8d/HfYshulxLYMiZ2lqrPTRe/KtMm4PiHR3jZnYb
-	GcsyKF7WCRFsnMIXjFtCDvI7gpa/V+TPW/LvIpVK2jLGxhi3m82dtsScInHOdFY9EZJpT7g6WLr
-	O9fkdPLA45QI7F2XOzw48fpOu4tYuEgOBHLg==
-X-Received: by 2002:a05:620a:c55:b0:8cb:4289:6c1a with SMTP id af79cd13be357-8cd6d549b1fmr1572894885a.75.1773095205343;
-        Mon, 09 Mar 2026 15:26:45 -0700 (PDT)
-Received: from localhost ([2001:19f0:8001:1b2d:5400:5ff:fefa:a95d])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cd866f7074sm325445485a.6.2026.03.09.15.26.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 15:26:44 -0700 (PDT)
-Date: Tue, 10 Mar 2026 06:26:07 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Richard Cochran <richardcochran@gmail.com>, Paul Walmsley <pjw@kernel.org>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Yao Zi <me@ziyao.cc>, Yanteng Si <siyanteng@cqsoftware.com.cn>, 
-	Vladimir Oltean <vladimir.oltean@nxp.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Shangjuan Wei <weishangjuan@eswincomputing.com>, Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Boon Khai Ng <boon.khai.ng@altera.com>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	Yixun Lan <dlan@gentoo.org>, Longbin Li <looong.bin@gmail.com>
-Subject: Re: [PATCH net-next v8 3/3] net: stmmac: Add glue layer for Spacemit
- K3 SoC
-Message-ID: <aa9I4pIZs5-TDdXo@inochi.infowork>
-References: <20260309004305.315018-1-inochiama@gmail.com>
- <20260309004305.315018-4-inochiama@gmail.com>
- <aa62FTHMOJGhVKTv@shell.armlinux.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YxRk4qB/TY3lPtLd9AQGOGBhTBrfrPIZ3IR5woIW9F4NqxGwNzlTHYHEmusTyivMl1W3RfHgxJ19VzXhgZYL4txGhYnm8YXhgXQNUANwcOSRtYRsflOOJ7WUyd/cBNZu8ZzxYT8gFm1MNSXrISO2vK/t8ulQSu4mRDM7YU1ktnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ALQJ/E9S; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773095273; x=1804631273;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=SeFI68hOQ+Hno9j67R7i+Kg/IXRLeVuczTVHTEBBTt4=;
+  b=ALQJ/E9SZZ6loQ5SaOxmITlDkUnbTHPvnesrLC+925sq0MhBQuD//FUn
+   kpQUPgO+NXl3suSgpke4N7/DUkZKwY5/9GMp7Xl9l2kH6M//kA6HwnQip
+   alztG5mzxhM8CKwgNsi0kbDFLdU9LOKMBEoePQOWGj9UGsNPPk6rJXeNj
+   XTGvBCSwl/4p8AULRg08z/3fWiF/vvsd73oI8nWdGZogKQQGwxkOh2uyi
+   SFI8mwK4oPvdMpUn/6aYV8eu/rA+73lLEjdrX7qgae3dHGq1fWDPRzVJZ
+   mkasT2ONBbyLYyCpgPbhQq/m0VR9CmwUmosv7Mm9D8ikIfyyAKJW7C4z1
+   Q==;
+X-CSE-ConnectionGUID: vnnhyhxhTjKsaWx5lL1OQw==
+X-CSE-MsgGUID: 7zq0WuViRL+QK3s4c5GFrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="73331919"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; 
+   d="scan'208";a="73331919"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 15:27:52 -0700
+X-CSE-ConnectionGUID: JHK93R8NTPKNrBjXYqD6mw==
+X-CSE-MsgGUID: 1FGyWe8rRiSQWFFglb3Q1g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; 
+   d="scan'208";a="224594777"
+Received: from lkp-server01.sh.intel.com (HELO 434e41ea3c86) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 09 Mar 2026 15:27:48 -0700
+Received: from kbuild by 434e41ea3c86 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vzj4j-000000000uO-11Ix;
+	Mon, 09 Mar 2026 22:27:45 +0000
+Date: Tue, 10 Mar 2026 06:26:59 +0800
+From: kernel test robot <lkp@intel.com>
+To: Hermes Wu via B4 Relay <devnull+Hermes.wu.ite.com.tw@kernel.org>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, Pet.Weng@ite.com.tw,
+	Kenneth.Hung@ite.com.tw, Hermes Wu <Hermes.Wu@ite.com.tw>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] drm/bridge: Add ITE IT6162 MIPI DSI to HDMI
+ bridge driver
+Message-ID: <202603100655.k9Q6otfR-lkp@intel.com>
+References: <20260309-upstream-6162-v2-2-debdb6c88030@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -109,55 +97,82 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aa62FTHMOJGhVKTv@shell.armlinux.org.uk>
-X-Rspamd-Queue-Id: D853E242352
+In-Reply-To: <20260309-upstream-6162-v2-2-debdb6c88030@ite.com.tw>
+X-Rspamd-Queue-Id: 03395242371
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273156-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[armlinux.org.uk,gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	FREEMAIL_CC(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,ziyao.cc,cqsoftware.com.cn,nxp.com,bp.renesas.com,eswincomputing.com,bootlin.com,altera.com,cherry.de,st.com,synopsys.com,vger.kernel.org,lists.infradead.org,lists.linux.dev,st-md-mailman.stormreply.com,gentoo.org];
+	TAGGED_FROM(0.00)[bounces-273157-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,gmail.com,ffwll.ch,linux.intel.com,suse.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[22];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[inochiama@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[]
+	TAGGED_RCPT(0.00)[devicetree,Hermes.wu.ite.com.tw,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Mar 09, 2026 at 11:59:17AM +0000, Russell King (Oracle) wrote:
-> >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +
-> >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
-> >  .../ethernet/stmicro/stmmac/dwmac-spacemit.c  | 227 ++++++++++++++++++
-> 
-> One last point, please add another patch which adds a MAINTAINERS entry
-> for this file, so you can be Cc'd with future stmmac developments.
-> 
-> Thanks.
-> 
+Hi Hermes,
 
-OK, I will add a MAINTAINERS entry for both this file and
-binding file.
+kernel test robot noticed the following build warnings:
 
-Regards,
-Inochi
+[auto build test WARNING on 2622649ad6cdbb3e77bfafc8c0fe686090b77f70]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Hermes-Wu-via-B4-Relay/dt-bindings-display-bridge-Add-ITE-IT6162-MIPI-DSI-to-HDMI-bridge/20260309-174457
+base:   2622649ad6cdbb3e77bfafc8c0fe686090b77f70
+patch link:    https://lore.kernel.org/r/20260309-upstream-6162-v2-2-debdb6c88030%40ite.com.tw
+patch subject: [PATCH v2 2/2] drm/bridge: Add ITE IT6162 MIPI DSI to HDMI bridge driver
+config: xtensa-randconfig-r053-20260310 (https://download.01.org/0day-ci/archive/20260310/202603100655.k9Q6otfR-lkp@intel.com/config)
+compiler: xtensa-linux-gcc (GCC) 13.4.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603100655.k9Q6otfR-lkp@intel.com/
+
+cocci warnings: (new ones prefixed by >>)
+>> drivers/gpu/drm/bridge/ite-it6162.c:861:36-41: WARNING: conversion to bool not needed here
+
+vim +861 drivers/gpu/drm/bridge/ite-it6162.c
+
+   846	
+   847	static bool it6162_wait_mcu_ready(struct it6162 *it6162)
+   848	{
+   849		struct device *dev = &it6162->it6162_i2c->dev;
+   850		unsigned int status;
+   851		int val;
+   852	
+   853		status = readx_poll_timeout(it6162_wait_ready_event,
+   854					    it6162,
+   855					    val,
+   856					    val == EVENT_READY,
+   857					    100 * 1000,
+   858					    1500 * 1000);
+   859	
+   860		dev_dbg(dev, "%s status %d val %x", __func__, status, val);
+ > 861		return val == EVENT_READY ? true : false;
+   862	}
+   863	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
