@@ -1,70 +1,61 @@
-Return-Path: <devicetree+bounces-272980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272981-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJLIOZXfrmm/JQIAu9opvQ
-	(envelope-from <devicetree+bounces-272980-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 15:56:21 +0100
+	id +DtdMuXermm/JQIAu9opvQ
+	(envelope-from <devicetree+bounces-272981-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 15:53:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79EF023B094
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 15:56:21 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C9F823AF6E
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 15:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C329C3054B8D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 14:51:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B1B79301DBA3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 14:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589933D5251;
-	Mon,  9 Mar 2026 14:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B433D5237;
+	Mon,  9 Mar 2026 14:52:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OpllWE4k"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="biLaHrSl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from mail-24426.protonmail.ch (mail-24426.protonmail.ch [109.224.244.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147C83D5237
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 14:51:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ACD03D3499
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 14:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.26
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773067910; cv=none; b=MqaawrF+1OSiiHF8qQfi8PeIMg7xQo5TyLy9RvQFedLs6oljTpHCB4CsGOYAEF8OZ7BFiItIfy8PpAv21eEPMgCdd0kwrNktR1aLP1hKR1svYHSkoIkgC8vfTKolFh7U1IpgSPNCMrpmOxE4rFddsqzhXWXKKrVNUSjQEKQjZc0=
+	t=1773067934; cv=none; b=Wy+Y5fDIdGEvBJUhGREOIo9v/wtddQFv+HusFds8JksVruRsh6pYtpFsiTsMvvGnHO9XyS/Ys6F1sb3elqrHRVSWDwYtxw1a8CW+Cd2bSu6chLVowUmbATbwNkZP1t0qlgFIAusDj61Gmb34MtZNi+vEciRLb1uaLb0l2WLnxO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773067910; c=relaxed/simple;
-	bh=AsQ61QqfLJ70wtW6aiZP92f6a2RWiA0yiUBJuclzbv4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=bYVyNGjBtotjzaGpGamABVqdsVWwJP2UYLdi4nvG0gcWgBabNk17n6eU6LqGT3y/WAv3Os8dhkudbazNk5BaMj0eVTYBFv43fiCWBJV37Iav+EyKrDz+YYndhd30jR8nqQJpK5T00O0yBfHFN+EJ1stFtKF9zspFO8NNdpDK/wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OpllWE4k; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 774B34E425DC;
-	Mon,  9 Mar 2026 14:51:46 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 44E9F5FFB8;
-	Mon,  9 Mar 2026 14:51:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D9D2910369B2D;
-	Mon,  9 Mar 2026 15:51:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773067905; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=hd7IdzAoha2La4O5/dbJJ9/gh71YS868BVfPkqeW6Kg=;
-	b=OpllWE4kCUoe/+gc/UG815cKyabprHKi/57hvEdP7SO6k5dmgGKdC0PcuvpNtoayAoe8mi
-	0GwA2B2YY+4BT+yryjRyNWiSi/q30KH2Pb5Mu+hhJbKyZUDeEQJKMwYUwPLX+LJloUfjb4
-	n5qYOdvlBxqBTUqxUThAGA8b9lwKndRglF9svGovPSa3uZQR1F9nT7kiJzXAjOPcs5Mbp4
-	0a8RhiMnlkYKVoH2utdBTGTtiKIt7iVbyMBsBAXjKh7OioFmSoejLJmEWcbHR0ZFmt2MUG
-	OtWp90+3fKOKOv+UKw8w5Qth4H6ravVwGhr7sAt76ltOxMG2HeyOmPeorJCNLA==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Akhila YS <akhilayalmati@gmail.com>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-mtd@lists.infradead.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mtd: st,spear600-smi: convert to DT schema
-In-Reply-To: <20260225-spear-v2-1-021bcb670601@gmail.com> (Akhila YS's message
-	of "Wed, 25 Feb 2026 15:02:50 +0000")
-References: <20260225-spear-v2-1-021bcb670601@gmail.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Mon, 09 Mar 2026 15:51:42 +0100
-Message-ID: <87bjgxoy2p.fsf@bootlin.com>
+	s=arc-20240116; t=1773067934; c=relaxed/simple;
+	bh=aKVeqBvNoMnwi+KTkPV58gn8MWCuWDAX+BBtLm4NksM=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=oDsaPfn5Np62zruU8ATUWi68I0pgg3lLGiuPoAmnU/AD4pjpIwFjCfGrajepVbDXqPUZH8pLPflhpmqScw+xNIqRP/aMM9zEz6S8gZYabvHKbgVO3qxcICz5FLUNlzFF0v42KAnBfZp/i+83K3dCTM4IpR51EwUlns65aZvjGtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=biLaHrSl; arc=none smtp.client-ip=109.224.244.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1773067925; x=1773327125;
+	bh=K3Nznu+/0RcPCwpyvD2MPBrVSW3dHPifrwUThhMa12o=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=biLaHrSlcOp9bSjOsu/CJTRBf+wMkLdAP4MEug9n0xV1Z+wyw9AQgkMrRfvwJbfc8
+	 A7BFcLsXpnENpQAioWTMlxGyZyM7fiozXTpKyy+ZmejxYi0iMwaQ0uRPaNbJ3kXeTe
+	 eqJPO+MUQN5hLaTuX39w41h5tV4GtRwZIQB4M6v2BzbB/JcArTSCQDQ5a2AUddK7xf
+	 j1GXWcPVwCuwtJgfb54lG6j82j82E+PLarQODre2iAyvVInGztjV6TGKFjBlwiBoOU
+	 9P5G7dTUcFK5L0yoHF2lBeLg0XzGHytUw4zadswoO+3z15ffhKsPK8cSlWl1/GbxPP
+	 pU7OyVVPiwl2A==
+Date: Mon, 09 Mar 2026 14:52:01 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>
+From: cristian_ci <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD DSI
+Message-ID: <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com>
+In-Reply-To: <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org>
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com> <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org>
+Feedback-ID: 27475468:user:proton
+X-Pm-Message-ID: fc565aee6ed89af7a60918254dc78e3c50d606fe
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,75 +64,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 79EF023B094
+X-Rspamd-Queue-Id: 6C9F823AF6E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272980-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[bootlin.com:+];
+	TAGGED_FROM(0.00)[bounces-272981-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.965];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.995];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[protonmail.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,protonmail.com:dkim,protonmail.com:mid]
 X-Rspamd-Action: no action
 
-Hello Akhila,
+On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kernel.org> =
+wrote:
 
-On 25/02/2026 at 15:02:50 GMT, Akhila YS <akhilayalmati@gmail.com> wrote:
+> > +  vsp-supply:
+> > +    description: positive voltage supply for analog circuits
+>=20
+> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, avee.
+>=20
+> There is no VSN and VSP. Otherwise please point the page in datasheet or
+> some schematics.
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-> Convert STMicroelectronics SPEAr600 Serial Memory Interface (SMI)
-> Controller binding to YAML format.
->
-> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+I'm not sure about that. Writing panel dt-bindings has been based pretty mo=
+stly on vendor devicetree - which also describes somehow the panel and make=
+s that working with the final product released to the market - so I've to n=
+ecessarily consider that.
+Then, I could agree that vendor devicetree might be not compliant with upst=
+ream rules and could possibly make mistakes with describing the hardware, s=
+o I'd like to find a way to describe that in a more proper way, according t=
+o upstream rules.
 
-Gasp :-) Good to see that you actually did fix the issues. Thanks for
-doing that. But you've been sending a v2 for a patch that has already
-landed in Torvalds' tree. In this case, there are only 2 possibilities:
-- sending a revert of the former patch and then this one
-- sending fixes like I did
-In no case we can just apply this one as-is.
+That said, vendor devicetree describes lists four power supplies for  DSI: =
+'vdd', 'vddio', 'lab' and 'ibb' (which have the following property names, r=
+espectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-supply', 'lab=
+-supply' and 'ibb-supply'.
+Two of these are related to ds/controller (apparently, 'vddio' should match=
+ VDDI power supply in NT35532 datasheet.
 
-As it's been reviewed already by Rob, I'll take the 3 fixes that I
-proposed.
+The remaining two supplies are related to panel ('lab' and 'ibb'). These on=
+es are two 'external ' regulators ('external' from NT35532 perspective), wh=
+ich provide power supply to display, located in the qcom PMIC (in this case=
+, that should be PMI8950). WRT to power supply names described in the bindi=
+ngs ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' and 'ibb-s=
+upply', just named differently in the vendor devicetrees.
 
-[...]
+Usage of 'vsp'/'vsn' naming for power supply properties is grounded on they=
+ commonly being used at upstream (different panel bindings make use of thes=
+e properties), on one side, and also described on schematics of devices wit=
+h the same hardware configuration (LCD_VSN and LCD_VSP), on the other.
 
-> +  clock-rate:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Functional clock rate of the SMI controller in Hz.
+In the meantime, I've found out schematics for 'xiaomi-mido' (another MSM89=
+53 device) - a variant of this device is shipped with a panel also using NT=
+35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly shown ther=
+e too.
 
-This clock property (which I did not address in my series) is apparently
-not used anywhere upstream. This is a very legacy property, and my
-feeling is that it has not been useful for quite some time already (due
-to the CCF being able to provide a proper clock tree now). Hence we have
-two choices: considering that it does not need to be described at all in
-the yaml bindings because it is (very) deprecated property, we might
-want to just drop it off. Otherwise you may send a patch specifically
-for this addition, however in this case you need to flag it deprecated,
-I believe.
+I couldn't find much more information about the display on my device and th=
+e only resources available about that are those listed above, as of today. =
+In light of my reply, I ask if it is still necessary to describe, in the bi=
+ndings, power supply properties properties not used currently in the board =
+DTS file.
 
-Thanks,
-Miqu=C3=A8l
+Regards,
+
+Cristian.
 
