@@ -1,242 +1,271 @@
-Return-Path: <devicetree+bounces-272819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272811-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SBtgI3ycrmldGwIAu9opvQ
-	(envelope-from <devicetree+bounces-272819-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:10:04 +0100
+	id IFeoA6ebrmmqGgIAu9opvQ
+	(envelope-from <devicetree+bounces-272811-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:06:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E7C1236CFE
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:10:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7973C236BF5
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 11:06:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A11753027DAD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 10:09:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 7B66130242A4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 10:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5ED6387560;
-	Mon,  9 Mar 2026 10:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63B8538B7A9;
+	Mon,  9 Mar 2026 10:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b="Hne3b6DA"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dajMwEgo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mta-65-227.siemens.flowmailer.net (mta-65-227.siemens.flowmailer.net [185.136.65.227])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013028.outbound.protection.outlook.com [52.101.72.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E1B538BF6B
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 10:09:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.136.65.227
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773050951; cv=none; b=Q2P+ORFmcOnSJmrhZOVWP/lfKKjVDxQt0jFkH0JPdmvKZxoX7zR7L6DuabTfVv2E6ksqkFKkZm2WpcayMhK6MBjMSQewJDacd+wfk3EEafe7UKIKnaSch0khCJBO7/ogEQcewsK6pCnx5/T8mqyjlcwEbsvTQc9OOnZiVBElTEg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773050951; c=relaxed/simple;
-	bh=Eagp5Ejb5uSVhOilX6Bp+PTFyYqeR/ZTFOzn3ekyRUA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HUOCBovBGGsyiV5HLRDrb4dgcMzRHqmafF3tX3q6BrdB00i42w5W1KLc+qtRY1SpH9qfKsFPAkSydA00M102zM55gV+lQf6tE6fqo/olKCDNbMwmSRl75U4pPdCByP153PFFejZ0KRgqgtj4OShBRPMdejX7LhzxUpjEAxYIIQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com; dkim=pass (2048-bit key) header.d=siemens.com header.i=alexander.sverdlin@siemens.com header.b=Hne3b6DA; arc=none smtp.client-ip=185.136.65.227
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=siemens.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rts-flowmailer.siemens.com
-Received: by mta-65-227.siemens.flowmailer.net with ESMTPSA id 202603091008592e9855cbd000020774
-        for <devicetree@vger.kernel.org>;
-        Mon, 09 Mar 2026 11:08:59 +0100
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=alexander.sverdlin@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
- bh=RZC0oGY8rRbgVELeb0RF2I7S6lvyMsAod6S1xdxvL7A=;
- b=Hne3b6DAZ3NK7o4qoULldXDLZAioGXj00TLOCqWII02dWiqBeW9ksPi0pSmxSD2Y8cqUUM
- jEFdseMXYtuDX00HoVtHOUsEOLNoAxjIIETNjcPPRuvBOXCdeFdtEZ6Ls9uGwwZDOrOOeAst
- 4l0I2FqgW2J/Xc4EMQvPyopa+8IWLLnLvgkvsn8pwOplo666b9/cDTdBD9zrZ07k0lVa9AFE
- Kk02DYKSt9W8zWRLgFbp7GcSjg4nOpLRPQ3oJx79is4Dal2nOibKA0bdoBKcVVEtVb/t5QOn
- 7nqOIqncK0YiodNYDcST5ujYKsOYfZhVCJd8E5Ke2V8E00diV4FE2Clw==;
-From: "A. Sverdlin" <alexander.sverdlin@siemens.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: Alexander Sverdlin <alexander.sverdlin@siemens.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	Andrew Davis <afd@ti.com>,
-	Jayesh Choudhary <j-choudhary@ti.com>,
-	Siddharth Vadapalli <s-vadapalli@ti.com>,
-	Abraham I <kishon@kernel.org>,
-	Roger Quadros <rogerq@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] soc: ti: k3-socinfo: Provide reset reason information
-Date: Mon,  9 Mar 2026 11:07:55 +0100
-Message-ID: <20260309100800.1134701-4-alexander.sverdlin@siemens.com>
-In-Reply-To: <20260309100800.1134701-1-alexander.sverdlin@siemens.com>
-References: <20260309100800.1134701-1-alexander.sverdlin@siemens.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5D693803F1;
+	Mon,  9 Mar 2026 10:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.28
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773050781; cv=fail; b=oAKz+wIflDP6ChoBzVJ03UQGHpY4GY9gh1Dtzgu7uVwUdUUjweLJAuj/yFfAwAsiikDpQ/cHEqvb6o/SIn/1ge4vJVyCHmMzufwR9vgrKqLAGPZZEBThpTWJCqYc9vpYKmOwOa8umOTUShV5e20rDEPi/SZjbtEeLSGQCK6htAw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773050781; c=relaxed/simple;
+	bh=hrhQf3yte7BwalS9wE9TmOdBvXwsLwP0yfP5Ggkzkwk=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Suma0HMZ0CcuhQw7ZLt8nGyraWCds6L8qRnkXlHml9+6gyNYrCr7KT4qi8HDNTB9JyMYl8omtwmilq6Puuxt6QzsiC4F9jBYdQvvyyE+HjCpL+S7CK9zfggNo0aoxRHoEnFXVQrBpB6uTsmkNMyonrMq1SYj6qlH4xsGqkP4Hoo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dajMwEgo; arc=fail smtp.client-ip=52.101.72.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tLZwqfFK3mDINWW9a9WW5Rrm673EMUX/MFjxJxlCOOCsYXk0GBvv6mZRsMX5YHzIeU0Raq3kfVCQlwvCtpTzoiPWjIY+y2vol9yEMkhtmAJm2NDP8+C/U0G0BKGAInbmiwOEuJ/xvizgacNdroPHignek1krr3vkH9Yx98HANAsZncIEdbdIX8NhiVLCQ7ej65p7zMbZX0hUliKP3LdCDgA2LwtXRnalJXCersiPT2Vi56lRHF4U9mSjRFvBuDgqFLGNNQA63TYBShpITiGzeL1FaqdK8YyymAeBvgsbyo0pDYeoet1Ef1n0vmaisUf+GkLAqIXyzIT5VDODMMBAdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w/4zKHWkBZrGdSJcmQqAtpxrbcjYGFb9bwBD4bKU6do=;
+ b=KYol5fMU1YVBr6kQ020H/OuXd0i++gHZMh4NqxlCoeSPt90SjDTWdmNht3UyquV2AcesSAE7i7vBS1UFm8NXyC1nuh3JMla+yNtIiOfViIBrjq4a0avNRFcV8olTdLtqh2aWkx2a0Yda0cUcAW+3gWLS/zrBDzeJRAMM3eZDPmyXoiX5xjs1ErcTIcVIMmSX/jwusb9/gEfUW9CwAyTeqoxmdlmnQAEp83hYT5KHlDAWeDL/SzXgBCfBvy/htnK+NQi8VknnltBcGBxNbXv5yvOzpGG+25h66xv+7/K64P822McoeLwlZKovV8mo5nDdrznymCUYgp2R//VF5IR2Yw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=w/4zKHWkBZrGdSJcmQqAtpxrbcjYGFb9bwBD4bKU6do=;
+ b=dajMwEgo3kd7OOvtrKQFcv99uVb4aRgmAWzINnq83fehTpi9ndlfC95Rplg9QtlivAiPsrqg8xyng5kaulMbFoG6uII0LbD1460+mPl8Jvld0ght2v0taP1R8psCC6gLrM+55azWWCUs2/HiUfeJ8lyo2pUpvRg1Dkg11CAqqChHfBmXqN+l5THf8Cg9J+J9t2EJYuk3pHyWGme1dO4Pmt/Deri/E5oDYKPcBolJQZK3wgnTVzIjAavRArazEpVOV9DKSxvTxHkCksxK4QmVScoTGaH7dZKUncTKNbjreKEtd8oaKBWykkrZvlE2MPGGRKyee6zXsG5c+f9NjJHIZw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by GVXPR04MB10970.eurprd04.prod.outlook.com (2603:10a6:150:21b::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Mon, 9 Mar
+ 2026 10:06:15 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::c67b:71cd:6338:9dce]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::c67b:71cd:6338:9dce%5]) with mapi id 15.20.9678.023; Mon, 9 Mar 2026
+ 10:06:15 +0000
+From: Xu Yang <xu.yang_2@nxp.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	jun.li@nxp.com
+Subject: [PATCH v3 1/2] arm64: dts: imx94: add USB nodes
+Date: Mon,  9 Mar 2026 18:08:06 +0800
+Message-Id: <20260309100807.2844925-1-xu.yang_2@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MA5P287CA0188.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b6::15) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-456497:519-21489:flowmailer
-X-Rspamd-Queue-Id: 2E7C1236CFE
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|GVXPR04MB10970:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0a1657e5-761f-4595-91ec-08de7dc37fb4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|19092799006|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	p8uReNwbd7X0Bkrw6fqzn/YD7EeJ0s6O4/aNjK6MqZHyBRffvu6rWB20CYruuadVD3EmTMRQbwydGY8kiMoAaIHp1Peq0HdKkcV0fwwzjytKfr3awhxwcxOcdC4W3pZmX17Jcoeop7VklW2zbFtHG9yasSkQE83a2TyJFr+R24FczCGrFv4YhMWR5OPtu4d5I9GTxkSwl6NMxJnmSsoBKeUMV6dGTyj6r4sRYib1YNcUjsnuOnhQvf+pBdMa0ggR6zmqdT2AQjOsPux2scCiDzgOC+fVDfyliX6cDIwaxhR6s7GnuXmO0blaWDPK9a9kI4DSuUg0xprd7AeY4AMuFsorkHON4EJ4OBbxR+FBJ8dCgjmzUqdeJ9X59MpunoKJvQsFXSBzAljBdHV/FpS7vrwG6YH43MG8USMZ/GeWiMHnnATJpV7aqo0y8TKzqwQitby+YwpKMTBj0ZzUAGC+z8ndhCMNHvy+ollSzwYuWwuLsQlYu6+rEL8Rji0J+KG8oZfbzbyPLK85XDybvBR21UGBAaCfCtOCr+q2LO4j5VBkf5xGeKbOq6Tw8uC46IdDehsXPhJWq3cYfyKa/Cy5vWCaDGeg6cGkxOdn5iPkBAbdVg8V2fX/hCpfnMDvP0XtgekgR6HnksOQDoxFm5nKTHEbsD5Q0NwCBlvEx7FPVuIvJxcF0jYnvMcWKytjTQxXrIjq+QyhsIuepazZOybTzGOrl9s0OVzmnSRZikww4D3FGkM1jnCdJ98w40STzFmYr+milblc9dwI6oJzMu86m77IocnmHfNyj6C61MPy+lU=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?bDJ0qtzfb+yN/AnGqyEuLIKmkIP+xJXvc6HXW6YbGxC6YQ7ayjsi0G+cVU6F?=
+ =?us-ascii?Q?OPUw9nNScWbKp1xtERvodU09SsFkTy5AylQUvqlv5OkvduO/Q1Iw3r5iHFNY?=
+ =?us-ascii?Q?nkGT5pLOgv2wbgKNox0TXpAmLFQW95JE6102SoIyuzN4P1oGxARmSLWX8Dl5?=
+ =?us-ascii?Q?QLyrdMEqnTPDOJOzihNtdU2yiMjLKm32wXY6d8lgHE5oSrET6rENeDtwA19m?=
+ =?us-ascii?Q?sauMJPutJj6sWrdiLoUoBT0wfrRY/urn7y7W/5p6x06/khv7lfgFuyEoGkvd?=
+ =?us-ascii?Q?BDs7cbSFZgioxXQmNQPPRdp+X7PIAXDyzqy32on7pxOrzLEyoH7L3j/kamLN?=
+ =?us-ascii?Q?/5f+/r14YK63Umb8z9kNkTBKvocp8rSXt+1G7D/f1IT1VFFWVvJX8MDVJFbI?=
+ =?us-ascii?Q?hawwXFumSO9eN+BbFM4bSS3K/SlP1N/4I6dTjwcE4ptIaFTN7ozsTIaNM/yI?=
+ =?us-ascii?Q?+H7MbwmOguIBLSfHwmDLx8I9flOc8TQrHGzKd3RilXKahh2RUjJGw0gwEm/+?=
+ =?us-ascii?Q?xcUJfXyGu0R45p+sq4RDaQ+t7IPQKdZ5NWtcx2d+7OLaoOMaZyB7cux/Hdp+?=
+ =?us-ascii?Q?H6POu9xiZ2iXzkVWM5qGn9yymmis7MzLBr40IYJWU+0tqwpOfRcqHG5KzLgq?=
+ =?us-ascii?Q?uuvo74pzVijAM+QILd3iDDf5PpunUpUKjFBrjW4RRumQC+lY3UAfbGgbQ/C3?=
+ =?us-ascii?Q?9RQHQeUX1oyDMLxfK5kf3vGy05fiGluaCWhj0DBk3FqI+peu/ovS5+EuUURR?=
+ =?us-ascii?Q?Lr3ZsWvQH2dK6/wIzBz2m3q+8ZwZzRlqyJFPwzRZGwchrUVoTrfobO7mblT/?=
+ =?us-ascii?Q?OWwDTniaiRDeTRfiRnalrrvCakAeZoNumlOnOFMQbDrcbHz6zfm1H14fwutp?=
+ =?us-ascii?Q?by7R4Y9+7LP5BJ3NT8RqHeeAAgybPCQn7J3PqPmPlmnNNcreaCryZ4BiMLVP?=
+ =?us-ascii?Q?1osMK2RaW2ZTcgnhu5OlTbNf1oYrkRgj528YBXyyTq8vs6xDL1kgY4Q8NKU0?=
+ =?us-ascii?Q?sGI1kry8Stider9m8MzAnO6HAsJd3Xy4sfNBe2KLTVSAF+nxSZFpAAm03g3I?=
+ =?us-ascii?Q?x814aqGfcui4KUW09tcmqixs8UhNUoKIDWQNPlM/wYTwzWhjS0+EU/IG/1L3?=
+ =?us-ascii?Q?hWL9Rvd0A8e8JOb2aJn7MrhT7WK03ArDRpdM9U733ZHkFiR/AVlswoqqNipX?=
+ =?us-ascii?Q?MgYaP0g2/02F+db1nhc5UZVNOWj+kbd1DFjZ5EJ21pG2ISEsUhXJZwDytIsH?=
+ =?us-ascii?Q?KVoBseNTYl5OyiGfuyGG3HY8jvaYZs/cmUtg6SlMByVBBXiTKZjx4TigVD6F?=
+ =?us-ascii?Q?4olzQeOfmOsEw3jVd45mrPxy8GgU1Lg02E7VOVC0Ys9t4OK4OOvpcHKJrt61?=
+ =?us-ascii?Q?/ARabjtVto03sVbbAyy9rE/KpeFbeCig7q8Ox2SQk/V++CqvyfMdvc5wZecw?=
+ =?us-ascii?Q?ZvTHmw3k9KX9rRa+G4uqp06X5QwU709vYDUEiGeMArBrlKfHfBFTlpu7LIf0?=
+ =?us-ascii?Q?DOimVfgZCIEk4wW1liEFcagEO4wCOClvpj9IYz3fVqLwVgtq23dhxVQ3QUfb?=
+ =?us-ascii?Q?443ZIP2vsbCX4iT5cb8BSCjrlYQSC+dV0IfgS8b0NoPMaP0LcUBh17rql8Lc?=
+ =?us-ascii?Q?SMNzSetT1P3ERMj2NJqvAlbZAJs1QpI7+AU1WUCHPOKRSp8fJN5v6dJ7MY0c?=
+ =?us-ascii?Q?2sIGu3kgIWRL1P0Xb3XnRKqAIlrcvRwHET31xxp4m3WSaQaDdBSeUNcXOWPJ?=
+ =?us-ascii?Q?FVBdHKYBtg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a1657e5-761f-4595-91ec-08de7dc37fb4
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 10:06:15.0580
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: xgxWq5VTmHEtNY2UGNdZVhzgpDL96Sh0h/S1HFXPeuQyt7RqWLjKJqvz2EBtiSBdXtKU1L9l2r9kb2+xIwHSzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10970
+X-Rspamd-Queue-Id: 7973C236BF5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[siemens.com,reject];
-	R_DKIM_ALLOW(-0.20)[siemens.com:s=fm1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	TAGGED_FROM(0.00)[bounces-272819-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272811-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.sverdlin@siemens.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[xu.yang_2@nxp.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[siemens.com:+];
-	NEURAL_HAM(-0.00)[-0.990];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[2.220.108.0:email];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[siemens.com:dkim,siemens.com:email,siemens.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-0.994];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid,4c200000:email,4ceb0000:email,4c200200:email,2.239.9.160:email]
 X-Rspamd-Action: no action
 
-From: Alexander Sverdlin <alexander.sverdlin@siemens.com>
+add USB2.0, USB3.0 controller and USB phy nodes.
 
-Add reset_reason attribute decoging the RST_SRC register present in AM64x
-and later SoCs of K3 family. Textual representation of the bits was taken
-from the AM62x Processors Technical Reference Manual, except the POR, which
-is not signalled explicitly by the reset module.
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
-Signed-off-by: Alexander Sverdlin <alexander.sverdlin@siemens.com>
 ---
- drivers/soc/ti/k3-socinfo.c | 88 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+Changes in v2:
+ - move usbphynop behind of clock-sai4-mclk1
+Changes in v3:
+ - move usbphynop ahead of interrupt-controller
+---
+ arch/arm64/boot/dts/freescale/imx94.dtsi | 61 ++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-diff --git a/drivers/soc/ti/k3-socinfo.c b/drivers/soc/ti/k3-socinfo.c
-index 676041879eca3..3736c982fd0c8 100644
---- a/drivers/soc/ti/k3-socinfo.c
-+++ b/drivers/soc/ti/k3-socinfo.c
-@@ -45,6 +45,8 @@
- #define JTAG_ID_PARTNO_J722S		0xBBA0
- #define JTAG_ID_PARTNO_AM62LX		0xBBA7
+diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot/dts/freescale/imx94.dtsi
+index d2f31c8caf6e..38488147a3ef 100644
+--- a/arch/arm64/boot/dts/freescale/imx94.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
+@@ -139,6 +139,13 @@ timer {
+ 		arm,no-tick-in-suspend;
+ 	};
  
-+#define CTRL_MMR_RST_SRC		8
++	usbphynop: usbphynop {
++		compatible = "usb-nop-xceiv";
++		clocks = <&scmi_clk IMX94_CLK_HSIO>;
++		clock-names = "main_clk";
++		#phy-cells = <0>;
++	};
 +
- static const struct k3_soc_id {
- 	unsigned int id;
- 	const char *family_name;
-@@ -123,6 +125,90 @@ static const struct regmap_config k3_chipinfo_regmap_cfg = {
- 	.reg_stride = 4,
- };
+ 	gic: interrupt-controller@48000000 {
+ 		compatible = "arm,gic-v3";
+ 		reg = <0 0x48000000 0 0x10000>,
+@@ -1223,6 +1230,60 @@ wdog3: watchdog@49220000 {
+ 			};
+ 		};
  
-+static u32 k3_reset_source;
-+static const char *const k3_reset_sources[] = {
-+	[0]	= "Reset Caused by MCU Reset Pin",
-+	[1]	= "Power On Reset",			/* Reserved in HW */
-+	[2]	= "Main Reset Pin",
-+	[4]	= "Thermal Reset",
-+	[8]	= "Debug Subsystem Initiated Reset",
-+	[12]	= "SMS Cold Reset",
-+	[13]	= "SMS Warm Reset",
-+	[16]	= "Software Warm Reset",
-+	[20]	= "Software Main Warm Reset From MCU CTRL MMR",
-+	[21]	= "Software Main Warm Reset from MAIN CTRL MMR",
-+	[22]	= "Watchdog Initiated Reset",
-+	[24]	= "Software Main Power On Reset From MCU CTRL MMR",
-+	[25]	= "Software Main Power On Reset From MAIN CTRL MMR",
-+	[30]	= "Reset Caused by Main ESM Error",
-+	[31]	= "Reset Caused by MCU ESM Error",
-+};
++		usb3: usb@4c100000 {
++			compatible = "nxp,imx94-dwc3", "nxp,imx8mp-dwc3";
++			reg = <0x0 0x4c100000 0x0 0x10000>,
++			      <0x0 0x4c010010 0x0 0x04>,
++			      <0x0 0x4c1f0000 0x0 0x20>;
++			reg-names = "core", "blkctl", "glue";
++			clocks = <&scmi_clk IMX94_CLK_HSIO>,
++				 <&scmi_clk IMX94_CLK_HSIO>,
++				 <&scmi_clk IMX94_CLK_24M>,
++				 <&scmi_clk IMX94_CLK_32K>;
++			clock-names = "hsio", "bus_early", "ref", "suspend";
++			interrupts = <GIC_SPI 180 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 386 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "dwc_usb3", "wakeup";
++			power-domains = <&scmi_devpd IMX94_PD_HSIO_TOP>;
++			phys = <&usb3_phy>, <&usb3_phy>;
++			phy-names = "usb2-phy", "usb3-phy";
++			snps,gfladj-refclk-lpm-sel-quirk;
++			snps,parkmode-disable-ss-quirk;
++			status = "disabled";
++		};
 +
-+static ssize_t reset_reason_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	int ret, i;
-+	int total = 0;
++		usb3_phy: phy@4c1f0040 {
++			compatible = "fsl,imx95-usb-phy", "fsl,imx8mp-usb-phy";
++			reg = <0x0 0x4c1f0040 0x0 0x40>,
++			      <0x0 0x4c1fc000 0x0 0x100>;
++			clocks = <&scmi_clk IMX94_CLK_HSIO>;
++			clock-names = "phy";
++			#phy-cells = <0>;
++			power-domains = <&scmi_devpd IMX94_PD_HSIO_TOP>;
++			status = "disabled";
++		};
 +
-+	for (i = ARRAY_SIZE(k3_reset_sources); i >= 0; i--) {
-+		if (!k3_reset_sources[i] || !(k3_reset_source & BIT(i)))
-+			continue;
++		usb2: usb@4c200000 {
++			compatible = "fsl,imx95-usb", "fsl,imx7d-usb", "fsl,imx27-usb";
++			reg = <0x0 0x4c200000 0x0 0x200>;
++			interrupts = <GIC_SPI 181 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 387 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&scmi_clk IMX94_CLK_HSIO>,
++				 <&scmi_clk IMX94_CLK_32K>;
++			clock-names = "usb_ctrl_root", "usb_wakeup";
++			power-domains = <&scmi_devpd IMX94_PD_HSIO_TOP>;
++			phys = <&usbphynop>;
++			fsl,usbmisc = <&usbmisc 0>;
++			status = "disabled";
++		};
 +
-+		ret = sprintf(buf + total, "%s\n", k3_reset_sources[i]);
-+		if (ret < 0)
-+			return ret;
-+		total += ret;
-+		/* Note that several reset sources may be active simultaneously */
-+	}
++		usbmisc: usbmisc@4c200200 {
++			compatible = "fsl,imx95-usbmisc", "fsl,imx7d-usbmisc", "fsl,imx6q-usbmisc";
++			reg = <0x0 0x4c200200 0x0 0x200>,
++			      <0x0 0x4c010014 0x0 0x04>;
++			#index-cells = <1>;
++		};
 +
-+	return total;
-+}
-+
-+static DEVICE_ATTR_RO(reset_reason);
-+
-+static struct attribute *k3_soc_attrs[] = {
-+	&dev_attr_reset_reason.attr,
-+	NULL
-+};
-+
-+ATTRIBUTE_GROUPS(k3_soc);
-+
-+static const struct of_device_id k3_rst_id_table[] = {
-+	{
-+		.compatible	= "ti,am64-rst",
-+	},
-+	{}
-+};
-+
-+static void k3_reset_reason_read(struct soc_device_attribute *soc_dev_attr)
-+{
-+	struct device_node *node = of_find_matching_node(NULL, k3_rst_id_table);
-+	struct regmap *regmap;
-+
-+	/* AM65x/J721E do not have similar registers */
-+	if (!node)
-+		return;
-+
-+	regmap = device_node_to_regmap(node);
-+	of_node_put(node);
-+	if (IS_ERR(regmap)) {
-+		pr_err("Cannot obtain %s regmap\n", k3_rst_id_table[0].compatible);
-+		return;
-+	}
-+
-+	regmap_read(regmap, CTRL_MMR_RST_SRC, &k3_reset_source);
-+	/*
-+	 * The register is only being cleared on POR, so we have to clear reset
-+	 * source of the current boot manually
-+	 */
-+	regmap_write(regmap, CTRL_MMR_RST_SRC, k3_reset_source);
-+
-+	/* Simplify the code a bit and use HW-reserved bit for POR indication */
-+	if (!k3_reset_source)
-+		k3_reset_source |= BIT(1);
-+
-+	soc_dev_attr->custom_attr_group = k3_soc_groups[0];
-+}
-+
- static int k3_chipinfo_probe(struct platform_device *pdev)
- {
- 	struct device_node *node = pdev->dev.of_node;
-@@ -183,6 +269,8 @@ static int k3_chipinfo_probe(struct platform_device *pdev)
- 	of_property_read_string(node, "model", &soc_dev_attr->machine);
- 	of_node_put(node);
- 
-+	k3_reset_reason_read(soc_dev_attr);
-+
- 	soc_dev = soc_device_register(soc_dev_attr);
- 	if (IS_ERR(soc_dev)) {
- 		ret = PTR_ERR(soc_dev);
+ 		netc_blk_ctrl: system-controller@4ceb0000 {
+ 			compatible = "nxp,imx94-netc-blk-ctrl";
+ 			reg = <0x0 0x4ceb0000 0x0 0x10000>,
 -- 
-2.52.0
+2.34.1
 
 
