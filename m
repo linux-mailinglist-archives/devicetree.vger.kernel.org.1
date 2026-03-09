@@ -1,210 +1,188 @@
-Return-Path: <devicetree+bounces-273038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273039-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBDXI5X8rmkxLQIAu9opvQ
-	(envelope-from <devicetree+bounces-273038-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 18:00:05 +0100
+	id COnFFqv8rmlbLQIAu9opvQ
+	(envelope-from <devicetree+bounces-273039-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 18:00:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE07B23D3CB
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 18:00:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C67F023D3F9
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 18:00:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 65FF6305A2ED
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 16:51:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 6E0E33078F89
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 16:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF151DBB3A;
-	Mon,  9 Mar 2026 16:51:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="EY9p1+C8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1303B4EB9;
+	Mon,  9 Mar 2026 16:51:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013008.outbound.protection.outlook.com [40.107.162.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515433D3009;
-	Mon,  9 Mar 2026 16:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773075085; cv=fail; b=XyNPeCc1S1DGbsxv5F37gxaGJ8/JQBZnMKvlOvLYbYRypK+Zx7bZNT0acpNUZ+F7YZiq/udgWy5uqeZwkL3yOxIki6xUGZKPJqVi/YhebbyW9XxlQAsYr0Hys/aY52/fU0FkXbupM/cWeCEPHdbpMXBVQs/6Kw9iCFEbwFthf7o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773075085; c=relaxed/simple;
-	bh=9zpXYsoarbyr13ThMyAtrQ77D475gNcqONYDp6ixbYo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BIzcDjDWp94MGdgRqqPfIqPkqolWSjtxUwcoCJqe99Ub8lMgQMbfrbYUU/do439MrBeJH7jWsIHOGMLPwzh8gt91ORNT9amvUOrSoxzKUBi8ptY3c94ejCxbR9pfIccQMpo21JuS1vOlmHg7wJ2vyNL5CO3BabyDULsMQF+4NxY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=EY9p1+C8; arc=fail smtp.client-ip=40.107.162.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V/t9bc38KujbMCOwka+1ss6gNf97jlcbkhqwpzwOxr3uNUNitHLaUbzFZd51aagjNIQjklIOrUqX4555QWyRUGxqWNPIWBzyCnMJIlZKbjyaZWAQa25pBQ7q6h1A6Ikpwt2HZsvxKqSU9Rty53956LMJ9+JE5Bta99u3yGiaQ4LNS9arJRWtYWOQBzqCRNLZ8dScdf2r2zSoOLEYuVXteUJHwC8PZEvIdzByoy8Ebzg92NTgcCcvycgY8QvdXDt/kp3ikL3YyzBI28eOYq3K00azLuhWqiLt/ljsNN4wIfnNoKCeDAFqeTmn2RmgfX9dRCy2/m0zv+I4LU4uLr9LLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hglg7GU3RWzI8/D34BNTE3eKa5p1+1rNWdMGIQeCDOs=;
- b=Nf2HtGfGQZANDmnGI491V8CeJz5WfVhq/9yfT2DIC4/NOC9rPizaDD8DRhS09aaeCXXZXd+NY8tWQ5o9mpVYfhthvuAzD5feYn3t6kg2JHjtO0Cp7TNUgU1ELJ6qcs1RpV0SzvaZujg39wMHOqYiBrdyQAPrUs5GODe8Cqi4JWWf6Wv7dcAj2q7eitJ/NyWbYroYe3IXB1y5ywv9QRgPJHUBMpSsqEfz2eOdSuUyUOMLHyl3mLxMz1VrC0+WaSn5yyTV4mqFGT41r2YZQ3XDUcD15it9zQi0j75f7YwhpVtfArB1UBHc9txF6dhgcAKUhCJ3U8rHhuOILU18JGzPUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hglg7GU3RWzI8/D34BNTE3eKa5p1+1rNWdMGIQeCDOs=;
- b=EY9p1+C8yD0QzfU5ejM+tKZ6azNBRWGVwn7KJ5RwWcgvZOhFKn1Aih9981Y4EvggzwbpGrnroz+18avqekS8T9wf94FqhY52LtHDOkLwponwf14ScMjIM4eiic6n285E/EzRnLWvFsgnJbnFb3nRFrvaOdQIXKgPanadvo0AIfp2dEsCPTQcLF2P2YqAV5aHDngxoGCSEhyj4mGuDu2tUCUOJA/YsNbuzkHdSD+ceTENscXbUqcTbgqWNLXrt+HmHZuMtyju1k9vNyAfyy6xKOyVk5qJnQqsdKqIpEjl7579ptKAjCv/nfxdL+pp42rwRJiIpDZzViz9Z7JldFeEsQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by GV2PR04MB12392.eurprd04.prod.outlook.com (2603:10a6:150:341::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.22; Mon, 9 Mar
- 2026 16:51:16 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Mon, 9 Mar 2026
- 16:51:16 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] arm64: dts: tqma8mpql-mba8mpxl: Configure multiple queues on eqos
-Date: Mon,  9 Mar 2026 12:50:56 -0400
-Message-ID: <177307502164.1721116.3204716549576546635.b4-ty@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260226130223.613325-1-alexander.stein@ew.tq-group.com>
-References: <20260226130223.613325-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PH0PR07CA0097.namprd07.prod.outlook.com
- (2603:10b6:510:4::12) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E22C2BE7C6;
+	Mon,  9 Mar 2026 16:51:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773075103; cv=none; b=Xg8dOLGHg1wEh2TOqYoi+GDf+C8NTrTIJTnn7qDKzSiOKxvrl2Y848wD+6UqMKVlTIvyAWZ3EjACL8zoZj8O6Y/ouvwT0XjUCYqzOZbx3gCQTkffo+siJ+xlF50cRV3WeqDHKvsCSr9cag2Gs0QnxB8UEDtNiQl8qMci6kMdaSk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773075103; c=relaxed/simple;
+	bh=JOUUgP/FedNsYJC0AKSvjLvkU6esunt8gOuc8g4kBzU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=T1WuMZwq9bSPKr8hm2iUKwdAalOkSRy3KB/krxo7BcyQfZaV4B7GWRL+UCIaRVjbx9cBHoDjmZWwfy7euz4XdqNwxzjhSEqj8HbgORPMusbGSsigOOPxr2REHVkadRtQihRyAfpyZmDU3mJSFe+VKoqbL+bjA2cAJdwbtoJ56dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.14])
+	by APP-05 (Coremail) with SMTP id zQCowAAnvA98+q5pb6z5CQ--.23212S2;
+	Tue, 10 Mar 2026 00:51:09 +0800 (CST)
+Message-ID: <57436150684e72049b62657caec544a2f18aab1c.camel@iscas.ac.cn>
+Subject: Re: [PATCH v7 3/8] drm: verisilicon: add a driver for Verisilicon
+ display controllers
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>, Andrzej Hajda	
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman	 <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring	 <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>, Drew
+ Fustini <fustini@kernel.org>, Guo Ren	 <guoren@kernel.org>, Fu Wei
+ <wefu@redhat.com>
+Cc: Philipp Zabel <p.zabel@pengutronix.de>, Dmitry Baryshkov
+ <lumag@kernel.org>,  Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao
+ <gaohan@iscas.ac.cn>, Yao Zi <ziyao@disroot.org>, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Date: Tue, 10 Mar 2026 00:51:08 +0800
+In-Reply-To: <301a33fc27bd01bb50d57779c2f9eb51a4fafaa5.camel@iscas.ac.cn>
+References: <20260129023922.1527729-1-zhengxingda@iscas.ac.cn>
+		 <20260129023922.1527729-4-zhengxingda@iscas.ac.cn>
+		 <DGY9GWWLXGNX.265MMEXXCG8YA@bootlin.com>
+	 <301a33fc27bd01bb50d57779c2f9eb51a4fafaa5.camel@iscas.ac.cn>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GV2PR04MB12392:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f153a3c-5a35-4714-f694-08de7dfc143d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|7416014|19092799006|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	nGXsDNZ0KTbGIygQbfIc8bvz+3e62TawzIXxjDMYLY00HboDltkCE1UZgpwiW9TR4IsnBzw9D7x9TpCRcZ1HB1Nlg2tjmymmOquielEa/1OmuRJybFt5g8+t9lx9EjyrTZK0O9NFyZYzKj3j/4qyrbiY+Z0x05CjivkAN42KdcWhtljrjWYgwyvCQVR741o2/aO8rLRDPZWl0caq/wQ5gm+3BiYHvFmwVGCDY/VRAcO3G6hSQd58drXsTtCnn6S8eykrXN7w3HKB7luXYWePPOq+7n8VaD6wLVmzUZh0hZ8a72wd5jcn50Vlg1LLdFF4z7waCf+qPIKeZmvdWnjxLVqDgoEmmw4ucU4jCrMNskZ/DMtljffN+HapQyTV0wDCGCzjm0ZPHuEE2q2+Nwg491l+sbwyph180bSSZd27+MfDCAompvQg/bIgHGx8f62ZFf4h7m9cI3rx50/pROLrlcnguJztrysd9/aM/OusBsWtI/9a22BA2YDJAIdrLEEQxd59qKR41jdO114Xh1QbRrTKpcgWWXJO0obbE2DyUTsp117TmTUJBJXfoeg95hQoHOu9alqEl6UUHudumReIqRvJE8V1xqAjWqhDuLLiV2X56iu5YqpSDUm0IHEe4E60vrJT2r+j/n7fOQK/GF9gK9+9oKmwAbou8kT4ZqubzITJFT7wt86eavzF0BPAJGuG0hnXXvYF5hLKDsvYTFnE9mo59VIVz1xmcPngAWCHeqf5Dm8q8pDio18yboDRiczaOL9NpM5VWmqsKuvDfE406zuSXrJGyDJ9wdNK1GKXx5Y=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QVZHN3J0T014THNiRUppZDNhQW82SU5jU1I4TU45RGNYRE5YRUFxNWV5ZGpt?=
- =?utf-8?B?V2JrbUtPT29YY050VTk4WjdaWldaZ1N2MjVicXNBZmxiUThjbm5VaFJxUmZn?=
- =?utf-8?B?TzVZaHFiWnRsS05uVW5mYlRHZVZaM2lEcVdHY2krTDNQblU3WEVqQVR2K1JQ?=
- =?utf-8?B?YmtwRlJFWkZJd1AreXkydTNNM2tpSHRJWERoa0tDekpYcnM1eEt4UnhSTmRo?=
- =?utf-8?B?NlFOR01zMUl6ZUJYZk9RQlRya0xMK0J2QXVqZUJEMWZMbnM1dlF5bDY0czBX?=
- =?utf-8?B?dTBPUUQvdXRMTUhDZm5SVXlhMDE0emNOdEUxTCtsS1FreXhQTDNaK3RrbjJ1?=
- =?utf-8?B?UzY3aHNUVUZML0p4TnFWWHZmYzNDVHJxLzBjYW9DZUo0L0pkUUVNYVJoTGho?=
- =?utf-8?B?aHliNDNrYnRHWFR6blpkWnRWUlpqendhVENVV2NWM2txeWg2MW1ZcGJ6T1lZ?=
- =?utf-8?B?ZExJOGZ1QkpxbGcxM3VKcWlGdXdrRjlKVnhZYVNITVM5c0h1cWFBYUtkYStE?=
- =?utf-8?B?Z2VTUkltY2Y1UTdQZlBmRVVwUzkxZGZaQjNFdWJSaDJmTWp6d3Jra2kzRnFT?=
- =?utf-8?B?OUFPVzdiUWNlclc0YURRUHNVcWhUMVdvTHA0RVNxd1JpeStHY1VCSUMxR2w4?=
- =?utf-8?B?VTBCVzRscHoyb0x6TVd1V01UQVM2cWt4dmVra21QaXU5ZnJXd2VrUXp1SmVI?=
- =?utf-8?B?UXhYcFQwQXFiUEpMZzd1S3JVcUo5Tll2dUVzbnlyVEtuZU1objhWQmFVZUNv?=
- =?utf-8?B?NW9TZ2h1UENybENtTFM5ZC9hS0ExYWtzcEFqbldVMS9UcEozUWRxUS9IdmRy?=
- =?utf-8?B?QUpyMDVnaE9jNVJnUlQ5QldBZGhSdUV5WGVLc005Vk9oREFNMFNKZkJXVStp?=
- =?utf-8?B?QUk2R3VZdWxweE43ZDhTYzJ0RCtWTm1PNGpLem9TSHBmWkJKNEgrZnFCdDVn?=
- =?utf-8?B?Q05WTWZYWUgrbG55OXZZQmFoT0dWZUgyamNHWklEWWIyZGVkZFhMZDlmMWN1?=
- =?utf-8?B?WXJvckNzVDZScDFuRUJDYzZrQ1V4YlVSbmU4MGgyQ2tROFZoRVFFdWx5d3hM?=
- =?utf-8?B?OXV1R28yUlBDcmJtQW9maFN2T3RkbUp0d2dVQjByUG9yN0o2S21iOHNTLzF1?=
- =?utf-8?B?WnJFbFNRckhVV3YzZ1NKalUwYkd3VDgyanpMQ0pjNFcydzlQQkFjQmEyVDQ0?=
- =?utf-8?B?MnFzT3I2cFUrcnNLMUhybWlFbmo1SlBqWG1NOXM5UmdoSXhiVDFLdnowVWhr?=
- =?utf-8?B?ei82cTJGd3lOR1NBV1ZzV2k0UjZMRnowaEd2WmRyYmRvbWhaRnZSR2RUQ29z?=
- =?utf-8?B?UXc2NS9GWmFYRGxSUnN2WmowbWRyNGxQMUJCM3FNTGZZam9WOVZBUXFqaGtx?=
- =?utf-8?B?U3NVdnRJdSs5a1BRRHhlSzhGdTIwUUZoaTlxWmp4aG94cXRTWXVneGExeGlZ?=
- =?utf-8?B?OStvVjZtTlc3ZlhiSVZZMEVFTlYzNThva0U0OEg3Tk11TkxENENLd0Z4eHlt?=
- =?utf-8?B?V2NXWWE0S2Y1RGdNMDhhdUZXS2xhRGlNSWp3cDgwOGYvSWg2RXVMaGZ5bHl6?=
- =?utf-8?B?Qm9PY202OE5uT2t3bFhSbGVjc1B0ekhGMU5kS3YwYUExbURxcmxjK0VOTWJH?=
- =?utf-8?B?WXg4YUk2QmladG41TkcyZ2Z2aThsd1AxbXlxdDJ0K1diQThXMFBBckxtOFNK?=
- =?utf-8?B?cU8xZmxVV1cwN2NTb3M2RWJIWndYSFNSQnlLTmw3UXp5YWRiVHQxalNKZ2to?=
- =?utf-8?B?b2t2K3hlYk8yeEhUcjNQQkRwYjlPSVB5S2N4T25hZVB1Wm1rd0tBbjVMZVo0?=
- =?utf-8?B?OGQ0ZmVFaE9lQ2VhOEtKVGJ4UFhWL0FGNmNxQWF0aE00Wi8zZzFaMll4RkhX?=
- =?utf-8?B?UmJHUGNYR0oyd2ZCZzBWM3c1VzREZzVja0VPdVJNYk5ESHNVSGYrM2lSWmJM?=
- =?utf-8?B?QXQ1dEJoelhvcktRY3VHQTA5emxpWEMwZ25Vck5hN2ZWQU1NalFVZ1FSSUlY?=
- =?utf-8?B?NzVxVUoxcm00VlZkTUN1bjNiQUNKbmx0RTBFZ2FOY3F0VGNaZiszZTd6QTl2?=
- =?utf-8?B?a1V1aG9YYTdjQjEzQTA1QVFiVitycHNJK1RnQjROQWtBeTd2dDdXWHpxZ0VP?=
- =?utf-8?B?TEVQRi9XaHZJdnRnTEw3STdvWDlOOUcwYk9tODArQ0JOd1I2emxYNUh2K1V1?=
- =?utf-8?B?aytyNzhLSkY5RmVHRU9jT2pqTGVxS0RiWmovazYzcHp0TXJNZDVlWFYwV3pQ?=
- =?utf-8?B?QjN5Z1YvL2VlZHI5OGtyYnpkR2F3UHNlek5GVUZIaDdxQ1drOU51MEllSUt4?=
- =?utf-8?B?bXlJbFVPdkEzTzBKbXlEdVdKaGFrVzBMMzFSU2ppK2xoUm1iK29yUT09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f153a3c-5a35-4714-f694-08de7dfc143d
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 16:51:16.1926
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: b9EIUyQ+geRignGKiJVZT5dclSl0LCHe9VbBYrlyDcLF9Oj7EcL8PnHGpyLZBg85Fi24joPfOrIqAJTfQu3r7w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB12392
-X-Rspamd-Queue-Id: DE07B23D3CB
+X-CM-TRANSID:zQCowAAnvA98+q5pb6z5CQ--.23212S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ur1fGw4fZFyxKrWfZFykGrg_yoW8Wr4fpF
+	Z2qa4SyFn8XrWxGF4jvr1DAr1aq3ykJF4rAryrtr1Fva4IgF1UWr1kCr98uw1jka1kCr15
+	AF1DJrnYvFn5ZFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvmb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26rWj6s0DM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr1j6F4UJwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
+	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
+	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
+	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
+	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnU
+	UI43ZEXa7IU0iSdDUUUUU==
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+X-Rspamd-Queue-Id: C67F023D3F9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273038-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,ew.tq-group.com];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[bootlin.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,redhat.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-273039-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-0.977];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.077];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,bootlin.com:url,iscas.ac.cn:mid]
 X-Rspamd-Action: no action
 
+=E5=9C=A8 2026-03-10=E4=BA=8C=E7=9A=84 00:35 +0800=EF=BC=8CIcenowy Zheng=E5=
+=86=99=E9=81=93=EF=BC=9A
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D 8< =3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > > +	if (IS_ERR(bridge))
+> > > +		return ERR_PTR(PTR_ERR(bridge));
+> > > +
+> > > +	bridge->crtc =3D crtc;
+> > > +	bridge->intf =3D intf;
+> > > +	bridge->next_bridge =3D next;
+> >=20
+> > There is now a next_bridge field in struct drm_bridge, which
+> > handles
+> > the
+> > bridge lifetime in a safer way and more simply [0], so you could
+> > use
+> > it:
+>=20
+> Glad to hear such a field exists now. Will more code about
+> next_bridge
+> lifetime management being shared?
 
-On Thu, 26 Feb 2026 14:02:20 +0100, Alexander Stein wrote:
-> The MBa8MPxL mainboard has an integrated PHY connected to the EQOS
-> ethernet controller which can support up to five queues. Configure
-> these queues in the same manor as done on the imx8mp-evk.
-> 
-> Setting DMA to threas mode is necessary to prevent FIFO overflows, see
-> commit 0bc3e333a0c82 ("arm64: dts: imx8mp-evk: configure multiple queues
-> on eqos")
-> 
-> [...]
+Looks like now many drivers can just share the .attach function,
+because they're all doing the same thing:
 
-Applied, thanks!
+```
+int drm_bridge_attach_next(struct drm_bridge *bridge,
+			   struct drm_encoder *encoder,
+			   enum drm_bridge_attach_flags flags)
+{
+	return drm_bridge_attach(encoder, bridge->next_bridge,
+				 bridge, flags);
+}
+```
 
-[1/2] arm64: dts: tqma8mpql-mba8mpxl: Configure multiple queues on eqos
-      commit: c13e7a4c4a26ce6bcb4dcf0714f657a1cf65fc40
-[2/2] arm64: dts: tqma8mpql-mba8mp-ras314: Configure multiple queues on eqos
-      commit: 1b88aef16b819ccdc314b099d1a3f1931c7710f0
+At least vs_bridge_attach here and meson_encoder_*_attach (named
+encoder but they're bridge drivers now) match this pattern (the latter
+does a cast from `struct drm_bridge *` to their subclasses, but then
+only accessing the `bridge` field of the subclasses and doing the same
+things here).
 
-Best regards,
--- 
-Frank Li <Frank.Li@nxp.com>
+Thanks,
+Icenowy
+
+>=20
+> Thanks,
+> Icenowy
+>=20
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bridge->base.next_bridge =3D next;
+> >=20
+> > Or, after the renames I suggested above:
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 vbridge->bridge.next_bridge =3D ne=
+xt;
+> >=20
+> > [0]
+> > https://elixir.bootlin.com/linux/v7.0-rc2/source/include/drm/drm_bridge=
+.h#L1269-L1278
+> >=20
+> > Luca
+> >=20
+> > --
+> > Luca Ceresoli, Bootlin
+> > Embedded Linux and Kernel engineering
+> > https://bootlin.com
+
 
