@@ -1,103 +1,105 @@
-Return-Path: <devicetree+bounces-272985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272986-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GD0yI5DgrmmoJgIAu9opvQ
-	(envelope-from <devicetree+bounces-272985-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:00:32 +0100
+	id uDrVMrngrmnsJgIAu9opvQ
+	(envelope-from <devicetree+bounces-272986-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:01:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0488723B288
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:00:31 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D18323B2B6
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:01:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6E20D300EC87
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 14:57:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0C8B130DFF1A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 14:57:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5997B3D349B;
-	Mon,  9 Mar 2026 14:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 904653D6684;
+	Mon,  9 Mar 2026 14:57:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M1S8Ukre";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cZ6EY317"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iLumNsvr";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QnQv2cVn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E77ED2765ED
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 14:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E49EC3D5251
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 14:57:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773068243; cv=none; b=Ei2U33ffyj0xZCMWut3Z6PioRh7ufxANbL1aEV/00rWyGQ59wiDvSaZmpEgb9Gx8ej/zCx78ChmF+O0Zojg7BqQgYs21UnB+hngCZHBd5zXDlon1kL7236Rq6JE5FpeXJVhAuwA8qMOi7JDx9SlLXzKqaoNueKhLtjtHNKTSGlY=
+	t=1773068245; cv=none; b=sPxJ0gLjKRiiWxC9TyicPcdWughFT1BkcM1UvaGA81emLjfLeF/lBIV9fRz27rjhCGigaaSJ8ZyUfUXgUV7Tqs6SleegXYNeNu/FFyNmYbFXPRx+G3dnXRSACJ5NcSzHSoS+WW4rUNqqbmL7pP3gCMwnRDabRVTVlnLpi6QI5B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773068243; c=relaxed/simple;
-	bh=7H6VIANZ0RBiB1A06Gz51f9HR+VtPArCuF/8iXBh4dE=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=l0BkI0PTiic9fA0TVcbwv3bQom/EFpTLqY4N1Krk8V3U/1pzgd/6Izqv7tyQ1w5Iz7Obz/m50LUvlMLGG6vLAy3qn9S8Wk+ABazou4bDmB8rpUy1RJZ4SepWsvjDf8DhrrGEJKWNQehojT9k3wnGLJ4SRfc2LCQ9umP7W8o0Ir4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M1S8Ukre; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=cZ6EY317; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1773068245; c=relaxed/simple;
+	bh=WE9CKAf1V3Kf1/4zsOiJ2xNFT0naCa7zJkrl9z53Et8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=nBG5Bvy/xl6RvCUBpgPj3zN5Wjid+VrXbLydlCBuKZ0yPr4FK6ZPD6CbJSf3tBzc/2hRJo+t08mvNNZIcHXliSqjnr65JlWXv+lMRh2XJ3ZWroyXy7P9zI/ENkvVydn7FVOljRls9ErF3Neih8gS/w0Sy3FiFgM3VX8UT4eG3rg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iLumNsvr; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QnQv2cVn; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 629DqlXH2138216
-	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 14:57:21 GMT
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 629EXvFn830486
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 14:57:23 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=p1TmyoKW1BJ9Ss0vjcXvLu
-	OeGHU1u5Mvxhfspyg0i+Q=; b=M1S8UkreNngysQwjdwKxmwbm6I4iVRQvct1sT+
-	J2vsbfkLAAyX9pth6EjG/SvkroS5Dv7mLFLMdr7VkApJAc3fgiPTwgMcOkdIR9lu
-	mVZSG0TdgmKob9YZxTuQIFnQ26AasStfNsWVdUbft/65v2I0qZX7LchDgnpRKgfK
-	ztPMFQiLgnBlZdc4PIIo6rz4L7rcrVbpGeLKUfomUig9oje/2sBemTWumrp6RghK
-	jA5/O+Y3YsHr7GXc9Ue/FwjrVqn6KuIGsokihgFfCr2Qyw9WcylL8xKHCD7QWoU5
-	c+TZUQeA8cJC6Ze0HR+lCveUSnjuFgF9h9CwomUh50S130CQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4csyft06d9-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	JwiesHYl6GPFR3KwAnlUOp7/Vte2DfSxI1dQFZPE+a4=; b=iLumNsvrwjPqqI5u
+	gwKy+IgqZSLy5D8fNydpWtL7/3oYZF6W7DtNgM3vNIQ8zTCNFwPUtu9QQScIQg8T
+	5QvbGrjWOI8WSQyGa6u2Xe6fcuWrnka8z1JHE90bzU9mChZIyS7cEKZU2aPVp+P4
+	hLGv01MRMVKOsg8SQ1+DByPoXkpByzzv3I0hZyHkNkuDPxbmuEVjVtSAsji753Xk
+	8cI0alBmxa0wlTSJlpSqWnwoXjp7gHk4/+bt8YWFNaGGnwBjgra/cQoPDCRUDN8C
+	le2/6M+vBa11/R+WasToWiL+9THz9ETFkkMDg+fkfCFLCU1rdQ8sJj0+4TsMY/sD
+	H7zanw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ct03283vd-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 14:57:20 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-899fa82ebb9so509568946d6.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 07:57:20 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 14:57:23 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-506b4bdde91so790571351cf.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 07:57:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773068240; x=1773673040; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=p1TmyoKW1BJ9Ss0vjcXvLuOeGHU1u5Mvxhfspyg0i+Q=;
-        b=cZ6EY317OqEIPEgoTXpcLDX1EWfeN+8/AUjgIwlTjVowv4uwblnJwojsIgyG8CLTnl
-         x1uiPg9Ei/ZvxixRzzOxhYIPlonqg6f0XeP9BKxRB6moQG/YcQ9Umi1zqry/SW1vc385
-         wiDDOCytiUfxfRiloeut/R0ba4yGH/JlXlQ/l+6Ov+NUPgGqRut8uTMmTr9C7jUdMIqU
-         uWK5tgxFbhsbbOukH8F79/7aDEP2zs3sykraAAlw2pne+OQ+Dm7p8OZjofbzIhyTlWcM
-         RjgFXGM8aqdccQtH4bpadbySX2lO7HSMbujvmKsAI6I4DspNb75ixflXheSYjr/LG+kC
-         GyuA==
+        d=oss.qualcomm.com; s=google; t=1773068242; x=1773673042; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JwiesHYl6GPFR3KwAnlUOp7/Vte2DfSxI1dQFZPE+a4=;
+        b=QnQv2cVnTYI85k+jM0+EW6qINPrTFFeIqwRPVDZENxnjfbReshh22QAUjaKwNPBSGa
+         72KvdaaTQIWCx5jwG/ZJbaH5Iquc/7apWCM/cd5qn/mVYpYOMjGPNVJluLfF5PYkMP0Z
+         Bmh1d0iUnW3GynFxEYgLjauZ583PlpEmODexn3lPezl46psUNOiwOaTWtwBgCxdFBD01
+         OkST0+z7RyTqkjlIYRndbtDTGVDsSWmiObHtWAO9YmDRlrpyNg3x0rWSwVoZLklIX6TG
+         2fUWqJcRO/9en5hpovFHvMIl/CqbBJ/sD4x4OKYQxydlU8ibA//OTEgQupB4r+pYsj9r
+         9bIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773068240; x=1773673040;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=p1TmyoKW1BJ9Ss0vjcXvLuOeGHU1u5Mvxhfspyg0i+Q=;
-        b=aulFUL2v2XO364aFhegtnf8SxRl8isvTfuHH/V/rQ+7dzRGAGcM/2ZdPbF4QvY0XbK
-         HkkhgdXagKXwnYXjSeegd3ougVv14KCzaZ5n++oo9A7AbetSPp8G5+eIYyAhjFBL7J1w
-         4n84Hze/zrdsYNrlSDI77Qq4ONBXD4p+WVwTzYYB8/HQpHnFttuK179Vr1zZcFKunNYy
-         EgdPX3vBmD27+eF7wTQZf1oT7t/Hyu9nrIZ5dLbnBny6nlngJ/XHnJESkPjH2JFCKPz2
-         Tf6rHDwnyQ3I6QjSU48WokKKlcv7eb6V3w8lrMXxPmCH066wqTyOa35y/xgDFXdjeSR6
-         F5mA==
-X-Forwarded-Encrypted: i=1; AJvYcCW4lCpRZx+X1ptIllbTjTf8OvbcuQPFwOgVYxTGwkmVowNMjrOrjJUB8zjuSr2XxdFoQ6wvzS0Mbzx2@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywy958mwLIfUqc9IWUlJTVh2qwLef/7xkN0XPncVGM6jyJE+tNJ
-	26yO+AxoGFxPw/RkuZtb0hmWMPDTVuL4X4aIYIdkG4NNS/dHfHRZPPR2DZMftEEnImoewgCwWIR
-	c4UuRquzMWquifoLc21RJ9i0wHk5PdP+QQve6gan5pRYAi9NUB3EJkYg5aDNibrrL
-X-Gm-Gg: ATEYQzzBKdwzkQ3HLRaJ1J/5KUxm59VL5ghaOX1IsK0XxgQ4G4ZiRSLrIsGwTDkOeyr
-	PbVDDBoCCPYsJ3cCJAoR9TtBHePvwRjsuKNa0gWClrAbrDHL8E1QZzn2tdLgUtYQAMekzVIgrkp
-	M8gnaX+z8JsrAu+Oym9TaMnrzU7+dfQ41JiBDqryw4i/1Wib40M6KCoBm8JlpYSoSoqYztXMQ0T
-	v0R1fj2Cat9Kp8h+OnVZZvBaLrXMTpCKys306b8r6R/KM9OhzWf6ntmGAhn3GgNtFkp48u8AjTX
-	L4bCzy2M3YGttAIF5sixD+cSmuJpVxaOTRap2qWYMYxVZXdnBUBPoAzBNy7352XSbVIGAD8gZjO
-	ICXEhcCAcLvxCURybtfBkohMLkadtfA==
-X-Received: by 2002:a05:620a:470d:b0:8cb:e00:8c0d with SMTP id af79cd13be357-8cd6d4a701cmr1429336885a.74.1773068239976;
-        Mon, 09 Mar 2026 07:57:19 -0700 (PDT)
-X-Received: by 2002:a05:620a:470d:b0:8cb:e00:8c0d with SMTP id af79cd13be357-8cd6d4a701cmr1429331185a.74.1773068239329;
-        Mon, 09 Mar 2026 07:57:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1773068242; x=1773673042;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=JwiesHYl6GPFR3KwAnlUOp7/Vte2DfSxI1dQFZPE+a4=;
+        b=LorbK0+G4nbjzXcPF8LCs4zs0o0fyf+v+43U5dx9e2vRGVP0XHtISnjTeF5v1DeSns
+         8aUVP68hkGg7Nu4ehxfg6V0DqyHcZoEOWqIS9nz4Wb8JSMwAWIK6f8hml39Dcao7DP9f
+         MetzRWUosrO3IcYvkxgEdz8Fhvnqf9feZvGky6Pa3fgR/go0zA6BAAQkdoSy+Z/eseqO
+         o37zKWBOLBZfXH/RQ+VIMaUfOJzzfsY3oWG7hiWJByA95Xyli5upcVquOEz3A+zPXsUE
+         nLyDjIQqCLkotmNgJbVsVEuaJwtRI/XxEp3NDcm9uQoYvlLA3I3BnMxqrD9kUCJoRQfn
+         P/Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCU2HJgndLQrSpiETMMsbRgFPyJMvzHHszOD+/0F33SIdkJ8sXxN7e7vS5K0WGJrXejAl+flbFoC5yWK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9kGzuZ+rtnRgmNifb251udcly5mFHlF2eyu22F7IIE5qBzTfy
+	p2iT0bOsaJ+/XspUsAW7eHyMOlA9yGF4xtW2UkAE546NaeWlhEEHUInPRmiUxcWh4MgUMqJhg7D
+	Bcrq55bXRFKoxXogbslgZRNgIeOobw+Tht9VX2D+6mvrn+utQIgcANzhB+jRRNxHG
+X-Gm-Gg: ATEYQzymb8l7XkCQnkA3KbAx/kfJaZ+XM4AX3RkOvQSBHzsmR41N6Ci1CFwqMX8HjHL
+	RJaG3HYyfMFn3PJ5c48PEDdgW4KeUmwoCzz/xS2t0ihs2PaWXAkNlIgK5UoruayBUiycahg+YQY
+	73asubw9fcQBQXiT1aot/svbNbkY6fmFCV5L65N4KySTvGZl7qMul0BwANFVAGiv5L8FlR8V8b0
+	jVVJiwb7RUFHFYCaJliRSDAV3xyD+mwnH9mHD5ssMiPKOieA4/8GJs5JBU9wrssdKZEekEsANtu
+	RodxTGEjbA3kaVuf7MZgOXb0D46gz/afryXxr9I6Lvf2f38/LtVQ15jLjx48A0lEn76s4kJfSTQ
+	yQQ8aqRWYhEz/YGlCAmPbIfNpyOuK5A==
+X-Received: by 2002:a05:620a:7010:b0:8cd:8ad9:c893 with SMTP id af79cd13be357-8cd8ad9cbf2mr410403985a.6.1773068241803;
+        Mon, 09 Mar 2026 07:57:21 -0700 (PDT)
+X-Received: by 2002:a05:620a:7010:b0:8cd:8ad9:c893 with SMTP id af79cd13be357-8cd8ad9cbf2mr410399685a.6.1773068241210;
+        Mon, 09 Mar 2026 07:57:21 -0700 (PDT)
 Received: from hackbox.lan ([86.121.162.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8ec97sm29906008f8f.5.2026.03.09.07.57.17
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8ec97sm29906008f8f.5.2026.03.09.07.57.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 07:57:18 -0700 (PDT)
+        Mon, 09 Mar 2026 07:57:20 -0700 (PDT)
 From: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Subject: [PATCH v4 0/2] arm64: dts: qcom: glymur: Enable SoC-wise display
- and eDP panel on CRD
-Date: Mon, 09 Mar 2026 16:57:12 +0200
-Message-Id: <20260309-dts-qcom-glymur-crd-add-edp-v4-0-fe4e33acdfb6@oss.qualcomm.com>
+Date: Mon, 09 Mar 2026 16:57:13 +0200
+Subject: [PATCH v4 1/2] arm64: dts: qcom: glymur: Describe display related
+ nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,14 +108,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAMjfrmkC/4WRy27CMBBFfyXyuoP8yKPJiv9AXcT2JLgNcbCTC
- IT4904IiC5aurE80p1zZ+5cWMTgMLIqubCAs4vO91Skbwkz+7pvEZylmkkucy54CXaMcDT+AG1
- 3PkwBTLBQWwtoB+Cq4fTHssg4I8IQsHGnG333sdZx0p9oxgW5KPYujj6cb/azWHSLU8ZLmb10m
- gVwIKVSFpURKLed6+vgNz60bLGa5QNGYwv1GiYJ9k7KuskzNFpvfYyb41R31HDY0LMi1ROp+D9
- IRcjUiqYxWtiyyX9BXtdEAh4nin1cY3qmXiV/Zr64TFFDnIbBhxFyUejclpYraao5ZT+Pd8dIW
- Ty66SRAI2rXW9e3EQK2YDpvviIUPLXcGI3YlHeQriPCMrQbq6TH0wj3AHLa4PoNIL2FvEACAAA
- =
-X-Change-ID: 20260109-dts-qcom-glymur-crd-add-edp-03f0adde9750
+Message-Id: <20260309-dts-qcom-glymur-crd-add-edp-v4-1-fe4e33acdfb6@oss.qualcomm.com>
+References: <20260309-dts-qcom-glymur-crd-add-edp-v4-0-fe4e33acdfb6@oss.qualcomm.com>
+In-Reply-To: <20260309-dts-qcom-glymur-crd-add-edp-v4-0-fe4e33acdfb6@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -124,131 +121,605 @@ Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
         Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
         Abel Vesa <abelvesa@kernel.org>
 X-Mailer: b4 0.15-dev-47773
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2475;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=14242;
  i=abel.vesa@oss.qualcomm.com; h=from:subject:message-id;
- bh=7H6VIANZ0RBiB1A06Gz51f9HR+VtPArCuF/8iXBh4dE=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBprt/Kg3FdiXk9XfZ87bNltr/lYQhzGJrQ/aSrD
- DxFdCpo3zKJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaa7fygAKCRAbX0TJAJUV
- VpTjD/9APV6vq3sdhIX6PW99Jkx1sMgG8h9bMo4uNJiik4gB26Rt7UHEWajzIjBNeBQIqgriVrh
- zYxzlS6JCw0YfCb4E2zAJabUY/OfXMXYYRs588ZktN0Qu5H2X+ePSWGr21yvBVIQXHRxHzIfQfH
- CggcZOgcv+BN4MGNWojBLMVfGE5y+ScKx8AZLusF7ZiFc0rBuHp8Bhh2KmSW5uTZ4dZ5cIaBjRa
- hpATNF9CEmZZZSHOf5CX1r5Ur3R9N6O2adFjXv5UlAZgu7AklVL7sNgHy5gUE/OKlpkxUqkbgM/
- lt02QK3C7Qsfj1YYDp8Q0ayFIl99Ot8CLgeVUprbbOvDmdItw1dpNj+hxC+tR8zTgs0l+YImL2D
- Usl+cDapEZezPcifoOmd2qjC4o4TQpgZQl9btIP04T62I8yPt9ase8N/9u4Ci9xPOqwHT6aIZbr
- /c+i2/YG+rqS+H5YXxfNDiMQwEpvZcMX+2aoR7KZGwVT64qgaAr02Oqk7HFn/XDjXuKzhazt1Uu
- DU8PKUWQ0/ypD81qj6cQfc0QzMVgk413FKLPH/zCsWyzUpDx3FtQqXde5wG+yjeyxqMrAbgPOXL
- lrRmEh+FAhZnX3vTrypeJ0pOSix1UxxEnE0STIpsMEfRU3CnZtQtuB/SV+OT0jqw/N0pBQpK11M
- SpjTalkaL98ezkg==
+ bh=OUmXBHWadrbNVoJT0lvmZMpKkE15iXwCwDla58XvJ+I=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBprt/LY1BKt0Wv75uu3RnJOGjA8WOYff4T8ofRv
+ fs/6larmQ2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaa7fywAKCRAbX0TJAJUV
+ Vv2UD/94oboNIjRT5I7M7kcnxwp4s7MMyEmcevL1jgf7b5uqlBSVvmC2OQie+xLxj9TbG4AM7Wq
+ ESWX5J8JOFfw0NQ9P06rjUXYGEjFxN1peiRpKeeUEF2fXkgqptrvfWIK/wHnlhE/3d4US2PD14f
+ LbWLGllZVYTw+oGEvVx020Q80RCR/65xVLIGJJ6XwwmxPtCDYPwOQPSlgrQDU867Lhsj3o2iyU+
+ tELStDShFwUc2LIz4Rbf2kEcUFz4BpabfOmn7xNEzPC92EB43JFVUJ+2jUxKUlwBQ287eVcGNTU
+ xuFlZXV8rgD2kIDcyCR95eT0RdjpoiCguRgJ9ZLpOvbFwA5sb2cqieqAiOBd/HnmJ6YO7Mvos5I
+ JmNtRIa7fsMSJI2q3B4AsUhnocCCM3688kB77ekaDTQkOBzThN+yXbz2ngsly4ZLI/oEjFC9O0c
+ dQHrb7lYI98XdXQuxnS+nItz+N42wUaLgNUl36kEzFAGoXq7zpKGWSHQRwBWJVl57/nyl5C3kv+
+ BRsZHDnWHbzB+CBtOV5Mi8D0LmyafrIgZV6iD47bWArCkXQqDeRpWB++NOJcnDA9Vjk4pawb9GI
+ GfCguxJg0VEfMTLYixnPN7vTjWzKWWYYMIOcXr7mokGsvmPYNJSscEeEY5e6Yft6XoJFhMG8Ucp
+ crAoDXqaaBuC3lQ==
 X-Developer-Key: i=abel.vesa@oss.qualcomm.com; a=openpgp;
  fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
-X-Proofpoint-ORIG-GUID: aJowMZkuwhGtXTz_Bkx1gjkx3-uV3yJ7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEzNSBTYWx0ZWRfXyYHDe0q2soji
- bq0DONPz2JmOv/6VC2SXVJYF927mUPcIqoBJojmRwcxQ4wzh4D4rmlaLMGuw/EJFf+7LFIu4dyc
- QGL0ScgXDL4lqeozrcTF9Nn5CQ59SKNR97vRiVkba5mWfWzVh4EUYCsbZk3oo9AL7Ix7bTZut6K
- cgTReO5ZFvglZBItk26c8lTIUX9TVZzEbNXeWDyiWNSwGDu1RZp8Dleh53R34C7fKr/htP2jXS8
- MBzxAzCXbZwwuZEeDxNlXuJIE6gmZvHnQ0SjzNdw1Pk3Q8BpJJyyAHYelc8FaHFlOuxVwhedVoW
- eDfHB7kNLzZBHG1PHCiMIqIo7SHHIC1vOThqOmOtBWP4tr80OPJMnS4hMRvXUMZG9Rtna8oeCEE
- tiN77dtjrj9wmrSqzvcxyPxtpofe8D/S575lZ1BU1G+aPHVq0pz/kN3k5H7PwqdWIUWObkrZ40k
- WfziCbrn8bfJjiWb1nA==
-X-Proofpoint-GUID: aJowMZkuwhGtXTz_Bkx1gjkx3-uV3yJ7
-X-Authority-Analysis: v=2.4 cv=F8dat6hN c=1 sm=1 tr=0 ts=69aedfd0 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEzNSBTYWx0ZWRfX0Ou5f40fp51z
+ /27qZzFwzjRUYfVDmytW7oRXsAPiXx0P3HZWYH5apb82rMVTZ/sxCOqoMJx+MGuxM2KUUO3NdkF
+ WCTrVRqMmt8woW6NeuUDIWJpVzsU2fL/kyeOhJnFhjXrtTAsaoZuWUiptbG17EQcztzPmoLrZJS
+ cuibsDlV2K3zhdqrE5N3adFRJBX02ABu/v0w7fowZZZlCXg84o4wtHm3OiBhhkL5EbDbUSrv4iM
+ l2GYLHxjj8zzxFLfw/TRpk4izFKElyE/d6/ruKUlxVh39BNpGSmnlnA6DrzZiGFsik/XvxTqutw
+ 5JXHP7Bp5lng+GzP+ovnVExpdXwt5wiPSIA7I+/pnOh0T3/OZ6UaGLclMFToSsrYihZjWk76059
+ /wgWd5IuBFgyAxX1G0q1K04+9sqMb0ocm34zF2CBjLsDcSd1MY/TmbyLZUEXuwi5UX/1bX/28L1
+ o4+1yY1+N0ZxJ1RSYFw==
+X-Proofpoint-ORIG-GUID: N_S8FH7V_UDp-914lwqB7rHqjvQZ5cqo
+X-Proofpoint-GUID: N_S8FH7V_UDp-914lwqB7rHqjvQZ5cqo
+X-Authority-Analysis: v=2.4 cv=WtEm8Nfv c=1 sm=1 tr=0 ts=69aedfd3 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
  a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
- a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=PbHErJ4ZefRVaExvjxYA:9
- a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22 a=FO4_E8m0qiDe52t0p3_H:22
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
+ a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=Nt3j2eaCHLMPKZ4rhccA:9
+ a=Y4kR1PUZdprbdErl:21 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
  a=cvBusfyB2V15izCimMoJ:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-09_04,2026-03-09_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0
- adultscore=0 priorityscore=1501 suspectscore=0 impostorscore=0 malwarescore=0
+ clxscore=1015 impostorscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 phishscore=0 adultscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090135
-X-Rspamd-Queue-Id: 0488723B288
+X-Rspamd-Queue-Id: 9D18323B2B6
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-272985-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272986-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,msgid.link:url];
+	RCVD_COUNT_SEVEN(0.00)[7];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-0.942];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.944];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Start by describing the MDSS (Mobile Display SubSystem), the MDP
-(Mobile Display Processor) and the 4 DisplayPort controllers it brings,
-then describe the PHY used for eDP and tie up the PHY provided clocks
-to the Display clock controller.
+From: Abel Vesa <abel.vesa@linaro.org>
 
-Do all this in order to enable the eDP panel the CRD comes with.
+The MDSS (Mobile Display SubSystem) on Glymur comes with 4 DisplayPort
+controllers. Describe them along with display controller and the eDP
+PHY. Then, attach the combo PHYs link and vco_div clocks to the Display
+clock controller and link up the PHYs and DP endpoints in the graph.
 
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 ---
-Changes in v4:
-- Dropped the RFT as now this is tested by me.
-- Dropped the 192 MHz OPP from the mdss_dp0_opp_table entirely,
-  as suggested by Dmitry in a discussion off-list.
-- Picked up Konrad's R-b tags.
-- Link to v3: https://patch.msgid.link/20260303-dts-qcom-glymur-crd-add-edp-v3-0-4d1ffcb1d9f6@oss.qualcomm.com
+ arch/arm64/boot/dts/qcom/glymur.dtsi | 466 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 458 insertions(+), 8 deletions(-)
 
-Changes in v3:
-- Fixed opp table according to Konrad's suggestion.
-- Added missing reg regions for all DP controllers, as Konrad suggested.
-- Fixed all sizes of the reg ranges.
-- Replaced all 0s with 0x0 in all reg ranges.
-- Added missing clock name entry reported by Dmitry. 
-- Link to v2: https://patch.msgid.link/20260113-dts-qcom-glymur-crd-add-edp-v2-0-8026af65ecbb@oss.qualcomm.com
+diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+index 2aa9af8c96ce..20cc512585f0 100644
+--- a/arch/arm64/boot/dts/qcom/glymur.dtsi
++++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+@@ -2367,6 +2367,28 @@ usb_mp_qmpphy1: phy@fa5000 {
+ 			status = "disabled";
+ 		};
+ 
++		mdss_dp3_phy: phy@faac00 {
++			compatible = "qcom,glymur-dp-phy";
++			reg = <0x0 0x00faac00 0x0 0x1d0>,
++			      <0x0 0x00faa400 0x0 0x128>,
++			      <0x0 0x00faa800 0x0 0x128>,
++			      <0x0 0x00faa000 0x0 0x358>;
++
++			clocks = <&dispcc DISP_CC_MDSS_DPTX3_AUX_CLK>,
++				 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++				 <&tcsr TCSR_EDP_CLKREF_EN>;
++			clock-names = "aux",
++				      "cfg_ahb",
++				      "ref";
++
++			power-domains = <&rpmhpd RPMHPD_MX>;
++
++			#clock-cells = <1>;
++			#phy-cells = <0>;
++
++			status = "disabled";
++		};
++
+ 		usb_0_hsphy: phy@fd3000 {
+ 			compatible = "qcom,glymur-m31-eusb2-phy",
+ 				     "qcom,sm8750-m31-eusb2-phy";
+@@ -2434,6 +2456,7 @@ port@2 {
+ 					reg = <2>;
+ 
+ 					usb_dp_qmpphy_dp_in: endpoint {
++						remote-endpoint = <&mdss_dp0_out>;
+ 					};
+ 				};
+ 			};
+@@ -2507,6 +2530,7 @@ port@2 {
+ 					reg = <2>;
+ 
+ 					usb_1_qmpphy_dp_in: endpoint {
++						remote-endpoint = <&mdss_dp1_out>;
+ 					};
+ 				};
+ 			};
+@@ -3683,6 +3707,7 @@ port@2 {
+ 					reg = <2>;
+ 
+ 					usb_2_qmpphy_dp_in: endpoint {
++						remote-endpoint = <&mdss_dp2_out>;
+ 					};
+ 				};
+ 			};
+@@ -4047,20 +4072,445 @@ usb_mp: usb@a400000 {
+ 			status = "disabled";
+ 		};
+ 
++		mdss: display-subsystem@ae00000 {
++			compatible = "qcom,glymur-mdss";
++			reg = <0x0 0x0ae00000 0x0 0x1000>;
++			reg-names = "mdss";
++
++			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++
++			clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++				 <&gcc GCC_DISP_HF_AXI_CLK>,
++				 <&dispcc DISP_CC_MDSS_MDP_CLK>;
++
++			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
++
++			interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&hsc_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
++			interconnect-names = "mdp0-mem",
++					     "cpu-cfg";
++
++			power-domains = <&dispcc DISP_CC_MDSS_CORE_GDSC>;
++
++			iommus = <&apps_smmu 0x1de0 0x2>;
++
++			interrupt-controller;
++			#interrupt-cells = <1>;
++
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			status = "disabled";
++
++			mdss_mdp: display-controller@ae01000 {
++				compatible = "qcom,glymur-dpu";
++				reg = <0x0 0x0ae01000 0x0 0x93000>,
++				      <0x0 0x0aeb0000 0x0 0x3000>;
++				reg-names = "mdp",
++					    "vbif";
++
++				interrupts-extended = <&mdss 0>;
++
++				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
++					 <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
++					 <&dispcc DISP_CC_MDSS_MDP_CLK>,
++					 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
++				clock-names = "nrt_bus",
++					      "iface",
++					      "lut",
++					      "core",
++					      "vsync";
++
++				operating-points-v2 = <&mdp_opp_table>;
++
++				power-domains = <&rpmhpd RPMHPD_MMCX>;
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						dpu_intf0_out: endpoint {
++							remote-endpoint = <&mdss_dp0_in>;
++						};
++					};
++
++					port@4 {
++						reg = <4>;
++
++						mdss_intf4_out: endpoint {
++							remote-endpoint = <&mdss_dp1_in>;
++						};
++					};
++
++					port@5 {
++						reg = <5>;
++
++						mdss_intf5_out: endpoint {
++							remote-endpoint = <&mdss_dp3_in>;
++						};
++					};
++
++					port@6 {
++						reg = <6>;
++
++						mdss_intf6_out: endpoint {
++							remote-endpoint = <&mdss_dp2_in>;
++						};
++					};
++				};
++
++				mdp_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-156000000 {
++						opp-hz = /bits/ 64 <156000000>;
++						required-opps = <&rpmhpd_opp_low_svs_d1>;
++					};
++
++					opp-205000000 {
++						opp-hz = /bits/ 64 <205000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-337000000 {
++						opp-hz = /bits/ 64 <337000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-417000000 {
++						opp-hz = /bits/ 64 <417000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-532000000 {
++						opp-hz = /bits/ 64 <532000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++
++					opp-600000000 {
++						opp-hz = /bits/ 64 <600000000>;
++						required-opps = <&rpmhpd_opp_nom_l1>;
++					};
++
++					opp-660000000 {
++						opp-hz = /bits/ 64 <660000000>;
++						required-opps = <&rpmhpd_opp_turbo>;
++					};
++
++					opp-717000000 {
++						opp-hz = /bits/ 64 <717000000>;
++						required-opps = <&rpmhpd_opp_turbo_l1>;
++					};
++				};
++			};
++
++			mdss_dp0: displayport-controller@af54000 {
++				compatible = "qcom,glymur-dp";
++				reg = <0x0 0xaf54000 0x0 0x200>,
++				      <0x0 0xaf54200 0x0 0x200>,
++				      <0x0 0xaf55000 0x0 0xc00>,
++				      <0x0 0xaf56000 0x0 0x400>,
++				      <0x0 0xaf57000 0x0 0x400>,
++				      <0x0 0xaf58000 0x0 0x400>,
++				      <0x0 0xaf59000 0x0 0x400>,
++				      <0x0 0xaf5a000 0x0 0x600>,
++				      <0x0 0xaf5b000 0x0 0x600>;
++
++				interrupts-extended = <&mdss 12>;
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL1_CLK>;
++				clock-names = "core_iface",
++					      "core_aux",
++					      "ctrl_link",
++					      "ctrl_link_iface",
++					      "stream_pixel",
++					      "stream_1_pixel";
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DPTX0_PIXEL1_CLK_SRC>;
++				assigned-clock-parents = <&usb_0_qmpphy QMP_USB43DP_DP_LINK_CLK>,
++							 <&usb_0_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
++							 <&usb_0_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
++
++				operating-points-v2 = <&mdss_dp0_opp_table>;
++
++				power-domains = <&rpmhpd RPMHPD_MMCX>;
++
++				phys = <&usb_0_qmpphy QMP_USB43DP_DP_PHY>;
++				phy-names = "dp";
++
++				#sound-dai-cells = <0>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						mdss_dp0_in: endpoint {
++							remote-endpoint = <&dpu_intf0_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						mdss_dp0_out: endpoint {
++							remote-endpoint = <&usb_dp_qmpphy_dp_in>;
++						};
++					};
++				};
++
++				mdss_dp0_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-270000000 {
++						opp-hz = /bits/ 64 <270000000>;
++						required-opps = <&rpmhpd_opp_low_svs>;
++					};
++
++					opp-540000000 {
++						opp-hz = /bits/ 64 <540000000>;
++						required-opps = <&rpmhpd_opp_svs>;
++					};
++
++					opp-675000000 {
++						opp-hz = /bits/ 64 <675000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-810000000 {
++						opp-hz = /bits/ 64 <810000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++				};
++			};
++
++			mdss_dp1: displayport-controller@af5c000 {
++				compatible = "qcom,glymur-dp";
++				reg = <0x0 0xaf5c000 0x0 0x200>,
++				      <0x0 0xaf5c200 0x0 0x200>,
++				      <0x0 0xaf5d000 0x0 0xc00>,
++				      <0x0 0xaf5e000 0x0 0x400>,
++				      <0x0 0xaf5f000 0x0 0x400>,
++				      <0x0 0xaf60000 0x0 0x400>,
++				      <0x0 0xaf61000 0x0 0x400>,
++				      <0x0 0xaf62000 0x0 0x600>,
++				      <0x0 0xaf63000 0x0 0x600>;
++
++				interrupts-extended = <&mdss 13>;
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX1_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX1_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX1_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX1_PIXEL0_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX1_PIXEL1_CLK>;
++				clock-names = "core_iface",
++					      "core_aux",
++					      "ctrl_link",
++					      "ctrl_link_iface",
++					      "stream_pixel",
++					      "stream_1_pixel";
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX1_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DPTX1_PIXEL0_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DPTX1_PIXEL1_CLK_SRC>;
++				assigned-clock-parents = <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>,
++							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
++							 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
++
++				operating-points-v2 = <&mdss_dp0_opp_table>;
++
++				power-domains = <&rpmhpd RPMHPD_MMCX>;
++
++				phys = <&usb_1_qmpphy QMP_USB43DP_DP_PHY>;
++				phy-names = "dp";
++
++				#sound-dai-cells = <0>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						mdss_dp1_in: endpoint {
++							remote-endpoint = <&mdss_intf4_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						mdss_dp1_out: endpoint {
++							remote-endpoint = <&usb_1_qmpphy_dp_in>;
++						};
++					};
++				};
++			};
++
++			mdss_dp2: displayport-controller@af64000 {
++				compatible = "qcom,glymur-dp";
++				reg = <0x0 0x0af64000 0x0 0x200>,
++				      <0x0 0x0af64200 0x0 0x200>,
++				      <0x0 0x0af65000 0x0 0xc00>,
++				      <0x0 0x0af66000 0x0 0x400>,
++				      <0x0 0x0af67000 0x0 0x400>,
++				      <0x0 0x0af68000 0x0 0x400>,
++				      <0x0 0x0af69000 0x0 0x400>,
++				      <0x0 0x0af6a000 0x0 0x600>,
++				      <0x0 0x0af6b000 0x0 0x600>;
++
++				interrupts-extended = <&mdss 14>;
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX2_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX2_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX2_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX2_PIXEL0_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX2_PIXEL1_CLK>;
++				clock-names = "core_iface",
++					      "core_aux",
++					      "ctrl_link",
++					      "ctrl_link_iface",
++					      "stream_pixel",
++					      "stream_1_pixel";
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX2_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DPTX2_PIXEL0_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DPTX2_PIXEL1_CLK_SRC>;
++				assigned-clock-parents = <&usb_2_qmpphy QMP_USB43DP_DP_LINK_CLK>,
++							 <&usb_2_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
++							 <&usb_2_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
++
++				operating-points-v2 = <&mdss_dp0_opp_table>;
++
++				power-domains = <&rpmhpd RPMHPD_MMCX>;
++
++				phys = <&usb_2_qmpphy QMP_USB43DP_DP_PHY>;
++				phy-names = "dp";
++
++				#sound-dai-cells = <0>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++						mdss_dp2_in: endpoint {
++							remote-endpoint = <&mdss_intf6_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						mdss_dp2_out: endpoint {
++							remote-endpoint = <&usb_2_qmpphy_dp_in>;
++						};
++					};
++				};
++			};
++
++			mdss_dp3: displayport-controller@af6c000 {
++				compatible = "qcom,glymur-dp";
++				reg = <0x0 0x0af6c000 0x0 0x200>,
++				      <0x0 0x0af6c200 0x0 0x200>,
++				      <0x0 0x0af6d000 0x0 0xc00>,
++				      <0x0 0x0af6e000 0x0 0x400>,
++				      <0x0 0x0af6f000 0x0 0x400>,
++				      <0x0 0x0af70000 0x0 0x400>,
++				      <0x0 0x0af71000 0x0 0x400>,
++				      <0x0 0x0af72000 0x0 0x600>,
++				      <0x0 0x0af73000 0x0 0x600>;
++
++				interrupts-extended = <&mdss 15>;
++
++				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX3_AUX_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX3_LINK_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX3_LINK_INTF_CLK>,
++					 <&dispcc DISP_CC_MDSS_DPTX3_PIXEL0_CLK>;
++				clock-names = "core_iface",
++					      "core_aux",
++					      "ctrl_link",
++					      "ctrl_link_iface",
++					      "stream_pixel";
++
++				assigned-clocks = <&dispcc DISP_CC_MDSS_DPTX3_LINK_CLK_SRC>,
++						  <&dispcc DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC>;
++				assigned-clock-parents = <&mdss_dp3_phy 0>,
++							 <&mdss_dp3_phy 1>;
++
++				operating-points-v2 = <&mdss_dp0_opp_table>;
++
++				power-domains = <&rpmhpd RPMHPD_MMCX>;
++
++				phys = <&mdss_dp3_phy>;
++				phy-names = "dp";
++
++				#sound-dai-cells = <0>;
++
++				status = "disabled";
++
++				ports {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					port@0 {
++						reg = <0>;
++
++						mdss_dp3_in: endpoint {
++							remote-endpoint = <&mdss_intf5_out>;
++						};
++					};
++
++					port@1 {
++						reg = <1>;
++
++						mdss_dp3_out: endpoint {
++						};
++					};
++				};
++			};
++		};
+ 
+ 		dispcc: clock-controller@af00000 {
+ 			compatible = "qcom,glymur-dispcc";
+ 			reg = <0x0 0x0af00000 0x0 0x20000>;
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>,
+ 				 <&sleep_clk>,
+-				 <0>, /* dp0 */
+-				 <0>,
+-				 <0>, /* dp1 */
+-				 <0>,
+-				 <0>, /* dp2 */
+-				 <0>,
+-				 <0>, /* dp3 */
+-				 <0>,
++				 <&usb_0_qmpphy QMP_USB43DP_DP_LINK_CLK>, /* dp0 */
++				 <&usb_0_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
++				 <&usb_1_qmpphy QMP_USB43DP_DP_LINK_CLK>, /* dp1 */
++				 <&usb_1_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
++				 <&usb_2_qmpphy QMP_USB43DP_DP_LINK_CLK>, /* dp2 */
++				 <&usb_2_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
++				 <&mdss_dp3_phy 0>, /* dp3 */
++				 <&mdss_dp3_phy 1>,
+ 				 <0>, /* dsi0 */
+ 				 <0>,
+ 				 <0>, /* dsi1 */
 
-Changes in v2:
-- Add missing PIXEL1 clock to DPs [0-2]
-- Use the same opp table for all DPs and drop the dedicated ones.
-- Drop the extra compatible from DP1.
-- Changed compatible for the panel to samsung,atna60cl08, as that is the
-  actual model.
-- Link to v1: https://patch.msgid.link/20250925-dts-qcom-glymur-crd-add-edp-v1-0-20233de3c1e2@linaro.org
-
----
-Abel Vesa (2):
-      arm64: dts: qcom: glymur: Describe display related nodes
-      arm64: dts: qcom: glymur-crd: Enable eDP display support
-
- arch/arm64/boot/dts/qcom/glymur-crd.dts |  71 +++++
- arch/arm64/boot/dts/qcom/glymur.dtsi    | 466 +++++++++++++++++++++++++++++++-
- 2 files changed, 529 insertions(+), 8 deletions(-)
----
-base-commit: 5138081b838d92e1bfcddc7b72b9215cca6e83f0
-change-id: 20260109-dts-qcom-glymur-crd-add-edp-03f0adde9750
-prerequisite-change-id: 20260109-dts-qcom-glymur-add-usb-support-617b6d9d032c:v4
-prerequisite-patch-id: df42484b224c01014637ec5a8f56bab459890557
-prerequisite-patch-id: d986d8d948eaf7b80028b2244750dc7aff7de307
-prerequisite-patch-id: 7ec5f802a334d96421d8f95d4d9e9773655cc947
-prerequisite-patch-id: 8d9e016b49979fa817cf9eab70b809fdb9d4656f
-prerequisite-change-id: 20260227-glymur-fix-dp-bindings-reg-clocks-704d0ccbeef9:v4
-prerequisite-patch-id: 64ec868b066c682f08ff9845e4507cbf7f8f671d
-
-Best regards,
---  
-Abel Vesa <abel.vesa@oss.qualcomm.com>
+-- 
+2.48.1
 
 
