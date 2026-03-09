@@ -1,243 +1,271 @@
-Return-Path: <devicetree+bounces-273001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mCAKBpXmrmlRKAIAu9opvQ
-	(envelope-from <devicetree+bounces-273001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:26:13 +0100
+	id 6HznJuLmrmlRKAIAu9opvQ
+	(envelope-from <devicetree+bounces-273002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:27:30 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F9C23B9CC
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:26:12 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4286123BA2C
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:27:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 2612A30038E5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:18:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9083D30DD37F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A79E3D412B;
-	Mon,  9 Mar 2026 15:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18E363D75D8;
+	Mon,  9 Mar 2026 15:20:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BtF+un6K"
+	dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b="j72gDJ+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013040.outbound.protection.outlook.com [40.107.159.40])
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB5A2288D5;
-	Mon,  9 Mar 2026 15:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773069534; cv=fail; b=KLm1APq5gaRT4FddjC+Nm/yJHACLIkjynv4OwoHAbYEDcofZxuQ3TXIpavg4ojI/KA1eY5TaUmEqOggUH/xRJawKwlxy5x3NndEmz7CGTvPGoCvjePn5yyOjCp4R1tFrbZ4aj1y0JDiwXeGwmXXLWIUxgHg38BLABOTaN45gCUs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773069534; c=relaxed/simple;
-	bh=6uZq28mjvS0A1YqT/LnMOPJNX1F+Xf1OwrPEFqLDT3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=j/A79w1t3+Y/Q+1o6dCTKSRsZ+X1sd2yyc3mWUXC8WYHS3q/S60pz8mkofkaPo2sb1yl1ytCXvhi33h62qjEDYkt4jK2lmDpSvYQCDncPdepfmJ7U66I4IpUIq7eK1447bGWkCQwZeQsFvS8Hbv0OFy2SyyCT0xgT+0RYmdmySU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BtF+un6K; arc=fail smtp.client-ip=40.107.159.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WK72gja4b6+Cq4kxFcRmbKiMGYUMIxyaVMx8SOZP6PudGX08dkfA1YM1n8m4RSwngQKWAFvI6LeYr7nwZ7DnGTg/OH/FnPkfDz22IWEqe655tRj1SKYfdXtl3f0tXCLc0fQc6kN1Qc7s+7Wsa5gn1Sob1L17eaIp6xKMtJuhW6NJPXTVLlrBP+hP4L5FLDogmoulqe3WjZSJE68j1Sn4lY6okEpis7RTwE59mWSGZHXRL4rzFoeslMX/XVR6lRc+o58qeS4QgWLgmCSBDAhdi1UdS/bkKtI5xzZ+MQBR56zHaFi0JCSzJOfVr7i5eOjqTLogqygKBeHkS/NEEFVqbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IccisfL7vh7olXruNpWrEXvAZMhqab5k3ZO72kt42l0=;
- b=vIvefmTiNscaWEF1xYBDajGuh2xw6Rs6YxJfEjcvWOhvlyb5t0a4zCYKvaAcDNzv/ub/q64n1H9r65QsvFbX41Gxg59/6XoKyzGz8sx5o4T/+Tck5PNevquHHzHIdf6sYZMU2IoUNEvTcLxtvkPt341j98p5JmszPNY2aKXqGSGp1JQgohlRoSYB96SVG7m/4oGO3O6oulEBwP0XklSy+YU7vz6BzPFlMJbQdgG2a5mRobc8/PYT08bfBAoeIQRcvcQHfpg/TYZr6sUn964jQNj7Z63Jx+Glnu+b3xoD55KYLnBJIBPLl+EPQRxCs0eRyIu3YO+tO+U7wE4ibJG23w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IccisfL7vh7olXruNpWrEXvAZMhqab5k3ZO72kt42l0=;
- b=BtF+un6K8PaOKqN1pS5KE8M7PUPc6+Nuj5tC3WezBGx6QGuHpJNNWiz7VJtmWqW8g7BHI1999HUJqmx6dvcwrRzY8xKQ7MqZfqBtV5bG1PomcRM89ycoCTJsi36MX6dd0P0ur/aBRT4YHOPsOxA9IMwoeN++KS0swMkVciv9lGVghPJ9q4uBp6VLtVbWYiaMUy3OVpj6+HtWg3VFctQ50jL2b81vM947FNhfYTfjCiLqGanDJhkrkXuP5QE7TDkWYIxkW/1iTNX/MSG2z1pFUDD1iVbi4fwNdME4v1nAdQCSs1adeionzW/CLS79PEXx9uvyMzkSlxcCTVWvaabKwA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by VI0PR04MB11615.eurprd04.prod.outlook.com (2603:10a6:800:2fa::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.23; Mon, 9 Mar
- 2026 15:18:49 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Mon, 9 Mar 2026
- 15:18:49 +0000
-Date: Mon, 9 Mar 2026 11:18:39 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	bhelgaas@google.com, l.stach@pengutronix.de, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, mani@kernel.org, s.hauer@pengutronix.de,
-	kernel@pengutronix.de, festevam@gmail.com,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: PCI: pci-imx6: Fix build warning
- after adding extref clock
-Message-ID: <aa7kz1B4PabMho2a@lizhi-Precision-Tower-5810>
-References: <20260309084431.3015463-1-hongxing.zhu@nxp.com>
- <20260309084431.3015463-2-hongxing.zhu@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260309084431.3015463-2-hongxing.zhu@nxp.com>
-X-ClientProxiedBy: BY3PR05CA0041.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::16) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C103D6488
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.66
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773069612; cv=none; b=PB+V1kB7cNHw9JKIFJXhTJzQuZv2HialVqTKSGgzSirU+3RrBWnE9rFnF/3kWFd3lUvlZD+EHscTl02y+QGRONeMVMLdbkTdAAx9PQcPWFrB4mfwWZYYQrW/+eGLpalSnQ9MsTY+oWci3YzcXhYU248HQJNSrjN0bzpJcVdvo4E=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773069612; c=relaxed/simple;
+	bh=dDbA88Nq/He79YvW/4a9fhCmEA3HAGYP6l3HiFyoAbo=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=l/0BA7PUUM1rp+J8E5MAKIp3FgE5LsBeJx0m8ngH04eVXbsei2qIOuNAXWlouEGhQ5zFNTMA061dibbCqjmQLWFKRm3F6A0kRLutH9DwcIAnaoHmoJdmFnuI9cYrVS5xndfztkeh74haVh7d77gWKR3prXzf/Q2wtT2/h8t+ehU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de; spf=pass smtp.mailfrom=posteo.de; dkim=pass (2048-bit key) header.d=posteo.de header.i=@posteo.de header.b=j72gDJ+U; arc=none smtp.client-ip=185.67.36.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.de
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout02.posteo.de (Postfix) with ESMTPS id 2410D240101
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 16:20:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.de; s=2017;
+	t=1773069608; bh=nULKzfUTIQMky612jlNg5QuwE8AIyUAY4F6wfaq0jVI=;
+	h=Message-ID:Subject:From:To:Cc:Date:Autocrypt:Content-Type:
+	 MIME-Version:OpenPGP:From;
+	b=j72gDJ+UoORVvj3mdI1zJFusEDDPgR2xEPgGi4x8CzNGri9/bpwVbygo21PJYlZzc
+	 DqtCkHeOOCSl78oNqiMQk+2cgXJ/77yNNGHsSVLxzHpac5Ag0XvZmFZok0b3gLoVHW
+	 OAtkjyJYDk/b3IIvzG+N+i7yx5UtunLU2AriUMRG1wK3vJW4UmKgs0jTi5b1KiFRIx
+	 lij1Rn3FSKSb8Egr9ZPvZItjjzB/BpQWA0m9Lif38GbvjSZGDrMQ5VSGB4e4cbNTXN
+	 yGx9VrbQdIZZkjJSQYTmukKn+Mg9QFOa8aHZHuFhGJPGtLcWSieAX/s+aBD6i45Nmq
+	 5yLeHySl7X5Fw==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4fV10P6VDfz6trs;
+	Mon,  9 Mar 2026 16:20:05 +0100 (CET)
+Message-ID: <2b04fdc5abc18f4344b2f15353be8d3092c60913.camel@posteo.de>
+Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
+From: Markus Probst <markus.probst@posteo.de>
+To: Lee Jones <lee@kernel.org>
+Cc: Danilo Krummrich <dakr@kernel.org>, Greg Kroah-Hartman	
+ <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Miguel
+ Ojeda <ojeda@kernel.org>,  Boqun Feng <boqun@kernel.org>, Gary Guo
+ <gary@garyguo.net>, =?ISO-8859-1?Q?Bj=F6rn?= Roy Baron	
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
+ Hindborg	 <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross	 <tmgross@umich.edu>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 	rust-for-linux@vger.kernel.org
+Date: Mon, 09 Mar 2026 15:20:07 +0000
+In-Reply-To: <20260309151555.GU183676@google.com>
+References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
+	 <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
+	 <2026030827-nautical-overplant-399c@gregkh>
+	 <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
+	 <2026030913-agonizing-shoptalk-ed98@gregkh>
+	 <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
+	 <DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.org>
+	 <e43ca445ec7887d3d15676adb7db04f5685f4195.camel@posteo.de>
+	 <20260309151555.GU183676@google.com>
+Autocrypt: addr=markus.probst@posteo.de; prefer-encrypt=mutual;
+ keydata=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
+ jfGillcaQOqFZ3WwVqyzG1BUfTow==
+Content-Type: multipart/signed; micalg="pgp-sha256";
+	protocol="application/pgp-signature"; boundary="=-gvGPU8lHXtJYC70xBLES"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VI0PR04MB11615:EE_
-X-MS-Office365-Filtering-Correlation-Id: a1fcd565-32ea-4d24-1d05-08de7def2a3b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|52116014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	6Wp4knnmJghKr3BtHQtojXPg7a4olKostKIdOq1UNJNh9zbs6LWOiPwWk0d/VCoaXe20vgYZsVUfyZ0ixMDTnfJ7DkKZ6no55cM49EARBtrPiuyshg2rJSsFQZTr1FtloDK4Kf9rbGmsKF+BRDIdvKJY3fyG1DA8EJQ+Eg5DBGDhV5+0YMu4duKk/+tE+Z7mD5P7mZncIJcOsA4SkIBLArgazd9H7rItwl8T9LLgX1qHuJHaw0KeAfTemRBaF5n6gCK1Nimt+zOqMiymSa+HWEqGVsjlLyMFylHptUopRPto5Y/89LB9Wp1QsRvIgjReYtyG4Z3rGNc5DVSXxE4pZ1vw1PMgj5LbK7RxaDK0Qghc5vUJ6b/I9ubppfTMW891qJrki7lmxW8A0J+D5YyStGnF5fg3fLlGK6bdzbXvez1yGEeIPlhpj/KdhLaqvFIL6aw06ZfaYF7PYemoOGfuOqUSxh9VOCIOn6yCnqssBn9WLpwpi5iOMoX5+BjcM7lGQcrOfBda/d+rx/gW0ySGuV4FiB4Gs0BKbB03DnPf6iUAvj8CU0zpdKeREwrrcbydPqS9VkqlJySknTZdnlvybtpXrobG2Px6zaByHWpLwZHdodmi4vXynaNBzc71pl784zlXWUms4usiBU/uBIC6keuPs4y7e8iMnAfKa9yb2vmvpmK39hpr/AUo9Yhl13MwMGqrs+R1GVqmjTMu3tCAbWYh8JdHQBHpS3TM4/ixY0ZZUDwONv+OTu7xqG8tqJPYdU5Lq0n3NgA3Ehr/B9jy8Cgc1LmrYMVj4fQ6U2d7Ki8=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?TgPgT5S7KKPSwdiGawV3T/P/7GBQq4+j4f6Gaca6mSvvgW3BsHyP+dQZ5moZ?=
- =?us-ascii?Q?/l5sjKSyOzekIaQkPu7B8GBcWtdWgjb3T7sgF5C56WMzFvYPMaRYNQT33oT6?=
- =?us-ascii?Q?Goijy84W6yd9GF7WHeGQnpCsrHNk5avWUsjNv1tJ+sFfwIrLPOUQeHT1RXu7?=
- =?us-ascii?Q?c2MwtMDc8lioOKh/2BCISiu7Plqo1hJf3e7xyrb19I+y5rjWC4obvpzfbDUk?=
- =?us-ascii?Q?HIr2mk5AwTKVOfarGmzAQBWgE49R10Vv97f+XCLBYRyCNlB+Xynn9ubZwdir?=
- =?us-ascii?Q?/QLlNzgYqOPYfVkp8rYJEYV7HdWBxl1YnZR17KvIAmUL++PFSduWe28bjRAA?=
- =?us-ascii?Q?f8ta17RypIFs9I5HNcUhF9KvKn9WcPcoA7ipHeqMthywlvLK4rNm062m4uSn?=
- =?us-ascii?Q?BdkUdYDncgvFkLsKG0YkEbXSNbIwXCX+1tZw1r0YoKEcz+83I9rI52w+ucF5?=
- =?us-ascii?Q?iS77AzmOJVMohxA86x0oc2+/YkGxpGABRixQOCNlqx42s2dJA6QGRuMsPwv8?=
- =?us-ascii?Q?csnAlda6zwO6Va9JMK0/qhe0hWm3FiYd5XMeuPjr4ioSJD+S2Ak+CYYe1/sa?=
- =?us-ascii?Q?D5QvAv3ugHHYDLFVgqsP8SypFsp3A9+VXwWWEfRZ+9a72lln1Uc4BcZQxBr7?=
- =?us-ascii?Q?R3w8CmU0OIzi0LogPGn8Rjl8CV1dxeho01RVuWFwAJ0O9AZUeBq5QlD55KTT?=
- =?us-ascii?Q?4TERlwPTB6lnlykkwCxddBCSjtuzQRZa67RhDc8ZtbakmEYNwVkZJ0didljq?=
- =?us-ascii?Q?ciXJ+2HbPYrRBDyZbh1TTpxQ2ouS0ZNqUX48E1R348bva93uwSj4VUh77/vL?=
- =?us-ascii?Q?ooH8Nqp0kCspFe0Zq4b5F+l8aTLVHfARy2PDR5SKYNKwWwK29iYyzy+tGuxs?=
- =?us-ascii?Q?VyoHApMuqdw5SItSuI5AEyE++4ewRkNxobdINoERr00U1Jl1tboL6IaY1KJv?=
- =?us-ascii?Q?fQADu/bzca/3pxAHige+fEfy2dnuSzdIPbwowFj0aDzeD1jZQGu/cuXk0svA?=
- =?us-ascii?Q?r5BQGGyXQ70/oSdzLHU1ppJ0FytYMlWOzMVlm3xC0i8quHFQIyM/9A4aaFMI?=
- =?us-ascii?Q?eps0pRLQQBy/Ml2Feu7VlmDromXAEJpIbO/kYFrmFWk4GD6/1+eRvIpFjORi?=
- =?us-ascii?Q?YKnDPJCiApuOj8ljPlk124frBN4OyJId+ISsuHDqGeiKj5fwnXx7JXsbm6R+?=
- =?us-ascii?Q?7kxjcxFIg2cLLmFNi1fMJ4ZUwORlKqgIDXOi315vW5udJdxLJWKQuQNv3f9R?=
- =?us-ascii?Q?+a7gUXyxunbMoCt6dNg3Joz3zUIk6F+zq7lpNB88iQoCM/rHW7QsYRkGKEhr?=
- =?us-ascii?Q?hp8Iha60S4OSaFbXJaJFedcNvllEd6cHPZqhp056nT4WjQnIq0XnpytoEJ9J?=
- =?us-ascii?Q?Qyk97L1nStEqapFRy+dlPFzSaZdc9mvxT1hDX81R627Mlwdv5k/Pxxm0b0Pa?=
- =?us-ascii?Q?RpXYsdxLtV4OYou/QIiyZQg8z07BPbDRWxj22UkWiqVvxk/C3JwxXIcUKwrA?=
- =?us-ascii?Q?z60ygUbblnVFMhB15RtwCENXf8ABu/ILYLUpiSQBNk1XAsxY2XxUm5Hw4Mnz?=
- =?us-ascii?Q?P4n/+4cb93HewezsiEz1ZkumNmMWajBstU1BGCfVTXZjggSg6ikVGsJHMWof?=
- =?us-ascii?Q?aROe2loy7K30L9PD2z/brUXi6+5j9CqdUOmn/prZ76GDUhr8un5KmXIqSSSq?=
- =?us-ascii?Q?Ydhuw/XNhDekB7rQXJGMBnnOU5lJ0vSEoSZmh7JTR6fehn3P?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1fcd565-32ea-4d24-1d05-08de7def2a3b
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 15:18:49.6322
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Mq28SAdzyW4uQYiSfSk2/KyDogBlc1FMM80UzWWLV1AZK7xuSHM3IdmwaqMuzPxrXm2hRSvrgB/Xfqiut/KLvA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11615
-X-Rspamd-Queue-Id: A1F9C23B9CC
+OpenPGP: url=https://posteo.de/keys/markus.probst@posteo.de.asc; preference=encrypt
+X-Rspamd-Queue-Id: 4286123BA2C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[posteo.de,none];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[posteo.de:s=2017];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273001-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,linuxfoundation.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-273002-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[posteo.de:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.990];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[markus.probst@posteo.de,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,4c380000:email,4c300000:email]
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.de:dkim,posteo.de:mid]
 X-Rspamd-Action: no action
 
-On Mon, Mar 09, 2026 at 04:44:28PM +0800, Richard Zhu wrote:
 
-dt-bindings: PCI: pci-imx6: Change maxItems of clocks and clock-names to 6
+--=-gvGPU8lHXtJYC70xBLES
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Previous commit 1352f58d7c8d ("dt-bindings: PCI: pci-imx6: Add external
-reference clock input") was incomplete.
+On Mon, 2026-03-09 at 15:15 +0000, Lee Jones wrote:
+> On Mon, 09 Mar 2026, Markus Probst wrote:
+>=20
+> > On Mon, 2026-03-09 at 14:32 +0100, Danilo Krummrich wrote:
+> > > On Mon Mar 9, 2026 at 1:52 PM CET, Markus Probst wrote:
+> > > > Yes. I will split it into multiple drivers using the aux bus in the
+> > > > next revision.
+> > >=20
+> > > Independent of the other discussion whether this belongs into the ker=
+nel in the
+> > > first place, reading over the cover letter and commit message I under=
+stood the
+> > > following.
+> > >=20
+> > >   "Synology uses a microcontroller in their NAS devices connected to =
+a serial
+> > >   port [...]" controlling LEDs, fan speeds, a beeper, etc.
+> > >=20
+> > >   I.e. it muliplexes several physical functions that belong to differ=
+ent
+> > >   subsystems, such as hwmon, input, etc. over a single serial port.
+> > >=20
+> > > This sounds like a textbook candidate for MFD to me.
+>=20
+> Then you do not know what a textbook candidate for MFD is. :)
+>=20
+> What part of the MFD API does this device utilise?
+>=20
+> > > I.e. there is a very loose coupling of the different functions that m=
+ake up for
+> > > entirely independent drivers, except that they share the same serial =
+port
+> > > connection.
+> > >=20
+> > > Whereas the auxiliary bus is more for very complicated devices to be =
+broken down
+> > > into more managable (sometimes optional) sub-domains, where the corre=
+sponding
+> > > drivers usually have driver specific APIs to interact with each other=
+.
+> > >=20
+> > > - Danilo
+> >=20
+> > QNAP and Synology do things very similarly.
+> > There is already a driver for QNAP devices:
+> >=20
+> > drivers/mfd/qnap-mcu.c
+> > drivers/leds/leds-qnap-mcu.c
+> > drivers/input/misc/qnap-mcu-input.c
+> > drivers/hwmon/qnap-mcu-hwmon.c
+> > drivers/nvmem/qnap-mcu-eeprom.c
+> >=20
+> > drivers/power/reset/qnap-poweroff.c (this one is not part of the mfd)
+> >=20
+> > and I try to implement the equivalent for Synology devices.
+> > Given its a MFD I would assume the same applies to this driver?
+>=20
+> Of course not.
+>=20
+> The QNAP driver above calls devm_mfd_add_devices().
+>=20
+> This one uses none of the MFD functionality provided.
+>=20
+> Linux supports 10's if not 100's of devices which do more than one
+> thing.  Only a fraction of them are Linux MFDs.  MFD in Linux is an API,
+> not a type of device.
+>=20
+> Don't get me wrong, you could probably code up this device as a Linux
+> MFD, but you have chosen not to, so therefore it cannot reside here.
+=46rom what I have read so far, the way its written it probably can't
+live anywhere inside the kernel right now. So it will be restructured
+to either use mfd or auxiliary, which both involve splitting the driver
+up into multiple pieces. From what Danilo is writing, it will likely be
+mfd.
 
-The constraints for "clocks" and "clock-names" still enforce an incorrect
-number of items. Update maxItems for both properties to 6 to match the
-actual hardware configuration.
+Thanks
+- Markus Probst
 
----
-After ---, you'd better to said
-Sorry to miss testing when work 1352f58d7c8d.
 
-Frank
+--=-gvGPU8lHXtJYC70xBLES
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
 
-> Fix dtbs_check build warnings by updating the maxItems property for
-> clocks in fsl,imx6q-pcie-common.yaml and completing the clock
-> descriptions in fsl,imx6q-pcie.yaml.
->
-> The warnings occur because the clock arrays exceed the previously
-> defined maximum length:
->
-> imx943-evk.dtb: pcie@4c380000 (fsl,imx95-pcie): clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref', 'extref'] is too long
-> imx943-evk.dtb: pcie@4c300000 (fsl,imx95-pcie): clocks: [[5, 74], [5, 41], [5, 40], [5, 75], [46, 0], [47]] is too long
->
-> Fixes: 1352f58d7c8d ("dt-bindings: PCI: pci-imx6: Add external reference clock input")
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  .../devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml        | 4 ++--
->  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml     | 3 ++-
->  2 files changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> index cddbe21f99f2..0488c942092d 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
-> @@ -17,11 +17,11 @@ description:
->  properties:
->    clocks:
->      minItems: 3
-> -    maxItems: 5
-> +    maxItems: 6
->
->    clock-names:
->      minItems: 3
-> -    maxItems: 5
-> +    maxItems: 6
->
->    num-lanes:
->      const: 1
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> index 12a01f7a5744..7fe1e0e9b565 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
-> @@ -40,7 +40,8 @@ properties:
->        - description: PCIe PHY clock.
->        - description: Additional required clock entry for imx6sx-pcie,
->             imx6sx-pcie-ep, imx8mq-pcie, imx8mq-pcie-ep.
-> -      - description: PCIe reference clock.
-> +      - description: PCIe internal reference clock.
-> +      - description: PCIe additional external reference clock
->
->    clock-names:
->      minItems: 3
-> --
-> 2.37.1
->
+-----BEGIN PGP SIGNATURE-----
+
+iQJPBAABCAA5FiEEgnQYxPSsWOdyMMRzNHYf+OetQ9IFAmmu5RAbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTEsMiwyAAoJEDR2H/jnrUPSKBwP/3jY8Ecy41yVnY4FK/39
+KepTy+K1ImkDt5m0c9NuAVieRpbrYweDCMiw6A4PiZA47gPsbXshXBqr6KBETsJA
+UOCAr7yg4ZeUlIp3tet5nh0RKX3NL2iLxfYoT/8f5in67jkz/3qnHQS78enq9+Sc
+bx/ZnM0rQPuchHxvB109mzObquBfdsgw5uF2DWoD26ZngjAXZy008zrG9EfPElPY
+7F18956OjCAUvBoQ0XRdTrG+72e82MCDxO3sZaEc+p3KtOigpKNWyzyEhBzhAIj1
+mfh1TojAzsBt42Sq8fIZpBojfgsrNMKObMXRvCfeg/50lFXR+7ySfc3VO65e+1Ar
+i43uv4iZTet+KW4CaAxnhPltxf0L8O1Y9RSJmwW0G00EWkWOiG/Ls8rnT9bgTJrL
+1UsepZnNfxBIqLlVwnE7MKO0Xk30HYLk9ZSWzvlIW9WirYtE53tyZ6QEn9/1RgHI
+CcmAKV8XkDtMYeXFEz2yZvcl5q39Gx/Cv7nYZVu+wAbO9ap1HsddtB6/rxLq0lsc
+Z3/84rs0UYCgH908swU9TbF6OE2SzbgiKP+4Xh5SSGtAMwVmfVl4mvnoVX3vuh1A
+Hgz9jSW33HM8exNilUE/YgndkTWk4VfY46XkWzzujJJ86D9zqETYpFNS82GqidLj
+IsEOo2rSO2wR8DIydf4oIW37
+=Skj1
+-----END PGP SIGNATURE-----
+
+--=-gvGPU8lHXtJYC70xBLES--
 
