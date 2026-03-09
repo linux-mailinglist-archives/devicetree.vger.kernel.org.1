@@ -1,136 +1,83 @@
-Return-Path: <devicetree+bounces-272740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272742-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHEIKFB9rmlGFQIAu9opvQ
-	(envelope-from <devicetree+bounces-272740-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 08:57:04 +0100
+	id IAxoL0p+rmmzFQIAu9opvQ
+	(envelope-from <devicetree+bounces-272742-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:01:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01BBA2351ED
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 08:57:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 604012352ED
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 09:01:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id CAA6D304A6FB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 07:54:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E125303FAB4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 07:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98AD936A024;
-	Mon,  9 Mar 2026 07:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECCE536A02B;
+	Mon,  9 Mar 2026 07:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVkkqBmd"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="RKCV4XbU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-106121.protonmail.ch (mail-106121.protonmail.ch [79.135.106.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74FCF36492F;
-	Mon,  9 Mar 2026 07:54:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97161364949
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 07:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773042883; cv=none; b=Vh56CnSfWQJsAHzy47RwJ7e2ZY4CeaUyuYfqQh3HOIMRxIqWcKggAqn6n8YTXGQ4HKgfD53EBJs/QuhNzbBpBTmAJMPWUQuQWHtbeNcaSCduvo0c2bPb+FZS3XZk7JdN19PmJisydDwEI5YVC4AYC3/n3o/X9Zd85rrJN2xvRug=
+	t=1773043162; cv=none; b=VqL9uAEJRRZCFxBP5ghdbY/ehC6XSKPcRFGGTIZzo0FZYcWKzszN65hbQJPaJOwPolurEKSJ3+lptM9B/4bJsHBN2+/aqhuie06+E7JBNfzV4uIjnnfmGHZKr2YC0rmKE1G+8JBwBpSxaDVtgoiojEpxu3dI88HbARjNl20pn6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773042883; c=relaxed/simple;
-	bh=5ywDkEzm9uVIErvsN1ZZ5yd+WBIdhJNutfthkQpuGDs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=na+IgsI2yK/BiMFgLfUr98acB5oaoZwQO4Pcw5hlkhE5xmK0lyfDOA85DbDc7w5KJp5R5kvx9P7nvFwZrKCAFkdAyF/8G+ZEtnrzjd1Srtc/Tik8Zy4bo1qB6Y/uSodwvEUY6bkzv3PEsfI3vyFXIwq2v2QiZ7XTg8dv1sFCjE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVkkqBmd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E77A2C2BCAF;
-	Mon,  9 Mar 2026 07:54:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773042883;
-	bh=5ywDkEzm9uVIErvsN1ZZ5yd+WBIdhJNutfthkQpuGDs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oVkkqBmdOf0pwVGB/gOUm/7inQ1dUdWhqtlcROFfJs8NTXmhEte/xeIs49X4Tdz9/
-	 n5GoLSq+KbDeJp9glgaDNzugo2mrIm0zUSOeuI4+SRgpXdaqy0ZhcSwWDvvJA5ih0H
-	 sng+j1z540ZeFrHzAJ5je15SGgCia6klyPrk7dcRqOwS74eTOCnvqBtwNEgGhLh5m4
-	 FuJF5D7iGhYupRNFSCKxCatdSvJWzU01oIV2LQTFfYli37hCgcrQbJN2uL8EbJ1FOR
-	 Tj2xxsYZxVZuSVePbcVRHvGwFqxJAj82mF6CuQli4rTHrIBoXAf82sn3nMn80/RupT
-	 DEhDrGVI7foEQ==
-Message-ID: <2d1d5c7c-61b1-4f5a-b039-02ceb2a02c1a@kernel.org>
-Date: Mon, 9 Mar 2026 08:54:38 +0100
+	s=arc-20240116; t=1773043162; c=relaxed/simple;
+	bh=us2Sxut54o3bbCLDzOPRYoYiohqpnDpL5+Y7dE37BrI=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SIh5ud95B9cnmziNhgTPByYTooTOZ+8ycIlFrg1uxN7oAP+MkLOsbxkC7vvp7eg0T7/lHokp4OE8T4cPLyo8nLQ5qHQu7N2Q6aJV3yawEoDW2CF+kPsuyRwmvZXdpQNUfKgb4EH4rQUtdnwM9U4iwfj4z5VwTRJjtpwsGBi+jZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=RKCV4XbU; arc=none smtp.client-ip=79.135.106.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1773043153; x=1773302353;
+	bh=us2Sxut54o3bbCLDzOPRYoYiohqpnDpL5+Y7dE37BrI=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=RKCV4XbUp8+kiDsCNoMPtYjj7xI9ctQf812F6alJ1CB2JR5hVMb4cf7hLapcKQrM3
+	 DiMdKATvG1MEhacz44lHWH/XaMQlIHDQaEqBV5lLJRQ1p/PFuLEmVJ8BMzxdG44+bU
+	 AOTP35zATJAyeOkAZ2oBuN0bhwkXRKCvcyL3GMFi5O/LrC5qXOZordlabaqwKJBw4d
+	 AM8znJbkiFxGHcV+w7DGtHPxyTb9awlIgNwHCHElDdCTpBaPTVUFkkJbMFnDwtmbg4
+	 xOreBMDFiad2+n7yZ6Ooinhcoe5uT0Po4cEm1tsn97y7Js2gfIQf1SXMl1jddNeP6q
+	 4y3apa09tPNUA==
+Date: Mon, 09 Mar 2026 07:59:07 +0000
+To: Krzysztof Kozlowski <krzk@kernel.org>
+From: Alexander Koskovich <akoskovich@pm.me>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Document Tianma TA066VVHM03
+Message-ID: <jEmQOGXayNvDVOS6CwoOrw57iIPZ9a5tQLZHo7g7Zq78lD5hZVg85dKDzzboPtKt9BNSjiHptAhLEpEI1s2rrpTSc_qP-LneoLxZhfxZ814=@pm.me>
+In-Reply-To: <2d1d5c7c-61b1-4f5a-b039-02ceb2a02c1a@kernel.org>
+References: <20260308-tianma-ta066vvhm03-v2-0-5f2344685133@pm.me> <20260308-tianma-ta066vvhm03-v2-1-5f2344685133@pm.me> <20260309-idealistic-dingo-from-venus-c443af@quoll> <PU91d8ChpHqZx-aqR57qt-3XBGBOl_oCbF0SSI_q3uGK9UXUUWplDdDD4m_OGbpXn3Ayx0DCy0wHYe5-nuZeZc-Xy_77mvHl17KrTJcPt-w=@pm.me> <2d1d5c7c-61b1-4f5a-b039-02ceb2a02c1a@kernel.org>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: 6efb296065016972a1a62ed9500271d657904941
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: panel: Document Tianma
- TA066VVHM03
-To: Alexander Koskovich <AKoskovich@pm.me>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-References: <20260308-tianma-ta066vvhm03-v2-0-5f2344685133@pm.me>
- <20260308-tianma-ta066vvhm03-v2-1-5f2344685133@pm.me>
- <20260309-idealistic-dingo-from-venus-c443af@quoll>
- <PU91d8ChpHqZx-aqR57qt-3XBGBOl_oCbF0SSI_q3uGK9UXUUWplDdDD4m_OGbpXn3Ayx0DCy0wHYe5-nuZeZc-Xy_77mvHl17KrTJcPt-w=@pm.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <PU91d8ChpHqZx-aqR57qt-3XBGBOl_oCbF0SSI_q3uGK9UXUUWplDdDD4m_OGbpXn3Ayx0DCy0wHYe5-nuZeZc-Xy_77mvHl17KrTJcPt-w=@pm.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 01BBA2351ED
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 604012352ED
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272740-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-272742-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,oss.qualcomm.com];
 	RCPT_COUNT_TWELVE(0.00)[15];
@@ -140,38 +87,63 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.988];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pm.me:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pm.me:dkim,pm.me:email,pm.me:mid]
 X-Rspamd-Action: no action
 
-On 09/03/2026 08:41, Alexander Koskovich wrote:
-> On Monday, March 9th, 2026 at 3:35 AM, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> BTW, all of your patches have mismatched From and SoB cases. It passes
->> the checks but I do not see reason why different case should be used.
->> Especially that it is manual process to achieve that - none of the
->> standard ways of using git produce such result, because SoB is added
->> automatically based on From name. Unless your mail server is changing
->> these, but that's also odd.
->>
->> This should be fixed in all of your patches, IMO.
-> 
-> I did notice that, looked into it briefly the other day and it appears to be Protonmail Bridge that is doing it, I always use "akoskovich@pm.me", but Protonmail seems to be sending out as "AKoskovich@pm.me".
-> 
-> It also made some linux-media CI checks fail :(
-> 
-> Would you suggest I change my git identity to use uppercase here and then resend all patches?
-> 
 
-Just change it in Proton settings to lowercase. Or don't use Proton for
-kernel development - in the past it was causing a lot of troubles, so
-here we have another reason - mangling silently with headers.
 
-Best regards,
-Krzysztof
+
+
+On Monday, March 9th, 2026 at 3:54 AM, Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+
+> On 09/03/2026 08:41, Alexander Koskovich wrote:
+> > On Monday, March 9th, 2026 at 3:35 AM, Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >>
+> >> BTW, all of your patches have mismatched From and SoB cases. It passes
+> >> the checks but I do not see reason why different case should be used.
+> >> Especially that it is manual process to achieve that - none of the
+> >> standard ways of using git produce such result, because SoB is added
+> >> automatically based on From name. Unless your mail server is changing
+> >> these, but that's also odd.
+> >>
+> >> This should be fixed in all of your patches, IMO.
+> >
+> > I did notice that, looked into it briefly the other day and it appears =
+to be Protonmail Bridge that is doing it, I always use "akoskovich@pm.me", =
+but Protonmail seems to be sending out as "AKoskovich@pm.me".
+> >
+> > It also made some linux-media CI checks fail :(
+> >
+> > Would you suggest I change my git identity to use uppercase here and th=
+en resend all patches?
+> >
+>=20
+> Just change it in Proton settings to lowercase. Or don't use Proton for
+> kernel development - in the past it was causing a lot of troubles, so
+> here we have another reason - mangling silently with headers.
+
+Thanks, I see in Proton's settings that I can just change the case. Done, w=
+ill resubmit changes in a bit.
+
+On the header mangling thing, I think I've already seen that. I noticed tha=
+t when I send via git send-email, it strips out the "In-Reply-To" from the =
+headers leading to the threading getting lost.
+
+Will try to look into getting a different email provider for Linux contribu=
+tions set up at some point.
+
+> Best regards,
+> Krzysztof
+>=20
+
+Thanks,
+Alex
 
