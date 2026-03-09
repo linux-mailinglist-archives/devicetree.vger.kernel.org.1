@@ -1,355 +1,196 @@
-Return-Path: <devicetree+bounces-272678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272677-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MFb6LtxSrmkMCQIAu9opvQ
-	(envelope-from <devicetree+bounces-272678-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 05:55:56 +0100
+	id cDGiB39SrmkMCQIAu9opvQ
+	(envelope-from <devicetree+bounces-272677-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 05:54:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BFE233C50
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 05:55:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 269D1233C00
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 05:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BC036301904E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 04:55:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C5113015E37
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 04:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28EB62D2495;
-	Mon,  9 Mar 2026 04:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D3FE2D3225;
+	Mon,  9 Mar 2026 04:54:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p92/T74w"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="K9z7S7p7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from BN1PR04CU002.outbound.protection.outlook.com (mail-eastus2azon11010026.outbound.protection.outlook.com [52.101.56.26])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 032162010EE;
-	Mon,  9 Mar 2026 04:55:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773032151; cv=none; b=LPrOdJY+0HrsZfd02woCL6BWPrkKRrZoRbM0RoLeA2Z4g3qire5oV2rPbLyHSTnIJnvaLNx+3JWwVhf5tc9zz5hiPeyxcx3Qre7zZieMJQldAYlnw1QzTZUdZypdTMGmr5cUc1gnThpJD9lGXl6Hb6qVNnsigrYUaCjM/kgFfnc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773032151; c=relaxed/simple;
-	bh=NkbTndFHxMaI3aDcM2/8HZHlz7aV3tc1b23x0wCm92M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ggUiXUD5h8HJvVeX5MyePW9JcD8S9UGX8bQhiUx9WRsyhbYtixRruMqvsA1YUAnPH/REHIErEuFUwJVrLSqJkZOHyJ16pDz1xd+vpJz8jz47sstp+Emee719ISTP3zgQKEmHILJZYm4LS3XzJT3cPGYQEZkpkOc2vSxYt/F9Q9A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p92/T74w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74FE2C4CEF7;
-	Mon,  9 Mar 2026 04:55:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773032150;
-	bh=NkbTndFHxMaI3aDcM2/8HZHlz7aV3tc1b23x0wCm92M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=p92/T74w+P9SQUfRQIyMDxe24WI07YnrDPgBGOaTAyatjkFRUgmgBphAZBCljN9ax
-	 JgkWYLKKytFEVTMuVCDXDTZP+1jKhihDmz8CStC5WFtuVt3gjsCXu7K8tSfFGdj5Gx
-	 KAaW+Ua2EW/Pbk1mu4Q9Bc5+lpLdIjCwKhTLpiIqPhSkSTpGEnD4oE8FKsSkyvOyXr
-	 P4GjMQzpqtrb2NHXkWTiKULMgrDtSUmSCwkmWbCkIalJ52h61F+G7FBC354ZNkhgY5
-	 FGGthaCLdEX0aIZS1SSDHbpkaWpNn3Y5IOTBuf/fCHXGxsO7m7/izjvoHP7/Ppin+4
-	 Tif1VRDdIeV4A==
-Date: Mon, 9 Mar 2026 10:25:31 +0530
-From: Sumit Garg <sumit.garg@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-	linux-media@vger.kernel.org, netdev@vger.kernel.org,
-	linux-wireless@vger.kernel.org, ath12k@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, andersson@kernel.org,
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, robin.clark@oss.qualcomm.com, sean@poorly.run,
-	akhilpo@oss.qualcomm.com, lumag@kernel.org, abhinav.kumar@linux.dev,
-	jesszhan0024@gmail.com, marijn.suijten@somainline.org,
-	airlied@gmail.com, simona@ffwll.ch, vikash.garodia@oss.qualcomm.com,
-	dikshita.agarwal@oss.qualcomm.com, bod@kernel.org,
-	mchehab@kernel.org, elder@kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, jjohnson@kernel.org, mathieu.poirier@linaro.org,
-	trilokkumar.soni@oss.qualcomm.com, mukesh.ojha@oss.qualcomm.com,
-	pavan.kondeti@oss.qualcomm.com, jorge.ramirez@oss.qualcomm.com,
-	tonyh@qti.qualcomm.com, vignesh.viswanathan@oss.qualcomm.com,
-	srinivas.kandagatla@oss.qualcomm.com,
-	amirreza.zarrabi@oss.qualcomm.com, jens.wiklander@linaro.org,
-	op-tee@lists.trustedfirmware.org, apurupa@qti.qualcomm.com,
-	skare@qti.qualcomm.com, Sumit Garg <sumit.garg@oss.qualcomm.com>
-Subject: Re: [PATCH 02/14] firmware: qcom: Add a generic PAS service
-Message-ID: <aa5Sw1qcCnD5clth@sumit-xelite>
-References: <20260306105027.290375-1-sumit.garg@kernel.org>
- <20260306105027.290375-3-sumit.garg@kernel.org>
- <5dab61a6-d8cc-431d-b59e-744d98195d90@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12BC2010EE;
+	Mon,  9 Mar 2026 04:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.56.26
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773032044; cv=fail; b=GoOyvjEaFA4tpIZuKAvZoaB8WtOhWYw3BDbFOfXAuLwUVPIfzKRDY+8T+Bi/3KQuLtyZoM3ZnLH6jWv+WwfNMsKpT0Vqfe8XUJyoygoyH3QaFZNU/3TCpoiwBxtHKfmqOvH+6UskVsBPvu90YuNOWLWabJixWQmh/XNw4ELCwGQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773032044; c=relaxed/simple;
+	bh=No5XHFZG3IctDeXeePjX6woFLFXuBVhK0dSEKB1gprE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=SgWQI61HQIdbSMzRb8crDP2u++iGHIpxDAKox2ij9NOyyn6Wj4rZ7rig/nnZ9jBXMsjlPnvbnpl4gvCV/qtPxh05Bf0W7ACyjl5HLCYp8ZJr9fjqr6GQ4pMeLsvGIf+atJ1oBsSfBksrIGXLT2eB0QH3Jrp/PWMJQ0WE9LaJWvo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=K9z7S7p7; arc=fail smtp.client-ip=52.101.56.26
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xY1LoqAXRnQ0Cf1HH3K0avvC58lwl+S4zoGwgJuC8C7ay1zG3eFrVLQmgyj8lrlWhWh5Z5OLbT071H06zCm4Ju0bD7Xwq8LQ/aTy/Wej5Vovvmi3kD0FBwuEj+SfwGOTjVZLWgT8Ve08bGS6IXXqJ/7vvWEtJBdbmDQPVU+WKcF4nmnkIrK6Ba90bkeshY4Xz/AjNyTHDHZMk5UGMWbQ2ANOymKnBRmpuyO+A5OirS8AYnScBZKrott1qfVhUGMN7vXwMng5w+U4h6qBXYYQyWI0I7reku8U5x4vh7xOSWrT8BLJqbVfWXS2fFzBmaqECnC1SEiZesrqK1LOyNi/0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mSi1yTq6L4fwXsdzr9g+PaFvQ4XFZ9/hutjmcWkBAIo=;
+ b=J0mN/SffteHzARhFMV33m1Vht4PQQyd/TR+5zbMkC6+yjXVAgYF9yAXcwGdLRzOq4rFLuhmUGUFNNEB8Zo5Wc7GhNUt6obKLWt4yrPePXkphnQAky55axQ6AalfESRqGGCCqUQnkX3s1Gh33lQ160pZ6qbjxdTXg266ZEKskeKXSn6C3v06khnyKLAhU95X0otWaVbfFz8F28KUrJZOkJGL1uvCvYydvbaoSZuVOceIAhIKeBh8K8f42Pe2XP3uCXzqMBMhl0EmOIQcA/T9d1IM8yVNgupJjiLs+71Z40OYnzt5iIiGC8W4knaxi4ylKjLz0ULLK9bD1I/fEFpdoTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.21.195) smtp.rcpttodomain=lists.infradead.org smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mSi1yTq6L4fwXsdzr9g+PaFvQ4XFZ9/hutjmcWkBAIo=;
+ b=K9z7S7p7LQ+X82lMsyCRnTAUGJlpWMqFjVn2w6ivCTvU/yBefYe1DAK9YvW98Vi75OdsrAX20NVIMyVIm3HTrK5v4FionkF3GROafGblXxCxr7UNuF45BTNWSjysaydDsXNHUunHfQu9zKfQFoO7QFI12g89wWjITGcZ6SUxM8c=
+Received: from BN9PR03CA0054.namprd03.prod.outlook.com (2603:10b6:408:fb::29)
+ by IA3PR10MB8090.namprd10.prod.outlook.com (2603:10b6:208:50e::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.24; Mon, 9 Mar
+ 2026 04:54:00 +0000
+Received: from BN2PEPF000044AA.namprd04.prod.outlook.com
+ (2603:10b6:408:fb:cafe::a2) by BN9PR03CA0054.outlook.office365.com
+ (2603:10b6:408:fb::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.24 via Frontend Transport; Mon,
+ 9 Mar 2026 04:53:54 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.21.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.21.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.21.195; helo=flwvzet201.ext.ti.com; pr=C
+Received: from flwvzet201.ext.ti.com (198.47.21.195) by
+ BN2PEPF000044AA.mail.protection.outlook.com (10.167.243.105) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 04:53:59 +0000
+Received: from DFLE201.ent.ti.com (10.64.6.59) by flwvzet201.ext.ti.com
+ (10.248.192.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 8 Mar
+ 2026 23:53:52 -0500
+Received: from DFLE213.ent.ti.com (10.64.6.71) by DFLE201.ent.ti.com
+ (10.64.6.59) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Sun, 8 Mar
+ 2026 23:53:52 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE213.ent.ti.com
+ (10.64.6.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sun, 8 Mar 2026 23:53:52 -0500
+Received: from toolbox.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.73.74])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 6294rmTt410971;
+	Sun, 8 Mar 2026 23:53:48 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <jm@ti.com>, <afd@ti.com>
+CC: <stable@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<srk@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v2] arm64: dts: ti: k3-am62a7-sk: Fix pin name in comment from M19 to N22
+Date: Mon, 9 Mar 2026 10:25:32 +0530
+Message-ID: <20260309045539.2070793-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.51.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5dab61a6-d8cc-431d-b59e-744d98195d90@kernel.org>
-X-Rspamd-Queue-Id: 25BFE233C50
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN2PEPF000044AA:EE_|IA3PR10MB8090:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2c65619f-0a18-4104-bb9d-08de7d97e07c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|1800799024|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	no0eww1wAejO//458qEWE8RDkWnQTp4qz0h6dfjxIUx467ti4AZjI5d2p1dAbbcRkVqQ6U5T9b7v5PuHRNUW+Ix4tXGwr4M0b7KjbsXpmqYKFocDHn8dWBPPKIZojzhlhsOifOSwcC1b0XyRNqCVqYA3MovXI6w3td3KBku3FoZz0W07LWyJDtHSCICqtCEZ48z4g2kGjgKswHiI5Hmap3uQqHISCpPzYtC9aQD5eOgiGVvySZ3+MT0TGhEyNAHwx3DwN7tjV0jdIW+uIoVsMVOhhn1qmWIlAYJbLsECNKloPKjoTnNQX9K1qDsbiaBzovEWMIIj3uudliKVSQkZ0bGY3CbXUSX2bNZZR90/+o2koi2eufI6w6zfof6U5JD8j2IlqhGLVz+HCqxofCu5oOzovUQvEr61knX8n0iG5KfeWs4aHCCK2Du0ovGV4E9o+2Qgr1fRvM9faKPsbmkMUC1bL0S+oQ3ZaVorPAovfPAE+LW0B4HsY+H+G5ZZyUoC5tPrXC8I0e8YDKZlQTlfiK97dPPDqotClQTTeLyWuzxJOPGARNucNyFhUv/fN/l49yZDfX1xDxNcns6KvO0eJoXvnK88IiINjlCNTqVBp845uWfg4AEb+n8T5JAOnPFfnsgsdthrV+r2lEdWZ357d84RPVQuOO7YXyDF8lwnIFTPmsHcsJjnWndgrHLaSqTvsx4rDHDaoNth8HGnhFHvmHimbWbF/34frU5LNS10CXM=
+X-Forefront-Antispam-Report:
+	CIP:198.47.21.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:flwvzet201.ext.ti.com;PTR:ErrorRetry;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	LsRCsHpBwTI0LMIqf+J2ibSJKnIgcY0a8Ecju5YZaI+l5q5TYAtuQBJ0jdTk5YPJHwOWDi+pY8J0kgI3omccoD2obk13b1arPcfYFMrI7HYVqLM9nCg/DZn3wIuU3lWuXgm0174ylfI9PWqKS+68iWQ+SBnZl7ig2tLE+J/NSPbQIha+DPPAmOE3/yI29md1c2zi73iUmeFVPkHJG+qyQS96tchSZVkBEOU0hlzpSM+2Do3TMTVQmXYIleJzMVlfhgGpEpkElZa9hTCRJ9D9cobYzLQORE2iEWEVkusucoU+1FqV6qhpaonEbd4Ad9JJ0U5OSiIL/qlt5LIwn28kedDICTFWXnP7ZDEGNSwj0Ql9Mw5oJPru7vmuPMvtIUd58aoMfH7lyBW6cINkcQF3+UBenc4V8Ujfnkai+fziXWdX29J/xVdsT1yo/xAG8NV0
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 04:53:59.1902
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c65619f-0a18-4104-bb9d-08de7d97e07c
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.21.195];Helo=[flwvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN2PEPF000044AA.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR10MB8090
+X-Rspamd-Queue-Id: 269D1233C00
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272678-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272677-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[49];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.freedesktop.org,lists.infradead.org,kernel.org,oss.qualcomm.com,poorly.run,linux.dev,gmail.com,somainline.org,ffwll.ch,lunn.ch,davemloft.net,google.com,redhat.com,linaro.org,qti.qualcomm.com,lists.trustedfirmware.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.985];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sumit.garg@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	FROM_NEQ_ENVFROM(0.00)[s-vadapalli@ti.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ti.com:dkim,ti.com:email,ti.com:mid];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 12:15:01PM +0100, Krzysztof Kozlowski wrote:
-> On 06/03/2026 11:50, Sumit Garg wrote:
-> > From: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> > 
-> > Qcom platforms has the legacy of using non-standard SCM calls
-> > splintered over the various kernel drivers. These SCM calls aren't
-> > compliant with the standard SMC calling conventions which is a
-> > prerequisite to enable migration to the FF-A specifications from
-> > Arm.
-> > 
-> > OP-TEE as an alternative trusted OS to QTEE can't support these non-
-> > standard SCM calls. And even for newer architectures QTEE won't be able
-> > to support SCM calls either with FF-A requirements coming in. And with
-> > both OP-TEE and QTEE drivers well integrated in the TEE subsystem, it
-> > makes further sense to reuse the TEE bus client drivers infrastructure.
-> > 
-> > The added benefit of TEE bus infrastructure is that there is support
-> > for discoverable/enumerable services. With that client drivers don't
-> > have to manually invoke a special SCM call to know the service status.
-> > 
-> > So enable the generic Peripheral Authentication Service (PAS) provided
-> > by the firmware. It acts as the common layer with different TZ
-> > backends plugged in whether it's an SCM implementation or a proper
-> > TEE bus based PAS service implementation.
-> > 
-> > Signed-off-by: Sumit Garg <sumit.garg@oss.qualcomm.com>
-> > ---
-> >  drivers/firmware/qcom/Kconfig          |   8 +
-> >  drivers/firmware/qcom/Makefile         |   1 +
-> >  drivers/firmware/qcom/qcom_pas.c       | 295 +++++++++++++++++++++++++
-> >  drivers/firmware/qcom/qcom_pas.h       |  53 +++++
-> >  include/linux/firmware/qcom/qcom_pas.h |  41 ++++
-> >  5 files changed, 398 insertions(+)
-> >  create mode 100644 drivers/firmware/qcom/qcom_pas.c
-> >  create mode 100644 drivers/firmware/qcom/qcom_pas.h
-> >  create mode 100644 include/linux/firmware/qcom/qcom_pas.h
-> > 
-> > diff --git a/drivers/firmware/qcom/Kconfig b/drivers/firmware/qcom/Kconfig
-> > index b477d54b495a..8653639d06db 100644
-> > --- a/drivers/firmware/qcom/Kconfig
-> > +++ b/drivers/firmware/qcom/Kconfig
-> > @@ -6,6 +6,14 @@
-> >  
-> >  menu "Qualcomm firmware drivers"
-> >  
-> > +config QCOM_PAS
-> > +	tristate
-> > +	help
-> > +	  Enable the generic Peripheral Authentication Service (PAS) provided
-> > +	  by the firmware. It acts as the common layer with different TZ
-> > +	  backends plugged in whether it's an SCM implementation or a proper
-> > +	  TEE bus based PAS service implementation.
-> > +
-> >  config QCOM_SCM
-> >  	select QCOM_TZMEM
-> >  	tristate
-> > diff --git a/drivers/firmware/qcom/Makefile b/drivers/firmware/qcom/Makefile
-> > index 0be40a1abc13..dc5ab45f906a 100644
-> > --- a/drivers/firmware/qcom/Makefile
-> > +++ b/drivers/firmware/qcom/Makefile
-> > @@ -8,3 +8,4 @@ qcom-scm-objs += qcom_scm.o qcom_scm-smc.o qcom_scm-legacy.o
-> >  obj-$(CONFIG_QCOM_TZMEM)	+= qcom_tzmem.o
-> >  obj-$(CONFIG_QCOM_QSEECOM)	+= qcom_qseecom.o
-> >  obj-$(CONFIG_QCOM_QSEECOM_UEFISECAPP) += qcom_qseecom_uefisecapp.o
-> > +obj-$(CONFIG_QCOM_PAS)		+= qcom_pas.o
-> > diff --git a/drivers/firmware/qcom/qcom_pas.c b/drivers/firmware/qcom/qcom_pas.c
-> > new file mode 100644
-> > index 000000000000..dc04ff1b6be0
-> > --- /dev/null
-> > +++ b/drivers/firmware/qcom/qcom_pas.c
-> > @@ -0,0 +1,295 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/device/devres.h>
-> > +#include <linux/firmware/qcom/qcom_pas.h>
-> > +#include <linux/of.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/slab.h>
-> > +
-> > +#include "qcom_pas.h"
-> > +#include "qcom_scm.h"
-> > +
-> > +static struct qcom_pas_ops *ops_ptr;
-> 
-> I really dislike this singleton design. And it is not even needed! If
-> you were storing here some allocated instance of SCM/PAS I could
-> understand, but singleton for only ops? Just implement one driver (so
-> SCM + whatever you have here) which will decide which ops to use,
-> through the probe. Really, this is neither needed nor beneficial.
+The pin for GPMC0_CLK.GPIO0_31 at address 0x000F407C is N22 and not M19.
+Hence, fix the pin name in the comment to avoid confusion.
 
-The motivation here is rather quite opposite to the single monolithic
-SCM driver design. The TZ services like PAS, ICE and so on are going to
-be implemented as independent discoverable devices on TEE bus which
-rather needs independent kernel client drivers.
+Fixes: 8f023012eb4a ("arm64: dts: ti: k3-am62a: Enable UHS mode support for SD cards")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
 
-Also, the single driver probe can't work here since the SCM driver is
-bound to the platform bus whereas the TEE PAS driver is bound to the TEE
-bus. So there is a reason for the current design.
+Base-Commit: 1f318b96cc84 Linux 7.0-rc3
 
-> 
-> It actually leads to more problems with this barrier handling, see
-> further comments.
+v1:
+https://lore.kernel.org/r/20260212130843.1054100-1-s-vadapalli@ti.com/
+Changes since v1:
+- Corrected pin name in comment to N22 instead of updating address to match
+  the incorrect pin M19.
 
-The barrier handling is something that I carried over from existing
-implmentation but I can't see a reason why it can't be replaced with a
-simple mutex. See diff below for mutex.
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> ...
-> 
-> > +
-> > +/**
-> > + * qcom_pas_shutdown() - Shut down the remote processor
-> > + * @pas_id:	peripheral authentication service id
-> > + *
-> > + * Returns 0 on success.
-> > + */
-> > +int qcom_pas_shutdown(u32 pas_id)
-> > +{
-> > +	if (ops_ptr)
-> > +		return ops_ptr->shutdown(ops_ptr->dev, pas_id);
-> > +
-> > +	return -ENODEV;
-> > +}
-> > +EXPORT_SYMBOL_GPL(qcom_pas_shutdown);
-> > +
-> > +/**
-> > + * qcom_pas_supported() - Check if the peripheral authentication service is
-> > + *			  available for the given peripheral
-> > + * @pas_id:	peripheral authentication service id
-> > + *
-> > + * Returns true if PAS is supported for this peripheral, otherwise false.
-> > + */
-> > +bool qcom_pas_supported(u32 pas_id)
-> > +{
-> > +	if (ops_ptr)
-> 
-> Lack of barriers here is not looking right. Existing/old code is not a
-> good example, I fixed only the obvious issue, but new code should be
-> correct from the beginning.
-> 
-> Barriers should normally be always paired, unless you have some clear
-> path no concurrent execution can happen here, but such explanation is
-> missing, look:
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+index e99bdbc2e0cb..b1a6f10adf26 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+@@ -398,7 +398,7 @@ AM62AX_IOPAD(0x01d4, PIN_INPUT, 7) /* (C15) UART0_RTSn.GPIO1_23 */
+ 
+ 	vddshv_sdio_pins_default: vddshv-sdio-default-pins {
+ 		pinctrl-single,pins = <
+-			AM62AX_IOPAD(0x07c, PIN_OUTPUT, 7) /* (M19) GPMC0_CLK.GPIO0_31 */
++			AM62AX_IOPAD(0x07c, PIN_OUTPUT, 7) /* (N22) GPMC0_CLK.GPIO0_31 */
+ 		>;
+ 	};
+ 
+-- 
+2.51.1
 
-Actually concurrent execution is rather required here since TZ can
-support parallel bring-up of co-processors. The synchonization is only
-needed when PAS client drivers are performing a deferred probe waiting
-for the service to be available. However, you are right explanation is
-missing here which I will add in the next version.
-
-> 
-> > +		return ops_ptr->supported(ops_ptr->dev, pas_id);
-> > +
-> > +	return false;
-> > +}
-> > +EXPORT_SYMBOL_GPL(qcom_pas_supported);
-> > +
-> > +/**
-> > + * qcom_pas_is_available() - Check for PAS service
-> > + *
-> > + * Returns true on success.
-> > + */
-> > +bool qcom_pas_is_available(void)
-> > +{
-> > +	/* The barrier is needed to synchronize with client drivers. */
-> 
-> 
-> Here. This is pretty pointless/redundant comment. Obviously barriers are
-> to synchronize with whoever is calling this and only clients are calling.
-> 
-> You must say something useful, not just barrier is a barrier... It's
-> like documenting mutex "to synchronize".
-
-Sure, I can expand the comments.
-
-> 
-> > +	return !!smp_load_acquire(&ops_ptr);
-> 
-
-
-diff --git a/drivers/firmware/qcom/qcom_pas.c b/drivers/firmware/qcom/qcom_pas.c
-index dc04ff1b6be0..82312ff5a1d0 100644
---- a/drivers/firmware/qcom/qcom_pas.c
-+++ b/drivers/firmware/qcom/qcom_pas.c
-@@ -14,6 +14,7 @@
- #include "qcom_pas.h"
- #include "qcom_scm.h"
-
-+static DEFINE_MUTEX(ops_mutex);
- static struct qcom_pas_ops *ops_ptr;
-
- /**
-@@ -261,8 +262,8 @@ EXPORT_SYMBOL_GPL(qcom_pas_supported);
-  */
- bool qcom_pas_is_available(void)
- {
--       /* The barrier is needed to synchronize with client drivers. */
--       return !!smp_load_acquire(&ops_ptr);
-+       guard(mutex)(&ops_mutex);
-+       return !!ops_ptr;
- }
- EXPORT_SYMBOL_GPL(qcom_pas_is_available);
-
-@@ -272,11 +273,12 @@ EXPORT_SYMBOL_GPL(qcom_pas_is_available);
-  */
- void qcom_pas_ops_register(struct qcom_pas_ops *ops)
- {
--       if (!qcom_pas_is_available())
--               /* The barrier is needed to synchronize with client drivers. */
--               smp_store_release(&ops_ptr, ops);
--       else
-+       if (!qcom_pas_is_available()) {
-+               guard(mutex)(&ops_mutex);
-+               ops_ptr = ops;
-+       } else {
-                pr_err("qcom_pas: ops already registered\n");
-+       }
- }
- EXPORT_SYMBOL_GPL(qcom_pas_ops_register);
-
-@@ -285,8 +287,8 @@ EXPORT_SYMBOL_GPL(qcom_pas_ops_register);
-  */
- void qcom_pas_ops_unregister(void)
- {
--       /* The barrier is needed to synchronize with client drivers. */
--       smp_store_release(&ops_ptr, NULL);
-+       guard(mutex)(&ops_mutex);
-+       ops_ptr = NULL;
- }
- EXPORT_SYMBOL_GPL(qcom_pas_ops_unregister);
-
--Sumit
 
