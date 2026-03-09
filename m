@@ -1,300 +1,217 @@
-Return-Path: <devicetree+bounces-272955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272963-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6OqyEPvPrmnEIwIAu9opvQ
-	(envelope-from <devicetree+bounces-272955-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:49:47 +0100
+	id kOtsDS/RrmlhJAIAu9opvQ
+	(envelope-from <devicetree+bounces-272963-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:54:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8A5823A01E
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:49:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0274523A201
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:54:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0A1E1302052D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:49:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id EBF05300D4DD
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D8A3BED60;
-	Mon,  9 Mar 2026 13:49:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5F83BA23D;
+	Mon,  9 Mar 2026 13:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="EDKbmxrZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012048.outbound.protection.outlook.com [40.93.195.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F1143BED40
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:49:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773064181; cv=none; b=fprMcwsAGjfTiKdZ9sZ30z4m9sVPNc9BkbiCof2djMEPzm/AZFTfi6KCroi2dUs0Ch33Sjz9xluVRzRmuqfHxIYwlPkpursTyOVioAUHtCArVnKyoQBV019/DRn6sDM+oR03hZKfKWKA6vjRyI/pcMUmO9d+vemfpWvhO3MV8wQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773064181; c=relaxed/simple;
-	bh=voQ3PVHZ91k2HF9py972+zOQaT9+cswu5qeP2vJdCHA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=UZHFDsfoKQXKhIUn1e0jcWmzSRsAUMLFA+QZnC9ojkJ1BqOcQ1ophkOm5XB89u+03+3uRgLHW1pzmM8KMgp4FHK0pXuKqL8gxgiPmFCL9snflQWTqoGQRp0zfOjkYfE+rho9aJMnVm96iN0fGU3fIxsAH+biDZtNscdfB9GC8og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vzaz5-0006fl-Ed; Mon, 09 Mar 2026 14:49:23 +0100
-Received: from dude04.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::ac] helo=dude04)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vzaz2-004XYo-2B;
-	Mon, 09 Mar 2026 14:49:22 +0100
-Received: from ore by dude04 with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vzaz3-0000000834g-3lw8;
-	Mon, 09 Mar 2026 14:49:21 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Peter Rosin <peda@axentia.se>,
-	Linus Walleij <linusw@kernel.org>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	David Jander <david@protonic.nl>
-Subject: [PATCH v3 7/7] mux: add NXP MC33978/MC34978 AMUX driver
-Date: Mon,  9 Mar 2026 14:49:18 +0100
-Message-ID: <20260309134920.1918294-8-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260309134920.1918294-1-o.rempel@pengutronix.de>
-References: <20260309134920.1918294-1-o.rempel@pengutronix.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C0F3B52E3;
+	Mon,  9 Mar 2026 13:54:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773064487; cv=fail; b=mPQ2yN6BnPcSW8u74rE/0jsjgc7zW3vp/AIuyrgwFsFo723sFPzsMPG0jk/EhthOz6Jk0j4I7+LKgyNcrjKqWX+d3AOjKFwVDzLqFCQHMLC3y4NAOc1cQLcyMUCWyUm2bTHps3fihxXpdP627zFIvScQXkh/1VJMKEnOaEHVN8s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773064487; c=relaxed/simple;
+	bh=cMl+aiem0qvLMv/Kv0zTj826dUvM5j1uGLkNT6zo/mo=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=C3l4dVWeNHhvdz5HJMVBDBcrS6hz89zw2QdMybOF2lX+G/f4hSgu+/lnGDd0zG6ZrIlklzY9Rmye5+zOT006d0IFZzwnqCQRc5LOZui5sTBOcB66P0eWtelIR26MA0zVG0q4xxENyRQOF+rOveX/95NjP1y+f64JSl0ND/LGqp4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=EDKbmxrZ; arc=fail smtp.client-ip=40.93.195.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=huV3Ohgb0PWD4aobvIrKz19v8wblYpFPVsbkfkSU8PCApY9K5X99CtX5aDttNJ9CL0ZmPefwISBWIdcX5TCzXrg3cSaOT/CC6ykwwLKFg+Kraf4mtLoGHRXjKIOOWQxroLWxze3445uLBThznzj26NUkr9DzrOHwm/v9J5ZC1M+D1RsABTsSpnF+4+IEYKYzJgNvDvDnJIMpVvtzuhBvmgjmwXcu/rdlLPB4CRRKOJqYDdfmQBvFNp5FIBA/TjKlqhbOD1FjbT20xQq3scDkNLGRSv2eoIkyIZAJOLUaylZ8CsP4cZOW7/awaVbPya1S9aHlT1IXDLRO3XoYQ3RNTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+dCsmKnpItLcqRc2vFhig5BH2C0nC+gTOUqabcbuhyU=;
+ b=SZPYEfRcSNcTjPFh7EpIdJB4WLC3v+Qzsa2iq3MTgcsMYPHSsSXWKXpGMHuwB2PcvsmqtZhraKnluHTlyK8ja4HUvAD0BZati4Lu8ZWKE8rYQ7YYzmizX8f7mWjZbf7fuh/v+NnyGrU8P+4vtM+LKUcGyEnWdhRcWAJsLz5k1l9Q5QVcR/GHP+qeVGOjE/XP9Np4x3cUFqMMUnvvTC5uvoFKfHoT7+AwUpK0gwG7nT4JeVbPSyWOLQm1l4sLRgvVrxnCBHAQ6ZzNC60t8jrX8Z7s+SyhfHvo34Y4S2ENT1rVtzjkmsK96F2dhva9wSZWwf6BgaVjLo83HMDyZqtbtw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+dCsmKnpItLcqRc2vFhig5BH2C0nC+gTOUqabcbuhyU=;
+ b=EDKbmxrZwQT+bFAxzTamowVEzg0DHBMUG6Cr/KOIe4v71TTXHQpYl3QewkqamIjbF/V3+EinrmxH04Qg79fLwfBtHGj7B2kMGqxe+j708CCsl9B+bVd7UEtuwNPefHm8Z5WgJoSJwuhZJSZCUieQHdKsyfQrFuIYXnmENnmzvd8NMVNH1t4KIKNtNzygcxk9PuiSFnmBPM68TXf3byAp4+JxmRryevagum8deLF9FMpq9Tf2NCREchoK7XGotHLbjDzVLRp2X5GFu44xQ7mt4N2MJ8mRvNYps5AyqhRB8B5qUBufNWCg0KtKn7TkzYHUSmYiifi1YFHLnxeAW+F+/w==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com (2603:10b6:8:2b0::12)
+ by BL3PR12MB6425.namprd12.prod.outlook.com (2603:10b6:208:3b4::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
+ 2026 13:54:39 +0000
+Received: from DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391]) by DS2PR12MB9750.namprd12.prod.outlook.com
+ ([fe80::56a8:d6bf:e24c:b391%5]) with mapi id 15.20.9700.010; Mon, 9 Mar 2026
+ 13:54:39 +0000
+Message-ID: <e2995078-d30d-4a4d-aee4-55cfb4a24537@nvidia.com>
+Date: Mon, 9 Mar 2026 13:54:34 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] ASoC: tegra: Add Tegra238 sound card support
+To: "Sheetal ." <sheetal@nvidia.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thierry Reding <thierry.reding@kernel.org>
+Cc: Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sameer Pujar <spujar@nvidia.com>, Mohan kumar <mkumard@nvidia.com>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20260303100249.3214529-1-sheetal@nvidia.com>
+Content-Language: en-US
+From: Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20260303100249.3214529-1-sheetal@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0648.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:296::19) To DS2PR12MB9750.namprd12.prod.outlook.com
+ (2603:10b6:8:2b0::12)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: D8A5823A01E
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PR12MB9750:EE_|BL3PR12MB6425:EE_
+X-MS-Office365-Filtering-Correlation-Id: 96249e40-7376-4563-c745-08de7de36836
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|1800799024|10070799003|366016;
+X-Microsoft-Antispam-Message-Info:
+	Efk7CqOjTbnt7g8HcsPc8G95sDRyBHZ1hK+JaneL+nVXHx8Qd6Mv4spcvwDryhNkmyt5XpziEZPmIDjuRkEBp6W7/3RjtYiIIBhOFQh5z95PymrTIvA1rR9HZcf9fn1hAtn8MdD8fCzJr6OVmzODmQI1U8toyZPwnrW5zWf+9DKI9QeOKS3BeRuVQojy3+qBjMDt6miG9K2llp5vtnBObUBqBpTMo/xJu+CHRf7dt3kmyxZE7hTGPEl4Pgr5WvFCS6ZM6eppkRGz79II8XZwp3HTuoefWvB+26lHN0/9Kg/A+5n263fB2HDq68+cxMLo9Sl4W536XGYpaR3LrqQE2BQGHVW31FwJIneNMR1KWADl5JiWdNiTL7SFgERnuMrymrHyOVzQDQrsZb7cQjdTpXAYYmHJMyvdZIemEMUGIsUpUVbmJgh1eS81UwNB9BT5TkbY0J1vx83+UTYbmN1Uk63kGmTagzzO/1m6daVgfX7a4TWvJHUZiUoO97IoEwV0WOLKsBAH00CYroJ6BXX3h/CLoq3KBHwnCcgbZxbEwHb/q1cUPLSooSTBGX3Mwpd/Fbo9Y+F9KX4o2ayNqGjgPHUR9xuHUmiDzdW7qqY6ASclAqVhkpUzjfFgXCL0ynUkVptiDcpn6Fr9MY7xW0DU809fl+pY1yUnvRn6QEYX7yP7OIdnpc7/qYk46HSF1uWA/llZeTX9SR5Bm89UqviMdqnZLKU40IXPf2t1D/Kbnzo=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS2PR12MB9750.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(10070799003)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?c3BzOGZKS0pOUUgwUXpNRGEzM3ZmWk9IQ2E2ZGIzK2RQaFNia1N4SVMyWGJR?=
+ =?utf-8?B?VFpTYVZmdkNlSDAxdE10cE5LMDJ5NXdDOEVlN1lzYXJ0K2I5U3g5WWtEUGIy?=
+ =?utf-8?B?M3ZIY0FYZHlpQ0t5R3R5SWNRcFlZazlsTE5abll1RW5GOW9yMGtpcVVtWU5h?=
+ =?utf-8?B?cWVPcksrNzUzZmg2UHJxRU1LODNSU0RHVmxHTHVWZUZjajZndVVxMU5wZFJK?=
+ =?utf-8?B?V3pYSTErSmRRWFpoNHpyenM5MjhCYU5jNk9Ka3NwZTFxRVc4cXo3dVJYOGR3?=
+ =?utf-8?B?TzB1eTliWk1KaG9ZMUZyVDUyQWpwOW1RRDBZdUp3M25odzNCSEdhMGFpZDY0?=
+ =?utf-8?B?WEhLM2sxVXR6bFZuRWliRDl2VkVzblhYeVhxVFZLQmF5SDNsRkoxdjVHbjh6?=
+ =?utf-8?B?Wi92WUF1N3RiMDVWa2hwMU8xU1VtdmtFVG0wU2pXWkx3S2U4K2UydmtuMXdi?=
+ =?utf-8?B?cU94YVRHKzZBVVZXZldycUpoakRRajVhdlF2SXhoVHNRRUl6VkJXTkE4eUpv?=
+ =?utf-8?B?OE9OeTFLRkE4dlVSZThBbUt5YmFEUzNCVEo5TUcwQzc4eit4SUpxU3hCSENi?=
+ =?utf-8?B?QWUvdkh2YUQ2Qm05dFRoa1hXYnFmRXFJWW5TenZJK2Q1VDd3NXh4TTBXMVpD?=
+ =?utf-8?B?bGZNWDBnMmVlSm5YaHArMjR6aHcwNHIvOHNIR1dHMmtVZnlTZnJXTnFRR0JZ?=
+ =?utf-8?B?bEJob3AvdWVhbTBsNlN1Y3pxK2RCeGxCYmZRZnVPNCttMzZmaHV5MTJTQTVQ?=
+ =?utf-8?B?aFRxRDdsTkdva0V6eFoyQ3JGWnpoZ1V4QVlBZVN5dUpoY1cwZ2cvY1BTK0h4?=
+ =?utf-8?B?RWEwa2E3N2VTZXlEMDdOdTlvMjlkNmxwUlV4K2lLTnFpMGJMbTVrem42UUl4?=
+ =?utf-8?B?ZzI1Ym1YR3dwTmR1Wi94cWs5Y0Vnd0Y0eUlzWXFnY0NXRERrTDRJcjBHS1Fs?=
+ =?utf-8?B?Q1VzWFl4cWNVSGtFQ3FYcTh4cG5YS2huOXdiTzNLeTE2NWNyZkttSVNGQ0t0?=
+ =?utf-8?B?UHQ1Qjl2RTI2b1RqRzAwUnBFSHdVTzBEaHFMbmZhT0E2SjdYWUFnMjZINTU3?=
+ =?utf-8?B?Nkx4NkRiSEpUUVdDQ2RjdTM5NWo5aFJRbVRGRXZGRC85Ujg4cFg4MjlZRS9G?=
+ =?utf-8?B?bkg0RnNMMDhvdEZkdWQyN080SjdsLzdCamgzV2E4TFN3VmxrUGJmdllQSUNm?=
+ =?utf-8?B?OFIyUm5EcXo2dG1tWTc3TGczaW1xbFlyUzRBNk9yY3M3ZmloNWJvRHVjYWZ6?=
+ =?utf-8?B?K1R5d0Q4OFRwbjBUVldoVmdhQm9oN1NzbGhBSnFHc1pQeHAxOTA0RXdXN2ZD?=
+ =?utf-8?B?Q1BUcjVFZUhIMFRqVXhqM21pUGlkd3o1S3g0TGxDV2x1b1dOWVIvY2M2a0ky?=
+ =?utf-8?B?RHZjTktZdUoraE1Rb0dsQkh0MmJVc3Fmd056Q2VLV1cyalRUZ0lCa1RoSThH?=
+ =?utf-8?B?R285L1c3c3F2ZGlVYkdSRDg1S2IxWitzTjA0VnMrUWxOQjdZRlQwck5jRVJD?=
+ =?utf-8?B?ODZSbjI2WFYzeEZDTFZiTXZIVHBWbnFrSTVaRE40SFYxMHVUZDB6V0ZpWGRM?=
+ =?utf-8?B?L3BtY2kzVWtZakZsUGszU0FWS0N2Q000VzA1bDhiV01pdUNMRmxycUlibXRs?=
+ =?utf-8?B?R28yVDI4YXFxa09CVjZRVzZMTUVCSHNWSzJLV2c0d3NJVnpOQkliR01rR0dB?=
+ =?utf-8?B?QjdSQ0FrbWZtNDZXaEMzNnlJRUpFS2J6Mjgxa1J4NXNMR1gvS0h1ZjQ2ZlU4?=
+ =?utf-8?B?dEpHVXdJMGkzUVc1c3FtdVdOOGtYN3VBNGdrN2l1aHdLSGtiejNqTkpwQzVF?=
+ =?utf-8?B?akpNNHk2YWVUMHFMaXZCLzY5d3Z2ZlYydW5Kc1ViT2MrNnRtTmkwSkVCMzN4?=
+ =?utf-8?B?WmY2VE0wbzBlb0RiWXBCYUpvc0RjYmw4dG43eWpXQ1laMTdLTk9qWmlwOUZp?=
+ =?utf-8?B?N0FEMmlQbklSZGJOUFA5dTBjbjhUcjNqOVhJTGtYZDN5K1ZNZG5CTUxhWFlL?=
+ =?utf-8?B?SmJYdS9STWRKcy9aQTBMbEJUMTlkM2Q4RElWWGh4SWN0RWtPR2l4cXFnMVI0?=
+ =?utf-8?B?dk1jUFAyQzFhS1Zib1ZoZUJpRkZIdU9VejJjcGpLWFBMcjhTQ21DWWpaeTh5?=
+ =?utf-8?B?eUhabDZXMmsvZGM3MlRvbitNOUo5SDA1Y0NhSjM4YnN2RkNVZGM3OGJvZHNF?=
+ =?utf-8?B?QWlQeWFGaU5zdHdDOGNyVU1yWnVHZy9MckI3b1V1NVYxbTBQT01VWWhUUUti?=
+ =?utf-8?B?L2hWd1ZCME5taHZGOWlhN1Q4U1dUelFuQ3ZSODE4Yzg5SlNhTnFEM1dXbEFB?=
+ =?utf-8?B?eGM3c2xNRWdZWHFYUDgySHJ0dmpjOEdTVnkzSy9pTUtpUjY2MGhxalRNdHNm?=
+ =?utf-8?Q?EjS9xLkc/ryBBFSivgo1f0Y100n4fmkVGjYy5z/XnHE2E?=
+X-MS-Exchange-AntiSpam-MessageData-1: gENFooifaqOkFA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96249e40-7376-4563-c745-08de7de36836
+X-MS-Exchange-CrossTenant-AuthSource: DS2PR12MB9750.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 13:54:39.3624
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Rm0rjAh0JjvaNT2XAtHGW8grdaECF2PCwhJV4hYaUbB8dZ/f22LI1FyDOop6Y1vDwU6F8hGFewWGMbM1Sx7HOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6425
+X-Rspamd-Queue-Id: 0274523A201
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-272963-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FREEMAIL_TO(0.00)[nvidia.com,gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-272955-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.616];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,pengutronix.de:mid,pengutronix.de:email]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jonathanh@nvidia.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.980];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nvidia.com:mid,nvidia.com:email,Nvidia.com:dkim]
 X-Rspamd-Action: no action
 
-Add a mux-control driver for the 24-to-1 analog multiplexer (AMUX)
-embedded in the NXP MC33978/MC34978 Multiple Switch Detection
-Interface (MSDI) devices.
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
-changes v3:
-- no changes
-changes v2:
-- Add missing <linux/err.h> include.
-- Add platform_device_id table
----
- drivers/mux/Kconfig       |  14 +++++
- drivers/mux/Makefile      |   2 +
- drivers/mux/mc33978-mux.c | 119 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 135 insertions(+)
- create mode 100644 drivers/mux/mc33978-mux.c
+On 03/03/2026 10:02, Sheetal . wrote:
+> From: sheetal <sheetal@nvidia.com>
+> 
+> Add Tegra238 sound card support in the Tegra audio graph card driver,
+> as Tegra238 requires different PLLA and PLLA_OUT0 clock rates compared
+> to other Tegra platforms.
+> 
+> Changes in v2:
+> - Drop SPDX-FileCopyrightText year update from patch 2/2
+> 
+> Sheetal (2):
+>    ASoC: dt-bindings: tegra: Add compatible for Tegra238 sound card
+>    ASoC: tegra: Add support for Tegra238 soundcard
+> 
+>   .../sound/nvidia,tegra-audio-graph-card.yaml        |  1 +
+>   sound/soc/tegra/tegra_audio_graph_card.c            | 11 ++++++++++-
+>   2 files changed, 11 insertions(+), 1 deletion(-)
+> 
 
-diff --git a/drivers/mux/Kconfig b/drivers/mux/Kconfig
-index c68132e38138..7532da7e087e 100644
---- a/drivers/mux/Kconfig
-+++ b/drivers/mux/Kconfig
-@@ -45,6 +45,20 @@ config MUX_GPIO
- 	  To compile the driver as a module, choose M here: the module will
- 	  be called mux-gpio.
- 
-+config MUX_MC33978
-+	tristate "NXP MC33978/MC34978 Analog Multiplexer"
-+	depends on MFD_MC33978
-+	help
-+	  MC33978/MC34978 24-to-1 analog multiplexer (AMUX) driver.
-+
-+	  This driver provides mux-control for the analog multiplexer,
-+	  which can route switch voltages, temperature, and battery voltage
-+	  to an external ADC. Typically used with IIO ADC drivers to measure
-+	  analog values from the 22 switch inputs plus temperature and VBATP.
-+
-+	  To compile the driver as a module, choose M here: the module will
-+	  be called mc33978-mux.
-+
- config MUX_MMIO
- 	tristate "MMIO/Regmap register bitfield-controlled Multiplexer"
- 	depends on OF
-diff --git a/drivers/mux/Makefile b/drivers/mux/Makefile
-index 6e9fa47daf56..339c44b4d4f4 100644
---- a/drivers/mux/Makefile
-+++ b/drivers/mux/Makefile
-@@ -7,10 +7,12 @@ mux-core-objs			:= core.o
- mux-adg792a-objs		:= adg792a.o
- mux-adgs1408-objs		:= adgs1408.o
- mux-gpio-objs			:= gpio.o
-+mux-mc33978-objs		:= mc33978-mux.o
- mux-mmio-objs			:= mmio.o
- 
- obj-$(CONFIG_MULTIPLEXER)	+= mux-core.o
- obj-$(CONFIG_MUX_ADG792A)	+= mux-adg792a.o
- obj-$(CONFIG_MUX_ADGS1408)	+= mux-adgs1408.o
- obj-$(CONFIG_MUX_GPIO)		+= mux-gpio.o
-+obj-$(CONFIG_MUX_MC33978)	+= mux-mc33978.o
- obj-$(CONFIG_MUX_MMIO)		+= mux-mmio.o
-diff --git a/drivers/mux/mc33978-mux.c b/drivers/mux/mc33978-mux.c
-new file mode 100644
-index 000000000000..de79073e15aa
---- /dev/null
-+++ b/drivers/mux/mc33978-mux.c
-@@ -0,0 +1,119 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Copyright (c) 2026 Pengutronix, Oleksij Rempel <kernel@pengutronix.de>
-+/*
-+ * MC33978/MC34978 Analog Multiplexer (AMUX) Driver
-+ *
-+ * This driver provides mux-control for the 24-to-1 analog multiplexer.
-+ * The AMUX routes one of the following signals to the external AMUX pin:
-+ * - Channels 0-13: SG0-SG13 switch voltages
-+ * - Channels 14-21: SP0-SP7 switch voltages
-+ * - Channel 22: Internal temperature diode
-+ * - Channel 23: Battery voltage (VBATP)
-+ *
-+ * Consumer drivers (typically IIO ADC drivers) use the mux-control
-+ * subsystem to select which signal to measure.
-+ *
-+ * Architecture:
-+ * The MC33978 does not have an internal ADC. Instead, it routes analog
-+ * signals to an external AMUX pin that must be connected to an external
-+ * ADC (such as the SoC's internal ADC). The IIO subsystem is responsible
-+ * for coordinating the mux selection and ADC sampling.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/mux/driver.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+
-+#include <linux/mfd/mc33978.h>
-+
-+/* AMUX_CTRL register field definitions */
-+#define MC33978_AMUX_CTRL_MASK	GENMASK(5, 0)	/* 6-bit channel select */
-+
-+struct mc33978_mux_priv {
-+	struct device *dev;
-+	struct regmap *map;
-+};
-+
-+static int mc33978_mux_set(struct mux_control *mux, int state)
-+{
-+	struct mc33978_mux_priv *priv = mux_chip_priv(mux->chip);
-+	int ret;
-+
-+	if (state < 0 || state >= MC33978_NUM_AMUX_CH)
-+		return -EINVAL;
-+
-+	ret = regmap_update_bits(priv->map, MC33978_REG_AMUX_CTRL,
-+				 MC33978_AMUX_CTRL_MASK, state);
-+	if (ret) {
-+		dev_err(priv->dev, "Failed to set AMUX channel %d: %d\n",
-+			state, ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct mux_control_ops mc33978_mux_ops = {
-+	.set = mc33978_mux_set,
-+};
-+
-+static int mc33978_mux_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mc33978_mux_priv *priv;
-+	struct mux_chip *mux_chip;
-+	struct mux_control *mux;
-+	int ret;
-+
-+	mux_chip = devm_mux_chip_alloc(dev, 1, sizeof(*priv));
-+	if (IS_ERR(mux_chip))
-+		return dev_err_probe(dev, PTR_ERR(mux_chip), "Failed to allocate mux chip\n");
-+
-+	/* Borrow the parent's DT node so consumers can find this mux chip */
-+	device_set_node(&mux_chip->dev, dev_fwnode(dev->parent));
-+
-+	priv = mux_chip_priv(mux_chip);
-+	priv->dev = dev;
-+
-+	priv->map = dev_get_regmap(dev->parent, NULL);
-+	if (!priv->map)
-+		return dev_err_probe(dev, -ENODEV, "Failed to get parent regmap\n");
-+
-+	mux_chip->ops = &mc33978_mux_ops;
-+
-+	mux = &mux_chip->mux[0];
-+	mux->states = MC33978_NUM_AMUX_CH;
-+
-+	ret = devm_mux_chip_register(dev, mux_chip);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to register mux chip\n");
-+
-+	platform_set_drvdata(pdev, mux_chip);
-+
-+	return 0;
-+}
-+
-+static const struct platform_device_id mc33978_mux_id[] = {
-+	{ "mc33978-mux", },
-+	{ "mc34978-mux", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(platform, mc33978_mux_id);
-+
-+static struct platform_driver mc33978_mux_driver = {
-+	.driver = {
-+		.name = "mc33978-mux",
-+	},
-+	.probe = mc33978_mux_probe,
-+	.id_table = mc33978_mux_id,
-+};
-+module_platform_driver(mc33978_mux_driver);
-+
-+MODULE_AUTHOR("Oleksij Rempel <kernel@pengutronix.de>");
-+MODULE_DESCRIPTION("NXP MC33978/MC34978 Analog Multiplexer Driver");
-+MODULE_LICENSE("GPL");
+
+For the series ...
+
+Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+
+Thanks!
+Jon
+
 -- 
-2.47.3
+nvpublic
 
 
