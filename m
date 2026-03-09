@@ -1,331 +1,220 @@
-Return-Path: <devicetree+bounces-272992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272993-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPrtJCfirmmoJgIAu9opvQ
-	(envelope-from <devicetree+bounces-272992-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:07:19 +0100
+	id 4C6+Ch7irmlPJwIAu9opvQ
+	(envelope-from <devicetree+bounces-272993-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:07:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24F923B42D
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:07:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC53723B3F7
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:07:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 810F7301615E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:06:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 92DBA300132D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35903D75B7;
-	Mon,  9 Mar 2026 15:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5A03D75C3;
+	Mon,  9 Mar 2026 15:07:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="P5wgDjqO";
-	dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b="nRvg82OP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YDCKAWzT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AC8C3D6CC3
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:06:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773068764; cv=none; b=KGg77Uu0GYPmZjtw7Zf33TmgGfDkVNie+nbHM959Hl1FMAJWDp1RXWLdlU7huKsDiNj1elsEu1JAflNC6VG7M/QvMEy7vszR3QUeXFKEz15lSFx1CNE67V+Z0tQB6hU4qFVpuuCzAnFjo1i7Eu2xqyrlP0COVIqKDD1WZKAIe0s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773068764; c=relaxed/simple;
-	bh=23VxakV/UYmp4z3dIVXbl0SreyuAJQTZFAEqej4LTh0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LVhzSB5lg2/ro45hh3unkNdrj2o23kbNzt0mzhDJDNrWC4lFVHkzEHG3jiICcCD9rQMLSdDbe4u4ucmvxtVXYWJz+T054InWh8B+oTsix+kQpYduqcBl0Skizc6/vHt//+l7hlu3CuJB/1/o7Qe8HvyDEM9u2z3Ee1LURW0EJ0s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=P5wgDjqO; dkim=pass (2048-bit key) header.d=redhat.com header.i=@redhat.com header.b=nRvg82OP; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1773068762;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=phOctTNEVWSPGlfX8YVkAI1SC7tMCmOFyrrNOPwSW4I=;
-	b=P5wgDjqOIh9ffBWEAe96LbIA0QjIT6VuGgORZCzauQqVz9tRIlYJm+/gWjl0ZBPf2BNwbW
-	F/pu5A3hieQTxOxc7SIsqW8SUCz3d34Bjhl5eaju5k/CVDa4XJaRYR9RP0X9V4t2qhLsF8
-	4fou2YvQqcMa8D7fIHu/+oa4ZxGc2tc=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-615-6vTStejFPUeROEwWn8D02g-1; Mon, 09 Mar 2026 11:05:59 -0400
-X-MC-Unique: 6vTStejFPUeROEwWn8D02g-1
-X-Mimecast-MFC-AGG-ID: 6vTStejFPUeROEwWn8D02g_1773068758
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cd84943c76so776028985a.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 08:05:59 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1263D668A
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:06:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.167.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773068821; cv=pass; b=pN58E80kHJO2mAhb5TaYdRA+FT5q/ODqFB/gPlfpbKdN+r/i2lbaUJ5O9xn/xrQv+AzYg2eoAVcNCFUTL6rnkZnpxdPDCRZM7b8DjOC0ivJ//pV7oaeyZmXn32bmHVu4vJ+57vY7Q5E8bXeWRPUdaSfPfo9hFHUlTc8mP5qhk6k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773068821; c=relaxed/simple;
+	bh=JKN2J4kHq0yD8TjxvyPjjgMMFAS3NaA1mJTCXgnPsRA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VGpDjzEStbG3VcBlzx6ZSd30GMYl5jYK/6wLL73+AnIki56113v2C+yJ/bbTlv6nG+YZ1ibYBKkNNwQvYFD1F8h6f4F+ZBzUL7GBX5VXQT8oGHUWREbNqBeUuy7Http7F6bAKRAep/32iaisMGxM/RQtJvhhzOxfn75EmNOSrGk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YDCKAWzT; arc=pass smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5a13f6bcbf4so3457821e87.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 08:06:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773068818; cv=none;
+        d=google.com; s=arc-20240605;
+        b=jb9PUK1jZrm30pss8V39Jkt2MuzHTgjnl2br4yw+0dQ10lBSQoD9aSNd4CZzalTj09
+         S73oiZiL92zlDdD8YNQg1Dis2tEDrWDmSJE6nxHBy8NBx9dLEMSJi+i19Rw/RCOWvdS/
+         EPxc8vHiTcaDMOHf9MX8lB01f5z8O3/8oudVPmX4Khsp/cTROjB7lQxNNlObhG61HtR8
+         l6WRSIHP9czkby0cqqBeB4QTOSKgoMN9645e4940nbsSVlanr4xLNyGT6kG6yodzSXjD
+         H5jvA3tp5DFFPAB3zf2GUPJiPc4TT2xXeN3Vmdl9waVD9C5r5yss5rmXPLgVSc6pRyxc
+         BiMw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=5tCYLBqDfvBtAEmrKe/1f8U+n/JTrn4BGEWGrJUqdlY=;
+        fh=uaf6VaZeQk51xGVQ0+heoCxTkcZrW2BC1k5f78Mj5ok=;
+        b=bcNm3UlCiCba/SI6PZO/Oxuy1I/Dj77FugctEAvvvx8fM3pgb1xBZAac4uCLN81qpu
+         sfzcCWUtLYqrMcK0SvY0B8qHkUJ2kR1RHtq+UldwAhV8xj9H5bHNzCcovHdpw40pp5qI
+         TTb20yYAHRbN5SNIG9LQ8LZoWtK8UB/lT+mV7BOGIAiw5Ib0qdncPXLlm/NdaFZNAIiI
+         ReSAF2UTKMOrmxpmjdDwZT4ba7l+15JuMnA0nWIBe/glMM4vpX2JvWlh7+j+tChSoTmu
+         P5feGsQyEAXrlsSA/5MC7QE4bZ8zg7B8djd2dnX2ALp6jqyJiniLB1ldCAldXMAvxBVP
+         uk8A==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=redhat.com; s=google; t=1773068758; x=1773673558; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=phOctTNEVWSPGlfX8YVkAI1SC7tMCmOFyrrNOPwSW4I=;
-        b=nRvg82OPS6FK4o5I9EqzPauS8q5GAEnUpvq2uxVe0Ddh8Co5BO2RwkbZJyUd1XGQ7Q
-         yulDdYXErn7BYnTDX8UmHUdghcKy35i8d+lwOnbPI8Dj1v6OnnTc8GGqOxwRFZsR+FjU
-         J2r1LEa3/Pg7aWlt/Hida3f0mr1jmnyCc5TkckO2mE3aayYIrQi7crtmweNiO5mDKbUv
-         iUU9ibDv2lu4tgaY8xnQ5AMB8SnJ0d47+tpcOD597L3YVRsFZ04ObMB9WZjge2NIgeGJ
-         wDjhZUCUmcmoHtfpGdUc+5H5Oi8TGN7cuDOppwXfgbN6da71h2UvGPpKDczaMjzV2bi4
-         PD1g==
+        d=linaro.org; s=google; t=1773068818; x=1773673618; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5tCYLBqDfvBtAEmrKe/1f8U+n/JTrn4BGEWGrJUqdlY=;
+        b=YDCKAWzTSjoyOKxywxX/89IU//SMk/64iocZQqSPHMm+RZyOKO61dyNWFH8+fDrUSH
+         BhsrZMeW8TAfJqMdaAyEkf3OFDA63mDRaFuayeHDpbmqxS6dFezk9eEnH002tQ2OpMEt
+         tv4B6QfA+/uuB001aM95V6PbaZdpSB6LnvAC5az3zDD7/Jeo503Erl50y/Z/OQoTmfUB
+         gsrXxHQWndpKSnkqBf/TQThoIOiQSSpNSmwWdGp8MIQZC9wRKuXaD5KsunxTNwISM3pU
+         +z078T8q/N7b+1nsIPv2gGu4cwBm7Lir78sm8SKWJd+vbaQ/R1qNAs6hWZ9EdoUy7rDb
+         S6bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773068758; x=1773673558;
-        h=user-agent:in-reply-to:content-transfer-encoding
-         :content-disposition:mime-version:references:message-id:subject:cc
-         :to:from:date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1773068818; x=1773673618;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=phOctTNEVWSPGlfX8YVkAI1SC7tMCmOFyrrNOPwSW4I=;
-        b=UbbqPQhkWIOr7dDg3CaZACr4VE7SKXg5x30VpQA7Yj62BfuyMxxcnouV9imeaSn1tj
-         Bpyuw2EmpYTpcp1BB/3k74be2u9Y+9o+gdqlTHyEycmGs4HiGip0/t573vZhczu8f7bg
-         jTpwo8tpByN6KMOq+JFSSjzNv+uqjLr1RMEwPUu/ltHvvBRt9sjIXBcgkdeK8b8fZUfd
-         vTRj4nKwaVN+uH3HJ3QK3FuqaAv2EKvoUB+rg0At3Iq8PZnQhMIqiUK0XtGsF4zcPYNX
-         4A7l6vPGn2UdbsL2BiOZAKVNq93GMCzYyHqddKvoV/t1edYIFTCu2bESQNm5xGKPtFZI
-         uMSQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUUXFJ8Qb+erGTckO4FL6UKFGwAd/Da+62CYgRT/stqfTusAoyJAe6JcC8aweGvPoRzpDpPRSfhJKGx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6lxHSKJ0s0r2EcLchlD5s5oLRDfMxqUDjZdHPWFm943/eYcFq
-	f7TtUIbWOVMWEbbT3k49529Vn5qi4QzrpKXFd0bJT1b9G5POP1p1x3yZ8228hysmqedsZm7oGRQ
-	QZFR1HCtEGcH3L7/TTtkmi7+UAmH8fy+QRtghKtRalGL90a8o7pL+uCvrOlCSz5U=
-X-Gm-Gg: ATEYQzxHg79Uqp/MGYYtqpw4kaa0RpF2k5IZcETdoFAoUY9O9oCsyQNuPsc2l2SrEzZ
-	fWpoDNnLIzwIqhStBKxZn+4Fi9yDmE/JQArPjRr6izsOtU99eiO54zppbj0YejKlvgkxPmI+hH5
-	pZfm/v+QeargT25kS7uvd5gV26P7tjafIMk/ahjb1ej31rlwVKAITNS8z1Jy6OliEGWxD1bWduU
-	UzzRP1fxyG0FkJqOcPjF/i3kE+mvzzdat2n9hnAcPS29YbO8buFw/hDDnPMdvwcMSg9hy7czAtc
-	8PVK/HQclvH/uNjnKuHCd668WCxOq8lJQOJiyuphQ/oTtNEm/YEzJI1bCBZfSSfeRahxKkByU+u
-	n/q9NVlIYDRo+o6X59mCIsYMdysDoBebWuGPPpoP2+HRVDklmoauQDYnL
-X-Received: by 2002:a05:620a:171e:b0:8c5:2de4:d6ee with SMTP id af79cd13be357-8cd6dc5f80bmr1304761385a.33.1773068758449;
-        Mon, 09 Mar 2026 08:05:58 -0700 (PDT)
-X-Received: by 2002:a05:620a:171e:b0:8c5:2de4:d6ee with SMTP id af79cd13be357-8cd6dc5f80bmr1304750085a.33.1773068757477;
-        Mon, 09 Mar 2026 08:05:57 -0700 (PDT)
-Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cd772f9f9bsm536468385a.24.2026.03.09.08.05.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 08:05:56 -0700 (PDT)
-Date: Mon, 9 Mar 2026 11:05:51 -0400
-From: Brian Masney <bmasney@redhat.com>
-To: =?iso-8859-1?Q?Beno=EEt?= Monin <benoit.monin@bootlin.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	Gregory CLEMENT <gregory.clement@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH v4 04/10] clk: fixed-factor: Export
- __clk_hw_register_fixed_factor()
-Message-ID: <aa7hz_psKK6lZC29@redhat.com>
-References: <20260304-clk-eyeq7-v4-0-9d6bd9d24bec@bootlin.com>
- <20260304-clk-eyeq7-v4-4-9d6bd9d24bec@bootlin.com>
+        bh=5tCYLBqDfvBtAEmrKe/1f8U+n/JTrn4BGEWGrJUqdlY=;
+        b=CugRQtx8eHeG30x6PmPt8SfMgvhVVs+2tc+hA16HbX/mtr3B22RghVdzve26V0PTnn
+         lltxaMt9ClC0IQu2SRD5LvWqAY70XbdH8fDN6t2UDupAhilbTMeqNIix89JJb4hCSi/J
+         IwnKA2080sjqdD1feopZZEBBpThHg7jjbzGH7ieQs+SatjZ1Dwfrtz8qQPDyUjqqnSDL
+         paoHAcREczzZfu7PIUVnPabgvYmuyi3d6JidveStifpahV8rP6WckMqbHddCNmWi75Yc
+         W9t8/X2B8OABj93lkWa79HO5qWhr9DWwVQz8E9DQbJu0qbnIjwgpZIFY2NZ1sNeke3Gj
+         O5gg==
+X-Forwarded-Encrypted: i=1; AJvYcCU3i29zOgVtKNKkqWKSJF8w5pguntAeXRp0JHTkoKd4Ii5WshrbYsY/xI9rT65dz9+AtPzOgeuZCIsj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKsgO2a0Xsd/3fHndJscayBi7Zw8z4I/Bng68UXjlbIAHwULxz
+	ZQDoJ1w8LPzJVJHOAOkHVeFbn8zgnbqXveyXa9wsQqL5MJJr0+HBNMhtHIKrqAaASAiL64gD0eH
+	qi6xmklfgneCYfpdNlPDtKhuhlJ9GrhwC28rI9ggPJQ==
+X-Gm-Gg: ATEYQzwsyD0UGKcjsAaRBU8y0qHidy8s57f++DHN3JZ85RI9S5cApxtvXrRjw5Ir8Gi
+	I6xI/oUwvGPZUO5+0qheJP6lplB29OOzPECBBIGgVZs0qubH35mci7jqOoKikEJw0vH5Zho3mWY
+	u5O7kF5leQV9TsAh0H99D4Yuw2QHBv+XjLbbCnllLiuqwdvHE+VT9HLhZTIp00IUqV3c51HLMPi
+	vOTlXQk/88xiKfqSy/hpPSVZWrXpOmFor9rCw5oe/iuPmqyHtQEm4iHUVmw3n9eixMsfVAwhjZ/
+	YSbLr+fF
+X-Received: by 2002:ac2:4644:0:b0:5a1:3ab6:6de2 with SMTP id
+ 2adb3069b0e04-5a13cce183dmr2793114e87.37.1773068817703; Mon, 09 Mar 2026
+ 08:06:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260304-clk-eyeq7-v4-4-9d6bd9d24bec@bootlin.com>
-User-Agent: Mutt/2.2.14 (2025-02-20)
-X-Rspamd-Queue-Id: D24F923B42D
+References: <20260226-rz-sdio-mux-v11-0-c2a350f9bbd3@solid-run.com> <CAPDyKFr5NZKEKpV2+GXGnzH9pyyj_TLmMCc3rac8h248srX_dw@mail.gmail.com>
+In-Reply-To: <CAPDyKFr5NZKEKpV2+GXGnzH9pyyj_TLmMCc3rac8h248srX_dw@mail.gmail.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 9 Mar 2026 16:06:20 +0100
+X-Gm-Features: AaiRm51gPNstmfmPCbGsevKfnVyHAve3znxWrnZO7sNkn4-s9OVpM21rgVmHXjc
+Message-ID: <CAPDyKFqyUsKbp9pgKHsMoOd5Qe_0f9rxsX6C61adQC344eA9Lw@mail.gmail.com>
+Subject: Re: [PATCH v11 0/9] mmc: host: renesas_sdhi_core: support configuring
+ an optional sdio mux
+To: Josua Mayer <josua@solid-run.com>, Peter Rosin <peda@axentia.se>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Aaro Koskinen <aaro.koskinen@iki.fi>, Andreas Kemnade <andreas@kemnade.info>, 
+	Kevin Hilman <khilman@baylibre.com>, Roger Quadros <rogerq@kernel.org>, 
+	Tony Lindgren <tony@atomide.com>, Janusz Krzysztofik <jmkrzyszt@gmail.com>, Vignesh R <vigneshr@ti.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
+	Yazan Shhady <yazan.shhady@solid-run.com>, Jon Nettleton <jon@solid-run.com>, 
+	Vladimir Oltean <olteanv@gmail.com>, Mikhail Anikin <mikhail.anikin@solid-run.com>, 
+	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: BC53723B3F7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272992-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[redhat.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272993-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[33];
+	FREEMAIL_CC(0.00)[pengutronix.de,kernel.org,linaro.org,iki.fi,kemnade.info,baylibre.com,atomide.com,gmail.com,ti.com,glider.be,sang-engineering.com,renesas.com,solid-run.com,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.975];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[ulf.hansson@linaro.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	NEURAL_HAM(-0.00)[-0.991];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Mar 04, 2026 at 04:25:18PM +0100, Benoît Monin wrote:
-> Make the base registration function for fixed-factor clocks public and
-> re-implement the various registration functions that are a direct call
-> to __clk_hw_register_fixed_factor() as macros.
-> 
-> This is similar to how the registration functions of divider, mux and
-> other clocks are implemented.
-> 
-> Add a new macro clk_hw_register_fixed_factor_pdata() to register
-> a fixed-factor clock with its parent clock passed as a struct
-> clk_parent_data.
-> 
-> Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
-> ---
->  drivers/clk/clk-fixed-factor.c | 52 ++-------------------------------------
->  include/linux/clk-provider.h   | 56 +++++++++++++++++++++++++++++++++---------
->  2 files changed, 46 insertions(+), 62 deletions(-)
-> 
-> diff --git a/drivers/clk/clk-fixed-factor.c b/drivers/clk/clk-fixed-factor.c
-> index 359e91441c74..6116f878fc8f 100644
-> --- a/drivers/clk/clk-fixed-factor.c
-> +++ b/drivers/clk/clk-fixed-factor.c
-> @@ -90,7 +90,7 @@ static void devm_clk_hw_register_fixed_factor_release(struct device *dev, void *
->  	clk_hw_unregister(&fix->hw);
->  }
->  
-> -static struct clk_hw *
-> +struct clk_hw *
->  __clk_hw_register_fixed_factor(struct device *dev, struct device_node *np,
->  		const char *name, const char *parent_name,
->  		const struct clk_hw *parent_hw, const struct clk_parent_data *pdata,
-> @@ -148,6 +148,7 @@ __clk_hw_register_fixed_factor(struct device *dev, struct device_node *np,
->  
->  	return hw;
->  }
-> +EXPORT_SYMBOL_GPL(__clk_hw_register_fixed_factor);
->  
->  /**
->   * devm_clk_hw_register_fixed_factor_index - Register a fixed factor clock with
-> @@ -173,46 +174,6 @@ struct clk_hw *devm_clk_hw_register_fixed_factor_index(struct device *dev,
->  }
->  EXPORT_SYMBOL_GPL(devm_clk_hw_register_fixed_factor_index);
->  
-> -/**
-> - * devm_clk_hw_register_fixed_factor_parent_hw - Register a fixed factor clock with
-> - * pointer to parent clock
-> - * @dev: device that is registering this clock
-> - * @name: name of this clock
-> - * @parent_hw: pointer to parent clk
-> - * @flags: fixed factor flags
-> - * @mult: multiplier
-> - * @div: divider
-> - *
-> - * Return: Pointer to fixed factor clk_hw structure that was registered or
-> - * an error pointer.
-> - */
-> -struct clk_hw *devm_clk_hw_register_fixed_factor_parent_hw(struct device *dev,
-> -		const char *name, const struct clk_hw *parent_hw,
-> -		unsigned long flags, unsigned int mult, unsigned int div)
-> -{
-> -	return __clk_hw_register_fixed_factor(dev, NULL, name, NULL, parent_hw,
-> -					      NULL, flags, mult, div, 0, 0, true);
-> -}
-> -EXPORT_SYMBOL_GPL(devm_clk_hw_register_fixed_factor_parent_hw);
-> -
-> -struct clk_hw *clk_hw_register_fixed_factor_parent_hw(struct device *dev,
-> -		const char *name, const struct clk_hw *parent_hw,
-> -		unsigned long flags, unsigned int mult, unsigned int div)
-> -{
-> -	return __clk_hw_register_fixed_factor(dev, NULL, name, NULL, parent_hw,
-> -					      NULL, flags, mult, div, 0, 0, false);
-> -}
-> -EXPORT_SYMBOL_GPL(clk_hw_register_fixed_factor_parent_hw);
-> -
-> -struct clk_hw *clk_hw_register_fixed_factor(struct device *dev,
-> -		const char *name, const char *parent_name, unsigned long flags,
-> -		unsigned int mult, unsigned int div)
-> -{
-> -	return __clk_hw_register_fixed_factor(dev, NULL, name, parent_name, NULL,
-> -					      NULL, flags, mult, div, 0, 0, false);
-> -}
-> -EXPORT_SYMBOL_GPL(clk_hw_register_fixed_factor);
-> -
->  struct clk_hw *clk_hw_register_fixed_factor_fwname(struct device *dev,
->  		struct device_node *np, const char *name, const char *fw_name,
->  		unsigned long flags, unsigned int mult, unsigned int div)
-> @@ -286,15 +247,6 @@ void clk_hw_unregister_fixed_factor(struct clk_hw *hw)
->  }
->  EXPORT_SYMBOL_GPL(clk_hw_unregister_fixed_factor);
->  
-> -struct clk_hw *devm_clk_hw_register_fixed_factor(struct device *dev,
-> -		const char *name, const char *parent_name, unsigned long flags,
-> -		unsigned int mult, unsigned int div)
-> -{
-> -	return __clk_hw_register_fixed_factor(dev, NULL, name, parent_name, NULL,
-> -			NULL, flags, mult, div, 0, 0, true);
-> -}
-> -EXPORT_SYMBOL_GPL(devm_clk_hw_register_fixed_factor);
-> -
->  struct clk_hw *devm_clk_hw_register_fixed_factor_fwname(struct device *dev,
->  		struct device_node *np, const char *name, const char *fw_name,
->  		unsigned long flags, unsigned int mult, unsigned int div)
-> diff --git a/include/linux/clk-provider.h b/include/linux/clk-provider.h
-> index 630705a47129..614abb396a6e 100644
-> --- a/include/linux/clk-provider.h
-> +++ b/include/linux/clk-provider.h
-> @@ -1146,13 +1146,16 @@ struct clk_fixed_factor {
->  #define to_clk_fixed_factor(_hw) container_of(_hw, struct clk_fixed_factor, hw)
->  
->  extern const struct clk_ops clk_fixed_factor_ops;
-> +struct clk_hw *
-> +__clk_hw_register_fixed_factor(struct device *dev, struct device_node *np,
-> +		const char *name, const char *parent_name,
-> +		const struct clk_hw *parent_hw, const struct clk_parent_data *pdata,
-> +		unsigned long flags, unsigned int mult, unsigned int div,
-> +		unsigned long acc, unsigned int fixflags, bool devm);
->  struct clk *clk_register_fixed_factor(struct device *dev, const char *name,
->  		const char *parent_name, unsigned long flags,
->  		unsigned int mult, unsigned int div);
->  void clk_unregister_fixed_factor(struct clk *clk);
-> -struct clk_hw *clk_hw_register_fixed_factor(struct device *dev,
-> -		const char *name, const char *parent_name, unsigned long flags,
-> -		unsigned int mult, unsigned int div);
->  struct clk_hw *clk_hw_register_fixed_factor_fwname(struct device *dev,
->  		struct device_node *np, const char *name, const char *fw_name,
->  		unsigned long flags, unsigned int mult, unsigned int div);
-> @@ -1164,9 +1167,6 @@ struct clk_hw *clk_hw_register_fixed_factor_index(struct device *dev,
->  		const char *name, unsigned int index, unsigned long flags,
->  		unsigned int mult, unsigned int div);
->  void clk_hw_unregister_fixed_factor(struct clk_hw *hw);
-> -struct clk_hw *devm_clk_hw_register_fixed_factor(struct device *dev,
-> -		const char *name, const char *parent_name, unsigned long flags,
-> -		unsigned int mult, unsigned int div);
->  struct clk_hw *devm_clk_hw_register_fixed_factor_fwname(struct device *dev,
->  		struct device_node *np, const char *name, const char *fw_name,
->  		unsigned long flags, unsigned int mult, unsigned int div);
-> @@ -1178,13 +1178,45 @@ struct clk_hw *devm_clk_hw_register_fixed_factor_index(struct device *dev,
->  		const char *name, unsigned int index, unsigned long flags,
->  		unsigned int mult, unsigned int div);
->  
-> -struct clk_hw *devm_clk_hw_register_fixed_factor_parent_hw(struct device *dev,
-> -		const char *name, const struct clk_hw *parent_hw,
-> -		unsigned long flags, unsigned int mult, unsigned int div);
-> +# define clk_hw_register_fixed_factor(dev, name, parent_name,                 \
-> +				      flags, mult, div)                       \
-> +	__clk_hw_register_fixed_factor((dev), NULL, (name), (parent_name),    \
-> +				       NULL,  NULL, (flags), (mult), (div),   \
-> +				       0, 0, false)
+On Thu, 5 Mar 2026 at 17:19, Ulf Hansson <ulf.hansson@linaro.org> wrote:
+>
+> On Thu, 26 Feb 2026 at 14:21, Josua Mayer <josua@solid-run.com> wrote:
+> >
+> > This series has evolved over time from adding generic mux support for
+> > renesas sdhi driver, to partial rewrite of the mux framework.
+> >
+> > Several drivers have started implementing driver-local managed and
+> > unmanaged helper functions for getting and selecting a mux-state object.
+> >
+> > mmc maintainers have requested that new code shall intreoduce and use
+> > generic helper functions that can be shared by all drivers, avoiding
+> > code duplication.
+> >
+> > This series is structured in 5 parts, each of which is self-sufficient
+> > depending only on the previous patches. This shall allow the first N
+> > patches to be applied even if the last ones need further discussion.
+> >
+> > 1. Rename driver-local helper functions to avoid name collision with
+> >    global version to be introduced later.
+> >
+> > 2. Implement generic device-managed helper functions in mux core.
+> >
+> > 3. Convert driver local code from similar patterns to use the newly
+> >    added global helpers.
+> >
+> > 4. Change mux-core Kconfig so that it can be enabled through menuconfig,
+> >    without an explicit "select" dependency from other drivers.
+> >
+> > 5. add dt bindings and driver support for mux in renesas sdhi driver.
+> >
+> > Signed-off-by: Josua Mayer <josua@solid-run.com>
+> > ---
+> > Changes in v11:
+> > - changed approach to Kconfig making MULTIPLEXER a bool, and adding a
+> >   user-visible wrapper for menuconfig.
+> >   (Reported-by: Ulf Hansson <ulf.hansson@linaro.org>)
+> > - dropped the "default m if COMPILE_TEST".
+> >   (Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>)
+> > - improved kerneldoc line wrapping.
+> > - removed unnecessary changes to original devm_mux_control-get.
+> > - fix "reference preceded by free" in mux_state_get function
+> > - Link to v10: https://lore.kernel.org/r/20260225-rz-sdio-mux-v10-0-1ee44f2ea112@solid-run.com
+> >
+>
+> [...]
+>
+> To me, this looks ready for a new try. Unless I hear some objections,
+> I intend to apply this as material for v7.1 via my mmc tree on Monday.
+>
+> The complete series will be available on an immutable branch, for
+> other subsystem maintainers to pull in if that turns out to be needed.
+> I let you know of more details on Monday.
 
-Why the extra space between # and define? It's not used below.
+I have now queued up this series for v7.1 via my next branch.
 
-With that fixed:
+The series is also available at the immutable "mux" branch (based on
+v7.0-rc1) via my mmc tree, which other subsystem maintainers can pull
+in if needed.
 
-Reviewed-by: Brian Masney <bmasney@redhat.com>
-
-> +#define clk_hw_register_fixed_factor_pdata(dev, np, name, pdata,              \
-> +				      flags, mult, div, acc, fixflags)        \
-> +	__clk_hw_register_fixed_factor((dev), (np), (name), NULL, NULL,       \
-> +				       (pdata), (flags), (mult), (div),       \
-> +				       (acc), (fixflags), false)
-> +#define devm_clk_hw_register_fixed_factor(dev, name, parent_name, flags,      \
-> +					  mult, div)                          \
-> +	__clk_hw_register_fixed_factor((dev), NULL, (name), (parent_name),    \
-> +				       NULL, NULL, (flags), (mult), (div), 0, \
-> +				       0, true)
-
+Kind regards
+Uffe
 
