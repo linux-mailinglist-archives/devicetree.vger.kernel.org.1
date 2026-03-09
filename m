@@ -1,155 +1,174 @@
-Return-Path: <devicetree+bounces-272784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272785-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id HI3rN9GRrml0GQIAu9opvQ
-	(envelope-from <devicetree+bounces-272784-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:24:33 +0100
+	id CIgTJSKTrml0GQIAu9opvQ
+	(envelope-from <devicetree+bounces-272785-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:30:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B9742361DE
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:24:32 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BDC2362DF
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:30:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5ECB93068179
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:21:02 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 1CDB7301BED0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:23:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A1C378838;
-	Mon,  9 Mar 2026 09:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244243793AB;
+	Mon,  9 Mar 2026 09:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t60ThOFh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVoNSA6V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EF64378818;
-	Mon,  9 Mar 2026 09:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F394D361664;
+	Mon,  9 Mar 2026 09:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773048061; cv=none; b=dMsKV6eh45YIx1Mt/aSOHi5EgtrrCTQ3B8tAm5YU8pQIObt2Gcrn8SdLgL0mA6ALeD7til0lD/BNpBXGjuI/zhrQS+6X2Uf/FkNA6Q5wJ3FLHjU7ViyRW5QBycW0RC5+wOXKkrF3eikuy//AKMcgH+5G32J8x/V2HafF6QOA/SI=
+	t=1773048215; cv=none; b=P85i06L0iygibaqPT/fgZ6HtrEzB0r1FOQPVHfDm4z5uEB4OX8hd8TCL/6FJX+8Zfd0GWAil/dTo8kjSZyKuZIAvMSuiJjdLU0xJF/F3s928108gkgvpx6SAlHqfFDbysTfuXkDGxPbftk+M5PHQ/EezNaEN6+PulD0aqL7R7Bg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773048061; c=relaxed/simple;
-	bh=ENpCl5oytEtbIZ6+0Nre/ZmYXuoRlmObpwNAk77Gqqk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eTuxEjxbbzyd1luoZ8J721pjtVa4NSVIqkG7uItK4cwILI+x3qgedLDlqoIXrlH3n6E+Cgy3ArehzJEfCCNQGhlqMLhDp/xlnPqnFPr+8dznWVxxZvBZjUGX3HsJVn4RwAB87WniQA/bApIshhjz3Krpd+K6vrZIrPgv8XwWZGA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t60ThOFh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45198C4CEF7;
-	Mon,  9 Mar 2026 09:20:59 +0000 (UTC)
+	s=arc-20240116; t=1773048215; c=relaxed/simple;
+	bh=HdpYv+AK/YGT3wtX9pT1P3XlHW6w2YeAT+IqCsoGv0s=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=jxhjeZLhkJnno7x0LZTAnOopmEjI6ExDTm7BdXSu+QgCNfUsfmK9icocHMpJ7I2X919u8oinOYUtg5PElruKICjIc42kbAxInjlWRzMIlfCuF9X+F12I9xOH9l8YT0limSHiOX9BXLTkYe9YPoGlm+TJJb05gj7spAHGW2zITzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVoNSA6V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC431C4CEF7;
+	Mon,  9 Mar 2026 09:23:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773048061;
-	bh=ENpCl5oytEtbIZ6+0Nre/ZmYXuoRlmObpwNAk77Gqqk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=t60ThOFhL1FOwZ2VkXMS1csZ8fp00yHZTHO7ImxMYTr0boz4FlJIu5wEK5T1BVs2T
-	 wiNu/js5FufG7K7KF7UpXi5QWsMmhOjPJ42MYI/wmDasR3OQzNiZ2+55eOrjrvua4l
-	 dSpl0EYZ3xC68TdBLAN5vnFKiE8CGvzCphN3aEzhArwAsRAtbO5/EB8am3Lfz3taxZ
-	 wDuqmbPHdBaYUBR4LQ8hhqUdmUtiZWnvwARBlHXXXnYj9+h15CDn8fyDkxgW6bAQqd
-	 JuHJALb7oiwRZxKx5L8i0KbHaw+LtPn8XGy8yiHIKKp4mP+HleLl8gElDV0FAeCcXJ
-	 uUG9U+J+HLCAA==
-Date: Mon, 9 Mar 2026 09:20:57 +0000
-From: Sudeep Holla <sudeep.holla@kernel.org>
-To: Debbie Horsfall <debbie.horsfall@arm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Linus Walleij <linusw@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: zena: Add support for Zena CSS
-Message-ID: <20260309-manipulative-inescapable-labradoodle-7a76e4@sudeepholla>
-References: <20260212-zena-css-v2-0-d33ea23cb9c2@arm.com>
- <20260212-zena-css-v2-2-d33ea23cb9c2@arm.com>
- <c7124cf5-f20a-4d6f-8f2e-388127c4ad2a@kernel.org>
+	s=k20201202; t=1773048214;
+	bh=HdpYv+AK/YGT3wtX9pT1P3XlHW6w2YeAT+IqCsoGv0s=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=hVoNSA6VbeUuOvEG/YRgGoQiIZ14lpU77V6B1mvJhk/nFVFKx9hcsVlGxBF2N/gwf
+	 xc2YpBcFA0BeItIW0YP1PQano5iDKE84YGZ8/Ki+izwCfu98+Pnqrolkv4SjPKT15v
+	 mXIv6Nf4GrhBbpMA/3JHI81W+mDbkShlX0ApQaoI+i1P/QpU4W3JwzBVToVDPOb5Cd
+	 CrF1FcH3OGqlAleb8yIczwiMoM8y9nDA05Si4T9Qz65xRwWIVe6E+k1itqqzUm+KEZ
+	 tychkPaNiQlcquXMPOY0uANFx5DKElbbLnh92GcRPqy98Dr/rZhkzK+E2j1javF4Ry
+	 w+UNDjKzdUAfg==
+From: Thomas Gleixner <tglx@kernel.org>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Frank Li
+ <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, Haibo Chen <haibo.chen@nxp.com>, Adrian Hunter
+ <adrian.hunter@intel.com>, Shawn Guo <shawnguo@kernel.org>, Lucas Stach
+ <l.stach@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mmc@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, s32@nxp.com, Christophe Lizzi
+ <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>, Enric Balletbo
+ <eballetb@redhat.com>, Eric Chanudet <echanude@redhat.com>, Ciprian Marian
+ Costea <ciprianmarian.costea@oss.nxp.com>, Larisa Grigore
+ <larisa.grigore@nxp.com>
+Subject: Re: [PATCH v4 5/8] irqchip/imx-irqsteer: add NXP S32N79 support
+In-Reply-To: <20260306161555.9000-6-ciprianmarian.costea@oss.nxp.com>
+References: <20260306161555.9000-1-ciprianmarian.costea@oss.nxp.com>
+ <20260306161555.9000-6-ciprianmarian.costea@oss.nxp.com>
+Date: Mon, 09 Mar 2026 10:23:31 +0100
+Message-ID: <87jyvls6ek.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c7124cf5-f20a-4d6f-8f2e-388127c4ad2a@kernel.org>
-X-Rspamd-Queue-Id: 3B9742361DE
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 32BDC2362DF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [4.34 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-272785-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[25];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272784-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.935];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sudeep.holla@kernel.org,devicetree@vger.kernel.org];
+	GREYLIST(0.00)[pass,body];
+	FREEMAIL_TO(0.00)[oss.nxp.com,kernel.org,linaro.org,nxp.com,pengutronix.de,gmail.com,intel.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.611];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,4.196.180.0:email,arm.com:email,0.1.150.64:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.100:email]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Sun, Mar 08, 2026 at 04:41:55PM +0100, Krzysztof Kozlowski wrote:
-> On 12/02/2026 12:16, Debbie Horsfall wrote:
-> > Introduce the Zena CSS Fixed Virtual Platform (FVP) dts. This is
-> > currently the only Zena CSS variant, however the common definitions are
-> > included in a common dtsi for extensibility.
-> > 
-> > Signed-off-by: Debbie Horsfall <debbie.horsfall@arm.com>
-> 
-> ...
-> 
-> > +
-> > +	timer {
-> > +		compatible = "arm,armv8-timer";
-> > +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>,
-> > +			     <GIC_PPI 12 IRQ_TYPE_LEVEL_LOW>;
-> > +	};
-> > +
-> > +	sram: sram@104000 {
-> 
-> This belongs in the soc node.
-> 
-> > +		compatible = "mmio-sram";
-> > +		reg = <0x0 0x00104000 0x0 0x00001000>;
-> > +		#address-cells = <1>;
-> > +		#size-cells = <1>;
-> > +		ranges = <0 0x0 0x00104000 0x00001000>;
-> > +
-> > +		scmi_shmem_tx: scpshmem-sram-section@0 {
-> > +			compatible = "arm,scmi-shmem";
-> > +			reg = <0x0 0x100>;
-> > +		};
-> > +
-> > +		scmi_shmem_rx: scpshmem-sram-section@100 {
-> > +			compatible = "arm,scmi-shmem";
-> > +			reg = <0x100 0x100>;
-> > +		};
-> > +	};
-> > +
-> > +	memory@80000000 {
-> 
-> And placing this in DTSI means that zena-css comes with this memory
-> mounted and it is not customizable in final FVP board.
-> 
+On Fri, Mar 06 2026 at 17:15, Ciprian Costea wrote:
+> +/* SoC does not implement the CHANCTRL register */
+> +#define IRQSTEER_QUIRK_NO_CHANCTRL	BIT(0)
+> +
+> +struct irqsteer_devtype_data {
+> +	u32 quirks;
+> +};
+> +
+>  struct irqsteer_data {
+>  	void __iomem		*regs;
+>  	struct clk		*ipg_clk;
+> @@ -37,8 +44,22 @@ struct irqsteer_data {
+>  	struct irq_domain	*domain;
+>  	u32			*saved_reg;
+>  	struct device		*dev;
+> +	const struct irqsteer_devtype_data *devtype_data;
 
-Both valid points, please post a patch addressing this based on my
-for-next/juno/updates as I just applied these last night.
+The struct was perfectly tabular formatted before....
 
--- 
-Regards,
-Sudeep
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#struct-declarations-and-initializers
+
+>  };
+>  
+> +static const struct irqsteer_devtype_data imx_data = {
+> +	.quirks = 0,
+> +};
+> +
+> +static const struct irqsteer_devtype_data s32n79_data = {
+> +	.quirks = IRQSTEER_QUIRK_NO_CHANCTRL,
+> +};
+> +
+> +static bool irqsteer_has_chanctrl(const struct irqsteer_devtype_data *data)
+> +{
+> +	return !(data->quirks & IRQSTEER_QUIRK_NO_CHANCTRL);
+> +}
+> +
+>  static int imx_irqsteer_get_reg_index(struct irqsteer_data *data,
+>  				      unsigned long irqnum)
+>  {
+> @@ -188,6 +209,10 @@ static int imx_irqsteer_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> +	data->devtype_data = device_get_match_data(&pdev->dev);
+> +	if (!data->devtype_data)
+> +		return dev_err_probe(&pdev->dev, -ENODEV,
+> +				"failed to match device data\n");
+
+No point for this line break. You have 100 characters. If you have the
+line break, then this needs curly brackets. See the bracket rules in the
+above linked document.
+
+>  static const struct of_device_id imx_irqsteer_dt_ids[] = {
+> -	{ .compatible = "fsl,imx-irqsteer", },
+> +	{ .compatible = "fsl,imx-irqsteer", .data = &imx_data },
+> +	{ .compatible = "nxp,s32n79-irqsteer", .data = &s32n79_data },
+
+Tabular layout please for readability sake.
+
+Thanks,
+
+        tglx
 
