@@ -1,279 +1,209 @@
-Return-Path: <devicetree+bounces-273026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273028-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GA0LFtHtrmkWKQIAu9opvQ
-	(envelope-from <devicetree+bounces-273026-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:57:05 +0100
+	id yFqxEqHyrmnZKgIAu9opvQ
+	(envelope-from <devicetree+bounces-273028-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:17:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF7F823C3D0
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:57:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A09E023C946
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:17:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 26A6730D72E2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:53:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 14735308CBFE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 16:13:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1A513DFC8B;
-	Mon,  9 Mar 2026 15:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D730A3A4F30;
+	Mon,  9 Mar 2026 16:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b="WnIcTDFG"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="YziGFwUQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011007.outbound.protection.outlook.com [52.101.70.7])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013025.outbound.protection.outlook.com [40.107.159.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 724003D7D84;
-	Mon,  9 Mar 2026 15:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9550A38BF95;
+	Mon,  9 Mar 2026 16:12:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.25
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773071594; cv=fail; b=CLrtMNL1x9oDmxZe7uqWH7jM3oc31s87wnzZn10y4+6o0dU7RexY01L2QjSdxSz0aseN+fP7LavxnTC2xa10KSMQZeRbyWkDDPHNf4FDIEx88cUFnKKngxzwXij5CbQ8sXI5WaKxWtbMU8h4lgPjGGcX+jAlhAvwW2v8XyErbMQ=
+	t=1773072778; cv=fail; b=QFxd3QypmzDfQGyCcCOv7ekRNbdUcl3fdJXMdsCCiE9vphtYNDI+2vVjlB8zuaAA6n2j7c5Hhrm7EIhiHm1/9XEjIjT57kd4E+q5O9aiaFkMTsIPSz8N8XISvDUS+tCQ8qCyrpxrdzMvOWZLp9CZQxQGTp+thmb+1Bxl7iAYka4=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773071594; c=relaxed/simple;
-	bh=oTN7F/H5J43buSnhiqUmXTe0HpYw5e5KiyEZ1kM40+g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=MCYFUQE/Dssq6O8hN8ogDZ4p12w8F7OAsQ44sgeyv9Y7Rr8GHeW2byRWvcPzTVbMap1+MwJstMkgpYNcy+UHFXzFWRtjAyzcYEdeSYL5o/YPgOleSN3k9e0IvSt03in2dZyv8xZmv7bfWS69Ew8JvLgSBlzg/lz5dG5J4HFnf3M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com; spf=pass smtp.mailfrom=axis.com; dkim=pass (1024-bit key) header.d=axis.com header.i=@axis.com header.b=WnIcTDFG; arc=fail smtp.client-ip=52.101.70.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=axis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axis.com
+	s=arc-20240116; t=1773072778; c=relaxed/simple;
+	bh=//fmNMiuXC4kwicx8b5WPtYRShvwIJUPV/m39elxAw4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Kblj44HbQo7LvkF2OYyoiKQIjt3JwlfVUbJfMhKXTJLz4A3QcdijPYdkgugo5QEixlemgD/pOy0B8AnK5hXuwhH1T8vRo3vtp+N4onATDWBg309Q201ipsIocbLlq31WIMONdAuODZAe+YgK7BNhrgkk6IwvczlN0n91XGl5eTg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=YziGFwUQ; arc=fail smtp.client-ip=40.107.159.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wDG/lP/G5wIkR0Jo2JahSuECvuUAaA4W3fbbPh3dV87/4HGXRAqzWjK/BhEAAiGBldukEU+uysXicwF7fE7VMablcrggPRa5zYr5t/Al2fhnjODePiKcgoF/GV36OYGX2JQRhqbWo4+vaNbzr/95fTHUVXApvLRiFMfWiMquQC4Hp/Uqcz788KiuggygheKAyMANXVMqoNRBJT4Z1u/xsn4AZUCTNlDfArfxtyAZIgSF60QoDV9Gtps5qSzTMGjqOqok3f+w3Y+Gyz7uK3groBZG7HGJEQYbosyn9dEzucPzg4rwVERrzq9gNqV12TQ17jft+CdAGg5ssJO00anXrg==
+ b=Z1VyRTasy24CtRlLc64cyHev3HfhInZFqVY/NeEWHL0QK5XV+VhQroY63jjcHA9wvq+Fyb0nftJB4gpoIOphpZa/YsrLnUSMcPnAcxUu9fg23ndRiBEQA2JrTbl8QLakKG4n+zAKj0I13Y2XJsPo/1qudn/o8x1Q9uatK0wzT+v/9FoF97J2p4Zal34ssHLn1Kuabu4/T3uOeTl/LUiftgt9L4vQK0i1Sfq+PyVcWJhIxlj3ZbvGnfvXTdg7xWLhsmsFcgZIcklSOjq3uJKB1jnfxyfGv1XL4nZLC+YG4b9UPt1yNTfKpFrS5si3ZJCdb0bdi527UFKCLIBLh3rRzQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=efk5nC8WfBgiXQy4lVOJlWUd1JpEymB75FbsxupjDBE=;
- b=VKUb4lmT/irNJ+wdS7Ub6jisb0KVic8yDPIvyh67dpGAzOfqWTetUX/LFcFfCo4zJt3P5df/cQd1v6hiSt5JSsA/QN6t/u4QoVIQ18tiyBXztj/EQca9Xw0783vcE5i6yKk1iPPU6l1scWX8VdgjoZW+nToPjUo5be65ANoxnikKHvHAX8r9aaD/AtDyXRRaVxzjyXdaoRMo+srfg/f8NWjiepkDZPTmbXz/tNN8ei1FKnzKNBEqQzPed1bpUjssi32McT4uuVNRfcY/0dJyq0/zDDHG8f+hDjjLOp74nkDb14E+b7jovCIJa9wfQ72AxjuqTKD1cBpO4xdlJC7SEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 195.60.68.100) smtp.rcpttodomain=diasemi.com smtp.mailfrom=axis.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=axis.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
+ bh=JnCBEOn9UghTjv37MgYliDO540vBGlnS5ohIQs64Uws=;
+ b=F0zOPDBXfAibNdqtdi4Y8vJ6Q4ToAiZobUqYAKM9tyhfJ2oeAN4bzcmzBSD0QpQITpOtupQNu5NQinIKNBNk21sgn6kxQ69K2HOe82QqmgsnowAqgXAd9U7Nt62qVSO5BRgcELh8pVwm/IbV+N5jQvGIHNtzwDPsj9bP6G6LqRBStJX+xoax8Ozz/DGP6COitvADD5JU00YZKkiB8pr8LKoW9+fBiWSO5TluLc+hWsBTtoyjKnFP6XVzd4M75gr6m6vZeh3uO6VFgI6LjYsDg98tEmFybMtuN/OhFd/eeVwppqW8JiiFcm8SSPlpXJeHs3wrWaBSKAgSQgPslbBD4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=efk5nC8WfBgiXQy4lVOJlWUd1JpEymB75FbsxupjDBE=;
- b=WnIcTDFGiECw4c9qL/twT0Xv4un9mDvuw6V3WFAGisRno1UwLMuQcN+IUBm2td6RhRp8dRAqK964Gr6OZOsB8ECOyiV7BHKn6R5I4AUu/ZIe9QotFcS3MR2p8G4xZKVpl4N+CHxXeZCVN107eDqZBfJ3tDqOyUL7fADoPTEKy7c=
-Received: from AM0PR02CA0139.eurprd02.prod.outlook.com (2603:10a6:20b:28d::6)
- by DB9PR02MB7916.eurprd02.prod.outlook.com (2603:10a6:10:33b::7) with
+ bh=JnCBEOn9UghTjv37MgYliDO540vBGlnS5ohIQs64Uws=;
+ b=YziGFwUQ0IMD+TI/NNW0hXbxFopbOUMCMTXlOMr6UEVQG1tJwNgdtsH508pu3KcCg+IhnHdq8GssaeixkJs3uWgi0GpzzMoqYQRgY80q0BNUo1Cy4QjK2AP05ZFDuL3t0HreYjPpztLcKt2UB+3+4UC5Dv3q+2NN/bSKs2/aIa0oJ6DtyK+ynb6gqjzHNx17PF6ON49zHud2TwORImn1IAW4YvU7sU8GJPNeTbmJdhS70QrCTRZyRRgVsavd8ks9IbKhcJ+ycsrHIBqmOUI+MMWByQ6CZkFHZytMO+IcJ8P4HoYn37TlJtCLnbx6kYWqfreePUFLkd92K3HY/caAhw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by VI1PR04MB7008.eurprd04.prod.outlook.com (2603:10a6:803:13b::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Mon, 9 Mar
- 2026 15:53:08 +0000
-Received: from AM2PEPF0001C714.eurprd05.prod.outlook.com
- (2603:10a6:20b:28d:cafe::bb) by AM0PR02CA0139.outlook.office365.com
- (2603:10a6:20b:28d::6) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.24 via Frontend Transport; Mon,
- 9 Mar 2026 15:53:03 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 195.60.68.100)
- smtp.mailfrom=axis.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=axis.com;
-Received-SPF: Pass (protection.outlook.com: domain of axis.com designates
- 195.60.68.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=195.60.68.100; helo=mail.axis.com; pr=C
-Received: from mail.axis.com (195.60.68.100) by
- AM2PEPF0001C714.mail.protection.outlook.com (10.167.16.184) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Mon, 9 Mar 2026 15:53:08 +0000
-Received: from SE-MAILARCH01W.axis.com (10.20.40.15) by se-mail10w.axis.com
- (10.20.40.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.39; Mon, 9 Mar
- 2026 16:53:07 +0100
-Received: from se-mail10w.axis.com (10.20.40.10) by SE-MAILARCH01W.axis.com
- (10.20.40.15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.61; Mon, 9 Mar
- 2026 16:53:07 +0100
-Received: from se-intmail02x.se.axis.com (10.4.0.28) by se-mail10w.axis.com
- (10.20.40.10) with Microsoft SMTP Server id 15.2.1748.39 via Frontend
- Transport; Mon, 9 Mar 2026 16:53:07 +0100
-Received: from pc63539-2527.se.axis.com (pc63539-2527.se.axis.com [10.85.100.100])
-	by se-intmail02x.se.axis.com (Postfix) with ESMTP id 469861B03;
-	Mon,  9 Mar 2026 16:53:07 +0100 (CET)
-Received: by pc63539-2527.se.axis.com (Postfix, from userid 17419)
-	id 426D66074F0D; Mon,  9 Mar 2026 16:53:07 +0100 (CET)
-From: =?utf-8?q?Andr=C3=A9_Svensson?= <andre.svensson@axis.com>
-Date: Mon, 9 Mar 2026 16:52:36 +0100
-Subject: [PATCH 2/2] regulator: da9121: Allow caching BUCK registers
+ 2026 16:12:51 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Mon, 9 Mar 2026
+ 16:12:50 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"A.s. Dong" <aisheng.dong@nxp.com>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Subject: Re: (subset) [PATCH v3 0/2] ARM: dts: Add CPU clock and OPP table for i.MX7ULP
+Date: Mon,  9 Mar 2026 12:12:31 -0400
+Message-ID: <177307270421.1707510.7834228185612661282.b4-ty@nxp.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260302-imx7ulp-v3-0-26b708aecc59@nxp.com>
+References: <20260302-imx7ulp-v3-0-26b708aecc59@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PH1PEPF0001330D.namprd07.prod.outlook.com
+ (2603:10b6:518:1::1c) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20260309-no-gpio-control-v1-2-06d2365917c6@axis.com>
-References: <20260309-no-gpio-control-v1-0-06d2365917c6@axis.com>
-In-Reply-To: <20260309-no-gpio-control-v1-0-06d2365917c6@axis.com>
-To: Support Opensource <support.opensource@diasemi.com>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Adam Ward <Adam.Ward.opensource@diasemi.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<kernel@axis.com>, Waqar Hameed <waqar.hameed@axis.com>,
-	=?utf-8?q?Andr=C3=A9_Svensson?= <andre.svensson@axis.com>
-X-Mailer: b4 0.14.3
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM2PEPF0001C714:EE_|DB9PR02MB7916:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c427503-42a5-4cf9-16c0-08de7df3f560
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|VI1PR04MB7008:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a0edef5-269f-49e2-6544-08de7df6b618
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700016;
+	BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|52116014|7416014|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	OLkOjzd8m+yDIRdXhMk/YpZiGJqPcHF9/QNAdtDVEKY4Np3qnHTqRE/uHG9CB1ICQpmV7iq+tDSdiTiRoM+IWwX8bm9UImCNaR8iC/scjcC+P7n2g8afR+rIDEt+V7eq/PC7z/XE5eEvYtf/uGBQXM4kE1CdRoa4UwyBa+9N4XxRr+2LzEPs9OYVGpEvFe2WCQrDQOns43RkCQw/05KULZrfjQ9mxeRSrR+1msboWIG78UTAhQuPFbbtGAF7hkh43t7a3Hh91FLEydGtuHM+RXgCvAAvQlRuXtefgPK+KgVqzBMXR+OVIxtSea8Jz5GL8E9RcRbwqZOFKAN3aGhbiinshTPMNTb8G7++UdlGEpEcHspZyIGZvJXnUdmUP2VA7TgQpW0BhgxDuknXDxn/aHxBTP+7JmDzG1orHSIvuyS8w7y8uRwPNEfO2t64V4ld+cBWGrTqiscv7xem6+Gne3MbAPNsdvc1PthBNRLUrrY8h96QF45o8yYzq60aYPxr7411Wh3J+iBWFCCeFXOg0Z+eiUerzmMshHXbDaeEErMBDSmJF8BLvDwmGMq3F9raWilVdDDCK64/L5tK8BgsttFpioL641896Mw7wjnMmqxW6+6GgMC31wIyNZodvOOYTjlZyXHJ/v/LLUx+YxZWsnOZIxeJJt1lZX76k2azLBmxnYAFB/jDlC24X3AmXnKd55PG/5k3rZOVgBckGFyXrN5dFUjI1SQk1May4GyQYeexpUiFoDFgPtRlZP3WYDLsJ9qyD/nV43XS4eQk0Z6iJw==
+	Iw9Ebe0QAnNu2KhSir/APScnMUp13pN3PpNgrHbtmMnBHVaVpBjblh9r3uJGcd+I1rr9vLWMbWoF/Ya2MmKZWxDUn7B5nm3q6MVtLociPdpWAIKPvfR3mo3A0A23bGucNlFcgYqN6RH4DBVt6/80avGmAzqs8gAu+bmPWgyG6VLc3XDsI2w9mZgevvJXNktFYA3QJrTTKEOtXrFH8uREK8lEN9nNUJ56C/lcgUDssU7+wdWYMAb+e9LPVPicyD2tv6P+k1XYFWV/05ZfpMhGc2+KpjKYrFc9xnZpE2n2OHfBkk25VB04Hu5gaFgqWQFF0m7NH9QqC5V4+TMdtz/K436PD4Tlw9oEgmbOQ2ra88h2ohTM1qZ35yOiXv+PlQTDegOI7TUqyTJSOo75oTF80FB2qL+fM8iTuN7v0eJAjUQFZBLjKtsn2LWmN1Aq1fE/h5ssBL+HRkmGiyUnFnOd8xJB1Jy4eRr/IJB46/h0B/NPaqO3Pqp2vduY0g+hgQWJ3cmcffzOGhy1QewKOWJg8/bk927lyP4bkR7ho1mqhmTic1ifYw8OxlKgKzjyTErmj1rQGKhkyWqEpV8/T5XPOVm9O1y1rV5re/TFFAJ6ujekExLo0fCzYUxoMezSggslYUUTn5RtEfuTB71RCkTsji3GHqVfK8WoErqGassxybXs2WrrLawQlC4QK+T5/CaJ5Tirj5+jS9mNvD2JmQFfhoyvnbYcu9n1e/SC9j87cU0zMbQWLQ0LoqBt+kkVCpXVdh9otqj/mx4PuoMgHi+KB1c4RZefx/Y3z/IcYoz0uSI=
 X-Forefront-Antispam-Report:
-	CIP:195.60.68.100;CTRY:SE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.axis.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700016);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(52116014)(7416014)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	j/iVc8pgyx/iSYzBlqoBwYj4+UviT1q42s2rH0ZhnkjHuUMBLUN2zOET5t37Wg7McZLO3BjmWP4P1LFM7Il/3nmrSnGDqxKyD8Hbw6JQcYnjScxfqaoHzsicOrYa0QHkuSaE21wKARPLeuFWcVeHyk4lcjDilKRYcJzPjZoh1SLexzWBP3GZQAhlC8M0vbqEVV95xUXp2K3wnHfI+khA8K/qwvGYeC27nH1i+/2f7wf4jBRhKx6AEC+yxOzvDh8R53VzS7MYrK+7vKO8mxVKGQI9B6CSl8ZL9so2pWNWbHkOYY4dfZBmjFDn9ew+aCIWglMt02WY3qAuInKC0AgvgMOaptTbeCtiilIrssTAt7JopCh3teQCgTL1RTmOksr++9r74aRUZX4ampEIrq1yp/sb6nd7hPbO0KM+32G0pIHkYh5jfB3vSJ0hj2vWkZaX
-X-OriginatorOrg: axis.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 15:53:08.0071
+	=?utf-8?B?YldBOExueUtWakZYRExFOE1qc2lwRmJQNWR6TGxjSDM4WVU0TVNUWmlid2VK?=
+ =?utf-8?B?alpMTGFXNFJRRmw0Y2tDMFkxb0M5UXVCeTNHTUhPWEsrRTBDaU9aTTIxbFhJ?=
+ =?utf-8?B?OUJoR2dsaWNLdTk1UXRzRGVsaFcrMURGSDduK2JkWDYvNjkvamdTV1loeFZH?=
+ =?utf-8?B?eVZMdDB1d3JFUTYwZHoyelppUlNtR0JnRTlVRnBReWZYcjhUZWZaTURDdTUw?=
+ =?utf-8?B?dnJ4Y1kzTjNmQXVBMlU2aUh1QjFYQnJUdXExaHVsZHh5Y0ZCdzQ1WmtMdFpy?=
+ =?utf-8?B?Uk15WWlDdEhGVFFKQm13N1JhRzdmc1NlSUN3cVg4SFFsUytDVkV1SFFCUlJn?=
+ =?utf-8?B?bmhpWU1samhrTnVVTTdJTDZtbUNubXhNdGNqam1TZ3lBQmxuamo2cmdsWm5i?=
+ =?utf-8?B?VTBPYjNickc1cnpvSTZzNlJvakZjNWJENXREdTF6ZWNNcFRQekxHU3ZTaGRC?=
+ =?utf-8?B?cTA3ZTFjTm82YUlWc0F2SUdYL0UycGtySHJPMVJGK3VGckJraXVYMGdFelFw?=
+ =?utf-8?B?UW5SLzQ2b3k5dXg4TlJKS2h2MVJicVU3VkJGM0MxUXFKbHoxV21TMGhWYVZR?=
+ =?utf-8?B?V3UvMzc3bnNVYVBiYWdrVGV1NDFPTDJ5Q01BYk5vbkVzY1AzNGVKdWFzUU1N?=
+ =?utf-8?B?ODVWclpZejU2S2VNeVgrVHZtQUdzSnhuaDZLMGNEL3Uya3hWOFNjZGpzdGdh?=
+ =?utf-8?B?S01wMFdqRkEzblBweWVrMWZJYUFXZU1tWmVKUVBhVnNZMEROa2RYdHF4R1Yr?=
+ =?utf-8?B?dmdrTjJEdk1DN0dVODZOVG1lR2t3eGFmZFZ4OXFvTFJtMG5Ka2E3a0ZSK1Np?=
+ =?utf-8?B?enhmR1ZHckRQNzRyKzhpTEdCODZ2dVljampQUWt4SHdxaUNzWkJVaUsrcGJs?=
+ =?utf-8?B?OWMzYThzZ1VtNFVYODdDM0FZMWFkVm5iY0hlMGs1dTk5RHBmbTgrV0MzMUpv?=
+ =?utf-8?B?Y3FwcE1LK3RWV281K3A5eU5hTjJ4ajVXSXAxeVNPMlVkb3hGV3Q1TC94OW1S?=
+ =?utf-8?B?QllEUEVqRjlUbHZ0MktHcHlWeHRvdkdCZGVJOWIybmhjaGJiWW95eUdNOUs2?=
+ =?utf-8?B?Y0Q2S0l5QTFWdFkwVm1nbGZPUXV6MzhVc1g3RmVUVGVBVHlXbExsSDBiNEhT?=
+ =?utf-8?B?ZHlIVnpLeURpN2I4MUhJMUIwdk5rV0NqczNlNjFNckxMLzdXWjVGcFpjMEhx?=
+ =?utf-8?B?aWd3YlMxektKTFVoMG85cHAyQk1ORmZHbXV4dGdYYVo3T3YxQkVpdkZyK21t?=
+ =?utf-8?B?T29RVzd1T1hzR1hxWlhWNVhTd0FDWE9IK0NYMENXNm10emxVZE50V3ZpNGI3?=
+ =?utf-8?B?cXpBQjRTTVJ4MDB2UTZvdno1djQzcVlJWkNJMTBIMWhMRlZWbTQ5Slo0RHVE?=
+ =?utf-8?B?bHNtVlBsVC95WHJwNHU2M2VHNVFWcGpJUE1rMlVjM3ZmWWpLU2FoU043b212?=
+ =?utf-8?B?cVpNZFEyNEZWenZmUkFhSlg1aHVjRXQ4VDBHclpOYWwzNlZQSUo5L3VBU0N3?=
+ =?utf-8?B?d2dDeStBUkM4MUJ4VUFUUCtCWi9SVHliZFZnMzFzYld5V3FoOFRKV3NKUmsw?=
+ =?utf-8?B?SjJnR093Ung2SlMrNnQ3OWd3Mm95N0tJeTFiRFBIOFZtQTdVcGhrU0ZEOWwr?=
+ =?utf-8?B?QWxzaDRsTktFcUFxejhtUTVyVUw5dXUxTnNoWUJ3WXJweDVCZUZFZzV0ckVP?=
+ =?utf-8?B?NzRtcUJpYlVRbVh5STRXdE02STlHVUpxYTY1MUNiRG83NnBHNWlHOTVHeWJk?=
+ =?utf-8?B?VC9YQjBka2c2MlA5SXdOdDFJT211L202cS9RVExDbDdQRUhnVW9FT0I4MTRt?=
+ =?utf-8?B?blR4bWwvVVZoQ0tGYXBCL3AwRmJ5Wi9IeHhDdGpWbTVwWGxoTmVQcnUwdVlR?=
+ =?utf-8?B?bE9vK1J6Y3VkWkFXKzZKUEt1Y0RHOU0zcFVDRUJOMDFyNEM1bm9zOTYrVitM?=
+ =?utf-8?B?cDcyQ2dTaXVBTW5xWERvVVloV0ovUVNNWkdCWm44YWs4azhDT1pLTHRMTVUx?=
+ =?utf-8?B?TTUyOENuWHQybnV4d2NVSVEvd052VkdqVlQzNFNHY1c0TkVyalRGZ1UvTktP?=
+ =?utf-8?B?UjIyYnFrZDcrK1ZNblBZWElraVpNRzdKQnFRUHBUaEZxajN4UVljS3dUSTNi?=
+ =?utf-8?B?SEwySGp0dmN6RkdzTmdnUzM1ODd2L2hxYzJPQ1F0WWNHNzNrWEx0VXp1dnlq?=
+ =?utf-8?B?QUFVejNYVng4ZUVQVmErLzFRYXllN1hoVUYvSlRWeWkwNXpxa0pGdUkyWDh1?=
+ =?utf-8?B?ODdYMzRQSk9mUnZmL25tMXRScTQ0eWFuNjg1cFpucVVHcUtLMEdZdlNLRURV?=
+ =?utf-8?Q?js9r/9YeZOz5KqZiBr?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a0edef5-269f-49e2-6544-08de7df6b618
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 16:12:50.7967
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0c427503-42a5-4cf9-16c0-08de7df3f560
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=78703d3c-b907-432f-b066-88f7af9ca3af;Ip=[195.60.68.100];Helo=[mail.axis.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM2PEPF0001C714.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB7916
-X-Rspamd-Queue-Id: BF7F823C3D0
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RlTuo0xf15SPcmHqO0UBRFyRP0siNHeOjGQzSru5RQaGpoG9f4948e1M62aQtvyuZMJeZjmU0bt4MORW8jYaSA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB7008
+X-Rspamd-Queue-Id: A09E023C946
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[axis.com,none];
-	R_DKIM_ALLOW(-0.20)[axis.com:s=selector1];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	TAGGED_FROM(0.00)[bounces-273026-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[diasemi.com,gmail.com,kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,oss.nxp.com];
+	TAGGED_FROM(0.00)[bounces-273028-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[axis.com:dkim,axis.com:email,axis.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andre.svensson@axis.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[axis.com:+];
-	NEURAL_HAM(-0.00)[-0.957];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	DBL_PROHIBIT(0.00)[2.104.155.144:email];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.978];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[11]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid]
 X-Rspamd-Action: no action
 
-Some BUCK registers may change without software writes when GPIO pins
-are configured for functions DVC/RELOAD/EN. If the board does
-not use these pin-controlled features, caching is possible.
 
-Caching buck registers removes unnecessary I2C reads when performing
-register updates. For example, updating regulator mode can result in
-two I2C reads, one from the regulator core regulator_set_mode and one
-from the DA9121 driver, where da9121_buck_set_mode uses
-regmap_update_bits (read/modify/write).
+On Mon, 02 Mar 2026 23:07:40 +0800, Peng Fan (OSS) wrote:
+> Patch 1 is a binding update to add missing #clock-cells, otherwise
+> there is CHECK_DTBS warning.
+> clock-controller@40410000 (fsl,imx7ulp-smc1): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
+> 
+> And the clock will be used for cpufreq as done in patch 2.
+> 
+> 
+> [...]
 
-Check for the optional DT property dlg,no-gpio-control. When present,
-select the regmap configuration which does not mark the BUCK1 register
-block (DA9121_REG_BUCK_BUCK1_0..DA9121_REG_BUCK_BUCK1_6) as volatile, so
-that regmap can cache BUCK1 registers and avoid unnecessary I2C reads.
+Applied, thanks!
 
-The dlg,no-gpio-control property is mutually exclusive with
-enable-gpios, regardless of whether the referenced GPIO is connected to
-a GPIO pin or the IC_EN pin, since pulling IC_EN low powers down the
-regulator and registers are reinitialized at startup, leaving cached
-values stale.
+[1/2] dt-bindings: fsl: imx7ulp-smc1: Add #clock-cells property
+      commit: cb794619c2d29b882f6eec3b6ad4a1ca5afab312
 
-Co-developed-by: Waqar Hameed <waqar.hameed@axis.com>
-Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
-Signed-off-by: André Svensson <andre.svensson@axis.com>
----
- drivers/regulator/da9121-regulator.c | 35 +++++++++++++++++++++++++++++------
- 1 file changed, 29 insertions(+), 6 deletions(-)
-
-diff --git a/drivers/regulator/da9121-regulator.c b/drivers/regulator/da9121-regulator.c
-index ef161eb0ca27..ed62a41deb84 100644
---- a/drivers/regulator/da9121-regulator.c
-+++ b/drivers/regulator/da9121-regulator.c
-@@ -864,6 +864,21 @@ static const struct regmap_access_table da9121_volatile_table = {
- 	.n_yes_ranges = ARRAY_SIZE(da9121_volatile_ranges),
- };
- 
-+/*
-+ * When GPIO functions DVC/RELOAD/EN are not used, the registers in the range
-+ * DA9121_REG_BUCK_BUCK1_0 to DA9121_REG_BUCK_BUCK1_6 need not be volatile
-+ * because register writes to these registers can only be performed via I2C.
-+ */
-+static const struct regmap_range da9121_volatile_ranges_no_gpio_ctrl[] = {
-+	regmap_reg_range(DA9121_REG_SYS_STATUS_0, DA9121_REG_SYS_EVENT_2),
-+	regmap_reg_range(DA9121_REG_SYS_GPIO0_0, DA9121_REG_SYS_GPIO2_1),
-+};
-+
-+static const struct regmap_access_table da9121_volatile_table_no_gpio_ctrl = {
-+	.yes_ranges = da9121_volatile_ranges_no_gpio_ctrl,
-+	.n_yes_ranges = ARRAY_SIZE(da9121_volatile_ranges_no_gpio_ctrl),
-+};
-+
- /* DA9121 regmap config for 1 channel variants */
- static const struct regmap_config da9121_1ch_regmap_config = {
- 	.reg_bits = 8,
-@@ -994,10 +1009,18 @@ static int da9121_assign_chip_model(struct i2c_client *i2c,
- 			struct da9121 *chip)
- {
- 	const struct regmap_config *regmap;
-+	struct regmap_config regmap_config_1ch = da9121_1ch_regmap_config;
-+	struct regmap_config regmap_config_2ch = da9121_2ch_regmap_config;
-+
- 	int ret = 0;
- 
- 	chip->dev = &i2c->dev;
- 
-+	if (of_property_read_bool(i2c->dev.of_node, "dlg,no-gpio-control")) {
-+		regmap_config_1ch.volatile_table = &da9121_volatile_table_no_gpio_ctrl;
-+		regmap_config_2ch.volatile_table = &da9121_volatile_table_no_gpio_ctrl;
-+	}
-+
- 	/* Use configured subtype to select the regulator descriptor index and
- 	 * register map, common to both consumer and automotive grade variants
- 	 */
-@@ -1005,29 +1028,29 @@ static int da9121_assign_chip_model(struct i2c_client *i2c,
- 	case DA9121_SUBTYPE_DA9121:
- 	case DA9121_SUBTYPE_DA9130:
- 		chip->variant_id = DA9121_TYPE_DA9121_DA9130;
--		regmap = &da9121_1ch_regmap_config;
-+		regmap = &regmap_config_1ch;
- 		break;
- 	case DA9121_SUBTYPE_DA9217:
- 		chip->variant_id = DA9121_TYPE_DA9217;
--		regmap = &da9121_1ch_regmap_config;
-+		regmap = &regmap_config_1ch;
- 		break;
- 	case DA9121_SUBTYPE_DA9122:
- 	case DA9121_SUBTYPE_DA9131:
- 		chip->variant_id = DA9121_TYPE_DA9122_DA9131;
--		regmap = &da9121_2ch_regmap_config;
-+		regmap = &regmap_config_2ch;
- 		break;
- 	case DA9121_SUBTYPE_DA9220:
- 	case DA9121_SUBTYPE_DA9132:
- 		chip->variant_id = DA9121_TYPE_DA9220_DA9132;
--		regmap = &da9121_2ch_regmap_config;
-+		regmap = &regmap_config_2ch;
- 		break;
- 	case DA9121_SUBTYPE_DA9141:
- 		chip->variant_id = DA9121_TYPE_DA9141;
--		regmap = &da9121_1ch_regmap_config;
-+		regmap = &regmap_config_1ch;
- 		break;
- 	case DA9121_SUBTYPE_DA9142:
- 		chip->variant_id = DA9121_TYPE_DA9142;
--		regmap = &da9121_2ch_regmap_config;
-+		regmap = &regmap_config_2ch;
- 		break;
- 	default:
- 		return -EINVAL;
-
+Best regards,
 -- 
-2.43.0
-
+Frank Li <Frank.Li@nxp.com>
 
