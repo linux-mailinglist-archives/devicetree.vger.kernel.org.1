@@ -1,225 +1,233 @@
-Return-Path: <devicetree+bounces-273019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273020-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mC4MKNLrrmkWKQIAu9opvQ
-	(envelope-from <devicetree+bounces-273019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:48:34 +0100
+	id QNwZATrtrmkWKQIAu9opvQ
+	(envelope-from <devicetree+bounces-273020-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:54:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0680E23C041
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53B2E23C2CC
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 16:54:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 63956300D44D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:44:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E06243019F06
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 15:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B273D904F;
-	Mon,  9 Mar 2026 15:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA103612ED;
+	Mon,  9 Mar 2026 15:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="VoGhq3QM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HNZOM4in"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010026.outbound.protection.outlook.com [52.101.84.26])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE4663DA5DC;
-	Mon,  9 Mar 2026 15:44:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773071073; cv=fail; b=t6bMWbrfSWcljyOsKzYo+jPiUXe4jlRRSrdHJ2eO/pebAd34bY33oR3lV1SoPhMRKTLLVgSL0yFuTsts4UxPKJIgiCUrkbHjarpNsMl9Ji4+E0ULZ9BluD18NSQBWwtjP+U0FBpa6JLXKcwKXYk+trm7AvzSR53JoqvL8qcA+P8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773071073; c=relaxed/simple;
-	bh=UNxu1kOp6fkIenH+CQjttYx4omBqfqB8HI+wsmtURUw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=jZSTVvQvUz7yWDhqRkLxCtgo04p/QOl/Itnz0EeHpfnbsmNiRlE3sHOujoty6cbVntkT+krCBsSFUGCyfehGFPQwI0jAURtKlHoKo/SqPcW0FMO/Mz9bpZbPXStY0H0WI+7q2CcjFkCAJ9DbJ/a/b5q6aE4f2hfAa2pGw2qTPSY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=VoGhq3QM; arc=fail smtp.client-ip=52.101.84.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sc2KplmDrqyl0CUx5phKWpc7lkYfFgLyokwVWu7v3/c1nGEgQ3odzyiAN5fVs0hoq4QXcIbO+ek9fFx6e47HhfWLGuGYBUYkcH5Ewpe1teKaZfBEgqJHwE8DWTqqFNb1ZZgn0En9lZM3VJZsn2jOzVLOzkF+ZdPitVKOBl8GtRgXth/9Oo/JgPFY3F179Sqsa9fifpzhkLsjX5UrH5R0IgJ/TTqKtRgAEyIZBOlm/EcERP7LePdnhCx5lWaTU1p1r3ybb9KlxPiemAE4Pgko0z5bEHbkilKigckDCfLxM0dF4Elal+IWnz4iYMhV+rItvKigM/eMqqla7qD4bYGdfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ONjNyIvvgn7E5Jg42iaZ6/0S+bu9qMCYQ3pfMsMsFRg=;
- b=o5aWJ2L9IwXOUsSzI34K62AAHKrAz0aBB0YRoIUUb9XxVAonM/FeRLDCkWHlaG1IKc2/xfuTRGof/RVAJPtXtLyr17hB+E2XtJvoNyHEL5V7+W8eIKalQ10JCjliw9aPsT9m+jPo76Glnpeme5kIokiMl0QbLo8BnNKDcoKQeGRTioGyEJAtNQ8I61fEFJWMkBKDOCekyLl7YFEGerwus2Jh5YeEniz5qf93WVmZJB2WFpeZlPMDnKEBrVH32urDWqtsl3nY/3bXpXVm9Vmz67YglwfDLqZsElOTucwboh9LbA1cSy/+K+0uCOTv2L38w1NAIUPOxMZegriJqKhW9Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ONjNyIvvgn7E5Jg42iaZ6/0S+bu9qMCYQ3pfMsMsFRg=;
- b=VoGhq3QMm5m23WGx4H5nmXgar6L3dRZIRWH5jcx9LGCUfvKwkDn/jASBYfd7JwWODGID0X8jXBX+D5V+HBMILB8gKG1TM8weZ1blYDbzgOYQVYxQP1qIOw2ZDCHq9PosJPE3VkFXZ3lpa1lhriddDOQN6d6rC07Ep/IZTXMKM1InnZgOiOH03WVn8+42VpAoB8WGX4OmGappv5D60EnswARv57GzfV5u1lO52ZDKGM5ZTgavEIgAS0GmFwknoAlx0bJEWKRuJHeDWGhtP49Kod+2QrbdcN9mAFMOiFKUgbf1896ZIBaGwSG9gLmqZdkZlrKpy3ZncKFk3reYiki8OQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by GV1PR04MB10941.eurprd04.prod.outlook.com (2603:10a6:150:201::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.22; Mon, 9 Mar
- 2026 15:44:27 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Mon, 9 Mar 2026
- 15:44:27 +0000
-Date: Mon, 9 Mar 2026 11:44:20 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: michael.riesch@collabora.com
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] media: dt-bindings: rockchip,rk3568-mipi-csi2: add
- rk3588 compatible
-Message-ID: <aa7q1DDzUQZRORyk@lizhi-Precision-Tower-5810>
-References: <20260305-rk3588-csi2rx-v1-0-0cd8d2bf28c0@collabora.com>
- <20260305-rk3588-csi2rx-v1-1-0cd8d2bf28c0@collabora.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260305-rk3588-csi2rx-v1-1-0cd8d2bf28c0@collabora.com>
-X-ClientProxiedBy: SA1P222CA0038.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:2d0::19) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47CC525A645
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 15:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773071402; cv=none; b=nZHj290Up/h13KrYQfg1sBtCk3xIkDgDv8y4ane0M/kuMIOTDqC38d9iyWS3CyLyvVPRhqHROZXULxce1Y+VgK3xtAMEmTiEZBmqWxZtKzvJj+sZwmhHy+DPKt9N8tB0utkmALB9YuB1d5lxcJnpiZVqqT/YkD9HYs5xD9K8ntI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773071402; c=relaxed/simple;
+	bh=jD+HjaNHgbAd33dUrOKzWmUqIYgmr2OAzta/dFxlHAU=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cHI1yolvuYo6CYlt4DQmer2hdbCTNDqqizN6UhXDskekCYb8j7ZFYOcVzvVYB5RypL3VDDAUsNe0lxC0NJkBvwl9uk43hmhRe/dC1uKULtT3sYmHipBMttjORc2mSS8Xa/AaNb19ecmMH0A5jsbs8+1qoW73OEHk7P23gyVHH3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HNZOM4in; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55FE5C2BC86;
+	Mon,  9 Mar 2026 15:50:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773071401;
+	bh=jD+HjaNHgbAd33dUrOKzWmUqIYgmr2OAzta/dFxlHAU=;
+	h=From:Date:Subject:To:Cc:From;
+	b=HNZOM4inoAoeLVAdbE04fEzIvpjZpd+dgYRhu5cr8IA8TjG4+ZUcs3mwuNI+t2Llc
+	 EY1Pl0xqk+nFlYuMjSA/ywSaJZOlybOuvRzYLRs5OAgb8a4n91yVz6412MiKhN0WY7
+	 zF9aSHBs44HZIAt3hkfReTMgBUSTTkzLG2r1bj1wiJrzQeGg75+lE+cxBPzTFwMd7c
+	 xviK4ZIsf1phFivTzPHUmxHTKUPskZHEt554VZg/Gx5TLjKb8OaxsdG9wpW5rQqNUq
+	 PsbqEXgxYnO8pEtYrLTNfZapiNH7+pei18yuI24Lvz2C53qFzidODL5ST7uh5oVDdk
+	 2QsilGm7dr/OA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Date: Mon, 09 Mar 2026 16:49:49 +0100
+Subject: [PATCH] arm64: dts: airoha: en7581: Add thermal node to to EN7581
+ SoC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|GV1PR04MB10941:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa372642-d02b-4ac3-f0a8-08de7df2bee4
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|52116014|7416014|1800799024|19092799006|376014|366016|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
- AKq7KIQpofOA63Xahfzf1P6myI5suG+57RRr66zuRdRVOzMrE6aGuK5qwiGMzRs1leq6+WG3TBPnll0ClCZq72yroeGQeFch/Zy9tfvhfmSaFUC5IUVNd1Mwr/rI9yu5zR0L1Dn0NmE2K7YvrBhVyHAnDLTmNbbFf5fiQHzzSnQZ2gEAKc36yPyXdbf+F5OuhVBTyTyp48xwKPmCHROiK+trkntA6DBDz4tiiBUUI8GETrHnaEsn7RIMKkCMS9upkXSKdg/HLz3CyCLzMRsxnQVrkuhEzCnEvC00c7FltFJ1c2O4fBoYgnIwx4bAhXHNrejnDcUWJFjdvVIhC8inkHjRMhyQWbZXd1rd1RY5C4wbIoeaKycABmhwTFdCpqtxdNd5qwSEArPHdCmF18MjtXvJihhPbbfpr2g0u4NvB4RK/NI6jTFbflWEqgFJuGDrcR70z7NYSd1LMbzrE6tLlOQXq2PklYBw0hPLqaLAl3z00sq10Xj1i78BkV6RmP4TIab0jOQ/ZUObS6xr4nSXmNa7GLdqZfaCVmPJINSxgMkw/vW6VLJY9r4SyLkJmLivQUwCVdYltLTomsjDHeOvBOUoUODCQc0H+e9u1YG86aLURLMzv3qyMG1m6/y5SDVFL88rboEKJT8pG5aZbM8cS5WwKqm0sLP0esWtjUPz4VF+Hys0HlupE5MP/pLtSVMxvAHDe/l7wyY15Tqh0sRj9imAR3q6peooOzlsOtCZ4WOcmp3T/ozvSPeBP6eqSb5ifHXSYUTyectHYfeE+5tT+9pIQ2ScTLRzAqfbqIstpkg=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(1800799024)(19092799006)(376014)(366016)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?DtVDFvjOQXZRtkCOY0Kfdn1BSfT3ntnPdLOtgcGHwr58rWI/RsUcl9A0h6d5?=
- =?us-ascii?Q?XLrLfEvGHwzFwPcfMBm64T+8r13RnyXMOkzrcetLGmSyahZSLdn5ti1QKDWG?=
- =?us-ascii?Q?M8qO7zre/tXpuTqFUJgd8z/zqgDUDmKp9gF4UqXHK8cxO3WnNH/Cs1hho8bw?=
- =?us-ascii?Q?02FhwRSAT7+6oPJHwPQRRg1XUON5l6lZUIIJ0BF3etBmRFpxG/qZ/pKPsNwp?=
- =?us-ascii?Q?58eMpuws4AQP6IHRafVWXfJ4H4XVIxtdm5qTRlw6T4asqdN+OrAMrRrrQL8P?=
- =?us-ascii?Q?16TgkyDWZHUEWwLl7+I49od9MK/xlojiz10rA4rKc+IdvVVVXEGi5iVygPLv?=
- =?us-ascii?Q?EKE/7LpcTx5Sf30HlG8m9ZkSXW1PJsCle3dWRHVM+lcUDc1EYb33TOf+9XnM?=
- =?us-ascii?Q?aH/gtpJ9c+hLBDehTVxvBccWu1P7MSS3UV7uSskzbeJmDnWL2FFR8NBDt0gO?=
- =?us-ascii?Q?k21bFn2g7Wrcy014c95KgE8+sYqthKKFDQCfGzrkAjUrHOg+2mgo6fns0M8W?=
- =?us-ascii?Q?BHHisl+PraPqPkjH9n0f+sBeKlLjnHvCi7ITx3IPP94AAElDr9srSvCFajYg?=
- =?us-ascii?Q?Jdw+b3PwCQUdDwr0b66+BdFsS26m/LSQKKvJDjbcqJmlc/O5ewHHYb6ahfQH?=
- =?us-ascii?Q?B7rh7ias7gjkGCLTlnsfoeYcG/1a60Ov1r3RXxfxc++YPRMYuvlGAT3CU3H3?=
- =?us-ascii?Q?blVRYBickxQ5ap+S3APtzD3OxxA2iecx+fPkJgSZoGLA9tmf5HwuF+VDje0f?=
- =?us-ascii?Q?D6M/3JCBANz0Mye4eH9nye2PWzv1/+4uFUc2uvsN3LIjs9cs8FrXYaOkzQO2?=
- =?us-ascii?Q?AO0YxCC8e+Y0zP6oxsUXFfolpH0fUSYgXue5G8iKSyj8YDo11yzkLjO/h+Np?=
- =?us-ascii?Q?RAk/+MU8o4PV0AJnIhumo9I4qU3AP6Io8AudY/vDFDIc2x/NPp8d0JvZIcAd?=
- =?us-ascii?Q?I3+p0RjVtv8nIFo/pO0OlN79kQ7mq2+0oK1VBwQEe9f3Vs1MCQse8o2gOlMQ?=
- =?us-ascii?Q?EqgglRrUOsTtyoZvDQFnJ1Bc9B9kZ09ec4bV0sjY7Fl03hnrkxBxb/xGRE2T?=
- =?us-ascii?Q?aajbkUpt94Oat11tH7swyAc7hwKjObWsLzJ6FuUt8z4GK4QnXJpQ0bY2bYJh?=
- =?us-ascii?Q?WNgPLXPWakSTRoGhoKWa0LJ5VmM2TVFUBXFtlvckxJgHk7Wd8IdxaO94hdhx?=
- =?us-ascii?Q?VDJg+eZOLi1ONwata4mLsdEjHwc/H9YFIS4D0ATrYLdH/pMyr4C/h+gQo8mU?=
- =?us-ascii?Q?xfCF2VUcAh3JvmO7egVWiSEPFndQfa5nXCurvLXjSdTsN4ggQP5BXysQ9BvO?=
- =?us-ascii?Q?6FRJ6VtuyTn+O7gbKn1B0PklfK1oPBMLB9uo32+zGZngPCuAbZ3xUPjHaooU?=
- =?us-ascii?Q?9iLgo6Y3BdsOimD9f8w+ZgM5hub1jDwoOZ/QRrraFmRPE1zYfXnMCTkNDZFL?=
- =?us-ascii?Q?DIlSTcPCmeoi+GojYusb6f8F1x870ErC3XY32IGKepBVhlNJQhl19SEfgOaV?=
- =?us-ascii?Q?YsmUhBxz0+0stYAvPr7sQR4LRMe1Mc+FjlbKG2ZDEc44nxk5H1ZNyiwOOT7R?=
- =?us-ascii?Q?CKny/jgGttmYEGnJOkaWLsefXFKp+cLU7DyCmBiywFxNHW5lA+nAbfp/kSbU?=
- =?us-ascii?Q?S2i8mqUmzyZr63wEmkPCbhXq9bZcKWrb6UHI8zhqWccVjcn9f/X/GaRe7K+/?=
- =?us-ascii?Q?fYLnp8+9TQnt28F0iqDB4jYmbcTSRzoKoGyDnn0xBuqBRpSp1xw8900CsCig?=
- =?us-ascii?Q?wUzieggKzw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fa372642-d02b-4ac3-f0a8-08de7df2bee4
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 15:44:27.4915
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pejKcNmqd39MF0LsRjgRocGp7Kxgul3g0/L8CdQt920zhfYVhgsqVezOvs2KnH1YJOVgpOf80jcKW5XgdBWrhg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10941
-X-Rspamd-Queue-Id: 0680E23C041
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260309-airoha-7581-thermal-zones-v1-1-f9b543981022@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MwQqDMAyA4VeRnBeIDq36KsNDsJkNaCupyJj47
+ is7fof/vyCLqWQYqwtMTs2aYkH9qGAOHBdB9cXQUNPRkwZktRQYXdvXeASxjVf8pigZO6LWucH
+ z7BlKv5u89fN/v6b7/gGVZRW3awAAAA==
+X-Change-ID: 20260309-airoha-7581-thermal-zones-6005779dacda
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
+ Lorenzo Bianconi <lorenzo@kernel.org>
+X-Mailer: b4 0.14.2
+X-Rspamd-Queue-Id: 53B2E23C2CC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273019-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-273020-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	NEURAL_HAM(-0.00)[-0.977];
+	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.972];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.1:email,0.0.0.2:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, Mar 06, 2026 at 03:09:48PM +0100, Michael Riesch via B4 Relay wrote:
-> From: Michael Riesch <michael.riesch@collabora.com>
->
-> The RK3588 MIPI CSI-2 receivers are compatible to the ones found in
-> the RK3568. However, their integration in the respective SoC may be
-> different when it comes to the (currently not implemented) split
-> DPHY feature. Therefore, add the RK3588 compatible to allow for
-> future differentiation.
->
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->  Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
-> index 2c2bd87582eb..5f8014da31ca 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi2.yaml
-> @@ -18,6 +18,7 @@ properties:
->    compatible:
->      enum:
->        - rockchip,rk3568-mipi-csi2
-> +      - rockchip,rk3588-mipi-csi2
+Introduce thermal controller node to EN7581 SoC.
+Define thermal-zones and related cpu trips and cooling-maps.
 
-Since driver is exact same as rockchip,rk3568-mipi-csi2, so
+Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+---
+ arch/arm64/boot/dts/airoha/en7581.dtsi | 52 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
 
-oneOf:
-  enum
-    - rockchip,rk3568-mipi-csi2
-  items:
-    - enum
-        - rockchip,rk3588-mipi-csi2
-    - const: rockchip,rk3568-mipi-csi2
+diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
+index ff6908a76e8eb6cf91343495d1fe531a868e41fb..092c8ab0f4322552495dbe00b9e41e087876817e 100644
+--- a/arch/arm64/boot/dts/airoha/en7581.dtsi
++++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
+@@ -4,6 +4,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/clock/en7523-clk.h>
+ #include <dt-bindings/reset/airoha,en7581-reset.h>
++#include <dt-bindings/thermal/thermal.h>
+ 
+ / {
+ 	interrupt-parent = <&gic>;
+@@ -74,6 +75,7 @@ cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			clock-frequency = <80000000>;
+ 			next-level-cache = <&l2>;
+@@ -83,6 +85,7 @@ cpu1: cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x1>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			clock-frequency = <80000000>;
+ 			next-level-cache = <&l2>;
+@@ -92,6 +95,7 @@ cpu2: cpu@2 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x2>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			clock-frequency = <80000000>;
+ 			next-level-cache = <&l2>;
+@@ -101,6 +105,7 @@ cpu3: cpu@3 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x3>;
++			#cooling-cells = <2>;
+ 			enable-method = "psci";
+ 			clock-frequency = <80000000>;
+ 			next-level-cache = <&l2>;
+@@ -124,6 +129,39 @@ timer {
+ 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+ 	};
+ 
++	thermal-zones {
++		cpu_thermal: cpu-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&thermal 0>;
++
++			trips {
++				cpu_hot: cpu-hot {
++					temperature = <95000>;
++					hysteresis = <1000>;
++					type = "hot";
++				};
++
++				cpu-critical {
++					temperature = <120000>;
++					hysteresis = <1000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&cpu_hot>;
++					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
++
+ 	clk20m: clock-20000000 {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -173,6 +211,11 @@ spi_nand: nand@0 {
+ 			};
+ 		};
+ 
++		chip_scu: syscon@1fa20000 {
++			compatible = "airoha,en7581-chip-scu", "syscon";
++			reg = <0x0 0x1fa20000 0x0 0x388>;
++		};
++
+ 		scuclk: clock-controller@1fb00000 {
+ 			compatible = "airoha,en7581-scu";
+ 			reg = <0x0 0x1fb00000 0x0 0x970>;
+@@ -300,6 +343,15 @@ rng@1faa1000 {
+ 			interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
++		thermal: thermal-sensor@1efbd000 {
++			compatible = "airoha,en7581-thermal";
++			reg = <0x0 0x1efbd000 0x0 0xd5c>;
++			interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
++			airoha,chip-scu = <&chip_scu>;
++
++			#thermal-sensor-cells = <0>;
++		};
++
+ 		system-controller@1fbf0200 {
+ 			compatible = "airoha,en7581-gpio-sysctl", "syscon",
+ 				     "simple-mfd";
 
-So, needn't change drivers.
+---
+base-commit: 405c09548a695ca7be58b5b9d3ac8388630e907f
+change-id: 20260309-airoha-7581-thermal-zones-6005779dacda
 
-Frank
->
->    reg:
->      maxItems: 1
->
-> --
-> 2.39.5
->
->
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
+
 
