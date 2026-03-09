@@ -1,207 +1,174 @@
-Return-Path: <devicetree+bounces-273065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273066-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iMweI40Lr2lzMQIAu9opvQ
-	(envelope-from <devicetree+bounces-273065-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 19:03:57 +0100
+	id EF4vCFkMr2lzMQIAu9opvQ
+	(envelope-from <devicetree+bounces-273066-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 19:07:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762C623E277
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 19:03:57 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2566D23E396
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 19:07:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 71FD13032892
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 18:01:46 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 580FF301C8EF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 18:06:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7434041C2ED;
-	Mon,  9 Mar 2026 17:57:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595342727FA;
+	Mon,  9 Mar 2026 18:04:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VQ32ADvb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FP4DODNO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D589E41C2E2;
-	Mon,  9 Mar 2026 17:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CBE7285C80
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 18:04:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773079055; cv=none; b=YIOpOYJjbBlieke7qTNW/vAXD3v/2B5UOK5cJ9KhkCMRQRPyev01jHPyr9hNt+Ew00RrmU9Vx2TDvl4Rk8r6QSOuDqPwikoc9XdSCBklZOCBZwto4BYpIK8CkDo8D3bTJ8Vh8lv3ad211/VeXUFAgUgi/pDHs1gwCtuLmp3jzOk=
+	t=1773079448; cv=none; b=RwE+wcKlG27zmo9lICUbCIDaF84sSUfKOgo5SZhVEnqCaX28z7T/LdFpHXSEBueddmr2S1+rSOZkqiUdlgIOEast/jjmz6ZOsexI2mvdOkvnR9XHKlpsZ+bied8JiRFqNOFMSXRbSgf+DTB6AjlIk/tojJ/9dUEIy7XO0Tcsw7E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773079055; c=relaxed/simple;
-	bh=umRBIgezxy/dOmobJ4s+VmhAY+beHNIpBO1wRh2/qIQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZVY4lwcbrPyVHtrkryWJvkLa+JcXdF70OuWcDi848V4vcem2DtAvpUYqBXyJt0t+6BOmzleO+l23OLcx55XQBVuFc804Qq7yRfKbUiXPzdKhIFoPE2jEqmEvcK+dUlK122z/wZVWQiwNgQStvN+47AuZig5V9gxu1zsCCoLLdmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VQ32ADvb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22CFBC4CEF7;
-	Mon,  9 Mar 2026 17:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773079055;
-	bh=umRBIgezxy/dOmobJ4s+VmhAY+beHNIpBO1wRh2/qIQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VQ32ADvbfD8iXzwmmwiwU2Ui8jZLQQH+l6LYrom56+g7S04WbCyAnYohKGaSSUOmC
-	 MSSR3B5KEwOtM1Yh/X71U+8lF3phb8uo5L182+r0/Ri1G0tp1uST/I+4TIA66IePu7
-	 dd6iGq5iKJoz8sv36dOfoMLXpdUEjUlqOYBimR0bix5sHkNWoBtmyZrR3EWVKu6Lh5
-	 17kKtJ1CXfPIWsJlzO/yZNVc9z+Phvj/TE3bWOqPEE8JnBx3PPChlKY+ppKSi2rSJO
-	 YfaQJbHxeFttKUY3sVC00sHrNAdWJdA0IZBm8NGHF+hiXrOhUMEp6ajGu7Jci8T92o
-	 9wymE9A806tYw==
-Date: Mon, 9 Mar 2026 17:57:33 +0000
-From: Wei Liu <wei.liu@kernel.org>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>, "Kirill A. Shutemov" <kas@kernel.org>,
-	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ricardo Neri <ricardo.neri@intel.com>,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>
-Subject: Re: [PATCH v8 09/10] x86/hyperv/vtl: Mark the wakeup mailbox page as
- private
-Message-ID: <20260309175733.GA3083831@liuwe-devbox-debian-v2.local>
-References: <20260107-rneri-wakeup-mailbox-v8-0-2f5b6785f2f5@linux.intel.com>
- <20260107-rneri-wakeup-mailbox-v8-9-2f5b6785f2f5@linux.intel.com>
+	s=arc-20240116; t=1773079448; c=relaxed/simple;
+	bh=saN2Ki1xXcdiPdysrzrwglOdm/Xhe26yzmN3T6+yXpY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PwmDDghdn2xKqIukY2MnpROonIrUo68YmG9KV2hKA0OwYnXEAII2C+VL9BeBMBw82rioFg/j/tF3DiQlLaX2fao5xlNfhpXVgkoT1c11FTdFtZinhZ5HnibaYWbbSpGteYE5RaGHZ133jkUqj2X/Kq1mYE4PzYaNJ47IDpO3WcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FP4DODNO; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-439c5cce2c6so5592055f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 11:04:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773079445; x=1773684245; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dV3Rs94eq/8lEKJBAht9P9yGrd7viF7G8GZxAdck6ME=;
+        b=FP4DODNOEfhNIKEoFxGYqKWOetc0mf1i/PPNR9ICCsFNj8xSBt1lV+7ALSp4yU8v8Z
+         C5EMZkx3+GLpG0JQV8boHcYEE4bg8ATOZJVkMqZ2oXH8092wzBcpAYlGONrKv1d1A9Rn
+         lsw+c76htLF0P2Rxy0kLZvGNI4hyHUMqJJ133y74sQvOPydYHoE1jb74nWzZhcLBfTNx
+         0Qr5cqgkciPG+jxGwFDR8TnnPy4kNtbvigqngRVTQ75Hbg0GHOROM08H7djupdB5X19c
+         qN/07YPkVYTVFJE3usU1i0qv8o/KnNTVJc+wCInQ3tv226BKrQSyQ4I+gBYE3qWPWMsi
+         LSsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773079445; x=1773684245;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dV3Rs94eq/8lEKJBAht9P9yGrd7viF7G8GZxAdck6ME=;
+        b=NsZJGmtstO1/7Xi1gWTrr5nd+a/+Cl1Rwd6TpQs34lMapW/YD4V3BKFGa5hY3MSa7c
+         JCWZ2HUG3GInsfAnAq33AH8TvCY2EdkdM2WssuBcPYQ9Yr5Ycv9o7cz6YH/aEFAF+REj
+         xm4oFGed6bDTHRwGKiyoLrVnsJRcc6LnNIEQtIcvd4+NF4OsyAmnZVhahYNl2vD6y1T0
+         lH0L+CyvBszirp17oK3xuKmovKIh3xw6FsIcJ0698FXlkUvuIBndt9BcvRdSIaGtKv1R
+         Jsr68ZopQzhKGU7Lad/GcBdXwX/v4nNyFxAzfVQ3dhxLHvt6pZCwmowmVhrIqzVxmHv6
+         Ffig==
+X-Forwarded-Encrypted: i=1; AJvYcCVTOHXTaoIT9yI/TD2kkJhHQxjHFVj940YtmmgaVvKkCiuOSCIVOt9zxhvtLGJKpLrba5CxQ0LIxMmU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy1zzld3pvciJI7utNTlBdleFSu+W3+uSS2PPq/h59NvjYnb4oS
+	SpfzpRjz+6dRVZ3G+7tjA51SEhTV2R4DdOE3QiSeL8cGHCNRj2ZimFUh
+X-Gm-Gg: ATEYQzyvRUrxhc0+VTW64s74jpxB1z8XySl7YSTOkH5Pjqo2ZJ/a/pd0DNwT1uGCRdK
+	nq3afeot9/b8FhP2543Utw47Wise/sdwWZgHzfFHZAIpXZ+g4iyztyGSIGwVxaC6+BsaV1gibRw
+	JclNCTB29jCa67mq5OLbg1VaQuO2d2B07v6DYw4z78SUkeUwer0E8KaFtAe/l7b3c/fNvu53pJH
+	ucBlSCyCis21y4+fpuHesiLkWDPnm0Px37oiyXeGsxHRUvmpCzGLi6Q5LZYexrhF5HGGw0qLQm9
+	2uJn6vH7Dql+NGZ2JSWcACe0xtwwjR9qCCJ5K2B00O58Lay8uzAyQkI6WBwzpRD/Jb4brkyvJcy
+	Nzj/vhoQozrYVz0pWssZSOxRpLCBWJYJl5mUZ8f+Oq2Zznhw3zvW8bIHhEjoiI7PFwMANg7i8E+
+	EdF0wQp/NGzmFArjpiyJo=
+X-Received: by 2002:a05:6000:290c:b0:439:b3d2:376b with SMTP id ffacd0b85a97d-439da66207amr21666689f8f.14.1773079445110;
+        Mon, 09 Mar 2026 11:04:05 -0700 (PDT)
+Received: from luca-vm.lan ([154.61.61.58])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dad8dbb3sm25233528f8f.4.2026.03.09.11.04.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Mar 2026 11:04:04 -0700 (PDT)
+From: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Luca Leonardo Scorcia <l.scorcia@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jesszhan0024@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: display: panel: Document the rotation property
+Date: Mon,  9 Mar 2026 18:03:36 +0000
+Message-ID: <20260309180353.8220-1-l.scorcia@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260107-rneri-wakeup-mailbox-v8-9-2f5b6785f2f5@linux.intel.com>
-X-Rspamd-Queue-Id: 762C623E277
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 2566D23E396
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273065-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,microsoft.com,outlook.com,linux.microsoft.com,vger.kernel.org,intel.com,linux.intel.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[gmail.com,oss.qualcomm.com,edgeble.ai,linaro.org,linux.intel.com,kernel.org,suse.de,ffwll.ch,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273066-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lscorcia@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wei.liu@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[liuwe-devbox-debian-v2.local:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,intel.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-Dexuan, are you happy with the patch? You can also delegate to Saurabh
-if you think it's more appropriate. Thanks!
+The Jadard jd9365da-h3 driver already allows DRM to get the panel
+orientation via the device tree rotation property (described in
+panel-common.yaml), but it's currently not documented.
+Describe it in the driver documentation to fix a dtbs_check error in
+Xiaomi Mi Smart Clock x04g, where the panel is landscape-oriented.
 
-On Wed, Jan 07, 2026 at 01:44:45PM -0800, Ricardo Neri wrote:
-> From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> 
-> The current code maps MMIO devices as shared (decrypted) by default in a
-> confidential computing VM.
-> 
-> In a TDX environment, secondary CPUs are booted using the Multiprocessor
-> Wakeup Structure defined in the ACPI specification. The virtual firmware
-> and the operating system function in the guest context, without
-> intervention from the VMM. Map the physical memory of the mailbox as
-> private. Use the is_private_mmio() callback.
-> 
-> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-> ---
-> Changes in v8:
->  - Included linux/acpi.h to add missing definitions that caused build
->    breaks (kernel test robot)
-> 
-> Changes in v7:
->  - Dropped check for !CONFIG_X86_MAILBOX_WAKEUP. The symbol is no longer
->    valid and now we have a stub for !CONFIG_ACPI.
->  - Dropped Reviewed-by tags from Dexuan and Michael as this patch
->    changed.
-> 
-> Changes in v6:
->  - Fixed a compile error with !CONFIG_X86_MAILBOX_WAKEUP.
->  - Added Reviewed-by tag from Dexuan. Thanks!
-> 
-> Changes in v5:
->  - None
-> 
-> Changes in v4:
->  - Updated to use the renamed function acpi_get_mp_wakeup_mailbox_paddr().
->  - Added Reviewed-by tag from Michael. Thanks!
-> 
-> Changes in v3:
->  - Use the new helper function get_mp_wakeup_mailbox_paddr().
->  - Edited the commit message for clarity.
-> 
-> Changes in v2:
->  - Added the helper function within_page() to improve readability
->  - Override the is_private_mmio() callback when detecting a TDX
->    environment. The address of the mailbox is checked in
->    hv_is_private_mmio_tdx().
-> ---
->  arch/x86/hyperv/hv_vtl.c | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/x86/hyperv/hv_vtl.c b/arch/x86/hyperv/hv_vtl.c
-> index 752101544663..2af825f7a447 100644
-> --- a/arch/x86/hyperv/hv_vtl.c
-> +++ b/arch/x86/hyperv/hv_vtl.c
-> @@ -6,6 +6,9 @@
->   *   Saurabh Sengar <ssengar@microsoft.com>
->   */
->  
-> +#include <linux/acpi.h>
-> +
-> +#include <asm/acpi.h>
->  #include <asm/apic.h>
->  #include <asm/boot.h>
->  #include <asm/desc.h>
-> @@ -59,6 +62,18 @@ static void  __noreturn hv_vtl_restart(char __maybe_unused *cmd)
->  	hv_vtl_emergency_restart();
->  }
->  
-> +static inline bool within_page(u64 addr, u64 start)
-> +{
-> +	return addr >= start && addr < (start + PAGE_SIZE);
-> +}
-> +
-> +static bool hv_vtl_is_private_mmio_tdx(u64 addr)
-> +{
-> +	u64 mb_addr = acpi_get_mp_wakeup_mailbox_paddr();
-> +
-> +	return mb_addr && within_page(addr, mb_addr);
-> +}
-> +
->  void __init hv_vtl_init_platform(void)
->  {
->  	/*
-> @@ -71,6 +86,8 @@ void __init hv_vtl_init_platform(void)
->  	/* There is no paravisor present if we are here. */
->  	if (hv_isolation_type_tdx()) {
->  		x86_init.resources.realmode_limit = SZ_4G;
-> +		x86_platform.hyper.is_private_mmio = hv_vtl_is_private_mmio_tdx;
-> +
->  	} else {
->  		x86_platform.realmode_reserve = x86_init_noop;
->  		x86_platform.realmode_init = x86_init_noop;
-> 
-> -- 
-> 2.43.0
-> 
+Signed-off-by: Luca Leonardo Scorcia <l.scorcia@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+---
+v3: Fixed commit message wrapping
+v2: Review feedback: improved commit message to explain how the rotation
+    property is used by the driver and why it's needed in the driver
+    documentation.
+
+ .../devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml  | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+index b8783eba3ddc..25024f4a63e1 100644
+--- a/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
++++ b/Documentation/devicetree/bindings/display/panel/jadard,jd9365da-h3.yaml
+@@ -33,9 +33,8 @@ properties:
+     description: supply regulator for VCCIO, usually 1.8V
+ 
+   reset-gpios: true
+-
+   backlight: true
+-
++  rotation: true
+   port: true
+ 
+ required:
+-- 
+2.43.0
+
 
