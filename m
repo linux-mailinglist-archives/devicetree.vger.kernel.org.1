@@ -1,142 +1,229 @@
-Return-Path: <devicetree+bounces-272951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272952-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6MpHAATMrmnEIwIAu9opvQ
-	(envelope-from <devicetree+bounces-272951-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:32:52 +0100
+	id EGPACBrMrmnEIwIAu9opvQ
+	(envelope-from <devicetree+bounces-272952-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:33:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96DA4239C9A
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:32:51 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A92B3239CB7
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 14:33:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9E90530185EB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:32:50 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6E6B7301F3A7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 13:33:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7590A2571A0;
-	Mon,  9 Mar 2026 13:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E223F33A703;
+	Mon,  9 Mar 2026 13:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F7atOvsH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4wL+B0K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521361F16B;
-	Mon,  9 Mar 2026 13:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD5C42586C2
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773063167; cv=none; b=aueB5ISEPVYuZvL9c9ewhPXJZaHYfxwiDgII+2ErY4/yN7VW5hL5Mlo+sEN3GL1CIi3o5GDH+gdBhSUec9vlN2CQ3ZTLgVjMHP6BZr635+I1QyZ8zMDZ7WQ2HVDUTOO3WJpqYeAHVenfpXbeAH3coBY/txVeekwFT0l5sabsnsM=
+	t=1773063183; cv=none; b=CNQ6Alv+qokyECQ7+XER25CQURZjD9IHTLVkc0o8eKemMzoLSktm4Lhi4t2T1FvoRp/SYJevqb5CGvrLtGygeE6ZGvJi9HUrzZD3SJR4zSReQKq6z3rj9oxK3NUlBc6pfO/hfAJmXkcCrCN35bBC71HlUM3qR4Jiu5YecZww9z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773063167; c=relaxed/simple;
-	bh=LlWewtt/WAGkf8AC5DR+E7jrHyfKWDArd9DcvieLuG8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=s6DGh2GkYVvU9b8ay9YZmeQw5eNCpN+MC+RQdo+QRT5S9dIPAqDLSgrTjIK88oSFvO7aGrRCt3Yz72Ea5gt1UbcAc5FqLBFcullZZRjIRV5HDV4vbCMxSHXd1x0EKH+qa9x/Q/2xfve3IGKqcl1ZZ/DLU2Md202ojG2MQmGjPQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F7atOvsH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0277C4CEF7;
-	Mon,  9 Mar 2026 13:32:43 +0000 (UTC)
+	s=arc-20240116; t=1773063183; c=relaxed/simple;
+	bh=BTHtEpNf79/aZLsd9vWZFWEtV159n9Y/T5kPu0xKjDE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LykoaBR7XWDF2OzgxXcE9pW+fayfgvTACHroiShLXZZ3aGw4uzFytOvh2iptDML8ndI1r/OciG9OGtrXYqRqpxHkMVCOL5f8QGmjbeVWbxjx1PuYaeiIY91w2iNg0SLj68KnVb926PIp1LSw9ArPGGi++UUb4+AnHQV+xHjYhYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4wL+B0K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A167AC4AF0B
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 13:33:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773063167;
-	bh=LlWewtt/WAGkf8AC5DR+E7jrHyfKWDArd9DcvieLuG8=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=F7atOvsHTgTzdzhlsqX8GIWfvtSwV8UXGXIzoEKgeDkVhX86p+WtzrGZzmDK9etRO
-	 z7veUnpdlazcaIyxxuVO/3kcge3UOPK5KIQxti2+/9RRp91+TqHhHk6zAYM8jq7Ylj
-	 lOASAe2aCXHH1FqtoDzxXhgeplhUWcQd1oupHFJ3Bq9+n0PPf7fDempBK1aiiFOuW/
-	 tua3gXPRWv1Ekp65X0PFxg3t1eWvmleOlHHe1qcGHMqVt5ZipeG8SMO0DithyQF1mE
-	 6zYOHrlbD4OT+nz6DYQxdnd2+0oZL4n3AbvSQ8YqRbVHJsfLN0srPMLCFnF37J0pa7
-	 5ez/bt4MejEDw==
+	s=k20201202; t=1773063183;
+	bh=BTHtEpNf79/aZLsd9vWZFWEtV159n9Y/T5kPu0xKjDE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=V4wL+B0KN0+mkKl6jlrce5TKebjg3Y43ayQb2agA8rlsxB2L5KrJbPRM4lffmOYVv
+	 WeoCbphnvAiSn14vJApR0DkykhCZi84KdCPucmK3ODu0eGjLqok6PdyDHKytnwBgBj
+	 CbNU5aXCnZQXzrMjw6j+NcNqh0foBwzW4aeI7pggoVoZ8ohWLocNPApwbUoMo85MFY
+	 oGTTo7w0CXdRGL0nRVVZAoudiPxXEXUTap9s9O4ghOFb505d8XzBb/FUXUrxweC0Z3
+	 PaYzMaRcgmkoxPVWNRrh+XRwyJqxfXrInguSTibxttrVEWJpgfwnDvqzFQAaapkrWb
+	 n3DnV8F/mtSjQ==
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-662b42ca0daso8596a12.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 06:33:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUnA54VeFew1B4RcMwzBoqCEq9IeJFky03vBSQSLOlPBI1mEHYuF1mV6CoGFTy2czHttj9ZbHj3XO/4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKmVI8+oOU4BL9I32BVppGozt517zmMf4Kvb+pn8cxaGQCLZL6
+	kmvhAofXnpNvpRLyFRO94h/LS+VA3xFpxcpnb6br5shHymeKJTN5G78z0MCiunFdbH35fjuiCDn
+	bO5FZSRCYqjvWrAJJqANz7KyZ4SJvcYQ=
+X-Received: by 2002:a05:6402:42d1:b0:661:3804:b0c2 with SMTP id
+ 4fb4d7f45d1cf-6619d51d6admr5919005a12.27.1773063181991; Mon, 09 Mar 2026
+ 06:33:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <cover.1772853681.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1772853681.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Mon, 9 Mar 2026 21:32:52 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H65H5WjRarf8KHN3zb1jSyFpGPS1By2=0Kqd1MqnVx9ow@mail.gmail.com>
+X-Gm-Features: AaiRm53ShuE-RRVpgsb6NRxueHra0ZOJThCsn08_hzoyeP4saxxF_8G4DDjsnCc
+Message-ID: <CAAhV-H65H5WjRarf8KHN3zb1jSyFpGPS1By2=0Kqd1MqnVx9ow@mail.gmail.com>
+Subject: Re: [PATCH v4 0/6] dmaengine: Add Loongson Multi-Channel DMA
+ controller support
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Frank Li <Frank.Li@kernel.org>, dmaengine@vger.kernel.org, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	Keguang Zhang <keguang.zhang@gmail.com>, linux-mips@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 09 Mar 2026 14:32:41 +0100
-Message-Id: <DGYAFNSJ7576.1E0JZ2W499ZQ7@kernel.org>
-Subject: Re: [PATCH v2 2/2] mfd: Add initial synology microp driver
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng"
- <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <rust-for-linux@vger.kernel.org>
-To: "Markus Probst" <markus.probst@posteo.de>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260308-synology_microp_initial-v2-0-9389963f31c5@posteo.de>
- <20260308-synology_microp_initial-v2-2-9389963f31c5@posteo.de>
- <2026030827-nautical-overplant-399c@gregkh>
- <8efdf3e1bbf24504d560c12131cade543bec82f5.camel@posteo.de>
- <2026030913-agonizing-shoptalk-ed98@gregkh>
- <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
-In-Reply-To: <7f8d979a881b29398f524f526f52ba9727d95a7c.camel@posteo.de>
-X-Rspamd-Queue-Id: 96DA4239C9A
+X-Rspamd-Queue-Id: A92B3239CB7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-272951-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-272952-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,vger.kernel.org,xen0n.name,lists.linux.dev];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.982];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,mail.gmail.com:mid,loongson.cn:email]
 X-Rspamd-Action: no action
 
-On Mon Mar 9, 2026 at 1:52 PM CET, Markus Probst wrote:
-> Yes. I will split it into multiple drivers using the aux bus in the
-> next revision.
+On Sat, Mar 7, 2026 at 11:25=E2=80=AFAM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> Hi all:
+>
+> This patchset introduces the Loongson multi-channel DMA controller,
+> which is present in the Loongson-2K0300 and Loongson-2K3000 processors.
+>
+> It is a multi-channel controller that enables data transfers from memory
+> to memory, device to memory, and memory to device, as well as channel
+> prioritization configurable through the channel configuration registers.
+>
+> Additionally, since multiple distinct types of DMA controllers exist on
+> the Loongson platform, I have attempted to consolidate all Loongson DMA
+> drivers into a new directory named `Loongson` for easier management.
+For the whole series,
+Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
 
-Independent of the other discussion whether this belongs into the kernel in=
- the
-first place, reading over the cover letter and commit message I understood =
-the
-following.
-
-  "Synology uses a microcontroller in their NAS devices connected to a seri=
-al
-  port [...]" controlling LEDs, fan speeds, a beeper, etc.
-
-  I.e. it muliplexes several physical functions that belong to different
-  subsystems, such as hwmon, input, etc. over a single serial port.
-
-This sounds like a textbook candidate for MFD to me.
-
-I.e. there is a very loose coupling of the different functions that make up=
- for
-entirely independent drivers, except that they share the same serial port
-connection.
-
-Whereas the auxiliary bus is more for very complicated devices to be broken=
- down
-into more managable (sometimes optional) sub-domains, where the correspondi=
-ng
-drivers usually have driver specific APIs to interact with each other.
-
-- Danilo
+>
+> Thanks.
+> Binbin
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> V4:
+> - Rebase on dmaengine/next tree;
+> - Add Reviewed-by tags from Frank and Rob, thanks;
+>
+> patch(1/6):
+>  - Add `depends on` restrictions.
+>
+> patch(6/6):
+>  - Move loongson2_cmc_dma_config{..} close to its users.
+>
+> Link to V3:
+> https://lore.kernel.org/dmaengine/cover.1771989595.git.zhoubinbin@loongso=
+n.cn/
+>
+> V3:
+> - Rebase on dmaengine/next tree;
+>
+> patch(1/6):
+>  - Keep alphabet order;
+>
+> patch(2/6):
+>  - Add Reviewed-by tag from Frank, thanks;
+>
+> patch(3/6)/(4/6):
+>  - New patches, format loongson2-apb-dma driver code;
+>
+> patch(5/6):
+>  - Add description for `interrupts` property;
+>
+> patch(6/6):
+>  - Use ffs() helper make the code cleaner;
+>  - Refact loongson2_cmc_dma_chan_irq();
+>  - Simplify locking with guard() and scoped_guard();
+>  - kzalloc()->kzalloc_flex().
+>
+> Link to V2:
+> https://lore.kernel.org/all/cover.1770605931.git.zhoubinbin@loongson.cn/
+>
+> V2:
+> patch(1/4):
+>  - Update loongson1-apb-dma.c entry in MAINTAINERS.
+>
+> patch(2/4):
+>  - New patch, use dmaenginem_async_device_register() helper.
+>
+> patch(3/4):
+>  - `additionalProperties: false` replaced by
+>    `unevaluatedProperties: false`.
+>
+> patch(4/4):
+>  - Rename filename as loongson2-apb-cmc-dma.c;
+>  - Rename Kconfig item as LOONGSON2_APB_CMC_DMA;
+>  - Rename the variable prefix as `loongson2_cmc_dma`;
+>  - Use dmaenginem_async_device_register() helper;
+>  - Drop 'dma_' prefix in struct loongson2_mdma_chan_reg;
+>  - Use struct_size();
+>
+> Link to V1:
+> https://lore.kernel.org/all/cover.1770119693.git.zhoubinbin@loongson.cn/
+>
+> Binbin Zhou (6):
+>   dmaengine: loongson: New directory for Loongson DMA controllers
+>     drivers
+>   dmaengine: loongson: loongson2-apb: Convert to
+>     dmaenginem_async_device_register()
+>   dmaengine: loongson: loongson2-apb: Convert to devm_clk_get_enabled()
+>   dmaengine: loongson: loongson2-apb: Simplify locking with guard() and
+>     scoped_guard()
+>   dt-bindings: dmaengine: Add Loongson Multi-Channel DMA controller
+>   dmaengine: loongson: New driver for the Loongson Multi-Channel DMA
+>     controller
+>
+>  .../bindings/dma/loongson,ls2k0300-dma.yaml   |  81 ++
+>  MAINTAINERS                                   |   7 +-
+>  drivers/dma/Kconfig                           |  25 +-
+>  drivers/dma/Makefile                          |   3 +-
+>  drivers/dma/loongson/Kconfig                  |  41 +
+>  drivers/dma/loongson/Makefile                 |   4 +
+>  .../dma/{ =3D> loongson}/loongson1-apb-dma.c    |   4 +-
+>  drivers/dma/loongson/loongson2-apb-cmc-dma.c  | 730 ++++++++++++++++++
+>  .../dma/{ =3D> loongson}/loongson2-apb-dma.c    |  93 +--
+>  9 files changed, 903 insertions(+), 85 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/loongson,ls2k03=
+00-dma.yaml
+>  create mode 100644 drivers/dma/loongson/Kconfig
+>  create mode 100644 drivers/dma/loongson/Makefile
+>  rename drivers/dma/{ =3D> loongson}/loongson1-apb-dma.c (99%)
+>  create mode 100644 drivers/dma/loongson/loongson2-apb-cmc-dma.c
+>  rename drivers/dma/{ =3D> loongson}/loongson2-apb-dma.c (91%)
+>
+>
+> base-commit: c8e9b1d9febc83ee94944695a07cfd40a1b29743
+> --
+> 2.52.0
+>
 
