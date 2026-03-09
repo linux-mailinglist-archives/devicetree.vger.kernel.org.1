@@ -1,152 +1,222 @@
-Return-Path: <devicetree+bounces-272762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272764-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qB9RHruNrmnlFwIAu9opvQ
-	(envelope-from <devicetree+bounces-272762-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:07:07 +0100
+	id 2NfjKjiMrmnlFwIAu9opvQ
+	(envelope-from <devicetree+bounces-272764-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:00:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7728E235E2A
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:07:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD2B9235CA0
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 10:00:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EE7093002B77
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 08:58:58 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 1961F3003BC9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 09:00:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E4E4370D4F;
-	Mon,  9 Mar 2026 08:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 827F2374175;
+	Mon,  9 Mar 2026 09:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b="CNXdO+dP"
+	dkim=pass (2048-bit key) header.d=kontron.de header.i=@kontron.de header.b="toSK6ZZ8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.fris.de (mail.fris.de [116.203.77.234])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023106.outbound.protection.outlook.com [40.107.159.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28F836F42C;
-	Mon,  9 Mar 2026 08:58:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.77.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773046730; cv=none; b=dbEOZTA/yA6wUjlPsHsjLujmF2uG++joPXr8cnMTj73fCK/H6YeMekGATSxZJl24yJoflo9IRUFT0uoLvT8dvbP5m33xJjcg4RZgZrcc5qLBechv2yhemyJKtxbnt07HQuUphiaUDO0O/lpKuCGVud3TB4+yMYPot7mZqxRN4z4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773046730; c=relaxed/simple;
-	bh=alfksuUsaIMwwikJNXi8Mz/rONNZgs1R0FswmS9hGp8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nFN3BiIL5QkKivusYHw9ZXJj3+zl3HnqvhhjrNj7oGG+DNkExDPkiQ6OBjhqBQVvqoBdOTxzqBjcwdOA8vMH/kB2E/nMChJOf2LKsyK4EKFVZETIEFdAjFix0vShZSvXF+qnZxdGXU1m0N8xpRS4lDlanUgg7t5h50w0BIKGj/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de; spf=pass smtp.mailfrom=fris.de; dkim=pass (2048-bit key) header.d=fris.de header.i=@fris.de header.b=CNXdO+dP; arc=none smtp.client-ip=116.203.77.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fris.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fris.de
-From: Frieder Schrempf <frieder@fris.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fris.de; s=mail;
-	t=1773046719;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=sNGBrZbcItuL87F8eu29arIhBMtm0lZwX1AAsxQD8uE=;
-	b=CNXdO+dP8JYgZs6IcsExtMJTi8AL7PMVvrZNXM2VJ61/M6ZpwGGSQOc6IYXLi3tLq14smU
-	EzLz8KmUgvMulY3uL1fklO8APl3znyDfGZrK5ek5BMWU+Q+s7r4H9LpMmZ9ti2EKvairuB
-	KxpaIi/s5M7N7UCBLcpAZMc/j1vYTsgq4KhRdE8MijyunvWwBXMRedFAJwu4K3LOiOvOVu
-	IPC6evVX1wpfA4xq79/8dbqL2EXfQrgnnL1xqCSkZ+sqQdzoRbW1OVhDIxd9e5VTp11OQ0
-	BXWroxT8nNOEhc+b47JOGBHQZdqzdy5tX1guWLsFGIXZGSMhlzdtGSWuOZ8Qtw==
-To: Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Frank Li <Frank.Li@nxp.com>,
-	Frieder Schrempf <frieder.schrempf@kontron.de>,
-	imx@lists.linux.dev,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61A6372B27;
+	Mon,  9 Mar 2026 09:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773046819; cv=fail; b=TiiZ98JViXnFEZsqq0/3ob81FznVtu73CQ7T4RsPSOvdd5Q/4NnOK6Fqqj9hUWR9OJIsdtIZSOc2it79ElctIiGKftYVKaWdd4NJqqjtmV3OOIRwvcdPdCBcJZLTmMSV0VoOgyelQfYhoDUomFLFECOVprT56lqnk02J8dKY5kI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773046819; c=relaxed/simple;
+	bh=E0t4raxzuWVJu0K7VKXMOXlqW5+YNghbnwqH8kHmgxI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Rj4185ylnJ3zDbUNq0MbOzCn/fh8EEFhxJD6hv83vPEU/RdtgGRmcPpVYq/TGGpIHQ8I3XJjzwJ5Opte+xBcualmQJvH8JrJmVhMZFDyyPorkhOj6aJGN5miLK72TO0gyGJPv3icqF2hOfkqbHGEp3Rg6bDmdG0VAJSd047YPxI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (2048-bit key) header.d=kontron.de header.i=@kontron.de header.b=toSK6ZZ8; arc=fail smtp.client-ip=40.107.159.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yWFxwqbLxNAPlkVqjciI9OdLyfEteAg5OIvLAz61f0gKpSUQ1u5KTAeyIxKFUAOSxULC6+3eMrMBWM5KbKuzWennI2ecIWr0RtVrlFrHwGa9Ke0bRxDa88yhrH04DcwvBL8cjRfqVsqOC7Vzzy4BK+LdogHTIYUBLUVcsptbAvat8lLcpBBGs805Ah5RTwrhWALcKV+bJDLUo4zNjnNBKmC8OnxBhjDxWl3fLGlV4PXav0ZSwsjbMSoE4Q4LSYVpLbMEqtmgwYv9uWIWj9A/dOLU/mnvF1HjcP9jkfskxwADgM/pXoizoeiYH9dtKohwmXiTtezAxvKhk2u82mQ3aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PqAVWUH0bKDoeJU4Txzc+Lq5tfW4jAkf0KzdfnA0I6A=;
+ b=dJyE9hEzmzhGex7vGDZKiJTIramIe5NkNnh3kQ+Rz03ISHEGqh/9VVgqNpzvw/fu1Nm3IvXzKXqB5vLZls53sUjwNQ3Rn2eamhqEwb89yIFLtAER0+CYn0jIr6bvRzihuM5DJ2ppqBeqMy3kOA3RlWBcHz/8vwD/kRFcI3ZlWU5AqPlEaNeuyAEv9usKb3RXruTeHFZFftGURvswQoTOozqJbPL48HvfPVWiFgePBXwp7+IJ6O++QW1dEGotZC/fSJycyEC/dS2pc6XmfMdtKYHk+YChCJkcqqamGcjo8NgPeyKRzJHw2cNDyVD6zhLWq7euvhMGW4qbO0o4w2+1tg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kontron.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PqAVWUH0bKDoeJU4Txzc+Lq5tfW4jAkf0KzdfnA0I6A=;
+ b=toSK6ZZ8XUW0mXM4yfCZXpdV/XmwEYmqVAqiUdDFJYNGefbrShJBh4m6J6OArbIhzHVHgwVruje4Rq1q6T7yYXUkj0HP/n+Ii9XJTpxVRuqFn7V3CBinFEf5eHig1vIl1f8IJmwMzGzJhoJgarA+ePHKIqjI6zFh6D0bMpAuaVsz8BAF13HEQ6scKNgMFJMN1vPIcDhkumL+prcRACVl8/9xhbtgv5I4GOWAxXQe9hEdM3fpeFq/KRgVZTiNH4NPpA1oJwCa+axLZzigpofB6+/VJKVsQ1fH5OQ9h+CA//ctSgqAiiLd64Utfy7oONKkgLyze+s6Le/iiLRwGrG5dw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fb::23)
+ by VI1PR10MB3677.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:800:137::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.24; Mon, 9 Mar
+ 2026 09:00:12 +0000
+Received: from AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22]) by AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::a276:4ad7:962:da22%3]) with mapi id 15.20.9678.023; Mon, 9 Mar 2026
+ 09:00:12 +0000
+Message-ID: <af54759d-b65e-4a12-a507-2a357bb7cd0a@kontron.de>
+Date: Mon, 9 Mar 2026 10:00:11 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] Kontron i.MX8MP OSM Devicetree Fixups
+To: Frank Li <Frank.li@nxp.com>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Frieder Schrempf <frieder@fris.de>
 Cc: Annette Kobou <annette.kobou@kontron.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 2/2] arm64: dts: imx8mp-kontron: Fix boot order for PMIC and RTC
-Date: Mon,  9 Mar 2026 09:57:43 +0100
-Message-ID: <20260309085749.25747-3-frieder@fris.de>
-In-Reply-To: <20260309085749.25747-1-frieder@fris.de>
-References: <20260309085749.25747-1-frieder@fris.de>
+ Fabio Estevam <festevam@gmail.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20260220103636.9697-1-frieder@fris.de>
+ <177281293090.267666.2279739168174022521.b4-ty@nxp.com>
+ <aasSIzf8JKPcI0xJ@lizhi-Precision-Tower-5810>
+Content-Language: en-US, de-DE
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+In-Reply-To: <aasSIzf8JKPcI0xJ@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR4P281CA0019.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c9::16) To AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:1fb::23)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 7728E235E2A
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR10MB4277:EE_|VI1PR10MB3677:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9554f6eb-43e3-449d-3128-08de7dba45b3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|7416014|1800799024|921020;
+X-Microsoft-Antispam-Message-Info:
+	5ShhFNKw36r9H7om2dQ4z2T1s4YlyptGvENFlC1w+0kfEE0nkcVm9vPP5KN7UyW99ACGcXLWsVcp/TUouSFo76GNNXd+9tOJvq77Lln9K811T9aNqWhG+pq1JSh7Cmq50SiyXpbgz7ojIYaHXa90HRU7OkC7WkUY+uN56AP/ppRE6ma1jluHny7H8VpzuNIdsS0QjiU+1V2ycI2gYkCI3GJ5EvBB05SIF8o+3C75hIxhzpwpaawBjxOrd9A11W04TTTiCPVQ8QnvHwzy2HNsqkCOTetsGBPzWi09j7Qd3vfxWlXlMzZN8rtx9bQBKqhjK3ebLS5wAQ4sPrlIxUJytuXgGDohSlZOHQFyaA/FuXCEoXYQVid5wlflKNz99f6EqS+P8SQsQXmwU+Sb5JDtLgGSq2/DNBhMdeW8SgiaJlbRyoGiQ/lyi/qyjQibFyBu8y1M6NCib6VZguEuYpup/cTUGCDGXyOnKpjEXIIIo2HBbcoLWeQCn5OQXbF45H6Y5zy3/RCfFUWQPnD3NTkRM57BpQIuhhitIG4MI6fowzn03fNonJ9Fe1mekeC+t/m0pkFs2xANhu/FlJJuS7vKUq4JRnb3r8ppiRIaOk9JHzxh3/8UrlfHOHXFr4icSRPkWaVNnrevhSFx4wJoyNxLv5XS/9jxXaNDknkzBXBGG1qqTp3YQn1lOL7P50t0mKniO2E3KqFCiSPKF1LyiYVWVyZ+MFSnoYDacxZhXl8pcaRcje+v37u6yWwekBqR/3251gQhG7TKJrLBmQB+/Ajiqw==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SG90QVBHQ3NaT0JBYS9nSXBycjRZb2Y4NjJTWjZsejVZMVpJVktNeVlSWlBM?=
+ =?utf-8?B?cVhOK1FZam5uaEtSZFY5VFBtWmNzbUx1VDVRS2Q4OTh3Q2RVZDBrOXh3Z1hK?=
+ =?utf-8?B?NkxaYTZrNkpkSXoxV2FZbFBLcW44bzFSNkpybGxTS1orVnI0M0NtNU9WV0Z2?=
+ =?utf-8?B?blZmaTRPQTYxeFFrNXR1b0xnRXdGaGJyZWZBa0M4K3VnZlJsUkdsSE82VElO?=
+ =?utf-8?B?MXFKTExTVGdtYmx1WC9hL3NWdWZBRGxMWERhRVdGWllzU3dnUU9vcjhQVHl1?=
+ =?utf-8?B?MitTVzVSMDlwRnEzdXpYZ2NiQWM3akZiOFhzNDloblQyd0F5T2lIVnpoUjZD?=
+ =?utf-8?B?Q3dVc1NzT2ZBY1h4eTlRaGFZVWcrVzFWR3crTWRFRWFzYzJ3ZWtWZDM4dVlq?=
+ =?utf-8?B?SDRmZko0c2Z3cnRFRG1BQzhNMmkyRWdwVkhaY0JJVmtiYUFIcjVFWE5Vckp1?=
+ =?utf-8?B?bUtwR2dTMUZTVXcwUHBHQSswZGk1SWQySkwzMzhDVTZOc3B3K0w0UFU2eWNn?=
+ =?utf-8?B?eVZ2V2tqN1RDbmlkbE42NkwxUjZWUWpHY3hMYlJSVTlkTEFLb0ZObHRtTDZm?=
+ =?utf-8?B?ajZqV1pPZFF1RGhBa0NPNXE4VTlRWUQxRmlxbmw1YzQ3c0ZxOHNvS3NRVlNk?=
+ =?utf-8?B?VUJTVVRBby92RDV3RU1mK2UvaVRDRUpiY0Nza0dybFZuMERkWjRYVUV0aE5h?=
+ =?utf-8?B?d25HaWhpd1FsZGtoeGJYaUlnWC9pN21sazBMY3pPbEdvVThTR2E0YWJIc0V1?=
+ =?utf-8?B?ZzhQeUlMY1JsWlQyYSsybXpKVjhNYTlqQ3VVYVdWcGI5ZHQ1UzBWd3UraFVq?=
+ =?utf-8?B?cmFuWmpKTnRLdFQyOUdlaTg3c2RBZTJJWHZSbzNHYjJzL2s0OHNOV3pyQnRE?=
+ =?utf-8?B?MENDYXR4TFU2c3ErRkJEeGQzM0xjYStWM3VvWWNKOHFkTXpNbkFhVGxraDNH?=
+ =?utf-8?B?T3o1c3JIR2RwVkJLTzFwM08xMnBOZm9oY1diSGtwUDRuZHE0ZzhwaUFBK2hq?=
+ =?utf-8?B?RmtRUkRNVEhYZUNOS3lUTDIyNU9mZ0UwKzc4Q1A2TWNjbkJpWU5hVDNOUVMv?=
+ =?utf-8?B?dXBiUFA5V3NSeTFqdytWcFRnRXBlNUpQVVljVFhTYUxrZ1NVbEczeFkwSzBQ?=
+ =?utf-8?B?K21yRUtEcXM5VWJpZkR2S3Q4eWJtT0lNWlFrUVhqRnlOaE1PWDJwTXBVbFJO?=
+ =?utf-8?B?VWNadis3Tm51bnZ4WDVtNnJJV1ByNkNxRTI3VlVacXNGMkRid2Q5Rk9ZMHBH?=
+ =?utf-8?B?R2ZKcnh5SmJEVnM2ZUV0QTBDUHMrQkhYZkFhV3dvNDV3bzYzdTZ1NU9NMGtn?=
+ =?utf-8?B?K1FPdHZFNFNiK0xHWUwrSGcwWWNkSURHZC9jTUVSZmNnOWt1V01UY3BlRGk1?=
+ =?utf-8?B?WDZFZkhUNFZpNUI1Ry9VdlpTS2NkZVZqTTJ3TXR3YVY5SVVuRnpmdVJndk1r?=
+ =?utf-8?B?NDBGV3NyT0F6RmF1Q3J0YlpXeUlPa0Q3QTRSR1BuSVFldUZwanlZK2JSNGND?=
+ =?utf-8?B?WjVjcnFGRlBGdkJiek9kaEtMMzVrTTNUUTUyRzlVc0sraHdXcXRPRkIvQmJt?=
+ =?utf-8?B?RGxvWWI2cjgrdG41SlE3aVpCdy9uWWQxODNpSGdDS1JXNThnU0plT00vc1Ni?=
+ =?utf-8?B?ejN5Q0F1blF3cktNRGFVd1lYT1JkdlNpcnlUbUFIUVV1UDdONmowNHNJcWVB?=
+ =?utf-8?B?eGtCMGxCSmtBOGpQRkVDckpQTHJmWVVXc2J3T2c4TjMxUU9qM1pEeTN1bjA4?=
+ =?utf-8?B?enpaUWh1dW90RU52K2tRNU1jbjBEcE0rMmZXWkhHTWttZGUvNGhkME1WYU1E?=
+ =?utf-8?B?dlQxV01ITFhwdlYwUU5iUlNRbm96dDJnZ0RNQy9yT2JVVWpTWUx0UHhDRlk2?=
+ =?utf-8?B?elpyTDdyZElvbTE4YlQ5amdhWnp6eUdLS2FWa1dmSEJtcGRMd3pzSjd0WUVW?=
+ =?utf-8?B?YXVkdjFaQlFwdVRuT0JRZE9UdCtSekd0YzVjSkdMUXVjazIvV1hsTzlSOGxH?=
+ =?utf-8?B?ckZkd0xtQ0lRV0o2dUVxV0VBSCtLWVk2KzdyY2ZWRDNRd2ZLVmJyKytzM3RH?=
+ =?utf-8?B?VW1PcURhZHdQYURQeUxjTjBFT1RJN3cxRmdiRXEwWkNZUmk4cmNjQVNhVTZ1?=
+ =?utf-8?B?ZXprRVNSaFhzd1FOR2RvTkNLR0NwRDZ0V281UTVlU3VucURNdGZVQ3JYbVBF?=
+ =?utf-8?B?N0lZMUhXeHlsZ29JSytqd1pNSW5jK1EzOVhNUm9CT3FkWmFsTnJmejZsSGlv?=
+ =?utf-8?B?MnFkcDl5NExCSGRkWHVOQWxYcHBDQWRndE4raUNFQkMxbWEvRWVZRHpGUElR?=
+ =?utf-8?B?UWMvZDFFbTdoc0Rmajd5YmR0Um1qWi9yc2JmUDhqNTN6UTh0VGNsRzJYSzRS?=
+ =?utf-8?Q?3iVSOqBLrh3/XrN8=3D?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9554f6eb-43e3-449d-3128-08de7dba45b3
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR10MB4277.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 09:00:12.1564
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7+cI1buy85PAEto014i13uktOl8i6iWD/dVHLHgOnZUyQTtSW9Zb9nQDpqpl2HZCJ2PWFANmXzZ69IGIz0qgMWvQ24nbC2/bG/Ct9nzax6M=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR10MB3677
+X-Rspamd-Queue-Id: CD2B9235CA0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.84 / 15.00];
-	SPAM_FLAG(5.00)[];
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[fris.de,quarantine];
-	R_DKIM_ALLOW(-0.20)[fris.de:s=mail];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kontron.de:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-272764-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[kontron.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[14];
-	TAGGED_FROM(0.00)[bounces-272762-lists,devicetree=lfdr.de];
-	GREYLIST(0.00)[pass,body];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[fris.de:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[frieder@fris.de,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[kontron.de,gmail.com,pengutronix.de];
-	NEURAL_HAM(-0.00)[-0.996];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kontron.de:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,fris.de:dkim,fris.de:mid,0.0.0.52:email]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[frieder.schrempf@kontron.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kontron.de:+];
+	NEURAL_HAM(-0.00)[-0.992];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,kontron.de:dkim,kontron.de:email,kontron.de:mid]
 X-Rspamd-Action: no action
 
-From: Annette Kobou <annette.kobou@kontron.de>
+On 06.03.26 18:42, Frank Li wrote:
+> On Fri, Mar 06, 2026 at 11:02:30AM -0500, Frank Li wrote:
+>>
+>> On Fri, 20 Feb 2026 11:36:15 +0100, Frieder Schrempf wrote:
+>>> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+>>>
+>>> This contains three fixes and one cosmetic change for
+>>> the Kontron i.MX8MP OSM devices.
+>>>
+>>> Changes for v2:
+>>> * Add Frank's R-b tags (thanks)
+>>> * Enhance commit message of patch 2
+>>>
+>>> [...]
+>>
+>> Applied, thanks!
+>>
+>> [1/4] arm64: dts: imx8mp-kontron: Fix touch reset configuration on DL devices
+>>       commit: ed35f6162eb43e5dc232b91e903e6a76ee5f5601
+>> [2/4] arm64: dts: imx8mp-kontron: Drop vmmc-supply to fix SD card on SMARC eval carrier
+>>       commit: 02ef82e09f96a0f5c996cdd4d62e66cb80df9f0f
+>> [3/4] arm64: dts: imx8mp-kontron: Fix boot order for PMIC and RTC
+>>       commit: 0ab1f5f3652424de16b464488c3d3db3d88b1bd5
+> 
+> Sorry, I have to drop this one because it cause dtb_check warning.
+> 'vdd-supply' is not allowed.
+> 
+> Although this small changes, please change binding firstly to allow
+> vdd-supply, at lease binding change need get ACK from dt team firstly.
+> 
+> Please make sure not new warning.
 
-The PMIC provides a level-shifter for the I2C lines to the RTC.
-As the level shifter needs to be enabled before the RTC can be
-accessed, we need to make sure that the PMIC driver is probed
-first.
-
-As the PMIC also provides the supply voltage for the RTC through
-the 3.3V regulator, we can simply express this in the DT to
-create the required dependency.
-
-This fixes sporadic boot hangs that occurred when the RTC was
-accessed before the level-shifter was enabled.
-
-Fixes: 946ab10e3f40f ("arm64: dts: Add support for Kontron OSM-S i.MX8MP SoM and BL carrier board")
-Signed-off-by: Annette Kobou <annette.kobou@kontron.de>
-Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
----
- arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-index b97bfeb1c30f8..bc1a261bb000e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-kontron-osm-s.dtsi
-@@ -330,6 +330,12 @@ rv3028: rtc@52 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_rtc>;
- 		interrupts-extended = <&gpio3 24 IRQ_TYPE_LEVEL_LOW>;
-+		/*
-+		 * While specifying the vdd-supply is normally not strictly necessary,
-+		 * here it also makes sure that the PMIC driver enables the level-
-+		 * shifter for the RTC before the RTC is probed.
-+		 */
-+		vdd-supply = <&reg_vdd_3v3>;
- 	};
- };
- 
--- 
-2.53.0
-
+Sorry, I forgot to check the bindings. I sent a v3 which includes a
+binding patch.
 
