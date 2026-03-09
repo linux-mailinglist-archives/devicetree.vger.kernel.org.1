@@ -1,100 +1,100 @@
-Return-Path: <devicetree+bounces-272856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-272857-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDIBDPirrmntHQIAu9opvQ
-	(envelope-from <devicetree+bounces-272856-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:16:08 +0100
+	id IA8BDAysrmntHQIAu9opvQ
+	(envelope-from <devicetree+bounces-272857-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:16:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5F2B237B85
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:16:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32F99237BA1
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 12:16:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 6D19530216FE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:13:37 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D8C9130200C9
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 11:13:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2DA8399016;
-	Mon,  9 Mar 2026 11:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6703399014;
+	Mon,  9 Mar 2026 11:13:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gf/OaFlJ";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Jnou+BRk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Qs6cVRXg";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="KpWxWdHG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D24739A7E9
-	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EF6399033
+	for <devicetree@vger.kernel.org>; Mon,  9 Mar 2026 11:13:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773054811; cv=none; b=igl5f8/aBks2esF5BCnOoKQqO/iGp7QBFAFn0h5mKjca/LyVQXZVFO1rQ3gNudv57Mz1CwK5yjUKeChi2alUfoBvGaEGTnnkxV2qfSGdpKm8ct65aW+WGIsSoYpGQ4uqTm+vXZ6c5b35I89f2ccLfWJzodLkCkK/x+K1c43n7R4=
+	t=1773054815; cv=none; b=MaPtQjzZHyUtqV+7d6TYQj7iQ2Zkux4fuBxquqTZFSgmLSO8vndG+Pi39vDC5tCPD50fNuFBElt6I/nOPe+4o1wxexMC5atreIlcstOnA5plef729Dpp3oBCN5sJyhanK9TkEdKZAa6e+RJJEmYMhs34SnO9ZQv3O9+/0malxLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773054811; c=relaxed/simple;
-	bh=Ui0AgihxXCFaYgr+bAZ7i2l9gkj2VFymgy3DBZqKJDc=;
+	s=arc-20240116; t=1773054815; c=relaxed/simple;
+	bh=RD4c98jvLUyiYfBuTglyo98MzLCoqaUHXj1LQhon1Qo=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=r2f2+9hIvAO/QDnPw5z9iLvBjbzH8kT/79YvSb8V6hEEWyVTR4PoKyRWQ5nTowSLkAGLW2oEZU0afJ0uNzH4Cj4kCXgZnHIxGUvgDUICtUCBZBm9fAIn6BjNiT4T1C4bS1SZaA4YIaI7ZzDbtBWcNmBgcv8ZMtOSf5XdJVNTBr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gf/OaFlJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Jnou+BRk; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=A5U8UIN1ukFbh6Enm3DlQ3Am/fEvXpYOgGlId+1r8T961VULk2AIO59cAC5ip9/H8N84U2Lmi5iJ4oOF9T5z10MiL5OsKIj7/LyRVcPbP0UiuRcsjgEMyywHAevrAoR4dsgDIDy/lcpIc+1zQEeyPABN3SuHsT+D40BGled7C7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Qs6cVRXg; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=KpWxWdHG; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6297xDsH200749
-	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 11:13:29 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 6298IMgh2662872
+	for <devicetree@vger.kernel.org>; Mon, 9 Mar 2026 11:13:33 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=IzHG9N+rOjY
-	zjvGxNKtzO8J7u8GYor9iw76AiyCp3zI=; b=gf/OaFlJrNUbCnPoWTAKVuoVq55
-	gG4QlkXJT2JR2cPiwy2GxGqYy+i5DrKh8tnfDyu2PkjD6nWuQu69j73uJ53E0nIk
-	sUL9z276Fqp13dnj28oV58oUR5p4wXBQj6bB7aGrZngbQEAMTX9Wt7YovOWoVret
-	yUg/UhUBoJ8PAXk1DJqWoVoA9KFJk6Hra8pT7LGkCiSzPqVGxI/WcI38j0CPrI6/
-	G+vFTbanXIHbjLF5QRXEBTVpIVtpPFlrwrvUH9jap9hD1tHEmyocZEVwu6EYbIKF
-	BYvBEyq2x8EH4DLCx0ZinTuvlZntIEf5QukImsOmTtIEFHRUTJO94NiQ0iA==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4crc3vd4ba-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=LckKRZ+R520
+	xGoLy9VPMIyB1+zTb2QRQ97fUKoxVTZw=; b=Qs6cVRXgsBB5DCwLtSqdyi838OR
+	xvDbe+LfG6daMFWBIta/9toh6DKr1WViCZZqr4MHGFMb4MOE6XMPAQ5mky5LEp+y
+	bVJnzJrcweV8eV8GULwMcXwEBbBnS/2ZTHSnZ80Ygn8Y1iH/qNIU2LAWJ54WxEgJ
+	WAb21LnXsnnT0ONPfCWQl96c6H81+eW4KiI3ge5wQa8vbbuc5OC3+VVxJ49LscFk
+	E00923DJaYl4rT+/Qoc2o2iFNpt+pc3RO3HCYLjOgY/d+g8kPqSso5dfW5hwf8Ky
+	IW5m9/HuAfpWCJdeWnpja/gX+pUMwN9dTB4iEQwDzJelQ1R0iQhNIWaccwA==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cr9cpndyb-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 11:13:29 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2ae4af66f40so88016735ad.1
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:13:29 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 11:13:33 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2ae3f446ccfso82946555ad.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 04:13:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773054808; x=1773659608; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1773054812; x=1773659612; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IzHG9N+rOjYzjvGxNKtzO8J7u8GYor9iw76AiyCp3zI=;
-        b=Jnou+BRkPHOmtuLspsNSsbnv9+g4nzg9lTBTb3DZXHNkSFHQRnSRf3k3L7g+mdyuwT
-         symdd35Vh++pYlm6Ovb+nX8HJhqtMzpnrVNnMCuBigYaeA6c+FWwZC9GdR2KosinX1wT
-         JZd7lomQpPLWXhtKLPfv25mH3cMQFiPkSylACPTYFOx3wA5IvYWK2KHm9PY8thBa0lTK
-         qZ8PGLymD0yeYRh2C5sb6jcU+GxI9g9I8ncA7V/yERsgyTcPXLxny55ADvMWRcw0UWAs
-         CtWQyMO7ySvdY7rdHA2AQs2YxXIHcglNENPWBRTnUizawViR/x1t0Fv0Qa/fCDGExy7d
-         skEg==
+        bh=LckKRZ+R520xGoLy9VPMIyB1+zTb2QRQ97fUKoxVTZw=;
+        b=KpWxWdHGQfAY03cA9tvC7PciAjF2Pc2hV1KNXvcwBP96+KAXyZE6XUoSQdpes7dGaw
+         t08RYaAW/I7ZnW7agm8mZ68+amDwOx/QOglv9JXd+iFd0IMREJa5cDiIf8WZUH8Ipjty
+         NdJgHRzvGX3FWUIfxOTAtWJd4/XBeVYyJVLDHNBZtMRq8D3+frdZju5jBQv3J8/0GIDx
+         JNfJEst75IXcSfZC3SiKBt4EMCYNdDOYhzQLCnJtSlAx5FbDFLxa7WH39drr9ed03lAz
+         Mqrq9TM4XzQ0gZcxZ8w10TgpqPZSsUkVylpoX4L5wu6KIZZwzB32HCGYXi48Bmnqr6oL
+         5RwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773054808; x=1773659608;
+        d=1e100.net; s=20230601; t=1773054812; x=1773659612;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=IzHG9N+rOjYzjvGxNKtzO8J7u8GYor9iw76AiyCp3zI=;
-        b=KPTWD5GQRuCg/LeF6ng550ookkdjhiLvdvFkWnXkgmRLPFUGteM1rMY4AmQeyN/712
-         y7HpubDoXSesi6+UuzzRSrHdariEEntknGTtEGvJtnwH8SQJ8EWLfuyrW+dfqrSenMed
-         HAM45To3/ubWNFd/kP0tCOpQJ1IgrzvvWYgrx7Gh5/5G9LiQvTzrvrtm6jmuWvSS4hg5
-         OTrOJKITmOVkR9GVILWu0dIhi3fYW6BQ10ARBYcjD9Y61PaDfD5hWbxy1VidTHahOgha
-         AJ3A+Kl9B3jhU3sJQXsASGflN5KlpgDwDsJny/T8NLW+h3tgQAa9Bgw9SwkFFmC5TGbh
-         P4ig==
-X-Forwarded-Encrypted: i=1; AJvYcCUVRcS+xcg/iDzuu7e9Bhi7hzDoID2hq9PwwAURs1y2+AtjGxzx1lYL9RceFIJ8lX9aoiIXGmVgqf0v@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWQxpLO2xOvZSwP2Q2W4ojjOVq90UPneUwjoiB7TauzGJpwJdQ
-	2EPR0SpFHSSFPNSvGlTCKIWdbPMDg0UztjNqwKvKDMLGjMiWfKpttCuUUVQacLwYpRuzq1JsGS2
-	dQoacbYAS5oLTOOVt72OiQssCyQ72ikYIINoAqAJWwxAQ5mgMBrM2K+33u1g796SY
-X-Gm-Gg: ATEYQzyuT8IAwHMMr4uFJbZmiRpJSqFIiDb3LamoRpeqt/ez8RDpod/GkzuECnnLyzY
-	ts5ZpJwfLicBdZaowyjaNLk4kY7BaHFmvTo6jtJV8eH+oXFS0+NmWDnCw36ezUh4XOnzryEe5Zi
-	QQOfBdDG51x5VM1SgbMxaE9OZBrT9+MudMh32Ra1MMa6Jbgx7q/SWxI32JUe6uQVjvzszfk4eUB
-	BAvj7vQwPa5JoehCfG/5o30g6jQuYdLTez1zbdMLXCGFAM1isB5r6RHM4awP1YIXXfWhBKBBa+5
-	nV5s3aFPagg5Til3aU2kIx9R+X3IgrxWFnsT4T3Bo8FxVAnLl90HCIg2PaWJMGmEmc1ojfIkti6
-	9caN8fiUpb+3zZoTQmh53KmIXrqfVkkZKbl/oG4sFyaW6mXcMIjzR/14Zuw==
-X-Received: by 2002:a17:902:f78e:b0:2a0:8ca7:69de with SMTP id d9443c01a7336-2ae8245c38bmr93586445ad.41.1773054807975;
-        Mon, 09 Mar 2026 04:13:27 -0700 (PDT)
-X-Received: by 2002:a17:902:f78e:b0:2a0:8ca7:69de with SMTP id d9443c01a7336-2ae8245c38bmr93586155ad.41.1773054807476;
-        Mon, 09 Mar 2026 04:13:27 -0700 (PDT)
+        bh=LckKRZ+R520xGoLy9VPMIyB1+zTb2QRQ97fUKoxVTZw=;
+        b=Od11F/ZhkfLGVceCRzwSwqSmL4NBh4FdoJCk1PKbIANqLYV83+WXiUttoXTT3WTZpe
+         +iT4sLj/8W4EkIk2LRLWrJqMpn2WDgy8xh7qqURJsDixACCD8591AkWAud8mAEQQtVCV
+         DrI7/Tn9yJ5V/hZZ5MQIxIhOfoQeucMN1172cD9k7Vy9p0nye5VA0O5dKRMHVodoMTbT
+         hEMVRy6OUW84xww9/FebPJDfIsLUEEANOxA/w/bzuCl5zWvoD4Bm3dEgqfRg0ppXu6Vg
+         +Q7z0LKnb7TnOHfpD6CPAvQ52PTOy3aVQuSG4AwDJZ0rNHABJOAlRspFG7dQq78Zf+tB
+         nL1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUDzOeMGtYFLrP3FdNUvVk99ZWTwS0zC5I9Bix3nOywT1KetnTNWmyrPrpJwxkIzDbwW0ERPSaI0fZm@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywhkzgcwjv56XrBpyVdZeEJWMNhccain4HZbtv2+Qz2UOvrXceN
+	L/IohWrL72xIewkbKjKIdc/Gji80c3voFduzW0ct7ai0t0phx/3IUmgCUh7n0Qp0KfsseNacADP
+	ZAU3fUkvV1ca9yFSuOAHvEaQ1/xA+qHM4k40q1xdJ2NXR79kD5HbCDG6XRMmtqPS+
+X-Gm-Gg: ATEYQzxLcrtGdKV4uO6jqM8o2vtNnTwoAC23u7/lxCu6pHLFRzJawu3zjiAjCsLbTIQ
+	51DS/+8wq4USLNpRDaAIfFcgDirNSUVbq/wFMDx0eO1YzMVfviidtAsvFjgh/dp13DoeHQxRW9C
+	1CwXhW4OQg1SzxswZlj98zXLtvvicm2UX5ZSFGl6Sg5NQYuopM1mSdCYOHX6BaG8qu3AORG3wy/
+	401E7Gz5R9syoxh1uTrgWVgx7Kc8OtcX9iVJItUb4OHiscy5KMPEauZLIEzfQINIbbr6nKuSUYF
+	iSZ0rTiLnIQXzbmXaMa+00SJ8feIbtlm65BQi07Pkr5nd7rEtseb5O5zmLY1QxOQ2ymckVk/Bld
+	ID5/dBdU8bVDlAIqbiNv+6/Ovci6p3Ye51jAp3/pF4EmAHjW5uFo5hmiIBA==
+X-Received: by 2002:a17:902:e803:b0:2ae:5442:45cf with SMTP id d9443c01a7336-2ae82431065mr121349165ad.33.1773054812164;
+        Mon, 09 Mar 2026 04:13:32 -0700 (PDT)
+X-Received: by 2002:a17:902:e803:b0:2ae:5442:45cf with SMTP id d9443c01a7336-2ae82431065mr121348795ad.33.1773054811645;
+        Mon, 09 Mar 2026 04:13:31 -0700 (PDT)
 Received: from hu-mohs-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae840c9967sm145405925ad.90.2026.03.09.04.13.23
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae840c9967sm145405925ad.90.2026.03.09.04.13.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 04:13:27 -0700 (PDT)
+        Mon, 09 Mar 2026 04:13:31 -0700 (PDT)
 From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 To: Srinivas Kandagatla <srini@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -104,11 +104,10 @@ To: Srinivas Kandagatla <srini@kernel.org>,
         Takashi Iwai <tiwai@suse.com>
 Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-sound@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH v1 3/4] ASoC: qcom: q6apm-lpass-dais: Add MI2S clock control
-Date: Mon,  9 Mar 2026 16:42:59 +0530
-Message-Id: <20260309111300.2484262-4-mohammad.rafi.shaik@oss.qualcomm.com>
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 4/4] ASoC: qcom: sc8280xp: ASoC: qcom: sc8280xp: enhance machine driver for board-specific config
+Date: Mon,  9 Mar 2026 16:43:00 +0530
+Message-Id: <20260309111300.2484262-5-mohammad.rafi.shaik@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260309111300.2484262-1-mohammad.rafi.shaik@oss.qualcomm.com>
 References: <20260309111300.2484262-1-mohammad.rafi.shaik@oss.qualcomm.com>
@@ -119,30 +118,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 0TeLSQYXczEowTAyYYX3Yp9AhHOlAtvz
-X-Proofpoint-GUID: 0TeLSQYXczEowTAyYYX3Yp9AhHOlAtvz
-X-Authority-Analysis: v=2.4 cv=OOQqHCaB c=1 sm=1 tr=0 ts=69aeab59 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEwMyBTYWx0ZWRfX9oTAJyQ1SR7K
+ CbAG5CRYUsjMoRLHdAmxdjMdq+GDV8HmpP6//MuONphpRd6Ethgj5Pcy4Bbknhgm1Rt14DAsEme
+ 0egNRsvGllLOLY4HjG1fy2Hc7EFkpYXENhWxyUDhdQAm3G9+rHY//qbnLaChuxbkccniuWxxLpc
+ hXCwa3NrGLo0yy4qkThnWjjiq9F+kN3BuIm1y7qP4zq04FYWBAfhUuA6rf7b2EIZDK28uVujjW0
+ N3vvSC9tJ05lixkEGZ0Y5+/8rEQ3CxatGmTYwoNKQByJarzA0YBt6K/FfBpApDkqDHBfQEh9tQn
+ BO7Ok/k56G39ngC97xi+MXc7W4v0gEPHqaqYHcp7yDp4SLgVPmthaiulLf8FAIZUxIoVHJMmVN5
+ TDGVF+wd6Xj9l+w77/jWUk9pBaygtyfQqBRDNLz+eNyS+c4hnbIAcGeySOzJ94hMk4yb8XuxqrT
+ CRkuXJysUoDzFCdtedg==
+X-Proofpoint-ORIG-GUID: ColkUOqYoxPRZBiUDPaT7nzigEVadauY
+X-Proofpoint-GUID: ColkUOqYoxPRZBiUDPaT7nzigEVadauY
+X-Authority-Analysis: v=2.4 cv=e7sLiKp/ c=1 sm=1 tr=0 ts=69aeab5d cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=EUspDBNiAAAA:8
- a=A-h2Renr4JBikGDhi8kA:9 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA5MDEwMyBTYWx0ZWRfX4u5go6FIdAsU
- KYZ3P2z3Amhz8lWCoKQKYxaNauS3lLLUJN34N7rrPP24APQCGqdvMOUa1fuljQQMa5KYDXykvNx
- nMWGttgpD3/+c3NJdCL4g+vaahn3xUeboQLLMWbEuls+YfEwixU7IsSFAALcdLU4Soh7sWem1wT
- HCw+iojcm7oo5hOjBrSGEAFSGDb0fmVVVp8wJ+UN4VvZqEugCRHXRzET8yzcUjMlD0eF6HQb9+J
- AA65f4YG1W+TCbR7Lao9vBa6Wsgk1zDX7hn6epNydchrmWIdOsYJKuoSD5fZcVzSU8xWQUdnCW/
- klMiR2eEjn+KyvsobuDYRdcvP3no2A6PoUQhvls1fJ47lXxKDLk5HynAH/WFPdtzPvCq0EMeZm4
- 5AQ2m2qW4OAZofFUTNoiFzrAzCLvcXQLX4HG6awR5qPBehs7J7p0vuS9GxO7w25y4uAM8ZQJlNV
- 7TsZslmYeEvDgvEf6sA==
+ a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=EUspDBNiAAAA:8
+ a=YQSOK7UB-Gan8rnKjwIA:9 a=uG9DUKGECoFWVXl0Dc02:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-09_03,2026-03-06_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 impostorscore=0 suspectscore=0 spamscore=0 malwarescore=0
- bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603090103
-X-Rspamd-Queue-Id: D5F2B237B85
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
+ suspectscore=0 spamscore=0 bulkscore=0 impostorscore=0 malwarescore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603090103
+X-Rspamd-Queue-Id: 32F99237BA1
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -156,18 +156,18 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FREEMAIL_TO(0.00)[kernel.org,gmail.com,perex.cz,suse.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-272856-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-272857-lists,devicetree=lfdr.de];
 	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mohammad.rafi.shaik@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-0.992];
 	TO_DN_SOME(0.00)[];
@@ -175,238 +175,275 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-Add support for MI2S clock control within q6apm-lpass DAIs, including
-handling of MCLK, BCLK, and ECLK via the DAI .set_sysclk callback.
-Each MI2S port now retrieves its clock handles from the device tree,
-allowing per-port clock configuration and proper enable/disable during
-startup and shutdown.
+The sc8280xp machine driver is currently written with a largely
+SoC-centric view and assumes a uniform audio topology across all boards.
+In practice, multiple products based on the same SoC use different board
+designs and external audio components, which require board-specific
+configuration to function correctly.
 
-Co-developed-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Several Qualcomm platforms like talos integrate third-party audio codecs
+or use different external audio paths. These designs often require
+additional configuration such as explicit MI2S MCLK settings for audio
+to work.
+
+This change enhances the sc8280xp machine driver to support board-specific
+configuration such as allowing each board variant to provide its own DAPM
+widgets and routes, reflecting the actual audio components and connectors
+present and enabling MI2S MCLK programming for boards that use external
+codecs requiring a stable master clock.
+
 Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 ---
- sound/soc/qcom/qdsp6/q6apm-lpass-dais.c | 137 +++++++++++++++++++++++-
- sound/soc/qcom/qdsp6/q6prm.h            |   4 +
- 2 files changed, 139 insertions(+), 2 deletions(-)
+ sound/soc/qcom/sc8280xp.c | 180 ++++++++++++++++++++++++++++++++++----
+ 1 file changed, 162 insertions(+), 18 deletions(-)
 
-diff --git a/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c b/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
-index 528756f13..1e739a474 100644
---- a/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
-+++ b/sound/soc/qcom/qdsp6/q6apm-lpass-dais.c
-@@ -2,10 +2,12 @@
- // Copyright (c) 2021, Linaro Limited
+diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
+index 7925aa3f6..c2e9323df 100644
+--- a/sound/soc/qcom/sc8280xp.c
++++ b/sound/soc/qcom/sc8280xp.c
+@@ -12,17 +12,62 @@
+ #include <sound/jack.h>
+ #include <linux/input-event-codes.h>
+ #include "qdsp6/q6afe.h"
++#include "qdsp6/q6apm.h"
++#include "qdsp6/q6prm.h"
+ #include "common.h"
+ #include "sdw.h"
  
- #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
-+#include <linux/clk.h>
- #include <linux/err.h>
- #include <linux/init.h>
- #include <linux/module.h>
- #include <linux/device.h>
-+#include <linux/of.h>
- #include <linux/platform_device.h>
- #include <linux/slab.h>
- #include <sound/pcm.h>
-@@ -15,13 +17,22 @@
- #include "q6dsp-common.h"
- #include "audioreach.h"
- #include "q6apm.h"
-+#include "q6prm.h"
- 
- #define AUDIOREACH_BE_PCM_BASE	16
- 
-+struct q6apm_dai_priv_data {
-+	struct clk *mclk;
-+	struct clk *bclk;
-+	struct clk *eclk;
-+	bool mclk_enabled, bclk_enabled, eclk_enabled;
++#define MCLK_FREQ		12288000
++#define MCLK_NATIVE_FREQ	11289600
++
++static struct snd_soc_dapm_widget sc8280xp_dapm_widgets[] = {
++	SND_SOC_DAPM_HP("Headphone Jack", NULL),
++	SND_SOC_DAPM_MIC("Mic Jack", NULL),
++	SND_SOC_DAPM_SPK("DP0 Jack", NULL),
++	SND_SOC_DAPM_SPK("DP1 Jack", NULL),
++	SND_SOC_DAPM_SPK("DP2 Jack", NULL),
++	SND_SOC_DAPM_SPK("DP3 Jack", NULL),
++	SND_SOC_DAPM_SPK("DP4 Jack", NULL),
++	SND_SOC_DAPM_SPK("DP5 Jack", NULL),
++	SND_SOC_DAPM_SPK("DP6 Jack", NULL),
++	SND_SOC_DAPM_SPK("DP7 Jack", NULL),
 +};
 +
- struct q6apm_lpass_dai_data {
- 	struct q6apm_graph *graph[APM_PORT_MAX];
- 	bool is_port_started[APM_PORT_MAX];
- 	struct audioreach_module_config module_config[APM_PORT_MAX];
-+	struct q6apm_dai_priv_data priv[APM_PORT_MAX];
++struct snd_soc_common {
++	char *driver_name;
++	const struct snd_soc_dapm_widget *dapm_widgets;
++	int num_dapm_widgets;
++	const struct snd_soc_dapm_route *dapm_routes;
++	int num_dapm_routes;
++	bool mi2s_mclk_enable;
++};
++
+ struct sc8280xp_snd_data {
+ 	bool stream_prepared[AFE_PORT_MAX];
+ 	struct snd_soc_card *card;
+ 	struct snd_soc_jack jack;
+ 	struct snd_soc_jack dp_jack[8];
++	struct snd_soc_common *snd_soc_common_priv;
+ 	bool jack_setup;
  };
  
- static int q6dma_set_channel_map(struct snd_soc_dai *dai,
-@@ -238,6 +249,70 @@ static int q6apm_lpass_dai_startup(struct snd_pcm_substream *substream, struct s
- 	return 0;
- }
- 
-+static int q6i2s_dai_startup(struct snd_pcm_substream *substream, struct snd_soc_dai *dai)
++static inline int sc8280xp_get_mclk_feq(unsigned int rate)
 +{
-+	return q6apm_lpass_dai_startup(substream, dai);
-+}
++	int freq = MCLK_FREQ;
 +
-+static void q6i2s_lpass_dai_shutdown(struct snd_pcm_substream *substream, struct snd_soc_dai *dai)
-+{
-+	struct q6apm_lpass_dai_data *dai_data = dev_get_drvdata(dai->dev);
-+
-+	if (dai_data->priv[dai->id].mclk_enabled) {
-+		clk_disable_unprepare(dai_data->priv[dai->id].mclk);
-+		dai_data->priv[dai->id].mclk_enabled = false;
-+	}
-+
-+	if (dai_data->priv[dai->id].bclk_enabled) {
-+		clk_disable_unprepare(dai_data->priv[dai->id].bclk);
-+		dai_data->priv[dai->id].bclk_enabled = false;
-+	}
-+
-+	if (dai_data->priv[dai->id].eclk_enabled) {
-+		clk_disable_unprepare(dai_data->priv[dai->id].eclk);
-+		dai_data->priv[dai->id].eclk_enabled = false;
-+	}
-+	q6apm_lpass_dai_shutdown(substream, dai);
-+}
-+
-+static int q6i2s_set_sysclk(struct snd_soc_dai *dai, int clk_id, unsigned int freq, int dir)
-+{
-+	struct q6apm_lpass_dai_data *dai_data = dev_get_drvdata(dai->dev);
-+	struct clk *sysclk;
-+	bool *enabled;
-+	int ret = 0;
-+
-+	switch (clk_id) {
-+	case LPAIF_MI2S_MCLK:
-+		sysclk = dai_data->priv[dai->id].mclk;
-+		enabled = &dai_data->priv[dai->id].mclk_enabled;
-+		break;
-+	case LPAIF_MI2S_BCLK:
-+		sysclk = dai_data->priv[dai->id].bclk;
-+		enabled = &dai_data->priv[dai->id].bclk_enabled;
-+		break;
-+	case LPAIF_MI2S_ECLK:
-+		sysclk = dai_data->priv[dai->id].eclk;
-+		enabled = &dai_data->priv[dai->id].eclk_enabled;
++	switch (rate) {
++	case SNDRV_PCM_RATE_11025:
++	case SNDRV_PCM_RATE_44100:
++	case SNDRV_PCM_RATE_88200:
++		freq = MCLK_NATIVE_FREQ;
 +		break;
 +	default:
 +		break;
 +	}
 +
-+	if (sysclk) {
-+		clk_set_rate(sysclk, freq);
-+		ret = clk_prepare_enable(sysclk);
-+		if (ret) {
-+			dev_err(dai->dev, "Error, Unable to prepare (%d) sysclk\n", clk_id);
-+			return ret;
-+		}
-+
-+		*enabled = true;
-+	}
-+
-+	return ret;
++	return freq;
 +}
 +
- static int q6i2s_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+ static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
  {
- 	struct q6apm_lpass_dai_data *dai_data = dev_get_drvdata(dai->dev);
-@@ -258,11 +333,12 @@ static const struct snd_soc_dai_ops q6dma_ops = {
+ 	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
+@@ -32,10 +77,6 @@ static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
+ 	int dp_pcm_id = 0;
  
- static const struct snd_soc_dai_ops q6i2s_ops = {
- 	.prepare	= q6apm_lpass_dai_prepare,
--	.startup	= q6apm_lpass_dai_startup,
--	.shutdown	= q6apm_lpass_dai_shutdown,
-+	.startup	= q6i2s_dai_startup,
-+	.shutdown	= q6i2s_lpass_dai_shutdown,
- 	.set_channel_map  = q6dma_set_channel_map,
- 	.hw_params        = q6dma_hw_params,
- 	.set_fmt	= q6i2s_set_fmt,
-+	.set_sysclk	= q6i2s_set_sysclk,
- };
+ 	switch (cpu_dai->id) {
+-	case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
+-	case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
+-		snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_BP_FP);
+-		break;
+ 	case WSA_CODEC_DMA_RX_0:
+ 	case WSA_CODEC_DMA_RX_1:
+ 		/*
+@@ -96,6 +137,31 @@ static int sc8280xp_be_hw_params_fixup(struct snd_soc_pcm_runtime *rtd,
+ 	return 0;
+ }
  
- static const struct snd_soc_dai_ops q6hdmi_ops = {
-@@ -280,6 +356,59 @@ static const struct snd_soc_component_driver q6apm_lpass_dai_component = {
- 	.use_dai_pcm_id = true,
- };
- 
-+static int of_q6apm_parse_dai_data(struct device *dev,
-+				   struct q6apm_lpass_dai_data *data)
++static int sc8280xp_snd_hw_params(struct snd_pcm_substream *substream,
++				  struct snd_pcm_hw_params *params)
 +{
-+	struct device_node *node;
-+	int ret;
++	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
++	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
++	struct sc8280xp_snd_data *data = snd_soc_card_get_drvdata(rtd->card);
++	int mclk_freq = sc8280xp_get_mclk_feq(params_rate(params));
 +
-+	for_each_child_of_node(dev->of_node, node) {
-+		struct q6apm_dai_priv_data *priv;
-+		int id;
++	switch (cpu_dai->id) {
++	case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
++	case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
++		snd_soc_dai_set_fmt(cpu_dai, SND_SOC_DAIFMT_BP_FP);
 +
-+		ret = of_property_read_u32(node, "reg", &id);
-+		if (ret || id < 0 || id >= APM_PORT_MAX) {
-+			dev_err(dev, "valid dai id not found:%d\n", ret);
-+			continue;
-+		}
-+
-+		switch (id) {
-+		/* MI2S specific properties */
-+		case PRIMARY_MI2S_RX ... QUATERNARY_MI2S_TX:
-+		case QUINARY_MI2S_RX ... QUINARY_MI2S_TX:
-+			priv = &data->priv[id];
-+			priv->mclk = of_clk_get_by_name(node, "mclk");
-+			if (IS_ERR(priv->mclk)) {
-+				if (PTR_ERR(priv->mclk) == -EPROBE_DEFER)
-+					return dev_err_probe(dev, PTR_ERR(priv->mclk),
-+							     "unable to get mi2s mclk\n");
-+				priv->mclk = NULL;
-+			}
-+
-+			priv->bclk = of_clk_get_by_name(node, "bclk");
-+			if (IS_ERR(priv->bclk)) {
-+				if (PTR_ERR(priv->bclk) == -EPROBE_DEFER)
-+					return dev_err_probe(dev, PTR_ERR(priv->bclk),
-+							     "unable to get mi2s bclk\n");
-+				priv->bclk = NULL;
-+			}
-+
-+			priv->eclk = of_clk_get_by_name(node, "eclk");
-+			if (IS_ERR(priv->eclk)) {
-+				if (PTR_ERR(priv->eclk) == -EPROBE_DEFER)
-+					return dev_err_probe(dev, PTR_ERR(priv->eclk),
-+							     "unable to get mi2s eclk\n");
-+				priv->eclk = NULL;
-+			}
-+			break;
-+		default:
-+			break;
-+		}
-+	}
++		if (data->snd_soc_common_priv->mi2s_mclk_enable)
++			snd_soc_dai_set_sysclk(cpu_dai,
++					       LPAIF_MI2S_MCLK, mclk_freq,
++					       SND_SOC_CLOCK_IN);
++		break;
++	default:
++		break;
++	};
 +
 +	return 0;
 +}
 +
- static int q6apm_lpass_dai_dev_probe(struct platform_device *pdev)
+ static int sc8280xp_snd_prepare(struct snd_pcm_substream *substream)
  {
- 	struct q6dsp_audio_port_dai_driver_config cfg;
-@@ -287,12 +416,16 @@ static int q6apm_lpass_dai_dev_probe(struct platform_device *pdev)
- 	struct snd_soc_dai_driver *dais;
- 	struct device *dev = &pdev->dev;
- 	int num_dais;
-+	int ret;
- 
- 	dai_data = devm_kzalloc(dev, sizeof(*dai_data), GFP_KERNEL);
- 	if (!dai_data)
+ 	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
+@@ -117,6 +183,7 @@ static int sc8280xp_snd_hw_free(struct snd_pcm_substream *substream)
+ static const struct snd_soc_ops sc8280xp_be_ops = {
+ 	.startup = qcom_snd_sdw_startup,
+ 	.shutdown = qcom_snd_sdw_shutdown,
++	.hw_params = sc8280xp_snd_hw_params,
+ 	.hw_free = sc8280xp_snd_hw_free,
+ 	.prepare = sc8280xp_snd_prepare,
+ };
+@@ -145,37 +212,114 @@ static int sc8280xp_platform_probe(struct platform_device *pdev)
+ 	card = devm_kzalloc(dev, sizeof(*card), GFP_KERNEL);
+ 	if (!card)
+ 		return -ENOMEM;
+-	card->owner = THIS_MODULE;
++
+ 	/* Allocate the private data */
+ 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+ 	if (!data)
  		return -ENOMEM;
  
- 	dev_set_drvdata(dev, dai_data);
-+	ret = of_q6apm_parse_dai_data(dev, dai_data);
-+	if (ret)
-+		return ret;
- 
- 	memset(&cfg, 0, sizeof(cfg));
- 	cfg.q6i2s_ops = &q6i2s_ops;
-diff --git a/sound/soc/qcom/qdsp6/q6prm.h b/sound/soc/qcom/qdsp6/q6prm.h
-index 8296370e3..a00d1eda1 100644
---- a/sound/soc/qcom/qdsp6/q6prm.h
-+++ b/sound/soc/qcom/qdsp6/q6prm.h
-@@ -3,6 +3,10 @@
- #ifndef __Q6PRM_H__
- #define __Q6PRM_H__
- 
-+#define LPAIF_MI2S_MCLK 1
-+#define LPAIF_MI2S_BCLK 2
-+#define LPAIF_MI2S_ECLK 3
++	data->snd_soc_common_priv = (struct snd_soc_common *)of_device_get_match_data(dev);
++	if (!data->snd_soc_common_priv)
++		return -ENOMEM;
 +
- /* Clock ID for Primary I2S IBIT */
- #define Q6PRM_LPASS_CLK_ID_PRI_MI2S_IBIT                          0x100
- /* Clock ID for Primary I2S EBIT */
++	card->owner = THIS_MODULE;
+ 	card->dev = dev;
+ 	dev_set_drvdata(dev, card);
+ 	snd_soc_card_set_drvdata(card, data);
++	card->dapm_widgets = data->snd_soc_common_priv->dapm_widgets;
++	card->num_dapm_widgets = data->snd_soc_common_priv->num_dapm_widgets;
++	card->dapm_routes = data->snd_soc_common_priv->dapm_routes;
++	card->num_dapm_routes = data->snd_soc_common_priv->num_dapm_routes;
++
+ 	ret = qcom_snd_parse_of(card);
+ 	if (ret)
+ 		return ret;
+ 
+-	card->driver_name = of_device_get_match_data(dev);
++	card->driver_name = data->snd_soc_common_priv->driver_name;
+ 	sc8280xp_add_be_ops(card);
+ 	return devm_snd_soc_register_card(dev, card);
+ }
+ 
++static struct snd_soc_common kaanapali_priv_data = {
++	.driver_name = "kaanapali",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common qcs9100_priv_data = {
++	.driver_name = "sa8775p",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common qcs615_priv_data = {
++	.driver_name = "qcs615",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++	.mi2s_mclk_enable = true,
++};
++
++static struct snd_soc_common qcm6490_priv_data = {
++	.driver_name = "qcm6490",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common qcs6490_priv_data = {
++	.driver_name = "qcs6490",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common qcs8275_priv_data = {
++	.driver_name = "qcs8300",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common sc8280xp_priv_data = {
++	.driver_name = "sc8280xp",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common sm8450_priv_data = {
++	.driver_name = "sm8450",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common sm8550_priv_data = {
++	.driver_name = "sm8550",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common sm8650_priv_data = {
++	.driver_name = "sm8650",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
++static struct snd_soc_common sm8750_priv_data = {
++	.driver_name = "sm8750",
++	.dapm_widgets = sc8280xp_dapm_widgets,
++	.num_dapm_widgets = ARRAY_SIZE(sc8280xp_dapm_widgets),
++};
++
+ static const struct of_device_id snd_sc8280xp_dt_match[] = {
+-	{.compatible = "qcom,kaanapali-sndcard", "kaanapali"},
+-	{.compatible = "qcom,qcm6490-idp-sndcard", "qcm6490"},
+-	{.compatible = "qcom,qcs615-sndcard", "qcs615"},
+-	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", "qcs6490"},
+-	{.compatible = "qcom,qcs8275-sndcard", "qcs8300"},
+-	{.compatible = "qcom,qcs9075-sndcard", "sa8775p"},
+-	{.compatible = "qcom,qcs9100-sndcard", "sa8775p"},
+-	{.compatible = "qcom,sc8280xp-sndcard", "sc8280xp"},
+-	{.compatible = "qcom,sm8450-sndcard", "sm8450"},
+-	{.compatible = "qcom,sm8550-sndcard", "sm8550"},
+-	{.compatible = "qcom,sm8650-sndcard", "sm8650"},
+-	{.compatible = "qcom,sm8750-sndcard", "sm8750"},
++	{.compatible = "qcom,kaanapali-sndcard", .data = &kaanapali_priv_data},
++	{.compatible = "qcom,qcm6490-idp-sndcard", .data = &qcm6490_priv_data},
++	{.compatible = "qcom,qcs615-sndcard", .data = &qcs615_priv_data},
++	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", .data = &qcs6490_priv_data},
++	{.compatible = "qcom,qcs8275-sndcard", .data = &qcs8275_priv_data},
++	{.compatible = "qcom,qcs9075-sndcard", .data = &qcs9100_priv_data},
++	{.compatible = "qcom,qcs9100-sndcard", .data = &qcs9100_priv_data},
++	{.compatible = "qcom,sc8280xp-sndcard", .data = &sc8280xp_priv_data},
++	{.compatible = "qcom,sm8450-sndcard", .data = &sm8450_priv_data},
++	{.compatible = "qcom,sm8550-sndcard", .data = &sm8550_priv_data},
++	{.compatible = "qcom,sm8650-sndcard", .data = &sm8650_priv_data},
++	{.compatible = "qcom,sm8750-sndcard", .data = &sm8750_priv_data},
+ 	{}
+ };
+ 
 -- 
 2.34.1
 
