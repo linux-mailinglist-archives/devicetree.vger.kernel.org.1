@@ -1,209 +1,132 @@
-Return-Path: <devicetree+bounces-273030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273031-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gIuoD8TyrmnZKgIAu9opvQ
-	(envelope-from <devicetree+bounces-273030-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:18:12 +0100
+	id cLxYDIT0rmnZKgIAu9opvQ
+	(envelope-from <devicetree+bounces-273031-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:25:40 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE1023C96C
-	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:18:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9893C23CACC
+	for <lists+devicetree@lfdr.de>; Mon, 09 Mar 2026 17:25:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id D67D63006F18
-	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 16:16:33 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 2898630117B8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Mar 2026 16:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 298BF3E714C;
-	Mon,  9 Mar 2026 16:16:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hi9eLhvM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C9743B8BBE;
+	Mon,  9 Mar 2026 16:25:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012028.outbound.protection.outlook.com [52.101.66.28])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9753E5EFA;
-	Mon,  9 Mar 2026 16:16:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.28
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773072989; cv=fail; b=dI4xFggU2X3c6lqawkyuNyIdnF23rCsJdyu4shL9eidHbxIvH2P9/10n4VlvM75HxnX++xs71hFQRCgQIAuAs68C0371PtTNs82JYpSIihzMBV4lVQwJWTHbwvFvLOxjykonwpzY1+TXQZ6ykR+SPjN68aIV9FKfGSPbMM6IJo4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773072989; c=relaxed/simple;
-	bh=mTiURZQdWj2qz40/00ZMl9nDY58q63/8WsonDemXg7w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=i1MMWSDF/olYvYXpzjGhW3MlwBQFsxTLKhZDNB7YJWpaczREQCMg4UAScMoxihTla3t7Jg6Y4iRTGiu0Ioqe7u0kUGvhgojp6S48IOsc56JhHYg+QDx/AgxGwV6x41DgLNHECOXr5oplXd0v8ffjhpuI8gVt78esFenT/2ytRpk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hi9eLhvM; arc=fail smtp.client-ip=52.101.66.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W8inV/pZyNi3Ezo2/h9AtmaUGdmLN7cJeUitC0QNybjaVGDCY8l/fmvNZESD1ijgZM0byo8fNTX5iLFA365G3Pp2EdLT1Xsipun2xuPCyTxeWYiufrkitcRl9NYgVCGtxMZrp9m/2TuE3bRAz2RaG9c/3q/UmkiLf7HYeI1coMcfyiKbH572IOgXwtGmKQEE4AaMWmPjzDa4EzEWY9TJC8Fm8+Gy1LGEgVpWv9s/UdfGBwJF32TCVoKGb+kjrmSSn9hX1+UimmxLoQj6qbZ56THy/rDMDriMXCBaq+GMdC4HjMPCeZzrs9KfmO/jh/7G+976bQ8WWaCxtAH9HWKKfg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hzT2Irw4xmETMgciZLTboVv1+5OtHL/vSOhEYpCuZU0=;
- b=JnaIM8+HDdyXusD5d1odZNBNOk72slPgjg93kAZFcIp6kx3C14XDLYh12ete/svTRR+rXPUXJA2Xez/fXqXhw2jESH5X9353Pw1jpY70pv2lyWvYh0FBchOOki3PSF1rglpjIF8nmaufqV2hCvSlXQ0Tq5HRoo0E7gDnj0KiqpGIW/lK7LwmKdFNltSb1+xK502mQtJcwGB7I2p44co0telk8JfvW1bKGKjs1FDlJsT6jLEMggQ4Y30mgcvKc1qXkUHbmmDuvOE/79BDwS0zAdPgncUlk3Zxx2UiF9ITdPzxasjZVwfGj4ncEvxNI+DRo69/kZXNRWY/2V+c7UFqYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hzT2Irw4xmETMgciZLTboVv1+5OtHL/vSOhEYpCuZU0=;
- b=hi9eLhvMx1Aj7zXdAfBYr5jLeftvWC9e5QPYsQsaXmx6pjgFjwFxPlmX0paj9yIShqP5GTbRUVu2w3NmbDTJn82BnAWPl25BOt/w4HhXxcfxPX0Jbww6OnHJ/CmF0RYDq5nmQpwfiHCaRHI+BE9IxMXYgKMoD9VYND1XqTT5Q0qVTpOCgW5vy7gfC1DnXbpVYicix0Lj+sUR82h32e+CsWxY86M9HBRVQ57Ts77MOwcIdjjz8lne4ggxU4hQfpsfItiwbvT731SwHHU9QTo3v3IaTK1TEuaw9ozvBHHkoea0kBB4xLn51R29OYjcpVkA/AykmPQfbgNbSoAqU5muHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by AM9PR04MB7587.eurprd04.prod.outlook.com (2603:10a6:20b:2d4::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Mon, 9 Mar
- 2026 16:16:24 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Mon, 9 Mar 2026
- 16:16:24 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921BF3C278A;
+	Mon,  9 Mar 2026 16:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.25
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773073516; cv=none; b=lyU/bEyxuNxJ7QOn53rhUag6/von0RrHbqMEmbWwPdH1XjauGVd6eKjVf9zYkNd+fAzWZa49Kx/plZUY7dTyLbgwI3cnGdSSqDZGZnyD5w5Gv6y3CFumLSfC/hD9RsV9vq3XX8N7DFmLkFpowsWsCJzs6PMNVsD6x6xem5EL/XQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773073516; c=relaxed/simple;
+	bh=m0HoBJhXlOWspdIBJwCGhKY5/upyORpEWEjdoG3tBYI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tnrlFklvXdj6HbXGlWj7hGiisDU6OuupenLS7skqHElbMKKuu2+fmyqLMB956Tsi+8hXg9oJ9K7l8JtPWIxkNaWCnxzjxlL9pimdNDhmJ/v5lVZE+fBTEeHD3tvjiquaZmzSxPJPUFyMi3viZjRpyKET8u+CcmJ521rI2VdI4eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from edelgard.fodlan.icenowy.me (unknown [112.94.103.14])
+	by APP-05 (Coremail) with SMTP id zQCowABH1Qhb9K5pgkP5CQ--.22703S2;
+	Tue, 10 Mar 2026 00:25:00 +0800 (CST)
+From: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"A.s. Dong" <aisheng.dong@nxp.com>,
-	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Frank Li <Frank.Li@nxp.com>,
+	Drew Fustini <fustini@kernel.org>,
+	Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>,
+	Rahul Tanwar <rtanwar@maxlinear.com>
+Cc: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v3 0/2] ARM: dts: Add CPU clock and OPP table for i.MX7ULP
-Date: Mon,  9 Mar 2026 12:16:03 -0400
-Message-ID: <177307292952.1708959.10248082000363537313.b4-ty@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260302-imx7ulp-v3-0-26b708aecc59@nxp.com>
-References: <20260302-imx7ulp-v3-0-26b708aecc59@nxp.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0385.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::30) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	linux-riscv@lists.infradead.org,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Han Gao <rabenda.cn@gmail.com>,
+	Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Subject: [PATCH v3 0/2] Add cofficients to the TH1520 PVT
+Date: Tue, 10 Mar 2026 00:24:55 +0800
+Message-ID: <20260309162457.4128205-1-zhengxingda@iscas.ac.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM9PR04MB7587:EE_
-X-MS-Office365-Filtering-Correlation-Id: 849c4e65-421c-4577-8261-08de7df7354a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|376014|19092799006|7416014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	Dgi+K6tl4WnLRg+/whd+neznutiN9Zeah/TDx3TaSV8kLLYUJtp3I6XAst/o/5HVHwf9+yT7xuCuIlO6iXxot+2JzKOX7hzFpy5jCb0UFrxwV7+Ur7SUwAr8NIWr9t3LAKEWgdmbPL0LPLkVdqs/BH/syz1GoX2hEuNu9r0aIsqQ6Q4npUtF5VGOg+EzHQO39pHGo6NKiyp+hqFok5lLINTdJ8rdcdyCjZvTzY/9/RLHL2aC8iW7JpU6ARytgy++ZiVbMHzlTtw+yey6S32PgeYvVMcy1F0CjRu/y4wtuVk5odhMo1CRk08qLnUHCP7nX1WeAwDlSCwOl8m/qRSazVjYX9sRXqn59Zv4JHPxPp4gWozQ/wleQ1UPgkc28WyVpD82hrboQGbW8eE7I0YGtZmsFMVULuyjqQjGvk3zNIeX1u5y4EKiJqsZsAxjVUWtRGvsKdhrFLhgkfp8bvcda7uV4/x6H4pXj/kZW3wIac//Jig5+Icy5GGTnQnSnh8Yr1omOqNil55pyzisQ5lLRvV3UYlXRlx/sFmfgwP44+cJ41ZoFPDdvNC3atCWUH1z4s+oQBxl+YCYxmFt/CyZfLoxHqwFdiuOdvnuXefAe/PChbw94M6T6ek9IfWfM+XYFqsdSxrQMmntc1meTEbnL7jNbpMXRQEuPDhEj/imrJt1iEKmau9QRnfzUd4pmd0CiQ76KIYKN0vkc8GBBsN/OgF9MoEf4bW3IDZzT9sTm13RYpDuPjfOENxla5MCHTtUKFY1Roh8mrX+rODhtgaItB9z7GMrMvB/XqFOTBT4y2A=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(19092799006)(7416014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?aktKbzEyNnJKOWhtSG9sNEZ1NFZXK1BuZWFoUnZ3a1VFNzluLzhVWkFrVFht?=
- =?utf-8?B?eVp4eTJERkJ5SzNoZlpSVWZJVU5Xa2loa2pmUHBMdWxGbWU5OFJEc0VUL2xW?=
- =?utf-8?B?RlB5ckJId28xTXFwWE83elh1Y3VOR1FBZEhZMGdmdW5vWkRDN3B2SFp4YmZH?=
- =?utf-8?B?aGpjRlp0RFdzZUZmWUtRaU5pd0VOTUxOV0dVUFdtSUJSRjkvalVuT0FwdDh2?=
- =?utf-8?B?dGZYMWhSeHZ3S1QyVkpMakdUSDBWOHEvYXdHQ1pZLy8zYzc0ZWNRNVRGdUd0?=
- =?utf-8?B?QnIrdU00cklLclhZL1ZtS1Bmai9tM2p1TXJwZlhseU1ybVRacFZzeStaU0o5?=
- =?utf-8?B?SnNpaWYrZDM3WitiWUg5eDlHWmw2UjByb1dBcXlhbXY4WWt5ekpmaDJ6S29W?=
- =?utf-8?B?bVArOFIxSnBJSEtWdk5yY1ZjYXVFbFkwMVQ4ZStRYnZSZWxES000S2doZHNi?=
- =?utf-8?B?cmJGa2JQQ1o1MEliSmJMMXFacW55OURubE1PMzVqNU8wZUVJeHdhck9ZSitn?=
- =?utf-8?B?NlowTWN3VnNFSFRSekY1MFRRcGRNdFdtMVUrRVVXbnNHeTMxbkxzTDErVXk1?=
- =?utf-8?B?MDNjZUJyVUlPbHorV3BOMjYwa1JCclZHRkJibEc2S1ZSaHhOeVYvZzhIajhn?=
- =?utf-8?B?QU1UbW92N3BjMjlVNWVOOHg2em9PcVBBWWloc21tUFRSd2hiR1JOU3RQVUEy?=
- =?utf-8?B?bVNpRlJHTm1lZ1ZwUTNzYi93MWJ3ak43ajR1YldHTUJ2Q3NWbmUvZnpOQXZz?=
- =?utf-8?B?bUFPNVNuZ1JQanZCbzlGV283MnZVaGdnKzZjTUZHRWZkd0Q5OTBWbEppUjRn?=
- =?utf-8?B?WEFkNmkwTmlGNjJkVGs3N0ZsWHk0dUUrbE15Q1UvVEhYZVRxUnBHenlwS0Nr?=
- =?utf-8?B?ZlZjU2QxdjlYOUhYeFpvY2RFVHZEVW1US1ZRWUNSa2NML0s0MHVCeGhyMlJE?=
- =?utf-8?B?aXZiVjdVVThRRjNrYW1ielBsUkEyYlpZNVpPdERxb3ZSVUpDS3pFVisyeERT?=
- =?utf-8?B?MnlaWHpITEkvVnp5WDY4SjNkYkxFNDY5aUJvVDdmaXBjd1M0YnZnK3poVm5R?=
- =?utf-8?B?MFRSVGhoT1R1djZjcjdoSTJMVksxY2JyTkx4UUlLL2VrdzdTeGFRTjQ4VjVu?=
- =?utf-8?B?OFhCdDhHdjZ0dmp0RExrVUEzTjlIVXY2TCtvSHBxWlUvZzdlYjBMb0tiR2M1?=
- =?utf-8?B?T0Q1M08wMks0bXpEMXhRcjNNVFZFVFBOeTV0VThCNWYzaE5lTTJzYVFxcGM0?=
- =?utf-8?B?MUxPZERLUnRiazhsOWVPZWZWc3M0b3RxZS92TlFhZjFZbDlkMnIwVXRraW5p?=
- =?utf-8?B?bnR4V0U0eGJoMHZpb0YraXRpU1lCbXZsNERKbVBzeTh5Ry9zRm0wY2xoZ0VN?=
- =?utf-8?B?NUZlM1NQY1gwOTk3VS9BS1NFTmhxYnc2RnY1am5hOW56MmgrRVZKVnBDRzBI?=
- =?utf-8?B?NXN4MWhuaFJhSXRpQnJkYUcrNHAzcnJ4RlkvTXc0cCt6RG9wajNTR3RROWJl?=
- =?utf-8?B?VjlpTnVkN3I2THpHMlh4MmFLcGswb2F5dXNXVDRGbkt2eTZQL0VlbzJKbjky?=
- =?utf-8?B?bEJ2N3E0U0lzRVV4bDhydDBnMzRzZnRvL0k5ZDlYOFFlMzRFVWYrTmwzeFc4?=
- =?utf-8?B?ZzZkK0hGQ3dxQ0I5SjFVL2lGc2xsV2tEQ3F2RFRkUXVTbHdaVElGMjN4MkVr?=
- =?utf-8?B?RG5ENVltQ2hBOEZNRFJRbVhxd1RzVlFCL1prN3RzUnZ0NHEyOXVyRU9iUnBp?=
- =?utf-8?B?ZGhORlI1cHlkUEhHa3NKN1c1ekF0RmhsN0NLZDVXUU43a2N3SHdoUm82RzVL?=
- =?utf-8?B?MnJQVGU0UjFneWpsTVB4MDZLdXNwR3U1WEpadUVFdXh3S0N6WnhLdEw0bEI2?=
- =?utf-8?B?aE5IUU1RMm1ZVG5SMVdmZno1NzRlNm5ub0s0K3F2bG1QM0piVzltTUt0WXRM?=
- =?utf-8?B?VEpHZU43ZitYaXBhQXJmdkJ2QXJxRldLeDArWnpDcGxHOWNCcmFFdkpZdjZy?=
- =?utf-8?B?OC9ZUEFVMmkyR2JwRjJBV1UycTAwL1A5UUtvS3VyUzJHaWRoUGtuVWE4ZG1M?=
- =?utf-8?B?cGxLQkdiMHVMQnNFZXZLTzNGMkpLdFhwK1BPKzl4V25NQlNaSk0zTHdObXVP?=
- =?utf-8?B?MWlXYUJiV2ZTd2g2SzAyWk9xcE5BQ0ExWGVjZC9lci9BZVg2aEJldTV6Rys0?=
- =?utf-8?B?b0UxN0NQbEVDT29pWjFCZnJJVkhGV0h0RWpUbXc3QWpJdjJhYkowakNXNGdi?=
- =?utf-8?B?Uk9KTU1WbnFZMUgxQ0dTOU91cXJJV1BQMnhhOHd4QldsZlduRm5mbjNUS24x?=
- =?utf-8?B?UjF5dkpsaFpxditJZWk4UTJJN3RuK2NzZjRNUU1LaTloMzlEbzNuZz09?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 849c4e65-421c-4577-8261-08de7df7354a
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 16:16:24.0714
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vimcLxXcaXjBnPX9KN0da3IRZCemiE4X2IGOqeyxa7cZb2BAfZXLDn79TkUdYFM0WYIuMfpViV7PHkwlBPgsoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7587
-X-Rspamd-Queue-Id: AAE1023C96C
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:zQCowABH1Qhb9K5pgkP5CQ--.22703S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7Xrykur4rWF4rWrWkKw1DAwb_yoWxCFgEka
+	409FWDCws5Aas3tF10yr4xJrs8ArW5C3WfAa48tFy2gry5C3s8ZayDCwn3Cr4UuF98CFyx
+	Ar1kGrZ7t3y2gjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUb3xFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+	Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
+	1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+	17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+	IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
+	C2KfnxnUUI43ZEXa7VUbGQ6JUUUUU==
+X-CM-SenderInfo: x2kh0wp0lqwv3d6l2u1dvotugofq/
+X-Rspamd-Queue-Id: 9893C23CACC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_TO(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,oss.nxp.com];
-	TAGGED_FROM(0.00)[bounces-273030-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273031-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,icenowy.me,gmail.com,iscas.ac.cn];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zhengxingda@iscas.ac.cn,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	DBL_PROHIBIT(0.00)[2.104.155.144:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.979];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.868];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,nxp.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[iscas.ac.cn:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+This patchset tries to add PVT coefficients from the T-Head TH1520 user
+manual to the corresponding DTSI file.
 
-On Mon, 02 Mar 2026 23:07:40 +0800, Peng Fan (OSS) wrote:
-> Patch 1 is a binding update to add missing #clock-cells, otherwise
-> there is CHECK_DTBS warning.
-> clock-controller@40410000 (fsl,imx7ulp-smc1): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 
-> And the clock will be used for cpufreq as done in patch 2.
-> 
-> 
-> [...]
+The v1 revision of this patchset is called "Initial thermal management
+for Lichee Pi 4A board", however the thermal zone and cooling related
+parts are already added to the DT as part of the TH1520 PWM patchset.
 
-Applied, thanks!
+Icenowy Zheng (2):
+  dt-bindings: hwmon: moortec,mr75203: adapt multipleOf for T-Head
+    TH1520
+  riscv: dts: thead: th1520: add coefficients to the PVT node
 
-[2/2] ARM: dts: imx7ulp: Add CPU clock and OPP table support
-      commit: 2314ecf275ae371638e1f35a346823d0b45de6eb
+ Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml | 4 ++--
+ arch/riscv/boot/dts/thead/th1520.dtsi                        | 4 ++++
+ 2 files changed, 6 insertions(+), 2 deletions(-)
 
-Best regards,
 -- 
-Frank Li <Frank.Li@nxp.com>
+2.52.0
+
 
