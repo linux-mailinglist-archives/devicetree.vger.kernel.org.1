@@ -1,176 +1,210 @@
-Return-Path: <devicetree+bounces-273686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273687-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sLL3BLlcsGloigIAu9opvQ
-	(envelope-from <devicetree+bounces-273686-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:02:33 +0100
+	id WHoFAAJfsGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273687-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:12:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B62C625619E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:02:32 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3F8256343
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:12:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0E36E30054F4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:02:19 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 41813313B914
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:10:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338EB3CD8B0;
-	Tue, 10 Mar 2026 18:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2BEE3D47B6;
+	Tue, 10 Mar 2026 18:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V0FUhHBI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D20QBuJz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1060D3C9EDC;
-	Tue, 10 Mar 2026 18:02:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F52D3019DC
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773165735; cv=none; b=nBXqJu9jcK5I5NMg6mXtWdUoPHnWU4AlfdYmP7gBFzNeqM/Nx4nVUZsZAiyrNtqRBi3HXpFYjOiYU3D7iZCMh6lLqOi/LlUHXXT1jQ0fMGzuEX1WSREGXgxGnfLhilP3yGq0dA7IW/M+L60xxQXZuPlAEzAxj1CtfvDAFK2ekoU=
+	t=1773166228; cv=none; b=XIH8e53j/GLjPlb5rnQy9g3RN3KB0sBYYLjQiR0vyHbkl3dcOvaIiDC7iOBLblDA1nFDKvPzS869nnJSrck2Kpb5mV3lwRDM+Qt9Avnv5VFfw/OyRRYpodz4eIQsnQ8JofhCog3+kF7K7bVouhg2x4kgB45VFvtZAwNqGUHV2Q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773165735; c=relaxed/simple;
-	bh=reQ/kmi8Sjb4oidTs+HBvwFOv2hwV16eAYsgx9QAHCA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S355o9cv2O1I4BAbSd+EAOwz8e1a+CUsCxxXnT6uC2MlUOdk2sMiuKJKd+gq0FbG5WWKCDtU0OAfTCAZ/VXXuHKpa5kGf34LVmapsHfAAVL9VGVILOx8+nakVz8xl0A1eAjaMSlofCbeLrtYsUtGwz9pvP/8uXT+KJLJDCP0RXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V0FUhHBI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1999EC19423;
-	Tue, 10 Mar 2026 18:02:10 +0000 (UTC)
+	s=arc-20240116; t=1773166228; c=relaxed/simple;
+	bh=+BkbeGlWZU3HoPWqSJ4ZGWH/mYA1R9F66ZxBmJ6EvZk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GSaChtAWtiDsk35/4B7EP/UWv1Vkc84zSkNsMcj+D9cLs16GJfD1ExuNJhebQdK/uFhO9IEENbaTz9vZPnadFJu+vTC8rxIB1KC4xaoYd9j42msOUZzvGiUd60qUZFr8E2/aTTyzWE25fjxM8eQH2syqoyWy/na01OMW8IWUdA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D20QBuJz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38056C2BCB2
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:10:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773165734;
-	bh=reQ/kmi8Sjb4oidTs+HBvwFOv2hwV16eAYsgx9QAHCA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V0FUhHBIOE8xyfL7IJqPyDD5A6zRW1WI7QAp0NAB4zPoWIL5fi4TInx+tpkSKL2nZ
-	 lK/Uf0dExjHRhK2ot7tbkm+DHNEIWhHrao4crZCXJbURaWI8e4008x6hfQBeGF+9t+
-	 FoYZiIklAbw0F6MWvG9F/DXpxzAaYIj86NU1EMk1IqWDpmkk4wCkq1H3fq93xeLf+0
-	 /LkbEoUtuT+R34daM/sAHqPDqLeWTntpVpBGUPradpdxsw42syoasvXIVc5yBvlo1Q
-	 D2lReF7N4Xzo6JfhWrEzveyS9u6qvcjwz/KACelzv1PEQWOM06uzzP/yemEu6dpflD
-	 iFrEXL2Zy/i2w==
-Date: Tue, 10 Mar 2026 18:02:08 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Marcel Holtmann <marcel@holtmann.org>,
-	Johan Hedberg <johan.hedberg@gmail.com>,
-	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm7225-fairphone-fp4: Add
- Bluetooth
-Message-ID: <20260310-maritime-silly-05e7b7e03aa6@spud>
-References: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
- <20230421-fp4-bluetooth-v2-4-3de840d5483e@fairphone.com>
+	s=k20201202; t=1773166228;
+	bh=+BkbeGlWZU3HoPWqSJ4ZGWH/mYA1R9F66ZxBmJ6EvZk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=D20QBuJz20JGK1KlKAqOqZ98LZe96xXmFEvoFFgDEI0OK2C81PB7DoxY0y7AcHg/o
+	 HEm7rQUPs9UaCUxzf/mfFjK7/pA8NpZmHCtAlWAIjFQK4yGD83W/Zzc1JtkYAp7HFr
+	 YiTr+T+aGCNFnwhndRNOQg7x8Mn3oX0+YfX3CTWznLdEQiSnPnzf5xJfHwpaKo/ZTK
+	 7TQ/FaHFs7+jOTrIyA4C/C++F+435/pK/LJXLLoMxHqmyRCgyYV1hLVPbdU9e0z0tp
+	 XcHNxYA/Y6J5EhLiD21CNSpij8ernXpwojze9/tK04JR30/4OHbnKon/mwhECJ1tWr
+	 6z2WzYHLie1ag==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b941762394aso635393366b.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 11:10:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW0tJKgPMeDqPDfXlzkyxhW+tCezOjemzd8IbtsS9yJo4LsFE6xanQY7PWEYBNnrUx0oYLknmUHKy9h@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw82Q+ab/CfVnE6cwnT0PUQvdnh+9jiVXqRuceTGqCo3LR1Bii/
+	YGR+tLwzxFaR2vbiVVxPXHlb4YFyZWL6w+3CK38RVbfP/COpo7efI2oMC2IpsRKkyB2Z5BfFROi
+	fmFQvliwNh8/oMgQIuz1yMyoyKcq0XA==
+X-Received: by 2002:a17:906:2091:b0:b97:1d24:c015 with SMTP id
+ a640c23a62f3a-b971d24fa35mr124911866b.40.1773166226421; Tue, 10 Mar 2026
+ 11:10:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8vcYeGljaN9cb6WW"
-Content-Disposition: inline
-In-Reply-To: <20230421-fp4-bluetooth-v2-4-3de840d5483e@fairphone.com>
-X-Rspamd-Queue-Id: B62C625619E
+References: <20260306-mt8196-ufs-v9-0-55b073f7a830@collabora.com>
+ <20260306-mt8196-ufs-v9-3-55b073f7a830@collabora.com> <20260306163305.GA2680515-robh@kernel.org>
+ <4089450.ElGaqSPkdT@workhorse>
+In-Reply-To: <4089450.ElGaqSPkdT@workhorse>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 10 Mar 2026 13:10:14 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+mF_Q7Ld8__ZTc5yDvWAT6uK5wxfBJM-YdFjOvdiDc-w@mail.gmail.com>
+X-Gm-Features: AaiRm53tDdS80GaVjUeFGPThiibYh4p5Q5y90_XYQtN7oN_0_RN9C3azVe77kTU
+Message-ID: <CAL_Jsq+mF_Q7Ld8__ZTc5yDvWAT6uK5wxfBJM-YdFjOvdiDc-w@mail.gmail.com>
+Subject: Re: [PATCH v9 03/23] dt-bindings: ufs: mediatek,ufs: Add mt8196 variant
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
+	Bart Van Assche <bvanassche@acm.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Peter Wang <peter.wang@mediatek.com>, 
+	Stanley Jhu <chu.stanley@gmail.com>, 
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+	"Martin K. Petersen" <martin.petersen@oracle.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Chaotian Jing <Chaotian.Jing@mediatek.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, kernel@collabora.com, 
+	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 6D3F8256343
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273686-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273687-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[samsung.com,wdc.com,acm.org,kernel.org,gmail.com,collabora.com,mediatek.com,hansenpartnership.com,oracle.com,pengutronix.de,linaro.org,vger.kernel.org,lists.infradead.org,microchip.com];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FREEMAIL_CC(0.00)[davemloft.net,google.com,kernel.org,redhat.com,linaro.org,holtmann.org,gmail.com,lists.sr.ht,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
+On Fri, Mar 6, 2026 at 12:37=E2=80=AFPM Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> On Friday, 6 March 2026 17:33:05 Central European Standard Time Rob Herri=
+ng wrote:
+> > On Fri, Mar 06, 2026 at 02:24:44PM +0100, Nicolas Frattaroli wrote:
+> > > The MediaTek MT8196 SoC's UFS controller uses three additional clocks
+> > > compared to the MT8195, and a different set of supplies. It is theref=
+ore
+> > > not compatible with the MT8195.
+> > >
+> > > While it does have a AVDD09_UFS_1 pin in addition to the AVDD09_UFS p=
+in,
+> > > it appears that these two pins are commoned together, as the board
+> > > schematic I have access to uses the same supply for both, and the
+> > > downstream driver does not distinguish between the two supplies eithe=
+r.
+> > >
+> > > Add a compatible for it, and modify the binding correspondingly.
+> > >
+> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Acked-by: Vinod Koul <vkoul@kernel.org>
+> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > ---
+> > >  .../devicetree/bindings/ufs/mediatek,ufs.yaml      | 58 ++++++++++++=
++++++++++-
+> > >  1 file changed, 57 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml =
+b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> > > index e0aef3e5f56b..a82119ecbfe8 100644
+> > > --- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> > > +++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
+> > > @@ -16,10 +16,11 @@ properties:
+> > >        - mediatek,mt8183-ufshci
+> > >        - mediatek,mt8192-ufshci
+> > >        - mediatek,mt8195-ufshci
+> > > +      - mediatek,mt8196-ufshci
+> > >
+> > >    clocks:
+> > >      minItems: 1
+> > > -    maxItems: 13
+> > > +    maxItems: 16
+> > >
+> > >    clock-names:
+> > >      minItems: 1
+> > > @@ -37,6 +38,9 @@ properties:
+> > >        - const: crypt_perf
+> > >        - const: ufs_rx_symbol0
+> > >        - const: ufs_rx_symbol1
+> > > +      - const: ufs_sel
+> >
+> > "ufs" is redundant as all the clocks are for UFS. Same comment on prior
+> > patch.
+>
+> Is this naming a big enough concern to block this series with two
+> explicit acks on this patch that fixes a wholly broken and useless
+> binding?
 
---8vcYeGljaN9cb6WW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Shrug... Is changing it really that hard?
 
-On Fri, May 12, 2023 at 03:58:26PM +0200, Luca Weiss wrote:
+> > > +      - const: ufs_sel_min_src
+> > > +      - const: ufs_sel_max_src
+> >
+> > "src" sounds like a parent clock? If so, probably shouldn't be in the
+> > clocks list. 'assigned-clocks' is for dealing with parent clocks.
+> >
+>
+> I don't know what it is, and I have no way to consult any documentation
+> that would tell me what it is. I am trying to put out this dumpster fire
+> of a downstream turd that made its way into mainline as the review proces=
+s
+> has been completely subverted, and is only getting worse with each passin=
+g
+> month that MediaTek is allowed to block this series from progressing whil=
+e
+> sneaking further changes through.
 
-> +&qup_uart1_cts {
-> +	/*
-> +	 * Configure a bias-bus-hold on CTS to lower power
-> +	 * usage when Bluetooth is turned off. Bus hold will
-> +	 * maintain a low power state regardless of whether
-> +	 * the Bluetooth module drives the pin in either
-> +	 * direction or leaves the pin fully unpowered.
-> +	 */
-> +	bias-bus-hold;
-> +};
-> +
-> +&qup_uart1_rts {
-> +	/* We'll drive RTS, so no pull */
-> +	drive-strength = <2>;
-> +	bias-disable;
-> +};
-> +
-> +&qup_uart1_rx {
-> +	/*
-> +	 * Configure a pull-up on RX. This is needed to avoid
-> +	 * garbage data when the TX pin of the Bluetooth module is
-> +	 * in tri-state (module powered off or not driving the
-> +	 * signal yet).
-> +	 */
-> +	bias-pull-up;
-> +};
-> +
-> +&qup_uart1_tx {
-> +	/* We'll drive TX, so no pull */
-> +	drive-strength = <2>;
-> +	bias-disable;
-> +};
+It's good Mediatek is active, then they can tell us what the clocks
+are for. I would think the driver would give some clue.
 
-I recently made some changes to pincfg-node.yaml to detect if there's
-conflicting properties used, and these got detected. Should these not
-do what has been done on the msm8998-xiaomi-sagit, and delete the
-inherited bias-foo from the dtsi?
-&blsp1_i2c5_sleep {
-	/delete-property/ bias-pull-up;
-	bias-disable;
-};
+I don't see how accepting sub-par bindings or not fixes the issues here.
 
---8vcYeGljaN9cb6WW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabBcoAAKCRB4tDGHoIJi
-0rVMAQDnCWfS9SVgN5I9oCZV8sUIm4jsdwk8Z93loonuabpbDAD/dsTwIxMkuvPV
-hcf46FGtpSe1pKAkNjqG/Nqkn+5wBw0=
-=qt9u
------END PGP SIGNATURE-----
-
---8vcYeGljaN9cb6WW--
+Rob
 
