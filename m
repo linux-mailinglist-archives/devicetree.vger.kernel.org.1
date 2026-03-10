@@ -1,197 +1,162 @@
-Return-Path: <devicetree+bounces-273640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273641-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNNoE75PsGnFhgIAu9opvQ
-	(envelope-from <devicetree+bounces-273640-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:07:10 +0100
+	id gNjBIalQsGnFhgIAu9opvQ
+	(envelope-from <devicetree+bounces-273641-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:11:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB6C72553C9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:07:09 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0546D2554F7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:11:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A88B3300F78E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:07:08 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6938A30244E8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:11:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 087AF3624C4;
-	Tue, 10 Mar 2026 17:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF183C6614;
+	Tue, 10 Mar 2026 17:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zbb7jjwF"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="XJ7x/dS7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9EBF40DFD5
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3894C3C4568;
+	Tue, 10 Mar 2026 17:10:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773162427; cv=none; b=r315CXuO9/+vyu/GnXxGmKdU0CmglrqmGrE1o4sY4z5iOYsMqoboiSr2crqupDIn0neiLpghGjKn1gvsZyDue1A3xWtGapKUZREkx/9FNTwyg1bC28dwrCallgRCaOxAF0Taqp4y0gtimvlvae3xKEb+d/oluc/MvtqBzSdtypo=
+	t=1773162660; cv=none; b=iuLYRrAKQMDzjZt9CfrstHlH0PYzs2dGxNAlfrPx3Aoqqe2R7EUsTOPpkSxZAEqdN4o//Vuv2OtT0+Fh3cmkkwd6Wyvi19FNmE34ne3T94nq9t8C8QYNGW7DUsV8gOOnrY2fTDx9vnPhez2Mxqt+oma0mF80EEn+EhMf14gwWZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773162427; c=relaxed/simple;
-	bh=q7pbf99+I8vUNFAI20TKd98+Bh5cPQ0Gjl2/ZF/p3so=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jdlYk23tFIdu75djvHvD3uHunT6RAx8WPLh8pRkbdo9GilTOr2g8WDUeMn4N+gXtuLYOH5wheIvYCrTgaAKuFY4tluRokfomV5S1UumpTFK6IpvGmLEckOt6r6a6doRIXkUtWFIeda/dvBnEO0DMphHJrH0KDRUpWwOmcSKptpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zbb7jjwF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAD66C19423;
-	Tue, 10 Mar 2026 17:07:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773162427;
-	bh=q7pbf99+I8vUNFAI20TKd98+Bh5cPQ0Gjl2/ZF/p3so=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zbb7jjwFJ5WnmP3lX5+PqqT6+Z0xxFe2NV2HPyql4F0XtI7uJML6UXgVOGIXn+NZG
-	 0KVdrYXjhg9jp+DCtOFlOIh3qY4Z4HxThkWPZqrLCvZDDlZfAJftrzsboyh3U6wy55
-	 Hxi/QCx3A2gFtck89QPZJU9vfEYUeFJpbUJnyJ2l660HntvzZfIG/PyC4Y/RVrprZl
-	 qUkit6FQUIXttpo2eGE6iSIgfPaiYOImJ9piF6bjNbOgvUHZboZStQh2xw2aGOmrUw
-	 HrZq2IEBSvALWueR2eKj1PyFi/k+ucuNToVAK3jBZ8MApADt3C7EjH6CDRc7JpDecR
-	 cdq2ej6yqQO3Q==
-Date: Tue, 10 Mar 2026 18:07:05 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-	Christian Marangi <ansuelsmth@gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: airoha: en7581: Enable spi nand
- controller for EN7581 EVB
-Message-ID: <abBPufvrG8I8UP69@lore-desk>
-References: <20250225-en7581-snfi-probe-fix-v2-1-92e35add701b@kernel.org>
+	s=arc-20240116; t=1773162660; c=relaxed/simple;
+	bh=07ndbrJflIVkf8+WPofP2WZeeRp05e6JIu3UbX6Kp50=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=Dd36OXmGGw23xGkwMHyxFvIG17JIZ/NWgBWr7+WfaFfRaNNzOMHYrvvUEB2nAAyybQE2evfLkhXsDPYE3OaOVIXGPt3gVMaXkIvapj4xKN2pjCBsxNqEKkDnlpPseth5LKdC16GJfRhxrwDcyy+xDLTwRjhjXRMZiRcgUtDLIFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=XJ7x/dS7; arc=none smtp.client-ip=91.218.175.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+Date: Tue, 10 Mar 2026 17:08:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1773162647;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=z0zsmE6swrwjZxcPpLTo7Ccdu1wDy0ZaJKXK5yg4Ppg=;
+	b=XJ7x/dS7e+l8XHprHTXdI08ufQkTNp7UiQg1tN0sysJebfPrxheYJNw3mcVAq6GmsSovjs
+	9mp3FKjc1i3SWt3s59PWngd+ET/GUGKSYnkFczC11gboP35lNpLHJUdN4ugMmQ0rVDAUbo
+	ssix3GmGfT3iHBmcSAEZg/dzJDRLMh4ccTh9vuoy1sOlsyu5xlrbLuqpblSipRZTqJgOjw
+	Cnnjf20S02puowKrnW+4Yu/vhK0/9LadBtVb/1zeZjTwXZcDa6JVywHIgSTqTWul9v4ryD
+	DS7fFmMTZslyWb5sL0auTf6+aH0MRfWAYS2gbgCdPIde3yRKWHALZFG8CwQJXg==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Hendrik Noack <hendrik-noack@gmx.de>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: Input: Add Wacom W9000-series penabled touchscreens
+References: <20260307181557.66927-1-hendrik-noack@gmx.de> <20260307181557.66927-2-hendrik-noack@gmx.de> <20260308-vivacious-coucal-of-current-2d7ac8@quoll> <feae85c4-bea1-40b2-87d5-952b26ff3ee3@gmx.de> <fddf0e3b-707e-41b3-805b-2abeffed6c05@kernel.org> <f067754d-229c-4418-a367-6df5feb6cee0@gmx.de> <21aec29b-595d-4889-a71e-abe9e5ce834f@kernel.org> <tbp04l.1q4xkmdkoohga@postmarketos.org> <0200ee01-b14c-4fec-bbbb-b2a3c0f140f2@kernel.org>
+In-Reply-To: <0200ee01-b14c-4fec-bbbb-b2a3c0f140f2@kernel.org>
+Message-ID: <tbp11w.2apu4pl02emnt@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mnhLociRa4wDMSFh"
-Content-Disposition: inline
-In-Reply-To: <20250225-en7581-snfi-probe-fix-v2-1-92e35add701b@kernel.org>
-X-Rspamd-Queue-Id: BB6C72553C9
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+X-Migadu-Flow: FLOW_OUT
+X-Rspamd-Queue-Id: 0546D2554F7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273640-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
-	FREEMAIL_CC(0.00)[lists.infradead.org,vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273641-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[kernel.org,gmx.de];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[postmarketos.org:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[4.196.180.0:email];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[funderscore@postmarketos.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.137.84.64:email]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,postmarketos.org:dkim,postmarketos.org:mid]
 X-Rspamd-Action: no action
 
+On Tue, 10 Mar 2026 16:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>On 10/03/2026 17:50, Ferass El Hafidi wrote:
+>> Hi Krzysztof & Hendrik,
+>> 
+>> On Mon, 09 Mar 2026 13:21, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>> On 09/03/2026 14:12, Hendrik Noack wrote:
+>>>> Hello Krzysztof,
+>>>>
+>>>> 09.03.2026 13:56:41 Krzysztof Kozlowski <krzk@kernel.org>:
+>>>>
+>>>>> On 09/03/2026 13:54, Hendrik Noack wrote:
+>>>>>> Hello Krzysztof,
+>>>>>>
+>>>>>> 08.03.2026 10:15:35 Krzysztof Kozlowski <krzk@kernel.org>:
+>>>>>>
+>>>>>>> You received review and instruction what to do. Did you read it?
+>>>>>>
+>>>>>> I read the review of Dmitry and incorporated it into this version.
+>>>>>
+>>>>> So you ignored my email completely or it did not reach you (it is on
+>>>>> lore.kernel.org though)?
+>>>>
+>>>> I don't know what email you mean. You gave reviews on my first verison, 
+>>>> which I already incorporated in v2 and then gave a review-by on v2, 
+>>>> which I also added on v3, but now dropped, because I added a property
+>>>> to the DT binding.
+>>>
+>>> The instruction I gave you when giving review.
+>> 
+>> If you gave review on the v3 dt-bindings, I can't find it on lore:
+>> https://lore.kernel.org/all/20251205152858.14415-2-hendrik-noack@gmx.de/
+>> 
+>> On v2 you gave a R-b to the dt-bindings along with some instructions:
+>> https://lore.kernel.org/all/2bf9dbd4-351e-4a79-9fcf-e41c5273d0be@kernel.org/
+>> which were followed from what I can tell; your R-b was retained on v3,
+>> but dropped on this revision (v4) because of new properties being added
+>> (new `reset-gpio` property, technically also `wacom,w9002` compatible
+>> but my understanding is new compatibles don't really matter much), as
+>> your email said "Please add Acked-by/Reviewed-by/Tested-by tags when
+>> posting new versions [...] unless patch changed (e.g. new properties
+>> added to the DT bindings)".
+>
+>Thanks. I also provided the link further explaining what one has to do
+>if one ever decide to drop the review.
 
---mnhLociRa4wDMSFh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Assuming you're talking about that R-b dropping should be mentioned in
+the cover letter, that was probably just overlooked.
 
-> Enable spi controller used for snand memory device for EN7581 evaluation
-> board.
->=20
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+>
+>Dropping it silently is for me rather sign I should ignore this patchset
+>to avoid wasting time of lost reviews.
 
-Hi all,
+That was most likely not the intent, I think your feedback is valuable.
 
-it seems this patch has been reviewed by AngeloGioacchino, but it has never
-been applied to linux-mediatek tree (or at least I can't find it). It is ma=
-rked
-as 'New, archived' in patchwork [0]. Am I missing something?
+Best regards,
+Ferass
 
-Regards,
-Lorenzo
+[PS: I see you left some review after your last email, thank you for
+     your time and sorry for the inconvenience.]
 
-[0] https://patchwork.kernel.org/project/linux-mediatek/patch/20250225-en75=
-81-snfi-probe-fix-v2-1-92e35add701b@kernel.org/
-
-> ---
-> Changes in v2:
-> - Clarify the commit title
-> - Link to v1: https://lore.kernel.org/r/20250225-en7581-snfi-probe-fix-v1=
--1-77e4769574e4@kernel.org
-> ---
->  arch/arm64/boot/dts/airoha/en7581-evb.dts | 4 ++++
->  arch/arm64/boot/dts/airoha/en7581.dtsi    | 2 +-
->  2 files changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/=
-dts/airoha/en7581-evb.dts
-> index d53b72d18242e3cee8b37c7b1b719d662fd6db8d..cc69f698c27b804953b1bb671=
-e128d4401744bf5 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> +++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-> @@ -25,6 +25,10 @@ memory@80000000 {
->  	};
->  };
-> =20
-> +&snfi {
-> +	status =3D "okay";
-> +};
-> +
->  &spi_nand {
->  	partitions {
->  		compatible =3D "fixed-partitions";
-> diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts=
-/airoha/en7581.dtsi
-> index 26b13694091735da7af977e42f8f546d7d5cb078..49c061d38d7860b3b41661072=
-3791a7a91edcb69 100644
-> --- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-> +++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-> @@ -150,7 +150,7 @@ gic: interrupt-controller@9000000 {
->  			interrupts =3D <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
->  		};
-> =20
-> -		spi@1fa10000 {
-> +		snfi: spi@1fa10000 {
->  			compatible =3D "airoha,en7581-snand";
->  			reg =3D <0x0 0x1fa10000 0x0 0x140>,
->  			      <0x0 0x1fa11000 0x0 0x160>;
->=20
-> ---
-> base-commit: 0092294492fafe79a537915e486576a3d69c9a7c
-> change-id: 20250225-en7581-snfi-probe-fix-c325bedded9e
->=20
-> Best regards,
-> --=20
-> Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-
---mnhLociRa4wDMSFh
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCabBPuAAKCRA6cBh0uS2t
-rP1ZAP9kz75TUPNM3K4TxCKoN3dziQZVGLiekwemyNCDMk61hgD/cGH1CQa3sWRw
-8uwjHH6ikCDSNHqAVXd8Ck69JVtDRQM=
-=Kql2
------END PGP SIGNATURE-----
-
---mnhLociRa4wDMSFh--
+>
+>Best regards,
+>Krzysztof
 
