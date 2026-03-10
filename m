@@ -1,162 +1,203 @@
-Return-Path: <devicetree+bounces-273641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273642-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gNjBIalQsGnFhgIAu9opvQ
-	(envelope-from <devicetree+bounces-273641-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:11:05 +0100
+	id qIUjDpBSsGmBiAIAu9opvQ
+	(envelope-from <devicetree+bounces-273642-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:19:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0546D2554F7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:11:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB40B25566D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:19:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6938A30244E8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:11:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 130393019467
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:18:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DF183C6614;
-	Tue, 10 Mar 2026 17:11:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 821653CF04C;
+	Tue, 10 Mar 2026 17:18:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="XJ7x/dS7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uM77GE58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3894C3C4568;
-	Tue, 10 Mar 2026 17:10:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D1493AC0E3;
+	Tue, 10 Mar 2026 17:18:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773162660; cv=none; b=iuLYRrAKQMDzjZt9CfrstHlH0PYzs2dGxNAlfrPx3Aoqqe2R7EUsTOPpkSxZAEqdN4o//Vuv2OtT0+Fh3cmkkwd6Wyvi19FNmE34ne3T94nq9t8C8QYNGW7DUsV8gOOnrY2fTDx9vnPhez2Mxqt+oma0mF80EEn+EhMf14gwWZY=
+	t=1773163125; cv=none; b=aJjOVCi7jQvPaU+FlFGrdhmbAmR1CVbaR1qh/BD1co+zmDMZfSBoXCfLsUigpNAz1L8Uaj3CYij6TBfIaCzybQ1CMnbUcF3895lu8dQIMuHlJRzH4+0MMPAzQQDuyr/2lxqkK5Ztb0D8dHDz1ACzGf6aBIME/d1xiWFhYNZlUyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773162660; c=relaxed/simple;
-	bh=07ndbrJflIVkf8+WPofP2WZeeRp05e6JIu3UbX6Kp50=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=Dd36OXmGGw23xGkwMHyxFvIG17JIZ/NWgBWr7+WfaFfRaNNzOMHYrvvUEB2nAAyybQE2evfLkhXsDPYE3OaOVIXGPt3gVMaXkIvapj4xKN2pjCBsxNqEKkDnlpPseth5LKdC16GJfRhxrwDcyy+xDLTwRjhjXRMZiRcgUtDLIFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=XJ7x/dS7; arc=none smtp.client-ip=91.218.175.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
-Date: Tue, 10 Mar 2026 17:08:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1773162647;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=z0zsmE6swrwjZxcPpLTo7Ccdu1wDy0ZaJKXK5yg4Ppg=;
-	b=XJ7x/dS7e+l8XHprHTXdI08ufQkTNp7UiQg1tN0sysJebfPrxheYJNw3mcVAq6GmsSovjs
-	9mp3FKjc1i3SWt3s59PWngd+ET/GUGKSYnkFczC11gboP35lNpLHJUdN4ugMmQ0rVDAUbo
-	ssix3GmGfT3iHBmcSAEZg/dzJDRLMh4ccTh9vuoy1sOlsyu5xlrbLuqpblSipRZTqJgOjw
-	Cnnjf20S02puowKrnW+4Yu/vhK0/9LadBtVb/1zeZjTwXZcDa6JVywHIgSTqTWul9v4ryD
-	DS7fFmMTZslyWb5sL0auTf6+aH0MRfWAYS2gbgCdPIde3yRKWHALZFG8CwQJXg==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Ferass El Hafidi <funderscore@postmarketos.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Hendrik Noack <hendrik-noack@gmx.de>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: Input: Add Wacom W9000-series penabled touchscreens
-References: <20260307181557.66927-1-hendrik-noack@gmx.de> <20260307181557.66927-2-hendrik-noack@gmx.de> <20260308-vivacious-coucal-of-current-2d7ac8@quoll> <feae85c4-bea1-40b2-87d5-952b26ff3ee3@gmx.de> <fddf0e3b-707e-41b3-805b-2abeffed6c05@kernel.org> <f067754d-229c-4418-a367-6df5feb6cee0@gmx.de> <21aec29b-595d-4889-a71e-abe9e5ce834f@kernel.org> <tbp04l.1q4xkmdkoohga@postmarketos.org> <0200ee01-b14c-4fec-bbbb-b2a3c0f140f2@kernel.org>
-In-Reply-To: <0200ee01-b14c-4fec-bbbb-b2a3c0f140f2@kernel.org>
-Message-ID: <tbp11w.2apu4pl02emnt@postmarketos.org>
+	s=arc-20240116; t=1773163125; c=relaxed/simple;
+	bh=ssOac3bxyWtS0tltR+pILLaG3NN0ZgI0HUcEtKF5uRg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MGcI/7OTc8CUFxWdEhhjmOEgURb3+iX9b4JbHd8tzPMXLGO7PfgmbsL+82OSc+RK+57oDS+uNb6WAd9D+6Woe+fO6xWaXHgb69BdV+wibR2F0YL2br6vUdifaDtFz6NdK7/UpShZ18K9DQjP5AHmMH5P6NSUF6ZKuPahuMahJSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uM77GE58; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFADAC19423;
+	Tue, 10 Mar 2026 17:18:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773163125;
+	bh=ssOac3bxyWtS0tltR+pILLaG3NN0ZgI0HUcEtKF5uRg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=uM77GE58J6M5lK2RRmBrfQA1Djxa+7Vra9kK54/+wt1K9oRFu9Qbei6KgDivjziIX
+	 qotoROcjjoFYuc2MWvX7alS6iRdeYbIahjM3gx+Qgj30jvdPnnMv0rrFJMu2k3dawD
+	 N6/9fOfnQtXvv06UNpEF+1zLSZ0zQRL5EH/AhHHG6pc4N05n0/khsrCkGEvAWrGoF/
+	 PV+41GjX7zhFj0dkQ4YPST4FiSSuXG4aWkW5zl9eWwBA/IaxGngHHaGEveO2YE36xK
+	 tJLdavbbIaup6QiJpLumkwDWJr81tZ5QybfOe7ac4QvFQ8NMLtDbFMTDIblVciBQJK
+	 dEoKQfutb0Mnw==
+From: Conor Dooley <conor@kernel.org>
+To: netdev@vger.kernel.org
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Valentina.FernandezAlanis@microchip.com,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Sean Anderson <sean.anderson@linux.dev>,
+	Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
+	Abin Joseph <abin.joseph@amd.com>,
+	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
+	Ryan.Wanner@microchip.com
+Subject: [PATCH net-next v3 00/10] macb usrio/tsu patches
+Date: Tue, 10 Mar 2026 17:17:07 +0000
+Message-ID: <20260310-moneyless-dispense-7bce14b16388@spud>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4269; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=QrQ6yekBVGBayH1oG22woO0zUs3eFYGTHF3VO06A6ns=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkbgpRmG69Rc+n+PSe0OqY+ddVpZ7UMPpcv23TTPjdW6 BrqTNTtKGVhEONikBVTZEm83dcitf6Pyw7nnrcwc1iZQIYwcHEKwES4Uhn+p6cyedeaFs34wviF 12L74WupLGUeXlP/P8nZf0IzgPFYA8N/D8tyxoU9LXd9VDYYbfapWX9K79oGGQV9+er1nLGO7Pf 4AA==
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset=utf-8; format=flowed
-X-Migadu-Flow: FLOW_OUT
-X-Rspamd-Queue-Id: 0546D2554F7
+X-Rspamd-Queue-Id: AB40B25566D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273641-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[kernel.org,gmx.de];
+	TAGGED_FROM(0.00)[bounces-273642-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[postmarketos.org:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[30];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[funderscore@postmarketos.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[kernel.org,microchip.com,lunn.ch,davemloft.net,google.com,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,tuxon.dev,gmail.com,sifive.com,vger.kernel.org,lists.infradead.org,raspberrypi.com,linux.dev,amd.com,bootlin.com];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,postmarketos.org:dkim,postmarketos.org:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, 10 Mar 2026 16:55, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->On 10/03/2026 17:50, Ferass El Hafidi wrote:
->> Hi Krzysztof & Hendrik,
->> 
->> On Mon, 09 Mar 2026 13:21, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>> On 09/03/2026 14:12, Hendrik Noack wrote:
->>>> Hello Krzysztof,
->>>>
->>>> 09.03.2026 13:56:41 Krzysztof Kozlowski <krzk@kernel.org>:
->>>>
->>>>> On 09/03/2026 13:54, Hendrik Noack wrote:
->>>>>> Hello Krzysztof,
->>>>>>
->>>>>> 08.03.2026 10:15:35 Krzysztof Kozlowski <krzk@kernel.org>:
->>>>>>
->>>>>>> You received review and instruction what to do. Did you read it?
->>>>>>
->>>>>> I read the review of Dmitry and incorporated it into this version.
->>>>>
->>>>> So you ignored my email completely or it did not reach you (it is on
->>>>> lore.kernel.org though)?
->>>>
->>>> I don't know what email you mean. You gave reviews on my first verison, 
->>>> which I already incorporated in v2 and then gave a review-by on v2, 
->>>> which I also added on v3, but now dropped, because I added a property
->>>> to the DT binding.
->>>
->>> The instruction I gave you when giving review.
->> 
->> If you gave review on the v3 dt-bindings, I can't find it on lore:
->> https://lore.kernel.org/all/20251205152858.14415-2-hendrik-noack@gmx.de/
->> 
->> On v2 you gave a R-b to the dt-bindings along with some instructions:
->> https://lore.kernel.org/all/2bf9dbd4-351e-4a79-9fcf-e41c5273d0be@kernel.org/
->> which were followed from what I can tell; your R-b was retained on v3,
->> but dropped on this revision (v4) because of new properties being added
->> (new `reset-gpio` property, technically also `wacom,w9002` compatible
->> but my understanding is new compatibles don't really matter much), as
->> your email said "Please add Acked-by/Reviewed-by/Tested-by tags when
->> posting new versions [...] unless patch changed (e.g. new properties
->> added to the DT bindings)".
->
->Thanks. I also provided the link further explaining what one has to do
->if one ever decide to drop the review.
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Assuming you're talking about that R-b dropping should be mentioned in
-the cover letter, that was probably just overlooked.
+Hey folks,
 
->
->Dropping it silently is for me rather sign I should ignore this patchset
->to avoid wasting time of lost reviews.
+At the very least, it'd be good of the soc vendor folks could check
+their platforms and see if their usrio stuff actually lines up with what
+the driver currently calls "macb_default_usrio". Ours didn't and it was
+a nasty surprise.
 
-That was most likely not the intent, I think your feedback is valuable.
+Theo, you added eyeq5 recently. Does it genuinely have the same usrio
+bits as the at91 devices?
 
-Best regards,
-Ferass
+Ryan and I figured out that the sama7g5 stuff is not actually using the
+same usrio bits as earlier devices, so there's now more patches in this
+series to split them apart. I've not tested the split or the new
+property due to lack of hardware, but Ryan has.
 
-[PS: I see you left some review after your last email, thank you for
-     your time and sorry for the inconvenience.]
+Cheers,
+Conor.
 
->
->Best regards,
->Krzysztof
+v3:
+- reorder patches
+- fix smatch issue reported by Simon
+- add patches reworking usrio handling of clken/refclk (and remove the
+  issue the llm reported in the process)
+- add a new devicetree property for refclk selection, replacing the
+  existing one.
+- drop the dts patch
+
+CC: Valentina.FernandezAlanis@microchip.com
+CC: Andrew Lunn <andrew+netdev@lunn.ch>
+CC: David S. Miller <davem@davemloft.net>
+CC: Eric Dumazet <edumazet@google.com>
+CC: Jakub Kicinski <kuba@kernel.org>
+CC: Paolo Abeni <pabeni@redhat.com>
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Daire McNamara <daire.mcnamara@microchip.com>
+CC: Paul Walmsley <pjw@kernel.org>
+CC: Palmer Dabbelt <palmer@dabbelt.com>
+CC: Albert Ou <aou@eecs.berkeley.edu>
+CC: Alexandre Ghiti <alex@ghiti.fr>
+CC: Nicolas Ferre <nicolas.ferre@microchip.com>
+CC: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: Richard Cochran <richardcochran@gmail.com>
+CC: Samuel Holland <samuel.holland@sifive.com>
+CC: netdev@vger.kernel.org
+CC: devicetree@vger.kernel.org
+CC: linux-kernel@vger.kernel.org
+CC: linux-riscv@lists.infradead.org
+CC: Dave Stevenson <dave.stevenson@raspberrypi.com>
+CC: Sean Anderson <sean.anderson@linux.dev>
+CC: Vineeth Karumanchi <vineeth.karumanchi@amd.com>
+CC: Abin Joseph <abin.joseph@amd.com>
+CC: Théo Lebrun <theo.lebrun@bootlin.com>
+CC: Ryan.Wanner@microchip.com
+
+Conor Dooley (10):
+  net: macb: rename macb_default_usrio to at91_default_usrio as not all
+    platforms have mii mode control in usrio
+  net: macb: split USRIO_HAS_CLKEN capability in two
+  dt-bindings: net: cdns,macb: replace cdns,refclk-ext with
+    cdns,refclk-source
+  net: macb: rework usrio refclk selection code
+  net: macb: np4 doesn't need a usrio pointer
+  net: macb: add mpfs specific usrio configuration
+  net: macb: warn on pclk use as a tsu_clk fallback
+  net: macb: clean up tsu clk rate acquisition
+  dt-bindings: net: macb: add property indicating timer adjust mode
+  net: macb: timer adjust mode is not supported
+
+ .../devicetree/bindings/net/cdns,macb.yaml    |  54 ++++-
+ drivers/net/ethernet/cadence/macb.h           |   6 +
+ drivers/net/ethernet/cadence/macb_main.c      | 197 ++++++++++++------
+ 3 files changed, 186 insertions(+), 71 deletions(-)
+
+-- 
+2.51.0
+
 
