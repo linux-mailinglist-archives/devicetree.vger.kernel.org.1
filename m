@@ -1,138 +1,125 @@
-Return-Path: <devicetree+bounces-273369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273370-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mH/9CMfir2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273369-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:22:15 +0100
+	id wNM9OHbgr2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273370-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:12:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8297524843C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:22:14 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BD5124809B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:12:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 66D8531D5A66
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:07:06 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id AC8003038737
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CC643CEDF;
-	Tue, 10 Mar 2026 09:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D9743CEE9;
+	Tue, 10 Mar 2026 09:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L9VCLpfe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XqN6L5yU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E0C43C049
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:03:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F37B3AEF4C;
+	Tue, 10 Mar 2026 09:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773133400; cv=none; b=EyF5d9gCdBKKEmhUhv2DRJCMfzymCzITCjIb7NY/dXTzB7V6NogE2NWhJ8wsc7GeOnid3dhvcFRty6o8M4thKQpwt0+BjZRW84j14QnZVweim4rWE0EiZR+jD/LeZ/QvD0dUM6PHK5Q0GG2f6bDrmq4aAZ2qbxRE8BMix2RrF3M=
+	t=1773133442; cv=none; b=T1Rz4aOfvETyRvAmTTN0XYFKC4Z+rytmRKudZR2OJVTFgqaAFo0EOy0Lit+Jwh4ro9MFnnW265Sbc0JPvLXSTy9FDI+C9V8OcsxHvqXjr+T0+kJ08cUm6eVXJlB8iQYueTrX6CzGkQP42FOPO1/j8/30WjNPjQ+kdmivz3///mo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773133400; c=relaxed/simple;
-	bh=QvoCgBm67ri0f9hL86ZlnNu6pDT7ktHoVP5TEyefhvQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=S34F6A2nFM0M3HlB320gycth3QGFVfutjRGtrz+wwhy5Witb5slQNJF9ZEUbGxkU4rxvh8+LMxCzK4eXas8JxTyWRak1pdONyxBhL9uOLBLiP9Qn3rCXUezoLEKGTSID74YjlVENwIZte23hyC5PM86xJM+ynXoPSvUQzmsDyXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L9VCLpfe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08FF1C2BCAF
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:03:20 +0000 (UTC)
+	s=arc-20240116; t=1773133442; c=relaxed/simple;
+	bh=WZXCyE3t/S/NiszlvHQc1cUrNJ/Xxt7fDuRcWPppb9s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ci8nzb1tWydEcMEiASXe1SCfFSpXFStLqoBdPbYoVF2/FFiCXhqEQjbYTQqHzitxC9zkTQxLDbQ18EpHQGpeZe3HWD58cs8t93vXLAgUyn7c3mp21iEB/7HJpOTGDeZ+MN2goro0N13VES+mWaAMn1hhm2yqW1Wj45eijezshXg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XqN6L5yU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E22C19423;
+	Tue, 10 Mar 2026 09:04:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773133400;
-	bh=QvoCgBm67ri0f9hL86ZlnNu6pDT7ktHoVP5TEyefhvQ=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=L9VCLpfeY8OCvV5JiN0I+S8MdV24cLRhAqRIFQtmja/Q1qs4r24AMDQTv8OwKDpR6
-	 DAR8VCnipZkER2SnZ4E2XcDnn6XnLiLmy+Gi+zyqLnsWxI/bqVbSxqaoGbM+YcMlui
-	 glg5OQd7BS01PZgQsuScDLEmvpeVTgCmqR6pbAyPUB8rlO8sqsq8dXt+Cj5ZJtSjDQ
-	 KqcoIufPWhkhHuQ1gNdOmmsbO7MPpcgaA1WhbyPA4knxHnGCtNyb9O8vUV6b0kLfZX
-	 vTpIJbKY9I7VsP6o7dQRb5EQ58Umjsyib+HvbOTiFNskVYiWj02QwponJnv8C8SOWx
-	 A7McMyln7C4Bg==
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-64ad9fabd08so10851795d50.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:03:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVVtmnFW7pOw41lt6Kw8m0I7Vp8hQxGjaEeERQw/hoUhy3+gyu2yZJDoTIyG7V/ytAaiAU5xurpXTUQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwoXSs4ibneIgZeGcEyuxS6R5ZXird9I66jjUh1S4mjd8vZqrow
-	sRr7tJghcJ5DT5kc4ACoezCblMd1O28WZ0nuvuONPZYJJETIc6ZQWjn2KpkH1fd9BCWVgjbZd/M
-	Y1kgicLlCYLLEuxnJj0S4lWwJOzgPQck=
-X-Received: by 2002:a05:690e:c4b:b0:64c:aab1:89fb with SMTP id
- 956f58d0204a3-64d1414fcdamr14006084d50.32.1773133399292; Tue, 10 Mar 2026
- 02:03:19 -0700 (PDT)
+	s=k20201202; t=1773133442;
+	bh=WZXCyE3t/S/NiszlvHQc1cUrNJ/Xxt7fDuRcWPppb9s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XqN6L5yU2yH7gnbvFALBQeCYBkuoxgARvdPyGbqRRZpk7C8AxZlykoxp2B0xM/ahI
+	 g59Q3GcwxxifTE/NdPmge15adkcWMdNkyfbLYSGerLM7mmfwjgFMXkpKNXnEtkayev
+	 Bg5vCzNX2sNT90aFDU8uNPI32RYIHpnAaOdqD5jlxxmsPkKSOv+tpDbioXsYVRQE3F
+	 UfC1gtLcrAhClTFcHbpgjyHEcIzHdAqDOarPm9TNmQgOmC6fCGeyKt9U5rVe/so2vj
+	 xH+LeOahp/JT9SP2ZSsunJrG4z5885gVdoe8HLE4Xq/7LRCz8+JJkFnT0YLFdawrxu
+	 Q7RjTZ87uPGNQ==
+Date: Tue, 10 Mar 2026 17:03:59 +0800
+From: Yixun Lan <dlan@kernel.org>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: gaohan@iscas.ac.cn, alex@ghiti.fr, aou@eecs.berkeley.edu,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, dlan@gentoo.org,
+	krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, palmer@dabbelt.com, pjw@kernel.org,
+	rabenda.cn@gmail.com, robh@kernel.org, spacemit@lists.linux.dev
+Subject: Re: [PATCH 7/7] riscv: dts: spacemit: PCIe and PHY-related updates
+ for OrangePi RV2
+Message-ID: <20260310090359-GKF302167@kernel.org>
+References: <677085181a4215c517907f44b363ef7777fd407b.1769895215.git.gaohan@iscas.ac.cn>
+ <20260204140619.47536-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260309134920.1918294-1-o.rempel@pengutronix.de> <20260309134920.1918294-4-o.rempel@pengutronix.de>
-In-Reply-To: <20260309134920.1918294-4-o.rempel@pengutronix.de>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 10 Mar 2026 10:03:08 +0100
-X-Gmail-Original-Message-ID: <CAD++jLkCVjpaci=+hZO8kFmH3mLytSAszOQyMYdtbk42UyaxOA@mail.gmail.com>
-X-Gm-Features: AaiRm51Vs8pvPuDokv57nTDC9ZbT8vONgRjujm3r1SvohyxUXvhxiTZsdRYqvOw
-Message-ID: <CAD++jLkCVjpaci=+hZO8kFmH3mLytSAszOQyMYdtbk42UyaxOA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] pinctrl: core: Make pin group callbacks optional
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Peter Rosin <peda@axentia.se>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 8297524843C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260204140619.47536-1-amadeus@jmu.edu.cn>
+X-Rspamd-Queue-Id: 8BD5124809B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273369-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273370-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[iscas.ac.cn,ghiti.fr,eecs.berkeley.edu,kernel.org,vger.kernel.org,gentoo.org,lists.infradead.org,dabbelt.com,gmail.com,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pengutronix.de:email]
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Mar 9, 2026 at 2:49=E2=80=AFPM Oleksij Rempel <o.rempel@pengutronix=
-.de> wrote:
+Hi Chukun,
 
-> Currently, the pinctrl core strictly requires all drivers to implement
-> .get_groups_count and .get_group_name callbacks in their pinctrl_ops.
->
-> However, for simple pinctrl drivers that act purely as GPIO controllers
-> and pin-specific configuration proxies (without any concept of muxing or
-> pin groups), this strict requirement forces the implementation of dummy
-> callbacks just to satisfy pinctrl_check_ops().
->
-> Relax this requirement by making the group callbacks optional. Update
-> the core and debugfs (pinconf) functions to check for the existence of
-> these callbacks before invoking them, allowing simple drivers to omit
-> group boilerplate entirely.
->
-> Suggested-by: Linus Walleij <linusw@kernel.org>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+On 22:06 Wed 04 Feb     , Chukun Pan wrote:
+> Hi,
+> 
+> > +&combo_phy {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pcie0_3_cfg>;
+> > +};
+> 
+> This pinctrl is clearly incorrect (including BPI-F3).
+> Checking the schematic reveals that these pins are for CAM_I2C.
+I agree, if the phy is used for USB, the pinctrl info can be dropped
+Do you want to submit a patch for this?
 
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+> By the way, combo_phy connects to USB3, so it should be enabled
+> in the USB3 patch.
+> 
+I think this is already done, check usb_dwc3 node in k1.dtsi?
+https://github.com/torvalds/linux/blob/v7.0-rc3/arch/riscv/boot/dts/spacemit/k1.dtsi#L1180
 
-If this patch set doesn't go into MFD as-is for this next merge
-window, I sure want to apply this one patch to pinctrl.
-
-Lee: I can also apply it and give you an immutable branch
-with this one patch if you prefer.
-
-Yours,
-Linus Walleij
+-- 
+Yixun Lan (dlan)
 
