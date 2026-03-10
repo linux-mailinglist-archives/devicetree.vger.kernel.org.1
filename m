@@ -1,129 +1,122 @@
-Return-Path: <devicetree+bounces-273386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273387-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uECNKVrhr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273386-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:16:10 +0100
+	id QE+QOr7hr2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273387-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:17:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A17E72481F1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:16:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5FFF24828B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:17:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 67CD330288C7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:12:53 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 5208C3052EB0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FAC43D516;
-	Tue, 10 Mar 2026 09:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="mQIaHtS5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E759943DA39;
+	Tue, 10 Mar 2026 09:13:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3284.qiye.163.com (mail-m3284.qiye.163.com [220.197.32.84])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 569DD43C07F;
-	Tue, 10 Mar 2026 09:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D6E243E486
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773133952; cv=none; b=B1Fr5cnPJKzcTdSmmC++2/mnIz385zkWlIgZMXSQ0RUSbjrUeHTkafSar1RuPf5wQD0+Ypl/K+BTmwk8S39+gClkA9HF9367UGIzFJof9lwz0bbs3e9cpIMqNfKeCzc2Ww0cHCzHQ32sv7F/3moMbkZlAq9sMWJHyutMcM11UJE=
+	t=1773133983; cv=none; b=I+NepcjxpSUxBGKEB1HcotkSKTq+SsgJ6t1+Db8sONSASh4J4xmsotYNo11KUoXOTAh8PlpReP+x2jKLOTHHi9TuNnK11tJDo98M+DNFs3TpGx3XoaZUd0TQuEGxBoX1gJ0H/EbdyjB9k7XxRlE/3s//IWT8D5vWNj5yYwGWeJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773133952; c=relaxed/simple;
-	bh=IoExSUgE+k/kMSkzpT3gPFAQpzfJNmABvYYF9WwcREY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FR6uUPe5/BVnuJUQzftFlp1orO9+xBXs8Bv6iMcmn2u1b7h6qIGMx8JnYKFWxQqZ64IkdHlLDpwfDbgB4cpWDoN2koMPdsDTVyU26oAlDrWgtfKinIviY/I5UDnS5UAPwDcDLazuOvxp7x+cebIvGI0O5W2PSnuLvjy1/vMHQFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=mQIaHtS5; arc=none smtp.client-ip=220.197.32.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from albert-OptiPlex-7080.. (unknown [112.65.126.162])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 36651046b;
-	Tue, 10 Mar 2026 17:12:21 +0800 (GMT+08:00)
-From: Albert Yang <yangzh0906@thundersoft.com>
-To: krzk@kernel.org,
-	arnd@arndb.de
-Cc: krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	gordon.ge@bst.ai,
-	bst-upstream@bstai.top,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Albert Yang <yangzh0906@thundersoft.com>
-Subject: [PATCH v7 2/2] arm64: defconfig: enable BST SDHCI controller
-Date: Tue, 10 Mar 2026 17:12:11 +0800
-Message-ID: <20260310091211.4171307-3-yangzh0906@thundersoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260310091211.4171307-1-yangzh0906@thundersoft.com>
-References: <20260310091211.4171307-1-yangzh0906@thundersoft.com>
+	s=arc-20240116; t=1773133983; c=relaxed/simple;
+	bh=Aw/V52j4K+VGbu9EWXM8h0N4vfL0EnlrmyYVrsbGzaU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=qA++3uLnYlIQCcuQQ5dUF9cyaNy4TVVhfuNkq+PaCgXDgMyjrIBWuY+SnQrxuPeqR8vMxR2RDDDhY/cvNNUc6hAHRJRpQcEVGwBs5ThT+zHxFMvXj6CN9k3AWEUPKHbz9irw8VLsEOgEMgURyoKWnz5e+fz+H79YmiLwXLNIeYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vzt8b-0005hl-1a; Tue, 10 Mar 2026 10:12:25 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vzt8Z-004fpC-14;
+	Tue, 10 Mar 2026 10:12:24 +0100
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1vzt8a-0000000038R-2UlK;
+	Tue, 10 Mar 2026 10:12:24 +0100
+Message-ID: <2c47fbc85fd867b801904507a5024c868a3cbe72.camel@pengutronix.de>
+Subject: Re: [PATCH v2 1/9] media: i2c: ov08d10: fix runtime PM handling in
+ probe
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Matthias Fend <matthias.fend@emfend.at>, Jimmy Su <jimmy.su@intel.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, bsp-development.geo@leica-geosystems.com
+Date: Tue, 10 Mar 2026 10:12:24 +0100
+In-Reply-To: <20260309-ov08d10-v2-1-81f8b5d99984@emfend.at>
+References: <20260309-ov08d10-v2-0-81f8b5d99984@emfend.at>
+	 <20260309-ov08d10-v2-1-81f8b5d99984@emfend.at>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-0+deb13u1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9cd704c9ab09cckunmb723260ce6efc
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlCSx4ZVkNCT01IQ0hOSx0eHVYVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSklVTU5VSklNVUpNSVlXWRYaDxIVHRRZQVlPS0hVSktJT09PS1VKS0
-	tVS1kG
-DKIM-Signature: a=rsa-sha256;
-	b=mQIaHtS5KuPCYxAw/kTAdZaeYXidX38l84lPMQD1GdNFzzTl/YTGJWvwL5RlRBmvP2vb2VwQ6vm9wvBRJG3GC+loRk4WjzG6xvcTG7fquj5AidjZFslEIuDi8uHi6XH8yzAfQmypr5ASfSWBRlhed58bl7EafANjzSn416o3q1Y=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=SsyWkSsYxM+/mlVR1ji3BcDNi6n34FEb78dVbjjc1Ac=;
-	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: A17E72481F1
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: E5FFF24828B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.84 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[thundersoft.com,none];
-	R_DKIM_ALLOW(-0.20)[thundersoft.com:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-273386-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yangzh0906@thundersoft.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273387-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[thundersoft.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,thundersoft.com:dkim,thundersoft.com:email,thundersoft.com:mid]
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.764];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,emfend.at:email]
 X-Rspamd-Action: no action
 
-Enable CONFIG_MMC_SDHCI_BST to support eMMC on Black Sesame
-Technologies C1200 boards.
+On Mo, 2026-03-09 at 18:07 +0100, Matthias Fend wrote:
+> Set the device's runtime PM status and enable runtime PM before registeri=
+ng
+> the async sub-device. This is needed to avoid the case where the device i=
+s
+> runtime PM resumed while runtime PM has not been enabled yet.
+>=20
+> Remove the related, non-driver-specific comment while at it.
+>=20
+> Fixes: 7be91e02ed57 ("media: i2c: Add ov08d10 camera sensor driver")
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 
-Signed-off-by: Albert Yang <yangzh0906@thundersoft.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 45288ec9eaf7..7b054da42fa9 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1230,6 +1230,7 @@ CONFIG_MMC_SDHCI_OF_SPARX5=y
- CONFIG_MMC_SDHCI_CADENCE=y
- CONFIG_MMC_SDHCI_ESDHC_IMX=y
- CONFIG_MMC_SDHCI_TEGRA=y
-+CONFIG_MMC_SDHCI_BST=y
- CONFIG_MMC_SDHCI_F_SDH30=y
- CONFIG_MMC_MESON_GX=y
- CONFIG_MMC_SDHCI_MSM=y
--- 
-2.43.0
-
+regards
+Philipp
 
