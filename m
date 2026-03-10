@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-273180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273181-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6NMiOsJyr2lYZgIAu9opvQ
-	(envelope-from <devicetree+bounces-273180-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:24:18 +0100
+	id uMGqK71yr2lPZgIAu9opvQ
+	(envelope-from <devicetree+bounces-273181-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:24:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970CE24380E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:24:18 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C5EB2437EA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:24:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id F2409305F7EC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:24:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C02E33006B75
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC242C029C;
-	Tue, 10 Mar 2026 01:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B72D26B098;
+	Tue, 10 Mar 2026 01:24:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P24SiCoe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AlKjsGly"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F2C26A1AC
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 01:24:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D062C08AD
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 01:24:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773105850; cv=none; b=WKv41vvnl2UYDfrfGgCz6789zN/udO8Reye/h7Q2T/YERiKCXuwmggFkvWFoNiG31cZ7BTqLmE+wWlftfP+T1k9+NSs+MbQaCCuofBrZQ+VMLCK2hLfsr8BF3O5yXUaGNFdAzx/tWAA/257fHzY6La0yX9Fq9p9ZoOab4MJ7Q6I=
+	t=1773105852; cv=none; b=CuHGYoX4Y3M6sp4xkxnyCgamS9s4a/aT0oNoLOuc2pLdL7qvaNANeL+utg00llTaATjPnQ8f5axDuefSHlab2vVKQg6dGiayf3Dj5+3Uad6PqIJxpDN1JV+044mrFZ7Ye2cwreLeT6AQScr69Xq9jaDNQrdXuzJGTNzqWnFI5BY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773105850; c=relaxed/simple;
-	bh=TqqVjcOwxXhrFcWZZUIMRtdny0Tnu1HnL/f3vQhwcP4=;
+	s=arc-20240116; t=1773105852; c=relaxed/simple;
+	bh=eefoE2/jnfXAd5ZwciSBK5AkUaw4ydMJne1QeWmfh54=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=W13QPIAKk3jXsSqIHMTBL+creNvvXavGQR6KN7IM63npQgB8BM5rHujvgrYXiVO7pAueODVjE0b77FCHWmrt3xqZq5jp9JOPTC+fnSHxavu9EduO693ZjySMbeXkR+5L/roORk7d4yH4yrJ9psOgLycW67zY6oPUngA/8mg+Bm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P24SiCoe; arc=none smtp.client-ip=209.85.222.179
+	 MIME-Version; b=lOS5JvaTm0JFzFovYVnnisfRXpv8asUMmJj9zOdXMmvYfGOCLtCBBfv9op6V8OBQIBsmq75j4m5aAvnMW+cNCVJmnKsJG4sxkNrhXGDdtsY9J8a4JckKtVBquxLc3rRdNcVbyGAWsjrLOKKg5H3yxOtx39skcoI4eH44YaTZ1tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AlKjsGly; arc=none smtp.client-ip=209.85.160.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-8cd7c372929so251560285a.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 18:24:09 -0700 (PDT)
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-5033387c80aso154042471cf.0
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 18:24:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773105848; x=1773710648; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773105850; x=1773710650; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9QjZymS/A18myIOLroyWLFVI0pqNuQMdW1+eVNlgX5Y=;
-        b=P24SiCoe2KIkxL3w5cTmMAbn/VbOTSQKYPVaMQN9M4C+R1Rw115Q+KV1SYS1Y2CHb7
-         1T1Z6tB9LmeYHoECrpC40fPvcX61be1pHqDO93TfjOLbxq6ZATKmxAB/2cx/Pxdp8kRE
-         N5xht/DAsY9bG7KQECyfbG8XAOZAC0nAnt7p07oFIYdEYVvVqSFqZ0CwrM5Z0lIayDmN
-         DhWvc/30BWFKK25I2D5slczk5vK9EiBjD9kMw5/gfSkAjNw/od+CUkc3ZJv0+ICquF/L
-         peJfNOdlr9nA6QI6ippzpw2UZrdJZCU1B2GPp81AOiL3gs03prMvkjabxfta05GT65Np
-         TqwQ==
+        bh=rpLyTYVFGXE2glJ5ECH5NLKz7sG78XOrtnMCJzmIFwE=;
+        b=AlKjsGlyiFUfkncd1NsyOzMynHHUc/zCzs4FeyZ4djgHhzBPNZAznbZz6P9v266mKG
+         AwdriKno19JfcCyR4hhuckY6kQ2L8JqfYrlxaXinbikQvnB9XrYu4YbzE6yguy3RmB2n
+         e0fFwozctiOC8dDPS/OG4Wi+AXv9xc29BvC3Fwb3NrtEyyk7j8LXsDYJ1QLUzFlTXdnu
+         ll95EIFZyB8b1F8ZesdnvsfmsOSZW1QBkJIUIVeVMk5Nnl43DHi3//Gd2AxZBah5Vlzh
+         CNAudEWjLxfacehmr7SMmRT1Cty/oNM3AvzOmJG23m/pKYhFqqPW+y3zCabO57b7ggxc
+         FgJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773105848; x=1773710648;
+        d=1e100.net; s=20230601; t=1773105850; x=1773710650;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=9QjZymS/A18myIOLroyWLFVI0pqNuQMdW1+eVNlgX5Y=;
-        b=tHXOZ+2vs460bn6+m3uSCwGgil3hYL72tW6wdLQpDmOOVidiuTjegdJHt6XogXTGxh
-         N2OPALAUX4MYiM5Ll8duXH23NjQA0ni7Ab+S27g539G2rFblFStGLGsFHHUeNyw/Bx/A
-         Kof9ryHz9u/+Mw1hCQqmpAebPMU+XnBo7tFc78YD+pNTuFDk/EcH5MgIVujseKA/whDF
-         WDcqsZ5Q9cMADMwmLY+hznIl9/eNwtaZP48R9S5URUVxYc+vt7zbGLUAwajflpb+8Qf5
-         FGc5OrGfZQF48PtUsE7QcUqlMIqAup3jw5Fn7PN985BiplR6JvJ/Ohc34guZYPMj5SDI
-         CKXA==
-X-Forwarded-Encrypted: i=1; AJvYcCWvixJ77n5SeZnye1t1KgBo5jMrVchLxZY4Eaod8gqJfUGhl1J8bmXxMBwpayskaqqk5ShV6a908gzO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE9t6i2CZ0sJdCnb80vzkhwyDQ4VUvx8fi36Vup1mq4H/HEp5d
-	0H7FpZmQ/CRPeFv9vq9NUwtLxeq8qfxAl2ndYe5Gkvy/n4WgGj1Y/cJ5
-X-Gm-Gg: ATEYQzz/e2SVTmLx3CvczX1oVhICx9Ci5G0ZF2WRrBhWTrb25JSIR+ZVB05u0wF5KXU
-	i2rkgBiB4Alz/2JQ1bY7sC0zQbGtzuRqLW3I1BSeyjWenvaD3ZCkSxbUo/BMP4ibZ8gSxcqyPRK
-	0tTyiYhs0Pp1/PZG81yFWrlCJT/2RVnDLzwtbnrbz71WRLj/EUAPPRvz2r+6fH7riXHxRqWDT1b
-	OBmQhyOgy+R/6EYto31x5/gedUjTkH0RzwEF4r83lOybDwHzncQKV+DdkWUnplbRQfZnz8OlTHq
-	but2f67UqM8PM0n3O55PDTC4TJxlcPAUC8IwrVpgAjwrXuQMPQFBQDMLIASdON5CUMGeclCD4Lu
-	SBK55a10KmPd0ft6JmeXeIzUqaej2L38lK3kNZltMrP3NwpO/h+Qp6dO/odxrjR+4zw45qeoJDx
-	TRnbkY/Rogs4Pbvp6XYT/r8aG/ePhgQU5/2po+4H+ctjSBXAJcGQXJWlszjEjfVnbrNER1OIFMo
-	xHhLcnlzqchTqM=
-X-Received: by 2002:a05:620a:4147:b0:8ca:2cf9:819c with SMTP id af79cd13be357-8cd6d441630mr1568727085a.40.1773105848148;
-        Mon, 09 Mar 2026 18:24:08 -0700 (PDT)
+        bh=rpLyTYVFGXE2glJ5ECH5NLKz7sG78XOrtnMCJzmIFwE=;
+        b=k7Cn0dl51m7FSnmyjG81g0kKEtp6bCAszne87ekko+bHdEC8SmFINI5vmaGxmEglwZ
+         MEu9qaoqXl29JQo6f3DQmcg1BnZPDtEW1NNEQ6DlPDkiLBpyMYoUga59B9+wnP4Oaavw
+         A6TkXL4U2z9f7M0P0JQXFYcyuTHVRBwScP8Ded1/aQRNOyER1Y2h8NpPYobtqW5PGOk0
+         QUmTfZxfXvCeyi13gV4aBD/ISjYFBh7VCsPgPFE5xYRjD7FMyuUC71twrRiZuP13NJuF
+         OOFsmskxMoJa/YhJPCh4p00uSxKsyC13WdcoyzC0D3Pdf1KnA53QYYmSNLaHPDGCgj07
+         1LfA==
+X-Forwarded-Encrypted: i=1; AJvYcCXWMAwwd1pGfOAASVxJqaIT9WGkNWg7r1dwHXFrZOPgFh3H+G2z+MDlC4EfMllHInp8EoIuRzeIDX9t@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJOP4xWoW1NlpBXzzcAWsmxs6SEinTL7fJl7U73/XOAmWAYAS6
+	DWGX1IFKFzsfYWypBoTDwBfzFf3rKFWNaXSX0icswbLGfvjfARn6h6Qm
+X-Gm-Gg: ATEYQzzj9b4wW5qa4nksLlIzSp9IRG2f4jSy6or1l1hAq0/VxXKe2txhu1OA3GfQFwl
+	E9Hr68GTvyKGgnWjrrmgVrZp7t1va2fHTsFFCFqAKuq5JgGXisQHQKgE/77ev/hvMpiDtnqCql/
+	EhUILc23vBNItfN/UZOJPavotrDkPilUdgkaXfrawdsHtqr47QWFQgeK3kwe6NnyVdxoQ7Tw3He
+	pmcffdUOBQJKX48sMRajQuL5f58wzjTxO1SVWUyJe9JYfTN0WBv1l98AVMAneHLF8AywK3Gcv/X
+	9ha8mjpuAhYMMKIOSeK8jL18IMd++uLdsMrZeRYksZ89zmC+pP04+M/ztEIODmDVbpcaZkSMJu1
+	Q2HoohWuk5GoSH+Ze0ormbMiskJ8EX0v+KcuXtyZaDa/12/w2+82U/9LPBNaJwTwt2IjuVrLwja
+	ztPdtViau/ys8hMfX2+dSwWTzNqoeDvgDWZtJTZWB+hXzHTWk1jxHUpLMbK31PTFMpxnHhE6usv
+	rY6rF2S90h7+bc=
+X-Received: by 2002:a05:620a:191c:b0:8cd:8f66:c9e1 with SMTP id af79cd13be357-8cd93b4cefdmr209686785a.6.1773105850007;
+        Mon, 09 Mar 2026 18:24:10 -0700 (PDT)
 Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cd7e857037sm488823185a.20.2026.03.09.18.24.07
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-8cd830a7f05sm391481285a.15.2026.03.09.18.24.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 18:24:07 -0700 (PDT)
+        Mon, 09 Mar 2026 18:24:09 -0700 (PDT)
 From: Richard Acayan <mailingradian@gmail.com>
 To: Bjorn Andersson <andersson@kernel.org>,
 	Linus Walleij <linusw@kernel.org>,
@@ -89,9 +89,9 @@ To: Bjorn Andersson <andersson@kernel.org>,
 	linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org
 Cc: Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v2 1/5] dt-bindings: qcom: lpass-lpi-common: add reserved GPIOs property
-Date: Mon,  9 Mar 2026 21:24:42 -0400
-Message-ID: <20260310012446.32226-2-mailingradian@gmail.com>
+Subject: [PATCH v2 2/5] dt-bindings: pinctrl: qcom: Add SDM670 LPASS LPI pinctrl
+Date: Mon,  9 Mar 2026 21:24:43 -0400
+Message-ID: <20260310012446.32226-3-mailingradian@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260310012446.32226-1-mailingradian@gmail.com>
 References: <20260310012446.32226-1-mailingradian@gmail.com>
@@ -102,14 +102,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 970CE24380E
+X-Rspamd-Queue-Id: 5C5EB2437EA
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -119,10 +119,10 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273180-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273181-lists,devicetree=lfdr.de];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
@@ -133,37 +133,104 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,62b40000:email]
 X-Rspamd-Action: no action
 
-There can be reserved GPIOs on the LPASS LPI pin controller to possibly
-control sensors. Add the property for reserved GPIOs so they can be
-avoided appropriately.
-
-Adapted from the same entry in qcom,tlmm-common.yaml.
+Add the pin controller for the audio Low-Power Island (LPI) on SDM670.
 
 Signed-off-by: Richard Acayan <mailingradian@gmail.com>
 ---
- .../devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml  | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../qcom,sdm670-lpass-lpi-pinctrl.yaml        | 81 +++++++++++++++++++
+ 1 file changed, 81 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml
-index 619341dd637c..0c3fa5d597e0 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-common.yaml
-@@ -27,6 +27,12 @@ properties:
-   gpio-ranges:
-     maxItems: 1
- 
-+  gpio-reserved-ranges:
-+    description:
-+      Pins can be reserved for trusted applications or for LPASS, thereby
-+      inaccessible from the OS. This property can be used to mark the pins
-+      which resources should not be accessed by the OS.
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
+new file mode 100644
+index 000000000000..c76ad70e6b9f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- required:
-   - gpio-controller
-   - "#gpio-cells"
++title: Qualcomm SDM670 SoC LPASS LPI TLMM
++
++maintainers:
++  - Richard Acayan <mailingradian@gmail.com>
++
++description:
++  Top Level Mode Multiplexer pin controller in the Low Power Audio SubSystem
++  (LPASS) Low Power Island (LPI) of Qualcomm SDM670 SoC.
++
++properties:
++  compatible:
++    const: qcom,sdm670-lpass-lpi-pinctrl
++
++  reg:
++    items:
++      - description: LPASS LPI TLMM Control and Status registers
++
++patternProperties:
++  "-state$":
++    oneOf:
++      - $ref: "#/$defs/qcom-sdm670-lpass-state"
++      - patternProperties:
++          "-pins$":
++            $ref: "#/$defs/qcom-sdm670-lpass-state"
++        additionalProperties: false
++
++$defs:
++  qcom-sdm670-lpass-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: qcom,lpass-lpi-common.yaml#/$defs/qcom-tlmm-state
++    unevaluatedProperties: false
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          pattern: "^gpio([0-9]|1[0-9]|2[0-9]|3[0-1])$"
++
++      function:
++        enum: [ gpio, comp_rx, dmic1_clk, dmic1_data, dmic2_clk, dmic2_data,
++                i2s1_clk, i2s_data, i2s_ws, lpi_cdc_rst, mclk0, pdm_rx,
++                pdm_sync, pdm_tx, slimbus_clk ]
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++allOf:
++  - $ref: qcom,lpass-lpi-common.yaml#
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    lpi_tlmm: pinctrl@62b40000 {
++        compatible = "qcom,sdm670-lpass-lpi-pinctrl";
++        reg = <0x62b40000 0x20000>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        gpio-ranges = <&lpi_tlmm 0 0 32>;
++
++        cdc_comp_default: cdc-comp-default-state {
++            pins = "gpio22", "gpio24";
++            function = "comp_rx";
++            drive-strength = <4>;
++        };
++    };
 -- 
 2.53.0
 
