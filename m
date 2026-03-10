@@ -1,122 +1,146 @@
-Return-Path: <devicetree+bounces-273387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273388-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QE+QOr7hr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273387-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:17:50 +0100
+	id cNP4CXPir2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273388-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:20:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5FFF24828B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:17:49 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F5FC2483C5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:20:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5208C3052EB0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:13:27 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 4D1993069E49
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E759943DA39;
-	Tue, 10 Mar 2026 09:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D58643CEF6;
+	Tue, 10 Mar 2026 09:15:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QYj6WetU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D6E243E486
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1945A43CEEF
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:15:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773133983; cv=none; b=I+NepcjxpSUxBGKEB1HcotkSKTq+SsgJ6t1+Db8sONSASh4J4xmsotYNo11KUoXOTAh8PlpReP+x2jKLOTHHi9TuNnK11tJDo98M+DNFs3TpGx3XoaZUd0TQuEGxBoX1gJ0H/EbdyjB9k7XxRlE/3s//IWT8D5vWNj5yYwGWeJE=
+	t=1773134114; cv=none; b=iRWiT2Qzb8L2OMDN+cNnSIRK4e5F20H4mVPCKUlyfAsrBIu4w4uKfbtZIf9vTyFc7Ypd9booqE9KUo7hA2rOwkVjPBbBkaSgJacST3EfSaNrIZ0ADV0TBBP7T7fPTkYqaQTxQLST5759x+Alkv6cT2sJn4LPio7DPMyRoSciH2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773133983; c=relaxed/simple;
-	bh=Aw/V52j4K+VGbu9EWXM8h0N4vfL0EnlrmyYVrsbGzaU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=qA++3uLnYlIQCcuQQ5dUF9cyaNy4TVVhfuNkq+PaCgXDgMyjrIBWuY+SnQrxuPeqR8vMxR2RDDDhY/cvNNUc6hAHRJRpQcEVGwBs5ThT+zHxFMvXj6CN9k3AWEUPKHbz9irw8VLsEOgEMgURyoKWnz5e+fz+H79YmiLwXLNIeYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vzt8b-0005hl-1a; Tue, 10 Mar 2026 10:12:25 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vzt8Z-004fpC-14;
-	Tue, 10 Mar 2026 10:12:24 +0100
-Received: from pza by lupine with local (Exim 4.98.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1vzt8a-0000000038R-2UlK;
-	Tue, 10 Mar 2026 10:12:24 +0100
-Message-ID: <2c47fbc85fd867b801904507a5024c868a3cbe72.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/9] media: i2c: ov08d10: fix runtime PM handling in
- probe
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Matthias Fend <matthias.fend@emfend.at>, Jimmy Su <jimmy.su@intel.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Rob Herring	 <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley	 <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, bsp-development.geo@leica-geosystems.com
-Date: Tue, 10 Mar 2026 10:12:24 +0100
-In-Reply-To: <20260309-ov08d10-v2-1-81f8b5d99984@emfend.at>
-References: <20260309-ov08d10-v2-0-81f8b5d99984@emfend.at>
-	 <20260309-ov08d10-v2-1-81f8b5d99984@emfend.at>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-0+deb13u1 
+	s=arc-20240116; t=1773134114; c=relaxed/simple;
+	bh=Iz0gR5pkZB03M9dyiZMiSZl4dxXjfY1DOzSwmldDktM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nKkLDASuj35nyOvQfzLnfoLNPG6loCF/K5SSdOeeaTSOm1Zwt6muo5Wzh9fejZfoR+HYCt+LpksrM49eN5Vw+Jnke1/Sv11YdASzgg1LSNTPudbCD7Ermtza/G6hrxAmvCjuqkmniMi7QKJyxImv3gyrRtGF8qvFG+DttOPjUjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QYj6WetU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5C92C4AF09
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:15:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773134113;
+	bh=Iz0gR5pkZB03M9dyiZMiSZl4dxXjfY1DOzSwmldDktM=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=QYj6WetUhHBTlAaA/bpAh41bd2TPXYAR2+vff5mG4bPusSXBQXQ6JnkmviS7Acesn
+	 pq/Gf7PDh+C5AOAsbIe29mRZCp6ustvkBvxHzU/3pEUlfpbRzPCSPI77V0Gj141O4U
+	 A0M86khgKPTt4bLlbPiFnsHDRskUjv+a1Tq2fc2UfsOk69QvX4QThmDcWFq84KirUl
+	 xY5TvVC71+UpWXhFPIyTYP9moIYE09vTuIsyXivQV6zrjtqQvZqoGkbfE6XVWG3Ljb
+	 OLV/qE26kQHVNywS/hbc1DCU5KBjzcO2pUAl1pKFeO53CvHpLlRO0vSChZ3iNQZpel
+	 Ko+4/QYvHbvqg==
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-59dcdf60427so7535375e87.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:15:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXgLgGOxQAtcwAOuwAM1uQd+kfWQazpMAoJvUtM6Kr4MGgE8ypA+4J5m5fZLhDMyeELi4H7ve32yQf9@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiIhljfOJPjPWzWHTWIEa6pN1Ul1MjjUYZd2JgUUV5PYo5HCvR
+	BfOzkx/RulX/AcY23tV65or9xYBNAcpDP4dFTqWkEkFcvrI3Wjnx6B3jvCPMV3c/jRTJFiQgijD
+	4mYPUNh9K4JzvgSdqwRix8Xs3DuEpL0qsxUBis6+Qkg==
+X-Received: by 2002:a05:6512:650c:b0:5a1:8d2:f9f5 with SMTP id
+ 2adb3069b0e04-5a13cd3bf2dmr3871022e87.25.1773134112389; Tue, 10 Mar 2026
+ 02:15:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: E5FFF24828B
+References: <20260309134920.1918294-1-o.rempel@pengutronix.de>
+ <20260309134920.1918294-5-o.rempel@pengutronix.de> <CAD++jL=3GeHNirtN9diGc8R2rxczo4UUL9_ON28jOj_DPP2Sjg@mail.gmail.com>
+In-Reply-To: <CAD++jL=3GeHNirtN9diGc8R2rxczo4UUL9_ON28jOj_DPP2Sjg@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@kernel.org>
+Date: Tue, 10 Mar 2026 10:14:59 +0100
+X-Gmail-Original-Message-ID: <CAMRc=Mdutv6TyU5SG2uzCgRuvYVmfFB0kwXgj45Qajet+TdBhw@mail.gmail.com>
+X-Gm-Features: AaiRm53hf_pDhHi7djsWr-nAOlaqvVed1FWqA5yKgoU5U9ZU1mnIZAae4kC7y1A
+Message-ID: <CAMRc=Mdutv6TyU5SG2uzCgRuvYVmfFB0kwXgj45Qajet+TdBhw@mail.gmail.com>
+Subject: Re: [PATCH v3 4/7] gpio: gpiolib: fix allocation order in
+ hierarchical IRQ domains
+To: Linus Walleij <linusw@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Thomas Gleixner <tglx@kernel.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Peter Rosin <peda@axentia.se>, kernel@pengutronix.de, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, David Jander <david@protonic.nl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 8F5FC2483C5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-273387-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273388-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[p.zabel@pengutronix.de,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.764];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:mid,pengutronix.de:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,emfend.at:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
-On Mo, 2026-03-09 at 18:07 +0100, Matthias Fend wrote:
-> Set the device's runtime PM status and enable runtime PM before registeri=
-ng
-> the async sub-device. This is needed to avoid the case where the device i=
-s
-> runtime PM resumed while runtime PM has not been enabled yet.
->=20
-> Remove the related, non-driver-specific comment while at it.
->=20
-> Fixes: 7be91e02ed57 ("media: i2c: Add ov08d10 camera sensor driver")
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+On Tue, Mar 10, 2026 at 10:05=E2=80=AFAM Linus Walleij <linusw@kernel.org> =
+wrote:
+>
+> On Mon, Mar 9, 2026 at 2:49=E2=80=AFPM Oleksij Rempel <o.rempel@pengutron=
+ix.de> wrote:
+>
+> > In gpiochip_hierarchy_irq_domain_alloc(), calling irq_domain_set_info()
+> > before irq_domain_alloc_irqs_parent() causes a NULL pointer dereference
+> > for slow-bus (SPI/I2C) IRQ chips.
+> >
+> > irq_domain_set_info() locks the child descriptor, triggering .irq_bus_l=
+ock.
+> > If the child proxies this lock to the parent, it crashes because
+> > parent->chip is not yet allocated.
+> >
+> > Fix this by allocating the parent IRQs first, ensuring parent->chip is
+> > populated before the child's .irq_bus_lock is invoked.
+> >
+> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> > ---
+> > changes v3
+> > - new patch
+>
+> Bartosz, tglx: is this something we should apply for fixes?
+>
+> I think it needs to go into gpiolib for next at minimum, unless
+> there is some semantic problem with the patch.
+>
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Looks good to me. I can take it into v7.0-rc4 via the GPIO tree and
+tglx can pull the tag once it's out as a base for the rest of the
+series?
 
-regards
-Philipp
+Bart
 
