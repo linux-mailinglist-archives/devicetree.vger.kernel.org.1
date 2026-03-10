@@ -1,229 +1,206 @@
-Return-Path: <devicetree+bounces-273277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273278-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6Aq6B5G6r2nNbwIAu9opvQ
-	(envelope-from <devicetree+bounces-273277-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:30:41 +0100
+	id KKkRMeS7r2n0bwIAu9opvQ
+	(envelope-from <devicetree+bounces-273278-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:36:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF79245D39
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:30:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C953245D90
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:36:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C094A3017022
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 06:30:36 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CFC3B305ED2D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 06:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A7033A6F7;
-	Tue, 10 Mar 2026 06:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0AFE33DEF3;
+	Tue, 10 Mar 2026 06:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cGWl8n4Z"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Pz+nta1l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013004.outbound.protection.outlook.com [52.101.83.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3FC2336EDE;
-	Tue, 10 Mar 2026 06:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773124234; cv=none; b=SgswDeHgI5IxovnKOjV9AxhGhXIVCAGfecQJVI4/tqpkaJtgl67vsuh9u+V7RxYB0VsYP2jF0+b2Moipa0JA69vJOIE55UTvdh+eXywGNNl4sFzgTdkcKuUNVSf3A59QrwKC1Eun6kCwm29WcFCyygHTJrA9BOJOUATtBJ+BO8U=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773124234; c=relaxed/simple;
-	bh=b0tiJPx27kb7V2zoV7m0LrOZeVP6jVkMiY5HLsLJbdg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dtO0XhRXrkJSybtz942u5KQZ10sRxQz9bfxtRDT+6qe3LS+NJf0iC6jNAVR/JQbnjsSSncBmqp45w4GYgtE9rUsJtgvOQgLzuz+4o4l/O3n8V0ZR5zKPqK4YkL+IqX/keEgG0dYxLx0OLLStgc2JFxceZznn99ftZZVfjcnZCxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cGWl8n4Z; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773124233; x=1804660233;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=b0tiJPx27kb7V2zoV7m0LrOZeVP6jVkMiY5HLsLJbdg=;
-  b=cGWl8n4ZH0tW8nG0oG8315V9qnVul19+f0omSI0IU/p65DRhOwXMo9Ji
-   sLQo8YNF9fESLTRoqa1jtU5dutWckbVmI14Z+EfXuBHxD0sxLevf6lbhM
-   Xl1NzINFHwr6dr0KrJnf0+ejtY+WY5r76+Bkpxn38CIpJ1YKs8juNe+u1
-   jeVyf7+T4CpTWETNeNH/UMqh+smQxfMeBUVLbQym7uUQmsgefVH5Ieg+u
-   SHursvQDMGeBRKeSKNoi6qAknT3kXdNZ2kTjaoFCWDc/dyYowsjFUH8M/
-   R5IcnnuIVd2TR2OAb/xPYuel4pd5PK5Zglg591QIFf2T9r1FtFMI9xl/8
-   g==;
-X-CSE-ConnectionGUID: k63bo/InTpOqd6+I1D31UQ==
-X-CSE-MsgGUID: 1v+zMoktR9eOFvpqNxxNSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="78013856"
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; 
-   d="scan'208";a="78013856"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2026 23:30:32 -0700
-X-CSE-ConnectionGUID: AV9KxH1LRciBf+ShYMqSGg==
-X-CSE-MsgGUID: wPmB7sgLRz+J5P2emD/RQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; 
-   d="scan'208";a="216417804"
-Received: from lkp-server01.sh.intel.com (HELO 434e41ea3c86) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 09 Mar 2026 23:30:29 -0700
-Received: from kbuild by 434e41ea3c86 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vzqbq-000000001Tk-1NyS;
-	Tue, 10 Mar 2026 06:30:26 +0000
-Date: Tue, 10 Mar 2026 14:29:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>, robh@kernel.org,
-	krzk+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-	bryan.odonoghue@linaro.org, ilpo.jarvinen@linux.intel.com,
-	hansg@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	Maya Matuszczyk <maccraft123mc@gmail.com>
-Subject: Re: [PATCH V3 2/5] platform: arm64: Add driver for EC found on
- Qualcomm reference devices
-Message-ID: <202603101413.1egT3NBN-lkp@intel.com>
-References: <20260308233646.2318676-3-sibi.sankar@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0146133D6F8;
+	Tue, 10 Mar 2026 06:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.4
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773124577; cv=fail; b=MxW9BGY1gDpGnBv+JQpkGVrc5ntEDog8fsONm2K8KyIsETPPIGGNPeRXtZ8iNGr6KU2Gc2pdXh4TNBUPGbeNd20hYNYADrrLAhGzezvyxBLeoKeM8r5ycuKs7XP1AEvvxhSPaXyCPPc/VYUm7WYwR2NAeypagg+V4n4yQDtwts8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773124577; c=relaxed/simple;
+	bh=d8p23k3PeIC/JynBL86atwVD001GRyqvJUoCsruB78g=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version; b=QLDkLNiKmuTIwyTrGb0jRHrpfDAprih8R5JlnOWtNjb5dFVV/gVOzYh5rqncpZj3PM1tsIeH8NW/g4Q5gjaVAGC4suflUWUsa9mPVltdKJ04yP1a8g63HIEO4nzRqL6+I1VVNUzfUZAod28CsmKpOjm445w3/NfKchFO5apNCoc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Pz+nta1l; arc=fail smtp.client-ip=52.101.83.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gFb9lxZPGb2JTs54mFphX6qkgtJg8LtySB3k1hpOEgSNKlC4sgPyHm75Z5JUMjKBIkvVReZ6cPa4q8ruXXmzB6ySBMjaECorxiI3gMZnQXAu3OdDZAuFoOB3+frB7vwjlVwfkZAQbxnQspYD2ABeqN05+lSM+u/aATW2ZRswrbrxK267ycPexF6CWDmBLOvRMUpZYfz7vC53BiL8MnvXN3qEG6SiEzOwmjBB2I4kGIqnTGSsW8A+ioCwIYzUcRB4ZrUQtecNFoNlZKDQq3/XYeEDgAvNYR2zw3/CIai9Dq2uO8MKoMPPFpmKtwjyvYdR98eBHen9IHJSvENd/g8Sog==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iu8tuieL+YcqCVAFd6v7OJyvfbJXGGSAlxXf5sH7Ucs=;
+ b=mZ7tIMyd7JhwGQr/YI1x5tJph0rVJxf/4wSlZZZvRq005EZkzZ0eTu4JX0SwHqTWzphmbKzOxUJkT16PQTElvkrNfToONrpmPzhdmdlJF0YwBcGJAzS41xmcCIAxfFUMTGhjhbJIRHAHVAW0+nIUZG3pFLfhoHojVj6kUpZiWl3iY6sEsZCMByRNMByWNu1yyE49LfP3klvXW19D22WFO47l+jNlU8Tbz4LjVBo3lu9AAFw2ivcTkSOBxJRBXGOdTrzAYpKV5KHYqTQSQ8N4ekNyIJXnqjeYc7FI9DViWfDmiqGrYw2km+bPqdtndB87ZytBqX3TWFu6g8IHNU/TGg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iu8tuieL+YcqCVAFd6v7OJyvfbJXGGSAlxXf5sH7Ucs=;
+ b=Pz+nta1lj2RIdl4yaOwnjie14fe4FRLTPPakVfQK60IAR5HWVOxoB+Zg9+0RtZHzWQsPkI8CJ7HrMoSsoqwjajWPa/BCThWNsUB9fricLKj4YQdlyT2O2/6tDIDjFXaz0IGDh24nDcdlTMklsxUhCA8AQJ9csvAMNNbGHeC0OJeCBWqHYELn+pWg4mIKotMyApbZXC+RTGdc2x3c8UorKv7uOnzxvsgVPOw8WeCg8fWVbv3lYl3W+ay54me1MAQxMiQ64o6XulRjCfQ5ZnAbJG00Tg8Jsyt4PXPb+RWcoR0vce3k2YSiFGZjTzK8h+U+Frdf/yCjY6SDS1dqKZ/UrA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com (2603:10a6:20b:3ef::22)
+ by GV2PR04MB11759.eurprd04.prod.outlook.com (2603:10a6:150:2d6::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Tue, 10 Mar
+ 2026 06:36:08 +0000
+Received: from AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc]) by AM9PR04MB8353.eurprd04.prod.outlook.com
+ ([fe80::46ae:f774:f04c:a1bc%5]) with mapi id 15.20.9678.024; Tue, 10 Mar 2026
+ 06:36:08 +0000
+From: Chancel Liu <chancel.liu@nxp.com>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Frank.Li@nxp.com,
+	shengjiu.wang@gmail.com,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ASoC: dt-bindings: imx-card: Add dsp_a DAI format
+Date: Tue, 10 Mar 2026 15:35:22 +0900
+Message-ID: <20260310063522.362545-1-chancel.liu@nxp.com>
+X-Mailer: git-send-email 2.50.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SEWP216CA0116.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2b9::10) To AM9PR04MB8353.eurprd04.prod.outlook.com
+ (2603:10a6:20b:3ef::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260308233646.2318676-3-sibi.sankar@oss.qualcomm.com>
-X-Rspamd-Queue-Id: 0DF79245D39
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB8353:EE_|GV2PR04MB11759:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a2a3dbd-9652-4c39-9fa8-08de7e6f5005
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|1800799024|376014|19092799006|52116014|7416014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	QibCumfdMbCIYbl3jDOc2IAJ5YbsgnzchrvSVjPj6lnXsrM4M+OARz2u2BCPMHTkIW9tJQkGT24L6M/96NkW4XELbwvy14/cp/KdzXxsy7cuCAxiIBwy5YZ7yRhdDIqOM5LaoWORyCKfIPiSVzuW1NzBuEvkP429YGH+GWlWISGKPjjuUPYfwdRkqwq/HgZw97ZLTmTAZPU7OgVQpW5aNAag7mttYhHYbV4uqnxcdIkcaCd0z7XHbKDNGAj8ygsQv89hI8d0nfJHKhRELdklpyhO0uuulkUL5Vusgcwn7INv0WZGxqOiuNPYNp5jCA9VMoeFrsWYkIOiJBiSaTON1+T8odbbFzL3xXl1UBuAlZ+yK6MxO0U8UMwWItynLORfaBRJfYJgP3DWTURSiQ8dZEkRLsuGM7bNHyzKBCHQ/v1Cl7LST3Gur+ldP51saQmtVhWcS9G0Lax13YZOCt6k+n+LkBnDitgNtP0z7IodRk9Rzsr5HMgtv37/gTuj3FMnRonQD5zALAM7aX2ansq6dTJZxwlYHgwtPDAa3+TWLXmLSPImVWlE4fYVMuJ8INJJ4Vq9rC/0Ef+MoShy/xb61wm48N1VDnW/Z46jGWbPFCD8Gtd5QD3gT8OXvVw/szsC4u4YTHtf8qI6ULdwM6MwgKSQmV0bfWwSjvsuZojyrd/PBCePJFobFr3P92t5fUbKxsroi6oKURah5fUtalZ4N4BuAAs/Hc9FfWUIYxC2erVxJcTHjHaH8CYIdyglKgqpNPq//SzDn0vH5e7HhHXWQdks0FkYj5bvMG599U0dtg2sy4XDHxJ2nXLmwt6SLxvM
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8353.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(19092799006)(52116014)(7416014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?NMWf1c0CjaSecA8OKQ4Cm6j97qSC/CVwZQR8sGKnSm9FPXRttgPsRsWZbjBA?=
+ =?us-ascii?Q?BYgzEMmYMJNrAL7JzkFhPdAyWRhNAuqtI2Dzz8VZTjDaG6SDufU4IJrANzNV?=
+ =?us-ascii?Q?6VBmE6r/DvtOcQSmKa7GqfRNKkBE5iuz81B21cOafe4cV4wPwLNl7tGaKOpB?=
+ =?us-ascii?Q?AFOOSr3YB1+jeOlr4dldXagWdjtyHTz0qysJcGlGbKlaacELlwXBawmpgUaZ?=
+ =?us-ascii?Q?ZioQHOCk+BmnyJq19HijgoOv/bit9T6IqcvH1LRG8Bued/mG18PfQPmzVJQZ?=
+ =?us-ascii?Q?h7tm0BqofPMg5yQNx6FQPPSddPqesLk8U2yuOTAKEOW1PpRtcxFcEZM4yLM6?=
+ =?us-ascii?Q?tQDdeZPxLkj1IT/Lsv8UKNvvXgtk8l0Bah7zhVDCi2pjLNOWGg/jZz4RCu+D?=
+ =?us-ascii?Q?G6WeWBf+wAQHXb31dqnCWqBReoH7IC7xfLXQTo6WLy9MF6DYFtUw32oF2JZp?=
+ =?us-ascii?Q?YEY2K9KYxSFTizG+Hiy7s6mwD0mDyWxq7F3uo9OfuP+UPhWdHR1mlL5i6PI6?=
+ =?us-ascii?Q?BkTeeNoRKtqXjwt57XrIR+dhh2wUOEzu2pf528j0Cg39kvvMlLDiDkt8uBx6?=
+ =?us-ascii?Q?JjxiZk83RJd68c9lw4woEglYz2GswzWNy+iV/bKMrJ3rabdcX5IEVzDY3Fzq?=
+ =?us-ascii?Q?8QDLdF98FhiiODmb4VBOobWzGp4V+AWoBFSN5AMhe05B39lfFDmvNiyFek1D?=
+ =?us-ascii?Q?3RrmpLHGdx3STFSqzT/eFidHsK8HPb+rNQ+YrsrfJFayXSvtKmC1Qot1yYUx?=
+ =?us-ascii?Q?3NPY9MLAVXjIKTGohL7Pr9W4CLMhecxJE8vnfXLwZv8sEyNPLEUO25t1zIqC?=
+ =?us-ascii?Q?WZYu5bQLZxTHPxlS2lBC8eLlsVQZAo92cjnBIq4+7s1Cs81k8tt75dTWn8/l?=
+ =?us-ascii?Q?7wgwNNojVUmBuOAHc0YETGjTHf3wCKnq13ttUX9uaPlQ9YWuAqleXrygkm1E?=
+ =?us-ascii?Q?bXLHHU3Dc7CYg9tvULrRaYjzzvHR5acZU5fTXupfmSb6gb/O2czNTCekJitp?=
+ =?us-ascii?Q?LsTc0hSb9Pkud8YjKdQxV5aopf+8rKwQ9FvxVTQ2qMrkdCJsxw9bQFDcfbIk?=
+ =?us-ascii?Q?dAKuLtV+oKHjE6xHToVeO3yTnBj4nfHicL1WvCdZT75Uj1tgwVo4SwKg+FFN?=
+ =?us-ascii?Q?n9g0LFArholPwTGMMKDBIlwp7RzAeVofkqWXFVCKtLOqUXRlmukag3E1kKqh?=
+ =?us-ascii?Q?GA2g/NMxpKJWXca0o5LtNq0Fgun8UZLG8PVT2ua3DY7/yd+fl0ZDjAEyPYyX?=
+ =?us-ascii?Q?Ab6+i2j+QUPlMsOElcG5y8J6SH4JIcIc+pGO24i6+4x8wl1zjdO9MoDcakFf?=
+ =?us-ascii?Q?Q+80XNX1/Ix7flTTbF2WL5Z2r8J/QrH3DO4OSuxwvjgbvZS1jhXgfl1qHjVr?=
+ =?us-ascii?Q?oMx0hrIkg0A8BWuFUqxF3JhLyBsnoSf8oM66sjFMZvUPjxAlB59z/OZ7UODE?=
+ =?us-ascii?Q?W7BdOBtMdlYTKtYTvmMV2Eq2t4yXxwmJTUTQRfzqguPnm7+lAq+NvaXF2OWd?=
+ =?us-ascii?Q?VEHop4wdKFeQgAIigzvzB3NpgAJMoffh0+kSwhnDc9A+ht5UNHnHYvFpwfJ2?=
+ =?us-ascii?Q?9zlwx8SbeezJ/oAJ92elH9AT0NFi/N7ZN/s2pfKND0T/aRNjDcROxe+BucM3?=
+ =?us-ascii?Q?LLfswLgZA/yXO5iDzv/4R97y6G1pwv5vNGVwjXfUqVvbkEcbJVIiZlyQgRxb?=
+ =?us-ascii?Q?XdniAH2YIHo2gshv3z6zFeQRgy7WoBOeN4TLUIAwV1lscJZ6D30eDT8DrPz8?=
+ =?us-ascii?Q?VSArZo11zg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a2a3dbd-9652-4c39-9fa8-08de7e6f5005
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8353.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 06:36:08.6392
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pBb13ZTIm3aDBEzz8GPOVaKKM6cODlelmQCqiMJUDxo63ktTg87G+OQgqnvCu0+5XyawK2tpSDCn1VfFcaYsJA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11759
+X-Rspamd-Queue-Id: 1C953245D90
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[lists.linux.dev,kernel.org,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-273277-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273278-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nxp.com,pengutronix.de,vger.kernel.org,lists.linux.dev,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[chancel.liu@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_NONE(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,01.org:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email,nxp.com:mid]
 X-Rspamd-Action: no action
 
-Hi Sibi,
+The imx-card machine driver originally supported only codecs operating
+in i2s or dsp_b formats. This machine driver can support CS42448 codec
+and this codec typically uses dsp_a for its TDM interface. Therefore,
+dsp_a format support is required for describing such sound cards in DT.
 
-kernel test robot noticed the following build errors:
+Update DT bindings to include "dsp_a" in the list of supported DAI
+formats.
 
-[auto build test ERROR on a0ae2a256046c0c5d3778d1a194ff2e171f16e5f]
+Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+---
+ Documentation/devicetree/bindings/sound/imx-audio-card.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Sibi-Sankar/dt-bindings-embedded-controller-Add-EC-bindings-for-Qualcomm-reference-devices/20260309-074148
-base:   a0ae2a256046c0c5d3778d1a194ff2e171f16e5f
-patch link:    https://lore.kernel.org/r/20260308233646.2318676-3-sibi.sankar%40oss.qualcomm.com
-patch subject: [PATCH V3 2/5] platform: arm64: Add driver for EC found on Qualcomm reference devices
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20260310/202603101413.1egT3NBN-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260310/202603101413.1egT3NBN-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603101413.1egT3NBN-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/ioport.h:16,
-                    from include/linux/acpi.h:13,
-                    from include/linux/i2c.h:13,
-                    from drivers/platform/arm64/qcom-hamoa-ec.c:7:
-   drivers/platform/arm64/qcom-hamoa-ec.c: In function 'qcom_ec_thermal_capabilities':
->> drivers/platform/arm64/qcom-hamoa-ec.c:56:42: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
-      56 | #define EC_THERMAL_FAN_CNT(x)           (FIELD_GET(GENMASK(1, 0), (x)))
-         |                                          ^~~~~~~~~
-   include/linux/minmax.h:92:35: note: in definition of macro '__careful_cmp_once'
-      92 |         auto ux = (x); auto uy = (y);                   \
-         |                                   ^
-   include/linux/minmax.h:112:25: note: in expansion of macro '__careful_cmp'
-     112 | #define max(x, y)       __careful_cmp(max, x, y)
-         |                         ^~~~~~~~~~~~~
-   drivers/platform/arm64/qcom-hamoa-ec.c:170:24: note: in expansion of macro 'max'
-     170 |         cap->fan_cnt = max(EC_MAX_FAN_CNT, EC_THERMAL_FAN_CNT(resp[1]));
-         |                        ^~~
-   drivers/platform/arm64/qcom-hamoa-ec.c:170:44: note: in expansion of macro 'EC_THERMAL_FAN_CNT'
-     170 |         cap->fan_cnt = max(EC_MAX_FAN_CNT, EC_THERMAL_FAN_CNT(resp[1]));
-         |                                            ^~~~~~~~~~~~~~~~~~
-
-
-vim +/FIELD_GET +56 drivers/platform/arm64/qcom-hamoa-ec.c
-
-   > 7	#include <linux/i2c.h>
-     8	#include <linux/kernel.h>
-     9	#include <linux/module.h>
-    10	#include <linux/pm.h>
-    11	#include <linux/thermal.h>
-    12	
-    13	#define EC_SCI_EVT_READ_CMD	0x05
-    14	#define EC_FW_VERSION_CMD	0x0e
-    15	#define EC_MODERN_STANDBY_CMD	0x23
-    16	#define EC_FAN_DBG_CONTROL_CMD	0x30
-    17	#define EC_SCI_EVT_CONTROL_CMD	0x35
-    18	#define EC_THERMAL_CAP_CMD	0x42
-    19	
-    20	#define EC_FW_VERSION_RESP_LEN	4
-    21	#define EC_THERMAL_CAP_RESP_LEN	3
-    22	#define EC_FAN_DEBUG_CMD_LEN	6
-    23	#define EC_FAN_SPEED_DATA_SIZE	4
-    24	
-    25	#define EC_MODERN_STANDBY_ENTER	0x01
-    26	#define EC_MODERN_STANDBY_EXIT	0x00
-    27	
-    28	#define EC_FAN_DEBUG_MODE_ON    BIT(0)
-    29	#define EC_FAN_ON               BIT(1)
-    30	#define EC_FAN_DEBUG_TYPE_PWM   BIT(2)
-    31	#define EC_MAX_FAN_CNT		2
-    32	#define EC_FAN_NAME_SIZE	20
-    33	#define EC_FAN_MAX_PWM		255
-    34	
-    35	enum qcom_ec_sci_events {
-    36		EC_FAN1_STATUS_CHANGE_EVT = 0x30,
-    37		EC_FAN2_STATUS_CHANGE_EVT,
-    38		EC_FAN1_SPEED_CHANGE_EVT,
-    39		EC_FAN2_SPEED_CHANGE_EVT,
-    40		EC_NEW_LUT_SET_EVT,
-    41		EC_FAN_PROFILE_SWITCH_EVT,
-    42		EC_THERMISTOR_1_THRESHOLD_CROSS_EVT,
-    43		EC_THERMISTOR_2_THRESHOLD_CROSS_EVT,
-    44		EC_THERMISTOR_3_THRESHOLD_CROSS_EVT,
-    45		/* Reserved: 0x39 - 0x3c/0x3f */
-    46		EC_RECOVERED_FROM_RESET_EVT = 0x3d,
-    47	};
-    48	
-    49	struct qcom_ec_version {
-    50		u8 main_version;
-    51		u8 sub_version;
-    52		u8 test_version;
-    53	};
-    54	
-    55	struct qcom_ec_thermal_cap {
-  > 56	#define EC_THERMAL_FAN_CNT(x)		(FIELD_GET(GENMASK(1, 0), (x)))
-    57	#define EC_THERMAL_FAN_TYPE(x)		(FIELD_GET(GENMASK(4, 2), (x)))
-    58	#define EC_THERMAL_THERMISTOR_MASK(x)	(FIELD_GET(GENMASK(7, 0), (x)))
-    59		u8 fan_cnt;
-    60		u8 fan_type;
-    61		u8 thermistor_mask;
-    62	};
-    63	
-
+diff --git a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+index 3c75c8c78987..5c08289346c0 100644
+--- a/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
++++ b/Documentation/devicetree/bindings/sound/imx-audio-card.yaml
+@@ -36,6 +36,7 @@ patternProperties:
+         items:
+           enum:
+             - i2s
++            - dsp_a
+             - dsp_b
+ 
+       dai-tdm-slot-num:
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.50.1
+
 
