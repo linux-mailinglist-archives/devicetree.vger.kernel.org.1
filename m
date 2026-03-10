@@ -1,193 +1,421 @@
-Return-Path: <devicetree+bounces-273249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273250-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WM3QCTOUr2kragIAu9opvQ
-	(envelope-from <devicetree+bounces-273249-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:46:59 +0100
+	id kH/GARWVr2kragIAu9opvQ
+	(envelope-from <devicetree+bounces-273250-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:50:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32528244FEB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:46:58 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 669F8245080
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 5D41E3016B1C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:46:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A11F4302A389
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1800E3B961F;
-	Tue, 10 Mar 2026 03:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3993BD64B;
+	Tue, 10 Mar 2026 03:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E+CbJ+nl";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="a22F8Eq4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kj/wSGjY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012044.outbound.protection.outlook.com [40.107.209.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB112C11E8
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 03:46:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773114412; cv=none; b=BG/yT2+RFHRo9x453h24F6DQMH4QR3PjCW7zP9ozMDaQzENZ2r87aYZBBboYl7QI8OZxEpMaAbVqnHWlv1Wgvw7icWH9fGsWz8gyEMzg86P4E/IhUPAPMJsEJ1Bm6MAX3J7tqkrsGXNosrtS2xeFStHjPyNR7h5GLZqfHxGakio=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773114412; c=relaxed/simple;
-	bh=EuD6g6RNFYBCMCyD5nCeQMTTjq6/Y5prChgeatFAeIc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WyLOtZ4agaTP0KQGwhs1uBSntBWi5PwDtE4h24DAmZRNVsz0fnpQJo+NP6FOd/H3p+uh3s2GflnpALy/A73X20jYBybdH9+N0TiBgOmeRdY3pEDIgBaVzkIaornvKiCPDOLoYxX+RrlW1j70CkfZG9ODcusCWMTZgExcvVn1dnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E+CbJ+nl; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=a22F8Eq4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62A2EK3d2363191
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 03:46:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=1O0unU++X74+aWtoWQlyW8T4
-	RoRx1uAMlD6DQ2sKW5g=; b=E+CbJ+nleFqIKvJpALTsC84i4lom6w9vZCob6K7a
-	qUJRs0L68MbiYaUgJYhAJKqRpSSGA63OKBE2/+Uk7HxiMbYqZ4Hs70r7F5msBFqi
-	gaSm3wvC1rA7aa85MXlAZYe78JqhPtUJ/1ezopzOJMA7acRnmaCKMttydWRdNnTx
-	yqMybGRzKM4yhjIgeYmcPvesyCf/ezQQxLWbYBpKq8ll60g0wO8JhWB849bMh48X
-	RMQoh0CrIon2dlRWzuf1vjVe4CoKMrIQFpEJsR2tD+AyI1dxlsXLnzgMVhoK+wFk
-	DrIXgYTbUl1iGbW48xpHszD9cwSc0vn/DuFhamdi7UK0cg==
-Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ct032ad87-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 03:46:50 +0000 (GMT)
-Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-94eb847f11cso7078292241.2
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 20:46:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773114409; x=1773719209; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1O0unU++X74+aWtoWQlyW8T4RoRx1uAMlD6DQ2sKW5g=;
-        b=a22F8Eq48EIN91iMQ9+7Cb3JUaTDZiHEXP2CqXm/Vt/fJwvQoNkl/P23BdJ0fiEFQo
-         Mqj7IA4AH4jT0DNEyu05pyzLaTtseXKcfhgth+UUZ2WQOh6XnqcdnkAwMwv7MCRLCHDs
-         thijcMoxlmPsv3M2c2CE7GJb1fOe+BkxZXjJbfNqXPLmYFBm7kJRrQMHWDeRmcTAFa6I
-         ciVRVH1e9IHcuwOcJzHlPvv8ViG0AB6Gu8ECGkk5LWZD0ztpgn9WdtheO3BMUp74zP3V
-         pIQKMuZCUU5nIDOocOZURcIELKkAOkOJeK9lUxIZ54u0i258wOZzNyi0+yeZ5v2bbbtl
-         7U1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773114409; x=1773719209;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1O0unU++X74+aWtoWQlyW8T4RoRx1uAMlD6DQ2sKW5g=;
-        b=D78yrUy4lIAJFCYEMHzQyQs1/kLP1lpCaQWeTtxpHTs7TFu4HXxVaryiwQjJRlMKYe
-         JVoQuQykkPVX7PwUVH+aFy9X6cfx8zGhVsNyqox1XGqpRctck1UkwtSOVjNld7de201G
-         vEWASdhCIBNUd7W+V3cSr10Mg0ecapazZeL8wjBbDLWVMlVngnoFhrDAomp9FEkBhv/2
-         QaP2AKasDHNZUA9oKX+IymKIGms+M0+vBgtsD7ERDl6GSClFjOy6d2kW6OVokZ0X7IOM
-         77XcLRyyN3OBiBaHg4DxhveR+uXHsENsFVFX/1MS7aGPgiFjHIBdl7oXLOkfoF8s8Qa5
-         RUaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX7JmwBb3ExJsoVKDp22JuJASoZC82Rl66TMokdhKo7QB1lH29UJTQ54rMU9j+QhyRvkJpWR5URySwD@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjWQMrAq3cRN7x4w85Mt+Zx4kG8HzlILp5jkXLwSIXDGJShbX5
-	DMwd7H+9UVt0WIuIfmi43GSK+vIs1g3JVgAdBkBx37g9K0ojQSVNIICAKJufBKbOdpRLtBFJ2PQ
-	v1hz1o0I0F9oFbfpg66lLyLqFXn+OrkD+bpQJzW3ALPw4p+LhODYGK96YyyclsxRi
-X-Gm-Gg: ATEYQzzJxAChjvL/XedZG7x3QWYY5fhZ2E09Muju2/+joNW7vp1o22TrhXohQHJzZLi
-	NJFCrPmVOFlrjmEc96mUUtuh+BRy35w65QIm0E1ltpmAEpciKgSqh1kg/hBRB7wIsO/j8DGWyX/
-	zuAtgg5pdRfS+FpMP4kgHMBQo7RChbNmtq3x+DNNFrmiyz7YREli0DSqQSf8gA+mRq+urCcjVCk
-	72rCYTyZj3XIZKfJdV4rCsxiEJC4a2UrvqImkfYHgxfK8oB73M6twrUdi3fKxZETFerJ1vfpUzs
-	woQJudWFY0TD8tAf56o+lkbFD/ezQTLX4Fb8t/v9OoyjqGlJAAo4ql1g/V/pDU3suyiphI2qm8E
-	faZToNG1S+1dCdJBN6cJZ8f7HA0iE2ww/1XwgjFbxGuNuAgnsK3xTpArRA+/DfK5aAhY2oW6xfN
-	F5H7Teb8ighKIw1uPqaunvqF8dF8SALuRnfHs=
-X-Received: by 2002:a05:6102:54ab:b0:5ef:b0d3:295f with SMTP id ada2fe7eead31-5ffe5eba430mr5759730137.8.1773114409164;
-        Mon, 09 Mar 2026 20:46:49 -0700 (PDT)
-X-Received: by 2002:a05:6102:54ab:b0:5ef:b0d3:295f with SMTP id ada2fe7eead31-5ffe5eba430mr5759713137.8.1773114408786;
-        Mon, 09 Mar 2026 20:46:48 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a5cfa1264sm2509461fa.9.2026.03.09.20.46.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 20:46:47 -0700 (PDT)
-Date: Tue, 10 Mar 2026 05:46:46 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Richard Acayan <mailingradian@gmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Linus Walleij <linusw@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Srinivas Kandagatla <srini@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] arm64: dts: qcom: sdm670: add lpi pinctrl
-Message-ID: <o6qyvhcmozixpj6yph6dfd3ddzvv77xgx73setsuq34hnmirf7@ovnrmqmm6liq>
-References: <20260310012446.32226-1-mailingradian@gmail.com>
- <20260310012446.32226-5-mailingradian@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C303BD637;
+	Tue, 10 Mar 2026 03:50:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.44
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773114640; cv=fail; b=JYPegrKDDch94G1fH44f5wpmyODiGS2/Wz0l5OtV8LAEMJZq/G3StUWnc9ZGStmreRgSy9DR0qkdDbxx9lt2YKQqG7SP5T5pjMiCoeR1Qq8iwX5CScerR1zJkoBwTIkEsr1+fIe80ubrQruPBpMEddKfkchZgZBG6vZzah+YskM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773114640; c=relaxed/simple;
+	bh=Mg6jp8tk0zIGfIBzkpGDYsOPzIMxEOFhiyhlLxXrXMY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=DPe1h1Rg+VhgCCSIC/4YJIia4FWgRPogguJemjHbjz4aEF12lUJUtgF0FXDGLuh0jnD7NMqMdssK4WnVZZHxztXlZkFJuPKr2vH1cut9gRF1+/VrHM9VFDoNMoMhqRpVabiXTOPITSMuOYDorYbJI8QcYIKWkm6VIhvgDlT3YcY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kj/wSGjY; arc=fail smtp.client-ip=40.107.209.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mKXAvmCQ04vf+EZ/op7LHgOc5EzCgmBGsnMYhCs7EcaeDsgU0mPvMYVj+L8DzWyqB9tgGAmTdTqZ1J18Ge/QDsJ1FTcE55058/AbEI5AUtPtf29NOWM4AjyqRaGflyyaMt6sSDzM+qkiNJXQA9biJHoB/nZm0+Eum7SMx047wBq1Y/ZAhDPU+iO3eCEe5fi0KznHnsb/hx2ltb+wHlJiuCQqnF3rNotKYeNvRnsywWqI6uSYZVWvAGAPz6GgZQ+gMkeHHKoWVG9HLPqCJktofxNZ8rcDkR6442ssFiXXN+kKQNWPHD7uIuCygGIkWog30gNru8WngHCmjwK6px9LJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VrDjYPO1RhBwEvkdroIe+BkIpkdBWkr+n3AmyZ0feGg=;
+ b=RlSraN8Rou/4feEL39b4yhN5QfPhnTDqGbs6jB7R2aWsGtW2oLA/5Xk1rVwBJ+0RjwKuBPR6o734YyTwqrPv6fSJRNBTPp6Y40XdFPHoW/J1GNVZd8sViutttdRWbwTxtq5W1P09tYTjTL2+YTRxsX2A5+35bBmQ9UVP1oH14BGtli2A2GvAvgLIxos9nU5I9nIdn1amI+qolO182l8a4sx4NMqYrSrd2KHR8kaPjlK4L3jtZdWGKgADo3y2braSP1/Zv3ZpuqcZpbgOVL8JJv0nC8DgauNAQ4dhJ505+Ef8f0uFRblMdB9exuYs0D4GMxBjBOCjC/l2AXPQPuFt0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=lists.phytec.de smtp.mailfrom=ti.com;
+ dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VrDjYPO1RhBwEvkdroIe+BkIpkdBWkr+n3AmyZ0feGg=;
+ b=kj/wSGjYMzq2po3Z3Z+EKi4ZQh/D5J01miScIy0JwPWP+AQgaCXP26BsZFioAiTS+MJqMuWU2dN3pmcFoMzMASHEP7es41pvJMnCGOp7hpo58Tdc7zAL352jARv7ZLU6dip6dqY1D3kOkO5WR52FNugQ4GMG0n7tflEmsRnEBBc=
+Received: from DS7PR05CA0061.namprd05.prod.outlook.com (2603:10b6:8:57::15) by
+ PH7PR10MB6283.namprd10.prod.outlook.com (2603:10b6:510:1a9::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.25; Tue, 10 Mar 2026 03:50:36 +0000
+Received: from CH3PEPF00000017.namprd21.prod.outlook.com
+ (2603:10b6:8:57:cafe::b4) by DS7PR05CA0061.outlook.office365.com
+ (2603:10b6:8:57::15) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Tue,
+ 10 Mar 2026 03:50:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ CH3PEPF00000017.mail.protection.outlook.com (10.167.244.122) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.1 via Frontend Transport; Tue, 10 Mar 2026 03:50:35 +0000
+Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
+ 2026 22:50:34 -0500
+Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
+ 2026 22:50:34 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 9 Mar 2026 22:50:34 -0500
+Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62A3oVDh1804107;
+	Mon, 9 Mar 2026 22:50:31 -0500
+Message-ID: <18552ca7-b4e4-49f2-b2f8-27bb4fd6178c@ti.com>
+Date: Tue, 10 Mar 2026 09:20:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260310012446.32226-5-mailingradian@gmail.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEwMDAyNyBTYWx0ZWRfX0TkxVrK5Kt24
- +gKn5HcyI593zYsvVucUGwgEbmkrFu8F28xNuCS6Sv0v179SX5YZhIGn3BpKsxExIPQ0L/DDXe3
- GA7sPIyIx3k6d06WxF/hq9BzUG2fHhvRKAvWJxiauFVpEcQPh6QB1LBe3Hj8n0877hgcAM06iOs
- F7uJX31wWeUrFSIpDhVmre2kejQUxIZpzoOWpwxQKNj3GQwX8lcUxPA+bGq7+Y4mYgWqpTqnBH+
- ZaA8ce34Zr0FLo/JeudyqImZw0tlSSB16UHaF4ThxeBLzjCKvL2Ul1Q9gKFHFuEbjESmtMK/wQW
- TTzq/CmhhV3ZhS3T9ulrQxFRXo2l3wKFwBXppU8cOMdiEFQOV2yl7aa93gwwveTuva1Fs++OCew
- wzmpQgF3DluIp1KyPLD317XzLQuRlnJ27hGwDp08LUHEtMH2SOxWjB9bMy9srv3A5Jcv33qM5Ly
- G/okZZqDWCFZKUXFaIw==
-X-Proofpoint-ORIG-GUID: 9XV-1KWHfGkaPAo5gZ7_j5SYWRDAbJ6J
-X-Proofpoint-GUID: 9XV-1KWHfGkaPAo5gZ7_j5SYWRDAbJ6J
-X-Authority-Analysis: v=2.4 cv=WtEm8Nfv c=1 sm=1 tr=0 ts=69af942a cx=c_pps
- a=KB4UBwrhAZV1kjiGHFQexw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=pGLkceISAAAA:8
- a=EUspDBNiAAAA:8 a=TIhwJpUIZt9fiVsXp24A:9 a=CjuIK1q_8ugA:10
- a=o1xkdb1NAhiiM49bd1HK:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-10_01,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 spamscore=0 bulkscore=0 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 phishscore=0 adultscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603100027
-X-Rspamd-Queue-Id: 32528244FEB
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] arm64: dts: ti: k3-am68-phyboard-izar: Add
+ PEB-AV-15 overlay
+To: Dominik Haller <d.haller@phytec.de>, Nishanth Menon <nm@ti.com>, "Tero
+ Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
+References: <20260306033151.276202-1-d.haller@phytec.de>
+ <20260306033151.276202-6-d.haller@phytec.de>
+From: Vignesh Raghavendra <vigneshr@ti.com>
+Content-Language: en-US
+In-Reply-To: <20260306033151.276202-6-d.haller@phytec.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000017:EE_|PH7PR10MB6283:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6850c314-67f1-43ad-ca7c-08de7e582fb6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700016|1800799024|82310400026|376014;
+X-Microsoft-Antispam-Message-Info:
+	DyzyNUW/L2TuQDh/TKu7cegutD5HE1VGKfIPitsO5EQ22Q3Nif+qMSn5ucHrSx+ABuZFQ1dyBQ6yPMxMFodo4+pOPJP0Que31m/YHfueTEGh+PbU7sVmw+8dGKlN2YjuHZ1q6DRwyt3UJ+PqhP/rM04hYUohi3OCB0rWWIp5qIOTa1GeuaI2L1RRvyOlXS+S41u04WzDW7+7676F1q61nxiv1juEihixlQJRluH2V1wH2Wiq52peRILvTpCoWiEjU7ZMob/Yz8ebNVi2qcsVs+ioHG8GtRBWauuxVQoMDB1dNXwz/bXuP0c58IEkGOEEhH8CDMzPgX4SYCyHqxNUWnBZX2l3E6EjyDYmzSXGL4bQgK6kFgLUwO1QD1GF/6dbu6iDyUbigju8NaSSJuVlPDa7oMagkX6UuDc2H58gfCb45gSWlInZzJDdwi1MBB+v5fGrgRt/Rwr/wiucwdhJGKNLIIjhjMz1lRzPggjKoKTaM9IAGvSP+rPSHJfoDs0kzyNE4CwS6iqH85VZ7bx3AGdIchuxLPf+9hTrXlCCgCaKh9qmRgdbbf3e0ZJYvk4vuZBXXyW3FyQzixjd2vBq7+vyGqhn6kgOrcRNHK3TzjByTfmgjNEX2bpeBQwQRf/B75dNnnfQ4h9jhFOqwrcFWkVIW6MwxhcGGolSwyg1+kGuIEoa9rTnbCdmwD1Vp9ATNQIHLsijm5O9X2Cexuv+biOaF/Hs7WHBl3gRJXfPxcjyfC2rRy6SV3+tjPTKCbkblGaNp7tY7aDq+VBYZ8sLIg==
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	QKih0Y8m6E9UrMU4yjDgWFhVxr24Z+y5TPHERoZEu2u5f8TfkQtthr7oO9yIAhQwYZEPkXigbP0Ub0IonxpsiqBzwUp3WIMRPcvcE6Vs47KRJUV84TZ279mujDo1RjXmjuLI8SAttbHNmxI3gWZd48rHEETcofUiC8xUoPVReXLkGhloE+6oKRW1M8Q/VeuEQ8JCCws93mCdrPCCOyKSCj6SIRA7Yc6h15yHV30xvuDcPDEZLOk2jqwpudx//VpdhOOu8Dt87fi3IN9RLHNY+LAXNoqo71V++hJcgg4qBdoQrShdSk0L4bLqtqtU2SjXNyBgM1LWtWXPGCAHu+LCNgd9FbK5tztgSmAPuoaedkcan9qPm7XA73+NcF+au7wtfvpVf6OGH3/pwCjZRkHyHY8kEq431qGiZENAWd++pPniUFRfKKzD8d4q13eltajA
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 03:50:35.5049
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6850c314-67f1-43ad-ca7c-08de7e582fb6
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CH3PEPF00000017.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6283
+X-Rspamd-Queue-Id: 669F8245080
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273249-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:email];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[ti.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273250-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ti.com:dkim,ti.com:url,ti.com:mid,0.0.0.3:email,0.0.0.48:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[vigneshr@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email,0.0.0.18:email,0.0.0.1:email];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
-On Mon, Mar 09, 2026 at 09:24:45PM -0400, Richard Acayan wrote:
-> The Snapdragon 670 has a separate TLMM for audio pins. Add the device
-> node for it.
+
+
+On 06/03/26 09:01, Dominik Haller wrote:
+> Add an overlay to use the PEB-AV-15 AV-Adapter. It's a small expansion board
+> using a Lontium LT8912B DSI->HDMI bridge and a TLV320AIC3007 audio codec.
 > 
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> Signed-off-by: Dominik Haller <d.haller@phytec.de>
 > ---
->  arch/arm64/boot/dts/qcom/sdm670.dtsi | 73 ++++++++++++++++++++++++++++
->  1 file changed, 73 insertions(+)
+>  arch/arm64/boot/dts/ti/Makefile               |   4 +
+>  .../ti/k3-am68-phyboard-izar-peb-av-15.dtso   | 192 ++++++++++++++++++
+>  2 files changed, 196 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
 > 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index a188e62e32b4..ae5994818ad2 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -135,6 +135,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-lvds-ph128800t006.dtb
+>  k3-am68-phyboard-izar-lvds-ph128800t006-dtbs := k3-am68-phyboard-izar.dtb \
+>  	k3-am68-phyboard-izar-lvds-ph128800t006.dtbo
+> +dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-peb-av-15.dtb
+> +k3-am68-phyboard-izar-peb-av-15-dtbs := k3-am68-phyboard-izar.dtb \
+> +        k3-am68-phyboard-izar-peb-av-15.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
+>  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board-pcie1-ep.dtbo
+>  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+> @@ -323,6 +326,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+>  	k3-am67a-kontron-sa67-base-gpios.dtb \
+>  	k3-am68-phyboard-izar-lvds-ph128800t006.dtb \
+> +	k3-am68-phyboard-izar-peb-av-15.dtb \
+>  	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
+>  	k3-am68-sk-base-board-pcie1-ep.dtb \
+>  	k3-am69-sk-csi2-dual-imx219.dtb \
+> diff --git a/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+> new file mode 100644
+> index 000000000000..cb75199c59fe
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+> @@ -0,0 +1,192 @@
+> +// SPDX-License-Identifier: GPL-2.0-only or MIT
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Nit: OR is to be in upper case to be in sync with rest of the kernel
 
+> +/*
+> + * Copyright (C) 2026 PHYTEC Messtechnik GmbH
+> + * Author: Dominik Haller <d.haller@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include "k3-pinctrl.h"
+> +
+> +&{/} {
+> +	audio_refclk1: audio-clock {
+> +		#clock-cells = <0>;
+> +		compatible = "fixed-clock";
+
+compatible goes first
+
+> +		clock-frequency = <19200000>;
+> +	};
+> +
+> +	hdmi: hdmi-connector {
+> +		compatible = "hdmi-connector";
+> +		label = "hdmi";
+> +		type = "a";
+> +		ddc-i2c-bus = <&main_i2c2>;
+> +
+> +		port {
+> +			hdmi_connector_in: endpoint {
+> +				remote-endpoint = <&lt8912b_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	reg_audio_3v3: regulator-audio-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC3V3_AUDIO";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	reg_audio_1v8: regulator-audio-1v8 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "VCC1V8_AUDIO";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "PEB-AV-15";
+> +		simple-audio-card,widgets =
+> +			"Headphone", "Headphone Jack",
+> +			"Microphone", "Mic Jack";
+> +		simple-audio-card,routing =
+> +			"Headphone Jack", "HPLOUT",
+> +			"Headphone Jack", "HPROUT",
+> +			"MIC3R", "Mic Jack",
+> +			"Mic Jack", "Mic Bias";
+> +		simple-audio-card,format = "dsp_b";
+> +		simple-audio-card,bitclock-inversion;
+> +		simple-audio-card,bitclock-master = <&link0_codec>;
+> +		simple-audio-card,frame-master = <&link0_codec>;
+> +
+> +		link0_cpu: simple-audio-card,cpu {
+> +			sound-dai = <&mcasp0>;
+> +		};
+> +
+> +		link0_codec: simple-audio-card,codec {
+> +			sound-dai = <&audio_codec>;
+> +			clocks = <&audio_refclk1>;
+> +		};
+> +	};
+> +
+> +};
+> +
+> +&dphy_tx1 {
+> +        status = "okay";
+> +};
+> +
+> +&dsi1 {
+> +	status= "okay";
+
+Spaces before "="
+
+> +};
+> +
+> +&dsi1_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +	port@0 {
+> +		reg = <0>;
+> +		dsi1_out: endpoint {
+> +			remote-endpoint = <&lt8912b_in>;
+> +		};
+> +	};
+> +
+> +	port@1 {
+> +		reg = <1>;
+> +		dsi1_in: endpoint {
+> +			remote-endpoint = <&dpi3_out>;
+> +		};
+> +	};
+> +};
+> +
+> +&dss {
+> +	status = "okay";
+> +};
+> +
+> +&dss_ports {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        port@3 {
+> +                reg = <3>;
+> +                dpi3_out: endpoint {
+> +                        remote-endpoint = <&dsi1_in>;
+> +                };
+> +        };
+> +};
+> +
+> +&mcasp0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcasp0_pins>;
+> +
+> +	#sound-dai-cells= <0>;
+
+same here
+
+> +
+> +	op-mode = <0>;	/* MCASP_IIS_MODE */
+> +	tdm-slots = <2>;
+> +
+> +	/* 4 serializers */
+> +	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
+> +		2 0 0 1
+> +		0 0 0 0
+> +		0 0 0 0
+> +		0 0 0 0
+> +	>;
+> +
+> +	tx-num-evt = <32>;
+> +	rx-num-evt = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&main_i2c2 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	audio_codec: audio-codec@18 {
+> +		compatible = "ti,tlv320aic3007";
+> +		reg = <0x18>;
+> +		#sound-dai-cells= <0>;
+> +		ai3x-micbias-vg = <2>;
+> +		AVDD-supply = <&reg_audio_3v3>;
+> +		IOVDD-supply = <&reg_audio_3v3>;
+> +		DRVDD-supply = <&reg_audio_3v3>;
+> +		DVDD-supply = <&reg_audio_1v8>;
+> +
+> +	};
+> +
+> +	bridge@48 {
+> +		compatible = "lontium,lt8912b";
+> +		reg = <0x48>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				lt8912b_in: endpoint {
+> +					data-lanes = <0 1 2 3>;
+> +					remote-endpoint = <&dsi1_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				lt8912b_out: endpoint {
+> +					remote-endpoint = <&hdmi_connector_in>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&main_pmx0 {
+> +	mcasp0_pins: mcasp0-default-pins {
+> +		pinctrl-single,pins = <
+> +			J721S2_IOPAD(0x03C, PIN_INPUT, 1) /* (U27) WCLK, MCASP0_AFSX.MCASP0_AFSX */
+> +			J721S2_IOPAD(0x038, PIN_INPUT, 1) /* (AB28) BCLK, MCASP0_ACLKX.MCASP0_ACLKX */
+> +			J721S2_IOPAD(0x040, PIN_OUTPUT, 1) /* (AC28) DOUT, MCASP0_AXR0.MCASP0_AXR0 */
+> +			J721S2_IOPAD(0x07C, PIN_INPUT, 1) /* (T27) DIN, MCASP0_AXR3.MCASP0_AXR3 */
+
+Lower case for hex digits
+
+> +		>;
+> +	};
+> +};
 
 -- 
-With best wishes
-Dmitry
+Regards
+Vignesh
+https://ti.com/opensource
+
 
