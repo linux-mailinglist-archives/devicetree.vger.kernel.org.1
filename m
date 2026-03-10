@@ -1,42 +1,42 @@
-Return-Path: <devicetree+bounces-273464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273462-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2JPQNqb4r2mmdwIAu9opvQ
-	(envelope-from <devicetree+bounces-273464-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 11:55:34 +0100
+	id oHmDA+r5r2mmdwIAu9opvQ
+	(envelope-from <devicetree+bounces-273462-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:00:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A503249CAD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 11:55:34 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7773E249DE8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:00:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id EDEF6300D741
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:55:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8F83F308C0EA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:55:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 103ED385528;
-	Tue, 10 Mar 2026 10:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675D137E308;
+	Tue, 10 Mar 2026 10:55:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="JsOsqLic"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="NQtON4G1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731100.qiye.163.com (mail-m19731100.qiye.163.com [220.197.31.100])
+Received: from mail-m19731117.qiye.163.com (mail-m19731117.qiye.163.com [220.197.31.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15BA23806C9;
-	Tue, 10 Mar 2026 10:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93DA237F8A0;
+	Tue, 10 Mar 2026 10:54:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.117
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773140103; cv=none; b=OYnBmPDrFZ7oZBL0PdycrgI9w5Th+zwbZJXzKeyqRWN7h63aHbXDosFDhu1JlQeZthnfCJXxqQZ+9UMUpJukeYgEtYdMQ8iqw4ttxqIuNgjSHGUX+dWnxegW6h8vzy8mOWw19pbZLBjN1rnDnM3nh8PXzJGcfcf2V8Mx+ByVQ00=
+	t=1773140100; cv=none; b=cw0cmazl04yOH3h7U+7rvC7ErXc4DpOEgnkHNuV7woYS4q+Vatgc0flqufWCXncyPf8lW4d8oJOmVrvfSGoJuPpRP1ELgvX8N6QSVREukFCQMtxScs+EWWoc6KCnnUApeVF8FcgitSCKfHYNJvy2/wUZOjJ8tO/Rka+kSSfUF98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773140103; c=relaxed/simple;
-	bh=yZzrQoOitvqag2tkBydVKxcPk7wIgkaKTv0/Dx7V8Qc=;
+	s=arc-20240116; t=1773140100; c=relaxed/simple;
+	bh=zxTvIEUj5Qxwwzx1NZzsrqRIWXfBSzdHsqj7OxkGBwk=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NfHAee1t+iWC7cuS9oeKZZI2kCKo2qvsMIe2LeVeG/Pndd8zfc6KELNtTUh56FXIp/AkbjgXryyM7hHxQui/cAGdIHDN8/hNKGJc3RQxJb3IQf5RQkkVaddIyzfI02dmnUjyYBZDmYgnuOl0nXSkpjrzv009NcDdLwH75rAFWFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JsOsqLic; arc=none smtp.client-ip=220.197.31.100
+	 MIME-Version; b=UDraTmNjbtK8BFCCrCUJM81yJfaiCpBIHHSSzVFXNKip3SvQ/z+YKm9YM78C+WYzXbAt3eY/F/pfHijM8o4LN30EGpNvaKp0CqRhw0ggB61AKVa0wdi1en3FL6ZimSuX31rXMIb7XjTsvcaZLZTxLm+3xqgFAWI/lMfB0XoRp9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=NQtON4G1; arc=none smtp.client-ip=220.197.31.117
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 366858a56;
-	Tue, 10 Mar 2026 18:54:49 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 366858a5d;
+	Tue, 10 Mar 2026 18:54:51 +0800 (GMT+08:00)
 From: Damon Ding <damon.ding@rock-chips.com>
 To: hjc@rock-chips.com,
 	heiko@sntech.de,
@@ -70,9 +70,9 @@ Cc: Laurent.pinchart@ideasonboard.com,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v1 1/4] dt-bindings: display: rockchip: analogix-dp: Add support for RK3576
-Date: Tue, 10 Mar 2026 18:53:04 +0800
-Message-Id: <20260310105307.309765-2-damon.ding@rock-chips.com>
+Subject: [PATCH v1 2/4] arm64: dts: rockchip: Add eDP node for RK3576
+Date: Tue, 10 Mar 2026 18:53:05 +0800
+Message-Id: <20260310105307.309765-3-damon.ding@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260310105307.309765-1-damon.ding@rock-chips.com>
 References: <20260310105307.309765-1-damon.ding@rock-chips.com>
@@ -83,89 +83,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9cd7629bd303a3kunm866f47e7374c22
+X-HM-Tid: 0a9cd762a41d03a3kunm866f47e7374c2f
 X-HM-MType: 1
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0lNGlZCSExOTh5PTkxDGh1WFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ01PSVYZTxpJS0sdSRlDHhhWFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpKQk
 	1VSktLVUpCWQY+
 DKIM-Signature: a=rsa-sha256;
-	b=JsOsqLicvtrVBdtBsi5v62eg2d2hfPn9AwBoJTgKZqZX5zQ8wPTSv9SXZW9L0eukBl1N2Umb95i67BNpfEVHSM458MYJvapKop3ZqZ6b+M3KwQa6qZMbdodBQi18WqIqeUnN4tMto4CkqjCEKdZM80ogcNgKuB6ZKZlLXcpxqI4=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=cAyaLLzXSpjsG1bPzd6hBMSGohTcoDK8X+UfEAVLv58=;
+	b=NQtON4G194i4bmngchenfSMuAO42I6JnIgJX/1x5VDKmEPEL15iMVRUviaqZSQOfhzopel2SaymE572+bfIwJ5K8C6inYr8G/0zC9KmkcmB8a5y2zQbiG5rGPAwkMOS7aVaifV6Sszdd9IT2jUsM1zjwN/6He5xEVQlfqH7LblM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=zg7eSaqI3FY/wlgXgsWvT0D1ps141G7bh9fB6C4Kb5k=;
 	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: 2A503249CAD
+X-Rspamd-Queue-Id: 7773E249DE8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273464-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[32];
+	TAGGED_FROM(0.00)[bounces-273462-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RSPAMD_URIBL_FAIL(0.00)[0.0.0.1:query timed out,27dc0000:query timed out];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	FREEMAIL_TO(0.00)[rock-chips.com,sntech.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,linaro.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,collabora.com,rock-chips.com,oss.qualcomm.com,bootlin.com,chromium.org,samsung.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[damon.ding@rock-chips.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	RSPAMD_EMAILBL_FAIL(0.00)[port.0.0.0.0:query timed out];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.0.1:email,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid,27dc0000:email,27ed0000:email]
 X-Rspamd-Action: no action
 
-The eDP TX controller on RK3576 is the same as that on RK3588.
-
-The newly added clock 'hclk' is the video datapath clock.
+Add support for the eDP output on RK3576 SoC.
 
 Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 ---
- .../bindings/display/rockchip/rockchip,analogix-dp.yaml     | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 28 ++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-index d99b23b88cc5..4496a43881f9 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
-@@ -15,6 +15,7 @@ properties:
-     enum:
-       - rockchip,rk3288-dp
-       - rockchip,rk3399-edp
-+      - rockchip,rk3576-edp
-       - rockchip,rk3588-edp
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index a86fc6b4e8c4..14900a66d3e1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -1446,6 +1446,34 @@ hdmi_out: port@1 {
+ 			};
+ 		};
  
-   clocks:
-@@ -26,7 +27,9 @@ properties:
-     items:
-       - const: dp
-       - const: pclk
--      - const: grf
-+      - enum:
-+          - grf
-+          - hclk
- 
-   power-domains:
-     maxItems: 1
-@@ -65,6 +68,7 @@ allOf:
-         compatible:
-           contains:
-             enum:
-+              - rockchip,rk3576-edp
-               - rockchip,rk3588-edp
-     then:
-       properties:
++		edp: edp@27dc0000 {
++			compatible = "rockchip,rk3576-edp";
++			reg = <0x0 0x27dc0000 0x0 0x1000>;
++			clocks = <&cru CLK_EDP0_24M>, <&cru PCLK_EDP0>, <&cru HCLK_VO0_ROOT>;
++			clock-names = "dp", "pclk", "hclk";
++			interrupts = <GIC_SPI 365 IRQ_TYPE_LEVEL_HIGH>;
++			phys = <&hdptxphy>;
++			phy-names = "dp";
++			power-domains = <&power RK3576_PD_VO0>;
++			resets = <&cru SRST_EDP0_24M>, <&cru SRST_P_EDP0>;
++			reset-names = "dp", "apb";
++			rockchip,grf = <&vo0_grf>;
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				edp_in: port@0 {
++					reg = <0>;
++				};
++
++				edp_out: port@1 {
++					reg = <1>;
++				};
++			};
++		};
++
+ 		sai7: sai@27ed0000 {
+ 			compatible = "rockchip,rk3576-sai";
+ 			reg = <0x0 0x27ed0000 0x0 0x1000>;
 -- 
 2.34.1
 
