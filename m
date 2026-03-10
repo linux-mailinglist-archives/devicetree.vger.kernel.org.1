@@ -1,216 +1,212 @@
-Return-Path: <devicetree+bounces-273567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273568-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mImoCLgwsGkShAIAu9opvQ
-	(envelope-from <devicetree+bounces-273567-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:54:48 +0100
+	id 4KKvLMEnsGnYgQIAu9opvQ
+	(envelope-from <devicetree+bounces-273568-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:16:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEBC2529F8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:54:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58CBD2519FD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:16:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1BE8C3175524
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:50:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id ED5353157105
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72483806C1;
-	Tue, 10 Mar 2026 13:50:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5567B38AC8F;
+	Tue, 10 Mar 2026 13:50:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="wMl3Q6pf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Uh39Cdgu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012005.outbound.protection.outlook.com [52.101.66.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C8442C3266;
-	Tue, 10 Mar 2026 13:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.5
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773150618; cv=fail; b=O6ZdlVOh+V0jQNaXTHWFjN6ueinlRi44mySGmg+l//Vm36+C1iDhFs2wHvtQ4XwHLhlYLoi3Ce5KvPMMNMWu1yinkVjIAmTVkUTsQJiMDdYkh/zaeeLlIMcL09sBZmX+Wi8cDy8YQz3SHZfpB5vFBJItaRO4GO8L5p1Rb7iTCDI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773150618; c=relaxed/simple;
-	bh=lKwzcrzlWR+2MRlYbup37k8akMqmCk5JtDtV+O2aLtg=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=UhTZKxYpPFwqxYkf1qQ/EHZUXV9dqb2SoTx82pXfZtx5H+2Glc9D9DYfKiGPbZh51CgVcqdaym1YKlacJTxyS8sHuRsd8qhVYv8tFXMurCQJSISis6VEABEG8SU1EflwkLbKH2WLfEwktXim2C5vCXjZzUCwBpadnl6xk1eWWfY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=wMl3Q6pf; arc=fail smtp.client-ip=52.101.66.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=piwTtPsfoKM94cxzJl5sj7yvR+ehews8F+dVA0kLU9IITFPKraC0ReeZqkvbqHqNo66F3KAipbDN6EYeIYh1C8vZ8DluUERz/3iVbkZk0RdlHjGKKV80iuctvyLc19dqefCnD42+zJE7bwacbKxLBFDvFOHuNmaVF1ysEoCof03QMqG9lwkJ+u7NfNQ1hbGoVT/YNVGBo5wc0ZkcYcQSEK2IXpuDIyJGjsRAT/wUkoo9VWzNiH1egxqCyWB+kl8qMzTH8Vas4cZT6GmgZKjXsdAnU+Nv5+pxf627cjl0SIPlCjJl5HlLtlg9kNXfjMyhNWB469KLHcMeucYzp13JPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RNwIOPtDQ3K4e8H13UtOnAOXYZbBxfMy4251chivmuk=;
- b=VP3SDKEWf4R6+0D39lnmPY4ufTz6IJj/dFprvsi/8IVY5AE6UgP4GYJj1ec47aSb4y/gKHuviavYbHxLavxLWK7s8n+IE72syUJgUN4+C2BCh7LD48ISIKrjXZcFkW7BJOO+t8yluQ+oxxO6ntlR/LhV+mdQHk/2TbP2VC0/E8mO/9jIvItyH/84rj/VC6pEmZ2CGrcwGESDzlf0RB1XoJIlzA00P7MObIAh3XbGKPpnQppneCI9omsFPkIJUNBC14lJHkSMScNLrpVbtpltSm6Qoa0njVI5M/9eCrZ9eitumLUXUCBeXgDOo1e+onxnq13v99MWA7Ta+nftKZFWiA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RNwIOPtDQ3K4e8H13UtOnAOXYZbBxfMy4251chivmuk=;
- b=wMl3Q6pfBTy95/hrINw02oSfROvjouNnwmheHmpqeql/BiDJ6SIXK5rWWw51PFr1aSv0S2bKKGLpLx3VWp0eMRrdlj7OiVI3FN5ER+ZDNPtNH4F0RDNCuh5ntRH/1Wf+VFQokPJNUd0xPVFB/JOqd95td/0oYvlgBCi54r8kcaR3R661iDA3o32WpJftGeAfM7h9Wznp93ISvi2stQoab3U5+bjvV9nALL1chwXDf/GiRGoJGEhrG8/yV110t6Jk591UGOLyJOqttdrfFJvDSgjbIA0x6a2bXAG+W5f2vLvmk17fxESw3xw8f1e1R+FkR/yHfMn2UUSGpmnXBHU49Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB9154.eurprd04.prod.outlook.com (2603:10a6:102:22d::9)
- by AM7PR04MB6789.eurprd04.prod.outlook.com (2603:10a6:20b:107::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.19; Tue, 10 Mar
- 2026 13:50:12 +0000
-Received: from PAXPR04MB9154.eurprd04.prod.outlook.com
- ([fe80::b0a5:fb7f:4353:6a82]) by PAXPR04MB9154.eurprd04.prod.outlook.com
- ([fe80::b0a5:fb7f:4353:6a82%5]) with mapi id 15.20.9678.024; Tue, 10 Mar 2026
- 13:50:12 +0000
-Message-ID: <67e082c5-2b34-4960-8fd1-6cd007e0584c@oss.nxp.com>
-Date: Tue, 10 Mar 2026 15:49:54 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: s32g: force S32G RTC as rtc0
-To: Fabio Estevam <festevam@gmail.com>
-Cc: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
- NXP S32 Linux Team <s32@nxp.com>, Chester Lin <chester62515@gmail.com>,
- Matthias Brugger <mbrugger@suse.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260310124950.1345117-1-andrei.botila@oss.nxp.com>
- <CAOMZO5BVtRHW1+qtMEH9akO7ULS3LppzGXMB2_M-JJVwjbv1oQ@mail.gmail.com>
-Content-Language: en-US
-From: Andrei Botila <andrei.botila@oss.nxp.com>
-In-Reply-To: <CAOMZO5BVtRHW1+qtMEH9akO7ULS3LppzGXMB2_M-JJVwjbv1oQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0300.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e7::11) To PAXPR04MB9154.eurprd04.prod.outlook.com
- (2603:10a6:102:22d::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3214C1F418F
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773150635; cv=none; b=uQ9Lylf2VYcyXfr9O7Mu4AvthvrppgmMigit2y0awFPtQMRjn6/kGnC39EgrV5x2txHysshS0JBuZ95MvgksDbSazrtmvwtDrTMB7rgKgNFfXHLLh7Wabd30FS9vXhibCg+9z7o30PsvDUP6FRE626kPfc54j2NFHJjKVjtaHBU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773150635; c=relaxed/simple;
+	bh=rdUiPy2+hha7jKHz5R0tb6oJs3+2mZ0mZsIaAo22UjU=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WxQpX5dR5mfj2IY//kumxxHz79Bz+0362KtXQ00yOoUpywgVvjovpwXDqHHBvilxX/e+rHAKyUD6N4ZDeo5d0Jt79a37pp8KIrxEG/P1k8g1AK6UORujGD7vhpuF85/B4bqctkrv97a2Ygcj/dVIjQmdU2UzFU7203XHYkcx5Xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Uh39Cdgu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0994CC2BCB6
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:50:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773150635;
+	bh=rdUiPy2+hha7jKHz5R0tb6oJs3+2mZ0mZsIaAo22UjU=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=Uh39CdguVSNmdfMEk4hjkoVGqvRgP+iTWzU6OUfJPgHt8AOZaoeD87Z1xIwIUCb1w
+	 SKRWjzzOUzMmkP2tGj4mDD1yf+UORrJVbMw9UpneM1aY7Uy2qwLwqlmBkNWDuRFQ0S
+	 jDN6UIDd16c30Du5Kx3sjA7Puw3LhmQWsNPlN8U7tq7sTdZ78obDS5PgXdd4+AStKw
+	 /rZ7BJL372XSxcLtBPNAzS4v4OHYTM6zQG6O99y3Vm19x0Z1VInaG8RLhFeYYmq9k+
+	 PzBlisQZxVS4o6HPwjrJb+cA0rO6bHh3WiTyRpIjMcQYS5dER1IsJD2zPNTPT1fKfp
+	 79tSjFqeUqpbQ==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5a12c310e8aso5993975e87.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:50:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUNV9ZUOMyF1lXETDIh1IVUAcQDvYlKYq5KEeChVvnw3GPrBFxpVLCWAbnA6f75Wiaq8s/gJICz1NSu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzP1OZfxeDjjkNVdu+N/9JpdoIy/wwMv1pKSes5CqegGKILCKhn
+	c0TQhvN8O3gHOPynnc4bIisxgFtx4yPyb5U1RO8raHjbW7Hc9op4KJYv88lQjOSluA5XMN3IBvj
+	A/rTTfBZUKIF+OEtEt/yzoYhm18oRGc76Ep2HrCJ5bA==
+X-Received: by 2002:a05:6512:32ca:b0:5a1:2efb:917f with SMTP id
+ 2adb3069b0e04-5a13caae6ccmr4333373e87.4.1773150633351; Tue, 10 Mar 2026
+ 06:50:33 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 10 Mar 2026 06:50:30 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 10 Mar 2026 06:50:30 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260310-knp-soccp-v4-5-0a91575e0e7e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9154:EE_|AM7PR04MB6789:EE_
-X-MS-Office365-Filtering-Correlation-Id: bfcaacd8-8b74-4fc6-c738-08de7eabf39a
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|1800799024|366016|19092799006|22082099002;
-X-Microsoft-Antispam-Message-Info:
-	1PRk97QUxOCM8HQjid2t9CY6oZa9BGziG0yEakXZAzfrfd1QfMsRbkwELig22/H+2ft1gLyk751PhFu8qq2zlztySMnwusA1EDTzRtEqGh0JaTp0wiLpZgw9q75V9biyS14yVMiFuamOoagOYEsmQsExLN1i2Fm6wanE6CGLaDBlbEbTD8m0faD3wvXp2UiDHr9QP7ChRxdPflcrbAUR/XK/e2w7VsDuitVzY/3IDDe1NJF1uF69vs8mKknBhBJi6OV2KSabkqPinS8emxRfdMqphlEzgLXLqT4EfYf1J4W5xpUiH+J0a9dkEmN+bVC8xBwUsXKY+wUGWLBobhjNwA6PtRJguLaFUZqvAZitCCFN9rEVRAKNDpdfzzgCy2M/NSaZ7bJAoOeDLYI4tGj8VpA6wwg3iqeD9+O92Rwv6XW0No5sg0gZhpD44C8rZ46ZQ6fcqf178GyosQBqT9j8p55Vvwnl++E5Xi/nnZ0gzcpNDvKbw0eRwmDdLOhUz03rZ4M0d1IeFxoJaB/sT7NWkrGneUo1v6xE4GNwABPXSzHMFSY5iwskz2A1b7vgJ88iWr+1TqE9wELU2XxMAZ//RJM4wa29izE4LYzI7A3O4J59RXBk6mhmFILbqy5Ar/TWtoGyGgFgx+VQOs8PM7migI2UuPAnGJq8/C10NFcbkd6wdr0/K57ZDuRxhV3f5tLleiYshIl4oSyXpXZ+2032fGXpSX1BHOeHGomvznZYaTI=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9154.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(19092799006)(22082099002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bm54ZERVOUp3NklNVlI1U2l0eURBMlAvenZNTUs3dnZFNXY0SHl2cGlzZExh?=
- =?utf-8?B?NGVvNldJUUlBWHM2L2NJTVpjb3pIZnNLZWM4WGppNWxXR2ZBakVsd0cyWElC?=
- =?utf-8?B?SXhicEI0MnFITnAwVEF6cE9jVjZXUkZjcHJiNW1rNUxlTG9iVXRiT05TMXhI?=
- =?utf-8?B?Tnh6Z0F5ZElJWXpCVjRTY1lSR0tRbTc4eERucDNQZ20xa0RTMzVlZ2FVc1pI?=
- =?utf-8?B?bUY3TlhSNHVUbTMyeUxhSXIvL0dETXFrbUFGWlRqOTlWa0tiWWQxdmd3MW9Y?=
- =?utf-8?B?VC85RjNIRlFXdW10WlFUcXNKdTJGSThZUGs3OGYwOGdQUi9hRnFXRTFKOU10?=
- =?utf-8?B?OHVKejI2dmJxdjFHMXpUblJUdTVTQzgybDJoNHEzTE9tZXhWNVlZMjFxTlYw?=
- =?utf-8?B?ZDF5WjJ4L2N3NDhnRExYREFMK0I0RTM4V0t2WG1oV1RpUGJ2OWxqNjJSdEwv?=
- =?utf-8?B?dldPSnV2TEFFSHhacGQ2K3ZLQWpveG5oRTJ0Ujlnb2txR1o0bXlDS1hCNTY4?=
- =?utf-8?B?K2NacU1kc2hYazRnR3phRkFtZXBmS2lDRXBQRlhORzRpTnQwUWsxb1llM1Ez?=
- =?utf-8?B?WTJkQ3EyU2VaRHg0QjRBSmNJVHNIS2w2amo3TE5Kc0dzWXkzNm9IeXI3Q3VH?=
- =?utf-8?B?Y3lraTVzKytJUFRmcENocWM1cnFXSnBBOU80YmF5eHkrc1RsNDFXMWRMZ0tR?=
- =?utf-8?B?OGFvekRsRHJoQkZVMzdxOEVta2N6WjRxTS9qM1p4Mjd6VE1LME1XQ1dJbU14?=
- =?utf-8?B?OGQrODROaG5wWUNya3dNRVdBaldHdlRWWmdtdjc0ZGl4VWw3TzR6VThiamtZ?=
- =?utf-8?B?Nkc2eVRvdmdDb1dDYldEYlF5azk4TzZwTlhjS0l5eStYd25iMjVYYU1GTGc2?=
- =?utf-8?B?aWFUMFFoNE1jVUZpdGxLUWxzK3k1TGp0RmpPQ1phQVBHSndYc2RRejQ5MmtE?=
- =?utf-8?B?U0dxcVJGOE4rWk5BWmNNb0piZGFPYTRyWVNpU3g2ZG9odDlwVkZTZ21aNGI0?=
- =?utf-8?B?ZGg5TEJaR1dsd2tDVVRGTVVYWEl5ZDhPRFZvenh0dzdYMEhFR0VkcDIxY3Rn?=
- =?utf-8?B?dGd3YUREWGRuUitzUk1QRkdxTlQzOEYzNzBCWlFZY2RXd01rOHBWZUxCZHRu?=
- =?utf-8?B?Wkt4SVRxTWJhTDM0UlUxL0QyWXRWYmFmNzBEdHpkaXgrcHRndDN5YVExMmNM?=
- =?utf-8?B?RFp1d3E4QndQT1crQS9wVUtKbmErU2YyOUc5a2NmT2pydTRKcExFU08rYUpT?=
- =?utf-8?B?MC9GRk5uTFZIUkdydjlnYzJFUjcxemdXN29BeG8zSGJ6SHZsSEdOeEhnTmF1?=
- =?utf-8?B?VTdON00xZUYvOXNkc1NibTMzaFlOSytoUTVRZnVEV0dnVWVCWXRCVW1UdDVK?=
- =?utf-8?B?ZUQwZjRlTE9EOWRjYUltTkRDdjNHMGE2eTdFaDBmZFBuRkM5YnU4Y25VUG9B?=
- =?utf-8?B?Wm1QeDdJVGU5WTR1NEVudGFoRjZyWXpTSmZubTd5M0paaDRlZ1RORE9VSHlQ?=
- =?utf-8?B?VFN0VWpUOGRYbWRTdkgrWnRUbGFiYzRxMG1CN0JVZ2N1bEdNWGZGVWsyQ1Fy?=
- =?utf-8?B?VEJZN1FOd05GQ3p0bStQSjE4UDg4NUxRWkI2L1IxT0YvRHozTW44a2QwQ0tm?=
- =?utf-8?B?UC8zeUh2U2s0RFlvLzRzVW5zcUUyc1NoQnMyY1R5ZWtEUlI4L2tkcVlQMi9Y?=
- =?utf-8?B?b29kZTUzRC9TL2tjalV3ckFLQjZsZnBvOS92T0VTU0tOWmxjKzlrZG9SbkJI?=
- =?utf-8?B?bTNDVDd4UFpEc0JTS09YUFVvdG9xV3dsemo4VXgrdUJkRFlmMGRmRzVFZWJE?=
- =?utf-8?B?SGUwZVpUemhPMm5XSW5HTWZBaVNmL3JML3FhV2E5cUpDZDR1aWRTSFJaNkR3?=
- =?utf-8?B?RkJFcmFMendKQllQd01BY1htZTQ5bXpsNzNra1BPekJ1RFRoYWh5K1g5UytO?=
- =?utf-8?B?T0t6dnRhYVNzNlhwTFhsZCtSV1JZb0RXN2ZXbjZLUFdkdkhtUHBLcTFoQlVY?=
- =?utf-8?B?WGVJZ3NBT2xHRjFxb05JNkVRQXNUL0hpbElIREpFeHk4UGkzWFo0OGVhMHJw?=
- =?utf-8?B?Y1VkZUJJZ3Z4eU0vOWRsVDVSOURaajI5UDhzTi9PbzB1WlhTakR3TDJzcHBU?=
- =?utf-8?B?Rkg4aVpJUUE3bE0yRmRYRDNTNllPaitGRmxKUmFCbEpydUxkZzlmT2wrUi91?=
- =?utf-8?B?VFE3SExwS0FhQ1NoMUREc2RKUVpIS0UvbmVvVjlzWDMycHBhWGx5OG1WMjRH?=
- =?utf-8?B?Q3NHclpHZEtYYUVaNmZmM2pObFAzNjhHdzA2ZXhxV2NURW5IVWRudEh0VFBy?=
- =?utf-8?B?ekd4aTM1VVBrdVo3VXB3SDFVZDVuYUMwd3cyR3RnQ3BtUEJOcnFkVVlHVG9S?=
- =?utf-8?Q?IwBFw/aYl5r5yA18=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bfcaacd8-8b74-4fc6-c738-08de7eabf39a
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9154.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 13:50:12.6947
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NYGQ+eaVNXr7/BqHZ46lG8syk/1HN68LClVmlsI4RkJpT0SJ7/kPOcKGA99ZAMJTn4qWG1aSGA72sX9+H0iJAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6789
-X-Rspamd-Queue-Id: 8EEBC2529F8
+References: <20260310-knp-soccp-v4-0-0a91575e0e7e@oss.qualcomm.com> <20260310-knp-soccp-v4-5-0a91575e0e7e@oss.qualcomm.com>
+Date: Tue, 10 Mar 2026 06:50:30 -0700
+X-Gmail-Original-Message-ID: <CAMRc=MedT32COu-B_TsrN+jCrHjde2v5gnA6WOUmMQ2dEBY6WQ@mail.gmail.com>
+X-Gm-Features: AaiRm51ARcqlsmU2wIb7NleLQsLhCnonv2nK6lkxB23KnfmtQ9OYSi2lSUj0KNE
+Message-ID: <CAMRc=MedT32COu-B_TsrN+jCrHjde2v5gnA6WOUmMQ2dEBY6WQ@mail.gmail.com>
+Subject: Re: [PATCH v4 5/7] remoteproc: core: set recovery_disabled when doing rproc_add()
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Luca Weiss <luca.weiss@fairphone.com>, 
+	Bartosz Golaszewski <brgl@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 58CBD2519FD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.94 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[NXP1.onmicrosoft.com:s=selector1-NXP1-onmicrosoft-com];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273567-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273568-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[NXP1.onmicrosoft.com:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrei.botila@oss.nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,kernel.org,oss.nxp.com,gmail.com,suse.com,lists.infradead.org,lists.linux.dev,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[NXP1.onmicrosoft.com:dkim,oss.nxp.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On 3/10/2026 3:14 PM, Fabio Estevam wrote:
-> On Tue, Mar 10, 2026 at 9:50 AM Andrei Botila <andrei.botila@oss.nxp.com> wrote:
->>
->> S32G RTC is probed after the RTC on RDB (PCA85073A) so the S32G RTC
->> ends up on /dev/rtc1. This causes the suspend/resume or hwclock to use
->> the wrong RTC since it takes by default rtc0.
->> Force the S32G RTC to be assigned rtc0.
-> 
-> We usually prefer to use the I2C RTC as rtc0 because it is battery-backed.
-> 
-> What's the exact problem with using the I2C RTC as rtc0?
-> 
-> Is the S32G RTC battery-backed?
+On Tue, 10 Mar 2026 11:03:21 +0100, Jingyi Wang
+<jingyi.wang@oss.qualcomm.com> said:
+> rproc_add() called by rproc probe function failure will tear down all
+> the resources including do device_del() and remove subdev etc. If
+> rproc_report_crash() is called in this path, the rproc_crash_handler_work
+> could be excuted asynchronously, rproc_boot_recovery()->rproc_stop() will
+> be called with recovery enabled, which may cause NULL pointer dereference
+> if the resource has already been cleaned up.
+>
+> [    5.251483] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000300
+> [    5.260499] Mem abort info:
+> [    5.263384]   ESR = 0x0000000096000006
+> [    5.267248]   EC = 0x25: DABT (current EL), IL = 32 bits
+> [    5.272711]   SET = 0, FnV = 0
+> [    5.275865]   EA = 0, S1PTW = 0
+> [    5.279106]   FSC = 0x06: level 2 translation fault
+> [    5.284125] Data abort info:
+> [    5.287101]   ISV = 0, ISS = 0x00000006, ISS2 = 0x00000000
+> [    5.292742]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+> [    5.297939]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+> [    5.303400] user pgtable: 4k pages, 48-bit VAs, pgdp=000000089e086000
+> [    5.310022] [0000000000000300] pgd=080000089e087403, p4d=080000089e087403, pud=080000089e088403, pmd=0000000000000000
+> [    5.320917] Internal error: Oops: 0000000096000006 [#1]  SMP
+> [    5.392494] Hardware name: Qualcomm Technologies, Inc. Kaanapali QRD (DT)
+> [    5.399466] Workqueue: rproc_recovery_wq rproc_crash_handler_work
+> [    5.405729] pstate: 23400005 (nzCv daif +PAN -UAO +TCO +DIT -SSBS BTYPE=--)
+> [    5.412879] pc : qcom_glink_smem_unregister+0x14/0x48 [qcom_glink_smem]
+> [    5.419674] lr : glink_subdev_stop+0x1c/0x30 [qcom_common]
+> [    5.425308] sp : ffff800080ffbc90
+> [    5.428724] x29: ffff800080ffbc90 x28: ffff00081be833f0 x27: ffff000800059c00
+> [    5.436053] x26: 0000000000000000 x25: ffff000800a56f80 x24: 61c8864680b583eb
+> [    5.443384] x23: ffff00081be83038 x22: 0000000000000001 x21: ffff00081be83000
+> [    5.450714] x20: ffff00081be833c0 x19: 0000000000000000 x18: 0000000000000010
+> [    5.458043] x17: 0000000000000000 x16: 0000000000000000 x15: ffff0008042684f8
+> [    5.465374] x14: 00000000000002dd x13: ffff0008042684f8 x12: ffffd37f69f967a0
+> [    5.472705] x11: ffffd37f6a006800 x10: ffffd37f69fee7c0 x9 : ffffd37f69fee818
+> [    5.480036] x8 : 0000000000017fe8 x7 : c0000000ffffefff x6 : 0000000000000001
+> [    5.487366] x5 : ffff000d6536d408 x4 : 0000000000000001 x3 : 0000000000000000
+> [    5.494697] x2 : ffffd37f5703c18c x1 : 0000000000000001 x0 : 0000000000000000
+> [    5.502028] Call trace:
+> [    5.504549]  qcom_glink_smem_unregister+0x14/0x48 [qcom_glink_smem] (P)
+> [    5.511344]  glink_subdev_stop+0x1c/0x30 [qcom_common]
+> [    5.516622]  rproc_stop+0x58/0x17c
+> [    5.520127]  rproc_trigger_recovery+0xb0/0x150
+> [    5.524693]  rproc_crash_handler_work+0xa4/0xc4
+> [    5.529346]  process_scheduled_works+0x18c/0x2d8
+> [    5.534092]  worker_thread+0x144/0x280
+> [    5.537952]  kthread+0x124/0x138
+> [    5.541280]  ret_from_fork+0x10/0x20
+> [    5.544965] Code: a9be7bfd 910003fd a90153f3 aa0003f3 (b9430000)
+> [    5.551224] ---[ end trace 0000000000000000 ]---
+>
+> So set recovery_disabled during rproc_add().
+>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  drivers/remoteproc/remoteproc_core.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
+> index b087ed21858a..f66dde712cec 100644
+> --- a/drivers/remoteproc/remoteproc_core.c
+> +++ b/drivers/remoteproc/remoteproc_core.c
+> @@ -2286,7 +2286,10 @@ int rproc_add(struct rproc *rproc)
+>  {
+>  	struct device *dev = &rproc->dev;
+>  	int ret;
+> +	bool rproc_recovery_save;
+>
+> +	rproc_recovery_save  = rproc->recovery_disabled;
+> +	rproc->recovery_disabled = true;
+>  	ret = rproc_validate(rproc);
+>  	if (ret < 0)
+>  		return ret;
+> @@ -2319,6 +2322,7 @@ int rproc_add(struct rproc *rproc)
+>  	list_add_rcu(&rproc->node, &rproc_list);
+>  	mutex_unlock(&rproc_list_mutex);
+>
+> +	rproc->recovery_disabled = rproc_recovery_save;
+>  	return 0;
+>
+>  rproc_remove_dev:
+>
+> --
+> 2.25.1
+>
+>
 
-Hello,
+Ideally things like this would be passed to the rproc core in some kind of a
+config structure and only set when registration succeeds. This looks to me
+like papering over the real issue and I think it's still racy as there's no
+true synchronization.
 
-S32G RTC is not battery-backed.
+Wouldn't it be better to take rproc->lock for the entire duration of
+rproc_add()? It's already initialized in rproc_alloc().
 
-Regarding the I2C RTC(PCA85073A) commands like hwclock or rtcwake use by
-default /dev/rtc, /dev/rtc0 so they will try to use PCA and fail.
-
-Also from what I could find online PCA85073A is also not battery-backed.
-
-Thank you,
-Andrei
+Bart
 
