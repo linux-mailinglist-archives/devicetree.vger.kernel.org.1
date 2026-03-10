@@ -1,383 +1,169 @@
-Return-Path: <devicetree+bounces-273178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273179-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2PalMP9wr2m6YQIAu9opvQ
-	(envelope-from <devicetree+bounces-273178-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:16:47 +0100
+	id yOpkBrxyr2lPZgIAu9opvQ
+	(envelope-from <devicetree+bounces-273179-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:24:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BA4E243704
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:16:47 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B013C2437E3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:24:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 48D2D303C835
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:14:23 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 2335D30071F0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:24:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628AF29D280;
-	Tue, 10 Mar 2026 01:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530A1287265;
+	Tue, 10 Mar 2026 01:24:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="aVmkvmRM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jQjjj4sW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49236.qiye.163.com (mail-m49236.qiye.163.com [45.254.49.236])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E7527EFFA;
-	Tue, 10 Mar 2026 01:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.236
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B40284B29
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 01:24:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773105262; cv=none; b=RwWw5BwrxwKD68IMUpY+3UXlq7HxF3OHQbL6oigOfaEDlj8j6i7kIdDko9o+5+wWeTH2nnBt4ZsD2An85rfmewYTBtpoCP7oDAE/ULKTYI+iDc2dO8ObFXOdAm9UTnKNY2k8UHIEW+BO1EYuzWRq6nYsENoubWbMD8X08XBHu98=
+	t=1773105849; cv=none; b=IhDTFKzqPlSzCzYhEyW3zvu5zTWABsVADYwRvOGW59A8dS0NHDIRX2B5WZ0CmWqEp/BfyWJrH5EMYSycqyiqOZ/35HormafLnsDn435+SoUZjgv5+XLJo0Bh5Rq6b3laKpEDN2yHtCwzBqqnlQIOP6GRnlEvmosGIaFDT3XVAf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773105262; c=relaxed/simple;
-	bh=DNu5WSfbz6xbewZa4m+rP+whA0xY8ez5SWbUNTzyJmw=;
-	h=Cc:Subject:To:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=jkt7RqBBiHpFqpl/8LPngL/hn9z7rXpoDB5Yf02IPNFbJUZxyNVQjGsK8XiC9O+8BxHXLQ3ROrVp+pL1NXWSOedUtY+cdey/ixPPELNiXNbZ171fbrFSG/7YWrr+eN9mcwnXx5YTHqXFOwkAKtQ4/C3YPWjfOwR0FuMnwAnTwXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=aVmkvmRM; arc=none smtp.client-ip=45.254.49.236
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.17] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 3653428f3;
-	Tue, 10 Mar 2026 09:14:06 +0800 (GMT+08:00)
-Cc: shawn.lin@rock-chips.com, jszhang@kernel.org, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- ulf.hansson@linaro.org, adrian.hunter@intel.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v2 2/2] mmc: sdhci-of-dwcmshc: Add HPE GSC eMMC support
-To: nick.hawkins@hpe.com
-References: <20260309211333.977919-1-nick.hawkins@hpe.com>
- <20260309211333.977919-3-nick.hawkins@hpe.com>
-From: Shawn Lin <shawn.lin@rock-chips.com>
-Message-ID: <aa1bc496-fac3-b5c5-c311-2757526bdf1f@rock-chips.com>
-Date: Tue, 10 Mar 2026 09:14:03 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+	s=arc-20240116; t=1773105849; c=relaxed/simple;
+	bh=LiQ8EflkNH/uZA+ems0QOL+ZbRGh6LZN4zZMLOj1rXc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CiEqB4guwA8u2AaYFOFDeeKj3Js066hvKd6g6aFsB/OzbfXcg5wB+JUM+2cYiWWI5FSItCv4L6oTU61eT0SbNacjX7jepk7zv+0PUcrDLZDjOpOAo5J/BMGgPCs2sY+nva9JR++T5ZzBmJpUlqivFn9GZ7k5zmhzde81J3Nnhqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jQjjj4sW; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-5069b3e0c66so171127171cf.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 18:24:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773105846; x=1773710646; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7CeMWLpnBLUWUr8MpkL2IM0mC+LILizg1OzjRtJe76M=;
+        b=jQjjj4sWjru06czyKnUE3iPes3HzZgXEDEQ30cZancv4ilEdVBI3v6jCs05RBLz3mG
+         iGuMEMGNMDHe+GJ2t3k1WEhZxY9jizavMUFOsfvRdN/nMICVNdg2TnOUExpIiYZueqNa
+         4E81sHQVOfDAb+o/447EEZZ4DERZJME9Y7IkTOORQAPKtMNkq9H/D4Zz8pm+dEGv7Csz
+         caAjURm4FOsr63oHq0DhXVT2hG4Z1xWi4LmcQxTDS5UoekZtrEQljy5DGYPOIV/81LHm
+         QqErcRi/scKh225pJ2sa7+uwlr6J4neKajpR9dbrpJ2JgrjUSmR4J+xTxLzuL/2lon60
+         axQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773105846; x=1773710646;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7CeMWLpnBLUWUr8MpkL2IM0mC+LILizg1OzjRtJe76M=;
+        b=hnc8OvpGGiwVb++1u7Bv/R9rtWWaZiZcTWEFHTn1LwE+ACLyxVLiGqKB/qFqP8Axci
+         iyrHFnEq6S7DHfTdkCJXDSihhroc7JNJ9zrOaSjy+DzISb9Td8h2pcdTVszaLX1ajh87
+         WPx1l1m5KndEge6HtDhEJr6/SplS6+SKmxKHv3KGcjxiWbmEiAslaKtxY+PHAHUL2v/9
+         thXLM+P9IMZrzazIbP8wajsvndJFX4wi3V8jIDgPmwnURDR2aNweWdHVkgBNNKEVUDB9
+         JBl1SAF08x2ZrQ7TW4FbxitQlsqt4S9TKKOa+0F+B6zxgu4aUkBwWvC85gOnLAgRFfbW
+         YPag==
+X-Forwarded-Encrypted: i=1; AJvYcCU5fnzHIPC9VLcL/gpL5NxxCCqTB7d1B8+VGqe0F/Ln2NPOFPPuylJa8EdBcZRTyT83/22WBtxMLwyo@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywhv5QfyFwpbL0l6EgzcRJB5jbO9HX8qQkITwSjRTpxMv3xWQgq
+	YeuQBfR3jey+VwOachlnN9rFGJzBnlfseOXLYmsVwgcEOB76VMj1QCEc
+X-Gm-Gg: ATEYQzypqr/xfCwBcZli0269ZWblCFheNhvMKmIqGTMuouguu9cteZhwpcFdlv+HeJp
+	O5ogTD8H+JI9fG5fyi9+fK04F0B0wxkXBrnS8+s2Z645cJ5vj62Q8UUpOL9lSZ6U3kGzX958J2a
+	HcyFGa8msSmJi4WeTFgmpz9rKRsszYh+Q4xz0cJ2zux6iA4meO1Q0Su+w8FwCfnHRScdwmlSFJt
+	G9Y622cQ2u7qL3YdcSQDZhLs4nDugE1l37YKfBSb7R+kXyavUPMSDaccHNMfX1zwpnqkgQAQeJi
+	h8gnLiFHZG13xS+pXZsc1uJ9beQti09tFDRGAW5Dm2tf4BV9xXH0zW+O8Ft32BnTru7leRJzvGh
+	w7INCp6zIheY/HezrzcI6aZfxXevdXI/uyWhdlDbV3I10VGvsr8w+L5nDBDPHoxVFk+B/rSM6X3
+	UY2O3W/tvEtEuXaMtZuH5oz76yBmomwA+H3nlxQ7pk6aMOe6CUzSMCbZHDRT/3MpeLBVP9of9zK
+	uiFKnIgP+cuKbM=
+X-Received: by 2002:a05:622a:1350:b0:509:aa1:71eb with SMTP id d75a77b69052e-50925ff7427mr20643721cf.13.1773105846247;
+        Mon, 09 Mar 2026 18:24:06 -0700 (PDT)
+Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50923ed69bbsm15741051cf.28.2026.03.09.18.24.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Mar 2026 18:24:05 -0700 (PDT)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Linus Walleij <linusw@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Srinivas Kandagatla <srini@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v2 0/5] SDM670 LPASS LPI pin controller support
+Date: Mon,  9 Mar 2026 21:24:41 -0400
+Message-ID: <20260310012446.32226-1-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20260309211333.977919-3-nick.hawkins@hpe.com>
-Content-Type: text/plain; charset=gbk; format=flowed
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9cd54ef29009cckunmcc6acaba35294
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh1PH1YZGR5KSU5CHhkeQ0lWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=aVmkvmRMpu9xqb7pXLcjD7X3PrA562g3u6lv5zNcq29RZcPE6aG2mXaE+h86cIyYl8fwzyOtKOmT5561N3hmua7y7U7lZUQ/VwYJYRNDg20JOLR7z67RjfvhcmD6sq0ngU7fNJxxSbglfR/EmbNp3XAq1PfcXJJ8aS0g8EMxn5k=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
-	bh=+9qgFBPGECk47civsmqho0TjbRTPe3N87svA2DUCeKg=;
-	h=date:mime-version:subject:message-id:from;
-X-Rspamd-Queue-Id: 3BA4E243704
+X-Rspamd-Queue-Id: B013C2437E3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[rock-chips.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273178-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273179-lists,devicetree=lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,rock-chips.com:dkim,rock-chips.com:mid,hpe.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+This adds support for the LPASS LPI pin controller on SDM670, which
+controls some audio pins (e.g. TDM or PDM busses). The ADSP patches are
+not sent yet.
 
-在 2026/03/10 星期二 5:13, nick.hawkins@hpe.com 写道:
-> From: Nick Hawkins <nick.hawkins@hpe.com>
-> 
-> Add support for the eMMC controller integrated in the HPE GSC (ARM64
-> Cortex-A53) BMC SoC under the new 'hpe,gsc-dwcmshc' compatible
-> string.
-> 
-> The HPE GSC eMMC controller is based on the DesignWare Cores MSHC IP
-> but requires several platform-specific adjustments:
-> 
-> Clock mux (dwcmshc_hpe_set_clock):
->    The GSC SoC wires SDHCI_CLOCK_CONTROL.freq_sel directly to a clock
->    mux rather than a divider.  Forcing freq_sel = 1 when the requested
->    clock is 200 MHz (HS200) selects the correct high-speed clock source.
->    Using the generic sdhci_set_clock() would otherwise leave the mux on
->    the wrong source after tuning.
-> 
-> Auto-tuning / vendor config (dwcmshc_hpe_vendor_specific):
->    Disables the command-conflict check (DWCMSHC_HOST_CTRL3 BIT(0)) and
->    programs ATCTRL = 0x021f0005:
->      BIT(0)       auto-tuning circuit enable
->      BIT(2)       centre-phase auto-tuning
->      BIT(16)      tune-clock-stop enable
->      BITS[18:17]  pre-change delay = 3
->      BITS[20:19]  post-change delay = 3
->      BIT(25)      sample-window threshold enable
->    This combination is required for reliable HS200 signal integrity on
->    the GSC PCB trace topology.
-> 
-> Reset (dwcmshc_hpe_reset):
->    Calls sdhci_reset(), re-applies the vendor config above, and then
->    sets DWCMSHC_CARD_IS_EMMC unconditionally.  The GSC controller
->    clears this bit on every reset; leaving it clear causes card-detect
->    mis-identification on an eMMC-only slot.
-> 
-> UHS signaling (dwcmshc_hpe_set_uhs_signaling):
->    Mirrors upstream dwcmshc_set_uhs_signaling() but always sets
->    CARD_IS_EMMC regardless of timing mode, for the same reason.
-> 
-> Init (dwcmshc_hpe_gsc_init):
->    Obtains the SoC register block via the 'hpe,gxp-sysreg' syscon
->    phandle and sets SCGSyncDis (BIT(18)) in MSHCCS (offset 0x110)
->    to allow the HS200 RX delay lines to settle while the card clock
->    is stopped during auto-tuning.  Enables SDHCI v4 mode.
-> 
-> Quirks:
->    SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN:  base clock not advertised in
->      capabilities; must be obtained from the DTS 'clocks' property.
->    SDHCI_QUIRK2_PRESET_VALUE_BROKEN:  preset-value registers are not
->      populated in the GSC ROM.
-> 
-> All HPE-specific code is isolated to the new hpe_gsc_init / hpe_ops /
-> hpe_gsc_pdata symbols.  No existing platform (Rockchip, T-Head, sg2042,
-> etc.) is affected.
-> 
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> ---
->   drivers/mmc/host/sdhci-of-dwcmshc.c | 173 ++++++++++++++++++++++++++++
->   1 file changed, 173 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-of-dwcmshc.c b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> index 2b75a36c096b..78f5480f4662 100644
-> --- a/drivers/mmc/host/sdhci-of-dwcmshc.c
-> +++ b/drivers/mmc/host/sdhci-of-dwcmshc.c
-> @@ -1245,6 +1245,156 @@ static int sg2042_init(struct device *dev, struct sdhci_host *host,
->   					     ARRAY_SIZE(clk_ids), clk_ids);
->   }
->   
-> +/*
-> + * HPE GSC-specific vendor configuration: disable command conflict check
-> + * and program Auto-Tuning Control register.
-> + *
-> + * ATCTRL value 0x021f0005 field breakdown:
-> + *   BIT(0)      - Auto-tuning circuit enabled
-> + *   BIT(2)      - Center-phase auto-tuning
-> + *   BIT(16)     - Tune clock stop enable
-> + *   BITS[18:17] - Pre-change delay = 3
-> + *   BITS[20:19] - Post-change delay = 3
-> + *   BIT(25)     - Sample window threshold enable
-> + */
-> +static void dwcmshc_hpe_vendor_specific(struct sdhci_host *host)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-> +	u8 extra;
-> +
-> +	extra = sdhci_readb(host, dwc_priv->vendor_specific_area1 + DWCMSHC_HOST_CTRL3);
-> +	extra &= ~BIT(0);
-> +	sdhci_writeb(host, extra, dwc_priv->vendor_specific_area1 + DWCMSHC_HOST_CTRL3);
-> +	sdhci_writel(host, 0x021f0005, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_ATCTRL);
+This series depends on LMh because the LPI devicetree node is next to
+the LMh devicetree node (NOPUSH: link to LMh).
 
-Although you break it down in the comment, but it's still hard to read
-and hard to change in the feature if needed. Would you consider defining
-some macros and then OR-ing these macros together here?
+Changes since v1 (https://lore.kernel.org/r/20260210021109.11906-1-mailingradian@gmail.com):
+- add LPASS in dt-bindings patch subject (2/5)
+- change pin names (2/5, 3/5, 4/5)
+- add reviewed-by from Krzysztof (2/5)
+- specify gpio-reserved-ranges (1/5, 5/5)
 
-> +}
-> +
-> +static void dwcmshc_hpe_reset(struct sdhci_host *host, u8 mask)
-> +{
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct dwcmshc_priv *dwc_priv = sdhci_pltfm_priv(pltfm_host);
-> +	u16 ctrl;
-> +
-> +	dwcmshc_reset(host, mask);
-> +
-> +	dwcmshc_hpe_vendor_specific(host);
-> +
-> +	/* HPE GSC eMMC always needs CARD_IS_EMMC set after reset */
-> +	ctrl = sdhci_readw(host, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_CONTROL);
-> +	ctrl |= DWCMSHC_CARD_IS_EMMC;
-> +	sdhci_writew(host, ctrl, dwc_priv->vendor_specific_area1 + DWCMSHC_EMMC_CONTROL);
-> +}
-> +
-> +static void dwcmshc_hpe_set_uhs_signaling(struct sdhci_host *host,
-> +					  unsigned int timing)
-> +{
+Richard Acayan (5):
+  dt-bindings: qcom: lpass-lpi-common: add reserved GPIOs property
+  dt-bindings: pinctrl: qcom: Add SDM670 LPASS LPI pinctrl
+  pinctrl: qcom: add sdm670 lpi tlmm
+  arm64: dts: qcom: sdm670: add lpi pinctrl
+  arm64: dts: qcom: sdm670-google: add reserved lpi gpios
 
-This entire function is 99% copied from dwcmshc_set_uhs_signaling,
-please wrap it like:
+ .../pinctrl/qcom,lpass-lpi-common.yaml        |   6 +
+ .../qcom,sdm670-lpass-lpi-pinctrl.yaml        |  81 +++++++++
+ .../boot/dts/qcom/sdm670-google-common.dtsi   |   4 +
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  73 ++++++++
+ drivers/pinctrl/qcom/Kconfig                  |  10 ++
+ drivers/pinctrl/qcom/Makefile                 |   1 +
+ .../pinctrl/qcom/pinctrl-sdm670-lpass-lpi.c   | 166 ++++++++++++++++++
+ 7 files changed, 341 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdm670-lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-sdm670-lpass-lpi.c
 
-static void dwcmshc_hpe_set_uhs_signaling()
-{
-	dwcmshc_set_uhs_signaling();
-	/* HPE GSC: always set CARD_IS_EMMC for all timing modes */
-	ctrl = sdhci_readw(host, priv->vendor_specific_area1 + 
-DWCMSHC_EMMC_CONTROL);
-	ctrl |= DWCMSHC_CARD_IS_EMMC;
-	sdhci_writew(host, ctrl, priv->vendor_specific_area1 + 
-DWCMSHC_EMMC_CONTROL);
-	
-}
+-- 
+2.53.0
 
-> +	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> +	struct dwcmshc_priv *priv = sdhci_pltfm_priv(pltfm_host);
-> +	u16 ctrl, ctrl_2;
-> +
-> +	ctrl_2 = sdhci_readw(host, SDHCI_HOST_CONTROL2);
-> +	ctrl_2 &= ~SDHCI_CTRL_UHS_MASK;
-> +
-> +	/* HPE GSC: always set CARD_IS_EMMC for all timing modes */
-> +	ctrl = sdhci_readw(host, priv->vendor_specific_area1 + DWCMSHC_EMMC_CONTROL);
-> +	ctrl |= DWCMSHC_CARD_IS_EMMC;
-> +	sdhci_writew(host, ctrl, priv->vendor_specific_area1 + DWCMSHC_EMMC_CONTROL);
-> +
-> +	if ((timing == MMC_TIMING_MMC_HS200) ||
-> +	    (timing == MMC_TIMING_UHS_SDR104))
-> +		ctrl_2 |= SDHCI_CTRL_UHS_SDR104;
-> +	else if (timing == MMC_TIMING_UHS_SDR12)
-> +		ctrl_2 |= SDHCI_CTRL_UHS_SDR12;
-> +	else if ((timing == MMC_TIMING_UHS_SDR25) ||
-> +		 (timing == MMC_TIMING_MMC_HS))
-> +		ctrl_2 |= SDHCI_CTRL_UHS_SDR25;
-> +	else if (timing == MMC_TIMING_UHS_SDR50)
-> +		ctrl_2 |= SDHCI_CTRL_UHS_SDR50;
-> +	else if ((timing == MMC_TIMING_UHS_DDR50) ||
-> +		 (timing == MMC_TIMING_MMC_DDR52))
-> +		ctrl_2 |= SDHCI_CTRL_UHS_DDR50;
-> +	else if (timing == MMC_TIMING_MMC_HS400)
-> +		ctrl_2 |= DWCMSHC_CTRL_HS400;
-> +
-> +	if (priv->flags & FLAG_IO_FIXED_1V8)
-> +		ctrl_2 |= SDHCI_CTRL_VDD_180;
-> +	sdhci_writew(host, ctrl_2, SDHCI_HOST_CONTROL2);
-> +}
-> +
-> +/*
-> + * HPE GSC eMMC controller clock setup.
-> + *
-> + * The GSC SoC wires the freq_sel field of SDHCI_CLOCK_CONTROL directly to a
-> + * clock mux rather than a divider. Force freq_sel = 1 when running at
-> + * 200 MHz (HS200) so the mux selects the correct clock source.
-> + */
-> +static void dwcmshc_hpe_set_clock(struct sdhci_host *host, unsigned int clock)
-> +{
-> +	u16 clk;
-> +
-> +	host->mmc->actual_clock = 0;
-> +
-> +	sdhci_writew(host, 0, SDHCI_CLOCK_CONTROL);
-> +
-> +	if (clock == 0)
-> +		return;
-> +
-> +	clk = sdhci_calc_clk(host, clock, &host->mmc->actual_clock);
-> +
-> +	if (host->mmc->actual_clock == 200000000)
-> +		clk |= (1 << SDHCI_DIVIDER_SHIFT);
-> +
-> +	sdhci_enable_clk(host, clk);
-> +}
-> +
-> +/*
-> + * HPE GSC eMMC controller init.
-> + *
-> + * The GSC SoC requires configuring MSHCCS.  Bit 18 (SCGSyncDis) disables clock
-> + * synchronisation for phase-select values going to the HS200 RX delay lines,
-> + * allowing the card clock to be stopped while the delay selection settles and
-> + * the phase shift is applied.  This must be used together with the ATCTRL
-> + * settings programmed in dwcmshc_hpe_vendor_specific():
-> + *   AT_CTRL_R.TUNE_CLK_STOP_EN  = 0x1
-> + *   AT_CTRL_R.POST_CHANGE_DLY   = 0x3
-> + *   AT_CTRL_R.PRE_CHANGE_DLY    = 0x3
-> + *
-> + * The DTS node provides a syscon phandle ('hpe,gxp-sysreg') to access
-> + * this register at offset 0x110 within the SoC control block.
-> + */
-> +#define HPE_GSC_MSHCCS_OFFSET		0x110
-> +#define HPE_GSC_MSHCCS_SCGSYNCDIS	BIT(18)
-> +
-> +static int dwcmshc_hpe_gsc_init(struct device *dev, struct sdhci_host *host,
-> +				struct dwcmshc_priv *dwc_priv)
-> +{
-> +	struct regmap *soc_ctrl;
-> +	int ret;
-> +
-> +	/* Disable cmd conflict check and configure auto-tuning */
-> +	dwcmshc_hpe_vendor_specific(host);
-> +
-> +	/* Look up the GXP sysreg syscon for MSHCCS access */
-> +	soc_ctrl = syscon_regmap_lookup_by_phandle(dev->of_node, "hpe,gxp-sysreg");
-> +	if (IS_ERR(soc_ctrl)) {
-> +		dev_err(dev, "failed to get hpe,gxp-sysreg syscon\n");
-> +		return PTR_ERR(soc_ctrl);
-> +	}
-> +
-> +	/* Set SCGSyncDis (bit 18) to disable sync on HS200 RX delay lines */
-> +	ret = regmap_update_bits(soc_ctrl, HPE_GSC_MSHCCS_OFFSET,
-> +				HPE_GSC_MSHCCS_SCGSYNCDIS,
-> +				HPE_GSC_MSHCCS_SCGSYNCDIS);
-> +	if (ret) {
-> +		dev_err(dev, "failed to set SCGSyncDis in MSHCCS\n");
-> +		return ret;
-> +	}
-> +
-> +	sdhci_enable_v4_mode(host);
-> +
-> +	return 0;
-> +}
-> +
->   static void sdhci_eic7700_set_clock(struct sdhci_host *host, unsigned int clock)
->   {
->   	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-> @@ -1834,6 +1984,25 @@ static const struct dwcmshc_pltfm_data sdhci_dwcmshc_eic7700_pdata = {
->   	.init = eic7700_init,
->   };
->   
-> +static const struct sdhci_ops sdhci_dwcmshc_hpe_ops = {
-> +	.set_clock		= dwcmshc_hpe_set_clock,
-> +	.set_bus_width		= sdhci_set_bus_width,
-> +	.set_uhs_signaling	= dwcmshc_hpe_set_uhs_signaling,
-> +	.get_max_clock		= dwcmshc_get_max_clock,
-> +	.reset			= dwcmshc_hpe_reset,
-> +	.adma_write_desc	= dwcmshc_adma_write_desc,
-> +	.irq			= dwcmshc_cqe_irq_handler,
-> +};
-> +
-> +static const struct dwcmshc_pltfm_data sdhci_dwcmshc_hpe_gsc_pdata = {
-> +	.pdata = {
-> +		.ops = &sdhci_dwcmshc_hpe_ops,
-> +		.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
-> +		.quirks2 = SDHCI_QUIRK2_PRESET_VALUE_BROKEN,
-> +	},
-> +	.init = dwcmshc_hpe_gsc_init,
-> +};
-> +
->   static const struct cqhci_host_ops dwcmshc_cqhci_ops = {
->   	.enable		= dwcmshc_sdhci_cqe_enable,
->   	.disable	= sdhci_cqe_disable,
-> @@ -1942,6 +2111,10 @@ static const struct of_device_id sdhci_dwcmshc_dt_ids[] = {
->   		.compatible = "eswin,eic7700-dwcmshc",
->   		.data = &sdhci_dwcmshc_eic7700_pdata,
->   	},
-> +	{
-> +		.compatible = "hpe,gsc-dwcmshc",
-> +		.data = &sdhci_dwcmshc_hpe_gsc_pdata,
-> +	},
->   	{},
->   };
->   MODULE_DEVICE_TABLE(of, sdhci_dwcmshc_dt_ids);
-> 
 
