@@ -1,84 +1,94 @@
-Return-Path: <devicetree+bounces-273763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273764-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oChMBLeosGlTlwIAu9opvQ
-	(envelope-from <devicetree+bounces-273763-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:26:47 +0100
+	id gFUKFuOqsGm/lwIAu9opvQ
+	(envelope-from <devicetree+bounces-273764-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:36:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EFD8259456
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:26:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05D932594AB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:36:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0F99E3024B0D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 23:26:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5C0293132E60
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 23:36:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523DD3A7855;
-	Tue, 10 Mar 2026 23:26:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32DC38550B;
+	Tue, 10 Mar 2026 23:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nHVefLGO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NFkgOqJl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B5E3A6B84;
-	Tue, 10 Mar 2026 23:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEC442EA480
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 23:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773185204; cv=none; b=UvRJSQ9M2BuT7KTBu8LDc3+DVM/QG6vkG7E14XNrjs8ectRtcGCDpKgwfGVozBnVfLhdOpE1CWeAi2/RzJZqREV0OEX3BKHFCyagxU/7jxHjZ0Ms+k1+wAZdwdduwZto30gKn5kRY94xqWVRCGl85hZjQzytWTp/0w/C5SeaYr0=
+	t=1773185759; cv=none; b=HFZ87NY4ekKRegXHWCiNm0A2DEF9aTYrs2LSWTdiZp/S9OvmSrBR/8YPpaVDDg4KwhcjazCp70UyjDm+JvKWSNFVR52vLyxRKqKL71Nrv+4FZ+aSNIS45cLtfdjCUphiNtjJ+iWoXV0OUOjvBA+eTOqa9eLXnI+QmjHYDEJDr9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773185204; c=relaxed/simple;
-	bh=e479cCwfOF7vRTYlVkMohlsKN6yVc0hD7vBF60a45fo=;
+	s=arc-20240116; t=1773185759; c=relaxed/simple;
+	bh=hP+WJz/jKU6NpzI4xyhs/JtORqAsnUOJ5KWRgrIVvoY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ELbtimZm9SgOfpp6+Tbnu/hi3I3HLWeujB/zhdBjL7ZBALlxl+kGzvTgT7KPIXCFXDnpxY0KrBwAzwcmH5KR94bVYurRrQbsjhpisdfjVmJD38xMgjoSZ+tr1e9lyp4V7u1QSxXQ01IbVUYnJnUb+uH/aYl0A+ImZXtvGrYho0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nHVefLGO; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773185202; x=1804721202;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=e479cCwfOF7vRTYlVkMohlsKN6yVc0hD7vBF60a45fo=;
-  b=nHVefLGOWaAVbJQepraeCdVI1QBv2MoRELEem+w2CowuzvOzBSl2G/6L
-   hJ6QEAAWZokgLq9RKnZEtWitjWtOORAgFpTUqQG1Vfajhl+39jy0Fy8+0
-   MuVQ953DkN4QYWFL6uRsgGhq+agfSZSvpJDBEWhlhbv01Tp6tV/m6mPlv
-   MZs+nAn4KDs6vvepRsuCc3dCKLSR6+tWrgBKLb0UPIfaHEO+M90ddfpJ1
-   4jBTvshrTNJrcKtMrvnAym6ohUGIJJxw/j1hAkMUPXDBjCeDCYYJayBZj
-   oNw5GbSqPSEegNAehqByVA3pujdPHZzCwLsU+vzsr+fOgQr4x7iJozMht
-   w==;
-X-CSE-ConnectionGUID: bmoQHZZTQSytz/YWKzEZMw==
-X-CSE-MsgGUID: /aRHuhCBTxihfDdQ5DEz4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="73443085"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="73443085"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 16:26:42 -0700
-X-CSE-ConnectionGUID: I1yiwG8kR3OQNfM3PvA6cA==
-X-CSE-MsgGUID: yXIbYWUTQ0uhucbUBDMF2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="225235382"
-Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 10 Mar 2026 16:26:38 -0700
-Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w06TD-000000000P4-0miZ;
-	Tue, 10 Mar 2026 23:26:35 +0000
-Date: Wed, 11 Mar 2026 07:26:27 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
-	linux-i3c@lists.infradead.org, alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
-	Frank.Li@nxp.com, lgirdwood@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com, aman.kumarpandey@nxp.com,
-	lakshay.piplani@nxp.com
-Subject: Re: [PATCH v6 7/7] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x
- I3C hub functionality
-Message-ID: <202603110741.nkI3lGfN-lkp@intel.com>
-References: <20260310065727.3759342-7-lakshay.piplani@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KrLfjR/Cfeml9t1IuIUNZPycltYdai7x++jpzmtyO+o9UQQ58kVkipyW879Sg8nNb1HU8S7k1RDq7/ujmYaJQD/fwkhI6WLnbP1Jc6ekKOB94Iarn8Lh3s6H3oCRzkDyK/IpPxp2t3jfwWOD64Syh0lqKHcDbWxJaPlH59LhTgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NFkgOqJl; arc=none smtp.client-ip=74.125.82.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f51.google.com with SMTP id a92af1059eb24-1273349c56bso16820171c88.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 16:35:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773185757; x=1773790557; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KxUPjcUmulSXUd9DWxJ7ndVUYnE5TGazkQsXUEMmZVs=;
+        b=NFkgOqJlGiPlob9isuinp0sELIC5WGTzdsj3HbE7W0anXTs9Dwpfyc2CD8/AjoWqN2
+         dUuXCu8ExdG7U2T1/P78kxv7Or8EXG8b0HRGJuIMGcLya/sRkWtfAC5MKA6JDSqcKSob
+         JUwm7qmPdgRkuk7doXxEyYHFI6/wokj6J/40UUvRb3QzPPFEF4B8u7rkQcy/Ifar7oJj
+         OjfUs8mDYO0257I0BU4xrxtf8B6EBVbG7lpN4MauwhTgIrqvyYwJaniJcITwZ3xvIiu6
+         VzcEOx1PgRrYKDp2eifw7z2COQM57US6SQpnxwvPAugRWNGDMCUeTxGiHFIXFioKPSVX
+         F1DA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773185757; x=1773790557;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KxUPjcUmulSXUd9DWxJ7ndVUYnE5TGazkQsXUEMmZVs=;
+        b=RZvSY4My4/Wz4scEmkwSMHEkaU6BhR0rb5jeNnEDD+UwZQiSEj1EoOaoNO0LBzz+Wu
+         hpk/owallOn/zTl5nsgWOr0nP8a22yVJRjkjV+cXa4ztozAYr44tHy4bR2uEE3J0II9I
+         gL64kEI8WQQw24EzIQ5xuf0ILR9r2rzElnca8utMY7UsGOZjAwzaovMJ9/IdWtHl2eiS
+         T4iXUz7MjA2gsfsm7qawCici3GqieP36wLmfWdy5AqmcOsGjXR5Yt2ReqFII1z10uFL7
+         FcAjYQLQSwDOtmgkb0AKArWYoYBr8pS9V+6kABMcUyPxM6qeEDW7OG0SR1WeB8uNoyuc
+         a/RA==
+X-Forwarded-Encrypted: i=1; AJvYcCUVrcGDECEuyeCM2nuAkjSNxpp+AAoLLk5a7Vp/DTYBANb5zexwvOx51AbZejfNgs24mEuFQ3wqAHLS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxobStgWkMzfwCA8zELRoKTF6mD2Gy0GiT/z0ZjnnS1yJw+lp9m
+	6ifroLzC0hVt1DewHe//sQPoL+In8dOqm7iLD4eVVhyTOO7zu+agRtNy
+X-Gm-Gg: ATEYQzywju4eO2HH/r/I8aBIQ8uD46RteGeM9EVUGOQ+WJKEc590LvJy0beKUR0yP3N
+	+JpMCjhVZyqqc04cLaVuggIOrfHmPMQqcdLKTrdlZOHzdGRw/FiG16YxhigcxQchsjiJTKhvxMr
+	Iq3ekuQgf0J/caCrLSJKSElcNmQw8tvuEKn5+L9TANMLA83j7cW2p3+gQZCX+UYWeUjMEJ1nFuS
+	RzNzUlaXz881L7RfnjunwW6HKPSnLjU8j+TnovTL4X9KKftftR0CwJJnOUPsY+kYFDXi5z0Xy6z
+	RpVM8MgeQLwKOXkTVU9eoYyMihEkkLaX2N1ozTxMG4MRo2fjoFP4uTeraJT5Fff1FIa7rs/bBVZ
+	nI6DzdDRpCUyeMGDLw2T/vjDZ67v05Tku/AksHErgXMi40Jh+QgLWQHNfWxn9d++cBvTtit7BDk
+	CFzVdPzM4DUNLjTJyQ9E4k/Zr/RD6RQsSnV2z4QiTLsi+7G33xkp3GAKIFEy/Jk9PNusaHbhumK
+	Jg=
+X-Received: by 2002:a05:7022:6983:b0:128:d375:f1d3 with SMTP id a92af1059eb24-128e77bee00mr299440c88.18.1773185756882;
+        Tue, 10 Mar 2026 16:35:56 -0700 (PDT)
+Received: from google.com ([2a00:79e0:2ebe:8:6e17:9d84:ffa0:986b])
+        by smtp.gmail.com with ESMTPSA id a92af1059eb24-128e7cd6aafsm445110c88.14.2026.03.10.16.35.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 16:35:56 -0700 (PDT)
+Date: Tue, 10 Mar 2026 16:35:52 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: phucduc.bui@gmail.com
+Cc: krzk+dt@kernel.org, geert+renesas@glider.be, krzk@kernel.org, 
+	krzysztof.kozlowski@oss.qualcomm.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	hechtb@gmail.com, javier.carrasco@wolfvision.net, jeff@labundy.com, 
+	linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	magnus.damm@gmail.com, robh@kernel.org, wsa+renesas@sang-engineering.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: touchscreen: sitronix,st1232:
+ Add wakeup-source
+Message-ID: <abCqyU2-iQgcghzy@google.com>
+References: <20260309000319.74880-1-phucduc.bui@gmail.com>
+ <20260309000319.74880-2-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,80 +97,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260310065727.3759342-7-lakshay.piplani@nxp.com>
-X-Rspamd-Queue-Id: 9EFD8259456
+In-Reply-To: <20260309000319.74880-2-phucduc.bui@gmail.com>
+X-Rspamd-Queue-Id: 05D932594AB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,glider.be,oss.qualcomm.com,vger.kernel.org,gmail.com,wolfvision.net,labundy.com,sang-engineering.com];
+	TAGGED_FROM(0.00)[bounces-273764-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273763-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:dkim,intel.com:email,intel.com:mid,git-scm.com:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Lakshay,
+On Mon, Mar 09, 2026 at 07:03:18AM +0700, phucduc.bui@gmail.com wrote:
+> From: bui duc phuc <phucduc.bui@gmail.com>
+> 
+> Document the 'wakeup-source' property for Sitronix ST1232 touchscreen
+> controllers to allow the device to wake the system from suspend.
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on i3c/i3c/next]
-[also build test WARNING on lee-mfd/for-mfd-next broonie-regulator/for-next linus/master v7.0-rc3 next-20260310]
-[cannot apply to lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Lakshay-Piplani/i3c-master-Add-the-APIs-to-support-I3C-hub/20260310-150040
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/i3c/linux.git i3c/next
-patch link:    https://lore.kernel.org/r/20260310065727.3759342-7-lakshay.piplani%40nxp.com
-patch subject: [PATCH v6 7/7] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20260311/202603110741.nkI3lGfN-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260311/202603110741.nkI3lGfN-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603110741.nkI3lGfN-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_i3c.c:62 function parameter 'p3h2x4x_hub' not described in 'p3h2x4x_tp_i3c_algo'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_i3c.c:62 function parameter 'p3h2x4x_hub' not described in 'p3h2x4x_tp_i3c_algo'
---
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'p3h2x4x_i3c_hub' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'xfers' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'target_port' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'nxfers_i' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'rw' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'p3h2x4x_i3c_hub' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'xfers' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'target_port' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'nxfers_i' not described in 'p3h2x4x_tp_i2c_xfer_msg'
->> Warning: drivers/i3c/hub/p3h2840_i3c_hub_smbus.c:185 function parameter 'rw' not described in 'p3h2x4x_tp_i2c_xfer_msg'
+Applied, thank you.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Dmitry
 
