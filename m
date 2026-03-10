@@ -1,217 +1,305 @@
-Return-Path: <devicetree+bounces-273601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273602-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AC6SF3Q9sGmohQIAu9opvQ
-	(envelope-from <devicetree+bounces-273601-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:49:08 +0100
+	id cKbpLMg9sGmohQIAu9opvQ
+	(envelope-from <devicetree+bounces-273602-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:50:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14A32253F2B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:49:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3462D253F57
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:50:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 3EFCE31805B7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:00:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 449CB3274D6B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:02:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B649308F23;
-	Tue, 10 Mar 2026 15:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 308A63043CF;
+	Tue, 10 Mar 2026 15:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Q7/F69di"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="HanI0CXg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010026.outbound.protection.outlook.com [52.101.69.26])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FF6F307AD6;
-	Tue, 10 Mar 2026 15:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773154812; cv=fail; b=sL+o/Y9orFzNxXdaWMFpVXq6K7rhXB7R/85jigSic4pk5Wq2ZiY3xv4KBcmDvROfDvaIga8cYMXDQmqq1/WXMIAKeBTVU4SWzdsMmHMqQEozeDcm31JqhMtjBXtTcvTyXnZ4LUw9ha4bnhZJHX1DsVzxl5zep/lf9GQ+UXzOPfI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773154812; c=relaxed/simple;
-	bh=3M1wOYRgcdEE4BawSSJIzg6de5Dv/DXbiwdJZ7y7kmY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=NuZpOOz2LFd+rUt0CExr+hEPvtBeuxtCVA+HZp0a04H1tm++T/BZpFYB7/uML4gHWSXTgUnfdJ6TyboOJezbWvjNEoYFGbvY/l+35qyzHW1GKFimeg3xJf6+XaL1VGX/LBSL+7rMcep+XRf9Sn4BtXDJ10HvGk/kI/QUNrLv5cI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Q7/F69di; arc=fail smtp.client-ip=52.101.69.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l+ucPOXkjGBSUv5Svi/GLUVLLKW6PGQeJu/ZN2LrNrSJ/DgjdQ7QEn9ojo/I2mR/ygHlUuhGexx4dgPCkIIh0b5GU8cw+zuLDVcxHzmuaUipBvsd/UdcbLcy4Mh92aRzITqOpNzqYaLquWPHGFAvTpOFNWNjNSIWqOGSrLn6fgLQAwPqpm6Ejp0Ht/N8kKZOph2otcJrxgNa2pt1RKtYXmcsnLo9cuswek8Rux/LTm3EliMKQ+UXBt1u0dj06MuYS0qoRQG3vOLegJ3TpXWFuunRRjUH5AvruH2LSWLk84G3FVA3kuFDDvzAw4yv/q3Z9h5weMpaBMhiCJ/d0fUEBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=L9HJnIOv/gl6gXck9N/1XQzG9e0hZX7YRN6h4E+kuow=;
- b=NBF+KOhYX7xmJe4b67LXoKiM5I7AUXs1UbeCQnpy/zyoOaoCGb4JT60t/ZRK8uIQ2QWlMAAIO6P2HXYxV5XLTYWphAw4O+WXdu4qdojnlxXRK5gX+xcxJqM4JLck4iJBDfaP9HP//5k9ST3DaCHKN2s358ZNSnUPEuj+o2Nb5GskJicOwYVerUq0YVmF37uybdCKgsVRblUzdL911B2sfSRoN92A0GuLtSbbU2aoJ90+bUDRfTXatKR8N3E/jTDH7y/cAIt6ZPzV3XI8VcZTrCSsSVvRVdZtRtG4jZD9uF6/XuMvTaNTx8mZi32dTCp4bkOEGG0jLU238ec4rBwxtg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=L9HJnIOv/gl6gXck9N/1XQzG9e0hZX7YRN6h4E+kuow=;
- b=Q7/F69diH70Q++Ys4uVbasPgr2FbQBIB5sqJSMlTiCsFF+ngd+0LCnOa2yibr/Jof93mVNj6td7Emi4a4cl7lT+d9AqWnCUKxeRkIIQ6zr5Qj2MHKQvei/G9bUdaWFEuvvRrwboxqbvP0XDuboC9y/zvNqUBBPuFgEme0q0BbQeM0o2U90hSISN+AYm0tc03wDquw0IH1F2wLfBLONPb6mYBBRjryKJk1fVz4iRYZz5jAlaPKT/dJPcQDzUt9Mf8sjFcYS+2kIVu5OG6sIOQmXHZ6k2+676O7WKd58Gn4V7wAfLgEqxMtIzYA+Pptuh4X7uyPTM0qghhdQJXHA56bA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
- by PAXPR04MB9107.eurprd04.prod.outlook.com (2603:10a6:102:229::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Tue, 10 Mar
- 2026 15:00:06 +0000
-Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
- ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Tue, 10 Mar 2026
- 15:00:06 +0000
-Date: Tue, 10 Mar 2026 10:59:58 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Ernest Van Hoecke <ernestvanhoecke@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Ernest Van Hoecke <ernest.vanhoecke@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 4/6] arm64: dts: freescale: imx95-verdin: Add Ivy carrier
- board
-Message-ID: <abAx3_5SHKmeZTt0@lizhi-Precision-Tower-5810>
-References: <20260305-verdin-imx95-upstream-frank-li-base-v1-0-823fad02def9@toradex.com>
- <20260305-verdin-imx95-upstream-frank-li-base-v1-4-823fad02def9@toradex.com>
- <xghf5wajmzkz3vhi565q5fmclrelczobbvywg7z2tj3gj2rzlq@idn3vyhxxsde>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <xghf5wajmzkz3vhi565q5fmclrelczobbvywg7z2tj3gj2rzlq@idn3vyhxxsde>
-X-ClientProxiedBy: SA1P222CA0092.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:35e::12) To PA4PR04MB9366.eurprd04.prod.outlook.com
- (2603:10a6:102:2a9::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2D9E305047;
+	Tue, 10 Mar 2026 15:02:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773154944; cv=none; b=CEmJkbSBdEA53eFj7wh9vQYw3VkFaBRxvvHDRpO7o+DLhLruSVYla8ngoNLNYzhXeEOA++S8nHEtvd/CFKKExsFEPNyZ/wwLe/SrjjMxuxf4uGP/pkHrfo1+illm/ymgo15fD7Y2R3BAS6mFcZIO35WPkpEWQtn7jMEJLPfiSlw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773154944; c=relaxed/simple;
+	bh=PVYLHKHTusieIrUcWVG4L06T+l4DVqT2vSF2grzHQ+A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WT23SnR5zgvWTc2CKYGsXlbTHZAL/or5YCyM8Fs6M1U6zcGhAQXczDKPmv1MjOMnrnOwczxzUJo360Ahtt2eJ15wZA38vww+14jtH6eayRbcm6P2axjA53FZMQD9ry2nL4W8XmRRLuM9YjPlpsKJnpGa0iNaJzhZIdbnxVMjvbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=HanI0CXg; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773154942; x=1804690942;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PVYLHKHTusieIrUcWVG4L06T+l4DVqT2vSF2grzHQ+A=;
+  b=HanI0CXgW8EsBzB0o6e3vM9u0/nsSLxTULeyieeIUXN/cyWgDFs53Rjk
+   GGuZn5Xt0aHZCqT+M4icIfbUt4VDsxzRLmhWN4RVJMu/im8n5OVoZXaRJ
+   NpRzTQjwF+qDcRlRz9k50Kf2p1YFcL3neBG658y26X6tLlxwbaq7yKRbm
+   IFg/knzA8+VSbtmjW2zOpaLXs8R5igvyWfyDnTigjcQMThWoTIAEx+6J6
+   yyvRAbF5XavDrHR8TVazpUmn8AmKEGjkn1HTLeCHtIQ6SCTmQiKz8zGYB
+   1hg5rLYm6VR7U+CMVYc3pWC9c9ui8iBf0a4IlrWv0Q5z2MOAapLCaH502
+   g==;
+X-CSE-ConnectionGUID: tp4nm4EyRK+minteN42yJw==
+X-CSE-MsgGUID: +y1pnraVSJqbXTDeyLC0rA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="85294278"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
+   d="scan'208";a="85294278"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 08:02:21 -0700
+X-CSE-ConnectionGUID: neLwN0iBSfaO6Ijz9wQIrw==
+X-CSE-MsgGUID: boggGDclQdqzjz+A0gAwRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
+   d="scan'208";a="224322566"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.54])
+  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 08:02:18 -0700
+Date: Tue, 10 Mar 2026 17:02:15 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C
+ controller
+Message-ID: <abAyd9uyl3TC8vC_@ashevche-desk.local>
+References: <cover.1773142933.git.zhoubinbin@loongson.cn>
+ <bd5c06a20ef2e61f76902c4209f2be539ca91a97.1773142933.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|PAXPR04MB9107:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd2575fd-87a7-417b-6756-08de7eb5b6ff
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|366016|52116014|376014|7416014|19092799006|38350700014|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
- th2OkAotL9JfyeicUJZlAT1qO/s29In4NuVM6riZAfw1uB7w6D17MLpvm41O6UmYTD8vIdwUaHaGFIb2SyX6xl6ystgiFCbIdIZl+ag5/58AkrezcsSF1XDrm0xk2k+qTSCwWyC3oJdo2fTUTicMVDHaERXorJTMzecK4m14KGpqBVsNtUyUZocWoMzilWOVNX/p4BkE7vHCBs7ORgvs9NWYXyNxh8lCUxeo9Op5to5fYabZtJZFf1p9X7MQeq/ONOwpwAUkRa6V2x0Rmd4kIFi/HtNknQdEyTmY0GvFbhK88sEEnZZV7SWdUScBuPAhFqJbgf5wJYeC9AemSDVe08Se5Rw0e9gO8gIiV2N2D/BWCWsvpVm3w9Xo7nI3UAUYc1WnCG2lVn44qqwnezaFvndfstClriUNAju0JZQfVCrd9GcXr1XQO95CVz94VDQMdKy3TFyHkiv/XzFm9tw+gOctU7PezGPiOwGU+U5lBXojBQCluj4Sa+hz6r4CEwF+XKO/repvPDcqPYdP6T2JXm7uBWNUZPjHhPKitCtgM/VKyq37hBZNUoJuKfV1Yd216DJxnEsQJrztKM2oPUZNRzNSwmkw8+uYHme4y/B7ggR/H5msLf/AERljEmODowLl8+Xa+SUggulsryhmOfFZVD8MxpQIVw6CV5UEL2iShp2Fttl6cC+zvtJbpf/pwBNo/V7GA8lqXbabN9ItKdfWN6rYd2ZI0jZYTzXUbKTc7WUjrtwg5bpH+OSsIZEo6hddoS/vGSKOWHgLm78+yZhqCrlKv2IpHMo+/MRfWt41N0c=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(7416014)(19092799006)(38350700014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?1Qe/uXD4wsIgkxboWhUraVF6ExyX9S6YzL9+zttD24r1jW525GLr5ivfun4U?=
- =?us-ascii?Q?fJ/Dge8RvfrqeFC7pWy+qJl+SIEAfzdCI9GbhKjbs0YdPCrYlbP3jrg4mY0h?=
- =?us-ascii?Q?ciarF4C08mB1jlzDidhTOJOHPtgbkGt8cOVsKyqU//9FD84mXULbssJTgqE3?=
- =?us-ascii?Q?AvDiaY2uh0GFvKdSxlYi3Dp/muoxFlErEeZo4AjJsWUmN9QeF3+wpoD3inqs?=
- =?us-ascii?Q?dklAVWT2x/DqJig1jFb9MGu9NrTWTX9ADDnDorJ4kj9WRanL+wPa+79rTZAz?=
- =?us-ascii?Q?BzJ+heTtGmQoaFFitu356MAyjFwZDzWStTESKvQbcEhIFntfK1nMeI9UZvNM?=
- =?us-ascii?Q?D8ObXsAmsqjiN+L0JLrgFX0RN7CxG3AwVPIA6fT7oG0an2JePpfRVBz/KXgH?=
- =?us-ascii?Q?waZO2vfEh5JBJme8QWlSNtYUqDUDf57G4yVdA0LiP8TpwkwEXqGsVVnO1Oac?=
- =?us-ascii?Q?NjvthJCWfWzam6IKNlhoBt5ITse4HXbqERMiWDjZhhyWalntHxUARKTzgAtt?=
- =?us-ascii?Q?5CTl8XRoR6X3nnmrsTFHvF6JlZlQ9PvNdU867v9sedsDBut/rfY47lI1rQmO?=
- =?us-ascii?Q?7WQtdWhWEUuAwNvWcQWi9EcmSV73uSHOuK2xxL/mc9m6OBa02e3UmKsMgkof?=
- =?us-ascii?Q?j4ZgGQ+OhFdjlmK1/MAwIevPAkayShvOXKCNUjjBlOujNghcuviRukmjp8NZ?=
- =?us-ascii?Q?fBjd7Kcp8ieX6x4l/HTdokHuDelM0y6hqI+sDmM9qWijgqCXy3vTudNVnZL3?=
- =?us-ascii?Q?x3qN9ncnIPZb/jjZf17294bJQ5XJwSyGQy0ZG2KIjZ9hsqk5LKfLiVyNSURl?=
- =?us-ascii?Q?5qnU9zUMDVP3YbaERTOT0HXWnHo1WlD80zq+aCugYfrbQ8uIQhnt8rYgT+4i?=
- =?us-ascii?Q?U3uNZKf0nb6x4vssnyzPH/D1v04sMzRk1he2meoNSk+bzUyuVIn6FBShSexQ?=
- =?us-ascii?Q?TzntDWSecmzR0tNnssJ10PQeCuWESwj/FJUAn9USngtLlBz/drU12xHuE2jY?=
- =?us-ascii?Q?Prp8NsFIvwHFmLBImLgcV/XYQk33Rmgn3Ay/OcajaS2g+XGcPhm+UYh/nswQ?=
- =?us-ascii?Q?LsnteJxOsC3MH/i86T35pKhx/T+3Npa+IGoK5oLKz2Mx0n+mPwKMTAvcJqXs?=
- =?us-ascii?Q?Ls9n/F13wkvkVLhGGGgpvdSLZizeatgGgLP6LbZ8AHfQIjuBhrCfQGJdz/Ap?=
- =?us-ascii?Q?iPhDJTPvtCappk+5sbCkSoM/9q6wjpqLtvisYrEEB+Dx9h83twoEtT8kS9lr?=
- =?us-ascii?Q?lcSy8xb9DymmzvOt49Xo1KEJaPIJkmS7ELQDdykGpvuFICI8vUNxzRn9f/5z?=
- =?us-ascii?Q?wY4/uNC5YulHFwqOiG784uUs/5r3A8h3R2k87dCenuHKh/RD/sxVQKhmq7xo?=
- =?us-ascii?Q?ziaFXDMP+hQ5j54kQ7+gUfYWDAju0NXOdZf3vXFs08YWb8+5zYl6iZpHe/nN?=
- =?us-ascii?Q?GEd8XrYjjuiaAi9NqgBUQp1wOO7MmexwPtA11JvrS+1EeD1w/8J+bSVs7cbY?=
- =?us-ascii?Q?Cu3ATkApSDPl36FSwtMoQtAz+x3WRtoNOSW4N+apMr3TfPxoZZh9l+CmMuNF?=
- =?us-ascii?Q?875eKscHQrzZ9wSD18En7H4eyFWEBCx3Fhzx1+Jk1e73ZMwviqCslsEHJQ54?=
- =?us-ascii?Q?NikOR93+U2UN3nc6wVZjosLqRESmgyzwItUNKP8NXmpsipIMom42N1OuEA0y?=
- =?us-ascii?Q?JmvLZ52JMzuEOA8N3zUm93v0V6wAxDTnwfxrmwv/xWk5MGBWcAsYareyuPjL?=
- =?us-ascii?Q?oK+UZbh5bA=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd2575fd-87a7-417b-6756-08de7eb5b6ff
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 15:00:05.9526
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZktM1zHLcAYM0dbbwGaPHWA85xh4BBzqe7zHO5t7pNQwG9Wl9/ofzYMmlk+HierA6gSpc5wB9A6+TnwiApwxww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9107
-X-Rspamd-Queue-Id: 14A32253F2B
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <bd5c06a20ef2e61f76902c4209f2be539ca91a97.1773142933.git.zhoubinbin@loongson.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 3462D253F57
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273601-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,sang-engineering.com,vger.kernel.org,xen0n.name,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-273602-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,toradex.com,vger.kernel.org,lists.linux.dev,lists.infradead.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,intel.com:dkim,ashevche-desk.local:mid]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 11:06:08AM +0100, Ernest Van Hoecke wrote:
-> On Thu, Mar 05, 2026 at 06:24:32PM +0100, Ernest Van Hoecke wrote:
->
-> Hello Krzysztof,
-> Hello Frank,
->
-> Thanks for your review so far. I noticed that the node order here is
-> also wrong and not alphanumeric on node name. I will fix some of them,
-> but for some it could mean that for example, 'ain2_voltage_unmanaged:
-> voltage-divider-ain2' is far from 'ain2-voltage', which is unfortunate
-> since they are related. Together with the the current-sense and
-> mux-controller nodes they form something of a logical group and it seems
-> undesirable to have them be separated by a long 'leds' node and the
-> regulator nodes.
->
-> Would it be acceptable to keep the "group" together and sort
-> alphanumerically within it, or is it preferred to sort all nodes
-> alphanumerically?
+On Tue, Mar 10, 2026 at 07:48:53PM +0800, Binbin Zhou wrote:
+> This I2C module is integrated into the Loongson-2K0300 SoCs.
+> 
+> It provides multi-master functionality and controls all I2C bus-specific
+> timing, protocols, arbitration, and timing. It supports both standard
+> and fast modes.
 
-Previous happen insert duplicated nodes many times because try "group"
-function togeter or random order.
+Nothing really worrying, this version only has an issue to access embedded
+struct device in the i2c_adapter. See below.
 
-It is hard to define "group".  Use alphanumerically is easily to folllow
-and it can use tools to check.
+...
 
-Now I take over freescale dts tree. there are over 500 dts under arm64
-freescale. I want to use simple and straingforward rule to manage it.
+> +/**
+> + * struct loongson2_i2c_priv - private data of the controller
+> + * @adapter: I2C adapter for this controller
+> + * @complete: completion of I2C message
+> + * @clk: hw i2c clock
+> + * @regmap: regmap of the I2C device
+> + * @parent_rate_MHz: I2C clock parent rate in MHz
 
-ref use label (free nameing), you can use nice label name to keep good
-orders.
+' in MHz' now is redundant.
 
-Frank
+> + * @msg: I2C transfer information
+> + */
 
->
-> Kind regards,
-> Ernest
+...
+
+> +	/*
+> +	 * Acknowledge failure:
+> +	 * In master transmitter mode a Stop must be generated by software
+
+Missing period.
+
+> +	 */
+
+...
+
+> +	case 3:
+> +		/*
+> +		 * In order to generate the NACK after the last received data byte, enable NACK
+> +		 * before reading N-2 data
+> +		 */
+
+Ditto.
+
+> +		regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_ACK, 0);
+> +		loongson2_i2c_read_msg(priv);
+> +		break;
+
+...
+
+> +	event = status & possible_status;
+> +	if (!event) {
+> +		dev_dbg(dev, "spurious evt irq (status=0x%08x, ien=0x%08x)\n", status, ien);
+
+IRQ
+
+> +		return IRQ_NONE;
+> +	}
+
+...
+
+> +	/*
+> +	 * The BTF (Byte Transfer finished) event occurs when:
+> +	 * - in reception : a new byte is received in the shift register
+
+Extra space before :.
+
+> +	 * but the previous byte has not been read yet from data register
+> +	 * - in transmission: a new byte should be sent but the data register
+> +	 * has not been written yet
+> +	 */
+
+...
+
+> +static int loongson2_i2c_adjust_bus_speed(struct loongson2_i2c_priv *priv)
+> +{
+> +	struct device *dev = priv->adapter.dev.parent;
+
+Derive it from regmap (and check elsewhere) as accessing dev in the adapter
+may lead to issues related to the object lifetime.
+
+> +	struct i2c_timings i2c_t;
+> +	u32 val, freq_MHz, ccr;
+> +
+> +	i2c_parse_fw_timings(dev, &i2c_t, true);
+> +	priv->parent_rate_MHz = clk_get_rate(priv->clk);
+> +
+> +	if (i2c_t.bus_freq_hz == I2C_MAX_STANDARD_MODE_FREQ) {
+> +		 /* Select Standard mode */
+> +		ccr = 0;
+> +		val = DIV_ROUND_UP(priv->parent_rate_MHz, i2c_t.bus_freq_hz * 2);
+> +	} else if (i2c_t.bus_freq_hz == I2C_MAX_FAST_MODE_FREQ) {
+> +		/* Select Fast mode */
+> +		ccr = LOONGSON2_I2C_CCR_FS;
+> +		val = DIV_ROUND_UP(priv->parent_rate_MHz, i2c_t.bus_freq_hz * 3);
+> +	} else {
+> +		return dev_err_probe(dev, -EINVAL, "Unsupported speed (%uHz)\n", i2c_t.bus_freq_hz);
+> +	}
+> +
+> +	FIELD_MODIFY(LOONGSON2_I2C_CCR_CCR, &ccr, val);
+> +	regmap_write(priv->regmap, LOONGSON2_I2C_CCR, ccr);
+> +
+> +	freq_MHz = DIV_ROUND_UP(priv->parent_rate_MHz, HZ_PER_MHZ);
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR2, LOONGSON2_I2C_CR2_FREQ,
+> +			   FIELD_GET(LOONGSON2_I2C_CR2_FREQ, freq_MHz));
+> +
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_TRISE, LOONGSON2_I2C_TRISE_SCL,
+> +			   LOONGSON2_I2C_TRISE_SCL);
+> +
+> +	/* Enable I2C */
+> +	regmap_update_bits(priv->regmap, LOONGSON2_I2C_CR1, LOONGSON2_I2C_CR1_PE,
+> +			   LOONGSON2_I2C_CR1_PE);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int loongson2_i2c_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct loongson2_i2c_priv *priv;
+> +	struct i2c_adapter *adap;
+> +	void __iomem *base;
+> +	int irq, ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	priv->regmap = devm_regmap_init_mmio(dev, base, &loongson2_i2c_regmap_config);
+> +	if (IS_ERR(priv->regmap))
+> +		return dev_err_probe(dev, PTR_ERR(priv->regmap), "Failed to init regmap.\n");
+> +
+> +	priv->clk = devm_clk_get_enabled(dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to enable clock.\n");
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	adap = &priv->adapter;
+> +	adap->retries = 5;
+> +	adap->nr = pdev->id;
+> +	adap->dev.parent = dev;
+> +	adap->owner = THIS_MODULE;
+> +	adap->algo = &loongson2_i2c_algo;
+> +	adap->timeout = 2 * HZ;
+
+> +	device_set_node(&adap->dev, dev_fwnode(dev));
+
+Why?! i2c_adapter_set_node() is part of the i2c-next.
+
+> +	i2c_set_adapdata(adap, priv);
+> +	strscpy(adap->name, pdev->name);
+> +	init_completion(&priv->complete);
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	ret = loongson2_i2c_adjust_bus_speed(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_request_irq(dev, irq, loongson2_i2c_isr_event, IRQF_SHARED, pdev->name, priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_i2c_add_adapter(dev, adap);
+> +}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
