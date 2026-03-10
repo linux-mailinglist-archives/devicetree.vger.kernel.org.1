@@ -1,90 +1,104 @@
-Return-Path: <devicetree+bounces-273250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273251-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kH/GARWVr2kragIAu9opvQ
-	(envelope-from <devicetree+bounces-273250-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:50:45 +0100
+	id yIbqKsCVr2kragIAu9opvQ
+	(envelope-from <devicetree+bounces-273251-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:53:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 669F8245080
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:50:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95B462450FE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 04:53:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A11F4302A389
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:50:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id EBAFD3020A53
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F3993BD64B;
-	Tue, 10 Mar 2026 03:50:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336453BE140;
+	Tue, 10 Mar 2026 03:53:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="kj/wSGjY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k+PAQR0p";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="YHiY5tGo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH8PR06CU001.outbound.protection.outlook.com (mail-westus3azon11012044.outbound.protection.outlook.com [40.107.209.44])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72C303BD637;
-	Tue, 10 Mar 2026 03:50:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.209.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773114640; cv=fail; b=JYPegrKDDch94G1fH44f5wpmyODiGS2/Wz0l5OtV8LAEMJZq/G3StUWnc9ZGStmreRgSy9DR0qkdDbxx9lt2YKQqG7SP5T5pjMiCoeR1Qq8iwX5CScerR1zJkoBwTIkEsr1+fIe80ubrQruPBpMEddKfkchZgZBG6vZzah+YskM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773114640; c=relaxed/simple;
-	bh=Mg6jp8tk0zIGfIBzkpGDYsOPzIMxEOFhiyhlLxXrXMY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=DPe1h1Rg+VhgCCSIC/4YJIia4FWgRPogguJemjHbjz4aEF12lUJUtgF0FXDGLuh0jnD7NMqMdssK4WnVZZHxztXlZkFJuPKr2vH1cut9gRF1+/VrHM9VFDoNMoMhqRpVabiXTOPITSMuOYDorYbJI8QcYIKWkm6VIhvgDlT3YcY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=kj/wSGjY; arc=fail smtp.client-ip=40.107.209.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mKXAvmCQ04vf+EZ/op7LHgOc5EzCgmBGsnMYhCs7EcaeDsgU0mPvMYVj+L8DzWyqB9tgGAmTdTqZ1J18Ge/QDsJ1FTcE55058/AbEI5AUtPtf29NOWM4AjyqRaGflyyaMt6sSDzM+qkiNJXQA9biJHoB/nZm0+Eum7SMx047wBq1Y/ZAhDPU+iO3eCEe5fi0KznHnsb/hx2ltb+wHlJiuCQqnF3rNotKYeNvRnsywWqI6uSYZVWvAGAPz6GgZQ+gMkeHHKoWVG9HLPqCJktofxNZ8rcDkR6442ssFiXXN+kKQNWPHD7uIuCygGIkWog30gNru8WngHCmjwK6px9LJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VrDjYPO1RhBwEvkdroIe+BkIpkdBWkr+n3AmyZ0feGg=;
- b=RlSraN8Rou/4feEL39b4yhN5QfPhnTDqGbs6jB7R2aWsGtW2oLA/5Xk1rVwBJ+0RjwKuBPR6o734YyTwqrPv6fSJRNBTPp6Y40XdFPHoW/J1GNVZd8sViutttdRWbwTxtq5W1P09tYTjTL2+YTRxsX2A5+35bBmQ9UVP1oH14BGtli2A2GvAvgLIxos9nU5I9nIdn1amI+qolO182l8a4sx4NMqYrSrd2KHR8kaPjlK4L3jtZdWGKgADo3y2braSP1/Zv3ZpuqcZpbgOVL8JJv0nC8DgauNAQ4dhJ505+Ef8f0uFRblMdB9exuYs0D4GMxBjBOCjC/l2AXPQPuFt0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 198.47.23.195) smtp.rcpttodomain=lists.phytec.de smtp.mailfrom=ti.com;
- dmarc=pass (p=quarantine sp=none pct=100) action=none header.from=ti.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VrDjYPO1RhBwEvkdroIe+BkIpkdBWkr+n3AmyZ0feGg=;
- b=kj/wSGjYMzq2po3Z3Z+EKi4ZQh/D5J01miScIy0JwPWP+AQgaCXP26BsZFioAiTS+MJqMuWU2dN3pmcFoMzMASHEP7es41pvJMnCGOp7hpo58Tdc7zAL352jARv7ZLU6dip6dqY1D3kOkO5WR52FNugQ4GMG0n7tflEmsRnEBBc=
-Received: from DS7PR05CA0061.namprd05.prod.outlook.com (2603:10b6:8:57::15) by
- PH7PR10MB6283.namprd10.prod.outlook.com (2603:10b6:510:1a9::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.25; Tue, 10 Mar 2026 03:50:36 +0000
-Received: from CH3PEPF00000017.namprd21.prod.outlook.com
- (2603:10b6:8:57:cafe::b4) by DS7PR05CA0061.outlook.office365.com
- (2603:10b6:8:57::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Tue,
- 10 Mar 2026 03:50:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
- smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
- action=none header.from=ti.com;
-Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
- 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
- client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
-Received: from lewvzet201.ext.ti.com (198.47.23.195) by
- CH3PEPF00000017.mail.protection.outlook.com (10.167.244.122) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.1 via Frontend Transport; Tue, 10 Mar 2026 03:50:35 +0000
-Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
- (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
- 2026 22:50:34 -0500
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE213.ent.ti.com
- (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 9 Mar
- 2026 22:50:34 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Mon, 9 Mar 2026 22:50:34 -0500
-Received: from [172.24.233.103] (uda0132425.dhcp.ti.com [172.24.233.103])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62A3oVDh1804107;
-	Mon, 9 Mar 2026 22:50:31 -0500
-Message-ID: <18552ca7-b4e4-49f2-b2f8-27bb4fd6178c@ti.com>
-Date: Tue, 10 Mar 2026 09:20:30 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBE01DF755
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 03:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773114812; cv=none; b=hLcDaNxyrteSuRIOkB/4B/HHAiQaGnAROevGDyO1OH1kOsLyTHdrw516rJ4OG9NLZ4PW0zxcnO3rI00/q4U58pZYAdtuL6SAZZj/zGB8AF1AKbyWvesTw7Ma0owsLLxgTCiCe+8ij6cO5LPZRkTwsX4sKmpqNqwfKyAFLBW//zg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773114812; c=relaxed/simple;
+	bh=105v4TdQrrQ/uMIjR5Mp5MhQjg2dne2mJ3lCAkK8Q0U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YivkvgbJygNI8YLc3mw9MC4aWBy0mYwr6u+okciGpifCs+kjf3uZ2cB8rKeV5u4em3VZmC11ZJYBWA85mxNtQ06MtSOr4QsaB4/nVXlrQ+G+7YJrbq9fBVpKkhiYbJIWYxPl6UtIYxadEpA9Lm+lTd5AklxNuHOQmy6bLbxjjmY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k+PAQR0p; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=YHiY5tGo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62A2EPEp2817521
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 03:53:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fd/vYdqYtmFWxQGITEepV+hYM3+te5NOpBRtXH774Ck=; b=k+PAQR0pNt37xGKL
+	SZgXbNFGLqykyzcI7w6wsbkmnsRVBTZOSgpFJsDLswqNN7wTmiITQbSMRt2qV26/
+	iBn2X9LbHHoncWaSDwK/9UA6yci45d+6MCMYalRy2QswQ3Hyb8BsPLshJgd/aAJk
+	1YP30gMR96klqI54MnmQZfpEVygOXDdlMA/jkGx67fzZ8gACLdbQ8SSyvQuteUc+
+	QUBUaO0w5+BLC0gd/tV9yWOJ7yf2vwJKTavTtrpNS5pzS6SUkCRra3aa9dXSdevD
+	Eywd08q+7JgO6o2DXDOOtCinXGBHG2ff3FdXjLfbFxB84OEfmHqv+QnZBUPW2Y+C
+	GWdCbw==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4csyr42c6b-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 03:53:28 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-354c0234c1fso10566544a91.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 20:53:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773114808; x=1773719608; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fd/vYdqYtmFWxQGITEepV+hYM3+te5NOpBRtXH774Ck=;
+        b=YHiY5tGog0Lsh8mgBIV/OsfQeUXDk90xiXkgmfCKxTWpm5Byea6BSq22uOSR9uQ3ym
+         VUiD4sgrnMHh/VXhweMgSqEU5ERm98IYAEfkLrdlr8OIoGJdnF/IueGJde49AtujvWVM
+         xrfnBbQmFXFUWWvRygep1eVxiE5/59xLTRGJq+FbjRvim5x9BorB59Z87VYIH0LaTTzu
+         AAT11YP9xcoXcTGcOqXmv+jCuEh90KAUSPnux4vKLVrA75DmGc+r9zfDpxzumCgefuMJ
+         y1T0qAWPl8VqOYOcqdm1fZSc0/AFL8BUT9OnrzBVE3MNafRDfgGLtF7yfFT1dFO+Yku0
+         ljTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773114808; x=1773719608;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fd/vYdqYtmFWxQGITEepV+hYM3+te5NOpBRtXH774Ck=;
+        b=k84QJ5gKbBi44sbsUu2Fl7PZoGNffTmIfs0HWaiKZltpkFC/SjU89mgTuD/luH+/9r
+         9K7wHppA4Ju2vabIGPLpCjnSVQqDci2Nv9ZJycxDtsFdZgYb1pUOCB9ubJ/bt9z85jcX
+         3h4sKod4DUT/ct8+3hPOWz2N4pxWfl8DP/zJ2y7Zo0q3p5zySj71n+TlkF9ONZ2ye21I
+         V5D+2+3Io0c9HK3NLt/t5XB3eq6V9viA1h1czOo6GL0CBgvdW+T6i7bBtchWPtKQwRea
+         zgNCMkSUGTNfaAOm0S30wHDVZpbCbWmnjSYZGd4T9sr3zgDF68xMAIOf28ACWSdQzSTU
+         HigA==
+X-Forwarded-Encrypted: i=1; AJvYcCXs/qswWO3ZeqQokz6ZDHG80KUDmpbXmobkEbrxexwIad1SqbZXb2tceosO5l3FQLJ6NnAqeFDaPwLt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKjJDRQL4ga3ZXY2glJSRhwgRmST5nVq6UWlJmXxTefOGWgVii
+	gq66D2TzhGlJKAh+B8/la3Soj5vibBbpzoZIqb/yqQjzBMRnDJdeLLFd8OXjWjgmxuazvzGqe3m
+	lcRukXN2lN7nP+xzYMlK4amEWZA+bNWv5/0Q1efYJW1L1vC4culWMUyHBvFJw4Gc2
+X-Gm-Gg: ATEYQzzi28rvuibuilsarirMp20FEaraSp+/RQviXujmQuW8vfy4RqpJfYMhqM1p0VN
+	pih7oRezScIixjuTOUawc1jVSVb6eRP0G/pBnnYIBFI3XlFjffBGxZrbZGb9aaG0r30V+BkJNok
+	JV25uliq2b4KfnKz4BWvAom3J+6Kl/zF5apwmmg6O66ensUPtHCXbB+qgPg0NiUL788OGxDOz/e
+	WvNy4ShcB4qLZZuZPkCIWowUsXqQ3wVIEKhPGfyU4EIo+gG33lTJ2lf9qRjU/ut11dMxbw4tiex
+	0vDDuyteDbWlCQw6/qYu2dWb+z5LBGtvDCj8l3cXhGsp78wz2vTwuuWpvJCIt6rV11kHC13VIBL
+	4skqDSzane7Mk8VRVBGh1PT640H4bnzjf4ViAoS67Fqam85xLmg==
+X-Received: by 2002:a05:6a20:394a:b0:398:7949:38fb with SMTP id adf61e73a8af0-39879494e67mr8280848637.54.1773114807616;
+        Mon, 09 Mar 2026 20:53:27 -0700 (PDT)
+X-Received: by 2002:a05:6a20:394a:b0:398:7949:38fb with SMTP id adf61e73a8af0-39879494e67mr8280804637.54.1773114807109;
+        Mon, 09 Mar 2026 20:53:27 -0700 (PDT)
+Received: from [10.217.217.147] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c739e184f92sm11379844a12.28.2026.03.09.20.53.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Mar 2026 20:53:26 -0700 (PDT)
+Message-ID: <12855948-936f-4762-aff2-1777bcaa5638@oss.qualcomm.com>
+Date: Tue, 10 Mar 2026 09:23:18 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,330 +106,161 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] arm64: dts: ti: k3-am68-phyboard-izar: Add
- PEB-AV-15 overlay
-To: Dominik Haller <d.haller@phytec.de>, Nishanth Menon <nm@ti.com>, "Tero
- Kristo" <kristo@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <upstream@lists.phytec.de>
-References: <20260306033151.276202-1-d.haller@phytec.de>
- <20260306033151.276202-6-d.haller@phytec.de>
-From: Vignesh Raghavendra <vigneshr@ti.com>
+Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom: glymur-gcc: Add missing CX
+ power domain and required opp
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Maulik Shah <maulik.shah@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
+        Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+        Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>,
+        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
+        Qiang Yu <qiang.yu@oss.qualcomm.com>,
+        Manaf Meethalavalappu Pallikunhi <manaf.pallikunhi@oss.qualcomm.com>
+References: <20260309-glymur-fix-gcc-cx-scaling-v1-0-f682c82f116f@oss.qualcomm.com>
+ <20260309-glymur-fix-gcc-cx-scaling-v1-1-f682c82f116f@oss.qualcomm.com>
 Content-Language: en-US
-In-Reply-To: <20260306033151.276202-6-d.haller@phytec.de>
-Content-Type: text/plain; charset="UTF-8"
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <20260309-glymur-fix-gcc-cx-scaling-v1-1-f682c82f116f@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000017:EE_|PH7PR10MB6283:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6850c314-67f1-43ad-ca7c-08de7e582fb6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700016|1800799024|82310400026|376014;
-X-Microsoft-Antispam-Message-Info:
-	DyzyNUW/L2TuQDh/TKu7cegutD5HE1VGKfIPitsO5EQ22Q3Nif+qMSn5ucHrSx+ABuZFQ1dyBQ6yPMxMFodo4+pOPJP0Que31m/YHfueTEGh+PbU7sVmw+8dGKlN2YjuHZ1q6DRwyt3UJ+PqhP/rM04hYUohi3OCB0rWWIp5qIOTa1GeuaI2L1RRvyOlXS+S41u04WzDW7+7676F1q61nxiv1juEihixlQJRluH2V1wH2Wiq52peRILvTpCoWiEjU7ZMob/Yz8ebNVi2qcsVs+ioHG8GtRBWauuxVQoMDB1dNXwz/bXuP0c58IEkGOEEhH8CDMzPgX4SYCyHqxNUWnBZX2l3E6EjyDYmzSXGL4bQgK6kFgLUwO1QD1GF/6dbu6iDyUbigju8NaSSJuVlPDa7oMagkX6UuDc2H58gfCb45gSWlInZzJDdwi1MBB+v5fGrgRt/Rwr/wiucwdhJGKNLIIjhjMz1lRzPggjKoKTaM9IAGvSP+rPSHJfoDs0kzyNE4CwS6iqH85VZ7bx3AGdIchuxLPf+9hTrXlCCgCaKh9qmRgdbbf3e0ZJYvk4vuZBXXyW3FyQzixjd2vBq7+vyGqhn6kgOrcRNHK3TzjByTfmgjNEX2bpeBQwQRf/B75dNnnfQ4h9jhFOqwrcFWkVIW6MwxhcGGolSwyg1+kGuIEoa9rTnbCdmwD1Vp9ATNQIHLsijm5O9X2Cexuv+biOaF/Hs7WHBl3gRJXfPxcjyfC2rRy6SV3+tjPTKCbkblGaNp7tY7aDq+VBYZ8sLIg==
-X-Forefront-Antispam-Report:
-	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700016)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	QKih0Y8m6E9UrMU4yjDgWFhVxr24Z+y5TPHERoZEu2u5f8TfkQtthr7oO9yIAhQwYZEPkXigbP0Ub0IonxpsiqBzwUp3WIMRPcvcE6Vs47KRJUV84TZ279mujDo1RjXmjuLI8SAttbHNmxI3gWZd48rHEETcofUiC8xUoPVReXLkGhloE+6oKRW1M8Q/VeuEQ8JCCws93mCdrPCCOyKSCj6SIRA7Yc6h15yHV30xvuDcPDEZLOk2jqwpudx//VpdhOOu8Dt87fi3IN9RLHNY+LAXNoqo71V++hJcgg4qBdoQrShdSk0L4bLqtqtU2SjXNyBgM1LWtWXPGCAHu+LCNgd9FbK5tztgSmAPuoaedkcan9qPm7XA73+NcF+au7wtfvpVf6OGH3/pwCjZRkHyHY8kEq431qGiZENAWd++pPniUFRfKKzD8d4q13eltajA
-X-OriginatorOrg: ti.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 03:50:35.5049
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6850c314-67f1-43ad-ca7c-08de7e582fb6
-X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CH3PEPF00000017.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR10MB6283
-X-Rspamd-Queue-Id: 669F8245080
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEwMDAyOCBTYWx0ZWRfX50zYNRxxWwRn
+ rZurhmSKw1b3ZaJBeD1jhG9FQEbD6tFyuEVS/9cYmMdt69ZiXmfB/ddCOg0spNYBsyD7wY/mkfl
+ d/AvBjHSM4jXfco84AC7tWpT/14BbtGIlUkMzldnR/Rh9OBw0//lcJIfm6VcH08Pj3Od5EbhljH
+ Be6j0L3IFnX1hqZudxTZDfHm9Yw1GsUw2dC5p+cOGieXlKW/q6Hch7mZvPENC9GYuCsUtSPpD9c
+ ZQkRGfTvILBJMCx5vrulfohLVzmJaip4EDcKskeDcNWmVq0V2jFCPBLvEL6HnOTeU8MJuVs1n/8
+ b6SyG1WDfyYKaEy641q+1qpBi3Fzw9Tn53ZHxil46LmYMA7baQe4VKqh6mwrV89PFa/nQEUARsO
+ bKKNv8SsxK5AmKUc0cWgxhmXclRlM8PHMD1QVfn2jj5sEQAlVFDJXcwC+5JPOtZjp36GzF5jMB2
+ 1mL5rbmvFGYFOiR47ow==
+X-Proofpoint-GUID: mwOjsumkS8C4HNOYpUV17BH_oS94dzPa
+X-Proofpoint-ORIG-GUID: mwOjsumkS8C4HNOYpUV17BH_oS94dzPa
+X-Authority-Analysis: v=2.4 cv=KNRXzVFo c=1 sm=1 tr=0 ts=69af95b8 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22
+ a=EUspDBNiAAAA:8 a=g3FZPDIDENTUAh6yQDIA:9 a=QEXdDO2ut3YA:10
+ a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-10_01,2026-03-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 impostorscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603100028
+X-Rspamd-Queue-Id: 95B462450FE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[ti.com:+];
+	RCPT_COUNT_TWELVE(0.00)[25];
+	TAGGED_FROM(0.00)[bounces-273251-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273250-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ti.com:dkim,ti.com:url,ti.com:mid,0.0.0.3:email,0.0.0.48:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,0.1.134.160:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vigneshr@ti.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[taniya.das@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.0:email,0.0.0.18:email,0.0.0.1:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
 
 
-On 06/03/26 09:01, Dominik Haller wrote:
-> Add an overlay to use the PEB-AV-15 AV-Adapter. It's a small expansion board
-> using a Lontium LT8912B DSI->HDMI bridge and a TLV320AIC3007 audio codec.
+On 3/9/2026 3:36 PM, Abel Vesa wrote:
+> It has been concluded off-list that the Global Clock Controller needs to
+> scale the RPMh CX power domain, otherwise some of the subsystems might
+> crash or be unstable. So adding the RPMh CX power domain to the clock
+> controller which will result in all GDSCs being parented by CX. This way,
+> the vote from the consumers of each GDSC will trickle all the way to CX.
 > 
-> Signed-off-by: Dominik Haller <d.haller@phytec.de>
+
+Are the consumers not taking care to vote on clocks to take care?
+GDSCs from design of hardware, never requires a vote to operate. It is
+the clocks which has a voltage requirements.
+
+> So document the power domain and the required opp to that end.
+> 
+> Fixes: ee2d967030fe ("dt-bindings: clock: qcom: document the Glymur Global Clock Controller")
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/ti/Makefile               |   4 +
->  .../ti/k3-am68-phyboard-izar-peb-av-15.dtso   | 192 ++++++++++++++++++
->  2 files changed, 196 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
+>  .../devicetree/bindings/clock/qcom,glymur-gcc.yaml         | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-> index a188e62e32b4..ae5994818ad2 100644
-> --- a/arch/arm64/boot/dts/ti/Makefile
-> +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -135,6 +135,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-lvds-ph128800t006.dtb
->  k3-am68-phyboard-izar-lvds-ph128800t006-dtbs := k3-am68-phyboard-izar.dtb \
->  	k3-am68-phyboard-izar-lvds-ph128800t006.dtbo
-> +dtb-$(CONFIG_ARCH_K3) += k3-am68-phyboard-izar-peb-av-15.dtb
-> +k3-am68-phyboard-izar-peb-av-15-dtbs := k3-am68-phyboard-izar.dtb \
-> +        k3-am68-phyboard-izar-peb-av-15.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
->  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board-pcie1-ep.dtbo
->  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
-> @@ -323,6 +326,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->  	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
->  	k3-am67a-kontron-sa67-base-gpios.dtb \
->  	k3-am68-phyboard-izar-lvds-ph128800t006.dtb \
-> +	k3-am68-phyboard-izar-peb-av-15.dtb \
->  	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
->  	k3-am68-sk-base-board-pcie1-ep.dtb \
->  	k3-am69-sk-csi2-dual-imx219.dtb \
-> diff --git a/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
-> new file mode 100644
-> index 000000000000..cb75199c59fe
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/ti/k3-am68-phyboard-izar-peb-av-15.dtso
-> @@ -0,0 +1,192 @@
-> +// SPDX-License-Identifier: GPL-2.0-only or MIT
-
-Nit: OR is to be in upper case to be in sync with rest of the kernel
-
-> +/*
-> + * Copyright (C) 2026 PHYTEC Messtechnik GmbH
-> + * Author: Dominik Haller <d.haller@phytec.de>
-> + */
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,glymur-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,glymur-gcc.yaml
+> index b05b0e6c4483..94a911855776 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,glymur-gcc.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,glymur-gcc.yaml
+> @@ -65,9 +65,20 @@ properties:
+>        - description: USB4 PHY 2 pcie pipe clock source
+>        - description: USB4 PHY 2 Max pipe clock source
+>  
+> +  power-domains:
+> +    description:
+> +      A phandle and PM domain specifier for the CX power domain.
+> +    maxItems: 1
 > +
-> +/dts-v1/;
-> +/plugin/;
+> +  required-opps:
+> +    description:
+> +      A phandle to an OPP node describing required CX performance point.
+> +    maxItems: 1
 > +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include "k3-pinctrl.h"
-> +
-> +&{/} {
-> +	audio_refclk1: audio-clock {
-> +		#clock-cells = <0>;
-> +		compatible = "fixed-clock";
-
-compatible goes first
-
-> +		clock-frequency = <19200000>;
-> +	};
-> +
-> +	hdmi: hdmi-connector {
-> +		compatible = "hdmi-connector";
-> +		label = "hdmi";
-> +		type = "a";
-> +		ddc-i2c-bus = <&main_i2c2>;
-> +
-> +		port {
-> +			hdmi_connector_in: endpoint {
-> +				remote-endpoint = <&lt8912b_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	reg_audio_3v3: regulator-audio-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC3V3_AUDIO";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	reg_audio_1v8: regulator-audio-1v8 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "VCC1V8_AUDIO";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +	};
-> +
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "PEB-AV-15";
-> +		simple-audio-card,widgets =
-> +			"Headphone", "Headphone Jack",
-> +			"Microphone", "Mic Jack";
-> +		simple-audio-card,routing =
-> +			"Headphone Jack", "HPLOUT",
-> +			"Headphone Jack", "HPROUT",
-> +			"MIC3R", "Mic Jack",
-> +			"Mic Jack", "Mic Bias";
-> +		simple-audio-card,format = "dsp_b";
-> +		simple-audio-card,bitclock-inversion;
-> +		simple-audio-card,bitclock-master = <&link0_codec>;
-> +		simple-audio-card,frame-master = <&link0_codec>;
-> +
-> +		link0_cpu: simple-audio-card,cpu {
-> +			sound-dai = <&mcasp0>;
-> +		};
-> +
-> +		link0_codec: simple-audio-card,codec {
-> +			sound-dai = <&audio_codec>;
-> +			clocks = <&audio_refclk1>;
-> +		};
-> +	};
-> +
-> +};
-> +
-> +&dphy_tx1 {
-> +        status = "okay";
-> +};
-> +
-> +&dsi1 {
-> +	status= "okay";
-
-Spaces before "="
-
-> +};
-> +
-> +&dsi1_ports {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	port@0 {
-> +		reg = <0>;
-> +		dsi1_out: endpoint {
-> +			remote-endpoint = <&lt8912b_in>;
-> +		};
-> +	};
-> +
-> +	port@1 {
-> +		reg = <1>;
-> +		dsi1_in: endpoint {
-> +			remote-endpoint = <&dpi3_out>;
-> +		};
-> +	};
-> +};
-> +
-> +&dss {
-> +	status = "okay";
-> +};
-> +
-> +&dss_ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@3 {
-> +                reg = <3>;
-> +                dpi3_out: endpoint {
-> +                        remote-endpoint = <&dsi1_in>;
-> +                };
-> +        };
-> +};
-> +
-> +&mcasp0 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcasp0_pins>;
-> +
-> +	#sound-dai-cells= <0>;
-
-same here
-
-> +
-> +	op-mode = <0>;	/* MCASP_IIS_MODE */
-> +	tdm-slots = <2>;
-> +
-> +	/* 4 serializers */
-> +	serial-dir = <  /* 0: INACTIVE, 1: TX, 2: RX */
-> +		2 0 0 1
-> +		0 0 0 0
-> +		0 0 0 0
-> +		0 0 0 0
-> +	>;
-> +
-> +	tx-num-evt = <32>;
-> +	rx-num-evt = <32>;
-> +	status = "okay";
-> +};
-> +
-> +&main_i2c2 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	audio_codec: audio-codec@18 {
-> +		compatible = "ti,tlv320aic3007";
-> +		reg = <0x18>;
-> +		#sound-dai-cells= <0>;
-> +		ai3x-micbias-vg = <2>;
-> +		AVDD-supply = <&reg_audio_3v3>;
-> +		IOVDD-supply = <&reg_audio_3v3>;
-> +		DRVDD-supply = <&reg_audio_3v3>;
-> +		DVDD-supply = <&reg_audio_1v8>;
-> +
-> +	};
-> +
-> +	bridge@48 {
-> +		compatible = "lontium,lt8912b";
-> +		reg = <0x48>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +				lt8912b_in: endpoint {
-> +					data-lanes = <0 1 2 3>;
-> +					remote-endpoint = <&dsi1_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +				lt8912b_out: endpoint {
-> +					remote-endpoint = <&hdmi_connector_in>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&main_pmx0 {
-> +	mcasp0_pins: mcasp0-default-pins {
-> +		pinctrl-single,pins = <
-> +			J721S2_IOPAD(0x03C, PIN_INPUT, 1) /* (U27) WCLK, MCASP0_AFSX.MCASP0_AFSX */
-> +			J721S2_IOPAD(0x038, PIN_INPUT, 1) /* (AB28) BCLK, MCASP0_ACLKX.MCASP0_ACLKX */
-> +			J721S2_IOPAD(0x040, PIN_OUTPUT, 1) /* (AC28) DOUT, MCASP0_AXR0.MCASP0_AXR0 */
-> +			J721S2_IOPAD(0x07C, PIN_INPUT, 1) /* (T27) DIN, MCASP0_AXR3.MCASP0_AXR3 */
-
-Lower case for hex digits
-
-> +		>;
-> +	};
-> +};
+>  required:
+>    - compatible
+>    - clocks
+> +  - power-domains
+>    - '#power-domain-cells'
+>  
+>  allOf:
+> @@ -78,6 +89,7 @@ unevaluatedProperties: false
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/qcom,rpmh.h>
+> +    #include <dt-bindings/power/qcom-rpmpd.h>
+>      clock-controller@100000 {
+>        compatible = "qcom,glymur-gcc";
+>        reg = <0x100000 0x1f9000>;
+> @@ -113,6 +125,8 @@ examples:
+>                 <&usb4_phy_0_pcie_pipe>, <&usb4_phy_0_max_pipe>,
+>                 <&usb4_phy_1_pcie_pipe>, <&usb4_phy_1_max_pipe>,
+>                 <&usb4_phy_2_pcie_pipe>, <&usb4_phy_2_max_pipe>;
+> +      power-domains = <&rpmhpd RPMHPD_CX>;
+> +      required-opps = <&rpmhpd_opp_nom>;
+>        #clock-cells = <1>;
+>        #reset-cells = <1>;
+>        #power-domain-cells = <1>;
+> 
 
 -- 
-Regards
-Vignesh
-https://ti.com/opensource
+Thanks,
+Taniya Das
 
 
