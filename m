@@ -1,254 +1,141 @@
-Return-Path: <devicetree+bounces-273623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273628-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAYSGilEsGlLhgIAu9opvQ
-	(envelope-from <devicetree+bounces-273623-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:17:45 +0100
+	id UH/VD7JEsGmshgIAu9opvQ
+	(envelope-from <devicetree+bounces-273628-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:20:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD824254878
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:17:44 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0599254985
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C69B302DB7F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:13:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 97343314D705
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:19:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05B53B6C04;
-	Tue, 10 Mar 2026 16:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bKSxIi/X"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967803C141C;
+	Tue, 10 Mar 2026 16:19:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0D73A6B94
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 16:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACB353C062C;
+	Tue, 10 Mar 2026 16:19:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773159184; cv=none; b=PHOZE1pjA2B5ArRWIqyNVV14oTPAi44QHlB3MJbXPqzdrZVn8aE96pw51iHGRWDSkKTiWJlW79dX7WnlBcfNkGzpYHjQzxtaapWGhHKq703ObTnL+Hk8VUVUHgGdJKdDJQFITyAVRBNQ/6rIa0EVkMpaOWPOjInMVlU4roz6vxc=
+	t=1773159555; cv=none; b=RGRqXh7aFYIQrJ0Hv9cKV2jEWuev/LiHhb+J6pfKTALczlgPiLdv9sWNOrlveSMR/sSpRZKavgeiJS6ilHCt3KBSGsDrds8VwKaAKcIKg5yy4E/PgrwEIBeHUe9RiCYSLi/idgzA7pMz68nojHG3Wbaqpy/dh2/1dkQQvfDHmgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773159184; c=relaxed/simple;
-	bh=7JoHv29OolzgIEv9y1w9pxw0Mu3pZSv8a8Og/54KOU8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=IWq0y9GpsVqAG9owSFbbe1tCyPWY3Vq6DsMhwz9iDGPx2LNoX6Gh+D0KlxJPryqIFny7s4T8DDP//1Qr8xKVwuK6z5v6p0vzE9IjwlVoR6kcVtibNeGaUZ/WsvFv5IPU1Kv0kf94UX5K5/nRNHVgIXAg8akqFf/6DM0Qlae0XSY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bKSxIi/X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89D43C19423;
-	Tue, 10 Mar 2026 16:13:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773159184;
-	bh=7JoHv29OolzgIEv9y1w9pxw0Mu3pZSv8a8Og/54KOU8=;
-	h=From:Date:Subject:To:Cc:From;
-	b=bKSxIi/X7lmJgKndZfViruyVG4pOb+ccbjYjrv4+4n31isBUZqHzcxnovHfKGGutc
-	 quk6k1i/9YdDmwkWbblp/SqUD8G6u8Fyu1A7YZTBP9/GEcCPecdT33/1P3CvRyjQw3
-	 34P4jzicdQuZsdbVsjwL7zGIiBMOAKtyXf4iBBfK04dMf2wgP1EwDFDaA+EYKZKzBG
-	 WHCbhOUlltRgLKENSEiP2GE3jtYIs9aTYW/QX6PAw27ZdcUDwMipPgEZYZAJo7swKV
-	 VQvM9ISKfXPPccuMqij55jLIbbT5UbvYFcZIJ3ARf/SBRXb4avAim3kCR5LvkOx7qf
-	 yY7SX6emM95Qg==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Tue, 10 Mar 2026 17:12:47 +0100
-Subject: [PATCH v2] arm64: dts: airoha: en7581: Add switch node to to
- EN7581 SoC
+	s=arc-20240116; t=1773159555; c=relaxed/simple;
+	bh=qYTgE//7RAeiJjbyR6YmrrnkI+Pfr/YpzrMs1chOhnE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Bs0SeXaK1uTT0PepO02BpjVQyGbhCJ7j7t67aVxxtp0MtXaEwccsUpdPlgEwCo7klI76l+BTT+NM5dh+hsgGTz012tYlbOxZ6qAOyM5o2Q3sXj1lLKCW+TPNyufooim1tXfBBErsfDL3wSy2mFl336Uamyb2nSVg3S1yidfl1LQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from localhost.localdomain (unknown [223.166.92.103])
+	by APP-03 (Coremail) with SMTP id rQCowAB3lNtwRLBpMRBECg--.1611S2;
+	Wed, 11 Mar 2026 00:18:57 +0800 (CST)
+From: Han Gao <gaohan@iscas.ac.cn>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yixun Lan <dlan@kernel.org>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>
+Cc: devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Han Gao <rabenda.cn@gmail.com>,
+	Han Gao <gaohan@iscas.ac.cn>
+Subject: [PATCH v2 0/4] riscv: dts: spacemit: Add PMIC regulators usb pcie
+Date: Wed, 11 Mar 2026 00:18:49 +0800
+Message-ID: <20260310161853.3900605-1-gaohan@iscas.ac.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260310-airoha-7581-dsa-switch-v2-1-852692ba68b8@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4WNQQ6CMBBFr0K6dkxbQMCV9zAsCszQiYaSKUEN4
- e5WLuDyveS/v6mIwhjVNduU4MqRw5TAnjLVezeNCDwkVlbbi851A44leAdVWRsYooP44qX3QNR
- psgNh0WuVxrMg8fsI39vEnuMS5HP8rOZn/yZXAwaKoi5z3VXUGLo9UCZ8noOMqt33/QvCpD9jv
- QAAAA==
-X-Change-ID: 20260309-airoha-7581-dsa-switch-ffb0f2dfe4c0
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, linux-arm-kernel@lists.infradead.org, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
-X-Rspamd-Queue-Id: BD824254878
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:rQCowAB3lNtwRLBpMRBECg--.1611S2
+X-Coremail-Antispam: 1UD129KBjvdXoWrKryDCr1rXF1UArWrWr4rXwb_yoWkWrX_uF
+	1fGasakryDGFs2kFySq3WUtay8Cr4agFy3tF95Kr47tFy5uF1rG3W7JFy7Z3WrGryDAryD
+	Wa17AFWfJ3W3ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUb3xFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+	6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+	A2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+	Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
+	1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+	n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+	17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+	IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
+	C2KfnxnUUI43ZEXa7VUbGQ6JUUUUU==
+X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiBwkCDGmwM1ktHAAAsC
+X-Rspamd-Queue-Id: B0599254985
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273623-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
+	TAGGED_FROM(0.00)[bounces-273628-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DMARC_NA(0.00)[iscas.ac.cn];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.976];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,iscas.ac.cn:mid]
 X-Rspamd-Action: no action
 
-Introduce dsa switch controller node to EN7581 SoC and EN7581
-evaluation board.
+This patch series enables the PMIC, voltage regulators, usb and pcie
+for the OrangePi RV2 board.
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
 Changes in v2:
-- Fix ethernet-phy node name
-- Remove unnecessary phy-mode property in ethernet-phy nodes.
-- Link to v1: https://lore.kernel.org/r/20260309-airoha-7581-dsa-switch-v1-1-448530b7f91f@kernel.org
----
- arch/arm64/boot/dts/airoha/en7581-evb.dts | 18 +++++++
- arch/arm64/boot/dts/airoha/en7581.dtsi    | 84 +++++++++++++++++++++++++++++++
- 2 files changed, 102 insertions(+)
+- Merge patch 3/5 into 3
+- Merge patch 4/6/7 into 4
+  Remove regulator-always-on in pcie_vcc_3v3
+  Remove pinctrl in combo_phy
+  Add vpcie3v3-supply in pcie*_port
+- Link to v1: https://lore.kernel.org/linux-riscv/cover.1769895215.git.gaohan@iscas.ac.cn/
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-index 886e2e4b5f64ce1a2a5496d35b8379fb4ac27dc2..4c6fca99ae62ec8202e211e18311f2ab7e18d2e5 100644
---- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-+++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-@@ -81,6 +81,18 @@ conf {
- 			drive-open-drain = <1>;
- 		};
- 	};
-+
-+	mdio_pins: mdio-pins {
-+		mux {
-+			function = "mdio";
-+			groups = "mdio";
-+		};
-+
-+		conf {
-+			pins = "gpio2";
-+			output-high;
-+		};
-+	};
- };
- 
- &pcie0 {
-@@ -106,3 +118,9 @@ &eth {
- &gdm1 {
- 	status = "okay";
- };
-+
-+&switch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mdio_pins>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index ff6908a76e8eb6cf91343495d1fe531a868e41fb..c84c8d4a6662e24531e0c22ef3a4eb13da2d52fd 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -395,5 +395,89 @@ fixed-link {
- 				};
- 			};
- 		};
-+
-+		switch: switch@1fb58000 {
-+			compatible = "airoha,en7581-switch";
-+			reg = <0 0x1fb58000 0 0x8000>;
-+			resets = <&scuclk EN7581_GSW_RST>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				gsw_port1: port@1 {
-+					reg = <1>;
-+					label = "lan1";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy1>;
-+				};
-+
-+				gsw_port2: port@2 {
-+					reg = <2>;
-+					label = "lan2";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy2>;
-+				};
-+
-+				gsw_port3: port@3 {
-+					reg = <3>;
-+					label = "lan3";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy3>;
-+				};
-+
-+				gsw_port4: port@4 {
-+					reg = <4>;
-+					label = "lan4";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy4>;
-+				};
-+
-+				port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&gdm1>;
-+					phy-mode = "internal";
-+
-+					fixed-link {
-+						speed = <10000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+
-+			mdio: mdio {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				gsw_phy1: ethernet-phy@9 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <9>;
-+				};
-+
-+				gsw_phy2: ethernet-phy@10 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <10>;
-+				};
-+
-+				gsw_phy3: ethernet-phy@11 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <11>;
-+				};
-+
-+				gsw_phy4: ethernet-phy@12 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <12>;
-+				};
-+			};
-+		};
- 	};
- };
+Han Gao (4):
+  riscv: dts: spacemit: Enable i2c8 adapter for OrangePi RV2
+  riscv: dts: spacemit: Define fixed regulators for OrangePi RV2
+  riscv: dts: spacemit: Define the P1 PMIC regulators for OrangePi RV2
+  riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
 
----
-base-commit: 405c09548a695ca7be58b5b9d3ac8388630e907f
-change-id: 20260309-airoha-7581-dsa-switch-ffb0f2dfe4c0
+ .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 233 ++++++++++++++++++
+ 1 file changed, 233 insertions(+)
 
-Best regards,
+
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+prerequisite-patch-id: ef6e9c7b5854d0c08066b72f9a7868db8c2140eb
+prerequisite-patch-id: cfe3800f8c791ec4c63e070af9628e88e0fc31b9
+prerequisite-patch-id: b76493e625ae257c8adcd67874178458420e4d47
+prerequisite-patch-id: 88e01dc92c83bd88ddeb78891d3088209fed8d6b
 -- 
-Lorenzo Bianconi <lorenzo@kernel.org>
+2.47.3
 
 
