@@ -1,260 +1,176 @@
-Return-Path: <devicetree+bounces-273626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273629-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8KbjDJJEsGmshgIAu9opvQ
-	(envelope-from <devicetree+bounces-273626-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:19:30 +0100
+	id ANkgBulEsGmshgIAu9opvQ
+	(envelope-from <devicetree+bounces-273629-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:20:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 970F925493E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:19:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF5E72549E7
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:20:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3C1CB30CA57B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:19:16 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0F925300D1DC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:20:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22BB73C13F5;
-	Tue, 10 Mar 2026 16:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6023C13EB;
+	Tue, 10 Mar 2026 16:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="USAjZal/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-106102.protonmail.ch (mail-106102.protonmail.ch [79.135.106.102])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C363BF668;
-	Tue, 10 Mar 2026 16:19:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32012D8DCA;
+	Tue, 10 Mar 2026 16:20:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773159555; cv=none; b=kNHDRecUYJbSvsNDE+MaPhLcZDGRGkamen5Rg6iM4u9FAc42dVbKGgaJcQjGFdqMNFLF2Z41zbT6HV09BIDEvZ4JopVw/NdrNjf3ScYfliraepApD7z58hUF4xlQXu0DOff7FHlZO/jcn1/ePtvW/TAc05vMxN7x3F/J+2NnyyA=
+	t=1773159649; cv=none; b=pM2tiNfP0CyLYaULnv3UkO8TSf0bV697CC/zzhyu0sy8vwOQIvYCy8AUKi/qm3Mg3y2VdLEKY2/DkxPuBsgp/Ji0LElNOVGeGbyxZqFN/OhpfGR6QVzAJ+1DoP565yqtqE1PSV6zj0J5GixHycpjLIEaT4VKJYV20R02pYrUv/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773159555; c=relaxed/simple;
-	bh=R2G03XJ4LW0AnjMbZNdWNj0neh69EqlHLQcaDRDsD+M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IvNZmXt0gMfPLLk1WgGeE8howvoh2CWpZlfEIj2ibxMD7AzWScKYSFnTd69QR9+na5Oxc7JpfoOyTMiKd0n5NzO5iQxhmRq4oGQLtZ8/Q7OIJH1iIn5oreTNNmX+aI2q20tICG4tf4TgyEPL2PDalVsGwWVtZCk6LNwvLmjn4ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from localhost.localdomain (unknown [223.166.92.103])
-	by APP-03 (Coremail) with SMTP id rQCowAB3lNtwRLBpMRBECg--.1611S6;
-	Wed, 11 Mar 2026 00:18:59 +0800 (CST)
-From: Han Gao <gaohan@iscas.ac.cn>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yixun Lan <dlan@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>,
-	Han Gao <gaohan@iscas.ac.cn>
-Subject: [PATCH v2 4/4] riscv: dts: spacemit: Enable USB3.0/PCIe on OrangePi RV2
-Date: Wed, 11 Mar 2026 00:18:53 +0800
-Message-ID: <20260310161853.3900605-5-gaohan@iscas.ac.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260310161853.3900605-1-gaohan@iscas.ac.cn>
-References: <20260310161853.3900605-1-gaohan@iscas.ac.cn>
+	s=arc-20240116; t=1773159649; c=relaxed/simple;
+	bh=/kwTVlD5wO3RCWS4OFNL5bpmNc30DwJBQHbTccteqzk=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ViZJ0FWheeIkN6wk7Q3CXh/AawNbHyC9VM+u42TnxXEMXRGDtgfc1RVj4ymstWfRGGb5Tv46VF18EBqAyTl9pfn5UEu2aa43Gj1sr8EKNnAxOzrp12IT4sLFiRpbjxcJpfkB+oTziLKYgO3aieQi6mCWCbvyXCzkEqTSFjpM9GM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=USAjZal/; arc=none smtp.client-ip=79.135.106.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1773159644; x=1773418844;
+	bh=e4HSNccmKB3Yosyw7jREa+wZR4UoY+r/POtySV43otA=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=USAjZal/c8ilL9UQOS7CG0sYrHwTi9FBeut5a/NsYoZG0lwdGGYaS4NDxc8simfKI
+	 G1DQayq9yQLE51Y9D5hVV6Hs+Y8QZTfDg0tGpJJYkTOf4OJ/u/Y3gPK63PeFd+2FQH
+	 tJdGLkyguEfaABALivsD4vE4nYRDGFa8ug1jBmCEP0jLPo/2a/APRcqNH7LibVFE8K
+	 j6pH77iN9foF86SfmQISUxLOxwyRxjV1P/Idx5+FxEnd3dCHF0FF8Ap+AvpjftXAi+
+	 YDze5RPLK9BOBWvBInLZkd1WfuH7vSbLxu7Rs0jAHkTTqasU+4orNaTLLIxyvynoOA
+	 IURn+Uim/Ohcw==
+Date: Tue, 10 Mar 2026 16:20:38 +0000
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+From: cristian_ci <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: msm8953-flipkart-rimob: Enable touchscreen
+Message-ID: <zqVKBYSFu9Qsyz7CKpxCBliYAzh1QjVqyTi24YLuiZy_muAh81pAHgkTWsEaAJsRbMlG_UewopTzYleJCypPrbukpTaBZSpuBtmG5QIKMPs=@protonmail.com>
+In-Reply-To: <f6029a8f-07d7-4872-813a-ff98fd11b5af@oss.qualcomm.com>
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-5-aa2c330572c0@protonmail.com> <f6029a8f-07d7-4872-813a-ff98fd11b5af@oss.qualcomm.com>
+Feedback-ID: 27475468:user:proton
+X-Pm-Message-ID: 774cb5722f82a2c4e94f4ddb240ac2f7a274f305
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:rQCowAB3lNtwRLBpMRBECg--.1611S6
-X-Coremail-Antispam: 1UD129KBjvJXoWxAw1rJrWxArWxuFyxGryUJrb_yoW5ZFWrpF
-	17Wrsa9a4rAryfKw45Wa4Iga1rWr1vka95Cwn5Zr48GF4qga4q9rn7Ar1rAF1rWr48X3y3
-	AFW2yFy8KF12g3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmI14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr
-	1UM28EF7xvwVC2z280aVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4j6r4U
-	JwAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
-	IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4U
-	M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
-	kIc2xKxwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
-	AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI
-	42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCw
-	CI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnI
-	WIevJa73UjIFyTuYvjfUOyIUUUUUU
-X-CM-SenderInfo: xjdrxt3q6l2u1dvotugofq/1tbiDAgCDGmwM1AtDgAAsT
-X-Rspamd-Queue-Id: 970F925493E
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: AF5E72549E7
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,lists.linux.dev,gmail.com,iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273626-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gaohan@iscas.ac.cn,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273629-lists,devicetree=lfdr.de];
+	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[0.0.0.2:email];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.968];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[protonmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,iscas.ac.cn:mid,iscas.ac.cn:email,0.0.0.1:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,protonmail.com:dkim,protonmail.com:email,protonmail.com:mid,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-Enable the DWC3 USB 3.0 controller and its associated usbphy2 on the
-OrangePi RV2 board.
 
-The board utilizes a Genesys Logic GL3523 hub, which requires two
-separate power supplies: one VBUS and one for hub itself.
-Add two GPIO-controlled fixed-regulators to manage this.
 
-Define a 3.3v fixed voltage regulator to be used by PCIe on OPi RV2.
 
-Define PCIe and PHY-related Device Tree nodes for the OPi RV2.
 
-Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
----
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     | 90 +++++++++++++++++++
- 1 file changed, 90 insertions(+)
+Cristian
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index 1f08a2713345..fa30f8ba5c77 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -23,6 +23,15 @@ chosen {
- 		stdout-path = "serial0";
- 	};
- 
-+	pcie_vcc_3v3: regulator-pcie-vcc3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "PCIE_VCC3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio K1_GPIO(116) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	reg_dc_in: regulator-dc-in-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "dc_in_12v";
-@@ -42,6 +51,24 @@ reg_vcc_4v: regulator-vcc-4v {
- 		vin-supply = <&reg_dc_in>;
- 	};
- 
-+	regulator-usb3-vbus-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB30_VBUS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio K1_GPIO(97) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	usb3_hub_5v: regulator-usb3-hub-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "USB30_HUB";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio K1_GPIO(123) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -54,6 +81,10 @@ led1 {
- 	};
- };
- 
-+&combo_phy {
-+	status = "okay";
-+};
-+
- &eth0 {
- 	phy-handle = <&rgmii0>;
- 	phy-mode = "rgmii-id";
-@@ -230,8 +261,67 @@ dldo7 {
- 	};
- };
- 
-+&pcie1_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_3_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie1_port {
-+	phys = <&pcie1_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie1 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2_4_cfg>;
-+	status = "okay";
-+};
-+
-+&pcie2_port {
-+	phys = <&pcie2_phy>;
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+};
-+
-+&pcie2 {
-+	vpcie3v3-supply = <&pcie_vcc_3v3>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&usbphy2 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3 {
-+	dr_mode = "host";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	hub_2_0: hub@1 {
-+		compatible = "usb5e3,610";
-+		reg = <0x1>;
-+		vdd-supply = <&usb3_hub_5v>;
-+		peer-hub = <&hub_3_0>;
-+		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-+	};
-+
-+	hub_3_0: hub@2 {
-+		compatible = "usb5e3,620";
-+		reg = <0x2>;
-+		vdd-supply = <&usb3_hub_5v>;
-+		peer-hub = <&hub_2_0>;
-+		reset-gpios = <&gpio K1_GPIO(124) GPIO_ACTIVE_LOW>;
-+	};
-+};
--- 
-2.47.3
+Sent with Proton Mail secure email.
 
+On Tuesday, March 10th, 2026 at 14:08, Konrad Dybcio <konrad.dybcio@oss.qua=
+lcomm.com> wrote:
+
+> On 3/8/26 4:52 PM, Cristian Cozzolino via B4 Relay wrote:
+> > From: Cristian Cozzolino <cristian_ci@protonmail.com>
+> >
+> > This device uses a Goodix GT5688 touch controller, connected to i2c_3.
+> > Add it to the device tree.
+> >
+> > Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
+> > ---
+> >  .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 32 ++++++++++++++=
+++++++++
+> >  1 file changed, 32 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts b/arch=
+/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
+> > index 7b2849405462..709ea6fc9fbb 100644
+> > --- a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
+> > +++ b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
+> > @@ -94,6 +94,31 @@ &hsusb_phy {
+> >  =09status =3D "okay";
+> >  };
+> >
+> > +&i2c_3 {
+> > +=09status =3D "okay";
+> > +
+> > +=09touchscreen@5d {
+> > +=09=09compatible =3D "goodix,gt5688";
+> > +=09=09reg =3D <0x5d>;
+> > +
+> > +=09=09interrupts-extended =3D <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
+>=20
+> interrupts *and* irq-gpios sounds wrong.. and I think the driver doesn't
+> even consume the former. Trying to read through some of that, I think
+> it's on purpose since the IRQ GPIO is repurposed for setting the I2C addr
+> (which nota bene doesn't match between the comment in that driver and thi=
+s
+> submission - perhaps that's just a SKU difference) during the reset
+> sequence
+>=20
+> i.e., does the touch work any different if you drop the above?
+
+Apparently, not. That works as expected.
+
+> does /proc/interrupts differ?
+
+When interrupts-extended is defined:
+
+...
+ 50:        318          0          0          0          0          0     =
+     0          0  msmgpio  65 Edge      gt5688
+...
+ 54:       3141          0          0          0          0          0     =
+     0          0 GIC-0  65 Level     gpu-irq
+...
+
+Instead, when interrupts-extended is removed/commented out, I see just:
+
+...
+ 53:       2404          0          0          0          0          0     =
+     0          0 GIC-0  65 Level     gpu-irq
+...
+
+> Konrad
+>=20
+
+Regards
 
