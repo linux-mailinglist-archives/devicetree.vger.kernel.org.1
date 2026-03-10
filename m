@@ -1,224 +1,405 @@
-Return-Path: <devicetree+bounces-273377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273378-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wEIXMR7jr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273377-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:23:42 +0100
+	id kJoiJhvir2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273378-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:19:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 229CC2484D1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:23:42 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13FDA24831F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:19:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AB0CB3248170
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:08:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CD40030C3A9F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:08:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5038743DA3F;
-	Tue, 10 Mar 2026 09:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A733543CEDF;
+	Tue, 10 Mar 2026 09:08:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="M8G5bt2u"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YeY9ghDR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010060.outbound.protection.outlook.com [52.101.69.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89C033EDAB3;
-	Tue, 10 Mar 2026 09:07:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773133668; cv=fail; b=FqnI9es2hoDqt7ThNL8kk4yI6HLS8VD8sFtHG7HONQJs1/NvdS3OUlhc/7teubjHrcGb4tN1zK0nqYz4V5YUifsoOx35mauvlhMLMInWSYiIcaUT1HSORPMoPsjs+Wnve3n8fkz99YHaxWwfuoEzsCeTM2cLz6sqp6jrcUtKt2Q=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773133668; c=relaxed/simple;
-	bh=p//58aUNG/Q92qVYQzIqWkJzYfFlxW4PdLPJi84VxN8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=X8vF93xBZCdXOsGYF7eKDL9ay8qp/MMBbmAd+gHm2mq2lzLNrGk8xBDGxXUjwkua4yoOJFoi212lCV51wNx4CpStBbizgM5ADP93F0G6j2sG7p2+3LJ6VrIKOwgogojPoT8rnQ4160lXHLaHqxAgNx87niNFKWR3F2RcS2fyJ6s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=M8G5bt2u; arc=fail smtp.client-ip=52.101.69.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ca3k/ebXFlCc3gPfSk2EHxXJRJ0lSyWqCwYZZMREi/1ZQt7OeZQ5NMR6D4tl3MMINUg0GQ4ivB2u/zv6BS3sdgsxED/10ux6fu5pD2KYaUHaW4LJdIx823/QW/k3gMPuxozOqWitlGnzLc2oFbIah/1duJpLQR153qu9l9PlAnpzuaXw1nRdSNEhsFlybwsCt99ZZ0Y+xKIUu739HFSqi7qNJIP744S0PuBTGQfgvuntofWWhHJZiGFo97HKWY2MwwwL5l9qH04KwmJQrfY8KFiKU9o+icDQ5W3HxoBMZsEXvOTS5U7KxPFandAqsuuRPc9wYM1U3TtvKbhGxzX0aA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hcCUPaPgLXaoZ1TpgYlHX2JIjLC4d4l4GFxl/fClsnw=;
- b=cbEyRJ1XUfp2NBp9qQ9khNoTMc2M76kRvwgp+K8+u0Pm0/7AqXFgWVe8qlgpuD4mznvNWgely/67sYuevVI0KH9gdF146YqYD3Dz9zoyIRDOhWfuKUrRddEbSfF1ZD5YC2kMftYlsaVGVvItzx9TsKLxUCams7uxfNo95ZHEbmDfAj8gyRzB8ZGwoctyqtxSD2Hl2szrKdZblPMaQmxwPJHQhVnrFVXcqCWhIpybE7a47tnn+zqagj9G6PDVX2YLc1ai2X3qM8MA/jk/bQjFvwcw/dCKUkJy9IiHUPScAl5LjL7B5xs6LPp75hEVfjk6RxfCHY7Kl5s63NfQyGTV3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 164.130.1.59) smtp.rcpttodomain=arm.com smtp.mailfrom=foss.st.com; dmarc=fail
- (p=none sp=none pct=100) action=none header.from=foss.st.com; dkim=none
- (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hcCUPaPgLXaoZ1TpgYlHX2JIjLC4d4l4GFxl/fClsnw=;
- b=M8G5bt2uvxZC48AObfNnpDk27qU3HDmn2vFRdFGTzM6BscGFv4KME/9oD0y9OgL/EM2RKyABhvlmcs6xAm/fxwDc/I0sCS0VEbAwYG3Unktv3TGZdWH9o7LO2B9hofTQh/ZgubzwouIBOAheVJlO7FyGGB/JrbIdyEOvKZfmLKEAWceQmKBArrgJHutRvBXhWTYUq02e4is8VoONK6L1e74XWrjlY4wVys1rxoiJ+SC4Hb/F2iT7CkSW1WUqp1/L6oqLN5skMVoKDbr05E8mo0Nj8fddajgqId7ArOnXbUSLnpZEdX6ZROXDxtIQPGj9j8dpgNB6KJEeDAggPNH/ZA==
-Received: from DU7P251CA0020.EURP251.PROD.OUTLOOK.COM (2603:10a6:10:551::22)
- by AS4PR10MB5870.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:515::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Tue, 10 Mar
- 2026 09:07:27 +0000
-Received: from DB5PEPF00014B92.eurprd02.prod.outlook.com
- (2603:10a6:10:551:cafe::3) by DU7P251CA0020.outlook.office365.com
- (2603:10a6:10:551::22) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Tue,
- 10 Mar 2026 09:07:22 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.59)
- smtp.mailfrom=foss.st.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=none header.from=foss.st.com;
-Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
- designate 164.130.1.59 as permitted sender) receiver=protection.outlook.com;
- client-ip=164.130.1.59; helo=smtpO365.st.com;
-Received: from smtpO365.st.com (164.130.1.59) by
- DB5PEPF00014B92.mail.protection.outlook.com (10.167.8.230) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9678.18 via Frontend Transport; Tue, 10 Mar 2026 09:07:26 +0000
-Received: from STKDAG1NODE2.st.com (10.75.128.133) by smtpo365.st.com
- (10.250.44.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 10 Mar
- 2026 10:09:54 +0100
-Received: from [10.48.86.79] (10.48.86.79) by STKDAG1NODE2.st.com
- (10.75.128.133) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.29; Tue, 10 Mar
- 2026 10:07:24 +0100
-Message-ID: <ed019efc-d1e0-4e77-bf9c-79da40f0c707@foss.st.com>
-Date: Tue, 10 Mar 2026 10:07:24 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0186D43C07F
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:08:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773133696; cv=none; b=NLj8I1TXCzw13oQJJZza/kvszcmjZY0+8EYvuOmvR0QXiBDwpJYjHJAFBnF15x4vX2/jzrwbXc9/Fh0+5NFu4Sk4Fnr3HVLxMzYlmSuVKzJaLAsYcARNW+62MJ+1uO37xALbYhG48l08iUnGMwDM94OtniuH6L/N2kaWFiF2DEo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773133696; c=relaxed/simple;
+	bh=EMBzIkkC+QKJ8BCDrXQDoN7RU2Zm0FBEOSod4C9knFg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mrg65fFZY9YVWRrLX+SQ5GVesDSSQhcDLWZliw9AiT0df63r5jrTZd3uv1ApxrP3xOWfoxLIZkEiUqKoaREdXDb2FZMp398S3wwxftWuyEHQUwlycZ+XOTuC6rkdKCmyg69Mn1C/bpwm6esjbhSc49UpkQ5QNP2k6ZzGxRHLV7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YeY9ghDR; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-48540d21f7dso11232585e9.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:08:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773133693; x=1773738493; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+FnCkCWYP7bCBRmbZ74BO4qxUQPGxQbMvawa68kFQD0=;
+        b=YeY9ghDRdUZ0/CUd+LwSUrDetHt7LS6MGe9k6hDduRw3nT1cEPCl4/7mvUxi38vKEJ
+         SRGIjKqreKPkksqnHCEu7icNEFZhSu47lP/hSje+UqkfWKa5dvEu3cwWV4S/gV3PA3wl
+         +uX3qVW4OkILYXwqkH7K5DaREETEYrot5LUNbJka9SQrsuI3Vc1u4EH4oDdVVwwTtU0P
+         u3q29MGb03FqOu78Kv0Hss9a0s1laj/YAKXVx5MTFC6Tbbjp1qYmZR8IwXWVfUt+aH8e
+         kRHHpr6DZ5qb4vKlg2NSVP3JmN1rtaM4zET6gQcj14Nf00PppEa3fM6eP+baMC1LZ1cZ
+         P/zA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773133693; x=1773738493;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+FnCkCWYP7bCBRmbZ74BO4qxUQPGxQbMvawa68kFQD0=;
+        b=RZHAaUUnUoE+vUXfLysRAtpocWY59oDq6Vc/kH/Q225wCqgLGTkhyfO67eNCycufIF
+         T1R/4ED079hFGvCGV2FJhAuL8/BkPmF2Kgb3k7wkCi/BvL2QsC275gtsUzN4+OYc+hrA
+         R/Gq57IQyY1d7AfqDXB6VsYIVBJqY5WGgc43k3zjdXxc4/u5ry629Maw18cdaP7y2tuA
+         H9CCf+YDV9J/AGkLtLjpaWeRKE7dAtCTM2O+fZEXGQiF2/D2Eu4aMDAbaWotBF+jl8C6
+         AfURMevyAPtQTDBz0euarMgksaGxox7qQ76nCZ1dfuBsolx9wwvNGgrE8EU70Zb3839t
+         1I+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUirgG5PSvQB9VQKG8cBQEhPk1v3Zi36/usRoFsjIUtMJHadDXpTYzlKyDbxeNkMmkPfpHe9vUWuAJV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVyKaJ8NgkJDOY9/q+eUTamaONZY1SWbM8erqs4YzDhRobwjOm
+	nYfY9X5JrZheDh5tRcMjz7Go+uqeI430Dos/8+B28flkTrgzcegcdtRg
+X-Gm-Gg: ATEYQzy9e5OkmA6oFvlUBDCm5BoWEHfCYDBXPtC1CgxIpnaE6V5Uj0Zr+hGvABfq1li
+	TBQ/YMGjsdaIy2N3IkhiXBTlL1qF51RZuRkYMRjIGPtZ5D8rHZ8bsdkRwfEqYTqddq05XeZoOF0
+	r6bE7mAWxSPHv0FyviUWxwpfXx0J5qqiEOPPINB6LKiUSW4Z+bLSJZfWUDAIHclm6zNb/UzR0A1
+	8Wwh1Y50li47DIu1JvMH5bY/v+TsCbxepWOs1FugLoL2SKWrrKhmamo9xGK+RrpR6RUHCogzyLi
+	3dsojopoyS07MBJXkasgsn9sRaZEUw/byYw8exkNhz3yzD/baKhxeu4ECq2te2peEFzUy5gog7C
+	Y8uY/XDxYsRemqb3QNkVcwivwslppzXO4P4eaq6hKrvTGeWDGekf4hClMhbY3HcXdVznlGAwBJi
+	K22Zbmh0JNOn3F/LN60C/kyVsWHkHzwUTrLOIBjTF4jWFnX5Hy6JdgwT7trXuDZaVDZnuZxMeV3
+	pXxvjWsfdAPMbs56qPV6AjxW+Debx0eX0jZUw1RvD9qroUz3Louj7NWHf8FU/0+7w==
+X-Received: by 2002:a05:600c:1e86:b0:483:5310:dc67 with SMTP id 5b1f17b1804b1-4852695b81cmr240917065e9.20.1773133692873;
+        Tue, 10 Mar 2026 02:08:12 -0700 (PDT)
+Received: from HYB-DlYm71t3hSl.ad.analog.com ([137.71.226.102])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48543a40efesm13873675e9.24.2026.03.10.02.08.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 02:08:12 -0700 (PDT)
+Date: Tue, 10 Mar 2026 10:08:09 +0100
+From: Jorge Marques <gastmaier@gmail.com>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org, 
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org, Frank.Li@nxp.com, 
+	lgirdwood@gmail.com, vikash.bansal@nxp.com, priyanka.jain@nxp.com, 
+	aman.kumarpandey@nxp.com
+Subject: Re: [PATCH v6 4/7] mfd: p3h2x4x: Add driver for NXP P3H2x4x i3c hub
+ and on-die regulator
+Message-ID: <jceqgjsppjtxrayvexznjxu7aedm6w3nvc6xdifet4uo4n35xj@lb3jxtfdo7rp>
+References: <20260310065727.3759342-1-lakshay.piplani@nxp.com>
+ <20260310065727.3759342-4-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/12] bus: add stm32 debug bus and coresight support
- for stm32mp1x platforms
-To: Gatien Chevallier <gatien.chevallier@foss.st.com>, Suzuki K Poulose
-	<suzuki.poulose@arm.com>, Mike Leach <mike.leach@linaro.org>, James Clark
-	<james.clark@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mathieu Poirier
-	<mathieu.poirier@linaro.org>, Leo Yan <leo.yan@linux.dev>,
-	=?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, "Linus
- Walleij" <linusw@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	<cristian.marussi@arm.com>, <jens.wiklander@linaro.org>,
-	<etienne.carriere@foss.st.com>, Sudeep Holla <sudeep.holla@kernel.org>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-gpio@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
-	Antonio Borneo <antonio.borneo@foss.st.com>
-References: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20260226-debug_bus-v6-0-5d794697798d@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: ENXCAS1NODE2.st.com (10.75.128.138) To STKDAG1NODE2.st.com
- (10.75.128.133)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB5PEPF00014B92:EE_|AS4PR10MB5870:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6551a6f2-f0f9-4506-3ddc-08de7e847365
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|82310400026|1800799024|36860700016|921020|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	dwNWupVH63cMVFMLW1gR4I84G8MdRzRdvrSZh5M9n2qMWOngTmrLZg2deenntrWDYW30BOHhtHxyZ+o58ako5VuL4HrvY0BXvz44G1u4Z5inNO+MGveQa49muKYfRMeWLlth8ER0qDhP70ISC2/SQmrMG0qSxKzvgmwXOcmBZm+IvBFT0Gaua04I4rPvaNJkCGf8WHEbAvryKFmCbyVmnNKlnPYZKCKLAvECr9Lxip7nW3OeZUmcTfPA3QUjvxFb52pXB+KOhH92xkRGiPD1ri4p4MdtaYDTlFZM9Ui3w3QvGi2rv854MQQ3G/Hf1BxEkHMGrI4KG1cMGa5Qgm+38uBKRKbVNaUYmo6nKg+YRESXjSUmto40HnofdJPLdNEIEAjYn461nsK1H9pgLa7UkTRtqw8h4lv0IMyMr5eR4+4YP7lqU4jMhPBCMXXEfMq35sdwsLpAHDSaE0BLdu+PzPomcjRbJeOD+9uA/kY8e3v9SMZPCqte1vLC9S7pC/FQtpJc9fCDbxi5K7+uz5RSMKz8mTdveBrL/I/ox/iStrAJbJHgoi7ygiI+5vHxzyck2I85uHzsz3zobKjX7xe5hEszDlIuWCsDUy2ZHibefiTMq83Z7lgiaY7DOrvn5WygW7HcGJyS7iwcGzssQe72uiErVHGLe78ZwN4rMx20D5x7ksdBhCSzaeHnGzm5c93hCYtjuNRjwMc8rrIaAwkcSoylE3GgBLzVsPQ+eFHadsWlTsBfyeSte5sl0/ZbucM0ce2Spl1uYjw7LZjUkvk1Lw==
-X-Forefront-Antispam-Report:
-	CIP:164.130.1.59;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(82310400026)(1800799024)(36860700016)(921020)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	jWmY/rsYQ83gb2tzCrLhepHY+t1hQUyn1Wpw2DsZeyWuT1/HZEP4bIXrOnwFJ5A8zIjNaZhI+vfG1y7FSxd69OOco8ToY7/ZHMI3MbKZkYuIUUvpEuRA9/C+ZhKqECJlkd1H7xtIYYwRDOqO2NHLny50Lfr60u1wU2Io8JhcP3hbXgOMIrfOCT4Bh6TMRyidcQYadNHe3HxYASOCFJUHxfgYvNb6HYMcjbBF6SmM843z9k5afsaWMpI/DYT99H1V8Tliyj/Ic9WL1ZkjbuD9tJT0eoOr3tgLOYpFQHsHMlqWB2cVzHwIc9RzCARkwgLFxETRyAo/R7E0tewMse1EjhTgpkSnBgE34e3vlcyjcT5j6Lolge1xUrnZ6i/lWO94x3ausRA7c2rwE9p/YI6e0qHr07Yk2ryYB26xlpokqcpLA0XNVkbp+Ndz9fdZ0lbJ
-X-OriginatorOrg: foss.st.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 09:07:26.8938
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6551a6f2-f0f9-4506-3ddc-08de7e847365
-X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.59];Helo=[smtpO365.st.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB5PEPF00014B92.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR10MB5870
-X-Rspamd-Queue-Id: 229CC2484D1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310065727.3759342-4-lakshay.piplani@nxp.com>
+X-Rspamd-Queue-Id: 13FDA24831F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[foss.st.com,none];
-	R_DKIM_ALLOW(-0.20)[foss.st.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273377-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[foss.st.com,arm.com,linaro.org,kernel.org,linux.dev,gmail.com];
+	TAGGED_FROM(0.00)[bounces-273378-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[foss.st.com:dkim,foss.st.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,st.com:email];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexandre.torgue@foss.st.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[foss.st.com:+];
+	FROM_NEQ_ENVFROM(0.00)[gastmaier@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,nxp.com:email,carnegierobotics.com:email]
 X-Rspamd-Action: no action
 
-Hi
-
-On 2/26/26 11:30, Gatien Chevallier wrote:
-> Stm32 SoCs embed debug peripherals such as Coresight. These peripherals
-> can monitor the activity of the cores. Because of that, they can be
-> used only if some features in the debug configuration are enabled.
-> Else, errors or firewall exceptions can be observed. Similarly to
-> the ETZPC(on stm32mp1x platforms) or the RIFSC(on stm32mp2x platforms),
-> debug-related peripherals access can be assessed at bus level to
-> prevent these issues from happening.
+On Tue, Mar 10, 2026 at 12:27:24PM +0530, Lakshay Piplani wrote:
+> From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 > 
-> The debug configuration can only be accessed by the secure world.
-> That means that a service must be implemented in the secure world for
-> the kernel to check the firewall configuration. On OpenSTLinux, it is
-> done through a Debug access PTA in OP-TEE [1].
-> To represent the debug peripherals present on a dedicated debug bus,
-> create a debug bus node in the device tree and the associated driver
-> that will interact with this PTA.
+> Add core MFD support for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+> family of multiport I3C hub devices. These devices connect to a host via
+> I3C/I2C/SMBus and expose multiple downstream target ports.
 > 
-> [1]: https://github.com/OP-TEE/optee_os/pull/7673
+> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
 > 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
 > ---
 > Changes in v6:
-> - Fix use of platform_driver_register() in probe of the stm32 debug bus
->    (unusable since dc23806a7c47 ("driver core: enforce device_lock for driver_match_device()"))
-> - Added all review tags
-> - Link to v5: https://lore.kernel.org/r/20260123-debug_bus-v5-0-90b670844241@foss.st.com
+>  - No change
 > 
-
-...
-
+> Changes in v5:
+>  - Corrected the ordering in the Makefile and Kconfig for MFD_P3H2X4X
+>  - Updated dev_err_probe() for regmap_init failure.
+>  - Updated module description
 > 
+> Changes in v4:
+>  - Split the driver into three separate patches(mfd, regulator and I3C hub)
+>  - Added support for NXP P3H2x4x MFD functionality
 > ---
-> Gatien Chevallier (12):
->        dt-bindings: document access-controllers property for coresight peripherals
->        dt-bindings: pinctrl: document access-controllers property for stm32 HDP
->        dt-bindings: bus: document the stm32 debug bus
->        bus: stm32_firewall: allow check on different firewall controllers
->        bus: stm32_firewall: add stm32_firewall_get_grant_all_access() API
->        drivers: bus: add the stm32 debug bus driver
->        arm: dts: stm32: introduce the debug bus for stm32mp1x platforms
->        arm: dts: stm32: enable the debug bus on stm32mp1x boards
->        arm: dts: stm32: enable CoreSight on stm32mp15xx-dkx boards
->        arm: dts: stm32: enable CoreSight on the stm32mp157c-ev1 board
->        arm: dts: stm32: enable CoreSight on the stm32mp135f-dk board
->        pinctrl: stm32: add firewall checks before probing the HDP driver
+> ---
+>  MAINTAINERS                 |   2 +
+>  drivers/mfd/Kconfig         |  12 ++++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/p3h2840.c       | 126 ++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/p3h2840.h |  28 ++++++++
+>  5 files changed, 169 insertions(+)
+>  create mode 100644 drivers/mfd/p3h2840.c
+>  create mode 100644 include/linux/mfd/p3h2840.h
 > 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 06b803d6f45d..cc33c6c300e4 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19114,6 +19114,8 @@ L:	linux-kernel@vger.kernel.org
+>  L:	linux-i3c-owner@lists.infradead.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+> +F:	drivers/mfd/p3h2840.c
+> +F:	include/linux/mfd/p3h2840.h
+>  
+>  NXP PF5300/PF5301/PF5302 PMIC REGULATOR DEVICE DRIVER
+>  M:	Woodrow Douglass <wdouglass@carnegierobotics.com>
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index 7192c9d1d268..645a8e4e62b6 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -617,6 +617,18 @@ config MFD_MX25_TSADC
+>  	  i.MX25 processors. They consist of a conversion queue for general
+>  	  purpose ADC and a queue for Touchscreens.
+>  
+> +config MFD_P3H2X4X
+> +       tristate "NXP P3H2X4X I3C Hub Device"
+> +       depends on I3C
+> +       select MFD_CORE
+> +       select REGMAP_I3C
+> +       help
+> +         Enable Support for NXP P3H244x/P3H284x I3C HUB device using I3C/I2c
+> +         communication interface.
+> +
+> +         This driver provides support for I3C Hub and regulator, additional
+> +         drivers must be enabled in order to use the functionality of the device.
+> +
+Hi Aman, our CI/CD is failing with
 
-Patch 1 to 11 applied on stm32-next. Linus, let me know if I take the 
-pinctrl one or you prefer to take it.
+  arm-linux-ld: drivers/mfd/p3h2840.o: in function `p3h2x4x_device_probe_i2c':
+  P3h2840.c:(.text+0x40): undefined reference to `__devm_regmap_init_i2c'
 
-regards
-Alex
+And indeed
+
+  $ find . -name 'regmap*.o'
+    ./drivers/base/regmap/regmap.o
+    ./drivers/base/regmap/regmap-i3c.o
+
+It infers the systems based on the KConfig+Makefile
+I suggest adding select REGMAP_I2C, since your driver does call i2c
+regmap methods (line 67), outside the regmap i3c umbrella.
+
+Also, which drivers must be enabled to use the functionality?
+
+Thanks,
+Jorge
+
+>  config MFD_PF1550
+>  	tristate "NXP PF1550 PMIC Support"
+>  	depends on I2C=y && OF
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index e75e8045c28a..aaadf50fedf4 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -122,6 +122,7 @@ obj-$(CONFIG_MFD_MC13XXX)	+= mc13xxx-core.o
+>  obj-$(CONFIG_MFD_MC13XXX_SPI)	+= mc13xxx-spi.o
+>  obj-$(CONFIG_MFD_MC13XXX_I2C)	+= mc13xxx-i2c.o
+>  
+> +obj-$(CONFIG_MFD_P3H2X4X) 	+= p3h2840.o
+>  obj-$(CONFIG_MFD_PF1550)	+= pf1550.o
+>  
+>  obj-$(CONFIG_MFD_NCT6694)	+= nct6694.o
+> diff --git a/drivers/mfd/p3h2840.c b/drivers/mfd/p3h2840.c
+> new file mode 100644
+> index 000000000000..774fbb67b025
+> --- /dev/null
+> +++ b/drivers/mfd/p3h2840.c
+> @@ -0,0 +1,126 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025 NXP
+> + * P3H2x4x i3c hub and regulator device.
+> + */
+> +
+> +#include <linux/i3c/master.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/p3h2840.h>
+> +#include <linux/regmap.h>
+> +
+> +static const struct mfd_cell p3h2x4x_devs[] = {
+> +	{
+> +		.name = "p3h2x4x-regulator",
+> +	},
+> +	{
+> +		.name = "p3h2x4x-i3c-hub",
+> +	},
+> +};
+> +
+> +static const struct regmap_config p3h2x4x_regmap_config = {
+> +	.reg_bits = P3H2x4x_REG_BITS,
+> +	.val_bits = P3H2x4x_VAL_BITS,
+> +	.max_register = 0xFF,
+> +};
+> +
+> +static int p3h2x4x_device_probe_i3c(struct i3c_device *i3cdev)
+> +{
+> +	struct p3h2x4x_dev *p3h2x4x;
+> +	int ret;
+> +
+> +	p3h2x4x = devm_kzalloc(&i3cdev->dev, sizeof(*p3h2x4x), GFP_KERNEL);
+> +	if (!p3h2x4x)
+> +		return -ENOMEM;
+> +
+> +	i3cdev_set_drvdata(i3cdev, p3h2x4x);
+> +
+> +	p3h2x4x->regmap = devm_regmap_init_i3c(i3cdev, &p3h2x4x_regmap_config);
+> +	if (IS_ERR(p3h2x4x->regmap))
+> +		return dev_err_probe(&i3cdev->dev, PTR_ERR(p3h2x4x->regmap),
+> +				     "Failed to register I3C HUB regmap\n");
+> +
+> +	p3h2x4x->is_p3h2x4x_in_i3c = true;
+> +	p3h2x4x->i3cdev = i3cdev;
+> +
+> +	ret = devm_mfd_add_devices(&i3cdev->dev, PLATFORM_DEVID_NONE,
+> +				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret)
+> +		return dev_err_probe(&i3cdev->dev, ret, "Failed to add sub devices\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int p3h2x4x_device_probe_i2c(struct i2c_client *client)
+> +{
+> +	struct p3h2x4x_dev *p3h2x4x;
+> +	int ret;
+> +
+> +	p3h2x4x = devm_kzalloc(&client->dev, sizeof(*p3h2x4x), GFP_KERNEL);
+> +	if (!p3h2x4x)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, p3h2x4x);
+> +
+> +	p3h2x4x->regmap = devm_regmap_init_i2c(client, &p3h2x4x_regmap_config);
+> +	if (IS_ERR(p3h2x4x->regmap))
+> +		return dev_err_probe(&client->dev, PTR_ERR(p3h2x4x->regmap),
+> +				     "Failed to register I3C HUB regmap\n");
+> +
+> +	p3h2x4x->is_p3h2x4x_in_i3c = false;
+> +	p3h2x4x->i2c_client = client;
+> +
+> +	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_NONE,
+> +				   p3h2x4x_devs, ARRAY_SIZE(p3h2x4x_devs),
+> +				   NULL, 0, NULL);
+> +	if (ret)
+> +		return dev_err_probe(&client->dev, ret, "Failed to add sub devices\n");
+> +
+> +	return 0;
+> +}
+> +
+> +/* p3h2x4x ids (i3c) */
+> +static const struct i3c_device_id p3h2x4x_i3c_ids[] = {
+> +	I3C_CLASS(I3C_DCR_HUB, NULL),
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(i3c, p3h2x4x_i3c_ids);
+> +
+> +/* p3h2x4x ids (i2c) */
+> +static const struct i2c_device_id p3h2x4x_i2c_id_table[] = {
+> +	{ "nxp-i3c-hub" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, p3h2x4x_i2c_id_table);
+> +
+> +static const struct of_device_id  p3h2x4x_i2c_of_match[] = {
+> +	{ .compatible = "nxp,p3h2840", },
+> +	{ /* sentinel */ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, p3h2x4x_i2c_of_match);
+> +static struct i3c_driver p3h2x4x_i3c = {
+> +	.driver = {
+> +		.name = "p3h2x4x_i3c_drv",
+> +	},
+> +	.probe = p3h2x4x_device_probe_i3c,
+> +	.id_table = p3h2x4x_i3c_ids,
+> +};
+> +
+> +static struct i2c_driver p3h2x4x_i2c = {
+> +	.driver = {
+> +		.name = "p3h2x4x_i2c_drv",
+> +		.of_match_table = p3h2x4x_i2c_of_match,
+> +	},
+> +	.probe =  p3h2x4x_device_probe_i2c,
+> +	.id_table = p3h2x4x_i2c_id_table,
+> +};
+> +
+> +module_i3c_i2c_driver(p3h2x4x_i3c, &p3h2x4x_i2c);
+> +
+> +MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
+> +MODULE_AUTHOR("Vikash Bansal <vikash.bansal@nxp.com>");
+> +MODULE_DESCRIPTION("P3H2x4x I3C HUB multi function driver");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/p3h2840.h b/include/linux/mfd/p3h2840.h
+> new file mode 100644
+> index 000000000000..9ed2a0d0564e
+> --- /dev/null
+> +++ b/include/linux/mfd/p3h2840.h
+> @@ -0,0 +1,28 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2025 NXP
+> + * This header file contain private Reg address and its bit mapping etc.
+> + */
+> +
+> +#ifndef _LINUX_MFD_P3H2840_H
+> +#define _LINUX_MFD_P3H2840_H
+> +
+> +#include <linux/types.h>
+> +
+> +/* Device Configuration Registers */
+> +#define P3H2x4x_DEV_REG_PROTECTION_CODE				0x10
+> +#define P3H2x4x_REGISTERS_LOCK_CODE				0x00
+> +#define P3H2x4x_REGISTERS_UNLOCK_CODE				0x69
+> +#define P3H2x4x_CP1_REGISTERS_UNLOCK_CODE			0x6a
+> +
+> +/* Reg config for Regmap */
+> +#define P3H2x4x_REG_BITS					8
+> +#define P3H2x4x_VAL_BITS					8
+> +
+> +struct p3h2x4x_dev {
+> +	struct i3c_device *i3cdev;
+> +	struct i2c_client *i2c_client;
+> +	struct regmap *regmap;
+> +	bool is_p3h2x4x_in_i3c;
+> +};
+> +#endif /* _LINUX_MFD_P3H2840_H */
+> -- 
+> 2.25.1
+> 
 
