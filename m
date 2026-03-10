@@ -1,169 +1,122 @@
-Return-Path: <devicetree+bounces-273406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273410-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NExDpPmr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273406-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:38:27 +0100
+	id UBrRDwnmr2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273410-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:36:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D7C2489BB
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:38:26 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id C24A52488E6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:36:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B7FE93256DCA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:30:17 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E45FE306D8AE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8499B44B68D;
-	Tue, 10 Mar 2026 09:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C53343DA5E;
+	Tue, 10 Mar 2026 09:30:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="eIPS7K/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D776144B697
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65380342535;
+	Tue, 10 Mar 2026 09:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773134978; cv=none; b=IhyyNqeApZYfRJ2QR4j0GK0aoFQUJ2pUqVYw5Qf9XhGPOf9BM/X4TveboXN5GTeKc6hyBQZuDFDvSXh49Hq7X4Ocfmq4aKW+K3bffAMC7SGyi+I9fAniv9CQ5pP5eOsKNFuCfPzuJOCOglbo1yULZJksBeH56Ms+Oz37/VVTaS0=
+	t=1773135013; cv=none; b=UnUBjNpI/73par8rkqTXWa/PwWJtM7x8GXvfIFk7n7IJeV+hYSg4HIdPnBrSsUAktO8Bdyn8iRdxJVs5R1djevrkMbxRS71DbQ0VQ6mlQAl+K8Wqfj9njJeKFwB9KEKsex+W7rEdd/tuE4TzA+os5JtCRacVlsbuThfNMSZCPMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773134978; c=relaxed/simple;
-	bh=fSwpCH/UFERQ5kjBBQPd4Vfpb4R38RfBExl1BwL7OIo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LRbRqsEb+23OBwnpJpm+QA7IpuBB2fUoVBneqJTHnrpneaNwRJRRPILGBmcPsYUQES9jP9DiYg6ufMNoULoh2N02y1Zg3f/ACkhrnND9gGcZLq/QnfgxgwC6TdKoNdP5sTZ/MqaHDzz4go/bG8SkwuYdiN7S48qHdklh40M9b2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vztP1-0000B7-QO; Tue, 10 Mar 2026 10:29:23 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vztOy-004fqr-1H;
-	Tue, 10 Mar 2026 10:29:21 +0100
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1vztOz-0000000BUUr-2Wql;
-	Tue, 10 Mar 2026 10:29:21 +0100
-Date: Tue, 10 Mar 2026 10:29:21 +0100
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Sebastian Reichel <sre@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tony Luck <tony.luck@intel.com>,
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	linux-pm@vger.kernel.org,
-	=?utf-8?B?U8O4cmVu?= Andersen <san@skov.dk>,
-	Guenter Roeck <groeck@chromium.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-hardening@vger.kernel.org, Kees Cook <kees@kernel.org>
-Subject: Re: [PR 174] dt-bindings: chosen: Add "power-state-change-reason"
- nvmem property
-Message-ID: <aa_kcRRg5uGQjd96@pengutronix.de>
-References: <20250618120255.3141862-1-o.rempel@pengutronix.de>
- <aN5pSWBFRZlNRv3U@pengutronix.de>
- <202510020904.1E48B7EB@keescook>
+	s=arc-20240116; t=1773135013; c=relaxed/simple;
+	bh=UOHR9v9WQQLfuI0veHg0fSrGMpYyGaVSof1KfNc17Wk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WzpjPHaXC6crXHbh2KtekFCKjJ9XQE/QdkwBP40QJxuXR4p6ZwjtcNKLpYP08zf9uL0Gg9jVdlBrepFXT1Wy4BHkFNI9oFmvS6eo+j9QNXARc9wqMc5XrLJhk+1SQ/TANS2KY/CdqrSQda75PxaNtSC7NA0a1+te4EbKRB8N0V0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=eIPS7K/H; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=33jPbzlWeMQan5XZ6y6WfE7m1EsEV0Da0Wn6BJa6sCw=; b=eIPS7K/HQG/f6MHSpeVoR45sjb
+	QucjZyqPj4vp2WCj8LUSUqBF3xCxUsdS3kO2dQBz5XSIxrdqLXi/eMMQcpWN9U3tUS191FlEPD2AY
+	qCAUmjNI7jBqs9ibMHXSrFV1CXytOMwZyYXM2ofSt/bc6KMSnnVSpU8ckij523xddu4YqSUHG00By
+	WlQ+6C903zK6eLs93qektCyPnDX/cRLZwz47rYVQoR6KNulsQinzTcK3i1Ab1nGBJLPTtcpYQr/lU
+	Gj1K5LBL+7nlucgGU5jEwMh1aFySNxJmVqe4T8c4w4sm3ZHIA/QNewOdIQxHMO3d2lw//w3rXMJI1
+	79Icifyw==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Diederik de Haas <diederik@cknow-tech.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Samuel Holland <samuel@sholland.org>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Maximilian Weigand <mweigand@mweigand.net>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	hrdl <git@hrdl.eu>,
+	phantomas <phantomas@phantomas.xyz>,
+	Dragan Simic <dsimic@manjaro.org>
+Subject: Re: [PATCH] arm64: dts: rockchip: Enable GPU on rk3566-pinenote
+Date: Tue, 10 Mar 2026 10:29:52 +0100
+Message-ID: <177313498973.2340533.6039251344596922355.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260305120620.173600-1-diederik@cknow-tech.com>
+References: <20260305120620.173600-1-diederik@cknow-tech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <202510020904.1E48B7EB@keescook>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Rspamd-Queue-Id: D6D7C2489BB
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: C24A52488E6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.04 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,chromium.org,intel.com,igalia.com,pengutronix.de,vger.kernel.org,gmail.com,arm.com,skov.dk,linux-foundation.org,lists.linux.dev];
-	TAGGED_FROM(0.00)[bounces-273406-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
+	TAGGED_FROM(0.00)[bounces-273410-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.787];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:dkim,sntech.de:email,sntech.de:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Rob and Krzysztof,
 
-Following up on dt-schema PR #174 regarding the PSCRR framework. We are
-currently stuck in a maintainer deadlock regarding how this framework should
-bind to its NVMEM cell, and I need your consensus to proceed.
+On Thu, 05 Mar 2026 13:05:40 +0100, Diederik de Haas wrote:
+> The GPU is most useful when used together with the EBC on the PineNote,
+> which is not yet described. But there's no reason not to define the GPU
+> already as the hardware is present and could be used without the EBC.
+> 
+> 
 
-In the PR [1], Rob noted that /chosen only works if the OS standardizes the
-NVMEM values. If the values are platform-specific (requiring a mapping driver),
-Rob suggested creating a dedicated DT node akin to reboot-mode or
-nvmem-reboot-mode.
+Applied, thanks!
 
-However, in my earlier kernel patchsets [2] , Krzysztof explicitly NACKed a
-dedicated PSCRR DT node, stating that it represents "OS policy" and a software
-abstraction rather than physical hardware. Krzysztof suggested instantiating it
-via sysfs/modprobe. I attempted that in v11 , but Greg strongly rejected [3]
-the sysfs/module parameter approach as fragile and outdated for the driver
-core.
+[1/1] arm64: dts: rockchip: Enable GPU on rk3566-pinenote
+      commit: 82c68c62bd8d64785c42292449688fed4d2c284c
 
-We need a robust way to discover this cell during early boot across full power
-cuts. To break this catch-22, could you please agree on one of the following?
-
-- Option A (Dedicated DT node): Permit a dedicated pscrr-nvmem node (or a
-compatible string on a fixed-cell) as a valid firmware description contract,
-following the precedent of nvmem-reboot-mode.
-
-- Option B (/chosen property): Accept the /chosen phandle approach
-
-I am happy to implement whichever hardware/software binding pattern you both
-agree is correct for this edge case.
-
-Best Regards,
-Oleksij
-
-[1] https://github.com/devicetree-org/dt-schema/pull/174
-[2] https://lore.kernel.org/all/58d24ddc-4e8f-4932-ac37-c9a699d36425@linaro.org/
-[3] https://lore.kernel.org/all/2025071631-henna-synthesis-9961@gregkh/ 
-
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Heiko Stuebner <heiko@sntech.de>
 
