@@ -1,87 +1,105 @@
-Return-Path: <devicetree+bounces-273530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273531-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oEEhBywksGnYgQIAu9opvQ
-	(envelope-from <devicetree+bounces-273530-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:01:16 +0100
+	id MMgSE/cnsGnYgQIAu9opvQ
+	(envelope-from <devicetree+bounces-273531-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:17:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4A1A2512FF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:01:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B31E251A95
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:17:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9EAB234CCBA5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:20:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 01FCE32B8F0D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3E1C3BE650;
-	Tue, 10 Mar 2026 13:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885BD3BF69E;
+	Tue, 10 Mar 2026 13:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c4tQ0F7o"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TkRo8HVJ";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d/fzimb0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8B243BE65A
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B723BF691
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:08:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773148114; cv=none; b=IGVA8lb75F2DGUyiFnHgAHZATm3+17TpoBcZI0zsGVlyjqzbeYRcCrSg9XxOqAnntFt6NoGZT9USpUIdGGi4BaBnhHTvSkNJsHvBzjOC98IuxSNxs/0CNdhYl6eBpsAylxLcMfSiz+zGoCNgUo0fQhc8Owb37LN2yj3fqxfyIl0=
+	t=1773148128; cv=none; b=D2+ywW2cya9TaHEW0gpmBNHWBPE+90cBXuEHIH0B/4Wpwv4ekcbffCQ5lkhim9wV3vCT/Jj3sp89XBEx+mZ4IW2leO5//royCIoCorBCZL7UJ6wLm9JOT82WICMlAzdsJnk9Izc4dsu4at0TgSFiOTm8KMBMYW/s1vJDJkBQWuw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773148114; c=relaxed/simple;
-	bh=wKVs27EEt0N9M8uATMnOjSiqYHdpeLtqcMeHE7FPGtU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=gryr+/gir1mDcztSkCAiLzA832PGQb+6hAu/n4Bhoa0Xx+FCo4645TuV/uY/EXv91Y/aC41jvVWHfAKXVMMJ+l3Ojr1pc9djvdEGgp07eNjcEgtQ1jR392RqXtc4MyYfQE3+BfGuEhDWAit4PSoMoHBItB3gWUKk0LNp307OQb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c4tQ0F7o; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-48539d21b76so18122635e9.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:08:32 -0700 (PDT)
+	s=arc-20240116; t=1773148128; c=relaxed/simple;
+	bh=stHxacrGV9KcZ4zqvwZhJDnTd1vC4ABYqp/A+JKkwRI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PE2i3FPOeRCD9x8EC+MjJhUKE6+BINupa4a6sTmakC+PjVtWKJhbyrQDFrWhymljff7LHFue0VB+0jRpnNCx7pvjC2S12CjcMTKahnPZNJrsNOaR0n1UFcVLNC466oe0A0xVVhWrNZ9RtobLcFJz82UMwyrhmarX4vbk9r4kC1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TkRo8HVJ; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=d/fzimb0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62ACaSTn963298
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:08:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8L7QotNediNGV0w65apbqeaG9lSdLcK+7UQkqiJf0ZQ=; b=TkRo8HVJ/OdwumuV
+	b7NJ0vZ1WRCQVVOlOk5E9TNZIsr6cMmBG0uKzqGarvC44Xb3qIULBifw6c/WuZ+W
+	HsSjggXpd5Dwjqr/1qcgO3e9wMmWQRyBvoSqYpHgqKtNFBmxps6ZrHIZpXtIk+ZA
+	xmCCL7aR39KxPJ+l4xHRqFJTItMuTRdiCdfbqBogBmUM6Mq2rPDUHd6CJDv07Z3Z
+	ArD1jeAdHfS/GWyMEmO+QIqtLpHUTOshxOLUfs7sIWRL7XoErPy7+UftOu1i52hj
+	wwN7+W2DHY4nm0zG98aIyh+luKMaCfzpkcgHEm5s/a6kEzrvTgsumUWX6pDUfnX5
+	Vf9rEw==
+Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ct477k9ke-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:08:46 +0000 (GMT)
+Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-94ddd9b0f66so1055860241.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:08:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773148111; x=1773752911; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3Qwiu5L5HKkB/c02A8Q4VnU+0vuAdi7H59d55yhEY5A=;
-        b=c4tQ0F7o1CDCBVY3E4CsXgHbDH5kfWjhJE72kdFVOXs1bQCWwx0uajF9UoUlWS0+uP
-         5eKtdPZysVoOf3VStqyVzozMKePwrnPwq7YzFB7HXEmpl+0hN7qh5J6G1cMvlCTaXq6l
-         VrNXuM39Wv+Ws6VvcB8Ihe13otXOoVG+ZlDj+7Pf/+2eqlfGKEYyI+KTckkNZ5iqQNWQ
-         rwEL4N/qc1kj4fMpk8HibTxN+XRdk5nhcshrQRBmkTLYLS4K9wdqlmfrPrivO0X51SD3
-         7PsgxvHr3OAdb/kN7+F42FHevcfwuEDStFSBTeF5O3yeG275OXbUN8yZA8itW5RV3s0c
-         L/Ww==
+        d=oss.qualcomm.com; s=google; t=1773148125; x=1773752925; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8L7QotNediNGV0w65apbqeaG9lSdLcK+7UQkqiJf0ZQ=;
+        b=d/fzimb0aJMQBXdxafcsrZXwJsGOn00vdWpNaHZx7sg0k+5M2h36hSCbspwr0Q+PsN
+         2WR3lBmpEg+4Kj7PlYxhiD/azVfBY6Jfr4RIgTAi5A9ueZvecTLOQ7eeilJOk3ojoRxz
+         SR5UBwA//LmP+2hRrZVaseRtajVu88XdVcWGVtI5SA0aYIwQDPdvpWQVZ58K3k2bp8zX
+         UPdWHi3SSGHtjVV6wYpJYo+/2yQ3LNGkSuH7Vg0nc/yZsNQNHjy/KutW4bxtkKHJYvor
+         dTabqnJefUN5g4PfQsOA8YMap68UohlSpNfxzN4VvtZVifeXJtDJMgO8lZY/OPzEko/x
+         B1+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773148111; x=1773752911;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3Qwiu5L5HKkB/c02A8Q4VnU+0vuAdi7H59d55yhEY5A=;
-        b=JZiER0G4e4sd+TEAqMBjE0aTzV3SVzz5UDFSX0SOO7Po9fttS6cF+9RUtMGkMcJWDC
-         zH4xAqb6bYEJppDmU7Z8JhlENwRmwgCkzpg4iJQ7fA3FYTesrvBG4LWb36BKhS16I5wN
-         VR8BRy3tE8Jbh9hsvqFajIIC3AxUJbcNCQPmwkQK/xUmurds9poZ81nH5iGPRHby9VFC
-         mtH5Z+HKtxeEsurlcmF/pJxVMOL5kSzz4PaN9mpxptSniJGo3Y/cuJw4eFhEo3ROEGCF
-         rd26pDxnDZ/qDmj4gzy9maVb8Jc0HFOLrwQZAOFtWMKm+WmCLjOTpKIk8Z1wJW/ExCgY
-         fYkg==
-X-Forwarded-Encrypted: i=1; AJvYcCUBIqaC6DMklSe88v4WZgHhT78P0M/2gnCK9wfP5qMz/4k/jh0LNyL+ZqBR2kxjCUx10U+8RLKYsx61@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlMx3vXQlADzakazDaowB+HB9hPcl0JqnUzCRXWci0o9vQtmDX
-	V1TjG6UP4U9YSalLSpZx0jV+Ply9DRBMK+rDhEMRwqTSKwTVW+p8qc0DLGfvmjVbmkbWQpW4jUL
-	nOuaN
-X-Gm-Gg: ATEYQzzfjMjnYxSz34X0bWtUYxc08hnVAYQXpE9oaTB1Ly8aCddrToee8xkDNbbNsgH
-	0YsN6GeHvRFV5nIxIu+yU1jdu239eXTIwz8PY+lwePrh7cqZd6vn+GFHsZQg1LynWfe1vx6lLfs
-	ZyqMmGfPcT576uEysxGvMOqXlG3T2nrytduUhL6qjqmp4XsxFH39WvVFMBcsqbOt/x/U7Fdmm9J
-	ufrfMuzG3Kndy5Fzx9TMS1B6LGU30Yf9ZmeufVbdgncOqeof14xuz7Sj6gl2+J/GtQM4PzRd5o6
-	cjdXjBV68vVL+AfDfoy4ugUFPWM+f91MBcJXfQBy3sECy6S0OZIgdlXPf7X7Rfr+4qenKRoPhXF
-	3PpfFVKk+ktTMpWG3eOKqPouBWQAHRNXzGCH+NDo6zJKEER+cw7Qqb5sEvlVgT62T5i/GWX46y2
-	eZ1xyF3UzCh8QMQw8ew/uoS5qUM0imcf8yo1hXy5brNBorBrPYhQbwZKMp+t/Z5myVpUJSZlRDC
-	bQ/
-X-Received: by 2002:a05:600c:608c:b0:485:419c:4eab with SMTP id 5b1f17b1804b1-485419c50a9mr57466295e9.6.1773148111022;
-        Tue, 10 Mar 2026 06:08:31 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:106d:1080:4d81:e92:c4c0:3c45? ([2a01:e0a:106d:1080:4d81:e92:c4c0:3c45])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485237e8095sm216735465e9.2.2026.03.10.06.08.29
+        d=1e100.net; s=20230601; t=1773148125; x=1773752925;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8L7QotNediNGV0w65apbqeaG9lSdLcK+7UQkqiJf0ZQ=;
+        b=ipXB5aFRgUy/YpoyaICUzq6KLm7b3ZlYYFvkD8RL55iB0a43fZrGatvZoYho19cjhX
+         BDQXvdjFNsU/xvRWbE3fwve9HBjuDxvOqkx7uX1Q+zfvk5bNzq9ykyfWCI4x1v66AIje
+         WdF9qu8k9RGiQpeAB3ETZ3SLThj7InPIzfo1bEpCy7bOMfyGwdpyRWW2yu7V1Xglvzqj
+         rFpTNfLrcD6BVDriZtgvFfyB6kQ/3kseR8lM5u1Vh09VCuTm99jPx6wyMvhwJY0nlA0D
+         wTKg2PbVFeHubqjxQTcEfMEw0iO/walt7Kn7HGE4O25Vun4wns/G+7Wzm2S2wmW/crFd
+         lgeA==
+X-Forwarded-Encrypted: i=1; AJvYcCVUeGuk2x2eGaV+3dCvCgYIqAz+8D/NvznDwJGTQoqIhXZB+LMdnqdqpWT6XwnCwCmpFjvIoR3Iapz9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIFzZz9cRk9ymnhMDPPJRimZjHX5d8TWc9mAEMY7xUdn9ekzFr
+	0Jmh1rhLUlA4X/Kvc2vcAfUqZ/2DfkH5c0bgf5fI1WCpKlEHokGuZ5dt9QQCztnd1IoXyScioNc
+	yvYEIrYnloVNebYPMdphqYWi6ss2nZ7BTkgU0PxEyloux3k/UdrtgxVLsOi+jKHfW+KLIcZGZ
+X-Gm-Gg: ATEYQzwBNom5evJMQeUCuW5k4pUGkrMxmk6cuIHAQymLQxoAS/NFx7wI9tEIqZ2JjSH
+	+OcBpYcEg6suHZRl0nFmeIwQGKN/s2bKRfPcET8IWRltArNxpzZBmUmnbCWR6ynIC33yFvgBiBZ
+	R8ov0tQ4949ZfsVvL/db85ecqak2ptN2l3vwf/rGO71g803iVPKnWt8/WkFAk5szppuNlfhjErc
+	6d8KiiwEZEfbOzLUqbTnUwDN5PfaZCAZaHOXnd98TxAyjwOVHaa3U6OHO+JRWJEBy7sjiiADcjW
+	pWswFENelnDwo6LIDlon5gnO7YXDsZC5r4Th9O7JEmACN7IV6Y1id2xk0AbeyKr0PxrARTPl4mI
+	P4FQQYqNjuuQ9+6jVQ31luuL0wAtiylQpPZ/PGZkzE7oT/epxeQQr3xMmvjCUIaWX7iXbxsJPgs
+	xCTNQ=
+X-Received: by 2002:a05:6102:50a6:b0:5ff:d7be:fdeb with SMTP id ada2fe7eead31-5ffe6391715mr2638055137.7.1773148125408;
+        Tue, 10 Mar 2026 06:08:45 -0700 (PDT)
+X-Received: by 2002:a05:6102:50a6:b0:5ff:d7be:fdeb with SMTP id ada2fe7eead31-5ffe6391715mr2638044137.7.1773148124886;
+        Tue, 10 Mar 2026 06:08:44 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942f139e24sm488542566b.38.2026.03.10.06.08.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Mar 2026 06:08:30 -0700 (PDT)
-Message-ID: <d6ae5f54-1471-4427-a95e-d5c40d2d1d2f@linaro.org>
-Date: Tue, 10 Mar 2026 14:08:29 +0100
+        Tue, 10 Mar 2026 06:08:43 -0700 (PDT)
+Message-ID: <f6029a8f-07d7-4872-813a-ff98fd11b5af@oss.qualcomm.com>
+Date: Tue, 10 Mar 2026 14:08:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,480 +107,121 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH 4/5] dt-bindings: display: panel: Align style of
- additionalProperties
-To: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
- Artur Weber <aweber.kernel@gmail.com>, Jessica Zhang
- <jesszhan0024@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Dzmitry Sankouski
- <dsankouski@gmail.com>, Tomi Valkeinen <tomi.valkeinen@ti.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Konrad Dybcio <konradybcio@kernel.org>
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: msm8953-flipkart-rimob: Enable
+ touchscreen
+To: cristian_ci@protonmail.com, Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <jesszhan0024@gmail.com>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20260306-dt-bindings-display-panel-clean-v1-0-3086eda1efaf@oss.qualcomm.com>
- <20260306-dt-bindings-display-panel-clean-v1-4-3086eda1efaf@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20260306-dt-bindings-display-panel-clean-v1-4-3086eda1efaf@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com>
+ <20260308-rimob-new-features-v1-5-aa2c330572c0@protonmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260308-rimob-new-features-v1-5-aa2c330572c0@protonmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: A4A1A2512FF
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEwMDExNCBTYWx0ZWRfX1sKP0doDfx7Y
+ K+t2clpMqFwA+5fA2cBEZ4P10DagrBo0CiKoMuRlCLRBR0GRCrNVp+bTMkzB08wlkzWBAj+VGLU
+ G8c3noLbcZRGKE+oGoQlRRrRzsRXWq9hesCkEY+HSg6EH10JH5lJQ2a/4iUxbUmzGAMrPrVZqwG
+ bBJSVtV7+F24BHaXOW6TG9nrYUNWIA8V4gewG7N2Gr11YIE6cAktiq3R+rCvqXmgHPN8tyucuR0
+ tmUZbgZIo4VKWG7BygqSlzylD9Iooyb+yJEqm9obkluM9UlNRgfiZM43RrpaDnF6QDo4irGPWHv
+ HHGI2uWymw9eXR39Wj+qM4WMAmICPFusniWnvNCUKQJdnVPMgOkDwtCQUrrjANwEPEstjExBOM0
+ Rx573sveN68VL93ZgrR88x55QfH8B9KqjAzexh5mRpwPaFWHV1A4NsLuy0Svwc6MsVNblSttqCo
+ g5o8jAbvu+eEIhOpuFw==
+X-Proofpoint-GUID: uUmVKQFmRtoapfioiYOGIRCTs6-xJIZF
+X-Authority-Analysis: v=2.4 cv=KLxXzVFo c=1 sm=1 tr=0 ts=69b017de cx=c_pps
+ a=KB4UBwrhAZV1kjiGHFQexw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22
+ a=sfOm8-O8AAAA:8 a=SwJZ1EMs1T1tlsjO-F8A:9 a=QEXdDO2ut3YA:10
+ a=o1xkdb1NAhiiM49bd1HK:22 a=TvTJqdcANYtsRzA46cdi:22
+X-Proofpoint-ORIG-GUID: uUmVKQFmRtoapfioiYOGIRCTs6-xJIZF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-10_02,2026-03-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 malwarescore=0 bulkscore=0 impostorscore=0 spamscore=0
+ phishscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603100114
+X-Rspamd-Queue-Id: 9B31E251A95
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273530-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273531-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	FREEMAIL_TO(0.00)[protonmail.com,linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,linaro.org:dkim,linaro.org:email,linaro.org:mid,linaro.org:replyto,0.0.0.1:email,0.0.0.0:email,qualcomm.com:email];
-	RSPAMD_URIBL_FAIL(0.00)[0.0.0.1:query timed out];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,ti.com,ideasonboard.com];
 	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RSPAMD_EMAILBL_FAIL(0.00)[port.0.0.0.0:query timed out];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	REPLYTO_EQ_FROM(0.00)[]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On 3/6/26 13:02, Krzysztof Kozlowski wrote:
-> For code readability the bindings are expected to follow order shown in
-> example-schema.yaml - put the additionalProperties/unevaluatedProperties
-> entry at the end, after listing all required properties and possible
-> "allOf:if:then:" conditions.  Meaning of this style is to close the
-> schema, after listing what it contains, with final "nothing more is
-> allowed".
+On 3/8/26 4:52 PM, Cristian Cozzolino via B4 Relay wrote:
+> From: Cristian Cozzolino <cristian_ci@protonmail.com>
 > 
-> Move the code around adjusting it to coding style.  No functional
-> impact.
+> This device uses a Goodix GT5688 touch controller, connected to i2c_3.
+> Add it to the device tree.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+> Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
 > ---
->   .../devicetree/bindings/display/panel/advantech,idk-1110wr.yaml       | 4 ++--
->   .../devicetree/bindings/display/panel/advantech,idk-2121wr.yaml       | 4 ++--
->   .../devicetree/bindings/display/panel/bananapi,s070wv20-ct16.yaml     | 4 ++--
->   Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml | 4 ++--
->   Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml     | 4 ++--
->   Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml   | 4 ++--
->   .../devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml       | 4 ++--
->   .../devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml       | 4 ++--
->   .../devicetree/bindings/display/panel/orisetech,otm8009a.yaml         | 4 ++--
->   Documentation/devicetree/bindings/display/panel/pda,91-00156-a0.yaml  | 4 ++--
->   Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml  | 4 ++--
->   .../devicetree/bindings/display/panel/samsung,atna33xc20.yaml         | 4 ++--
->   .../devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml          | 4 ++--
->   .../devicetree/bindings/display/panel/startek,kd070fhfid015.yaml      | 4 ++--
->   Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml  | 4 ++--
->   Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml | 4 ++--
->   .../devicetree/bindings/display/panel/visionox,vtdr6130.yaml          | 4 ++--
->   17 files changed, 34 insertions(+), 34 deletions(-)
+>  .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 32 ++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
-> index f6fea9085aab..76b48836ddf6 100644
-> --- a/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
-> @@ -41,8 +41,6 @@ properties:
->     panel-timing: true
->     port: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - data-mapping
-> @@ -51,6 +49,8 @@ required:
->     - panel-timing
->     - port
->   
-> +additionalProperties: false
+> diff --git a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
+> index 7b2849405462..709ea6fc9fbb 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
+> @@ -94,6 +94,31 @@ &hsusb_phy {
+>  	status = "okay";
+>  };
+>  
+> +&i2c_3 {
+> +	status = "okay";
 > +
->   examples:
->     - |+
->       panel {
-> diff --git a/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.yaml b/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.yaml
-> index 05ca3b2385f8..c9b066e69e2f 100644
-> --- a/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.yaml
-> @@ -56,8 +56,6 @@ properties:
->         - port@0
->         - port@1
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - width-mm
-> @@ -65,6 +63,8 @@ required:
->     - data-mapping
->     - panel-timing
->   
-> +additionalProperties: false
+> +	touchscreen@5d {
+> +		compatible = "goodix,gt5688";
+> +		reg = <0x5d>;
 > +
->   examples:
->     - |+
->       panel-lvds {
-> diff --git a/Documentation/devicetree/bindings/display/panel/bananapi,s070wv20-ct16.yaml b/Documentation/devicetree/bindings/display/panel/bananapi,s070wv20-ct16.yaml
-> index bbf127fb28f7..46e7cff5b2fa 100644
-> --- a/Documentation/devicetree/bindings/display/panel/bananapi,s070wv20-ct16.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/bananapi,s070wv20-ct16.yaml
-> @@ -22,10 +22,10 @@ properties:
->     enable-gpios: true
->     port: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - power-supply
->   
-> +additionalProperties: false
-> +
->   ...
-> diff --git a/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml b/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml
-> index 287e2feb6533..9a2c532dbc92 100644
-> --- a/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml
-> @@ -22,10 +22,10 @@ properties:
->     backlight: true
->     port: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - power-supply
->   
-> +additionalProperties: false
-> +
->   ...
-> diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> index 5725a587e35c..182a2b825e1c 100644
-> --- a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-> @@ -54,8 +54,6 @@ required:
->     - vcc-supply
->     - iovcc-supply
->   
-> -additionalProperties: false
-> -
->   allOf:
->     - $ref: panel-common.yaml#
->     - if:
-> @@ -68,6 +66,8 @@ allOf:
->         required:
->           - reset-gpios
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       #include <dt-bindings/gpio/gpio.h>
-> diff --git a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-> index 3cada0f82951..aeb7cb26c058 100644
-> --- a/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/ilitek,ili9341.yaml
-> @@ -49,8 +49,6 @@ properties:
->     vddi-led-supply:
->       description: Voltage supply for the LED driver (1.65 .. 3.3 V)
->   
-> -unevaluatedProperties: false
-> -
->   required:
->     - compatible
->     - reg
-> @@ -66,6 +64,8 @@ then:
->     required:
->       - port
->   
-> +unevaluatedProperties: false
-> +
->   examples:
->     - |+
->       #include <dt-bindings/gpio/gpio.h>
-> diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
-> index 96621b89ae9e..43e98bb07c38 100644
-> --- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
-> @@ -47,8 +47,6 @@ properties:
->     panel-timing: true
->     port: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - data-mapping
-> @@ -57,6 +55,8 @@ required:
->     - panel-timing
->     - port
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |+
->   
-> diff --git a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
-> index 37f01d847aac..2af993d73619 100644
-> --- a/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
-> @@ -44,8 +44,6 @@ properties:
->     panel-timing: true
->     port: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - vcc-supply
-> @@ -55,6 +53,8 @@ required:
->     - panel-timing
->     - port
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |+
->       panel {
-> diff --git a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-> index 1e4f140f48b8..1f697dab832b 100644
-> --- a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-> @@ -31,12 +31,12 @@ properties:
->     reset-gpios:
->       maxItems: 1
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - reg
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       dsi {
-> diff --git a/Documentation/devicetree/bindings/display/panel/pda,91-00156-a0.yaml b/Documentation/devicetree/bindings/display/panel/pda,91-00156-a0.yaml
-> index ccd3623b4955..871e4c2d9824 100644
-> --- a/Documentation/devicetree/bindings/display/panel/pda,91-00156-a0.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/pda,91-00156-a0.yaml
-> @@ -21,11 +21,11 @@ properties:
->     backlight: true
->     port: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - power-supply
->     - backlight
->   
-> +additionalProperties: false
-> +
->   ...
-> diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
-> index 46fe1014ebc4..8fb7c013dfb8 100644
-> --- a/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
-> @@ -33,13 +33,13 @@ properties:
->     reset-gpios:
->       maxItems: 1
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - power-supply
->     - reg
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       dsi {
-> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
-> index f1723e910252..1bbe0da3997c 100644
-> --- a/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/samsung,atna33xc20.yaml
-> @@ -43,13 +43,13 @@ properties:
->     no-hpd: true
->     hpd-gpios: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - enable-gpios
->     - power-supply
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       #include <dt-bindings/clock/qcom,rpmh.h>
-> diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-> index e32d9188a3e0..1beb4ba92248 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-> @@ -41,8 +41,6 @@ properties:
->     panel-timing: true
->     port: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - port
-> @@ -51,6 +49,8 @@ required:
->     - height-mm
->     - panel-timing
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |+
->       panel {
-> diff --git a/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml b/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
-> index d817f998cddc..0819f38a9d2c 100644
-> --- a/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/startek,kd070fhfid015.yaml
-> @@ -31,8 +31,6 @@ properties:
->   
->     power-supply: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - enable-gpios
-> @@ -42,6 +40,8 @@ required:
->     - port
->     - power-supply
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       #include <dt-bindings/gpio/gpio.h>
-> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-> index 187840bb76c7..49ef45c03593 100644
-> --- a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-> @@ -25,8 +25,6 @@ properties:
->     port: true
->     reset-gpios: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - reg
-> @@ -35,6 +33,8 @@ required:
->     - reset-gpios
->     - port
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       #include <dt-bindings/gpio/gpio.h>
-> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-> index f0a82f0ff790..f61a528c0413 100644
-> --- a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-> @@ -36,8 +36,6 @@ properties:
->     port: true
->     reset-gpios: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - reg
-> @@ -46,6 +44,8 @@ required:
->     - reset-gpios
->     - port
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       dsi {
-> diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-> index d5a8295106c1..c99f4146f1bb 100644
-> --- a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-> @@ -26,8 +26,6 @@ properties:
->     port: true
->     reset-gpios: true
->   
-> -additionalProperties: false
-> -
->   required:
->     - compatible
->     - reg
-> @@ -37,6 +35,8 @@ required:
->     - reset-gpios
->     - port
->   
-> +additionalProperties: false
-> +
->   examples:
->     - |
->       #include <dt-bindings/gpio/gpio.h>
-> 
+> +		interrupts-extended = <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+interrupts *and* irq-gpios sounds wrong.. and I think the driver doesn't
+even consume the former. Trying to read through some of that, I think
+it's on purpose since the IRQ GPIO is repurposed for setting the I2C addr
+(which nota bene doesn't match between the comment in that driver and this
+submission - perhaps that's just a SKU difference) during the reset
+sequence
 
-Thanks,
-Neil
+i.e., does the touch work any different if you drop the above?
+does /proc/interrupts differ?
+
+Konrad
 
