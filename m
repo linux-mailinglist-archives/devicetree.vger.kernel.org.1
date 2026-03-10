@@ -1,153 +1,130 @@
-Return-Path: <devicetree+bounces-273689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273690-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0KTPKR9fsGloigIAu9opvQ
-	(envelope-from <devicetree+bounces-273689-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:12:47 +0100
+	id cJ36H0dhsGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273690-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:21:59 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B28E625635A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:12:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EDC256584
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:21:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id A26C03009F13
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:12:43 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5E7993030B1A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:21:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B7643B6373;
-	Tue, 10 Mar 2026 18:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94F462C3244;
+	Tue, 10 Mar 2026 18:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aPvYXLR5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L+C6Ccil"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 486BF39DBE3;
-	Tue, 10 Mar 2026 18:12:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CE026D4CD;
+	Tue, 10 Mar 2026 18:21:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773166362; cv=none; b=saQd//wRg8TeubCvIeOy/dM+9aftcsooAD2SmmqNmaLAQCs/mIyxfGaR1sLJ3faf+j76XuOtGcAV+twNiDzT/cmJL0yRHe9azevgIzHUtxg4wnzPtxWMsCCiCke8eTedqtDiTrJh8ROiJ4I+BJl7Lkf29eLqyZlxOjc77kSGO34=
+	t=1773166868; cv=none; b=oBwh8NXrA2QEVtfGhkp8Ytg33h3B89j2Cb+7JoV4F/5kY9vG6RVkefArsQDRDhNj+kCokFQl6BX+d/zeszZUucJ6uCPFB9sQDsAovBSHcUz6DkNDG8j3QwLxpZ/6PX6BXYQHjk3udkBOmS1RMNQQNc18FoKueewzsy9Bwb61AxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773166362; c=relaxed/simple;
-	bh=XOYqlcCsaIl0G8bSNNRD5pDqv63/HMFFPi8Ddmj+o2A=;
+	s=arc-20240116; t=1773166868; c=relaxed/simple;
+	bh=q8EMdTShJbbHJNxNPWpbcmHpxdwS+a/PSL5h/ia505M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WCxOPqmfVcQY2SgRFbJrp9G2yaFLRSS3bWotYsMCTav+gENt1lvEGAP5zNMzpLTY/ArXFds5OZ2AV+ZrCV6FNAWc8c68JSEF689t0rRpPrGcNNga/nrd6wYJQNL44LZQjRmi1CdvttvEVpQYY0EibAKluRd6A+UxK2Dg0UFup88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aPvYXLR5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E4D5C19423;
-	Tue, 10 Mar 2026 18:12:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773166362;
-	bh=XOYqlcCsaIl0G8bSNNRD5pDqv63/HMFFPi8Ddmj+o2A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aPvYXLR5c0Cuz/whDDp5CTM+X+j2VQ/DDIoi4v7sq7KKp4RHKWI+UZJyN64sZlQmN
-	 KvALWUrv72MU19GjYxKxAJ9sOgZvOCzFWwJai5tW7P+aI9vya9o33ctNzZAxNLbDLS
-	 Z8YNsZ3IadmghGoSXMnI8EF7fpRgxOtuiR3q+39j7Fri+tzYseM/jjIH3qwW7NKm7c
-	 8YGfY/8+EagBpD2CM+eMe3LGlLf2AwoDWt6+eZnleW5DBUEDSfI+nYAGRkN6HO3Kb1
-	 6BS2h2quwoL8KFXEkFjhFCCkLpH+j+2v+D5yHou06gg+LnwAwNPsFOxdNESG9guYnu
-	 adXQra1jJIASg==
-Date: Tue, 10 Mar 2026 18:12:38 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Mark Brown <broonie@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, Max Krummenacher <max.oss.09@gmail.com>
-Subject: Re: SPI loopback tests
-Message-ID: <20260310-marlin-untoasted-ecca1e3e80e8@spud>
-References: <20260310133254.GA51497@francesco-nb>
- <09f06ce4-0405-442b-bf3d-5722a6977a4d@sirena.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RezA/ZdcOCqiANFQLGzgZs3jI16Gsg02/ECh/1a67SUsDwvibChk3/z3QQ3o9ELcmWVLUlbjjBkma5UmyA7hjUG8guMbSYF3SbjMA0F8hOHuk+6Nv8i/qIYWbMqN1+iJPFie7EPhHFQMG4C/6D+dKcUdXIigTdul5tCk10f7G90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L+C6Ccil; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773166863; x=1804702863;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=q8EMdTShJbbHJNxNPWpbcmHpxdwS+a/PSL5h/ia505M=;
+  b=L+C6CcilbqZ1JiUcUlOGMv9RaHGO9c8gUl38XTRXJJxHU6PP0Cl0H8y9
+   K2aneA8IrzIe4WuGgNu5zdfc2SetaJNJF6YUhJh+0YZ7nk1q6mrWKHOFf
+   0ht/9KHn2OFuJM90C6WTX2GCSipnyC2GyOJWQuAX7eAXz2p3qve/GhcvA
+   oVgXhAVPa8WOFmW6epP+Tzs0kpAi1g9wMOhlWPRZ5l+HjDvfj1PHD2Ive
+   xYBiddvs1l3CetEEEh6uL6kszQ+vM1EMayQ+4OuJ77R7Nu802o1mSrqdJ
+   kWmR0GdDdQE+E7F85UHoYdImqEXOUwRjWXz++yDlW65KBpNPR+vS2YoML
+   w==;
+X-CSE-ConnectionGUID: Lta6Nxt2TNmacpT1OM00Ig==
+X-CSE-MsgGUID: jqMO/PASR724TqG/3XdT6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="91796636"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
+   d="scan'208";a="91796636"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 11:21:03 -0700
+X-CSE-ConnectionGUID: w7KgPiESTrmKmKDfPBLB/Q==
+X-CSE-MsgGUID: 1vdIHF4pQZu2TeW3hPbSSQ==
+X-ExtLoop1: 1
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.54])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 11:20:59 -0700
+Date: Tue, 10 Mar 2026 20:20:57 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Taha Ed-Dafili <0rayn.dev@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	skhan@linuxfoundation.org, me@brighamcampbell.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] iio: dac: ad5504: sort headers alphabetically
+Message-ID: <abBhCWVo7ARH33oa@ashevche-desk.local>
+References: <20260310174835.24209-1-0rayn.dev@gmail.com>
+ <20260310174835.24209-3-0rayn.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="8tzOIo09d+FWgqBq"
-Content-Disposition: inline
-In-Reply-To: <09f06ce4-0405-442b-bf3d-5722a6977a4d@sirena.org.uk>
-X-Rspamd-Queue-Id: B28E625635A
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	MAILLIST(-0.15)[generic];
-	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[dolcini.it,kernel.org,vger.kernel.org,gmail.com];
-	TAGGED_FROM(0.00)[bounces-273689-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
-X-Rspamd-Action: no action
-
-
---8tzOIo09d+FWgqBq
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260310174835.24209-3-0rayn.dev@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: E2EDC256584
+X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-273690-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim]
+X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 03:55:51PM +0000, Mark Brown wrote:
-> On Tue, Mar 10, 2026 at 02:32:54PM +0100, Francesco Dolcini wrote:
->=20
-> > So far to test this we had some out-of-tree DT overlay abusing the spid=
-ev
-> > compatible, however we'd like to move away from this approach and have a
-> > solution that is 100% in mainline.
->=20
-> > Manually unbinding/binding the driver in userspace does not seems as an
-> > option, because there is no device node.
->=20
-> > One option that I could think of would be to add a new compatible that
-> > to describe this single wire loopback connection (something like
-> > `linux,spi-miso-mosi-loopback`) that would bind to the spidev driver.
->=20
-> > I am aware that you all DT maintainers shared in a pretty clear way your
-> > view on the abuse of the spidev multiple times.
->=20
-> > What would you be your advice to handle the need of an SPI loopback
-> > test? Am I missing something and there is a solution already available?
->=20
-> I'm not aware of any idiomatic way to deal with this with DT
-> unfortunately.  Perhaps the DT people have some ideas here?
+On Tue, Mar 10, 2026 at 05:48:32PM +0000, Taha Ed-Dafili wrote:
+> Rearrange the include headers in alphabetical order to follow the
+> standard kernel coding style. This is a preparatory cleanup with
+> no functional changes.
 
-I dunno, the suggestion seems fairly reasonable to me. I don't think
-it's really abuse of anything, because the compatible would represent a
-real hardware configuration. The only think that feels "abusive" is the
-fake reg property you'd need.
+Reviewed-by: Andy Shevchenko <andy@kernel.org>
 
-Not sure that there should be a "linux," vendor prefix though, there's
-nothing linux-specific about doing loopback. Probably should be
-vendor-less?
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-
---8tzOIo09d+FWgqBq
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabBfFgAKCRB4tDGHoIJi
-0us4AQDberWiHL/wYl4n07XAHYvXzM/NpzH84fuZ9slgBaUMngD/QcRRnRYvRrHB
-LCITRjOyynyFDnicPDkz9e69LTpx6wk=
-=3HAS
------END PGP SIGNATURE-----
-
---8tzOIo09d+FWgqBq--
 
