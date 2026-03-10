@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-273317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273318-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kPJVIobPr2kfcgIAu9opvQ
-	(envelope-from <devicetree+bounces-273317-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:00:06 +0100
+	id +BMqC87Qr2kfcgIAu9opvQ
+	(envelope-from <devicetree+bounces-273318-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:05:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80086246D18
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:00:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C11EB246ECB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:05:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8DC103009801
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:00:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EA3D23131B9A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81AE364EBA;
-	Tue, 10 Mar 2026 07:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444C53ECBF1;
+	Tue, 10 Mar 2026 08:02:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+0IQUgT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZDgeF1yi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A470136495B;
-	Tue, 10 Mar 2026 07:59:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B7C3ECBE0;
+	Tue, 10 Mar 2026 08:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773129598; cv=none; b=HdlMjrMDa2kB2Ojo6/2hHI8dHSeLqmlNNCXegW4WNWZ9bKKPFvHpA7ZSEYeeGv7TgEbQ5taZCj7MfaV+e5vBynQfdqxf3pC+ouAiYFPxLDh1f+9mEjU5tTOwMB1lT8fQjhpoVL8o9r2FlbmbcCKNg2z0zcLCokhjKowNqPcZwI8=
+	t=1773129758; cv=none; b=F3weNjnPBZIgX0KtznObrhkzkSRx6AlhDSp01C/LhqN4qvPyG3KsFXEdfLeAVd4hCQQGtgpvZoiGXSsIoz1himxbxn+/5JJSrF53a2o2bPUZ1jjvvGIYBvIL0SwqDLCwMzZPM+JMlFGb7XkmffLVcXgs5zCwabYkgnxtk7TiwwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773129598; c=relaxed/simple;
-	bh=jkpjgvC2FbGCGFeMOvnQrLTSu+pQoksP+d5G2FrdBPM=;
+	s=arc-20240116; t=1773129758; c=relaxed/simple;
+	bh=/CuTZQ5ggMu+T6BsDi8Tphk/vQuf/81laWj5ijjpx/M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nMIi5bfWQvvmPL6GtYJUDsiGxW1LjPhiJbm1oRQb2xIMVE3uef5tXwkyv5nwuKVt3tyqNloCxGqzHD2Y3iPQ7BEybRZyTVqawUCEgLJYBXkIThQREekq+V/oDTqfUkAuqp8GsGIS57yQhIqrqFfCZEGRmbAXlSDDTu4y+Ulp0Tk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+0IQUgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1A4AC19423;
-	Tue, 10 Mar 2026 07:59:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rBs+hgc9fEYfGGbzsQvA9TMxw9UoVsiqIxNVOh5wnS0m/kPTajwd5lddWbCQtZ90KBETD3QbacfgF5C7cGtlQyfWvT0Zwo+taLkOl+EJssKKNz9aQOfMxYplYQiP+i8dPs2107pqzI8+lFuWDOsOaUhCsbygquRk5yef3DOV/Jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZDgeF1yi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A281C2BC86;
+	Tue, 10 Mar 2026 08:02:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773129598;
-	bh=jkpjgvC2FbGCGFeMOvnQrLTSu+pQoksP+d5G2FrdBPM=;
+	s=k20201202; t=1773129757;
+	bh=/CuTZQ5ggMu+T6BsDi8Tphk/vQuf/81laWj5ijjpx/M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X+0IQUgTsjChB/7j/QS1pOad+Co+VyFYYLCNyUSZ2dJLAh+vWOliodhxbekJzFXFP
-	 CX9YlqvuxbHvlPdjro6RdIgCPMHKjUyzy37qwCTEghwEWKyHcRjNYuIritW3FtZ/y/
-	 IpDTivXQeG4AGG+/o3AX9ipA/5yYMXk9UiI5KDybe6vI2PZuW81lIOokyOJk2avRg8
-	 0IYF1VNselYgOqfLtRJUPqU35TpINaTLtNTDXALmTdviiz4aIK4uttD7hZFwlouXTV
-	 aYDppvcm/JDxH8ZJTORUI329E0p+16Y5pWR3XqwHDzWOYXeu67r/SmSVLKJ4+jnMTy
-	 yEbHrFbCD6r3w==
-Date: Tue, 10 Mar 2026 08:59:55 +0100
+	b=ZDgeF1yikyFBz/YeVEzlgcp5sSWrQCnuj7vz9DYXA9YaPmo/uUcLzgyz3Z7ZbK27R
+	 78gtlGAYs47dS3batB7Tmp+Pb+3r+jTAz9GliRAwdYh1ZMAb52JTMpHq1Dn0Huix5q
+	 y4AkGjcYgd/3i6EXgVlOWggj2VrjxFnLFWbQyDMPQLtkqpGic5IWclVcEs84v7fk5K
+	 bjNbCFdnCgOoUoOgCZblldHazGzd/5nK3fVspljwryl7Bl6e94y/eshyaCbPNV3AE1
+	 temV11zfiEL8SftgwDUsDU1v4nDP1ISjWUnkfXJzLl36d7ZjsXVQqjyu5VmPIDETMj
+	 cQr2wiWrSYskw==
+Date: Tue, 10 Mar 2026 09:02:35 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	bhelgaas@google.com, frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: PCI: pci-imx6: Fix build warning
- after adding extref clock
-Message-ID: <20260310-prudent-exuberant-monkey-a4953a@quoll>
-References: <20260309084431.3015463-1-hongxing.zhu@nxp.com>
- <20260309084431.3015463-2-hongxing.zhu@nxp.com>
+To: Richard Acayan <mailingradian@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Amit Kucheria <amitk@kernel.org>, Thara Gopinath <thara.gopinath@gmail.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: thermal: lmh: Add SDM670 compatible
+Message-ID: <20260310-loud-quetzal-of-realization-61cf18@quoll>
+References: <20260310002037.1863-1-mailingradian@gmail.com>
+ <20260310002037.1863-3-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,64 +66,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260309084431.3015463-2-hongxing.zhu@nxp.com>
-X-Rspamd-Queue-Id: 80086246D18
+In-Reply-To: <20260310002037.1863-3-mailingradian@gmail.com>
+X-Rspamd-Queue-Id: C11EB246ECB
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273317-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273318-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FREEMAIL_CC(0.00)[kernel.org,intel.com,arm.com,gmail.com,vger.kernel.org];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,4c300000:email,4c380000:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Mon, Mar 09, 2026 at 04:44:28PM +0800, Richard Zhu wrote:
-> Fix dtbs_check build warnings by updating the maxItems property for
-> clocks in fsl,imx6q-pcie-common.yaml and completing the clock
-> descriptions in fsl,imx6q-pcie.yaml.
+On Mon, Mar 09, 2026 at 08:20:36PM -0400, Richard Acayan wrote:
+> Document the SDM670 LMh.
 > 
-> The warnings occur because the clock arrays exceed the previously
-> defined maximum length:
-> 
-> imx943-evk.dtb: pcie@4c380000 (fsl,imx95-pcie): clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref', 'extref'] is too long
-> imx943-evk.dtb: pcie@4c300000 (fsl,imx95-pcie): clocks: [[5, 74], [5, 41], [5, 40], [5, 75], [46, 0], [47]] is too long
-> 
-> Fixes: 1352f58d7c8d ("dt-bindings: PCI: pci-imx6: Add external reference clock input")
-
-This was three months ago. Can you finally start testing DTS the moment
-you send bindings patches?
-
-It is not a one time issue - I see multiple buggy patches posted by NXP
-which are never validated with DTS and then months later turns out
-bindings were wrong.
-
-Many of them are posted and immediately trigger build errors reported by
-LKP.
-
-Are you going to finally test patches BEFORE you post them?
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
