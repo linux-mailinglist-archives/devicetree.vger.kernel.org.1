@@ -1,199 +1,187 @@
-Return-Path: <devicetree+bounces-273677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273678-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +P28AflZsGmMiQIAu9opvQ
-	(envelope-from <devicetree+bounces-273677-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:50:49 +0100
+	id aOQ9G4FZsGmMiQIAu9opvQ
+	(envelope-from <devicetree+bounces-273678-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:48:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C90D255E4F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:50:48 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCFF255D8C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:48:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4C3593043FA9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:48:24 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C5F6C30333B6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:48:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D83D3D0910;
-	Tue, 10 Mar 2026 17:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBDB3D47B7;
+	Tue, 10 Mar 2026 17:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="ZRK1wjIl"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eQ88UCSW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4325.protonmail.ch (mail-4325.protonmail.ch [185.70.43.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52A8639DBF7;
-	Tue, 10 Mar 2026 17:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB463C9452
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773164903; cv=none; b=cgmt0TYPtMyTlDiEXhMJJizeMt5pdk92tzz+f8jXkcSrtwMK0OxJuLraJAtr5tR6KUsofmjkY9cdu2x94zdFicmJ/7xi7QeztxO7X/UvxP4tE5gKVuSu+uxKhNsGQsuOjxwK45S3lwnzy5XXcjqclpkMP6nOqjRqSBwcZBa8VF4=
+	t=1773164926; cv=none; b=ItxjWtFLoe9DnXt6lS26OH5PpB73ZX8v+q7mh9lf+atLp3ES3uww+VEs4VcHHk37k99/3BKwEzYxc1xd48S4KqZFZ0dhvey93aa+KRYd1pYB91VPdC6kKY6d1cvUSyRtlAUTUuJcAGe1EcyJGBfLrEWF8FWyv8S605yI2esxjPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773164903; c=relaxed/simple;
-	bh=Rd82VMvssCgqufFd8/eaqmc54Ncv9DNjiJoXAlj0srE=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nm6J5QgQxITP8qlErlMxlJZjeyHyRqwjOgSx7P7zMo3A7nN7qe6gNXeXXczTC6U6+EVWq4gHhdmyLRcXU7gogThRw10+wleA/b4CrJ3dAK0oaFSZ9LdSLe7TCl489URyC3y6zglXpya0UWK+yNhlNJJFqP/dQ71eVspADAVgJRM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=ZRK1wjIl; arc=none smtp.client-ip=185.70.43.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1773164893; x=1773424093;
-	bh=OkWCVZlxqftLu2aBpMJ8TERkvPlB5Fhg+4q1RHor8Us=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=ZRK1wjIlW2tdy2KhNvkVHOw2UmPWIcnGeKQL09/FwyMRm/LgqsW6AM55vQh6kg4oi
-	 OR/x6ckDEVUWLARgsMMEkIRk3UkmoApC34a+g7jzyrJbHUuULSYA4TZXyXE1xRywh+
-	 IcxwWAfTGqkK8n5/CfZwUam6vnF6xhr+wbioQGiQhEyvYdgcP+vrCd96Zgyu5YB8zw
-	 bs5i3lhZNDr08Pduvg07ZNxeYpKBerzMKcq+Rq9xmJHXYVYrgoYuseBBE2lTLIeYc2
-	 YYdl/j1VgsMLREmBspXkQhAWHtBzyumiD/g89OMqmPvJ+coLgblXJG2MzTZl8AxlML
-	 LlbML5zAhb9QA==
-Date: Tue, 10 Mar 2026 17:48:08 +0000
-To: Krzysztof Kozlowski <krzk@kernel.org>
-From: cristian_ci <cristian_ci@protonmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD DSI
-Message-ID: <Nz_hTfDbWqQk8-FcCknxZKO8dIhCAGueG89SRe2LkTG1VK4KjoH-UZH6bsOvqEySwNRjJtsEUL7vxxIXOWyyzLOtM9YLZaCuhPfxNz0mVyk=@protonmail.com>
-In-Reply-To: <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org>
-References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com> <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org> <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com> <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org>
-Feedback-ID: 27475468:user:proton
-X-Pm-Message-ID: ab6af6b5969c34bbccb471ccdb9316c79e71b9a3
+	s=arc-20240116; t=1773164926; c=relaxed/simple;
+	bh=CAt5rbLDMhxVLmOqiqlVM1mP0fA6B6zhT5OMjhjh6p4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=URDvGCJiCWSSxnD7uA5lalqV7zsEUBJm7bJyIvL6tsCV2PjEyvucBTLTHYdsuUnBw16IogSufQfvfMM566/RwHOV6lcYT+TD4T2OJqwyk3l6AAmnzGuAPUI8prpMF9Zw9qFW65gsDVIFv17+OfDDaFembpjcZqKft9HRawj/znE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eQ88UCSW; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-48334ee0aeaso107800105e9.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 10:48:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773164923; x=1773769723; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2dldqyonvLVTQ/Lexaotmy5KRFPJ0gpKjoNB+Wq1yLo=;
+        b=eQ88UCSW5DYGD7Ov835QPzK1xYqpr8tVgdb5t3TiSL3lJ1W1HjNPFWHNqVgEXbZdnx
+         IIG/MMZkalA3fAfMURSphGYxS9bJWt4WSO5DKWEVYikHb2DhZtpYQRm3RJCa/3Xnc0xd
+         5bmSWHLNPsoeiYA/3nlzXhR/TDqY5kpmz5CeWkG0RZzilsKL8dNOCxKfxfcPh/7rhXMU
+         G4q+JsIWD8tZCrrfRkaX+91A4y0BirPAbLurkZpMEB+hVQgHOupar+Q6s57Bzbki2s5J
+         hQwnAL7SCiuegeioHEWpi7hD3QDPZ67hpatdjsoaB0u8Sz2AuDKvmcNk9ZRMFrAk+8ct
+         LPRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773164923; x=1773769723;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2dldqyonvLVTQ/Lexaotmy5KRFPJ0gpKjoNB+Wq1yLo=;
+        b=AMIhaO3jvquOb6EJd/rl7VWHVFDb06zzfYOutV/rUJzt+4KPOyu/oBoTfm5LDJb1RW
+         hmD8itxxQQmvrU5yHT5wXAnVnuPv1I1ruqb9FsVFcQSp4k1tNGj7CP4didQ8gB7KBb2U
+         WZuPgOez2+Uun2I0TSZgIS4s+Okb2x057xx0Uw6ecrNrrmlaor28b7KbbeBjfO2LF8q2
+         /oQvUkbF39xFL4pvmGIqatuUeKuTD9BkikKjyRkgNQ0MJx2mcMgTa0nP7gdrlB+1KWB4
+         1i5RSKuy0ywCdmcGdPXuSBG4TsFECDE/XGsrhUtacCwRYA6l4NdZ5Uv8Od719Noixtzm
+         d7KA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnMF3yp59R1z+ocbWJEzU/oqApL04DEgA90oJEaW+kg7gnhIJy6kwEfdgYdXt+G9JF+maT8eKFg4CU@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqU4ZbLO1y736j/+pAkeoiNU1YrJPxfBqbC31bziE1UuS8Mf7S
+	0wq4OTTJkcrGqf0HhzUEnnnz6aI+socuc3JbWVoF5HDlXweVKN+JXY5X
+X-Gm-Gg: ATEYQzxyjeZE1ralU3zxVr1fk1YmMUL9+OKkcDZPas+HKwid8/cUSyqayfwrcy3m90l
+	yd4Urgq5cTqT+PkZPqfeOwQL7uXAKGM8kwoVr7X2pjmBxgDrITEKlVUqnBeX3Lw6AoR/tKvgGbJ
+	GJOmNOstLBxSP4a3sHJaGGs47jwDLXY0zcPytJo32YdC6AjOs1aL9UBV6Q8VRBvnf9ZrVzHqAaO
+	tBEftgEGdo9XsRLTFDNb6G+YgcaY1Nhkj53pS6lFY95is6AFOXl9bQj4kwDpyrr35jRh7HOTG+N
+	VK1QYrD3xvx5vSZ63IZZMSOXJWd3Q/TyVdpd8kN97mjJRsW1UgE7tLmSE2J+8/hBvmIr4snUzyO
+	3nKj/BDzWCnN7U/NuGZk1jlKIXJZqtyfW74VjWQcNj+XJHWGVWdL4DpGTyvcGe0q1E4vORAdVhI
+	3ilS6GKLlIbAsICof3R7rRGNPIZzZrPwh6FBeHeYHaltYmbfG4RRhX6l7lSOcIqBgkwiex
+X-Received: by 2002:a05:600c:35d2:b0:485:3ca4:4eee with SMTP id 5b1f17b1804b1-4853ca45255mr123439525e9.34.1773164923066;
+        Tue, 10 Mar 2026 10:48:43 -0700 (PDT)
+Received: from db07.1337.ma ([197.230.240.146])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae45786sm42986166f8f.32.2026.03.10.10.48.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 10:48:42 -0700 (PDT)
+From: Taha Ed-Dafili <0rayn.dev@gmail.com>
+To: lars@metafoo.de,
+	Michael.Hennerich@analog.com,
+	jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	skhan@linuxfoundation.org,
+	me@brighamcampbell.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Taha Ed-Dafili <0rayn.dev@gmail.com>
+Subject: [PATCH v2 0/5] iio: dac: ad5504: fix voltage scaling and add missing bindings
+Date: Tue, 10 Mar 2026 17:48:30 +0000
+Message-ID: <20260310174835.24209-1-0rayn.dev@gmail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 7C90D255E4F
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: DBCFF255D8C
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273677-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,linuxfoundation.org,brighamcampbell.com,vger.kernel.org,gmail.com];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273678-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[protonmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[0rayndev@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,protonmail.com:dkim,protonmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+This series fixes the voltage scale calculation for the AD5504 DAC and
+updates the devicetree bindings to support the necessary hardware
+configuration.
 
+Previously, the driver calculated the scale based on the VCC supply
+voltage. However, the AD5504 has an integrated precision reference,
+and the output range is determined strictly by the state of the
+R_SEL pin (0-30V or 0-60V).
 
+This series updates the bindings to use standard IIO DAC properties,
+aligns the driver headers with the IWYU principle, and fixes the core
+scaling bug while adding support for the hardware's optional GPIOs.
 
+Changes in v2:
+- Replaced vendor-specific adi,output-range-volts with the standard
+  output-range-microvolt property array (Krzysztof).
+- Replaced adi,output-range-gpios with standard range-sel-gpios
+  (Krzysztof).
+- Refactored allOf block in bindings to use not/required logic
+  (Krzysztof).
+- Split header updates into two patches: alphabetical sorting and IWYU
+  compliance (Andy).
+- Used MILLI and MICRO macros to replace hardcoded values (Andy).
+- Used a local dev pointer to respect the 80-character limit and realigned
+  function arguments accordingly (Andy).
+- Added driver implementation for the optional CLR and LDAC
+  GPIOs (new in v2)
 
-Cristian
+Thank you to Jonathan Cameron, Krzysztof Kozlowski, Andy Shevchenko, and
+David Lechner for the reviews, schema guidance, and C optimizations on v1.
 
-Sent with Proton Mail secure email.
+Note: I do not have access to the physical AD5504 hardware, so this series
+has been strictly compile-tested and validated against dt_binding_check
+based on the datasheet specifications.
 
-On Monday, March 9th, 2026 at 16:08, Krzysztof Kozlowski <krzk@kernel.org> =
-wrote:
+Taha Ed-Dafili (5):
+  dt-bindings: iio: dac: ad5504: add output-range and missing gpios
+  iio: dac: ad5504: sort headers alphabetically
+  iio: dac: ad5504: Align headers with IWYU principle
+  iio: dac: ad5504: fix scale via output-range-microvolt
+  iio: dac: ad5504: add optional GPIO control for CLR and LDAC
 
-> On 09/03/2026 15:52, cristian_ci wrote:
-> > On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> >
-> >>> +  vsp-supply:
-> >>> +    description: positive voltage supply for analog circuits
-> >>
-> >> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, avee.
-> >>
-> >> There is no VSN and VSP. Otherwise please point the page in datasheet =
-or
-> >> some schematics.
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> >
-> > I'm not sure about that. Writing panel dt-bindings has been based prett=
-y mostly on vendor devicetree - which also describes somehow the panel and =
-makes that working with the final product released to the market - so I've =
-to necessarily consider that.
-> > Then, I could agree that vendor devicetree might be not compliant with =
-upstream rules and could possibly make mistakes with describing the hardwar=
-e, so I'd like to find a way to describe that in a more proper way, accordi=
-ng to upstream rules.
-> >
-> > That said, vendor devicetree describes lists four power supplies for  D=
-SI: 'vdd', 'vddio', 'lab' and 'ibb' (which have the following property name=
-s, respectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-supply', =
-'lab-supply' and 'ibb-supply'.
-> > Two of these are related to ds/controller (apparently, 'vddio' should m=
-atch VDDI power supply in NT35532 datasheet.
-> >
-> > The remaining two supplies are related to panel ('lab' and 'ibb'). Thes=
-e ones are two 'external ' regulators ('external' from NT35532 perspective)=
-, which provide power supply to display, located in the qcom PMIC (in this =
-case, that should be PMI8950). WRT to power supply names described in the b=
-indings ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' and 'i=
-bb-supply', just named differently in the vendor devicetrees.
-> >
-> > Usage of 'vsp'/'vsn' naming for power supply properties is grounded on =
-they commonly being used at upstream (different panel bindings make use of =
-these properties), on one side, and also described on schematics of devices=
- with the same hardware configuration (LCD_VSN and LCD_VSP), on the other.
-> >
-> > In the meantime, I've found out schematics for 'xiaomi-mido' (another M=
-SM8953 device) - a variant of this device is shipped with a panel also usin=
-g NT35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly shown =
-there too.
-> >
-> > I couldn't find much more information about the display on my device an=
-d the only resources available about that are those listed above, as of tod=
-ay. In light of my reply, I ask if it is still necessary to describe, in th=
-e bindings, power supply properties properties not used currently in the bo=
-ard DTS file.
->=20
-> Please wrap your answers so this will be possible to parse.
->=20
-> You write bindings matching the hardware and for the hardware, not for
-> the downstream code. You cannot add supplies which do not exist
-> regardless what some vendor wrote somewhere=20
+ .../bindings/iio/dac/adi,ad5504.yaml          | 40 ++++++++++-
+ drivers/iio/dac/ad5504.c                      | 70 ++++++++++++-------
+ 2 files changed, 84 insertions(+), 26 deletions(-)
 
-Vendor has also described the hardware by storing information (by including=
- info=20
-about panel too) directly inside the device itself (/sys/firmware/fdt).=20
-Though vendor devicetree could possibly contain mistakes, I guess I've to t=
-rust vendor=20
-devicetree (also for the reasons explained in my last reply).
+-- 
+2.47.3
 
-> and yes, you must describe
-> all known supplies for this device, especially that datasheet is
-> available publicly.
-
-Based on what you said, the following questions have raised:
-
-- have properties (mentioned by you) be defined=20
-(apart 'vddi', which most likely is actually 'vddio-supply',=20
-already defined within mdss_dsi0 node) outside of 'panel' node?
-(and related to dsi/controller rather than panel, instead)
-
-- have those properties (mentioned by you) set as 'optional'=20
-in the bindings, rather than set as 'required'?
-(since panel works without most of them defined in the=20
-board DTS file)
-
-> Best regards,
-> Krzysztof
-> 
 
