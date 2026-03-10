@@ -1,138 +1,192 @@
-Return-Path: <devicetree+bounces-273618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273619-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8Nb5B4hBsGlLhgIAu9opvQ
-	(envelope-from <devicetree+bounces-273618-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:06:32 +0100
+	id MJL+AsRBsGlLhgIAu9opvQ
+	(envelope-from <devicetree+bounces-273619-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:07:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7203B254440
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 818632544B3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:07:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4EAF63045022
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:01:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 19AF73197323
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:03:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E32BE3BED08;
-	Tue, 10 Mar 2026 16:01:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60B2E3BED31;
+	Tue, 10 Mar 2026 16:03:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=pta2002.com header.i=@pta2002.com header.b="AIgMtdVo";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=mrs1.rp.oracleemaildelivery.com header.i=@mrs1.rp.oracleemaildelivery.com header.b="g8eQOnlN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XZavYA5X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from abi149ajj126.mrs1.oracleemaildelivery.com (abi149ajj126.mrs1.oracleemaildelivery.com [129.149.100.126])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BC7F3BE653
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 16:01:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.149.100.126
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773158515; cv=none; b=IdB04U9CkJhZ90lGSID4PcB5TYcTJqQ5mhmhKUt31/KRzN+YDS04dL0CGm1OFSW+Oo/kDlvH22UKut6EuBAIl7UQbDrz8cRTcvRGZsmF+dKpxIReA9iQ/Hih5AKxXu6vGkhKNl0AxkehsncJ+EviZ5VwJD7rKyFvDUYXoLXQWGs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773158515; c=relaxed/simple;
-	bh=j6vjTGMn2sDnEH1qEBglPOB95rBL96vrjHwxZ4lygUI=;
-	h=Message-id:Date:MIME-version:Subject:To:Cc:References:From:
-	 In-reply-to:Content-type; b=okCTdoFWRQYAjQVRR6fNDTMIoaHZCVS/+BLEFwaoMU4BivXyut01BN8hfQbw/7rko+HiYJ/JrZtfcy/i5TWQ5boWNjVFePOut4hYgGRB+uy0c+JvbllFZJgWiHWXMW0ck1PDCC1JZHAxsMepQ6TuKR28UD6eXcxmfivthDcKBnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pta2002.com; spf=pass smtp.mailfrom=mrs1.rp.oracleemaildelivery.com; dkim=pass (2048-bit key) header.d=pta2002.com header.i=@pta2002.com header.b=AIgMtdVo; dkim=pass (2048-bit key) header.d=mrs1.rp.oracleemaildelivery.com header.i=@mrs1.rp.oracleemaildelivery.com header.b=g8eQOnlN; arc=none smtp.client-ip=129.149.100.126
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=pta2002.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mrs1.rp.oracleemaildelivery.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=pta2002-202603;
- d=pta2002.com;
- h=Date:To:From:Subject:Message-Id:MIME-Version:Sender:List-Unsubscribe:List-Unsubscribe-Post;
- bh=W+2PgkVfhOOGh3JhpM9bXs2EFaDZYgebhRwlkHsFdtk=;
- b=AIgMtdVorn90PogMThHQEAney2bfVcadXL2Y1Uz6v31yg/Eo02wBq9MQHGGM411if+PiB2i0koih
-   Kkofbg9vrdA0Ai89f7nJWUWq9i9ebzy4anDmqoCbTOnNz9IKrQTx+hIpkkug6sJl9s7h1udY3Pt9
-   NO4szfyfPjpeEjNs0DhKcVsbr/miKJfhwJc808iXXAGeqidbIc5jsXytqxkgK6mwhcaioQQMG5Bh
-   pKi5A7IFrlGFL9GbZBUkd+OfcHvwGnfKkwtoErkR/6jhIS9D9fXQHxJK4dbl4yK0omCWR1ZpT1YP
-   1tL7WFIzIz57utOekyVwTxMiKscNJkjS5vBlOg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=prod-mrs-20211019;
- d=mrs1.rp.oracleemaildelivery.com;
- h=Date:To:From:Subject:Message-Id:MIME-Version:Sender:List-Unsubscribe:List-Unsubscribe-Post;
- bh=W+2PgkVfhOOGh3JhpM9bXs2EFaDZYgebhRwlkHsFdtk=;
- b=g8eQOnlNiFM0CLCl7EpR4IXvMV1aYSx26D9gf1xY7a95qHFsA2xkruXDC+3FO2LtlsW7fNu3cYRw
-   peU5h0Q6YqR6UNfPjb/ZDDjfVepdU1TU/6nYjDM8bLM5v/K997Tk1vEPD7cQ4LPaW7QrxjwaefAT
-   SzaDb1CxwsghQz1MVMiZZ/o60go3yvkP8QBUaE1hZvo/guTx9qB87+FTlEo895Rf3IvgO2hNATAB
-   6vuCIGqqPbe3nORi21TuH0qpKVk7DZW+L+cSxhiXuT0mUk17j53cNiBhPYWJGsjNUvDdcU4pei76
-   q6xZ1UlpyFXq0hbTLStGJHz9h3Gcd2W/HRweYA==
-Received: by omta-ad1-fd2-401-eu-marseille-1.omtaad1.vcndpmrs.oraclevcn.com
- (Oracle Communications Messaging Server 8.1.0.1.20260212 64bit (built Feb 12
- 2026))
- with ESMTPS id <0TBO00MISXV40W10@omta-ad1-fd2-401-eu-marseille-1.omtaad1.vcndpmrs.oraclevcn.com>
- for devicetree@vger.kernel.org; Tue, 10 Mar 2026 16:01:52 +0000 (GMT)
-List-Unsubscribe-Post: List-Unsubscribe=One-Click
-Message-id: <e57dc0d0-8fad-4c55-ad53-d12cbda480b5@pta2002.com>
-Date: Tue, 10 Mar 2026 16:01:36 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4E63BED22
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 16:03:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.177
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773158611; cv=pass; b=W+0MNyMu71N77sbAGB20m4Cgj+1wl/NQz5LM7Pp7Biq69bS+7xoMCGiiiP6oJmWgh5rl0wbdyxKzChdb/Mn4hIcD7Ad20m8/dHkbbeOIAaSy95rg3hncjANdERchxKSpHblfXbOZ74+oGrasX1FILlRHy+yJJBC1rZi1cG0DDqs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773158611; c=relaxed/simple;
+	bh=K58+q75J3LD3mDRig06x+UazutdjEE7vGtq+vglIB7g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rQsTT079U5IZw3c0o1h5Xo7uY2ZlcQZ0ypZ1emfISEL4RU5K4Z+HEmbAsb+s+jKnpS8gK5gIaQmMOuneoTidS1T9dXD6f/tJj/gnqj8VZw08rPYhJu+PqXVSJyZz8aktIBPZMk9AYzxL8lomEapKfbIL3TL1ZsGF4dCxG1RF1bg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XZavYA5X; arc=pass smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-38a3225d59fso50937281fa.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:03:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773158608; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BJupSCerssVtpCZOTqNvzcJ1WOmxXZIAqOpsWn71p40S2XWRnM7lOWeFjORBwABGeO
+         54YE/JCMj+E7JRjnw6VBhx4UQHm//7m2W13flzISPZ+68SNqHceD7+/aPzLCJ6wsmnkf
+         yJWGg1bN45I0k+J8hLyO0mpJJlhy9PSRjqPygGh0It82aFhZK/IxVzdRci9oDpLs+Bgg
+         EEwlvVzBfkift07F5EFST7JLcCYeZ8eBCXXu0TrX5SB5cRxtmziKQk6g8UhtwWcm6dQO
+         AbbOn/XWIgoZRXzDFyMyBTqB16SZgdDfu7gy09CctaB7BhAJt8h7GfDE269KJFoXMKgH
+         GPLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=K58+q75J3LD3mDRig06x+UazutdjEE7vGtq+vglIB7g=;
+        fh=ttxrj/d9j3S4oX0UTX+xrMM7J+zt13RPSRULcqJXdO8=;
+        b=Q/n5YoFm62lYdDsndM+Ub+LQlo5pngC9xt6ObbT9SorRnz1sxCSqZU5HDKMFyoPFgL
+         3QuRPgjCXJ3TEYMtZQotinltaoDTE0oFASP9x5ziNKCfXHN+5fpixbXapVQSLWCg2wZJ
+         jqBZOJDSFg8T26odBqimyseXOI3AFZlJGEcfTZ+s7yKIUh6ONbcsTxarxqeF9aqXQl6E
+         U5IQKyblYwcHZtXrYNa0h31sXIbPQ44sP6bsm9PDxhorj1+vaBh65FiXCIwsNHMQ20lQ
+         MJWK3ZMo2M2mF3vtYlmL8Lvh+CEY21/38hqCWCDGtWYFAvjNu2E5lHs2i4SYN/HVqpw1
+         xpUQ==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773158608; x=1773763408; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=K58+q75J3LD3mDRig06x+UazutdjEE7vGtq+vglIB7g=;
+        b=XZavYA5XEiKSzMEZNL8R17MjqIlBKwX5YIA0o7NonD0mVd1156bDPPcnvb7DkEmyiI
+         vf4/KWzOyxpg64QQUwFTsbolhUiwau/a5FgoJpwkU49nJzbvLa7A2TPK9ThmAUEWGZQ3
+         rcauIoDgbcVLqlwMfCBIyoFiS7LEGYQH7f3mKk6TDLq3r7qJPZDzgiH8sQD3zGUp9awA
+         R8A7m48XtJBvv96eAP7LG4jl5+nDsUU5tSq6uftpyaldhAMSP32fQF31iYDK6d0kzVur
+         VMQPnXasZ4xCA7rJKCCUUSpJDzILmBE2loXLZiItL4G4Vp2Fk2L9EA9qvm0ws2prFcL7
+         d3Vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773158608; x=1773763408;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=K58+q75J3LD3mDRig06x+UazutdjEE7vGtq+vglIB7g=;
+        b=WOuUwgYme9gK2U8E2GhZPVADdW0gk4/1P4uZuqKGBBBWHC0t9bLhTu364FhK861Q0D
+         E0rZgjezv2c/p+NKO8GMsjKJR2FMHoK5uh6sMFpAShNTHN1Ira+BaquW01oNcaKOihX2
+         Xly2JpPtc8d8iNGMMLs1s9XSx3oBd8qu9cDvqMkKlsaqVJlhhDxzYWEO9qSUZq5svj5O
+         BjnpMi5KelrHpO+fOvwIrqiUEAb1HcWsCWTNPafwS7Eplwg5eB2ek20nC4BpaoliN5aL
+         AspeWXJHFRM3yHzNnPDfDi2WJ6JYtt5HesnYn4Gnvj8HxFlvngPe2+nvY3kTxcchVnyp
+         ogkA==
+X-Forwarded-Encrypted: i=1; AJvYcCUqgE23lBUxZDimIe1m6oB0/mkkkWTzuVVDOWP9z409DPnbYOG56UWqDldvBQts+4s/APJ5J1zQfLAl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWsroScdwDpzLIGCCSRHiziRgcFwiJCKr3OFK+NRae0vbuSuO9
+	/7O2RYF4nBruIADM6dIB/oq+wMPet0BPiligrrTFbUnRtmupr6hkhPudsx9+jpWwddHJu4JVH6m
+	G0n+5g+JR1kGo9Qugg47usmYoUBj3oC4=
+X-Gm-Gg: ATEYQzzUn6oK7wZ/gg7hZQINFj3DdMB6GH/reu85I/kVU4pe/h6yVUGmnXyQBqx1LoG
+	5VLh7f7uVW1NfBlnxq02TXjMiyTtfW95agl/byWdr/xvPU9/GCWrRJzUhIO+zoiS7MaOEwm6plc
+	1rNf3gNQKsksQs6EfvJieHZbhlk61U50qm4stR/uRoqgIqg32jramyfvkAUJgQiQzJq01doIIbC
+	04XPXhmN3ls/NklM2WSexx4QGVixo7MVTlRxlgBtDTnBkCkh6D2msRP6CvA+pmmnSMl0Wubb1+b
+	2EuT0ytlOyc25B71p63aE4ewUl1lWMXkl3RLApzMvoKYPsXQEzz8WzoDSL6cgm8G4Tcvb2g=
+X-Received: by 2002:ac2:4e99:0:b0:5a1:2f5a:cb61 with SMTP id
+ 2adb3069b0e04-5a13caaeba8mr3635889e87.2.1773158607681; Tue, 10 Mar 2026
+ 09:03:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: rockchip: configure hdmirx in Rock 5 ITX
-To: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20260304-radxa-r5-itx-hdmirx-v2-1-6567e9e3298b@pta2002.com>
- <9638846.rMLUfLXkoz@phil>
-Content-language: pt_PT
-From: Pedro Alves <pta2002@pta2002.com>
-In-reply-to: <9638846.rMLUfLXkoz@phil>
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
-Reporting-Meta:
- AAG0WhO5h6ltxXBJpWKRec1eA5PLxwyFz98OXlRfhTRnD/LE/iOtviDjy2/UiPp4
- KvbKjhNYzrpc8DwWL5pCTOhjKj7Eox2ZpApfB+T323TzS7z5aDgNDsXIcBDUBLjM
- ERdaQwyVvyk2Lg8R+EzEwxoWZyInhgD8buv4sQ1WKoXPL1Wq3rYie9T73NGZIP2V
- Rp7Bh426mAzAMHdQvaRoZAjxtKVCUokP2EH7nxXrSi2AX8tZCqqU4BnbVvaDO6s/
- Mi2jHRXLr1CV1itVu0UeBsuA/03nTiI3vaDcAeqW+EdLpAXKSWRKqxteav1gMihB
- hMAwY6oPYtgUSOP0imQdzLFwszNbUni/8o+qiDMTbdBeBS7FmGz2SoH52/aadogV
- F7JdCaDkP8Tp96f96X5NWtfGLHt4OEBhYLItLw38EJPYqkLiKvYih+RHeXlENtIr
-X-Rspamd-Queue-Id: 7203B254440
+MIME-Version: 1.0
+References: <20260310124950.1345117-1-andrei.botila@oss.nxp.com>
+ <CAOMZO5BVtRHW1+qtMEH9akO7ULS3LppzGXMB2_M-JJVwjbv1oQ@mail.gmail.com>
+ <67e082c5-2b34-4960-8fd1-6cd007e0584c@oss.nxp.com> <CAOMZO5CHGssc3Tuf6fJg2_P=bp7=itfDVRANqQOiK2b-2ooeFA@mail.gmail.com>
+ <d5bb01c1-17c9-4d76-8a49-00ffd85c7580@oss.nxp.com>
+In-Reply-To: <d5bb01c1-17c9-4d76-8a49-00ffd85c7580@oss.nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Tue, 10 Mar 2026 13:03:16 -0300
+X-Gm-Features: AaiRm50hQtki5ODEQm6WBm-CMqmZXFNtS_jtFUq9YGrHeYsH6rVUj6xnzW50JoM
+Message-ID: <CAOMZO5A2qG8_d=5S9xdackhUt+DS-YtrvRvNeqA40X4TiVcyaA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: s32g: force S32G RTC as rtc0
+To: Andrei Botila <andrei.botila@oss.nxp.com>
+Cc: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+	NXP S32 Linux Team <s32@nxp.com>, Chester Lin <chester62515@gmail.com>, 
+	Matthias Brugger <mbrugger@suse.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 818632544B3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.36 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_REJECT(1.00)[pta2002.com:s=pta2002-202603,mrs1.rp.oracleemaildelivery.com:s=prod-mrs-20211019];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
-	DMARC_POLICY_SOFTFAIL(0.10)[pta2002.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273618-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[pta2002.com:-,mrs1.rp.oracleemaildelivery.com:-];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273619-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[nxp.com,pengutronix.de,kernel.org,oss.nxp.com,gmail.com,suse.com,lists.infradead.org,lists.linux.dev,vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pta2002@pta2002.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.790];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pta2002.com:mid]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,nxp.com:email]
 X-Rspamd-Action: no action
 
-Hi again, sorry for the follow-up:
+On Tue, Mar 10, 2026 at 12:21=E2=80=AFPM Andrei Botila
+<andrei.botila@oss.nxp.com> wrote:
 
-On 10/03/2026 08:48, Heiko Stuebner wrote:
-> Am Mittwoch, 4. März 2026, 21:44:39 Mitteleuropäische Normalzeit schrieb Pedro Alves:
->> +	pinctrl-names = "default";
->> +	hpd-gpios = <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-> 
-> Also please provide a pinctrl setting for the gpio hpd pin.
+> rtcwake -s 10 -m mem
+>
+> rtcwake: cannot open /sys/class/rtc/rtc0/device/power/wakeup: No such fil=
+e or directory
+> rtcwake: /dev/rtc0 not enabled for wakeup events
 
-I might be missing something, but isn't this already present with the
-hdmirx_det pin? It's configured as hdmirx_hpd in other boards, but for
-this one I left the hdmirx_det pin name after discussion in v1 of this
-patch to match the schematic.
+You're missing the 'wakeup-source' property for the I2C RTC.
 
-If you mean something else, please let me know.
+> > date -s "2026-03-10 11:00:00"
+> > hwclock -w
+> >
+> > Power-cycle the board. Does the "date" command retain the correct time?
+>
+> date -> Tue Mar 10 11:12:43 UTC 2026
+>
+> date -s "2026-03-10 11:00:00" -> Tue Mar 10 11:00:00 UTC 2026
+>
+> hwclock -w
+>
+> date -> Tue Mar 10 11:00:06 UTC 2026
+>
+> <Power cycle>
+>
+> hwclock -r -> 2026-03-10 11:00:31.104653+00:00
+>
+> So looks like it does retain the date between power cycles.
 
-Thanks,
-Pedro
+Yes, the I2C RTC is working as expected and is battery-backed.
+
+You should use it as rtc0. Instead of relying on random probe order,
+it is OK to pass an aliases inthe board devicetree to force the I2C
+RTC to be rtc0.
+
+If you use the SoC RTC as rtc0, the time will not be retained.
 
