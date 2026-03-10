@@ -1,82 +1,94 @@
-Return-Path: <devicetree+bounces-273693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273694-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKrALPBisGloigIAu9opvQ
-	(envelope-from <devicetree+bounces-273693-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:29:04 +0100
+	id yLAUDg1jsGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273694-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:29:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 389D4256669
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:29:04 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D3525668D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:29:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB134306FE2B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:29:01 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6C5DB301B679
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:29:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDCF2E2850;
-	Tue, 10 Mar 2026 18:29:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74AD12DECA3;
+	Tue, 10 Mar 2026 18:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Z1V2f+sN"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="UXucI1Lh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013050.outbound.protection.outlook.com [40.107.159.50])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013047.outbound.protection.outlook.com [40.107.159.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982902DB78B;
-	Tue, 10 Mar 2026 18:28:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9782E11D2;
+	Tue, 10 Mar 2026 18:29:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.47
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773167341; cv=fail; b=faIrVpwRXftpWkDh4PYIfRL40ROp0+pMBM8+BTuiSbMAQB/8IoAhSvl9HUO32MH2hyh26zLNDvXFwNqwd2WyAQEA3ANgRcoAvvL4n+2fjiOV6URZQZ2p7yfMCl7bq8Jda/Q5joax+FcE0c8+IgdpVAa4O6znJwDT/6hSNMYnVEo=
+	t=1773167362; cv=fail; b=MdGbK6eemk+aG/ThzrtPUFzIXLog04pbXG0Kq0HszBHZhlWV7Lud4ucTfEbbN9B90K0l25dO4FI7dI7j61W4ixvxtxXnytsfD45yKkG1od/xWlNlVP+ccZnSCY/tF14EiXUWTH47vsIteaMgQjs+M+Y1UNp0elMt97zStpDY/H8=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773167341; c=relaxed/simple;
-	bh=YP7tFsVYDasvDY92TWQgYj4hawh5rGEuMnm9MgaL+yA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=cgtsyQcQ/wVK7B+uqDzrhElvqYycb//ysEL1T5cLcRFCNfrWQv3sP5kRrKhyxTo02t7QC3qjVCUr5AQrX21wHymynR3h97D11DpdiLvZFT4ngm8qI15/G+5gcAdQ1iJ9Hikzm3sXgudr0adLEN+xlKOcI0c2yg5cDVRvmEtStrI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Z1V2f+sN; arc=fail smtp.client-ip=40.107.159.50
+	s=arc-20240116; t=1773167362; c=relaxed/simple;
+	bh=2iT6nbxXqh9Jj09ppsCOAUW8gcnsVozyQiQDqG87cRs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SK2Pdl0S8YO2o5AbOr8EmdsFGUaW8VbalvCyzHua24TmupntT7h1ZyBnIKFMcSRW4Ge/F3WEH+PqY4lT4JOwZO7yaWNGeRSlgXyXYGIW4g1TKOOBREkZfOl6Xk6EWIqUvURBnBhEd2fcI7ErlvLZg/rko3pFJkvpNNcYjgOBE8E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=UXucI1Lh; arc=fail smtp.client-ip=40.107.159.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QSWTkvFf4/ah5DFmwJnzmjyQ0w5Pfp4eGpvLplToBFBqbJVj16/NJH/0h1/6odJL/n/xPlp8ZttdTHQZEuM20axR5x7okU0OEvCw4dac0cQus4kBfmp79ZPxkCQgXtByhqHjrwe9TfWE96NWZmNY0OW8j5L30m1nbTGMnv94A89zpP3O+ZnCm5gF3rE3wes+Bme4GuGJZR1Wb1RMBf6Bsk2yHC+tmi8Txln7kxhozcdBzkA67LTjlsS8Owd/lcPcEWvbGoFdESO6ljA7hLk1HMHu0OXL2ZhGj3X9EWyks+FRXEoVJzhlBphr87jeeauUiP5ZMVvPMHHql9gTAQfcfg==
+ b=rodW3joy5j8jyyCeEkqGh2jDs/tHGxldEXMWaoospiNptoZSx/bdeGVAE5GYz6FKRgT+LAt9bOiZzrtoV/b1Bqb8QUYIjNOQ41R6/6GAzHPNL78mYpPm1RQ8p+ixIkwECYBDMx+JDKcV8/+qKZ3Z8HXGTqWa+6B/urfZQqZQhN85NW5Tl2iI0L9znuM1Z9GsehEz7gbwOk8P6DvveiUsKUKdTXlOnwcJd/c/fCyxu5bvz5avQqmaxf+PEolFopFrjuIbN7a4qnnnn4KxBng3l/h9x2WJnTtCKLj4i9pzaVrylB8V6c10TQZV+fMRyMutOwm69rt87dubVewNiHPVtQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H6HQ6LQQRSaG1Ss3bUToVAAPNvm9ffFwDTTUHOUxDrA=;
- b=TUMNIR3fQX9+9yCIFOHa6jkjC6bzYf7gzHIppnnoLM0WqMD3qap9M8aoPfxLciHtdU4zDA4RyxgLM8zM+i2CdeQhWeTCEnlXwMrxi9g0vA8BEMnbj35sXMi5tSk2WW6PmImJ7t8na6QV5rR0W7/66kqG9/2cn6inPpTrYMrxtkAO8Fy/gS9HGJAfXbuaL2bSZcw+AnBAZm7r6lsA4aRT8V/LSkFzKx6X40Y2NsYG9Sp8rkfRfbPzJvVytWaCSk8tEDceg/t79wYStg916Hg8tDvtzWHJmmR3I4VAY+OSMZ+/SaqCq3739eM0z2UrufZtI8e9EcgQiIDrF8TctzNY4A==
+ bh=vpqc9LFbKEFKY/ggZV6nVrbLGMlneCVAvM3TxdYW01I=;
+ b=QL0nreO0CXJ4cpx3KefMUHgs6kstyeNuMndZiiYN1OgyCpg9uAoQTW3NSnZg0cEoxfzRjMnoiUjeapZOHJ/aGI3sYtCyrNfhdZS4rGoJk9n70x/z/6/DWA7bKA3iLfY2I4XvAJVjFMu5ET2SP63y2QD2nF/8gkzaSgM0J2XNdqEPmOpqq3fFzNOKlABfcu5OjHvdqPrp1KdxTRQrPc6jzzZfEPlanhKt/cjiSmBAGJydZpry+098af5Fjdu0f4NQtZbuDlAo+eVti6f8NfsR1KabTyf5ogEda4kBTisdjCc+l7Hc/ADMk6wHhwxdx1BT8UTIhQlCQgPB0FfN50Wygw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H6HQ6LQQRSaG1Ss3bUToVAAPNvm9ffFwDTTUHOUxDrA=;
- b=Z1V2f+sNh1IWdMTGNdC11t2vU+PjZdsw+Z34m/upZt5z9ZuOV7SMBiCVNEBs4INhacxgw9F4ImN1cnPbFmRTeSuqomMfo9MGTEIoFo23Th7l77aXuvQThRwea0C/xvU1knynA6NbK8od2GfITVc4tbGnZMrSKZ6IZKDvRoAAD03EsRvFNgiFDwEzPR8bkPSJSiCixnLm+HUnK+92m0XlpNd3UyGfwtTZy0fw62VUCN9LiNJW35h3udTpz12FOFn6NJGWdOGMSdqoz/BUSiuk6PnoY+xwHMlSsI6H6mtC1Ghj0mwn4fz9Mli97nr+TQ4QiGJ1KPUSahDBF+87pMRt2A==
+ bh=vpqc9LFbKEFKY/ggZV6nVrbLGMlneCVAvM3TxdYW01I=;
+ b=UXucI1LhkBO3iWONGjTTBZan4EDR50Rn3zNerHuR9B80BlNzK11sMDxhR8qxONowr2myobObl5VI5XG1xLZxSjm2P9j5tADy4EP5nJ1/D+3gDeE6LHb5M+dlIf1wyuhi5aITj17UuAvIacjhs5yLea+cU2FVTPfCujAbyGm0c1AZFM78BoXmKT+o0jVxPjNzB240iG7GAFFwyHBDQcN5rd5Z8f82GSh5PZylJJ3lvj9yIhWmMla7C/yEChUXlCdIScg5WPMCZte2C41Oz7f5XdmA5zKuLk/Huz7ku7UA20pcwZHNA4hqdTP5TXrt3SkJVEJ1kaIY+X6STdUwDpNADw==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
 Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
  by AM0PR04MB6929.eurprd04.prod.outlook.com (2603:10a6:208:181::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Tue, 10 Mar
- 2026 18:28:56 +0000
+ 2026 18:29:16 +0000
 Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
  ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
  ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Tue, 10 Mar 2026
- 18:28:56 +0000
-Date: Tue, 10 Mar 2026 14:28:46 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Lakshay Piplani <lakshay.piplani@nxp.com>
-Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
-	lee@kernel.org, lgirdwood@gmail.com, vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com, aman.kumarpandey@nxp.com
-Subject: Re: [PATCH v6 7/7] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x
- I3C hub functionality
-Message-ID: <abBi3inYHL9Bzpk3@lizhi-Precision-Tower-5810>
-References: <20260310065727.3759342-1-lakshay.piplani@nxp.com>
- <20260310065727.3759342-7-lakshay.piplani@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260310065727.3759342-7-lakshay.piplani@nxp.com>
-X-ClientProxiedBy: SJ0PR13CA0111.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::26) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ 18:29:16 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: hongxing.zhu@nxp.com,
+	l.stach@pengutronix.de,
+	Frank.Li@nxp.com,
+	bhelgaas@google.com,
+	lpieralisi@kernel.org,
+	kwilczynski@kernel.org,
+	mani@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	s.hauer@pengutronix.de,
+	festevam@gmail.com
+Cc: Frank Li <frank.li@nxp.com>,
+	imx@lists.linux.dev,
+	kernel@pengutronix.de,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V7 02/13] PCI: host-generic: Add common helpers for parsing Root Port properties
+Date: Tue, 10 Mar 2026 14:28:53 -0400
+Message-ID: <20260310182854.2226939-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260310015426.365675-3-sherry.sun@nxp.com>
+References: <20260310015426.365675-3-sherry.sun@nxp.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0044.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::19) To PA4PR04MB9366.eurprd04.prod.outlook.com
  (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -86,357 +98,126 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM0PR04MB6929:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5106f188-b927-4081-debf-08de7ed2e36c
+X-MS-Office365-Filtering-Correlation-Id: 4c7e284b-016e-4f19-c8ba-08de7ed2ef9b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|19092799006|52116014|366016|7416014|1800799024|18002099003|22082099003|56012099003|38350700014;
+	BCL:0;ARA:13230040|376014|19092799006|52116014|366016|7416014|1800799024|18002099003|22082099003|56012099003|921020|38350700014;
 X-Microsoft-Antispam-Message-Info:
-	DEvO6ICdRXlhnRORjTJHsImt4AywUg67JxXmd8cys95J/9NjO17gxzKfJyxk44snRAYvWS7QhPW5qWtoguLg8Y2e+LjYVK2bUVqYRGGjQ9QlLygqEAIp9Ayh6jkGFHgjubiRM5mylqfvLNPU3sAq6aKBcAbTt5u3ZSgKu1qhwJGpdz/kyunMzC6j09fig40b1FwM+Mzor5fIsL1BenkqsBxwlcsG89Jqq3ctT4TQPxCUk4H1sutF1aqSxL9yJ1cZwBljPmRzVhPxyBwrhlAobTQ3mq7xGzgtBmQ/K9hZ5gwnZ/yMqlL4fsCbi0dbSWGzG8hCnjDUTcYGlPP5kjR6TKAP7PfupvyrXWVR/8bv6S8yBFRpRWG2+zuQZzPJYco20kD8/Ygh4ypuIP6QDX9M+NT/MlWjxQmukM74gfUp9L8CqC9rURZbzdSVLdK0CAHsp8JIN5Ylu4PLFNb7lNpPVDJD/3hCvcetum+2CvDwF5CxPJ/IvLKLJb9EKbWgHQSOz8l4jFmvcvHv7vSgiNUFPgZzadPIhAL/KlEle1eK9D8D6Sj6U6/q0rX5Em0Z+olQs5T2kWoLO/r2mfGDulcPF2tGL7Xpdvv5C34UCau+motIrF+q02Q17QLTSWLUTNO5myFS2ys+D/8ergi89zVDwGx8gkajQmTI9q8iWjb7loLGtwo9vYWP4Wi8Ev9WYoQfkWLWsFxI1WTV7r+wLNkIMLiM/wrUBosuH8GJBYHbnLOMLXQBDM1HlEQaF73lodvRaf4B7ofHiabyC+8GlXsloqvK3+lax2MiyDb/5o9z3ME=
+	4SZn8aq5yJf01JXJ2sJdkhJ0nZJyuTmxc+gifGVtl2rD2fgB9ZCFhHmiok7Zf67zobcB4cJC21vBAB2+4Frp5ZPj/boxG39EMxBAXhNmXoZRyboOfDl9ZrYJEDpa9WxPPVo/taglzRdUj9RyvhhCBiRfrJNIydQIjZ3/8etWDirxmCRpkZlGGF0NTrcNl1BKy8YpXRSL9TRWbn6DY4yUG70W3wYgdYAFJxBMIyjLkllPZJDpO7aVqr6MuA79Hpzwhq1tP3HeiLVzk3yUJN8Z2OYMCXrEaon6D2mMNJl/QhLFi/padmUhOEUUDT4qCeg7CKeo+QblQt8QHw6BuA+5WjhePrsKy5/xGD+RM8UkSUbuYOPMjBUYh6IfqTOVq6jholf6+cjnQVIXbAnww0q0gnQn6GYNLS8F7m58xYv7a12Ft54+euM+3PUZgsWZTfVvcSksxmNgXQbvPIdxxF3p8FSjGq9l5/yk1SmHjmfOYn2skPmCdmP9O2SmbxM2KXkflQq2tXLQnipmi+CaC7URt0mSXQcMH3HyGJnKU8HEbzDD7P9gpGOTe0LoAI9khLIUyfm6swaTLX0wnGjb2Ke0qXpztfc0VNs0YfZ39ptGXp/uwMvfntExk/q9sWs+5xCZJISmK39jS3wCD0UELHuYr3otw1BRXg62n1dSnaRt8oGBAOnNhJIsIY/Kj8iK9PtzHMMXeFYJiV1zd6g2AGFE6aQiBAPLEBvtkRRyueHNZGekUE7xSNqJHFvFXU8anuCOiQ4Yv2k8YqTmSe4OB0m+f11ofjbKYZ0tywZjOP3KzngaTQ5sv14ZqAusimSQvn+E
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(52116014)(366016)(7416014)(1800799024)(18002099003)(22082099003)(56012099003)(38350700014);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(52116014)(366016)(7416014)(1800799024)(18002099003)(22082099003)(56012099003)(921020)(38350700014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?87Y9eva7duqOUV8AfzIsEY6SIzJOTMJkVvJ+05ABf7ppSiLBNCjMW/kIJ7MK?=
- =?us-ascii?Q?HPecz/grEXECHyDO6mgGM4ASNKWNHvnj6uezpGw+/O0bsZICxQR6UwbO21jx?=
- =?us-ascii?Q?DncPc2hb4IAp9GxTbOa6c2x6efnX4heNJYCqnPDedSA5B4rSyJVgCJJ9dHVU?=
- =?us-ascii?Q?EFe3/HbCXORJXP7Ch7cZkWcg0C0Q05zgKPvTRW33TDLN4ALbstAmMePw6/is?=
- =?us-ascii?Q?ieWDM0EcA3O9f4VVnK1CPaRGPwcMb9Ok1AXGmTouieral3kII1QZu8mdkRxR?=
- =?us-ascii?Q?HsSPkNvjoFM0AJdwavalk9Y8vQiripqUMpWjwK2a1HqKWk7KyxQMvMfAD+S5?=
- =?us-ascii?Q?/hy/e6FBRp8SNQ3N56Puwt1irkI29Y5sCkaCRUTxgYJ5lE+E3uWTvhvOa1yK?=
- =?us-ascii?Q?+OPDT+6JJFIemOCQ6qYcqrOiww/b4FtdM/mIUPgc+MWMeag82GbDMGeNAt+D?=
- =?us-ascii?Q?SAzH7th7CTB5yjWqlvuE2lVsHzF/zDYXnbAbU2YRzOcj9yOT5Coohv9/yz+/?=
- =?us-ascii?Q?F/RgSp+CIVgHpD0Ykg6EMab+rk8bGPBTroLgGQALUK7cw4/t4PgUaET1x5E8?=
- =?us-ascii?Q?AQhYKVQ0aA5y55uPhKwynTg5C4vwaq1haxkt/wy7jc0COZR/zIUugPz/I048?=
- =?us-ascii?Q?EfhouHp8XdG9GQhHbFakoIUaX9Y7N5M/ZXyf8tCFI88Y/zWMG2eGmQl5tKu6?=
- =?us-ascii?Q?//cKbbbDIiSEgwSKvaqGKouv6Quj3y695ZEXJSnFoSQGmkgyRF3Z5v/MFORi?=
- =?us-ascii?Q?RyDuTMFTu6qfxJ/k+EMJr2vN1G109RJ4bn/xytmrbMTnWOr9chYUU0Dr8lpz?=
- =?us-ascii?Q?jKJ1n/8E0eS+NtXieXj4deDFWOPnAegcxGHw4KLTVfoP2iWkTHZQR8JRIngj?=
- =?us-ascii?Q?sCjCzEStTQPWmZUgKDIme2JK56oHyW3UtGnQj79KHiW/E0KE3whSViWUcifK?=
- =?us-ascii?Q?VwsLT41rpHPAHPdewl76Uu6qroPz0MwJ0wS1E+pNPAyq78wIMC0AhXklbCvH?=
- =?us-ascii?Q?gSKCL0Ts4OEcMhsDT+bltbrPZhhlJW9tEm+wHsAuQtKmfhqXcHun4fUKX8/i?=
- =?us-ascii?Q?/omGmZV/ZeIm13D031Q/ZVYYj59Sm+nyW9x533OwdzCbTpHTXcC0L4tqUGx/?=
- =?us-ascii?Q?lNYXHe/73usHgmZWkPYz9qEwaMvkgjxUFS+9E6KKxUK+inwEQIw4Y09CTx7/?=
- =?us-ascii?Q?ELru973Odsd2uTuG2j6dEhoJhOH4PCgS6ge/E5XOvQg4n39UcpMysDs2WFV8?=
- =?us-ascii?Q?GUYhyEh4f8ApTwQT11K6jhWxq5BTe+Dhn/VFks0aWSPu5jGz9Q1RTESIJqGI?=
- =?us-ascii?Q?wzlP2CoPblytzXY7sPwIbPkXOh4oZgzTvaCv1PTIols6uT1x/BFGTu8narPx?=
- =?us-ascii?Q?baeo7FUmJkz5waAi4XXqB0ZIiGDF6LssTBRYa+ZUzgJMs7nTyunjKk3XwXqH?=
- =?us-ascii?Q?30HzmIPyj6WFUSfqGqxxQ38PGJNVQwz1DUSrTvxyMVBeusv7Iwev6dBf9f/x?=
- =?us-ascii?Q?gMYCgQKXE5GksCni1ZVywSshCX+1a+uxjivbZSUMYD2/+qqcptcoqM/GpCIO?=
- =?us-ascii?Q?WkXe433QD+E0V0xDxLjdG1gNRJE3pgnJOckQsjF/xPgAS8eKEkdXmBjX5UA9?=
- =?us-ascii?Q?hAHQbnPfKVAQV8q5OUmuBlLstde8sMqTqvvJG4r2FnOSCWdx27UmCAIgBF6o?=
- =?us-ascii?Q?V3b0E2/KYxOlEnPu7SPy6nQW08LawEQ/g8UCfoe7XvsdXGtOSFVlxdBYKn/H?=
- =?us-ascii?Q?+HAvgvrdbg=3D=3D?=
+	=?us-ascii?Q?1nCP/AI2w2JjTGpDGKmSygH+8NmebOuy3AIiEzooueEziwhLlDb3ez9yS4UU?=
+ =?us-ascii?Q?bganJAtqBOB0Jt/LriWkFN709VA27t55UKc6faazUcC1bboPbCdy26dRIJ5H?=
+ =?us-ascii?Q?unEuhb4TCdihAPbe19jvMlM3nDNtu8ZOxPBVjOWRBYOvBcGHvvDRQ1nO+/Nc?=
+ =?us-ascii?Q?BVeE+C2ZKEptRT5Hz+Lr7uKdzV0dPeg1RZepMO1Ad+tDd12+tBeWcqoWx+DY?=
+ =?us-ascii?Q?YrnS2t+ToFaWisEYCuZ2kH0nVelb+zW5wegR1lBm4o31ceRfpN1bOsXX0u0k?=
+ =?us-ascii?Q?rvI+eUvQtVpx5SaAmVzzZGsO+QcnhV4ZvhYmPoTNDExee8YxmgDJZ9yRxcKS?=
+ =?us-ascii?Q?m/bN7fvBQPCImEWBnXLWbIk6lx7hZBuuECFLYHP+luPxct1Ewjx6BI28Eq91?=
+ =?us-ascii?Q?lbUSpNCC3RM7ce1JcUf0NaiBVGGEMRzqPUU90ZaO2iJ3FraAnvyQfjUO0TOj?=
+ =?us-ascii?Q?scIvi/VQ5bwr5nfvL7Tpe4QgstAWbWUSWNR2l1j1Y/Sz7xrexoQx7+HeAAgY?=
+ =?us-ascii?Q?jWEVMe/0KtbvPS2d+7KSdBJjXaFMa4tSCLz8brhxUz2X9obbwrmg4p9FgEcx?=
+ =?us-ascii?Q?TF+hbrBnoAWKz1vQ0LCY8gpFW2JQUh2LDFpBsgDzc9PuKWe+xVYAqGsPibdl?=
+ =?us-ascii?Q?FivaEppbRyTHwHYzdl+nuxrt0H5E44dBS5WDGYC1DP2CEZI55QNPIHeivG/F?=
+ =?us-ascii?Q?GK1V2cQI3x2ib4eFYBqyFTEFdErSl0PyopEHkDgNb3iBbR3rCw1T47tDmLsD?=
+ =?us-ascii?Q?f1Eb5DfNv3TtJvGdBUxeDqBeUVdOx9fC9W8Mg7aIXM55HvSjC9fo5xrIdELQ?=
+ =?us-ascii?Q?gMvZcW4zO3v/2ezXSv01GaOYcol4P7lk/Nm0fAgiZtxa7gBVJGPo8F2kIdD+?=
+ =?us-ascii?Q?W8Qfr1AxyKCB+fNvOjLQ7OVekvpLPJbzzXLFGdbajPdhKs4gtVMZcqS2lsBA?=
+ =?us-ascii?Q?0xa3OsUBE8dkGCqkZQvdkxw/qXuHsVE0TiFOXlucvbt0LmsxqPYVoykBPCBW?=
+ =?us-ascii?Q?WiO3V7uVYkE2d4abE0jOkdeVceg198wbsU59z3s7vTXGU+BR3G7gOAVzs1nl?=
+ =?us-ascii?Q?7E6k+UT3TFMX6cou5FVKWxY0jAhS88UtHEue/eFwKj+RzevK9FRPLewy7QeC?=
+ =?us-ascii?Q?NyZORPjDCbyhbIfxBrfCpaDLQBkCeN709UIVB+tJc2O2WDVzLdq2gvDl5GMP?=
+ =?us-ascii?Q?aDKao0hX6+p9+LWyZc2aRiNit5gjzE/SWTqPfGp0wV+lMz63riOcHEgiaevf?=
+ =?us-ascii?Q?PsQzpMU+IFJ8KaCzkvho6TK6tw+1C5GNRdRYja9qmHAfXyF1ccY0vSPFg3gZ?=
+ =?us-ascii?Q?6f2AfuxjeYIJWLbmpbuYcCh3ckP86rtZ1DPYmHfdBF+5EO5R6tsgu/R4MSXE?=
+ =?us-ascii?Q?/9EMoUD43iX2j8LxCirSZOrYefOAmIIXRG015BBR1zX0I68gNU3B1IRmt+md?=
+ =?us-ascii?Q?w2ru7EkOD5+otx4IQD/1ojYdwm9IQLe+/QX53gz/TT39wGVSSIi2yS8BQpJS?=
+ =?us-ascii?Q?gDS2FJFNi0AgkTpo84s8LlYj4jTeV1KCHJHl/cTdlrzXqukuSCiRoqYdtknm?=
+ =?us-ascii?Q?PFHX1qtmfY4Wx7QNTZfwrUzURfE0jiJSFWL3vI4XEaenHuAMzRi3ETsL4K41?=
+ =?us-ascii?Q?BE7EpTKWySYqg7Dm2rnmriVqzTEnVUwC0K+kWVxw5vRwPj3NKDpJrnYpU1wl?=
+ =?us-ascii?Q?d4JYqqSrhrU+FAXFPr5pPyH0Jl3LmFz4ZA7GeQ9K3E0fL7RQCqHFTV2VUnQb?=
+ =?us-ascii?Q?MSvJrhB8bw=3D=3D?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5106f188-b927-4081-debf-08de7ed2e36c
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4c7e284b-016e-4f19-c8ba-08de7ed2ef9b
 X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 18:28:55.9188
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 18:29:16.4619
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: o0kXxE8VlpnrOE/5alDrweCwq0S+w5J1AMFf6F6y8wV60L0XkblslhnlfFWTAr6pQJ290pYIOFnixmlnSSWK5g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: D7HRAJzPjkfu14dsyolKfPbtX/CP/sFtA607jtFA0M9PxR9aWMK8hyXWdkmMSAtT+IjpgQxq1f58+5bDLUD3Kg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6929
-X-Rspamd-Queue-Id: 389D4256669
+X-Rspamd-Queue-Id: 38D3525668D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.84 / 15.00];
+X-Spamd-Result: default: False [2.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_REJECT(1.00)[cv is fail on i=2];
-	MID_RHS_NOT_FQDN(0.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273693-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,google.com,kernel.org,gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com,nxp.com];
+	TAGGED_FROM(0.00)[bounces-273694-lists,devicetree=lfdr.de];
 	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[Frank.Li@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:dkim,nxp.com:email,nxp.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 12:27:27PM +0530, Lakshay Piplani wrote:
-> From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
->
-> Add I3C hub functionality for the NXP P3H2x4x family of multiport hubs.
-> These devices support downstream target ports that can be configured
-> as I3C, I2C, or SMBus.
->
-> This driver enables:
-> - I3C/I2C communication between host and hub
-> - Transparent communication with downstream devices
-> - Target port configuration (I3C/I2C/SMBus)
-> - MCTP device support
-> - In-band interrupt handling
->
-> P3H2440/P3H2441 support 4 target ports.
-> P3H2840/P3H2841 support 8 target ports.
->
-> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
-> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
->
-> ---
-...
-> +
-> +static int find_close(int val, const int *tbl, int size)
+From: Frank Li (AI-BOT) <frank.li@nxp.com>
+
+> +int pci_host_common_parse_ports(struct device *dev, struct pci_host_bridge *bridge)
 > +{
-> +	int best = 0, i;
+> +	int ret = -ENOENT;
 > +
-> +	for (i = 1; i < size; i++)
-> +		if (abs(tbl[i] - val) < abs(tbl[best] - val))
-> +			best = i;
-> +
-> +	return best;
-> +}
-> +
-
-There find_closest() in
-/ include / linux / util_macros.h
-
-Can you reuse it?
-
-> +static u8 p3h2x4x_pullup_dt_to_reg(int dt_value)
-> +{
-> +	return find_close(dt_value, p3h2x4x_pullup_tbl,
-> +			  ARRAY_SIZE(p3h2x4x_pullup_tbl));
-> +}
-> +
-> +static u8 p3h2x4x_io_strength_dt_to_reg(int dt_value)
-> +{
-> +	return find_close(dt_value, p3h2x4x_io_strength_tbl,
-> +			  ARRAY_SIZE(p3h2x4x_io_strength_tbl));
-> +}
-> +
-...
-> +
-> +	p3h2x4x_i3c_hub->rp3h2x4x.rcp0 = devm_regulator_get_optional(dev, "vcc1");
-> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rcp0)) {
-> +		p3h2x4x_i3c_hub->rp3h2x4x.rcp0 = NULL;
-> +		dev_dbg(dev, "vdd1-supply not found\n");
-> +	}
-> +
-> +	p3h2x4x_i3c_hub->rp3h2x4x.rcp1 = devm_regulator_get_optional(dev, "vcc2");
-> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rcp1)) {
-> +		p3h2x4x_i3c_hub->rp3h2x4x.rcp1 = NULL;
-> +		dev_dbg(dev, "vdd2-supply not found\n");
-> +	}
-> +
-> +	p3h2x4x_i3c_hub->rp3h2x4x.rtp0145 = devm_regulator_get_optional(dev, "vcc3");
-> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rtp0145)) {
-> +		p3h2x4x_i3c_hub->rp3h2x4x.rtp0145 = NULL;
-> +		dev_dbg(dev, "vdd3-supply not found\n");
-> +	}
-> +
-> +	p3h2x4x_i3c_hub->rp3h2x4x.rtp2367 = devm_regulator_get_optional(dev, "vcc4");
-> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rtp2367)) {
-> +		p3h2x4x_i3c_hub->rp3h2x4x.rtp2367 = NULL;
-> +		dev_dbg(dev, "vdd4-supply not found\n");
-> +	}
-> +
-> +	/* Enable regulators */
-> +	if (p3h2x4x_i3c_hub->rp3h2x4x.rcp0) {
-> +		ret = regulator_enable(p3h2x4x_i3c_hub->rp3h2x4x.rcp0);
-
-can you use devm_regulator_get_enable_optional() to combine get and enable
-by one call?
-
-> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-> new file mode 100644
-> index 000000000000..833bc0bebc4e
-> --- /dev/null
-> +++ b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-> @@ -0,0 +1,119 @@
-...
-> +int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_hub)
-> +{
-> +	struct i3c_master_controller *parent = i3c_dev_get_master(p3h2x4x_hub->i3cdev->desc);
-> +	u8 tp, ntwk_mask = 0;
-> +	int ret;
-> +
-> +	p3h2x4x_hub->hub = i3c_hub_init(parent,
-> +					&p3h2x4x_hub_ops,
-> +					p3h2x4x_hub->i3cdev);
-> +
-> +	if (IS_ERR(p3h2x4x_hub->hub))
-> +		return PTR_ERR(p3h2x4x_hub->hub);
-> +
-> +	for (tp = 0; tp < P3H2x4x_TP_MAX_COUNT; tp++) {
-> +		if (!p3h2x4x_hub->tp_bus[tp].of_node ||
-> +		    p3h2x4x_hub->hub_config.tp_config[tp].mode != P3H2x4x_TP_MODE_I3C)
+> +	for_each_available_child_of_node_scoped(dev->of_node, of_port) {
+> +		if (!of_node_is_type(of_port, "pci"))
 > +			continue;
-> +
-> +		/* Assign DT node for this TP */
-> +		p3h2x4x_hub->dev->of_node = p3h2x4x_hub->tp_bus[tp].of_node;
-> +
-> +		struct i3c_hub_controller *hub_controller =
-> +				&p3h2x4x_hub->tp_bus[tp].hub_controller;
-> +		struct i3c_master_controller *controller = &hub_controller->controller;
-> +
-> +		hub_controller->parent = parent;
-> +		hub_controller->hub = p3h2x4x_hub->hub;
-> +
-> +		dev_set_drvdata(&controller->dev, hub_controller);
-> +
-> +		ret = i3c_master_register(controller,
-> +					  p3h2x4x_hub->dev,
-> +					  i3c_hub_master_ops(),
-> +					  false);
-> +
+> +		ret = pci_host_common_parse_port(dev, bridge, of_port);
 > +		if (ret)
 > +			return ret;
-> +
-> +		/* Perform DAA */
-> +		ret = i3c_master_do_daa(parent);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ntwk_mask |= p3h2x4x_hub->tp_bus[tp].tp_mask;
-> +		p3h2x4x_hub->tp_bus[tp].is_registered = true;
-> +		p3h2x4x_hub->hub_config.tp_config[tp].always_enable = true;
 > +	}
 > +
-> +	ret = i3c_device_request_ibi(p3h2x4x_hub->i3cdev, &p3h2x4x_ibireq);
-> +	if (ret)
-> +		return ret;
-
-Need unregister_i3c at error path, or add API devm_i3c_master_register().
-
-> +
-> +	ret = i3c_device_enable_ibi(p3h2x4x_hub->i3cdev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(p3h2x4x_hub->regmap, P3H2x4x_TP_NET_CON_CONF, ntwk_mask);
+> +	return ret;
 > +}
-> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-> new file mode 100644
-> index 000000000000..75803a59fd6c
-> --- /dev/null
-> +++ b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-> @@ -0,0 +1,423 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2025 NXP
-> + * This P3H2x4x driver file contain functions for SMBus/I2C virtual Bus creation and read/write.
-> + */
-> +#include <linux/mfd/p3h2840.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "p3h2840_i3c_hub.h"
-> +
-> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
 
-why I3C_SLAVE here?
+AI: Returning -ENOENT when no ports are found may be unexpected by callers.
+Consider whether this should return 0 (success, zero ports parsed) or if
+callers must explicitly handle -ENOENT. Document the semantics clearly.
 
-"	This enables Linux to act as an I2C slave device. Note that your I2C
-        bus master driver also needs to support this functionality. Please
-        read Documentation/i2c/slave-interface.rst for further details.
-"
+> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
+> index bccc7a4bdd79..9cc3f4ebb370 100644
+> --- a/drivers/pci/probe.c
+> +++ b/drivers/pci/probe.c
+> @@ -647,6 +647,7 @@ static void pci_release_host_bridge_dev(struct device *dev)
+>
+>  	pci_free_resource_list(&bridge->windows);
+>  	pci_free_resource_list(&bridge->dma_ranges);
+> +	pci_free_resource_list(&bridge->ports);
 
-I2C_SLAVE is for slave mode of i2c
+AI: pci_free_resource_list() expects struct resource_entry nodes. The ports
+list contains struct pci_host_port nodes. This will corrupt memory or
+crash. Use list_for_each_entry_safe() with proper cleanup, or define a
+dedicated pci_free_host_ports() function.
 
-> +/**
-> + * p3h2x4x_ibi_handler - IBI handler.
-> + * @i3cdev: i3c device.
-> + * @payload: two byte IBI payload data.
-> + *
-> + */
-> +void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-> +			 const struct i3c_ibi_payload *payload)
-> +{
-> +	u32 payload_byte_one = (*(int *)payload->data);
-> +
-> +	if (!(payload_byte_one & P3H2x4x_SMBUS_AGENT_EVENT_FLAG_STATUS))
-> +		return;
-> +
-> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
-
-The same here
-
-> +	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(&i3cdev->dev);
-> +	u32 target_port_status, payload_byte_two;
-> +	u32 ret, i;
-> +
-> +	if (!p3h2x4x_i3c_hub || !p3h2x4x_i3c_hub->regmap)
-> +		return;
-> +
-...
-> +/**
-> + * p3h2x4x_tp_i2c_xfer_msg() - This starts a SMBus write transaction by writing a descriptor
-> + * and a message to the p3h2x4x registers. Controller buffer page is determined by multiplying the
-> + * target port index by four and adding the base page number to it.
-> + */
-> +static int p3h2x4x_tp_i2c_xfer_msg(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub,
-> +				   struct i2c_msg *xfers,
-> +				   u8 target_port,
-> +				   u8 nxfers_i, u8 rw)
-> +{
-> +	u8 controller_buffer_page = P3H2x4x_CONTROLLER_BUFFER_PAGE + 4 * target_port;
-> +	u8 target_port_status = P3H2x4x_TP0_SMBUS_AGNT_STS + target_port;
-> +	u8 desc[P3H2x4x_SMBUS_DESCRIPTOR_SIZE] = { 0 };
-> +	u8 transaction_type = P3H2x4x_SMBUS_400kHz;
-> +	int write_length, read_length;
-> +	u8 addr = xfers[nxfers_i].addr;
-> +	u8 rw_address = 2 * addr;
-> +	int ret;
-> +
-> +	if (rw == 2) { /* write and read */
-> +		write_length = xfers[nxfers_i].len;
-> +		read_length =  xfers[nxfers_i + 1].len;
-> +	} else if (rw == 1) {
-> +		rw_address |= P3H2x4x_SET_BIT(0);
-> +		write_length = 0;
-> +		read_length =  xfers[nxfers_i].len;
-> +	} else {
-> +		write_length = xfers[nxfers_i].len;
-> +		read_length = 0;
-> +	}
-> +
-> +	desc[0] = rw_address;
-> +	if (rw == 2)
-> +		desc[1] = transaction_type | P3H2x4x_SET_BIT(0);
-> +	else
-> +		desc[1] = transaction_type;
-> +	desc[2] = write_length;
-> +	desc[3] = read_length;
-
-can you define index 0, 1, 2, 3 as enum
 
 Frank
-> +
-> +	ret = regmap_write(p3h2x4x_i3c_hub->regmap, target_port_status,
-> +			   P3H2x4x_TP_BUFFER_STATUS_MASK);
-> +	if (ret)
-> +		goto out;
-> +
-
-> +static struct i2c_algorithm p3h2x4x_tp_i2c_algorithm = {
-> +	.master_xfer    = p3h2x4x_tp_i2c_xfer,
-> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
-> +	.reg_slave = p3h2x4x_tp_i2c_reg_slave,
-> +	.unreg_slave = p3h2x4x_tp_i2c_unreg_slave,
-> +#endif
-> +	.functionality  = p3h2x4x_tp_smbus_funcs,
-> +};
-> +
-> +/**
-> --
-> 2.25.1
->
 
