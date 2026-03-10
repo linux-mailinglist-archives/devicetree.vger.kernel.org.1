@@ -1,210 +1,241 @@
-Return-Path: <devicetree+bounces-273687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273688-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WHoFAAJfsGloigIAu9opvQ
-	(envelope-from <devicetree+bounces-273687-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:12:18 +0100
+	id qMBvGNNfsGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273688-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:15:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3F8256343
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:12:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03665256478
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:15:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 41813313B914
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:10:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 60328306B177
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2BEE3D47B6;
-	Tue, 10 Mar 2026 18:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03853D091B;
+	Tue, 10 Mar 2026 18:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D20QBuJz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KSzgFlhI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F52D3019DC
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:10:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7365C314D08;
+	Tue, 10 Mar 2026 18:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773166228; cv=none; b=XIH8e53j/GLjPlb5rnQy9g3RN3KB0sBYYLjQiR0vyHbkl3dcOvaIiDC7iOBLblDA1nFDKvPzS869nnJSrck2Kpb5mV3lwRDM+Qt9Avnv5VFfw/OyRRYpodz4eIQsnQ8JofhCog3+kF7K7bVouhg2x4kgB45VFvtZAwNqGUHV2Q4=
+	t=1773166352; cv=none; b=g9yIG8uEotl5E+229VOi5paWSNVgG2WHhUwjXOki4+akncP58f7Ab74ZDXb5sey5h8Yrz/niUSJoaq545Uj+qSKf9FMopQls3leJFgZRcq2n75U2IzrbByadpnl6KO2IWe1UQHTHk1iDz/IuMhFD22k1hs8qJPrwXEM6GlyFe6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773166228; c=relaxed/simple;
-	bh=+BkbeGlWZU3HoPWqSJ4ZGWH/mYA1R9F66ZxBmJ6EvZk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GSaChtAWtiDsk35/4B7EP/UWv1Vkc84zSkNsMcj+D9cLs16GJfD1ExuNJhebQdK/uFhO9IEENbaTz9vZPnadFJu+vTC8rxIB1KC4xaoYd9j42msOUZzvGiUd60qUZFr8E2/aTTyzWE25fjxM8eQH2syqoyWy/na01OMW8IWUdA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D20QBuJz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38056C2BCB2
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:10:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773166228;
-	bh=+BkbeGlWZU3HoPWqSJ4ZGWH/mYA1R9F66ZxBmJ6EvZk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=D20QBuJz20JGK1KlKAqOqZ98LZe96xXmFEvoFFgDEI0OK2C81PB7DoxY0y7AcHg/o
-	 HEm7rQUPs9UaCUxzf/mfFjK7/pA8NpZmHCtAlWAIjFQK4yGD83W/Zzc1JtkYAp7HFr
-	 YiTr+T+aGCNFnwhndRNOQg7x8Mn3oX0+YfX3CTWznLdEQiSnPnzf5xJfHwpaKo/ZTK
-	 7TQ/FaHFs7+jOTrIyA4C/C++F+435/pK/LJXLLoMxHqmyRCgyYV1hLVPbdU9e0z0tp
-	 XcHNxYA/Y6J5EhLiD21CNSpij8ernXpwojze9/tK04JR30/4OHbnKon/mwhECJ1tWr
-	 6z2WzYHLie1ag==
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b941762394aso635393366b.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 11:10:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW0tJKgPMeDqPDfXlzkyxhW+tCezOjemzd8IbtsS9yJo4LsFE6xanQY7PWEYBNnrUx0oYLknmUHKy9h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw82Q+ab/CfVnE6cwnT0PUQvdnh+9jiVXqRuceTGqCo3LR1Bii/
-	YGR+tLwzxFaR2vbiVVxPXHlb4YFyZWL6w+3CK38RVbfP/COpo7efI2oMC2IpsRKkyB2Z5BfFROi
-	fmFQvliwNh8/oMgQIuz1yMyoyKcq0XA==
-X-Received: by 2002:a17:906:2091:b0:b97:1d24:c015 with SMTP id
- a640c23a62f3a-b971d24fa35mr124911866b.40.1773166226421; Tue, 10 Mar 2026
- 11:10:26 -0700 (PDT)
+	s=arc-20240116; t=1773166352; c=relaxed/simple;
+	bh=WloTWxMSE2Fe7t0F4dJJbaN/dI1rI+CtZARKDjs2H08=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IERyYuHBem1G6tYUgueKOtvgjZ2KN1T5hqoFz9wsyauaf9DYkbsdFgXfoXvDEihzntekxEvnTd5fO1JkOCJxCshPYMupvJX1YsZcs0xaU2WpkhFCIYNmoIZ09lKjSeOtS839e2J0/T1vioHsVPEDFkTyd0A3YTUt3aKsamuyaa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KSzgFlhI; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id C98361A2E06;
+	Tue, 10 Mar 2026 18:12:28 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 940B360002;
+	Tue, 10 Mar 2026 18:12:28 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 649A510369709;
+	Tue, 10 Mar 2026 19:12:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773166347; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=MhTupiUaX+fQyopMmq6kATNdFQbTphgFtpGuNjsQLHw=;
+	b=KSzgFlhIkYTC7gWFCkchxnJDReZsczimlLQzUWcZZGaRsagScWI1fewstFZ/Yeg/Pfrdmg
+	Zob2JWtz3Qz+fSinBcfJ9YicJL1ilcyDaUBv4bmgEFeYdKaNNyfrVW1dgc8mRguAoH3W4m
+	21BOmXrriD2aRcXNZGFjOcGKDqGo90FuZC8myeDqOK3gvE2oYfXyFLDaVUteTnnDh2uHwk
+	60Z6I7ajI0xtVLez2KooyjDXPr28siLE6Dbv0JgRg/9dmg6vOK/RbAJdCLIx+4R01vrLHT
+	hXIiItuDRPWG8dXGAhyYvXIunrrwFx66HzpOdN4V5clTkkx1k4aCvx9pxwzLsQ==
+Date: Tue, 10 Mar 2026 19:12:20 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert
+ Uytterhoeven <geert+renesas@glider.be>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Magnus Damm
+ <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, Miquel
+ Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 3/5] dt-bindings: watchdog: renesas,rzn1-wdt: Document
+ the reset line
+Message-ID: <20260310191220.52ed546c@bootlin.com>
+In-Reply-To: <392ededd-ee73-4afa-88b4-b15fe1dc3457@kernel.org>
+References: <20260310173249.161354-1-herve.codina@bootlin.com>
+	<20260310173249.161354-4-herve.codina@bootlin.com>
+	<392ededd-ee73-4afa-88b4-b15fe1dc3457@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306-mt8196-ufs-v9-0-55b073f7a830@collabora.com>
- <20260306-mt8196-ufs-v9-3-55b073f7a830@collabora.com> <20260306163305.GA2680515-robh@kernel.org>
- <4089450.ElGaqSPkdT@workhorse>
-In-Reply-To: <4089450.ElGaqSPkdT@workhorse>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 10 Mar 2026 13:10:14 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+mF_Q7Ld8__ZTc5yDvWAT6uK5wxfBJM-YdFjOvdiDc-w@mail.gmail.com>
-X-Gm-Features: AaiRm53tDdS80GaVjUeFGPThiibYh4p5Q5y90_XYQtN7oN_0_RN9C3azVe77kTU
-Message-ID: <CAL_Jsq+mF_Q7Ld8__ZTc5yDvWAT6uK5wxfBJM-YdFjOvdiDc-w@mail.gmail.com>
-Subject: Re: [PATCH v9 03/23] dt-bindings: ufs: mediatek,ufs: Add mt8196 variant
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
-	Bart Van Assche <bvanassche@acm.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Peter Wang <peter.wang@mediatek.com>, 
-	Stanley Jhu <chu.stanley@gmail.com>, 
-	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
-	"Martin K. Petersen" <martin.petersen@oracle.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Chaotian Jing <Chaotian.Jing@mediatek.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, kernel@collabora.com, 
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 6D3F8256343
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 03665256478
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273687-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[samsung.com,wdc.com,acm.org,kernel.org,gmail.com,collabora.com,mediatek.com,hansenpartnership.com,oracle.com,pengutronix.de,linaro.org,vger.kernel.org,lists.infradead.org,microchip.com];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	FREEMAIL_CC(0.00)[linux-watchdog.org,roeck-us.net,kernel.org,glider.be,baylibre.com,gmail.com,sang-engineering.com,vger.kernel.org,se.com,bootlin.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273688-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_PROHIBIT(0.00)[2.98.121.64:email];
+	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email,mail.gmail.com:mid]
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
 X-Rspamd-Action: no action
 
-On Fri, Mar 6, 2026 at 12:37=E2=80=AFPM Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
->
-> On Friday, 6 March 2026 17:33:05 Central European Standard Time Rob Herri=
-ng wrote:
-> > On Fri, Mar 06, 2026 at 02:24:44PM +0100, Nicolas Frattaroli wrote:
-> > > The MediaTek MT8196 SoC's UFS controller uses three additional clocks
-> > > compared to the MT8195, and a different set of supplies. It is theref=
-ore
-> > > not compatible with the MT8195.
-> > >
-> > > While it does have a AVDD09_UFS_1 pin in addition to the AVDD09_UFS p=
-in,
-> > > it appears that these two pins are commoned together, as the board
-> > > schematic I have access to uses the same supply for both, and the
-> > > downstream driver does not distinguish between the two supplies eithe=
-r.
-> > >
-> > > Add a compatible for it, and modify the binding correspondingly.
-> > >
-> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Acked-by: Vinod Koul <vkoul@kernel.org>
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
-llabora.com>
-> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > ---
-> > >  .../devicetree/bindings/ufs/mediatek,ufs.yaml      | 58 ++++++++++++=
-+++++++++-
-> > >  1 file changed, 57 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml =
-b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-> > > index e0aef3e5f56b..a82119ecbfe8 100644
-> > > --- a/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-> > > +++ b/Documentation/devicetree/bindings/ufs/mediatek,ufs.yaml
-> > > @@ -16,10 +16,11 @@ properties:
-> > >        - mediatek,mt8183-ufshci
-> > >        - mediatek,mt8192-ufshci
-> > >        - mediatek,mt8195-ufshci
-> > > +      - mediatek,mt8196-ufshci
-> > >
-> > >    clocks:
-> > >      minItems: 1
-> > > -    maxItems: 13
-> > > +    maxItems: 16
-> > >
-> > >    clock-names:
-> > >      minItems: 1
-> > > @@ -37,6 +38,9 @@ properties:
-> > >        - const: crypt_perf
-> > >        - const: ufs_rx_symbol0
-> > >        - const: ufs_rx_symbol1
-> > > +      - const: ufs_sel
-> >
-> > "ufs" is redundant as all the clocks are for UFS. Same comment on prior
-> > patch.
->
-> Is this naming a big enough concern to block this series with two
-> explicit acks on this patch that fixes a wholly broken and useless
-> binding?
+Hi Krzysztof,
 
-Shrug... Is changing it really that hard?
+On Tue, 10 Mar 2026 18:38:50 +0100
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> > > +      - const: ufs_sel_min_src
-> > > +      - const: ufs_sel_max_src
-> >
-> > "src" sounds like a parent clock? If so, probably shouldn't be in the
-> > clocks list. 'assigned-clocks' is for dealing with parent clocks.
-> >
->
-> I don't know what it is, and I have no way to consult any documentation
-> that would tell me what it is. I am trying to put out this dumpster fire
-> of a downstream turd that made its way into mainline as the review proces=
-s
-> has been completely subverted, and is only getting worse with each passin=
-g
-> month that MediaTek is allowed to block this series from progressing whil=
-e
-> sneaking further changes through.
+> On 10/03/2026 18:32, Herve Codina (Schneider Electric) wrote:
+> > Watchdogs available in the RZ/N1 SoC can use their specific hardware
+> > reset line to reset the system on watchdog timeout.
+> > 
+> > This line is not documented in the current binding.
+> > 
+> > Fill this lack and describe this per watchdog reset line.
+> > 
+> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> > ---
+> >  .../bindings/watchdog/renesas,rzn1-wdt.yaml   | 22 +++++++++++++++++++
+> >  .../dt-bindings/watchdog/renesas,rzn1-wdt.h   | 16 ++++++++++++++
+> >  2 files changed, 38 insertions(+)
+> >  create mode 100644 include/dt-bindings/watchdog/renesas,rzn1-wdt.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml
+> > index 7e3ee533cd56..40a9a4ebc716 100644
+> > --- a/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml
+> > +++ b/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml
+> > @@ -26,6 +26,26 @@ properties:
+> >  
+> >    timeout-sec: true
+> >  
+> > +  renesas,reset-line:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [0, 1]
+> > +    description: |
+> > +      The watchdog reset line (dt-bindings/watchdog/renesas,rzn1-wdt.h defines
+> > +      these values). A wachdog timeout asserts this reset line to perform a
+> > +      hardware system reset. Two watchdogs are present in the RZ/N1 SoC and
+> > +      each of them has a dedicated reset line.
+> > +
+> > +        - 0: RZN1_WDT_A7_0
+> > +          This reset line can be asserted only by the A7 0 watchdog. This
+> > +          watchdog is the one mapped at 0x40008000 on RZ/N1 SoCs.
+> > +
+> > +        - 1: RZN1_WDT_A7_1
+> > +          This reset line can be asserted only by the A7 1 watchdog. This
+> > +          watchdog is the one mapped at 0x40009000 on RZ/N1 SoCs.
+> > +
+> > +      If the renesas,reset-line property is not present, the watchdog timeout
+> > +      only triggers an interrupt.  
+> 
+> I don't understand. You have two watchdogs (0x40008000 and 0x40009000)
+> so why you would tell each of them that they can reset line associated
+> with them? Can a watchdog reset other watchdog's line? No, thus code like:
+> 
+> watchdog@40008000 {
+> 	renesas,reset-line = <RZN1_WDT_A7_1>;
+> };
+> 
+> makes no sense and thus is pointless to specify in DT.
+> 
+> What's more, if reset line is always wired (and how could it be since it
+> is fully within the soc), why would this be board-level property?
 
-It's good Mediatek is active, then they can tell us what the clocks
-are for. I would think the driver would give some clue.
+This is the exact same for interrupts and clocks.
 
-I don't see how accepting sub-par bindings or not fixes the issues here.
+Interrupts dedicated to IPs and hardwired, as well as clocks. Those resources
+are described in DT.
 
-Rob
+Why not this reset line?
+
+> 
+> 
+> 
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -41,10 +61,12 @@ examples:
+> >    - |
+> >      #include <dt-bindings/clock/r9a06g032-sysctrl.h>
+> >      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/watchdog/renesas,rzn1-wdt.h>
+> >  
+> >      watchdog@40008000 {
+> >              compatible = "renesas,r9a06g032-wdt", "renesas,rzn1-wdt";
+> >              reg = <0x40008000 0x1000>;
+> >              interrupts = <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>;
+> >              clocks = <&sysctrl R9A06G032_CLK_WATCHDOG>;
+> > +            renesas,reset-line = <RZN1_WDT_A7_0>;
+> >      };
+> > diff --git a/include/dt-bindings/watchdog/renesas,rzn1-wdt.h b/include/dt-bindings/watchdog/renesas,rzn1-wdt.h
+> > new file mode 100644
+> > index 000000000000..fe534aff0609
+> > --- /dev/null
+> > +++ b/include/dt-bindings/watchdog/renesas,rzn1-wdt.h
+> > @@ -0,0 +1,16 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +/*
+> > + * RZ/N1 watchdog reset lines
+> > + *
+> > + * Copyright (C) 2026 Bootlin
+> > + *
+> > + * Herve Codina <herve.codina@bootlin.com>
+> > + */
+> > +
+> > +#ifndef __DT_BINDINGS_RZN1_WDT_H__
+> > +#define __DT_BINDINGS_RZN1_WDT_H__
+> > +
+> > +#define RZN1_WDT_A7_0		0
+> > +#define RZN1_WDT_A7_1		1  
+> 
+> I also see little value of the binding, but probably because I don't
+> understand the point of this patch.
+
+I mentioned 0 and 1 for those lines in the binding and referred to this
+header. What's wrong with that ?
+
+Clocks use the same kind of description.
+A bunch of defines in header file to avoid a direct number.
+
+Best regards,
+Hervé
 
