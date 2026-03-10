@@ -1,176 +1,118 @@
-Return-Path: <devicetree+bounces-273629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273630-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ANkgBulEsGmshgIAu9opvQ
-	(envelope-from <devicetree+bounces-273629-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:20:57 +0100
+	id wKkoEwNGsGnFhgIAu9opvQ
+	(envelope-from <devicetree+bounces-273630-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:25:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF5E72549E7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:20:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98520254AD8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:25:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0F925300D1DC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:20:55 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 5B3E9306DF0F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF6023C13EB;
-	Tue, 10 Mar 2026 16:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B653C13E9;
+	Tue, 10 Mar 2026 16:25:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="USAjZal/"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qcreGSmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-106102.protonmail.ch (mail-106102.protonmail.ch [79.135.106.102])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E32012D8DCA;
-	Tue, 10 Mar 2026 16:20:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.102
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D303B6C04
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 16:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773159649; cv=none; b=pM2tiNfP0CyLYaULnv3UkO8TSf0bV697CC/zzhyu0sy8vwOQIvYCy8AUKi/qm3Mg3y2VdLEKY2/DkxPuBsgp/Ji0LElNOVGeGbyxZqFN/OhpfGR6QVzAJ+1DoP565yqtqE1PSV6zj0J5GixHycpjLIEaT4VKJYV20R02pYrUv/U=
+	t=1773159936; cv=none; b=Smv6XASZVJcf9qWhMpVdEbEl4SopqSxueM/jzXeNFbYYdhzSCDKo4CQWvOeXB9cqmLjo7K5v2zvkaKwoh3/7dw1gOFIDS8yqW8S8Z/ZYEGcpso4fd36cIf5PE+x7NpufGp1WNhtT7Em0Ocsk9I40rVXLt4/tZbajMYda7x4hcNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773159649; c=relaxed/simple;
-	bh=/kwTVlD5wO3RCWS4OFNL5bpmNc30DwJBQHbTccteqzk=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ViZJ0FWheeIkN6wk7Q3CXh/AawNbHyC9VM+u42TnxXEMXRGDtgfc1RVj4ymstWfRGGb5Tv46VF18EBqAyTl9pfn5UEu2aa43Gj1sr8EKNnAxOzrp12IT4sLFiRpbjxcJpfkB+oTziLKYgO3aieQi6mCWCbvyXCzkEqTSFjpM9GM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=USAjZal/; arc=none smtp.client-ip=79.135.106.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1773159644; x=1773418844;
-	bh=e4HSNccmKB3Yosyw7jREa+wZR4UoY+r/POtySV43otA=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=USAjZal/c8ilL9UQOS7CG0sYrHwTi9FBeut5a/NsYoZG0lwdGGYaS4NDxc8simfKI
-	 G1DQayq9yQLE51Y9D5hVV6Hs+Y8QZTfDg0tGpJJYkTOf4OJ/u/Y3gPK63PeFd+2FQH
-	 tJdGLkyguEfaABALivsD4vE4nYRDGFa8ug1jBmCEP0jLPo/2a/APRcqNH7LibVFE8K
-	 j6pH77iN9foF86SfmQISUxLOxwyRxjV1P/Idx5+FxEnd3dCHF0FF8Ap+AvpjftXAi+
-	 YDze5RPLK9BOBWvBInLZkd1WfuH7vSbLxu7Rs0jAHkTTqasU+4orNaTLLIxyvynoOA
-	 IURn+Uim/Ohcw==
-Date: Tue, 10 Mar 2026 16:20:38 +0000
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-From: cristian_ci <cristian_ci@protonmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: msm8953-flipkart-rimob: Enable touchscreen
-Message-ID: <zqVKBYSFu9Qsyz7CKpxCBliYAzh1QjVqyTi24YLuiZy_muAh81pAHgkTWsEaAJsRbMlG_UewopTzYleJCypPrbukpTaBZSpuBtmG5QIKMPs=@protonmail.com>
-In-Reply-To: <f6029a8f-07d7-4872-813a-ff98fd11b5af@oss.qualcomm.com>
-References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-5-aa2c330572c0@protonmail.com> <f6029a8f-07d7-4872-813a-ff98fd11b5af@oss.qualcomm.com>
-Feedback-ID: 27475468:user:proton
-X-Pm-Message-ID: 774cb5722f82a2c4e94f4ddb240ac2f7a274f305
+	s=arc-20240116; t=1773159936; c=relaxed/simple;
+	bh=lPmtWmxnomDN/valacBHp6IXm+28b74pnINQAnw3Lm4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZY5McbYeBMoSnoi7NilGadmQ5kv5SToYSC3FMVtqnbGaYywd/79N1NbbLJleN1EXKVHXVJ+7Vk5npMI9U+fxMnJeZq5txC9VzNknMKJ6MEwIZHPfQx2ZsGKepJKLkcjuVzxIeD/vvC351hMNvrfJTyfJy0Cl4SEJzlZq++NCD58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qcreGSmD; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=ZmlweOlRxI9TYGhuStgUAoSkF3murzujj5mzJOXAUP4=; b=qcreGSmD2NWlfSWfQ9V5B6AdSQ
+	zA/HYMCvReWBEtW4F6/FhSa68UEJTs0XKZzDObABUzfwOHJwJl2O1AWWfF1f+kxeYsDLxoB+2Ny6o
+	jiWY6EQlkxxNxMF7HQZzqMw/rjykdPN2Ah2VS0w5CYV9goPFTkv2l6oT/Ti8OikVElpY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1vzztf-00B3Ui-RB; Tue, 10 Mar 2026 17:25:27 +0100
+Date: Tue, 10 Mar 2026 17:25:27 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lorenzo Bianconi <lorenzo@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: airoha: en7581: Add switch node to to
+ EN7581 SoC
+Message-ID: <a05947c7-0cc1-4cb1-a971-0fc581949c2b@lunn.ch>
+References: <20260310-airoha-7581-dsa-switch-v2-1-852692ba68b8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: AF5E72549E7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310-airoha-7581-dsa-switch-v2-1-852692ba68b8@kernel.org>
+X-Rspamd-Queue-Id: 98520254AD8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
+	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[gmail.com,collabora.com,kernel.org,lists.infradead.org,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-273630-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273629-lists,devicetree=lfdr.de];
-	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
-	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lunn.ch:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[protonmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,protonmail.com:dkim,protonmail.com:email,protonmail.com:mid,qualcomm.com:email]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:email,lunn.ch:mid]
 X-Rspamd-Action: no action
 
+On Tue, Mar 10, 2026 at 05:12:47PM +0100, Lorenzo Bianconi wrote:
+> Introduce dsa switch controller node to EN7581 SoC and EN7581
+> evaluation board.
+> 
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> ---
+> Changes in v2:
+> - Fix ethernet-phy node name
+> - Remove unnecessary phy-mode property in ethernet-phy nodes.
 
+Looks sensible now.
 
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-
-Cristian
-
-Sent with Proton Mail secure email.
-
-On Tuesday, March 10th, 2026 at 14:08, Konrad Dybcio <konrad.dybcio@oss.qua=
-lcomm.com> wrote:
-
-> On 3/8/26 4:52 PM, Cristian Cozzolino via B4 Relay wrote:
-> > From: Cristian Cozzolino <cristian_ci@protonmail.com>
-> >
-> > This device uses a Goodix GT5688 touch controller, connected to i2c_3.
-> > Add it to the device tree.
-> >
-> > Signed-off-by: Cristian Cozzolino <cristian_ci@protonmail.com>
-> > ---
-> >  .../arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts | 32 ++++++++++++++=
-++++++++
-> >  1 file changed, 32 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts b/arch=
-/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-> > index 7b2849405462..709ea6fc9fbb 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-> > +++ b/arch/arm64/boot/dts/qcom/msm8953-flipkart-rimob.dts
-> > @@ -94,6 +94,31 @@ &hsusb_phy {
-> >  =09status =3D "okay";
-> >  };
-> >
-> > +&i2c_3 {
-> > +=09status =3D "okay";
-> > +
-> > +=09touchscreen@5d {
-> > +=09=09compatible =3D "goodix,gt5688";
-> > +=09=09reg =3D <0x5d>;
-> > +
-> > +=09=09interrupts-extended =3D <&tlmm 65 IRQ_TYPE_LEVEL_LOW>;
->=20
-> interrupts *and* irq-gpios sounds wrong.. and I think the driver doesn't
-> even consume the former. Trying to read through some of that, I think
-> it's on purpose since the IRQ GPIO is repurposed for setting the I2C addr
-> (which nota bene doesn't match between the comment in that driver and thi=
-s
-> submission - perhaps that's just a SKU difference) during the reset
-> sequence
->=20
-> i.e., does the touch work any different if you drop the above?
-
-Apparently, not. That works as expected.
-
-> does /proc/interrupts differ?
-
-When interrupts-extended is defined:
-
-...
- 50:        318          0          0          0          0          0     =
-     0          0  msmgpio  65 Edge      gt5688
-...
- 54:       3141          0          0          0          0          0     =
-     0          0 GIC-0  65 Level     gpu-irq
-...
-
-Instead, when interrupts-extended is removed/commented out, I see just:
-
-...
- 53:       2404          0          0          0          0          0     =
-     0          0 GIC-0  65 Level     gpu-irq
-...
-
-> Konrad
->=20
-
-Regards
+    Andrew
 
