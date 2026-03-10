@@ -1,160 +1,168 @@
-Return-Path: <devicetree+bounces-273652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273654-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oBlLD5hUsGkJiQIAu9opvQ
-	(envelope-from <devicetree+bounces-273652-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:27:52 +0100
+	id 4E/pNnRTsGmBiAIAu9opvQ
+	(envelope-from <devicetree+bounces-273654-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:23:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CCC8255906
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:27:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 803CA2557C1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 02BF5306F321
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:20:05 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D58C230FC868
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571A53D3D00;
-	Tue, 10 Mar 2026 17:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13F1A3D171D;
+	Tue, 10 Mar 2026 17:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LtNAAwQZ"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="AMaDqUFU";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="ZKGanOCa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337CF3D171F;
-	Tue, 10 Mar 2026 17:19:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A568B3CF04C;
+	Tue, 10 Mar 2026 17:21:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773163182; cv=none; b=RHTjX0n0bpFzgJ0sRzQam7o1fv7Z60v8ro23VMGuU1DDMF0gRd82B8zIsOn3Omny1lEA0pP0ZSvcN7aeriiaN0okXgKO8CPQ2ZnKOkFYOBqLDKgFKnwsU+GC5AbK84boVC5Vn6WT6DHdTqDD98VlOZpqsZ7/KXB7Yj2p7ur/noE=
+	t=1773163307; cv=none; b=HltLqlyILrPKo06CDfmFmP2sQy9GuWchEVQz/PO1Htu7EH8TiSc4Mru3u14CVdNRDsLdj5FlOkdaPRxZgcH+8JfTl14csWE/nPAwfCFWkRZFta7GcG8Uo3N25zZSMiHz3nunb+yBiDTvhYkXHnaCdBveJGSIJE0FaeYQpLOOXyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773163182; c=relaxed/simple;
-	bh=9DLc73kRovjX7PmKOfMC6v7DvLF8VkwF6ivlc5RlT3Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Tsdb0Phr0XLdrY/ZSTcFt06ipBCG2cb1uOLhDbVdbtuwE9pzjyZOv5DhTtaBizZ+YlxyTwH8er8iTZ8kO639L86n/mg0nPJz5vYBJT1qKguM+GZyKhYxNWudc6vkiY5KwirwhlIjsPrX67r+q09B63hay5d6IXa4INYEDlofRRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LtNAAwQZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C550FC19425;
-	Tue, 10 Mar 2026 17:19:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773163182;
-	bh=9DLc73kRovjX7PmKOfMC6v7DvLF8VkwF6ivlc5RlT3Y=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=LtNAAwQZEWoDaAVsZHl1xlcSy7lWlO+9QwLPUxI/j1WH8mjZNBBiXqbvRWc+1cTl0
-	 yf65f6i5wm4OoeL6y/p7qP4wgiXmpU++qxFmuroYpxz092UuB4XGlAwW5KM3rKiFJ4
-	 1wnQugkZyQkkK5FWVkpLlQiGsdtX8pgqRw2qwH7SjuevLgVdgKfTwNlw5jATGRqL7b
-	 UQAe/oUSFq51MMTusYKQem69YHjxqI7CAWL4y7n4b3VhCdPVRIpndKratErDEhT8C0
-	 ibf6dXW320EKvo/40yN6YK3lOxWzCuuxhdaTHHPC4jEbfxeclrF1tkokWvTVUshSWJ
-	 6LDCnONlQA/3Q==
-From: Conor Dooley <conor@kernel.org>
-To: netdev@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Valentina.FernandezAlanis@microchip.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
-	Abin Joseph <abin.joseph@amd.com>,
-	=?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>,
-	Ryan.Wanner@microchip.com
-Subject: [PATCH net-next v3 10/10] net: macb: timer adjust mode is not supported
-Date: Tue, 10 Mar 2026 17:17:17 +0000
-Message-ID: <20260310-faceplate-ashy-ca696dd4433d@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260310-moneyless-dispense-7bce14b16388@spud>
-References: <20260310-moneyless-dispense-7bce14b16388@spud>
+	s=arc-20240116; t=1773163307; c=relaxed/simple;
+	bh=N0RGfxXkUDzWKGSrCm5WfYkhRXyx6YU06iE5hzout8o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PcafeYPN9C0tMfsy6BfMANlga4+H0Iiie7EXXkQJbazpU/dfcEQNX/2ys9Bt5hEznIw3HgU43uzKBs7/WnSkfL/RApYrDgTvUOqbiedBOoR2Krd2YLGw83LU924gHnhOC2zP1fcKeidlrgniAWnDTa3zL68aPbg8VUZs2DfmRG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=AMaDqUFU; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=ZKGanOCa; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1773163296; bh=dACeqFNvGbj0n51Dp8swwtM
+	8XFuQ4z1hcV9mgSaSQw0=; b=AMaDqUFUEy2Lf2pjsx9wZl22mbQCvJzHkGsJkDyU6xPNZlqa8n
+	56ICGtik8vrECSksytCAGIPAVxl2hFqwLRQ0vSmkGixRPCJ3gdvEVel2gn1MujHlc4PQrUdBK1N
+	3oJ6FMG6CIGw+Og9FYG26yVLlFBWOdPdrdXG8va6kfEBkCBt1PbMBJSGmE5sgRiGF/8d8v996lU
+	n2U5In/4QsaKA42lNrAfR4p+BA7exGAc/fU5RfzKJEQq+Mfh+/wUgmEtqrgTQxbBH5FyD+X/ZFZ
+	Nw6a2jZBosHGA0/n8VTYYtamAq28GxJdCjfj/M2a4s+J7V8Fy7m6WTeHKyEnln3rONA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1773163296; bh=dACeqFNvGbj0n51Dp8swwtM
+	8XFuQ4z1hcV9mgSaSQw0=; b=ZKGanOCavXc4+HfHCnmivCQDAc9Aw2BkOYU3E/UIcRsMLbsCxB
+	dNelprgB/BD+eR3DpOT0ocMttHdHH+dvguCw==;
+From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
+Subject: [PATCH v2 0/7] Commonize Redmi 5A for 4A and GO
+Date: Tue, 10 Mar 2026 18:21:30 +0100
+Message-Id: <20260310-riva-common-v2-0-3bfc23996857@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1214; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=OqQujPb90kYRx/KgLbRe0CGbTbZ7JG8YWaMugKJ3peY=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkbgvSn2dU3zSp7xibx5n+F55T0t6LBly+n+V/a6rj7U lmTilJERykLgxgXg6yYIkvi7b4WqfV/XHY497yFmcPKBDKEgYtTACZyfC8jw2O2H3Vyrcb5uad6 n3RGHli0cf8a9U3LEm57c8XU/td7FcrIsCJOWXFGy4Ub+RpM+n//zbhYe6LqV3jzjIUrZN/d01q mwQ4A
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 5CCC8255906
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/1XMzQoCIRiF4VsZvnWGf1m26j5iFmbqfNDooCHF4
+ L1nAy1avgfOs0JxGV2B87BCdhULptiD7wawk4nBEbz3Bk65ooJKkrEaYtM8p0iUctpqeWLaSOi
+ PJTuPr027jr0nLM+U3xte2Xf9OYc/pzJCiRTKMy9vR6H1ZTYYHxgxhn3KAcbW2gdSwPMlqwAAA
+ A==
+X-Change-ID: 20260304-riva-common-66e9c94819a4
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773163296; l=2211;
+ i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
+ bh=N0RGfxXkUDzWKGSrCm5WfYkhRXyx6YU06iE5hzout8o=;
+ b=pYJfU+k3UHK0u8ZqLPR+nZx5yl8x7Uu04GFX74zvH5ktVqoApP3dOIJKP/p3ZeQrMIZ7V8/1f
+ Q0co3gK6vMGBYCqPAP0KjVu41DmPinRkckUnjDrl+BPCQHcZPKnkVm8
+X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
+ pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+X-Rspamd-Queue-Id: 803CA2557C1
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.41 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	R_MIXED_CHARSET(1.07)[subject];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	RCVD_COUNT_THREE(0.00)[4];
-	TAGGED_FROM(0.00)[bounces-273652-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,microchip.com,lunn.ch,davemloft.net,google.com,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,tuxon.dev,gmail.com,sifive.com,vger.kernel.org,lists.infradead.org,raspberrypi.com,linux.dev,amd.com,bootlin.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-273654-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[mainlining.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mainlining.org:dkim,mainlining.org:email,mainlining.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Redmi 5A is similar device like Redmi GO and Redmi 4A.
 
-The ptp portion of this driver controls the tsu's timer using the
-controls for "increment mode", which is not compatible with the hardware
-trying to control it via the gem_tsu_inc_ctrl and gem_tsu_ms inputs in
-"timer adjust mode". Abort probe if the property signalling that the
-relevant signals have been wired up is present.
+This patch series commonize it to avoid code duplications.
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Differences between 4A and 5A:
+- Different charger and fg
+- Different displays panel but same resolution
+- Different speaker codec configuration (awinic-mode)
+
+Differences between GO and 5A:
+- Different charger and fg
+- Different speaker codec (aw87319)
+
+Additional changes:
+- Update Redmi 5A board-id for support nougat and oreo bootloader.
+- Add Goodix touch controller support for all variants.
+  The necessary touch controller can be enabled by devicetree overlay or lk2nd.
+
+Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 ---
- drivers/net/ethernet/cadence/macb_main.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes in v2:
+- Rename msm8917-xiaomi-riva-common to msm8917-xiaomi-wingtech.
+- Split goodix touch controller addition to a different commit.
+- Disable touch controllers by default.
+- Split new Redmi 5A devicetree to a different commit.
+- Fix Redmi 4A board-id.
+- Update riva board-id to make it able to run all bootloader version.
+- Squash the devicetree bindings.
+- Link to v1: https://lore.kernel.org/r/20260305-riva-common-v1-0-436f1f4b7399@mainlining.org
 
-diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-index 38e75c2e097bf..3e0ab23e9b9b0 100644
---- a/drivers/net/ethernet/cadence/macb_main.c
-+++ b/drivers/net/ethernet/cadence/macb_main.c
-@@ -5577,6 +5577,13 @@ static int macb_probe(struct platform_device *pdev)
- 
- 	bp->usrio = macb_config->usrio;
- 
-+	if (of_property_read_bool(bp->pdev->dev.of_node, "cdns,timer-adjust") &&
-+			IS_ENABLED(CONFIG_MACB_USE_HWSTAMP)) {
-+		dev_err(&pdev->dev, "Timer adjust mode is not supported\n");
-+		err = -EINVAL;
-+		goto err_out_free_netdev;
-+	}
-+
- 	/* By default we set to partial store and forward mode for zynqmp.
- 	 * Disable if not set in devicetree.
- 	 */
+---
+Barnabás Czémán (7):
+      arm64: dts: qcom: msm8917-xiaomi-riva: Fix board-id for all bootloader
+      arm64: dts: qcom: Make a common base from Redmi 5A
+      arm64: dts: qcom: msm8917-xiaomi-wingtech: Add goodix touch
+      arm64: dts: qcom: Add back Xiaomi Redmi 5A
+      dt-bindings: arm: qcom: Add Redmi 4A and Go
+      arm64: dts: qcom: Add Redmi 4A
+      arm64: dts: qcom: Add Redmi Go
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   2 +
+ arch/arm64/boot/dts/qcom/msm8917-xiaomi-riva.dts   | 308 +------------------
+ arch/arm64/boot/dts/qcom/msm8917-xiaomi-rolex.dts  |  15 +
+ arch/arm64/boot/dts/qcom/msm8917-xiaomi-tiare.dts  |  23 ++
+ .../boot/dts/qcom/msm8917-xiaomi-wingtech.dtsi     | 333 +++++++++++++++++++++
+ 6 files changed, 378 insertions(+), 305 deletions(-)
+---
+base-commit: fc7b1a72c6cd5cbbd989c6c32a6486e3e4e3594d
+change-id: 20260304-riva-common-66e9c94819a4
+
+Best regards,
 -- 
-2.51.0
+Barnabás Czémán <barnabas.czeman@mainlining.org>
 
 
