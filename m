@@ -1,203 +1,144 @@
-Return-Path: <devicetree+bounces-273186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273187-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EPPLFzJ1r2msZgIAu9opvQ
-	(envelope-from <devicetree+bounces-273186-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:34:42 +0100
+	id yKvbKMl2r2nkZgIAu9opvQ
+	(envelope-from <devicetree+bounces-273187-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:41:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1FE8243A82
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:34:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23D91243BA4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:41:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 620FB306643B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:34:40 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EF194303EEAD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:41:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 201602D23BC;
-	Tue, 10 Mar 2026 01:34:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 711342D9EFF;
+	Tue, 10 Mar 2026 01:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b="Kh676+Q/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NShoTRTT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from canpmsgout09.his.huawei.com (canpmsgout09.his.huawei.com [113.46.200.224])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE0F6175A80;
-	Tue, 10 Mar 2026 01:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=113.46.200.224
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49FEA2517AF;
+	Tue, 10 Mar 2026 01:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773106480; cv=none; b=Hu5XNdi8c0PQk05xIAWmj8u0FXfg8LQ4kuJk0uOCVDghBzNLyW+VmuObtoMWb+0IS+5QA1QpG/eO/7joW2jBG6yQWja8a8dn59fCioZhiVar291MURtGXYNsI/39QVMWWZdWi+PdqlA07YPZxXO6hQFjhd1IG+BeFLauJCMJNjM=
+	t=1773106863; cv=none; b=MBCZXbKsT1mhC48zFDOhW6CDBUaf2nG0cl5zCDak82ACzSSwb5wJQnBuErI912CLlf10sSCBGOTnpcfZq3r2zHRVdLWnsMizo9u4uIW9hG4nbKrznAbzftVc7Ft+c9hGiwj6QZVpLogwYTiwooS5fspTzoT9YIDostbUU1n5qbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773106480; c=relaxed/simple;
-	bh=4lS/imIJYen+jan8HNwdwFG3iwaHqOkvD4bjX5Hunbg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=BHgxt460Ash+cJN9JSgI2aF1cpqzpgQQ6A1z+RTzQHmuRxpRYKG1mWWmbuKhEc8Kl6BPCCsqvqq/PAKHW+azB2h6cOWFkFaeuYFAr5wJXzCIlLcwgzNVsfNx+kZymHQxW561idVi3VJKHtaJgqdwSZxG9kN8WQr6Pa5486XdHWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; dkim=pass (1024-bit key) header.d=huawei.com header.i=@huawei.com header.b=Kh676+Q/; arc=none smtp.client-ip=113.46.200.224
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-dkim-signature: v=1; a=rsa-sha256; d=huawei.com; s=dkim;
-	c=relaxed/relaxed; q=dns/txt;
-	h=From;
-	bh=KynWhPmsq2hgGRdlS5xCodsoSRLB81yWfnaTYob3MHk=;
-	b=Kh676+Q/BlPxtpIddEk+9ICljaWAqVwx0/XgQUgVlvFz1XcZ20W27ChKwIzLEUVcWTbJx6HbV
-	ikPNF9Y2vHA7hELlqoXqrDU2ad2lXumKu5JNd9anYgbNv9VSKDnpeFJJS+kiKxEVvLmGqL2v9A7
-	aE0Nov/WUJOUyJeqCQokOIQ=
-Received: from mail.maildlp.com (unknown [172.19.162.92])
-	by canpmsgout09.his.huawei.com (SkyGuard) with ESMTPS id 4fVGWm0gfVz1cyTP;
-	Tue, 10 Mar 2026 09:29:40 +0800 (CST)
-Received: from dggpemf500011.china.huawei.com (unknown [7.185.36.131])
-	by mail.maildlp.com (Postfix) with ESMTPS id 60F4240565;
-	Tue, 10 Mar 2026 09:34:34 +0800 (CST)
-Received: from [10.67.109.254] (10.67.109.254) by
- dggpemf500011.china.huawei.com (7.185.36.131) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.11; Tue, 10 Mar 2026 09:34:29 +0800
-Message-ID: <f46f7987-3d47-ec25-ea45-e1b643d380e3@huawei.com>
-Date: Tue, 10 Mar 2026 09:34:28 +0800
+	s=arc-20240116; t=1773106863; c=relaxed/simple;
+	bh=zlwc+tx+AWlMJs8E8p03tjRU0ejrx8Ov89tKfIG0qZg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=JTPVovVSA/OqLptv3EBZa0X/p3G3wOwWA+r4FRHJs/X2eTsTra2K4anonsVP1jTg8i0uC8LQIBetiUioItdIEYEhPuiQNPV64xpuOqmu7Y//hd1Kwkn1SMamUFaTqr5dSnhxQNyLLxRBOAEuoAHfoGS/wSqOt/rMyb/IJI3JbJg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NShoTRTT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E3FCC19423;
+	Tue, 10 Mar 2026 01:41:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773106863;
+	bh=zlwc+tx+AWlMJs8E8p03tjRU0ejrx8Ov89tKfIG0qZg=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=NShoTRTTYdFz4XcTTOPg4W+2WqjzlnRq/9byBzF5nvXpVzyjii+wUt+LOJ28ur6wz
+	 v7PzGQtPKnavB09pw5FcVBuHOi6gEZUqbeH+aBD1CdbGElFnMU/KvdnzaHCMKMIchX
+	 id7c6lhJEquKL9A13DdhwcxOmXPIfcTHIZuE4R7GnF7Msh2gjEHMu7TMgv6XhY/TmG
+	 iB9cqxq5xHgzv5KWZ83WnINd1cj/vNB3IFCqJiJTMFMOsoW88D4snGsKcwgDcY9HSg
+	 JtwhFboMNBCVwDg8gakU4gLBkODw5WppV0XbKo3M6rl2q6JJjbqneDw72fZr3GxUCj
+	 xqrHopPjHiN0Q==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@kernel.org>, 
+ "Sheetal ." <sheetal@nvidia.com>
+Cc: Jonathan Hunter <jonathanh@nvidia.com>, 
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+ Sameer Pujar <spujar@nvidia.com>, Mohan kumar <mkumard@nvidia.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20260303100249.3214529-1-sheetal@nvidia.com>
+References: <20260303100249.3214529-1-sheetal@nvidia.com>
+Subject: Re: [PATCH v2 0/2] ASoC: tegra: Add Tegra238 sound card support
+Message-Id: <177310686018.362709.882997583976128066.b4-ty@kernel.org>
+Date: Tue, 10 Mar 2026 01:41:00 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.2.0
-Subject: Re: [PATCH v8 0/5] arm64/riscv: Add support for crashkernel CMA
- reservation
-Content-Language: en-US
-To: <corbet@lwn.net>, <skhan@linuxfoundation.org>, <catalin.marinas@arm.com>,
-	<will@kernel.org>, <chenhuacai@kernel.org>, <kernel@xen0n.name>,
-	<maddy@linux.ibm.com>, <mpe@ellerman.id.au>, <npiggin@gmail.com>,
-	<chleroy@kernel.org>, <pjw@kernel.org>, <palmer@dabbelt.com>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>, <tglx@kernel.org>,
-	<mingo@redhat.com>, <bp@alien8.de>, <dave.hansen@linux.intel.com>,
-	<hpa@zytor.com>, <robh@kernel.org>, <saravanak@kernel.org>,
-	<akpm@linux-foundation.org>, <bhe@redhat.com>, <vgoyal@redhat.com>,
-	<dyoung@redhat.com>, <rdunlap@infradead.org>, <pmladek@suse.com>,
-	<dapeng1.mi@linux.intel.com>, <kees@kernel.org>, <paulmck@kernel.org>,
-	<lirongqing@baidu.com>, <fvdl@google.com>, <rppt@kernel.org>,
-	<ardb@kernel.org>, <leitao@debian.org>, <sourabhjain@linux.ibm.com>,
-	<jbohac@suse.cz>, <cfsworks@gmail.com>, <osandov@fb.com>,
-	<tangyouling@kylinos.cn>, <ritesh.list@gmail.com>, <hbathini@linux.ibm.com>,
-	<eajames@linux.ibm.com>, <songshuaishuai@tinylab.org>,
-	<kevin.brodsky@arm.com>, <samuel.holland@sifive.com>,
-	<vishal.moola@gmail.com>, <junhui.liu@pigmoral.tech>, <coxu@redhat.com>,
-	<liaoyuanhong@vivo.com>, <fuqiang.wang@easystack.cn>, <brgerst@gmail.com>,
-	<x86@kernel.org>, <linux-doc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<loongarch@lists.linux.dev>, <linuxppc-dev@lists.ozlabs.org>,
-	<linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<kexec@lists.infradead.org>
-References: <20260302035315.3892241-1-ruanjinjie@huawei.com>
-From: Jinjie Ruan <ruanjinjie@huawei.com>
-In-Reply-To: <20260302035315.3892241-1-ruanjinjie@huawei.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: kwepems500002.china.huawei.com (7.221.188.17) To
- dggpemf500011.china.huawei.com (7.185.36.131)
-X-Rspamd-Queue-Id: B1FE8243A82
+X-Mailer: b4 0.15-dev-83dbb
+X-Rspamd-Queue-Id: 23D91243BA4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[huawei.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[huawei.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[huawei.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273187-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,kernel.org,nvidia.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273186-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,arm.com,kernel.org,xen0n.name,linux.ibm.com,ellerman.id.au,gmail.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,redhat.com,alien8.de,linux.intel.com,zytor.com,linux-foundation.org,infradead.org,suse.com,baidu.com,google.com,debian.org,suse.cz,fb.com,kylinos.cn,tinylab.org,sifive.com,pigmoral.tech,vivo.com,easystack.cn,vger.kernel.org,lists.infradead.org,lists.linux.dev,lists.ozlabs.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ruanjinjie@huawei.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_GT_50(0.00)[61];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_NONE(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[huawei.com:dkim,huawei.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-
-
-On 2026/3/2 11:53, Jinjie Ruan wrote:
-> The crash memory allocation, and the exclude of crashk_res, crashk_low_res
-> and crashk_cma memory are almost identical across different architectures,
-> This patch set handle them in crash core in a general way, which eliminate
-> a lot of duplication code.
+On Tue, 03 Mar 2026 15:32:47 +0530, Sheetal . wrote:
+> Add Tegra238 sound card support in the Tegra audio graph card driver,
+> as Tegra238 requires different PLLA and PLLA_OUT0 clock rates compared
+> to other Tegra platforms.
 > 
-> And add support for crashkernel CMA reservation for arm64 and riscv.
+> Changes in v2:
+> - Drop SPDX-FileCopyrightText year update from patch 2/2
+> 
+> [...]
 
-Hi all,
+Applied to
 
-Do you have any new review comments on this patch set?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: dt-bindings: tegra: Add compatible for Tegra238 sound card
+      (no commit info)
+[2/2] ASoC: tegra: Add support for Tegra238 soundcard
+      commit: 1bc17c67194716f53037685b7059a22cc1a911b2
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 Thanks,
+Mark
 
-> 
-> Rebased on v7.0-rc1.
-> 
-> Basic second kernel boot test were performed on QEMU platforms for x86,
-> ARM64, and RISC-V architectures with the following parameters:
-> 
-> 	"cma=256M crashkernel=256M crashkernel=64M,cma"
-> 
-> Changes in v8:
-> - Fix the build issues reported by kernel test robot and Sourabh.
-> - Link to v7: https://lore.kernel.org/all/20260226130437.1867658-1-ruanjinjie@huawei.com/
-> 
-> Changes in v7:
-> - Correct the inclusion of CMA-reserved ranges for kdump kernel in of/kexec
->   for arm64 and riscv.
-> - Add Acked-by.
-> - Link to v6: https://lore.kernel.org/all/20260224085342.387996-1-ruanjinjie@huawei.com/
-> 
-> Changes in v6:
-> - Update the crash core exclude code as Mike suggested.
-> - Rebased on v7.0-rc1.
-> - Add acked-by.
-> - Link to v5: https://lore.kernel.org/all/20260212101001.343158-1-ruanjinjie@huawei.com/
-> 
-> Changes in v5:
-> - Fix the kernel test robot build warnings.
-> - Sort crash memory ranges before preparing elfcorehdr for powerpc
-> - Link to v4: https://lore.kernel.org/all/20260209095931.2813152-1-ruanjinjie@huawei.com/
-> 
-> Changes in v4:
-> - Move the size calculation (and the realloc if needed) into the
->   generic crash.
-> - Link to v3: https://lore.kernel.org/all/20260204093728.1447527-1-ruanjinjie@huawei.com/
-> 
-> Jinjie Ruan (4):
->   crash: Exclude crash kernel memory in crash core
->   crash: Use crash_exclude_core_ranges() on powerpc
->   arm64: kexec: Add support for crashkernel CMA reservation
->   riscv: kexec: Add support for crashkernel CMA reservation
-> 
-> Sourabh Jain (1):
->   powerpc/crash: sort crash memory ranges before preparing elfcorehdr
-> 
->  .../admin-guide/kernel-parameters.txt         |  16 +--
->  arch/arm64/kernel/machine_kexec_file.c        |  39 +++----
->  arch/arm64/mm/init.c                          |   5 +-
->  arch/loongarch/kernel/machine_kexec_file.c    |  39 +++----
->  arch/powerpc/include/asm/kexec_ranges.h       |   1 -
->  arch/powerpc/kexec/crash.c                    |   5 +-
->  arch/powerpc/kexec/ranges.c                   | 101 +-----------------
->  arch/riscv/kernel/machine_kexec_file.c        |  38 +++----
->  arch/riscv/mm/init.c                          |   5 +-
->  arch/x86/kernel/crash.c                       |  89 +++------------
->  drivers/of/fdt.c                              |   9 +-
->  drivers/of/kexec.c                            |   9 ++
->  include/linux/crash_core.h                    |   9 ++
->  kernel/crash_core.c                           |  89 ++++++++++++++-
->  14 files changed, 178 insertions(+), 276 deletions(-)
-> 
 
