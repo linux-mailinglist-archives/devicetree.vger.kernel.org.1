@@ -1,203 +1,140 @@
-Return-Path: <devicetree+bounces-273683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273684-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHNMKLtZsGmMiQIAu9opvQ
-	(envelope-from <devicetree+bounces-273683-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:49:47 +0100
+	id YDWoK2NbsGn2iQIAu9opvQ
+	(envelope-from <devicetree+bounces-273684-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:56:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE15F255DD7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:49:46 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B44CD25601B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:56:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 4064F3028249
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:49:09 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id CB8EE300A5BC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5D03D8116;
-	Tue, 10 Mar 2026 17:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7381839DBCA;
+	Tue, 10 Mar 2026 17:56:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MP1ZjwMk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T891cqZj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDA93D6CCB
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:48:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505CC1B6D1A
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773164940; cv=none; b=u/k7EyZ80bmeVlwr14ZnWZkw1FhuG4jqxQesU89ZtxzQ/oHcEdZ2WOybBcBUJZuPJrNwAgG3psagu4YKMhfUt2wJBM8P2x11GCIuUrtRyahotxqnXc+wkWR1MIsgvl4F4NbDCg/BRfu7s8ZwRk6Cm+AkUwf0P1qfN2FOLicQs1E=
+	t=1773165407; cv=none; b=WCsspoUTdnLGT07oXhp1N6+jClPY8/SBf2gsYaBlTHQfGiFMrw07Aq7x+aATnDL4eNMdfQo+wEOSRAYANaFe2IyKufDYqpLmwx95XqEgmKouH3+BZYPrMcGqSVBFWG5aHArWoChRnGxklH53IzFfuU0B18uVswc6ApkOu8OtBBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773164940; c=relaxed/simple;
-	bh=RwbHXRCoVmTWoeGYZD5/ykMLkxfjTwmcVo/8jjaLucI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dlBw3YPQgiDP4h0HM4XDIKOFuKJxUst5tcnBo1lsSWjjGD18voyk0TvcziG2ubs3MgU7lZ6N0GQccVdCKnfQROe6w0P8CW3dT3MHsq0PBYVGniS2ZvFBfnoycXUwhfut4euggm04T5rxWy40CHSAiV4TZuLflO0jSeSr2sbxZcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MP1ZjwMk; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-48541edecf9so16327875e9.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 10:48:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773164934; x=1773769734; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=q3ExWVYtTjOCeiXkdLArD0AHGSvrIoXmw1MBLiE6OHE=;
-        b=MP1ZjwMkLhpKIMrUsE5TyKhpzwzbxU83503eEVGKSuaap6BuyNhsKSkK8dwQlSf9lz
-         DI3unISjDRHmXaBp0HqSDvM7Jdp7QG3zCXDD4331upsEMQcp1PoNbXof1yXVao80p7o1
-         970IiIfiwxxoYHvCCTJG/67NySbpAB45ZwHljGoaT72BM7ZLiPlsJe9tdlO4LbAIOsiT
-         jDQUNPf695acW8LLfE79z/6JKYO5rFKpPvJVbC0t55aRqBytMmiBTM/c0TW6IoBRBAJO
-         5ROKZ481TRJ8+5K7eerHRgZCUJ30C8MZKICIxYD5xoBeoT82SkVHKaPx1nksXe54diTa
-         dvng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773164934; x=1773769734;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=q3ExWVYtTjOCeiXkdLArD0AHGSvrIoXmw1MBLiE6OHE=;
-        b=q6gOimqP3TxD28dWgpDK/N4G5EUDu9X8dhAGjD200F86vesW/vtxOmWabcUyuTpnJ4
-         oAWjY55FELJTnkdkWf+weG1ECYIY72O8qeYPIcWcJ+LYcvOLDeeSEpwd8zgJFWnNTLXC
-         EuoViBwWVTuY771bnhTDkilfI2Owvp8rlorM3drgBKvcCUK7kk4+9P8FcY//ERXnC/7u
-         Se14ZJwKtGfCnvE6r+ESTG2EJFq0GbUDbolWGJqBHvnCDRNex68rNKnDhtdARJj//lNe
-         4oJBBlXWLI5k3fRoBHiLT9SNyOLSyVfZsTut0OttrQCQUKGs2EtQwL3meOKsNX+LZRhP
-         wvlg==
-X-Forwarded-Encrypted: i=1; AJvYcCUw1y+8IgrLBBu3YwbOJre9ZOfWfy8BNfoFsr+qM5u42mUke4+UlIxCVYGsglzaOqurl6aNqXzfjU7K@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKQ+x1m/ZFyLUUNvQNiwwRCVyzVvFBH3YtnvmDH65tctuD+T+i
-	FG3ix4tnkRO5mQnB+UcN+oblgaECt+/XA+/HVU8M2jJGc6uNiH59K+di
-X-Gm-Gg: ATEYQzxHCH67HBG1bUZ6NowgbjexKNjRoh7xYTS4+EXvo3JF9rK3DHbZTCp90t8jCLQ
-	eTjcOPWQB7qUntKbc7gQFFOxhxLnbuAqjHS9qepJByeXldN6+WCb0SxVSxI2GdB+UZtNbajhVq4
-	MS6n7DCp0cLWhbMwI1BvOsx6DwPcsYVeGcahvLMIaPyZWQ5JdezVFN43BIwnhm1iYX/ggquVQN9
-	k1E3M21mYSaU+sMdPFGbSxlZ1peY/TBgAuoNkKVyFFBwGd8xQr0wqmbpE/0AWPA68/un6ANuN/a
-	4JTP2nSBse4ZSEHXVteMoyi+mfa5MbIF6I8Ogk9jIBFX4yJK8Xjr/S3pZoI8OjuXA6Gn/x4Mfuq
-	UCHRx7bzApwou4sY0J/EiWECNigqEFxpcX7xPXo0h+d36xsV3yPN+A8OtOAJBno57yHPI0EsWNC
-	8O3XfIciLkpCG8vn9a15evV6VX+GbjD2I6adft95NnE/hcLLHAD82xVmvjUA==
-X-Received: by 2002:a05:6000:2881:b0:437:711c:8754 with SMTP id ffacd0b85a97d-439da55541cmr29415959f8f.7.1773164933500;
-        Tue, 10 Mar 2026 10:48:53 -0700 (PDT)
-Received: from db07.1337.ma ([197.230.240.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae45786sm42986166f8f.32.2026.03.10.10.48.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 10:48:52 -0700 (PDT)
-From: Taha Ed-Dafili <0rayn.dev@gmail.com>
-To: lars@metafoo.de,
-	Michael.Hennerich@analog.com,
-	jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	skhan@linuxfoundation.org,
-	me@brighamcampbell.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Taha Ed-Dafili <0rayn.dev@gmail.com>
-Subject: [PATCH v2 5/5] iio: dac: ad5504: add optional GPIO control for CLR and LDAC
-Date: Tue, 10 Mar 2026 17:48:35 +0000
-Message-ID: <20260310174835.24209-6-0rayn.dev@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260310174835.24209-1-0rayn.dev@gmail.com>
-References: <20260310174835.24209-1-0rayn.dev@gmail.com>
+	s=arc-20240116; t=1773165407; c=relaxed/simple;
+	bh=YOSJC2IC323+lNrs0NtYPEZYxLcLfviCMZ74PbxeQWk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ehd96CBy1qWjsiUYB97z4fVG2k1hG3ERQafMqlqVZtC4wup6agJCzq+wHnYC/RASJAoTWIujeOjn3HQPQ0LkFMAGHpTdjFSdVHPGmbuejXPnfxSZ6Pq310tVlQ39t3Gj+GtrpwwF6hHSQb4f+S3acmfcS2zlh7Eq8WKm1YJor0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T891cqZj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32B2AC2BC87
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773165407;
+	bh=YOSJC2IC323+lNrs0NtYPEZYxLcLfviCMZ74PbxeQWk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=T891cqZjCsowv29AzQfcFL0AknJgbGGA/+t29kgZzsKOpL3zJFo5+Xzs1n9KnSVyO
+	 EJOdjAz8LiS1HWoC1dXuTXgosvnBP0cI7jfiqStkGfcHz8CE46C0dggAfbhNLiSL7T
+	 IgPO0jXIPCxXdI6jESSPLrbehdj56GI7F7m5u+ZAuPbn1pMouFW8+HNAbovSMNR4WC
+	 imFrgFQtB73nKITcUwfBberr3+A4Yc2RB5NhizwoRSBazcz6okLW64v7jDH9TERV4e
+	 ec9f/wSS5bfNdo7BfN+NMUHhlqI6aE+wqS/nR7pbS54SVMCMJ3rA/DWSTw14bbeS3T
+	 L+LhslUTq/hkA==
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-661568ce781so8441227a12.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 10:56:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU+6t1y7m6W44OkjxoWTfcVYgMtICu3hQ/tY9bzSU6+xx8mszK+qt0y3Sa86GZSbGItrWw07oEKQp+F@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEX6Mbr3TNkiaPNdC8m8uM7guI6yjntNqm21ny6/sXK5rpwo4U
+	rNR2CMY6z1lTJdj3YjxaRE7CqMkLUtNGBiZYWwh932kTULvaJ9ZDTJlIu38cu4o1PkMIv4vWOPg
+	vzD2ae4AOK5q4bP5WBekH9cQQl/C18g==
+X-Received: by 2002:a50:9e27:0:b0:662:ac7e:aab9 with SMTP id
+ 4fb4d7f45d1cf-662ac7eacbemr2012863a12.8.1773165405616; Tue, 10 Mar 2026
+ 10:56:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: EE15F255DD7
+References: <20260224-atmel-usb-v2-0-6d6a615c9c47@gmail.com>
+ <20260224-atmel-usb-v2-4-6d6a615c9c47@gmail.com> <20260306004931.GA875708-robh@kernel.org>
+ <924b7631-0b75-4ecc-bae2-162abb4bdc31@gmail.com>
+In-Reply-To: <924b7631-0b75-4ecc-bae2-162abb4bdc31@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 10 Mar 2026 12:56:34 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+b8vGzzpwR3waB79OjbyOT17S3W6htRv+3q48YHpDrjQ@mail.gmail.com>
+X-Gm-Features: AaiRm51MMEXEqnOLjtLKD0uik8Pyp5xUqnmZcuciK2BL52Q7_ByxKePxBEdEeks
+Message-ID: <CAL_Jsq+b8vGzzpwR3waB79OjbyOT17S3W6htRv+3q48YHpDrjQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] dt-bindings: usb: atmel,at91sam9rl-udc: convert to
+ DT schema
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Herve Codina <herve.codina@bootlin.com>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: B44CD25601B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FREEMAIL_CC(0.00)[baylibre.com,analog.com,kernel.org,linuxfoundation.org,brighamcampbell.com,vger.kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273683-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[0rayndev@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273684-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,mail.gmail.com:mid]
 X-Rspamd-Action: no action
 
-Add support for the optional 'clear-gpios' and 'ldac-gpios' properties
-defined in the device tree bindings.
+On Sat, Mar 7, 2026 at 1:46=E2=80=AFAM Charan Pedumuru
+<charan.pedumuru@gmail.com> wrote:
+>
+>
+>
+> On 06-03-2026 06:19, Rob Herring wrote:
+> > On Tue, Feb 24, 2026 at 01:13:01PM +0000, Charan Pedumuru wrote:
+> >> Convert Atmel High-Speed USB Device Controller (USBA) binding to DT sc=
+hema.
+> >> Changes during conversion:
+> >> - Include "#address-cells" and "#size-cells" in the properties since t=
+hey
+> >>   are required by existing in-tree DTS definitions.
+> >
+> > The DTS files are wrong unless there are child nodes and there aren't.
+>
+> Yes, there is no child node but these properties are defined in sam9x60.d=
+tsi for the compatible "microchip,sam9x60-udc" and the yaml fails dtbs_chec=
+k if I remove them, can I send an another patch for removing these properti=
+es from sam9x60.dtsi?
+>
 
-Use devm_gpiod_get_optional() with GPIOD_OUT_LOW to ensure the pins are
-initialized to their inactive state.
+Yes. There's no requirement to fix the .dts files when doing the
+conversion, but a fix would be nice.
 
-Signed-off-by: Taha Ed-Dafili <0rayn.dev@gmail.com>
----
- drivers/iio/dac/ad5504.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/iio/dac/ad5504.c b/drivers/iio/dac/ad5504.c
-index cd563460fc0a..58538f5263fc 100644
---- a/drivers/iio/dac/ad5504.c
-+++ b/drivers/iio/dac/ad5504.c
-@@ -7,7 +7,9 @@
- 
- #include <linux/bits.h>
- #include <linux/device.h>
-+#include <linux/err.h>
- #include <linux/errno.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/kernel.h>
- #include <linux/mod_devicetable.h>
-@@ -48,6 +50,8 @@
-  * @vref_mv:		actual reference voltage used
-  * @pwr_down_mask:	power down mask
-  * @pwr_down_mode:	current power down mode
-+ * @gpio_clear:	GPIO descriptor for the /CLR pin
-+ * @gpio_ldac:		GPIO descriptor for the /LDAC pin
-  * @data:		transfer buffer
-  */
- struct ad5504_state {
-@@ -56,6 +60,8 @@ struct ad5504_state {
- 	unsigned short			vref_mv;
- 	unsigned			pwr_down_mask;
- 	unsigned			pwr_down_mode;
-+	struct gpio_desc		*gpio_clear;
-+	struct gpio_desc		*gpio_ldac;
- 
- 	__be16				data[2] __aligned(IIO_DMA_MINALIGN);
- };
-@@ -299,6 +305,14 @@ static int ad5504_probe(struct spi_device *spi)
- 	if (pdata && pdata->vref_mv)
- 		st->vref_mv = pdata->vref_mv;
- 
-+	st->gpio_clear = devm_gpiod_get_optional(dev, "clear", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->gpio_clear))
-+		return PTR_ERR(st->gpio_clear);
-+
-+	st->gpio_ldac = devm_gpiod_get_optional(dev, "ldac", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->gpio_ldac))
-+		return PTR_ERR(st->gpio_ldac);
-+
- 	st->spi = spi;
- 	indio_dev->name = spi_get_device_id(st->spi)->name;
- 	indio_dev->info = &ad5504_info;
--- 
-2.47.3
-
+Rob
 
