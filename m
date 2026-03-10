@@ -1,98 +1,99 @@
-Return-Path: <devicetree+bounces-273549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273550-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0B8vNisnsGnYgQIAu9opvQ
-	(envelope-from <devicetree+bounces-273549-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:14:03 +0100
+	id cAYoIEItsGlHgwIAu9opvQ
+	(envelope-from <devicetree+bounces-273550-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:40:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 914B22518CC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:14:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA388252380
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:40:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A63C831730B5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:34:26 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B74C63413103
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:34:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0CC839DBF7;
-	Tue, 10 Mar 2026 13:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A52D3A3839;
+	Tue, 10 Mar 2026 13:28:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dq8Tpjgv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mBPYr3EX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EEF939DBC5
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BF9D3A16B5
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:28:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773149334; cv=none; b=WEP+ae3HIWE3PDPJCnAAp5pgJn4qyB1k/fwjgdDzVJsSM/DXe/CpJIIHyzpfXjwXyLA23Js0S7gF/gvCSz2eXvI4gzqAwf+IL2EKXSFI4dvJnFe/HHXMmTAmWmcsK+ZiQx+FMo0EOu67LbnAOaONCa75M4UpNUnPW8f9Vs/ekeM=
+	t=1773149337; cv=none; b=DOQZS7ymn0KblC1O0dDaaazZR5s/lPKWS43hhrce91bBSNH4xcLALUNSa1qo7qvQ8BQtxQMmW64H+4fHC8IKvNScM3icKWBeSOemh+9YeIn+P2hfsW24ujNqeakgDg1dvICW7JWNzmVQ3WjbAYZ4jX2xa9ekl8Js7ftbI5uEpq0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773149334; c=relaxed/simple;
-	bh=EWnh4f2+RIW4bcHVktrYqbSMYyn5qgnqLofinbb6yTc=;
+	s=arc-20240116; t=1773149337; c=relaxed/simple;
+	bh=nbDBfnCoqStjNE1+FHfFMg/E9OrP+v1YMgqFW9kqvMY=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=lC0ejLXEJVIIvmBBbx55LX4JMArjU0ly87n3288heTks6ZVKqV2YqanEit4mDUEWMFb7ICyG5L/PGvysQwwKfmesSXHIqKnu+C3Tv0PbhwyZfAKwb6UBc1Ig6rqHFwl++QbHN2nLNumXROyF16TihRmaj/CK5ecK3Gj0CgKinrg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dq8Tpjgv; arc=none smtp.client-ip=209.85.128.53
+	 MIME-Version:Content-Type; b=VseVB1Zc26lCAvXwK7n/PdfFyalrDLehq5IafU7CMZR1b+RaLbFnXC/dA1ac4GmWf6LM7GO8m7+sz71YSMzSuz5acenXVbuVKn23iarshRscFMbxzavxK4+vaiEWZFOYidBLEFM4by3s8MFJH2oSLdJK7SAYUhQtxaFnG1LHVYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mBPYr3EX; arc=none smtp.client-ip=209.85.221.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-48534b59cf3so21538765e9.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:28:53 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-439b9b1900bso6783465f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:28:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773149332; x=1773754132; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1773149334; x=1773754134; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=R4oxDm5JlYl3LzaRTTBNVDKv5682/k8Rf+qU4xWLObU=;
-        b=dq8TpjgvOXlf7KUO5308Up88omHXT2m1Qj8n2wookRiG1ZMWL0QKCI8Rc2aVngMRGa
-         P+yPWM9NMimqcTnSY4001RCD4HIqTzFy5PIPZi3EYZLAjNJGxmbQdPtpZthjxQKtKmkj
-         P0gnekoNIGo9EnRloV9BqUOaG53CugjltbRcDVDG11jJqzxvJd6xiWAMaEgGPDd5Dkqf
-         4XaIZaVQtpHu3PZOFzsFmPF40VE1oIQZkIISUCtwiLKjPsPG7LwGXt1KSRLFZZcnUFZG
-         8ubs7gpS+Mqjyn2SiOZHjC49kWr3lkebAANfuEAjRXi4ar0DSwIXqbF9cg8uyxTBZPaV
-         eRWQ==
+        bh=VO1TTYHAfBoOzIJDJEJ0WmryBG6EX9gPDF4DBIjBV9Y=;
+        b=mBPYr3EXtX3SMFu3BFDhzvuevRfXZkcy6OyqiH0WUNCrRQb80M2VmUIyoZmzIzRA3C
+         VcjlmgaMKUZN9hIILGFnoysJOpHHIza0igSspUL+jPRiS7FDgGAvETBGY1hBMJSRBiDU
+         PzrPh/ffqr8LHhubyVcWFfFevn3+dwU9UT7FNNXz+bJNGIVF3IzwZKDgKsYMoaQh27Ez
+         hR3e0ZakfMVe7cgQXJRkSYC5yocI87FxMlDIbK7Fr8yhrn702eouqLfG24B9WlzBWZvZ
+         ssg7N2RFa2k1LqTL10gpBpmHbmPbOXaYdokym0WIOLpzo9mxbyn9iLSDjO2saWNgqLKh
+         9TWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773149332; x=1773754132;
+        d=1e100.net; s=20230601; t=1773149334; x=1773754134;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=R4oxDm5JlYl3LzaRTTBNVDKv5682/k8Rf+qU4xWLObU=;
-        b=qDv3QAXALWov+w4V2m8F84zf47woRuNoLwvBE/rAI8aGe04uRVwvUWk8ltOyVFHQve
-         rEus4zQMTtwmQe74R9WDxZMs5RIA8R+S+yiaNvWZeAtQFQgj+qzeIXZq27dscJkLj+Kc
-         tW5OPJYmP33VdOKLUq2hzvnhCufYSGwy/J2qt0+drLv51YJ0l+lvE6RW1hMMcDSzePwn
-         Qyy4Jr2XyomrKD+5FVRksLV8VfvIExSpzNGrcBpWgBA3p6JwevogCClmXQL60itBIZbY
-         fzfOTfMHkBEA7iRvfyM9w7RsSCOfOO9mAsmqeFnrOB+SOL6TXSUqg1Cja4ydC7HQPQv3
-         hopQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUZhx5IUYJ3mZe6ocVRo783cEbOzoGPcCAhzl5LhhWBOJUTecWaof2DaRKlIx3dj6nQXkUR4mJqE/Jn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMas79w0n8DKfhxtrJ/aKVcL0hvc2KOKXQnIdnWh0QBw7nRz5c
-	a2H6wr6nlU2JIefGLnK5BlSbf2ZQJgR4K6+DxRE/1AeGBDdo2Thqb/l/n3gbuXI9sTZ91uXXqxj
-	P1LF8
-X-Gm-Gg: ATEYQzxyOV7PG3Y74TomWtZh5rqVbkj592WqK3PPtClQZvZanJT5iecezsa3UngJXs+
-	3F5VspC8UIwDfNYUw8bLhxXUj/NMJ5PLYv403i6eL9v1eapJdJ/tAg74VFIN50cewKxr98uoBsS
-	zqpF0biisD+mPVjwzBp6rMm7Yj6YJcSoH92DnMg+ben6IAfC1QTc3EHQHi35sOfojay2k69/l9M
-	eephcey2Bz9Hyp4TLAvhsnEg5oHzWBWJJifxwWvx9BJMxPFclmolfnA6TY2QcDfWQEsJ3VZAPIJ
-	T9BRAs2RyUG9DVcnB3hjLQYNrZF7328RAN21aabnV0++FfobAE/2xfa2k2v0Njjrnv6USc8kHXU
-	dy3nZMed1LOWooCAiaWPhPxB1nlGejMtIihfdaxLW/lxRnXzxY330oVBUJEt0THR90/xRdxbPhZ
-	1PAnbBSbNLlDTS9Vk+P2W3ahJk1u/SZ4fyakealmQl/lnw
-X-Received: by 2002:a05:600c:a08b:b0:485:3fa9:358c with SMTP id 5b1f17b1804b1-4853fa943demr86976805e9.17.1773149331476;
-        Tue, 10 Mar 2026 06:28:51 -0700 (PDT)
+        bh=VO1TTYHAfBoOzIJDJEJ0WmryBG6EX9gPDF4DBIjBV9Y=;
+        b=ZYEnVJJZW4egrJro5eiqf/gUFX/IMglS3zZ2uPpwNDyVWdrRQddbz1BJ2AOJIPd0H7
+         J8tgO7kjtJYYf0aQQDThKm7/OEoTrFgEewEDmaXW8LsNL+neo7+oaZnSAaxCAbpaTsxM
+         pfavhgzfl046Y7PzfAOMQ7pIO9dwG92F/0fX8GfaK/jg5ANt7qFhhqGEcc05E8Wzs3LZ
+         E5X2RLkRtAodxRseemuFsJ0DQirXDZxY2eeMHIwGAcaQy68r0jpkdOWqqGRmvZSwYhUB
+         87fd74Ze3A06h4yiGZNuwOk0ludETwAAFIUZXn7XnG7mf2LvzUzZUPrdnRZ2A/Wta5+A
+         k8PA==
+X-Forwarded-Encrypted: i=1; AJvYcCWjNmSiFNsAcjdUkzU5nhNldkEMJWc4H8bDf2qTA7AA2BG06QLdfYgswCvxpQeDnfm7DxECcPzQUZdS@vger.kernel.org
+X-Gm-Message-State: AOJu0YylLAkRlQgLMqiHtQiPFvizmwWcU+8ENt0pO0rQdJzQKrNv4tMS
+	Y/uHDHOa9L/wQ/MLkFe0NaBtSkcFBj1SoEcV4kKKpEBT6hbx/gm3oWrQl4ev1/lIVW3QcoQstct
+	Pn8lB
+X-Gm-Gg: ATEYQzyQt8svRsCLRegRUJDGTkbXrCYIH1EJzKZDqhrhIlF4Kk139KQ7OpRjr42cnhP
+	Rnt3ILaSC9i9aTQiN4TZ1tVmlK3uR6s+kO46ot3+jW6xq5mcVjFJ8C8d2vEJCOV3mR/A+TVCBWS
+	q+hejJDkImW9tg15MZNv5UUABA+baxV/s7tqtd1MsS0OUFCHAkp5z12IRJc6fkV4HPVvcpgTMhX
+	BZ20/O+WmWYdWTdN1eIJINWG9ctf5xJ7lx2GyXamuajaz680ZiO1p4W5nDvLpZNXSuFTl098nBn
+	nIH9G1qSRN03OMnO5lMO62e49M1apMtGwo9eXryF6evd17zh8c2RE70/hHzeb95otfMDgqi3NOQ
+	rtB4MF873x2A4LokU5GbQlGRuob82sPop8pzJB9EcTzMjYZ2a2++1OV7V5lTzTHHvH6Vd+Rut3l
+	SDM4rsaFlRtObPUmacUA6ZalN3iib/hyxI1cfs0TXotqyg
+X-Received: by 2002:a05:600c:1e88:b0:47e:e952:86c9 with SMTP id 5b1f17b1804b1-485268bd528mr283400215e9.0.1773149333982;
+        Tue, 10 Mar 2026 06:28:53 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:106d:1080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48541b6f6e6sm132464235e9.10.2026.03.10.06.28.50
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48541b6f6e6sm132464235e9.10.2026.03.10.06.28.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 06:28:51 -0700 (PDT)
+        Tue, 10 Mar 2026 06:28:53 -0700 (PDT)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+To: Jessica Zhang <jesszhan0024@gmail.com>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Douglas Anderson <dianders@chromium.org>, Sam Ravnborg <sam@ravnborg.org>, 
- Svyatoslav Ryhel <clamor95@gmail.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Florijan Plohl <florijan.plohl@norik.com>
 Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
-In-Reply-To: <20251204060627.4727-1-clamor95@gmail.com>
-References: <20251204060627.4727-1-clamor95@gmail.com>
-Subject: Re: (subset) [PATCH v3 0/7 RESEND] Add support for panels found in
- various Tegra devices
-Message-Id: <177314933067.2052605.5030496259952095113.b4-ty@linaro.org>
-Date: Tue, 10 Mar 2026 14:28:50 +0100
+ linux-kernel@vger.kernel.org, upstream@lists.phytec.de
+In-Reply-To: <20260217123759.169317-1-florijan.plohl@norik.com>
+References: <20260217123759.169317-1-florijan.plohl@norik.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: simple: Add Powertip
+ PH800480T032-ZHC19 panel
+Message-Id: <177314933302.2052605.7183990147602403836.b4-ty@linaro.org>
+Date: Tue, 10 Mar 2026 14:28:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,7 +103,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: 914B22518CC
+X-Rspamd-Queue-Id: EA388252380
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -113,12 +114,12 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273549-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273550-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,nvidia.com,chromium.org,ravnborg.org];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,ravnborg.org,norik.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[linaro.org:+];
 	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
@@ -128,34 +129,25 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,gitlab.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,gitlab.freedesktop.org:url,linaro.org:dkim,linaro.org:mid]
 X-Rspamd-Action: no action
 
 Hi,
 
-On Thu, 04 Dec 2025 08:06:16 +0200, Svyatoslav Ryhel wrote:
-> Add support for panels found in various Tegra30 and Tegra114 devices,
-> including panels in Tegra Note 7, Surface RT, Surface 2 and Ideapad
-> Yoga 11 T30.
+On Tue, 17 Feb 2026 13:37:58 +0100, Florijan Plohl wrote:
+> Add Powertip PH800480T032-ZHC19 7" LCD-TFT RGB panel compatible string.
+> 
 > 
 
 Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-[1/7] dt-bindings: display: panel: properly document LG LD070WX3 panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3efe01ff79041fe64a6f6637191b69abf310fd0d
-[2/7] gpu/drm: panel: add support for LG LD070WX3-SL01 MIPI DSI panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3efe01ff79041fe64a6f6637191b69abf310fd0d
-[4/7] dt-bindings: display: panel: document Samsung LTL106AL01 simple panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3efe01ff79041fe64a6f6637191b69abf310fd0d
-[5/7] gpu/drm: panel: simple-panel: add Samsung LTL106AL01 LVDS panel support
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3efe01ff79041fe64a6f6637191b69abf310fd0d
-[6/7] dt-bindings: display: panel: document Samsung LTL106HL02 MIPI DSI panel
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3efe01ff79041fe64a6f6637191b69abf310fd0d
-[7/7] gpu/drm: panel: add Samsung LTL106HL02 MIPI DSI panel driver
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3efe01ff79041fe64a6f6637191b69abf310fd0d
+[1/2] dt-bindings: display: simple: Add Powertip PH800480T032-ZHC19 panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/eb2ed3de6ae9006a81e964ecd0ca86919b13f37d
+[2/2] drm/panel: simple: Add Powertip PH800480T032-ZHC19 panel
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/4a3a4cb8198a5853e940cc6620c7b7c4e215a899
 
 -- 
 Neil
