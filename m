@@ -1,715 +1,218 @@
-Return-Path: <devicetree+bounces-273496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273497-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CL45MnsDsGnOeQIAu9opvQ
-	(envelope-from <devicetree+bounces-273496-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:41:47 +0100
+	id ICRZHAIFsGlAegIAu9opvQ
+	(envelope-from <devicetree+bounces-273497-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:48:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B6B324B533
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:41:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B6A624B909
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:48:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 077573185FE9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 11:38:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7F99C31CD912
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 11:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3150E389456;
-	Tue, 10 Mar 2026 11:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B00B5389477;
+	Tue, 10 Mar 2026 11:43:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ot4xSumB"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="P8LbS18Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABC0387361;
-	Tue, 10 Mar 2026 11:38:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F493859CF
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 11:43:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773142723; cv=none; b=Sx3eWTec9WEb3kNG27wrIxxPBKgFyeQAcjE5UgtRBgZqYCnxgcnYwbNC4lp8dim1xtjxubjf+uVnHOn/4FwuGAL8uxWpYlqfdAp+54LR9FpCzxITQ31BkuX9PfCKGwUJcuEvDadayp6MhbmsycShyfRK56ogfqb+HCq0jhVE3V8=
+	t=1773143035; cv=none; b=k5iuNpGKyuo8iUtNkqVw+frRTSiccUJIvGaWmUjx3C2vc2I16bd06KaYndCztNuU9QFEjotxbYa3dfQFTD/cGrdLsfWkCBC71ck4mygho2OPuYfIRkdn6TaG0+jggPKnF4rxKHdIiOSaKN04UC10pSYuI2R7UPHm07EmbinG5GA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773142723; c=relaxed/simple;
-	bh=lgEKmzd/27QTSNFXuDsbHCKYYk4Nmuz/LNXBj8lWCA8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iBMG02jGvqYMi/juVpLE0NYwz9uwxA723biYP3+SxGIXHy52YjiHP3v66s8eezPk4cinMa2dK/lxUo6IB5dJfVTo7m76LZ5mSEw7ejjJOLJ7mrr+YnoZ+FWiG22RSmzI/Mzo4rvlGhhszHKQ2O8fVLrfpEJvkE+9ZwgkQ+Baigg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ot4xSumB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 978E3C2BC9E;
-	Tue, 10 Mar 2026 11:38:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773142722;
-	bh=lgEKmzd/27QTSNFXuDsbHCKYYk4Nmuz/LNXBj8lWCA8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ot4xSumBhzwOxzZ/YxNFiO9UMtjlr5NandP1eqJVqrCfml6W3rnr7nrzQ0DbICjcT
-	 0/EXX4+DWa8wi4v0ICjbir4hQIQkEOLuUyKtVtx9hHhEXVikSuYa7r58cM0E0vJy3g
-	 SptxlteHXBc9L06cTHM6DJ2fOHQayaNu7aOnz80wg6GO7eY7zOysj7jADad2uOMj7h
-	 podjVqa1SMs2gqahNNlaCns1EKtk7CglLtdLj24UuLbEmFq8uyoIpJtuoIAeg0lhpa
-	 nGF1HPKn2F5tISkUNY9K/H5gU21Gwr1TMV3EapDZbzpHW7oGHXiqT/JPsoxzQFm3oa
-	 hrJqUCsWlal3A==
-Date: Tue, 10 Mar 2026 11:38:35 +0000
-From: Lee Jones <lee@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Nam Tran <trannamatk@gmail.com>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 09/13] leds: flash: add support for Samsung S2M series
- PMIC flash LED device
-Message-ID: <20260310113835.GG183676@google.com>
-References: <20260225-s2mu005-pmic-v3-0-b4afee947603@disroot.org>
- <20260225-s2mu005-pmic-v3-9-b4afee947603@disroot.org>
+	s=arc-20240116; t=1773143035; c=relaxed/simple;
+	bh=/ZwpLzPzz6NN7YpRXM7WmSRAUyGlvMPuteoUVodjgjQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mc+BRS1+VvqISUEjTUt/SzjYQYoVV6/M/qReoVzr5ybbQNbIfA2cgcsQIrYGU9Qmlv58P47X5fccxO6fDuBQFjmEHzATgdJYR6f5E3z/HvGpCvgSrYdhksCzptqJnOQLm3mvDTF04eJkw7bkDy6D+w6rq+ybNXMpHK8P3aN6WrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=P8LbS18Z; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-482f454be5bso128619945e9.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 04:43:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1773143032; x=1773747832; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qEk8/U/fcM91kdGi0mP1J9Pt6ztju/e0Qdwqcsxc7do=;
+        b=P8LbS18ZAN4lVTm2G2cxbZN5fNSSqrbZ5UkKLNsEoslJIGJlrpItpvokIAxP0BMKE5
+         XukziXil/p/H1wm41YhUiQn11p1zIri13vTsKyKQyoBst9Myoy3FApN5/QKRWYlR8O/w
+         1jh35Jqr6RCCt2hcyrH83eOO4VozFevIzjT3pMlaVOA7bw7+xfjozgGYCjiLuGK3kcXv
+         AYZXKzVoSUpgs74YuhgjPumHcDaLTOHsODWXtWbYltlUZDqKKO9SsDmFwQ1LZWYGdX6v
+         EU7SWz1TnjZ8h+uh/H2VVGsivFSeHd9L3ag2wxzSiVpcNiR8GG9/HgBONnpHgidn+txi
+         nU8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773143032; x=1773747832;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qEk8/U/fcM91kdGi0mP1J9Pt6ztju/e0Qdwqcsxc7do=;
+        b=u4jbwZMxNZAB5IkWpN3SoiA5RXNF7DKmkkxT4fIkONDFZ7sZBTsTZGaf0el0RA5leE
+         60X/oOnzT+TW9Y7uD14GnzD5HaZFataqrncJIJ4EaNMBUfn70wHTVO5ov5m6zqA8H1BM
+         k4g1z3tNJpRARwQT2V8aHveAw35eAnj+zSSY01R/7VTvyR3vUumXI3jIfrGMe2Kj9D9K
+         7Jdia5pt2IbhIMS4Bt9psaJlLzU7mBiV+DXzkENcCwEaaAvpo/r5xlR9tnblqLgiLCJN
+         5NONorGtqWsT9fCWmd5m0i7XzX1Y2AXgNffwf1XEtPE9AgAA6WFdSoScLkkHLQtCs8h+
+         9tww==
+X-Forwarded-Encrypted: i=1; AJvYcCWWE2DYMASWBTsh463ovnqo5x882j9RMjmr7zqUq28zPnYa4zuUg+0OcFn1HW9j5dWCrj8ORqqKIrK9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmULwVVmf9R/QozSiesClsZeCBVh5CGQZB4Ho/OGH5G1JiRg1t
+	tGIHXlYytqI8djLt5Hs5CAxPd7zdkxa50VXmpuz7tkY0AYwxbrJMuX21CZsX3t6+/ZI=
+X-Gm-Gg: ATEYQzyAPeJbQpXgvS5OhVsJeD6ZaRhbXUrXLMD8fcB6i/Ufv/wmcC4WrtG4kOq+8E2
+	DA8ziV28wgea1OfhpRi/znDE+PVxfOnOOo9Y8OmdXHlJ3yFIBiZ/tkRVwPDfFJ8otQa0rAn6jOP
+	+gKrmOejvGpkzKtlQVt/khhnRMKnOHXNn2izXM7dA/Mj9DZAukbaM5HHA79PKX7lDqO0jBNtsCW
+	9qGno8VjICZGR1jWDO1k+L7x7kXnYyC8Dz6o0Aa5yF8Cse4PQQ6nDt/YAWF5KP5OR/DoWyZfijO
+	O/ZSou6O4Scp7ESpKVqAivqcnwpAlTj0xRmtDe7F8UcnBgraTwmUyH9zfuFCKEdy7R0aKwTTNwI
+	iL0vseWOCNxIOpzjqxOaTZjJe1ZzdMeAWwwqOeRM+Z8h35r9n82p/Hm4hOO3IZspgRCaVnLgeAX
+	/2ei2DToMdyUxVjgzs/iwBIWlLptdAk2Qccbm5d3jFx25haiAkxw87r3oHMRqtATsaaH92h6Rm8
+	Pj8Xw==
+X-Received: by 2002:a05:600c:4509:b0:485:3b4a:f707 with SMTP id 5b1f17b1804b1-485419de2fdmr49362845e9.10.1773143031544;
+        Tue, 10 Mar 2026 04:43:51 -0700 (PDT)
+Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48541a7f182sm96234825e9.5.2026.03.10.04.43.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 04:43:51 -0700 (PDT)
+From: Alexey Charkov <alchark@flipper.net>
+Subject: [PATCH v3 0/2] Add support for Texas Instruments INA4230 power
+ monitor
+Date: Tue, 10 Mar 2026 15:43:45 +0400
+Message-Id: <20260310-ina4230-v3-0-06ab3a77c570@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260225-s2mu005-pmic-v3-9-b4afee947603@disroot.org>
-X-Rspamd-Queue-Id: 2B6B324B533
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPEDsGkC/1WMwQrCMBAFf6XkbCTZJNX05H+Ih9Rs7YKkJSlBK
+ f130yIWj/N4MzNLGAkTa6qZRcyUaAgF1KFi996FB3LyhRkIqAVIyyk4DUrwk3YCtLDSKM/Ke4z
+ Y0WsrXW+Fe0rTEN9bOMt1/TbA/BpZcsEttNKjPUuv60v3pHHEeAw4sbWSYTeVgN2EYhrTauul9
+ eDaf3NZlg90j7wi2gAAAA==
+X-Change-ID: 20260219-ina4230-74a02409153d
+To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Alexey Charkov <alchark@flipper.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4023; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=/ZwpLzPzz6NN7YpRXM7WmSRAUyGlvMPuteoUVodjgjQ=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRuYP4RVvN37pVHtXOMFhm9i/V28eV135edKOe53Cdu0
+ 9egS+tfdkxkYRDjYrAUU2SZ+22J7VQjvlm7PDy+wsxhZQIZIi3SwAAELAx8uYl5pUY6Rnqm2oZ6
+ hoY6xjpGDFycAjDVpjcZGTpdymsvvzv6c97Eq4mhB6s+HZb+Vv057L0vf4xW81XW078YGb4X17w
+ qXeifZGqwdP5P2TrO+R8mzLzCcXvzkzCOmOvZ3FwA
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+X-Rspamd-Queue-Id: 1B6A624B909
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273496-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[flipper.net:+];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273497-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, 25 Feb 2026, Kaustabh Chakraborty wrote:
-
-> Add support for flash LEDs found in certain Samsung S2M series PMICs.
-> The device has two channels for LEDs, typically for the back and front
-> cameras in mobile devices. Both channels can be independently
-> controlled, and can be operated in torch or flash modes.
-> 
-> The driver includes initial support for the S2MU005 PMIC flash LEDs.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  drivers/leds/flash/Kconfig          |  12 +
->  drivers/leds/flash/Makefile         |   1 +
->  drivers/leds/flash/leds-s2m-flash.c | 429 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 442 insertions(+)
-> 
-> diff --git a/drivers/leds/flash/Kconfig b/drivers/leds/flash/Kconfig
-> index 5e08102a67841..be62e05277429 100644
-> --- a/drivers/leds/flash/Kconfig
-> +++ b/drivers/leds/flash/Kconfig
-> @@ -114,6 +114,18 @@ config LEDS_RT8515
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called leds-rt8515.
->  
-> +config LEDS_S2M_FLASH
-> +	tristate "Samsung S2M series PMICs flash/torch LED support"
-> +	depends on LEDS_CLASS
-> +	depends on MFD_SEC_CORE
-> +	depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
-> +	select REGMAP_IRQ
-> +	help
-> +	  This option enables support for the flash/torch LEDs found in
-> +	  certain Samsung S2M series PMICs, such as the S2MU005. It has
-> +	  a LED channel dedicated for every physical LED. The LEDs can
-> +	  be controlled in flash and torch modes.
-> +
->  config LEDS_SGM3140
->  	tristate "LED support for the SGM3140"
->  	depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
-> diff --git a/drivers/leds/flash/Makefile b/drivers/leds/flash/Makefile
-> index 712fb737a428e..44e6c1b4beb37 100644
-> --- a/drivers/leds/flash/Makefile
-> +++ b/drivers/leds/flash/Makefile
-> @@ -10,6 +10,7 @@ obj-$(CONFIG_LEDS_MAX77693)	+= leds-max77693.o
->  obj-$(CONFIG_LEDS_QCOM_FLASH)	+= leds-qcom-flash.o
->  obj-$(CONFIG_LEDS_RT4505)	+= leds-rt4505.o
->  obj-$(CONFIG_LEDS_RT8515)	+= leds-rt8515.o
-> +obj-$(CONFIG_LEDS_S2M_FLASH)	+= leds-s2m-flash.o
->  obj-$(CONFIG_LEDS_SGM3140)	+= leds-sgm3140.o
->  obj-$(CONFIG_LEDS_SY7802)	+= leds-sy7802.o
->  obj-$(CONFIG_LEDS_TPS6131X)	+= leds-tps6131x.o
-> diff --git a/drivers/leds/flash/leds-s2m-flash.c b/drivers/leds/flash/leds-s2m-flash.c
-> new file mode 100644
-> index 0000000000000..536a529889a9c
-> --- /dev/null
-> +++ b/drivers/leds/flash/leds-s2m-flash.c
-> @@ -0,0 +1,429 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Flash and Torch LED Driver for Samsung S2M series PMICs.
-> + *
-> + * Copyright (c) 2015 Samsung Electronics Co., Ltd
-> + * Copyright (c) 2025 Kaustabh Chakraborty <kauschluss@disroot.org>
-> + */
-> +
-> +#include <linux/container_of.h>
-> +#include <linux/led-class-flash.h>
-> +#include <linux/mfd/samsung/core.h>
-> +#include <linux/mfd/samsung/s2mu005.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <media/v4l2-flash-led-class.h>
-> +
-> +#define MAX_CHANNELS	2
-> +
-> +struct s2m_fled {
-
-This is not the fled, change this to _led and call pointers to it 'led'.
-
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	struct led_classdev_flash cdev;
-
-This is the 'fled'.  Please change all pointer to it to 'fled'.
-
-> +	struct v4l2_flash *v4l2_flash;
-> +	/*
-> +	 * The mutex object prevents the concurrent access of flash control
-> +	 * registers by the LED and V4L2 subsystems.
-> +	 */
-> +	struct mutex lock;
-> +	const struct s2m_fled_spec *spec;
-
-This should not be in here.
-
-> +	unsigned int reg_enable;
-> +	u8 channel;
-> +	u8 flash_brightness;
-> +	u8 flash_timeout;
-> +};
-> +
-> +struct s2m_fled_spec {
-> +	u8 nr_channels;
-> +	u32 torch_max_brightness;
-> +	u32 flash_min_current_ua;
-> +	u32 flash_max_current_ua;
-> +	u32 flash_min_timeout_us;
-> +	u32 flash_max_timeout_us;
-> +	int (*torch_brightness_set_blocking)(struct led_classdev *led_cdev,
-> +					     enum led_brightness brightness);
-
-I'm really not a fan of pointers to functions at the driver level.
-
-If there are differences between devices, which I cannot see here, store
-an identifier and use that to choose which call-back function is the
-most appropriate.
-
-> +	const struct led_flash_ops *flash_ops;
-
-Why do we need to store these?
-
-The same principles apply to the function pointer above.
-
-> +};
-> +
-> +static struct led_classdev_flash *to_cdev_flash(struct led_classdev *cdev)
-> +{
-> +	return container_of(cdev, struct led_classdev_flash, led_cdev);
-> +}
-> +
-> +static struct s2m_fled *to_led_priv(struct led_classdev_flash *cdev)
-
-There is nothing private about s2m_{f}led.
-
-'led' is the most common nomenclature.  So: led->channel, etc.
-
-Remove 'priv' throughout.
-
-> +{
-> +	return container_of(cdev, struct s2m_fled, cdev);
-
-	return container_of(fled, struct s2m_led, fled);
-
-> +}
-> +
-> +static int s2m_fled_flash_brightness_set(struct led_classdev_flash *cdev,
-> +					 u32 brightness)
-> +{
-> +	struct s2m_fled *priv = to_led_priv(cdev);
-> +	struct led_flash_setting *setting = &cdev->brightness;
-> +
-> +	priv->flash_brightness = (brightness - setting->min) / setting->step;
-> +
-> +	return 0;
-> +}
-> +
-> +static int s2m_fled_flash_timeout_set(struct led_classdev_flash *cdev,
-> +				      u32 timeout)
-> +{
-> +	struct s2m_fled *priv = to_led_priv(cdev);
-> +	struct led_flash_setting *setting = &cdev->timeout;
-> +
-> +	priv->flash_timeout = (timeout - setting->min) / setting->step;
-> +
-> +	return 0;
-> +}
-> +
-> +#if IS_ENABLED(CONFIG_V4L2_FLASH_LED_CLASS)
-> +static int s2m_fled_flash_external_strobe_set(struct v4l2_flash *v4l2_flash,
-> +					      bool enable)
-> +{
-> +	struct s2m_fled *priv = to_led_priv(v4l2_flash->fled_cdev);
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	priv->cdev.ops->strobe_set(&priv->cdev, enable);
-> +
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_flash_ops s2m_fled_v4l2_flash_ops = {
-> +	.external_strobe_set = s2m_fled_flash_external_strobe_set,
-> +};
-> +#else
-> +static const struct v4l2_flash_ops s2m_fled_v4l2_flash_ops;
-> +#endif
-> +
-> +static void s2m_fled_v4l2_flash_release(void *v4l2_flash)
-> +{
-> +	v4l2_flash_release(v4l2_flash);
-> +}
-> +
-> +static int s2mu005_fled_torch_brightness_set(struct led_classdev *cdev,
-> +					     enum led_brightness value)
-> +{
-> +	struct s2m_fled *priv = to_led_priv(to_cdev_flash(cdev));
-> +	struct regmap *regmap = priv->regmap;
-> +	int ret;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	if (value == LED_OFF) {
-
-These defines are deprecated.
-
-From include/linux/leds.h:
-
-/* This is obsolete/useless. We now support variable maximum brightness. */
-enum led_brightness {
-        LED_OFF         = 0,
-        LED_ON          = 1,
-        LED_HALF        = 127,
-        LED_FULL        = 255,
-};
-
-> +		ret = regmap_clear_bits(regmap, priv->reg_enable,
-> +					S2MU005_FLED_TORCH_EN(priv->channel));
-> +		if (ret < 0)
-> +			dev_err(priv->dev, "failed to disable torch LED\n");
-> +		goto unlock;
-> +	}
-> +
-> +	ret = regmap_update_bits(regmap, S2MU005_REG_FLED_CH_CTRL1(priv->channel),
-j> +				 S2MU005_FLED_TORCH_IOUT,
-> +				 FIELD_PREP(S2MU005_FLED_TORCH_IOUT, value - 1));
-> +	if (ret < 0) {
-> +		dev_err(priv->dev, "failed to set torch current\n");
-> +		goto unlock;
-> +	}
-> +
-> +	ret = regmap_set_bits(regmap, priv->reg_enable,
-> +			      S2MU005_FLED_TORCH_EN(priv->channel));
-> +	if (ret < 0) {
-> +		dev_err(priv->dev, "failed to enable torch LED\n");
-> +		goto unlock;
-> +	}
-> +
-> +unlock:
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int s2mu005_fled_flash_strobe_set(struct led_classdev_flash *cdev,
-> +					 bool state)
-> +{
-> +	struct s2m_fled *priv = to_led_priv(cdev);
-> +	struct regmap *regmap = priv->regmap;
-> +	int ret;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	ret = regmap_clear_bits(regmap, priv->reg_enable,
-> +				S2MU005_FLED_FLASH_EN(priv->channel));
-> +	if (ret < 0) {
-> +		dev_err(priv->dev, "failed to disable flash LED\n");
-> +		goto unlock;
-> +	}
-> +
-> +	if (!state)
-> +		goto unlock;
-> +
-> +	ret = regmap_update_bits(regmap, S2MU005_REG_FLED_CH_CTRL0(priv->channel),
-> +				 S2MU005_FLED_FLASH_IOUT,
-> +				 FIELD_PREP(S2MU005_FLED_FLASH_IOUT,
-> +					    priv->flash_brightness));
-> +	if (ret < 0) {
-> +		dev_err(priv->dev, "failed to set flash brightness\n");
-> +		goto unlock;
-> +	}
-> +
-> +	ret = regmap_update_bits(regmap, S2MU005_REG_FLED_CH_CTRL3(priv->channel),
-> +				 S2MU005_FLED_FLASH_TIMEOUT,
-> +				 FIELD_PREP(S2MU005_FLED_FLASH_TIMEOUT,
-> +					    priv->flash_timeout));
-> +	if (ret < 0) {
-> +		dev_err(priv->dev, "failed to set flash timeout\n");
-> +		goto unlock;
-> +	}
-> +
-> +	ret = regmap_set_bits(regmap, priv->reg_enable,
-> +			      S2MU005_FLED_FLASH_EN(priv->channel));
-> +	if (ret < 0) {
-> +		dev_err(priv->dev, "failed to enable flash LED\n");
-> +		goto unlock;
-> +	}
-> +
-> +unlock:
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static int s2mu005_fled_flash_strobe_get(struct led_classdev_flash *cdev,
-> +					 bool *state)
-> +{
-> +	struct s2m_fled *priv = to_led_priv(cdev);
-> +	struct regmap *regmap = priv->regmap;
-
-Since this is only used once, I don't see anything to gain from
-utilising a local variable here.
-
-> +	u8 channel = priv->channel;
-
-Same here.
-
-> +	u32 val;
-> +	int ret;
-> +
-> +	mutex_lock(&priv->lock);
-> +
-> +	ret = regmap_read(regmap, S2MU005_REG_FLED_STATUS, &val);
-> +	if (ret < 0) {
-> +		dev_err(priv->dev, "failed to fetch LED status");
-> +		goto unlock;
-> +	}
-> +
-> +	*state = !!(val & S2MU005_FLED_FLASH_STATUS(channel));
-> +
-> +unlock:
-> +	mutex_unlock(&priv->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct led_flash_ops s2mu005_fled_flash_ops = {
-> +	.flash_brightness_set = s2m_fled_flash_brightness_set,
-> +	.timeout_set = s2m_fled_flash_timeout_set,
-> +	.strobe_set = s2mu005_fled_flash_strobe_set,
-> +	.strobe_get = s2mu005_fled_flash_strobe_get,
-> +};
-> +
-> +static int s2mu005_fled_init(struct s2m_fled *priv)
-> +{
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	/* Enable the LED channels. */
-> +	ret = regmap_set_bits(priv->regmap, S2MU005_REG_FLED_CTRL1,
-> +			      S2MU005_FLED_CH_EN);
-
-Feel free to use up to 100-char to eradicate these wraps.
-
-> +	if (ret < 0)
-> +		return dev_err_probe(priv->dev, ret, "failed to enable LED channels\n");
-> +
-> +	/*
-> +	 * Get the LED enable register address. Revision EVT0 has the
-> +	 * register at CTRL4, while EVT1 and higher have it at CTRL6.
-> +	 */
-> +	ret = regmap_read(priv->regmap, S2MU005_REG_ID, &val);
-> +	if (ret < 0)
-> +		return dev_err_probe(priv->dev, ret, "failed to read revision\n");
-> +
-> +	if (FIELD_GET(S2MU005_ID_MASK, val) == 0)
-
-A comment above to explain what this means please.
-
-And/or define the zero to something obvious.
-
-> +		priv->reg_enable = S2MU005_REG_FLED_CTRL4;
-> +	else
-> +		priv->reg_enable = S2MU005_REG_FLED_CTRL6;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct s2m_fled_spec s2mu005_fled_spec = {
-> +	.nr_channels = 2,
-> +	.torch_max_brightness = 16,
-> +	.flash_min_current_ua = 25000,
-> +	.flash_max_current_ua = 375000, /* 400000 causes flickering */
-> +	.flash_min_timeout_us = 62000,
-> +	.flash_max_timeout_us = 992000,
-> +	.torch_brightness_set_blocking = s2mu005_fled_torch_brightness_set,
-> +	.flash_ops = &s2mu005_fled_flash_ops,
-> +};
-> +
-> +static int s2m_fled_init_channel(struct s2m_fled *priv,
-> +				 struct fwnode_handle *fwnp)
-
-Unwrap all of these that fit into 100-chars.
-
-> +{
-> +	struct led_classdev *led = &priv->cdev.led_cdev;
-> +	struct led_init_data init_data = {};
-> +	struct v4l2_flash_config v4l2_cfg = {};
-> +	int ret;
-> +
-> +	led->max_brightness = priv->spec->torch_max_brightness;
-> +	led->brightness_set_blocking = priv->spec->torch_brightness_set_blocking;
-> +	led->flags |= LED_DEV_CAP_FLASH;
-> +
-> +	priv->cdev.timeout.min = priv->spec->flash_min_timeout_us;
-> +	priv->cdev.timeout.step = priv->spec->flash_min_timeout_us;
-> +	priv->cdev.timeout.max = priv->spec->flash_max_timeout_us;
-> +	priv->cdev.timeout.val = priv->spec->flash_max_timeout_us;
-> +
-> +	priv->cdev.brightness.min = priv->spec->flash_min_current_ua;
-> +	priv->cdev.brightness.step = priv->spec->flash_min_current_ua;
-> +	priv->cdev.brightness.max = priv->spec->flash_max_current_ua;
-> +	priv->cdev.brightness.val = priv->spec->flash_max_current_ua;
-
-Moving things around in priv/data tells me that something isn't right.
-
-I think the spec should be removed from what is currently called priv.
-
-> +	s2m_fled_flash_timeout_set(&priv->cdev, priv->cdev.timeout.val);
-> +	s2m_fled_flash_brightness_set(&priv->cdev, priv->cdev.brightness.val);
-> +
-> +	priv->cdev.ops = priv->spec->flash_ops;
-> +
-> +	init_data.fwnode = fwnp;
-> +	ret = devm_led_classdev_flash_register_ext(priv->dev, &priv->cdev,
-> +						   &init_data);
-> +	if (ret < 0)
-> +		return dev_err_probe(priv->dev, ret, "failed to create LED flash device\n");
-> +
-> +	v4l2_cfg.intensity.min = priv->spec->flash_min_current_ua;
-> +	v4l2_cfg.intensity.step = priv->spec->flash_min_current_ua;
-> +	v4l2_cfg.intensity.max = priv->spec->flash_max_current_ua;
-> +	v4l2_cfg.intensity.val = priv->spec->flash_max_current_ua;
-> +
-> +	v4l2_cfg.has_external_strobe = true;
-> +
-> +	priv->v4l2_flash = v4l2_flash_init(priv->dev, fwnp, &priv->cdev,
-> +					   &s2m_fled_v4l2_flash_ops, &v4l2_cfg);
-> +	if (IS_ERR(priv->v4l2_flash)) {
-> +		v4l2_flash_release(priv->v4l2_flash);
-> +		return dev_err_probe(priv->dev, PTR_ERR(priv->v4l2_flash),
-> +				     "failed to create V4L2 flash device\n");
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(priv->dev, (void *)s2m_fled_v4l2_flash_release,
-> +				       priv->v4l2_flash);
-> +	if (ret < 0)
-> +		return dev_err_probe(priv->dev, ret, "failed to add cleanup action\n");
-
-v4l2_flash_release()?
-
-> +	return 0;
-> +}
-> +
-> +static int s2m_fled_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct sec_pmic_dev *pmic_drvdata = dev_get_drvdata(dev->parent);
-
-s/pmic_drvdata/ddata/
-
-> +	struct s2m_fled *priv;
-> +	bool channel_initialized[MAX_CHANNELS] = { false };
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv) * MAX_CHANNELS, GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, priv);
-
-Where is this used?
-
-> +	priv->dev = dev;
-
-This is already available to you in what is currently called:
-
-  priv->cdev->led_cdev->dev
-
-Also, isn't this an array?
-
-> +	priv->regmap = pmic_drvdata->regmap_pmic;
-> +
-> +	switch (platform_get_device_id(pdev)->driver_data) {
-> +	case S2MU005:
-> +		priv->spec = &s2mu005_fled_spec;
-> +		ret = s2mu005_fled_init(priv);
-> +		if (ret)
-> +			return ret;
-> +		break;
-> +	default:
-> +		return dev_err_probe(dev, -ENODEV,
-> +				     "device type %d is not supported by driver\n",
-> +				     pmic_drvdata->device_type);
-> +	}
-> +
-> +	if (priv->spec->nr_channels > MAX_CHANNELS)
-> +		return dev_err_probe(dev, -EINVAL,
-> +				     "number of channels specified (%u) exceeds the limit (%u)\n",
-> +				     priv->spec->nr_channels, MAX_CHANNELS);
-> +
-> +	device_for_each_child_node_scoped(dev, child) {
-> +		u32 reg;
-> +
-> +		if (fwnode_property_read_u32(child, "reg", &reg))
-> +			continue;
-> +
-> +		if (reg >= priv->spec->nr_channels) {
-> +			dev_warn(dev, "channel %d is non-existent\n", reg);
-> +			continue;
-> +		}
-> +
-> +		if (channel_initialized[reg]) {
-
-Do you really need a whole variable just for this?
-
-If this a risk?  If it really is, why not check (priv[reg].dev)?
-
-> +			dev_warn(dev, "duplicate node for channel %d\n", reg);
-> +			continue;
-> +		}
-> +
-> +		priv[reg].dev = priv->dev;
-
-What on earth is going on here?
-
-> +		priv[reg].regmap = priv->regmap;
-> +		priv[reg].spec = priv->spec;
-> +		priv[reg].reg_enable = priv->reg_enable;
-
-And why do you need ${reg} copies of the same data?
-
-Sounds like a waste of resources, no?
-
-> +		priv[reg].channel = (u8)reg;
-> +
-> +		ret = devm_mutex_init(dev, &priv[reg].lock);
-
-Why not just look the whole device?  Rather than per channel?
-
-To channels have no shared resources?
-
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "failed to create mutex lock\n");
-
-You can drop the ' lock' part.
-
-> +
-> +		ret = s2m_fled_init_channel(priv + reg, child);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		channel_initialized[reg] = true;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct platform_device_id s2m_fled_id_table[] = {
-> +	{ "s2mu005-flash", S2MU005 },
-> +	{ /* sentinel */ },
-> +};
-> +MODULE_DEVICE_TABLE(platform, s2m_fled_id_table);
-> +
-> +/*
-> + * Device is instantiated through parent MFD device and device matching
-> + * is done through platform_device_id.
-> + *
-> + * However if device's DT node contains proper compatible and driver is
-> + * built as a module, then the *module* matching will be done through DT
-> + * aliases. This requires of_device_id table. In the same time this will
-> + * not change the actual *device* matching so do not add .of_match_table.
-> + */
-
-All of this is already implied.
-
-No need to have this comment on all MFD sub-devices.
-
-> +static const struct of_device_id s2m_fled_of_match_table[] = {
-> +	{
-> +		.compatible = "samsung,s2mu005-flash",
-> +		.data = (void *)S2MU005,
-
-These usually fit on a single line.
-
-> +	}, {
-> +		/* sentinel */
-> +	},
-> +};
-> +MODULE_DEVICE_TABLE(of, s2m_fled_of_match_table);
-> +
-> +static struct platform_driver s2m_fled_driver = {
-> +	.driver = {
-> +		.name = "s2m-flash",
-> +	},
-> +	.probe = s2m_fled_probe,
-> +	.id_table = s2m_fled_id_table,
-> +};
-> +module_platform_driver(s2m_fled_driver);
-> +
-> +MODULE_DESCRIPTION("Flash/Torch LED Driver For Samsung S2M Series PMICs");
-> +MODULE_AUTHOR("Kaustabh Chakraborty <kauschluss@disroot.org>");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.52.0
-> 
-
+TI INA4230 is a 4-channel power monitor with I2C interface, similar in
+operation to INA3221 (3-channel) and INA219 (single-channel) but with
+a different register layout, different alerting mechanism and slightly
+different support for directly reading calculated current/power/energy
+values (pre-multiplied by the device itself and needing only to be scaled
+by the driver depending on its selected LSB unit values).
+
+In this initial implementation, the driver supports reading voltage,
+current, power and energy values, but does not yet support alerts, which
+can be added separately if needed. Also the overflows during hardware
+calculations are not yet handled, nor is the support for the device's
+internal 32-bit energy counter reset.
+
+An example device tree using this binding and driver is available at [1]
+(not currently upstreamed, as the device in question is in engineering
+phase and not yet publicly available)
+
+[1] https://github.com/flipperdevices/flipper-linux-kernel/blob/flipper-devel/arch/arm64/boot/dts/rockchip/rk3576-flipper-one-rev-f0b0c1.dts
+
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
+---
+Changes in v3:
+- Updated the description of the ti,maximum-expected-current-microamp property
+  in the binding to clarify how it is used, and drop the irrelevant mention of
+  the PMbus (Guenter Roeck)
+- Use div64_u64() instead of do_div() for the final division in the calibration value
+  calculation to avoid overflows in the denominator (Guenter Roeck)
+- Avoid overflow while scaling the voltage values on 32-bit platforms (Guenter Roeck)
+- Use regmap_noinc_read() instead of regmap_raw_read() for reading the energy values
+  to ensure that the regmap / bus driver don't wander off to adjacent registers
+  during the read operation (on INA4230 the whole 32 bits should be read from
+  the same register offset) (Guenter Roeck)
+- Remove redundant call to ina4230_set_calibration() in the current read path,
+  as the calibration value is already set when enabling the channel and restored
+  across PM changes via regcache_sync() (Guenter Roeck)
+- Add missing write_enable() function to make hwmon_in_enable writes work as
+  advertised in is_visible() (Guenter Roeck)
+- Add a check for disabled channels before calling pm_runtime_put_noidle() on them
+  to avoid refcount underflow due to imbalanced get_sync/put_noidle calls (Guenter Roeck)
+- Dropped unused include of linux/debugfs.h
+- Add missing return checks on regmap_write() calls
+- uO -> uOhm in the error message to avoid confusion
+- Move probe-time calibration after enabling runtime PM to avoid it being reverted
+  by the PM sync
+- Link to v2: https://lore.kernel.org/r/20260302-ina4230-v2-0-55b49d19d2ab@flipper.net
+
+Changes in v2:
+- Replace u64/u64 division with do_div() (kernel test robot)
+- Add an example with ti,maximum-expected-current-microamp property in
+  bindings (Krzysztof Kozlowski)
+- Include the newly added binding in MAINTAINERS file (Krzysztof Kozlowski)
+- Use dev_err_probe() where appropriate in the driver (Krzysztof Kozlowski)
+- Switch to devm_regmap_field_bulk_alloc() instead of an open-coded loop
+- Add a bounds check for the calculated calibration value,
+  and a corresponding error message
+- Link to v1: https://lore.kernel.org/r/20260225-ina4230-v1-0-92b1de981d46@flipper.net
+
+---
+Alexey Charkov (2):
+      dt-bindings: hwmon: Add TI INA4230 4-channel I2C power monitor
+      hwmon: Add support for TI INA4230 power monitor
+
+ .../devicetree/bindings/hwmon/ti,ina4230.yaml      |  134 +++
+ MAINTAINERS                                        |    7 +
+ drivers/hwmon/Kconfig                              |   11 +
+ drivers/hwmon/Makefile                             |    1 +
+ drivers/hwmon/ina4230.c                            | 1066 ++++++++++++++++++++
+ 5 files changed, 1219 insertions(+)
+---
+base-commit: 343f51842f4ed7143872f3aa116a214a5619a4b9
+change-id: 20260219-ina4230-74a02409153d
+
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Alexey Charkov <alchark@flipper.net>
+
 
