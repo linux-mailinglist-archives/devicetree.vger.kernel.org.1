@@ -1,213 +1,294 @@
-Return-Path: <devicetree+bounces-273661-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273669-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wHmILhdVsGkJiQIAu9opvQ
-	(envelope-from <devicetree+bounces-273661-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:29:59 +0100
+	id MMqCIx5WsGkJiQIAu9opvQ
+	(envelope-from <devicetree+bounces-273669-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:34:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1AB255953
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:29:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 261C4255A68
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:34:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BE10130117CC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:29:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 013423032068
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5295C3D16FB;
-	Tue, 10 Mar 2026 17:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016BE3D47A7;
+	Tue, 10 Mar 2026 17:33:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lhA7hwQE"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="pIm114EZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com [74.125.82.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09ED13A4F2A
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:29:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753DB3D4139
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:33:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773163796; cv=none; b=P7zjDA7tJR032ewPNvqW2hmlbQ0NHkxuYMMZE8D7j7982yR3uymqwUT8n5XmAEjitttYPYHZNqcTOMPYoyB7lvq6HwiBu21a7NxnIGkdRnaD5SY3b5wWm0OPRmUDD+mvp+pEOy+pTAcKTu7ChbeghWo2JEukwLQ9tlxQSlSR7Zk=
+	t=1773164025; cv=none; b=UG3k8ppFV+VkaJzgB/RXmJ2MlX6rPlhs6zXLyfyN3pszs4eG+MvBh1FvOF+nlKN+orv0kb0jKkxo95MFGoDpMXenan+vWOrdNTOmkP+ck35ahRz02GMpjShIg5+2u7DneCDcl7Qpy+2iOxWKGoTE3Pxwwkcy8W4y3seBUVc7htA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773163796; c=relaxed/simple;
-	bh=l40j+jh2f/kpVEDQ2DTL5uvYSW5+99uEq+XRihxp/6M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kFa78GufrkmLw9ygmY5Drnumf5xgrXRyv4kWyypNNAUEwQpafNc8lZ0LG6DNfPE6+MTRzYFV5Qw0S5+xss74rQXFoQF7jU0AtNqlSRrFitfypaTnrp0ymKnjdNRSLBfeXMZJd4/vVMoQ/zfNNq/5PJZzMZMJ09S5VT61KM6fTwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lhA7hwQE; arc=none smtp.client-ip=74.125.82.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-dy1-f173.google.com with SMTP id 5a478bee46e88-2be0711f493so90928eec.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 10:29:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773163794; x=1773768594; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gFoQjCDEAsTOhIGMONGAgxTqqQAqRiz05x57wOuY6Hg=;
-        b=lhA7hwQES2dw89ms3TJB/CliS8ApIqv2UUYA5DCObt0H54sBE//ys1CbQluHLbI7IT
-         eDC3as/v+IrKYZ6A5U0z+vY53P8KzguUwSf3+IPZzms4ISoa8GVe6I9C+kNoLshPSoCi
-         Qoe2F5eCmQhaYHdfBxN+XRQDsqUzou1kY1Lnm6lIulBgR3yZpQ+ym+R4RZ68wPOUMeK0
-         /pB4V/WnpEWwb6qHs2O3aNwisRiNobBjFMOH1HKP9yg1DlIi1AuqiM0K/2Ksq+uhQy0Q
-         B4G9jb3WNr0NE5qBnluFxXzFRc7mJHTt9mt+9q9nNCsz/bNPga5nkc3E4z5XamITjkGZ
-         Ru6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773163794; x=1773768594;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gFoQjCDEAsTOhIGMONGAgxTqqQAqRiz05x57wOuY6Hg=;
-        b=xHq7gUUAOWDTrHIi+fZBl9Pnc1HxCYMEkkKezi66WIdj421U0wo3stzpcDsvOW/rT4
-         jk2BvILOSQm/maJqXZJlQAMSXfOz4MvFmyl6S/op1SvRCt/smyM2JuoHTsnbIYeotPfr
-         EOiRLCTcyaXnyCoEaXiNV4YKp7uwiPtRYcGvX/BXThYh01NMAz7oq5otEi+NV6YHh2SR
-         lgsrRjal/sxU1duguILmcWIVwQJ4aC7awxuWaDdWDj4Smu4GcoFHRKJlaenxUvu3quu9
-         WwU4gon1r/j2V6TKjqFx8l273+uSaHAtepyGp02gpEvLdBbDpatT93mppcsHOJlE69fY
-         D/VA==
-X-Forwarded-Encrypted: i=1; AJvYcCX9VUugutPEkH3kEkr9xkIQg3NnZcP+cnq8eSDpWfJv11muIpC7uT7FI/deneegY81pczKps+dG0gQU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCIPmPSTXaDKU0mlf0xgbLz87bGwCIjq/l9s2jEMhUttWX29Cf
-	shfvfgVBTteTCLiNbkJPmjxqSLRtDQZHrdAcElMvOMFV49g3HSFuQNWi
-X-Gm-Gg: ATEYQzw34l2Z/31Ns4YXstBXNaGJDcI4ZkE0dYLGhZzYCmYu7J/U6MIkrcIzQN/E7Dw
-	7wgUGMQ7Vt9NcOzXeJDf3DLpPCdjITSjVlKuRV0U4/BzvWQ/PwOnD+A2sOIDl+e1YwiI7H+s38i
-	/oTNLewce3xPAg0hp3fmy8mwBvWN/6rNO9fz22t+d+UjcI/eNCQEoDZqZaummfo1yXOSDaN5b6y
-	kAf1CrZPOXuQPuND8lbvxcCI/Sv3kFfKYLso1hrz/vFdygJugrIe17bqhyqE7Q1CGkcK7aF/5Gv
-	h/3DiBEowe7hNs1yJfVYBFkNCToAOM7eCbIe+7Lx+EsUP7VN7cGTXXdj+vvvJHOvvSDKHngf44V
-	eNSlrmvT4imuuxVJYMl9FDm9B+blj0SCK7Y//SnjYAQZHEq9F3bKjaRhuen536yxu07KiZpuqpW
-	dgZUjYbSXLZfcalQf3POwQGXm94PX8xVFNuR1fPyZITT6AzrYb4amwiCe7X0ZjYiBr
-X-Received: by 2002:a05:7301:3f19:b0:2b6:bb18:c70a with SMTP id 5a478bee46e88-2be7a28d93cmr1648507eec.15.1773163793971;
-        Tue, 10 Mar 2026 10:29:53 -0700 (PDT)
-Received: from google.com ([2a00:79e0:2ebe:9:a7a5:8370:70f2:4b53])
-        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be8790b198sm711734eec.14.2026.03.10.10.29.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 10:29:53 -0700 (PDT)
-Date: Tue, 10 Mar 2026 17:29:50 +0000
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Hendrik Noack <hendrik-noack@gmx.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ferass El Hafidi <funderscore@postmarketos.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: Input: Add Wacom W9000-series
- penabled touchscreens
-Message-ID: <abBT3jZtpey4-9M7@google.com>
-References: <20260307181557.66927-1-hendrik-noack@gmx.de>
- <20260307181557.66927-2-hendrik-noack@gmx.de>
+	s=arc-20240116; t=1773164025; c=relaxed/simple;
+	bh=iDsUAnuGCJPA0EvA71qgJyApHhY1W5vY//J46Q2Ujtg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=NcK10DLkGO6hhqA+rdLCK9em0MFmvHzIE9/egGRjbLx63ldGOVQ3mDu+HVoUnsmVZL6K4kHR4/h4oPfn6pfszSulzeY4SBLPeOTl1gZlXD/zJGmfMBgMiXzPoXH4WZ6wuLdQ4+5BDQGrRw74xt6waO07B1oDfOGyZQugs04/qm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=pIm114EZ; arc=none smtp.client-ip=95.215.58.188
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+Date: Tue, 10 Mar 2026 17:30:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1773164011;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pbRHkg6j9RRwu7gnA0/6n+CmNyUAf+QALaWx+a/gjiE=;
+	b=pIm114EZhCnFvihJDz6EkqgldikGB5peLN/GNoPVUM8SKl14CnwYJIOE4ErMAHwCKfGtB3
+	oiRo5WnSWNBtmG5SJUFTonIS3T48mLUDfhQRC8IJMHHuBXt0TisKqY/AYSO1npzSuETDi3
+	gAAWkmCY+2/Ycd8B74gOr8ijLiy49hUQu6zDCk1n8iGqvuQukdPenkomdX6v5eaYRIq1PE
+	IcCJb1wnZcWUm/PWHiyv4g4Fd4VasAJSTNWatypqr5ulUsI2qy0MSto4QGxM6/iPJ4stqb
+	qeF3jkwOIT70sGs5srpp0wqvq8EhAVDnxWciCRok0RGf1q67atuqob0kXOhQ5Q==
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Ferass El Hafidi <funderscore@postmarketos.org>
+To: linux-amlogic@lists.infradead.org, Jian Hu <jian.hu@amlogic.com>, Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Martin  
+ Blumenstingl <martin.blumenstingl@googlemail.com>, Stephen Boyd <sboyd@kernel.org>, Michael Turquette <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Jian Hu <jian.hu@amlogic.com>, devicetree <devicetree@vger.kernel.org>, linux-clk <linux-clk@vger.kernel.org>, linux-amlogic <linux-amlogic@lists.infradead.org>, linux-kernel <linux-kernel@vger.kernel.org>, linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
+References: <20260305074328.639993-1-jian.hu@amlogic.com> <20260305074328.639993-4-jian.hu@amlogic.com>
+In-Reply-To: <20260305074328.639993-4-jian.hu@amlogic.com>
+Message-ID: <tbp23s.3oymu5iyepvke@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260307181557.66927-2-hendrik-noack@gmx.de>
-X-Rspamd-Queue-Id: 5E1AB255953
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+X-Migadu-Flow: FLOW_OUT
+X-Rspamd-Queue-Id: 261C4255A68
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[postmarketos.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[postmarketos.org:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273661-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmx.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273669-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[lists.infradead.org,amlogic.com,baylibre.com,linaro.org,googlemail.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[funderscore@postmarketos.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[postmarketos.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,gmx.de:email,postmarketos.org:email]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Hendrik,
-
-On Sat, Mar 07, 2026 at 07:15:32PM +0100, Hendrik Noack wrote:
-> Add bindings for Wacom W9002 and two Wacom W9007 variants which can be
-> found in tablets.
+On Thu, 05 Mar 2026 07:43, Jian Hu <jian.hu@amlogic.com> wrote:
+>Add the required clock controller nodes for Amlogic T7 SoC family:
+>- SCMI clock controller
+>- PLL clock controller
+>- Peripheral clock controller
+>
+>Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>---
+> arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
+> 1 file changed, 125 insertions(+)
+>
+>diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>index 6510068bcff9..6ea1b583b13d 100644
+>--- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>@@ -6,6 +6,9 @@
+> #include <dt-bindings/interrupt-controller/arm-gic.h>
+> #include <dt-bindings/power/amlogic,t7-pwrc.h>
+> #include "amlogic-t7-reset.h"
+>+#include <dt-bindings/clock/amlogic,t7-scmi.h>
+>+#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+>+#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
 > 
-> Co-developed-by: Ferass El Hafidi <funderscore@postmarketos.org>
-> Signed-off-by: Ferass El Hafidi <funderscore@postmarketos.org>
-> Signed-off-by: Hendrik Noack <hendrik-noack@gmx.de>
-> ---
->  .../input/touchscreen/wacom,w9007a-lt03.yaml  | 86 +++++++++++++++++++
->  1 file changed, 86 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/wacom,w9007a-lt03.yaml
+> / {
+> 	interrupt-parent = <&gic>;
+>@@ -201,6 +204,33 @@ pwrc: power-controller {
+> 		};
+> 	};
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/wacom,w9007a-lt03.yaml b/Documentation/devicetree/bindings/input/touchscreen/wacom,w9007a-lt03.yaml
-> new file mode 100644
-> index 000000000000..feb87f5db39d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/wacom,w9007a-lt03.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/touchscreen/wacom,w9007a-lt03.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Wacom W9000-series penabled I2C touchscreen
-> +
-> +maintainers:
-> +  - Hendrik Noack <hendrik-noack@gmx.de>
-> +
-> +description: |
-> +  The W9000-series are penabled touchscreen controllers by Wacom.
-> +
-> +  The firmware of chips between devices can differ and with it also
-> +  how the chips behaves.
-> +
-> +allOf:
-> +  - $ref: touchscreen.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - wacom,w9002
-> +      - wacom,w9007a-lt03
-> +      - wacom,w9007a-v1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description:
-> +      Optional regulator for the VDD digital voltage.
-> +
-> +  flash-mode-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Optional GPIO specifier for the touchscreen's flash-mode pin.
-> +
-> +  pen-inserted-gpios:
-> +    maxItems: 1
-> +    description:
-> +      Optional GPIO specifier for the touchscreen's pen-insert pin.
+>+	sram@f7042000 {
+>+		compatible = "mmio-sram";
+>+		#address-cells = <1>;
+>+		#size-cells = <1>;
+>+		ranges = <0 0x0 0xf7042000 0x100>;
+>+
+>+		scmi_shmem: sram@0 {
+>+			compatible = "arm,scmi-shmem";
+>+			reg = <0x0 0x100>;
+>+		};
+>+	};
+>+
+>+	firmware {
+>+		scmi: scmi {
+>+			compatible = "arm,scmi-smc";
+>+			arm,smc-id = <0x820000c1>;
+>+			shmem = <&scmi_shmem>;
+>+			#address-cells = <1>;
+>+			#size-cells = <0>;
+>+
+>+			scmi_clk: protocol@14 {
+>+				reg = <0x14>;
+>+				#clock-cells = <1>;
+>+			};
+>+		};
+>+	};
+>+
+> 	soc {
+> 		compatible = "simple-bus";
+> 		#address-cells = <2>;
+>@@ -224,6 +254,42 @@ apb4: bus@fe000000 {
+> 			#size-cells = <2>;
+> 			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+> 
+>+			clkc_periphs:clock-controller@0 {
+>+				compatible = "amlogic,t7-peripherals-clkc";
+>+				reg = <0x0 0x0 0x0 0x1c8>;
+>+				#clock-cells = <1>;
+>+				clocks = <&xtal>,
+>+					 <&scmi_clk CLKID_SYS_CLK>,
+>+					 <&scmi_clk CLKID_FIXED_PLL>,
+>+					 <&scmi_clk CLKID_FCLK_DIV2>,
+>+					 <&scmi_clk CLKID_FCLK_DIV2P5>,
+>+					 <&scmi_clk CLKID_FCLK_DIV3>,
+>+					 <&scmi_clk CLKID_FCLK_DIV4>,
+>+					 <&scmi_clk CLKID_FCLK_DIV5>,
+>+					 <&scmi_clk CLKID_FCLK_DIV7>,
+>+					 <&hifi CLKID_HIFI_PLL>,
+>+					 <&gp0 CLKID_GP0_PLL>,
+>+					 <&gp1 CLKID_GP1_PLL>,
+>+					 <&mpll CLKID_MPLL1>,
+>+					 <&mpll CLKID_MPLL2>,
+>+					 <&mpll CLKID_MPLL3>;
+>+				clock-names = "xtal",
+>+					      "sys",
+>+					      "fix",
+>+					      "fdiv2",
+>+					      "fdiv2p5",
+>+					      "fdiv3",
+>+					      "fdiv4",
+>+					      "fdiv5",
+>+					      "fdiv7",
+>+					      "hifi",
+>+					      "gp0",
+>+					      "gp1",
+>+					      "mpll1",
+>+					      "mpll2",
+>+					      "mpll3";
+>+			};
+>+
+> 			reset: reset-controller@2000 {
+> 				compatible = "amlogic,t7-reset";
+> 				reg = <0x0 0x2000 0x0 0x98>;
+>@@ -234,6 +300,7 @@ watchdog@2100 {
+> 				compatible = "amlogic,t7-wdt";
+> 				reg = <0x0 0x2100 0x0 0x10>;
+> 				clocks = <&xtal>;
+>+
+> 			};
+> 
+> 			periphs_pinctrl: pinctrl@4000 {
+>@@ -269,6 +336,64 @@ uart_a: serial@78000 {
+> 				status = "disabled";
+> 			};
+> 
+>+			gp0:clock-controller@8080 {
+>+				compatible = "amlogic,t7-gp0-pll";
+>+				reg = <0x0 0x8080 0x0 0x20>;
+>+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
 
-Looking at this again this has nothing to do with the W9000 touchscreen
-controller. The behavior is applicable to any device with a touchscreen
-and a pen.
+I would separate `gp0:` and `clock-controller@8080` with a space, like so:
 
-Rather this is a generic functionality/policy to put the pen
-interface in low power mode when it is put away. I think this should be
-done by userspace through combination to listening to the
-SW_PEN_INSERTED events (via gpio-keys driver) and toggling "inhibit" on
-the touchscreen device.
+			gp0: clock-controller@8080 {
 
-Thanks.
+Same for the others below (and `clkc_periphs:clock-controller@0` above).
 
--- 
-Dmitry
+>+
+>+			gp1:clock-controller@80c0 {
+>+				compatible = "amlogic,t7-gp1-pll";
+>+				reg = <0x0 0x80c0 0x0 0x14>;
+>+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			hifi:clock-controller@8100 {
+>+				compatible = "amlogic,t7-hifi-pll";
+>+				reg = <0x0 0x8100 0x0 0x20>;
+>+				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			pcie:clock-controller@8140 {
+>+				compatible = "amlogic,t7-pcie-pll";
+>+				reg = <0x0 0x8140 0x0 0x1c>;
+>+				clocks = <&scmi_clk CLKID_PCIE_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			mpll:clock-controller@8180 {
+>+				compatible = "amlogic,t7-mpll";
+>+				reg = <0x0 0x8180 0x0 0x28>;
+>+				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			hdmi:clock-controller@81c0 {
+>+				compatible = "amlogic,t7-hdmi-pll";
+>+				reg = <0x0 0x81c0 0x0 0x20>;
+>+				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
+>+				clock-names = "in0";
+>+				#clock-cells = <1>;
+>+			};
+>+
+>+			mclk:clock-controller@8300 {
+>+				compatible = "amlogic,t7-mclk-pll";
+>+				reg = <0x0 0x8300 0x0 0x18>;
+>+				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
+>+					 <&xtal>,
+>+					 <&scmi_clk CLKID_FCLK_50M>;
+>+				clock-names = "in0", "in1", "in2";
+>+				#clock-cells = <1>;
+>+			};
+>+
+> 			sec_ao: ao-secure@10220 {
+> 				compatible = "amlogic,t7-ao-secure",
+> 					     "amlogic,meson-gx-ao-secure",
+>-- 
+>2.47.1
+>
+>
+
+Best regards,
+Ferass
+
+>_______________________________________________
+>linux-amlogic mailing list
+>linux-amlogic@lists.infradead.org
+>http://lists.infradead.org/mailman/listinfo/linux-amlogic
 
