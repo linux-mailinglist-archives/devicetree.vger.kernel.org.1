@@ -1,118 +1,136 @@
-Return-Path: <devicetree+bounces-273621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273622-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0BR9EQ5CsGlLhgIAu9opvQ
-	(envelope-from <devicetree+bounces-273621-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:08:46 +0100
+	id 4M43I8lDsGlLhgIAu9opvQ
+	(envelope-from <devicetree+bounces-273622-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:16:09 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF249254541
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:08:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 041292546F9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 51B273125883
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:04:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6D90C30D63AD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:09:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359513BED31;
-	Tue, 10 Mar 2026 16:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760F43B47D9;
+	Tue, 10 Mar 2026 16:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IWp/papl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EmlBIPWa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114023BED20;
-	Tue, 10 Mar 2026 16:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52EE5309F08;
+	Tue, 10 Mar 2026 16:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773158689; cv=none; b=QuAmwgpmWuthVn2faNd2YeakHs84v3JB3zPjD0wVnueNo8cEuEofmXZq4zudo86IfRZSraVvh8UBODBHMeBQWmVdY/tE5bV2hE+lOkIyyKu28c4XT2sUshJcJyhvH0fhxfD5llXP9YQXpOrEsjZiqqjEwy4i/RDFjJXK2/RqNfo=
+	t=1773158996; cv=none; b=PKNuGySkwX+UCFYToKWKluuooHg7cHOKuc+aefJeNPFqEaNpQV6GfmHMYZi8Ogjkrza/CtJ80NDjPp90QhOdUDZX4mEgUzZiUEW1eMN5pfD9liSadaDBet17yY6oojX1ZtbHkoX3g6IJPEsPpi2SuN5l75gbwQFSNfyKpYuKoTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773158689; c=relaxed/simple;
-	bh=599XQUj+u0HpLGnVBeL+8eF691wPvbQV+mEAtH2dpcw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=FwNEXRTlNYlohfR2U1LE2VwSm4hvDb7b4V3xrkof2nkGazzGDsGxsFbKZ54ciPGoH/XpWI+WTcdv2IKFEs30CFiznswyqMzUZW8btRjZijJMPcAFDMqPgLKttGjHew1NLonNzspELK+aUYP2qKN9mu9elv4hK3Um2ZKrViOWd5k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IWp/papl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD2BFC19423;
-	Tue, 10 Mar 2026 16:04:46 +0000 (UTC)
+	s=arc-20240116; t=1773158996; c=relaxed/simple;
+	bh=/u5ToRGUYQeBmSQ5KOibb/buWYss9cKiWPPn1ZPU6a0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=IZjsCGvXQNtaUvmODdAZ8H/yBA98nhtPMgXbPi59NXHFvvPRRHq7rIEuFTQitjm+OkCtHLycI5m6rkqGsvBBMHTZ8mS/bGJHV9wYHC8DG69VA5LsvM0czLxMqOvtEhjngEqCWDvB4FrY2k1cKmwhCK+MKcqla8p1ufUZxEVQvEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EmlBIPWa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 046ABC19423;
+	Tue, 10 Mar 2026 16:09:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773158688;
-	bh=599XQUj+u0HpLGnVBeL+8eF691wPvbQV+mEAtH2dpcw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=IWp/paplcXI+fO43fgIA/0YwOPbsNrc2e2RPNDN02NErSMHWxitNc5q1SmafqbW1P
-	 go3kHt/ut2euvOZeMofHJ1UHlqSf1P0nw2BdACPabWlYYws67f0q6U20jXWvNNqDCa
-	 7QXwFAFEWddJqUU5IvEhetZ6YeBlQhcDmcDm9y81J3F/fB1zrqL1s9/BRn2p6q7bOn
-	 SBhhRNbDT+MQ/InMvqFp4LYNLhiG6b2TCYuJZMd2HuJCWW+7nOepCVkjLKtEFz6F+W
-	 IfLn8zwIHdNHjZckfsbAGBOgnqMmEaaD4A6bQkRKW7dPBEVSIcOQrZullQS6eTYMJ3
-	 cE0jMxJv5Ssgw==
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20260305-dts-exynos-i2c-v1-0-2c8d3df3b9ca@oss.qualcomm.com>
-References: <20260305-dts-exynos-i2c-v1-0-2c8d3df3b9ca@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH 0/5] ARM: dts: exynos: Cleanup I2C
- address-cells and size-cells
-Message-Id: <177315868659.219585.16811317225740215009.b4-ty@kernel.org>
-Date: Tue, 10 Mar 2026 17:04:46 +0100
+	s=k20201202; t=1773158996;
+	bh=/u5ToRGUYQeBmSQ5KOibb/buWYss9cKiWPPn1ZPU6a0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=EmlBIPWaKCFdyZ30bnuFlVKVbfiYLP9vYWq7zeBabad5/I1TXSJ/iK5ZmmhXbozI1
+	 rdCPfrFX3WDqdB2sQjEFLWoA8WncHA05oksjQ+DQUST35zRAdcVmx3VLbMc1PG8p6H
+	 Z9Qv55UZjaPo/0+02no43xuv2m/ao0KC4heIOZ9uqPjaMHfUdVGxGVK9inbLGJgDzU
+	 ZvcuiOCfd2nDUL4LNDQY4mtGAhMS3se5+t8RLkpyFXpgyBqKY/thXFuRUkHJ0BXpiH
+	 e31jDj6Oz2KW+R6JUwiXKj3bplMorUu7K7HqwHuuEi0itBsYtv6kiLGa9/vvg9jT/o
+	 NFjv51mskmsqA==
+Date: Tue, 10 Mar 2026 11:09:54 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, peter.chen@cixtech.com,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	cix-kernel-upstream@cixtech.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: update CIX Sky1 PCIe Root
+ Complex bindings
+Message-ID: <20260310160954.GA691804@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: CF249254541
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310065338.2337761-2-gary.yang@cixtech.com>
+X-Rspamd-Queue-Id: 041292546F9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273622-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273621-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[helgaas@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,cixtech.com:email]
 X-Rspamd-Action: no action
 
+Re the subject, every patch is an update.  Can you include something
+about the *content* of the change?
 
-On Thu, 05 Mar 2026 10:09:23 +0100, Krzysztof Kozlowski wrote:
-> No functional impact expected.
+Also run "git log --oneline Documentation/devicetree/bindings/pci/"
+and make yours match.  In this case, something like:
+
+  dt-bindings: PCI: cix,sky1-pcie-host: Add power-domains
+
+On Tue, Mar 10, 2026 at 02:53:37PM +0800, Gary Yang wrote:
+> add power-domains and power-domain-names property
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
+> ---
+>  .../devicetree/bindings/pci/cix,sky1-pcie-host.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-
-Applied, thanks!
-
-[1/5] arm64: dts: exynos7870: Move I2C address/size-cells to DTSI
-      https://git.kernel.org/krzk/linux/c/41dadc6f78150b7bf0308269fba7ba8a1a516392
-[2/5] arm64: dts: exynos8895: Move I2C address/size-cells to DTSI
-      https://git.kernel.org/krzk/linux/c/90f771a9745476a5e2b95b5efe225a943c090bb9
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzk@kernel.org>
-
+> diff --git a/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml b/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
+> index b910a42e0843..1d8ee8310588 100644
+> --- a/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
+> +++ b/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
+> @@ -38,6 +38,12 @@ properties:
+>    ranges:
+>      maxItems: 3
+>  
+> +  power-domains:
+> +    minItems: 1
+> +
+> +  power-domain-names:
+> +    minItems: 1
+> +
+>  required:
+>    - compatible
+>    - ranges
+> -- 
+> 2.49.0
+> 
 
