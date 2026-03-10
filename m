@@ -1,201 +1,151 @@
-Return-Path: <devicetree+bounces-273229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273230-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPJbBWSIr2lvaAIAu9opvQ
-	(envelope-from <devicetree+bounces-273229-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:56:36 +0100
+	id wPIlDrKIr2lvaAIAu9opvQ
+	(envelope-from <devicetree+bounces-273230-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:57:54 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91F372447FC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:56:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AE5124483B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 03:57:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 862B93019168
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:56:32 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 9A771301CFA5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 02:57:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207423B9605;
-	Tue, 10 Mar 2026 02:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01123B52F0;
+	Tue, 10 Mar 2026 02:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v+8Mo90A"
+	dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b="GkN7UDAF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-24417.protonmail.ch (mail-24417.protonmail.ch [109.224.244.17])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA153B8D59
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389D3392C45;
+	Tue, 10 Mar 2026 02:57:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773111389; cv=none; b=nqEV83l/kMPHvjeeDOfnjHao8U8zwghTFUNZgsqsRhIMDURv0LNH8aG4sk4QIkBBB2+mptYn2kO/BVPdgj0zMbUePOg7jU3BUs15iMJqCeLLQ4i7iAGMG8lZKmr9Mzli7xxkCWaFOuxBZ+vRvTFKJGUs6s9yrOy/nsek21TewMA=
+	t=1773111439; cv=none; b=jJLrV93Y7eKULUrA8vjwRgsCVUCEvSJkQqGrRD5Rrw519JmdDVEAZfL0TyFJ9+Wv8ulw4u1s/30bcYV1TTGTxB2agjijzkCsS4qRBu9HLDrOQrUU+mXX53kr1XV7nnCs3BA8A23ADivpmpRqxFmQAXb8EC41dlwgzNfc4s3IHyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773111389; c=relaxed/simple;
-	bh=xOlmWHElZ0RirDwGPesTb+6FfflbyfzMF26FQgLD2eo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=Ee5KfKQKmshWY68BYYVwuX27Cfqe8Y8zfejZxXlfyhqNAQ6zsDJxHhMrsfiXNYFh+ZQGZHIHzrbECTVBem+49zxVe2Ss/mmgV2k6NW8+p+5jEjgpd1bbE4v1PUmz9pH8I6er9jPKysQjHLTNHiN3ee9AikiYCKFkVtAHZ2h8qIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v+8Mo90A; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4853e1ce427so16328235e9.3
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 19:56:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773111385; x=1773716185; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IPeNaI7yJ6rN7QDAg6cmHZUEk/n4Ga/qldWclJyzUAo=;
-        b=v+8Mo90AU8QuIIbTN38TdolQQV7OdXys2Nt9KOY0xdwM2RCIm7mAL/Ot0nwZ2G0qhn
-         879DZzTwgV8ZB3ejEqajk/J7P1zCk6HOvYm4jMXPIOySnfqsLLAzl7qIkFu0rUo7yNrd
-         hf0AR4AQvr7nYlSupQ45odasBDBGT//VCnsSg0a0jRRkLSpyCHfivvPNGyzfSxROJUe7
-         CKrchZq4JLj+I/kJzSMz26gAm9NstbA2W607JKLoXIqTtY/dUmM7mtQ9vgdSIUuXcW68
-         +s5tqWfgOUnOiMx7wW5o+ZDaQHvzjtUdA7y3E+tXNLWIkJRCLZQytq91rlAkyOJxYBZK
-         ulJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773111385; x=1773716185;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IPeNaI7yJ6rN7QDAg6cmHZUEk/n4Ga/qldWclJyzUAo=;
-        b=uw15kd3ZJPZIidxWjkLalCWpN3OSVxkb6gw4uHp9aeS94ioPgaCMJ4XSs0LNuYuPXG
-         SAMPA6wPPwskNacjnknrHzkA8e4IBh3KDyEZsinEnZts8eF0IIG3//AKSK6RWgpm7SWD
-         RtGmAyPKVvOeJL4E7Gs51m/B2pN2kSQaaeaoOwOcIwrj/ZRHaFofBa2rpApnMs75KRCg
-         CMwrHjmkkTLrI3qCrsl+D0JyzjMM8/XZvvWmT4lWispL7WZgOLRKyG/g4d98oAEUxTco
-         sIeq9KjoSy/RfZYF5fCoYKMamzTi5RsyT46u9GF3xVnDHnZr8ZiFGihgUSggMbcZcdYR
-         kdig==
-X-Forwarded-Encrypted: i=1; AJvYcCWcmfrNJ27u0PvxHg71R4eAHDYzGqyiPf7I46qSEnl35ZERDJG9WOoJU4xY7Xg3W5SHwaUE5KAA9sku@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6P3f1Ltt/DzT33FawCWu0tlJ7CxLY8RiK62QQ62VMSi6b+Lwg
-	rEdLmyYD934Jmue2m4j8zN4n379UfSY05A+LnIhjEucQ1N9CeoTthV/yM8Jbbyiv0WI=
-X-Gm-Gg: ATEYQzwrNYP37CccUymMmz7fy5x7QTuYvX8gDuJu/1pe3V6yhtj9W1g2KiqlHOXTy+i
-	i+EyY7VQXUZvs4l32kLkxhgaf9DmuGfqSgRBg44LQ7dSesA5lBzE81odeqXqKtCJOnIfQEuiToZ
-	oaQOSsJB9Xb79v6VRn8KIlElgKN/TAoWLtq3JRem/0RJGZtv0gnBCqf+YocWU5TaXt/pz5Bn/0m
-	YPtnfPWQqKWInQY0QnllYKWWbw2KX2yFOFGCDxzNt9tGElUb+RRCbR+h0qnD1biBoVTR/mZhtBk
-	7NJI8Z9s3wo1Pcb7L+4h5Tqqt7KScfyWgPqvugawsyiykyJzImkfTWvUY/YQIcS0q0Ue+a9w3da
-	8pKUhC6XvPoBGgWEEcISSmJir7RcyBGw/Tc5g3YZRxC4xO4/FXWWYpzBeKwqgHVP3zRk/xhcRSD
-	jqqtmuaJQ/cQHoRhtvXM6qPGVxfSFvxXSEdb3WPXyqeza1Dr8NYd1Hn4iCVwcfx7cILo+JyaFIO
-	ztnuOPq78gMH20X
-X-Received: by 2002:a05:600c:a0d:b0:485:1878:7b8c with SMTP id 5b1f17b1804b1-4852695b6fcmr215782145e9.18.1773111384919;
-        Mon, 09 Mar 2026 19:56:24 -0700 (PDT)
-Received: from localhost ([2a02:c7c:5e34:8000:7b62:c11f:db20:9ab])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48541b8d4easm38369165e9.15.2026.03.09.19.56.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Mar 2026 19:56:24 -0700 (PDT)
+	s=arc-20240116; t=1773111439; c=relaxed/simple;
+	bh=A7zTK4PlFrsw7a5TtQne9fOyd8+ftcNolVyUFZOj9iw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ErRKLufVd7gYKUgjrv9xmL5heXplClcZ8aYqf9tz51l3PCpK0aZOllDsspGEIipVA4xrpR3UD9KPfQ0ZT/dD5ZVpfr4qHqsIN4PkhQTwBuq735LJJQeVRXbUlOJUBhUrzDzh5W5LJpCFyeQldUHtOtuCwmHNAT6NYA4Kr4JZPFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me; spf=pass smtp.mailfrom=pm.me; dkim=pass (2048-bit key) header.d=pm.me header.i=@pm.me header.b=GkN7UDAF; arc=none smtp.client-ip=109.224.244.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=pm.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pm.me
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pm.me;
+	s=protonmail3; t=1773111436; x=1773370636;
+	bh=A7zTK4PlFrsw7a5TtQne9fOyd8+ftcNolVyUFZOj9iw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=GkN7UDAFSrEAn1LoTLDzjTsa74IjzzDbERCM9c5lfm/sbgu1C2BkNUUvd1Gz7k09x
+	 pX0NzrjpHDNYxpGBqGoAk/YuNSRHHBKarJFSogQWXYXmzpadDfOsqfOq5IdSJUWdwD
+	 Lqfb78kTa7FkY0PYvWYVVxbEjqcvQU99bcsqK0h6sW+CkhoKR63OMiMNFi4UwUsHkA
+	 FwtvbxITu2iJaoQ0ODJkZdwxYvdN0s9rmv+FJB113XwacsMIJmRTpdQSiDaQO+XOjq
+	 ETwxP2NdIdVA9VUBGNQLH/KKwbEWEmP467xvN1qB9KmjG9dv6Cqm8nqFmK3/aBLFNg
+	 yTPi5sAYJLLoQ==
+Date: Tue, 10 Mar 2026 02:57:13 +0000
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+From: Alexander Koskovich <akoskovich@pm.me>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, "Guilherme G. Piccoli" <gpiccoli@igalia.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8250-asus-obiwan: Add ASUS ROG Phone 3
+Message-ID: <TTd9O1RN8B4tl9ogFkEYOLpb0iuA2NkOP_3RVkPfnEPntd7f33LU8zzKfy1ICXQ1M-TmDVht5GxiNsMDCu8O2odbZUBcU4lEzg-wyq22ZxM=@pm.me>
+In-Reply-To: <pu56z7dorbujx57yzfclcncrj4zwgtv3gshntnlpxcpbunxsiz@2rckwcyjgetg>
+References: <20260308-sm8250-asus-obiwan-v1-0-3c72941eb796@pm.me> <20260308-sm8250-asus-obiwan-v1-3-3c72941eb796@pm.me> <pu56z7dorbujx57yzfclcncrj4zwgtv3gshntnlpxcpbunxsiz@2rckwcyjgetg>
+Feedback-ID: 37836894:user:proton
+X-Pm-Message-ID: 69a089652abcc95718746560eb40725da33e7a32
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Mar 2026 02:56:23 +0000
-Message-Id: <DGYRJ0FUBJIB.3HUS30VW280A4@linaro.org>
-Cc: <linux-samsung-soc@vger.kernel.org>, <linux-pm@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, "Bartlomiej Zolnierkiewicz"
- <bzolnier@gmail.com>, "Krzysztof Kozlowski" <krzk@kernel.org>, "Rafael J.
- Wysocki" <rafael@kernel.org>, "Daniel Lezcano" <daniel.lezcano@linaro.org>,
- "Zhang Rui" <rui.zhang@intel.com>, "Lukasz Luba" <lukasz.luba@arm.com>,
- "Rob Herring" <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Alim Akhtar" <alim.akhtar@samsung.com>, "Sam Protsenko"
- <semen.protsenko@linaro.org>, "Anand Moon" <linux.amoon@gmail.com>, "Marek
- Szyprowski" <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v4 0/7] Add initial Exynos850 support to the thermal
- driver
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Mateusz Majewski" <m.majewski2@samsung.com>
-X-Mailer: aerc 0.20.0
-References: <CGME20260303090219eucas1p1711b5b0f0e8ae56bc421ad8f6e5bf365@eucas1p1.samsung.com> <20260303090211.673143-1-m.majewski2@samsung.com>
-In-Reply-To: <20260303090211.673143-1-m.majewski2@samsung.com>
-X-Rspamd-Queue-Id: 91F372447FC
+X-Rspamd-Queue-Id: 8AE5124483B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[pm.me,quarantine];
+	R_DKIM_ALLOW(-0.20)[pm.me:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,gmail.com,kernel.org,linaro.org,intel.com,arm.com,samsung.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	TAGGED_FROM(0.00)[bounces-273229-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[172.105.105.114:from];
+	TAGGED_FROM(0.00)[bounces-273230-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RECEIVED_SPAMHAUS_PBL(0.00)[2a02:c7c:5e34:8000:7b62:c11f:db20:9ab:received];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexey.klimov@linaro.org,devicetree@vger.kernel.org];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[100.90.174.1:received,209.85.128.46:received];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[akoskovich@pm.me,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[pm.me:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.153.167.240:email]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,pm.me:dkim,pm.me:mid]
 X-Rspamd-Action: no action
 
-Hello Mateusz,
+On Monday, March 9th, 2026 at 4:34 PM, Dmitry Baryshkov <dmitry.baryshkov@o=
+ss.qualcomm.com> wrote:
 
-Sorry for delayed response too.
+> > +
+> > +&cpu7_opp_table {
+> > +=09cpu7_opp21: opp-3091200000 {
+> > +=09=09opp-hz =3D /bits/ 64 <3091200000>;
+> > +=09=09opp-peak-kBps =3D <8368000 51609600>;
+> > +=09};
+>=20
+> I'm a bit concerned about this one, I haven't seen it in the downtream
+> SM8250 DT.
 
-On Tue Mar 3, 2026 at 9:02 AM GMT, Mateusz Majewski wrote:
-> Hello and sorry for missing your mail, thankfully Marek pointed it out
-> to me.
->
->> I applied the whole series locally, it applies fine on 6.19 but I didn't
->> check linux-next; and tested it on Exynos850 E850-96 board with the
->> following DT node:
->>=20
->> tmuctrl_0: tmu@10070000 {
->>     compatible =3D "samsung,exynos850-tmu";
->>     reg =3D <0x10070000 0x800>;
->>     interrupts =3D <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
->>     clocks =3D <&cmu_peri CLK_GOUT_BUSIF_TMU_PCLK>;
->>     clock-names =3D "tmu_apbif";
->>     #thermal-sensor-cells =3D <0>;
->> };
->>=20
->> and thermal zones as you mentioned way back. It works just fine.
->> Temp goes up to 48 C with a loaded CPUs and settles at 36-37C when idle.
->>=20
->> So for the whole series:
->> Tested-by: Alexey Klimov <alexey.klimov@linaro.org>
->
-> Thank you!
->
->> However, do you have plans to update it or re-submit?
->> Or any other plans working on it?
->
-> Honestly not sure. If any other patches are merged that conflict with
-> this series, I definitely can resolve the commits (for now it applies
-> just fine to next-20260227, though I haven't compiled the result yet).
-> Correct me if I am wrong, but I don't recall anything to be done in this
-> series otherwise. If there is interest in this series, I can retest this
-> on the other boards and re-submit this later this week.
+Should I leave it out? I tested for a bit and seems like I can boost to thi=
+s
+speed, seemed fine at least.
 
-So, I bumped into the same issue you described in your other email.
-Other sensors seems to be not initialised and always return some weird
-temp (minus 29 or smth like that). Only first sensors works.
+> > +=09=09qcom,calibration-variant =3D "ASUS_ROG_Phone_3";
+>=20
+> Just to check, was it submitted upstream?
 
-I initially started to look at this after enabling idle states on E850-96
-(they work with only some un-upstreamable change). Having at least one
-sensor is better than nothing.
+Yes, though still waiting for it to be picked up:
+https://lore.kernel.org/ath11k/PqqPCfIvgme9VLMd4Q91JxMhlc4JOTjuWhwXupf3_0cZ=
+XUvRy0wijwNfy7lAY6fiIXHXU_buPPbpDM_Uvht3G26146R4szD7Hvp57m7Totw=3D@pm.me
 
-I am looking at enabling ACPM thermal thingy but so far I see similar
-issue that temp of all sensors is reported as 10 C regardless via ACPM.
+> OKay, this answers my earlier question.
 
-Having said that I am not going to oppose this series moving forward if
-you wish.
+Updated the comment in v2, since technically usb_2 does have SS lanes on th=
+is
+board, they are just not routed to the port I have configured atm.
 
-Thank you.
+The board design is a bit special, the HS lanes for the bottom port are sen=
+t
+to the pogo port when accesories are in use, and then that leaves the botto=
+m
+port exclusively for charging. Haven't gotten to modeling that yet, I'm not
+sure if there is a way to model that in upstream atm. Would need some USB m=
+ux
+binding?
 
-Best regards,
-Alexey
+Let me know if you would want to see USB 3 re-enabled despite not having a =
+use atm.
+
+>=20
+> --
+> With best wishes
+> Dmitry
+>=20
+
+All other items have been pushed in v2, appreciate the review.
+
+Thanks,
+Alex
 
