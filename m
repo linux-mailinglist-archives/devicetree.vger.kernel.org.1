@@ -1,189 +1,149 @@
-Return-Path: <devicetree+bounces-273360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273361-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHn5JxTbr2kzdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273360-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:49:24 +0100
+	id AEBeNEzcr2kzdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273361-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:54:36 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1B4824798D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:49:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331FC247B03
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:54:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E333D301FD9B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:48:31 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D2B7F311B86C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:48:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8212361DDF;
-	Tue, 10 Mar 2026 08:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352C9430BA8;
+	Tue, 10 Mar 2026 08:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S4xGdb4c"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="l0wIErnC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDA03D6CBC;
-	Tue, 10 Mar 2026 08:48:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D6F2773D8;
+	Tue, 10 Mar 2026 08:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773132510; cv=none; b=F1WAy3heyXRNcIxmMjSJE52mbEJsBkOQE6EgD3r0N8IO50VR3V8I9yXxomd3TTTAKZiv7Wo9aB74rU1cM9wqf9Ig/rHe6znAndHRrMpDB6koNXEwu/G+O62Sq3/blqwU2MKYe9K4K2V79J42ZqaU+edaQne9u+IFTMW2rWib4Qo=
+	t=1773132532; cv=none; b=L7L9sjRAt8WBc9ZNPfOVfV69i66Jj1rZviyiMQNZayr/euQFcSU6eGYq1nHIKv3aCUpLBW2cadylot6eF6zqTH9PZDCBYDPHFdxVenMAw30fkCAph28gGyR776UkKI6RUtB4cskFdCm7xznDkyWH9MyESnCRSELuNr3pPmao94I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773132510; c=relaxed/simple;
-	bh=WeMy9uvsRTzKDx5AyUJ4ZSaKuiM/lFviZ53EAFy0i/k=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=UWL34ofk5BuBbqs22u60WvCf0OZmVy4ojMDBGNEdbzQWn+dJFYhK8FFOsBdO1wfVpYglC4RLoW3wfvwlmZB6GkvJtsFNipuT1auXYIo3lzyTU6+qsbjmA2gzNfiBhSxaFwzO5VMWwoDN6oS4OFQf57FbBxB+y51BPivY18vR438=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S4xGdb4c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2311C19423;
-	Tue, 10 Mar 2026 08:48:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773132510;
-	bh=WeMy9uvsRTzKDx5AyUJ4ZSaKuiM/lFviZ53EAFy0i/k=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=S4xGdb4cUZodZ2aT8q0DvIu3jAnONnXJ0cyTwl09WJ9ktJ+byy14L6xHpHkrjWxWN
-	 H1lY4W4Bds42ilGksrsnsbRl1QygyPGUa/UtA3RzNe0zS7otrbAdPwyIEKZRqiI5m5
-	 6VQORD6N9d5NSyazDYAqnUxJnSTaWSQerl2va0fKwS2LV8krM3GbPWs9MZ4JCazUhO
-	 RC3nIPSX05HgGDI0RAGlMbz8bAIQM18n1iBeXF9TxJh8YQFTEaZ77MliI+hGh13ZUV
-	 XjH42eZmJtF83cTnl56o0dfus6v5kmmoMmdsO8y8FJfheWdHjwpNIU6Ko72L3hjp/C
-	 UkdjCv8c5BQrw==
-Message-ID: <47657a77-2880-4556-84fc-96dc4174e705@kernel.org>
-Date: Tue, 10 Mar 2026 09:48:25 +0100
+	s=arc-20240116; t=1773132532; c=relaxed/simple;
+	bh=teSI91cRyupWd7NN6HwKJqFdD/E+ikTGW2oM/Aij9GI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Jzg84+shpXOQYbknVOoZPHPMQxksJx8Vpqf+w7SN1zAj1T+u97PMgzzrmVmVXm1tOrI9mo42frRjUu9yrDDReR8z8iTKBRJj5NPZSTFhqjogEipNRoAftejKjRGdA0kc3V139asUyASSSpQ4OuslkD7q45E4gjwe2/TXeW/xhHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=l0wIErnC; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=LDnvAqGNNm3WAv14lqVG/Cz8m/tMIKxrjvpf5+LfotM=; b=l0wIErnCa7VHZPHycc5wGKaUkL
+	Yvz5kANYlS0XPLz/iuR2NrLGPcRURHOBzm4faD1fWbmUqHDdbBPI9z4rsa/I61cA44XbcjfQPzSQI
+	3JH4sSNf+xfTq6bJE2qbkzZaR3ywZHyEXWZ4OeT/t1ncRkWfvm3Be3AY6w1bBi5Jo2GmLwbKxEmMC
+	9SzOmfK47DvNw80PUtVeLGQH6/0OrqRDnDgb4kmCKe808R4hhSaTTDC4lTtu9MovXpN+i/43gjRaT
+	oCZ9/2WFrq91UN5rTmSZC9LV5vi9tuUFV1EgdXUDbacu60B/wcVrDVEmRsehDCCkKEWM4Vg2mtT3s
+	rQPM1bSA==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Pedro Alves <pta2002@pta2002.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Pedro Alves <pta2002@pta2002.com>
+Subject: Re: [PATCH v2] arm64: dts: rockchip: configure hdmirx in Rock 5 ITX
+Date: Tue, 10 Mar 2026 09:48:43 +0100
+Message-ID: <9638846.rMLUfLXkoz@phil>
+In-Reply-To: <20260304-radxa-r5-itx-hdmirx-v2-1-6567e9e3298b@pta2002.com>
+References: <20260304-radxa-r5-itx-hdmirx-v2-1-6567e9e3298b@pta2002.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mark unimplemented AXI snps,kbbe snps,mb and
- snps,rb
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Conor Dooley <conor@kernel.org>,
- "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
- "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
- Eric Dumazet <edumazet@google.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jakub Kicinski
- <kuba@kernel.org>, Jose Abreu <joabreu@synopsys.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>
-References: <E1vxq3L-0000000BsQm-4C8v@rmk-PC.armlinux.org.uk>
- <aatrvmyW-SaHuVN7@shell.armlinux.org.uk>
- <20260309-spill-gradient-b6f9440f3a26@spud>
- <5add0a0b-e6da-40ae-b7cc-e64910739355@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <5add0a0b-e6da-40ae-b7cc-e64910739355@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: B1B4824798D
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Rspamd-Queue-Id: 331FC247B03
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-273361-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273360-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[sntech.de:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sntech.de:dkim,pta2002.com:email]
 X-Rspamd-Action: no action
 
-On 10/03/2026 09:43, Krzysztof Kozlowski wrote:
-> On 09/03/2026 18:49, Conor Dooley wrote:
->> On Sat, Mar 07, 2026 at 12:05:18AM +0000, Russell King (Oracle) wrote:
->>> Any chance of a review from the DT maintainers please?
->>
->> Sure.
->>
->>> On Wed, Mar 04, 2026 at 05:30:32PM +0000, Russell King (Oracle) wrote:
->>>> Mark the AXI snps,kbbe snps,mb and snps,rb properties as not
->>>> implemented. These were introduced by commit afea03656add ("stmmac:
->>>> rework DMA bus setting and introduce new platform AXI structure").
->>>> While stmmac has code to parse these properties and save their values,
->>>> these are written to write-only struct members - no code in stmmac
->>>> has ever read their value. Hence, these properties have been non-
->>>> functional from day one.
->>
->> If they're not implemented and have never been used, could we delete
+Hi Pedro,
 
-Maybe I misunderstood, did you mean delete from the drivers as well?
-This would work as well, but we cannot only remove the dt-bindings.
+Am Mittwoch, 4. M=C3=A4rz 2026, 21:44:39 Mitteleurop=C3=A4ische Normalzeit =
+schrieb Pedro Alves:
+> The Radxa Rock 5 ITX board exposes an HDMI input exactly the same way as
+> the Rock 5B, but this was not reflected in its DTS.
+>=20
+> Change the rk3588-rock-5-itx to configure and enable the hdmi_receiver
+> and hdmi_receiver_cma nodes.
+>=20
+> The hot-plug detection (HPD) pin keeps the hdmirx_det name rather than
+> the hdmirx_hpd name used in other boards since that is what matches the
+> official schematics (HDMIIRX_DET_L).
+>=20
+> The configurations were confirmed to be identical on the downstream
+> Radxa kernel, and this has been tested to work on a Rock 5 ITX board
+> running kernel 6.19.3.
+>=20
+> Signed-off-by: Pedro Alves <pta2002@pta2002.com>
+
+> +&hdmi_receiver {
+> +	pinctrl-0 =3D <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_r=
+x_sda &hdmirx_det>;
+
+are you sure the hdmim1_rx_hpdin is routed?
+Because that is gpio3_D4 while your hpd-gpios below is gpio1_c6.
+
+> +	pinctrl-names =3D "default";
+> +	hpd-gpios =3D <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
+
+Also please provide a pinctrl setting for the gpio hpd pin.
+
+Thanks a lot
+Heiko
+
+> +
+> +	status =3D "okay";
+> +};
+> +
+>  &hdptxphy1 {
+>  	status =3D "okay";
+>  };
+>=20
+> ---
+> base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
+> change-id: 20260303-radxa-r5-itx-hdmirx-f4645e64f8c3
+>=20
+> Best regards,
+>=20
 
 
->> entirely? Note that they also appear down around line 600 in the file,
->> in the stmmac-axi-config section.
->>
-> 
-> We should not document what is and what is not implemented, thus this
-> patch is not correct either. Either you deprecate properties, based on
-> some argument, or you leave them untouched regardless whether they are
-> implemented or not. If someone re-implements them next week, are you
-> going to change the binding? Usually no, unless these are not really
-> hardware properties.
 
 
-
-Best regards,
-Krzysztof
 
