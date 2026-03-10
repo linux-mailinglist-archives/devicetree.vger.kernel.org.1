@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-273710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273711-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMWzB6N6sGnLjgIAu9opvQ
-	(envelope-from <devicetree+bounces-273710-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:10:11 +0100
+	id wFZ1BYp7sGnLjgIAu9opvQ
+	(envelope-from <devicetree+bounces-273711-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:14:02 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9535625761A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:10:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 647E22576B0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:14:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 09C22301E3F1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:06:40 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C624B3188093
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4146C3E8C72;
-	Tue, 10 Mar 2026 20:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429B33E8C44;
+	Tue, 10 Mar 2026 20:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NifB0imx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ciey979u"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B4EE3E8C6A;
-	Tue, 10 Mar 2026 20:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC793164DF;
+	Tue, 10 Mar 2026 20:11:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773173199; cv=none; b=OEhseI4aDXRGxvIaO0UaBYGFjWKlyu/FLlmPXDUSPakOv84pgfIQf08uWk0liRY6vqiNMKSDUZxGsNwhHSKAbagoJojRGt6WbNd7J97MAu/FpVbAC3OFmwExBk0ZL2Ds9NYjL/cXbLgNcDeyy6i61V/eIGVdEXLP8KPl3W3rCYk=
+	t=1773173470; cv=none; b=bzIHcoIPb2zpY9o0zattWjx/Ac5fWHXySfMseeQEJCogTQ1a7Qu9FHU8j7/H0tC29qXuBn/XrHx0jJnMSjvHQ6/+VRH/ZycpamQY74rOcasunMcvj3sXdOjRu12Kb08gGBPzqY96x5C07EXKJczs1JgDjmMl0snn2s17E1jFUug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773173199; c=relaxed/simple;
-	bh=Z9vyLtz2EdjxGxaVk1OvvInckKlIsasVV0PmlgMnlrk=;
+	s=arc-20240116; t=1773173470; c=relaxed/simple;
+	bh=4Z8XqE3UvYxBjddjBwKXl7xeUEpNa0b3S65LVm1zYMA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OhLs0Vxrfqe3fYHXvRFkI99qix+kWmgqFeIdXDhPTkQdh1uZXGY7CFTlQYxKIGlcl13+u4YL30eAUshWLv5NzZmDXKa1gvWUiBJyQrfvDlnXBZ2TPyzWK5XXB1RumUTwYwgLoq/cqLEhN8agoUDIUL2e2K9laSju1ZnOuI4MZuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NifB0imx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC587C19423;
-	Tue, 10 Mar 2026 20:06:34 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=jP4UdwINCbzzFv5Oj3kbbLvTlVX0kCkA9HAp10bSG/0jKqJOwOWKU5MeRr1LvNAV0x3zRdKKs/VXtBAOsnhD5zl2CIHWFG2hycZdpiAZR3CKFle25GMUSKD+IPLiwJb4zxY63TNPWER0+ja6dW63VWeOISkRCtNedsMhfDogl6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ciey979u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74D0EC19423;
+	Tue, 10 Mar 2026 20:11:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773173198;
-	bh=Z9vyLtz2EdjxGxaVk1OvvInckKlIsasVV0PmlgMnlrk=;
+	s=k20201202; t=1773173469;
+	bh=4Z8XqE3UvYxBjddjBwKXl7xeUEpNa0b3S65LVm1zYMA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NifB0imxPuCllqOPCFYAShNxajCzVjUEMHuTPcy8ig2s5C+FKfFEXBwcQBdHefYGa
-	 rz7tYRpTFU1/+EUyUQRXV2l9g31vBOUOQTITWcLdRjnv5sGlgV2bCJHV3XiKV8tV9S
-	 FMylx+z6/WOLlOxSdnSPi3Gh92/umVnlcp74flibrel7k52qRsVUL63FPT2HPnxKEv
-	 w1KAJA15bQ78uampE/AsbGsvVcZkrUdY/jTycgoPsts8W0Ii80dxxDJIy4+Fx3Isuk
-	 c6PVsr8M49oWFcOuLgYlF6IjJjbKg3D5zRV88/Trl2KWTzUStix9LCL8J0aHeDnpta
-	 An7iiMIYxRthQ==
-Message-ID: <4cfc7b40-f172-4eae-8f19-4a3eb858075e@kernel.org>
-Date: Tue, 10 Mar 2026 21:06:33 +0100
+	b=Ciey979uCqn87um4aS/XCmH8eKO4hap2RIoDaD+0lj6VrzisYCppigRsnIw2B7KH/
+	 AkWpP1fPvKQJ4g3qnKWQA5h77sg6VGHhoqevmni3m87UJ8u4aJbKSnUR8D9F7Yg7br
+	 Xlkvx5oUM9CT9JS0UdvgB2BdY2nl/bBbzFzNKrlSsqhixcCFTp+2V3uUwsSe9Db+Dn
+	 aHBLv0ATH8DO/FqJ42cl0QFDMUZ2pLibzBdAqwrgtrilVX2nBTjVHe1pqbEKN1/DwY
+	 Sviz8IewhMbNOfhn7wGuvdlnme+YkCLbbSZ0Jhmvk65GenWDaDYizl/T6fE3Ww351r
+	 BOdW+47c4ljHA==
+Message-ID: <a617bbfe-0339-4334-8b52-dc85de12c626@kernel.org>
+Date: Tue, 10 Mar 2026 21:11:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,26 +53,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: display: panel: Add Novatek NT35532 LCD
- DSI
-To: cristian_ci <cristian_ci@protonmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org
-References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com>
- <20260308-rimob-new-features-v1-1-aa2c330572c0@protonmail.com>
- <369b48d9-f089-49a2-89cb-a4e0c68f92fa@kernel.org>
- <7Ft_cDw10-3MmNTrKncMut5g08sodd9CL7r7AGXAtPPqZpXtHEgmqm05WhEpYMZzFEs4B0KWz-LU27Z0_YDnc44nXhdUrUt5X2dWK7D6pYM=@protonmail.com>
- <db04882b-7f30-464c-91a6-578302aef4ff@kernel.org>
- <Nz_hTfDbWqQk8-FcCknxZKO8dIhCAGueG89SRe2LkTG1VK4KjoH-UZH6bsOvqEySwNRjJtsEUL7vxxIXOWyyzLOtM9YLZaCuhPfxNz0mVyk=@protonmail.com>
+Subject: Re: [PATCH v2 1/5] dt-bindings: iio: dac: ad5504: add output-range
+ and missing gpios
+To: Taha Ed-Dafili <0rayn.dev@gmail.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ skhan@linuxfoundation.org, me@brighamcampbell.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260310174835.24209-1-0rayn.dev@gmail.com>
+ <20260310174835.24209-2-0rayn.dev@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -118,129 +109,123 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <Nz_hTfDbWqQk8-FcCknxZKO8dIhCAGueG89SRe2LkTG1VK4KjoH-UZH6bsOvqEySwNRjJtsEUL7vxxIXOWyyzLOtM9YLZaCuhPfxNz0mVyk=@protonmail.com>
+In-Reply-To: <20260310174835.24209-2-0rayn.dev@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 9535625761A
+X-Rspamd-Queue-Id: 647E22576B0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273710-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-273711-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,metafoo.de,analog.com,kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[protonmail.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:url]
 X-Rspamd-Action: no action
 
-On 10/03/2026 18:48, cristian_ci wrote:
+On 10/03/2026 18:48, Taha Ed-Dafili wrote:
+> The AD5504 output range (0-30V or 0-60V) is determined by the R_SEL pin.
 > 
+> Use standard output-range-microvolt and range-sel-gpios properties to
+> describe the hardware configuration of the R_SEL pin. Ensure mutual
+> exclusivity using the not/required logic. Additionally, add missing
+> vlogic-supply, clear-gpios, ldac-gpios and datasheet links, and provide
+> a complete usage example.
 > 
-> 
-> 
-> Cristian
-> 
-> Sent with Proton Mail secure email.
-> 
-> On Monday, March 9th, 2026 at 16:08, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
->> On 09/03/2026 15:52, cristian_ci wrote:
->>> On Sunday, March 8th, 2026 at 17:13, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>
->>>>> +  vsp-supply:
->>>>> +    description: positive voltage supply for analog circuits
->>>>
->>>> Both are odd. Datasheet says vci, vddi, vddam and optional avdd, avee.
->>>>
->>>> There is no VSN and VSP. Otherwise please point the page in datasheet or
->>>> some schematics.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>>
->>> I'm not sure about that. Writing panel dt-bindings has been based pretty mostly on vendor devicetree - which also describes somehow the panel and makes that working with the final product released to the market - so I've to necessarily consider that.
->>> Then, I could agree that vendor devicetree might be not compliant with upstream rules and could possibly make mistakes with describing the hardware, so I'd like to find a way to describe that in a more proper way, according to upstream rules.
->>>
->>> That said, vendor devicetree describes lists four power supplies for  DSI: 'vdd', 'vddio', 'lab' and 'ibb' (which have the following property names, respectively, in qcom,mdss_dsi_ctrl node: 'vdd-supply', 'vddio-supply', 'lab-supply' and 'ibb-supply'.
->>> Two of these are related to ds/controller (apparently, 'vddio' should match VDDI power supply in NT35532 datasheet.
->>>
->>> The remaining two supplies are related to panel ('lab' and 'ibb'). These ones are two 'external ' regulators ('external' from NT35532 perspective), which provide power supply to display, located in the qcom PMIC (in this case, that should be PMI8950). WRT to power supply names described in the bindings ('vsp-supply' and 'vsn-supply') are the same as 'lab-supply' and 'ibb-supply', just named differently in the vendor devicetrees.
->>>
->>> Usage of 'vsp'/'vsn' naming for power supply properties is grounded on they commonly being used at upstream (different panel bindings make use of these properties), on one side, and also described on schematics of devices with the same hardware configuration (LCD_VSN and LCD_VSP), on the other.
->>>
->>> In the meantime, I've found out schematics for 'xiaomi-mido' (another MSM8953 device) - a variant of this device is shipped with a panel also using NT35532 IC (just like my device) - and LCD_VSN/LCD_VSP are clearly shown there too.
->>>
->>> I couldn't find much more information about the display on my device and the only resources available about that are those listed above, as of today. In light of my reply, I ask if it is still necessary to describe, in the bindings, power supply properties properties not used currently in the board DTS file.
->>
->> Please wrap your answers so this will be possible to parse.
->>
->> You write bindings matching the hardware and for the hardware, not for
->> the downstream code. You cannot add supplies which do not exist
->> regardless what some vendor wrote somewhere 
-> 
-> Vendor has also described the hardware by storing information (by including info 
-> about panel too) directly inside the device itself (/sys/firmware/fdt). 
+> Suggested-by: David Lechner <dlechner@baylibre.com>
+> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Vendor does not care about rules of DT thus puts there completely fake
-information just to make their drivers working
-.
-> Though vendor devicetree could possibly contain mistakes, I guess I've to trust vendor 
-> devicetree (also for the reasons explained in my last reply).
+Hm? Where did I suggest writing such patch?
 
-These are not vendor's mistakes. This is deliberate WRONG information.
+Are you mixing terms here? I gave you review, no?
 
-Sorry, I am not going to keep discussing each property based what vendor
-wrote.
-
-Open datasheet which I said is public.
-
+> Signed-off-by: Taha Ed-Dafili <0rayn.dev@gmail.com>
+> ---
+>  .../bindings/iio/dac/adi,ad5504.yaml          | 40 ++++++++++++++++++-
+>  1 file changed, 39 insertions(+), 1 deletion(-)
 > 
->> and yes, you must describe
->> all known supplies for this device, especially that datasheet is
->> available publicly.
-> 
-> Based on what you said, the following questions have raised:
-> 
-> - have properties (mentioned by you) be defined 
-> (apart 'vddi', which most likely is actually 'vddio-supply', 
-> already defined within mdss_dsi0 node) outside of 'panel' node?
+> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad5504.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad5504.yaml
+> index 9c2c038683b4..c0b2d470949a 100644
+> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad5504.yaml
+> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad5504.yaml
+> @@ -10,8 +10,10 @@ maintainers:
+>    - Lars-Peter Clausen <lars@metafoo.de>
+>    - Jonathan Cameron <jic23@kernel.org>
+>  
+> -description:
+> +description: |
+>    High voltage (up to 60V) DACs with temperature sensor alarm function
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad5504.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad5501.pdf
+>  
+>  properties:
+>    compatible:
+> @@ -27,16 +29,48 @@ properties:
+>      maxItems: 1
+>  
+>    vcc-supply: true
+> +  vlogic-supply: true
+> +
+> +  output-range-microvolt:
+> +    description: |
+> +      Specify the channel output full scale range. The R_SEL pin
+> +      determines if the range is 0-30V or 0-60V.
+> +    items:
+> +      - const: 0
+> +      - enum: [30000000, 60000000]
+> +    default: [0, 60000000]
+> +
+> +  range-sel-gpios:
+> +    description:
+> +      GPIO connected to the R_SEL pin to select the output voltage range.
+> +    maxItems: 1
+> +
+> +  clear-gpios:
+> +    description: GPIO that controls the /CLR pin (active low).
+> +    maxItems: 1
+> +
+> +  ldac-gpios:
+> +    description: GPIO that controls the /LDAC pin (active low).
+> +    maxItems: 1
+>  
+>  additionalProperties: false
+>  
+>  required:
+>    - compatible
+>    - reg
+> +  - vcc-supply
 
-You are mixing devices. We do not talk about vddio supply in dsi node.
-We talk about THIS device, so open this device datasheet and read it.
+This is technically ABI break and nothing in the commit msg explained
+why you are doing this, why this was not required before etc. Changes
+you make must come with proper background.
 
-> (and related to dsi/controller rather than panel, instead)
-> 
-> - have those properties (mentioned by you) set as 'optional' 
-> in the bindings, rather than set as 'required'?
-
-Why? How device can work without power? Datasheet mentioned which
-supplies can be optional, e.g. grounded or wired to the same source of
-supply.
-
-> (since panel works without most of them defined in the 
-> board DTS file)
+> +
+> +allOf:
+> +  - not:
+> +      required:
+> +        - range-sel-gpios
+> +        - output-range-microvolt
 
 
 Best regards,
