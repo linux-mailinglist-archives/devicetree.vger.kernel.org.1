@@ -1,108 +1,97 @@
-Return-Path: <devicetree+bounces-273175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273176-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4A2cGyJlr2koXAIAu9opvQ
-	(envelope-from <devicetree+bounces-273175-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:26:10 +0100
+	id KDeEITlor2myXgIAu9opvQ
+	(envelope-from <devicetree+bounces-273176-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:39:21 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1678924304E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:26:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46EA2243132
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 01:39:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 752123018F0B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 00:26:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B13703016AE9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 00:39:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722291F4CB3;
-	Tue, 10 Mar 2026 00:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDC2D22B8C5;
+	Tue, 10 Mar 2026 00:39:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Goa2CZPU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hQ9G3g82"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 347F01FBEB0
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 00:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA03222590
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 00:39:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773102367; cv=none; b=frjibAJoVguxgWgz5EuJFGnylISrkFr37Rg8qlKw9/BfPtu7BSD5UIZeXYDCUdaINZDvAD182b1wRhA5d2S1lGokdWnhWmZ1uUlqwpxpXmwJ23ue25cVSJbe1Z6ZvXLHSmODCEkj+Vph9qVKxuDL4622HVbAxXX7K08WX2qqAGc=
+	t=1773103157; cv=none; b=nj0IOPL5WHAXpcsNfq4ukJ1UXjhf8pqhKNvX870VcahGNG4FOuZApq2dNXCNps1KN3GBMTshMNsODINIZ7OVdQ2oCAYwnhU6O/Lw6KMU1uoJAjGErGf4ajL363JSuEqDHgheItfDkL9K3FTII21Pj/e4l4pvxDqiVaXdVzh2eLw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773102367; c=relaxed/simple;
-	bh=X1qzc/nIJzA160wcE7pmFrjlw+6pYusD0HI28tV+tqw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DRWIqkp/kD73lq5EVRB2bD3PfUgf5KtDM2XIezl5yjlpmJmnqtXtlH5IlQuiN/UohIbRoqBI03RsbC+zKtxvSiOxbBjXim3cKjCdBOHx8TXZjNdcsXGIdfwPY6/IEk+Bm0BAPf2GR7cwWQabQ6BOjbfS06eiQ5ILwwsEsQ5OtW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Goa2CZPU; arc=none smtp.client-ip=209.85.219.45
+	s=arc-20240116; t=1773103157; c=relaxed/simple;
+	bh=VfnL3Xus5uZmgI4d29ykEWEX73BCxwrdj75GjQPw2jU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IWh/IfDJIWqO6JEBgHUHzkPSwUaCgwLgQYUEGVaXz9jSg5a4/Cvi55ilSfzPYyzZrx3RMI9KLe/uQ7m5DmqpD+nfDdCJzkpRilL3XiX949bkvE4fbu7OybYWRzt0eTST/kjZgxYETRjXGTJF8nmr1HG5Rvvi917EKRDPrf35Xm0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hQ9G3g82; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-899fa9610bbso137760396d6.0
-        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 17:26:06 -0700 (PDT)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-8297e0b27e5so3206534b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 09 Mar 2026 17:39:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773102365; x=1773707165; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5G48QN/VZ+uF+MLVtrv0+QLtpT3vFjLAIc/m9hMjl30=;
-        b=Goa2CZPUduspLOd1iOWNm0mm+TsdtgzMvRBoP1RVcJJhHdndnDHay4aJRG8ImjWjdU
-         e9YdsQqVd4xloZYaSdBQYqGo5UmxUwAb4jjVYise69b8bhvBodThWCHP4b5IY+U8dm4e
-         7Eg8hmEjb95gjxOaB0iWVZYL3oivflwkX/qkicQdLFU2Nn4WEA6uyHOLrPg4RyAa2fwn
-         srrWVYT8+rcOY8rM243lRx431KShrcfMm/kWVrNsoC4lMjQXg8rFBXqmKQDiU1MxEHOW
-         G7ov3zk7Ve5TOzUqtDCMwMhDTpkydj4XKwQuPd7eyVlyPaqyWB134Ctog623u4vwa77L
-         41Bw==
+        d=gmail.com; s=20230601; t=1773103155; x=1773707955; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ASXXX0p2ZfcvRm4ZB6M2J7c/IWgAE9q2+BNtra206fc=;
+        b=hQ9G3g82jLdYWGkPo279FL8Jry8/gaccsHLu3jTdvxiHNd7aLBNKfyCeTp+1Q1EGJR
+         BWbua5UAJ0td65RFAXJXEILpXp0F3dYPgjNhLjpVXY8r8Kf3q+7gdaKSltZUeTlx1TOD
+         GW9mhpGZJQlVfKbBCJQ5Gie59lA2oNKqyHwKQK8kUfzaRMgA2HG38uDGtk4vI65+cvS9
+         RPHsWMQMOpb0oqjEMoDKL3qAYCFC0KPG4YnZcKxeyyipQQvSM6PasagUoC9xQhEuanl+
+         IWxN8vYC85DecUBMNNdT34fSPRdF2o81EJ4yYdputuSLBc2rCefccF36J5ViIQQOzA8r
+         NeCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773102365; x=1773707165;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=5G48QN/VZ+uF+MLVtrv0+QLtpT3vFjLAIc/m9hMjl30=;
-        b=wzYl+NdNwmoZisDa3Do/yIrH0SYWm4BH12aqg7QRktessk+dhz3KP77no2sykBstq3
-         Q4U5IWMkc23/zk8jgUyR07ImcUZ0wJpLAaL+vgDEe8Y/vFfsmT756yI3rmg8HCL6Sup5
-         kxI+L1fe8Ye+rOaam4M8eEVYY+ftmlwFM2teAQx22+rE8aCPQ31DbD1tloRmfwoduJub
-         ShUi07fMqRFzCFOi3gDFST2x+QfMReDWUKWUjojvbwXo8Rp+20ENihFnG9aglCdG+/FV
-         zXsSatI6Roj7LXaFvhn7mh989D+g7EVDa0vWcoa0EEMLFA1vaeZHrUxuxR4xAQsKeBI1
-         pUCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUNBniTIdU2shyCH1jJWkWBJNp0jbvS3rw1zZwag3cNzhSScjpANGt9BTYZD2YFp8Ofk080NEitmAOC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvadbkUSK2SZO2uwrGPLwkZ0q5vk/X33GpxqE7RPjuKt2C4MY3
-	Ns52AGBzmKCmK0p2QKyAbbCusn+uoxCvtn+5UDAXfIIUGrWR/0NtN/B+
-X-Gm-Gg: ATEYQzxlfYWPMnfBbD1BATgKO5DLf7ATugt7AGKEYdkdz0a9JwRZhq1GyawHtHgc6D/
-	+lAuY13CyetCNuVWwkGI20x5pR7oBiA/URWiwSBwz2gkV4parHWTBhi6QNN+FdQkMlFsZSNiydi
-	ULkRRSOXs2uPEGgJzRKSGe8KqLkuXNee7Hy8NyXRtMy92DfMvsr62T7SQlOIVZRhMv8ZlGt7X++
-	T6bMAozdqWdu2uECi3o1kZg8ysha8cHfU7qumy2b5a3MLerpBjBJ0BcwXhs291s1PjrF841Q8A3
-	HH5mn+SHCgr0LdSU11rJErccz9P+ZrRfbfD7EmZGVfOD40QTOEd4l/2A00lpnAWBNVBipTI6CWu
-	nPpm0CcnM789Grr6RuZT9xMd71oFJtkEj1qZNNmHA0RlMwmH7E1iaaZLB4FZjQKYTXMUZLB3y5X
-	dRV/9FZBrw9857YhXB60KPjsXF8X4nPoeOI6mA1GHWmAAh4hXGm/c290nBviYmKEwmjH0nF4854
-	QoQCqz3D6o/Byc=
-X-Received: by 2002:a05:6214:e4c:b0:897:255:d5c2 with SMTP id 6a1803df08f44-89a30a4d3cdmr196960136d6.26.1773102365255;
-        Mon, 09 Mar 2026 17:26:05 -0700 (PDT)
-Received: from localhost (bras-base-toroon21-grc-75-184-144-58-243.dsl.bell.ca. [184.144.58.243])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89a57c48e3fsm8094586d6.51.2026.03.09.17.26.04
+        d=1e100.net; s=20230601; t=1773103155; x=1773707955;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ASXXX0p2ZfcvRm4ZB6M2J7c/IWgAE9q2+BNtra206fc=;
+        b=kJNiy3B2R3xGb1NzaFMJqwoZSvrDTtrWNy8TFPQguz4pMiNfoDZS85aPwPsQOtFY5I
+         TJuKxL0kxSC1rHqGitYvPTEYwTw1ZsjTPY0Ej6QnhBkvzm17if/BeqPNfhY9tBnXzll6
+         EPlYwvtr9Y6a96PqPnvTKvE/IZmv+tVoVE09WX+nl9/9xayTr5mO3Q/U852apxDRUR31
+         RImM3gmL51Z1nTxzAYx62DZuwLvAEcFsnlIpS8bhbEPruDPlG1X2loyUqlSnMprZmwml
+         Cpg4RhwtV4GYcoIpXPgwaXfhU6H80V/nE2Nbog1yNBSJFHQzk1E4lQaz4MqDmiz8sj9C
+         LNCw==
+X-Gm-Message-State: AOJu0YziOmQK/xTtmkDCkYlht2p/peWDWoOhhx5KR588Sw/N/FjSBAsO
+	gUuXIfzey8J4FqS3/6AAdfoOojtMzg3s9xdojQulkHwjYKMjYnsbyf7mTpZIsQ==
+X-Gm-Gg: ATEYQzybDPRfUgF7d3SBjsA2DGbte33Eq4zZ4LohWpQJGdy1NxnAcRGr/Gl9T+VL7bj
+	plZcw45n1QqeDKq+jLPsg6Bkqy1PSU4SQHiEUBlTWNLhioA46CyzuEFKKJRGXXFIJXXkK5hZIMs
+	d3ccR7ULjFkG3nxMPkzlRyxqghq5+VfedvDVvA54I+GsD9/pB1ktudMBbwgCfXnVgW2BLX+0LlG
+	nkhIkAcI9r8bMlMx9ASgc+5hX93/nAoNmID7R7Pj7yk7qpY9C4eZhhwL6+7rP2OiCygKGCKBqqR
+	wKjUXjlooo8m/bJZjAVPXzADx85GK8jjfqChyXBipbBsVEiOIxDMAO/UAkPIo6ZA/gU48foM9/5
+	61KYLq61Ks5rF6x6D1E43rXmFa0USOotYlgW9ZEkDo619ZmbRLVDziu0pwHcBINs07KECKu5Lv7
+	99WV1S/KBpOW4r4AlNt8OCxXLBHqeHTsgjtGogZZ/bPlZA9pWF4cHHLabN419Tw7kATKqdmh8P1
+	myUIN4=
+X-Received: by 2002:a05:6a00:179f:b0:829:7a62:5f with SMTP id d2e1a72fcca58-829a2db4d91mr10719774b3a.9.1773103155495;
+        Mon, 09 Mar 2026 17:39:15 -0700 (PDT)
+Received: from lima-default (103.95.112.190.qld.leaptel.network. [103.95.112.190])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829a46369d3sm11381583b3a.2.2026.03.09.17.39.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 17:26:04 -0700 (PDT)
-From: Richard Acayan <mailingradian@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+        Mon, 09 Mar 2026 17:39:14 -0700 (PDT)
+From: Nicholas Piggin <npiggin@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: Nicholas Piggin <npiggin@gmail.com>,
+	Tomasz Jeznach <tjeznach@rivosinc.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <jesszhan0024@gmail.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org
-Cc: Yifei Zhan <yifei@zhan.science>,
-	Richard Acayan <mailingradian@gmail.com>
-Subject: [PATCH v3 5/5] arm64: dts: qcom: add support for pixel 3a xl with the tianma panel
-Date: Mon,  9 Mar 2026 20:26:06 -0400
-Message-ID: <20260310002606.16413-6-mailingradian@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260310002606.16413-1-mailingradian@gmail.com>
-References: <20260310002606.16413-1-mailingradian@gmail.com>
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Drew Fustini <fustini@kernel.org>
+Subject: [RFC PATCH 1/1] dt-bindings: iommu: riscv: Add bindings for Tenstorrent RISC-V IOMMU
+Date: Tue, 10 Mar 2026 10:38:49 +1000
+Message-ID: <20260310003850.3837030-1-npiggin@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,7 +99,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 1678924304E
+X-Rspamd-Queue-Id: 46EA2243132
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -123,91 +112,148 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273175-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,rivosinc.com,kernel.org,dabbelt.com,eecs.berkeley.edu,ghiti.fr,lists.infradead.org,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linaro.org,gmail.com,ffwll.ch,linux.intel.com,suse.de,ravnborg.org,vger.kernel.org,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-273176-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[zhan.science,gmail.com];
+	FROM_NEQ_ENVFROM(0.00)[npiggin@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-The Pixel 3a XL has variants with either a Samsung Display Controller (SDC)
-panel or a Tianma panel. Add the device tree for the variant with the
-Tianma panel.
+Extend the binding to cover details specific to the Tenstorrent RISC-V
+IOMMU. In particular, a second register range is added which contains
+M-privileged registers, e.g., PMAs and PMPs.
 
-Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+The RISC-V spec S-privileged registers remain in the first register
+range and are compatible with "riscv,iommu" so the Linux driver does not
+notice any difference, but the binding will be used by OpenSBI and
+potentially other M-mode software.
+
+Signed-off-by: Nicholas Piggin <npiggin@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |  1 +
- .../dts/qcom/sdm670-google-bonito-tianma.dts  | 32 +++++++++++++++++++
- 2 files changed, 33 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
+Hi,
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index f80b5d9cf1e8..7c158871ed1c 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -264,6 +264,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-fairphone-fp3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm632-motorola-ocean.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm636-sony-xperia-ganges-mermaid.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm660-xiaomi-lavender.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-bonito-tianma.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm670-google-sargo.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
+This binding will be used in a Tenstorrent SoC platform device-tree that
+we plan to get upstream some time, but I wanted to ask for any comments
+here before the OpenSBI platform code that uses it is merged.
+
+Thanks,
+Nick
+---
+ .../bindings/iommu/riscv,iommu.yaml           | 67 +++++++++++++++++--
+ 1 file changed, 60 insertions(+), 7 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+index d4838c3b3741..3c680e53af64 100644
+--- a/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
++++ b/Documentation/devicetree/bindings/iommu/riscv,iommu.yaml
+@@ -32,22 +32,40 @@ properties:
+   # should be specified along with 'reg' property providing MMIO location.
+   compatible:
+     oneOf:
+-      - items:
++      - description: Platform (non-PCIe) IOMMU implementations
++        items:
+           - enum:
+               - qemu,riscv-iommu
+           - const: riscv,iommu
+-      - items:
++      - description: PCIe IOMMU implementations
++        items:
+           - enum:
+               - pci1efd,edf1
+           - const: riscv,pci-iommu
++      - description: Tenstorrent IOMMUs implementing "riscv,iommu"
++        items:
++          - enum:
++              - tenstorrent,riscv-iommu
++          - const: riscv,iommu
  
-diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts b/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
-new file mode 100644
-index 000000000000..42ddaf53d150
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm670-google-bonito-tianma.dts
-@@ -0,0 +1,32 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Device tree for Google Pixel 3a XL with the Tianma panel.
-+ *
-+ * Copyright (c) Richard Acayan. All rights reserved.
-+ */
+   reg:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
+     description:
+-      For non-PCI devices this represents base address and size of for the
+-      IOMMU memory mapped registers interface.
+-      For PCI IOMMU hardware implementation this should represent an address
+-      of the IOMMU, as defined in the PCI Bus Binding reference.
++      For non-PCI devices the first item represents base address and size of
++      for the IOMMU memory mapped registers interface.
++      For PCI IOMMU hardware implementation the first item should represent
++      an address of the IOMMU, as defined in the PCI Bus Binding reference.
 +
-+/dts-v1/;
++  reg-names:
++    items:
++      - const: base
++        description:
++          Minimum 4KiB region beginning with RISC-V IOMMU MMRs.
++      - const: machine
++        description:
++          Optional region containing platform specific MMRs for machine-mode
++          configuration, for example PMA and PMP registers.
+ 
+   '#iommu-cells':
+     const: 1
+@@ -75,6 +93,31 @@ required:
+ 
+ additionalProperties: false
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - tenstorrent,riscv-iommu
++    then:
++      properties:
++        reg:
++          items:
++            - description: IOMMU base registers
++            - description: Tenstorrent IOMMU machine mode registers.
++        reg-names:
++          items:
++            - const: base
++            - const: machine
++              description:
++                Region containing platform specific MMRs for machine-mode
++                configuration, such as PMA and PMP registers.
++    else:
++      properties:
++        reg:
++          maxItems: 1
 +
-+#include "sdm670-google-common.dtsi"
+ examples:
+   - |+
+     /* Example 1 (IOMMU device with wired interrupts) */
+@@ -145,3 +188,13 @@ examples:
+             };
+         };
+     };
 +
-+/ {
-+	model = "Google Pixel 3a XL (with Tianma panel)";
-+	compatible = "google,bonito-tianma", "google,bonito", "qcom,sdm670";
-+};
-+
-+&battery {
-+	charge-full-design-microamp-hours = <3700000>;
-+};
-+
-+&framebuffer {
-+	height = <2160>;
-+};
-+
-+&panel {
-+	compatible = "novatek,nt37700f";
-+};
-+
-+&rmi4_f12 {
-+	touchscreen-x-mm = <69>;
-+	touchscreen-y-mm = <137>;
-+};
++  - |+
++    /* Example 5 (Tenstorrent IOMMU device with MSIs) */
++    iommu5: iommu@d2020000 {
++        compatible = "tenstorrent,riscv-iommu", "riscv,iommu";
++        reg = <0x0 0xd2020000 0x0 0x10000 0x0 0xaa000000 0x0 0x10000>;
++        reg-names = "base", "machine";
++        msi-parent = <&imsics_smode>;
++        #iommu-cells = <1>;
++    };
 -- 
-2.53.0
+2.51.0
 
 
