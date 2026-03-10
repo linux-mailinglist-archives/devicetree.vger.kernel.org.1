@@ -1,679 +1,298 @@
-Return-Path: <devicetree+bounces-273594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273595-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mKJ8IP0zsGl2hAIAu9opvQ
-	(envelope-from <devicetree+bounces-273594-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:08:45 +0100
+	id KHcaI7QtsGlHgwIAu9opvQ
+	(envelope-from <devicetree+bounces-273595-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:41:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6E9F252EE6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:08:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BD2F2523FE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:41:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6399033A1F0F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 14:32:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 00C3F306F889
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 14:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB982EC54C;
-	Tue, 10 Mar 2026 14:32:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A462EBBB2;
+	Tue, 10 Mar 2026 14:37:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GSI6FPYv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="MGTAiLJD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SA9PR02CU001.outbound.protection.outlook.com (mail-southcentralusazon11013043.outbound.protection.outlook.com [40.93.196.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10182E889C;
-	Tue, 10 Mar 2026 14:32:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773153149; cv=none; b=Ff411v8xPZZ/HgicSoJrekhPsY+vqt6wgpZ/ErP3U1yQhtc5GlpFrum2dVnhc+f5R9VbagKh47GaZsxtkyHC9qrMYAzuEn/2Nju3+xg3lp/gq+vvTD2/2LoXE/Dmw+pWrU9cA1S/cGeqvFm2n2fjnZTCjLz/4yqhcUXBNhp2s8w=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773153149; c=relaxed/simple;
-	bh=6ehyyMN+Vttl2/dmkN2/Dpo2Hk5GuIV7SClRqfw7fbM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Hm/YehU+cmToo90V77D4/Vn0ewD0uVRxQ1IZLg54ZFUv5qF9BzuevwhpL376sX6Sz5bO15U8U2TEBbHariFw+xeGft+ncI13Zdu+sDBEXQ5BOqbp+6o18eboTXlSP2WHHqpn1uJIaU7BuG+0kqhmArIevwY0sIf9iWo/veyz2lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GSI6FPYv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 37F64C2BCB1;
-	Tue, 10 Mar 2026 14:32:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773153149;
-	bh=6ehyyMN+Vttl2/dmkN2/Dpo2Hk5GuIV7SClRqfw7fbM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=GSI6FPYvEtSbQ0qv85y7wAbZ85FYP595Fh36ongxEaGGLn4LbYR0LauxCl6ZwsVIV
-	 Vx65h/mtzjWdzLfVlHbsrSWjIvD5Bcs3dMfxC1Y9zP2Di6BV/nh3EL5vvrtH6Tzg6S
-	 4y1nmZ0mUxTIatvaBL8qEnTg5MwjvBh/VE+syIQ9bg/Whyp6PuPTD39PPct83AZwiY
-	 mrGbrf/4dtScKaMj/YfjKgbX7rUoNiDSOG5U+ct8yNUE9DsAT8bcvM2jB6tLDHpaJr
-	 FbQn3Tnhmtlz3gxBpRVUEBWPUP1i1IEFAU2Z/eSEFziiDzcrMJ0FQPVbqVfxlVSVht
-	 aGNb2BUKgRNPw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 27D15EB1060;
-	Tue, 10 Mar 2026 14:32:29 +0000 (UTC)
-From: Radu Sabau via B4 Relay <devnull+radu.sabau.analog.com@kernel.org>
-Date: Tue, 10 Mar 2026 16:32:25 +0200
-Subject: [PATCH v2 4/4] iio: adc: ad4691: add SPI offload support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBBD27FB05;
+	Tue, 10 Mar 2026 14:37:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.196.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773153476; cv=fail; b=uEuQwhWKYST9oI9DR5lAWLmYtuN8KbFDJDU62qFORU9HN4x0BJ5Xu+55erdM5CfhwhUpN7AYMAMT8zV3Ki2yoW8t/7juppGh68V6/x/EoFB7x0rmTj0yctjAWu2G7XzbF+VMjOKrWsPnv6sjfp+uSRXvOv3NZeuln5kHL7PfjNM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773153476; c=relaxed/simple;
+	bh=qxEZ6InW9qnrQsqtcPgJuwJa6RLSjtZVqPozJ6VeOt0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jajZcYfjQa3+a+WSgWMQnOjUHO091Lbi40GFgm1NTdSH0rJyJWErrI+rqgTpwpaKpUhXjIk+8QshRIH0nKmmYdDgTVj4MGROnz1iY8Yzo7VjpQF2U2rUpFE/yoSLFGpSXRwHuM3VBIt5g5njEC4P/Pr/MntBlzhzsqHr1xkjrK4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=MGTAiLJD; arc=fail smtp.client-ip=40.93.196.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iqWoYnwOzrioXDz+125/BaccW7mr7p8fQTv1vbwCaYLHMR8GJz6F6jguWuTRCKi5s9uOH19Ax5a3r6i64lnSMJ1BVbroYLuHs4WKszhNoeaINnpOiF+Xjk6HOXmwrqI4415UK+WSkfRaBIs2Cw97lxwHsb/VKjg3WV3KGPRo0ts9szPewNmmw0N3+dy5iua30zBpLzSadDGQP5IB2oWDki3zLHZFfqbFErPaa2sljjC3mrc2ZN5/JYlEE6uWZgK2i+kj23o8/sG86jDVUM3B6G2mgk9urAxkly1oifES3WYBwDKWtjbMDoAVV5inDv0rgxLPczpz30dsZivWYMnQJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DjZZV3U5g6Fzx1PJNmiSVWBQ9ZDh9lQoiBnO09xW+BE=;
+ b=YxWU+xR2aod6cM8Hfg4jT8q6KcknnnbnlHK3UTgKtVfcqgoDNKwQB/yHAy5fAZulY9TNDZptJ0CmbxjbOxqeXojZztbOqvGEzt8Pz+M3VFa1IFmEuGGmtFn2KWPhWBMC7texeq2LsedhxL+4dVnzGcbSf+YA9rtGIYExr1tvYtxQKgd8YUuggfVLAaoVktdACsLXxyt6jOYkrB3G9M0DBZuutTC/zCIibuKIzIpozZAo3POWD2/+KAV0Gm0QbsMioKFIChi/hY+VWhk3rVAlw4SaB6QdavkdXXxJKMhAyvipWsyykAAqOwVJm3/FlQVhjIpz87ZGSUTX+uO5BAoc6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DjZZV3U5g6Fzx1PJNmiSVWBQ9ZDh9lQoiBnO09xW+BE=;
+ b=MGTAiLJDiNBmwQ9iddSYYbsbLnVr/ACBPZCkOIWlUmCgRfzUpNBfEmw8UW2CxnSm96ZyOMVpHHPmwnSmHFuJCrrq0V9PVQd27J5LMQ1B2LSFHkKrGVS/mJiXpOOKJiln53mKX3uLO9nLAt6lu2omvuMHdWmKDBWxXLH6i8o628I=
+Received: from SJ0PR03CA0231.namprd03.prod.outlook.com (2603:10b6:a03:39f::26)
+ by SJ0PR10MB5767.namprd10.prod.outlook.com (2603:10b6:a03:3ef::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Tue, 10 Mar
+ 2026 14:37:50 +0000
+Received: from SJ5PEPF000001CD.namprd05.prod.outlook.com
+ (2603:10b6:a03:39f:cafe::54) by SJ0PR03CA0231.outlook.office365.com
+ (2603:10b6:a03:39f::26) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Tue,
+ 10 Mar 2026 14:37:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.195)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.195; helo=lewvzet201.ext.ti.com; pr=C
+Received: from lewvzet201.ext.ti.com (198.47.23.195) by
+ SJ5PEPF000001CD.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Tue, 10 Mar 2026 14:37:50 +0000
+Received: from DLEE213.ent.ti.com (157.170.170.116) by lewvzet201.ext.ti.com
+ (10.4.14.104) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 10 Mar
+ 2026 09:37:49 -0500
+Received: from DLEE207.ent.ti.com (157.170.170.95) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 10 Mar
+ 2026 09:37:49 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE207.ent.ti.com
+ (157.170.170.95) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 10 Mar 2026 09:37:49 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62AEbmh63244992;
+	Tue, 10 Mar 2026 09:37:48 -0500
+Message-ID: <c7c1a4dd-dd10-4490-998b-55f9ec5989a7@ti.com>
+Date: Tue, 10 Mar 2026 09:37:48 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] dma-buf: dma-heap: Keep track of the heap device
+ struct
+To: Albert Esteve <aesteve@redhat.com>, Sumit Semwal
+	<sumit.semwal@linaro.org>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>,
+	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Marek Szyprowski
+	<m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, Rob Herring
+	<robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linaro-mm-sig@lists.linaro.org>,
+	<iommu@lists.linux.dev>, <devicetree@vger.kernel.org>, <mripard@redhat.com>,
+	<echanude@redhat.com>, John Stultz <john.stultz@linaro.org>, Maxime Ripard
+	<mripard@kernel.org>
+References: <20260306-b4-dmabuf-heap-coherent-rmem-v3-0-3d00d36c9bc4@redhat.com>
+ <20260306-b4-dmabuf-heap-coherent-rmem-v3-1-3d00d36c9bc4@redhat.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20260306-b4-dmabuf-heap-coherent-rmem-v3-1-3d00d36c9bc4@redhat.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260310-ad4692-multichannel-sar-adc-driver-v2-4-d9bb8aeb5e17@analog.com>
-References: <20260310-ad4692-multichannel-sar-adc-driver-v2-0-d9bb8aeb5e17@analog.com>
-In-Reply-To: <20260310-ad4692-multichannel-sar-adc-driver-v2-0-d9bb8aeb5e17@analog.com>
-To: Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
- linux-gpio@vger.kernel.org, Radu Sabau <radu.sabau@analog.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773153147; l=18450;
- i=radu.sabau@analog.com; s=20260220; h=from:subject:message-id;
- bh=BHgIa8pe6A8XMJvEo+AxZy5Cw3LLOU1NleJ4RT2NNoA=;
- b=Q/yPNk0DAT4z68vxkEwQKoqZtxKG/l6e454OJkJ78fAiEt5plSzXcuxnJxD2/GMlX8fxEZnVt
- BZuhR63eSzOAlIYW6gr6/F7JOjeSl94/KqIscOPilyGe1cRNpNTmIcC
-X-Developer-Key: i=radu.sabau@analog.com; a=ed25519;
- pk=lDPQHgn9jTdt0vo58Na9lLxLaE2mb330if71Cn+EvFU=
-X-Endpoint-Received: by B4 Relay for radu.sabau@analog.com/20260220 with
- auth_id=642
-X-Original-From: Radu Sabau <radu.sabau@analog.com>
-Reply-To: radu.sabau@analog.com
-X-Rspamd-Queue-Id: D6E9F252EE6
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001CD:EE_|SJ0PR10MB5767:EE_
+X-MS-Office365-Filtering-Correlation-Id: c06f6b08-a82b-4511-afaf-08de7eb29b61
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|82310400026|36860700016|921020|7053199007|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info:
+	FVYxFAka9Y1KaW34yYzAsCTJ2VQxBbgCOk+yMcpco7ZYnJb5lwfH2UlrXS86RTplJ6LI96vz5+RbSksqotQl+bq6gmhoJWh0r97GcciWm6Yks5RWi2UpNI3NmG7DkwxXFB/uL5x9cYIrW6zStGyT3W9pCP2E2K6aapfuFgT5Fyx4HOKC8THGX9TKhb4v+UCwE6x396Vh2X3wbHPObsDo/ejX3kkSTyUlVk4OMxKh6HHPZ0y6XDFp1dNuAAth4WpnZ/b91PUsM2dNAB6pm1ZpmCtFgklIdF+yknTq1l3C0U/H/ti9oAYdRG6UOIrMsI8xeJ7WX+9mToYmPDRLUSu3M3zdU3VMr0TH9mtVj/Cd8iXOUyBUPj18Gai0tSnXHNMkkO249VE7FM1EOyGikdZwh6myy3g9NG7iai159OYtVt5O/uq2hCd7dXoUGTjTkkZKqGLJHClCL3CtlldtreBzInHJehANmG2MYfzrjtFi0XPl++VeevHSfkoSRiBc44lZ5pGVFiXGO4mDjTg2Y/KNcAqHByjG3wCkhMTDfJMMRe7sRly40C++Z9soOghcGE1teF534ft+CUQpUclA+6ZxKpWs6MYxVQfXRexkw6m81vn7185YjLbVUZXAf2CfQcPpRcWHo+IqfHwQLRIuINs292SzdR3Y41iGHYyoOo4SmxEgU6BCSOn32musiWIbLeOG12YOSuzIEhN0A2JglSSyDsJAEZKxKK+zpQsTrRGD8SV1D4xGzEMdDbeF7SDkm+pwWpAzuYNrMAFVgcHP8RyQTbN6JbvrA3pZD58A+6a9F1alTveOH7VCgCp3Qs0Fb+ez
+X-Forefront-Antispam-Report:
+	CIP:198.47.23.195;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet201.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(82310400026)(36860700016)(921020)(7053199007)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	5Z7BflejH2RwoI3as3cCohbyyY6VyptHfZi2+IBygoneUg2FA502IoL5Jhnr4RvmJx8spHKY6YS3ZYH1sW6xAuMZAfqKDtRQxZEvLUveWOsGlplrFayqwpLhLAWybvp1HsA53SpdH5CYjTKtOY4zBzftrKk+lSCZA6A+Bsin9HVeyHOBTrKEY1IizlBeixxMgxRbJWnIzKUTt3bLrnPZRb/Ltu9p9viyRomfVBdUCFUxztEOEnsP3iOq7XqZ5R8xsJ5P6lCZ+k97LDUxFF6UXQI/pQShrzD35RYqt8s17WMaQH7lrZ12Zr6Yk0oy5y/fhmU4QEcnbm3yCCEZvy9r/GkxTA1rhAHrTxl0ROsAAcH8TO4N6emO2Idr9LOHj0SxCtoRaf7+xOc46m7em4bmTLUR+zdXXuGpNo0D9kGHcEDu9KoULCyHnRUwVddyTcI6
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 14:37:50.8055
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c06f6b08-a82b-4511-afaf-08de7eb29b61
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.195];Helo=[lewvzet201.ext.ti.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SJ5PEPF000001CD.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR10MB5767
+X-Rspamd-Queue-Id: 2BD2F2523FE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-273595-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273594-lists,devicetree=lfdr.de,radu.sabau.analog.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,linaro.org:email,ti.com:dkim,ti.com:mid];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	FROM_NEQ_ENVFROM(0.00)[afd@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[radu.sabau@analog.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:replyto,analog.com:email,analog.com:mid]
+	PRECEDENCE_BULK(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
-From: Radu Sabau <radu.sabau@analog.com>
+On 3/6/26 4:36 AM, Albert Esteve wrote:
+> From: John Stultz <john.stultz@linaro.org>
+> 
+> Keep track of the heap device struct.
+> 
+> This will be useful for special DMA allocations
+> and actions.
+> 
+> Signed-off-by: John Stultz <john.stultz@linaro.org>
+> Reviewed-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Albert Esteve <aesteve@redhat.com>
+> ---
+>   drivers/dma-buf/dma-heap.c | 34 ++++++++++++++++++++++++++--------
+>   include/linux/dma-heap.h   |  2 ++
+>   2 files changed, 28 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
+> index ac5f8685a6494..1124d63eb1398 100644
+> --- a/drivers/dma-buf/dma-heap.c
+> +++ b/drivers/dma-buf/dma-heap.c
+> @@ -31,6 +31,7 @@
+>    * @heap_devt:		heap device node
+>    * @list:		list head connecting to list of heaps
+>    * @heap_cdev:		heap char device
+> + * @heap_dev:		heap device
+>    *
+>    * Represents a heap of memory from which buffers can be made.
+>    */
+> @@ -41,6 +42,7 @@ struct dma_heap {
+>   	dev_t heap_devt;
+>   	struct list_head list;
+>   	struct cdev heap_cdev;
+> +	struct device *heap_dev;
+>   };
+>   
+>   static LIST_HEAD(heap_list);
+> @@ -223,6 +225,19 @@ const char *dma_heap_get_name(struct dma_heap *heap)
+>   }
+>   EXPORT_SYMBOL_NS_GPL(dma_heap_get_name, "DMA_BUF_HEAP");
+>   
+> +/**
+> + * dma_heap_get_dev() - get device struct for the heap
+> + * @heap: DMA-Heap to retrieve device struct from
+> + *
+> + * Returns:
+> + * The device struct for the heap.
+> + */
+> +struct device *dma_heap_get_dev(struct dma_heap *heap)
+> +{
+> +	return heap->heap_dev;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(dma_heap_get_dev, "DMA_BUF_HEAP");
+> +
+>   /**
+>    * dma_heap_add - adds a heap to dmabuf heaps
+>    * @exp_info: information needed to register this heap
+> @@ -230,7 +245,6 @@ EXPORT_SYMBOL_NS_GPL(dma_heap_get_name, "DMA_BUF_HEAP");
+>   struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_info)
+>   {
+>   	struct dma_heap *heap, *h, *err_ret;
+> -	struct device *dev_ret;
+>   	unsigned int minor;
+>   	int ret;
+>   
+> @@ -272,14 +286,14 @@ struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_info)
+>   		goto err1;
+>   	}
+>   
+> -	dev_ret = device_create(dma_heap_class,
+> -				NULL,
+> -				heap->heap_devt,
+> -				NULL,
+> -				heap->name);
+> -	if (IS_ERR(dev_ret)) {
+> +	heap->heap_dev = device_create(dma_heap_class,
+> +				       NULL,
+> +				       heap->heap_devt,
+> +				       NULL,
+> +				       heap->name);
+> +	if (IS_ERR(heap->heap_dev)) {
+>   		pr_err("dma_heap: Unable to create device\n");
+> -		err_ret = ERR_CAST(dev_ret);
+> +		err_ret = ERR_CAST(heap->heap_dev);
+>   		goto err2;
+>   	}
+>   
+> @@ -295,6 +309,10 @@ struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_info)
+>   		}
+>   	}
+>   
+> +	/* Make sure it doesn't disappear on us */
+> +	heap->heap_dev = get_device(heap->heap_dev);
+> +
+> +
 
-Add SPI offload support to enable DMA-based, CPU-independent data
-acquisition using the SPI Engine offload framework.
+Is this actually something that matters or could happen? Seems you
+just remove it in the next patch anyway.
 
-When an SPI offload is available (devm_spi_offload_get() succeeds),
-the driver registers a DMA engine IIO buffer and uses dedicated buffer
-setup operations. If no offload is available the existing software
-triggered buffer path is used unchanged.
+Andrew
 
-Both CNV Clock Mode and Manual Mode support offload, but use different
-trigger mechanisms:
-
-CNV Clock Mode: the SPI Engine is triggered by the ADC's DATA_READY
-signal on GP0. For this mode the driver acts as both an SPI offload
-consumer (DMA RX stream, message optimization) and a trigger source
-provider: it registers the GP0/DATA_READY output via
-devm_spi_offload_trigger_register() so the offload framework can
-match the '#trigger-source-cells' phandle from the device tree and
-automatically fire the SPI Engine DMA transfer at end-of-conversion.
-The pre-built SPI message reads all active channels from the AVG_IN
-accumulator registers (2-byte address + 2-byte data per channel,
-one 4-byte transfer each) followed by a state reset word to re-arm
-the accumulator for the next cycle.
-
-Manual Mode: the SPI Engine is triggered by a periodic trigger at
-the configured sampling frequency. The pre-built SPI message uses
-the pipelined CNV-on-CS protocol: N+1 4-byte transfers are issued
-for N active channels (the first result is discarded as garbage from
-the pipeline flush) and the remaining N results are captured by DMA.
-
-All offload transfers use 32-bit frames (bits_per_word=32, len=4) for
-DMA word alignment. In Manual Mode the 4-byte DMA word layout is
-[dummy(8), data_hi(8), data_lo(8), extra(8)]; the channel scan type
-storagebits=32, shift=8, realbits=16 correctly extracts the 16-bit
-ADC result from the middle two bytes.
-
-Kconfig gains a dependency on IIO_BUFFER_DMAENGINE.
-
-Signed-off-by: Radu Sabau <radu.sabau@analog.com>
----
- drivers/iio/adc/Kconfig  |   1 +
- drivers/iio/adc/ad4691.c | 398 +++++++++++++++++++++++++++++++++++++++++++++--
- 2 files changed, 389 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-index d498f16c0816..93f090e9a562 100644
---- a/drivers/iio/adc/Kconfig
-+++ b/drivers/iio/adc/Kconfig
-@@ -144,6 +144,7 @@ config AD4691
- 	depends on SPI
- 	select IIO_BUFFER
- 	select IIO_TRIGGERED_BUFFER
-+	select IIO_BUFFER_DMAENGINE
- 	select REGMAP
- 	help
- 	  Say yes here to build support for Analog Devices AD4691 Family MuxSAR
-diff --git a/drivers/iio/adc/ad4691.c b/drivers/iio/adc/ad4691.c
-index 8b3caf0334ba..2ed384cfc1b9 100644
---- a/drivers/iio/adc/ad4691.c
-+++ b/drivers/iio/adc/ad4691.c
-@@ -9,6 +9,7 @@
- #include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/device.h>
-+#include <linux/dmaengine.h>
- #include <linux/err.h>
- #include <linux/gpio/consumer.h>
- #include <linux/hrtimer.h>
-@@ -22,11 +23,15 @@
- #include <linux/regmap.h>
- #include <linux/regulator/consumer.h>
- #include <linux/spi/spi.h>
-+#include <linux/spi/offload/consumer.h>
-+#include <linux/spi/offload/provider.h>
- #include <linux/util_macros.h>
- #include <linux/units.h>
- #include <linux/unaligned.h>
- 
- #include <linux/iio/buffer.h>
-+#include <linux/iio/buffer-dma.h>
-+#include <linux/iio/buffer-dmaengine.h>
- #include <linux/iio/iio.h>
- 
- #include <linux/iio/trigger.h>
-@@ -47,6 +52,7 @@
-  */
- #define AD4691_MANUAL_MODE_STD_FREQ(x, y)	((y) / (36 * ((x) + 1)))
- #define AD4691_BITS_PER_XFER			24
-+#define AD4691_OFFLOAD_BITS_PER_WORD		32
- #define AD4691_CNV_DUTY_CYCLE_NS		380
- #define AD4691_MAX_CONV_PERIOD_US		800
- 
-@@ -252,6 +258,16 @@ struct ad4691_state {
- 	struct hrtimer			sampling_timer;
- 	ktime_t				sampling_period;
- 
-+	struct spi_offload		*offload;
-+	struct spi_offload_trigger	*offload_trigger;
-+	struct spi_offload_trigger	*offload_trigger_periodic;
-+	u64				offload_trigger_hz;
-+	struct spi_message		offload_msg;
-+	/* Max 16 channel transfers + 1 state reset or NOOP */
-+	struct spi_transfer		offload_xfer[17];
-+	/* TX commands for manual and accumulator modes */
-+	u32				offload_tx_cmd[17];
-+	u32				offload_tx_reset;
- 	/*
- 	 * DMA (thus cache coherency maintenance) may require the
- 	 * transfer buffers to live in their own cache lines.
-@@ -265,6 +281,65 @@ struct ad4691_state {
- 	} scan __aligned(IIO_DMA_MINALIGN);
- };
- 
-+static const struct spi_offload_config ad4691_offload_config = {
-+	.capability_flags = SPI_OFFLOAD_CAP_TRIGGER |
-+			    SPI_OFFLOAD_CAP_RX_STREAM_DMA,
-+};
-+
-+static bool ad4691_offload_trigger_match(struct spi_offload_trigger *trigger,
-+					 enum spi_offload_trigger_type type,
-+					 u64 *args, u32 nargs)
-+{
-+	if (type != SPI_OFFLOAD_TRIGGER_DATA_READY)
-+		return false;
-+
-+	/*
-+	 * Requires 2 args:
-+	 * args[0] is the trigger event (BUSY or DATA_READY).
-+	 * args[1] is the GPIO pin number (only GP0 supported).
-+	 */
-+	if (nargs != 2)
-+		return false;
-+
-+	if (args[0] != AD4691_TRIGGER_EVENT_BUSY &&
-+	    args[0] != AD4691_TRIGGER_EVENT_DATA_READY)
-+		return false;
-+
-+	if (args[1] != AD4691_TRIGGER_PIN_GP0)
-+		return false;
-+
-+	return true;
-+}
-+
-+static int ad4691_offload_trigger_request(struct spi_offload_trigger *trigger,
-+					  enum spi_offload_trigger_type type,
-+					  u64 *args, u32 nargs)
-+{
-+	/*
-+	 * GP0 is configured as DATA_READY or BUSY in ad4691_config()
-+	 * based on the ADC mode. No additional configuration needed here.
-+	 */
-+	if (nargs != 2)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static int ad4691_offload_trigger_validate(struct spi_offload_trigger *trigger,
-+					   struct spi_offload_trigger_config *config)
-+{
-+	if (config->type != SPI_OFFLOAD_TRIGGER_DATA_READY)
-+		return -EINVAL;
-+
-+	return 0;
-+}
-+
-+static const struct spi_offload_trigger_ops ad4691_offload_trigger_ops = {
-+	.match = ad4691_offload_trigger_match,
-+	.request = ad4691_offload_trigger_request,
-+	.validate = ad4691_offload_trigger_validate,
-+};
-+
- static void ad4691_disable_pwm(void *data)
- {
- 	struct pwm_device *pwm = data;
-@@ -442,6 +517,9 @@ static int ad4691_transfer(struct ad4691_state *st, int command,
- static int ad4691_get_sampling_freq(struct ad4691_state *st)
- {
- 	if (st->adc_mode == AD4691_MANUAL_MODE) {
-+		/* Offload uses periodic trigger, non-offload uses hrtimer */
-+		if (st->offload)
-+			return st->offload_trigger_hz;
- 		return DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC,
- 					     ktime_to_ns(st->sampling_period));
- 	}
-@@ -497,6 +575,7 @@ static int ad4691_pwm_get(struct spi_device *spi, struct ad4691_state *st)
- static int ad4691_set_sampling_freq(struct iio_dev *indio_dev, unsigned int freq)
- {
- 	struct ad4691_state *st = iio_priv(indio_dev);
-+	int ret;
- 
- 	IIO_DEV_ACQUIRE_DIRECT_MODE(indio_dev, claim);
- 
-@@ -506,12 +585,31 @@ static int ad4691_set_sampling_freq(struct iio_dev *indio_dev, unsigned int freq
- 	guard(mutex)(&st->lock);
- 
- 	if (st->adc_mode == AD4691_MANUAL_MODE) {
--		if (!freq || freq > st->chip->max_rate)
--			return -EINVAL;
--
--		st->sampling_period = ns_to_ktime(DIV_ROUND_CLOSEST_ULL
--			(NSEC_PER_SEC, freq));
--		return 0;
-+		/* For offload mode, validate and store frequency for periodic trigger */
-+		if (st->offload) {
-+			struct spi_offload_trigger_config config = {
-+				.type = SPI_OFFLOAD_TRIGGER_PERIODIC,
-+				.periodic = {
-+					.frequency_hz = freq,
-+				},
-+			};
-+
-+			ret = spi_offload_trigger_validate(st->offload_trigger_periodic,
-+							   &config);
-+			if (ret)
-+				return ret;
-+
-+			st->offload_trigger_hz = config.periodic.frequency_hz;
-+			return 0;
-+		} else {
-+			/* Non-offload: update hrtimer sampling period */
-+			if (!freq || freq > st->chip->max_rate)
-+				return -EINVAL;
-+
-+			st->sampling_period = ns_to_ktime(DIV_ROUND_CLOSEST_ULL
-+				(NSEC_PER_SEC, freq));
-+			return 0;
-+		}
- 	}
- 
- 	if (!st->conv_trigger)
-@@ -787,6 +885,224 @@ static const struct iio_buffer_setup_ops ad4691_buffer_setup_ops = {
- 	.postdisable = &ad4691_buffer_postdisable,
- };
- 
-+static int ad4691_offload_buffer_postenable(struct iio_dev *indio_dev)
-+{
-+	struct ad4691_state *st = iio_priv(indio_dev);
-+	struct spi_offload_trigger_config config = { };
-+	struct spi_offload_trigger *trigger;
-+	struct spi_transfer *xfer = st->offload_xfer;
-+	int ret, num_xfers = 0;
-+	int active_chans[16];
-+	unsigned int bit;
-+	int n_active = 0;
-+	int i;
-+
-+	memset(xfer, 0, sizeof(st->offload_xfer));
-+
-+	/* Collect active channels in scan order */
-+	iio_for_each_active_channel(indio_dev, bit)
-+		active_chans[n_active++] = bit;
-+
-+	ret = ad4691_enter_conversion_mode(st);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * MANUAL_MODE uses a periodic (PWM) trigger and reads directly from
-+	 * the ADC. CNV_CLOCK_MODE uses the DATA_READY trigger and reads from
-+	 * accumulators.
-+	 */
-+	if (st->adc_mode == AD4691_MANUAL_MODE) {
-+		config.type = SPI_OFFLOAD_TRIGGER_PERIODIC;
-+		config.periodic.frequency_hz = st->offload_trigger_hz;
-+		trigger = st->offload_trigger_periodic;
-+		if (!trigger)
-+			return -EINVAL;
-+	} else {
-+		ret = regmap_write(st->regmap, AD4691_STATE_RESET_REG,
-+				   AD4691_STATE_RESET_ALL);
-+		if (ret)
-+			return ret;
-+
-+		/* Configure accumulator masks - 0 = enabled, 1 = masked */
-+		ret = regmap_write(st->regmap, AD4691_ACC_MASK1_REG,
-+				   ~(*indio_dev->active_scan_mask) & 0xFF);
-+		if (ret)
-+			return ret;
-+
-+		ret = regmap_write(st->regmap, AD4691_ACC_MASK2_REG,
-+				   ~(*indio_dev->active_scan_mask >> 8) & 0xFF);
-+		if (ret)
-+			return ret;
-+
-+		/* Configure sequencer with active channels */
-+		ret = regmap_write(st->regmap, AD4691_STD_SEQ_CONFIG,
-+				   *indio_dev->active_scan_mask);
-+		if (ret)
-+			return ret;
-+
-+		iio_for_each_active_channel(indio_dev, bit) {
-+			ret = regmap_write(st->regmap, AD4691_ACC_COUNT_LIMIT(bit),
-+					   AD4691_ACC_COUNT_VAL);
-+			if (ret)
-+				return ret;
-+		}
-+
-+		config.type = SPI_OFFLOAD_TRIGGER_DATA_READY;
-+		trigger = st->offload_trigger;
-+	}
-+
-+	if (st->adc_mode == AD4691_MANUAL_MODE) {
-+		/*
-+		 * Manual mode with CNV tied to CS: Each CS toggle triggers a
-+		 * conversion AND reads the previous conversion result (pipeline).
-+		 */
-+		for (i = 0; i < n_active; i++) {
-+			st->offload_tx_cmd[num_xfers] = AD4691_ADC_CHAN(active_chans[i]) << 24;
-+			xfer[num_xfers].tx_buf = &st->offload_tx_cmd[num_xfers];
-+			xfer[num_xfers].len = 4;
-+			xfer[num_xfers].bits_per_word = 32;
-+			xfer[num_xfers].speed_hz = st->spi->max_speed_hz;
-+			xfer[num_xfers].cs_change = 1;
-+			xfer[num_xfers].cs_change_delay.value = 1000;
-+			xfer[num_xfers].cs_change_delay.unit = SPI_DELAY_UNIT_NSECS;
-+			/* First transfer RX is garbage - don't capture it */
-+			if (num_xfers)
-+				xfer[num_xfers].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+			num_xfers++;
-+		}
-+
-+		/* Final NOOP to flush pipeline and get last channel's data */
-+		st->offload_tx_cmd[num_xfers] = AD4691_NOOP << 24;
-+		xfer[num_xfers].tx_buf = &st->offload_tx_cmd[num_xfers];
-+		xfer[num_xfers].len = 4;
-+		xfer[num_xfers].bits_per_word = 32;
-+		xfer[num_xfers].speed_hz = st->spi->max_speed_hz;
-+		xfer[num_xfers].cs_change = 0;
-+		xfer[num_xfers].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+		num_xfers++;
-+	} else {
-+		/*
-+		 * CNV_CLOCK_MODE: single transfer per channel (2-byte cmd +
-+		 * 2-byte data = 4 bytes, one 32-bit SPI Engine DMA word).
-+		 * AVG_IN registers are used; RX layout: [cmd_hi, cmd_lo, d_hi, d_lo]
-+		 */
-+		for (i = 0; i < n_active; i++) {
-+			unsigned int reg;
-+			int ch = active_chans[i];
-+
-+			reg = AD4691_AVG_IN(ch);
-+			st->offload_tx_cmd[ch] =
-+				((reg >> 8) | 0x80) << 24 |
-+				(reg & 0xFF) << 16;
-+			xfer[num_xfers].tx_buf = &st->offload_tx_cmd[ch];
-+			xfer[num_xfers].len = 4;
-+			xfer[num_xfers].bits_per_word = 32;
-+			xfer[num_xfers].speed_hz = st->spi->max_speed_hz;
-+			xfer[num_xfers].offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
-+			xfer[num_xfers].cs_change = 1;
-+			num_xfers++;
-+		}
-+
-+		/*
-+		 * State reset: clear accumulator so DATA_READY can fire again.
-+		 * With bits_per_word=32, SPI engine transmits MSB first.
-+		 */
-+		st->offload_tx_reset = ((AD4691_STATE_RESET_REG >> 8) << 24) |
-+				       ((AD4691_STATE_RESET_REG & 0xFF) << 16) |
-+				       (0x01 << 8);
-+
-+		xfer[num_xfers].tx_buf = &st->offload_tx_reset;
-+		xfer[num_xfers].len = 4;
-+		xfer[num_xfers].bits_per_word = 32;
-+		xfer[num_xfers].speed_hz = st->spi->max_speed_hz;
-+		xfer[num_xfers].cs_change = 0;
-+		num_xfers++;
-+	}
-+
-+	if (num_xfers == 0)
-+		return -EINVAL;
-+
-+	/*
-+	 * For MANUAL_MODE, validate that the trigger frequency is low enough
-+	 * for all SPI transfers to complete. Each transfer is 32 bits.
-+	 * Add 50% margin for CS setup/hold and other overhead.
-+	 */
-+	if (st->adc_mode == AD4691_MANUAL_MODE) {
-+		u64 min_period_ns;
-+		u64 trigger_period_ns;
-+
-+		/* Time for all transfers in nanoseconds, with 50% overhead margin */
-+		min_period_ns = div64_u64((u64)num_xfers * AD4691_OFFLOAD_BITS_PER_WORD *
-+					  NSEC_PER_SEC * 3,
-+					  st->spi->max_speed_hz * 2);
-+
-+		trigger_period_ns = div64_u64(NSEC_PER_SEC, st->offload_trigger_hz);
-+
-+		if (trigger_period_ns < min_period_ns)
-+			return -EINVAL;
-+	}
-+
-+	spi_message_init_with_transfers(&st->offload_msg, xfer, num_xfers);
-+	st->offload_msg.offload = st->offload;
-+
-+	ret = spi_optimize_message(st->spi, &st->offload_msg);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * For CNV_CLOCK_MODE, start conversions before enabling the trigger.
-+	 * If the trigger is enabled first, the SPI engine blocks waiting for
-+	 * DATA_READY, and any subsequent SPI write times out.
-+	 *
-+	 * MANUAL_MODE: CNV is tied to CS; conversion starts with each transfer.
-+	 */
-+	if (st->adc_mode == AD4691_CNV_CLOCK_MODE) {
-+		ret = ad4691_sampling_enable(st, true);
-+		if (ret)
-+			goto err_unoptimize_message;
-+	}
-+
-+	ret = spi_offload_trigger_enable(st->offload, trigger, &config);
-+	if (ret)
-+		goto err_sampling_disable;
-+
-+	return 0;
-+
-+err_sampling_disable:
-+	if (st->adc_mode == AD4691_CNV_CLOCK_MODE)
-+		ad4691_sampling_enable(st, false);
-+err_unoptimize_message:
-+	spi_unoptimize_message(&st->offload_msg);
-+	return ret;
-+}
-+
-+static int ad4691_offload_buffer_predisable(struct iio_dev *indio_dev)
-+{
-+	struct ad4691_state *st = iio_priv(indio_dev);
-+	struct spi_offload_trigger *trigger;
-+	int ret;
-+
-+	trigger = (st->adc_mode == AD4691_MANUAL_MODE) ?
-+		  st->offload_trigger_periodic : st->offload_trigger;
-+
-+	spi_offload_trigger_disable(st->offload, trigger);
-+	spi_unoptimize_message(&st->offload_msg);
-+
-+	if (st->adc_mode == AD4691_CNV_CLOCK_MODE) {
-+		ret = ad4691_sampling_enable(st, false);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return ad4691_exit_conversion_mode(st);
-+}
-+
-+static const struct iio_buffer_setup_ops ad4691_offload_buffer_setup_ops = {
-+	.postenable = &ad4691_offload_buffer_postenable,
-+	.predisable = &ad4691_offload_buffer_predisable,
-+};
-+
- static irqreturn_t ad4691_irq(int irq, void *private)
- {
- 	struct iio_dev *indio_dev = private;
-@@ -981,6 +1297,54 @@ static int ad4691_config(struct ad4691_state *st)
- 	return regmap_write(st->regmap, AD4691_GPIO_MODE1_REG, AD4691_ADC_BUSY);
- }
- 
-+static int ad4691_setup_offload(struct iio_dev *indio_dev,
-+				struct ad4691_state *st)
-+{
-+	struct device *dev = &st->spi->dev;
-+	struct dma_chan *rx_dma;
-+	int ret;
-+
-+	if (st->adc_mode == AD4691_MANUAL_MODE) {
-+		st->offload_trigger_periodic = devm_spi_offload_trigger_get(dev,
-+				st->offload, SPI_OFFLOAD_TRIGGER_PERIODIC);
-+		if (IS_ERR(st->offload_trigger_periodic))
-+			return dev_err_probe(dev,
-+				PTR_ERR(st->offload_trigger_periodic),
-+				"failed to get periodic offload trigger\n");
-+
-+		st->offload_trigger_hz = AD4691_MANUAL_MODE_STD_FREQ(st->chip->num_channels,
-+								      st->spi->max_speed_hz);
-+	} else {
-+		struct spi_offload_trigger_info trigger_info = {
-+			.fwnode = dev_fwnode(dev),
-+			.ops = &ad4691_offload_trigger_ops,
-+			.priv = st,
-+		};
-+
-+		ret = devm_spi_offload_trigger_register(dev, &trigger_info);
-+		if (ret)
-+			return dev_err_probe(dev, ret,
-+					     "failed to register offload trigger\n");
-+
-+		st->offload_trigger = devm_spi_offload_trigger_get(dev,
-+				st->offload, SPI_OFFLOAD_TRIGGER_DATA_READY);
-+		if (IS_ERR(st->offload_trigger))
-+			return dev_err_probe(dev, PTR_ERR(st->offload_trigger),
-+					     "failed to get offload trigger\n");
-+	}
-+
-+	rx_dma = devm_spi_offload_rx_stream_request_dma_chan(dev, st->offload);
-+	if (IS_ERR(rx_dma))
-+		return dev_err_probe(dev, PTR_ERR(rx_dma),
-+				     "failed to get offload RX DMA\n");
-+
-+	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_HARDWARE;
-+	indio_dev->setup_ops = &ad4691_offload_buffer_setup_ops;
-+
-+	return devm_iio_dmaengine_buffer_setup_with_handle(dev, indio_dev,
-+			rx_dma, IIO_BUFFER_DIRECTION_IN);
-+}
-+
- static int ad4691_setup_triggered_buffer(struct iio_dev *indio_dev,
- 					 struct ad4691_state *st)
- {
-@@ -1064,6 +1428,14 @@ static int ad4691_probe(struct spi_device *spi)
- 		return dev_err_probe(dev, PTR_ERR(st->regmap),
- 				     "Failed to initialize regmap\n");
- 
-+	st->offload = devm_spi_offload_get(dev, spi, &ad4691_offload_config);
-+	if (IS_ERR(st->offload)) {
-+		if (PTR_ERR(st->offload) != -ENODEV)
-+			return dev_err_probe(dev, PTR_ERR(st->offload),
-+					     "failed to get SPI offload\n");
-+		st->offload = NULL;
-+	}
-+
- 	st->chip = spi_get_device_match_data(spi);
- 	if (!st->chip)
- 		return dev_err_probe(dev, -ENODEV, "Could not find chip info\n");
-@@ -1088,10 +1460,15 @@ static int ad4691_probe(struct spi_device *spi)
- 		? st->chip->manual_channels : st->chip->channels;
- 	indio_dev->num_channels = st->chip->num_channels;
- 
--	ret = ad4691_setup_triggered_buffer(indio_dev, st);
--	if (ret)
--		return ret;
--
-+	if (st->offload) {
-+		ret = ad4691_setup_offload(indio_dev, st);
-+		if (ret)
-+			return ret;
-+	} else {
-+		ret = ad4691_setup_triggered_buffer(indio_dev, st);
-+		if (ret)
-+			return ret;
-+	}
- 	return devm_iio_device_register(dev, indio_dev);
- }
- 
-@@ -1126,3 +1503,4 @@ module_spi_driver(ad4691_driver);
- MODULE_AUTHOR("Radu Sabau <radu.sabau@analog.com>");
- MODULE_DESCRIPTION("Analog Devices AD4691 Family ADC Driver");
- MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("IIO_DMA_BUFFER");
-
--- 
-2.43.0
-
+>   	/* Add heap to the list */
+>   	list_add(&heap->list, &heap_list);
+>   	mutex_unlock(&heap_list_lock);
+> diff --git a/include/linux/dma-heap.h b/include/linux/dma-heap.h
+> index 648328a64b27e..493085e69b70e 100644
+> --- a/include/linux/dma-heap.h
+> +++ b/include/linux/dma-heap.h
+> @@ -12,6 +12,7 @@
+>   #include <linux/types.h>
+>   
+>   struct dma_heap;
+> +struct device;
+>   
+>   /**
+>    * struct dma_heap_ops - ops to operate on a given heap
+> @@ -43,6 +44,7 @@ struct dma_heap_export_info {
+>   void *dma_heap_get_drvdata(struct dma_heap *heap);
+>   
+>   const char *dma_heap_get_name(struct dma_heap *heap);
+> +struct device *dma_heap_get_dev(struct dma_heap *heap);
+>   
+>   struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_info);
+>   
+> 
 
 
