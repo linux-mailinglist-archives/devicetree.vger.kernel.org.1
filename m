@@ -1,1543 +1,215 @@
-Return-Path: <devicetree+bounces-273292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273294-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0GcGJjbBr2kucAIAu9opvQ
-	(envelope-from <devicetree+bounces-273292-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:59:02 +0100
+	id wDRiF2rDr2mfcAIAu9opvQ
+	(envelope-from <devicetree+bounces-273294-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:08:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FA5246100
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:59:01 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B553E2461F8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:08:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 099DC3097FAD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 06:58:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 74DA4301DAD3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0215D3D6CA2;
-	Tue, 10 Mar 2026 06:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61C13D523F;
+	Tue, 10 Mar 2026 07:08:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="bcn7Fgj6";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="VjO9RtmU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA903D413F;
-	Tue, 10 Mar 2026 06:57:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCAC6326D55
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 07:08:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773125868; cv=none; b=mMj6sTXUDNuvnq/ZWdkqh6SQS1n32Aj4zYVPAr10pn9ImLgrujCb8WXokp0++MejK5Df2Q74OoCPO3Qui/2cybZD3E2Q7UJv/euPvoEnAIKt7KggVmdNStfldEShXXrj53gMv5dMRbQgwvKF9GoHGSDC1wk62EYVg8wB0tUbvL0=
+	t=1773126503; cv=none; b=tMZDxljV62Var/dGEQTEqxikBSYCeqHMMxRNgzYHQFGPGLYa9YUCYgVqJpC9l0TMRYMbeWeMu3vF61ErvwYEERXzWByhO+6XK4NzPMKMr7KcHKPffu9bKSCWbhlIm1frQaJ8RvXtu2LvB74zMoyxLIECPwWbCrb6mkaz1pdcOHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773125868; c=relaxed/simple;
-	bh=fCfR5Bbjd2MBx+AxsLgTeW4j9jwyj3Faasmu/uzWulk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rwqWYKwTo4f+6R/SFfgc1OWCal2B4bsoH8zDY70Eetrvp8qQNWwZ1ZyfhaaHv8j45PMtyU6oy6OVEp+P+v4dtgQu7TooT/fTaESM7v5OlyhNQWu4DxSRL2eCMA/WinSXt5HPoGXhaQMGVlDV3sII8u5h4N34rxNLEcv8Oo7Wzoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A1978201E9A;
-	Tue, 10 Mar 2026 07:57:39 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 19038201ECE;
-	Tue, 10 Mar 2026 07:57:39 +0100 (CET)
-Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id BA31018000B0;
-	Tue, 10 Mar 2026 14:57:37 +0800 (+08)
-From: Lakshay Piplani <lakshay.piplani@nxp.com>
-To: linux-kernel@vger.kernel.org,
-	linux-i3c@lists.infradead.org,
-	alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	broonie@kernel.org,
-	lee@kernel.org,
-	Frank.Li@nxp.com,
-	lgirdwood@gmail.com
-Cc: vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com,
-	aman.kumarpandey@nxp.com,
-	lakshay.piplani@nxp.com
-Subject: [PATCH v6 7/7] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x I3C hub functionality
-Date: Tue, 10 Mar 2026 12:27:27 +0530
-Message-Id: <20260310065727.3759342-7-lakshay.piplani@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260310065727.3759342-1-lakshay.piplani@nxp.com>
-References: <20260310065727.3759342-1-lakshay.piplani@nxp.com>
+	s=arc-20240116; t=1773126503; c=relaxed/simple;
+	bh=RhYHXM2kc6dVccmgVDQQtGwFmfvqJL/62i+Pry2FKr4=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=M1guJq1nv+SEuihE+QONLsQ5ghjnZtMQ3Zon6XqTiOqhWi+mNT2RikB/RvgXHQ8Sn1MSVwmdqgvL5WJ/ACGgqaG4Xl3QKlBj2RMI07KWvtJkIaVa0zV+pGDhjo5OBwpxJjBkGRxv08sBzA+R4IzSWPx4UsVTjgy7QPWCAZkx/1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=bcn7Fgj6; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=VjO9RtmU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62A6VS7H2021624
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 07:08:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vtePKHcyEc4PtQGw91imrhnMDPIGumdm1X+oOMpFwHA=; b=bcn7Fgj6JLWL7avW
+	XyB7KQ88RIWAK6dg0Czz211KLuNOWPtDTpQ8OgyoDxvE98Lny5THFiYY9I2+QKuQ
+	pn2hUuiYiLavqlOFHW+dXFnOmrVrPRGZNCYw7znNQxu9Tk7o4rTJcjr14ir8QRDd
+	LFksscAnFIJZASQ0jM6ICZo+2ErQM0TtNOSzx2cIhImOWVbQjHYJ0DvZrDuWSWdB
+	c/LqYQP0SGE7/SsdzjnEouhXp3zIPQJIGd2u4eb4bK/4A3WXjLOt2Wq16I7jWjV5
+	9D2Es/+1opcE0jW23IiURhnPbvQJ/LMa9a1ZT/RKuLkAz8P2Je/SkaF0T9ZnUOeu
+	nlPCXw==
+Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cte3w83vn-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 07:08:22 +0000 (GMT)
+Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2ae53ec06b0so448563635ad.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 00:08:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773126501; x=1773731301; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vtePKHcyEc4PtQGw91imrhnMDPIGumdm1X+oOMpFwHA=;
+        b=VjO9RtmUUVgl8hC1WXdYRhBnEmQksm1y0oY+Ez0BF4XO0B9J+KfKzdzTFB4MgDk559
+         G8foE8+0FXXj4iE9YwrUtbvUoDbeoJ9f6yDQG5Byy0U7eI9Z4fld3wMnhHcw81hDb1DP
+         w4TrMINObFdTcN9t5tO8kUF7xh4AEJXgeiDO0wqXtvTYeUMSZ7MnyFX8JyqZB/33SLHa
+         VC3VusuYS7OBZcylkATTJwjB5SWZc82svLDYCzGqn7uFgaQl48yFy3dcpOrqov+GNjR4
+         FgyJw7ov6wIEogM/muemO0QK8Z+loOcEO6ycTLODtPVlGk72y6wLzIUcA4zisNuzvidz
+         pdmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773126501; x=1773731301;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:cc:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vtePKHcyEc4PtQGw91imrhnMDPIGumdm1X+oOMpFwHA=;
+        b=dfhe6gZ8FWt+kX5bgKmTkVRvyNAPTy2Ah32LTKfrC+aeqFW00UlbcbxY0k4opso4fM
+         4iHOWOp+h53DXijrEzcm+M6Y9h+YxRqlYPXPqyK1+eqV0+1S2TbaYJRSjw/oOAdrJY9I
+         WXL38Gxfdtz7gdtYggqlVN8Nl/HgA6fUkseaRLD92LMq7FNTuHRSsM8BTmzCqFjPmRwF
+         JzwLmC1G9SlFDwGu3aEe6Ctsc+z4VyzG+P8ym1vqaT8Lu2l4e8TSNMNfRO9Io0lczZzi
+         QFqzC3u5SI4a/NUd+KaSfAbg3pErfEiMX97AXv7Q6YF1seP/O4UwHQ40lVbb/FX0m/oB
+         a1TA==
+X-Forwarded-Encrypted: i=1; AJvYcCXgCK5q1qhJkzTTujoQbbg97gmvOYJVWztKY+id4Y+ohIm+vBK+3DBCdWD8VUmlIrhSSCTOy+IjkRBa@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIhXDKfkJpURV8/xnUy8SX4zYVJ6/HhnJzmMd1n1pH1FaoXZ2l
+	7GzzDnR0IcerD6fhlNLnUb9lRltoQswxuxr3HDT0oowGtHaSRwoRjo61x7eyNYgpyF3r5N1G/iq
+	zTV9pnBEamzduYEymboV4A9pe66bO+LNNCw2B0FKd3vWoRnDxC/zJcAKA1TOHXTaV
+X-Gm-Gg: ATEYQzwpZr+A/tbt3jGihoKnXZFhBqFLfuKbBIEmR/megtjAsHF1HNwbCH7MB0ExmIp
+	ztg0QESXg2ws5FktVJ5K0o2nkKOfixIPZxHZMk84a9DNDLUHjln5Zv3uJ/3HCrU4xJpRQ+7gJ8I
+	UECpgU4xOTyUA9PPEYC/9vfJz761gmKLNL+GaGnRhjXAFsXNywoaEfxWr94GMI8EbiM3/U74KEX
+	WqSolqH5BS9eggpqwHOUUkEf6+2ZX5iF7HtCKWM5oQcwRFPhWoe/BLlHS+DMEH/fGLasnXp8VDo
+	13YsZ/5oRrnQPWeINvOEHRCSeVgjEL/T8lohPSP3Ro6OoMLkqFiZQs5AvOAv7dKxSDO9gmeY6U9
+	ZqsJ25fLk4KPXoFvWs+vZbu6MxblcFeYn47pjyxTVC2BDjzdDc94l8tWDdRBS/hArb/7D3zsAQl
+	Sp4aB8kdqgi/ppJIE=
+X-Received: by 2002:a17:903:41cb:b0:2ae:41d1:276b with SMTP id d9443c01a7336-2ae82477146mr161130285ad.47.1773126501403;
+        Tue, 10 Mar 2026 00:08:21 -0700 (PDT)
+X-Received: by 2002:a17:903:41cb:b0:2ae:41d1:276b with SMTP id d9443c01a7336-2ae82477146mr161129985ad.47.1773126500963;
+        Tue, 10 Mar 2026 00:08:20 -0700 (PDT)
+Received: from [10.249.19.96] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae83fb516esm132605425ad.75.2026.03.10.00.08.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Mar 2026 00:08:20 -0700 (PDT)
+Message-ID: <d002e9cd-fc2e-4dfe-8edc-9d88cad075a1@oss.qualcomm.com>
+Date: Tue, 10 Mar 2026 15:08:15 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Rspamd-Queue-Id: B3FA5246100
+User-Agent: Mozilla Thunderbird
+Cc: wangao.wang@oss.qualcomm.com, Bryan O'Donoghue <bod@kernel.org>,
+        Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: media: qcom,sm8550-iris: Add X1P42100
+ compatible
+To: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20260306-enable_iris_on_purwa-v2-0-75fa80a0a9e3@oss.qualcomm.com>
+ <20260306-enable_iris_on_purwa-v2-1-75fa80a0a9e3@oss.qualcomm.com>
+ <20260307-olive-honeybee-of-luxury-b22bbd@quoll>
+ <2e0e4ad0-b012-40dd-8b35-7555390bf44a@kernel.org>
+Content-Language: en-US
+From: Wangao Wang <wangao.wang@oss.qualcomm.com>
+In-Reply-To: <2e0e4ad0-b012-40dd-8b35-7555390bf44a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEwMDA1OSBTYWx0ZWRfX6/dmrf6ibzsR
+ Tmxz4pGGsnkIGaCblh/WJZ3q8JrXc4K85DYkaYODFrWg0fCfMstgJnpnvAP13EAabX47f0u/r3u
+ DtIWR1ZlQ0VY5Pfuj29E38VpnGk6a5kO6/QO5zo66d2uWnX/5+Vi5i0dwfyh2be1AhlXIJnyJa9
+ 6yspx7/pd9oQhOoJa/mS6NVdt4zabZ6vY/8CNmGIhzEYnvZpcwypEdWwTgl62y3IzBQYExiCnVy
+ 6GWo1IjbyCH0L3+1dOdrATwnFEpKfG3nhMOqidJN7IxxPRF8Mnwvv24ZofiQNQYbH8FKOzLMiqZ
+ d9DCwravg5DBHG5/BdhWwPBM29Uc21MLflVVqloSpE5TFuVEJ8uvLtck+1HGGO6ZebuvrR2QxW8
+ QOMXCdQ9DkYMLY+kI6PzjhKJM63I0qOa8Fckw1gYpm5ZSC50OYbPIio54k0HXJpqWYjOYQ4PHp2
+ QLbsvNxqlYbE5QMDVWg==
+X-Authority-Analysis: v=2.4 cv=GtFPO01C c=1 sm=1 tr=0 ts=69afc366 cx=c_pps
+ a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
+ a=eNhI0xmxWCpRIF5FWwQA:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Proofpoint-ORIG-GUID: XIIB-v0_xrQsKftpptLNzkvZ_3dXasJk
+X-Proofpoint-GUID: XIIB-v0_xrQsKftpptLNzkvZ_3dXasJk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-10_01,2026-03-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0
+ spamscore=0 suspectscore=0 priorityscore=1501 impostorscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603100059
+X-Rspamd-Queue-Id: B553E2461F8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.64 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273292-lists,devicetree=lfdr.de];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[lakshay.piplani@nxp.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-273294-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:mid,nxp.com:email,infradead.org:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[wangao.wang@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 
-Add I3C hub functionality for the NXP P3H2x4x family of multiport hubs.
-These devices support downstream target ports that can be configured
-as I3C, I2C, or SMBus.
 
-This driver enables:
-- I3C/I2C communication between host and hub
-- Transparent communication with downstream devices
-- Target port configuration (I3C/I2C/SMBus)
-- MCTP device support
-- In-band interrupt handling
+On 2026/3/7 21:19, Krzysztof Kozlowski wrote:
+> On 07/03/2026 14:13, Krzysztof Kozlowski wrote:
+>> On Fri, Mar 06, 2026 at 04:44:29PM +0800, Wangao Wang wrote:
+>>> Document the new compatible "qcom,x1p42100-iris", which is compatible
+>>> with SM8550 but adds an additional set of clocks. The BSE clock is
+>>
+>> Then please express the compatibility. Device is or is not compatible
+>> and you just wrote that it is.
+>>
+> 
+> ... so maybe you wanted to say they are not compatible?
+> 
+> Best regards,
+> Krzysztof
 
-P3H2440/P3H2441 support 4 target ports.
-P3H2840/P3H2841 support 8 target ports.
 
-Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
-Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
-Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+They are not DT-compatible. They share the same IP and binding, but
+x1p42100 is a separate compatible without fallback to sm8550.
 
----
-Changes in v6:
- - Remove generic I3C code and keep reg dependent code only. 
+I will correct the commit message in the next revision.
 
-Changes in v5:
- - Updated supply names.
-
-Changes in v4:
- - Split the driver into three separate patches (mfd, regulator and I3C hub)
- - Added support for NXP P3H2x4x I3C hub functionality
- - Integrated hub driver with its on-die regulator
- 
-Changes in v3:
- - Added MFD (Multi-Function Device) support for I3C hub and on-die regulator
-
-Changes in v2:
- - Refined coding style and incorporated review feedback
- - Updated directory structure
- - Revised logic for parsing DTS nodes
----
----
- MAINTAINERS                              |   1 +
- drivers/i3c/Kconfig                      |   1 +
- drivers/i3c/Makefile                     |   1 +
- drivers/i3c/hub/Kconfig                  |  11 +
- drivers/i3c/hub/Makefile                 |   4 +
- drivers/i3c/hub/p3h2840_i3c_hub.h        | 342 ++++++++++++++++++
- drivers/i3c/hub/p3h2840_i3c_hub_common.c | 398 +++++++++++++++++++++
- drivers/i3c/hub/p3h2840_i3c_hub_i3c.c    | 119 +++++++
- drivers/i3c/hub/p3h2840_i3c_hub_smbus.c  | 423 +++++++++++++++++++++++
- include/linux/i3c/device.h               |   1 +
- 10 files changed, 1301 insertions(+)
- create mode 100644 drivers/i3c/hub/Kconfig
- create mode 100644 drivers/i3c/hub/Makefile
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub.h
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_common.c
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
- create mode 100644 drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 7613b4b59290..0ffd1a8183fd 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -19116,6 +19116,7 @@ L:	linux-i3c-owner@lists.infradead.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
- F:	drivers/i3c/hub.c
-+F:	drivers/i3c/hub/*
- F:	drivers/mfd/p3h2840.c
- F:	drivers/regulator/p3h2840_i3c_hub_regulator.c
- F:	include/linux/i3c/hub.h
-diff --git a/drivers/i3c/Kconfig b/drivers/i3c/Kconfig
-index 889d781f099b..972ba9aa2d55 100644
---- a/drivers/i3c/Kconfig
-+++ b/drivers/i3c/Kconfig
-@@ -36,4 +36,5 @@ config I3C_HUB
- 
- 	  Say Y here if your platform includes an I3C hub device
- 
-+source "drivers/i3c/hub/Kconfig"
- endif # I3C
-diff --git a/drivers/i3c/Makefile b/drivers/i3c/Makefile
-index 9ddee56a6338..cf165cb75786 100644
---- a/drivers/i3c/Makefile
-+++ b/drivers/i3c/Makefile
-@@ -3,3 +3,4 @@ i3c-y				:= device.o master.o
- obj-$(CONFIG_I3C)		+= i3c.o
- obj-$(CONFIG_I3C)		+= master/
- obj-$(CONFIG_I3C_HUB)		+= hub.o
-+obj-$(CONFIG_I3C)		+= hub/
-diff --git a/drivers/i3c/hub/Kconfig b/drivers/i3c/hub/Kconfig
-new file mode 100644
-index 000000000000..93eca168e764
---- /dev/null
-+++ b/drivers/i3c/hub/Kconfig
-@@ -0,0 +1,11 @@
-+# SPDX-License-Identifier: GPL-2.0
-+# Copyright 2025 NXP
-+config P3H2X4X_I3C_HUB
-+    tristate "P3H2X4X I3C HUB support"
-+    depends on MFD_P3H2X4X
-+    select I3C_HUB
-+    help
-+      This enables support for NXP P3H244x/P3H284x I3C HUB. These hubs
-+      connect to a host via I3C/I2C/SMBus and allow communication with
-+      multiple downstream peripherals. The Say Y or M here to use I3C
-+      HUB driver to configure I3C HUB device.
-diff --git a/drivers/i3c/hub/Makefile b/drivers/i3c/hub/Makefile
-new file mode 100644
-index 000000000000..9dbd8a7b4184
---- /dev/null
-+++ b/drivers/i3c/hub/Makefile
-@@ -0,0 +1,4 @@
-+# SPDX-License-Identifier: GPL-2.0
-+# Copyright 2025 NXP
-+p3h2840_i3c_hub-y := p3h2840_i3c_hub_common.o p3h2840_i3c_hub_i3c.o p3h2840_i3c_hub_smbus.o
-+obj-$(CONFIG_P3H2X4X_I3C_HUB)	+= p3h2840_i3c_hub.o
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub.h b/drivers/i3c/hub/p3h2840_i3c_hub.h
-new file mode 100644
-index 000000000000..ce19deec8752
---- /dev/null
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub.h
-@@ -0,0 +1,342 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright 2025-2026 NXP
-+ * This header file contain private device structure definition.
-+ */
-+
-+#ifndef P3H2840_I3C_HUB_H
-+#define P3H2840_I3C_HUB_H
-+
-+#include <linux/bitfield.h>
-+#include <linux/i2c.h>
-+#include <linux/i3c/device.h>
-+#include <linux/i3c/hub.h>
-+#include <linux/i3c/master.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/regmap.h>
-+
-+/* I3C HUB REGISTERS */
-+
-+/* Device Information Registers */
-+#define P3H2x4x_DEV_INFO_0					0x00
-+#define P3H2x4x_DEV_INFO_1					0x01
-+#define P3H2x4x_PID_5						0x02
-+#define P3H2x4x_PID_4						0x03
-+#define P3H2x4x_PID_3						0x04
-+#define P3H2x4x_PID_2						0x05
-+#define P3H2x4x_PID_1						0x06
-+#define P3H2x4x_PID_0						0x07
-+#define P3H2x4x_BCR						0x08
-+#define P3H2x4x_DCR						0x09
-+#define P3H2x4x_DEV_CAPAB					0x0a
-+#define P3H2x4x_DEV_REV						0x0b
-+
-+/* Device Configuration Registers */
-+#define P3H2x4x_CP_CONF						0x11
-+#define P3H2x4x_TP_ENABLE					0x12
-+
-+#define P3H2x4x_DEV_CONF					0x13
-+#define P3H2x4x_IO_STRENGTH					0x14
-+#define P3H2x4x_TP0145_IO_STRENGTH_MASK				GENMASK(1, 0)
-+#define P3H2x4x_TP0145_IO_STRENGTH(x)	\
-+		FIELD_PREP(P3H2x4x_TP0145_IO_STRENGTH_MASK, x)
-+#define P3H2x4x_TP2367_IO_STRENGTH_MASK				GENMASK(3, 2)
-+#define P3H2x4x_TP2367_IO_STRENGTH(x)	\
-+		FIELD_PREP(P3H2x4x_TP2367_IO_STRENGTH_MASK, x)
-+#define P3H2x4x_CP0_IO_STRENGTH_MASK				GENMASK(5, 4)
-+#define P3H2x4x_CP0_IO_STRENGTH(x)	\
-+		FIELD_PREP(P3H2x4x_CP0_IO_STRENGTH_MASK, x)
-+#define P3H2x4x_CP1_IO_STRENGTH_MASK				GENMASK(7, 6)
-+#define P3H2x4x_CP1_IO_STRENGTH(x)	\
-+		FIELD_PREP(P3H2x4x_CP1_IO_STRENGTH_MASK, x)
-+#define P3H2x4x_IO_STRENGTH_MASK					GENMASK(7, 0)
-+
-+#define P3H2x4x_TP_IO_MODE_CONF					0x17
-+#define P3H2x4x_TP_SMBUS_AGNT_EN				0x18
-+
-+#define P3H2x4x_LDO_AND_PULLUP_CONF				0x19
-+
-+#define P3H2x4x_TP0145_PULLUP_CONF_MASK				GENMASK(7, 6)
-+#define P3H2x4x_TP0145_PULLUP_CONF(x)	\
-+		FIELD_PREP(P3H2x4x_TP0145_PULLUP_CONF_MASK, x)
-+#define P3H2x4x_TP2367_PULLUP_CONF_MASK				GENMASK(5, 4)
-+#define P3H2x4x_TP2367_PULLUP_CONF(x)	\
-+		FIELD_PREP(P3H2x4x_TP2367_PULLUP_CONF_MASK, x)
-+#define P3H2x4x_PULLUP_CONF_MASK					GENMASK(7, 4)
-+
-+#define P3H2x4x_CP_IBI_CONF					0x1a
-+
-+#define P3H2x4x_TP_SMBUS_AGNT_IBI_CONFIG			0x1b
-+
-+#define P3H2x4x_IBI_MDB_CUSTOM					0x1c
-+#define P3H2x4x_JEDEC_CONTEXT_ID				0x1d
-+#define P3H2x4x_TP_GPIO_MODE_EN					0x1e
-+
-+/* Device Status and IBI Registers */
-+#define P3H2x4x_DEV_AND_IBI_STS					0x20
-+#define P3H2x4x_TP_SMBUS_AGNT_IBI_STS				0x21
-+#define P3H2x4x_SMBUS_AGENT_EVENT_FLAG_STATUS			BIT(4)
-+
-+/* Controller Port Control/Status Registers */
-+#define P3H2x4x_CP_MUX_SET					0x38
-+#define P3H2x4x_CONTROLLER_PORT_MUX_REQ				BIT(0)
-+#define P3H2x4x_CP_MUX_STS					0x39
-+#define P3H2x4x_CONTROLLER_PORT_MUX_CONNECTION_STATUS		BIT(0)
-+
-+/* Target Ports Control Registers */
-+#define P3H2x4x_TP_SMBUS_AGNT_TRANS_START			0x50
-+#define P3H2x4x_TP_NET_CON_CONF					0x51
-+
-+#define P3H2x4x_TP_PULLUP_EN					0x53
-+
-+#define P3H2x4x_TP_SCL_OUT_EN					0x54
-+#define P3H2x4x_TP_SDA_OUT_EN					0x55
-+#define P3H2x4x_TP_SCL_OUT_LEVEL				0x56
-+#define P3H2x4x_TP_SDA_OUT_LEVEL				0x57
-+#define P3H2x4x_TP_IN_DETECT_MODE_CONF				0x58
-+#define P3H2x4x_TP_SCL_IN_DETECT_IBI_EN				0x59
-+#define P3H2x4x_TP_SDA_IN_DETECT_IBI_EN				0x5a
-+
-+/* Target Ports Status Registers */
-+#define P3H2x4x_TP_SCL_IN_LEVEL_STS				0x60
-+#define P3H2x4x_TP_SDA_IN_LEVEL_STS				0x61
-+#define P3H2x4x_TP_SCL_IN_DETECT_FLG				0x62
-+#define P3H2x4x_TP_SDA_IN_DETECT_FLG				0x63
-+
-+/* SMBus Agent Configuration and Status Registers */
-+#define P3H2x4x_TP0_SMBUS_AGNT_STS				0x64
-+#define P3H2x4x_TP1_SMBUS_AGNT_STS				0x65
-+#define P3H2x4x_TP2_SMBUS_AGNT_STS				0x66
-+#define P3H2x4x_TP3_SMBUS_AGNT_STS				0x67
-+#define P3H2x4x_TP4_SMBUS_AGNT_STS				0x68
-+#define P3H2x4x_TP5_SMBUS_AGNT_STS				0x69
-+#define P3H2x4x_TP6_SMBUS_AGNT_STS				0x6a
-+#define P3H2x4x_TP7_SMBUS_AGNT_STS				0x6b
-+#define P3H2x4x_ONCHIP_TD_AND_SMBUS_AGNT_CONF			0x6c
-+
-+/* buf receive flag set */
-+#define P3H2x4x_TARGET_BUF_CA_TF				BIT(0)
-+#define P3H2x4x_TARGET_BUF_0_RECEIVE				BIT(1)
-+#define P3H2x4x_TARGET_BUF_1_RECEIVE				BIT(2)
-+#define P3H2x4x_TARGET_BUF_0_1_RECEIVE				GENMASK(2, 1)
-+#define P3H2x4x_TARGET_BUF_OVRFL				GENMASK(3, 1)
-+#define BUF_RECEIVED_FLAG_MASK					GENMASK(3, 1)
-+#define BUF_RECEIVED_FLAG_TF_MASK				GENMASK(3, 0)
-+
-+#define P3H2x4x_TARGET_AGENT_LOCAL_DEV				0x11
-+#define P3H2x4x_TARGET_BUFF_0_PAGE				0x12
-+#define P3H2x4x_TARGET_BUFF_1_PAGE				0x13
-+
-+/* Special Function Registers */
-+#define P3H2x4x_LDO_AND_CPSEL_STS				0x79
-+#define P3H2x4x_CP_SDA1_LEVEL					BIT(7)
-+#define P3H2x4x_CP_SCL1_LEVEL					BIT(6)
-+
-+#define P3H2x4x_CP_SEL_PIN_INPUT_CODE_MASK			GENMASK(5, 4)
-+#define P3H2x4x_CP_SEL_PIN_INPUT_CODE_GET(x)	\
-+		(((x) & P3H2x4x_CP_SEL_PIN_INPUT_CODE_MASK) >> 4)
-+#define P3H2x4x_CP_SDA1_SCL1_PINS_CODE_MASK			GENMASK(7, 6)
-+#define P3H2x4x_CP_SDA1_SCL1_PINS_CODE_GET(x)	\
-+		(((x) & P3H2x4x_CP_SDA1_SCL1_PINS_CODE_MASK) >> 6)
-+#define P3H2x4x_VCCIO1_PWR_GOOD					BIT(3)
-+#define P3H2x4x_VCCIO0_PWR_GOOD					BIT(2)
-+#define P3H2x4x_CP1_VCCIO_PWR_GOOD				BIT(1)
-+#define P3H2x4x_CP0_VCCIO_PWR_GOOD				BIT(0)
-+
-+#define P3H2x4x_BUS_RESET_SCL_TIMEOUT				0x7a
-+#define P3H2x4x_ONCHIP_TD_PROTO_ERR_FLG				0x7b
-+#define P3H2x4x_DEV_CMD						0x7c
-+#define P3H2x4x_ONCHIP_TD_STS					0x7d
-+#define P3H2x4x_ONCHIP_TD_ADDR_CONF				0x7e
-+#define P3H2x4x_PAGE_PTR					0x7f
-+
-+/* Paged Transaction Registers */
-+#define P3H2x4x_CONTROLLER_BUFFER_PAGE				0x10
-+#define P3H2x4x_CONTROLLER_AGENT_BUFF				0x80
-+#define P3H2x4x_CONTROLLER_AGENT_BUFF_DATA			0x84
-+
-+#define P3H2x4x_TARGET_BUFF_LENGTH				0x80
-+#define P3H2x4x_TARGET_BUFF_ADDRESS				0x81
-+#define P3H2x4x_TARGET_BUFF_DATA				0x82
-+
-+#define P3H2x4x_TP_MAX_COUNT					0x08
-+#define P3H2x4x_CP_MAX_COUNT					0x02
-+#define P3H2x4x_TP_LOCAL_DEV					0x08
-+
-+/* LDO Disable/Enable DT settings */
-+#define P3H2x4x_LDO_VOLT_1_0V					0x00
-+#define P3H2x4x_LDO_VOLT_1_1V					0x01
-+#define P3H2x4x_LDO_VOLT_1_2V					0x02
-+#define P3H2x4x_LDO_VOLT_1_8V					0x03
-+
-+#define P3H2x4x_LDO_DISABLED					0x00
-+#define P3H2x4x_LDO_ENABLED					0x01
-+
-+#define P3H2x4x_IBI_DISABLED					0x00
-+#define P3H2x4x_IBI_ENABLED					0x01
-+
-+/* Pullup selection DT settings */
-+#define P3H2x4x_TP_PULLUP_250R					0x00
-+#define P3H2x4x_TP_PULLUP_500R					0x01
-+#define P3H2x4x_TP_PULLUP_1000R					0x02
-+#define P3H2x4x_TP_PULLUP_2000R					0x03
-+
-+#define P3H2x4x_TP_PULLUP_DISABLED				0x00
-+#define P3H2x4x_TP_PULLUP_ENABLED				0x01
-+
-+#define P3H2x4x_IO_STRENGTH_20_OHM				0x00
-+#define P3H2x4x_IO_STRENGTH_30_OHM				0x01
-+#define P3H2x4x_IO_STRENGTH_40_OHM				0x02
-+#define P3H2x4x_IO_STRENGTH_50_OHM				0x03
-+
-+#define P3H2x4x_TP_MODE_I3C					0x00
-+#define P3H2x4x_TP_MODE_SMBUS					0x01
-+#define P3H2x4x_TP_MODE_GPIO					0x02
-+#define P3H2x4x_TP_MODE_I2C					0x03
-+
-+#define ONE_BYTE_SIZE						0x01
-+
-+/* holding SDA low when both SMBus Target Agent received data buffers are full.
-+ * This feature can be used as a flow-control mechanism for MCTP applications to
-+ * avoid MCTP transmitters on Target Ports time out when the SMBus agent buffers
-+ * are not serviced in time by upstream controller and only receives write message
-+ * from its downstream ports.
-+ * SMBUS_AGENT_TX_RX_LOOPBACK_EN/TARGET_AGENT_BUF_FULL_SDA_LOW_EN
-+ */
-+
-+#define P3H2x4x_TARGET_AGENT_DFT_IBI_CONF			0x20
-+#define P3H2x4x_TARGET_AGENT_DFT_IBI_CONF_MASK			0x21
-+
-+/* Transaction status checking mask */
-+
-+#define P3H2x4x_SMBUS_TRANSACTION_FINISH_FLAG		1
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_SHIFT		4
-+
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_OK		0
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_ADDR_NAK		1
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_DATA_NAK		2
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_WTR_NAK		3
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_SYNC_RCV		4
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_SYNC_RCVCLR	5
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_FAULT		6
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_ARB_LOSS		7
-+#define P3H2x4x_SMBUS_CNTRL_STATUS_TXN_SCL_TO		8
-+
-+#define P3H2x4x_TP_BUFFER_STATUS_MASK				0x0f
-+#define P3H2x4x_TP_TRANSACTION_CODE_MASK			0xf0
-+
-+/* SMBus transaction types fields */
-+#define P3H2x4x_SMBUS_400kHz					BIT(2)
-+
-+/* SMBus polling */
-+#define P3H2x4x_POLLING_ROLL_PERIOD_MS				10
-+
-+/* Hub buffer size */
-+#define P3H2x4x_CONTROLLER_BUFFER_SIZE				88
-+#define P3H2x4x_TARGET_BUFFER_SIZE				80
-+#define P3H2x4x_SMBUS_DESCRIPTOR_SIZE				4
-+#define P3H2x4x_SMBUS_PAYLOAD_SIZE	\
-+		(P3H2x4x_CONTROLLER_BUFFER_SIZE - P3H2x4x_SMBUS_DESCRIPTOR_SIZE)
-+#define P3H2x4x_SMBUS_TARGET_PAYLOAD_SIZE	(P3H2x4x_TARGET_BUFFER_SIZE - 2)
-+
-+/* Hub SMBus transaction time */
-+#define P3H2x4x_SMBUS_400kHz_TRANSFER_TIMEOUT(x)		((20 * (x)) + 80)
-+
-+#define P3H2x4x_NO_PAGE_PER_TP					4
-+
-+#define P3H2x4x_MAX_PAYLOAD_LEN					2
-+#define P3H2x4x_NUM_SLOTS					6
-+
-+#define P3H2x4x_HUB_ID						0
-+
-+#define P3H2x4x_SET_BIT(n)				BIT(n)
-+
-+enum p3h2x4x_tp {
-+	TP_0,
-+	TP_1,
-+	TP_2,
-+	TP_3,
-+	TP_4,
-+	TP_5,
-+	TP_6,
-+	TP_7,
-+};
-+
-+enum p3h2x4x_rcv_buf {
-+	RCV_BUF_0,
-+	RCV_BUF_1,
-+	RCV_BUF_OF,
-+};
-+
-+struct p3h2x4x_regulators {
-+	struct regulator *rcp0;
-+	struct regulator *rcp1;
-+	struct regulator *rtp0145;
-+	struct regulator *rtp2367;
-+};
-+
-+struct tp_configuration {
-+	bool pullup_en;
-+	bool ibi_en;
-+	bool always_enable;
-+	int mode;
-+};
-+
-+struct hub_configuration {
-+	int tp0145_pullup;
-+	int tp2367_pullup;
-+	int cp0_io_strength;
-+	int cp1_io_strength;
-+	int tp0145_io_strength;
-+	int tp2367_io_strength;
-+	struct tp_configuration tp_config[P3H2x4x_TP_MAX_COUNT];
-+};
-+
-+struct tp_bus {
-+	bool is_registered;	    /* bus was registered in the framework. */
-+	u8 tp_mask;
-+	u8 tp_port;
-+	struct mutex port_mutex;      /* per port mutex */
-+	struct device_node *of_node;
-+	struct i2c_client *tp_smbus_client;
-+	struct i2c_adapter *tp_smbus_adapter;
-+	struct i3c_hub_controller hub_controller;
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub;
-+};
-+
-+struct p3h2x4x_i3c_hub_dev {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct mutex etx_mutex;      /* all port mutex */
-+	struct i3c_device *i3cdev;
-+	struct i2c_client *i2c_client;
-+	struct p3h2x4x_regulators rp3h2x4x;
-+	struct hub_configuration hub_config;
-+	struct tp_bus tp_bus[P3H2x4x_TP_MAX_COUNT];
-+	struct i3c_hub *hub;
-+};
-+
-+/**
-+ * p3h2x4x_tp_smbus_algo - add i2c adapter for target port configured as SMBus.
-+ * @priv: p3h2x4x device structure.
-+ * @tp: target port.
-+ * Return: 0 in case of success, a negative EINVAL code if the error.
-+ */
-+int p3h2x4x_tp_smbus_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub);
-+
-+/**
-+ * p3h2x4x_tp_i3c_algo - register i3c controller for target port configured as I3C.
-+ * @priv: p3h2x4x device structure.
-+ * @tp: target port.
-+ * Return: 0 in case of success, a negative EINVAL code if the error.
-+ */
-+int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub);
-+
-+/**
-+ * p3h2x4x_ibi_handler - IBI handler.
-+ * @i3cdev: i3c device.
-+ * @payload: two byte IBI payload data.
-+ */
-+void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-+			 const struct i3c_ibi_payload *payload);
-+#endif /* P3H2840_I3C_HUB_H */
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_common.c b/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-new file mode 100644
-index 000000000000..a06faaddd9e3
---- /dev/null
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_common.c
-@@ -0,0 +1,398 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2025-2026 NXP
-+ * This P3H2x4x driver file implements functions for Hub probe and DT parsing.
-+ */
-+
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/platform_device.h>
-+#include <linux/mfd/p3h2840.h>
-+
-+#include "p3h2840_i3c_hub.h"
-+
-+/* LDO voltage DT settings */
-+#define P3H2x4x_DT_LDO_VOLT_1_0V		1000000
-+#define P3H2x4x_DT_LDO_VOLT_1_1V		1100000
-+#define P3H2x4x_DT_LDO_VOLT_1_2V		1200000
-+#define P3H2x4x_DT_LDO_VOLT_1_8V		1800000
-+
-+static const int p3h2x4x_pullup_tbl[] = {
-+	250, 500, 1000, 2000
-+};
-+
-+static const int p3h2x4x_io_strength_tbl[] = {
-+	20, 30, 40, 50
-+};
-+
-+static int find_close(int val, const int *tbl, int size)
-+{
-+	int best = 0, i;
-+
-+	for (i = 1; i < size; i++)
-+		if (abs(tbl[i] - val) < abs(tbl[best] - val))
-+			best = i;
-+
-+	return best;
-+}
-+
-+static u8 p3h2x4x_pullup_dt_to_reg(int dt_value)
-+{
-+	return find_close(dt_value, p3h2x4x_pullup_tbl,
-+			  ARRAY_SIZE(p3h2x4x_pullup_tbl));
-+}
-+
-+static u8 p3h2x4x_io_strength_dt_to_reg(int dt_value)
-+{
-+	return find_close(dt_value, p3h2x4x_io_strength_tbl,
-+			  ARRAY_SIZE(p3h2x4x_io_strength_tbl));
-+}
-+
-+static int p3h2x4x_configure_pullup(struct device *dev)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(dev);
-+	u8 pullup;
-+
-+	pullup = P3H2x4x_TP0145_PULLUP_CONF(p3h2x4x_pullup_dt_to_reg
-+						(p3h2x4x_i3c_hub->hub_config.tp0145_pullup));
-+
-+	pullup |= P3H2x4x_TP2367_PULLUP_CONF(p3h2x4x_pullup_dt_to_reg
-+						(p3h2x4x_i3c_hub->hub_config.tp2367_pullup));
-+
-+	return regmap_update_bits(p3h2x4x_i3c_hub->regmap, P3H2x4x_LDO_AND_PULLUP_CONF,
-+							  P3H2x4x_PULLUP_CONF_MASK, pullup);
-+}
-+
-+static int p3h2x4x_configure_io_strength(struct device *dev)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(dev);
-+	u8 io_strength;
-+
-+	io_strength = P3H2x4x_CP0_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-+						(p3h2x4x_i3c_hub->hub_config.cp0_io_strength));
-+
-+	io_strength |= P3H2x4x_CP1_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-+						(p3h2x4x_i3c_hub->hub_config.cp1_io_strength));
-+
-+	io_strength |= P3H2x4x_TP0145_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-+						(p3h2x4x_i3c_hub->hub_config.tp0145_io_strength));
-+
-+	io_strength |= P3H2x4x_TP2367_IO_STRENGTH(p3h2x4x_io_strength_dt_to_reg
-+						(p3h2x4x_i3c_hub->hub_config.tp2367_io_strength));
-+
-+	return regmap_update_bits(p3h2x4x_i3c_hub->regmap, P3H2x4x_IO_STRENGTH,
-+							  P3H2x4x_IO_STRENGTH_MASK, io_strength);
-+}
-+
-+static int p3h2x4x_configure_ldo(struct device *dev)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(dev);
-+	int ret;
-+
-+	p3h2x4x_i3c_hub->rp3h2x4x.rcp0 = devm_regulator_get_optional(dev, "vcc1");
-+	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rcp0)) {
-+		p3h2x4x_i3c_hub->rp3h2x4x.rcp0 = NULL;
-+		dev_dbg(dev, "vdd1-supply not found\n");
-+	}
-+
-+	p3h2x4x_i3c_hub->rp3h2x4x.rcp1 = devm_regulator_get_optional(dev, "vcc2");
-+	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rcp1)) {
-+		p3h2x4x_i3c_hub->rp3h2x4x.rcp1 = NULL;
-+		dev_dbg(dev, "vdd2-supply not found\n");
-+	}
-+
-+	p3h2x4x_i3c_hub->rp3h2x4x.rtp0145 = devm_regulator_get_optional(dev, "vcc3");
-+	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rtp0145)) {
-+		p3h2x4x_i3c_hub->rp3h2x4x.rtp0145 = NULL;
-+		dev_dbg(dev, "vdd3-supply not found\n");
-+	}
-+
-+	p3h2x4x_i3c_hub->rp3h2x4x.rtp2367 = devm_regulator_get_optional(dev, "vcc4");
-+	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rtp2367)) {
-+		p3h2x4x_i3c_hub->rp3h2x4x.rtp2367 = NULL;
-+		dev_dbg(dev, "vdd4-supply not found\n");
-+	}
-+
-+	/* Enable regulators */
-+	if (p3h2x4x_i3c_hub->rp3h2x4x.rcp0) {
-+		ret = regulator_enable(p3h2x4x_i3c_hub->rp3h2x4x.rcp0);
-+		if (ret)
-+			dev_warn(dev, "Failed to enable regulator CP0 (%d)\n", ret);
-+	}
-+
-+	if (p3h2x4x_i3c_hub->rp3h2x4x.rcp1) {
-+		ret = regulator_enable(p3h2x4x_i3c_hub->rp3h2x4x.rcp1);
-+		if (ret)
-+			dev_warn(dev, "Failed to enable regulator CP1 (%d)\n", ret);
-+	}
-+
-+	if (p3h2x4x_i3c_hub->rp3h2x4x.rtp0145) {
-+		ret = regulator_enable(p3h2x4x_i3c_hub->rp3h2x4x.rtp0145);
-+		if (ret)
-+			dev_warn(dev, "Failed to enable regulator TPG0 (%d)\n", ret);
-+	}
-+
-+	if (p3h2x4x_i3c_hub->rp3h2x4x.rtp2367) {
-+		ret = regulator_enable(p3h2x4x_i3c_hub->rp3h2x4x.rtp2367);
-+		if (ret)
-+			dev_warn(dev, "Failed to enable regulator TPG1 (%d)\n", ret);
-+	}
-+
-+	/* This delay is required for the regulator to stabilize its output voltage */
-+	mdelay(5);
-+
-+	return 0;
-+}
-+
-+static int p3h2x4x_configure_tp(struct device *dev)
-+{
-+	struct p3h2x4x_i3c_hub_dev *hub = dev_get_drvdata(dev);
-+	u8 mode = 0, smbus = 0, pullup = 0, target_port = 0;
-+	int tp, ret;
-+
-+	for (tp = 0; tp < P3H2x4x_TP_MAX_COUNT; tp++) {
-+		pullup |= hub->hub_config.tp_config[tp].pullup_en ? P3H2x4x_SET_BIT(tp) : 0;
-+		mode |= (hub->hub_config.tp_config[tp].mode != P3H2x4x_TP_MODE_I3C) ?
-+			P3H2x4x_SET_BIT(tp) : 0;
-+		smbus |= (hub->hub_config.tp_config[tp].mode == P3H2x4x_TP_MODE_SMBUS) ?
-+			 P3H2x4x_SET_BIT(tp) : 0;
-+		target_port |= (hub->tp_bus[tp].tp_mask == P3H2x4x_SET_BIT(tp)) ?
-+			       hub->tp_bus[tp].tp_mask : 0;
-+	}
-+
-+	ret = regmap_update_bits(hub->regmap, P3H2x4x_TP_PULLUP_EN, pullup, pullup);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(hub->regmap, P3H2x4x_TP_IO_MODE_CONF, mode, mode);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(hub->regmap, P3H2x4x_TP_SMBUS_AGNT_EN, smbus, smbus);
-+	if (ret)
-+		return ret;
-+
-+	if (target_port & ~smbus) {
-+		ret = regmap_write(hub->regmap, P3H2x4x_CP_MUX_SET,
-+				   P3H2x4x_CONTROLLER_PORT_MUX_REQ);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return regmap_update_bits(hub->regmap, P3H2x4x_TP_ENABLE, target_port, target_port);
-+}
-+
-+static int p3h2x4x_configure_hw(struct device *dev)
-+{
-+	int ret;
-+
-+	ret = p3h2x4x_configure_ldo(dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = p3h2x4x_configure_pullup(dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = p3h2x4x_configure_io_strength(dev);
-+	if (ret)
-+		return ret;
-+
-+	return p3h2x4x_configure_tp(dev);
-+}
-+
-+static void p3h2x4x_get_target_port_dt_conf(struct device *dev,
-+					    const struct device_node *node)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(dev);
-+	u64 tp_port;
-+
-+	for_each_available_child_of_node_scoped(node, dev_node) {
-+		if (of_property_read_reg(dev_node, 0, &tp_port, NULL))
-+			continue;
-+
-+		if (tp_port < P3H2x4x_TP_MAX_COUNT) {
-+			p3h2x4x_i3c_hub->tp_bus[tp_port].of_node = dev_node;
-+			p3h2x4x_i3c_hub->tp_bus[tp_port].tp_mask = P3H2x4x_SET_BIT(tp_port);
-+			p3h2x4x_i3c_hub->tp_bus[tp_port].p3h2x4x_i3c_hub = p3h2x4x_i3c_hub;
-+			p3h2x4x_i3c_hub->tp_bus[tp_port].tp_port = tp_port;
-+		}
-+	}
-+}
-+
-+static void p3h2x4x_parse_tp_dt_settings(struct device *dev,
-+					 const struct device_node *node,
-+					 struct tp_configuration tp_config[])
-+{
-+	u64 id;
-+
-+	for_each_available_child_of_node_scoped(node, tp_node) {
-+		if (of_property_read_reg(tp_node, 0, &id, NULL))
-+			continue;
-+
-+		if (id >= P3H2x4x_TP_MAX_COUNT) {
-+			dev_warn(dev, "Invalid target port index found in DT: %lli\n", id);
-+			continue;
-+		}
-+
-+		if (strcmp(tp_node->name, "i3c") == 0)
-+			tp_config[id].mode = P3H2x4x_TP_MODE_I3C;
-+
-+		if (strcmp(tp_node->name, "i2c") == 0)
-+			tp_config[id].mode = P3H2x4x_TP_MODE_I2C;
-+
-+		if (strcmp(tp_node->name, "smbus") == 0)
-+			tp_config[id].mode = P3H2x4x_TP_MODE_SMBUS;
-+
-+		tp_config[id].pullup_en =
-+			of_property_read_bool(tp_node, "nxp,pullup-enable");
-+	}
-+}
-+
-+static void p3h2x4x_get_hub_dt_conf(struct device *dev,
-+				    const struct device_node *node)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(dev);
-+
-+	of_property_read_u32(node, "nxp,tp0145-pullup-ohms",
-+			     &p3h2x4x_i3c_hub->hub_config.tp0145_pullup);
-+	of_property_read_u32(node, "nxp,tp2367-pullup-ohms",
-+			     &p3h2x4x_i3c_hub->hub_config.tp2367_pullup);
-+	of_property_read_u32(node, "nxp,cp0-io-strength-ohms",
-+			     &p3h2x4x_i3c_hub->hub_config.cp0_io_strength);
-+	of_property_read_u32(node, "nxp,cp1-io-strength-ohms",
-+			     &p3h2x4x_i3c_hub->hub_config.cp1_io_strength);
-+	of_property_read_u32(node, "nxp,tp0145-io-strength-ohms",
-+			     &p3h2x4x_i3c_hub->hub_config.tp0145_io_strength);
-+	of_property_read_u32(node, "nxp,tp2367-io-strength-ohms",
-+			     &p3h2x4x_i3c_hub->hub_config.tp2367_io_strength);
-+
-+	p3h2x4x_parse_tp_dt_settings(dev, node, p3h2x4x_i3c_hub->hub_config.tp_config);
-+}
-+
-+static void p3h2x4x_default_configuration(struct device *dev)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(dev);
-+	int tp_count;
-+
-+	p3h2x4x_i3c_hub->hub_config.tp0145_pullup = P3H2x4x_TP_PULLUP_500R;
-+	p3h2x4x_i3c_hub->hub_config.tp2367_pullup = P3H2x4x_TP_PULLUP_500R;
-+	p3h2x4x_i3c_hub->hub_config.cp0_io_strength = P3H2x4x_IO_STRENGTH_20_OHM;
-+	p3h2x4x_i3c_hub->hub_config.cp1_io_strength = P3H2x4x_IO_STRENGTH_20_OHM;
-+	p3h2x4x_i3c_hub->hub_config.tp0145_io_strength = P3H2x4x_IO_STRENGTH_20_OHM;
-+	p3h2x4x_i3c_hub->hub_config.tp2367_io_strength = P3H2x4x_IO_STRENGTH_20_OHM;
-+
-+	for (tp_count = 0; tp_count < P3H2x4x_TP_MAX_COUNT; ++tp_count)
-+		p3h2x4x_i3c_hub->hub_config.tp_config[tp_count].mode =  P3H2x4x_TP_MODE_I3C;
-+}
-+
-+static int p3h2x4x_i3c_hub_probe(struct platform_device *pdev)
-+{
-+	struct p3h2x4x_dev *p3h2x4x = dev_get_drvdata(pdev->dev.parent);
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub;
-+	struct device *dev = &pdev->dev;
-+	struct device_node *node;
-+	int ret, i;
-+
-+	p3h2x4x_i3c_hub = devm_kzalloc(dev, sizeof(*p3h2x4x_i3c_hub), GFP_KERNEL);
-+	if (!p3h2x4x_i3c_hub)
-+		return -ENOMEM;
-+
-+	p3h2x4x_i3c_hub->regmap = p3h2x4x->regmap;
-+	p3h2x4x_i3c_hub->dev = dev;
-+
-+	platform_set_drvdata(pdev, p3h2x4x_i3c_hub);
-+	device_set_of_node_from_dev(dev, dev->parent);
-+
-+	p3h2x4x_default_configuration(dev);
-+
-+	ret = devm_mutex_init(dev, &p3h2x4x_i3c_hub->etx_mutex);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < P3H2x4x_TP_MAX_COUNT; i++) {
-+		ret = devm_mutex_init(dev, &p3h2x4x_i3c_hub->tp_bus[i].port_mutex);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* get hub node from DT */
-+	node =  dev->of_node;
-+	if (!node)
-+		return dev_err_probe(dev, -ENODEV, "No Device Tree entry found\n");
-+
-+	p3h2x4x_get_hub_dt_conf(dev, node);
-+	p3h2x4x_get_target_port_dt_conf(dev, node);
-+
-+	/* Unlock access to protected registers */
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_DEV_REG_PROTECTION_CODE,
-+			   P3H2x4x_REGISTERS_UNLOCK_CODE);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to unlock HUB's protected registers\n");
-+
-+	ret = p3h2x4x_configure_hw(dev);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to configure the HUB\n");
-+
-+	/* Register logic for native vertual I3C ports */
-+	if (p3h2x4x->is_p3h2x4x_in_i3c) {
-+		p3h2x4x_i3c_hub->i3cdev = p3h2x4x->i3cdev;
-+		ret = p3h2x4x_tp_i3c_algo(p3h2x4x_i3c_hub);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Failed to register i3c bus\n");
-+	} else {
-+		p3h2x4x_i3c_hub->i2c_client = p3h2x4x->i2c_client;
-+	}
-+
-+	/* Register logic for native SMBus ports */
-+	ret = p3h2x4x_tp_smbus_algo(p3h2x4x_i3c_hub);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to add i2c adapter\n");
-+
-+	/* Lock access to protected registers */
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_DEV_REG_PROTECTION_CODE,
-+			   P3H2x4x_REGISTERS_LOCK_CODE);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to lock HUB's protected registers\n");
-+
-+	return 0;
-+}
-+
-+static void p3h2x4x_i3c_hub_remove(struct platform_device *pdev)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = platform_get_drvdata(pdev);
-+	struct p3h2x4x_dev *p3h2x4x = dev_get_drvdata(pdev->dev.parent);
-+	u8 i;
-+
-+	for (i = 0; i < P3H2x4x_TP_MAX_COUNT; i++) {
-+		if (!p3h2x4x_i3c_hub->tp_bus[i].is_registered)
-+			continue;
-+
-+		if (p3h2x4x_i3c_hub->hub_config.tp_config[i].mode == P3H2x4x_TP_MODE_SMBUS)
-+			i2c_del_adapter(p3h2x4x_i3c_hub->tp_bus[i].tp_smbus_adapter);
-+		else if (p3h2x4x_i3c_hub->hub_config.tp_config[i].mode == P3H2x4x_TP_MODE_I3C)
-+			i3c_master_unregister(&p3h2x4x_i3c_hub->tp_bus[i]
-+					      .hub_controller.controller);
-+	}
-+
-+	if (p3h2x4x->is_p3h2x4x_in_i3c) {
-+		i3c_device_disable_ibi(p3h2x4x->i3cdev);
-+		i3c_device_free_ibi(p3h2x4x->i3cdev);
-+	}
-+}
-+
-+static struct platform_driver p3h2x4x_i3c_hub_driver = {
-+	.driver = {
-+		.name = "p3h2x4x-i3c-hub",
-+		.probe_type = PROBE_PREFER_ASYNCHRONOUS,
-+	},
-+	.probe = p3h2x4x_i3c_hub_probe,
-+	.remove = p3h2x4x_i3c_hub_remove,
-+};
-+module_platform_driver(p3h2x4x_i3c_hub_driver);
-+
-+MODULE_AUTHOR("Aman Kumar Pandey <aman.kumarpandey@nxp.com>");
-+MODULE_AUTHOR("Vikash Bansal <vikash.bansal@nxp.com>");
-+MODULE_AUTHOR("Lakshay Piplani <lakshay.piplani@nxp.com>");
-+MODULE_DESCRIPTION("P3H2x4x I3C HUB driver");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-new file mode 100644
-index 000000000000..833bc0bebc4e
---- /dev/null
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
-@@ -0,0 +1,119 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2025-2026 NXP
-+ * This P3H2x4x driver file contain functions for I3C virtual Bus creation, connect/disconnect
-+ * hub network and read/write.
-+ */
-+#include <linux/i3c/hub.h>
-+#include <linux/mfd/p3h2840.h>
-+#include <linux/regmap.h>
-+
-+#include "p3h2840_i3c_hub.h"
-+
-+static const struct i3c_ibi_setup p3h2x4x_ibireq = {
-+	.handler = p3h2x4x_ibi_handler,
-+	.max_payload_len = P3H2x4x_MAX_PAYLOAD_LEN,
-+	.num_slots = P3H2x4x_NUM_SLOTS,
-+};
-+
-+static inline struct tp_bus *
-+p3h2x4x_bus_from_controller(struct i3c_master_controller *controller)
-+{
-+	struct i3c_hub_controller *hub_controller;
-+
-+	hub_controller = container_of(controller, struct i3c_hub_controller, controller);
-+
-+	return container_of(hub_controller, struct tp_bus, hub_controller);
-+}
-+
-+static void p3h2x4x_hub_enable_port(struct i3c_master_controller *controller)
-+{
-+	struct tp_bus *bus = p3h2x4x_bus_from_controller(controller);
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = bus->p3h2x4x_i3c_hub;
-+
-+	if (p3h2x4x_i3c_hub->hub_config.tp_config[bus->tp_port].always_enable)
-+		return;
-+
-+	regmap_set_bits(p3h2x4x_i3c_hub->regmap, P3H2x4x_TP_NET_CON_CONF, bus->tp_mask);
-+}
-+
-+static void p3h2x4x_hub_disable_port(struct i3c_master_controller *controller)
-+{
-+	struct tp_bus *bus = p3h2x4x_bus_from_controller(controller);
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = bus->p3h2x4x_i3c_hub;
-+
-+	if (p3h2x4x_i3c_hub->hub_config.tp_config[bus->tp_port].always_enable)
-+		return;
-+
-+	regmap_clear_bits(p3h2x4x_i3c_hub->regmap, P3H2x4x_TP_NET_CON_CONF, bus->tp_mask);
-+}
-+
-+static const struct i3c_hub_ops p3h2x4x_hub_ops = {
-+	.enable_port = p3h2x4x_hub_enable_port,
-+	.disable_port = p3h2x4x_hub_disable_port,
-+};
-+
-+/**
-+ * p3h2x4x_tp_i3c_algo - register i3c master for target port who
-+ * configured as i3c.
-+ * @hub: p3h2x4x device structure.
-+ * Return: 0 in case of success, negative error code on failur.
-+ */
-+int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_hub)
-+{
-+	struct i3c_master_controller *parent = i3c_dev_get_master(p3h2x4x_hub->i3cdev->desc);
-+	u8 tp, ntwk_mask = 0;
-+	int ret;
-+
-+	p3h2x4x_hub->hub = i3c_hub_init(parent,
-+					&p3h2x4x_hub_ops,
-+					p3h2x4x_hub->i3cdev);
-+
-+	if (IS_ERR(p3h2x4x_hub->hub))
-+		return PTR_ERR(p3h2x4x_hub->hub);
-+
-+	for (tp = 0; tp < P3H2x4x_TP_MAX_COUNT; tp++) {
-+		if (!p3h2x4x_hub->tp_bus[tp].of_node ||
-+		    p3h2x4x_hub->hub_config.tp_config[tp].mode != P3H2x4x_TP_MODE_I3C)
-+			continue;
-+
-+		/* Assign DT node for this TP */
-+		p3h2x4x_hub->dev->of_node = p3h2x4x_hub->tp_bus[tp].of_node;
-+
-+		struct i3c_hub_controller *hub_controller =
-+				&p3h2x4x_hub->tp_bus[tp].hub_controller;
-+		struct i3c_master_controller *controller = &hub_controller->controller;
-+
-+		hub_controller->parent = parent;
-+		hub_controller->hub = p3h2x4x_hub->hub;
-+
-+		dev_set_drvdata(&controller->dev, hub_controller);
-+
-+		ret = i3c_master_register(controller,
-+					  p3h2x4x_hub->dev,
-+					  i3c_hub_master_ops(),
-+					  false);
-+
-+		if (ret)
-+			return ret;
-+
-+		/* Perform DAA */
-+		ret = i3c_master_do_daa(parent);
-+		if (ret)
-+			return ret;
-+
-+		ntwk_mask |= p3h2x4x_hub->tp_bus[tp].tp_mask;
-+		p3h2x4x_hub->tp_bus[tp].is_registered = true;
-+		p3h2x4x_hub->hub_config.tp_config[tp].always_enable = true;
-+	}
-+
-+	ret = i3c_device_request_ibi(p3h2x4x_hub->i3cdev, &p3h2x4x_ibireq);
-+	if (ret)
-+		return ret;
-+
-+	ret = i3c_device_enable_ibi(p3h2x4x_hub->i3cdev);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_write(p3h2x4x_hub->regmap, P3H2x4x_TP_NET_CON_CONF, ntwk_mask);
-+}
-diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-new file mode 100644
-index 000000000000..75803a59fd6c
---- /dev/null
-+++ b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
-@@ -0,0 +1,423 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2025 NXP
-+ * This P3H2x4x driver file contain functions for SMBus/I2C virtual Bus creation and read/write.
-+ */
-+#include <linux/mfd/p3h2840.h>
-+#include <linux/regmap.h>
-+
-+#include "p3h2840_i3c_hub.h"
-+
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static void p3h2x4x_read_smbus_agent_rx_buf(struct i3c_device *i3cdev, enum p3h2x4x_rcv_buf rfbuf,
-+					    enum p3h2x4x_tp tp, bool is_of)
-+{
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(&i3cdev->dev);
-+	u8 slave_rx_buffer[P3H2x4x_SMBUS_TARGET_PAYLOAD_SIZE] = { 0 };
-+	u8 target_buffer_page, flag_clear = 0x0f, temp, i;
-+	u32 packet_len, slave_address, ret;
-+
-+	target_buffer_page = (((rfbuf) ? P3H2x4x_TARGET_BUFF_1_PAGE : P3H2x4x_TARGET_BUFF_0_PAGE)
-+				+  (P3H2x4x_NO_PAGE_PER_TP * tp));
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_PAGE_PTR, target_buffer_page);
-+	if (ret)
-+		goto ibi_err;
-+
-+	/* read buffer length */
-+	ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2x4x_TARGET_BUFF_LENGTH, &packet_len);
-+	if (ret)
-+		goto ibi_err;
-+
-+	if (packet_len)
-+		packet_len = packet_len - 1;
-+
-+	if (packet_len > P3H2x4x_SMBUS_TARGET_PAYLOAD_SIZE) {
-+		dev_err(&i3cdev->dev, "Received message too big for p3h2x4x buffer\n");
-+		return;
-+	}
-+
-+	/* read slave  address */
-+	ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2x4x_TARGET_BUFF_ADDRESS, &slave_address);
-+	if (ret)
-+		goto ibi_err;
-+
-+	/* read data */
-+	if (packet_len) {
-+		ret = regmap_bulk_read(p3h2x4x_i3c_hub->regmap, P3H2x4x_TARGET_BUFF_DATA,
-+				       slave_rx_buffer, packet_len);
-+		if (ret)
-+			goto ibi_err;
-+	}
-+
-+	if (is_of)
-+		flag_clear = BUF_RECEIVED_FLAG_TF_MASK;
-+	else
-+		flag_clear = (((rfbuf == RCV_BUF_0) ? P3H2x4x_TARGET_BUF_0_RECEIVE :
-+				P3H2x4x_TARGET_BUF_1_RECEIVE));
-+
-+	/* notify slave driver about received data */
-+	if ((p3h2x4x_i3c_hub->tp_bus[tp].tp_smbus_client->addr & 0x7f) == (slave_address >> 1)) {
-+		i2c_slave_event(p3h2x4x_i3c_hub->tp_bus[tp].tp_smbus_client,
-+				I2C_SLAVE_WRITE_REQUESTED, (u8 *)&slave_address);
-+		for (i = 0; i < packet_len; i++) {
-+			temp = slave_rx_buffer[i];
-+			i2c_slave_event(p3h2x4x_i3c_hub->tp_bus[tp].tp_smbus_client,
-+					I2C_SLAVE_WRITE_RECEIVED, &temp);
-+		}
-+		i2c_slave_event(p3h2x4x_i3c_hub->tp_bus[tp].tp_smbus_client, I2C_SLAVE_STOP, &temp);
-+	}
-+
-+ibi_err:
-+	regmap_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_PAGE_PTR, 0x00);
-+	regmap_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_TP0_SMBUS_AGNT_STS + tp, flag_clear);
-+}
-+#endif
-+
-+/**
-+ * p3h2x4x_ibi_handler - IBI handler.
-+ * @i3cdev: i3c device.
-+ * @payload: two byte IBI payload data.
-+ *
-+ */
-+void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
-+			 const struct i3c_ibi_payload *payload)
-+{
-+	u32 payload_byte_one = (*(int *)payload->data);
-+
-+	if (!(payload_byte_one & P3H2x4x_SMBUS_AGENT_EVENT_FLAG_STATUS))
-+		return;
-+
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(&i3cdev->dev);
-+	u32 target_port_status, payload_byte_two;
-+	u32 ret, i;
-+
-+	if (!p3h2x4x_i3c_hub || !p3h2x4x_i3c_hub->regmap)
-+		return;
-+
-+	payload_byte_two = (*(int *)(payload->data + 4));
-+	guard(mutex)(&p3h2x4x_i3c_hub->etx_mutex);
-+
-+	for (i = 0; i < P3H2x4x_TP_MAX_COUNT; ++i) {
-+		if (p3h2x4x_i3c_hub->tp_bus[i].is_registered && (payload_byte_two >> i) & 0x01) {
-+			ret = regmap_read(p3h2x4x_i3c_hub->regmap, P3H2x4x_TP0_SMBUS_AGNT_STS + i,
-+					  &target_port_status);
-+			if (ret) {
-+				dev_err(&i3cdev->dev, "target port read status failed %d\n", ret);
-+				return;
-+			}
-+
-+			/* process data receive buffer */
-+			switch (target_port_status & BUF_RECEIVED_FLAG_MASK) {
-+			case P3H2x4x_TARGET_BUF_CA_TF:
-+				break;
-+			case P3H2x4x_TARGET_BUF_0_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				break;
-+			case P3H2x4x_TARGET_BUF_1_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, false);
-+				break;
-+			case P3H2x4x_TARGET_BUF_0_1_RECEIVE:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, false);
-+				break;
-+			case P3H2x4x_TARGET_BUF_OVRFL:
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_0, i, false);
-+				p3h2x4x_read_smbus_agent_rx_buf(i3cdev, RCV_BUF_1, i, true);
-+				dev_err(&i3cdev->dev, "Overflow, reading buffer zero and one\n");
-+				break;
-+			default:
-+				regmap_write(p3h2x4x_i3c_hub->regmap,
-+					     P3H2x4x_TP0_SMBUS_AGNT_STS + i,
-+					     BUF_RECEIVED_FLAG_TF_MASK);
-+				break;
-+			}
-+		}
-+	}
-+#endif
-+}
-+
-+static int p3h2x4x_read_smbus_transaction_status(struct p3h2x4x_i3c_hub_dev *hub,
-+						 u8 target_port_status,
-+						 u8 data_length)
-+{
-+	u32 status_read;
-+	u8 status;
-+	int ret;
-+
-+	mutex_unlock(&hub->etx_mutex);
-+	fsleep(P3H2x4x_SMBUS_400kHz_TRANSFER_TIMEOUT(data_length));
-+	mutex_lock(&hub->etx_mutex);
-+
-+	ret = regmap_read(hub->regmap, target_port_status, &status_read);
-+	if (ret)
-+		return ret;
-+
-+	status = (u8)status_read;
-+
-+	status = (status & P3H2x4x_TP_TRANSACTION_CODE_MASK)
-+		  >> P3H2x4x_SMBUS_CNTRL_STATUS_TXN_SHIFT;
-+
-+	switch (status) {
-+	case P3H2x4x_SMBUS_CNTRL_STATUS_TXN_OK:
-+		return 0;
-+	case P3H2x4x_SMBUS_CNTRL_STATUS_TXN_ADDR_NAK:
-+		return -ENXIO;
-+	case P3H2x4x_SMBUS_CNTRL_STATUS_TXN_DATA_NAK:
-+		return -EIO;
-+	case P3H2x4x_SMBUS_CNTRL_STATUS_TXN_SCL_TO:
-+		return -ETIMEDOUT;
-+	case P3H2x4x_SMBUS_CNTRL_STATUS_TXN_ARB_LOSS:
-+		return -EAGAIN;
-+	default:
-+		return -EIO;
-+	}
-+}
-+
-+/**
-+ * p3h2x4x_tp_i2c_xfer_msg() - This starts a SMBus write transaction by writing a descriptor
-+ * and a message to the p3h2x4x registers. Controller buffer page is determined by multiplying the
-+ * target port index by four and adding the base page number to it.
-+ */
-+static int p3h2x4x_tp_i2c_xfer_msg(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub,
-+				   struct i2c_msg *xfers,
-+				   u8 target_port,
-+				   u8 nxfers_i, u8 rw)
-+{
-+	u8 controller_buffer_page = P3H2x4x_CONTROLLER_BUFFER_PAGE + 4 * target_port;
-+	u8 target_port_status = P3H2x4x_TP0_SMBUS_AGNT_STS + target_port;
-+	u8 desc[P3H2x4x_SMBUS_DESCRIPTOR_SIZE] = { 0 };
-+	u8 transaction_type = P3H2x4x_SMBUS_400kHz;
-+	int write_length, read_length;
-+	u8 addr = xfers[nxfers_i].addr;
-+	u8 rw_address = 2 * addr;
-+	int ret;
-+
-+	if (rw == 2) { /* write and read */
-+		write_length = xfers[nxfers_i].len;
-+		read_length =  xfers[nxfers_i + 1].len;
-+	} else if (rw == 1) {
-+		rw_address |= P3H2x4x_SET_BIT(0);
-+		write_length = 0;
-+		read_length =  xfers[nxfers_i].len;
-+	} else {
-+		write_length = xfers[nxfers_i].len;
-+		read_length = 0;
-+	}
-+
-+	desc[0] = rw_address;
-+	if (rw == 2)
-+		desc[1] = transaction_type | P3H2x4x_SET_BIT(0);
-+	else
-+		desc[1] = transaction_type;
-+	desc[2] = write_length;
-+	desc[3] = read_length;
-+
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, target_port_status,
-+			   P3H2x4x_TP_BUFFER_STATUS_MASK);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_PAGE_PTR, controller_buffer_page);
-+
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_bulk_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_CONTROLLER_AGENT_BUFF,
-+				desc, P3H2x4x_SMBUS_DESCRIPTOR_SIZE);
-+
-+	if (ret)
-+		goto out;
-+
-+	if (!(rw % 2)) {
-+		ret = regmap_bulk_write(p3h2x4x_i3c_hub->regmap,
-+					P3H2x4x_CONTROLLER_AGENT_BUFF_DATA,
-+					xfers[nxfers_i].buf, xfers[nxfers_i].len);
-+		if (ret)
-+			goto out;
-+	}
-+
-+	ret = regmap_write(p3h2x4x_i3c_hub->regmap, P3H2x4x_TP_SMBUS_AGNT_TRANS_START,
-+			   p3h2x4x_i3c_hub->tp_bus[target_port].tp_mask);
-+
-+	if (ret)
-+		goto out;
-+
-+	ret = p3h2x4x_read_smbus_transaction_status(p3h2x4x_i3c_hub,
-+						    target_port_status,
-+						    (write_length + read_length));
-+	if (ret)
-+		goto out;
-+
-+	if (rw) {
-+		if (rw == 2)
-+			nxfers_i += 1;
-+
-+		ret = regmap_bulk_read(p3h2x4x_i3c_hub->regmap,
-+				       P3H2x4x_CONTROLLER_AGENT_BUFF_DATA + write_length,
-+				       xfers[nxfers_i].buf, xfers[nxfers_i].len);
-+		if (ret)
-+			goto out;
-+	}
-+out:
-+	int ret2;
-+
-+	ret2 = regmap_write(p3h2x4x_i3c_hub->regmap,
-+			    P3H2x4x_PAGE_PTR, 0x00);
-+	if (!ret && ret2)
-+		ret = ret2;
-+
-+	return ret;
-+}
-+
-+/*
-+ * This function will be called whenever you call I2C read, write APIs like
-+ * i2c_master_send(), i2c_master_recv() etc.
-+ */
-+static s32 p3h2x4x_tp_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg *msgs, int num)
-+{
-+	int ret_sum = 0, ret;
-+	u8 msg_count, rw;
-+
-+	struct tp_bus *bus = i2c_get_adapdata(adap);
-+	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = bus->p3h2x4x_i3c_hub;
-+
-+	guard(mutex)(&p3h2x4x_i3c_hub->etx_mutex);
-+	guard(mutex)(&bus->port_mutex);
-+
-+	for (msg_count = 0; msg_count < num; msg_count++) {
-+		if (msgs[msg_count].len > P3H2x4x_SMBUS_PAYLOAD_SIZE) {
-+			dev_err(p3h2x4x_i3c_hub->dev,
-+				"Message nr. %d not sent - length over %d bytes.\n",
-+				msg_count, P3H2x4x_SMBUS_PAYLOAD_SIZE);
-+			continue;
-+		}
-+
-+		rw = (msgs[msg_count].flags & I2C_M_RD) ? 1 : 0;
-+		if (!rw) {
-+			/* If a read message is immediately followed by a write message to
-+			 * the same address,  consider combining them into a single transaction.
-+			 */
-+			if (msg_count + 1 < num &&
-+			    msgs[msg_count].addr == msgs[msg_count + 1].addr &&
-+			    (msgs[msg_count + 1].flags & I2C_M_RD)) {
-+				rw = 2;
-+				msg_count += 1;
-+				ret_sum += 1;
-+			}
-+		}
-+
-+		ret = p3h2x4x_tp_i2c_xfer_msg(p3h2x4x_i3c_hub,
-+					      msgs,
-+					      bus->tp_port,
-+					      (rw == 2) ? (msg_count - 1) : msg_count,
-+					       rw);
-+		if (ret)
-+			return ret;
-+
-+		ret_sum++;
-+	}
-+	return ret_sum;
-+}
-+
-+static u32 p3h2x4x_tp_smbus_funcs(struct i2c_adapter *adapter)
-+{
-+	return I2C_FUNC_I2C | I2C_FUNC_SMBUS_BLOCK_DATA;
-+}
-+
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+static int p3h2x4x_tp_i2c_reg_slave(struct i2c_client *slave)
-+{
-+	struct tp_bus *bus = i2c_get_adapdata(slave->adapter);
-+
-+	if (bus->tp_smbus_client)
-+		return -EBUSY;
-+
-+	bus->tp_smbus_client = slave;
-+
-+	return 0;
-+}
-+
-+static int p3h2x4x_tp_i2c_unreg_slave(struct i2c_client *slave)
-+{
-+	struct tp_bus *bus = i2c_get_adapdata(slave->adapter);
-+
-+	bus->tp_smbus_client = NULL;
-+
-+	return 0;
-+}
-+#endif
-+
-+/*
-+ * I2C algorithm Structure
-+ */
-+static struct i2c_algorithm p3h2x4x_tp_i2c_algorithm = {
-+	.master_xfer    = p3h2x4x_tp_i2c_xfer,
-+#if IS_ENABLED(CONFIG_I2C_SLAVE)
-+	.reg_slave = p3h2x4x_tp_i2c_reg_slave,
-+	.unreg_slave = p3h2x4x_tp_i2c_unreg_slave,
-+#endif
-+	.functionality  = p3h2x4x_tp_smbus_funcs,
-+};
-+
-+/**
-+ * p3h2x4x_tp_smbus_algo - add i2c adapter for target port who
-+ * configured as SMBus.
-+ * @hub: p3h2x4x device structure.
-+ * Return: 0 in case of success, negative error code on failur.
-+ */
-+int p3h2x4x_tp_smbus_algo(struct p3h2x4x_i3c_hub_dev *hub)
-+{
-+	u8 tp, ibi_mask = 0;
-+	int ret;
-+
-+	for (tp = 0; tp < P3H2x4x_TP_MAX_COUNT; tp++) {
-+		if (!hub->tp_bus[tp].of_node ||
-+		    hub->hub_config.tp_config[tp].mode != P3H2x4x_TP_MODE_SMBUS)
-+			continue;
-+
-+		/* Allocate adapter */
-+		struct i2c_adapter *smbus_adapter =
-+			devm_kzalloc(hub->dev, sizeof(*smbus_adapter), GFP_KERNEL);
-+		if (!smbus_adapter)
-+			return -ENOMEM;
-+
-+		/* Initialize adapter */
-+		smbus_adapter->owner = THIS_MODULE;
-+		smbus_adapter->class = I2C_CLASS_HWMON;
-+		smbus_adapter->algo = &p3h2x4x_tp_i2c_algorithm;
-+		smbus_adapter->dev.parent = hub->dev;
-+		smbus_adapter->dev.of_node = hub->tp_bus[tp].of_node;
-+		snprintf(smbus_adapter->name, sizeof(smbus_adapter->name),
-+			 "p3h2x4x-i3c-hub.tp-port-%d", tp);
-+
-+		i2c_set_adapdata(smbus_adapter, &hub->tp_bus[tp]);
-+
-+		/* Register adapter */
-+		ret = i2c_add_adapter(smbus_adapter);
-+		if (ret) {
-+			devm_kfree(hub->dev, smbus_adapter);
-+			return ret;
-+		}
-+
-+		ibi_mask |= hub->tp_bus[tp].tp_mask;
-+		hub->tp_bus[tp].is_registered = true;
-+		hub->hub_config.tp_config[tp].ibi_en = true;
-+		hub->tp_bus[tp].tp_smbus_adapter = smbus_adapter;
-+	}
-+
-+	/*
-+	 * holding SDA low when both SMBus Target Agent received data buffers are full.
-+	 * This feature can be used as a flow-control mechanism for MCTP applications to
-+	 * avoid MCTP transmitters on Target Ports time out when the SMBus agent buffers
-+	 * are not serviced in time by upstream controller and only receives write message
-+	 * from its downstream ports.
-+	 */
-+	ret = regmap_update_bits(hub->regmap, P3H2x4x_ONCHIP_TD_AND_SMBUS_AGNT_CONF,
-+				 P3H2x4x_TARGET_AGENT_DFT_IBI_CONF_MASK,
-+				 P3H2x4x_TARGET_AGENT_DFT_IBI_CONF);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_write(hub->regmap, P3H2x4x_TP_SMBUS_AGNT_IBI_CONFIG, ibi_mask);
-+}
-diff --git a/include/linux/i3c/device.h b/include/linux/i3c/device.h
-index 971d53349b6f..6188082599dd 100644
---- a/include/linux/i3c/device.h
-+++ b/include/linux/i3c/device.h
-@@ -85,6 +85,7 @@ struct i3c_xfer {
-  */
- enum i3c_dcr {
- 	I3C_DCR_GENERIC_DEVICE = 0,
-+	I3C_DCR_HUB = 194,
- };
- 
- #define I3C_PID_MANUF_ID(pid)		(((pid) & GENMASK_ULL(47, 33)) >> 33)
 -- 
-2.25.1
+Best Regards,
+Wangao
 
 
