@@ -1,119 +1,185 @@
-Return-Path: <devicetree+bounces-273308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273309-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OKSRDxDMr2nWcAIAu9opvQ
-	(envelope-from <devicetree+bounces-273308-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:45:20 +0100
+	id 0FiPGsDMr2nWcAIAu9opvQ
+	(envelope-from <devicetree+bounces-273309-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:48:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 300EE24692B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:45:19 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06C2C2469C9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 8E249301EA25
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:45:07 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4AE04300CA0F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 07:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133393E95A6;
-	Tue, 10 Mar 2026 07:45:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3843612E2;
+	Tue, 10 Mar 2026 07:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DFub48VZ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BbYFnJ0s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB7A3E9597;
-	Tue, 10 Mar 2026 07:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62EB83C2D;
+	Tue, 10 Mar 2026 07:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773128701; cv=none; b=QPNozWTZXjtzsamxztoDA/uatytIIbZMI1+i+MC3pic7oaQ2SFtxdPVfjwTQfOKJYTzQ6OyLplIFn+wCxlQ3FY1tGSfvIwwYd39t9d69fQubmFNCn5w4etFaZmKNaHIlvinRKEGwekA+JbCbybQixPdmzduLP/r/ing1VUTDPv4=
+	t=1773128892; cv=none; b=LT8reOim2aqySzMFvrPBN23inOHDjrVqHn8qYSnAylDXbh4y2nEhxlFUqN9yCtxj8DlQaxPoP94sKhCumt90LGpWO/hx4klccF0Tx6QQlISkwM2UJfiy0GyJAabS/msXr6KME9Wcb6cUnw3mCIFHfeCp+Y86gDBVf9VyRZpES4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773128701; c=relaxed/simple;
-	bh=14+B0q+DaWJW6o/my67KajMAOoHWePmWrNJ2DJQL25Q=;
+	s=arc-20240116; t=1773128892; c=relaxed/simple;
+	bh=fD6Hp7eCwYDUECBDlznXkD8PgSoscI5KzKajcaEClAk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZT7DNRAjcNPCHIC96w9ajYYJm2OqpPsnd0T8TQ/SGHI6vZFnpbPKsjxjrMgqz1YglV5/I4PPXoL7cjZBjj+n1pPX3LpI3URIroiUbNIqnzQVSkTdpIPwS8B27FSzRWC6U7Bzj/Eq2GO/rNi4WGODHI8oBTIread61+1ziGQIGQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DFub48VZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 331D9C19423;
-	Tue, 10 Mar 2026 07:45:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773128700;
-	bh=14+B0q+DaWJW6o/my67KajMAOoHWePmWrNJ2DJQL25Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DFub48VZxJtW6ZkNuY8VeArYfRckDC1hK+/nxqo02IIvLe+8uYE5F4+H/fEgL5Tzv
-	 ksNyZOSsdg4fRsrQ0l+yH5jZLSfcbavPtjkODJszrX5r4SSWnTYsqwoJp/OcX2tz5i
-	 14kdDiNOuBjZBPXF2u59Tbqt9cVpDUeFMfpxR0M2pqfMNL8UrUMnpkHGek9VeM0jTm
-	 SQ5eQxY05gJiffmGc2VrR4fbBJxH5BLQLlEHvNqHW4Ct/t/VirXKahbd//pvxctXI5
-	 9qFhfsrdOGzWhIuJMZKoLukm1SC3PJq2nGWuZvsW2RhS1dfuFhWw+96B3YFGBKCgiA
-	 UxywlRMwgAP5w==
-Date: Tue, 10 Mar 2026 08:44:58 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, mohammad.rafi.shaik@oss.qualcomm.com, 
-	linux-sound@vger.kernel.org, lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, 
-	johan@kernel.org, dmitry.baryshkov@oss.qualcomm.com, 
-	konrad.dybcio@oss.qualcomm.com, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, mailingradian@gmail.com
-Subject: Re: [PATCH v5 06/13] ASoC: dt-bindings: qcom: add LPASS LPI MI2S dai
- ids
-Message-ID: <20260310-new-artichoke-asp-6b5412@quoll>
-References: <20260309065137.949053-1-srinivas.kandagatla@oss.qualcomm.com>
- <20260309065137.949053-7-srinivas.kandagatla@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=bnFvUKl5npeSCqEj0ypZ3YYwspL2PK9KzMmRwipi+oN7MgaDFlxEvknFq0DGW0I2LVYDWCDnVBz56VWKuZjYNDO+isCbzpXd3Q8Dv9tv8XuYhrjYSi8dfwPXmmTCM7d+q/5QKKBb7FaTbAugZcnq16RhWt6W3gzes1hpwhthtrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BbYFnJ0s; arc=none smtp.client-ip=192.198.163.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773128891; x=1804664891;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fD6Hp7eCwYDUECBDlznXkD8PgSoscI5KzKajcaEClAk=;
+  b=BbYFnJ0sXXcFr/eshvtucMDyq8l790BKAetrXVLQC41IunSSXtDE3CfV
+   zlmGpLiC6+6qJQZ33pooN6OPMhYAYySItSpdJLhb3oBxbVzJlxJWz0hwZ
+   ZEyLX7nhtk5eml/Bw04D3xDLcatn9idQemFEhb+y5OW03c3EuK+Ght8pq
+   b17R6CmIKWq9m7V4An1omhX+xrroEJFkdLNra5tHS+VX3oU8ufWUj7m8h
+   yd7XnREpHjLmpwTdvM8EDicuQKpq56Ciz4etMFSzj9mSB98C1fwoImFpb
+   9a45XXT0ro9NwLr0qeoMSzgNCdPTcqvfsdDaxgRvz1dcieZeR8ASsxYdT
+   Q==;
+X-CSE-ConnectionGUID: T/sGJjlSQLWlGo6nGz0LIw==
+X-CSE-MsgGUID: fMzGH6LjRiWqJDq9k7CR9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="84802879"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; 
+   d="scan'208";a="84802879"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 00:48:10 -0700
+X-CSE-ConnectionGUID: g6iFfNbMStG3MR+Gl2Nd/Q==
+X-CSE-MsgGUID: kYgmMaxbQn+u51djDoc9vA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; 
+   d="scan'208";a="224974328"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.26])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 00:48:07 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 8D9DA1206B6;
+	Tue, 10 Mar 2026 09:48:38 +0200 (EET)
+Date: Tue, 10 Mar 2026 09:48:38 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Alexander Koskovich <akoskovich@pm.me>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] media: i2c: ov8856: parse and register V4L2
+ device tree properties
+Message-ID: <aa_M1uWvBG3-gDkf@kekkonen.localdomain>
+References: <20260310-ov8856-v4l2-props-v2-0-2717404ed045@pm.me>
+ <20260310-ov8856-v4l2-props-v2-2-2717404ed045@pm.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260309065137.949053-7-srinivas.kandagatla@oss.qualcomm.com>
-X-Rspamd-Queue-Id: 300EE24692B
+In-Reply-To: <20260310-ov8856-v4l2-props-v2-2-2717404ed045@pm.me>
+X-Rspamd-Queue-Id: 06C2C2469C9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273308-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273309-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,oss.qualcomm.com,vger.kernel.org,gmail.com,perex.cz,suse.com];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,pm.me:email,intel.com:dkim,kekkonen.localdomain:mid]
 X-Rspamd-Action: no action
 
-On Mon, Mar 09, 2026 at 06:51:30AM +0000, Srinivas Kandagatla wrote:
-> Add new dai ids entries for LPASS LPI MI2S and SENARY MI2S audio lines.
+Hi Alexander,
+
+On Tue, Mar 10, 2026 at 04:21:34AM +0000, Alexander Koskovich wrote:
+> Parse V4L2 device tree properties and register controls for them.
 > 
-> Co-developed-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
 > ---
->  .../bindings/sound/qcom,q6dsp-lpass-ports.yaml       |  5 ++++-
->  include/dt-bindings/sound/qcom,q6dsp-lpass-ports.h   | 12 ++++++++++++
->  2 files changed, 16 insertions(+), 1 deletion(-)
+>  drivers/media/i2c/ov8856.c | 13 ++++++++++++-
+>  1 file changed, 12 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/media/i2c/ov8856.c b/drivers/media/i2c/ov8856.c
+> index e2998cfa0d18..9d7d16ba8911 100644
+> --- a/drivers/media/i2c/ov8856.c
+> +++ b/drivers/media/i2c/ov8856.c
+> @@ -1887,12 +1887,14 @@ static const struct v4l2_ctrl_ops ov8856_ctrl_ops = {
+>  
+>  static int ov8856_init_controls(struct ov8856 *ov8856)
+>  {
+> +	struct i2c_client *client = v4l2_get_subdevdata(&ov8856->sd);
+> +	struct v4l2_fwnode_device_properties props;
+>  	struct v4l2_ctrl_handler *ctrl_hdlr;
+>  	s64 exposure_max, h_blank;
+>  	int ret;
+>  
+>  	ctrl_hdlr = &ov8856->ctrl_handler;
+> -	ret = v4l2_ctrl_handler_init(ctrl_hdlr, 8);
+> +	ret = v4l2_ctrl_handler_init(ctrl_hdlr, 10);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -1954,6 +1956,15 @@ static int ov8856_init_controls(struct ov8856 *ov8856)
+>  	if (ctrl_hdlr->error)
+>  		return ctrl_hdlr->error;
+>  
+> +	ret = v4l2_fwnode_device_parse(&client->dev, &props);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, &ov8856_ctrl_ops,
+> +					      &props);
+> +	if (ret)
+> +		return ret;
+> +
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+It's not a bug introduced in this patch, but freeing the control handler on
+error path was broken to begin with: it was never set to the sub-device on
+error so the caller can't release it.
 
-Best regards,
-Krzysztof
+Could you fix that before this patch so we can get it backported?
 
+I think it'd be cleanest to add a new label for freeing it and change all
+existing returns to gotos.
+
+>  	ov8856->sd.ctrl_handler = ctrl_hdlr;
+>  
+>  	return 0;
+> 
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
