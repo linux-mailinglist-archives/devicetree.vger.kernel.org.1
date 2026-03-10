@@ -1,145 +1,189 @@
-Return-Path: <devicetree+bounces-273359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273360-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gGf8AnDbr2kzdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273359-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:50:56 +0100
+	id iHn5JxTbr2kzdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273360-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:49:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82726247A2D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:50:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B4824798D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:49:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 9975F316B739
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:44:32 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E333D301FD9B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B0A42F540;
-	Tue, 10 Mar 2026 08:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8212361DDF;
+	Tue, 10 Mar 2026 08:48:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="fT5cMsFZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S4xGdb4c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F31136827B;
-	Tue, 10 Mar 2026 08:44:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDA03D6CBC;
+	Tue, 10 Mar 2026 08:48:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773132271; cv=none; b=X4Ofn44qJb2xdfOK2/dVT5GVQ6i50I05TswqldSnW0+F7xWfONc+L7pguL+wZ7Y28urayGqv73+HLh0E7oDT8UocVKNvm/kQnpxTeSl+txhwgtSs95p405MQFQeXFf8PL0jgS1dYiVP4cbFsUK+cMCIl4sey9Vs09Pl7Lt2NBmc=
+	t=1773132510; cv=none; b=F1WAy3heyXRNcIxmMjSJE52mbEJsBkOQE6EgD3r0N8IO50VR3V8I9yXxomd3TTTAKZiv7Wo9aB74rU1cM9wqf9Ig/rHe6znAndHRrMpDB6koNXEwu/G+O62Sq3/blqwU2MKYe9K4K2V79J42ZqaU+edaQne9u+IFTMW2rWib4Qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773132271; c=relaxed/simple;
-	bh=x4SOnHKXXQbowMIWvcYVrwE1RkVQ2mphrd4QHH7FDxs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oumY7WFQcDyqA80pNyB0A5SRRH+yvyWJA37B7taVbRJ4zHlmc2tXNyICh4YVnDrfUQgGpGmw7y8YeICaL6TY6oT5UCmvdE9mHiGSAPxdFJERQo/MQ/UC590jmCtQByOLFsCBY0+LLXd60cLbxmtl7/u3Igjnzst/DFFTXkyDHgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=fT5cMsFZ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=bpD5NoxtizmPqHZoG2v1zD3kMN7TqUhqxGbUTcYDjOA=; b=fT5cMsFZM7UhJIUYmz8AlXMJVJ
-	eGThAa2YjlC9LmkfI8+pPI2b9fs3FAN8qJxtsgvju89DlrGI9w2fiLzIFGdAs+Ly2vO0iYPMe8Cdo
-	xWtPycH8ncvZBU+qtEpiUYCXeSUnJN/U6aaExRrvy45SP2bCL0pnpIRPINj4/X1oImluK3cCcwdD2
-	KWYI9b0ZUgU4W/gbmtAcwP6Q7P0bravi92cQ8k9FAQZ8KdU0rk1fLAndGWlOi+bHFiLNIpuITSIKe
-	Zol9mzrw1Dc9XRGuy4KzmgCZsv4dLCL3uOKWYZetoKTwmk2M0v4hG/yS1yzCOP0L6hAc4l+7VCWs/
-	eguzc2oQ==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Detlev Casanova <detlev.casanova@collabora.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil@kernel.org>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: kernel@collabora.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- linux-media@vger.kernel.org, Conor Dooley <conor@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Subject:
- Re: [PATCH v5 0/4] arm64: dts: rockchip: Fix vdec register blocks order on
- RK3576/RK3588
-Date: Tue, 10 Mar 2026 09:44:21 +0100
-Message-ID: <4358847.1IzOArtZ34@phil>
-In-Reply-To: <20260304-vdec-reg-order-rk3576-v5-0-7006fad42c3a@collabora.com>
-References: <20260304-vdec-reg-order-rk3576-v5-0-7006fad42c3a@collabora.com>
+	s=arc-20240116; t=1773132510; c=relaxed/simple;
+	bh=WeMy9uvsRTzKDx5AyUJ4ZSaKuiM/lFviZ53EAFy0i/k=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=UWL34ofk5BuBbqs22u60WvCf0OZmVy4ojMDBGNEdbzQWn+dJFYhK8FFOsBdO1wfVpYglC4RLoW3wfvwlmZB6GkvJtsFNipuT1auXYIo3lzyTU6+qsbjmA2gzNfiBhSxaFwzO5VMWwoDN6oS4OFQf57FbBxB+y51BPivY18vR438=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S4xGdb4c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2311C19423;
+	Tue, 10 Mar 2026 08:48:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773132510;
+	bh=WeMy9uvsRTzKDx5AyUJ4ZSaKuiM/lFviZ53EAFy0i/k=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=S4xGdb4cUZodZ2aT8q0DvIu3jAnONnXJ0cyTwl09WJ9ktJ+byy14L6xHpHkrjWxWN
+	 H1lY4W4Bds42ilGksrsnsbRl1QygyPGUa/UtA3RzNe0zS7otrbAdPwyIEKZRqiI5m5
+	 6VQORD6N9d5NSyazDYAqnUxJnSTaWSQerl2va0fKwS2LV8krM3GbPWs9MZ4JCazUhO
+	 RC3nIPSX05HgGDI0RAGlMbz8bAIQM18n1iBeXF9TxJh8YQFTEaZ77MliI+hGh13ZUV
+	 XjH42eZmJtF83cTnl56o0dfus6v5kmmoMmdsO8y8FJfheWdHjwpNIU6Ko72L3hjp/C
+	 UkdjCv8c5BQrw==
+Message-ID: <47657a77-2880-4556-84fc-96dc4174e705@kernel.org>
+Date: Tue, 10 Mar 2026 09:48:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: 82726247A2D
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mark unimplemented AXI snps,kbbe snps,mb and
+ snps,rb
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Conor Dooley <conor@kernel.org>,
+ "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: Andrew Lunn <andrew@lunn.ch>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, Conor Dooley <conor+dt@kernel.org>,
+ "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
+ Eric Dumazet <edumazet@google.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>, Jakub Kicinski
+ <kuba@kernel.org>, Jose Abreu <joabreu@synopsys.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, netdev@vger.kernel.org,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>
+References: <E1vxq3L-0000000BsQm-4C8v@rmk-PC.armlinux.org.uk>
+ <aatrvmyW-SaHuVN7@shell.armlinux.org.uk>
+ <20260309-spill-gradient-b6f9440f3a26@spud>
+ <5add0a0b-e6da-40ae-b7cc-e64910739355@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <5add0a0b-e6da-40ae-b7cc-e64910739355@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: B1B4824798D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273359-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	TAGGED_FROM(0.00)[bounces-273360-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[27b00000:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sntech.de:dkim]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Am Mittwoch, 4. M=C3=A4rz 2026, 22:00:39 Mitteleurop=C3=A4ische Normalzeit =
-schrieb Cristian Ciocaltea:
-> When building device trees for the RK3576 based boards, DTC shows the
-> following complaint:
->=20
->   rk3576.dtsi:1282.30-1304.5: Warning (simple_bus_reg): /soc/video-codec@=
-27b00000: simple-bus unit address format error, expected "27b00100"
+On 10/03/2026 09:43, Krzysztof Kozlowski wrote:
+> On 09/03/2026 18:49, Conor Dooley wrote:
+>> On Sat, Mar 07, 2026 at 12:05:18AM +0000, Russell King (Oracle) wrote:
+>>> Any chance of a review from the DT maintainers please?
+>>
+>> Sure.
+>>
+>>> On Wed, Mar 04, 2026 at 05:30:32PM +0000, Russell King (Oracle) wrote:
+>>>> Mark the AXI snps,kbbe snps,mb and snps,rb properties as not
+>>>> implemented. These were introduced by commit afea03656add ("stmmac:
+>>>> rework DMA bus setting and introduce new platform AXI structure").
+>>>> While stmmac has code to parse these properties and save their values,
+>>>> these are written to write-only struct members - no code in stmmac
+>>>> has ever read their value. Hence, these properties have been non-
+>>>> functional from day one.
+>>
+>> If they're not implemented and have never been used, could we delete
 
-[...]
+Maybe I misunderstood, did you mean delete from the drivers as well?
+This would work as well, but we cannot only remove the dt-bindings.
 
-> Cristian Ciocaltea (4):
->       media: dt-bindings: rockchip,vdec: Mark reg-names required for RK35=
-{76,88}
->       media: dt-bindings: rockchip,vdec: Add alternative reg-names order =
-for RK35{76,88}
 
-due to media "applied" messages most of the time not reaching all Cc'ed
-recipients, please tell me once the binding patches landed somewhere.
-
-Thanks a lot
-Heiko
-
->       arm64: dts: rockchip: Fix vdec register blocks order on RK3576
->       arm64: dts: rockchip: Update vdec register blocks order on RK3588
->=20
->  .../devicetree/bindings/media/rockchip,vdec.yaml   | 22 ++++++++++++++--=
-=2D-----
->  arch/arm64/boot/dts/rockchip/rk3576.dtsi           |  6 +++---
->  arch/arm64/boot/dts/rockchip/rk3588-base.dtsi      | 12 ++++++------
->  3 files changed, 23 insertions(+), 17 deletions(-)
-> ---
-> base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
-> change-id: 20260223-vdec-reg-order-rk3576-cc2ec6e05e98
->=20
->=20
+>> entirely? Note that they also appear down around line 600 in the file,
+>> in the stmmac-axi-config section.
+>>
+> 
+> We should not document what is and what is not implemented, thus this
+> patch is not correct either. Either you deprecate properties, based on
+> some argument, or you leave them untouched regardless whether they are
+> implemented or not. If someone re-implements them next week, are you
+> going to change the binding? Usually no, unless these are not really
+> hardware properties.
 
 
 
-
+Best regards,
+Krzysztof
 
