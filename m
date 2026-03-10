@@ -1,152 +1,442 @@
-Return-Path: <devicetree+bounces-273692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273693-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YAl1EmxisGloigIAu9opvQ
-	(envelope-from <devicetree+bounces-273692-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:26:52 +0100
+	id QKrALPBisGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273693-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:29:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4CC025661C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:26:51 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 389D4256669
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:29:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 586273006798
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:26:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id EB134306FE2B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:29:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E90EB2DF6E9;
-	Tue, 10 Mar 2026 18:26:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BDCF2E2850;
+	Tue, 10 Mar 2026 18:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BncYExWG"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Z1V2f+sN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11013050.outbound.protection.outlook.com [40.107.159.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C68802DEA95;
-	Tue, 10 Mar 2026 18:26:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773167209; cv=none; b=D8T2vvwmq3JeKg1qtgCQ0VZpPlkd9AmIjxTp9TfiStaX/IRu2D3mvXjrdH2+TcYabIT2lmEhZAfT4xDo/BlOh7IP6vWhSJ1S9BPtUaKOp8ljxydPpiAH5MBuNQFkUMwcFbNBPtghfSwI7HtHs+5ntjvRSPr1Adcb1NgMdF68P3M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773167209; c=relaxed/simple;
-	bh=u71ylBXX43bPBzfPHncR52udzq5yhNxIRgu1+tDOHuU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GCB5B9QrbU/EywsMqubxUdJNEchAS4JbJ5NmJ2jvquJ9CjtwZ5VXTmlMkijGoVZ30MwLRj78fZ/kd3/taGMwWZMfEZw+A1lRyGcQS9FAn0G6TZxR/r2vW5RQtrVHSkVaWnDKLUono5etGDc6MeuQ49rBY7+V85AFQl7xMzHvGsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BncYExWG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2210C19423;
-	Tue, 10 Mar 2026 18:26:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773167209;
-	bh=u71ylBXX43bPBzfPHncR52udzq5yhNxIRgu1+tDOHuU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BncYExWGjos66rGnQhUNyNFKwc+tOVy2HTAuCPEuZtgZSRyZ0pzKVj046+ZN//nEk
-	 qmxjlmQHLuB7Igx3zfVPe2a5N3fw3c5vaHqvDt47LOzYR8hm8vcKznw9JHBB9BW8xr
-	 Dyxv3yFSf81Uxzi8Q6dZC6Gr5Suon/BIIV108S0eblCXpBOocM7TrA5KEg0Jz2zcK0
-	 5BN9lwAB/vz7zRS9R1uvtUwR4QntbWNDmKLLsFAjEAF8CMXoOp7HHWMoQkIlzndO3t
-	 GNHBtJ6UZQH7fCjszAcolz5H0MJjNXUN6xpsaKuK5CFKoFL+3cxhdsMbPSMrRVKjzK
-	 aeEt4vqow8D9w==
-Date: Tue, 10 Mar 2026 18:26:45 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Francesco Dolcini <francesco@dolcini.it>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, Max Krummenacher <max.oss.09@gmail.com>
-Subject: Re: SPI loopback tests
-Message-ID: <f35c50cc-741c-407d-97e5-81c62fcc15e7@sirena.org.uk>
-References: <20260310133254.GA51497@francesco-nb>
- <09f06ce4-0405-442b-bf3d-5722a6977a4d@sirena.org.uk>
- <20260310-marlin-untoasted-ecca1e3e80e8@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982902DB78B;
+	Tue, 10 Mar 2026 18:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773167341; cv=fail; b=faIrVpwRXftpWkDh4PYIfRL40ROp0+pMBM8+BTuiSbMAQB/8IoAhSvl9HUO32MH2hyh26zLNDvXFwNqwd2WyAQEA3ANgRcoAvvL4n+2fjiOV6URZQZ2p7yfMCl7bq8Jda/Q5joax+FcE0c8+IgdpVAa4O6znJwDT/6hSNMYnVEo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773167341; c=relaxed/simple;
+	bh=YP7tFsVYDasvDY92TWQgYj4hawh5rGEuMnm9MgaL+yA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=cgtsyQcQ/wVK7B+uqDzrhElvqYycb//ysEL1T5cLcRFCNfrWQv3sP5kRrKhyxTo02t7QC3qjVCUr5AQrX21wHymynR3h97D11DpdiLvZFT4ngm8qI15/G+5gcAdQ1iJ9Hikzm3sXgudr0adLEN+xlKOcI0c2yg5cDVRvmEtStrI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Z1V2f+sN; arc=fail smtp.client-ip=40.107.159.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QSWTkvFf4/ah5DFmwJnzmjyQ0w5Pfp4eGpvLplToBFBqbJVj16/NJH/0h1/6odJL/n/xPlp8ZttdTHQZEuM20axR5x7okU0OEvCw4dac0cQus4kBfmp79ZPxkCQgXtByhqHjrwe9TfWE96NWZmNY0OW8j5L30m1nbTGMnv94A89zpP3O+ZnCm5gF3rE3wes+Bme4GuGJZR1Wb1RMBf6Bsk2yHC+tmi8Txln7kxhozcdBzkA67LTjlsS8Owd/lcPcEWvbGoFdESO6ljA7hLk1HMHu0OXL2ZhGj3X9EWyks+FRXEoVJzhlBphr87jeeauUiP5ZMVvPMHHql9gTAQfcfg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H6HQ6LQQRSaG1Ss3bUToVAAPNvm9ffFwDTTUHOUxDrA=;
+ b=TUMNIR3fQX9+9yCIFOHa6jkjC6bzYf7gzHIppnnoLM0WqMD3qap9M8aoPfxLciHtdU4zDA4RyxgLM8zM+i2CdeQhWeTCEnlXwMrxi9g0vA8BEMnbj35sXMi5tSk2WW6PmImJ7t8na6QV5rR0W7/66kqG9/2cn6inPpTrYMrxtkAO8Fy/gS9HGJAfXbuaL2bSZcw+AnBAZm7r6lsA4aRT8V/LSkFzKx6X40Y2NsYG9Sp8rkfRfbPzJvVytWaCSk8tEDceg/t79wYStg916Hg8tDvtzWHJmmR3I4VAY+OSMZ+/SaqCq3739eM0z2UrufZtI8e9EcgQiIDrF8TctzNY4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H6HQ6LQQRSaG1Ss3bUToVAAPNvm9ffFwDTTUHOUxDrA=;
+ b=Z1V2f+sNh1IWdMTGNdC11t2vU+PjZdsw+Z34m/upZt5z9ZuOV7SMBiCVNEBs4INhacxgw9F4ImN1cnPbFmRTeSuqomMfo9MGTEIoFo23Th7l77aXuvQThRwea0C/xvU1knynA6NbK8od2GfITVc4tbGnZMrSKZ6IZKDvRoAAD03EsRvFNgiFDwEzPR8bkPSJSiCixnLm+HUnK+92m0XlpNd3UyGfwtTZy0fw62VUCN9LiNJW35h3udTpz12FOFn6NJGWdOGMSdqoz/BUSiuk6PnoY+xwHMlSsI6H6mtC1Ghj0mwn4fz9Mli97nr+TQ4QiGJ1KPUSahDBF+87pMRt2A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by AM0PR04MB6929.eurprd04.prod.outlook.com (2603:10a6:208:181::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Tue, 10 Mar
+ 2026 18:28:56 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Tue, 10 Mar 2026
+ 18:28:56 +0000
+Date: Tue, 10 Mar 2026 14:28:46 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org,
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, broonie@kernel.org,
+	lee@kernel.org, lgirdwood@gmail.com, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, aman.kumarpandey@nxp.com
+Subject: Re: [PATCH v6 7/7] i3c: hub: p3h2x4x: Add support for NXP P3H2x4x
+ I3C hub functionality
+Message-ID: <abBi3inYHL9Bzpk3@lizhi-Precision-Tower-5810>
+References: <20260310065727.3759342-1-lakshay.piplani@nxp.com>
+ <20260310065727.3759342-7-lakshay.piplani@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310065727.3759342-7-lakshay.piplani@nxp.com>
+X-ClientProxiedBy: SJ0PR13CA0111.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c5::26) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nZMcoPOh+3SQznGO"
-Content-Disposition: inline
-In-Reply-To: <20260310-marlin-untoasted-ecca1e3e80e8@spud>
-X-Cookie: A fool and his honey are soon parted.
-X-Rspamd-Queue-Id: E4CC025661C
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|AM0PR04MB6929:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5106f188-b927-4081-debf-08de7ed2e36c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|19092799006|52116014|366016|7416014|1800799024|18002099003|22082099003|56012099003|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	DEvO6ICdRXlhnRORjTJHsImt4AywUg67JxXmd8cys95J/9NjO17gxzKfJyxk44snRAYvWS7QhPW5qWtoguLg8Y2e+LjYVK2bUVqYRGGjQ9QlLygqEAIp9Ayh6jkGFHgjubiRM5mylqfvLNPU3sAq6aKBcAbTt5u3ZSgKu1qhwJGpdz/kyunMzC6j09fig40b1FwM+Mzor5fIsL1BenkqsBxwlcsG89Jqq3ctT4TQPxCUk4H1sutF1aqSxL9yJ1cZwBljPmRzVhPxyBwrhlAobTQ3mq7xGzgtBmQ/K9hZ5gwnZ/yMqlL4fsCbi0dbSWGzG8hCnjDUTcYGlPP5kjR6TKAP7PfupvyrXWVR/8bv6S8yBFRpRWG2+zuQZzPJYco20kD8/Ygh4ypuIP6QDX9M+NT/MlWjxQmukM74gfUp9L8CqC9rURZbzdSVLdK0CAHsp8JIN5Ylu4PLFNb7lNpPVDJD/3hCvcetum+2CvDwF5CxPJ/IvLKLJb9EKbWgHQSOz8l4jFmvcvHv7vSgiNUFPgZzadPIhAL/KlEle1eK9D8D6Sj6U6/q0rX5Em0Z+olQs5T2kWoLO/r2mfGDulcPF2tGL7Xpdvv5C34UCau+motIrF+q02Q17QLTSWLUTNO5myFS2ys+D/8ergi89zVDwGx8gkajQmTI9q8iWjb7loLGtwo9vYWP4Wi8Ev9WYoQfkWLWsFxI1WTV7r+wLNkIMLiM/wrUBosuH8GJBYHbnLOMLXQBDM1HlEQaF73lodvRaf4B7ofHiabyC+8GlXsloqvK3+lax2MiyDb/5o9z3ME=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(52116014)(366016)(7416014)(1800799024)(18002099003)(22082099003)(56012099003)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?87Y9eva7duqOUV8AfzIsEY6SIzJOTMJkVvJ+05ABf7ppSiLBNCjMW/kIJ7MK?=
+ =?us-ascii?Q?HPecz/grEXECHyDO6mgGM4ASNKWNHvnj6uezpGw+/O0bsZICxQR6UwbO21jx?=
+ =?us-ascii?Q?DncPc2hb4IAp9GxTbOa6c2x6efnX4heNJYCqnPDedSA5B4rSyJVgCJJ9dHVU?=
+ =?us-ascii?Q?EFe3/HbCXORJXP7Ch7cZkWcg0C0Q05zgKPvTRW33TDLN4ALbstAmMePw6/is?=
+ =?us-ascii?Q?ieWDM0EcA3O9f4VVnK1CPaRGPwcMb9Ok1AXGmTouieral3kII1QZu8mdkRxR?=
+ =?us-ascii?Q?HsSPkNvjoFM0AJdwavalk9Y8vQiripqUMpWjwK2a1HqKWk7KyxQMvMfAD+S5?=
+ =?us-ascii?Q?/hy/e6FBRp8SNQ3N56Puwt1irkI29Y5sCkaCRUTxgYJ5lE+E3uWTvhvOa1yK?=
+ =?us-ascii?Q?+OPDT+6JJFIemOCQ6qYcqrOiww/b4FtdM/mIUPgc+MWMeag82GbDMGeNAt+D?=
+ =?us-ascii?Q?SAzH7th7CTB5yjWqlvuE2lVsHzF/zDYXnbAbU2YRzOcj9yOT5Coohv9/yz+/?=
+ =?us-ascii?Q?F/RgSp+CIVgHpD0Ykg6EMab+rk8bGPBTroLgGQALUK7cw4/t4PgUaET1x5E8?=
+ =?us-ascii?Q?AQhYKVQ0aA5y55uPhKwynTg5C4vwaq1haxkt/wy7jc0COZR/zIUugPz/I048?=
+ =?us-ascii?Q?EfhouHp8XdG9GQhHbFakoIUaX9Y7N5M/ZXyf8tCFI88Y/zWMG2eGmQl5tKu6?=
+ =?us-ascii?Q?//cKbbbDIiSEgwSKvaqGKouv6Quj3y695ZEXJSnFoSQGmkgyRF3Z5v/MFORi?=
+ =?us-ascii?Q?RyDuTMFTu6qfxJ/k+EMJr2vN1G109RJ4bn/xytmrbMTnWOr9chYUU0Dr8lpz?=
+ =?us-ascii?Q?jKJ1n/8E0eS+NtXieXj4deDFWOPnAegcxGHw4KLTVfoP2iWkTHZQR8JRIngj?=
+ =?us-ascii?Q?sCjCzEStTQPWmZUgKDIme2JK56oHyW3UtGnQj79KHiW/E0KE3whSViWUcifK?=
+ =?us-ascii?Q?VwsLT41rpHPAHPdewl76Uu6qroPz0MwJ0wS1E+pNPAyq78wIMC0AhXklbCvH?=
+ =?us-ascii?Q?gSKCL0Ts4OEcMhsDT+bltbrPZhhlJW9tEm+wHsAuQtKmfhqXcHun4fUKX8/i?=
+ =?us-ascii?Q?/omGmZV/ZeIm13D031Q/ZVYYj59Sm+nyW9x533OwdzCbTpHTXcC0L4tqUGx/?=
+ =?us-ascii?Q?lNYXHe/73usHgmZWkPYz9qEwaMvkgjxUFS+9E6KKxUK+inwEQIw4Y09CTx7/?=
+ =?us-ascii?Q?ELru973Odsd2uTuG2j6dEhoJhOH4PCgS6ge/E5XOvQg4n39UcpMysDs2WFV8?=
+ =?us-ascii?Q?GUYhyEh4f8ApTwQT11K6jhWxq5BTe+Dhn/VFks0aWSPu5jGz9Q1RTESIJqGI?=
+ =?us-ascii?Q?wzlP2CoPblytzXY7sPwIbPkXOh4oZgzTvaCv1PTIols6uT1x/BFGTu8narPx?=
+ =?us-ascii?Q?baeo7FUmJkz5waAi4XXqB0ZIiGDF6LssTBRYa+ZUzgJMs7nTyunjKk3XwXqH?=
+ =?us-ascii?Q?30HzmIPyj6WFUSfqGqxxQ38PGJNVQwz1DUSrTvxyMVBeusv7Iwev6dBf9f/x?=
+ =?us-ascii?Q?gMYCgQKXE5GksCni1ZVywSshCX+1a+uxjivbZSUMYD2/+qqcptcoqM/GpCIO?=
+ =?us-ascii?Q?WkXe433QD+E0V0xDxLjdG1gNRJE3pgnJOckQsjF/xPgAS8eKEkdXmBjX5UA9?=
+ =?us-ascii?Q?hAHQbnPfKVAQV8q5OUmuBlLstde8sMqTqvvJG4r2FnOSCWdx27UmCAIgBF6o?=
+ =?us-ascii?Q?V3b0E2/KYxOlEnPu7SPy6nQW08LawEQ/g8UCfoe7XvsdXGtOSFVlxdBYKn/H?=
+ =?us-ascii?Q?+HAvgvrdbg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5106f188-b927-4081-debf-08de7ed2e36c
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 18:28:55.9188
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: o0kXxE8VlpnrOE/5alDrweCwq0S+w5J1AMFf6F6y8wV60L0XkblslhnlfFWTAr6pQJ290pYIOFnixmlnSSWK5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6929
+X-Rspamd-Queue-Id: 389D4256669
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-4.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+X-Spamd-Result: default: False [1.84 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273692-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[dolcini.it,kernel.org,vger.kernel.org,gmail.com];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273693-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com,nxp.com];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sirena.org.uk:mid]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email]
 X-Rspamd-Action: no action
 
+On Tue, Mar 10, 2026 at 12:27:27PM +0530, Lakshay Piplani wrote:
+> From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+>
+> Add I3C hub functionality for the NXP P3H2x4x family of multiport hubs.
+> These devices support downstream target ports that can be configured
+> as I3C, I2C, or SMBus.
+>
+> This driver enables:
+> - I3C/I2C communication between host and hub
+> - Transparent communication with downstream devices
+> - Target port configuration (I3C/I2C/SMBus)
+> - MCTP device support
+> - In-band interrupt handling
+>
+> P3H2440/P3H2441 support 4 target ports.
+> P3H2840/P3H2841 support 8 target ports.
+>
+> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+>
+> ---
+...
+> +
+> +static int find_close(int val, const int *tbl, int size)
+> +{
+> +	int best = 0, i;
+> +
+> +	for (i = 1; i < size; i++)
+> +		if (abs(tbl[i] - val) < abs(tbl[best] - val))
+> +			best = i;
+> +
+> +	return best;
+> +}
+> +
 
---nZMcoPOh+3SQznGO
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+There find_closest() in
+/ include / linux / util_macros.h
 
-On Tue, Mar 10, 2026 at 06:12:38PM +0000, Conor Dooley wrote:
-> On Tue, Mar 10, 2026 at 03:55:51PM +0000, Mark Brown wrote:
-> > On Tue, Mar 10, 2026 at 02:32:54PM +0100, Francesco Dolcini wrote:
+Can you reuse it?
 
-> > > I am aware that you all DT maintainers shared in a pretty clear way your
-> > > view on the abuse of the spidev multiple times.
+> +static u8 p3h2x4x_pullup_dt_to_reg(int dt_value)
+> +{
+> +	return find_close(dt_value, p3h2x4x_pullup_tbl,
+> +			  ARRAY_SIZE(p3h2x4x_pullup_tbl));
+> +}
+> +
+> +static u8 p3h2x4x_io_strength_dt_to_reg(int dt_value)
+> +{
+> +	return find_close(dt_value, p3h2x4x_io_strength_tbl,
+> +			  ARRAY_SIZE(p3h2x4x_io_strength_tbl));
+> +}
+> +
+...
+> +
+> +	p3h2x4x_i3c_hub->rp3h2x4x.rcp0 = devm_regulator_get_optional(dev, "vcc1");
+> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rcp0)) {
+> +		p3h2x4x_i3c_hub->rp3h2x4x.rcp0 = NULL;
+> +		dev_dbg(dev, "vdd1-supply not found\n");
+> +	}
+> +
+> +	p3h2x4x_i3c_hub->rp3h2x4x.rcp1 = devm_regulator_get_optional(dev, "vcc2");
+> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rcp1)) {
+> +		p3h2x4x_i3c_hub->rp3h2x4x.rcp1 = NULL;
+> +		dev_dbg(dev, "vdd2-supply not found\n");
+> +	}
+> +
+> +	p3h2x4x_i3c_hub->rp3h2x4x.rtp0145 = devm_regulator_get_optional(dev, "vcc3");
+> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rtp0145)) {
+> +		p3h2x4x_i3c_hub->rp3h2x4x.rtp0145 = NULL;
+> +		dev_dbg(dev, "vdd3-supply not found\n");
+> +	}
+> +
+> +	p3h2x4x_i3c_hub->rp3h2x4x.rtp2367 = devm_regulator_get_optional(dev, "vcc4");
+> +	if (IS_ERR(p3h2x4x_i3c_hub->rp3h2x4x.rtp2367)) {
+> +		p3h2x4x_i3c_hub->rp3h2x4x.rtp2367 = NULL;
+> +		dev_dbg(dev, "vdd4-supply not found\n");
+> +	}
+> +
+> +	/* Enable regulators */
+> +	if (p3h2x4x_i3c_hub->rp3h2x4x.rcp0) {
+> +		ret = regulator_enable(p3h2x4x_i3c_hub->rp3h2x4x.rcp0);
 
-> > > What would you be your advice to handle the need of an SPI loopback
-> > > test? Am I missing something and there is a solution already available?
+can you use devm_regulator_get_enable_optional() to combine get and enable
+by one call?
 
-> > I'm not aware of any idiomatic way to deal with this with DT
-> > unfortunately.  Perhaps the DT people have some ideas here?
+> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
+> new file mode 100644
+> index 000000000000..833bc0bebc4e
+> --- /dev/null
+> +++ b/drivers/i3c/hub/p3h2840_i3c_hub_i3c.c
+> @@ -0,0 +1,119 @@
+...
+> +int p3h2x4x_tp_i3c_algo(struct p3h2x4x_i3c_hub_dev *p3h2x4x_hub)
+> +{
+> +	struct i3c_master_controller *parent = i3c_dev_get_master(p3h2x4x_hub->i3cdev->desc);
+> +	u8 tp, ntwk_mask = 0;
+> +	int ret;
+> +
+> +	p3h2x4x_hub->hub = i3c_hub_init(parent,
+> +					&p3h2x4x_hub_ops,
+> +					p3h2x4x_hub->i3cdev);
+> +
+> +	if (IS_ERR(p3h2x4x_hub->hub))
+> +		return PTR_ERR(p3h2x4x_hub->hub);
+> +
+> +	for (tp = 0; tp < P3H2x4x_TP_MAX_COUNT; tp++) {
+> +		if (!p3h2x4x_hub->tp_bus[tp].of_node ||
+> +		    p3h2x4x_hub->hub_config.tp_config[tp].mode != P3H2x4x_TP_MODE_I3C)
+> +			continue;
+> +
+> +		/* Assign DT node for this TP */
+> +		p3h2x4x_hub->dev->of_node = p3h2x4x_hub->tp_bus[tp].of_node;
+> +
+> +		struct i3c_hub_controller *hub_controller =
+> +				&p3h2x4x_hub->tp_bus[tp].hub_controller;
+> +		struct i3c_master_controller *controller = &hub_controller->controller;
+> +
+> +		hub_controller->parent = parent;
+> +		hub_controller->hub = p3h2x4x_hub->hub;
+> +
+> +		dev_set_drvdata(&controller->dev, hub_controller);
+> +
+> +		ret = i3c_master_register(controller,
+> +					  p3h2x4x_hub->dev,
+> +					  i3c_hub_master_ops(),
+> +					  false);
+> +
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* Perform DAA */
+> +		ret = i3c_master_do_daa(parent);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ntwk_mask |= p3h2x4x_hub->tp_bus[tp].tp_mask;
+> +		p3h2x4x_hub->tp_bus[tp].is_registered = true;
+> +		p3h2x4x_hub->hub_config.tp_config[tp].always_enable = true;
+> +	}
+> +
+> +	ret = i3c_device_request_ibi(p3h2x4x_hub->i3cdev, &p3h2x4x_ibireq);
+> +	if (ret)
+> +		return ret;
 
-> I dunno, the suggestion seems fairly reasonable to me. I don't think
-> it's really abuse of anything, because the compatible would represent a
-> real hardware configuration. The only think that feels "abusive" is the
-> fake reg property you'd need.
+Need unregister_i3c at error path, or add API devm_i3c_master_register().
 
-In theory we should have a compatible specifically for loopback usage I
-suppose.  Depending on how the device does it's loopbacks there may
-actually be a genuine reg (if there's a chip select that's still
-selecting.
+> +
+> +	ret = i3c_device_enable_ibi(p3h2x4x_hub->i3cdev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_write(p3h2x4x_hub->regmap, P3H2x4x_TP_NET_CON_CONF, ntwk_mask);
+> +}
+> diff --git a/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
+> new file mode 100644
+> index 000000000000..75803a59fd6c
+> --- /dev/null
+> +++ b/drivers/i3c/hub/p3h2840_i3c_hub_smbus.c
+> @@ -0,0 +1,423 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2025 NXP
+> + * This P3H2x4x driver file contain functions for SMBus/I2C virtual Bus creation and read/write.
+> + */
+> +#include <linux/mfd/p3h2840.h>
+> +#include <linux/regmap.h>
+> +
+> +#include "p3h2840_i3c_hub.h"
+> +
+> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
 
-> Not sure that there should be a "linux," vendor prefix though, there's
-> nothing linux-specific about doing loopback. Probably should be
-> vendor-less?
+why I3C_SLAVE here?
 
-I think at this point it's old enough that it's just ABI and adding the
-option of having it vendorless would just cause people to ask why.
+"	This enables Linux to act as an I2C slave device. Note that your I2C
+        bus master driver also needs to support this functionality. Please
+        read Documentation/i2c/slave-interface.rst for further details.
+"
 
---nZMcoPOh+3SQznGO
-Content-Type: application/pgp-signature; name="signature.asc"
+I2C_SLAVE is for slave mode of i2c
 
------BEGIN PGP SIGNATURE-----
+> +/**
+> + * p3h2x4x_ibi_handler - IBI handler.
+> + * @i3cdev: i3c device.
+> + * @payload: two byte IBI payload data.
+> + *
+> + */
+> +void p3h2x4x_ibi_handler(struct i3c_device *i3cdev,
+> +			 const struct i3c_ibi_payload *payload)
+> +{
+> +	u32 payload_byte_one = (*(int *)payload->data);
+> +
+> +	if (!(payload_byte_one & P3H2x4x_SMBUS_AGENT_EVENT_FLAG_STATUS))
+> +		return;
+> +
+> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmwYmQACgkQJNaLcl1U
-h9BFmwf+MwUeHgh6Ij5dEMubDN8hQYH+KaCAy5I9qYlsOchTp28/HBBsRu025Vbj
-C/FC8lFeu4CZO+yAilfm0gY2psB7Ec6xNDvckywzxBdrHCUDcP5WW+avq5ssMyzs
-Z8FSspfccdPTIe4lvyy28njFmCsNBJRv1V7i+BMy2X50QiOnOPOop8IHWnl8GzDs
-KDEeeYkVR6PbUVXMkQQJvjCAxLA+DTmEl2VFhyGa9EcAHgvKV8Ak7523iwyVB950
-0y3oN7DWCclsC8YGtTwYLW17U3lS2Eo8Pq0tQQmDIsj7/lGyHDbjb94NGeDKC6eY
-Z+fkfXD3/TQvLBViFAXLJH5hFlbhDg==
-=U2Mo
------END PGP SIGNATURE-----
+The same here
 
---nZMcoPOh+3SQznGO--
+> +	struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub = dev_get_drvdata(&i3cdev->dev);
+> +	u32 target_port_status, payload_byte_two;
+> +	u32 ret, i;
+> +
+> +	if (!p3h2x4x_i3c_hub || !p3h2x4x_i3c_hub->regmap)
+> +		return;
+> +
+...
+> +/**
+> + * p3h2x4x_tp_i2c_xfer_msg() - This starts a SMBus write transaction by writing a descriptor
+> + * and a message to the p3h2x4x registers. Controller buffer page is determined by multiplying the
+> + * target port index by four and adding the base page number to it.
+> + */
+> +static int p3h2x4x_tp_i2c_xfer_msg(struct p3h2x4x_i3c_hub_dev *p3h2x4x_i3c_hub,
+> +				   struct i2c_msg *xfers,
+> +				   u8 target_port,
+> +				   u8 nxfers_i, u8 rw)
+> +{
+> +	u8 controller_buffer_page = P3H2x4x_CONTROLLER_BUFFER_PAGE + 4 * target_port;
+> +	u8 target_port_status = P3H2x4x_TP0_SMBUS_AGNT_STS + target_port;
+> +	u8 desc[P3H2x4x_SMBUS_DESCRIPTOR_SIZE] = { 0 };
+> +	u8 transaction_type = P3H2x4x_SMBUS_400kHz;
+> +	int write_length, read_length;
+> +	u8 addr = xfers[nxfers_i].addr;
+> +	u8 rw_address = 2 * addr;
+> +	int ret;
+> +
+> +	if (rw == 2) { /* write and read */
+> +		write_length = xfers[nxfers_i].len;
+> +		read_length =  xfers[nxfers_i + 1].len;
+> +	} else if (rw == 1) {
+> +		rw_address |= P3H2x4x_SET_BIT(0);
+> +		write_length = 0;
+> +		read_length =  xfers[nxfers_i].len;
+> +	} else {
+> +		write_length = xfers[nxfers_i].len;
+> +		read_length = 0;
+> +	}
+> +
+> +	desc[0] = rw_address;
+> +	if (rw == 2)
+> +		desc[1] = transaction_type | P3H2x4x_SET_BIT(0);
+> +	else
+> +		desc[1] = transaction_type;
+> +	desc[2] = write_length;
+> +	desc[3] = read_length;
+
+can you define index 0, 1, 2, 3 as enum
+
+Frank
+> +
+> +	ret = regmap_write(p3h2x4x_i3c_hub->regmap, target_port_status,
+> +			   P3H2x4x_TP_BUFFER_STATUS_MASK);
+> +	if (ret)
+> +		goto out;
+> +
+
+> +static struct i2c_algorithm p3h2x4x_tp_i2c_algorithm = {
+> +	.master_xfer    = p3h2x4x_tp_i2c_xfer,
+> +#if IS_ENABLED(CONFIG_I2C_SLAVE)
+> +	.reg_slave = p3h2x4x_tp_i2c_reg_slave,
+> +	.unreg_slave = p3h2x4x_tp_i2c_unreg_slave,
+> +#endif
+> +	.functionality  = p3h2x4x_tp_smbus_funcs,
+> +};
+> +
+> +/**
+> --
+> 2.25.1
+>
 
