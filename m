@@ -1,133 +1,197 @@
-Return-Path: <devicetree+bounces-273501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273503-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YHx1NQIHsGlregIAu9opvQ
-	(envelope-from <devicetree+bounces-273501-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:56:50 +0100
+	id +CJTI/IFsGlregIAu9opvQ
+	(envelope-from <devicetree+bounces-273503-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:52:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E77424BCA7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:56:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4BE24BB42
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 12:52:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 0BB24308FF31
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 11:48:30 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0A3E7314B15F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 11:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB58B389477;
-	Tue, 10 Mar 2026 11:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="drUKp5gv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FE338A28F;
+	Tue, 10 Mar 2026 11:49:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A71AF36C580;
-	Tue, 10 Mar 2026 11:48:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA66136C580;
+	Tue, 10 Mar 2026 11:49:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773143306; cv=none; b=B+mGjW1gjG0ICoMIKFoY1J9f0w1uQNzBlSCmmxx7FzN7XD0sFUmeYMYUqA91WjzMee+nnRDTFdVZFOuqCqx2ZGN/6MRzJz5loHP9J/NdXMxM9Wgyl3muN5dykiOyaDyvJ1iybpc/omS8w5Knyjf83FOzD6S4GGm7L/qnQQMsay0=
+	t=1773143357; cv=none; b=u7GZvcwLQZJuS242GUhd6Jf3YYExqH9qIIjklx+xoLNOUBJ+4DEPXe14kx1g6/GnTbYuCo6lmxS0tIL5UTY/L+cS6U3CChqaUo+vzLOhLajARSWULKVpoSpqqgIoeTEB9EGuEoeBiMcADIiHKeHXRaNO5equCNExq0q6QywfTto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773143306; c=relaxed/simple;
-	bh=Jw1AY1K8BFMsal2DolsFjTPgtVzy1zFVvuxb6CRg0ic=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lK4OY+zNE7w5z9TFP2UcOfzZcuoEWkJum+oNGVmPz5muYdMlBit5t/MM5M3xN5Sn/smbA91nwqj5OqygtH4NHq1hEHdfVlHl3ESy4omylA0hkH1VLMt4aUNGSoFbawl4S74auaujJdREXjEYpZN4NO3b0lZV5zUH+r3FGVoO37U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=drUKp5gv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1B78C19423;
-	Tue, 10 Mar 2026 11:48:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773143306;
-	bh=Jw1AY1K8BFMsal2DolsFjTPgtVzy1zFVvuxb6CRg0ic=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=drUKp5gvDcHM19RZKc/JI6zt4irMrEHhGoN+jsboPIuOqJiCksIvNNwfeXkXPr/jj
-	 La2tZIaup9uR6CX/MIKuavcDaayxZHkXrYdijqbmfB8cQORShoih28qKr8/fYJyNJv
-	 Ergmf28yTaiWZqmIL74TXJcnXa3wMppoDCsyOMFuXyP6lVk4TeJW9G6c5qUhmMssbw
-	 wlL/DpRPvWE0M0o8x/Zzsu9zOt1mZBG3RD1uQACN5qmAbJ2NCYmwH7fk1lUNxGf0JO
-	 qtJe8ixu7eTeQaBU9u7n7XPJ5B/5lwvuRrZyWsJica2N30+EyOtAY9XhK0gm4hpfjK
-	 43ovpvQU6+Oaw==
-Date: Tue, 10 Mar 2026 11:48:18 +0000
-From: Lee Jones <lee@kernel.org>
-To: Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1773143357; c=relaxed/simple;
+	bh=IUkRPHIot277CiZO8e3LlXsRohijimQweFY17BnM9BI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=myPrONLOdRSIC+3Zsgb0TyJCXtsGLvhquBjgIoYwY53JTyDxrSC0OlfwQl027zWRgASAsCv7+LM8oyD7MhOWSeA3jy5Z9EegVGDAS8lbPJRC5es5+mpWxxDBSKaui5DF3dPsOar5V4uBbmf9jx5X+LmM8uJBvOII//ol+Yxl7Pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.227])
+	by gateway (Coremail) with SMTP id _____8Bx08A1BbBpR34ZAA--.15974S3;
+	Tue, 10 Mar 2026 19:49:09 +0800 (CST)
+Received: from kernelserver (unknown [223.64.68.227])
+	by front1 (Coremail) with SMTP id qMiowJBxacEwBbBp4RdSAA--.11422S2;
+	Tue, 10 Mar 2026 19:49:05 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	MyungJoo Ham <myungjoo.ham@samsung.com>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Nam Tran <trannamatk@gmail.com>, linux-leds@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-rtc@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v3 10/13] leds: rgb: add support for Samsung S2M series
- PMIC RGB LED device
-Message-ID: <20260310114818.GH183676@google.com>
-References: <20260225-s2mu005-pmic-v3-0-b4afee947603@disroot.org>
- <20260225-s2mu005-pmic-v3-10-b4afee947603@disroot.org>
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	linux-i2c@vger.kernel.org
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v5 0/2] i2c: Add Loongson-2K0300 I2C controller support
+Date: Tue, 10 Mar 2026 19:48:51 +0800
+Message-ID: <cover.1773142933.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.52.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260225-s2mu005-pmic-v3-10-b4afee947603@disroot.org>
-X-Rspamd-Queue-Id: 8E77424BCA7
+X-CM-TRANSID:qMiowJBxacEwBbBp4RdSAA--.11422S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAgEBCGmuYSIJLgAFss
+X-Coremail-Antispam: 1Uk129KBj93XoWxWF4fGrWfuw4UurWkAFyfXwc_yoW5Gryxpa
+	y5C39xKF1qgr1I9rs3JFWruryava1fJa13Wr4xA34F9a1DZ3yUZ3yakF4YvFWDCrWxCF42
+	qrZrGr1UCa4DZFXCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUvIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+	xVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12xvs2x26I8E6xACxx
+	1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv
+	67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lc7CjxVAaw2
+	AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAq
+	x4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r
+	43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF
+	7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxV
+	WUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVjvjDU0xZFpf9x07jn
+	SdgUUUUU=
+X-Rspamd-Queue-Id: 2F4BE24BB42
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[loongson.cn];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273501-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,loongson.cn,kernel.org,sang-engineering.com,vger.kernel.org];
+	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,samsung.com,linaro.org,bootlin.com,lwn.net,linuxfoundation.org,gmail.com,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273503-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[disroot.org:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NEQ_ENVFROM(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, 25 Feb 2026, Kaustabh Chakraborty wrote:
+Hi all:
 
-> Add support for the RGB LEDs found in certain Samsung S2M series PMICs.
-> The device has three LED channels, controlled as a single device. These
-> LEDs are typically used as status indicators in mobile phones.
-> 
-> The driver includes initial support for the S2MU005 PMIC RGB LEDs.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  drivers/leds/rgb/Kconfig        |  11 +
->  drivers/leds/rgb/Makefile       |   1 +
->  drivers/leds/rgb/leds-s2m-rgb.c | 458 ++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 470 insertions(+)
+This patch set describes the I2C controller integrated the
+Loongson-2K0300 chip.
 
-Start by applying all of the comments I made on the 'flash' device.
+It has a significantly different design from the previous I2C
+controller(i2c-ls2x), such as support for master-slave transfer mode,
+and  DMA transfers (implementation in progress), etc. Therefore, we try
+to name it i2c-ls2x-v2.
 
-I'll take a more in-depth look at this one on the next version.
+Thanks.
 
+======
+V5:
+- Rebase on linux-i2c/i2c-next;
+Patch (2/2):
+  - Add time.h header file;
+  - Add the `MHz` suffix to `parent_rate` and `freq`;
+  - Define an iterator within the for loop, with its type being
+    `unsigned int`;
+  - Use dev_err_probe() in loongson2_i2c_adjust_bus_speed();
+  - i2c_adapter_set_node()->device_set_node().
+
+Link to V4:
+https://lore.kernel.org/all/cover.1772714348.git.zhoubinbin@loongson.cn/
+
+V4:
+- Rebase on linux-i2c/i2c-next;
+Patch (2/2):
+ - The parent_rate parameter type should be `unsigned long`;
+ - Drop fallthrough and add missing break;
+ - device_set_node()->i2c_adapter_set_node();
+ - Use i2c_parse_fw_timings();
+ - Use i2c_t.bus_freq_hz instead of priv->speed;
+ - Sperate loongson2_i2c_handle_read() into loongson2_i2c_handle_read()
+   and loongson2_i2c_handle_rx_done().
+
+Link to V3:
+https://lore.kernel.org/all/cover.1772001073.git.zhoubinbin@loongson.cn/
+
+V3:
+- Rebase on linux-i2c/i2c-next;
+Patch (2/2):
+ - Reorder header file follow IWYU principle;
+ - Better indentation and coding style;
+ - Use generic macro definitions;
+ - Amend *all* struct data types;
+ - Correct unreasonable variable type definitions;
+ - Refact loongson2_i2c_isr_error();
+ - of_property_read_u32()->device_property_read_u32();
+ - Remove meaningless blank lines and output.
+
+Link to V2:
+https://lore.kernel.org/all/cover.1769476820.git.zhoubinbin@loongson.cn/
+
+V2:
+Patch (1/2):
+ - Add Acked-by tag from Conor, thanks.
+
+Patch (2/2):
+ - Reorder the definitions of read() and write();
+ - Adjust the calculation method for bus speed.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1763018288.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (2):
+  dt-bindings: i2c: loongson,ls2x: Add ls2k0300-i2c compatible
+  i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C controller
+
+ .../bindings/i2c/loongson,ls2x-i2c.yaml       |   4 +
+ MAINTAINERS                                   |   1 +
+ drivers/i2c/busses/Kconfig                    |  10 +
+ drivers/i2c/busses/Makefile                   |   1 +
+ drivers/i2c/busses/i2c-ls2x-v2.c              | 544 ++++++++++++++++++
+ 5 files changed, 560 insertions(+)
+ create mode 100644 drivers/i2c/busses/i2c-ls2x-v2.c
+
+
+base-commit: b82316862bea929265725c077dffcec42e3dc20b
 -- 
-Lee Jones [李琼斯]
+2.52.0
+
 
