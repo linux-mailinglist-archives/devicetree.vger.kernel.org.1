@@ -1,581 +1,164 @@
-Return-Path: <devicetree+bounces-273742-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WDYVG6B+sGnLjgIAu9opvQ
-	(envelope-from <devicetree+bounces-273742-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:27:12 +0100
+	id CKD4E7d8sGnLjgIAu9opvQ
+	(envelope-from <devicetree+bounces-273714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:19:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8A2B257D51
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:27:11 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB0B257857
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:19:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 39FC330D3ED6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:22:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 23DF53203366
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:16:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8452B3EAC72;
-	Tue, 10 Mar 2026 20:22:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36CF33E929F;
+	Tue, 10 Mar 2026 20:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YlQ5esdA";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hXYjselQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IfFjOnWm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601A53E9F70
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 20:22:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1317A3BD63E;
+	Tue, 10 Mar 2026 20:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773174159; cv=none; b=C5IrENdYnehkIOvty3e2XDNA6sFViKvK8kQpOzgNWoYOlsr6nyBS0ypx3qB+evAWlh0htvk2GLHUn6V28lsiXvwlEmOe/sDz9vk+EId6rOo0WxH1Ln3fg3xAg4rjHmtA0Njhittv7F70wxzFQB33nDbSQAF6cPTCcs8nBNcPpfU=
+	t=1773173775; cv=none; b=uSWfjLWKHJpluRht/HLxTuf7lYiM233qnjPtoCQyIkp2V9yB2/hR/rxEbE6biPABka72+G0MS06CqbY/l6u/qfKMvapZkHwgKbMleB9LDLxEkspB9E0eyXnEk8tUXCS8HI9RauZ1/R5LqxWjsGhG9PJ1SB3TnACV+aTB248/5M0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773174159; c=relaxed/simple;
-	bh=3o2KnqJdxX2C8f5RJ2x+Q0A3VRBg28qpckkJPQU9N2E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MVsiJ3/ZeN529FgGTyyM49A+cDZ9RcM+qM7mtbiXkVTHKxPf6YdiMj0ct8VG/D1vGvd5a5qJ1xfLkQiU43c8DpS3U0aSv7tLyRc9BDA2RJPLkfgJCGcYf5cTg+VXq71c2H0IlW14yZAh7TeejnsBxiyyT/M1vPumuFLKqSFJ0H8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YlQ5esdA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hXYjselQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62AIaDGH2862524
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 20:22:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	BBTkKJ0zn2bqmXnFD9nCGkwAtPEKE3WdpaklXMQPzbc=; b=YlQ5esdAm3povK5t
-	RwQEFi0AuCHHUZHLxolgWMrI2BTdg+umVX70+L8KhFsJi8lJAK5GN7gBXSz7DsmT
-	tyO+QeO0EJUwH1sGy8qmT7XypT4oQTbX70UJRcwtbueGwgB7EjaRbjB/fh/quPR3
-	oytUcM/biUg/P/0iOc8VOqXQ4xTF29KEvSfkjvqFClkI7zFmVLx9sVZyKiao/EHb
-	pOO+uHxv2WTfPh3aQX/KtRc4wmvuZzPE6xE2WJQ882mcWmas5BiEpfrINkNzWoh0
-	LXjBaNgwHXq6/hEhhHWsUOFWnq9HA20NBWEAm0swJQG153Lx6YtOT9D7XF08fp1K
-	AjlOIQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cte3wb6mx-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 20:22:35 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-829ad81b132so12135315b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:22:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773174155; x=1773778955; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BBTkKJ0zn2bqmXnFD9nCGkwAtPEKE3WdpaklXMQPzbc=;
-        b=hXYjselQRJIKyEvgDa/tGFeNYvRpM7LUQvJYCMdtGOd8iFC7rqDRtxjqWo6K+1Mevo
-         nOMfMblfGrNw7mtstJlS0HNyLvxODp8tZMi0wnzamEfdL0erPjBYzNJAqecGaGXR+s4o
-         hUUJrY/DO0havnPYiSLAsHQiAIUTLsm8e+A+DlgzIbL2wlXXzKbF24CIp5J4hVAD8Y0P
-         Kd8EoFbdvPjiU39EDVQYHLdoCIQj+lWaFRhlk2Wkma2SDdd5xscn2jUVwlwpqBVmyXq7
-         0fAA6iPD+REYjYy5ce3XSvpQC7nuplD1R0VIlW0uezJ6ICKHAnjf2IR3NKTnH/0om62L
-         SxVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773174155; x=1773778955;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BBTkKJ0zn2bqmXnFD9nCGkwAtPEKE3WdpaklXMQPzbc=;
-        b=c+wgQoBTXU1bCTMUIfqlIIwUiurApEqHb+jIzzgDxbuRWxD62rMHe8owogoIO+gUvL
-         Gw9qaTkqTF+xHEEfo32KUWsf6jmg0AZ5XXG2AeoPokkQeF4WfqNvzK8enL9ql7vzPyIM
-         0XKfu1tnp31YMlJf92BtuEWBFwvfy+0xvVVboZ5yTx0l7/Sft0EOxSu21mVhx8FwaYQO
-         F4lgXX0zfE6iif5p2Dpk9sDNUV3+g9Ikp5qcmtrFWIRWvFPcup9Nun49A/FLDp3CWhY6
-         yQhRYY4Du6liCoYMUMslFZc5F/42CiM215LSRkjomxFtu3qGSy3GmagU5p67SHLauMhg
-         3UrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWANuzUv1ArFE62cy5gr4MexG3EHExz44G+LophUZPyS40TlDUsPwURT9P9zg9GmQNeew1pCtKG4bqp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/J2EdnGKFpbl4V5ZXCGnuGzzehcENHfTjP5LC6d8E9ITFjVpB
-	ezjL+kliqRVynE1nxLVkDHMJOjmWzfp7G7uRv3VcnBNgsLnBbCFJ3rTCC1N+d1gtHYB4si+oukV
-	DtiGFdp/Tf2FFmcyYux1ApK9DcxEbbhOQiK3Q73sqKfNrv7p1j0tvYM0WYI1UFVXY
-X-Gm-Gg: ATEYQzw4fMUnGIlbBdzYB1cI6Jj95nqwUwbE6DarsrJNdSSQnVimEBk9NIP18K5PHM6
-	y59dfPIdj8RGuxvJRYyObQKKMBdkGNmWBWqGHZIvm2thVirk9kI6L5cEf0gwSwSnTMVNLTTcaxP
-	nwEKJnthLm4evwQ3XwuYJa1kidHky9d66Wn3ksYs7nPqdheeYW4MB6MsNocDl51X5vSe+9OMHeT
-	mQiLsoljYI9+Rtn93/N3v081XyEXsLwymHWIMv6Rf9vFKLZeVvpCfJv3xNo1+8bbKybVapA7tRX
-	SoDlzZsdqhFCn3M49irSLAG/VOm3MXJE7UTQLpHzMevgMLzds+TKNR568gxA3t+vOURcDIcZmtD
-	tMz/WU1jlkeKag/tI5FaYsxqrD0DKZrbAeEQAwzweFQxRnKrm
-X-Received: by 2002:a05:6a00:e05:b0:81f:994f:cb with SMTP id d2e1a72fcca58-829f6f4197bmr162947b3a.24.1773174154579;
-        Tue, 10 Mar 2026 13:22:34 -0700 (PDT)
-X-Received: by 2002:a05:6a00:e05:b0:81f:994f:cb with SMTP id d2e1a72fcca58-829f6f4197bmr162874b3a.24.1773174153885;
-        Tue, 10 Mar 2026 13:22:33 -0700 (PDT)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829f6dc2d0asm115262b3a.13.2026.03.10.13.22.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 13:22:33 -0700 (PDT)
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Date: Wed, 11 Mar 2026 01:46:09 +0530
-Subject: [PATCH v2 25/25] meminspect: Add debug kinfo compatible driver
+	s=arc-20240116; t=1773173775; c=relaxed/simple;
+	bh=0DrwwXzADSpSeZBOPifR+KmPzUc085LW4Uzbjt3ZgSo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cvmREhUc34FRiG5941D/ci38bHpoUebU698W3iZ+X9V/z3b8ipmwiorAiz9iqHl20EiMRbsxLQ/NqRhs+z7fUzsmjOt0FR2yFIHpnEsCWSJ3P21PixpWbPTbCQDTEcnGy0ltWOib+KWlwmJmiXCeLMqayZh5qU41fNohXoJQlSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IfFjOnWm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83067C19423;
+	Tue, 10 Mar 2026 20:16:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773173774;
+	bh=0DrwwXzADSpSeZBOPifR+KmPzUc085LW4Uzbjt3ZgSo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=IfFjOnWmC1NLJQXMq0mewz/qDInSjoVkFQyCgP2+lXhyc3YKNszKgmn3BWV67lLYT
+	 EpWcOAkNB1ZgOKtfbFmufseh/EvZcA7pc9c2aseWN9C/HABb8jeQP+/P6GlY7VL0Pg
+	 fcIczzHbNa7tE2ueYVumB1UBr4PeiYooe5gCQ5xPURm2wdh2Yosj1Cy+GUqdiLB+Xk
+	 dPFcXuR+FQv1lhhmACPlQAtY+MGOKoQWRktogMfnaupaz+ITPgNYY6J+vT/NsbE2tk
+	 eMh8b4rB9nXMWRuw3BXWnLW3WaM6B4bRDsUUqTegzC33c5qCb6fM8d34IVo2tfv3Vx
+	 UY1AsAXHooLFQ==
+Message-ID: <92f390df-0e7b-454d-9a6d-af26eb575a23@kernel.org>
+Date: Tue, 10 Mar 2026 21:16:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] iio: dac: ad5504: fix scale via
+ output-range-microvolt
+To: Taha Ed-Dafili <0rayn.dev@gmail.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ skhan@linuxfoundation.org, me@brighamcampbell.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260310174835.24209-1-0rayn.dev@gmail.com>
+ <20260310174835.24209-5-0rayn.dev@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260310174835.24209-5-0rayn.dev@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260311-minidump-v2-v2-25-f91cedc6f99e@oss.qualcomm.com>
-References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
-In-Reply-To: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
-To: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
-        Eugen Hristev <eugen.hristev@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>, Dennis Zhou <dennis@kernel.org>,
-        Tejun Heo <tj@kernel.org>, Christoph Lameter <cl@gentwo.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Thomas Gleixner <tglx@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Anna-Maria Behnsen <anna-maria@linutronix.de>,
-        Frederic Weisbecker <frederic@kernel.org>,
-        Ingo Molnar <mingo@redhat.com>, Juri Lelli <juri.lelli@redhat.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
-        Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
-        David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
-        "Liam R. Howlett" <Liam.Howlett@oracle.com>,
-        Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
-        Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
-        Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
-        Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
-        Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
-        Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
-        Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
-        Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
-        John Ogness <john.ogness@linutronix.de>,
-        Sergey Senozhatsky <senozhatsky@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@kernel.org>
-Cc: workflows@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
-        linux-mm@kvack.org, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.14-dev-f7c49
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773173756; l=10702;
- i=mukesh.ojha@oss.qualcomm.com; s=20250708; h=from:subject:message-id;
- bh=Fu2ZccKszsPFIW3mDDx78KzoZ/M2bBq595MQ+50ea4g=;
- b=Dq9aTau7pWS5++jEPermlk3PyA3u5vLiCYy56l/N6byo6Ehs5O+0mqEVX/Lzflw4sAFjgvESE
- o6sqrCyzWrlDex4eKcMQ1XncjJn+anEBgfVLSWSIY1dLgBGNLhUvjv3
-X-Developer-Key: i=mukesh.ojha@oss.qualcomm.com; a=ed25519;
- pk=eX8dr/7d4HJz/HEXZIpe3c+Ukopa/wZmxH+5YV3gdNc=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEwMDE3NyBTYWx0ZWRfX2vQ129O6NQWB
- XmeoEJQwranE8Xz6Dl+H60FZXmH51Ya0tDeoUivqWWP388lEQLhVKiaRrojm83hK++SszJZrC0t
- W1fsWHZpjsgEDSNC2QIej0qdNrsMwHIjFW9E/0WsuyeYypNjg3EV0NiUCARjakJBnKAsRUJrPe9
- 5JzNB8+DOruW2ukbreji52Du9PolWLyLRpAT6gsmAyLnzkmFove6i0M0rzazZyTQ1J2VHx4FqLJ
- CQsM7E9ghSQsNTelbyj/So3LYchRxVvJDJgty2Gtxo4/CW/Ev9yGeImrCx2YXLvcxRTUqgXU3cr
- hPCqEnsHgOBlcTwQYv1LPzWx8jY0bq96694kO3VanKd15iVcI3x6b9iPeTEYLz1fe9oMf69FRfr
- g0h3ok9+cjdV/Bc6+FwLQX0HPwO4H+d2FIsz0KKNIukdtoENaCGlu/iVodB91yCxLtfvh07YQ8H
- JoSj8yg8UPuUwOu+ixQ==
-X-Authority-Analysis: v=2.4 cv=GtFPO01C c=1 sm=1 tr=0 ts=69b07d8b cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=YMgV9FUhrdKAYTUUvYB2:22
- a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=Tty9oNO6AAAA:8
- a=1XWaLZrsAAAA:8 a=pdfXsOUTzs8LjTHvc20A:9 a=QEXdDO2ut3YA:10
- a=2VI0MkxyNR6bbpdq8BZq:22 a=cvBusfyB2V15izCimMoJ:22 a=Bts-Es6F1CBXvF7u4C_G:22
-X-Proofpoint-ORIG-GUID: 2DR77JO7d7ovrF71Y-90O5CL6GzbPRN4
-X-Proofpoint-GUID: 2DR77JO7d7ovrF71Y-90O5CL6GzbPRN4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-10_04,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 phishscore=0 malwarescore=0 clxscore=1015 lowpriorityscore=0
- spamscore=0 suspectscore=0 priorityscore=1501 impostorscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603100177
-X-Rspamd-Queue-Id: D8A2B257D51
+X-Rspamd-Queue-Id: BBB0B257857
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org,oss.qualcomm.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273742-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,rustcorp.com.au:email,linaro.org:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mukesh.ojha@oss.qualcomm.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-273714-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,metafoo.de,analog.com,kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCPT_COUNT_GT_50(0.00)[57];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,baylibre.com:email]
 X-Rspamd-Action: no action
 
-From: Eugen Hristev <eugen.hristev@linaro.org>
+On 10/03/2026 18:48, Taha Ed-Dafili wrote:
+> The AD5504 full-scale range is hardware-determined by the
+> R_SEL pin (0-30V or 0-60V). Previously, the driver incorrectly used the
+> VCC regulator voltage to calculate the scale.
+> 
+> Update the probe function to read the standard "output-range-microvolt"
+> property as a two-element array to determine the correct full-scale range.
+> Use the MILLI macro for clearer millivolt assignments and simplify the
+> probe logic using a local device pointer.
+> 
+> Suggested-by: David Lechner <dlechner@baylibre.com>
+> Suggested-by: Andy Shevchenko <andy@kernel.org>
 
-With this driver, the registered regions are copied to a shared memory
-zone at register time. The shared memory zone is supplied via OF. This
-driver will select only regions that are of interest, and keep only
-addresses. The format of the list is Kinfo compatible, with devices like
-Google Pixel phone. The firmware is only interested in some symbols'
-addresses.
+Where were these suggestions given?
 
-Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
-Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
----
- MAINTAINERS                |   1 +
- drivers/of/platform.c      |   1 +
- kernel/meminspect/Kconfig  |  11 ++
- kernel/meminspect/Makefile |   1 +
- kernel/meminspect/kinfo.c  | 284 +++++++++++++++++++++++++++++++++++++++++++++
- 5 files changed, 298 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2504b7df0e7d..48b5457fae98 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16597,6 +16597,7 @@ M:	Eugen Hristev <eugen.hristev@linaro.org>
- M:	Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/reserved-memory/google,kinfo.yaml
-+F:	kernel/meminspect/kinfo.c
- 
- MEMBLOCK AND MEMORY MANAGEMENT INITIALIZATION
- M:	Mike Rapoport <rppt@kernel.org>
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 2a7111e8354d..09047e021de4 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -495,6 +495,7 @@ static const struct of_device_id reserved_mem_matches[] = {
- 	{ .compatible = "ramoops" },
- 	{ .compatible = "nvmem-rmem" },
- 	{ .compatible = "google,open-dice" },
-+	{ .compatible = "google,debug-kinfo" },
- 	{}
- };
- 
-diff --git a/kernel/meminspect/Kconfig b/kernel/meminspect/Kconfig
-index fa2b5a84b251..396510908e47 100644
---- a/kernel/meminspect/Kconfig
-+++ b/kernel/meminspect/Kconfig
-@@ -17,3 +17,14 @@ config MEMINSPECT
- 
- 	  Note that modules using this feature must be rebuilt if option
- 	  changes.
-+
-+config MEMINSPECT_KINFO
-+	tristate "Shared memory KInfo compatible driver"
-+	depends on MEMINSPECT
-+	help
-+	  Say y here to enable the Shared memory KInfo compatible driver
-+	  With this driver, the registered regions are copied to a shared
-+	  memory zone at register time.
-+	  The shared memory zone is supplied via OF.
-+	  This driver will select only regions that are of interest,
-+	  and keep only addresses. The format of the list is Kinfo compatible.
-diff --git a/kernel/meminspect/Makefile b/kernel/meminspect/Makefile
-index 09fd55e6d9cf..283604d892e5 100644
---- a/kernel/meminspect/Makefile
-+++ b/kernel/meminspect/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- obj-$(CONFIG_MEMINSPECT) += meminspect.o
-+obj-$(CONFIG_MEMINSPECT_KINFO) += kinfo.o
-diff --git a/kernel/meminspect/kinfo.c b/kernel/meminspect/kinfo.c
-new file mode 100644
-index 000000000000..79918908968d
---- /dev/null
-+++ b/kernel/meminspect/kinfo.c
-@@ -0,0 +1,284 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ *
-+ * Copyright 2002 Rusty Russell <rusty@rustcorp.com.au> IBM Corporation
-+ * Copyright 2021 Google LLC
-+ * Copyright 2025 Linaro Ltd. Eugen Hristev <eugen.hristev@linaro.org>
-+ */
-+#include <linux/container_of.h>
-+#include <linux/kallsyms.h>
-+#include <linux/meminspect.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_reserved_mem.h>
-+#include <linux/platform_device.h>
-+#include <linux/utsname.h>
-+
-+#define BUILD_INFO_LEN		256
-+#define DEBUG_KINFO_MAGIC	0xcceeddff
-+
-+/*
-+ * Header structure must be byte-packed, since the table is provided to
-+ * bootloader.
-+ */
-+struct kernel_info {
-+	/* For kallsyms */
-+	u8 enabled_all;
-+	u8 enabled_base_relative;
-+	u8 enabled_absolute_percpu;
-+	u8 enabled_cfi_clang;
-+	u32 num_syms;
-+	u16 name_len;
-+	u16 bit_per_long;
-+	u16 module_name_len;
-+	u16 symbol_len;
-+	u64 _relative_pa;
-+	u64 _text_pa;
-+	u64 _stext_pa;
-+	u64 _etext_pa;
-+	u64 _sinittext_pa;
-+	u64 _einittext_pa;
-+	u64 _end_pa;
-+	u64 _offsets_pa;
-+	u64 _names_pa;
-+	u64 _token_table_pa;
-+	u64 _token_index_pa;
-+	u64 _markers_pa;
-+	u64 _seqs_of_names_pa;
-+
-+	/* For frame pointer */
-+	u32 thread_size;
-+
-+	/* For virt_to_phys */
-+	u64 swapper_pg_dir_pa;
-+
-+	/* For linux banner */
-+	u8 last_uts_release[__NEW_UTS_LEN];
-+
-+	/* Info of running build */
-+	u8 build_info[BUILD_INFO_LEN];
-+
-+	/* For module kallsyms */
-+	u32 enabled_modules_tree_lookup;
-+	u32 mod_mem_offset;
-+	u32 mod_kallsyms_offset;
-+} __packed;
-+
-+struct kernel_all_info {
-+	u32 magic_number;
-+	u32 combined_checksum;
-+	struct kernel_info info;
-+} __packed;
-+
-+struct debug_kinfo {
-+	struct device *dev;
-+	void *all_info_addr;
-+	size_t all_info_size;
-+	struct notifier_block nb;
-+};
-+
-+static void update_kernel_all_info(struct kernel_all_info *all_info)
-+{
-+	struct kernel_info *info;
-+	u32 *checksum_info;
-+	int index;
-+
-+	all_info->magic_number = DEBUG_KINFO_MAGIC;
-+	all_info->combined_checksum = 0;
-+
-+	info = &all_info->info;
-+	checksum_info = (u32 *)info;
-+	for (index = 0; index < sizeof(*info) / sizeof(u32); index++)
-+		all_info->combined_checksum ^= checksum_info[index];
-+}
-+
-+static u8 global_build_info[BUILD_INFO_LEN];
-+
-+static int build_info_set(const char *str, const struct kernel_param *kp)
-+{
-+	size_t build_info_size = sizeof(global_build_info);
-+
-+	if (strlen(str) > build_info_size)
-+		return -ENOMEM;
-+	memcpy(global_build_info, str, min(build_info_size - 1, strlen(str)));
-+	return 0;
-+}
-+
-+static const struct kernel_param_ops build_info_op = {
-+	.set = build_info_set,
-+};
-+
-+module_param_cb(build_info, &build_info_op, NULL, 0200);
-+MODULE_PARM_DESC(build_info, "Write build info to field 'build_info' of debug kinfo.");
-+
-+static void __maybe_unused register_kinfo_region(void *priv,
-+						 const struct inspect_entry *e)
-+{
-+	struct debug_kinfo *kinfo = priv;
-+	struct kernel_all_info *all_info = kinfo->all_info_addr;
-+	struct kernel_info *info = &all_info->info;
-+	struct uts_namespace *uts;
-+	u64 paddr;
-+
-+	if (e->pa)
-+		paddr = e->pa;
-+	else
-+		paddr = __pa(e->va);
-+
-+	switch (e->id) {
-+	case MEMINSPECT_ID__sinittext:
-+		info->_sinittext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__einittext:
-+		info->_einittext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__end:
-+		info->_end_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__text:
-+		info->_text_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__stext:
-+		info->_stext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID__etext:
-+		info->_etext_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_num_syms:
-+		info->num_syms = *(__u32 *)e->va;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_relative_base:
-+		info->_relative_pa = (u64)__pa(*(u64 *)e->va);
-+		break;
-+	case MEMINSPECT_ID_kallsyms_offsets:
-+		info->_offsets_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_names:
-+		info->_names_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_token_table:
-+		info->_token_table_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_token_index:
-+		info->_token_index_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_markers:
-+		info->_markers_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_kallsyms_seqs_of_names:
-+		info->_seqs_of_names_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_swapper_pg_dir:
-+		info->swapper_pg_dir_pa = paddr;
-+		break;
-+	case MEMINSPECT_ID_init_uts_ns:
-+		if (!e->va)
-+			return;
-+		uts = e->va;
-+		strscpy(info->last_uts_release, uts->name.release, __NEW_UTS_LEN);
-+		break;
-+	default:
-+		break;
-+	};
-+
-+	update_kernel_all_info(all_info);
-+}
-+
-+static int kinfo_notifier_cb(struct notifier_block *nb,
-+			     unsigned long code, void *entry)
-+{
-+	struct debug_kinfo *kinfo = container_of(nb, struct debug_kinfo, nb);
-+
-+	if (code == MEMINSPECT_NOTIFIER_ADD)
-+		register_kinfo_region(kinfo, entry);
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int debug_kinfo_probe(struct platform_device *pdev)
-+{
-+	struct kernel_all_info *all_info;
-+	struct device *dev = &pdev->dev;
-+	struct reserved_mem *rmem;
-+	struct debug_kinfo *kinfo;
-+	struct kernel_info *info;
-+
-+	rmem = of_reserved_mem_lookup(dev->of_node);
-+	if (!rmem)
-+		return dev_err_probe(dev, -ENODEV, "no such reserved mem of node name %s\n",
-+			      dev->of_node->name);
-+
-+	/* Need to wait for reserved memory to be mapped */
-+	if (!rmem->priv)
-+		return -EPROBE_DEFER;
-+
-+	if (!rmem->base || !rmem->size)
-+		dev_err_probe(dev, -EINVAL, "unexpected reserved memory\n");
-+
-+	if (rmem->size < sizeof(struct kernel_all_info))
-+		dev_err_probe(dev, -EINVAL, "reserved memory size too small\n");
-+
-+	kinfo = devm_kzalloc(dev, sizeof(*kinfo), GFP_KERNEL);
-+	if (!kinfo)
-+		return -ENOMEM;
-+
-+	platform_set_drvdata(pdev, kinfo);
-+
-+	kinfo->dev = dev;
-+	kinfo->all_info_addr = rmem->priv;
-+	kinfo->all_info_size = rmem->size;
-+
-+	all_info = kinfo->all_info_addr;
-+
-+	memset(all_info, 0, sizeof(struct kernel_all_info));
-+	info = &all_info->info;
-+	info->enabled_all = IS_ENABLED(CONFIG_KALLSYMS_ALL);
-+	info->enabled_absolute_percpu = IS_ENABLED(CONFIG_KALLSYMS_ABSOLUTE_PERCPU);
-+	info->enabled_base_relative = IS_ENABLED(CONFIG_KALLSYMS_BASE_RELATIVE);
-+	info->enabled_cfi_clang = IS_ENABLED(CONFIG_CFI_CLANG);
-+	info->name_len = KSYM_NAME_LEN;
-+	info->bit_per_long = BITS_PER_LONG;
-+	info->module_name_len = MODULE_NAME_LEN;
-+	info->symbol_len = KSYM_SYMBOL_LEN;
-+	info->thread_size = THREAD_SIZE;
-+	info->enabled_modules_tree_lookup = IS_ENABLED(CONFIG_MODULES_TREE_LOOKUP);
-+	info->mod_mem_offset = offsetof(struct module, mem);
-+	info->mod_kallsyms_offset = offsetof(struct module, kallsyms);
-+
-+	memcpy(info->build_info, global_build_info, strlen(global_build_info));
-+
-+	kinfo->nb.notifier_call = kinfo_notifier_cb;
-+
-+	meminspect_notifier_register(&kinfo->nb);
-+	meminspect_lock_traverse(kinfo, register_kinfo_region);
-+
-+	return 0;
-+}
-+
-+static void debug_kinfo_remove(struct platform_device *pdev)
-+{
-+	struct debug_kinfo *kinfo = platform_get_drvdata(pdev);
-+
-+	meminspect_notifier_unregister(&kinfo->nb);
-+}
-+
-+static const struct of_device_id debug_kinfo_of_match[] = {
-+	{ .compatible	= "google,debug-kinfo" },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, debug_kinfo_of_match);
-+
-+static struct platform_driver debug_kinfo_driver = {
-+	.probe = debug_kinfo_probe,
-+	.remove = debug_kinfo_remove,
-+	.driver = {
-+		.name = "debug-kinfo",
-+		.of_match_table = of_match_ptr(debug_kinfo_of_match),
-+	},
-+};
-+module_platform_driver(debug_kinfo_driver);
-+
-+MODULE_AUTHOR("Eugen Hristev <eugen.hristev@linaro.org>");
-+MODULE_AUTHOR("Jone Chou <jonechou@google.com>");
-+MODULE_DESCRIPTION("meminspect Kinfo Driver");
-+MODULE_LICENSE("GPL");
-
--- 
-2.50.1
-
+Best regards,
+Krzysztof
 
