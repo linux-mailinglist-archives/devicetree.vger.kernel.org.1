@@ -1,286 +1,473 @@
-Return-Path: <devicetree+bounces-273538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273539-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNTCI+khsGkkgQIAu9opvQ
-	(envelope-from <devicetree+bounces-273538-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 14:51:37 +0100
+	id kCrPLwsnsGnYgQIAu9opvQ
+	(envelope-from <devicetree+bounces-273539-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:13:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B10B250E87
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 14:51:37 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95483251879
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:13:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 1B00530DEEA0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:22:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 3EB43349364B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BFE63C4576;
-	Tue, 10 Mar 2026 13:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC2E03A3E6E;
+	Tue, 10 Mar 2026 13:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AO4/PwQN";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fBq0LwOd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Dl45Jfbs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257423C5521
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:09:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE2FD38AC82
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:09:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773148148; cv=none; b=BTci9URV9Pw2lDKlzqm9/XZEd4X21YGh0h4gLvDKkGe9eYuADsclFrT98J9rHne8bflvXWXPGJeSqDMARSziw6bopGTQIcI/kmtTNmGqTOnF3RmXI9rmUsyzU0ksvK1PHzQu9YyeiOMq4t1u9q+7fU+yZkY/K5WhMfxR5weK1qI=
+	t=1773148164; cv=none; b=hPjVVAOrYyEjleeO2dDmrSN9VoqupqDIBOG/0ZFALomstJndjd69E8fkSaJoKFnn2TND3bJPM9pCl42LXzJFh3GNvlFHjVWW+QIfxtLY2Mw+0xyWPUdV94F6AKPw6Mukar54XQsIFXP64dJl7f8++KdHBvTLZVYOZympmoyViaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773148148; c=relaxed/simple;
-	bh=1zc3/SjNnHRL1TxmXWoaXASxPBtFnrzJpduOYNDZI0k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=grrwqWD/PfnW92pS8IqClAB1oHkw9dbjpYHDrGVCV7eJqad4iX0W6NsxFq3He35bADh6XOAAaMj2wlSymP6L/bcyj/MdnBOXd0w63VwwnkkzOD4I5Xu7I6uzl1CZN+KeeR2zYMy1f7lCOWdreuifacS1DPj5SnxblMim7DG60T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AO4/PwQN; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fBq0LwOd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62ACaUs4303868
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:09:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AMvYZkKf+1EHkn+bX2rKPCg7+1honZq3JF2wJjFaANU=; b=AO4/PwQNq3Xnn1/s
-	nkUQxdUfhSATWNOLn1pw7r0Pc6VlYmS6JHd7w6np2+gLt/8W+SOH17fs3wH9GWsK
-	OkH6/yN/dORr9qx7FESynRvhm3w57XcNmFVml3znCxZKs2N/zPWBAzcQ6JOP2ukt
-	dDBqjIsOWoO3w0Xa+khLjZyyZd+VrCzxbu7ZSSOPstyUTLLI0jnyVZSrvzxflvsb
-	5o+taMKAqe10sButSnoCkdL+fusJOK4aRWlAZVIFNZR/BqB4CRPdOQN405Vx+PaV
-	17DOacjp9R/bl6GINN9HLTsEYACmVgLE8yKu5nEFa8TITNqab+KWHTw8/r1c+xxx
-	M78RtQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cthjf0k9q-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:09:06 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cd81c571a5so1259737485a.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:09:06 -0700 (PDT)
+	s=arc-20240116; t=1773148164; c=relaxed/simple;
+	bh=3KpPPJvyznOGvZ67I8XW7w93AMlBZYjsAA/QRLYGTxI=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=hsyFL/A+cr/2te3nWW3nD8fyaodZqmX2UU3kjMbFfwK7LaEwTvvzgCje4FmlKHTJ2wTa1lv55pYkWYF/YAYHE/OdF+dS4Q+dMKg64ey4aARn2e5BWBxJ6e69rHQw3aYgSuuH0hNO+WdK4cy+BjPvEN/yzuqEZ0piklGx0AddjzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Dl45Jfbs; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-483487335c2so108017505e9.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:09:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773148145; x=1773752945; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1773148161; x=1773752961; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=AMvYZkKf+1EHkn+bX2rKPCg7+1honZq3JF2wJjFaANU=;
-        b=fBq0LwOd1nyeCkH/yVNFK9hMzcYH8o6z3Iq7Bkj+cf6YqgLmftk/dNF/DYYi6cydwm
-         m0r9a+jYlIfSpoiNIfWNMBauqZintVNCUDmQmFccoRt9Vsw1EVFyRjouiYvDiYEI3T8m
-         nKoyqoaQ7Rdavbtdd10h+znDRi9xADFhDu/Tijpyy/eONniLBF08ZcnX9Xyunuyhfaqj
-         Wo9wRTi0oflcBW18UIyN1RhhK8B65+zZWmDVNeZ+MYO6tnXeZLPVMdc/V+GzK2QIHNQ4
-         jWHhxleOJ0PSVtGIBXDprlk58yDrEFSpqmStNfpFvBlwAKS8kGUuo6AEBdj/xjqU/cM1
-         4fNg==
+        bh=aAK+PFF08sN5+3bAgzds5zfrCil8cyTfXhxIWYd8Jto=;
+        b=Dl45Jfbsqoa8r5L0kLTADcB10AwYBAf0nJd2EiYYETT9Wn6bM/K/pL1jNaycXESWiX
+         I66Y4OBvZGnJuHUIlwin6uB2A1+AnBfC1LSfY7KxQ84lux7pC5KErUonKvA5IhPBvrxA
+         /99PYtQX4ozBm9oLIq0FnbHX3AQ3cmH+DC08wL3SodqDEZjBFcSBLahWqEU9hXZ954P+
+         iZ7ZAjR0Gg4N/uv0apsAe7/3vn5htJbliPw6wXeQ77zlRvRuwQBv+xHjU5OJgGzxQQJn
+         9KxFMYgscMQuEWfaN+9ofM+ENhspcxVsTI0rLAzVMk+f0xpIReWAPnb+T2T73P6xEvsM
+         lh/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773148145; x=1773752945;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=AMvYZkKf+1EHkn+bX2rKPCg7+1honZq3JF2wJjFaANU=;
-        b=ZthZqogDwmWLf9Z02C1AUcVzaU8f6UyTJHFeGrolmlg2fUq/0e/b3bUfysQhp3Q7FJ
-         BPzhlgpMOa350xdWyDBcMUwD4GPPeNZoMASqNLl5c40kWPRos4fFL+K0Y6ixeVPYPRDt
-         iYslTLew5UKyFxv3EZ6fVs0hhEE8WbmYmqwMqE+Zk3viPylqB6/xRSJ5y/nTNx+E2YVQ
-         Tea7nLkJgKRp0j365HfsKLYg8zdLqpnFKX+EA5LyZIr5Pa16NDv19bPntaaCoB1QQdOQ
-         /Fz3V7GV8mmyiBAbVyI+/Gi5v/fv38qz+H3Z4S6OcCILBPn9Fiax6NVvO5sr1Y38C9xo
-         WFwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfzoaaFmlJ5kuco0v4c4lif5LMAwz10dwrA4gqjRsJgEZu7ZYOwkw18U55SrOenIHMY4cS+Njm8bCY@vger.kernel.org
-X-Gm-Message-State: AOJu0YySRzIBHUMJ8OvtfiB/hCX1VRhoV+5zW650cCWBSKjaY+sXA9CI
-	IFnD2ZxJRoPqUKoXYiulQr48R+zCABvQZNExyEbY1Seuu5SgcXEf8L3vU4Z2feCov4zBv4s5otW
-	LtaXlnpMx0ksQ3pMjoTkt1w6ZiIsY7HNO2UPrw2fVTH+Wv8r7svPIDSvQfPkmxpT+
-X-Gm-Gg: ATEYQzwDHuu0hxIvWoHInrjLM3SiANw95OnLN5z5u7hhjo1x3cC+biSPnEUmypp2O+c
-	HgVxTjPKM9CCenaxTIovyqsa/KRAs+Ep9qR6WCcybMRr5s/DfPR15mhaMTK0HfL7w1S0zzTP1el
-	qPSxs8O284IQGFIcx+f4vM7s2kvHPlqdq1igc4MMQknokqzyKgT6p9zZiy4KZ9TFOp6tbb94hC1
-	dOGf36WXgcJyw4eEZo2K+HG6aQjltwKT+hsmnrloJ8pBMRoVT9M6xD+7e5W6tBFys7BeUOAQyjf
-	9tIEIZnC09w2Dwuh8FfHZvXaPB0tnd3jwFSjWmegY9o2wDRsQCx5GmSexI/uWSsLZs8dIoFumrQ
-	mwF++lBw1DJRPIta2qqY0wLG33YMPczbbFctjSpmBG1Nb
-X-Received: by 2002:a05:620a:170c:b0:8cd:92c2:5125 with SMTP id af79cd13be357-8cd92c253damr521805285a.13.1773148144932;
-        Tue, 10 Mar 2026 06:09:04 -0700 (PDT)
-X-Received: by 2002:a05:620a:170c:b0:8cd:92c2:5125 with SMTP id af79cd13be357-8cd92c253damr521798385a.13.1773148144342;
-        Tue, 10 Mar 2026 06:09:04 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.219.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48541b6f6b7sm99472385e9.9.2026.03.10.06.09.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 06:09:03 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Tue, 10 Mar 2026 14:08:48 +0100
-Subject: [PATCH RESEND 5/5] arm64: dts: qcom: qrb5165-rb5: Drop redundant
- non-controllable supplies
+        d=1e100.net; s=20230601; t=1773148161; x=1773752961;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aAK+PFF08sN5+3bAgzds5zfrCil8cyTfXhxIWYd8Jto=;
+        b=p/h6CLq23k25aux9TtCALJJ7SdEXuvUhK0pWKgPXoBQHGkBvBWV9MbSJD1nwf9/5K8
+         boe4a/5cAPpETgz9fbDT/OuAk9bEAxQZckk+Au7CjP+5StDpClqbYj0ZoPxW7MfW6KF7
+         AEH9JwE7udpWryDNbjVPGgvZ78/arnpRn0OQKAEej/MXD+KJRAUuhLEoE1qUfsCuGlhL
+         oP1kqhBKZZm4VrkJapHVmmPt+pU6Aloeck2sxqCvPGQRX6TxUxgNNOIYA1W7lC1mnigL
+         RjNb4NSmO+VtlYridfdYhYhSOtYmk2J3xeqMszYpPObPBF6OdQuyoNoYULLpKKfKhBH/
+         6tvg==
+X-Forwarded-Encrypted: i=1; AJvYcCV6zfLg1SVc7Fm2gteX4PYjGpERAPoB7kUu7lpZGYNLYeH4UIj3jeA85JGaH9Wqtu1nTzNcdIhoYL0K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSaim0X+Os3QWaiDFPpeA163UDHj46KkwoHARWQxWpa63kism9
+	0n4gdV88Mwk8a+War0EozZRDqrznLxo3yvn4S6r7cacSGE+PMvBP1aMbg6w9lQj6Yzo=
+X-Gm-Gg: ATEYQzy/zcboBiLxOVg8DFAwWnoz/hR4PStsj1b+uzWeKYy0sdzepdE1KSI5p+SYXpz
+	zd7N+ruc0CTftYoE0lf50eB/aq60nqgMRDP8fMm3b3YmP/XVLgirFXExVtvBUWFn909GW/yrDE6
+	UfcQ+jZLrAoUaDQpAno+IESQPD81DmgfHvQs61bcxPyVAu4SC+nTwf3FQwAVRImh9yOzFYTehYw
+	V34Vh3Rq87tgAMyqjpxs7QMGjVJSvSF2tJ7rGkbcoAgpWYQcvYTQQD1x9/ko01HFka8lvy9YUaI
+	f+uXRKSg7fkepLdgtPwvT69+/Ouu+RrP9xY8eq7YLROZyP3pP3tgqlS6giEu1HWiR1G8whmq/eF
+	AjgA2Ds1I54Gf60mZS+RliBBLEZ8GYi56iprFB5XduxgZzWgufGo96SqVZXZ6Lzhbgm60Gplh85
+	4JqHsgwbtE/NQXmNLjlNslY20KQmR66PmNnjeJiYXfs9cySorYgTg3YiL8akQM54YpT0SAYNlNF
+	8mb
+X-Received: by 2002:a05:600c:8b2f:b0:485:3a59:99ca with SMTP id 5b1f17b1804b1-4853a599b8cmr141900355e9.16.1773148161205;
+        Tue, 10 Mar 2026 06:09:21 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:106d:1080:4d81:e92:c4c0:3c45? ([2a01:e0a:106d:1080:4d81:e92:c4c0:3c45])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439dae4b860sm39614162f8f.36.2026.03.10.06.09.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Mar 2026 06:09:20 -0700 (PDT)
+Message-ID: <d4665739-f3e5-410e-b5cb-b59dbcbc4851@linaro.org>
+Date: Tue, 10 Mar 2026 14:09:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 2/2] gpu/drm: panel: add support for DSI panel used in
+ Motorola Atrix 4G and Droid X2
+To: Svyatoslav Ryhel <clamor95@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20260223064630.12720-1-clamor95@gmail.com>
+ <20260223064630.12720-3-clamor95@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20260223064630.12720-3-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260310-qcom-dts-supplies-v1-5-5071a7052ea9@oss.qualcomm.com>
-References: <20260310-qcom-dts-supplies-v1-0-5071a7052ea9@oss.qualcomm.com>
-In-Reply-To: <20260310-qcom-dts-supplies-v1-0-5071a7052ea9@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2881;
- i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=1zc3/SjNnHRL1TxmXWoaXASxPBtFnrzJpduOYNDZI0k=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpsBfiDfaqMK4KNa5nQFVmn1arl2119epUsHO5D
- ldQwcXA/1+JAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCabAX4gAKCRDBN2bmhouD
- 1zJ3D/9Pu0yNRbo0zG/JWHRFDxgxRAz6DtYojyMDSN/5qaTHTiTwJ0FnydVwkAAwFNRpDbf/xtC
- fY5JdLt35+/++JCL/wFMu/fm/Ru69o+IkbFcgd+J/9pLV/BupkMHbblABgY+gJ6FRyxyDjf1oQO
- Hq/OrQV1Si3MmoEAZ/WFEfm0v0fpk3II+n84fLmp6Yf9usfKzydBIw1txnLK9XdXURIfaxICwva
- Q306TbTNW60TozAR8bfLntjt6XxXzFKxF3+DhD/82AG5eG8MeUIED7ROb7cB9Nz0I/Ps1qZmiRl
- llFnrSY1llsJdezfqiu2mSUmPT4+1OMwL+ldFqo86kEPFXMUNfrw/7Jk2a3C56Xa5EIXZP+e3qm
- iZM7MOu6jeSN8YjfwBnoPnfvxEXmfDRy7aKAHAIwXZ8HcWJcBKBCzxH/bKkejnPUElzUG8kn8NN
- 89rqN+rcjecNwU4bAivsfYkk5KfpV8mGMQMpdC/qiznqKGfX/o3vNkhUrCAhA7toS8jCuHhEzvY
- i+ddjt9PLDGWm8KCJp2snXTo87HlMCycJ2R1rq+ZqsJ8A6tokIKkoyRK2yX9TuiH7Lbt+mUzvJh
- aAo3TLqx+/39ySuODAB0OucJtsomg+IoyTnzSW6yPtaeq8AIcSng1v2vGoXd7TznPSGktwQmb3+
- QAR4bnpBmXr0vFQ==
-X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Proofpoint-GUID: DuWlGXuovQyXXnLpqWVmdTbH6x9-JUQR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEwMDExNCBTYWx0ZWRfX6aBzHwViD8Dp
- W/FPI3BgjiU/gbcQfTZLu9UHl3Ul7wfFu3oaz8D49/tXjOD6WMv7opzV5dbejvHQELKekNpQbI2
- Y48MuKeBdM4+/9X/ewVbI4UMn1gLkDJ47iScacFEMr2QvRt835OTm4T7lRY8dPKK7DqQLHeph7n
- UYdAb7ZoOxGAkRTl0+RdFbljs6VldXXj585MAG5OZ5VgJqfGIfQmE0kq5Le0tmiWWqrC2/TtMvO
- mbcW2lzOjg9wlq5qMw1l0xKNVTFYQLcks/mavpKIOUzoFT89yM3UJDyzoPsTiWnB4ekRQVhrVxf
- Q6Vmw4qn+wncZTH2SqmHu8k6p+LKk/mbFr3trEo2yYRzFSLheZw/ZUS65aC7zuvfUvDLFAIhvhH
- w9hQgFug1RD/8WYLsip0Bvz9diwHJrhHdhs0RInQZIBCinSwR3CfXuZPkb4HLcJ5cuxdDaXYojJ
- xik/8WvgMw72h9GYWmg==
-X-Authority-Analysis: v=2.4 cv=A71h/qWG c=1 sm=1 tr=0 ts=69b017f2 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22
- a=EUspDBNiAAAA:8 a=_9iiUgdG0rMA4LjK8P8A:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-ORIG-GUID: DuWlGXuovQyXXnLpqWVmdTbH6x9-JUQR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-10_02,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 clxscore=1015 suspectscore=0 bulkscore=0
- adultscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603100114
-X-Rspamd-Queue-Id: 4B10B250E87
+X-Rspamd-Queue-Id: 95483251879
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273538-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273539-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
+	HAS_REPLYTO(0.00)[neil.armstrong@linaro.org];
 	PRECEDENCE_BULK(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[neil.armstrong@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	REPLYTO_EQ_FROM(0.00)[]
 X-Rspamd-Action: no action
 
-Drop completely redundant non-controllable chain of "regulator-fixed"
-supplies, which serve no purpose except growing DTS and kernel boot
-time.  They represent no added value and because of being completely
-transparent for any users of DTS (except the bloat), they should not be
-represented in DTS, just like we do not represent every transistor
-there.
+On 2/23/26 07:46, Svyatoslav Ryhel wrote:
+> Add support for the DSI LCD panel module found in Motorola Atrix 4G or
+> Droid X2 smartphones. Exact panel vendor and model are unknown hence panel
+> uses generic compatible based on board where it is used. The panel has a
+> 540x960 resolution with 24 bit RGB per pixel.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>   drivers/gpu/drm/panel/Kconfig              |  12 +
+>   drivers/gpu/drm/panel/Makefile             |   1 +
+>   drivers/gpu/drm/panel/panel-motorola-mot.c | 244 +++++++++++++++++++++
+>   3 files changed, 257 insertions(+)
+>   create mode 100644 drivers/gpu/drm/panel/panel-motorola-mot.c
+> 
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index 307152ad7759..477c54c90b01 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -464,6 +464,18 @@ config DRM_PANEL_MANTIX_MLAF057WE51
+>   	  has a resolution of 720x1440 pixels, a built in backlight and touch
+>   	  controller.
+>   
+> +config DRM_PANEL_MOTOROLA_MOT
+> +	tristate "Atrix 4G and Droid X2 540x960 DSI video mode panel"
+> +	depends on OF
+> +	depends on DRM_MIPI_DSI
+> +	depends on BACKLIGHT_CLASS_DEVICE
+> +	select VIDEOMODE_HELPERS
+> +	help
+> +	  Say Y here if you want to enable support for the LCD panel module
+> +	  for Motorola Atrix 4G or Droid X2. Exact panel vendor and model are
+> +	  unknown. The panel has a 540x960 resolution and uses 24 bit RGB per
+> +	  pixel.
+> +
+>   config DRM_PANEL_NEC_NL8048HL11
+>   	tristate "NEC NL8048HL11 RGB panel"
+>   	depends on GPIOLIB && OF && SPI
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index aeffaa95666d..e17ef8140806 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -45,6 +45,7 @@ obj-$(CONFIG_DRM_PANEL_LG_LD070WX3) += panel-lg-ld070wx3.o
+>   obj-$(CONFIG_DRM_PANEL_LG_LG4573) += panel-lg-lg4573.o
+>   obj-$(CONFIG_DRM_PANEL_LG_SW43408) += panel-lg-sw43408.o
+>   obj-$(CONFIG_DRM_PANEL_MAGNACHIP_D53E6EA8966) += panel-magnachip-d53e6ea8966.o
+> +obj-$(CONFIG_DRM_PANEL_MOTOROLA_MOT) += panel-motorola-mot.o
+>   obj-$(CONFIG_DRM_PANEL_NEC_NL8048HL11) += panel-nec-nl8048hl11.o
+>   obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3051D) += panel-newvision-nv3051d.o
+>   obj-$(CONFIG_DRM_PANEL_NEWVISION_NV3052C) += panel-newvision-nv3052c.o
+> diff --git a/drivers/gpu/drm/panel/panel-motorola-mot.c b/drivers/gpu/drm/panel/panel-motorola-mot.c
+> new file mode 100644
+> index 000000000000..eb1f86c3d704
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-motorola-mot.c
+> @@ -0,0 +1,244 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/delay.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +static const struct regulator_bulk_data mot_panel_supplies[] = {
+> +	{ .supply = "vddio" }, { .supply = "vdd" },
+> +};
+> +
+> +struct mot_panel {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi;
+> +
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	struct regulator_bulk_data *supplies;
+> +};
+> +
+> +static inline struct mot_panel *to_mot_panel(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct mot_panel, panel);
+> +}
+> +
+> +static void mot_panel_reset(struct mot_panel *priv)
+> +{
+> +	gpiod_set_value_cansleep(priv->reset_gpio, 1);
+> +	usleep_range(50000, 51000);
+> +	gpiod_set_value_cansleep(priv->reset_gpio, 0);
+> +	usleep_range(10000, 11000);
+> +}
+> +
+> +static void mot_es2(struct mipi_dsi_multi_context *ctx)
+> +{
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0x55, 0x01);
+> +
+> +	mipi_dsi_dcs_exit_sleep_mode_multi(ctx);
+> +	mipi_dsi_msleep(ctx, 120);
+> +
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xf4, 0x00, 0xbb, 0x46, 0x53, 0x0c, 0x49,
+> +					 0x74, 0x29, 0x12, 0x15, 0x2f, 0x2f, 0x04);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xf8, 0x4b, 0x04, 0x10, 0x1a, 0x2c, 0x2c,
+> +					 0x2c, 0x2c, 0x14, 0x12);
+> +
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xb5, 0x03, 0x7f, 0x00, 0x80, 0xc7, 0x00);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xb7, 0x66, 0xf6, 0x46, 0x9f, 0x90, 0x99,
+> +					 0xff, 0x80, 0x6d, 0x01);
+> +
+> +	/* Gamma R */
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xf9, 0x04);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfa, 0x00, 0x2f, 0x30, 0x12, 0x0e, 0x0c,
+> +					 0x22, 0x27, 0x31, 0x2e, 0x07, 0x0f);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfb, 0x00, 0x2f, 0x30, 0x12, 0x0e, 0x0c,
+> +					 0x22, 0x27, 0x31, 0x2e, 0x07, 0x0f);
+> +
+> +	/* Gamma G */
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xf9, 0x02);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfa, 0x00, 0x2f, 0x37, 0x15, 0x15, 0x11,
+> +					 0x1f, 0x25, 0x2d, 0x2a, 0x05, 0x0f);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfb, 0x00, 0x2f, 0x37, 0x15, 0x15, 0x11,
+> +					 0x1f, 0x25, 0x2d, 0x2a, 0x05, 0x0f);
+> +
+> +	/* Gamma B */
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xf9, 0x01);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfa, 0x00, 0x2f, 0x3f, 0x16, 0x1f, 0x15,
+> +					 0x1f, 0x25, 0x2d, 0x2b, 0x06, 0x0b);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfb, 0x00, 0x2f, 0x3f, 0x16, 0x1f, 0x15,
+> +					 0x1f, 0x25, 0x2d, 0x2b, 0x06, 0x0b);
+> +
+> +	/* Gamma W */
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xf9, 0x20);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfa, 0x00, 0x2f, 0x34, 0x15, 0x1a, 0x11,
+> +					 0x1f, 0x23, 0x2d, 0x29, 0x02, 0x08);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0xfb, 0x00, 0x2f, 0x34, 0x15, 0x1a, 0x11,
+> +					 0x1f, 0x23, 0x2d, 0x29, 0x02, 0x08);
+> +
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0x53, 0x2c);
+> +	mipi_dsi_generic_write_seq_multi(ctx, 0x35, 0x00);
+> +}
+> +
+> +static int mot_panel_prepare(struct drm_panel *panel)
+> +{
+> +	struct mot_panel *priv = to_mot_panel(panel);
+> +	struct mipi_dsi_multi_context ctx = { .dsi = priv->dsi };
+> +	struct device *dev = panel->dev;
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(mot_panel_supplies), priv->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to enable power supplies: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	mot_panel_reset(priv);
+> +
+> +	mipi_dsi_generic_write_seq_multi(&ctx, 0xf0, 0x5a, 0x5a);
+> +	mipi_dsi_generic_write_seq_multi(&ctx, 0xf1, 0x5a, 0x5a);
+> +	mipi_dsi_generic_write_seq_multi(&ctx, 0xd0, 0x8e);
+> +
+> +	mot_es2(&ctx);
+> +
+> +	mipi_dsi_dcs_set_display_on_multi(&ctx);
+> +	mipi_dsi_msleep(&ctx, 20);
+> +
+> +	return ctx.accum_err;
+> +}
+> +
+> +static int mot_panel_disable(struct drm_panel *panel)
+> +{
+> +	struct mot_panel *priv = to_mot_panel(panel);
+> +	struct mipi_dsi_multi_context ctx = { .dsi = priv->dsi };
+> +
+> +	mipi_dsi_dcs_set_display_off_multi(&ctx);
+> +	mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
+> +	mipi_dsi_msleep(&ctx, 70);
+> +
+> +	return ctx.accum_err;
+> +}
+> +
+> +static int mot_panel_unprepare(struct drm_panel *panel)
+> +{
+> +	struct mot_panel *priv = to_mot_panel(panel);
+> +
+> +	usleep_range(10000, 11000);
+> +
+> +	gpiod_set_value_cansleep(priv->reset_gpio, 1);
+> +	usleep_range(5000, 6000);
+> +
+> +	regulator_bulk_disable(ARRAY_SIZE(mot_panel_supplies), priv->supplies);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode mot_panel_mode = {
+> +	.clock = (540 + 32 + 32 + 16) * (960 + 12 + 12 + 8) * 60 / 1000,
+> +	.hdisplay = 540,
+> +	.hsync_start = 540 + 32,
+> +	.hsync_end = 540 + 32 + 32,
+> +	.htotal = 540 + 32 + 32 + 16,
+> +	.vdisplay = 960,
+> +	.vsync_start = 960 + 12,
+> +	.vsync_end = 960 + 12 + 12,
+> +	.vtotal = 960 + 12 + 12 + 8,
+> +	.width_mm = 51,
+> +	.height_mm = 91,
+> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
+> +};
+> +
+> +static int mot_panel_get_modes(struct drm_panel *panel,
+> +			       struct drm_connector *connector)
+> +{
+> +	return drm_connector_helper_get_modes_fixed(connector, &mot_panel_mode);
+> +}
+> +
+> +static const struct drm_panel_funcs mot_panel_panel_funcs = {
+> +	.prepare = mot_panel_prepare,
+> +	.disable = mot_panel_disable,
+> +	.unprepare = mot_panel_unprepare,
+> +	.get_modes = mot_panel_get_modes,
+> +};
+> +
+> +static int mot_panel_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct mot_panel *priv;
+> +	int ret;
+> +
+> +	priv = devm_drm_panel_alloc(dev, struct mot_panel, panel,
+> +				    &mot_panel_panel_funcs,
+> +				    DRM_MODE_CONNECTOR_DSI);
+> +	if (IS_ERR(priv))
+> +		return PTR_ERR(priv);
+> +
+> +	ret = devm_regulator_bulk_get_const(dev, ARRAY_SIZE(mot_panel_supplies),
+> +					    mot_panel_supplies, &priv->supplies);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to get supplies\n");
+> +
+> +	priv->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						   GPIOD_OUT_HIGH);
+> +	if (IS_ERR(priv->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio),
+> +				     "failed to get reset gpios\n");
+> +
+> +	priv->dsi = dsi;
+> +	mipi_dsi_set_drvdata(dsi, priv);
+> +
+> +	dsi->lanes = 2;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_LPM;
+> +
+> +	ret = drm_panel_of_backlight(&priv->panel);
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "failed to get backlight\n");
+> +
+> +	drm_panel_add(&priv->panel);
+> +
+> +	ret = devm_mipi_dsi_attach(dev, dsi);
+> +	if (ret < 0) {
+> +		drm_panel_remove(&priv->panel);
+> +		return dev_err_probe(dev, ret, "failed to attach to DSI host\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void mot_panel_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct mot_panel *priv = mipi_dsi_get_drvdata(dsi);
+> +
+> +	drm_panel_remove(&priv->panel);
+> +}
+> +
+> +static const struct of_device_id mot_panel_of_match[] = {
+> +	{ .compatible = "motorola,mot-panel" },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, mot_panel_of_match);
+> +
+> +static struct mipi_dsi_driver mot_panel_driver = {
+> +	.driver = {
+> +		.name = "panel-motorola-mot",
+> +		.of_match_table = mot_panel_of_match,
+> +	},
+> +	.probe = mot_panel_probe,
+> +	.remove = mot_panel_remove,
+> +};
+> +module_mipi_dsi_driver(mot_panel_driver);
+> +
+> +MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
+> +MODULE_DESCRIPTION("Motorola MOT panel driver");
+> +MODULE_LICENSE("GPL");
 
-For the few regulators being actively used and supplied by removed
-dummies, change the supply to match the actual final source without
-these dummy intermediaries.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 39 ++------------------------------
- 1 file changed, 2 insertions(+), 37 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 71b42e76f03d..54da0d759a67 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -38,14 +38,6 @@ clk40m: can-clock {
- 		clock-frequency = <40000000>;
- 	};
- 
--	dc12v: dc12v-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "DC12V";
--		regulator-min-microvolt = <12000000>;
--		regulator-max-microvolt = <12000000>;
--		regulator-always-on;
--	};
--
- 	hdmi-out {
- 		compatible = "hdmi-connector";
- 		type = "a";
-@@ -92,7 +84,7 @@ lt9611_1v2: lt9611-vdd12-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "LT9611_1V2";
- 
--		vin-supply = <&vdc_3v3>;
-+		vin-supply = <&vreg_l11c_3p3>;
- 		regulator-min-microvolt = <1200000>;
- 		regulator-max-microvolt = <1200000>;
- 	};
-@@ -101,7 +93,7 @@ lt9611_3v3: lt9611-3v3 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "LT9611_3V3";
- 
--		vin-supply = <&vdc_3v3>;
-+		vin-supply = <&vreg_l11c_3p3>;
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 		regulator-boot-on;
-@@ -231,33 +223,6 @@ active-config0 {
- 		};
- 	};
- 
--	vbat: vbat-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "VBAT";
--		vin-supply = <&vreg_l11c_3p3>;
--		regulator-min-microvolt = <4200000>;
--		regulator-max-microvolt = <4200000>;
--		regulator-always-on;
--	};
--
--	vbat_som: vbat-som-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "VBAT_SOM";
--		vin-supply = <&dc12v>;
--		regulator-min-microvolt = <4200000>;
--		regulator-max-microvolt = <4200000>;
--		regulator-always-on;
--	};
--
--	vdc_3v3: vdc-3v3-regulator {
--		compatible = "regulator-fixed";
--		regulator-name = "VDC_3V3";
--		vin-supply = <&vreg_l11c_3p3>;
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		regulator-always-on;
--	};
--
- 	vdc_5v: vdc-5v-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VDC_5V";
-
--- 
-2.51.0
-
+Thanks,
+Neil
 
