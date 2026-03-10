@@ -1,147 +1,176 @@
-Return-Path: <devicetree+bounces-273685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273686-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAU2MRNcsGn2iQIAu9opvQ
-	(envelope-from <devicetree+bounces-273685-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:59:47 +0100
+	id sLL3BLlcsGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273686-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:02:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76A272560BC
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B62C625619E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:02:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id E35D630054D3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:59:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0E36E30054F4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D1B3DB620;
-	Tue, 10 Mar 2026 17:58:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338EB3CD8B0;
+	Tue, 10 Mar 2026 18:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gsNYrHIz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V0FUhHBI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DA2C3D16FB;
-	Tue, 10 Mar 2026 17:58:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1060D3C9EDC;
+	Tue, 10 Mar 2026 18:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773165524; cv=none; b=c5dkmPIeOPbobxt0ALLxXne0Un/Oi92YDnBLHOSk9GqrQuJBRU+DvHdx0ehIv0OG6Gz54hVaRUFESFvVP3VHHxs0DWvjZxF5751uXkzWZUwwpuhVbmL+XHTPbYcsZDvkD/Q/pH3FmduvA2JuwmFD1el1Vd1vquhSi/Z1hS7GeD4=
+	t=1773165735; cv=none; b=nBXqJu9jcK5I5NMg6mXtWdUoPHnWU4AlfdYmP7gBFzNeqM/Nx4nVUZsZAiyrNtqRBi3HXpFYjOiYU3D7iZCMh6lLqOi/LlUHXXT1jQ0fMGzuEX1WSREGXgxGnfLhilP3yGq0dA7IW/M+L60xxQXZuPlAEzAxj1CtfvDAFK2ekoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773165524; c=relaxed/simple;
-	bh=KLrkLMNyUEfFrePaVM8x3w4Vu1EfIKWegtQbe6pdwHQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Y4ZBcZG8Qs3BYtKa7q9YE+afQ94t63ErkKkcqSKDM+E6Xjr1YKSCU74nG4KqGwC8Y4y+YnMwGVttMU4qjTPcsPOBuNkatZEdbRF6Ii0j22XZVxG+oMkv9HlAXSSaggvz350YyQ+pSQsbMc62z00w3QykH7f8sILJo6J43DEsK80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gsNYrHIz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D42E2C2BC87;
-	Tue, 10 Mar 2026 17:58:41 +0000 (UTC)
+	s=arc-20240116; t=1773165735; c=relaxed/simple;
+	bh=reQ/kmi8Sjb4oidTs+HBvwFOv2hwV16eAYsgx9QAHCA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S355o9cv2O1I4BAbSd+EAOwz8e1a+CUsCxxXnT6uC2MlUOdk2sMiuKJKd+gq0FbG5WWKCDtU0OAfTCAZ/VXXuHKpa5kGf34LVmapsHfAAVL9VGVILOx8+nakVz8xl0A1eAjaMSlofCbeLrtYsUtGwz9pvP/8uXT+KJLJDCP0RXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V0FUhHBI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1999EC19423;
+	Tue, 10 Mar 2026 18:02:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773165523;
-	bh=KLrkLMNyUEfFrePaVM8x3w4Vu1EfIKWegtQbe6pdwHQ=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gsNYrHIzXR6zRnbxz33jhwc6/d9Y3squlEomDnLP1oVLHhQZwKKeDC9sjMe8jI5Ea
-	 j9f3ZSunmlf8IDlExP0DGaVR5CfeGOB1G0PRBFvvLziQ2ftiUfl0CTfW0zJ9pG9gKv
-	 rcURm2JGSZMjimQaF+JpZ/2ezLI6NJKcvwIP0H0s3NdVII/kSLkS6EDJ5cOEzi+rJl
-	 VrrXXAd0/j672bQDClotcIh0mHqDbpOcQMk4UHExFK1syol+Vu90o8PvmtmgZpHNng
-	 /+2lnvK69qZzEiO//CYG2LTSvan2mWbf9nRMb976nDKgg0vrgopaIpuhnwZNecON9y
-	 Hk+7+8xlUM4ow==
+	s=k20201202; t=1773165734;
+	bh=reQ/kmi8Sjb4oidTs+HBvwFOv2hwV16eAYsgx9QAHCA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=V0FUhHBIOE8xyfL7IJqPyDD5A6zRW1WI7QAp0NAB4zPoWIL5fi4TInx+tpkSKL2nZ
+	 lK/Uf0dExjHRhK2ot7tbkm+DHNEIWhHrao4crZCXJbURaWI8e4008x6hfQBeGF+9t+
+	 FoYZiIklAbw0F6MWvG9F/DXpxzAaYIj86NU1EMk1IqWDpmkk4wCkq1H3fq93xeLf+0
+	 /LkbEoUtuT+R34daM/sAHqPDqLeWTntpVpBGUPradpdxsw42syoasvXIVc5yBvlo1Q
+	 D2lReF7N4Xzo6JfhWrEzveyS9u6qvcjwz/KACelzv1PEQWOM06uzzP/yemEu6dpflD
+	 iFrEXL2Zy/i2w==
+Date: Tue, 10 Mar 2026 18:02:08 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linusw@kernel.org>
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: pinctrl: pincfg-node: permit bias-high-impedance with other bias properties
-Date: Tue, 10 Mar 2026 17:58:27 +0000
-Message-ID: <20260310-ascertain-overblown-955becc1d8a3@spud>
-X-Mailer: git-send-email 2.51.0
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm7225-fairphone-fp4: Add
+ Bluetooth
+Message-ID: <20260310-maritime-silly-05e7b7e03aa6@spud>
+References: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
+ <20230421-fp4-bluetooth-v2-4-3de840d5483e@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1619; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=ZbAMXJyjF4Y1/+I3oBqxaGv3ZucElxqghRywaoh85bE=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkbog8r832fK+3dcGvDu83+qwMXc6ydJ85p2LDsjfMX3 WZFplT+jlIWBjEuBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzkfy/Df9elk0xCVWddcfrR IrnRqfHyhOLgLR5sPW95E6edU6jzv8bI8Gwb1/qpy97FR7ndYy5PzFUPMjh3cOZ9Lj2ulA82NvN m8gIA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 76A272560BC
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8vcYeGljaN9cb6WW"
+Content-Disposition: inline
+In-Reply-To: <20230421-fp4-bluetooth-v2-4-3de840d5483e@fairphone.com>
+X-Rspamd-Queue-Id: B62C625619E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.16 / 15.00];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273686-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273685-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[davemloft.net,google.com,kernel.org,redhat.com,linaro.org,holtmann.org,gmail.com,lists.sr.ht,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,microchip.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-From: Conor Dooley <conor.dooley@microchip.com>
 
-It is possible that devices tristate buffers may set the buffer to
-the high-Z state in addition to setting pull-up or pull-down on a pin.
-Remove this particular restriction to prevent warning on zynqmp systems
-where this configuration seems to be valid.
+--8vcYeGljaN9cb6WW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Reported-by: Rob Herring (Arm) <robh@kernel.org>
-Fixes: a901e8705f89f ("dt-bindings: pinctrl: pincfg-node: add restrictions on conflicting properties")
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-CC: Linus Walleij <linusw@kernel.org>
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>
-CC: linux-gpio@vger.kernel.org
-CC: devicetree@vger.kernel.org
-CC: linux-kernel@vger.kernel.org
----
- Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml | 4 ----
- 1 file changed, 4 deletions(-)
+On Fri, May 12, 2023 at 03:58:26PM +0200, Luca Weiss wrote:
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-index fe936ab091040..981f45c2f56b0 100644
---- a/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml
-@@ -236,8 +236,6 @@ allOf:
-       anyOf:
-         - required:
-             - bias-disable
--        - required:
--            - bias-high-impedance
-         - required:
-             - bias-bus-hold
-         - required:
-@@ -250,8 +248,6 @@ allOf:
-       oneOf:
-         - required:
-             - bias-disable
--        - required:
--            - bias-high-impedance
-         - required:
-             - bias-bus-hold
-         - required:
--- 
-2.51.0
+> +&qup_uart1_cts {
+> +	/*
+> +	 * Configure a bias-bus-hold on CTS to lower power
+> +	 * usage when Bluetooth is turned off. Bus hold will
+> +	 * maintain a low power state regardless of whether
+> +	 * the Bluetooth module drives the pin in either
+> +	 * direction or leaves the pin fully unpowered.
+> +	 */
+> +	bias-bus-hold;
+> +};
+> +
+> +&qup_uart1_rts {
+> +	/* We'll drive RTS, so no pull */
+> +	drive-strength = <2>;
+> +	bias-disable;
+> +};
+> +
+> +&qup_uart1_rx {
+> +	/*
+> +	 * Configure a pull-up on RX. This is needed to avoid
+> +	 * garbage data when the TX pin of the Bluetooth module is
+> +	 * in tri-state (module powered off or not driving the
+> +	 * signal yet).
+> +	 */
+> +	bias-pull-up;
+> +};
+> +
+> +&qup_uart1_tx {
+> +	/* We'll drive TX, so no pull */
+> +	drive-strength = <2>;
+> +	bias-disable;
+> +};
 
+I recently made some changes to pincfg-node.yaml to detect if there's
+conflicting properties used, and these got detected. Should these not
+do what has been done on the msm8998-xiaomi-sagit, and delete the
+inherited bias-foo from the dtsi?
+&blsp1_i2c5_sleep {
+	/delete-property/ bias-pull-up;
+	bias-disable;
+};
+
+--8vcYeGljaN9cb6WW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabBcoAAKCRB4tDGHoIJi
+0rVMAQDnCWfS9SVgN5I9oCZV8sUIm4jsdwk8Z93loonuabpbDAD/dsTwIxMkuvPV
+hcf46FGtpSe1pKAkNjqG/Nqkn+5wBw0=
+=qt9u
+-----END PGP SIGNATURE-----
+
+--8vcYeGljaN9cb6WW--
 
