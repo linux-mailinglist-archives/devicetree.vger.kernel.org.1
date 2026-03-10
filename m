@@ -1,188 +1,208 @@
-Return-Path: <devicetree+bounces-273394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273396-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJ55I2Xmr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273394-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:37:41 +0100
+	id yCBhGpHkr2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273396-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:29:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EC224897A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:37:41 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28F782486DA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:29:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D19F7324817D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:26:18 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id AC5DB305FC6D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:29:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2608643CEF5;
-	Tue, 10 Mar 2026 09:26:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAD5743D4F8;
+	Tue, 10 Mar 2026 09:29:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WMnYVyEk"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="Jz88+QXG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE7073DA7EC
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:26:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3BB43CEFB
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:29:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773134777; cv=none; b=bQubWUDW6tPgTps9iPqaNS1l++GXlOigcR9V6wIFpumeq2FBIPZ+aXFyYFw2Jc9DTMlXP3zuiUahivRs6HcbA0QgCBVSJ+obbMQ6+1qcsu5/Ohob84jTYulFNq7N7p6QKlVgXTGrpbyx6PD4BSzZH79Z3+rYfdaPilAH1PBrNaQ=
+	t=1773134950; cv=none; b=EqGvt3MxrdLfecUk6y3qpu3iXw50t1FTCp1TIo58BLZg8JqnV2tXfQ1nJx9ziif0PzMFGbzM/BfbRoq4GvQSRpfOH7YCi9xM07E2/+0zqHMr6/pfS2bzL4tw0uV1AgblR9FEH1Y0JRtk4HbYOXjU2vGLv90kKIgJeccXz3sJ3Tw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773134777; c=relaxed/simple;
-	bh=+JiCqqCkfhiKX6/spAppUcZcveAjdN0jHQheQ+7ABPE=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Okvu1qkAjnuCaY3YoCn4N09BIke59ro6QjMKTgF89qWDro41kd9UCezjX3RMWWS5z2Jqgs1aok234VM64576R7htn9TnZOOD0O5vc8GWxveMlYFwq/8fdoHCha2FcsF/EP4pmFa6nPupMMQqEW782JStDX6jh/zJXuj3cmP2GVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WMnYVyEk; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b8f97c626aaso2124716566b.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:26:15 -0700 (PDT)
+	s=arc-20240116; t=1773134950; c=relaxed/simple;
+	bh=V5YSqsc7mks2SF/nUdlDxogCbbBj+0pDE2z2UGEJ4Ro=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NT3jQz/bODtv8l03AY+8Mmls/ZvT4YarvDhKJMgSjMEnnfVPSPjTWfYA456o6DApxrpvzbVkRF62CnrP7DT6J37z4oKg+Da+ibP6dZn4077KiKFZvwStKouDoT+RqNxwuxQPKcgJRm7K2PTjhofxRBVVcalHgQBuwLMLZakWsQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=Jz88+QXG; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-485409ab264so8824735e9.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:29:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773134774; x=1773739574; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UCpjD/WHCFz9S12dNYwHUW2VFUf+GTEfEGzPxPYB5Yk=;
-        b=WMnYVyEkawrQe/oFLRBcziogRnjlma7Fex0OxuEfeS4HVZNEzE5KqGTdyk7SIQsSP3
-         T6IFIwQlhVcVBpA4k2J+V4PvfENGb9YdnRqmsxNzDvBTNrgyLqWsh3kvul4PxMA/mD1Z
-         XMcxTxmxGMyiTc7kEQMxJVX8VXa5G3wY0/60rT+Nu0w1Ky/vT6OYWxYaphEVeH30RrNw
-         zwgs1ivOp4QfDmq5PUEVN+R2SVF23RnJW8agED7I09N4ZUy67OZIX0JruoftByWoTyEn
-         z7L0PLmbwInPBJjl69t5AZmlnFqQsOhjDeZpTkHYs7Kp+9kryEknoM6Upd48eSmYbvE0
-         1VBg==
+        d=flipper.net; s=google; t=1773134947; x=1773739747; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=CpA639p95WypbYLFKutmL4S7cIH8gNiEyA3iWl4bY1M=;
+        b=Jz88+QXGSlJ5l3TkAm6BOqMKfOW8Xjc43znlACW8FdGQKtPRcNcVi9Kq2blfoH7GFK
+         swkfKm5YVOMWdD7d/fDZvfvBvADe0zSd5ybyV229CT0JaKux6lP8CmwYeEWi9N0olgsM
+         ibmfG1jYFtWWqqmHDGduy8t95HI2aDlyXF/rVy2P53w34ixEeXMFdoW9e1vOnDkWiA2d
+         Ioi49j+b8OTZQIh4nkCXU8cY8bdZ+s6tSbWCm6+5MQSuxCUqUEQx0gg2YSXmy6q1VQ94
+         kjXt5cWOA55CeNCG8pbcoQdQZtrgNEDecjBna10wIYpGMi3zHiltIwTRdBIf4EK1lOU1
+         1kFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773134774; x=1773739574;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UCpjD/WHCFz9S12dNYwHUW2VFUf+GTEfEGzPxPYB5Yk=;
-        b=R7ehmTjzu8wYcXdbV1zZcEakNe/OY0M55X5zDGDuSHz3nF7xoKq/dUvk0fS69lLutF
-         X6pAnIvun2BwSGsuqDBgWANMXpyYYXwQ02SkTfOWlSvbost4OjMFyHwMkc8ohztwrdhA
-         zHThFdSZx/CYVR3kqQeu2YWr2T592Ic68AqmwEnGCSKfSQgsfCbZrnM63EkuFOvcGmNE
-         Ga/o1d/dNIn1PPPLCnFmAAv6a/hJJF1EE1phSbA56YGGQr5C+awCDVoMpQBGuovUAmML
-         TbYyZQ9XLZF8WL3tAWVwNnOdZXA3hvmcJJnFOhVzJHU0RwxaKvhfr+o3aRfz1KU7iTYb
-         +DxA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqgaBpfKJ5qgqmyVKGnq8x1YaKTHJnVNe5bcN/7QNCcuYna6caphMbJsuMUNMgrYtaNqRuegpkHknD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxw/YAUya9HRNjfOpuP3AjsRSEqgOZ4swCCYAW9+L7hInrsXVoV
-	qwjrVVS41JFCSHVJ14tQQvx3MOTyCspPsaCloK6AtTrqqkXSFDL0WetL
-X-Gm-Gg: ATEYQzxHKFNaV4NelFJ6DmOscErLlSiouLhsFOUNN+FhjCUtZXn8/wTgnS++R5xziVq
-	la92YDpKtHy34aSPA3HaWQ/fOxrF1bu87HlphuzXC7PoTRfyHFlaGgTQBRmkk28K6TVsZiBJXTS
-	9HHrBJQN2NWCRUq+04IOHu4ez/OSDfUU4jl56AsaicsqHO1Hv5gDhzppFBp8kl2YV5/6Aj4B+ny
-	V1iC0IF4WsHx8IxroWUB0StY0cLio7Qef1RSd85dXpLcfu62N12cOPH7LM6UesDQ17YBjh0WTzo
-	l08mHTaNRnd/Tygy4SXSznV0OJ+blPBt/2gfRDwj+prREJUsbPI/ZNqZ7TpRfVuULCu8xwRr0ZC
-	AjnoHxrWezdRjMEWLIH4Mvy2xGlDd+kJV2fjguvZ3EKAVxQtlChhMZ4P/pti95A+sCQCwdhNmS/
-	BsosOBk0Ooh3xf+DfROCyVq7eAsOzB9IWKvR3SLp+CGHXDKtCfyr+2xxaBb+6ehCPteFb/Ct5Du
-	ZpC9a/xhH/21y9EIiNwg9sM17zJuyYXJ050Sx+PWl4XDuhWXGI=
-X-Received: by 2002:a17:907:e10c:b0:b96:dd06:8d9 with SMTP id a640c23a62f3a-b96dd061152mr324301866b.60.1773134773760;
-        Tue, 10 Mar 2026 02:26:13 -0700 (PDT)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b942ef8b7c0sm453212466b.20.2026.03.10.02.26.11
+        d=1e100.net; s=20230601; t=1773134947; x=1773739747;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CpA639p95WypbYLFKutmL4S7cIH8gNiEyA3iWl4bY1M=;
+        b=YSSLCZYWeYVgv4j9N6uSgZwngWqwp5PYZitshNTu4nrYa7/Ad/7STSPckkcWl4S9q+
+         Ur4f1SLCtrSPcdkn8tgp0BLvrdJYyQNoyD3NmMh1HgkyMr/Wzb1qOy/aDbyy8D08zAWs
+         Qh6OdEVIoJjls2dNxK9Z8DtmfPeCKXNxDCz9R4rK6g89V7L5DSBA6RthrVEoCwMhE5ev
+         w4yF0QLJFgoMDXbUnFHxzWq4merjIPg5uE1K4zgKmojK2aTUI0bbSNDDYDmQkk66KzCN
+         eHxfLFr9iROH0NeWhKQjo/6bvgeE9je/tHxyq8UEC8Zi3OZElGSBoTB9rwDAK1+vtgbH
+         LXqA==
+X-Gm-Message-State: AOJu0YxlHxllC90+ZvDmj9kMx9in/esQcO4uMWpitwnZpJ/O7AuzE6bp
+	B7Rp3kE63paf3hnWIKfBlQyam4cEJJXgKdVJneBB0CwLHGV7KdSTs4BXI6nW3WzePWU=
+X-Gm-Gg: ATEYQzyBf8ndDpDulDPMmTFyeEWTSViyn2hlx7peYZ+AxBRbhwuZPXHve6rI0LR4JHI
+	X84YGqEaL2+aCoEz8bRjqVTDPXpy6ValWN3d+oow7pG+xdN0QDuf25B6Q17xhXsgvSBj1dfpbP7
+	hAkaOVK7VFEAHOh3RAI/jBd1p+g2o7J3logKcLtg6Bo53ab1zJqBXSIRdswEHiwuY+NglcQhGGp
+	/6UpVDsFnBuB98QhiARFHPb8F2Y97fuv9Lk5yy2w9MuvLaaI6lmeaIdidn3JAivlZ3hpeQyBrsp
+	Jnijc/6Q1kW4JlqNScCSqZ3dQk5EmA3htF1wiBKz/XQEa5RfDDzCvukJtEnOVtJ/CZCp/i8n5oZ
+	Tdm0LJNhgU/T2IUicv9rAHSqp/ORb1Ig4OSWIgbvwMRyuK2/lqldcqNFujnrEcP3F9GKelpTln1
+	Q3l7PXVc8kwy77PHXtY91tOsorZC99hPz2xcK7VfpZCjJWeiqUnT5YzlH+i0/P2xr0HH+bbWU8Y
+	rhupTmgMsallzr/
+X-Received: by 2002:a05:600c:628b:b0:485:3cef:d6ea with SMTP id 5b1f17b1804b1-48541a0d032mr35337915e9.13.1773134946685;
+        Tue, 10 Mar 2026 02:29:06 -0700 (PDT)
+Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48529f019a4sm104214285e9.12.2026.03.10.02.29.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 02:26:13 -0700 (PDT)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Tue, 10 Mar 2026 09:26:11 +0000
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, 
-	David Laight <david.laight.linux@gmail.com>, 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH v8 02/10] lib: kstrtox: add kstrntoull() helper
-Message-ID: <zhjkurpwbuvirh3k4a4c3lfeu5semu4rjszvej4hnx7scjyk2q@v4r7oqexwsjl>
-References: <20260303-adf41513-iio-driver-v8-0-8dd2417cc465@analog.com>
- <20260303-adf41513-iio-driver-v8-2-8dd2417cc465@analog.com>
- <20260304101655.620df7ee@pumpkin>
- <6et7t3o6fjiinpkvpsmoxjhp6edn23dgclbulaxg5paccdotgp@amtf33da5dhf>
+        Tue, 10 Mar 2026 02:29:06 -0700 (PDT)
+From: Alexey Charkov <alchark@flipper.net>
+Subject: [PATCH v3 00/11] Add support for the TI BQ25792 battery charger
+Date: Tue, 10 Mar 2026 13:28:24 +0400
+Message-Id: <20260310-bq25792-v3-0-02f8e232d63b@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6et7t3o6fjiinpkvpsmoxjhp6edn23dgclbulaxg5paccdotgp@amtf33da5dhf>
-X-Rspamd-Queue-Id: 12EC224897A
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADjkr2kC/2WOQQ6CMBBFr0Jmbc3Q0hFceQ/jAmGQSQzUljQaw
+ t0tbNS4fD/zXmaGwF44wDGbwXOUIOOQwOwyaPp6uLGSNjFo1IQGjbo+tD1UWmFudN2UVBbUQrp
+ 2njt5bqXzJXEvYRr9awvHfF3/GzFXqJjYMqIxhS1P3V2cY78feIK1EvW3SR8zPaDIVlYXVUtM3
+ a+5LMsb8BzTqtoAAAA=
+X-Change-ID: 20260303-bq25792-0132ac86846d
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Sebastian Reichel <sre@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ linux-pm@vger.kernel.org, Alexey Charkov <alchark@flipper.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3119; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=V5YSqsc7mks2SF/nUdlDxogCbbBj+0pDE2z2UGEJ4Ro=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWSuf+Ic+nTDQqay1V+7rFP9Pi/rFviz71P6psmsVh7S6
+ yYd8D2Z2TGRhUGMi8FSTJFl7rcltlON+Gbt8vD4CjOHlQlkiLRIAwMQsDDw5SbmlRrpGOmZahvq
+ GRrqGOsYMXBxCsBU97Qw/NN8+WXRggWbJr/J//DwbfZ54zLFU5kp0trnrzuoHVgwPfgww//8HZv
+ aZvyv3SumJ9v0bG1nXOTinlsOPyey5C7cJ8t0yoMVAA==
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+X-Rspamd-Queue-Id: 28F782486DA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273394-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-273396-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,hotmail.com,gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[flipper.net:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,analog.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,flipper.net:dkim,flipper.net:email,flipper.net:mid]
 X-Rspamd-Action: no action
 
-On 26/03/04 11:41AM, Rodrigo Alencar wrote:
-> On 26/03/04 10:16AM, David Laight wrote:
-> > On Tue, 03 Mar 2026 13:27:07 +0000
-> > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-> > 
-> > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > 
-> > > Add kstrntoull() function, which converts a string to an ULL with a max
-> > > character limit. The function is an alternative integer parsing function
-> > > that does not require a null-terminated string. It becomes a better option
-> > > over simple_strtoull() or kstrtoull() when parsing integers from a buffer
-> > > with custom delimiters without having to create temporary copies.
-> > > The function is consumed inside the implementation _kstrtoull(),
-> > > promoting reuse.
-> > 
-> > If you've got custom delimiters use a function that returns a pointer
-> > to the character that terminated the conversion.
-> > They save you having to find the delimiter as well as taking a copy.
-> 
-> understood, how about this prototype then:
-> 
-> const char __must_check *kstrntoull(const char *s, unsigned int base,
-> 				    unsigned long long *res, size_t max_chars); 
-> 
-> to be used like:
-> 
-> 	end = kstrntoull(s, base, &res, INT_MAX);
-> 	if (IS_ERR(end)) {
-> 		/* return or handle error */
-> 		return PTR_ERR(end);
-> 	}
+This adds support for the TI BQ25792 battery charger, which is similar in
+overall logic to the BQ25703A, but has a different register layout and
+slightly different lower-level programming logic.
 
-Hi David,
+The series is organized as follows:
+- Patch 1 adds the new variant to the existing DT binding, including the
+  changes in electrical characteristics
+- Patches 2-4 are minor cleanups to the existing BQ25703A OTG regulator
+  driver, slimming down the code and making it more reusable for the new
+  BQ25792 variant
+- Patch 5 is a logical fix to the BQ25703A clamping logic for VSYSMIN
+  (this is a standalone fix which can be applied independently and may be
+  backported to stable)
+- Patches 6-8 are slight refactoring of the existing BQ25703A charger
+  driver to make it more reusable for the new BQ25792 variant
+- Patch 9 adds platform data to distinguish between the two variants in
+  the parent MFD driver, and binds it to the new compatible string
+- Patches 10-11 add variant-specific code to support the new BQ25792
+  variant in the regulator part and the charger part respectively,
+  selected by the platform data added in patch 9
 
-Do you have any other feedback? the function prototype can also be changed as
-follows:
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
+---
+Changes in v3:
+- Move MFD cell definitions back out of the probe function (Lee Jones)
+- Collect tags from Mark Brown, Krzysztof Kozlowski and Chris Morgan (thanks!)
+- Enable ship FET functionality at init for BQ25792
+- Link to v2: https://lore.kernel.org/r/20260306-bq25792-v2-0-6595249d6e6f@flipper.net
 
-int __must_check *kstrntoull(const char *s, const char **endp, unsigned int base,
-			     unsigned long long *res, size_t max_chars);
+Changes in v2:
+- Fix an error in DT schema (thanks Rob's bot)
+- Ensure the broadest constraints for all variants remain in the common
+  part of the schema, per writing-schema doc (thanks Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20260303-bq25792-v1-0-e6e5e0033458@flipper.net
 
-so that a pointer to the terminated character is passes as a parameter.
-which one would be the preference?
+---
+Alexey Charkov (11):
+      dt-bindings: mfd: ti,bq25703a: Expand to include BQ25792
+      regulator: bq257xx: Remove reference to the parent MFD's dev
+      regulator: bq257xx: Drop the regulator_dev from the driver data
+      regulator: bq257xx: Make OTG enable GPIO really optional
+      power: supply: bq257xx: Fix VSYSMIN clamping logic
+      power: supply: bq257xx: Make the default current limit a per-chip attribute
+      power: supply: bq257xx: Consistently use indirect get/set helpers
+      power: supply: bq257xx: Add fields for 'charging' and 'overvoltage' states
+      mfd: bq257xx: Add BQ25792 support
+      regulator: bq257xx: Add support for BQ25792
+      power: supply: bq257xx: Add support for BQ25792
 
+ .../devicetree/bindings/mfd/ti,bq25703a.yaml       |  73 ++-
+ drivers/mfd/bq257xx.c                              |  64 ++-
+ drivers/power/supply/bq257xx_charger.c             | 535 ++++++++++++++++++++-
+ drivers/regulator/bq257xx-regulator.c              | 123 ++++-
+ include/linux/mfd/bq257xx.h                        | 415 ++++++++++++++++
+ 5 files changed, 1170 insertions(+), 40 deletions(-)
+---
+base-commit: a0ae2a256046c0c5d3778d1a194ff2e171f16e5f
+change-id: 20260303-bq25792-0132ac86846d
+
+Best regards,
 -- 
-Kind regards,
+Alexey Charkov <alchark@flipper.net>
 
-Rodrigo Alencar
 
