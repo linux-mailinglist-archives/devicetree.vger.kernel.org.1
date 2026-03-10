@@ -1,54 +1,56 @@
-Return-Path: <devicetree+bounces-273662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273663-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KqQHONVsGkJiQIAu9opvQ
-	(envelope-from <devicetree+bounces-273662-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:33:23 +0100
+	id 6FFuKutVsGkJiQIAu9opvQ
+	(envelope-from <devicetree+bounces-273663-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:33:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id A99C82559C7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:33:22 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C0E52559D5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:33:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id C64353007AE1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:33:13 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 61E23302E0F9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:33:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F5113D47B7;
-	Tue, 10 Mar 2026 17:33:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 331813C9452;
+	Tue, 10 Mar 2026 17:33:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="zHPWFiF/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Atm8u8oU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565F438B122;
-	Tue, 10 Mar 2026 17:33:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F287B3B6BE7;
+	Tue, 10 Mar 2026 17:33:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773163988; cv=none; b=KhOSE6x1S+CReDhxYR9tPT9Ea1GQCl4lmO3MBMCyv5PD4/nvGveSivif+I1zV4ph2irrdCnfhyEkgegRfASQPuY4m0OnspgsvvypAsGE04sgD72zL7/wZJx0aL3ennLZRXTeHeBC4C7mv09JR3O+6E6xmL0bkgcyEY2GXhasuso=
+	t=1773163994; cv=none; b=harx7bssL4E69EEAf2HZvBRspk7h+xwWS6sS9cqEYn/7xO/QqhEBC6lcr7eUq8rxfm9Dn+rMHMp7Yv6t4ftzKoencQNqazL6jaWd3J82/yx5zWfcnYUk5XBeiQ5ptTeWR9qjyKeQ7hUe5UVFGEJKy6OMY5Uy6d3jLJAKKzW1ju0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773163988; c=relaxed/simple;
-	bh=tKpuYF4SZR5lkozkhfn8XfbK2UfIoUqnYkKbMoA133c=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LGm7PRsk5OcAA7N0ctYTSZgft/QPQC+TLc1M96hbUyp5KLHtI1XdPtbz+5l8VwtH/lAPic0hoSOL2yxlOYKNCwybmI9FN41U0i2Ns+JwHfMfi27fqCRTNrbZ5Iwqf22VYN/POMXDsx7qdRV/DQcvGrFxStBOlmSN1fU4bm84z7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=zHPWFiF/; arc=none smtp.client-ip=185.246.85.4
+	s=arc-20240116; t=1773163994; c=relaxed/simple;
+	bh=qkCssjwQ6xHfILIG/0YeecVw+n9kEcmrQqoPICmcohU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Xgem768339BhQ2RgA/Sj/M5cKQ1d9cqKfsFsgW+6ZhpRcZjxNgUyfr73fqzDuGyXkkCBhELxIPonB4sZrE4adVHfQo5uerWNa1BDDC9gIuCe5XZCpXK10Jz6AsGTCCPgcfR14XbL3EpRG1j56rqgy6j2Sha/RYFe4CsNpkk2NZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Atm8u8oU; arc=none smtp.client-ip=185.246.85.4
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id BA68A4E425F2;
-	Tue, 10 Mar 2026 17:33:02 +0000 (UTC)
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 99E764E425F2;
+	Tue, 10 Mar 2026 17:33:11 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 8591060002;
-	Tue, 10 Mar 2026 17:33:02 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5FF741036891C;
-	Tue, 10 Mar 2026 18:32:57 +0100 (CET)
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 68C0C60002;
+	Tue, 10 Mar 2026 17:33:11 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 804231036891C;
+	Tue, 10 Mar 2026 18:33:08 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773163981; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=GV/3yyZ/K5WPAlPx10KVrpjD34hKneXHwsacFm5yDNk=;
-	b=zHPWFiF/U1qmeqt696VrBIHDjnldCPoHr6tmMQwbmcp53DwLjD6Zgpv9BTCRz2FPTTYA5h
-	c/vjHW9wRtidn0qowanw4btRtvhiQzyYeiCQvH6QGZNK8pmv3ZUvFgsqaTmBezeAfeGynd
-	tfclbhTFoadOd3XyXyrTvf3hgUZoL3eFJ7Q1PQqIy2cwqaFBCewQT/cuirN5oYvE/SEg3y
-	k5/z5qC9QNn+KwtCHXVVI5GfIQGrCzpycusii2Mst4K840wue0GosU0jng5deGPmsF+OGx
-	j5df5QrqotqBdPQtDiYb0dAds082NviHpmnkEGiau3xRwpikI8is+eXo+n7nwA==
+	t=1773163990; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=HeFNpkruOmIcHovjLW+aFCk9gvji8MHWFyaMG1utC/c=;
+	b=Atm8u8oU2ud9vUuVBB2OuoRZEV62E6YjAb3YcmHkF71JQaiEj1jyetrHwdNV4iKJjw4Mv6
+	+rMQ8q5rH69Vk65Ijze/WTnWIzSOfC836FtbP4Af6D3UfuZgjAfAoKa7VetIy+tTT9Rn71
+	vI/9vcfqHhG1MlNZpyTYnbHWb8Ks/eU/EZ2MnYci8L4TbISGGcoMKK+jPGQDUFrT67w3sL
+	5sDCA4fmocIZ5C6ZtVk7+mkEu501gs9gTob60IYFBBGRYZL50PE/LDhhN0J7f4wS4G8eXG
+	SzfA5NbKF2HKcX6c7HH38/1grMnLjNVlLBJYXiTivmV1+ZLiiPlABZ2Lor45vg==
 From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
 To: Wim Van Sebroeck <wim@linux-watchdog.org>,
 	Guenter Roeck <linux@roeck-us.net>,
@@ -69,96 +71,81 @@ Cc: linux-watchdog@vger.kernel.org,
 	Miquel Raynal <miquel.raynal@bootlin.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
 	"Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Subject: [PATCH 0/5] watchdog: rzn1: Add support for direct hardware reset
-Date: Tue, 10 Mar 2026 18:32:41 +0100
-Message-ID: <20260310173249.161354-1-herve.codina@bootlin.com>
+Subject: [PATCH 1/5] watchdog: rzn1: Fix reverse xmas tree declaration
+Date: Tue, 10 Mar 2026 18:32:42 +0100
+Message-ID: <20260310173249.161354-2-herve.codina@bootlin.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260310173249.161354-1-herve.codina@bootlin.com>
+References: <20260310173249.161354-1-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: A99C82559C7
+X-Rspamd-Queue-Id: 6C0E52559D5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273662-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FREEMAIL_TO(0.00)[linux-watchdog.org,roeck-us.net,kernel.org,glider.be,baylibre.com,gmail.com,sang-engineering.com];
 	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273663-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:mid]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
 X-Rspamd-Action: no action
 
-Hi,
+Variables declared in probe() don't follow the reverse xmas
+tree convention.
 
-The current watchdog driver handling wachdogs of the RZ/N1 SoCs is based
-on interrupt only to perform the reset. On the watchdog timeout, an
-interrupt is triggered and the software initiates the reset.
+Fix the declaration in order to follow the convention.
 
-The watchdogs available in the RZ/N1 SoCs can directly perform an
-hardware reset using their dedicated reset line.
+Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+---
+ drivers/watchdog/rzn1_wdt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On timeout, the watchdog also asserts its dedicated reset line. This
-reset line is connected to the reset controller (part of sysctrl) and,
-if this line is enabled as a possible reset source at the reset
-controller level, it initiates a system reset.
-
-This series adds support for this feature allowing watchdogs to directly
-reset the system with any software needs when a watchdog timeout occurs.
-
-The first two patches are minor fixes and improvements without changing
-the current functional behavior.
-
-Patches 3 to 5 add support for the feature adding:
-  - The reset line description in the RZ/N1 watchdog binding,
-  - A new helper at sysctrl level (sysctrl is handled by the clock
-    driver in RZ/N1) to enable watchdog reset sources,
-  - The support itself in the watchdog driver putting everything together.
-
-Best regards,
-Hervé
-
-Herve Codina (Schneider Electric) (5):
-  watchdog: rzn1: Fix reverse xmas tree declaration
-  watchdog: rzn1: Use dev_err_probe()
-  dt-bindings: watchdog: renesas,rzn1-wdt: Document the reset line
-  clk: renesas: r9a06g032: Introduce a helper to set rsten register
-  watchdog: rzn1: Add support for direct hardware reset
-
- .../bindings/watchdog/renesas,rzn1-wdt.yaml   | 22 +++++++
- drivers/clk/renesas/r9a06g032-clocks.c        | 32 ++++++++++
- drivers/watchdog/rzn1_wdt.c                   | 63 ++++++++++++++-----
- .../dt-bindings/watchdog/renesas,rzn1-wdt.h   | 16 +++++
- include/linux/soc/renesas/r9a06g032-sysctrl.h | 12 ++++
- 5 files changed, 131 insertions(+), 14 deletions(-)
- create mode 100644 include/dt-bindings/watchdog/renesas,rzn1-wdt.h
-
+diff --git a/drivers/watchdog/rzn1_wdt.c b/drivers/watchdog/rzn1_wdt.c
+index 96fd04fbc2a2..b7034eac91d0 100644
+--- a/drivers/watchdog/rzn1_wdt.c
++++ b/drivers/watchdog/rzn1_wdt.c
+@@ -101,10 +101,10 @@ static const struct watchdog_ops rzn1_wdt_ops = {
+ static int rzn1_wdt_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
+-	struct rzn1_watchdog *wdt;
+ 	struct device_node *np = dev->of_node;
+-	struct clk *clk;
++	struct rzn1_watchdog *wdt;
+ 	unsigned long clk_rate;
++	struct clk *clk;
+ 	int ret;
+ 	int irq;
+ 
 -- 
 2.53.0
 
