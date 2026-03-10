@@ -1,67 +1,63 @@
-Return-Path: <devicetree+bounces-273343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273344-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6O/QOA/Wr2nJcwIAu9opvQ
-	(envelope-from <devicetree+bounces-273343-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:27:59 +0100
+	id SAsWFITWr2kfcgIAu9opvQ
+	(envelope-from <devicetree+bounces-273344-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:29:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F62247540
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:27:59 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0F9D24757E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:29:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6790230FA4BD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:25:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E5BEC306776C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B9A53EDAD5;
-	Tue, 10 Mar 2026 08:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D1083EFD23;
+	Tue, 10 Mar 2026 08:27:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JieQepDV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NKcBRkUG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67F533CA491;
-	Tue, 10 Mar 2026 08:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17C6D3644D3;
+	Tue, 10 Mar 2026 08:27:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773131146; cv=none; b=UCZ//9bX8m6jyWpLXLVte4bDWaCmUErx6XgBnfzipwqNJ3t+EMYDgeI7h+IKX1MZXg7KgnoAgw9sZNvmGsJY4IozF+SR3hhDnzAQqOlPaF3QYchT1l6K01bu5vt8SJV7MzK/35+NFFGW9sPZxNXhGsOmz3uEW2vVyB2wazWvOfM=
+	t=1773131236; cv=none; b=a/pfiV1SBp4bCPBAghMjjzUvUDPHxz4KJ2f9so1RmyEVq9ZIEp6hS9Rpf3FPHlYfKiKKvCo71y8X6TCVmhnllvZm+5G+p4cvX9Yib578VImWRKDRFErJUISJiRe/U4IOweQ6eL93tO91s3Aen/r0lqR35EpwRfasczBbL5FLnBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773131146; c=relaxed/simple;
-	bh=cuyXodzCUJDUciuTuMLZ7yq7kwx0PZeH+CANPawJXyo=;
+	s=arc-20240116; t=1773131236; c=relaxed/simple;
+	bh=qkJk0ZIrwJ7f/aH/4uJcDjSL/B/E0j/pABEF2EXhYmM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LBiynEwmaCn75awQr10HOVGk9Hktk+ik4QJuxC98z87NKDAdTYXZyu6bMXeugT0Z29pHsyJFAy7PYuuqHwR+FS2okumdDYffrfqAmDo/QudYikcG+kI9lpzqgbhQRYCjiyk/mxCpOkj8/3OW3JVKx41lzLx07BKlznrKYss/3sU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JieQepDV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E43C19423;
-	Tue, 10 Mar 2026 08:25:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PeHYjQdsfTCBg/Panquqve3FPcnXsJiPZRVapd4kReJaa6Db0+AsYMqYERME4JkCHSirO3PMH+PM7TS7cENzWQQK0lWjURRMd0eVBdNgi0AyRZOVii6/NgQSkQ4pyXBgIdm7wHwNYRHYxeZbdM13o6zUE84VPxUeqXw2SSH+FP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NKcBRkUG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24F6AC19423;
+	Tue, 10 Mar 2026 08:27:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773131146;
-	bh=cuyXodzCUJDUciuTuMLZ7yq7kwx0PZeH+CANPawJXyo=;
+	s=k20201202; t=1773131235;
+	bh=qkJk0ZIrwJ7f/aH/4uJcDjSL/B/E0j/pABEF2EXhYmM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JieQepDVERwVWnitXD9N0MA2AcgB0PzHHytY/SxYWvP2Xligm3ViBnsiU8IYik0dR
-	 +GgsBzXMC+1Sb674F/+Vrzicw7e4nnJCBVRozia6Zw2unGpEwFwYkdSKoHMJQs0Rnl
-	 1WnAIDL8Y0AMpElTrVqOgd4qcLzL4Iryfv8XC2vObnJLBhLpPYFvOzMyG3Mb0+kI9E
-	 ZVi7cuwk/TJp5wf9lfyGHBWhPFvmGQpVWSg48WyYdJMC8xgBxEUhCMBnJAeWLSpAvu
-	 TMlz+ZnNkCKWW4b3G0MEbyElarMvt/40ChM9TztCXTpysEDuaBfNFGdV+Q12NVj7Sz
-	 Aza/AOg1DwWmg==
-Date: Tue, 10 Mar 2026 09:25:43 +0100
+	b=NKcBRkUGwB7jgLYrS9rUgP7RtF3UdfFpiqcyR4JiKPIGgITMuy9/s8+hxglULhq0P
+	 RCwMfjH+J0wKHHoL6SUV5bJPmeudtlNJuwhCrveS/ZYTvNCGFQfVKce2KCXeM3D9w9
+	 ncQ3qYtONpBC63cf8qBd4tnebuWkvwqvSyVnyesJpXXF3SwCgq8L0HYeV3gQKiYufy
+	 87Tew/jF8H4uIcCq4qkKGuZfgOpO+brMsHprhNXYpDgjTYqWQDcskv0e146n6dEIxE
+	 wLx0MLWgi93V0fkhVwOMtcQ+FqrVX5qCatZJT/GWhk/8JmtNN924nw4l0c0X7BgsvK
+	 D6Ivu7XTFfnpg==
+Date: Tue, 10 Mar 2026 09:27:13 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Caleb James DeLisle <cjd@cjdns.fr>
-Cc: linux-mips@vger.kernel.org, naseefkm@gmail.com, 
-	mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, tsbogend@alpha.franken.de, ryder.lee@mediatek.com, 
-	jianjun.wang@mediatek.com, lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org, 
-	bhelgaas@google.com, vkoul@kernel.org, neil.armstrong@linaro.org, 
-	p.zabel@pengutronix.de, matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, 
-	nbd@nbd.name, ansuelsmth@gmail.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: PCI: mediatek: Add support for
- EcoNet EN7528
-Message-ID: <20260310-onyx-ibex-of-progress-fdf1bf@quoll>
-References: <20260309131818.74467-1-cjd@cjdns.fr>
- <20260309131818.74467-6-cjd@cjdns.fr>
+To: Matthias Fend <matthias.fend@emfend.at>
+Cc: Jimmy Su <jimmy.su@intel.com>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v2 6/9] dt-bindings: media: i2c: document Omnivision
+ OV08D10 CMOS image sensor
+Message-ID: <20260310-fair-malachite-gaur-af3410@quoll>
+References: <20260309-ov08d10-v2-0-81f8b5d99984@emfend.at>
+ <20260309-ov08d10-v2-6-81f8b5d99984@emfend.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,27 +66,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260309131818.74467-6-cjd@cjdns.fr>
-X-Rspamd-Queue-Id: 86F62247540
+In-Reply-To: <20260309-ov08d10-v2-6-81f8b5d99984@emfend.at>
+X-Rspamd-Queue-Id: A0F9D24757E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273343-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273344-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[29];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,baylibre.com,kernel.org,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,collabora.com,nbd.name,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -98,39 +93,22 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,emfend.at:email,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-On Mon, Mar 09, 2026 at 01:18:15PM +0000, Caleb James DeLisle wrote:
-> Introduce EcoNet EN7528 SoC compatible in MediaTek PCIe controller
-> binding.
+On Mon, Mar 09, 2026 at 06:07:08PM +0100, Matthias Fend wrote:
+> Add bindings for the Omnivision OV08D10 CMOS image sensor.
 > 
-> EcoNet PCIe controller has the same configuration model as
-> Mediatek v2 but is initiallized more similarly to an MT7621
-> PCIe.
-> 
-> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
 > ---
->  Documentation/devicetree/bindings/pci/mediatek-pcie.yaml | 1 +
-> 	 1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-> index 0b8c78ec4f91..57cbfbff7a31 100644
-> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-> @@ -14,6 +14,7 @@ properties:
->      oneOf:
->        - enum:
->            - airoha,an7583-pcie
-> +          - econet,en7528-pcie
+>  .../bindings/media/i2c/ovti,ov08d10.yaml           | 101 +++++++++++++++++++++
+>  MAINTAINERS                                        |   1 +
+>  2 files changed, 102 insertions(+)
 
-Patch is heavily incomplete - why do you have variable number of clocks?
-1, 2, 3 ... or 6 at the same time?
-
-Look at the rest of this file to understand what you need to write.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
 Best regards,
 Krzysztof
