@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-273565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273569-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mAv4E2gssGlHgwIAu9opvQ
-	(envelope-from <devicetree+bounces-273565-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:36:24 +0100
+	id EI5RAQcxsGkShAIAu9opvQ
+	(envelope-from <devicetree+bounces-273569-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:56:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1190252200
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:36:23 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F10F252A97
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:56:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5345E31B59E3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:49:15 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 847FD314DAEB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC4BB322B8A;
-	Tue, 10 Mar 2026 13:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D13B62BEC55;
+	Tue, 10 Mar 2026 13:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iKmOhnM4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WEbIXBVz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D6240DFA4
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:49:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9659A40DFC7
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 13:51:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773150554; cv=none; b=TDMjAfnCUV4XQt7KrDtRJ5oj1JIAKFdFY/8TsOJdnyiBHBEfLjVRCBKCYtOTUCZR4hDd7BYP6bDiQeY5EhatwYOctSu9C33mlgjTTElqq0lVYQWKef9JaJEgIvympT/zK7a8pQ6YO+tCvgNc5kpOklOwb1EciM+HpnxD01hoHyU=
+	t=1773150704; cv=none; b=OHukiaSJL9cb77JtihYYNWdKMW3gZveuSWWnpxet+IHl5a3m3Q90QEIPlmlz3hByDmstCkgjB1xtowMjmDKAVbM9zcJIZopvK22fBDAKuBZEVjmKz/P10Muf4XYRsa4lPz/nB1eDw2eFEhGdiTubO4OhhHOkzniNvkCV4C91pJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773150554; c=relaxed/simple;
-	bh=C7YfvVNgzImn9OuTsIPLA1wdmiamPpgPteHOtrCCUmE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=n5bZuCDeCX8zhTCew3yJQRspld7bikuY+ze5h7TOv2cdTDtqyhvIbIu1AbI3sG/cacdzpCte3AZSpaC4+LiRajOpE2EiuGPVAOeD5cEoG+CeTTjzTq/lwp4Isqdx7WnPvwjJOQ+jrz0Cy4bo0CwAuVF0G5yUEFKmrc3K7ER8DyI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iKmOhnM4; arc=none smtp.client-ip=209.85.210.43
+	s=arc-20240116; t=1773150704; c=relaxed/simple;
+	bh=YVDiNvaqy8sCApKrm9kvLC1lhQ9DRY08kWV3zI9fpl4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gM9WnP9u/utPvPjlrSwgj1/SD8JYW69VNDv8MslU2U/2Wt4NI3AF24jaVSeUUeBeBx4AjWmekwPuaKd2i+HPDVIl0LFTBzYlZVDVPhGUEkbZHWhR0p898Mo2UNwjLdgVEeMpgBE9k61raWtHbWz2yKv2zyJdfsghwMKMDCyS7tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WEbIXBVz; arc=none smtp.client-ip=209.85.161.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7d741f61ee5so2108344a34.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:49:13 -0700 (PDT)
+Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-67ba8095a87so1900792eaf.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 06:51:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773150552; x=1773755352; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1773150702; x=1773755502; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Jh+5BGUQpxoxlv8hrHifglehZ/PN15+tKGmZZiN1HKY=;
-        b=iKmOhnM4vDmgWFs4H9XXuCphOMN0ae2YP2MdM4H6baSewt+1fUwokrT4i47PPkA7Uv
-         mtM9reHMZ0nP1oSnLFM+/z9RLR8Y0mQF8ZstgyxY7Z6yXBDsFSTFiVWXhLSHuD/fCwlD
-         SdCgj31HOwkIUijdcQV8CCEXCPXzSikDequKQ097aofMvAr61ZcPKbXW/g/uYV+ngp/a
-         ftlkZtRCeYywsAH1WtGDQbePNOtJh4jRJgjtMujaz6mQmM3Mf3nbkcWT353HPCZm7iWX
-         bHYHflyOnZYFblXFNtPjQAKr6ObkFgSIF2t8HgQUtoeBzw1G1nG//sz8+WB18KmzH9mQ
-         +fzg==
+        bh=MyfM+MhrYn2/RsgfcmOrlLX4awk3CYqAr4hHOk/rflI=;
+        b=WEbIXBVzA/tK7llpzFmnlaZpg1AiwZVIvkHyVBT/9/9HJttpiFjqmTC9PrX8j6/6DZ
+         hJE2gqt0Ks11oj0yjgM1lLKhOhNlsOboGs9BgB/HAGPq1z/9mQmzQap72VEC3g7F+wpv
+         3nVWGkiL9xFYLLZAB/gNZ82ooHke859gzgshu1zbBNTTwGbdkKkCH2bN2NUrscNWueGx
+         iXOz0eHMQdOwutl5ieHVUd4aeU46AmrrbATYYY4ykycK3qQyFTLk+doDbXkM4wwEaT3E
+         uvFGbYxcB2FrNEPVAamiqWelpOv5zPUcKnT9Xf1A2RefgMlnznTuPSiZiKDMX34joZsY
+         ZKdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773150552; x=1773755352;
+        d=1e100.net; s=20230601; t=1773150702; x=1773755502;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Jh+5BGUQpxoxlv8hrHifglehZ/PN15+tKGmZZiN1HKY=;
-        b=n2OeKDS+Eg80hjSD0dmtArgCd5W5A6Iy399qT+6J/I/F3Jy3lr59sgdVmd9GrBq5Hb
-         AAON//C6IVH06dI/Nmi4g7kgh6vnZqfCusZlNblXXpydrYPTOWoa6EgblfN0+W6kptX2
-         789oLVnOaE7J4+PGRAUAUFrffzRaXVKcz6uYokeqRetaQZHJ5vX3I5/gA59NTtO1CGmT
-         x6lo0cNjw9fQdFLnOqlcxpZaVddT1EczsYaWNDL09oLBp9VIMqo8PVGPdmy15qgYWrpd
-         LAqxDmNUZi2/EOj/2lBXXZhGBeGbLwZTM/nsTiQBX2XJiAtRnn3PW2VSHeBu/4TFHMq/
-         ieOw==
-X-Gm-Message-State: AOJu0Yw9XGUCbfVAN/6KTa6CnNZFhuq8JyzLF4QEpHXF9gL2Hb7CIh8H
-	DTW+t/OyNQeNoGMcXOLbM23MUsKZ3nhI6HHh/NGusAx2FUhlh0G6mPN0702sCA==
-X-Gm-Gg: ATEYQzwD+3XgOzgyjTypWTUvWpEenKvOT2E+hkrV+W0drjXVMrKpOnE6dP5t4wq85Vf
-	0W5wB2W3CeKvxOfMv7KGnQzNPSuxSTM+wYHSFgWXSvvboHzVV5i5V0J2Wg9GSiSh7OGd5/4MCW0
-	RxqReXnwzspIiKQikNs9mhmnfnXZF5Ivbr3bMgDSgEwOrZWIhp7JSY7LrdRfw7y5Z5ZpTaQv2qi
-	9bKtyuuuD/TKOwMeb52XHaYD9yJ576g1DU0kD/kEFMRBKfLOXBI5Lw+CPt8/oD4l9fBUY8MwXNE
-	qAp6SYMjETIe8lAZvG2IKHvQiUcdEwt150nqgBbl38nulw+aoh+8R6eGT0EH+xkxRnhZOUU8/uS
-	WJd5SJDq00CKS9+jJR/XhsuAg1dPjBs4mMM6zylY0dHVRkvfvphbRyip2PD1Z9RqotEzibvLUfX
-	pfEoo5EToixB2XenxmZJp4
-X-Received: by 2002:a05:6830:620f:b0:7d1:9516:6858 with SMTP id 46e09a7af769-7d72702d2a3mr10048666a34.24.1773150552233;
-        Tue, 10 Mar 2026 06:49:12 -0700 (PDT)
+        bh=MyfM+MhrYn2/RsgfcmOrlLX4awk3CYqAr4hHOk/rflI=;
+        b=JQ6bh/0LBLmf3/dqWgmrTgkKSM7zV6z6QXUdfBn6ZfPvhEHhAbj5ene9DetVq1Ykx8
+         JdOylIokY4jLjRG9hdMbuWBAV/kIE4lobreHJKSxX12EGgOLze6wSu8BvnTnWpuxdA0I
+         tKbPiE2uQifc2DsnbOBGG0eH+IcQtoo4aqJlQw5eIIF2rtbmXIMXcghoebEmvDUYz1SJ
+         4m1pycdn0EWF6LEJ9oNlX3VsL16j4F81FYXRwgtOkbKDnbtYHtm3uh5DaYiICerrlBSr
+         vXanpeVJnD3FbwCyS/SYjbNmuxglw/eYby9CnPkVSIk4cBCX+gT+bm7rsJSjUn9a+3VZ
+         J/og==
+X-Gm-Message-State: AOJu0Yz1eNQ7gh57dfkjBdPeTtm9kUpFjlE1DUvoQnu31X1EeNFUyYdF
+	2C1hCFAnH9jClciwENYppzBsReuiIRUuPvJ+KV8qO5FUwIhFGMUEavMAqyUy/g==
+X-Gm-Gg: ATEYQzzDLBrkxoTvtAxoLxPTn3SzLz+qfKoO8QupLemYfZ+gAkR8fxm9ysNnZLLxuMj
+	6Wkh2caxlyrBILujgKajzfXtkws8d6PGVUeQuPF08Km/JnjJh0P9FKLF0qAj6SvK8jrn4CNaQ6R
+	ajJr5aP1Bta2Amb3aii0wE5FCXswwISw2uS7UkdkOQeypkoouXHzMf9cSj7QZD4BIgYjS2Et7d4
+	nZJc0D0h214sTXxtmQyiTxBCEeHHlxdc0fP6dGNGN8AjBtyWHnixG8bofWo2oLoyKC0gnC3+yZx
+	2MzVcmZ3ejyNRT/RQsTdFiANUKd8sPI2Ljrnt99h3sWkn31QR0Wz1nu6ghIm1bMFmIQPj6AFlYC
+	BF0STQCnuXluDZKqr6dCIpzoI1nwG7y+gI1Rpzl+d41OmzmwoVmUcdkYNX95vkUVl7frLv8czEF
+	UXuqfmQI4YrwRS2w7kZmuN
+X-Received: by 2002:a05:6820:3096:b0:67b:bfc1:c0e4 with SMTP id 006d021491bc7-67bbfc1c256mr1202247eaf.71.1773150702429;
+        Tue, 10 Mar 2026 06:51:42 -0700 (PDT)
 Received: from localhost.localdomain ([2600:1700:fb0:1bc0::54])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d75039b811sm3357767a34.16.2026.03.10.06.49.11
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-67bb230e0f1sm4500971eaf.13.2026.03.10.06.51.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 06:49:11 -0700 (PDT)
+        Tue, 10 Mar 2026 06:51:42 -0700 (PDT)
 From: Chris Morgan <macroalpha82@gmail.com>
 To: devicetree@vger.kernel.org
 Cc: linux-rockchip@lists.infradead.org,
@@ -80,10 +80,11 @@ Cc: linux-rockchip@lists.infradead.org,
 	conor+dt@kernel.org,
 	krzk+dt@kernel.org,
 	robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH] arm64: dts: rockchip: Correct Fan Supply for Gameforce Ace
-Date: Tue, 10 Mar 2026 08:46:48 -0500
-Message-ID: <20260310134648.550006-1-macroalpha82@gmail.com>
+	Chris Morgan <macromorgan@hotmail.com>,
+	sydarn <sydarn@proton.me>
+Subject: [PATCH] arm64: dts: rockchip: Correct Joystick Axes on Gameforce Ace
+Date: Tue, 10 Mar 2026 08:49:19 -0500
+Message-ID: <20260310134919.550023-1-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -92,66 +93,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: A1190252200
+X-Rspamd-Queue-Id: 6F10F252A97
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[lists.infradead.org,sntech.de,kernel.org,hotmail.com];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273565-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[lists.infradead.org,sntech.de,kernel.org,hotmail.com,proton.me];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273569-lists,devicetree=lfdr.de];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[macroalpha82@gmail.com,devicetree@vger.kernel.org];
+	PRECEDENCE_BULK(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_PROHIBIT(0.00)[0.0.0.2:email];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,0.0.0.1:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,0.0.0.3:email]
 X-Rspamd-Action: no action
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Correct the regulator providing power to the PWM controlled fan.
-Without this fix the fan only runs when the audio path is playing
-audio (because the speaker amplifier and PWM fan share the same
-regulator).
+The Gameforce Ace's joystick axes were set incorrectly initially,
+getting the X/Y and RX/RY axes backwards. Additionally, correct the
+RY axis so that it is inverted.
+
+All axes tested with evtest and outputting correct values.
 
 Fixes: 4e946c447a04 ("arm64: dts: rockchip: Add GameForce Ace")
+Reported-by: sydarn <sydarn@proton.me>
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-index b69d7aa0b2f1..89618394c0bf 100644
+index e8ad525ba3f9..b69d7aa0b2f1 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-gameforce-ace.dts
-@@ -318,7 +318,7 @@ pwm_fan: pwm-fan {
- 		compatible = "pwm-fan";
- 		#cooling-cells = <2>;
- 		cooling-levels = <0 120 150 180 210 240 255>;
--		fan-supply = <&vcc5v0_sys>;
-+		fan-supply = <&vcc5v0_spk>;
- 		interrupt-parent = <&gpio4>;
- 		interrupts = <RK_PB2 IRQ_TYPE_EDGE_RISING>;
- 		pulses-per-revolution = <4>;
+@@ -60,8 +60,8 @@ axis@0 {
+ 			reg = <0>;
+ 			abs-flat = <40>;
+ 			abs-fuzz = <30>;
+-			abs-range = <0 4095>;
+-			linux,code = <ABS_RX>;
++			abs-range = <4095 0>;
++			linux,code = <ABS_RY>;
+ 		};
+ 
+ 		axis@1 {
+@@ -69,7 +69,7 @@ axis@1 {
+ 			abs-flat = <40>;
+ 			abs-fuzz = <30>;
+ 			abs-range = <0 4095>;
+-			linux,code = <ABS_RY>;
++			linux,code = <ABS_RX>;
+ 		};
+ 
+ 		axis@2 {
+@@ -77,7 +77,7 @@ axis@2 {
+ 			abs-flat = <40>;
+ 			abs-fuzz = <30>;
+ 			abs-range = <0 4095>;
+-			linux,code = <ABS_Y>;
++			linux,code = <ABS_X>;
+ 		};
+ 
+ 		axis@3 {
+@@ -85,7 +85,7 @@ axis@3 {
+ 			abs-flat = <40>;
+ 			abs-fuzz = <30>;
+ 			abs-range = <0 4095>;
+-			linux,code = <ABS_X>;
++			linux,code = <ABS_Y>;
+ 		};
+ 	};
+ 
 -- 
 2.43.0
 
