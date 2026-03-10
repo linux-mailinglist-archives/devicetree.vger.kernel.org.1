@@ -1,135 +1,162 @@
-Return-Path: <devicetree+bounces-273695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273696-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMLwKF9jsGloigIAu9opvQ
-	(envelope-from <devicetree+bounces-273695-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:30:55 +0100
+	id KPxPE8BjsGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273696-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:32:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01B032566B5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:30:54 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AE2C2566E1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:32:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 673E7311010B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:30:17 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D1D843006467
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:32:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F53E3164AA;
-	Tue, 10 Mar 2026 18:30:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72A12317147;
+	Tue, 10 Mar 2026 18:32:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bVt351IE"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dKGFc9Bi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAB73161A4
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2602F9984;
+	Tue, 10 Mar 2026 18:32:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773167416; cv=none; b=Teq5YgvGFZ3y4ke+ygvOJ3P01nUPoVQg7lwiuTYOW5HPI+euQGNytff4uvWhdBmsbB7NcBvUc4LNXxBQFth5V2dgY23Tq1fWR0CUWbx6JZgzExwuWxTr6+FKTQ/1S6RcsDh67m8frIAjncf06+l1tPmRpTqj2RucTGF705r8acE=
+	t=1773167547; cv=none; b=rRxcPuV3NTQv2onN/qjoxmN4aXmExcsSTEegJ0A2hmSnt0SONXxo1ubC3Gjf77+rHLyceCdput6rnzNWE3iegcfanNAvvqAIMXgkyMyfNttedwhI5x1ztGo/Baizwo2mUBv7Z4yHZMrj4ZHBbt3XgFjd1XKO91zraYRbOueU+D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773167416; c=relaxed/simple;
-	bh=aQlHMtCyk/aiLXV0M0P+Eap9vVmkJKZ3nEtOiif8yFs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Pc3ssIRbS+cnMJ84dki7BYteZ5Q7EHKxfEQS0OSmr3cWzE5owri2tLHMHeADhC9/JAT3wvKxybhB+gp1HNSD1XYOrNMABBYkd6D+PoGrJpLm2yhfJuXalbTah7aIjac7/Ca9wtHWAyent7I+/RO0XgFngFpM++n58QX8CgmJDNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bVt351IE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9670AC19423
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:30:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773167415;
-	bh=aQlHMtCyk/aiLXV0M0P+Eap9vVmkJKZ3nEtOiif8yFs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=bVt351IEoFi5+UWDbxI9FAUSa97i/8zXIhdXcP6Zx3NkVE4wdkURVMwX9zlLpbmqX
-	 ge9Q385hvvSRWdzlGY0Uv/7Xc7wM/Gc14UX9GO2X+DPyaTWatC0q9q+4OARxjZWPv2
-	 7IBV/zoaJYXyWrBoxSIQm0woqo24tFSsLotD6u3JYn4fzjYrdSbojuwkx9md2ZGeJM
-	 L2dXiNQTPqb4fJxTb0WnbAeQZLzs4EV5o7+AnDSrF2MiSF3SzcU723jzGtv1A//YeJ
-	 kgb73p0JVpSlM9C0ef7EKxhUbeAUBfwvDlpKKcLL8vWD2vbIi4c8pmUAXLBu3yv13d
-	 UJXN5v5ML/7xw==
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-662dc987dfdso1494369a12.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 11:30:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCULfB6sc+qHmRAjZU8bcdS7EjmhbotnqZY/1cQ0YQuAsBVRLk/6t+Tu419lk18YMKcNrCBiyBaZy20Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNDqX1FpkCTbYAnNWhwGL3sOFToxVM58EpQEMHzebxVXC7X7kc
-	08whi1wZdCf5wxfa46Lah7xA/Sc80ENFEvb56yf02vff4iysRzdhHIpLuUr5BbN+53PmULeQB0H
-	vo2erztlionMJizrufncWQLZ99qorFA==
-X-Received: by 2002:a17:906:f588:b0:b94:29f9:34c2 with SMTP id
- a640c23a62f3a-b942dfb4792mr846273666b.34.1773167414119; Tue, 10 Mar 2026
- 11:30:14 -0700 (PDT)
+	s=arc-20240116; t=1773167547; c=relaxed/simple;
+	bh=M19RsF/tE5FyoK5rqVFWF9YOaYWcyV4XKlfPKmRkF0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Toacvkg6601Vndy5DDEc7fwhOXHqYAITGdpwby5Cbh9yuQZXWsQRiqHOJY/8hAHr6YsKLVOb8J3Eu2M8tD3bI3TMAXPGSXHf558uRK51VAEjFWOXJ4f6vToheJP/JOf2+X6MY5cn1q97MnIW9ueZ3diTp8g1eMevaqRB4bAWPgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dKGFc9Bi; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773167546; x=1804703546;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=M19RsF/tE5FyoK5rqVFWF9YOaYWcyV4XKlfPKmRkF0Y=;
+  b=dKGFc9BixHVCb9eKSip891aO0fUPe6LXEjp3o09RCDNZCqLhq6MUDqJi
+   4HhoT9+wamrB1/TPj7BDGkFOeW/6glMMi+V+cQHFJgzUhaFgUm8deJILa
+   Q51t93RemK7LjclNMzgNvb2cTIUmjWqZNOcrryWxPKJZFYdZirHUltGJz
+   dpmkjEKK2866BBHwAfZpgXpIoFkNAg+FASZlZvae3UGITsKc7cz23wNMe
+   rafGjj4nYgeaVTzIFOXXYCwd0wpHZVK1uYCTrwmaFOUtartHC+EeVR91P
+   R00IrROKYW5YGHa6Ti6LtMI4wc0qL6rp8nQo7VXGisSMeLkQucujH140m
+   w==;
+X-CSE-ConnectionGUID: fHPzGXIBQuyv5lBkV56M6w==
+X-CSE-MsgGUID: 2LvAu+DwSNmF2Iwq4r+vww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="91798442"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
+   d="scan'208";a="91798442"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 11:32:12 -0700
+X-CSE-ConnectionGUID: jE82ps34Qiyb6v6HETcYIw==
+X-CSE-MsgGUID: AlkLb5LSR7eY+svgEaGfZw==
+X-ExtLoop1: 1
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.54])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 11:32:09 -0700
+Date: Tue, 10 Mar 2026 20:32:07 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Taha Ed-Dafili <0rayn.dev@gmail.com>
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	skhan@linuxfoundation.org, me@brighamcampbell.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] iio: dac: ad5504: Align headers with IWYU
+ principle
+Message-ID: <abBjp9FeRM0z6ezr@ashevche-desk.local>
+References: <20260310174835.24209-1-0rayn.dev@gmail.com>
+ <20260310174835.24209-4-0rayn.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260225-perso-fix-spear600-smi-yaml-v1-0-8ef3d205ab3a@bootlin.com>
-In-Reply-To: <20260225-perso-fix-spear600-smi-yaml-v1-0-8ef3d205ab3a@bootlin.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 10 Mar 2026 13:30:02 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+WE33tSSqywbPN3g8i92foVmqna6K2zaFO1RUreMvB-w@mail.gmail.com>
-X-Gm-Features: AaiRm53GadTJk1y1FXTWSOHUjVdcwczpoucawTc3iDJf70yoFWL4SacHxaC7LH8
-Message-ID: <CAL_Jsq+WE33tSSqywbPN3g8i92foVmqna6K2zaFO1RUreMvB-w@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Fix spear600-smi YAML conversion
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Akhila YS <akhilayalmati@gmail.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Conor Dooley <conor.dooley@microchip.com>, linux-mtd@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 01B032566B5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310174835.24209-4-0rayn.dev@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 6AE2C2566E1
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,gmail.com,bootlin.com,microchip.com,lists.infradead.org,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273696-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_FROM(0.00)[bounces-273695-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,bootlin.com:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 10:24=E2=80=AFAM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
->
-> Recent conversion from txt to yaml of the Spear600 SMI binding by Akhila
-> lead to warnings. These are my 2cts in getting the yaml conversion done
-> :-)
->
-> Cheers,
-> Miqu=C3=A8l
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
-> Miquel Raynal (3):
->       dt-bindings: mtd: st,spear600-smi: Fix description
->       dt-bindings: mtd: st,spear600-smi: #address/size-cells is mandatory
->       dt-bindings: mtd: st,spear600-smi: Fix example
->
->  .../devicetree/bindings/mtd/st,spear600-smi.yaml   | 26 ++++++++++++++++=
-------
->  1 file changed, 19 insertions(+), 7 deletions(-)
+On Tue, Mar 10, 2026 at 05:48:33PM +0000, Taha Ed-Dafili wrote:
+> Update the header inclusions to follow the IWYU principle.
+> 
+> - Remove <linux/fs.h> and <linux/slab.h> as they are unused. The driver
+> relies on devm_ managed allocations, so slab is not required.
 
-Still warning in next and v7.0-rc without these fixes. Please apply them so=
-on.
+...
 
-Rob
+> -#include <linux/bitops.h>
+> +#include <linux/bits.h>
+
+>  #include <linux/device.h>
+
+Is this still being used directly.
+
+> -#include <linux/fs.h>
+> +#include <linux/errno.h>
+>  #include <linux/interrupt.h>
+
+>  #include <linux/kernel.h>
+
+And what is this for?
+
+> +#include <linux/mod_devicetable.h>
+>  #include <linux/module.h>
+>  #include <linux/regulator/consumer.h>
+> -#include <linux/slab.h>
+>  #include <linux/spi/spi.h>
+>  #include <linux/sysfs.h>
+> +#include <linux/types.h>
+
+The rest of the changes looks correct, but still missing headers:
+linux/kstrtox.h
+
+asm/byteorder.h
+
+Might be more.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
