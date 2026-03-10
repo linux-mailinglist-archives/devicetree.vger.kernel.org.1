@@ -1,155 +1,215 @@
-Return-Path: <devicetree+bounces-273741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273743-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OPE6Cm5+sGmwjwIAu9opvQ
-	(envelope-from <devicetree+bounces-273741-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:26:22 +0100
+	id WAPkLj9/sGmwjwIAu9opvQ
+	(envelope-from <devicetree+bounces-273743-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:29:51 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98CF7257CF9
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:26:20 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 361B5257DE8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 21:29:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 993A3305B005
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:22:36 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E91F23144D61
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCB63EAC7F;
-	Tue, 10 Mar 2026 20:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DBC3E95BB;
+	Tue, 10 Mar 2026 20:25:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NmyIFTr/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sqK4D52J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 770E33EAC78;
-	Tue, 10 Mar 2026 20:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D7063E929B;
+	Tue, 10 Mar 2026 20:25:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773174146; cv=none; b=p+ZmuMfUUN5kGaAzhkCO+k7GBKOq3H6A4Zf4aGsnWupPGy7rG97IqHDHO6aie+zpmAxVzKVIEqBgePbESISf137zGaXneJ0FftihU+9k6zSlLJpZrD2G5RvSa7cFv44lMGDCUumRinWrhqcHVgKmOzPSppNPvfN/plMpLf4+Lqw=
+	t=1773174308; cv=none; b=K987RGLNt1Ru8/EwO/nvhquPRUAovy4/svbcz6AQ0ujeD8QVT1S/f7IRHHZXiSqFGmCgxnYREAwGPmWaM+G9N0YtN2ue5l7camefAsiSBoIzBBalK90wp9gZvlSR/YPQ7GHSoIc7mfZpdM0DCSe8gIoja7qgtWHe7jwoA7R7kXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773174146; c=relaxed/simple;
-	bh=PMkXFNkNV+Amu/MmJHelepozqduhcpCJ9xFUO5KFsGo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nQFYYazs3PI8ZrYqoK5hFOGKpMPaLq7dgmBM4STUciH3+dIiLAuO51yOq9nee3AtmHVZL7VEl5/BkQOVu8bmh9yyzHnAEyk7zEj2YU2qY5RNmZZESnen671/m1HpxLul+43YB8NszqTgfABbXIsqogdqKQW8cQTskFgnnRluPrE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NmyIFTr/; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773174144; x=1804710144;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PMkXFNkNV+Amu/MmJHelepozqduhcpCJ9xFUO5KFsGo=;
-  b=NmyIFTr/S8eml2CufQ03I3Ue4Qw6teQ91Xa7uWowl94P0GxfymM1L5rW
-   PCaKTAy1u9qNS+NRgeO0NyrTRXRUAWvzENrHY+06ySt3ZX0TBTGqVkl4O
-   w2sBLkoWdbefOWqqQzciWFvW6VOCIJ1Q+F9HRe7e19LZiBXncfZk2NTcO
-   KCBH2D82h9cSrIAgPWgdDY5WwDouC/hlUGoePyaMRXqjCwnrX4Ycw2PS0
-   2whFf1Zv2peat2lUUMIWv4xh7MQRq1/1ZthLh7j0cR4wRwbIYjwiPGwdv
-   G9vf1fdOx+zGyTrYYzdV3ZLwebaHFvUU3kEPsT0pXqn3NM6x0BQH7nUMJ
-   Q==;
-X-CSE-ConnectionGUID: ffk84lHsQGG+9wnfrCBvOg==
-X-CSE-MsgGUID: nzaNOXflQDqHw98qbCC6fg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74149285"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
-   d="scan'208";a="74149285"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 13:22:24 -0700
-X-CSE-ConnectionGUID: LO42DsZbRwCd5l0mnq/mbg==
-X-CSE-MsgGUID: jvhGnfGMSuqPb7fZI3DogQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
-   d="scan'208";a="225193909"
-Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 10 Mar 2026 13:22:19 -0700
-Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1w03aq-000000000Fq-2wxt;
-	Tue, 10 Mar 2026 20:22:16 +0000
-Date: Wed, 11 Mar 2026 04:21:52 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
-	linux-i3c@lists.infradead.org, alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org,
-	Frank.Li@nxp.com, lgirdwood@gmail.com
-Cc: oe-kbuild-all@lists.linux.dev, vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com, aman.kumarpandey@nxp.com,
-	lakshay.piplani@nxp.com
-Subject: Re: [PATCH v6 6/7] i3c: hub: Add support for the I3C interface in
- the I3C hub
-Message-ID: <202603110450.w8GEwjjv-lkp@intel.com>
-References: <20260310065727.3759342-6-lakshay.piplani@nxp.com>
+	s=arc-20240116; t=1773174308; c=relaxed/simple;
+	bh=vVTgzK2pQQytSxNVYEBE2PRr+hecZKDdYJiY57bDnLg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZN1hyXxf5FK2j4/sEM2C/1AKVkww4so3vb51uxG9LC3LbjrE0wlFKVaP1k3J/NwdWvtQ2P68/pxhVTRnL6SmeV1J0P7QyCQ6IuYh2jSFeJjeQQsyl5Gt+8M1/r4uOhUERpR47F8BxtpCZfU3gdvyRmOMWSjxUwUcoTOFcupIDO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sqK4D52J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F048C19423;
+	Tue, 10 Mar 2026 20:25:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773174308;
+	bh=vVTgzK2pQQytSxNVYEBE2PRr+hecZKDdYJiY57bDnLg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sqK4D52JOrRpC1toR7PpD5eHbiWTfIuYN/42VnYYTl9XBgVPRbMdXyl/7IEzGoSHI
+	 bOJ2oteW/mz8PEeFPnWsCUzKOWO+o2PtXiPfUPr2rbsIvUiImeik9Tx6u8v/EPxvOp
+	 C03oNMEEO5S9YebuX7HXSP5meRX/Bxl+VQTGlkwLTvpjfLxLYMOzBouKhc8iydXQXv
+	 TBEpSbRZ0fXKlDOlaxWpliGsl+RgdxMoAHQnUoJ2eN5DeT4AIot3cAICBnQZ7K7Pcz
+	 ghkH5J5G8XTA4uLM/3LAYI6HR+bKKhguTL4MHIc+c8yhrxrPD3sWWoOfcxbGwRXW4l
+	 Yb396pa0w8HHw==
+Message-ID: <2ac2efad-3533-490e-bb42-f21c4e950277@kernel.org>
+Date: Tue, 10 Mar 2026 21:25:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260310065727.3759342-6-lakshay.piplani@nxp.com>
-X-Rspamd-Queue-Id: 98CF7257CF9
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/11] dt-bindings: crypto: qcom,ice: Allow
+ power-domain and iface clk
+To: Harshal Dev <harshal.dev@oss.qualcomm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+ cros-qcom-dts-watchers@chromium.org, Eric Biggers <ebiggers@google.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+ Bartosz Golaszewski <brgl@kernel.org>,
+ Yuvaraj Ranganathan <quic_yrangana@quicinc.com>,
+ David Wronek <davidwronek@gmail.com>, Luca Weiss <luca.weiss@fairphone.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Melody Olvera <quic_molvera@quicinc.com>
+Cc: Brian Masney <bmasney@redhat.com>,
+ Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+ Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260310-qcom_ice_power_and_clk_vote-v2-0-b9c2a5471d9e@oss.qualcomm.com>
+ <20260310-qcom_ice_power_and_clk_vote-v2-1-b9c2a5471d9e@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260310-qcom_ice_power_and_clk_vote-v2-1-b9c2a5471d9e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 361B5257DE8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273741-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[nxp.com,vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273743-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,gondor.apana.org.au,davemloft.net,kernel.org,chromium.org,google.com,quicinc.com,gmail.com,fairphone.com,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,01.org:url]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Lakshay,
+On 10/03/2026 09:06, Harshal Dev wrote:
+> Update the inline-crypto engine DT binding to allow specifying up to two
+> clocks along with their names and associated power-domain. When the
+> 'clk_ignore_unused' flag is not passed on the kernel command line
+> occasional unclocked ICE hardware register access are observed during ICE
+> driver probe based on the relative timing between the probe and the kernel
+> disabling the unused clocks. On the other hand, when the 'pd_ignore_unused'
+> flag is not passed on the command line, clock 'stuck' issues are
+> observed if the power-domain required by ICE hardware is unused and thus
+> disabled before ICE probe. To avoid these scenarios, the 'iface' clock and
+> the associated power-domain should be specified in the ICE device tree node
+> and the 'iface' clock should be voted on by the ICE driver during probe.
+> 
+> Fixes: f6ff91a47ac57 ("dt-bindings: crypto: Add Qualcomm Inline Crypto Engine")
+> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+> ---
+>  .../bindings/crypto/qcom,inline-crypto-engine.yaml       | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> index c3408dcf5d20..d9a0a8adf645 100644
+> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+> @@ -28,6 +28,16 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - const: ice_core_clk
 
-kernel test robot noticed the following build warnings:
+core
 
-[auto build test WARNING on i3c/i3c/next]
-[also build test WARNING on lee-mfd/for-mfd-next broonie-regulator/for-next linus/master v7.0-rc3 next-20260309]
-[cannot apply to lee-mfd/for-mfd-fixes]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +      - const: iface_clk
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lakshay-Piplani/i3c-master-Add-the-APIs-to-support-I3C-hub/20260310-150040
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/i3c/linux.git i3c/next
-patch link:    https://lore.kernel.org/r/20260310065727.3759342-6-lakshay.piplani%40nxp.com
-patch subject: [PATCH v6 6/7] i3c: hub: Add support for the I3C interface in the I3C hub
-config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20260311/202603110450.w8GEwjjv-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260311/202603110450.w8GEwjjv-lkp@intel.com/reproduce)
+iface or bus
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603110450.w8GEwjjv-lkp@intel.com/
+I don't understand why this is flexible and commit msg does not explain
+that. Devices do not have one and two clocks at the same time. You miss
+proper constraints.
 
-All warnings (new ones prefixed by >>):
+> +
+> +  power-domains:
+>      maxItems: 1
 
->> Warning: drivers/i3c/hub.c:120 function parameter 'mode' not described in 'i3c_hub_master_priv_xfers'
->> Warning: drivers/i3c/hub.c:120 function parameter 'mode' not described in 'i3c_hub_master_priv_xfers'
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Best regards,
+Krzysztof
 
