@@ -1,131 +1,251 @@
-Return-Path: <devicetree+bounces-273518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273519-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OEMzEG0usGlHgwIAu9opvQ
-	(envelope-from <devicetree+bounces-273518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:45:01 +0100
+	id YNMFJvcgsGmCgAIAu9opvQ
+	(envelope-from <devicetree+bounces-273519-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 14:47:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B28725255D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 15:45:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A168250C7E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 14:47:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 07EB933D0CC0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:16:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 14B2731297D6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 13:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF4AD3A75AF;
-	Tue, 10 Mar 2026 12:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF05D3B19B1;
+	Tue, 10 Mar 2026 13:03:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="YqhqqXn/";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="qcj2U8WT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WvnITmIw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B6083A7580;
-	Tue, 10 Mar 2026 12:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0DC328B56;
+	Tue, 10 Mar 2026 13:03:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773147460; cv=none; b=QF4jygOQMOzS+770hq7KVcg1XbKsWRUeLtJImYFBlbgbe95xQciNDa3k3nvkqBtFj/9Hc8fo6Kibuq/emxOEj61is47DDxQa37qk+pff252OESwjqYeDc0qd8UDEDRmjCgWAOrq4Iklyr3LU4sDQSDDLcZOJRm1WH9pWNFyyqIY=
+	t=1773147800; cv=none; b=R73FoJL1YDPMNREWlAM2s10bNsyVXHkzXMv7TZiuVB07j+VU05UCrM4MzfGPaYKlbzhe97dbXJ0TtxNr5xSh5eMBtjKR6s5dagBS8+Zt6dcRrrA4rXmHUedS5N8BTxqrq9X5b4kjLTXfGEdvawiOFf4jVbbjkN7PrrwTtwW2DpI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773147460; c=relaxed/simple;
-	bh=7B1yL4NXUbSrk9RavCHgDv8l+QllyzHuM2LtcNkdcqM=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=VDCNrplIjZQnzjqehw5QGJ5MPeTxYM5VJ51ZKMJpgykcNeg12TfMdwBqSHyZQn7HOYd+zwDpygK3XJhqANejMMRxISKdjkcpCvkXuus5PiApzPpAMJ1ovY5xhJnVUKHEfjlHi2nPbGb54VH15H0EUm781rkwNf0IPpIEDA4bHkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=YqhqqXn/; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=qcj2U8WT; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1773147455; bh=AgluKCXDjtXXarLidShHy0Q
-	ZPjPkfIfpD3Xwdip+tb0=; b=YqhqqXn/zNSwmjWn+bZkLj7k2kuIvRlkvvzL7jd9KGJVYnsJD6
-	8CKLknSSPq2pkQzhzwqfqeabhU+vfZXkUm43aX3XDzdRdpZYRNN6iR+y26UxnHQqIJ4pfiGoJvL
-	o/gIzNwVA0IJnc9EtwUpG6v3e+4ex1z5GO76OVs5XSA7vIhYLr94KI+/o1xV7Arfa0po9QvsZzy
-	0xgW7I+BIfVHmHuNJS2fLM6IxGoLWrDiavv8Oy77AuiBZAtMnI/YrmqRb1TTa/soSYJKpEVEXgY
-	TYFaIVM0Y7Cdfgw0c/sq/TztAPPtA/JpAA+0wQiIea7cuQ+3+480pYqwrkyNIUZTgAA==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=Message-ID:Subject:To:From:Date; t=1773147455; bh=AgluKCXDjtXXarLidShHy0Q
-	ZPjPkfIfpD3Xwdip+tb0=; b=qcj2U8WTBiAiqZ+wQUEuw39D+Ylai2HEHwGx2zIxI5HxrVHAzE
-	OfjbrQ4ncl6qJq8RaGskiP7D3uo6snoQ/AAQ==;
+	s=arc-20240116; t=1773147800; c=relaxed/simple;
+	bh=o1LWvNwWPHg9SCrFAE8Um9VpEsqInCgeI1zE3tb2NhU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n8fUn+r82/qrEMcP5T2Dc1sHX5dylLq5QzMqZkxtu/5CELYO4DTg66FJIeSCXpsJ6QQp7rJw47LVPOIxoqxQ0tcXOtvoC35EZrHy65jC25DcIntdxQrVcxlZhK6u/r+q5ifRMqKhIIUCaXEdg+ImUad7fMLldXrSJnAtL8mEHpM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WvnITmIw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF497C19423;
+	Tue, 10 Mar 2026 13:03:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773147800;
+	bh=o1LWvNwWPHg9SCrFAE8Um9VpEsqInCgeI1zE3tb2NhU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WvnITmIwmdkyx5P0ENj8ioYxqZMTGSCybErySCKGwPyyXB4wMFudMGsfVZeFGQfxD
+	 5PetJDGKXFv5fSxjF26VIBez8JDpumdLW3RZedwJFaJDUjRQA/icJ5N9Va4/cOoi35
+	 hcM+qAL6Fdj/u6/O9l8hyEnihBL+jgeFLA+WIiuO6zGC/InJDuyWX0Yq4/Tk+CALTu
+	 Xozcb4GCGavFuO6Q1D3W+XFNZZc1a9RSRVj6Y0ilMMW/9p8CTuatS2dgrNZTuO3GvE
+	 c/FLrWSN4Vmwg9/KTLfGj/KmrrgZ6Vei67Iz9EZfc02mjY0venZbU+TpIVpc59X7ET
+	 nfULy+1VLUB5w==
+Date: Tue, 10 Mar 2026 13:03:15 +0000
+From: Lee Jones <lee@kernel.org>
+To: Alexey Charkov <alchark@flipper.net>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 09/11] mfd: bq257xx: Add BQ25792 support
+Message-ID: <20260310130315.GK183676@google.com>
+References: <20260310-bq25792-v3-0-02f8e232d63b@flipper.net>
+ <20260310-bq25792-v3-9-02f8e232d63b@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 10 Mar 2026 13:57:35 +0100
-From: barnabas.czeman@mainlining.org
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
- <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
- linux@mainlining.org, phone-devel@vger.kernel.org
-Subject: Re: [PATCH 1/5] arm64: dts: qcom: msm8917-xiaomi-riva: Commonize for
- Redmi 4A and GO
-In-Reply-To: <ab66ac70-9c63-4dbc-9ec4-8dc5344fb045@oss.qualcomm.com>
-References: <20260305-riva-common-v1-0-436f1f4b7399@mainlining.org>
- <20260305-riva-common-v1-1-436f1f4b7399@mainlining.org>
- <ab66ac70-9c63-4dbc-9ec4-8dc5344fb045@oss.qualcomm.com>
-Message-ID: <fabedbb450f409aa0aa415151de0263b@mainlining.org>
-X-Sender: barnabas.czeman@mainlining.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4B28725255D
+In-Reply-To: <20260310-bq25792-v3-9-02f8e232d63b@flipper.net>
+X-Rspamd-Queue-Id: 5A168250C7E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
-	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273518-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273519-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,vger.kernel.org,collabora.com];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	DKIM_TRACE(0.00)[mainlining.org:+];
+	FROM_NEQ_ENVFROM(0.00)[lee@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NO_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,flipper.net:email]
 X-Rspamd-Action: no action
 
-On 2026-03-09 13:55, Konrad Dybcio wrote:
-> On 3/5/26 6:28 PM, Barnabás Czémán wrote:
->> Redmi 5A is very similar for Redmi 4A (rolex) and Redmi GO (tiare),
->> it can be commonized for avoid unnecessary code duplications.
->> 
->> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
->> ---
+On Tue, 10 Mar 2026, Alexey Charkov wrote:
+
+> Add register definitions and a new 'type' enum to be passed in MFD
+> platform data to support the BQ25792, which is a newer variant of the
+> BQ257xx family.
 > 
-> Could you please try adding the following to your gitconfig:
+> BQ25792 shares similar logic of operation with the already supported
+> BQ25703A but has a completely different register map and different
+> electrical constraints.
 > 
-> [diff]
->         renameLimit = 999999
->         algorithm = histogram # or 'copies'
->         renames = copies
+> Tested-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> ---
+>  drivers/mfd/bq257xx.c       |  64 ++++++-
+>  include/linux/mfd/bq257xx.h | 417 ++++++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 477 insertions(+), 4 deletions(-)
 > 
-> and see if this generates a shorter diff?
-> 
-> Konrad
-One more question should i rename msm8917-xiaomi-riva-common to 
-msm8917-wingtech-common,
-they are wingtech devices. Which naming is preferred?
-They have wingtech name also:
-S88503 - Redmi 4A (rolex)
-S88505 - Redmi 5A (riva)
-S88508 - Redmi Go (tiare)
+> diff --git a/drivers/mfd/bq257xx.c b/drivers/mfd/bq257xx.c
+> index e9d49dac0a16..7516e2ec00e6 100644
+> --- a/drivers/mfd/bq257xx.c
+> +++ b/drivers/mfd/bq257xx.c
+> @@ -10,6 +10,11 @@
+>  #include <linux/mfd/core.h>
+>  #include <linux/regmap.h>
+>  
+> +struct bq257xx_match_data {
+> +	const struct bq257xx_plat plat;
+> +	const struct regmap_config *regmap_config;
+> +};
+> +
+>  static const struct regmap_range bq25703_readonly_reg_ranges[] = {
+>  	regmap_reg_range(BQ25703_CHARGER_STATUS, BQ25703_MANUFACT_DEV_ID),
+>  };
+> @@ -39,15 +44,64 @@ static const struct regmap_config bq25703_regmap_config = {
+>  	.val_format_endian = REGMAP_ENDIAN_LITTLE,
+>  };
+>  
+> -static const struct mfd_cell cells[] = {
+> +static const struct bq257xx_match_data bq25703a_match_data = {
+> +	.plat = { .type = BQ25703A },
+> +	.regmap_config = &bq25703_regmap_config,
+> +};
+> +
+> +static const struct regmap_range bq25792_writeable_reg_ranges[] = {
+> +	regmap_reg_range(BQ25792_REG00_MIN_SYS_VOLTAGE,
+> +			 BQ25792_REG18_NTC_CONTROL_1),
+> +	regmap_reg_range(BQ25792_REG28_CHARGER_MASK_0,
+> +			 BQ25792_REG30_ADC_FUNCTION_DISABLE_1),
+> +};
+> +
+> +static const struct regmap_access_table bq25792_writeable_regs = {
+> +	.yes_ranges = bq25792_writeable_reg_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bq25792_writeable_reg_ranges),
+> +};
+> +
+> +static const struct regmap_range bq25792_volatile_reg_ranges[] = {
+> +	regmap_reg_range(BQ25792_REG19_ICO_CURRENT_LIMIT,
+> +			 BQ25792_REG27_FAULT_FLAG_1),
+> +	regmap_reg_range(BQ25792_REG31_IBUS_ADC,
+> +			 BQ25792_REG47_DPDM_DRIVER),
+> +};
+> +
+> +static const struct regmap_access_table bq25792_volatile_regs = {
+> +	.yes_ranges = bq25792_volatile_reg_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(bq25792_volatile_reg_ranges),
+> +};
+> +
+> +static const struct regmap_config bq25792_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = BQ25792_REG48_PART_INFORMATION,
+> +	.cache_type = REGCACHE_MAPLE,
+> +	.wr_table = &bq25792_writeable_regs,
+> +	.volatile_table = &bq25792_volatile_regs,
+> +};
+> +
+> +static const struct bq257xx_match_data bq25792_match_data = {
+> +	.plat = { .type = BQ25792 },
+> +	.regmap_config = &bq25792_regmap_config,
+> +};
+> +
+> +static struct mfd_cell cells[] = {
+>  	MFD_CELL_NAME("bq257xx-regulator"),
+>  	MFD_CELL_NAME("bq257xx-charger"),
+>  };
+>  
+>  static int bq257xx_probe(struct i2c_client *client)
+>  {
+> +	const struct bq257xx_match_data *md = device_get_match_data(&client->dev);
+>  	struct bq257xx_device *ddata;
+> -	int ret;
+> +	int i, ret;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(cells); i++) {
+> +		cells[i].platform_data = &md->plat;
+> +		cells[i].pdata_size = sizeof(md->plat);
+> +	}
+>  
+>  	ddata = devm_kzalloc(&client->dev, sizeof(*ddata), GFP_KERNEL);
+>  	if (!ddata)
+> @@ -55,7 +109,7 @@ static int bq257xx_probe(struct i2c_client *client)
+>  
+>  	ddata->client = client;
+>  
+> -	ddata->regmap = devm_regmap_init_i2c(client, &bq25703_regmap_config);
+> +	ddata->regmap = devm_regmap_init_i2c(client, md->regmap_config);
+>  	if (IS_ERR(ddata->regmap)) {
+>  		return dev_err_probe(&client->dev, PTR_ERR(ddata->regmap),
+>  				     "Failed to allocate register map\n");
+> @@ -74,12 +128,14 @@ static int bq257xx_probe(struct i2c_client *client)
+>  
+>  static const struct i2c_device_id bq257xx_i2c_ids[] = {
+>  	{ "bq25703a" },
+> +	{ "bq25792" },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(i2c, bq257xx_i2c_ids);
+>  
+>  static const struct of_device_id bq257xx_of_match[] = {
+> -	{ .compatible = "ti,bq25703a" },
+> +	{ .compatible = "ti,bq25703a", .data = &bq25703a_match_data },
+> +	{ .compatible = "ti,bq25792", .data = &bq25792_match_data },
+
+Instead of passing through the data structure, pass an identifier to
+match on, like:
+
+	 { .compatible = "ti,bq25703a", .data = (void *)BQ25703A },
+
+Then add the ID to ddata which is already obtainable from the child
+devices via i2c_set_clientdata().  This saves passing it as separate
+platform data.
+
+	ddata->type = device_get_match_data(&client->dev);
+
+Then use that to initialise a local 'struct regmap_config'.
+
+	switch(ddata->type) {
+	case BQ25703A:
+		regmap_config = &bq25703_regmap_config
+		break;
+	[...]
+
+By doing so, you save on a lot of additional complexity and mitigate the
+introduction of some unnecessary data structures.
+
+-- 
+Lee Jones [李琼斯]
 
