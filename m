@@ -1,273 +1,256 @@
-Return-Path: <devicetree+bounces-273675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273672-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EFGXOX1XsGlciQIAu9opvQ
-	(envelope-from <devicetree+bounces-273675-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:40:13 +0100
+	id aJ4ANRVYsGkJiQIAu9opvQ
+	(envelope-from <devicetree+bounces-273672-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:42:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67FFC255BD5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:40:13 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F9FC255CA6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:42:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 543C230ADB51
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:39:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B03C33200C3B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:39:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A5B83D47C9;
-	Tue, 10 Mar 2026 17:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D18B3D6662;
+	Tue, 10 Mar 2026 17:38:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jJphveOm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZcN2S+gE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15F73D8123
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:38:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671AF3D47D8;
+	Tue, 10 Mar 2026 17:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773164345; cv=none; b=O8p+2arMR92WuwbwLniAPL+32VIFNeTvl/ZSBnRLXumJ2armqAqX1H+4W1niz6wyzJN6t38O5gkFKa/pSXQYBDkqszh15sVqRo04SRDKwaYIKXXjgeSYHVFANbRJiE7zzsRMI8EkBvsynSysXPvNtLc3tHYcWH5QDWpSmc99e24=
+	t=1773164338; cv=none; b=rjCo+agA/XX+R5lXHqmLqgpFqjonfv4WUAHcKXSJBJ6oNDoCHavvwcH4iwEhRNPEX1nZkHN8Y+Q+ZSbfVKrh7GVmusQcjJ77Cydgzc7zN178sUx+FcitGmjyDaHJTfREHloIQPd4tB9k/gkk5dc6bCO6dUToEzd45n53lPHg82E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773164345; c=relaxed/simple;
-	bh=6nh8hser+whvA1PfR1iGtoLj1pfTFR51/unCHyuL39U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X2lMziZdeSmwo0JSYug2/5699t1TAcxKl4j5vSXsPpCEof0pKAwCN+WzoMPFFs/aEjKWiHP1ZngDiLn7dLExVCzZaIpZNRlGLeQ2OONoVaKDQNyOZcxZjVdfvvZntz/aSYWETlqNnuruTd22pD8/a8T7oiZeqnhWvTNToETq25M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jJphveOm; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4853510b4f3so41653005e9.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 10:38:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773164338; x=1773769138; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K5kecdfbWVFCpvWANmeDGj+7c6bf15MwYHY69kbw3bw=;
-        b=jJphveOmcZXg3YcEj4YNym7kkl38U68mgse3zolN6zCvkmgjDD4elBa2DJqQP2P3uO
-         xZ3EKSrHNiYZ7HAAxwwnFLpK7U82WCJ4SEHyzmzeNEJmTKO3Z5O6FPBET8tA7C5AAkp3
-         ZZJPcQgjaAL0gHgZoHx94fss9jCzHRFvb7umouqiZje78H1vh5B4qQvfgRXEJ4kkWBOJ
-         rlTracDFR+WK5SugtrFUaWuPKUDMf+yGUFeIQ2EFmjD52+JpgxLu5zwa2Fve6T2QPJYM
-         zIImulIvla0noQvAWD01mCAKDLu5CVWvkGRcRFvhJfuag2GHP7PmmrTUE6Wuj9yi8aYL
-         DnBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773164338; x=1773769138;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=K5kecdfbWVFCpvWANmeDGj+7c6bf15MwYHY69kbw3bw=;
-        b=fj8ag60mqHqu+Oiy5do+XjlyvxnXGyLLQ0Vdx4CqGe4aOeDSc6deN6ih1b+sDu0KCZ
-         4+64kTfbIxHtsJ+IzCd/45XC2e96p00enzJZP9r+/BGA+mHEaaqL6pFSo9blm+peurrT
-         88Dkx3mqQcBbliDaDiRVL8SPvyVkMnKtS7nohJBAKPfuV3reMOpdzijJpPwdFrFa9CBj
-         4vvjV0EWiGhWXsGv7gck2ehx9tQoNmUtFh9xCOKlL1Hcb3EO/+2Pkvkmyb5lLOy4z2Hl
-         U6cm3GEAcC+kBg24og6ef8+vU0KaecPdQxGzh5bXyToO3tSQpTenpVYy7B9Q1+UYy9a0
-         XMnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWk9ZeEW2AoKHFrJgusSQKFKIeEdR6jOlVsfDwF4uBLa3nCnkOXPQGxJpsgO5N+vOSKGPXGaWlMmvug@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzmea7JGTMC2WCpSJprtNUq+D0d3UuHQVErMs0+S/vgJaPPL+C+
-	oWZ9sEacsYYwwxF6WxBGKRVBeEm27t9XvCtfYEvg6pxx6vts6yhnay5h
-X-Gm-Gg: ATEYQzyBLSy5iuRPr7QZOD4bAZPJrwAep1r4yxBbYsSsW1RqLlQUOmQ4fnQey7OB5gZ
-	DkmRDKYPfg7FEDj9UU84y/+nUE/jUqDfoXxWnN/IJe079nSZNoHMyrKx8N4MrpsXE+DWdGCZtI8
-	hNOuNO/z0+w6FhBIailLzOtJXnCbtBddRDSBG+uQ3hPoFfLPS6wFq+BLg1AvyhxvtyNIJ5K3Eg1
-	ageR10Ktvisi4+e5Cs9ZNbd83IcJ89rRV7Zx98hLTXwSju/bMQmi1u31uiqOacw0CFwKfY7Lv0m
-	6hp74c1tCtk9WZNST3pU6vBa6bfYLsSYSqTfv973amxxHr8qxT58Cl0hcNJc7fMJB4U66nFEal/
-	dPCVNxxk3QWwUdVkv0GS8G8hbx/JqePDqycecq9H16MLKciQe5uigr8teEhPcClJV1Sg+cSAk+P
-	GzyDyJaLLH6Z416kaOndQoLQ4=
-X-Received: by 2002:a05:600c:1e2a:b0:47e:e57d:404 with SMTP id 5b1f17b1804b1-485269582efmr255465235e9.16.1773164338375;
-        Tue, 10 Mar 2026 10:38:58 -0700 (PDT)
-Received: from nas.local ([2001:912:1ac0:1e00:c662:37ff:fe09:93df])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-48541a900easm103239295e9.9.2026.03.10.10.38.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 10:38:58 -0700 (PDT)
-From: Damien Dejean <dam.dejean@gmail.com>
-To: andrew@lunn.ch,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	kuba@kernel.org,
-	maxime.chevallier@bootlin.com,
-	pabeni@redhat.com
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	edumazet@google.com,
-	davem@davemloft.net,
-	hkallweit1@gmail.com,
-	Damien Dejean <dam.dejean@gmail.com>
-Subject: [PATCH net-next v7 4/4] net: phy: realtek: add RTL8224 polarity support
-Date: Tue, 10 Mar 2026 18:38:46 +0100
-Message-ID: <20260310173846.230923-5-dam.dejean@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260310173846.230923-1-dam.dejean@gmail.com>
-References: <20260310173846.230923-1-dam.dejean@gmail.com>
+	s=arc-20240116; t=1773164338; c=relaxed/simple;
+	bh=P5jdMY5TcQs1DhjRb0dewSY3xgk6AntRbMg/wL7POtw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l0hlyNgs6qEvxyUvAdavRhhgwJZ8Wj1aQUb+Iylpr/2aRn52QSiVvR0rblExPEuXSbofjQA+V6jVCdBkndGFi1NwM6dt4fjqs35ivRsbMthfqL7zP2cqTUaUndhyWFUPmOl8/T/43k2NiDI+aFYNIwNBpm5K9djiurlTVG/LOqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZcN2S+gE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AE46C19425;
+	Tue, 10 Mar 2026 17:38:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773164336;
+	bh=P5jdMY5TcQs1DhjRb0dewSY3xgk6AntRbMg/wL7POtw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZcN2S+gEidzV4BwPh+yfeVydoHqo6riTtspcuMasTedTDtxvTCwwwklmyZ+xxB7tt
+	 CEYFKbyFg7f0z7tDn3KxEBFXuVNDQ/63bdcwhUjtDOz91z3aeR/yQa/wDYtKcClIdS
+	 7Gx/DnGyy7Dnvwo+Z5EasmgTXGxBPr5fB9UljRtS9j62J20PMv/dNV9Cg5Ya0Es0qG
+	 vlHFifRJoC5Z4u2Mvfb53Uw7PsW41cgly3RpOdUhwQiGS867jlyf++3DPhfVB+91wK
+	 EVEhAcFCCjwuJqx9fZVpdTB016CLhRYr896VB/t0XYagyW08N4lD+ejCcpCtFI/Ww/
+	 CBpPRX+x6eeIw==
+Message-ID: <392ededd-ee73-4afa-88b4-b15fe1dc3457@kernel.org>
+Date: Tue, 10 Mar 2026 18:38:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 67FFC255BD5
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] dt-bindings: watchdog: renesas,rzn1-wdt: Document the
+ reset line
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ linux-clk@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20260310173249.161354-1-herve.codina@bootlin.com>
+ <20260310173249.161354-4-herve.codina@bootlin.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260310173249.161354-4-herve.codina@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 4F9FC255CA6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FREEMAIL_CC(0.00)[vger.kernel.org,google.com,davemloft.net,gmail.com];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273672-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273675-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[bootlin.com,linux-watchdog.org,roeck-us.net,kernel.org,glider.be,baylibre.com,gmail.com,sang-engineering.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[damdejean@gmail.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_PROHIBIT(0.00)[2.98.121.64:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:email]
 X-Rspamd-Action: no action
 
-The RTL8224 has a register to configure the polarity of every pair of
-each port. It provides device designers more flexbility when wiring the
-chip.
+On 10/03/2026 18:32, Herve Codina (Schneider Electric) wrote:
+> Watchdogs available in the RZ/N1 SoC can use their specific hardware
+> reset line to reset the system on watchdog timeout.
+> 
+> This line is not documented in the current binding.
+> 
+> Fill this lack and describe this per watchdog reset line.
+> 
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+> ---
+>  .../bindings/watchdog/renesas,rzn1-wdt.yaml   | 22 +++++++++++++++++++
+>  .../dt-bindings/watchdog/renesas,rzn1-wdt.h   | 16 ++++++++++++++
+>  2 files changed, 38 insertions(+)
+>  create mode 100644 include/dt-bindings/watchdog/renesas,rzn1-wdt.h
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml
+> index 7e3ee533cd56..40a9a4ebc716 100644
+> --- a/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/renesas,rzn1-wdt.yaml
+> @@ -26,6 +26,26 @@ properties:
+>  
+>    timeout-sec: true
+>  
+> +  renesas,reset-line:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+> +    description: |
+> +      The watchdog reset line (dt-bindings/watchdog/renesas,rzn1-wdt.h defines
+> +      these values). A wachdog timeout asserts this reset line to perform a
+> +      hardware system reset. Two watchdogs are present in the RZ/N1 SoC and
+> +      each of them has a dedicated reset line.
+> +
+> +        - 0: RZN1_WDT_A7_0
+> +          This reset line can be asserted only by the A7 0 watchdog. This
+> +          watchdog is the one mapped at 0x40008000 on RZ/N1 SoCs.
+> +
+> +        - 1: RZN1_WDT_A7_1
+> +          This reset line can be asserted only by the A7 1 watchdog. This
+> +          watchdog is the one mapped at 0x40009000 on RZ/N1 SoCs.
+> +
+> +      If the renesas,reset-line property is not present, the watchdog timeout
+> +      only triggers an interrupt.
 
-Unfortunately, the register is left in an unknown state after a reset.
-Thus on devices where the bootloader don't initialize it, the driver has
-to do it to detect and use a link.
+I don't understand. You have two watchdogs (0x40008000 and 0x40009000)
+so why you would tell each of them that they can reset line associated
+with them? Can a watchdog reset other watchdog's line? No, thus code like:
 
-The MDI polarity swap can be set in the device tree using the property
-enet-phy-pair-polarity. The u32 value is a bitfield where bit[0..3]
-control the polarity of pairs A..D.
+watchdog@40008000 {
+	renesas,reset-line = <RZN1_WDT_A7_1>;
+};
 
-Signed-off-by: Damien Dejean <dam.dejean@gmail.com>
----
- drivers/net/phy/realtek/realtek_main.c | 77 ++++++++++++++++++++------
- 1 file changed, 59 insertions(+), 18 deletions(-)
+makes no sense and thus is pointless to specify in DT.
 
-diff --git a/drivers/net/phy/realtek/realtek_main.c b/drivers/net/phy/realtek/realtek_main.c
-index ee3f7318e933..a3691f9c19a5 100644
---- a/drivers/net/phy/realtek/realtek_main.c
-+++ b/drivers/net/phy/realtek/realtek_main.c
-@@ -172,6 +172,7 @@
- #define RTL8224_SRAM_RTCT_LEN(pair)		(0x8028 + (pair) * 4)
- 
- #define RTL8224_VND1_MDI_PAIR_SWAP		0xa90
-+#define RTL8224_VND1_MDI_POLARITY_SWAP		0xa94
- 
- #define RTL8366RB_POWER_SAVE			0x15
- #define RTL8366RB_POWER_SAVE_ON			BIT(12)
-@@ -1822,12 +1823,35 @@ static int rtl8224_cable_test_get_status(struct phy_device *phydev, bool *finish
- 	return rtl8224_cable_test_report(phydev, finished);
- }
- 
-+static int rtl8224_package_modify_mmd(struct phy_device *phydev, int devad,
-+				      u32 regnum, u16 mask, u16 set)
-+{
-+	int val, ret;
-+
-+	phy_lock_mdio_bus(phydev);
-+
-+	val = __phy_package_read_mmd(phydev, 0, devad, regnum);
-+	if (val < 0) {
-+		ret = val;
-+		goto exit;
-+	}
-+
-+	val &= ~mask;
-+	val |= set;
-+
-+	ret = __phy_package_write_mmd(phydev, 0, devad, regnum, val);
-+
-+exit:
-+	phy_unlock_mdio_bus(phydev);
-+	return ret;
-+}
-+
- static int rtl8224_mdi_config_order(struct phy_device *phydev)
- {
- 	struct device_node *np = phydev->mdio.dev.of_node;
- 	u8 port_offset = phydev->mdio.addr & 3;
- 	u32 order = 0;
--	int ret, val;
-+	int ret;
- 
- 	ret = of_property_read_u32(np, "enet-phy-pair-order", &order);
- 
-@@ -1841,29 +1865,46 @@ static int rtl8224_mdi_config_order(struct phy_device *phydev)
- 	if (order & ~1)
- 		return -EINVAL;
- 
--	phy_lock_mdio_bus(phydev);
--	val = __phy_package_read_mmd(phydev, 0, MDIO_MMD_VEND1,
--				     RTL8224_VND1_MDI_PAIR_SWAP);
--	if (val < 0) {
--		ret = val;
--		goto exit;
--	}
-+	return rtl8224_package_modify_mmd(phydev, MDIO_MMD_VEND1,
-+					  RTL8224_VND1_MDI_PAIR_SWAP,
-+					  BIT(port_offset),
-+					  order ? BIT(port_offset) : 0);
-+}
- 
--	if (order)
--		val |= (1 << port_offset);
--	else
--		val &= ~(1 << port_offset);
-+static int rtl8224_mdi_config_polarity(struct phy_device *phydev)
-+{
-+	struct device_node *np = phydev->mdio.dev.of_node;
-+	u8 offset = (phydev->mdio.addr & 3) * 4;
-+	u32 polarity = 0;
-+	int ret;
- 
--	ret = __phy_package_write_mmd(phydev, 0, MDIO_MMD_VEND1,
--				      RTL8224_VND1_MDI_PAIR_SWAP, val);
--exit:
--	phy_unlock_mdio_bus(phydev);
--	return ret;
-+	ret = of_property_read_u32(np, "enet-phy-pair-polarity", &polarity);
-+
-+	/* Do nothing if the property is not present */
-+	if (ret == -EINVAL)
-+		return 0;
-+
-+	if (ret)
-+		return ret;
-+
-+	if (polarity & ~0xf)
-+		return -EINVAL;
-+
-+	return rtl8224_package_modify_mmd(phydev, MDIO_MMD_VEND1,
-+					  RTL8224_VND1_MDI_POLARITY_SWAP,
-+					  0xf << offset,
-+					  polarity << offset);
- }
- 
- static int rtl8224_config_init(struct phy_device *phydev)
- {
--	return rtl8224_mdi_config_order(phydev);
-+	int ret;
-+
-+	ret = rtl8224_mdi_config_order(phydev);
-+	if (ret)
-+		return ret;
-+
-+	return rtl8224_mdi_config_polarity(phydev);
- }
- 
- static int rtl8224_probe(struct phy_device *phydev)
--- 
-2.47.3
+What's more, if reset line is always wired (and how could it be since it
+is fully within the soc), why would this be board-level property?
 
+
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -41,10 +61,12 @@ examples:
+>    - |
+>      #include <dt-bindings/clock/r9a06g032-sysctrl.h>
+>      #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/watchdog/renesas,rzn1-wdt.h>
+>  
+>      watchdog@40008000 {
+>              compatible = "renesas,r9a06g032-wdt", "renesas,rzn1-wdt";
+>              reg = <0x40008000 0x1000>;
+>              interrupts = <GIC_SPI 73 IRQ_TYPE_EDGE_RISING>;
+>              clocks = <&sysctrl R9A06G032_CLK_WATCHDOG>;
+> +            renesas,reset-line = <RZN1_WDT_A7_0>;
+>      };
+> diff --git a/include/dt-bindings/watchdog/renesas,rzn1-wdt.h b/include/dt-bindings/watchdog/renesas,rzn1-wdt.h
+> new file mode 100644
+> index 000000000000..fe534aff0609
+> --- /dev/null
+> +++ b/include/dt-bindings/watchdog/renesas,rzn1-wdt.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> +/*
+> + * RZ/N1 watchdog reset lines
+> + *
+> + * Copyright (C) 2026 Bootlin
+> + *
+> + * Herve Codina <herve.codina@bootlin.com>
+> + */
+> +
+> +#ifndef __DT_BINDINGS_RZN1_WDT_H__
+> +#define __DT_BINDINGS_RZN1_WDT_H__
+> +
+> +#define RZN1_WDT_A7_0		0
+> +#define RZN1_WDT_A7_1		1
+
+I also see little value of the binding, but probably because I don't
+understand the point of this patch.
+
+
+Best regards,
+Krzysztof
 
