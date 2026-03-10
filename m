@@ -1,130 +1,170 @@
-Return-Path: <devicetree+bounces-273690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273691-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cJ36H0dhsGloigIAu9opvQ
-	(envelope-from <devicetree+bounces-273690-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:21:59 +0100
+	id eKuZOGNhsGloigIAu9opvQ
+	(envelope-from <devicetree+bounces-273691-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:22:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2EDC256584
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:21:58 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFD625659A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:22:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5E7993030B1A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:21:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id F2DDD314C21D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 18:21:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94F462C3244;
-	Tue, 10 Mar 2026 18:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D632C3245;
+	Tue, 10 Mar 2026 18:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="L+C6Ccil"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLp7+7J9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33CE026D4CD;
-	Tue, 10 Mar 2026 18:21:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62B1F2C11FD
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773166868; cv=none; b=oBwh8NXrA2QEVtfGhkp8Ytg33h3B89j2Cb+7JoV4F/5kY9vG6RVkefArsQDRDhNj+kCokFQl6BX+d/zeszZUucJ6uCPFB9sQDsAovBSHcUz6DkNDG8j3QwLxpZ/6PX6BXYQHjk3udkBOmS1RMNQQNc18FoKueewzsy9Bwb61AxI=
+	t=1773166882; cv=none; b=ffq1EY4TQPOVM2QghnxIZxFyta2KyIWNLpl6rDRtMj8Fnpw2pcOvWeqD+NSiQY3X+FvvTugm/RLtXsXTGJOdX7hnOM7+kcMAmUUpLbgjSTykMJDKlR/s6eUgRN0cYvrUS/zf6C3H2X3e5GPElPrriI8hfooH9OSV24xuxiN547M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773166868; c=relaxed/simple;
-	bh=q8EMdTShJbbHJNxNPWpbcmHpxdwS+a/PSL5h/ia505M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RezA/ZdcOCqiANFQLGzgZs3jI16Gsg02/ECh/1a67SUsDwvibChk3/z3QQ3o9ELcmWVLUlbjjBkma5UmyA7hjUG8guMbSYF3SbjMA0F8hOHuk+6Nv8i/qIYWbMqN1+iJPFie7EPhHFQMG4C/6D+dKcUdXIigTdul5tCk10f7G90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=L+C6Ccil; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773166863; x=1804702863;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=q8EMdTShJbbHJNxNPWpbcmHpxdwS+a/PSL5h/ia505M=;
-  b=L+C6CcilbqZ1JiUcUlOGMv9RaHGO9c8gUl38XTRXJJxHU6PP0Cl0H8y9
-   K2aneA8IrzIe4WuGgNu5zdfc2SetaJNJF6YUhJh+0YZ7nk1q6mrWKHOFf
-   0ht/9KHn2OFuJM90C6WTX2GCSipnyC2GyOJWQuAX7eAXz2p3qve/GhcvA
-   oVgXhAVPa8WOFmW6epP+Tzs0kpAi1g9wMOhlWPRZ5l+HjDvfj1PHD2Ive
-   xYBiddvs1l3CetEEEh6uL6kszQ+vM1EMayQ+4OuJ77R7Nu802o1mSrqdJ
-   kWmR0GdDdQE+E7F85UHoYdImqEXOUwRjWXz++yDlW65KBpNPR+vS2YoML
-   w==;
-X-CSE-ConnectionGUID: Lta6Nxt2TNmacpT1OM00Ig==
-X-CSE-MsgGUID: jqMO/PASR724TqG/3XdT6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="91796636"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
-   d="scan'208";a="91796636"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 11:21:03 -0700
-X-CSE-ConnectionGUID: w7KgPiESTrmKmKDfPBLB/Q==
-X-CSE-MsgGUID: 1vdIHF4pQZu2TeW3hPbSSQ==
-X-ExtLoop1: 1
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.54])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 11:20:59 -0700
-Date: Tue, 10 Mar 2026 20:20:57 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Taha Ed-Dafili <0rayn.dev@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	skhan@linuxfoundation.org, me@brighamcampbell.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] iio: dac: ad5504: sort headers alphabetically
-Message-ID: <abBhCWVo7ARH33oa@ashevche-desk.local>
-References: <20260310174835.24209-1-0rayn.dev@gmail.com>
- <20260310174835.24209-3-0rayn.dev@gmail.com>
+	s=arc-20240116; t=1773166882; c=relaxed/simple;
+	bh=RYHwf92flHnUfSHhGWu39REnpB8D3KhXnDbPehoNQKQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hqWFZ3pbKa9lvFgz66x3XWIJ08Df3esEz52gB1XF/Y3eYIE9lkCQovL0xnsRFOmYLvtkdMuzKNKTjFHR/614UsErr1Uok+Ny/cI0K90c5t9pY7v0qLTkVhmd4jvirdhUKnLHEcY+mecxMzaZaNvq+nDz9JkGjIfCAVurySyu3kg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLp7+7J9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46FE8C2BC87
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 18:21:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773166882;
+	bh=RYHwf92flHnUfSHhGWu39REnpB8D3KhXnDbPehoNQKQ=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=VLp7+7J9llrwvCmETGQRw3htvlndh6m1nt/RRmA9Uxn1bhz+K/B+q6H0nosrrJG24
+	 ualDb+AMHRYw11phgtZL8RQve4Fni7wZOk59ZLka5e+KPtlbhUxjNSzE/u7nYiB2MG
+	 4bV3VcillBEcNpXDxDtrt3iOrWD9Xz8KTLy0tBBoJR7VPRwrGT4Bipusr7CoKRL2ml
+	 l7zOALrl2J90A/S7t+sxsILHs96E/Odocww2PrRZOWkgKyzHu0R0BCxGsyhR7v+CIf
+	 Ky6UMX9xuNxOpFUg5ny0u2vMeWHrFW3AaDx6+eRfY/UL0WbUJETU9XHUwMA1DbqaxY
+	 zFxqVd4KpzOUg==
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-661b08b04deso4911849a12.2
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 11:21:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWksADad25ka3YXhq4SCZNFD3JkFuDjqMGA8Xj2v97dujDfJ/Nnx0L5Ls0AEvV1VheXrIJLV1n7eVUz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWAeiJONeuwNQRvmfW6NVIG2YuZSlgLRNsvJ/nTYPt3td6PShA
+	pBNdRX8zKgF8QjNO1xX2kKgfWBpc1q0mLUdlHvNMAW0FylKGQmQkr95hqpxAQD4I+qDMnj/w7gC
+	2wWRiI3MfczIG6oRtexajkGvp5YHNCQ==
+X-Received: by 2002:a05:6402:a290:20b0:662:aa89:2ffd with SMTP id
+ 4fb4d7f45d1cf-662aa89325dmr2220648a12.18.1773166880808; Tue, 10 Mar 2026
+ 11:21:20 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260310174835.24209-3-0rayn.dev@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: E2EDC256584
+References: <20260306-mt8196-ufs-v9-0-55b073f7a830@collabora.com>
+ <4089450.ElGaqSPkdT@workhorse> <yq14imrwp3z.fsf@ca-mkp.ca.oracle.com> <5973984.DvuYhMxLoT@workhorse>
+In-Reply-To: <5973984.DvuYhMxLoT@workhorse>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 10 Mar 2026 13:21:09 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKGxrNuaTb9+n3ZYjAdY=UHC6z-neXK-aieTXeROCN5og@mail.gmail.com>
+X-Gm-Features: AaiRm53EXEYwn_27B-gILkkR9Yt_6ubl80Y5DTYqzcMmOl6Xp1DwezMjgTnFj3c
+Message-ID: <CAL_JsqKGxrNuaTb9+n3ZYjAdY=UHC6z-neXK-aieTXeROCN5og@mail.gmail.com>
+Subject: Re: [PATCH v9 03/23] dt-bindings: ufs: mediatek,ufs: Add mt8196 variant
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: "Martin K. Petersen" <martin.petersen@oracle.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Peter Wang <peter.wang@mediatek.com>, 
+	Stanley Jhu <chu.stanley@gmail.com>, 
+	"James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, Chaotian Jing <Chaotian.Jing@mediatek.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, 
+	Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>, kernel@collabora.com, 
+	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 6CFD625659A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273690-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273691-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[oracle.com,samsung.com,wdc.com,acm.org,kernel.org,gmail.com,collabora.com,mediatek.com,hansenpartnership.com,pengutronix.de,linaro.org,vger.kernel.org,lists.infradead.org,microchip.com];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:email]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 05:48:32PM +0000, Taha Ed-Dafili wrote:
-> Rearrange the include headers in alphabetical order to follow the
-> standard kernel coding style. This is a preparatory cleanup with
-> no functional changes.
+On Mon, Mar 9, 2026 at 5:04=E2=80=AFAM Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> On Saturday, 7 March 2026 19:01:17 Central European Standard Time Martin =
+K. Petersen wrote:
+> >
+> > Nicolas,
+> >
+> > >> "ufs" is redundant as all the clocks are for UFS. Same comment on pr=
+ior
+> > >> patch.
+> > >
+> > > Is this naming a big enough concern to block this series with two
+> > > explicit acks on this patch that fixes a wholly broken and useless
+> > > binding?
+> >
+> > It is if it comes from one of the DT maintainers.
+> >
+> > > I am trying to put out this dumpster fire of a downstream turd that
+> > > made its way into mainline as the review process has been completely
+> > > subverted, and is only getting worse with each passing month
+> >
+> > This has to stop. Please read Documentation/process/code-of-conduct.rst=
+.
 
-Reviewed-by: Andy Shevchenko <andy@kernel.org>
+I have little doubt that that is an accurate description of
+downstream. And if properties are getting added without bindings, then
+that is certainly a problem that should be complained about.
 
--- 
-With Best Regards,
-Andy Shevchenko
+> >
+> >
+>
+> I apologise for my tone, it's my frustration getting the better of me.
+>
+> I'll be handing off this series to someone else, so you won't have to
+> deal with me anymore.
+>
+> I do ask however that you don't apply patches from MediaTek blindly;
+> if there's code to read an OF property, and that OF property is not
+> in the binding, then the patch should be rejected, even if there's an
+> Ack from the MediaTek maintainer.
 
+There's functionality to find undocumented compatibles in kernel code
+(make dt_compatible_check), but not properties. Sounds like I need to
+add that.
 
+Rob
 
