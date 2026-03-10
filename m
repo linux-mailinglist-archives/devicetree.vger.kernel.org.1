@@ -1,149 +1,150 @@
-Return-Path: <devicetree+bounces-273361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273362-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AEBeNEzcr2kzdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273361-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:54:36 +0100
+	id 8O76G33cr2kzdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273362-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:55:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 331FC247B03
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:54:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CC342247B31
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:55:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D2B7F311B86C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:48:52 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id CF73C32026CA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 08:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 352C9430BA8;
-	Tue, 10 Mar 2026 08:48:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5DB43C041;
+	Tue, 10 Mar 2026 08:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="l0wIErnC"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="O9ZQO2Sc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D6F2773D8;
-	Tue, 10 Mar 2026 08:48:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2FE0438FFE;
+	Tue, 10 Mar 2026 08:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773132532; cv=none; b=L7L9sjRAt8WBc9ZNPfOVfV69i66Jj1rZviyiMQNZayr/euQFcSU6eGYq1nHIKv3aCUpLBW2cadylot6eF6zqTH9PZDCBYDPHFdxVenMAw30fkCAph28gGyR776UkKI6RUtB4cskFdCm7xznDkyWH9MyESnCRSELuNr3pPmao94I=
+	t=1773132602; cv=none; b=DVdWZpKHSnuU1w9ifu8U9ekpVuFMyxCvcTaII+YKRaJl6Y7W3zBqrvY8iA23ulSSIMUo39JkzaGMC3Fyzl6YIASEGbmFQKSxSrIV4FUHYEZB/O+joolE9+E7VMFNfVVhShmfdQ//V/goSQEDPgNy2saH6bC4YY+CUcx0at5UA+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773132532; c=relaxed/simple;
-	bh=teSI91cRyupWd7NN6HwKJqFdD/E+ikTGW2oM/Aij9GI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Jzg84+shpXOQYbknVOoZPHPMQxksJx8Vpqf+w7SN1zAj1T+u97PMgzzrmVmVXm1tOrI9mo42frRjUu9yrDDReR8z8iTKBRJj5NPZSTFhqjogEipNRoAftejKjRGdA0kc3V139asUyASSSpQ4OuslkD7q45E4gjwe2/TXeW/xhHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=l0wIErnC; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=LDnvAqGNNm3WAv14lqVG/Cz8m/tMIKxrjvpf5+LfotM=; b=l0wIErnCa7VHZPHycc5wGKaUkL
-	Yvz5kANYlS0XPLz/iuR2NrLGPcRURHOBzm4faD1fWbmUqHDdbBPI9z4rsa/I61cA44XbcjfQPzSQI
-	3JH4sSNf+xfTq6bJE2qbkzZaR3ywZHyEXWZ4OeT/t1ncRkWfvm3Be3AY6w1bBi5Jo2GmLwbKxEmMC
-	9SzOmfK47DvNw80PUtVeLGQH6/0OrqRDnDgb4kmCKe808R4hhSaTTDC4lTtu9MovXpN+i/43gjRaT
-	oCZ9/2WFrq91UN5rTmSZC9LV5vi9tuUFV1EgdXUDbacu60B/wcVrDVEmRsehDCCkKEWM4Vg2mtT3s
-	rQPM1bSA==;
-From: Heiko Stuebner <heiko@sntech.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Pedro Alves <pta2002@pta2002.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Pedro Alves <pta2002@pta2002.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: configure hdmirx in Rock 5 ITX
-Date: Tue, 10 Mar 2026 09:48:43 +0100
-Message-ID: <9638846.rMLUfLXkoz@phil>
-In-Reply-To: <20260304-radxa-r5-itx-hdmirx-v2-1-6567e9e3298b@pta2002.com>
-References: <20260304-radxa-r5-itx-hdmirx-v2-1-6567e9e3298b@pta2002.com>
+	s=arc-20240116; t=1773132602; c=relaxed/simple;
+	bh=y1ysJD7OcXUPQg4vWSuOKFA/9qcBQzn35Xp/RVmj9VQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K7+KlC4ewmgh21HKMzUjZyUrpAaqw6Z0vqofDWbSPwSwZ87iX5gimTafg5EGQIqbf2dLAPJvrsR8jJ1vsN9IYwe19ZZL72HYWscw5krBGKjjN6FVuT14YbS1CcQlXhbPRMAf6oKB4UnM6dyho8HqlhBQe5V5vEJfwPjIIaMhW3o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=O9ZQO2Sc; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8BF9328F482;
+	Tue, 10 Mar 2026 09:49:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1773132597; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=khzxWHS6TgscUvNmyc8I0F7jSY9IeTFAgK8XNcri5xc=;
+	b=O9ZQO2ScTAZMhu5ldgA1bipI2BOqUNnJpi0+xS6/SrlVm803fALQkFuEsdRXmrbTk5Q3EX
+	cyJ+i+sPVTl+bePNqCw9xeqTy6Yj1nx+rhPS4K5nfQrb6wyvDNbSBeQk1E5dFWa6W5SLAs
+	vZRomvnYElXC5Nc9yFk3HipJJkAc05+716tpWt71k4AkeLRosv0Bgn/uR//z3RkGuRxi7W
+	Qn8DvL4KCRl979lSvRGFO92Ea3z45e+0mKaT/2uehqiyrPVP8dU2RW8jHO8i54YKo7YhuC
+	dGc2sdNT1YTAFWi8u8eAntHyxUql2MhuO5T0hQjOF61PLylPE4kKzJiE7tyYsw==
+Message-ID: <3235796a-4682-4eae-b3de-ca53aa49e303@cjdns.fr>
+Date: Tue, 10 Mar 2026 09:49:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-Rspamd-Queue-Id: 331FC247B03
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v2 5/8] dt-bindings: PCI: mediatek: Add support for EcoNet
+ EN7528
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-mips@vger.kernel.org, naseefkm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tsbogend@alpha.franken.de, ryder.lee@mediatek.com,
+ jianjun.wang@mediatek.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, bhelgaas@google.com, vkoul@kernel.org,
+ neil.armstrong@linaro.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, nbd@nbd.name, ansuelsmth@gmail.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260309131818.74467-1-cjd@cjdns.fr>
+ <20260309131818.74467-6-cjd@cjdns.fr>
+ <20260310-onyx-ibex-of-progress-fdf1bf@quoll>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <20260310-onyx-ibex-of-progress-fdf1bf@quoll>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: CC342247B31
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273361-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273362-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,baylibre.com,kernel.org,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,collabora.com,nbd.name,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[sntech.de:+];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,sntech.de:dkim,pta2002.com:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:dkim,cjdns.fr:email,cjdns.fr:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Pedro,
 
-Am Mittwoch, 4. M=C3=A4rz 2026, 21:44:39 Mitteleurop=C3=A4ische Normalzeit =
-schrieb Pedro Alves:
-> The Radxa Rock 5 ITX board exposes an HDMI input exactly the same way as
-> the Rock 5B, but this was not reflected in its DTS.
->=20
-> Change the rk3588-rock-5-itx to configure and enable the hdmi_receiver
-> and hdmi_receiver_cma nodes.
->=20
-> The hot-plug detection (HPD) pin keeps the hdmirx_det name rather than
-> the hdmirx_hpd name used in other boards since that is what matches the
-> official schematics (HDMIIRX_DET_L).
->=20
-> The configurations were confirmed to be identical on the downstream
-> Radxa kernel, and this has been tested to work on a Rock 5 ITX board
-> running kernel 6.19.3.
->=20
-> Signed-off-by: Pedro Alves <pta2002@pta2002.com>
+On 10/03/2026 09:25, Krzysztof Kozlowski wrote:
+> On Mon, Mar 09, 2026 at 01:18:15PM +0000, Caleb James DeLisle wrote:
+>> Introduce EcoNet EN7528 SoC compatible in MediaTek PCIe controller
+>> binding.
+>>
+>> EcoNet PCIe controller has the same configuration model as
+>> Mediatek v2 but is initiallized more similarly to an MT7621
+>> PCIe.
+>>
+>> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+>> ---
+>>   Documentation/devicetree/bindings/pci/mediatek-pcie.yaml | 1 +
+>> 	 1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+>> index 0b8c78ec4f91..57cbfbff7a31 100644
+>> --- a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+>> +++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
+>> @@ -14,6 +14,7 @@ properties:
+>>       oneOf:
+>>         - enum:
+>>             - airoha,an7583-pcie
+>> +          - econet,en7528-pcie
+> Patch is heavily incomplete - why do you have variable number of clocks?
+> 1, 2, 3 ... or 6 at the same time?
+>
+> Look at the rest of this file to understand what you need to write.
 
-> +&hdmi_receiver {
-> +	pinctrl-0 =3D <&hdmim1_rx_cec &hdmim1_rx_hpdin &hdmim1_rx_scl &hdmim1_r=
-x_sda &hdmirx_det>;
+Thank you, sorry for missing that, will fix.
 
-are you sure the hdmim1_rx_hpdin is routed?
-Because that is gpio3_D4 while your hpd-gpios below is gpio1_c6.
+Caleb
 
-> +	pinctrl-names =3D "default";
-> +	hpd-gpios =3D <&gpio1 RK_PC6 GPIO_ACTIVE_LOW>;
-
-Also please provide a pinctrl setting for the gpio hpd pin.
-
-Thanks a lot
-Heiko
-
-> +
-> +	status =3D "okay";
-> +};
-> +
->  &hdptxphy1 {
->  	status =3D "okay";
->  };
->=20
-> ---
-> base-commit: 05f7e89ab9731565d8a62e3b5d1ec206485eeb0b
-> change-id: 20260303-radxa-r5-itx-hdmirx-f4645e64f8c3
->=20
+>
 > Best regards,
->=20
-
-
-
-
+> Krzysztof
+>
 
