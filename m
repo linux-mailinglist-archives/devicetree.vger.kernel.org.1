@@ -1,149 +1,169 @@
-Return-Path: <devicetree+bounces-273395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273406-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WHa+BDbnr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273395-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:41:10 +0100
+	id 0NExDpPmr2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273406-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:38:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 800C4248AC2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:41:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6D7C2489BB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EF97B31685F2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:28:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B7FE93256DCA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87C6743D4F8;
-	Tue, 10 Mar 2026 09:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CuAdMO0T"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8499B44B68D;
+	Tue, 10 Mar 2026 09:29:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64AD4238C0A
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D776144B697
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773134937; cv=none; b=LdKujIB7+/pLbiKMEOsrP+cAkrF1C2+bEa61POrDDfYB0p/LJsD/bRHXiWSrWYdSGFSsLyntikZ/4cZCDrSJrgaQnYlXZyyi2BgRn9Q5UDfE042hwLL9ajcXchfSbdYAeAlavso5meJKRil1ivQIzDySitK8/UaV2gn12jgFBNk=
+	t=1773134978; cv=none; b=IhyyNqeApZYfRJ2QR4j0GK0aoFQUJ2pUqVYw5Qf9XhGPOf9BM/X4TveboXN5GTeKc6hyBQZuDFDvSXh49Hq7X4Ocfmq4aKW+K3bffAMC7SGyi+I9fAniv9CQ5pP5eOsKNFuCfPzuJOCOglbo1yULZJksBeH56Ms+Oz37/VVTaS0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773134937; c=relaxed/simple;
-	bh=sZaxe7E+Iri0Yj4ZeX/Y23Uobn7iJJUUZV9GAydph+U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pv+EI9yVpnYAwOWFFixMmjub4mKu51rcu/Rmoyj/C7C/x6UjWuni5ExyztYjjjAemc/or1fEA3PQsvXYsAhuHtGRAYKVKeCzuM5f8/J1mR8JazMksS23bnG+z42WIavRPl4VlRkM/21Kbin7mwycp8dj9c9RCIGLuDP8UqoL5zo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CuAdMO0T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40CDFC4AF0D
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:28:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773134937;
-	bh=sZaxe7E+Iri0Yj4ZeX/Y23Uobn7iJJUUZV9GAydph+U=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=CuAdMO0TU2BREyIbTlTvzg12VlLDCz9aJVBV4hiOzhEr6oyGITm0UAXhO6ZwJQDM2
-	 CUg7uUBNZ2MRGFJrTybiu73YNd46mkm8VYsEMXEvs5u6XWMkE6Y4KOT0fMvdw2xfc3
-	 HbXsPbLrhCEQhMQBeyLs53m0XnDsRFUH1mw8VZCRaWlg7dJa8ch0sGyGdzQkBkxG1D
-	 iN3pIW1O/et8eji8F2wQaQP7pTANcOOa4MXmxVWzIDWemUeEHopTOL5o7RLE/xPd0e
-	 xoxUq0uBhn1Bi2uHco4A2szqDuQdF6ZLTLt5tEhjfrDUCL7mschCdLaO3CGeygg7Rn
-	 ZD3DDD77mdf8A==
-Received: by mail-yx1-f52.google.com with SMTP id 956f58d0204a3-64caaacb9bcso12094359d50.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:28:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU5JGqEsPZSMd5qQ2/wIaXguw15VWxnEUqxl0/fhFW+cgUyKKvT8ZIFQ/tyXriCDdjlDrUjH1NPJfKc@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywy52AtQLb5VRZo3VLwuh6CDsqL21SHQECRx2JxHcIdgyc97nKP
-	wErrw+gkvTIdy6dRkJ4oxLaYJxINAB0LAsSGRRhxUUam75JlgWdVoaG/duSjrSuoZbLuTM3Z2Wb
-	TRciX0kD1+Lv0439NYZOnDUXPo5InZxI=
-X-Received: by 2002:a05:690e:c44:b0:649:ca5c:5990 with SMTP id
- 956f58d0204a3-64d14316d3dmr13079461d50.66.1773134936582; Tue, 10 Mar 2026
- 02:28:56 -0700 (PDT)
+	s=arc-20240116; t=1773134978; c=relaxed/simple;
+	bh=fSwpCH/UFERQ5kjBBQPd4Vfpb4R38RfBExl1BwL7OIo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LRbRqsEb+23OBwnpJpm+QA7IpuBB2fUoVBneqJTHnrpneaNwRJRRPILGBmcPsYUQES9jP9DiYg6ufMNoULoh2N02y1Zg3f/ACkhrnND9gGcZLq/QnfgxgwC6TdKoNdP5sTZ/MqaHDzz4go/bG8SkwuYdiN7S48qHdklh40M9b2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vztP1-0000B7-QO; Tue, 10 Mar 2026 10:29:23 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vztOy-004fqr-1H;
+	Tue, 10 Mar 2026 10:29:21 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1vztOz-0000000BUUr-2Wql;
+	Tue, 10 Mar 2026 10:29:21 +0100
+Date: Tue, 10 Mar 2026 10:29:21 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	linux-pm@vger.kernel.org,
+	=?utf-8?B?U8O4cmVu?= Andersen <san@skov.dk>,
+	Guenter Roeck <groeck@chromium.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-hardening@vger.kernel.org, Kees Cook <kees@kernel.org>
+Subject: Re: [PR 174] dt-bindings: chosen: Add "power-state-change-reason"
+ nvmem property
+Message-ID: <aa_kcRRg5uGQjd96@pengutronix.de>
+References: <20250618120255.3141862-1-o.rempel@pengutronix.de>
+ <aN5pSWBFRZlNRv3U@pengutronix.de>
+ <202510020904.1E48B7EB@keescook>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306075244.1170399-1-eleanor.lin@realtek.com>
- <20260306075244.1170399-10-eleanor.lin@realtek.com> <20260307-purring-kind-binturong-1fcb37@quoll>
- <1baf65a11c26482cae4f7b54df1521c5@realtek.com> <af8aa42e-8ef6-43c0-9a46-173420ffe49c@kernel.org>
- <0ed4a4e5e25e47ca8f040ff4632ae0c1@realtek.com>
-In-Reply-To: <0ed4a4e5e25e47ca8f040ff4632ae0c1@realtek.com>
-From: Linus Walleij <linusw@kernel.org>
-Date: Tue, 10 Mar 2026 10:28:44 +0100
-X-Gmail-Original-Message-ID: <CAD++jLn81uWf=3QchYHgfAqof9Wq_t8PEiKEJqezbYT0vCuEaA@mail.gmail.com>
-X-Gm-Features: AaiRm53ys6zPtcAwL71zHshpZVqBa6i3gejjSIKMd2ptpnfhLQmIJqyYSNvWc2g
-Message-ID: <CAD++jLn81uWf=3QchYHgfAqof9Wq_t8PEiKEJqezbYT0vCuEaA@mail.gmail.com>
-Subject: Re: [PATCH v2 09/14] dt-bindings: pinctrl: realtek: Rename
- 'realtek,duty-cycle' to 'realtek,pulse-width-adjust'
-To: =?UTF-8?B?WXUtQ2h1biBMaW4gW+ael+elkOWQm10=?= <eleanor.lin@realtek.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"bartosz.golaszewski@oss.qualcomm.com" <bartosz.golaszewski@oss.qualcomm.com>, 
-	"afaerber@suse.com" <afaerber@suse.com>, =?UTF-8?B?SmFtZXMgVGFpIFvmiLTlv5fls7Bd?= <james.tai@realtek.com>, 
-	=?UTF-8?B?Q1lfSHVhbmdb6buD6Ymm5pmPXQ==?= <cy.huang@realtek.com>, 
-	=?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= <stanley_chang@realtek.com>, 
-	=?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-realtek-soc@lists.infradead.org" <linux-realtek-soc@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 800C4248AC2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <202510020904.1E48B7EB@keescook>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: D6D7C2489BB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273395-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[kernel.org,linaro.org,chromium.org,intel.com,igalia.com,pengutronix.de,vger.kernel.org,gmail.com,arm.com,skov.dk,linux-foundation.org,lists.linux.dev];
+	TAGGED_FROM(0.00)[bounces-273406-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[28];
+	MIME_TRACE(0.00)[0:+];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.787];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mail.gmail.com:mid,realtek.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pengutronix.de:url,pengutronix.de:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Mon, Mar 9, 2026 at 12:00=E2=80=AFPM Yu-Chun Lin [=E6=9E=97=E7=A5=90=E5=
-=90=9B]
-<eleanor.lin@realtek.com> wrote:
+Hi Rob and Krzysztof,
 
-> > > Therefore, changing this property name will not break any existing
-> > > device support in the mainline tree.
-> >
-> > Yeah, but will break all other users.
-> >
-> > Best regards,
-> > Krzysztof
->
-> I understand your concern. I will drop the property rename and keep
-> realtek,duty-cycle, but I will update its description in v3 to make it cl=
-earer.
->
-> Hi Linus,
-> Although you agreed with the rename to realtek,pulse-width-adjust in v1, =
-I
-> will revert to the original name realtek,duty-cycle to strictly respect t=
-he
-> DT backward compatibility rules. I hope this is fine with you.
+Following up on dt-schema PR #174 regarding the PSCRR framework. We are
+currently stuck in a maintainer deadlock regarding how this framework should
+bind to its NVMEM cell, and I need your consensus to proceed.
 
-Sure, it would also be possible to support both, but that is maybe
-a bit messy. Let's go with the old.
+In the PR [1], Rob noted that /chosen only works if the OS standardizes the
+NVMEM values. If the values are platform-specific (requiring a mapping driver),
+Rob suggested creating a dedicated DT node akin to reboot-mode or
+nvmem-reboot-mode.
 
-Yours,
-Linus Walleij
+However, in my earlier kernel patchsets [2] , Krzysztof explicitly NACKed a
+dedicated PSCRR DT node, stating that it represents "OS policy" and a software
+abstraction rather than physical hardware. Krzysztof suggested instantiating it
+via sysfs/modprobe. I attempted that in v11 , but Greg strongly rejected [3]
+the sysfs/module parameter approach as fragile and outdated for the driver
+core.
+
+We need a robust way to discover this cell during early boot across full power
+cuts. To break this catch-22, could you please agree on one of the following?
+
+- Option A (Dedicated DT node): Permit a dedicated pscrr-nvmem node (or a
+compatible string on a fixed-cell) as a valid firmware description contract,
+following the precedent of nvmem-reboot-mode.
+
+- Option B (/chosen property): Accept the /chosen phandle approach
+
+I am happy to implement whichever hardware/software binding pattern you both
+agree is correct for this edge case.
+
+Best Regards,
+Oleksij
+
+[1] https://github.com/devicetree-org/dt-schema/pull/174
+[2] https://lore.kernel.org/all/58d24ddc-4e8f-4932-ac37-c9a699d36425@linaro.org/
+[3] https://lore.kernel.org/all/2025071631-henna-synthesis-9961@gregkh/ 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
