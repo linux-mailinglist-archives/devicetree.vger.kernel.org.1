@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-273425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273426-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMj5OX7pr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273425-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:50:54 +0100
+	id 2BnbAEzpr2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273426-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:50:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65A06248D83
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:50:54 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D599248D24
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:50:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 8F1BE3008290
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:49:55 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 08AD1301137C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:50:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61CB1425CE6;
-	Tue, 10 Mar 2026 09:49:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 101B7449EBF;
+	Tue, 10 Mar 2026 09:49:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CUjxeBtI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XNr/qaK6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF9B244104A
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:49:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FAF8342535
+	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 09:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773136192; cv=none; b=rZl5Fi3PQXyyOQkB6lVotTKbUJXGeK3UexFg0RbUWjMS8O6VWSSftvNuQ4sY/WB+hDFLl7vnwlpqrn/uiLQaaObJJPYfyUvhO5u7fL7v9BQv1Js+yVelDkjykAyQ30vj4ul3vdYiXg7F/s6qtbYjXuWJ+8U5jBh2oYIJ51ypLOc=
+	t=1773136196; cv=none; b=Ei1wBEUO4WtFaku1rougd/B99DHYrNki206/0zAzH60KBR30MtJlKCjEWYXQQ0E7qHc46ik0owIqGOxx8DsW3qhtzuMhP4ThZuK18zm4pvg4XlNCKmlad4i/WWzWUMOyN2olZI5W3qnaiMh+0m2JaeEZ238W0/FFHem3kpFo5TU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773136192; c=relaxed/simple;
-	bh=lwETLfhCTVcdz3eoaOCi8pmBQa817MjhbI42mJmTS9Q=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bxfR+KcZlyCWcT864Ys31uWrboXRBs08OlErP+t1ixs4d38AUv8otk2vaO4cKJQEYmgZWwZ1EF952w9ez50Z+jyLk5fq+oMbmK5GfGE5BpEBK4iiL6kAuu2thQs896/Fpb+BJmibRYY0z/xpHqb5tmIThsD+XAGL4Sxq4UdplZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CUjxeBtI; arc=none smtp.client-ip=209.85.214.180
+	s=arc-20240116; t=1773136196; c=relaxed/simple;
+	bh=rM1a3/U5nmwGlIwi6wEffz8sWYF1jFlqAjBK8RCzM+c=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=eSoXpka2VjmZtyWpo3onmHmz/naqggd+8bjC+hLiajnSRKRrjX6iqefmVyTwlAaxzNC6ZvYONgAxi6bvBxLibS9KLg2+BmFp5GyLmscpOEn9qWNZB0HwjSmZyAbw6JH2+c0wLAPmZppTJaO7XhBpHEQgsfWrlZjeW95Q6WmG0tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XNr/qaK6; arc=none smtp.client-ip=209.85.215.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2ae5423b02aso59441545ad.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:49:48 -0700 (PDT)
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-c738fecf349so1809433a12.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 02:49:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773136188; x=1773740988; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=zu+81jDXj9d0HvQyIrVJEIl9QbnoaIQZGWZhl1u/pfQ=;
-        b=CUjxeBtIBvfVbx+R+tY+P2AQ4ERP/aMhvItQ9QnkC6vcwTqK/yCTIQIT5dsf+HvH0c
-         d9uHkFVgBX8e0DigJ6gI/p24UKtwsr9n2/BR4Ku8oX+E7cRI6u9c29Xv0/w7ulkEkILi
-         q2SrRY/0JIHVbycrQ3M+IcGMU+nUe3iP1ZlsxdDd0HCIPghQv1I9Os4Csy9LgKoHGCwi
-         opW/IwafWxNBCsyqtRxGEBdbQQWBQ294ZMcyF5EUEShoBy0fYJnIq1kO/fOU2RDl61s4
-         EmWvJSAFGkr1kFDAwt5bGZht2FIgGIRsC0bcBiGemN0z40kEUeL7C+WWCp6V8eXAfGRx
-         r7YQ==
+        d=gmail.com; s=20230601; t=1773136190; x=1773740990; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MNOZBfqr2lnHP3ETayFOjn/FEBqearsn/ED3lU7TMb8=;
+        b=XNr/qaK6JdcZyCDKl+b2+q76Mr2DucPzqy7NwjtTTKcgefJpWCAD3+lsBwqixqq+c2
+         ZjfgPkaA9n8I6SxvfEjekzyaGJv0KCBONNUCWoKKI9VEOFxSAozND/HSkHik1EHLFJEg
+         bQTWXMeTQV1Dqd0j5QaxG6VgxhbEUMFE2vlODmOu9pTsCZQvRoFfCzqPqtz4ZGEaSGDj
+         KTIA9k7vEmH3SzGri9ddyltFIua5pt1LfOYCtL7l5Nqxozheq9F8f8hiJV5GfyFqUsP1
+         3MGp1v+MzNAu5S+4hBKplsp9M79fUjFo76pw0Rr32+x9ySqA6217wxsHSEjxfiovTKEc
+         6z9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773136188; x=1773740988;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zu+81jDXj9d0HvQyIrVJEIl9QbnoaIQZGWZhl1u/pfQ=;
-        b=cQpHhnnw2wLrLEjCLpYDb+MpgUnXi+s9dy8jLUt9jbN2EgCOdxMXO/Os9Wvo58rSzR
-         b5M9ShdUNFvDH7tOtGGqbRUMaolJzx5cZK2jpaeJxLpE4FIqULnLsL4H/vO4fgyhh6Ji
-         hfNbtVevyqkpNvrWSlzOryOLWXCFlwW3PHGfEc7scGtvgr5N3aQPVDzcktPbcbRznS/i
-         BXjcWZW6TRotBIcmnLtGnfyO6W8m6eOBOr6ZLBr5OcjcNFWdZGIiC2oDOimLqi26NjXG
-         RA+lMurvgkuXfPLi+A/kPMBab/0zM8WWPlxjozwy1ibYI3LquwL/1Sv4WHYRNak2lDeI
-         Parg==
-X-Gm-Message-State: AOJu0Yw0t7gwSrxrYskFhenjovWpXslbPxZcRl9U0+88c1kVYQDy6wnl
-	t5tdPOrDjH7M1ISQXdN07aZpNynNQ9c8kmjOiYsvLLqMrv2Q+oA10pOx
-X-Gm-Gg: ATEYQzzqD8IJnIEHkJVlRrm4YDPgDjAPQN6EYiWvPvJ9hlfNIepEfjFeC9gpmNHZ5A8
-	/hKkTK/KT8ZS9Zz6lUGf3je5iGLQXv0o34EBtp6/o36TokwEd6wpoJLB9FL891VDskIJNFyZpy9
-	DClZe5peyr8cBuaznhKVyNT9wBdgs40floM33VBxxNptx/Hyjnofp86QFcBghBUbZdXhtgJq4Zf
-	61BJX/i2PP28YaE2si7A+JWoy/ZB6PwTkg3ugOk5n2boeTTUneRO6+1qETrz1p2kxI3kCzIZco4
-	yq/Ljqo3nDCgiImeJsHPruBu8mbx+vDVYPyAgrnCT6nju4REv25Ux6SRQZr5koPi3OTYDhSYm5X
-	fg4BfC1bCCiMnNBrlGWinXrVGM+4UMAUpg7R94wWmLsRJ3bLqB6kAs3WV+evhvwV8uAWnYmGjic
-	wZViId8z9DJS3aiqAesFA=
-X-Received: by 2002:a17:903:ac4:b0:2ad:c66d:ad06 with SMTP id d9443c01a7336-2ae8249420dmr139061195ad.47.1773136187586;
-        Tue, 10 Mar 2026 02:49:47 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1773136190; x=1773740990;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=MNOZBfqr2lnHP3ETayFOjn/FEBqearsn/ED3lU7TMb8=;
+        b=ZMsp7YG9ywREt/uqflyQhOdVKUbC94SkJi5lyOBvowMS+5XnQQvYp/xDrHqaSow13a
+         oG1ukhEVEaxCr4bQ2fiQveCjSEoeZv5raT6VhSDROvZXLFNBh6I6PllkNurd6ucRYVRS
+         D1YZYhLsVqvStWLMDFHtn8QoSZf5xwVKUMsfXv6ukrqeAQ1d8oCNPRtoDr3InXOD7fCx
+         oryr6HBhtThcLcXN6mdjhU1/SAcOUChucG0reMHZ9SC7mUqwmpYIB72ztKK6CaW2CqDH
+         CojS9Db6qbcOQas8FGW06pTSBnm10JR0qWFA4rGBWW3ixmd5wOPocdTWXQqjuy2pPqut
+         WJyg==
+X-Gm-Message-State: AOJu0YwG8gzzX2+xsoyeN5RzSZSxcDRipRSvjzEDv0m3/lHYbSOTBvef
+	lz3jDQ/ZBApoVI10L5vvP8vJM12vNxMLuXYo3jnXmG3oC5xqXpldEadr
+X-Gm-Gg: ATEYQzyU4UEB/VZaICtCNuGYRrJv58WE7Oda26XaeIY4tn+aWCy2cq7XX/izdLKS2N2
+	c5hRnnNc1Dq7skS0LNAEn8HR4WQy4Bax8HZ3zyu6FTRWbVfg+itZjffkgzXd+QIhqyz4F7/lWzF
+	pQbd1o+JPDdQQalXJqJTyULyw28A4mUOkuaMMH/1BrPDJCmmiAo/IzkF6k+G7/CWiBWVa1nJQds
+	z1tfpSeLfhICWpR92ruJ0hpD7gOWc3zYmBiKLovk1CV+HGa9yJxCfAeYkYbGxNwv7UoXdqs9kd3
+	SEpxxajvizLvMuTPVC+Sc4ce31Ts3Z2vygYQDnbXiMRxfxqu3VdiHK+nl1nVgbylXo1sjnYHASu
+	PvqSduskSW5jnISTx2Mc2+xMFpJXeJeCMaeXSfvHExv1LQKUy3h/N8mfOV5zPqYJ7fgV/jLxNaE
+	kV4ofg0+fjYkOR+kWqwByLoqObS6xRsA==
+X-Received: by 2002:a17:903:4b4b:b0:2ae:4aa8:cab8 with SMTP id d9443c01a7336-2aea1cc7a8cmr26099295ad.4.1773136190120;
+        Tue, 10 Mar 2026 02:49:50 -0700 (PDT)
 Received: from [127.0.1.1] ([218.32.81.133])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae83f8a67esm199459775ad.61.2026.03.10.02.49.45
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2ae83f8a67esm199459775ad.61.2026.03.10.02.49.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 02:49:47 -0700 (PDT)
+        Tue, 10 Mar 2026 02:49:49 -0700 (PDT)
 From: Colin Huang <u8813345@gmail.com>
-Subject: [PATCH v3 0/3] ARM: dts: aspeed: anacapa: SGPIO updates and
- interrupt wiring
-Date: Tue, 10 Mar 2026 17:49:34 +0800
-Message-Id: <20260310-anacapa-dts-sgpio-v3-0-12d9b7f1202e@gmail.com>
+Date: Tue, 10 Mar 2026 17:49:35 +0800
+Subject: [PATCH v3 1/3] ARM: dts: aspeed: anacapa: fix SGPIOM0 GPIO line
+ naming for RMC leak detect
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,11 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAC7pr2kC/33NwQqDMAyA4VcZPa+jrbOWnfYeY4e0jRqYVlopG
- +K7r3ryMHYJ/IF8WVjCSJjY7bSwiJkShbFEdT4x18PYISdfmimhtCiDwwgOJuB+Tjx1EwWOVxQ
- Waqecr1m5myK29N7Nx7N0T2kO8bO/yHLb/tOy5JJDBY0VVpimFfduAHpdXBjYpmV1EJT+Jagit
- L7RRhkttTVHYV3XL7rXCx/0AAAA
-X-Change-ID: 20260202-anacapa-dts-sgpio-e4e0ba5c2cd5
+Message-Id: <20260310-anacapa-dts-sgpio-v3-1-12d9b7f1202e@gmail.com>
+References: <20260310-anacapa-dts-sgpio-v3-0-12d9b7f1202e@gmail.com>
+In-Reply-To: <20260310-anacapa-dts-sgpio-v3-0-12d9b7f1202e@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
  Andrew Jeffery <andrew@codeconstruct.com.au>
@@ -99,25 +98,25 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Colin.Huang2@amd.com, Carl.Lee@amd.com, Peter.Shen@amd.com, 
  Colin Huang <u8813345@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773136185; l=2227;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773136185; l=1183;
  i=u8813345@gmail.com; s=20260202; h=from:subject:message-id;
- bh=lwETLfhCTVcdz3eoaOCi8pmBQa817MjhbI42mJmTS9Q=;
- b=LwoyJoDM1URyDCkYkC0JUVd7eMBMGf8tVEmyKmbEUcD16BHR0o1X7SOg7DN8/xLhhWQiT3Ltf
- us/voIpeqrgAPzOsY0DDAabHvVGhmc7iovEZ4O09xR7b5la/jWLu3Yo
+ bh=rM1a3/U5nmwGlIwi6wEffz8sWYF1jFlqAjBK8RCzM+c=;
+ b=/SkyG/rI3p32n0sdU9i9f/wiBX7Kg0j7iOXHEq5CkGxm3tJbqZMGUeyODhM18MHMcvQlMumuj
+ xH1TzkeymrGBPmYnlXV/UAu8KCqMPPDrerCRNXkWJk0iogVaIO0fM6f
 X-Developer-Key: i=u8813345@gmail.com; a=ed25519;
  pk=Zlg0WqpCw4qbswOqamTBTXIchwR/3SnYZpy7rjaGMdQ=
-X-Rspamd-Queue-Id: 65A06248D83
+X-Rspamd-Queue-Id: 9D599248D24
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273425-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273426-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -125,7 +124,7 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
@@ -136,58 +135,42 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.24:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-This series updates the SGPIO-related device tree definitions for the
-Facebook Anacapa BMC platform.
+The SGPIOM0 GPIO line naming is adjusted to correctly reflect the
+RMC leak detection signal position.
 
-The original change was submitted as a single patch. Based on reviewer
-feedback, the update has been split into three logical patches to
-separate concerns and improve reviewability:
+Move "LEAK_DETECT_RMC_N" to the correct GPIO index and clear the
+previous reserved placeholder entries to maintain proper alignment
+with the hardware GPIO mapping.
 
-1. Fix SGPIOM0 GPIO line naming for the RMC leak detect signal.
-   This patch corrects the placement of LEAK_DETECT_RMC_N without
-   changing functionality.
-
-2. Update SGPIO GPIO line names and mappings.
-   This patch reworks SGPIOM0 GPIO line names and signal assignments to
-   match the current hardware wiring, improving correctness and clarity.
-
-3. Add SGPIO interrupt wiring for PCA9555 GPIO expanders.
-   This patch connects the PCA9555 gpio@24 nodes to the SGPIO interrupt
-   controller to enable proper interrupt handling.
+This change only updates the GPIO line labels and does not affect
+the electrical configuration or GPIO functionality.
 
 Signed-off-by: Colin Huang <u8813345@gmail.com>
 ---
-Changes in v3:
-- Split the original patch into three smaller patches based on reviewer feedback.
-- Remove references to external documents from commit messages. 
-- Link to v2: https://lore.kernel.org/r/20260226-anacapa-dts-sgpio-v2-1-fd76828616b8@gmail.com
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Changes in v2:
-- Add interrupt-parent and interrupts properties to PCA9555 nodes to
-  enable proper interrupt handling required by phosphor-gpio-monitor.
-- Clarify DFT motivation in the commit message and mention the source
-  mapping (Helios_SGPIO_BIT_MAP.xlsx rev: 2026-02-16).
-- Minor wording cleanups in the commit message (line names vs. mappings).
-- Rebase onto the latest tree to account for intervening commits.
-- Link to v1: https://lore.kernel.org/r/20260202-anacapa-dts-sgpio-v1-1-a3a7b0b087f0@gmail.com
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+index 2cb7bd128d24..3e297abc5ba4 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-anacapa.dts
+@@ -880,9 +880,9 @@ &sgpiom0 {
+ 	"Channel7_leakage_EAM2", "",
+ 
+ 	/* C0-C7 line 32-47 */
+-	"RSVD_RMC_GPIO3", "", "", "",
++	"RSVD_RMC_GPIO3", "", "LEAK_DETECT_RMC_N", "",
++	"", "", "", "",
+ 	"", "", "", "",
+-	"LEAK_DETECT_RMC_N", "", "", "",
+ 	"", "", "", "",
+ 
+ 	/* D0-D7 line 48-63 */
 
----
-Colin Huang (3):
-      ARM: dts: aspeed: anacapa: fix SGPIOM0 GPIO line naming for RMC leak detect
-      ARM: dts: aspeed: anacapa: update SGPIO mappings for DFT integration
-      ARM: dts: aspeed: anacapa: add SGPIO interrupt to PCA9555
-
- .../dts/aspeed/aspeed-bmc-facebook-anacapa.dts     | 149 ++++++++++++---------
- 1 file changed, 89 insertions(+), 60 deletions(-)
----
-base-commit: 710dbb13377c80a6e39ef049a517665841e3221e
-change-id: 20260202-anacapa-dts-sgpio-e4e0ba5c2cd5
-
-Best regards,
 -- 
-Colin Huang <u8813345@gmail.com>
+2.34.1
 
 
