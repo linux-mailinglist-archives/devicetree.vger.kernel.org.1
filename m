@@ -1,118 +1,146 @@
-Return-Path: <devicetree+bounces-273630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273631-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wKkoEwNGsGnFhgIAu9opvQ
-	(envelope-from <devicetree+bounces-273630-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:25:39 +0100
+	id 6J6sIVNIsGnFhgIAu9opvQ
+	(envelope-from <devicetree+bounces-273631-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:35:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98520254AD8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:25:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55A1254E58
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 17:35:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B3E9306DF0F
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:25:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 97C023076503
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 16:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B653C13E9;
-	Tue, 10 Mar 2026 16:25:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73FF3C8712;
+	Tue, 10 Mar 2026 16:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qcreGSmD"
+	dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b="LACfQ8k6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from pdx-out-003.esa.us-west-2.outbound.mail-perimeter.amazon.com (pdx-out-003.esa.us-west-2.outbound.mail-perimeter.amazon.com [44.246.68.102])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D303B6C04
-	for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 16:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A21FE30AD00;
+	Tue, 10 Mar 2026 16:35:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=44.246.68.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773159936; cv=none; b=Smv6XASZVJcf9qWhMpVdEbEl4SopqSxueM/jzXeNFbYYdhzSCDKo4CQWvOeXB9cqmLjo7K5v2zvkaKwoh3/7dw1gOFIDS8yqW8S8Z/ZYEGcpso4fd36cIf5PE+x7NpufGp1WNhtT7Em0Ocsk9I40rVXLt4/tZbajMYda7x4hcNQ=
+	t=1773160528; cv=none; b=OKqeOTOT5zddl8byj+Ghk9OMVpzgmAbUujs4yIE6fq1s8wXtBnjk8p6CCKL3pGev+7AFqEv0iFr/kOhNBTym2CdAdrAHmR8MIEjLzAYy2dB/b8Pdm9BpqQuA6pqAKiQr7y9NvcSVvIfMZsVPDTCUQmcc+JIQYjMk8qf7F3GtOdI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773159936; c=relaxed/simple;
-	bh=lPmtWmxnomDN/valacBHp6IXm+28b74pnINQAnw3Lm4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZY5McbYeBMoSnoi7NilGadmQ5kv5SToYSC3FMVtqnbGaYywd/79N1NbbLJleN1EXKVHXVJ+7Vk5npMI9U+fxMnJeZq5txC9VzNknMKJ6MEwIZHPfQx2ZsGKepJKLkcjuVzxIeD/vvC351hMNvrfJTyfJy0Cl4SEJzlZq++NCD58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qcreGSmD; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=ZmlweOlRxI9TYGhuStgUAoSkF3murzujj5mzJOXAUP4=; b=qcreGSmD2NWlfSWfQ9V5B6AdSQ
-	zA/HYMCvReWBEtW4F6/FhSa68UEJTs0XKZzDObABUzfwOHJwJl2O1AWWfF1f+kxeYsDLxoB+2Ny6o
-	jiWY6EQlkxxNxMF7HQZzqMw/rjykdPN2Ah2VS0w5CYV9goPFTkv2l6oT/Ti8OikVElpY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1vzztf-00B3Ui-RB; Tue, 10 Mar 2026 17:25:27 +0100
-Date: Tue, 10 Mar 2026 17:25:27 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: airoha: en7581: Add switch node to to
- EN7581 SoC
-Message-ID: <a05947c7-0cc1-4cb1-a971-0fc581949c2b@lunn.ch>
-References: <20260310-airoha-7581-dsa-switch-v2-1-852692ba68b8@kernel.org>
+	s=arc-20240116; t=1773160528; c=relaxed/simple;
+	bh=NyY1GquT7Kh0BgWa3VarHvccTq0L4QkWhlLAy2muwXY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N0qxUMLYbTKq6y73k1gbViE+PxxIcLbke+e+D5jboxE1XrnCq6ZOMixLZ0gW7DRZnf0oi5D79G3WkFgOmhPd+CTFG6+egi0nqgZNdq+W6BUXXp5/NWKovs6nBjiw78X/Mdyc+4H0YjImyRF7spU0bRoDFJsG3cL7b18RIE7ZxQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com; spf=pass smtp.mailfrom=amazon.com; dkim=pass (2048-bit key) header.d=amazon.com header.i=@amazon.com header.b=LACfQ8k6; arc=none smtp.client-ip=44.246.68.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amazon.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amazon.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazoncorp2;
+  t=1773160527; x=1804696527;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oM8nxu9JpUKslzaEdemYho0xSJ2TMFTESfkq0DvUVVw=;
+  b=LACfQ8k6S8/O2xVzsbEPiQGoE2cjCYpHcUwZmJnYp855fOryJnYNa4yF
+   tKGzpufH7M0rmP9Fbb/dyq3rsqd879jWs/9dXaqlzjt8abl8TUWf8vEMJ
+   txfWl4knjXBicrSCEEXIe6rtdEEa3/9pLmNkKwqNYTdMsfkbjLtZni39Y
+   JQzg8Wg5Y/ycFTpkdo93h8ImMoI2KeUlv3+UimZcXEBw/RgQROTl2ff2c
+   TcKosIND/4C10pcczqscyDg18QaukDDlmOs46S6hjLTDn0ZChZw60ZieE
+   CTcCc6wtfLl81r49PQZLbzgXGNi5vOERR+t27gnoPOlhVWEAB/+q5WmQY
+   w==;
+X-CSE-ConnectionGUID: /KcLQhXqSqGICCrCuebe2A==
+X-CSE-MsgGUID: pfKiBkG4QxWKbkbMhftZtg==
+X-IronPort-AV: E=Sophos;i="6.23,112,1770595200"; 
+   d="scan'208";a="14737380"
+Received: from ip-10-5-12-219.us-west-2.compute.internal (HELO smtpout.naws.us-west-2.prod.farcaster.email.amazon.dev) ([10.5.12.219])
+  by internal-pdx-out-003.esa.us-west-2.outbound.mail-perimeter.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 16:35:27 +0000
+Received: from EX19MTAUWC001.ant.amazon.com [205.251.233.53:11308]
+ by smtpin.naws.us-west-2.prod.farcaster.email.amazon.dev [10.0.31.3:2525] with esmtp (Farcaster)
+ id afcbc70f-3c48-4a86-bb17-30a9a863f00e; Tue, 10 Mar 2026 16:35:27 +0000 (UTC)
+X-Farcaster-Flow-ID: afcbc70f-3c48-4a86-bb17-30a9a863f00e
+Received: from EX19D001UWA001.ant.amazon.com (10.13.138.214) by
+ EX19MTAUWC001.ant.amazon.com (10.250.64.174) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37;
+ Tue, 10 Mar 2026 16:35:26 +0000
+Received: from localhost (10.187.170.21) by EX19D001UWA001.ant.amazon.com
+ (10.13.138.214) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA) id 15.2.2562.37; Tue, 10 Mar 2026
+ 16:35:26 +0000
+Date: Tue, 10 Mar 2026 09:35:25 -0700
+From: Cory Keitz <ckeitz@amazon.com>
+To: <dumitru.ceclan@analog.com>
+CC: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, "Mauro Carvalho
+ Chehab" <mchehab@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Julien Massot
+	<julien.massot@collabora.com>, Rob Herring <robh@kernel.org>, Niklas
+ =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>, "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>, <linux-media@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+	<mitrutzceclan@gmail.com>, Cosmin Tanislav <demonsingur@gmail.com>
+Subject: Re: [PATCH RESEND v8 14/21] media: i2c: add Maxim GMSL2/3
+ deserializer framework
+Message-ID: <abBITdEEs4tJCQWa@bcd074ae11bb>
+References: <20251208-gmsl2-3_serdes-v8-0-7b8d457e2e04@analog.com>
+ <20251208-gmsl2-3_serdes-v8-14-7b8d457e2e04@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260310-airoha-7581-dsa-switch-v2-1-852692ba68b8@kernel.org>
-X-Rspamd-Queue-Id: 98520254AD8
+In-Reply-To: <20251208-gmsl2-3_serdes-v8-14-7b8d457e2e04@analog.com>
+X-ClientProxiedBy: EX19D046UWA003.ant.amazon.com (10.13.139.18) To
+ EX19D001UWA001.ant.amazon.com (10.13.138.214)
+X-Rspamd-Queue-Id: E55A1254E58
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-7.16 / 15.00];
+	WHITELIST_DMARC(-7.00)[amazon.com:D:+];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[lunn.ch,none];
-	R_DKIM_ALLOW(-0.20)[lunn.ch:s=20171124];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[amazon.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[amazon.com:s=amazoncorp2];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,collabora.com,kernel.org,lists.infradead.org,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-273630-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-273631-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[lunn.ch:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andrew@lunn.ch,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kernel.org,linux.intel.com,collabora.com,ragnatech.se,linuxfoundation.org,vger.kernel.org,lists.linux.dev,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lunn.ch:dkim,lunn.ch:email,lunn.ch:mid]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ckeitz@amazon.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[amazon.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 05:12:47PM +0100, Lorenzo Bianconi wrote:
-> Introduce dsa switch controller node to EN7581 SoC and EN7581
-> evaluation board.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
-> Changes in v2:
-> - Fix ethernet-phy node name
-> - Remove unnecessary phy-mode property in ethernet-phy nodes.
+On Mon, Dec 08, 2025 at 04:13:06PM +0200, Dumitru Ceclan via B4 Relay wrote:
+> +#define MAX_DES_LINK_FREQUENCY_MIN		100000000ull
+> +#define MAX_DES_LINK_FREQUENCY_DEFAULT		750000000ull
+> +#define MAX_DES_LINK_FREQUENCY_MAX		1250000000ull
 
-Looks sensible now.
+Related to my comments on patch 16 [1], I believe this should be set
+differently between DPHY and CPHY. As I test more cameras I've patched
+this to allow CPHY link frequencies up to 2500MHz. I'm also wondering
+whether these should be driver-specific rather than defined at the
+framework level to allow for higher capacities in future silicon.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+[1] https://lore.kernel.org/linux-media/aaxWATynXaVFglvS@bcd074ae11bb/
 
-    Andrew
+--
+R,
+Cory
 
