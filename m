@@ -1,125 +1,127 @@
-Return-Path: <devicetree+bounces-273370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273372-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNM9OHbgr2nkdAIAu9opvQ
-	(envelope-from <devicetree+bounces-273370-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:12:22 +0100
+	id WAcgF6zgr2nkdAIAu9opvQ
+	(envelope-from <devicetree+bounces-273372-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:13:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BD5124809B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:12:22 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E99A1248103
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 10:13:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id AC8003038737
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:07:14 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id D1A763030FE3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 09:07:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D9743CEE9;
-	Tue, 10 Mar 2026 09:04:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A1143CEFD;
+	Tue, 10 Mar 2026 09:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XqN6L5yU"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="VByBN9Dn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F37B3AEF4C;
-	Tue, 10 Mar 2026 09:04:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C08218859B;
+	Tue, 10 Mar 2026 09:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773133442; cv=none; b=T1Rz4aOfvETyRvAmTTN0XYFKC4Z+rytmRKudZR2OJVTFgqaAFo0EOy0Lit+Jwh4ro9MFnnW265Sbc0JPvLXSTy9FDI+C9V8OcsxHvqXjr+T0+kJ08cUm6eVXJlB8iQYueTrX6CzGkQP42FOPO1/j8/30WjNPjQ+kdmivz3///mo=
+	t=1773133523; cv=none; b=fcdt4l6FNKCOhuWDmuSN1pJILS/pTn6TnUFPwb7QM/Tt/EhCY5sUjOUDyb9JBgcxtpKvO2UNyDOh99lVrye1E8K+/W6UxWCnJL60LK/Y0mjGREdY2mBnVHbn3TlkzPHDZRd5Vfyoc0hZd4Ko3ugVs5VfXfsPZh+dqFFrY/vydDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773133442; c=relaxed/simple;
-	bh=WZXCyE3t/S/NiszlvHQc1cUrNJ/Xxt7fDuRcWPppb9s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ci8nzb1tWydEcMEiASXe1SCfFSpXFStLqoBdPbYoVF2/FFiCXhqEQjbYTQqHzitxC9zkTQxLDbQ18EpHQGpeZe3HWD58cs8t93vXLAgUyn7c3mp21iEB/7HJpOTGDeZ+MN2goro0N13VES+mWaAMn1hhm2yqW1Wj45eijezshXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XqN6L5yU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E22C19423;
-	Tue, 10 Mar 2026 09:04:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773133442;
-	bh=WZXCyE3t/S/NiszlvHQc1cUrNJ/Xxt7fDuRcWPppb9s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XqN6L5yU2yH7gnbvFALBQeCYBkuoxgARvdPyGbqRRZpk7C8AxZlykoxp2B0xM/ahI
-	 g59Q3GcwxxifTE/NdPmge15adkcWMdNkyfbLYSGerLM7mmfwjgFMXkpKNXnEtkayev
-	 Bg5vCzNX2sNT90aFDU8uNPI32RYIHpnAaOdqD5jlxxmsPkKSOv+tpDbioXsYVRQE3F
-	 UfC1gtLcrAhClTFcHbpgjyHEcIzHdAqDOarPm9TNmQgOmC6fCGeyKt9U5rVe/so2vj
-	 xH+LeOahp/JT9SP2ZSsunJrG4z5885gVdoe8HLE4Xq/7LRCz8+JJkFnT0YLFdawrxu
-	 Q7RjTZ87uPGNQ==
-Date: Tue, 10 Mar 2026 17:03:59 +0800
-From: Yixun Lan <dlan@kernel.org>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: gaohan@iscas.ac.cn, alex@ghiti.fr, aou@eecs.berkeley.edu,
-	conor+dt@kernel.org, devicetree@vger.kernel.org, dlan@gentoo.org,
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, palmer@dabbelt.com, pjw@kernel.org,
-	rabenda.cn@gmail.com, robh@kernel.org, spacemit@lists.linux.dev
-Subject: Re: [PATCH 7/7] riscv: dts: spacemit: PCIe and PHY-related updates
- for OrangePi RV2
-Message-ID: <20260310090359-GKF302167@kernel.org>
-References: <677085181a4215c517907f44b363ef7777fd407b.1769895215.git.gaohan@iscas.ac.cn>
- <20260204140619.47536-1-amadeus@jmu.edu.cn>
+	s=arc-20240116; t=1773133523; c=relaxed/simple;
+	bh=M8pNDEtotLUhhRZIK1FscdSEc+0KR4iTe7nbV8NtZNg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=u7tqA48Qs4A9aQvdU6NkkYp8yX3CWmDd2zoz8pzpfhWcMg4UBWuJEcrRzAxYTW4LOxiaZMLehKiwPHIXClrcijkW58r+BYc1A0vYpoxI7gbGHc+g5CPYbAyv6d1oWYKBh253vU0/uz6Ef22mRTwRVKhl+ig06wdttcXteK0ZpQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=VByBN9Dn; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=M8pNDEtotLUhhRZIK1FscdSEc+0KR4iTe7nbV8NtZNg=; b=VByBN9Dn95xghDhOxw1yKNiwXM
+	r67u85KhS+vpERHVwqtLGbtjeyLoXNagYYcAX8ZctMPr8ne6sDu25dL2HJCVlZWY/iFmVV/CPLqkc
+	qYRBH2tW4/G6lIjbhDLA+XUtw9uYyjrtL7qprvhpQ/dX+X0jFt1C0zdtWcGEVOizceKRbaPBmm9Du
+	R7zF05ExyeiTVeZXKOrL0tOLbziga2vhEufAO1uflnwBXSeTgL670SpR/YSALzrF1fYy7awaJd23e
+	bRb5sAoIe2u0GOEqjtFBsDPj1eaTEMgFJfUBUc6zGQB8K980vOgBj+koQex7zA3cQb2aNRegoEzrQ
+	fZkpOlxg==;
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Frank Wunderlich <frank-w@public-files.de>, david@ixit.cz
+Cc: Martin Filla <freebsd@sysctl.cz>,
+ Charalampos Mitrodimas <charmitro@posteo.net>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, David Heidelberg <david@ixit.cz>
+Subject:
+ Re: [PATCH v4 3/4] arm64: dts: rockchip: Use reference PCIe clock generator
+ for BPI-R2-Pro
+Date: Tue, 10 Mar 2026 10:05:04 +0100
+Message-ID: <4743255.cEBGB3zze1@phil>
+In-Reply-To: <20260304-rk3568-bri-r2-pro-fix-pcie-v4-3-37abd7ba29d0@ixit.cz>
+References:
+ <20260304-rk3568-bri-r2-pro-fix-pcie-v4-0-37abd7ba29d0@ixit.cz>
+ <20260304-rk3568-bri-r2-pro-fix-pcie-v4-3-37abd7ba29d0@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260204140619.47536-1-amadeus@jmu.edu.cn>
-X-Rspamd-Queue-Id: 8BD5124809B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Rspamd-Queue-Id: E99A1248103
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[sntech.de,quarantine];
+	R_DKIM_ALLOW(-0.20)[sntech.de:s=gloria202408];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273370-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[iscas.ac.cn,ghiti.fr,eecs.berkeley.edu,kernel.org,vger.kernel.org,gentoo.org,lists.infradead.org,dabbelt.com,gmail.com,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,public-files.de,ixit.cz];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273372-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[sntech.de:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlan@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FROM_NEQ_ENVFROM(0.00)[heiko@sntech.de,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sntech.de:dkim,sntech.de:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,sysctl.cz:email]
 X-Rspamd-Action: no action
 
-Hi Chukun,
+Am Mittwoch, 4. M=C3=A4rz 2026, 12:05:29 Mitteleurop=C3=A4ische Normalzeit =
+schrieb David Heidelberg via B4 Relay:
+> From: David Heidelberg <david@ixit.cz>
+>=20
+> Describe properly PCIe clock, which allow us correct the
+> topology (removing the vcc3v3-{minipcie,ngff} dependency on pi6c as
+> supply) and adding the clock dependency in the PCIe nodes.
+>=20
+> Suggested-by: Heiko Stuebner <heiko@sntech.de>
+> Tested-by: Martin Filla <freebsd@sysctl.cz>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
 
-On 22:06 Wed 04 Feb     , Chukun Pan wrote:
-> Hi,
-> 
-> > +&combo_phy {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&pcie0_3_cfg>;
-> > +};
-> 
-> This pinctrl is clearly incorrect (including BPI-F3).
-> Checking the schematic reveals that these pins are for CAM_I2C.
-I agree, if the phy is used for USB, the pinctrl info can be dropped
-Do you want to submit a patch for this?
+I think patches 2+3 could do something like [0],
+to actually model the clock-generator as one node.
 
-> By the way, combo_phy connects to USB3, so it should be enabled
-> in the USB3 patch.
-> 
-I think this is already done, check usb_dwc3 node in k1.dtsi?
-https://github.com/torvalds/linux/blob/v7.0-rc3/arch/riscv/boot/dts/spacemit/k1.dtsi#L1180
 
--- 
-Yixun Lan (dlan)
+Heiko
+
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.gi=
+t/commit/?h=3Dv7.1-armsoc/dts64&id=3Dcfe2d65332eff95ac7308478897760888f957a=
+eb
+
+
 
