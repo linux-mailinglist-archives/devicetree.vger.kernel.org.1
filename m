@@ -1,93 +1,97 @@
-Return-Path: <devicetree+bounces-273701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273702-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MAcLHZ1usGmNjAIAu9opvQ
-	(envelope-from <devicetree+bounces-273701-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:18:53 +0100
+	id wDN9Fi1vsGmNjAIAu9opvQ
+	(envelope-from <devicetree+bounces-273702-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:21:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5484256F79
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C60CC256FD0
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 20:21:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2E580302494D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:16:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8B2F23166180
+	for <lists+devicetree@lfdr.de>; Tue, 10 Mar 2026 19:18:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C98E734A3A7;
-	Tue, 10 Mar 2026 19:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31D8349B15;
+	Tue, 10 Mar 2026 19:18:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FJ8uDyjv"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OgdQwh9Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2999434A765;
-	Tue, 10 Mar 2026 19:16:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BAE1547C0;
+	Tue, 10 Mar 2026 19:18:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773170186; cv=none; b=jtvI2shg/UZrXLfmQBKb6OInMy07O8DclWJAX2v0ScZ5lIhxy+Lm3zo5xL2NjKd2Vk4xpfMii6I/laKLp8DB7K4Ezhky7x/rmTFvFBqLTYK0RTGoUzILdBfwmFHZxyX8YxGD4SbY7AK1yZS1o0qhIzNMJ7m3iWTCsYydGFCtZwI=
+	t=1773170313; cv=none; b=eqcugIyjDgvmdecp4rfM+4tjsa72EQuR6DSmzDB5YUHKVc/8MLYtATxUNlbgIMVVk29x20RBcCBbbw44erMYdSq49arUclNQWaJFSxwYVH6A7zhsuGbNxdvWuqYofjk4vkqSosUBDg1mxVQvc5ifsMrAkjm5eUmTBjv0geUBwTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773170186; c=relaxed/simple;
-	bh=NnPa4ewL5eEZPjlZWsIN3hJ1ai/T5y2qV0vW/U8QHgA=;
+	s=arc-20240116; t=1773170313; c=relaxed/simple;
+	bh=xcdQ7ftwUAonmlIubDJUO2exQTONEx2whkAN5AV9mXY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HURiVksHZJH8bFbP4ZTSsZEYayXtz7O64RBMRy0LeM2ix0c6tBIiu01RhAu18yAS4q1YOMHsI0cWON2M43HHFVQe4D5BDqurPzEsWKfUvPVO0ncO8TQXmoT52T9l1BSZ2W4HSXFqZVjwUBrUlqlmkjnyxg9yN+Uaa0T894yab6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FJ8uDyjv; arc=none smtp.client-ip=192.198.163.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=amMhSsC5BpKPUviWuaDmTFr3ad0U88cmvJTcMHDDQhigdCPlezikXEKn3e+CITn2mcfaKEqO4fHPY+lhjUYchZFRdoBmM1q6USW/OV+f99RvgatW6vfrcjfhEwu8+sCbzLEs0AOVubynt8gwXg0XEbS6NEQDscLkaEsvfAg9AQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OgdQwh9Y; arc=none smtp.client-ip=198.175.65.15
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773170183; x=1804706183;
+  t=1773170312; x=1804706312;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=NnPa4ewL5eEZPjlZWsIN3hJ1ai/T5y2qV0vW/U8QHgA=;
-  b=FJ8uDyjva4gS1F56fbvTtY9Vk+jk6+dKp9Q0InLFS9S+esVdvVwnSANd
-   zSrluM3sYcCktc7SawRpHj/neXLEXmc5i6/i7pDjWcHDSWFQSKZx3aeKi
-   Sof7ApeKWwH9cA1sfkvoSgdUNQ2ZRn79aHZVWvZxkkyopbJJTNe8kFu8C
-   uZV3vbh0dtwTEkpruY2xD1zo7E5Qme80rDYgHJEHiJhccrqAM0YlC3riv
-   ox1V+8PF3kItxCaz2cYMf9cVf+FNtiflk/Jml0H3lmQIriclbq3rczaAA
-   Q/wMZadwdEz0Mza9zMhGIVyf4RKkR0J7tRLVO0dDiPTbTJxYP2Cp8s4aB
-   g==;
-X-CSE-ConnectionGUID: yfzxI6TgT1qqZGb2iOepAw==
-X-CSE-MsgGUID: feEBwj2KRbKPc9oRDvwvSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61801889"
+   mime-version:in-reply-to;
+  bh=xcdQ7ftwUAonmlIubDJUO2exQTONEx2whkAN5AV9mXY=;
+  b=OgdQwh9Yiut7P+6LU45bTw+SVpI3a76YElTSTaXDYQn+M2wczG/JyruP
+   bZ53IQGmU4RFHgVQ7ifh9K9KJx6f+9nmJEvefmuqJLzOu2taorXA1Ieh/
+   iMi4+VRHOEt6IDANAVh7SUZEH0tdEMkgyHAZBR0ga3kZACbeT8w0c3gj6
+   iL7Hc8IUNj9oqfFfXKshaEHtHP04e4bhUdCFy3RRhk6h3Vl0460T1pXSR
+   KtZDk21iW84kBY3ZXgm55tT0q4VzTEmmGzGg+8YNaLNdYUWI4NdOS5c2O
+   j8o1PmHlH1mQP55jofiLW2O0huoMdf1MtAH2opUbiHKodO7ICRmyeWxiq
+   w==;
+X-CSE-ConnectionGUID: r9mlkO+ISSS7N7lkw0Bajw==
+X-CSE-MsgGUID: XbFAWlguROyd1Ddzm/xVoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="77833323"
 X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
-   d="scan'208";a="61801889"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 12:16:22 -0700
-X-CSE-ConnectionGUID: YHhMJRxVTgmc/M4o5eYzhg==
-X-CSE-MsgGUID: tcF+rLaeQ3CMyqAoNf2tcQ==
+   d="scan'208";a="77833323"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 12:18:32 -0700
+X-CSE-ConnectionGUID: 1b+o1Bi+StapWP0nj7nQpw==
+X-CSE-MsgGUID: i7vlGp/0RdKlly7MEgNErQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; 
-   d="scan'208";a="215560766"
+   d="scan'208";a="220396741"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.54])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 12:16:19 -0700
-Date: Tue, 10 Mar 2026 21:16:17 +0200
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 12:18:26 -0700
+Date: Tue, 10 Mar 2026 21:18:25 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Taha Ed-Dafili <0rayn.dev@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	skhan@linuxfoundation.org, me@brighamcampbell.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/5] iio: dac: ad5504: fix scale via
- output-range-microvolt
-Message-ID: <abBuAZTSeTjRhyZY@ashevche-desk.local>
-References: <20260310174835.24209-1-0rayn.dev@gmail.com>
- <20260310174835.24209-5-0rayn.dev@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Hugo Villeneuve <hugo@hugovil.com>, robin@protonic.nl, andy@kernel.org,
+	geert@linux-m68k.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, hvilleneuve@dimonoff.com,
+	mkorpershoek@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, lee@kernel.org,
+	alexander.sverdlin@gmail.com, marek.vasut@gmail.com, akurz@blala.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v4 4/4] Input: charlieplex_keypad: add GPIO charlieplex
+ keypad
+Message-ID: <abBugQOUWG_FTs4f@ashevche-desk.local>
+References: <20260305192101.2125660-1-hugo@hugovil.com>
+ <20260305192101.2125660-5-hugo@hugovil.com>
+ <aari1Y1CPZSYEVj3@ashevche-desk.local>
+ <abBkk4Ng-_MDHd6t@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260310174835.24209-5-0rayn.dev@gmail.com>
+In-Reply-To: <abBkk4Ng-_MDHd6t@google.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: D5484256F79
+X-Rspamd-Queue-Id: C60CC256FD0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -98,132 +102,59 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273701-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-273702-lists,devicetree=lfdr.de];
 	HAS_ORG_HEADER(0.00)[];
 	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[hugovil.com,protonic.nl,kernel.org,linux-m68k.org,dimonoff.com,gmail.com,collabora.com,blala.de,vger.kernel.org,lists.infradead.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 05:48:34PM +0000, Taha Ed-Dafili wrote:
-> The AD5504 full-scale range is hardware-determined by the
-> R_SEL pin (0-30V or 0-60V). Previously, the driver incorrectly used the
-> VCC regulator voltage to calculate the scale.
+On Tue, Mar 10, 2026 at 06:37:34PM +0000, Dmitry Torokhov wrote:
+> On Fri, Mar 06, 2026 at 04:21:09PM +0200, Andy Shevchenko wrote:
+> > On Thu, Mar 05, 2026 at 02:20:50PM -0500, Hugo Villeneuve wrote:
+
+...
+
+> > > +	int oline;
+> > 
+> > Why signed?
+> > 
+> > > +	int code;
+> > > +
+> > > +	for (code = 0, oline = 0; oline < keypad->nlines; oline++) {
+> > 
+> > Can be like
+> > 
+> > 	code = 0;
+> > 	for (unsigned int oline = 0; oline < keypad->nlines; oline++) {
+> > 
+> > as iterator is not used outside the loop.
+> > 
+> > > +		DECLARE_BITMAP(values, MATRIX_MAX_ROWS);
+> > 
+> > > +		int iline;
+> > 
+> > Why signed?
 > 
-> Update the probe function to read the standard "output-range-microvolt"
-> property as a two-element array to determine the correct full-scale range.
-> Use the MILLI macro for clearer millivolt assignments and simplify the
-> probe logic using a local device pointer.
+> Does it make any difference given practical limits on nlines?
 
-...
-
->  static int ad5504_probe(struct spi_device *spi)
->  {
-> -	const struct ad5504_platform_data *pdata = dev_get_platdata(&spi->dev);
-> +	struct device *dev = &spi->dev;
-> +	const struct ad5504_platform_data *pdata = dev_get_platdata(dev);
->  	struct iio_dev *indio_dev;
->  	struct ad5504_state *st;
->  	int ret;
-> +	u32 range[2];
-
-Preserve the reversed xmas tree order.
-
-> -	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-
-Unrelated change. This should be split into another patch that makes use
-of it here and there.
-
-I have a déjà vu about these comments...
-
->  	if (!indio_dev)
->  		return -ENOMEM;
->  
->  	st = iio_priv(indio_dev);
->  
-> -	ret = devm_regulator_get_enable_read_voltage(&spi->dev, "vcc");
-> -	if (ret < 0 && ret != -ENODEV)
-> +	ret = devm_regulator_get_enable(dev, "vcc");
-> +	if (ret)
->  		return ret;
-
-> -	if (ret == -ENODEV) {
-
-Why remove this condition?
-
-This might break use of the driver on ACPI systems.
-
-> -		if (pdata->vref_mv)
-> -			st->vref_mv = pdata->vref_mv;
-> -		else
-> -			dev_warn(&spi->dev, "reference voltage unspecified\n");
-> -	} else {
-> -		st->vref_mv = ret / 1000;
-> -	}
-> +
-> +	st->vref_mv = 60 * MILLI;
-> +	ret = device_property_read_u32_array(dev, "output-range-microvolt",
-> +					     range, 2);
-
-ARRAY_SIZE()
-(will require array_size.h)
-
-> +	if (!ret && range[1] == 30 * MICRO)
-> +		st->vref_mv = 30 * MILLI;
-
-This looks unusual and hard to follow. It also misses the validation
-of the min of the range.
-
-> +	if (pdata && pdata->vref_mv)
-> +		st->vref_mv = pdata->vref_mv;
-
-No, pdata should go.
-
->  
->  	st->spi = spi;
->  	indio_dev->name = spi_get_device_id(st->spi)->name;
-
-...
-
->  	indio_dev->modes = INDIO_DIRECT_MODE;
->  
->  	if (spi->irq) {
-> -		ret = devm_request_threaded_irq(&spi->dev, spi->irq,
-> -					   NULL,
-> -					   &ad5504_event_handler,
-> -					   IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> -					   spi_get_device_id(st->spi)->name,
-> -					   indio_dev);
-> +		ret = devm_request_threaded_irq(dev, spi->irq,
-> +						NULL,
-> +						&ad5504_event_handler,
-> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +						spi_get_device_id(st->spi)->name,
-> +						indio_dev);
->  		if (ret)
->  			return ret;
->  	}
->  
-> -	return devm_iio_device_register(&spi->dev, indio_dev);
-> +	return devm_iio_device_register(dev, indio_dev);
->  }
-
-Unrelated changes.
+Maybe not, but might lead to interesting bugs in the future in case if used in
+some arithmetics.
 
 -- 
 With Best Regards,
