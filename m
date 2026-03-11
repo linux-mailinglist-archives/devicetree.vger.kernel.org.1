@@ -1,186 +1,157 @@
-Return-Path: <devicetree+bounces-273947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273948-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEBcCuQqsWkBrgIAu9opvQ
-	(envelope-from <devicetree+bounces-273947-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:42:12 +0100
+	id +NsDBeArsWkBrgIAu9opvQ
+	(envelope-from <devicetree+bounces-273948-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:46:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8CEB25F8AD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:42:11 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5F5925F9E0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9251B30A317B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:33:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id BC2D030AAE70
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35E893BADA1;
-	Wed, 11 Mar 2026 08:30:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701423BB9F1;
+	Wed, 11 Mar 2026 08:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="OFTjD8Na"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FODQ7j1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A29143B9D9D;
-	Wed, 11 Mar 2026 08:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773217840; cv=pass; b=Kxu3Kxvc2F7y6igcRTgC+yD//gQ1ck8F/IaB97v4ZA6zIsfaX3d/XGMP1DQitCB3f7U3vSJF6zyZ9sJcHh/qFDJbBwekh4RMTKLmwpbL7tluJm4Toky8wfvguFPiUF/m7hHM39O/Z21sT+epTKxnBMAI67lgMmDwDq0ubyxbQ+I=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773217840; c=relaxed/simple;
-	bh=c5LBAPPfLIIAJ9gl6M8CjYPeOpGyOFg9DgzYToFSvw8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=BIlZAp1DLTeMuHrq2b0E1vgvhFTwiGBaFudwtwb5g3VzYaYEmujrvo6GgtfB+VgrecLDyMjgVWmgTgv1yBtNGyDDG2C/ihrCiHmRo2H2/P/y7HCJvE12SxjvOHWfjn+18+FAPBj4EncyvP/RgYh8I801ulWw9UrSJ02CCFUmrw0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=OFTjD8Na; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1773217803; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=e4rCCBVXm58mcjZFMPdyRFG67+4JMyj7FIF5xF778sXhKoSe/VaZZZJVskos4Wz7ViFKsKKIpGMZEHd3dElS4ZVHPsGH2bJn/Ye2oEjcJSppUIDxA71IvisuuZmNJUKi5+O94FahgtxmjCWxAlvWFNk4ysylrE/NUYyOOtL40cE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773217803; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=E3ClCvoJYZuLRBmzTcMn6ajshrwUL6YjIko/DDKwOAE=; 
-	b=PYOpcS5FUN5KR7aIGQPfw7CJFnjR//6NmXyLmjESoG2XhwrzabFKlntU65TiQ1FAzeGR/H4DjpD6m4yBmFa749+f+J5BhbG/aS5kwBhmgCAcFWE+C1rBXKKPDPJf3oaA/z9gIgm9pdK/YU1PgCfNQWEP8yo+t3sQ9jNIsrddKCk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773217803;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=Mime-Version:Content-Transfer-Encoding:Content-Type:Date:Date:Message-Id:Message-Id:Cc:Cc:Subject:Subject:From:From:To:To:References:In-Reply-To:Reply-To;
-	bh=E3ClCvoJYZuLRBmzTcMn6ajshrwUL6YjIko/DDKwOAE=;
-	b=OFTjD8Na8gTT5YWO1QJxVA72azVF05Cak8Y51Ah2c4qFRKDP0wpL/hTEAH0BBqv3
-	0OyHyZaL7taYlLMdo4gRaMgSygZpOJFHn1fyvc9rjHS0AiXkaeVRndPcZBFSmil+MFI
-	fTES6otGB1PHY1XfTHRGfk5jIdlnITd4bes/Iryc=
-Received: by mx.zohomail.com with SMTPS id 1773217800773151.97248823397604;
-	Wed, 11 Mar 2026 01:30:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA28E3BD62F
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773217978; cv=none; b=lkNdZALMXV88pVTlf9/l2zWjPibwnpwFhR+5tEeFcNS/ogRu33OB9ziAIgRQU3iICXBrhBArrEi9UbixEpMdoqvywrGr7T4AAEHKe/KKTab0CvZCZ2oR2mSn7Zms12TeoHiY0tlC/sJfA/Rp9b3tnm5fyDbul54lwMIvHryieZo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773217978; c=relaxed/simple;
+	bh=CCxrS9skmRpl8jND9v4vYlK+FQev5wTRfod1SOCisDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FGhmwhIBRlVTY98CegYok2xPPqWsG1XDKdJFccid6fqj37XfVynJUpCIRm6uYVW+xNBjNYZ+vdW7CppeZETPil3mGIjZi5cDyMhjAaq3Y1QoRmzy8RlVlRNsEGIjJ3+19mn0GdoaJWnXzK81iWtTIehDJuDUObRrE9FJgK9Nr+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FODQ7j1b; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=7LG9
+	PxpeOLthDVAZ4NlKI126O57wQkSgQ5aDzvQFM5Q=; b=FODQ7j1biQ3Qo31WrK4f
+	uShRRzabA/dPwrPNza0DQC0WyM5sj+agS9Cx//q+xT+5ZE0YNCQfZ02Oi7tWEXe3
+	W1w9MUkThwyLTRTThd1A8d4nYZUZ7Spu7mA3qGxZaPR8Lukl9FDzM/B97vn3XxuH
+	pX0xA3OnVhxTeX3Nc8akwmA0DaicvFAdNz4AkE0y1khFsreH6bdeXfY2KoHgZUYz
+	RSpxoVrIH32f6nVdgCmY0iO0mQrRGVmsnOIzHEB8n1+7QjnMKbo43RsKBHHwkFT3
+	+bCW6u0DaF3QstmzbCSv959BVOTvoxJTiQxSWBy6241X2M5+8Y2rLcjMoBEAa5q/
+	Qw==
+Received: (qmail 3564918 invoked from network); 11 Mar 2026 09:32:53 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Mar 2026 09:32:53 +0100
+X-UD-Smtp-Session: l3s3148p1@2G5ue7tMousujnut
+Date: Wed, 11 Mar 2026 09:32:53 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
+Message-ID: <abEotS0ZbGwqEmO5@ninjato>
+References: <20260303102029.147359-1-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Mar 2026 16:29:48 +0800
-Message-Id: <DGZT8U7OMGG3.WS9SPLJF9Y4Q@pigmoral.tech>
-Cc: <pjw@kernel.org>, <palmer@dabbelt.com>, <aou@eecs.berkeley.edu>,
- <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <gaohan@iscas.ac.cn>, <me@ziyao.cc>, "linux-riscv"
- <linux-riscv-bounces@lists.infradead.org>
-Subject: Re: [PATCH v3 0/3] Add SDHCI support for Canaan K230 SoC
-From: "Junhui Liu" <junhui.liu@pigmoral.tech>
-To: "Jiayu Du" <jiayu.riscv@isrc.iscas.ac.cn>, <krzk@kernel.org>,
- <ulf.hansson@linaro.org>, <adrian.hunter@intel.com>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260310064513.140093-1-jiayu.riscv@isrc.iscas.ac.cn>
-In-Reply-To: <20260310064513.140093-1-jiayu.riscv@isrc.iscas.ac.cn>
-X-ZohoMailClient: External
-X-Rspamd-Queue-Id: B8CEB25F8AD
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="m42m2ThPRCHUbJ3r"
+Content-Disposition: inline
+In-Reply-To: <20260303102029.147359-1-herve.codina@bootlin.com>
+X-Rspamd-Queue-Id: A5F5925F9E0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[pigmoral.tech:s=zmail];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [-3.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273947-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[pigmoral.tech];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[sang-engineering.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-273948-lists,devicetree=lfdr.de,renesas];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[junhui.liu@pigmoral.tech,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[pigmoral.tech:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pigmoral.tech:dkim,pigmoral.tech:email,pigmoral.tech:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:email]
 X-Rspamd-Action: no action
 
-Hi Jiayu,
-Thanks for your work.
 
-On Tue Mar 10, 2026 at 2:45 PM CST, Jiayu Du wrote:
-> This series is based on the k230 usbphy series[1].
->
-> This patch series adds SDHCI support for the Canaan K230 SoC,
-> which uses Synopsys DWCMSHC SDHCI controllers, include MMC0 and MMC1.
-> The hardware designs of these two controllers are different.
-> The MMC0 supports eMMC, while MMC1 only supports SDIO. Detailed
-> information can be found in the vendor's manual[2].
->
-> From the vendor's K230 manual:
->  - MMC0 supports eMMC5.0 and SDIO3.0, usually for eMMC chips.
->  - MMC1 only does SDIO3.0 in 4/1-bit mode up to SDR104, and the manual
->    clearly says it can't handle eMMC because of pin count and limits.
->
-> Therefore, there are two separate compatibles and the driver treats them
-> differently.
->
-> Link: https://lore.kernel.org/all/20260121145526.14672-1-jiayu.riscv@isrc=
-.iscas.ac.cn/ [1]
-> Link: https://github.com/kendryte/k230_docs/blob/main/en/00_hardware/K230=
-_Hardware_Design_Guide.md#mmc-circuit [2]
->
-> Changes in v3:
-> - Drop the clock maxItems.
-> - Add a const void *match_data to the struct dwcmshc_priv
-> - Copy the match_data pointer to dwcmshc_priv in the common dwcmshc_probe
-> - Link to v2: https://lore.kernel.org/all/20260226115923.75670-1-jiayu.ri=
-scv@isrc.iscas.ac.cn/
->
-> Changes in v2:
-> - Change the clock minItems to 5.
-> - Add comments to explain the reason for setting SDHCI_PROG_CLOCK_MODE.
-> - Write the power selection logic in the phy init cleaner.
-> - Replace manual delay loop with read_poll_timeout.
-> - Drop unnecessarily braces where a single statement will do.
-> - Add the match_data pointer to dwcmshc_pltfm_data.
-> - Add dwcmshc_k230_match_data struct to separate eMMC/SDIO config data
-> - Split K230 into individual emmc/sdio platform data instances instead of
->   sharing one.
-> - Remove redundant have_phy member in k230_priv.
-> - Replace of_find_compatible_node with of_parse_phandle to get USB PHY
->   from DT phandle.
-> - Link to v1: https://lore.kernel.org/all/20260204082908.27501-1-jiayu.ri=
-scv@isrc.iscas.ac.cn/
->
-> Jiayu Du (3):
->   dt-bindings: mmc: Add sdhci support for Canaan k230
->   mmc: sdhci-dwcmshc: Add Canaan K230 DWCMSHC controller support
->   riscv: dts: canaan: Add mmc nodes for K230
->
->  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  28 ++
->  .../boot/dts/canaan/k230-canmv-dshanpi.dts    |  56 ++++
->  .../dts/canaan/k230-canmv-module-dshanpi.dtsi |   7 +
->  arch/riscv/boot/dts/canaan/k230.dtsi          |  28 ++
->  drivers/mmc/host/sdhci-of-dwcmshc.c           | 287 ++++++++++++++++++
->  5 files changed, 406 insertions(+)
+--m42m2ThPRCHUbJ3r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
+On Tue, Mar 03, 2026 at 11:20:29AM +0100, Herve Codina (Schneider Electric)=
+ wrote:
+> When checking dts involving the r9a06g032.dtsi file, the following kind
+> of warnings are reported:
+>    Missing property '#address-cells' in node xxx, using 0 as fallback
+>=20
+> Indeed, #address-cells is not present in the GIC interrupt controller
+> node.
+>=20
+> Fix it adding the missing property.
+>=20
+> No functional change.
+>=20
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
+m>
 
-Tested ok on CanMV-K230-V1.1 (k230-canmv.dts) with AP6212 (BCM43430)
-SDIO WiFi module on MMC0 and MicroSD card on MMC1.
+Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-To be noted, a "broken-cd" property is needed to support SD card insert
-and remove detect on CanMV board because the CD pin is not connected. I
-am not sure if this is also needed on DShanPi as I don't have its
-schematic.
+I like Krzysztof's explanation "Value '0' is correct because GIC
+interrupt controller does not have children." Maybe it can be added to
+the commit message?
 
---=20
-Best regards,
-Junhui Liu
 
+--m42m2ThPRCHUbJ3r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmmxKLUACgkQFA3kzBSg
+KbaBjQ//d28BBGk3XivQJnpk2guNJqhhbJ1ai8OE+9mvi4M1+O8DrB0zOkLDcVM2
+4Lymij+KVDppD2TTQ9uNYxK10YrdQ4w2oKG/5+Inp3z6mdD1ntoI1HkgdFVd6CkA
+r3u/PWNrsN2VMMnrp6z6tdfeC8cM3SucJX2t1BxOVfjHxR1WKWuXFwIWuTHXnOw8
+hOTuckx+G+cWwL6Fvukzliqe2aOf0p9RvewMppeaymM27ik7l1RQbNvj/BBSqHj7
+AL7LviBWUoTnhl4P3pzKnSw8uA+8woK00xbs0TCU/lSLmzm8x3DDBe++3YTnHJe/
+Q7TqkO0gzRXQ1jue7MevhaunG8P6IuuiBEv2qbFf53Od37rwhFuGBAeknSYpGUFJ
+wOMO+6AFt0+9l45KTzjBuZyvaCeXUViW2FgS0XHa206jdmuk2Vk/3ps/LMhMma9W
+6S9ucoZvLQ6WGySfSUjxNwvglCKnjkIJshN7a6O9jn185kFv6HqPxf5vnmvjJVSq
+6Buon7j/t0HsO9FLOxDQAfy+wHKcN6ZTNR+lNccc6Tb0P6Lgoh5lxkxUbn4Q7/Ys
+MkfRx5PS6Sm8VyBuZmmOclJvU0i49dz93SovIa2RJvdHuz8wiHna6PMMvN+AQdjE
+XeCN6DDXSnxTF3srZiWE45D1zDOuS1lUBp35kQMYaScnUHB1SYE=
+=WsKJ
+-----END PGP SIGNATURE-----
+
+--m42m2ThPRCHUbJ3r--
 
