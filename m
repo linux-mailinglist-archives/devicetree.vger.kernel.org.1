@@ -1,214 +1,211 @@
-Return-Path: <devicetree+bounces-274276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274277-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4LAUABuwsWloEgAAu9opvQ
-	(envelope-from <devicetree+bounces-274276-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:10:35 +0100
+	id WJRBGFawsWloEgAAu9opvQ
+	(envelope-from <devicetree+bounces-274277-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:11:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718B8268705
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:10:34 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F94826872D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:11:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9471A30387FB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:10:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3C6993066409
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:11:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 141A93E6DDF;
-	Wed, 11 Mar 2026 18:10:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A4B3E6DDF;
+	Wed, 11 Mar 2026 18:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KtH96U9G"
+	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="Owx6ISEY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E362923C50A;
-	Wed, 11 Mar 2026 18:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 513943E275D;
+	Wed, 11 Mar 2026 18:11:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.147.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773252625; cv=none; b=vAP+ZfjmqzQcMfFHMuHf8p10szEmp+UH2nCMy8paOctv+BPV0nFvSfpJOqlcAnOEsg+EDP1f3L80a700cZ5G3UMizaobDnct08998uNBQDgY83CvfmAymGcnbKxbfhejLQHz/1IpClm4ygTSYlYK3nwCJF8ASc2ZvBlf826XRfI=
+	t=1773252691; cv=none; b=VYGCbheK1eSO0W/OkGYIvdvohDKQrx6aCu+3yvVpEm9IS7S+blka6q8DV+LnCOm4fB82jEXTTlNHTqfWQeSgxMqp8DJjIFzjpGwl/MhSJE+/M6UBxEPb0WGkg2kLOLZ9TJ1O0OkUgLpdjEsCAaE9pjt/Oxxm+YMZBJbPfmUdBeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773252625; c=relaxed/simple;
-	bh=fX97InEG2Y/bHlqZFQqzPwU7oz0ha1RwbkrWCs4lWas=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KYBUdehEk31UHk65SEtMnsQPawo0fGNm/XnC+jv7txn7l1nVP5yfAB8gPWVqH/HanjkOhOBtXFlrz7tA+TovDKVjMrGG+NFV6HoBC026gcParkJcZwx4n3jR4rmTrtFou2jGUFr5ac+hF+46/N3HchqIeMRopfcDetYyIhp1dko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KtH96U9G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E204C4CEF7;
-	Wed, 11 Mar 2026 18:10:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773252624;
-	bh=fX97InEG2Y/bHlqZFQqzPwU7oz0ha1RwbkrWCs4lWas=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KtH96U9GUOZyJ/lj7WtbQSyJr21mPmZuMIGeMhm/E+9z8uhRCV9HT5VoxIhQsXQPC
-	 5482lcmlJbnDEwaUAnWxZFirHLT/HBNJB6grmAvGz5yQXz0MTe4FSar/OcsedMoQ+7
-	 kpvLDu9s5NkxWrYaSNgShVcNL5lBV3aeQeyuhkXn/csPSj1JwBVJ28COEXhCnrzVpZ
-	 fp/NlLOTbVO8IysIfhzva3qVlXVSebToikFVoxAiPuQVT1DQ2qaawZRg0cp/2q5ajm
-	 Oyf2DwAPtdiGowzzBJ13RXMYgS/+eZXmCS+8Grj9G9Zn8uOTofCN1yYn/vpjDzoE3Y
-	 c06klwjMg07yw==
-Message-ID: <8f6eb4f0-50b7-4894-b990-98563f1e6b3b@kernel.org>
-Date: Wed, 11 Mar 2026 19:10:09 +0100
+	s=arc-20240116; t=1773252691; c=relaxed/simple;
+	bh=druWuJbSgrmlCK8p5SzMlVpcTpNEmDhIG1NdFo3BAnE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NRTslE1QeI5t5+3eQqWnu4wdsU0nL0OgVx7xHWuoMwmc2FRIhHpM/8RXWrR7wVtkrbDiQjkVUr+J8PKs9E8zMk+FZNc3Px5gGCyFPLGGznUau3w8Hza+Bjj7ndjjlB0jaM6raoTQigNP8CMvzPQXR6osGqYUnuQaHy9ZD2WqoZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com; spf=pass smtp.mailfrom=hpe.com; dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b=Owx6ISEY; arc=none smtp.client-ip=148.163.147.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hpe.com
+Received: from pps.filterd (m0148663.ppops.net [127.0.0.1])
+	by mx0a-002e3701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62BDpGME2696904;
+	Wed, 11 Mar 2026 18:11:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pps0720; bh=VTRXI3mz6jIXOjfNPa6YKzNS9GwFRfykMnAF2
+	k/Q13s=; b=Owx6ISEYMCf82iKIXQ1t4J40UvdovWyPrzSBumBLOgKCkp4YVnkku
+	sBAUZJsq+/g07uGqmWHr3p4HKj2VFO0R+ZZ1DJv/xU52A42BPVWpgNd8qg6YtgSt
+	hjoRjIpqRQ/Q5syMAO1oOMnvjfIBs+2bKDX6U9+gaQKkTp1o2OJdfGi3ZlbeQXiX
+	QBlK2+/kN/Sn1A4JP0T+KihO3h8AXZu75xwe7alnck8oe3UefpWLtX9zQw8r0djD
+	MZv2EAqwhNMLNgelU6Ze+kWMFeJ35cimr8B3IX3f0KX4vHIrMaQejCyYl1w2Ttmx
+	pDStA+wTR/OEITOYDt5j5XIfILl0taHvQ==
+Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
+	by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 4cu8ercx5j-1
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+	Wed, 11 Mar 2026 18:11:19 +0000 (GMT)
+Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by p1lg14880.it.hpe.com (Postfix) with ESMTPS id BCEF1801620;
+	Wed, 11 Mar 2026 18:11:18 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+	by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id 1C8ED811A4E;
+	Wed, 11 Mar 2026 18:11:18 +0000 (UTC)
+From: nick.hawkins@hpe.com
+To: ulf.hansson@linaro.org, adrian.hunter@intel.com, jszhang@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        shawn.lin@rock-chips.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Nick Hawkins <nick.hawkins@hpe.com>
+Subject: [PATCH v3 0/2] mmc: sdhci-of-dwcmshc: Add HPE GSC eMMC support
+Date: Wed, 11 Mar 2026 13:11:10 -0500
+Message-Id: <20260311181112.1700667-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v3 03/10] dt-bindings: net: cdns,macb: replace
- cdns,refclk-ext with cdns,refclk-source
-To: Conor Dooley <conor@kernel.org>
-Cc: netdev@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Valentina.FernandezAlanis@microchip.com, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Daire McNamara <daire.mcnamara@microchip.com>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Richard Cochran <richardcochran@gmail.com>,
- Samuel Holland <samuel.holland@sifive.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Sean Anderson <sean.anderson@linux.dev>,
- Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
- Abin Joseph <abin.joseph@amd.com>, =?UTF-8?Q?Th=C3=A9o_Lebrun?=
- <theo.lebrun@bootlin.com>, Ryan.Wanner@microchip.com
-References: <20260310-moneyless-dispense-7bce14b16388@spud>
- <20260310-sneak-handclap-c150d8f1236b@spud>
- <20260311-horned-dexterous-caribou-3a46fb@quoll>
- <20260311-rival-kerosene-81d12381d120@spud>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260311-rival-kerosene-81d12381d120@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: HD8DTFXXYhuEixiFSslx6ag1Hz0puev2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDE1MyBTYWx0ZWRfX4HL/38SqjArt
+ EWTogNuaI4Kb0A/8qWMbxfZAkRMJ5I1AC+hY6qqJMfKLjoNc5iQD233LLbVzbbZKFcSj28Pxt/Y
+ abuhI5elGnaPEQQR8gZ0RPntjV77X+TuJ+VyEe/4eGZbs+TTf8EbJnGCJJ2WEmRP7KDdfptteqY
+ NpHKT8e5LXfMld+KKplheE2i7SVtAJIlP66jlwmS2IpfsLRm/gUCTZ1YUJqWu7scaa06PLwlQwY
+ H81o42lBlhcfTFefER1CbSY75+95DW9A+Esssr6+w7SA0dfzrjYVK3lZVpIhPgpSr3DJBgSurVy
+ 9SwW2ljcwwAYHgmxM2o81h8eZOnz2tJfAGmBZKRnTbBVz7r3DbCb8ZA2ExxQfeCf255CY8/g+sQ
+ qlxDeWW+gsxSN9BLcghMgWo5o2jqw33j6XmlB02KwZAiFP0cfmjSqvMZxpFsUSrfLfnHoztUg21
+ JJE9+3DuBHcorRjnprg==
+X-Authority-Analysis: v=2.4 cv=bdlmkePB c=1 sm=1 tr=0 ts=69b1b047 cx=c_pps
+ a=A+SOMQ4XYIH4HgQ50p3F5Q==:117 a=A+SOMQ4XYIH4HgQ50p3F5Q==:17
+ a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gQcMVamqm3wCPoSYhaRC:22
+ a=6_mrDcixewTG61oOsKN3:22 a=MvuuwTCpAAAA:8 a=XbkwoOjMWocvkfcq9GYA:9
+X-Proofpoint-GUID: HD8DTFXXYhuEixiFSslx6ag1Hz0puev2
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-11_02,2026-03-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
+ impostorscore=0 malwarescore=0 suspectscore=0 clxscore=1011
+ priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603110153
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[hpe.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[hpe.com:s=pps0720];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274276-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,tuxon.dev,gmail.com,sifive.com,lists.infradead.org,raspberrypi.com,linux.dev,amd.com,bootlin.com];
-	RCPT_COUNT_TWELVE(0.00)[30];
+	TAGGED_FROM(0.00)[bounces-274277-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[hpe.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NO_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,microchip.com:email]
-X-Rspamd-Queue-Id: 718B8268705
+	FROM_NEQ_ENVFROM(0.00)[nick.hawkins@hpe.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 7F94826872D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 11/03/2026 19:08, Conor Dooley wrote:
-> On Wed, Mar 11, 2026 at 08:00:54AM +0100, Krzysztof Kozlowski wrote:
->> On Tue, Mar 10, 2026 at 05:17:10PM +0000, Conor Dooley wrote:
->>> From: Conor Dooley <conor.dooley@microchip.com>
->>>
->>> Ryan added cdns,refclk-ext with the intent of decoupling the source of
->>> the reference clock on sama7g5 (and related platforms) from the
->>> compatible. Unfortunately, the default for sama7g5-emac is an external
->>> reference clock, so this property had no effect there, so that
->>> compatibility with older devicetrees is preserved.
->>> Replace cdns,refclk-ext with one that supports both default states and
->>> therefore is usable for sama7g5-emac.
->>>
->>> For now, limit it to only the platforms that have USRIO controlled
->>> reference clock selection, but this could be generalised in the future.
->>>
->>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>  .../devicetree/bindings/net/cdns,macb.yaml    | 39 ++++++++++++++++---
->>>  1 file changed, 34 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Documentation/devicetree/bindings/net/cdns,macb.yaml
->>> index cb14c35ba9969..a492357570edd 100644
->>> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
->>> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
->>> @@ -120,12 +120,14 @@ properties:
->>>    power-domains:
->>>      maxItems: 1
->>>  
->>> -  cdns,refclk-ext:
->>> -    type: boolean
->>
->> This is already an implemented ABI, so you cannot drop it even if some
->> devices works fine on default. Instead please deprecate it and keep
->> drivers backwards compatible for whoever is using it.
-> 
-> The driver still will support it for those devices, but I don't see any
-> value in keeping the property about, even deprecated, when it doesn't
-> work properly. If you insist that it be kept and marked deprecated, it
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-There cannot be an undocumented ABI, so if driver has it, it must stay
-in the bindings.
+The HPE GSC is an ARM64 (Cortex-A53) BMC SoC used on HPE ProLiant
+servers.  Its eMMC controller is based on the DesignWare Cores MSHC IP
+(snps,dwcmshc) but requires a small set of platform-specific quirks
+that cannot be expressed through the existing generic dwcmshc code
+paths.
 
-> needs conditional rules to only permit it on devices that it actually
-> does something. I'm surprised you even considered that I would drop
-> support for it from the driver!
+This series adds support for the 'hpe,gsc-dwcmshc' compatible:
 
-Commit msg suggested it is no-op, thus could be dropped without having
-impact?
+Patch 1 extends the snps,dwcmshc-sdhci.yaml binding to document the
+new compatible and the mandatory 'hpe,gxp-sysreg' syscon phandle for
+MSHCCS register access.  The HPE GSC exposes only a single 'core'
+clock, so the clocks/clock-names properties are constrained to a
+single item for this compatible.
 
-Best regards,
-Krzysztof
+Patch 2 adds the HPE-specific driver code in sdhci-of-dwcmshc.c:
+
+  * dwcmshc_hpe_set_clock(): SDHCI_CLOCK_CONTROL.freq_sel is wired to
+    a clock mux on the GSC SoC, not a divider.  When running at
+    200 MHz (HS200) freq_sel must be forced to 1 to select the correct
+    high-frequency source.
+
+  * dwcmshc_hpe_vendor_specific(): disables the command-conflict check
+    and programs ATCTRL using existing AT_CTRL_* macros for reliable
+    HS200 signal integrity on the GSC board topology.
+
+  * dwcmshc_hpe_reset(): calls sdhci_reset(), re-applies vendor config,
+    and unconditionally re-sets CARD_IS_EMMC.  The controller clears this
+    bit on every reset; leaving it clear causes card-detect
+    misidentification on the eMMC-only slot.
+
+  * dwcmshc_hpe_set_uhs_signaling(): wraps dwcmshc_set_uhs_signaling()
+    and unconditionally sets CARD_IS_EMMC for all timing modes.
+
+  * dwcmshc_hpe_gsc_init(): obtains the SoC register block via the
+    'hpe,gxp-sysreg' syscon phandle and sets SCGSyncDis (BIT(18)) in
+    MSHCCS (offset 0x110) to allow the HS200 RX delay lines to settle
+    while the card clock is stopped.  Enables SDHCI v4 mode.
+
+  * sdhci_dwcmshc_hpe_gsc_pdata sets SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN
+    (base clock not in capabilities) and SDHCI_QUIRK2_PRESET_VALUE_BROKEN
+    (preset-value registers not populated in GSC ROM).
+
+All new symbols are exclusively selected by the 'hpe,gsc-dwcmshc' OF
+match entry.  No existing platform (Rockchip, T-Head, sg2042, Sophgo,
+etc.) has any code path change.
+
+Note: the DTS node for 'hpe,gsc-dwcmshc' will be submitted separately
+as part of the HPE GSC base platform series (arch/arm64/boot/dts/hpe/).
+
+Changes since v2:
+  - Replaced raw ATCTRL magic value 0x021f0005 with existing AT_CTRL_*
+    macros and FIELD_PREP(), as suggested by Shawn Lin.
+  - Refactored dwcmshc_hpe_set_uhs_signaling() to wrap
+    dwcmshc_set_uhs_signaling() instead of duplicating the body,
+    as suggested by Shawn Lin.
+  - Dropped redundant 'maxItems: 1' from clocks and clock-names in the
+    dt-binding conditional block; the items list already implies the
+    count (reported by dt-review-ci / dtschema).
+
+Changes since v1:
+  - Replaced the second reg entry for MSHCCS with an 'hpe,gxp-sysreg'
+    syscon phandle + regmap access, as suggested by Conor Dooley.
+  - Driver now uses syscon_regmap_lookup_by_phandle() and
+    regmap_update_bits() instead of devm_platform_ioremap_resource().
+
+Nick Hawkins (2):
+  dt-bindings: mmc: snps,dwcmshc-sdhci: add HPE GSC dwcmshc compatible
+  mmc: sdhci-of-dwcmshc: Add HPE GSC eMMC support
+
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  36 +++++
+ drivers/mmc/host/sdhci-of-dwcmshc.c           | 149 ++++++++++++++++++
+ 2 files changed, 185 insertions(+)
+
+-- 
+2.34.1
+
 
