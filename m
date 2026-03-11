@@ -1,173 +1,181 @@
-Return-Path: <devicetree+bounces-273871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273873-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kBrfEdgNsWldqAIAu9opvQ
-	(envelope-from <devicetree+bounces-273871-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:38:16 +0100
+	id 0PoDGNYPsWlwqQIAu9opvQ
+	(envelope-from <devicetree+bounces-273873-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:46:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id C095225CEEE
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:38:15 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E535A25CF8D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:46:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7D2613195F5F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:38:05 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id EC0A2303749D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5A02BFC85;
-	Wed, 11 Mar 2026 06:38:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E6232C2349;
+	Wed, 11 Mar 2026 06:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DihlWZfH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p6RAbRP9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165FB36C9F3;
-	Wed, 11 Mar 2026 06:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A15295DAC;
+	Wed, 11 Mar 2026 06:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773211085; cv=none; b=bDAP5Mv2iJFJj7/JHRNiTF7y92+O8ln9mr8dKKXurtJ6eft5VMsArmXwQoBRAwpj4y/UCjAgBWp2/5Vre7h661W40VLK3PqwMVaGXFA29dpjGTIcYnjm/JFN0Tz6QRx/bJhko6wOl8erIqaJpDTX+VcYm50RWfxvhTdzezwHC2U=
+	t=1773211586; cv=none; b=bxdzQc5OrDPAt7z3pktlsW4hhc/7zRmAxWRfLe6R52k9UYO6R9szBjIrIv7kykJBpOEYwfjV7kTlXVrQZ1yEHXr7bfg7RUfwlMJmAxe2T3CQUzwzfmLM04Dt+FkV96OhGQZ/j9wQ+XKGdPmj2dJlf9mKqsnd4p9YLDKXsfn/WJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773211085; c=relaxed/simple;
-	bh=gsusJAD+5+QOgH7Pw3gViEeL19SXkd/XhJ5VD+/xV6M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WoMtevUbx676XL4OYiKAX2Emz1s2WOzfszd0Yux7Ny/dHW2B+Tc/XISaYW5zKAxdvtjeXSXKpHJhNd4p3hsvP5sOMdpogGGysPEIpJz5MOWY9SKEMtce+lfRf3MlU71b66zXt+z+DpQ5D7gRl9w9cCVfac+c1BSoA5b/Z7k7XQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DihlWZfH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A049C2BC86;
-	Wed, 11 Mar 2026 06:38:00 +0000 (UTC)
+	s=arc-20240116; t=1773211586; c=relaxed/simple;
+	bh=rB99ecEotGCkphZ8eWraRpsWMoAZ5MBKddrud5VAW7I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=CwU7EqG0t64ny8HPGbs+lGFEZgAuFyBn3ZLHIldgctpq5oEa7L+s+044JEnMkCv2o7g/1GfGkBuwAwcD9JYPl10q0N/O9fBRzaJfjocid7qs0XUApUa1l6hdozmy9MSEpnoc8sORC1bwEMsj6eIjHEhJfkRy3KC9pQN3dMU8pKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p6RAbRP9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 16F90C4CEF7;
+	Wed, 11 Mar 2026 06:46:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773211084;
-	bh=gsusJAD+5+QOgH7Pw3gViEeL19SXkd/XhJ5VD+/xV6M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DihlWZfHTUqkbunaUuWEGEmxniRWBJntc2aMzD9cTW3+96FMkQEYYDRpQdR8ySyrJ
-	 Bf4oDqI5l/kGx7rXibu+H4n6387sViGEY6l1+JFkwzFnWARLx379VZuCeAv0Sa+9LP
-	 9J2IVrb9lzNdEOOB7OpmWrc0SRIGaddZIv7viFyF+QGiRbP690pzVAvk0l4ZMewwQn
-	 zGiUEEFIPGVKhEmVGDx1dU7h4NfSAibGYdX8xOkhBcMpBqeobSPdzu3T8/xHHwZuYp
-	 PUDarzos4a21BiEg0MDlZMwCS7bFxgXjXSDASK2qYEoQXyrDYLa3NugyDoo4DItzh7
-	 FMCdBIF8wq+9g==
-Message-ID: <30ebf90f-d1c1-4cb0-8b7a-a06ebf8bfb28@kernel.org>
-Date: Wed, 11 Mar 2026 07:37:59 +0100
+	s=k20201202; t=1773211586;
+	bh=rB99ecEotGCkphZ8eWraRpsWMoAZ5MBKddrud5VAW7I=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=p6RAbRP9NUHKpS6kqcr3DMBtMI9ZIoH78HAXAYkZXeJnkrgZ7lvMTwkZqtgF5QM+B
+	 hc43dD4d5P0qq+ayVexmb90anOzWZP5oo3w+jCvCNq5ZFIcmFGhUUjsi9Xof0n49/t
+	 jgA723W+aR1+ez9CtjF/iofcNxH1Dag2msx4FijWJJ2giLHzcXmriSIGGdrA9Fk/78
+	 lFKYkEjRrsqHqu3d4K0Z+YbmIQ4wpLMikhbOMpTNKFo41sUpuaVwaZPcl9s8QcJ1T9
+	 GaYg/HlRHvC112nfZFqPL/XVAF4zGbusNljDS4O/r4iVwW3JtTUMwD/TcbiA+swERi
+	 EvL4yoEZdz9LQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0C5E1FD062F;
+	Wed, 11 Mar 2026 06:46:26 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH 0/5] arm64: dts: qcom: Support AYN QCS8550 Devices
+Date: Wed, 11 Mar 2026 01:46:03 -0500
+Message-Id: <20260311-ayn-qcs8550-v1-0-fe8b2faad1ea@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: PCI: pci-imx6: Change maxItems of
- clocks and clock-names to 6
-To: Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "bhelgaas@google.com" <bhelgaas@google.com>, Frank Li <frank.li@nxp.com>,
- "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
- "mani@kernel.org" <mani@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20260310075459.726495-1-hongxing.zhu@nxp.com>
- <20260310075459.726495-2-hongxing.zhu@nxp.com>
- <20260311-invaluable-nondescript-manatee-a3c4cc@quoll>
- <AS8PR04MB883364D970713670411E497F8C47A@AS8PR04MB8833.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <AS8PR04MB883364D970713670411E497F8C47A@AS8PR04MB8833.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: C095225CEEE
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22OO27DMBAFryKwDgHuUruidJXABT/LhIWlmHTkB
+ IbvHsZqUqScB8zD3FWTWqSpZbirKntpZVs7wMug4rtf30SX1FmhQTYIk/bfq77E5oiMBo5mCmy
+ TIKtufFTJ5ev59no6uMrls59ej1EF30TH7Xwu12XIMouVFNgjEAElgNEli57iOFKkkNI0A2f1N
+ 2YZjhQ0z5Rd1rRV7YEssIs4B1x2+M+w0I2bc8Cs803PxobMkxhG+DVOj8cPDPGoHA0BAAA=
+X-Change-ID: 20260217-ayn-qcs8550-16c07b63de26
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Aaron Kling <webgeek1234@gmail.com>, 
+ Teguh Sobirin <teguh@sobir.in>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773211585; l=2253;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=rB99ecEotGCkphZ8eWraRpsWMoAZ5MBKddrud5VAW7I=;
+ b=NxlmJvOo8WdRXKVhPcg8tIJKmIFRzNKf6kTs/g7eXdiuDaB9xshDw0lJG5TRliqEAa7BwyqRL
+ 8PfMYTksVFaAWEAA70jZA1zdbmw5+zamS0z8mHkADLEtLpBYm4m1YnK
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
+X-Rspamd-Queue-Id: E535A25CF8D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
+	FREEMAIL_REPLYTO_NEQ_FROM(2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273871-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
-	RCPT_COUNT_TWELVE(0.00)[18];
+	TAGGED_FROM(0.00)[bounces-273873-lists,devicetree=lfdr.de,webgeek1234.gmail.com];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_REPLYTO(0.00)[gmail.com];
 	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,sobir.in];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.996];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[webgeek1234@gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 11/03/2026 07:31, Hongxing Zhu wrote:
-> Hi Krzysztof:
-> I just received your tag in [PATCH v3 1/4] at 4:00 PM after I sent out
->  the v4 patch-set at 3:53 PM. That's why it's missed in [PATCH v4 1/4].
-> The tag would be added in next version.
+This specifically includes:
+* Odin 2 Mini
+* Odin 2 Portal
+* Thor
 
-After fixing the commit msg:
+The original Odin 2 dtso is not currently included as it has not yet
+been verified.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+The initial port was done by Teguh Sobirin for ROCKNIX and was made
+available on the AYN github [0].
+
+Support has been removed for things not yet supported by the upstream
+kernel, these will be added later when the related drivers are submitted
+and picked up. Such includes:
+
+* All panels
+* The Odin 2 Mini backlight and touch
+* All rgb leds
+* The built-in uart gamepad
+
+This series depends on two other series as described in b4 deps. Namely,
+one adding the AYN vendor [1] and one adding bindings for firmware-name
+in aw88166 nodes [2]. Both must be merged first for schema checks to
+succeed.
+
+[0] https://github.com/AYNTechnologies/linux/commits/sm8550/v6.17.5/
+[1] https://lore.kernel.org/all/20260220-ayn-vendor-v1-1-292cbbb682b3@gmail.com/
+[2] https://lore.kernel.org/all/20260310-aw88166-fw-v1-1-2777563bb673@gmail.com/
+
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Aaron Kling (1):
+      dt-bindings: arm: qcom: Add AYN QCS8550 Devices
+
+Teguh Sobirin (4):
+      arm64: dts: qcom: Add AYN QCS8550 Common
+      arm64: dts: qcom: Add AYN Odin 2 Mini
+      arm64: dts: qcom: Add AYN Odin 2 Portal
+      arm64: dts: qcom: Add AYN Thor
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   10 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    7 +
+ arch/arm64/boot/dts/qcom/qcs8550-ayntec-common.dts | 1778 ++++++++++++++++++++
+ .../boot/dts/qcom/qcs8550-ayntec-odin2mini.dtso    |  147 ++
+ .../boot/dts/qcom/qcs8550-ayntec-odin2portal.dtso  |   79 +
+ arch/arm64/boot/dts/qcom/qcs8550-ayntec-thor.dtso  |  223 +++
+ 6 files changed, 2244 insertions(+)
+---
+base-commit: fe9e3edb6a215515d1148d32a5c445c5bdd7916f
+change-id: 20260217-ayn-qcs8550-16c07b63de26
+prerequisite-change-id: 20260220-ayn-vendor-a153168c29b2:v1
+prerequisite-patch-id: 042cab8f04748207ba5395dd0f23c445955aaa2b
+prerequisite-change-id: 20260310-aw88166-fw-903bf67e0621:v1
+prerequisite-patch-id: 07d4bb3f77ef2c2ab22b4c2875761e440156e241
+prerequisite-patch-id: 0a9b339adadf6fd550bb9b74c163dc68dd2573d2
 
 Best regards,
-Krzysztof
+-- 
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
