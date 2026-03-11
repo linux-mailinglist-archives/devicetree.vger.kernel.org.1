@@ -1,83 +1,84 @@
-Return-Path: <devicetree+bounces-273854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273855-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJZHEAEKsWnhpwIAu9opvQ
-	(envelope-from <devicetree+bounces-273854-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:21:53 +0100
+	id iNutKiEKsWnhpwIAu9opvQ
+	(envelope-from <devicetree+bounces-273855-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:22:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DD1625CC7B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:21:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1188525CC9F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:22:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45C24305E9C5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:21:51 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BE8223197332
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE8253644C1;
-	Wed, 11 Mar 2026 06:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713B136C9E0;
+	Wed, 11 Mar 2026 06:21:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WvbNNZpw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bthMdj+F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AFF63542DE
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:21:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B12E36BCF2
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773210109; cv=none; b=gpoLlECzlpZN1ThFHcsdR2PAPVrS5nA/Mk/JVoQunT9L1QhykGcpkXvCQxritxOYeQIPvSvXdK9YolskjyP6ANZuzSXE6Cb9c891LJymlqvdXEMuqoGdhQ9nTIqjUOZh/bKx1xCmaQlNKUkJq6Md2uidqTrBR+jj4kfpn6vN4yc=
+	t=1773210112; cv=none; b=uC6MYzgZySz8icfEHZq/X4cOtks+wKm8LV5UXwCrb2T9buUKgRZQJY17A9+XWkYc2aLGBu4Q9d+oEw7KlWc9QYuAZgImLAY5VImdhsCU6NkaED9Lzum4ipEQIQPoMyqLktaTzRQfe5KQQn7u9e+ridazTsFHZudvI/7/ZZYVWmA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773210109; c=relaxed/simple;
-	bh=Axc+CcnQnnfpiP5A9auA1FuvVMCpTICZ4JkiYPK7KGI=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lssQj9VtUMCHXtSNNsD+UCcMiVduHYINThF7y9yqhpzoT5CwxF/FjUut6/dDJXx+DOdyOEq762SaZDVpVExv+Y48CJ+5H55qfJMOfsiROonVbWEf9s0N1jFGeapobKF1XeStAnIte/UxnpXgY1uo24SXJcWwx4/FULDmrNN6RhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WvbNNZpw; arc=none smtp.client-ip=209.85.215.173
+	s=arc-20240116; t=1773210112; c=relaxed/simple;
+	bh=505A4j1K+3BVyfKFAUJFkb0POt+oWwmpy0RpscQYCVE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Ng++wYnfcKAm0Ceh1SvYb73LTlaigMVc/PyNi6GtdAyFvBr1prVTw7mdvwrEuDhCsMPkqGanKCKHGhTrpF1obw9tUONNCk1BhKcclbiUtZ9FzLCOdUY2IB3Q4PXvsu/ExoQJ/jspe3plmPDL1DsRmH5IFy3/ZN7LsJMQl7RxjAU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bthMdj+F; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-c6e2355739dso5576000a12.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 23:21:48 -0700 (PDT)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-2addb31945aso99134945ad.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 23:21:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773210108; x=1773814908; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aPRAl8XBEAVPedtuLZozkH/4zHuUY/9G55Jcjy2Q4hs=;
-        b=WvbNNZpwI6j6cc0KeDT1BWf/aQ3QmGyLv4dis43Hk2jtx3QOQ/nlhgKDSsL4SbKbr4
-         Zpw8NiBVTBNGRtXrOJxLrLaMmjOhdvCuDe3SzEgt054fwtKDMN9tiMpd2xfGNqJIjCbL
-         1SySbSWrJBoD/V0qmnJgoCVkprJa7CORTqr2qIleKiXhV5peuBi08/GMIB/PxAVYwIV7
-         npwUw4RWBJHLYDIJkpskfY5GEoP1JIvIBDdxu7frnWuY7xtbpItgFKZdWWneJlNK8PId
-         lwazrussTjPa5PxYGM3bUav1LscN0pGk4BDpeKUE5/hGj1PoF6oEKFwAZALcA38qezbk
-         z9cQ==
+        d=gmail.com; s=20230601; t=1773210110; x=1773814910; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CAxjuWc6K1jt8cRne9eiJroow903OnF7+g9JiBxwTFk=;
+        b=bthMdj+FmeO3OE6ua6XVCI6s9F/rPpKjMQc299H/GDjzzXbwsBuOi1tp5JbJeBaK/m
+         +KjSUMdrKEnsk5AUwZXI+qCBv+T4Yxai1YoZuQm94Y79yKXRiGPy4vowZeKmEBXRkt3n
+         OtJn/RwzBSZPaS5XG74qSSebN8VEFA24Ui9Q9VT3K6T7AObTIbO79dWc/1Pp4scceuvf
+         t2I+3P6M4qscQ8Mk+GTh2J9NFdMTDn4mNfKshWy9MwR411ShA6C2UZ4DHjHR1KtEdgDp
+         yzGMwSfEBwJL2kXVjxQKR2CGaTfZv+cl7Q0Z1Bc5zJxyoJIbKS8zw1++fOCwOtdhyvHv
+         3PQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773210108; x=1773814908;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aPRAl8XBEAVPedtuLZozkH/4zHuUY/9G55Jcjy2Q4hs=;
-        b=mMtEabGf7F0rgjPFZhMYW2x5pHvT0ZtLjAfcK1NUYmyGkuJNSGXZbXzBK6gLaTcOjk
-         xwQ8FomVpdCC1Xvh8mPsKZ9y3hSmqi4KWuA7O7O5FS9FLIhBr8yq6mIqUokYYB0z1bZE
-         OWzutoiMWFFJcAxBEMMspev5Gr0YG52ab+4SOZPQ8318G/7qqDL9eorD4H3J2QMsAT07
-         +BAlH5v5SlGcdAHmYMNmntO9k/kHAyruyUKerOJ6IGk4uS5+hivFeJGQQ6OcJJUeu553
-         cg6BRKKs4iTykBCW+n8HxxJtivmgywvRe7PtVR+eMnOpKovubMZWSqIsyE9xBIFbtuUf
-         O84Q==
-X-Gm-Message-State: AOJu0YwaSle2prxCnKZgbDJsjG05okk2cfRP1EC1lHqMhs1fHJubEju7
-	vIdS0rK4KityN1wxbapte0hfJkbD9GjHSXGFPS+VDrjy4FTIgppYpOb3cvG+tg==
-X-Gm-Gg: ATEYQzyNEcfiv65wzVB4CgmOmAiyMUPVFqdR+Rpb0DDwj2TBBKkO4gqc2k2OMjEIT2E
-	bN1qygzcX/qYCEALCSD6BoAvvTewEGVbhzHBDUtc00Mxj39dBFGgNxZupwa/QDkdWSgOoHPZ5Jw
-	CaZcU8cMGmLdv+UDLmpv2yo6NuhDjkufI5wCbJEvcQ31to6Jd9+9iq7SB6pIs2i3Wmr2BYHbkHy
-	Ou5QmRsa7yrFEsWJidPg+xoQ+kfhut8NuWyhkVqKP2hXVzuNXH13Hg3W+EK/860+bL9lRK/Vrhr
-	IzAUKzK3aUK73kFQrnqTH46Ac8fMB5t2p5YWuDWHv/RUb0MvuPEpY8xjJ4tFxt4G1AgMg3KcxT+
-	qQC7/HbQqGKG8Mwsgz28pnfgumz/fTpakHi6pvqoI0LMpVLemUCHtP6uDqHkqxrF4dMG+37hk4n
-	9wdgMaIkuROzHsoL2Hyymm8oC9n4DQUTRBcu/tAdiJ/hhX3VhqsHNqisj5m7XBK1JiAM1eo10lA
-	zw=
-X-Received: by 2002:a05:6a21:b90:b0:398:870f:d7b2 with SMTP id adf61e73a8af0-398c60e5943mr1266713637.33.1773210107749;
-        Tue, 10 Mar 2026 23:21:47 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1773210110; x=1773814910;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=CAxjuWc6K1jt8cRne9eiJroow903OnF7+g9JiBxwTFk=;
+        b=KJCCtGj9MZTdYNCo85IzD1q4GyyrtzlyuMSmvoG+bEWhkUbvO1XVRbbrvTDhQJlrRH
+         ZIqlGXEHzsmphkP2RXeGHxrRYv9B15k0tq8/YA8lVfsONv8w/1BOB3ergvzJocrSqBqP
+         SWU9l8UARjyLdoo6CiJBYtbU8PjqLyobit2QViyx7H012blIdv2WIRpxSrZ8EKhjU7Oc
+         2nhiLG4OWH2RoQ1rGM+u9DMloHAB+ZKlWY8sc30j1LOLwO4dVG6YURPdxObFCcTizjLQ
+         3L7YyN46tOQkD8NSYABtl09yxhgLGfO+qBIrREbBFiVs+poGr0MXrHQpkDV4fzp8+po+
+         u1Eg==
+X-Gm-Message-State: AOJu0YyqhFynjTG0S8hJ5364EZypRkyOGSYj0j8tNBkHu4nxVleqFZ0O
+	1UM21QLHz4y5sPLah05b1pIbo0/u9dOKCMDLjFy0834vD1L+hmX+zsDsD2hDig==
+X-Gm-Gg: ATEYQzyVfTY3UYFRdYb1NEL2MKd0D/nSKP9MIm6GxrnKj3+n9TSqWiufEZzWxYy9zjz
+	OlQH8dN48dkX7NRYVvDJVLPXkKhtyOEv6z9L7P65jSgOo8e9YmAmv1fZH6jkNnf4o5fsh/S2GDY
+	HBUvoAVXmA7aG7K46W6KvWdRf8bIJZZxIobwHlXSIR5nwUAkA4oYTXrkqR/5XEbdpPxlVuESi8h
+	5Dnx6i26Eau7BZcPcU1LbXL1hOz0+3jjq+a6/vYS3ivwID3jLWcPimncvQ0DWdIcagqRzHvcqjQ
+	dMhvkMiOpYQcMzef9VfcaxU9OE0kIutdklCAeKjcu9UEuhQ64htRQVdxndHrwaSkg0tgN8hc2XH
+	zC2gCjGTDFzKb/ZV8bEUzAzxmRjmdLTnzkiM3vrHZgNteMoKsPql57HtS8gekzDBc+5lSXGYdfE
+	C7qp7q0R+QOgkOs1a50T1fm4z0MpWHkeQ5u54NEpqd2LHPSkvREap6j4aAWazSGSmonvD6qKYpY
+	CE5nRk5fCYBIg==
+X-Received: by 2002:a17:903:298b:b0:2ad:cf11:5048 with SMTP id d9443c01a7336-2aeae7c7d39mr17260585ad.22.1773210110459;
+        Tue, 10 Mar 2026 23:21:50 -0700 (PDT)
 Received: from localhost.localdomain (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c73cdfa9acbsm1008019a12.32.2026.03.10.23.21.45
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-c73cdfa9acbsm1008019a12.32.2026.03.10.23.21.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 23:21:47 -0700 (PDT)
+        Tue, 10 Mar 2026 23:21:50 -0700 (PDT)
 From: Potin Lai <potin.lai.pt@gmail.com>
-Subject: [PATCH v3 0/2] Add Meta (Facebook) SanMiguel BMC (AST2620)
-Date: Wed, 11 Mar 2026 14:19:27 +0800
-Message-Id: <20260311-sanmiguel_init_dts-v3-0-2b4d1ab7a8a1@gmail.com>
+Date: Wed, 11 Mar 2026 14:19:28 +0800
+Subject: [PATCH v3 1/2] dt-bindings: arm: aspeed: add Meta SanMiguel BMC
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,10 +87,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHAJsWkC/33NwQ6CMAyA4VchOzszWkHw5HsYQ8Y2oQlsZsNFQ
- 3h3BycOxkuTv0m/ziwYTyawSzYzbyIFcjYFHjKmemk7w0mnZiCgFGnwIO1I3csMDVmaGj0Ffq6
- VbhFVIXTB0uHTmwe9N/R2T91TmJz/bD9ivm7/cjHngishAKU55VVdX7tR0nBUbmQrF2FP4E8CE
- lHKoqxAIbRY7YllWb5b1+Ru9wAAAA==
+Message-Id: <20260311-sanmiguel_init_dts-v3-1-2b4d1ab7a8a1@gmail.com>
+References: <20260311-sanmiguel_init_dts-v3-0-2b4d1ab7a8a1@gmail.com>
+In-Reply-To: <20260311-sanmiguel_init_dts-v3-0-2b4d1ab7a8a1@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
  Andrew Jeffery <andrew@codeconstruct.com.au>, 
@@ -100,25 +100,25 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Potin Lai <potin.lai@quantatw.com>, Potin Lai <potin.lai.pt@gmail.com>, 
  Conor Dooley <conor.dooley@microchip.com>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773210105; l=2198;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773210105; l=894;
  i=potin.lai.pt@gmail.com; s=20240724; h=from:subject:message-id;
- bh=Axc+CcnQnnfpiP5A9auA1FuvVMCpTICZ4JkiYPK7KGI=;
- b=AeS7rOHZELrxiBxvNyIsIKUOn+ZlPw6IOgK9gSv2u6Yil5P3iZUUoLV/vi4Yt/hjpiAducidT
- Ng5ObpGxUZwCQnBvBtvuUNWczv30czDnT5UwPYM3E3D8BuXjFkklacB
+ bh=505A4j1K+3BVyfKFAUJFkb0POt+oWwmpy0RpscQYCVE=;
+ b=A2uKouFUmFPpIc+1d2JM6DuRLNpKNSsTbf5qhXW5G0z3TWQLHVqz2DyRpNDVzyOfvo536LvZ5
+ DPEacuxk38KDBVA2zulneYlS2HN3XfaCIiHMNfEzeRIiVOxEUaJ+RNR
 X-Developer-Key: i=potin.lai.pt@gmail.com; a=ed25519;
  pk=6Z4H4V4fJwLteH/WzIXSsx6TkuY5FOcBBP+4OflJ5gM=
-X-Rspamd-Queue-Id: 9DD1625CC7B
+X-Rspamd-Queue-Id: 1188525CC9F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273854-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273855-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -126,75 +126,42 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[potinlaipt@gmail.com,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-0.997];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,microchip.com:email]
 X-Rspamd-Action: no action
 
-Add Linux device tree entries for Meta (Facebook) SanMiguel specific
-devices connected to the AST2620 BMC SoC.
+Add Meta (Facebook) SanMiguel BMC board compatible.
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Potin Lai <potin.lai.pt@gmail.com>
 ---
-Changes in v3:
-- Update the model name to "Facebook SanMiguel BMC".
-- Remove CP2112 and downstream IOEXP nodes as the upstream driver
-  is not yet available.
-- Remove the following EEPROM nodes until the bus numbers and
-  addresses are confirmed:
-  - 3-0051: HMC FRU EEPROM
-  - 3-0052: HPM0 FRU EEPROM
-  - 3-0053: HPM1 FRU EEPROM
-- Change the compatible property of the following EEPROM nodes
-  from 24c02 to 24c128:
-  - 5-0050: SMM FRU EEPROM
-  - 9-0050: PDB FRU EEPROM
-  - 13-0055: SMM EXT FRU EEPROM
-- Fix the smm_temp node address typo (0x4e -> 0x48).
-- Remove nodes that no longer exist in the latest board design:
-  - 19-006f: RTC (nct3018y)
-  - 9-0075: IO expander (pca9555)
-- Update linenames to match the reference design:
-  - B0_M0_AIC_USB_EN-O -> B0_M0_CPU_L0_RST_IND_L-O
-  - B0_M0_BRD_ID_2-I -> B0_M0_BMC_TO_GPU_MCU_I2C_EN-O
-  - B1_M0_AIC_USB_EN-O -> B1_M0_CPU_L0_RST_IND_L-O
-  - B1_M0_BRD_ID_2-I -> B1_M0_BMC_TO_GPU_MCU_I2C_EN-O
-  - IOX_GPIO_P16_TP -> USB2_BMC_HUB2_RST_L-O
-  - I2C_PDB_ALERT_L-I -> X86_TPM_RST_SEL_L-O
-- Remove unexpected or unsupported properties from SSIF and IOEXP
-  nodes.
-- Change all status values from "ok" to "okay" for consistency.
-- Link to v2: https://lore.kernel.org/r/20260203-sanmiguel_init_dts-v2-0-6a5682c32b38@gmail.com
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v2:
-- change mac0 phy-mode to rgmii-id
-- remove max-speed attribute from mac0
-- Link to v1: https://lore.kernel.org/r/20260202-sanmiguel_init_dts-v1-0-c0023ae41899@gmail.com
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index 9298c1a75dd1..6c84e6c80978 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -91,6 +91,7 @@ properties:
+               - facebook,greatlakes-bmc
+               - facebook,harma-bmc
+               - facebook,minerva-cmc
++              - facebook,sanmiguel-bmc
+               - facebook,santabarbara-bmc
+               - facebook,yosemite4-bmc
+               - facebook,yosemite5-bmc
 
----
-Potin Lai (2):
-      dt-bindings: arm: aspeed: add Meta SanMiguel BMC
-      ARM: dts: aspeed: Add Meta SanMiguel BMC
-
- .../devicetree/bindings/arm/aspeed/aspeed.yaml     |   1 +
- arch/arm/boot/dts/aspeed/Makefile                  |   1 +
- .../dts/aspeed/aspeed-bmc-facebook-sanmiguel.dts   | 634 +++++++++++++++++++++
- 3 files changed, 636 insertions(+)
----
-base-commit: 24d479d26b25bce5faea3ddd9fa8f3a6c3129ea7
-change-id: 20260202-sanmiguel_init_dts-79cdb33c50d5
-
-Best regards,
 -- 
-Potin Lai <potin.lai.pt@gmail.com>
+2.31.1
 
 
