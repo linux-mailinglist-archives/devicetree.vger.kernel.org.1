@@ -1,157 +1,144 @@
-Return-Path: <devicetree+bounces-273948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273949-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NsDBeArsWkBrgIAu9opvQ
-	(envelope-from <devicetree+bounces-273948-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:46:24 +0100
+	id 2AfELvUrsWkBrgIAu9opvQ
+	(envelope-from <devicetree+bounces-273949-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:46:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F5925F9E0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EFCC25F9FF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:46:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id BC2D030AAE70
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:37:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id C277730B0E20
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:37:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701423BB9F1;
-	Wed, 11 Mar 2026 08:32:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8D43C6615;
+	Wed, 11 Mar 2026 08:33:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FODQ7j1b"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sYMUODGg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA28E3BD62F
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CBE135AC37;
+	Wed, 11 Mar 2026 08:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773217978; cv=none; b=lkNdZALMXV88pVTlf9/l2zWjPibwnpwFhR+5tEeFcNS/ogRu33OB9ziAIgRQU3iICXBrhBArrEi9UbixEpMdoqvywrGr7T4AAEHKe/KKTab0CvZCZ2oR2mSn7Zms12TeoHiY0tlC/sJfA/Rp9b3tnm5fyDbul54lwMIvHryieZo=
+	t=1773217986; cv=none; b=Iml4ZiHAD0cCuamtRUP0tj6p0MaSwNxN8jkEvWjo4jQYgNC6Q0Y4MXpKpwPIlAydco/vp1ysSDlFPiJuHTdelhTWNsa8cnhpydL9siBWnb/Bh0XzLQIO/T0B05BuVVK4pWXjDyZjLYhSSgyTjxDIkPTjS9PzjCT0Gu4PwBKbKu4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773217978; c=relaxed/simple;
-	bh=CCxrS9skmRpl8jND9v4vYlK+FQev5wTRfod1SOCisDQ=;
+	s=arc-20240116; t=1773217986; c=relaxed/simple;
+	bh=Qo+PJNpHJ9Md7YVDAK1mnfNEfOfjGMzCvy0YD3nVYtU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FGhmwhIBRlVTY98CegYok2xPPqWsG1XDKdJFccid6fqj37XfVynJUpCIRm6uYVW+xNBjNYZ+vdW7CppeZETPil3mGIjZi5cDyMhjAaq3Y1QoRmzy8RlVlRNsEGIjJ3+19mn0GdoaJWnXzK81iWtTIehDJuDUObRrE9FJgK9Nr+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FODQ7j1b; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=7LG9
-	PxpeOLthDVAZ4NlKI126O57wQkSgQ5aDzvQFM5Q=; b=FODQ7j1biQ3Qo31WrK4f
-	uShRRzabA/dPwrPNza0DQC0WyM5sj+agS9Cx//q+xT+5ZE0YNCQfZ02Oi7tWEXe3
-	W1w9MUkThwyLTRTThd1A8d4nYZUZ7Spu7mA3qGxZaPR8Lukl9FDzM/B97vn3XxuH
-	pX0xA3OnVhxTeX3Nc8akwmA0DaicvFAdNz4AkE0y1khFsreH6bdeXfY2KoHgZUYz
-	RSpxoVrIH32f6nVdgCmY0iO0mQrRGVmsnOIzHEB8n1+7QjnMKbo43RsKBHHwkFT3
-	+bCW6u0DaF3QstmzbCSv959BVOTvoxJTiQxSWBy6241X2M5+8Y2rLcjMoBEAa5q/
-	Qw==
-Received: (qmail 3564918 invoked from network); 11 Mar 2026 09:32:53 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Mar 2026 09:32:53 +0100
-X-UD-Smtp-Session: l3s3148p1@2G5ue7tMousujnut
-Date: Wed, 11 Mar 2026 09:32:53 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
-Message-ID: <abEotS0ZbGwqEmO5@ninjato>
-References: <20260303102029.147359-1-herve.codina@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=i/Lsi2VjEYKrz6Qr/SwFoiF3M0wfIt3XOgcsA7KngJgs+WiM3d80J0dWe7vXH+7atSyQxa+RBlEetyf3IXDERORT4sbsw/VGAZZhnuvt8e1Q2NAiHc3lTLceHvJ45sVj4qvnPMUcQh4UoEYs/q26RzqBDksW4gIHxp+OoZNXM4s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sYMUODGg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA189C2BC86;
+	Wed, 11 Mar 2026 08:33:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773217986;
+	bh=Qo+PJNpHJ9Md7YVDAK1mnfNEfOfjGMzCvy0YD3nVYtU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sYMUODGgHsE+8SiVUWHGQIG96yOMSBo6lDZtP6oClHLNa3fYFEnAkd71mhxfItj5r
+	 /wLogqOLZ506XX9xemlt9SFV9y3b/KykU4qsbELkpuMtcYKKunrHjgqINQYHq3+TEH
+	 hFRNXV+FfBL9Lgq/an182cPlFRvWXkWBItDkYFLuZikXKCH0l4mtb1pQKujsu2fYRf
+	 ZtAVo36VCysN0qVxuYzNvPOJXgzgAYQxl/qYFBGvTeMUXgf6o/y7Ceaw34YC4qxZMw
+	 xvof/CHdzhvHRk2FPLZ/KfACqHN1DgG0r2BtfpdByZJ2wuSvo/ZHwLrH/BFQItCb/3
+	 mSGWCpt0tjyEw==
+Date: Wed, 11 Mar 2026 09:33:03 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
+	Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] scsi: ufs: qcom: dt-bindings: Document the Eliza UFS
+ controller
+Message-ID: <20260311-radical-bold-catfish-d7ccca@quoll>
+References: <20260310-eliza-bindings-ufs-v2-1-1fe14fc9009c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="m42m2ThPRCHUbJ3r"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260303102029.147359-1-herve.codina@bootlin.com>
-X-Rspamd-Queue-Id: A5F5925F9E0
+In-Reply-To: <20260310-eliza-bindings-ufs-v2-1-1fe14fc9009c@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 5EFCC25F9FF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[sang-engineering.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-273948-lists,devicetree=lfdr.de,renesas];
+	TAGGED_FROM(0.00)[bounces-273949-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	MISSING_XM_UA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:dkim,sang-engineering.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
+On Tue, Mar 10, 2026 at 12:44:42PM +0200, Abel Vesa wrote:
+> Document the UFS Controller on the Eliza Platform.
+> 
+> The IP block version here is 6.0.0, exactly the same as on SM8650.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+> Changes in v2:
+> - Rebased on next-20260309.
+> - Mentioned the IP revision, as Manivannan requested.
+> - Link to v1: https://patch.msgid.link/20260223-eliza-bindings-ufs-v1-1-c4059596337f@oss.qualcomm.com
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> index cea84ab2204f..80550144f932 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> @@ -15,6 +15,7 @@ select:
+>      compatible:
+>        contains:
+>          enum:
+> +          - qcom,eliza-ufshc
+>            - qcom,kaanapali-ufshc
+>            - qcom,sm8650-ufshc
+>            - qcom,sm8750-ufshc
+> @@ -25,6 +26,7 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> +          - qcom,eliza-ufshc
+>            - qcom,kaanapali-ufshc
+>            - qcom,sm8650-ufshc
+>            - qcom,sm8750-ufshc
 
---m42m2ThPRCHUbJ3r
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+You need constraints for minItems: 2 for reg and reg-names. MCQ is
+required. The mistake was doone for Kaanapali, but that patch was
+applied without review, so it is not a correct example to base on.
 
-On Tue, Mar 03, 2026 at 11:20:29AM +0100, Herve Codina (Schneider Electric)=
- wrote:
-> When checking dts involving the r9a06g032.dtsi file, the following kind
-> of warnings are reported:
->    Missing property '#address-cells' in node xxx, using 0 as fallback
->=20
-> Indeed, #address-cells is not present in the GIC interrupt controller
-> node.
->=20
-> Fix it adding the missing property.
->=20
-> No functional change.
->=20
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
+Best regards,
+Krzysztof
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-I like Krzysztof's explanation "Value '0' is correct because GIC
-interrupt controller does not have children." Maybe it can be added to
-the commit message?
-
-
---m42m2ThPRCHUbJ3r
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmmxKLUACgkQFA3kzBSg
-KbaBjQ//d28BBGk3XivQJnpk2guNJqhhbJ1ai8OE+9mvi4M1+O8DrB0zOkLDcVM2
-4Lymij+KVDppD2TTQ9uNYxK10YrdQ4w2oKG/5+Inp3z6mdD1ntoI1HkgdFVd6CkA
-r3u/PWNrsN2VMMnrp6z6tdfeC8cM3SucJX2t1BxOVfjHxR1WKWuXFwIWuTHXnOw8
-hOTuckx+G+cWwL6Fvukzliqe2aOf0p9RvewMppeaymM27ik7l1RQbNvj/BBSqHj7
-AL7LviBWUoTnhl4P3pzKnSw8uA+8woK00xbs0TCU/lSLmzm8x3DDBe++3YTnHJe/
-Q7TqkO0gzRXQ1jue7MevhaunG8P6IuuiBEv2qbFf53Od37rwhFuGBAeknSYpGUFJ
-wOMO+6AFt0+9l45KTzjBuZyvaCeXUViW2FgS0XHa206jdmuk2Vk/3ps/LMhMma9W
-6S9ucoZvLQ6WGySfSUjxNwvglCKnjkIJshN7a6O9jn185kFv6HqPxf5vnmvjJVSq
-6Buon7j/t0HsO9FLOxDQAfy+wHKcN6ZTNR+lNccc6Tb0P6Lgoh5lxkxUbn4Q7/Ys
-MkfRx5PS6Sm8VyBuZmmOclJvU0i49dz93SovIa2RJvdHuz8wiHna6PMMvN+AQdjE
-XeCN6DDXSnxTF3srZiWE45D1zDOuS1lUBp35kQMYaScnUHB1SYE=
-=WsKJ
------END PGP SIGNATURE-----
-
---m42m2ThPRCHUbJ3r--
 
