@@ -1,51 +1,51 @@
-Return-Path: <devicetree+bounces-274334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274335-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yG+lCZPNsWmQFQAAu9opvQ
-	(envelope-from <devicetree+bounces-274334-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:16:19 +0100
+	id 4I2fEBnOsWmQFQAAu9opvQ
+	(envelope-from <devicetree+bounces-274335-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:18:33 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94BB8269D21
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:16:18 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6554269E34
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:18:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 06BCB304F22E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:16:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4AD94315CC8F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C73138D008;
-	Wed, 11 Mar 2026 20:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 118E238D6AA;
+	Wed, 11 Mar 2026 20:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oSTe0p9N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B6hPQH5C"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66EDD38D002;
-	Wed, 11 Mar 2026 20:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E280438D018;
+	Wed, 11 Mar 2026 20:16:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773260176; cv=none; b=GmpeAh+5fkygZdoyTObMYOgt/XMKW7Gui/svyue5q7Nj8IUqL9QHKdwxMorU47yyn4saI6bOGJjLCsVe4b3+x0LNwp6EIVgtuRy8lYAUmoKo01lYfczEPv3izJMg1wfgolJpA+fGmZ7CId3cLwpwbi7aiJzBA4rvhWXm7KMLKqE=
+	t=1773260205; cv=none; b=H6pY99wWBCm9VzIqMloVMLzs+eNpB9Vf9TbELO2VWSTa0hEqm6JqJNeu5EU5Iwkhn4AlqjocPEgQG0RhF7U1foly1ez1XQS+Rm21vv/CfP7Br3PkFnHnvWpAVTah1nScyQJbRcK1pauZX9TaofeiYPaZ3Q5oB4z70qL1OhpXSwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773260176; c=relaxed/simple;
-	bh=soHu976IjtB/ZRqMvxuAr5Vcr5Cvzpj4LF+yHnfWZgw=;
+	s=arc-20240116; t=1773260205; c=relaxed/simple;
+	bh=TwF5iPB95P0hOLfN6Xg9Dyun41Gj/HQcUN03opMwuKw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jm47msn5nbRmOKp2lHKuJpjKPVLnhy5rNG5qepxoEtTPOkjpFS6+HBbKeQZtkuM0rZEG+yu7S39BMkPAD7QAEumzqbe7xD6U/N/eRnEoivb5i6cS9M243chuAdbkMXhs3hrv+5oKdwzVeku83ntEnJN8gYwE40ouksxKVd/deNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oSTe0p9N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4B5AC4CEF7;
-	Wed, 11 Mar 2026 20:16:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=BxFRixLU+7TpLyvNgBEIOY7fHJVQgQKPwHIJSpdJ2+miJxPxaVWwZmUv59Bw85bE1eh1ImVFnuhcsdqYNL4ruBrI8zeIuZI7OLjFexeton6Ia0X4l0YDtpybGZ49mHdH8bRdge4GKVYJhTpy/TeSZGzEkjkoKw2l03ab9QVGgrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B6hPQH5C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72DABC2BC86;
+	Wed, 11 Mar 2026 20:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773260176;
-	bh=soHu976IjtB/ZRqMvxuAr5Vcr5Cvzpj4LF+yHnfWZgw=;
+	s=k20201202; t=1773260204;
+	bh=TwF5iPB95P0hOLfN6Xg9Dyun41Gj/HQcUN03opMwuKw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oSTe0p9NR6sloa/dvzwKGd744EnoT0TOi+x6LzoLBkMuzKl2f2PCiZIUE5kdOIHKs
-	 vKzPyw2nsUhq1ULsHBAGe4lCgPMctIw858RYvQgvCPuyENJBUBghpVWWZ/aGFUaweG
-	 9RbM8B5TeTPnkgPZkKhTBO+R0hwjtFKL+w3hTk/w7Sy5Fc8x2h5WcpkMXEZTp2eMa4
-	 sM23F/zk3/HbbShYY8VYpEZ69dS/RIeTsIvo4qgP81SQdWJPjvBFwrdYjpITitI2g6
-	 VqSxOGysKfxi40PrETOL+PzlSsBZKVrdkEdnp4WEDZm0CDvlgdkltJTyd34w69GK9z
-	 KzJPkabsvgzcw==
-Message-ID: <cd301993-946d-425d-b4b1-011edb7b9fbf@kernel.org>
-Date: Wed, 11 Mar 2026 21:16:09 +0100
+	b=B6hPQH5CqrmGWtCO4CyjU7hp+j50AVAhv6MZf/ecTiIR1uKdP0PTOp+lVOHIHGwoj
+	 yB7qbN7LaqaAG3IuGZHsbO3uNVWFtUVY5GX1e3UGpyCy4vI8dVK/vr6jYj/mdeahyJ
+	 hN4ZVGUpURAa2gE2Fiq5Bpey25i/U7oYPTjgQA/UFLEmuHKf3z7Dz/5ju7WyiNit8I
+	 ZIWLu87FAbsMpm/Zr7biJmZKk/0Yxzf712t7fOTDcYJ4mg1PWMlHWLY4dv+nHrzYkm
+	 GAChx0a1Hat3XKvucj4kdo1bDW+qVICLMxOn1CKSlx0ffkWqbS+pa2d3J1BPLc1kNU
+	 dIZ/haFzrLwIQ==
+Message-ID: <de86f0ca-8d63-48c3-a1ae-3c1a801bef5f@kernel.org>
+Date: Wed, 11 Mar 2026 21:16:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -53,20 +53,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Arm Technology
- (China) Co., Ltd.
-To: Liviu Dudau <liviu.dudau@arm.com>, Conor Dooley <conor@kernel.org>
-Cc: Cunyuan Liu <cunyuan.liu@cixtech.com>, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- neil.armstrong@linaro.org, heiko@sntech.de, marex@nabladev.com,
+Subject: Re: [PATCH 2/3] dt-bindings: display: arm,komeda: add Arm China
+ Linlon D6 compatible
+To: Cunyuan Liu <cunyuan.liu@cixtech.com>, liviu.dudau@arm.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: neil.armstrong@linaro.org, heiko@sntech.de, marex@nabladev.com,
  dev@kael-k.io, prabhakar.mahadev-lad.rj@bp.renesas.com,
  andre.przywara@arm.com, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  cix-kernel-upstream@cixtech.com
 References: <20260311055506.12023-1-cunyuan.liu@cixtech.com>
- <20260311055506.12023-2-cunyuan.liu@cixtech.com>
- <20260311-playful-unwritten-95530cbd5206@spud> <abG_VYCC8zpvjmlw@e142607>
+ <20260311055506.12023-3-cunyuan.liu@cixtech.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -112,7 +111,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <abG_VYCC8zpvjmlw@e142607>
+In-Reply-To: <20260311055506.12023-3-cunyuan.liu@cixtech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
@@ -120,16 +119,16 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274334-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-274335-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[cixtech.com,arm.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[cixtech.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linaro.org,sntech.de,nabladev.com,kael-k.io,bp.renesas.com,arm.com,lists.freedesktop.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -141,25 +140,41 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 94BB8269D21
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: B6554269E34
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 11/03/2026 20:15, Liviu Dudau wrote:
-> On Wed, Mar 11, 2026 at 06:42:23PM +0000, Conor Dooley wrote:
->> On Wed, Mar 11, 2026 at 01:55:04PM +0800, Cunyuan Liu wrote:
->>> Add "armchina" vendor prefix for Arm Technology (China) Co., Ltd.
->>
->> Is this not a subsidiary of arm, that should just use the arm prefix?
+On 11/03/2026 06:55, Cunyuan Liu wrote:
+> Add the Arm China Linlon D6 display controller compatible string.
 > 
-> It is more complicated than that. For what the kernel is interested in
-> they should be treated as a separate entity as their products do not
-> carry automatic compatibility with arm's ones.
+> Linlon D6 is register-compatible with Mali-D71, so describe it as a
+> vendor-specific compatible with a fallback to "arm,mali-d71".
+> 
+> Signed-off-by: Cunyuan Liu <cunyuan.liu@cixtech.com>
+> ---
+>  Documentation/devicetree/bindings/display/arm,komeda.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/arm,komeda.yaml b/Documentation/devicetree/bindings/display/arm,komeda.yaml
+> index 3ad3eef89ca8..56fb4103b0dd 100644
+> --- a/Documentation/devicetree/bindings/display/arm,komeda.yaml
+> +++ b/Documentation/devicetree/bindings/display/arm,komeda.yaml
+> @@ -21,6 +21,9 @@ properties:
+>        - items:
+>            - const: arm,mali-d32
+>            - const: arm,mali-d71
+> +      - items:
+> +          - const: armchina,linlon-d6
 
-Yeah, it's joint venture, so not the same company. Also, according to
-their website they have trademark agreement to use the name "Arm", FWIW.
+So that's enum in previous d32 entry.
+
+> +          - const: arm,mali-d71
+>        - const: arm,mali-d71
+>  
+>    reg:
+
 
 Best regards,
 Krzysztof
