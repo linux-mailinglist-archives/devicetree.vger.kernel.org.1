@@ -1,276 +1,125 @@
-Return-Path: <devicetree+bounces-274341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274342-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0OJJDRHasWlPFwAAu9opvQ
-	(envelope-from <devicetree+bounces-274341-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:09:37 +0100
+	id +KpgJJ7asWlPFwAAu9opvQ
+	(envelope-from <devicetree+bounces-274342-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:11:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F3FD26A46E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:09:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E72AD26A4C7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:11:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3F18D306C7C8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:08:14 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AE50A306F794
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:11:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0516324716;
-	Wed, 11 Mar 2026 21:08:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55463563FB;
+	Wed, 11 Mar 2026 21:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EuednAHl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r3dzwYvR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185762C0261;
-	Wed, 11 Mar 2026 21:08:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A106423ABA8;
+	Wed, 11 Mar 2026 21:11:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773263293; cv=none; b=edqw8a4DYDhr8G4MrG/AyhTpVTd5NzzzidAvdQL2E+eb67qaQqwb77oIE2SX7JJXG6lSnc7RJ/pLJpEmWYodYgElicewQz1nZ7TNoExZ+REYt8VN7okGZZsx0xEKUOoE5/z5Lx4oPXd9sftQRBwWtBnqEi0RoK1UNXc9y5tM2q4=
+	t=1773263484; cv=none; b=qZpKZEZovSBq35L1FL+ZKbW/deL3/CD/tPnXTx4sznmzvwZ7yzwDX66M7hV3xmDfMwosFDU9x2+MSV6vZL+TL8TIm9S2ThiAZddTiYpLFpw3/+GWxJKX6fkmF+Rn1d6bPTg1Hp07D4KkjlsPMS4BKazANSgl8gjyTnskHC5xJVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773263293; c=relaxed/simple;
-	bh=kRjOgkOnr7fYH+eWHo8E9TkCd+WB2e21NPMSBrm1rhM=;
+	s=arc-20240116; t=1773263484; c=relaxed/simple;
+	bh=OwgVxzGUPK0fdml0fgIEcBM672LBenrQ9/yHUNZEenE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lwv/pOrC1sIL1ZhFq3lPVjpQ5MgOc4RDeA3oetIZNvYHI4aN3mejxNN3RwuZ0YiKfJpRMA1gljnvA69hY64GTEKz9ZyLZRh3aA+3/jLZgZj7xyeEdCNSAIeIkbXa5FDFO1N4HZiM4uXKB96S+XvSldZB6oakgIso2WK1mpYSHj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EuednAHl; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773263292; x=1804799292;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=kRjOgkOnr7fYH+eWHo8E9TkCd+WB2e21NPMSBrm1rhM=;
-  b=EuednAHlb8UnoZnqR6tGU7YvPy0KPGEaDPoCQ1OFZW3jbffEttw7Rmq3
-   lcHThTX0w++tKTF9cElsWTn/3gyZrZsEJ2QVEF9yeuXmngVMbiVqMwtOB
-   ChWotFwCgCp5uBBawE1pN8djM1Ie82+ZwWvdvWCkkv3y6MWiJDPt36RJs
-   VWFEJ6u/DTB98TVP+4K/C6A95lqqfv+GJ9shE904ECznaROIge6OhzEg8
-   TpGPp+sMxQWR2taJ59z+CnFGaM6wvLJwgRjqLFzaUvzJgotyImx/eLZGd
-   UZaDtrCwNFOkUBqAYNeh6o1+0PYDQ4xOZsSFi5k1hdfMvNv7elO4JDaZH
-   g==;
-X-CSE-ConnectionGUID: RW9ggTkoTNWKe0ksszO+RQ==
-X-CSE-MsgGUID: p5OP0QK5Q0WyzO+6419+dA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85824482"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="85824482"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 14:08:12 -0700
-X-CSE-ConnectionGUID: cXwe4WTaQpaMy+Rt5wftzg==
-X-CSE-MsgGUID: TWoslZNDRqS7eF+1QCkbTQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="225573534"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.178])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 14:08:07 -0700
-Date: Wed, 11 Mar 2026 23:08:04 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: radu.sabau@analog.com
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] iio: adc: ad4691: add triggered buffer support
-Message-ID: <abHZtEYuzou9fBgn@ashevche-desk.local>
-References: <20260310-ad4692-multichannel-sar-adc-driver-v2-0-d9bb8aeb5e17@analog.com>
- <20260310-ad4692-multichannel-sar-adc-driver-v2-3-d9bb8aeb5e17@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jhGYV253EQNV7Qk29EiFxRVrA2Fvqr2RhRoZj4Z/FgitJ8e0/7sJBSuXDSv/zEOHow9tps/uXgwnmJSEZuD+6z62kwYgGsQAywcY4gZjJd94FgY4oyEuTK3wkwmCYl2jOLVPTuJMLT7/m1EmeFoIsBh3COrUUAuCV/9bs6rJjeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r3dzwYvR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1101DC4CEF7;
+	Wed, 11 Mar 2026 21:11:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773263484;
+	bh=OwgVxzGUPK0fdml0fgIEcBM672LBenrQ9/yHUNZEenE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r3dzwYvRo6IvKGxmtcSmWg7cF9sor+0SJafXxIzyUdKC3+BUw1F+aOgu1XugjOcR7
+	 RZD5FVb6Ht/N+gBZ7y3WWzduu/2ZlJfA/kXYiUAhZ9zZghoj7mzE/CGwqm2ZT1fI4p
+	 dDcaA0gHAySNWSUI+dcqn8WXjUEvt0alv1Ap2AqC58s3Hj/qyZDUe0Y1uArvSfef98
+	 4wa04YSPx32fg0cLFhRrDYo1e8+6ObTPTuSiY971A94g/4Rd0Z1kJYQe7QQ9VpVGPW
+	 xF3w5PmZtLcT4ClSF5wAgIQtuCdjZ/LJ831E7vuO4ewt5Kbwk8I+oFDAi1dGoX/Glu
+	 UQkwlyYC4ovwA==
+Date: Wed, 11 Mar 2026 16:11:19 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Luca Weiss <luca.weiss@fairphone.com>, Taniya Das <taniya.das@oss.qualcomm.com>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH RESEND v6 5/6] clk: qcom: Add support for Global clock
+ controller on Eliza
+Message-ID: <abHZ8Y3NmsNj3IXR@baldur>
+References: <20260311-eliza-clocks-v6-0-453c4cf657a2@oss.qualcomm.com>
+ <20260311-eliza-clocks-v6-5-453c4cf657a2@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260310-ad4692-multichannel-sar-adc-driver-v2-3-d9bb8aeb5e17@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Spamd-Result: default: False [-0.66 / 15.00];
+In-Reply-To: <20260311-eliza-clocks-v6-5-453c4cf657a2@oss.qualcomm.com>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-274341-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-274342-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 8F3FD26A46E
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: E72AD26A4C7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 10, 2026 at 04:32:24PM +0200, Radu Sabau via B4 Relay wrote:
+On Wed, Mar 11, 2026 at 04:46:35PM +0200, Abel Vesa wrote:
+> diff --git a/drivers/clk/qcom/gcc-eliza.c b/drivers/clk/qcom/gcc-eliza.c
+[..]
+> +static const struct qcom_cc_desc gcc_eliza_desc = {
+> +	.config = &gcc_eliza_regmap_config,
+> +	.clks = gcc_eliza_clocks,
+> +	.num_clks = ARRAY_SIZE(gcc_eliza_clocks),
+> +	.resets = gcc_eliza_resets,
+> +	.num_resets = ARRAY_SIZE(gcc_eliza_resets),
+> +	.gdscs = gcc_eliza_gdscs,
+> +	.num_gdscs = ARRAY_SIZE(gcc_eliza_gdscs),
+> +	.driver_data = &gcc_eliza_driver_data,
 
-> Add buffered capture support using the IIO triggered buffer framework.
-> 
-> Both operating modes share a single IIO trigger and trigger handler.
-> The handler builds a complete scan — one u32 slot per channel at its
-> scan_index position, followed by a timestamp — and pushes it to the
-> IIO buffer in a single iio_push_to_buffers_with_ts() call.
-> 
-> For CNV Clock Mode the GP0 pin is configured as DATA_READY output. The
-> IRQ handler stops conversions and fires the IIO trigger; the trigger
-> handler reads accumulated results from the AVG_IN registers via regmap
-> and restarts conversions for the next cycle.
-> 
-> For Manual Mode there is no DATA_READY signal; CNV is tied to SPI CS
-> so conversions are triggered by CS assertion rather than by a dedicated
-> pin. The standard iio-trig-hrtimer module is not used because the timer
-> period must be derived from the SPI clock rate and the number of active
-> channels: the pipelined protocol requires N+1 SPI transfers per scan
-> (the first result is garbage and is discarded), so the minimum period
-> depends on both the SPI speed and the live channel count at buffer
-> enable time. A driver-private hrtimer whose period is recomputed by
-> buffer_postenable is simpler and avoids requiring the user to configure
-> an external trigger with the correct hardware-derived period.
-> 
-> Manual mode channels use storagebits=32 (shift=8, realbits=16) so all
-> channel slots in the scan buffer are uniformly sized regardless of the
-> SPI wire format (24-bit transfer, 16-bit ADC data in bits[23:8]).
+Don't we want a use_rpm here?
 
-Many comments from previous patch are applicable here.
+I merged this for now, please send an incremental patch, and please fix
+the tool that is used to generate these patches.
 
-...
+Regards,
+Bjorn
 
-> +static irqreturn_t ad4691_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf = p;
-> +	struct iio_dev *indio_dev = pf->indio_dev;
-> +	struct ad4691_state *st = iio_priv(indio_dev);
-> +	unsigned int val;
-
-> +	int ret, i;
-
-Why is 'i' signed?
-
-> +	mutex_lock(&st->lock);
-
-No guard()()?
-
-> +	if (st->adc_mode == AD4691_MANUAL_MODE) {
-> +		unsigned int prev_val;
-> +		int prev_chan = -1;
-> +
-> +		/*
-> +		 * MANUAL_MODE with CNV tied to CS: each transfer triggers a
-> +		 * conversion AND returns the previous conversion's result.
-> +		 * First transfer returns garbage, so we do N+1 transfers for
-> +		 * N channels. Collect all results into scan.vals[], then push
-> +		 * the complete scan once.
-> +		 */
-> +		iio_for_each_active_channel(indio_dev, i) {
-> +			ret = ad4691_transfer(st, AD4691_ADC_CHAN(i), &val);
-> +			if (ret)
-> +				goto done;
-> +
-> +			if (prev_chan >= 0)
-> +				st->scan.vals[prev_chan] = prev_val;
-> +			prev_val = val;
-> +			prev_chan = i;
-> +		}
-> +
-> +		/* Final NOOP transfer to retrieve last channel's result */
-> +		ret = ad4691_transfer(st, AD4691_NOOP, &val);
-> +		if (ret)
-> +			goto done;
-> +
-> +		st->scan.vals[prev_chan] = val;
-> +	} else {
-> +		for (i = 0; i < st->chip->num_channels; i++) {
-> +			if (BIT(i) & *indio_dev->active_scan_mask) {
-
-NIH for_each_set_bit().
-
-> +				ret = regmap_read(st->regmap, AD4691_AVG_IN(i), &val);
-> +				if (ret)
-> +					goto done;
-> +
-> +				st->scan.vals[i] = val;
-> +			}
-> +		}
-> +
-> +		regmap_write(st->regmap, AD4691_STATE_RESET_REG, AD4691_STATE_RESET_ALL);
-> +
-> +		/* Restart conversions for the next trigger cycle. */
-> +		ad4691_sampling_enable(st, true);
-> +	}
-> +
-> +	iio_push_to_buffers_with_ts(indio_dev, &st->scan, sizeof(st->scan),
-> +				    pf->timestamp);
-> +
-> +done:
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +	mutex_unlock(&st->lock);
-> +	return IRQ_HANDLED;
-> +}
-
-...
-
-> +	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
-> +					  indio_dev->name,
-> +					  iio_device_id(indio_dev));
-> +	if (!st->trig)
-
-> +		return dev_err_probe(dev, -ENOMEM,
-> +				     "Failed to allocate IIO trigger\n");
-
-No. Ask your senior colleagues why.
-
-...
-
-> +		irq = fwnode_irq_get(dev_fwnode(dev), 0);
-> +		if (irq <= 0)
-
-' = 0' ?!
-
-> +			return dev_err_probe(dev, irq ? irq : -ENOENT,
-> +					     "failed to get DATA_READY interrupt\n");
-
-This ugly ternary will gone.
-
-...
-
-> +		ret = devm_request_threaded_irq(dev, irq, NULL,
-> +						&ad4691_irq,
-> +						IRQF_ONESHOT,
-> +						indio_dev->name, indio_dev);
-> +		if (ret)
-
-> +			return dev_err_probe(dev, ret,
-> +					     "request irq %d failed\n", irq);
-
-Also no. Similar reason as above.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> +};
 
