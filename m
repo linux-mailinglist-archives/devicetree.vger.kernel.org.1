@@ -1,223 +1,237 @@
-Return-Path: <devicetree+bounces-274280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274281-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iISoDnazsWnbEgAAu9opvQ
-	(envelope-from <devicetree+bounces-274280-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:24:54 +0100
+	id eImaHSS0sWnbEgAAu9opvQ
+	(envelope-from <devicetree+bounces-274281-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:27:48 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6EF52688C7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:24:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B76268943
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:27:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BEC2F3009B10
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:23:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id BD2893016ED2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAAF33E4C7D;
-	Wed, 11 Mar 2026 18:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82C13E716A;
+	Wed, 11 Mar 2026 18:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jh0syDTu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TJDnxUjV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8753635FF6B;
-	Wed, 11 Mar 2026 18:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35383D4133;
+	Wed, 11 Mar 2026 18:25:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773253421; cv=none; b=u4s5JXU47EZnKCQiVg56+pnpnnc5oe3eTV+CpA15cbMKlyD2peUd/F9ZiUSNW+WiZ4U3BKRKyJeXET/RyC+VQKj8ZSRZyStJyNENNmDqVBlBJpL4hpU1rfvn9z73KNC9tVUNYrsaK4Luqz465qgw+3EZYkemo6GEIUlEBhNA5DU=
+	t=1773253546; cv=none; b=MAmUBNX3GZ2c0EK/5jwjR/iw7PW1ujow6LpInM5vYUUl0xksuBBGFiPNptlMHnHatyhmk5os5R8m5+z9KHkM+j1E5KO8OK6w2Fe72lmMptDD0I6T1+hkBeQ6bqqhOdw1Ms6moWo99hU5vLgywSMYZnNyz4tomj9FVYn7zu2HniY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773253421; c=relaxed/simple;
-	bh=ocjt5vwimI3OcRNQ9GJF62QrRGoM9nphmFiMncx99d8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ugi1ue+C667ACXj9AO1oOBPYdOZFCFZg8A4Pg1uaDEkT8TKFollZHlGS9WiikuSvpfmQjfUYSkBZTX6VEWGGMmEfTUcXASFXZ063GS7Gl6FdgpKjyuN3BwyO0Vde6IdLK40qfNE3PDS8fcXWp/bXmsmpKNWO++ssc6bqgkMo/4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jh0syDTu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F09ABC4CEF7;
-	Wed, 11 Mar 2026 18:23:35 +0000 (UTC)
+	s=arc-20240116; t=1773253546; c=relaxed/simple;
+	bh=JEma55NSkQx0WlZlVa3Ysds8OFhrTBrO4FyokRDe8cw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fUvaadcf0Rck+GQcyfg7j3Q/Fc6ZHO0a0dCJ+LBxjefADCYHpdWYsGmZDxGJuFM2umECj93RTYS56rl6F00ylOWZTxTEzbs/dYv7hptCZBlRtQQMgAuNmOf0qoVGfYPpwZtDT6/hWG6lMxCzOEOKpyjoXsBQqFx/mCY4g52Xo04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TJDnxUjV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0926C19425;
+	Wed, 11 Mar 2026 18:25:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773253421;
-	bh=ocjt5vwimI3OcRNQ9GJF62QrRGoM9nphmFiMncx99d8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jh0syDTuPGlCIJcW+M03biC9MD1BSrWIP3A2NTEUP1JrpKu0XGWIvH8BHRdDVrLYn
-	 3H2pp19smANQGCSPcgA1+V6gOhXv5krWlLsv+qhHxaqH1A4sD7e4zyowAt0o5534el
-	 NuqXR7txtu53ez9Cu5oPWoXaRoZP5LI6O6Ll47c1DjH1HkjdymQzGpT5Y36IClDnKa
-	 z46tVvR9JXE6445EiXgQwHrITSwr95F8gdCYXu2ECyl00avt+ez7zJ3I2v81AGgLWH
-	 G0sPyTeSzy3JScSirykSHS9TfGB0x2lCRL8lak2vEYkhrZs8a8MlFJ/cJtRalK0EHi
-	 teSkdUvbeM6ow==
-Date: Wed, 11 Mar 2026 18:23:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: netdev@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
-	Valentina.FernandezAlanis@microchip.com,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Vineeth Karumanchi <vineeth.karumanchi@amd.com>,
-	Abin Joseph <abin.joseph@amd.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Ryan.Wanner@microchip.com
-Subject: Re: [PATCH net-next v3 03/10] dt-bindings: net: cdns,macb: replace
- cdns,refclk-ext with cdns,refclk-source
-Message-ID: <20260311-scorebook-comfy-95dd9c18e713@spud>
-References: <20260310-moneyless-dispense-7bce14b16388@spud>
- <20260310-sneak-handclap-c150d8f1236b@spud>
- <20260311-horned-dexterous-caribou-3a46fb@quoll>
- <20260311-rival-kerosene-81d12381d120@spud>
- <8f6eb4f0-50b7-4894-b990-98563f1e6b3b@kernel.org>
+	s=k20201202; t=1773253546;
+	bh=JEma55NSkQx0WlZlVa3Ysds8OFhrTBrO4FyokRDe8cw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TJDnxUjVL92KeVhEgFqay0jep+f5FOTOdSz5Pb5BMOJf+Ct2vNmNbkZevmhCCVqOU
+	 wl7Ev+GkExq9IcHj3mN2FzBWH/GhxLjChSrJFEGmDkrUzKH3hm1bVe39p6ffH1qvDJ
+	 V2BD2NfX5LDffwXWKsyRzFT04oQQr7K9X4DP7JSBYt6X9O9XHWp9J/ujIhCR9eDWAF
+	 yuI5xC6ThTqgBaYwXtPPTrls5QBAj4r4nbMIqnfezkJ87SpTwUN/rJ1+8JY7CCMvKL
+	 pKFNlZkwBh212M9A4Xkrfc1y31YSBdKMBclBwAIyJzJk5dpwdh2R8gAI0TyMjM3H9Q
+	 Bz6VscO1LQ6tA==
+Message-ID: <b2d852c4-9f52-4ad4-a916-ced19c599938@kernel.org>
+Date: Wed, 11 Mar 2026 19:25:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YXCI42bSO6w3ujPD"
-Content-Disposition: inline
-In-Reply-To: <8f6eb4f0-50b7-4894-b990-98563f1e6b3b@kernel.org>
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/11] dt-bindings: crypto: qcom,ice: Allow
+ power-domain and iface clk
+To: Harshal Dev <harshal.dev@oss.qualcomm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Abel Vesa <abel.vesa@oss.qualcomm.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>,
+ cros-qcom-dts-watchers@chromium.org, Eric Biggers <ebiggers@google.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
+ Bartosz Golaszewski <brgl@kernel.org>,
+ Yuvaraj Ranganathan <quic_yrangana@quicinc.com>,
+ David Wronek <davidwronek@gmail.com>, Luca Weiss <luca.weiss@fairphone.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Melody Olvera <quic_molvera@quicinc.com>
+Cc: Brian Masney <bmasney@redhat.com>,
+ Neeraj Soni <neeraj.soni@oss.qualcomm.com>,
+ Gaurav Kashyap <gaurav.kashyap@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260310-qcom_ice_power_and_clk_vote-v2-0-b9c2a5471d9e@oss.qualcomm.com>
+ <20260310-qcom_ice_power_and_clk_vote-v2-1-b9c2a5471d9e@oss.qualcomm.com>
+ <2ac2efad-3533-490e-bb42-f21c4e950277@kernel.org>
+ <a2d6c630-e4df-4cdf-8b10-64d87d24bf8f@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <a2d6c630-e4df-4cdf-8b10-64d87d24bf8f@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274280-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-274281-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,gondor.apana.org.au,davemloft.net,kernel.org,chromium.org,google.com,quicinc.com,gmail.com,fairphone.com,linaro.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[30];
-	FREEMAIL_CC(0.00)[vger.kernel.org,microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,tuxon.dev,gmail.com,sifive.com,lists.infradead.org,raspberrypi.com,linux.dev,amd.com,bootlin.com];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: D6EF52688C7
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,bootlin.com:url,qualcomm.com:email]
+X-Rspamd-Queue-Id: 15B76268943
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On 11/03/2026 10:37, Harshal Dev wrote:
+> 
+> 
+> On 3/11/2026 1:55 AM, Krzysztof Kozlowski wrote:
+>> On 10/03/2026 09:06, Harshal Dev wrote:
+>>> Update the inline-crypto engine DT binding to allow specifying up to two
+>>> clocks along with their names and associated power-domain. When the
+>>> 'clk_ignore_unused' flag is not passed on the kernel command line
+>>> occasional unclocked ICE hardware register access are observed during ICE
+>>> driver probe based on the relative timing between the probe and the kernel
+>>> disabling the unused clocks. On the other hand, when the 'pd_ignore_unused'
+>>> flag is not passed on the command line, clock 'stuck' issues are
+>>> observed if the power-domain required by ICE hardware is unused and thus
+>>> disabled before ICE probe. To avoid these scenarios, the 'iface' clock and
+>>> the associated power-domain should be specified in the ICE device tree node
+>>> and the 'iface' clock should be voted on by the ICE driver during probe.
+>>>
+>>> Fixes: f6ff91a47ac57 ("dt-bindings: crypto: Add Qualcomm Inline Crypto Engine")
+>>> Signed-off-by: Harshal Dev <harshal.dev@oss.qualcomm.com>
+>>> ---
+>>>  .../bindings/crypto/qcom,inline-crypto-engine.yaml       | 16 +++++++++++++++-
+>>>  1 file changed, 15 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>>> index c3408dcf5d20..d9a0a8adf645 100644
+>>> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>>> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
+>>> @@ -28,6 +28,16 @@ properties:
+>>>      maxItems: 1
+>>>  
+>>>    clocks:
+>>> +    minItems: 1
+>>> +    maxItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: ice_core_clk
+>>
+>> core
+> 
+> Ack. I'll introduce a check for this specific name here as well:
+> https://elixir.bootlin.com/linux/v7.0-rc3/source/drivers/soc/qcom/ice.c#L582
+> 
+>>
+>>> +      - const: iface_clk
+>>
+>> iface or bus
+> 
+> Ack, will call it 'iface'.
+> 
+>>
+>> I don't understand why this is flexible and commit msg does not explain
+>> that. Devices do not have one and two clocks at the same time. You miss
+>> proper constraints.
+>>
+> 
+> I agree, it might confuse someone reading the commit message the first time.
+> I'll re-write the commit message to make it explicit that even though these
+> two properties are 'required', for the time being we are introducing 'iface'
+> clk and 'power-domain' as an optional property to maintain bisectability,
+> and that the properties would be made 'required' in a subsequent commit once
+> the DTS changes which are part of this patch series have reached the top tree.
+> 
+> Let me know if any concerns with this kind of commit message.
 
---YXCI42bSO6w3ujPD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+So you are adding it for backwards compatibility? It's fine then,
+although I had impression you are fixing something which is not working
+correctly. New devices will need to constrain this.
 
-On Wed, Mar 11, 2026 at 07:10:09PM +0100, Krzysztof Kozlowski wrote:
-> On 11/03/2026 19:08, Conor Dooley wrote:
-> > On Wed, Mar 11, 2026 at 08:00:54AM +0100, Krzysztof Kozlowski wrote:
-> >> On Tue, Mar 10, 2026 at 05:17:10PM +0000, Conor Dooley wrote:
-> >>> From: Conor Dooley <conor.dooley@microchip.com>
-> >>>
-> >>> Ryan added cdns,refclk-ext with the intent of decoupling the source of
-> >>> the reference clock on sama7g5 (and related platforms) from the
-> >>> compatible. Unfortunately, the default for sama7g5-emac is an external
-> >>> reference clock, so this property had no effect there, so that
-> >>> compatibility with older devicetrees is preserved.
-> >>> Replace cdns,refclk-ext with one that supports both default states and
-> >>> therefore is usable for sama7g5-emac.
-> >>>
-> >>> For now, limit it to only the platforms that have USRIO controlled
-> >>> reference clock selection, but this could be generalised in the futur=
-e.
-> >>>
-> >>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> >>> ---
-> >>>  .../devicetree/bindings/net/cdns,macb.yaml    | 39 ++++++++++++++++-=
---
-> >>>  1 file changed, 34 insertions(+), 5 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/D=
-ocumentation/devicetree/bindings/net/cdns,macb.yaml
-> >>> index cb14c35ba9969..a492357570edd 100644
-> >>> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> >>> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
-> >>> @@ -120,12 +120,14 @@ properties:
-> >>>    power-domains:
-> >>>      maxItems: 1
-> >>> =20
-> >>> -  cdns,refclk-ext:
-> >>> -    type: boolean
-> >>
-> >> This is already an implemented ABI, so you cannot drop it even if some
-> >> devices works fine on default. Instead please deprecate it and keep
-> >> drivers backwards compatible for whoever is using it.
-> >=20
-> > The driver still will support it for those devices, but I don't see any
-> > value in keeping the property about, even deprecated, when it doesn't
-> > work properly. If you insist that it be kept and marked deprecated, it
->=20
-> There cannot be an undocumented ABI, so if driver has it, it must stay
-> in the bindings.
-
-Right that's something I should have considered.
-I'll keep it so.
-
-> > needs conditional rules to only permit it on devices that it actually
-> > does something. I'm surprised you even considered that I would drop
-> > support for it from the driver!
->=20
-> Commit msg suggested it is no-op, thus could be dropped without having
-> impact?
-
-Nah, it's not an NOP. Commit message maybe reads that way because I was
-trying to avoid mentioning the driver implementation details. I think I
-could do a better job talking about sama7g5-emac versus sama7g5-gem in
-the commit message, which would show that the current property has a use
-case, just not as broad as it was intended to be.
-
-The existing property was added along with a driver change that modified
-sama7g5-emac which had a default of external to default to internal instead,
-and the property could be used to switch to external. sama7g5-gem had a
-default of internal, so this change was done to make things uniform and
-allow a single property to work for both devices.
-That driver change was reverted to maintain backwards compatibility, so
-the property became useless on sama7g5-emac, and there's currently no
-way to make that device use an internal reference.
-
-What I am doing here is probably what cdns,refclk-ext should have been
-originally, but when the driver's defaults got reverted the whole series
-probably should have been reverted so that Ryan could try again with a
-new approach. Instead, the property went into a release but only works
-on sama7g5-gem.
-
-
---YXCI42bSO6w3ujPD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabGzJQAKCRB4tDGHoIJi
-0vCKAQD8vsxMfMy5RvKzSgT1fRpIcjv03CKilR+jGFr3/HLlTgEA64rdr8VMBJs4
-eFowRGumLH0nAesDGQeGPAGCeLfVvQg=
-=Z2PE
------END PGP SIGNATURE-----
-
---YXCI42bSO6w3ujPD--
+Best regards,
+Krzysztof
 
