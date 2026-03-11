@@ -1,256 +1,173 @@
-Return-Path: <devicetree+bounces-273869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273871-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ADekM9ENsWldqAIAu9opvQ
-	(envelope-from <devicetree+bounces-273869-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:38:09 +0100
+	id kBrfEdgNsWldqAIAu9opvQ
+	(envelope-from <devicetree+bounces-273871-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:38:16 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F6AF25CEE0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:38:09 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C095225CEEE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:38:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5F8CD317B47F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:38:04 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7D2613195F5F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:38:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B958F36C9F3;
-	Wed, 11 Mar 2026 06:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5A02BFC85;
+	Wed, 11 Mar 2026 06:38:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DihlWZfH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5199C372EDC;
-	Wed, 11 Mar 2026 06:38:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165FB36C9F3;
+	Wed, 11 Mar 2026 06:38:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773211083; cv=none; b=bCDMghGmbmeaXllk5JlZZxkCFU0mvWHBkToSRd0L3TnoQy9ZmXfC4g83eSbCSBQqJpOAt26ORHYMNqdWVE+CxegBeJhoWEMZadUK1gNuobb06RCsybmwqOqxippyOYUyGB19vxe/2vbf0ImHBvamxwQoY7iZlejA/V76PIbxiVY=
+	t=1773211085; cv=none; b=bDAP5Mv2iJFJj7/JHRNiTF7y92+O8ln9mr8dKKXurtJ6eft5VMsArmXwQoBRAwpj4y/UCjAgBWp2/5Vre7h661W40VLK3PqwMVaGXFA29dpjGTIcYnjm/JFN0Tz6QRx/bJhko6wOl8erIqaJpDTX+VcYm50RWfxvhTdzezwHC2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773211083; c=relaxed/simple;
-	bh=AbsCMNyX0W5lDmXtP9Ts02P56pjOywD+SfNK7kYOuFo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JK6rMvC9XGXnouPcLys0EPb5pCUnJcdv0prila61BYhZLEgd8HKqSBO+RPv3Q1YyhlCS/1bOSyjYqAeZ3d9LtNNHwKnlXE9xZEr6XAojyb7ajP4jBcJyA5KJ/fd6GFdCDCNdzbxKc1X7dnS1hYVlZ2COtG1VA5DNtdoxgmUEWeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.227])
-	by gateway (Coremail) with SMTP id _____8DxAfHGDbFpC9MZAA--.10433S3;
-	Wed, 11 Mar 2026 14:37:58 +0800 (CST)
-Received: from kernelserver (unknown [223.64.68.227])
-	by front1 (Coremail) with SMTP id qMiowJCx_8LCDbFp2clSAA--.26807S4;
-	Wed, 11 Mar 2026 14:37:57 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-sound@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH 6/6] ASoC: loongson: Add Loongson-2k0300 I2S controller support
-Date: Wed, 11 Mar 2026 14:37:48 +0800
-Message-ID: <cb7062433863aea0d66959fc0f4aee791cab6402.1773107475.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <cover.1773107475.git.zhoubinbin@loongson.cn>
-References: <cover.1773107475.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1773211085; c=relaxed/simple;
+	bh=gsusJAD+5+QOgH7Pw3gViEeL19SXkd/XhJ5VD+/xV6M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WoMtevUbx676XL4OYiKAX2Emz1s2WOzfszd0Yux7Ny/dHW2B+Tc/XISaYW5zKAxdvtjeXSXKpHJhNd4p3hsvP5sOMdpogGGysPEIpJz5MOWY9SKEMtce+lfRf3MlU71b66zXt+z+DpQ5D7gRl9w9cCVfac+c1BSoA5b/Z7k7XQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DihlWZfH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A049C2BC86;
+	Wed, 11 Mar 2026 06:38:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773211084;
+	bh=gsusJAD+5+QOgH7Pw3gViEeL19SXkd/XhJ5VD+/xV6M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DihlWZfHTUqkbunaUuWEGEmxniRWBJntc2aMzD9cTW3+96FMkQEYYDRpQdR8ySyrJ
+	 Bf4oDqI5l/kGx7rXibu+H4n6387sViGEY6l1+JFkwzFnWARLx379VZuCeAv0Sa+9LP
+	 9J2IVrb9lzNdEOOB7OpmWrc0SRIGaddZIv7viFyF+QGiRbP690pzVAvk0l4ZMewwQn
+	 zGiUEEFIPGVKhEmVGDx1dU7h4NfSAibGYdX8xOkhBcMpBqeobSPdzu3T8/xHHwZuYp
+	 PUDarzos4a21BiEg0MDlZMwCS7bFxgXjXSDASK2qYEoQXyrDYLa3NugyDoo4DItzh7
+	 FMCdBIF8wq+9g==
+Message-ID: <30ebf90f-d1c1-4cb0-8b7a-a06ebf8bfb28@kernel.org>
+Date: Wed, 11 Mar 2026 07:37:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJCx_8LCDbFp2clSAA--.26807S4
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/1tbiAQEDCGmxBEIAqAAAs9
-X-Coremail-Antispam: 1Uk129KBj93XoW3JFy8AFyUJryDuw47Zr45XFc_yoW7GF1Upr
-	sxA3ySgrW5XF1akF98Jry8Jr15Ary3AasrGF47J34xGr9Fyw1rZ3s5JF1UAF4xCryDGry8
-	XFZ5GFW8CFn8GFbCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBqb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1a6r1DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I8E87Iv6xkF7I0E
-	14v26r4UJVWxJr1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6x
-	kI12xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v2
-	6rWY6Fy7McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
-	Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-	z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
-	8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
-	2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6x
-	AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY
-	1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8CzutUUUUU==
-X-Rspamd-Queue-Id: 2F6AF25CEE0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] dt-bindings: PCI: pci-imx6: Change maxItems of
+ clocks and clock-names to 6
+To: Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc: "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "bhelgaas@google.com" <bhelgaas@google.com>, Frank Li <frank.li@nxp.com>,
+ "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+ "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+ "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+ "mani@kernel.org" <mani@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>,
+ "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20260310075459.726495-1-hongxing.zhu@nxp.com>
+ <20260310075459.726495-2-hongxing.zhu@nxp.com>
+ <20260311-invaluable-nondescript-manatee-a3c4cc@quoll>
+ <AS8PR04MB883364D970713670411E497F8C47A@AS8PR04MB8833.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <AS8PR04MB883364D970713670411E497F8C47A@AS8PR04MB8833.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C095225CEEE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.54 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[loongson.cn];
+	TAGGED_FROM(0.00)[bounces-273871-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,loongson.cn,kernel.org,perex.cz,suse.com];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-273869-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	FROM_NEQ_ENVFROM(0.00)[zhoubinbin@loongson.cn,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,loongson.cn:mid,loongson.cn:email]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-The Loongson-2K0300 I2S interface differs significantly from the
-Loongson-2K1000. Although both utilize external DMA controllers, the
-Loongson-2K0300 does not require additional registers for routing
-configuration.
+On 11/03/2026 07:31, Hongxing Zhu wrote:
+> Hi Krzysztof:
+> I just received your tag in [PATCH v3 1/4] at 4:00 PM after I sent out
+>  the v4 patch-set at 3:53 PM. That's why it's missed in [PATCH v4 1/4].
+> The tag would be added in next version.
 
-Due to a hardware design flaw, PCM_START requires an explicit reset.
-It has been tested and does not affect other machines.
+After fixing the commit msg:
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- sound/soc/loongson/loongson_card.c     |  2 +-
- sound/soc/loongson/loongson_i2s.c      |  6 +++--
- sound/soc/loongson/loongson_i2s_plat.c | 35 +++++++++++++++++++++-----
- 3 files changed, 34 insertions(+), 9 deletions(-)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 
-diff --git a/sound/soc/loongson/loongson_card.c b/sound/soc/loongson/loongson_card.c
-index 7910d5d9ac4f..0d891b716e19 100644
---- a/sound/soc/loongson/loongson_card.c
-+++ b/sound/soc/loongson/loongson_card.c
-@@ -61,7 +61,7 @@ static struct snd_soc_dai_link loongson_dai_links[] = {
- 	{
- 		.name = "Loongson Audio Port",
- 		.stream_name = "Loongson Audio",
--		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_IB_NF
-+		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF
- 			| SND_SOC_DAIFMT_CBC_CFC,
- 		SND_SOC_DAILINK_REG(analog),
- 		.ops = &loongson_ops,
-diff --git a/sound/soc/loongson/loongson_i2s.c b/sound/soc/loongson/loongson_i2s.c
-index 09ccab0c535e..4393410a1c98 100644
---- a/sound/soc/loongson/loongson_i2s.c
-+++ b/sound/soc/loongson/loongson_i2s.c
-@@ -32,14 +32,16 @@ static int loongson_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
- 				struct snd_soc_dai *dai)
- {
- 	struct loongson_i2s *i2s = snd_soc_dai_get_drvdata(dai);
--	unsigned int mask;
-+	unsigned int mask = 0;
- 	int ret = 0;
- 
- 	switch (cmd) {
- 	case SNDRV_PCM_TRIGGER_START:
-+		mask = I2S_CTRL_RESET;
-+		fallthrough;
- 	case SNDRV_PCM_TRIGGER_RESUME:
- 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
--		mask = (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) ?
-+		mask |= (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) ?
- 		       LOONGSON_I2S_TX_ENABLE : LOONGSON_I2S_RX_ENABLE;
- 		regmap_update_bits(i2s->regmap, LS_I2S_CTRL, mask, mask);
- 		break;
-diff --git a/sound/soc/loongson/loongson_i2s_plat.c b/sound/soc/loongson/loongson_i2s_plat.c
-index eaaab2b05633..15ccaca4b969 100644
---- a/sound/soc/loongson/loongson_i2s_plat.c
-+++ b/sound/soc/loongson/loongson_i2s_plat.c
-@@ -21,6 +21,7 @@
- #include "loongson_i2s.h"
- #include "loongson_dma.h"
- 
-+/* Loongson-2K1000 APBDMA routing */
- #define LOONGSON_I2S_RX_DMA_OFFSET	21
- #define LOONGSON_I2S_TX_DMA_OFFSET	18
- 
-@@ -30,6 +31,11 @@
- #define LOONGSON_DMA3_CONF	0x3
- #define LOONGSON_DMA4_CONF	0x4
- 
-+struct loongson_i2s_plat_config {
-+	int rev_id;
-+	int (*i2s_dma_config)(struct platform_device *pdev);
-+};
-+
- static int loongson_i2s_apbdma_config(struct platform_device *pdev)
- {
- 	int val;
-@@ -47,8 +53,18 @@ static int loongson_i2s_apbdma_config(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static struct loongson_i2s_plat_config ls2k1000_i2s_plat_config = {
-+	.rev_id = 0,
-+	.i2s_dma_config = loongson_i2s_apbdma_config,
-+};
-+
-+static struct loongson_i2s_plat_config ls2k0300_i2s_plat_config = {
-+	.rev_id = 1,
-+};
-+
- static int loongson_i2s_plat_probe(struct platform_device *pdev)
- {
-+	const struct loongson_i2s_plat_config *plat_config;
- 	struct device *dev = &pdev->dev;
- 	struct loongson_i2s *i2s;
- 	struct resource *res;
-@@ -59,12 +75,17 @@ static int loongson_i2s_plat_probe(struct platform_device *pdev)
- 	if (!i2s)
- 		return -ENOMEM;
- 
--	ret = loongson_i2s_apbdma_config(pdev);
--	if (ret)
--		return ret;
-+	plat_config = device_get_match_data(dev);
-+	if (!plat_config)
-+		return -EINVAL;
-+
-+	if (plat_config->i2s_dma_config) {
-+		ret = plat_config->i2s_dma_config(pdev);
-+		if (ret)
-+			return ret;
-+	}
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	i2s->reg_base = devm_ioremap_resource(&pdev->dev, res);
-+	i2s->reg_base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
- 	if (IS_ERR(i2s->reg_base))
- 		return dev_err_probe(dev, PTR_ERR(i2s->reg_base),
- 				     "devm_ioremap_resource failed\n");
-@@ -87,6 +108,7 @@ static int loongson_i2s_plat_probe(struct platform_device *pdev)
- 	if (IS_ERR(i2s_clk))
- 		return dev_err_probe(dev, PTR_ERR(i2s_clk), "clock property invalid\n");
- 	i2s->clk_rate = clk_get_rate(i2s_clk);
-+	i2s->rev_id = plat_config->rev_id;
- 
- 	dma_set_mask_and_coherent(dev, DMA_BIT_MASK(64));
- 	dev_set_name(dev, LS_I2S_DRVNAME);
-@@ -102,7 +124,8 @@ static int loongson_i2s_plat_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id loongson_i2s_ids[] = {
--	{ .compatible = "loongson,ls2k1000-i2s" },
-+	{ .compatible = "loongson,ls2k0300-i2s", .data = &ls2k0300_i2s_plat_config },
-+	{ .compatible = "loongson,ls2k1000-i2s", .data = &ls2k1000_i2s_plat_config },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, loongson_i2s_ids);
--- 
-2.52.0
-
+Best regards,
+Krzysztof
 
