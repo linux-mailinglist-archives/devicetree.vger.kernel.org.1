@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-273850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273851-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJH9KqYIsWnhpwIAu9opvQ
-	(envelope-from <devicetree+bounces-273850-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:16:06 +0100
+	id kAUDFyMJsWnhpwIAu9opvQ
+	(envelope-from <devicetree+bounces-273851-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:18:11 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id F077325CBAC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:16:05 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9BB625CBE3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:18:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 677D03030FC2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:16:05 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 340BF303120D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:18:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41712C11F3;
-	Wed, 11 Mar 2026 06:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C26A12C11F3;
+	Wed, 11 Mar 2026 06:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lX0al50k"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ER78y/T4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EFC212B0A;
-	Wed, 11 Mar 2026 06:16:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC4D1A6805;
+	Wed, 11 Mar 2026 06:18:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773209763; cv=none; b=hDTWHIIl1TSPQsLdov6T2SZLcndWvA1+wQAKT+ewx9Qstby8Zea8FTLQs8X3NuarWm+JuUADUWjCW7ypGbyxFiDaYJoA27fpwpMzeFsV5xVqLS0194jFmRFVTNo6QYOZngbhYQcT4dZp8t91ElQAAAMPcysiPd95nVjYAR4Qop0=
+	t=1773209886; cv=none; b=AX069WWaB1rk/WtUUSTPJtv9OXdAY44F1s5yQIfO0big/F7eYzFm9DowHM53QAWbkU0J6bhDxK6NbcuY/esSQtrgfJF9ZrRs/85DxmrYudKRCnXzNoh/ZCCfuikh/eY96zKCB1jDdFrsnTSRoxnQYQSdGxSdGfemnY//f59Ufv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773209763; c=relaxed/simple;
-	bh=Xij4l883w8RhKaON3kZ7ergyTw9qVDIhU25duNhfeQ4=;
+	s=arc-20240116; t=1773209886; c=relaxed/simple;
+	bh=+TnpEu3N3Wg7VpR+WRJAYIJe62zec1Zk48SN+3Vy2Uk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g+uVolKtTZvlG079X3XOzfL67NrX+/74WEStfimK2pFxW5iBkVKDN/bRCTsP0L1cT4+blpBEsSPc81LM+xzfMpjOnBpAmT+LM4vhC6Kk/RkvmKLW3VJtkGXHS1Z3sJNIRK7F/9JEszL9LvS9/st7DE/Y5Us79OIY4/6H0li0Z6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lX0al50k; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A491DC4CEF7;
-	Wed, 11 Mar 2026 06:16:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OX4uSBOOjrBA2ojmph+dfvTF9KcjZmUDM32JiJZSy93qEVpxor4nDewFZdzWkC525x2ibGfDs6c3rgwxj+l4s8lbfXvdA/IPFiGQzLJ30p7DhdeyH6EmMbKKPiBd8PXFSAB0TSft5XXzFwmLTcz5wCe1uAX8S5Q7gYDMpCspmQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ER78y/T4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 990ACC4CEF7;
+	Wed, 11 Mar 2026 06:18:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773209763;
-	bh=Xij4l883w8RhKaON3kZ7ergyTw9qVDIhU25duNhfeQ4=;
+	s=k20201202; t=1773209886;
+	bh=+TnpEu3N3Wg7VpR+WRJAYIJe62zec1Zk48SN+3Vy2Uk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lX0al50kPQjh7bwxxJUpxhsw8N83WjNgBNo1xJ82jBLclUeSimPeADcJjnR+zk18G
-	 v6ERyHk+7ZLkhOAuhC5sKqwqyf8WIo5SKr7TcgJIkQDzRnMkCuvVvm4KprxDRPMVSs
-	 ZNeYMu3Vt4BJ4aSDB9XcWy/u90IVccxGlP770377OVP0kV6em3Jzw+OG1R3DDW6VcQ
-	 Ihedbrje3eXBwlZD4o5eeKHc2hVUqT+XLrfJDzamCVyI+XJyIKMx7+bSzAMgAxAPIX
-	 51B2hGYjxmSj5dav+iJ2Qxt1/dxJXX6lXa6JGMYbZIFW0oHwf9iyPEJmBUAgkWKhmo
-	 dW92QvUsbX8bA==
-Date: Wed, 11 Mar 2026 07:16:00 +0100
+	b=ER78y/T4wbCKahMJTXQyD37d1K5V2ARZEJ6uQtzLepoASt3iZ2FpZz1Kj8CRD0qlS
+	 1G1t8oOECb23RA2UsV3ZyVToUesKNao5w0SOSU4UrJLtGbgFGbCYrNMTF0cVIs7/1U
+	 35qE4faGd2RnFiQjlS3zrCxIy4jokHlx5A99hGs/G99qvu02NPEiv2Fz2oeq0sVX+O
+	 lX3KDU8sqCnvRQnvqzTsi0e9STWbomld1dVkx4nAnQRBl4t0ZGfojzZCxCZd0Gh6Ps
+	 7Y0jFwqc9SAd0s+3WoLEgSKQ+Zg3ptCsVxMkI2JlWZjPHggN0pzVaUtiguZHTNRH1l
+	 2Ef+hIpMklArg==
+Date: Wed, 11 Mar 2026 07:18:03 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Abel Vesa <abel.vesa@linaro.org>, Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-Subject: Re: [PATCH v6 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
-Message-ID: <20260311-fascinating-qualified-whippet-d6d450@quoll>
-References: <20260310113557.348502-1-neeraj.soni@oss.qualcomm.com>
- <20260310113557.348502-2-neeraj.soni@oss.qualcomm.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	bhelgaas@google.com, frank.li@nxp.com, l.stach@pengutronix.de, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, mani@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: PCI: pci-imx6: Change maxItems of
+ clocks and clock-names to 6
+Message-ID: <20260311-invaluable-nondescript-manatee-a3c4cc@quoll>
+References: <20260310075459.726495-1-hongxing.zhu@nxp.com>
+ <20260310075459.726495-2-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,55 +65,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260310113557.348502-2-neeraj.soni@oss.qualcomm.com>
-X-Rspamd-Queue-Id: F077325CBAC
+In-Reply-To: <20260310075459.726495-2-hongxing.zhu@nxp.com>
+X-Rspamd-Queue-Id: E9BB625CBE3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-273851-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273850-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:url]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 05:05:55PM +0530, Neeraj Soni wrote:
-> Starting with sc7280(kodiak), the ICE will have its own device-tree node.
-> So add the qcom,ice property to reference it.
-> 
-> To avoid double-modeling, when qcom,ice is present, disallow an embedded
-> ICE register region in the SDHCI node. Older SoCs without ICE remain
-> valid as no additional requirement is imposed.
-> 
-> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> Co-developed-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
-> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
-> 
+On Tue, Mar 10, 2026 at 03:54:56PM +0800, Richard Zhu wrote:
+> Previous commit 1352f58d7c8d ("dt-bindings: PCI: pci-imx6: Add external reference clock input")
 
-Can you please finally start using b4? Except errors in your process I
-don't see links to previous discussions either.
+Please run scripts/checkpatch.pl on the patches and fix reported
+warnings. After that, run also 'scripts/checkpatch.pl --strict' on the
+patches and (probably) fix more warnings. Some warnings can be ignored,
+especially from --strict run, but the code here looks like it needs a
+fix. Feel free to get in touch if the warning is not clear.
 
 <form letter>
 This is a friendly reminder during the review process.
@@ -132,8 +127,5 @@ https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitti
 
 If a tag was not added on purpose, please state why and what changed.
 </form letter>
-
-Best regards,
-Krzysztof
 
 
