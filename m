@@ -1,164 +1,156 @@
-Return-Path: <devicetree+bounces-274001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274003-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cISLDAhEsWlCtAIAu9opvQ
-	(envelope-from <devicetree+bounces-274001-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:29:28 +0100
+	id KCQHJUpEsWlCtAIAu9opvQ
+	(envelope-from <devicetree+bounces-274003-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:30:34 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81E702622E3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:29:27 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1743326234D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:30:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 5B30B346F112
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:21:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1D673347B804
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:21:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A05273C9EF3;
-	Wed, 11 Mar 2026 10:20:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 522143C942B;
+	Wed, 11 Mar 2026 10:21:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HSNjnK8F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3306B2ECD3A;
-	Wed, 11 Mar 2026 10:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC5F3BF68A;
+	Wed, 11 Mar 2026 10:21:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773224416; cv=none; b=Q0pKjk9bpSe23CN1IffvxUUmUDMfJni31Ydk3H71FU2nw2pvCcSEQ1hrFfppIYg2Q9mr7SafVG/RAs7TS/2L1wvRSmPY8tFNefNmbKIdmDhvJ1MTpmOco9M735yOzutRHzFHbYEtvp0TQB8UHkvF2Y/GOQ9U3nG0ZRxaymzzo4Q=
+	t=1773224485; cv=none; b=VwqyFVQ9XryfpzGyWMyfapbWQciC04IrTnzKbWBQ/aw3y57T3qdDyMGwMowTXlIPqGvICG2TpuHnvv70hDjsrFgbLxOIgRSuV0GHG5cCY+WvOcxS18msu1JAn3eR0K8CI/cUb84DYqXproNEpvcWZJedo9Q/Yukg6kA83TKBLX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773224416; c=relaxed/simple;
-	bh=xkVGs8l8PubkL8xufzDUaujd/gGM1mTvuLsQl9qCiQU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IWY9kis6YIN513FaFY+Ron9Jc6jx9BaiICduFYk/Kj2JAll5mFXAWCBmMpIBA28ibExXhbLHfvyjU7wWvYFtNbLfYoBSKmHafFRTuLcdZwcJA0nJx/3/i6jJAaUUDb492Zsf5QWsGl7DBZ9/dYogWgT4fhV4XKoIxMTjaLq1GGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C51921A28ED;
-	Wed, 11 Mar 2026 11:20:07 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AD0BF1A2908;
-	Wed, 11 Mar 2026 11:20:07 +0100 (CET)
-Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
-	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 9F43C202D1;
-	Wed, 11 Mar 2026 11:20:06 +0100 (CET)
-Date: Wed, 11 Mar 2026 11:20:07 +0100
-From: Jan Petrous <jan.petrous@oss.nxp.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: NXP S32 Linux Team <s32@nxp.com>,
-	linux-stm32@st-md-mailman.stormreply.com,
-	"David S. Miller" <davem@davemloft.net>, boon.khai.ng@altera.com,
-	vladimir.oltean@nxp.com, Sascha Hauer <s.hauer@pengutronix.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	rmk+kernel@armlinux.org.uk, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Eric Dumazet <edumazet@google.com>, devicetree@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-	Fabio Estevam <festevam@gmail.com>,
-	Chester Lin <chester62515@gmail.com>, imx@lists.linux.dev
-Subject: Re: [PATCH v9 4/5] dt-bindings: net: nxp,s32-dwmac: Declare
- per-queue interrupts
-Message-ID: <abFB1/uxq/ha5Bwm@lsv051416.swis.nl-cdc01.nxp.com>
-References: <20260311-dwmac_multi_irq-v9-0-f0c03ef8d01f@oss.nxp.com>
- <20260311-dwmac_multi_irq-v9-4-f0c03ef8d01f@oss.nxp.com>
- <177322108829.2695119.13138199275449513148.robh@kernel.org>
+	s=arc-20240116; t=1773224485; c=relaxed/simple;
+	bh=NYEzxXwCjjB9jXQZwWbzlfrhqRkrR5nBQe83EMGp9ms=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=pI/VuRt7niZThEw4cJliSYKPfS0YcCCWlmqARZ2E4zhHjP69QLxiMh+2DpwSsSgKekItXeT8bOK5ud7kTbf4L2o1LmkINHYE92G8o+zMVb5Mg6GCOq3LzBnZ+VlAWxNy2HMra/AZ2/i8VAwWLvX8seJVHyqbsBB16fXyAp00VX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HSNjnK8F; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 941031A2CD1;
+	Wed, 11 Mar 2026 10:21:15 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 6434760004;
+	Wed, 11 Mar 2026 10:21:15 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB43510369CA2;
+	Wed, 11 Mar 2026 11:21:10 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773224474; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=xc3f0j/XZyXDLXf8euWdBo9aYc/Z1fnksBlM+sWhSNo=;
+	b=HSNjnK8Fqi6KDQimKyif2DCt8Ml4ODd2Ae5YBZn/WMno6Hymu3jP+ZoewoqkS4OlASSJMN
+	joffF+yugKol6KHMmOV7vAzWwEb0g2qlpkPMrAhbDp8frIMLHtDQnTgtYnHhhaTlpEYzJV
+	wEp8SpYh4sx5NZ8Kln2BKaC0jS7FNGNEqYcOWFflPG2fYyyHkSxis/5ka3pE9BoHTAZuzL
+	vE6AY+hjNDPLtDnIhVeHPT6xeBfB0+yBrmoBkABd3CqjEcxHXk/+A4PZQG15nZ0VG4ss8A
+	pyXV1I0N66KNJzGIJ62ByB23GNQ4dC3O7LfbPnyz/E4UEe7pNKwZM/Yh74b8gg==
+Date: Wed, 11 Mar 2026 11:21:09 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Magnus Damm
+ <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
+Message-ID: <20260311112109.061a1e4b@bootlin.com>
+In-Reply-To: <CAMuHMdX01rwBMGn1FLGm-fHA0w-7+BCskMiucgxcui+PTVF7rA@mail.gmail.com>
+References: <20260303102029.147359-1-herve.codina@bootlin.com>
+	<abEotS0ZbGwqEmO5@ninjato>
+	<CAMuHMdX01rwBMGn1FLGm-fHA0w-7+BCskMiucgxcui+PTVF7rA@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <177322108829.2695119.13138199275449513148.robh@kernel.org>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Rspamd-Queue-Id: 81E702622E3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
+X-Rspamd-Queue-Id: 1743326234D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[nxp.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[28];
-	FREEMAIL_CC(0.00)[nxp.com,st-md-mailman.stormreply.com,davemloft.net,altera.com,pengutronix.de,kernel.org,armlinux.org.uk,vger.kernel.org,lunn.ch,oss.nxp.com,suse.com,gmail.com,google.com,redhat.com,foss.st.com,lists.infradead.org,lists.linux.dev];
+	FREEMAIL_CC(0.00)[sang-engineering.com,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
+	TAGGED_FROM(0.00)[bounces-274003-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274001-lists,devicetree=lfdr.de];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jan.petrous@oss.nxp.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	NEURAL_HAM(-0.00)[-0.900];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	R_DKIM_NA(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,kernel,netdev];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,lsv051416.swis.nl-cdc01.nxp.com:mid,nxp.com:email]
+	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,devicetree-specification.readthedocs.io:url]
 X-Rspamd-Action: no action
 
-On Wed, Mar 11, 2026 at 04:24:48AM -0500, Rob Herring (Arm) wrote:
-> 
-> On Wed, 11 Mar 2026 08:53:59 +0100, Jan Petrous (OSS) wrote:
-> > The DWMAC IP on NXP S32G/R SoCs has connected queue-based IRQ lines,
-> > set them to allow using Multi-IRQ mode.
-> > 
-> > Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-> > ---
-> >  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 47 +++++++++++++++++++---
-> >  1 file changed, 42 insertions(+), 5 deletions(-)
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml:57:7: [error] duplication of key "items" in mapping (key-duplicates)
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml: ignoring, error parsing file
-> ./Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml:57:7: found duplicate key "items" with value "[]" (original value: "[]")
-> make[2]: *** Deleting file 'Documentation/devicetree/bindings/net/nxp,s32-dwmac.example.dts'
-> Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml:57:7: found duplicate key "items" with value "[]" (original value: "[]")
-> make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/net/nxp,s32-dwmac.example.dts] Error 1
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1597: dt_binding_check] Error 2
-> make: *** [Makefile:248: __sub-make] Error 2
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.kernel.org/project/devicetree/patch/20260311-dwmac_multi_irq-v9-4-f0c03ef8d01f@oss.nxp.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
-> 
+Hi Geert,
 
-Fixed in v10. Thanks Rob for review.
+On Wed, 11 Mar 2026 09:39:40 +0100
+Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 
-BR.
-/Jan
+> Hi Wolfram,
+> 
+> On Wed, 11 Mar 2026 at 09:32, Wolfram Sang
+> <wsa+renesas@sang-engineering.com> wrote:
+> > On Tue, Mar 03, 2026 at 11:20:29AM +0100, Herve Codina (Schneider Electric) wrote:  
+> > > When checking dts involving the r9a06g032.dtsi file, the following kind
+> > > of warnings are reported:
+> > >    Missing property '#address-cells' in node xxx, using 0 as fallback
+> > >
+> > > Indeed, #address-cells is not present in the GIC interrupt controller
+> > > node.
+> > >
+> > > Fix it adding the missing property.
+> > >
+> > > No functional change.
+> > >
+> > > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>  
+> >
+> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> >
+> > I like Krzysztof's explanation "Value '0' is correct because GIC
+> > interrupt controller does not have children." Maybe it can be added to
+> > the commit message?  
+> 
+> Some of the examples in the GIC DT bindings, do?
+> But #address-cells is not a required property in the GIC DT bindings,
+> so why should it be added at all?
+> 
+> BTW, I never understood why an interrupt-controller should have
+> #address-cells (according to dtc)?
 
+I think this comes from the interrupt-map definition:
+  https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#interrupt-map
+
+Best regards,
+Hervé
 
