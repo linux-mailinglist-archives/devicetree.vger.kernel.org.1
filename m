@@ -1,72 +1,70 @@
-Return-Path: <devicetree+bounces-274337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274338-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UEh8DhPXsWnVFgAAu9opvQ
-	(envelope-from <devicetree+bounces-274337-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:56:51 +0100
+	id uOewIoPXsWnVFgAAu9opvQ
+	(envelope-from <devicetree+bounces-274338-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:58:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE9926A32E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:56:50 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C52626A391
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:58:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 40C143016177
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:56:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A7EF0301FD4A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1383A34B682;
-	Wed, 11 Mar 2026 20:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50DB1364055;
+	Wed, 11 Mar 2026 20:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XuSqAjLL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cqxYFjPy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1040348463;
-	Wed, 11 Mar 2026 20:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C561346A1E;
+	Wed, 11 Mar 2026 20:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773262605; cv=none; b=SjOsJQs1UjSNhch1BX50CjpT1AmAc64nMXogmMOWhY3TXxmFmxwqbpmrcHPMC8QryjQLN2Qc8dyfQQiu2A/QNufR3ZsVCKv7I6TdQEtwX4+/5xaH2aa4netoBFs5cBFqwVamrnFk/6dinqkdWtEsQQsSSfLCSay1If8scrIgp/w=
+	t=1773262608; cv=none; b=LUGMbM6rUIIkhKuQw5qD+45lr2fdNHVK0iz79NeauOS9dts63PDv+jFPJ6/eR/s62WK7l44057h9wvF16RO2kUJIJmxQ0DQzL8wCgyUKabcpqJgCJbATm7nPFo713qWV6nsU+iNGsItl8OtPtzsgx0DkXQJdYkP4ahNG9i6asoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773262605; c=relaxed/simple;
-	bh=OuI3zgUrUxZ8GbWt74n3/6bDnDwyhF9aZnibLJkStKI=;
+	s=arc-20240116; t=1773262608; c=relaxed/simple;
+	bh=ZuxXZ/yjRb1eh+ySxu03OG7NoBAQXQ1cGUl3riXZ3Us=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=agRCha4AWK+LiGxCdQpjjGSsjjcn7G71qkvf49AgvN9y3Ntbl4CpEA9ilOgUgRX0ZwTsE7BLIjKGZetu9qW/VF1fiy4v36WsevQMeo1ngg3gITUiUAOBo6siDV/Onq2h7TwCVFyvq48MllyPFx0Ypl8XPywZ2tFMuxioz/CgZIE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XuSqAjLL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 432F5C4CEF7;
-	Wed, 11 Mar 2026 20:56:42 +0000 (UTC)
+	 MIME-Version:Content-Type; b=bb4FgsIrjm2EBIM4CoV4nwTk1t+1HZUK2XVFTVZrhA4bqkRP/oEZvixmt9sG8jcmwrTJQgpc0Ngal2S63a8fQa4Xjjz1tVB8aj4Uyj2qjfHe6b4N4B5kSHxyLndXyDKq9B3rhcosP/8tSZ3YYvX5HnIgkPxr6aJ7TExRKG3ePSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cqxYFjPy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA58CC2BCC4;
+	Wed, 11 Mar 2026 20:56:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773262604;
-	bh=OuI3zgUrUxZ8GbWt74n3/6bDnDwyhF9aZnibLJkStKI=;
+	s=k20201202; t=1773262607;
+	bh=ZuxXZ/yjRb1eh+ySxu03OG7NoBAQXQ1cGUl3riXZ3Us=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=XuSqAjLLvCFx7r4STf0HoyxICkexxoh4IruW92thrvRpf3vMUdD2HQlyj4TPLtPTB
-	 RetnCSgy3C9eEB0Pk6mx2BMRZvG7VuePKHStA5C09Njtt5kziJtPz9VB2+8+4CS6nz
-	 8ncQ2u4vzvb7mLAssXxlXLJMiSK0lMRNBrYZZmy223imxnOxUc0HAuzIr0reC48NlN
-	 HArv9EjR+fLK6Vh/UWrYFc7McjM/XcFyLnJeDNxvLXXLAxVRtGC8GOom0kkzLqTf/w
-	 YQrzlV2SVojHv4Xl7mbJp4tpnzvQRgHfIgjrCXB5nUVrV49vQzCTXD3LU1G4jJEFR5
-	 8LrN+JwbYSzMg==
+	b=cqxYFjPycQhd4TAYAvKz0O+2L58D8sh9n7JdQifBjuW7+KozEi6t4qxTZBvqRGb/9
+	 +O7uj1Y2IAeqXt/xomuJQfPiHvrSReqItflDcoTnxArwsurlwq56QvDaEXeBBJ/n6B
+	 ljrGJ8cGUXnKizUlgT9Pm8oy5AZHiVgHE1aC/n7Ep9oH8+XxlVSSP2jiPK090KelpJ
+	 5jULwR+x6edMy7ARjvde99myGUHl8jvfZLVJfcUJW46bJk8qfZdAq2wxaV41502HIw
+	 v5ppW7O7VYOo47RGtneNLkmjZIW+KQ1Us0Y/F/DgLJGjDp+56A7Zq1Nrdx1DIZDFXi
+	 pOh6MPMGAxkaw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
+To: Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	Taniya Das <taniya.das@oss.qualcomm.com>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Abel Vesa <abel.vesa@oss.qualcomm.com>
+	Adam Skladowski <a39.skl@gmail.com>,
+	Val Packett <val@packett.cool>
 Cc: linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
+	phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht,
 	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH RESEND v6 0/6] clk: qcom: Add support for basic clocks providers on Eliza SoC
-Date: Wed, 11 Mar 2026 15:56:34 -0500
-Message-ID: <177326259462.44574.3228852589174701354.b4-ty@kernel.org>
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 0/6] SM6115/SM6125 MDSS core reset
+Date: Wed, 11 Mar 2026 15:56:37 -0500
+Message-ID: <177326259464.44574.2308664750619411888.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260311-eliza-clocks-v6-0-453c4cf657a2@oss.qualcomm.com>
-References: <20260311-eliza-clocks-v6-0-453c4cf657a2@oss.qualcomm.com>
+In-Reply-To: <20260303034847.13870-1-val@packett.cool>
+References: <20260303034847.13870-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,19 +78,20 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274337-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274338-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,baylibre.com,gmail.com,packett.cool];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,devicetree@vger.kernel.org];
@@ -100,29 +99,36 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 3BE9926A32E
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 0C52626A391
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On Wed, 11 Mar 2026 16:46:30 +0200, Abel Vesa wrote:
-> These are the bare minimum clock providers needed in order to
-> be able to boot to shell and have the rootfs on UFS.
+On Tue, 03 Mar 2026 00:41:19 -0300, Val Packett wrote:
+> v3: Collect A-b, remove Fixes in dt-bindings and clk as requested
+> v2: https://lore.kernel.org/all/20260228204638.11705-1-val@packett.cool/
+> v1: https://lore.kernel.org/all/20260216233600.13098-2-val@packett.cool/
 > 
-> The multimedia-specific clock providers will come later on.
+> ~val
 > 
+> Val Packett (6):
+>   dt-bindings: clock: qcom,sm6115-dispcc: Define MDSS resets
+>   dt-bindings: clock: qcom,dispcc-sm6125: Define MDSS resets
+>   clk: qcom: dispcc-sm6115: Add missing MDSS resets
+>   clk: qcom: dispcc-sm6125: Add missing MDSS resets
+>   arm64: dts: qcom: sm6115: Add missing MDSS core reset
+>   arm64: dts: qcom: sm6125: Add missing MDSS core reset
 > 
+> [...]
 
 Applied, thanks!
 
-[4/6] clk: qcom: rpmh: Add support for Eliza rpmh clocks
-      commit: 76cbaa6557b1e685a268f08f892a35004bd4fdd2
-[5/6] clk: qcom: Add support for Global clock controller on Eliza
-      commit: 3d356ab4a1ec2d9b208f0d0020c79855097b1fc7
-[6/6] clk: qcom: Add TCSR clock driver for Eliza
-      commit: c69a586344758f0d9cf0526d2a4b14fb56941b10
+[5/6] arm64: dts: qcom: sm6115: Add missing MDSS core reset
+      commit: 1cc317d4188ba2d72c298b5271fb4a2fa1d84c29
+[6/6] arm64: dts: qcom: sm6125: Add missing MDSS core reset
+      commit: bb4d28e377cf04fbee8a01322059fa14808cdfe9
 
 Best regards,
 -- 
