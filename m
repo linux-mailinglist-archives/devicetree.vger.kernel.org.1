@@ -1,168 +1,152 @@
-Return-Path: <devicetree+bounces-274188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274158-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DgkL62JsWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274188-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:26:37 +0100
+	id WOYoDG6AsWmjCwAAu9opvQ
+	(envelope-from <devicetree+bounces-274158-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:47:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C30E266771
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:26:37 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFBC1265A86
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:47:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 6B77630B6C24
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:22:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3646E30BB52C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4CE33DEACD;
-	Wed, 11 Mar 2026 15:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40AC33C5DB7;
+	Wed, 11 Mar 2026 14:43:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="L8jzkFdr"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="gP1PXIM0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AE0E3DF013;
-	Wed, 11 Mar 2026 15:22:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E21E40DFAC;
+	Wed, 11 Mar 2026 14:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773242555; cv=none; b=YmtWI8HhXvr11GWrHtm0u5h55CjPlI712CucOfb3VQumQn5mSAPPRqxC3t3fDrFA/5biM09weuqIvigma6kUO8QIA1IMCRVvEvGq5dr2s0B+/97+01cfpT7TeR4f3LPcJ68dJxGXy4E7E7KBZgI30IENImroYghAPREA4qPl+vs=
+	t=1773240223; cv=none; b=KTQytSJIlXHvLZ7wAaqs2yri0CzkL3PPA08bLOahD/RNc69kGmYjdjGhrcHZ1zRYYGrQrQxv0t/bPh8j58r+yRzpSZnhmimAeqgKw/WwfCtLIAby2+G67xIXvlKlGwDn06emeqIN2CRqIUhumeGja/2OSo2QLkkWRr4/pWnLXq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773242555; c=relaxed/simple;
-	bh=IdxTmoN8eV9XdykyGPCgHBaOAlPELS+eBRDUCEUQl7E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bfoWb4Y3PQ+lRQ4wnV2nufSLZi7R+zCCXVtctM2N1FsGor8ocRqqJbpGzNFi3Z1BueNmYBs16GBFBXlEQMZMveZLGXRPewXCgLUU59EMbbljAhKow6blcRlKgg/xTjvdkB7iluykca+nO7wva8MRBdfL5p6qJHP5P35A9p6H+4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=L8jzkFdr; arc=none smtp.client-ip=188.40.3.216
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=ew.tq-group.com; s=default2602; h=Content-Type:Content-Transfer-Encoding:
-	MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
-	:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=dknpLbwPC6M9r55ZzYVfKb09gY6bN4LTaa3m33L/TiY=; b=L8jzkFdrQk/c7X8SpYZS95Pc42
-	xgsy/wKAVxGuLTLf8VwXoKSfRnjFcQ3NuB2svPosKPdvwrXMjVhkBembMnx3oMP6OdjZmCK163EKd
-	2JmUjqlvYKXw3JAIOM5yOfAsM/3EYzf5rifM6Ss7M7fcYHY6pextIR264ATw9VhMZ/gTJG1BCXeGz
-	3XwDpYGprzsgTIF4Wa2mXi3qG3H4eNwOds23xzVP7Y0wYubRQGRw7BRUcXGEJXbxDXyezeWmCA6jl
-	pdrKpRMYh5qjd+oOZI6ezD5KuRoIiB9Qcs+xYTzo9LT0yu+2YKe5rHavDpQaw0taTF6iqlky0ALv8
-	0A0cHf/A==;
-Received: from sslproxy04.your-server.de ([78.46.152.42])
-	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0KkM-0000PO-1D;
-	Wed, 11 Mar 2026 15:41:14 +0100
-Received: from localhost ([127.0.0.1])
-	by sslproxy04.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0KkL-0002q6-2d;
-	Wed, 11 Mar 2026 15:41:13 +0100
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Frank Li <Frank.Li@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
-Cc: imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux@ew.tq-group.com, linux-clk@vger.kernel.org
-Subject:
- Re: [PATCH 6/6] arm64: dts: imx93-tqma9131-mba91xxca: Add LVDS display
- overlay
-Date: Wed, 11 Mar 2026 15:41:12 +0100
-Message-ID: <4338185.mvXUDI8C0e@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20260311143217.1700704-8-alexander.stein@ew.tq-group.com>
-References:
- <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
- <20260311143217.1700704-8-alexander.stein@ew.tq-group.com>
+	s=arc-20240116; t=1773240223; c=relaxed/simple;
+	bh=MSVUenRDXN15K2mal5/pndRJ5xNIncihXkLIyKsl4rI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MZcR7pH9w1KlVxmAj7vokN+fOAAYagUpAEaUpfTa2nCaS14ilnjSDZME3r187dN/0sPTDQS/5/OTIGUSusmxHc9EQ4eJO4Zbx2CzKD5GWXUJCeqvxk5VYvVgN8KkaWhbuRuRmeHg6y4tU5qSENQtQm2/HLrYrxfBXJrfL00Y1tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=gP1PXIM0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C2EEC19421;
+	Wed, 11 Mar 2026 14:43:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1773240222;
+	bh=MSVUenRDXN15K2mal5/pndRJ5xNIncihXkLIyKsl4rI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gP1PXIM014erjsn0JHLUGf4WhtMJuJoPsT8CFgqmvuPnWX6pkPMELpKVbtz+h6Y9N
+	 59HXocKN2v5hgIv9Ey2NOAFJCXNOAALuTRQ1XE+DLGwnBHuFdrrNwQUByITOVNShpa
+	 Bhl25ac2hkIAUh16lFhbTB2+Eu/Qqgf3OsUYffdM=
+Date: Wed, 11 Mar 2026 15:43:38 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Marco Felsch <m.felsch@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Matthias Kaehlcke <mka@chromium.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v5 1/4] usb: port: track the disabled state
+Message-ID: <2026031105-uptake-glucose-5b61@gregkh>
+References: <20260223-v6-16-topic-usb-onboard-dev-v5-0-28d3018a8026@pengutronix.de>
+ <20260223-v6-16-topic-usb-onboard-dev-v5-1-28d3018a8026@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Virus-Scanned: Clear (ClamAV 1.4.3/27937/Wed Mar 11 07:24:53 2026)
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260223-v6-16-topic-usb-onboard-dev-v5-1-28d3018a8026@pengutronix.de>
+X-Spamd-Result: default: False [2.34 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274188-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274158-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,chromium.org,vger.kernel.org,pengutronix.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ew.tq-group.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,tq-group.com:email,tq-group.com:url,ew.tq-group.com:dkim]
-X-Rspamd-Queue-Id: 3C30E266771
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linuxfoundation.org:dkim,pengutronix.de:email]
+X-Rspamd-Queue-Id: AFBC1265A86
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Am Mittwoch, 11. M=E4rz 2026, 15:32:10 CET schrieb Alexander Stein:
-> This adds support for Tianma TM070JVHG33 LVDS display on interface X11/X12
-> on MBa91xxCA.
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-
-Please disregard this patch. I accidentally sent this obsolete one, which h=
-as
-a typo in the subject.
-
-Thanks and best regards,
-Alexander
-
+On Mon, Feb 23, 2026 at 12:27:34PM +0100, Marco Felsch wrote:
+> The disable state isn't tracked at the moment, instead the state is
+> directly passed to the hub driver. Change this behavior to only trigger
+> the hub if a state change happened. Exit early in case of no state
+> changes but don't return an error.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > ---
->  arch/arm64/boot/dts/freescale/Makefile | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts=
-/freescale/Makefile
-> index 64fe9487b1003..60aafadce0725 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -418,7 +418,9 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx91-11x11-frdm-s.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx91-phyboard-segin.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx91-tqma9131-mba91xxca.dtb
-> =20
-> +imx91-tqma9131-mba91xxca-lvds-tm070jvhg33-dtbs :=3D imx91-tqma9131-mba91=
-xxca.dtb imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtbo
->  imx91-tqma9131-mba91xxca-rgb-cdtech-dc44-dtbs :=3D imx91-tqma9131-mba91x=
-xca.dtb imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtbo
-> +dtb-$(CONFIG_ARCH_MXC) +=3D imx91-tqma9131-mba91xxca-lvds-tm070jvhg33.dtb
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx91-tqma9131-mba91xxca-rgb-cdtech-dc44.dtb
-> =20
->  dtb-$(CONFIG_ARCH_MXC) +=3D imx93-9x9-qsb.dtb
->=20
+>  drivers/usb/core/hub.h  | 2 ++
+>  drivers/usb/core/port.c | 6 ++++++
+>  2 files changed, 8 insertions(+)
+> 
+> diff --git a/drivers/usb/core/hub.h b/drivers/usb/core/hub.h
+> index 9ebc5ef54a325d63e01b0deb59a1853d2b13c8d5..297adf2c6078809ca582104f228e5222c464f999 100644
+> --- a/drivers/usb/core/hub.h
+> +++ b/drivers/usb/core/hub.h
+> @@ -97,6 +97,7 @@ struct usb_hub {
+>   * @usb3_lpm_u2_permit: whether USB3 U2 LPM is permitted.
+>   * @early_stop: whether port initialization will be stopped earlier.
+>   * @ignore_event: whether events of the port are ignored.
+> + * @disabled: whether the port is disabled
+>   */
+>  struct usb_port {
+>  	struct usb_device *child;
+> @@ -118,6 +119,7 @@ struct usb_port {
+>  	unsigned int is_superspeed:1;
+>  	unsigned int usb3_lpm_u1_permit:1;
+>  	unsigned int usb3_lpm_u2_permit:1;
+> +	unsigned int disabled:1;
+>  };
+>  
+>  #define to_usb_port(_dev) \
+> diff --git a/drivers/usb/core/port.c b/drivers/usb/core/port.c
+> index 44e38f922bc553adee64b35c536dfd4154a42d8a..86e9d6d0c0f505782569565fde8e4a46b06b8b4d 100644
+> --- a/drivers/usb/core/port.c
+> +++ b/drivers/usb/core/port.c
+> @@ -117,6 +117,10 @@ static ssize_t disable_store(struct device *dev, struct device_attribute *attr,
+>  	if (rc)
+>  		return rc;
+>  
+> +	/* Early quit if no change was detected */
+> +	if (port_dev->disabled == disabled)
+> +		return count;
+> +
 
+This will change behavior where someone tells the port to be enabled
+again, when it already is.  Is that ok?
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+thanks,
 
-
+greg k-h
 
