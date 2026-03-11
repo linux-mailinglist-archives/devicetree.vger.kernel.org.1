@@ -1,182 +1,208 @@
-Return-Path: <devicetree+bounces-273771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273772-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Aw+Hv61sGlvmQIAu9opvQ
-	(envelope-from <devicetree+bounces-273771-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:23:26 +0100
+	id iIWeITi2sGlvmQIAu9opvQ
+	(envelope-from <devicetree+bounces-273772-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:24:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB4F259B9A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:23:25 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id B077D259BEF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:24:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1C46D30C3A82
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:20:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 06D7A3033E53
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60E831E827;
-	Wed, 11 Mar 2026 00:20:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7504431F9BE;
+	Wed, 11 Mar 2026 00:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AjnXN0XB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NdalJYfv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com [74.125.82.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A91631E821
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 00:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.221.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773188433; cv=pass; b=OyisNs4C4B5QS24wHOqUxVvMiYLD3ftZb6HMvb7SYa3Wzqrbv0ptxraIPK6Fbky9uig6Ofg+rdYhCiUMgl63bk59103QprQTzGERXdOM3uReufAmE9RPzZWcry5avkptHccGm+dNsAYVrP0A3VPHfiSFVKCqtuSLfzfq5P+1Vbc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773188433; c=relaxed/simple;
-	bh=97egFoIdWstqSIgr4T/Fz2kyDcZ3Q3piKaoGnbbekVU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qhpXZFzYD7DJGfBuSWH8jMf60UGlTopgtLsYqpaQAhyS4CvN+ux35rDMi3rQUyebOnC4LIoizMTk6Pz0JA7ueLC8OFDF0ZVAsE++CyQmlcImc/XPf3WrLE2tbLAyIlaJraxyziuwlHPWyOIWqqC0QQ28VlKsgeTfhAKANXJAY1w=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AjnXN0XB; arc=pass smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B66731F9BC
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 00:21:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773188499; cv=none; b=SQPmHZ+Pe06mEuESjMRbvnMj+rfNYSGsoYgda9g5qhygq6+Il/KJhgkp6lKWH0bj7P+vL6bI+JMRT0ovLgMne2uN2hQMZXIyM4t6DasRxcw31/Lovv83N1+pfyw9fdLINzyxDgQdweqWuisSoIP+5gcvcLAvWs6cER4by/eXZWU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773188499; c=relaxed/simple;
+	bh=6FSfGjfEA7I/CqRKQXRkk4AHYuVTpiF3UrEghTud5sY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jijH6JeX5xFltSVwSY80bbkpjAfxBM/K7wz1X7X382gLO9XmJvd7AXSj9Qfhk8isykEWUM522a7/jBFKI9MZYXFxdja/k0pgf4pJ+lSfiHSNFrSKU3JI8Kwo0Q+ZY15n9vdxmCcmnhsxdTsPewFYwoEi6ql/AxifiLI55lDe/ZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NdalJYfv; arc=none smtp.client-ip=74.125.82.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-439a89b6fd0so10036997f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:20:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773188430; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Z6omsrtFlQxvpYy+F2RlZepYyH9RiKyFZUGA+JJ1ZODrepuZRbsFkOFYXbnOaw5O9T
-         3ZmkgX/F3/6z0bzeCWEUFeahF39ICte45RJ8tjAud6x6KJnh3onVtbBpWgn2QiGShVTA
-         CDAAeHMqjYEWIUk72g+V6+mhUKaFi+5Mp6w99jZozv+Ft/9qKNpkLhO08Jz2tj8sr/Ap
-         QyZ5cB7pPcKvs8kvbTT7WXzjZ6z81jagoxVlCulB1ZO1IPGqp6OfgjQJw+AfW6l+iLv7
-         OSk+tBIDHhIYBYhymkkH+woWav9mF+h/N37QboXTSFbPkXmIK6yLgq2C8XWcsQ8VcObt
-         aSAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:dkim-signature;
-        bh=JEWsH70LiQTCzWY9XNlcF1ykIavavEQbO1LmIg1XHbc=;
-        fh=YCfEx9KaA/6+epRP7+FRmpeI+Ces6E50PqUQqRzJDdU=;
-        b=juAr4AUdem5Dvpwc0lSSgU4KwAPAbKZxFHL43V4tbEs2jN/yAeLmkIfS71vhXiuNu8
-         QRKQAOKf29lwvHfRNvZ3MKIKXxFLruPaJJR9EhUqL5YkZDlLgoGgTlz3ho3tY662EJzq
-         yrXbcVKdL0s2P6QU07/z7BPoKRiql41VwNAW0g6fPcqZa9umcCuzxoNEJcy+nQmd61w+
-         eS5i8X5iRnvIMEi+8ho4qykkjvV2MpVAUjwC6bZFlT3vg+F/U/z4Kn/1OHIBmQuKSDjp
-         WvpaKqewfKNdxWOFQ/qN8kHhGyuiWm/3P1UXc/fVCh1d7u/aLKlfG6AXmOUvom8PmrcS
-         CzBg==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-dy1-f169.google.com with SMTP id 5a478bee46e88-2be1c918173so15951387eec.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:21:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773188430; x=1773793230; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JEWsH70LiQTCzWY9XNlcF1ykIavavEQbO1LmIg1XHbc=;
-        b=AjnXN0XBZiVDkxeGrdHCfoa+elMyhUlrYj97Jjn6yIauCXNR9ZLTS56vZWCyBP3NNG
-         bXA0Vb47eo9VCfeLsheVJXAoS1MkiOvLKCmNewIJ4XWEVeDwdOCxHg6hUpHBY7Pcumu7
-         LBUI6zCRA26Z6dXoRjSSMMk+nnFONHU0pEVP5+lr+EACfu250V5fs3EuktUqKxoKNsO9
-         b7Y2E1276VWcIdZgwOpC1pn6NH44YUsdT8QZIGg4e7eZthtwtHGz4nDrcL/AlJ2MPdVQ
-         KWq8ZMruPtsvZu01upQ55Qlk/RlytFdY9HAI1uVTrDdpgNFxN21L21AdTtJNK59dI90Y
-         xh8w==
+        d=gmail.com; s=20230601; t=1773188495; x=1773793295; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KZ1q6EFUHntWG4ZxMjM+nzdLiPNGdE6ZpSx+iizQ7CU=;
+        b=NdalJYfv582qiyEDEi4EvAFTtEySq8+0oJ1q1s4QYBekSCOgBQp6ovSi27SJhXVP+3
+         RGIemkrP2T1ZPXJGFeCcCmvIlbID97JxErebvw2RNUE9aNGdLx1yNDwSeUoRrXrbzkE4
+         XgudbaA++ndxSwcBm8XwQTABFwZHCqSCCpZpvGuPLumVSCOjI1yeOPTv8+XwnEnanCj+
+         REznyaSDYkDjDdkngc36wEayMDdf9t2S1130QAt4GQ2HDFyIHtGXWjjdEtDUiN1FJI3h
+         aaJhQR0/zxVhhyRrMicqCkV2+X9Blq8EgvwUMfVYZMNVtthy7MlSFxS4LAuFPvX37S6r
+         e2MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773188430; x=1773793230;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JEWsH70LiQTCzWY9XNlcF1ykIavavEQbO1LmIg1XHbc=;
-        b=A06NsyuedIw/6c8DVqF/ueK6u4D7pzJAoaBObnhRQJAKKJenbHt11aIn+9jNsurXe7
-         2w3m9qLQ/ZHuE3B/cZh/EE8xsRLAREnLB4AnFtaaEP1nqGIYg6RlYBKoOQsQ1IeGjDCG
-         CRzjeWGHE8vt9sVynbY/xEBP2iu3TLxxRdfxtRblaoQFfPOBVdJvHFw97E8eAmHjp3km
-         0XiQcqbm7tfLkwkEtORfLSPt2ziP+tGZDql5eAlW19jFSZjshD/EPe4UeRjCEU4u51YN
-         G+YMcG8nxVoYNi3eUipmeoUUd84cbnOUY7/wQRXDAFcptCXPFtDcV/eSiodGVnveAsIg
-         niZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOeIGRk+4mZaiYASjRHDWSZxsPGFfhioTznS2ZgtIzIt3vBBg6pCPa2EuragPLv1gpMQx37LmFBDTX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJsrMxtuQ2aa33sJZh5u57wzmXk/OJnIHYCv0PIIyUpieJIVWA
-	9WLobxgDr6ym1McXGuqrwkWgyEQ4jQ29+X/2JyCwGSqvKf6+jC6qn3PkmlrcbfH2TkM9wD3GIC8
-	gd3IpOM4UUN+KGw2EPnD2emwjyA2z+yU=
-X-Gm-Gg: ATEYQzwiPVfaoPxDt3dZ+364u1re3HmC/2gGh1ysEATp78wg6goIYpDVqsND0meuD7x
-	Ovw1yQkuyM54hwlsLsrx9uRemODZVy7RI59VgAMOA4NeQsmVxzrOk7kjRD36jrVHWsX4k0TC02m
-	i8vsjwscSLeTCJtZmoIHJI3grqQSJ5SO7wMaXuqE9RD3QO/sx7JA4Q1FE19hpAGrJYh2LflYUXI
-	dH9JmRprjx4M/8M7CsDnfLXfMw8e/2wZaoAAyhPkb5POQgHJSWNn8Lnrd2wehOO2+6cA0D3gMwG
-	TO5pmVbUhF5OoIuToy0NEm/QJW/Np5vrgWPCkWA=
-X-Received: by 2002:a05:6000:26c9:b0:439:be4e:6e58 with SMTP id
- ffacd0b85a97d-439f821fe85mr1356532f8f.47.1773188430081; Tue, 10 Mar 2026
- 17:20:30 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1773188495; x=1773793295;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KZ1q6EFUHntWG4ZxMjM+nzdLiPNGdE6ZpSx+iizQ7CU=;
+        b=E8/nELhzhWVKAx+aHQ59IlgUlrZ8nVYFuxCntWga0r8pjIhJ+l95Ch68IUQLy1ma45
+         uFr5rLYwU+HyeUGUt4AhfS5hnVY0FQWt8R7208HSuB4lv+Iy/76Pyn4XdH8Pdgi8FbE1
+         3p8jgXi4U/XcrCVkKI3uxQhNjnSiAvuLXf9FiPSWQKchSzuPYC+B5Llsi6kUtnrzPwuG
+         qEJ/vilgh/oru+W7OYCSWy883oK3h4GhgiXImkUh9hCYTkCT3NsUwVXdbw+l/o/KVE0o
+         OE83u3oc6kcRtzSAN/QY/OlpmTYRi0cDWA98atpadPELhUuYbUmZDyn2HlJ1bnS59sw9
+         Zg+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWc7o/WAJF2Z3ErK1b/q8gZaAvn58uHMD9dXRLI/8+uQ8HFfNgG2K/jNzns9I4ptr0r48ln/6aAkStn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUsHhO9Zl4/WKiOf4esTpsprTLulpCgegSq42IcmnxquBVv0A5
+	MhSKRdyWwOqz3pPohqFqkXdMVro3uQHFC/z+s5gGmi7MdthP7PSF8vLx
+X-Gm-Gg: ATEYQzy47U6wYtUdH6AQeBu73mblE3jnX2IpOh1qPrgi3+n/GeXl6I7u26YbAJ3vB07
+	1d3NQ1udGu37SS24gSiiQIK1BpdL1VbrQrJr89CXvMgDmEzbPuVsdRBIj1BuRL+pFiLkF9u1/A/
+	fwxaD7zy4ymqCLiV3IJhS7MVLQkEeXg65hziVodjGRxCTyRzieW0zIFUGsfOf04DYTh362IvDur
+	MwFF8F5z1Pt4xHJcZhLIvgSpdEjykRw2jsZLcwm5URbstACXe6Z1m4NLs0ds9qGXKWxJ3VTS2MB
+	snzk1m0U9hzxlQWecfsQ3Y4FXOS/PvRORJ010VL17RLPB+JR7PgGvCXM0Kvflb/niCA4Jgq1F0y
+	GFfLbDZ8t1d3dF2Ic32gU8vTHq4DUt3yA/isDv3VC3DJlZ1dyoE8tIx30Tu4N9d7uqzqTnmYpwX
+	Q3idy+Qi5XVH61AU6ZJK1ZM3XXE2gShx83r3MIhfv8vWZiYiAyvqWxXqWgLMIV1EvC
+X-Received: by 2002:a05:7300:a59a:b0:2b7:24fc:f638 with SMTP id 5a478bee46e88-2be8a0f188fmr385401eec.0.1773188494956;
+        Tue, 10 Mar 2026 17:21:34 -0700 (PDT)
+Received: from google.com ([2a00:79e0:2ebe:8:6e17:9d84:ffa0:986b])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be8a853840sm533327eec.8.2026.03.10.17.21.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 17:21:34 -0700 (PDT)
+Date: Tue, 10 Mar 2026 17:21:31 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: phucduc.bui@gmail.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ingo Molnar <mingo@kernel.org>, Thomas Gleixner <tglx@kernel.org>, Marek Vasut <marex@denx.de>, 
+	Michael Welling <mwelling@ieee.org>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] Input: Touchscreen: tsc200x - delegate wakeup IRQ
+ management to I2C core
+Message-ID: <abC1NfUoHCHEeZpr@google.com>
+References: <20260309110045.108209-1-phucduc.bui@gmail.com>
+ <20260309110045.108209-3-phucduc.bui@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260310031002.3921234-1-dennis@ausil.us> <20260310031002.3921234-4-dennis@ausil.us>
-In-Reply-To: <20260310031002.3921234-4-dennis@ausil.us>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Tue, 10 Mar 2026 19:20:17 -0500
-X-Gm-Features: AaiRm51PAI7L0-07ByzfYcAg2ZuI_NxhNytjlEljQJmd9vtbdXeFbAGFh3Mn-oU
-Message-ID: <CALWfF7KD1=U-gC4wC9M49kEYD3ijcfr+XSmMeh_-zAvjO2JVoQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
-To: dennis@ausil.us
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Hsun Lai <i@chainsx.cn>, Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
-	John Clark <inindev@gmail.com>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
-	Quentin Schulz <quentin.schulz@cherry.de>, Andrew Lunn <andrew@lunn.ch>, 
-	Chukun Pan <amadeus@jmu.edu.cn>, Alexey Charkov <alchark@gmail.com>, 
-	Peter Robinson <pbrobinson@gmail.com>, Michael Riesch <michael.riesch@collabora.com>, 
-	Mykola Kvach <xakep.amatop@gmail.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: EDB4F259B9A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260309110045.108209-3-phucduc.bui@gmail.com>
+X-Rspamd-Queue-Id: B077D259BEF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273771-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-273772-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	FREEMAIL_CC(0.00)[kernel.org,sntech.de,radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,gmail.com,rootcommit.com,cherry.de,lunn.ch,jmu.edu.cn,collabora.com,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[honyuenkwun@gmail.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitrytorokhov@gmail.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-<snip>
-> +
-> +       vcc5v0_otg: regulator-vcc5v0-otg {
-> +               compatible = "regulator-fixed";
-> +               enable-active-high;
-> +               gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&vcc5v0_otg_en>;
-> +               regulator-always-on;
-> +               regulator-boot-on;
-regulator-always-on and regulator-boot-on does not seem right.
+On Mon, Mar 09, 2026 at 06:00:44PM +0700, phucduc.bui@gmail.com wrote:
+> From: bui duc phuc <phucduc.bui@gmail.com>
+> 
+> The tsc200x driver supports both I2C (tsc2004) and SPI (tsc2005)
+>  interfaces.
+> Currently, the driver attempts to manually manage the wakeup interrupt by
+> calling enable_irq_wake() and disable_irq_wake() during suspend and resume.
+> 
+> However, for I2C devices, the I2C core already automatically handles the
+> wakeup source initialization and IRQ management if the "wakeup-source"
+> property is present in the device tree. Manually managing it again in the
+> driver is redundant and can lead to unbalanced IRQ wake reference counts.
+> 
+> Clean up the wakeup IRQ handling by checking the bus type:
+> - For I2C (BUS_I2C): Rely entirely on the I2C core for wakeup management.
+> - For SPI (BUS_SPI): Explicitly call device_init_wakeup() in probe and
+>   manually manage enable/disable_irq_wake() during suspend/resume.
+> 
+> The ts->wake_irq_enabled flag is also updated accordingly to ensure the
+> driver accurately tracks the wakeup state across both buses.
+> 
+> Note: This patch is based on code analysis of the I2C subsystem and
+> has not been verified on actual hardware yet.
+> 
+> Signed-off-by: bui duc phuc <phucduc.bui@gmail.com>
+> ---
+>  drivers/input/touchscreen/tsc200x-core.c | 18 +++++++++++++-----
+>  1 file changed, 13 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/input/touchscreen/tsc200x-core.c b/drivers/input/touchscreen/tsc200x-core.c
+> index eba53613b005..d14d967845c8 100644
+> --- a/drivers/input/touchscreen/tsc200x-core.c
+> +++ b/drivers/input/touchscreen/tsc200x-core.c
+> @@ -465,6 +465,7 @@ int tsc200x_probe(struct device *dev, int irq, const struct input_id *tsc_id,
+>  	ts->idev = input_dev;
+>  	ts->regmap = regmap;
+>  	ts->tsc200x_cmd = tsc200x_cmd;
+> +	ts->bustype = tsc_id->bustype;
+>  
+>  	error = device_property_read_u32(dev, "ti,x-plate-ohms", &x_plate_ohm);
+>  	ts->x_plate_ohm = error ? TSC200X_DEF_RESISTOR : x_plate_ohm;
+> @@ -547,8 +548,9 @@ int tsc200x_probe(struct device *dev, int irq, const struct input_id *tsc_id,
+>  		return error;
+>  	}
+>  
+> -	device_init_wakeup(dev,
+> -			   device_property_read_bool(dev, "wakeup-source"));
+> +	if (ts->bustype == BUS_SPI)
+> +		device_init_wakeup(dev,
+> +				 device_property_read_bool(dev, "wakeup-source"));
+>  
+>  	return 0;
+>  }
+> @@ -565,8 +567,13 @@ static int tsc200x_suspend(struct device *dev)
+>  
+>  	ts->suspended = true;
+>  
+> -	if (device_may_wakeup(dev))
+> -		ts->wake_irq_enabled = enable_irq_wake(ts->irq) == 0;
+> +	if (device_may_wakeup(dev)) {
+> +		if (ts->bustype == BUS_SPI)
+> +			ts->wake_irq_enabled = enable_irq_wake(ts->irq) == 0;
+> +		else
+> +			ts->wake_irq_enabled = true;
+> +	} else
+> +		ts->wake_irq_enabled = false;
 
-Why were these added? The vendor did not have them.
-https://github.com/orangepi-xunlong/linux-orangepi/blob/232ed4b97b65da2b7b647c4e3c496f8594b9f3f1/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts#L216-L226
+Sorry, but this just makes it all worse. There is no downside from
+letting the driver to control wakeup if it wants to, so I'd rather leave
+it as it was, at least for now.
 
-Was this mistakenly taken from the regulator usb 20 which is powering
-the onboard usb2.0 hub?
-https://github.com/orangepi-xunlong/linux-orangepi/blob/232ed4b97b65da2b7b647c4e3c496f8594b9f3f1/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-pro.dts#L111-L119
+Thanks.
 
-> +               regulator-max-microvolt = <5000000>;
-> +               regulator-min-microvolt = <5000000>;
-> +               regulator-name = "vcc5v0_otg";
-> +               vin-supply = <&vcc5v0_sys>;
-> +       };
-
-<snip>
-
-
-Jimmy
+-- 
+Dmitry
 
