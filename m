@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-274152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274151-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDmfAEF9sWmACAAAu9opvQ
-	(envelope-from <devicetree+bounces-274152-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:37 +0100
+	id SGBjK1R9sWmACAAAu9opvQ
+	(envelope-from <devicetree+bounces-274151-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A8E26570F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CBC726573C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AEA7F3019E26
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:32:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id A37B430B7708
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:32:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A668F3CEBBD;
-	Wed, 11 Mar 2026 14:32:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF0D3C7E01;
+	Wed, 11 Mar 2026 14:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="hsEYROGL"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AXPf5brS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A63336CE06;
-	Wed, 11 Mar 2026 14:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAD13B0AF4;
+	Wed, 11 Mar 2026 14:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773239573; cv=none; b=hQnTJMe3UNaW6J4EqzTUIHXRinhsgntAfMpyQCFrlZbq8H8Ov4aFu7NTIUBK6Qiq/HYKWJYDhwCGWDDpKbTW/rG72302xkWUFE8RsLYjvoSQVHmZ2+9DH9IS42zRPq9I6wqbfE1LMy41Bnd2D55ZjM4Vq1++4krdCUBFdKejxyo=
+	t=1773239572; cv=none; b=m3U1HWTvrxotD5/4ZYpARdf2DuvV7sUpN6Eu9/fomtbq8UqoGRF2/pq/QTyFf9vwJJ9R7SLvSTu/azHfLCRlpDx9oZhwQ7HqqwqUEozoTw+U55AL2poayuysIwNsJ/Rly6k+ApnzT4NyIJcJSjjGYUZBNl5Qd8Ikmo0fOKlBBJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773239573; c=relaxed/simple;
-	bh=aBp8xR1iTTFcZBMVQ+foO9mCkmwjd/5ncvfXOCgU/6Q=;
+	s=arc-20240116; t=1773239572; c=relaxed/simple;
+	bh=J35QImaW6ppIhy1hai9b36ccj+JKP0PLnzR8HpHPBI4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HsPr79KQmrjlcgO0gDVZ6Z0n1vj15JFnFGXZjl2eurLBfRcLR+AejdQZkhm/gMbSNxlEurgDwt7sDgG+GZzqVlJ8UXcrvJ4vixziCHcU3qtGyM/JgxPeVe+pDSyjfsmHGaVRrqBvkxCUcYG4hO7LV+eEhq1nGVDAu4XiS+vcb5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=hsEYROGL; arc=none smtp.client-ip=188.40.3.216
+	 MIME-Version; b=nkikYtGLxiH2KYGISi7Ds57cGhr1B0KnzltwHGg8ckLsYFy653CUvBZdsjGnmrdTHkj4x40Izw7T47CBvk9kkIttahypde0oDphG222aDo2dFtSi0a0Z4RMuKxc62AvY7Qz9qgBPgzq4JuQksLb543MISf5WH1zh/VwcZv8tYow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AXPf5brS; arc=none smtp.client-ip=188.40.3.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -39,24 +39,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=kQ0KzDnbu1PlI/JdLZkDqAqrxLxl5G06+OR7mjHBzrw=; b=hsEYROGLnB/YncNfS4mm0yCT23
-	dCdQzqETfan7AUpjfxu0f4vF2q0TRxWdq/xJA8xGSCZ3Mvy57trWPuAaQvJdn//QspNH4d2BDMVHx
-	Jd0TAMC774ZXSRrnxEFJ/afXHWcyhpkusXKRa9LSb/cQ/MQ1RqWCCzuSvm0Mo8YspIdzF5mmimRHc
-	J8Jskq6bwf+MXgKYALDQnxGshyzswb7lIOskcrW17IYvjnSOGGdI2UNKm/wskGpp7RhrdD/ENZoSO
-	bnG8HN3Yg/rgMphsUzUOpfAb4SyzhrFAtoK/CRa18eeDIpcDj681vvGMgHGrJL5qSkayxNE9026X0
-	y7d85Nxg==;
+	bh=SvdG0/D91buWbWzHgccrBw87GIyc7JHQIBXbI1z10Ls=; b=AXPf5brSIELCGXBPfekTkrdWyN
+	ft1hhJc4N/tMrXp0Vzd2w1G/QMf5TvMSMiaQvNJqB2sD90HYUGcvEZJF+7DwX79LMgC+uDzJypF/e
+	n1NEYC3ocEUH2CEvBA4IpFMSeO0TY/Ct27fzb3519C4kL0JuZ8nFYscR0EudrQ9mRs0/YAh//Mews
+	9AkM5QJM3pzTW51Dm5kKG1HurN67edOh4nENkkKUYOnPAn4KM94kz8AvqfodKWlNv8uUyQPYvfl7d
+	NBh4en3eZ7wdnyNU5K3kWg/UdD6sy9d94h4PYe+/wVUJ9oH4fMCTJ4ImYTKx9Zds8mkE5RGIJz3nB
+	g7Z3cMBw==;
 Received: from sslproxy03.your-server.de ([88.198.220.132])
 	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96.2)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0Kc6-000Orb-2w;
-	Wed, 11 Mar 2026 15:32:42 +0100
+	id 1w0Kc7-000OsK-2e;
+	Wed, 11 Mar 2026 15:32:43 +0100
 Received: from localhost ([127.0.0.1])
 	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0Kc6-000GoI-0s;
-	Wed, 11 Mar 2026 15:32:42 +0100
+	id 1w0Kc7-000GoI-0e;
+	Wed, 11 Mar 2026 15:32:43 +0100
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Frank Li <Frank.Li@nxp.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
@@ -76,9 +76,9 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-kernel@vger.kernel.org,
 	linux@ew.tq-group.com,
 	linux-clk@vger.kernel.org
-Subject: [PATCH 1/6] clk: imx: fracn-gppll: Add 333.333333 MHz support
-Date: Wed, 11 Mar 2026 15:32:04 +0100
-Message-ID: <20260311143217.1700704-2-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 2/6] clk: imx: fracn-gppll: Add 477.4MHz support
+Date: Wed, 11 Mar 2026 15:32:05 +0100
+Message-ID: <20260311143217.1700704-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
 References: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
@@ -96,7 +96,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -104,7 +104,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,baylibre.com];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274152-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274151-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -117,33 +117,35 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tq-group.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: F0A8E26570F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,ew.tq-group.com:dkim,ew.tq-group.com:mid,tq-group.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 1CBC726573C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Some parallel panels have a pixelclk of 33.30 MHz. Add support for
-333.333333 MHz so a by 10 divider can be used to derive the exact pixelclk.
+Add the 477.4MHz frequency support that can be used for display with
+pixelclk of 68.2 MHz. The divider of 7 is important for LVDS output on
+imx93. It is also usable for parallel output.
 
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
  drivers/clk/imx/clk-fracn-gppll.c | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/clk/imx/clk-fracn-gppll.c b/drivers/clk/imx/clk-fracn-gppll.c
-index 89ed7749bf47e..fe6ee77ba1485 100644
+index fe6ee77ba1485..4048c16c0578b 100644
 --- a/drivers/clk/imx/clk-fracn-gppll.c
 +++ b/drivers/clk/imx/clk-fracn-gppll.c
-@@ -88,6 +88,7 @@ static const struct imx_fracn_gppll_rate_table fracn_tbl[] = {
+@@ -85,6 +85,7 @@ static const struct imx_fracn_gppll_rate_table fracn_tbl[] = {
+ 	PLL_FRACN_GP(519750000U, 173, 25, 100, 1, 8),
+ 	PLL_FRACN_GP(498000000U, 166, 0, 1, 0, 8),
+ 	PLL_FRACN_GP(484000000U, 121, 0, 1, 0, 6),
++	PLL_FRACN_GP(477400000U, 119, 35, 100, 0, 6),
  	PLL_FRACN_GP(445333333U, 167, 0, 1, 0, 9),
  	PLL_FRACN_GP(400000000U, 200, 0, 1, 0, 12),
  	PLL_FRACN_GP(393216000U, 163, 84, 100, 0, 10),
-+	PLL_FRACN_GP(333333333U, 125, 0, 1, 1, 9),
- 	PLL_FRACN_GP(332600000U, 138, 584, 1000, 0, 10),
- 	PLL_FRACN_GP(300000000U, 150, 0, 1, 0, 12),
- 	PLL_FRACN_GP(241900000U, 201, 584, 1000, 0, 20),
 -- 
 2.43.0
 
