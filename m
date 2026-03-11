@@ -1,100 +1,55 @@
-Return-Path: <devicetree+bounces-274257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274258-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uHmmBPKlsWn4EAAAu9opvQ
-	(envelope-from <devicetree+bounces-274257-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:27:14 +0100
+	id CBfKGxKosWn4EAAAu9opvQ
+	(envelope-from <devicetree+bounces-274258-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:36:18 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80DE2268032
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:27:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCC56268141
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:36:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 88CB23031037
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:26:31 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C55603014749
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B75391E7F;
-	Wed, 11 Mar 2026 17:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF673DC4BD;
+	Wed, 11 Mar 2026 17:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=schnwalter.eu header.i=@schnwalter.eu header.b="GZUObFxH";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="mjAnFcnh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hD+N6huC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94EFF31960A;
-	Wed, 11 Mar 2026 17:26:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A39A2C326F;
+	Wed, 11 Mar 2026 17:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773249988; cv=none; b=gkkIAZ2IfJvmKMeh2sfYFX8aKS6Zf98ySTDql5evCHEELYGspgVVn1dbUV+5DCgpO2wIeaMem29JkN7//+NhXQ2GRzdsHrl5PmA5KOCW7LFhNHNeGnIfH8sJihyx09U8RPqIQEdl6+PFB2XD7BhMnT5Vxj+SkaiQXyT53XkHrhs=
+	t=1773250575; cv=none; b=KGK2kQ3/8gNeXpfVZKuus1dbZZSLObh5rGuZk3pVkJReMe8TQGBcv2hk2GI6AruoL4kINHI9HRnbQQFBwACFZPssNH5D+qtoRb7sTHooBCKm5Lj0rt4reUaCa/0vP4FvZOJDF13tBtfCtUK6ig4E9y4KPK7LQygFV9dqm79JfaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773249988; c=relaxed/simple;
-	bh=y+KKZaoBKzrNz1o+jJF6trYgtzm7fNHFfD7SXXDA9UY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AWWtAXWm+e3OAXEw0H+grasXeHUL8Up23UeDoUFF1MWroUhf8qe9u9WMegtzFrd8AaRd0UGfKoqRk6Kj9WPC+N+lv7gcjwmkUzGvQAm/enMU33rtYk+NE7qNOmgo8oXIjpuN8mhoepuBK7tPbQReLBP/D4aeQ71CeNR7cNx0Xco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=schnwalter.eu; spf=pass smtp.mailfrom=schnwalter.eu; dkim=pass (2048-bit key) header.d=schnwalter.eu header.i=@schnwalter.eu header.b=GZUObFxH; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=mjAnFcnh; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=schnwalter.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=schnwalter.eu
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
-	by mailfout.phl.internal (Postfix) with ESMTP id BFDC4EC0642;
-	Wed, 11 Mar 2026 13:26:25 -0400 (EDT)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-02.internal (MEProxy); Wed, 11 Mar 2026 13:26:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=schnwalter.eu;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:message-id:mime-version
-	:reply-to:subject:subject:to:to; s=fm2; t=1773249985; x=
-	1773336385; bh=YkPQERX+T6reisC78/iLKEw2FXnOBZz8ocwVFwvGVXU=; b=G
-	ZUObFxHpg/SMW9vOWdRjeIfo8t0glT5t47vvtNLUT+4kW0cBdt4/VHpphTVxFTc2
-	cgzsHR+mrQmjqmGnVtsCfqA7o7YhSvA0M8rky1CrNexxzMO6oItme/oGV367P0QI
-	ZrEBxrgUKTfA952kd3QiJ2h314FC74CZTyOCp9nbx/rxBrlqOM/9yx4ShvCGdjh5
-	IaSn2dKCk4orsfHaaPZTATSjBtVM5fkni9yNmLdqHLj4c+z8pwNkjYrWQEa/Vioy
-	T0iSkQyasYAr7sksVwqrUGhqtKIgyaXis507RCQIyA6guiHnaZvpj6OHE3felqQQ
-	MbPxClXIxvQ79vwSMEYJQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
-	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-	fm1; t=1773249985; x=1773336385; bh=YkPQERX+T6reisC78/iLKEw2FXnO
-	BZz8ocwVFwvGVXU=; b=mjAnFcnhU4vaEtTOp9avek22E91rC4+9XAbG8vj/W3nw
-	EPTZOwRY05FpifPvibTj429cLMo6+WBLxk9j1IrAUo/JZ2fgPL+tDgeHl6SZYOIC
-	OWcVqS30EDN4H7JqNGxwravxl/EPzHvNAV7zF4l2zvi3KqzkjmlbCZut5ioWbXr8
-	fBGa48mR+EIKnPkTMBlusNzNPOmDrewVJijGet9o71BnuRO0cJ4VbFC7ROZsUUdV
-	W3fJrtFCzZwOE7D39WRO52JuIZr/+gy0c3WHUCe0muP5W1hcRgMZiG5AifNs2yvM
-	ajo30Dj71bfYPe6lF6L9L2cPo7/NW0/6cVgPpf24gg==
-X-ME-Sender: <xms:waWxaQVWA00PA3cfilTkqfmpEIwtFMn7Id1ExzlVU44Q0TDv6Xufew>
-    <xme:waWxacwuwi5dq5xIBPFZIXCeiqkp0xNH8VPcLpTyAjvKKtlorTh4CE5Olmue_1xud
-    kGtnTkiHigioHrvafOgPBYLr90BqYlxIAJnWvc2mK6L9PZNnedaww>
-X-ME-Received: <xmr:waWxaf_2Q_R0Rib72tHW9wjKFXnaa_bQ1WaH826RfGQfw2muvxbSI2glotlz7w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvkeeggeelucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhephfffufggtgfgkffvvefosehtjeertdertdejnecuhfhrohhmpeghrghlthgvrhcu
-    hggvrhhnvghrucfutghhnhgvihguvghruceotghonhhtrggtthesshgthhhnfigrlhhtvg
-    hrrdgvuheqnecuggftrfgrthhtvghrnhepvefhheduuefggffhgfeuudefvdelieffiedu
-    uddvleeludevgfetfeegiefgfefhnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenuc
-    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegtohhnthgr
-    tghtsehstghhnhifrghlthgvrhdrvghupdhnsggprhgtphhtthhopedutddpmhhouggvpe
-    hsmhhtphhouhhtpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgv
-    rhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrh
-    hnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphht
-    thhopegtohhnthgrtghtsehstghhnhifrghlthgvrhdrvghupdhrtghpthhtohepkhhrii
-    hkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshgrkhgrrhhirdgrihhluhhs
-    sehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhgthhgvhhgrsgeskhgvrh
-    hnvghlrdhorhhgpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiuggvrghsohhn
-    sghorghrugdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvgguihgrsehvghgvrhdrkh
-    gvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:waWxaZ_KZUiiG6ePfzflo2qEKXm0Y8z5AT4-dwzy0jgPLRIL1iRnXA>
-    <xmx:waWxaWVjROsHmeX2lcn71SoMYqkd6bVQUXr80R0ZHTahb7KZNdr3aA>
-    <xmx:waWxaefia8uNBPqHU3o8GIaI8ExbDoMoK6ckAJLjPzi5aJjfzypRgg>
-    <xmx:waWxaXZBitn-7L-86WC6KS4LYLM0NsD1gKvSQAoLGlxWRT-kAHbu-g>
-    <xmx:waWxacDFfx8t-csDch28JVCYeh0Uds3LdLeQATUi1F25r1EgIRsZP0tK>
-Feedback-ID: i455149b6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 11 Mar 2026 13:26:23 -0400 (EDT)
-From: Walter Werner Schneider <contact@schnwalter.eu>
-Date: Wed, 11 Mar 2026 19:26:20 +0200
-Subject: [PATCH] media: i2c: Add ov2732 image sensor driver cleanup
+	s=arc-20240116; t=1773250575; c=relaxed/simple;
+	bh=xjKTDTd8ojlA8FfIUmj0qcyQ4/gIsPJELfOQhU0E5aQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VbzMmfXucQTgwssfL+CHYXRDzb7u1CZb7cCZ2RGxEAdgxbYfZKpqeDWF9Oe0ajtsnEIN7+Gt6CE1P03/0xRPCTbSFoHsCz0p3INMcAmuQz6nOj6/fu5B1rSTOe8U7pJjqXzqzP74I8xCNFUigDaQ9GQpSzD5k2LIKjarg2Ocapw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hD+N6huC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 50357C4CEF7;
+	Wed, 11 Mar 2026 17:36:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773250575;
+	bh=xjKTDTd8ojlA8FfIUmj0qcyQ4/gIsPJELfOQhU0E5aQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=hD+N6huCGVpA94OuTRFfz+OQZwF0c1V89jFdwN0lqNGJLyqOFHBVok/JJx03aMYoy
+	 VvDb08YDTb+yYTvzDnkEgEc1mPCjgMB7zP2OiZIJF6y6OPIrr/otto2pI/VKb+Ytnz
+	 ITeVcow0EgEKnI2aTStmFsSth4Mxzud4tW4ZC/3D9lOMw3mFHvcjEmcWYpxcEFqU1K
+	 Pt84v6sNfN/YJSSgyhe42vX1f29MyBkEYV4Zpn2V8knwGUFYgPJJoJgc1ivi5BxQdD
+	 AEZA701uudzFrCUMgo9AxowAiH9fubXZ/zbSEOQbJ1t2YTeDkB7dRVTOjh9JPfxW/j
+	 wzGuiGcKyyqUA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 418991125811;
+	Wed, 11 Mar 2026 17:36:15 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Subject: [PATCH 0/3] PowerPC/Wii: A few devicetree cleanups
+Date: Wed, 11 Mar 2026 18:35:55 +0100
+Message-Id: <20260311-wii-schema-v1-0-1563ac4aefa8@posteo.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,125 +57,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260311-ov2732-driver-cleanup-v1-1-234f334c1e4b@schnwalter.eu>
-X-B4-Tracking: v=1; b=H4sIALylsWkC/x3MMQqAMAxA0atIZgM2gqJXEYfaRg1IlRSLIL27x
- fEN/78QWYUjjNULykminKHA1BW43YaNUXwxUENd0xqDZ6K+JfQqiRXdwTbcF9rOLesyDGR7D6W
- 9lFd5/u805/wBHip/U2cAAAA=
-X-Change-ID: 20260311-ov2732-driver-cleanup-a6cbfb992a7d
-To: linux-media@vger.kernel.org, 
- Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPunsWkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDY0ND3fLMTN3i5IzU3ERdkyQTg2Rz8zSLZMtEJaCGgqLUtMwKsGHRsbW
+ 1AN6YVydcAAAA
+X-Change-ID: 20260311-wii-schema-4b40c77f8c9a
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Walter Werner Schneider <contact@schnwalter.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773249983; l=2436;
- i=contact@schnwalter.eu; s=20251106; h=from:subject:message-id;
- bh=y+KKZaoBKzrNz1o+jJF6trYgtzm7fNHFfD7SXXDA9UY=;
- b=/In7nVa0lrn41L9LsRhcs3MEv/mgFtLhvODpQeMu1fZmGm4cQqGzMBI/thtQiH3lzkHzccpN8
- u4ufb2ifG21A9H2yY0IybxXNYvXGDX486VqWRmz74TjH11QyCXZQAme
-X-Developer-Key: i=contact@schnwalter.eu; a=ed25519;
- pk=OoafUGtB7zQJLYhKA7ALCjqddXAaem/uP/eb3GGNkTI=
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, Link Mauve <linkmauve@linkmauve.fr>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773250574; l=575;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=xjKTDTd8ojlA8FfIUmj0qcyQ4/gIsPJELfOQhU0E5aQ=;
+ b=zhOibk57Sy5roTUBK9nE4MIkOyWyEqD34XxRVVNfbYQWWc+tDK26S9c1UQSMK+MxO+zpyAUb9
+ 7UVSXf+7ErzDw7eZ57HKw/M1HVBeW+/0UfquAISraqRVWUdU/ae8n5x
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[schnwalter.eu,quarantine];
-	R_DKIM_ALLOW(-0.20)[schnwalter.eu:s=fm2,messagingengine.com:s=fm1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[schnwalter.eu:+,messagingengine.com:+];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274258-lists,devicetree=lfdr.de,j.ne.posteo.net];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274257-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[contact@schnwalter.eu,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[schnwalter.eu:dkim,schnwalter.eu:email,schnwalter.eu:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,messagingengine.com:dkim]
-X-Rspamd-Queue-Id: 80DE2268032
+	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,posteo.net:email,posteo.net:replyto,posteo.net:mid]
+X-Rspamd-Queue-Id: CCC56268141
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-A small set of changes:
-- Updated copyright year.
-- Removed redundant parentheses.
-- Removed endpoint check, see Dependencies for required patch set.
+This series contains a few minor fixes to make wii.dts somewhat more
+compliant with the DT schemas.
 
-Dependencies:
-- media: i2c: Add ov2732 image sensor driver
-  https://lore.kernel.org/r/20260105-ov2732-driver-v6-0-95c1b0b0ba7b@schnwalter.eu
-- media: v4l2-fwnode: Return -EPROBE_DEFER on parsing NULL endpoints
-  https://lore.kernel.org/linux-media/20260310141157.1186325-1-sakari.ailus@linux.intel.com/
-
-Signed-off-by: Walter Werner Schneider <contact@schnwalter.eu>
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
 ---
-A patch to be applied on the v6 version of the ov2732 driver.
+J. Neuschäfer (3):
+      powerpc: wii: Add unit address to /memory
+      powerpc: wii: Fix GPIO key name pattern
+      powerpc: wii: Fix LED name pattern
 
-P.S. Sorry for the misunderstanding, it wasn't clear to me that I should
-just send a diff on top of v6 instead of sending a v7.
+ arch/powerpc/boot/dts/wii.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 ---
- drivers/media/i2c/ov2732.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/media/i2c/ov2732.c b/drivers/media/i2c/ov2732.c
-index d33e7b6e3762f0e93e199f36dc2d77f95ec5b414..40035320fec631c098f77c433360599905805d2d 100644
---- a/drivers/media/i2c/ov2732.c
-+++ b/drivers/media/i2c/ov2732.c
-@@ -3,7 +3,7 @@
-  * ov2732 driver
-  *
-  * Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd.
-- * Copyright (C) 2025 Walter Werner Schneider <contact@schnwalter.eu>
-+ * Copyright (C) 2025-2026 Walter Werner Schneider <contact@schnwalter.eu>
-  */
- 
- #include <linux/clk.h>
-@@ -491,11 +491,11 @@ static int ov2732_set_ctrl(struct v4l2_ctrl *ctrl)
- 	case V4L2_CID_EXPOSURE:
- 		/* Lowest 4 bits are fraction bits. */
- 		cci_write(ov2732->regmap, OV2732_REG_EXPOSURE,
--			  ((u32)ctrl->val) << 4, &ret);
-+			  (u32)ctrl->val << 4, &ret);
- 		break;
- 	case V4L2_CID_VBLANK:
- 		cci_write(ov2732->regmap, OV2732_REG_VTS,
--			  (format->height + ctrl->val), &ret);
-+			  format->height + ctrl->val, &ret);
- 		break;
- 	case V4L2_CID_TEST_PATTERN:
- 		cci_write(ov2732->regmap, OV2732_REG_TEST_PATTERN,
-@@ -608,10 +608,6 @@ static int ov2632_probe_dt(struct ov2732 *ov2732)
- 	int ret;
- 
- 	ep = fwnode_graph_get_endpoint_by_id(fwnode, 0, 0, 0);
--	if (!ep)
--		return dev_err_probe(ov2732->dev, -EPROBE_DEFER,
--				     "waiting for fwnode graph endpoint\n");
--
- 	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
- 	fwnode_handle_put(ep);
- 	if (ret) {
-
----
-base-commit: bb1048a0531ffda0c6e871c341d388735cfcc807
-change-id: 20260311-ov2732-driver-cleanup-a6cbfb992a7d
+base-commit: 6af06d984685645b4f80132a8defb09747b10989
+change-id: 20260311-wii-schema-4b40c77f8c9a
 
 Best regards,
 -- 
-Walter Werner Schneider <contact@schnwalter.eu>
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
