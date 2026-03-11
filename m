@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-274151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274153-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SGBjK1R9sWmACAAAu9opvQ
-	(envelope-from <devicetree+bounces-274151-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:56 +0100
+	id SBbKDqV9sWmjCwAAu9opvQ
+	(envelope-from <devicetree+bounces-274153-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:35:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CBC726573C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFDA2657D9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:35:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A37B430B7708
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:32:54 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4E39531353C3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:33:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AF0D3C7E01;
-	Wed, 11 Mar 2026 14:32:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5423C9ED3;
+	Wed, 11 Mar 2026 14:32:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="AXPf5brS"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="W1OP0JSp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAD13B0AF4;
-	Wed, 11 Mar 2026 14:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3086A3CFF6A;
+	Wed, 11 Mar 2026 14:32:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773239572; cv=none; b=m3U1HWTvrxotD5/4ZYpARdf2DuvV7sUpN6Eu9/fomtbq8UqoGRF2/pq/QTyFf9vwJJ9R7SLvSTu/azHfLCRlpDx9oZhwQ7HqqwqUEozoTw+U55AL2poayuysIwNsJ/Rly6k+ApnzT4NyIJcJSjjGYUZBNl5Qd8Ikmo0fOKlBBJY=
+	t=1773239575; cv=none; b=lwvRmhOHCSqwcX3TXGGO/04xIdibnhTb9cJm2dF8Gc6pTTPMBfem1cqfSm6yKuEQz9D74WM+2SkllWIhVzzsGw0sTejV4EPDaK/1iftdr2uh65gJyPGKB7mHJ5iJ70Qu0KhetlTwIh/2iHVT3eGL6yOA1Y46OGMKMpko9AZrIGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773239572; c=relaxed/simple;
-	bh=J35QImaW6ppIhy1hai9b36ccj+JKP0PLnzR8HpHPBI4=;
+	s=arc-20240116; t=1773239575; c=relaxed/simple;
+	bh=6hyp8oj+8eGEQZsZT+muICxP3fnBYc1R1z5sgHbCrIE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nkikYtGLxiH2KYGISi7Ds57cGhr1B0KnzltwHGg8ckLsYFy653CUvBZdsjGnmrdTHkj4x40Izw7T47CBvk9kkIttahypde0oDphG222aDo2dFtSi0a0Z4RMuKxc62AvY7Qz9qgBPgzq4JuQksLb543MISf5WH1zh/VwcZv8tYow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=AXPf5brS; arc=none smtp.client-ip=188.40.3.216
+	 MIME-Version; b=OkztwhmuZmlRSMzPLowZ71CsNlAg5CV2Eu2TcBull20GiF2g8IJsGjko138BdKY5lgbWEDbIOZioV+scgNq4nYj3Zei4i7Rd1OHwXhejHJreO7sv/vLMSQoN1NYJIgVK0xWeTEGGDrXUoYkfLFCi34MKsEKEiY9oGBDKt7VDZQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=W1OP0JSp; arc=none smtp.client-ip=188.40.3.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -39,24 +39,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=SvdG0/D91buWbWzHgccrBw87GIyc7JHQIBXbI1z10Ls=; b=AXPf5brSIELCGXBPfekTkrdWyN
-	ft1hhJc4N/tMrXp0Vzd2w1G/QMf5TvMSMiaQvNJqB2sD90HYUGcvEZJF+7DwX79LMgC+uDzJypF/e
-	n1NEYC3ocEUH2CEvBA4IpFMSeO0TY/Ct27fzb3519C4kL0JuZ8nFYscR0EudrQ9mRs0/YAh//Mews
-	9AkM5QJM3pzTW51Dm5kKG1HurN67edOh4nENkkKUYOnPAn4KM94kz8AvqfodKWlNv8uUyQPYvfl7d
-	NBh4en3eZ7wdnyNU5K3kWg/UdD6sy9d94h4PYe+/wVUJ9oH4fMCTJ4ImYTKx9Zds8mkE5RGIJz3nB
-	g7Z3cMBw==;
+	bh=YNQjtMPSmOm9g6D99IkzdDeFXjyoDQDJ/3H8oMxooVE=; b=W1OP0JSpeiJWNMJva4YOQ0v1P3
+	PP7jnzae3BYl/WD5ttFv6xjAgkAss1nxMsZeSd7um+x6d8rZMvbLL4r/fu3u4+ti3NAGLXcWbhrtq
+	61wlCEePT1cLEOfkqANTzyd2hHtKtOYNRjh8tJWK3Nc2ZZKuKDubiUv1DqnHHx2VaU8ncx3d2dek5
+	NB2z5gwht1dicAkqKhCFQvkTy9RtmPoYiuoYl3k+jdEodTihnhocsE/DExSonLiFUR6hbg8u0ay3U
+	EfMOeOh6mcDKOFSDY/ax9i1i2V4BXY7z4gwF6f3mFvDOngyqlJrkygyfoeamDZiDE2EPS4KqwJ5Qw
+	rs57kVSA==;
 Received: from sslproxy03.your-server.de ([88.198.220.132])
 	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96.2)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0Kc7-000OsK-2e;
-	Wed, 11 Mar 2026 15:32:43 +0100
+	id 1w0KcA-000OtS-0u;
+	Wed, 11 Mar 2026 15:32:46 +0100
 Received: from localhost ([127.0.0.1])
 	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0Kc7-000GoI-0e;
-	Wed, 11 Mar 2026 15:32:43 +0100
+	id 1w0Kc9-000GoI-25;
+	Wed, 11 Mar 2026 15:32:45 +0100
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Frank Li <Frank.Li@nxp.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
@@ -76,9 +76,9 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-kernel@vger.kernel.org,
 	linux@ew.tq-group.com,
 	linux-clk@vger.kernel.org
-Subject: [PATCH 2/6] clk: imx: fracn-gppll: Add 477.4MHz support
-Date: Wed, 11 Mar 2026 15:32:05 +0100
-Message-ID: <20260311143217.1700704-3-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 3/6] arm64: dts: imx93-tqma9352-mba91xxca: Add parallel display overlay
+Date: Wed, 11 Mar 2026 15:32:06 +0100
+Message-ID: <20260311143217.1700704-4-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
 References: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
@@ -96,7 +96,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -104,7 +104,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,baylibre.com];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274151-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274153-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -117,35 +117,110 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,ew.tq-group.com:dkim,ew.tq-group.com:mid,tq-group.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 1CBC726573C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ew.tq-group.com:dkim,ew.tq-group.com:mid,tq-group.com:email,0.0.0.38:email]
+X-Rspamd-Queue-Id: 8BFDA2657D9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add the 477.4MHz frequency support that can be used for display with
-pixelclk of 68.2 MHz. The divider of 7 is important for LVDS output on
-imx93. It is also usable for parallel output.
+This adds support for CDTech S070SWV29HG-DC44 display on parallel
+interface X3 on MBa91xxCA.
 
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- drivers/clk/imx/clk-fracn-gppll.c | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/freescale/Makefile        |  4 ++
+ ...93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso | 66 +++++++++++++++++++
+ 2 files changed, 70 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
 
-diff --git a/drivers/clk/imx/clk-fracn-gppll.c b/drivers/clk/imx/clk-fracn-gppll.c
-index fe6ee77ba1485..4048c16c0578b 100644
---- a/drivers/clk/imx/clk-fracn-gppll.c
-+++ b/drivers/clk/imx/clk-fracn-gppll.c
-@@ -85,6 +85,7 @@ static const struct imx_fracn_gppll_rate_table fracn_tbl[] = {
- 	PLL_FRACN_GP(519750000U, 173, 25, 100, 1, 8),
- 	PLL_FRACN_GP(498000000U, 166, 0, 1, 0, 8),
- 	PLL_FRACN_GP(484000000U, 121, 0, 1, 0, 6),
-+	PLL_FRACN_GP(477400000U, 119, 35, 100, 0, 6),
- 	PLL_FRACN_GP(445333333U, 167, 0, 1, 0, 9),
- 	PLL_FRACN_GP(400000000U, 200, 0, 1, 0, 12),
- 	PLL_FRACN_GP(393216000U, 163, 84, 100, 0, 10),
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index a6fe56bb93aa1..3547f1dd84467 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -455,6 +455,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
++
++imx93-tqma9352-mba91xxca-rgb-cdtech-dc44-dtbs := imx93-tqma9352-mba91xxca.dtb imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtb
++
+ dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx943-evk.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
+new file mode 100644
+index 0000000000000..ebf7fb13a46ef
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
+@@ -0,0 +1,66 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
++/*
++ * Copyright (c) 2023-2026 TQ-Systems GmbH <linux@ew.tq-group.com>,
++ * D-82229 Seefeld, Germany.
++ * Author: Alexander Stein
++ */
++
++#include <dt-bindings/clock/imx93-clock.h>
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/dts-v1/;
++/plugin/;
++
++&backlight {
++	status = "okay";
++};
++
++&display {
++	compatible = "cdtech,s070swv29hg-dc44";
++	status = "okay";
++};
++
++&dpi_to_panel {
++	remote-endpoint = <&panel_in>;
++};
++
++&lcdif {
++	assigned-clocks = <&clk IMX93_CLK_VIDEO_PLL>;
++	assigned-clock-rates = <333333333>;
++	status = "okay";
++};
++
++&lpi2c3 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	polytouch: touchscreen@38 {
++		compatible = "edt,edt-ft5406";
++		reg = <0x38>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_touch>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
++		reset-gpios = <&expander2 0 GPIO_ACTIVE_LOW>;
++		iovcc-supply = <&reg_3v3>;
++		vcc-supply = <&reg_3v3>;
++		gain = <20>;
++		touchscreen-size-x = <800>;
++		touchscreen-size-y = <480>;
++	};
++};
++
++&media_blk_ctrl {
++	status = "okay";
++};
++
++&panel_in {
++	remote-endpoint = <&dpi_to_panel>;
++};
++
++&dpi_bridge {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgbdisp>;
++	status = "okay";
++};
 -- 
 2.43.0
 
