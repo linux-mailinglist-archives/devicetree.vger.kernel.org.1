@@ -1,287 +1,256 @@
-Return-Path: <devicetree+bounces-274129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274128-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SBFKIB1ysWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274129-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:05 +0100
+	id 2LyeF0dysWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274128-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6989264CAD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:04 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id D24F6264CDD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1E69331087F4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:41:41 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id CF9F73031007
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:41:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1EB31E846;
-	Wed, 11 Mar 2026 13:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC38732AACB;
+	Wed, 11 Mar 2026 13:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mb6o23uh"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mON3MA5W";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Gj3rMc4g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A77330D23;
-	Wed, 11 Mar 2026 13:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44EF231ED7C
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773236498; cv=none; b=OXXbJslMGL5f9MleTpAqS3hg2yHfIHvo847zp+C/dGNZYRFWGRt4pl1QmvFmzXyLD7r8Q1b8aSOnu9cWJv5ljkY4Kgd633klRUQn4nNW98anr4T+WIXt9Tr56nJ0wyr3g5QXO5MOmW3LmWxip3TzJXPPeo4qK6UF+VZRu5SBpd8=
+	t=1773236494; cv=none; b=i+ucjqcrD/hw0bF/wvNDNKnDDFt8/EByLFgXzwP+8hAZBUt6GSCbzw5+pI2WfVrzQ5vWqhQKbF/DsUt+xq64d/z2I/ilrqVP3F9WabzZGA9lGxSG83ohq8Zs8K9pQPIX1SgN60RB83eaglWN8PrFbELRzhgHwyNddmB17Gk10b0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773236498; c=relaxed/simple;
-	bh=rj/Ux+J4aQEtb+6hA+P+Gc64uJpLa+VvxwhCfCZeID8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=QQt8P9FJyXkxSIczSoECqQAyAh8lwByT9qjVYejDRsKk5AnsqWBlLND4fzJWUf5LXj3SLpDQDu5lqrHOphJzAt4Ny6HJhHnHNdg8L7hu/6eMRxcWqG1dph1cApEToMfJ8gcQGM2sa035gJfaqX/5vl6XsW+MDdz0S5RJQY1tPK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mb6o23uh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B0188C19425;
-	Wed, 11 Mar 2026 13:41:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773236497;
-	bh=rj/Ux+J4aQEtb+6hA+P+Gc64uJpLa+VvxwhCfCZeID8=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=Mb6o23uhRrLywuuH8I1Je7o7zQpxnLDjXF7vyPK63iO5fihjBzliMIqv6kVyeAgDN
-	 ygxeU6RzhezYYuusxOxuB/9yhkIwVQKo/bATf5+fiBnvrSeyvAEcuwO3HSQrAzY5CE
-	 eofMr5nJ57q7gvDHmRh2CFB2gUToewTF3134yTQrKcyLp/MgeB1t8QUlXHrO3LYUpO
-	 KbO1fliTPsEHfSKbtpw8x9yCuVR/ViwGxe45ALd43MGDU8c+2fogLSMv0/akdXbPlt
-	 O25FFx296XiZ3mvHTyV8mT+jYhZOrybSmXeN4twaqUBPtSsCT8xUTLTK+SUh8Vb4Fy
-	 KaJErmLwXPFJA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B2ED112580A;
-	Wed, 11 Mar 2026 13:41:37 +0000 (UTC)
-From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
-Date: Wed, 11 Mar 2026 14:41:14 +0100
-Subject: [PATCH v3] powerpc: dts: Build devicetrees of enabled platforms
+	s=arc-20240116; t=1773236494; c=relaxed/simple;
+	bh=gCKgr/R98EWS+hf1PVWdN+dUizM9N1LctGJSgvlIWi4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lcj5O/UVizUdk4uQl0PCuf4X2T0y90mIk0tAuk/hagx7PNbWXbFIoCN1psTngTCXnpf2n5+jeVZfJCIpVxLZuUnEBhtODBvnl+nEHzI++ZcdeF24EIf2WUKMSVy8bIgyinLVNHWipmIE8KRq4bnRMEv/q2qN5Bg1Peufv5OywS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mON3MA5W; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Gj3rMc4g; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62BA34x22038138
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:41:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2pRkzdRnurp2hrieqB92589I3PLnkd1IA53EACNXOwU=; b=mON3MA5WqLETHF+4
+	xFX4Z8CQyEzSK3NRGICVuGwljduUKlxH0ynrFOqPbiPAkkwqqMU6zHSiDRM58mn+
+	8zr28yB8huEv34NCrkyPoGt2mqkrnloG6Bw+ybet5qCkEZPF9jF1CoS+EtZoClLF
+	hhCw3xU89p4bm6w8JfB1bncIH0HaU//e6MU+QYMP3v37UKv4vKci8N0D/CgvDN5v
+	4d7gI3k/vf0WuMe7yOQSV7hPoddvM52tRlZiNBCL3jU9Ik4jRU8QYlNT9NlcrVNg
+	hf5FITnj0c94Paz7kgCOpglYxPR7GB0zIVYQrlHvSGNNYg81g1E0HLzMPJdsfqzk
+	icOv+A==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cu6a5grad-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:41:32 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cd97debc51so125657985a.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:41:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773236491; x=1773841291; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2pRkzdRnurp2hrieqB92589I3PLnkd1IA53EACNXOwU=;
+        b=Gj3rMc4gsEcDHvW7q4om1Na+9ycBCDzXp3vwg7tJGf+x+2D7b+o0Yl3hsUDcwgQOCC
+         +9elTrcJ8v+21FzVzMmRLooNTUSK8LJjWWNOb2MOx00T6fwblyITCSteSNXI1+/tKpe5
+         Be92u+8PoBGOREPi4bR+RT+ImAfBHqbup9lDe7FZj6nxGSmD24sKmeubzxja4SHQTnwD
+         zzfsHjckNdXbG7Xl7dNiUFWYsW/EYfa0bWEtJJFqGOTU1+XXH0zzTjCWyKTeKBaOufpL
+         lPYcjmF5N/W7mCeVpQpmqqWGci44BPamyhWR5lLlMaMSncgI1bMj6qirVBZ00X2YOFtD
+         lfAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773236491; x=1773841291;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2pRkzdRnurp2hrieqB92589I3PLnkd1IA53EACNXOwU=;
+        b=B8V8soMAbXGIHJEL7eGCFfjhWVnlTdV0EjOBQ5x5G8xlsvL3sZk8pn9BqjJgGkHmkN
+         KqZSgn6w4QPjKTOX4xrGqJbEkFIyOa1H1nkoHpZZSIq59hbZH5CXXv4GnevqRncAdjHu
+         z/LWaTeKtixpYvSQeyIFMkeaEG2redE88WJmqehtjT+f4qMYl579sNKTPK1qtN82I7pc
+         ysEM9woXBP2OeQSakjhmzDVVOIXwfn9qxgXMcGziHYATR7t4y70y0F719DfAkpLY9uI4
+         yEqDgZtTnhFjP+FKihnd/5f1tE1XBb4P55MDJ1bDact08wMgFxZUp6ad+tAah99aPNK+
+         VXoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlBU+CTBiSaoKigzhhiz/vNS+1e/Iy1E3xbfvyEgikx6AlQBM/puSpHnJU+fTpNt6cZnhrO6EoytMK@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo2vyp7uqlle2F4l5OqUzRIyWp9Ky5GXHBuVA5dGM8DijJPX9v
+	aH0Q33/3KwhiczbfSPPdW7tEPq6KiscRHJ3kZbYd8G1qQvzaW9nZba5BWgG4EI5Zd9ujYsfnypD
+	iRYpXM8jRZDq/qZDtrwJWe7/lGCCY9j4OW2mFIDEn0b/U4oHvcz490+90gbBQ9kuD
+X-Gm-Gg: ATEYQzySQG0DweyURndSlyoE1flVobC9MrDHYo4qPsObPd8wXi987GyRTPoCfpBX9gc
+	66HB7rdpgrPObJG4rnBepJQS2gEZDsNzyyWrvTFdwgjELGCwDsLGvzaxQN1XmgvZATVX8T1eeiS
+	NoNf1IlLLBmty9dUuo3p95+CGgyXhmRJCZ5GB2parvllPtkLLFdFTQ20HlPs5NIjuv4PB2jC4Nh
+	+dZsjBN9lPDwUz+/0AlLQ8sZkYKwmGpiFo1/1tlKQIYFNJ/16jnP91wSU9NoqrFNQZsYGQkC8Wq
+	e28wtZJ1pB3b2P4Cwwx3L1tXfZk5Qaz9mRxkPhheFfKLgOiGQ8baEaCLtzbVu7KYvT20bQm/48U
+	H+CzKQv59l/h/EzPRCyct26hm0rBcvySu7q8zJep5h3CQO0bvsYT+xJYGBWdVyRCJNwKr4GQSS3
+	KtWws=
+X-Received: by 2002:a05:620a:45a2:b0:8cd:8d50:16a0 with SMTP id af79cd13be357-8cda194a812mr279202385a.3.1773236491455;
+        Wed, 11 Mar 2026 06:41:31 -0700 (PDT)
+X-Received: by 2002:a05:620a:45a2:b0:8cd:8d50:16a0 with SMTP id af79cd13be357-8cda194a812mr279198885a.3.1773236490910;
+        Wed, 11 Mar 2026 06:41:30 -0700 (PDT)
+Received: from [192.168.119.254] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b972e185269sm53994166b.50.2026.03.11.06.41.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Mar 2026 06:41:30 -0700 (PDT)
+Message-ID: <e80ad550-71a0-498e-9ab8-6c0859883f7b@oss.qualcomm.com>
+Date: Wed, 11 Mar 2026 14:41:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260311-mpc83xx-dtb-v3-1-4aa43bb9ffa0@posteo.net>
-X-B4-Tracking: v=1; b=H4sIAPlwsWkC/1XMQQ6DIBCF4asY1qVhBmmhq96j6UJlrCwqBgixM
- d69aJo0Lt9L/m9hkYKjyG7VwgJlF50fy5CninVDM76IO1s2Q4EXAQL4e+q0nGduU8tRWqMbMIJ
- QslJMgXo379rjWfbgYvLhs+MZtvfngDk4GThwhdjrGtCItr9PPiby55ES26CM/1gKdYyxxJ1tr
- wpqpetaHeJ1Xb9ig9hT5AAAAA==
-X-Change-ID: 20260101-mpc83xx-dtb-23d98a190e23
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>, 
- =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773236496; l=7456;
- i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
- bh=3WyfYes++NmFGCY5z0O0TGYhJubV0Rr/Y7//Z3EAy18=;
- b=CqCwPkr91j+ic7g5/HSLx8DgbVEjeMrvcIQ+/3OTMplnPH9pij/ISZqjQkHq/iiEXQXsjkcO+
- i4eSYXHyXnEAoTkLiyBNyFsLQfhR9pR88eNamZJGJ4r34zuNSBoa9QJ
-X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
- pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
-X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
- auth_id=156
-X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
-Reply-To: j.ne@posteo.net
-X-Rspamd-Queue-Id: D6989264CAD
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: Introduce sa8255p SoC
+To: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>,
+        Nikunj Kela <quic_nkela@quicinc.com>,
+        Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+References: <20260304-b4-scmi-upstream-v5-0-f8fc763d8da0@oss.qualcomm.com>
+ <20260304-b4-scmi-upstream-v5-2-f8fc763d8da0@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20260304-b4-scmi-upstream-v5-2-f8fc763d8da0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: FM69804ZqzMJxw0b75jgdfBOcSakktog
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDExNSBTYWx0ZWRfX3+keBIVuwMkP
+ AIG4ylJRnzift82QpHKnwp7/86TVT2fxrDMAo7bYcLzhLoktMV+CKPPbUlt169Rp4qBNrIhLuVD
+ wEBHsRsW8SHzeWmE/VjIMWNT5XeFyARyeCHSjsdCMcCdBMkPq1TLH9ESXyHKPObCJdrn9YwyKxd
+ MaymIWyFEvO2ZmZ2RC8qwnAjRaQtIQNqlvQgYeVeOpGzcAlp77vmxsBCw0goRNa87qhFhXF+oKw
+ jgH0o4u+rabMQ3bkX162Dc0TeRA09li2t3RuqqaEGweZ/4LoQSO7K6ITsQLXX66CABBNFXsPFkY
+ WHPE7+u1cvdyOanzzyOiF+7cEcrWZGZh6vI5aO9l7BHGHSpsr1fqbfCcgaDaFRwtir8mBmI3rUE
+ yPYhcjKG7bmsNr8H5tj2h6SX5lWP/vSccFU9/2zvbmhk5cop/WDbsEkj/BenVPxd0LoI4tx3lWm
+ JqxQL64IpxMv7AQeKQw==
+X-Proofpoint-ORIG-GUID: FM69804ZqzMJxw0b75jgdfBOcSakktog
+X-Authority-Analysis: v=2.4 cv=TtLrRTXh c=1 sm=1 tr=0 ts=69b1710c cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22
+ a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=TRUxsesqeu6M_UsrYMsA:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-11_01,2026-03-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 suspectscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603110115
+X-Rspamd-Queue-Id: D24F6264CDD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274129-lists,devicetree=lfdr.de,j.ne.posteo.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	TAGGED_FROM(0.00)[bounces-274128-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.net:replyto,posteo.net:email,posteo.net:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:url,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,f000000:email,c251000:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[konrad.dybcio@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-From: "J. Neuschäfer" <j.ne@posteo.net>
+On 3/5/26 5:28 AM, Deepti Jaggi wrote:
+> From: Nikunj Kela <quic_nkela@quicinc.com>
+> 
+> Introduce base device tree support for sa8255p Qualcomm's automotive
+> infotainment SoC. The base dt file describes core SoC components- CPUs,
+> CPU map, ipcc, QUP,  geni UART, interrupt controller, TLMM, reserved
+> memory, SMMU, firmware scm, scmi, watchdog, SRAM, PSCI, ufs, pcie, pmu
+> nodes and enable booting to shell with ramdisk.
+> 
+> The Qualcomm automotive sa8255p SoC utilizes firmware to configure
+> platform resources such as clocks, interconnects, and TLMM. Device drivers
+> request these resources through the SCMI power,reset and performance
+> protocols. Assign each device driver a dedicated SCMI channel and Tx/Rx
+> doorbells to support parallel resource requests and aggregation in the
+> SCMI platform server. Operate the SCMI server stack in an SMP-enabled VM,
+> using the Qualcomm SMC/HVC transport driver for communication.
+> 
+> Group resource operations to improve abstraction and reduce the number of
+> SCMI requests. Follow the SCMI-based resource management approach
+> demonstrated by Qualcomm at LinaroConnect 2024.[1]
+> 
+> Limit initial support to basic platform resources, serial console, ufs
+> and pcie.Defer enabling USB, and Ethernet to subsequent updates.
+> 
+> [1]: https://resources.linaro.org/en/resource/wfnfEwBhRjLV1PEAJoDDte
+> 
+> Co-developed-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+> Signed-off-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> Co-developed-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+> Signed-off-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+> ---
 
-Follow the same approach as other architectures such as Arm or RISC-V,
-and build devicetrees based on platforms selected in Kconfig. This makes
-it unnecessary to use CONFIG_OF_ALL_DTBS on PowerPC in order to build
-DTB files.
+[...]
 
-This makes it easier to use other build and test infrastructure such as
-`make dtbs_check`, and is a first step towards generating FIT images
-that include all the relevant DTBs with `make image.fit`.
+> +		tsens2: thermal-sensor@c251000 {
+> +			compatible = "qcom,sa8255p-tsens", "qcom,tsens-v2";
+> +			reg = <0x0 0x0c251000 0x0 0x1ff>,
+> +			      <0x0 0x0c224000 0x0 0x8>;
 
-Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
----
-Changes in v3:
-- Group multiple files per line, while still avoiding backslashes
-  (suggested by Christophe Leroy)
-- Link to v2: https://lore.kernel.org/r/20260305-mpc83xx-dtb-v2-1-cdb751458445@posteo.net
+All TSENS regions are 0x1000-long
 
-Changes in v2:
-- Use "dtb-$(FOO) += foo.dtb" format on every line, avoid backslashes
-  (suggested by Geert Uytterhoeven)
-- Link to v1: https://lore.kernel.org/r/20260119-mpc83xx-dtb-v1-1-522f841290bf@posteo.net
----
- arch/powerpc/boot/dts/Makefile     | 72 ++++++++++++++++++++++++++++++++++++++
- arch/powerpc/boot/dts/fsl/Makefile | 43 +++++++++++++++++++++++
- 2 files changed, 115 insertions(+)
+[...]
 
-diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
-index 0cd0d8558b475c..56581c2489df0f 100644
---- a/arch/powerpc/boot/dts/Makefile
-+++ b/arch/powerpc/boot/dts/Makefile
-@@ -3,3 +3,75 @@
- subdir-y += fsl
- 
- dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
-+
-+# PPC44x platforms
-+dtb-$(CONFIG_PPC44x_SIMPLE) += arches.dtb bamboo.dtb bluestone.dtb glacier.dtb
-+dtb-$(CONFIG_PPC44x_SIMPLE) += eiger.dtb katmai.dtb rainier.dtb redwood.dtb
-+dtb-$(CONFIG_PPC44x_SIMPLE) += sequoia.dtb taishan.dtb yosemite.dtb icon.dtb
-+dtb-$(CONFIG_EBONY) += ebony.dtb
-+dtb-$(CONFIG_SAM440EP) += sam440ep.dtb
-+dtb-$(CONFIG_WARP) += warp.dtb
-+dtb-$(CONFIG_ISS4xx) += iss4xx.dtb iss4xx-mpic.dtb
-+dtb-$(CONFIG_CANYONLANDS) += canyonlands.dtb
-+dtb-$(CONFIG_CURRITUCK) += currituck.dtb
-+dtb-$(CONFIG_AKEBONO) += akebono.dtb
-+dtb-$(CONFIG_FSP2) += fsp2.dtb
-+
-+# Embedded 6xx platforms
-+dtb-$(CONFIG_LINKSTATION) += kuroboxHG.dtb kuroboxHD.dtb
-+dtb-$(CONFIG_STORCENTER) += storcenter.dtb
-+dtb-$(CONFIG_PPC_HOLLY) += holly.dtb
-+dtb-$(CONFIG_GAMECUBE) += gamecube.dtb
-+dtb-$(CONFIG_WII) += wii.dtb
-+dtb-$(CONFIG_MVME5100) += mvme5100.dtb
-+
-+# MPC8xx platforms
-+dtb-$(CONFIG_MPC885ADS) += mpc885ads.dtb
-+dtb-$(CONFIG_MPC86XADS) += mpc866ads.dtb
-+dtb-$(CONFIG_PPC_EP88XC) += ep88xc.dtb
-+dtb-$(CONFIG_PPC_ADDER875) += adder875-redboot.dtb adder875-uboot.dtb
-+dtb-$(CONFIG_TQM8XX) += tqm8xx.dtb
-+
-+# MPC512x platforms
-+dtb-$(CONFIG_MPC5121_ADS) += mpc5121ads.dtb
-+dtb-$(CONFIG_MPC512x_GENERIC) += mpc5125twr.dtb ac14xx.dts
-+dtb-$(CONFIG_PDM360NG) += pdm360ng.dtb
-+
-+# MPC5200 platforms
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += a3m071.dtb a4m072.dtb charon.dtb cm5200.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += digsy_mtc.dtb motionpro.dtb mucmc52.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2d.dtb o2d300.dtb o2dnt2.dtb o2i.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2mnt.dtb o3dnt.dtb pcm030.dtb pcm032.dtb
-+dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += tqm5200.dtb uc101.dtb
-+dtb-$(CONFIG_PPC_LITE5200) += lite5200.dtb lite5200b.dtb
-+dtb-$(CONFIG_PPC_MEDIA5200) += media5200.dtb
-+
-+# MPC82xx platforms
-+dtb-$(CONFIG_EP8248E) += ep8248e.dtb
-+dtb-$(CONFIG_MGCOGE) += mgcoge.dtb
-+
-+# MPC83xx platforms
-+dtb-$(CONFIG_MPC830x_RDB) += mpc8308rdb.dtb mpc8308_p1m.dtb
-+dtb-$(CONFIG_MPC831x_RDB) += mpc8313erdb.dtb mpc8315erdb.dtb
-+dtb-$(CONFIG_MPC832x_RDB) += mpc832x_rdb.dtb
-+dtb-$(CONFIG_MPC834x_ITX) += mpc8349emitx.dtb mpc8349emitxgp.dtb
-+dtb-$(CONFIG_ASP834x) += asp834x-redboot.dtb
-+dtb-$(CONFIG_MPC836x_RDK) += mpc836x_rdk.dtb
-+dtb-$(CONFIG_KMETER1) += kmeter1.dtb
-+dtb-$(CONFIG_MPC837x_RDB) += mpc8377_rdb.dtb mpc8378_rdb.dtb mpc8379_rdb.dtb
-+dtb-$(CONFIG_MPC837x_RDB) += mpc8377_wlan.dtb
-+
-+# MPC85xx platforms
-+dtb-$(CONFIG_STX_GP3) += stx_gp3_8560.dtb stxssa8555.dtb
-+dtb-$(CONFIG_TQM85xx) += tqm8540.dtb tqm8541.dtb tqm8548.dtb
-+dtb-$(CONFIG_TQM85xx) += tqm8548-bigflash.dtb tqm8555.dtb tqm8560.dtb
-+dtb-$(CONFIG_SOCRATES) += socrates.dtb
-+dtb-$(CONFIG_KSI8560) += ksi8560.dtb
-+dtb-$(CONFIG_XES_MPC85xx) += xcalibur1501.dtb xpedite5200.dtb
-+dtb-$(CONFIG_XES_MPC85xx) += xpedite5200_xmon.dtb xpedite5301.dtb
-+dtb-$(CONFIG_XES_MPC85xx) += xpedite5330.dtb xpedite5370.dtb
-+
-+# Misc. platforms
-+dtb-$(CONFIG_PPC_MICROWATT) += microwatt.dtb
-+dtb-$(CONFIG_AMIGAONE) += amigaone.dtb
-+dtb-$(CONFIG_PPC_PS3) += ps3.dtb
-diff --git a/arch/powerpc/boot/dts/fsl/Makefile b/arch/powerpc/boot/dts/fsl/Makefile
-index d3ecdf14bc42e7..be784cbda6b56d 100644
---- a/arch/powerpc/boot/dts/fsl/Makefile
-+++ b/arch/powerpc/boot/dts/fsl/Makefile
-@@ -1,3 +1,46 @@
- # SPDX-License-Identifier: GPL-2.0
- 
- dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
-+
-+# MPC85xx platforms
-+dtb-$(CONFIG_BSC9131_RDB) += bsc9131rdb.dtb
-+dtb-$(CONFIG_BSC9132_QDS) += bsc9132qds.dtb
-+dtb-$(CONFIG_C293_PCIE) += c293pcie.dtb
-+dtb-$(CONFIG_MPC8536_DS) += mpc8536ds.dtb mpc8536ds_36b.dtb
-+dtb-$(CONFIG_MPC85xx_DS) += mpc8544ds.dtb mpc8572ds_camp_core0.dtb
-+dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds_camp_core1.dtb mpc8572ds_36b.dtb
-+dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds.dtb
-+dtb-$(CONFIG_MPC85xx_MDS) += mpc8568mds.dtb mpc8569mds.dtb p1021mds.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020mbg-pc_32b.dtb p1020mbg-pc_36b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb_36b.dtb p1020rdb.dtb p1020rdb-pc_32b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_36b.dtb p1020rdb-pc_camp_core0.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_camp_core1.dtb p1020rdb-pd.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1020utm-pc_32b.dtb p1020utm-pc_36b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1021rdb-pc_32b.dtb p1021rdb-pc_36b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1024rdb_32b.dtb p1024rdb_36b.dtb p1025rdb_32b.dtb
-+dtb-$(CONFIG_MPC85xx_RDB) += p1025rdb_36b.dtb
-+dtb-$(CONFIG_P1010_RDB) += p1010rdb-pa_36b.dtb p1010rdb-pa.dtb
-+dtb-$(CONFIG_P1010_RDB) += p1010rdb-pb_36b.dtb p1010rdb-pb.dtb
-+dtb-$(CONFIG_P1022_DS) += p1022ds_32b.dtb p1022ds_36b.dtb
-+dtb-$(CONFIG_P1022_RDK) += p1022rdk.dtb
-+dtb-$(CONFIG_P1023_RDB) += p1023rdb.dtb
-+dtb-$(CONFIG_PPC_P2020) += p2020ds.dtb turris1x.dtb
-+dtb-$(CONFIG_TWR_P102x) += p1025twr.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += b4420qds.dtb b4860qds.dtb cyrus_p5020.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += kmcent2.dtb kmcoge4.dtb oca4080.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += p2041rdb.dtb p3041ds.dtb p4080ds.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += p5020ds.dtb p5040ds.dtb t1023rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1024qds.dtb t1024rdb.dtb t1040d4rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1040qds.dtb t1040rdb.dtb t1040rdb-rev-a.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1042d4rdb.dtb t1042qds.dtb t1042rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t1042rdb_pi.dtb t2080qds.dtb t2080rdb.dtb
-+dtb-$(CONFIG_CORENET_GENERIC) += t2081qds.dtb t4240qds.dtb t4240rdb.dtb
-+dtb-$(CONFIG_PPA8548) += ppa8548.dtb
-+dtb-$(CONFIG_GE_IMP3A) += ge_imp3a.dtb
-+dtb-$(CONFIG_MVME2500) += mvme2500.dtb
-+
-+# MPC86xx platforms
-+dtb-$(CONFIG_GEF_SBC310) += gef_sbc310.dtb
-+dtb-$(CONFIG_GEF_SBC610) += gef_sbc610.dtb
-+dtb-$(CONFIG_GEF_PPC9A) += gef_ppc9a.dtb
-+dtb-$(CONFIG_MVME7100) += mvme7100.dtb
+> +		tlmm: pinctrl@f000000 {
+> +			compatible = "qcom,sa8255p-tlmm", "qcom,sa8775p-tlmm";
+> +			reg = <0x0 0x0f000000 0x0 0x1000000>;
+> +			interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +			gpio-ranges = <&tlmm 0 0 149>;
+> +			wakeup-parent = <&pdc>;
+> +		};
 
----
-base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
-change-id: 20260101-mpc83xx-dtb-23d98a190e23
+Praveen suggested GPIOs are not controlled by Linux:
 
-Best regards,
--- 
-J. Neuschäfer <j.ne@posteo.net>
+https://lore.kernel.org/linux-arm-msm/12063990-70fe-4faf-89fa-c74c7bd97f42@oss.qualcomm.com/
 
+Could you comment on this?
+
+[...]
+
+> +		aoss-0-thermal {
+> +			thermal-sensors = <&tsens0 0>;
+
+Is Linux going to act on any of these thermal trips?
+
+Konrad
 
 
