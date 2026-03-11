@@ -1,429 +1,217 @@
-Return-Path: <devicetree+bounces-274040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274034-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPuHCytZsWmGtwIAu9opvQ
-	(envelope-from <devicetree+bounces-274040-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:59:39 +0100
+	id YPETDmpYsWmGtwIAu9opvQ
+	(envelope-from <devicetree+bounces-274034-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:56:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DC932634D2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:59:38 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE3B22633BF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:56:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 406F5301DD34
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:57:11 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 4358C303BA3C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:56:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76BB03E025C;
-	Wed, 11 Mar 2026 11:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A620A3DE420;
+	Wed, 11 Mar 2026 11:56:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="YdqBRW6g";
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="YdqBRW6g"
+	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="1sdouiJE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010042.outbound.protection.outlook.com [52.101.69.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D02F93E0242;
-	Wed, 11 Mar 2026 11:56:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.42
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773230198; cv=fail; b=SMx6DZ16jH/MccrlZEh8utcFAs8C9Xdwosb6/QY9smSAlUuhdUYkYvtw0LzmUn3/Rhvh6z7xy1+jHSvftILiNTYZiZrXi88pW3BPvnV10xIQHwKCSvfemLPo2Pimk6nDQKwiEzuQNKPiyOBT8nAKgDYu5rhZvukmyDKQP9xz8uw=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773230198; c=relaxed/simple;
-	bh=rgsTxt0yDJ+hy/9CnbM7sOXa2IhCw7OXJnfJ4x9sxXc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=PLQp92RDmWIxw9KJu2LDnCzMEOVJQFfJvd0WUeFSEAV842ZUWQcLHA7m5AWWXyycEAFiazYc9kMbjjNiqkMwPyAFUlhcn2hnzcxFG53qPqw6uQkp/KGAY3AiloU95IlKaT0oiC8G9aZvdqyL3cnt8Lu5qBA06C7aVuMkGFwlhKo=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=YdqBRW6g; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=YdqBRW6g; arc=fail smtp.client-ip=52.101.69.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=PvuRuwbkXLHHffP+4sruz4AyZOsgmI2ecP64siAmhwB10A6Zj2z/HpvC875Ppfk4aPGpjNbGOkgQYqai5mmzuWyEfs9493RCEUMf8s1kPZCTjElsn9ayNAeXYsQoaci8wn2zd7sW4FX6WjKKva58+yQ8AHFKS7x/YICKQT5RspqTfRoOOipNp8LBJB7+15iB+4wOX4o1cWwaz1DF+WVPSgEbUpyvywPgbKtFiuPWF54C2Eg+y62m9YBAwnFIcYB3b6nQYC2d7ypyoe6T34o+cGpxFH6bQYY8D0Z4H78o/luZRzSRa4J8+2hOWzRj2f1Xb3edBy82fagoHKF2xjMfXQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GNKT2kE4KGI1QU1dgQn/wggreYmxWDWpePTV8f+IzsU=;
- b=XDLdCVwn7wr9LOs3iYPomQgFlv4Uax0K7bJIfIBbRcHt/QH8UTOR4FnAPbLG1EVjHif0+U+NRsWBLyqiPYZxiy/uEeTMvmmt+Xs4fcI+Nb8OOaoRpoeZPQwOIfZMcBv7ClvzYAAzd0Z/jdERYT6gsEP/g/la+g42qjcfwSJwT5daUXeV9a1J0CiPu/E2/8FJDXVzO2aaZEZ25IAmRPib8NqQvz/G/fkdQM+mK3LkSK01b0rzbi886jtbTuF9KH09oWCOGQOfaRLcUyffjqIN1qeTcBdSK5yj3LAT5dBozwVSS9KbQNsEIVoZT+Uv6PM2sz6x4Hoap/oUm+F1U1W2dw==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=oss.qualcomm.com smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GNKT2kE4KGI1QU1dgQn/wggreYmxWDWpePTV8f+IzsU=;
- b=YdqBRW6gMj1y09gMq5qIzGg4+k+QFLp7EV6u248XOVLgxerLEF4IGMgS/J5oM29iZi3oEjmoclqkVAdehaV5aSw5hWrY2zYjXXfPPCIDlSBkUEDt1mhxhYDwgpoMY2YVem1f9C/PuyilR14cS+IzK6U//d5JCFcNIjsBjlSfKWA=
-Received: from AS4P251CA0025.EURP251.PROD.OUTLOOK.COM (2603:10a6:20b:5d3::12)
- by AS8PR08MB6056.eurprd08.prod.outlook.com (2603:10a6:20b:299::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
- 2026 11:56:32 +0000
-Received: from AM3PEPF00009B9C.eurprd04.prod.outlook.com
- (2603:10a6:20b:5d3:cafe::fe) by AS4P251CA0025.outlook.office365.com
- (2603:10a6:20b:5d3::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.26 via Frontend Transport; Wed,
- 11 Mar 2026 11:56:22 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 4.158.2.129)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- AM3PEPF00009B9C.mail.protection.outlook.com (10.167.16.21) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.18
- via Frontend Transport; Wed, 11 Mar 2026 11:56:31 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ib/CiKAuiCuY2k3AViuQySYQ5x0uw4h/HXh2t60ntzmCIPlmljuJXvqg9Tu+PjWk2I/SkG1LtTKsWHM6khvKN2dMQwgyGpbNgKbDoo3pym9sAdbCjij2AS4Ek3EHJwe/VhB8DWLJUwLUDDSO/OmP+yPIJ/L2wRjcWlyaFxXiJrogVKjByEePN7NC923KLGboalAP4MkhHNZSdc1GdI0qB6ls//JEkPQDWMk6jSo6J4ZAG2LYoV0S+6IOJeHl4fTO4nHYUpWJo/rGsq6Cd/tKmvQrmE2haIIAeitt4eIdfdJ+HOGLKjFzGshi6c48gPTO9G24TIFz89MKqu5WPSh+Rg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GNKT2kE4KGI1QU1dgQn/wggreYmxWDWpePTV8f+IzsU=;
- b=EAVRi9OwWLoohmBDW7+Bik2S9zO4DPUaskji52XQ8kpb7x9/exptJvMRDOSwNJyoQYdUcJ97vtbRCdGKvz7jLQ0YNrs+RkM/acannzWOTRRHWlMCnGtMVikylg/97TrTMWZzd7ZNYdu2Btzm2qep9sLKgeprA+m5k76ONzjCELZvWTPhhYBPvAVlAIJVaZD0Sz3cBEQjfhR0vwR/CmF3bNTLwnZ/bInGfaDUZUHN8rusPh5Dee4Uduyt89BdZqrzG01C/uft0N6F+lWfRvL3MWTVypX/lk2t9nwz3JCHvz12U3oBRVVaWTjr/iU+OwP5EUn7E9cFDO3kagINmHLh+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GNKT2kE4KGI1QU1dgQn/wggreYmxWDWpePTV8f+IzsU=;
- b=YdqBRW6gMj1y09gMq5qIzGg4+k+QFLp7EV6u248XOVLgxerLEF4IGMgS/J5oM29iZi3oEjmoclqkVAdehaV5aSw5hWrY2zYjXXfPPCIDlSBkUEDt1mhxhYDwgpoMY2YVem1f9C/PuyilR14cS+IzK6U//d5JCFcNIjsBjlSfKWA=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com (2603:10a6:800:324::5)
- by DU2PR08MB10066.eurprd08.prod.outlook.com (2603:10a6:10:492::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Wed, 11 Mar
- 2026 11:55:25 +0000
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd]) by VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd%5]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 11:55:25 +0000
-Message-ID: <0f1e7343-2d6c-48f5-b416-49518117c9b6@arm.com>
-Date: Wed, 11 Mar 2026 11:55:10 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 01/11] ACPI: APEI: GHES: share macros via a private
- header
-Content-Language: en-GB
-To: Himanshu Chauhan <himanshu.chauhan@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- Dmitry.Lamerov@arm.com, catalin.marinas@arm.com, bp@alien8.de,
- robh@kernel.org, rafael@kernel.org, will@kernel.org, conor@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- krzk+dt@kernel.org, Michael.Zhao2@arm.com, tony.luck@intel.com
-References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
- <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-1-347fa2d7351b@arm.com>
- <CA+Ht8=a9a-zB_kEt1ZHFeTWSYGn4o3MRuHdXY9FDWWNZ=gc-Yg@mail.gmail.com>
-From: Ahmed Tiba <ahmed.tiba@arm.com>
-In-Reply-To: <CA+Ht8=a9a-zB_kEt1ZHFeTWSYGn4o3MRuHdXY9FDWWNZ=gc-Yg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PR1P264CA0174.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:344::18) To VI0PR08MB11823.eurprd08.prod.outlook.com
- (2603:10a6:800:324::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23AE738BF9E
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 11:56:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773230182; cv=none; b=NNybxkcF7hzO8kOw1OBygz2Os4EmttX/YK5Gx8la0QAYqFzmI+I2sjaaluPE6lk0aXIZh/D0WT0J13NesqiOPbsqlFhEj2GNh9YzGIjnHPFzBhiE8cKoWpacE5Vdb3dkZUwsTtRTzSjAASp6r7OeloXT+S90GSgDn5T2yDuMFS0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773230182; c=relaxed/simple;
+	bh=x5H+Ty35z/JQ0YvCd3YuUitbcY1C+rVXjfO5WNFbeIo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Z+VvOWzNGpfn9LBSI7Z923H2q059ly6Ok1k4z4T6v12xFbuPSw9alBRklA+d5SKtJa5/tNVO+FvPcCzBBQJntDbobMXQr+9HR/nwu2zjGTyM+Gc+yAj1SwVjWfMhnrd83fwYVnKzDWhYrvXwaq3oSNDFXLsuox14xbxwe8dT1e8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=1sdouiJE; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-48534b59cf3so32968605e9.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 04:56:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=flipper.net; s=google; t=1773230179; x=1773834979; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=x1Cht8uRSf2FyMM2VofwaPUErjVTJDATYO+ETNMehnE=;
+        b=1sdouiJE1eKBSrVKSE48EIViGrek6TmeSJC6W+4e/TarbFJDlrdt4RaeIQOgIqFHlm
+         WzIustyfC6xg4ve8R1qYcWprncv2nXy6CF+uVT6s97hMfejyyofkuK0UnlQbiXo0NbgS
+         PG6Bjzwty4NUU+CwsjV/qrXchlgINrGgTyW3Kml/kjMRnKkX+ZnZEuxZ0MWnqvt2OpNB
+         R3G0XonVw75WMZeL48EdtuXlGKNWjlZZzSPIVBH0lM+X2HAxwBMeUH6Ism3ipzZhKJB6
+         rbmeRW/H3W2b/VeA2xV0KChZ4cQSdrm3LW4E0SVZzmY9JjU/JD3oskYuyrW9Y/Y4nlKx
+         vYaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773230179; x=1773834979;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x1Cht8uRSf2FyMM2VofwaPUErjVTJDATYO+ETNMehnE=;
+        b=BiQhJACaDKe/KqC1LgTjIdDvp1byAay9emt5fXtLOI4v9m3ehaZzwgT1bgq2RFcSkE
+         AecLHCwHrXwsoy95yQEmgoYCHdqZD4DDCLO02ySE+lDNs7osqEwpSfPpaNDQSUAVKiWD
+         8inh9mY1Ax6i0wQ25O99rf7IrXrSLaYjEYLbbOkQ0Eo73ciGUEuYFUlxcL1Ejd+l1pkd
+         0nlkPSzuhNWTlRv1rEEa0EI13AhMa/mItoc00B+sZbQudXCJxhmXNLwURKO5hfmdHfAj
+         cJkvdas3Zh+RxI/JmW9V5Mdmj7Xk3f3zu9iLARF8tHkwN6pqbejYHsvh27VkPSMGMDRs
+         5neQ==
+X-Gm-Message-State: AOJu0Yy5OfgdttzKliHb0F80tkqpoHoRuzf+dIA8rFc7W+Lu8UClspKX
+	0xt1DKGNYmiD0j68UuM4NRWBgfYdQx93cs+Umt0Gx45qK5nml+MpZYZxwkUWkuSGtTfZOtwAOjX
+	39ozk
+X-Gm-Gg: ATEYQzwYO8zwT4R69GXcXlAOi9FT0Q750V/CIX3uL0MSPqJZCah/NXdOsQZz8s3eztN
+	1AsJQK9na27BbH6q0+9BRdMe+tVUMzYV7K4hYBk4QMUEcLhv3wsI6+NH++7buFSQFRgEhvF2PbT
+	scjtMR+mqQZEbOfRyFi5AJJ4HadqdMTWjbOoqDJOw2kE5mDry1gTLSh/mSaVKDFKkrBvI7f+fF0
+	xtnpT8E0Dd0f9biE1rPhyIFHuphiS5O+059K7H/tcaO71GlUkqEj3ooTxnDcaC224lyZ7/igrtL
+	cti7vKUGTE17S4cxrEegxHXUggUFsTq/6OllrufL9PJwH64rn3f/94DNCJLXfhmI4idXETvecMm
+	AoDRB8Lo6uPmM50OhQGc55fxc11bJ1H7596zWbUuLUQxpZd6MPzuWfjv5cNWPXwuCIhNtu1xUzU
+	MQUHpSwh0spj7/q8cslwjEOs27JN60h0ucCRNt8eCJk9oYeUdrILlgcYDBUkn1j6sqomwfFDk31
+	zqJaA==
+X-Received: by 2002:a05:600c:314e:b0:485:3e00:9452 with SMTP id 5b1f17b1804b1-4854b10f5cbmr41854135e9.24.1773230179285;
+        Wed, 11 Mar 2026 04:56:19 -0700 (PDT)
+Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854ad5416bsm39586485e9.1.2026.03.11.04.56.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2026 04:56:18 -0700 (PDT)
+From: Alexey Charkov <alchark@flipper.net>
+Subject: [PATCH v4 00/11] Add support for the TI BQ25792 battery charger
+Date: Wed, 11 Mar 2026 15:56:13 +0400
+Message-Id: <20260311-bq25792-v4-0-7213415d9eec@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	VI0PR08MB11823:EE_|DU2PR08MB10066:EE_|AM3PEPF00009B9C:EE_|AS8PR08MB6056:EE_
-X-MS-Office365-Filtering-Correlation-Id: 13163dbf-b236-475c-8117-08de7f653c83
-x-checkrecipientrouted: true
-NoDisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|1800799024|366016|7416014|376014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info-Original:
- 3/n70GgotdTVCVa6e3WbrA8uSLbwh625XszpQFuaxMOx6AKhfETAZdaueKuCsXozUXrMRaq3qHBxfPvooai9XAykUTpfzpDe8odzLKJMUx248S1mcMMDqvMgx6WGSu0GCzzLCXQOuCxxXJIJ0yBSl8RYfeSbtdWTShlQ8Sr4owdlUKcvCblZWknXjYA9JzdwWmN3JeVvKThc9tG/MJJRciHzogIGNZbizeh2P34G9Bq/RBI0z0edMY5VFjfnd57LP/i7ut3Dowktn3qlo+/hz0ov2XO2CFbKkq3LicYx6l4la5oG1wFA4a3qIn9+YHM3cDgPO1iYBII2DkTFTsKF2HANfylZBXyziya+uTLxJv/SiLFgiE5Pjnv48O+DpOpCusdiZ3ZajKiVLSsONRZZpZD/gMLKxUxbi63RuDldGWSAuW2Qd2dQpZYhreVkgs8lPg9KfUoKehv9JpAED74xuWQARRY8ZIufE1x848ykMb6uoSOzusg2nLsAZF3yD2camLAVZl9nPh01LboewWBD8HeYqhgO/K9XcFN3RfmTxQod5SdLiU3Pzvhg/GpXtE/pLX31huLNvrNShUEaG1kQBg8xpUAJE+spCKlhkhAxsdcp75KHYRl63AHNHKRGjkkIBHwYXr8YnBsIFwjTaAGTcFe1vmtlM1VO/To9lN6mQmNgczglCnOS17TEYoi8AcXz16FNtwEQijrX/4FKeAF0uZYsMJG8+ssjLfMsRubfSxs=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR08MB11823.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-Exchange-RoutingPolicyChecked:
- rqrOd7WqU2rE1Qp3GCRQwTW+8J+plwgBMGFt2PJjlEvoJ/+QbfQxQsP/nvdQXt/g90+rJICOn+aPL2n89524MDoEQtg1+9h2uN2KLDTSYIkhlx05/9LIEE5N9pYL9noVRXFgSuuAKZIcE85oHblmNEhxsACaqmmiUJ9MjVLqOG2f8jvCSD2qhtDj+O5DKI3Vjnff/8xDuWB533ua6xb4C2y43NtCIYHjuFaEPlmOhiTlyydpiKNxV5DA/pfBmFnBPQZ34jcuJxD5tM1ORVTBZHwS7jQwqUn64PP7UzfChov6+OClvdqy07PvaPL62xXAWTcPl82h5xZnoaYdG0mR8A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR08MB10066
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- AM3PEPF00009B9C.eurprd04.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	7242fba8-ba43-4900-0758-08de7f6514a1
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|14060799003|82310400026|36860700016|376014|7416014|35042699022|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info:
-	Pk9pWoaebtRO4VoIKELdC6V0KY/d6dM1MiZ7DbZ5Ny7swPTbn0QQiaEu3oXoHPCriwLVZho6Bp35jlX4B2EsDwO6bg/JcSnJo0FCQdZEjux0EkpCY9CLeKROecBDP4YwTYVQ+3kaKOxcmYY/4mkGkuygrwDm2pJxjCTkViNHTLATuI9Ngrb7HI0dHMwqbFAYQBdqkYlIDF0rJQudLAnKg7vbLDwllWnAPanhsMetl8GMLlTuUT2Lk6lTmiDc7M2TZL+0TmzrkNh444Gkm9bfEm8FA5W7vPsIfKyyregLZh892DLL4ImaLiKBZK1Eb0H7HNBfuZBlGsWTR7tm7ZXeNYzEFEWaTL23DL7Tj2Q0bbGRZ6qgDYDxDVjLmx2BkJ46cIG96QSXu2M7SJudoGRuvna+Ptucf/2I9YcfoquuZybBAmhH6udSPkB3mL3P61MrjlI7q2Kamj1rwRPNShQlMCvzrXlfNFFZX3/35yFUQV0EFOtyLosR8BPgqbeqxaaEcxFGuiufaJKwK9bJ+xKMAaOokVeaY1bbwTvyX3UC9oMY9kUi/hbKGWw/uBqjPk+Z5Pw+GWgBluz64Gxf7HXRTe13HgtXJ4NPRyX7hRGKa4Yo5GMT69k7fp/wRaAGgkev+9REKR13pyznoruZN5qWL5c/cjVfjicvtkzWLIA/4EgrBMPFaFHMnDTQ5J+3qdalITR/DtooitffHFdsThdUPgHx7pWiKPe1NdDnSDCImMzL0YTCqMWYaSFtYd5bBew8XKHjCO72gPU2et7BLfVphg==
-X-Forefront-Antispam-Report:
-	CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(14060799003)(82310400026)(36860700016)(376014)(7416014)(35042699022)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	WwFTmyLweTMWrxzLBTs3mm9v622nesl1B0ootP4JXnDluzeYQmyXXLlrZE3AljTAkQI5eUpk27gtHaQ1CdozpotJZYJBvYzBqYaeeAaZQa9nJgevQTU7GdbIPowYR7r01WxLI53q9UQfmAWqCNCapVFCUNBKO3N6GdM/657koNHpBfa734hZkjNrreyFvzdmobvcvCQLS6sqq513PHdzRJpeKHwkVVL8zIvp+HKrHe/0aJLi61CWZhJsUmXpZYfr38RIL3pDrpnHRLbQR0SX/0sger5TeH2KvHskMRAMOycbLxeZGmGrndGHH+rxipEK9BuTLNtb7Tw+ivk/a5HTzpNXBClj40VaUmorDiaobuqCpsUdk6OU+GtSmSm/3eGqq0+jAoWRt4HQ/HWkYsnvhHK5zTJ0p2MvmMP3JOg6ogduIvtCfkHDunL3bTfeDqCL
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 11:56:31.5758
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13163dbf-b236-475c-8117-08de7f653c83
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM3PEPF00009B9C.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB6056
-X-Rspamd-Queue-Id: 4DC932634D2
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF1YsWkC/2XOTQ6CMBCG4auQrq0ZZugIrryHccHPIE0MYEuIh
+ nB3CxswLL9JnzedlBdnxatrNCkno/W2a8NITpEqm7x9irZV2AoBGQhIF280lww1xIR5mXKacKX
+ C695JbT9r6f4Iu7F+6Nx3DY/xcj02xliDFhYjAESJSW/1y/a9uHMrg1oqI+4lbzJ8QLPJDCZZx
+ cL1UdJOxrBJChKwTgUJK6biX87z/AOmK6RgFAEAAA==
+X-Change-ID: 20260303-bq25792-0132ac86846d
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Sebastian Reichel <sre@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Sebastian Reichel <sebastian.reichel@collabora.com>, 
+ linux-pm@vger.kernel.org, Alexey Charkov <alchark@flipper.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>, 
+ stable@vger.kernel.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3497; i=alchark@flipper.net;
+ h=from:subject:message-id; bh=x5H+Ty35z/JQ0YvCd3YuUitbcY1C+rVXjfO5WNFbeIo=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRujEjqfM3wiP3Fxf09MWLbZrH+WfnldYrMpaIdvufUQ
+ xzmWLOqdExkYRDjYrAUU2SZ+22J7VQjvlm7PDy+wsxhZQIZIi3SwAAELAx8uYl5pUY6Rnqm2oZ6
+ hoY6xjpGDFycAjDVvayMDB3aJtejja8dttf36vbQkFqkfWN2hfTOqUUWWfvyjFj2BjD8r/8ZumV
+ Kh6tT7w+71oUfhM3W/DsvtfDlnO7/bI+2zDn0jBsA
+X-Developer-Key: i=alchark@flipper.net; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+X-Rspamd-Queue-Id: CE3B22633BF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=3];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
+	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-274040-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274034-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[kernel.org,hotmail.com,gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:dkim,arm.com:email,arm.com:mid,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[flipper.net:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ahmed.tiba@arm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:+];
+	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,flipper.net:dkim,flipper.net:email,flipper.net:mid]
 X-Rspamd-Action: no action
 
-On 26/02/2026 06:44, Himanshu Chauhan wrote:
-> On Fri, Feb 20, 2026 at 7:13 PM Ahmed Tiba <ahmed.tiba@arm.com> wrote:
->>
->> Carve the CPER helper macros out of ghes.c and place them in a private
->> header so they can be shared with upcoming helper files. This is a
->> mechanical include change with no functional differences.
->>
->> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
->> ---
->>   drivers/acpi/apei/ghes.c | 60 +-----------------------------
->>   include/acpi/ghes_cper.h | 95 ++++++++++++++++++++++++++++++++++++++++++++++++
->>   2 files changed, 96 insertions(+), 59 deletions(-)
->>
->> diff --git a/drivers/acpi/apei/ghes.c b/drivers/acpi/apei/ghes.c
->> index f96aede5d9a3..07b70bcb8342 100644
->> --- a/drivers/acpi/apei/ghes.c
->> +++ b/drivers/acpi/apei/ghes.c
->> @@ -49,6 +49,7 @@
->>
->>   #include <acpi/actbl1.h>
->>   #include <acpi/ghes.h>
->> +#include <acpi/ghes_cper.h>
->>   #include <acpi/apei.h>
->>   #include <asm/fixmap.h>
->>   #include <asm/tlbflush.h>
->> @@ -57,40 +58,6 @@
->>
->>   #include "apei-internal.h"
->>
->> -#define GHES_PFX       "GHES: "
->> -
->> -#define GHES_ESTATUS_MAX_SIZE          65536
->> -#define GHES_ESOURCE_PREALLOC_MAX_SIZE 65536
->> -
->> -#define GHES_ESTATUS_POOL_MIN_ALLOC_ORDER 3
->> -
->> -/* This is just an estimation for memory pool allocation */
->> -#define GHES_ESTATUS_CACHE_AVG_SIZE    512
->> -
->> -#define GHES_ESTATUS_CACHES_SIZE       4
->> -
->> -#define GHES_ESTATUS_IN_CACHE_MAX_NSEC 10000000000ULL
->> -/* Prevent too many caches are allocated because of RCU */
->> -#define GHES_ESTATUS_CACHE_ALLOCED_MAX (GHES_ESTATUS_CACHES_SIZE * 3 / 2)
->> -
->> -#define GHES_ESTATUS_CACHE_LEN(estatus_len)                    \
->> -       (sizeof(struct ghes_estatus_cache) + (estatus_len))
->> -#define GHES_ESTATUS_FROM_CACHE(estatus_cache)                 \
->> -       ((struct acpi_hest_generic_status *)                            \
->> -        ((struct ghes_estatus_cache *)(estatus_cache) + 1))
->> -
->> -#define GHES_ESTATUS_NODE_LEN(estatus_len)                     \
->> -       (sizeof(struct ghes_estatus_node) + (estatus_len))
->> -#define GHES_ESTATUS_FROM_NODE(estatus_node)                   \
->> -       ((struct acpi_hest_generic_status *)                            \
->> -        ((struct ghes_estatus_node *)(estatus_node) + 1))
->> -
->> -#define GHES_VENDOR_ENTRY_LEN(gdata_len)                               \
->> -       (sizeof(struct ghes_vendor_record_entry) + (gdata_len))
->> -#define GHES_GDATA_FROM_VENDOR_ENTRY(vendor_entry)                     \
->> -       ((struct acpi_hest_generic_data *)                              \
->> -       ((struct ghes_vendor_record_entry *)(vendor_entry) + 1))
->> -
->>   /*
->>    *  NMI-like notifications vary by architecture, before the compiler can prune
->>    *  unused static functions it needs a value for these enums.
->> @@ -102,25 +69,6 @@
->>
->>   static ATOMIC_NOTIFIER_HEAD(ghes_report_chain);
->>
->> -static inline bool is_hest_type_generic_v2(struct ghes *ghes)
->> -{
->> -       return ghes->generic->header.type == ACPI_HEST_TYPE_GENERIC_ERROR_V2;
->> -}
->> -
->> -/*
->> - * A platform may describe one error source for the handling of synchronous
->> - * errors (e.g. MCE or SEA), or for handling asynchronous errors (e.g. SCI
->> - * or External Interrupt). On x86, the HEST notifications are always
->> - * asynchronous, so only SEA on ARM is delivered as a synchronous
->> - * notification.
->> - */
->> -static inline bool is_hest_sync_notify(struct ghes *ghes)
->> -{
->> -       u8 notify_type = ghes->generic->notify.type;
->> -
->> -       return notify_type == ACPI_HEST_NOTIFY_SEA;
->> -}
-> 
-> All this has nothing to do with CPER which is defined in UEFI. All of
-> this is part of the GHES structure defined in ACPI. Why are these
-> being moved to ghes_cper.h.
-> It is blurring out the demacations. If you are caving out CPER
-> helpers, please don't move GHES helpers. The better place to move
-> these helpers is ghes.h otherwise they are good where they are.
+This adds support for the TI BQ25792 battery charger, which is similar in
+overall logic to the BQ25703A, but has a different register layout and
+slightly different lower-level programming logic.
 
-These helpers are part of the GHES CPER handling path,
-not generic UEFI CPER. They sit at the boundary where GHES consumes CPER 
-(read/clear/ack/notify), and that boundary is exactly what the DT 
-provider must share to keep behavior identical. Putting them in ghes.h 
-would expand the GHES public surface and mix non‑CPER GHES internals 
-with the shared CPER path. ghes_cper.h keeps the shared GHES‑CPER 
-boundary explicit and avoids duplicating the pipeline in a DT‑only file. 
-That’s why they’re moved there.
+The series is organized as follows:
+- Patch 1 adds the new variant to the existing DT binding, including the
+  changes in electrical characteristics
+- Patches 2-4 are minor cleanups to the existing BQ25703A OTG regulator
+  driver, slimming down the code and making it more reusable for the new
+  BQ25792 variant
+- Patch 5 is a logical fix to the BQ25703A clamping logic for VSYSMIN
+  (this is a standalone fix which can be applied independently and may be
+  backported to stable)
+- Patches 6-8 are slight refactoring of the existing BQ25703A charger
+  driver to make it more reusable for the new BQ25792 variant
+- Patch 9 adds platform data to distinguish between the two variants in
+  the parent MFD driver, and binds it to the new compatible string
+- Patches 10-11 add variant-specific code to support the new BQ25792
+  variant in the regulator part and the charger part respectively,
+  selected by the platform data added in patch 9
 
->> -
->>   /*
->>    * This driver isn't really modular, however for the time being,
->>    * continuing to use module_param is the easiest way to remain
->> @@ -165,12 +113,6 @@ static DEFINE_MUTEX(ghes_devs_mutex);
->>    */
->>   static DEFINE_SPINLOCK(ghes_notify_lock_irq);
->>
->> -struct ghes_vendor_record_entry {
->> -       struct work_struct work;
->> -       int error_severity;
->> -       char vendor_record[];
->> -};
->> -
->>   static struct gen_pool *ghes_estatus_pool;
->>
->>   static struct ghes_estatus_cache __rcu *ghes_estatus_caches[GHES_ESTATUS_CACHES_SIZE];
->> diff --git a/include/acpi/ghes_cper.h b/include/acpi/ghes_cper.h
->> new file mode 100644
->> index 000000000000..2597fbadc4f3
->> --- /dev/null
->> +++ b/include/acpi/ghes_cper.h
->> @@ -0,0 +1,95 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * APEI Generic Hardware Error Source: CPER Helper
->> + *
->> + * Copyright (C) 2026 ARM Ltd.
->> + * Author: Ahmed Tiba <ahmed.tiba@arm.com>
->> + * Based on ACPI APEI GHES driver.
->> + *
->> + */
->> +
->> +#ifndef ACPI_APEI_GHES_CPER_H
->> +#define ACPI_APEI_GHES_CPER_H
->> +
->> +#include <linux/workqueue.h>
->> +
->> +#include <acpi/ghes.h>
->> +
->> +#define GHES_PFX       "GHES: "
->> +
->> +#define GHES_ESTATUS_MAX_SIZE          65536
->> +#define GHES_ESOURCE_PREALLOC_MAX_SIZE 65536
->> +
->> +#define GHES_ESTATUS_POOL_MIN_ALLOC_ORDER 3
->> +
->> +/* This is just an estimation for memory pool allocation */
->> +#define GHES_ESTATUS_CACHE_AVG_SIZE    512
->> +
->> +#define GHES_ESTATUS_CACHES_SIZE       4
->> +
->> +#define GHES_ESTATUS_IN_CACHE_MAX_NSEC 10000000000ULL
->> +/* Prevent too many caches are allocated because of RCU */
->> +#define GHES_ESTATUS_CACHE_ALLOCED_MAX (GHES_ESTATUS_CACHES_SIZE * 3 / 2)
->> +
->> +#define GHES_ESTATUS_CACHE_LEN(estatus_len)                    \
->> +       (sizeof(struct ghes_estatus_cache) + (estatus_len))
->> +#define GHES_ESTATUS_FROM_CACHE(estatus_cache)                 \
->> +       ((struct acpi_hest_generic_status *)                            \
->> +        ((struct ghes_estatus_cache *)(estatus_cache) + 1))
->> +
->> +#define GHES_ESTATUS_NODE_LEN(estatus_len)                     \
->> +       (sizeof(struct ghes_estatus_node) + (estatus_len))
->> +#define GHES_ESTATUS_FROM_NODE(estatus_node)                   \
->> +       ((struct acpi_hest_generic_status *)                            \
->> +        ((struct ghes_estatus_node *)(estatus_node) + 1))
->> +
->> +#define GHES_VENDOR_ENTRY_LEN(gdata_len)                               \
->> +       (sizeof(struct ghes_vendor_record_entry) + (gdata_len))
->> +#define GHES_GDATA_FROM_VENDOR_ENTRY(vendor_entry)                     \
->> +       ((struct acpi_hest_generic_data *)                              \
->> +       ((struct ghes_vendor_record_entry *)(vendor_entry) + 1))
->> +
->> +static inline bool is_hest_type_generic_v2(struct ghes *ghes)
->> +{
->> +       return ghes->generic->header.type == ACPI_HEST_TYPE_GENERIC_ERROR_V2;
->> +}
->> +
->> +/*
->> + * A platform may describe one error source for the handling of synchronous
->> + * errors (e.g. MCE or SEA), or for handling asynchronous errors (e.g. SCI
->> + * or External Interrupt). On x86, the HEST notifications are always
->> + * asynchronous, so only SEA on ARM is delivered as a synchronous
->> + * notification.
->> + */
->> +static inline bool is_hest_sync_notify(struct ghes *ghes)
->> +{
->> +       u8 notify_type = ghes->generic->notify.type;
->> +
->> +       return notify_type == ACPI_HEST_NOTIFY_SEA;
->> +}
->> +
->> +struct ghes_vendor_record_entry {
->> +       struct work_struct work;
->> +       int error_severity;
->> +       char vendor_record[];
->> +};
->> +
->> +static struct ghes *ghes_new(struct acpi_hest_generic *generic);
->> +static void ghes_fini(struct ghes *ghes);
->> +
->> +static int ghes_read_estatus(struct ghes *ghes,
->> +                     struct acpi_hest_generic_status *estatus,
->> +                     u64 *buf_paddr, enum fixed_addresses fixmap_idx);
->> +static void ghes_clear_estatus(struct ghes *ghes,
->> +                       struct acpi_hest_generic_status *estatus,
->> +                       u64 buf_paddr, enum fixed_addresses fixmap_idx);
->> +static int __ghes_peek_estatus(struct ghes *ghes,
->> +                       struct acpi_hest_generic_status *estatus,
->> +                       u64 *buf_paddr, enum fixed_addresses fixmap_idx);
->> +static int __ghes_check_estatus(struct ghes *ghes,
->> +                        struct acpi_hest_generic_status *estatus);
->> +static int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
->> +                       u64 buf_paddr, enum fixed_addresses fixmap_idx,
->> +                       size_t buf_len);
->> +
->> +#endif /* ACPI_APEI_GHES_CPER_H */
->>
->> --
->> 2.43.0
->>
->>
+Signed-off-by: Alexey Charkov <alchark@flipper.net>
+---
+Changes in v4:
+- Avoid additional data structures and pass 'type' within the existing
+  struct bq257xx_device instead (Lee Jones)
+- Move comments for new struct fields to the patches where those fields
+  are added (Sebastian Reichel)
+- Collect tags from Sebastian Reichel (thanks!)
+- Link to v3: https://lore.kernel.org/r/20260310-bq25792-v3-0-02f8e232d63b@flipper.net
+
+Changes in v3:
+- Move MFD cell definitions back out of the probe function (Lee Jones)
+- Collect tags from Mark Brown, Krzysztof Kozlowski and Chris Morgan (thanks!)
+- Enable ship FET functionality at init for BQ25792
+- Link to v2: https://lore.kernel.org/r/20260306-bq25792-v2-0-6595249d6e6f@flipper.net
+
+Changes in v2:
+- Fix an error in DT schema (thanks Rob's bot)
+- Ensure the broadest constraints for all variants remain in the common
+  part of the schema, per writing-schema doc (thanks Krzysztof)
+- Link to v1: https://lore.kernel.org/r/20260303-bq25792-v1-0-e6e5e0033458@flipper.net
+
+---
+Alexey Charkov (11):
+      dt-bindings: mfd: ti,bq25703a: Expand to include BQ25792
+      regulator: bq257xx: Remove reference to the parent MFD's dev
+      regulator: bq257xx: Drop the regulator_dev from the driver data
+      regulator: bq257xx: Make OTG enable GPIO really optional
+      power: supply: bq257xx: Fix VSYSMIN clamping logic
+      power: supply: bq257xx: Make the default current limit a per-chip attribute
+      power: supply: bq257xx: Consistently use indirect get/set helpers
+      power: supply: bq257xx: Add fields for 'charging' and 'overvoltage' states
+      mfd: bq257xx: Add BQ25792 support
+      regulator: bq257xx: Add support for BQ25792
+      power: supply: bq257xx: Add support for BQ25792
+
+ .../devicetree/bindings/mfd/ti,bq25703a.yaml       |  73 ++-
+ drivers/mfd/bq257xx.c                              |  54 ++-
+ drivers/power/supply/bq257xx_charger.c             | 534 ++++++++++++++++++++-
+ drivers/regulator/bq257xx-regulator.c              | 121 ++++-
+ include/linux/mfd/bq257xx.h                        | 412 ++++++++++++++++
+ 5 files changed, 1156 insertions(+), 38 deletions(-)
+---
+base-commit: 343f51842f4ed7143872f3aa116a214a5619a4b9
+change-id: 20260303-bq25792-0132ac86846d
+
+Best regards,
+-- 
+Alexey Charkov <alchark@flipper.net>
 
 
