@@ -1,180 +1,131 @@
-Return-Path: <devicetree+bounces-274024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274025-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMUoEyNTsWn8tgIAu9opvQ
-	(envelope-from <devicetree+bounces-274024-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:33:55 +0100
+	id YA1EIcNTsWn8tgIAu9opvQ
+	(envelope-from <devicetree+bounces-274025-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:36:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81445262F0F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:33:54 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0664262F80
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:36:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id EB75F3010797
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:33:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id C5F2130157E2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:36:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 663653CF048;
-	Wed, 11 Mar 2026 11:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7193CFF7B;
+	Wed, 11 Mar 2026 11:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="foZ1F6ay"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QP6zZAFV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DD44218AB9;
-	Wed, 11 Mar 2026 11:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 786F73112C1;
+	Wed, 11 Mar 2026 11:36:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773228830; cv=none; b=h4VROvTJujAJUbz/GQHIw/fOo08cQMRqzwFq+hVhNIE7L8SRHfdc80BkzpJkEKJEGiq9CYQhxgEU/sadtl9WnyL0su4iGOHC/Nv76JCCj2U3c7IGfflGCaw+uvYlUaLpC0v8UmLVI94DRwufYF7LVYs4w6f5rcDzuS/9FGTgleY=
+	t=1773228990; cv=none; b=AainrEaqL16XvpBOLMVSgmhjyORluxl/lxzq/akeAgJjtdComK41gg82noHH+qNhVSQvz1zwwh6Vc1zqQCm1LZ+xwkM+g/NS8T4TSC3MrZRm6d4tfdZ/MotgwmOTw0EMmNckqLrmT+n4Y3rhjY9zKZ22Eu9qqVmoWNbc7Kg/DBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773228830; c=relaxed/simple;
-	bh=29nHbowR7ZZ7bjPxN017BNgAheB6XpNZV73o2KEY8U0=;
+	s=arc-20240116; t=1773228990; c=relaxed/simple;
+	bh=o4mzS9ptvgAjnLz4N9oF/qMwT6YeKSX5GUVjpuFvOGY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cC5SpHx1M3hwKzEgI0wSxIwrLbWb9T7qwO4AZ1VFWTw0b/ZE7CpwHoii0MEf29ixzHOUbx2uIhpr5urPL8sYfJj+YKim032Oexpijg7LFcAlrr5tB7jnEtf2cNUHZedEtMlaZgZRfPv6E6HKyjMGidCVaHRqBQ9doM9B7zRVOBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=foZ1F6ay; arc=none smtp.client-ip=192.198.163.16
+	 Content-Type:Content-Disposition:In-Reply-To; b=cRcb8BwchN48M9dwyGeZxi0q36CsRFCXmAzoRjbmMGaFjVdR8QwZrMLI1r9rxH4cK02XGAl+bF02fA7nvLg0R+u6kGrVveqQQgSy4W3OJYsMSH9lQMOt0lRI+BwK2cipPUEGrfCjfmK8DVJ50/5vW/Vc9ZhYQ/Q3DrpA2aej1SU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QP6zZAFV; arc=none smtp.client-ip=198.175.65.11
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773228829; x=1804764829;
+  t=1773228990; x=1804764990;
   h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=29nHbowR7ZZ7bjPxN017BNgAheB6XpNZV73o2KEY8U0=;
-  b=foZ1F6ayTnfyyspeCu1m6oAjYk6/oDXNgST/HJR+CzDagIGOa599UZRT
-   OJOA7SnQ4Vn+9isyyNXbtgRFPy5qWXleDAyJ6DKFgO19SPtiUc0WTLnvE
-   2q06ZmLu/XBeiswGr1eoyDPozt6U4Gtk48LZxVsbrjXmOmktAShN9y0J4
-   P4JkD2iT38bl5qnhuOO+RkX5ENi5qvo+18DtBgmf4dxcuRnu5C6zG8uJM
-   Lt5lwdTIBhtq3PjPdk9Pp+wmqTObYEXOJSnMdjvjP/jh0E+X+Qmo7eR0u
-   Ug6mf+7XHqLDc9pemF2GM9UNefQwFyb6qFynStptkDiLjhMjAlxlpG3D/
-   Q==;
-X-CSE-ConnectionGUID: ZWRgDSvsQOS5mrnQgfhoLQ==
-X-CSE-MsgGUID: n4gv3jKFQomBX0Hh7Psc8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61867235"
+   mime-version:in-reply-to;
+  bh=o4mzS9ptvgAjnLz4N9oF/qMwT6YeKSX5GUVjpuFvOGY=;
+  b=QP6zZAFVwJHjKLMsmGR2HhaP9qG9jZA5YDLVRUXCKnXpYbr9gBeGcW6H
+   rFQ7f7iMNa8G1D7XTGLVFAaZXuqRexzlqoK9TtfyQencqEJ1ok7YfF9ou
+   U/PD/NvBRCbNxZ1NrKcaJyYKbaZRzjh3OmBHmAQ9CfWls2YtFk2XGohCt
+   /0SC8LCnCXOlEgRQSbWVElS5Rjo/eax5xNuJWHD7g6aZjqoy6duCwuXoV
+   OsKwGeaUzgmA2Zf8ek/yO882ptb5lDUtGRq2MDXWh0+nlYguEdOfx9/h/
+   OsuM1AxKKa2BUl8E1/hJj+R+1RnyQAYkgCt+z3rX7sQIwiCpsjJECdv3m
+   A==;
+X-CSE-ConnectionGUID: 9SD48vhaRVq6oQ5PfpLLlg==
+X-CSE-MsgGUID: XW1Fkbo2T3a+VF7/A44Xtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="84616923"
 X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="61867235"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 04:33:48 -0700
-X-CSE-ConnectionGUID: XeShyzirSN6n+xqR5uLf8Q==
-X-CSE-MsgGUID: dYyY6+3qQrK4FjJiRMZmoQ==
+   d="scan'208";a="84616923"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 04:36:29 -0700
+X-CSE-ConnectionGUID: DPLbcihwRaWPV808gIz/SA==
+X-CSE-MsgGUID: FWx/UiGuTHmUc8ihLMg6vg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="215675282"
+   d="scan'208";a="250936304"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.178])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 04:33:45 -0700
-Date: Wed, 11 Mar 2026 13:33:43 +0200
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 04:36:24 -0700
+Date: Wed, 11 Mar 2026 13:36:22 +0200
 From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Bartosz Golaszewski <brgl@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>,
-	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Andy Shevchenko <andy@kernel.org>, linux-i2c@vger.kernel.org,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] i2c: ls2x-v2: Add driver for Loongson-2K0300 I2C
- controller
-Message-ID: <abFTF-RDxLqsSs6X@ashevche-desk.local>
-References: <cover.1773142933.git.zhoubinbin@loongson.cn>
- <bd5c06a20ef2e61f76902c4209f2be539ca91a97.1773142933.git.zhoubinbin@loongson.cn>
- <abAyd9uyl3TC8vC_@ashevche-desk.local>
- <CAMpQs4JVYRo4DQyEVe5NhHQ=VN96mF17AtSoo6a4CGB6w_Aphw@mail.gmail.com>
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] MAINTAINERS: Add entry for AD5706R DAC driver
+Message-ID: <abFTtlfBZaGEjdCK@ashevche-desk.local>
+References: <20260311-dev_ad5706r-v2-0-f367063dbd1b@analog.com>
+ <20260311-dev_ad5706r-v2-3-f367063dbd1b@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMpQs4JVYRo4DQyEVe5NhHQ=VN96mF17AtSoo6a4CGB6w_Aphw@mail.gmail.com>
+In-Reply-To: <20260311-dev_ad5706r-v2-3-f367063dbd1b@analog.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: 81445262F0F
+X-Rspamd-Queue-Id: F0664262F80
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274024-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274025-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[15];
 	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,intel.com:dkim,intel.com:email,ashevche-desk.local:mid]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,intel.com:dkim]
 X-Rspamd-Action: no action
 
-+Cc: Bart (what's going on with i2c_adapter_set_node()?)
+On Wed, Mar 11, 2026 at 08:23:19AM +0800, Alexis Czezar Torreno wrote:
+> Add maintainer entry for the Analog Devices AD5706R DAC driver
+> and device tree binding.
 
-On Wed, Mar 11, 2026 at 11:07:19AM +0800, Binbin Zhou wrote:
-> On Tue, Mar 10, 2026 at 11:02 PM Andy Shevchenko
-> <andriy.shevchenko@intel.com> wrote:
-> > On Tue, Mar 10, 2026 at 07:48:53PM +0800, Binbin Zhou wrote:
-
-...
-
-> > > +     struct device *dev = priv->adapter.dev.parent;
-> >
-> > Derive it from regmap (and check elsewhere) as accessing dev in the adapter
-> > may lead to issues related to the object lifetime.
-> 
-> Do you mean regmap_get_device() API?
-
-Yes.
-
-> Also, similar references exist in `loongson2_i2c_xfer()` and
-> `loongson2_i2c_isr_event()`, requiring synchronized updates.
-
-Correct.
-
-> > > +             return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to enable clock.\n");
-> > > +
-> > > +     irq = platform_get_irq(pdev, 0);
-> > > +     if (irq < 0)
-> > > +             return irq;
-> > > +
-> > > +     adap = &priv->adapter;
-> > > +     adap->retries = 5;
-> > > +     adap->nr = pdev->id;
-> > > +     adap->dev.parent = dev;
-> > > +     adap->owner = THIS_MODULE;
-> > > +     adap->algo = &loongson2_i2c_algo;
-> > > +     adap->timeout = 2 * HZ;
-> >
-> > > +     device_set_node(&adap->dev, dev_fwnode(dev));
-> >
-> > Why?! i2c_adapter_set_node() is part of the i2c-next.
-> 
-> Indeed, when I rebased the v4 patchset, `i2c_adapter_set_node()`
-> existed in the i2c-next[1]. However, when I prepared the v5 patchset,
-> it was removed[2].
-> 
-> [1]: base commit: 6117e1ba1db78a52a4161208ea403d3769ad73c6
-> [2]: base commit: b82316862bea929265725c077dffcec42e3dc20b
-
-Bart?
+This should be added when the respective files are being added.
 
 -- 
 With Best Regards,
