@@ -1,70 +1,75 @@
-Return-Path: <devicetree+bounces-274273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274274-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uMpMMDutsWmzEQAAu9opvQ
-	(envelope-from <devicetree+bounces-274273-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:58:19 +0100
+	id MBqbAQqusWmzEQAAu9opvQ
+	(envelope-from <devicetree+bounces-274274-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:01:46 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D6A268592
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:58:19 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 646D62685F7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:01:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1C3A130263ED
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:58:18 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9C6D23025E06
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:01:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C9E93E63AA;
-	Wed, 11 Mar 2026 17:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDFB3E6DC6;
+	Wed, 11 Mar 2026 18:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cy0lEcAr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="frk/CePd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17CA033F5A2;
-	Wed, 11 Mar 2026 17:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9A32116E0;
+	Wed, 11 Mar 2026 18:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773251896; cv=none; b=UiLN+pw74oa4tjlHUTezYLFKbw/Vxc9t+m54vFbLTTRI1S+uLUN/8A5/OMWPaib/REp6/w4peW4k1+wkPZHR2WT2wfuPxCqSbX09ynsdcSn7Yx6pu87OQjhgtsPHetcftAOHCzZhDH3/NRoyFYMgLM//tveUZLqlpcUbK2to8bk=
+	t=1773252099; cv=none; b=JfdRYlG43Kj0DiW37aeBOrVv7jiO3Fo/fTiTXVyfrxjHTRN/wKIOin1rVXZiM4iaKrNQWf6HEIRwrOz29CnIIvHm80yYpUH/7fUv26stE8eMXpqbU+0x4BCgrCwWVQY9IGEtTO3fRWgZ1aaGn/cuJr4THPQ+51GkNy2COV5xW5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773251896; c=relaxed/simple;
-	bh=REZVKE/XRqdzPQdeJe3+5UNr7QWGQUq5Vy/h1znmS7Y=;
+	s=arc-20240116; t=1773252099; c=relaxed/simple;
+	bh=3yWJLZ6GD/dmWHpKPnwlQPmYIRRZb9sfs9HOE709OMk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AQ3m0d8ptn+Tbe6RboTA5GIr0m+uHHEMe/mO5O0viC6U+ILzNK9VFD/I1znd10YB9tUOzQU1Dr8BwHyx/hEASFYpXjUe11ObERrEhDIEaJUVGS+/rGne+lUw8uIrDkBmC6jzvGQMyH/3YUnnF+EVTSwOw30NACvvuK8Is+ID80U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cy0lEcAr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C115BC4CEF7;
-	Wed, 11 Mar 2026 17:58:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WugJjzmzFUSwdO9W/IJokIo/NZ3FhydKT/LmFpwL+aZp5/gUfqLieJ4fWcmHEJ8W0X0Qhfz5fJRRKVdu/5nYjZHxSnVbxMl+Ck8A7Mu5Y7Db11MXSVOTtcMCIpdT/LWZnHJazD3Y4gAECg3O6pcTPbwPATHi6KEr3juIIN3ulRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=frk/CePd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B20AFC4CEF7;
+	Wed, 11 Mar 2026 18:01:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773251895;
-	bh=REZVKE/XRqdzPQdeJe3+5UNr7QWGQUq5Vy/h1znmS7Y=;
+	s=k20201202; t=1773252099;
+	bh=3yWJLZ6GD/dmWHpKPnwlQPmYIRRZb9sfs9HOE709OMk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cy0lEcArPly5OmTy6AXVaIBxwh5aIVqDl3XTzJlbm+09THhYCehxaFsbZL/UVXuwX
-	 2rhWaOSdRz8P0k5WYtDmeHYkAO5jTMG8qUwjS60kG5H0JMic48D1EpRgHPrnEiNf/+
-	 Cto8rNNXqADIDBLjMvN0qNHnrrSntyv/d9DonpmTJFhzJUkHLOSApE5LueCNvokxMC
-	 HS2pLcyXQtBd7aFWE8nnKrqm0p4lHQ0l4II+xluLxlfrdMB+HZ0T19O/4+xJ6VJ7ra
-	 fiYABqLAfHI7CT3IJ4Zl1AoQxm7MRskJiao0WjoO8KbxH0KO3a2wXk2EHDobCKTEqy
-	 dt7DvfeZCBFUA==
-Date: Wed, 11 Mar 2026 17:58:10 +0000
+	b=frk/CePd+U5812zAX29sI8YOCqz8vMR9Ia7CzLsw0NNdHN4DlpSmRpXI5m4qdxm2S
+	 QibXU93M97zLnR2UTk7XBWuVBHBzo1lpdmjlZHxwRj06iZcB2vmCV8RGTI+VszQfqn
+	 blhKo0EbHk4gm9TVSUs/L4l4d0lfE0S7YjkOwdiZFYa6huKB7K+Reyw9AteNN18mOx
+	 oxTCdorLYp7VgtX5tpxAzGa3ydWpWn5sPEjs4QzsivX7Sgzk0Ik0pr4z/j4Qsker3P
+	 PMYtx+UejyOrWHNLkhjjPf44IwR6tQr+A3Tr63BSy8W4XFHpJiFm9YyX2diN9JSQOq
+	 AiNGBrzarfsAg==
+Date: Wed, 11 Mar 2026 18:01:33 +0000
 From: Conor Dooley <conor@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	linux-riscv@lists.infradead.org, Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Herve Codina <herve.codina@bootlin.com>, linux-gpio@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v12 2/4] dt-bindings: soc: microchip: document PolarFire
- SoC's gpio interrupt mux
-Message-ID: <20260311-unlovable-ecosphere-07df196823b3@spud>
-References: <20260311-tasting-friend-eae39148fb96@spud>
- <20260311-collar-smokiness-5313aa648a6f@spud>
- <177324727784.4047403.339169143402607624.robh@kernel.org>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Marcel Holtmann <marcel@holtmann.org>,
+	Johan Hedberg <johan.hedberg@gmail.com>,
+	Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+	Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm7225-fairphone-fp4: Add
+ Bluetooth
+Message-ID: <20260311-come-olive-7bbc8f6536e1@spud>
+References: <20230421-fp4-bluetooth-v2-0-3de840d5483e@fairphone.com>
+ <20230421-fp4-bluetooth-v2-4-3de840d5483e@fairphone.com>
+ <20260310-maritime-silly-05e7b7e03aa6@spud>
+ <DGZSPC64B8K5.3HBPHWMWXR482@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,143 +77,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="f75TBWoebi84s6Wt"
+	protocol="application/pgp-signature"; boundary="0kPLRKqAFXYbgZvV"
 Content-Disposition: inline
-In-Reply-To: <177324727784.4047403.339169143402607624.robh@kernel.org>
+In-Reply-To: <DGZSPC64B8K5.3HBPHWMWXR482@fairphone.com>
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274273-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274274-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FREEMAIL_CC(0.00)[davemloft.net,google.com,kernel.org,redhat.com,linaro.org,holtmann.org,gmail.com,lists.sr.ht,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,bootlin.com:email,devicetree.org:url,microchip.com:email,0.0.0.54:email]
-X-Rspamd-Queue-Id: 25D6A268592
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 646D62685F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---f75TBWoebi84s6Wt
+--0kPLRKqAFXYbgZvV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Rob,
-
-On Wed, Mar 11, 2026 at 11:41:17AM -0500, Rob Herring (Arm) wrote:
+On Wed, Mar 11, 2026 at 09:04:20AM +0100, Luca Weiss wrote:
+> On Tue Mar 10, 2026 at 7:02 PM CET, Conor Dooley wrote:
+> > On Fri, May 12, 2023 at 03:58:26PM +0200, Luca Weiss wrote:
+> >
+> >> +&qup_uart1_cts {
+> >> +	/*
+> >> +	 * Configure a bias-bus-hold on CTS to lower power
+> >> +	 * usage when Bluetooth is turned off. Bus hold will
+> >> +	 * maintain a low power state regardless of whether
+> >> +	 * the Bluetooth module drives the pin in either
+> >> +	 * direction or leaves the pin fully unpowered.
+> >> +	 */
+> >> +	bias-bus-hold;
+> >> +};
+> >> +
+> >> +&qup_uart1_rts {
+> >> +	/* We'll drive RTS, so no pull */
+> >> +	drive-strength =3D <2>;
+> >> +	bias-disable;
+> >> +};
+> >> +
+> >> +&qup_uart1_rx {
+> >> +	/*
+> >> +	 * Configure a pull-up on RX. This is needed to avoid
+> >> +	 * garbage data when the TX pin of the Bluetooth module is
+> >> +	 * in tri-state (module powered off or not driving the
+> >> +	 * signal yet).
+> >> +	 */
+> >> +	bias-pull-up;
+> >> +};
+> >> +
+> >> +&qup_uart1_tx {
+> >> +	/* We'll drive TX, so no pull */
+> >> +	drive-strength =3D <2>;
+> >> +	bias-disable;
+> >> +};
+> >
+> > I recently made some changes to pincfg-node.yaml to detect if there's
+> > conflicting properties used, and these got detected. Should these not
+> > do what has been done on the msm8998-xiaomi-sagit, and delete the
+> > inherited bias-foo from the dtsi?
+> > &blsp1_i2c5_sleep {
+> > 	/delete-property/ bias-pull-up;
+> > 	bias-disable;
+> > };
 >=20
-> On Wed, 11 Mar 2026 15:17:39 +0000, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > On PolarFire SoC there are more GPIO interrupts than there are interrupt
-> > lines available on the PLIC, and a runtime configurable mux is used to
-> > decide which interrupts are assigned direct connections to the PLIC &
-> > which are relegated to sharing a line.
-> >=20
-> > Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  .../soc/microchip/microchip,mpfs-irqmux.yaml  | 77 +++++++++++++++++++
-> >  .../microchip,mpfs-mss-top-sysreg.yaml        |  4 +
-> >  2 files changed, 81 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/soc/microchip/mic=
-rochip,mpfs-irqmux.yaml
-> >=20
+> Yes, you're completely right.
 >=20
-> My bot found errors running 'make dt_binding_check' on your patch:
-
-AAAAAAAAA, goddammit. I forgot there was a reason why I had not just
-sent off the new version of the series.
-
-> yamllint warnings/errors:
+> In the final dtb qup-uart1-{cts,rts,rx,tx}-default-state contain two
+> bias-* properties, this must be wrong.
 >=20
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.exa=
-mple.dts:18.33-24.11: Warning (interrupt_provider): /example-0/interrupt-co=
-ntroller@54: '#interrupt-cells' found, but node is not an interrupt provider
-> Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.exa=
-mple.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
-
-I wanted to ask about this Rob, I wasn't sure I fully understood it.
-I figured it was because...
+> Thanks for pointing this out, I'll prepare a patch soon!
 
 
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/s=
-oc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (mi=
-crochip,mpfs-irqmux): 'interrupt-map' is a required property
-> 	from schema $id: http://devicetree.org/schemas/soc/microchip/microchip,m=
-pfs-irqmux.yaml
+Cool, guess it just worked for you because of either property ordering
+or how linux parsed it.
 
-=2E..I had not added the interrupt-map yet...
-
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/s=
-oc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (mi=
-crochip,mpfs-irqmux): 'interrupt-map' is a dependency of 'interrupt-map-mas=
-k'
-> 	from schema $id: http://devicetree.org/schemas/interrupt-controller.yaml
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/s=
-oc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (mi=
-crochip,mpfs-irqmux): 'anyOf' conditional failed, one must be fixed:
-> 	'interrupt-controller' is a required property
-> 	'interrupt-map' is a required property
-> 	from schema $id: http://devicetree.org/schemas/interrupt-controller.yaml
-
-=2E..so this schema complained. But why is there a custom warning about
-"node is not an interrupt provider", when the conditional schema
-produces a warning of its own?
-
-> doc reference errors (make refcheckdocs):
->=20
-> See https://patchwork.kernel.org/project/devicetree/patch/20260311-collar=
--smokiness-5313aa648a6f@spud
->=20
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->=20
-
---f75TBWoebi84s6Wt
+--0kPLRKqAFXYbgZvV
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabGtMgAKCRB4tDGHoIJi
-0kLAAP4/StUCvibT5hub5xjSEE2d21x03BUhs+ifxgEyZFkLvgD9EcfeAWt2eGYl
-AoCeqdx4b8MruMjeVy1/SlSu8M7GWwg=
-=NT5s
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabGt/QAKCRB4tDGHoIJi
+0tHSAP9RJhZFjBy79D1QA4/Y8GvUh6dcjQSJvmheIyZevV3mgwEAkrgsg1dqN3vO
+SUrSbqWC3nY+WuhQ8enPQB6kw6udSAM=
+=RVbj
 -----END PGP SIGNATURE-----
 
---f75TBWoebi84s6Wt--
+--0kPLRKqAFXYbgZvV--
 
