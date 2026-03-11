@@ -1,121 +1,92 @@
-Return-Path: <devicetree+bounces-273796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273797-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eDn0LATQsGmLnQIAu9opvQ
-	(envelope-from <devicetree+bounces-273796-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:14:28 +0100
+	id SMlmMqXPsGmLnQIAu9opvQ
+	(envelope-from <devicetree+bounces-273797-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:12:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 190D325ACAD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:14:28 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D5ED25AC41
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:12:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BA5AB3074A20
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 02:11:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 8485D3048759
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 02:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 414D8327C00;
-	Wed, 11 Mar 2026 02:11:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1167333C197;
+	Wed, 11 Mar 2026 02:12:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gQmk/Ui4";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QSwVVLIQ"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fN2QPk14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0986280CC1
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 02:11:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E5D8280CC1;
+	Wed, 11 Mar 2026 02:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773195109; cv=none; b=QxDTlWuZqOYExJ0drTmhirZE+n9UzMwXB8FF1Y3/l8ojbGP8RByl0+1vNQM1d8B0C5FaARsu+X9aiH+ZjsT3FuxauB1qOAevkBrWx/RT7CLTs7pJmukHhOm+xzLwR0yB8iy6N3YWiJwQGKoc3ukk/3JoHYZR8fhVnTpNXAwe9WM=
+	t=1773195170; cv=none; b=ktjo1F4ab0wkSC9Z0OxMxbxClJqZ5AYC1+oC32n0YRsJZftE8UHua9mCJeQBYYuAO//2cxrvvSaeLJ3X2nRLNflIK01AJ+gQPwHhzRamGhDeE3b0u4nz8jUZ1FlApN6CV/v5Rd8VLQ/tQrIN8kbiQ3+3WDpeCR2w/r9/ai664B0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773195109; c=relaxed/simple;
-	bh=PAz0+xYAabG60ZBoVLaRG0/g3Yg93cVP7UzyAkqITHU=;
+	s=arc-20240116; t=1773195170; c=relaxed/simple;
+	bh=KB/sq5U3IVt7/eQ9Hys5pK6/LhuDUGAblBCNznNafM4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WNDqaUTGUczJD6xHqc8/n/xdQU/U5fWXibv48e1i6TsnexFk8Q5j6u13DA+B35o+k//iTwOh0J16W6LkoDxO7Ngy1GD+l3KY1jIexnNTDOrO9+094bz94Sl9EGR+bF/jHT+hzQ6v0xDAIqpfuCCPhYzrgYg914Gws9rv9kMkaTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gQmk/Ui4; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=QSwVVLIQ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62AJ06os3893001
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 02:11:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=m8u7bBysoOqVUoOw9C2g3MJP
-	KKZHXPON57UnH5iAnhs=; b=gQmk/Ui4q2u4ikmRoBxVTycB7mqehrhsCH4K4Grn
-	DYK9nrEXhoSoFLqptAP972TXNIqyOUjALFrZnqWoj3YBDHaQSWMPz1q3X7kvF+6M
-	QcvJa/V5FDHxdkvS40Ev4OsdbN2XCKhQgW5PuuBBTYF8Tl8PTSoHdW2Rwt2WBe0/
-	2aV9HmTqNa1vnekQ3jaMuzThBPesSwwmC5LXIsByiwiG4Yc10DSJ8Psyi6IrSuZP
-	geCnfVn8meIf4VHk0YFB94GoGm4lTcOrJclcha5oJc64tfH076NPXMLLfTsdALug
-	+kL0U1RvIKSbXEEffu5kmEQrGABYiIuOGH4JAwXpG+yf3A==
-Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ctkmytps7-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 02:11:47 +0000 (GMT)
-Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-948b41f95deso135893446241.0
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 19:11:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773195106; x=1773799906; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=m8u7bBysoOqVUoOw9C2g3MJPKKZHXPON57UnH5iAnhs=;
-        b=QSwVVLIQ7vux+7TZNzsq0XDlUB4x5cRatSEjZS9zBQw3hPsNIs71cSYni5GS9LydK2
-         V0mQTaJvYJGWCQbWlA+6mtEEh97QEUsKK4w4QNyqghiawXWdjMk+BKxi9R17mMy4fieC
-         L2vFMjzXQC0IKFuJuWd/3FJ0H+AwETa9qsoq63it6sfxJO31OnCa9PdQvS63N44ZaZHJ
-         Q7sYGJab/y7txsZG0yA9PVuz+WTzMeYBzSpBqbuIjVWauHZO4WuXzVnA373m0We7k6hJ
-         JJtDF9QqAl9BG7mCwP/PD8PgxuCU1OnqbP0BCaR2j68nA0j7hdL5p47DD4mCli3y3PQ7
-         5gkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773195106; x=1773799906;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m8u7bBysoOqVUoOw9C2g3MJPKKZHXPON57UnH5iAnhs=;
-        b=BNU1904daTTsUjxYDbehWldUFXplDv+qZ4oohavjHZXsxaA0uifFHs0GfKKXBmUbJV
-         clo6pOUgImxRi1hEvKmkuem8ju7UgwN6do6AzlP7hIGtk5xMQPvO7ClnBHI7k5sRZUFl
-         NIurzsjJAi5M+L21dxSDnus1pAA/bRyz2jawFJRVJvcB+Yy9KiGiR4njiIY3eJmd0HL8
-         QLkM67bjr4mgmzfxQFjRlkLG6EGZdlrndZWVLohoSnuhjsXvT4pLy+BDuGenMAR1T8/A
-         2XBchkufZJF46WKQrQfTOA+O0F6ejvX/at2/TIk2x9Kp5wEDyeuRIEdp34zRsmkACZR9
-         UJ5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUTPe9SfIDisfHGgojF8zQw7NNunFsSCpiR5lOn5GdRk1t2x0uhuEMlIBODuA31LcdlVJVD5HOtrEUG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXF/xqw0dO9Uskp67UBzgFYSvNVCv8rDQo6Xzc8AaCt+nWPTGF
-	cKV0UpoAFHsAATmT9VMcPi0UuOUqq5K4weyWUVd9oBUnzcYXAbLac6g7LY2Y7TrU1GCHxN1mK6T
-	9z5XBNaW5ZjUtNMQUEnMtxPFuzykOBkLLes/AShmqpP1lJIuNpFR91vfpiunHgC9X
-X-Gm-Gg: ATEYQzzhweHalO8wYcO53qCfBegTbRx5KC9RcOeFNaE+KRuKQaevxtAYkU25BLIWJpR
-	sM8srBxq9Ee0wO/lmx10MyCeW1TTcFiikW/0tZ1AffDFDhw8VwbiIiTxoemwzAKwFdJ9ryAOnyh
-	RzRWBX5BdAF9a5NfQ6p4IhDU8+AhrELuT89vJevs9TAqKvPB5AqkQujUD+sxiF0WdoJmEvcE7p5
-	j4f4fghWbXL255s7zqeL+aGY3JEe21jig5LpgJ5g0eZExlnTs+iZcj8FKz3jg35i4ityQwny0e0
-	oq7GTKkn+4jSYwZtla16p9L/y54VSkorhJL799YrISJey2Ua4S7p7Lo7a6ta7ckqRkCjvF4HzHc
-	3S2YT8r7F4Lr9+gbfrRiyJIBikA1HPbzNtuRm9mPdgXOL2Scld7Gts95n57PRK14o6EPxFjA/ig
-	kCopW/6s1DzLdnSxBnh7xOlAMEnVpiaEOoA38=
-X-Received: by 2002:a05:6102:6c3:b0:600:131f:b68a with SMTP id ada2fe7eead31-601def4afd1mr357136137.23.1773195106029;
-        Tue, 10 Mar 2026 19:11:46 -0700 (PDT)
-X-Received: by 2002:a05:6102:6c3:b0:600:131f:b68a with SMTP id ada2fe7eead31-601def4afd1mr357116137.23.1773195105600;
-        Tue, 10 Mar 2026 19:11:45 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67e67a2dsm1233421fa.32.2026.03.10.19.11.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 19:11:44 -0700 (PDT)
-Date: Wed, 11 Mar 2026 04:11:42 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Bartosz Golaszewski <brgl@kernel.org>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Subject: Re: [PATCH v4 5/7] remoteproc: core: set recovery_disabled when
- doing rproc_add()
-Message-ID: <ce24a2sgg4b6wymoxwgl2ve6np2nxn2wuxfqxfpmvqqrpvgouf@xihd6ziqwu4m>
-References: <20260310-knp-soccp-v4-0-0a91575e0e7e@oss.qualcomm.com>
- <20260310-knp-soccp-v4-5-0a91575e0e7e@oss.qualcomm.com>
- <CAMRc=MedT32COu-B_TsrN+jCrHjde2v5gnA6WOUmMQ2dEBY6WQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hO1mHuGimX9jbeV/Sz5ri//stWTyg+9W0RQuNGqcukxl3Tnpvh366K/J5+i/G3LApuNm/BZQt8JzBmJTIXDRbZcnYwbHDcKtGEIFLry3EGM7zLEYR94aPTCtYDjFQlLJNvr0yXVP3tWVDFIc/Jv1XZ24Qx8oiGI/FV5cwiawOmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fN2QPk14; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773195168; x=1804731168;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=KB/sq5U3IVt7/eQ9Hys5pK6/LhuDUGAblBCNznNafM4=;
+  b=fN2QPk141REsUcgHzPtVeyNcqqaNJFoKkWL7+Aq5OOFphBoB2AfZEFGo
+   YginIpyD1m5M5aV+/5QEqdbyKXsgQIu72/XNLxjY2stf/YkNhHTGS3bBq
+   2Sxy8NjJljVAkzGwqMEstB8xPyY5bIyoNYG7nahmy/vvH92j8Vwzjf5wg
+   JNSFAwIof6IKVIJIsoSA4gS7SW4APJjaeHqlIapaJ8GvGn2QzxnCUud0e
+   lRmnjgO+XtXXipXCrGguVETgxJ3ooK1W7vrD1/0T+uMaG+5frOdBj/tTu
+   iV7drKoanWkwcEtA59ZRFeqKgGa06iFCs8nROdXtAPxkAqle7jwkOfurp
+   A==;
+X-CSE-ConnectionGUID: b/eE6XhMSfiPUNtGOu5+ZA==
+X-CSE-MsgGUID: Zbtw8EAWRhWhtCqX4dKBZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74153579"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="74153579"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 19:12:48 -0700
+X-CSE-ConnectionGUID: bUUejISQS/COrIPwIlceTQ==
+X-CSE-MsgGUID: ulxFzHbPT92p83ES7rbr4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="220482039"
+Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 10 Mar 2026 19:12:42 -0700
+Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1w093v-000000000Z3-1rDo;
+	Wed, 11 Mar 2026 02:12:39 +0000
+Date: Wed, 11 Mar 2026 10:12:13 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa-dev@sang-engineering.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	"Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Subject: Re: [PATCH 5/5] watchdog: rzn1: Add support for direct hardware reset
+Message-ID: <202603111012.xhKbu8oc-lkp@intel.com>
+References: <20260310173249.161354-6-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -124,168 +95,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMRc=MedT32COu-B_TsrN+jCrHjde2v5gnA6WOUmMQ2dEBY6WQ@mail.gmail.com>
-X-Authority-Analysis: v=2.4 cv=RYudyltv c=1 sm=1 tr=0 ts=69b0cf63 cx=c_pps
- a=KB4UBwrhAZV1kjiGHFQexw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=EUspDBNiAAAA:8
- a=EQkD0UdsgqK4afkX8_gA:9 a=CjuIK1q_8ugA:10 a=o1xkdb1NAhiiM49bd1HK:22
-X-Proofpoint-GUID: cwDjKzFsm9nbw-z9Xj5dXoVt4aNjw0A6
-X-Proofpoint-ORIG-GUID: cwDjKzFsm9nbw-z9Xj5dXoVt4aNjw0A6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDAxNiBTYWx0ZWRfX2UVX77/SF5yg
- Sf/j8dgCcLjKym/JwPLuwAdrjFaf4TSQsMUf3CRLMGWdwrbeeTo8tHTQ7BoQCGyJETlbhjC4T9m
- /x6DwllaYaJm3Ft9t78kg6JpngA9wtFl5QaHjubSKB3SdeJC2NiheIrJuEGF6hqFwYcbXRcQjkI
- kYBZMJpmGoFrj8ZTi9B324Jig8wlhBR/tcvto/EpgmtgFQJJOkZS69XddJYMlWzFi1sE+M/Ab+0
- ilS/ZA9klDGnlaC2mvCba9VwIcI3nUz/9ps0xPEC9Dy6MOb36li7URiWzufyFANetWkXqdUfN5Z
- Lm4Wajr/G+WNriWDyRN/f97SJwIojjky6ryS79xsViayLcLEHHYgB9G12+BFxreHkBEewILDelP
- ctVTAotmO4Xt7kk6UkjjPRx4+HZ4wzmLPVc8XXyzf0+evtpbMCqVj8L4xCYrbLf+2jI/227KDpV
- NUeIPDU9zyfmyTFmW3w==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-10_05,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 impostorscore=0 malwarescore=0 spamscore=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603110016
-X-Rspamd-Queue-Id: 190D325ACAD
+In-Reply-To: <20260310173249.161354-6-herve.codina@bootlin.com>
+X-Rspamd-Queue-Id: 8D5ED25AC41
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273796-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:dkim,qualcomm.com:email];
+	TAGGED_FROM(0.00)[bounces-273797-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[bootlin.com,linux-watchdog.org,roeck-us.net,kernel.org,glider.be,baylibre.com,gmail.com,sang-engineering.com];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,git-scm.com:url]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 06:50:30AM -0700, Bartosz Golaszewski wrote:
-> On Tue, 10 Mar 2026 11:03:21 +0100, Jingyi Wang
-> <jingyi.wang@oss.qualcomm.com> said:
-> > rproc_add() called by rproc probe function failure will tear down all
-> > the resources including do device_del() and remove subdev etc. If
-> > rproc_report_crash() is called in this path, the rproc_crash_handler_work
-> > could be excuted asynchronously, rproc_boot_recovery()->rproc_stop() will
-> > be called with recovery enabled, which may cause NULL pointer dereference
-> > if the resource has already been cleaned up.
-> >
-> > [    5.251483] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000300
-> > [    5.260499] Mem abort info:
-> > [    5.263384]   ESR = 0x0000000096000006
-> > [    5.267248]   EC = 0x25: DABT (current EL), IL = 32 bits
-> > [    5.272711]   SET = 0, FnV = 0
-> > [    5.275865]   EA = 0, S1PTW = 0
-> > [    5.279106]   FSC = 0x06: level 2 translation fault
-> > [    5.284125] Data abort info:
-> > [    5.287101]   ISV = 0, ISS = 0x00000006, ISS2 = 0x00000000
-> > [    5.292742]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
-> > [    5.297939]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
-> > [    5.303400] user pgtable: 4k pages, 48-bit VAs, pgdp=000000089e086000
-> > [    5.310022] [0000000000000300] pgd=080000089e087403, p4d=080000089e087403, pud=080000089e088403, pmd=0000000000000000
-> > [    5.320917] Internal error: Oops: 0000000096000006 [#1]  SMP
-> > [    5.392494] Hardware name: Qualcomm Technologies, Inc. Kaanapali QRD (DT)
-> > [    5.399466] Workqueue: rproc_recovery_wq rproc_crash_handler_work
-> > [    5.405729] pstate: 23400005 (nzCv daif +PAN -UAO +TCO +DIT -SSBS BTYPE=--)
-> > [    5.412879] pc : qcom_glink_smem_unregister+0x14/0x48 [qcom_glink_smem]
-> > [    5.419674] lr : glink_subdev_stop+0x1c/0x30 [qcom_common]
-> > [    5.425308] sp : ffff800080ffbc90
-> > [    5.428724] x29: ffff800080ffbc90 x28: ffff00081be833f0 x27: ffff000800059c00
-> > [    5.436053] x26: 0000000000000000 x25: ffff000800a56f80 x24: 61c8864680b583eb
-> > [    5.443384] x23: ffff00081be83038 x22: 0000000000000001 x21: ffff00081be83000
-> > [    5.450714] x20: ffff00081be833c0 x19: 0000000000000000 x18: 0000000000000010
-> > [    5.458043] x17: 0000000000000000 x16: 0000000000000000 x15: ffff0008042684f8
-> > [    5.465374] x14: 00000000000002dd x13: ffff0008042684f8 x12: ffffd37f69f967a0
-> > [    5.472705] x11: ffffd37f6a006800 x10: ffffd37f69fee7c0 x9 : ffffd37f69fee818
-> > [    5.480036] x8 : 0000000000017fe8 x7 : c0000000ffffefff x6 : 0000000000000001
-> > [    5.487366] x5 : ffff000d6536d408 x4 : 0000000000000001 x3 : 0000000000000000
-> > [    5.494697] x2 : ffffd37f5703c18c x1 : 0000000000000001 x0 : 0000000000000000
-> > [    5.502028] Call trace:
-> > [    5.504549]  qcom_glink_smem_unregister+0x14/0x48 [qcom_glink_smem] (P)
-> > [    5.511344]  glink_subdev_stop+0x1c/0x30 [qcom_common]
-> > [    5.516622]  rproc_stop+0x58/0x17c
-> > [    5.520127]  rproc_trigger_recovery+0xb0/0x150
-> > [    5.524693]  rproc_crash_handler_work+0xa4/0xc4
-> > [    5.529346]  process_scheduled_works+0x18c/0x2d8
-> > [    5.534092]  worker_thread+0x144/0x280
-> > [    5.537952]  kthread+0x124/0x138
-> > [    5.541280]  ret_from_fork+0x10/0x20
-> > [    5.544965] Code: a9be7bfd 910003fd a90153f3 aa0003f3 (b9430000)
-> > [    5.551224] ---[ end trace 0000000000000000 ]---
-> >
-> > So set recovery_disabled during rproc_add().
-> >
-> > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > ---
-> >  drivers/remoteproc/remoteproc_core.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-> > index b087ed21858a..f66dde712cec 100644
-> > --- a/drivers/remoteproc/remoteproc_core.c
-> > +++ b/drivers/remoteproc/remoteproc_core.c
-> > @@ -2286,7 +2286,10 @@ int rproc_add(struct rproc *rproc)
-> >  {
-> >  	struct device *dev = &rproc->dev;
-> >  	int ret;
-> > +	bool rproc_recovery_save;
-> >
-> > +	rproc_recovery_save  = rproc->recovery_disabled;
-> > +	rproc->recovery_disabled = true;
-> >  	ret = rproc_validate(rproc);
-> >  	if (ret < 0)
-> >  		return ret;
-> > @@ -2319,6 +2322,7 @@ int rproc_add(struct rproc *rproc)
-> >  	list_add_rcu(&rproc->node, &rproc_list);
-> >  	mutex_unlock(&rproc_list_mutex);
-> >
-> > +	rproc->recovery_disabled = rproc_recovery_save;
-> >  	return 0;
-> >
-> >  rproc_remove_dev:
-> >
-> > --
-> > 2.25.1
-> >
-> >
-> 
-> Ideally things like this would be passed to the rproc core in some kind of a
-> config structure and only set when registration succeeds. This looks to me
-> like papering over the real issue and I think it's still racy as there's no
-> true synchronization.
-> 
-> Wouldn't it be better to take rproc->lock for the entire duration of
-> rproc_add()? It's already initialized in rproc_alloc().
+Hi Herve,
 
-It would still be racy as rproc_trigger_recovery() is called outside of
-the lock. Instead the error cleanup path (and BTW, rproc_del() path too)
-must explicitly call cancel_work_sync() on the crash_handler work (and
-any other work items that can be scheduled).
+kernel test robot noticed the following build errors:
 
-> 
-> Bart
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on geert-renesas-drivers/renesas-clk geert-renesas-devel/next groeck-staging/hwmon-next linus/master v7.0-rc3 next-20260310]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Herve-Codina-Schneider-Electric/watchdog-rzn1-Fix-reverse-xmas-tree-declaration/20260311-015157
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20260310173249.161354-6-herve.codina%40bootlin.com
+patch subject: [PATCH 5/5] watchdog: rzn1: Add support for direct hardware reset
+config: arm-randconfig-002-20260311 (https://download.01.org/0day-ci/archive/20260311/202603111012.xhKbu8oc-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260311/202603111012.xhKbu8oc-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202603111012.xhKbu8oc-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   In file included from drivers/watchdog/rzn1_wdt.c:20:
+>> include/linux/soc/renesas/r9a06g032-sysctrl.h:17:53: warning: 'enum r9a06g032_sysctrl_rst_src' declared inside parameter list will not be visible outside of this definition or declaration
+    static inline int r9a06g032_sysctrl_enable_rst(enum r9a06g032_sysctrl_rst_src rst_src)
+                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> include/linux/soc/renesas/r9a06g032-sysctrl.h:17:79: error: parameter 1 ('rst_src') has incomplete type
+    static inline int r9a06g032_sysctrl_enable_rst(enum r9a06g032_sysctrl_rst_src rst_src)
+                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+>> include/linux/soc/renesas/r9a06g032-sysctrl.h:17:19: error: function declaration isn't a prototype [-Werror=strict-prototypes]
+    static inline int r9a06g032_sysctrl_enable_rst(enum r9a06g032_sysctrl_rst_src rst_src)
+                      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/watchdog/rzn1_wdt.c: In function 'rzn1_wdt_setup_rst_line':
+>> drivers/watchdog/rzn1_wdt.c:105:33: error: storage size of 'rst_src' isn't known
+     enum r9a06g032_sysctrl_rst_src rst_src;
+                                    ^~~~~~~
+>> drivers/watchdog/rzn1_wdt.c:119:13: error: 'R9A06G032_RST_WATCHDOG_CA7_0' undeclared (first use in this function)
+      rst_src = R9A06G032_RST_WATCHDOG_CA7_0;
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/watchdog/rzn1_wdt.c:119:13: note: each undeclared identifier is reported only once for each function it appears in
+>> drivers/watchdog/rzn1_wdt.c:122:13: error: 'R9A06G032_RST_WATCHDOG_CA7_1' undeclared (first use in this function)
+      rst_src = R9A06G032_RST_WATCHDOG_CA7_1;
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/watchdog/rzn1_wdt.c:105:33: warning: unused variable 'rst_src' [-Wunused-variable]
+     enum r9a06g032_sysctrl_rst_src rst_src;
+                                    ^~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +17 include/linux/soc/renesas/r9a06g032-sysctrl.h
+
+21c34edbcc67b03 Herve Codina (Schneider Electric  2026-03-10  14) 
+885525c1e7e27ea Miquel Raynal                     2022-04-27  15  #else
+885525c1e7e27ea Miquel Raynal                     2022-04-27  16  static inline int r9a06g032_sysctrl_set_dmamux(u32 mask, u32 val) { return -ENODEV; }
+21c34edbcc67b03 Herve Codina (Schneider Electric  2026-03-10 @17) static inline int r9a06g032_sysctrl_enable_rst(enum r9a06g032_sysctrl_rst_src rst_src)
+21c34edbcc67b03 Herve Codina (Schneider Electric  2026-03-10  18) {
+21c34edbcc67b03 Herve Codina (Schneider Electric  2026-03-10  19) 	return -ENODEV;
+21c34edbcc67b03 Herve Codina (Schneider Electric  2026-03-10  20) }
+885525c1e7e27ea Miquel Raynal                     2022-04-27  21  #endif
+885525c1e7e27ea Miquel Raynal                     2022-04-27  22  
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
