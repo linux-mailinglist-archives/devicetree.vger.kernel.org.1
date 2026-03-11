@@ -1,72 +1,82 @@
-Return-Path: <devicetree+bounces-273960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273961-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kO7kLSwwsWkVrwIAu9opvQ
-	(envelope-from <devicetree+bounces-273960-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:04:44 +0100
+	id ODRLArcwsWm0rwIAu9opvQ
+	(envelope-from <devicetree+bounces-273961-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:07:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B202B25FF19
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:04:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C0DE25FFA8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:07:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 0D26630193BA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:04:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 35EB7307094C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:06:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EFC33C5536;
-	Wed, 11 Mar 2026 09:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 925563BF69A;
+	Wed, 11 Mar 2026 09:05:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LSCzTaSp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OpaMyPfq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 181C23C6A42;
-	Wed, 11 Mar 2026 09:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C51526D4CD;
+	Wed, 11 Mar 2026 09:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773219845; cv=none; b=lCQt/oYojZdpXqtnd2/EUwMDKeO1FX8BGhrashrxOXi9LzoCeTcW4itfqFH7ejdKMseuPuFFBhOjj+KjOP8bUnICtJMBgtThaOmh8YHD6xu27ixg9C/qMwWKBPjpr6EgNZZbbBVh4Cy6Z8ZotUGt1qI5sOV8C5ZCZFeh5HGA9qM=
+	t=1773219958; cv=none; b=FrnglTZetlcr9QQqmGl/Wfanbx/Yqs13S6S7tqrSKwtjgioT4DUxlfWH7VgD5Vif/L8azbniXXkanVA1RS4p7qQIzTzaN+BEIuvMFICKYzHQc+gVYwCsqkFnjW//rAUbyYI14sRyK2zBOdCdcjyhD80R+zfQoWtrU+RVZpxfHa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773219845; c=relaxed/simple;
-	bh=wiUixCYFm5Tfy9C3RMI/tgTe+e8/mjmwNwm2BKKZ0y8=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=NdV40wSU+ooJTO2tr2sGCP2Bf/gPLQ/ALPJ4+9tMNypQvdq8/Lsv2ahMUGp+U3XqCS/ZfERTtXpOH6IeBHzmg+cCr1IRCnT4FiMWgGy45WjwXZx3maiZN4oLO+8UqtGBref5wGBApHKqzPdSRzNgWT/T/IJYClfMYN4D7t+Zd4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LSCzTaSp; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 0680F1A2D62;
-	Wed, 11 Mar 2026 09:03:55 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id CF82B60004;
-	Wed, 11 Mar 2026 09:03:54 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 24429103688EF;
-	Wed, 11 Mar 2026 10:03:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773219833; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=rJKFrJpCitYhJZxGKlOQSS+IwR1qpI8gDUOpVd9xOh8=;
-	b=LSCzTaSp+i76jdg7TU+B4qaun9/pP2DoEtljcjqUIiEvfuOqsaf/eWt0MSz1+HSuURsOFa
-	Mh6RHq8+znEQAw0YfUh/lbjRKcTergtiQVEOPszEoDvnjSOvXWc8S0GGJvnnCZ88kCHNKG
-	IEfIrSSIEMS8qljmlGN4MJQtt6ecBEFzgLEr5bAmMMMWGNHo6SzsFNVjed2QtGbJvyc2sm
-	ssSK7grTQwvhiSftt8aDda4S06LPDVnTP/L0Mhvlxg7SwXvnkdp5qW189kK0wTJsn1O+Kb
-	uzOJnF8fx3wEfxZlM1Ulz19U9T50TDxQ8k9xylJeitwWtVpo3KTpnMCoKVgPmw==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Akhila YS <akhilayalmati@gmail.com>,
-  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,  Conor Dooley
- <conor.dooley@microchip.com>,  linux-mtd@lists.infradead.org,
-  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Fix spear600-smi YAML conversion
-In-Reply-To: <CAL_Jsq+WE33tSSqywbPN3g8i92foVmqna6K2zaFO1RUreMvB-w@mail.gmail.com>
-	(Rob Herring's message of "Tue, 10 Mar 2026 13:30:02 -0500")
-References: <20260225-perso-fix-spear600-smi-yaml-v1-0-8ef3d205ab3a@bootlin.com>
-	<CAL_Jsq+WE33tSSqywbPN3g8i92foVmqna6K2zaFO1RUreMvB-w@mail.gmail.com>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Wed, 11 Mar 2026 10:03:49 +0100
-Message-ID: <87h5qmn3ey.fsf@bootlin.com>
+	s=arc-20240116; t=1773219958; c=relaxed/simple;
+	bh=D51Pq/e4LwlQGDMBcJS01g9zdaJBXlcZ+FyspkYyjeE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N46c+d8tgovU+Z93Lb5jGJfgRVxH6VbGSO7U1k3bCcGpyKtUOHebXv3JFUzzIUxa/DAXU1VorDcMgZWBu+OIs+bGPbFDFr3tc7Sokm40QUT49c4NhoJniaoElycg7p4iOm6/37df04qpYxU2hDRMyIX6ChvQCA2QiUyGHmMOhx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OpaMyPfq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F588C4CEF7;
+	Wed, 11 Mar 2026 09:05:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773219957;
+	bh=D51Pq/e4LwlQGDMBcJS01g9zdaJBXlcZ+FyspkYyjeE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=OpaMyPfq5NJaxf+QkDm+yAtMK9kTWUJspfstygKAnF36YOzTZ2jWyATAqtQgBLBOM
+	 X7EOY4g5cKeILwzeLPh05VN39Ui0Tl0XRCyhPtPKF+XRDBvG3uGRxL3geoxNA01KsV
+	 ofaXr1sB2KM6GdSqJGVEzXwom3ewd9AWlWCw76//1vFUck3bpY/jDA2Z3TJeAS0wct
+	 x7wrFcLwQUXjxKKLVQojnFj42oKnR7IDX+XtyjJleVSLWbpk5XV9qItG3s7hMIzEUc
+	 chvYt7DQKjUQu3mfmM6HFrP1S1qSI/69qT/hoP0l27gPIQJeHYnZR5m2vfxMrlSCKn
+	 nz/28x/sq+9yA==
+Date: Wed, 11 Mar 2026 10:05:55 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <skhan@linuxfoundation.org>, Eugen Hristev <eugen.hristev@linaro.org>, 
+	Arnd Bergmann <arnd@arndb.de>, Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>, 
+	Christoph Lameter <cl@gentwo.org>, Andrew Morton <akpm@linux-foundation.org>, 
+	Thomas Gleixner <tglx@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+	Anna-Maria Behnsen <anna-maria@linutronix.de>, Frederic Weisbecker <frederic@kernel.org>, 
+	Ingo Molnar <mingo@redhat.com>, Juri Lelli <juri.lelli@redhat.com>, 
+	Vincent Guittot <vincent.guittot@linaro.org>, Dietmar Eggemann <dietmar.eggemann@arm.com>, 
+	Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>, 
+	Valentin Schneider <vschneid@redhat.com>, David Hildenbrand <david@kernel.org>, 
+	Lorenzo Stoakes <ljs@kernel.org>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+	Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
+	Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>, Kees Cook <kees@kernel.org>, 
+	Brendan Jackman <jackmanb@google.com>, Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>, 
+	Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>, 
+	Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>, Baoquan He <bhe@redhat.com>, 
+	Barry Song <baohua@kernel.org>, Youngjun Park <youngjun.park@lge.com>, 
+	Petr Mladek <pmladek@suse.com>, John Ogness <john.ogness@linutronix.de>, 
+	Sergey Senozhatsky <senozhatsky@chromium.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Mathieu Poirier <mathieu.poirier@linaro.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>, 
+	workflows@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arch@vger.kernel.org, linux-mm@kvack.org, linux-arm-msm@vger.kernel.org, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 24/25] dt-bindings: reserved-memory: Add Google Kinfo
+ Pixel reserved memory
+Message-ID: <20260311-light-terrestrial-bison-d9cd97@quoll>
+References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
+ <20260311-minidump-v2-v2-24-f91cedc6f99e@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,71 +84,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: B202B25FF19
+Content-Disposition: inline
+In-Reply-To: <20260311-minidump-v2-v2-24-f91cedc6f99e@oss.qualcomm.com>
+X-Rspamd-Queue-Id: 7C0DE25FFA8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[nod.at,ti.com,kernel.org,gmail.com,bootlin.com,microchip.com,lists.infradead.org,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273961-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273960-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org,vger.kernel.org,kvack.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[57];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[miquel.raynal@bootlin.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,devicetree.org:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,qualcomm.com:email]
 X-Rspamd-Action: no action
 
-Hi Rob,
+On Wed, Mar 11, 2026 at 01:46:08AM +0530, Mukesh Ojha wrote:
+> Add documentation for Google Kinfo Pixel reserved memory area.
+> 
+> Co-developed-by: Eugen Hristev <eugen.hristev@linaro.org>
+> Signed-off-by: Eugen Hristev <eugen.hristev@linaro.org>
+> Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> ---
+>  .../bindings/reserved-memory/google,kinfo.yaml     | 46 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  6 +++
+>  2 files changed, 52 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/reserved-memory/google,kinfo.yaml b/Documentation/devicetree/bindings/reserved-memory/google,kinfo.yaml
+> new file mode 100644
+> index 000000000000..2f964151f0c0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reserved-memory/google,kinfo.yaml
 
-On 10/03/2026 at 13:30:02 -05, Rob Herring <robh@kernel.org> wrote:
+Nothing improved, read previous feedback.
 
-> On Wed, Feb 25, 2026 at 10:24=E2=80=AFAM Miquel Raynal
-> <miquel.raynal@bootlin.com> wrote:
->>
->> Recent conversion from txt to yaml of the Spear600 SMI binding by Akhila
->> lead to warnings. These are my 2cts in getting the yaml conversion done
->> :-)
->>
->> Cheers,
->> Miqu=C3=A8l
->>
->> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
->> ---
->> Miquel Raynal (3):
->>       dt-bindings: mtd: st,spear600-smi: Fix description
->>       dt-bindings: mtd: st,spear600-smi: #address/size-cells is mandatory
->>       dt-bindings: mtd: st,spear600-smi: Fix example
->>
->>  .../devicetree/bindings/mtd/st,spear600-smi.yaml   | 26 +++++++++++++++=
-+------
->>  1 file changed, 19 insertions(+), 7 deletions(-)
->
-> Still warning in next and v7.0-rc without these fixes. Please apply
-> them soon.
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reserved-memory/google,kinfo.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Google Pixel Kinfo reserved memory
+> +
+> +maintainers:
+> +  - Eugen Hristev <eugen.hristev@linaro.org>
+> +  - Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> +
+> +description: |
 
-Yes, I will do it this week.
+Do not need '|' unless you need to preserve formatting.
 
-Thanks for the reminder,
-Miqu=C3=A8l
+> +  This binding represents reserved-memory used to store data for firmware/bootloader
+
+Nothing improved.
+
+> +  on the Pixel platform. The stored data is debugging information of the running
+> +  kernel.
+> +
+> +allOf:
+> +  - $ref: reserved-memory.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: google,debug-kinfo
+> +
+> +  reg:
+> +    description: page-aligned region of memory containing debugging data of running kernel
+
+Missing constraints.
+
+Please wrap code according to the preferred limit expressed in Kernel
+coding style (checkpatch is not a coding style description, but only a
+tool).  However don't wrap blindly (see Kernel coding style).
+
+Best regards,
+Krzysztof
+
 
