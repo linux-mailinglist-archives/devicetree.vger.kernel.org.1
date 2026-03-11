@@ -1,173 +1,304 @@
-Return-Path: <devicetree+bounces-273916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273917-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GB4KLlkesWmOqwIAu9opvQ
-	(envelope-from <devicetree+bounces-273916-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:48:41 +0100
+	id OFqWLNAfsWnlrAIAu9opvQ
+	(envelope-from <devicetree+bounces-273917-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:54:56 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6186C25E2DB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:48:41 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A1025E41D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:54:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A9BF33244CF1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:35:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 36114303EB7A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:54:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40433B27FC;
-	Wed, 11 Mar 2026 07:35:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3759371899;
+	Wed, 11 Mar 2026 07:53:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hsIzdf3O"
+	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="eNCkmbvr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234DA3B0AF5;
-	Wed, 11 Mar 2026 07:35:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9F3211A05;
+	Wed, 11 Mar 2026 07:53:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773214557; cv=none; b=LIYl7fftsjFc3KtN3k30z4a1FERZLuDOkuopSnijYw44BXk+wA5z5HghAlePNcNEC4bHqx0+HFmC3S32fX/v7YAJQGpsPUXqZrKyYSLKIGGsn/YCXgfLRprQrpOMVFRNfOFXkHL0+c7s6qOnfQhlTP0GYJuloAIpSq4KSvG/2n4=
+	t=1773215618; cv=none; b=HvPS3fGM/JDt7U5J3dTBvqm/xZ0ywJT7QMAXpx1w6wOPYE8Y7BUMtsuAJFPtRoHluYykhyVjVKuG83Qr2p7gGctB5Qrwqhv6qe3fz8oI9QkONMH4kuzC5PXFFAv5tTVHs69ivxoc0R6Vb7eTDgUud8ILhJ2HO3Il0+qpH6+STL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773214557; c=relaxed/simple;
-	bh=N9JsIgwE9McaCLlcfRpcZ+hjDAdDPG1Ws2WMZXuiqJc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QSy0T0Egb+7sQeOGV2v921VNP5Y552BaoFXmTR2CB3e5EtwBSF5abmALTsmffI1m+TDAiVp/Jc8xW93yQ135du5p8OEUNvl1oFyTE9iz7yseTHIX9uxGlnvJGexoaMoCASoJCRrfasUdxvsS3gGOYvAEagKyU8WI0+bvir/ohGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hsIzdf3O; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCC63C2BC9E;
-	Wed, 11 Mar 2026 07:35:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773214556;
-	bh=N9JsIgwE9McaCLlcfRpcZ+hjDAdDPG1Ws2WMZXuiqJc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hsIzdf3O0jQfojByeN6NVrvYIDR97gvgPUgj5XcwqVLiT+NVIuMji7cdqoRfLGOQr
-	 +VPb9gwvRKSWulxHQ79P3CtBZLGG+1jr7XXg0WqG8TvmDxjg+BMW/YwsJDqTdpcry8
-	 Tc6GqT7J2WgUp9lBmLHi9Pe3OT82DuV6S2WbYxZ39HzWtwJHU4VnuDnwgI+2pq+p0v
-	 iLmmgHycVpN5f2I57hm0KEQU9b16P8kwsMcNxewNVVrflNyKQMsYCAiQEhovYxQPOQ
-	 1AstDrkntey+z6DYP9rL1Ro4vNGTNTty6fFEjcn+8j3J0pbeg06l/glaGrSCZyIfTL
-	 ak7SkKsrR0dZA==
-Message-ID: <eb4bd3f1-60f6-4c05-88ea-7a215d2b4849@kernel.org>
-Date: Wed, 11 Mar 2026 08:35:51 +0100
+	s=arc-20240116; t=1773215618; c=relaxed/simple;
+	bh=dAl8NeMgNapqy+jg71daPB461jC6qFq23REAFP6hsJc=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=VY0zn70ezznkvU1EPiAHt/audifq4tCzsbCqx5fDdQozNxQPrNtBQkMpx+f6i1Eu6REBWqwacq4pfi4iEbb5OR81ccwTU+BbAa3qVxeMiXB1Nc07n4Ol4c+0T1hK0RX465JMwxRl8RnIWSBiqBtJHDGibYOG4Fqo9hP4Ur9al4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=eNCkmbvr; arc=none smtp.client-ip=65.21.61.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
+Received: from [IPV6:2a02:842b:8136:1:f505:bf45:64da:2dc5] (2A02-842b-8136-0001-f505-BF45-64da-2Dc5.rev.sfr.net [IPv6:2a02:842b:8136:1:f505:bf45:64da:2dc5])
+	by courrier.aliel.fr (Postfix) with ESMTPSA id 00C2F40244;
+	Wed, 11 Mar 2026 07:53:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
+	s=courrier-s1; t=1773215603;
+	bh=dAl8NeMgNapqy+jg71daPB461jC6qFq23REAFP6hsJc=;
+	h=Date:From:Subject:To:Cc:References:In-Reply-To;
+	b=eNCkmbvrcD82029VT051OXjGWw6/WSjov/+pQtD7O5pATqLvP2IuuAft9Cs+hrSrH
+	 MeKgQGnartdh8PMu3Sa28ezkl//osy6fdg6LVXOa6jImma6Q87qvBE+oKXdDPr7Fy0
+	 DhMhz2dA5kkzFPGJgCeWvatvh65P9O9X+U/U44UA=
+Message-ID: <b6677544-d679-4f01-bcce-f9ce1518f942@aliel.fr>
+Date: Wed, 11 Mar 2026 08:53:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Pascal Eberhard <pascal.eberhard@se.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20260303102029.147359-1-herve.codina@bootlin.com>
- <abCWATS9MiRhcqlM@shikoro>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+User-Agent: Mozilla Thunderbird Beta
+From: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
+To: Jian Hu <jian.hu@amlogic.com>
+Cc: devicetree <devicetree@vger.kernel.org>,
+ linux-clk <linux-clk@vger.kernel.org>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Stephen Boyd <sboyd@kernel.org>, Michael Turquette
+ <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20260305074328.639993-1-jian.hu@amlogic.com>
+ <20260305074328.639993-4-jian.hu@amlogic.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <abCWATS9MiRhcqlM@shikoro>
+In-Reply-To: <20260305074328.639993-4-jian.hu@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 6186C25E2DB
+X-Rspamd-Queue-Id: 08A1025E41D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273917-lists,devicetree=lfdr.de];
+	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273916-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
+	DMARC_NA(0.00)[aliel.fr];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,baylibre.com,linaro.org,googlemail.com,kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	NEURAL_HAM(-0.00)[-0.999];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[aliel.fr:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 10/03/2026 23:06, Wolfram Sang wrote:
-> On Tue, Mar 03, 2026 at 11:20:29AM +0100, Herve Codina (Schneider Electric) wrote:
->> When checking dts involving the r9a06g032.dtsi file, the following kind
->> of warnings are reported:
->>    Missing property '#address-cells' in node xxx, using 0 as fallback
->>
->> Indeed, #address-cells is not present in the GIC interrupt controller
->> node.
->>
->> Fix it adding the missing property.
->>
->> No functional change.
->>
->> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+On 3/5/26 8:43 AM, Jian Hu wrote:
+> Add the required clock controller nodes for Amlogic T7 SoC family:
+> - SCMI clock controller
+> - PLL clock controller
+> - Peripheral clock controller
 > 
-> How did you trigger this? It doesn't show up with the upstream DTs for
-> N1D. Can you share the snippet which causes the problem for you?
+> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
+>  1 file changed, 125 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> index 6510068bcff9..6ea1b583b13d 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+> @@ -6,6 +6,9 @@
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/power/amlogic,t7-pwrc.h>
+>  #include "amlogic-t7-reset.h"
+> +#include <dt-bindings/clock/amlogic,t7-scmi.h>
+> +#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+> +#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
+>  
+>  / {
+>  	interrupt-parent = <&gic>;
+> @@ -201,6 +204,33 @@ pwrc: power-controller {
+>  		};
+>  	};
+>  
+> +	sram@f7042000 {
+> +		compatible = "mmio-sram";
 
-That's just standard DTC warning. I was fixing most of the arm64
-platforms already:
+Applying your patches shows the following errors
 
-https://lore.kernel.org/all/?q=f%3Akrzysztof+%22Add+default+GIC+address+cells%22
 
+[    0.019608] sram sram@f7042000: error -EINVAL: invalid resource (null)
+[    0.019622] sram sram@f7042000: could not map SRAM registers
+[    0.019627] sram sram@f7042000: probe with driver sram failed with
+error -22
+
+Adding a reg remove those errors on kernel logs
+reg = <0x0 0xf7042000 0x0 0x100>;
+
+Can you have a look on this ?
+
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0x0 0xf7042000 0x100>;
+> +
+> +		scmi_shmem: sram@0 {
+> +			compatible = "arm,scmi-shmem";
+> +			reg = <0x0 0x100>;
+> +		};
+> +	};
+> +
+> +	firmware {
+> +		scmi: scmi {
+> +			compatible = "arm,scmi-smc";
+> +			arm,smc-id = <0x820000c1>;
+> +			shmem = <&scmi_shmem>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			scmi_clk: protocol@14 {
+> +				reg = <0x14>;
+> +				#clock-cells = <1>;
+> +			};
+> +		};
+> +	};
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		#address-cells = <2>;
+> @@ -224,6 +254,42 @@ apb4: bus@fe000000 {
+>  			#size-cells = <2>;
+>  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>  
+> +			clkc_periphs:clock-controller@0 {
+> +				compatible = "amlogic,t7-peripherals-clkc";
+> +				reg = <0x0 0x0 0x0 0x1c8>;
+> +				#clock-cells = <1>;
+> +				clocks = <&xtal>,
+> +					 <&scmi_clk CLKID_SYS_CLK>,
+> +					 <&scmi_clk CLKID_FIXED_PLL>,
+> +					 <&scmi_clk CLKID_FCLK_DIV2>,
+> +					 <&scmi_clk CLKID_FCLK_DIV2P5>,
+> +					 <&scmi_clk CLKID_FCLK_DIV3>,
+> +					 <&scmi_clk CLKID_FCLK_DIV4>,
+> +					 <&scmi_clk CLKID_FCLK_DIV5>,
+> +					 <&scmi_clk CLKID_FCLK_DIV7>,
+> +					 <&hifi CLKID_HIFI_PLL>,
+> +					 <&gp0 CLKID_GP0_PLL>,
+> +					 <&gp1 CLKID_GP1_PLL>,
+> +					 <&mpll CLKID_MPLL1>,
+> +					 <&mpll CLKID_MPLL2>,
+> +					 <&mpll CLKID_MPLL3>;
+> +				clock-names = "xtal",
+> +					      "sys",
+> +					      "fix",
+> +					      "fdiv2",
+> +					      "fdiv2p5",
+> +					      "fdiv3",
+> +					      "fdiv4",
+> +					      "fdiv5",
+> +					      "fdiv7",
+> +					      "hifi",
+> +					      "gp0",
+> +					      "gp1",
+> +					      "mpll1",
+> +					      "mpll2",
+> +					      "mpll3";
+> +			};
+> +
+>  			reset: reset-controller@2000 {
+>  				compatible = "amlogic,t7-reset";
+>  				reg = <0x0 0x2000 0x0 0x98>;
+> @@ -234,6 +300,7 @@ watchdog@2100 {
+>  				compatible = "amlogic,t7-wdt";
+>  				reg = <0x0 0x2100 0x0 0x10>;
+>  				clocks = <&xtal>;
+> +
+>  			};
+>  
+>  			periphs_pinctrl: pinctrl@4000 {
+> @@ -269,6 +336,64 @@ uart_a: serial@78000 {
+>  				status = "disabled";
+>  			};
+>  
+> +			gp0:clock-controller@8080 {
+> +				compatible = "amlogic,t7-gp0-pll";
+> +				reg = <0x0 0x8080 0x0 0x20>;
+> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+> +				clock-names = "in0";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			gp1:clock-controller@80c0 {
+> +				compatible = "amlogic,t7-gp1-pll";
+> +				reg = <0x0 0x80c0 0x0 0x14>;
+> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+> +				clock-names = "in0";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			hifi:clock-controller@8100 {
+> +				compatible = "amlogic,t7-hifi-pll";
+> +				reg = <0x0 0x8100 0x0 0x20>;
+> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
+> +				clock-names = "in0";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			pcie:clock-controller@8140 {
+> +				compatible = "amlogic,t7-pcie-pll";
+> +				reg = <0x0 0x8140 0x0 0x1c>;
+> +				clocks = <&scmi_clk CLKID_PCIE_OSC>;
+> +				clock-names = "in0";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			mpll:clock-controller@8180 {
+> +				compatible = "amlogic,t7-mpll";
+> +				reg = <0x0 0x8180 0x0 0x28>;
+> +				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
+> +				clock-names = "in0";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			hdmi:clock-controller@81c0 {
+> +				compatible = "amlogic,t7-hdmi-pll";
+> +				reg = <0x0 0x81c0 0x0 0x20>;
+> +				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
+> +				clock-names = "in0";
+> +				#clock-cells = <1>;
+> +			};
+> +
+> +			mclk:clock-controller@8300 {
+> +				compatible = "amlogic,t7-mclk-pll";
+> +				reg = <0x0 0x8300 0x0 0x18>;
+> +				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
+> +					 <&xtal>,
+> +					 <&scmi_clk CLKID_FCLK_50M>;
+> +				clock-names = "in0", "in1", "in2";
+> +				#clock-cells = <1>;
+> +			};
+> +
+>  			sec_ao: ao-secure@10220 {
+>  				compatible = "amlogic,t7-ao-secure",
+>  					     "amlogic,meson-gx-ao-secure",
+
+
+-- 
 Best regards,
-Krzysztof
+Ronald
 
