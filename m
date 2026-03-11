@@ -1,248 +1,142 @@
-Return-Path: <devicetree+bounces-273944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273945-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCHdF4kosWkBrgIAu9opvQ
-	(envelope-from <devicetree+bounces-273944-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:32:09 +0100
+	id uBneJzUpsWkBrgIAu9opvQ
+	(envelope-from <devicetree+bounces-273945-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:35:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB45925F5DF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:32:08 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD98525F6A3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:35:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 36D6130F67A4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:29:02 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 83D8B305327D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3BA13AC0FD;
-	Wed, 11 Mar 2026 08:29:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A58C3B6362;
+	Wed, 11 Mar 2026 08:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ne7W1lko"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="I3QH+Xuc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D9435DA7C
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF953B38B0
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:29:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773217740; cv=none; b=A0DDEw25l6aHLx/I6DjjgFX/TYsBkCvtlGWWrJzLXb5PLzPfLPTJmTH33L2CqVMmY8B+6NsvSpeIRa7Te2/GAHqRt9ZFYUrvUWNNb25RiRcUPsLd4eh2OyGfgK7YlQarTHJlk00tBGlfsMPMZnbOFAXbjY1iNXfe4dO25+xaQn0=
+	t=1773217776; cv=none; b=XE7EGjO62ZAKESg35f3xecehWNYG6/xAQlCagFt/zTiRFgJgp+pTAkxxnfaoljcyxapY3Y8B1tFvb1nJpOHTVtUuazZAVJIK0UJnGEskl7tPG89KRFYfHlmtIMqtIb8kemwelwrfDo9QnRxzuLo0RW8d0qcWmLCHs173NO5InZ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773217740; c=relaxed/simple;
-	bh=eBpv+uJKhLTXdoUvn0kOvaW5xYXHP6HF9h6xB/Z8cZI=;
+	s=arc-20240116; t=1773217776; c=relaxed/simple;
+	bh=gwlTfr7vU13jo+B7K+RhuMhIRQGNp0Y8x670Pk/RspE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AT3IEUOVeaCKpMEMfxOwPDnv/Xp3rdRALeyBqQA0DyFOsJCzj9RI4VLkGaxuPUXbmmxbJRKdCaR/opuDX/YI0IBfbU9g4fcDDp89WIi3N6UJbRMVnHuiFI+P8dW6x8230FP/ThBNysorqrG0XM+f0zYN+6d0valx+Rsnu+h+W+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ne7W1lko; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-439b73f4ab4so10356457f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 01:28:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773217734; x=1773822534; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=y9oM+DK/RV/qo3ukczy7o4IQTGNLI7O8hgWG97LLkMs=;
-        b=Ne7W1lko1b5H8TTSWp+QKGbIiUiSZq+s0INE9MiBPboXJHv2M/WO33ZN1uEdTXxYjh
-         L272IEQe4W2IC/CKz4gSZ9vmyfcm9zsHqWCYTSiR20Dcg+z1OQZwppcVKMIdvRnNGp8b
-         QzNT+N3mNHF50ktgmKO0yBSDNhL+KZJykKrXXNNbsVFYe9MHRvjUs5AAP40eNU3tZIJO
-         0dnS6l/EmvJCo1cOfI3C8flRYfbnai2nP15lrCWs9Ez7a8oyx6d/AWCSpcH89wqyx0tE
-         WjmnjJhvC3m16D1Gih2o22nLqPtvzubMWOAnKU7K1/XUeEe73DoczemyjpJOujkR13nx
-         H3NA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773217734; x=1773822534;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y9oM+DK/RV/qo3ukczy7o4IQTGNLI7O8hgWG97LLkMs=;
-        b=k/XW7I+bfpy6rTu1hTvO9Iy2VTVGaxKD4uangJeOjFlQ4Fw60DeSraNSiAXiF4hJh2
-         eASlLAH5eDHw16JZkcD4iOWqmbIL7gWltQYE7K6gb8aas96/d+YAC5pmlmu6rxWwvZnX
-         kEm2MZ4yh1Ui8EecCAfLtlrObZhtrfRmPsoCxWuMKbknqnlTyOqf3NcBfK6mQqC0UTIs
-         8E160ty6ByRvX9Xhs1Yc8lknOfWLj4WljIF97mgWYpTVPGXIg5EpsFfUmpKoBnsJb9v+
-         WOhLzG7b6OiKeUfWkNlCy63EIq7SFPhRE7Sp8wd3ThPRCOQQzlHNQeZ8S1YCZVxoPsbX
-         3FGg==
-X-Forwarded-Encrypted: i=1; AJvYcCWm+lYR6UWEaOWL8zh8YTvW1pbioQCaz7i8T87NE19plTizBtDCsvGimRI9J4lHbqXIrY46Nyyojcqf@vger.kernel.org
-X-Gm-Message-State: AOJu0YztowsvEvScUhyiFh3NvbEVKd7TtrLSIqneR0LueWPPq+lLoEp8
-	REcCTh3H2bIZ1lgYD07LUYsW9qihZy+HH4X1yVzWDC4/4Xd+fdeCLb6qpWHiq4jLDfrznT8VPzA
-	OljT/
-X-Gm-Gg: ATEYQzxYsz6Yl/Fi/E1CYlAfehOUQWeHd2jfI1wfkNwYsqGuUamtrAOchZ3mhPtK9sz
-	7RL8KO9CpgZ2I+1UhQEjkXHiWdUomkHiDQIQzwFqs4bmzH0qyIkLYQuLjay2VqnCOQ4SjaW2RRG
-	Q5rPXg5Z80jXzetTAsDa/+Kuco7Pib4ZoQQj3IjiTSETxi2I7GzRhdLIrkVgbHr27rmgMjjjSAR
-	RtJJT6pLLz/Ns2hp8a+fwFJM8Kdy1ugkUGrRmLIhtvLaHf9sLoOEA26epFN7DPAp6nsiFG50PIH
-	6yVaTm5mq3qTImOxodcUyKfAwwbhBvVRMP35pqLweH5nY7hhzI0Bi+mThSAMYv0cXs2kpaEQL4j
-	d7lwhKoEGsHR6HgJhSl1xYrzxLvKChY+Xoubj4DKd1XR1ptKzcpnBcq58S6BH0IPM+pTqnb9X+D
-	TiPpIelUWni+rhrHyP0ZMAt9sYHwsXDTFE9go=
-X-Received: by 2002:a05:6000:22c6:b0:439:d928:d783 with SMTP id ffacd0b85a97d-439f8209999mr3197757f8f.30.1773217733955;
-        Wed, 11 Mar 2026 01:28:53 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff23:4441:1c2c:7aff:fe45:362e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439f81a0239sm4977441f8f.10.2026.03.11.01.28.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 01:28:53 -0700 (PDT)
-Date: Wed, 11 Mar 2026 09:28:43 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=t0kAZZic6zVXc8WVFj42aeIlF7qeVrVJuEAd8f7J5MGmf3Mtkh8bRHw3rdFSuuS+OAaW/3NHlMAvY44/jyQjkirjd946kfeItYmeFCSTWKqG1hE71oVPvmkhVyhAnFJTeY0L81rSTUHmVNrfXF6b4455MgXDvNNKisIB6u2Dnp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=I3QH+Xuc; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=gwlT
+	fr7vU13jo+B7K+RhuMhIRQGNp0Y8x670Pk/RspE=; b=I3QH+XucnnyTu3v7yH8j
+	ihOj5m1rSkSks+vcXyXsR5iKjTHh8TUs2HsPGNDncaW+mSwXMhzK57rLd5BDuzFh
+	1dsAG+4ZuoQNXj6GNwmnG7g3+ZAepdKpSPg3vx/XCJ6MnCqzy1X20j9HvjLw0NZm
+	l28WH5fMb8FoK2KLbAPKUw603nEXtaj5nGwZY3GEAw96uklmQ/xUa8nkScJ1HUdh
+	xZ+WMnp52obrycbz5uodYZOsD6NKzethSB2XSORsW3XyVltJ/m9swJLkAg+yXrB0
+	Lmwb46ObjK0aO7/rDpoP2R7slyRrZZpiOR7rSXTCAx3nrTHOqkx+vOWTE14fdr9N
+	Vg==
+Received: (qmail 3563424 invoked from network); 11 Mar 2026 09:29:21 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Mar 2026 09:29:21 +0100
+X-UD-Smtp-Session: l3s3148p1@sjW/brtMZrQujnut
+Date: Wed, 11 Mar 2026 09:29:20 +0100
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Luca Weiss <luca.weiss@fairphone.com>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, aiqun.yu@oss.qualcomm.com,
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-	yijie.yang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Gokul Krishna Krishnakumar <gokul.krishnakumar@oss.qualcomm.com>
-Subject: Re: [PATCH v4 6/7] remoteproc: qcom: pas: Add late attach support
- for subsystems
-Message-ID: <abEnu_ID-wIMYpMB@linaro.org>
-References: <20260310-knp-soccp-v4-0-0a91575e0e7e@oss.qualcomm.com>
- <20260310-knp-soccp-v4-6-0a91575e0e7e@oss.qualcomm.com>
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
+Message-ID: <abEn4La90AJTthjj@ninjato>
+References: <20260303102029.147359-1-herve.codina@bootlin.com>
+ <abCWATS9MiRhcqlM@shikoro>
+ <20260311083021.259ffc9d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oGSmIdU1e1wqyPhk"
 Content-Disposition: inline
-In-Reply-To: <20260310-knp-soccp-v4-6-0a91575e0e7e@oss.qualcomm.com>
-X-Rspamd-Queue-Id: EB45925F5DF
+In-Reply-To: <20260311083021.259ffc9d@bootlin.com>
+X-Rspamd-Queue-Id: DD98525F6A3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-3.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273944-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	RCPT_COUNT_TWELVE(0.00)[19];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[sang-engineering.com];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	TAGGED_FROM(0.00)[bounces-273945-lists,devicetree=lfdr.de,renesas];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[stephan.gerhold@linaro.org,devicetree@vger.kernel.org];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,qualcomm.com:email]
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	FREEMAIL_CC(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 03:03:22AM -0700, Jingyi Wang wrote:
-> From: Gokul Krishna Krishnakumar <gokul.krishnakumar@oss.qualcomm.com>
-> 
-> Subsystems can be brought out of reset by entities such as bootloaders.
-> As the irq enablement could be later than subsystem bring up, the state
-> of subsystem should be checked by reading SMP2P bits and performing ping
-> test.
-> 
-> A new qcom_pas_attach() function is introduced. if a crash state is
-> detected for the subsystem, rproc_report_crash() is called. If the
-> subsystem is ready either at the first check or within a 5-second timeout
-> and the ping is successful, it will be marked as "attached". The ready
-> state could be set by either ready interrupt or handover interrupt.
-> 
-> If "early_boot" is set by kernel but "subsys_booted" is not completed
-> within the timeout, It could be the early boot feature is not supported
-> by other entities. In this case, the state will be marked as RPROC_OFFLINE
-> so that the PAS driver can load the firmware and start the remoteproc. As
-> the running state is set once attach function is called, the watchdog or
-> fatal interrupt received can be handled correctly.
-> 
-> Signed-off-by: Gokul Krishna Krishnakumar <gokul.krishnakumar@oss.qualcomm.com>
-> Co-developed-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  drivers/remoteproc/qcom_q6v5.c      |  88 +++++++++++++++++++++++++++++-
->  drivers/remoteproc/qcom_q6v5.h      |  17 +++++-
->  drivers/remoteproc/qcom_q6v5_adsp.c |   2 +-
->  drivers/remoteproc/qcom_q6v5_mss.c  |   2 +-
->  drivers/remoteproc/qcom_q6v5_pas.c  | 103 ++++++++++++++++++++++++++++++++++--
->  drivers/remoteproc/qcom_q6v5_wcss.c |   2 +-
->  6 files changed, 204 insertions(+), 10 deletions(-)
-> 
-> [...]
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> index 46204da046fa..4700d111e058 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> @@ -36,6 +36,8 @@
->  
->  #define MAX_ASSIGN_COUNT 3
->  
-> +#define EARLY_ATTACH_TIMEOUT_MS 5000
-> +
->  struct qcom_pas_data {
->  	int crash_reason_smem;
->  	const char *firmware_name;
-> [...]
-> @@ -510,6 +521,80 @@ static unsigned long qcom_pas_panic(struct rproc *rproc)
->  	return qcom_q6v5_panic(&pas->q6v5);
->  }
->  
-> +static int qcom_pas_attach(struct rproc *rproc)
-> +{
-> +	int ret;
-> +	struct qcom_pas *pas = rproc->priv;
-> +	bool ready_state;
-> +	bool crash_state;
-> +
-> +	pas->q6v5.running = true;
-> +	ret = irq_get_irqchip_state(pas->q6v5.fatal_irq,
-> +				    IRQCHIP_STATE_LINE_LEVEL, &crash_state);
-> +
-> +	if (!ret && crash_state) {
-> +		dev_err(pas->dev, "Sub system has crashed before driver probe\n");
-> +		rproc_report_crash(rproc, RPROC_FATAL_ERROR);
-> +		ret = -EINVAL;
-> +		goto disable_running;
-> +	}
-> +
-> +	if (!ret)
-> +		ret = irq_get_irqchip_state(pas->q6v5.ready_irq,
-> +					    IRQCHIP_STATE_LINE_LEVEL, &ready_state);
-> +
-> +	/*
-> +	 * smp2p allocate irq entry can be delayed, irq_get_irqchip_state will get -ENODEV,
-> +	 * the 5 seconds timeout is set to wait for this, after the entry is allocated, smp2p
-> +	 * will call the qcom_smp2p_intr and complete the timeout in the ISR.
-> +	 */
-> +	if (unlikely(ret == -ENODEV) || unlikely(!ready_state)) {
-> +		ret = wait_for_completion_timeout(&pas->q6v5.subsys_booted,
-> +						  msecs_to_jiffies(EARLY_ATTACH_TIMEOUT_MS));
 
-I have asked this back in October for v2 [1] and again in December for
-v3 [2], but you still haven't really answered it. Please answer all
-of the following questions:
+--oGSmIdU1e1wqyPhk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
- 1. What is the use case for this timeout?
- 2. In which situations will the start of the remoteproc be delayed?
- 3. Why does the boot firmware not wait until the remoteproc is fully
-    started before it continues booting?
- 4. If the boot firmware gives up control before the remoteproc is fully
-    started, how do you ensure that the handover resources are
-    maintained until the remoteproc signals handover?
 
-v4 looks a bit less dangerous now since you don't enable the handover
-IRQ anymore. Still, I don't understand how this would work in practice.
-Removing this timeout would be preferable because then we could actually
-support firmware versions that do not automatically start the remoteproc
-without having to delay the boot process for 5s.
+> I compiled the dtb with W=1 and CHECK_DTBS=1
 
-Thanks,
-Stephan
+W=1 adds extra warnings? I am surprised I didn't know this yet. Updated
+my build scripts, thanks! Confirming the issue.
 
-[1]: https://lore.kernel.org/r/aQHmanEiWmEac7aV@linaro.org/
-[2]: https://lore.kernel.org/r/aUsUhX8Km275qonq@linaro.org/
+
+--oGSmIdU1e1wqyPhk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmmxJ9sACgkQFA3kzBSg
+KbYE7g/+ON2Zj2rgKu1i5xUsyQZHtpmT1Z01qs6mK8hgSsCaAsH5+4nJ2pKzhb92
+7baPPzeWQGJXPjJGDI9mUqfDcPaE+1FJ9Q/keXwIyUWqxTYWR81pHx3u3TDr/vMw
+X6lAMr1y3k3tOtlXWFbMyzV2WEPY63e8Z03MeWq937SGyry5Kbced1d0griUKiBk
++bwU8NBftpX1Ju+Eq9ZDAwbIZninS5dPcgEMrR3TJU7Fee6dbN8bjjwSRUxR/iBI
+6XPZ1PD56VH3caseUDvVPpOfBFuilWz0AxU1iJ9qji9G4z6VxoC63rrrG5xCVt3C
+PkDW0gS8K+clydtabvrQPJVfJFIGL52F1vAsbSk2NVxDxSoRCNAczlY16jorKolc
+NxjDkMfPb8nn7kzQgIUmILcP6y07dbSS9KiSA4k0CB5CIfQJqR2eZFVFBe+1AjKs
+4nINsNVx9iWZ5aFa2geL32U7+QyOAJgv1ij++H+ymu3vkJXPOum4oBtXywnoj/DS
+P734yI78T8J9WyFl9fmQW5x/etUmSaiyzv7iZ/NqyvydARZJG5TvMEkJtH4JOkLf
+HiCWGRB89VnH5/qm+vNWpahR3e+aM5FpL77b4i7kX7EsccVdWFqxYikc89Evz3fc
+lAE46ydZzTAFA/Usqh/Xgy/r8lWZyQkqDsJtbXooOf9PgtFtd0E=
+=0thC
+-----END PGP SIGNATURE-----
+
+--oGSmIdU1e1wqyPhk--
 
