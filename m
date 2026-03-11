@@ -1,304 +1,242 @@
-Return-Path: <devicetree+bounces-273917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273919-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFqWLNAfsWnlrAIAu9opvQ
-	(envelope-from <devicetree+bounces-273917-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:54:56 +0100
+	id eOm1AaUhsWkOrQIAu9opvQ
+	(envelope-from <devicetree+bounces-273919-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:02:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08A1025E41D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:54:56 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB8625E5A8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:02:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 36114303EB7A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:54:53 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 7C69532C0D00
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3759371899;
-	Wed, 11 Mar 2026 07:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B473B5305;
+	Wed, 11 Mar 2026 07:54:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b="eNCkmbvr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ofuhcTQo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from courrier.aliel.fr (pouet.aliel.fr [65.21.61.41])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9F3211A05;
-	Wed, 11 Mar 2026 07:53:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.21.61.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913623B38B6;
+	Wed, 11 Mar 2026 07:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773215618; cv=none; b=HvPS3fGM/JDt7U5J3dTBvqm/xZ0ywJT7QMAXpx1w6wOPYE8Y7BUMtsuAJFPtRoHluYykhyVjVKuG83Qr2p7gGctB5Qrwqhv6qe3fz8oI9QkONMH4kuzC5PXFFAv5tTVHs69ivxoc0R6Vb7eTDgUud8ILhJ2HO3Il0+qpH6+STL8=
+	t=1773215642; cv=none; b=oghicAm8+EWPWqSppYCgD0/l6l/+/wBE+Ix2LLJ1+1b1W5pbRjfTB4clevhVFXff5kse0/egNwyPHNELrO0+kqxlzN9OH6WHqJUS6sR+PDdf//x+SFQA/a/KZzahXC6Hh18A0I77khO5nAtLzh+TBaqZ6TzS2kn7VZq2gbjtnaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773215618; c=relaxed/simple;
-	bh=dAl8NeMgNapqy+jg71daPB461jC6qFq23REAFP6hsJc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=VY0zn70ezznkvU1EPiAHt/audifq4tCzsbCqx5fDdQozNxQPrNtBQkMpx+f6i1Eu6REBWqwacq4pfi4iEbb5OR81ccwTU+BbAa3qVxeMiXB1Nc07n4Ol4c+0T1hK0RX465JMwxRl8RnIWSBiqBtJHDGibYOG4Fqo9hP4Ur9al4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr; spf=pass smtp.mailfrom=aliel.fr; dkim=pass (1024-bit key) header.d=aliel.fr header.i=@aliel.fr header.b=eNCkmbvr; arc=none smtp.client-ip=65.21.61.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=aliel.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aliel.fr
-Received: from [IPV6:2a02:842b:8136:1:f505:bf45:64da:2dc5] (2A02-842b-8136-0001-f505-BF45-64da-2Dc5.rev.sfr.net [IPv6:2a02:842b:8136:1:f505:bf45:64da:2dc5])
-	by courrier.aliel.fr (Postfix) with ESMTPSA id 00C2F40244;
-	Wed, 11 Mar 2026 07:53:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aliel.fr;
-	s=courrier-s1; t=1773215603;
-	bh=dAl8NeMgNapqy+jg71daPB461jC6qFq23REAFP6hsJc=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To;
-	b=eNCkmbvrcD82029VT051OXjGWw6/WSjov/+pQtD7O5pATqLvP2IuuAft9Cs+hrSrH
-	 MeKgQGnartdh8PMu3Sa28ezkl//osy6fdg6LVXOa6jImma6Q87qvBE+oKXdDPr7Fy0
-	 DhMhz2dA5kkzFPGJgCeWvatvh65P9O9X+U/U44UA=
-Message-ID: <b6677544-d679-4f01-bcce-f9ce1518f942@aliel.fr>
-Date: Wed, 11 Mar 2026 08:53:00 +0100
+	s=arc-20240116; t=1773215642; c=relaxed/simple;
+	bh=5BH0XLykQgNrQNKOTXesrRDorvTmEgpTDI3sJGb8+u8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=U4pLwqlmeNIwPGFDlpq+M7bvFMMNqYOhu3It+t7HfBaoqJu4Lle+kL4147Bhwe3RPjysflfUSUZKi2LfDMZIdLhaOfQTGTD143kxMzZmvd1J1ueiB5Ds+1K32oak7LuCBtMjVLa3+Kki59F2TGbwdBot7bpTc3SiTpsmlxNrAzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ofuhcTQo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E9BD9C4CEF7;
+	Wed, 11 Mar 2026 07:54:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773215642;
+	bh=5BH0XLykQgNrQNKOTXesrRDorvTmEgpTDI3sJGb8+u8=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=ofuhcTQoPjfXY+ytNgQgZ06azHReATTnhP/kIlPqAwIDeGcTL0bmxLEMR5AQ/2FY8
+	 WtUKYZnuMmhws31G3QyP5yguVktnMZJohg9qFBPfYxgCLmDPWJhge/co0cvP1bIwTL
+	 3is+lNciVoro/NibfUjenMf7vaXMv0O1r1fXsLuIoI3XaWhQF4BGGOvixSYYNOZKZl
+	 uOd+YUzkr5Dhs0Uc3+4rWVXbrTW6Cz5b5STIUNOaxfxkNxhdohxeQd3sf6fWZOdBbJ
+	 s868bpHfqG/NbpV3nE31F1WTJ/zv/YqoxHoeLobSaH7s3T6DjRhiyPeswerO6C/9lx
+	 miMTPasYJU31Q==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D242BFD0649;
+	Wed, 11 Mar 2026 07:54:01 +0000 (UTC)
+From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
+Subject: [PATCH v9 0/5] Support multi-channel IRQs in stmmac platform
+ drivers
+Date: Wed, 11 Mar 2026 08:53:55 +0100
+Message-Id: <20260311-dwmac_multi_irq-v9-0-f0c03ef8d01f@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Ronald Claveau <linux-kernel-dev@aliel.fr>
-Subject: Re: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
-To: Jian Hu <jian.hu@amlogic.com>
-Cc: devicetree <devicetree@vger.kernel.org>,
- linux-clk <linux-clk@vger.kernel.org>,
- linux-amlogic <linux-amlogic@lists.infradead.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Stephen Boyd <sboyd@kernel.org>, Michael Turquette
- <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20260305074328.639993-1-jian.hu@amlogic.com>
- <20260305074328.639993-4-jian.hu@amlogic.com>
-Content-Language: en-US
-In-Reply-To: <20260305074328.639993-4-jian.hu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 08A1025E41D
+X-B4-Tracking: v=1; b=H4sIAJMfsWkC/23S22rDMAwG4Fcpvl6KLR9i92rvMUaxFWs1LEmXd
+ FlHybvPKRsNcy5/gT4LyTc2xiHFkR12NzbEKY2p73JwTzuGJ9+9xSo1OTPgoAVwVzVfrcdj+/l
+ +Scc0fFSusWS4MoAoWO46D5HS9S6+vOZ8SuOlH77vD0xiqf5aQhXWJCpeSaMN+MCjo/q5H8d9d
+ z3vsW/Zok3wJxieiVKARQgWHEje8FqUglwLshRkFhC1JAjROrMhqLVgS0FlwQJ5qQgJCEpBPwT
+ YmkEvAqFxzmvyqErBrAVdCiYLoHQg0dRCcCyFei2YUqizQJaiDC47YWMG+xDkxs+Y7CLwvMuAV
+ gj/75rzPP8A12QUZ34CAAA=
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
+ Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+ NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>
+Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, devicetree@vger.kernel.org, rmk+kernel@armlinux.org.uk, 
+ vladimir.oltean@nxp.com, boon.khai.ng@altera.com, 
+ "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773215640; l=4657;
+ i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
+ bh=5BH0XLykQgNrQNKOTXesrRDorvTmEgpTDI3sJGb8+u8=;
+ b=O6ILZtXXVL4OJaO8m37PvONztWwM2ZzLUzFvenQDmqBrZWN48/OBmVObsizApJWse2xwGE0wA
+ ejqrlcHhchvC7tgNrrMWGbSUWqYdyT3E2inNQ38LeX9K/r2nTWH+Kl0
+X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
+ pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
+X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
+ auth_id=217
+X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Reply-To: jan.petrous@oss.nxp.com
+X-Rspamd-Queue-Id: 5CB8625E5A8
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_DKIM_ALLOW(-0.20)[aliel.fr:s=courrier-s1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273917-lists,devicetree=lfdr.de];
-	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-273919-lists,devicetree=lfdr.de,jan.petrous.oss.nxp.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[aliel.fr];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,baylibre.com,linaro.org,googlemail.com,kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	NEURAL_HAM(-0.00)[-0.999];
+	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linux-kernel-dev@aliel.fr,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[aliel.fr:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
+	HAS_REPLYTO(0.00)[jan.petrous@oss.nxp.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.nxp.com:replyto,oss.nxp.com:mid]
 X-Rspamd-Action: no action
 
-On 3/5/26 8:43 AM, Jian Hu wrote:
-> Add the required clock controller nodes for Amlogic T7 SoC family:
-> - SCMI clock controller
-> - PLL clock controller
-> - Peripheral clock controller
-> 
-> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
->  1 file changed, 125 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> index 6510068bcff9..6ea1b583b13d 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> @@ -6,6 +6,9 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/power/amlogic,t7-pwrc.h>
->  #include "amlogic-t7-reset.h"
-> +#include <dt-bindings/clock/amlogic,t7-scmi.h>
-> +#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
-> +#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
->  
->  / {
->  	interrupt-parent = <&gic>;
-> @@ -201,6 +204,33 @@ pwrc: power-controller {
->  		};
->  	};
->  
-> +	sram@f7042000 {
-> +		compatible = "mmio-sram";
+The stmmac core supports two interrupt modes, controlled by the
+flag STMMAC_FLAG_MULTI_MSI_EN:
 
-Applying your patches shows the following errors
+- When the flag is set, the driver uses multi-channel IRQ mode (Multi-IRQ).
+- Otherwise, a single IRQ line is requested (aka MAC-IRQ):
 
+static int stmmac_request_irq(struct net_device *dev)
+{
+        /* Request the IRQ lines */
+        if (priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN)
+                ret = stmmac_request_irq_multi_msi(dev);
+        else
+                ret = stmmac_request_irq_single(dev);
+}
 
-[    0.019608] sram sram@f7042000: error -EINVAL: invalid resource (null)
-[    0.019622] sram sram@f7042000: could not map SRAM registers
-[    0.019627] sram sram@f7042000: probe with driver sram failed with
-error -22
+At present, only PCI drivers (Intel and Loongson) make use of the Multi-IRQ
+mode. This concept can be extended to DT-based embedded glue drivers
+(dwmac-xxx.c).
 
-Adding a reg remove those errors on kernel logs
-reg = <0x0 0xf7042000 0x0 0x100>;
+This series adds support for reading per-channel IRQs from the DT node and
+reuses the existing STMMAC_FLAG_MULTI_MSI_EN flag to enable multi-IRQ
+operation in platform drivers.
 
-Can you have a look on this ?
+The final decision if Multi-IRQ gets enabled remains on glue driver
+to allow implementing any reguirements/limitions the focused platform
+needs.
 
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0 0x0 0xf7042000 0x100>;
-> +
-> +		scmi_shmem: sram@0 {
-> +			compatible = "arm,scmi-shmem";
-> +			reg = <0x0 0x100>;
-> +		};
-> +	};
-> +
-> +	firmware {
-> +		scmi: scmi {
-> +			compatible = "arm,scmi-smc";
-> +			arm,smc-id = <0x820000c1>;
-> +			shmem = <&scmi_shmem>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			scmi_clk: protocol@14 {
-> +				reg = <0x14>;
-> +				#clock-cells = <1>;
-> +			};
-> +		};
-> +	};
-> +
->  	soc {
->  		compatible = "simple-bus";
->  		#address-cells = <2>;
-> @@ -224,6 +254,42 @@ apb4: bus@fe000000 {
->  			#size-cells = <2>;
->  			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->  
-> +			clkc_periphs:clock-controller@0 {
-> +				compatible = "amlogic,t7-peripherals-clkc";
-> +				reg = <0x0 0x0 0x0 0x1c8>;
-> +				#clock-cells = <1>;
-> +				clocks = <&xtal>,
-> +					 <&scmi_clk CLKID_SYS_CLK>,
-> +					 <&scmi_clk CLKID_FIXED_PLL>,
-> +					 <&scmi_clk CLKID_FCLK_DIV2>,
-> +					 <&scmi_clk CLKID_FCLK_DIV2P5>,
-> +					 <&scmi_clk CLKID_FCLK_DIV3>,
-> +					 <&scmi_clk CLKID_FCLK_DIV4>,
-> +					 <&scmi_clk CLKID_FCLK_DIV5>,
-> +					 <&scmi_clk CLKID_FCLK_DIV7>,
-> +					 <&hifi CLKID_HIFI_PLL>,
-> +					 <&gp0 CLKID_GP0_PLL>,
-> +					 <&gp1 CLKID_GP1_PLL>,
-> +					 <&mpll CLKID_MPLL1>,
-> +					 <&mpll CLKID_MPLL2>,
-> +					 <&mpll CLKID_MPLL3>;
-> +				clock-names = "xtal",
-> +					      "sys",
-> +					      "fix",
-> +					      "fdiv2",
-> +					      "fdiv2p5",
-> +					      "fdiv3",
-> +					      "fdiv4",
-> +					      "fdiv5",
-> +					      "fdiv7",
-> +					      "hifi",
-> +					      "gp0",
-> +					      "gp1",
-> +					      "mpll1",
-> +					      "mpll2",
-> +					      "mpll3";
-> +			};
-> +
->  			reset: reset-controller@2000 {
->  				compatible = "amlogic,t7-reset";
->  				reg = <0x0 0x2000 0x0 0x98>;
-> @@ -234,6 +300,7 @@ watchdog@2100 {
->  				compatible = "amlogic,t7-wdt";
->  				reg = <0x0 0x2100 0x0 0x10>;
->  				clocks = <&xtal>;
-> +
->  			};
->  
->  			periphs_pinctrl: pinctrl@4000 {
-> @@ -269,6 +336,64 @@ uart_a: serial@78000 {
->  				status = "disabled";
->  			};
->  
-> +			gp0:clock-controller@8080 {
-> +				compatible = "amlogic,t7-gp0-pll";
-> +				reg = <0x0 0x8080 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			gp1:clock-controller@80c0 {
-> +				compatible = "amlogic,t7-gp1-pll";
-> +				reg = <0x0 0x80c0 0x0 0x14>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			hifi:clock-controller@8100 {
-> +				compatible = "amlogic,t7-hifi-pll";
-> +				reg = <0x0 0x8100 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_TOP_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			pcie:clock-controller@8140 {
-> +				compatible = "amlogic,t7-pcie-pll";
-> +				reg = <0x0 0x8140 0x0 0x1c>;
-> +				clocks = <&scmi_clk CLKID_PCIE_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			mpll:clock-controller@8180 {
-> +				compatible = "amlogic,t7-mpll";
-> +				reg = <0x0 0x8180 0x0 0x28>;
-> +				clocks = <&scmi_clk CLKID_FIXED_PLL_DCO>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			hdmi:clock-controller@81c0 {
-> +				compatible = "amlogic,t7-hdmi-pll";
-> +				reg = <0x0 0x81c0 0x0 0x20>;
-> +				clocks = <&scmi_clk CLKID_HDMI_PLL_OSC>;
-> +				clock-names = "in0";
-> +				#clock-cells = <1>;
-> +			};
-> +
-> +			mclk:clock-controller@8300 {
-> +				compatible = "amlogic,t7-mclk-pll";
-> +				reg = <0x0 0x8300 0x0 0x18>;
-> +				clocks = <&scmi_clk CLKID_MCLK_PLL_OSC>,
-> +					 <&xtal>,
-> +					 <&scmi_clk CLKID_FCLK_50M>;
-> +				clock-names = "in0", "in1", "in2";
-> +				#clock-cells = <1>;
-> +			};
-> +
->  			sec_ao: ao-secure@10220 {
->  				compatible = "amlogic,t7-ao-secure",
->  					     "amlogic,meson-gx-ao-secure",
+NXP S32G2/S32G3/S32R SoCs integrate the DWMAC IP with multi-channel
+interrupt support. The dwmac-s32.c driver change is provided as an example of
+enabling multi-IRQ mode for non-PCI drivers.
 
+Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+---
+Changes in v9:
+- Changed interrupt minItems from 11 to 1 to support backward compatibility
+  and removed the 'Reviewed-by' accordingly for patch 4
+- Link to v8: https://lore.kernel.org/r/20260309-dwmac_multi_irq-v8-0-f0cc5bc811a7@oss.nxp.com
 
--- 
+Changes in v8:
+- Rewritten queue irq getter, based on Russell's (ready-to-use) hint
+- Renamed s32_gmac_validate_multi_irq() to s32_gmac_setup_multi_irq() to
+  better describe the functionality
+- Fixed typo in commit message for patch 5
+- Renamed label in patch 5 to make it more descriptive
+- Link to v7: https://lore.kernel.org/r/20260226-dwmac_multi_irq-v7-0-f8fe3b945bb4@oss.nxp.com
+
+Changes in v7:
+- Optimized 2 similar loops on queue rx/tx irq reading
+- Swap the yaml and dts patches with hope it fix dt_binding_check failing
+- Link to v6: https://lore.kernel.org/r/20260225-dwmac_multi_irq-v6-0-245bf1d7110c@oss.nxp.com
+
+Changes in v6:
+- Added 2 mintainers which were not covered by 'b4 prep --auto-to-cc'
+  but complained on patchwork check
+- Added helper macro for loop over queue-based arrays (inspired by AI
+  review)
+- Added full validation on all channel IRQs
+- Link to v5: https://lore.kernel.org/r/20260223-dwmac_multi_irq-v5-0-8fc699a5fac4@oss.nxp.com
+
+Changes in v5:
+- fixed typo in "symetrical"
+- cleaned negative return value on platform_get_irq_byname_optional()
+  in stmmac_get_platform_resources()
+- rebased on v7.0-rc1
+- Link to v4: https://lore.kernel.org/r/20260128-dwmac_multi_irq-v4-0-82fa34fcf2f2@oss.nxp.com
+
+Changes in v4:
+- Fixed IRQ reading check
+- Made cleaner the IRQ validity (to get AI reviewer happy)
+- Fixed minItems of interrupts property in yaml
+- Link to v3: https://lore.kernel.org/r/20260123-dwmac_multi_irq-v3-0-cc53f2be8961@oss.nxp.com
+
+Changes in v3:
+- removed RFC prefix
+- rebased on v6.19-rc6
+- fixed forgotten extra line setting to Multi-IRQ unconditionally
+- fixed yaml
+- Link to v2: https://lore.kernel.org/r/20260121-dwmac_multi_irq-v2-0-3b829230d071@oss.nxp.com
+
+Changes in v2:
+- Fixed incorrect buffer len for 'rx-queue-%d' property check
+- Added backward compatibility to not break old settings
+- Fixed DT example in yaml
+- Link to v1: https://lore.kernel.org/r/20251214-dwmac_multi_irq-v1-0-36562ab0e9f7@oss.nxp.com
+
+---
+Jan Petrous (OSS) (5):
+      net: stmmac: Use helper macro for loop over queue-based arrays
+      net: stmmac: platform: read channels irq
+      arm64: dts: s32: set Ethernet channel irqs
+      dt-bindings: net: nxp,s32-dwmac: Declare per-queue interrupts
+      stmmac: s32: enable support for Multi-IRQ mode
+
+ .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 47 ++++++++++++++++--
+ arch/arm64/boot/dts/freescale/s32g2.dtsi           | 26 ++++++++--
+ arch/arm64/boot/dts/freescale/s32g3.dtsi           | 26 ++++++++--
+ drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c    | 36 +++++++++++++-
+ .../net/ethernet/stmicro/stmmac/dwxgmac2_core.c    |  2 +-
+ drivers/net/ethernet/stmicro/stmmac/stmmac.h       |  3 ++
+ drivers/net/ethernet/stmicro/stmmac/stmmac_main.c  | 16 +++---
+ .../net/ethernet/stmicro/stmmac/stmmac_platform.c  | 57 +++++++++++++++++++++-
+ 8 files changed, 191 insertions(+), 22 deletions(-)
+---
+base-commit: 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f
+change-id: 20251209-dwmac_multi_irq-9d8f60462cc1
+
 Best regards,
-Ronald
+-- 
+Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+
+
 
