@@ -1,169 +1,184 @@
-Return-Path: <devicetree+bounces-274135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274137-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCJtG1xzsWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274135-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:51:24 +0100
+	id eCEoJdN0sWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274137-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:57:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE769264DA4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:51:23 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FEEE264ED9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E691B30157D8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:46:02 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 48489302368C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759B031E848;
-	Wed, 11 Mar 2026 13:46:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A5D435DA6C;
+	Wed, 11 Mar 2026 13:56:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nehGgZdp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bycNLUzt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com [74.125.82.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AA61C84C0;
-	Wed, 11 Mar 2026 13:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4519F31F99A
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:56:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773236761; cv=none; b=X9DeuJJ0UpWj3+alE0M6s0gsHNFu0ZP9uCK3La+U1+CcVZlqA7T6W/3PXiwccAdQuf1u3380T42wuHOSxywq1Cy3L5D8QcjWmZIrs2lakkkPLc9epTK9fclwjfoZIQP3E3HScugbIZQFx5+W5Zr1sZsY+K6GRLURoqVIzrwP3mE=
+	t=1773237378; cv=none; b=ldIUhjiEUVqd0j0Je15w975NH4GbgQU8dpKwuOxbb/w50XeaLeLoOkstVSC5Uf4ZGdGtB4l+WN3xf0YJmaw7m/9mwd1BsODPkmsFQGoNKCzvK0pYXVFZAvqhb6XplGrhgMenDzpEpsqjoiTNsiTz6bleALn6nbH3XrNX7mLAd0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773236761; c=relaxed/simple;
-	bh=sA5VtIwFalDefpBU5WsVNiqh0/07Kxus4EY1iWzd0wU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hf/zcSQNT/oYr4cOeMfwWdpRJCdCpIKDfYyofstKMXcsqTG9/Y1aI90Y8fZt1UmIEM9WVACSIExPXsizhKLXxoep+gevmWp6hiXa++R4/NGl1M2JCMHNV5gBWkWbCz+QRgWI0UrLW12f30T0jENOTIP3/bKS/79oW0U7PoPj7aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nehGgZdp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 046D7C4CEF7;
-	Wed, 11 Mar 2026 13:45:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773236760;
-	bh=sA5VtIwFalDefpBU5WsVNiqh0/07Kxus4EY1iWzd0wU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nehGgZdpu6pGOfPoB5Io4mXoXeYozBDAGbvJNTH345/cItl5+8E+eryn5NxR9Ifdm
-	 j8mGnneRT3NG7PO/qgQfdJoXW2RplxEEnt62m6wxLvGMqeJJYbqDX8AV8+n8xQ3vc9
-	 XG32vk6EGlPGUZE2hT/Er6TPPQRrNRFrvhCt/MIXBOfgguGymM0OYQNW+q7pr+CXfq
-	 1Oj4Pn8nhN2+8SAa5zqScV+kM8S+AePvSxM2zfohsrCuDOv+seTO8eDk75a8HXxpFV
-	 Ydo1LNpJhVPA1MSsienkynDlnuA8dS73m5WpTB0qxknaTP+cqwyalhSZ8Z351Jj3rt
-	 sIV6N/F15xpsg==
-Message-ID: <09904716-69d3-4ecb-8bf6-6e2283631326@kernel.org>
-Date: Wed, 11 Mar 2026 15:45:55 +0200
+	s=arc-20240116; t=1773237378; c=relaxed/simple;
+	bh=igBxrKV+APKYUl6NU/uaSlxXytSz9/5/rEwMkJQ3O58=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Tev6V6FuEUEUS1W/0RV68N0Ywuc2cvSiR1OgOxUT1qzmOzngLtxhY//Lds9MVgWpFI9dhKgtZJgVXyauG9dtpHeDuv38D3Ql7DSoJVWHDtlmX9zCIq7ygHVoZVTXYmNr40dcpwjIC0vOGeq7jt4JbGGFepb8ZxFjGZTeb0264fM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bycNLUzt; arc=none smtp.client-ip=74.125.82.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dy1-f171.google.com with SMTP id 5a478bee46e88-2be3bdfda8eso7999387eec.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:56:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773237374; x=1773842174; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wsNfVZt6GLcKlOBtv1buOE4N+3eK5BD7iSdzAmdz13w=;
+        b=bycNLUztpau+VjteByeOIH8e4s0mMDQ9osfhhppOtrbzYIYt7paNrDJoSOHzdJhHZK
+         FlGj3+SvQxkVkek10kY+/U5S/CIyB7swR85e7XmKywKu0ant2w7aS8Mnq2mef0sDSgbj
+         LdPPs0cxekJvQntrqZESktCjhkTXCywkYsNDDflK3hWMD00GawNYjC/rL57Mztl2Ei+v
+         OkMDQ6IhzYsN5p/M/w8xVzixGvm3XNTgWnG2xrp7YjQWVoxaD9dkH/VN1DFLlwojwPHw
+         hpDIRpkFv9j6vjFGvsQc8G8AqfSrLi1FEZYL9zdIFUr2eTcQvRwPRoTUROd0bvkJ+V3W
+         Vpiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773237374; x=1773842174;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wsNfVZt6GLcKlOBtv1buOE4N+3eK5BD7iSdzAmdz13w=;
+        b=dO7hZjVhsiNIhsmi8vml8wQ2TFHAj4WhzTyGof3ccb1V/Z8hb+Otm9M7f2wivJ2EE3
+         Gd379x/I0GXbMgY+0OyDMNqcIRTe9sHPmyaK0QNKYyKodAHXkJ0niXEIvlZYEUGh3tWd
+         OcmbeTrK7iIyrU7/U4MdceI2DPAYswtcKBldmlR4e/jq0KcLB6D0UFVSrWAw3Cg7pEwG
+         F5dUSDeeXaSJvNqcEQkjKusxMhaz3QI1oI8AqLdsYoBmOnGPUImPbtc2YgJ/gQwWCZj4
+         GEJMbKsRO8wHwetdZYlsbCN8X03iyc36ATcOYDlPPOXabn0IzaC3DJ2Ppx/yvhRthfD4
+         +BzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIo6YyASwB2bukAGsxiAcihaoBD7KTqkszJgrnr2kMeGa2zkITEiyiVlhyZ/dMEAQnn6KsstouQYYI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgnWn7uE2mE37qFv70diXlHpWvV//ROhsQ7PuJyNN1j9WVZl0/
+	pnKyy/RUwhhrlw2ZGpb0ynAAIUEqi2M+scrWaiu/vVFU7NMJYSNGKbGt
+X-Gm-Gg: ATEYQzx1DZTPgfzAZpVZ4MJD6JSgiFCON8RDL3fTHl1I3dSEIPjSvy26dZ9z5Ph0DtS
+	wiFbc1SgYrc68eqaDCFqUh6+PXEk73iA87k5fUcUuAl24lfc/4bgp3NrpATSKdb3zAjQ71Q+UEk
+	4JbSVWaryufsw1oVFn+MJ2iOEoRIGSvawtFCNS236MVOxIFhvb0zCkXqhwxL2aT5wUx8YClKh/Y
+	6v3/Eoemhd0Hp8GNiWHJFvv/ziojBjG2QQ3NyYHP5IKpmnHVWGl1naV4azQeOvF9JNuPjJH/FKl
+	ValsEbaf4La04vUS0DIHzMduIbjNZHeAhiT6d/jaUgQGst3zDs4igUsA7ll2wdxvX7nzFLWi0EQ
+	7SBO8x2ZuvKz+UgU3Z6MAxsTV99IyNxKdzlW64UNBJraeLee6DT041PjRPZcMap+L19qnde2IZy
+	ranHo1WVxm+TIzQ1LW/0LlPRKTxyelGc7VOrdhU5mv5pmUTnVCOV1/oE1zoCkOYLdpDqaDdg==
+X-Received: by 2002:a05:7301:1002:b0:2b0:2e5:228b with SMTP id 5a478bee46e88-2be8a5a87e9mr904558eec.33.1773237374035;
+        Wed, 11 Mar 2026 06:56:14 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:1b3:a803:148f:866b:f519:b5db:1242])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be8a8338dasm2608352eec.6.2026.03.11.06.56.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2026 06:56:13 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Fabio Estevam <festevam@nabladev.com>
+Subject: [PATCH] ARM: dts: rockchip: Fix LED node names on rk3288-phycore-rdk
+Date: Wed, 11 Mar 2026 10:56:04 -0300
+Message-ID: <20260311135604.21634-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] arm64: qcom: sm8550: add DDR, LLCC & L3 CPU
- bandwidth scaling
-To: Aaron Kling <webgeek1234@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-References: <20260219-sm8550-ddr-bw-scaling-v3-0-75c19152e921@gmail.com>
- <CALHNRZ9R1XaYWeTneZmyAvGY-s2-rbSC_=bSV-nC8_zU+bGLqA@mail.gmail.com>
- <97134126-f1a0-43f4-a4f6-0c1bd85e0c92@oss.qualcomm.com>
- <CALHNRZ8vEcq75O_M2A4F6p_Y000SvVgu4pAW5OLtX0ucAGAqFg@mail.gmail.com>
-Content-Language: en-US
-From: Georgi Djakov <djakov@kernel.org>
-In-Reply-To: <CALHNRZ8vEcq75O_M2A4F6p_Y000SvVgu4pAW5OLtX0ucAGAqFg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: EE769264DA4
+X-Rspamd-Queue-Id: 3FEEE264ED9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274135-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274137-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[djakov@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	NEURAL_HAM(-0.00)[-0.999];
+	DBL_PROHIBIT(0.00)[0.0.0.62:email];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,nabladev.com:email]
 X-Rspamd-Action: no action
 
-On 3/10/26 10:31 PM, Aaron Kling wrote:
-> On Tue, Mar 10, 2026 at 3:20 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@oss.qualcomm.com> wrote:
->>
->> On 10/03/2026 21:05, Aaron Kling wrote:
->>>> ---
->>>> Aaron Kling (2):
->>>>        dt-bindings: interconnect: OSM L3: Document sm8550 OSM L3 compatible
->>>>        arm64: dts: qcom: sm8550: add cpu OPP table with DDR, LLCC & L3 bandwidths
->>>>
->>>>   .../bindings/interconnect/qcom,osm-l3.yaml         |   1 +
->>>>   arch/arm64/boot/dts/qcom/sm8550.dtsi               | 367 +++++++++++++++++++++
->>>>   2 files changed, 368 insertions(+)
->>>> ---
->>>> base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
->>>> change-id: 20260207-sm8550-ddr-bw-scaling-b1524827f207
->>>>
->>>> Best regards,
->>>> --
->>>> Aaron Kling <webgeek1234@gmail.com>
->>>
->>> What is the normal merge sequence and window for linux-arm-msm? I see
->>> several things that have been picked up for -next recently, but none
->>> of my sm8550 patches that have been reviewed / approved have been
->>> picked up yet.
->>
->>
->> This one is probably waiting on interconnect, no? Not saying that
->> merging here is easy, quite the opposite - it's frustrating, but you can
->> help by responding with actual data, e.g. bindings were merged and DTS
->> can go, instead of just content-less ping.
-> 
-> So patch 1, the bindings, has to go via a different tree; then patch 2
-> goes via linux-arm-msm? Or does the first patch need an ack from other
-> people? I was assuming both of these could be handled by the
-> linux-arm-msm maintainers.
-> 
-> Part of this was a reminder, yes, but the question is still honest. I
-> don't know what the expected merge window is here, knowing that is
-> good to know if something got lost in the mix. I've got a couple other
-> patches as well that are standalone dt changes with no other deps.
-> I've had patches to other subsystems that have sat for four or five
-> cycles just waiting on the subsystem maintainers.
+From: Fabio Estevam <festevam@nabladev.com>
 
-Hi Aaron,
+According to nxp,pca953x.yaml, the pattern for the led names should be:
+ "^led-[0-9a-z]+$".
 
-Last week i picked the 1st patch, so it's in this week's linux-next
-releases already. I usually push an immutable branch if there are other
-patches that depend on the one i picked, so i did that (icc-sm8550-osm-l3
-branch).
+Change it accordingly to fix the following dt-schema warning"
 
-Now the Qualcomm maintainers can pick the dts change if they want. My
-observations are that the qcom dt tree is closing around -rc5, to give
-some time for new patches to get tested before they send a pull request
-to the arm-soc maintainers. If some patch is not picked, it's a good
-idea to re-base and re-send when the next -rc1 is out.
+leddimmer@62 (nxp,pca9533): 'led1', 'led2', 'led3', 'led4' do not match any
+of the regexes: '^led-[0-9a-z]+$', '^pinctrl-[0-9]+$'
 
-Thanks,
-Georgi
+Signed-off-by: Fabio Estevam <festevam@nabladev.com>
+---
+ arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts b/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts
+index d411fd9811fd..46362e804daf 100644
+--- a/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts
++++ b/arch/arm/boot/dts/rockchip/rk3288-phycore-rdk.dts
+@@ -125,25 +125,25 @@ leddim: leddimmer@62 {
+ 		compatible = "nxp,pca9533";
+ 		reg = <0x62>;
+ 
+-		led1 {
++		led-1 {
+ 			label = "red:user1";
+ 			linux,default-trigger = "none";
+ 			type = <PCA9532_TYPE_LED>;
+ 		};
+ 
+-		led2 {
++		led-2 {
+ 			label = "green:user2";
+ 			linux,default-trigger = "none";
+ 			type = <PCA9532_TYPE_LED>;
+ 		};
+ 
+-		led3 {
++		led-3 {
+ 			label = "blue:user3";
+ 			linux,default-trigger = "none";
+ 			type = <PCA9532_TYPE_LED>;
+ 		};
+ 
+-		led4 {
++		led-4 {
+ 			label = "red:user4";
+ 			linux,default-trigger = "none";
+ 			type = <PCA9532_TYPE_LED>;
+-- 
+2.43.0
 
 
