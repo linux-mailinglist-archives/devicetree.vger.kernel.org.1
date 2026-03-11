@@ -1,248 +1,158 @@
-Return-Path: <devicetree+bounces-274237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274238-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMyQJ9easWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274237-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:39:51 +0100
+	id +AUaFVybsWnkDAAAu9opvQ
+	(envelope-from <devicetree+bounces-274238-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:42:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3154267776
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:39:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC18C2677C7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:42:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 2C29C308F8FF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:38:09 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 327343014BD2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:41:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F1D3DDDC0;
-	Wed, 11 Mar 2026 16:38:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359583E0C62;
+	Wed, 11 Mar 2026 16:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fT6qfhLi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qBuZYhsB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF3F36C9DA;
-	Wed, 11 Mar 2026 16:38:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121253B2FCF;
+	Wed, 11 Mar 2026 16:41:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773247088; cv=none; b=jtPVW3iZ+NUgj2VQFA7RWMUcKGOcTk/J+iTji5klL2LkKgNlzS6BkTgzQU0yllXIYYM2QC3OubMjlfOX5DEcDLt19bENaPtGy7Ncr9OVidvv+Fj6mgV9NvYwHfcgf2i0vBWkuKbU4d0r/luy0oD5j9qVRBWlqavM1H94uIpBe/0=
+	t=1773247279; cv=none; b=uHJ5p1vAWUDsADsAIElqn8tjehnza8Hrt2vajrTZMeQTXX5Osp2Ti7tNTux0te1BxnMMJHbIqP9rOSptKMSbrRk42TGG32USYREDcR7XmFgrQEiUVz5NCgSe0I3L/HxZEOJhZHQgISxMR24cEZIMvS0Zynk2LIuTv6yduQUk7QY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773247088; c=relaxed/simple;
-	bh=godgHy1cnZkwqUfjFAAGcq5uKPPjThfM6GDP8uFItv0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Psl1Sycf3AbI13olTXu0vVZ62xYYeRUuCCDB0FBXbUfv4fUDx9Kybv9HODTGdxpNkAAgyReq355EHCT41c9s1Dzh4ow2mVA9+fhIXvEpAD8A7+ifSHP8dj6Ot2OBll/bPe60DF+MNd0u9VKzUdQWvTHlNVKHuyi39tUehOUVlEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fT6qfhLi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E8B7C4CEF7;
-	Wed, 11 Mar 2026 16:38:05 +0000 (UTC)
+	s=arc-20240116; t=1773247279; c=relaxed/simple;
+	bh=QGO6BKUP9pDJhAPyG3zMK+3Mt1ryUaCYnq9txTiAz88=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ie/sbVTIaOgIaE+DEzXevpfj/r7bPMJqlIKOG+sG7fScEn+iz9E7HRdX6l0Jc7Faimku5tNdcCooXY4mYXDWRbWNIJGqxTcVNL+XTK/unYUaYSbGULYLnq0dtdPycJ30F/mIZC6yFWCJC3W90Wnal3vUvVHCKhXnW3E8A4Pa12E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qBuZYhsB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6DC7C19421;
+	Wed, 11 Mar 2026 16:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773247088;
-	bh=godgHy1cnZkwqUfjFAAGcq5uKPPjThfM6GDP8uFItv0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fT6qfhLiy5S0IevQUnX6jG2X6uWEbR8fzgg/dkIV/1jXTJ9hA/Mtz81LRG/L5DtPR
-	 LkNMmgH4W9uMJNeCxIsY7/X7cUOn5U6Dn5e7P/9o9Oii2OunCkCNfXadENtGOBpBDg
-	 MN38HS+WFjJQA6yZQkUbwmdsup3J7Ur85BCYywCkQn2xAtAR4z6A2uOEiBEUmrYcnN
-	 gUxychcX6OlAQCW5lk1lZ6qblnahyprHM9AKxJyMIlA+O3e9tu4jHBYGHvO8+2XcaC
-	 47fM6Ii+xBnMQLs0FxkkMYV3o/lo4TWPd2+eADcGJHnRSXsfBwLNoFyTapNVZ2Mh26
-	 of5mN1FD5md+w==
-Message-ID: <2a1ef87f-09b7-4763-a580-c65ddabbcf79@kernel.org>
-Date: Wed, 11 Mar 2026 17:38:03 +0100
+	s=k20201202; t=1773247278;
+	bh=QGO6BKUP9pDJhAPyG3zMK+3Mt1ryUaCYnq9txTiAz88=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=qBuZYhsBBsVfeLWUk4dPXkznjTVawAHeoidar7vOXWbXyplHqm3lcWsgiy6j58Bvu
+	 61jRRYIhXc2szdqohF4n5VdavlWj5vlRYZ4qZ2+WSPS6T40DUQK+WSBTjJ1O1vxcpS
+	 +bQZiMeY/vj292ZYAHdHtMnNLoc7Sj8IhOvQg1pHW4Q/OdbQLNCsnWbbcr0+P10Fx4
+	 GlWbDclFRBvSSvVXTsPNbP+vL4360GtDV9HFVA4bQjqNo0ZzMU/PNqcIioz+CMKr7m
+	 qUVyaSn7ECW1f+4ougu1NoWpOre0ww+fP4UrtkJkLvqYtAcphnuxk0Gds5gkFs3U8H
+	 HOji2hwYaqmjw==
+Date: Wed, 11 Mar 2026 11:41:17 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ASoC: codecs: aw88166: Support device specific
- firmware
-To: Aaron Kling <webgeek1234@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Weidong Wang <wangweidong.a@awinic.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
-References: <20260310-aw88166-fw-v1-0-2777563bb673@gmail.com>
- <20260310-aw88166-fw-v1-2-2777563bb673@gmail.com>
- <20260311-glittering-elastic-deer-a2fa58@quoll>
- <CALHNRZ-KxT0B1zpPD1N7ba6185cqh6q-z-WMxbpU68FRuGJXEA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CALHNRZ-KxT0B1zpPD1N7ba6185cqh6q-z-WMxbpU68FRuGJXEA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
+ Alexandre Ghiti <alex@ghiti.fr>, Linus Walleij <linusw@kernel.org>, 
+ Bartosz Golaszewski <brgl@kernel.org>, Paul Walmsley <pjw@kernel.org>, 
+ Herve Codina <herve.codina@bootlin.com>, linux-gpio@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org
+To: Conor Dooley <conor@kernel.org>
+In-Reply-To: <20260311-collar-smokiness-5313aa648a6f@spud>
+References: <20260311-tasting-friend-eae39148fb96@spud>
+ <20260311-collar-smokiness-5313aa648a6f@spud>
+Message-Id: <177324727784.4047403.339169143402607624.robh@kernel.org>
+Subject: Re: [PATCH v12 2/4] dt-bindings: soc: microchip: document
+ PolarFire SoC's gpio interrupt mux
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274237-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274238-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,awinic.com,perex.cz,suse.com,vger.kernel.org,sobir.in];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sobir.in:email]
-X-Rspamd-Queue-Id: E3154267776
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.54:email,microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,devicetree.org:url,bootlin.com:email]
+X-Rspamd-Queue-Id: AC18C2677C7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 11/03/2026 17:30, Aaron Kling wrote:
-> On Wed, Mar 11, 2026 at 8:15 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On Tue, Mar 10, 2026 at 11:43:05PM -0500, Aaron Kling wrote:
->>> From: Teguh Sobirin <teguh@sobir.in>
->>>
->>> This driver currently loads firmware from a hardcoded path. Support
->>> loading device specific firmware when provided by the boot firmware.
->>>
->>> Signed-off-by: Teguh Sobirin <teguh@sobir.in>
->>> Co-authored-by: Aaron Kling <webgeek1234@gmail.com>
->>
->> There is no such tag.
+
+On Wed, 11 Mar 2026 15:17:39 +0000, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> What do you mean? This tag is used all [0] over [1] the kernel [2].
-
-git grep for it.
-
-Other references are mistakes.
-
-> How else is one supposed to indicate that that notable changes have
-> been made since the original author touched it?
-
-The tag which is already documented and explained in submitting patches.
-
+> On PolarFire SoC there are more GPIO interrupts than there are interrupt
+> lines available on the PLIC, and a runtime configurable mux is used to
+> decide which interrupts are assigned direct connections to the PLIC &
+> which are relegated to sharing a line.
 > 
->> Also, incomplete DCO chain.
+> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  .../soc/microchip/microchip,mpfs-irqmux.yaml  | 77 +++++++++++++++++++
+>  .../microchip,mpfs-mss-top-sysreg.yaml        |  4 +
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.yaml
 > 
-> Ack, will fix. And somehow b4 didn't catch it, huh. Pretty sure I've
-> seen it catch this elsewhere, though.
-> 
->>> ---
->>>  sound/soc/codecs/aw88166.c | 19 +++++++++++++++----
->>>  1 file changed, 15 insertions(+), 4 deletions(-)
->>>
->>> diff --git a/sound/soc/codecs/aw88166.c b/sound/soc/codecs/aw88166.c
->>> index daee4de9e3b01fb335975a65456cc79575533d7e..52d33a2f7cb12877138ea5083ad42e2777f8d323 100644
->>> --- a/sound/soc/codecs/aw88166.c
->>> +++ b/sound/soc/codecs/aw88166.c
->>> @@ -1574,18 +1574,22 @@ static int aw88166_dev_init(struct aw88166 *aw88166, struct aw_container *aw_cfg
->>>  static int aw88166_request_firmware_file(struct aw88166 *aw88166)
->>>  {
->>>       const struct firmware *cont = NULL;
->>> +     const char *fw_name;
->>>       int ret;
->>>
->>>       aw88166->aw_pa->fw_status = AW88166_DEV_FW_FAILED;
->>>
->>> -     ret = request_firmware(&cont, AW88166_ACF_FILE, aw88166->aw_pa->dev);
->>> +     if (device_property_read_string(aw88166->aw_pa->dev, "firmware-name", &fw_name) < 0)
->>> +             fw_name = AW88166_ACF_FILE;
->>> +
->>> +     ret = request_firmware(&cont, fw_name, aw88166->aw_pa->dev);
->>>       if (ret) {
->>> -             dev_err(aw88166->aw_pa->dev, "request [%s] failed!\n", AW88166_ACF_FILE);
->>> +             dev_err(aw88166->aw_pa->dev, "request [%s] failed!\n", fw_name);
->>>               return ret;
->>>       }
->>>
->>>       dev_dbg(aw88166->aw_pa->dev, "loaded %s - size: %zu\n",
->>> -                     AW88166_ACF_FILE, cont ? cont->size : 0);
->>> +                     fw_name, cont ? cont->size : 0);
->>>
->>>       aw88166->aw_cfg = devm_kzalloc(aw88166->aw_pa->dev,
->>>                       struct_size(aw88166->aw_cfg, data, cont->size), GFP_KERNEL);
->>> @@ -1599,7 +1603,7 @@ static int aw88166_request_firmware_file(struct aw88166 *aw88166)
->>>
->>>       ret = aw88395_dev_load_acf_check(aw88166->aw_pa, aw88166->aw_cfg);
->>>       if (ret) {
->>> -             dev_err(aw88166->aw_pa->dev, "load [%s] failed!\n", AW88166_ACF_FILE);
->>> +             dev_err(aw88166->aw_pa->dev, "load [%s] failed!\n", fw_name);
->>>               return ret;
->>>       }
->>>
->>> @@ -1802,9 +1806,16 @@ static const struct i2c_device_id aw88166_i2c_id[] = {
->>>  };
->>>  MODULE_DEVICE_TABLE(i2c, aw88166_i2c_id);
->>>
->>> +static const struct of_device_id aw88166_of_match[] = {
->>> +     { .compatible = "awinic,aw88166" },
->>> +     { /* sentinel */ }
->>> +};
->>> +MODULE_DEVICE_TABLE(of, aw88166_of_match);
->>
->> This looks like an unrelated change.
-> 
-> Without this, I don't think the driver will read from the dt node at
 
-Then how would it probe? If it probes based on DT node, then it matches
-the node as well.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> all. Since this change requires doing so, I figured it was related
-> enough. But I can split that if desired.
+yamllint warnings/errors:
 
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.example.dts:18.33-24.11: Warning (interrupt_provider): /example-0/interrupt-controller@54: '#interrupt-cells' found, but node is not an interrupt provider
+Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.example.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provider'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (microchip,mpfs-irqmux): interrupt-map-mask:0: 127 was expected
+	from schema $id: http://devicetree.org/schemas/soc/microchip/microchip,mpfs-irqmux.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (microchip,mpfs-irqmux): 'interrupt-map' is a required property
+	from schema $id: http://devicetree.org/schemas/soc/microchip/microchip,mpfs-irqmux.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (microchip,mpfs-irqmux): 'interrupt-map' is a dependency of 'interrupt-map-mask'
+	from schema $id: http://devicetree.org/schemas/interrupt-controller.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (microchip,mpfs-irqmux): 'anyOf' conditional failed, one must be fixed:
+	'interrupt-controller' is a required property
+	'interrupt-map' is a required property
+	from schema $id: http://devicetree.org/schemas/interrupt-controller.yaml
 
+doc reference errors (make refcheckdocs):
 
-Best regards,
-Krzysztof
+See https://patchwork.kernel.org/project/devicetree/patch/20260311-collar-smokiness-5313aa648a6f@spud
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
