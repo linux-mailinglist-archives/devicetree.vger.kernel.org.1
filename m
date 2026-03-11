@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-273886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273887-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGyEKKkWsWnpqgIAu9opvQ
-	(envelope-from <devicetree+bounces-273886-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:15:53 +0100
+	id kISuMuEWsWnpqgIAu9opvQ
+	(envelope-from <devicetree+bounces-273887-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:16:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C0B025D820
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:15:53 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A5A25D87A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:16:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 38BC13113ADC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:09:28 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 889F232C7C28
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:10:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF1A3859C1;
-	Wed, 11 Mar 2026 07:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899FC3845DF;
+	Wed, 11 Mar 2026 07:09:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="X8KVSVaB"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="CLteU38F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053BD38838B;
-	Wed, 11 Mar 2026 07:08:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F7F38B150;
+	Wed, 11 Mar 2026 07:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773212920; cv=pass; b=ltCiaioG5NeCmUWpRMy+b4zaLJwp46wqyi/Pdl/9iYOz2zg1bzenIV4pJHDi5qoJhA3y1HBQPN7+1NNkqfY7i/pPAc0gylKSaemhV4+SV4YwykvSnuNxSu/vi7hfFwxnOnk5Di2/77f+S36Yx/+Wo6B9wSCBksTKNxyvrvc6p0o=
+	t=1773212955; cv=pass; b=jy5QjoUSBiECK5YrLtmH0YDNDWUszP4pShkjQytOpG9uwT8joz5O0K3lFgBzyN8KRtAdLjzMH3uvve1u1adkxmaKnZBtQBhTI247swDvWUirvMGyRy4/zXiRHJIY1NhwoDrNl/sM+gwMd2I0s6M/Oljn5FeLg3mG1aOXv7zwRBs=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773212920; c=relaxed/simple;
-	bh=b19OJUdc+peetZN8MrZd6KnNEJM5xBFPAsQwDYPC/Ao=;
+	s=arc-20240116; t=1773212955; c=relaxed/simple;
+	bh=hEuAy+6uPnEv6CenFLePXlMngUsWbU6iSfZGwptrqhk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XsMWy/w5CzPeOBSwIWVcDzREFzppAU7zn4R9B9F5fsFSfVijC5c9UWPhgQrDbyKqXZQY9yPh4HNSeAWSpO24e6y+flcqc06BtY/vjfMDbGvKUeSYlRyDkZ8piAfFjikQbws97/9EU7JfQAl4aKpsi7PKB2OQwvGlzZqo7LvCdoo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=X8KVSVaB; arc=pass smtp.client-ip=136.143.188.112
+	 Content-Type:Content-Disposition:In-Reply-To; b=hncnZKTAfvYa+Io9nkHIx84uDKvQS83oof9zqm3B7cKahLEV3ICXc7DU16rjfdOAf2Q1GSsyhdSHCKGidZl9+Upbl+bysv54I8ENUlPqvVWYw/ofxaS3dvfcHPNOAxJOXIb4TDMaqe5rtMJrQoOXLj+iGQ4nw/a8Qc7l8ACTRM8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=CLteU38F; arc=pass smtp.client-ip=136.143.188.112
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1773212907; cv=none; 
+ARC-Seal: i=1; a=rsa-sha256; t=1773212937; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=aCXTokr4EDNW8u2al7QG22pupcRkju8K3QP/a3ByOSYHd60dlGEuG8vfRJTgLWr3GELNlKuVzD7MqmDwJyjsUmyriEBOEMIOcwAeK4z5x+CyNU1RrgMW3D1UgXOJgkaFEdvJzifBWIIxAHEN5AgyiuiQNApXGXWYvYS9CA/9GA0=
+	b=EKkQ63WcZdFoc4cSm1mo5FOUrx5FEA0/7XP5lGP9MrZfsbVEBI4+mhXtTTaLEhYVyvnnxfwVrMkRYS7nWtvu/PHE/kIrp2QewalG1j6GRQvA5aF6c7PqTStAPht+x9gfaMvIjxykogFDlHOdl9QrsKKKRqNO8OsxXIenN/AVXbs=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773212907; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=RTdR+D4GhGsibmGnpvqFGWz9IA1zBW5Nj3eCi1PCPgY=; 
-	b=BkXR2EDoBoPKgPzX02QnyyehNXLfommNtQyuRoslyl9aldDyz1xqesUYvB7tQUijAaPCAx+WF8YX4d7axhTHoHmsT/o/ttwl5wuRF666XBWNSQMBvWvJiaBezIZ8EIUIz3+jzvulrEkeS9QomdHCqVf00CLjo9YIEM38XdPX4bI=
+	t=1773212937; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=cmlOI7djcSL6lb3xz9b+q0jqYhA5pGPPF6F0qUM1pnc=; 
+	b=flh4YIZ64tfaGzRSoiBvfx+ycyNZcmwdBzWQHX16mSurFe9SmCU4WCEo7Hg88GbwCreovM27DgF1qw8DbuPqB/BHL3M7ictV1xCXK7jvzCNIdOhcxYAyBTiiCD/f4qAfGKeJi+/7wOmi/4zW3GyU4esMTANX7LWjnIPSHl0Etl4=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=collabora.com;
 	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
 	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773212907;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773212937;
 	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
 	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=RTdR+D4GhGsibmGnpvqFGWz9IA1zBW5Nj3eCi1PCPgY=;
-	b=X8KVSVaBpAc3edEKGOVetX50QJ7q4x7XfdjCr4n5a6VOGhEX7T3I1Ibf3PzpbbCw
-	nkRKSkOexU6+Ww5J9J8OL2OATlvvwOHfiH2OdxD98mcwnqkz5pbMZM78/rm+fBP/hhp
-	NNiNQ+uozUBSelOY2fXicar1CP8+DjUMTO612d1I=
-Received: by mx.zohomail.com with SMTPS id 1773212904531201.5143077785866;
-	Wed, 11 Mar 2026 00:08:24 -0700 (PDT)
+	bh=cmlOI7djcSL6lb3xz9b+q0jqYhA5pGPPF6F0qUM1pnc=;
+	b=CLteU38FOZiReffIm50QudreSQpk5qsb0wC9xpp2fI9jkuDUGExcCbL1AuWvdRKi
+	yifytjV6QCrAM314wVDkS5fYMdpCaOgisWXEmsuff3YDKGYBC6s4H6VjfO3qIo9ZLOj
+	zebZAB3Rofsncm0lJulXu8wAagmPPZ74iIPZaoNk=
+Received: by mx.zohomail.com with SMTPS id 1773212935077604.5115313097302;
+	Wed, 11 Mar 2026 00:08:55 -0700 (PDT)
 Received: by venus (Postfix, from userid 1000)
-	id 850C2180598; Wed, 11 Mar 2026 08:08:17 +0100 (CET)
-Date: Wed, 11 Mar 2026 08:08:17 +0100
+	id F16D0180598; Wed, 11 Mar 2026 08:08:46 +0100 (CET)
+Date: Wed, 11 Mar 2026 08:08:46 +0100
 From: Sebastian Reichel <sebastian.reichel@collabora.com>
 To: Alexey Charkov <alchark@flipper.net>
 Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Chris Morgan <macromorgan@hotmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
 	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v3 05/11] power: supply: bq257xx: Fix VSYSMIN clamping
- logic
-Message-ID: <abEUxeKLiowObPyL@venus>
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 06/11] power: supply: bq257xx: Make the default
+ current limit a per-chip attribute
+Message-ID: <abEU4z8pdttLkyVe@venus>
 References: <20260310-bq25792-v3-0-02f8e232d63b@flipper.net>
- <20260310-bq25792-v3-5-02f8e232d63b@flipper.net>
+ <20260310-bq25792-v3-6-02f8e232d63b@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,13 +76,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="qrjbboz7ivwrdkum"
+	protocol="application/pgp-signature"; boundary="reifdht5cktlc2j3"
 Content-Disposition: inline
-In-Reply-To: <20260310-bq25792-v3-5-02f8e232d63b@flipper.net>
+In-Reply-To: <20260310-bq25792-v3-6-02f8e232d63b@flipper.net>
 X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.1.0.1.4.3/273.195.15
+X-Zoho-AV-Stamp: zmail-av-0.2.1.1.4.3/273.195.15
 X-ZohoMailClient: External
-X-Rspamd-Queue-Id: 1C0B025D820
+X-Rspamd-Queue-Id: 22A5A25D87A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-2.26 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -90,54 +90,50 @@ X-Spamd-Result: default: False [-2.26 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273886-lists,devicetree=lfdr.de];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,vger.kernel.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273887-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,flipper.net:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[flipper.net:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email]
 X-Rspamd-Action: no action
 
 
---qrjbboz7ivwrdkum
+--reifdht5cktlc2j3
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 05/11] power: supply: bq257xx: Fix VSYSMIN clamping
- logic
+Subject: Re: [PATCH v3 06/11] power: supply: bq257xx: Make the default
+ current limit a per-chip attribute
 MIME-Version: 1.0
 
 Hi,
 
-On Tue, Mar 10, 2026 at 01:28:29PM +0400, Alexey Charkov wrote:
-> The minimal system voltage (VSYSMIN) is meant to protect the battery from
-> dangerous over-discharge. When the device tree provides a value for the
-> minimum design voltage of the battery, the user should not be allowed to
-> set a lower VSYSMIN, as that would defeat the purpose of this protection.
+On Tue, Mar 10, 2026 at 01:28:30PM +0400, Alexey Charkov wrote:
+> Add a field for the default current limit to the bq257xx_info structure a=
+nd
+> use it instead of the hardcoded value in the probe function.
 >=20
-> Flip the clamping logic when setting VSYSMIN to ensure that battery design
-> voltage is respected.
+> This prepares the driver for allowing different electrical constraints for
+> different chip variants.
 >=20
-> Cc: stable@vger.kernel.org
-> Fixes: 1cc017b7f9c7 ("power: supply: bq257xx: Add support for BQ257XX cha=
-rger")
 > Tested-by: Chris Morgan <macromorgan@hotmail.com>
 > Signed-off-by: Alexey Charkov <alchark@flipper.net>
 > ---
@@ -146,64 +142,65 @@ Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 
 -- Sebastian
 
->  drivers/power/supply/bq257xx_charger.c | 7 +++----
->  1 file changed, 3 insertions(+), 4 deletions(-)
+>  drivers/power/supply/bq257xx_charger.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 >=20
 > diff --git a/drivers/power/supply/bq257xx_charger.c b/drivers/power/suppl=
 y/bq257xx_charger.c
-> index 02c7d8b61e82..7ca4ae610902 100644
+> index 7ca4ae610902..e14dd16f9d08 100644
 > --- a/drivers/power/supply/bq257xx_charger.c
 > +++ b/drivers/power/supply/bq257xx_charger.c
-> @@ -128,9 +128,8 @@ static int bq25703_get_min_vsys(struct bq257xx_chg *p=
-data, int *intval)
->   * @vsys: voltage value to set in uV.
->   *
->   * This function takes a requested minimum system voltage value, clamps
-> - * it between the minimum supported value by the charger and a user
-> - * defined minimum system value, and then writes the value to the
-> - * appropriate register.
-> + * it between the user defined minimum system value and the maximum supp=
-orted
-> + * value by the charger, and then writes the value to the appropriate re=
-gister.
->   *
->   * Return: Returns 0 on success or error if an error occurs.
+> @@ -26,6 +26,7 @@ struct bq257xx_chg;
+>   * @bq257xx_set_iindpm: set maximum input current (in uA)
 >   */
-> @@ -139,7 +138,7 @@ static int bq25703_set_min_vsys(struct bq257xx_chg *p=
-data, int vsys)
->  	unsigned int reg;
->  	int vsys_min =3D pdata->vsys_min;
+>  struct bq257xx_chip_info {
+> +	int default_iindpm_uA;
+>  	int (*bq257xx_hw_init)(struct bq257xx_chg *pdata);
+>  	void (*bq257xx_hw_shutdown)(struct bq257xx_chg *pdata);
+>  	int (*bq257xx_get_state)(struct bq257xx_chg *pdata);
+> @@ -627,6 +628,7 @@ static const struct power_supply_desc bq257xx_power_s=
+upply_desc =3D {
+>  };
 > =20
-> -	vsys =3D clamp(vsys, BQ25703_MINVSYS_MIN_UV, vsys_min);
-> +	vsys =3D clamp(vsys, vsys_min, BQ25703_MINVSYS_MAX_UV);
->  	reg =3D ((vsys - BQ25703_MINVSYS_MIN_UV) / BQ25703_MINVSYS_STEP_UV);
->  	reg =3D FIELD_PREP(BQ25703_MINVSYS_MASK, reg);
+>  static const struct bq257xx_chip_info bq25703_chip_info =3D {
+> +		.default_iindpm_uA =3D BQ25703_IINDPM_DEFAULT_UA,
+>  		.bq257xx_hw_init =3D &bq25703_hw_init,
+>  		.bq257xx_hw_shutdown =3D &bq25703_hw_shutdown,
+>  		.bq257xx_get_state =3D &bq25703_get_state,
+> @@ -675,7 +677,7 @@ static int bq257xx_parse_dt(struct bq257xx_chg *pdata,
+>  				       "input-current-limit-microamp",
+>  				       &pdata->iindpm_max);
+>  	if (ret)
+> -		pdata->iindpm_max =3D BQ25703_IINDPM_DEFAULT_UA;
+> +		pdata->iindpm_max =3D pdata->chip->default_iindpm_uA;
 > =20
+>  	return 0;
+>  }
 >=20
 > --=20
 > 2.52.0
 >=20
 >=20
 
---qrjbboz7ivwrdkum
+--reifdht5cktlc2j3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmxFN4ACgkQ2O7X88g7
-+pqvcQ/7BxTt3z3BJknB92Gdrat2mFE2vC4Anuc74X+sB2PGI0UE+H0ygDJZt0NO
-wheMwR26VfxzfBY58YHzbBmWBIzxsJ0JjjjGulCQEqpo6qkXfuC6zrX4yrgjgtp+
-PzDQ7awxcSz8KAx63ZQUpGYxp/ZVeORBpeQpj9fTKZvOfyY4/oJ42OLn6M+IqC2b
-l9wYybG9kk/zEHb+wwuKuOvP7Gk6RmfrkovYpkk5eojKHbbWJYvPorW4+YJkfOv7
-lKQom+aRLokE7tF9c6ABuPip6ZikVEtDTjOGIMt3pfMHbVj6Lc83QXQqlQM9f07+
-UNKQllrjMeBqYv42oy+1L3t5VDv9dfHj9SxgTehjtIrlwY6p0gajEAdgghaI6Fiv
-je23WMSVgaTBdcYUu3lkXcEHhU2HUhjYlhD8yBS7BZs2uMYlauSr9I9Y0RwwqvY4
-crYWu0MiK9eLf2TPU+TIXJrVpBYxWuq3TCvSeid3FgTRc44/HELNognkF3HGeja6
-Q9OTsEfzg/oIrE1kbRh2AtX8e9BTdR6oeaumPTTaPnqdG4pKCa6Ez8xjhgUrRhsk
-Mbaw8nfxBAdeEIK6oSg6ygcX/CHzcVzlWxHH25cc9zRVm1PKWfAYC7sGoPgaIhA2
-R3sC52LNxWG8cx6lm1XNg7n4qzn965oLQGhOe5aTfiFEZqYHE0Q=
-=ZmPz
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmxFP4ACgkQ2O7X88g7
++poVshAAnXzYI6V9uZTnGhackdsLYcIzYBzV4S2UblpvgsjBEDRbg8hS/8Y5Uk/G
+rx6QjiEW1/pmj8VKkoHbU3X/oD1WxT2M1Safnlev6s1mvKor7Ccop15nuLZzMwvs
+xc47h900ZWCQyLc7Q2w7Xb7kRrcIitpBhLgYNSb98657rjGXYYBtx92xuuSvnxgl
+u4Xsz6EQfwbsh6UOZV0+9EzDiWbLPA466TXv39R9rOMFQJQEAqZZi4zum6IVyWoT
+6vsbmODK1GkX6Bf4Fx9tGVIYS8KHrMym3N/P+APYXZavZwe/n6zoUqmVuQYyNDNE
+RVWYjRjrMfqHuLayxVv0zHGZh16JMoJkSVUpxXQIWQ2npWxWZ2ZJStVuIL9kZPzj
+Uii6iAOSHBd8LzDqQjBj0N1lnPq785/F4TahKWZRLoMci+2EQFA49R7Y1YPJePby
+QnJPfo3DuA6H6O72f4L7pH/fSP+Qi94MqyreIr8yFtf0+7qNQrt9SgoeSReIE01E
+RSjk4RnNS2Bo0483Em39OQjforCHn7V6DAzHPOAmJcAuqjCCqIQd+QiTgFmJhPyC
+Js7gYmMLcVBhEUADhpZtTOz0X4C/zxc6BGv1aBiplohxyupiNpIos5E2+zacLTvY
+FZ7GN6XlFtvIgSlCZ93UX3jMv51EFqcDtR6bdVAq3+GLaFLw8Cc=
+=lQvk
 -----END PGP SIGNATURE-----
 
---qrjbboz7ivwrdkum--
+--reifdht5cktlc2j3--
 
