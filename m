@@ -1,182 +1,154 @@
-Return-Path: <devicetree+bounces-274223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274224-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6D1HOKeVsWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274223-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:17:43 +0100
+	id 6OqDA92VsWnkDAAAu9opvQ
+	(envelope-from <devicetree+bounces-274224-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:18:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77D96267312
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:17:43 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 770CD267339
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:18:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id C74D83151618
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:12:43 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 53DEA30015B4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:15:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62AC73603C6;
-	Wed, 11 Mar 2026 16:12:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16BD73E122D;
+	Wed, 11 Mar 2026 16:15:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gLslAale"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B1E3D5234
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 16:12:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61EA3E121E;
+	Wed, 11 Mar 2026 16:15:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773245562; cv=none; b=U+omd08n8QK2WDAVVhiNz3V2Sx1DyH1vhLM5ZXOB5Y6NgdKrgTzfh4ckACGeiWxTzn0WitCxhum8xqogt98KV9ErfXhcy9AUUdXP9RRt8N16XHrjnJ9xmv3qc9yrr0188C5RmfosHmVuQCnwyBrVxeVSCZsiVjBV3HmBYwZTIhg=
+	t=1773245725; cv=none; b=RoG7kCVPn2DRIGNMZxsainqKAmdO74Ys8wlibWhXqHKxVH/dUzpfJMwkIc1J8v/MDKTBlOWvaJ985IYwZ3jpLeW5aQsUdIo/gMngxv2GfjZzAARpJnoDDAMPLgIic4xsDFh8TGDJm0i50pzGWe5sQSgLsJxz+5l0FWpfaxbEb5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773245562; c=relaxed/simple;
-	bh=kriQ31pznimK4X2P3ovzVVed34liQBkD34H6iVN9D1s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aXioDMxNd4bA+DLVswvK4Br437+I66ND9o2sua7fWlW55+mxZSq+Q3iVrd7jIjbFirzT81Le8iqeMi5o8Prx1wR3ZwzZipuhfjm9Lp2rWyoM9YnafDFSnBVCiv/eyyVicKx/Lzj1YUf86fucnBQIHJPb6cgh/u8AmiZpDxKCsTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-56aff27dfebso76764e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 09:12:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773245557; x=1773850357;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2TZQnjO7g8xVtwDHS6cEDEA1/Z/EJi3b/CK0eN89lxs=;
-        b=eKQ/Fpo2pOn4Sh1MM/uFwm8UHyNxdoozbRypOwjp/w9I/WW2paC0/+QJ8yxrErXeVz
-         S4fyUjjUQvhz4xooQ18J63KHClJPXXUVBWLZj33s+Cl4U8GSSGaSQ+nZoUFwFLmT64fM
-         XmFaXehjKwC7NTrzXwUOtlVSpwSflhCg5qo5KVUorkkKdg3nwbzWZZzGz15ll3rt/0ZF
-         CzKEbdnhneMMOtkZESLqJCArg7hyYYtVkMVsIsmEAc7k8Oc49MSiu++2o9kaD11X0IZP
-         OSpq/zwuFQBYOuKtzaVETFgGfdGBnt5mgxLsZQ2m6uBO6sag3fSUtzqUHv0u6HjjSIaG
-         iSZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUSE1cAmcPICkGTu8CcYxvLinHPIjvU0zT/g85cZkNEb9B0jJuZQnHURklCksAqDH3vFL2klt2Vzb8m@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaKENU7hR4f1u1DysIgiXmoN58AsjwtwHKbepZ/uUF0eaJcx6v
-	aa6zVYSmJ5W8rwa8mdGJ93imOIKAlJlkbWJyMS3f+V8RzueF1RPwLrb686XiWsA8rSA=
-X-Gm-Gg: ATEYQzyb2LO7IgeShyuu6ujU/VP0uSc/YjWqFg3TckTCA4VHBX8dIRDnv0aDZX6cd2B
-	We7Eq/a9qCKqy8NuVr7Dhyum+sUoOpx/N0DsXx5/95WXkmpSAOzqae8c1WpwU+J5wanRJgJw4QE
-	7v6R9fHKT3tt0ekqEMFyi4tVLpDUOAquTegaR+pZQo4uImGs5FWlDwxGMzEdE4ijbRZOJpLT3Bu
-	Ft1xqTpU33g2zFKxCRQ+kIZjofLvHYG/TiMUszG7XeltS8w7xzWyW8sS/4zpwoUt560F5Pm34Is
-	k3/U8PN30u+aTEmSHEphpL/8CVhkJb82OFcwYw0WChvQ7YDYXhJ85BC4M+7ltFikbhBBQJsQehU
-	3d1ic1qvYDjueAd7NVT50Mn6GZ0lqIQNT7VF1IWP7XvELUroIb4VPwPBuMYjFyBLWlctqACHKDD
-	AV5IVBnO2WjFFCaZLK665XJTza+NzaSoRfQ3EHTunxuhbEu4JaLZqn2U+Cwcjk2ldWGh6HYDg=
-X-Received: by 2002:a05:6102:94e:b0:5ff:c510:b7e4 with SMTP id ada2fe7eead31-601def30c4fmr1459832137.28.1773245557115;
-        Wed, 11 Mar 2026 09:12:37 -0700 (PDT)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-601de6c47a9sm887985137.1.2026.03.11.09.12.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2026 09:12:35 -0700 (PDT)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-94aaa5d3bfcso7902156241.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 09:12:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVfbRM3v+KT5xQN3VZOfwD3VtT3kksLseT14hu3YI5QqtX3HPtW7OqnBw8d61bXhB6RJE3Y1kYxLqiC@vger.kernel.org
-X-Received: by 2002:a05:6102:290c:b0:5ff:d192:ff22 with SMTP id
- ada2fe7eead31-601deec1db1mr1359334137.19.1773245554633; Wed, 11 Mar 2026
- 09:12:34 -0700 (PDT)
+	s=arc-20240116; t=1773245725; c=relaxed/simple;
+	bh=peLGTHMQedas99d563bn3rT8GdsZdOfBPrz9+9nCb6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k+L40L2umZbv+aLgUwRe10VH48FXsyMbWR4zxKLcnufCK3PmUns8BQWpgXat1nkaa4ZB7eDrmEFfTPU94jeWBev/jfR7JcspcpfdWKT3PH9DqS+eLKHDG7rWmmotKBsqCYvfLJiIMFiZKoR+vWKuJxiBcSOxApv6TWemyKvBlbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gLslAale; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3FFEC4CEF7;
+	Wed, 11 Mar 2026 16:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773245724;
+	bh=peLGTHMQedas99d563bn3rT8GdsZdOfBPrz9+9nCb6s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gLslAale4vLmG470jQxB1+dfPXaBtKKNOG+Zme6vowFkywCr0u+t/r2G2diuqJdq9
+	 XMOIU2R+7Xt1g7KGaKmbzaOVyGYyKn/G6kl1Q5s306lRYNZLbX0o43In64Ne31m9cI
+	 vTOAeHZ2DZip8xUPhud9S2siJM5KHh/Er0qrevzANaPWRknSM/6qNdeuAcIK5EFE1Q
+	 MAkAgZmzF0ihghmS48ZcmfTfIMJbZ0sqsquHQHSRIIMmvDeshbBoMlAVfa0kqaLrHp
+	 obkRUBiQTmXNE8T38CfzYNnYtUHKhA3IvKp0nXet1WjCHWHymuuuCPeVqq058NquIX
+	 6wec8qWJzax2g==
+Date: Wed, 11 Mar 2026 16:15:19 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 6/6] ASoC: loongson: Add Loongson-2k0300 I2S controller
+ support
+Message-ID: <dea0bc84-c039-449c-8a6b-652062df75aa@sirena.org.uk>
+References: <cover.1773107475.git.zhoubinbin@loongson.cn>
+ <cb7062433863aea0d66959fc0f4aee791cab6402.1773107475.git.zhoubinbin@loongson.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260306143423.19562-1-john.madieu.xa@bp.renesas.com> <20260306143423.19562-16-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20260306143423.19562-16-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Mar 2026 17:12:23 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWMCqPZC2o8GMaRkJVTE3-FAtbPB3h_aDjpND6s=FWbZA@mail.gmail.com>
-X-Gm-Features: AaiRm50HgMmG-2Hd3S3CzPU1H5WBB19C2AdyrH6AqIP1ufq9nQI1hgHf7Jj5-NE
-Message-ID: <CAMuHMdWMCqPZC2o8GMaRkJVTE3-FAtbPB3h_aDjpND6s=FWbZA@mail.gmail.com>
-Subject: Re: [PATCH v8 15/15] arm64: dts: renesas: r9a09g047e57-smarc: Enable PCIe
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be, 
-	krzk+dt@kernel.org, robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-clk@vger.kernel.org, john.madieu@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [0.04 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s2U7mnTw8PGiDvVS"
+Content-Disposition: inline
+In-Reply-To: <cb7062433863aea0d66959fc0f4aee791cab6402.1773107475.git.zhoubinbin@loongson.cn>
+X-Cookie: When all else fails, EAT!!!
+X-Spamd-Result: default: False [-2.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
-	TAGGED_FROM(0.00)[bounces-274223-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-274224-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,perex.cz,suse.com,xen0n.name,lists.linux.dev,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 77D96267312
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,sirena.org.uk:mid]
+X-Rspamd-Queue-Id: 770CD267339
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi John,
 
-On Fri, 6 Mar 2026 at 15:36, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
-> The RZ Smarc Crarrier-II board has PCIe slots mounted on it.
-> Enable PCIe support.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+--s2U7mnTw8PGiDvVS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for your patch!
+On Wed, Mar 11, 2026 at 02:37:48PM +0800, Binbin Zhou wrote:
 
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> @@ -122,6 +122,11 @@ key-sleep {
->  #endif
->  };
->
-> +&pcie {
-> +       pinctrl-0 = <&pcie_pins>;
-> +       pinctrl-names = "default";
-> +};
-> +
->  &pinctrl {
->         canfd_pins: canfd {
->                 can1_pins: can1 {
-> @@ -167,6 +172,17 @@ rsci9_pins: rsci9 {
->                 bias-pull-up;
->         };
->
-> +       pcie-clkreq-n {
+> Due to a hardware design flaw, PCM_START requires an explicit reset.
+> It has been tested and does not affect other machines.
 
-Please preserve sort order (alphabetical, by node name).
-No need to resend this series just for this change.
+Are you sure?  It just does a reset whenever we start a stream which
+means if one direction is already running the controller will get reset
+underneath it and disrupt things if the other is started.  If this IP
+requires it I guess that's just unfortunate but presumably existing
+devices don't require the reset and will be regressed.
 
-> +               gpio-hog;
-> +               gpios = <RZG3E_GPIO(4, 5) GPIO_ACTIVE_HIGH>;
-> +               output-low;
-> +               line-name = "pcie_clkreq_n";
-> +       };
-> +
-> +       pcie_pins: pcie {
-> +               pinmux = <RZG3E_PORT_PINMUX(G, 7, 1)>; /* PCIE_RST_OUT# */
-> +       };
-> +
->         scif_pins: scif {
->                 pins = "SCIF_TXD", "SCIF_RXD";
->                 renesas,output-impedance = <1>;
+> +++ b/sound/soc/loongson/loongson_card.c
+> @@ -61,7 +61,7 @@ static struct snd_soc_dai_link loongson_dai_links[] = {
+>  	{
+>  		.name = "Loongson Audio Port",
+>  		.stream_name = "Loongson Audio",
+> -		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_IB_NF
+> +		.dai_fmt = SND_SOC_DAIFMT_I2S | SND_SOC_DAIFMT_NB_NF
+>  			| SND_SOC_DAIFMT_CBC_CFC,
+>  		SND_SOC_DAILINK_REG(analog),
+>  		.ops = &loongson_ops,
 
-Gr{oetje,eeting}s,
+This changes the clock inversion for everything - should this be
+parameterised as that seems to be a fairly generic card?
 
-                        Geert
+--s2U7mnTw8PGiDvVS
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+-----BEGIN PGP SIGNATURE-----
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmxlRYACgkQJNaLcl1U
+h9CbzQf8Cg25VuvcG1peyTjrx3lXqm0InC7MMkeb6Cktsz9SzZlDZnkZr4o908CL
+XJh4iRSmkqwHnFWbS6Gld+RaoSCZlUfpTU5VspzlhDn1cCsQ+RKaXieq+ZARUnk6
+Byyqu2bPNMVbdgxW9SdI/hQ9wg1yE1GJovLTmEQV62T00MZBTo32oyrQt/Q07nS5
+kbIWTIR+aHMB4D+RiES0tgiOmfFGHym1FjpiFtu1oMc7WAoSqav052O218W3KaKB
+Gqixk+000vMekmEGtHfrfveAZgym7lYNCR87T1ATe8IS3vQeo6cuchzHCAvMxz/H
+kH2nbX63f+2WmBq84hWnPO+MJ8tY3g==
+=zKND
+-----END PGP SIGNATURE-----
+
+--s2U7mnTw8PGiDvVS--
 
