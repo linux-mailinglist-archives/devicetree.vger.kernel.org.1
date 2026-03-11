@@ -1,147 +1,182 @@
-Return-Path: <devicetree+bounces-274222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274223-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gIAMEXyUsWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274222-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:12:44 +0100
+	id 6D1HOKeVsWnkDAAAu9opvQ
+	(envelope-from <devicetree+bounces-274223-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:17:43 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E9B1267161
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:12:43 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77D96267312
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:17:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7E3DD301F686
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:11:47 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id C74D83151618
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:12:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9C2A371893;
-	Wed, 11 Mar 2026 16:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZJZW7xpW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62AC73603C6;
+	Wed, 11 Mar 2026 16:12:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ABA02836BE;
-	Wed, 11 Mar 2026 16:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B1E3D5234
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 16:12:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773245503; cv=none; b=bfWs0iqUvvzJilOrCEOMV/2ob4W9L74l1rYbmkyE2s59UWaG595PY0wuIG0hL1yJ9noDMYzNCRieRxumTWqxLcjHRKE/VxHjK0xte6eoGrywm+HFCKhyl7O1EwH0iatACEmb0UXFoadyaaJHtijPLTz2JSYy2yL3b9J/9Lfzsi0=
+	t=1773245562; cv=none; b=U+omd08n8QK2WDAVVhiNz3V2Sx1DyH1vhLM5ZXOB5Y6NgdKrgTzfh4ckACGeiWxTzn0WitCxhum8xqogt98KV9ErfXhcy9AUUdXP9RRt8N16XHrjnJ9xmv3qc9yrr0188C5RmfosHmVuQCnwyBrVxeVSCZsiVjBV3HmBYwZTIhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773245503; c=relaxed/simple;
-	bh=evV2rhrIzHx6r4Vr4HBP0eaZLjm3eQdiuatu/5CQVUY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Hh1fHrHBNedv7Le501HlBz7NozAXsCyX5CC+IVcdSDWrtCZ9+CIcTJeXS8+TGm+sbiCDVbV4PCjg6jY8nvG7Ug5TPLc6rbBf1Pw2DRUh8QM3aa1Qth3NSceeeuzcalBKq2ESRgc6kaSTYCmFzdAhjE5KEygKkQeklH0rb2tLRio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZJZW7xpW; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 980B94E4261D;
-	Wed, 11 Mar 2026 16:11:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6C1B260004;
-	Wed, 11 Mar 2026 16:11:40 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 72C84103691F8;
-	Wed, 11 Mar 2026 17:11:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773245499; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=h4UXzCKBp/AtRlL9HwQ21GZlqc5cwCvVv8lhtud2N4c=;
-	b=ZJZW7xpWv7UWurgWYUo9/EK3dvUe54bVyyWqTUG4Qe9nSxyBccLHHEBqkzoFADwePBMNrb
-	pVu77BHK1ZbermPxkrhmUJIurCC4i8oZs2/gyCNrsTt46EwGau1YlyAcPgD+0o84BpjRsw
-	C+oiOP1TyNdHsez0ca9+rGG7LlNPXVU74EuWW+LAzJ1BjltcslbTi3AfOoeDCQz0hCBrmm
-	RjWSlkLkJN3XZc1owWqHy7xaN0yrOcjZpoOpX+nk/eT0zcmY0KcfK09bkW1617VAA4nySL
-	xJfvIaqKSyAnCjbUUSCBxgXsM8WeecG613XHwdutmMs0zmDghF7V5GacOrpG7g==
-Date: Wed, 11 Mar 2026 17:11:29 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-gpio@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Thomas Gleixner <tglx@linutronix.de>, Daire McNamara
- <daire.mcnamara@microchip.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <pjw@kernel.org>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
- Ghiti <alex@ghiti.fr>, Linus Walleij <linusw@kernel.org>, Bartosz
- Golaszewski <brgl@kernel.org>, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v12 3/4] soc: microchip: add mpfs gpio interrupt mux
- driver
-Message-ID: <20260311171129.2c382b91@bootlin.com>
-In-Reply-To: <20260311-vigorous-steadfast-04afdcc9e524@spud>
-References: <20260311-tasting-friend-eae39148fb96@spud>
-	<20260311-vigorous-steadfast-04afdcc9e524@spud>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1773245562; c=relaxed/simple;
+	bh=kriQ31pznimK4X2P3ovzVVed34liQBkD34H6iVN9D1s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aXioDMxNd4bA+DLVswvK4Br437+I66ND9o2sua7fWlW55+mxZSq+Q3iVrd7jIjbFirzT81Le8iqeMi5o8Prx1wR3ZwzZipuhfjm9Lp2rWyoM9YnafDFSnBVCiv/eyyVicKx/Lzj1YUf86fucnBQIHJPb6cgh/u8AmiZpDxKCsTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-56aff27dfebso76764e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 09:12:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773245557; x=1773850357;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2TZQnjO7g8xVtwDHS6cEDEA1/Z/EJi3b/CK0eN89lxs=;
+        b=eKQ/Fpo2pOn4Sh1MM/uFwm8UHyNxdoozbRypOwjp/w9I/WW2paC0/+QJ8yxrErXeVz
+         S4fyUjjUQvhz4xooQ18J63KHClJPXXUVBWLZj33s+Cl4U8GSSGaSQ+nZoUFwFLmT64fM
+         XmFaXehjKwC7NTrzXwUOtlVSpwSflhCg5qo5KVUorkkKdg3nwbzWZZzGz15ll3rt/0ZF
+         CzKEbdnhneMMOtkZESLqJCArg7hyYYtVkMVsIsmEAc7k8Oc49MSiu++2o9kaD11X0IZP
+         OSpq/zwuFQBYOuKtzaVETFgGfdGBnt5mgxLsZQ2m6uBO6sag3fSUtzqUHv0u6HjjSIaG
+         iSZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUSE1cAmcPICkGTu8CcYxvLinHPIjvU0zT/g85cZkNEb9B0jJuZQnHURklCksAqDH3vFL2klt2Vzb8m@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaKENU7hR4f1u1DysIgiXmoN58AsjwtwHKbepZ/uUF0eaJcx6v
+	aa6zVYSmJ5W8rwa8mdGJ93imOIKAlJlkbWJyMS3f+V8RzueF1RPwLrb686XiWsA8rSA=
+X-Gm-Gg: ATEYQzyb2LO7IgeShyuu6ujU/VP0uSc/YjWqFg3TckTCA4VHBX8dIRDnv0aDZX6cd2B
+	We7Eq/a9qCKqy8NuVr7Dhyum+sUoOpx/N0DsXx5/95WXkmpSAOzqae8c1WpwU+J5wanRJgJw4QE
+	7v6R9fHKT3tt0ekqEMFyi4tVLpDUOAquTegaR+pZQo4uImGs5FWlDwxGMzEdE4ijbRZOJpLT3Bu
+	Ft1xqTpU33g2zFKxCRQ+kIZjofLvHYG/TiMUszG7XeltS8w7xzWyW8sS/4zpwoUt560F5Pm34Is
+	k3/U8PN30u+aTEmSHEphpL/8CVhkJb82OFcwYw0WChvQ7YDYXhJ85BC4M+7ltFikbhBBQJsQehU
+	3d1ic1qvYDjueAd7NVT50Mn6GZ0lqIQNT7VF1IWP7XvELUroIb4VPwPBuMYjFyBLWlctqACHKDD
+	AV5IVBnO2WjFFCaZLK665XJTza+NzaSoRfQ3EHTunxuhbEu4JaLZqn2U+Cwcjk2ldWGh6HYDg=
+X-Received: by 2002:a05:6102:94e:b0:5ff:c510:b7e4 with SMTP id ada2fe7eead31-601def30c4fmr1459832137.28.1773245557115;
+        Wed, 11 Mar 2026 09:12:37 -0700 (PDT)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-601de6c47a9sm887985137.1.2026.03.11.09.12.34
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Mar 2026 09:12:35 -0700 (PDT)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-94aaa5d3bfcso7902156241.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 09:12:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVfbRM3v+KT5xQN3VZOfwD3VtT3kksLseT14hu3YI5QqtX3HPtW7OqnBw8d61bXhB6RJE3Y1kYxLqiC@vger.kernel.org
+X-Received: by 2002:a05:6102:290c:b0:5ff:d192:ff22 with SMTP id
+ ada2fe7eead31-601deec1db1mr1359334137.19.1773245554633; Wed, 11 Mar 2026
+ 09:12:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+References: <20260306143423.19562-1-john.madieu.xa@bp.renesas.com> <20260306143423.19562-16-john.madieu.xa@bp.renesas.com>
+In-Reply-To: <20260306143423.19562-16-john.madieu.xa@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 11 Mar 2026 17:12:23 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWMCqPZC2o8GMaRkJVTE3-FAtbPB3h_aDjpND6s=FWbZA@mail.gmail.com>
+X-Gm-Features: AaiRm50HgMmG-2Hd3S3CzPU1H5WBB19C2AdyrH6AqIP1ufq9nQI1hgHf7Jj5-NE
+Message-ID: <CAMuHMdWMCqPZC2o8GMaRkJVTE3-FAtbPB3h_aDjpND6s=FWbZA@mail.gmail.com>
+Subject: Re: [PATCH v8 15/15] arm64: dts: renesas: r9a09g047e57-smarc: Enable PCIe
+To: John Madieu <john.madieu.xa@bp.renesas.com>
+Cc: claudiu.beznea.uj@bp.renesas.com, lpieralisi@kernel.org, 
+	kwilczynski@kernel.org, mani@kernel.org, geert+renesas@glider.be, 
+	krzk+dt@kernel.org, robh@kernel.org, bhelgaas@google.com, conor+dt@kernel.org, 
+	magnus.damm@gmail.com, biju.das.jz@bp.renesas.com, linux-pci@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-clk@vger.kernel.org, john.madieu@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-274222-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_CC(0.00)[bp.renesas.com,kernel.org,glider.be,google.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274223-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	MIME_TRACE(0.00)[0:+];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,microchip.com:email]
-X-Rspamd-Queue-Id: 3E9B1267161
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 77D96267312
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Conor,
+Hi John,
 
-On Wed, 11 Mar 2026 15:17:40 +0000
-Conor Dooley <conor@kernel.org> wrote:
+On Fri, 6 Mar 2026 at 15:36, John Madieu <john.madieu.xa@bp.renesas.com> wrote:
+> The RZ Smarc Crarrier-II board has PCIe slots mounted on it.
+> Enable PCIe support.
+>
+> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
 
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> On PolarFire SoC there are more GPIO interrupts than there are interrupt
-> lines available on the PLIC, and a runtime configurable mux is used to
-> decide which interrupts are assigned direct connections to the PLIC &
-> which are relegated to sharing a line.
-> 
-> Add a driver so that Linux can set the mux based on the interrupt
-> mapping in the devicetree.
-> 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  MAINTAINERS                         |   2 +-
->  drivers/soc/microchip/Kconfig       |  11 ++
->  drivers/soc/microchip/Makefile      |   1 +
->  drivers/soc/microchip/mpfs-irqmux.c | 181 ++++++++++++++++++++++++++++
->  4 files changed, 194 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/soc/microchip/mpfs-irqmux.c
-> 
+Thanks for your patch!
 
-Looks good.
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+> @@ -122,6 +122,11 @@ key-sleep {
+>  #endif
+>  };
+>
+> +&pcie {
+> +       pinctrl-0 = <&pcie_pins>;
+> +       pinctrl-names = "default";
+> +};
+> +
+>  &pinctrl {
+>         canfd_pins: canfd {
+>                 can1_pins: can1 {
+> @@ -167,6 +172,17 @@ rsci9_pins: rsci9 {
+>                 bias-pull-up;
+>         };
+>
+> +       pcie-clkreq-n {
 
-Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+Please preserve sort order (alphabetical, by node name).
+No need to resend this series just for this change.
 
-Best regards,
-Hervé
+> +               gpio-hog;
+> +               gpios = <RZG3E_GPIO(4, 5) GPIO_ACTIVE_HIGH>;
+> +               output-low;
+> +               line-name = "pcie_clkreq_n";
+> +       };
+> +
+> +       pcie_pins: pcie {
+> +               pinmux = <RZG3E_PORT_PINMUX(G, 7, 1)>; /* PCIE_RST_OUT# */
+> +       };
+> +
+>         scif_pins: scif {
+>                 pins = "SCIF_TXD", "SCIF_RXD";
+>                 renesas,output-impedance = <1>;
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
