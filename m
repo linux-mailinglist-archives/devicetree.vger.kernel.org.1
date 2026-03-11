@@ -1,664 +1,729 @@
-Return-Path: <devicetree+bounces-274100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274098-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNNlJABssWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274100-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:20:00 +0100
+	id aJRhM1ZssWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274098-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:21:26 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5160126454C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:20:00 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40AF52645C9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:21:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 947563019463
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:19:56 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B95993041BCF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4663830F958;
-	Wed, 11 Mar 2026 13:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA032FFDE1;
+	Wed, 11 Mar 2026 13:18:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="AO4ygi3F";
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="AO4ygi3F"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FX3Sue06"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013005.outbound.protection.outlook.com [52.101.72.5])
+Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012011.outbound.protection.outlook.com [52.101.48.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 626672FE575;
-	Wed, 11 Mar 2026 13:19:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.5
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773235196; cv=fail; b=rj3c4Vxz6F0figdOtlZsFGwi3J/Ldl3685eDhLVBDe8WkAgCnHa5S1PQUk0//x438Qetl+ue1ldPc7z5a4QV0g/sLku6pIM5mgxrtXHsTYuJWIdgH99QnmvaO1NCPsQr6QGtHpUTE5xrOKYXYWrvWye+KWV94PAuBNH8sTOWCpo=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773235196; c=relaxed/simple;
-	bh=h2nSgBmdiUkMjpXhQpaVFQMFnre0iV3ytW6Ui/oLiFw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=gb4hs5Jv763huMs6Dh+4BQUtw8FXutNTSxOrEQlDV0Syllan4pER9aW2KvxQp89yaLizXtsbjtSdno3XwxERblqzX5iIumzNouc90vwTC/4Pp3eK3yVxeF6HDxF/BqIOeYjPHugrTGtMBpOP5q8CHd3XxkKC9WfObUB9Ueoot84=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=AO4ygi3F; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=AO4ygi3F; arc=fail smtp.client-ip=52.101.72.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=nPvx4jgAA/X7D6W2ukmaSrVzu72gsytigvsvpTiIR7mhzZAQXeWXv3sxQ1jjRCIJf1bTaVCYH7bBXlqkFuyKFXOz7CyJ5cxbg6lruwg6AVunITvTzWtAhQABkFTf+CLRuzdJcv6m/rfftYduF5bHYQZ1vjJw0Pp74BE/62r6bDTMKNTd3UZsRTEVfb9z3W4PPacBWVTAF6uMCwlei6ZZs7jJnxiBjnn2wAUCmw6kZelvAYfPkh9ijsZlx3jR2jxenqg6wb808jo/8sk3sKuIMuyXfey42wxRz1utfNGeNeNt1wisnFmYpBPIwonRFG+4bs6HYpsg8ifpGd1hAxnj+g==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XMEjRqdxPX/srP2bjicoAEzeWzubmUyoQp4REBg6JrE=;
- b=gRTP8q8lK5oXCIcJ8xCzuCvB4tLyBPlZFIUw18iPMZfVfiV+MKsebRLhdQ+scxC94RulUY7/gBkH+40VlTFyQCgv2ZiuoXdkRxazWDLtDUqONsT9XsOE4fnGP+9HH8BS2GK9TQlCqGd5bKpJtOWUJrfW7pLaeyxWgwgc3X1gNnM8BKPESWqDICnZ3XL3yE3v3JzA6M5t/vw8JmJp0Hgjs8PouRTk2318E+tdBJ1++hacz1Lq6VTZjLoZdzGVOX+/q5ry2VaITEwd5P990zc6sA0n7Kk5Rf63aA8VVyPaI7xQbdEAIcLVgxS5PZM5PsZy4DJRjTB8Zx7Lp0Rn6DukQQ==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=oss.qualcomm.com smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XMEjRqdxPX/srP2bjicoAEzeWzubmUyoQp4REBg6JrE=;
- b=AO4ygi3FcHC6ptIlolj+PJOTtQqcLI/L6WQH9h3al5jd7bqUhB+x71C7A/R81wNkB/NpHNxlZ1sAGCxs0aN1Oq7DQKQREbT+0/jyDcZK8eCzdtxAGubdUkUBlKRiuIrZLFb70F23QnnvQGQXvrCGJFvMem6J4sFYVwF3DTUM4UE=
-Received: from DUZPR01CA0162.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:4bd::10) by AM9PR08MB6193.eurprd08.prod.outlook.com
- (2603:10a6:20b:282::15) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Wed, 11 Mar
- 2026 13:19:46 +0000
-Received: from DB5PEPF00014B9B.eurprd02.prod.outlook.com
- (2603:10a6:10:4bd:cafe::bc) by DUZPR01CA0162.outlook.office365.com
- (2603:10a6:10:4bd::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.26 via Frontend Transport; Wed,
- 11 Mar 2026 13:19:42 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 4.158.2.129)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- DB5PEPF00014B9B.mail.protection.outlook.com (10.167.8.168) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.18
- via Frontend Transport; Wed, 11 Mar 2026 13:19:44 +0000
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEF730DED1;
+	Wed, 11 Mar 2026 13:18:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.11
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773235117; cv=fail; b=L439YW9Y4rg1FFZLb2dnp1U6UZWKtmfrbkoEoHZvgmzaNBpMUkpLnAn0pCC40oir5otQ51aPP9g09xxqx9J7VKbv05fvCVqDNu8vj+2nOH/TKBMoELl6if77ECsJC05g4VApE+Gn1ZvXkxYIbtkI9Rqmk9d1N76ZsHjp3yJTdnQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773235117; c=relaxed/simple;
+	bh=E/xYZ3Y4fU13OUl3+ey9wo7H0TcGhpLwCojyCTfKbnc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=X2ritgEd+01GU/rEj1ekbqK5xabgGL0OV8MTDltMar6O3cLKAjEJMzwYHy9P+qxtktR9NlrHRMbnmR4avXAFiqMTr82l01EkRovhyD05LmxyxGIuk8LE+Arc2jwZHpge8T3UmROC+2FKZy1CYYht2RYEJFyGDQYe7G/SlWSGQHI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FX3Sue06; arc=fail smtp.client-ip=52.101.48.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qz7rJKd1HxUWBgd2DRgj0DLUL5nIq8pgMZhmg9rdgFD5drR5Oa3RTMoZxL1PtN5rCPkRv4wniGUV5+lCJzPD7hxTAb/3MRkS1j3NTxDuUIDzU7WWvKt0zIE4Y168U1wVvdUA6N00MpaAYhJTVEUUDxAOor0Yz2Gx+h5TMqr/AaOO9Ud71+EjN5RkMCdOgTMG3XbcD7KT09aRlWBHI7uSBuquE0ZzO8jVGyzvXZqlZJkiorByr22n8s1ksfl0IuySWV7i5a3rEw8Nwri6jYGiToXFvPJuldXKV8VE6qje8F0opBro+rYkqVLLhzX/kRQLTqeMzh0cr04rp5Zp4kdllA==
+ b=Cia3xEaPrXbtybgTmhISgBJlXoCDPYEcZukFkqC5+aYUM0fBvexMwOa/ncshkJbroSOiHXj39M7IFMRShv4kU0Ll2gtLShAP1zXyzUippBLJ4tJFJEPwackVUNpL20zorVzYyF0Zhi2gJlg5oftnDotf/H1j+W3K6YrF60ZfFdISloDmOrED8y10OHcZ+7X4XuwV0M/g8ZUkIyZZ3RcgMhzKcoCsMm/y1j6E7Kzw063NI6ydscAz70b7RXqHBzWEkCDwDx8P5bQmwtqXuMPoWWnyNVuHIhz/t1lrCT63TwZG0bPjvsC5RqyE5FnqH1Tt69M3M8LsJe8cM9HOo+CGwg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XMEjRqdxPX/srP2bjicoAEzeWzubmUyoQp4REBg6JrE=;
- b=B9OJ+9idhOkEQv331LoqObtSIGc60yUOFXPhrFu9FSxkMdKuoUXWs5lHZT1/lc3PtD0YenSsq1RERFSn/zEw/k0CwCPjO4QZYRVEmgSlfP+P4GJbe7vuPYQ4WuSrhJasqZ9GWGCV0mBAL5+rsxqRJrUJRi5qUfZ3wWPgayd8Lo0oSTjiFDGIBpjn5KIH0boRudTIe0JkhCskHWoiH32WYA4MBy6wz7iPO6d9zGgWCHdw5BNPAwhuF6pICvWuKsvavjMhGO5CjHUBE3xx5uzJkKfKMv+Z8oyJPsGh0RzR4CY9lsTI8nbqsANnWWoIwoEp18Z3Gz+4oyWjSzA8bjQVmw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
+ bh=gat2kWQW/pOsqA3tDsIrfhgf5yxfIN6loZgIH+x71dc=;
+ b=eJwiKDYu3oE4MWGqx1l7NvFVWrH3+I54mUNi++9S7ZiUMaT8pGB4+TWBQ1pMrh9FdPNybTSikoxFwAMzguD9+1AuVkNWbnox6V2Y3F7rhaVQ8ZFLGKcCefwqZAgLgtZ/Upoiu19ZH9mpNKXtzztPaLp6X3BNL8SwIbDY5EbTrKH8fFSZFw0/7bCisPZMYM3rgICKB8FL2A3MkBe/OFtxQadawWP9JDqDarXqHCZHpPY5Yq4j9KnYmWZcCPaP0lA21iCwseBZC7NK6g9LMDFIhA3RM2eqEI3R2GAQvCy/3p7bk/tqVKuR6q/XABuqOuhKm7TVv4EAGyBld08kRkI9iA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 198.47.23.194) smtp.rcpttodomain=redhat.com smtp.mailfrom=ti.com; dmarc=pass
+ (p=quarantine sp=none pct=100) action=none header.from=ti.com; dkim=none
+ (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XMEjRqdxPX/srP2bjicoAEzeWzubmUyoQp4REBg6JrE=;
- b=AO4ygi3FcHC6ptIlolj+PJOTtQqcLI/L6WQH9h3al5jd7bqUhB+x71C7A/R81wNkB/NpHNxlZ1sAGCxs0aN1Oq7DQKQREbT+0/jyDcZK8eCzdtxAGubdUkUBlKRiuIrZLFb70F23QnnvQGQXvrCGJFvMem6J4sFYVwF3DTUM4UE=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com (2603:10a6:800:324::5)
- by DU0PR08MB8930.eurprd08.prod.outlook.com (2603:10a6:10:465::20) with
+ bh=gat2kWQW/pOsqA3tDsIrfhgf5yxfIN6loZgIH+x71dc=;
+ b=FX3Sue06/VCSStUM5rW0oiiMkexzt6bAJPMfh3wnE+LldiRkfDuO6gyyPgHC/5mEPBB6AiWUCszDRBtkN9tz3f4EBvwmhutixP3HWcMV3KIyMyzybh45F3UVE0C+qnHMBtiHkw26iluj8U0JAT1qlV0JbhiAhcTaK0eg8NJNzrQ=
+Received: from SJ0PR05CA0126.namprd05.prod.outlook.com (2603:10b6:a03:33d::11)
+ by IA4PR10MB8518.namprd10.prod.outlook.com (2603:10b6:208:56a::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Wed, 11 Mar
- 2026 13:18:41 +0000
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd]) by VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd%5]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 13:18:41 +0000
-Message-ID: <df306958-bb99-4728-b461-e5ef1f731be2@arm.com>
-Date: Wed, 11 Mar 2026 13:18:28 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/11] ACPI: APEI: GHES: move CPER read helpers
-Content-Language: en-GB
-To: Himanshu Chauhan <himanshu.chauhan@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- Dmitry.Lamerov@arm.com, catalin.marinas@arm.com, bp@alien8.de,
- robh@kernel.org, rafael@kernel.org, will@kernel.org, conor@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- krzk+dt@kernel.org, Michael.Zhao2@arm.com, tony.luck@intel.com
-References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
- <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-3-347fa2d7351b@arm.com>
- <CA+Ht8=aL8wp0nwH3vnnm8FnRmfp1nUasfXh3HjeWwi8UadBLOg@mail.gmail.com>
-From: Ahmed Tiba <ahmed.tiba@arm.com>
-In-Reply-To: <CA+Ht8=aL8wp0nwH3vnnm8FnRmfp1nUasfXh3HjeWwi8UadBLOg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PR3P189CA0020.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:102:52::25) To VI0PR08MB11823.eurprd08.prod.outlook.com
- (2603:10a6:800:324::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Wed, 11 Mar
+ 2026 13:18:31 +0000
+Received: from SJ1PEPF00001CE0.namprd05.prod.outlook.com
+ (2603:10b6:a03:33d:cafe::30) by SJ0PR05CA0126.outlook.office365.com
+ (2603:10b6:a03:33d::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Wed,
+ 11 Mar 2026 13:18:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 198.47.23.194)
+ smtp.mailfrom=ti.com; dkim=none (message not signed) header.d=none;dmarc=pass
+ action=none header.from=ti.com;
+Received-SPF: Pass (protection.outlook.com: domain of ti.com designates
+ 198.47.23.194 as permitted sender) receiver=protection.outlook.com;
+ client-ip=198.47.23.194; helo=lewvzet200.ext.ti.com; pr=C
+Received: from lewvzet200.ext.ti.com (198.47.23.194) by
+ SJ1PEPF00001CE0.mail.protection.outlook.com (10.167.242.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 11 Mar 2026 13:18:30 +0000
+Received: from DLEE210.ent.ti.com (157.170.170.112) by lewvzet200.ext.ti.com
+ (10.4.14.103) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 11 Mar
+ 2026 08:18:29 -0500
+Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE210.ent.ti.com
+ (157.170.170.112) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 11 Mar
+ 2026 08:18:29 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 11 Mar 2026 08:18:29 -0500
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 62BDISnV905045;
+	Wed, 11 Mar 2026 08:18:28 -0500
+Message-ID: <1afc696a-9afb-48af-887d-2a209680784e@ti.com>
+Date: Wed, 11 Mar 2026 08:18:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	VI0PR08MB11823:EE_|DU0PR08MB8930:EE_|DB5PEPF00014B9B:EE_|AM9PR08MB6193:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f749009-806c-4930-ce03-08de7f70dc56
-x-checkrecipientrouted: true
-NoDisclaimer: true
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] dma-buf: heaps: Add Coherent heap to dmabuf heaps
+To: Albert Esteve <aesteve@redhat.com>
+CC: Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>,
+	=?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, Marek Szyprowski
+	<m.szyprowski@samsung.com>, Robin Murphy <robin.murphy@arm.com>, Rob Herring
+	<robh@kernel.org>, Saravana Kannan <saravanak@kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+	<dri-devel@lists.freedesktop.org>, <linaro-mm-sig@lists.linaro.org>,
+	<iommu@lists.linux.dev>, <devicetree@vger.kernel.org>, <mripard@redhat.com>,
+	<echanude@redhat.com>
+References: <20260306-b4-dmabuf-heap-coherent-rmem-v3-0-3d00d36c9bc4@redhat.com>
+ <20260306-b4-dmabuf-heap-coherent-rmem-v3-5-3d00d36c9bc4@redhat.com>
+ <e8dd476f-1be8-46fa-bf56-65fe0bfe29a1@ti.com>
+ <CADSE00+-SQr3wGdgBmLowHPWE5bGxoyO4o20jZs4ma-71aOxUA@mail.gmail.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <CADSE00+-SQr3wGdgBmLowHPWE5bGxoyO4o20jZs4ma-71aOxUA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00001CE0:EE_|IA4PR10MB8518:EE_
+X-MS-Office365-Filtering-Correlation-Id: 669f1783-7564-4db7-93fb-08de7f70b0a0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|366016|1800799024|7416014|376014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info-Original:
- SPphcGGHx0UpW9/buHHnmYSEdPTAroFQkf9VRSdeQ1pCzTokY/YrWlNQODU+BuADQEv2/qSEiwKh6Z2a2L7lGTOAWf6vo2mSyhNxgUl+u7wz9GV9Rj4hX6V3pSQzIsl82bwRO5eVDeRQ5OCF6l+zUHn1uTWRQ9owTfM0IDjDlolBA0XLLrEzQ7V8sJCbLKmKigVMiyd1M+7FJL1G5I8cXYYEGldW73BQIcLDnLM9F5J7GYNnxoQpoxSSX7bR21K1EY3wQPN5CEpvVNF9UHRQmRZrE5tvcSVP/lkJyRNWb1aZsBVYWu5M54A94hU2W0x6gbLROJI3SNV1naKIrwwruxscWmlaFXZFQGmf2eKlonP8mnZm2ix61ECb2k4hzMKPnZyubuLNegJk5JHynGiHrdF1RGv+J9oXRQet39EPyf6Fx02bTRjFsqRdbZmAunS0OGLur/v2xnk64vfBDoOZlAoIgvVfYx4jJjVrAhWC+wwuvctl6mI2lQkkhqOkv19ri7I+h7cxgCJKJW/Wsw3cFdaVMfx5g5YWFxKqYmRn+gBFHlJNcRmBEkQPzeNc/BDnluSI7zlrsOj0T2CvMdAs7NO9iKQLUF995WEDeLEllsjDSamOWbNVnKKL4WDJF8bejQjrXkSRgTib/Y8aVa5NVd91Tw9drd72U0xjG9TTaNpgibsyYG/vOPTJZVo24WXUKaQh57EC3/c/xyVrlPqZLg7lvd/dKHopw1I4EommkIc=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR08MB11823.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-Exchange-RoutingPolicyChecked:
- idIC3lIFIGqIs+KanaejIGJzhxcgUgRE+B5+WmqpqoqXLcFZEmalM1qPgD/WKP36sdHu4ff/pgDs7pCU+xd7GeYvxUoHB518CoRdyFzqrDkkE+hrN3oCWnz5NtKGs14C8qhaSGNo8OErMsPUHGxW5U/W5v5XtN670pgh6vGBgZCq4dae3OHuDBoPQwanIq2pGF5se9rPG8y7hQO29QkJW3rmKVYGS4ZHkwgiU0XdNwMZzQ/CIOlZmBJuLn6PDVufwq3meLMroXNlMudruB7Ze6SN5A3xi8EanDtf3dCVftgwmFbadFCQdmKSzVKfsL49KpSxQV4XIZrszpRdGbQuLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB8930
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- DB5PEPF00014B9B.eurprd02.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	9fce7bc6-6047-4c63-4003-08de7f70b6dc
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|14060799003|35042699022|82310400026|7416014|376014|36860700016|1800799024|18002099003|56012099003|22082099003;
+	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|7416014|22082099003|56012099003|18002099003;
 X-Microsoft-Antispam-Message-Info:
-	nqZVqa5HhcmU6u76WqudRmqO3jHsNCgrXzhfbEj03H+A1KCgQHUJR90bkU2VYQVR0AfqTPJrXitwG8KIMohrYYmlhT2h1IE9CVWergtKzdTeS31djB1C/NDA7dHrPtesl+ze5i+8bwK8DK7GWGD/nDJ4Y9g1gf5gfTL6jehh5oDyAwXVPfYz+cqTQaF0McVorP5hyAGxkqM6OCbDRLADYk839EiqE+3YoBPruSfp8FTezvYU8Jixg42IUzzJS1XlvzkGuurWPRtnZMXn18JOCZF5GccvHKx1SjhwGk73NraXs0O/Pv8plg3dvS0dC1ktI5y72+rhfpsiNJRWl/Gfzg53zNKMCuI+EpcrqKv0SrxyyWUZ5JCrRMvf6hxtJh8532kjODIUJdIEo65Fy2Niy2osYw0Ph8HH8Fuxc2XWlU6oG/HVcQm5XDG9Ogn+lLWktmbo5rC45/m7tC8ndnDE3rVwNocte3B/F/g91iHNfrFs8SBwyC4MGgjOt0Bph+Y8DP2fna3jsOEBDXwvj7sUiyohcM9SZwZiD9q6GFbafuRb7kYyRbGnYEGg5rbCHj09+E72Wzf9UqY8m9Vs72orZbUVpdOemZKgjNPSdTULnlO8WULkxH46zk5HthHUYcePhkoZ6Hh6rtLcuR+2GeGTGtM7ssWc/xC5U+5SkWMi9B4qjjZWR4pKWF/0ib719bvultG/VoC69ixT/azNj7moGKIyGRkdtKRFq1Vz9xUzdAEkPT4QdrGy40vHnOKsG8dIx/Rl3xs0fVyAL1vs2H/YjA==
+	ZgnofTwsSRijbi+NXfgikxQP+GHJN7ZYb0Gs8bJeDvIls5J22RobAkKoT7k6ZKRH3hlCh4mhXSVZwGFLeDpxqE+fDarrxDhOfzQukgRyBCS+We3WePFK700GPIeM8NUfd65fN+ttcHu+1ICOhm1/5sxDbkUdcLRoYk48hAHCZp5uy8SOfjNbQZAt1+gY7Du9LYCuhmVjkg8hfPz5HQU6VdLyMMDeQn328A/0hVKaZXlLyY/93ioslq9CwoMQKRt3uvhBI9qPCZDIu3j/cNLLFSV2s/ZR0TCil5fuqmmmXQFQ/KH9ht+GmFjwsfBa38h4iLfHDuNoDeQjw18hFCzkQ/1rs0PvcqrrjzkBBp9H+U9kz7cDQPCHeXI8Od4gQEG9nRSMFI/ujGTULY109vgLIb6kUq0DDLp6MvkRjWKSn6buGyWeL7uYOyPFmGPmVfLyBEnuKHanYs9q8H3UjdfyjiP24k+HsSwfUj5SbJdvkx0uP8GPQD106keG8NzLDlPb87YOJMS4ybhVLncrXRO7txNSobuqr3WQQCZQIVAU97bB6iVrX4yoRoH4IacUmrrLHxqO/bSCsREgTVglOTgrHXISVZvB1y1vhEXdCObfb0FcpqYAoPTI60ZC6qKbzooZ2HkqqtPDYrcHLnj4B5BqK2VhHIjVaMKDtNi54QtUQ6ed0i11xDoC+8IY/WYRAiIT+Sl+o/HK/gopo7d7rMI3Z6D4N/2MyIT5W38gDemy5t+Eb6atEWEyTyL44x6O2QknseN82aGRbOc4icoqW2ePKg==
 X-Forefront-Antispam-Report:
-	CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(14060799003)(35042699022)(82310400026)(7416014)(376014)(36860700016)(1800799024)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
+	CIP:198.47.23.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:lewvzet200.ext.ti.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(7416014)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	YZaewvNplqj7d1puvx0w/N29JeDDBCSrB3WEv0dlUTa/cLcL7OOzELIhdvJ4I+bHbzqj7pw6RDHjOt+PJLamPrYqWWdzPW/qGNx5g0Jh55qlrRvEReTodONn48Bh7cM/xgL1c2l3u+7iF4C8F+YwT0p2duETyaur6R1T3zYW+36fGP9BCf5a5zYJwItUDlOeNEcWN9am0eAGqakoJvW+sRzewER1V+tXDn4UxBt9xY+o94zzHIZA914IAua1xUfDnyggNYuBvyBDUOILU3IWXwazRd47Qx9wEnkf7pyl+9IQFc00VJJFfWBmFtzJfEJGY1YlqNZkoTtXUw5gqEB4aQUoXFKRPLS9TvhMDfx9BgaBKg/1hKw2kCQ9AJq8CkqKGdI50hznkSQUPQ8E+9mVsKXRoe2+T4kPwLIwhVycZJikKYcgl0CowpLZrrjeQrcJ
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 13:19:44.1740
+	h+XcD/0R2HC3lBdVNlJ8L8knLci4EGhbOf5QI9PqiZaC31CFyffFCH+jxyNiHbWiqERTsEPqGys9KWIHKgOzL8Q19ad3fXt5DRO2V9UsSf81RfhWJ+rD+BfIRl6pS1SVMqlXHvEvQb/zObf5gYHDf72BrWMxcGRZ0lpqtTac9MxEpFdb4OFJFUTn7yEmBfpem00/ScK87JA2Gwafifndbnsz0bj/jcIIGr+671lvKR/y0zQ8NngeU2r1GyuEPnKoV64oGp5gYndAMthiakPA4G8b1bTcOKFr7muBuIvxB3mNcsszRvhNDHhcCpFtNm9I9RhY11aobe1ve6bN8irznKUCQ3nc6PvcFNXZfMfROTc+UjVnQ/hvRM0n7R6CBIF6hKWaY0oM0AzaPvHkltoJ9l/aKSGVg2n/CQG0+l6jlz8GHgle8dJZpyaizlXea60L
+X-OriginatorOrg: ti.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 13:18:30.8281
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f749009-806c-4930-ce03-08de7f70dc56
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
+X-MS-Exchange-CrossTenant-Network-Message-Id: 669f1783-7564-4db7-93fb-08de7f70b0a0
+X-MS-Exchange-CrossTenant-Id: e5b49634-450b-4709-8abb-1e2b19b982b7
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e5b49634-450b-4709-8abb-1e2b19b982b7;Ip=[198.47.23.194];Helo=[lewvzet200.ext.ti.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	DB5PEPF00014B9B.eurprd02.prod.outlook.com
+	SJ1PEPF00001CE0.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR08MB6193
-X-Rspamd-Queue-Id: 5160126454C
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR10MB8518
+X-Rspamd-Queue-Id: 40AF52645C9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=3];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+X-Spamd-Result: default: False [-0.16 / 15.00];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[ti.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ti.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-274100-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274098-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:dkim,arm.com:email,arm.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,exp_info.name:url,ti.com:dkim,ti.com:email,ti.com:url,ti.com:mid];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_TRACE(0.00)[ti.com:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ahmed.tiba@arm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[afd@ti.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree];
+	RCVD_COUNT_SEVEN(0.00)[10]
 X-Rspamd-Action: no action
 
-On 26/02/2026 05:58, Himanshu Chauhan wrote:
-> On Fri, Feb 20, 2026 at 7:13 PM Ahmed Tiba <ahmed.tiba@arm.com> wrote:
+On 3/11/26 5:19 AM, Albert Esteve wrote:
+> On Tue, Mar 10, 2026 at 4:34 PM Andrew Davis <afd@ti.com> wrote:
 >>
->> Relocate the CPER buffer mapping, peek, and clear helpers from ghes.c into
->> ghes_cper.c so they can be shared with other firmware-first providers.
->> This commit only shuffles code; behavior stays the same.
+>> On 3/6/26 4:36 AM, Albert Esteve wrote:
+>>> Expose DT coherent reserved-memory pools ("shared-dma-pool"
+>>> without "reusable") as dma-buf heaps, creating one heap per
+>>> region so userspace can allocate from the exact device-local
+>>> pool intended for coherent DMA.
+>>>
+>>> This is a missing backend in the long-term effort to steer
+>>> userspace buffer allocations (DRM, v4l2, dma-buf heaps)
+>>> through heaps for clearer cgroup accounting. CMA and system
+>>> heaps already exist; non-reusable coherent reserved memory
+>>> did not.
+>>>
+>>> The heap binds the heap device to each memory region so
+>>> coherent allocations use the correct dev->dma_mem, and
+>>> it defers registration until module_init when normal
+>>> allocators are available.
+>>>
+>>> Signed-off-by: Albert Esteve <aesteve@redhat.com>
+>>> ---
+>>>    drivers/dma-buf/heaps/Kconfig         |   9 +
+>>>    drivers/dma-buf/heaps/Makefile        |   1 +
+>>>    drivers/dma-buf/heaps/coherent_heap.c | 414 ++++++++++++++++++++++++++++++++++
+>>>    3 files changed, 424 insertions(+)
+>>>
+>>> diff --git a/drivers/dma-buf/heaps/Kconfig b/drivers/dma-buf/heaps/Kconfig
+>>> index a5eef06c42264..aeb475e585048 100644
+>>> --- a/drivers/dma-buf/heaps/Kconfig
+>>> +++ b/drivers/dma-buf/heaps/Kconfig
+>>> @@ -12,3 +12,12 @@ config DMABUF_HEAPS_CMA
+>>>          Choose this option to enable dma-buf CMA heap. This heap is backed
+>>>          by the Contiguous Memory Allocator (CMA). If your system has these
+>>>          regions, you should say Y here.
+>>> +
+>>> +config DMABUF_HEAPS_COHERENT
+>>> +     bool "DMA-BUF Coherent Reserved-Memory Heap"
+>>> +     depends on DMABUF_HEAPS && OF_RESERVED_MEM && DMA_DECLARE_COHERENT
+>>> +     help
+>>> +       Choose this option to enable coherent reserved-memory dma-buf heaps.
+>>> +       This heap is backed by non-reusable DT "shared-dma-pool" regions.
+>>> +       If your system defines coherent reserved-memory regions, you should
+>>> +       say Y here.
+>>> diff --git a/drivers/dma-buf/heaps/Makefile b/drivers/dma-buf/heaps/Makefile
+>>> index 974467791032f..96bda7a65f041 100644
+>>> --- a/drivers/dma-buf/heaps/Makefile
+>>> +++ b/drivers/dma-buf/heaps/Makefile
+>>> @@ -1,3 +1,4 @@
+>>>    # SPDX-License-Identifier: GPL-2.0
+>>>    obj-$(CONFIG_DMABUF_HEAPS_SYSTEM)   += system_heap.o
+>>>    obj-$(CONFIG_DMABUF_HEAPS_CMA)              += cma_heap.o
+>>> +obj-$(CONFIG_DMABUF_HEAPS_COHERENT)  += coherent_heap.o
+>>> diff --git a/drivers/dma-buf/heaps/coherent_heap.c b/drivers/dma-buf/heaps/coherent_heap.c
+>>> new file mode 100644
+>>> index 0000000000000..55f53f87c4c15
+>>> --- /dev/null
+>>> +++ b/drivers/dma-buf/heaps/coherent_heap.c
+>>> @@ -0,0 +1,414 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * DMABUF heap for coherent reserved-memory regions
+>>> + *
+>>> + * Copyright (C) 2026 Red Hat, Inc.
+>>> + * Author: Albert Esteve <aesteve@redhat.com>
+>>> + *
+>>> + */
+>>> +
+>>> +#include <linux/dma-buf.h>
+>>> +#include <linux/dma-heap.h>
+>>> +#include <linux/dma-map-ops.h>
+>>> +#include <linux/dma-mapping.h>
+>>> +#include <linux/err.h>
+>>> +#include <linux/highmem.h>
+>>> +#include <linux/iosys-map.h>
+>>> +#include <linux/of_reserved_mem.h>
+>>> +#include <linux/scatterlist.h>
+>>> +#include <linux/slab.h>
+>>> +#include <linux/vmalloc.h>
+>>> +
+>>> +struct coherent_heap {
+>>> +     struct dma_heap *heap;
+>>> +     struct reserved_mem *rmem;
+>>> +     char *name;
+>>> +};
+>>> +
+>>> +struct coherent_heap_buffer {
+>>> +     struct coherent_heap *heap;
+>>> +     struct list_head attachments;
+>>> +     struct mutex lock;
+>>> +     unsigned long len;
+>>> +     dma_addr_t dma_addr;
+>>> +     void *alloc_vaddr;
+>>> +     struct page **pages;
+>>> +     pgoff_t pagecount;
+>>> +     int vmap_cnt;
+>>> +     void *vaddr;
+>>> +};
+>>> +
+>>> +struct dma_heap_attachment {
+>>> +     struct device *dev;
+>>> +     struct sg_table table;
+>>> +     struct list_head list;
+>>> +     bool mapped;
+>>> +};
+>>> +
+>>> +static int coherent_heap_attach(struct dma_buf *dmabuf,
+>>> +                             struct dma_buf_attachment *attachment)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +     struct dma_heap_attachment *a;
+>>> +     int ret;
+>>> +
+>>> +     a = kzalloc_obj(*a);
+>>> +     if (!a)
+>>> +             return -ENOMEM;
+>>> +
+>>> +     ret = sg_alloc_table_from_pages(&a->table, buffer->pages,
+>>> +                                     buffer->pagecount, 0,
+>>> +                                     buffer->pagecount << PAGE_SHIFT,
+>>> +                                     GFP_KERNEL);
+>>> +     if (ret) {
+>>> +             kfree(a);
+>>> +             return ret;
+>>> +     }
+>>> +
+>>> +     a->dev = attachment->dev;
+>>> +     INIT_LIST_HEAD(&a->list);
+>>> +     a->mapped = false;
+>>> +
+>>> +     attachment->priv = a;
+>>> +
+>>> +     mutex_lock(&buffer->lock);
+>>> +     list_add(&a->list, &buffer->attachments);
+>>> +     mutex_unlock(&buffer->lock);
+>>> +
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static void coherent_heap_detach(struct dma_buf *dmabuf,
+>>> +                              struct dma_buf_attachment *attachment)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +     struct dma_heap_attachment *a = attachment->priv;
+>>> +
+>>> +     mutex_lock(&buffer->lock);
+>>> +     list_del(&a->list);
+>>> +     mutex_unlock(&buffer->lock);
+>>> +
+>>> +     sg_free_table(&a->table);
+>>> +     kfree(a);
+>>> +}
+>>> +
+>>> +static struct sg_table *coherent_heap_map_dma_buf(struct dma_buf_attachment *attachment,
+>>> +                                               enum dma_data_direction direction)
+>>> +{
+>>> +     struct dma_heap_attachment *a = attachment->priv;
+>>> +     struct sg_table *table = &a->table;
+>>> +     int ret;
+>>> +
+>>> +     ret = dma_map_sgtable(attachment->dev, table, direction, 0);
+>>> +     if (ret)
+>>> +             return ERR_PTR(-ENOMEM);
+>>> +     a->mapped = true;
+>>> +
+>>> +     return table;
+>>> +}
+>>> +
+>>> +static void coherent_heap_unmap_dma_buf(struct dma_buf_attachment *attachment,
+>>> +                                     struct sg_table *table,
+>>> +                                     enum dma_data_direction direction)
+>>> +{
+>>> +     struct dma_heap_attachment *a = attachment->priv;
+>>> +
+>>> +     a->mapped = false;
+>>> +     dma_unmap_sgtable(attachment->dev, table, direction, 0);
+>>> +}
+>>> +
+>>> +static int coherent_heap_dma_buf_begin_cpu_access(struct dma_buf *dmabuf,
+>>> +                                               enum dma_data_direction direction)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +     struct dma_heap_attachment *a;
+>>> +
+>>> +     mutex_lock(&buffer->lock);
+>>> +     if (buffer->vmap_cnt)
+>>> +             invalidate_kernel_vmap_range(buffer->vaddr, buffer->len);
+>>> +
+>>> +     list_for_each_entry(a, &buffer->attachments, list) {
+>>> +             if (!a->mapped)
+>>> +                     continue;
+>>> +             dma_sync_sgtable_for_cpu(a->dev, &a->table, direction);
+>>> +     }
+>>> +     mutex_unlock(&buffer->lock);
+>>> +
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static int coherent_heap_dma_buf_end_cpu_access(struct dma_buf *dmabuf,
+>>> +                                             enum dma_data_direction direction)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +     struct dma_heap_attachment *a;
+>>> +
+>>> +     mutex_lock(&buffer->lock);
+>>> +     if (buffer->vmap_cnt)
+>>> +             flush_kernel_vmap_range(buffer->vaddr, buffer->len);
+>>> +
+>>> +     list_for_each_entry(a, &buffer->attachments, list) {
+>>> +             if (!a->mapped)
+>>> +                     continue;
+>>> +             dma_sync_sgtable_for_device(a->dev, &a->table, direction);
+>>> +     }
+>>> +     mutex_unlock(&buffer->lock);
+>>> +
+>>> +     return 0;
+>>> +}
+>>> +
+>>> +static int coherent_heap_mmap(struct dma_buf *dmabuf, struct vm_area_struct *vma)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +     struct coherent_heap *coh_heap = buffer->heap;
+>>> +     struct device *heap_dev = dma_heap_get_dev(coh_heap->heap);
+>>> +
+>>> +     return dma_mmap_coherent(heap_dev, vma, buffer->alloc_vaddr,
+>>> +                              buffer->dma_addr, buffer->len);
+>>> +}
+>>> +
+>>> +static void *coherent_heap_do_vmap(struct coherent_heap_buffer *buffer)
+>>> +{
+>>> +     void *vaddr;
+>>> +
+>>> +     vaddr = vmap(buffer->pages, buffer->pagecount, VM_MAP, PAGE_KERNEL);
+>>> +     if (!vaddr)
+>>> +             return ERR_PTR(-ENOMEM);
+>>> +
+>>> +     return vaddr;
+>>> +}
+>>> +
+>>> +static int coherent_heap_vmap(struct dma_buf *dmabuf, struct iosys_map *map)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +     void *vaddr;
+>>> +     int ret = 0;
+>>> +
+>>> +     mutex_lock(&buffer->lock);
+>>> +     if (buffer->vmap_cnt) {
+>>> +             buffer->vmap_cnt++;
+>>> +             iosys_map_set_vaddr(map, buffer->vaddr);
+>>> +             goto out;
+>>> +     }
+>>> +
+>>> +     vaddr = coherent_heap_do_vmap(buffer);
+>>> +     if (IS_ERR(vaddr)) {
+>>> +             ret = PTR_ERR(vaddr);
+>>> +             goto out;
+>>> +     }
+>>> +
+>>> +     buffer->vaddr = vaddr;
+>>> +     buffer->vmap_cnt++;
+>>> +     iosys_map_set_vaddr(map, buffer->vaddr);
+>>> +out:
+>>> +     mutex_unlock(&buffer->lock);
+>>> +
+>>> +     return ret;
+>>> +}
+>>> +
+>>> +static void coherent_heap_vunmap(struct dma_buf *dmabuf, struct iosys_map *map)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +
+>>> +     mutex_lock(&buffer->lock);
+>>> +     if (!--buffer->vmap_cnt) {
+>>> +             vunmap(buffer->vaddr);
+>>> +             buffer->vaddr = NULL;
+>>> +     }
+>>> +     mutex_unlock(&buffer->lock);
+>>> +     iosys_map_clear(map);
+>>> +}
+>>> +
+>>> +static void coherent_heap_dma_buf_release(struct dma_buf *dmabuf)
+>>> +{
+>>> +     struct coherent_heap_buffer *buffer = dmabuf->priv;
+>>> +     struct coherent_heap *coh_heap = buffer->heap;
+>>> +     struct device *heap_dev = dma_heap_get_dev(coh_heap->heap);
+>>> +
+>>> +     if (buffer->vmap_cnt > 0) {
+>>> +             WARN(1, "%s: buffer still mapped in the kernel\n", __func__);
+>>> +             vunmap(buffer->vaddr);
+>>> +             buffer->vaddr = NULL;
+>>> +             buffer->vmap_cnt = 0;
+>>> +     }
+>>> +
+>>> +     if (buffer->alloc_vaddr)
+>>> +             dma_free_coherent(heap_dev, buffer->len, buffer->alloc_vaddr,
+>>> +                               buffer->dma_addr);
+>>> +     kfree(buffer->pages);
+>>> +     kfree(buffer);
+>>> +}
+>>> +
+>>> +static const struct dma_buf_ops coherent_heap_buf_ops = {
+>>> +     .attach = coherent_heap_attach,
+>>> +     .detach = coherent_heap_detach,
+>>> +     .map_dma_buf = coherent_heap_map_dma_buf,
+>>> +     .unmap_dma_buf = coherent_heap_unmap_dma_buf,
+>>> +     .begin_cpu_access = coherent_heap_dma_buf_begin_cpu_access,
+>>> +     .end_cpu_access = coherent_heap_dma_buf_end_cpu_access,
+>>> +     .mmap = coherent_heap_mmap,
+>>> +     .vmap = coherent_heap_vmap,
+>>> +     .vunmap = coherent_heap_vunmap,
+>>> +     .release = coherent_heap_dma_buf_release,
+>>> +};
+>>> +
+>>> +static struct dma_buf *coherent_heap_allocate(struct dma_heap *heap,
+>>> +                                           unsigned long len,
+>>> +                                           u32 fd_flags,
+>>> +                                           u64 heap_flags)
+>>> +{
+>>> +     struct coherent_heap *coh_heap;
+>>> +     struct coherent_heap_buffer *buffer;
+>>> +     struct device *heap_dev;
+>>> +     DEFINE_DMA_BUF_EXPORT_INFO(exp_info);
+>>> +     size_t size = PAGE_ALIGN(len);
+>>> +     pgoff_t pagecount = size >> PAGE_SHIFT;
+>>> +     struct dma_buf *dmabuf;
+>>> +     int ret = -ENOMEM;
+>>> +     pgoff_t pg;
+>>> +
+>>> +     coh_heap = dma_heap_get_drvdata(heap);
+>>> +     if (!coh_heap)
+>>> +             return ERR_PTR(-EINVAL);
+>>> +
+>>> +     heap_dev = dma_heap_get_dev(coh_heap->heap);
+>>> +     if (!heap_dev)
+>>> +             return ERR_PTR(-ENODEV);
+>>> +
+>>> +     buffer = kzalloc_obj(*buffer);
+>>> +     if (!buffer)
+>>> +             return ERR_PTR(-ENOMEM);
+>>> +
+>>> +     INIT_LIST_HEAD(&buffer->attachments);
+>>> +     mutex_init(&buffer->lock);
+>>> +     buffer->len = size;
+>>> +     buffer->heap = coh_heap;
+>>> +     buffer->pagecount = pagecount;
+>>> +
+>>> +     buffer->alloc_vaddr = dma_alloc_coherent(heap_dev, buffer->len,
+>>> +                                              &buffer->dma_addr, GFP_KERNEL);
 >>
->> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
->> ---
->>   drivers/acpi/apei/ghes.c      | 170 +-----------------------------------------
->>   drivers/acpi/apei/ghes_cper.c | 170 +++++++++++++++++++++++++++++++++++++++++-
->>   include/acpi/ghes_cper.h      |  14 ++--
->>   3 files changed, 177 insertions(+), 177 deletions(-)
->>
->> diff --git a/drivers/acpi/apei/ghes.c b/drivers/acpi/apei/ghes.c
->> index 07b70bcb8342..b159dbee90ac 100644
->> --- a/drivers/acpi/apei/ghes.c
->> +++ b/drivers/acpi/apei/ghes.c
->> @@ -118,26 +118,6 @@ static struct gen_pool *ghes_estatus_pool;
->>   static struct ghes_estatus_cache __rcu *ghes_estatus_caches[GHES_ESTATUS_CACHES_SIZE];
->>   static atomic_t ghes_estatus_cache_alloced;
->>
->> -static void __iomem *ghes_map(u64 pfn, enum fixed_addresses fixmap_idx)
->> -{
->> -       phys_addr_t paddr;
->> -       pgprot_t prot;
->> -
->> -       paddr = PFN_PHYS(pfn);
->> -       prot = arch_apei_get_mem_attribute(paddr);
->> -       __set_fixmap(fixmap_idx, paddr, prot);
->> -
->> -       return (void __iomem *) __fix_to_virt(fixmap_idx);
->> -}
->> -
->> -static void ghes_unmap(void __iomem *vaddr, enum fixed_addresses fixmap_idx)
->> -{
->> -       int _idx = virt_to_fix((unsigned long)vaddr);
->> -
->> -       WARN_ON_ONCE(fixmap_idx != _idx);
->> -       clear_fixmap(fixmap_idx);
->> -}
->> -
->>   int ghes_estatus_pool_init(unsigned int num_ghes)
->>   {
->>          unsigned long addr, len;
->> @@ -193,22 +173,7 @@ static void unmap_gen_v2(struct ghes *ghes)
->>          apei_unmap_generic_address(&ghes->generic_v2->read_ack_register);
->>   }
->>
->> -static void ghes_ack_error(struct acpi_hest_generic_v2 *gv2)
->> -{
->> -       int rc;
->> -       u64 val = 0;
->> -
->> -       rc = apei_read(&val, &gv2->read_ack_register);
->> -       if (rc)
->> -               return;
->> -
->> -       val &= gv2->read_ack_preserve << gv2->read_ack_register.bit_offset;
->> -       val |= gv2->read_ack_write    << gv2->read_ack_register.bit_offset;
->> -
->> -       apei_write(val, &gv2->read_ack_register);
->> -}
->> -
->> -static struct ghes *ghes_new(struct acpi_hest_generic *generic)
->> +struct ghes *ghes_new(struct acpi_hest_generic *generic)
->>   {
->>          struct ghes *ghes;
->>          unsigned int error_block_length;
->> @@ -255,7 +220,7 @@ static struct ghes *ghes_new(struct acpi_hest_generic *generic)
->>          return ERR_PTR(rc);
->>   }
->>
->> -static void ghes_fini(struct ghes *ghes)
->> +void ghes_fini(struct ghes *ghes)
->>   {
->>          kfree(ghes->estatus);
->>          apei_unmap_generic_address(&ghes->generic->error_status_address);
->> @@ -280,137 +245,6 @@ static inline int ghes_severity(int severity)
->>          }
->>   }
+>> You are doing this DMA allocation using a non-DMA pseudo-device (heap_dev).
+>> This is why you need to do that dma_coerce_mask_and_coherent(64) nonsense, you
+>> are doing a DMA alloc for the CPU itself. This might still work, but only if
+>> dma_map_sgtable() can handle swiotlb/iommu for all attaching devices at map
+>> time.
 > 
-> Can it be "ghes_finish"? We already have "creat" without 'e'.
-
-This is a pure mechanical move from ghes.c. I’m keeping the original
-name here to avoid churn. If we want a rename, I can do that separately
-with justification.
-
->>
->> -static void ghes_copy_tofrom_phys(void *buffer, u64 paddr, u32 len,
->> -                                 int from_phys,
->> -                                 enum fixed_addresses fixmap_idx)
->> -{
->> -       void __iomem *vaddr;
->> -       u64 offset;
->> -       u32 trunk;
->> -
->> -       while (len > 0) {
->> -               offset = paddr - (paddr & PAGE_MASK);
->> -               vaddr = ghes_map(PHYS_PFN(paddr), fixmap_idx);
->> -               trunk = PAGE_SIZE - offset;
->> -               trunk = min(trunk, len);
->> -               if (from_phys)
->> -                       memcpy_fromio(buffer, vaddr + offset, trunk);
->> -               else
->> -                       memcpy_toio(vaddr + offset, buffer, trunk);
->> -               len -= trunk;
->> -               paddr += trunk;
->> -               buffer += trunk;
->> -               ghes_unmap(vaddr, fixmap_idx);
->> -       }
->> -}
->> -
->> -/* Check the top-level record header has an appropriate size. */
->> -static int __ghes_check_estatus(struct ghes *ghes,
->> -                               struct acpi_hest_generic_status *estatus)
->> -{
->> -       u32 len = cper_estatus_len(estatus);
->> -       u32 max_len = min(ghes->generic->error_block_length,
->> -                         ghes->estatus_length);
->> -
->> -       if (len < sizeof(*estatus)) {
->> -               pr_warn_ratelimited(FW_WARN GHES_PFX "Truncated error status block!\n");
->> -               return -EIO;
->> -       }
->> -
->> -       if (!len || len > max_len) {
->> -               pr_warn_ratelimited(FW_WARN GHES_PFX "Invalid error status block length!\n");
->> -               return -EIO;
->> -       }
->> -
->> -       if (cper_estatus_check_header(estatus)) {
->> -               pr_warn_ratelimited(FW_WARN GHES_PFX "Invalid CPER header!\n");
->> -               return -EIO;
->> -       }
->> -
->> -       return 0;
->> -}
->> -
->> -/* Read the CPER block, returning its address, and header in estatus. */
->> -static int __ghes_peek_estatus(struct ghes *ghes,
->> -                              struct acpi_hest_generic_status *estatus,
->> -                              u64 *buf_paddr, enum fixed_addresses fixmap_idx)
->> -{
->> -       struct acpi_hest_generic *g = ghes->generic;
->> -       int rc;
->> -
->> -       rc = apei_read(buf_paddr, &g->error_status_address);
->> -       if (rc) {
->> -               *buf_paddr = 0;
->> -               pr_warn_ratelimited(FW_WARN GHES_PFX
->> -"Failed to read error status block address for hardware error source: %d.\n",
->> -                                  g->header.source_id);
->> -               return -EIO;
->> -       }
->> -       if (!*buf_paddr)
->> -               return -ENOENT;
->> -
->> -       ghes_copy_tofrom_phys(estatus, *buf_paddr, sizeof(*estatus), 1,
->> -                             fixmap_idx);
->> -       if (!estatus->block_status) {
->> -               *buf_paddr = 0;
->> -               return -ENOENT;
->> -       }
->> -
->> -       return 0;
->> -}
->> -
->> -static int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
->> -                              u64 buf_paddr, enum fixed_addresses fixmap_idx,
->> -                              size_t buf_len)
->> -{
->> -       ghes_copy_tofrom_phys(estatus, buf_paddr, buf_len, 1, fixmap_idx);
->> -       if (cper_estatus_check(estatus)) {
->> -               pr_warn_ratelimited(FW_WARN GHES_PFX
->> -                                   "Failed to read error status block!\n");
->> -               return -EIO;
->> -       }
->> -
->> -       return 0;
->> -}
->> -
->> -static int ghes_read_estatus(struct ghes *ghes,
->> -                            struct acpi_hest_generic_status *estatus,
->> -                            u64 *buf_paddr, enum fixed_addresses fixmap_idx)
->> -{
->> -       int rc;
->> -
->> -       rc = __ghes_peek_estatus(ghes, estatus, buf_paddr, fixmap_idx);
->> -       if (rc)
->> -               return rc;
->> -
->> -       rc = __ghes_check_estatus(ghes, estatus);
->> -       if (rc)
->> -               return rc;
->> -
->> -       return __ghes_read_estatus(estatus, *buf_paddr, fixmap_idx,
->> -                                  cper_estatus_len(estatus));
->> -}
->> -
->> -static void ghes_clear_estatus(struct ghes *ghes,
->> -                              struct acpi_hest_generic_status *estatus,
->> -                              u64 buf_paddr, enum fixed_addresses fixmap_idx)
->> -{
->> -       estatus->block_status = 0;
->> -
->> -       if (!buf_paddr)
->> -               return;
->> -
->> -       ghes_copy_tofrom_phys(estatus, buf_paddr,
->> -                             sizeof(estatus->block_status), 0,
->> -                             fixmap_idx);
->> -
->> -       /*
->> -        * GHESv2 type HEST entries introduce support for error acknowledgment,
->> -        * so only acknowledge the error if this support is present.
->> -        */
->> -       if (is_hest_type_generic_v2(ghes))
->> -               ghes_ack_error(ghes->generic_v2);
->> -}
->>
->>   /**
->>    * struct ghes_task_work - for synchronous RAS event
->> diff --git a/drivers/acpi/apei/ghes_cper.c b/drivers/acpi/apei/ghes_cper.c
->> index 63047322a3d9..7e0015e960c1 100644
->> --- a/drivers/acpi/apei/ghes_cper.c
->> +++ b/drivers/acpi/apei/ghes_cper.c
+> The concern is valid. We're allocating via a synthetic device, which
+> ties the allocation to that device's DMA domain. I looked deeper into
+> this trying to address the concern.
 > 
-> IMO, just "cper.c" would be fine.
+> The approach works because dma_map_sgtable() handles both
+> dma_map_direct and use_dma_iommu cases in __dma_map_sg_attrs(). For
+> each physical address in the sg_table (extracted via sg_phys()), it
+> creates device-specific DMA mappings:
+> - For direct mapping: it checks if the address is directly accessible
+> (dma_capable()), and if not, it falls back to swiotlb.
+> - For IOMMU: it creates mappings that allow the device to access
+> physical addresses.
+> 
+> This means every attached device gets its own device-specific DMA
+> mapping, properly handling cases where the physical addresses are
+> inaccessible or have DMA constraints.
+> 
 
-"cper.c" and "include/acpi/cper.h" already exist under EFI. This code is 
-GHES‑specific CPER handling (the GHES view of CPER), not a generic UEFI 
-CPER API, so I’m keeping the GHES‑scoped naming to avoid ambiguity.
+While this means it might still "work" it won't always be ideal. Take
+the case where the consuming device(s) have a 32bit address restriction,
+if the allocation was done using the real devices then the backing buffer
+itself would be allocated in <32bit mem. Whereas here the allocation
+could end up in >32bit mem, as the CPU/synthetic device supports that.
+Then each mapping device would instead get a bounce buffer.
 
->> @@ -1,7 +1,7 @@
->>   // SPDX-License-Identifier: GPL-2.0
->>   /*
->>    *
->> - * APEI GHES CPER helper translation unit - staging file for helper moves
->> + * APEI GHES CPER helper translation unit - code mechanically moved from ghes.c
->>    *
->>    * Copyright (C) 2026 ARM Ltd.
->>    * Author: Ahmed Tiba <ahmed.tiba@arm.com>
->> @@ -17,10 +17,176 @@
->>   #include <linux/slab.h>
+(this example might not be great as we usually know the address of
+carveout/reserved memory regions, but substitute in whatever restriction
+makes more sense)
+
+These non-reusable carveouts tend to be made for some specific device, and
+they are made specifically because that device has some memory restriction.
+So we might run into the situation above more than one would expect.
+
+Not a blocker here, but just something worth thinking on.
+
+> I'm not sure whether other approaches (whatever they may be) would be
+> better, as here we are leveraging a great part of the existing
+> infrastructure.
+> 
 >>
->>   #include <acpi/apei.h>
->> +#include <acpi/ghes_cper.h>
+>>> +     if (!buffer->alloc_vaddr) {
+>>> +             ret = -ENOMEM;
+>>> +             goto free_buffer;
+>>> +     }
+>>> +
+>>> +     buffer->pages = kmalloc_array(pagecount, sizeof(*buffer->pages),
+>>> +                                   GFP_KERNEL);
+>>> +     if (!buffer->pages) {
+>>> +             ret = -ENOMEM;
+>>> +             goto free_dma;
+>>> +     }
+>>> +
+>>> +     for (pg = 0; pg < pagecount; pg++)
+>>> +             buffer->pages[pg] = virt_to_page((char *)buffer->alloc_vaddr +
+>>> +                                              (pg * PAGE_SIZE));
+>>> +
 >>
->>   #include <asm/fixmap.h>
->>   #include <asm/tlbflush.h>
+>> Is any of this valid if the coherent pool in DT was marked "no-map;"?
+>> I'm sure the .mmap and .cpu_access function are not valid in that case.
+>> Our (TI) evil vendor tree version of this heap sets a flag in that case and
+>> avoids doing anything invalid when the region doesn't have normal backing
+>> page structs. This region is treated more like a P2PDMA area in that case.
 >>
->>   #include "apei-internal.h"
+>> https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/drivers/dma-buf/heaps/carveout-heap.c?h=ti-linux-6.18.y#n372
+> 
+> I completely missed the "no-map" case. Thanks for the review and the
+> link! I will address this in the next version, using a logic similar
+> to the one from the linked driver.
+> 
+
+Do take note that the linked driver is only part of an evil vendor tree,
+I do things in that driver that are not correct and would not fly upstream.
+
+For "no-map" I chose to make un-cached mappings for the CPU. This allowed for
+kernel/userspace access without changing cacheability (which can't be done
+safely on ARM). The issue is that "no-map" really should mean DO NOT MAP.
+It might be these carveouts are firewalled or have some other side effect
+that prevent *any* mapping from CPU. The safer thing to do would be to
+simply not allow CPU mappings (vmap/mmap) if "no-map" is set.
+
+Andrew
+
+> BR,
+> Albert.
+> 
 >>
->> -/* Helper bodies will be moved here in follow-up commits. */
->> +static void __iomem *ghes_map(u64 pfn, enum fixed_addresses fixmap_idx)
->> +{
->> +       phys_addr_t paddr;
->> +       pgprot_t prot;
->> +
->> +       paddr = PFN_PHYS(pfn);
->> +       prot = arch_apei_get_mem_attribute(paddr);
->> +       __set_fixmap(fixmap_idx, paddr, prot);
->> +
->> +       return (void __iomem *) __fix_to_virt(fixmap_idx);
->> +}
->> +
->> +static void ghes_unmap(void __iomem *vaddr, enum fixed_addresses fixmap_idx)
->> +{
->> +       int _idx = virt_to_fix((unsigned long)vaddr);
->> +
->> +       WARN_ON_ONCE(fixmap_idx != _idx);
->> +       clear_fixmap(fixmap_idx);
->> +}
->> +
->> +static void ghes_ack_error(struct acpi_hest_generic_v2 *gv2)
->> +{
->> +       int rc;
->> +       u64 val = 0;
->> +
->> +       rc = apei_read(&val, &gv2->read_ack_register);
->> +       if (rc)
->> +               return;
->> +
->> +       val &= gv2->read_ack_preserve << gv2->read_ack_register.bit_offset;
->> +       val |= gv2->read_ack_write    << gv2->read_ack_register.bit_offset;
->> +
->> +       apei_write(val, &gv2->read_ack_register);
->> +}
->> +
->> +static void ghes_copy_tofrom_phys(void *buffer, u64 paddr, u32 len,
->> +                                 int from_phys,
->> +                                 enum fixed_addresses fixmap_idx)
->> +{
->> +       void __iomem *vaddr;
->> +       u64 offset;
->> +       u32 trunk;
->> +
->> +       while (len > 0) {
->> +               offset = paddr - (paddr & PAGE_MASK);
->> +               vaddr = ghes_map(PHYS_PFN(paddr), fixmap_idx);
->> +               trunk = PAGE_SIZE - offset;
->> +               trunk = min(trunk, len);
->> +               if (from_phys)
->> +                       memcpy_fromio(buffer, vaddr + offset, trunk);
->> +               else
->> +                       memcpy_toio(vaddr + offset, buffer, trunk);
->> +               len -= trunk;
->> +               paddr += trunk;
->> +               buffer += trunk;
->> +               ghes_unmap(vaddr, fixmap_idx);
->> +       }
->> +}
->> +
->> +/* Check the top-level record header has an appropriate size. */
->> +int __ghes_check_estatus(struct ghes *ghes,
->> +                               struct acpi_hest_generic_status *estatus)
->> +{
->> +       u32 len = cper_estatus_len(estatus);
->> +       u32 max_len = min(ghes->generic->error_block_length,
->> +                         ghes->estatus_length);
->> +
->> +       if (len < sizeof(*estatus)) {
->> +               pr_warn_ratelimited(FW_WARN GHES_PFX "Truncated error status block!\n");
->> +               return -EIO;
->> +       }
->> +
->> +       if (!len || len > max_len) {
->> +               pr_warn_ratelimited(FW_WARN GHES_PFX "Invalid error status block length!\n");
->> +               return -EIO;
->> +       }
->> +
->> +       if (cper_estatus_check_header(estatus)) {
->> +               pr_warn_ratelimited(FW_WARN GHES_PFX "Invalid CPER header!\n");
->> +               return -EIO;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->> +/* Read the CPER block, returning its address, and header in estatus. */
->> +int __ghes_peek_estatus(struct ghes *ghes,
->> +                              struct acpi_hest_generic_status *estatus,
->> +                              u64 *buf_paddr, enum fixed_addresses fixmap_idx)
->> +{
->> +       struct acpi_hest_generic *g = ghes->generic;
->> +       int rc;
->> +
->> +       rc = apei_read(buf_paddr, &g->error_status_address);
->> +       if (rc) {
->> +               *buf_paddr = 0;
->> +               pr_warn_ratelimited(FW_WARN GHES_PFX
->> +"Failed to read error status block address for hardware error source: %d.\n",
->> +                                  g->header.source_id);
->> +               return -EIO;
->> +       }
->> +       if (!*buf_paddr)
->> +               return -ENOENT;
->> +
->> +       ghes_copy_tofrom_phys(estatus, *buf_paddr, sizeof(*estatus), 1,
->> +                             fixmap_idx);
->> +       if (!estatus->block_status) {
->> +               *buf_paddr = 0;
->> +               return -ENOENT;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->> +int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
->> +                              u64 buf_paddr, enum fixed_addresses fixmap_idx,
->> +                              size_t buf_len)
->> +{
->> +       ghes_copy_tofrom_phys(estatus, buf_paddr, buf_len, 1, fixmap_idx);
->> +       if (cper_estatus_check(estatus)) {
->> +               pr_warn_ratelimited(FW_WARN GHES_PFX
->> +                                   "Failed to read error status block!\n");
->> +               return -EIO;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->> +int ghes_read_estatus(struct ghes *ghes,
->> +                            struct acpi_hest_generic_status *estatus,
->> +                            u64 *buf_paddr, enum fixed_addresses fixmap_idx)
->> +{
->> +       int rc;
->> +
->> +       rc = __ghes_peek_estatus(ghes, estatus, buf_paddr, fixmap_idx);
->> +       if (rc)
->> +               return rc;
->> +
->> +       rc = __ghes_check_estatus(ghes, estatus);
->> +       if (rc)
->> +               return rc;
->> +
->> +       return __ghes_read_estatus(estatus, *buf_paddr, fixmap_idx,
->> +                                  cper_estatus_len(estatus));
->> +}
->> +
->> +void ghes_clear_estatus(struct ghes *ghes,
->> +                              struct acpi_hest_generic_status *estatus,
->> +                              u64 buf_paddr, enum fixed_addresses fixmap_idx)
->> +{
->> +       estatus->block_status = 0;
->> +
->> +       if (!buf_paddr)
->> +               return;
->> +
->> +       ghes_copy_tofrom_phys(estatus, buf_paddr,
->> +                             sizeof(estatus->block_status), 0,
->> +                             fixmap_idx);
->> +
->> +       /*
->> +        * GHESv2 type HEST entries introduce support for error acknowledgment,
->> +        * so only acknowledge the error if this support is present.
->> +        */
->> +       if (is_hest_type_generic_v2(ghes))
->> +               ghes_ack_error(ghes->generic_v2);
->> +}
->> diff --git a/include/acpi/ghes_cper.h b/include/acpi/ghes_cper.h
->> index 2597fbadc4f3..2e3919f0c3e7 100644
->> --- a/include/acpi/ghes_cper.h
->> +++ b/include/acpi/ghes_cper.h
->> @@ -74,21 +74,21 @@ struct ghes_vendor_record_entry {
->>          char vendor_record[];
->>   };
+>> Andrew
+>>
+>>> +     /* create the dmabuf */
+>>> +     exp_info.exp_name = dma_heap_get_name(heap);
+>>> +     exp_info.ops = &coherent_heap_buf_ops;
+>>> +     exp_info.size = buffer->len;
+>>> +     exp_info.flags = fd_flags;
+>>> +     exp_info.priv = buffer;
+>>> +     dmabuf = dma_buf_export(&exp_info);
+>>> +     if (IS_ERR(dmabuf)) {
+>>> +             ret = PTR_ERR(dmabuf);
+>>> +             goto free_pages;
+>>> +     }
+>>> +     return dmabuf;
+>>> +
+>>> +free_pages:
+>>> +     kfree(buffer->pages);
+>>> +free_dma:
+>>> +     dma_free_coherent(heap_dev, buffer->len, buffer->alloc_vaddr,
+>>> +                       buffer->dma_addr);
+>>> +free_buffer:
+>>> +     kfree(buffer);
+>>> +     return ERR_PTR(ret);
+>>> +}
+>>> +
+>>> +static const struct dma_heap_ops coherent_heap_ops = {
+>>> +     .allocate = coherent_heap_allocate,
+>>> +};
+>>> +
+>>> +static int __coherent_heap_register(struct reserved_mem *rmem)
+>>> +{
+>>> +     struct dma_heap_export_info exp_info;
+>>> +     struct coherent_heap *coh_heap;
+>>> +     struct device *heap_dev;
+>>> +     int ret;
+>>> +
+>>> +     if (!rmem || !rmem->name)
+>>> +             return -EINVAL;
+>>> +
+>>> +     coh_heap = kzalloc_obj(*coh_heap);
+>>> +     if (!coh_heap)
+>>> +             return -ENOMEM;
+>>> +
+>>> +     coh_heap->rmem = rmem;
+>>> +     coh_heap->name = kstrdup(rmem->name, GFP_KERNEL);
+>>> +     if (!coh_heap->name) {
+>>> +             ret = -ENOMEM;
+>>> +             goto free_coherent_heap;
+>>> +     }
+>>> +
+>>> +     exp_info.name = coh_heap->name;
+>>> +     exp_info.ops = &coherent_heap_ops;
+>>> +     exp_info.priv = coh_heap;
+>>> +
+>>> +     coh_heap->heap = dma_heap_create(&exp_info);
+>>> +     if (IS_ERR(coh_heap->heap)) {
+>>> +             ret = PTR_ERR(coh_heap->heap);
+>>> +             goto free_name;
+>>> +     }
+>>> +
+>>> +     heap_dev = dma_heap_get_dev(coh_heap->heap);
+>>> +     ret = dma_coerce_mask_and_coherent(heap_dev, DMA_BIT_MASK(64));
+>>> +     if (ret) {
+>>> +             pr_err("coherent_heap: failed to set DMA mask (%d)\n", ret);
+>>> +             goto destroy_heap;
+>>> +     }
+>>> +
+>>> +     ret = of_reserved_mem_device_init_with_mem(heap_dev, rmem);
+>>> +     if (ret) {
+>>> +             pr_err("coherent_heap: failed to initialize memory (%d)\n", ret);
+>>> +             goto destroy_heap;
+>>> +     }
+>>> +
+>>> +     ret = dma_heap_register(coh_heap->heap);
+>>> +     if (ret) {
+>>> +             pr_err("coherent_heap: failed to register heap (%d)\n", ret);
+>>> +             goto destroy_heap;
+>>> +     }
+>>> +
+>>> +     return 0;
+>>> +
+>>> +destroy_heap:
+>>> +     dma_heap_destroy(coh_heap->heap);
+>>> +     coh_heap->heap = NULL;
+>>> +free_name:
+>>> +     kfree(coh_heap->name);
+>>> +free_coherent_heap:
+>>> +     kfree(coh_heap);
+>>> +
+>>> +     return ret;
+>>> +}
+>>> +
+>>> +static int __init coherent_heap_register(void)
+>>> +{
+>>> +     struct reserved_mem *rmem;
+>>> +     unsigned int i;
+>>> +     int ret;
+>>> +
+>>> +     for (i = 0; (rmem = dma_coherent_get_reserved_region(i)) != NULL; i++) {
+>>> +             ret = __coherent_heap_register(rmem);
+>>> +             if (ret) {
+>>> +                     pr_warn("Failed to add coherent heap %s",
+>>> +                             rmem->name ? rmem->name : "unknown");
+>>> +                     continue;
+>>> +             }
+>>> +     }
+>>> +
+>>> +     return 0;
+>>> +}
+>>> +module_init(coherent_heap_register);
+>>> +MODULE_DESCRIPTION("DMA-BUF heap for coherent reserved-memory regions");
+>>>
 >>
 > 
-> ditto. "include/acpi/cper.h"
-
-As above.
-
->> -static struct ghes *ghes_new(struct acpi_hest_generic *generic);
->> -static void ghes_fini(struct ghes *ghes);
->> +struct ghes *ghes_new(struct acpi_hest_generic *generic);
->> +void ghes_fini(struct ghes *ghes);
->>
->> -static int ghes_read_estatus(struct ghes *ghes,
->> +int ghes_read_estatus(struct ghes *ghes,
->>                        struct acpi_hest_generic_status *estatus,
->>                        u64 *buf_paddr, enum fixed_addresses fixmap_idx);
->> -static void ghes_clear_estatus(struct ghes *ghes,
->> +void ghes_clear_estatus(struct ghes *ghes,
->>                          struct acpi_hest_generic_status *estatus,
->>                          u64 buf_paddr, enum fixed_addresses fixmap_idx);
->> -static int __ghes_peek_estatus(struct ghes *ghes,
->> +int __ghes_peek_estatus(struct ghes *ghes,
->>                          struct acpi_hest_generic_status *estatus,
->>                          u64 *buf_paddr, enum fixed_addresses fixmap_idx);
->> -static int __ghes_check_estatus(struct ghes *ghes,
->> +int __ghes_check_estatus(struct ghes *ghes,
->>                           struct acpi_hest_generic_status *estatus);
->> -static int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
->> +int __ghes_read_estatus(struct acpi_hest_generic_status *estatus,
->>                          u64 buf_paddr, enum fixed_addresses fixmap_idx,
->>                          size_t buf_len);
->>
->>
->> --
->> 2.43.0
->>
->>
 
 
