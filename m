@@ -1,66 +1,60 @@
-Return-Path: <devicetree+bounces-273849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273850-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DnOJGYIsWnhpwIAu9opvQ
-	(envelope-from <devicetree+bounces-273849-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:15:02 +0100
+	id yJH9KqYIsWnhpwIAu9opvQ
+	(envelope-from <devicetree+bounces-273850-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:16:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A4DB25CB85
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:15:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id F077325CBAC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:16:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AF54D301AABB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:14:58 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 677D03030FC2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D54C35CB6B;
-	Wed, 11 Mar 2026 06:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41712C11F3;
+	Wed, 11 Mar 2026 06:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ij3sxuVo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lX0al50k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D7134753B;
-	Wed, 11 Mar 2026 06:14:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EFC212B0A;
+	Wed, 11 Mar 2026 06:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773209697; cv=none; b=Q/hJED5lNUb67bRxAqmBL1G5wSkiIaeeQqW+96AgNApOLmGRvk0qjyTDz0P5y590YRcAoc4liQ42aMBHXdTkpR4ncsravBW7O12+OHXGMbgcQQ5bUDZC7he5MfeM9pxxcilhzTRszvDhU7vVphF3EPe2Zkx/MzO9V+pHhUXitcQ=
+	t=1773209763; cv=none; b=hDTWHIIl1TSPQsLdov6T2SZLcndWvA1+wQAKT+ewx9Qstby8Zea8FTLQs8X3NuarWm+JuUADUWjCW7ypGbyxFiDaYJoA27fpwpMzeFsV5xVqLS0194jFmRFVTNo6QYOZngbhYQcT4dZp8t91ElQAAAMPcysiPd95nVjYAR4Qop0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773209697; c=relaxed/simple;
-	bh=RNjHutLweJBv+ilIk4nPusI2G+/CE0p98vqK8iEvEiM=;
+	s=arc-20240116; t=1773209763; c=relaxed/simple;
+	bh=Xij4l883w8RhKaON3kZ7ergyTw9qVDIhU25duNhfeQ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HWF6ZYwLz1bvb0GYXnFYih6CW+LIYxN6J/kGl3GgGMDOhpEyoZtl2uEhX5E8gD+Y32/yoCM0M1HJQu+fQwYtVN/j74ESUtQ8td1s9S4uspz4sZmjU4XBzLbtvF/ILMrH1TRsaAPlnBRb2dZrXXsKiw5h/ml8YX1bUxhz3mT2ub0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ij3sxuVo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EF93C4CEF7;
-	Wed, 11 Mar 2026 06:14:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=g+uVolKtTZvlG079X3XOzfL67NrX+/74WEStfimK2pFxW5iBkVKDN/bRCTsP0L1cT4+blpBEsSPc81LM+xzfMpjOnBpAmT+LM4vhC6Kk/RkvmKLW3VJtkGXHS1Z3sJNIRK7F/9JEszL9LvS9/st7DE/Y5Us79OIY4/6H0li0Z6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lX0al50k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A491DC4CEF7;
+	Wed, 11 Mar 2026 06:16:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773209696;
-	bh=RNjHutLweJBv+ilIk4nPusI2G+/CE0p98vqK8iEvEiM=;
+	s=k20201202; t=1773209763;
+	bh=Xij4l883w8RhKaON3kZ7ergyTw9qVDIhU25duNhfeQ4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ij3sxuVogS4Lx2wMQ6QOiLYgJj5FrxBhH+QUCNcpC+c8Iezhp+KNTwODSHeeWdzkl
-	 A6EbhCQromXFNs4BMTb2JeUkj947ptR839TqAvw869DmorkSwcj2J9AMmBJPXba6q9
-	 89z8tvZqcialaRBU+JiojyguYpfcezsHdL10FKMPlmw3qM3DX+60Q57gWEM0Qj8fQA
-	 UzZ59tGTC5t8qBW9aOLch3DNf510YHS2iXInUIY/RRKmNEyRq7DNqZ9Lh1UD1dgp5W
-	 77v9iY5d9I/svYoQtpX4GpUDWvvmEnu3dJdBWW6cFBkXcapGVSjJWEkxoiUX60aRQn
-	 M5cw1EIeg0zyQ==
-Date: Wed, 11 Mar 2026 11:44:41 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Min Lin <linmin@eswincomputing.com>
-Cc: zhangsenchuan@eswincomputing.com, bhelgaas@google.com, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, 
-	thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, 
-	pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-Subject: Re: [PATCH v11 2/2] PCI: eic7700: Add Eswin PCIe host controller
- driver
-Message-ID: <twvubrxemm7nx2i5p65byehj7y2g43c5esq3go72t6qbsz7yal@dxwvslzvgdc5>
-References: <20260227111536.1940-1-zhangsenchuan@eswincomputing.com>
- <20260227111808.1996-1-zhangsenchuan@eswincomputing.com>
- <jd4aszup2peetymesiltqghoptp2w4uuecrsdzkb2cl5vqqfot@m3vh6x4u5t6l>
- <57246067.3de3.19cbd03fc5f.Coremail.linmin@eswincomputing.com>
+	b=lX0al50kPQjh7bwxxJUpxhsw8N83WjNgBNo1xJ82jBLclUeSimPeADcJjnR+zk18G
+	 v6ERyHk+7ZLkhOAuhC5sKqwqyf8WIo5SKr7TcgJIkQDzRnMkCuvVvm4KprxDRPMVSs
+	 ZNeYMu3Vt4BJ4aSDB9XcWy/u90IVccxGlP770377OVP0kV6em3Jzw+OG1R3DDW6VcQ
+	 Ihedbrje3eXBwlZD4o5eeKHc2hVUqT+XLrfJDzamCVyI+XJyIKMx7+bSzAMgAxAPIX
+	 51B2hGYjxmSj5dav+iJ2Qxt1/dxJXX6lXa6JGMYbZIFW0oHwf9iyPEJmBUAgkWKhmo
+	 dW92QvUsbX8bA==
+Date: Wed, 11 Mar 2026 07:16:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Abel Vesa <abel.vesa@linaro.org>, Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: mmc: sdhci-msm: Add ICE phandle
+Message-ID: <20260311-fascinating-qualified-whippet-d6d450@quoll>
+References: <20260310113557.348502-1-neeraj.soni@oss.qualcomm.com>
+ <20260310113557.348502-2-neeraj.soni@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,99 +63,77 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <57246067.3de3.19cbd03fc5f.Coremail.linmin@eswincomputing.com>
-X-Rspamd-Queue-Id: 9A4DB25CB85
+In-Reply-To: <20260310113557.348502-2-neeraj.soni@oss.qualcomm.com>
+X-Rspamd-Queue-Id: F077325CBAC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273849-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273850-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[eswincomputing.com,google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,einfochips.com];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mani@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,bootlin.com:url]
 X-Rspamd-Action: no action
 
-On Thu, Mar 05, 2026 at 04:01:20PM +0800, Min Lin wrote:
-> Hi Mani,
+On Tue, Mar 10, 2026 at 05:05:55PM +0530, Neeraj Soni wrote:
+> Starting with sc7280(kodiak), the ICE will have its own device-tree node.
+> So add the qcom,ice property to reference it.
 > 
-> Thanks for your kind suggestion and help.
+> To avoid double-modeling, when qcom,ice is present, disallow an embedded
+> ICE register region in the SDHCI node. Older SoCs without ICE remain
+> valid as no additional requirement is imposed.
 > 
-> 
-> > -----Original Messages-----
-> > From: "Manivannan Sadhasivam" <mani@kernel.org>
-> > Send time:Thursday, 05/03/2026 14:07:31
-> > To: zhangsenchuan@eswincomputing.com
-> > Cc: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, christian.bruel@foss.st.com, shradha.t@samsung.com, krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com, inochiama@gmail.com, Frank.li@nxp.com, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-> > Subject: Re: [PATCH v11 2/2] PCI: eic7700: Add Eswin PCIe host controller driver
-> > 
-> > On Fri, Feb 27, 2026 at 07:18:08PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > 
-> > > Add driver for the Eswin EIC7700 PCIe host controller, which is based on
-> > > the DesignWare PCIe core, IP revision 5.96a. The PCIe Gen.3 controller
-> > > supports a data rate of 8 GT/s and 4 channels, support INTx and MSI
-> > > interrupts.
-> > > 
-> > 
-> > Is the driver going to work only for the PCIe RC IP in EIC7700 SoC or for the
-> > upcoming Eswin SoCs as well? Just curious because, we don't name drivers based
-> > on one SoC name, but by the vendor so that the driver (if compatible) can be
-> > used across other SoCs from the vendor.
-> > 
-> > If it can work across other SoCs, then I can change 'eic7700' to 'eswin', where
-> > applicable while applying.
-> > 
-> 
-> This PCIe RC IP in EIC7700 will only be used for EIC7700 SoC. One thing for sure
-> is our next SoC will use a higher IP revision of the DesignWare PCIe core.
-> In the future, there is no doubt that the use of IP from other manufacturers may
-> be considered.
-> 
-> Based on this, may I ask which name do you think is better, eic7700' or 'eswin'?
+> Co-developed-by: Abel Vesa <abel.vesa@linaro.org>
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> Co-developed-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+> Signed-off-by: Abhinaba Rakshit <abhinaba.rakshit@oss.qualcomm.com>
+> Signed-off-by: Neeraj Soni <neeraj.soni@oss.qualcomm.com>
 > 
 
-I'd suggest going with just 'eswin'. If the future revisions come up with
-non-dwc based IPs, we can name them appropriately.
+Can you please finally start using b4? Except errors in your process I
+don't see links to previous discussions either.
 
-> I found there is a commit on drivers/pci/controller/dwc/pcie-tegra194.c
-> It added Tegra234 PCIe support in pcie-tegra194.c
-> Is this naming approach no longer recommended?
-> 
+<form letter>
+This is a friendly reminder during the review process.
 
-Yes, that predates my time with host controller drivers. I strongly suggest
-naming the drivers based on vendors or family to avoid creating an impression
-that the driver only supports one SoC version.
+It looks like you received a tag and forgot to add it.
 
-Since you agreed for renaming, I took the liberty to do the change myself and
-applied the patches. I also added the maintainers entry. Please take a look at
-the commits and confirm if everything is OK:
-https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/log/?h=controller/dwc-eswin
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
 
-- Mani
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
 
--- 
-மணிவண்ணன் சதாசிவம்
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
+
+Best regards,
+Krzysztof
+
 
