@@ -1,272 +1,170 @@
-Return-Path: <devicetree+bounces-274332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274333-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qKG5EJ7JsWnvFAAAu9opvQ
-	(envelope-from <devicetree+bounces-274332-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:59:26 +0100
+	id cAj5C5HKsWnvFAAAu9opvQ
+	(envelope-from <devicetree+bounces-274333-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:03:29 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D2E269BCB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:59:25 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A4F269C57
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:03:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 31B6D30A9AA3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:59:15 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 4D29030692DD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:03:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F05737755B;
-	Wed, 11 Mar 2026 19:59:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1467E32C316;
+	Wed, 11 Mar 2026 20:03:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="XlTlwCDB"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="iOfvzPuk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ixit.cz [185.100.197.86])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF242F3C19;
-	Wed, 11 Mar 2026 19:59:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.100.197.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EEB2FE042
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 20:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773259154; cv=none; b=eLWgCaWU9l6/uxltuI0Z3mjwjieyJw0kIYtzMGI4BKoqYslMMW/XpOcq/sImnuIayooXJmDUrT/aTBIzwNPNJilFJ6+C3BQQAhQl7JdhW8ZqouMcVJ3UwZFYNo4EPKvz6vfU14dnO8ZKYRXtz39FsrGPZr+fUH79d7wzyYrEwm4=
+	t=1773259406; cv=none; b=SJvn4eU/Tly/bUVLXTPfp0rtpDjikiXKf2qQaW5CQYpfJiDSm1d4Z5/m0uWLs2rxG7XGY8MfOm5FaDgCSQ3MqRyJKA9RVqTHamwYnChNYa9aEa4KwPb06EyVIOQNqkvFm8RShYvbk19L007zxrYhWezoZrWd0OkE0xzam6sj9/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773259154; c=relaxed/simple;
-	bh=8p4+LstFYZTdtEwWu8/zX3vtiS13K3rgUJAcloezkBQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RjpOxBy0ENPp9f8x90/wZuQSt1o2yizFnf3PIW4vVh3FOQR2x7dUg61XSk7WY4D5ww3MXMFVw5GS5dZRECfcwqQ46EFBtT8UQaZti1N3aGo+YJYeFp5o67vDuJxWbA/L1hn/mJSEqyN3CvezJLv9qi4aLmlsqwOKKiBL2nztIaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=XlTlwCDB; arc=none smtp.client-ip=185.100.197.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [IPV6:2a02:f000:10bd:e301::1d7] (unknown [IPv6:2a02:f000:10bd:e301::1d7])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange x25519)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id EB1C75341BB9;
-	Wed, 11 Mar 2026 20:59:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1773259146;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=QX5Jt6Z3lZJRoQ9C0CpYxGi1veLiB/YS80S7aSHNgRc=;
-	b=XlTlwCDBGIzl4Kf/jOISfEjeRdJSFfZYK1rV1x/bn0mztyhisQE6V10yA2ItdsHcEgfShx
-	UfcOVTaZqCuLW3jQq3diWy6vqhayecpEwterpG8Rcid4O9nb2dAgLtcBkmKk3IYzvaQJTb
-	RJ2UiEOVtMdF6In2oEEBoA4rOnhC5No=
-Message-ID: <4b44378b-171c-45b6-8000-b72d78166afe@ixit.cz>
-Date: Wed, 11 Mar 2026 20:59:05 +0100
+	s=arc-20240116; t=1773259406; c=relaxed/simple;
+	bh=md+i3AjCZbd2TNdKlMAYhi+Fu3dZtmZpD48lTBwt+Fw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nHHNQ62SkUWzAftxlCdP+XfWaMHf4kenDkN4P3GtBlepxPKWCatV5QsLa87KNQJC8mFnFKdgvMsezVbjFvWDWOZA/i+1/+ycqFlfiyw7/7OkiAGzZCt+4qRfdlK0LmqufLZ/mPyiePnaIm7RY2L8HkcEGGQ+54IUsNfwP5FzZRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=iOfvzPuk; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=cTY5AIVrasw8mp
+	QallJO/IIs7QdE7WPsj2T/T7INTpc=; b=iOfvzPukoxQ6taGt/nsUpPyDn4neg7
+	haKw74zqiNSCk1D2IbDaYMpZ5tU8RjqehWeVutzQKkWdS6A9EIgZPeguUxwZPr7G
+	CzWJaJ4gtL45ZS/2WUe0mSehInnqI83xGDiZSX4K/70rChgTgbZfhiz1HNr8P+38
+	FHHRbYpbxc+zw2UgnnELZkgwIV9emaElezuJFCx+nN1OqvwazEQb+zgmlIhkZJlq
+	Nu5GaTFMm179fnjP2UgowcMCCwwY15+A9B5pd5KNQR88Tpz+7tkZWhnjQ9tBUFf4
+	AveMcNicFMeYvdsj0i3ztE8vgPOtPaqSdIDflgDa4DidsgqJtesLKNGg==
+Received: (qmail 3789737 invoked from network); 11 Mar 2026 21:03:16 +0100
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Mar 2026 21:03:16 +0100
+X-UD-Smtp-Session: l3s3148p1@nZFiIMVMipYujnut
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: use interrupt for Micrel PHYs
+Date: Wed, 11 Mar 2026 20:59:58 +0100
+Message-ID: <20260311200307.16034-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 7/7] arm64: dts: qcom: sdm670-google-sargo: add imx355
- front camera
-To: Richard Acayan <mailingradian@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Tianshu Qiu
- <tian.shu.qiu@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-Cc: Robert Mader <robert.mader@collabora.com>, phone-devel@vger.kernel.org
-References: <20260217002738.133534-1-mailingradian@gmail.com>
- <20260217002738.133534-8-mailingradian@gmail.com>
-Content-Language: en-US
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
- 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
- lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
- 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
- dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
- F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
- NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
- 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
- AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
- k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
- ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPgIbAwULCQgHAgYVCgkICwIEFgIDAQIe
- AQIXgBYhBNd6Cc/u3Cu9U6cEdGACP8TTSSByBQJl+KksBQkPDaAOAAoJEGACP8TTSSBy6IAQ
- AMqFqVi9LLxCEcUWBn82ssQGiVSDniKpFE/tp7lMXflwhjD5xoftoWOmMYkiWE86t5x5Fsp7
- afALx7SEDz599F1K1bLnaga+budu55JEAYGudD2WwpLJ0kPzRhqBwGFIx8k6F+goZJzxPDsf
- loAtXQE62UvEKa4KRRcZmF0GGoRsgA7vE7OnV8LMeocdD3eb2CuXLzauHAfdvqF50IfPH/sE
- jbzROiAZU+WgrwU946aOzrN8jVU+Cy8XAccGAZxsmPBfhTY5f2VN1IqvfaRdkKKlmWVJWGw+
- ycFpAEJKFRdfcc5PSjUJcALn5C+hxzL2hBpIZJdfdfStn+DWHXNgBeRDiZj1x6vvyaC43RAb
- VXvRzOQfG4EaMVMIOvBjBA/FtIpb1gtXA42ewhvPnd5RVCqD9YYUxsVpJ9d+XsAy7uib3BsV
- W2idAEsPtoqhVhq8bCUs/G4sC2DdyGZK8MRFDJqciJSUbqA+5z1ZCuE8UOPDpZKiW6H/OuOM
- zDcjh0lOzr4p+/1TSg1PbUh7fQ+nbMuiT044sC1lLtJK0+Zyn0GwhR82oNM4fldNsaHRW42w
- QGD35+eNo5Pvb3We5XRMlBdhFnj7Siggp4J8/PJ6MJvRyC+RIJPGtbdMB2/RxWunFLn87e5w
- UgwR9jPMHAstuTR1yR23c4SIYoQ2fzkrRzuazsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
- zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
- 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
- IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
- jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
- FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
- aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
- NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
- AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
- hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
- rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmAhsMFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAmX4
- qVAFCQ8NoDIACgkQYAI/xNNJIHKN4A/+Ine2Ii7JiuGITjJkcV6pgKlfwYdEs4eFD1pTRb/K
- 5dprUz3QSLP41u9OJQ23HnESMvn31UENk9ffebNoW7WxZ/8cTQY0JY/cgTTrlNXtyAlGbR3/
- 3Q/VBJptf04Er7I6TaKAmqWzdVeKTw33LljpkHp02vrbOdylb4JQG/SginLV9purGAFptYRO
- 8JNa2J4FAQtQTrfOUjulOWMxy7XRkqK3QqLcPW79/CFn7q1yxamPkpoXUJq9/fVjlhk7P+da
- NYQpe4WQQnktBY29SkFnvfIAwqIVU8ix5Oz8rghuCcAdR7lEJ7hCX9bR0EE05FOXdZy5FWL9
- GHvFa/Opkq3DPmFl/0nt4HJqq1Nwrr+WR6d0414oo1n2hPEllge/6iD3ZYwptTvOFKEw/v0A
- yqOoYSiKX9F7Ko7QO+VnYeVDsDDevKic2T/4GDpcSVd9ipiKxCQvUAzKUH7RUpqDTa+rYurm
- zRKcgRumz2Tc1ouHj6qINlzEe3a5ldctIn/dvR1l2Ko7GBTG+VGp9U5NOAEkGpxHG9yg6eeY
- fFYnMme51H/HKiyUlFiE3yd5LSmv8Dhbf+vsI4x6BOOOq4Iyop/Exavj1owGxW0hpdUGcCl1
- ovlwVPO/6l/XLAmSGwdnGqok5eGZQzSst0tj9RC9O0dXO1TZocOsf0tJ8dR2egX4kxM=
-In-Reply-To: <20260217002738.133534-8-mailingradian@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-1.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ixit.cz,quarantine];
-	R_DKIM_ALLOW(-0.20)[ixit.cz:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-274333-lists,devicetree=lfdr.de,renesas];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274332-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org,linaro.org,intel.com,linux.intel.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
+	DMARC_NA(0.00)[sang-engineering.com];
+	FREEMAIL_CC(0.00)[sang-engineering.com,bootlin.com,glider.be,gmail.com,kernel.org,vger.kernel.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[18];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[david@ixit.cz,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ixit.cz:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ixit.cz:dkim,ixit.cz:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,collabora.com:email,linaro.org:email,1a:email]
-X-Rspamd-Queue-Id: E0D2E269BCB
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.4:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sang-engineering.com:dkim,sang-engineering.com:email,sang-engineering.com:mid,0.0.0.5:email,bootlin.com:email]
+X-Rspamd-Queue-Id: 87A4F269C57
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 17/02/2026 01:27, Richard Acayan wrote:
-> The Sony IMX355 is the front camera on the Pixel 3a, mounted in portrait
-> mode. It is connected to CSIPHY1 and CCI I2C1, and uses MCLK2. Add
-> support for it.
-> 
-> Co-developed-by: Robert Mader <robert.mader@collabora.com>
-> Signed-off-by: Robert Mader <robert.mader@collabora.com>
-> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> ---
->   .../boot/dts/qcom/sdm670-google-sargo.dts     | 95 +++++++++++++++++++
->   1 file changed, 95 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> index ed55646ca419..e925cba0381f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm670-google-sargo.dts
-> @@ -172,6 +172,34 @@ vreg_s2b_1p05: vreg-s2b-regulator {
->   		regulator-min-microvolt = <1050000>;
->   		regulator-max-microvolt = <1050000>;
->   	};
-> +
-> +	cam_front_ldo: cam-front-ldo-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "cam_front_ldo";
-> +		regulator-min-microvolt = <1352000>;
-> +		regulator-max-microvolt = <1352000>;
-> +		regulator-enable-ramp-delay = <135>;
-> +
-> +		gpios = <&pm660l_gpios 4 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-0 = <&cam_front_ldo_pin>;
-> +		pinctrl-names = "default";
-> +	};
-> +
+Make use of the interrupts wired to the Micrel PHYs via the GPIO IRQ
+mux.
 
-[...]
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+---
+Changes since v2:
 
-> +
-> +&cci_i2c1 {
-> +	camera@1a {
-> +		compatible = "sony,imx355";
-> +		reg = <0x1a>;
-> +
-> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +
-> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
-> +		assigned-clock-rates = <19200000>;
-> +
-> +		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
-> +
-> +		avdd-supply = <&cam_front_ldo>;
-> +		dvdd-supply = <&cam_front_ldo>;
+* use pull-up bias (much better now)
+* keep pinmux sorting correct
 
-It's unlikely that one supply is used both for digital and analog supply?
+Thanks a ton for the comments, Geert!
 
-I see downstream does it, but I don't think it's correct.
+ .../dts/renesas/r9a06g032-rzn1d400-db.dts     | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-> +		dovdd-supply = <&cam_vio_ldo>;
-> +
-> +		pinctrl-0 = <&cam_mclk2_default>;
-> +		pinctrl-names = "default";
-> +
-> +		rotation = <270>;
-> +		orientation = <0>;
-> +
-> +		port {
-> +			cam_front_endpoint: endpoint {
-> +				link-frequencies = /bits/ 64 <360000000>;
-> +				remote-endpoint = <&camss_endpoint1>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->   &gcc {
->   	protected-clocks = <GCC_QSPI_CORE_CLK>,
->   			   <GCC_QSPI_CORE_CLK_SRC>,
-> @@ -490,6 +571,14 @@ &pm660_charger {
->   	status = "okay";
->   };
->   
-> +&pm660_gpios {
-> +	cam_vio_pin: cam-vio-state {
-> +		pins = "gpio13";
-> +		function = "normal";
-> +		power-source = <0>;
-> +	};
-> +};
-> +
->   &pm660_rradc {
->   	status = "okay";
->   };
-> @@ -508,6 +597,12 @@ led-0 {
->   };
->   
->   &pm660l_gpios {
-> +	cam_front_ldo_pin: cam-front-state {
-> +		pins = "gpio4";
-> +		function = "normal";
-> +		power-source = <0>;
-> +	};
-> +
->   	vol_up_pin: vol-up-state {
->   		pins = "gpio7";
->   		function = "normal";
-
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+index 93ace602c154..cd63e30ef901 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+@@ -185,6 +185,18 @@ fixed-link {
+ 	};
+ };
+ 
++&gpioirqmux {
++	interrupt-map = <89 &gic GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>, /* pin 147: phy@4 */
++			<91 &gic GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>; /* pin 149: phy@5 */
++	status = "okay";
++};
++
++&gpio2 {
++	pinctrl-0 = <&pins_gpio2>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &i2c2 {
+ 	pinctrl-0 = <&pins_i2c2>;
+ 	pinctrl-names = "default";
+@@ -290,6 +302,13 @@ pins_eth4: pins-eth4 {
+ 		bias-disable;
+ 	};
+ 
++	pins_gpio2: pins-gpio2 {
++		pinmux = <RZN1_PINMUX(147, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(149, RZN1_FUNC_GPIO)>;
++		drive-strength = <6>;
++		bias-pull-up;
++	};
++
+ 	pins_i2c2: pins-i2c2 {
+ 		pinmux = <RZN1_PINMUX(115, RZN1_FUNC_I2C)>,
+ 			 <RZN1_PINMUX(116, RZN1_FUNC_I2C)>;
+@@ -401,11 +420,13 @@ mdio {
+ 		switch0phy4: ethernet-phy@4 {
+ 			reg = <4>;
+ 			micrel,led-mode = <1>;
++			interrupts-extended = <&gpio2a 25 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 
+ 		switch0phy5: ethernet-phy@5 {
+ 			reg = <5>;
+ 			micrel,led-mode = <1>;
++			interrupts-extended = <&gpio2a 27 IRQ_TYPE_LEVEL_LOW>;
+ 		};
+ 	};
+ };
 -- 
-David Heidelberg
+2.47.3
 
 
