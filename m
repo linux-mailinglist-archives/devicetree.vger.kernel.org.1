@@ -1,200 +1,149 @@
-Return-Path: <devicetree+bounces-274112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274115-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WLvLNIJvsWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274112-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:34:58 +0100
+	id aBPmFu9usWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274115-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:32:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7371264A07
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:34:57 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7B2264961
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:32:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 891283041B50
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:31:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 863B630451FE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F180A32E6BC;
-	Wed, 11 Mar 2026 13:31:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dxF3tEHC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C27D93290B4;
+	Wed, 11 Mar 2026 13:31:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFCC32BF5D
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:31:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8383B31F98C
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:31:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773235870; cv=none; b=XbYeh0nwGf7sgjH1TSrAcKgkNkCLrk34plImr+JtbT5ZuW+kFPCHyeyrFMgTuYlRa/G6mg2RAJ6P9Gy7rWbQB3VZX+Q0xVVRXLLFEgafIk6zcPtrrYlBvPvNxowlYX1CphPaQJPuwCMHoHgY+dfuHFacgPJHfzqpdZdcug4ht3k=
+	t=1773235904; cv=none; b=pwJoBuyqtuZNcMCEAFq3ARXvTx5omnnbw5pKmsuP/oAASYJSfXnsUj9X9Lcpb59778HwTmVbywB3CBS3xQ01TzvmNU5fxQ7HUI/5qm38+ScTDMTLKJEcbTJ8wgmAYmFXAD9n7f33L67GJR7r2xRdvnAp7jpnX8HgjhnRVlWPa7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773235870; c=relaxed/simple;
-	bh=pKJkoKTrp7hzxZvbwVJr4wyjKCg0av7BkleQT+Zt73Y=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YD6sijfYTISLrd9UWhOZMQ0l4KRAS3NtLFPFhsAwkBYxg0w9czTI8Nx6CeP0vjlD15zU+B/TfGarfvtRljj2AvcjQOXb5B5ROzWS3Dj0potos7N7xpsvvDpg7Bm5Gxph8H6ODJArkkSvv9uWwZFLPEk+4m/8xmRxAtMKveeLebA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dxF3tEHC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E023C4AF0D
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773235870;
-	bh=pKJkoKTrp7hzxZvbwVJr4wyjKCg0av7BkleQT+Zt73Y=;
-	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
-	b=dxF3tEHCnzw/2/O529VGrKPviMpfWx95CPyuppoUNr1kDGtW/RRD972dXGb7uPD0Y
-	 Si26oGIVdvXa6eiaItQyfUpv5U3qnYWqbyTH/bl6Q1ZFGC6+FojgJy9XDeGwp/RyDd
-	 87l6v63TIxafVPGOrS4Da/5pp3aqlU7LJEeOHTc9o8+xGSXzyF2rYhvoBz/A7b8djb
-	 GeudHrRGq5QQGxfNSqLPh1EJxbq49QU6KHcD8014GTyK+PNGk96zXL98sDYANA7K/R
-	 13GJLHsZrMFhc0PF6RINmxxoEtrNE7TmtjFxQMbwExNPNtQuafiUGx/ikNo/+FRJhp
-	 74MZIhrUAdfqQ==
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-38a3f6da741so41833061fa.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:31:10 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV6sdhHXsJA5kw2ake/bbGIOhH4iJQgU27xF44he73azyIVDgA5+5KUUg+DI9ASH6IOSo8qCMjGzQY2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUfw0V2LzvJXESHgQMcTlB4px2vpR6RUApwsbKxMu2paje86Kb
-	5feGhrnFII/Y9Ewwxbsf08uAxoFVlcBUXcyUxqdrbCMjfCLWFHbe/+QGnYYzgOE3L7fa5ORAEyc
-	6KMDVJvKu7qhOGufAvwc9RrNgUO/EpJFHX8wZXW0rrw==
-X-Received: by 2002:a05:651c:1549:b0:383:5390:bc96 with SMTP id
- 38308e7fff4ca-38a67aad6bemr10145771fa.0.1773235869042; Wed, 11 Mar 2026
- 06:31:09 -0700 (PDT)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 11 Mar 2026 06:31:07 -0700
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Wed, 11 Mar 2026 06:31:07 -0700
-From: Bartosz Golaszewski <brgl@kernel.org>
-In-Reply-To: <20260304-b4-scmi-upstream-v5-2-f8fc763d8da0@oss.qualcomm.com>
+	s=arc-20240116; t=1773235904; c=relaxed/simple;
+	bh=TEGOliZPIKjcYMq/SlpUhrjTFTqBozUfJkzHQj68wwc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kaYFuSNWzBrB6kELXe4nbsOTT3d4DV4L3pFI79eQw9jzwoZpjO35zjVt58ouZ+rPO5SKFoD+0Gm2qczjLq2bFJjVdcOloVuUiaZOrunxCpyfRpNv05by8i7o8ki31PusPyEj2bOYYQvLxZ4VqC3IuubhKs0Glf4rrKCypmEren4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-56b18b520e3so743769e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:31:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773235902; x=1773840702;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aFGeq6M+ANIk5ThSAzANkY3DpNoGSDLWjfwUeKz6NR8=;
+        b=oJnoYeFYkO9nB6cWZOm+QL1rZZDJskFShhKX3nMFf6u/QNxFTiFO6DA8mETCJqAdCG
+         tfBaAA4V+gF65rKsybqX8/0PoiKxkDa4ALqr4BEIZzlhEcxwVxA6OHRwM+1mwkxtOftV
+         GCQClkU8gQ7/UQ65FfiuUhzF19zJh00SQ+6DB4SwGs9qsn8Ldl1Ms2FcwX1kZKiF7bvi
+         wYncRg46L1Gdw3oq8YhNw8pHTO8+pe2qN5QASSCUcKPrdMJ81S3kdEIduWI/OOU2EoKm
+         UKQrK0qHb7I27h/RpxFY+zeEpEaKONPlOW1FE0hPzGBcvwU6656GCOrmxsIPC517LWCG
+         yW1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV8tyZEHsRMzUD4U4vsM8uxMvNZYO6Ox8h2LLonXx/spLyiYSFhUlaKZTtb8IfMmAiz8RTq/1lUkvt8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwFPBZ7tWIFPBt1yRifrUM2Xh4aCJdyKDHzqcAFZTTxUbjCZnzJ
+	xvQrPJyGkyGgyfia6eA1/Dg6Kp9waAay25Z6tWfWvO3cpPB0ZwINvxW/ZT5tJ6CZ
+X-Gm-Gg: ATEYQzx3Rttbu/v4OFsPLpdHmvZ1dsBYadKmwWKaZ56O4pKLkupBCyC3Mi6hWHnMiC3
+	e2IDsGgugFkqR1jCtCaYjq0Y5y+IFNXAI1BmIpgqdYIvXFbiPs6NZa3YAsRXV42NYuwp+9t7zKB
+	TMWz7cUmTyFVOGZQvmvkRa2lQGPBd/1gSp2b3udPrZ8W9Qt5KKtuL28C13SCJIVrMwSeVs1ui+/
+	15+VfUpNuFyhQjCJUj+wf9AxZfafhjuHzbDnCbveJZurPj2lOPxio3lf0++par6Lgt+goLmlvir
+	BzFHtIOMwow5IaEeSkB+dmJYdFUZOg4Muyu2INO4+G7TJnUNFUb4fgQPotafRuo7CSigN3EXZ4L
+	DVpQHqlOr1eXyTBKkwWSuAinRJe+xtuMnN9PoJqe1/yIGqUfyfviljt2O3qUZnvxsd/ca/UEshb
+	gxHAVlZM9A4cenWjFJYcC71AVdB1Gb75InMukRyPuo7HJ5Ev3qLVgNodQjG3+fH6CD
+X-Received: by 2002:a05:6122:4f8a:b0:563:45d3:9b1d with SMTP id 71dfb90a1353d-56b4717bd40mr973152e0c.9.1773235902484;
+        Wed, 11 Mar 2026 06:31:42 -0700 (PDT)
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com. [209.85.221.169])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-94ecfc4dd70sm529737241.2.2026.03.11.06.31.40
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Mar 2026 06:31:40 -0700 (PDT)
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-56b18b520e3so743659e0c.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:31:40 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVyOh9xOpRt2fvNffpDX9+nAUhit+j0hRZ4xMFnDLgXJCReEVAJ+bk0BabQ6pyvv4QMGbt0JvVIAA2n@vger.kernel.org
+X-Received: by 2002:a05:6122:4f8a:b0:563:45d3:9b1d with SMTP id
+ 71dfb90a1353d-56b4717bd40mr972836e0c.9.1773235900498; Wed, 11 Mar 2026
+ 06:31:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260304-b4-scmi-upstream-v5-0-f8fc763d8da0@oss.qualcomm.com> <20260304-b4-scmi-upstream-v5-2-f8fc763d8da0@oss.qualcomm.com>
-Date: Wed, 11 Mar 2026 06:31:07 -0700
-X-Gmail-Original-Message-ID: <CAMRc=MdWSU82R-tGor5uP=UqosoV6Hjmpn03XdqAgVzhprSGpw@mail.gmail.com>
-X-Gm-Features: AaiRm51UWpkQOgWiBnzPzEkbIsk5ctHx0LmP7-JW3L9as5wLmQXbPYhk1uEXN_c
-Message-ID: <CAMRc=MdWSU82R-tGor5uP=UqosoV6Hjmpn03XdqAgVzhprSGpw@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] arm64: dts: qcom: Introduce sa8255p SoC
-To: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>, Nikunj Kela <quic_nkela@quicinc.com>, 
-	Shazad Hussain <shazad.hussain@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+References: <20260303233314.2928711-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260303233314.2928711-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20260303233314.2928711-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 11 Mar 2026 14:31:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVUn35f6a31mFz-6ejiPkrP9kdd4BLk1xrHXeGBxvqS4Q@mail.gmail.com>
+X-Gm-Features: AaiRm51uhTkJAfKsu3jlarUIceDa0BcH9ZUwy9miqlqSc85b2a-agV5l4kcTtLI
+Message-ID: <CAMuHMdVUn35f6a31mFz-6ejiPkrP9kdd4BLk1xrHXeGBxvqS4Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: renesas: r9a09g056: Add DMA support
+ for RSPI channels
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: D7371264A07
+X-Rspamd-Queue-Id: EF7B2264961
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274112-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email,quicinc.com:email,linaro.org:url,mail.gmail.com:mid];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com,renesas.com];
+	TAGGED_FROM(0.00)[bounces-274115-lists,devicetree=lfdr.de];
+	DMARC_NA(0.00)[linux-m68k.org];
+	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,mail.gmail.com:mid,glider.be:email]
 X-Rspamd-Action: no action
 
-On Thu, 5 Mar 2026 05:28:29 +0100, Deepti Jaggi
-<deepti.jaggi@oss.qualcomm.com> said:
-> From: Nikunj Kela <quic_nkela@quicinc.com>
+On Wed, 4 Mar 2026 at 00:33, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> Introduce base device tree support for sa8255p Qualcomm's automotive
-> infotainment SoC. The base dt file describes core SoC components- CPUs,
-> CPU map, ipcc, QUP,  geni UART, interrupt controller, TLMM, reserved
-> memory, SMMU, firmware scm, scmi, watchdog, SRAM, PSCI, ufs, pcie, pmu
-> nodes and enable booting to shell with ramdisk.
+> Enable DMA support for RSPI channels.
 >
-> The Qualcomm automotive sa8255p SoC utilizes firmware to configure
-> platform resources such as clocks, interconnects, and TLMM. Device drivers
-> request these resources through the SCMI power,reset and performance
-> protocols. Assign each device driver a dedicated SCMI channel and Tx/Rx
-> doorbells to support parallel resource requests and aggregation in the
-> SCMI platform server. Operate the SCMI server stack in an SMP-enabled VM,
-> using the Qualcomm SMC/HVC transport driver for communication.
->
-> Group resource operations to improve abstraction and reduce the number of
-> SCMI requests. Follow the SCMI-based resource management approach
-> demonstrated by Qualcomm at LinaroConnect 2024.[1]
->
-> Limit initial support to basic platform resources, serial console, ufs
-> and pcie.Defer enabling USB, and Ethernet to subsequent updates.
->
-> [1]: https://resources.linaro.org/en/resource/wfnfEwBhRjLV1PEAJoDDte
->
-> Co-developed-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-> Signed-off-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
-> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
-> Co-developed-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
-> Signed-off-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
+> v1->v2:
+> - Added all the possible DMA channels
 
-Just some nits, looks good to me.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.1.
 
->  arch/arm64/boot/dts/qcom/sa8255p.dtsi | 4861 +++++++++++++++++++++++++++++++++
->  1 file changed, 4861 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sa8255p.dtsi b/arch/arm64/boot/dts/qcom/sa8255p.dtsi
-> new file mode 100644
-> index 000000000000..4f8529db70f6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sa8255p.dtsi
-> @@ -0,0 +1,4861 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/mailbox/qcom-ipcc.h>
-> +
-> +/ {
-> +	interrupt-parent = <&intc>;
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	clocks {
+Gr{oetje,eeting}s,
 
-Stray newline.
+                        Geert
 
-> +
-> +		bi_tcxo_div2: bi-tcxo-div2-clk {
-> +			compatible = "fixed-factor-clock";
-> +			clocks = <&xo_board_clk>;
-> +			clock-mult = <1>;
-> +			clock-div = <2>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-[snip]
-
-> +	firmware: firmware {
-
-You never use this label.
-
-[snip]
-
-Stray newline? Same elsewhere.
-
-With that:
-
-Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
