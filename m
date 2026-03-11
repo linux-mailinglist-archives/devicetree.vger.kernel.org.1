@@ -1,193 +1,302 @@
-Return-Path: <devicetree+bounces-273765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273766-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGtfDM2zsGkHmQIAu9opvQ
-	(envelope-from <devicetree+bounces-273765-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:14:05 +0100
+	id SKTyNIezsGkHmQIAu9opvQ
+	(envelope-from <devicetree+bounces-273766-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:12:55 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72CCF259949
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:14:04 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D045259924
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 01:12:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id EB02F30F632D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:11:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id B70823026AB5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 00:12:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 383B978F39;
-	Wed, 11 Mar 2026 00:11:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D994415687D;
+	Wed, 11 Mar 2026 00:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="y/qXzXUk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BIXUAf+z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709713B7A8
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 00:11:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FC514A0BC
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 00:12:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773187908; cv=none; b=IFL6Q4np3t4uBKqohXuUTfgc+AXlF5q59VS7qB1qnmCvSeoO5y6460O0u4UThKkGZ8V/+MOdjwZYhu7YcHgC2Lz7pLoBGYQur2pPiG04kciKNrF4oUk0tTF/mtuAAuWo0hvdB2aVr/aQ3NFWeApNHf+IxZ6GcW6KbxidYqma9Jw=
+	t=1773187971; cv=none; b=YXz5ICixaIzoGmIIrAsAbkhgjZ/PbtXho5p4NlADdi/EHOtrjXGzhlzVFA1/vbz4kjd0JoITKk7l/WZi+L4EJXwHsqL5AUDSnuJDPZtUaROeHJx965J9sL1gD5G2AbKC1ojwugMfuEAoU9Gg5IlZQSAbse+2uAE+QDw9LCOHHMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773187908; c=relaxed/simple;
-	bh=P3lEy5gIkhZ3O6GB/4pR9gWhPNMout6x33dBMMGTqnc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Kz0fP9AQvDw70nYYExYwj5uMYX64qPo7pWsCXoPMV/T2QQr7ananS7wtbqJP4d7TWwXVIL20+CEhD3dfq6fpnU427o3amhT5ISxSFz9NjFevS4RKKUZZtQ+R9sKYxymjeHw/42csY5XENvvezPv9R+XAPmipsiRe9BVBenAFenk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=y/qXzXUk; arc=none smtp.client-ip=209.85.210.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-7d73ccee442so3338317a34.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:11:46 -0700 (PDT)
+	s=arc-20240116; t=1773187971; c=relaxed/simple;
+	bh=q/TWnouDib07gngy30kI1WGpH50qXN+Rv8AzYp9ClzQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jK3g4ul44XPyiwkgoRP9W1r2xcMaqdYf06UcwzVnvnlg51i6Mx34ZuXI0bk20RMX6HsCvOOQJ0kYibnewr2J7B6/Z01rrRbl4np81HTLrkS0dr35WublIAOM+kgYthGagtjr1IzvrdlnhoLFCfu70cqlblymEhi6xRp7aw9tzvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BIXUAf+z; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5a13d3170acso729450e87.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 17:12:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773187905; x=1773792705; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k/g9x/WAltqKnAS6kgiR1qo0fBhygP8SG/QvklfILzc=;
-        b=y/qXzXUk69fxfYkmTeImwa+hj4O/vGBPkAt+DNTFcOLgLY+ACHSB+ypg7s2Gq994kZ
-         7hm2qsueBPtYoM2ZM0Kf9Ncd2AFnAdxm519kuYX0gs1ukgD+qRY7N9O1F2AlhhVBVtLP
-         sWRrh8oW1dXSqr8VW5cNdCAgxnGNdokwp0iviYDlpl8/DWXIcnLiGxKtGMdIj5gWJTs6
-         0oObGrTRYZDy6JFNDiHF/E1HRhzJvWQrfpBxKqUQqVndkwjtQD0Kbm0rRBKYqX9i4tVh
-         JyRgLZlQBXMGgIAVwRL2eLAuGrUCh4d1nY2RxsCABLW7tAXen/c02DKwSWStrNzPEt2u
-         ALJA==
+        d=linaro.org; s=google; t=1773187968; x=1773792768; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=D9U9YlcZ6fX68BoD6/xbGJHOPf5j+kwjRYczriGqcus=;
+        b=BIXUAf+zKAH+OeIv1+6KMLHxVn75lwDwRT+d6EXrLyecWYa2pPRte+X8OzjlFEY7KW
+         hlJaukXpZOA3TN3EHl6Nv1cCYotLIduRCtIItlnNCdQurtZH47AiUKFNOuPRuncbN/Bt
+         p6zVWswwsKR7o6eZCKM5y94IbN3k0IzTuglqiEUU1Iw1kP9a8UUMd/yquK63zlz53cea
+         i9fMePBloEg73WWYQTA6+kX29W+6FOo6D0BGmgbL3Maog0+OMe33GsD6Jh0eBa/qSBLa
+         1cshudnMByi1SLbAyMYpPMB9pzgd1HySFwNllsXp3mBs7FzM3ORYT+4EXi5rOCwwh8h9
+         Lu/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773187905; x=1773792705;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k/g9x/WAltqKnAS6kgiR1qo0fBhygP8SG/QvklfILzc=;
-        b=E8BOfjwZY+0x4emOZPalNvag5ATO4UdU65VshPHfauPnt6sgaRc9bj/zw0gdbRjqxQ
-         TBQIt+IQLx9WXkWZCV7fNKh+xzHoFgXTOudUcOAuFgo9a6A5BnqxTq7b8bEkE1fT3b3N
-         q3ocUWg+6DlKjahAT0kmFaWlHzX/KktKzChKvKGKtTo2R33/exPuU/JJvq5woU6oSVu2
-         4lM7YQWpO/tq8g3IYsyefpz9BHdPKdZEExUsQMj7BU87RNn36xNyE+gG06/3OpH6H7hc
-         uyo1ouPLLG4H7erylRhPOhrf1tHmchFOYCAnjvWbwvuyVT18y5UDmGQuudoMDucRzjcR
-         uoSA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvNoRaf94d9HZG7kNI0HYH9/PNI+imJCcLVZyt7R/AJWqitFA9v5bfRL/3TYry/+0EckuRQlQBgbye@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQqVpjZfyB/7iAvqrdVM7vyd9EYHKuO8+zrWPcbEXqVbSsbd+u
-	iZXM2Hx7wY/dGgFZHRVig/BIekODCCizjZ6xE9Xut321E9tgkzECvTbvvdzAA/dJNXM=
-X-Gm-Gg: ATEYQzy92mB+PbndJFgMt0tnoBMp8jFcswT3OpRILx9tbe23r7g+maFsK1cOOs13uvC
-	KhG4pNF2Zsslbj1IAWQ4hpkdWZe6YATha+ZwqaAwJJiLFIb8kRVt4NM7j51IG2nQOb7k2FvtLcM
-	nnj3y0lzbFUFjfHhdowJ+LRVB8K+ng0agPSZ3f/09UH3Nsusycb0CEUGSRNoZZn9g4SrrauPOsZ
-	st9oXYtnF3sPA43HwNVRQ6FT21mH4AtMIedO/n7UNy4mfPDNZ0TUXWhsrxyMeaLGw3wL/xGovF+
-	sy0OzgZ/Q6y1keban0v4pfbwhbOBrf3lhY+dUR8bYgFs+PCDdPeyrp8D/ADIfMZb0h4JZlENkXl
-	7f+rS9l3GEIOY367+b/oJ1qQcoOUzo3ZKAUhdeaDK6eom8aaXj/lzxpEQpyOTQandPSnBZ/S4gN
-	SPZNuU9BIgErWsegsfrtOg/kiOchSH0xsavGr/MOygqN36ZFNjXtZj8VEYZXT4dTp3xjPMsW8nA
-	w==
-X-Received: by 2002:a05:6830:264b:b0:7d7:382f:f00f with SMTP id 46e09a7af769-7d76a73d752mr520754a34.31.1773187905339;
-        Tue, 10 Mar 2026 17:11:45 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:82ac:f3fe:2e5f:ec03? ([2600:8803:e7e4:500:82ac:f3fe:2e5f:ec03])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7d76aebc9d3sm492155a34.24.2026.03.10.17.11.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Mar 2026 17:11:44 -0700 (PDT)
-Message-ID: <b1187027-3ddd-43bc-a773-8b5d794e04fc@baylibre.com>
-Date: Tue, 10 Mar 2026 19:11:43 -0500
+        d=1e100.net; s=20230601; t=1773187968; x=1773792768;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D9U9YlcZ6fX68BoD6/xbGJHOPf5j+kwjRYczriGqcus=;
+        b=CQu47BuyTlZuvXVVR6ZIV5U9uIAAv57YteEu/aKRzvT4/jnGHp6MCfmvqT9ueeESgZ
+         TXxnnupt8kgpE82bM2oTektCyfjobXGQ7N+5UxDHXoeI+FKR2lWHTvpVHl6vXWPWGi/X
+         m17p6O6eptPpKTeRDa6w/2AxG0AnhLGrBBdkumUVonFSsWxWmxcJwfpY1KTaaDZRRuDN
+         TtNVrgSExGxjbDUYCR5E9vlEKZaJd/VGMqkqGmF+Sw1lh45X1TlW0TGq9GkimJ0oJ4tB
+         a+kODY8EkNVgdHltmPjA8ONi62RNPuKkw0Maxh66Rj/lwIsYEAY0MGjhrPCt2UsdP8Zy
+         +sGA==
+X-Forwarded-Encrypted: i=1; AJvYcCXGeeVmZcxYDK9Fa7LT6DeTyvVn7ccv/3f4f5Uqjn029BTeJaifRFSoWOX2GCbrzWahgmbFMchpuqGO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHoQvhhI5PO/TMb2I0Yq5dPL874iWfe+G/lDQ0gfTi6klFIDoQ
+	zVVyU3ugHk8UGgvNI2Aw/lQq7nZUgWMhAzj5LpmGb9xO9Ew3O44b1AGnPl+jVRPONuU=
+X-Gm-Gg: ATEYQzzhay7vDBxcivVQ/iDTwYE4XQxuPeTRFUqRQEQwp66QPrQyz+xKMT/k7jGCQTU
+	sfbrUatHZAmO0PNOIrmiCxZzfxqUt2i7EUV2drY0Hpsba8+zb0LGWtcLDA+1P2Uwndhs66ICglY
+	yU5dHN/3cMeS3xYr+Hs4hqNEwr8XOtFsJ4j3kOYjYfjdGXblK5F7/aoCK1swTHKT88W6YOWgINS
+	4VELHeAxRfvQ2b8ir5Um2K2Z5Qz7IsFS0Syegp/lGdg7HUAhvPWa46mPlplEUMHoV0zZ4RdELad
+	GdLLQq3Cl11CNX/3/F/gPvLCtKG4xrSqKdxBfxwrdYnPM+khnmRmJMbs/sAGLm44tkeSM/iF7Ud
+	6Mw2lH5wcdoGtAWSxN655XceeQX2i8loppBGqDD8YPl3zAGqcGOC+sV7BVrRG5sYuY6o/c5gCpC
+	2MLb3aIQ8ms4dbhRXOrvBIIOxXp3pU/w3vYJUS0XE4rgyDE3SQTdsAyrda0N0gslOfPg==
+X-Received: by 2002:a05:651c:f0d:b0:383:2856:c99b with SMTP id 38308e7fff4ca-38a67e781a4mr927341fa.8.1773187967464;
+        Tue, 10 Mar 2026 17:12:47 -0700 (PDT)
+Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-38a67e7c014sm894421fa.44.2026.03.10.17.12.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 17:12:46 -0700 (PDT)
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: sm8550-hdk: add support for the Display Card overlay
+Date: Wed, 11 Mar 2026 02:12:38 +0200
+Message-ID: <20260311001238.4191034-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 6/8] iio: frequency: ad9910: add RAM mode support
-To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>,
- Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
- <20260220-ad9910-iio-driver-v1-6-3b264aa48a10@analog.com>
- <20260301133153.7f2f8501@jic23-huawei> <20260307140735.5ec2e608@jic23-huawei>
- <bxcybwaz3am7nrrfcjuvkbbe7yp4vwcxwwh4dafaj5dsy622s7@m4vdam6tyaht>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <bxcybwaz3am7nrrfcjuvkbbe7yp4vwcxwwh4dafaj5dsy622s7@m4vdam6tyaht>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 72CCF259949
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4D045259924
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.16 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[baylibre-com.20230601.gappssmtp.com:s=20230601];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273765-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[baylibre.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[baylibre-com.20230601.gappssmtp.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dlechner@baylibre.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[linaro.org:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273766-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,baylibre.com:mid,baylibre-com.20230601.gappssmtp.com:dkim,analog.com:email]
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vladimir.zapolskiy@linaro.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:dkim,linaro.org:email,linaro.org:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,0.0.0.0:email]
 X-Rspamd-Action: no action
 
-On 3/10/26 12:40 PM, Rodrigo Alencar wrote:
-> On 26/03/07 02:07PM, Jonathan Cameron wrote:
->> On Sun, 1 Mar 2026 13:31:53 +0000
->> Jonathan Cameron <jic23@kernel.org> wrote:
->>
->>> On Fri, 20 Feb 2026 16:46:10 +0000
->>> Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
->>>
->>>> From: Rodrigo Alencar <rodrigo.alencar@analog.com>
->>>>
->>>> Add RAM channel with support for profile-based control. This includes:
->>>> - RAM data loading via binary sysfs attribute (ram_data);  
->>>
->>> I'm not sure that's a long term viable path.  We either need
->>> to figure out how to do it as firmware file load, or via an output buffer.
->>>
->>> Firmware load would probably be too static and I'm not sure quite
->>> how we map these to IIO output buffers.
->>
->> We would have to carry it for ever which is very much not ideal.
->> The firmware approach has the same issue, but can be thought of
->> as defaults at boot time forever.  If no defaults then we use whatever
->> we come up with as the long term solution.
-> 
-> I was thinking about the firmware approach:
-> - Normally a driver would request the firmware during probe and the
->   filename would be pre-defined.
-> - Less statically, It could have an attribute that once written, it would
->   request the RAM contents (e.g. under /lib/firmware/ad9910_ram.bin).
->   It could be the enable attribute itself (but that would not be effective
->   when the binary would not change), or a separate one (e.g. destination),
->   or a new one (e.g. load_en)
+The SM8550-HDK board may be connected to a Display Card external PCB,
+which is identical to the already supported SM8650-HDK Display Card,
+it provides a VTDR6130 display with Goodix Berlin Touch controller, see
+also commit bc90f56a1699 ("arm64: dts: sm8650-hdk: add support for the
+Display Card overlay") for additional details.
 
-Have you looked at firmware_upload_register()? It looks like it provides
-something along these lines.
+Two overlays are added to support SM8550-HDK plus Display Card and
+SM8550-HDK plus Display Card plus Rear Camera Card setups.
 
-> - Alternatively  we can also have an attribute (like 'filename') that once written,
->   loads a firmware file under /lib/firmware/<value-of-filename>.bin 
-> 
-> I am currently using libiio to write the sysfs binary attribute. Thus,
-> the downside of the firmware approach is that I would have to use something
-> else when changing a firmware file remotely (as libiio would not support this).
->  
-> Also, the buffer approach has its problems, mostly because triggered buffers
-> are not really designed for multi-buffer support, even though it could work
-> along side the DMA engine one (that I am using with the parallel port).
-> Additionally, userspace tools are not yet ready for multi-buffer support.
-> Also, an IIO buffer might give a sense of data streaming capabilities,
-> not a one-shot load that I need here.
-> 
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/Makefile             |   4 +
+ .../dts/qcom/sm8550-hdk-display-card.dtso     | 132 ++++++++++++++++++
+ 2 files changed, 136 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm8550-hdk-display-card.dtso
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 55660351c82d..ab4922a138c3 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -327,8 +327,12 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-samsung-r0q.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx223.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8450-sony-xperia-nagara-pdx224.dtb
+ 
++sm8550-hdk-display-card-dtbs	:= sm8550-hdk.dtb sm8550-hdk-display-card.dtbo
++sm8550-hdk-display-card-rear-camera-card-dtbs	:= sm8550-hdk.dtb sm8550-hdk-display-card.dtbo sm8550-hdk-rear-camera-card.dtbo
+ sm8550-hdk-rear-camera-card-dtbs	:= sm8550-hdk.dtb sm8550-hdk-rear-camera-card.dtbo
+ 
++dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-hdk-display-card-rear-camera-card.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-hdk-display-card.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-hdk-rear-camera-card.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-hdk.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sm8550-mtp.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-hdk-display-card.dtso b/arch/arm64/boot/dts/qcom/sm8550-hdk-display-card.dtso
+new file mode 100644
+index 000000000000..7b54b084b8bd
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sm8550-hdk-display-card.dtso
+@@ -0,0 +1,132 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2024-2026, Linaro Limited
++ */
++
++/*
++ * Display Card kit overlay
++ * This requires S5702 Switch 7 to be turned to OFF to route DSI0 to the display panel
++ */
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/dts-v1/;
++/plugin/;
++
++/* Disable HDMI bridge related nodes (mutually exclusive with the display card) */
++
++&i2c0 {
++	status = "disabled";
++};
++
++&lt9611_1v2 {
++	status = "disabled";
++};
++
++&lt9611_3v3 {
++	status = "disabled";
++};
++
++&vreg_bob_3v3 {
++	status = "disabled";
++};
++
++&lt9611_codec {
++	status = "disabled";
++};
++
++&mdss_dsi0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	panel@0 {
++		compatible = "visionox,vtdr6130";
++		reg = <0>;
++
++		reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
++
++		vddio-supply = <&vreg_l12b_1p8>;
++		vci-supply = <&vreg_l13b_3p0>;
++		vdd-supply = <&vreg_l11b_1p2>;
++
++		pinctrl-0 = <&disp0_reset_n_active>, <&mdp_vsync>;
++		pinctrl-1 = <&disp0_reset_n_suspend>, <&mdp_vsync>;
++		pinctrl-names = "default", "sleep";
++
++		port {
++			panel0_in: endpoint {
++				remote-endpoint = <&mdss_dsi0_out>;
++			};
++		};
++	};
++};
++
++&mdss_dsi0_out {
++	remote-endpoint = <&panel0_in>;
++};
++
++&spi4 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	status = "okay";
++
++	touchscreen@0 {
++		compatible = "goodix,gt9916";
++		reg = <0>;
++
++		interrupt-parent = <&tlmm>;
++		interrupts = <25 IRQ_TYPE_LEVEL_LOW>;
++
++		reset-gpios = <&tlmm 24 GPIO_ACTIVE_LOW>;
++
++		avdd-supply = <&vreg_l14b_3p2>;
++
++		spi-max-frequency = <1000000>;
++
++		touchscreen-size-x = <1080>;
++		touchscreen-size-y = <2400>;
++
++		pinctrl-0 = <&ts_irq>, <&ts_reset>;
++		pinctrl-names = "default";
++	};
++};
++
++&tlmm {
++	disp0_reset_n_active: disp0-reset-n-active-state {
++		pins = "gpio133";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-disable;
++	};
++
++	disp0_reset_n_suspend: disp0-reset-n-suspend-state {
++		pins = "gpio133";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
++	mdp_vsync: mdp-vsync-state {
++		pins = "gpio86";
++		function = "mdp_vsync";
++		drive-strength = <2>;
++		bias-pull-down;
++	};
++
++	ts_irq: ts-irq-state {
++		pins = "gpio25";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-up;
++		output-disable;
++	};
++
++	ts_reset: ts-reset-state {
++		pins = "gpio24";
++		function = "gpio";
++		drive-strength = <8>;
++		bias-pull-up;
++	};
++};
+-- 
+2.49.0
 
 
