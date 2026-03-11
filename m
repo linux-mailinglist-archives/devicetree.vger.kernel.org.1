@@ -1,194 +1,184 @@
-Return-Path: <devicetree+bounces-274330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274329-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qOmmJtbGsWnvFAAAu9opvQ
-	(envelope-from <devicetree+bounces-274330-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:47:34 +0100
+	id GG4yM7TGsWnvFAAAu9opvQ
+	(envelope-from <devicetree+bounces-274329-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:47:00 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id F302B2699A2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:47:33 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC3A269993
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:47:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id AEB863184531
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:45:59 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6712030936D7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:45:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0B02D0C7B;
-	Wed, 11 Mar 2026 19:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 657522DF719;
+	Wed, 11 Mar 2026 19:45:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RhKcQYAp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9164295DAC
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 19:45:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C6E295DAC
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 19:45:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.82.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773258358; cv=none; b=bzA8+t01kLK8jtRDwehbXeMSfiBc+ofOLA18s5ameg8TgbY/zjS+YyWt2jdPEYe18v6wCCaUAMuMssmDjjJAQ9A1fMW729ruUq/8ISstvdUaNf/c090Dc8nbbiwcSu/zH5U5RcEvSZnGRpjXGDUUbhm6obs33BlevuuURxjdQjM=
+	t=1773258347; cv=none; b=O3izMeT4xMDhDPYnOHjTdPiNyAI0nH+4FMhOaAWqIPYyaq5E9BCzU/YGOSd7QogfNfEPRTEADSln7yu4yr9g0as1eNZJ9F7BtcjsF6n7JqzBU3tkfo5IAKPLVc3Z/Nv6+afq+N2y1+0laan6k56sY9CF/tq6cDkMX8fPZdXYxIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773258358; c=relaxed/simple;
-	bh=28bBRNfsyPKm+eji2CAGQaH32hvOKs3oH5Dmh4xphLY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=okn10nO4YK0mqnj5O+e/9cqu1qCNWxzFTLUlNaGf9uPjB5b2cpSmzG3yGxvmhSTxDmp2jRYBEXBD4izIUsTDhwp2zq+ma2OeDS59fXNuqamAHh4zonWmkjTK4RNIBOYDYOz8UFk0nxk/0Rv9QP+gcKYuneAUeLRryQc5WG0jqQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1w0PUl-0003Gd-NH; Wed, 11 Mar 2026 20:45:27 +0100
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1w0PUi-004uHc-1s;
-	Wed, 11 Mar 2026 20:45:25 +0100
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1w0PUj-0000000DVMM-3LA5;
-	Wed, 11 Mar 2026 20:45:25 +0100
-Date: Wed, 11 Mar 2026 20:45:25 +0100
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Liu Ying <victor.liu@nxp.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Frank Li <Frank.Li@nxp.com>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v11 2/3] drm/bridge: imx: Add i.MX93 parallel display
- format configuration support
-Message-ID: <ot5qypkeirkiweicjijholt2hwfpnnfhrcm3d6euqfnupptsab@din4bkq2sh5h>
-References: <20260303-v6-18-topic-imx93-parallel-display-v11-0-1b03733c8461@pengutronix.de>
- <20260303-v6-18-topic-imx93-parallel-display-v11-2-1b03733c8461@pengutronix.de>
- <33e09cc9-69bd-468b-8361-b92a50686f74@nxp.com>
- <DGZ2XYTVUR28.16ITKRM9S2ACV@bootlin.com>
+	s=arc-20240116; t=1773258347; c=relaxed/simple;
+	bh=VwQ56VXUaPri4KW77dpEQUYsi6yUrAih166WCrpBKTk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=A2btqSe+1GZoUeaoggLrIhmBml69Mmy9aEwGfSVfZrxC6ExWchf6gt57tYswKyDqsp5vdzpaqsE40HhOtCEShMgbsrCioKw1A/tYI/WiArlYo2jcZtADcQNeb01Yy6kXJ2N+Cg5RAb3BWEn9G8jSNQdoBph+Oqnr/LGKRYu4FAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RhKcQYAp; arc=none smtp.client-ip=74.125.82.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-dl1-f52.google.com with SMTP id a92af1059eb24-128e4d0cc48so310703c88.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 12:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773258345; x=1773863145; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=i1uUn/7K9WlWtyyo40gm+4/cEvjyqXdggwfumhJO2Xg=;
+        b=RhKcQYAp/d4i27uiOoywCFdDoFJz4aDr8HI05def/NuCtifB6Ydtqhav6hKi8RUsBL
+         WLUiYZf0KsJ9scCdcNhsS7eoOu7utx2dRB1mH73KjfXATZLY5+X+Gx/jAzhnx9HxJks/
+         jvOYwXSs9KbcsejTV2ERpVqCJn/IL+2hjM+/l+fzhuVutGOuPB0BLCkV/LafIh5RtzPG
+         r4m7bxg3SsZQlmKhDEVE9UJMpeQVq+/6U0FZHS6bRQ5qCBbRolvQnqZ6Anw+FjOMz+HK
+         BWlrfQg6Gi7yN2sDydETYQht7wvNohD8ZneEcHKF4o4F0J/w9p+rUZfD4EGwuGDWqq3L
+         jbpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773258345; x=1773863145;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=i1uUn/7K9WlWtyyo40gm+4/cEvjyqXdggwfumhJO2Xg=;
+        b=vDP3xn/i1zfn6Mp4XEWzkBSPqKR7spo315B9UJYK22WMKvphj1qJNSZDbmB0+n//hL
+         Mua63KGqbgguS1Ndzx5XFcEirFBYWxnfrEE1U7TBfozjd68pIKxxwjDSr1mFB50ZYmqr
+         WIoYkYWQKs0gcJPf6fyCxUMFK0Rc2xf52Zu82NwFvP0/Q1qZwK2ajpZwEYn2q0OQBZ6u
+         KeCcHZG21RAs9ixaCTcU1WJsOTFwdjWj9gzDQzTcEg1SIczkISZJt86aYilR9Few4Q5n
+         HlOQu6+N+TW0rFmQLY7B1cs3HSL4D6boxatE5/bv9cpxvclEzR5Rxc1huQ0VcJ5/fGmd
+         47Iw==
+X-Forwarded-Encrypted: i=1; AJvYcCVcmmZ2wvJXtGcGRBJWXUQYDuE/BTKjBLkhEyLVU2QtLmDiquAlETWARtczMx54ml3DKsxjh6FJLEHx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoM2D9XQY2IMeeqgprfKfOYKv4s9OUbN9toAaOizpBxPAQi36G
+	54OJeokpw4zXDUHR375Qax4LpIEuUh3+YLLdoT139DIKopI4sq6pSKBxDP9MpQ==
+X-Gm-Gg: ATEYQzyUJaXU5bYS5CLIMYzTgcAxmxzdyOihf9nhc/YhWHltm1tzQRRBeS8UfuLD6Kt
+	fU28qT4POJJrhlPmkAYg3GEN2j0eEOSn3wwK17xlJGi85rmnCrJIMGYZntmLNPdzzkmAPysy2PD
+	dA2BY1hq0UUYTCeaDl5anlpWyMWiUNPUw9Dx+oZAHBoQ/wGjRCnA9PzVIZdSJFCaQXkiCajX3So
+	Rj7/l/mFLQKA42u6Tcpi24hYiiJu9ByclEb628p/TwJ9ncAxYBkaqaqjyCvZ+zANQmPNZqK/6WO
+	9SQsHNhNw3Khs9xi5M39GX7lAZOazsEHJQZkUg07q8sQqo+b+V9Ek+RZSDYnx+oErgkLPvwya2/
+	FSYKX/E7nBQ7M82nDB0lsjnNRBcB30EOxk+i6ZbXoDU6H8//oSrIdXipnFkXlOVjefZwBA+nnIj
+	7dMnsuoBlmk82/U1J27IvB+iyhBZq6lyM7TWEh5WDy+YQHrvmx0zDiq0drqVSNbhF+a7nSDQ7IT
+	kxtp5KW
+X-Received: by 2002:a05:7300:dc87:b0:2ba:6a79:f04c with SMTP id 5a478bee46e88-2be8a2ea792mr1389351eec.18.1773258345011;
+        Wed, 11 Mar 2026 12:45:45 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:1b3:a803:148f:866b:f519:b5db:1242])
+        by smtp.gmail.com with ESMTPSA id 5a478bee46e88-2be8aa96fdcsm3739660eec.30.2026.03.11.12.45.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2026 12:45:44 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: johannes@sipsolutions.net
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	briannorris@chromium.org,
+	Frank.Li@nxp.com,
+	kvalo@kernel.org,
+	linux-wireless@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Fabio Estevam <festevam@gmail.com>
+Subject: [PATCH] dt-bindings: net: wireless: marvell,sd8787: Relax length constraints
+Date: Wed, 11 Mar 2026 16:45:31 -0300
+Message-ID: <20260311194531.70441-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DGZ2XYTVUR28.16ITKRM9S2ACV@bootlin.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spamd-Result: default: False [0.54 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274330-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,chromium.org,nxp.com,vger.kernel.org,gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[pengutronix.de];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[27];
-	FREEMAIL_CC(0.00)[nxp.com,kernel.org,pengutronix.de,gmail.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[m.felsch@pengutronix.de,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274329-lists,devicetree=lfdr.de];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,pengutronix.de:url]
-X-Rspamd-Queue-Id: F302B2699A2
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[festevam@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 7CC3A269993
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Liu, Luca,
+Commit 31ed9d9d71ec ("ARM: dts: rockchip: Limit WiFi TX power on
+rk3288-veyron-jerry") added calibration data for the rk3288-veyron-jerry
+platform. The commit message explicitly notes that "the length can vary
+between hw versions", as documented in the original text binding.
 
-sorry for the delayed response, I was at the EW26.
+The current YAML schema enforces fixed maximum lengths for calibration
+data arrays, which causes dtbs_check warnings for rk3288-veyron-jerry.dts.
 
-On 26-03-10, Luca Ceresoli wrote:
-> Hi Liu, Marco,
-> 
-> On Tue Mar 10, 2026 at 3:57 AM CET, Liu Ying wrote:
-> > Hi Marco, Luca,
-> >
-> > On Tue, Mar 03, 2026 at 11:34:27AM +0100, Marco Felsch wrote:
-> >
-> > [...]
-> >
-> >> +	next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
-> >> +	if (IS_ERR(next_bridge))
-> >> +		return dev_err_probe(dev, PTR_ERR(next_bridge),
-> >> +				     "failed to get next bridge\n");
-> >> +	pdfc->dev = dev;
-> >> +	pdfc->bridge.of_node = dev->of_node;
-> >> +	pdfc->bridge.type = DRM_MODE_CONNECTOR_DPI;
-> >> +	pdfc->bridge.next_bridge = next_bridge;
-> >
-> > When I was reviewing another patch[1], I was aware of the necessity of
-> > calling drm_bridge_get() for next_bridge to balance the next bridge's
-> > refcount put from __drm_bridge_free() for this bridge.  I'd be good if
-> > Luca may confirm this is correct.  Sorry for bringing this up late.
-> 
-> Indeed you have a good point.
+Relax the constraints for the two properties that have
+variable-length data in this platform by adding minItems based on the
+actual data used in the downstream kernel:
 
-At which stage did you faced this issue? During driver probe, because of
-EPROBE_DEFER?
+- marvell,caldata-txpwrlimit-2g: 508 bytes (from rk3288-veyron-jerry.dts)
+- marvell,caldata-txpwrlimit-5g-sub2: 744 bytes (from 
+rk3288-veyron-jerry.dts)
 
-That's the reason for having the local next_bridge variable since I
-faced with the same issue. In other words this driver is correct and
-it's on purpose to not assign it directly. Albeit I could/should have
-added a comment.
+The original maxItems values are preserved as upper bounds to maintain
+validation for other platforms while accommodating this specific
+hardware variant.
 
-> After re-checking devm_drm_of_get_bridge(), as I wrote on the other thread
-> you pointed to, you should call drm_bridge_get():
-> 
-> -	pdfc->bridge.next_bridge = next_bridge;
-> +	pdfc->bridge.next_bridge = drm_bridge_get(next_bridge);
->
-> Marco, you can keep my R-by if you resend with just this change.
-> 
-> Sorry about the confusion here.
-> 
-> As mention on the other thread, devm_drm_of_get_bridge() is unable to
-> support bridge hotplug. So it should be deprecated, but as of now there is
-> no alternative.
+Fixes: 25f855413885 ("dt-bindings: net: wireless: convert marvel-8xxx.txt to yaml format")
+Signed-off-by: Fabio Estevam <festevam@gmail.com>
+---
+ .../devicetree/bindings/net/wireless/marvell,sd8787.yaml        | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Sorry I need a bit more context. What's the issue? How can I trigger the
-issue? Why is bridge hotplug required at this stage? Why is only this
-bridge affecte by the hotplug issue?
-
-Regards,
-  Marco
-
-
-
-> 
-> Luca
-> 
-> --
-> Luca Ceresoli, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-> 
-
+diff --git a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
+index 930b700b73d0..0d5b4274f151 100644
+--- a/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/marvell,sd8787.yaml
+@@ -37,6 +37,7 @@ properties:
+   marvell,caldata-txpwrlimit-2g:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+     description: Calibration data for the 2GHz band.
++    minItems: 508
+     maxItems: 566
+ 
+   marvell,caldata-txpwrlimit-5g-sub0:
+@@ -52,6 +53,7 @@ properties:
+   marvell,caldata-txpwrlimit-5g-sub2:
+     $ref: /schemas/types.yaml#/definitions/uint8-array
+     description: Calibration data for sub-band 2 in the 5GHz band.
++    minItems: 316
+     maxItems: 750
+ 
+   marvell,caldata-txpwrlimit-5g-sub3:
 -- 
-#gernperDu 
-#CallMeByMyFirstName
+2.43.0
 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | https://www.pengutronix.de/ |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-9    |
 
