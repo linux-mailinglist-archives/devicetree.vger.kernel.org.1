@@ -1,226 +1,160 @@
-Return-Path: <devicetree+bounces-273890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273891-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gA/ZLWEYsWn6qgIAu9opvQ
-	(envelope-from <devicetree+bounces-273890-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:23:13 +0100
+	id yB1kJHYZsWn6qgIAu9opvQ
+	(envelope-from <devicetree+bounces-273891-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:27:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3103825DB2B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:23:13 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F33325DE1B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:27:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 389E13150D1A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:11:47 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 08446318E643
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:15:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCE338AC7D;
-	Wed, 11 Mar 2026 07:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5868A39BFE8;
+	Wed, 11 Mar 2026 07:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="NWTbDsZ4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ndCJQwuA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885E838656E;
-	Wed, 11 Mar 2026 07:09:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773212990; cv=pass; b=c9hp5cy/VI2m985NIx/XopwllIuYRK86SpuvcUsEXejl0BVmABZT6bnAUCQ55XgUgxBm3xAYJ/MeFklUCdeVrthr8Ov0IkbhnWX80m0vdWcdKhS6R+RNnoI37qjCkKx5sqUYY9qZY+4g9VD0k8sqMhvhx2BzbS2oTXAddjS2vc0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773212990; c=relaxed/simple;
-	bh=6KMu4+G/zOmHX6rKfiUqgpE/it+tPMrcWmMb/Nq+5Cc=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD15E39B955;
+	Wed, 11 Mar 2026 07:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773213061; cv=none; b=qclsP5Ji5qu6dy4vUCS5k6sqfznwCBj5+1CTWMOtCPm4c2/HN+umpQWCKdtVqFUPPb9HP70u2EnubIPy2pnD5pdlXCHkdMEw6ki69pLwd1ejx1kdzeEk8o3jAdifzbmN9S4xX44GS/heKDRpr9r+7Is4MdwJscgdjxqVz/b/IsQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773213061; c=relaxed/simple;
+	bh=S6DCtOFxG9F6QSwwhCT2DfwAh3MaroX/4RxL/8YtxZs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dz3NS666l2FwMI6BKaEYsIxVkKHbnycFQqxRZTK+71aknp/d1yn/d62qu68OpHhuuvpIIh4El0jFasuWdk1fRgsWuGygqLpN+XPDQXWIxivRFfJNBYrJXPmukKufxlTknxSb+VJ0Hp0zzHUug2oKbvRr6YJ0yTt8t8MVDFSY/Sk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=NWTbDsZ4; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1773212984; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=mBGtwSqfzwz7CnkXPL58zuK7LnGqTv3przzSw7fzzIvhIbqdR7QNp4i/lgwbW8aBGfjzFxcRrJetjhz1vgnN7zxFkiduiirsRBmWZindUi2B+ORW+++gUDp1zKcavtH6152uwOaF7CQeFSz9IFlYWd94/Fymd8CbIvpNCTOJPZY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773212984; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=bX3KqtJRFdnpydJQW6XcNj29YdWQOIU3lYhG3QT6r/g=; 
-	b=OpdguC2cVhphQe6lM12wYUe1LzPXE28gqed1kyTjSz/a15eCy7RviNaazjjnn9ecgbr7ZWWPDyZhRR3Dm01ydYkF88NoPDp9tdX7tFqb6OhrpabQA+blm+3GUzVZ+Kzwk82DLHxoLP47KCXTtfb5+6sA+KzcAcsKZbcJ5zi5yqI=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773212984;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=bX3KqtJRFdnpydJQW6XcNj29YdWQOIU3lYhG3QT6r/g=;
-	b=NWTbDsZ4t+T4COjT7NQwq4+WRxRjHkPA6GXEKWZiDoZaqUPOn4auzTynPe2271RE
-	l/pGtNVYUiAcTqrpRAEzNsqxa7O40V18ig72ATgyBs9sFOsrycoqELDqzXqGd36+1/R
-	JJYdbtI2jrROtaI+BNhqYdzCbFm9/ovUX2qVXNb4=
-Received: by mx.zohomail.com with SMTPS id 177321298263555.491937079018385;
-	Wed, 11 Mar 2026 00:09:42 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 2E7E1180598; Wed, 11 Mar 2026 08:09:26 +0100 (CET)
-Date: Wed, 11 Mar 2026 08:09:26 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Alexey Charkov <alchark@flipper.net>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Chris Morgan <macromorgan@hotmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 08/11] power: supply: bq257xx: Add fields for
- 'charging' and 'overvoltage' states
-Message-ID: <abEVEkdrRbBVJ02w@venus>
-References: <20260310-bq25792-v3-0-02f8e232d63b@flipper.net>
- <20260310-bq25792-v3-8-02f8e232d63b@flipper.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=S7sZ+qn8FACUln83C0i4DLTsbeI/cmXWfzQerQPfXqAhmOCJMfwtaknBQQiWgviKMIo2ejJ8IASnPme2/3LCh/i4bg1sVT5c8tgeLfUVUlKPc0mqoZiw3O9HS2m/vokARUhDDBIi7XCkmL+IJ3QcvYXRp1I09Y78ssANPk0noCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ndCJQwuA; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773213059; x=1804749059;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=S6DCtOFxG9F6QSwwhCT2DfwAh3MaroX/4RxL/8YtxZs=;
+  b=ndCJQwuAK1HLorygklM13IOBi/9kGCHTx7R4NW+UGp/oBzOoMdsKsKwK
+   iDRgra/P/2kvYRCHEqVTsn3Vs6I8/BHMcLh+loaWVDgxmcy992S5BsShT
+   NTAj8FKwaQgO1+FttKMyEIeMymF6rpcU1NKdMs7vtScd0Y0WSIygQwWKw
+   A3TYrV8nhtjKE3CH58YXzbouhWjmLiAmwG+q8a2XJ62LblDFmflXtBMvB
+   +hKGczk4Ba0UgBj1bwitDpHPxWpHetS7G5WmpU1zcCsI9EnqYiI4M9877
+   qBb33NlpVI7IpQxjuthGJnuloNwAZLQQYGGrS46PuvyCZcsLqaikeBJiu
+   w==;
+X-CSE-ConnectionGUID: vnXrTaZdQHyZIzvBP7Na6w==
+X-CSE-MsgGUID: l/1Qq+aYSH6P3fSw8G3+0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74171605"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="74171605"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 00:10:58 -0700
+X-CSE-ConnectionGUID: atYMevo4T8OUE7O98QHNmA==
+X-CSE-MsgGUID: 1n+RXzXMQISQ9OfmBiYbrg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="219619872"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.178])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 00:10:54 -0700
+Date: Wed, 11 Mar 2026 09:10:52 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Kyle Hsieh <kylehsieh1995@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Beguin <liambeguin@gmail.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] iio: adc: ltc2309: add support for ltc2305
+Message-ID: <abEVfIKYZSl-AnL8@ashevche-desk.local>
+References: <20260311-add_ltc2305_driver-v4-0-bc350d347f33@gmail.com>
+ <20260311-add_ltc2305_driver-v4-2-bc350d347f33@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="noyw5ylnvg7qvqo4"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260310-bq25792-v3-8-02f8e232d63b@flipper.net>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.1.1.4.3/273.195.15
-X-ZohoMailClient: External
-X-Rspamd-Queue-Id: 3103825DB2B
+In-Reply-To: <20260311-add_ltc2305_driver-v4-2-bc350d347f33@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 0F33325DE1B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-273891-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273890-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,vger.kernel.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	NEURAL_HAM(-0.00)[-1.000];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,collabora.com:dkim,collabora.com:email,flipper.net:email]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
+On Wed, Mar 11, 2026 at 09:43:02AM +0800, Kyle Hsieh wrote:
+> Add support for the 2-channel LTC2305 ADC in the existing LTC2309 driver.
+> The LTC2305 and LTC2309 share similar features: both are 12-bit,
+> low-noise, low-power SAR ADCs with an I2C interface.
+> The main difference is the number of channels: LTC2305 has 2 channels,
+> while LTC2309 has 8 channels.
 
---noyw5ylnvg7qvqo4
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 08/11] power: supply: bq257xx: Add fields for
- 'charging' and 'overvoltage' states
-MIME-Version: 1.0
+...
 
-Hi,
+>  /* Order matches expected channel address, See datasheet Table 1. */
 
-On Tue, Mar 10, 2026 at 01:28:32PM +0400, Alexey Charkov wrote:
-> The driver currently reports the 'charging' and 'overvoltage' states based
-> on a logical expression in the get_charger_property() wrapper function.
-> This doesn't scale well to other chip variants, which may have a different
-> number and type of hardware reported conditions which fall into these
-> broad power supply states.
->=20
-> Move the logic for determining 'charging' and 'overvoltage' states into
-> chip-specific accessors, which can be overridden by each variant as
-> needed.
->=20
-> This helps keep the get_charger_property() wrapper function chip-agnostic
-> while allowing for new chip variants to be added bringing their own logic.
->=20
-> Tested-by: Chris Morgan <macromorgan@hotmail.com>
-> Signed-off-by: Alexey Charkov <alchark@flipper.net>
-> ---
+This comment now confusing, it should be kept at the initial enum, but the
+better idea is...
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> +enum ltc2305_channels {
+> +	LTC2305_CH0_CH1 = 0x0,
+> +	LTC2305_CH1_CH0 = 0x4,
+> +	LTC2305_CH0     = 0x8,
+> +	LTC2305_CH1     = 0xc,
+> +};
+> +
+>  enum ltc2309_channels {
+>  	LTC2309_CH0_CH1 = 0,
+>  	LTC2309_CH2_CH3,
 
--- Sebastian
+...to assign proper values (in necessary order) explicitly and adjust comment.
+Then add this patch on top.
 
->  drivers/power/supply/bq257xx_charger.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/power/supply/bq257xx_charger.c b/drivers/power/suppl=
-y/bq257xx_charger.c
-> index deb60a9bd222..951abd035fc5 100644
-> --- a/drivers/power/supply/bq257xx_charger.c
-> +++ b/drivers/power/supply/bq257xx_charger.c
-> @@ -64,8 +64,10 @@ struct bq257xx_chg {
->  	struct bq257xx_device *bq;
->  	struct power_supply *charger;
->  	bool online;
-> +	bool charging;
->  	bool fast_charge;
->  	bool pre_charge;
-> +	bool overvoltage;
->  	bool ov_fault;
->  	bool batoc_fault;
->  	bool oc_fault;
-> @@ -99,8 +101,10 @@ static int bq25703_get_state(struct bq257xx_chg *pdat=
-a)
->  	pdata->online =3D reg & BQ25703_STS_AC_STAT;
->  	pdata->fast_charge =3D reg & BQ25703_STS_IN_FCHRG;
->  	pdata->pre_charge =3D reg & BQ25703_STS_IN_PCHRG;
-> +	pdata->charging =3D pdata->fast_charge || pdata->pre_charge;
->  	pdata->ov_fault =3D reg & BQ25703_STS_FAULT_ACOV;
->  	pdata->batoc_fault =3D reg & BQ25703_STS_FAULT_BATOC;
-> +	pdata->overvoltage =3D pdata->ov_fault || pdata->batoc_fault;
->  	pdata->oc_fault =3D reg & BQ25703_STS_FAULT_ACOC;
-> =20
->  	return 0;
-> @@ -471,14 +475,14 @@ static int bq257xx_get_charger_property(struct powe=
-r_supply *psy,
->  	case POWER_SUPPLY_PROP_STATUS:
->  		if (!pdata->online)
->  			val->intval =3D POWER_SUPPLY_STATUS_DISCHARGING;
-> -		else if (pdata->fast_charge || pdata->pre_charge)
-> +		else if (pdata->charging)
->  			val->intval =3D POWER_SUPPLY_STATUS_CHARGING;
->  		else
->  			val->intval =3D POWER_SUPPLY_STATUS_NOT_CHARGING;
->  		break;
-> =20
->  	case POWER_SUPPLY_PROP_HEALTH:
-> -		if (pdata->ov_fault || pdata->batoc_fault)
-> +		if (pdata->overvoltage)
->  			val->intval =3D POWER_SUPPLY_HEALTH_OVERVOLTAGE;
->  		else if (pdata->oc_fault)
->  			val->intval =3D POWER_SUPPLY_HEALTH_OVERCURRENT;
->=20
-> --=20
-> 2.52.0
->=20
+>  }
 
---noyw5ylnvg7qvqo4
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+With Best Regards,
+Andy Shevchenko
 
------BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmxFSUACgkQ2O7X88g7
-+proshAAkWr4cE63rJNICSYF6YQNjXLHDKXcZYZgtA4uXIY8Bsu8o6b5TzoSKuoK
-cOib/viW7x7sq7z/QFyflWIoM2/PifwCWtyqif+tXFsDJ493e3+urgYt88rYCTSY
-/OZboFg9z1ot7cyzHx266Z4p+C7p6CwIChQo6HXDsmuO8d8wcQhRXfH7B7LQdt6c
-bhPBvaYiIYR8zCFVRQTW60Q62qtlBRNWAP8FOVI0CxbiH2ZOtCAXAmBry4/C4wcQ
-CRYTRIdIl7WLS11kFYgUwpquRZMztF7FEK1e+53Nzjkpfr+d1u8RqRAmCAohsrjY
-w6kPG/hCE6U0ITNBIV4M5AD73vn8a9p3r24lBwWyAOWtTMfK19mQRK1X7otRN1S0
-2+bCKYDk46uC5Q0AKMa32FwPq+Nua1RzjM09SsvcsWsZFTO8fP6WUmDmfTORg/z1
-mHBOjCUk7DKhLg69mOITaHdF5GZn2JKey+wx0Pk7J/SrDo/2vZxyhMjxKztkQUr/
-FgqrX0enA7IBNWC0PZ6ZOHNJoIq0ssSKHZIlr08gK47Ss+1s+uGcBbAv9Ze1OGg3
-VMs3rFv5YE/Kc0QAFuGamz6InOkrP09zsOjcaGcygblEdx10QFMkhrrEgnoheyJ8
-xDiCLrn/+dWmYxNyrFXIJJ8KdIMcyCoPnWD8z47udHOgJgBiZDk=
-=Ea9Z
------END PGP SIGNATURE-----
-
---noyw5ylnvg7qvqo4--
 
