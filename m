@@ -1,74 +1,66 @@
-Return-Path: <devicetree+bounces-274348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274349-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8KeYFQDrsWmSHAAAu9opvQ
-	(envelope-from <devicetree+bounces-274348-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:21:52 +0100
+	id QBQhIaXusWnbHAAAu9opvQ
+	(envelope-from <devicetree+bounces-274349-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:37:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id B33BE26ADB2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:21:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D14DD26AEDE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 6F797303B7C9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:21:50 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2BDA3304B4D0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:37:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C129D3909B3;
-	Wed, 11 Mar 2026 22:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA55838E111;
+	Wed, 11 Mar 2026 22:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tkrD9TeA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LrEJKBw9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C97839098B;
-	Wed, 11 Mar 2026 22:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984181E8320;
+	Wed, 11 Mar 2026 22:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773267709; cv=none; b=Mnw35QPCi216gl2zR38E35F7ykNJAYdmZVo4c6g3oHd6p3AAsD9o0AAKC7zs2rCxVfE3h7fFmWH8dqEUBWj3B5y4oR7ApdYUmyTpnNT5o2VTpOba6NhAXRYOYQUoan9y5Fuyjs7UGiwztTYwHfzKqQZpgWHrQy7YHNrAlCk1hjU=
+	t=1773268642; cv=none; b=bQF8kKL7tiyXdCTrr/sBhEXfa/qbFwjE4wRbyrfLr5MMtvhwHdXN0fmlMcjWFrRtSJ/3T+3imCSGGuSkE/ycxMzU5lJc+MnG3ezRn4Yr/7D0eCQ89/Hc1chVnfylWARimdxx6aiUz8TKPN5yI04bAyr/ohDk710lF3a9l85sAEM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773267709; c=relaxed/simple;
-	bh=WK3QT8rOLHjpCFW78jHwvfMiwloIaFd16wfM+ic7+OQ=;
+	s=arc-20240116; t=1773268642; c=relaxed/simple;
+	bh=kjz+fssyvvsuvr3of8nST+SbJEIKmg6GJZk1RtnRmKw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KgM6cYHk5pZRD1PAntYHMkOnaM2aQl4t53scsrsT6fi0P7+DYY9IfFl2IpY5mhwMY1/m0OLKbBBrNWqzzZ/HU92MQWzEf8zUQ1Aqs4v01AJy8QycpJXr/4bU6dNnZrInjN5Fvfz38sifop5Lj/DOYFooOZHfoJUEIFPnKMMplsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tkrD9TeA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B426C4CEF7;
-	Wed, 11 Mar 2026 22:21:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q1lg65YHg/Cd05QaqbISFj1kdVU6J5JevDPFh4z4Px1lEMTZQ6U0k9i2sb3Vy/3C9Z+k7HnY56BiVyLjwH2pkovvmNSY6cyVMOU5hGG7xxbbNdYNtTy/fDjHuMlsQQ2w2tToU1n5PLqVZMZ26zndbyAXhr6nel4rHiyhwTkyii0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LrEJKBw9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12E45C4CEF7;
+	Wed, 11 Mar 2026 22:37:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773267709;
-	bh=WK3QT8rOLHjpCFW78jHwvfMiwloIaFd16wfM+ic7+OQ=;
+	s=k20201202; t=1773268642;
+	bh=kjz+fssyvvsuvr3of8nST+SbJEIKmg6GJZk1RtnRmKw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tkrD9TeAacpCbTlpV9TAeDLGkfF4fHWFTj6DRcwOFitcdOtMln7oUjJAHTm9qjYOF
-	 NibmVmwv0tyKrc+UJjv5ebCCpVPdo7u5/pQ4FxH+91sJpsWvYzxgw9qHC0vMUEOZ5t
-	 P9zkLDW8P0VXMwVzN1uUFnzcg58I9R0iHs7vPoMGgNyjQRfRS2M9tItEFXQjqByvtN
-	 qNg3rRYp8kvXbsI9ZXcCWK9v/GiYVc4KwtDQdaogZTbZ9luZmn+H9lhwjsfASmmR+1
-	 IPBYotdafQoHWzPEtjkgzQ7wdr8aXm5UXob7ENNIrQNwfgbW9i5A85yMEoIj07x4aR
-	 qY65/2dBPq/5Q==
-Date: Wed, 11 Mar 2026 17:21:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Thomas Gleixner <tglx@kernel.org>,
-	Ciprian Costea <ciprianmarian.costea@oss.nxp.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Eric Chanudet <echanude@redhat.com>,
-	Larisa Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH v6 3/5] irqchip/imx-irqsteer: add NXP S32N79 support
-Message-ID: <20260311222148.GA875265-robh@kernel.org>
-References: <20260311081154.381881-1-ciprianmarian.costea@oss.nxp.com>
- <20260311081154.381881-4-ciprianmarian.costea@oss.nxp.com>
- <87h5qmraum.ffs@tglx>
- <abGPVJpvXCOtMcCs@lizhi-Precision-Tower-5810>
+	b=LrEJKBw9Um2yF24GWHEcwFx2Ps/iK6o4VOuG2F0AAXvH5oyI5OYwn5CmLgqwDy3GV
+	 8Bj78emHbss7Bv+0ubWSGf5F0krzjw4g6l0ssUisleNL87IWc6WCUPgtxgY+Qz7fgy
+	 YzIegaLCFFmNzHEihlEZfbRuPBDGtIh5O+PkzsR2IytTlKRG8hpZdyNVN/j2NnPdHR
+	 Jl0wVpkDGFCFwOSaCy6MYZhqPc6HVSH5oZ1XwxzlEam+NKZKbSpOz1hdeIYvV45BYe
+	 xV97qWtorT2oUxdgbI2LHVfsGNbm6V1JenubYvsIAjlmNmATdDLbtxDb4TQvbSwmc6
+	 WhvBE7cCvm4bg==
+Date: Wed, 11 Mar 2026 17:37:21 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Cunyuan Liu <cunyuan.liu@cixtech.com>
+Cc: devicetree@vger.kernel.org, mripard@kernel.org,
+	maarten.lankhorst@linux.intel.com, heiko@sntech.de,
+	neil.armstrong@linaro.org, dev@kael-k.io,
+	linux-kernel@vger.kernel.org, liviu.dudau@arm.com,
+	marex@nabladev.com, andre.przywara@arm.com,
+	dri-devel@lists.freedesktop.org, cix-kernel-upstream@cixtech.com,
+	simona@ffwll.ch, krzk+dt@kernel.org, airlied@gmail.com,
+	tzimmermann@suse.de, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	conor+dt@kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Arm Technology
+ (China) Co., Ltd.
+Message-ID: <177326864053.1070354.5817720252321082544.robh@kernel.org>
+References: <20260311055506.12023-1-cunyuan.liu@cixtech.com>
+ <20260311055506.12023-2-cunyuan.liu@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,7 +69,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <abGPVJpvXCOtMcCs@lizhi-Precision-Tower-5810>
+In-Reply-To: <20260311055506.12023-2-cunyuan.liu@cixtech.com>
 X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_CONTAINS_FROM(1.00)[];
@@ -88,10 +80,10 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[20];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,oss.nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,nxp.com,redhat.com];
-	TAGGED_FROM(0.00)[bounces-274348-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,linux.intel.com,sntech.de,linaro.org,kael-k.io,arm.com,nabladev.com,lists.freedesktop.org,cixtech.com,ffwll.ch,gmail.com,suse.de,bp.renesas.com];
+	TAGGED_FROM(0.00)[bounces-274349-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
@@ -106,44 +98,23 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,nxp.com:email,i.mx:url]
-X-Rspamd-Queue-Id: B33BE26ADB2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,armchina.com:url]
+X-Rspamd-Queue-Id: D14DD26AEDE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 11:50:44AM -0400, Frank Li wrote:
-> On Wed, Mar 11, 2026 at 10:09:37AM +0100, Thomas Gleixner wrote:
-> > On Wed, Mar 11 2026 at 09:11, Ciprian Costea wrote:
-> > > From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> > >
-> > > Add support for the interrupt steering controller found in NXP S32N79
-> > > series automotive SoCs.
-> > >
-> > > The S32N79 IRQ_STEER variant differs from the i.MX version by not
-> > > implementing the CHANCTRL register. To handle this hardware difference,
-> > > introduce a device type data structure with quirks field. The
-> > > IRQSTEER_QUIRK_NO_CHANCTRL quirk skips CHANCTRL register access for S32N79
-> > > variants.
-> > >
-> > > The interrupt routing functionality and register layout are otherwise
-> > > identical between the two variants.
-> > >
-> > > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > > Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
-> >
-> > I've picked up this one. Can the ARM64 folks please pick up the DT muck
-> > as that really has close to zero relevance to irqchips.
+
+On Wed, 11 Mar 2026 13:55:04 +0800, Cunyuan Liu wrote:
+> Add "armchina" vendor prefix for Arm Technology (China) Co., Ltd.
 > 
-> Did you pick binding one?
-
-The replies to the thread clearly say what was applied.
-
-> PATCH v6 1/5] dt-bindings: interrupt-controller: fsl,irqsteer: add S32N79 support
+> Link: https://www.armchina.com/
 > 
-> I have not founnd at linux-next yet.
+> Signed-off-by: Cunyuan Liu <cunyuan.liu@cixtech.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-Please take the binding with the .dts file changes.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-Rob
 
