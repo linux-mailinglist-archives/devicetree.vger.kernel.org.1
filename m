@@ -1,179 +1,216 @@
-Return-Path: <devicetree+bounces-274145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274146-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cCwvAnx9sWmACAAAu9opvQ
-	(envelope-from <devicetree+bounces-274145-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:34:36 +0100
+	id qJqgA359sWmACAAAu9opvQ
+	(envelope-from <devicetree+bounces-274146-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:34:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A9C2265776
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:34:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3F73265788
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:34:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 323DF30154A7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:23:50 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 742EC3019142
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:26:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67DB5374752;
-	Wed, 11 Mar 2026 14:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC44836C9FC;
+	Wed, 11 Mar 2026 14:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fy+ZJgEb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345AB37CD40
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 14:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773239028; cv=none; b=GbI1JyhrGtn5/1dIn5183awiOHQhujhFO+aUDpBrzZC/g+iS8rcCUifGRYPdupTrFGyKAheg9cgDXDGqGaj53fdPx6Z4pVUVn/C/pK2/WBQ+43IAlpIgb5F+U0i0q+euiIJpW9iwJWmeF6F+rIxcIIK5ES4CMoFKvIT2rqgrccA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773239028; c=relaxed/simple;
-	bh=go8xpircWavEUATmrJLyNKBvdIyWrelHrEc3NwgI0+o=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74CE360751
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 14:26:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.160.170
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773239172; cv=pass; b=YSySHyKDXKI3f29ATPboSgk9g0e/scF59SQEFm273l+EFrH5tXMerRxjOWos09PdnggT3CV9Jboz03uSN6G8vYmM56tROhQolLDf2eMot5KgQ29/RQjs5mD1stxLrvMQnqrCYnYHnE7DO4glJXL7nTLf01nJGBAqTnmUys0XGpg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773239172; c=relaxed/simple;
+	bh=DLLQojbvd9ZEtTNH/SKrXeA34ZJVAf400ALEzjCZm8A=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uRCk0JS+J+2kwFPOR0sZKdkWVFeXcCAmYsD9Fgtk6PKMkyQi6i3YVHTvN/+imalBzi5WMZGTW8xv1zBGliVyNmsiocFeBS3lfXGX6JTVnHFYf+6sgAsQOy0gnAU6hjc/9NyhP35/u0IFbOj+5RzrrVISgk8K9SveL5WVQL/zsBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=N20p1D6IayUnJg4t/Qr5IoHLxQIvdW253gEm67+UNXZvM4hpt/M3KxmqbBxu3NaoSK/ePY4foxK0/Dgl6zdDTwn2yicxMEdv9RLydR5iX7UmcctZ1o8tW2weRhAScBVVvIzWz9vu8JJIg6uZoZaZuGvcD9PNsFOPqQj0pYjVATc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fy+ZJgEb; arc=pass smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-94aca174532so3703914241.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:23:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773239025; x=1773843825;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-506bcb23a78so123011121cf.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:26:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773239170; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Rs/1kYwD0ftC0Im0b+ERI+K1UugLC67w6YKBEkDN3nJiSABNLihcnfD0FZ4J2JWqQf
+         qihCTnmOue3dzdba1Wm3MRQ/veOpe6tHXr1oRGmus+AEyOYwEM0v3vBQInZFen/HHOe+
+         I+F1nwqM7ozTY+PDKv+L1jf3b0AR+jdZbiYRo+mM7+L80CkTPV3oHdcRS2GHgdzgH14S
+         f+kWt+Vyxj6K/onjA5qk+ELjHNnegYp1CwpABpTaXu5CqW2zzZnFlMt0Nz9bm+YTNksN
+         X5rmAF7osw6+QJFHHqW/+AzOVYV/SoQpnnPk/D+HrPcaWtqW5vYKTF0m9ZVPdG6/Gtq3
+         AqYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=/kw91T1sbd5zqvcmRC0YUZSdSvhwThMs3p0iH62bWwM=;
+        fh=CWT08t5M/q23gRFI5JVtoolN5ZZ1J6VUYBj30svRn3I=;
+        b=UnmabxCV5rQu81KdrrWL6IRbcB6UKFXWmYDXilv08/8YkIpJa7hFwF7N5o29yqUNb8
+         Iff0XG1UEI4uM1tP/D9xnZiheKtQ6vw9tVdDFxiTt6g8zEo5Q9jnWJYWdcloEvRsHp8L
+         sqbdIMyvBjwFxjKeEyKFXlNGwhaj/uyKOQt7hoiFEmTpIkcwxkvAze/hIGz+aNap1dIC
+         reEFAevCjfEx5tYs4WaiHjG9SBtoAXyUjBXYHJui45oWnAKK/lCIgexP3qGotpz4UjYc
+         tweU0Q4WsWnqZ5NWjHTeiwpIslcszyArzdsx2okDZrs1MNkiR+JTOEmFCxlzNgQIwZvW
+         leaw==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773239170; x=1773843970; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ncWO+6+MzE/QBP1FJeMJxrqlwwccwp83MKM1cztq0jk=;
-        b=qWE/7LfFza14Z9LrKxWXYbetpiE2L5yqWkf+mH4RSsSKQpJKAo/pcdhtDTyXRjMidT
-         Z/qzrqmy3WSH3LTJVcY8m87k11zFmLwxdnystQg2+sGUKjqTUd/wYwKKDxyy+f5jWsJ+
-         h4dD/ZBziAwVzjHNziP2x2JcxYj1OfiMfgl+1/IM1Q+QbXaAN7jzHJqTtotS73XE3vHg
-         Ru3CuFj5PfFP05vVm6FdjiRaRHdOf+UNNYBMAu2qQa8cupg+nUhTg2HtshvkenE3N7ag
-         1Axj5vMmdKk/UCYefew6VU978CpU4pWIvP5e126kuq+3CWI97xdv2No/caUK+ivN9bel
-         FB1w==
-X-Forwarded-Encrypted: i=1; AJvYcCXqPSf8tw8CgI6IWdwWOZtf3KbDOHWPccr5awDn2kZCn0q3RWEskDICqbdiwE2zlJXVN7vUFhOG964D@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtzYGdZ3o0yf8Kgg7/02gdpAa2imZbNWyIiTHjweKC03dODZNx
-	QlANJUaBzP13HIB+vYDEi+XSj9dZCkrnHQXJ31w7Vg1OhL+GOyUBKYp2hfnkSTB4ufM=
-X-Gm-Gg: ATEYQzz7D8kpHfqJDAU0X//Hxb6K938SfAgvt3Dn1xj8qHJbJCWc7glMXve7U3GszAP
-	WoceZMeNuXbHn9bmY5yBV2GWYRMEsc08CAwIuKkxS/0fmD1X5Qy+yhyPiSDkE2Uf/d/LXhee5SQ
-	WUfJZ/v49WPWX5qKk+CrTMYLzh1ERu+OiajYi5Z+39UwepGIYhNYYVyVkOUfOOoY3/9RjgvsbL0
-	BQI+W2Sf82uRRHqTX6fIe/iI7DLfAR+8xx7mxZgBNoLWfL4y04cE4X78rIrtmwJCtzl2JPFGLXo
-	wp5J0QeFScgIog7BirIoLI7LX4uXey2LP0IdRqwsKCq2rZAG8R0pQB9b53shPfpqiBEYVpaR/hH
-	MeiOis2LS+raBpO+y/GmpYArqGNr+c6R2KCKeIjJHvEeGRVkUHbAuyfJJFCXvZuFwBhU+aH7GjS
-	uLQSJSXR4n/PmDFB+TGhQrsNoBC8lAuG+4KFMhzrk1e1eEY5KfG0LRadU4i8Fk
-X-Received: by 2002:a05:6102:508f:b0:5ff:a16b:93e1 with SMTP id ada2fe7eead31-601ded028a0mr859487137.9.1773239025170;
-        Wed, 11 Mar 2026 07:23:45 -0700 (PDT)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-601dea9f6ecsm755228137.10.2026.03.11.07.23.44
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2026 07:23:44 -0700 (PDT)
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-94aca174532so3703909241.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:23:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVr6jDYYzURCQnoWOzgJqvDpOYzkETjv73ynXd5TKBrmXwEJURtnWtGDCsOIWpJnkpi0tm/HpKmUWN7@vger.kernel.org
-X-Received: by 2002:a05:6102:370b:b0:5fd:fc84:4b0 with SMTP id
- ada2fe7eead31-601df054b88mr864838137.35.1773239024427; Wed, 11 Mar 2026
- 07:23:44 -0700 (PDT)
+        bh=/kw91T1sbd5zqvcmRC0YUZSdSvhwThMs3p0iH62bWwM=;
+        b=fy+ZJgEbLrWll+Wr616cKxi78/q3reakp7xsG7vgNGl4yfDFsDZFjve/EASXoDFz0x
+         FQvKX2OcQFuijFzRl7n4xz5+7DqEW/PTW8CaI4LUbEcdze82sP58qbtzeh7TreQlo+A6
+         0UEpVJER580NAusmIy7G4Gow81cigJXVh+2c+WCxHluckmH5fLiB48bQRgstaPcaEC+x
+         KO4C/XU2jk4E4/TyLwkPHe+LrvdlFzQ0xoO6bcNJEfrv0to1PzUmhHDNSy2++D6dBQM/
+         b3hjH12WaQGSaDEoy4K52SuhVZ+3fzto2mF3i46uR5jMo0XxRZ/JtWpYVWHgVtHbBgm2
+         5uaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773239170; x=1773843970;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=/kw91T1sbd5zqvcmRC0YUZSdSvhwThMs3p0iH62bWwM=;
+        b=MM3LkIoEbgKTzIFPNhq4ZFBQwSfmwRvGHi1t40gSgfEVr8VUPSdL34EH9P7zO83KH/
+         xurVg0boG/BU8iaMc9/VP0F05ygilVp6nCHu3ptobrKJsrtQ3yGwo/U1jj37w3MGYI5y
+         FRJxryOUspLindShixREUgpj8Mw6cOg+BEaPyATXksDVPqUIERHCDHS4MSLRL3pJhZFQ
+         jpiJCwXzYKiU3Jmvhls2sYgkOk02ereS9BjLU7nHUfE0b6D1lGdXkQ+taFFruMkcsbr+
+         aS159QtRy52RY+VGRJ4wms7flDSsO3jt2T+VUemdnLnjoplBJ/bw6ekL2Mq5TY+b6Sw1
+         djbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWZbmc8XsSQ+SC2JY9PWdufLsM2vBClP72GnpR8Ugm4aWC7LNx9eahsGICN1h+WCjNs24CuEOvow258@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjDKBGXPGJwoDfQEfv2WGvbM6P4VdBZCBPm7Jg08zEStnwVI7Y
+	Iu3Yh8Y0dzj5eVH/JnvGd9akTToUFJcfdl+RlTQiMpK0GTdzXC25oThE73H7JwCM7qtbTjY1aoz
+	y5C7J20XYfgKAjD9ueYPKR0P36xH+e6k=
+X-Gm-Gg: ATEYQzyhO8zm3/EmjWITAvuogGkXKsdtumiPUBA7nzUVmdZva90lbFMigxQTuhN/eDJ
+	TEYzSAq21SxZgsa+ubPR0qdlgoUGe4jhOPpm/L7daph7z0oYEdk36q+6pCHOI3tGrhsMNmk+bnS
+	qPPx0usQhWdjD/1P4TpVWMQ6xkAjfSqbvjjGjoxz2ATK6R2a6raWOuD0Gc0HR9x57N+w6Cmttbe
+	ffRw5zZcS/3cLbeuZfcqS0eCrXxqWMdOOTwIOlZDN3O9YTHi8C/kw706L19qqVBXsacfHXmUne+
+	QP8qodM=
+X-Received: by 2002:a05:622a:1181:b0:509:1cf9:ea15 with SMTP id
+ d75a77b69052e-5093a1ce568mr34244731cf.56.1773239170496; Wed, 11 Mar 2026
+ 07:26:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260305220023.28257-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20260305220023.28257-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Mar 2026 15:23:32 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW7CoF+rgOE6f+XmMa_FdG6Mjctqr+uqc0suowsvOqH3Q@mail.gmail.com>
-X-Gm-Features: AaiRm52GN1CKgqB0wsDbUuGRIYTkN2gq8fq9aGDHU_hT_tH6VTYYIfgjHEYxLsI
-Message-ID: <CAMuHMdW7CoF+rgOE6f+XmMa_FdG6Mjctqr+uqc0suowsvOqH3Q@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: renesas: r9a06g032-rzn1d400-db: add QSPI
- node including NOR flash
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
+References: <20260310031002.3921234-1-dennis@ausil.us> <20260310031002.3921234-4-dennis@ausil.us>
+ <CALWfF7KD1=U-gC4wC9M49kEYD3ijcfr+XSmMeh_-zAvjO2JVoQ@mail.gmail.com> <CAABkxwtz7KjVJpSzYhUWGyEym5k4d3NJq65OS_E3NCnrNUBTZw@mail.gmail.com>
+In-Reply-To: <CAABkxwtz7KjVJpSzYhUWGyEym5k4d3NJq65OS_E3NCnrNUBTZw@mail.gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Wed, 11 Mar 2026 18:25:58 +0400
+X-Gm-Features: AaiRm521OUVT7JY43-r19xBDa8sAqMr83aUZi0b84YOkyBHEnTztidYE-1zQZhA
+Message-ID: <CABjd4Yz3MKOp-gE8kNc4EOt3-a0mKZsxvbVYCN4KsbqTRDtWgA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: rockchip: Add Orange Pi 5 Pro board support
+To: Dennis Gilmore <dennis@ausil.us>
+Cc: Jimmy Hon <honyuenkwun@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, FUKAUMI Naoki <naoki@radxa.com>, Hsun Lai <i@chainsx.cn>, 
+	Jonas Karlman <jonas@kwiboo.se>, Chaoyi Chen <chaoyi.chen@rock-chips.com>, 
+	John Clark <inindev@gmail.com>, Michael Opdenacker <michael.opdenacker@rootcommit.com>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Andrew Lunn <andrew@lunn.ch>, 
+	Chukun Pan <amadeus@jmu.edu.cn>, Peter Robinson <pbrobinson@gmail.com>, 
+	Michael Riesch <michael.riesch@collabora.com>, Mykola Kvach <xakep.amatop@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.46 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-274145-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274146-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,sntech.de,radxa.com,chainsx.cn,kwiboo.se,rock-chips.com,rootcommit.com,cherry.de,lunn.ch,jmu.edu.cn,collabora.com,vger.kernel.org,lists.infradead.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sang-engineering.com:email,glider.be:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linux-m68k.org:email]
-X-Rspamd-Queue-Id: 8A9C2265776
+	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alchark@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ausil.us:email,mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A3F73265788
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 5 Mar 2026 at 23:00, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Enable the QSPI controller to access the connected SPI NOR flash. The
-> NOR datasheet may suggest faster tuning parameters but those did not
-> work on my board.
+On Wed, Mar 11, 2026 at 5:29=E2=80=AFAM Dennis Gilmore <dennis@ausil.us> wr=
+ote:
 >
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
+> On Tue, Mar 10, 2026 at 7:20=E2=80=AFPM Jimmy Hon <honyuenkwun@gmail.com>=
+ wrote:
+> >
+> > <snip>
+> > > +
+> > > +       vcc5v0_otg: regulator-vcc5v0-otg {
+> > > +               compatible =3D "regulator-fixed";
+> > > +               enable-active-high;
+> > > +               gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
+> > > +               pinctrl-names =3D "default";
+> > > +               pinctrl-0 =3D <&vcc5v0_otg_en>;
+> > > +               regulator-always-on;
+> > > +               regulator-boot-on;
+> > regulator-always-on and regulator-boot-on does not seem right.
+> >
+> > Why were these added? The vendor did not have them.
+> > https://github.com/orangepi-xunlong/linux-orangepi/blob/232ed4b97b65da2=
+b7b647c4e3c496f8594b9f3f1/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-p=
+ro.dts#L216-L226
+> >
+> > Was this mistakenly taken from the regulator usb 20 which is powering
+> > the onboard usb2.0 hub?
+> > https://github.com/orangepi-xunlong/linux-orangepi/blob/232ed4b97b65da2=
+b7b647c4e3c496f8594b9f3f1/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5-p=
+ro.dts#L111-L119
 >
-> Depends on "[v5,4/4] ARM: dts: r9a06g032: Describe the QSPI controller":
-> https://patchwork.kernel.org/project/linux-renesas-soc/patch/20260205-schneider-6-19-rc1-qspi-v5-4-843632b3c674@bootlin.com/
->
-> Changes since RFC v1:
-> * dropped RFC status, QSPI driver updates are upstream now
-> * use KiB and MiB
-> * use reg address in node names
-> * dropped "qspi0:" prefix from partition names
-> * explicitly describe size in the "remaining" partition
->
-> Thanks, Geert, for all the suggestions!
->
-> Works on my N1D board and patch passes 'dtbs_check'.
+> It may have been a missreading of the schematic, but it was added to
+> get power to the USB3 port. before I added it devices plugged into the
+> USB 3 port would not power on
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.1.
+Hi Dennis,
 
-> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> @@ -300,6 +300,84 @@ pins_mdio1: pins_mdio1 {
->                 pinmux = <RZN1_PINMUX(152, RZN1_FUNC_MDIO1_SWITCH)>,
->                          <RZN1_PINMUX(153, RZN1_FUNC_MDIO1_SWITCH)>;
->         };
-> +
-> +       pins_qspi0: pins_qspi0 {
+The schematic says that this regulator supplies the VBUS voltage for
+the USB3 part of your Type-A OTG connector. If you make it always-on,
+you'll likely lose the possibility to use this port in device mode
+(which you would need e.g. for flashing images over a USB cable in
+U-boot which also takes device tree sources from Linux via
+devicetree-rebasing).
 
-I will replace the underscore in the node name by a hyphen while applying.
+You also link it up as the PHY supply of the USB2 controller, which
+doesn't describe the actual hardware.
 
-> +               pinmux = <RZN1_PINMUX(74, RZN1_FUNC_QSPI)>,
-> +                        <RZN1_PINMUX(75, RZN1_FUNC_QSPI)>,
-> +                        <RZN1_PINMUX(76, RZN1_FUNC_QSPI)>,
-> +                        <RZN1_PINMUX(77, RZN1_FUNC_QSPI)>,
-> +                        <RZN1_PINMUX(78, RZN1_FUNC_QSPI)>,
-> +                        <RZN1_PINMUX(79, RZN1_FUNC_QSPI)>;
-> +               bias-disable;
-> +       };
-> +};
+Please see if you'd rather define a connector node for your Type-A
+port, and list this regulator as its VBUS supply explicitly. I've
+recently submitted a patch [1] to make the "onboard_usb_dev" driver
+take care of enabling VBUS in exactly this type of situations (it's in
+usb-testing now and will hopefully hit -next sometime soon). If you
+need an example for its use, please refer to [2].
 
-Gr{oetje,eeting}s,
+Best regards,
+Alexey
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[1] https://lore.kernel.org/all/20260217-typea-vbus-v1-1-657b4e55a4c2@flipp=
+er.net/
+[2] https://github.com/flipperdevices/flipper-linux-kernel/blob/2f814cdf07f=
+50e901fc1b1328213e76460864c20/arch/arm64/boot/dts/rockchip/rk3576-flipper-o=
+ne-rev-f0b0c1.dts#L303-L328
 
