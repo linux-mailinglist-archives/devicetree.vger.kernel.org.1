@@ -1,178 +1,162 @@
-Return-Path: <devicetree+bounces-274016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274017-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MLv6BYJGsWlCtAIAu9opvQ
-	(envelope-from <devicetree+bounces-274016-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:40:02 +0100
+	id oF1GB7pGsWlCtAIAu9opvQ
+	(envelope-from <devicetree+bounces-274017-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:40:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA1AF26261A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:40:01 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF084262666
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:40:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id DBAD3309D0A5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:38:46 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E991E30B1299
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4C83CF694;
-	Wed, 11 Mar 2026 10:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 977983CFF77;
+	Wed, 11 Mar 2026 10:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iB74niwz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J8E+qNcz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B1B3CF02A;
-	Wed, 11 Mar 2026 10:38:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 630763CF672
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773225523; cv=none; b=ZmQYMWJUWo6QN1zxcWiLb0SItWiEkYfnEWuh4i4horjAl0bokLLadn6ZNu0rJTbVIxEtFZwFWmk1qt3sCqNuktfXF+YAXaJtN+F2C1Eok4FbYP/wH92bQ+clQF+WjfjMFjSQuRSb9MhdfA2pHXR3j4FKLAbYflv/QPDufhyGfhk=
+	t=1773225528; cv=none; b=KyVdjq4BXbRE3lNDxm1EmW4DW1oXhtlknVkp8bnjx8I4oUepKik+zBUysncswNgTmjE4fux0tPiUNLjPrn99v18/2h4Jq43BZxUWK/NqGDpiHrGlp25+h/+XrUZKmzX1KkUw9xdpZVFZU9jyANbpgMJs9FE1IMD/jApicOHPhg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773225523; c=relaxed/simple;
-	bh=7fLYMPNAfKidzlbuO1LeXfDQ8U5UEKHrnOvWTWygZyc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gFkCJUQ9YTTYzXtLGcRwu4CSXUrV4xBDQzefjLUS5CNfEOS2w1vsXvr/Br5kXksJLuNOmXETRtP+7VSdeVNWOBHDjpMauxdXjg1ajVaIg5SgXevvZzyWuxh/Y9xatE8/ORG/lAhAuqeBXRIbhanVlJHjzHvj55Cf0SIY2Jo2wPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iB74niwz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49EE4C4CEF7;
-	Wed, 11 Mar 2026 10:38:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773225523;
-	bh=7fLYMPNAfKidzlbuO1LeXfDQ8U5UEKHrnOvWTWygZyc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=iB74niwzcNrPg0fBvxprgQHBoiGC1ibpoAAmXG8LTjqOhjULPMqDRPrKoKSaNTFPT
-	 QjnGCLrtJ/sH9XMuBxnwc9IWDrVL/QnniJmvZpYTQeia4ohQMUGPfRm/Ap510d1Je1
-	 oEyWqXAplh/xiPRJk6+Mn6MN5D3wC3OCXU3CsH3+bS6T/YDSRAyauX1lG51Y3FYUXd
-	 MaiRFogTxw08T2o6/2tPJNe7sicYThRaGwtrrt6K/8ZF+QS9zEAg8oUAkK0bEJxZCT
-	 82YkYcxH1zkiqH5p6dj8O8vdcYdWkNBZ/4eOv3uT5nJL9RJf6PEdPlOX59WjuM1Rjd
-	 7HM8ufUVDst8w==
-Message-ID: <b59eedda-e328-4f9c-b9b6-0b8bd660dd88@kernel.org>
-Date: Wed, 11 Mar 2026 11:38:38 +0100
+	s=arc-20240116; t=1773225528; c=relaxed/simple;
+	bh=i7nUMXQbtZArZGnsatx9qQeykbtPVUo/SqQprsinRno=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=tuMYgWekzNE6esVGzjbyDe2AI1hKzwvLqsl6aVdzS/PUqDNuwOB3nlrR3wfmLqKTHrFEg3yRrQ/RnqC1Lp72WyiDHi5biBsPnyhg4oHYHTStL1Nk+lCsCAwSCTdjuPEKzZGLHI02BGaGixBrUJ+r29Hos+qXi2UpVoIXWYv9dlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J8E+qNcz; arc=none smtp.client-ip=209.85.210.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-829865a8471so6536452b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 03:38:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773225527; x=1773830327; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=trxODt72+ZLmM73SSgKB2PrCW34S11oS3WsSFeUrg74=;
+        b=J8E+qNczqifmPq/ZFjhO3BYc1oRJN/PB3QhnQEsTSjTWa59nnf3Gyc27YH2UpdA3cd
+         Mv0+LI//wgiqAEOLdjLa5V8ncUgKiweo5oQWMHFkaMhfCD3Nsl7g6a419u6bN1U8rJsR
+         hnjnmd+m8tabfPNvYR2qj3f4ge2CFBKKieX70VZq/tBZWxLSs+eGNUKCVOs5HPZ7vB1w
+         ygmKehbSGLP0jLLRlnUw6AzOpq81DpVAyOLZpC7Yz4xuo01+WNYvZ85bTIqnrIRnE3kb
+         Wdk9JbIWB41dUzfA0SkorSZPljMyUwAjyYLxSHt45uIoIMQArNAI3NGVcrlHsqbVggsQ
+         HbrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773225527; x=1773830327;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=trxODt72+ZLmM73SSgKB2PrCW34S11oS3WsSFeUrg74=;
+        b=Kn1W68bMbFG5slhaSNMaKhutnmLf2z7/Bqs1LZyYlcxuVEmo9Pyf12B//uDQIPr31R
+         pmlajgptF0dKaW8KCzOBxBj9KEXpZv5x4RQ7GzwD+kX5J0GyzvoiLeU61AYE9hnYaU8H
+         6AJTb2CzHzwezLo8/guL6GD40ybRazTNViAW0wyMI+oRKzoMPscSVjfrB4QVe5SwvqTf
+         caV/cgxkcmIFRPQ7hySARGfiEUtOYOyjfx1QmFbPBNIEyDsdQVe789m0kbgMCcFTBFus
+         Cf0OWV64xO/Fvyv0vLaxlG8l4dYg1ByohkdM+97vCjvBSJj0lopjdzjzV2ZvycvXjR9N
+         Cxbg==
+X-Forwarded-Encrypted: i=1; AJvYcCWl3srS4eW1RADO1sy5VqTA2YDiV8NH5C6c1lvzQXqG4Yq5v3dodJipO3/znIQDJZCCau9N6tmpUjB8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxx7JGqgLXjB+u0Q413XmZDsLwvLEvT8MO1hKX+DxvEVtYx9S7r
+	yjXP00TkYbxAy8oucLvdIDRBWk0UoBokusuu5/7k7k61O4/ZJgLJrViv
+X-Gm-Gg: ATEYQzyRM9TXDjcGmPxNqHB7nR3CadV8pwsXGg6RpO+FfmLk+nDJP0Es2Bk9KKBXaYg
+	T7/tnxYIg4iheVIlhRkS0yS/92sDoLoARWeChlyhMuUvbfIdQGmzPL3eVkWrtmn8IycLssqGz5+
+	kbOsOcH2nNv6RINc+oAS2AS3P7FfCE0hfp0Zxe73dz8uWef3DLzyRn/E4cC+aOHX0myMAZT95WE
+	Riq93EvsrT8UA5tWa3pZS1U3k/Yie2H5+d6fmr6r7alb4CdiEqTgGouco974OK7Cv6s05kzwozp
+	+HNFbKsruWq24kuGJOOmhgkhOC25C+fF363J7WvDyWCYNThBB6Vcgblr3I60YhROa7NdBLHyELG
+	YQyzHGNoqZ8hN+T2PxJccqhODShhzqps0Qq3odTrTNAz6l/wjbYChQuZwUbR6vphzTA3sdwt3fU
+	fR9SjlBhTOebKygIKMLffAb2Gm0m3sL5mUIoQaYiS0EZ+ol0lwvTP0arYSpPl3tH83yOP2uo3RS
+	aMDUQ==
+X-Received: by 2002:a05:6a00:189d:b0:81f:38f4:d774 with SMTP id d2e1a72fcca58-829f6ee156dmr2271399b3a.27.1773225526679;
+        Wed, 11 Mar 2026 03:38:46 -0700 (PDT)
+Received: from localhost.localdomain ([14.160.25.72])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829f6f1e374sm1785635b3a.44.2026.03.11.03.38.42
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Wed, 11 Mar 2026 03:38:46 -0700 (PDT)
+From: phucduc.bui@gmail.com
+To: wsa+renesas@sang-engineering.com
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dmitry.torokhov@gmail.com,
+	geert+renesas@glider.be,
+	hechtb@gmail.com,
+	javier.carrasco@wolfvision.net,
+	jeff@labundy.com,
+	krzk+dt@kernel.org,
+	krzk@kernel.org,
+	krzysztof.kozlowski@oss.qualcomm.com,
+	linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	magnus.damm@gmail.com,
+	phucduc.bui@gmail.com,
+	robh@kernel.org
+Subject: Re: [PATCH v4 0/2] Input: st1232 - add system wakeup support
+Date: Wed, 11 Mar 2026 17:38:38 +0700
+Message-Id: <20260311103838.5541-1-phucduc.bui@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <abCkulmW8XDXkXiT@shikoro>
+References: <abCkulmW8XDXkXiT@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] scsi: ufs: qcom: dt-bindings: Document the Eliza UFS
- controller
-To: Abel Vesa <abel.vesa@oss.qualcomm.com>
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260310-eliza-bindings-ufs-v2-1-1fe14fc9009c@oss.qualcomm.com>
- <20260311-radical-bold-catfish-d7ccca@quoll>
- <3udticxb5sodqsjnolzpwwaajsmp5ugvhpxn6pl6jjyjyc5ygo@izze4ccdhyc4>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <3udticxb5sodqsjnolzpwwaajsmp5ugvhpxn6pl6jjyjyc5ygo@izze4ccdhyc4>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: CA1AF26261A
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: CF084262666
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,gmail.com,glider.be,wolfvision.net,labundy.com,oss.qualcomm.com];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274016-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	TAGGED_FROM(0.00)[bounces-274017-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[phucducbui@gmail.com,devicetree@vger.kernel.org];
+	FROM_NO_DN(0.00)[];
+	TO_DN_NONE(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[youtu.be:url,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 11/03/2026 11:27, Abel Vesa wrote:
->>
->> You need constraints for minItems: 2 for reg and reg-names. MCQ is
->> required. The mistake was doone for Kaanapali, but that patch was
->> applied without review, so it is not a correct example to base on.
-> 
-> OK, so something like the following then ?
-> 
-> @@ -68,6 +68,18 @@ required:
-> 
->  allOf:
->    - $ref: qcom,ufs-common.yaml
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,eliza-ufshc
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +        reg-names:
-> +          minItems: 2
-> 
+Hi,
 
-Yes
+> > Demo video showing wakeup from suspend:
+> > https://youtu.be/POJhbguiA7A
+> 
+> Nice video! You really put some effort here, kudos.
+> 
+> Really awesome seeing Linux 7 on this old platform :)
+> 
+> Happy hacking,
+
+Thanks for the kind words and encouragement.
+I'll keep learning from the feedback here and 
+continue hacking on it.
 
 Best regards,
-Krzysztof
+Phuc
 
