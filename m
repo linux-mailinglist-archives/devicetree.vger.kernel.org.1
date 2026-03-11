@@ -1,142 +1,238 @@
-Return-Path: <devicetree+bounces-273945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273946-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBneJzUpsWkBrgIAu9opvQ
-	(envelope-from <devicetree+bounces-273945-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:35:01 +0100
+	id eLJcAL8psWkBrgIAu9opvQ
+	(envelope-from <devicetree+bounces-273946-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:37:19 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD98525F6A3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:35:00 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9150825F732
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:37:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 83D8B305327D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:30:09 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 69294307BE30
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A58C3B6362;
-	Wed, 11 Mar 2026 08:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8426B3B3BFA;
+	Wed, 11 Mar 2026 08:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="I3QH+Xuc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kkwj7bRS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CF953B38B0
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:29:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773217776; cv=none; b=XE7EGjO62ZAKESg35f3xecehWNYG6/xAQlCagFt/zTiRFgJgp+pTAkxxnfaoljcyxapY3Y8B1tFvb1nJpOHTVtUuazZAVJIK0UJnGEskl7tPG89KRFYfHlmtIMqtIb8kemwelwrfDo9QnRxzuLo0RW8d0qcWmLCHs173NO5InZ8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773217776; c=relaxed/simple;
-	bh=gwlTfr7vU13jo+B7K+RhuMhIRQGNp0Y8x670Pk/RspE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t0kAZZic6zVXc8WVFj42aeIlF7qeVrVJuEAd8f7J5MGmf3Mtkh8bRHw3rdFSuuS+OAaW/3NHlMAvY44/jyQjkirjd946kfeItYmeFCSTWKqG1hE71oVPvmkhVyhAnFJTeY0L81rSTUHmVNrfXF6b4455MgXDvNNKisIB6u2Dnp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=I3QH+Xuc; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=gwlT
-	fr7vU13jo+B7K+RhuMhIRQGNp0Y8x670Pk/RspE=; b=I3QH+XucnnyTu3v7yH8j
-	ihOj5m1rSkSks+vcXyXsR5iKjTHh8TUs2HsPGNDncaW+mSwXMhzK57rLd5BDuzFh
-	1dsAG+4ZuoQNXj6GNwmnG7g3+ZAepdKpSPg3vx/XCJ6MnCqzy1X20j9HvjLw0NZm
-	l28WH5fMb8FoK2KLbAPKUw603nEXtaj5nGwZY3GEAw96uklmQ/xUa8nkScJ1HUdh
-	xZ+WMnp52obrycbz5uodYZOsD6NKzethSB2XSORsW3XyVltJ/m9swJLkAg+yXrB0
-	Lmwb46ObjK0aO7/rDpoP2R7slyRrZZpiOR7rSXTCAx3nrTHOqkx+vOWTE14fdr9N
-	Vg==
-Received: (qmail 3563424 invoked from network); 11 Mar 2026 09:29:21 +0100
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 11 Mar 2026 09:29:21 +0100
-X-UD-Smtp-Session: l3s3148p1@sjW/brtMZrQujnut
-Date: Wed, 11 Mar 2026 09:29:20 +0100
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
-Message-ID: <abEn4La90AJTthjj@ninjato>
-References: <20260303102029.147359-1-herve.codina@bootlin.com>
- <abCWATS9MiRhcqlM@shikoro>
- <20260311083021.259ffc9d@bootlin.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD3A3B3C02
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:29:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.208.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773217780; cv=pass; b=qJ3+TKn/UonRynYg94RqHm3eW2rTfdSkZa/XHq43ON7uMHTUTVP0087wlophY6X0BBuX6+RNTSHgzDIhbJSM0DZoIPjmVV7L9g3hBn0Qtul+9MqVqiXY4MDYHuaSMa3vgAP6BdmuSejVr6ydZwQTqGXKsB9xHzhXgYDVRJka0gI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773217780; c=relaxed/simple;
+	bh=WpTM2bK03v+GeetS/yO9RyrJ2EbEhx/HhLsYsyaMS4Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=EmQnCxTRo2xYuqDXvHZ2LlxpoVDqpNzrIJAJQcnTMC7CKXEkBWwDh9K6LnXfemzrhD07ArO0KqRlLmjzHgn2qFy6fX8IZm8+EeIyzcgDI76k8YJdBzATB5Hohngoct5SEMKxGaNd1kqT5JLw9GOEQAFpR0GNs0D4EPCUIK6Ylsw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kkwj7bRS; arc=pass smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-662bf05f7a4so2828049a12.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 01:29:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773217774; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PyEtHr2oJtWrdhJlZZ3uulHAorYeT0HpMsWBKsoKRbIc4dVhQC7otyF2dnb34IK2Xx
+         1r9n991zxWgQzWzM3SE7vR7Oth8+TVkb4S4rviuQPDbVnlqaK14ex9spIKr+S3DVMoD5
+         fAAKaAUiqCtGojmWHtOgBXRZnnVo/rNu7LIEmcxSXJfcTdFwdqAopvgiITQct7l35n1o
+         sRsKZYpdj1WrfA7gwBEjbIF+W7IZ1NQ6uimoFF5+UiTGPZZjI5W5dWVoHHsWOGDrLIPS
+         qjm8sQfWkeYWqLVaiRHtE8h7nAs30KWrK18Sh/YBHPM0LUJarrjPQel/PD7W/Zxn2MK0
+         duaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=YPFuevo92I9LbD3FU4d+etP0u9DGkGJOBwn9Rvp7Sj4=;
+        fh=FJcYsZ91WTNm5iJ2+Levzm2iKT+yx7pdU475O1q1Bfo=;
+        b=exuBeC7dUYAMjYXB6G/1VWPuN2hx3vvPWqJYDYDq3XYEen+1p0cMgicgqih0frQpfp
+         F2teRNn9w8hjgUj7pic+UYnZi4TeggVkWhFk5HHBCs8xzCn8ZEKmZK+vyItBm4WZOtVT
+         Fal0mpw2EfdpCKEreiC0Dh7XAyPqtND56TGqaz0YDO5OQPmqef6SzlyU4C6EzxqeiXxo
+         eG76m6Qs9OTy3LiB9jLMVKbrecmbvdSdAQBBxccoWv6I+IkTYIR+fvHfE/dcwO2+e+gX
+         Utlk8hwCR7d5MXTSzwMpB0Y4czlHtOZ09TsIyFiDh+SYF5GDfmmdVchoEC2TsNtcrq8I
+         r4HA==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773217774; x=1773822574; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YPFuevo92I9LbD3FU4d+etP0u9DGkGJOBwn9Rvp7Sj4=;
+        b=Kkwj7bRSUntw31c/nnlS+IwNMs9LN5aAtCC1QJIL0d3BVyPqf1ZKtm5nQNrfwLOAFX
+         fjJAj1QCDvdi6sDBjZvgIBf2Y/r7LNZcpLQ212RVWhhwsvej1sNDEmNwwpAOn+IkgdMe
+         CMCan+j+SqVmHkX2YuMvcq6FBijuh/eCv9KV1vWV9Lvd+pg5sdAm2KaEKNzYuGydG+WH
+         Q/snLFFgldNd/mh8xsZMpeOiBzyX2O5I5nSdjCd+SouIV+h5je11MVyIRPvzaOqJK5ix
+         xhRprq0KHjzR+H3TBW/w0oYCbJoSrbPieOSdQ4UVPBTmeg1jqkyKyEI12FdgmtF24uaF
+         JWQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773217774; x=1773822574;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=YPFuevo92I9LbD3FU4d+etP0u9DGkGJOBwn9Rvp7Sj4=;
+        b=BMSVI2ZTo82UQNbR0m2lkAdvUpwQuBjL6RYm7nsse8xdlwsjHn5erlinZ1ztk8TW1r
+         WqGMoOQZqejSa9ewbBFp2mmdSZ1j6REBcwbJQB8j3yJBP5fVoqbOtWDVp6ZMzVrh7uOn
+         z/aTbLwU1vCd39bNB8ODAvw+yvfpiohN5nfOPL78xCilvmLd+htDqprkIqajkLbtsEzC
+         jr+OZxstv/2hZ0YnWUj6161+34z+2fD1ITb1b6NN7cF2gkhL/KKmQ0WsITJ6FYQlGdVf
+         nVXPucrlTVWC5Jtqk+NRJg84BdzpkJckAKMcfsobwHeO18wvG9BacemrO4/E5a712A1d
+         3y7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUkVh9RBQd+NYuVQsJUKugPppCIV5wTf2s3D+eJvLpAEA2rIP/Utz8kFuOvVzMcZSlu8H894XiRC9yT@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsKEiRbZz+xc5Qj2RUx4s+u605373zBKq7IJRYgdf+hvpQUygA
+	vcJxO4hiPiaE0UjOFsylJuVC2w4fpuXIo+IpQf4ew8TAv4kz9/sUK95bHgA9shHV2q2MSQjF+Mq
+	bexxFJvSkkaX77wJR7TWuYD5bYGtWkF+ueuYf
+X-Gm-Gg: ATEYQzwet8vdIUnkZeOBgVQpQktyPtT8FUy+82DvPmuCsvZiIIu/xKhiZ5nhteSS1MK
+	GBO78wP9NmUon6ZWouFqPbH7frQzGnhbAxNKVBJL/+eS4j21Xk5EAY2iuMAuIZgTkKbfeaN/951
+	FkcGNpb2OPStSeEqet2Z7HnPzRiOKd9zPz2SZQfpGjHD8vwzTTwcCsA028t0up6Xr9d1R0UO5UU
+	yDH+eiNNVsqYw6DgiAC4eQmyX7PalYgs2ZqtXKaXXcCFvTOMUmZxCDeMLkUn0vZXilpSrtaNPFU
+	+9U2G8T1z7+/WTyNWQ==
+X-Received: by 2002:a17:907:3e23:b0:b93:8460:4af with SMTP id
+ a640c23a62f3a-b972e638494mr92203866b.56.1773217773738; Wed, 11 Mar 2026
+ 01:29:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="oGSmIdU1e1wqyPhk"
-Content-Disposition: inline
-In-Reply-To: <20260311083021.259ffc9d@bootlin.com>
-X-Rspamd-Queue-Id: DD98525F6A3
+References: <cover.1773107475.git.zhoubinbin@loongson.cn> <600bfea91c1f14f089b2f7677578cd8690412fac.1773107475.git.zhoubinbin@loongson.cn>
+ <CAAhV-H6zg2MfO2HC1+Q-FE4CJJLh2+Boo=ZP57XYPfufvCBhkw@mail.gmail.com>
+In-Reply-To: <CAAhV-H6zg2MfO2HC1+Q-FE4CJJLh2+Boo=ZP57XYPfufvCBhkw@mail.gmail.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Wed, 11 Mar 2026 16:29:21 +0800
+X-Gm-Features: AaiRm52LMclNErp_XC41jPQYbAEz3jRj8zDpbY8eNCvPJgxQGExmtPVsZSonLDk
+Message-ID: <CAMpQs4Ja_+B28p30dJYM0WU-scwgZSxLO9igvsXY+0dtbSxAGA@mail.gmail.com>
+Subject: Re: [PATCH 5/6] ASoC: dt-bindings: loongson,ls2k1000-i2s: Document
+ Loongson-2K0300 compatible
+To: Huacai Chen <chenhuacai@kernel.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Xuerui Wang <kernel@xen0n.name>, 
+	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 9150825F732
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[sang-engineering.com:s=k1];
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[sang-engineering.com];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	TAGGED_FROM(0.00)[bounces-273945-lists,devicetree=lfdr.de,renesas];
+	TAGGED_FROM(0.00)[bounces-273946-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	FREEMAIL_CC(0.00)[loongson.cn,kernel.org,gmail.com,perex.cz,suse.com,xen0n.name,lists.linux.dev,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[sang-engineering.com:+];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[wsa@sang-engineering.com,devicetree@vger.kernel.org];
-	FREEMAIL_CC(0.00)[glider.be,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	FROM_NEQ_ENVFROM(0.00)[zhoubbaaron@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,loongson.cn:email]
 X-Rspamd-Action: no action
 
+On Wed, Mar 11, 2026 at 3:57=E2=80=AFPM Huacai Chen <chenhuacai@kernel.org>=
+ wrote:
+>
+> Hi, Binbin,
+>
+> On Wed, Mar 11, 2026 at 2:38=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.=
+cn> wrote:
+> >
+> > Add "loongson,ls2k0300-i2s" dedicated compatible to represent the I2S
+> > interface of the Loongson-2K0300 chip.
+> >
+> > The hardware integration of the Loongson-2K0300 I2S interface differs
+> > significantly from that of the Loongson-2K1000. Specifically, while bot=
+h
+> > utilize external DMA controllers, the Loongson-2K0300 configures DMA
+> > channel routing via the `dmas` property, whereas the Loongson-2K1000
+> > requires additional register.
+> Can this patch be the second one?
 
---oGSmIdU1e1wqyPhk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Typically, I place the dt-binding patch before the new platform driver
+patches, while patch 2-4 involve code cleanup for existing drivers.
+Therefore, I prefer to position this patch after them.
+>
+> Huacai
+>
+> >
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  .../bindings/sound/loongson,ls2k1000-i2s.yaml | 22 ++++++++++++++++++-
+> >  1 file changed, 21 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/loongson,ls2k1000-=
+i2s.yaml b/Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2s.ya=
+ml
+> > index da79510bb2d9..51e23c189f7a 100644
+> > --- a/Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2s.yam=
+l
+> > +++ b/Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2s.yam=
+l
+> > @@ -14,9 +14,12 @@ allOf:
+> >
+> >  properties:
+> >    compatible:
+> > -    const: loongson,ls2k1000-i2s
+> > +    enum:
+> > +      - loongson,ls2k0300-i2s
+> > +      - loongson,ls2k1000-i2s
+> >
+> >    reg:
+> > +    minItems: 1
+> >      items:
+> >        - description: Loongson I2S controller Registers.
+> >        - description: APB DMA config register for Loongson I2S controll=
+er.
+> > @@ -49,6 +52,23 @@ required:
+> >
+> >  unevaluatedProperties: false
+> >
+> > +if:
+> > +  properties:
+> > +    compatible:
+> > +      contains:
+> > +        enum:
+> > +          - loongson,ls2k1000-i2s
+> > +
+> > +then:
+> > +  properties:
+> > +    reg:
+> > +      minItems: 2
+> > +
+> > +else:
+> > +  properties:
+> > +    reg:
+> > +      maxItems: 1
+> > +
+> >  examples:
+> >    - |
+> >      #include <dt-bindings/clock/loongson,ls2k-clk.h>
+> > --
+> > 2.52.0
+> >
 
-
-> I compiled the dtb with W=1 and CHECK_DTBS=1
-
-W=1 adds extra warnings? I am surprised I didn't know this yet. Updated
-my build scripts, thanks! Confirming the issue.
-
-
---oGSmIdU1e1wqyPhk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmmxJ9sACgkQFA3kzBSg
-KbYE7g/+ON2Zj2rgKu1i5xUsyQZHtpmT1Z01qs6mK8hgSsCaAsH5+4nJ2pKzhb92
-7baPPzeWQGJXPjJGDI9mUqfDcPaE+1FJ9Q/keXwIyUWqxTYWR81pHx3u3TDr/vMw
-X6lAMr1y3k3tOtlXWFbMyzV2WEPY63e8Z03MeWq937SGyry5Kbced1d0griUKiBk
-+bwU8NBftpX1Ju+Eq9ZDAwbIZninS5dPcgEMrR3TJU7Fee6dbN8bjjwSRUxR/iBI
-6XPZ1PD56VH3caseUDvVPpOfBFuilWz0AxU1iJ9qji9G4z6VxoC63rrrG5xCVt3C
-PkDW0gS8K+clydtabvrQPJVfJFIGL52F1vAsbSk2NVxDxSoRCNAczlY16jorKolc
-NxjDkMfPb8nn7kzQgIUmILcP6y07dbSS9KiSA4k0CB5CIfQJqR2eZFVFBe+1AjKs
-4nINsNVx9iWZ5aFa2geL32U7+QyOAJgv1ij++H+ymu3vkJXPOum4oBtXywnoj/DS
-P734yI78T8J9WyFl9fmQW5x/etUmSaiyzv7iZ/NqyvydARZJG5TvMEkJtH4JOkLf
-HiCWGRB89VnH5/qm+vNWpahR3e+aM5FpL77b4i7kX7EsccVdWFqxYikc89Evz3fc
-lAE46ydZzTAFA/Usqh/Xgy/r8lWZyQkqDsJtbXooOf9PgtFtd0E=
-=0thC
------END PGP SIGNATURE-----
-
---oGSmIdU1e1wqyPhk--
+--
+Thanks.
+Binbin
 
