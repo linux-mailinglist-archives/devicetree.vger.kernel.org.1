@@ -1,164 +1,159 @@
-Return-Path: <devicetree+bounces-274147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274149-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SA6sL+h8sWmACAAAu9opvQ
-	(envelope-from <devicetree+bounces-274147-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:32:08 +0100
+	id GBqDEzd9sWmACAAAu9opvQ
+	(envelope-from <devicetree+bounces-274149-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8052E265675
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:32:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8A9D2656E1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 51C93302195F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:26:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 61A79303D30A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:32:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350C336C9FC;
-	Wed, 11 Mar 2026 14:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 991EB3B637F;
+	Wed, 11 Mar 2026 14:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="HSE5vDuG"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="OCbYZYhZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5250634FF58;
-	Wed, 11 Mar 2026 14:26:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE7D1EE7C6;
+	Wed, 11 Mar 2026 14:32:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773239179; cv=none; b=VnWiUPfNvnVJ7UYZ98C2R28p6WwHIwl5wM2qC7TNu4i5rCOYgallwW4Ml8x00j/oGn4nmbttAHU5SKIwfHZw3v1YFgeLv+JFtNyMPvv4jRNywRz8WDMdlUyqqIINzkV8obFzPpTXsubpjSgl8+RXB246jkX5dM81PniIKbNXBDI=
+	t=1773239571; cv=none; b=PO3XGpRFkvQPSsY2wo43QZqVjAiATG1hJrM7xw0TypdQVaBZZvHcDv5c5wPAAb94uJwdRUCPu7yQkNOEnr8rPHVWCHWm3xvt7K911+KGUpbKIW2/u0fwZgNDaFD50Ts9CiK95eoxLswe1MNf685yymraWBRpeekaRl5HV3LVZ9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773239179; c=relaxed/simple;
-	bh=UFJj5nlXJjOv7OkDfYn/9Dq27XtDLzCcmr3TL8+spkQ=;
-	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=XfzxrfhkNjsLT4VtyUP0m5y0cgi+mTqUghmXY4fcD8gweP5avwYuhJC5o50z2Bz/oAjiEagg1olx/jne67fgESNnrBIdxW7RQN6xQvBeVAjn9L3jMnqkkjQ2KRu8VHYfW7cq7oRFbohpK85n2Vmh7t3YprJ3h9hiRBUtcBnl2vU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=fail (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=HSE5vDuG reason="key not found in DNS"; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=default; h=Content-Transfer-Encoding:Mime-Version:Message-Id:Subject:Cc:
-	To:From:Date:subject:date:message-id:reply-to;
-	bh=Cgamv1/SwJoWr3CbVvyTNp0GlZ/leWyEdkFeMQNIx/4=; b=HSE5vDuGzW7mbfoYMuZSAMBlYw
-	rmZpUlZy0yjDV9X5rrLi/x+/oBFEG+JhuGvNFCe9gYfYGqy/Ivlkqzz0z9umGoVF4NwHsDKdoqAAv
-	VmkOvkU+uOr4T8BlHkCPC6OkngNYAuAWggqhvRFTViY8pHDnXikA7NZJqQ7u1QNrETn0=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168] helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.98.2)
-	(envelope-from <hugo@hugovil.com>)
-	id 1w0KVe-000000005un-0wgL;
-	Wed, 11 Mar 2026 10:26:04 -0400
-Date: Wed, 11 Mar 2026 10:26:01 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, robin@protonic.nl,
- andy@kernel.org, geert@linux-m68k.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, hvilleneuve@dimonoff.com, mkorpershoek@kernel.org,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
- lee@kernel.org, alexander.sverdlin@gmail.com, marek.vasut@gmail.com,
- akurz@blala.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 4/4] Input: charlieplex_keypad: add GPIO charlieplex
- keypad
-Message-Id: <20260311102601.35ea20963ccebdeebec3c6bb@hugovil.com>
-In-Reply-To: <abBugQOUWG_FTs4f@ashevche-desk.local>
-References: <20260305192101.2125660-1-hugo@hugovil.com>
-	<20260305192101.2125660-5-hugo@hugovil.com>
-	<aari1Y1CPZSYEVj3@ashevche-desk.local>
-	<abBkk4Ng-_MDHd6t@google.com>
-	<abBugQOUWG_FTs4f@ashevche-desk.local>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1773239571; c=relaxed/simple;
+	bh=wCEZMFEIe9N1fRThoO8UVaTOZnxRpccdK7arnQBKo6c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CzIo94FE5xC1Q26PX/oYRMumaoq0BdR/jhdDulvGIh8/49bIZV49RASn+LjAQOEGmyG9veu8rWWNpL/ZHgiRtJyW/v6zLaASgT3f6I+ijxo8BAA8+sVa2WZUATyXOIoxoBXcIr4snLt2mHzZVKwcm5X5Jv6JrpzEt8zwGC/8h5k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=OCbYZYhZ; arc=none smtp.client-ip=188.40.3.216
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=ew.tq-group.com; s=default2602; h=Content-Transfer-Encoding:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=Kkt3A1e6l/KLgh24uOCTImlNQ3maInjpGSRh0bHez1U=; b=OCbYZYhZQZHRhApD9dltpqMqGE
+	exnAuIcBSkHoBUv8XAPktsZGgy+TznUd2rbhWKCmRQyAfyzF1GSV9gTahWyfEPFgDSl07LG/lSxgf
+	HuR2ZKlys9vb/3zv0T2FgDun2nTOWbllECxBs83qQNnQoyEHqQULl3r4Uf+gck3NzmtCZclWL1Wjt
+	OKimXou+JaXkpAvx46qICQKiJvtmU8JE29+b9r2vEvxOrrSO/51/quZtmVimgEIQdQ/0U1uRaE91u
+	FmZNY6I9cl68khuX2aXXDb9hWmwjZ0rj3cXv3CYvJ0RBQnCFucXRTg5BbZlWvPE6PsG9INRChP8ho
+	Qka1h+xA==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1w0Kc5-000Or3-1z;
+	Wed, 11 Mar 2026 15:32:41 +0100
+Received: from localhost ([127.0.0.1])
+	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <alexander.stein@ew.tq-group.com>)
+	id 1w0Kc4-000GoI-39;
+	Wed, 11 Mar 2026 15:32:41 +0100
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.Li@nxp.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	linux-clk@vger.kernel.org
+Subject: [PATCH 0/6] TQMa91/TQMa93: display support on MBa91xxCA
+Date: Wed, 11 Mar 2026 15:32:03 +0100
+Message-ID: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam_score: -2.0
-X-Spam_bar: --
-X-Spamd-Result: default: False [0.54 / 15.00];
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: Clear (ClamAV 1.4.3/27937/Wed Mar 11 07:24:53 2026)
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274147-lists,devicetree=lfdr.de];
-	R_DKIM_PERMFAIL(0.00)[hugovil.com:s=default];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[gmail.com,protonic.nl,kernel.org,linux-m68k.org,dimonoff.com,collabora.com,blala.de,vger.kernel.org,lists.infradead.org];
-	DKIM_TRACE(0.00)[hugovil.com:~];
+	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,baylibre.com];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274149-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.918];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.stein@ew.tq-group.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[ew.tq-group.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,hugovil.com:mid]
-X-Rspamd-Queue-Id: 8052E265675
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: A8A9D2656E1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Andy,
+Hi,
 
-On Tue, 10 Mar 2026 21:18:25 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+this series adds support for parallel and LVDS displays on MBa91xxCA, both for
+TQMa91 and TQMa93. The parallel display is attached directly, while the LVDS
+uses an LVDS-Encoder. To actually work it needs the pdfc driver from [1].
 
-> On Tue, Mar 10, 2026 at 06:37:34PM +0000, Dmitry Torokhov wrote:
-> > On Fri, Mar 06, 2026 at 04:21:09PM +0200, Andy Shevchenko wrote:
-> > > On Thu, Mar 05, 2026 at 02:20:50PM -0500, Hugo Villeneuve wrote:
-> 
-> ...
-> 
-> > > > +	int oline;
-> > > 
-> > > Why signed?
-> > > 
-> > > > +	int code;
-> > > > +
-> > > > +	for (code = 0, oline = 0; oline < keypad->nlines; oline++) {
-> > > 
-> > > Can be like
-> > > 
-> > > 	code = 0;
-> > > 	for (unsigned int oline = 0; oline < keypad->nlines; oline++) {
-> > > 
-> > > as iterator is not used outside the loop.
-> > > 
-> > > > +		DECLARE_BITMAP(values, MATRIX_MAX_ROWS);
-> > > 
-> > > > +		int iline;
-> > > 
-> > > Why signed?
-> > 
-> > Does it make any difference given practical limits on nlines?
-> 
-> Maybe not, but might lead to interesting bugs in the future in case if used in
-> some arithmetics.
+The first two patches add required (Video) PLL configurations to achieve the
+necessary pixel clocks for both displays.
+The last 4 patches add the overlays for TQMa91 and TQMa93, although the
+overlays for TQMa91 use the same overlay for TQMa93.
 
-I'll fix this in next version.
+Best regards,
+Alexander
 
-Hugo.
+[1] https://lore.kernel.org/all/20260303-v6-18-topic-imx93-parallel-display-v11-2-1b03733c8461@pengutronix.de/
 
+Alexander Stein (6):
+  clk: imx: fracn-gppll: Add 333.333333 MHz support
+  clk: imx: fracn-gppll: Add 477.4MHz support
+  arm64: dts: imx93-tqma9352-mba91xxca: Add parallel display overlay
+  arm64: dts: imx93-tqma9352-mba91xxca: Add LVDS display overlay
+  arm64: dts: imx91-tqma9131-mba91xxca: Add parallel display overlay
+  arm64: dts: imx91-tqma9131-mba91xxca: Add LVDS display overlay
 
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-
+ arch/arm64/boot/dts/freescale/Makefile        | 12 ++++
+ ...3-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso | 56 ++++++++++++++++
+ ...93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso | 66 +++++++++++++++++++
+ drivers/clk/imx/clk-fracn-gppll.c             |  2 +
+ 4 files changed, 136 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
 
 -- 
-Hugo Villeneuve
+2.43.0
+
 
