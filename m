@@ -1,210 +1,305 @@
-Return-Path: <devicetree+bounces-273847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273848-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6PQCNNoHsWnhpwIAu9opvQ
-	(envelope-from <devicetree+bounces-273847-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:12:42 +0100
+	id IBIJFSUIsWnhpwIAu9opvQ
+	(envelope-from <devicetree+bounces-273848-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:13:57 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB7AB25CB4E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:12:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9ABB25CB5E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:13:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 888D230314D2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:12:24 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 20315305BBF8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:13:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE9736C5B3;
-	Wed, 11 Mar 2026 06:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7223A35A3AC;
+	Wed, 11 Mar 2026 06:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZQmLpKbV";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Rwhzkej+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JACoQvod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F7B367F46
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E50320D4E9;
+	Wed, 11 Mar 2026 06:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773209540; cv=none; b=KionBdDXE2Q5y20kecnLr6INsr9pNiwZH7EmbhTbaVeRxro7bz+bpQEIHCWwpLEAIa1ysA3NdRnD93lppmElYLJM4sgrT1nT3TJdeElcov+yf35I0l2OzxcNQctciGeWEB37K75EogYwDm/PC4O5AkHow559J/YHWBqmN/LTI8M=
+	t=1773209634; cv=none; b=DwUw6fLVS1yQJtcaMxM8FMjr7nS+35bkGeEcaxVCS1DxWx/RY9Fa9Zz+FN3LwG2Ywr43qjL5VHADnq5PP8jfTr+GskfRGhd5rUBKiCy7MX9ixTXFgzNHUdWQPrk5UBQqFfi/6ZSji5voWN3snz+d/foQUSl3JKlroRdDNJRfHoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773209540; c=relaxed/simple;
-	bh=bajqm9cxsG4pHZt9QuT3Z4rBHvPRxwuJFhr+WIMKRj8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=JpElq4WMaPLXYQJQLD93RK88udvr0JcWA/jfeBuZ8/NfvN0P4dMpQyQqwZ6QLD2nNhtvj8CxRWyKRuEX0d7HHEqJVbJWTTwZmICE5MZzmMyQifqR75FopfN3e9YRDvHnxaIMiXG0w3UK02ogCZMkK3jTkJxhOMmTCey1BWbcmw8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZQmLpKbV; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=Rwhzkej+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62B4JofS3892938
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:12:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	uxZRhY5iRDyirvCDrXWUcHCMIwWAOHum4sDVKV6ieUA=; b=ZQmLpKbVVliL2suQ
-	I0eRF1Yb6zx5y4zfJSYbDaSoGfyu2hgjKnCG2SVvxgStfK6tBQqKjM6cwovo/i4X
-	U1TWJLZXBRbH+feoRbspATLsZbZgIYu3EpP+KgT7Aj2j2pPKowk18gBeCTSRB26v
-	3p2klsylMKkrNv4GtgUw8BpHTjIg3cTSJX1KxN0h1aIIyxpPC81UEejq6WIQtAsh
-	FammvwWGgYy/BEwbBAmQ9YHPnBaC7FE92OoAT7bKFRKAYXE7v07CYQmzokqRjkJL
-	f0O5j2s+zad+yficev01b7Vv8Bpahe1SwvcIhHvyb68Xqk1lStBJlKsAIrnStD5W
-	wsO/ig==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ctkmyuc4r-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:12:17 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3595485abbbso13164304a91.2
-        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 23:12:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773209537; x=1773814337; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uxZRhY5iRDyirvCDrXWUcHCMIwWAOHum4sDVKV6ieUA=;
-        b=Rwhzkej+jAEz5WkGNMViZU4VUABkM1BEc+JGX+eEgzRWlFiafOoF6DI+/zqmTnikNU
-         ylQRsLUO9Bx0WD9jQrNSslgWqhKrGWB7cAra+osyE3NFfuDV3+qM9TP84+S/LsMbHYM9
-         eW3+PFJy9EZ4/jw6pZrBenjJcxxYy67T4V7mLbaxUpUD7GhSNAoqDhYIOBfaqFfLhIVG
-         EfPgkzhi/ON6+G+8idU239opwYyQfRhqRcOmBJgK8mdn3pWzWXab2eDVf6k7zwHYF64B
-         D2DxPA8sL0BjuOGuNCe835yxgnIIi5NjWMwpw6LDJCTAT26M+3fVTOLEOmPEeybRLPNS
-         6GpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773209537; x=1773814337;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=uxZRhY5iRDyirvCDrXWUcHCMIwWAOHum4sDVKV6ieUA=;
-        b=QwaLZY9wcwsZDLHaW1zDh7JpUBqfeg5eLZf/mmUKwtKzeqiTQvq2RiUhjAYu0+nuyI
-         A2DDPE6gXM6CvmBCRSnTQ0mrLXKrlNcBWgKTWs9Aglj7yPRAZQHFLNwZYe4ZRmz9byvv
-         /c9AcoazZTOv/wREExDNYJqjuaPwCLdixX0VO/Xr/X1gKHnZq35/MxsojqMwAF0+HbDZ
-         Hzj3FTi/J3yBb/lNpqXtKD/99h7xtshOOzDKj/cngfvR8vLEYPekn2wkZCoz3X5z4F1d
-         bUC8LQrOnTDPvLnoklP+JIBKxK4sbvXWtPKDRnbWAFTPL22xwgrjzy38EJDwUFNqM0hs
-         KABw==
-X-Forwarded-Encrypted: i=1; AJvYcCWV5un8GDfPVTkVFtbHfgIkgXsLBHDO+nMEe4YrhW/8hrOglhvuI1Y8TesgJ4oqhL6uv+BHHJOMwrrg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNiByZy62Kn4VogVNb54Bi2Psv9U6wKUE48mXyHOA9K30Jy9Df
-	3bActwWVE9ceXgjz0odBaRsxWeDD4P3xJqkrJ5WMc+5ShYYMw3ZlyoQBPTOjyPjaWbNQ3tzFcOk
-	D5h99yOUQnEwgFXGxrTJSBXRZVtikhEXCg56yW/Ocpkgin2yyGiePFfE5oYgNnH6O
-X-Gm-Gg: ATEYQzwPg6WXOAQa6a0zLiosHnKXYmaYuAR+mdiAK6OuHS9ASUhXjM8Nexf9FumFLeh
-	WmxSde3UATx/QHzd0rBwY73511hxIhEK1R3y+1RBIaeYNX+1vKg+Ouc37gr3HMacbTuEhpGydfa
-	z65SBNA9JRp0gH3zd7jlyNp5p+gZQORNwuSEPYkM63zvxO9zMGYbJMLhsoAzy52E+cT8Pud41D+
-	dKunDUjc4OLxAvDXvGHdlXn0FyiDMGuBDCifn+KCra6DEfHibcGDklcH9Ad75xPIwkMjSnZjEu5
-	aKaq1m+4MvuDfN3oTo1opcOnyUepWBiLGfK8HzSl2oG8TfZeEef9nsOoUx6DfP8PZF44GwpbqPo
-	ljAdjNlSNwCAft33v9vE=
-X-Received: by 2002:a17:90b:3d01:b0:356:35a5:4a64 with SMTP id 98e67ed59e1d1-35a012868eamr1331648a91.4.1773209536238;
-        Tue, 10 Mar 2026 23:12:16 -0700 (PDT)
-X-Received: by 2002:a17:90b:3d01:b0:356:35a5:4a64 with SMTP id 98e67ed59e1d1-35a012868eamr1331622a91.4.1773209535691;
-        Tue, 10 Mar 2026 23:12:15 -0700 (PDT)
-Received: from [192.168.1.2] ([2401:4900:88df:edd0:a836:2d6:92a6:a5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a02ffdfb7sm1175287a91.14.2026.03.10.23.12.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Mar 2026 23:12:15 -0700 (PDT)
-From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-X-Google-Original-From: Manivannan Sadhasivam <mani@kernel.org>
-To: bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-        lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
-        p.zabel@pengutronix.de, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        christian.bruel@foss.st.com, shradha.t@samsung.com,
-        krishna.chundru@oss.qualcomm.com, thippeswamy.havalige@amd.com,
-        inochiama@gmail.com, Frank.li@nxp.com,
-        zhangsenchuan@eswincomputing.com
-Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
-        pinkesh.vaghela@einfochips.com, ouyanghui@eswincomputing.com
-In-Reply-To: <20260227111536.1940-1-zhangsenchuan@eswincomputing.com>
-References: <20260227111536.1940-1-zhangsenchuan@eswincomputing.com>
-Subject: Re: [PATCH v11 0/2] Add driver support for Eswin EIC7700 SoC PCIe
- controller
-Message-Id: <177320952799.15366.7679761469929073093.b4-ty@kernel.org>
-Date: Wed, 11 Mar 2026 11:42:07 +0530
+	s=arc-20240116; t=1773209634; c=relaxed/simple;
+	bh=5Pjyj7qk26e2UZMRGFZd5jRSfl4UY2EVDMukmfLCbls=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=du+Eq6szURU/kz4s2VkmgdJeOsB1qlK1Ti/bj54IjDeLBTRyzJCD4WcDlZ0xrD7+jWeDmuOEA2E3HdIrX1/yHfEz5OPy8OIf5iD0JL5M+cXp5tEYPGKCRdWk71+IWAr6E18nkJfGdasVfS3t0S0EY//HcLAfmbYtudIEvj2bNAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JACoQvod; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70C6DC4CEF7;
+	Wed, 11 Mar 2026 06:13:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773209634;
+	bh=5Pjyj7qk26e2UZMRGFZd5jRSfl4UY2EVDMukmfLCbls=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JACoQvodn5gPHNCS3B2qSkHw+zfWYKoOljAIkZQLh4GsdPkaYViOYujlu/zbKzIzo
+	 TFsbgJHU/1TlE4qnuWAQWnmiJtpQ75DYclC5MaJCtkOwp8HjWcqyFKBM9IIkqZ2++g
+	 OMbukG/8rh6Qt2xijo8/YHRUKFxnCKRlyMmM3PuJmEB6F4HK4gYeO0SwfkpL6StiWw
+	 Yqwq4GqMzqLEjrDM2A9JistKOrqBxHwgMaVoQTl1nybcUjvmmlE8hBeCW9VMwgPYuj
+	 SkyED2pGN9FVpfu7CSLaqjjpwpiGYfDXGHpmSsMMpKlIrW+wEFsvxXhWOYtNhu7oNr
+	 Efa9idbayrQiw==
+Date: Wed, 11 Mar 2026 07:13:51 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-i3c@lists.infradead.org, 
+	alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, broonie@kernel.org, lee@kernel.org, Frank.Li@nxp.com, 
+	lgirdwood@gmail.com, vikash.bansal@nxp.com, priyanka.jain@nxp.com, 
+	aman.kumarpandey@nxp.com
+Subject: Re: [PATCH v6 3/7] dt-bindings: i3c: Add NXP P3H2x4x i3c-hub support
+Message-ID: <20260311-outrageous-unnatural-jerboa-53f5a8@quoll>
+References: <20260310065727.3759342-1-lakshay.piplani@nxp.com>
+ <20260310065727.3759342-3-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
-X-Authority-Analysis: v=2.4 cv=RYudyltv c=1 sm=1 tr=0 ts=69b107c1 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22 a=VwQbUJbxAAAA:8
- a=h4SL0BZ7AAAA:8 a=GM8G9jC1lcraCpjxISAA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22 a=Cfupvnr7wbb3QRzVG_cV:22
-X-Proofpoint-GUID: ihpNdVTkedKbRRUpO099T0vHNrLQJ5za
-X-Proofpoint-ORIG-GUID: ihpNdVTkedKbRRUpO099T0vHNrLQJ5za
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDA1MSBTYWx0ZWRfXy2Dz/qxsymn3
- hjnml9V91LpnkiNf3IUzCRGiIo6iOtz0wPjl70YSYnQD8HVdS6eIbS4QSIzOUTFfCWwy3Wjope6
- jlnJm89xC5C7rlKnp3IparQcmGrDyi2yTOc/5ZfdXU38aIcWW3XlsYkCtzjBYPtH0H1N5vzYhUa
- UIxKJduPzRtEyMW50Hl7j0XMNvPz3S3OD8lbQsAWsOtBiTKhMuC2NvCe5JY8ahUrnMo0+jcTxhh
- gQ7nBPloJECkoE5N4qb/yqhV/tx5tR6ThFlz3EkP8oDS0IMLUAbxr0fqXOQCJkRUt/Bp/KKS9+T
- MZ9w3lXR33PB9GhnXzknE/JgJTxpWvEJBYuwkQ/flKHmJAUgUKNf4qVBvjxt+Nra0QMsuZazkN9
- I+Gz3Wlo7o4tAlN4CsSeXGN+ETaIT8f2QIrDUVl/+rydkJzeojTnIA5W3FBsnkHdiR1dL/3U0yu
- oSoZ9FGFOcD2iPnng5Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-10_05,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 bulkscore=0 impostorscore=0 malwarescore=0 spamscore=0
- phishscore=0 lowpriorityscore=0 clxscore=1015 adultscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603110051
-X-Rspamd-Queue-Id: DB7AB25CB4E
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260310065727.3759342-3-lakshay.piplani@nxp.com>
+X-Rspamd-Queue-Id: A9ABB25CB5E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[google.com,kernel.org,pengutronix.de,vger.kernel.org,foss.st.com,samsung.com,oss.qualcomm.com,amd.com,gmail.com,nxp.com,eswincomputing.com];
+	TAGGED_FROM(0.00)[bounces-273848-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273847-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,qualcomm.com:dkim,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,eswincomputing.com:email];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[manivannan.sadhasivam@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,bootlin.com,kernel.org,nxp.com,gmail.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,0.0.0.70:email]
 X-Rspamd-Action: no action
 
-
-On Fri, 27 Feb 2026 19:15:36 +0800, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+On Tue, Mar 10, 2026 at 12:27:23PM +0530, Lakshay Piplani wrote:
+> From: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
 > 
-> Changes in v11:
-> - Updates: eswin,eic7700-pcie.yaml
->   - None
+> Add bindings for the NXP P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841)
+> multiport I3C hub family. These devices connect to a host via
+> I3C/I2C/SMBus and allow communication with multiple downstream
+> peripherals.
 > 
-> - Updates: pcie-eic7700.c
->   - Add ".data = &eic7700_data" and ".pme_turn_off" callback, set
->     skip_l23_ready in eic7700_pcie_pme_turn_off API, because the EIC7700
->     SoC lacks hardware support for the L2/L3 low-power link states.
->   - Reuse the dw_pcie_{suspend/resume}_noirq APIs, depend on commit [1].
-> - Link to V10: https://lore.kernel.org/all/20260129092629.1866-1-zhangsenchuan@eswincomputing.com/
-> - Link to: https://lore.kernel.org/linux-pci/20260226133951.296743-1-mani@kernel.org/ [1]
+> Signed-off-by: Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> Signed-off-by: Vikash Bansal <vikash.bansal@nxp.com>
 > 
-> [...]
+> ---
+> Changes in v6:
+>  - Use a vendor prefix for the attributes
 
-Applied, thanks!
+Where is cover letter with links to previous versions?
 
-[1/2] dt-bindings: PCI: eic7700: Add Eswin PCIe host controller
-      commit: 7e8d4b3d0b1b05c3c09f54a14c8da6f21bf2c852
-[2/2] PCI: eic7700: Add Eswin PCIe host controller driver
-      commit: 7a129ac6e31bc0c6d7149fd9c7c78bba7d0e9e42
+> 
+> Changes in v5:
+>  - Removed SW properties: cp0-ldo-microvolt,cp1-ldo-microvolt,
+>    tp0145-ldo-microvolt, tp2367-ldo-microvolt
+>  - Changed supply entries and its descriptions
+> 
+> Changes in v4:
+>  - Fixed DT binding check warning
+>  - Removed SW properties: ibi-enable, local-dev, and always-enable
+> 
+> Changes in v3:
+>  - Added MFD (Multi-Function Device) support for I3C hub and on-die regulator
+>  - Added Regulator supply node
+> 
+> Changes in v2:
+>  - Fixed DT binding check warning
+>  - Revised logic for parsing DTS nodes
+> ---
+> ---
+>  .../devicetree/bindings/i3c/nxp,p3h2840.yaml  | 209 ++++++++++++++++++
+>  MAINTAINERS                                   |   8 +
+>  2 files changed, 217 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml b/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+> new file mode 100644
+> index 000000000000..e592952e8164
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/nxp,p3h2840.yaml
+> @@ -0,0 +1,209 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i3c/nxp,p3h2840.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP P3H2X4X I3C HUB
+> +
+> +maintainers:
+> +  - Aman Kumar Pandey <aman.kumarpandey@nxp.com>
+> +  - Vikash Bansal <vikash.bansal@nxp.com>
+> +
+> +description: |
+> +  P3H2x4x (P3H2440/P3H2441/P3H2840/P3H2841) is a family of multiport I3C
+> +  hub devices that connect to:-
+> +  1. A host CPU via I3C/I2C/SMBus bus on upstream side and connect to multiple
+> +     peripheral devices on the downstream  side.
+> +  2. Have two Controller Ports which can support either
+> +     I2C/SMBus or I3C buses and connect to a CPU, BMC or SOC.
+> +  3. P3H2840/ P3H2841 are 8 port I3C hub with eight I3C/I2C Target Port.
+> +  4. P3H2440/ P3H2441 are 4 port I3C hub with four I3C/I2C Target Port.
+> +     Target ports can be configured as I2C/SMBus, I3C or GPIO and connect to
+> +     peripherals.
+> +
+> +allOf:
+> +  - $ref: /schemas/i3c/i3c.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,p3h2840
+> +
+> +  nxp,tp0145-pullup-ohms:
+> +    description:
+> +      Selects the pull up resistance for target Port 0/1/4/5, in ohms.
+> +    enum: [250, 500, 1000, 2000]
+> +    default: 500
+> +
+> +  nxp,tp2367-pullup-ohms:
+> +    description:
+> +      Selects the pull up resistance for target Port 2/3/6/7, in ohms.
+> +    enum: [250, 500, 1000, 2000]
+> +    default: 500
+> +
+> +  nxp,cp0-io-strength-ohms:
+> +    description:
+> +      Selects the IO drive strength for controller Port 0, in ohms.
+> +    enum: [20, 30, 40, 50]
+> +    default: 20
+> +
+> +  nxp,cp1-io-strength-ohms:
+> +    description:
+> +      Selects the IO drive strength for controller Port 1, in ohms.
+> +    enum: [20, 30, 40, 50]
+> +    default: 20
+> +
+> +  nxp,tp0145-io-strength-ohms:
+> +    description:
+> +      Selects the IO drive strength for target port 0/1/4/5, in ohms.
+> +    enum: [20, 30, 40, 50]
+> +    default: 20
+> +
+> +  nxp,tp2367-io-strength-ohms:
+> +    description:
+> +      Selects the IO drive strength for target port 2/3/6/7, in ohms.
+> +    enum: [20, 30, 40, 50]
+> +    default: 20
+> +
+> +  vcc1-supply:
+> +    description: Controller port 0 power supply.
+> +
+> +  vcc2-supply:
+> +    description: Controller port 1 power supply.
+> +
+> +  vcc3-supply:
+> +    description: Target port 0/1/4/5 power supply.
+> +
+> +  vcc4-supply:
+> +    description: Target port 2/3/6/7 power supply.
+> +
+> +  regulators:
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      ldo-cp0:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      ldo-cp1:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      ldo-tpg0:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +      ldo-tpg1:
+> +        type: object
+> +        $ref: /schemas/regulator/regulator.yaml#
+> +        unevaluatedProperties: false
+> +
+> +patternProperties:
+> +  "^i3c@[0-7]$":
+> +    type: object
+> +    $ref: /schemas/i3c/i3c.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          The I3C HUB Target Port number.
+> +        maximum: 7
+> +
+> +      nxp,pullup-enable:
+> +        type: boolean
+> +        description:
+> +          Enables the on-die pull-up for Target Port.
+> +
+> +  "^(i2c|smbus)@[0-7]$":
+> +    type: object
+> +    $ref: /schemas/i2c/i2c-controller.yaml#
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          The I3C HUB Target Port number.
+> +        maximum: 7
+> +
+> +      nxp,pullup-enable:
+> +        type: boolean
+> +        description:
+> +          Enables the on-die pull-up for Target Port.
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i3c {
+> +        #address-cells = <3>;
+> +        #size-cells = <0>;
+> +
+> +        hub@70,236153000c2 {
+> +            reg = <0x70 0x236 0x3000c2>;
+
+Where is the compatible?
+
+So this wasn't checked/tested. Try yourself, remove required properties
+and see if there is an error. No error, right?
 
 Best regards,
--- 
-Manivannan Sadhasivam <mani@kernel.org>
+Krzysztof
 
 
