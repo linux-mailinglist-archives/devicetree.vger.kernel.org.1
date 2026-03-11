@@ -1,182 +1,171 @@
-Return-Path: <devicetree+bounces-273927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273925-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EI30E70hsWkOrQIAu9opvQ
-	(envelope-from <devicetree+bounces-273927-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:03:09 +0100
+	id sJkOL8wksWkOrQIAu9opvQ
+	(envelope-from <devicetree+bounces-273925-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:16:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E771425E5DB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:03:08 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EFEC25EC93
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:16:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 71AD6304394D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:02:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 2349232A03A6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B6B34B663;
-	Wed, 11 Mar 2026 07:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53ECB3B6BFE;
+	Wed, 11 Mar 2026 07:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CzszALCU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lZ0A6cuZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 249F13B6365
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41BF3B634F;
+	Wed, 11 Mar 2026 07:56:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773215863; cv=none; b=hxIV2luISDlZ1aCdnKg64VdBNiQEoFefrLnsm8z4ck1HUoyn6I9nz0HU086LKp4AflFIv1A4wmicja1U8S9eW3dKLIEO3BB+RxukeH1kE8i6yeuKd9zlsNCplf0vZMEhVACR1+a3vdZ/OKBEDvqXD1o1jZv8HAKCquWCIuez4kc=
+	t=1773215776; cv=none; b=NynxQL17gowBm6F0rgbp/m4V9CWI7gHFip5a16SH9/ELXdYmE51GLTq5/zBoN/lchLLb/BIPgO/BAfIDBVenPDBooDmyZA6EHnrldmLjtCeEc4oQhe4V0Ntv1odq2BAFTBxvm8BiUymDe05eYnaNXsJ9t1FDQXag0li/MPQBTOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773215863; c=relaxed/simple;
-	bh=Fv/Mv96x4VfaLNFjK0iDGDjK2tmhwZtpyg2X/60q0XY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jMjkkgrIxV65YfZWaU4r0dMEBHZdFK199/o/lZ3j7H4LlkQvUc9uBfbXABYqAUliR/ii87P5HRnFDpveLmMDiN0DY+DDqgtJbVnviEX5XQsUXtvpaG6mG0zGdHHMZJOkVfNYFPs9WKpWZ5dMqPlivqKxbKS2eBVIbU821Ixggco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CzszALCU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B946FC2BC86
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:57:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773215862;
-	bh=Fv/Mv96x4VfaLNFjK0iDGDjK2tmhwZtpyg2X/60q0XY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=CzszALCUMvuCn0c9AIZE6P62q1amlrBu8xDZzmVRu3lfLKBLBudIKfKI5ByiTHf0U
-	 Sp/1tPu/y9dNvLfs5ns23tPvyeHPpCp+3asz7mhS4MONcvr7tkJCieKoB/Fp+WOwjY
-	 F9JHfB+S8ukj+/aRJZu4/f2F7W6c1AwdqLzH8o8sMcFX92S/ULFn2a58GrHCKu1jJ2
-	 F/RYPhyHWdncDLVOFcORwt+9RorZDA4uBHj/QjT53UF+Re53ZpktS7eVJNFsmKECPP
-	 fR7u4wZDwwB2HcicgZ9t7DjgZfM79z4Hc+5d+gTHQ9G3cr9gV2KEpamKCy/7764GHj
-	 +f2n1qxckMU1A==
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-662a1855af2so4472463a12.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 00:57:42 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWp0EQj0H1almdiAntjjWfgnHJ/M5igJdJ+x8ANWuW+dpw3XajsJP+s31Q1KO/KLste7Tj9e3TR4Z4l@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMVNiFxoqdfsdZNRS4Rb5T918pN+qi3vTGaoRkEuPhttQ71vUq
-	dG1bX9gcbbZSIBvHSUdzzHFkJYbQOiOsLzOWbqWZoXD/kbKKjV38bB/62bSMfdqsvZtlCe4tOdz
-	Y44HhWJVXnNlEYNx3qB5cpJ/+yOtKrPA=
-X-Received: by 2002:a05:6402:40d6:b0:662:ac7e:aabe with SMTP id
- 4fb4d7f45d1cf-66319ddf5aemr730767a12.15.1773215861291; Wed, 11 Mar 2026
- 00:57:41 -0700 (PDT)
+	s=arc-20240116; t=1773215776; c=relaxed/simple;
+	bh=wrxYXlZRJSn+G0+lG+GZEGg2tKImiugM59D6Po8dyx0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JXpakk+HxOsXllDVWdrvHp9/jnEjp06hUcilj84GAJ4SNGIsFiiFOc6s1Ca+IA7SR1GwBN2HRz0I2unOEHGTnxCUeSbgoNgiqUZFoCA39BupUXw7fNsBYX5fOGom2woSQn9DabQAq36QiJPZq00KdD6al076PxTjxKr6ZxrAl2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lZ0A6cuZ; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773215774; x=1804751774;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wrxYXlZRJSn+G0+lG+GZEGg2tKImiugM59D6Po8dyx0=;
+  b=lZ0A6cuZ64gBr3ZlNAGwmjfOhAuUjeAzlIkrydLhPKC7wQmu82oqO5YE
+   pH3oO8rVYY669tRmbmdRCVfnk1Ca2PqEncvbkdf+vdR9qEAMK2veywnuY
+   GnCwmGqXBFGTAkVHrkF2KnqwHQxXVlmkZ2p2DETb7ERo6J3X12v9Jy2LF
+   bHqYve+FmmlibPuzhwKNl+7f2FPGYISL1IOu1RRvuTwz+fwY2aFK7o5ST
+   wu6tF0s7r9p+vNa4gURWoQO3xcrIcYfvehL+yI0jWR+TQL8Va/aQ9401h
+   H0YYlIlBX4BHgzNVKCRWdpvkFV53cl6ckzdme3D3NSRdAxWdq+KRElu0R
+   g==;
+X-CSE-ConnectionGUID: gECuVtgrQeuzufCC4/LSFA==
+X-CSE-MsgGUID: RHobIQOjSJGI/xhWyTQ3VA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="96891300"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="96891300"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 00:56:13 -0700
+X-CSE-ConnectionGUID: DjhtToR5T4ug/Vyxm2ukJQ==
+X-CSE-MsgGUID: RBZ5t7GWRBWC7fiMKtZdZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="224851804"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.171])
+  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 00:56:08 -0700
+Received: from kekkonen.localdomain (localhost [IPv6:::1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 0A05C120E92;
+	Wed, 11 Mar 2026 09:58:03 +0200 (EET)
+Date: Wed, 11 Mar 2026 09:58:02 +0200
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: dumitru.ceclan@analog.com
+Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Julien Massot <julien.massot@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	mitrutzceclan@gmail.com, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-staging@lists.linux.dev, linux-gpio@vger.kernel.org,
+	Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>,
+	Martin Hecht <Martin.Hecht@avnet.eu>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Cosmin Tanislav <demonsingur@gmail.com>,
+	Cory Keitz <ckeitz@amazon.com>
+Subject: Re: [PATCH v9 00/21] media: i2c: add Maxim GMSL2/3 serializer and
+ deserializer drivers
+Message-ID: <abEgijQAqW27i5fU@kekkonen.localdomain>
+References: <20260311-gmsl2-3_serdes-v9-0-41499f09004f@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1773107475.git.zhoubinbin@loongson.cn> <600bfea91c1f14f089b2f7677578cd8690412fac.1773107475.git.zhoubinbin@loongson.cn>
-In-Reply-To: <600bfea91c1f14f089b2f7677578cd8690412fac.1773107475.git.zhoubinbin@loongson.cn>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Wed, 11 Mar 2026 15:57:32 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H6zg2MfO2HC1+Q-FE4CJJLh2+Boo=ZP57XYPfufvCBhkw@mail.gmail.com>
-X-Gm-Features: AaiRm53g3U7uWAiLhv_K4TOrTstSQGfkvDlqk0BcK2SaYUxV4-EVvkbNF5uEZaU
-Message-ID: <CAAhV-H6zg2MfO2HC1+Q-FE4CJJLh2+Boo=ZP57XYPfufvCBhkw@mail.gmail.com>
-Subject: Re: [PATCH 5/6] ASoC: dt-bindings: loongson,ls2k1000-i2s: Document
- Loongson-2K0300 compatible
-To: Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Xuerui Wang <kernel@xen0n.name>, 
-	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: E771425E5DB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311-gmsl2-3_serdes-v9-0-41499f09004f@analog.com>
+X-Rspamd-Queue-Id: 1EFEC25EC93
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273927-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,perex.cz,suse.com,xen0n.name,lists.linux.dev,vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kernel.org,collabora.com,ragnatech.se,linuxfoundation.org,analog.com,gmail.com,vger.kernel.org,lists.linux.dev,avnet.eu,amazon.com];
+	TAGGED_FROM(0.00)[bounces-273925-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[sakari.ailus@linux.intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	TAGGED_RCPT(0.00)[devicetree,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,mail.gmail.com:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kekkonen.localdomain:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Hi, Binbin,
+Hi Dumitru,
 
-On Wed, Mar 11, 2026 at 2:38=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Add "loongson,ls2k0300-i2s" dedicated compatible to represent the I2S
-> interface of the Loongson-2K0300 chip.
->
-> The hardware integration of the Loongson-2K0300 I2S interface differs
-> significantly from that of the Loongson-2K1000. Specifically, while both
-> utilize external DMA controllers, the Loongson-2K0300 configures DMA
-> channel routing via the `dmas` property, whereas the Loongson-2K1000
-> requires additional register.
-Can this patch be the second one?
+On Wed, Mar 11, 2026 at 09:17:12AM +0200, Dumitru Ceclan via B4 Relay wrote:
+> The following deserializers are supported:
+> * MAX96712 (already exists in staging)
+> * MAX96714 (already exists)
+> * MAX96714F (already exists)
+> * MAX96714R (GMSL2)
+> * MAX96716 (GMSL2)
+> * MAX96724 (already exists as part of existing MAX96712 driver)
+> * MAX96724F (GMSL2)
+> * MAX96724R (GMSL2)
+> * MAX9296A (GMSL2)
+> * MAX96792A (GMSL3)
+> 
+> The following serializers are supported:
+> * MAX96717 (already exists)
+> * MAX9295A (GMSL2)
+> * MAX96793 (GMSL3)
 
-Huacai
+It'd be nice to have more reviews as well as comments from the users of the
+existing drivers especially on how this works for them.
 
->
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../bindings/sound/loongson,ls2k1000-i2s.yaml | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2=
-s.yaml b/Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2s.yaml
-> index da79510bb2d9..51e23c189f7a 100644
-> --- a/Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2s.yaml
-> +++ b/Documentation/devicetree/bindings/sound/loongson,ls2k1000-i2s.yaml
-> @@ -14,9 +14,12 @@ allOf:
->
->  properties:
->    compatible:
-> -    const: loongson,ls2k1000-i2s
-> +    enum:
-> +      - loongson,ls2k0300-i2s
-> +      - loongson,ls2k1000-i2s
->
->    reg:
-> +    minItems: 1
->      items:
->        - description: Loongson I2S controller Registers.
->        - description: APB DMA config register for Loongson I2S controller=
-.
-> @@ -49,6 +52,23 @@ required:
->
->  unevaluatedProperties: false
->
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - loongson,ls2k1000-i2s
-> +
-> +then:
-> +  properties:
-> +    reg:
-> +      minItems: 2
-> +
-> +else:
-> +  properties:
-> +    reg:
-> +      maxItems: 1
-> +
->  examples:
->    - |
->      #include <dt-bindings/clock/loongson,ls2k-clk.h>
-> --
-> 2.52.0
->
+Are there differences in functionality or UAPI compared to the drivers
+already in upstream?
+
+...
+
+> The following v4l2-compliance test still fails:
+>                 fail: v4l2-test-subdevs.cpp(371): fmt.code == 0 || fmt.code == ~0U
+>                 fail: v4l2-test-subdevs.cpp(418): checkMBusFrameFmt(node, fmt.format)
+>         test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+
+Could you post the full report here, please?
+
+-- 
+Kind regards,
+
+Sakari Ailus
 
