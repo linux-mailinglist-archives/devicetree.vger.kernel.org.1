@@ -1,168 +1,190 @@
-Return-Path: <devicetree+bounces-273799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273801-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sB1ODJrQsGmLnQIAu9opvQ
-	(envelope-from <devicetree+bounces-273799-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:16:58 +0100
+	id WF3nK4vSsGmLnQIAu9opvQ
+	(envelope-from <devicetree+bounces-273801-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:25:15 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E95C25AD66
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:16:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 423B825AEC9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 03:25:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 502A132157FA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 02:14:42 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 792A5305F7D7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 02:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B0034678C;
-	Wed, 11 Mar 2026 02:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C240930BB94;
+	Wed, 11 Mar 2026 02:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="WW3IgNdu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FY2bT0go"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62C43563FA;
-	Wed, 11 Mar 2026 02:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F0D4283FC5
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 02:25:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773195282; cv=none; b=H97QoA6gHMVSX/3j7wI+wF3IVUhExZdnlmESC4zEVeVsNsJGlM18f51JrW4t39uVDN4sHg3isogkHWsrvZiu+7+bGj6aOoaFafpHEZoPAjyAAio6Q2lEMRR8fFg89kioQJySIRpXSWdYwKfaCSjKaLZgPOWxrEP2HI/qH6XoRZs=
+	t=1773195911; cv=none; b=RJOvyNFDQoMFooWqmsKa+lul72aeUm73WLs2qpylL2ZzhPQJDsilFD6KARuFmvRME4X5xstNk7NRuJUJlLpaJ3JJ14wnd6kFzCp5yhusHWeqrBjOrvNRHiEQe8Trw5uAVn3ThS43PW4DZ8akBqofLzFWuWJ0JCFHAMte6NtiARc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773195282; c=relaxed/simple;
-	bh=g9KzHJnx61EhnIzoqsS+c9rf3WD+Idn9HQQ7iGVKYJM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J2/P93SobZc/eboWCtO9+3phbAlXyL4rYQspOFfjn+T9qm1fJHokQ+f5rBtrEwUo5KhscLEwYOg3y9Hj9zN/snaVSkNKjgFriAVtkZ02y81rsf9gxQwmvr1DKx5MIb5X+QCaZVzevQfayBX3XBiT60Phxj56fnPuFXHncnClmPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=WW3IgNdu; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62AJkWSZ1524531;
-	Wed, 11 Mar 2026 02:14:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=2ZceOk
-	42rdEXugzjAGSRfQyEii6gNZwu/bJn2eegNWQ=; b=WW3IgNdutfTc9AYvNYBMDm
-	HvoooDuQJBZ40CXMkmv0B8HdG/bdsOfAeKi2uMAcEvnPzZ0ZPGkLA9fKN3vJkeic
-	NHX4uAVtqn5b8Z7JHeap+pwVEt2es3//N+AKVVr3Y36VKb+sJMwPhW/SflfiGprF
-	C8aB5xJTLIn6k8xHP6SyO6L/EgW1DhAWxE8aH7E1+xAam8WGzh0CFVsvcdMsPJf4
-	1ywXE7FZsk1W7euMOWNL0uH85/IMNQZkxJwKkASOMQAKOwv+W/bHaf6EB0K0b90A
-	N8gh4VEu8Z48mBuhIPfQG/0wpWMqqsSvljZgbkxDw/8gVNDxAa0/n8Qydm72KiVA
-	==
-Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4crcvmdufc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Mar 2026 02:14:31 +0000 (GMT)
-Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62ALKPFK025052;
-	Wed, 11 Mar 2026 02:14:30 GMT
-Received: from smtprelay06.fra02v.mail.ibm.com ([9.218.2.230])
-	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 4cs0jk3fs8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Mar 2026 02:14:30 +0000
-Received: from smtpav01.fra02v.mail.ibm.com (smtpav01.fra02v.mail.ibm.com [10.20.54.100])
-	by smtprelay06.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 62B2ESWH23724328
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 11 Mar 2026 02:14:28 GMT
-Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 810072006C;
-	Wed, 11 Mar 2026 02:14:28 +0000 (GMT)
-Received: from smtpav01.fra02v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 587042006A;
-	Wed, 11 Mar 2026 02:14:25 +0000 (GMT)
-Received: from Linuxdev (unknown [9.43.124.195])
-	by smtpav01.fra02v.mail.ibm.com (Postfix) with ESMTP;
-	Wed, 11 Mar 2026 02:14:25 +0000 (GMT)
-From: Madhavan Srinivasan <maddy@linux.ibm.com>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH] powerpc: dts: fsl: Drop unused .dtsi files
-Date: Wed, 11 Mar 2026 07:44:24 +0530
-Message-ID: <177319508337.269267.16812187725403935492.b4-ty@linux.ibm.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260128140222.1627203-1-robh@kernel.org>
-References: <20260128140222.1627203-1-robh@kernel.org>
+	s=arc-20240116; t=1773195911; c=relaxed/simple;
+	bh=x3oA4b9XXpfnN8kUiNhtlS/tc1BuEX7AW97CTEgFyIw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HBUH8lZTUR7eFzJmqeWi7XP/PtYiHUXpKBVr3qIApOhYHTreodXVP7v2axmEOiicL83Sknhx+o8BYebmP2pzfDke7CPXilsZIGpJFeuKe7EiBOC6WnPzin5gCrBI1DcKQ7JR0cmvY8x+HI1KCOh7gMwpY8E0Qricq2IP//kk+RY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FY2bT0go; arc=none smtp.client-ip=209.85.222.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-8cd8576a512so54304785a.0
+        for <devicetree@vger.kernel.org>; Tue, 10 Mar 2026 19:25:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773195909; x=1773800709; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=pdOODwOyqf2HXTJor8x6+j1U0inwH0LLdlGvfoS1Vfo=;
+        b=FY2bT0goJi+eGxVKUdDcVzRwoQgrQnVLnDcA7loJJil0P4Ni8pMG46aYtZLbnzYCmL
+         ttG0XvTy8yd/gnIaI7o5qrih4Kn+rgjI47B8IO3PTeKTbFI+kHx1XjLEs5+eaM4nB2e1
+         +DYVbLzQRgvKCQr8i0dsxeA03Z3dbFuQyDMtV8NIGYZCX5VpgkgYDtaWauNrOv9jXteO
+         dCe3Eob7ZRKNsS2XQ4HujfFkZZBi7CuGsR+y9/w6OLKI3CM8ihaDROZVBmSR5h8CTnLN
+         rWHfL7sy3cHpmKkxD7DcXmXWeaY/5qn2IElaygmHlm3aEjYk5glgV5tSpCh9/lLyx5P6
+         It4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773195909; x=1773800709;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pdOODwOyqf2HXTJor8x6+j1U0inwH0LLdlGvfoS1Vfo=;
+        b=DfcTyobfM8VSEUTU9/YMutKoQDtzMjUlr+sVnP52RJrp11eGR8ggZj2B8+QVImKDOl
+         vyzEsOlwGfSdDgmJwlbrk2xlpVBQcxW0ZymkAk2NLORhUtMmDjWWRLSqLoGi/snT+qYV
+         f0fjUdFl7bgjIPg3C+fBixocKWvIMc6SFSN6G7gIWNZ9dQdffw49P89Fps7TvUf/9Olf
+         quH3SaY//WfBoiYHYERVyF+7QEYjS9XXUE7URyywi0aVLKEMIKkbv8F7FczsjtyKWT6t
+         HhagaO2Nfi4lS1WRxPslofR2xbIFd1wvuMdL0ofGG0Usg2YvM29mOOcc/cRYWutC/9mB
+         oC3A==
+X-Forwarded-Encrypted: i=1; AJvYcCUPxTsBHGaVYdgwRU4xfS+1DL81+SPq63OcC18ZbfEGngYYQqWfFAJN3IrHluFREF2aV3+UIlr43yBx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw3Op5gIJvxC/h6goTCr/0qgmndkscjeTdzABVokau25UXw5mYz
+	OpmVBYnehMdxgCLgnv8YvtNAXroaB4FXf5dGYDTmUwaxFTp0wKo5dP9p
+X-Gm-Gg: ATEYQzzZII56M/kIhl6/vM8p/NCSCH9Jjr67p6nT0idZ/aizLOjQ/SmnyCv3fMzSsU/
+	CRDAD+MBwsuyz5+C/mVs2s0f4ALjVbc0sIVQY02k7W8xyeYTkKVSQAkPkVJrKzLu774U4c72LUP
+	cGOSMbGPjHk3bBWva0gMtvdLvN0Uw/1Tu//LJTxMGkyQ4KCVRYzB/097NjzCQoCyc/zdRbyDznQ
+	XcWyYkq4M+vw2ZthCq104HpGYbqpD7eQq30qw9LVEe1wGkeWyg1tNegXIWr/gVytfmOoItna4Z+
+	+Mjhql5TzaJl/ReP83sLHe2OGxPyv7SooPmv4Y8dpvnS9Jkoo+utPaHpzWm6Txsc0KPS0Y+eaPe
+	aTO7KPxV/44x4xnRZ8nW32ZX6s7PTaPQ3OIovdyrd3ptRa3kJpAhM+dE7GFOSVJhW5M+gR/691h
+	r753P2kjczxiOHtO6f+bD9t4GEEA==
+X-Received: by 2002:a05:622a:1111:b0:509:1be4:97d1 with SMTP id d75a77b69052e-5093a19d134mr10124061cf.34.1773195909341;
+        Tue, 10 Mar 2026 19:25:09 -0700 (PDT)
+Received: from localhost ([184.144.58.243])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-50939ec63d6sm5194251cf.12.2026.03.10.19.25.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2026 19:25:08 -0700 (PDT)
+Date: Tue, 10 Mar 2026 22:25:40 -0400
+From: Richard Acayan <mailingradian@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+	David Heidelberg <david@ixit.cz>, phone-devel@vger.kernel.org
+Subject: Re: [PATCH v9 7/7] arm64: dts: qcom: sdm670-google-sargo: add imx355
+ front camera
+Message-ID: <abDSpE3BNb0jFrqx@rdacayan>
+References: <20260217002738.133534-1-mailingradian@gmail.com>
+ <20260217002738.133534-8-mailingradian@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-GUID: hCYDyKHWNdjAoXl8sTBYY5Yk76KZBsq0
-X-Proofpoint-ORIG-GUID: ekoJEsiTHtdoQQ4LVuqf-mnYOUpkl9We
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDAxNiBTYWx0ZWRfX1Z53069OfAF8
- l9k32Xe/ddRW1NELIzPRxp7EJa62BzLSPQPunOPDJT6UwP63z7XaEwXOGxSolD8FQCmXhsMl3GQ
- w+RCGjClj6hOd21VMljOegCkTlPBMmCyi+5KWyC39Ttm93XAdERlTw3rO+Y2pqWkjA2hFFFLE1M
- fPSMz8+dLsch+CZePHyy9ZWAQ0AGhoc1G1INE1fClpIJDdD2hNBfZwENdiWl1xt9ql1MkPkKnVs
- cgAu715zF8Lh/HYBbD5QsGpelOTKlJ1TGukv0sJ3ADnDhVdVRxZbcfibB40TUfTbEMPZsobcPMY
- Sz+AmEqMXsqkOyowobXc3DmdDosQzvHatiQ2atYDtyvQ3R/NNONwvNdF1eit8dmHBAWY5B9lcP0
- 1wtlC5Wlq4uhO8ZfD4hJOIp7neBMPV5qDkbJ1TN68hvZEzBxSKyXVwibT+KPf2jHaZMbvALgaVH
- 3p8sfObWh2BcsxFwZvg==
-X-Authority-Analysis: v=2.4 cv=B5q0EetM c=1 sm=1 tr=0 ts=69b0d007 cx=c_pps
- a=AfN7/Ok6k8XGzOShvHwTGQ==:117 a=AfN7/Ok6k8XGzOShvHwTGQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=iQ6ETzBq9ecOQQE5vZCe:22 a=VwQbUJbxAAAA:8
- a=ojrkqjeVVkUaGn_0cJcA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-10_05,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 phishscore=0 adultscore=0 lowpriorityscore=0 bulkscore=0
- priorityscore=1501 spamscore=0 clxscore=1011 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603110016
-X-Rspamd-Queue-Id: 8E95C25AD66
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260217002738.133534-8-mailingradian@gmail.com>
+X-Rspamd-Queue-Id: 423B825AEC9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ibm.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64];
-	R_DKIM_ALLOW(-0.20)[ibm.com:s=pp1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[kernel.org,ellerman.id.au,gmail.com];
-	TAGGED_FROM(0.00)[bounces-273799-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[ibm.com:+];
+	TAGGED_FROM(0.00)[bounces-273801-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux.ibm.com:mid];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maddy@linux.ibm.com,devicetree@vger.kernel.org];
+	FREEMAIL_TO(0.00)[kernel.org,gmail.com,linaro.org,intel.com,linux.intel.com,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mailingradian@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[11]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linaro.org:email,qualcomm.com:email,1a:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, 28 Jan 2026 08:02:20 -0600, Rob Herring (Arm) wrote:
-> These files are not included by anything and therefore don't get built or
-> tested.
+On Mon, Feb 16, 2026 at 07:27:38PM -0500, Richard Acayan wrote:
+> The Sony IMX355 is the front camera on the Pixel 3a, mounted in portrait
+> mode. It is connected to CSIPHY1 and CCI I2C1, and uses MCLK2. Add
+> support for it.
 > 
-> There's also no upstream driver for the interlaken-lac stuff.
+> Co-developed-by: Robert Mader <robert.mader@collabora.com>
+> Signed-off-by: Robert Mader <robert.mader@collabora.com>
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  .../boot/dts/qcom/sdm670-google-sargo.dts     | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
 > 
-> 
+(snip)
+> +
+> +&cci_i2c1 {
+> +	camera@1a {
+> +		compatible = "sony,imx355";
+> +		reg = <0x1a>;
+> +
+> +		clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> +
+> +		assigned-clocks = <&camcc CAM_CC_MCLK2_CLK>;
+> +		assigned-clock-rates = <19200000>;
+> +
+> +		reset-gpios = <&tlmm 9 GPIO_ACTIVE_LOW>;
+> +
+> +		avdd-supply = <&cam_front_ldo>;
+> +		dvdd-supply = <&cam_front_ldo>;
+> +		dovdd-supply = <&cam_vio_ldo>;
+> +
+> +		pinctrl-0 = <&cam_mclk2_default>;
+> +		pinctrl-names = "default";
+> +
+> +		rotation = <270>;
+> +		orientation = <0>;
+> +
+> +		port {
+> +			cam_front_endpoint: endpoint {
+> +				link-frequencies = /bits/ 64 <360000000>;
+> +				remote-endpoint = <&camss_endpoint1>;
+> +			};
 
-Applied to powerpc/fixes.
-
-[1/1] powerpc: dts: fsl: Drop unused .dtsi files
-      https://git.kernel.org/powerpc/c/0706178339974d4332a782ba851cb6694bd210fe
-
-cheers
+This also needs data-lanes.
 
