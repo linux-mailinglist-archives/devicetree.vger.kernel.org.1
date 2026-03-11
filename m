@@ -1,167 +1,196 @@
-Return-Path: <devicetree+bounces-274327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274326-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GAjgBJbGsWnvFAAAu9opvQ
-	(envelope-from <devicetree+bounces-274327-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:46:30 +0100
+	id iCl+JhnGsWkFFQAAu9opvQ
+	(envelope-from <devicetree+bounces-274326-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:44:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2A426997C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:46:29 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4C32698C9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 20:44:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 29070314C203
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:44:48 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 9B062301DD42
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:44:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC113164AA;
-	Wed, 11 Mar 2026 19:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB88C37700C;
+	Wed, 11 Mar 2026 19:44:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s+6M41CM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F247D2D73B5
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 19:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA5D377032
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 19:44:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773258287; cv=none; b=FB4Ns/YLOftXH6S7lLhtxgb7++ZfuhG6YnxlmUmhJWHKvqxuPgRB93O40VLEySdIUdaoCk20FFQgkZu3pN4YJcviD+0xeJntpLSXmJWgkU4t9iRXtxj/B923x9NfxRiHfu5Y9X6VpVQeRJxB9Xzs/EqpEK1XIODZKe7mciUBi2Q=
+	t=1773258262; cv=none; b=fhLsTlcyCg20k5lBMT8NE60/wgF5KbJdV65FGJGd3v+mVcU4yEWpKwi1o3+uW1oBgq+9t0nGUJ9WECsgAhXgASxo1SD5l+d5wpH06R2SpGADbZ0zxGeNFxYKzsSLJSOAq0dvx1eonWW10qVJv3HHFUc6Ywhr65g3OYgvz6UqqTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773258287; c=relaxed/simple;
-	bh=L2s7bOr55jaBbXvz74eqFCrTb0rxRJtxsxw10f92K0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=poDqQqcS6KIO4dIgw7NrDx72vn5yGwaJO/nam4A5vtAn0tdeIzJ/NUkthuo8jvSzKGE57JnvlTqa4FOZWXfu0490nAem93kqMBWiWTHXClW7Dcblcx5rmFDFVccOLTDJ0GEJPn+iBkEE6A3oM7F7i3PoDjYoW14HOa4urmJHiw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4ED9916F2
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 12:44:39 -0700 (PDT)
-Received: from [192.168.0.1] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 4FDBF3F694
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 12:44:45 -0700 (PDT)
-Date: Wed, 11 Mar 2026 19:42:29 +0000
-From: Liviu Dudau <liviu.dudau@arm.com>
-To: Cunyuan Liu <cunyuan.liu@cixtech.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	neil.armstrong@linaro.org, heiko@sntech.de, marex@nabladev.com,
-	dev@kael-k.io, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	andre.przywara@arm.com, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	cix-kernel-upstream@cixtech.com
-Subject: Re: [PATCH 3/3] drm/komeda: Add support for Arm China Linlon-D6
-Message-ID: <abHFpSd0LLuNxLHo@e142607>
-References: <20260311055506.12023-1-cunyuan.liu@cixtech.com>
- <20260311055506.12023-4-cunyuan.liu@cixtech.com>
+	s=arc-20240116; t=1773258262; c=relaxed/simple;
+	bh=39PeX03cfW+OogOTezHdW5pPVtlIWod9VLbZMi7czDo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j68BFNb/GnKgV/lMzrz7vi4ZQQs+Eh+3IFgBE08GTjyuATLRyAA3qnTr5hNwuWSzs1+Myf4rSpqDWZ908SIu2shuChcXy+lMfFkXzs2rvcUB5dk0JyQpvt/xk0LPVSCef0fVlES7hBSuiXbjJ/9PiKwVeVRJhCKrjdadd3OFjnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s+6M41CM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADA8BC2BC86
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 19:44:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773258261;
+	bh=39PeX03cfW+OogOTezHdW5pPVtlIWod9VLbZMi7czDo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=s+6M41CMEQAx7onDSAvubBk35bOYaeNmb2f/KV3UCl47p5OOXHfmRbfL/P/WpgbXK
+	 y6K91LYP5r0lQD03qeiWhZguPkv7WWpJamO5OPlGVcBmw/RWQQL/mg/IslEf6e8LIU
+	 rE5B9ErCZMsDIE/InQfUbXNqE/mRRmFlFhs9sU460o9fgJLBABj3GODXDdeIFON3zl
+	 l1pv11UB3Atj8JAxKkbq030GS2zWLpTfWhU7Ynmh83Qc7nhPzCbA/TypbJwqI0a1u0
+	 Xd1ztlhQ0+Ex/tfgaAKQLXVFMum8hi/8WB4gByx46kcrZHHe0A0w32N8HqSZXX4XuS
+	 9d0uq3TuLGnUg==
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b8f9568e074so28027666b.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 12:44:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWBgIeBq2Sc3Acehg/KqjbDgS5qMSPQdOJtoc96fK0fP/2HsBXpV1YruDOH68/h05W+cfZpxbtCbH2F@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5jgE+S4gPWeGFiGWeTImqad4UxQvzOqteUc5+eoiQ8bk693hi
+	dCKHp9gllsnTl3PuFLdhFLRxBqgrH/oIQeuMpOxzVGwexVGiqDmBRC5v7ddVig/iRivRF55lJ3V
+	XB6VYmjKbUEaX6I0xDk2X/Ie0XRnuIA==
+X-Received: by 2002:a17:907:72c2:b0:b8e:d4ed:5ef2 with SMTP id
+ a640c23a62f3a-b972e5b211amr251839466b.58.1773258259961; Wed, 11 Mar 2026
+ 12:44:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260311055506.12023-4-cunyuan.liu@cixtech.com>
-X-Spamd-Result: default: False [0.64 / 15.00];
+References: <20260311-tasting-friend-eae39148fb96@spud> <20260311-collar-smokiness-5313aa648a6f@spud>
+ <177324727784.4047403.339169143402607624.robh@kernel.org> <20260311-unlovable-ecosphere-07df196823b3@spud>
+In-Reply-To: <20260311-unlovable-ecosphere-07df196823b3@spud>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 11 Mar 2026 14:44:08 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJsP3ySdNJrJ9C-jSc1gKKWPwK0Z4sJjBW0wqvyk5ppjw@mail.gmail.com>
+X-Gm-Features: AaiRm50k2V92nCmEywPA1fhJ0QoUN0pDSozwDYs95PdSX28ynGVvAIorcAx8lSw
+Message-ID: <CAL_JsqJsP3ySdNJrJ9C-jSc1gKKWPwK0Z4sJjBW0wqvyk5ppjw@mail.gmail.com>
+Subject: Re: [PATCH v12 2/4] dt-bindings: soc: microchip: document PolarFire
+ SoC's gpio interrupt mux
+To: Conor Dooley <conor@kernel.org>
+Cc: Albert Ou <aou@eecs.berkeley.edu>, Daire McNamara <daire.mcnamara@microchip.com>, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org, 
+	Alexandre Ghiti <alex@ghiti.fr>, Linus Walleij <linusw@kernel.org>, Bartosz Golaszewski <brgl@kernel.org>, 
+	Paul Walmsley <pjw@kernel.org>, Herve Codina <herve.codina@bootlin.com>, linux-gpio@vger.kernel.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274327-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274326-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linaro.org,sntech.de,nabladev.com,kael-k.io,bp.renesas.com,arm.com,lists.freedesktop.org,vger.kernel.org,cixtech.com];
-	RCPT_COUNT_TWELVE(0.00)[19];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[liviu.dudau@arm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
 	MISSING_XM_UA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	DBL_PROHIBIT(0.00)[0.0.0.54:email];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,arm.com:email]
-X-Rspamd-Queue-Id: 8A2A426997C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,bootlin.com:email,microchip.com:email,devicetree.org:url,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2F4C32698C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 01:55:06PM +0800, Cunyuan Liu wrote:
-> Arm China Linlon-D6 is register-compatible with the Mali-D71 display
-> pipeline for the purpose of basic modesetting.
-> 
-> On Linlon-D6, the PRODUCT_ID register is located at the same offset as on
-> Mali-D71 and reports 0x0060. The IP also exposes the same Komeda top-level
-> block layout expected by the existing d71_identify() probing flow, so we
-> can reuse the D71 function table to bring up the display engine.
-> 
-> Signed-off-by: Cunyuan Liu <cunyuan.liu@cixtech.com>
+On Wed, Mar 11, 2026 at 12:58=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+>
+> Rob,
+>
+> On Wed, Mar 11, 2026 at 11:41:17AM -0500, Rob Herring (Arm) wrote:
+> >
+> > On Wed, 11 Mar 2026 15:17:39 +0000, Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
+> > >
+> > > On PolarFire SoC there are more GPIO interrupts than there are interr=
+upt
+> > > lines available on the PLIC, and a runtime configurable mux is used t=
+o
+> > > decide which interrupts are assigned direct connections to the PLIC &
+> > > which are relegated to sharing a line.
+> > >
+> > > Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > >  .../soc/microchip/microchip,mpfs-irqmux.yaml  | 77 +++++++++++++++++=
+++
+> > >  .../microchip,mpfs-mss-top-sysreg.yaml        |  4 +
+> > >  2 files changed, 81 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/soc/microchip/m=
+icrochip,mpfs-irqmux.yaml
+> > >
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+>
+> AAAAAAAAA, goddammit. I forgot there was a reason why I had not just
+> sent off the new version of the series.
 
-Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+Providing reviews of bindings entitles you to free testing of your patches.=
+ :)
 
-Best regards,
-Liviu
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.e=
+xample.dts:18.33-24.11: Warning (interrupt_provider): /example-0/interrupt-=
+controller@54: '#interrupt-cells' found, but node is not an interrupt provi=
+der
+> > Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-irqmux.e=
+xample.dtb: Warning (interrupt_map): Failed prerequisite 'interrupt_provide=
+r'
+>
+> I wanted to ask about this Rob, I wasn't sure I fully understood it.
+> I figured it was because...
+>
+>
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/soc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (=
+microchip,mpfs-irqmux): 'interrupt-map' is a required property
+> >       from schema $id: http://devicetree.org/schemas/soc/microchip/micr=
+ochip,mpfs-irqmux.yaml
+>
+> ...I had not added the interrupt-map yet...
 
-> ---
->  drivers/gpu/drm/arm/display/include/malidp_product.h | 1 +
->  drivers/gpu/drm/arm/display/komeda/d71/d71_dev.c     | 1 +
->  drivers/gpu/drm/arm/display/komeda/komeda_drv.c      | 1 +
->  3 files changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/arm/display/include/malidp_product.h b/drivers/gpu/drm/arm/display/include/malidp_product.h
-> index 16a8a2c22c42..6f954bcdf40e 100644
-> --- a/drivers/gpu/drm/arm/display/include/malidp_product.h
-> +++ b/drivers/gpu/drm/arm/display/include/malidp_product.h
-> @@ -20,6 +20,7 @@
->  /* Mali-display product IDs */
->  #define MALIDP_D71_PRODUCT_ID	0x0071
->  #define MALIDP_D32_PRODUCT_ID	0x0032
-> +#define LINLONDP_D6_PRODUCT_ID	0x0060
->  
->  union komeda_config_id {
->  	struct {
-> diff --git a/drivers/gpu/drm/arm/display/komeda/d71/d71_dev.c b/drivers/gpu/drm/arm/display/komeda/d71/d71_dev.c
-> index 80973975bfdb..f105e3a2dce2 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/d71/d71_dev.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/d71/d71_dev.c
-> @@ -628,6 +628,7 @@ d71_identify(u32 __iomem *reg_base, struct komeda_chip_info *chip)
->  	switch (product_id) {
->  	case MALIDP_D71_PRODUCT_ID:
->  	case MALIDP_D32_PRODUCT_ID:
-> +	case LINLONDP_D6_PRODUCT_ID:
->  		funcs = &d71_chip_funcs;
->  		break;
->  	default:
-> diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_drv.c b/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
-> index 358c1512b087..4bb5f250e95e 100644
-> --- a/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
-> +++ b/drivers/gpu/drm/arm/display/komeda/komeda_drv.c
-> @@ -104,6 +104,7 @@ static int komeda_platform_probe(struct platform_device *pdev)
->  static const struct of_device_id komeda_of_match[] = {
->  	{ .compatible = "arm,mali-d71", .data = d71_identify, },
->  	{ .compatible = "arm,mali-d32", .data = d71_identify, },
-> +	{ .compatible = "armchina,linlon-d6", .data = d71_identify, },
->  	{},
->  };
->  
-> -- 
-> 2.53.0
-> 
+Yes.
 
--- 
-====================
-| I would like to |
-| fix the world,  |
-| but they're not |
-| giving me the   |
- \ source code!  /
-  ---------------
-    ¯\_(ツ)_/¯
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/soc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (=
+microchip,mpfs-irqmux): 'interrupt-map' is a dependency of 'interrupt-map-m=
+ask'
+> >       from schema $id: http://devicetree.org/schemas/interrupt-controll=
+er.yaml
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
+/soc/microchip/microchip,mpfs-irqmux.example.dtb: interrupt-controller@54 (=
+microchip,mpfs-irqmux): 'anyOf' conditional failed, one must be fixed:
+> >       'interrupt-controller' is a required property
+> >       'interrupt-map' is a required property
+> >       from schema $id: http://devicetree.org/schemas/interrupt-controll=
+er.yaml
+>
+> ...so this schema complained. But why is there a custom warning about
+> "node is not an interrupt provider", when the conditional schema
+> produces a warning of its own?
+
+The first warning is from dtc. There is some overlap with schema checks.
+
+Rob
 
