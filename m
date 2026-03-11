@@ -1,218 +1,186 @@
-Return-Path: <devicetree+bounces-273838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273839-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNkkBSQDsWkzpwIAu9opvQ
-	(envelope-from <devicetree+bounces-273838-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:52:36 +0100
+	id CCqsHMUDsWmFpwIAu9opvQ
+	(envelope-from <devicetree+bounces-273839-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:55:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 866D925C954
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:52:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4025725C97F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:55:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 828F2302CD3E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 05:52:34 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E28773170646
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 05:55:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7742347538;
-	Wed, 11 Mar 2026 05:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ofIF83yE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17634345757;
+	Wed, 11 Mar 2026 05:55:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022128.outbound.protection.outlook.com [52.101.126.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ED99345757;
-	Wed, 11 Mar 2026 05:52:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773208351; cv=none; b=BhXzdH34Px7GXpfv8iNndbPvVGehkRgQ6Zy4VdGzIoKs+qwyuCBl7w2JQvRbjAZHLggS144+Ung/Bssel96xbZUlPnkLvnCKeItQJQQJupmikPHGTwpYHXFkyGZUgTFMjErNIKq0nrzahhNfqAe8zedecwFqOr+J+uqyDDnt+EY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773208351; c=relaxed/simple;
-	bh=BWHaQd6X/rtH2bI32zQwke/69AavzK5woTtHsoahkrs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aCaO8nFlx02Cg67ag76tcNQyr9DaxjJ0Sug9r9x/3qQbb0/zNeca7oeekTtv/bJ18nW0sdu6YEl5n6CakyIHUQTLXd71PqgNfCqFnaD9hr9xdurbIB/h68STjPI0PxYNT6xZYdP67BdGaubNcDOs/1Rxr8VklglYuV8IkJ2RTQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ofIF83yE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38128C4CEF7;
-	Wed, 11 Mar 2026 05:52:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773208351;
-	bh=BWHaQd6X/rtH2bI32zQwke/69AavzK5woTtHsoahkrs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ofIF83yEjYLe+0ed/2I1e6ZwoWoIywD9XjwVJRlkZGjo+1Dt9YUUD4siSfFs/mThG
-	 80fgvrXiF8ago5yXFzL/frRej37uCyLHMGfxKRvLJhCcyu/uT+DNXLVkUlqXbVEIB+
-	 SA7uRh95mkiJVmzGfykg3IgGiV9PehRGeYNH4dZHUn8KoARV0EMfJLmWRrXXRUK1Ub
-	 hjsI0/nZemIJwD9l2iRPCJLRCkncKlkwUGIclHgUKErG0RguRWIfkEk5SnduwiNSFd
-	 MZKoS+RfE+YTvX6Q9A8McYmn2Xx5ZfTBshD9ueF9jGNW4wWGuFNcdDlCUGtZYND9BV
-	 Fgi7eD4vGTgQg==
-Message-ID: <168d4af2-5a5b-4564-9e53-fed9f0c062a2@kernel.org>
-Date: Wed, 11 Mar 2026 06:52:26 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022F219CD19;
+	Wed, 11 Mar 2026 05:55:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.128
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773208514; cv=fail; b=rW5wHeUH+R2a2t4VQ7JPRnQMOx1gr1Q41YmKhRuCptOPe5oeeqK5IijaTZmj9bPTCOy6h97/HNLepBsWpvB+E450bpUZPmpN8UeRBqwm02jvD1NB2PYuQDVIBCu9yXkuuavvdacZtvaywulGhddHC+npyjbqcTevSKYPnugrmuc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773208514; c=relaxed/simple;
+	bh=T0D7TD6KXN/OeT23Jk1fh6KujAiY9sP48fk/J8aQAgI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iuzU5D0Ht2QM5QhAcGAJiTiPUskR180liP89TY1S7WzVIbMNusdiDpbEjy9rf1YTszGHRkE6FUPlhr+R+ng0m5PDdgNKq2PiowePggSefAk+JntYRjlVm6SvKoLrwffsCiqWqnWCtYlxwXqlT4sdbHprn7FK4+irUUYV0RGqXEs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Mkj1SN903x5duJHc0tZtJf5whSxcOR6MfAjPjQXWJTMlzVsTWb+TRuy8Q22KPylN9Le0gkl2nY4/JfXD4hlql3wrKzZPpJCp9KaRumr3WHsCaQ122e63nVBzWn6j5WlR5ihSEBlT9y5AmU7B1L6VMnjdAhyubVz+lku3ztqTri9TOEEu0VMYtRE3kyq2YMu3RNJrPzTeZo+Lsx8KFR9/HOYhbJ52gHZgBcLO+6NhzYVLcV+WaGIWPnKV6dfIE5p8lvvWbWxFk+COkB5XZwB3pvXDb0+L7TgeaMeeUbYBMB0LUvesP/8SJ10VmbSE1wrAbxIMeEna+5ZaYM21tvmoLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=w56Yp56De1MnzNdOOtyDLkz8Gx2eeo4iYLA1Z9cP60A=;
+ b=eosDg7DC7Q4TxnAej57p/77lHNLGkkq9ZzNXXqrdUDEoJlD0wa6fLhR/oQNygRAR8EhHyLMcRIkHmg+fSbbZq/ir9FcMklCG+Q0FYaRHkFoPw+eQ45AJUXQ8HNSoPjfvy3ra40VPdpT9jnKOHMwrI9DWZZkrxmy7N4Q/ROL6oLd9syMmgRDAUgSKYg/vd9a33ccMRPsfYMUPCDHgjr27Bpcr80T8T0a90PTqhY7/rNbIv2nLMLXXVdKF3WgLlgX2+Dqvu0WAl3sfpMklLe36O8LvN8WSqCYyV/9TY0AFRvJWdBYIVAfVUA+z1JBHcNgP6wWk0GbL6kVFnlEn1r8IAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=arm.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from TYCP286CA0360.JPNP286.PROD.OUTLOOK.COM (2603:1096:405:7c::6) by
+ TYNPR06MB8401.apcprd06.prod.outlook.com (2603:1096:405:3b5::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Wed, 11 Mar
+ 2026 05:55:08 +0000
+Received: from TY2PEPF0000AB86.apcprd03.prod.outlook.com
+ (2603:1096:405:7c:cafe::d0) by TYCP286CA0360.outlook.office365.com
+ (2603:1096:405:7c::6) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.26 via Frontend Transport; Wed,
+ 11 Mar 2026 05:55:01 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB86.mail.protection.outlook.com (10.167.253.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 11 Mar 2026 05:55:07 +0000
+Received: from cix (unknown [172.16.64.42])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id DEB9E4350717;
+	Wed, 11 Mar 2026 13:55:06 +0800 (CST)
+From: Cunyuan Liu <cunyuan.liu@cixtech.com>
+To: liviu.dudau@arm.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: neil.armstrong@linaro.org,
+	heiko@sntech.de,
+	marex@nabladev.com,
+	dev@kael-k.io,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	andre.przywara@arm.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	cix-kernel-upstream@cixtech.com,
+	Cunyuan Liu <cunyuan.liu@cixtech.com>
+Subject: [PATCH 0/3] Arm China Linlon-D6 display controller support
+Date: Wed, 11 Mar 2026 13:55:03 +0800
+Message-ID: <20260311055506.12023-1-cunyuan.liu@cixtech.com>
+X-Mailer: git-send-email 2.53.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTogW1BBVENIIHYyIDEvMl0gZHQtYmluZGluZ3M6IFBD?=
- =?UTF-8?Q?I=3A_update_CIX_Sky1_PCIe_Root_Complex_bindings?=
-To: Gary Yang <gary.yang@cixtech.com>,
- "bhelgaas@google.com" <bhelgaas@google.com>,
- "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
- "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
- "mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Peter Chen <peter.chen@cixtech.com>
-Cc: "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-References: <20260310065338.2337761-1-gary.yang@cixtech.com>
- <20260310065338.2337761-2-gary.yang@cixtech.com>
- <841c0b46-76dc-49c2-bb74-7fc2e5a2a702@kernel.org>
- <PUZPR06MB5887D091B6CF979DFC46EECBEF47A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <PUZPR06MB5887D091B6CF979DFC46EECBEF47A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: 866D925C954
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB86:EE_|TYNPR06MB8401:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: f26e5808-2e5c-4f12-4eda-08de7f32c007
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|82310400026|36860700016|1800799024|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	DGcNMyd/5shLhUymoVYYVI261ronVne2/afHJfb6tfoRNmamCJ5SqPrS+grqBj8+7t9Q08k1Jyf2t5/EAydwon9no3Am2m3kDxbMm2RAEbywHj/qpgSlGC5HG1n0GoOxp6NQZMwyGCgkMk54n0einm2UyHwaXzb9SPTHFbNLUb/HAxnrcyg2kJtWWxLpwxW74J/kXPfubX0Xvol90o0jFRZjE8a8IjBU/sfbiUIRK5O/wHJeXN8U0SHxoNuvgPORs7FQ3DnQk7g2/ZJhYgDO0GrNevq8QeLMG5Il+oL2NZT4NwNdOl5sylg0bBnHrVOJhsEP+NqxtW971AJU4N1XHVD55rDY2Q+zYeXhfebFjFSU3qB5HH9Nog9k042Rulma5J/qyD/MbeF7X8aWyZpP+vuAc1P++i48MIY0whkcFyKnV+wLyPm7lg3LKZ8aXoBytWJaLVjQuWNfcMuF+31ykXermviwOtLDQSjV0T409b+wL3sazANRTnKnZnuidX5OzzHFr0OlIvyJ/Uj7sI3WZHIVbLXOLFGMfRJYTEtoBSX08zjcbf3dossUy1hc8w4t/AV8pTftPezi+kJGgTVPuZomW8NLv8Mckk+yfcOHYVfHmlP4xyaEYbgCta/TkAVJXz0KcL6Lo+vJNxY+Rqs7ul+eFZI8+s4lNgOrg5cN5pOQNXabrp6965ftiVH8sLOBH/bBVh4NRWsjbgeZtwnGyjsnz8p/6DeYfKuGngOJyNmuSW2L67nyWagTc6Y7CchzRWxtd+k00A7uiVNWD1+cxg==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(82310400026)(36860700016)(1800799024)(56012099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	qevijY3IXNUlUycumRaxNIdWf801MWvp7cmAongdfyOJbNJWljxYX8LfDRcTJFPfbf4XDaOnlGzqSBOz65xI/WyJFpTuAuLTAcLPCmrg6hH/hzMxW/TS8A87Ul7hb/El7JjX5W08q7hbJy2m1PF0WpZu70+2PYniyPstLCqd8svKzkxQk46x3z4WQ9IM4sFKxcDhXd6YhTdPktWKLyK/cm+zV0hOkj9guke6ZmKHL60rRxr1k2yzsctqpo9TVcP5kH5BZ6rfIZncsNqheQPEsQXldsaOyKx7J5vyygHfD/nflcanNjdE6mDx7G7PJGieeOpUTL6pYFDcLBwQ43MAUoidtpW34TvtcWorOKYRSYg6LO/hODKyz86zalWct1QhrVoZgE8IBVdltiHcwKW5vFX0isRhAPqoN12HN2uPTggCC2/L1JNuAWWwMZEpljyd
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 05:55:07.7860
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f26e5808-2e5c-4f12-4eda-08de7f32c007
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB86.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYNPR06MB8401
+X-Rspamd-Queue-Id: 4025725C97F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [3.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273838-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	TAGGED_FROM(0.00)[bounces-273839-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	DMARC_NA(0.00)[cixtech.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FREEMAIL_TO(0.00)[arm.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[cunyuan.liu@cixtech.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,cixtech.com:email]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cixtech.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 11/03/2026 03:31, Gary Yang wrote:
-> Hi Krzysztof:
-> 
-> Thanks for your comments
-> 
->> EXTERNAL EMAIL
->>
->> On 10/03/2026 07:53, Gary Yang wrote:
->>> add power-domains and power-domain-names property
->>
->> Why? Please write complete sentences explaining why you are doing this.
->>
-> 
-> Sorry, I did not describe in detail.
-> 
-> The Sky1 PCIe controller sits in a power domain that must be enabled before the controller can be accessed.
-> Describe the power-domains property so that DTS files can reference the correct power domain provider.
-> 
->>>
->>> Signed-off-by: Gary Yang <gary.yang@cixtech.com>
->>> ---
->>>  .../devicetree/bindings/pci/cix,sky1-pcie-host.yaml         | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
->> b/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
->>> index b910a42e0843..1d8ee8310588 100644
->>> --- a/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
->>> +++ b/Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
->>> @@ -38,6 +38,12 @@ properties:
->>>    ranges:
->>>      maxItems: 3
->>>
->>> +  power-domains:
->>> +    minItems: 1
->>> +
->>> +  power-domain-names:
->>> +    minItems: 1
->>
->> There is no such syntax. Open any existing bindinh.
->>
-> 
-> Sorry, They come from Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-common.yaml
+Adds Komeda DRM support for Arm China Linlon-D6. The IP is register-compatible
+with Mali-D71, so we reuse the D71 code path.
 
-There is no such syntax there.
+  [1/3] dt-bindings: vendor-prefixes: add Arm Technology (China) "armchina"
+  [2/3] dt-bindings: add armchina,linlon-d6 compatible (fallback to arm,mali-d71)
+  [3/3] drm/komeda: add Linlon-D6 product ID and of_device_id, use D71 funcs
 
-Just open the file.
+Tested on Radxa Orion O6 with Linlon-D6, basic display bring-up works as expected.
 
+Thanks,
+Cunyuan
 
-> 
-> Execute the two commands below before submit patch every time.
-> 
-> make O=$OUTKNL dt_binding_check
-> make O=$OUTKNL dt_binding_check DT_SCHEMA_FILES=cix,sky1-pcie-host.yaml
-> 
-> we don't find any warning or error. So we think all is ok.
+Cunyuan Liu (3):
+  dt-bindings: vendor-prefixes: Add Arm Technology (China) Co., Ltd.
+  dt-bindings: display: arm,komeda: add Arm China Linlon D6 compatible
+  drm/komeda: Add support for Arm China Linlon-D6
 
-No, because there is no such code nowhere. Please take other bindings as
-an example. You miss here maxItems.
+ Documentation/devicetree/bindings/display/arm,komeda.yaml | 3 +++
+ Documentation/devicetree/bindings/vendor-prefixes.yaml    | 2 ++
+ drivers/gpu/drm/arm/display/include/malidp_product.h      | 1 +
+ drivers/gpu/drm/arm/display/komeda/d71/d71_dev.c          | 1 +
+ drivers/gpu/drm/arm/display/komeda/komeda_drv.c           | 1 +
+ 5 files changed, 8 insertions(+)
 
-Best regards,
-Krzysztof
+-- 
+2.53.0
+
 
