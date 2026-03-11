@@ -1,149 +1,129 @@
-Return-Path: <devicetree+bounces-274117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274116-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Aj1JyxwsWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274117-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:37:48 +0100
+	id YPuBLBNwsWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274116-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:37:23 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id D975F264ABB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:37:47 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C4FE264AA4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:37:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4B987313BE57
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:32:13 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 0D5F53008D30
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:32:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E263B31AABC;
-	Wed, 11 Mar 2026 13:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDB3531DD97;
+	Wed, 11 Mar 2026 13:32:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B17R0GIM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E7F31F994
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6812E1F06
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:32:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773235926; cv=none; b=uB606pD7I8HzGVCrArG2ZWMFsa5iY2vvRR+nt1j3RCUMk4vxnhBlziffJPnhiVksIBXvmdKGEPSvNgtOh+K4oKz4A6ov1eH3ouJhd2bhGEasELXguCT7DDCwKqvtj/VkBH/N5HlNzEEFC5FatwG9KkoEWeJlydoB+YDfQcUNXbI=
+	t=1773235924; cv=none; b=rhXALOdXMiHy2g18/K26b7cXPu1DvSszMrJpOIHdqGoxIWTcCc3fvom+M13jSbJcMqpdfZ4AjP5HWIh5pY0RZvL6zJVNVkO7DwWQmV90govpOSphYvbiHVmUjcNONTrEAy+9X6jpj1glS/JAOLcD4Lh6cnT1yn9ocWVyMrXs810=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773235926; c=relaxed/simple;
-	bh=TEGOliZPIKjcYMq/SlpUhrjTFTqBozUfJkzHQj68wwc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iDon81Ah7z/1F4H8jqQdUPKPgcdeJtoKoK1lFuLSfQB3rV/kRLvgi0swQv5+AtH1OQtakLhao1Mfv96iDGsfzQBC3aPKT+hR426Dtcro61Jiy9dL2qBJcVZfhnlXqdd5qZWfQU4cKiiiN4RvtPCXaH5pDtBEOgZA1R/NzaXwE6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-56b16428b77so3863871e0c.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:32:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773235924; x=1773840724;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aFGeq6M+ANIk5ThSAzANkY3DpNoGSDLWjfwUeKz6NR8=;
-        b=B9TdVU2Y1lc0zPm7Vc3dDxsPTrw3m7ycXWW+ny+5B+tIsN1oCKGpfQokz1iOfWz2pL
-         1TyrmTGF6k0B8S4qNZpJ+KEmoDOo5K/U+Ekvytu+kIvwhvagmYtCNXxVPF/N91q8rPWu
-         SuBqnCMBkfhisvapAc+24+roG8+8xwp9D04bpre475aIf6V29Vdjlvnn4mm44YmrTXpu
-         /Mt/EbjF4LuwOl67sF7rbYm46rSZTFQ0ePkV/PR9mFioPv4e35nEoW0RNP21CUVu8fYW
-         LVuaTH29+FMwCLaPJ1OPAb6WDZZhlFijnV2CIdI8q3DvD4PVUr3r91Y0b7seR3x0YV4r
-         fNfg==
-X-Forwarded-Encrypted: i=1; AJvYcCWxkBzYkz60vMMdW7s54WPyvBGLmS+TJDnxJL+mtzEmjcudJkaWRpCrL5nptcYZEo4Hepmko4ojoKQc@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmeWTtRCVumEl7Cjs0yY9J4gqsmOTFdYKQolowdn0eGUScupFq
-	N+6lZF/D7LUP2W6tYQFTIU3YMiOm15mFRcuTC+5eStawDrV9x0mPp4FfeePvTlFa
-X-Gm-Gg: ATEYQzya1PaXaSY06lolx3DChlgo0fgMANLJ78aj+ZEwDuZ+Znp2PRdrzNItT7u+Ao+
-	wA0KzR3Gi/cJh/cofnHJbTuQkeCBaaq/PWozi0sKZatSJB7LCIpzKVA7Lmu6LoWh43dapWvwr5Z
-	Hg3H7F4Wqj08dApE8rZ8xohI6h9UCLyMN99TK9dMHsSV2kp4dpIUCeubfpTsp8H/6M7qoUtquSU
-	NNg2diIA975Bq/zG+BMG3SaqeBgTh5gE6K2AGSGytggVsg16IC9M09QuHKRaFZmw+T9u4QA67ah
-	zzR3EpkKKoJ2MKke7qBpKbaIiD6X9lSENYxl+0bCkTm1SwLq64TRuGrj3bORnLuO/vqa2QQlWWy
-	AFu0PSEyp7yN+2QLvZuGgKupi0jWnWj4un2H2Z6PGK1fbjfHizcX/llFpHljlgZhnLIN0siQ0DO
-	3sPBrZZfpjKUM3nEjLKVNLI62N2bZmbSS8Gr0u9QNoZniCEpT3QOW3PYK5jRCjb/9Z
-X-Received: by 2002:a05:6122:e169:b0:563:7a35:1d9f with SMTP id 71dfb90a1353d-56b4755505dmr962645e0c.15.1773235924558;
-        Wed, 11 Mar 2026 06:32:04 -0700 (PDT)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56b4646bdfasm945708e0c.13.2026.03.11.06.32.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2026 06:32:04 -0700 (PDT)
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-56aebfb4184so7210753e0c.1
+	s=arc-20240116; t=1773235924; c=relaxed/simple;
+	bh=fcoJPNKuDkOxaeGfpvjVklBwG6h+rrhPOzC51SVyp8w=;
+	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ebjjcwgCU03ygDOMCltwAH3dYuxUNrkgYtvvSy+aG54RYzgVDADotOKT4/DyV6EnUb0uaxRxuO9DrMJ4k79vjmn3t7r9r16Nip4HnpR4HORjBTUCSMSCczuTaX2tb/Qg3Ukh3HVB+1NMhI5Dvx0C9pHe6NpFFSw5tUhBmch3vKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B17R0GIM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F70AC2BCB1
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:32:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773235924;
+	bh=fcoJPNKuDkOxaeGfpvjVklBwG6h+rrhPOzC51SVyp8w=;
+	h=From:In-Reply-To:References:Date:Subject:To:Cc:From;
+	b=B17R0GIMPI3VA63UNr09zTs9qdL/WUBIt6avrFViPKQsL4CVt7ju/qSVYHpVBtkH2
+	 ypMlgqwscOaNQ97VwqhMFD4bbqCjdkCZhHYskxXhvd5BIKzigfXWfwHxQP1F0kD4oW
+	 uXc+IgsxaqH3Wv/WgICqo12qg5n9CF3tGdoAs/wQ/JgdcVYFCnCC//tuSFxt1XWHsO
+	 r43HLfMLnGdB5S1IAjeLr5Z7uaDJ4mtV6xFFazT1Y/f9Fpcku7bMFzz8KsnvX7/KKS
+	 5XDif2UJiYn7/Qm0g+pyAL/a5MPQdVMp51uXnD+d6N4DDZNE7TX71Z0wfAcpf1o2ye
+	 8RM95ruI0JwuA==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-38a2544b52bso85627041fa.3
         for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 06:32:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV0eLq1+oimnBO6VV9i+Rq4+EVTHbcd41/IYr/aY/TghNHlWz5RRUxyZldmKlXHN/iRLEo2Odv7UoIu@vger.kernel.org
-X-Received: by 2002:a05:6122:c96:b0:567:4576:534e with SMTP id
- 71dfb90a1353d-56b47436dc3mr914567e0c.1.1773235924026; Wed, 11 Mar 2026
- 06:32:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUanWWIBGBuZC2d0+hcH3hdVmtQdvZIf2zKa4xhXBlPg+qRlaEeTCUS340M8CzzrbcgKM/1OhI8QzJ1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvDMKftfA/cMkszizLZL2fGmGPzPWMpdQW6Wr+MY9SOwfH0vkT
+	m0Ck0TPVE2IlB5BVw/3ufCWPJtFnm1Amn1pt5WvpNY82fbZtR8qVynLrJUIWRyJB1Y4aDZQNCP9
+	QYoQ3OGQX7HjXovjKXUdl4pruwq1YmJQFgK79hdr9YA==
+X-Received: by 2002:a2e:a808:0:b0:387:da4:1664 with SMTP id
+ 38308e7fff4ca-38a67e8a64bmr10477381fa.36.1773235923191; Wed, 11 Mar 2026
+ 06:32:03 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 11 Mar 2026 06:32:02 -0700
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Wed, 11 Mar 2026 06:32:02 -0700
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <20260304-b4-scmi-upstream-v5-3-f8fc763d8da0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260303233314.2928711-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20260303233314.2928711-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20260303233314.2928711-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Mar 2026 14:31:52 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUVj+2OfbBbLPWtes0=oQ2Z8s8dejFGv7fu=MCGaUJhgA@mail.gmail.com>
-X-Gm-Features: AaiRm509M_cbkmHsZuryn42P-hmBtw9lLyP2WI9rw9d8OsbMr-Zga8Z06XMDeEs
-Message-ID: <CAMuHMdUVj+2OfbBbLPWtes0=oQ2Z8s8dejFGv7fu=MCGaUJhgA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: r9a09g057: Add DMA support
- for RSPI channels
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+References: <20260304-b4-scmi-upstream-v5-0-f8fc763d8da0@oss.qualcomm.com> <20260304-b4-scmi-upstream-v5-3-f8fc763d8da0@oss.qualcomm.com>
+Date: Wed, 11 Mar 2026 06:32:02 -0700
+X-Gmail-Original-Message-ID: <CAMRc=McYSbXK5c91O7q2J2VbJ5Ax=3WVDotjo-p704M7bDtkKA@mail.gmail.com>
+X-Gm-Features: AaiRm52qcqj0U45jQbqd-qm-LuTyMtS-yQpxO4suRo4FZg3zGF9woupoRjln5lU
+Message-ID: <CAMRc=McYSbXK5c91O7q2J2VbJ5Ax=3WVDotjo-p704M7bDtkKA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: sa8255p: Enable sa8255p-ride
+ board support
+To: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Prasad Sodagudi <prasad.sodagudi@oss.qualcomm.com>, Nikunj Kela <quic_nkela@quicinc.com>, 
+	Shazad Hussain <shazad.hussain@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Rspamd-Queue-Id: D975F264ABB
+X-Rspamd-Queue-Id: 7C4FE264AA4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.46 / 15.00];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,vger.kernel.org,bp.renesas.com,renesas.com];
-	TAGGED_FROM(0.00)[bounces-274117-lists,devicetree=lfdr.de];
-	DMARC_NA(0.00)[linux-m68k.org];
-	FREEMAIL_TO(0.00)[gmail.com];
+	TAGGED_FROM(0.00)[bounces-274116-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,quicinc.com:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,qualcomm.com:email];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,mail.gmail.com:mid,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,linux-m68k.org:email,renesas.com:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Wed, 4 Mar 2026 at 00:33, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, 5 Mar 2026 05:28:30 +0100, Deepti Jaggi
+<deepti.jaggi@oss.qualcomm.com> said:
+> From: Nikunj Kela <quic_nkela@quicinc.com>
 >
-> Enable DMA support for RSPI channels.
+> Add initial device tree support for sa822p-ride board, to boot to shell
+> with ramdisk and rootfs on ufs and uart10 as serial console.
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Co-developed-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+> Signed-off-by: Shazad Hussain <shazad.hussain@oss.qualcomm.com>
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+> Co-developed-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
+> Signed-off-by: Deepti Jaggi <deepti.jaggi@oss.qualcomm.com>
 > ---
-> v1->v2:
-> - Added all the possible DMA channels
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.1.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
 
