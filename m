@@ -1,172 +1,190 @@
-Return-Path: <devicetree+bounces-274283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274284-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uCg5Doq0sWnbEgAAu9opvQ
-	(envelope-from <devicetree+bounces-274283-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:29:30 +0100
+	id gG8LI6a0sWnbEgAAu9opvQ
+	(envelope-from <devicetree+bounces-274284-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:29:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C190C2689A8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:29:29 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA0E82689F4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 19:29:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B6C3E31B848B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:27:02 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6762C3007F62
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49893E8678;
-	Wed, 11 Mar 2026 18:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C353E8C6B;
+	Wed, 11 Mar 2026 18:27:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VjvaFTCB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dtP4RQTQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9093E4C9F;
-	Wed, 11 Mar 2026 18:27:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E1C2E8DEF;
+	Wed, 11 Mar 2026 18:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773253621; cv=none; b=TBdAlqZ0Z7PwloH9qggTwyMIj6an5SnSDvCr6Sy1YgN5yIQ0HGv57h80Jgdc8/SrBJp6Xa2FZCdqrnj/URhKMMo0PjkJRWlRupSBWvRvMXySHaRPIxi8BuMDhGJkwx1Ty72YjukGaL2RgS//kMo7RzhHaeGmcI1EQ+DtkDkvq0g=
+	t=1773253659; cv=none; b=kXggo96UfhuIAlt8xxIs+drvA8W61+QY4RPxxoPsWfeP/nizJorgihN842d0/wWMp/0xis4UHCbTjWonulFIzT1u7mEhV8hL3CBERSgO5xUUb30588MwpXFLtO+jaMeiisHaqdSvYwM/+LERveZCBprvT9+Oi7aGpPvtb4e0G5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773253621; c=relaxed/simple;
-	bh=GYvQRS01mkWWbRN5RQFFIWjtNKp0AgsH7LS9di96fXU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V1zUztSY/dkUtZFFxqPacw1iC58YWxvS/U/edExENrf4Ib+mqCDZVcZPpxwUjrbhFQkmDhUa67O2tP1h7QTPcAjTk9ngEg+lDHOEcjp1oLcgt+jIsoVFKU1bsPC/L52uVdR6n6/Sks4SmFOpbxkK0g55QXzpiDXKPjldymi91G4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VjvaFTCB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99FA0C19421;
-	Wed, 11 Mar 2026 18:26:58 +0000 (UTC)
+	s=arc-20240116; t=1773253659; c=relaxed/simple;
+	bh=psbKm+JUIEOmVDxhlExsmkrYZCYiynHWiEWJ93E/oIs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hAqeevxI1FdPfuyeOse365ZqX4NnHQPue4ItrYvE7vBlzrBRLBGT4mG+9zn51N0UgGnyrHYurNPxQD+NJkqdHMK4sK/81JEQKEAuQZgN3PxnzQ2EuSW7JaW63HCwntBgmY01wDYXUUBL5WXx4qvEwTjqd84D2e9MPNQCsqQnMFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dtP4RQTQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8B17C4CEF7;
+	Wed, 11 Mar 2026 18:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773253621;
-	bh=GYvQRS01mkWWbRN5RQFFIWjtNKp0AgsH7LS9di96fXU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VjvaFTCBbkgi6A69zAJ/S4uZ6AcbHEDB07MLwynIoKxHUwnI6dB8j2Xyf5E+9yyb7
-	 maaARYMFRvnr4QnsuXkquP3wCtZM4YLJqq8bqPLl2AONAAbKGX9usy16hLMZRAGgax
-	 MGt76/u1hcnPO3w/9TP6GTps3ja71zD85ebSXDQWY59vfLGM5zYbqrCSGDp4Kaj7Gq
-	 QDnSZfxPeLQNEnoWX79/gjNIG9dHLYNopi5fhKZiQ82DUQZA4bAwzF3U2tGSUPtVlb
-	 SDr4QIyt5LKcPdQhjnDOEfry9VDRy7bb8EysV8r0EeXsKsDkyExvJZrkQDaVHZbqvB
-	 CDmMVBlcMcLZQ==
-Message-ID: <9e740dae-3197-4cdd-85fd-8a840d2317a3@kernel.org>
-Date: Wed, 11 Mar 2026 19:26:56 +0100
+	s=k20201202; t=1773253659;
+	bh=psbKm+JUIEOmVDxhlExsmkrYZCYiynHWiEWJ93E/oIs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dtP4RQTQjVcXurfV+HjrB/RNKkQfN96ZR2NDOGYO/rWtfTDgc72vOznc27235rL3p
+	 Af0Op11P45Yz/5cL7zb05FEaBhxV9zavR8QnZs4JAYo77juxoWuhjlRLxNHDlANyu8
+	 M3Nm65Uyd/xRrfUs+XTOxwD6O8w5TSAiKPeZESb1iyzN/kcaaJX10YdAzppPRZYQkf
+	 pdXoaR4z6MeiiIDkcv5wHa1+VfhxrgMXIPloVu+uneoxAql8gLnBtF3mTP5208WD4M
+	 VEuiFNi0u2Mm39h+aUbKQBp91Nrlutd0dNIxnGoD6uXRAHdBpKUHy4R207/CZBo71+
+	 GngxM7FZnMPZg==
+Date: Wed, 11 Mar 2026 18:27:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Charles Perry <charles.perry@microchip.com>
+Cc: netdev@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Simon Horman <horms@kernel.org>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: cdns,macb: add a
+ compatible for Microchip pic64hpsc
+Message-ID: <20260311-quickstep-helmet-ea7f37444cfc@spud>
+References: <20260310212202.3991199-1-charles.perry@microchip.com>
+ <20260310212202.3991199-2-charles.perry@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: crypto: ice: Document sm8250 inline
- crypto engine
-To: Alexander Koskovich <akoskovich@pm.me>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260309-sm8250-ice-v3-0-418bf5c5c042@pm.me>
- <20260309-sm8250-ice-v3-1-418bf5c5c042@pm.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20260309-sm8250-ice-v3-1-418bf5c5c042@pm.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="LzxDbwZaErEq3HMU"
+Content-Disposition: inline
+In-Reply-To: <20260310212202.3991199-2-charles.perry@microchip.com>
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274283-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274284-lists,devicetree=lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	RCPT_COUNT_TWELVE(0.00)[15];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pm.me:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C190C2689A8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[microchip.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EA0E82689F4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 10/03/2026 04:12, Alexander Koskovich wrote:
-> Document the compatible used for the inline crypto engine found on
-> SM8250.
-> 
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
+
+--LzxDbwZaErEq3HMU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Mar 10, 2026 at 02:22:00PM -0700, Charles Perry wrote:
+> Add "microchip,pic64hpsc-gem" for "PIC64-HPSC" and
+> "microchip,pic64hx-gem" for "PIC64HX", compatible with the former.
+>=20
+> The generic compatible "cdns,gem" works but offers limited features.
+> Keep it as a fallback.
+>=20
+> The GEM IPs within pic64hpsc have their MDIO controllers
+> unconnected from any physical pin. Add a check to prevent adding PHYs
+> under the GEM node.
+>=20
+> Signed-off-by: Charles Perry <charles.perry@microchip.com>
+
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
 > ---
->  Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
-> index 061ff718b23d..ccb74ea14ce8 100644
-> --- a/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/qcom,inline-crypto-engine.yaml
-> @@ -19,6 +19,7 @@ properties:
->            - qcom,sa8775p-inline-crypto-engine
->            - qcom,sc7180-inline-crypto-engine
->            - qcom,sc7280-inline-crypto-engine
-> +          - qcom,sm8250-inline-crypto-engine
+>  .../devicetree/bindings/net/cdns,macb.yaml    | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Docum=
+entation/devicetree/bindings/net/cdns,macb.yaml
+> index cb14c35ba996..b934abd98e20 100644
+> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> @@ -70,6 +70,14 @@ properties:
+>                - microchip,sama7d65-gem   # Microchip SAMA7D65 gigabit et=
+hernet interface
+>            - const: microchip,sama7g5-gem # Microchip SAMA7G5 gigabit eth=
+ernet interface
+> =20
+> +      - items:
+> +          - const: microchip,pic64hpsc-gem # Microchip PIC64-HPSC
+> +          - const: cdns,gem
+> +      - items:
+> +          - const: microchip,pic64hx-gem   # Microchip PIC64HX
+> +          - const: microchip,pic64hpsc-gem # Microchip PIC64-HPSC
+> +          - const: cdns,gem
+> +
+>    reg:
+>      minItems: 1
+>      items:
+> @@ -196,6 +204,17 @@ allOf:
+>        required:
+>          - phys
+> =20
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: microchip,p64h-gem
+> +    then:
+> +      patternProperties:
+> +        "^ethernet-phy@[0-9a-f]$": false
+> +      properties:
+> +        mdio: false
+> +
+>  unevaluatedProperties: false
+> =20
+>  examples:
+> --=20
+> 2.47.3
+>=20
 
-SM8250 does not need two clocks?
+--LzxDbwZaErEq3HMU
+Content-Type: application/pgp-signature; name="signature.asc"
 
-https://lore.kernel.org/r/20260310-qcom_ice_power_and_clk_vote-v2-1-b9c2a5471d9e@oss.qualcomm.com/
+-----BEGIN PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCabG0FgAKCRB4tDGHoIJi
+0vz+AQCTLDRkNbEjSXGxX44BY5pz1csSJ4nSQ+q9irleZdC0PgEApg7yHBTlVlQU
+IdAb5Z+z9AzJHBfwC4qIO8pr2q+/Ewc=
+=opRa
+-----END PGP SIGNATURE-----
+
+--LzxDbwZaErEq3HMU--
 
