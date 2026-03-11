@@ -1,200 +1,259 @@
-Return-Path: <devicetree+bounces-274048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274049-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kEC/OO5YsWmGtwIAu9opvQ
-	(envelope-from <devicetree+bounces-274048-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:58:38 +0100
+	id yAyPBedZsWmGtwIAu9opvQ
+	(envelope-from <devicetree+bounces-274049-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:02:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E6E5263497
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:58:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1512635A9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:02:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 07A99301C583
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:58:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D9C9930191B5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12593DE445;
-	Wed, 11 Mar 2026 11:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QvojUTFv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB61C3DDDD6;
+	Wed, 11 Mar 2026 12:02:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022110.outbound.protection.outlook.com [52.101.126.110])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B0C03C7DE6
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 11:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773230315; cv=none; b=pgS+S0iZDkf+epArGTT7Egb+BaHM2MnWnOtnQVrr4/JhrBtIviaFtKaMWOp9nzg5hX4C0kdq1XF06PGvs+TuIBB5wRnZSXJ+ShQjhjO/m+0qblcwtAurY/aGerv/O4u5wc8y3U2g/kpcSSLGNmXwxfMnygt5FHuT6tWiig1ejXI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773230315; c=relaxed/simple;
-	bh=mcUVNnzpe3gSLeudat/9NanXNzDk3rC08yiK2QQcH8g=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mZgPZT1zbQB2De6RDJOj2xbH9BtNl9eM1RuXx2fG9ZJxJcbaotrwy2M5TP5VMfhKRhB3ruzTRukxeeesZdFcfc/p4HzKoahOHUVGzVuEr7dffrfi47E47Rq5daZ/7VH2wt4ysnisTUjRiZeqpZX1ywGWVnSXk5e9zvDkWSG64Cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QvojUTFv; arc=none smtp.client-ip=209.85.219.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-89a018cbbf8so11579146d6.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 04:58:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773230313; x=1773835113; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Kzn6AZnRX682NhBNc83If833FpVW7jRXEbyOc+GAJ9E=;
-        b=QvojUTFvQZ479hDVjlaWEl4GXrbgwQMHFr/QZx1DvYem+JuVOnvAhpQgVUrJa39fIO
-         OBncVvxYKl3rYnrIrHgr+LYt5SIDT7B983E+sTIRIQF8ZsA8FUbxqgVzzqaPXJM1MUxJ
-         fAs6/mX4vCo5wwMdBfudNU802YWgmhv63DbJcrag/FkHQjdnMHOw+tkyZruWBOLQeBNf
-         MK9RkDPO9shwux7gUxAMuFi+l4nP0UtvnJTXN/HKeGNa9CMsSidJG9km6w4tC7hlhaqz
-         Pfyk669nCQ86E443PPk8AUslfVzdVBSK6oVTogG3ClDKX1eamBBnC7DEhBCRqOBspZBk
-         0SzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773230313; x=1773835113;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kzn6AZnRX682NhBNc83If833FpVW7jRXEbyOc+GAJ9E=;
-        b=MzmJcgghsg5qA5LRoP4xTtLyU6fuH0KMCHPryynlMglw20k/Wg0wddNtjYaMHwIgjn
-         MLTaT+GdNt3eslVw8eiCLXx/DnO+e7gxrof/QTQP6qT0HwVSBtyS28v91+RtwFFJhT3B
-         q03Sg5HF2xxGgrUjq2SV7nKMU950IwQ3c9Tu///lntnlPO8N5GjqdQ0JUOQELFb+GPGX
-         dIWZwiDz1LISiON8CRhkBir30cUkay+0jKuzs4HhgNHKA0pmV6z3q4TNHMAq8l/ReKO3
-         zBYCMoM7iMNfbvol9kHJfikLkWJ9QrmMlGQeqa37FoYJK1/79a1aIs0Pm/F9d2HW4f+r
-         eKVg==
-X-Forwarded-Encrypted: i=1; AJvYcCXJpy7RVtkmZ7jhPBMCh6d63FyCbnPWThMdfeeygcTENhonio/fZ9KtPf1kzGx0j9+rZhiPQyFLwHM6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz4Rez2/pjerSpXHXitLYzVADv7242P0ma09VW8phOpDttjvnLX
-	wXT4Y5m1Iv3z/VfvfiQqyS5UyZsJEBV6NttlbnHnQTP+qwxed9ofPVCf
-X-Gm-Gg: ATEYQzynsaFeM3SNEGLLrLsO0BXYh8AnIA2ojVgz7hCFIvip8m8TsfunQWfAvI5q+pd
-	QErw6BO5C3iF39sTNZN2HjUKqVSaVWGvtXKNdSP9+g9V69zGHsgnX56pKbKKbBlqrIWD3TnyBLI
-	j551q3ta0n2pkkGlZ2azcInmShErUYwzUEJ/saeGWIUciheTYL/u/lfun4ep36JFiuYJU6qdikh
-	aa7K6w+5Le9dl0qvSc3kwX7R9jxmyviutbzqsefkKEs0lVglZRKqJDoVZouQBLBZVIO5kryxSHX
-	UvUU01COAvf/aOFihOCJy+WDZHpZW6PUbb5ie/4JOcKNxot3eFDuUwWL4cb0+vsa7VQrD9BpgdO
-	omCfpNUU3iMxTYomi3K5rVFT17YkHhcdwHVzacXJZ6f3vNb8TBqMRAi4/eWKJ9FIyFPVmX7OGHa
-	hJzUbix4cld2G+T7a3e0KLcgp1YjHTPC0=
-X-Received: by 2002:a05:6214:1946:b0:899:f495:1a17 with SMTP id 6a1803df08f44-89a57c3b5f2mr94078516d6.15.1773230313230;
-        Wed, 11 Mar 2026 04:58:33 -0700 (PDT)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-89a65cd7f49sm12612136d6.34.2026.03.11.04.58.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 04:58:32 -0700 (PDT)
-Message-ID: <de45c101d1e54b5aaff94326708042f90e8aa74a.camel@gmail.com>
-Subject: Re: [PATCH v2 5/5] iio: dac: ad5504: add optional GPIO control for
- CLR and LDAC
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Taha Ed-Dafili <0rayn.dev@gmail.com>, lars@metafoo.de, 
-	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, 
-	skhan@linuxfoundation.org, me@brighamcampbell.com,
- linux-iio@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Date: Wed, 11 Mar 2026 11:59:15 +0000
-In-Reply-To: <20260310174835.24209-6-0rayn.dev@gmail.com>
-References: <20260310174835.24209-1-0rayn.dev@gmail.com>
-	 <20260310174835.24209-6-0rayn.dev@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 726953DE45A;
+	Wed, 11 Mar 2026 12:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.110
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773230563; cv=fail; b=l9ntcygUDsWy8yRT2+FOI+o2HW0JGAUeQmXDFEsfVqPKR9bQcOS5PHtFVtlx3bJKW9Dk1OcV+N/C5hQzRwRHzaW+X9HPJc8+l5djZ21AgckCwZvQYi8jsit2rtrNlnYNbtkRCMq7JqPLqlDWD9ZbYxRQLsp0v48rvknFhtCDPSg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773230563; c=relaxed/simple;
+	bh=TNjmvTIN+laI+x098phRoL6eIeQvW12m3keiDjci/qA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WARac5F0An0NaIUG5ooiB/cJQfIb2LvVQfpNVEZDJL8SAOPFod6p3oPR6J7AHNO+ap/LWrGoHrLRuj9cw9JcnX8diJq5J4nb5qCey3LN0ysdh4/L1D/U+ZlAVbKU0osfT1CWonJSWhEvWu9B3MCt61h9chcN8jIeKv1jJCWfQOA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bAOBW/HGVaIQxmkHGYVYOimayuErkWEOSEcVwotU5uSSH3dKT6S8c50GDQgd6IdTBkAWfh9yXpdp63NdV21WyP2UID0+uHMivxHDbArRb4Wq/m8GlbczyO66POH+bRDKIyamXLPAkCkfoKJCXzbpbLlhzkIeXp0CTALLJIjFN+aG2c2iNzUVUoIO1QX9D2BQ/u3lYr62lx9f7edxfu7BUVxiG6rmsXAatBtuLYjLgTDg4QXQ5GR1/o7ELk2iRLpZItu3oXocMPiIBzeBhzQqgjJFOeGn+9spzMcLB1Ixc0ExutmLQHm+z56CNYXDVwRFn2fI1iJ9An2Zc34OzjNOHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=abgzdvQr/j4OIZUuo49TxM/pILkwrJuv1RXzJy8+spM=;
+ b=VOb6EV1HqnAKw5GZtjx02DVcKa6G+NU5KyvabboTx1q0D+bt0ItET5pZ9LSisOq6TUAJtIeqcgzJmQjGQr9jiGDuxizevH53K/KtgRuB2F0Cqq424ueOsAWT1XUiJmRHU+h+IsX+w8tWtxngNQowYpPhE3c9duI9zZNroRzO5l7buLcO9V3ydySsRT+6YSEKxq5xumeNnEQB5tJnilJHMtaaSIcfgWCtlutGwYlkqulC2WrZ/gsoiwd9yPMcSK6TGNY9JNKgU6EodMkvGvgb0vAUL6nn+NstFDQN5fJr7AgvNRS/uYWZ7GwLm6f/bANDKJkQ/bUDzWvaIjGT9fPrPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SG2PR04CA0158.apcprd04.prod.outlook.com (2603:1096:4::20) by
+ SEZPR06MB7185.apcprd06.prod.outlook.com (2603:1096:101:22a::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
+ 2026 12:02:37 +0000
+Received: from SG2PEPF000B66D0.apcprd03.prod.outlook.com
+ (2603:1096:4:0:cafe::74) by SG2PR04CA0158.outlook.office365.com
+ (2603:1096:4::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.26 via Frontend Transport; Wed,
+ 11 Mar 2026 12:02:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ SG2PEPF000B66D0.mail.protection.outlook.com (10.167.240.26) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 11 Mar 2026 12:02:35 +0000
+Received: from nchen-desktop (unknown [172.16.64.25])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 76FED4350718;
+	Wed, 11 Mar 2026 20:02:24 +0800 (CST)
+Date: Wed, 11 Mar 2026 20:02:23 +0800
+From: Peter Chen <peter.chen@cixtech.com>
+To: Pawel Laszczak <pawell@cadence.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+	"rogerq@kernel.org" <rogerq@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"cix-kernel-upstream@cixtech.com" <cix-kernel-upstream@cixtech.com>
+Subject: Re: [PATCH 2/2] dt-bindings: usb: cdns,usb3: Add support for USBSSP
+Message-ID: <abFZz0Z4-VBhiYF7@nchen-desktop>
+References: <20260302030339.324196-1-peter.chen@cixtech.com>
+ <20260302030339.324196-3-peter.chen@cixtech.com>
+ <20260302-vengeful-delicate-macaw-e8dc8c@quoll>
+ <aaVWlfMPSZgy55Cc@nchen-desktop>
+ <81c86ce7-0c55-4c2b-8956-cea4c63351cb@kernel.org>
+ <aaVtfpY1waI8yQOf@nchen-desktop>
+ <PH7PR07MB9538DCBF95C0C77D150E2D4BDD7CA@PH7PR07MB9538.namprd07.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: 4E6E5263497
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <PH7PR07MB9538DCBF95C0C77D150E2D4BDD7CA@PH7PR07MB9538.namprd07.prod.outlook.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PEPF000B66D0:EE_|SEZPR06MB7185:EE_
+X-MS-Office365-Filtering-Correlation-Id: bcee0753-6045-4482-f3bf-08de7f6615c9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|1800799024|7416014|82310400026|36860700016|7053199007|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	sBsqqYsZaWvijz5Fbkc8FCVd98Tt/idirAYZY/7s12tDrwVi7R3CefZ/nAeqVu+ySmAUUw8HkvT07oNqBqP3gL4ffFrdx/1rTdtEO7HpkK2UBELqNo7lO0OiT+kISzBh8EaHt7TAvXVz5TTr/2TDDhycT0ogrLNmg+1bU5wo/AASSk125fWxNLWVh3fDl+3wl+WkAux6jTV+sVxgApydPsTjrkTfn2ax3UaFd3hgm1lKkEUXbOn0edFoEJpMijxaA+Rmd+sOeF34fPMPFwrKozIZCDFNN1fG/caq7pJkzpGYC9CNEJ6ZOvTHLr730IDUMqpX1VzU8Z9xUpdwquphTvqMQikpcFoV9M27apMz3A+68a4ls9WlGsZJZqPz3uu7SQgd2rDQs61Ad5spjLn3miCWQBQ/kmntd+vpW93re6bIGsqhweNjiXOdWPvY7NZZkQXlgb2NRsaibdp8VAFQegTSmhp/GuHvhjjb/pzaUqxuQJih6Q6oNdYr+ub4r+8+vMmAz7EybMEbPkIaUkwEhewqFYMFBNFUzClLW9oRzDG33pf0PoDYkW8vcPIC4oOWyADk/Djm5+NhCB3j5doTiEta7F/EKOTIRKNNSsl7qKk8/Qjqi+E6keaFlvmNfpdLW2il6Vx44Zufym4+mycZ7LWRhuOSu+L4eLURN1pUN7AuK2sykXNFivxe9Z65ywL4d8UnpWLGvoKADzEKdVvGRXAfUAo+0jMKg/v2J+fZaXKs9imMH1slJlgga/PGQb0xDOcaMQDkjr2lqBpaP0meZA==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(82310400026)(36860700016)(7053199007)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	fGci8rwtmgQZTrJbYu7xwTmWl9nVYeMbyO4n+hOH3JA/FNhpQxh/+EuvYnEpqCZnK0Q19PLIkRCafD7qNcueb5+qtq8llTCf04gL3kA5m+RyXu08nXH6H6JMR6Fcw+Nmf9mcI7x0+AzV22D4GQz9FCWBSC5uj/KCiG0Hoq1gMkrLCUkrFW9MMj/Pw+CA/u6TQtn89L2vT5JiiaeiauVGpvR7CN6SfW/EW/QUi+0h2i7ldAoCewFC3U6McAYRXbZulH2RcnCLQe5IiLCb1Vi8tciWmaF+8aBs4xz1a/Fo2ztwtoT9fO0KBcrqFyO4eVafmOZxD7eXYd/TWKiiR/VoKlJJoibo4oeOtqLtAdN/MBpB+eJZXER8kN/j7ABjSZvubJAV92isXH2F1/2X/jVYBUjDxuIyt9G4nR6x44BAQhEctD0Y87B+0LxWFsUfFhCL
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 12:02:35.9637
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bcee0753-6045-4482-f3bf-08de7f6615c9
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SG2PEPF000B66D0.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR06MB7185
+X-Rspamd-Queue-Id: 4A1512635A9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[bounces-274049-lists,devicetree=lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,aka.ms:url,cadence.com:email];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274048-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,metafoo.de,analog.com,kernel.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	MISSING_XM_UA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[peter.chen@cixtech.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.978];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	R_DKIM_NA(0.00)[];
+	REDIRECTOR_URL(0.00)[aka.ms];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Tue, 2026-03-10 at 17:48 +0000, Taha Ed-Dafili wrote:
-> Add support for the optional 'clear-gpios' and 'ldac-gpios' properties
-> defined in the device tree bindings.
->=20
-> Use devm_gpiod_get_optional() with GPIOD_OUT_LOW to ensure the pins are
-> initialized to their inactive state.
->=20
-> Signed-off-by: Taha Ed-Dafili <0rayn.dev@gmail.com>
-> ---
-> =C2=A0drivers/iio/dac/ad5504.c | 14 ++++++++++++++
-> =C2=A01 file changed, 14 insertions(+)
->=20
-> diff --git a/drivers/iio/dac/ad5504.c b/drivers/iio/dac/ad5504.c
-> index cd563460fc0a..58538f5263fc 100644
-> --- a/drivers/iio/dac/ad5504.c
-> +++ b/drivers/iio/dac/ad5504.c
-> @@ -7,7 +7,9 @@
-> =C2=A0
-> =C2=A0#include <linux/bits.h>
-> =C2=A0#include <linux/device.h>
-> +#include <linux/err.h>
-> =C2=A0#include <linux/errno.h>
-> +#include <linux/gpio/consumer.h>
-> =C2=A0#include <linux/interrupt.h>
-> =C2=A0#include <linux/kernel.h>
-> =C2=A0#include <linux/mod_devicetable.h>
-> @@ -48,6 +50,8 @@
-> =C2=A0 * @vref_mv:		actual reference voltage used
-> =C2=A0 * @pwr_down_mask:	power down mask
-> =C2=A0 * @pwr_down_mode:	current power down mode
-> + * @gpio_clear:	GPIO descriptor for the /CLR pin
-> + * @gpio_ldac:		GPIO descriptor for the /LDAC pin
-> =C2=A0 * @data:		transfer buffer
-> =C2=A0 */
-> =C2=A0struct ad5504_state {
-> @@ -56,6 +60,8 @@ struct ad5504_state {
-> =C2=A0	unsigned short			vref_mv;
-> =C2=A0	unsigned			pwr_down_mask;
-> =C2=A0	unsigned			pwr_down_mode;
-> +	struct gpio_desc		*gpio_clear;
-> +	struct gpio_desc		*gpio_ldac;
-> =C2=A0
-> =C2=A0	__be16				data[2] __aligned(IIO_DMA_MINALIGN);
-> =C2=A0};
-> @@ -299,6 +305,14 @@ static int ad5504_probe(struct spi_device *spi)
-> =C2=A0	if (pdata && pdata->vref_mv)
-> =C2=A0		st->vref_mv =3D pdata->vref_mv;
-> =C2=A0
-> +	st->gpio_clear =3D devm_gpiod_get_optional(dev, "clear", GPIOD_OUT_LOW)=
-;
-> +	if (IS_ERR(st->gpio_clear))
-> +		return PTR_ERR(st->gpio_clear);
-> +
-> +	st->gpio_ldac =3D devm_gpiod_get_optional(dev, "ldac", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->gpio_ldac))
-> +		return PTR_ERR(st->gpio_ldac);
-> +
+On 26-03-04 10:02:07, Pawel Laszczak wrote:
+> [Some people who received this message don't often get email from pawell@cadence.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> >> >>>
+> >> >>> +description:
+> >> >>> +  Cadence USB dual-role controllers. USBSS (cdns,usb3) supports
+> >> >>> +up to
+> >> >>> +  SuperSpeed (USB 3.0). USBSSP (cdns,usbssp) is the next
+> >> >>> +generation with
+> >> >>> +  SuperSpeed Plus (USB 3.1 gen2x1) and XHCI-based device
+> >> >>> +controller. Both
+> >> >>> +  share the same register layout and resource model.
+> >> >>
+> >> >> So are compatible or not?
+> >> >>
+> >> >
+> >> > Sorry for the misleading description. They are NOT fully compatible.
+> >> > The register layout (OTG/XHCI/Device) and interrupts
+> >> > (OTG/XHCI/Device/Wakeup) are the same, but register contents are
+> >>
+> >> Layout cannot be the same if contents is different. Same layout means
+> >> same register is at the same place. If you have different register
+> >> with different contents at given place, how is it "same layout"?
+> >
+> >Sorry. I mean the USBSS and USBSSP share the same resource model (three
+> >memory regions for OTG, XHCI and Device, plus three to four interrupts). But in
+> >each region, eg in OTG region, the layout for each register are different for both
+> >controllers.
+> >
+> >Pawel, I think we could try Krzysztof's suggestion and differentiating USBSS IP and
+> >USBSSP IP at runtime, we could use DID register (cdns->version) to do that and
+> >avoid adding new IP general binding doc. What do you think so?
+> >
+> >> Again, driver stuff.
+> >>
+> >> >
+> >> >   if (device_get_match_data(dev) == &cdnsp_plat)
+> >> >       cdns->gadget_init = cdnsp_gadget_init;
+> >> >   else
+> >> >       cdns->gadget_init = cdns3_gadget_init;
+> >> >
+> >> > Without a distinct compatible, the driver cannot know which gadget
+> >> > controller is present. This is a Cadence IP-level distinction (not
+> >> > SoC-specific), so a generic compatible seems appropriate here. But
+> >> > please let me know if you'd prefer a different approach.
+> >>
+> >> Generic compatibles are almost never appropriate and driver code
+> >> rarely convinces.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> 
+> The Device (Peripheral) controller in USBSSP is not just an evolution
+> of USBSS; it is a completely different IP core with a distinct register
+> map.
+> While the Host (XHCI) and OTG/DRD portions overlap significantly, the
+> Device register space in USBSSP is architecturally incompatible with USBSS.
+> They are different IP cores integrated into the same subsystem:
+> 
+> The register map for the Device controller in USBSSP is entirely
+> different. Offsets that are valid for one controller point to different
+> functions or reserved space in the other. Using a single compatible string
+> would imply register-level compatibility that does not exist.
+> USBSS uses a custom DMA-based peripheral controller, whereas USBSSP uses
+> an entirely different XHCI-based architecture for the device side.
+> 
+> These two controllers do not provide a reliable way (e.g., via registers)
+> to distinguish between them in every case.
+> We should treat them as two separate controllers that happen to share
+> some common code, rather than viewing USBSSP simply as a newer
+> version of USBSS.
+> 
+> I believe Peter's intention was to use a common DT binding and a single
+> platform driver, as the resource model and parts of the code are nearly
+> identical.
+> However, given the architectural differences on the device side,
+> I believe having distinct compatible strings is the most accurate way to
+> describe the hardware. It prevents the driver from making "blind" accesses
+> to registers that have different meanings depending on the underlying IP.
+> 
+> Maybe to resolve this, we should have separate DT binding documentation
+> and potentially separate platform drivers to reflect this architectural
+> split?
+> 
 
-Fine having the above in bindings but as it stands now, not seeing the purp=
-ose of
-having it in the driver. We're not handling these gpios at all.
+Pawel, currently, the OTG and host share the same code between USBSS
+and USBSSP, the execution flow is decided by runtime already.
+And for device mode, there are two different drivers for them, we could
+decide which driver's initialization during the runtime, after the
+initialization, the device driver (UDC)'s behaviour has already
+decided per IP (USBSS vs USBSSP). Are there any examples the controller
+would visit wrong register, eg, USBSS IP visits USBSSP registers?
 
-- Nuno S=C3=A1
->=20
+Peter
+
+
+-- 
+
+Best regards,
+Peter
 
