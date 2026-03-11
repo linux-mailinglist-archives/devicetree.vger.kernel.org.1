@@ -1,499 +1,244 @@
-Return-Path: <devicetree+bounces-273859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273860-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UOLSLEAMsWldqAIAu9opvQ
-	(envelope-from <devicetree+bounces-273859-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:31:28 +0100
+	id wGYxAoMMsWmJqAIAu9opvQ
+	(envelope-from <devicetree+bounces-273860-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:32:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C46B25CDA0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:31:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CF4725CE1F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:32:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id D36DF3177B75
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:31:26 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 114533039CB0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A9FD210F59;
-	Wed, 11 Mar 2026 06:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 529E0240611;
+	Wed, 11 Mar 2026 06:31:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="Pwz8FQLM"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="LWOXJbEB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013060.outbound.protection.outlook.com [40.107.162.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9793A59;
-	Wed, 11 Mar 2026 06:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7821C29A9C3;
+	Wed, 11 Mar 2026 06:31:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.60
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773210686; cv=pass; b=Q7R0FzHsptOiT2G/RBMQeuX8dLX0P6n9VOVFo6F7To9QtGB7eompiFE30uiVGHSMFTAvgCJ/PS+E6oOcpTvupcPnMG1TkCFxZcwyGlRHbdWLkwhyjgXK/QyG4EMGPKot3Qhm0j2vC3sWkmxh+63V5x3jGAL2nlR0Aae2/6RxM+0=
+	t=1773210697; cv=fail; b=nI1fvFZZ+ROG8wEyFFS4lBKin2lIAHWmF3DYc00dhUm5xxix178e1Sm4j6vBxsVPf8UPjgR/ROABmOJS0fPxoeSFoMiRIy+Vv+FmytCL1oVYe2HLcpdCfVE7e5PU7orl6Wj+/00yL+a7BNSpbbWWt24RJ5KnSpAsM2aOb2Nh2Lc=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773210686; c=relaxed/simple;
-	bh=cX9vwpU5PeeQtHDidcZ25pt1kuEfySRZaLwd3/yp6bE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IQLdIG5+eGqrE+EZqcLq6dvMdaB4OENFpB40InLgqgDLts5oQ3e8fKNe/CHntD5HI9rPCMCZKw770stOn42JQTFQ8dhmp7/FMeLBgF96v8oHEsqy90tkyRyqI5LrfZv8Ce2UkYkkJkcsmbZLFivqH7UnOE3QTIaIhL9KQ8Hfryo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=Pwz8FQLM; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1773210649; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=aeiaEx9TKMBLZ92qEhV2Js2+p0/lYJ9Ck52znS3bo5phrVLBT2UYcgB9kv+HBgzqOUyJLnzkjLnbIOrMkbH19YfwccV/IsxeAzu3SNJEOUAZmUG4g+FPkb2Ki82j+kQEnkPhqvjvw60xwDEohTstX3HF269q9uVglB6djFni0ic=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1773210649; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=P/zpN74k6VvKPUOQ7RN1eUbbSimS09Syfy1Ya/YYk78=; 
-	b=lKRzEYD8kbNA8IafJkwhHS03DIn3GHqq/JaeVSKOcouL0ktU628WLtgtlrD2Xvmq/7FN2qcZ5thbfUt9zH2CI35LlknT0oA8PulgyCvU/UGCcU8vt0cLWesFxERPU89ClB3U9Tj3a9DeLezqfBaAvpjOtPpWS9RndKVRzdsVm+s=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773210649;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=P/zpN74k6VvKPUOQ7RN1eUbbSimS09Syfy1Ya/YYk78=;
-	b=Pwz8FQLM8XsvnGkxoq6CRqlAN7yoGA4styIUlAnhemhcYcu+A5r6DbZxZ3r7ja6b
-	EuMZeIENI99Vg2/Nk0zznmwm0iEYQUaoaFnFzysLDpHd2ZrH1aoKFKKhhFM4fcKrL8T
-	rPUDVtgQ3ZYbImWS/ryzXxiEwe23UIf4aQR1HoOY=
-Received: by mx.zohomail.com with SMTPS id 1773210646764431.928200045445;
-	Tue, 10 Mar 2026 23:30:46 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id CE291180598; Wed, 11 Mar 2026 07:30:33 +0100 (CET)
-Date: Wed, 11 Mar 2026 07:30:33 +0100
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
-	Ion Agorria <ion@agorria.com>, =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v5 6/7] power: supply: Add driver for ASUS Transformer
- battery
-Message-ID: <abELVIzUrWmno8cX@venus>
-References: <20260304185751.83494-1-clamor95@gmail.com>
- <20260304185751.83494-7-clamor95@gmail.com>
+	s=arc-20240116; t=1773210697; c=relaxed/simple;
+	bh=E34Usqard2a9ufCxpwWUjKhaHcGK5a1CvSrtapKTEqM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=kpuaGWfBYFdsyTOHfWHapDauaLvzBOkNykLuTNtkm2P9FkIdCwUxId6fExAFV68PjF9y9+hKtJ6pW0T13NLVdfbVxuiHZuOGR1gnDxuVHq3X4fEN0y5/kIORXQnwXrCyDY+nOn0Fq6rwd6in4FU8hn9AjHH/a4DTwG5fZ7WD6S4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=LWOXJbEB; arc=fail smtp.client-ip=40.107.162.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rHYs+pdL/MaYu7M2Gh0j03fu/siODuz+LAutoadHHxGE90W2VaBjw8DSQjtFoIJ9WQvQ6v76DXWtlwoAZL70S3n24tNxT6HHcgUPflRCP+kPs5IfADOuCPGUyEuqcVpEBgRh2xYu5/Betv+XcMAQv33YnIsSdd0yLTLppM88aVkF9QTzFJVBz7FfNfVmu4vyEtpgSoFAj2oT1Ww5fbUrGHLOmcXb+d01YGZaEmYmibL8IFPSEaUS9qOdqOGODPQSablMbRuZUPRr8mnNmPMlYEvwjaTjcH/iRLk/5hPoOQyH9nmvp+tefNx/1QmnHjDX27A2fz+2gXLSrIExjDoTpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E34Usqard2a9ufCxpwWUjKhaHcGK5a1CvSrtapKTEqM=;
+ b=kW8ayO0sGfuPgNhtu3rQb/PVlrSLjUb8Wiptv7vBKuSiCR3x+Xr8rW7Hxy98E1GeH5VOYjcaJg7tSEduTGR3+52vBJvH/Bt04k/9D2a6cmOvgS7YuTpPNR2rSa1SFgGH+v05bmVffXS9opbzi7vS2oj2bw/PahOpFq/NfOqf7vJGIN9T6SAd0ROKd6VVizHFKvEbUnYYZnd9x5ucuRiJwOWzFJvqJDzSVVw/J5VfpZMZzUKB6twh72GwTX7M7q8BxdGeMOAlMPGraGIaOqzXlehL+qDxbucrT4GmnY2gFbwSDA9+0TmtiD6BhHmijdxMHSa29dnaqiqW5kWGOTPFsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E34Usqard2a9ufCxpwWUjKhaHcGK5a1CvSrtapKTEqM=;
+ b=LWOXJbEBmiW13kh5LsOTbphmG5XllrZB7ymW6ci7ZLJq9zepgbyhEuGv2lZ9JJYyHtGYOtw2tUwpfVtghzVTuOGFnWZ69f+sxIT9PMlQ9P+HOwqXimBkIlheueZd3s8ZbQFAYWO4Jts6QeNlvFyjDKbWDXu6U9sRjISBr/MbjnnEfSUutZt6cTkICE/71yDDngFeAjFkMhE8VSVjChspsPid9GMcZy7xsmMEEsmw4pdDB4+sU+x6KzgeTufYLIXHTvjyTuT11y5uCfy+M9+rbK/t9hYMqBbEwXz/amASQicQoidYu2lHFAL5GeEzQS6TFozjUSHcw/6zci1wOoMFiA==
+Received: from AS8PR04MB8833.eurprd04.prod.outlook.com (2603:10a6:20b:42c::19)
+ by PAXPR04MB8800.eurprd04.prod.outlook.com (2603:10a6:102:20f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Wed, 11 Mar
+ 2026 06:31:31 +0000
+Received: from AS8PR04MB8833.eurprd04.prod.outlook.com
+ ([fe80::209c:44e4:a205:8e86]) by AS8PR04MB8833.eurprd04.prod.outlook.com
+ ([fe80::209c:44e4:a205:8e86%3]) with mapi id 15.20.9678.024; Wed, 11 Mar 2026
+ 06:31:31 +0000
+From: Hongxing Zhu <hongxing.zhu@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, Frank Li <frank.li@nxp.com>,
+	"l.stach@pengutronix.de" <l.stach@pengutronix.de>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+	"mani@kernel.org" <mani@kernel.org>, "s.hauer@pengutronix.de"
+	<s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v4 1/4] dt-bindings: PCI: pci-imx6: Change maxItems of
+ clocks and clock-names to 6
+Thread-Topic: [PATCH v4 1/4] dt-bindings: PCI: pci-imx6: Change maxItems of
+ clocks and clock-names to 6
+Thread-Index: AQHcsGMFcgKgcGMcrkyDzOazDhXknbWo3NyAgAAA0MA=
+Date: Wed, 11 Mar 2026 06:31:31 +0000
+Message-ID:
+ <AS8PR04MB883364D970713670411E497F8C47A@AS8PR04MB8833.eurprd04.prod.outlook.com>
+References: <20260310075459.726495-1-hongxing.zhu@nxp.com>
+ <20260310075459.726495-2-hongxing.zhu@nxp.com>
+ <20260311-invaluable-nondescript-manatee-a3c4cc@quoll>
+In-Reply-To: <20260311-invaluable-nondescript-manatee-a3c4cc@quoll>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8833:EE_|PAXPR04MB8800:EE_
+x-ms-office365-filtering-correlation-id: 3e5c24c6-f543-4195-b0a3-08de7f37d571
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|19092799006|1800799024|56012099003|18002099003|22082099003|38070700021;
+x-microsoft-antispam-message-info:
+ 3I+xCOjiFPxqPID5WgLYmQzH3+8dwDr2wYoPwCTAsUGeLmZZKZ5vIZDcMRf2E5Ja+BfF57/6oODRHQzriW2rQIAI9NmMxR44jlb4wgz5WCKYOwyHCog3NXXUGGiNQjGPQVX03Lh19WwmNFBc/N/0zMYJMHaBGtOk65bDCrmU14POJhKenL7yOxstyFdzI2j2gdI9+GBt4aWZkjtTSygMiA5OiVWJv4dhKNM681mU7jra5th0DjjCW0jPtoauVwJFl25CHY/rhPhSEpls9JwR3c8xzuGc/yCr1n/PViPJUAhEyJ8TryIv1QI6OZJkRuzozhNs8Vc390EBEHwYiDeOFhenT/mz+9lUO80rRVy+BVeYuYsGLukd9hbL+0xa9h8jd/Ji13TJNo2lQKypE2QwLozCKTWw8f466hYSity60P+kBcSw/poNf9GtQtuAUfOpUL6JOxiaVOT1EFlnG3/Z03P99PerRrul4syaoHGQl5jeicZHo3n3eveUi4EnT/OugqE3TPL2GFQKLLkcl0V31R24JyM/44mxF83hJoF3Jawb6N9DX8+UVuZejjX+lhrkbXtxekp61Gy9YSkRaHc0zvMloq9bMblOL4qmXFTT5U42i1sYmM99ObrPRjE2+v2MJc1WrvlKmMO/usX0Zm/pi6qLafcQO9ZhsuS3o7D2BuksbApCux5OY1CVZSFIcJ8Td65ja23lxquH7NpXG8kR3AHVP4TGTezy7UGfEcsSZmg=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8833.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(19092799006)(1800799024)(56012099003)(18002099003)(22082099003)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?gb2312?B?L3hMMlUyTWpqeVRRT3NsVnduN1FkWE55STJYN010SnFYTkJmRkpHSm93NkdV?=
+ =?gb2312?B?WHIxUWp1aDNFamQ5bXI5Q3BaVGVLT3Rnd1pjb1c4eDdWNmkvcmhNMHIxNVZh?=
+ =?gb2312?B?Z2FRbkR1Y0dza1BlbXU5RGgvY3gwRkhLWDV4ejJFRUgvaXJCbGdIQlQzbGxC?=
+ =?gb2312?B?cHFMN2Vrcnk2Qm1icXFQaDlXQUJKUjNSaWNRLzU3cFlOL3NqZ2t0djZWekxY?=
+ =?gb2312?B?NEhDaEQ0dTZRTmR5dnBTWkc0Yk8zcHFVVS9keUdiRlNxQSt2WUYvaTMveTFr?=
+ =?gb2312?B?ODJ4N2RyeUR6WWdlbzVDTmdTdDBnUC9CbVdlMDhLWVZiT3FhZll1TnRyS25I?=
+ =?gb2312?B?b1RDT3d3ZVFEMFFpeStzaWt1RE9aNDIyS0haYVUrU1dVeTEvb0lLaGpWTzZ3?=
+ =?gb2312?B?cHdmUjZFSWxqM3B3S0JaMFRBSFBkYTNLK1MyYTg3MVNEeFlIa0g3cmRmOVQz?=
+ =?gb2312?B?a2RxYTR4blZYZEZxTXFWeXBNRzJOY0FXZ2lGTVVlUkxGL2pSQ3NLNVJQK013?=
+ =?gb2312?B?aWs4WHM3VWtqKzc5TEZCenIvejNJOWprUnVXbUFJdUdzR1pPRDZyOGxRbXQ5?=
+ =?gb2312?B?UWc1a1RLRzEvQWpNSm5SNXRSMCtnSzlhUk1oSWtNM3ZzQlQ3TS9JYW40ZHBu?=
+ =?gb2312?B?YTQ1SHRNeHRqRS9NcFRNWGViQmV3YlN5RWFFRnZ5M2hFNXRueEFDWnJYUlYx?=
+ =?gb2312?B?NFA2WWVQemxQRHpJZi9rVHQ5NGQ2UmtaRUlTQWQweXhpU2xnSHQ1Nk1kUGdi?=
+ =?gb2312?B?NnFnSzdEK0pZcURJa2liaTUwUWhsKzBWRjVWV3BVcEZ6SWxWdWtyc1A5Yngy?=
+ =?gb2312?B?ZVhxWGlKZzZRZ09tckVqS3FwejdKUFpSVmEza1owZ0gxRHpqWkJ6M2FCeEVn?=
+ =?gb2312?B?cHN6Uko1bGgrd2JiaXplVDlCZHg1NnFTZE4xWFpzbWgrTURyUHBLMUZ0ZUo2?=
+ =?gb2312?B?QTJYSGYvdDZYV1AvbzgwZEwzTnNpVDZsdlczd1BSa0RaTERRMFI4bEZQK0RY?=
+ =?gb2312?B?R1dYOFZYNXB1SFd5TVZaaktrKy9hL01Cc0FxZnJCaElpaFQ2RUEwTjBGcU5z?=
+ =?gb2312?B?TDlvTXQwQmI5L0todmtsdG5lMW1neGtLZnJJS0o2YUowSVZxTWVzRFVTanlC?=
+ =?gb2312?B?ZHhzSVlHSXBPVDNaR3MzdENGMitDK2ZNU0w3YkVFV2hvcVVZcDRGbmJ2T3pQ?=
+ =?gb2312?B?bHRhTGxkdDJocGlPK2dOMFVmUzV4bSt0d3Jrb1dMQ2pJRHVFdEEyS1Y5bE1u?=
+ =?gb2312?B?RXhUaWVCTmdEb3R6bXlQWEY5ZCt0VFoxdHp0TjEvajR4M0p2eWJac0hGY1Ar?=
+ =?gb2312?B?Q3hUOVBTZUNFWmh1SXdpQXZaeTVYQUIvbncxdDZEMnM2ckxEb1l5b0FVZkxE?=
+ =?gb2312?B?bXRGblBKK2Q1ekp6cmpxcU1yQU1EdTJYYWtRRU1zMVUzLzJzUjBkN3hWUGNB?=
+ =?gb2312?B?aUthWnRyMUVnUTRxc1FQei8zS3RxRTRDYzErd0VFZG9lVG1xY0gvZEZpOUlU?=
+ =?gb2312?B?Mk5pS01XU0d5YXFib1BPbUJpVEhTMnQyQytTcURhNmZqT056WlM1b3hmSDdo?=
+ =?gb2312?B?bDBXOHNiVEUxOEowSnF5R2t5TGFjbTFPeGZWNjU3WmJadGZBVThvYjhzS1Mw?=
+ =?gb2312?B?aUhXOUd0bkY0WlJObGZMT1NIMXc4cUwxRUJ5Z1ZId0hMSW1WdXgyS01oV1VF?=
+ =?gb2312?B?WGF4eUJ5MzIxTncxME9JMUxYR1dIWXM0WjhZMUJXYldoZmFUelJkbHkybXlP?=
+ =?gb2312?B?L1FlMVJTQWIxWDFPNy8xOW8wQmJaNyt1d1RSRmlLTUovWU54ZE1CSXFBYmli?=
+ =?gb2312?B?Y1d2a0N1V2Y4bTNrK1FlMnJZY3Q1cVV0WHNsTVlyUDRodWhPL0tGcitOT0ZE?=
+ =?gb2312?B?dDdaNkZQUXhtZThMRmJudjNkNmEwaVA2U1B3SkR3QitJQmh6K0tDa1pLUWFH?=
+ =?gb2312?B?a29IcE5zWFBjS0tFMDgwaWlxTkhYUmhWWS9DampJcXc2NzlxbDFmRHhLbzU2?=
+ =?gb2312?B?N1YxNXVCMGF4Y0NNL3B6Q0hOTWo0S0JiclB2WEN5WWdWY01ya1cyV2NibThO?=
+ =?gb2312?B?Q0d4enFHdTJpREVuWDFTRTNwTm1TY2pLUDFlMDJBczZZbWRPQzYwWW5sbDMr?=
+ =?gb2312?B?SXZGUnF4MUo3VHhZRkhHdkZ2UkVqditaWE40UDJjTmVlTk1NMXFzVzNCMjZZ?=
+ =?gb2312?B?RXQzL21JK0x0WUxQWmtFeG1lTGh0aHdIR3ZJc0lIRkU5QWloZnBoS0xvYmJn?=
+ =?gb2312?B?TFVxQStqaXZiWFI1ZVRuV2MwWk5uRWQrRVEzbjJzekRPWk9HV2VEQ1RBT082?=
+ =?gb2312?Q?Jahb2qkY+ZQEft+uMj?=
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dajxxrhcax5ezbff"
-Content-Disposition: inline
-In-Reply-To: <20260304185751.83494-7-clamor95@gmail.com>
-X-Zoho-Virus-Status: 1
-X-Zoho-AV-Stamp: zmail-av-0.2.1.1.4.3/273.195.15
-X-ZohoMailClient: External
-X-Rspamd-Queue-Id: 1C46B25CDA0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8833.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e5c24c6-f543-4195-b0a3-08de7f37d571
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2026 06:31:31.3526
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bRzWPzmqGP6kgG1QT+RSs0K1Z7NRvdEC0MdMuh03XdNHnwwGHkErQ7X5POisUUQdj86zL4/pe1T5Hq/VIAHftQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8800
+X-Rspamd-Queue-Id: 5CF4725CE1F
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.26 / 15.00];
-	SIGNED_PGP(-2.00)[];
+X-Spamd-Result: default: False [1.44 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-273859-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-273860-lists,devicetree=lfdr.de];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,google.com,nxp.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,agorria.com,rere.qmqm.pl,vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[hongxing.zhu@nxp.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[nxp.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qmqm.pl:email,collabora.com:dkim,collabora.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-
---dajxxrhcax5ezbff
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v5 6/7] power: supply: Add driver for ASUS Transformer
- battery
-MIME-Version: 1.0
-
-Hi,
-
-On Wed, Mar 04, 2026 at 08:57:50PM +0200, Svyatoslav Ryhel wrote:
-> From: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
->=20
-> Driver implements one battery cell per EC controller and supports reading
-> of battery status for ASUS Transformer's pad and mobile dock.
->=20
-> Co-developed-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> Signed-off-by: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
-> ---
->  drivers/power/supply/Kconfig                  |  11 +
->  drivers/power/supply/Makefile                 |   1 +
->  .../supply/asus-transformer-ec-battery.c      | 272 ++++++++++++++++++
->  3 files changed, 284 insertions(+)
->  create mode 100644 drivers/power/supply/asus-transformer-ec-battery.c
->=20
-> diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-> index 81fadb0695a9..3c46b412632d 100644
-> --- a/drivers/power/supply/Kconfig
-> +++ b/drivers/power/supply/Kconfig
-> @@ -122,6 +122,17 @@ config BATTERY_CHAGALL
->  	  This driver can also be built as a module. If so, the module will be
->  	  called chagall-battery.
-> =20
-> +config BATTERY_ASUS_TRANSFORMER_EC
-> +	tristate "Asus Transformer's battery driver"
-> +	depends on MFD_ASUS_TRANSFORMER_EC
-> +	help
-> +	  Say Y here to enable support APM status emulation using
-> +	  battery class devices.
-
-^^^
-
-You forgot to drop that when you used the APM_POWER config entry as
-template. Otherwise the driver LGTM:
-
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-
-Greetings,
-
--- Sebastian
-
-> +	  This sub-driver supports battery cells found in Asus Transformer
-> +	  tablets and mobile docks and controlled by special embedded
-> +	  controller.
-> +
->  config BATTERY_CPCAP
->  	tristate "Motorola CPCAP PMIC battery driver"
->  	depends on MFD_CPCAP && IIO
-> diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-> index 41c400bbf022..aa5e6b05b018 100644
-> --- a/drivers/power/supply/Makefile
-> +++ b/drivers/power/supply/Makefile
-> @@ -22,6 +22,7 @@ obj-$(CONFIG_TEST_POWER)	+=3D test_power.o
->  obj-$(CONFIG_BATTERY_88PM860X)	+=3D 88pm860x_battery.o
->  obj-$(CONFIG_CHARGER_ADP5061)	+=3D adp5061.o
->  obj-$(CONFIG_BATTERY_ACT8945A)	+=3D act8945a_charger.o
-> +obj-$(CONFIG_BATTERY_ASUS_TRANSFORMER_EC)	+=3D asus-transformer-ec-batte=
-ry.o
->  obj-$(CONFIG_BATTERY_AXP20X)	+=3D axp20x_battery.o
->  obj-$(CONFIG_CHARGER_AXP20X)	+=3D axp20x_ac_power.o
->  obj-$(CONFIG_BATTERY_CHAGALL)	+=3D chagall-battery.o
-> diff --git a/drivers/power/supply/asus-transformer-ec-battery.c b/drivers=
-/power/supply/asus-transformer-ec-battery.c
-> new file mode 100644
-> index 000000000000..aefcd3fed6fe
-> --- /dev/null
-> +++ b/drivers/power/supply/asus-transformer-ec-battery.c
-> @@ -0,0 +1,272 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +
-> +#include <linux/array_size.h>
-> +#include <linux/devm-helpers.h>
-> +#include <linux/err.h>
-> +#include <linux/mfd/asus-transformer-ec.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/power_supply.h>
-> +#include <linux/property.h>
-> +#include <linux/unaligned.h>
-> +
-> +#define ASUSEC_BATTERY_DATA_FRESH_MSEC		5000
-> +
-> +#define ASUSEC_BATTERY_DISCHARGING		0x40
-> +#define ASUSEC_BATTERY_FULL_CHARGED		0x20
-> +#define ASUSEC_BATTERY_NOT_CHARGING		0x10
-> +
-> +#define TEMP_CELSIUS_OFFSET			2731
-> +
-> +struct asus_ec_battery_data {
-> +	const struct asusec_info *ec;
-> +	struct power_supply *battery;
-> +	struct power_supply_desc psy_desc;
-> +	struct delayed_work poll_work;
-> +	struct mutex battery_lock; /* for data refresh */
-> +	unsigned long batt_data_ts;
-> +	int last_state;
-> +	u8 batt_data[DOCKRAM_ENTRY_BUFSIZE];
-> +};
-> +
-> +static int asus_ec_battery_refresh(struct asus_ec_battery_data *priv)
-> +{
-> +	int ret =3D 0;
-> +
-> +	guard(mutex)(&priv->battery_lock);
-> +
-> +	if (time_before(jiffies, priv->batt_data_ts))
-> +		return ret;
-> +
-> +	ret =3D asus_dockram_read(priv->ec->dockram, ASUSEC_DOCKRAM_BATT_CTL,
-> +				priv->batt_data);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	priv->batt_data_ts =3D jiffies +
-> +		msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC);
-> +
-> +	return ret;
-> +}
-> +
-> +static enum power_supply_property asus_ec_battery_properties[] =3D {
-> +	POWER_SUPPLY_PROP_STATUS,
-> +	POWER_SUPPLY_PROP_VOLTAGE_MAX,
-> +	POWER_SUPPLY_PROP_CURRENT_MAX,
-> +	POWER_SUPPLY_PROP_TEMP,
-> +	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-> +	POWER_SUPPLY_PROP_CURRENT_NOW,
-> +	POWER_SUPPLY_PROP_CAPACITY,
-> +	POWER_SUPPLY_PROP_CHARGE_NOW,
-> +	POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW,
-> +	POWER_SUPPLY_PROP_TIME_TO_FULL_NOW,
-> +	POWER_SUPPLY_PROP_PRESENT,
-> +};
-> +
-> +static const unsigned int asus_ec_battery_prop_offs[] =3D {
-> +	[POWER_SUPPLY_PROP_STATUS] =3D 1,
-> +	[POWER_SUPPLY_PROP_VOLTAGE_MAX] =3D 3,
-> +	[POWER_SUPPLY_PROP_CURRENT_MAX] =3D 5,
-> +	[POWER_SUPPLY_PROP_TEMP] =3D 7,
-> +	[POWER_SUPPLY_PROP_VOLTAGE_NOW] =3D 9,
-> +	[POWER_SUPPLY_PROP_CURRENT_NOW] =3D 11,
-> +	[POWER_SUPPLY_PROP_CAPACITY] =3D 13,
-> +	[POWER_SUPPLY_PROP_CHARGE_NOW] =3D 15,
-> +	[POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW] =3D 17,
-> +	[POWER_SUPPLY_PROP_TIME_TO_FULL_NOW] =3D 19,
-> +};
-> +
-> +static int asus_ec_battery_get_value(struct asus_ec_battery_data *priv,
-> +				     enum power_supply_property psp)
-> +{
-> +	int ret, offs;
-> +
-> +	if (psp >=3D ARRAY_SIZE(asus_ec_battery_prop_offs))
-> +		return -EINVAL;
-> +
-> +	offs =3D asus_ec_battery_prop_offs[psp];
-> +	if (!offs)
-> +		return -EINVAL;
-> +
-> +	ret =3D asus_ec_battery_refresh(priv);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (offs >=3D priv->batt_data[0])
-> +		return -ENODATA;
-> +
-> +	return get_unaligned_le16(priv->batt_data + offs);
-> +}
-> +
-> +static int asus_ec_battery_get_property(struct power_supply *psy,
-> +					enum power_supply_property psp,
-> +					union power_supply_propval *val)
-> +{
-> +	struct asus_ec_battery_data *priv =3D power_supply_get_drvdata(psy);
-> +	int ret;
-> +
-> +	switch (psp) {
-> +	case POWER_SUPPLY_PROP_PRESENT:
-> +		val->intval =3D 1;
-> +		break;
-> +
-> +	default:
-> +		ret =3D asus_ec_battery_get_value(priv, psp);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		val->intval =3D (s16)ret;
-> +
-> +		switch (psp) {
-> +		case POWER_SUPPLY_PROP_STATUS:
-> +			if (ret & ASUSEC_BATTERY_FULL_CHARGED)
-> +				val->intval =3D POWER_SUPPLY_STATUS_FULL;
-> +			else if (ret & ASUSEC_BATTERY_NOT_CHARGING)
-> +				val->intval =3D POWER_SUPPLY_STATUS_NOT_CHARGING;
-> +			else if (ret & ASUSEC_BATTERY_DISCHARGING)
-> +				val->intval =3D POWER_SUPPLY_STATUS_DISCHARGING;
-> +			else
-> +				val->intval =3D POWER_SUPPLY_STATUS_CHARGING;
-> +			break;
-> +
-> +		case POWER_SUPPLY_PROP_TEMP:
-> +			val->intval -=3D TEMP_CELSIUS_OFFSET;
-> +			break;
-> +
-> +		case POWER_SUPPLY_PROP_CHARGE_NOW:
-> +		case POWER_SUPPLY_PROP_CURRENT_NOW:
-> +		case POWER_SUPPLY_PROP_CURRENT_MAX:
-> +		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-> +		case POWER_SUPPLY_PROP_VOLTAGE_MAX:
-> +			val->intval *=3D 1000;
-> +			break;
-> +
-> +		case POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW:
-> +		case POWER_SUPPLY_PROP_TIME_TO_FULL_NOW:
-> +			val->intval *=3D 60;
-> +			break;
-> +
-> +		default:
-> +			break;
-> +		}
-> +
-> +		break;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void asus_ec_battery_poll_work(struct work_struct *work)
-> +{
-> +	struct asus_ec_battery_data *priv =3D
-> +		container_of(work, struct asus_ec_battery_data, poll_work.work);
-> +	int state;
-> +
-> +	state =3D asus_ec_battery_get_value(priv, POWER_SUPPLY_PROP_STATUS);
-> +	if (state < 0)
-> +		return;
-> +
-> +	if (state & ASUSEC_BATTERY_FULL_CHARGED)
-> +		state =3D POWER_SUPPLY_STATUS_FULL;
-> +	else if (state & ASUSEC_BATTERY_DISCHARGING)
-> +		state =3D POWER_SUPPLY_STATUS_DISCHARGING;
-> +	else
-> +		state =3D POWER_SUPPLY_STATUS_CHARGING;
-> +
-> +	if (priv->last_state !=3D state) {
-> +		priv->last_state =3D state;
-> +		power_supply_changed(priv->battery);
-> +	}
-> +
-> +	/* continuously send uevent notification */
-> +	schedule_delayed_work(&priv->poll_work,
-> +			      msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC));
-> +}
-> +
-> +static const struct power_supply_desc asus_ec_battery_desc =3D {
-> +	.name =3D "asus-ec-battery",
-> +	.type =3D POWER_SUPPLY_TYPE_BATTERY,
-> +	.properties =3D asus_ec_battery_properties,
-> +	.num_properties =3D ARRAY_SIZE(asus_ec_battery_properties),
-> +	.get_property =3D asus_ec_battery_get_property,
-> +	.external_power_changed =3D power_supply_changed,
-> +};
-> +
-> +static int asus_ec_battery_probe(struct platform_device *pdev)
-> +{
-> +	struct asus_ec_battery_data *priv;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct power_supply_config cfg =3D { };
-> +	int ret;
-> +
-> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	mutex_init(&priv->battery_lock);
-> +
-> +	priv->ec =3D cell_to_ec(pdev);
-> +	priv->batt_data_ts =3D jiffies - 1;
-> +	priv->last_state =3D POWER_SUPPLY_STATUS_UNKNOWN;
-> +
-> +	cfg.fwnode =3D dev_fwnode(dev->parent);
-> +	cfg.drv_data =3D priv;
-> +
-> +	memcpy(&priv->psy_desc, &asus_ec_battery_desc, sizeof(priv->psy_desc));
-> +	priv->psy_desc.name =3D devm_kasprintf(dev, GFP_KERNEL, "%s-battery",
-> +					     priv->ec->name);
-> +
-> +	priv->battery =3D devm_power_supply_register(dev, &priv->psy_desc, &cfg=
-);
-> +	if (IS_ERR(priv->battery))
-> +		return dev_err_probe(dev, PTR_ERR(priv->battery),
-> +				     "Failed to register power supply\n");
-> +
-> +	ret =3D devm_delayed_work_autocancel(dev, &priv->poll_work,
-> +					   asus_ec_battery_poll_work);
-> +	if (ret)
-> +		return ret;
-> +
-> +	schedule_delayed_work(&priv->poll_work,
-> +			      msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC));
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused asus_ec_battery_suspend(struct device *dev)
-> +{
-> +	struct asus_ec_battery_data *priv =3D dev_get_drvdata(dev);
-> +
-> +	cancel_delayed_work_sync(&priv->poll_work);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused asus_ec_battery_resume(struct device *dev)
-> +{
-> +	struct asus_ec_battery_data *priv =3D dev_get_drvdata(dev);
-> +
-> +	schedule_delayed_work(&priv->poll_work,
-> +			      msecs_to_jiffies(ASUSEC_BATTERY_DATA_FRESH_MSEC));
-> +
-> +	return 0;
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(asus_ec_battery_pm_ops,
-> +			 asus_ec_battery_suspend, asus_ec_battery_resume);
-> +
-> +static struct platform_driver asus_ec_battery_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "asus-transformer-ec-battery",
-> +		.pm =3D &asus_ec_battery_pm_ops,
-> +	},
-> +	.probe =3D asus_ec_battery_probe,
-> +};
-> +module_platform_driver(asus_ec_battery_driver);
-> +
-> +MODULE_AUTHOR("Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>");
-> +MODULE_AUTHOR("Svyatoslav Ryhel <clamor95@gmail.com>");
-> +MODULE_DESCRIPTION("ASUS Transformer's battery driver");
-> +MODULE_LICENSE("GPL");
-> --=20
-> 2.51.0
->=20
->=20
-
---dajxxrhcax5ezbff
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmxDAYACgkQ2O7X88g7
-+po+cxAApJP60xFP4lgJWpzfcXQ68AKAfCI7lBpMGY5r3AhjzldDsngMGup8mXhc
-KLlIQKqNr37fovYYoFeuhwayhsf8E6pbpgnkIPpTGHyo5ycv4TFEv/YMSEN5mN+x
-x/ztm3/5Ph6klEpiBxfnIykplq5wwGQLa+LN+/QuMrcDCTv6r5nAakctRuQn46dg
-upYxr2MsJZ3HAjmm1H9kSQM7TdQKAMkARfLHx4P4zsMs8Ybt9QFQa7T10tbKGo6M
-lovOopMQemQO9YNyaEUgK90TQpp/ND0WN1RX4Z2/dcZ4aqNeMu2lnaHyzDp8UO3C
-tajCmIVgUPP2k2nq24Zzx0VWLakAzYEeH0xd26pE5EOmCg2KfbjT88oDibSewOAB
-0NLpipGczQMbx/rBJxMl56F50RcC3eCFqN5smh/BkhRLvjDBYAz6MKJtIVu7tkL7
-UTbmBGNRESjdJezg3pRfiVaVeCfpXsT95NTvqgPNy/du77gv3xdDLgV2zIIG5pDF
-ZkE7TukLm6ibJzDX+XAcGsJqh7bNwmBlbErguEWcLm1pzEFnWsRkAWt8NogaWAFy
-alRztM2pyvhp6fyW8cQMFLXHWNsI/mij66FML3TYH/GjncsllD91WtDW3I2gqh1a
-8NXLkzMjTYEVm/dnBGWEi6JqpRJLLCICuj7bq/uL+86bVZvOBeQ=
-=XnEF
------END PGP SIGNATURE-----
-
---dajxxrhcax5ezbff--
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tp
+IDxrcnprQGtlcm5lbC5vcmc+DQo+IFNlbnQ6IDIwMjbE6jPUwjExyNUgMTQ6MTgNCj4gVG86IEhv
+bmd4aW5nIFpodSA8aG9uZ3hpbmcuemh1QG54cC5jb20+DQo+IENjOiByb2JoQGtlcm5lbC5vcmc7
+IGtyemsrZHRAa2VybmVsLm9yZzsgY29ub3IrZHRAa2VybmVsLm9yZzsNCj4gYmhlbGdhYXNAZ29v
+Z2xlLmNvbTsgRnJhbmsgTGkgPGZyYW5rLmxpQG54cC5jb20+OyBsLnN0YWNoQHBlbmd1dHJvbml4
+LmRlOw0KPiBscGllcmFsaXNpQGtlcm5lbC5vcmc7IGt3aWxjenluc2tpQGtlcm5lbC5vcmc7IG1h
+bmlAa2VybmVsLm9yZzsNCj4gcy5oYXVlckBwZW5ndXRyb25peC5kZTsga2VybmVsQHBlbmd1dHJv
+bml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5jb207DQo+IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmc7
+IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2Vy
+Lmtlcm5lbC5vcmc7IGlteEBsaXN0cy5saW51eC5kZXY7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5l
+bC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCAxLzRdIGR0LWJpbmRpbmdzOiBQQ0k6IHBj
+aS1pbXg2OiBDaGFuZ2UgbWF4SXRlbXMgb2YNCj4gY2xvY2tzIGFuZCBjbG9jay1uYW1lcyB0byA2
+DQo+DQo+IE9uIFR1ZSwgTWFyIDEwLCAyMDI2IGF0IDAzOjU0OjU2UE0gKzA4MDAsIFJpY2hhcmQg
+Wmh1IHdyb3RlOg0KPiA+IFByZXZpb3VzIGNvbW1pdCAxMzUyZjU4ZDdjOGQgKCJkdC1iaW5kaW5n
+czogUENJOiBwY2ktaW14NjogQWRkDQo+ID4gZXh0ZXJuYWwgcmVmZXJlbmNlIGNsb2NrIGlucHV0
+IikNCj4NCj4gUGxlYXNlIHJ1biBzY3JpcHRzL2NoZWNrcGF0Y2gucGwgb24gdGhlIHBhdGNoZXMg
+YW5kIGZpeCByZXBvcnRlZCB3YXJuaW5ncy4NCj4gQWZ0ZXIgdGhhdCwgcnVuIGFsc28gJ3Njcmlw
+dHMvY2hlY2twYXRjaC5wbCAtLXN0cmljdCcgb24gdGhlIHBhdGNoZXMgYW5kIChwcm9iYWJseSkN
+Cj4gZml4IG1vcmUgd2FybmluZ3MuIFNvbWUgd2FybmluZ3MgY2FuIGJlIGlnbm9yZWQsIGVzcGVj
+aWFsbHkgZnJvbSAtLXN0cmljdCBydW4sDQo+IGJ1dCB0aGUgY29kZSBoZXJlIGxvb2tzIGxpa2Ug
+aXQgbmVlZHMgYSBmaXguIEZlZWwgZnJlZSB0byBnZXQgaW4gdG91Y2ggaWYgdGhlDQo+IHdhcm5p
+bmcgaXMgbm90IGNsZWFyLg0KPg0KPiA8Zm9ybSBsZXR0ZXI+DQo+IFRoaXMgaXMgYSBmcmllbmRs
+eSByZW1pbmRlciBkdXJpbmcgdGhlIHJldmlldyBwcm9jZXNzLg0KPg0KPiBJdCBsb29rcyBsaWtl
+IHlvdSByZWNlaXZlZCBhIHRhZyBhbmQgZm9yZ290IHRvIGFkZCBpdC4NCj4NCj4gSWYgeW91IGRv
+IG5vdCBrbm93IHRoZSBwcm9jZXNzLCBoZXJlIGlzIGEgc2hvcnQgZXhwbGFuYXRpb246DQo+IFBs
+ZWFzZSBhZGQgQWNrZWQtYnkvUmV2aWV3ZWQtYnkvVGVzdGVkLWJ5IHRhZ3Mgd2hlbiBwb3N0aW5n
+IG5ldyB2ZXJzaW9ucyBvZg0KPiBwYXRjaHNldCwgdW5kZXIgb3IgYWJvdmUgeW91ciBTaWduZWQt
+b2ZmLWJ5IHRhZywgdW5sZXNzIHBhdGNoIGNoYW5nZWQNCj4gc2lnbmlmaWNhbnRseSAoZS5nLiBu
+ZXcgcHJvcGVydGllcyBhZGRlZCB0byB0aGUgRFQgYmluZGluZ3MpLiBUYWcgaXMgInJlY2VpdmVk
+IiwNCj4gd2hlbiBwcm92aWRlZCBpbiBhIG1lc3NhZ2UgcmVwbGllZCB0byB5b3Ugb24gdGhlIG1h
+aWxpbmcgbGlzdC4gVG9vbHMgbGlrZSBiNCBjYW4NCj4gaGVscCBoZXJlLiBIb3dldmVyLCB0aGVy
+ZSdzIG5vIG5lZWQgdG8gcmVwb3N0IHBhdGNoZXMgKm9ubHkqIHRvIGFkZCB0aGUgdGFncy4NCj4g
+VGhlIHVwc3RyZWFtIG1haW50YWluZXIgd2lsbCBkbyB0aGF0IGZvciB0YWdzIHJlY2VpdmVkIG9u
+IHRoZSB2ZXJzaW9uIHRoZXkNCj4gYXBwbHkuDQo+DQo+IFBsZWFzZSByZWFkOg0KPiBodHRwczov
+L2VsaXhpci5ib28vDQo+IHRsaW4uY29tJTJGbGludXglMkZ2Ni4xMi1yYzMlMkZzb3VyY2UlMkZE
+b2N1bWVudGF0aW9uJTJGcHJvY2VzcyUyRnN1Yg0KPiBtaXR0aW5nLXBhdGNoZXMucnN0JTIzTDU3
+NyZkYXRhPTA1JTdDMDIlN0Nob25neGluZy56aHUlNDBueHAuY29tJTdDDQo+IDBhYjAxMGYwYTIz
+NDQxNTdiOWUyMDhkZTdmMzVmNjg5JTdDNjg2ZWExZDNiYzJiNGM2ZmE5MmNkOTljNWMzMDE2DQo+
+IDM1JTdDMCU3QzAlN0M2MzkwODgwNjY5MDA1MjMwMDclN0NVbmtub3duJTdDVFdGcGJHWnNiM2Q4
+ZXlKRmINCj4gWEIwZVUxaGNHa2lPblJ5ZFdVc0lsWWlPaUl3TGpBdU1EQXdNQ0lzSWxBaU9pSlhh
+VzR6TWlJc0lrRk9Jam9pVFdGcA0KPiBiQ0lzSWxkVUlqb3lmUSUzRCUzRCU3QzAlN0MlN0MlN0Mm
+c2RhdGE9NGREdzRHSWlFVndSam5aaFlnZkw3c0ttDQo+IHVkamNzOGNpREtpMDIybjc4elElM0Qm
+cmVzZXJ2ZWQ9MA0KPg0KPiBJZiBhIHRhZyB3YXMgbm90IGFkZGVkIG9uIHB1cnBvc2UsIHBsZWFz
+ZSBzdGF0ZSB3aHkgYW5kIHdoYXQgY2hhbmdlZC4NCj4gPC9mb3JtIGxldHRlcj4NCkhpIEtyenlz
+enRvZjoNCkkganVzdCByZWNlaXZlZCB5b3VyIHRhZyBpbiBbUEFUQ0ggdjMgMS80XSBhdCA0OjAw
+IFBNIGFmdGVyIEkgc2VudCBvdXQNCiB0aGUgdjQgcGF0Y2gtc2V0IGF0IDM6NTMgUE0uIFRoYXQn
+cyB3aHkgaXQncyBtaXNzZWQgaW4gW1BBVENIIHY0IDEvNF0uDQpUaGUgdGFnIHdvdWxkIGJlIGFk
+ZGVkIGluIG5leHQgdmVyc2lvbi4NCg0KQmVzdCBSZWdhcmRzDQpSaWNoYXJkIFpodQ0KDQo=
 
