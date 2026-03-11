@@ -1,245 +1,164 @@
-Return-Path: <devicetree+bounces-273951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273953-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OCRTD5EqsWkBrgIAu9opvQ
-	(envelope-from <devicetree+bounces-273951-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:40:49 +0100
+	id kDJAFmItsWkVrwIAu9opvQ
+	(envelope-from <devicetree+bounces-273953-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:52:50 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id A837125F855
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:40:48 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2663325FC17
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:52:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E0F33303DF4F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:40:34 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 6ADC9313A8C3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DE843BBA1C;
-	Wed, 11 Mar 2026 08:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="U8ix46TS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25FED3C13FB;
+	Wed, 11 Mar 2026 08:39:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF0C1261B9C;
-	Wed, 11 Mar 2026 08:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECD11A6815
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:39:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773218298; cv=none; b=lF9ja6t6XbL/h934lB1viBUfUzmPeVkPFDvj1qlLXHQpqK6leQfD9Qp7F4hnhDIkr96Sm8v23JUGO2O1/V59yrqFbhE0Dc2T5orD64ObTwpzuWluVCEXLBi1NGQ/ChVNhLcSYJxjnt+jNZaO1lExRZQeYcjuKfjNGOAa6D+SIc0=
+	t=1773218396; cv=none; b=qvXJN8TgcuGFqI2IpxF23tqSCPXXNy5EE2lJDN0Zk9qmp0pUzDDHJLD9Hz9UxM0G0kExN7ouXioy6ICy3wrXS0nZiaf6vCgWGGTvxHVyeIX4qIkaAaD5OA8Idj3DOmBKwSbN0ZUur75sc/vSB14EZsSn2Gqh9LJEjmpuCRcv2js=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773218298; c=relaxed/simple;
-	bh=TvjWgEQ33XAHtp8n95zDJy1h0F9L4/7iW66+tpVk9S0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a1BH3VpHkDojqg0Cs5f27xD7kphDzjg+Uwo6x51QbGNdXh8MQrfjPtDTt0GqkThJ2oTZEGjvr14thKxquydr+viX0pufKoAvTHYTuwZqHHZmgo3y5VLU+q0GrGpHy8Qg2QfD2pjTdWsiQY2UTX1nRJS5U6HGTALuOQKu/fjKAIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=U8ix46TS; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 62CED5A5;
-	Wed, 11 Mar 2026 09:37:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1773218229;
-	bh=TvjWgEQ33XAHtp8n95zDJy1h0F9L4/7iW66+tpVk9S0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=U8ix46TS06G6FIFu3ndCQTccxAl3ln9MvVBgp/G29x0kD0+sxTnWLS6hnbFKkvct8
-	 IAiImFF9uF5VaKMemytDjwkBdqUmEKFBgN2fmN1lJr21ezatYkm2V8qjpiL7pU1ZEj
-	 3no71DLoHnFW/8zxHYQZJC40ySSaka1YA8RoGjsk=
-Message-ID: <f710352f-5a62-4899-86f0-7a284fbe8ce0@ideasonboard.com>
-Date: Wed, 11 Mar 2026 10:38:12 +0200
+	s=arc-20240116; t=1773218396; c=relaxed/simple;
+	bh=aOoOQpRMMQeHaPC3tRhWLJALfIv8CokuAajCILEgC30=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=V/Sex4N0BWgqQZEtYwAG/SciVc0JUaunzLlwWS29ftUgzL9CCZoiY43E6N79hqgwkHhVDb8VEqgko3qbxtYGRMZKEILX+FBtul30xuzx2naPQcaW+07EQA85BPq3Kx4uzefEZGIPfKaGdZB2WhiUBBmt78L5Q8ilt1Hds5kJXKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-56a9076813bso5397644e0c.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 01:39:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773218392; x=1773823192;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wDnX9qq9fL2tmN/qX2V1EHpQ2py5VIfCTjqZsUNQb9k=;
+        b=PCuyVqNPl5u03083xORRUuoY1J1FkKYA23kQzteQjfOZ2ZexK9W5N2etIGRiGt01Px
+         vsSMXggOxyY0CNSXM61EO0k/+BLWtz659i1ZRHXOfURt3uZ/N8057fqBW7oR5OsvCxVD
+         RNwGAtb4IqktmX6x6JXt4KK3uHig3andTvbYNyADJbZ6qlbrvjGGPqGcs5McWVJE6Asc
+         ULUFaBznJkkSTuWb8sy7/CV/QLuo6KMXncHh9hTSqYLJ9BH/yJyLnYJVEGJ3UPMI9xFf
+         xTwi7bLXxYbDmQK+jZ2QYMVqV/K1C08IHMbp5k3P8G7KOB7/l+u93wPnBEYyDRiypgEK
+         Eutw==
+X-Forwarded-Encrypted: i=1; AJvYcCU717jHZ0lbDiPMCj8D0ZKPmE7QkQ3AVZxYHDQl56yBNIM0W+GVdxH0FWgo2l6U/Nko9jioLmh1WWgm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9nUNJnYr26axQ7O4ezqQgx54LgEUET+4t5bMvpzbcf8eC/vjY
+	jq4/PkPIUDz/co+tbWcIqX952VNMPVuHkAnLYHTHlMmiubuclXUzCrEuW3MZdew/
+X-Gm-Gg: ATEYQzx58uO1Ap0+r0/PRkgU/y+G+4/vVFFrhhlzXkENMUpg9uqO97898+7OI8EbYb8
+	KXs8vigDRtXgUv6geiwLKQFFkja6dd6/fT0VYu1WEJzBxf42MHN/2WFPJ3GWKugaMrqgp24pN2h
+	RvqSIsGetZAeKH05+2Ch+uiso/GB/9NdmeYXtrCmaDiewtXzC5M31qWu5tfYefosOtxWj62Bssp
+	ltK9eugScgiBMw8ofwr+9tyTBkcabT5HTYRQFQuSO2sSJqkAmESlr836t1fmPKuZakCZLWBf3QQ
+	zmw4lvqkjynh7qD17eF3aGtbpezflYPwht6UYzShVwtO3jqvo9bh6q9VuAect5dtnXvQ46yCoZf
+	nPri9vIw2FJpFLa3HU+TubUewgio1Pz2K/LricQRDaRtYpcYRJfXXcXeF1xS8IiCSC7U3JLo5aa
+	NI5c98QtuqwYzsHdIbkjxUJHWnZoR6GA6aKANc4TvP1AgTEHTTUzWHn1QxReHV
+X-Received: by 2002:a05:6102:3a10:b0:5f1:b7b2:8929 with SMTP id ada2fe7eead31-601debe55b9mr587330137.15.1773218392131;
+        Wed, 11 Mar 2026 01:39:52 -0700 (PDT)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-601dea9fa96sm508760137.9.2026.03.11.01.39.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Mar 2026 01:39:51 -0700 (PDT)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-94ace5d0e39so4012872241.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 01:39:51 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWG9iAFVAY+43PAFt8lcdzIOXb24YXTZNA+uSCHaWMzVp8V0bvd3jlU8dxLAj5stwn70jySeAaXVy1a@vger.kernel.org
+X-Received: by 2002:a05:6102:cc6:b0:5ff:cb2c:a013 with SMTP id
+ ada2fe7eead31-601def2ae84mr566130137.29.1773218391268; Wed, 11 Mar 2026
+ 01:39:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] media: i2c: ds90ub953: use devm_mutex_init() to
- simplify code
-To: Guoniu Zhou <guoniu.zhou@oss.nxp.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- Vladimir Zapolskiy <vz@mleia.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- Guoniu Zhou <guoniu.zhou@nxp.com>
-References: <20260228-ds90ub953-v5-0-056cf07cc8f1@nxp.com>
- <20260228-ds90ub953-v5-3-056cf07cc8f1@nxp.com>
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Content-Language: en-US
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20260228-ds90ub953-v5-3-056cf07cc8f1@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Rspamd-Queue-Id: A837125F855
+References: <20260303102029.147359-1-herve.codina@bootlin.com> <abEotS0ZbGwqEmO5@ninjato>
+In-Reply-To: <abEotS0ZbGwqEmO5@ninjato>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 11 Mar 2026 09:39:40 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdX01rwBMGn1FLGm-fHA0w-7+BCskMiucgxcui+PTVF7rA@mail.gmail.com>
+X-Gm-Features: AaiRm53jk8vPte5MXJ7yQCkcGHKTwxyl2TK4jY54UfUzJkhzbTTXphD0vlJtQSI
+Message-ID: <CAMuHMdX01rwBMGn1FLGm-fHA0w-7+BCskMiucgxcui+PTVF7rA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Rspamd-Queue-Id: 2663325FC17
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273951-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[bootlin.com,gmail.com,kernel.org,vger.kernel.org,se.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[12];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	TAGGED_FROM(0.00)[bounces-273953-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:dkim,ideasonboard.com:email,ideasonboard.com:mid,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	NEURAL_HAM(-0.00)[-0.587];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,sang-engineering.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,linux-m68k.org:email]
 X-Rspamd-Action: no action
 
-Hi,
+Hi Wolfram,
 
-On 28/02/2026 08:18, Guoniu Zhou wrote:
-> From: Guoniu Zhou <guoniu.zhou@nxp.com>
-> 
-> Use devm_mutex_init() to simplify the code. No functional change.
-> 
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> ---
-> Changes in v2:
-> - Move PTR_ERR() in dev_err_probe();
-> ---
+On Wed, 11 Mar 2026 at 09:32, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> On Tue, Mar 03, 2026 at 11:20:29AM +0100, Herve Codina (Schneider Electric) wrote:
+> > When checking dts involving the r9a06g032.dtsi file, the following kind
+> > of warnings are reported:
+> >    Missing property '#address-cells' in node xxx, using 0 as fallback
+> >
+> > Indeed, #address-cells is not present in the GIC interrupt controller
+> > node.
+> >
+> > Fix it adding the missing property.
+> >
+> > No functional change.
+> >
+> > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
+>
+> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>
+> I like Krzysztof's explanation "Value '0' is correct because GIC
+> interrupt controller does not have children." Maybe it can be added to
+> the commit message?
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Some of the examples in the GIC DT bindings, do?
+But #address-cells is not a required property in the GIC DT bindings,
+so why should it be added at all?
 
- Tomi
+BTW, I never understood why an interrupt-controller should have
+#address-cells (according to dtc)?
 
->  drivers/media/i2c/ds90ub953.c | 33 +++++++++++++--------------------
->  1 file changed, 13 insertions(+), 20 deletions(-)
-> 
-> diff --git a/drivers/media/i2c/ds90ub953.c b/drivers/media/i2c/ds90ub953.c
-> index 14dd0aa4cc6ceba66a8c3545c7d7d19694007431..a85c6a9b64070491db161ca1586179dba9c69cb0 100644
-> --- a/drivers/media/i2c/ds90ub953.c
-> +++ b/drivers/media/i2c/ds90ub953.c
-> @@ -1345,7 +1345,9 @@ static int ub953_probe(struct i2c_client *client)
->  	if (!priv->plat_data)
->  		return dev_err_probe(dev, -ENODEV, "Platform data missing\n");
->  
-> -	mutex_init(&priv->reg_lock);
-> +	ret = devm_mutex_init(dev, &priv->reg_lock);
-> +	if (ret)
-> +		return ret;
->  
->  	/*
->  	 * Initialize to invalid values so that the first reg writes will
-> @@ -1354,32 +1356,26 @@ static int ub953_probe(struct i2c_client *client)
->  	priv->current_indirect_target = 0xff;
->  
->  	priv->regmap = devm_regmap_init_i2c(client, &ub953_regmap_config);
-> -	if (IS_ERR(priv->regmap)) {
-> -		ret = PTR_ERR(priv->regmap);
-> -		dev_err_probe(dev, ret, "Failed to init regmap\n");
-> -		goto err_mutex_destroy;
-> -	}
-> +	if (IS_ERR(priv->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(priv->regmap),
-> +				     "Failed to init regmap\n");
->  
->  	priv->clkin = devm_clk_get_optional(dev, "clkin");
-> -	if (IS_ERR(priv->clkin)) {
-> -		ret = PTR_ERR(priv->clkin);
-> -		dev_err_probe(dev, ret, "failed to parse 'clkin'\n");
-> -		goto err_mutex_destroy;
-> -	}
-> +	if (IS_ERR(priv->clkin))
-> +		return dev_err_probe(dev, PTR_ERR(priv->clkin),
-> +				     "Failed to parse 'clkin'\n");
->  
->  	ret = ub953_parse_dt(priv);
->  	if (ret)
-> -		goto err_mutex_destroy;
-> +		return ret;
->  
->  	ret = ub953_hw_init(priv);
->  	if (ret)
-> -		goto err_mutex_destroy;
-> +		return ret;
->  
->  	ret = ub953_gpiochip_probe(priv);
-> -	if (ret) {
-> -		dev_err_probe(dev, ret, "Failed to init gpiochip\n");
-> -		goto err_mutex_destroy;
-> -	}
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to init gpiochip\n");
->  
->  	ret = ub953_register_clkout(priv);
->  	if (ret) {
-> @@ -1403,8 +1399,6 @@ static int ub953_probe(struct i2c_client *client)
->  	ub953_subdev_uninit(priv);
->  err_gpiochip_remove:
->  	ub953_gpiochip_remove(priv);
-> -err_mutex_destroy:
-> -	mutex_destroy(&priv->reg_lock);
->  
->  	return ret;
->  }
-> @@ -1419,7 +1413,6 @@ static void ub953_remove(struct i2c_client *client)
->  	ub953_subdev_uninit(priv);
->  
->  	ub953_gpiochip_remove(priv);
-> -	mutex_destroy(&priv->reg_lock);
->  }
->  
->  static const struct ub953_hw_data ds90ub953_hw = {
-> 
+Gr{oetje,eeting}s,
 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
