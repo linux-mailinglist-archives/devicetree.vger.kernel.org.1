@@ -1,150 +1,132 @@
-Return-Path: <devicetree+bounces-274355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274356-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KKNxNv7zsWl7HQAAu9opvQ
-	(envelope-from <devicetree+bounces-274355-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:00:14 +0100
+	id sCIPBTj0sWl7HQAAu9opvQ
+	(envelope-from <devicetree+bounces-274356-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:01:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9CE26B067
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:00:13 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1F2126B085
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:01:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id B916D3012830
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:00:10 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 0AD9B301BDF3
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:01:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ADF439D6E5;
-	Wed, 11 Mar 2026 23:00:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C0D39DBFD;
+	Wed, 11 Mar 2026 23:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OL9MztPI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TFg4LtDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4232C39C005
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 23:00:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2174397E96;
+	Wed, 11 Mar 2026 23:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773270009; cv=none; b=VYmlnJX2T/grJqTFjsL3o3XQfTGs1OdVv4UF2yUpocJmL7oKKfnpzzknUolng185I4xEGDfa21LmvXbSv2eZUTtHKEAbtxV8MpQQkISHItL+w/RGRBAUAu4WRq77uwAx2BBy2b49VYCrb4qIwfJD4p49Ic18uQa2Hr29DvgowT4=
+	t=1773270066; cv=none; b=lNIvjRlyrjl/Deo8HiAyaqf2gMp0iNeKK55bc44Xpc6i2tgJ3qdyIVSqpa2MoXkBtVTWETvXC8c55l6Jw3Bpi7L/huxSWUqQhFaWK+8vSqdBDBxFWRg9KB804LCll28fKu4I5NrSZSrvOGAO3ge5DqcC94C6qsMS8q1Gq+CvtMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773270009; c=relaxed/simple;
-	bh=s5AopRXpE8NhdcWEB4P5k4k323BPvt9P2y6xxrqlwUA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lJ7xtU8Jov5Klev3z0nxiMovwwBKf5SNro/lTGgeLc8U0MFvflgL/MNkCne34hx+qL08g42+brvPyF1aF/Ro6VSynoK4MpfLc5MNTEDDDgoRnHOijsKrdVkJ8DgM7gIe/YQjLW8OBFmavFZAxuTSSKOjZtr4Gs/UzjsgmlZW4uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OL9MztPI; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4853f2826f7so3091455e9.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 16:00:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773270007; x=1773874807; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IUwcwJen0TL6VZ/9cqC89GRV2b+O9DeXb1am5MEKIGs=;
-        b=OL9MztPI27Lbb2PCyEGbBSGc4gbQMIxPbD6gx7YFZkf8HS569sTIK0UpuebVS1R8gv
-         XspKYykMp1P7oexRwBGyZzlxYPdD5kmEIEYgiCrGq9oeB/zI7v17FVczfSy+BN0fFe4n
-         F3qnKlYEcTM2+cDh+WcUs3piNLikucUIAQLbjwO2HE7TdDgWI9wFWH/aNCXkM2lRjrTE
-         ux4o9aiVptYlDQP2tTxtteHM8lNqrbJgWoHr8ga4ZXm/f0tI1qfD2h36AgrnljhB1qGm
-         OG5T1qUbWOogWhrAqvxnELI0j7q6dhstbX27NqWigQiUDIwqNAGlcVuht196yyCfpfr+
-         UC+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773270007; x=1773874807;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=IUwcwJen0TL6VZ/9cqC89GRV2b+O9DeXb1am5MEKIGs=;
-        b=v9HxfxqWkfn84rQ0QMQtm97zsfBlfzCU003ZauCB1W3L+SIYyI+QAJfeebCwivjwsc
-         6iO09VmLIz4ux8dMIW6XcgK7COxSgT74kluusCrxQKndWMm4tgbUvhdZGeU8z82TLnoa
-         AkX9gPltp7vfp2PpB4+BtoReevK3Vi3giTTRA36X8KsOSza+9MMpzpS/DOFhFJstbAxE
-         w8F/c0AWv1rn2Z/H8S7UKqO6Yw/67WSNi6P3wp3RoZRb4xF7exjrVk1eFYUQRr4PREBb
-         M0Gso+zXhv4SZL2+GVRMhEgpwlZF/0C4rm+5KrHBPuQA5HAzE95Eo92Hj3OK8NWoljwh
-         xPnw==
-X-Forwarded-Encrypted: i=1; AJvYcCUuOjD7XGAzAKNPgPnEKzxgjTFpUQv9KZkDa4xBVo1XWAJzHBi0niAoVbRHK+xI9dnX/iq/rlu3aGRh@vger.kernel.org
-X-Gm-Message-State: AOJu0YybtbG0/V0TXelUSVYLyQ5NAoBanwyES4HaYq3cy4NWnfSA8k0n
-	DGSuj6Ir/nbjEmonEY5TpNqpMWLGFKa/7Z4TGqOgSh9Rjwi57Tkilj/iZv4UozLPT7s=
-X-Gm-Gg: ATEYQzw8IXRjXsmIP1jKb/9D0c2bDcgZzrrqJ2sclpUl4c11QxZBNtHeGmqu5iwCbKM
-	Ook8CGkCd140ooBnOAeTW3oIlsr8EBx60zlZ3CVCBCW0VjJXEi0CwGWjWfikUWEYQtvq+sg5EA3
-	ku6wYkNLbxRi2yUZOp26JmO00tpu1ZA7zQxFF0bPKOj/RZGq6EliP+K8v+HrmLyJq8ahNTRwv2Q
-	Bj/VoIWhYnD0xz1Rp92wvBED3jXVG4+BW+/xtQTvv5KB9JA2rRulm3ZpJOx1DqlqvI7WZ6ZE/H3
-	urq3F4pnp+Ev4zQE5Ag71+rmjzCkIZ8cv7O6yMdms/zfAdyHkK+1AmpD0YVyozeBVhjn3PUObX8
-	Cvmwxh3AzcFsrQygAM5g6XJHQ9ChjCy0kWuvjHHwCmcKotOlLzBGzhQ4psxXPHHN9RZZJKsos4f
-	JLrYXRTFi4e2kkitAMOBQGiaAmlZiNFjjlrQ==
-X-Received: by 2002:a05:600c:6305:b0:483:703e:4ad9 with SMTP id 5b1f17b1804b1-4854b100b22mr79689175e9.19.1773270006630;
-        Wed, 11 Mar 2026 16:00:06 -0700 (PDT)
-Received: from [192.168.0.101] ([109.77.88.70])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fe20c473sm2699459f8f.24.2026.03.11.16.00.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2026 16:00:05 -0700 (PDT)
-Message-ID: <89771dba-ffea-4f56-8bec-df54eed441bc@linaro.org>
-Date: Wed, 11 Mar 2026 23:00:04 +0000
+	s=arc-20240116; t=1773270066; c=relaxed/simple;
+	bh=M43vvKeQEycI0Se6DJz0lUqaq2xuGnr0lBhb8EOl+sk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ouo55r3MCCL6roPK6Hc0ER/hTzbUK57xg7Rm97TG7O1wWJFe5cpMD/FFG+bIn6HmwInqNj0CGJSBCvicpTcjmCXdjeyI9qlYK7p+W6QiCz/icvhAEHeMjKvKxcfHPsadPjIaYMSCxkdJQC13CNzlVToEFb0OnJiClV8uVIeOyPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TFg4LtDY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25FD9C4CEF7;
+	Wed, 11 Mar 2026 23:01:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773270066;
+	bh=M43vvKeQEycI0Se6DJz0lUqaq2xuGnr0lBhb8EOl+sk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TFg4LtDY60YO3DcpIt9jlsGJRZl8kpQHrl28MfEteMjifEiNlK2ItuP6nJyPjAOIa
+	 8IsWNSauYnDAXh57ABMqJwEw6UZtzN4dbupuKBv0DL9sNh+DewkqUnfQxhJpaLqbX3
+	 qx3AH/mafIMqKPqhbPSJNNmkI6fkeAasKrSjtZolNhljxehwodpFSP2WvR3YmUOHBb
+	 Xb3bFsr/f0d8FPDOK1S+sP3Rtkl0GvmUhWBSrmR2+cjHQvVIuX+z3TQIRlePjq4+2C
+	 yDWf8leE2GPvPwQtnZ84ErtgphEYfSlH5Yt1hKSBs/dHompWid4+Ac08J4uentM3hg
+	 lI3D6wZwimoAA==
+Date: Wed, 11 Mar 2026 18:01:05 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Irui Wang <irui.wang@mediatek.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, wenst@chromium.org,
+	kyrie wu <kyrie.wu@mediatek.com>,
+	Yunfei Dong <yunfei.dong@mediatek.com>,
+	nicolas.dufresne@collabora.com, linux-kernel@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	angelogioacchino.delregno@collabora.com,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Maoguang Meng <maoguang.meng@mediatek.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Project_Global_Chrome_Upstream_Group@mediatek.com,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Longfei Wang <longfei.wang@mediatek.com>,
+	Tiffany Lin <tiffany.lin@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v5 5/6] media: dt-bindings: mediatek,vcodec-encoder: Add
+ MT8196
+Message-ID: <177327006458.1099258.2235399248272370761.robh@kernel.org>
+References: <20260302035244.8994-1-irui.wang@mediatek.com>
+ <20260302035244.8994-6-irui.wang@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/2] usb: typec: qcom: Add shared USBIN VBUS detection
- via GPIO
-To: Alexander Koskovich <akoskovich@pm.me>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260308-qcom-typec-shared-vbus-v1-0-7d574b91052a@pm.me>
- <920ae606-3d7d-4f61-9d11-bd970abc5177@linaro.org>
- <v4m49h-DK1i8hRbJZVhc1GwDH7oBTRgeXg0hIE8chXTULQuFFfSibjXs19m5E4srNt4852h-x_YcxMoPaUjzPqmwYHI8-tRc2-X2DaIKI-A=@pm.me>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <v4m49h-DK1i8hRbJZVhc1GwDH7oBTRgeXg0hIE8chXTULQuFFfSibjXs19m5E4srNt4852h-x_YcxMoPaUjzPqmwYHI8-tRc2-X2DaIKI-A=@pm.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260302035244.8994-6-irui.wang@mediatek.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274355-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[kernel.org,chromium.org,mediatek.com,collabora.com,vger.kernel.org,lists.infradead.org,xs4all.nl,gmail.com];
+	TAGGED_FROM(0.00)[bounces-274356-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,linaro.org:dkim,linaro.org:mid]
-X-Rspamd-Queue-Id: DF9CE26B067
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,mediatek.com:email]
+X-Rspamd-Queue-Id: A1F2126B085
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 11/03/2026 17:37, Alexander Koskovich wrote:
-> For the bottom port there's an independent boost converter
 
-Ahh..
+On Mon, 02 Mar 2026 11:52:42 +0800, Irui Wang wrote:
+> Add support for MT8196 video encoder which uses VCP (Video Co-Processor)
+> for firmware management. Unlike previous platforms that use SCP/VPU, MT8196
+> requires VCP to load and execute the video encoding firmware, with the
+> encoder communicating through VCP to perform encoding operations.
+> 
+> Add the "mediatek,mt8196-vcodec-enc" compatible string and introduce
+> the "mediatek,vcp" property to reference the VCP device, which is
+> required for MT8196 encoder operation.
+> 
+> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
+> ---
+>  .../media/mediatek,vcodec-encoder.yaml        | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+> 
 
-OK for some reason I read your mail and thought that the PM8150b was 
-sourcing VBUS for both ports, after realising you had a RT1715 aka 
-reading your cover letter again.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-So much for my research on how to make that esoteric setup work.
-
----
-bod
 
