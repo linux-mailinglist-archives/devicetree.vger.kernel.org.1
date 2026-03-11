@@ -1,160 +1,226 @@
-Return-Path: <devicetree+bounces-274256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274257-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNsfIdqjsWn4EAAAu9opvQ
-	(envelope-from <devicetree+bounces-274256-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:18:18 +0100
+	id uHmmBPKlsWn4EAAAu9opvQ
+	(envelope-from <devicetree+bounces-274257-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:27:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEE20267E6F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:18:17 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80DE2268032
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:27:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E13463013B6F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:18:16 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 88CB23031037
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C6A2FD68B;
-	Wed, 11 Mar 2026 17:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B75391E7F;
+	Wed, 11 Mar 2026 17:26:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q95qr3S+"
+	dkim=pass (2048-bit key) header.d=schnwalter.eu header.i=@schnwalter.eu header.b="GZUObFxH";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="mjAnFcnh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB02D2E4274
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 17:18:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94EFF31960A;
+	Wed, 11 Mar 2026 17:26:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773249496; cv=none; b=jwPiSHH1hU/oGlRR5QWCv2DEBEAL6LLaIR36fbFJNE6zg0MsfTICRS50cRCI7QnS7ZqKfVp/arHMm4k5jnqphmQQRLWD1iKrk6ryXEcJRM+AgwvAMfqx8GMfJtcv+YREP5ukD8GggmnHxbO67IgbZOJnfevs5V9aTpgQK2eqTjo=
+	t=1773249988; cv=none; b=gkkIAZ2IfJvmKMeh2sfYFX8aKS6Zf98ySTDql5evCHEELYGspgVVn1dbUV+5DCgpO2wIeaMem29JkN7//+NhXQ2GRzdsHrl5PmA5KOCW7LFhNHNeGnIfH8sJihyx09U8RPqIQEdl6+PFB2XD7BhMnT5Vxj+SkaiQXyT53XkHrhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773249496; c=relaxed/simple;
-	bh=OE84FjPfiUkC8JcC39aOGaWlIrdgv9W7fbDtR0GeE+o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P6yRtjiALppEsNOMIbTZ+dR8nIxyyvbz+HlEErGXQL11/ASwVZPXSlAMT6/qzN8OryicxBRlNT8MgaDjDxi0NHQJ879lpoMJ1xedtU9wYsFK1zKVYkh5c/lRCGHZct7aBu7RFwoR+SAA6oPQcUX3PNcdogb6dH1iFFlM6KSiBN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q95qr3S+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD1E6C2BCAF
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 17:18:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773249495;
-	bh=OE84FjPfiUkC8JcC39aOGaWlIrdgv9W7fbDtR0GeE+o=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=q95qr3S+CbvJ29vl+vCJ4t5jUwTLKQmLtHRx0KuH+kfcxcNXDI/Kx7KK0W2ctTRvm
-	 ObqE98GetffbgSX0p/OL7dDHRFg3sANFe+F4Ww+iz7Oj9C99hvDTRbzxlJhkJoFll+
-	 iwzVIi1ExaQmkr1+idbtxyjbBUxztnp+DboifD2PVEN72tfcmt4OIeah8kMk2chvFL
-	 /zSHtr90oK1vhfakVS0BhYgIvWzbgQO7dRpJrb6apCy7M8HbqijRMf106nUwRuClYJ
-	 mdSWB0AiDOaDZjjKIHiPc5Ylv8kd9O7cnpFj3diJ5g9DgZfWUxNU4DF1q/fOKgF47O
-	 ggal+Xagy0rwA==
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5a0ff30b240so222034e87.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:18:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUkScAEeawkVa1PZ2rntDiFxzS5MNsPOz5WFnewoRgddFN2hqGx6wG/gsGlTz0lMecQQ3uFjpzFQeuy@vger.kernel.org
-X-Gm-Message-State: AOJu0YwB5e0RvR0Bvu4vl45OUMGw6IfbI7SJx7gTH7tu2C956tm9GN8d
-	6vv/V8v5OGFkf2+6T96JoXYwnY9VuH+Q9eIWAvZniN618WRlEZX16J4jtHU/bU2cnw7decFZQve
-	KSjxwBIm6t57KybTEU0V2VKyOq0UqYQTgVjZy58Ez0Q==
-X-Received: by 2002:a05:651c:1604:b0:38a:957:a125 with SMTP id
- 38308e7fff4ca-38a67e1ba60mr11617111fa.18.1773249494042; Wed, 11 Mar 2026
- 10:18:14 -0700 (PDT)
+	s=arc-20240116; t=1773249988; c=relaxed/simple;
+	bh=y+KKZaoBKzrNz1o+jJF6trYgtzm7fNHFfD7SXXDA9UY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=AWWtAXWm+e3OAXEw0H+grasXeHUL8Up23UeDoUFF1MWroUhf8qe9u9WMegtzFrd8AaRd0UGfKoqRk6Kj9WPC+N+lv7gcjwmkUzGvQAm/enMU33rtYk+NE7qNOmgo8oXIjpuN8mhoepuBK7tPbQReLBP/D4aeQ71CeNR7cNx0Xco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=schnwalter.eu; spf=pass smtp.mailfrom=schnwalter.eu; dkim=pass (2048-bit key) header.d=schnwalter.eu header.i=@schnwalter.eu header.b=GZUObFxH; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=mjAnFcnh; arc=none smtp.client-ip=103.168.172.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=schnwalter.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=schnwalter.eu
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfout.phl.internal (Postfix) with ESMTP id BFDC4EC0642;
+	Wed, 11 Mar 2026 13:26:25 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-02.internal (MEProxy); Wed, 11 Mar 2026 13:26:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=schnwalter.eu;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:message-id:mime-version
+	:reply-to:subject:subject:to:to; s=fm2; t=1773249985; x=
+	1773336385; bh=YkPQERX+T6reisC78/iLKEw2FXnOBZz8ocwVFwvGVXU=; b=G
+	ZUObFxHpg/SMW9vOWdRjeIfo8t0glT5t47vvtNLUT+4kW0cBdt4/VHpphTVxFTc2
+	cgzsHR+mrQmjqmGnVtsCfqA7o7YhSvA0M8rky1CrNexxzMO6oItme/oGV367P0QI
+	ZrEBxrgUKTfA952kd3QiJ2h314FC74CZTyOCp9nbx/rxBrlqOM/9yx4ShvCGdjh5
+	IaSn2dKCk4orsfHaaPZTATSjBtVM5fkni9yNmLdqHLj4c+z8pwNkjYrWQEa/Vioy
+	T0iSkQyasYAr7sksVwqrUGhqtKIgyaXis507RCQIyA6guiHnaZvpj6OHE3felqQQ
+	MbPxClXIxvQ79vwSMEYJQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm1; t=1773249985; x=1773336385; bh=YkPQERX+T6reisC78/iLKEw2FXnO
+	BZz8ocwVFwvGVXU=; b=mjAnFcnhU4vaEtTOp9avek22E91rC4+9XAbG8vj/W3nw
+	EPTZOwRY05FpifPvibTj429cLMo6+WBLxk9j1IrAUo/JZ2fgPL+tDgeHl6SZYOIC
+	OWcVqS30EDN4H7JqNGxwravxl/EPzHvNAV7zF4l2zvi3KqzkjmlbCZut5ioWbXr8
+	fBGa48mR+EIKnPkTMBlusNzNPOmDrewVJijGet9o71BnuRO0cJ4VbFC7ROZsUUdV
+	W3fJrtFCzZwOE7D39WRO52JuIZr/+gy0c3WHUCe0muP5W1hcRgMZiG5AifNs2yvM
+	ajo30Dj71bfYPe6lF6L9L2cPo7/NW0/6cVgPpf24gg==
+X-ME-Sender: <xms:waWxaQVWA00PA3cfilTkqfmpEIwtFMn7Id1ExzlVU44Q0TDv6Xufew>
+    <xme:waWxacwuwi5dq5xIBPFZIXCeiqkp0xNH8VPcLpTyAjvKKtlorTh4CE5Olmue_1xud
+    kGtnTkiHigioHrvafOgPBYLr90BqYlxIAJnWvc2mK6L9PZNnedaww>
+X-ME-Received: <xmr:waWxaf_2Q_R0Rib72tHW9wjKFXnaa_bQ1WaH826RfGQfw2muvxbSI2glotlz7w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvkeeggeelucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhephfffufggtgfgkffvvefosehtjeertdertdejnecuhfhrohhmpeghrghlthgvrhcu
+    hggvrhhnvghrucfutghhnhgvihguvghruceotghonhhtrggtthesshgthhhnfigrlhhtvg
+    hrrdgvuheqnecuggftrfgrthhtvghrnhepvefhheduuefggffhgfeuudefvdelieffiedu
+    uddvleeludevgfetfeegiefgfefhnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenuc
+    evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegtohhnthgr
+    tghtsehstghhnhifrghlthgvrhdrvghupdhnsggprhgtphhtthhopedutddpmhhouggvpe
+    hsmhhtphhouhhtpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgv
+    rhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrh
+    hnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphht
+    thhopegtohhnthgrtghtsehstghhnhifrghlthgvrhdrvghupdhrtghpthhtohepkhhrii
+    hkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshgrkhgrrhhirdgrihhluhhs
+    sehlihhnuhigrdhinhhtvghlrdgtohhmpdhrtghpthhtohepmhgthhgvhhgrsgeskhgvrh
+    hnvghlrdhorhhgpdhrtghpthhtohepjhgrtghophhordhmohhnughisehiuggvrghsohhn
+    sghorghrugdrtghomhdprhgtphhtthhopehlihhnuhigqdhmvgguihgrsehvghgvrhdrkh
+    gvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:waWxaZ_KZUiiG6ePfzflo2qEKXm0Y8z5AT4-dwzy0jgPLRIL1iRnXA>
+    <xmx:waWxaWVjROsHmeX2lcn71SoMYqkd6bVQUXr80R0ZHTahb7KZNdr3aA>
+    <xmx:waWxaefia8uNBPqHU3o8GIaI8ExbDoMoK6ckAJLjPzi5aJjfzypRgg>
+    <xmx:waWxaXZBitn-7L-86WC6KS4LYLM0NsD1gKvSQAoLGlxWRT-kAHbu-g>
+    <xmx:waWxacDFfx8t-csDch28JVCYeh0Uds3LdLeQATUi1F25r1EgIRsZP0tK>
+Feedback-ID: i455149b6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 11 Mar 2026 13:26:23 -0400 (EDT)
+From: Walter Werner Schneider <contact@schnwalter.eu>
+Date: Wed, 11 Mar 2026 19:26:20 +0200
+Subject: [PATCH] media: i2c: Add ov2732 image sensor driver cleanup
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311-qcom-sa8255p-emac-v8-0-58227bcf1018@oss.qualcomm.com>
- <20260311-qcom-sa8255p-emac-v8-2-58227bcf1018@oss.qualcomm.com> <abGizL-uYnahlcEt@shell.armlinux.org.uk>
-In-Reply-To: <abGizL-uYnahlcEt@shell.armlinux.org.uk>
-From: Bartosz Golaszewski <brgl@kernel.org>
-Date: Wed, 11 Mar 2026 18:18:00 +0100
-X-Gmail-Original-Message-ID: <CAMRc=MdOXz6a4+-xNfmHD9insd+UcyF9xvZim7DtptKOj9B70Q@mail.gmail.com>
-X-Gm-Features: AaiRm52Tw2Qo9qa62t56mCoewk4vwmQ4zN4g67WY5ySxyBb-ueDnRqCKEIOABSM
-Message-ID: <CAMRc=MdOXz6a4+-xNfmHD9insd+UcyF9xvZim7DtptKOj9B70Q@mail.gmail.com>
-Subject: Re: [PATCH net-next v8 2/6] net: stmmac: qcom-ethqos: use generic
- device properties
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Vinod Koul <vkoul@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Chen-Yu Tsai <wens@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Fabio Estevam <festevam@gmail.com>, Jan Petrous <jan.petrous@oss.nxp.com>, s32@nxp.com, 
-	Romain Gantois <romain.gantois@bootlin.com>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Magnus Damm <magnus.damm@gmail.com>, Maxime Ripard <mripard@kernel.org>, 
-	Christophe Roullier <christophe.roullier@foss.st.com>, Radu Rendec <rrendec@redhat.com>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Drew Fustini <dfustini@tenstorrent.com>, 
-	linux-sunxi@lists.linux.dev, linux-amlogic@lists.infradead.org, 
-	linux-mips@vger.kernel.org, imx@lists.linux.dev, 
-	linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	sophgo@lists.linux.dev, linux-riscv@lists.infradead.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260311-ov2732-driver-cleanup-v1-1-234f334c1e4b@schnwalter.eu>
+X-B4-Tracking: v=1; b=H4sIALylsWkC/x3MMQqAMAxA0atIZgM2gqJXEYfaRg1IlRSLIL27x
+ fEN/78QWYUjjNULykminKHA1BW43YaNUXwxUENd0xqDZ6K+JfQqiRXdwTbcF9rOLesyDGR7D6W
+ 9lFd5/u805/wBHip/U2cAAAA=
+X-Change-ID: 20260311-ov2732-driver-cleanup-a6cbfb992a7d
+To: linux-media@vger.kernel.org, 
+ Jacopo Mondi <jacopo.mondi@ideasonboard.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Walter Werner Schneider <contact@schnwalter.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773249983; l=2436;
+ i=contact@schnwalter.eu; s=20251106; h=from:subject:message-id;
+ bh=y+KKZaoBKzrNz1o+jJF6trYgtzm7fNHFfD7SXXDA9UY=;
+ b=/In7nVa0lrn41L9LsRhcs3MEv/mgFtLhvODpQeMu1fZmGm4cQqGzMBI/thtQiH3lzkHzccpN8
+ u4ufb2ifG21A9H2yY0IybxXNYvXGDX486VqWRmz74TjH11QyCXZQAme
+X-Developer-Key: i=contact@schnwalter.eu; a=ed25519;
+ pk=OoafUGtB7zQJLYhKA7ALCjqddXAaem/uP/eb3GGNkTI=
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	DMARC_POLICY_ALLOW(-0.50)[schnwalter.eu,quarantine];
+	R_DKIM_ALLOW(-0.20)[schnwalter.eu:s=fm2,messagingengine.com:s=fm1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274256-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[oss.qualcomm.com,kernel.org,lunn.ch,davemloft.net,google.com,redhat.com,gmail.com,foss.st.com,st.com,linaro.org,baylibre.com,oss.nxp.com,nxp.com,bootlin.com,glider.be,vger.kernel.org,st-md-mailman.stormreply.com,lists.infradead.org,tenstorrent.com,lists.linux.dev];
+	DKIM_TRACE(0.00)[schnwalter.eu:+,messagingengine.com:+];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[47];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274257-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[brgl@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,netdev,renesas];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,qualcomm.com:email,linaro.org:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,armlinux.org.uk:email]
-X-Rspamd-Queue-Id: EEE20267E6F
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[contact@schnwalter.eu,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[schnwalter.eu:dkim,schnwalter.eu:email,schnwalter.eu:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,messagingengine.com:dkim]
+X-Rspamd-Queue-Id: 80DE2268032
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 6:14=E2=80=AFPM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
->
-> On Wed, Mar 11, 2026 at 06:03:37PM +0100, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > In order to drop the dependency on CONFIG_OF, convert all device proper=
-ty
-> > getters from OF-specific to generic device properties and stop pulling
-> > in any linux/of.h symbols.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.co=
-m>
->
-> Please postpone this for the time being - I'm trying to get stmmac's
-> pain-in-the-arse PCS support sorted, and I've patch series out there
-> and pending that make a large number of changes to this driver. This
-> is likely to conflict with my work.
->
-> I'm limited by the rate at which patches can be applied to net-next
-> and the rate at which Mohd can provide me feedback. On that, I notice
-> you haven't Cc'd Mohd who is now in MAINTAINERS for qcom-ethqos.
->
+A small set of changes:
+- Updated copyright year.
+- Removed redundant parentheses.
+- Removed endpoint check, see Dependencies for required patch set.
 
-Do these two changesets interact with each other a lot? Do you have a
-WIP branch I could take a look at? This has been post-poned several
-times already, there always seem to be some new changes coming in. :/
+Dependencies:
+- media: i2c: Add ov2732 image sensor driver
+  https://lore.kernel.org/r/20260105-ov2732-driver-v6-0-95c1b0b0ba7b@schnwalter.eu
+- media: v4l2-fwnode: Return -EPROBE_DEFER on parsing NULL endpoints
+  https://lore.kernel.org/linux-media/20260310141157.1186325-1-sakari.ailus@linux.intel.com/
 
-Bart
+Signed-off-by: Walter Werner Schneider <contact@schnwalter.eu>
+---
+A patch to be applied on the v6 version of the ov2732 driver.
+
+P.S. Sorry for the misunderstanding, it wasn't clear to me that I should
+just send a diff on top of v6 instead of sending a v7.
+---
+ drivers/media/i2c/ov2732.c | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/media/i2c/ov2732.c b/drivers/media/i2c/ov2732.c
+index d33e7b6e3762f0e93e199f36dc2d77f95ec5b414..40035320fec631c098f77c433360599905805d2d 100644
+--- a/drivers/media/i2c/ov2732.c
++++ b/drivers/media/i2c/ov2732.c
+@@ -3,7 +3,7 @@
+  * ov2732 driver
+  *
+  * Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd.
+- * Copyright (C) 2025 Walter Werner Schneider <contact@schnwalter.eu>
++ * Copyright (C) 2025-2026 Walter Werner Schneider <contact@schnwalter.eu>
+  */
+ 
+ #include <linux/clk.h>
+@@ -491,11 +491,11 @@ static int ov2732_set_ctrl(struct v4l2_ctrl *ctrl)
+ 	case V4L2_CID_EXPOSURE:
+ 		/* Lowest 4 bits are fraction bits. */
+ 		cci_write(ov2732->regmap, OV2732_REG_EXPOSURE,
+-			  ((u32)ctrl->val) << 4, &ret);
++			  (u32)ctrl->val << 4, &ret);
+ 		break;
+ 	case V4L2_CID_VBLANK:
+ 		cci_write(ov2732->regmap, OV2732_REG_VTS,
+-			  (format->height + ctrl->val), &ret);
++			  format->height + ctrl->val, &ret);
+ 		break;
+ 	case V4L2_CID_TEST_PATTERN:
+ 		cci_write(ov2732->regmap, OV2732_REG_TEST_PATTERN,
+@@ -608,10 +608,6 @@ static int ov2632_probe_dt(struct ov2732 *ov2732)
+ 	int ret;
+ 
+ 	ep = fwnode_graph_get_endpoint_by_id(fwnode, 0, 0, 0);
+-	if (!ep)
+-		return dev_err_probe(ov2732->dev, -EPROBE_DEFER,
+-				     "waiting for fwnode graph endpoint\n");
+-
+ 	ret = v4l2_fwnode_endpoint_alloc_parse(ep, &bus_cfg);
+ 	fwnode_handle_put(ep);
+ 	if (ret) {
+
+---
+base-commit: bb1048a0531ffda0c6e871c341d388735cfcc807
+change-id: 20260311-ov2732-driver-cleanup-a6cbfb992a7d
+
+Best regards,
+-- 
+Walter Werner Schneider <contact@schnwalter.eu>
+
 
