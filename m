@@ -1,196 +1,135 @@
-Return-Path: <devicetree+bounces-273963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273964-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJb8B3UxsWm0rwIAu9opvQ
-	(envelope-from <devicetree+bounces-273963-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:10:13 +0100
+	id eKpQHhkzsWm0rwIAu9opvQ
+	(envelope-from <devicetree+bounces-273964-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:17:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFE412600C0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:10:12 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B0BF26024A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id CB011301453A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:09:43 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 2A559301F681
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8567C3C3436;
-	Wed, 11 Mar 2026 09:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61F6D3C7DEA;
+	Wed, 11 Mar 2026 09:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FPZ5GUWX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nHgSGr/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF03F3659E4;
-	Wed, 11 Mar 2026 09:09:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D19563C5DD7;
+	Wed, 11 Mar 2026 09:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773220177; cv=none; b=I1hoHdX7qblGWcz1fx9y4BjhnpZRrSGVKgrBk9IN6kpVrizapc8OYc0QIJqqZkzJkIsx50hhWYDxuV757BnA4IhX0JCqJS5zE5LU2IRUn2NSU+1PXDe3sjPCPKEY2J3BWz9in0XAt7wSqGWjjjbmwJ7UMtxMQJSshcH8Hea7xwA=
+	t=1773220184; cv=none; b=mGmcgbxK1kCCkPdNuM8VI8jP8DxcGrWyZNR7I7jTCRllCfmv9CWqh3K4uf1EtdTjQJabPZp6kwh4ckvVPIS37Kbn/O29FbzoKjGZWDZazoQs3s+DsQ+k65EVSqg+zg1nXX/mQIX9BjW7VEeUknpnvgLwKalIY+Va96sas8yt/Ms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773220177; c=relaxed/simple;
-	bh=AU9ivEX+BuCYMmmOUFin+6rA4mF5dW4/KhPoli36HY4=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=YoX4jUyGtp3b2tIqtY+J24sZcaTZUlQFwsxxSLZS3LQJaUjmKrjH/g2i2oVeWNjwCi+xu77ZFenPMxXcQ/Ee/xvpzzDoWK/WNpmdFT8upnXGuOo0EuMuzfKEAOB0VxnqEjTw9raCVdCRhcWSe5g0uTScnavmzIvzKnk1enRGzWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FPZ5GUWX; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62B7Q4oc2030858;
-	Wed, 11 Mar 2026 09:09:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=Qc72zRMJYB5xfq+4VzWzfmUItq0LEYA1CWF
-	7Rm7OGwE=; b=FPZ5GUWXdf+8RVAaqZUEy9PcSZuHVzv6g7INjrqsX/7K4pSA4kw
-	zBwdbn6DQsgnAFIxU2d5VNm3BnD8CMAObty/DV3s4pw2he/8eXDcfH4FD39hnrsO
-	NcxP3nkaD509Agu2OU/uxDlsgB81OSoz2OAtNRkE2SRHS5qhaXMDwByy+zpuKDGa
-	VVYzTcgo8PwBnCQZ6ULlFPaV5PAgzzCa6MJyY9VGMwphRUxtyceTlvJpZsnASycf
-	q6Mqd8OXMwRYdP2IzNlLgdHCrDixS2TmV3nPVFsmwmen50PanchSIU7MZUA8brRI
-	PjTrEPiYRRa/H+dTRuvUG40A9ZRB380t4hA==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cu40h0cf5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Mar 2026 09:09:26 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 62B99Oqc030582;
-	Wed, 11 Mar 2026 09:09:24 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 4crd3mftwq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Mar 2026 09:09:24 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 62B99OtF030575;
-	Wed, 11 Mar 2026 09:09:24 GMT
-Received: from shuaz-gv.ap.qualcomm.com (smtphost-taiwan.qualcomm.com [10.249.136.33])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 62B99NV2030571
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 11 Mar 2026 09:09:24 +0000
-Received: by shuaz-gv.ap.qualcomm.com (Postfix, from userid 4467449)
-	id 01AC15D6; Wed, 11 Mar 2026 17:09:22 +0800 (CST)
-From: Shuai Zhang <shuai.zhang@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        cheng.jiang@oss.qualcomm.com, quic_chezhou@quicinc.com,
-        wei.deng@oss.qualcomm.com, jinwang.li@oss.qualcomm.com,
-        mengshi.wu@oss.qualcomm.com, shuai.zhang@oss.qualcomm.com
-Subject: [PATCH v1] arm64: dts: qcom: hamoa-iot-evk: support Bluetooth over both USB and UART
-Date: Wed, 11 Mar 2026 17:09:21 +0800
-Message-Id: <20260311090921.1892191-1-shuai.zhang@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1773220184; c=relaxed/simple;
+	bh=z54dQcyh6RQQ2entvvGCkeeoJxwhB+c230BoLQ4+ql4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=B4n7NQFXQe5uMJJrHlI8+YPAkAr0tViMqY6zwdv2g4Rx7RfjydtaUB6VOW1kliwLjoz3aGdGqTDk7P8aMNbwiAPS3nRpRzCVGlvoPmdjkaezJd8t3qBdTqIv69IbJ47SkMdcwG2L4l6mOODr/YeL1Y4ftY8xYfoIcFhbJNZFwEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nHgSGr/g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2700C4CEF7;
+	Wed, 11 Mar 2026 09:09:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773220183;
+	bh=z54dQcyh6RQQ2entvvGCkeeoJxwhB+c230BoLQ4+ql4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=nHgSGr/gXZ0kkkLWBeSEAhlrt2X2JCkA++zBDles9Q6/GIW/igNVeU8lYwa5R0Bzx
+	 jhFk89/1myL8fFCAC32HaKKmtok16MFW4blm9UhJR95LVrVDWTD32XjFb2rhKL2oKJ
+	 /n5KvIiEHm8jRvnFV2qFU49faZ7anKmwn0lojBh0H6g6HS7otgpSe8q6B/oCjGvs2a
+	 eI3je8fupj/Hhtyn2nCYxkvTRVvR0ilzNKK2wGwgRu4N/UvYCKWUO299Nls6spnwGY
+	 7Rc7efXqoTINAHXQZ4xce6tdy+ZqzeXFLE++j4r3aZw/lLiI2+baTaM7RSf6pIeVCF
+	 jjFoywWStCkKA==
+From: Thomas Gleixner <tglx@kernel.org>
+To: Ciprian Costea <ciprianmarian.costea@oss.nxp.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Shawn Guo
+ <shawnguo@kernel.org>, Lucas Stach <l.stach@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, NXP S32 Linux
+ Team <s32@nxp.com>, Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz
+ <aruizrui@redhat.com>, Enric Balletbo <eballetb@redhat.com>, Eric Chanudet
+ <echanude@redhat.com>, Ciprian Marian Costea
+ <ciprianmarian.costea@oss.nxp.com>, Larisa Grigore
+ <larisa.grigore@nxp.com>
+Subject: Re: [PATCH v6 3/5] irqchip/imx-irqsteer: add NXP S32N79 support
+In-Reply-To: <20260311081154.381881-4-ciprianmarian.costea@oss.nxp.com>
+References: <20260311081154.381881-1-ciprianmarian.costea@oss.nxp.com>
+ <20260311081154.381881-4-ciprianmarian.costea@oss.nxp.com>
+Date: Wed, 11 Mar 2026 10:09:37 +0100
+Message-ID: <87h5qmraum.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDA3NiBTYWx0ZWRfX9EZqZ65lQ4dW
- hoWkRhhyYJbMdCaKNMRqJ26/9OusFhRCaKXxhW9THFvGMr/qpbSl04Ml7RCk3fCWfb1trhLmYEi
- 6LHXApdBi4Kbfmzcqy702cp2GwS3B7lu+4JCOJUxYmJATlQ5sQzX177DfFKPlp0A4immulxIoa1
- Rqb/bnF6dGlytMlcDpZQS1zGZv6R0hPy75jLBefC4e4NGtKXUaRwe7go2LHxtZkNY8m4UpCmLC5
- lmj4Zi4cuSlJE7wPecAgtWWWk2Y53JCglsHvYPDAxJTCmTRbpQX1Wcf6kKAaKgXrfk5bF0DiXy0
- 4GhQ0zsL03F+28CKRBQctrt0STi4/WTMBYkFKcD2f30d0XmjHsMwM1YZ1QS8CDAT5x0B34QUe+k
- ykArT3OQylLid7LTxAOOsqV4s2t2m3q7si8xtciq83GZHiZVxCDvKUKfB8eCDLVsXsH6kd3XOO9
- LzBFhT6+EenZEtVx+iA==
-X-Proofpoint-ORIG-GUID: ocC8inIoh1FTXDsfk_aNHGRV609KUNZK
-X-Authority-Analysis: v=2.4 cv=YJ+SCBGx c=1 sm=1 tr=0 ts=69b13146 cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
- a=eoimf2acIAo5FJnRuUoq:22 a=EUspDBNiAAAA:8 a=HMaGmTrOzvxuP8ZxLMIA:9
-X-Proofpoint-GUID: ocC8inIoh1FTXDsfk_aNHGRV609KUNZK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-11_01,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 clxscore=1011 lowpriorityscore=0 adultscore=0
- spamscore=0 bulkscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603110076
-X-Rspamd-Queue-Id: AFE412600C0
+Content-Type: text/plain
+X-Rspamd-Queue-Id: 7B0BF26024A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [4.34 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273964-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273963-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[shuai.zhang@oss.qualcomm.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	GREYLIST(0.00)[pass,body];
+	FREEMAIL_TO(0.00)[oss.nxp.com,kernel.org,nxp.com,pengutronix.de,gmail.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tglx@kernel.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:mid];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCVD_COUNT_SEVEN(0.00)[10]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[i.mx:url,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-When Bluetooth supports both USB and UART, the BT UART driver is
-always loaded, while USB is hot-pluggable. As a result, when Bluetooth
-is used over USB, the UART driver still be probed and drive BT_EN low,
-which causes the Bluetooth device on USB to be disconnected.
+On Wed, Mar 11 2026 at 09:11, Ciprian Costea wrote:
+> From: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
+>
+> Add support for the interrupt steering controller found in NXP S32N79
+> series automotive SoCs.
+>
+> The S32N79 IRQ_STEER variant differs from the i.MX version by not
+> implementing the CHANCTRL register. To handle this hardware difference,
+> introduce a device type data structure with quirks field. The
+> IRQSTEER_QUIRK_NO_CHANCTRL quirk skips CHANCTRL register access for S32N79
+> variants.
+>
+> The interrupt routing functionality and register layout are otherwise
+> identical between the two variants.
+>
+> Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
+> Signed-off-by: Ciprian Marian Costea <ciprianmarian.costea@oss.nxp.com>
 
-Configure BT_EN as a GPIO hog so that it is controlled by the platform
-instead of the UART driver, preventing BT over USB from being
-unintentionally powered down.
+I've picked up this one. Can the ARM64 folks please pick up the DT muck
+as that really has close to zero relevance to irqchips.
 
-Signed-off-by: Shuai Zhang <shuai.zhang@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+Thanks,
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-index 630642baa435..60a0b3ecbc1b 100644
---- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-@@ -647,10 +647,9 @@ wcn7850-pmu {
- 		vddrfa1p2-supply = <&vreg_wcn_1p9>;
- 		vddrfa1p8-supply = <&vreg_wcn_1p9>;
- 
--		bt-enable-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
- 		wlan-enable-gpios = <&tlmm 117 GPIO_ACTIVE_HIGH>;
- 
--		pinctrl-0 = <&wcn_bt_en>, <&wcn_wlan_en>;
-+		pinctrl-0 = <&wcn_wlan_en>;
- 		pinctrl-names = "default";
- 
- 		regulators {
-@@ -1398,11 +1397,12 @@ wcd_default: wcd-reset-n-active-state {
- 		output-low;
- 	};
- 
--	wcn_bt_en: wcn-bt-en-state {
--		pins = "gpio116";
--		function = "gpio";
--		drive-strength = <2>;
--		bias-disable;
-+	wcn_bt_en_hog: wcn-bt-en-state-hog {
-+		gpio-hog;
-+		gpios = <116 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		input-disable;
-+		link-name = "BT_EN";
- 	};
- 
- 	wcn_wlan_en: wcn-wlan-en-state {
--- 
-2.34.1
-
+        tglx
 
