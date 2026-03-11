@@ -1,202 +1,276 @@
-Return-Path: <devicetree+bounces-274340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274341-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMmfIevYsWlPFwAAu9opvQ
-	(envelope-from <devicetree+bounces-274340-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:04:43 +0100
+	id 0OJJDRHasWlPFwAAu9opvQ
+	(envelope-from <devicetree+bounces-274341-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:09:37 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A32F26A3F9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:04:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F3FD26A46E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:09:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 9C6493023DA8
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:04:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 3F18D306C7C8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ADF42DB78E;
-	Wed, 11 Mar 2026 21:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0516324716;
+	Wed, 11 Mar 2026 21:08:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b="AzpyNsQt"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EuednAHl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9B42C0261;
-	Wed, 11 Mar 2026 21:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.147.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185762C0261;
+	Wed, 11 Mar 2026 21:08:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773263078; cv=none; b=ZBVjBr/IwGSnCsGLQEaqlEfFNNkpxGyxrP9wKrd7IMgGO+Rn5VzWfLKyO3QEHfUYqB+MCgqSwXqEN6rvgZrCtGwnMZRx/6jYAp6YXeUUC7QvEz/M97bDvLPtwC0WBZhe7h36ZVS4G/ZiWiRI22Ic/zaK8FzADnDoOUdHAYrKSyQ=
+	t=1773263293; cv=none; b=edqw8a4DYDhr8G4MrG/AyhTpVTd5NzzzidAvdQL2E+eb67qaQqwb77oIE2SX7JJXG6lSnc7RJ/pLJpEmWYodYgElicewQz1nZ7TNoExZ+REYt8VN7okGZZsx0xEKUOoE5/z5Lx4oPXd9sftQRBwWtBnqEi0RoK1UNXc9y5tM2q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773263078; c=relaxed/simple;
-	bh=xRNPQHKn76zBegyngOvfgzAAW0Wm0NJapnt2nNd4v3A=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=q40UGhCOKVzH2CdpDAM1NI6it3FMIPfTiZZVc6I8Dc7N1/B6CTZV/T3rrRVunLIRqy9/RooBvqGMDP80RFhjkXMTNkYBbuCTpZHAgwLNT2H09VGXwXIrkTWmFa/dpnWl39jcdtdKzRdi8/99tQbf9Q4rdOJhLyQ8utKeZ8GryUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com; spf=pass smtp.mailfrom=hpe.com; dkim=pass (2048-bit key) header.d=hpe.com header.i=@hpe.com header.b=AzpyNsQt; arc=none smtp.client-ip=148.163.147.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=hpe.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hpe.com
-Received: from pps.filterd (m0148663.ppops.net [127.0.0.1])
-	by mx0a-002e3701.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62BJ0tgp2696823;
-	Wed, 11 Mar 2026 21:04:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=cc
-	:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=pps0720; bh=TJPqM8xAWb2xLBL1CFIyPvOh5GkR9ZY+T6Ddw
-	rgUQ68=; b=AzpyNsQtG5m6bjfk1P1tnatq04GR4YR7l+Obfz7VZ/Q/g0RWyvGIE
-	j/JqrBrH0cz7Y3AETa3c743F8kK38cJHw2txSolSwbQJEiZuGZK0Ep2nwUPn3ncx
-	UIt655hR7Fp/1lBqs2cZ6dXxG3P1hZWe1htsSwT4COc6LOoe4+DkS1jql0GtjFjT
-	sV9NEt8WzXcXj2Xp5GHUvTwCxC6yoIxcfoDufBfgd4XNn6TVSpxX3J70DHqVZwrj
-	nubLlt7eFoU2WdAVG7Mf1oIO5X9dlnx5nV5dcifqwZH64SJ1TOn6GB04n5/j6fdr
-	8yCD6sIktlMOm/pQ7MDbXh+SNC8gNKseQ==
-Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
-	by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 4cu8ereqvx-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Wed, 11 Mar 2026 21:04:32 +0000 (GMT)
-Received: from p1lg14886.dc01.its.hpecorp.net (unknown [10.119.18.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by p1lg14880.it.hpe.com (Postfix) with ESMTPS id C97B180162B;
-	Wed, 11 Mar 2026 21:04:30 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-	by p1lg14886.dc01.its.hpecorp.net (Postfix) with ESMTP id B3016811A4E;
-	Wed, 11 Mar 2026 21:04:29 +0000 (UTC)
-From: nick.hawkins@hpe.com
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nick Hawkins <nick.hawkins@hpe.com>
-Subject: [PATCH] dt-bindings: arm: Add HPE GSC platform binding
-Date: Wed, 11 Mar 2026 16:04:16 -0500
-Message-Id: <20260311210416.1706784-1-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1773263293; c=relaxed/simple;
+	bh=kRjOgkOnr7fYH+eWHo8E9TkCd+WB2e21NPMSBrm1rhM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lwv/pOrC1sIL1ZhFq3lPVjpQ5MgOc4RDeA3oetIZNvYHI4aN3mejxNN3RwuZ0YiKfJpRMA1gljnvA69hY64GTEKz9ZyLZRh3aA+3/jLZgZj7xyeEdCNSAIeIkbXa5FDFO1N4HZiM4uXKB96S+XvSldZB6oakgIso2WK1mpYSHj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EuednAHl; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773263292; x=1804799292;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=kRjOgkOnr7fYH+eWHo8E9TkCd+WB2e21NPMSBrm1rhM=;
+  b=EuednAHlb8UnoZnqR6tGU7YvPy0KPGEaDPoCQ1OFZW3jbffEttw7Rmq3
+   lcHThTX0w++tKTF9cElsWTn/3gyZrZsEJ2QVEF9yeuXmngVMbiVqMwtOB
+   ChWotFwCgCp5uBBawE1pN8djM1Ie82+ZwWvdvWCkkv3y6MWiJDPt36RJs
+   VWFEJ6u/DTB98TVP+4K/C6A95lqqfv+GJ9shE904ECznaROIge6OhzEg8
+   TpGPp+sMxQWR2taJ59z+CnFGaM6wvLJwgRjqLFzaUvzJgotyImx/eLZGd
+   UZaDtrCwNFOkUBqAYNeh6o1+0PYDQ4xOZsSFi5k1hdfMvNv7elO4JDaZH
+   g==;
+X-CSE-ConnectionGUID: RW9ggTkoTNWKe0ksszO+RQ==
+X-CSE-MsgGUID: p5OP0QK5Q0WyzO+6419+dA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85824482"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="85824482"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 14:08:12 -0700
+X-CSE-ConnectionGUID: cXwe4WTaQpaMy+Rt5wftzg==
+X-CSE-MsgGUID: TWoslZNDRqS7eF+1QCkbTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="225573534"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.178])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 14:08:07 -0700
+Date: Wed, 11 Mar 2026 23:08:04 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: radu.sabau@analog.com
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Linus Walleij <linusw@kernel.org>,
+	Bartosz Golaszewski <brgl@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] iio: adc: ad4691: add triggered buffer support
+Message-ID: <abHZtEYuzou9fBgn@ashevche-desk.local>
+References: <20260310-ad4692-multichannel-sar-adc-driver-v2-0-d9bb8aeb5e17@analog.com>
+ <20260310-ad4692-multichannel-sar-adc-driver-v2-3-d9bb8aeb5e17@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: J_0Zquw1cY7JmgutTI99RpIh_JWOqQI2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDE3OSBTYWx0ZWRfXxznJHZkNWcrg
- M1SPr2X0uPnFgFp837NYH2qsMmTeGk1bhddEZT0Cv05HHLECFktlx3SP9IVz+OJEQl+SvwxNfJ4
- NxzsL5D1sPLbZAL4vrlbrvE0igU8KlSzQcCr+mhnpvcE1KSwOF+EvfCeS/7irByC5U7fJHRxgFw
- TA78PNS2AXb9MWGYjfCRaPZKjGrt2lFxr1+OgY5xxbx93q1uiN1a4tQq/0e6ELUPIgzIVV/MFM2
- XSeH0a5/lbKK29dKh2ThDxcP46fBA4muN09q/nN7w7imCF8pywIxzW0vuujchrqy0mq9EdnMLZB
- iE2hKQThYsyXqbuvy2O7usFOdoXuYot3SADh8VYsAL/rzXep655/Qgr3X+Jlg4JUg821UppHxVx
- SFvMzCIYspZrEHvipZ7zSXbT3fom+D/v8yH+SNQoc1m1jIE95QgpAW7utS8WQWFie5Z75MMwnRp
- eufIpWq4902iv4xmzvQ==
-X-Authority-Analysis: v=2.4 cv=bdlmkePB c=1 sm=1 tr=0 ts=69b1d8e0 cx=c_pps
- a=A+SOMQ4XYIH4HgQ50p3F5Q==:117 a=A+SOMQ4XYIH4HgQ50p3F5Q==:17
- a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=gQcMVamqm3wCPoSYhaRC:22
- a=6_mrDcixewTG61oOsKN3:22 a=gEfo2CItAAAA:8 a=MvuuwTCpAAAA:8 a=VwQbUJbxAAAA:8
- a=kCQc3xdM3cJZAhJctwsA:9 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-GUID: J_0Zquw1cY7JmgutTI99RpIh_JWOqQI2
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-11_02,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 lowpriorityscore=0 bulkscore=0 adultscore=0
- impostorscore=0 malwarescore=0 suspectscore=0 clxscore=1015
- priorityscore=1501 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603110179
+In-Reply-To: <20260310-ad4692-multichannel-sar-adc-driver-v2-3-d9bb8aeb5e17@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[hpe.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
-	R_DKIM_ALLOW(-0.20)[hpe.com:s=pps0720];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274340-lists,devicetree=lfdr.de];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[metafoo.de,analog.com,kernel.org,baylibre.com,gmail.com,vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274341-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[hpe.com:+];
-	FROM_NO_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nick.hawkins@hpe.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,hpe.com:dkim,hpe.com:email,hpe.com:mid];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 5A32F26A3F9
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 8F3FD26A46E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+On Tue, Mar 10, 2026 at 04:32:24PM +0200, Radu Sabau via B4 Relay wrote:
 
-Add the devicetree binding for the HPE GSC ARM64 BMC SoC used on
-HPE ProLiant servers.  The HPE GSC is the successor to the HPE GXP
-(ARM32) BMC.
+> Add buffered capture support using the IIO triggered buffer framework.
+> 
+> Both operating modes share a single IIO trigger and trigger handler.
+> The handler builds a complete scan — one u32 slot per channel at its
+> scan_index position, followed by a timestamp — and pushes it to the
+> IIO buffer in a single iio_push_to_buffers_with_ts() call.
+> 
+> For CNV Clock Mode the GP0 pin is configured as DATA_READY output. The
+> IRQ handler stops conversions and fires the IIO trigger; the trigger
+> handler reads accumulated results from the AVG_IN registers via regmap
+> and restarts conversions for the next cycle.
+> 
+> For Manual Mode there is no DATA_READY signal; CNV is tied to SPI CS
+> so conversions are triggered by CS assertion rather than by a dedicated
+> pin. The standard iio-trig-hrtimer module is not used because the timer
+> period must be derived from the SPI clock rate and the number of active
+> channels: the pipelined protocol requires N+1 SPI transfers per scan
+> (the first result is garbage and is discarded), so the minimum period
+> depends on both the SPI speed and the live channel count at buffer
+> enable time. A driver-private hrtimer whose period is recomputed by
+> buffer_postenable is simpler and avoids requiring the user to configure
+> an external trigger with the correct hardware-derived period.
+> 
+> Manual mode channels use storagebits=32 (shift=8, realbits=16) so all
+> channel slots in the scan buffer are uniformly sized regardless of the
+> SPI wire format (24-bit transfer, 16-bit ADC data in bits[23:8]).
 
-The initial board compatible is hpe,gsc-dl380gen12 for the DL380 Gen12
-server platform.
+Many comments from previous patch are applicable here.
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
----
- .../devicetree/bindings/arm/hpe,gsc.yaml      | 30 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++++
- 2 files changed, 35 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/hpe,gsc.yaml
+...
 
-diff --git a/Documentation/devicetree/bindings/arm/hpe,gsc.yaml b/Documentation/devicetree/bindings/arm/hpe,gsc.yaml
-new file mode 100644
-index 000000000000..c81753e3501b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/hpe,gsc.yaml
-@@ -0,0 +1,30 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/hpe,gsc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HPE BMC GSC platforms
-+
-+maintainers:
-+  - Nick Hawkins <nick.hawkins@hpe.com>
-+
-+description:
-+  The HPE GSC is an ARM64 BMC SoC used on HPE ProLiant servers.
-+  It is the successor to the HPE GXP (ARM32) BMC.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: GSC Based Boards
-+        items:
-+          - enum:
-+              - hpe,gsc-dl380gen12
-+          - const: hpe,gsc
-+
-+required:
-+  - compatible
-+
-+additionalProperties: true
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2265e2c9bfbe..d4fc25e972c5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2859,6 +2859,11 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kristoffer/linux-hpc.git
- F:	arch/arm/mach-sa1100/include/mach/jornada720.h
- F:	arch/arm/mach-sa1100/jornada720.c
- 
-+ARM64/HPE GSC ARCHITECTURE
-+M:	Nick Hawkins <nick.hawkins@hpe.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/arm/hpe,gsc.yaml
-+
- ARM/HPE GXP ARCHITECTURE
- M:	Jean-Marie Verdun <verdun@hpe.com>
- M:	Nick Hawkins <nick.hawkins@hpe.com>
+> +static irqreturn_t ad4691_trigger_handler(int irq, void *p)
+> +{
+> +	struct iio_poll_func *pf = p;
+> +	struct iio_dev *indio_dev = pf->indio_dev;
+> +	struct ad4691_state *st = iio_priv(indio_dev);
+> +	unsigned int val;
+
+> +	int ret, i;
+
+Why is 'i' signed?
+
+> +	mutex_lock(&st->lock);
+
+No guard()()?
+
+> +	if (st->adc_mode == AD4691_MANUAL_MODE) {
+> +		unsigned int prev_val;
+> +		int prev_chan = -1;
+> +
+> +		/*
+> +		 * MANUAL_MODE with CNV tied to CS: each transfer triggers a
+> +		 * conversion AND returns the previous conversion's result.
+> +		 * First transfer returns garbage, so we do N+1 transfers for
+> +		 * N channels. Collect all results into scan.vals[], then push
+> +		 * the complete scan once.
+> +		 */
+> +		iio_for_each_active_channel(indio_dev, i) {
+> +			ret = ad4691_transfer(st, AD4691_ADC_CHAN(i), &val);
+> +			if (ret)
+> +				goto done;
+> +
+> +			if (prev_chan >= 0)
+> +				st->scan.vals[prev_chan] = prev_val;
+> +			prev_val = val;
+> +			prev_chan = i;
+> +		}
+> +
+> +		/* Final NOOP transfer to retrieve last channel's result */
+> +		ret = ad4691_transfer(st, AD4691_NOOP, &val);
+> +		if (ret)
+> +			goto done;
+> +
+> +		st->scan.vals[prev_chan] = val;
+> +	} else {
+> +		for (i = 0; i < st->chip->num_channels; i++) {
+> +			if (BIT(i) & *indio_dev->active_scan_mask) {
+
+NIH for_each_set_bit().
+
+> +				ret = regmap_read(st->regmap, AD4691_AVG_IN(i), &val);
+> +				if (ret)
+> +					goto done;
+> +
+> +				st->scan.vals[i] = val;
+> +			}
+> +		}
+> +
+> +		regmap_write(st->regmap, AD4691_STATE_RESET_REG, AD4691_STATE_RESET_ALL);
+> +
+> +		/* Restart conversions for the next trigger cycle. */
+> +		ad4691_sampling_enable(st, true);
+> +	}
+> +
+> +	iio_push_to_buffers_with_ts(indio_dev, &st->scan, sizeof(st->scan),
+> +				    pf->timestamp);
+> +
+> +done:
+> +	iio_trigger_notify_done(indio_dev->trig);
+> +	mutex_unlock(&st->lock);
+> +	return IRQ_HANDLED;
+> +}
+
+...
+
+> +	st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+> +					  indio_dev->name,
+> +					  iio_device_id(indio_dev));
+> +	if (!st->trig)
+
+> +		return dev_err_probe(dev, -ENOMEM,
+> +				     "Failed to allocate IIO trigger\n");
+
+No. Ask your senior colleagues why.
+
+...
+
+> +		irq = fwnode_irq_get(dev_fwnode(dev), 0);
+> +		if (irq <= 0)
+
+' = 0' ?!
+
+> +			return dev_err_probe(dev, irq ? irq : -ENOENT,
+> +					     "failed to get DATA_READY interrupt\n");
+
+This ugly ternary will gone.
+
+...
+
+> +		ret = devm_request_threaded_irq(dev, irq, NULL,
+> +						&ad4691_irq,
+> +						IRQF_ONESHOT,
+> +						indio_dev->name, indio_dev);
+> +		if (ret)
+
+> +			return dev_err_probe(dev, ret,
+> +					     "request irq %d failed\n", irq);
+
+Also no. Similar reason as above.
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
