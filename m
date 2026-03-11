@@ -1,174 +1,127 @@
-Return-Path: <devicetree+bounces-274154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274155-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mArpGRd+sWmjCwAAu9opvQ
-	(envelope-from <devicetree+bounces-274154-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:37:11 +0100
+	id 6HHhD2R/sWmjCwAAu9opvQ
+	(envelope-from <devicetree+bounces-274155-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:42:44 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB40A265840
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:37:10 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id B017026598A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:42:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id A10EA30D20D9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:34:48 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1BE5531238EF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 467583B9D93;
-	Wed, 11 Mar 2026 14:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D4823BC68A;
+	Wed, 11 Mar 2026 14:38:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="mVDHKYgU";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="deitwnyt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDFD63C3427
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 14:34:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 171E431F9A9;
+	Wed, 11 Mar 2026 14:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773239688; cv=none; b=bweFYlfZVSNdUvlN3dVGexiHjPmrzbqsHjLqdHGqAaVf/Z5ETdbe3R/FVHeIxO3kRSQnX74HleDL/NH19Wgu3aZ+Iuq3OQ7hmwaPSc0iQOLwO/Zq6v8M7ddaLUritVcnQsLmZzoTt6asuS/l8VlVmko7x5O8Qscq6LRPc1uiVo4=
+	t=1773239929; cv=none; b=iv6JxbkAmClBAeOyXhRRcWufaV3kP9WRTa45YRoDq8PLUXNvQ6hUjQ6ph5c3bjBv4GSVsQ+U/dUF4uFBjYOfOMmxmzyrjyjlnViyMKN6kj48w2FN5IQyoArrr3oSxZ0NPzMNqyI7BOjoTg6JOyAgb0wNnWzkxXwgKdJD+d1JV2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773239688; c=relaxed/simple;
-	bh=h0DZuW9sYYcJamuzoLXZHLvqI13ncnNrtDS51eDhLzM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RCaCCbV9zP0ilvToI0TqjSLKU49SWWf/wj58/QJhUm/RHHb68tWwWDkNsB5wxi+sWI/aH8KYTA7g6mkJa2Q/3dHn6Hf5NBaN0p3WZh0Eg4UenMW/Fdgp4ehtNGhxZCjOSanJ0QYvwqYrSbd83bKOLAMRM2b0flETbiS4Ph4KRhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-56b49b943c1so277591e0c.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:34:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773239686; x=1773844486;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6/8nBsnGoOuvPOKFHrGieQ7jCFEIsrq8dvQknaSfKDE=;
-        b=CID3c6D2kw2OcvgrTHnoCweVl2uyCywHUEQzYJV6n9KCk0tMJHfsOffHE4PJ+XjQDB
-         gnrgfqv9ydIIfEmeiTKi7Jd77oEcmObVpWWHjjBzrG+lc5Wpq5+bs7V0L8A+9To6RD0m
-         ALDPc3KOgYdsSfjRpKtbHwLFfZYTF/n7Bg6vypOmn6hZr6Tlf4iff7CoeK6wvlokDAqp
-         S8mY23SqSM+1P29bNJf5MnrSglaTxS4StKq5o+SqZuuX8PVc8u/NHm/AMt+CMXnTcX6R
-         vLdr/HEoAbFQ5WjzCYUlcLtK/dDF01+/7o6ZcpqK4t6aFCQjtgiPTl2dWHDPA62WANnw
-         kxUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUaydjKrNauTPI1m9Z2+KFvDIt03e4VmpgY2QFdycl0wccZ/fxMwGZbKmBKRw6WiT10EYWEY/RUwEzz@vger.kernel.org
-X-Gm-Message-State: AOJu0YzUjsfRWwKYWBqG+hmdkqPne7MN/eXDyUKs7KSEu8DDIkWN41F4
-	H7gEfLfYfz2ZdF7EpNkx5hvgm4BPznktpBymk/YIUVcPkBGLRepkOITQHxYLB5JsuEo=
-X-Gm-Gg: ATEYQzygSpJ4/iSBb0I2sZie+gopJ1ZvbyPg5mTYV0cYc+E5CrRKjyodX+S9xuz6InX
-	/VrPL8CFS5BCS803ZDM3jgbFaBCvmEi5trv1vzH+mDzhQ1IcuVpLaA5nkTt9OTiZLUiWGVVLNtS
-	4t+r+JormkNrMDtmx8mG/LuDRCVrNaxOaREx09Gs+AL2gUPOC4PjFMg+eFvwRZsTUzLVoOPUoqP
-	tzwJbebDo4748VOO9Y2YTZTjfy6buvQksXtw2wv/uMmxL+FN79LD6rRqvbbPaI/r3Qpay7MIOqX
-	TEcHCGxJz9/hZ8TiOpUPYq4t/nFQgQR1F3wYzG11O2yHkSXGCSre5WWbWCEKXKeqEj78Vft6CDj
-	4rUagyRPTISqzfF5WK3a8wKkj5TvaOFx2BLtlOHDAKjyaC/RLwjMnem+vwaDFOw4Qtrzb5iMJdh
-	zmqmLeGFNINW6CVfR9c9k+jmyEGPfdkcz+PqNM6kueV2+7DpgJ+lVZMlTGgWmz4o18
-X-Received: by 2002:a05:6122:c96:b0:567:39dc:43fd with SMTP id 71dfb90a1353d-56b4769eb0fmr857633e0c.19.1773239685568;
-        Wed, 11 Mar 2026 07:34:45 -0700 (PDT)
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com. [209.85.221.178])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-56b463510a5sm1014295e0c.8.2026.03.11.07.34.45
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2026 07:34:45 -0700 (PDT)
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-56af41d1e0bso2857118e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:34:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXLTiseGJ55k1MtORtnJ8xoMQEZSX16CavJhApwkcye/awnc3nmS9yEHmy5W0XvF/3iR/mjRE8J7GBH@vger.kernel.org
-X-Received: by 2002:a05:6122:1dac:b0:566:36e7:8934 with SMTP id
- 71dfb90a1353d-56b476770ebmr874061e0c.16.1773239684796; Wed, 11 Mar 2026
- 07:34:44 -0700 (PDT)
+	s=arc-20240116; t=1773239929; c=relaxed/simple;
+	bh=qMMy5A94gz6RsaCuJ8Z2SJDEihUSquADjkr7aioQj4Y=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=YDUP+AKpgJYc6ENqIr4mKwY/dJA+u9qyD6bmrvfRScAIngSrH+uKSXSKpoyDpe8+jJ56+nNstvifvFHJ/s3cLgDXG7MZycZPUlpR0v+ngcI3Gkdx99XPgxxVE1fxY3iuOZ1N/j0lFpZ/A1tMLI+jQHfHmm2AQQwwGCk5T9ScsTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=mVDHKYgU; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=deitwnyt; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1773239923; bh=NMGLea/U+XVtK+8ZcCy3z+w
+	9ohGbvbUlzo/mZjIWQcU=; b=mVDHKYgUVT2o3xdUfqpodzCSrroPVNRQTJrphGnMtumTsW7pDx
+	vMIvJfNRcVUwKvRjP5De/qgBXjtick6p99URLcQGGNDPhJV3R8tXx5LG5qcGvHe6Kr7PMZ1QWqY
+	JAAiWpgYVWfx8FAlEQMwz70gHeF56JXUTrjn4UceQQZl26Wu4iRDWrz2q/7AhB88sq2ky4lS0jE
+	1jy2WIwgJvd4QUdgd6ogIpxQONuqcwH40pIPeXIXPNRhx1bSGVTb/khkQuTUGCywYIniidViobO
+	QKQ1SmXrszBMMkD81dVSBuOvMlLyRp4GtHa8+OQXZ8QpO2twE4xvfUiwqcd51q648rA==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=Message-ID:Subject:To:From:Date; t=1773239923; bh=NMGLea/U+XVtK+8ZcCy3z+w
+	9ohGbvbUlzo/mZjIWQcU=; b=deitwnytlbC2MZD12233j2ZPyV7dA9B4XNkuBpuPgSaVr6hQR5
+	HHvTULEqWvDBHtKh5BHihwghxCl9m8vxTNBw==;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260305221939.32643-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20260305221939.32643-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 11 Mar 2026 15:34:33 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVFsxsJW46Xb6BSXztAAvXqBgbD6N7A7jL_Xc-FEBCnVQ@mail.gmail.com>
-X-Gm-Features: AaiRm51mmgYpVi1_pO89qn1P3q9K9zLqFKfY7oYAMzssuYebMabvxkW732abDY8
-Message-ID: <CAMuHMdVFsxsJW46Xb6BSXztAAvXqBgbD6N7A7jL_Xc-FEBCnVQ@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: renesas: r9a06g032-rzn1d400-db: use
- interrupt for Micrel PHYs
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.46 / 15.00];
+Date: Wed, 11 Mar 2026 15:38:43 +0100
+From: barnabas.czeman@mainlining.org
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio
+ <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: Add Redmi 4A
+In-Reply-To: <9b6520b3-aa43-4657-aba0-bba89af8a47d@oss.qualcomm.com>
+References: <20260310-riva-common-v2-0-3bfc23996857@mainlining.org>
+ <20260310-riva-common-v2-6-3bfc23996857@mainlining.org>
+ <9b6520b3-aa43-4657-aba0-bba89af8a47d@oss.qualcomm.com>
+Message-ID: <37f385d1ad7a464771e641807d75f5e5@mainlining.org>
+X-Sender: barnabas.czeman@mainlining.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[mainlining.org,reject];
+	R_DKIM_ALLOW(-0.20)[mainlining.org:s=202507r,mainlining.org:s=202507e];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bootlin.com,glider.be,gmail.com,kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[barnabas.czeman@mainlining.org,devicetree@vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-274154-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[mainlining.org:+];
+	TAGGED_FROM(0.00)[bounces-274155-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NO_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-m68k.org:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,sang-engineering.com:email,bootlin.com:email]
-X-Rspamd-Queue-Id: BB40A265840
+	PRECEDENCE_BULK(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: B017026598A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Wolfram,
+On 2026-03-11 10:16, Konrad Dybcio wrote:
+> On 3/10/26 6:21 PM, Barnabás Czémán wrote:
+>> Redmi 4A (rolex) is like Redmi 5A with small differences like 
+>> charging,
+>> fuel gauge, different speaker codec configuration and display.
+>> 
+>> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+>> ---
+> 
+> I see the Go has some differences in regulator configuration.
+> 
+> Does the 4A's one match the existing 5A?
+Yes they are same, l22 is vana l23 is vdig for camera sensor.
+riva and rolex is using 2.8v for vana and 1.2v for vdig.
+tiare is using 2.85v for vana and 1.2 v for vdig so l22 min-voltage also 
+should be increased
+but l23 max-voltage increase is unnecessary, there is no reason to keep 
+downstream value there.
 
-On Thu, 5 Mar 2026 at 23:19, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Make use of the interrupts wired to the Micrel PHYs via the GPIO IRQ
-> mux.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-
-Thanks for your patch!
-
-> --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> @@ -256,6 +268,13 @@ pins_cpld: pins-cpld {
->                          <RZN1_PINMUX(122, RZN1_FUNC_USB)>;
->         };
->
-> +       pins_gpio2: pins-gpio2 {
-
-Please move this below, to preserve sort order (alphabetical,
-and ignoring underscores that will be removed soon).
-
-> +               pinmux = <RZN1_PINMUX(147, RZN1_FUNC_GPIO)>,
-> +                        <RZN1_PINMUX(149, RZN1_FUNC_GPIO)>;
-> +               drive-strength = <6>;
-> +               bias-disable;
-
-Shouldn't this be bias-pull-up, given the pull-up resistors R20 and
-R78 on the interrupt lines are marked "not assembled" in the schematics?
-
-
-> +       };
-> +
->         pins_eth3: pins_eth3 {
->                 pinmux = <RZN1_PINMUX(36, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
->                          <RZN1_PINMUX(37, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
-
-The rest LGTM, so with the above clarified:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Here is some proof 
+https://github.com/Mi-Thorium/kernel_devicetree_xiaomi-msm8937/blob/dts/mi8937/4.9/master/wingtech/msm8917/tiare/camera.dtsi#L16C1-L23C65
+> 
+> Konrad
 
