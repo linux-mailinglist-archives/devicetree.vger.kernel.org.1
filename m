@@ -1,252 +1,185 @@
-Return-Path: <devicetree+bounces-274050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274051-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cM0FCBJbsWmGtwIAu9opvQ
-	(envelope-from <devicetree+bounces-274050-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:07:46 +0100
+	id yG9WK2NbsWmGtwIAu9opvQ
+	(envelope-from <devicetree+bounces-274051-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:09:07 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC3142636C5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:07:45 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03409263714
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:09:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id C834030B89BB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:04:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1227430238F2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:08:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34B7F3DFC89;
-	Wed, 11 Mar 2026 12:04:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S9ZyC9mF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DC33D3304;
+	Wed, 11 Mar 2026 12:08:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022130.outbound.protection.outlook.com [40.107.75.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D43A3CEB97
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 12:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773230666; cv=none; b=SPOLvHyjq03LoBuIfNodNjzEIaEhU2yxnj4LfBt9/+5V8UZGrw2Zbp+q9WRxpDFFZgGFa7j7kUg8HDfj2v64jmf+sOZo1D0iG3NJ+Thsns+X/YIUtLQnHQFiU+ehVUfQGlv4ETAkqK7Fesi4fm03sjbjO6B+X1nx26DVPwgYiEk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773230666; c=relaxed/simple;
-	bh=NBN4EYs7xt7jqIXewQhOoqZ3pl2OD60sVTf4oEtRNyw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=HgCV+CDsrGDpsRcmkJqgGE2tu+pOdsPBL6kYSaa7UVUnN+2ZJsY1E3MnJtO/VAgbPTzCLfxgHZsl3V+DUwlOaoRJsshUGelwL41hEufMgq9HN1+4cWNKmUnRfJ96rY9uhh1DNkcHuQVyB4uIVhHGDJkd+7sczTuWw5L0jX5Kk40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S9ZyC9mF; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4852e9ca034so44047685e9.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 05:04:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773230663; x=1773835463; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=jIB3UajcKC7uFG6gjs/tsitE9iXxd/jUwRngeL3b5Yc=;
-        b=S9ZyC9mFbmn0KcGhQ5cDnm7yUIiOWLCvQv2+adNqktzO+NslLdZV85jWqEkta7Z2CA
-         XqhxIutckRxv+caQxgYSpsDAMx5e6V/HOb0+6B/ryaC314kDpzEynG08p6ArsIOkN6W2
-         nZuAfoXbUMVASHDNs6e3wHStvTIt8SP/ypKVXN+8iHybO7dofoefoaRtTJMQpsBCFh6Y
-         5hYQocoslTTJ0KKarSxJySRFdoEULwzk2ZZuXFNz6VKcNXpE4HNZItow6B9WRD2uH5+h
-         kgIGuGU0y7qA6+uN8oLht9lEqNrQjCx5NWsJvdg9rKtn4R4WB3rVbFGLXGjfPcmdzQ4q
-         pAHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773230663; x=1773835463;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jIB3UajcKC7uFG6gjs/tsitE9iXxd/jUwRngeL3b5Yc=;
-        b=nBD/FmEIq/gaGZDG0rEfGxP9Gdj5JykG7gM8w9Xrll7LGUIljxaMWHWPIAb+JgcJnB
-         Fe0tk0IZBD8VUfmV0z0oUT3mtvc7SuiSHhQyDkjnIujKaOdt3Fz/3w7kOz9C18mR69mh
-         dRCrYhLtAVj1hekPijI6FDWLHXwtQE+/vSaLc5QwER45nPaBfY9Vrkp3Jp/Rh5VzuCw5
-         naUXHScIcERskkMdOTZ8MTK9S1m+JphFMcpfXEyy8Ko3xh9sInVVgUAA/piBApSNI6oY
-         ErOmnTaieJ/ttIIQHoZRDPmpo3JhUt4LJ/EHSnFA+FcThoCjVXMY4lp8SfEU2Jp3Hhl3
-         k9Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCW3ByQEwHnyQ0U5xMUIqKGWEejUREzkClAfSa60gnLYyVLvh/tYM/aAd1DMEoshQHcnacQEG7+eZnDt@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPgpQUMF1/qdAofGzlXBCw3x4HvP00t1IOgjBHPgLGmYDTOMo+
-	o4qxFyntupQsBqcJAb0h3D6HycSN6I+U2aQdVB84QU3qw71coABz8uOP
-X-Gm-Gg: ATEYQzz15mnLovYCA6y1uBog3hZqYRjO0HnF62+HAgkk4DWbBENLtOpb+P6m+driALO
-	uJJMH71d/Ea+UgmNQgVMZuKl+NOgCHjIlWtS8tKQEFzbn52vRi8C6R25PSdh9mAHZU1jwOb2HL5
-	ylIxcyucPLLOLUxkEvaPnUD9V2mpKNrF+g9EROClTjWckgIBDldUYSWg9Y39jbmv1Z3/LajugTS
-	MTu1GGPSA+TS1EW9mwk3mGuU/ogWCuUG3JiGZRNQZhS0z5U8oE/Kfkc5U7+vXA+uz+ZaiFN7lWP
-	eRZGiyT9gKw/g7eZ1Y/R5wVi4KUEpf3INqvB29c0H655JnwBP8q+Bky47fDTkdOm+DESEPzwoz/
-	jnGqlpIVLyAVWifLFFcParzWvDmWYPg0nXGZsBc/+w08LGX+SxvbMg9BLdzmzmOtla24vbGLeaj
-	UhnD3kIejkGCAX4+eMIdZfrYbcMhSDiDej1oNxGrwl7g==
-X-Received: by 2002:a05:600c:46d2:b0:485:410c:119b with SMTP id 5b1f17b1804b1-4854b10f69fmr36440635e9.13.1773230662587;
-        Wed, 11 Mar 2026 05:04:22 -0700 (PDT)
-Received: from [192.168.1.187] ([148.63.225.166])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854b0b906esm24685175e9.4.2026.03.11.05.04.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 05:04:22 -0700 (PDT)
-Message-ID: <35205bd9f56e042ffc4a1e469060880b0db2e90a.camel@gmail.com>
-Subject: Re: [PATCH v2 4/5] iio: dac: ad5504: fix scale via
- output-range-microvolt
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>, Taha Ed-Dafili
-	 <0rayn.dev@gmail.com>
-Cc: lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, 	nuno.sa@analog.com, andy@kernel.org,
- skhan@linuxfoundation.org, 	me@brighamcampbell.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 11 Mar 2026 12:05:07 +0000
-In-Reply-To: <abBuAZTSeTjRhyZY@ashevche-desk.local>
-References: <20260310174835.24209-1-0rayn.dev@gmail.com>
-	 <20260310174835.24209-5-0rayn.dev@gmail.com>
-	 <abBuAZTSeTjRhyZY@ashevche-desk.local>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BAE83C6A45;
+	Wed, 11 Mar 2026 12:08:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.130
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773230929; cv=fail; b=dHPPb6zz3qfWjyxOPTn5gxZecyBGZR3YyMI3Mrq9SQCw7j+A/K9/M+bTbfotBusOO8sd7W4mFh28iAMuGoZBOhNtdWozQDoEIFQpNw59g06VFF3uH6zQkOhWsxihAJr5HEUm50qOfVHPLbNznwtRHleCzwP55ZzOpmi522YK8Fw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773230929; c=relaxed/simple;
+	bh=ohGSZu5VW/oMHsIn8MkNpEmL0ePoHCSm2rRFJxKPFcI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M90TJxs8LFV99eEldchw2WttrlPdjne34pKyiyEDunAf1IMvXjNvab0o/NSh5HW8DgwTsiAoUiQx+YKs27kMGvqCMdoJAXtUfaehrx2LSm/DWC9mhuVwRTs0UazrgKzkHkfqqvASyBXjxuGjOmpHYMsz1mVS5WyquvAePCbSjzw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=40.107.75.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FwlezUyiczuxtX2EFfM7eBEF8SIAir0/lbP2IV0C/Fruvw+MUpUmVdI0Mr2lvtUIBmtwAUBpfRZBUv2T3Xs2Ebr4eazDbte9Nd7M3euT9D9KzuCVjODo5idz9KrOkYO2lCe1N2zkUsxizuhG9mhigA7vEy2TYF144KVXKC/gI2U5hcSeLKlSBulrcQTGp8KEZzCVm2UZ0wTIITB3KzykrdK0ZHgEvBQ8VIs8WFBMVf7nv5HVuisEBD7jCUm/qF1iUmCxh/866h/eb350HX6lb653MkV2ffB29wyhEnxbGkcsntyb7fxqROGWKkRgdAgy75n5wLJtxvkc4Radzemjlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UbmLwNSMuYZAo7fR8QzVYV9He6jTmX1vWthY1/05Emw=;
+ b=jiMSJsrZr4zrLv87N3r7oQMJ7v43sDirKQk2x07mX4Mat5h9h8LR641E53BkMRU3efvt0MR3kPSrUK8SbYShU4zF0QnD3G8hu3ypkUARM4Fn98swhChj2/7LRJAZDwPaP2UK66e6z76WC+1hHf3W5eo5AgEORmy6tK4gvr/fuo/wJAHGH4cWE2U0asfufOtkGJWM7jPEKdYslazz0v8rNDBuECGKLNbud3AdsFBt+p1wSy13zF0JO7ZkfYbro3gtyI9jAzON273x97n2Iq0CSQCpwJqEn0hE83oqyLaesPe/Hbhr1SeNHNj/8vewTR+rfQOOkqu7/feVhPhaLvXe7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=cadence.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from PS2PR01CA0025.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:58::13) by KL1PR06MB6580.apcprd06.prod.outlook.com
+ (2603:1096:820:ef::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
+ 2026 12:08:40 +0000
+Received: from OSA0EPF000000CB.apcprd02.prod.outlook.com
+ (2603:1096:300:58:cafe::3c) by PS2PR01CA0025.outlook.office365.com
+ (2603:1096:300:58::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.26 via Frontend Transport; Wed,
+ 11 Mar 2026 12:08:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ OSA0EPF000000CB.mail.protection.outlook.com (10.167.240.57) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9678.18 via Frontend Transport; Wed, 11 Mar 2026 12:08:38 +0000
+Received: from ZicharPC (unknown [172.16.64.205])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 562E54350703;
+	Wed, 11 Mar 2026 20:08:37 +0800 (CST)
+Date: Wed, 11 Mar 2026 20:08:36 +0800
+From: Zichar Zhang <zichar.zhang@cixtech.com>
+To: Linus Walleij <linusw@kernel.org>
+Cc: brgl@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, peter.chen@cixtech.com,
+	fugang.duan@cixtech.com, jank@cadence.com,
+	cix-kernel-upstream@cixtech.com, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: gpio: cdns: add clock-names property
+Message-ID: <abFbRA33DtDdZ2j+@ZicharPC>
+References: <20260306093238.2715269-1-zichar.zhang@cixtech.com>
+ <CAD++jLkueX=qU3OY3z=ANA9pd_irWjdf_Czc6RSctzr0MBftQQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Rspamd-Queue-Id: CC3142636C5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD++jLkueX=qU3OY3z=ANA9pd_irWjdf_Czc6RSctzr0MBftQQ@mail.gmail.com>
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: OSA0EPF000000CB:EE_|KL1PR06MB6580:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3b3c7288-70e8-4106-de7f-08de7f66eddb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|7416014|376014|36860700016|1800799024|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info:
+	5veBnXOdcL9Z1kW+M+uY7RMZP7dXD18OVwbTuyePOMiNTzX1PSm5rm+JIBLs3kOKJk+Gv3Akei26xSWh4AuxRg3Uc17wGPFiW7FY1AtaUqXGXrbNFvHcV67MoIT2CarW4InO2x+Jj5jSoAOZnBw8iibuPW6DquKLAb2OY63eFDiCwrGAJb7PoQjpGZgSX8MWkw70hQW4sZtW3AN2kRZB/CU1xoYfjg7iQwGIDfMkkbOCkniUm3z5SfV82rEPR14J5qakx4qdvCADWxIp8sOM8h7eJWx7a3pX9XcMb/eGsj+Q8x8GIuWMrWCww6bDOm7X6KBrPwyoxqbFXnPf4wOJ4RJLBEZcLVTjIVUiDIj6bPPY2FadGXSCvSPQq8EPnwsb/2kHqIyj4qMfiTVEZ0cFsri7pXfGLeYDxEAVOigtfWMhcWzn6ux3PtWL9i+YIwpsU0P2WdkQ29mi8Z/Uo6vSn4VbWfmSZ4ZtmHWMWxh67J4fAbl05PxAyy+WNeoYt3ACarG7x0noh12mLHLSKknYJlm7CZk/U3UNuKaFS8iGEGd3h4X6m8wYZCzkjVUspY21ACy5YlbW7OLBhmZLiX6fZgZPbGa+IP7UWl1oLdsxl240EqxgAyQj1y0FtQ0rR3CPux67k8hqgynGD12UyaNf6VwN/dWUp6QoEc+o/ZAde6EM0cfgaEHEF8AutURSEMVtZn+fr2ale5K2u592uS8aeoazI/Ihg1k6uguFPYqqAuJGn/0nrXEJKPzzMi8UQ7eOyNWNN4cMEAvkmjCQeyY4dQ==
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(36860700016)(1800799024)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	HbiiV0aSISSIrX/+fymGKXyGCLz4qT5Z4yaGF+xN75f0E/XPIzAVmw3gWGZbYwUJWgntucnKSl2HokEvY0lDiPOqF0cLl84dH75ulVBmAgdJ/5cdfV06nAO9tz4tIDakFK6Ai9PZVhZ1bRo3u2OTdqJrFBVNRsGHiiKLiaDEVa10Pk3yrdoF1nnuNqrFqiisSEqhrvOXYvEUgL67mPSmNqWOdWKXcIaBGQ+3+X7JLCw9rTEu8l5Yuoc3q4zBpJnFQpwOoAen2rRtgRqmgJzVM9bPJtqmoug/g1PTtV7uYFxUps0F1fLUQFBnjZx08K8KuKeQiTm4K/IOvWRZ/P5fnFetZEmJDtGMFAngncLsT49rLf8FYby6qeEV258W0EQMmZ2Th9HwcqBWrRRmnEDDaGjWk1IPBoIXFjPFJC1thTxMPbppJOZdJAEMlUFY6zbR
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 12:08:38.3024
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3b3c7288-70e8-4106-de7f-08de7f66eddb
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	OSA0EPF000000CB.apcprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6580
+X-Rspamd-Queue-Id: 03409263714
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [2.54 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[aka.ms:url,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,cixtech.com:email];
+	TAGGED_FROM(0.00)[bounces-274051-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274050-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[cixtech.com];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[intel.com,gmail.com];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[zichar.zhang@cixtech.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.976];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	R_DKIM_NA(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	REDIRECTOR_URL(0.00)[aka.ms];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-On Tue, 2026-03-10 at 21:16 +0200, Andy Shevchenko wrote:
-> On Tue, Mar 10, 2026 at 05:48:34PM +0000, Taha Ed-Dafili wrote:
-> > The AD5504 full-scale range is hardware-determined by the
-> > R_SEL pin (0-30V or 0-60V). Previously, the driver incorrectly used the
-> > VCC regulator voltage to calculate the scale.
-> >=20
-> > Update the probe function to read the standard "output-range-microvolt"
-> > property as a two-element array to determine the correct full-scale ran=
-ge.
-> > Use the MILLI macro for clearer millivolt assignments and simplify the
-> > probe logic using a local device pointer.
->=20
-> ...
->=20
-> > =C2=A0static int ad5504_probe(struct spi_device *spi)
-> > =C2=A0{
-> > -	const struct ad5504_platform_data *pdata =3D dev_get_platdata(&spi->d=
-ev);
-> > +	struct device *dev =3D &spi->dev;
-> > +	const struct ad5504_platform_data *pdata =3D dev_get_platdata(dev);
-> > =C2=A0	struct iio_dev *indio_dev;
-> > =C2=A0	struct ad5504_state *st;
-> > =C2=A0	int ret;
-> > +	u32 range[2];
->=20
-> Preserve the reversed xmas tree order.
->=20
-> > -	indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
-> > +	indio_dev =3D devm_iio_device_alloc(dev, sizeof(*st));
->=20
-> Unrelated change. This should be split into another patch that makes use
-> of it here and there.
->=20
-> I have a d=C3=A9j=C3=A0 vu about these comments...
->=20
-> > =C2=A0	if (!indio_dev)
-> > =C2=A0		return -ENOMEM;
-> > =C2=A0
-> > =C2=A0	st =3D iio_priv(indio_dev);
-> > =C2=A0
-> > -	ret =3D devm_regulator_get_enable_read_voltage(&spi->dev, "vcc");
-> > -	if (ret < 0 && ret !=3D -ENODEV)
-> > +	ret =3D devm_regulator_get_enable(dev, "vcc");
-> > +	if (ret)
-> > =C2=A0		return ret;
->=20
-> > -	if (ret =3D=3D -ENODEV) {
->=20
-> Why remove this condition?
->=20
-> This might break use of the driver on ACPI systems.
->=20
-> > -		if (pdata->vref_mv)
-> > -			st->vref_mv =3D pdata->vref_mv;
-> > -		else
-> > -			dev_warn(&spi->dev, "reference voltage unspecified\n");
-> > -	} else {
-> > -		st->vref_mv =3D ret / 1000;
-> > -	}
-> > +
-> > +	st->vref_mv =3D 60 * MILLI;
-> > +	ret =3D device_property_read_u32_array(dev, "output-range-microvolt",
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0 range, 2);
->=20
-> ARRAY_SIZE()
-> (will require array_size.h)
->=20
-> > +	if (!ret && range[1] =3D=3D 30 * MICRO)
-> > +		st->vref_mv =3D 30 * MILLI;
->=20
-> This looks unusual and hard to follow. It also misses the validation
-> of the min of the range.
+On Fri, Mar 06, 2026 at 11:10:35AM +0100, Linus Walleij wrote:
+> [You don't often get email from linusw@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> EXTERNAL EMAIL
+> 
+> Hi Zichar,
+> 
+> On Fri, Mar 6, 2026 at 10:32 AM Zichar Zhang <zichar.zhang@cixtech.com> wrote:
+> 
+> > +  clock-names:
+> > +    description:
+> > +      Optional name for the GPIO controller input clock.
+> > +    minItems: 1
+> > +    maxItems: 1
+> 
+> I think clock-names: true should suffice, but the binding maintainers
+> can say how
+> they want it.
+> 
+> I would suggest to also add:
+> 
+>   gpio-ranges:
+>     minItems: 1
+>     maxItems: 32
+> 
+> At this point even if you're not using it FTM. This will make it
+> possible to later
+> map the GPIOs to the pin controller and control pin configuration from the
+> GPIO subsystem.
 
-And the max FWIW. If the property is given we should be strict about it and=
- make
-sure only valid inputs are given.=20
+Thanks. Given that cdns,gpio.yaml already defines "ngpios", would it make
+sense to use it for the "gpio-ranges" definition?
 
-- Nuno S=C3=A1
->=20
-> > +	if (pdata && pdata->vref_mv)
-> > +		st->vref_mv =3D pdata->vref_mv;
->=20
-> No, pdata should go.
->=20
-> > =C2=A0
-> > =C2=A0	st->spi =3D spi;
-> > =C2=A0	indio_dev->name =3D spi_get_device_id(st->spi)->name;
->=20
-> ...
->=20
-> > =C2=A0	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> > =C2=A0
-> > =C2=A0	if (spi->irq) {
-> > -		ret =3D devm_request_threaded_irq(&spi->dev, spi->irq,
-> > -					=C2=A0=C2=A0 NULL,
-> > -					=C2=A0=C2=A0 &ad5504_event_handler,
-> > -					=C2=A0=C2=A0 IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> > -					=C2=A0=C2=A0 spi_get_device_id(st->spi)->name,
-> > -					=C2=A0=C2=A0 indio_dev);
-> > +		ret =3D devm_request_threaded_irq(dev, spi->irq,
-> > +						NULL,
-> > +						&ad5504_event_handler,
-> > +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> > +						spi_get_device_id(st->spi)->name,
-> > +						indio_dev);
-> > =C2=A0		if (ret)
-> > =C2=A0			return ret;
-> > =C2=A0	}
-> > =C2=A0
-> > -	return devm_iio_device_register(&spi->dev, indio_dev);
-> > +	return devm_iio_device_register(dev, indio_dev);
-> > =C2=A0}
->=20
-> Unrelated changes.
+Best regards,
+Zichar Zhang
 
