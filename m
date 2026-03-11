@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-274191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274194-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WGHUNTSKsWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274191-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:28:52 +0100
+	id QM7fEaGJsWnkDAAAu9opvQ
+	(envelope-from <devicetree+bounces-274194-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:26:25 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id 546A3266864
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:28:52 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E9C626676A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:26:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id A48E930EDB3D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:23:19 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 00001304B405
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A33313E1231;
-	Wed, 11 Mar 2026 15:22:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2743DDDD6;
+	Wed, 11 Mar 2026 15:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ZEylRor2"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="paFYjJYe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798323E1CE6;
-	Wed, 11 Mar 2026 15:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11F42FDC3C;
+	Wed, 11 Mar 2026 15:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773242576; cv=none; b=k+FC0St5JCEFgfN/LHDu1XiOEvGNRTvchrQrecUqQi+b2yDfcDeseKMtlcRlZtoyULB1qGHlK/cSbH0zjOWqZxFanvLhH9P1fQxzzlHdKwxhXoLhc5A5djYY5fTF5tukegAfbGnGYz45LVA9qtLxxOABRvFYgt8p/OQ2gL2CXWM=
+	t=1773242596; cv=none; b=TpHfNgmkBAtmpWP1kMIUbHAAdJTfGPxN5kCtMPUom1vuS5PBazwjsp1EDO7eQh2yDD4mnA+E889y6DgRtMH8Jc5btEXEJ15kMMDivywuVsbJGfvbsSQM6Wjer/6fpgMDRSe9rOkoBHDRq8PYitT87353biQqZ0gPOvop0MpIK9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773242576; c=relaxed/simple;
-	bh=tcafdxy+zY0tElRCt9gfbvIai4s1Qh9WzziF/i/uUJo=;
+	s=arc-20240116; t=1773242596; c=relaxed/simple;
+	bh=2o353IWV/ZxBTHaJFJxdQxLFmsHwm+YzRoABm6MDW9w=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cqSBqIz1JgTx4zJ4xe7rLICdskoiszliev0R72lgMwmiCgbsMwve/W28CykehZJkd7Lh8I+06l+X2CYm5ZamhFmckYuS+ve/vNxXr1Xzh/UBssEf0TSg63IV8BDePdwgrL3oXX+tCXcq44sldBTltGzndGwTrqjnJZIUDjqbJ30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ZEylRor2; arc=none smtp.client-ip=188.40.3.216
+	 MIME-Version; b=VRGCIvtt0JmwjDeQ37HnlC85aa67eJnUeHyM13kuXWML0YSA8DqpIkXUqzG/DEesGYwyQw6C6k3G3wr/x75qXWTd+5XWREWAU/6n1/Gcrehp7iyKujRRR65pLQJAGY7yl34CSio/OoLg7hFciw87sqneydxl6DU0Lil52k3esJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=paFYjJYe; arc=none smtp.client-ip=188.40.3.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -39,23 +39,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=JLc+yx65hX66ugvu+hwobBKk69k+gvZreIh9KT+TjNY=; b=ZEylRor28NRDqzNhEbdQTGS3/k
-	hILsNOBiNdiszXNLTrOV4H4o78LIe19POYzO8gpQWvzDEOwqcKc3LllSLtlnmv+rX2Bi9I0ARvKoM
-	7sXcTsgnxlcqfNYlo3XH4nuRSerWi1Tqh6DTKPr36OohFHiraLs8lvyrRhirLAtb7FslpZ0CeRbKd
-	sKCJn/3jVCaS6Uy7GBtsPXjHrZybSyynROabTr21Wd86PEuf46v5FwlzXc0yeuzEjwb0bAOh2ehR8
-	ZBOcTgyM8NHKj4LcuqRryfDs/WU3tSryx3liqs35KsSMmcUulAvDiHfsU0uPeJZuNAlk81xWTzet6
-	wy33Kk2w==;
+	bh=Tq+YN3xtdHuMsT+Fgr0ntFY2wnr6dpo8yyZAz0TE9oc=; b=paFYjJYe69qHVlLVObzMwYUDM5
+	VD0e6wDZ6lCObaramP/4T/RYgChO8JfQwHRvBrg8kJZIMyhh8R9OrJ/xXMAdDp7PXzJYzTXjr3Tv/
+	+SYdK9Vvy38Sj9vY1LNMMibekcUJfsEBJJOO+Dkgaek3dZm+zVFHkodk79N9K0ef3G6QcV/5W6kiu
+	JZJ2lq+vaUp1b4gTeeEewL3N22WAdFBYTDXlbx95aolxfk9gTzmFLz4PKCkcXTCMHdzsag56zw7+o
+	hCsM5koXjMKwznWcvXgIk7+yJvBTyVV+mm+NsuFL1hf25hKlT1rtExGIjl/tab521m1/MQMbXMFVw
+	IfuPEN+A==;
 Received: from sslproxy02.your-server.de ([78.47.166.47])
 	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96.2)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0KvF-0002IJ-1j;
-	Wed, 11 Mar 2026 15:52:29 +0100
+	id 1w0KvG-0002If-1I;
+	Wed, 11 Mar 2026 15:52:30 +0100
 Received: from localhost ([127.0.0.1])
 	by sslproxy02.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0KvF-0005cY-0A;
+	id 1w0KvF-0005cY-2m;
 	Wed, 11 Mar 2026 15:52:29 +0100
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
@@ -71,9 +71,9 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	imx@lists.linux.dev,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/5] arm64: dts: imx8mp-tqma8mpql-mba8mpxl-tm070jvhg33: Remove compatible from overlay
-Date: Wed, 11 Mar 2026 15:52:16 +0100
-Message-ID: <20260311145222.1749655-2-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 3/5] arm64: dts: imx8mq-tqma8mq-mba8mx-tm070jvhg33: Remove compatible from overlay
+Date: Wed, 11 Mar 2026 15:52:17 +0100
+Message-ID: <20260311145222.1749655-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260311145222.1749655-1-alexander.stein@ew.tq-group.com>
 References: <20260311145222.1749655-1-alexander.stein@ew.tq-group.com>
@@ -91,7 +91,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[ew.tq-group.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4];
 	R_DKIM_ALLOW(-0.20)[ew.tq-group.com:s=default2602];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -99,7 +99,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com];
 	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274191-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274194-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -112,10 +112,10 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:dkim,ew.tq-group.com:mid,tq-group.com:email,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 546A3266864
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ew.tq-group.com:dkim,ew.tq-group.com:mid,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,tq-group.com:email]
+X-Rspamd-Queue-Id: 6E9C626676A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -124,27 +124,27 @@ remove it. While at it, update the copyright year.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- .../imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtso         | 6 +-----
+ .../freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtso   | 6 +-----
  1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtso
-index ea44d605342ba..f6aaad91d7f8e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtso
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql-mba8mpxl-lvds-tm070jvhg33.dtso
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtso b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtso
+index 306977d6ba0cb..78f24f72cc690 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtso
++++ b/arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtso
 @@ -1,6 +1,6 @@
  // SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
  /*
-- * Copyright (c) 2022 TQ-Systems GmbH <linux@ew.tq-group.com>,
-+ * Copyright (c) 2022-2026 TQ-Systems GmbH <linux@ew.tq-group.com>,
+- * Copyright (c) 2019-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
++ * Copyright (c) 2019-2026 TQ-Systems GmbH <linux@ew.tq-group.com>,
   * D-82229 Seefeld, Germany.
   * Author: Alexander Stein
   */
-@@ -8,10 +8,6 @@
- /dts-v1/;
- /plugin/;
+@@ -10,10 +10,6 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
  
 -&{/} {
--	compatible = "tq,imx8mp-tqma8mpql-mba8mpxl", "tq,imx8mp-tqma8mpql", "fsl,imx8mp";
+-	compatible = "tq,imx8mq-tqma8mq-mba8mx", "tq,imx8mq-tqma8mq", "fsl,imx8mq";
 -};
 -
  &backlight_lvds {
