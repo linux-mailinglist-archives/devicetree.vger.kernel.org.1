@@ -1,260 +1,169 @@
-Return-Path: <devicetree+bounces-274134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274135-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AHbkMdpysWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274134-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:49:14 +0100
+	id KCJtG1xzsWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274135-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:51:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A45B264D3A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:49:14 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE769264DA4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id E212630247C9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:45:55 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id E691B30157D8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:46:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F67E2EA732;
-	Wed, 11 Mar 2026 13:45:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 759B031E848;
+	Wed, 11 Mar 2026 13:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rYce17jU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nehGgZdp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C429231829
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:45:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AA61C84C0;
+	Wed, 11 Mar 2026 13:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773236755; cv=none; b=d6xqaVnyctvIWztKcsf5nHV+w+aKlr1vfrIlohbTo9sE0C4SMhs2p7tHf7GTdqluyml2ckYLq5ZV4ZwiSwRuh6pcac8ukm/EqfjbUqJiXBCo2eAUwP9V2RWwLXv4y7es5LCvQ0cla7DlbnUIFPJMFrdlGxLiF0N+6bphfzgqIQw=
+	t=1773236761; cv=none; b=X9DeuJJ0UpWj3+alE0M6s0gsHNFu0ZP9uCK3La+U1+CcVZlqA7T6W/3PXiwccAdQuf1u3380T42wuHOSxywq1Cy3L5D8QcjWmZIrs2lakkkPLc9epTK9fclwjfoZIQP3E3HScugbIZQFx5+W5Zr1sZsY+K6GRLURoqVIzrwP3mE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773236755; c=relaxed/simple;
-	bh=pc0vg9WjAyTbfNOOBHaoUmZFj7t/eqgu7tp2pVK/158=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dUMV/Oyky1BV1Uq4uViwFLIeQHN7DWAyPjcVKB17RNPVUw2UCI9oy8/ygPsjnZChjl3BViSsMadDEAnbnrta/lE07IeMBk0040GUmL+EGSG9Pl1+TV4mW4eFuVZIOI3VTmxxvCPl6c5abUCd5tC/juOSBt0HpPKdGZFZdr3nWVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rYce17jU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 719EDC4CEF7;
-	Wed, 11 Mar 2026 13:45:54 +0000 (UTC)
+	s=arc-20240116; t=1773236761; c=relaxed/simple;
+	bh=sA5VtIwFalDefpBU5WsVNiqh0/07Kxus4EY1iWzd0wU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Hf/zcSQNT/oYr4cOeMfwWdpRJCdCpIKDfYyofstKMXcsqTG9/Y1aI90Y8fZt1UmIEM9WVACSIExPXsizhKLXxoep+gevmWp6hiXa++R4/NGl1M2JCMHNV5gBWkWbCz+QRgWI0UrLW12f30T0jENOTIP3/bKS/79oW0U7PoPj7aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nehGgZdp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 046D7C4CEF7;
+	Wed, 11 Mar 2026 13:45:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773236754;
-	bh=pc0vg9WjAyTbfNOOBHaoUmZFj7t/eqgu7tp2pVK/158=;
-	h=From:Date:Subject:To:Cc:From;
-	b=rYce17jUN2vp6ipqi9AlpYpDfQcQQlaktVjIjp63o1qPnCBTINiQ5TKeFhlzzwbRE
-	 lALRHcpMGDljAArJJJG/c5sO2bLvujSruguOwvMT61I7mrTXRlL4hqKx+HeMqQnPWr
-	 JvYKnN5HbCrXMr1KLJC+ek9pcAm3A4Xga1VaeRI7baG74RnNI54FGRYDWeL8eFQI8p
-	 TXOc+AvRqKENB0PNIRe2JLgeUcN++0ktGIfDXBeVftJMCM7Vv9llIsQaz9G2fYWT+N
-	 /EYLvEmjjDV1rIuDwfZpyxCa1hCD3LFwJLYh/X8M9aQp/bFGStpjcOiuE+3kjsF/KU
-	 CKGoRzAqaYT7g==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Wed, 11 Mar 2026 14:45:36 +0100
-Subject: [PATCH v3] arm64: dts: airoha: en7581: Add switch node to to
- EN7581 SoC
+	s=k20201202; t=1773236760;
+	bh=sA5VtIwFalDefpBU5WsVNiqh0/07Kxus4EY1iWzd0wU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nehGgZdpu6pGOfPoB5Io4mXoXeYozBDAGbvJNTH345/cItl5+8E+eryn5NxR9Ifdm
+	 j8mGnneRT3NG7PO/qgQfdJoXW2RplxEEnt62m6wxLvGMqeJJYbqDX8AV8+n8xQ3vc9
+	 XG32vk6EGlPGUZE2hT/Er6TPPQRrNRFrvhCt/MIXBOfgguGymM0OYQNW+q7pr+CXfq
+	 1Oj4Pn8nhN2+8SAa5zqScV+kM8S+AePvSxM2zfohsrCuDOv+seTO8eDk75a8HXxpFV
+	 Ydo1LNpJhVPA1MSsienkynDlnuA8dS73m5WpTB0qxknaTP+cqwyalhSZ8Z351Jj3rt
+	 sIV6N/F15xpsg==
+Message-ID: <09904716-69d3-4ecb-8bf6-6e2283631326@kernel.org>
+Date: Wed, 11 Mar 2026 15:45:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260311-airoha-7581-dsa-switch-v3-1-e81478911819@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XNTQ7CIBCG4asY1o4B+kddeQ/jAtqhTDTFQIOap
- neXdqUL4/L9knlmZhEDYWTH3cwCJorkxxzFfsc6p8cBgfrcTHJZ84K3oCl4p6GplIA+aogPmjo
- H1hpuZW+x7DjLx/eAlp4bfL7kdhQnH17bnyTW9S+ZBAgoS1UV3DS2FfZ0xTDi7eDDwFYzyQ9H8
- J+OzI6qZN1Ko2tl1JezLMsbyNBl8gUBAAA=
-X-Change-ID: 20260309-airoha-7581-dsa-switch-ffb0f2dfe4c0
-To: Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, 
- Benjamin Larsson <benjamin.larsson@genexis.eu>, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>
-X-Mailer: b4 0.14.2
-X-Rspamd-Queue-Id: 2A45B264D3A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/2] arm64: qcom: sm8550: add DDR, LLCC & L3 CPU
+ bandwidth scaling
+To: Aaron Kling <webgeek1234@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260219-sm8550-ddr-bw-scaling-v3-0-75c19152e921@gmail.com>
+ <CALHNRZ9R1XaYWeTneZmyAvGY-s2-rbSC_=bSV-nC8_zU+bGLqA@mail.gmail.com>
+ <97134126-f1a0-43f4-a4f6-0c1bd85e0c92@oss.qualcomm.com>
+ <CALHNRZ8vEcq75O_M2A4F6p_Y000SvVgu4pAW5OLtX0ucAGAqFg@mail.gmail.com>
+Content-Language: en-US
+From: Georgi Djakov <djakov@kernel.org>
+In-Reply-To: <CALHNRZ8vEcq75O_M2A4F6p_Y000SvVgu4pAW5OLtX0ucAGAqFg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: EE769264DA4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274134-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,collabora.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274135-lists,devicetree=lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,oss.qualcomm.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lorenzo@kernel.org,devicetree@vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[djakov@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[11];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Introduce dsa switch controller node to EN7581 SoC and EN7581
-evaluation board.
+On 3/10/26 10:31 PM, Aaron Kling wrote:
+> On Tue, Mar 10, 2026 at 3:20 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@oss.qualcomm.com> wrote:
+>>
+>> On 10/03/2026 21:05, Aaron Kling wrote:
+>>>> ---
+>>>> Aaron Kling (2):
+>>>>        dt-bindings: interconnect: OSM L3: Document sm8550 OSM L3 compatible
+>>>>        arm64: dts: qcom: sm8550: add cpu OPP table with DDR, LLCC & L3 bandwidths
+>>>>
+>>>>   .../bindings/interconnect/qcom,osm-l3.yaml         |   1 +
+>>>>   arch/arm64/boot/dts/qcom/sm8550.dtsi               | 367 +++++++++++++++++++++
+>>>>   2 files changed, 368 insertions(+)
+>>>> ---
+>>>> base-commit: 9845cf73f7db6094c0d8419d6adb848028f4a921
+>>>> change-id: 20260207-sm8550-ddr-bw-scaling-b1524827f207
+>>>>
+>>>> Best regards,
+>>>> --
+>>>> Aaron Kling <webgeek1234@gmail.com>
+>>>
+>>> What is the normal merge sequence and window for linux-arm-msm? I see
+>>> several things that have been picked up for -next recently, but none
+>>> of my sm8550 patches that have been reviewed / approved have been
+>>> picked up yet.
+>>
+>>
+>> This one is probably waiting on interconnect, no? Not saying that
+>> merging here is easy, quite the opposite - it's frustrating, but you can
+>> help by responding with actual data, e.g. bindings were merged and DTS
+>> can go, instead of just content-less ping.
+> 
+> So patch 1, the bindings, has to go via a different tree; then patch 2
+> goes via linux-arm-msm? Or does the first patch need an ack from other
+> people? I was assuming both of these could be handled by the
+> linux-arm-msm maintainers.
+> 
+> Part of this was a reminder, yes, but the question is still honest. I
+> don't know what the expected merge window is here, knowing that is
+> good to know if something got lost in the mix. I've got a couple other
+> patches as well that are standalone dt changes with no other deps.
+> I've had patches to other subsystems that have sat for four or five
+> cycles just waiting on the subsystem maintainers.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
-Changes in v3:
-- Fix switch interrupt line.
-- Link to v2: https://lore.kernel.org/r/20260310-airoha-7581-dsa-switch-v2-1-852692ba68b8@kernel.org
+Hi Aaron,
 
-Changes in v2:
-- Fix ethernet-phy node name
-- Remove unnecessary phy-mode property in ethernet-phy nodes.
-- Link to v1: https://lore.kernel.org/r/20260309-airoha-7581-dsa-switch-v1-1-448530b7f91f@kernel.org
----
- arch/arm64/boot/dts/airoha/en7581-evb.dts | 18 +++++++
- arch/arm64/boot/dts/airoha/en7581.dtsi    | 84 +++++++++++++++++++++++++++++++
- 2 files changed, 102 insertions(+)
+Last week i picked the 1st patch, so it's in this week's linux-next
+releases already. I usually push an immutable branch if there are other
+patches that depend on the one i picked, so i did that (icc-sm8550-osm-l3
+branch).
 
-diff --git a/arch/arm64/boot/dts/airoha/en7581-evb.dts b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-index 886e2e4b5f64ce1a2a5496d35b8379fb4ac27dc2..4c6fca99ae62ec8202e211e18311f2ab7e18d2e5 100644
---- a/arch/arm64/boot/dts/airoha/en7581-evb.dts
-+++ b/arch/arm64/boot/dts/airoha/en7581-evb.dts
-@@ -81,6 +81,18 @@ conf {
- 			drive-open-drain = <1>;
- 		};
- 	};
-+
-+	mdio_pins: mdio-pins {
-+		mux {
-+			function = "mdio";
-+			groups = "mdio";
-+		};
-+
-+		conf {
-+			pins = "gpio2";
-+			output-high;
-+		};
-+	};
- };
- 
- &pcie0 {
-@@ -106,3 +118,9 @@ &eth {
- &gdm1 {
- 	status = "okay";
- };
-+
-+&switch {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mdio_pins>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/airoha/en7581.dtsi b/arch/arm64/boot/dts/airoha/en7581.dtsi
-index ff6908a76e8eb6cf91343495d1fe531a868e41fb..f86605ddf8754513fbe38ab262ee72feaff7deb2 100644
---- a/arch/arm64/boot/dts/airoha/en7581.dtsi
-+++ b/arch/arm64/boot/dts/airoha/en7581.dtsi
-@@ -395,5 +395,89 @@ fixed-link {
- 				};
- 			};
- 		};
-+
-+		switch: switch@1fb58000 {
-+			compatible = "airoha,en7581-switch";
-+			reg = <0 0x1fb58000 0 0x8000>;
-+			resets = <&scuclk EN7581_GSW_RST>;
-+
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				gsw_port1: port@1 {
-+					reg = <1>;
-+					label = "lan1";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy1>;
-+				};
-+
-+				gsw_port2: port@2 {
-+					reg = <2>;
-+					label = "lan2";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy2>;
-+				};
-+
-+				gsw_port3: port@3 {
-+					reg = <3>;
-+					label = "lan3";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy3>;
-+				};
-+
-+				gsw_port4: port@4 {
-+					reg = <4>;
-+					label = "lan4";
-+					phy-mode = "internal";
-+					phy-handle = <&gsw_phy4>;
-+				};
-+
-+				port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&gdm1>;
-+					phy-mode = "internal";
-+
-+					fixed-link {
-+						speed = <10000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+
-+			mdio: mdio {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				gsw_phy1: ethernet-phy@9 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <9>;
-+				};
-+
-+				gsw_phy2: ethernet-phy@10 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <10>;
-+				};
-+
-+				gsw_phy3: ethernet-phy@11 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <11>;
-+				};
-+
-+				gsw_phy4: ethernet-phy@12 {
-+					compatible = "ethernet-phy-ieee802.3-c22";
-+					reg = <12>;
-+				};
-+			};
-+		};
- 	};
- };
+Now the Qualcomm maintainers can pick the dts change if they want. My
+observations are that the qcom dt tree is closing around -rc5, to give
+some time for new patches to get tested before they send a pull request
+to the arm-soc maintainers. If some patch is not picked, it's a good
+idea to re-base and re-send when the next -rc1 is out.
 
----
-base-commit: 405c09548a695ca7be58b5b9d3ac8388630e907f
-change-id: 20260309-airoha-7581-dsa-switch-ffb0f2dfe4c0
-
-Best regards,
--- 
-Lorenzo Bianconi <lorenzo@kernel.org>
+Thanks,
+Georgi
 
 
