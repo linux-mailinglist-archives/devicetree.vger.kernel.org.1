@@ -1,538 +1,145 @@
-Return-Path: <devicetree+bounces-273943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273942-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ECatOrgosWkBrgIAu9opvQ
-	(envelope-from <devicetree+bounces-273943-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:32:56 +0100
+	id iFxbFZEnsWkBrgIAu9opvQ
+	(envelope-from <devicetree+bounces-273942-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:28:01 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AADF25F646
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:32:56 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 800CE25F43B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:28:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 98BFB30A1F9E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:25:00 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 69C78305E7EC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:24:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932B336896D;
-	Wed, 11 Mar 2026 08:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A496835BDD7;
+	Wed, 11 Mar 2026 08:24:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CDSwEkls"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WuktVeUe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0282364955
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 08:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.218.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773217484; cv=pass; b=b5CPgkEqTQ4o5INs8mzwKrUrvcA1c0a6SGdIeEWRF/5hUMv9Yk5B4yMuw6doKskzGsA4dK4R0BpCTu3WDNvfcbNoCfX9vjTUpc/gxiZ1EeYlaWzArn192I0VmTTvnlK2CWGjN/uYDmS/rAj3DYT4GYJtYjqyi1scTVDxkvw231M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773217484; c=relaxed/simple;
-	bh=scPK4yjYP4NWGll9kC6f2iAZmla21828RYNudpqos6E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=D76z5suQvFObGH2M0rWciH4GUQPZPYG4NOAdB7auWOwWX7sOBU80aAOKbL0blSCF3VXuYSXmbWWUNBTPp00hPqfZpZbHydyr3WetVjVFV9bXp+yORuKV9bE87QxqsErjjUE8EWGMdi+PkgTXAVX1XqxHm9juIk3vMmlZS/IGYrc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CDSwEkls; arc=pass smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b95c0fc928bso727090866b.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 01:24:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773217481; cv=none;
-        d=google.com; s=arc-20240605;
-        b=Fxm20UXXlCCcidqTDjE4vhWvG0E6FWffViagNLmTKG8kz3jkdt1D27Pry3Mq68EvAO
-         IKXCiL1IX/ePx969st3bkOVJDkH7AUCU6HYgOjYvozVcEMRlHBNkyNA/2dS1lbLtoish
-         ZXu8+wdkECklS8UY2rUUAKIjlUdhLoLWoW1YP8dXmEYjSjwt4knhZZwvcjB0mzGc28Qx
-         NyrtRS/IYVf+azc+0PY51BEWOrU5u3vdRpyagjhySE0xFQ1xKir1bmBR8Mwx4DYcuPtg
-         qSeAUqw62RDvtte9dBt1AbA8rjQtoMMOidnUOPeI3bbf/sTTE2wJq1ukiyoDbftc4yTw
-         yAxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Q4fUIKT70fHKjIeW/Y2M1Qjyk+SDVrLGJimnzobQywU=;
-        fh=NnF1xbyN2Hqm5cOzlCvW9saAVZ2n/+yz4FneoLETV3M=;
-        b=SZS+/ykZiVffZJWIGGFSJDfVwabeGnoGUvzCTlWggscsfxvX6B9b8fb2oyPjNGShYo
-         jGdKVhWaUSqjY72oCgIltLHPyJOTAmCN4+KslrzdtVg1M0oqbdEKrGFmRlu/eE3JKPBe
-         nKCKAmf1R/6KYn0QGiT/5FJ0hlkOm0yoqrRH/5cIJQU/ZlmFMEshy43NxH/JcsOqlRGa
-         qRB/uQ7rGaBlu44PnLkmiPfKq/Ab/SKdUp4uXMU8gxwXwModvcxNzlTI2qCBx4+XjMWq
-         Q+h2EENsACiK0uIYV7EQ30YQWpjZ0p8nVL3X+EJQWXOOwfZP8mmTJiBI0T+Cb146yK9R
-         MqSw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773217481; x=1773822281; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Q4fUIKT70fHKjIeW/Y2M1Qjyk+SDVrLGJimnzobQywU=;
-        b=CDSwEkls1XLJQUozoMLbCWxVNsuoKes0cprYUo5w2rHcWPTjmpsiP1WVzlyMrdtiYR
-         5Dm37yNw0T/LaFfVbFBUixxiZUAFuY3lyWARueyndvI7BEMo5ASzYnoeEJ5M/jkBDry2
-         UK1ByB+WLPo+BzpDQQAKWke9NQgAU14ARIuJYvQgmlT6is+73Uw72CBdoZAAsWqJereG
-         cZA9k2tkkxWVzJwZwZnuTEWsnpaEKswXi5lFeo4pQEyrlmHXlRYhf3yIDctiM3rL6jmk
-         rHBy3HF2DjNKvas/bp1Nk9FlU8KVTBhuHxPzU6jNeVsWQQIZ4ddqytj3ApLOPUeRlGAz
-         L2tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773217481; x=1773822281;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Q4fUIKT70fHKjIeW/Y2M1Qjyk+SDVrLGJimnzobQywU=;
-        b=YgvVSKcoqxCmg3p2axSskCOukM2Ohz1shc7D/NgRgIQpGHqz8BxEbt5SEk+gGAkVzn
-         dzaCpsXJ52r4HYGhU4MAeEWwaCpZTVrTlQXnEzIkpTA4JTcdf8JAnDjTkAg7rtELQZnR
-         Yn84cV/S/RIDwMtG1PMxKPnWZvZMPC2qGktU4mQDLmHt2NmJ+9wY5knUPI8WoZ9l4Jhd
-         Mp2yGGqSKqc5WrsaPjKiBK1AGrOIG3fpXuKuyJBQRKL2GmFzjbK1wF68gNXz5hnrWqtN
-         VfEFkL3WgbcA0M8gDYxa8ONUwi3dhKl9zUMRm7RNeq8hNYLQ/3Mvq7QmMWRxPklD7O2s
-         LKKw==
-X-Forwarded-Encrypted: i=1; AJvYcCXqB1nkEu0t6d5v3/WvpLRRWgJ5LCUgAQS57RgSEfJbLE4KPyEyfTL8qCwXmPeSvezEH5yR1PkBPeUY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwscwZN0+G/lvP5y9st9nxmc/zhjCrPy/44Ed/RCdYsZpkEuQlE
-	SziiizNrLvEaJhVfXrowwZsIIoOrLcRz3l0P1aqBcA4Vs/vLuql2gntMDsegzKfpHVxIA7N808F
-	tNEj41pKkMJUrkFW1Sl0Cqjd3pulyVe4=
-X-Gm-Gg: ATEYQzzSBO50/W/Tai94Ut3K8O2XHDWHC6QtoRjflUOf+auIE72h0w84kJIus5Wl6vA
-	7gZZV4TpoXWpi4muLd02U8FvkcvIBee0FBbAwv5E3QtJYpXEdfJuNvG26GG1K7R2ZSzzfygkvyr
-	WpDHo1DepUY0/GL/dn138LIrO0+4ov0NsmTyZRxrf5UeTtv58/Yw+7kHKbVmssWjuAcbWLEOsHx
-	aDz2N+twjantWcUgcXEBpnG2WvZj6/Qgs0g2HXEjZx3WQ6IUxofg6BjrCw5SFiM6rBPb2CGCMis
-	avldz4M=
-X-Received: by 2002:a17:907:9811:b0:b96:e796:135f with SMTP id
- a640c23a62f3a-b972e5fbea0mr88285066b.47.1773217480467; Wed, 11 Mar 2026
- 01:24:40 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8163C35A3AD;
+	Wed, 11 Mar 2026 08:24:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773217479; cv=none; b=qMKoOJfJMUNPG2EbTIEdf6Hy2QJ2H1eM/92si1/TuVNZsJF3N1geyhzymPVf2i+9o6cQx59snyf4lD1t6Lzv9CsDOeP4l2yKRsZbv57CBkCaAXnoiYBeoGK3M3n6GRVxKHTNu4BO7nNzdcDZKRD5OKGpmmeJA4hm1KB3ialz0sY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773217479; c=relaxed/simple;
+	bh=x8WXPRzj9z7k+pgkdOCuO1tcokwkt6Nj+L1KRGtmdqQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=C2zvSnxa3RqQ08rDjTt1CJfUsWBG2i66oZzm5hDxIdwcvxS6WUG2khMrhxYKQ9l36x/utDfCqbAlbhCYS6AQreQOmieqtdHAz9/15Ev1x7U27v1UZ3NKC8uwpg2z3gAi0eoCKLgg8diifKTDCL7EJY46LkD9cFWADONPQSK9y7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WuktVeUe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31C27C4CEF7;
+	Wed, 11 Mar 2026 08:24:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773217479;
+	bh=x8WXPRzj9z7k+pgkdOCuO1tcokwkt6Nj+L1KRGtmdqQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=WuktVeUeQyxLz4c5fQxyKzetWwgmhQ/Qdwxot/dBWXx+jeyyzNunPRtbXSTrQqFQt
+	 /I91nFb+AT1PZstNTFmn2z3cVmSwHXqOiLhK/JP7VwUqZNv3GnpdK6hTZ5UG2enfHg
+	 4VTUab9KOSYMhA8FlzAqH1Yv5wxcALdbOmND/Z7Ah+nu5WTpzcfmHkG+33u+JJatdK
+	 35nzFpEW0gQK+ZRukCmabr61bu/kN4EgfYIumP46SJir2r3J4y0hnzakLmbm9apR91
+	 E2V3V5QjcW8WakM8rjAB1khttOQ4nFvN+5NRK+H+zuzf3/07aPnrjhiVdloOtDfIt+
+	 FmEu6TUB+b8mg==
+Date: Wed, 11 Mar 2026 03:24:37 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1773107475.git.zhoubinbin@loongson.cn> <ee177cd356803dd24d630c7502d850f52e3f63d8.1773107475.git.zhoubinbin@loongson.cn>
- <CAAhV-H6ssXnyYuT06y0wgBXwPbtOUx2J7G75mr8wW5cpOrpw4A@mail.gmail.com>
-In-Reply-To: <CAAhV-H6ssXnyYuT06y0wgBXwPbtOUx2J7G75mr8wW5cpOrpw4A@mail.gmail.com>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Wed, 11 Mar 2026 16:24:27 +0800
-X-Gm-Features: AaiRm53u20tjJzQiI_nxXmdhOB4tbHo9XnHkfurHurJMbazgAtLqTBkfpelBYfc
-Message-ID: <CAMpQs4JjB+MA+zbU5T0q7Z1mSZ5B9p-uvLNeNzEFadr8R=1sGQ@mail.gmail.com>
-Subject: Re: [PATCH 3/6] ASoC: loongson: Add `internal` to the names of
- internal DMA variables
-To: Huacai Chen <chenhuacai@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Xuerui Wang <kernel@xen0n.name>, 
-	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-sound@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Rspamd-Queue-Id: 9AADF25F646
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Bjorn Andersson <andersson@kernel.org>
+To: Aaron Kling <webgeek1234@gmail.com>
+In-Reply-To: <20260311-ayn-qcs8550-v1-1-fe8b2faad1ea@gmail.com>
+References: <20260311-ayn-qcs8550-v1-0-fe8b2faad1ea@gmail.com>
+ <20260311-ayn-qcs8550-v1-1-fe8b2faad1ea@gmail.com>
+Message-Id: <177321747715.2240760.12516484402907450164.robh@kernel.org>
+Subject: Re: [PATCH 1/5] dt-bindings: arm: qcom: Add AYN QCS8550 Devices
+X-Rspamd-Queue-Id: 800CE25F43B
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273943-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-273942-lists,devicetree=lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FREEMAIL_CC(0.00)[loongson.cn,kernel.org,gmail.com,perex.cz,suse.com,xen0n.name,lists.linux.dev,vger.kernel.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[zhoubbaaron@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[loongson.cn:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,mail.gmail.com:mid]
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Mar 11, 2026 at 3:56=E2=80=AFPM Huacai Chen <chenhuacai@kernel.org>=
- wrote:
->
-> Hi, Binbin,
->
-> On Wed, Mar 11, 2026 at 2:37=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.=
-cn> wrote:
-> >
-> > The DMA controller used in Loongson I2S is divided into internal
-> > exclusive DMA and external shared DMA (APBDMA). Add the `internal`
-> > dentifier to internal DMA variable names to better distinguish them fro=
-m
-> > external shared DMA.
-> >
-> > No functional change intended.
-> >
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> >  sound/soc/loongson/loongson_dma.c     | 84 +++++++++++++--------------
-> >  sound/soc/loongson/loongson_dma.h     |  4 +-
-> >  sound/soc/loongson/loongson_i2s.h     |  6 +-
-> >  sound/soc/loongson/loongson_i2s_pci.c |  5 +-
-> >  4 files changed, 49 insertions(+), 50 deletions(-)
-> >
-> > diff --git a/sound/soc/loongson/loongson_dma.c b/sound/soc/loongson/loo=
-ngson_dma.c
-> > index f26b2951bc9c..07a084cebdc0 100644
-> > --- a/sound/soc/loongson/loongson_dma.c
-> > +++ b/sound/soc/loongson/loongson_dma.c
-> > @@ -14,6 +14,7 @@
-> >  #include <sound/soc.h>
-> >  #include <sound/pcm.h>
-> >  #include <sound/pcm_params.h>
-> > +
-> >  #include "loongson_i2s.h"
-> >
-> >  /* DMA dma_order Register */
-> > @@ -29,7 +30,7 @@
-> >  /*
-> >   * DMA registers descriptor.
-> >   */
-> > -struct loongson_dma_desc {
-> > +struct loongson_internal_dma_desc {
-> Can we use idma (internal dma) and edma (external) for short?
 
-Emm...
-Using `idma`/`edma` seems more concise. I'll also add some comments.
->
-> Huacai
->
-> >         u32 order;              /* Next descriptor address register */
-> >         u32 saddr;              /* Source address register */
-> >         u32 daddr;              /* Device address register */
-> > @@ -44,17 +45,17 @@ struct loongson_dma_desc {
-> >  } __packed;
-> >
-> >  struct loongson_runtime_data {
-> > -       struct loongson_dma_data *dma_data;
-> > +       struct loongson_internal_dma_data *dma_data;
-> >
-> > -       struct loongson_dma_desc *dma_desc_arr;
-> > +       struct loongson_internal_dma_desc *dma_desc_arr;
-> >         dma_addr_t dma_desc_arr_phy;
-> >         int dma_desc_arr_size;
-> >
-> > -       struct loongson_dma_desc *dma_pos_desc;
-> > +       struct loongson_internal_dma_desc *dma_pos_desc;
-> >         dma_addr_t dma_pos_desc_phy;
-> >  };
-> >
-> > -static const struct snd_pcm_hardware ls_pcm_hardware =3D {
-> > +static const struct snd_pcm_hardware loongson_internal_dma_hardware =
-=3D {
-> >         .info =3D SNDRV_PCM_INFO_MMAP |
-> >                 SNDRV_PCM_INFO_INTERLEAVED |
-> >                 SNDRV_PCM_INFO_MMAP_VALID |
-> > @@ -67,12 +68,11 @@ static const struct snd_pcm_hardware ls_pcm_hardwar=
-e =3D {
-> >         .period_bytes_min =3D 128,
-> >         .period_bytes_max =3D 128 * 1024,
-> >         .periods_min =3D 1,
-> > -       .periods_max =3D PAGE_SIZE / sizeof(struct loongson_dma_desc),
-> > +       .periods_max =3D PAGE_SIZE / sizeof(struct loongson_internal_dm=
-a_desc),
-> >         .buffer_bytes_max =3D 1024 * 1024,
-> >  };
-> >
-> > -static struct
-> > -loongson_dma_desc *dma_desc_save(struct loongson_runtime_data *prtd)
-> > +static struct loongson_internal_dma_desc *dma_desc_save(struct loongso=
-n_runtime_data *prtd)
-> >  {
-> >         void __iomem *order_reg =3D prtd->dma_data->order_addr;
-> >         u64 val;
-> > @@ -88,8 +88,8 @@ loongson_dma_desc *dma_desc_save(struct loongson_runt=
-ime_data *prtd)
-> >         return prtd->dma_pos_desc;
-> >  }
-> >
-> > -static int loongson_pcm_trigger(struct snd_soc_component *component,
-> > -                               struct snd_pcm_substream *substream, in=
-t cmd)
-> > +static int loongson_internal_dma_pcm_trigger(struct snd_soc_component =
-*component,
-> > +                                            struct snd_pcm_substream *=
-substream, int cmd)
-> >  {
-> >         struct loongson_runtime_data *prtd =3D substream->runtime->priv=
-ate_data;
-> >         struct device *dev =3D substream->pcm->card->dev;
-> > @@ -131,9 +131,9 @@ static int loongson_pcm_trigger(struct snd_soc_comp=
-onent *component,
-> >         return 0;
-> >  }
-> >
-> > -static int loongson_pcm_hw_params(struct snd_soc_component *component,
-> > -                                 struct snd_pcm_substream *substream,
-> > -                                 struct snd_pcm_hw_params *params)
-> > +static int loongson_internal_dma_pcm_hw_params(struct snd_soc_componen=
-t *component,
-> > +                                              struct snd_pcm_substream=
- *substream,
-> > +                                              struct snd_pcm_hw_params=
- *params)
-> >  {
-> >         struct snd_pcm_runtime *runtime =3D substream->runtime;
-> >         struct device *dev =3D substream->pcm->card->dev;
-> > @@ -141,7 +141,7 @@ static int loongson_pcm_hw_params(struct snd_soc_co=
-mponent *component,
-> >         size_t buf_len =3D params_buffer_bytes(params);
-> >         size_t period_len =3D params_period_bytes(params);
-> >         dma_addr_t order_addr, mem_addr;
-> > -       struct loongson_dma_desc *desc;
-> > +       struct loongson_internal_dma_desc *desc;
-> >         u32 num_periods;
-> >         int i;
-> >
-> > @@ -195,12 +195,12 @@ static int loongson_pcm_hw_params(struct snd_soc_=
-component *component,
-> >  }
-> >
-> >  static snd_pcm_uframes_t
-> > -loongson_pcm_pointer(struct snd_soc_component *component,
-> > -                    struct snd_pcm_substream *substream)
-> > +loongson_internal_dma_pcm_pointer(struct snd_soc_component *component,
-> > +                                 struct snd_pcm_substream *substream)
-> >  {
-> >         struct snd_pcm_runtime *runtime =3D substream->runtime;
-> >         struct loongson_runtime_data *prtd =3D runtime->private_data;
-> > -       struct loongson_dma_desc *desc;
-> > +       struct loongson_internal_dma_desc *desc;
-> >         snd_pcm_uframes_t x;
-> >         u64 addr;
-> >
-> > @@ -213,7 +213,7 @@ loongson_pcm_pointer(struct snd_soc_component *comp=
-onent,
-> >         return x;
-> >  }
-> >
-> > -static irqreturn_t loongson_pcm_dma_irq(int irq, void *devid)
-> > +static irqreturn_t loongson_internal_dma_pcm_dma_irq(int irq, void *de=
-vid)
-> >  {
-> >         struct snd_pcm_substream *substream =3D devid;
-> >
-> > @@ -221,14 +221,14 @@ static irqreturn_t loongson_pcm_dma_irq(int irq, =
-void *devid)
-> >         return IRQ_HANDLED;
-> >  }
-> >
-> > -static int loongson_pcm_open(struct snd_soc_component *component,
-> > -                            struct snd_pcm_substream *substream)
-> > +static int loongson_internal_dma_pcm_open(struct snd_soc_component *co=
-mponent,
-> > +                                         struct snd_pcm_substream *sub=
-stream)
-> >  {
-> >         struct snd_pcm_runtime *runtime =3D substream->runtime;
-> >         struct snd_soc_pcm_runtime *rtd =3D snd_soc_substream_to_rtd(su=
-bstream);
-> >         struct snd_card *card =3D substream->pcm->card;
-> >         struct loongson_runtime_data *prtd;
-> > -       struct loongson_dma_data *dma_data;
-> > +       struct loongson_internal_dma_data *dma_data;
-> >
-> >         /*
-> >          * For mysterious reasons (and despite what the manual says)
-> > @@ -241,7 +241,7 @@ static int loongson_pcm_open(struct snd_soc_compone=
-nt *component,
-> >                                    SNDRV_PCM_HW_PARAM_BUFFER_BYTES, 128=
-);
-> >         snd_pcm_hw_constraint_integer(substream->runtime,
-> >                                       SNDRV_PCM_HW_PARAM_PERIODS);
-> > -       snd_soc_set_runtime_hwparams(substream, &ls_pcm_hardware);
-> > +       snd_soc_set_runtime_hwparams(substream, &loongson_internal_dma_=
-hardware);
-> >
-> >         prtd =3D kzalloc_obj(*prtd);
-> >         if (!prtd)
-> > @@ -277,8 +277,8 @@ static int loongson_pcm_open(struct snd_soc_compone=
-nt *component,
-> >         return -ENOMEM;
-> >  }
-> >
-> > -static int loongson_pcm_close(struct snd_soc_component *component,
-> > -                             struct snd_pcm_substream *substream)
-> > +static int loongson_internal_dma_pcm_close(struct snd_soc_component *c=
-omponent,
-> > +                                          struct snd_pcm_substream *su=
-bstream)
-> >  {
-> >         struct snd_card *card =3D substream->pcm->card;
-> >         struct loongson_runtime_data *prtd =3D substream->runtime->priv=
-ate_data;
-> > @@ -293,21 +293,21 @@ static int loongson_pcm_close(struct snd_soc_comp=
-onent *component,
-> >         return 0;
-> >  }
-> >
-> > -static int loongson_pcm_mmap(struct snd_soc_component *component,
-> > -                            struct snd_pcm_substream *substream,
-> > -                            struct vm_area_struct *vma)
-> > +static int loongson_internal_dma_pcm_mmap(struct snd_soc_component *co=
-mponent,
-> > +                                         struct snd_pcm_substream *sub=
-stream,
-> > +                                         struct vm_area_struct *vma)
-> >  {
-> >         return remap_pfn_range(vma, vma->vm_start,
-> > -                       substream->dma_buffer.addr >> PAGE_SHIFT,
-> > -                       vma->vm_end - vma->vm_start, vma->vm_page_prot)=
-;
-> > +                              substream->dma_buffer.addr >> PAGE_SHIFT=
-,
-> > +                              vma->vm_end - vma->vm_start, vma->vm_pag=
-e_prot);
-> >  }
-> >
-> > -static int loongson_pcm_new(struct snd_soc_component *component,
-> > -                           struct snd_soc_pcm_runtime *rtd)
-> > +static int loongson_internal_dma_pcm_new(struct snd_soc_component *com=
-ponent,
-> > +                                        struct snd_soc_pcm_runtime *rt=
-d)
-> >  {
-> >         struct snd_card *card =3D rtd->card->snd_card;
-> >         struct snd_pcm_substream *substream;
-> > -       struct loongson_dma_data *dma_data;
-> > +       struct loongson_internal_dma_data *dma_data;
-> >         unsigned int i;
-> >         int ret;
-> >
-> > @@ -319,7 +319,7 @@ static int loongson_pcm_new(struct snd_soc_componen=
-t *component,
-> >                 dma_data =3D snd_soc_dai_get_dma_data(snd_soc_rtd_to_cp=
-u(rtd, 0),
-> >                                                     substream);
-> >                 ret =3D devm_request_irq(card->dev, dma_data->irq,
-> > -                                      loongson_pcm_dma_irq,
-> > +                                      loongson_internal_dma_pcm_dma_ir=
-q,
-> >                                        IRQF_TRIGGER_HIGH, LS_I2S_DRVNAM=
-E,
-> >                                        substream);
-> >                 if (ret < 0) {
-> > @@ -330,16 +330,16 @@ static int loongson_pcm_new(struct snd_soc_compon=
-ent *component,
-> >
-> >         return snd_pcm_set_fixed_buffer_all(rtd->pcm, SNDRV_DMA_TYPE_DE=
-V,
-> >                                             card->dev,
-> > -                                           ls_pcm_hardware.buffer_byte=
-s_max);
-> > +                                           loongson_internal_dma_hardw=
-are.buffer_bytes_max);
-> >  }
-> >
-> > -const struct snd_soc_component_driver loongson_i2s_component =3D {
-> > +const struct snd_soc_component_driver loongson_i2s_internal_dma_compon=
-ent =3D {
-> >         .name           =3D LS_I2S_DRVNAME,
-> > -       .open           =3D loongson_pcm_open,
-> > -       .close          =3D loongson_pcm_close,
-> > -       .hw_params      =3D loongson_pcm_hw_params,
-> > -       .trigger        =3D loongson_pcm_trigger,
-> > -       .pointer        =3D loongson_pcm_pointer,
-> > -       .mmap           =3D loongson_pcm_mmap,
-> > -       .pcm_construct  =3D loongson_pcm_new,
-> > +       .open           =3D loongson_internal_dma_pcm_open,
-> > +       .close          =3D loongson_internal_dma_pcm_close,
-> > +       .hw_params      =3D loongson_internal_dma_pcm_hw_params,
-> > +       .trigger        =3D loongson_internal_dma_pcm_trigger,
-> > +       .pointer        =3D loongson_internal_dma_pcm_pointer,
-> > +       .mmap           =3D loongson_internal_dma_pcm_mmap,
-> > +       .pcm_construct  =3D loongson_internal_dma_pcm_new,
-> >  };
-> > diff --git a/sound/soc/loongson/loongson_dma.h b/sound/soc/loongson/loo=
-ngson_dma.h
-> > index 073ee8c0c046..8795fd7874bb 100644
-> > --- a/sound/soc/loongson/loongson_dma.h
-> > +++ b/sound/soc/loongson/loongson_dma.h
-> > @@ -9,8 +9,6 @@
-> >  #ifndef _LOONGSON_DMA_H
-> >  #define _LOONGSON_DMA_H
-> >
-> > -#include <sound/soc.h>
-> > -
-> > -extern const struct snd_soc_component_driver loongson_i2s_component;
-> > +extern const struct snd_soc_component_driver loongson_i2s_internal_dma=
-_component;
-> >
-> >  #endif
-> > diff --git a/sound/soc/loongson/loongson_i2s.h b/sound/soc/loongson/loo=
-ngson_i2s.h
-> > index e73ffa954ec9..5f773bbd24c5 100644
-> > --- a/sound/soc/loongson/loongson_i2s.h
-> > +++ b/sound/soc/loongson/loongson_i2s.h
-> > @@ -42,7 +42,7 @@
-> >
-> >  #define LS_I2S_DRVNAME         "loongson-i2s"
-> >
-> > -struct loongson_dma_data {
-> > +struct loongson_internal_dma_data {
-> >         dma_addr_t dev_addr;            /* device physical address for =
-DMA */
-> >         void __iomem *order_addr;       /* DMA order register */
-> >         int irq;                        /* DMA irq */
-> > @@ -52,11 +52,11 @@ struct loongson_i2s {
-> >         struct device *dev;
-> >         union {
-> >                 struct snd_dmaengine_dai_dma_data playback_dma_data;
-> > -               struct loongson_dma_data tx_dma_data;
-> > +               struct loongson_internal_dma_data tx_dma_data;
-> >         };
-> >         union {
-> >                 struct snd_dmaengine_dai_dma_data capture_dma_data;
-> > -               struct loongson_dma_data rx_dma_data;
-> > +               struct loongson_internal_dma_data rx_dma_data;
-> >         };
-> >         struct regmap *regmap;
-> >         void __iomem *reg_base;
-> > diff --git a/sound/soc/loongson/loongson_i2s_pci.c b/sound/soc/loongson=
-/loongson_i2s_pci.c
-> > index dea1e4ebee29..9120432bbe64 100644
-> > --- a/sound/soc/loongson/loongson_i2s_pci.c
-> > +++ b/sound/soc/loongson/loongson_i2s_pci.c
-> > @@ -13,6 +13,7 @@
-> >  #include <linux/acpi.h>
-> >  #include <linux/pci.h>
-> >  #include <sound/soc.h>
-> > +
-> >  #include "loongson_i2s.h"
-> >  #include "loongson_dma.h"
-> >
-> > @@ -22,7 +23,7 @@ static int loongson_i2s_pci_probe(struct pci_dev *pde=
-v,
-> >                                   const struct pci_device_id *pid)
-> >  {
-> >         const struct fwnode_handle *fwnode =3D pdev->dev.fwnode;
-> > -       struct loongson_dma_data *tx_data, *rx_data;
-> > +       struct loongson_internal_dma_data *tx_data, *rx_data;
-> >         struct device *dev =3D &pdev->dev;
-> >         struct loongson_i2s *i2s;
-> >         int ret;
-> > @@ -79,7 +80,7 @@ static int loongson_i2s_pci_probe(struct pci_dev *pde=
-v,
-> >                 udelay(200);
-> >         }
-> >
-> > -       ret =3D devm_snd_soc_register_component(dev, &loongson_i2s_comp=
-onent,
-> > +       ret =3D devm_snd_soc_register_component(dev, &loongson_i2s_inte=
-rnal_dma_component,
-> >                                               &loongson_i2s_dai, 1);
-> >         if (ret)
-> >                 return dev_err_probe(dev, ret, "register DAI failed\n")=
-;
-> > --
-> > 2.52.0
-> >
-> >
+On Wed, 11 Mar 2026 01:46:04 -0500, Aaron Kling wrote:
+> Namely:
+> * Odin 2
+> * Odin 2 Mini
+> * Odin 2 Portal
+> * Thor
+> 
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
 
---=20
-Thanks.
-Binbin
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/awinic,aw88395.yaml:55:3: [error] duplication of key "firmware-name" in mapping (key-duplicates)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/awinic,aw88395.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/sound/awinic,aw88395.yaml:55:3: found duplicate key "firmware-name" with value "{}" (original value: "{}")
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/sound/awinic,aw88395.example.dts'
+Documentation/devicetree/bindings/sound/awinic,aw88395.yaml:55:3: found duplicate key "firmware-name" with value "{}" (original value: "{}")
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/sound/awinic,aw88395.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1608: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.kernel.org/project/devicetree/patch/20260311-ayn-qcs8550-v1-1-fe8b2faad1ea@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
