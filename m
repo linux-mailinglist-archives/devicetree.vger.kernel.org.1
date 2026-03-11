@@ -1,317 +1,287 @@
-Return-Path: <devicetree+bounces-274130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274129-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EJU0Fy9ysWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274130-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:23 +0100
+	id SBFKIB1ysWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274129-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036E7264CBB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6989264CAD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:46:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BAC0C310FE05
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:42:46 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1E69331087F4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D51230C60D;
-	Wed, 11 Mar 2026 13:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1EB31E846;
+	Wed, 11 Mar 2026 13:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="Tz9yk4hB";
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="Tz9yk4hB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mb6o23uh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011028.outbound.protection.outlook.com [52.101.65.28])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2F22E4257;
-	Wed, 11 Mar 2026 13:42:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.28
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773236565; cv=fail; b=KVwflBChFx6jP5LSM9TLBpPeUB0tVFmEApPOfUzSVGgU1MzOgK5+8tC2DMuYuHOpwzXeyueulKvgfXhlv7LHccD7nrTYG8y8bktpZmzcwsoy59mccdydZksIoqKF7DQsHMRqSjwl09uJsixM3Aa0J39GrH5QKP3KBb2tL/XeC68=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773236565; c=relaxed/simple;
-	bh=GChVai2WoBVzCEYHA2Ztw7/9SMk9lMqv9L82N97eMiI=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=nmq2NST8QrzMug9CiLveq/ndTWpzLTepsxpTKti2VrDIv5qQ9iwIynTscprhpi5TruimO+CdaNHeiLKxoPmkCFiVrUB2S979/2+NKmJ1JPFPX93uHCvedzwFoyBsW7VZlJ/1q6kmAV2eH0xb7vhTYLl8mArctyMFOFzZZiRkytI=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=Tz9yk4hB; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=Tz9yk4hB; arc=fail smtp.client-ip=52.101.65.28
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=JaJj/vJJ/4DUIQ4tFLTiJ/iSByk7loj9eOOvgK7wMMy9aiAAqjjGoEgVBP9qlRxKLpH6L+h8aC0JxMliS2foCOexUltDKzd1q54PjMAYHERbfRUDFMzS6equjTtiw31GjQy1Gf7f+Ja4dB42H2JNDQ0IjskH8qYx14oV8djBhbgwgZ7O3k2tz8uZCF1gfPXVEwikUNUsFFpeonkdEyP8xtjl1hSqzgbcClHPa0b4EI+Fngu4I2a12ofCSr1pHvHiFbtdmpU4eKZGIn1ON51EtEbJR8vW1u7nu7ML+jFxMJQreBgy60Ku400qj1RoJ9DjxJVFTUeRltwntAU5nV49zg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0+HoSVKjxFIqFjlRtaAPGrWAFkJPI9iwGYPeIW6az5w=;
- b=n4xJYYYhFwFnTYmCMmDhBkbUA+KRLZFkrzKnDn/oEPYLRK7q0wx4VcWVflt9zClh/8eBM8fSVf8M8sDsGMxnBhkNglWapZvv25USlu6sSn13LHW5aWnQAvAXfiUgR3KoxXA+I0IMXvDy0ADSgPHTyAx8lAB/Na/FR+4gMlsXILDqjHdz8KTMjFqmMjH43qZjxjZndqPj10n9S/Zz4I0kOLb08yoi7Q75+IJCmk2oJbz3d7b1YlS4XwiVTbpcWNp/0aPbxAcaYNRHEnhEl9sC45ZodO8Pn9fIWUecUyxb6nyGU7ET1mo1oou7DNpUUhrUJrjOc5aNQAP/QugIutheSA==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=oss.qualcomm.com smtp.mailfrom=arm.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=arm.com;
- dkim=pass (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0+HoSVKjxFIqFjlRtaAPGrWAFkJPI9iwGYPeIW6az5w=;
- b=Tz9yk4hBrJ5xRoiCHPoGW8CRB/SaT9DcNn16bluHyLkJCs7RYRsU2H/2k0cmmNTTH/xaPM5DWIUek12hDZwNQb7gydQDHA3NLgZVKiqDhXCa0oC9HWlhNSmJXH5N0R7SRZnIOh115X7hY0T7XrnJTKL4UCoxEMa0qSIkazuaSMw=
-Received: from AM9P193CA0030.EURP193.PROD.OUTLOOK.COM (2603:10a6:20b:21e::35)
- by DU0PR08MB9106.eurprd08.prod.outlook.com (2603:10a6:10:470::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Wed, 11 Mar
- 2026 13:42:38 +0000
-Received: from AMS0EPF000001A5.eurprd05.prod.outlook.com
- (2603:10a6:20b:21e:cafe::bf) by AM9P193CA0030.outlook.office365.com
- (2603:10a6:20b:21e::35) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.25 via Frontend Transport; Wed,
- 11 Mar 2026 13:42:33 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 4.158.2.129)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- AMS0EPF000001A5.mail.protection.outlook.com (10.167.16.232) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.18
- via Frontend Transport; Wed, 11 Mar 2026 13:42:37 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xnYz+AnpiZNnGwfoaKGpwqkr3fYEF48GcQlXz8cU/Y934CQvZjN1FXQN3XL07V6qh41lKdXBdGmtB/LCPA5d8vKFYFW9ZAmHpr3Sieu0AS/yt7FPXvZ0nYekY32XnX+7YaLfzOUH5rxt9JzckOX5dudJ8ZPNIT65MVfSA8Y9bg2m5qCE5uwi6IZhPdRbJPFOaIXcbPhzGScUXQHBt4d+p8vzENsNiSqAMckI0PXg8+h/WHcLcX+k71S3viLCDidi50aOKNqOhwvJP2mSaFH2nn1PIT495+c4juDN9kN6RxuZoR/yKvlDPhXbOBCEQANxXnstls5yYY3d5hPmF18ZRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0+HoSVKjxFIqFjlRtaAPGrWAFkJPI9iwGYPeIW6az5w=;
- b=RWBWzZYOHJ11lVCTpzAZH1LMSO/zh/Qn89QrKfK5icIc4WKXTKU0g1iwdWyf4jXcqf3gz12MrCR1i5RgQYfrBBAZcbuD79noLxw0nCWL/Qju5wlY4ELOnzvG2R1xpw43F2xYQqeAH6ah9vJuTEAhqVU63JlwPD5VwPQyiTydb6ZyaAuIZmue3g2/yxG3pf9ttKn6Gk/6BxSsqlP5290VBiFQCKW5VOuRaRywzeX8LJJRWvlOvpz48QlND4B6i0efLuC3egC/uaeiY4kZW1OZbyqhov2f+AYftNdG5QI0Y2ORxhmnOMhZZuXWq0HBtrI+TgdMZBcIFZi4a3n5dJ6YSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0+HoSVKjxFIqFjlRtaAPGrWAFkJPI9iwGYPeIW6az5w=;
- b=Tz9yk4hBrJ5xRoiCHPoGW8CRB/SaT9DcNn16bluHyLkJCs7RYRsU2H/2k0cmmNTTH/xaPM5DWIUek12hDZwNQb7gydQDHA3NLgZVKiqDhXCa0oC9HWlhNSmJXH5N0R7SRZnIOh115X7hY0T7XrnJTKL4UCoxEMa0qSIkazuaSMw=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com (2603:10a6:800:324::5)
- by PAWPR08MB11300.eurprd08.prod.outlook.com (2603:10a6:102:511::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
- 2026 13:41:35 +0000
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd]) by VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd%5]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 13:41:35 +0000
-Message-ID: <16a5363d-6b34-4853-aa3a-e4b3023fb81a@arm.com>
-Date: Wed, 11 Mar 2026 13:41:07 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/11] dt-bindings: firmware: add arm,ras-ffh
-Content-Language: en-GB
-To: Himanshu Chauhan <himanshu.chauhan@oss.qualcomm.com>
-Cc: devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- Dmitry.Lamerov@arm.com, catalin.marinas@arm.com, bp@alien8.de,
- robh@kernel.org, rafael@kernel.org, will@kernel.org, conor@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- krzk+dt@kernel.org, Michael.Zhao2@arm.com, tony.luck@intel.com
-References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
- <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-10-347fa2d7351b@arm.com>
- <CA+Ht8=ZSUGF9KQqy=yZ56kEDwsv3TvS6rLcMD85iwDxwOr3rpQ@mail.gmail.com>
-From: Ahmed Tiba <ahmed.tiba@arm.com>
-In-Reply-To: <CA+Ht8=ZSUGF9KQqy=yZ56kEDwsv3TvS6rLcMD85iwDxwOr3rpQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO6P265CA0019.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:2ff::10) To VI0PR08MB11823.eurprd08.prod.outlook.com
- (2603:10a6:800:324::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A77330D23;
+	Wed, 11 Mar 2026 13:41:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773236498; cv=none; b=OXXbJslMGL5f9MleTpAqS3hg2yHfIHvo847zp+C/dGNZYRFWGRt4pl1QmvFmzXyLD7r8Q1b8aSOnu9cWJv5ljkY4Kgd633klRUQn4nNW98anr4T+WIXt9Tr56nJ0wyr3g5QXO5MOmW3LmWxip3TzJXPPeo4qK6UF+VZRu5SBpd8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773236498; c=relaxed/simple;
+	bh=rj/Ux+J4aQEtb+6hA+P+Gc64uJpLa+VvxwhCfCZeID8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=QQt8P9FJyXkxSIczSoECqQAyAh8lwByT9qjVYejDRsKk5AnsqWBlLND4fzJWUf5LXj3SLpDQDu5lqrHOphJzAt4Ny6HJhHnHNdg8L7hu/6eMRxcWqG1dph1cApEToMfJ8gcQGM2sa035gJfaqX/5vl6XsW+MDdz0S5RJQY1tPK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mb6o23uh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B0188C19425;
+	Wed, 11 Mar 2026 13:41:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773236497;
+	bh=rj/Ux+J4aQEtb+6hA+P+Gc64uJpLa+VvxwhCfCZeID8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=Mb6o23uhRrLywuuH8I1Je7o7zQpxnLDjXF7vyPK63iO5fihjBzliMIqv6kVyeAgDN
+	 ygxeU6RzhezYYuusxOxuB/9yhkIwVQKo/bATf5+fiBnvrSeyvAEcuwO3HSQrAzY5CE
+	 eofMr5nJ57q7gvDHmRh2CFB2gUToewTF3134yTQrKcyLp/MgeB1t8QUlXHrO3LYUpO
+	 KbO1fliTPsEHfSKbtpw8x9yCuVR/ViwGxe45ALd43MGDU8c+2fogLSMv0/akdXbPlt
+	 O25FFx296XiZ3mvHTyV8mT+jYhZOrybSmXeN4twaqUBPtSsCT8xUTLTK+SUh8Vb4Fy
+	 KaJErmLwXPFJA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9B2ED112580A;
+	Wed, 11 Mar 2026 13:41:37 +0000 (UTC)
+From: =?utf-8?q?J=2E_Neusch=C3=A4fer_via_B4_Relay?= <devnull+j.ne.posteo.net@kernel.org>
+Date: Wed, 11 Mar 2026 14:41:14 +0100
+Subject: [PATCH v3] powerpc: dts: Build devicetrees of enabled platforms
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	VI0PR08MB11823:EE_|PAWPR08MB11300:EE_|AMS0EPF000001A5:EE_|DU0PR08MB9106:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2ce50051-4fce-43b1-d3f6-08de7f740ee2
-x-checkrecipientrouted: true
-NoDisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info-Original:
- CtJHfLFgt1YVylULgfuYDSvUtr1anHgEeKCrdSlEDNXTJkemFVeyl7lnpmxU9D7aniBEwbsYBDEgF1JtOD5B0f0ZG34A7QFVQycsGb2Fv5pslNI6PwImAX+xeNag5crmCB//n0dZGFJ2dOLDQvADVsLqpG3Ri32cfpRZUkowhfylbZ9vC6LbjOlgISeRUW+od3vK/vKS6O1esxYTo5+7CzMwHvfwAg091vMhz1bbzD0sKJWb9JiWNr4pV4S08/rxqjqC9aoRedMQ0lN9c9Op1Lmf57zEfUykStS4J1HmTOeraOCVZ5A29srI6p/BnVMjaufFdWhR2VQb/k1FrNP+XP0RTpAYH5YKOdSU9Rzbhl/55jts6uCtYw7mx8RRpldBFOepvKp+PYMe3a7QtstNaqRbCQeLdVxgDMIzbj0pod9Lmk7O76vwwfV+IFWfj1g+1bp+MHS60fMcgHQ2xxaAWGsTYJzKtmmyAaDpvUIf4WxaDus+ul+z2jTQrRhCKzcaY8aiHjsG3J7S6tLoHP58WdfWCcw6LBgY/Fa//o8QDHj3UziaMbkXzJFr1eAd7ELy74bXPRN50OqK8utOjm7MwXNinYCpftMjXKolSPBcH8LpxNrZWiPOdW8WLLOM5UQyr4ODDjVe2g5KvhDD2XgLp26Oh86dZ7ADUe9zrfQWD1XP43cZp4UhdrFSYJedCBO2
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR08MB11823.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-Exchange-RoutingPolicyChecked:
- VFqdrvGAYh2bpEgKh9DG6ev89ucHlY6IYHWGJrBdzb9pEhS9bXo5NcWFHlV11Vtwt+qJhjm/wEgbvwe2AS3Rj9zgOylxBSpBslWfS38Q7sqrugi5AlkOY2huGRqmuiT7bdOlT3y8R5CAmBZguU6cCNdISAOILFrEAIhTUtuYUEnGplt77ouJdFwddczOYz303zLHesY+3U/WawgeW8DCCiiahLYub7ZV7yXFSr50T8jnraLWlMST4MRl2FTjWbujZi0CtfaFD1nQQID34DutaVyC04fAm2zwAbDWCjTG9hzuNyPXvwEQtbZ6Flvng7QQLNKox7qbQ+0F4/+I4Tbbqw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR08MB11300
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- AMS0EPF000001A5.eurprd05.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	62a8a403-a5ee-45e7-549b-08de7f73e986
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|14060799003|1800799024|36860700016|35042699022|7416014|376014|82310400026|13003099007|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info:
-	wm2XXCs1JlB8C4OwEaH2a6NRei58+rXVt1EMcw4BWV1ELe0+NsGHHVQKSBOAzmUjoqHQ7RW3ifykM1PHt9BvAARmb1Lwz6qUkkh9Uc4EYfrMrRC6CGGNluKooYAun2b8dQLqrP0P5LWtdhZgvfLcF3zY3vdmiUfYwOm/cSWGeUX04NyKRm1WEPy3QGec5GIhQacpqOSoO6Pql6LlbIGoOuDcjXqoQWo3HMVBxzGmttHPLFZuxBI7Mk41cb8UtRGilPnVpHdif5HxFkGIfmPT80q1KQh1Q7FppyYsBNxQa2IO+FDPYrmhacUAt/2KUX1Cp9dTyiZgH/JVP/XFy3umlqaG0zdK2FiEoJZi/RvkxpZ0Aeey8nMjgLUbvk2s84ffsqcykvlte9+yrDxEn2t3A4MZr2bIH5rEWwENeaWbgMMKDkT3K2xyomGWzFa93hz0ExzCProKKuPomFreGXwdJhpcpaJkE3Vgjc4s6VAZ0XzsalU8qjXsbhMg1mJmLxQG9gnBh/knE4+NgHs7TzTnsavmfwcRBW2S8HhUFaWTRzZalsXb/F6Wic5zoh0OvEx2laRXecpzWSxeChJhwF8m8O/wDpLASmZ/q0jcHbN9rq/0OopKUkXZ5QCV3TmIr5HnVm7TEOvwgMDkD+s36jh60DurrWI6R7uMsyWXML4ysDFS6k3H4VTTb9Ck7GU6jYLXUix8L0gx9vY9bGRuwVl9iiPccd4cATS2jt7eztKDvBE=
-X-Forefront-Antispam-Report:
-	CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(14060799003)(1800799024)(36860700016)(35042699022)(7416014)(376014)(82310400026)(13003099007)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	U5AxYTYfnBxRz9od0hyAdN3gW8SH/V9pCALyJLxJK+3FS9IYatVz8b3C9hQNT3gPWXa8EpVx8OusEVSyk+q0Mc4jOSy9Dajb7ydoQaoXZJhp4jENBNUKxs238VLyHO/sGERqEqhvYOcOlPVO/wVb9ap6lQXn4f+8J1kLPXu5KlgRoPN2aqPLEHnYA3Gcr5jvCTZj6rpdfcxTK0otxEc+yt7zEcvZyeC+P0pxY7/qfx7VLk7N/MBxZdbye3zKzWVr3kvJPKIC8clfX4UcDztZLgfsvUFFMJYicylsB8/1MtBZgyuzYK0Pln78qofg7ZbtlvO2KdQXFYs3fpMsTWe3FPxU7u/emZps7Lt4DfuPz/r2W3+o0vRHyCNA6Hpc+SdgrnI6AOWSency6iCA2Wcy2WZ2uOoPPB+6Trj9WSgCQW7b0+NU8Dpi7FhMyqeZVFSV
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 13:42:37.4900
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2ce50051-4fce-43b1-d3f6-08de7f740ee2
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF000001A5.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB9106
-X-Rspamd-Queue-Id: 036E7264CBB
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20260311-mpc83xx-dtb-v3-1-4aa43bb9ffa0@posteo.net>
+X-B4-Tracking: v=1; b=H4sIAPlwsWkC/1XMQQ6DIBCF4asY1qVhBmmhq96j6UJlrCwqBgixM
+ d69aJo0Lt9L/m9hkYKjyG7VwgJlF50fy5CninVDM76IO1s2Q4EXAQL4e+q0nGduU8tRWqMbMIJ
+ QslJMgXo379rjWfbgYvLhs+MZtvfngDk4GThwhdjrGtCItr9PPiby55ES26CM/1gKdYyxxJ1tr
+ wpqpetaHeJ1Xb9ig9hT5AAAAA==
+X-Change-ID: 20260101-mpc83xx-dtb-23d98a190e23
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>, 
+ Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, 
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, Geert Uytterhoeven <geert@linux-m68k.org>, 
+ =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773236496; l=7456;
+ i=j.ne@posteo.net; s=20240329; h=from:subject:message-id;
+ bh=3WyfYes++NmFGCY5z0O0TGYhJubV0Rr/Y7//Z3EAy18=;
+ b=CqCwPkr91j+ic7g5/HSLx8DgbVEjeMrvcIQ+/3OTMplnPH9pij/ISZqjQkHq/iiEXQXsjkcO+
+ i4eSYXHyXnEAoTkLiyBNyFsLQfhR9pR88eNamZJGJ4r34zuNSBoa9QJ
+X-Developer-Key: i=j.ne@posteo.net; a=ed25519;
+ pk=NIe0bK42wNaX/C4bi6ezm7NJK0IQE+8MKBm7igFMIS4=
+X-Endpoint-Received: by B4 Relay for j.ne@posteo.net/20240329 with
+ auth_id=156
+X-Original-From: =?utf-8?q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+Reply-To: j.ne@posteo.net
+X-Rspamd-Queue-Id: D6989264CAD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=3];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=selector1];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-274130-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,intel.com:email,alien8.de:email,arm.com:dkim,arm.com:email,arm.com:mid];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274129-lists,devicetree=lfdr.de,j.ne.posteo.net];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[kernel.org,linux.ibm.com,ellerman.id.au,gmail.com];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ahmed.tiba@arm.com,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	HAS_REPLYTO(0.00)[j.ne@posteo.net];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,posteo.net:replyto,posteo.net:email,posteo.net:mid]
 X-Rspamd-Action: no action
 
-On 26/02/2026 07:03, Himanshu Chauhan wrote:
-> On Fri, Feb 20, 2026 at 7:15 PM Ahmed Tiba <ahmed.tiba@arm.com> wrote:
->>
->> Describe the DeviceTree node that exposes the Arm firmware-first handler
->> CPER provider and hook the file into MAINTAINERS so the binding has an
->> owner.
->>
->> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
->> ---
->>   .../devicetree/bindings/firmware/arm,ras-ffh.yaml  | 71 ++++++++++++++++++++++
->>   MAINTAINERS                                        |  5 ++
->>   2 files changed, 76 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml b/Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml
->> new file mode 100644
->> index 000000000000..eccbaaf45885
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml
->> @@ -0,0 +1,71 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/firmware/arm,ras-ffh.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Arm Firmware-First Handler (FFH) CPER provider
-> 
-> Please don't called it FFH. FFH stands for Fixed Feature Hardware and
-> ACPI uses it at multiple places. It is causing confusion.
+From: "J. Neuschäfer" <j.ne@posteo.net>
 
-Agreed. I can drop "ffh" and rename it to "arm,ras-cper".
+Follow the same approach as other architectures such as Arm or RISC-V,
+and build devicetrees based on platforms selected in Kconfig. This makes
+it unnecessary to use CONFIG_OF_ALL_DTBS on PowerPC in order to build
+DTB files.
 
->> +
->> +maintainers:
->> +  - Ahmed Tiba <ahmed.tiba@arm.com>
->> +
->> +description: |
->> +  Arm Reliability, Availability and Serviceability (RAS) firmware can expose
->> +  a firmware-first handler (FFH) that provides UEFI CPER Generic Error Status
->> +  blocks directly via DeviceTree. The firmware owns the CPER buffer
->> +  and notifies the OS through an interrupt.
->> +
->> +properties:
->> +  compatible:
->> +    const: arm,ras-ffh
->> +
->> +  reg:
->> +    minItems: 1
->> +    items:
->> +      - description:
->> +          CPER Generic Error Status block exposed by firmware
->> +      - description:
->> +          Optional 32- or 64-bit doorbell register used on platforms
->> +          where firmware needs an explicit "ack" handshake before overwriting
->> +          the CPER buffer. Firmware watches bit 0 and expects the OS to set it
->> +          once the current status block has been consumed.
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +    description:
->> +      Interrupt used to signal that a new status record is ready.
->> +
->> +  memory-region:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      Optional phandle to the reserved-memory entry that backs the status
->> +      buffer so firmware and the OS use the same carved-out region.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +    reserved-memory {
->> +      #address-cells = <2>;
->> +      #size-cells = <2>;
->> +      ras_cper_buffer: cper@fe800000 {
->> +        reg = <0x0 0xfe800000 0x0 0x1000>;
->> +        no-map;
->> +      };
->> +    };
->> +
->> +    error-handler@fe800000 {
->> +      compatible = "arm,ras-ffh";
->> +      reg = <0xfe800000 0x1000>,
->> +            <0xfe810000 0x4>;
->> +      memory-region = <&ras_cper_buffer>;
->> +      interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
->> +    };
->> +...
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index b8d8a5c41597..47db7877b485 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -22027,6 +22027,11 @@ M:     Alexandre Bounine <alex.bou9@gmail.com>
->>   S:     Maintained
->>   F:     drivers/rapidio/
->>
->> +RAS ERROR STATUS
->> +M:     Ahmed Tiba <ahmed.tiba@arm.com>
->> +S:     Maintained
->> +F:     Documentation/devicetree/bindings/firmware/arm,ras-ffh.yaml
->> +
->>   RAS INFRASTRUCTURE
->>   M:     Tony Luck <tony.luck@intel.com>
->>   M:     Borislav Petkov <bp@alien8.de>
->>
->> --
->> 2.43.0
->>
->>
+This makes it easier to use other build and test infrastructure such as
+`make dtbs_check`, and is a first step towards generating FIT images
+that include all the relevant DTBs with `make image.fit`.
+
+Signed-off-by: J. Neuschäfer <j.ne@posteo.net>
+---
+Changes in v3:
+- Group multiple files per line, while still avoiding backslashes
+  (suggested by Christophe Leroy)
+- Link to v2: https://lore.kernel.org/r/20260305-mpc83xx-dtb-v2-1-cdb751458445@posteo.net
+
+Changes in v2:
+- Use "dtb-$(FOO) += foo.dtb" format on every line, avoid backslashes
+  (suggested by Geert Uytterhoeven)
+- Link to v1: https://lore.kernel.org/r/20260119-mpc83xx-dtb-v1-1-522f841290bf@posteo.net
+---
+ arch/powerpc/boot/dts/Makefile     | 72 ++++++++++++++++++++++++++++++++++++++
+ arch/powerpc/boot/dts/fsl/Makefile | 43 +++++++++++++++++++++++
+ 2 files changed, 115 insertions(+)
+
+diff --git a/arch/powerpc/boot/dts/Makefile b/arch/powerpc/boot/dts/Makefile
+index 0cd0d8558b475c..56581c2489df0f 100644
+--- a/arch/powerpc/boot/dts/Makefile
++++ b/arch/powerpc/boot/dts/Makefile
+@@ -3,3 +3,75 @@
+ subdir-y += fsl
+ 
+ dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
++
++# PPC44x platforms
++dtb-$(CONFIG_PPC44x_SIMPLE) += arches.dtb bamboo.dtb bluestone.dtb glacier.dtb
++dtb-$(CONFIG_PPC44x_SIMPLE) += eiger.dtb katmai.dtb rainier.dtb redwood.dtb
++dtb-$(CONFIG_PPC44x_SIMPLE) += sequoia.dtb taishan.dtb yosemite.dtb icon.dtb
++dtb-$(CONFIG_EBONY) += ebony.dtb
++dtb-$(CONFIG_SAM440EP) += sam440ep.dtb
++dtb-$(CONFIG_WARP) += warp.dtb
++dtb-$(CONFIG_ISS4xx) += iss4xx.dtb iss4xx-mpic.dtb
++dtb-$(CONFIG_CANYONLANDS) += canyonlands.dtb
++dtb-$(CONFIG_CURRITUCK) += currituck.dtb
++dtb-$(CONFIG_AKEBONO) += akebono.dtb
++dtb-$(CONFIG_FSP2) += fsp2.dtb
++
++# Embedded 6xx platforms
++dtb-$(CONFIG_LINKSTATION) += kuroboxHG.dtb kuroboxHD.dtb
++dtb-$(CONFIG_STORCENTER) += storcenter.dtb
++dtb-$(CONFIG_PPC_HOLLY) += holly.dtb
++dtb-$(CONFIG_GAMECUBE) += gamecube.dtb
++dtb-$(CONFIG_WII) += wii.dtb
++dtb-$(CONFIG_MVME5100) += mvme5100.dtb
++
++# MPC8xx platforms
++dtb-$(CONFIG_MPC885ADS) += mpc885ads.dtb
++dtb-$(CONFIG_MPC86XADS) += mpc866ads.dtb
++dtb-$(CONFIG_PPC_EP88XC) += ep88xc.dtb
++dtb-$(CONFIG_PPC_ADDER875) += adder875-redboot.dtb adder875-uboot.dtb
++dtb-$(CONFIG_TQM8XX) += tqm8xx.dtb
++
++# MPC512x platforms
++dtb-$(CONFIG_MPC5121_ADS) += mpc5121ads.dtb
++dtb-$(CONFIG_MPC512x_GENERIC) += mpc5125twr.dtb ac14xx.dts
++dtb-$(CONFIG_PDM360NG) += pdm360ng.dtb
++
++# MPC5200 platforms
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += a3m071.dtb a4m072.dtb charon.dtb cm5200.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += digsy_mtc.dtb motionpro.dtb mucmc52.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2d.dtb o2d300.dtb o2dnt2.dtb o2i.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += o2mnt.dtb o3dnt.dtb pcm030.dtb pcm032.dtb
++dtb-$(CONFIG_PPC_MPC5200_SIMPLE) += tqm5200.dtb uc101.dtb
++dtb-$(CONFIG_PPC_LITE5200) += lite5200.dtb lite5200b.dtb
++dtb-$(CONFIG_PPC_MEDIA5200) += media5200.dtb
++
++# MPC82xx platforms
++dtb-$(CONFIG_EP8248E) += ep8248e.dtb
++dtb-$(CONFIG_MGCOGE) += mgcoge.dtb
++
++# MPC83xx platforms
++dtb-$(CONFIG_MPC830x_RDB) += mpc8308rdb.dtb mpc8308_p1m.dtb
++dtb-$(CONFIG_MPC831x_RDB) += mpc8313erdb.dtb mpc8315erdb.dtb
++dtb-$(CONFIG_MPC832x_RDB) += mpc832x_rdb.dtb
++dtb-$(CONFIG_MPC834x_ITX) += mpc8349emitx.dtb mpc8349emitxgp.dtb
++dtb-$(CONFIG_ASP834x) += asp834x-redboot.dtb
++dtb-$(CONFIG_MPC836x_RDK) += mpc836x_rdk.dtb
++dtb-$(CONFIG_KMETER1) += kmeter1.dtb
++dtb-$(CONFIG_MPC837x_RDB) += mpc8377_rdb.dtb mpc8378_rdb.dtb mpc8379_rdb.dtb
++dtb-$(CONFIG_MPC837x_RDB) += mpc8377_wlan.dtb
++
++# MPC85xx platforms
++dtb-$(CONFIG_STX_GP3) += stx_gp3_8560.dtb stxssa8555.dtb
++dtb-$(CONFIG_TQM85xx) += tqm8540.dtb tqm8541.dtb tqm8548.dtb
++dtb-$(CONFIG_TQM85xx) += tqm8548-bigflash.dtb tqm8555.dtb tqm8560.dtb
++dtb-$(CONFIG_SOCRATES) += socrates.dtb
++dtb-$(CONFIG_KSI8560) += ksi8560.dtb
++dtb-$(CONFIG_XES_MPC85xx) += xcalibur1501.dtb xpedite5200.dtb
++dtb-$(CONFIG_XES_MPC85xx) += xpedite5200_xmon.dtb xpedite5301.dtb
++dtb-$(CONFIG_XES_MPC85xx) += xpedite5330.dtb xpedite5370.dtb
++
++# Misc. platforms
++dtb-$(CONFIG_PPC_MICROWATT) += microwatt.dtb
++dtb-$(CONFIG_AMIGAONE) += amigaone.dtb
++dtb-$(CONFIG_PPC_PS3) += ps3.dtb
+diff --git a/arch/powerpc/boot/dts/fsl/Makefile b/arch/powerpc/boot/dts/fsl/Makefile
+index d3ecdf14bc42e7..be784cbda6b56d 100644
+--- a/arch/powerpc/boot/dts/fsl/Makefile
++++ b/arch/powerpc/boot/dts/fsl/Makefile
+@@ -1,3 +1,46 @@
+ # SPDX-License-Identifier: GPL-2.0
+ 
+ dtb-$(CONFIG_OF_ALL_DTBS) := $(patsubst $(src)/%.dts,%.dtb, $(wildcard $(src)/*.dts))
++
++# MPC85xx platforms
++dtb-$(CONFIG_BSC9131_RDB) += bsc9131rdb.dtb
++dtb-$(CONFIG_BSC9132_QDS) += bsc9132qds.dtb
++dtb-$(CONFIG_C293_PCIE) += c293pcie.dtb
++dtb-$(CONFIG_MPC8536_DS) += mpc8536ds.dtb mpc8536ds_36b.dtb
++dtb-$(CONFIG_MPC85xx_DS) += mpc8544ds.dtb mpc8572ds_camp_core0.dtb
++dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds_camp_core1.dtb mpc8572ds_36b.dtb
++dtb-$(CONFIG_MPC85xx_DS) += mpc8572ds.dtb
++dtb-$(CONFIG_MPC85xx_MDS) += mpc8568mds.dtb mpc8569mds.dtb p1021mds.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020mbg-pc_32b.dtb p1020mbg-pc_36b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb_36b.dtb p1020rdb.dtb p1020rdb-pc_32b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_36b.dtb p1020rdb-pc_camp_core0.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020rdb-pc_camp_core1.dtb p1020rdb-pd.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1020utm-pc_32b.dtb p1020utm-pc_36b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1021rdb-pc_32b.dtb p1021rdb-pc_36b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1024rdb_32b.dtb p1024rdb_36b.dtb p1025rdb_32b.dtb
++dtb-$(CONFIG_MPC85xx_RDB) += p1025rdb_36b.dtb
++dtb-$(CONFIG_P1010_RDB) += p1010rdb-pa_36b.dtb p1010rdb-pa.dtb
++dtb-$(CONFIG_P1010_RDB) += p1010rdb-pb_36b.dtb p1010rdb-pb.dtb
++dtb-$(CONFIG_P1022_DS) += p1022ds_32b.dtb p1022ds_36b.dtb
++dtb-$(CONFIG_P1022_RDK) += p1022rdk.dtb
++dtb-$(CONFIG_P1023_RDB) += p1023rdb.dtb
++dtb-$(CONFIG_PPC_P2020) += p2020ds.dtb turris1x.dtb
++dtb-$(CONFIG_TWR_P102x) += p1025twr.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += b4420qds.dtb b4860qds.dtb cyrus_p5020.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += kmcent2.dtb kmcoge4.dtb oca4080.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += p2041rdb.dtb p3041ds.dtb p4080ds.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += p5020ds.dtb p5040ds.dtb t1023rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1024qds.dtb t1024rdb.dtb t1040d4rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1040qds.dtb t1040rdb.dtb t1040rdb-rev-a.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1042d4rdb.dtb t1042qds.dtb t1042rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t1042rdb_pi.dtb t2080qds.dtb t2080rdb.dtb
++dtb-$(CONFIG_CORENET_GENERIC) += t2081qds.dtb t4240qds.dtb t4240rdb.dtb
++dtb-$(CONFIG_PPA8548) += ppa8548.dtb
++dtb-$(CONFIG_GE_IMP3A) += ge_imp3a.dtb
++dtb-$(CONFIG_MVME2500) += mvme2500.dtb
++
++# MPC86xx platforms
++dtb-$(CONFIG_GEF_SBC310) += gef_sbc310.dtb
++dtb-$(CONFIG_GEF_SBC610) += gef_sbc610.dtb
++dtb-$(CONFIG_GEF_PPC9A) += gef_ppc9a.dtb
++dtb-$(CONFIG_MVME7100) += mvme7100.dtb
+
+---
+base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
+change-id: 20260101-mpc83xx-dtb-23d98a190e23
+
+Best regards,
+-- 
+J. Neuschäfer <j.ne@posteo.net>
+
 
 
