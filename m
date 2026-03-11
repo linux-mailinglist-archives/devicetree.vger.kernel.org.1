@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-274153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274150-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SBbKDqV9sWmjCwAAu9opvQ
-	(envelope-from <devicetree+bounces-274153-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:35:17 +0100
+	id IFilADx9sWmACAAAu9opvQ
+	(envelope-from <devicetree+bounces-274150-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:32 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BFDA2657D9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:35:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E0E2656F7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:33:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4E39531353C3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:33:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id AC252304A6FE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:32:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5423C9ED3;
-	Wed, 11 Mar 2026 14:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F2E936999F;
+	Wed, 11 Mar 2026 14:32:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="W1OP0JSp"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="IH92FAr9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from www537.your-server.de (www537.your-server.de [188.40.3.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3086A3CFF6A;
-	Wed, 11 Mar 2026 14:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5A636C9FC;
+	Wed, 11 Mar 2026 14:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.3.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773239575; cv=none; b=lwvRmhOHCSqwcX3TXGGO/04xIdibnhTb9cJm2dF8Gc6pTTPMBfem1cqfSm6yKuEQz9D74WM+2SkllWIhVzzsGw0sTejV4EPDaK/1iftdr2uh65gJyPGKB7mHJ5iJ70Qu0KhetlTwIh/2iHVT3eGL6yOA1Y46OGMKMpko9AZrIGs=
+	t=1773239571; cv=none; b=guqxTDHPIki84mD2ESGOAXyk80PwCvcdPvhx8Xr68ap3xFvsHL3iqVAFpkFR0RItQu7tbHudCkw63sHG5eDue+sMZRIugFeDdzDcUM7pJn9a3busrvat0HiTx0NRQE0hL8dOk4AEWaAGC79opaXj2IAW4JUJbEemOsEpe3IPQz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773239575; c=relaxed/simple;
-	bh=6hyp8oj+8eGEQZsZT+muICxP3fnBYc1R1z5sgHbCrIE=;
+	s=arc-20240116; t=1773239571; c=relaxed/simple;
+	bh=VCZVp08QKu1CH7Ywbc7ClG0sZyA8DWEa4teZCiebNPU=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=OkztwhmuZmlRSMzPLowZ71CsNlAg5CV2Eu2TcBull20GiF2g8IJsGjko138BdKY5lgbWEDbIOZioV+scgNq4nYj3Zei4i7Rd1OHwXhejHJreO7sv/vLMSQoN1NYJIgVK0xWeTEGGDrXUoYkfLFCi34MKsEKEiY9oGBDKt7VDZQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=W1OP0JSp; arc=none smtp.client-ip=188.40.3.216
+	 MIME-Version; b=T9uO64id9Oq3mI8DhUsA8d8uA4KAgUgjSKfiFr9oymdSoXT2zLSNd4Fc0Ey4he6T9laMDid31jodVll37lXZD/PJMDvCfQlwpYYtZR8YRRWEaZQxKwbFxxirwmWj1nmJhijW8fOyRv8Jejxmcicp/LSW07DncJxNlegtfYvSSQo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=IH92FAr9; arc=none smtp.client-ip=188.40.3.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
@@ -39,24 +39,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
 	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=YNQjtMPSmOm9g6D99IkzdDeFXjyoDQDJ/3H8oMxooVE=; b=W1OP0JSpeiJWNMJva4YOQ0v1P3
-	PP7jnzae3BYl/WD5ttFv6xjAgkAss1nxMsZeSd7um+x6d8rZMvbLL4r/fu3u4+ti3NAGLXcWbhrtq
-	61wlCEePT1cLEOfkqANTzyd2hHtKtOYNRjh8tJWK3Nc2ZZKuKDubiUv1DqnHHx2VaU8ncx3d2dek5
-	NB2z5gwht1dicAkqKhCFQvkTy9RtmPoYiuoYl3k+jdEodTihnhocsE/DExSonLiFUR6hbg8u0ay3U
-	EfMOeOh6mcDKOFSDY/ax9i1i2V4BXY7z4gwF6f3mFvDOngyqlJrkygyfoeamDZiDE2EPS4KqwJ5Qw
-	rs57kVSA==;
+	bh=4gKXZt44Ma4GCBaMG/hFnAdxzDG8bWPvFE9vNwevguM=; b=IH92FAr98PmZwaoaBpUpFq08eX
+	vVXwRfz7oN3MkPZA9F8x8BqeIWRtkjy2IZlbOMuf1ogiDPfzL55d8+QCsChSqKQVzU/rhxGmiDOXC
+	lPhSU/41zIgoeBBEhGpxxtQPdDWb3NiBS9mNm/Zzcc1C2S5IxrxbxLh4O3DH0KPAMj2djDrKEDh+b
+	pd3eE8dYMCYOAm8yEa17FHfLTsZVTOU8hVnOHFvA0hgHgeGzqQYOyHUB4F/plE9kSIiqpXFD/7TBD
+	ktvmHwbhFkACoIzrKNjfDiu9GWpe40bcXwIYHAm7xa+xj3Zdl5goN68DYUSb+ePvFKYNgbdO5m9gr
+	PbWIpGNw==;
 Received: from sslproxy03.your-server.de ([88.198.220.132])
 	by www537.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96.2)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0KcA-000OtS-0u;
-	Wed, 11 Mar 2026 15:32:46 +0100
+	id 1w0KcC-000OuR-2p;
+	Wed, 11 Mar 2026 15:32:48 +0100
 Received: from localhost ([127.0.0.1])
 	by sslproxy03.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
 	(Exim 4.96)
 	(envelope-from <alexander.stein@ew.tq-group.com>)
-	id 1w0Kc9-000GoI-25;
-	Wed, 11 Mar 2026 15:32:45 +0100
+	id 1w0KcC-000GoI-0i;
+	Wed, 11 Mar 2026 15:32:48 +0100
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Frank Li <Frank.Li@nxp.com>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
@@ -76,9 +76,9 @@ Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
 	linux-kernel@vger.kernel.org,
 	linux@ew.tq-group.com,
 	linux-clk@vger.kernel.org
-Subject: [PATCH 3/6] arm64: dts: imx93-tqma9352-mba91xxca: Add parallel display overlay
-Date: Wed, 11 Mar 2026 15:32:06 +0100
-Message-ID: <20260311143217.1700704-4-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 4/6] arm64: dts: imx93-tqma9352-mba91xxca: Add LVDS display overlay
+Date: Wed, 11 Mar 2026 15:32:07 +0100
+Message-ID: <20260311143217.1700704-5-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
 References: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
@@ -104,7 +104,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_TO(0.00)[nxp.com,pengutronix.de,gmail.com,kernel.org,baylibre.com];
 	RCPT_COUNT_TWELVE(0.00)[18];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274153-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274150-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
@@ -119,42 +119,41 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ew.tq-group.com:dkim,ew.tq-group.com:mid,tq-group.com:email,0.0.0.38:email]
-X-Rspamd-Queue-Id: 8BFDA2657D9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,tq-group.com:email]
+X-Rspamd-Queue-Id: 59E0E2656F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This adds support for CDTech S070SWV29HG-DC44 display on parallel
-interface X3 on MBa91xxCA.
+This adds support for Tianma TM070JVHG33 LVDS display on interface X11/X12
+on MBa91xxCA.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/freescale/Makefile        |  4 ++
- ...93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso | 66 +++++++++++++++++++
- 2 files changed, 70 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
+ arch/arm64/boot/dts/freescale/Makefile        |  2 +
+ ...3-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso | 56 +++++++++++++++++++
+ 2 files changed, 58 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso
 
 diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index a6fe56bb93aa1..3547f1dd84467 100644
+index 3547f1dd84467..24d5b0c2ddafb 100644
 --- a/arch/arm64/boot/dts/freescale/Makefile
 +++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -455,6 +455,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca.dtb
+@@ -456,7 +456,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
-+
-+imx93-tqma9352-mba91xxca-rgb-cdtech-dc44-dtbs := imx93-tqma9352-mba91xxca.dtb imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtb
-+
+ 
++imx93-tqma9352-mba91xxca-lvds-tm070jvhg33-dtbs := imx93-tqma9352-mba91xxca.dtb imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtbo
+ imx93-tqma9352-mba91xxca-rgb-cdtech-dc44-dtbs := imx93-tqma9352-mba91xxca.dtb imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtb
+ 
  dtb-$(CONFIG_ARCH_MXC) += imx93-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx93w-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx943-evk.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
+diff --git a/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso
 new file mode 100644
-index 0000000000000..ebf7fb13a46ef
+index 0000000000000..02b9afae44c39
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
-@@ -0,0 +1,66 @@
++++ b/arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-lvds-tm070jvhg33.dtso
+@@ -0,0 +1,56 @@
 +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
 +/*
 + * Copyright (c) 2023-2026 TQ-Systems GmbH <linux@ew.tq-group.com>,
@@ -163,8 +162,6 @@ index 0000000000000..ebf7fb13a46ef
 + */
 +
 +#include <dt-bindings/clock/imx93-clock.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
 +
 +/dts-v1/;
 +/plugin/;
@@ -174,38 +171,30 @@ index 0000000000000..ebf7fb13a46ef
 +};
 +
 +&display {
-+	compatible = "cdtech,s070swv29hg-dc44";
++	compatible = "tianma,tm070jvhg33";
 +	status = "okay";
 +};
 +
 +&dpi_to_panel {
-+	remote-endpoint = <&panel_in>;
++	remote-endpoint = <&lvds_encoder_input>;
 +};
 +
 +&lcdif {
 +	assigned-clocks = <&clk IMX93_CLK_VIDEO_PLL>;
-+	assigned-clock-rates = <333333333>;
++	assigned-clock-rates = <477400000>;
 +	status = "okay";
 +};
 +
-+&lpi2c3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
++&lvds_encoder {
++	status = "okay";
++};
 +
-+	polytouch: touchscreen@38 {
-+		compatible = "edt,edt-ft5406";
-+		reg = <0x38>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touch>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+		reset-gpios = <&expander2 0 GPIO_ACTIVE_LOW>;
-+		iovcc-supply = <&reg_3v3>;
-+		vcc-supply = <&reg_3v3>;
-+		gain = <20>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+	};
++&lvds_encoder_input {
++	remote-endpoint = <&dpi_to_panel>;
++};
++
++&lvds_encoder_output {
++	remote-endpoint = <&panel_in>;
 +};
 +
 +&media_blk_ctrl {
@@ -213,7 +202,7 @@ index 0000000000000..ebf7fb13a46ef
 +};
 +
 +&panel_in {
-+	remote-endpoint = <&dpi_to_panel>;
++	remote-endpoint = <&lvds_encoder_output>;
 +};
 +
 +&dpi_bridge {
