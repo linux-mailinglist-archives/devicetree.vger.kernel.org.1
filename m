@@ -1,156 +1,185 @@
-Return-Path: <devicetree+bounces-274003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274002-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCQHJUpEsWlCtAIAu9opvQ
-	(envelope-from <devicetree+bounces-274003-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:30:34 +0100
+	id QN+8BUZDsWlCtAIAu9opvQ
+	(envelope-from <devicetree+bounces-274002-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:26:14 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1743326234D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:30:34 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id C24CD262183
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:26:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 1D673347B804
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:21:28 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id DF86530AB3A9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:21:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 522143C942B;
-	Wed, 11 Mar 2026 10:21:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F382C3C8721;
+	Wed, 11 Mar 2026 10:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HSNjnK8F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qQwWlNkn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC5F3BF68A;
-	Wed, 11 Mar 2026 10:21:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2523BF68A;
+	Wed, 11 Mar 2026 10:21:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773224485; cv=none; b=VwqyFVQ9XryfpzGyWMyfapbWQciC04IrTnzKbWBQ/aw3y57T3qdDyMGwMowTXlIPqGvICG2TpuHnvv70hDjsrFgbLxOIgRSuV0GHG5cCY+WvOcxS18msu1JAn3eR0K8CI/cUb84DYqXproNEpvcWZJedo9Q/Yukg6kA83TKBLX4=
+	t=1773224476; cv=none; b=ZYf4VEIi6fnQm/up9nLcman3wwVcUhdhs8Xlc4aDd4DfXoaYRiGcb3zEeH1pIVtxeQy+xTsPANWCLRPw0ZpWfWZ827qdxr4qObOc4yUI5k0pC1OPBRFnX9o8cmHXsrhltHjNU/zTBbdTlEWXJ/igKFESEMU6hMppNZ6OoBj0QR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773224485; c=relaxed/simple;
-	bh=NYEzxXwCjjB9jXQZwWbzlfrhqRkrR5nBQe83EMGp9ms=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pI/VuRt7niZThEw4cJliSYKPfS0YcCCWlmqARZ2E4zhHjP69QLxiMh+2DpwSsSgKekItXeT8bOK5ud7kTbf4L2o1LmkINHYE92G8o+zMVb5Mg6GCOq3LzBnZ+VlAWxNy2HMra/AZ2/i8VAwWLvX8seJVHyqbsBB16fXyAp00VX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HSNjnK8F; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id 941031A2CD1;
-	Wed, 11 Mar 2026 10:21:15 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 6434760004;
-	Wed, 11 Mar 2026 10:21:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DB43510369CA2;
-	Wed, 11 Mar 2026 11:21:10 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773224474; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=xc3f0j/XZyXDLXf8euWdBo9aYc/Z1fnksBlM+sWhSNo=;
-	b=HSNjnK8Fqi6KDQimKyif2DCt8Ml4ODd2Ae5YBZn/WMno6Hymu3jP+ZoewoqkS4OlASSJMN
-	joffF+yugKol6KHMmOV7vAzWwEb0g2qlpkPMrAhbDp8frIMLHtDQnTgtYnHhhaTlpEYzJV
-	wEp8SpYh4sx5NZ8Kln2BKaC0jS7FNGNEqYcOWFflPG2fYyyHkSxis/5ka3pE9BoHTAZuzL
-	vE6AY+hjNDPLtDnIhVeHPT6xeBfB0+yBrmoBkABd3CqjEcxHXk/+A4PZQG15nZ0VG4ss8A
-	pyXV1I0N66KNJzGIJ62ByB23GNQ4dC3O7LfbPnyz/E4UEe7pNKwZM/Yh74b8gg==
-Date: Wed, 11 Mar 2026 11:21:09 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Magnus Damm
- <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH] ARM: dts: r9a06g032: Add #address-cells in the GIC node
-Message-ID: <20260311112109.061a1e4b@bootlin.com>
-In-Reply-To: <CAMuHMdX01rwBMGn1FLGm-fHA0w-7+BCskMiucgxcui+PTVF7rA@mail.gmail.com>
-References: <20260303102029.147359-1-herve.codina@bootlin.com>
-	<abEotS0ZbGwqEmO5@ninjato>
-	<CAMuHMdX01rwBMGn1FLGm-fHA0w-7+BCskMiucgxcui+PTVF7rA@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1773224476; c=relaxed/simple;
+	bh=tRFMxAq1yV2s4PLLr6/U/pnZ7+V42tWIQOXggBDTbNM=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=fEll4pVIHmcQM6Y59mRIrWSKIERMyUuPKbuA0W0jTJcWbw+eGdCxBdLEPCyuuIPIMekUP7Achb+w92bdcuw5RlPk4remhs7O4gqQgEHFmRxUo2v8glus8DCluS+CqyDH0IExlA4JuJi74Xs6wwV25uD/+KJI34B90rNUu0/y3l0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qQwWlNkn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 409EFC4CEF7;
+	Wed, 11 Mar 2026 10:21:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773224476;
+	bh=tRFMxAq1yV2s4PLLr6/U/pnZ7+V42tWIQOXggBDTbNM=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=qQwWlNknME7p+1ACx76gdnEhAW29mGuT2v8hBwbYpvBopdwfc11hWtoTrVdkoDf4a
+	 c8/3DiAm7Gk9QaJ8c17r+fWgKUUV9EYG8dEt/lQn5aFQw6YwH9yJkLJ+eF+ehInuCB
+	 H9jsz2bQ6ttbtWjtptcrbxjBhHBTJxU2F2cdlCUtuh9dZ7P3Eg13CQvwE4ui0Q0WKh
+	 uZMU/nE2IM6YZACZrzVgTw5xdEZijTV1WTWInMj82NMPH8bk4j9dGE51knWxDmoME/
+	 N6noy5GT8B1RQK4krihqaeVcaFjQhaFd5ZnKFhAluG8hEzBazbqUotARhGWnTVsf7R
+	 MNmL0q7sjPr5Q==
+Message-ID: <0469c476-cf42-46ed-a9e5-b6f10cb61770@kernel.org>
+Date: Wed, 11 Mar 2026 11:21:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: kaanapali: Fix deprecated cpu
+ compatibles
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konradybcio@kernel.org, sudeep.holla@kernel.org,
+ angelogioacchino.delregno@collabora.com, viresh.kumar@linaro.org,
+ neil.armstrong@linaro.org, festevam@gmail.com, Frank.Li@nxp.com,
+ danila@jiaxyga.com, lpieralisi@kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, tengfei.fan@oss.qualcomm.com,
+ jingyi.wang@oss.qualcomm.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20260310040751.3132523-1-sibi.sankar@oss.qualcomm.com>
+ <20260310040751.3132523-4-sibi.sankar@oss.qualcomm.com>
+ <20260311-observant-cyber-griffin-ace587@quoll>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260311-observant-cyber-griffin-ace587@quoll>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Rspamd-Queue-Id: 1743326234D
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: C24CD262183
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[sang-engineering.com,gmail.com,kernel.org,vger.kernel.org,se.com,bootlin.com];
-	TAGGED_FROM(0.00)[bounces-274003-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	TAGGED_FROM(0.00)[bounces-274002-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,collabora.com,linaro.org,gmail.com,nxp.com,jiaxyga.com,oss.qualcomm.com,vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[herve.codina@bootlin.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,devicetree-specification.readthedocs.io:url]
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Hi Geert,
-
-On Wed, 11 Mar 2026 09:39:40 +0100
-Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-
-> Hi Wolfram,
+On 11/03/2026 11:04, Krzysztof Kozlowski wrote:
+> On Tue, Mar 10, 2026 at 09:37:51AM +0530, Sibi Sankar wrote:
+>> The generic Qualcomm Oryon CPU compatible used by the Kaanapali
+>> SoC is deprecated and incorrect since it uses a single compatible
+>> to describe two different core variants. It is now replaced with
+>> two different core-specific compatibles based on MIDR part and
+>> variant number.
+>>
+>> CPUS 0-5:
+>> MIDR_EL1[PART_NUM] - 0x2
+>> MIDR_EL1[VARIANT] - 0x2
+>>
+>> CPUS 6-7:
+>> MIDR_EL1[PART_NUM] - 0x2
+>> MIDR_EL1[VARIANT] - 0x3
+>>
+>> Fixes: 2eeb5767d53f ("arm64: dts: qcom: Introduce Kaanapali SoC")
+>> Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+>> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> On Wed, 11 Mar 2026 at 09:32, Wolfram Sang
-> <wsa+renesas@sang-engineering.com> wrote:
-> > On Tue, Mar 03, 2026 at 11:20:29AM +0100, Herve Codina (Schneider Electric) wrote:  
-> > > When checking dts involving the r9a06g032.dtsi file, the following kind
-> > > of warnings are reported:
-> > >    Missing property '#address-cells' in node xxx, using 0 as fallback
-> > >
-> > > Indeed, #address-cells is not present in the GIC interrupt controller
-> > > node.
-> > >
-> > > Fix it adding the missing property.
-> > >
-> > > No functional change.
-> > >
-> > > Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>  
-> >
-> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >
-> > I like Krzysztof's explanation "Value '0' is correct because GIC
-> > interrupt controller does not have children." Maybe it can be added to
-> > the commit message?  
+> I explained you in off-list communication what you have to do - this
+> MUST go via fixes and you MUST annotate that.
 > 
-> Some of the examples in the GIC DT bindings, do?
-> But #address-cells is not a required property in the GIC DT bindings,
-> so why should it be added at all?
-> 
-> BTW, I never understood why an interrupt-controller should have
-> #address-cells (according to dtc)?
+> Where did you describe that? Nothing in cover letter, nothing here.
 
-I think this comes from the interrupt-map definition:
-  https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#interrupt-map
+Although then binding should go via fixes but it depends on patch in
+next branch, so it cannot be done. Sorry, this waited way tooooo long,
+so you cannot make this change anymore.
+
+Please drop it and you are stuck with the compatible you sent earlier,
+which reviewers requested multiple times to change.
 
 Best regards,
-Hervé
+Krzysztof
 
