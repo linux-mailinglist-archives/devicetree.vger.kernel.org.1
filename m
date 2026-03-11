@@ -1,291 +1,173 @@
-Return-Path: <devicetree+bounces-274053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274054-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kB4UEGFesWl/uQIAu9opvQ
-	(envelope-from <devicetree+bounces-274053-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:21:53 +0100
+	id SLCfA7pesWl/uQIAu9opvQ
+	(envelope-from <devicetree+bounces-274054-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:23:22 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69112638DD
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:21:52 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36534263920
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:23:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 92B9C3022F57
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:20:37 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 6F77C304408F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:22:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F4EE3B636E;
-	Wed, 11 Mar 2026 12:20:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2544B3DEADE;
+	Wed, 11 Mar 2026 12:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="EgEDUjQS";
-	dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b="EgEDUjQS"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="P845PKjl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011004.outbound.protection.outlook.com [52.101.70.4])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 552951A681C;
-	Wed, 11 Mar 2026 12:20:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.4
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773231635; cv=fail; b=pTza1yMhwDGm72T7q52ZrzBJi9txT4QCvJblzvj9j2dVg8N9Z9O9LnramUv83bDVzs8zVkLqc6muhq1au88IUsxZLMVEOFO9GNHdFFKemRUHeme+x2tJBLdxTzIcPlGRyKvBV5fDHrg9vypuGYoaBcNJUcdbm/Nk/uV0RPMCSb4=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773231635; c=relaxed/simple;
-	bh=SaTiqhqcCx5yXVWIqtxF3CIWou3l/1JuozF2TuMaFcw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=Um2FbMg/78+PXgwVCHOGiIB39PYIsyPN+Gy7i24VCDcHwfHOAut4yp9FlFy1DdfbTqVud4UIOLx0R+St+h5HjXHc4pJhgtEi0X/4z/VRkvnqe60cxP7CexYxFZKCLPAf8IT4iyRbNv+WIQJ/zCuLgiYSWEpOUx+L+/YBzSja1Ys=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=EgEDUjQS; dkim=pass (1024-bit key) header.d=arm.com header.i=@arm.com header.b=EgEDUjQS; arc=fail smtp.client-ip=52.101.70.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=pass;
- b=eUAPkROw6PpJsEiBhKs1capUQMY/O10bazYyF3Rk8O/6iY94BEJfJdOeO6C4qGkWfX+HXADrOTX3B8HUutUVsbnZ0XW3yLb07p/MhgghfTQIc8MQ2uybduR1Qabva8Ea45RLxHPcPmu/u3vEoaWrK82XOKuaqjvaeqagC1/mOqbocRMERTXztRYiAh4ikQH5vOIpqvm1z+m3Ra9RDpbGIFZqvVnIv0/bge9RqNLeH7o6a9KyVhrRPSe+9+3M2Tq63nQ+kgXKmXgrATGf6EBxKe6Aaicu8j2sT9saOim6WAk08h64r9kaVhv1MR+xuGfZeJC29AA1RqA7fRglttBgLg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YGhUIKQzUbGlx9S+2I9cGni1LgdFJ5GoQyn4IRTOL9g=;
- b=NQKPl6L5yZX5RvsMeLDqWcmKY0ZnLz7SOB+YKuT+rPYiWdP0PuOCOdWvO0Uf5HStFNB4o8e8ZCAVhTmVHxnsZNrwg3jNBI9dthTgcjgNQ0J4JirelyKJARoM/puxWBnCqfaf1E4o5B3v46QbB//0H0BMWk9cM05fATViXf/M92uQRmuuOBVKa0ef4+GRnubviQDqj9hKp7ap1l8hDdtYvtSTVq4N6bOCHjItiVhiDahv78QqGB4YkksGkAJUTK+w6F5dNx75iINXcdHKBWxb7VTAx21iF9EA/9sPLYh979I55gyLepKRrbSGVRmkiHKwspcvyt/720MYwhDTb/yyXA==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 4.158.2.129) smtp.rcpttodomain=huawei.com smtp.mailfrom=arm.com; dmarc=pass
- (p=none sp=none pct=100) action=none header.from=arm.com; dkim=pass
- (signature was verified) header.d=arm.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=arm.com] dkim=[1,1,header.d=arm.com]
- dmarc=[1,1,header.from=arm.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YGhUIKQzUbGlx9S+2I9cGni1LgdFJ5GoQyn4IRTOL9g=;
- b=EgEDUjQSU1qYZHIXfsFY6p38OYFI6TQXlhiKbhhbmkpZb3utaffBMBLpiW0iz+vPWhDjYqx9vE2fuU0en/PifWa4bkJgvOvBpGf9RzqoRUStcwMXuOhWwk5PuAA78EfeHJ+SgdOJ3W4gt9uXD7ftEwnKtV/vs7CnFhlrd9OXE28=
-Received: from DB9PR05CA0009.eurprd05.prod.outlook.com (2603:10a6:10:1da::14)
- by VI0PR08MB10972.eurprd08.prod.outlook.com (2603:10a6:800:251::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Wed, 11 Mar
- 2026 12:20:27 +0000
-Received: from DB3PEPF0000885A.eurprd02.prod.outlook.com
- (2603:10a6:10:1da:cafe::77) by DB9PR05CA0009.outlook.office365.com
- (2603:10a6:10:1da::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.26 via Frontend Transport; Wed,
- 11 Mar 2026 12:20:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 4.158.2.129)
- smtp.mailfrom=arm.com; dkim=pass (signature was verified)
- header.d=arm.com;dmarc=pass action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 4.158.2.129 as permitted sender) receiver=protection.outlook.com;
- client-ip=4.158.2.129; helo=outbound-uk1.az.dlp.m.darktrace.com; pr=C
-Received: from outbound-uk1.az.dlp.m.darktrace.com (4.158.2.129) by
- DB3PEPF0000885A.mail.protection.outlook.com (10.167.242.5) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9678.18
- via Frontend Transport; Wed, 11 Mar 2026 12:20:26 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=smps45CHRM3cdHraZpfkTiyq8yEHTRMu8YlgP/DpNn+DFnpDHXWpO6Z/SO/Cv84c9DaaAKvbWUDOz1RAX8LDsiu36T+AQluwwHsNOasP3wQROHs0PdI5aVKuoaI6ReofbYsdx9552lehNyCWkFIIFr+tTXwbczy1kEtUSpZpBPrrNLGQz/10EOSONxunJz2fO24asJ3OlO70PrVWtz8fDwtyhq6msABQzrPNUeGwaVxMkHgKfMxG8NSUOw2w3kXt9kJ5YEbB05LOijgCJjH00VTZn4wz47z7ABK+8KfCNVWmc9OHyI8fMRK/t8jhe8fG+Ar8a6zhrMxCaNeuIpnYng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YGhUIKQzUbGlx9S+2I9cGni1LgdFJ5GoQyn4IRTOL9g=;
- b=n8hoYdyr95hbXkSwRj6fcnrvMeJOd+2uO08NLr0NTPW1F1Y6ilxznaLOEIvVl1LaqQASGZKCwwrpEbmACvt1SuFV5aBDRyDvneLwIRHdggefWa3VboqtUmuYyiuFAQBR6n250VVNvc6wih48uzPpipx8jhHXVkSlb/rZT7QTl5mcrX8j5bVPjPTYCJqxtHOXTo8wzQ4zNwNeywp69+XnSX6QNblrtFxTxIt2u6/hvWtjg1KtweAjkn8t3yTXR2EO3FyISXISCDItgYble2KRh+Ecv5YJG8ZI6Ht6G8vwdKvosTL3JOG3WFwqJZ0C8eFcvurELb6lxnFsYmoZ+UCq7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arm.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YGhUIKQzUbGlx9S+2I9cGni1LgdFJ5GoQyn4IRTOL9g=;
- b=EgEDUjQSU1qYZHIXfsFY6p38OYFI6TQXlhiKbhhbmkpZb3utaffBMBLpiW0iz+vPWhDjYqx9vE2fuU0en/PifWa4bkJgvOvBpGf9RzqoRUStcwMXuOhWwk5PuAA78EfeHJ+SgdOJ3W4gt9uXD7ftEwnKtV/vs7CnFhlrd9OXE28=
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=arm.com;
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com (2603:10a6:800:324::5)
- by AS4PR08MB7808.eurprd08.prod.outlook.com (2603:10a6:20b:51b::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
- 2026 12:19:24 +0000
-Received: from VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd]) by VI0PR08MB11823.eurprd08.prod.outlook.com
- ([fe80::694c:3790:be1a:8ddd%5]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 12:19:24 +0000
-Message-ID: <8ced1e63-d8d7-42f0-bc45-88e7cc17ef59@arm.com>
-Date: Wed, 11 Mar 2026 12:19:22 +0000
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/11] ACPI: APEI: GHES: add ghes_cper.o stub
-Content-Language: en-GB
-To: Jonathan Cameron <jonathan.cameron@huawei.com>
-Cc: devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
- Dmitry.Lamerov@arm.com, catalin.marinas@arm.com, bp@alien8.de,
- robh@kernel.org, rafael@kernel.org, will@kernel.org, conor@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
- krzk+dt@kernel.org, Michael.Zhao2@arm.com, tony.luck@intel.com
-References: <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-0-347fa2d7351b@arm.com>
- <20260220-topics-ahmtib01-ras_ffh_arm_internal_review-v2-2-347fa2d7351b@arm.com>
- <20260224152534.000040b6@huawei.com>
-From: Ahmed Tiba <ahmed.tiba@arm.com>
-In-Reply-To: <20260224152534.000040b6@huawei.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: PA7P264CA0460.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:398::24) To VI0PR08MB11823.eurprd08.prod.outlook.com
- (2603:10a6:800:324::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C914285CA2;
+	Wed, 11 Mar 2026 12:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773231765; cv=none; b=brnRoPcTPMJhwZ7ypxxTkV8AW9HlhlSAheEAR9THTOPxs8C2ZCAvZWqN+JmdsoCmYehFTCIL7+ZmPzHvZEN9ADU3qmEUM8Z2LmsqXr+qeeAqAjhAj/1qdPGXRHSfe/smwDR5jJHArRaajKIz2tanvqzYdgyCDj+jkfqIGiBX1xM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773231765; c=relaxed/simple;
+	bh=cAuiAE/c8JyzU/RhYLYqbq8R8OVL8H9I3W8b/n4HsbM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=do4J44ChoLFE6CRoMbs4hi5AMOMKhe9pg6Lq4d8bJ9R4tlKl7slEyiwtqPPLUMQLHo8sg5y6yHy1qYefseGsMxbHQn0lUteKDbz3GagWwgxbqxxvRyI/ez3H09+awjAEUo4mlDVZHuR4ZEnBfQSQcABX5Eols3yyEDGiTa6P/20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=P845PKjl; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773231765; x=1804767765;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cAuiAE/c8JyzU/RhYLYqbq8R8OVL8H9I3W8b/n4HsbM=;
+  b=P845PKjlYlV4uTOTLH+NZQVZLD1hIbsR21iCPSp1BsoWwU4YdjwoknCV
+   92JvVnan2Vi520BPwvbg5KC+LvjpkAdsuJs/3Y5eDfQNe7z+49DoU+9BD
+   CZBp+aVWM1rYMoKHRNZAYz+JFlQ64qg2F/jbTWS+xAOww6uTro/fRyFYZ
+   BtA5rvjxGcv8abuzgNug9MYt/5qOYwZ9DPo3tzm8+Nhzqhw0qMIcn+h/D
+   svcwpKutkuBquLWAX9CxbMuBsa7+8WMNanBvNBoTQtsrA7db5/uT+ZGaQ
+   mrg/B7E54MvRyOqHf+vq/46/SqTAbWZEpUot/lJzmwEVnkWD744GbLTAO
+   w==;
+X-CSE-ConnectionGUID: MD3xjMJRQNe0pYSBL4mUoQ==
+X-CSE-MsgGUID: H/WfNdRuR6qIqMmz5VWeHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74335303"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="74335303"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 05:22:44 -0700
+X-CSE-ConnectionGUID: AQ61GspOT+mdRudmyRNRhQ==
+X-CSE-MsgGUID: T9SYSQAiQI+gjDiOST+dlw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
+   d="scan'208";a="225147966"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.178])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 05:22:39 -0700
+Date: Wed, 11 Mar 2026 14:22:36 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Meerwald <pmeerw@pmeerw.net>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	Raymond Hackley <raymondhackley@protonmail.com>
+Subject: Re: [PATCH 2/2] iio: light: vcnl4000: add regulator support
+Message-ID: <abFejMb3uLbg4fiu@ashevche-desk.local>
+References: <20260311-vcnl4000-regulators-v1-0-66b6038ce563@gmail.com>
+ <20260311-vcnl4000-regulators-v1-2-66b6038ce563@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	VI0PR08MB11823:EE_|AS4PR08MB7808:EE_|DB3PEPF0000885A:EE_|VI0PR08MB10972:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9bff998f-408d-4049-c870-08de7f689400
-x-checkrecipientrouted: true
-NoDisclaimer: true
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info-Original:
- KIJk8fMNqsD9PUjpwm1F4Sr+Rxoi7r5WJw26FsFE1EW+cSNEdf0avqE5Iqe66Dy9aYejlIjrL3sZZXmtw3zruoreUHFagWTHFNLFiOYoK361VyI3a127Wvo+5E0MnCIwQ9ammGV6R9iitqp0dTnE7woGta4gxVJ7y5mEO92x5TU5HiHApbFHWWVZNOWULMnMwUgvEDoQHltzZ79OgCtLgzjGfoUsYwvZHAKdY07Y6+HvPSrCmf6u5/0vxT8sOm/GRs7VbcmNOrynfgA8tnTAciZUD5GlhxRC9MUxcfbN6pCdfIjAoUSgyMyuVBbG/Fr+L3EeLCFsTFjDCyxhE6FniU5jrn9+3LQVaIDpTXDp+9jHh9sEQCKPUusEP5huC1EXV5C5NH+CZ2R+j7drAm3XuCGLSi/gjgLdUkRp2nS9nUIEG1pKy9cQHV15ugoStZKC/XTwbOMeDKexiPNEip6WUlrKM7g6QWF1N4F7PMB+zz90G11T2eXg4jpgoFC78yvIIEijv2NFihsavj7b854jWS/2w1m7foj0XzARnkdp/+D+5CaeBFkkM7XIizrG42gnivMPSezeZtCwdTlxEyUqCu7vI3l9/zvszZ0G5v+LH/Oufk/zSlOuyJ/4ijjFt7vsljP9VR3AbXxD1DzGEuGY6zl7PmxTvVbu5vcrTbnMd+OL5hjY871ewPv7pzPK5L84BNOp45DrHqn6pMNkSBRa1DO6nFl8IWp3GKjWB4qFO28=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI0PR08MB11823.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-Exchange-RoutingPolicyChecked:
- JmdeCJq8IXtRR7MjZG3T0u3AYIHc+aiTtCUJlnN0QiIACSiv/imuc8oGWq+sY5g/r3RrmJqgntnQ+nzawNvaQPkUnWbWcBhzWYVbFlatv18bfwgNXKbe6yA8MYHPQK6LgZSL9ImxqVOxOXB27xa2lYPlCYSjodHf7OgQzdX6ryi2h1+YdjcNaLH60d/y9p3Nko5r0qWjFUpXdrq7qO1Gs1K0C6dIIhYR7f2scpDP3UoPcgARr+dJKP+0ApvG2BcKn0Mex0kPDeAxc4dcKd9iNDzW5bip8+mH5SIZQV2wAgBRxTDriwEHsh8CzV4m2IEIAKTxjFJt/zyLvDOJ3GunwQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR08MB7808
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- DB3PEPF0000885A.eurprd02.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	35482b8f-3f61-408c-2bf9-08de7f686e57
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|376014|36860700016|14060799003|35042699022|1800799024|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info:
-	xBQWqWbaseTfocvLiS33NdvIHjFRCDev0zTyToEQh1z/HkyvRFRdJEzJSHuiLwvh9BN7e4bsap4ks2Nld/RPnUVApRM6dktFp9CNxraiLfD1jELNIgb53ByXoWerL5TsuY085++/0JgOYNoqb8iIED/RibLOb/XKE0q3/MFCxNx/VpO2INbmNnDFwfUoPXC/vXQfzX747kDp7B+e8M2UQD6wg5i7CGEaSrYFYupw7uLJW/tqG44IGOdKD6gqCQ8yRDEoaGa/K3N4ypvtKRcHpjMGRpw00EFeGrjTy5q6m4vYxed89opajvwrGdxbhacs2XkfN1ZCWN4836BDXT12Bn/21t2P0y43s5BxfEA4H/sCMluQjyoeU4QxRxYtiEdmdEUaLyuupxvuw+0qlKE2YAu+CmPChcvmZJp4E87f7Z16WzGPKGrqJmJ/FHZreTJfjX4HzJZ7uoTKO5AhwWzyvAP/bkbRCYK1Cy1T83KFjqpMc0bKcGxJuOU1ektpWaANgbdpuoz2xjXjUTOhhq9SmuF75PHZhSAifZklq3jjQdSWoRgU3s5B1gT64cEqvGqf+duRAg7AbM25EF2H/E38ApdRSuT7y1TG91siaXYncLMhwmQDsNsEAZ8woJhf5bb63rxk4diP3IGCX0qjImpPi65434mP7hH3DErOeoWInkW6HL+67FXrEepuibCHfngG+YP5SXZKh2olbJEsvKBuAWU5Pw1w40WNUib/6BiAwzVpcYvccY983GpKcmkGo/+r5kALaj7MOQARfrBHI2Txdw==
-X-Forefront-Antispam-Report:
-	CIP:4.158.2.129;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:outbound-uk1.az.dlp.m.darktrace.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(36860700016)(14060799003)(35042699022)(1800799024)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	xFSxN39MDyfDfRjpx8pWkqXZm+XOqNOV+etuFkCbaNU5q3f/BybsZs9VRvIUS4PUYR10fO+F4LhZhc+m3KP50WvLyWG0y8y3znkKupyLX8q/y7fkAXBD7YGo8TcX9myCiojKv+ATlH+4DZN9x9eY8iY36Ez4PbzvwRKVSn2bodUhdO/wH+5W/cqvkooDucIYU+HUaWnyHiJmY33Pl8kcu5iOKIxZxQA8BfTDYSDQHK7ZN1OmWP2QH4JsViVt7/lpHzFPh5GiVK3xOgLnW36hEPLxSH09LsXHTj/svLUaPVQ+lgRsfASV3DqM0vA8dWmoe+hgy6+83NtbbWr4F3xb4Dpc2qV1W0gkeBrkCaw4H+FGZDLY/TYSQLlBNQ1fsSxo5ix98G01mF7j9f1peMgTcjavqhTz5gDhncDZqF/ZO/8UOOJxHxs5GZFPLEOCjhRv
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 12:20:26.8595
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9bff998f-408d-4049-c870-08de7f689400
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[4.158.2.129];Helo=[outbound-uk1.az.dlp.m.darktrace.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB3PEPF0000885A.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR08MB10972
-X-Rspamd-Queue-Id: B69112638DD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311-vcnl4000-regulators-v1-2-66b6038ce563@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+X-Rspamd-Queue-Id: 36534263920
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=3];
-	DMARC_POLICY_ALLOW(-0.50)[arm.com,none];
-	R_DKIM_ALLOW(-0.20)[arm.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[15];
-	TAGGED_FROM(0.00)[bounces-274053-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274054-lists,devicetree=lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,arm.com:dkim,arm.com:email,arm.com:mid];
+	FREEMAIL_CC(0.00)[kernel.org,baylibre.com,analog.com,pmeerw.net,vger.kernel.org,lists.sr.ht,protonmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ahmed.tiba@arm.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	RCVD_COUNT_SEVEN(0.00)[8]
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid,protonmail.com:email,intel.com:dkim]
 X-Rspamd-Action: no action
 
-On 24/02/2026 15:25, Jonathan Cameron wrote:
-> On Fri, 20 Feb 2026 13:42:20 +0000
-> Ahmed Tiba <ahmed.tiba@arm.com> wrote:
-> 
->> Introduce a dedicated ghes_cper translation unit so that follow-on commits
->> can move helpers out of ghes.c without touching the build logic twice.
->> This keeps the object in the tree while remaining functionally identical.
-> 
-> I'd probably do this with the first move patch not as a separate patch.
-> That would resolve the question of headers etc below.
+On Wed, Mar 11, 2026 at 01:38:03PM +0200, Erikas Bitovtas wrote:
+> Add supply, I2C and cathode voltage regulators to the sensor and enable
+> them. This keeps the sensor powered on even after its only supply shared
+> by another device shuts down.
 
-I kept the stub as a separate patch intentionally. It isolates the build
-system change and the new translation unit so all subsequent patches are
-pure mechanical moves, which makes review and bisection straightforward.
-If I fold the stub into the first move, the first functional patch
-ends up mixing build plumbing and code movement, which is exactly what 
-I’m trying to avoid.
+> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+> Reported-by: Raymond Hackley <raymondhackley@protonmail.com>
 
->>
->> Signed-off-by: Ahmed Tiba <ahmed.tiba@arm.com>
->> ---
->>   drivers/acpi/apei/Makefile    |  2 +-
->>   drivers/acpi/apei/ghes_cper.c | 26 ++++++++++++++++++++++++++
->>   2 files changed, 27 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/acpi/apei/Makefile b/drivers/acpi/apei/Makefile
->> index 1a0b85923cd4..b3774af70883 100644
->> --- a/drivers/acpi/apei/Makefile
->> +++ b/drivers/acpi/apei/Makefile
->> @@ -1,6 +1,6 @@
->>   # SPDX-License-Identifier: GPL-2.0
->>   obj-$(CONFIG_ACPI_APEI)		+= apei.o
->> -obj-$(CONFIG_ACPI_APEI_GHES)	+= ghes.o
->> +obj-$(CONFIG_ACPI_APEI_GHES)	+= ghes.o ghes_cper.o
->>   # clang versions prior to 18 may blow out the stack with KASAN
->>   ifeq ($(CONFIG_COMPILE_TEST)_$(CONFIG_CC_IS_CLANG)_$(call clang-min-version, 180000),y_y_)
->>   KASAN_SANITIZE_ghes.o := n
->> diff --git a/drivers/acpi/apei/ghes_cper.c b/drivers/acpi/apei/ghes_cper.c
->> new file mode 100644
->> index 000000000000..63047322a3d9
->> --- /dev/null
->> +++ b/drivers/acpi/apei/ghes_cper.c
->> @@ -0,0 +1,26 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + *
-> 
-> As below.
-> 
->> + * APEI GHES CPER helper translation unit - staging file for helper moves
->> + *
->> + * Copyright (C) 2026 ARM Ltd.
-> 
-> As before. If there isn't significant new content copyright doesn't make sense yet.
+Where was it reported? Do you need Closes tag?
 
-I can defer the copyright line until there’s more new content.
+...
 
->> + * Author: Ahmed Tiba <ahmed.tiba@arm.com>
->> + * Based on ACPI APEI GHES driver.
->> + *
-> 
-> No obvious benefit in this blank line so I'd drop it.
+> +#include "linux/array_size.h"
+> +#include "linux/regulator/consumer.h"
 
-I'll drop it.
+Double quotes, huh?!
 
->> + */
->> +
->> +#include <linux/err.h>
->> +#include <linux/io.h>
->> +#include <linux/kernel.h>
->> +#include <linux/mm.h>
->> +#include <linux/ratelimit.h>
->> +#include <linux/slab.h>
-> Build includes up as they become relevant. That way we can see whether
-> they are needed or not.  Right now none of them are..
+>  #include <linux/bitfield.h>
+>  #include <linux/module.h>
+>  #include <linux/i2c.h>
 
-I’m front‑loading the includes that the subsequent mechanical moves
-will need so those patches remain strict cut‑and‑paste with no extra 
-edit noise. That keeps the movement obvious and reviewable.
+Also, please keep the list ordered.
 
->> +
->> +#include <acpi/apei.h>
->> +
->> +#include <asm/fixmap.h>
->> +#include <asm/tlbflush.h>
->> +
->> +#include "apei-internal.h"
->> +
->> +/* Helper bodies will be moved here in follow-up commits. */
->>
-> 
+...
+
+>  	mutex_init(&data->vcnl4000_lock);
+> +	ret = devm_regulator_bulk_get_enable(&client->dev,
+> +				      ARRAY_SIZE(regulator_names),
+> +				      regulator_names);
+> +	if (ret < 0)
+> +		return ret;
+
+You can't add devm_ after non-devm calls.
+Also it would help you to have
+
+	struct device *dev = &client->dev;
+
+at the top of the function.
+
+...
+
+With the above being said, I expect a series out of two patches at least.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
