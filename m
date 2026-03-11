@@ -1,191 +1,269 @@
-Return-Path: <devicetree+bounces-274031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274032-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GMS0FLtVsWmGtwIAu9opvQ
-	(envelope-from <devicetree+bounces-274031-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:44:59 +0100
+	id mOiaILFWsWmGtwIAu9opvQ
+	(envelope-from <devicetree+bounces-274032-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:49:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE6552630DA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:44:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id F01E1263171
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:49:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id B4CA43053B8B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:44:32 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 748DF30104BB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01B2E3DDDA8;
-	Wed, 11 Mar 2026 11:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A83C285CA2;
+	Wed, 11 Mar 2026 11:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aUX2qga6"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="EtkoC8k7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from SEYPR02CU001.outbound.protection.outlook.com (mail-koreacentralazon11023075.outbound.protection.outlook.com [40.107.44.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360833DD524;
-	Wed, 11 Mar 2026 11:44:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773229471; cv=none; b=RhjtORSt2UAzukFwEKXywLKmuRDl2lHvW5RtNNsjNQU+rd2OHO+E0nmyf3e75aRiRylxeCOWHByan7Ymt3aGY0xVXpmBpzvUgT7JGX1G7noVQXYeIn7YVwU/TnlMAyXB99J4rBpgwLRpl2Hh6rDlaolJ3CFbeHAAyNFlIqzV798=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773229471; c=relaxed/simple;
-	bh=XY0jFffDLGVGCJw4uqbLQtSOOoaUJosbQqgvPfqZ4LI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HeszoPIaUv/hYQBXxAJzLeLUmoJ1yeAUoszhps15ANGZ+JAmb0ili8PVF+RAyW+M2T1bmZpxVkegbcyhAvtwok/8TdrfIFS6Wr83BM2QlLXSmHAoxVdQn7ZONKYjbDGsaxP5OtBVrqDzVfT2wp8rTick7wmYFXKfqZlznjCboAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aUX2qga6; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1773229470; x=1804765470;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XY0jFffDLGVGCJw4uqbLQtSOOoaUJosbQqgvPfqZ4LI=;
-  b=aUX2qga6DY6GwldgNNpCU/6ODvUKJziz0+M8AWG/gkt6YLZVR+sJycdr
-   MeWJDY1b53YE8lFqifCikX8ovNF3YhMl7VmWEkKAg5NPvRfzGcV+EsGS6
-   oSWdtc3N0bK9MWjA3Gd9eL4eg4mWbnG8SBDsjgKL5rMzOPrK15QnEdcxf
-   tNg2q2rIDFAy1pzKB1CbulPc505tLaW9WgrE/yXo6tk4TwpRI0nIX9ruT
-   jgXhBvuNdGD6G1BXrgclVuCGYQxy6hGei9CqksLq7u+rM/Ukzn5A+M0ij
-   ZDS+WCbE2SOvnpuX3H514vPIDw0Wl0fa17crfKTpZsLsR+Zn3r0x3hVcy
-   w==;
-X-CSE-ConnectionGUID: 0ZNIkEHJT6aK1qloMEPV6g==
-X-CSE-MsgGUID: LLAmb7UbQFejdFtNnqxSPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74204379"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="74204379"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 04:44:29 -0700
-X-CSE-ConnectionGUID: 5mc6tgogSPiqkolLF3VOEQ==
-X-CSE-MsgGUID: YENNypp7SMa5mrNHIGhYWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; 
-   d="scan'208";a="224601491"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.178])
-  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 04:44:25 -0700
-Date: Wed, 11 Mar 2026 13:44:23 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Alexis Czezar Torreno <alexisczezar.torreno@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: dac: ad5706r: Add support for AD5706R DAC
-Message-ID: <abFVl8NhfBkvyI4I@ashevche-desk.local>
-References: <20260311-dev_ad5706r-v2-0-f367063dbd1b@analog.com>
- <20260311-dev_ad5706r-v2-2-f367063dbd1b@analog.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975071DF74F;
+	Wed, 11 Mar 2026 11:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.44.75
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773229732; cv=fail; b=ZDO2ucDqGwnG5UgfYLvlN8UJX0eTt78SU25INNLlERUJFv7ZBu2HDgtOit6HR0jrDHd27fyk3RxWcFPQ5BshaddRwVORHXhWR4LtP3sB99H2soscqCiUQKZFr/17DqOcveod5YOm/JLV2EBEB5RNNVXakwPiGx1yMm0HJtz1yPs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773229732; c=relaxed/simple;
+	bh=RpejwDWBaS7r2tOmc0R/KdRB4c+JK8E24vCyf1UptfI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=Jdx2BO2tnwJeHIUA44+rfo+pqgWt5MBP0CUh3mABF01U4IHYWwRsPhv6kZ41TZcpL/ZIiMYphMlj/d3RQXoH3ryzho93aXPoYP8vojcon7p5Zm4+irkyP/TLqmbrzoC66xdXQomSShsHzJi7AyQxaBQicINteLzn/3L04JLMAqY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=EtkoC8k7; arc=fail smtp.client-ip=40.107.44.75
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xPCHUhnfDrSfMEfteMa6kn2gzL3P4oKQ9IUk91CNtMyOZHrosGi71ns+jcCg6MSj/1l8tKtk78/owf3/ZsFlPJ+GfrACfLAHasyPrz5mpI4NrqA8eDMcT5wGeCVBsQF+ZNQ+cqk3cN0fXIXGwSNNLG0uzrtKCjwsYEmNJ9MhY5nX949t6XXgUI8oUXzW3pHMw7G88IYqRpXlcRNGcz78TrRmQ4pRoXdY2lUxDwBWR6O8BdqQtdzzcFFkTRsUbzpSNrPvlEcAIL1fUv/pcqWN5+Uh2JEtKevXg3uFYW6uoP/U3wqZcB6zc6Bdwd4KZFxTJodOm1P17iU0DpuDcQZm3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hejBmqd7wtep5AAmfWyanm1MQUmgo8GjVSnjr3Gt1wA=;
+ b=JfXg1TB+ZmWrTlBtDYYB6PxNYX1Q43Mw9IPCbB2CCJuS2mojerK0hCT1M/0kFSf/to/cqvbxmT6kA4KO5DzRT+uuwv5TTKyWdiyRh/148Bam98TZbPYxe2wF1ozXvLiYltw6H5REOQ+m/skqLXXr0OMbs7t7/wOItY8z/zG1P2WkdnLBwvxEyfLorMCP1ZDFiFKzjghXqf2ig+fMHXMyuqcLLjuVCNocklHyD7o5mbBpcKNEO8mO66beRQNaSSkPMzn3FXRBDu7Izj30P+2JZkYpq3/I3wDvzr/Ri0CSQCIxDDH4bSXiK55QieAzAYbKsxUV5rrtqbrghm5ieqqfmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hejBmqd7wtep5AAmfWyanm1MQUmgo8GjVSnjr3Gt1wA=;
+ b=EtkoC8k7EcW/EgJjDZ4VufNkW4zFcTOCbMGfGdFWJtCjgn7N3InLk6BbI3lykqRcMwzQlnPrz4/PkV7pPoBKfABEVUqIa4+G1d5gg6ACHsBXcWq6kZzeSUhXaWrM7EIoo8JgefMmA6u1RfIAfCNhom9VsB51mStacV8S9ZI5rAzvqoq5uXuVrDeid1G0q81aRnAsjXV2yBzWtbI8YpI967xOiXFTu70lsP0sKOKhk7Ep5i6oWKM8IVD40Cp487nM2U12Ld+urOmiWvScIzdOI41amw1NaILvaJIn+R8FSrxoildBsCfMXjfOlYAIgQlGdvHaNV6KUlZtN9YV00VroA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from SEZPR03MB7146.apcprd03.prod.outlook.com (2603:1096:101:ee::14)
+ by KL1PR03MB6975.apcprd03.prod.outlook.com (2603:1096:820:ba::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
+ 2026 11:48:46 +0000
+Received: from SEZPR03MB7146.apcprd03.prod.outlook.com
+ ([fe80::d880:2a36:4b28:7bec]) by SEZPR03MB7146.apcprd03.prod.outlook.com
+ ([fe80::d880:2a36:4b28:7bec%4]) with mapi id 15.20.9678.024; Wed, 11 Mar 2026
+ 11:48:34 +0000
+Message-ID: <172d5b9b-2274-4c01-92f5-c9f70efff7f6@amlogic.com>
+Date: Wed, 11 Mar 2026 19:48:32 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: amlogic: t7: Add clock controller nodes
+To: Ronald Claveau <linux-kernel-dev@aliel.fr>
+Cc: devicetree <devicetree@vger.kernel.org>,
+ linux-clk <linux-clk@vger.kernel.org>,
+ linux-amlogic <linux-amlogic@lists.infradead.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>,
+ linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Stephen Boyd <sboyd@kernel.org>, Michael Turquette
+ <mturquette@baylibre.com>, robh+dt <robh+dt@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20260305074328.639993-1-jian.hu@amlogic.com>
+ <20260305074328.639993-4-jian.hu@amlogic.com>
+ <b6677544-d679-4f01-bcce-f9ce1518f942@aliel.fr>
+From: Jian Hu <jian.hu@amlogic.com>
+In-Reply-To: <b6677544-d679-4f01-bcce-f9ce1518f942@aliel.fr>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SE2P216CA0104.KORP216.PROD.OUTLOOK.COM
+ (2603:1096:101:2c4::8) To SEZPR03MB7146.apcprd03.prod.outlook.com
+ (2603:1096:101:ee::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260311-dev_ad5706r-v2-2-f367063dbd1b@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-X-Rspamd-Queue-Id: EE6552630DA
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR03MB7146:EE_|KL1PR03MB6975:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c2ac894-01ab-4655-241d-08de7f642037
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|366016|1800799024|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info:
+	NrLziaAvCKwo6PlhLEVsPYKKs6rYowvE8Qb0IYUpqd1zpgakXXau/HBpBoPy9Oda9W3bvXKTGUxzODENgQY9WUVVS/lzeTPGn7zLnod11IGjNU1yldjehCj8um7uXuEqnhMsuC/U8+geprbbLqcgDlcIBL7otHdROdzDs01QTytA2jcEugNtJ8NvcJgl56hBAg1bMPPlzMS0jC3T1laQyAOzRwCUO3b6qyONsV/HwQFNfK6IjRkWthG/p/cwHZGmcqkjUrXedbA5dhT+CfPY7sSi5dMWjfOMknJ5Y4JFmrJsnMCfNavS63O12MrUWelISkUh3hrPXvg+a+427ClMhj1yHjOLxKiYhdzYWaOw4K/0SvtpC/heiD/sdZFkXIcht12WR8Lo+ag/Bf/cFFQ7pbeixZLsCd5+IeHOy3oJgwJOlIvOPxmDnJtetn49rG9FOyKJEF4wBczyjR16CtwmdWbK4w56RJ5SmO177Ro4HFtZ7qwWn1gy33RDUPuTxuY5NUvm+EDwhDIZrfNSQfFZuo/qQmk10mIZrmws8Bf3YUkFIxxI4WcwNBx9n2PlzubCY9WuUMv+VRCRoPCkW/QnGQKY5Qew5WT9opKl2UF/GkdGvI1AAXc4VqcNDdM2mHfM1xcLTma4qA1GsbJu29q6ST0qpGocACQckeey6viQzm/zbpz9P5XpAdiUNPR6ZHjsif4AojCCsrt/s7An5qW7oOHTkB3xsdohemJlv9cQitY=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR03MB7146.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?SStJKzRhYlUwRkxDNzQ0ZFJhU0xvNnViTDVNZkpFSm5CRlRBVGgrdDl1eWw3?=
+ =?utf-8?B?L3NIMHVkMlltdlJoRlo1UUJDM1lwdmdBSEhraTY5RFVPaTZYc213YitraG9x?=
+ =?utf-8?B?YTRoMnVpUGJHdDFVQkhTUGlRQW1Ib0R4N3dwVWtZT3FiUGNvSjI4SzhxTlUy?=
+ =?utf-8?B?bE9KRjZpb3dGV3lKK053UTVMRjBqN09iZHRqQ05vOWtUZ1RvU21sTzF1QjQ3?=
+ =?utf-8?B?RjJBb2QvbHJPWUtiWG93S1ZPMGU4eERoS0Z5RE52a253a0lNRkp5MkQ0a3Yx?=
+ =?utf-8?B?SDlmZk5BcGcwYUMyNjRkYkNtcy9Ub1FWMDR1bUdJT0Z5MmQ4aHJpdHY1TDJa?=
+ =?utf-8?B?c0ZBRUdSeUwvSFVEUnQxSVVpdXFJWWN6cmdQUFVQRGM5RE16OXFDSnZERmZj?=
+ =?utf-8?B?Qk5HdGtnY3NhaCtFaGozMXJnUTBXQTVWTzVGWHNrR2RZVy9rU2VGakVDRzZQ?=
+ =?utf-8?B?Q0JIZThkeWt2enc0dDRVTzdxZGlBcDdqc0tVaUMybWhIbWVKRXlCbk13MjU1?=
+ =?utf-8?B?R2RoR3plOVNZclNOeXlTNTA0amg1SHpPWDlidDRrZ3lpTk9vc1UvUUJ5ekhS?=
+ =?utf-8?B?em0xOSs3Z0J0Q1RzV2NnckxGWElVdjN5S0Rpd1VvZDVlTVU0ekFmVXlpYjVI?=
+ =?utf-8?B?ZEtnKzNDOW5sNE04N0x0WXpybWExeGVlR2NuSmtyazhNYTV5clVwem0wZ2Vp?=
+ =?utf-8?B?ak1TamoxYmJMaGt4K2xGSTB2aFJFL0lqWTFVSVJMV2NOeG1lK1c3SDU0K2ND?=
+ =?utf-8?B?VHFjVmt5ZGVmR293a0hMZjgvRzJwVDRsK1F5c1N5MTNiQVVIV3hMemdNckZF?=
+ =?utf-8?B?RWdKSmVBd2hTc0hHSVBRVnpiTmlVa2I0VXJWQWpPSElGcFloZGdqampOODRK?=
+ =?utf-8?B?QWZkMDYrc0l2WGVmZklOV1J3ZHVBbkNxR3ZUaDRQU3dmcUh6V0NKQmZEcFNi?=
+ =?utf-8?B?UFd6aDhpdlZuMkJHTm45NkZYVFdJcmRMcUdpeFBvU1hqaGRkcjYxQVFJbENy?=
+ =?utf-8?B?U1VwMlVZR0d5ajNyZllVOHZxcmtXcEwyYWVDaFh4OCt5WGRSb0QxZmVRbzdC?=
+ =?utf-8?B?aVdTeU1LcXhON1BOVG9TTy82bWpLNjlHbHdVM0dRcUFnUUo3S3V1RkpJQ1cr?=
+ =?utf-8?B?V0NZVStzQzZvaUxXRlBuSUFxRWsxSk1kYWc1V25uSWhSNVJ2VitWd0E3ZkNy?=
+ =?utf-8?B?RHdqY2p3bzBqc1B5UG9iNGFWMUMyTk5mTDJIUVN0WDdjUWpkNkRmcm12QkJo?=
+ =?utf-8?B?SlJpZkptMTA0b3NYWnhKaGZkUG9BNXZMTzdlWER2UVFlKy9QNHdCR2FWUmhZ?=
+ =?utf-8?B?N09TRzVhNjVRbnd0SlE2ZnIwU1NjYWgrQmhKUko5K3AweER5b0tmZFpvQjIz?=
+ =?utf-8?B?MDRWS3JFOHNabExZOVdIY3lybGdlbEJrMlZ5c25LK1NHV1QwNFJ1TGRucURP?=
+ =?utf-8?B?cTJFSFQrd05nQzJiSnlGdVZjemtTOWI4czR2OUF4OUcxZnhjLytZN3RzQmlk?=
+ =?utf-8?B?MCtubmhrVWl3MS9TUEVjdW9NbkJnSUZPaUdNZmhWYTlpalpsZGVxcStDd3N6?=
+ =?utf-8?B?TnFqZktqTis3UEpNMnhZL2xBczBZK0hkWDVtRlRFY2NGd0pROTZBbzNqSXhi?=
+ =?utf-8?B?YUpMYytYQWFkQWVBczFSVlA2RFR4UktrYnl6VkxtK3BiL2MxMkUrRXFNN1Bq?=
+ =?utf-8?B?Nkk1ZUV1aUJuaTYzQWttemluQjlxS3B4aGxoVFBqclZuNFgvZ1RhK2drcXND?=
+ =?utf-8?B?am5LYmhmYU5aNUo4NlBVbmZDUzFhME9POWgxSU1ldllpM1lPU3gzWkpLOVRo?=
+ =?utf-8?B?QXRHK1BiL052V2QvTlpJNFF3QlNBU3pyeGh3TEZPczh3S2VVWG1vSHRvUkd1?=
+ =?utf-8?B?ZEVLUGRVWG15eU1xb1JZQnFaelNCN081ejRLV0huWnBQWUpuNk1lUlNDL0ZW?=
+ =?utf-8?B?RmN5WGRJV0JtRkNZaUlNNmlOcjNoN090T3Fzc0JIVk5HQXRkOHRoRUU4VE1F?=
+ =?utf-8?B?bzJiTDRsUWJxeU8vaVF4N29hY0pWOTZXMkZZdnFWa0FlZkZpNnNGY1RHN21t?=
+ =?utf-8?B?ZFI1S245NDJwaTlXMGZuZXhZNGtEVFpCUk11SjE0dkZpK0xGZ1c1cDVRbzlz?=
+ =?utf-8?B?eGpSQkcrTUc5WWxvYTFQMkFLb3cxV0dEV2ZLK2pacnRQV0orK09SNml6NnpQ?=
+ =?utf-8?B?UkFGc0dQdWVhSVVpK2cvYVFJMHFCaVlialBhbXovSkIxUzR4WFJ6bGF3eTJv?=
+ =?utf-8?B?Njdmalg5ZzRNMTgvK0ZzUktRMHhUSy95THQ3SzNadVc2MXZWZ1BVZVhyMXdt?=
+ =?utf-8?B?QXRVZk5Ia2MwcGYzV2xwZS9Xb1RUajZVeXpHMzRySUZJdy9VcTlmUT09?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c2ac894-01ab-4655-241d-08de7f642037
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR03MB7146.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 11:48:34.8850
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wf5h27cHy3NcoMq92TA7cMuAlcgKgI8MyIHm1Zutqws3+vt1GCd2gBd7OTarI491Ujr+qEKcafv7VbF7kh2DrQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB6975
+X-Rspamd-Queue-Id: F01E1263171
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [1.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[cv is fail on i=2];
+	DMARC_POLICY_ALLOW(-0.50)[amlogic.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114];
+	R_DKIM_ALLOW(-0.20)[amlogic.com:s=selector1];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274031-lists,devicetree=lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274032-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,baylibre.com,linaro.org,googlemail.com,kernel.org];
+	TO_DN_ALL(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	MISSING_XM_UA(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jian.hu@amlogic.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[amlogic.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,ashevche-desk.local:mid,intel.com:dkim]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[0.0.0.0:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On Wed, Mar 11, 2026 at 08:23:18AM +0800, Alexis Czezar Torreno wrote:
-> Add support for the Analog Devices AD5706R, a 4-channel 16-bit
-> current output digital-to-analog converter with SPI interface.
-> 
-> Features:
->   - 4 independent DAC channels
->   - Hardware and software LDAC trigger
->   - Configurable output range
->   - PWM-based LDAC control
->   - Dither and toggle modes
->   - Dynamically configurable SPI speed
 
-...
-
-> +#include <linux/device.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/module.h>
-> +#include <linux/spi/spi.h>
-
-IWYU, please.
-Yet another typical issue with ADI patches. Really, talk to your senior
-colleagues who are experienced kernel developers before sending it to ML.
-
-...
-
-> +#define AD5706R_DAC_RESOLUTION		16
-> +#define AD5706R_DAC_MAX_CODE		BIT(AD5706R_DAC_RESOLUTION)  /* 65536 */
-
-Useless comment, use the same number explicitly instead
-
-	BIT(16)
-
-which is much more readable.
-
-...
-
-> +	st->tx_buf = cpu_to_be32((((u32)reg) << 16) |
-> +			((u32)val << (16 - (num_bytes * 8))));
-
-What the heck is this?
-
-...
-
-> +static const struct of_device_id ad5706r_of_match[] = {
-> +	{ .compatible = "adi,ad5706r" },
-> +	{ },
-
-Even inside a single file this is inconsistent, besides being third of
-101 IIO	patch issues.
-
-> +};
-> +MODULE_DEVICE_TABLE(of, ad5706r_of_match);
-> +
-> +static const struct spi_device_id ad5706r_id[] = {
-> +	{ "ad5706r", 0 },
-
-When there is no driver data, no need to explicitly initialise it.
-
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(spi, ad5706r_id);
-
--- 
-With Best Regards,
-Andy Shevchenko
+On 3/11/2026 3:53 PM, Ronald Claveau wrote:
+> [ EXTERNAL EMAIL ]
+>
+> On 3/5/26 8:43 AM, Jian Hu wrote:
+>> Add the required clock controller nodes for Amlogic T7 SoC family:
+>> - SCMI clock controller
+>> - PLL clock controller
+>> - Peripheral clock controller
+>>
+>> Signed-off-by: Jian Hu <jian.hu@amlogic.com>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 125 ++++++++++++++++++++
+>>   1 file changed, 125 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>> index 6510068bcff9..6ea1b583b13d 100644
+>> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>> @@ -6,6 +6,9 @@
+>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>   #include <dt-bindings/power/amlogic,t7-pwrc.h>
+>>   #include "amlogic-t7-reset.h"
+>> +#include <dt-bindings/clock/amlogic,t7-scmi.h>
+>> +#include <dt-bindings/clock/amlogic,t7-pll-clkc.h>
+>> +#include <dt-bindings/clock/amlogic,t7-peripherals-clkc.h>
+>>
+>>   / {
+>>        interrupt-parent = <&gic>;
+>> @@ -201,6 +204,33 @@ pwrc: power-controller {
+>>                };
+>>        };
+>>
+>> +     sram@f7042000 {
+>> +             compatible = "mmio-sram";
+> Applying your patches shows the following errors
+>
+>
+> [    0.019608] sram sram@f7042000: error -EINVAL: invalid resource (null)
+> [    0.019622] sram sram@f7042000: could not map SRAM registers
+> [    0.019627] sram sram@f7042000: probe with driver sram failed with
+> error -22
+>
+> Adding a reg remove those errors on kernel logs
+> reg = <0x0 0xf7042000 0x0 0x100>;
+>
+> Can you have a look on this ?
 
 
+Thanks for your feedback!
+
+The -EINVAL error is caused by the missing 'reg' property in the sram node.
+The SRAM driver requires this property to get the physical address range 
+for MMIO mapping.
+
+The 'ranges' property remains correct, and the 'reg' in the sram@0 
+subnode is correct.
+The SCMI clock driver works fine.
+
+I will add the 'reg' property to the sram node to fix the kernel error 
+logs in v2.
+
+>> +             #address-cells = <1>;
+>> +             #size-cells = <1>;
+>> +             ranges = <0 0x0 0xf7042000 0x100>;
+>> +
+>> +             scmi_shmem: sram@0 {
+>> +                     compatible = "arm,scmi-shmem";
+>> +                     reg = <0x0 0x100>;
+>> +             };
+>> +     };
+>> +
+[...]
+>>
+>> --
+>> Best regards,
+>> Ronald
+>>
 
