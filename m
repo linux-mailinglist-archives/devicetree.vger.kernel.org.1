@@ -1,596 +1,205 @@
-Return-Path: <devicetree+bounces-274180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274181-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uLmaIBGIsWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274180-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:19:45 +0100
+	id IBJcHPCHsWmjCwAAu9opvQ
+	(envelope-from <devicetree+bounces-274181-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:19:12 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83FB3266540
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:19:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 523342664FC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:19:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id AB0F8303A25D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:18:22 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 5D34830219DB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 15:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6862C3E0C4D;
-	Wed, 11 Mar 2026 15:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7D63D88FC;
+	Wed, 11 Mar 2026 15:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mLhFdPXL"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Lddbrw22"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011063.outbound.protection.outlook.com [40.107.130.63])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448933DF000;
-	Wed, 11 Mar 2026 15:18:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773242286; cv=none; b=JKKeNvKfwwsnIPkGUoX5x6K8u44m8TbQ02SM2MpiIgajQ8jFCT/sUZnz82Wiwk7gc6u9fOYEw2WLZ3GD846bCO+cTDIjDDk9zLyGXopYRnYJ/7WeG//6SsMA+5RQzh7H0ne8Lmw5HLc3oLMMrZSjgZRNnq71+a2wcDvNHpBhDZE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773242286; c=relaxed/simple;
-	bh=QFQKvG6wuZUd+J9Son23jLOwSLcPv3+xcMNUHUMtEXk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PPAOfLnz/yH15ywHmDub65GHIVU+/L3qKz90++c8bKOShUmxicMTyIIJUbDjNxyjKi6F/+FqLXSiKdtoaCfJukM3l/wL6WUtIg1U8kg442O/hdyanlN3+/gE0co23/BXpA/xs003AaijFEF5UnVDY+/zbp6nz6Mi2yxi4sz2VO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mLhFdPXL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDD03C2BCB1;
-	Wed, 11 Mar 2026 15:18:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773242285;
-	bh=QFQKvG6wuZUd+J9Son23jLOwSLcPv3+xcMNUHUMtEXk=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mLhFdPXLrqNVJpN/HBgZbvZCQnIxfIpk3KxDT591xVKhKTXMCqg2f72a4b3+Ds9mD
-	 Gr95IE4mNXFEmQ3xegSNC7Qnob5df99RW1nEsQr2Z+y/kAp2vvXwJgqLUBUPXyoGni
-	 fnqZYJTuVTWRSO7QTnUC5rVAWkRRJFmjca3QblCd+Rv/lGKXaCbj4HN9YN7id7RZUi
-	 T9FWyh/dU+7TXTU/pjaWI2aMhmYBAASlvb7TpBbkiqx3ZRyh71EqOkHDoBENlazr57
-	 qz1vt2pSjMlSAxcdCPK/vzzCx7KU/ySfJeMUJFE9ZzwsuHEzMBMdVO8JPaefoG1DyG
-	 D2V0jleDRtEyA==
-From: Conor Dooley <conor@kernel.org>
-To: linux-gpio@vger.kernel.org
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C513CCFB2;
+	Wed, 11 Mar 2026 15:18:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.63
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773242319; cv=fail; b=qkCQ3LA+IPhakgn42xrPehe4sxnGC4jW/eeZ9P4bbVR905CSu6cn0dojSMlf8TiUiTBedj/wyGgZSXv6X54FxM+3U21ahTgZ8TPoxxKeyiYeoaho/EpKd5bC9AFCYd28frKU+SSk0ApL7g/pD8j8f3gJovDMR6q4j1KSXn8KBCc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773242319; c=relaxed/simple;
+	bh=1cN9tT/hVE7lRS+inR5y+r3E8FJFqeKSDSvSMUOtIg8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=N9PuwOJVzJy/yI+gRT+bkUMUcIWhz78aHQbo3lYYzud/G3n8xiMAdD7+xKxCIMms9Z0v5+i9MFl8KiDp23UXEeyjcews4lD770/1+cjFOusuFxkr82PVzA3xNVudujIWACKcQCrdeOxQ4WDdsJCEGZqqZ+FHRfxjS+OidHY/Q0A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Lddbrw22; arc=fail smtp.client-ip=40.107.130.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UgGLwzUG3QSXUhiUk3TN+qjkHGu4hFgkzut5Do2/DMtMZ5edRbGXUXq0Sa1RXRLPJG1XZS+I20YwKa4baliTQ2YXLvuFGE32OeLdbKYmtB7nGvqny+IJm/JP9CWmGgyaF9XJLN0B1Fb0zDTt9a/kUYo2Q5KKOPrfRdW8Ipb2PD2iPNwyVpA6qpjqGc3u88tt+x6DzkCja7TAd92PJmxStyl7/g7pnS5476mxRc8y7vNipa/3qpXY6/0nA6ozThNfO3cyFtlNYRLIN1aR5pwxJ/LOlmHg5hk+2g3UJ5qBxVCZOsd5xktYJOpCLSAWkVIUAcSYwFnwS7cie+RnS7hocw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8/ZEzSO5jKdND9QB/vNLbsNUjY5W/s1PRjiFVGsgnk8=;
+ b=k9eEfn2EgQiaNvR+x7LIqan6NMpkASdxK3e7ozQhNLI9QbQ0TFZmU5IXTg74AIelhqhTY6ykw9PwiPm+QZ605DcEhdCqG1ipwJG0EDQP9FSb6rJmiePqU/BuXfm3Cr4EyyUKmPk20yYnBrDVRBCbAhI/W3MWJBFKa/8fN9znYmX4UVhFarFeQsjpKVs7DUkGNht05qaxh0O7KSu9ZvG4UHO3vW1vtBDnY8HBdhAxuDSkTg1bAr8P/6YmUAvvxRsXxfYllcdSxwfsWcrjVQTG6dafEMLpgBawUe4VU+dYDofas+jRD+NP/rEJ/vgY7dkYlneWSNqo5o6zGTm3tXKTow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8/ZEzSO5jKdND9QB/vNLbsNUjY5W/s1PRjiFVGsgnk8=;
+ b=Lddbrw227NjiyzbWLuoLXOYboBLxpikcUUoephm0A35c7SruMS3LlIt4Xc2LHtxIoCRG2eMD6VygLGYgMufZMSHnvGjeces/RU4j19jU/uQVGAnrVEMFjawPuf7kG2rHZ21AANi7ytWKziXjovTwBQXGVgjDtOGYYetYFqRsiMaOQF/8NNw0HWrmuw3KjCvj9963YGHzviiWSb1oNB9skzLqtConVP4cyUi/G55kTI1zq5RTmeY+/0Zw3cLYauFmshSUbXL76EWpkKu8e1kuqRf1rkxhnGu7XstFDw4D7lSMfwnPVQ3urw+Ey4e+2xjeFU7JMKyTmWw40lmnxfvJFg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com (2603:10a6:102:2a9::8)
+ by DU2PR04MB8614.eurprd04.prod.outlook.com (2603:10a6:10:2d9::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Wed, 11 Mar
+ 2026 15:18:34 +0000
+Received: from PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588]) by PA4PR04MB9366.eurprd04.prod.outlook.com
+ ([fe80::75e4:8143:ddbc:6588%6]) with mapi id 15.20.9678.017; Wed, 11 Mar 2026
+ 15:18:34 +0000
+Date: Wed, 11 Mar 2026 11:18:26 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Linus Walleij <linusw@kernel.org>,
-	Bartosz Golaszewski <brgl@kernel.org>,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v12 4/4] riscv: dts: microchip: update mpfs gpio interrupts to better match the SoC
-Date: Wed, 11 Mar 2026 15:17:41 +0000
-Message-ID: <20260311-skimming-pummel-6a3e2fc66a9f@spud>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260311-tasting-friend-eae39148fb96@spud>
-References: <20260311-tasting-friend-eae39148fb96@spud>
+	Conor Dooley <conor+dt@kernel.org>, Abel Vesa <abelvesa@kernel.org>,
+	Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
+	linux-clk@vger.kernel.org
+Subject: Re: [PATCH 3/6] arm64: dts: imx93-tqma9352-mba91xxca: Add parallel
+ display overlay
+Message-ID: <abGHwrcVjmg2iPik@lizhi-Precision-Tower-5810>
+References: <20260311143217.1700704-1-alexander.stein@ew.tq-group.com>
+ <20260311143217.1700704-4-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311143217.1700704-4-alexander.stein@ew.tq-group.com>
+X-ClientProxiedBy: SA1PR03CA0017.namprd03.prod.outlook.com
+ (2603:10b6:806:2d3::13) To PA4PR04MB9366.eurprd04.prod.outlook.com
+ (2603:10a6:102:2a9::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=17716; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=xwk1zdF71lVmTy8iGPQj3jwwNAGZwVVQs/EcHopDb8s=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDJkb26f/4OW5m7MmhtMlMu5456HSaCOLkr6e9m/fXSekz P0esdSoo5SFQYyLQVZMkSXxdl+L1Po/Ljuce97CzGFlAhnCwMUpABNp3cbwPywhJjf2alL3BrvQ a7yH7kY8TQ2wVD5VPePjygCjUxs1WBgZ1m8X4e34elI7hHe/zoaGkEmWQRPXcKh91Tc4dKvhins kIwA=
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9366:EE_|DU2PR04MB8614:EE_
+X-MS-Office365-Filtering-Correlation-Id: 530c6892-d068-4293-6eb5-08de7f8175f0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|19092799006|7416014|1800799024|376014|52116014|38350700014|22082099003|18002099003|56012099003|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	eR3+n7GKwkhSttq8LTwoXnNsyycEvWXQoKB2OwmYnXLq8RWM6nP4dmJnJ3JKpdEWrz9+SW954dTRT1FTk1yhX8P1/3B1jylYE5rhD+E/hZke+vKgd3xMdKt4h7rGNEohCp96Zu8s0Am0IDQhcBlVFLI31d+miTmG8e8WXSB326q7vixeOLWvroxjGnbzv0w6YYZgPSAFqaWA+J5n4Y23KIHsn9d1Pr6M12XAojGS7hrAwJzuMBVDK9TMOsQge0fFfr79Iw/Y1Kx7wGU5DfqUSH6rBEmHlq9iGyyvBiZ7gLCLwyZT/je9Yh8MYG7Pi+ccBo/PrUzuuSN+KlexTfpL8L5gpm1ykGUEghbILYNlP2yQMCXk8ZiyT4008ZMJglRcAOl28K6Q5vU2uKGcRvfmQ22xIISdUy4eae54bYi9kRF0UgUFf7V89e/JgK7+SeLBX6YK3IPql+UUEtRX10uf4c42a3xhJ0nJjOprwlaAndKPt2m/7p2p42dsJczHdj3fc4k/qPiRf5VRKXOwWyAbf5LTuVzdv/AftDhG+oV5JangqG6t+nEyxMIuePhN5y7dsOq6pmdr2wgCwAOW39S5v/xOea6cO6hMmEuSOb8iIQaz5fBIQm8YapDA/eY8o/PvdarKwXyYu2Rvrva9StXtIUqfFDLyOHZt83u+3pyWSufhKmM84HM1tZjio6AbrRIHKA7U9+X0Bs8p6Eno2YsZhJZvIbA1Hid7eyCKHdtH81wY7j09i/gsWI154qeFxL6U
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9366.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(7416014)(1800799024)(376014)(52116014)(38350700014)(22082099003)(18002099003)(56012099003)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?A8Diqwp0sTSfM2AjSHvLUhKExeo0zunLxkzhXBwO/1P1yF7omAwkdL8HDEJ6?=
+ =?us-ascii?Q?oeIYrA1cymxbZcutlp9akn9sATH84z1DDoskItxd2JOEI6jT2Q1J8LvVwous?=
+ =?us-ascii?Q?wuFG7UJBs6lJJgFM0uk+HlSRzB0hCQK4xE5WT0vjDMyKQQvsBDYonkUsjwCh?=
+ =?us-ascii?Q?lOucWyA6xFXyQ+SSXCN5KO4vyII7emLDjEtyzAR/YFHuLTWJ7tNElhPLqVKP?=
+ =?us-ascii?Q?kZHVqO7+bRLbgzx1hbfW8EMmRb9Tui/W12wgdbdK5AkAO5nCoAYnN+WxVO6z?=
+ =?us-ascii?Q?+Jap2+hRGdcmgfgtCl3Nz7/Zu0xbND3CJsoc1moFt1Oj8Mc8CywyLCZpZMAH?=
+ =?us-ascii?Q?1grhZJ5xp6NLPsuZ3pmImPSnmoUAmVBxZsLj8Qa4zVSrGIKmwPWmGHr1PD9N?=
+ =?us-ascii?Q?UUqJDKrrTx2UwoNInxJVWBBIXvepONZiRFXY8hMujPxB/tek7ofCsKaLIyWd?=
+ =?us-ascii?Q?+PfZDXBc5TJhuazY105nk2a9fp+c70bJOYZMujNxVRXqzCNN1FqcDdsfZmEd?=
+ =?us-ascii?Q?9lr0OyQeumq2iwlLC4/W9yObIxEQukfgQBYSvz+N45iPhIZDjYLaQH4CbC2T?=
+ =?us-ascii?Q?aWH23ak8TXZ3pkupR1O4819B+KscsJqzxSmcggHypXR7clo1pN9indgl2Zys?=
+ =?us-ascii?Q?PRQ1J3xCrtWqatCbYpy8icvvC9P7oCXU/dqvM83A29A9YV6HYAqkLMN4iXJs?=
+ =?us-ascii?Q?ydfujypZo/KH/Py/CYFKMqW92g0PoqXejW/VB83QJfKTiilmpjiSagHH65IS?=
+ =?us-ascii?Q?rzwFrCC/O8sJDz5Ka16yxqMzr3pYm+UdQIXuG2Njn7iCLbJJgpC+vEZyEmSd?=
+ =?us-ascii?Q?Pt2qLnx9R3lJMS5H3hyE/6bmt0PTBFI2EtDjUPTNz3i1JpYqR+wod6snCK2D?=
+ =?us-ascii?Q?p4WxKUYdCJNsM1ttDkzAjQH2DwxSuZGXBm6m3M4pcvGoPoRFq01KG1i78eyF?=
+ =?us-ascii?Q?G58EsbAicE3jBIh8uMGmlhPj7OJrvj+hDCBJSqK77Rwp1d7zitW/Unoz8rvv?=
+ =?us-ascii?Q?R2L5AbKowPwrRacBdX/C+fhslqLVPY84wodbahYvud5jyLCl8eXK26oG+8q3?=
+ =?us-ascii?Q?htSfe2H/wpTSUGtXnmNSL6zHDJicFfxSZld4VYcXxfIG5yUxo0/DbQ9M7nHa?=
+ =?us-ascii?Q?1oqKc04w8ggeQ34xAgw+wbf9BXQO/edOlf+wCm6krj6+KbmD6IWenunrKRR5?=
+ =?us-ascii?Q?C/03MpYXX36q7mzn1zxRFZ40jGbgydnMiYb8baVpHXg/xJruzNOsiLEu307a?=
+ =?us-ascii?Q?AkwjvovO21IuhY17COwOEjgnnuHkzO0anD/3dDm57DXbHrTNbJQ5FjybmFkk?=
+ =?us-ascii?Q?V2bLsTpkXmNcQDUqorLP/xVqjV7mxkouxu0V+0RBkklN51u5cUg1AhyVGndS?=
+ =?us-ascii?Q?jENFaKgNiVXvqoKsd9vtLPrBYVAswid3HXJhm6Liq+nN/J3nUFdGnh24Vw7N?=
+ =?us-ascii?Q?JIc54YS/cSNdzjla3RPMoVyIsspQQ1GkMg9ak9grd3I8u0KB02aDGq8EKv+4?=
+ =?us-ascii?Q?/W+bR843ax9kFVgSQ78LglKDBQ29TUzFZ8uT/YIOWSaZHK0C/Md1sZPiMLIb?=
+ =?us-ascii?Q?sMWpQKGzG5QQnMa/g6FHmM9X7ZNlWmob/BNLOhpMUPVBB92NEJ+9VXRyZHBL?=
+ =?us-ascii?Q?UB+a5BMON25PjkjQttdFODLCVJvbCFbzZ+eWVdv4L+TJoqnA97pfDwQOvQ2W?=
+ =?us-ascii?Q?mK2uA84nRL/SvS3XsePndbCYA9DzC6+MNq5YlXr+ddjHOq4c?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 530c6892-d068-4293-6eb5-08de7f8175f0
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR04MB9366.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 15:18:34.1719
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zXrVEO3QUDFm+YorP7OmKq0DBPDveL8UNjtncfCkwcuz5oXqsRx7NzOdoXbGJeX0flpCphIGx4ts7dqW3n4wOg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8614
+X-Spamd-Result: default: False [1.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	ARC_REJECT(1.00)[cv is fail on i=2];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
+	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
+	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274180-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274181-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[17];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[pengutronix.de,gmail.com,kernel.org,nxp.com,baylibre.com,lists.linux.dev,lists.infradead.org,vger.kernel.org,ew.tq-group.com];
+	DKIM_TRACE(0.00)[nxp.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[conor@kernel.org,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[Frank.li@nxp.com,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 83FB3266540
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nxp.com:dkim,tq-group.com:email]
+X-Rspamd-Queue-Id: 523342664FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Wed, Mar 11, 2026 at 03:32:06PM +0100, Alexander Stein wrote:
+> This adds support for CDTech S070SWV29HG-DC44 display on parallel
+> interface X3 on MBa91xxCA.
+>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+>  arch/arm64/boot/dts/freescale/Makefile        |  4 ++
+>  ...93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso | 66 +++++++++++++++++++
+>  2 files changed, 70 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtso
+>
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index a6fe56bb93aa1..3547f1dd84467 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -455,6 +455,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx93-phycore-rpmsg.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxca.dtb
+>  dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba93xxla.dtb
+> +
+> +imx93-tqma9352-mba91xxca-rgb-cdtech-dc44-dtbs := imx93-tqma9352-mba91xxca.dtb imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtbo
+> +dtb-$(CONFIG_ARCH_MXC) += imx93-tqma9352-mba91xxca-rgb-cdtech-dc44.dtb
 
-There are 3 GPIO controllers on this SoC, of which:
-- GPIO controller 0 has 14 GPIOs
-- GPIO controller 1 has 24 GPIOs
-- GPIO controller 2 has 32 GPIOs
+New file run https://github.com/lznuaa/dt-format to keep nice order
 
-All GPIOs are capable of generating interrupts, for a total of 70.
-There are only 41 IRQs available however, so a configurable mux is used
-to ensure all GPIOs can be used for interrupt generation.
-38 of the 41 interrupts are in what the documentation calls "direct
-mode", as they provide an exclusive connection from a GPIO to the PLIC.
-The 3 remaining interrupts are used to mux the interrupts which do not
-have a exclusive connection, one for each GPIO controller.
-
-The mux was overlooked when the bindings and driver were originally
-written for the GPIO controllers on Polarfire SoC, and the interrupts
-property in the GPIO nodes used to try and convey what the mapping was.
-Instead, the mux should be a device in its own right, and the GPIO
-controllers should be connected to it, rather than to the PLIC.
-Now that a binding exists for that mux, fix the inaccurate description
-of the interrupt controller hierarchy.
-
-GPIO controllers 0 and 1 do not have all 32 possible GPIO lines, so
-ngpios needs to be set to match the number of lines/interrupts.
-
-The m100pfsevp has conflicting interrupt mappings for controllers 0 and
-2, as they cannot both be using an interrupt in "direct mode" at the
-same time, so the default replaces this impossible configuration.
-
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- .../boot/dts/microchip/mpfs-beaglev-fire.dts  | 29 +++++++++++++
- .../boot/dts/microchip/mpfs-disco-kit.dts     | 43 +++++++++++++------
- .../dts/microchip/mpfs-icicle-kit-common.dtsi | 37 ++++++++++++----
- .../boot/dts/microchip/mpfs-m100pfsevp.dts    | 41 ++++++++++++------
- .../boot/dts/microchip/mpfs-polarberry.dts    | 29 +++++++++++++
- .../riscv/boot/dts/microchip/mpfs-sev-kit.dts | 37 ++++++++++++----
- .../riscv/boot/dts/microchip/mpfs-tysom-m.dts | 35 ++++++++++++---
- arch/riscv/boot/dts/microchip/mpfs.dtsi       | 37 ++++++++++++++--
- 8 files changed, 237 insertions(+), 51 deletions(-)
-
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-index f44ad8e6f4e49..0e1b0b8d394b9 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-beaglev-fire.dts
-@@ -164,6 +164,35 @@ imx219_0: endpoint {
- 	};
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &mac0 {
- 	status = "okay";
- 	phy-mode = "sgmii";
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
-index c068b9bb5bfdf..f769c9d5d7b47 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
-@@ -97,24 +97,10 @@ &core_pwm0 {
- };
- 
- &gpio1 {
--	interrupts = <27>, <28>, <29>, <30>,
--		     <31>, <32>, <33>, <47>,
--		     <35>, <36>, <37>, <38>,
--		     <39>, <40>, <41>, <42>,
--		     <43>, <44>, <45>, <46>,
--		     <47>, <48>, <49>, <50>;
- 	status = "okay";
- };
- 
- &gpio2 {
--	interrupts = <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>;
- 	status = "okay";
- };
- 
-@@ -130,6 +116,35 @@ &ihc {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &mac0 {
- 	phy-mode = "sgmii";
- 	phy-handle = <&phy0>;
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi
-index e01a216e6c3a8..e25edc5f3b451 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi
-@@ -77,14 +77,6 @@ &core_pwm0 {
- };
- 
- &gpio2 {
--	interrupts = <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>;
- 	status = "okay";
- };
- 
-@@ -136,6 +128,35 @@ &ihc {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &mac0 {
- 	phy-mode = "sgmii";
- 	phy-handle = <&phy0>;
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-index a8d623ee9fa4c..86234968df486 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-m100pfsevp.dts
-@@ -52,11 +52,36 @@ &i2c1 {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &gpio0 {
--	interrupts = <13>, <14>, <15>, <16>,
--		     <17>, <18>, <19>, <20>,
--		     <21>, <22>, <23>, <24>,
--		     <25>, <26>;
- 	ngpios = <14>;
- 	status = "okay";
- 
-@@ -75,14 +100,6 @@ mmc-sel-hog {
- };
- 
- &gpio2 {
--	interrupts = <13>, <14>, <15>, <16>,
--		     <17>, <18>, <19>, <20>,
--		     <21>, <22>, <23>, <24>,
--		     <25>, <26>, <27>, <28>,
--		     <29>, <30>, <31>, <32>,
--		     <33>, <34>, <35>, <36>,
--		     <37>, <38>, <39>, <40>,
--		     <41>, <42>, <43>, <44>;
- 	status = "okay";
- };
- 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-index ea0808ab10425..510d59153cd07 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-polarberry.dts
-@@ -30,6 +30,35 @@ ddrc_cache_hi: memory@1000000000 {
- 	};
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- /*
-  * phy0 is connected to mac0, but the port itself is on the (optional) carrier
-  * board.
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-index f9a8905794383..8f1908a105671 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-sev-kit.dts
-@@ -56,15 +56,36 @@ &i2c0 {
- 	status = "okay";
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &gpio2 {
--	interrupts = <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>,
--		     <53>, <53>, <53>, <53>;
- 	status = "okay";
- };
- 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-index d1120f5f2c015..bc15530a2979b 100644
---- a/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-+++ b/arch/riscv/boot/dts/microchip/mpfs-tysom-m.dts
-@@ -69,13 +69,36 @@ hwmon: hwmon@45 {
- 	};
- };
- 
-+&irqmux {
-+	interrupt-map = <0 &plic 13>, <1 &plic 14>, <2 &plic 15>,
-+			<3 &plic 16>, <4 &plic 17>, <5 &plic 18>,
-+			<6 &plic 19>, <7 &plic 20>, <8 &plic 21>,
-+			<9 &plic 22>, <10 &plic 23>, <11 &plic 24>,
-+			<12 &plic 25>, <13 &plic 26>,
-+
-+			<32 &plic 27>, <33 &plic 28>, <34 &plic 29>,
-+			<35 &plic 30>, <36 &plic 31>, <37 &plic 32>,
-+			<38 &plic 33>, <39 &plic 34>, <40 &plic 35>,
-+			<41 &plic 36>, <42 &plic 37>, <43 &plic 38>,
-+			<44 &plic 39>, <45 &plic 40>, <46 &plic 41>,
-+			<47 &plic 42>, <48 &plic 43>, <49 &plic 44>,
-+			<50 &plic 45>, <51 &plic 46>, <52 &plic 47>,
-+			<53 &plic 48>, <54 &plic 49>, <55 &plic 50>,
-+
-+			<64 &plic 53>, <65 &plic 53>, <66 &plic 53>,
-+			<67 &plic 53>, <68 &plic 53>, <69 &plic 53>,
-+			<70 &plic 53>, <71 &plic 53>, <72 &plic 53>,
-+			<73 &plic 53>, <74 &plic 53>, <75 &plic 53>,
-+			<76 &plic 53>, <77 &plic 53>, <78 &plic 53>,
-+			<79 &plic 53>, <80 &plic 53>, <81 &plic 53>,
-+			<82 &plic 53>, <83 &plic 53>, <84 &plic 53>,
-+			<85 &plic 53>, <86 &plic 53>, <87 &plic 53>,
-+			<88 &plic 53>, <89 &plic 53>, <90 &plic 53>,
-+			<91 &plic 53>, <92 &plic 53>, <93 &plic 53>,
-+			<94 &plic 53>, <95 &plic 53>;
-+};
-+
- &gpio1 {
--	interrupts = <27>, <28>, <29>, <30>,
--		     <31>, <32>, <33>, <47>,
--		     <35>, <36>, <37>, <38>,
--		     <39>, <40>, <41>, <42>,
--		     <43>, <44>, <45>, <46>,
--		     <47>, <48>, <49>, <50>;
- 	status = "okay";
- };
- 
-diff --git a/arch/riscv/boot/dts/microchip/mpfs.dtsi b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-index 5c2963e269b83..4f0d5bdee3da6 100644
---- a/arch/riscv/boot/dts/microchip/mpfs.dtsi
-+++ b/arch/riscv/boot/dts/microchip/mpfs.dtsi
-@@ -254,7 +254,17 @@ pdma: dma-controller@3000000 {
- 		mss_top_sysreg: syscon@20002000 {
- 			compatible = "microchip,mpfs-mss-top-sysreg", "syscon", "simple-mfd";
- 			reg = <0x0 0x20002000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
- 			#reset-cells = <1>;
-+
-+			irqmux: interrupt-controller@54 {
-+				compatible = "microchip,mpfs-irqmux";
-+				reg = <0x54 0x4>;
-+				#address-cells = <0>;
-+				#interrupt-cells = <1>;
-+				interrupt-map-mask = <0x7f>;
-+			};
- 		};
- 
- 		sysreg_scb: syscon@20003000 {
-@@ -471,36 +481,57 @@ mac1: ethernet@20112000 {
- 		gpio0: gpio@20120000 {
- 			compatible = "microchip,mpfs-gpio";
- 			reg = <0x0 0x20120000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
-+			interrupt-parent = <&irqmux>;
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
-+			interrupts = <0>, <1>, <2>, <3>,
-+				     <4>, <5>, <6>, <7>,
-+				     <8>, <9>, <10>, <11>,
-+				     <12>, <13>;
- 			clocks = <&clkcfg CLK_GPIO0>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			ngpios = <14>;
- 			status = "disabled";
- 		};
- 
- 		gpio1: gpio@20121000 {
- 			compatible = "microchip,mpfs-gpio";
- 			reg = <0x0 0x20121000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
-+			interrupt-parent = <&irqmux>;
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
-+			interrupts = <32>, <33>, <34>, <35>,
-+				     <36>, <37>, <38>, <39>,
-+				     <40>, <41>, <42>, <43>,
-+				     <44>, <45>, <46>, <47>,
-+				     <48>, <49>, <50>, <51>,
-+				     <52>, <53>, <54>, <55>;
- 			clocks = <&clkcfg CLK_GPIO1>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			ngpios = <24>;
- 			status = "disabled";
- 		};
- 
- 		gpio2: gpio@20122000 {
- 			compatible = "microchip,mpfs-gpio";
- 			reg = <0x0 0x20122000 0x0 0x1000>;
--			interrupt-parent = <&plic>;
-+			interrupt-parent = <&irqmux>;
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
-+			interrupts = <64>, <65>, <66>, <67>,
-+				     <68>, <69>, <70>, <71>,
-+				     <72>, <73>, <74>, <75>,
-+				     <76>, <77>, <78>, <79>,
-+				     <80>, <81>, <82>, <83>,
-+				     <84>, <85>, <86>, <87>,
-+				     <88>, <89>, <90>, <91>,
-+				     <92>, <93>, <94>, <95>;
- 			clocks = <&clkcfg CLK_GPIO2>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
-+			ngpios = <32>;
- 			status = "disabled";
- 		};
- 
--- 
-2.51.0
-
+Frank
+>
 
