@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-274019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274020-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wCHrGadLsWlCtAIAu9opvQ
-	(envelope-from <devicetree+bounces-274019-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:01:59 +0100
+	id wC5vFedKsWlCtAIAu9opvQ
+	(envelope-from <devicetree+bounces-274020-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:58:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3298262AFC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 12:01:58 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id C582D262A8D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:58:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 45B5C3010509
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:58:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B5765308F8D5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72FB93CD8B1;
-	Wed, 11 Mar 2026 10:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70CAF3D524E;
+	Wed, 11 Mar 2026 10:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AB7IXRQ8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pu0KEVVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16C162DECBF
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8B3E3D34B8
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773226701; cv=none; b=R8UEjUWeweY0bGD/SNQRUgYjnsd/YAwcCfTL37P4deCJCmu2vcB8/HoYizqnUJMkMJ4ISq4uYjkIiE4TE+JIHOr2ZJA3qBmMupRln6cLIKbcMiT49GY3O3tLAi5aGTQFEk7Njt4qfzVAS/Qb8yS61M3F6xcgYxJMtts3PwrGp7c=
+	t=1773226706; cv=none; b=tzuvSlHF5iSVA1mt2iAw9ZQN4tlN5NeF8sKjG8bEDe38qk7wmLxamvhsVfSPZV2HnxWbhnVh7wpQBqAJ41SyUZexIqmriBDHWOBYef3F7hh7wWcZgH2Oa3s8L8AnabzLFUo+098ar7MinuiE5Ttigq6GrRaPzWdxFVTg+9BCBS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773226701; c=relaxed/simple;
-	bh=XaFRrpC75uoy87p8CJS4Vk3yU15qassWo8itQbCwycg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Hu48t6V6GYUTQOCNXlZEXEqXlXVysgzgIIyLqlVVegnEpbUjlg7pFL+r3/EfxouccJAxdxQmP3XAZ25XQxjPC4w+tlro4k7QpJIoS0CzrDE9fXZOyQLTNVOyt3I5LIvuEd/sf3MHEd378ieZNemIQCQpBmwRmXdwJ3KuOS5NY/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AB7IXRQ8; arc=none smtp.client-ip=209.85.221.50
+	s=arc-20240116; t=1773226706; c=relaxed/simple;
+	bh=5+YpbmPk+2Hz0y7cbOQvMAf7V24uiqRccSFMB9vS5ig=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=iI2hd7UFb8oQPO5QL6bFavYK62TsBFe4qNLWudQP5wlWjE5CrFHCDdkc5Ngqxll7bq8kZsvtSIVrgl30woch62hmElQ6JQZONIpb60UHHZiPIzehjcIi98XNx3AHaYI7wH7aEFq2NeBNsFEWQeYw32aC6e1WOt/amJB1VluRNAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Pu0KEVVp; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-439d8df7620so3696493f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 03:58:19 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-4853e1ce427so35265385e9.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 03:58:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773226698; x=1773831498; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pYouneEcVkE2tqHKMaEKrSmeP84OOUsZh09T+ow9nVM=;
-        b=AB7IXRQ80OD0cHJ1VCY94GKzzBbwAamIj8IPeasa4uZlJlqelT5M9pSuqcfAAvrmcM
-         T9NFAst99fRetrBx67c/WTA0SNkA3O0IZMDARNDCVX4hIXB1zuZBCZqtAwxOoXEKztlf
-         d5xhEAKahnAmUoTl2SOaQRJIp+dHCli+yMJ8KwS3wLtfnnn2p/zNlzWgnt4o+C5HA9GT
-         dNABE0NMRhnwb/3hHRqidlrAuRGFTyMBpZrxRfIQU5q/sX8SLoP7r361nPqwTDFFBnS7
-         jFpr3fKE/caLFL2ueh04eteKorGIgjiSoci5syBy23UefEro5wCRrsqfj4iz/xTXj5cv
-         sI3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773226698; x=1773831498;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1773226703; x=1773831503; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pYouneEcVkE2tqHKMaEKrSmeP84OOUsZh09T+ow9nVM=;
-        b=jOHyva18pfz6NXZf/gniJ3gft7ZmPo6rVFv4nZdCjYfDwrDStqCRPk5bu7nSbVUmnY
-         p1v/1kHN5i+H0LfZTxhyzPy4k2QWqaT7AWUtPfD7YL4rI6O0alGTWw4nrVh/N368Pj5r
-         z0sHOjh+3Gz+iHtOgWY/m8LgvrxTYMdO7HpgTpjE6CeDJVIJauIPEFBqt7ycPn7ElehJ
-         h1cXMz+AFnJGcSGW+IOn5WOfU6Z1DzFEd8oVkTvMNVPOL3GTmOuT2OiNnhsas8hXQvoX
-         kQv6UH8xE3hCXJtPrnG3BgV5rw3lbcoU8jyjIOlylkohO/1lnht6eis6YQPBcv5aiwG7
-         BZQw==
-X-Forwarded-Encrypted: i=1; AJvYcCWQY11tpL5oTw+DHhDk2N188U6kACUHcpumvnwC0srYI18devnO4TGjAsCq5V2adg6jr2jBg2XUfP44@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0+dsPhnOcrrJfR+/vl32/o17aggt1z1X3e9LDyIjkL+wvYjn9
-	gRn/MxJKs0wYFzPUTB1HU6qao+mKXLZ0nQ0z6AkVEM1EV0jjPUNmTA5U
-X-Gm-Gg: ATEYQzxhXoWMfq8VeDe3ojfTP8CQq4kNWjhnFnFF0bkNvybuNfd3hR3iUoq0MPK7JFD
-	gv9qsdN0851rDba9R+FweWIlWezNhatsNYTrijCRC0u9iBxgVeT7LFxqdku5/UG8HZ1IFZSumhv
-	YX5iWe6/IsoSCcIfg8FS9aXyIq7nTEZNx/wDOQBziCH6uxfbJK89SW+UCuLNipTNYShTK1LpX3Z
-	X42zX9UtD2Jrn6xn7aLf/mHJHTWJ/iaR7Jagsf2CMAEivWEoaeSNa7NOygxu94hvmfPfndXC0bn
-	lvUBLwjHkL2dms/BHGO+4mG7TUhpPo43aBGWGoTu8HdNZugxUB01NWft+ge4ATL3UkVSmT58a4x
-	VHsEpdv9lN4DWCpicq92aoRbL83oQbnxdv2FZ38UivEyryhV8zCwH/NkkeoXJAAQWm5YQB7tzt1
-	etvB7qti0ujvGqRWR7s/3kVcR4GH1TfYS1PW4HVA6+hkf3Um6bzmof3eEHPO2VE+FzysMhJWec
-X-Received: by 2002:a05:6000:40de:b0:439:ca7b:f4b with SMTP id ffacd0b85a97d-439f8414530mr3913841f8f.50.1773226698312;
-        Wed, 11 Mar 2026 03:58:18 -0700 (PDT)
+        bh=W83A5PfaPs7aR4943/4m98NPOSE8ZZIsXZPPJaIjP6o=;
+        b=Pu0KEVVpJhn/O1QkSHqKiwGoF8PwEqJCLMwYXIOZ0jRwf262M08477Y6GLx+vbUJi+
+         8DkJamf91af9yg/VCtCUOM1r/rdiay5MaEXwJgY72j12PXA2ZyEh60ci6803MWSxwWYq
+         EcfwecZb9KYdBhsfT/AtFjzRZo3VZYXZ0WCzlGivV9AHVBAHE6QqRcT2AGhmeOLC+zmw
+         4Omy8b2TtNCUWTSXk3Dz5sqaPz45wAWZY1M6Go1IDlDo2zrWnUzTob0psIt1pOeeLjRb
+         Jlhjwqrk8wzxJLO1IdKOC/NK4hcO165cMCdB6gggkV8sRCMdAsMZXTHytL+L5OGqMSBU
+         6p0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773226703; x=1773831503;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=W83A5PfaPs7aR4943/4m98NPOSE8ZZIsXZPPJaIjP6o=;
+        b=kOycgl/MM3+sBdlg6ukGHqtL6453nh6K6biMccPpJYp4smSw89EBVl+5QeYLAkucaH
+         ILEFcY8f/KZfjHV7q7TSkLnxpJVbEw+6ZMxSbnj/nM6ktGwvvMOREhzMdsvGbN9ZP0gJ
+         +F5o9BhzPVYFC8jesrG3TTE5rQhQI1KBJejSMlNC5VKNFwkclpxb7VrRnvPWOxBox/8F
+         4ALZPjLGTFgHsqpJi5SpyoWubpAPjneNzER721Ip3y6COYQSrE76Hn+lTE5KSW492q4A
+         KT8w0hsw//frnrr/IbepMAd82OuCm+kchKRw4OX6dEgKoscbirDIhTT93n+enTHSMGOD
+         f00g==
+X-Forwarded-Encrypted: i=1; AJvYcCXoNRSPod8b4heqb4y/Sarn6wvCbBHqlgtTUNvS/6TaxRkq9eNdpa9bDh5T2FxpmJAXfFqasnVNmfTy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXkX1KAwDrlDxtT0K4q8SRu1QlHbcsSxp5QvSL+g8X5T8rd3nm
+	NpwuidcWAWQBsT9qU+r0f1YYq7aaV+4Be70cux8GsA79g6s43WvIAdNgmfYe7CEbWYI=
+X-Gm-Gg: ATEYQzzsvQgeOz4OwLxXUcjzgRP2w0c8N/mCva+pg12R9HpTOr7g9/0D1r2AXUqUcWS
+	HtQxwyQOCck7ojsvDdbMK0AsXOpY2nu9uji4lfAwuuqwqQC63dNQ0IhBvexIDeawYB8LGVQ9zf3
+	Kc6CKL9Cn/gCyzSCCpLfgkengJD8xyiJfDOYF0MgZ0Hz8EssY73lOFckoBuPjj2HtYroNX/UFW0
+	oecnMYCmDWtUyRyQ4DnCXD2zoo574PzsIYgn2009DB91Kb1nx5L46YbLs68ZIoIabUqqhPf15jE
+	1ejktMASEOmgT2shdfyS1MEHDYyiW7wrLh0v0aoD3Rkbo4AoQMWPCdo5PpqN/XLfv7l+a6PVpUr
+	8MHaSH6zF+KOB6/AysnHIqt8xGWvI5lWLdcF6+R30Vvkd8nR+cGgUnJgoDGrAHDuR5Nx//AGgrS
+	635BUXXKF/JTzHV0y/hMW1y+YcLTZzaYAEte9shj/GQUt5O1dY1RUxCNbj4l9T0eeMiXSvS/0m
+X-Received: by 2002:a05:600c:c0c9:b0:485:3fa9:358c with SMTP id 5b1f17b1804b1-4854b100b5bmr25908855e9.17.1773226702944;
+        Wed, 11 Mar 2026 03:58:22 -0700 (PDT)
 Received: from flaviu-Aspire-E5-572G.. ([5.15.232.50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fc0ba972sm592347f8f.24.2026.03.11.03.58.17
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fc0ba972sm592347f8f.24.2026.03.11.03.58.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 03:58:17 -0700 (PDT)
+        Wed, 11 Mar 2026 03:58:22 -0700 (PDT)
 From: Flaviu Nistor <flaviu.nistor@gmail.com>
 To: Jean Delvare <jdelvare@suse.com>,
 	Guenter Roeck <linux@roeck-us.net>,
@@ -84,10 +86,12 @@ Cc: linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Flaviu Nistor <flaviu.nistor@gmail.com>
-Subject: [PATCH 1/2] dt-bindings: hwmon: lm75: Add label property
-Date: Wed, 11 Mar 2026 12:58:07 +0200
-Message-ID: <20260311105809.107357-1-flaviu.nistor@gmail.com>
+Subject: [PATCH 2/2] hwmon: lm75: Add support for label
+Date: Wed, 11 Mar 2026 12:58:08 +0200
+Message-ID: <20260311105809.107357-2-flaviu.nistor@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260311105809.107357-1-flaviu.nistor@gmail.com>
+References: <20260311105809.107357-1-flaviu.nistor@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,21 +99,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: C3298262AFC
+X-Rspamd-Queue-Id: C582D262A8D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274019-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274020-lists,devicetree=lfdr.de];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -125,38 +129,85 @@ X-Spamd-Result: default: False [-0.16 / 15.00];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-Add support for an optional label property similar to other hwmon devices.
-This allows, in case of boards with multiple LM75 sensors, to assign
-distinct names to each instance.
+Add support for label sysfs attribute similar to other hwmon devices.
+This is particularly useful for systems with multiple sensors on the
+same board, where identifying individual sensors is much easier since
+labels can be defined via device tree.
 
 Signed-off-by: Flaviu Nistor <flaviu.nistor@gmail.com>
 ---
- Documentation/devicetree/bindings/hwmon/lm75.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/hwmon/lm75.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/hwmon/lm75.yaml b/Documentation/devicetree/bindings/hwmon/lm75.yaml
-index 0b9fda81e3ec..cde6299c9b4f 100644
---- a/Documentation/devicetree/bindings/hwmon/lm75.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/lm75.yaml
-@@ -87,6 +87,7 @@ examples:
-         compatible = "st,stlm75";
-         reg = <0x48>;
-         vs-supply = <&vs>;
-+        label = "somelabel";
-       };
-     };
-   - |
-@@ -101,5 +102,6 @@ examples:
-         vs-supply = <&vs>;
-         interrupt-parent = <&gpio1>;
-         interrupts = <17 IRQ_TYPE_EDGE_BOTH>;
-+        label = "somelabel";
-       };
-     };
+diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
+index eda93a8c23c9..66178ac63e4f 100644
+--- a/drivers/hwmon/lm75.c
++++ b/drivers/hwmon/lm75.c
+@@ -108,6 +108,7 @@ static const unsigned short normal_i2c[] = { 0x48, 0x49, 0x4a, 0x4b, 0x4c,
+ #define PCT2075_REG_IDLE	0x04
+ 
+ struct lm75_data {
++	const char *label;
+ 	struct regmap			*regmap;
+ 	u16				orig_conf;
+ 	u8				resolution;	/* In bits, 9 to 16 */
+@@ -363,6 +364,16 @@ static irqreturn_t lm75_alarm_handler(int irq, void *private)
+ 	return IRQ_HANDLED;
+ }
+ 
++static int lm75_read_string(struct device *dev, enum hwmon_sensor_types type,
++			    u32 attr, int channel, const char **str)
++{
++	struct lm75_data *data = dev_get_drvdata(dev);
++
++	*str = data->label;
++
++	return 0;
++}
++
+ static int lm75_read(struct device *dev, enum hwmon_sensor_types type,
+ 		     u32 attr, int channel, long *val)
+ {
+@@ -534,6 +545,9 @@ static umode_t lm75_is_visible(const void *data, enum hwmon_sensor_types type,
+ 		switch (attr) {
+ 		case hwmon_temp_input:
+ 			return 0444;
++		case hwmon_temp_label:
++		/* Hide label node if label is not provided */
++			return (config_data->label) ? 0444 : 0;
+ 		case hwmon_temp_max:
+ 		case hwmon_temp_max_hyst:
+ 			return 0644;
+@@ -553,13 +567,14 @@ static const struct hwmon_channel_info * const lm75_info[] = {
+ 	HWMON_CHANNEL_INFO(chip,
+ 			   HWMON_C_REGISTER_TZ | HWMON_C_UPDATE_INTERVAL),
+ 	HWMON_CHANNEL_INFO(temp,
+-			   HWMON_T_INPUT | HWMON_T_MAX | HWMON_T_MAX_HYST |
++			   HWMON_T_INPUT | HWMON_T_LABEL | HWMON_T_MAX | HWMON_T_MAX_HYST |
+ 			   HWMON_T_ALARM),
+ 	NULL
+ };
+ 
+ static const struct hwmon_ops lm75_hwmon_ops = {
+ 	.is_visible = lm75_is_visible,
++	.read_string = lm75_read_string,
+ 	.read = lm75_read,
+ 	.write = lm75_write,
+ };
+@@ -721,6 +736,9 @@ static int lm75_generic_probe(struct device *dev, const char *name,
+ 	/* needed by custom regmap callbacks */
+ 	dev_set_drvdata(dev, data);
+ 
++	/* Save the connected input label if available */
++	of_property_read_string(dev->of_node, "label", &data->label);
++
+ 	data->kind = kind;
+ 	data->regmap = regmap;
+ 
 -- 
 2.43.0
 
