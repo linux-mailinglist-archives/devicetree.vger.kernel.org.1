@@ -1,268 +1,312 @@
-Return-Path: <devicetree+bounces-273923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273924-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOzFG0AhsWmOqwIAu9opvQ
-	(envelope-from <devicetree+bounces-273923-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:01:04 +0100
+	id 0CfDK6AgsWmOqwIAu9opvQ
+	(envelope-from <devicetree+bounces-273924-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:58:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3FD825E56D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 09:01:03 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EEE425E4B8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:58:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0934032D4749
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:55:40 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 7141230055A4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 468FD3B6C1C;
-	Wed, 11 Mar 2026 07:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF7034C9AB;
+	Wed, 11 Mar 2026 07:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b00lRnyU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZSZjfp5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDEAA3B4EA6;
-	Wed, 11 Mar 2026 07:54:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D00FD3B388C
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773215643; cv=none; b=dNRXl7mqvdrNXc3yYCtWgYoUbwJDbhHe+2ncVTMZJEowkct9gF2FuHw5/QA6Z56ADFIJ+wi8fbiqaOqY6Q8SgE4VHk7IxCNBhfIvRs6Ua2Xa+I/K/Eg9o4GoczNH7QOtE5NaMv7ZFtNTe+mGTG5II13YXDVIBNeFLsb1lr4PgyM=
+	t=1773215720; cv=none; b=NpX+DUtNZ+EmfC2dPy6Al1MOet/mR7js3fmZY/QH3gz0XTRE12naByNnbycmu0GVtuyHAxdVs7EbW6xjHydAFhEj6hvBy4g/Jp3VVFKoZRl40gD/j85SE6f/FGjtIrk+JK4tUwuIGJLQW6dkxu+kXfTePllxz+xVVpc943d7LOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773215643; c=relaxed/simple;
-	bh=ZezFSr32pT7ms/HOoEkJXINjhxxXzSKhdAF4TkA5u20=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Dz0yG8JozYrfawZtHAtwQfeGFksg73WIUJUpzmDZb8iUIqEYwJXSpzwx0gCnzpbj363+iaJTqnenEYd6TyeU47aRWhzt8kfFAO6ALKScFkA6Lt0hlzxGE8rTkD5ADgO86U+IBuRJ+paEDkytq1w1BYm89eXudFmlgGTm859wkrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b00lRnyU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3B16BC2BCC4;
-	Wed, 11 Mar 2026 07:54:02 +0000 (UTC)
+	s=arc-20240116; t=1773215720; c=relaxed/simple;
+	bh=3/KV6BN1Coprf65fKPqeCAuCthZOshQJIThWLRahsb8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QlaqmPt6b5atVs9buYd/ANz1CexCgP+fvf2FORSjqNgGlPQw9eFDUdf+jM2xbJC024w+zEFNoXSylIKqNXjgcPSXaK4yNS0UvfrVg97kjnCnTn+OWU2yapYN/3Q96OeR4+fjBYbAkqn9pTUokBHHGv9mihz1+i5RiPlRzDySfio=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZSZjfp5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83A61C2BCB9
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:55:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773215642;
-	bh=ZezFSr32pT7ms/HOoEkJXINjhxxXzSKhdAF4TkA5u20=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=b00lRnyUtXN2bdCot0RGwzLGY6m4k4YoUJCCgcreonYpENDWIiSG3+7YCmpc+MLwy
-	 g/S1QNPc/XxYy5ooqRGTaRTbRSEWz3BoferZXizMBKsDALwORKpIVzERonxiD1dE50
-	 OC1eWJCXOeSsuuse4NnkQqxB0o8f0UugauJ+jLLp22N68/9VgpsLLIKMLcbtttd5+h
-	 dEo8hwgn9k+9qe+9trs8J5c8/AH+V14nQCHHIcxSuUxbfX/r5SsurNoAcA6wry5dHo
-	 awp+6d4Wcw6WRga2WbKYIgrtCHa6Ks6wkT6/5TZwqpsDKQ4UBYv1l9anv5di2WShBx
-	 vzsEqlC+SqPhA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 317C2FD0651;
-	Wed, 11 Mar 2026 07:54:02 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Wed, 11 Mar 2026 08:54:00 +0100
-Subject: [PATCH v9 5/5] stmmac: s32: enable support for Multi-IRQ mode
+	s=k20201202; t=1773215720;
+	bh=3/KV6BN1Coprf65fKPqeCAuCthZOshQJIThWLRahsb8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=SZSZjfp5sINlFNkMzAKm3HL6yQnaxr6/cc3PDsKiAMj73T4RSN8pbzT6Iq0ZS+7rD
+	 WumQhEOME+O8kveg1A6psuxcrp7pHZE0Y+jBmLle9trQLi4H/eUzT4mAgKM+Nhpni4
+	 3VQLczcpP83P0qjJV+Q4t2eR7znx+YEWK2oGKHzJVoTWMSj64FnRXRmGYCFURYLRZW
+	 nvaSrtV31xiG4mTFyCbvQZw0Zo8em8WfZG+gcyD/qn5SgSRV0XXgYuB9+u0Nzrx2jP
+	 yphqVlUHxHBUkhL7JF0mxz23l7z3KOLIzl+sW1cJNzN2BnLeMJIoB2hgWZLKpWgfUj
+	 m+JHB9kpQmOJw==
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-660dcafc85aso13318300a12.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 00:55:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWxDpPbDiyccyWMoM0sQ5suz7/0B1Drah5x0Qzjfk2MtVhAp/NZfLcd5mdGfnXGHSoczqYJKqx2tYdt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZXKNDP7PsRpStTlHSOF7+df8y99l42qrYMh0OLvHoVBxYN8lk
+	IuTIwnaTqZ7FggSqPENGEU4IWwDoRDXzUVTZFC3kVfDhYUHjCD22nvzexnx+W7DRhw4l/yfeXDS
+	X4uWSqDlxqLYhEV5ifA+fy7iIMW9q4Uc=
+X-Received: by 2002:a05:6402:13d2:b0:661:8aef:7cf2 with SMTP id
+ 4fb4d7f45d1cf-663196d81bcmr859875a12.13.1773215718873; Wed, 11 Mar 2026
+ 00:55:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260311-dwmac_multi_irq-v9-5-f0c03ef8d01f@oss.nxp.com>
-References: <20260311-dwmac_multi_irq-v9-0-f0c03ef8d01f@oss.nxp.com>
-In-Reply-To: <20260311-dwmac_multi_irq-v9-0-f0c03ef8d01f@oss.nxp.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- Chester Lin <chester62515@gmail.com>, Matthias Brugger <mbrugger@suse.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Frank Li <Frank.Li@nxp.com>
-Cc: netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, devicetree@vger.kernel.org, rmk+kernel@armlinux.org.uk, 
- vladimir.oltean@nxp.com, boon.khai.ng@altera.com, 
- "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773215640; l=4702;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=Ccg7iBM1Fl+oVJULpuGtFE+LiMWCMv+ramMC+vtotcs=;
- b=H1HjAGDcAvz+N/DzzuCLtTTeF8bmyfeSGvsBX3cSxarhsY6R8mZcZ/QB/tRoqR1j1G1QbAzym
- M8btA7TSbpFCd4pwzRc+edowgA81SGyxk0PEPxH3dWiOIqVZ7K9N3MT
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Reply-To: jan.petrous@oss.nxp.com
-X-Rspamd-Queue-Id: B3FD825E56D
+References: <cover.1773107475.git.zhoubinbin@loongson.cn> <8fc0f9483b0ef0ff52ac5588f029f329098f45fc.1773107475.git.zhoubinbin@loongson.cn>
+In-Reply-To: <8fc0f9483b0ef0ff52ac5588f029f329098f45fc.1773107475.git.zhoubinbin@loongson.cn>
+From: Huacai Chen <chenhuacai@kernel.org>
+Date: Wed, 11 Mar 2026 15:55:09 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H7D0oGeWYCGXwPJxUBBGibNQ27B_fAFThDYXZ-+Qr7RMA@mail.gmail.com>
+X-Gm-Features: AaiRm51v6W5qQjmvocXDqwh-i2RsvlNl421YyDP4GM-m6YQdrKxjcqTye-AFkhU
+Message-ID: <CAAhV-H7D0oGeWYCGXwPJxUBBGibNQ27B_fAFThDYXZ-+Qr7RMA@mail.gmail.com>
+Subject: Re: [PATCH 2/6] ASoC: loongson: Combined regmap definitions
+To: Binbin Zhou <zhoubinbin@loongson.cn>
+Cc: Binbin Zhou <zhoubb.aaron@gmail.com>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Xuerui Wang <kernel@xen0n.name>, 
+	loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Rspamd-Queue-Id: 4EEE425E4B8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273923-lists,devicetree=lfdr.de,jan.petrous.oss.nxp.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,gmail.com,foss.st.com,suse.com,oss.nxp.com,nxp.com,pengutronix.de];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[29];
+	TAGGED_FROM(0.00)[bounces-273924-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,loongson.cn,kernel.org,perex.cz,suse.com,xen0n.name,lists.linux.dev,vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[devnull@kernel.org,devicetree@vger.kernel.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt,kernel];
-	HAS_REPLYTO(0.00)[jan.petrous@oss.nxp.com];
+	FROM_NEQ_ENVFROM(0.00)[chenhuacai@kernel.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nxp.com:email,oss.nxp.com:replyto,oss.nxp.com:mid,s32g399aevb3:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,suse.com:email,4033c000:email]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:rdns,sto.lore.kernel.org:helo,loongson.cn:email]
 X-Rspamd-Action: no action
 
-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+Hi, Binbin,
 
-Based on previous changes in platform driver, the vendor
-glue driver can enable Multi-IRQ mode, if needed.
+On Wed, Mar 11, 2026 at 2:37=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
+>
+> For Loongson I2S, the difference between i2s_plat and i2s_pci is more in
+> the external interface, the internal registers are accessed in the same
+> way, so the regmap definitions can be united to simplify the code.
+>
+> Also, the following warning for the i2s_plat driver will be eliminated:
+>
+> loongson-i2s-plat loongson-i2s: using zero-initialized flat cache, this m=
+ay cause unexpected behavior.
+>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  sound/soc/loongson/loongson_i2s.c      | 55 ++++++++++++++++++++++++++
+>  sound/soc/loongson/loongson_i2s.h      |  1 +
+>  sound/soc/loongson/loongson_i2s_pci.c  | 54 -------------------------
+>  sound/soc/loongson/loongson_i2s_plat.c |  8 ----
+>  4 files changed, 56 insertions(+), 62 deletions(-)
+>
+> diff --git a/sound/soc/loongson/loongson_i2s.c b/sound/soc/loongson/loong=
+son_i2s.c
+> index e336656e13eb..09ccab0c535e 100644
+> --- a/sound/soc/loongson/loongson_i2s.c
+> +++ b/sound/soc/loongson/loongson_i2s.c
+> @@ -272,5 +272,60 @@ const struct dev_pm_ops loongson_i2s_pm =3D {
+>  };
+>  EXPORT_SYMBOL_GPL(loongson_i2s_pm);
+>
+> +static bool loongson_i2s_wr_reg(struct device *dev, unsigned int reg)
+> +{
+> +       switch (reg) {
+> +       case LS_I2S_CFG:
+> +       case LS_I2S_CTRL:
+> +       case LS_I2S_RX_DATA:
+> +       case LS_I2S_TX_DATA:
+> +       case LS_I2S_CFG1:
+> +               return true;
+> +       default:
+> +               return false;
+> +       };
+> +}
+The 'write' function is usually after the 'read' function.
 
-To get enabled Multi-IRQ mode for dwmac-s32, the driver checks:
+> +
+> +static bool loongson_i2s_rd_reg(struct device *dev, unsigned int reg)
+> +{
+> +       switch (reg) {
+> +       case LS_I2S_VER:
+> +       case LS_I2S_CFG:
+> +       case LS_I2S_CTRL:
+> +       case LS_I2S_RX_DATA:
+> +       case LS_I2S_TX_DATA:
+> +       case LS_I2S_CFG1:
+> +               return true;
+> +       default:
+> +               return false;
+> +       };
+> +}
+> +
+> +static bool loongson_i2s_volatile_reg(struct device *dev, unsigned int r=
+eg)
+> +{
+> +       switch (reg) {
+> +       case LS_I2S_CFG:
+> +       case LS_I2S_CTRL:
+> +       case LS_I2S_RX_DATA:
+> +       case LS_I2S_TX_DATA:
+> +       case LS_I2S_CFG1:
+> +               return true;
+> +       default:
+> +               return false;
+> +       };
+> +}
+> +
+> +const struct regmap_config loongson_i2s_regmap_config =3D {
+> +       .reg_bits =3D 32,
+> +       .reg_stride =3D 4,
+> +       .val_bits =3D 32,
+> +       .max_register =3D LS_I2S_CFG1,
+> +       .writeable_reg =3D loongson_i2s_wr_reg,
+> +       .readable_reg =3D loongson_i2s_rd_reg,
+> +       .volatile_reg =3D loongson_i2s_volatile_reg,
+> +       .cache_type =3D REGCACHE_FLAT,
+> +};
+> +EXPORT_SYMBOL_GPL(loongson_i2s_regmap_config);
+> +
+>  MODULE_LICENSE("GPL");
+>  MODULE_DESCRIPTION("Common functions for loongson I2S controller driver"=
+);
+> diff --git a/sound/soc/loongson/loongson_i2s.h b/sound/soc/loongson/loong=
+son_i2s.h
+> index c8052a762c1b..e73ffa954ec9 100644
+> --- a/sound/soc/loongson/loongson_i2s.h
+> +++ b/sound/soc/loongson/loongson_i2s.h
+> @@ -65,6 +65,7 @@ struct loongson_i2s {
+>         u32 sysclk;
+>  };
+>
+> +extern const struct regmap_config loongson_i2s_regmap_config;
+>  extern const struct dev_pm_ops loongson_i2s_pm;
+>  extern struct snd_soc_dai_driver loongson_i2s_dai;
+>
+> diff --git a/sound/soc/loongson/loongson_i2s_pci.c b/sound/soc/loongson/l=
+oongson_i2s_pci.c
+> index 1ea5501a97f8..dea1e4ebee29 100644
+> --- a/sound/soc/loongson/loongson_i2s_pci.c
+> +++ b/sound/soc/loongson/loongson_i2s_pci.c
+> @@ -18,60 +18,6 @@
+>
+>  #define DRIVER_NAME "loongson-i2s-pci"
+>
+> -static bool loongson_i2s_wr_reg(struct device *dev, unsigned int reg)
+> -{
+> -       switch (reg) {
+> -       case LS_I2S_CFG:
+> -       case LS_I2S_CTRL:
+> -       case LS_I2S_RX_DATA:
+> -       case LS_I2S_TX_DATA:
+> -       case LS_I2S_CFG1:
+> -               return true;
+> -       default:
+> -               return false;
+> -       };
+> -}
+> -
+> -static bool loongson_i2s_rd_reg(struct device *dev, unsigned int reg)
+> -{
+> -       switch (reg) {
+> -       case LS_I2S_VER:
+> -       case LS_I2S_CFG:
+> -       case LS_I2S_CTRL:
+> -       case LS_I2S_RX_DATA:
+> -       case LS_I2S_TX_DATA:
+> -       case LS_I2S_CFG1:
+> -               return true;
+> -       default:
+> -               return false;
+> -       };
+> -}
+> -
+> -static bool loongson_i2s_volatile_reg(struct device *dev, unsigned int r=
+eg)
+> -{
+> -       switch (reg) {
+> -       case LS_I2S_CFG:
+> -       case LS_I2S_CTRL:
+> -       case LS_I2S_RX_DATA:
+> -       case LS_I2S_TX_DATA:
+> -       case LS_I2S_CFG1:
+> -               return true;
+> -       default:
+> -               return false;
+> -       };
+> -}
+> -
+> -static const struct regmap_config loongson_i2s_regmap_config =3D {
+> -       .reg_bits =3D 32,
+> -       .reg_stride =3D 4,
+> -       .val_bits =3D 32,
+> -       .max_register =3D LS_I2S_CFG1,
+> -       .writeable_reg =3D loongson_i2s_wr_reg,
+The same.
 
-  1) property of 'snps,mtl-xx-config' subnode
-     defines 'snps,xx-queues-to-use' bigger then one, ie:
+Huacai
 
-     ethernet@4033c000 {
-         compatible = "nxp,s32g2-dwmac";
-         ...
-         snps,mtl-rx-config = <&mtl_rx_setup>;
-         ...
-
-         mtl_rx_setup: rx-queues-config {
-             snps,rx-queues-to-use = <2>;
-         };
-
-  2) queue based IRQs are set, ie:
-
-     ethernet@4033c000 {
-         compatible = "nxp,s32g2-dwmac";
-         ...
-         interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>,
-                      /* CHN 0: tx, rx */
-                      <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>,
-                      /* CHN 1: tx, rx */
-                      <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>,
-                      <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
-         interrupt-names = "macirq",
-                           "tx-queue-0", "rx-queue-0",
-                           "tx-queue-1", "rx-queue-1";
-
-If those prerequisites are met, the driver switches to Multi-IRQ mode,
-using per-queue IRQs for rx/tx data pathr:
-
-[    1.387045] s32-dwmac 4033c000.ethernet: Multi-IRQ mode (per queue IRQs) selected
-
-Now the driver owns all queues IRQs:
-
-root@s32g399aevb3:~# grep eth /proc/interrupts
- 29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
- 30:    0    0    0    0    0    0    0    0    GICv3  91 Level   eth0:rx-0
- 31:    0    0    0    0    0    0    0    0    GICv3  93 Level   eth0:rx-1
- 32:    0    0    0    0    0    0    0    0    GICv3  95 Level   eth0:rx-2
- 33:    0    0    0    0    0    0    0    0    GICv3  97 Level   eth0:rx-3
- 34:    0    0    0    0    0    0    0    0    GICv3  99 Level   eth0:rx-4
- 35:    0    0    0    0    0    0    0    0    GICv3  90 Level   eth0:tx-0
- 36:    0    0    0    0    0    0    0    0    GICv3  92 Level   eth0:tx-1
- 37:    0    0    0    0    0    0    0    0    GICv3  94 Level   eth0:tx-2
- 38:    0    0    0    0    0    0    0    0    GICv3  96 Level   eth0:tx-3
- 39:    0    0    0    0    0    0    0    0    GICv3  98 Level   eth0:tx-4
-
-Otherwise, if one of the prerequisite don't met, the driver
-continue with MAC IRQ mode:
-
-[    1.387045] s32-dwmac 4033c000.ethernet: MAC IRQ mode selected
-
-And only MAC IRQ will be attached:
-
-root@s32g399aevb3:~# grep eth /proc/interrupts
- 29:    0    0    0    0    0    0    0    0    GICv3  89 Level   eth0:mac
-
-What represents the original MAC IRQ mode and is fully backward
-compatible.
-
-Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
----
- drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c | 36 ++++++++++++++++++++++++-
- 1 file changed, 35 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-index af594a096676..d4e0c9f44fb3 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-s32.c
-@@ -2,7 +2,7 @@
- /*
-  * NXP S32G/R GMAC glue layer
-  *
-- * Copyright 2019-2024 NXP
-+ * Copyright 2019-2026 NXP
-  *
-  */
- 
-@@ -110,6 +110,37 @@ static void s32_gmac_exit(struct device *dev, void *priv)
- 	clk_disable_unprepare(gmac->rx_clk);
- }
- 
-+static void s32_gmac_setup_multi_irq(struct device *dev,
-+				     struct plat_stmmacenet_data *plat,
-+				     struct stmmac_resources *res)
-+{
-+	int i;
-+
-+	/* RX IRQs */
-+	STMMAC_FOREACH_MTL_QUEUE(i, plat->rx_queues_to_use) {
-+		if (res->rx_irq[i] <= 0) {
-+			dev_dbg(dev, "Missing RX queue %d interrupt\n", i);
-+			goto mac_irq_mode;
-+		}
-+	}
-+
-+	/* TX IRQs */
-+	STMMAC_FOREACH_MTL_QUEUE(i, plat->tx_queues_to_use) {
-+		if (res->tx_irq[i] <= 0) {
-+			dev_dbg(dev, "Missing TX queue %d interrupt\n", i);
-+			goto mac_irq_mode;
-+		}
-+	}
-+
-+	plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
-+	dev_info(dev, "Multi-IRQ mode (per queue IRQs) selected\n");
-+	return;
-+
-+mac_irq_mode:
-+	plat->flags &= ~STMMAC_FLAG_MULTI_MSI_EN;
-+	dev_info(dev, "MAC IRQ mode selected\n");
-+}
-+
- static int s32_dwmac_probe(struct platform_device *pdev)
- {
- 	struct plat_stmmacenet_data *plat;
-@@ -165,6 +196,9 @@ static int s32_dwmac_probe(struct platform_device *pdev)
- 	plat->core_type = DWMAC_CORE_GMAC4;
- 	plat->pmt = 1;
- 	plat->flags |= STMMAC_FLAG_SPH_DISABLE;
-+
-+	s32_gmac_setup_multi_irq(dev, plat, &res);
-+
- 	plat->rx_fifo_size = 20480;
- 	plat->tx_fifo_size = 20480;
- 
-
--- 
-2.47.0
-
-
+> -       .readable_reg =3D loongson_i2s_rd_reg,
+> -       .volatile_reg =3D loongson_i2s_volatile_reg,
+> -       .cache_type =3D REGCACHE_FLAT,
+> -};
+> -
+>  static int loongson_i2s_pci_probe(struct pci_dev *pdev,
+>                                   const struct pci_device_id *pid)
+>  {
+> diff --git a/sound/soc/loongson/loongson_i2s_plat.c b/sound/soc/loongson/=
+loongson_i2s_plat.c
+> index fa2e450ff618..f8d7aca8b903 100644
+> --- a/sound/soc/loongson/loongson_i2s_plat.c
+> +++ b/sound/soc/loongson/loongson_i2s_plat.c
+> @@ -85,14 +85,6 @@ static const struct snd_soc_component_driver loongson_=
+i2s_component_driver =3D {
+>         .open   =3D loongson_pcm_open,
+>  };
+>
+> -static const struct regmap_config loongson_i2s_regmap_config =3D {
+> -       .reg_bits =3D 32,
+> -       .reg_stride =3D 4,
+> -       .val_bits =3D 32,
+> -       .max_register =3D 0x14,
+> -       .cache_type =3D REGCACHE_FLAT,
+> -};
+> -
+>  static int loongson_i2s_apbdma_config(struct platform_device *pdev)
+>  {
+>         int val;
+> --
+> 2.52.0
+>
+>
 
