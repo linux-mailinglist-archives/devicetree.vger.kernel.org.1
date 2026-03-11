@@ -1,130 +1,221 @@
-Return-Path: <devicetree+bounces-274243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274244-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eEmUBKGdsWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274243-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:51:45 +0100
+	id 2J0XHTKesWnkDAAAu9opvQ
+	(envelope-from <devicetree+bounces-274244-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:54:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E58826790E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:51:44 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23416267959
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:54:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3D7603055D41
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:49:43 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id 88EC2302053C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F2943E0C68;
-	Wed, 11 Mar 2026 16:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C0F03E2769;
+	Wed, 11 Mar 2026 16:54:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u1RCvb2L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jz0hG8wV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B7A329B8E8;
-	Wed, 11 Mar 2026 16:49:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1FBE27F19F
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 16:54:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773247782; cv=none; b=jax3ajd3moC81bRswMOvBwtermolgPgwv9EsRERuA+hR71K22pkE7ZFXx4rRx3CC/siIsRxU9QNbh96JCgKkosaaDgVqvpGR0RZ6jA7FTxSUBEU6uL/lm8uWNASv94CQFPVG1h2tO5rIXBXpWEhiKWyzrJNDpnfDiXPDutEd9cg=
+	t=1773248048; cv=none; b=LGtyRmocgaSwtS5s4Oqw0P8Kt01NravqrIbqRa5yAiGskrW8g2tEWZDjVna8Dw8fjX6WbRWYZr+Fg/73etwsVgpDeb4PQMKZ9hQyaOzKDgg1v4r7rp3yAnXk+RKoeVSbfAUK8FrtSWWWNU6//nbXQlRem2luLenOBRJzn7o0jn4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773247782; c=relaxed/simple;
-	bh=L+Z41iBxmL9bDC/+5byJSVTm53cIJcCLHJ3pqm2b1eo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nCYkSN0IMSNuutqpwkk/hfWPI+MUXAz5+YvKjrqmZD+TuCILgYRqegdEXXwR7dHROUG/ij4YrvDokijlSLB/00251fmH1x4osn6w1UoWvuFQ7+qVdWGsgv5fMdLTSibgfdrEQNKRehDqoE7Uw/uCNmET5tEHZ8Yvd3ZM/+BT190=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u1RCvb2L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC654C4CEF7;
-	Wed, 11 Mar 2026 16:49:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773247781;
-	bh=L+Z41iBxmL9bDC/+5byJSVTm53cIJcCLHJ3pqm2b1eo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u1RCvb2LYs0w+E5E5Q4zBFx7t7yM1DIZAJhNB26Yfi+T/Q3HT6JelU8TvPCRehsFv
-	 OgaLkbjx5UScyRGWqMi6bo3sIQ4sfTapSx3g7AbOBfhGFX/sq/Elw+j2ep2OaA5JuH
-	 HhKfaA4VmKfGdl9OD+mQFw8JzaqgongxtYtCKtHQccr2wYZoLRynbi8+7upGKWTOza
-	 LGh0U/Yh6sqtPKFb3GxzhZTpzqPSQUGn+m05neR5aE4Sa+u/+w8paPWfKZpOxhJmi3
-	 0Xr71Q1xES6voJK47Ktb8nDjfLffEppYjHPrj4WX7XgpmbPpoiOhy0Z3OJBZ5/Ym6H
-	 /lYqKQlMIH3ew==
-Date: Wed, 11 Mar 2026 11:49:40 -0500
-From: Rob Herring <robh@kernel.org>
-To: Michal Simek <michal.simek@amd.com>
-Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, git@amd.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: clock: versal-clk: Reorder if/then
- conditions for Versal NET
-Message-ID: <20260311164940.GB4041143-robh@kernel.org>
-References: <cover.1772725183.git.michal.simek@amd.com>
- <7241fe512ff677f7aa5b7212ae4056fba01f1f59.1772725183.git.michal.simek@amd.com>
+	s=arc-20240116; t=1773248048; c=relaxed/simple;
+	bh=Z9OZZB3CYTeVUj4B/NjeZZJLS8yiWmY8Bzo9StWySzU=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=plRpB3dVp1p7toK77WfF07IzegtH3whTYxxFDn6rJn/Vp8x8pcwGGN5OM5FhGqxwuksPA8sD18/AbmKqeknIYNJ0XQJ3FNMAWD5hUge3va5Xo0uyF2acLIAJUbw5zlTqIZQh59LQlzo0Se6P0+0qxmJ5y2jAz2gnxdlwxOyEQyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jz0hG8wV; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-6631e0edcf1so7511a12.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 09:54:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773248045; x=1773852845; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=4OLoZWNfLX2Hv2p8BwoMWD6UD6t/Qu6fX1zjeJKXrT8=;
+        b=Jz0hG8wVy8JSzI9ok0Uo0uZpWOu0D5g3LFvwtTTAtR8zxuULBgdtxeABNvWd+36Qhf
+         gkBCzhFErLvc2io+0ACD5llrWTPsebWUL/molKJo5ajtJhKaM54GtcKP3XRKVYuWG6DQ
+         yh2qlLH1uV/Lu0g5XztWrkkBpPXENESTcixtWXizlXcz3WlJupsLOLk91GdRuY//dBOj
+         HtcA7mDXD8CgJpGwx/IptaspMLkRGANInDgN9rWJM0aHr22Bcc7GumYKakOBmIiycXut
+         KsY86RGPfVEl3NL14i+tV9JxIkjmVGrAa2czxS68w2xvxKsgbIauCJuR1dDkQpPMiZFK
+         d2jQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773248045; x=1773852845;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4OLoZWNfLX2Hv2p8BwoMWD6UD6t/Qu6fX1zjeJKXrT8=;
+        b=hyjqFkPomYC8sud41K7BY0acQxKyaPtmZxD+TtEGl0kFKsmqfJF53cFO4yCwTpM5nM
+         QLLFNHeuLK+E2fETkT6+s6zO6I+ClNoCjBh85zJcqAsq+DT3JQqM9b1F3QxhUg2vlyAL
+         0ouypHrONkxA8+btvTS+cAvSUbkCWyat1jnbngrSy82s9Q5m2VWalCGKw2keB6wrlmU6
+         VckxJEJkDG2fBt1nW5lIIs5+WvvMtD/9OUwfRi2KjmlFOs19mw2EmPEJrVzeYTzwktCh
+         HjOtoXxk9KUcvIyCXlwinuRfzU8XeVeSHaepO5QaaP3NHnhKHv4rmnbtn6pxr/qGkGkI
+         KJJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgesrxpUdfX5i/TvqYtWf9k9g1ti92XBgjzk2MoHpI0krR5LkwV2qfy3olGucmkBHJhTSj2oZo9SCl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyo4z/8YlDAROUF3xT8oRk7AS4wrcFVR5U37J1DxCay121ysQtq
+	aaDQGRf4WeNxuFpHhYwOpsuEs1d7wYz3d7ZlT+goM8rtmKHh706qVMDv
+X-Gm-Gg: ATEYQzzCTP4tAYTpkXYJ8Wsk0I2wIHzOpRhb18Joq650ELtq+J0xQg8AkcfEkOk7Dt3
+	RVyMPStltDM9Hwg/67QsWmL7RBOvn3MFWBs9a79Ufrw3/W6NnLPO9a3VJKwoONP94ZJucJ8QHRh
+	TycTu7uEEVQAAGS3H3dUcS3UQk8cgY1FBQCU/zJqnLuNXB7e/ZBoSoxKDBQL2TWzLmtoX2lvtNW
+	VrVQn9m+bdz61QCPtmT1qjXXPpBThcp7Wqm368zYcSLuAzKxatfGT74Efif0TEIpQC4G1qXppEY
+	+P4BWmXxTnNO+FrW3B2cmCLkTG83SmThHfck3GKjkHoWoB10sVUQXA8ZlrSFRo/YLS2iuV++QR+
+	iW+fLiecj8gUzUchhiqVCyTjGQHeMPpQZE0jiX60lxJPSUIq3JZQ3GJOjQMtLAgjUv2GKA6G5gI
+	5/aWfCQ3jfBLw2Uj0W9LhSCQ==
+X-Received: by 2002:a17:907:f815:b0:b94:3836:1672 with SMTP id a640c23a62f3a-b972e2c23acmr195615166b.37.1773248044571;
+        Wed, 11 Mar 2026 09:54:04 -0700 (PDT)
+Received: from [10.5.0.2] ([185.128.9.22])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-66350890006sm39973a12.20.2026.03.11.09.54.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2026 09:54:04 -0700 (PDT)
+Message-ID: <3a967f38a43933f12c98a9dfe4f1e85fa592b41b.camel@gmail.com>
+Subject: Re: [PATCH RFC 6/8] iio: frequency: ad9910: add RAM mode support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, David Lechner
+	 <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, Rodrigo
+ Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
+Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lars-Peter
+ Clausen	 <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
+ Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Date: Wed, 11 Mar 2026 16:54:48 +0000
+In-Reply-To: <frn4iotwpzef7ca5yosmwllxrottjlu2rpgpbdogrydsujebf3@lwamhpkzxn65>
+References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
+	 <20260220-ad9910-iio-driver-v1-6-3b264aa48a10@analog.com>
+	 <20260301133153.7f2f8501@jic23-huawei>
+	 <20260307140735.5ec2e608@jic23-huawei>
+	 <bxcybwaz3am7nrrfcjuvkbbe7yp4vwcxwwh4dafaj5dsy622s7@m4vdam6tyaht>
+	 <b1187027-3ddd-43bc-a773-8b5d794e04fc@baylibre.com>
+	 <frn4iotwpzef7ca5yosmwllxrottjlu2rpgpbdogrydsujebf3@lwamhpkzxn65>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7241fe512ff677f7aa5b7212ae4056fba01f1f59.1772725183.git.michal.simek@amd.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274243-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274244-lists,devicetree=lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,baylibre.com,kernel.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nonamenuno@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-0.999];
+	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 9E58826790E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,analog.com:email]
+X-Rspamd-Queue-Id: 23416267959
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 05, 2026 at 04:39:49PM +0100, Michal Simek wrote:
-> The Versal NET clock controller compatible is specified as:
->   compatible = "xlnx,versal-net-clk", "xlnx,versal-clk";
-> 
-> with xlnx,versal-clk listed as fallback. The original binding had
-> two separate if/then blocks - one matching xlnx,versal-clk (2 clocks)
-> and another matching xlnx,versal-net-clk (3 clocks). Since both
-> compatible strings are present, both conditions matched simultaneously
-> and JSON Schema applied the more restrictive 2-clock constraint,
-> causing false "too long" validation errors for Versal NET.
-> 
-> Restructure the allOf conditions to check for xlnx,versal-net-clk
-> first. If matched, allow 3 clocks (ref, pl_alt_ref, alt_ref).
-> Otherwise fall back to the xlnx,versal-clk case with 2 clocks
-> (ref, pl_alt_ref).
-> 
-> Add a dedicated example for the Versal NET 3-clock configuration
-> and split all examples into separate blocks so each compatible
-> variant is validated independently by dt_binding_check.
+On Wed, 2026-03-11 at 13:11 +0000, Rodrigo Alencar wrote:
+> On 26/03/10 07:11PM, David Lechner wrote:
+> > On 3/10/26 12:40 PM, Rodrigo Alencar wrote:
+> > > On 26/03/07 02:07PM, Jonathan Cameron wrote:
+> > > > On Sun, 1 Mar 2026 13:31:53 +0000
+> > > > Jonathan Cameron <jic23@kernel.org> wrote:
+> > > >=20
+> > > > > On Fri, 20 Feb 2026 16:46:10 +0000
+> > > > > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@=
+kernel.org> wrote:
+> > > > >=20
+> > > > > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
+> > > > > >=20
+> > > > > > Add RAM channel with support for profile-based control. This in=
+cludes:
+> > > > > > - RAM data loading via binary sysfs attribute (ram_data);=C2=A0=
+=20
+> > > > >=20
+> > > > > I'm not sure that's a long term viable path.=C2=A0 We either need
+> > > > > to figure out how to do it as firmware file load, or via an outpu=
+t buffer.
+> > > > >=20
+> > > > > Firmware load would probably be too static and I'm not sure quite
+> > > > > how we map these to IIO output buffers.
+> > > >=20
+> > > > We would have to carry it for ever which is very much not ideal.
+> > > > The firmware approach has the same issue, but can be thought of
+> > > > as defaults at boot time forever.=C2=A0 If no defaults then we use =
+whatever
+> > > > we come up with as the long term solution.
+> > >=20
+> > > I was thinking about the firmware approach:
+> > > - Normally a driver would request the firmware during probe and the
+> > > =C2=A0 filename would be pre-defined.
+> > > - Less statically, It could have an attribute that once written, it w=
+ould
+> > > =C2=A0 request the RAM contents (e.g. under /lib/firmware/ad9910_ram.=
+bin).
+> > > =C2=A0 It could be the enable attribute itself (but that would not be=
+ effective
+> > > =C2=A0 when the binary would not change), or a separate one (e.g. des=
+tination),
+> > > =C2=A0 or a new one (e.g. load_en)
+> >=20
+> > Have you looked at firmware_upload_register()? It looks like it provide=
+s
+> > something along these lines.
+>=20
+> Thanks! this is in fact perfect!
+> It might be ugly, but for the sake of debugging I managed to get libiio t=
+o
+> interface with this by exposing it in the debugfs.
+>=20
+> 	debugfs_create_symlink("ram_loading",
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio_get_debugfs_dentry(indio_dev)=
+,
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "/sys/class/firmware/ad9910-ram/l=
+oading");
+> 	debugfs_create_symlink("ram_data",
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 iio_get_debugfs_dentry(indio_dev)=
+,
+> 			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 "/sys/class/firmware/ad9910-ram/d=
+ata");
 
-Really, the problem is xlnx,zynqmp-clk should be moved to its own 
-schema. The only thing common is #clock-cells==1, but that would be true 
-for hundreds of bindings. If you do that, then the clock-names can be 
-defined at the top-level which is preferred anyway, and the only thing 
-needed in if/then schemas is 'maxItems: 2' and 'minItems: 3'.
+Or for the sake of future proving, maybe let's make the sysfs a bit more ge=
+neric. At least the path,
 
-Rob
+/sys/class/firmware/dev_name(iio_dev)/*
+
+I guess userspace tools could work with the above to match the fw blob with=
+ the right device. Also,
+hardcoding the name as it seems you have done will be a problem if we have =
+multiple devices, no?
+
+Not sure about the above though :)
+
+- Nuno S=C3=A1
+
+
 
