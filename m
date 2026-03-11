@@ -1,114 +1,239 @@
-Return-Path: <devicetree+bounces-274005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274006-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iME6ML9DsWm4tAIAu9opvQ
-	(envelope-from <devicetree+bounces-274005-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:28:15 +0100
+	id wGdjC+FDsWm4tAIAu9opvQ
+	(envelope-from <devicetree+bounces-274006-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:28:49 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D24726227F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9919F2622C0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 11:28:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 1D975305936D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:27:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 113A430AAC6E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 10:27:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 278993CCFBF;
-	Wed, 11 Mar 2026 10:27:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18DA03CEBAB;
+	Wed, 11 Mar 2026 10:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g/SmGQ56";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="dKVRLYgv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2873CCFA5;
-	Wed, 11 Mar 2026 10:27:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB2FF3CEBA1
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:27:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773224828; cv=none; b=OFig4J7b6Ip4mfmnYh6B0RdrWsK/8odbbFsBfqjeS54rrokGzPCwbqfvD3nxGo8VxGpSoCwhRFus/UUTBOV8AODA9SmmMjXn17WzmbMexp6CseornEHs7c/pm9Nqgf6qLlORg2ALHzwTdEkQiZZjSNeCXq/vBi3NlgPmCV5fkaE=
+	t=1773224831; cv=none; b=vAoH2Jxt9gGoPEQvOEb88u75kZdev2cc7LlYr7RAyHiI0CYsegTSCM0Sk5KFsxIwNqk9QiRNC2Umi9a2ip78dIqrCgSTImL31LO/3pp0X7Fhvds9v05k2JsvH7dQzz9REIJL6NvHDibQQ7Io0LYu9wN7JxCth/34K1gv0uhsuzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773224828; c=relaxed/simple;
-	bh=yQsgASc4GoW40PFzPYJMKdL0VJqyLuYV44EVwbYYEDE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=PyZGUWqqt03wpfoYbu0RLxlzrK+CVYQGToWvgv6wevh5itCPPoat/KgY9/ly0kkr4yeCnhcOtNpq9Zi2NtV0+4xcIe7s4tpJ/imSvxeLlekEOVj9FNs04rZiMnpNmTu7B1l6ZdLjI2ylCUGqdjlW7Cyf04pC20NViY93QmzFC0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46705C2BCB3;
-	Wed, 11 Mar 2026 10:27:07 +0000 (UTC)
-Received: by venus (Postfix, from userid 1000)
-	id 128E7180696; Wed, 11 Mar 2026 11:27:00 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Yassine Oudjana <y.oudjana@protonmail.com>, 
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-In-Reply-To: <20260304-s2mu005-fuelgauge-v3-0-e4dc4e47cde8@disroot.org>
-References: <20260304-s2mu005-fuelgauge-v3-0-e4dc4e47cde8@disroot.org>
-Subject: Re: [PATCH v3 0/2] Add support for Samsung S2MU005 battery fuel
- gauge device
-Message-Id: <177322482005.522251.10932979807931192742.b4-ty@collabora.com>
-Date: Wed, 11 Mar 2026 11:27:00 +0100
+	s=arc-20240116; t=1773224831; c=relaxed/simple;
+	bh=MEWJHGeeC6PpNHKqe4NMQXI8Kni0IbPXM+j6vE6Kjuw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nBCSoArdfV6LJEYdcIhc8AvAeEx2DU88W9/qpT7Szo05ej0FG0tbTnFD1KfnXiB70FYT2Jz/m2DS8p41e0ghw56c+RofyJRoux5XIOSGaXAShI8CKo8AEe4j0Xuoo5eXfDWSXDxbJFCEVihcznRedf3R9oAPjYEAl5FmVacMq+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g/SmGQ56; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=dKVRLYgv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62BA5eDe294279
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:27:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=99wJ4r5T/iMLg2Wt3IqUifMJ
+	Jodj7jWILseLGYBjBVM=; b=g/SmGQ56c+eO5r6PcNWOsybrEGwXl2KMFtkZml48
+	tyz3HK1eSyqmUl60my2jYN6WUZSyb+XdKr3hE53qgy2O+qE4PAjPMMflJidLderD
+	zTBvAXs2w5hteSyazwAe31RLzSHPmfJBFIaAi9heLfjEVum/dZqtrg+qtFSFLLNV
+	udCeBqYwouCx1gDKYP3YUwsjcXsxELB5gGsPCPqEg0RFGl8ih96569DSoicZJwrm
+	Tg8wwrZfSDHq83Gg1HwWogWh/fVEB5BTj2zFrlflQ5EnllairdBES9R0A+E6xHvl
+	gTQyc3Rg8F1aBZI5ZjFC9GQ2F0CaZ4qMWFXLWaCQUWXp5A==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cu6bb82n2-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:27:08 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-8cd7d4cc049so3749024485a.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 03:27:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773224827; x=1773829627; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=99wJ4r5T/iMLg2Wt3IqUifMJJodj7jWILseLGYBjBVM=;
+        b=dKVRLYgverLLzWDIMTogbOQgSdJjlSbKJ8thx5PJNqfNRXlujSLf91U5tmGfdzOIgM
+         TQEYPxdgZZ2TRZlkVs0qNWd5BFPe0BcLvToRP9Bkka8NASooWWokzW0PR1wwy57Ma4pB
+         9xDrrOJJF4jPVQ8TJQr+vbjEyqQMPxV5hNBVL5pRIfSdTxnD522/SyXK2llIyoPfjwDC
+         c0d+cDbklENXJm0wNy6K444wp82gCa1Ho0K0iVE3HXbqEO1E2196l2XGw6+afYfnH2Vv
+         xOd6RHEMMi8/wuvk1+JxIU85n+aIaeZo8IIJ9doPLJpTXb9MHVX8z2ZeSVf8UgzEAeZY
+         kKZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773224827; x=1773829627;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=99wJ4r5T/iMLg2Wt3IqUifMJJodj7jWILseLGYBjBVM=;
+        b=OKlkMZzC9+2MTMDVgNs7SYjSAcIFP1Dhe0gUQuZ4ELOEzeQe4+1rHT0GVgWGaSUvSU
+         JAEcRTpTZGAe3YQgQC5eZWWrXwaeVHGSQBbOQb6h4QeI7HGzBMZSXtt1JR6/ROXIXqjv
+         A3GLxWXSc3DXiMF9lZLpZ99NHgmYLmOqfUTOYii23xexqj9hwJFMczZa4XRGfgUL2Bi+
+         tl/zAAqkYK6o6yv5quFqQ5BoW46ZJtCtLtKOATz1Eq9IedwDUQITYGHl+OLe9adsdXoS
+         I/u0qtm/PCsmTYrC7vNfK7LfjF9CpX9KXq2rYwRXFGQrUxkM+7ddLkiTIFBNiUgauB/a
+         zx2w==
+X-Forwarded-Encrypted: i=1; AJvYcCU+YEj7I7EqVWisW0zelypOkc1vSTLHox2+ShssPJt0orUwv82154CatTfL/XYGACxbPFBPwH4/f9Hj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoiUHNUeQLPG9J5xJWw3ES48bsWN7dXg/sny/zyKeEBbeuF6Jb
+	uJ3M7XFP2ZsH+4Bm4lSgralydBvTbiL1iPi44MaobnOv65/o6cLq9nEj3UDGbz6imqnbr1D3GW6
+	5GMg570kHre7DBS4z1L4ePXSPYaIBdKu+D68gY/p2x8OL4B3nPXu7cIOZFaVjYj4e
+X-Gm-Gg: ATEYQzx4tTwNW9QZOr4/UFBHS8QpUUy23QcvGDdTpF6/+IiXwtn3ZgoKzWdUlkmt8TK
+	bYGQ49zSidkpzWkGRXOPqq2dysv7+4jpVvXtk1l8oraVBpZK3jCAAT4poCllzApAiQ/GNCIINDP
+	Tc1HXLzhKcKp9uzBlh/ibLgHk5fYuZClJ8yNrhQVg1s0vbAdZbmBCRzWSc4xqECx+wdPQmSB+Ll
+	DHV0/mzzJG7UdB5wI4QRiMS6rCJO3ARVg01ErEZDEMQmbN/rTy24xo1tyPkQn5TpXyQ2CdyAsq+
+	nSDss9diI4S2ZF6ulOnFwAVrMdWXX+Skg9XTvwdzIvZ+a16eUgl2fPeRLS7jKF80OsjaaF45yI9
+	iXehYodebqKWgK1yNVAcky84ZWmB163DVuFLk
+X-Received: by 2002:a05:620a:1720:b0:8cd:8e8c:2087 with SMTP id af79cd13be357-8cda19b9991mr241104885a.7.1773224827312;
+        Wed, 11 Mar 2026 03:27:07 -0700 (PDT)
+X-Received: by 2002:a05:620a:1720:b0:8cd:8e8c:2087 with SMTP id af79cd13be357-8cda19b9991mr241101285a.7.1773224826727;
+        Wed, 11 Mar 2026 03:27:06 -0700 (PDT)
+Received: from oss.qualcomm.com ([86.121.162.109])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439f818d5eesm6660916f8f.1.2026.03.11.03.27.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2026 03:27:05 -0700 (PDT)
+Date: Wed, 11 Mar 2026 12:27:03 +0200
+From: Abel Vesa <abel.vesa@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] scsi: ufs: qcom: dt-bindings: Document the Eliza UFS
+ controller
+Message-ID: <3udticxb5sodqsjnolzpwwaajsmp5ugvhpxn6pl6jjyjyc5ygo@izze4ccdhyc4>
+References: <20260310-eliza-bindings-ufs-v2-1-1fe14fc9009c@oss.qualcomm.com>
+ <20260311-radical-bold-catfish-d7ccca@quoll>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3
-X-Rspamd-Queue-Id: 9D24726227F
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311-radical-bold-catfish-d7ccca@quoll>
+X-Proofpoint-ORIG-GUID: _Dx6ZX8gHrN32pqTsfDHNGqLjJx2FIPI
+X-Proofpoint-GUID: _Dx6ZX8gHrN32pqTsfDHNGqLjJx2FIPI
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDA4NyBTYWx0ZWRfXzIX0lLNgqh7v
+ +QHaK3zLGmDrCrWcWXuIvv/B73l6W2D0AKj1SkkXj2olDU1NtUKvWDwu3SwQLADD3UNBKN9Pkhg
+ q7j5ETNOr7rvVz8K+cK00HjMIPFb9wAX1H9FPgAmaV+Em93qafiOZOR24CHd0bevvBV8UiY+wWT
+ x54A1/nDo0w2cM7ewh/NQaMOpncm9xw1f72+VInQYgWRcSPrUgHBUcVSfAzKm909hpCY7Afr+1w
+ q0kxFMW84eYaHx9JyxXP5nB0k7u78iNzW64jtzCW93N9lNwyiEQRLPwD8NaLKjy4uMGkf+/0FGP
+ cYq9KCizDRg0jZdN0JNS4klVMR8j/XihZB2nFUN2ZSuoxKzHj7+loBhSSf//gIIu1MbsXNt2Len
+ 37c05jKiHVjl1Ssg3TnaR/cY74IEKFWHnOJRIIOXQi7E5E14XsalsB3cm6n0OxR5WflkdwIfjC4
+ NGI2IUYZwCcQ4Z0LMHg==
+X-Authority-Analysis: v=2.4 cv=CKwnnBrD c=1 sm=1 tr=0 ts=69b1437d cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=oauzzCmhM186DRC0Y2yWPg==:17
+ a=kj9zAlcOel0A:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=_K5XuSEh1TEqbUxoQ0s3:22
+ a=bC-a23v3AAAA:8 a=EUspDBNiAAAA:8 a=Zn_5qlUWoac-AIgVFFMA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-11_01,2026-03-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0
+ adultscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603110087
+X-Rspamd-Queue-Id: 9919F2622C0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.14 / 15.00];
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[collabora.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-274005-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274006-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo,oss.qualcomm.com:dkim,msgid.link:url];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[protonmail.com,kernel.org,disroot.org];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[abel.vesa@oss.qualcomm.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.902];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:mid,collabora.com:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_COUNT_SEVEN(0.00)[7]
 X-Rspamd-Action: no action
 
-
-On Wed, 04 Mar 2026 22:33:54 +0530, Kaustabh Chakraborty wrote:
-> This patch series adds supports for the battery fuel gauge device for
-> Samsung S2MU005 PMIC battery chargers. It reports various metrics,
-> including incoming voltage, current, battery capacity, etc.
+On 26-03-11 09:33:03, Krzysztof Kozlowski wrote:
+> On Tue, Mar 10, 2026 at 12:44:42PM +0200, Abel Vesa wrote:
+> > Document the UFS Controller on the Eliza Platform.
+> > 
+> > The IP block version here is 6.0.0, exactly the same as on SM8650.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> > ---
+> > Changes in v2:
+> > - Rebased on next-20260309.
+> > - Mentioned the IP revision, as Manivannan requested.
+> > - Link to v1: https://patch.msgid.link/20260223-eliza-bindings-ufs-v1-1-c4059596337f@oss.qualcomm.com
+> > ---
+> >  Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> > index cea84ab2204f..80550144f932 100644
+> > --- a/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> > +++ b/Documentation/devicetree/bindings/ufs/qcom,sm8650-ufshc.yaml
+> > @@ -15,6 +15,7 @@ select:
+> >      compatible:
+> >        contains:
+> >          enum:
+> > +          - qcom,eliza-ufshc
+> >            - qcom,kaanapali-ufshc
+> >            - qcom,sm8650-ufshc
+> >            - qcom,sm8750-ufshc
+> > @@ -25,6 +26,7 @@ properties:
+> >    compatible:
+> >      items:
+> >        - enum:
+> > +          - qcom,eliza-ufshc
+> >            - qcom,kaanapali-ufshc
+> >            - qcom,sm8650-ufshc
+> >            - qcom,sm8750-ufshc
 > 
-> Although this device is independent of the actual PMIC which it
-> accompanies in functionality, it is used in conjunction with the PMIC's
-> charger sub-device to provide complete battery status.
-> 
-> [...]
+> You need constraints for minItems: 2 for reg and reg-names. MCQ is
+> required. The mistake was doone for Kaanapali, but that patch was
+> applied without review, so it is not a correct example to base on.
 
-Applied, thanks!
+OK, so something like the following then ?
 
-[1/2] dt-bindings: power: supply: document Samsung S2MU005 battery fuel gauge
-      commit: d74b4fcc8093f9dc84172adf15f93b858d3daaac
-[2/2] power: supply: add support for S2MU005 battery fuel gauge device
-      commit: aa2132799817fb052d95a87f0c23cc6af38541c0
+@@ -68,6 +68,18 @@ required:
 
-Best regards,
--- 
-Sebastian Reichel <sebastian.reichel@collabora.com>
+ allOf:
+   - $ref: qcom,ufs-common.yaml
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - qcom,eliza-ufshc
++    then:
++      properties:
++        reg:
++          minItems: 2
++        reg-names:
++          minItems: 2
 
 
