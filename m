@@ -1,211 +1,209 @@
-Return-Path: <devicetree+bounces-273885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273886-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oLEMOCsVsWkZqgIAu9opvQ
-	(envelope-from <devicetree+bounces-273885-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:09:31 +0100
+	id CGyEKKkWsWnpqgIAu9opvQ
+	(envelope-from <devicetree+bounces-273886-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:15:53 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4667225D561
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:09:31 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C0B025D820
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 08:15:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 00330323D4E0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:06:22 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 38BC13113ADC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:09:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1D237B038;
-	Wed, 11 Mar 2026 07:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EF1A3859C1;
+	Wed, 11 Mar 2026 07:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CmtRKDbB";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="bhxIKYPM"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="X8KVSVaB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5058B377038
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773212776; cv=none; b=RMqOOvTfBI2iFw/r8siOzSjBE8rzb38rg2wggdsWM60rOKRQ3ar61b0+jhFDOs47rexu04wJjEuEl/Nrp0MjRsZ+oqKd4t2mRjzGfKrV+ieUZoyg8rRNRYCoq203QM+nIhOECRp3COUL1rJewDiIo0lYQY1iVsxi4anvDVvwQqE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773212776; c=relaxed/simple;
-	bh=6VXxvIuvvMlo4m6X69FTioZO/RtWTFaG63vSd5YaV4I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=St9emrpj8mtghgbTdiJ9j0uTAXltzMCyyVyM4164uXlEt/ROPhu8i/gS9jDtFOkY5BKZwVXoz6GJWXaWEI/DDTWA5+5lIE9PWCub7Q9mOzEJEotLsnItrDywf0zNoKDTK8NM/OJBLpCe8Gcf+uixcXcbwlop7Z/yzxW4Ket26is=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CmtRKDbB; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=bhxIKYPM; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62B3ORn33760444
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:06:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5qTUOBpAjQI0yxNIruKIROet34mfvXwPkqMtzZLjsTE=; b=CmtRKDbBj94rScLX
-	l1V9ddI3EVoAbEwyUuC9cJuum9QoEI5Dq6U1HPa2j/AjPPg6azuH6TWgwu3N1m1C
-	uGYFwlHaKVx54ES1b0H8FaBX4ID7NjkrtXarJOGmAGrh2e+JqUZh6MN4gd93GU1O
-	LLvhlrfX127Z1p4YAF9YHON8KNgaLVwTK8zYfAOTQXmc8EIpour9blg6rZwGuOUa
-	MRuBdNDleMCmDZWUI0d99OK/Rj+O4bKrediVmEr0BxulZcNC1lxAeRJD/Z0PDeHw
-	EX83JNMMNmrBTNl76lc6yh9RGFw+oY4fcOodFXcvwUtX2+pk2Q2jNd1aYNBIyPrL
-	HsnEyw==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ctk8ukmma-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 07:06:13 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-829c331b4c6so1228386b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 00:06:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773212773; x=1773817573; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5qTUOBpAjQI0yxNIruKIROet34mfvXwPkqMtzZLjsTE=;
-        b=bhxIKYPMuzspn9Wg/IXjkDENTEncEuuT5dyfMk716XUxnhkUM4yrQQ1AVHBIYuSvBW
-         jAouZwhqcsKZxO+lvEvqFguKWbPXUYQWrLgFlagRV/682mHz4edB/pZbMd/l9oCpDxrT
-         2Yjg4EvLrs7Hqb9ufe4McRmfcFESXdN4QPLOjo5ibbU6VT7KtdaQUeb9BL28AIYWR+Si
-         p1001rR4QXhEq/lktRuRcl8RroP4GL9EEZhQmgDqi9Uf+519RU3uGEbtT62RIH2IYAPW
-         FrjIcH8t9Tga5BO1KeYmvReeMvY7g3/Kxz/9fh+bScbLrOB7hPOMG5hjtdVcfBlrBkfM
-         cgDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773212773; x=1773817573;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5qTUOBpAjQI0yxNIruKIROet34mfvXwPkqMtzZLjsTE=;
-        b=jHTbhrkPY6kB73/wm2nBuORmwPjMUmdKQxWMAJ4Az7HULgiNCTUQtvOksBlNVWEWV4
-         8yuYO/zcU0rsnrlpan/dSExoNCMpTAco2jmnWqIgzsziYQwqwFLZqRwPMdXedN5e/g1u
-         H6kxe5M+da1iB4maZ1VklZb5XT3Q6su0DFboSUK9VE6lju8JDtlt8Mm9ZItM5cAsSiDw
-         EYwc+bFPYVsHC+1CxX1MbXQoiy+4nDiLMEAp1NqQYY2EQshTs+ggX+rB2rMGQ+9Vaom+
-         gx3iHeJThn7ykA9rtgnIYyjI9S6PYsfgGwBNBs02RxAF2bpvmWhhsEu8wV62aEnHN25A
-         9Omw==
-X-Forwarded-Encrypted: i=1; AJvYcCUm8cP71QdHEjDBx04GVtjqpb8KXClYsOKfm039AXxJhjEu2vGsfbfyI1uFBTg03e2QKTkjCJVpZ9Mz@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoYk/GbY1aA/RkECwl+9rhUiXSA+skw94x9djlHydhNP1CSKft
-	gnjsrx5sVRinFov9oo3r4ziM51F4xPnqQQa6/U1h76NuoQJSSJuJyy3hz1W2BmodfXHroVZGVMB
-	bIRr7z21klDZIw/c8lVx8L/5v97lpxLw6GusQbTjCIi/6KyprHuGsKlFMON2Wb7Hz
-X-Gm-Gg: ATEYQzxZ7LYSRcW8bQfksMVbZp8g4j1MwbLOuyXM95Zv3tQXVquBTgf1N2R2P1ZkVnS
-	g8cb92IpHU5QePNhcOX4G9u4DyN/lRF537sUZNAvy16GdWunQlLW7N+YGlzqI+MPfKxwpPOTdoQ
-	ZWYj4SqkVNCOFIL00rVajGHwtoHeeLR2rtUqpNLgWMeZDNhbRDSmUEFoBi3J8qhxbj/54F67SRI
-	RbpcV3TgFlevIo5DQEKiHq9RzFeKn6ICq3MG8cfDKu3aqmNar0L1gO2N4cFaM+PTLz9wx5yH1ws
-	iTHDX3ddbAchd4RsRa7Ac+L6zlykQNvCxfCX8Lqrj5IgQTzhuKUIjKh/yywvsu3xu2/lv7vbvGe
-	/4uWBSWHOVf6YEnktqlZ/jdRZMc6aB/VFnIz3ErZwifVWQvP+
-X-Received: by 2002:a05:6a00:9485:b0:829:862d:6b46 with SMTP id d2e1a72fcca58-829f707339dmr1327325b3a.6.1773212772905;
-        Wed, 11 Mar 2026 00:06:12 -0700 (PDT)
-X-Received: by 2002:a05:6a00:9485:b0:829:862d:6b46 with SMTP id d2e1a72fcca58-829f707339dmr1327308b3a.6.1773212772409;
-        Wed, 11 Mar 2026 00:06:12 -0700 (PDT)
-Received: from [10.231.216.91] ([114.94.8.21])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-829f6eec127sm1364084b3a.30.2026.03.11.00.06.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2026 00:06:12 -0700 (PDT)
-Message-ID: <7aff8a49-ac47-4d93-8028-2710ba4eb2d7@oss.qualcomm.com>
-Date: Wed, 11 Mar 2026 15:06:08 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 053BD38838B;
+	Wed, 11 Mar 2026 07:08:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773212920; cv=pass; b=ltCiaioG5NeCmUWpRMy+b4zaLJwp46wqyi/Pdl/9iYOz2zg1bzenIV4pJHDi5qoJhA3y1HBQPN7+1NNkqfY7i/pPAc0gylKSaemhV4+SV4YwykvSnuNxSu/vi7hfFwxnOnk5Di2/77f+S36Yx/+Wo6B9wSCBksTKNxyvrvc6p0o=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773212920; c=relaxed/simple;
+	bh=b19OJUdc+peetZN8MrZd6KnNEJM5xBFPAsQwDYPC/Ao=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XsMWy/w5CzPeOBSwIWVcDzREFzppAU7zn4R9B9F5fsFSfVijC5c9UWPhgQrDbyKqXZQY9yPh4HNSeAWSpO24e6y+flcqc06BtY/vjfMDbGvKUeSYlRyDkZ8piAfFjikQbws97/9EU7JfQAl4aKpsi7PKB2OQwvGlzZqo7LvCdoo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=X8KVSVaB; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1773212907; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=aCXTokr4EDNW8u2al7QG22pupcRkju8K3QP/a3ByOSYHd60dlGEuG8vfRJTgLWr3GELNlKuVzD7MqmDwJyjsUmyriEBOEMIOcwAeK4z5x+CyNU1RrgMW3D1UgXOJgkaFEdvJzifBWIIxAHEN5AgyiuiQNApXGXWYvYS9CA/9GA0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1773212907; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=RTdR+D4GhGsibmGnpvqFGWz9IA1zBW5Nj3eCi1PCPgY=; 
+	b=BkXR2EDoBoPKgPzX02QnyyehNXLfommNtQyuRoslyl9aldDyz1xqesUYvB7tQUijAaPCAx+WF8YX4d7axhTHoHmsT/o/ttwl5wuRF666XBWNSQMBvWvJiaBezIZ8EIUIz3+jzvulrEkeS9QomdHCqVf00CLjo9YIEM38XdPX4bI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773212907;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=RTdR+D4GhGsibmGnpvqFGWz9IA1zBW5Nj3eCi1PCPgY=;
+	b=X8KVSVaBpAc3edEKGOVetX50QJ7q4x7XfdjCr4n5a6VOGhEX7T3I1Ibf3PzpbbCw
+	nkRKSkOexU6+Ww5J9J8OL2OATlvvwOHfiH2OdxD98mcwnqkz5pbMZM78/rm+fBP/hhp
+	NNiNQ+uozUBSelOY2fXicar1CP8+DjUMTO612d1I=
+Received: by mx.zohomail.com with SMTPS id 1773212904531201.5143077785866;
+	Wed, 11 Mar 2026 00:08:24 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 850C2180598; Wed, 11 Mar 2026 08:08:17 +0100 (CET)
+Date: Wed, 11 Mar 2026 08:08:17 +0100
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Alexey Charkov <alchark@flipper.net>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chris Morgan <macromorgan@hotmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pm@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v3 05/11] power: supply: bq257xx: Fix VSYSMIN clamping
+ logic
+Message-ID: <abEUxeKLiowObPyL@venus>
+References: <20260310-bq25792-v3-0-02f8e232d63b@flipper.net>
+ <20260310-bq25792-v3-5-02f8e232d63b@flipper.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom:
- qcs6490-rb3gen2-industrial-mezzanine: disable WCN6750 and WPSS
-Content-Language: en-GB
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260311023219.2284643-1-hangtian.zhu@oss.qualcomm.com>
- <20260311031145.2285056-1-hangtian.zhu@oss.qualcomm.com>
- <wy46mrybpvnicmv2aljkyh6lu2gnzz4axl66r2efmfy6pr55b2@phsj7pghzd7r>
-From: Hangtian Zhu <hangtian.zhu@oss.qualcomm.com>
-In-Reply-To: <wy46mrybpvnicmv2aljkyh6lu2gnzz4axl66r2efmfy6pr55b2@phsj7pghzd7r>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: AgZJ_Tow6GAvs8_WBSOdkjxzkNXDHPF1
-X-Proofpoint-GUID: AgZJ_Tow6GAvs8_WBSOdkjxzkNXDHPF1
-X-Authority-Analysis: v=2.4 cv=YcmwJgRf c=1 sm=1 tr=0 ts=69b11465 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Uz3yg00KUFJ2y2WijEJ4bw==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=gk-v6F8X2pB81-9XRuQA:9 a=QEXdDO2ut3YA:10
- a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzExMDA1OCBTYWx0ZWRfX76MpfVzXw+Pn
- 1oMSzvH6YXXI00VT4XyZQKcj0b9FEw6zkUxiTDrwUKeKUadjTSszc1SenrHFgf60SEM4eOxozYp
- LWqK0JMDTg0HK2AHgDmJ2Hr5Hps2iGO/p0g+CrcfixGeE39zwPAj2QWaC9l6LlHrEE7iV6c6ULm
- IQ+75Ok+iWBB8RlsElr8GCTproJHTPbJXmHI5QS1eVcer1wvCGU9ILVYeTm7woHdFNvOaZSLKA7
- ud6wGg5uWYX7g60FwJOmrxVcLGshu6w7ldoZDtxSovBsrB287JYOh1r3JPyR7nxWvVr60VN3IeM
- i783zkS1JC/Zw/dQl3H1wy4UICHFX8xltbM1MSjuLweybmGT0M55I1H7G20NTcqTM5V68Ib3Cmd
- Zf5AYB/9QPgQvVqsF1di1Ra3f/tjxJta09LVhGaAHJoIcIzlLlXPGpujVYBlg8Fq+2MaIYBnK8+
- sTuFIQlzyoJzlh+gpVA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-10_05,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 impostorscore=0 spamscore=0 bulkscore=0
- lowpriorityscore=0 phishscore=0 adultscore=0 priorityscore=1501
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603110058
-X-Rspamd-Queue-Id: 4667225D561
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qrjbboz7ivwrdkum"
+Content-Disposition: inline
+In-Reply-To: <20260310-bq25792-v3-5-02f8e232d63b@flipper.net>
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-0.1.0.1.4.3/273.195.15
+X-ZohoMailClient: External
+X-Rspamd-Queue-Id: 1C0B025D820
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.16 / 15.00];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+X-Spamd-Result: default: False [-2.26 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,oss.qualcomm.com:dkim,oss.qualcomm.com:mid];
+	TAGGED_FROM(0.00)[bounces-273886-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[kernel.org,hotmail.com,gmail.com,vger.kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-273885-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	FROM_NEQ_ENVFROM(0.00)[hangtian.zhu@oss.qualcomm.com,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	RCVD_COUNT_SEVEN(0.00)[7]
+	FROM_NEQ_ENVFROM(0.00)[sebastian.reichel@collabora.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,flipper.net:email,tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
 
+--qrjbboz7ivwrdkum
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 05/11] power: supply: bq257xx: Fix VSYSMIN clamping
+ logic
+MIME-Version: 1.0
 
-On 3/11/2026 12:34, Dmitry Baryshkov wrote:
-> On Wed, Mar 11, 2026 at 11:11:45AM +0800, Hangtian Zhu wrote:
->> From: Hangtian Zhu <hangtian@oss.qualcomm.com>
->>
->> Disable WCN6750 and WPSS on industrial mezzanine. On RB3 Gen2 industrial
-> 
-> You can't disable these devices on the mezzanine, they are not a part of
-> it.
-> 
->> mezzanine platform, pcie0 lines are moved from WCN6750 to QPS615 pcie
-> 
-> PCIe0. How re they moved? What triggers the move?
-Please refer to: https://lore.kernel.org/all/20260305-industrial-mezzanine-pcie-v4-0-1f2c9d1344d7@oss.qualcomm.com/
-On RB3 Gen2 industrial mezzanine, WCN6750 is not connected, instead TC9563 PCIe bridge is connected to PCIe0.
+Hi,
 
-> 
->> bridge. Hence disable WPSS and WCN6750 nodes for industrial mezzanine
->> platform.
->>
->> Depends-on: https://lore.kernel.org/all/20260305-industrial-mezzanine-pcie-v4-2-1f2c9d1344d7@oss.qualcomm.com/
-> 
-> NAK. Don't invent non-standard tags.
-> 
->>
->> Signed-off-by: Hangtian Zhu <hangtian@oss.qualcomm.com>
->> ---
->>  .../dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso    | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->>
-> 
+On Tue, Mar 10, 2026 at 01:28:29PM +0400, Alexey Charkov wrote:
+> The minimal system voltage (VSYSMIN) is meant to protect the battery from
+> dangerous over-discharge. When the device tree provides a value for the
+> minimum design voltage of the battery, the user should not be allowed to
+> set a lower VSYSMIN, as that would defeat the purpose of this protection.
+>=20
+> Flip the clamping logic when setting VSYSMIN to ensure that battery design
+> voltage is respected.
+>=20
+> Cc: stable@vger.kernel.org
+> Fixes: 1cc017b7f9c7 ("power: supply: bq257xx: Add support for BQ257XX cha=
+rger")
+> Tested-by: Chris Morgan <macromorgan@hotmail.com>
+> Signed-off-by: Alexey Charkov <alchark@flipper.net>
+> ---
 
+Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+
+-- Sebastian
+
+>  drivers/power/supply/bq257xx_charger.c | 7 +++----
+>  1 file changed, 3 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/power/supply/bq257xx_charger.c b/drivers/power/suppl=
+y/bq257xx_charger.c
+> index 02c7d8b61e82..7ca4ae610902 100644
+> --- a/drivers/power/supply/bq257xx_charger.c
+> +++ b/drivers/power/supply/bq257xx_charger.c
+> @@ -128,9 +128,8 @@ static int bq25703_get_min_vsys(struct bq257xx_chg *p=
+data, int *intval)
+>   * @vsys: voltage value to set in uV.
+>   *
+>   * This function takes a requested minimum system voltage value, clamps
+> - * it between the minimum supported value by the charger and a user
+> - * defined minimum system value, and then writes the value to the
+> - * appropriate register.
+> + * it between the user defined minimum system value and the maximum supp=
+orted
+> + * value by the charger, and then writes the value to the appropriate re=
+gister.
+>   *
+>   * Return: Returns 0 on success or error if an error occurs.
+>   */
+> @@ -139,7 +138,7 @@ static int bq25703_set_min_vsys(struct bq257xx_chg *p=
+data, int vsys)
+>  	unsigned int reg;
+>  	int vsys_min =3D pdata->vsys_min;
+> =20
+> -	vsys =3D clamp(vsys, BQ25703_MINVSYS_MIN_UV, vsys_min);
+> +	vsys =3D clamp(vsys, vsys_min, BQ25703_MINVSYS_MAX_UV);
+>  	reg =3D ((vsys - BQ25703_MINVSYS_MIN_UV) / BQ25703_MINVSYS_STEP_UV);
+>  	reg =3D FIELD_PREP(BQ25703_MINVSYS_MASK, reg);
+> =20
+>=20
+> --=20
+> 2.52.0
+>=20
+>=20
+
+--qrjbboz7ivwrdkum
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmmxFN4ACgkQ2O7X88g7
++pqvcQ/7BxTt3z3BJknB92Gdrat2mFE2vC4Anuc74X+sB2PGI0UE+H0ygDJZt0NO
+wheMwR26VfxzfBY58YHzbBmWBIzxsJ0JjjjGulCQEqpo6qkXfuC6zrX4yrgjgtp+
+PzDQ7awxcSz8KAx63ZQUpGYxp/ZVeORBpeQpj9fTKZvOfyY4/oJ42OLn6M+IqC2b
+l9wYybG9kk/zEHb+wwuKuOvP7Gk6RmfrkovYpkk5eojKHbbWJYvPorW4+YJkfOv7
+lKQom+aRLokE7tF9c6ABuPip6ZikVEtDTjOGIMt3pfMHbVj6Lc83QXQqlQM9f07+
+UNKQllrjMeBqYv42oy+1L3t5VDv9dfHj9SxgTehjtIrlwY6p0gajEAdgghaI6Fiv
+je23WMSVgaTBdcYUu3lkXcEHhU2HUhjYlhD8yBS7BZs2uMYlauSr9I9Y0RwwqvY4
+crYWu0MiK9eLf2TPU+TIXJrVpBYxWuq3TCvSeid3FgTRc44/HELNognkF3HGeja6
+Q9OTsEfzg/oIrE1kbRh2AtX8e9BTdR6oeaumPTTaPnqdG4pKCa6Ez8xjhgUrRhsk
+Mbaw8nfxBAdeEIK6oSg6ygcX/CHzcVzlWxHH25cc9zRVm1PKWfAYC7sGoPgaIhA2
+R3sC52LNxWG8cx6lm1XNg7n4qzn965oLQGhOe5aTfiFEZqYHE0Q=
+=ZmPz
+-----END PGP SIGNATURE-----
+
+--qrjbboz7ivwrdkum--
 
