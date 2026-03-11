@@ -1,131 +1,164 @@
-Return-Path: <devicetree+bounces-274345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274346-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8DDxBmXksWksGwAAu9opvQ
-	(envelope-from <devicetree+bounces-274345-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:53:41 +0100
+	id sEp4IwnosWmcGwAAu9opvQ
+	(envelope-from <devicetree+bounces-274346-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:09:13 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8883B26A9BC
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:53:40 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE4D326AC96
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 23:09:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id AC85A3043AF3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 21:53:38 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E150E30226B5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 22:07:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7782D344030;
-	Wed, 11 Mar 2026 21:53:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC5C2D73B5;
+	Wed, 11 Mar 2026 22:07:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qx+acuNo"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="mfsizaRP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E1F31E82B
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:53:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30EF51DED42;
+	Wed, 11 Mar 2026 22:07:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773266015; cv=none; b=YShPDbh3WkUnsto/7TYjtr+03TQ1o3OR8/iLZvdXJTQWvml/skM1/N1GzpsOLINbxS393e9ehqn0zwjtBOXwyY/5JkpoLvAlO+J/CVBHOwcZ3MeCQ+cB9SYbZqJIKHs6xzzC0ECBbrJXKnbi36gC53lM+qCPt6vMyA7RJWqsiSs=
+	t=1773266859; cv=none; b=SUFVqQCwy3cjcbPpQFzS13EWoT2IZlxnDbU5PIzF/UCqvy34JToJty/lqDu+lO74sYaByayqED9R0HLXzvnedOPpD8sUiDjWaagRrjCWELFuXQMxwTgiHj6jc6qLt0i+GQwueN4rwWPi1iUckavg1uMdt90MKrAYHGQcN/skR1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773266015; c=relaxed/simple;
-	bh=4D9rM/c63SAlIWFY7S+unDB5km544PdbdTrh22X4PNk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M44DezpFXGDXcpZpZFnRyiyQOekJ2HSTAAbrD9uwrmn/Q2y7ZdIxXhZGkhGmfYhMb+e1hV9lRXAadf+026abbPItJ6v8Ap6AX8U5soDP80LYRuW18ya9pKMG5etAMqCN4QiPXmEsh1HC3/Xko2sNjDK60/H9TJlfuV9rF9ny8FA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qx+acuNo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FF6C4CEF7
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:53:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773266015;
-	bh=4D9rM/c63SAlIWFY7S+unDB5km544PdbdTrh22X4PNk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Qx+acuNog1x3P67EX3gv7VPiD8ewiC+IiW1E5MRHx16I6jXepxGgXd7Xk/49xb87w
-	 VB/ClTQC1GLrenGjILS9zepWUHlMHRu4cppfe1zHIKBJNJXQ8toQDl0jB2dNMT9F/M
-	 cdFs3ASSHg9MMjKUyy1WI88nzLvZhahFEQvYSd9eNXp2qxSOGXfB4XmvEAvvhYULmw
-	 MDswypLMp95FWdrJk1dvPUhmmwexQfnyQgHovDE1Ub8YQomZxNAq/VVHZ6+Cqdqpb+
-	 B3Qifm0U561VGHByLzaNKSdytrKjGGtJch433BGiSPHKgQPqEH0wOyjnDHnJgIh12G
-	 +d9SbRIKhJkHA==
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7986fb839f5so3692137b3.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 14:53:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXpOPgDhp1L4zEEyB+ZzOyqmHOk99M4kMfFUmB9CRGKiLG+2QW8FNfqQI+jqe8+jeVPp5f9kqTSYY7r@vger.kernel.org
-X-Gm-Message-State: AOJu0YwR7/5ICkhJOfRzqV60fwiygeVUWRJ3yUElTSi0BxTBFa/H/rVU
-	qqLiGUL5ezJhxcULfR/IE+GoiytAINWe+AjJF/t1NKbyIBKZRI0IxQyPW9p73EkbQubLRqNO0Re
-	JcboFgtfIe/a90FJewuXvKel0E7QGj/Q=
-X-Received: by 2002:a05:690c:6f0f:b0:799:182:17aa with SMTP id
- 00721157ae682-79917f6a0d4mr42530957b3.41.1773266014325; Wed, 11 Mar 2026
- 14:53:34 -0700 (PDT)
+	s=arc-20240116; t=1773266859; c=relaxed/simple;
+	bh=Vat1pICapbmcHR9Yhv6pDlemcFa/Ln8lyN4yYwnQpmw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ptSqwktoprEeCN2n5u2Bngi8+DRyEYbZso5hmzrkVqf/mDJyCtw7EDKUXCS2sl7ubGOCRAyEbjOEJ3RfrqrZ80NdqvT2ylVda9DypsMlsTw6z2hCPj9+tZeBcBp6EqmxemvLoMJGTQPoaIzqNqJ7P3GELmgxL2G7mpUpJbvnKDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=mfsizaRP; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=3pz+oBXHX4ROsA5YC4AIYdLxIsTbPv3WtlHmYYvzFJQ=; b=mfsizaRPRhXs+5amb56bl26g5W
+	YaxoUOUXpIeafPhcOsHkl64NyTIBsDZUIlwP0/ntc1CfIbwXeYXBN+HoLT7tBPmmxFLti6/uYWrms
+	hlmGnxvqInK2XCyGGZ8wwopsERgKYVFKV1lvM0ngcCuXWTMHlljZ0MTGuTXqEzifZy2wYVpr1J2SQ
+	WjjMUArT4bINr9QN3u0NLNVZpMSkA7WijRlRIDzF9QkzLqeo1yni6lnEEBWPs1o/jObVUnOMnCKir
+	XXqthuqISXMOSS4FCoSF8RK04IVTHnGUNwXRW4ouCPnuz6lyVmJn6vBdJ7yKft75MLTOxQ9ym8p7A
+	WsoGd2zA==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1w0Rhr-0000000CclT-1mxV;
+	Wed, 11 Mar 2026 22:07:07 +0000
+Message-ID: <6cad9b7b-f5aa-478f-be23-0baf155b21d2@infradead.org>
+Date: Wed, 11 Mar 2026 15:07:05 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1773150895.git.dan.carpenter@linaro.org> <58446889d781435424c46bac563483e603d7c0e9.1773150895.git.dan.carpenter@linaro.org>
-In-Reply-To: <58446889d781435424c46bac563483e603d7c0e9.1773150895.git.dan.carpenter@linaro.org>
-From: Linus Walleij <linusw@kernel.org>
-Date: Wed, 11 Mar 2026 22:53:23 +0100
-X-Gmail-Original-Message-ID: <CAD++jLnh=ei50bm+m23k4NKQZVYVRZP8FuBdm_XmzkogMVsAog@mail.gmail.com>
-X-Gm-Features: AaiRm51cR-8gCJdyzlUDaMIodJ8MR_H5Ul1TeF-jzXeyh4Sj2RMDj9T51Mz7yNA
-Message-ID: <CAD++jLnh=ei50bm+m23k4NKQZVYVRZP8FuBdm_XmzkogMVsAog@mail.gmail.com>
-Subject: Re: [PATCH v3 6/7] dt-bindings: gpio: Add bindings for pinctrl based
- generic gpio driver
-To: Dan Carpenter <dan.carpenter@linaro.org>
-Cc: AKASHI Takahiro <akashi.tkhro@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dan Carpenter <dan.carpenter@linaro.og>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Andy Shevchenko <andriy.shevchenko@intel.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>, arm-scmi@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 25/25] meminspect: Add debug kinfo compatible driver
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Eugen Hristev <eugen.hristev@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
+ Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>,
+ Christoph Lameter <cl@gentwo.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Thomas Gleixner <tglx@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>,
+ Frederic Weisbecker <frederic@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Juri Lelli <juri.lelli@redhat.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
+ Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+ Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
+ Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
+ Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
+ Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
+ John Ogness <john.ogness@linutronix.de>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: workflows@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-mm@kvack.org, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
+ <20260311-minidump-v2-v2-25-f91cedc6f99e@oss.qualcomm.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260311-minidump-v2-v2-25-f91cedc6f99e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
+	R_DKIM_ALLOW(-0.20)[infradead.org:s=bombadil.20210309];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274345-lists,devicetree=lfdr.de];
-	FREEMAIL_CC(0.00)[gmail.com,kernel.org,linaro.og,vger.kernel.org,intel.com,oss.qualcomm.com];
+	TAGGED_FROM(0.00)[bounces-274346-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[infradead.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_GT_50(0.00)[57];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[linusw@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,linaro.org:email]
-X-Rspamd-Queue-Id: 8883B26A9BC
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:dkim,infradead.org:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: EE4D326AC96
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 11, 2026 at 8:39=E2=80=AFPM Dan Carpenter <dan.carpenter@linaro=
-.org> wrote:
 
-> From: AKASHI Takahiro <takahiro.akashi@linaro.org>
->
-> Add a dt binding for the gpio-by-pinctrl driver.  The driver is used
-> for doing GPIO over the SCMI pinctrl protocol.  There are a few
-> mandatory properties such as gpio-ranges and ngpios, but it's not
-> mandatory to specify the pin-mux.
->
-> Signed-off-by: AKASHI Takahiro <takahiro.akashi@linaro.org>
-> Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
 
-I think Takashi's original idea is sound now that we clarified
-the level read/set semantics!
-Reviewed-by: Linus Walleij <linusw@kernel.org>
+On 3/10/26 1:16 PM, Mukesh Ojha wrote:
+> diff --git a/kernel/meminspect/Kconfig b/kernel/meminspect/Kconfig
+> index fa2b5a84b251..396510908e47 100644
+> --- a/kernel/meminspect/Kconfig
+> +++ b/kernel/meminspect/Kconfig
+> @@ -17,3 +17,14 @@ config MEMINSPECT
+>  
+>  	  Note that modules using this feature must be rebuilt if option
+>  	  changes.
+> +
+> +config MEMINSPECT_KINFO
+> +	tristate "Shared memory KInfo compatible driver"
+> +	depends on MEMINSPECT
+> +	help
+> +	  Say y here to enable the Shared memory KInfo compatible driver
 
-Yours,
-Linus Walleij
+Use a period (full stop) ('.') at the end of the sentence above.
+
+> +	  With this driver, the registered regions are copied to a shared
+> +	  memory zone at register time.
+> +	  The shared memory zone is supplied via OF.
+> +	  This driver will select only regions that are of interest,
+> +	  and keep only addresses. The format of the list is Kinfo compatible.
+
+-- 
+~Randy
+
 
