@@ -1,217 +1,171 @@
-Return-Path: <devicetree+bounces-274126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274127-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gPblL6BxsWlVvAIAu9opvQ
-	(envelope-from <devicetree+bounces-274126-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:44:00 +0100
+	id UJaeGwtysWlVvAIAu9opvQ
+	(envelope-from <devicetree+bounces-274127-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:45:47 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AB29264C1B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:44:00 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E204D264C8E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 14:45:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 802663139B6E
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:38:53 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 61C2030AF386
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 13:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C0131327A;
-	Wed, 11 Mar 2026 13:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n0jPqmxH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EAA32D0D4;
+	Wed, 11 Mar 2026 13:40:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D60B23BD06;
-	Wed, 11 Mar 2026 13:38:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03D6F22B5AC
+	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 13:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773236332; cv=none; b=XbBcyzA8cfSuylyLG6Hz4aa54x9pbn7OrDC6E3UABokbJv/4ApjPWPtzVQvax5X1AX4AVN7uoYd18/yTQSq7fAok5eYUo/amgOXcg9gviQYswPSK4zJ0sqtZ8t3+T5x9cVr0W8Ar/fJPEp7WhhAyzmQf4oZHvMdNJQnLDpjkqSU=
+	t=1773236434; cv=none; b=TfHG5rlC+HA702Yrl7MAz1FqCCbPXqZ1rl6fGJuAAbat/MZXb2IojmazzYsNB/yd2IvKDw3VYnm0pQj29c7KBkcqJ07UD/nt3lvMq/v4W8qNRlGr/2uKG4tPvptE82N9C6Y3U7wkUfs2Q20/pE07h6p1DAPuvpq/SxFxJffYIIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773236332; c=relaxed/simple;
-	bh=83+AL1G5IjctdEzN79fL2AQOUtbDP1LaT+2LvqXasSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B2qwkQoKjQnI6MqXNJkZeTGjzuhgl811mvvoGoKQZAMIWf7+FR2sFeNgvzQ1wBLnwPn0+SQWs+S/SEsdP43M7PY1yFmjizNjY32gvR0ig8uGzFqf1iF97c3MNfbuPHb9+7STzY9uxkwa3fp19f10NVK0NDlL4TOdvOeDwV2oQZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n0jPqmxH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB64AC4CEF7;
-	Wed, 11 Mar 2026 13:38:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773236332;
-	bh=83+AL1G5IjctdEzN79fL2AQOUtbDP1LaT+2LvqXasSQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n0jPqmxHMmhrWuCJw/ogpqucrTqJxBu+5CxqPDRZIymfmJVosYpzOY1OJ7ZQrm7Ao
-	 /AdPSw3h3gS0e/fbGkz9jckrpfqLY0Qk3AQYN9tgiNY9L3PO56cHMlNxuCJoHB8APB
-	 Gd/celBIM771LyMe0P2K4s2ikT5ekFTnUCLN5bmdGjVDEiyEBPEA3jUraEW1drM5RF
-	 obWLIxyQlSDubUErZsu/yJf6bTNWDUzdLGjG6F9T+jaguElvi44TevTl0Ia3zGTWCY
-	 KpACuXEH2/cWsk0PK4fh6sWfAkOztqhgaIpfJu/hYCNB/UBhzNxY0r82Q6QGuKx7sr
-	 c745PV7nvkpqg==
-Message-ID: <f6ac4bb9-2a4d-4432-93e4-111cad73fc85@kernel.org>
-Date: Wed, 11 Mar 2026 14:38:48 +0100
+	s=arc-20240116; t=1773236434; c=relaxed/simple;
+	bh=P8/F88WI/ZbIkPfS0vzqYssdeRxxEz5wUC4N+aKwM30=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sXOnQLosBWdrxrUQKPzZ+EaNPMDiljFr/rDHFpRU+v32zudVJ4gjxOkhDdydybnzC2miX44NTuJFFh1cUtsO4ivxCPXrDTwfzEh+eoKainAYOFw5IuGwfq2pbkd5I9Unk65dH/AzuAyRTVYklPwkvtiaUvisHaIFf7GSenPw+UU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w0JnT-0005WA-Vo; Wed, 11 Mar 2026 14:40:23 +0100
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w0JnQ-004rpJ-2d;
+	Wed, 11 Mar 2026 14:40:22 +0100
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.98.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1w0JnS-0000000DNSb-0Bq1;
+	Wed, 11 Mar 2026 14:40:22 +0100
+Date: Wed, 11 Mar 2026 14:40:22 +0100
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Bartosz Golaszewski <brgl@kernel.org>
+Cc: Thomas Gleixner <tglx@kernel.org>, Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Peter Rosin <peda@axentia.se>, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
+	David Jander <david@protonic.nl>, Linus Walleij <linusw@kernel.org>
+Subject: Re: [PATCH v3 4/7] gpio: gpiolib: fix allocation order in
+ hierarchical IRQ domains
+Message-ID: <abFwxtDWvkXHx9KS@pengutronix.de>
+References: <20260309134920.1918294-1-o.rempel@pengutronix.de>
+ <20260309134920.1918294-5-o.rempel@pengutronix.de>
+ <CAD++jL=3GeHNirtN9diGc8R2rxczo4UUL9_ON28jOj_DPP2Sjg@mail.gmail.com>
+ <CAMRc=Mdutv6TyU5SG2uzCgRuvYVmfFB0kwXgj45Qajet+TdBhw@mail.gmail.com>
+ <CAMRc=Me5Yb_H3oQ7XtWVs+KViL6pkr0b1Qyb7WW1wtxyGkGhAg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] scsi: ufs: drockchip,rk3576-ufshc: dt-bindings: Add
- new mphy reset item
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <1773193218-215988-1-git-send-email-shawn.lin@rock-chips.com>
- <1773193218-215988-2-git-send-email-shawn.lin@rock-chips.com>
- <20260311-ultraviolet-shrew-of-management-ca536b@quoll>
- <6d4e61eb-0b1b-c61f-faba-f790774b6cec@rock-chips.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <6d4e61eb-0b1b-c61f-faba-f790774b6cec@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 3AB29264C1B
+In-Reply-To: <CAMRc=Me5Yb_H3oQ7XtWVs+KViL6pkr0b1Qyb7WW1wtxyGkGhAg@mail.gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Rspamd-Queue-Id: E204D264C8E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274126-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	TAGGED_FROM(0.00)[bounces-274127-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[pengutronix.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[o.rempel@pengutronix.de,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	NEURAL_HAM(-0.00)[-0.997];
 	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[rock-chips.com:email,sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:rdns,tor.lore.kernel.org:helo]
 X-Rspamd-Action: no action
 
-On 11/03/2026 14:29, Shawn Lin wrote:
-> Hi Krzysztof
+On Wed, Mar 11, 2026 at 02:18:05AM -0700, Bartosz Golaszewski wrote:
+> On Tue, 10 Mar 2026 10:14:59 +0100, Bartosz Golaszewski <brgl@kernel.org> said:
+> > On Tue, Mar 10, 2026 at 10:05 AM Linus Walleij <linusw@kernel.org> wrote:
+> >>
+> >> On Mon, Mar 9, 2026 at 2:49 PM Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+> >>
+> >> > In gpiochip_hierarchy_irq_domain_alloc(), calling irq_domain_set_info()
+> >> > before irq_domain_alloc_irqs_parent() causes a NULL pointer dereference
+> >> > for slow-bus (SPI/I2C) IRQ chips.
+> >> >
+> >> > irq_domain_set_info() locks the child descriptor, triggering .irq_bus_lock.
+> >> > If the child proxies this lock to the parent, it crashes because
+> >> > parent->chip is not yet allocated.
+> >> >
+> >> > Fix this by allocating the parent IRQs first, ensuring parent->chip is
+> >> > populated before the child's .irq_bus_lock is invoked.
+> >> >
+> >> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> >> > ---
+> >> > changes v3
+> >> > - new patch
+> >>
+> >> Bartosz, tglx: is this something we should apply for fixes?
+> >>
+> >> I think it needs to go into gpiolib for next at minimum, unless
+> >> there is some semantic problem with the patch.
+> >>
+> >
+> > Looks good to me. I can take it into v7.0-rc4 via the GPIO tree and
+> > tglx can pull the tag once it's out as a base for the rest of the
+> > series?
+> >
+> > Bart
+> >
 > 
-> 在 2026/03/11 星期三 21:10, Krzysztof Kozlowski 写道:
->> On Wed, Mar 11, 2026 at 09:40:17AM +0800, Shawn Lin wrote:
->>> Add the mphy reset property to the devicetree bindings for the Rockchip
->>> RK3576 UFS host controller. The mphy reset signal is used to reset the
->>> physical adapter. Resetting other components while leaving the mphy
->>> unreset may occasionally prevent the UFS controller from successfully
->>> linking up with the device.
->>>
->>> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
->>> ---
->>>
->>>   Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml | 7 ++++---
->>>   1 file changed, 4 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
->>> index c7d17cf4..e738153 100644
->>> --- a/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
->>> +++ b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
->>> @@ -41,7 +41,7 @@ properties:
->>>       maxItems: 1
->>>   
->>>     resets:
->>> -    maxItems: 4
->>> +    maxItems: 5
->>>   
->>>     reset-names:
->>>       items:
->>> @@ -49,6 +49,7 @@ properties:
->>>         - const: sys
->>>         - const: ufs
->>>         - const: grf
->>> +      - const: mphy
->>
->> ABI break here and in the driver. Considering this was merged year ago,
->> so for sure it was tested and was working. Otherwise commit msg would
->> explain the actual bug affecting users.
->>
-> 
-> Thanks for your review.
-> 
-> You are absolutely right that this change technically breaks the ABI in
-> the device tree bindings by increasing maxItems and adding a new entry.
-> Although the driver is using devm_reset_control_array_get_exclusive(),
-> so the old DTB and new DTB should both work.
+> Oleksij: it doesn't look like there are any dependencies for this patch, is
+> it ok if I queue it for the next RC?
 
-Ah, I missed that. Please mention it briefly in commit msg to indicate
-that Linux is not affected.
+ACK, there are no dependencies.
 
-> 
-> The issue this series fixes (UFS link-up failure when mphy is not
-> explicitly reset) is an intermittent hardware bug that is difficult to
-> reproduce. It only occurs under specific timing conditions with certain
-> chips. We recently encountered this issue consistently in our downstream
-> testing and identified the root cause. We are syncing this critical fix
-> to upstream immediately to prevent stability issues for users. I will
-> update the commit message to explicitly describe this hard-to-reproduce
-> bug and the specific failure mode, and probably add a fixes tag.
-> 
-> Does the above sound the right approach to you?
+> Could you add the Fixes tag as well?
 
-Yes, please include parts of above, that it is hard to reproduce but it
-does happen, in the commit msg.
+Fixes: fdd61a013a24 ("gpio: Add support for hierarchical IRQ domains")
 
+Should add it in the next round? There are some pending comments for
+this patch set.
 
-Best regards,
-Krzysztof
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
