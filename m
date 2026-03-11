@@ -1,214 +1,545 @@
-Return-Path: <devicetree+bounces-274253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274254-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCslJbKhsWn4EAAAu9opvQ
-	(envelope-from <devicetree+bounces-274253-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:09:06 +0100
+	id iIQMKMyjsWn4EAAAu9opvQ
+	(envelope-from <devicetree+bounces-274254-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:18:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB2A267CC9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:09:05 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 411AE267E57
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 18:18:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 7F3FA3008609
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:08:44 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 627FD31F121C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F5903E3C4F;
-	Wed, 11 Mar 2026 17:08:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7064D3E3176;
+	Wed, 11 Mar 2026 17:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nc8AlKWt"
+	dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b="ScMfa/rI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.cjdns.fr (mail.cjdns.fr [5.135.140.105])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C3A373BE0
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 17:08:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1F23E0C4C;
+	Wed, 11 Mar 2026 17:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.135.140.105
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773248922; cv=none; b=diwuULnaPwq922yWoL+awRMobAyAShDckIOi7I2oqUoaps/jNzGUvUgp7Tp7DoxNVdhHgrvQxf7JqcC1fShrB4mtp5cffP+PVOmNxUhtNtM9DnRDALCGy+LOquJ+04jmvcWTitPcPW5Pfw8QcFpGw24VXbjO/GniGc0Rjapi04U=
+	t=1773249204; cv=none; b=GXoWRI5iNM5EHymzzrPSvFBVTKBjwxvIuNzjPlKfGLDV5maLTHPbmUvjelzKZGhNoTzjvaaNpofSA2jSWZBof9kkVclAw8MMB57w9nANtLbetS7KrN1dAck+Be6H3xnHxYsumya07A/PFwPkybxN3RDhrpwVPHN5CqmKd0lwhow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773248922; c=relaxed/simple;
-	bh=6mhnSaAg3iLefoQGg+TR62AbdmaFTj9WXmqTeVzCn+s=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hmitK7O2c5tOE2DjOQAxY4egzJRuntLfxtJGHsLwEqa1Zblt8SqxGCF9xj73F/tro7mXiT5GFlDe3cGzHuC07hxg/Wm2oQLFmqC0l25BZvPt3qLv3diEkAYgXQSmpkLi4iGRJI/wZvZxc3CqRtEN6a7TRGQPlQJugxTHXZMOB4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nc8AlKWt; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-50917e02532so940211cf.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 10:08:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773248919; x=1773853719; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=cuyOusyX8t2/9N8XkvP3Pzm/04mnrL2/yq15S8/jD6o=;
-        b=nc8AlKWtKqYsEyQ94EoiTPpSlHFUfJhklVvy9oZxCUkrpMiESY9TjHo7gAyOfrDvLI
-         cB1NNQ+yH2AI9BbR24vsBN7mGcM9tgNSfzTXjDsrcRQsaehrBP4AmMVY44MBwe2JhRjZ
-         ViGSFrrGcS68sRKHSGhTb2d7jVPSvvBR83CkFyz8L5TfN/CPCTtXPadWOmvNM7m9ISws
-         GDLwqSeg/7zsQH3LSAnvWr6sGMCt9aQ9/xRAa3QozzXmJhD5e43A/NE9a0eph7OG5Tuc
-         E0xjCKJPmlLouvxKtmS6ufZ3kPl9k45Pb5S4QBuISJgbVkcUEUguj7YDAU411dN5vh1J
-         zU2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773248919; x=1773853719;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:date:from:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cuyOusyX8t2/9N8XkvP3Pzm/04mnrL2/yq15S8/jD6o=;
-        b=OUXJyC6mbPSIsMa48shCHaq6F5cfH+UsfbZCMglXnO7PPrYXqFHNq0aifwKSsYTMDq
-         hFWBS3SzjoQa9ztNH1ELzdnkYVxb6UxZfkrdPJjEgu/wtOgMfuG7lotRwoYvpolTzQe4
-         y39h1VJSYMssIGj1hDsp8wiviPy/Y20hduDIlmWAPaqTIrc/ersIhanZxuC1YNznT14/
-         bQK+iyHWXR4IHSUglfW8C4vML6oOWY4OuhVtcoGTwtHFe3JQMmPZTgjoyPkaRpHCUs5t
-         O1ZuL6W3QWYOzmgJGr6c4kCF9p0hbw2TXJg4AY5CcjEeVBuvNgxsvvBpU9QE/JuAu1Dh
-         4kAg==
-X-Forwarded-Encrypted: i=1; AJvYcCWuXIjWSRyc1mSaGZ2Hn4Mk/B7UbvHVLwAeD1hLOAhGXN4tlPte0rxXuETkr1Hg9edDM/wAirT1lz1P@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6QH6G1HfO4AsBnqER/jvYSgUyGWDnbioSUB3EWX9e648bGj2y
-	dbQyCTe7+7bTi8JvYXE76FSqOCZxn/4sN7d1unZLfOlOx359Cm4llUCo
-X-Gm-Gg: ATEYQzy3QV0sRcX+XbXxgeU/28TO3qPfRdzdDFXZhG1bkCc1U92ZVJrky2uaYG2l9TK
-	eFW2mAFkIEBN4ITI3KgsjRj3KWayQquZpuoXXCRaQRd5WXfp6L7Pa6gWLLVhhii66/YEU1bNY8Z
-	5qYVFVDWAjrrn1QZAW5mdNBHGjtW5E4nKQDzxJmQlmNpbwCeWDGX+WulyLjAYNMbiGn9rUkZC/N
-	uR3YlRKjPOiD03RPW0PrIqUnokC6t3AZz9vhIO6GR1AJLSOfjm+Ui9qXWBqx+Ko0dPOsniO/nB4
-	GZmD5LJJYE8eMLHLpJIhpi1ttTaXa2MlxLcCd4mxzg78yreRMuEfZ25KW2LeiHZIbIZdlkWT8m+
-	sNPxR3zTKyC+fKoSJwoqPQBlL9SJhz76oz+MaeP3ov4GLoXszsnDYH8sh9Z2s5RbMEO7WHdiAyV
-	unFt4pdxoH43fEi5Bv9st3uW0W0XAGRzsbz+GrhDkj6ZKehn9g5WiwVP/v+jPnggnXxCXFG06BA
-	1cFnmeNFptAamvd1Aw47D2lv2Usn63b4mqbbwi0kOO16eRvzd0=
-X-Received: by 2002:a05:622a:1111:b0:509:31d1:eb0 with SMTP id d75a77b69052e-5093a1d9fb5mr39796621cf.65.1773248918614;
-        Wed, 11 Mar 2026 10:08:38 -0700 (PDT)
-Received: from RDEALENC-L01.ad.analog.com (24.206.116.131.netskope-rdns.com. [24.206.116.131])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-5093a14791dsm16436701cf.31.2026.03.11.10.08.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 10:08:37 -0700 (PDT)
-From: Rodrigo Alencar <455.rodrigo.alencar@gmail.com>
-X-Google-Original-From: Rodrigo Alencar <rdealenc@rdealenc-l01.ad.analog.com>
-Date: Wed, 11 Mar 2026 17:08:33 +0000
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>, 
-	Rodrigo Alencar <455.rodrigo.alencar@gmail.com>, David Lechner <dlechner@baylibre.com>, 
-	Jonathan Cameron <jic23@kernel.org>, 
-	Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org>
-Cc: rodrigo.alencar@analog.com, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH RFC 6/8] iio: frequency: ad9910: add RAM mode support
-Message-ID: <bfiacew2zft2ayg72g7g2dxdnzsqxr4m63kkz326o7ybb5rbgy@hg4hs4plwj5f>
-References: <20260220-ad9910-iio-driver-v1-0-3b264aa48a10@analog.com>
- <20260220-ad9910-iio-driver-v1-6-3b264aa48a10@analog.com>
- <20260301133153.7f2f8501@jic23-huawei>
- <20260307140735.5ec2e608@jic23-huawei>
- <bxcybwaz3am7nrrfcjuvkbbe7yp4vwcxwwh4dafaj5dsy622s7@m4vdam6tyaht>
- <b1187027-3ddd-43bc-a773-8b5d794e04fc@baylibre.com>
- <frn4iotwpzef7ca5yosmwllxrottjlu2rpgpbdogrydsujebf3@lwamhpkzxn65>
- <3a967f38a43933f12c98a9dfe4f1e85fa592b41b.camel@gmail.com>
+	s=arc-20240116; t=1773249204; c=relaxed/simple;
+	bh=Bo8UOVPi6PaKtVa1MDENLO8cOjfshIJ/OG9qJxKBL4E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hZZffRZAPXdK5wJghUveu3u4x7S1JPZ+PnhXj7ZJhf8FWfnbbpkZtNE2a2sfqfS8MHe+loWb1yMwanVQ8ufhFyLXB7NLNaZq6qZKapWJ93nYnTRn1gS43VquVXmohtyPO/Gvm1mVDsoNuYglkU1ENTcR3PPGNBZaB9Hz0hDXfgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr; spf=none smtp.mailfrom=cjdns.fr; dkim=pass (2048-bit key) header.d=cjdns.fr header.i=@cjdns.fr header.b=ScMfa/rI; arc=none smtp.client-ip=5.135.140.105
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=cjdns.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cjdns.fr
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A584D2B975D;
+	Wed, 11 Mar 2026 18:13:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cjdns.fr; s=dkim;
+	t=1773249191; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=SWK6hCFWTtJ6HB5p0G57+QkEA4hYw/yDHOa1YtvvqTE=;
+	b=ScMfa/rIt+JO2UGaejqsHDrxK9iGnuiAq4qO6/cHHWUrsvrFfnT3ETm4u359ls5vDUucD2
+	9V1qjHS0x9+EzvNn4fP7gMLIEMyqFnx9Kvs57sWwt1ExiJ7OYRneS4IWuW+S1/XXBGwTB2
+	sZSQWsGD6O8oh0O/NujEZdUnKGubYr5JiLgcWocenLugK+xWr+Z1rqtWtRUDEuLWYBu7CO
+	EsVDjo4s+fVhNa/7MNaMzzgyzNBQHMPcFpj5d0w79dzwpsamqyvlrA9+lW0BH0DM0eD099
+	FNoQtPkVo1GiLfNDRIVAiC1oIgF5XpcwqSF2JB9ha6PMJKnoJVhQTv/GLOhTKQ==
+Message-ID: <de6e8440-99a1-4be7-80aa-3645fdb0bdb9@cjdns.fr>
+Date: Wed, 11 Mar 2026 18:12:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v2 2/8] clk: airoha: Add econet EN751221 clock/reset
+ support to en7523-scu
+To: Brian Masney <bmasney@redhat.com>
+Cc: linux-mips@vger.kernel.org, naseefkm@gmail.com, mturquette@baylibre.com,
+ sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ tsbogend@alpha.franken.de, ryder.lee@mediatek.com,
+ jianjun.wang@mediatek.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ mani@kernel.org, bhelgaas@google.com, vkoul@kernel.org,
+ neil.armstrong@linaro.org, p.zabel@pengutronix.de, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, nbd@nbd.name, ansuelsmth@gmail.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20260309131818.74467-1-cjd@cjdns.fr>
+ <20260309131818.74467-3-cjd@cjdns.fr> <abF-qFC1Oa4dz-fh@redhat.com>
+Content-Language: en-US
+From: Caleb James DeLisle <cjd@cjdns.fr>
+In-Reply-To: <abF-qFC1Oa4dz-fh@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3a967f38a43933f12c98a9dfe4f1e85fa592b41b.camel@gmail.com>
-X-Spamd-Result: default: False [-0.16 / 15.00];
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[cjdns.fr,none];
+	R_DKIM_ALLOW(-0.20)[cjdns.fr:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274253-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com,baylibre.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	TAGGED_FROM(0.00)[bounces-274254-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[29];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,gmail.com,baylibre.com,kernel.org,alpha.franken.de,mediatek.com,google.com,linaro.org,pengutronix.de,collabora.com,nbd.name,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[455rodrigoalencar@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cjd@cjdns.fr,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[cjdns.fr:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,rodrigo.alencar.analog.com,dt];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,analog.com:email]
-X-Rspamd-Queue-Id: 6FB2A267CC9
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[cjdns.fr:dkim,cjdns.fr:email,cjdns.fr:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 411AE267E57
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 26/03/11 04:54PM, Nuno Sá wrote:
-> On Wed, 2026-03-11 at 13:11 +0000, Rodrigo Alencar wrote:
-> > On 26/03/10 07:11PM, David Lechner wrote:
-> > > On 3/10/26 12:40 PM, Rodrigo Alencar wrote:
-> > > > On 26/03/07 02:07PM, Jonathan Cameron wrote:
-> > > > > On Sun, 1 Mar 2026 13:31:53 +0000
-> > > > > Jonathan Cameron <jic23@kernel.org> wrote:
-> > > > > 
-> > > > > > On Fri, 20 Feb 2026 16:46:10 +0000
-> > > > > > Rodrigo Alencar via B4 Relay <devnull+rodrigo.alencar.analog.com@kernel.org> wrote:
-> > > > > > 
-> > > > > > > From: Rodrigo Alencar <rodrigo.alencar@analog.com>
-> > > > > > > 
-> > > > > > > Add RAM channel with support for profile-based control. This includes:
-> > > > > > > - RAM data loading via binary sysfs attribute (ram_data);  
-> > > > > > 
-> > > > > > I'm not sure that's a long term viable path.  We either need
-> > > > > > to figure out how to do it as firmware file load, or via an output buffer.
-> > > > > > 
-> > > > > > Firmware load would probably be too static and I'm not sure quite
-> > > > > > how we map these to IIO output buffers.
-> > > > > 
-> > > > > We would have to carry it for ever which is very much not ideal.
-> > > > > The firmware approach has the same issue, but can be thought of
-> > > > > as defaults at boot time forever.  If no defaults then we use whatever
-> > > > > we come up with as the long term solution.
-> > > > 
-> > > > I was thinking about the firmware approach:
-> > > > - Normally a driver would request the firmware during probe and the
-> > > >   filename would be pre-defined.
-> > > > - Less statically, It could have an attribute that once written, it would
-> > > >   request the RAM contents (e.g. under /lib/firmware/ad9910_ram.bin).
-> > > >   It could be the enable attribute itself (but that would not be effective
-> > > >   when the binary would not change), or a separate one (e.g. destination),
-> > > >   or a new one (e.g. load_en)
-> > > 
-> > > Have you looked at firmware_upload_register()? It looks like it provides
-> > > something along these lines.
-> > 
-> > Thanks! this is in fact perfect!
-> > It might be ugly, but for the sake of debugging I managed to get libiio to
-> > interface with this by exposing it in the debugfs.
-> > 
-> > 	debugfs_create_symlink("ram_loading",
-> > 			       iio_get_debugfs_dentry(indio_dev),
-> > 			       "/sys/class/firmware/ad9910-ram/loading");
-> > 	debugfs_create_symlink("ram_data",
-> > 			       iio_get_debugfs_dentry(indio_dev),
-> > 			       "/sys/class/firmware/ad9910-ram/data");
-> 
-> Or for the sake of future proving, maybe let's make the sysfs a bit more generic. At least the path,
-> 
-> /sys/class/firmware/dev_name(iio_dev)/*
-> 
-> I guess userspace tools could work with the above to match the fw blob with the right device. Also,
-> hardcoding the name as it seems you have done will be a problem if we have multiple devices, no?
+Hello Brian,
 
-You are right. I am using /sys/class/firmware/iio:deviceX:ram/* at this point.
-I suppose some complex transceivers you may know about may need different fw_upload
-instances for different CPUs or profiles.
-I like the idea for userspace tools to expose those. For now, using symlink into
-debufs is working just fine.
- 
--- 
-Kind regards,
+Thank you for taking the time!
 
-Rodrigo Alencar
+
+On 11/03/2026 15:39, Brian Masney wrote:
+> Hi Caleb,
+>
+> On Mon, Mar 09, 2026 at 01:18:12PM +0000, Caleb James DeLisle wrote:
+>> EcoNet EN751221 clock/reset driver is significantly similar to the
+>> EN7523 / EN7581, however the EN751221 does not have a neat batch of clock
+>> divider registers so there are fewer known clocks, and the frequency of
+>> each clock is derived differently. This clock driver will probably work
+>> correctly on EN751627, EN7528, and EN7580.
+>>
+>> Signed-off-by: Caleb James DeLisle <cjd@cjdns.fr>
+>> ---
+>>   drivers/clk/Kconfig      |   6 +-
+>>   drivers/clk/clk-en7523.c | 238 ++++++++++++++++++++++++++++++++++++++-
+>>   2 files changed, 236 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+>> index 3d803b4cf5c1..47df6073a72b 100644
+>> --- a/drivers/clk/Kconfig
+>> +++ b/drivers/clk/Kconfig
+>> @@ -218,13 +218,13 @@ config COMMON_CLK_CS2000_CP
+>>   	  If you say yes here you get support for the CS2000 clock multiplier.
+>>   
+>>   config COMMON_CLK_EN7523
+>> -	bool "Clock driver for Airoha EN7523 SoC system clocks"
+>> +	bool "Clock driver for Airoha/EcoNet SoC system clocks"
+>>   	depends on OF
+>> -	depends on ARCH_AIROHA || COMPILE_TEST
+>> +	depends on ARCH_AIROHA || ECONET || COMPILE_TEST
+>>   	default ARCH_AIROHA
+>>   	help
+>>   	  This driver provides the fixed clocks and gates present on Airoha
+>> -	  ARM silicon.
+>> +	  and EcoNet silicon.
+>>   
+>>   config COMMON_CLK_EP93XX
+>>   	tristate "Clock driver for Cirrus Logic ep93xx SoC"
+>> diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
+>> index 08cc8e5acf43..f7bd7034cf7f 100644
+>> --- a/drivers/clk/clk-en7523.c
+>> +++ b/drivers/clk/clk-en7523.c
+>> @@ -1,5 +1,6 @@
+>>   // SPDX-License-Identifier: GPL-2.0-only
+>>   
+>> +#include <linux/bitfield.h>
+>>   #include <linux/delay.h>
+>>   #include <linux/clk-provider.h>
+>>   #include <linux/io.h>
+>> @@ -11,6 +12,8 @@
+>>   #include <dt-bindings/clock/en7523-clk.h>
+>>   #include <dt-bindings/reset/airoha,en7523-reset.h>
+>>   #include <dt-bindings/reset/airoha,en7581-reset.h>
+>> +#include <dt-bindings/clock/econet,en751221-scu.h>
+>> +#include <dt-bindings/reset/econet,en751221-scu.h>
+>>   
+>>   #define RST_NR_PER_BANK			32
+>>   
+>> @@ -33,15 +36,49 @@
+>>   #define   REG_RESET_CONTROL_PCIEHB	BIT(29)
+>>   #define   REG_RESET_CONTROL_PCIE1	BIT(27)
+>>   #define   REG_RESET_CONTROL_PCIE2	BIT(26)
+>> +#define REG_HIR				0x064
+>> +#define   REG_HIR_MASK			GENMASK(31, 16)
+>>   /* EN7581 */
+>>   #define REG_NP_SCU_PCIC			0x88
+>>   #define REG_NP_SCU_SSTR			0x9c
+>>   #define REG_PCIE_XSI0_SEL_MASK		GENMASK(14, 13)
+>>   #define REG_PCIE_XSI1_SEL_MASK		GENMASK(12, 11)
+>>   #define REG_CRYPTO_CLKSRC2		0x20c
+>> +/* EN751221 */
+>> +#define EN751221_REG_SPI_DIV		0x0cc
+>> +#define EN751221_REG_SPI_DIV_MASK	GENMASK(31, 8)
+>> +#define EN751221_SPI_BASE		500000000
+>> +#define EN751221_SPI_BASE_EN7526C	400000000
+>> +#define EN751221_REG_BUS		0x284
+>> +#define EN751221_REG_BUS_MASK		GENMASK(21, 12)
+>> +#define EN751221_REG_SSR3		0x094
+>> +#define EN751221_REG_SSR3_GSW_MASK	GENMASK(9, 8)
+>>   
+>>   #define REG_RST_CTRL2			0x830
+>>   #define REG_RST_CTRL1			0x834
+>> +#define EN751221_REG_RST_DMT		0x84
+>> +#define EN751221_REG_RST_USB		0xec
+>> +
+>> +#define EN751221_MAX_CLKS		6
+>> +
+>> +enum en_hir {
+>> +	HIR_UNKNOWN	= -1,
+>> +	HIR_TC3169	= 0,
+>> +	HIR_TC3182	= 1,
+>> +	HIR_RT65168	= 2,
+>> +	HIR_RT63165	= 3,
+>> +	HIR_RT63365	= 4,
+>> +	HIR_MT751020	= 5,
+>> +	HIR_MT7505	= 6,
+>> +	HIR_EN751221	= 7,
+>> +	HIR_EN7526C	= 8,
+>> +	HIR_EN751627	= 9,
+>> +	HIR_EN7580	= 10,
+>> +	HIR_EN7528	= 11,
+>> +	HIR_EN7523	= 12,
+>> +	HIR_EN7581	= 13,
+>> +	HIR_MAX		= 14,
+>> +};
+>>   
+>>   struct en_clk_desc {
+>>   	int id;
+>> @@ -93,6 +130,8 @@ static const u32 bus7581_base[] = { 600000000, 540000000 };
+>>   static const u32 npu7581_base[] = { 800000000, 750000000, 720000000, 600000000 };
+>>   static const u32 crypto_base[] = { 540000000, 480000000 };
+>>   static const u32 emmc7581_base[] = { 200000000, 150000000 };
+>> +/* EN751221 */
+>> +static const u32 gsw751221_base[] = { 500000000, 250000000, 400000000, 200000000 };
+>>   
+>>   static const struct en_clk_desc en7523_base_clks[] = {
+>>   	{
+>> @@ -300,6 +339,13 @@ static const u16 en7581_rst_ofs[] = {
+>>   	REG_RST_CTRL1,
+>>   };
+>>   
+>> +static const u16 en751221_rst_ofs[] = {
+>> +	REG_RST_CTRL2,
+>> +	REG_RST_CTRL1,
+>> +	EN751221_REG_RST_DMT,
+>> +	EN751221_REG_RST_USB,
+>> +};
+>> +
+>>   static const u16 en7523_rst_map[] = {
+>>   	/* RST_CTRL2 */
+>>   	[EN7523_XPON_PHY_RST]		= 0,
+>> @@ -405,8 +451,61 @@ static const u16 en7581_rst_map[] = {
+>>   	[EN7581_XPON_MAC_RST]		= RST_NR_PER_BANK + 31,
+>>   };
+>>   
+>> +static const u16 en751221_rst_map[] = {
+>> +	/* RST_CTRL2 */
+>> +	[EN751221_XPON_PHY_RST]		= 0,
+>> +	[EN751221_GFAST_RST]		= 1,
+>> +	[EN751221_CPU_TIMER2_RST]	= 2,
+>> +	[EN751221_UART3_RST]		= 3,
+>> +	[EN751221_UART4_RST]		= 4,
+>> +	[EN751221_UART5_RST]		= 5,
+>> +	[EN751221_I2C2_RST]		= 6,
+>> +	[EN751221_XSI_MAC_RST]		= 7,
+>> +	[EN751221_XSI_PHY_RST]		= 8,
+>> +
+>> +	/* RST_CTRL1 */
+>> +	[EN751221_PCM1_ZSI_ISI_RST]	= RST_NR_PER_BANK + 0,
+>> +	[EN751221_FE_QDMA1_RST]		= RST_NR_PER_BANK + 1,
+>> +	[EN751221_FE_QDMA2_RST]		= RST_NR_PER_BANK + 2,
+>> +	[EN751221_FE_UNZIP_RST]		= RST_NR_PER_BANK + 3,
+>> +	[EN751221_PCM2_RST]		= RST_NR_PER_BANK + 4,
+>> +	[EN751221_PTM_MAC_RST]		= RST_NR_PER_BANK + 5,
+>> +	[EN751221_CRYPTO_RST]		= RST_NR_PER_BANK + 6,
+>> +	[EN751221_SAR_RST]		= RST_NR_PER_BANK + 7,
+>> +	[EN751221_TIMER_RST]		= RST_NR_PER_BANK + 8,
+>> +	[EN751221_INTC_RST]		= RST_NR_PER_BANK + 9,
+>> +	[EN751221_BONDING_RST]		= RST_NR_PER_BANK + 10,
+>> +	[EN751221_PCM1_RST]		= RST_NR_PER_BANK + 11,
+>> +	[EN751221_UART_RST]		= RST_NR_PER_BANK + 12,
+>> +	[EN751221_GPIO_RST]		= RST_NR_PER_BANK + 13,
+>> +	[EN751221_GDMA_RST]		= RST_NR_PER_BANK + 14,
+>> +	[EN751221_I2C_MASTER_RST]	= RST_NR_PER_BANK + 16,
+>> +	[EN751221_PCM2_ZSI_ISI_RST]	= RST_NR_PER_BANK + 17,
+>> +	[EN751221_SFC_RST]		= RST_NR_PER_BANK + 18,
+>> +	[EN751221_UART2_RST]		= RST_NR_PER_BANK + 19,
+>> +	[EN751221_GDMP_RST]		= RST_NR_PER_BANK + 20,
+>> +	[EN751221_FE_RST]		= RST_NR_PER_BANK + 21,
+>> +	[EN751221_USB_HOST_P0_RST]	= RST_NR_PER_BANK + 22,
+>> +	[EN751221_GSW_RST]		= RST_NR_PER_BANK + 23,
+>> +	[EN751221_SFC2_PCM_RST]		= RST_NR_PER_BANK + 25,
+>> +	[EN751221_PCIE0_RST]		= RST_NR_PER_BANK + 26,
+>> +	[EN751221_PCIE1_RST]		= RST_NR_PER_BANK + 27,
+>> +	[EN751221_CPU_TIMER_RST]	= RST_NR_PER_BANK + 28,
+>> +	[EN751221_PCIE_HB_RST]		= RST_NR_PER_BANK + 29,
+>> +	[EN751221_SIMIF_RST]		= RST_NR_PER_BANK + 30,
+>> +	[EN751221_XPON_MAC_RST]		= RST_NR_PER_BANK + 31,
+>> +
+>> +	/* RST_DMT */
+>> +	[EN751221_DMT_RST]		= 2 * RST_NR_PER_BANK + 0,
+>> +
+>> +	/* RST_USB */
+>> +	[EN751221_USB_PHY_P0_RST]	= 3 * RST_NR_PER_BANK + 6,
+>> +	[EN751221_USB_PHY_P1_RST]	= 3 * RST_NR_PER_BANK + 7,
+>> +};
+>> +
+>>   static int en7581_reset_register(struct device *dev, void __iomem *base,
+>> -				 const u16 *rst_map, int nr_resets);
+>> +				 const u16 *rst_map, int nr_resets,
+>> +				 const u16 *rst_reg_ofs);
+>>   
+>>   static u32 en7523_get_base_rate(const struct en_clk_desc *desc, u32 val)
+>>   {
+>> @@ -604,7 +703,8 @@ static int en7523_clk_hw_init(struct platform_device *pdev,
+>>   	en7523_register_clocks(&pdev->dev, clk_data, base, np_base);
+>>   
+>>   	return en7581_reset_register(&pdev->dev, np_base, en7523_rst_map,
+>> -				     ARRAY_SIZE(en7523_rst_map));
+>> +				     ARRAY_SIZE(en7523_rst_map),
+>> +				     en7581_rst_ofs);
+> I assume the mix of en7523 and en7581 is ok here?
+
+
+Correct, en7581 came first, then when en7523 was added they reused the 
+function. I'm only changing the offsets to be passed in because en751221 
+has more reset registers so different offset table than the others.
+
+
+>>   }
+>>   
+>>   static void en7581_register_clocks(struct device *dev, struct clk_hw_onecell_data *clk_data,
+>> @@ -705,7 +805,8 @@ static const struct reset_control_ops en7581_reset_ops = {
+>>   };
+>>   
+>>   static int en7581_reset_register(struct device *dev, void __iomem *base,
+>> -				 const u16 *rst_map, int nr_resets)
+>> +				 const u16 *rst_map, int nr_resets,
+>> +				 const u16 *rst_reg_ofs)
+>>   {
+>>   	struct en_rst_data *rst_data;
+>>   
+>> @@ -713,7 +814,7 @@ static int en7581_reset_register(struct device *dev, void __iomem *base,
+>>   	if (!rst_data)
+>>   		return -ENOMEM;
+>>   
+>> -	rst_data->bank_ofs = en7581_rst_ofs;
+>> +	rst_data->bank_ofs = rst_reg_ofs;
+>>   	rst_data->idx_map = rst_map;
+>>   	rst_data->base = base;
+>>   
+>> @@ -752,7 +853,123 @@ static int en7581_clk_hw_init(struct platform_device *pdev,
+>>   	writel(val | 3, base + REG_NP_SCU_PCIC);
+>>   
+>>   	return en7581_reset_register(&pdev->dev, base, en7581_rst_map,
+>> -				     ARRAY_SIZE(en7581_rst_map));
+>> +				     ARRAY_SIZE(en7581_rst_map),
+>> +				     en7581_rst_ofs);
+>> +}
+>> +
+>> +static enum en_hir get_hw_id(void __iomem *np_base)
+>> +{
+>> +	u32 val = FIELD_GET(REG_HIR_MASK, readl(np_base + REG_HIR));
+>> +
+>> +	if (val < HIR_MAX)
+>> +		return (enum en_hir) val;
+> No space with the cast.
+OK
+>> +
+>> +	return HIR_UNKNOWN;
+>> +}
+>> +
+>> +static void en751221_try_register_clk(struct device *dev, int key,
+>> +				      struct clk_hw_onecell_data *clk_data,
+>> +				      const char *name, u32 rate)
+>> +{
+>> +	struct clk_hw *hw;
+>> +
+>> +	hw = clk_hw_register_fixed_rate(dev, name, NULL, 0, rate);
+>> +	if (IS_ERR(hw) || key >= EN751221_MAX_CLKS)
+>> +		pr_err("Failed to register clk %s: %pe\n", name, hw);
+> Is %pe correct in the case when key >= EN751221_MAX_CLKS?
+Hmm, it's gonna give a pointer address, indeed that's not so nice. I'll 
+re-work this so it makes more sense.
+>> +	else
+>> +		clk_data->hws[key] = hw;
+> Should the error code be returned here? I know the function has try in
+> it's name, however if this fails, then it still registers it.
+
+
+This function follows the general pattern of en7581_register_clocks(). 
+If a clock can't be registered, leave clk_data->hws[key] as NULL, log, 
+and continue. There's only two possible reasons for failing, if 
+clk_hw_register_fixed_rate() fails then it's not registered because it 
+failed. If key >= EN751221_MAX_CLKS, it does register but I'll fix this 
+so it's checking that before clk_hw_register_fixed_rate().
+
+
+>> +}
+>> +
+>> +static void en751221_register_clocks(struct device *dev,
+>> +				     struct clk_hw_onecell_data *clk_data,
+>> +				     struct regmap *map, void __iomem *np_base)
+>> +{
+>> +	enum en_hir hid = get_hw_id(np_base);
+>> +	struct clk_hw *hw;
+>> +	u32 rate;
+>> +	u32 div;
+>> +	int err;
+>> +
+>> +	/* PCI */
+>> +	hw = en7523_register_pcie_clk(dev, np_base);
+>> +	clk_data->hws[EN751221_CLK_PCIE] = hw;
+>> +
+>> +	/* SPI */
+>> +	rate = EN751221_SPI_BASE;
+>> +	if (hid == HIR_EN7526C)
+>> +		rate = EN751221_SPI_BASE_EN7526C;
+>> +
+>> +	err = regmap_read(map, EN751221_REG_SPI_DIV, &div);
+>> +	if (err) {
+>> +		pr_err("Failed reading fixed clk div %s: %d\n",
+>> +		       "spi", err);
+>> +	} else {
+>> +		div = FIELD_GET(EN751221_REG_SPI_DIV_MASK, div) * 2;
+>> +		if (!div)
+>> +			div = 40;
+> Should 40 be documented a little better with a #define?
+Ok yes, makes sense.
+>> +
+>> +		en751221_try_register_clk(dev, EN751221_CLK_SPI, clk_data,
+>> +					  "spi", rate / div);
+>> +	}
+>> +
+>> +	/* BUS */
+>> +	rate = FIELD_GET(EN751221_REG_BUS_MASK,
+>> +			 readl(np_base + EN751221_REG_BUS));
+>> +	rate *= 1000000;
+>> +	en751221_try_register_clk(dev, EN751221_CLK_BUS, clk_data, "bus",
+>> +				  rate);
+>> +
+>> +	/* CPU */
+>> +	en751221_try_register_clk(dev, EN751221_CLK_CPU, clk_data, "cpu",
+>> +				  rate * 4);
+>> +
+>> +	/* HPT */
+>> +	switch (hid) {
+>> +	case HIR_EN751221:
+>> +	case HIR_EN751627:
+>> +	case HIR_EN7526C:
+>> +	case HIR_EN7580:
+>> +	case HIR_EN7528:
+>> +		rate = 200000000;
+>> +		break;
+>> +	case HIR_MT7505:
+>> +		rate = 100000000;
+>> +		break;
+>> +	case HIR_MT751020:
+>> +		rate = 800000000 / 3;
+>> +		break;
+>> +	default:
+>> +		rate = 250000000;
+> Should a warning be logged here or in get_hw_id() above? hid can be set
+> to HIR_UNKNOWN here.
+
+Now that I'm looking at this again, I'm starting to think it might be 
+better to just remove it and use a fixed-clock in the DT. I wrote it 
+aiming for completeness, but this particular clock has so much code 
+supporting it, I'm feeling like it just doesn't make any sense.
+
+Let me know if you have a feeling on this because I'm swaying in the 
+direction of just re-sending with it removed.
+
+>
+>> +	}
+>> +	en751221_try_register_clk(dev, EN751221_CLK_HPT, clk_data, "hpt",
+>> +				  rate);
+>> +
+>> +	/* GSW */
+>> +	rate = FIELD_GET(EN751221_REG_SSR3_GSW_MASK,
+>> +			 readl(np_base + EN751221_REG_SSR3));
+>> +	en751221_try_register_clk(dev, EN751221_CLK_GSW, clk_data, "gsw",
+>> +				  gsw751221_base[rate]);
+>> +}
+>> +
+>> +static int en751221_clk_hw_init(struct platform_device *pdev,
+>> +				struct clk_hw_onecell_data *clk_data)
+>> +{
+>> +	struct regmap *map;
+>> +	void __iomem *base;
+>> +
+>> +	map = syscon_regmap_lookup_by_compatible("econet,en751221-chip-scu");
+>> +	if (IS_ERR(map))
+>> +		return PTR_ERR(map);
+>> +
+>> +	base = devm_platform_ioremap_resource(pdev, 0);
+>> +	if (IS_ERR(base))
+>> +		return PTR_ERR(base);
+>> +
+>> +	en751221_register_clocks(&pdev->dev, clk_data, map, base);
+> Again, any reason why the error handling is missing here?
+
+
+I followed the same logic that was used for the en7581 and en7523, but I 
+think the logic is reasonable. If a clock fails to register, you either 
+log and continue, or you blow up the whole probe(), which is just going 
+to make it more frustrating to debug since then no clocks will register 
+and anything downstream of them will be unhappy.
+
+Thanks,
+
+Caleb
+
+
+>
+> Brian
+>
+>
+>> +
+>> +	return en7581_reset_register(&pdev->dev, base, en751221_rst_map,
+>> +				     ARRAY_SIZE(en751221_rst_map),
+>> +				     en751221_rst_ofs);
+>>   }
+>>   
+>>   static int en7523_clk_probe(struct platform_device *pdev)
+>> @@ -799,9 +1016,20 @@ static const struct en_clk_soc_data en7581_data = {
+>>   	.hw_init = en7581_clk_hw_init,
+>>   };
+>>   
+>> +static const struct en_clk_soc_data en751221_data = {
+>> +	.num_clocks = EN751221_MAX_CLKS,
+>> +	.pcie_ops = {
+>> +		.is_enabled = en7523_pci_is_enabled,
+>> +		.prepare = en7523_pci_prepare,
+>> +		.unprepare = en7523_pci_unprepare,
+>> +	},
+>> +	.hw_init = en751221_clk_hw_init,
+>> +};
+>> +
+>>   static const struct of_device_id of_match_clk_en7523[] = {
+>>   	{ .compatible = "airoha,en7523-scu", .data = &en7523_data },
+>>   	{ .compatible = "airoha,en7581-scu", .data = &en7581_data },
+>> +	{ .compatible = "econet,en751221-scu", .data = &en751221_data },
+>>   	{ /* sentinel */ }
+>>   };
+>>   
+>> -- 
+>> 2.39.5
+>>
 
