@@ -1,169 +1,177 @@
-Return-Path: <devicetree+bounces-274232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274233-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAyPBciXsWnkDAAAu9opvQ
-	(envelope-from <devicetree+bounces-274232-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:26:48 +0100
+	id sGLNKaOYsWnkDAAAu9opvQ
+	(envelope-from <devicetree+bounces-274233-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:30:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 653EF267532
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:26:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DF65267618
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 17:30:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 3385C3087044
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:25:11 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 60AC53012241
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 16:27:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092BD3E1CE0;
-	Wed, 11 Mar 2026 16:25:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F69F37189B;
+	Wed, 11 Mar 2026 16:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b="yclnub1P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ASIZ/Kp2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507C337189B
-	for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 16:25:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BD98363096;
+	Wed, 11 Mar 2026 16:27:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773246309; cv=none; b=cLz+PR2Jd6UFffbiDGEG6rGoo5e+/RbkB6ppvRci77NYsNam5n5YZclrdE19hDUFM2/joevRpAAq3G4Khghzv/nwGv707p6Fggm3eq2wn8t5GkdxcWSm4mxGBy4GNztXAR6GkPsgqtD4DKkmp6SB6nMNxaBbYTTMY9mepspJpfM=
+	t=1773246432; cv=none; b=LZyBnRBDPk4mbwPyZvyzGEHMKKimy51UydH7C6lEX+5x4txKFtwykbBuCprCcMAa+81tfvF+OCZhpRkZobgXsiJcsFQxmViRbTRfwhkLx0MTkgw8urvclcD8nH/XgjyS8jKPC+gSSo/CHXXt361xi2r6n95kFo7IjjedBeNRhnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773246309; c=relaxed/simple;
-	bh=SrETXia2AeuYWSUIAN84IRhX87WCsAlPD9OXpI+Iy1o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Q8EEECG+jw4QvIi0woyUJxdKY4zOdNE1is3L1k5or6D9WBChY9jyIQkRcdRDmO+4ZvYpd/AYVAocHq+TQRtrRgcp8LEbt/pgWAZ3iQgIpkcbd135VBUu4mMB6IDfLvd2OICoNHSyz+wIuo0RxZm1fQfgM4LIx7g4R2VZ9BhdY1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net; spf=pass smtp.mailfrom=flipper.net; dkim=pass (2048-bit key) header.d=flipper.net header.i=@flipper.net header.b=yclnub1P; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=flipper.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flipper.net
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-439b7c2788dso52314f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 09:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flipper.net; s=google; t=1773246306; x=1773851106; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=avEg50b7lIE4cReK2Q5lP00wp15UEOQn11C/oczabmk=;
-        b=yclnub1Pu64wZR0GzFwwPyL+JSncOyqPMcIINB0heYcQUt4QoobM+3YlGRdlVVc3IW
-         Kb6c9P47yfEIs44hJfx8zF7d+pRgyIHpwzD8mHnPTjZJ/CY5TVmZt8B0DhJ7rbz8lShw
-         p6AiC4cO5pVv40O1yr26OWokS2RIOvW8JWTo96LXe/de85KQ9Zmf9PtHtijqjOyPXL7H
-         jKi4a5GOuc5D6+d6gjtryGW2w64oi2cpRwHxM/uPRdEjC8FDm1yCMMKCcktkj/zLsjAp
-         ULsByDScwRYK2zi4UW9NG/hYYSne9VgfFHxlKgRMHYnWomkpC3XxJWcVWeLXSBl/LTPR
-         KCMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773246306; x=1773851106;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=avEg50b7lIE4cReK2Q5lP00wp15UEOQn11C/oczabmk=;
-        b=MybLRuQUk0WHJyPyvK889VNF9Y+pzplgiY3iirLDpH0ytVSwUK6UzrOnus2KTSdkre
-         0yngFUJCjx0X0221m5o3dVChVrCW8yNBCdt6+dx3t0HoHnSnAUoC+dH/+U3cQMy2ZfuK
-         MPU0IY9Sr4wDBkwV8A0PBVzD3ZLXHPo08+JkowaQ1F3kuoNDmPY+kCTzBX2N1j9o0tlZ
-         bCcKm8YSJLHCW2IX1aQzC7nPExzkZB4GkTTBquLPKw3DwiWETCBzvVKcWUph0KSCQY0e
-         LNbG9Tu1Iw9W+HQlQJfLxHIyWBN4IllHD5IjI/aHaYK3XtdrPan/t1rcbmGoROkSskHd
-         sZWw==
-X-Gm-Message-State: AOJu0YxbDjvXz2Nd0NH0bfsMBtbmWnkSCXxyIuLP6p144RXGpVidhwKA
-	kL/Sh6WB4RC8k63YCEGNHXFTvhAebm+p7Lz+j75ZPnCbysMGvWwzTMNAenHbP05MiKNo1txYTOf
-	7rnTO
-X-Gm-Gg: ATEYQzz4rdWmd74B2OAjdKjjFxK5ifQ2kuwztUKXqhSzz6hJNWELRdqFMdvSHGSnHv6
-	C7NOV9WGYh/1mb/87vQoXh+ps9bIMwyfXqm7S0Q0lDQ6V8im3dY0R6vWvBbKpbDsLAbscu3vTEG
-	9BJvljWWuAET2lhBro2paShr3F/WNvtZb+KaWTw99yhHFlo9LIoiKAc3FMMdPmpkWgF/aetQH7L
-	tT0HrTvJOSTkWS5lM7mUMzHizCiTkWuCiXmtzZT7kuDn91YkeK/Syrm/h5JPuTccTBRG6RF5/hE
-	4MpqnszQipoGsw8WXWl/IWnjpRVO/ah4QygjBKU6bSVnsUSoDyKC8E67T8TcbqW+KAQVbOnOa0f
-	cmu/IxQroKSGkBypM+fqpptW4vyelB3fkHuFG53HrkaztOvaNhEn/lHsY5qygog/ndL2yrtseaw
-	XAuxQ7iWO+kDG6V73wtjoPQ1IO8lxAfLw3RUPuFEggIhlsVvCUG0azsswzgQ0vx2DbqISlasIGJ
-	N8ESBqgCk2XNJPB
-X-Received: by 2002:a05:6000:200f:b0:439:b1d8:6084 with SMTP id ffacd0b85a97d-439f822334emr6514903f8f.44.1773246306286;
-        Wed, 11 Mar 2026 09:25:06 -0700 (PDT)
-Received: from alchark-surface.localdomain (bba-86-98-192-109.alshamil.net.ae. [86.98.192.109])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-439fe1a76e5sm295946f8f.12.2026.03.11.09.25.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 09:25:05 -0700 (PDT)
-From: Alexey Charkov <alchark@flipper.net>
-Date: Wed, 11 Mar 2026 20:25:02 +0400
-Subject: [PATCH] arm64: dts: rockchip: Add analog audio switches to RK3576
- EVB1
+	s=arc-20240116; t=1773246432; c=relaxed/simple;
+	bh=wbWDlFakEbaP7591lyejSUYCXT2xlc/64V7XYHmWuqQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Hw9sQnw4hlrb6AF1ISCAxS1Pw/tlpiprWZ4TZyBFjPS5Nk49KHMnNqBlTHyfjhJA2ukFltxQwO7uL3a+48+zoKck/0ZwvNSGR0ebsoZJGfny/zTg7xKsQddzbtlJw527MmaHgeEYiZ0LMggDORGRJXWwDVg7Mt8ZJVJAJYmqPzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ASIZ/Kp2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55531C4CEF7;
+	Wed, 11 Mar 2026 16:27:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773246432;
+	bh=wbWDlFakEbaP7591lyejSUYCXT2xlc/64V7XYHmWuqQ=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=ASIZ/Kp2NgSiDRESZ92d/joGF3k6OwHDLB9xsawC2GeE1ewKmpNDTf9opNLLJV0U7
+	 Wedkn73ctsIpKiY4jdu4GBiWwvkhLANydq97J91qdG/6xV0I41pauMwx+0XAagKJcY
+	 ZDvRDdF9L6N2KRbxSz/SIbbkdp5j4bZLt/SgCpZQUdGa4X3cGPHVY0sjQ2VSjEROvY
+	 fIh1gVfesg2xw3sy1eOFWL88hsS51hRoq/jSa6cNmYdGgSWBG++zF38YblgC3A1iUv
+	 +erV0gFl5pCpRA2rS+E7gdMaf2E2xdWBUyqAF4N6d4qsfQcFnhRxISvfPW2A1EUf59
+	 ltw4adfiK3mCQ==
+Message-ID: <c1aa519b-42c7-483d-bbb2-1625f35c14c7@kernel.org>
+Date: Wed, 11 Mar 2026 17:27:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: SPI loopback tests
+To: Francesco Dolcini <francesco@dolcini.it>, Mark Brown
+ <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor@kernel.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, Max Krummenacher <max.oss.09@gmail.com>
+References: <20260310133254.GA51497@francesco-nb>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260310133254.GA51497@francesco-nb>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260311-evb1-audio-switches-v1-1-0e0199e56c80@flipper.net>
-X-B4-Tracking: v=1; b=H4sIAF2XsWkC/x3MPQqAMAxA4atIZgOmagWvIg62RptFpfEPxLtbH
- L/hvQeUo7BCmz0Q+RSVdUmgPAMfhmVmlDEZTGFsURIhn45wOEZZUS/ZfWDFuildVXljHFlI5RZ
- 5kvu/dv37fqkBMDplAAAA
-X-Change-ID: 20260311-evb1-audio-switches-573b44c22b16
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@flipper.net>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1099; i=alchark@flipper.net;
- h=from:subject:message-id; bh=SrETXia2AeuYWSUIAN84IRhX87WCsAlPD9OXpI+Iy1o=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRunJ5QYZZe9/vcC+Z4I4+nEXcWqG569EBsSvXas39eb
- cx4tFpftGMiC4MYF4OlmCLL3G9LbKca8c3a5eHxFWYOKxPIEGmRBgYgYGHgy03MKzXSMdIz1TbU
- MzTUMdYxYuDiFICplt/CyLDDZX9yyLZjW7p0/yVWPDXce271/yYzt2XGv59qrp5q/PwjI8OpMvs
- Z298ebLCcyr3JUJqr8bOJ8J7KiTM8N0pbxogu6WYFAA==
-X-Developer-Key: i=alchark@flipper.net; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.16 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[flipper.net,quarantine];
-	R_DKIM_ALLOW(-0.20)[flipper.net:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[flipper.net:+];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274233-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274232-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[dolcini.it,kernel.org,vger.kernel.org,gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alchark@flipper.net,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,flipper.net:dkim,flipper.net:email,flipper.net:mid]
-X-Rspamd-Queue-Id: 653EF267532
+	TAGGED_RCPT(0.00)[devicetree];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 4DF65267618
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-These allow selective muting/unmuting of inputs and outputs, as well as
-setting mutually-exclusive rules in ALSA UCM.
+On 10/03/2026 14:32, Francesco Dolcini wrote:
+> Hello all,
+> 
+> I am writing to you SPI, test and DT people with reference to some need
+> we see in our testing infrastructure.
+> 
+> On our embedded boards we regularly (on mailine linux, on Linux LTS, and
+> on multiple hardware) run SPI tests, using a loopback connection (SPI
+> MISO/MOSI are connected together). The HW provide just some pin header
+> and there is no actual SPI slave device connected.
+> 
+> So far to test this we had some out-of-tree DT overlay abusing the spidev
+> compatible, however we'd like to move away from this approach and have a
+> solution that is 100% in mainline.
+> 
+> Manually unbinding/binding the driver in userspace does not seems as an
+> option, because there is no device node.
+> 
+> One option that I could think of would be to add a new compatible that
+> to describe this single wire loopback connection (something like
+> `linux,spi-miso-mosi-loopback`) that would bind to the spidev driver.
 
-Signed-off-by: Alexey Charkov <alchark@flipper.net>
----
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 1 +
- 1 file changed, 1 insertion(+)
+Or the modern board file way: a module which in initcall creates several
+SW nodes and instantiates the spidev. You still would need to insmode it
+of course, but that way no DT would be directly involved.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-index f5746bc2970b..fb0dd1bc5148 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-@@ -270,6 +270,7 @@ sound {
- 		simple-audio-card,frame-master = <&masterdai>;
- 		simple-audio-card,hp-det-gpios = <&gpio0 RK_PD3 GPIO_ACTIVE_LOW>;
- 		simple-audio-card,mclk-fs = <256>;
-+		simple-audio-card,pin-switches = "Headphones", "Speaker", "Main Mic", "Headset Mic";
- 		simple-audio-card,routing =
- 			"Headphone Power INL", "LOUT1",
- 			"Headphone Power INR", "ROUT1",
+> 
+> I am aware that you all DT maintainers shared in a pretty clear way your
+> view on the abuse of the spidev multiple times.
+> 
+> What would you be your advice to handle the need of an SPI loopback
+> test? Am I missing something and there is a solution already available?
 
----
-base-commit: 7109a2155340cc7b21f27e832ece6df03592f2e8
-change-id: 20260311-evb1-audio-switches-573b44c22b16
 
 Best regards,
--- 
-Alexey Charkov <alchark@flipper.net>
-
+Krzysztof
 
