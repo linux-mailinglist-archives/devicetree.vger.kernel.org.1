@@ -1,218 +1,276 @@
-Return-Path: <devicetree+bounces-273845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-273846-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EIUwJtkGsWnhpwIAu9opvQ
-	(envelope-from <devicetree+bounces-273845-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:08:25 +0100
+	id aKKKEEwHsWnhpwIAu9opvQ
+	(envelope-from <devicetree+bounces-273846-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:10:20 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D22E25CA9D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:08:24 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2D3825CAEE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 07:10:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id 69F39302C6E6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:08:21 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1390A31DC5D0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Mar 2026 06:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C577034D902;
-	Wed, 11 Mar 2026 06:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA64F359A8B;
+	Wed, 11 Mar 2026 06:09:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="kll2OrZV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YqeDGkST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010048.outbound.protection.outlook.com [52.101.69.48])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497AF248873;
-	Wed, 11 Mar 2026 06:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.48
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773209300; cv=fail; b=HS112G1FaYX10B1dZ1NgGXyHWyQqE/pev5Wi4lZzQ+bT0turVH5e4okHA+G/kIFkjTIH2vhC/AzIBPLK+XRO9dwKfR73KE39x9D0zGUfQ5ZhtGD6J85VPaQia7OvR0mFZZWQtNy77q07aBuSOG394Ttq5hiShmUjhjmfI7zkmVA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773209300; c=relaxed/simple;
-	bh=Nbws6IhMyTxPJtAEuEmrlYHp3pes7NrCHjVDAUWSZ7A=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=W4gyKwLC8xD373l3Hl9C/Z3nITkX0WTTvtPI09q+VsUQ35NOlahWDy+gzmKgSJTUcuyJXpldfCb4dVbKBBWWglHISlgbYSx1y1YB1wy7gY03YtYmwNS/EIKBABufvWzgE4W0trDN3Ai9cLYTrB7KGu6eS6yflTZmEiCET5JJJJY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=kll2OrZV; arc=fail smtp.client-ip=52.101.69.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LpqqOXJ68UUFRSNdW9LPiyXFNowYy/wBLrVK9gspXK8VxBaS2XSflSb6M3IS4iq2OGBvrbynqO8BCWhwdw7F64aUdDgiaVSwEYqvKF98D/YU/bcrd3I5ztEUgI32jTGAdPBNCwz8dJvFRs89MKbJPwERgC3doo0QBN/uMZQHQWWaXmgjxoMevPXRStVPQAGEE7IQwMPbFzr5JXRH0JHFnG6Cw9lr+Coe97Et35rUakA7cHlPMASu02el7Zyx7/vpBfY15uPx+yrwLfS8hQByTB7pNk0PepCWhZq4RAUoA2kFkUm4GiJZgv/IVdLfFFW0VpJajAiQWIJZS8utRha+Kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Nbws6IhMyTxPJtAEuEmrlYHp3pes7NrCHjVDAUWSZ7A=;
- b=X9I+GYybffME4RQXx8/sUZFlbYUkpE2Tt432tad5t6/WU8p6FIwp89dns6BUGzNON1T/x1rcPbdB4vEfVZHmpoVd+vFTgdKDu3UUEsSdpvoktHI3vmki7nzS/mSdYC8ZfFMsNaxhQ7MQX1BNDudJ/U9Kd5MhJzMNl1uJKoWkEKkcjRrBZLJkmMrLpSrV9cDmklfSl2CsnQ5ONId1yjOnV3Up21FVzpElqkLYMNdGSPKW0hF1i39m1V5ToG/mlI9vP2OLOc6EmoMB+7c0qf2ueBJsGgdv9Lkn8azmOPu7S0pwE8EFxuxQNiyeNejV9r/yn8KtCgSdH/9CQom/Lyy9eQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Nbws6IhMyTxPJtAEuEmrlYHp3pes7NrCHjVDAUWSZ7A=;
- b=kll2OrZV51sIwQejBXyi8P2VBvpJCNhNeyYBEMfuau8R+TWfCpwbj9hZJmJruRJsNVZePc1iD+iCn/k//NWdeq3juXnNmj9gW4SkqBPePjlSzzwlWSqfnWxFn1tXZuf3t58Kec6FVmeoWQk7CcEypNGXvDo1X4hIvy+Pcvu+p0c695TY3VQ8S8SLX8Mbrt4NbJmw4fJCpfndTmn4vHWgqzxM2+TdrlRzMufCU3ZRd4QYmzNS2HMbG72QPFsfciWnxp5Knj0j4t3+vAhlJEqQzKGlFuhwWgjyXTpe3G2PT43BebG8fkD5uGgV+OgLYAfyvKDtI6epZ3kdgJwWsbAApA==
-Received: from AS8PR04MB8833.eurprd04.prod.outlook.com (2603:10a6:20b:42c::19)
- by VI0PR04MB11616.eurprd04.prod.outlook.com (2603:10a6:800:302::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.12; Wed, 11 Mar
- 2026 06:08:15 +0000
-Received: from AS8PR04MB8833.eurprd04.prod.outlook.com
- ([fe80::209c:44e4:a205:8e86]) by AS8PR04MB8833.eurprd04.prod.outlook.com
- ([fe80::209c:44e4:a205:8e86%3]) with mapi id 15.20.9678.024; Wed, 11 Mar 2026
- 06:08:15 +0000
-From: Hongxing Zhu <hongxing.zhu@nxp.com>
-To: Frank Li <frank.li@nxp.com>
-CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"bhelgaas@google.com" <bhelgaas@google.com>, "l.stach@pengutronix.de"
-	<l.stach@pengutronix.de>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-	"kwilczynski@kernel.org" <kwilczynski@kernel.org>, "mani@kernel.org"
-	<mani@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>, "linux-pci@vger.kernel.org"
-	<linux-pci@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v4 2/4] arm64: dts: imx94: add pcie0 and pcie0-ep supports
-Thread-Topic: [PATCH v4 2/4] arm64: dts: imx94: add pcie0 and pcie0-ep
- supports
-Thread-Index: AQHcsGMInlhricerAUWaVPGnkRznNbWn3huAgAD7sNA=
-Date: Wed, 11 Mar 2026 06:08:15 +0000
-Message-ID:
- <AS8PR04MB88333BA891E5C4F3E0A846708C47A@AS8PR04MB8833.eurprd04.prod.outlook.com>
-References: <20260310075459.726495-1-hongxing.zhu@nxp.com>
- <20260310075459.726495-3-hongxing.zhu@nxp.com>
- <abAzZ-7AQQNNmHLz@lizhi-Precision-Tower-5810>
-In-Reply-To: <abAzZ-7AQQNNmHLz@lizhi-Precision-Tower-5810>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS8PR04MB8833:EE_|VI0PR04MB11616:EE_
-x-ms-office365-filtering-correlation-id: 8d18ff68-e881-46a1-864b-08de7f34954c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|19092799006|38070700021|18002099003|22082099003|56012099003|7053199007;
-x-microsoft-antispam-message-info:
- JwFjv+mdIfQ+w+xP6qQioeXGeqWCpOB2+CD0PgS+wEv0zruCPuW3e2aPd84CJc5RErRusmoylsIT/J3X8sGT7MjDik+qWLViBWVr8qQWZuRXa3de1GSF8wXQ6I5aQoIamSR34IisKsFcOKXrhPCvLclP41pF86nj0zF1dg5KHnVugOMGVUHZiQSC1Wnh+5wZ9idovEiAwlQ7X2tikurrbaO6/5qMGQhggtuZlXg9dSJma7fmQTSTg1NUVnBHtLiY7cTTi08XPHxyWFhPuZV/sXBt+IJVixdJ+/JG0PtgjLU+0nQn1Kd7RG5I0Rsp1lCEBGPJjVk/gRnS/E1bvCpVCczw7wNyOigKgNMp53YiuE76bRblv75JyAcc9BCgH4JkiTKaSsP4qx2uP5a5haexYQCTs70v5fOZI/NYKwgYoMzUvDG1bWwWHiEbgr4zz2eDqvyCUlg8P56gqLCJGthuA3acdflYcnOfIiXMYqTnu5L/sdMwfiGQQnUPGznvu+gzYsStT9Oimup6nCofFi0iC0c13N+yMVMmvYA091td3Ula2ve/AdLdho9qTwp0Ami1MiE/zKr/L9ONfCn5hxEp0cjC8/MgzgxyQYMeFvqn8vWpfcRtpjso7glTL/m87KCkY2uK/p/OzQSWF9Hu85oTe4B1wjvvZ+JxCxRY0APVat900FLSNn43ztINjxrLxRx8RpxeNqmPKbhfjaMT85udZ+uK50pFotIiqIeB/5lNGvH4zehK5Xa10yN9rCIfsGuf6smzSfiRZInDqFJo0TLxFJA/uH/PPaVMFKyCffAPmOg=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8833.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(19092799006)(38070700021)(18002099003)(22082099003)(56012099003)(7053199007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?gb2312?B?bFY3N0cvZkJ3ZkcwRExLSm1tT3NEaThoZUZJRUx2UlJ1ZCtUaXRQbzVVVmV6?=
- =?gb2312?B?VU1XYzM4OTIwR1NxSTJseDQ4SnFJazlSbm81N2Jxb28rWUw4L2FoS2RORjBL?=
- =?gb2312?B?NksvQXpLYXR0TEcyL2JqdTcxYVBaenBFU0NlTzJnbVNUM2txankxUmZPNitu?=
- =?gb2312?B?SjBnSkNlYUtUY2NqQ0JIQmhtdyswdzVRM1JHbUYxdGdteGVlcnl3NHpXQ05r?=
- =?gb2312?B?QVZFdllhcVVTZ2xQcDhLRXBDU09QUXBnQkpSQU02eHVnMDJmMG81NEhMNE5Q?=
- =?gb2312?B?OUJWWm5KNVBLMDNaRHRTeTdwYkJITFBJYndkU1RUVGVlSHU3UjREcWorTWtk?=
- =?gb2312?B?cEpjQWNqQVI5ejhMOWJzQUdyd2FoVnJxdWF6ZXVCYklFaVN1ZGxQZVNFYUp2?=
- =?gb2312?B?b1FhZUJUYjdoaGZlZTFIQ3VhYVRIRjJ6WmIwSHBkb05sdUNzaWtFUHc3aXB4?=
- =?gb2312?B?ZEVkbzRuTTBVT0hncmJtM1UyTHYzU0MrUmo3a05VVXltc3JxSW5FaXZKZzBK?=
- =?gb2312?B?b3pTeGJwOFhXeTNSR29yZ3YxNUI3OFRqRVArYWVSTDBvd3poSjJuUjNEclgv?=
- =?gb2312?B?NGtDdFBPeEIxWkRQVTl3WnZwNjJQTHlMVy9qK3o1aHk3OHA2OThnSnp1NEN6?=
- =?gb2312?B?YW9lVEVXWDVheVc5ZGhkVi9pRGZxcG80OEhqWkNrYkgwbmdMcFJuOXdreDFy?=
- =?gb2312?B?cWl3SW5Db2t3NTVncU9TYURkUVliYzZqd1VKa2hwVzg4ZFI5WjJ5empWZ2dt?=
- =?gb2312?B?OEpPMVo1SytGVE4vL3hDNTZuaWdydWdRWjRFd3JFczJmVktpSHpwZktIQXQ5?=
- =?gb2312?B?bHBXcHFoREY3T1lTQnJUOXRmSnRTcS9WR0ZvZmZOSUtONGdZaXVzU0xuY1JK?=
- =?gb2312?B?UWovZTIrRjU4NVZuQ0E4NGt5dXRFR2hnMXpONklFRURFSGFLSnlyMW9rSks1?=
- =?gb2312?B?bjloN3VBQ0FqMWl2elNCUnMrdXQ3U2JLMW52VTVSVkgvMjdQWG5lcE5JcFVT?=
- =?gb2312?B?eGRUcHFWNXAzK091R2U2Z1BmQ1A0b2pMWVlLRkxNV3k1bzhtVFNyamFWQzJ0?=
- =?gb2312?B?MjQwSXBuV1h2WDcrVDc1czNHWXlJTlRaa1I5R2tJSXAzRGRIRk1CaFNsV0hK?=
- =?gb2312?B?aTdFMm9FaGV4RUlrTi9ZM3ZaWDdIS3IyMDdGMjJSV2hDdjNWdWszYU5rY0pP?=
- =?gb2312?B?STFVQjNPbDhEVGNNdEdTNGh0eHFOOEl5eVRYU2phd0E0ZlZSaU9pTkJneGo3?=
- =?gb2312?B?Zzlad1c1Zi9KaDR0ZUVWc3ovaXBOZlJQSG5Qd3RQWU1QNnFmdlZLaFh3ZUgy?=
- =?gb2312?B?U3NJdlVkNlE1dms2MFBCR251bkd3a0JPSDBZbU1wYys4dnU0ZWx0MmVpM1Js?=
- =?gb2312?B?TFl2cjVzeUJTaDZJNkdxTnAwWFlKRDdmTk5PSHN1amlPbDJFa2FrYkE0dGxT?=
- =?gb2312?B?V1U4REZsOUszMWgrT1RjTU9iVzNaWWVSdXZxSEhmYjZZSjFvWGZHZzZqbnpC?=
- =?gb2312?B?emJkRVlEazVFN1JwUll4SWd1MDNUYVpxUHFSTGx2L3RWUzhpcnlINXA4b2l2?=
- =?gb2312?B?bldCSzNKMzRWTHV4U2RnNXBTMFFqS2Myck1vQjI4QnM1SnA0a003eml5YWVy?=
- =?gb2312?B?Tk5VNGVXYkUvb1MzOVhKVDc0T1FBNUJqTDNBczV3MlpQR3N1YWNiRzJ3enhJ?=
- =?gb2312?B?d1pwUC9VZTQ3NEo1QnVBVWVUL2trTXcwelBzK0lZUG1HTlYra2Y0YlRvQXI4?=
- =?gb2312?B?MXpqQ3BCOWM3cGg4c283TkxHRVdmV3BDbFZUOXlzNXg3Z2k2cEw2QmY5ZUdZ?=
- =?gb2312?B?YzNNeUlYRGs2N3BCZXljRmJzNWRnQTdpRUVvb0V6OUhRQnYzVUN1MkJRbTk1?=
- =?gb2312?B?dDVLT0dROEoxYWNNMTBIbHNqVjZsT2JqSDR5RlFmbFB5eElZN29wYVNIdkRa?=
- =?gb2312?B?NGFkZTFGTFpmd2toaUMyNDZJdUF4Z2Y4RU9JUk55a2w0dGVSUXZDYWVvMFps?=
- =?gb2312?B?QmkrV245QStSWDJIdGR3alVMZmRqSjRmWHJCTmZBSlMxaVJWd3JDMk5hdVBH?=
- =?gb2312?B?Z2hXdGNOYVJGTERlYlB5ZWlWWGFzSDgzRHhNMXJ0bW02UWp6bkxHcTVEaEZu?=
- =?gb2312?B?SHpyczdKUkFldW5Oby9GRVpmdk1yQ214MEhmQ09CajYrelA4UUVRckVlWjVk?=
- =?gb2312?B?WFdGVWVacWZodkVJK3JLMEI4eC9pNGdYaXBrRndaa2JsMldvRStBcmFmUWlu?=
- =?gb2312?B?SW9uUmpMUmpoMFFLa1RTbWNJUUlTaFdYN3lDT2lLcitFL2t4VXprR29VaGhp?=
- =?gb2312?Q?2QCUqYMnyMOMxSWbpA?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5EA33644C1;
+	Wed, 11 Mar 2026 06:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773209364; cv=none; b=bs8bB9rRsXeeIka9/wvKdTCNdKmolN7beIPnrinin2U2dK2KPUpA1+/Yukpqf+ae41u6jyItkQen2kjEKv7A4iR/9SikI4+g0gLbXfTSSTxz2fyBYTpMiLKcMKs5OJnq3xIOk4gdXpbTxYDMeG8hLsTGPBXCKV2h1zqW2XKm0Dk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773209364; c=relaxed/simple;
+	bh=NCpaP4S5EWWShh4y1c0yl/2Oq1KwijpKLQzgL16A1CQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=arsGZ7W3LkHjZA2B3lI1obgFZMy4bupcPPKdG7X8Q7J476eou1oZ/aVPDrjrE5U5S8tYWMPsJGL6sHwKNGpN1aHFjUNjjizcUwX33XdtvD3JReyuCwSBU6BwChFy4wwsDqhTXsk4lAIFOipLIvQAbrQ9Ck4PUhxTk3gdvYVXjMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YqeDGkST; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8ECF7C4CEF7;
+	Wed, 11 Mar 2026 06:09:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773209364;
+	bh=NCpaP4S5EWWShh4y1c0yl/2Oq1KwijpKLQzgL16A1CQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YqeDGkSTUiahSsx1wq+pBJdBr4NKKDQDTos02v3jd0PIpnve3ZMNueZuFX1isLkXw
+	 WiZsJ1hwmSTqSy1avqVJyfAUps9ADRkfRbPMeUiuj1aslQekPGNPkbGDpWO2yUpKtJ
+	 KdOHdw+sHxc69P/QXbFeToPaHukjSDvaRuC+fgoEUQiLnddYqArvgc/CYvRUTiqKyf
+	 KZZ2lJ3igLUWxfH+Hd5PMPDVOuhtxhk6cTy/+PzwX82JF3ieDmNl0ZKv9jGriUvWL6
+	 4AyWraUA+4uDii6Um4L7YgMeg4tD+Ke8LBprkGfrmBG8Qh7pOYYzKFmfp+AM1KjslB
+	 yqpoc8gCrWIbw==
+Message-ID: <8bfdcc26-a640-47ba-81ff-ba8e8aa0ae9d@kernel.org>
+Date: Wed, 11 Mar 2026 07:09:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8833.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8d18ff68-e881-46a1-864b-08de7f34954c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2026 06:08:15.2787
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0XHjtyl4PbjZH6iK0ijMTUtwx8pa+6gjnjixg/C2WtAu5qAEdLb6mG7qb3hFGHSv4IXfGNRroxvvblpuFrrJZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB11616
-X-Rspamd-Queue-Id: 8D22E25CA9D
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] spi: dt-bindings: mediatek,spi-mtk-nor: Add clock
+ bindings for mt8189
+To: Meiker Gao <ot_meiker.gao@mediatek.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Bayi Cheng <bayi.cheng@mediatek.com>, Chuanhong Guo <gch981213@gmail.com>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com, sirius.wang@mediatek.com,
+ vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
+References: <20260311053335.785292-1-ot_meiker.gao@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20260311053335.785292-1-ot_meiker.gao@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: B2D3825CAEE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.44 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[cv is fail on i=2];
-	DMARC_POLICY_ALLOW(-0.50)[nxp.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[nxp.com:s=selector1];
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
-	MIME_BASE64_TEXT(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-273845-lists,devicetree=lfdr.de];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,google.com,pengutronix.de,gmail.com,vger.kernel.org,lists.infradead.org,lists.linux.dev];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[mediatek.com,kernel.org,gmail.com,collabora.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hongxing.zhu@nxp.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-273846-lists,devicetree=lfdr.de];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[nxp.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:email,sin.lore.kernel.org:rdns,sin.lore.kernel.org:helo,nxp.com:dkim,nxp.com:email]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:rdns,sea.lore.kernel.org:helo,mediatek.com:email]
 X-Rspamd-Action: no action
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBGcmFuayBMaSA8ZnJhbmsubGlA
-bnhwLmNvbT4NCj4gU2VudDogMjAyNsTqM9TCMTDI1SAyMzowNg0KPiBUbzogSG9uZ3hpbmcgWmh1
-IDxob25neGluZy56aHVAbnhwLmNvbT4NCj4gQ2M6IHJvYmhAa2VybmVsLm9yZzsga3J6aytkdEBr
-ZXJuZWwub3JnOyBjb25vcitkdEBrZXJuZWwub3JnOw0KPiBiaGVsZ2Fhc0Bnb29nbGUuY29tOyBs
-LnN0YWNoQHBlbmd1dHJvbml4LmRlOyBscGllcmFsaXNpQGtlcm5lbC5vcmc7DQo+IGt3aWxjenlu
-c2tpQGtlcm5lbC5vcmc7IG1hbmlAa2VybmVsLm9yZzsgcy5oYXVlckBwZW5ndXRyb25peC5kZTsN
-Cj4ga2VybmVsQHBlbmd1dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFpbC5jb207IGxpbnV4LXBjaUB2
-Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsg
-ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGlteEBsaXN0cy5saW51eC5kZXY7IGxpbnV4
-LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCAyLzRdIGFy
-bTY0OiBkdHM6IGlteDk0OiBhZGQgcGNpZTAgYW5kIHBjaWUwLWVwDQo+IHN1cHBvcnRzDQo+IA0K
-PiBPbiBUdWUsIE1hciAxMCwgMjAyNiBhdCAwMzo1NDo1N1BNICswODAwLCBSaWNoYXJkIFpodSB3
-cm90ZToNCj4gPiBBZGQgcGNpZTAgYW5kIHBjaWUwLWVwIHN1cHBvcnRzLg0KPiA+DQo+ID4gU2ln
-bmVkLW9mZi1ieTogUmljaGFyZCBaaHUgPGhvbmd4aW5nLnpodUBueHAuY29tPg0KPiA+IC0tLQ0K
-PiAuLi4NCj4gPiArCQkJCSAgPDB4MTAwICZpdHMgMHgxMSAweDc+Ow0KPiA+ICsJCQltc2ktbWFw
-LW1hc2sgPSA8MHgxZmY+Ow0KPiA+ICsJCQlidXMtcmFuZ2UgPSA8MHgwMCAweGZmPjsNCj4gPiAr
-CQkJbnVtLWxhbmVzID0gPDE+Ow0KPiA+ICsJCQludW0tdmlld3BvcnQgPSA8OD47DQo+ID4gKwkJ
-CWludGVycnVwdHMgPSA8R0lDX1NQSSAzNjQgSVJRX1RZUEVfTEVWRUxfSElHSD47DQo+ID4gKwkJ
-CWludGVycnVwdC1uYW1lcyA9ICJtc2kiOw0KPiANCj4gYWxleCBhZGQgImRtYSIgaXJxIGZvciBv
-dGhlciBzb2MuDQo+IA0KT2theSwgSSBzZWUgQWxleCBpcyBhZGRpbmcgImRtYSIgZm9yIGkuTVg4
-UU0gUENJZS4NCg0KV291bGQgYWRkIGl0IGZvciBpLk1YOTQgUENJZSB0b28uDQpUaGFua3MuDQoN
-CkJlc3QgUmVnYXJkcw0KUmljaGFyZCBaaHUNCg0KPiBGcmFuaw0KPiA+ICsJCQkjaW50ZXJydXB0
-LWNlbGxzID0gPDE+Ow0KPiA+IC0tDQo+ID4gMi4zNy4xDQo+ID4NCg==
+On 11/03/2026 06:33, Meiker Gao wrote:
+> Update mediatek,spi-mtk-nor.yaml to add conditional clock and
+> clock-names bindings for the mt8189-nor platform. The mt8189-nor
+> controller requires five specific clocks and corresponding clock-names
+> ("spi", "sf", "axi_f", "axi_h", "axi_p"). This change enforces these
+> requirements in the device tree binding schema.
+> 
+> For other platforms, the minimum number of clocks and clock-names
+> remains unchanged. The patch also adds an example for mt8189-nor,
+> illustrating the new clock configuration.
+> 
+> This update ensures correct hardware description and validation for
+> mt8189-nor, improving compatibility and reducing configuration errors.
+> 
+> Signed-off-by: Meiker Gao <ot_meiker.gao@mediatek.com>
+> (cherry picked from commit c3180d35e52b5213764a89403e71f9a34d7bb842)
+
+Clean your patches before sending them.
+
+> ---
+>  .../bindings/spi/mediatek,spi-mtk-nor.yaml    | 45 ++++++++++++++-----
+>  1 file changed, 33 insertions(+), 12 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> index a453996c13f2..bd6f43a0c399 100644
+> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mtk-nor.yaml
+> @@ -17,9 +17,6 @@ description: |
+>    for devices other than SPI NOR flash due to limited transfer
+>    capability of this controller.
+>  
+> -allOf:
+> -  - $ref: /schemas/spi/spi-controller.yaml#
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -27,6 +24,7 @@ properties:
+>            - mediatek,mt8173-nor
+>            - mediatek,mt8186-nor
+>            - mediatek,mt8192-nor
+> +          - mediatek,mt8189-nor
+>        - items:
+>            - enum:
+>                - mediatek,mt2701-nor
+> @@ -39,6 +37,7 @@ properties:
+>        - items:
+>            - enum:
+>                - mediatek,mt8188-nor
+> +              - mediatek,mt8189-nor
+>            - const: mediatek,mt8186-nor
+>  
+>    reg:
+> @@ -56,14 +55,8 @@ properties:
+>                       design, so this is optional.
+>        - description: clock used for controller axi slave bus.
+>                       this depends on hardware design, so it is optional.
+> -
+> -  clock-names:
+
+You cannot remove properties.
+
+> -    minItems: 2
+> -    items:
+> -      - const: spi
+> -      - const: sf
+> -      - const: axi
+> -      - const: axi_s
+> +      - description: clock used for controller axi_f, axi_h, and
+> +                     axi_p to support the new platform.
+>  
+>  required:
+>    - compatible
+> @@ -71,6 +64,34 @@ required:
+>    - clocks
+>    - clock-names
+>  
+> +allOf:
+> +  - $ref: /schemas/spi/spi-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mediatek,mt8189-nor
+> +    then:
+> +      properties:
+> +        clocks:
+
+minItems
+
+> +          maxItems: 5
+> +        clock-names:
+> +          items:
+> +            - const: spi
+> +            - const: sf
+> +            - const: axi_f
+
+That's just axi, no? Thus keep the list in top-level.
+
+> +            - const: axi_h
+
+And that's axi_s
+
+> +            - const: axi_p
+
+And what does p stand for? Do you understand these are names of clock
+inputs, not names of clocks?
+
+
+> +    else:
+> +      properties:
+> +        clocks:
+
+Missing minItems
+
+> +          maxItems: 4
+> +        clock-names:
+> +          items:
+> +            - const: spi
+> +            - const: sf
+> +            - const: axi
+
+And that's ABI change, NAK.
+
+
+Best regards,
+Krzysztof
 
