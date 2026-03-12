@@ -1,62 +1,95 @@
-Return-Path: <devicetree+bounces-274604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274605-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eGgrJiLCsmmvPAAAu9opvQ
-	(envelope-from <devicetree+bounces-274604-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:39:46 +0100
+	id 2NheE03DsmmvPAAAu9opvQ
+	(envelope-from <devicetree+bounces-274605-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:44:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AC06272BE0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:39:46 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id D463F272D29
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:44:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 9DA76301C174
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:39:45 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 29ED1314B7BB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:41:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A55F38737C;
-	Thu, 12 Mar 2026 13:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF7703B9D97;
+	Thu, 12 Mar 2026 13:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FC7/MBEW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FC+y+b3U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573E11E1C02;
-	Thu, 12 Mar 2026 13:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31EC523ABAA
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:41:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773322783; cv=none; b=fSbkWlRXt2QJTuy1QCgSlDbR5V/Mt7Er64TEKITDihrV8qzr1LpAHWq6ZvODpp8S1OPYKjQqMu21rf9hkvNj1bu9TVuVunM+Z/JpqBml+7pAUaI/GHBat/+QXiZiOkCKUu9aYjS6Yz0SXYG9tCZSuUdlswPCHA7NyBz/C+kPJ6I=
+	t=1773322873; cv=none; b=A4kSt17mLpNTBfydp9Md0g9G4u9P+wxmG0skF/D1t78NOmoRXsONRPqwYjkpOj2mW0MYzPStqtnv7+IlU5PdV2ZKYVk1xsKtLHoA5Nhvv141Nmh+vZewUivgWkmXbBLRJkD/Xp2JIn7y6s4XzGpwQuE/vVg2uCeFR2FSWoFJ1zE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773322783; c=relaxed/simple;
-	bh=eXQBpUH8EIa/+eY9of7NDEuBwFE4v7O1vPmTS9GY9zE=;
+	s=arc-20240116; t=1773322873; c=relaxed/simple;
+	bh=waraj5aVzmh8TaApwAwE+I7GTdNW5H0awz3aoMmNyyo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q/5SfVztb20xyMIEwxJtYSm2ixJOpb7geTYy8xxRB+wVfbCgSv0LdXBWdzjGIxRFt11GRyoLGqBzTMFuHb7LQWCePpGfP6MMu7WS2YnDpc4wrLahzSBGMnC6MqpshGSosC+7oZuMBykgTylhOtwb3MdpwcbbG+Vbz8nTrz6UGpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FC7/MBEW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEB48C4CEF7;
-	Thu, 12 Mar 2026 13:39:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773322783;
-	bh=eXQBpUH8EIa/+eY9of7NDEuBwFE4v7O1vPmTS9GY9zE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FC7/MBEWkDWfac2YSQswe28PiA+Qm63TAf/7HvbXo7jLEwkpCxvY/OMMX7nShfyY5
-	 SuTPE/qiysTRMo3rNKzLw1mNk1vvpCq0jZX2frBOZ6uyG1iBJuHEvvNETdgd2xYQru
-	 Ke0E3qZoVKcinx/YIkSbcp1nVmNS0eup90MaJj/keTANiQIGZM66Msc4K90hFzaGVm
-	 f/dqXBiCTGigbQ048o0EmJ9eoRzISQN6K+rXkevr1GOmNrC1NncVs7XFVICn34mF5u
-	 s/stnIEElktvGv5YpyAymyfIxvNGBf6ZZrG39DAHpKe+QuAriaQ4LzkCC1xUYFlrai
-	 V5ZWNaUFukmRQ==
-Date: Thu, 12 Mar 2026 08:39:42 -0500
-From: Rob Herring <robh@kernel.org>
-To: kanadenadi <kenadicanady@gmail.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, orsonzhai@gmail.com,
-	baolin.wang@linux.alibaba.com, zhang.lyra@gmail.com,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: clock: sprd: Add Unisoc SC9832E
- clock controller
-Message-ID: <20260312133942.GA2886714-robh@kernel.org>
-References: <20260225010920.757793-1-kenadicanady@gmail.com>
- <20260225010920.757793-2-kenadicanady@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=U5YFjAllPc7hKS5ZoRJkTSvH/qrW5+PZXAE9KvhYQO/gsvpRCPJz2ieYIr5dMM27+P/bdAv1FHPpfwX8B3NlMcNg+uGvwi6vykgJ0PjvEIExwNlhkjgV/GGCCVc6cMCX8z6sw4PyggPcMqoIsh98iMv0HA/EL1F2crqwlAMtyTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FC+y+b3U; arc=none smtp.client-ip=209.85.208.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-660ea6ceb5aso3332766a12.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:41:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773322869; x=1773927669; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CAwHxaCXl501xCvwTjF8MsYHH2W+UlwYAi/493OFfIU=;
+        b=FC+y+b3UtlYe9p7/e8Br0wM5PCjo1zky6OiEZd3JefPnp6yIKL/UNYxWQMAafJSqkb
+         bvTK2QKxLx05oDfsfWu8j7OIqbN6aQc3sHHXiXfIIleWaLP5Z7dql1Pca3Z3thNBu25c
+         Ffk9rWEu97SruD0ImfeQDxOrHD3ghZGG5vWdHLno5WZj4EK19KU+s6zrVTyzFdJGCrDs
+         XlW1IzG7KDwWaosCwXmQa0jv0zqPGH0kYFu2ydQQI4FxDKdJWLPn4TIKPHZasesG8qbu
+         sefFwMrK9gYYJZjMnmPZqINqDFsznCd1jsd0pp0t2+5ZEssDrvK97I/tnuUJ2oGBR6Z0
+         r0Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773322869; x=1773927669;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CAwHxaCXl501xCvwTjF8MsYHH2W+UlwYAi/493OFfIU=;
+        b=FGH8KtPIQWP5x9byUbSB3ghnMkxmG6po6XlUKCj1PTHTLEvvCwznTafVFJPCo3Ndww
+         2CQ90myrHk5GdFYollDod4Jv1vl4Z+mskvYWPwwguTo1yS3J1G9aRZaADSRQ4HltV/qd
+         05seKjfJlNCEF0D0vpfyg96yswg8qVGuwm82B9FLyl/O9pQ52mvMWAy6fuaeMtGGYtJB
+         AatzY4TKFRvAt4Ljd1jeZE/vOBARfrOl8KiOIaNJtNEQ6KuiaGJuuZKQR4uFpZnc9qSp
+         LVDC4NaA3Aqh45ztTfGFL/3sdtoRqOOJpS4qN5XDaYYr5jpwCo5HAzCOuz8vR9ykXI7D
+         2w9A==
+X-Forwarded-Encrypted: i=1; AJvYcCWn1IUvwlAn6hfQPdT7emQKjaOxLMRCcYTs/UrrLNvTZvRglB0kNA608bYds2oNIk6mv580K0cs10oV@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9BM+ktbUjSJLmu8xtlPzJ99Ej1DswmN6/xxzEABfdoZfvZZvB
+	+/6+hQR0HgPpTCOLEsPqvhw7rUTO5eC6D58o68Qop5DDGHXCefSz1pBa
+X-Gm-Gg: ATEYQzz4cO9jaz6hVLhu6/XaBs0dKm650hnFksyLn65dhYjEDLFGl32sfwsj0Z9kd72
+	srfLNbokUoJAlU27vXP0ETLSDonkr/i3PQHSZAtpiRzush+mBDQv1pytO+WK6k0snBPHyw+2GbF
+	Y5uylC292NubbWRi3DMXRk56KG7HcW8Y9bNv5sW4PKZ4QP6TIZ1VU8GeC2tBP+tVpnRaipg5vR1
+	PTNnrIjG7k0g0z42bs947anr3dTRc6AOYdJXr/SEvmdnA8El+1saCBmSVB/DTsWxGmlsysBmL7d
+	w1GPjXYug0fQ1wz951+jcuMaSNRXcRBGCp076RJLiEC0SvEkc3LlehSsUP1xnSvvR5oVPZ5AT+e
+	AScWUcCZsHzpIDxVYSEO9YsCMC/3g9+XB/GfRvNVB7dkxlHWTzr/g4vh+MYorHgx3iaVngH2cDm
+	3SJfKdZ+4oa5pJfVo09nUkwXs=
+X-Received: by 2002:a17:906:fe49:b0:b96:f02b:3d5a with SMTP id a640c23a62f3a-b973ffcee42mr208925966b.16.1773322869240;
+        Thu, 12 Mar 2026 06:41:09 -0700 (PDT)
+Received: from eichest-laptop ([77.109.188.37])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b972e14dc3asm135857166b.39.2026.03.12.06.41.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Mar 2026 06:41:08 -0700 (PDT)
+Date: Thu, 12 Mar 2026 14:41:07 +0100
+From: Stefan Eichenberger <eichest@gmail.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: net: micrel: Sort lists
+Message-ID: <abLCc6Kb6xIQiMZr@eichest-laptop>
+References: <cover.1773321267.git.geert+renesas@glider.be>
+ <013afe74bef9a4d4af8b5a204cb4891518f7274d.1773321267.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,382 +98,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260225010920.757793-2-kenadicanady@gmail.com>
-X-Spamd-Result: default: False [0.34 / 15.00];
+In-Reply-To: <013afe74bef9a4d4af8b5a204cb4891518f7274d.1773321267.git.geert+renesas@glider.be>
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[baylibre.com,kernel.org,gmail.com,linux.alibaba.com,vger.kernel.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-274604-lists,devicetree=lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-274605-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	FROM_HAS_DN(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_PROHIBIT(0.00)[1.72.16.96:email];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	FROM_NEQ_ENVFROM(0.00)[eichest@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	TAGGED_RCPT(0.00)[devicetree,renesas,netdev,dt];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,devicetree.org:url]
-X-Rspamd-Queue-Id: 3AC06272BE0
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,glider.be:email]
+X-Rspamd-Queue-Id: D463F272D29
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Feb 25, 2026 at 09:09:19AM +0800, kanadenadi wrote:
-> Add device tree bindings for Unisoc SC9832E clock controller. The controller supports multiple clock gates and PLLs.
-
-Wrap your commit messages at 72 char.
-
+On Thu, Mar 12, 2026 at 02:27:35PM +0100, Geert Uytterhoeven wrote:
+> Sort lists of PHY models and compatible values alphabetically.
 > 
-> Signed-off-by: kanadenadi <kenadicanady@gmail.com>
-
-Which name is correct? Here or down below?
-
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> Changes in v3:
->  - Dropped redundant 'description' from 'clocks' property.
->  - Moved globally required properties (reg, clocks, clock-names) to the top-level 'required' block.
->  - Unified quote styles for "#clock-cells".
->  - Consolidated identical if-then validation rules for single-clock variants into a single block to avoid code duplication.
->  - Dropped extra redundant examples, keeping only one representative example.
+>  Documentation/devicetree/bindings/net/micrel.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
->  .../bindings/clock/sprd,sc9832e-clk.yaml      | 120 ++++++++++++
->  include/dt-bindings/clock/sprd,sc9832e-clk.h  | 177 ++++++++++++++++++
->  2 files changed, 297 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/sprd,sc9832e-clk.yaml
->  create mode 100644 include/dt-bindings/clock/sprd,sc9832e-clk.h
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/sprd,sc9832e-clk.yaml b/Documentation/devicetree/bindings/clock/sprd,sc9832e-clk.yaml
-> new file mode 100644
-> index 000000000..36d6ddc73
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/sprd,sc9832e-clk.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2026 Unisoc Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/sprd,sc9832e-clk.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Unisoc SC9832E Clock Controllers
-> +
-> +maintainers:
-> +  - Nadi Ke <kenadicanady@gmail.com>
-> +  - Orson Zhai <orsonzhai@gmail.com>
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sprd,sc9832e-glbregs
-> +      - sprd,sc9832e-pll
-> +      - sprd,sc9832e-mpll
-> +      - sprd,sc9832e-dpll
-> +      - sprd,sc9832e-rpll
-> +      - sprd,sc9832e-apahb-gate
-> +      - sprd,sc9832e-aonapb-gate
-> +      - sprd,sc9832e-ap-clk
-> +      - sprd,sc9832e-aon-clk
-> +      - sprd,sc9832e-apapb-gate
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 6
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 6
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - "#clock-cells"
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - sprd,sc9832e-glbregs
-> +              - sprd,sc9832e-pll
-> +              - sprd,sc9832e-mpll
-> +              - sprd,sc9832e-dpll
-> +              - sprd,sc9832e-rpll
-> +              - sprd,sc9832e-apahb-gate
-> +              - sprd,sc9832e-aonapb-gate
-> +              - sprd,sc9832e-apapb-gate
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +        clock-names:
-> +          items:
-> +            - const: ext-26m
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: sprd,sc9832e-ap-clk
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 2
-> +          maxItems: 2
-> +        clock-names:
-> +          items:
-> +            - const: ext-26m
-> +            - const: ext-1m
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: sprd,sc9832e-aon-clk
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 6
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: ext-4m3
-> +            - const: ext-26m
+> diff --git a/Documentation/devicetree/bindings/net/micrel.yaml b/Documentation/devicetree/bindings/net/micrel.yaml
+> index ecc00169ef805dc2..5d25f0d0a508a6df 100644
+> --- a/Documentation/devicetree/bindings/net/micrel.yaml
+> +++ b/Documentation/devicetree/bindings/net/micrel.yaml
+> @@ -51,9 +51,9 @@ properties:
+>        bits that are currently supported:
+>  
+>        KSZ8001: register 0x1e, bits 15..14
+> -      KSZ8041: register 0x1e, bits 15..14
+>        KSZ8021: register 0x1f, bits 5..4
+>        KSZ8031: register 0x1f, bits 5..4
+> +      KSZ8041: register 0x1e, bits 15..14
+>        KSZ8051: register 0x1f, bits 5..4
+>        KSZ8081: register 0x1f, bits 5..4
+>        KSZ8091: register 0x1f, bits 5..4
+> @@ -80,9 +80,9 @@ allOf:
+>              contains:
+>                enum:
+>                  - ethernet-phy-id0022.1510
+> +                - ethernet-phy-id0022.1550
+>                  - ethernet-phy-id0022.1555
+>                  - ethernet-phy-id0022.1556
+> -                - ethernet-phy-id0022.1550
+>                  - ethernet-phy-id0022.1560
+>                  - ethernet-phy-id0022.161a
+>      then:
 
-This one should be first like the others.
+Looks good to me, thanks for the cleanup.
 
-> +            - const: ext-32k
-> +            - const: ext-6m5
-> +            - const: ext-13m
-> +            - const: ext-250k
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/sprd,sc9832e-clk.h>
-> +
-> +    clock-controller@21500000 {
-> +        compatible = "sprd,sc9832e-ap-clk";
-> +        reg = <0x21500000 0x1000>;
-> +        clocks = <&ext_26m>, <&ext_1m>;
-> +        clock-names = "ext-26m", "ext-1m";
-> +        #clock-cells = <1>;
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/sprd,sc9832e-clk.h b/include/dt-bindings/clock/sprd,sc9832e-clk.h
-> new file mode 100644
-> index 000000000..cd0b9952b
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/sprd,sc9832e-clk.h
-> @@ -0,0 +1,177 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Unisoc SC9832E platform clocks
-> + *
-> + * Copyright (C) 2015 Spreadtrum, Inc.
-
-It's 2026.
-
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_SC9832E_H_
-> +#define _DT_BINDINGS_CLK_SC9832E_H_
-> +
-> +#define CLK_ISPPLL_GATE		0
-> +#define CLK_MPLL_GATE		1
-> +#define CLK_DPLL_GATE		2
-> +#define CLK_LPLL_GATE		3
-> +#define CLK_GPLL_GATE		4
-> +
-> +#define CLK_TWPLL		0
-> +#define CLK_TWPLL_768M		1
-> +#define CLK_TWPLL_384M		2
-> +#define CLK_TWPLL_192M		3
-> +#define CLK_TWPLL_96M		4
-> +#define CLK_TWPLL_48M		5
-> +#define CLK_TWPLL_24M		6
-> +#define CLK_TWPLL_12M		7
-> +#define CLK_TWPLL_512M		8
-> +#define CLK_TWPLL_256M		9
-> +#define CLK_TWPLL_128M		10
-> +#define CLK_TWPLL_64M		11
-> +#define CLK_TWPLL_307M2		12
-> +#define CLK_TWPLL_219M4		13
-> +#define CLK_TWPLL_170M6		14
-> +#define CLK_TWPLL_153M6		15
-> +#define CLK_TWPLL_76M8		16
-> +#define CLK_TWPLL_51M2		17
-> +#define CLK_TWPLL_38M4		18
-> +#define CLK_TWPLL_19M2		19
-> +#define CLK_LPLL		20
-> +#define CLK_LPLL_409M6		21
-> +#define CLK_LPLL_245M76		22
-> +#define CLK_GPLL		23
-> +#define CLK_ISPPLL		24
-> +#define CLK_ISPPLL_468M		25
-> +
-> +#define CLK_MPLL		0
-> +#define CLK_MPLL_50M		1
-> +
-> +#define CLK_DPLL		0
-> +#define CLK_DPLL_40M		1
-> +
-> +#define CLK_AUDIO_GATE		0
-> +#define CLK_RPLL		1
-> +#define CLK_RPLL_390M		2
-> +#define CLK_RPLL_260M		3
-> +#define CLK_RPLL_195M		4
-> +#define CLK_RPLL_26M		5
-> +
-> +#define CLK_DSI_EB		0
-> +#define CLK_DISPC_EB		1
-> +#define CLK_VSP_EB		2
-> +#define CLK_GSP_EB		3
-> +#define CLK_OTG_EB		4
-> +#define CLK_DMA_PUB_EB		5
-> +#define CLK_CE_PUB_EB		6
-> +#define CLK_AHB_CKG_EB		7
-> +#define CLK_SDIO0_EB		8
-> +#define CLK_SDIO1_EB		9
-> +#define CLK_NANDC_EB		10
-> +#define CLK_EMMC_EB		11
-> +#define CLK_SPINLOCK_EB		12
-> +#define CLK_CE_EFUSE_EB		13
-> +#define CLK_EMMC_32K_EB		14
-> +#define CLK_SDIO0_32K_EB	15
-> +#define CLK_SDIO1_32K_EB	16
-> +
-> +#define CLK_ADC_EB		0
-> +#define CLK_FM_EB		1
-> +#define CLK_TPC_EB		2
-> +#define CLK_GPIO_EB		3
-> +#define CLK_PWM0_EB		4
-> +#define CLK_PWM1_EB		5
-> +#define CLK_PWM2_EB		6
-> +#define CLK_PWM3_EB		7
-> +#define CLK_KPD_EB		8
-> +#define CLK_AON_SYST_EB		9
-> +#define CLK_AP_SYST_EB		10
-> +#define CLK_AON_TMR_EB		11
-> +#define CLK_AP_TMR0_EB		12
-> +#define CLK_EFUSE_EB		13
-> +#define CLK_EIC_EB		14
-> +#define CLK_INTC_EB		15
-> +#define CLK_ADI_EB		16
-> +#define CLK_AUDIF_EB		17
-> +#define CLK_AUD_EB		18
-> +#define CLK_VBC_EB		19
-> +#define CLK_PIN_EB		20
-> +#define CLK_IPI_EB		21
-> +#define CLK_SPLK_EB		22
-> +#define CLK_AP_WDG_EB		23
-> +#define CLK_MM_EB		24
-> +#define CLK_AON_APB_CKG_EB	25
-> +#define CLK_GPU_EB		26
-> +#define CLK_CA7_TS0_EB		27
-> +#define CLK_CA7_DAP_EB		28
-> +
-> +#define CLK_AP_APB		0
-> +#define CLK_NANDC_ECC		1
-> +#define CLK_OTG_REF		2
-> +#define CLK_OTG_UTMI		3
-> +#define CLK_UART1		4
-> +#define CLK_I2C0		5
-> +#define CLK_I2C1		6
-> +#define CLK_I2C2		7
-> +#define CLK_I2C3		8
-> +#define CLK_I2C4		9
-> +#define CLK_SPI0		10
-> +#define CLK_SPI2		11
-> +#define CLK_HS_SPI		12
-> +#define CLK_IIS0		13
-> +#define CLK_CE			14
-> +#define CLK_NANDC_2X		15
-> +#define CLK_SDIO0_2X		16
-> +#define CLK_SDIO1_2X		17
-> +#define CLK_EMMC_2X		18
-> +#define CLK_VSP			19
-> +#define CLK_GSP			20
-> +#define CLK_DISPC0		21
-> +#define CLK_DISPC0_DPI		22
-> +#define CLK_DSI_RXESC		23
-> +#define CLK_DSI_LANEBYTE	24
-> +
-> +#define CLK_AON_APB		0
-> +#define CLK_ADI			1
-> +#define CLK_AUX0		2
-> +#define CLK_AUX1		3
-> +#define CLK_PWM0		4
-> +#define CLK_PWM1		5
-> +#define CLK_PWM2		6
-> +#define CLK_PWM3		7
-> +#define CLK_THM0		8
-> +#define CLK_THM1		9
-> +#define CLK_AUDIF		10
-> +#define CLK_AUD_IIS_DA0		11
-> +#define CLK_AUD_IIS_AD0		12
-> +#define CLK_CA53_DAP		13
-> +#define CLK_CA53_DMTCK		14
-> +#define CLK_CA53_TS		15
-> +#define CLK_DJTAG_TCK		16
-> +#define CLK_EMC_REF		17
-> +#define CLK_CSSYS		18
-> +#define CLK_TMR			19
-> +#define CLK_DSI_TEST		20
-> +#define CLK_SDPHY_APB		21
-> +#define CLK_AIO_APB		22
-> +#define CLK_DTCK_HW		23
-> +#define CLK_AP_MM		24
-> +#define CLK_AP_AXI		25
-> +#define CLK_NIC_GPU		26
-> +#define CLK_MM_ISP		27
-> +
-> +#define CLK_SIM0_EB		0
-> +#define CLK_IIS0_EB		1
-> +#define CLK_APB_REG_EB		2
-> +#define CLK_SPI0_EB		3
-> +#define CLK_SPI2_EB		4
-> +#define CLK_I2C0_EB		5
-> +#define CLK_I2C1_EB		6
-> +#define CLK_I2C2_EB		7
-> +#define CLK_I2C3_EB		8
-> +#define CLK_I2C4_EB		9
-> +#define CLK_UART1_EB		10
-> +#define CLK_SIM0_32K_EB		11
-> +#define CLK_INTC0_EB		12
-> +#define CLK_INTC1_EB		13
-> +#define CLK_INTC2_EB		14
-> +#define CLK_INTC3_EB		15
-> +
-> +#endif /* _DT_BINDINGS_CLK_SC9832E_H_ */
-> -- 
-> 2.34.1
-> 
+Reviewed-by: Stefan Eichenberger <eichest@gmail.com>
 
