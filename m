@@ -1,248 +1,164 @@
-Return-Path: <devicetree+bounces-274513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274514-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UL6eDASQsmlINgAAu9opvQ
-	(envelope-from <devicetree+bounces-274513-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:05:56 +0100
+	id 8LDVFbCRsml5NgAAu9opvQ
+	(envelope-from <devicetree+bounces-274514-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:04 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id D42DF270032
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:05:55 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E482702A6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 45F4F302D9F7
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:05:06 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 6FB2A30472B9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:09:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBCF13BE620;
-	Thu, 12 Mar 2026 10:04:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C25D13C13F8;
+	Thu, 12 Mar 2026 10:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mpQmvkcs"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fmSie3tw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8CC4355803
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 10:04:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6463859D6
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 10:09:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773309889; cv=none; b=pR7U+MnsNdR9pCbMztx0265HGMMN+s0HpKm2D3mm7xiWXC+bIQg2f0fdC1uQHlSXz78DU7Rt0uWfOeK3qG6EB0uHv+srwTKWbzv/n4uR8uBZwc3JrPm4fb/87g1bYziPnJhhieUWJxvMErol1DAzLTtOlED36DisKRVntcBn2jA=
+	t=1773310184; cv=none; b=RzGA91q9rebyhWQbiDpWiLn+qVmb1BKxaV+HKyRvMRZ4NuVqeqzM5cFlfzT10tgEfJ86Q9bfoiSLOss+nIAIfk/wR6PD6GEUhMZi7e50IwNZKPqi4faJzkI1KxwtWyD/S9Fsa/y0TGvdKX7bN87F2PgLHWJMD0oQP8RKdeOrslY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773309889; c=relaxed/simple;
-	bh=cNHwcyvjlqOn/sSK9BepZUE0uOreTt3cfgNnXEYhuwA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G3R9D5nKQJ7blF5Z2WGrZzR3GjfNTShdticzMOLkCFUQWbZb+PrPAwH6vFzYyTSP2M9N+1ozI4Vl8pKle+oXXsQkQS187UQKGD4vHLQuWxsq/JEwh2OL8Z8X4vzfddXiYjwzYiv6qyNA37XNijVGPLqQW0fxJl/h5WTjhjTLcoA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mpQmvkcs; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-660dcafc85aso1414546a12.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 03:04:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1773309878; x=1773914678; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+szYmIVQmnY3WCiXmubWFb8BEwrcKI82m+hDxFjwnOQ=;
-        b=mpQmvkcsfWFSRVNp8jk32zicic75KC8/YK6azrgab+NAghob2HnuDNT1hwQRzATAgz
-         UglhlVmkrtdGr5tVeHGfz3uG1nYwukjTmhhhoS1FUIbttCH4hyBj2mfKVy4nt542JYBE
-         nm7iBxMabr/HTvMcgUxCmvBhzCoom9JpnkeexNoRKk//G5UY62CHKprob7jwQfk8iQ1K
-         qvit+mXI04XbdEn7dInFfe+lRJpehfkPAj4xAMo4/3ckrG2ElzNaWqE4mof8AXexzPCa
-         u9L0TwLFYeCAsfZS1f6HQhnKOIpK7hF2DPUGIjPFlKN4hyuWQ1RdB+z/Q02pseTnFIMS
-         ER6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773309878; x=1773914678;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+szYmIVQmnY3WCiXmubWFb8BEwrcKI82m+hDxFjwnOQ=;
-        b=WOhuZ3pGKPC9F5WC8bTwpeEDSepgrYPqS77dMWsTz9F/kGN338GLg4z/RE8Dw5Fv5S
-         RRBBMuJdLIceks61+YsZzbzUC5VZSTZAz0m7LsKzEG9Jj5jNFtHXGXaR0rzHI1VCK697
-         P1iCqz94lVUEwbupdeY39KzZqa0LNIBSfAI+xDKxkr12CSs125yGgy0k1h226bxbGJYL
-         bimbi5gqnEzmNDQvWX6n84wspS+aRpZgf5lNHEwIGuH1AwqNQ5z/MXEOKia1T0IyylFx
-         CtsqJx4okC2gbLkMUloi52Wpp3mGVTGVo6tgRzns8expitIYaj3IOQiHVkdXKsLV0Ypa
-         pnnw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIfWyjsCPVh5ad5WBevKwNXKHYaG0djKjOEmcwn3b/LqbLbeFzfa1rxlBMvBqPA/biJZ2NFg0KsHwd@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXm3jvDOrbfOaeLNMM/q6rNZZhjIi605KGevUTCIEXHeCDCE1d
-	frLe8yDYBFoGotppvfBrrAkJGFEdeA10lJBjbWKh4bchWk8SHj6RIkNTEn9V0RNd7O4=
-X-Gm-Gg: ATEYQzxLOvxALSO8PQ23FJ8+qIc1+nKw5jvXau2GESQAa5HgpU9AkKmydgbU+h+5/8F
-	stms9SqFNI1f+umOlp5g/aBxAO9u1sjqt/jSCDO6gNmIfqr3Tj2R/lnnF1RtiDHFe7G4cP5H1TA
-	xSBDj9oX4V6VmzjLJ5OLC0IPaoxM/EeXhXncXQlztkAiYs1385pQW1jXgJKa2eGEmqXbTX1FuqI
-	Qz4HOYKZNlsrA46Jk+oyvDaheshgfVKu3bzfh4FQMByhkJUyfp/EEhPIHdgiYB0mSycPzonLiIz
-	DKseX2lBX20HUZJbsN59gga1YPeJMdu6yCroOvVNgPXgZRwEJRDvbeOYx4Z/E8x6vyoDNY3nwKi
-	jwWqB5Jpog6w3P7WRbi5tfq7AILf6wR7z8YgrtDdUW5AXuRqtA8z+MIaA3WuvXG7W/1YlyI7hFE
-	CqOPp1A4WgMnW9Nc9uWVK7bF8wijggzi+NRUMe714L9n3y
-X-Received: by 2002:a05:6402:4445:b0:663:9739:6279 with SMTP id 4fb4d7f45d1cf-663973967f3mr240730a12.10.1773309877960;
-        Thu, 12 Mar 2026 03:04:37 -0700 (PDT)
-Received: from [192.168.0.101] ([109.77.88.70])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6634fdc8932sm427254a12.14.2026.03.12.03.04.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Mar 2026 03:04:37 -0700 (PDT)
-Message-ID: <11a4c0e8-de4e-4c11-862b-0c58cad969f6@linaro.org>
-Date: Thu, 12 Mar 2026 10:04:35 +0000
+	s=arc-20240116; t=1773310184; c=relaxed/simple;
+	bh=o2tbAsjH3Bj3ITMbfCIfI6vFFtcflfvoE/FTmCVqn+8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=qxWnHU4xQkIgz07Fe87VShbV6TWgoRT6EQCa5Xct9GBtwfMKEDspRtx+uRbiW2+TgOB8rCVzNhNzo3rfQVXpKCeKlyTpB3JGqvwFFXO2mIAVSKTuGFcGMMt6C3uuLwMI/4RiNfnkPIAhwyDKQ51l9x51clg8888v4gMOxGA8Q9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fmSie3tw; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 4F967C415AC;
+	Thu, 12 Mar 2026 10:09:57 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 9BCD65FDEB;
+	Thu, 12 Mar 2026 10:09:35 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D14E710368916;
+	Thu, 12 Mar 2026 11:09:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773310173; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=nFQgtZbZOzsOMmIw2RPypC2zKtBFpiQqQrkl+bjWfQM=;
+	b=fmSie3twSJgvMniuNeOaMgCypnaPOQgNSpPCA5mmJA5rcxWgqqto+u5Cb6zAWbB231nftB
+	NdyDoNg4Qqsslt1F+LmG1MVYyhJzMxY9fZCF2e1IGVHQfH6RnXievAt5cPKnJ4k3jyZm0C
+	igfswQiWXPdEojOZR3xlF/gTGROjw0W5V0nYOWjGg8jLtUU30e53NnTuDK7nPrl/Km4nAB
+	1iUL+Cx6LPrLpkG9bO3Kw50sQYnVnj4fNqjJ2T4R6f0IymoQpiHVlJ7FNf10C6+oHn2UDs
+	IKbcUGsdK9r1u0kqWq0PMgO5UQANDEOLyEmgyhWHXaCaAPS98UuWTPXJpNro3A==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] usb: typec: qcom: Add support for per port VBUS
- detection
-To: Alexander Koskovich <akoskovich@pm.me>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20260312-qcom-typec-shared-vbus-v2-1-99ed9e500947@pm.me>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20260312-qcom-typec-shared-vbus-v2-1-99ed9e500947@pm.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 12 Mar 2026 11:09:24 +0100
+Message-Id: <DH0PZN0WJZC5.26KLH464PMMTP@bootlin.com>
+To: "Conor Dooley" <conor@kernel.org>, <netdev@vger.kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH net-next v3 00/10] macb usrio/tsu patches
+Cc: "Conor Dooley" <conor.dooley@microchip.com>,
+ <Valentina.FernandezAlanis@microchip.com>, "Andrew Lunn"
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Daire McNamara" <daire.mcnamara@microchip.com>, "Paul Walmsley"
+ <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert Ou"
+ <aou@eecs.berkeley.edu>, "Alexandre Ghiti" <alex@ghiti.fr>, "Nicolas Ferre"
+ <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
+ "Richard Cochran" <richardcochran@gmail.com>, "Samuel Holland"
+ <samuel.holland@sifive.com>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>, "Dave
+ Stevenson" <dave.stevenson@raspberrypi.com>, "Sean Anderson"
+ <sean.anderson@linux.dev>, "Vineeth Karumanchi"
+ <vineeth.karumanchi@amd.com>, "Abin Joseph" <abin.joseph@amd.com>,
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ <Ryan.Wanner@microchip.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260310-moneyless-dispense-7bce14b16388@spud>
+In-Reply-To: <20260310-moneyless-dispense-7bce14b16388@spud>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linaro.org,none];
-	R_DKIM_ALLOW(-0.20)[linaro.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[linaro.org:+];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274514-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274513-lists,devicetree=lfdr.de];
+	FREEMAIL_CC(0.00)[microchip.com,lunn.ch,davemloft.net,google.com,kernel.org,redhat.com,dabbelt.com,eecs.berkeley.edu,ghiti.fr,tuxon.dev,gmail.com,sifive.com,vger.kernel.org,lists.infradead.org,raspberrypi.com,linux.dev,amd.com,bootlin.com];
+	RCPT_COUNT_TWELVE(0.00)[32];
 	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bryan.odonoghue@linaro.org,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,pm.me:email]
-X-Rspamd-Queue-Id: D42DF270032
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	TO_DN_SOME(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:mid,bootlin.com:url,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 54E482702A6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 12/03/2026 06:16, Alexander Koskovich wrote:
-> This is required for devices (e.g. ASUS ROG Phone 3) where more than
-> one USB port can act as a sink and both share a single USBIN input on
-> the PMIC.
-> 
-> Because the PM8150B uses USBIN to determine VBUS presence, a charger
-> connected to one port causes the PMIC to falsely detect VBUS on the
-> other port, preventing it from entering source mode.
-> 
-> For example, plugging a charger into one port prevents using the other
-> port for a flash drive.
-> 
-> Fix this by adding support for the vbus-gpios connector binding so the
-> driver can use an external GPIO for per-port VBUS presence detection
-> instead of the shared USBIN register.
-> 
-> Signed-off-by: Alexander Koskovich <akoskovich@pm.me>
-> ---
-> Changes in v2:
-> - Dropped RFC prefix
-> - Remove redundant vbus-detect-gpios, instead use existing vbus-gpios from usb-connector (Dmitry)
-> - Updated cover to better describe scenario where this change is relevant
-> - Update comment for EN_TRY_SRC to make more sense
-> - Skip vSafe5V poll too not just vSafe0V
-> - return gpiod_get_value_cansleep (Konrad)
-> - regmap_update_bits -> regmap_set_bits (Konrad)
-> - Get vbus-gpios per connector (Konrad)
-> - Add bracket to if (IS_ERR(pmic_typec_port->vbus_detect_gpio)) (Bryan)
-> - Link to v1: https://lore.kernel.org/r/20260308-qcom-typec-shared-vbus-v1-0-7d574b91052a@pm.me
-> ---
->   drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c | 53 +++++++++++++++++++++-
->   1 file changed, 52 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
-> index 8051eaa46991..a8f6687a3522 100644
-> --- a/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
-> +++ b/drivers/usb/typec/tcpm/qcom/qcom_pmic_typec_port.c
-> @@ -5,6 +5,7 @@
->   
->   #include <linux/delay.h>
->   #include <linux/err.h>
-> +#include <linux/gpio/consumer.h>
->   #include <linux/interrupt.h>
->   #include <linux/kernel.h>
->   #include <linux/mod_devicetable.h>
-> @@ -176,6 +177,8 @@ struct pmic_typec_port {
->   	bool				vbus_enabled;
->   	struct mutex			vbus_lock;		/* VBUS state serialization */
->   
-> +	struct gpio_desc		*vbus_detect_gpio;
-> +
->   	int				cc;
->   	bool				debouncing_cc;
->   	struct delayed_work		cc_debounce_dwork;
-> @@ -279,6 +282,9 @@ static int qcom_pmic_typec_port_vbus_detect(struct pmic_typec_port *pmic_typec_p
->   	unsigned int misc;
->   	int ret;
->   
-> +	if (pmic_typec_port->vbus_detect_gpio)
-> +		return gpiod_get_value_cansleep(pmic_typec_port->vbus_detect_gpio);
-> +
->   	ret = regmap_read(pmic_typec_port->regmap,
->   			  pmic_typec_port->base + TYPEC_MISC_STATUS_REG,
->   			  &misc);
-> @@ -310,6 +316,13 @@ static int qcom_pmic_typec_port_vbus_toggle(struct pmic_typec_port *pmic_typec_p
->   		val = TYPEC_SM_VBUS_VSAFE0V;
->   	}
->   
-> +	/*
-> +	 * On devices with multiple ports sharing USBIN, VBUS from another
-> +	 * port makes the USBIN-based vsafe polls unreliable.
-> +	 */
-> +	if (pmic_typec_port->vbus_detect_gpio)
-> +		return 0;
-> +
->   	/* Poll waiting for transition to required vSafe5V or vSafe0V */
->   	ret = regmap_read_poll_timeout(pmic_typec_port->regmap,
->   				       pmic_typec_port->base + TYPEC_SM_STATUS_REG,
-> @@ -589,7 +602,15 @@ static int qcom_pmic_typec_port_start_toggling(struct tcpc_dev *tcpc,
->   		mode = EN_SNK_ONLY;
->   		break;
->   	case TYPEC_PORT_DRP:
-> -		mode = EN_TRY_SNK;
-> +		/*
-> +		 * With VBUS present on USBIN from another port, EN_TRY_SNK
-> +		 * keeps the port in sink mode. Use EN_TRY_SRC so the port
-> +		 * tries to source first.
-> +		 */
-> +		if (pmic_typec_port->vbus_detect_gpio)
-> +			mode = EN_TRY_SRC;
-> +		else
-> +			mode = EN_TRY_SNK;
->   		break;
->   	}
->   
-> @@ -677,6 +698,19 @@ static int qcom_pmic_typec_port_start(struct pmic_typec *tcpm,
->   	if (ret)
->   		goto done;
->   
-> +	/*
-> +	 * On devices with multiple USB-C ports sharing USBIN, bypass
-> +	 * VSAFE0V so SRC attachment can complete despite VBUS being
-> +	 * present on USBIN from another port.
-> +	 */
-> +	if (pmic_typec_port->vbus_detect_gpio) {
-> +		ret = regmap_set_bits(pmic_typec_port->regmap,
-> +				     pmic_typec_port->base + TYPEC_EXIT_STATE_CFG_REG,
-> +				     BYPASS_VSAFE0V_DURING_ROLE_SWAP);
+Hello Conor,
 
-off-by-one
+On Tue Mar 10, 2026 at 6:17 PM CET, Conor Dooley wrote:
+> At the very least, it'd be good of the soc vendor folks could check
+> their platforms and see if their usrio stuff actually lines up with what
+> the driver currently calls "macb_default_usrio". Ours didn't and it was
+> a nasty surprise.
+>
+> Theo, you added eyeq5 recently. Does it genuinely have the same usrio
+> bits as the at91 devices?
 
-once fixed:
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Sorry I missed your direct mention. After checking (because I completely
+ignored this part of the code before), the User I/O feature is disabled
+on EyeQ5 & EyeQ6H. It can be seen from DCFG1 BIT(9). It was invisible
+because the USRIO register turns read-only when User I/O is disabled.
+
+1. So I thought about adding runtime detection.
+
+2. But then having eyeq5_config->usrio made no sense so I dropped it.
+
+3. And then I thought that a config having usrio being NULL should
+   imply MACB_CAPS_USRIO_DISABLED to ensure we don't NULL dereference
+   the bp->usrio pointer.
+
+#1 is useless for EyeQ combined with #2 and #3, but it should be useful
+for the many compatibles that inherited the wrong default value of
+at91_default_usrio.
+
+I am sending those three patches as a reply, feel free to pick them up
+if you consider them useful. They apply on top of your series and have
+been tested on EyeQ5.
+
+Thanks Conor,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
