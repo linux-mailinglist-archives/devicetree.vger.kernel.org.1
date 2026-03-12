@@ -1,149 +1,182 @@
-Return-Path: <devicetree+bounces-274414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274416-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDfOOcs/smk6KQAAu9opvQ
-	(envelope-from <devicetree+bounces-274414-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:23:39 +0100
+	id iHoPDFNCsmlFKgAAu9opvQ
+	(envelope-from <devicetree+bounces-274416-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:34:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9369126D138
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:23:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50F0126D1F5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 288CC30AAAAD
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:22:04 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id 451DA302D97E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:34:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D349D395DAC;
-	Thu, 12 Mar 2026 04:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7CCB37C922;
+	Thu, 12 Mar 2026 04:34:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="PeVlUOU9"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="icdKWQ8p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717A235A3B9;
-	Thu, 12 Mar 2026 04:22:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A34F435958;
+	Thu, 12 Mar 2026 04:34:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773289322; cv=none; b=U8b6APnEHXdXgJbV6IslQt3+hEJBtsq4+Zeq8AucIPfxQ+LZDNg6s4g8EYmdq9lw+EIWoa3JDgz9dAQVqO9veEf79h2Lou0ZZ6knM7QBcOCqyeRdT8MGCmPCuB98EYBWLxU6ylrNQfMl/9BJdTBgWtIlzKNXG5ZXCXLrArcs+80=
+	t=1773290063; cv=none; b=N/nF44TUwUBFibS2ejFU202Ocihklw6gaYA4K9I7/x2jKZPuOTxPWp4QZqyqTDM6liKzKaR08qeu4HYPuZ+70VGt8oddqT59SJF8vq5eXXqZlxGFoYsVa6DxFpVwmsqaRTtyqWramlUt9zqjGNCDSYOc1j554J8qa/8CkFNRtfg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773289322; c=relaxed/simple;
-	bh=KhmIAgIkXR/FVGhINWVvBX+bl1GcxmHxs9BhpZObeTQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=D/gs+HlHb113chR3zEfKlN40WTa6MAe1foCsRwLWQ9qbBBP8PiF/CiA/MPFiTWVcpI74L2PW6i5ict3h0VOg377qDktYRyhH+irhOLcc/mLjKSjKaeIzuMDVoyBg2oXcxZ+ufaILCbofTtd1UWcT1OjEFQmDlsM2COw3b4uiKQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=PeVlUOU9; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1773289322; x=1804825322;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=KhmIAgIkXR/FVGhINWVvBX+bl1GcxmHxs9BhpZObeTQ=;
-  b=PeVlUOU9fYaqafbay8M2AxwNWo6O6tyrn5kyKC0jsXnRmwKVz2RMyOun
-   Nm7Nyn84X/FmWw5+VJAc+NZID08DO/FtHSnf/uOp/FwOCE7o041GoNUAw
-   c32iYm9ev+/fz1/u/6XtQBtTz7JCMp8wKyEAq9rDUBcwZ2p1L3MFFj+Dg
-   LxMGX+ehaLTNXloWuwPAlUmkqopbAushPPABVcxmgnqaoQKG6lhjS8XX1
-   YoJCD1tUZ5af2jmtpC/D6w2yHhIzHn60+jcZa+d4tSY6OIgW3bnP946ft
-   jUCBwYpvcxzLhScGQIqj2wBUeJ442xxSEiUpH3Nxd/xVCEhFn02e1J0Ju
-   w==;
-X-CSE-ConnectionGUID: b4F98pPuQMeYoHXJAA3Q6w==
-X-CSE-MsgGUID: mp8RutGHQciMn0LqiiVDkQ==
-X-IronPort-AV: E=Sophos;i="6.23,115,1770620400"; 
-   d="scan'208";a="285933284"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 21:22:01 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.87.151) by
- chn-vm-ex1.mchp-main.com (10.10.87.30) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.2.2562.35; Wed, 11 Mar 2026 21:21:58 -0700
-Received: from che-lt-i67131.microchip.com (10.10.85.11) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Wed, 11 Mar 2026 21:21:49 -0700
-From: Manikandan Muralidharan <manikandan.m@microchip.com>
-To: <alexandre.belloni@bootlin.com>, <Frank.Li@nxp.com>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-	<claudiu.beznea@tuxon.dev>, <linux@armlinux.org.uk>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <ardb@kernel.org>,
-	<ebiggers@google.com>, <martin.petersen@oracle.com>, <tytso@mit.edu>,
-	<cristian.birsan@microchip.com>, <adrian.hunter@intel.com>,
-	<jarkko.nikula@linux.intel.com>, <kees@kernel.org>, <npitre@baylibre.com>,
-	<linux-i3c@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-clk@vger.kernel.org>
-CC: <manikandan.m@microchip.com>, Durai Manickam KR
-	<durai.manickamkr@microchip.com>
-Subject: [PATCH v3 5/5] ARM: configs: at91: sama7: add sama7d65 i3c-hci
-Date: Thu, 12 Mar 2026 09:50:56 +0530
-Message-ID: <20260312042056.309237-6-manikandan.m@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260312042056.309237-1-manikandan.m@microchip.com>
-References: <20260312042056.309237-1-manikandan.m@microchip.com>
+	s=arc-20240116; t=1773290063; c=relaxed/simple;
+	bh=qWdaTZywDpPIoOzNarPuu2OlEmR7YYww5wg9IkJLbEs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oci8g5SiA/Q1KQSChWu3QyVimF3eD3QS2SS4xFq7EFJwsi0fEjYiTdWu/b/Oebo+6Gb+JpFT/cj8EmEYpqvoJ9BRsg+1uFlR5vZq3Sl4E/UljhCTo4btVKpIMFGjtO/rD4EBoWrPfb+KMRzHCdci5v3cP4ID7+cZ5RJQNXdbN6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=icdKWQ8p; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=W/GdNouIWyw/Hxd+Cg8eyY6MPPfVnuc4KC8I179/6Oo=; b=icdKWQ8pM7+BfYu6G/Y782mRO3
+	ZX3/3xRZ9+vCXzzSlrbsiZVR7HH4GWF/miznAlW4YdW0B+VOUA/Hu8SmAyIVK9mlkRz0C3rd5S1oK
+	6uVWDOjBPgZ7l9f5N2V/h6V7x61cwzmp6c0knIkykh+vUWtKrpx9bAwcWSVoTjaOdFdc9oPf9r1i1
+	fvV/WCMCscSDcOuE7AD4/vKXaQZAqSQg3yhEOECDAmsmi9Q279WdIBbrfdM3q0wUg8BqI2J7tEBN/
+	eNC51BScMZXvhdWygSXkDxNWWGThaGq8c7RkkfIbyPpT0s2CVD2O1neaXgrP/SSJM8OdqCtnCxHR6
+	8/3/7IHw==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1w0Xk8-0000000DGZs-2BrU;
+	Thu, 12 Mar 2026 04:33:52 +0000
+Message-ID: <1418e495-8725-45fb-a865-b75fb87477f6@infradead.org>
+Date: Wed, 11 Mar 2026 21:33:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spamd-Result: default: False [0.84 / 15.00];
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 01/25] kernel: Introduce meminspect
+To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ Eugen Hristev <eugen.hristev@linaro.org>, Arnd Bergmann <arnd@arndb.de>,
+ Dennis Zhou <dennis@kernel.org>, Tejun Heo <tj@kernel.org>,
+ Christoph Lameter <cl@gentwo.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Thomas Gleixner <tglx@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>,
+ Frederic Weisbecker <frederic@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Juri Lelli <juri.lelli@redhat.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Steven Rostedt <rostedt@goodmis.org>, Ben Segall <bsegall@google.com>,
+ Mel Gorman <mgorman@suse.de>, Valentin Schneider <vschneid@redhat.com>,
+ David Hildenbrand <david@kernel.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Kees Cook <kees@kernel.org>, Brendan Jackman <jackmanb@google.com>,
+ Johannes Weiner <hannes@cmpxchg.org>, Zi Yan <ziy@nvidia.com>,
+ Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
+ Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
+ Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
+ Youngjun Park <youngjun.park@lge.com>, Petr Mladek <pmladek@suse.com>,
+ John Ogness <john.ogness@linutronix.de>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Saravana Kannan <saravanak@kernel.org>
+Cc: workflows@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+ linux-mm@kvack.org, linux-arm-msm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20260311-minidump-v2-v2-0-f91cedc6f99e@oss.qualcomm.com>
+ <20260311-minidump-v2-v2-1-f91cedc6f99e@oss.qualcomm.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260311-minidump-v2-v2-1-f91cedc6f99e@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[microchip.com,reject];
-	R_DKIM_ALLOW(-0.20)[microchip.com:s=mchp];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[infradead.org,none];
+	R_DKIM_ALLOW(-0.20)[infradead.org:s=bombadil.20210309];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-274414-lists,devicetree=lfdr.de];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[manikandan.m@microchip.com,devicetree@vger.kernel.org];
+	TAGGED_FROM(0.00)[bounces-274416-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[microchip.com:+];
-	RCVD_COUNT_FIVE(0.00)[6];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[oss.qualcomm.com,lwn.net,linuxfoundation.org,linaro.org,arndb.de,kernel.org,gentwo.org,linux-foundation.org,infradead.org,linutronix.de,redhat.com,arm.com,goodmis.org,google.com,suse.de,oracle.com,suse.com,cmpxchg.org,nvidia.com,tencent.com,huaweicloud.com,gmail.com,lge.com,chromium.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[infradead.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,microchip.com:dkim,microchip.com:email,microchip.com:mid]
-X-Rspamd-Queue-Id: 9369126D138
+	RCPT_COUNT_GT_50(0.00)[57];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns,infradead.org:dkim,infradead.org:mid]
+X-Rspamd-Queue-Id: 50F0126D1F5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Durai Manickam KR <durai.manickamkr@microchip.com>
 
-Enable the configs needed for I3C framework and microchip
-sama7d65 i3c-hci driver.
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
----
- arch/arm/configs/sama7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+On 3/10/26 1:15 PM, Mukesh Ojha wrote:
+> diff --git a/kernel/meminspect/Kconfig b/kernel/meminspect/Kconfig
+> new file mode 100644
+> index 000000000000..fa2b5a84b251
+> --- /dev/null
+> +++ b/kernel/meminspect/Kconfig
+> @@ -0,0 +1,19 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +config MEMINSPECT
+> +	bool "Allow the kernel to register memory regions for inspection purpose"
 
-diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-index e2ad9a05566f..a59b262e48e1 100644
---- a/arch/arm/configs/sama7_defconfig
-+++ b/arch/arm/configs/sama7_defconfig
-@@ -115,6 +115,8 @@ CONFIG_HW_RANDOM=y
- CONFIG_I2C=y
- CONFIG_I2C_CHARDEV=y
- CONFIG_I2C_AT91=y
-+CONFIG_I3C=y
-+CONFIG_MIPI_I3C_HCI=y
- CONFIG_SPI=y
- CONFIG_SPI_ATMEL=y
- CONFIG_SPI_ATMEL_QUADSPI=y
+	                                                                 purposes"
+
+> +	help
+> +	  Inspection mechanism allows registration of a specific memory
+> +	  area(or object) for later inspection purpose.
+
+	  area (or object)                     purposes.
+
+> +	  Ranges are being added into an inspection table, which can be
+
+	         are added
+
+> +	  requested and analyzed by specific drivers.
+> +	  Drivers would interface any hardware mechanism that will allow
+> +	  inspection of the data, including but not limited to: dumping
+> +	  for debugging, creating a coredump, analysis, or statistical
+> +	  information.
+> +	  Inspection table is created ahead of time such that it can be later
+
+	  The inspection table
+
+> +	  used regardless of the state of the kernel (running, frozen, crashed,
+> +	  or any particular state).
+> +
+> +	  Note that modules using this feature must be rebuilt if option
+
+	                                                       if this option
+
+> +	  changes.
+
 -- 
-2.25.1
+~Randy
 
 
