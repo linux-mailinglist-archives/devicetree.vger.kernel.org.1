@@ -1,163 +1,148 @@
-Return-Path: <devicetree+bounces-274517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274518-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eFQpGa2Rsml5NgAAu9opvQ
-	(envelope-from <devicetree+bounces-274517-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:01 +0100
+	id CGkRAMeRsml5NgAAu9opvQ
+	(envelope-from <devicetree+bounces-274518-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CFC4270296
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:01 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C5E42702DC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 6A20E3036769
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:12:38 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id A5B563019CB5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19A2A3C4575;
-	Thu, 12 Mar 2026 10:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="04hDAdl8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D7F3AC0DB;
+	Thu, 12 Mar 2026 10:13:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3A23C3459
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 10:12:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABFB63B7761
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 10:13:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773310339; cv=none; b=bw3HYc14AEF0ts1w6UG5FXgPy8S+JlogJJLeymvqJ6+5Du/eh5mtvZpbDIerwCW3/75Nf2zma66055P0IiTxhtNeXhQxdAe6vaekM0v61xazK/ap5gOJF8oWU73I7sramZUpIg52W52qgAyqSHmKA9ElC66dn7saP7MLbVk4qQg=
+	t=1773310393; cv=none; b=IQLG9+1a0cwgqO2hrR09oqPVYkaruOMjdFBOH4Ni+7OIvOWgqKnEdM6gikNh3DmXsQZy6yJ8gnqc+E3tHtlrjleq9Ud9AvFGFINjzPWQ0U4iNZ9hnEbjOLgFsTdE7XDv4yhTEKizALDYfLvWzug+OFsL4033rU6FtKGkiCdAd4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773310339; c=relaxed/simple;
-	bh=1snz4nu932BQaPGj1m5kJt/2+RkGMe8mWiHUlyDrJnY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b4jOkJeyjA3rB27+9SBdliFGnr3x7bE0Ca7OFtBKUXa4l0j9T9A7mv1Yg1dTxt9r6mXuMVv2szxEccW63vZg88APRZGOztpg/ltNqmi3CNR74Pip08ByFOMOVWte+RAyp0vacA4iXXzqDSc0scqu80T4WJRJb4tc2Sqa0zceCig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=04hDAdl8; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id D351F4E42650;
-	Thu, 12 Mar 2026 10:12:14 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id A38075FDEB;
-	Thu, 12 Mar 2026 10:12:14 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1111D10369D7E;
-	Thu, 12 Mar 2026 11:12:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1773310333; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=x8skTqfbUD9JCb+byF4bxHeI2j2p4qGQHJqCgQ+a5aQ=;
-	b=04hDAdl8RvFZx/TOY2lTFmGctnnSllSuRGcHq5JwcC/6m7SIzb3AaUnyuLGuExembkBapt
-	frxtQrPrA2QqzhznosGaeVJNWuOsdpBq1zCCXGP5TMzKsnCc2lYS4YOXw29f2Gj7x4Eo6x
-	qTF3AAfBwWsHxobvSJQXKBym+nIc403gb2R+PtFvdSunV4zSERva++eiBn60+5Qf1mABt+
-	W/erSgrUVW7G62f3gNiWu0jbdPDtZ7l6uUf/3PoGR1IRoPWAG7+4Q2i0yf1EK2FDMYpxEc
-	9HJV2xkPllL+3TaRDULBsVrX3kZ1qo8aVEnxXIUmaP1F1/18MdtOK97hMa3V/g==
-From: =?UTF-8?q?Th=C3=A9o=20Lebrun?= <theo.lebrun@bootlin.com>
-To: theo.lebrun@bootlin.com
-Cc: Ryan.Wanner@microchip.com,
-	Valentina.FernandezAlanis@microchip.com,
-	abin.joseph@amd.com,
-	alex@ghiti.fr,
-	andrew+netdev@lunn.ch,
-	aou@eecs.berkeley.edu,
-	claudiu.beznea@tuxon.dev,
-	conor+dt@kernel.org,
-	conor.dooley@microchip.com,
-	conor@kernel.org,
-	daire.mcnamara@microchip.com,
-	dave.stevenson@raspberrypi.com,
-	davem@davemloft.net,
-	devicetree@vger.kernel.org,
-	edumazet@google.com,
-	gregory.clement@bootlin.com,
-	krzk+dt@kernel.org,
-	kuba@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	netdev@vger.kernel.org,
-	nicolas.ferre@microchip.com,
-	pabeni@redhat.com,
-	palmer@dabbelt.com,
-	pjw@kernel.org,
-	richardcochran@gmail.com,
-	robh@kernel.org,
-	samuel.holland@sifive.com,
-	sean.anderson@linux.dev,
-	thomas.petazzoni@bootlin.com,
-	vineeth.karumanchi@amd.com
-Subject: [PATCH 3/3] net: macb: drop usrio pointer on EyeQ5 config
-Date: Thu, 12 Mar 2026 11:11:38 +0100
-Message-ID: <20260312101138.465482-3-theo.lebrun@bootlin.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260312101138.465482-1-theo.lebrun@bootlin.com>
-References: <DH0PZN0WJZC5.26KLH464PMMTP@bootlin.com>
- <20260312101138.465482-1-theo.lebrun@bootlin.com>
+	s=arc-20240116; t=1773310393; c=relaxed/simple;
+	bh=anBT9rHzajcp5J37Vaca7h+6VrrR9T6D0lZFYoavTjs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p8IETrWUYXVWGj2wjv38+J9TSgnu+kh8RgMae8/gYAz0GLHrCYXMXrKPlBLWwitZNZzy34jMOA95rgj4TgiCkk2POypXNyUUt2GaSB734/1MtrWYbOz+1xwEAhqFKZzCsQtvxrk/t4YspnL3b848TkaBIUaCS05+VqF8FedN2IM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-56adf76631cso308299e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 03:13:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773310388; x=1773915188;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mRUIGhDHBmpDT5lNoF1B+T5NZ6zsaWhp+bjML87d5C0=;
+        b=JF/hNxWhzg3KOS1ECdLJdG6jE2Rjmysqv8eTQauN4HK1wPXXj5WOI6LU7EYyuyzeGt
+         ZgVLCtUuKoLWheXkx6usq5j/AtNpP0YpnnjnkJB8VLg4MHwtibdhriIQDfpMMahHWaeI
+         uqNlWW1beqyNVbjhtJDgqEBqijM8nRA3pAxZdUWuOg3Z+NKRWxgeLpl34dMgyr2+fDEP
+         b8lCUtcaJ3RW/3liB+bTHndlL39RcfpwsfSXji5kMf57yBPwYfvuMmtqZ6Xi131BOfMY
+         zbAqNFzUeOS67DdpmNDv6SjMNiQmoN3i56uSBXwG5F5DXWmG6QfOH3adymhTXz/ykM9l
+         VsOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVT/vTOH/F6bCHq8uWhpkLNNULNsrTKroZtp2+JRTzouPiz7N3Q3JPr+ulrsHpQmyr8oLZRSyyTzpTe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBYkESrB1HXtlSIajwgW5ukgbMxC+c+8R3Kti33Mg2BIm6kt29
+	YJOQfLykISOvCFORmCcLXquLHSs3nC1KZY5bCFt7gfQssLVo3hJX00AJ+XJYuRx5DXM=
+X-Gm-Gg: ATEYQzzzNc6Ws5e1VKw0OX9+SXZS7MhXpgp1Ai6fakfKSG0PN0VeCKonmujbFBSVzMI
+	R1e0/ev5YUh9nD+fXk27cZnlsEpACaLkG0aWep3pBqRJkKDTTj7QnAqQ38DdfdAFWLdYYdQUiky
+	awF/G1xlYAK/QUZBh3KdzMDp2LovMMW/dzC4vV9/b/3VB4OjT1UwYDKnHD8QSmHkuKR7RR5USy3
+	9NLlSnLNQI+Tg0x3zZUmPEliLfO97ZzKCq29SWJS9p+4G7a1bJ2WlxWZPcf8ae4gFos15Okqsmn
+	XyLzSF/ozSVC1X3oIvSsaGImUgBAY7F6UrU4fsjtxcq2mpUAcCIhdcPmhEO1oRH87mn7d3zUy6f
+	pDYHX3BvYOHweeXsuGn5vAmb75N/USXtxb++NTwhClO9dbAMD4RrZv68NEmoCyM+jAzMmm2/6LO
+	DggxSv7lC+MXtodWYXUq5LGw5ZmQeE3NwOCNpmLEIy0uYcoYYOYIsLrBcKXFuVuC9z
+X-Received: by 2002:a05:6102:3e8c:b0:5fd:f14d:4cd6 with SMTP id ada2fe7eead31-601def7d301mr2006104137.27.1773310388294;
+        Thu, 12 Mar 2026 03:13:08 -0700 (PDT)
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-601de74a80asm1781345137.6.2026.03.12.03.13.08
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Mar 2026 03:13:08 -0700 (PDT)
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-56adf76631cso308294e0c.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 03:13:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUy28eZgZvgSNtN/ygQ7thmG0FJTdBCdSfffYQswo5zhFQyPjYi6HuN0mohdQAv9COW/2xxVMHwLzcp@vger.kernel.org
+X-Received: by 2002:a05:6102:6c8:b0:5fd:f509:c97 with SMTP id
+ ada2fe7eead31-601ded4f6bcmr1922271137.18.1773310387815; Thu, 12 Mar 2026
+ 03:13:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
-X-Spamd-Result: default: False [0.34 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+References: <20260311200307.16034-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20260311200307.16034-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 12 Mar 2026 11:12:55 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVT9WoXN=9SCXr-rBoTn8tG8uQptuVEkA2Bnamaky6wJw@mail.gmail.com>
+X-Gm-Features: AaiRm50l5HVFmnjSkJzKh_VBVP91gGl5Lzdoyu5m4T1kcOaEkTPJSpDpnqS3aEo
+Message-ID: <CAMuHMdVT9WoXN=9SCXr-rBoTn8tG8uQptuVEkA2Bnamaky6wJw@mail.gmail.com>
+Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: use
+ interrupt for Micrel PHYs
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spamd-Result: default: False [-1.46 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[microchip.com,amd.com,ghiti.fr,lunn.ch,eecs.berkeley.edu,tuxon.dev,kernel.org,raspberrypi.com,davemloft.net,vger.kernel.org,google.com,bootlin.com,lists.infradead.org,redhat.com,dabbelt.com,gmail.com,sifive.com,linux.dev];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274517-lists,devicetree=lfdr.de];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[theo.lebrun@bootlin.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_TWELVE(0.00)[32];
+	FREEMAIL_CC(0.00)[vger.kernel.org,bootlin.com,gmail.com,kernel.org];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[linux-m68k.org];
+	TAGGED_FROM(0.00)[bounces-274518-lists,devicetree=lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 2CFC4270296
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,bootlin.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid,sang-engineering.com:email]
+X-Rspamd-Queue-Id: 9C5E42702DC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-USRIO is disabled on this platform, drop its inherited usrio config.
-We will end up with MACB_CAPS_USRIO_DISABLED on this platform:
- - We have no config->usrio so macb_configure_caps() deduces that the
-   feature is disabled.
- - Anecdotally, we would also land in the runtime detection codepath
-   that reads DCFG1.
+On Wed, 11 Mar 2026 at 21:03, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Make use of the interrupts wired to the Micrel PHYs via the GPIO IRQ
+> mux.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+> Changes since v2:
+>
+> * use pull-up bias (much better now)
+> * keep pinmux sorting correct
 
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- drivers/net/ethernet/cadence/macb_main.c | 1 -
- 1 file changed, 1 deletion(-)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v7.1.
 
-diff --git a/drivers/net/ethernet/cadence/macb_main.c b/drivers/net/ethernet/cadence/macb_main.c
-index 972499aa4191..0e2200cf4206 100644
---- a/drivers/net/ethernet/cadence/macb_main.c
-+++ b/drivers/net/ethernet/cadence/macb_main.c
-@@ -5592,7 +5592,6 @@ static const struct macb_config eyeq5_config = {
- 	.clk_init = macb_clk_init,
- 	.init = eyeq5_init,
- 	.jumbo_max_len = 10240,
--	.usrio = &at91_default_usrio,
- };
- 
- static const struct macb_config raspberrypi_rp1_config = {
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.53.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
