@@ -1,176 +1,165 @@
-Return-Path: <devicetree+bounces-274371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274380-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNvBBpANsmnuIAAAu9opvQ
-	(envelope-from <devicetree+bounces-274371-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:49:20 +0100
+	id 0L6EGaoWsmkiIgAAu9opvQ
+	(envelope-from <devicetree+bounces-274380-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 02:28:10 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id C67B226BC0E
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:49:19 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BB4826BF1A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 02:28:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id E916B302C327
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 00:49:17 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id B715C30F25A1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 01:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79113264CF;
-	Thu, 12 Mar 2026 00:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5696A35CB87;
+	Thu, 12 Mar 2026 01:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b="P3w8HCvm"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Pa3gm9LP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com [91.218.175.178])
+Received: from mail-m19731106.qiye.163.com (mail-m19731106.qiye.163.com [220.197.31.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 807ED14A8B
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 00:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044D331AF07;
+	Thu, 12 Mar 2026 01:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773276556; cv=none; b=WU586rU09zMavq0N3TFffwbPPzN9dCFZQNXQt2hoeZD25o7Ju2+EAIuTNvcocci9eTRXSvU3ZXKkLHL7S1AvE3sYJAnwTuZtLKreGWpHgcE+loMyeibl17wuB65S0yngswmzdCAanZITZJfE7jufDDkvtcuLe/MilGDr7nn8Ens=
+	t=1773278856; cv=none; b=J/w48iR4t70S6K7GpO9nn3MCk5ezIJosUfl3EKhIcxDxNmvZFcU3+OOsSI58DlhG1W80TQaD9SoYQtvlkTI9jN/2PmKb7UjiK/FMNqU5gaaIIu6MwsAYPL5EglMjJ6SWqyxPSyDA5qhUYAW+82lzVzpggWBLWgHRx+emlfw4mCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773276556; c=relaxed/simple;
-	bh=jxRiM74xtktJ2UsuXQWMdp4RWyhOuG6IadKGbymRflo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J2Z1ug8bmTZpkuhy1s70Fd+mZHaKZEwANkijpN9ncOYTayliz8Td0ir6GkWut8lVOVzx+IxkkC+941Qzc6W+bNKxtLF2zdGlphj7uDcAhz3bRrDYZBaS6l1KTgoNMr+76aUYobwsG5de9ykPdL9qeVVUXD79BRXeccCyUrFoV0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool; spf=pass smtp.mailfrom=packett.cool; dkim=pass (2048-bit key) header.d=packett.cool header.i=@packett.cool header.b=P3w8HCvm; arc=none smtp.client-ip=91.218.175.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=packett.cool
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=packett.cool
-Message-ID: <4757fd22-fe9f-4228-a0a5-11d9309549ac@packett.cool>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=packett.cool;
-	s=key1; t=1773276542;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S8a5KXG/hMVU/lPDot7HGqxD42gLldyhHtK4z1zxunk=;
-	b=P3w8HCvmZfl123M85LGVf5P8Uj/NhppSQzV3BD+MoSHdzvbwejMXQvIbJup59gNsPw7NWm
-	8r9SIPbzmr2UZrW2zMP3Nx5h366edQdo16WHaUzNAo6paposEaDOovdn1s3RWXTe+LlV8a
-	bKwofOpnzUdD2a3K6iCF9SitMLKNZTg+eI87q8DAzXbjwkx/tQ6OiDBPHiD/qCujr42Cse
-	JbiO9i+brVjwSiGtG6QQZ6v7t4Vz8cATa/n7knn1/RrK36MrTG3ON4XauzzEe248MD7xC3
-	skmXh2b28LJ3r21JceHjJXZihJATwvqC+9vGLTgO1rE6JGky7Usy8R1LPa5w/g==
-Date: Wed, 11 Mar 2026 21:48:55 -0300
+	s=arc-20240116; t=1773278856; c=relaxed/simple;
+	bh=3w8achzH8/E232WgzN5AkJYy+/gTu4Tsc1H4+Pbttjk=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=I2CFmMu3T+xVD3r/ehQqQCXNn51oLzID10YrjrobtZ8M9dlv0qWApuN4xVv5EMAxP3gV3KJMG8txORpjVRyGHprwgwbQQJIa6TFRgx1I+6wa5roEK7jkVnXLCmg3ZYOPeH72JxsuH7d4HwwJibEIqXVnEXE9X9/uZrFB+nrdM1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Pa3gm9LP; arc=none smtp.client-ip=220.197.31.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 369efffad;
+	Thu, 12 Mar 2026 08:51:57 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v2] scsi: ufs: drockchip,rk3576-ufshc: dt-bindings: Add new mphy reset item
+Date: Thu, 12 Mar 2026 08:51:47 +0800
+Message-Id: <1773276707-24857-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Tid: 0a9cdf875eb709cckunmc99ce7d957335
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQklJTVZOTUwfTUNNSkMYTxpWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=Pa3gm9LPU8atHGfwjM6pFp1/paSeulsxByOX5OBJ7JhU2lpd1sLpbm+Gmkx8B3eq4fd3n4ZT2QiDAsl97YeCpYqv0RoxAVYZiQ2hjHFOkLomSMMer2/vN9ie+c9gK6cM+PXEO5xIFipTK3FGTJSWCpeWTCl3Yh+npTvcYYYP+Uo=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=1CdTSXSgbu7pjk01TaZ9yRuCgv2po2xbhjwyMUCPEKg=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/5] arm64: dts: qcom: Add AYN QCS8550 Common
-To: webgeek1234@gmail.com, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Teguh Sobirin <teguh@sobir.in>
-References: <20260311-ayn-qcs8550-v2-0-e66986e0f0cb@gmail.com>
- <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Val Packett <val@packett.cool>
-In-Reply-To: <20260311-ayn-qcs8550-v2-2-e66986e0f0cb@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spamd-Result: default: False [-0.66 / 15.00];
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[packett.cool,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
-	R_DKIM_ALLOW(-0.20)[packett.cool:s=key1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[rock-chips.com,none];
+	R_DKIM_ALLOW(-0.20)[rock-chips.com:s=default];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274371-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,kernel.org];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[packett.cool:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[val@packett.cool,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-274380-lists,devicetree=lfdr.de];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[shawn.lin@rock-chips.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[rock-chips.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: C67B226BC0E
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,rock-chips.com:dkim,rock-chips.com:email,rock-chips.com:mid]
+X-Rspamd-Queue-Id: 8BB4826BF1A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/11/26 2:44 PM, Aaron Kling wrote:
+Add the mphy reset property to the devicetree bindings for the Rockchip
+RK3576 UFS host controller. The mphy reset signal is used to reset the
+physical adapter. Resetting other components while leaving the mphy
+unreset may occasionally prevent the UFS controller from successfully
+linking up with the device.
 
-> From: Teguh Sobirin <teguh@sobir.in>
->
-> This adds a base dtb of everything common between the AYN QCS8550
-> devices. It is intended to be extended by device specific overlays.
->
-> Signed-off-by: Teguh Sobirin <teguh@sobir.in>
-> Co-developed-by: Aaron Kling <webgeek1234@gmail.com>
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->   arch/arm64/boot/dts/qcom/qcs8550-ayntec-common.dts | 1777 ++++++++++++++++++++
->   2 files changed, 1778 insertions(+)
-> […]
-> +/ {
-> +	model = "AYN QCS8550 Common";
-> +	compatible = "ayntec,qcs8550-common", "qcom,qcs8550", "qcom,sm8550";
+This addresses an intermittent hardware bug where the UFS link fails to
+establish under specific timing conditions with certain chips. While
+difficult to reproduce initially, this issue was consistently observed in
+downstream testing and requires explicit mphy reset control for full
+stability.
 
-Huh?.. All existing -common files are .dtsi includes without their own 
-model/compatible, and the compile-time "dtbo" support is only used for 
-EL2 where we want to apply the same thing to many many devices without 
-polluting the tree with extra glue files. I don't see why this should be 
-a "common device" with its own compatible string, and not just a dtsi.
+Although this change increases the maxItems for resets and adds a new
+entry (which technically alters the binding ABI), it does not break
+compatibility for existing Linux systems. The driver uses
+devm_reset_control_array_get_exclusive() to manage resets, allowing it
+to function correctly with both older Device Trees (without the mphy
+entry) and newer ones.
 
-> […]
-> +&gpu {
-> +	status = "okay";
-> +
-> +	zap-shader {
-> +		firmware-name = "qcom/sm8550/a740_zap.mbn";
-> +	};
-> +};
+Fixes: d90e92023771 ("scsi: ufs: dt-bindings: Document Rockchip UFS host controller")
+Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+---
 
-Please use the &gpu_zap_shader label.
+Changes in v2:
+- update commit msg to indicate Linux is not affected and describe the
+  what is happended(Krzysztof)
 
-And does the generic zap actually just work?
+ Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-> […]
-> +&i2c0 {
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c4 {
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c12 {
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-If the individual devices actually use these busses, better to enable 
-them inside of their .dts as well I think?
-> +&iris {
-> +	status = "okay";
-> +};
-Works with generic firmware?
-> […]
-> +&pcie0 {
-> +	wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-> +	perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
-Current binding is to put these inside of the &pcieportN (renaming 
-'perst' to 'reset' which I just noticed I failed to do for one of my own 
-files :D), see x1e78100-lenovo-thinkpad-t14s.dtsi for an example.
-> […]
-
-Thanks for this work, very cool overall!
-
-~val
+diff --git a/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
+index c7d17cf4..e738153 100644
+--- a/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
++++ b/Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
+@@ -41,7 +41,7 @@ properties:
+     maxItems: 1
+ 
+   resets:
+-    maxItems: 4
++    maxItems: 5
+ 
+   reset-names:
+     items:
+@@ -49,6 +49,7 @@ properties:
+       - const: sys
+       - const: ufs
+       - const: grf
++      - const: mphy
+ 
+   reset-gpios:
+     maxItems: 1
+@@ -98,8 +99,8 @@ examples:
+             interrupts = <GIC_SPI 361 IRQ_TYPE_LEVEL_HIGH>;
+             power-domains = <&power RK3576_PD_USB>;
+             resets = <&cru SRST_A_UFS_BIU>, <&cru SRST_A_UFS_SYS>, <&cru SRST_A_UFS>,
+-                     <&cru SRST_P_UFS_GRF>;
+-            reset-names = "biu", "sys", "ufs", "grf";
++                     <&cru SRST_P_UFS_GRF>, <&cru SRST_MPHY_INIT>;
++            reset-names = "biu", "sys", "ufs", "grf", "mphy";
+             reset-gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_LOW>;
+         };
+     };
+-- 
+2.7.4
 
 
