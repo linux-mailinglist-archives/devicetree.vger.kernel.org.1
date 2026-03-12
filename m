@@ -1,130 +1,166 @@
-Return-Path: <devicetree+bounces-274620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274621-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iDC0OPPOsmmPPwAAu9opvQ
-	(envelope-from <devicetree+bounces-274620-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:34:27 +0100
+	id +AKlMvfOsmmPPwAAu9opvQ
+	(envelope-from <devicetree+bounces-274621-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:34:31 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B16D27370C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:34:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 52646273714
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:34:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 4770E3123FA0
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:27:57 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 0356B312A49E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:28:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1687236C9F4;
-	Thu, 12 Mar 2026 14:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738B1367F5E;
+	Thu, 12 Mar 2026 14:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b="05eBr5S0"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="G6ffejGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from 011.lax.mailroute.net (011.lax.mailroute.net [199.89.1.14])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0DE131E844;
-	Thu, 12 Mar 2026 14:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.1.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A231B31E844;
+	Thu, 12 Mar 2026 14:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773325671; cv=none; b=I1TfjsdT/+xYAaXgSO6jjBNX7Zpx28KDY//F8xUW+3ExjKIhhPNzNrWCD+egDazd6acZvP1dthuJXlwh8hkPrTsTRGyeb9PNbXpEh9HgYAWJajwccr6gZQBhVhS4lFjJKM6lKecj4dzV1g3MUDnZGto2OwhAB/PwS1mRNGkQAM4=
+	t=1773325684; cv=none; b=HAdmRZ91t9JqrXm64ZvQhI2HAiArZSUzXfgAh0hdFT6xRFJFu1sG0WmfJ+TV+FgCzqHB58p6SlyLoN/VHl0OOSWz7cA51OPMSNo93sM3+dGxIqbdOPh4hpbmnq3QOh0hQvAFBcd4q4kc63WFVIOKw0suBYQyplDixnqo39yqUOk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773325671; c=relaxed/simple;
-	bh=6w3iownXeFekbzjNaPQh6owAJuDVgW0ExGPDfHWK3vk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BmtdFoygBzSi9Saky9zXWRLtkR1hlnVlxGzjcRCjI4BbmsEZ/BvwfLbVXPf/hl2NhxbT/Wkk5Gm/z0983NMwSi1s4UD8JgJpcDiEo8ptnJSRuSAok/xQbPHAwacNrm0psuYYZ8hAZ6kp86gqpwaBgZ3O0y74FrLrU5FwyaIJ6d8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org; spf=pass smtp.mailfrom=acm.org; dkim=pass (2048-bit key) header.d=acm.org header.i=@acm.org header.b=05eBr5S0; arc=none smtp.client-ip=199.89.1.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=acm.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=acm.org
-Received: from localhost (localhost [127.0.0.1])
-	by 011.lax.mailroute.net (Postfix) with ESMTP id 4fWqhj1FLFz1XM6JX;
-	Thu, 12 Mar 2026 14:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=acm.org; h=
-	content-transfer-encoding:content-type:content-type:in-reply-to
-	:from:from:content-language:references:subject:subject
-	:user-agent:mime-version:date:date:message-id:received:received;
-	 s=mr01; t=1773325664; x=1775917665; bh=+tuZgfcLJAnWsfI0aB3bhUnN
-	FFvWKB9/WEveovfYRBE=; b=05eBr5S0EjkCJDvNrW2yk+Rr9HQ5N9CiBrfSVSoi
-	G9Zm8cdZJtwY5cOdoL1HJuDdiZNJGVhtuAquKGXrJ9CagZZfzKrDCmlapqtY40Pg
-	429Gxy5uLUOydBEQUNs7nEStp1Dwq8d4VaTIu+BXh6lzrLuxIGQnN19plOHxu9Vj
-	G10MLl9E5hcBm1q4e3y9nc01I61y6/isQGblyCoVGS2o+7naeB0YBL3uMPD/+1B7
-	0EGAM4TxC1Gqo6A+T8hi0x0D02fllZrwig8or/zHaRLMqKLYtDJiPG5o8Ia5rBMQ
-	GN7lK9ltj7LsZjLdprm3H7IvNQzC2SpSDj0iXYYSk+EAjQ==
-X-Virus-Scanned: by MailRoute
-Received: from 011.lax.mailroute.net ([127.0.0.1])
- by localhost (011.lax [127.0.0.1]) (mroute_mailscanner, port 10029) with LMTP
- id 1CCMRBkKlill; Thu, 12 Mar 2026 14:27:44 +0000 (UTC)
-Received: from [192.168.51.14] (c-73-231-117-72.hsd1.ca.comcast.net [73.231.117.72])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bvanassche@acm.org)
-	by 011.lax.mailroute.net (Postfix) with ESMTPSA id 4fWqhX2qRsz1XM6J6;
-	Thu, 12 Mar 2026 14:27:39 +0000 (UTC)
-Message-ID: <b9024d90-6df7-4a2c-85fe-7f5178e7d1cf@acm.org>
-Date: Thu, 12 Mar 2026 07:27:37 -0700
+	s=arc-20240116; t=1773325684; c=relaxed/simple;
+	bh=Yq2ezdncoeCesXuhqcd/gqDzmwVwnT93JTqn7ydj8CE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SgAZ7tIPYGLC+LYMP2EQSWpwocgNNCpZ8IXo8nVpw9AI5iD95nHirVF5klbto3C8koOvfg4Ep01H14r9u14EWTl3pXZ83VuC6ViOXa9Lt8MdeRMxTz0QbIzYayDmzECVmACH5Gyg1Q4SFB+HIJOAhPKDB7Zue0VDR2HcAdfMaqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=G6ffejGG; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1773325682; x=1804861682;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Yq2ezdncoeCesXuhqcd/gqDzmwVwnT93JTqn7ydj8CE=;
+  b=G6ffejGGC68DqFXfZZpDi4lsIZqAGxyGah0n1EgawW2uyaWR1qdI8Tzg
+   x4dM9hlM4eVOMrLEvuFDxkePAFiKT4Pp5TO65eQC2smc8ANV2jkNnzqRk
+   5Q7Fk4RqSPjuoactNFj0PFNJrpt3qGN3c27B7otYDIlU4vb2eLcQ+5pQe
+   tokTL8i5HmeYUH0T8kOdF4GfuOV6qCXM/Js1JauLTWORa4Z4YGg4YHcjw
+   R9UTEgTT6do7epWOnCP4CWuyPAuwjgtwxmf7tatAzhlYlfKFxh2py+Set
+   E/bBxfPge0/0BRbatEPtX94Ifmmfhp/xv7/66m87kcco1vHYj+FikjqY7
+   w==;
+X-CSE-ConnectionGUID: Fnve2hfQS7KkjBcbtTdo0w==
+X-CSE-MsgGUID: 7VbFCCIkT/ijgm1v07uDXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74531179"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
+   d="scan'208";a="74531179"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 07:28:02 -0700
+X-CSE-ConnectionGUID: mmhDK+IaQfqsJXC+3BnDbA==
+X-CSE-MsgGUID: yTu3Z4UjTH27okxffbMqMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; 
+   d="scan'208";a="251330637"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost) ([10.245.245.112])
+  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2026 07:27:59 -0700
+Date: Thu, 12 Mar 2026 16:27:56 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Siratul Islam <email@sirat.me>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] iio: proximity: add driver for ST VL53L1X ToF
+ sensor
+Message-ID: <abLNbGUmaA7K0s68@ashevche-desk.local>
+References: <20260311224044.21480-1-email@sirat.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] scsi: ufs: drockchip,rk3576-ufshc: dt-bindings: Add
- new mphy reset item
-To: Shawn Lin <shawn.lin@rock-chips.com>,
- "James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <1773276707-24857-1-git-send-email-shawn.lin@rock-chips.com>
-Content-Language: en-US
-From: Bart Van Assche <bvanassche@acm.org>
-In-Reply-To: <1773276707-24857-1-git-send-email-shawn.lin@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311224044.21480-1-email@sirat.me>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[acm.org,reject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[acm.org:s=mr01];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274620-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[acm.org:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274621-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bvanassche@acm.org,devicetree@vger.kernel.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@intel.com,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,acm.org:dkim,acm.org:mid]
-X-Rspamd-Queue-Id: 6B16D27370C
+	RCPT_COUNT_SEVEN(0.00)[11];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,ashevche-desk.local:mid]
+X-Rspamd-Queue-Id: 52646273714
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, Mar 12, 2026 at 04:40:35AM +0600, Siratul Islam wrote:
+> This series adds support for the STMicroelectronics VL53L1X
+> Time-of-Flight ranging sensor.
+> 
+> The VL53L1X is a ToF laser-ranging sensor with I2C interface,
+> capable of measuring distances up to 4 meters. The driver
+> supports both interrupt-driven and polled operation.
+> 
+> Why a separate driver is needed (instead of extending vl53l0x-i2c.c):
+> The VL53L1X is fundamentally different from the VL53L0X despite the
+> similar naming. Extending the existing driver would require rewriting
+> the majority of it.
 
-On 3/11/26 5:51 PM, Shawn Lin wrote:
-> Add the mphy reset property to the devicetree bindings for the Rockchip
-> RK3576 UFS host controller. The mphy reset signal is used to reset the
-> physical adapter. Resetting other components while leaving the mphy
-> unreset may occasionally prevent the UFS controller from successfully
-> linking up with the device.
+> Key differences include:
+> - A different register map (16-bit addresses vs. 8-bit addresses).
+> - Requires a 91-byte firmware configuration blob to be loaded at boot.
+> - Requires a VHV calibration cycle.
+> - Has distance mode and timing budget configurations.
+> - Uses the regmap API rather than raw i2c_smbus calls.
+> 
+> I also reviewed other drivers in drivers/iio/proximity/ and can
+> confirm this IP block does not appear to be shared by any other
+> existing driver.
 
-I see "drockchip" in the patch subject instead of "rockchip". Is that 
-perhaps a typo?
+> ---
+> Changes in v3:
+> - Merge DT binding into existing st,vl53l0x.yaml (per Krzysztof).
+> - Use "reset-gpios" in the binding but xshut_gpio in the driver since that's the actual pin name.
 
-Bart.
+But why is it "reset" in the bindings? If it's a power rail or enable pin, why
+not call it as a such in the bindings? The connection on PCB level is different story.
+
+> - Replace manual polling loops in chip_init and read_proximity with regmap_read_poll_timeout().
+> - Remove irq_get_trigger_type() and pass IRQF_NO_THREAD directly (per Andy).
+> - Drop struct i2c_client from private data and store irq as int instead. Derive struct device from regmap where needed.
+> - Add dev_err_probe() to first devm_request_irq() error path.
+> - Replace linux/device.h with linux/dev_printk.h, add linux/array_size.h, linux/err.h, linux/types.h (per Andy).
+> - Use USEC_PER_MSEC for poll timeouts.
+> - Remove unnecessary casts.
+> - Divide long config blob to 8 values per line.
+> - Rename goto label to notify_and_clear_irq and drop unused dev_dbg.
+> - Add datasheet section reference for boot delay comment.
+> - vdd-supply no longer required in shared binding to avoid breaking existing st,vl53l0x devicetrees.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
