@@ -1,79 +1,81 @@
-Return-Path: <devicetree+bounces-274418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274419-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wLvoMVFDsmlFKgAAu9opvQ
-	(envelope-from <devicetree+bounces-274418-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:38:41 +0100
+	id aBTiKGlDsmlFKgAAu9opvQ
+	(envelope-from <devicetree+bounces-274419-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:39:05 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 416DD26D262
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:38:41 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2288026D288
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:39:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id B7ED7302D5A3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:38:39 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 17C8D3031808
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFC139657C;
-	Thu, 12 Mar 2026 04:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900423976A5;
+	Thu, 12 Mar 2026 04:38:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cgS2pzQW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JzecDMvF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A1F373BE8
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:38:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A26339657C
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773290318; cv=none; b=b+73kwmggYRxC4Xy0idJlxtFsqo3SSyOcNC+dxgZpZH9ejlm5bKoltch/4ntgJxdRinyp6hBsGptwv0Zro2wN5R8M1gmUhFGjMH1l3v13U7USe4OgMeX4GlTzw/T9njT3KVVxRSx5xvZz4WzPJCNrRYp6W5KqccLzpBJef0RFkg=
+	t=1773290329; cv=none; b=t/J/xR4bcQH9J7L+Gl5+KFqjwcSG0K6BqZnDtbhEkSi05BOJA+VqQtQ/D3uABnPiHDQJZksJvOrOTDQ9nRkU+Tef8gyBds/DpweFVSBZrBWm0cHuGjE6i5x0/3mALn1RcwOewQHUEKvPQtH13KlavIhYbaPeKsifoOtrnwH5XeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773290318; c=relaxed/simple;
-	bh=4mPW2KCDwFnBKr4La5QSPbgANUaDPcsaWqjSYRaqyCY=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SCcQVeHiErR0D7OiaFTTMx1BGHHk0ckHb/er5R5ZUPpKlSe7rqx8lm/lpSI+I/in2ghiYd+0McdLYV/ltLUOOy+G00QogREdA1y4JLtcIzVXb1U0eZDmMnv27lwSYKQTb0hgFW+wIA6hxsGxlh+1sMBIDGbwb3NpEPyzw0/JW/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cgS2pzQW; arc=none smtp.client-ip=209.85.216.45
+	s=arc-20240116; t=1773290329; c=relaxed/simple;
+	bh=PdhZ7DC54zY6/jpvD2JgERR7Nb3tJjUtY6jU/DeqF+c=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=uiOdw+uuckktGXoBiAZO8cPiuOWIMGsoNbIWiocO4dArftL0ZMLm0D97i5rTGzCKnSWyBiVAlC+dLyJ7pFxJdXJc36es5p4zlmhIF47oCM+l51PKfWPn4uyl+/BnEcDxGbshE2JQ6hj5k5S4F81/I+gOeByqsA2yj1ileel0jAM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JzecDMvF; arc=none smtp.client-ip=209.85.216.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-3567e2b4159so263298a91.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:38:37 -0700 (PDT)
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-35a132767c3so198154a91.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:38:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773290317; x=1773895117; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G86kT0pIOAFLs1KKlevO+I1uz0hOs9nckbA6KVOb6Gw=;
-        b=cgS2pzQWB7LSDt3clwc2TNtamOXBZ0eZ2ApV0ATgdxdAT+gNvnHu48YYS64m9NfPKR
-         95iKhN7i/AF8CViOa4jWVkYCtWoIvMmjaQsJHNqQY0PTncbPugs6sKhxeCwXXW673gM0
-         +uK3TzNfHTk9qmLOUdfTNIBdnGeAe6IVuNkoKVHgwFSynRlli0dk/J/vI/C7HuNmvHTI
-         +72qleymJoFNZYrn3QGslBnJLzEwnYY57OvFaQEKfftKP8INmg7jcKKlU6og+jRQpclV
-         YH3R0UmZAWs3zPP/zoOIidZbKOJ0+R3Lak68oorcSQT6gTIAYJne/j+x5/hSBA6poebR
-         0hVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773290317; x=1773895117;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1773290328; x=1773895128; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=G86kT0pIOAFLs1KKlevO+I1uz0hOs9nckbA6KVOb6Gw=;
-        b=JnH1bIGF62qk0f5MPnZcTzqth51u2YvMtR+0mDf2mNRfqutq58NPqG4iq9WQOl4CSE
-         kWOwoeQkKhQfop4SBiA0BFKFsYQCDTbPNSZ05MFU0xeQk/6Pgh0aZl7tjRTbornv0A/x
-         tJkz/1DDRUb7+lX/FQE1V1aIjssb9dAT0yNgpbZPepBpJxBhQjts+Kq4HQD1Y0yYWvIw
-         d9BnXqmZp0QfVKcUwgeDfkR+Yr/LiF2cfug2+KBKQEsJNSb8SvcbJkv/u1do8BOlhDsn
-         z4DlEYrX59MVBBoeNQEq4BaaAD8OzTo/eVpsiFsHHwYrkY4RgqXvL+5XVs9bvvYa+xeG
-         ehDg==
-X-Forwarded-Encrypted: i=1; AJvYcCXUpOb9Ol7dclHPz/S/3SjbX+GGVMR2Jqren9Xn8aVUJ43L3Pg6rhjTNCYhogFdiGD6Y/lImFl+NIq6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+DUA7bTYpG/lOQUnmED7LI3DZnBbCMsm9wlRSDfdp7yXHFqyT
-	CJvbSW4d6p3OIDGMO6nBgLMJVRzpPvKaC6bh6WNPc7tBWqavGB9nJiGH
-X-Gm-Gg: ATEYQzw6KKDVKYHN0wpMkVyBmz0WSwWNi4I3hzxVV7/Iuub5ma+dBvZaCaucfO8jPDa
-	NGnyl3Q/Lp0Fh7OnJWwsvgbGxvS6cOZ4PVZqwRBBPnwahbZnzY0IMW0MSEwe7liq2+FS3S2EZcg
-	iyFts7d0NSZT7L+JSgLQq3stshpsn208Ej9VpzeAwVtHedAXzgQkDDRK+XuIfWwiIqHnXl5OByX
-	6ZFLVrl9nnL0tt3NOeUJIDkdxQeUkRYv4tCWsCxQsaCQqZeeCUZwVq/0QzZ6kj5IvnBCCQFfzf8
-	zQAssMNUEd8JWjVnAF33xYbBObT0bpmd7SEMTIcAFlMUG9fpk3Zv73JazosYZCVeINEhbTC4jPs
-	q7v6f+//AWO2hBxt0Ljq6+s83Ydvw77VeQye1L3BMkg4G5ANa/OBe41i8LM4qWcmUjN0cQxSBRG
-	ZYcD6AqnlqKZe7yYaipi09PWsvdVqssTvJqnfRXpwVSo/QH3rgbyuwkGe+IQg=
-X-Received: by 2002:a17:90b:1d12:b0:35a:3e2:7cbb with SMTP id 98e67ed59e1d1-35a03e28b34mr3993313a91.29.1773290316882;
-        Wed, 11 Mar 2026 21:38:36 -0700 (PDT)
+        bh=nMTZw9V6oYdbNCX21LHvVHPsfOKTyWhCTcJB46ncYVY=;
+        b=JzecDMvF5oHLziIbHl74xghzxynatF1mLzfN6qNsSQeZIXxUECT4IzDb7LGvKbQKLh
+         03HhKJY9h3RQi3sqenZWVFfOXGiNo/vh0+fLj/nrlzB8b+pXSS4jVZPgscThPwMHBqqG
+         WyRJpqCBuTFZaiblKcDKnlMb46aKAOm9g7KBNAKLH0ltUQRgWSi3+khS70bxNFNgrtYn
+         eYIUt1ooHI7DcJiniR6IxySUxca7OcsJKa7Lb5a0xrsoFXw2vcp3Elxt9WUryp3iyFal
+         JDUQvCHaqIec8N4TujLfD09r/CtE4cqVPYhRTOeJQeA2qRMlwCUKr24bJalYqZqtIbTI
+         LAvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773290328; x=1773895128;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=nMTZw9V6oYdbNCX21LHvVHPsfOKTyWhCTcJB46ncYVY=;
+        b=ReFloEszu8A0gziyM6DFgNBgAckKWMezqRihMSzrKCDuDXsGb0t5C6KRVzYmbpWvJt
+         sbitszgmeUUSWLUTZq1dzbObiny+pT+zGJl472g3Aegwf9DwPfFEJE+bdOysM/LaD2mx
+         +z6/SDAwkJRDP9jwpfcE952RzIWaXlKoUgXP+pMCUHQjud7MQYjmMhU30sfGanM9cqRi
+         XVn/gsqy1G3xAqOjPslooVliNuRQq0fgqWrisCHDWysxi/ug0jqVerwBcgqFc3+rtgpZ
+         SlqwcbItSdjT0G94aFbpoQSgNhHOUssJA6okb4nU2c6Y3yxi0yB6O0F6Hd2W/dZfH0fp
+         +Kcw==
+X-Forwarded-Encrypted: i=1; AJvYcCVTGO3Q/i+rJl3ihUOZF4OKuNpkxKkMjpZg0AoEkuzUOngMb26upEOcDa7pLvA3cLIDupO4x390jLoY@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwAoq9hUPaZetCWDafCHjtnz5Ul28+TK3sDB1qlXV0vRbe+ZDn
+	9Y5oORMBHR0eg75UyF2HmAt0Y3D5pTGbkqbE09Ki0JCGHYePBZQ0+LMV
+X-Gm-Gg: ATEYQzxdgnPvj53e16zNUgOWlFf61Lchhyhn1rx3ePAEuoiXwSh6VwydfJW/5idVfTR
+	GnkyZb4AboKrHSUl71B+pBgOSmkX0W//mOgAbAKmgom9xV9yDEH7pKEqAYp3Bi4lfPtdvvvDE8A
+	pN3wOfulQOQwl68yzNIr6rRzwqZUCKw3TrOOPLtU5HHhJ3mwnpVyrONl818ca7cc4F/5TLmWhrl
+	M4dhdBbMDsWG/DMaAkW5jPPfCJITORiVzDHNUr3YX9NVg1Zw3iOEe/dS+PTkmbfQI6L9T5sBK/3
+	BwDgD8nRQzfxgIYo08yecc73JVYun7C4RT4uvVtpbcvc1p8aca8svaXQSmDEA0XQVZk0b+F/HJO
+	MMQzTLK/3dZyCFQ89/3D5k5IBHkcHPKkgPpui+WHgSMWOujLAcjCmudSGR6bX+dWZWV0ThxhUgb
+	tmRI7+cjO/dbXsSpFByFgGzrld8r93BFp6G19qCut6sPA0UsHgjAiHYQqIaPo=
+X-Received: by 2002:a17:90b:2c8d:b0:359:9083:3661 with SMTP id 98e67ed59e1d1-35a01247d63mr4568828a91.15.1773290327700;
+        Wed, 11 Mar 2026 21:38:47 -0700 (PDT)
 Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a030490b9sm3793460a91.17.2026.03.11.21.38.30
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a030490b9sm3793460a91.17.2026.03.11.21.38.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Mar 2026 21:38:36 -0700 (PDT)
+        Wed, 11 Mar 2026 21:38:47 -0700 (PDT)
 From: Sudarshan Shetty <tessolveupstream@gmail.com>
 To: andrzej.hajda@intel.com,
 	neil.armstrong@linaro.org,
@@ -96,10 +98,12 @@ Cc: Laurent.pinchart@ideasonboard.com,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Sudarshan Shetty <tessolveupstream@gmail.com>
-Subject: [PATCH v2 0/2] drm: bridge: ti-sn65dsi83: Improve dual-link LVDS support
-Date: Thu, 12 Mar 2026 10:07:41 +0530
-Message-Id: <20260312043743.261475-1-tessolveupstream@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: display: bridge: ti,sn65dsi83: Add dual-link video mode property
+Date: Thu, 12 Mar 2026 10:07:42 +0530
+Message-Id: <20260312043743.261475-2-tessolveupstream@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260312043743.261475-1-tessolveupstream@gmail.com>
+References: <20260312043743.261475-1-tessolveupstream@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,7 +118,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -124,7 +128,7 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_FROM(0.00)[bounces-274418-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274419-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
@@ -134,60 +138,47 @@ X-Spamd-Result: default: False [0.84 / 15.00];
 	RCVD_COUNT_FIVE(0.00)[5];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: 416DD26D262
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 2288026D288
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi all,
+Add a new optional device tree property `ti,dual-link-video-mode`
+to indicate that the bridge should configure the device for
+dual-link LVDS video mode.
 
-This patch series improves dual-link LVDS support in the SN65DSI83
-DSI-to-LVDS bridge driver.
+In dual-link configurations, some panels require the horizontal
+timing parameters to be adjusted before programming them into
+the device. In such cases, the horizontal timing values must be
+divided by two when operating in dual-link mode.
 
-Currently the driver programs identical horizontal timing parameters
-for both single-link and dual-link LVDS modes. According to TI
-documentation, when operating in dual-link mode the horizontal timing
-values must be divided by two before being programmed into the device.
-Without this adjustment, some panels fail to light up or produce
-corrupted output.
+Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+---
+ .../devicetree/bindings/display/bridge/ti,sn65dsi83.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-TI also provides recommended register settings for dual-link LVDS
-operation. This series adds support for an optional DT property
-ti,dual-link-video-mode that enables the required configuration
-in the driver.
-
-When the property is present, the driver applies the recommended
-register settings and uses a simplified DSI video mode configuration
-to ensure correct dual-link LVDS operation.
-
-Summary:
- - Add DT binding for ti,dual-link-video-mode
- - Add driver support to enable dual-link LVDS configuration
- - Apply recommended register settings for dual-link operation
- - Adjust DSI mode flags when dual-link mode is enabled
-
-Changes in v2:
- - Introduce ti,dual-link-video-mode DT property
- - Add DT binding documentation for the new property
- - Update driver to read the DT property and apply dual-link
-   configuration conditionally
- - Adjust DSI mode flags when dual-link video mode is enabled
- - Update commit messages
-
-Thanks,
-Anusha
-
-Sudarshan Shetty (2):
-  dt-bindings: display: bridge: ti,sn65dsi83: Add dual-link video mode
-    property
-  drm: bridge: ti-sn65dsi83: Add support for dual-link LVDS video mode
-
- .../bindings/display/bridge/ti,sn65dsi83.yaml |  9 ++++
- drivers/gpu/drm/bridge/ti-sn65dsi83.c         | 52 +++++++++++++++++--
- 2 files changed, 57 insertions(+), 4 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+index e69b6343a8eb..b610739555a4 100644
+--- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi83.yaml
+@@ -38,6 +38,15 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  ti,dual-link-video-mode:
++    type: boolean
++    description: |
++      Enables configuration settings required for correct dual-link
++      LVDS operation. Some panels require the horizontal timing
++      parameters to be adjusted before being programmed into the
++      device. The horizontal timing values must be divided by
++      two when operating in dual-link mode.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+ 
 -- 
 2.34.1
 
