@@ -1,287 +1,212 @@
-Return-Path: <devicetree+bounces-274706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274707-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iEjEC/blsmktQwAAu9opvQ
-	(envelope-from <devicetree+bounces-274706-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:12:38 +0100
+	id GJW9OhbpsmljQwAAu9opvQ
+	(envelope-from <devicetree+bounces-274707-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:25:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [172.232.135.74])
-	by mail.lfdr.de (Postfix) with ESMTPS id 172012754AB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:12:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5206C2758EB
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:25:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 957E73005588
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:12:29 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id D64C33051CAD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:21:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79B8B3F54A2;
-	Thu, 12 Mar 2026 16:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62ECE3E5580;
+	Thu, 12 Mar 2026 16:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="d0h3OrG/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dEOXKyyY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D49D63F65E1;
-	Thu, 12 Mar 2026 16:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EA5B377016;
+	Thu, 12 Mar 2026 16:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773331947; cv=none; b=LiPzQkYiWvxq+HVjhVlShqvkJzomVMF4BVe+0N5g280Y5Bl2WjdffCKiLg6u4A3rxGh8Bio/535pv4RyyqIXgc/Mc5ZvKtXMNwvfEvfV7srRU+VZWqVp+HBl/hcShl30fFPDn5Nh8h6UVhflfkyPX9/spiLTGmKBGgy2S8zkdnY=
+	t=1773332481; cv=none; b=MJ6CFT8zsaV+qdhPhCaZTF/lhw+OOOyMzd1G6mPx4XcDvi3dHeS+shnKwrYRyNvl58r2uq9rtFbGVzA5BT88QAg+HLWwBDdnmeuTo4rgpAO4TwGfGui45F9Jy19jIX+c/HXYBzUmfSKtPTXtgANtenTH6AQnbgZmRNC+B8jLvkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773331947; c=relaxed/simple;
-	bh=Q9NlZGCu4w042Gvc5tc/gR/ArDV22Fj5215h1wuusjc=;
-	h=Date:From:To:Cc:Subject:Message-Id:In-Reply-To:References:
-	 Mime-Version:Content-Type; b=sTBNhiLxNy4xmxDQhYLLTHz4yI/4lV485JTcLPWXJcONc5NcBYT397YAl6QTp6SgTbsyn6xaZNNhhs7WXbJZvwiFbpCTeEtotCQLkTHNDI7khGrSMPVmP/VX3yCSxcedvBLoKbgUMuHQKcAE5dnb/eCjyc3S7Vc3kGBsz+wau8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=fail (0-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=d0h3OrG/ reason="key not found in DNS"; arc=none smtp.client-ip=162.243.120.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-	; s=default; h=Content-Transfer-Encoding:Mime-Version:Message-Id:Subject:Cc:
-	To:From:Date:subject:date:message-id:reply-to;
-	bh=3UeY5pu9w23zqf3XqZlvtlFA2ndSXKRbw7aNwE9W7d4=; b=d0h3OrG/LBtm/b0eInaGvDnYxD
-	66XPnLPamntvvXAU07VBhv9o1G92E9m/daBkKCXiSCl3Y38dKXeZGVXej0NHaH7b4Vozxlnb1m2AJ
-	L5YEKfeDpOw8pyM53jQJnPOVt/AeHeZoMf7BaDGK3uqKdQ3SHbqK8XAcfrDWXrNHfPtM=;
-Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168] helo=pettiford.lan)
-	by mail.hugovil.com with esmtpa (Exim 4.98.2)
-	(envelope-from <hugo@hugovil.com>)
-	id 1w0ie2-000000007FN-0dAi;
-	Thu, 12 Mar 2026 12:12:18 -0400
-Date: Thu, 12 Mar 2026 12:12:17 -0400
-From: Hugo Villeneuve <hugo@hugovil.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: robin@protonic.nl, andy@kernel.org, geert@linux-m68k.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dmitry.torokhov@gmail.com, hvilleneuve@dimonoff.com,
- mkorpershoek@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, lee@kernel.org,
- alexander.sverdlin@gmail.com, marek.vasut@gmail.com, akurz@blala.de,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4 4/4] Input: charlieplex_keypad: add GPIO charlieplex
- keypad
-Message-Id: <20260312121217.122a6e5b3f5bb1dc64ae8f5b@hugovil.com>
-In-Reply-To: <aari1Y1CPZSYEVj3@ashevche-desk.local>
-References: <20260305192101.2125660-1-hugo@hugovil.com>
-	<20260305192101.2125660-5-hugo@hugovil.com>
-	<aari1Y1CPZSYEVj3@ashevche-desk.local>
-X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1773332481; c=relaxed/simple;
+	bh=E0tzcZpn2M5zDMTbuEGhMbwdcnWTA9+Yo32dgdGl5hE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=oi+rPezFHiHWO6ZuN7RNiOTLJ6imAXO+EC91lUoyntaWIm1KEretNjgl88WvDDkZf3+U1GlscTb1LTyUtv/LEsv6WGvORIof83GhnOkvaYUKVfEnEkc4QuL7pdfT33FAxUT13C95U4FwzRRL8Vj3oNmC5GAexsrfKXc9VI9Nihg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dEOXKyyY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B51DC4CEF7;
+	Thu, 12 Mar 2026 16:21:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773332481;
+	bh=E0tzcZpn2M5zDMTbuEGhMbwdcnWTA9+Yo32dgdGl5hE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=dEOXKyyYqmInnVErJ/xccwlmYQjLB4P6TpcaYbZS1/+qgLk95IbuzxQbZ2muAoDCV
+	 Iv/L/JpyOHSFvq0ctI08ZfesgPDRXUx/iw1XIM6enA1H5ftT/sYaTEsBs/viIH+YOG
+	 8PWvOue01HC8vFL1Y5JWtX+76qCTVSj75IwkZHFLunsGuJwNa7SCC2SdNVJ8ImTi15
+	 hxLNWaNn2nNfnh5HF63s5Pxmvcf9JJDeXi1qZw3X6d3KiaA9Se00Ow5iQC1q6xp+iq
+	 07ev+o7HGmCcFmU4CcT2U4j1uP38ETAuLvwAYmJHc2yhPDYLuL0uGa2C1SfpUtWRkh
+	 /kFvXOXjEZjcA==
+From: Mattijs Korpershoek <mkorpershoek@kernel.org>
+To: Praveen Talari <praveen.talari@oss.qualcomm.com>, Andi Shyti
+ <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Mukesh
+ Kumar Savaliya <mukesh.savaliya@oss.qualcomm.com>, Viken Dadhaniya
+ <viken.dadhaniya@oss.qualcomm.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Praveen
+ Talari <praveen.talari@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bjorn.andersson@oss.qualcomm.com,
+ dmitry.baryshkov@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com
+Cc: prasad.sodagudi@oss.qualcomm.com, aniket.randive@oss.qualcomm.com,
+ chandana.chiluveru@oss.qualcomm.com, jyothi.seerapu@oss.qualcomm.com,
+ chiluka.harish@oss.qualcomm.com
+Subject: Re: [PATCH v6 00/13] Enable I2C on SA8255p Qualcomm platforms
+In-Reply-To: <20260227061544.1785978-1-praveen.talari@oss.qualcomm.com>
+References: <20260227061544.1785978-1-praveen.talari@oss.qualcomm.com>
+Date: Thu, 12 Mar 2026 17:21:18 +0100
+Message-ID: <873425m329.fsf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam_score: -2.0
-X-Spam_bar: --
-X-Spamd-Result: default: False [0.54 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	MV_CASE(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.232.135.74:c];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[protonic.nl,kernel.org,linux-m68k.org,gmail.com,dimonoff.com,collabora.com,blala.de,vger.kernel.org,lists.infradead.org];
-	TAGGED_FROM(0.00)[bounces-274706-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[hugovil.com];
-	R_DKIM_PERMFAIL(0.00)[hugovil.com:s=default];
-	DKIM_TRACE(0.00)[hugovil.com:~];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274707-lists,devicetree=lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[hugo@hugovil.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.232.128.0/19, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[mkorpershoek@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	NEURAL_HAM(-0.00)[-0.891];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 172012754AB
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 5206C2758EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Andy,
+Hi Praveen,
 
-On Fri, 6 Mar 2026 16:21:09 +0200
-Andy Shevchenko <andriy.shevchenko@intel.com> wrote:
+Thank you for the series.
 
-> On Thu, Mar 05, 2026 at 02:20:50PM -0500, Hugo Villeneuve wrote:
-> 
-> > Add support for GPIO-based charlieplex keypad, allowing to control
-> > N^2-N keys using N GPIO lines.
-> > 
-> > Reuse matrix keypad keymap to simplify, even if there is no concept
-> > of rows and columns in this type of keyboard.
-> 
-> ...
-> 
-> > --- a/drivers/input/keyboard/Makefile
-> > +++ b/drivers/input/keyboard/Makefile
-> > @@ -40,6 +40,7 @@ obj-$(CONFIG_KEYBOARD_LOCOMO)		+= locomokbd.o
-> >  obj-$(CONFIG_KEYBOARD_LPC32XX)		+= lpc32xx-keys.o
-> >  obj-$(CONFIG_KEYBOARD_MAPLE)		+= maple_keyb.o
-> >  obj-$(CONFIG_KEYBOARD_MATRIX)		+= matrix_keypad.o
-> > +obj-$(CONFIG_KEYBOARD_CHARLIEPLEX)	+= charlieplex_keypad.o
-> 
-> Seem unordered. At least the all around it is ordered AFAICS.
+On Fri, Feb 27, 2026 at 11:45, Praveen Talari <praveen.talari@oss.qualcomm.com> wrote:
 
-Will fix it.
+> The Qualcomm automotive SA8255p SoC relies on firmware to configure
+> platform resources, including clocks, interconnects and TLMM.
+> The driver requests resources operations over SCMI using power
+> and performance protocols.
+>
+> The SCMI power protocol enables or disables resources like clocks,
+> interconnect paths, and TLMM (GPIOs) using runtime PM framework APIs,
+> such as resume/suspend, to control power states(on/off).
+>
+> The SCMI performance protocol manages I2C frequency, with each
+> frequency rate represented by a performance level. The driver uses
+> geni_se_set_perf_opp() API to request the desired frequency rate..
+>
+> As part of geni_se_set_perf_opp(), the OPP for the requested frequency
+> is obtained using dev_pm_opp_find_freq_floor() and the performance
+> level is set using dev_pm_opp_set_opp().
+>
+> Praveen Talari (13):
+>   soc: qcom: geni-se: Refactor geni_icc_get() and make qup-memory ICC
+>     path optional
+>   soc: qcom: geni-se: Add geni_icc_set_bw_ab() function
+>   soc: qcom: geni-se: Introduce helper API for resource initialization
+>   soc: qcom: geni-se: Handle core clk in geni_se_clks_off() and
+>     geni_se_clks_on()
+>   soc: qcom: geni-se: Add resources activation/deactivation helpers
+>   soc: qcom: geni-se: Introduce helper API for attaching power domains
+>   soc: qcom: geni-se: Introduce helper APIs for performance control
+>   dt-bindings: i2c: Describe SA8255p
+>   i2c: qcom-geni: Isolate serial engine setup
+>   i2c: qcom-geni: Move resource initialization to separate function
+>   i2c: qcom-geni: Use resources helper APIs in runtime PM functions
+>   i2c: qcom-geni: Store of_device_id data in driver private struct
+>   i2c: qcom-geni: Enable I2C on SA8255p Qualcomm platforms
 
+I did some basic testing on the Ride SX (SA8775P) board with this
+series using base:
+commit 80234b5ab240 ("Merge tag 'rproc-v7.0-fixes' of git://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux")
 
-> 
-> >  obj-$(CONFIG_KEYBOARD_MAX7359)		+= max7359_keypad.o
-> >  obj-$(CONFIG_KEYBOARD_MAX7360)		+= max7360-keypad.o
-> >  obj-$(CONFIG_KEYBOARD_MPR121)		+= mpr121_touchkey.o
-> 
-> ...
-> 
-> > +/*
-> > + * GPIO driven charlieplex keypad driver
-> > + *
-> > + * Copyright (c) 2025 Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> 
-> 2026?
+/ # i2cdetect -l
+i2c-11  i2c             Geni-I2C                                I2C adapter
+i2c-18  i2c             Geni-I2C                                I2C adapter
+/ # i2cdetect -F 11
+Functionalities implemented by bus #11
+I2C                              yes
+SMBus quick command              no
+SMBus send byte                  yes
+SMBus receive byte               yes
+SMBus write byte                 yes
+SMBus read byte                  yes
+SMBus write word                 yes
+SMBus read word                  yes
+SMBus process call               yes
+SMBus block write                yes
+SMBus block read                 no
+SMBus block process call         no
+SMBus PEC                        yes
+I2C block write                  yes
+I2C block read                   yes
+/ # i2cdetect -F 18
+Functionalities implemented by bus #18
+I2C                              yes
+SMBus quick command              no
+SMBus send byte                  yes
+SMBus receive byte               yes
+SMBus write byte                 yes
+SMBus read byte                  yes
+SMBus write word                 yes
+SMBus read word                  yes
+SMBus process call               yes
+SMBus block write                yes
+SMBus block read                 no
+SMBus block process call         no
+SMBus PEC                        yes
+I2C block write                  yes
+I2C block read                   yes
 
-Ok
+Note that I used a downstream device tree which has both
+i2c11 (i2c@a90000) and i2c18(i2c@890000) enabled.
 
+The sources for that dts can be found here:
+https://gitlab.com/mkorpershoek-rh/downstream-dtbs/-/tree/8775-upstream-i2c/qcom?ref_type=heads
 
-> 
-> > + *
-> > + * Based on matrix_keyboard.c
-> > + */
-> 
-> ...
-> 
-> > +#include <linux/bitops.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/dev_printk.h>
-> > +#include <linux/device/devres.h>
-> > +#include <linux/err.h>
-> > +#include <linux/gpio/consumer.h>
-> > +#include <linux/input.h>
-> > +#include <linux/input/matrix_keypad.h>
-> > +#include <linux/math.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/property.h>
-> > +#include <linux/types.h>
-> 
-> > +static void charlieplex_keypad_poll(struct input_dev *input)
-> > +{
-> > +	struct charlieplex_keypad *keypad = input_get_drvdata(input);
-> 
-> > +	int oline;
-> 
-> Why signed?
+If this is considered useful testing, feel free to add:
 
-Will change this one, and others noted below to unsigned.
+Tested-by: Mattijs Korpershoek <mkorpershoek@kernel.org>
 
-
-> 
-> > +	int code;
-> > +
-> > +	for (code = 0, oline = 0; oline < keypad->nlines; oline++) {
-> 
-> Can be like
-> 
-> 	code = 0;
-> 	for (unsigned int oline = 0; oline < keypad->nlines; oline++) {
-> 
-> as iterator is not used outside the loop.
-
-Ok, will do.
-
-
-> 
-> > +		DECLARE_BITMAP(values, MATRIX_MAX_ROWS);
-> 
-> > +		int iline;
-> 
-> Why signed?
-> 
-> > +		int err;
-> > +
-> > +		/* Activate only one line as output at a time. */
-> > +		gpiod_direction_output(keypad->line_gpios->desc[oline], 1);
-> > +
-> > +		if (keypad->settling_time_us)
-> > +			fsleep(keypad->settling_time_us);
-> > +
-> > +		/* Read input on all other lines. */
-> > +		err = gpiod_get_array_value_cansleep(keypad->line_gpios->ndescs,
-> > +						     keypad->line_gpios->desc,
-> > +						     keypad->line_gpios->info, values);
-> > +		if (err)
-> > +			return;
-> 
-> > +		for (iline = 0; iline < keypad->nlines; iline++) {
-> 
-> Can be just
-> 
-> 		for (unsigned int iline = 0; iline < keypad->nlines; iline++) {
-> 
-> as iterator is not used outside the loop.
-
-Ok.
-
-
-> 
-> > +			if (iline == oline)
-> > +				continue; /* Do not read active output line. */
-> > +
-> > +			/* Check if GPIO is asserted. */
-> > +			if (test_bit(iline, values)) {
-> > +				code = MATRIX_SCAN_CODE(oline, iline,
-> > +							get_count_order(keypad->nlines));
-> > +				/*
-> > +				 * Exit loop immediately since we cannot detect
-> > +				 * more than one key press at a time.
-> > +				 */
-> > +				break;
-> > +			}
-> > +		}
-> > +
-> > +		gpiod_direction_input(keypad->line_gpios->desc[oline]);
-> > +
-> > +		if (code)
-> > +			break;
-> > +	}
-> > +
-> > +	charlieplex_keypad_check_switch_change(input, code);
-> > +}
-> 
-> ...
-> 
-> > +	for (unsigned int i = 0; i < keypad->nlines; i++)
-> > +		(keypad->line_gpios->desc[i], "charlieplex_kbd_line");
-> 
-> Hmm... Don't you want to give it an index?
-
-Makes sense, will do.
-
-I will also change for "keypad->line_gpios->ndescs" in the loop
-iterator.
-
-
-> 
-> (In case you go this direction, see the kasprintf_strarray() or
->  its managed variant.)
-> 
+> ---
+> v3->v4
+> - Added a new patch(4/13) to handle core clk as part of
+>   geni_se_clks_off/on().
+>
+>  .../bindings/i2c/qcom,sa8255p-geni-i2c.yaml   |  64 ++++
+>  drivers/i2c/busses/i2c-qcom-geni.c            | 324 +++++++++---------
+>  drivers/soc/qcom/qcom-geni-se.c               | 270 ++++++++++++++-
+>  include/linux/soc/qcom/geni-se.h              |  19 +
+>  4 files changed, 491 insertions(+), 186 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/qcom,sa8255p-geni-i2c.yaml
+>
+>
+> base-commit: 7d6661873f6b54c75195780a40d66bad3d482d8f
 > -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
-
-
--- 
-Hugo Villeneuve
+> 2.34.1
 
