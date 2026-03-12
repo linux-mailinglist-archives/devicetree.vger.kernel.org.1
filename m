@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-274800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274798-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id p5uWKC0es2l/SQAAu9opvQ
-	(envelope-from <devicetree+bounces-274800-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 21:12:29 +0100
+	id oKLWNvAds2mDSAAAu9opvQ
+	(envelope-from <devicetree+bounces-274798-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 21:11:28 +0100
 X-Original-To: lists+devicetree@lfdr.de
 Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1353F27896D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 21:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF86278904
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 21:11:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id BF7AF3256FE9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:07:16 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id E6BFB314D739
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C9A402B87;
-	Thu, 12 Mar 2026 20:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D48402423;
+	Thu, 12 Mar 2026 20:07:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="q2dicZ3S"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="MbG9nDAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
+Received: from mail-oa1-f53.google.com (mail-oa1-f53.google.com [209.85.160.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6930A40242B
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 20:07:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25202402435
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 20:07:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773346033; cv=none; b=VxlfpJ5f5DiqyiuO6OG+1LZhgzF99LxKXKt3jKla7DAnqpO2K2VLzJ8FkeJGLQepMwpym6Q/q5qmw6jbrV5HmrBQZxBBfgCTYwVRyKxdtvPNFhHSwLPP6Loyl7o0hY1TUoMYQjupxy6k6PkUuqHXu7ooqZQuOQWlIInyXqeQSYI=
+	t=1773346031; cv=none; b=QAA2IPYLzo4Pz/tWqyeQnIF9NjQuj44TzL6dWVDShVoMJ9b/4uFAqe10KZYkNQw5onc7zauQHCP7o/6bUqQhxkinzZ5Dd1fNGC0UVvrluqZWtpnsA3MWY/5bewQ8x2jJCGppSDnT+04oFMOGgRoVVzgDICuyeAPBaZbp/txKgUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773346033; c=relaxed/simple;
-	bh=mkPn6azSc5sBdNjIBFEPFL6chM6v748TKJtFgSgI6eQ=;
+	s=arc-20240116; t=1773346031; c=relaxed/simple;
+	bh=lKJ2mS8qshYtbORsyK0ngNUDnpsbzs9HMnnIPPn7MQw=;
 	h=MIME-Version:Content-Type:Subject:From:To:Cc:In-Reply-To:
-	 References:Date:Message-Id; b=LfXSo3QzL691zGln1/n3ekuYcF6om0A/6KeJTffwppo3BTDG4L9YKUi7rkajUnmb3wkNQNbs3Mo1KoOFRE3P/c2I5VYL7X2XA+KEpTndskMcvvtqbwaQViARrskXLNMx+y/2FLf+tmTYt8dS79SFktPKU+ECUNGChMG/kMtPoNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=q2dicZ3S; arc=none smtp.client-ip=209.85.160.45
+	 References:Date:Message-Id; b=YyTWJFUf6G4Qd9DqbL7ykrwTseoBM111y67DXjtPoDlEaKJO5uijivkpNOnYVslWjQi9MR2itQKggesmOvjNgAdrjavXN28FrO2pwEROOz7Emo21dl+rEKeXkecYV2kwlRA9G5FuW3SMq4nnfHNypZOYbzEfpggy7OeuTpsVFMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=MbG9nDAJ; arc=none smtp.client-ip=209.85.160.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-41708f6c3feso935475fac.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:07:11 -0700 (PDT)
+Received: by mail-oa1-f53.google.com with SMTP id 586e51a60fabf-4043b27ddeaso951800fac.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:07:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773346030; x=1773950830; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1773346028; x=1773950828; darn=vger.kernel.org;
         h=message-id:date:references:in-reply-to:cc:to:from:subject
          :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2pWby7tRTaFMLCxNO3vkJZ08S+rk6Df/iLShGmtlipk=;
-        b=q2dicZ3SnpIS4khOQpYl6JJsTkgwF/v8Tiyv5QrQWYES0Hp/od780CRaSel44Bpdd9
-         onKCoW/cyjl2cTrmfxnM/u8aEdTRWd7BrEe+uwxclSzBjHa+Av4bgrv9Lb0ezEQnBmom
-         QHQcouCrZgi9/OBimwLnWzyHUZ3juoVdN8myQKbqsNNa8+PPE5bO3/mKR+UQfQKqpVHx
-         rAdEHvXZINikjEUqVQFQgsKHxt1HaXUNDDEXAs3lQx9JHBvEPfaEhY7X0Xg+SV/sDnGc
-         eLg0jTbANl7prlenWHxeaSCBXxnSEG/qF5+/GkkQyk+nDQBlw2t4G0pJz8FTfzjM3K9P
-         ZVyg==
+        bh=r+y1WK9bKYEMzE5cM7mHmluwniDdPir3jTdVAfeucGs=;
+        b=MbG9nDAJG8oXVSVU8t/6DSIZFv7mTU2fUcI5uV5nA9/sa7PdWx7kcMNZDg1kPYzS6e
+         1NWXFt74kSIqAU1QrJ/C7q2k+ZPTioNZHDXu4XYborZ/1HK17MKWCJjnKm+oQ2DtAHL8
+         swpCIQEM2o8hOD3u9K7jWdIvHEZVVvwXw7KdsDjqLERZFiZKXGX2pu2IQP4V0RxbHghh
+         S2cI6nb8clmayty3SLl4XZflwpd3YjiUC4fvn3giwjua4pDYAtjH0RpK8aaSMp5vGXVL
+         dGYTKYzofzEpthE3kXGR1FnIG1EmLRNqYgax7mtvM1x7Q8+gpJOsn9DTJq93ESUmy7ZA
+         lI/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773346030; x=1773950830;
+        d=1e100.net; s=20230601; t=1773346028; x=1773950828;
         h=message-id:date:references:in-reply-to:cc:to:from:subject
          :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2pWby7tRTaFMLCxNO3vkJZ08S+rk6Df/iLShGmtlipk=;
-        b=VcZzj/xCw06Zd2maDkrlVK2Q4Up9mfbdQkJYK6w18blQqknaOk8AfmCJvSoYEp4sIt
-         Nl+smm2iF1n+t/NQCkM5NRKAsH00bm1a++dCyUaa/jCCpdqUXbLNwvMjnQDCE/vvurJN
-         fcRBz3Y87kF8rdhhvx54Pmmwbgor+I6zBZJuvcFFf6DXvHNtTUyWBAn0H/gl9C8MLHaQ
-         FDgcI20oaeq57duHj0kJqbHbhEOp4X+bp4rBY34vp7097kdzdz1E0ItMVAFmvxwm5/MF
-         rJBgQ2GsYBHPVrVvEIeXtznjbGmXXj8cr3egqBurAWtBzegkLUIK9nZYxSrtoW9EyV7s
-         UsfA==
-X-Forwarded-Encrypted: i=1; AJvYcCV8lSWJgSZl7DDjQkOqXyvQk+Bo8y/4sJrRD+zAcsHtlZAeZjy7lHtjN65FCIpivtVgFQ2Mgp23lIaO@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdsmiXCKM9gIjwn4ui0e5zwaqqRmjPmyw9J4XrjETshBqK12Jf
-	pfw38B8RB7VCO77GnSJooPkURSAHQaSrFxlGauwGL2K/VCo5QNeUX+u/LLz02xW2tbw=
-X-Gm-Gg: ATEYQzyrrpiFm4kuT1MqlRxMchu67sKH+N1K/3PnkHd6e2gLRQS8Q8vzYzHeTuxFZZF
-	jtKKNJhoYI2JVkLpWzxO+WT/63l49W56M+gzESvwkvd/DctvL6o0+8GsFUeGlx1jMhm2f8sQK/7
-	PUgAiEH4z3tHmLygLzAk7WDN+NlOHtFv7/PKgXOJGhIn3kDL0Pjw5V6bh8q4thcJ7LjIFXpJ3xy
-	vb5BNlrURcJU5+YtIfMu12B0i2cADhj9q6L5/VuZGyfAnIJQ6nzU7ie1KOQn6cvXfm+Nv4PvMZi
-	IfhWD5ZgujFXRUr9rV0NrSf7cVkq70bQLwmhwm8AkdyHc/SLhtgPCxttqzf9neQFX74DDwHXRaR
-	rYO+ir3bZwPUJGemvCtV1tCFMFw15MwuVc8E43VxSyTuUJzhkcXINfed5zcbhL9Phdl07eDp4PX
-	h3IVslz9G1mjJXKZUPPdcoX778WYG8
-X-Received: by 2002:a05:6870:a796:b0:3e8:8b6f:9d85 with SMTP id 586e51a60fabf-417b937d46cmr332682fac.29.1773346030308;
-        Thu, 12 Mar 2026 13:07:10 -0700 (PDT)
+        bh=r+y1WK9bKYEMzE5cM7mHmluwniDdPir3jTdVAfeucGs=;
+        b=sADk/d3HaFcTa4PK70ixPycjnXk2W8zZCZLRI9I37aXHJJ7MDSjl72+lY7WbF3K1/2
+         1pc3TdigqSTs6fS8Apyo1a0SVgciNHPOycBnLJ/oCl9bdHN53UCWID4auOSn2hEr9sfB
+         IHDmpZE2i/EjZaA87aKC1pDZiYfPpirnvwanPYrqTLHqqbVykIlSXsIn3gdRW/ngg1aZ
+         zQobp+emITSZQ+d9x6sVVQp+p/+Ea4Ysz0yS94mPSUbECi58Xbc+SxukFHEg8KPstgDe
+         LTv0O6+zEX1SB4TNA6vR9bYIohZGwMcmLYXtsX1SOS1PDWwUOfZ4IEFF2iGDYrfFBF60
+         iCbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUmdJ+U0GIZh87GN1uS1lcYYIkE5Q9XTf4LwaOFUzbbGoM9f7GjniejZ3hgKxVU0yr5VDPsmAdDD1jc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5ADSk9yqAgZoydhQxuuqNUvXo4qa6xca7s0pi8u3VLwIQXTY6
+	rZ2oSUHByxVo8goDas5r2qA6y6wVX7lG/xWAs9Cikdg0GuGUN9IRg9gHcpuKabfIi/k=
+X-Gm-Gg: ATEYQzx1FD8uXcQXUdASx0+GiK08dwilBStoXPsdmFdzwzZk0OWzX4dhQz+RQnF4XjJ
+	l99F6BYnt7D22jiFPK0TfeE9WnXDHxdLc7pCB7rh4Pm3mjvzMnBKoVjol//SLSsdRMTnwSEMXkv
+	+Yt4hE4tj+hOVGM8YLKsdvwpPGKlLVAZubV4WjKgvobrWubRTUf66txbWXnkoVYwiFO0E1rmW49
+	wmiUUhGd/TTP9Cuu2pXOz5DNKjrZC5NnS+/mDK0AYxXm9Jvmn76BtAMaUIy28RTDmDzjRBAQnQV
+	HM63rI0Rqvxesj1CaXLg5ohezPPiKuEDiofaB4TuKOngMrzGxWmbh4VU2PfXVRZ3JCJ2D7IVHoQ
+	v0A1ZArBOd6sIYyEz1Zn0EbTJ/hTniveQR/69OohI/17PNnHSzqJSg34Uwhjc6GoHEkn3ZyotXG
+	DWbRjI7BUZwMcEB7zojU/LvA22uIjD
+X-Received: by 2002:a05:6871:3864:b0:409:7a01:6e2f with SMTP id 586e51a60fabf-417b906d7e5mr406126fac.11.1773346028068;
+        Thu, 12 Mar 2026 13:07:08 -0700 (PDT)
 Received: from [127.0.1.1] ([2600:8803:e7e4:500:1f95:f82e:8747:8137])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4177e6c7885sm5600081fac.17.2026.03.12.13.07.09
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-4177e6c7885sm5600081fac.17.2026.03.12.13.07.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2026 13:07:09 -0700 (PDT)
+        Thu, 12 Mar 2026 13:07:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,8 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v6 03/18] clk: mediatek: Add MT8189 apmixedsys clock
- support
+Subject: Re: [PATCH v6 00/18] Add support for MT8189 clock controller
 From: David Lechner <dlechner@baylibre.com>
 To: "irving.ch.lin" <irving-ch.lin@mediatek.com>
 Cc: Michael Turquette <mturquette@baylibre.com>, 
@@ -102,21 +101,20 @@ Cc: Michael Turquette <mturquette@baylibre.com>,
  netdev@vger.kernel.org, Project_Global_Chrome_Upstream_Group@mediatek.com, 
  Qiqi Wang <qiqi.wang@mediatek.com>, sirius.wang@mediatek.com, 
  vince-wl.liu@mediatek.com, jh.hsu@mediatek.com
-In-Reply-To: <20260309120512.3624804-4-irving-ch.lin@mediatek.com>
+In-Reply-To: <20260309120512.3624804-1-irving-ch.lin@mediatek.com>
 References: <20260309120512.3624804-1-irving-ch.lin@mediatek.com>
- <20260309120512.3624804-4-irving-ch.lin@mediatek.com>
 Date: Thu, 12 Mar 2026 15:06:36 -0500
-Message-Id: <177334599652.4124794.495599695131479130@freyr>
+Message-Id: <177334599652.4124794.2284323207748123029@freyr>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1679; i=dlechner@baylibre.com;
- h=from:subject:message-id; bh=mkPn6azSc5sBdNjIBFEPFL6chM6v748TKJtFgSgI6eQ=;
- b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpsxzdMiMJbTxqXDno8lz7uKeJqq/XgEtUTcoAy
- ZhkKwBwxnOJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCabMc3QAKCRDCzCAB/wGP
- wFqcB/48FpvKpV3InEamRZjYBZWJ6fLi/SAwUkbGJyUmItM/vnWwftYkuxXm1sC369JhkJ6LTZ6
- YfgivaaIA/87e8AwAr90CJKmSjB91XqNMT4+0k8RYkN+77VvJcZ2apyV/geYv8E1R7u7nT8gr0m
- fsxRyDy7ZrMFdpc8ENod3K9Tt/ord3fYSSeyUQBCbbZUha8Gsrh4ptu2rpCErKtQ6Vigzdjiw1z
- o+eTFnGlkzvD7rcJLxm1Qp8UAeRgvqtYIFmydhZNYocG71l1fIEkKe+XDpvnBMkYyj3dW1+mP+Z
- 1SKiymojf8wZ+PdFx4HI3agvkAyfo/sl9yqVkSAZvBJAm859
+X-Developer-Signature: v=1; a=openpgp-sha256; l=515; i=dlechner@baylibre.com;
+ h=from:subject:message-id; bh=lKJ2mS8qshYtbORsyK0ngNUDnpsbzs9HMnnIPPn7MQw=;
+ b=owEBbQGS/pANAwAKAcLMIAH/AY/AAcsmYgBpsxzPi+0zWeulMgYec/oNHyb8sbOm7PTreogHt
+ ekbB22puQqJATMEAAEKAB0WIQTsGNmeYg6D1pzYaJjCzCAB/wGPwAUCabMczwAKCRDCzCAB/wGP
+ wDfIB/91n7afDNKVMM1YVnaRi8vpX9xoS/2fQLT+wzZC/3m9wr58g42+Hy7F1+SywRjBf8f8CWn
+ BlwpL0zR+GBEnDlPiWeCojMa/oNotD6CWbl2gXYC33sllryI2rkGy18PxfunAxpNBAm06vWz6Lr
+ YvsvuBJ7kEUcqf8+DH+bgCKLL/2fWxaI6Cpj/rggJGywF1rJMvK/5qwFPiuIUVDAV3xRL09Firz
+ uDocVTpeY9TqTi2Nq1MU2MfD+UH2EKd/SzRjDlgDoyOmTefufsLWnJCeARld89Zvg/NIOTGWdkC
+ WVTaGeyWsXb+6V8GO7rcJ8/3R5W+W5sdRGFjjE3ewiwYd1Gd
 X-Developer-Key: i=dlechner@baylibre.com; a=openpgp;
  fpr=8A73D82A6A1F509907F373881F8AF88C82F77C03
 X-Spamd-Result: default: False [0.34 / 15.00];
@@ -129,7 +127,7 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274800-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274798-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	DMARC_NA(0.00)[baylibre.com];
 	MIME_TRACE(0.00)[0:+];
@@ -146,66 +144,23 @@ X-Spamd-Result: default: False [0.34 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mediatek.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,baylibre.com:email,baylibre-com.20230601.gappssmtp.com:dkim]
-X-Rspamd-Queue-Id: 1353F27896D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,mediatek.com:email,baylibre-com.20230601.gappssmtp.com:dkim,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 3FF86278904
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 09 Mar 2026 20:04:45 +0800, irving.ch.lin <irving-ch.lin@mediatek.com> wrote:
-> Add support for the MT8189 apmixedsys clock controller, which provides
-> PLLs generated from SoC 26m.
+On Mon, 09 Mar 2026 20:04:42 +0800, irving.ch.lin <irving-ch.lin@mediatek.com> wrote:
+> From: Irving-CH Lin <irving-ch.lin@mediatek.com>
 > 
+> Changes since v6:
 
-...
+So this should have been [PATCH v7]?
 
-> +static int clk_mt8189_apmixed_probe(struct platform_device *pdev)
-> +{
-> +	int r;
-> +	struct clk_hw_onecell_data *clk_data;
-> +	struct device_node *node = pdev->dev.of_node;
-> +	const u8 *fhctl_node = "mediatek,mt8189-fhctl";
-> +
-> +	clk_data = mtk_alloc_clk_data(ARRAY_SIZE(apmixed_plls));
-> +	if (!clk_data)
-> +		return -ENOMEM;
-> +
-> +	fhctl_parse_dt(fhctl_node, pllfhs, ARRAY_SIZE(pllfhs));
-> +
-> +	r = mtk_clk_register_pllfhs(&pdev->dev, apmixed_plls, ARRAY_SIZE(apmixed_plls),
-> +				    pllfhs, ARRAY_SIZE(pllfhs), clk_data);
-> +	if (r)
-> +		goto free_apmixed_data;
-> +
-> +	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-> +	if (r)
-> +		goto unregister_plls;
-> +
-> +	platform_set_drvdata(pdev, clk_data);
-> +
-> +	return 0;
-> +
-> +unregister_plls:
-> +	mtk_clk_unregister_plls(apmixed_plls, ARRAY_SIZE(apmixed_plls),
-
-Should this be mtk_clk_unregister_pllfhs()?
-
-> +				clk_data);
-> +free_apmixed_data:
-> +	mtk_free_clk_data(clk_data);
-> +	return r;
-> +}
-> +
-> +static void clk_mt8189_apmixed_remove(struct platform_device *pdev)
-> +{
-> +	struct device_node *node = pdev->dev.of_node;
-> +	struct clk_hw_onecell_data *clk_data = platform_get_drvdata(pdev);
-> +
-> +	of_clk_del_provider(node);
-> +	mtk_clk_unregister_pllfhs(apmixed_plls, ARRAY_SIZE(apmixed_plls), pllfhs,
-> +				  ARRAY_SIZE(pllfhs), clk_data);
-> +	mtk_free_clk_data(clk_data);
-> +}
-> +
+> - vowpll/aud_adc_ext are fixed clocks in dts, remove from bindings.
+> - Remove unused clocks (clk_vlp_sej_13m, clk_vlp_sej_26m)
+> - Fix confused naming: vlpcfg and vlpcfg-ao
+> - Correct naming in vlp-clk driver: vlp_fmipi_csi_up26m, vlp_pwrap_ulposc_sel
+>
 
 -- 
 David Lechner <dlechner@baylibre.com>
