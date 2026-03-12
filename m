@@ -1,149 +1,187 @@
-Return-Path: <devicetree+bounces-274594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274595-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kOeWFGW8smmvPAAAu9opvQ
-	(envelope-from <devicetree+bounces-274594-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:15:17 +0100
+	id SHMDN8e7smmvPAAAu9opvQ
+	(envelope-from <devicetree+bounces-274595-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:12:39 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD4632725B8
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:15:16 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9DD272539
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:12:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 0EA473158F6C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:10:50 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id E6E3230069AC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2437B35A3A5;
-	Thu, 12 Mar 2026 13:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B1E3A6B83;
+	Thu, 12 Mar 2026 13:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D/PFIyj9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fWDCm1kE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0043A23BCED;
-	Thu, 12 Mar 2026 13:10:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F403090DE
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773321049; cv=none; b=SJq8VzpOvitOMQd3Ljea6LKSs63XAP5S6DA76bPAEUO2WtIu69vNkNY9UjECduzZ/zLOYTdCg6lkrfZZ/rsR+tm7o3e+m16c0u9CaswqVceUhKe94B8bpm2s9EN83LfRg7dMh0NzEaXPaH1Tf5nO/7diOX1J4KfJHVWqMl0BYck=
+	t=1773321152; cv=none; b=Cme+a3mXs7MYZoBkyo89tAGAn1fRf++jdNdQ4pgJNOJEPfsZkdYGZEmn625urJqyYosTwgsCRf0f2lSoGbXEGvpzqqDt5TLlOfsKh3OFvduBdgD+usQy2GYQ+AXg8BfMGGiRF3MwQnBbxHzHQY7ozp8k6TT71WDZfG6SpiNxSgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773321049; c=relaxed/simple;
-	bh=knQrS10xE8pCiFxKeddUKvT0NROChU5ox+YUb1+I4Jk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mDpMnPa2WKWn+I1wyc22jCV5SRSeo+QzVfpVxKbVT8b6mXDiekGsRLX5FNeqrduRmR0omP40kvVVZ4bA/tWAkoKSHTuTDCbys4yuyGTx1bVs8C5B0jMYJ9KnxMSa9VJLOpppw8ljFr4idVSO8cYVtWV9rL+9n7UWAQkUBexQ/Dc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D/PFIyj9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87868C2BC86;
-	Thu, 12 Mar 2026 13:10:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773321048;
-	bh=knQrS10xE8pCiFxKeddUKvT0NROChU5ox+YUb1+I4Jk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=D/PFIyj91n4cjwbkmFrtz1Zp7ltSngsuz/KUHloIpRJcdahbkIMAiUXROd+gGnVOb
-	 Iw1Iwc0yAYWvNNZj178FpoLhC5TYOP7Pmp1fvWRDqKAhRMDg2WEuxAeCb6MGSU+Egk
-	 73pdalxpbDWCtEsQSVXUKwDlYH4Y0Kha4cPztJa4sDX6hpbUPusZIkB1784SyljfPI
-	 4ghgvGGPrpjQ8jiHYiC6WIp9P/SdZcDym9Br0ffyKZF1aEOJDShPudm+SEdxa1e666
-	 oUO3wjvTpZz7btpB1PIgJk2lhCAtBhOW9K/0XQJ0gA1R51AQv5NUJOana1FjpgzVs1
-	 R1gBn/o3oM87A==
-Date: Thu, 12 Mar 2026 13:10:41 +0000
-From: Mark Brown <broonie@kernel.org>
-To: amitsd@google.com
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Badhri Jagan Sridharan <badhri@google.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	RD Babiera <rdbabiera@google.com>, Kyle Tso <kyletso@google.com>
-Subject: Re: [PATCH v8 4/6] lib/linear_ranges: Add
- linear_range_get_selector_high_array
-Message-ID: <500e053a-9919-4c63-a042-30a5e5f09c6f@sirena.org.uk>
-References: <20260224-max77759-charger-v8-0-eb86bd570e9c@google.com>
- <20260224-max77759-charger-v8-4-eb86bd570e9c@google.com>
+	s=arc-20240116; t=1773321152; c=relaxed/simple;
+	bh=1dY0YAKWqPQKpy0wX5QfyVs4CI3YqPfP2ubH9Wa4uIg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dw8joh6nM3/xACCC1PxHkvfEBqh2A3qbSWRgDa9t+mBcnyl3+TYP7ZqX0eX/J/LYAnSp3WCiDxSleO/ArH4rH/L/3lySSFnD3g2Y+m70uS5X2M5ShPx8WsSIiW4NkjHb77t28hpMN1lVQVphU9Ar9917NJ7EMu4FBrTsWyFW3MY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fWDCm1kE; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-439b7a87fb5so807524f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:12:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1773321149; x=1773925949; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9GO5Ex/QIWkGPUP7iuuggNm3NBAPmofIMJdKE65jaYI=;
+        b=fWDCm1kEu/SIfBGLZ6yvApy7JT/SX++h9CKRWcZf/4h2FctXvlvjH4yY7PoStjk9rn
+         6xAyDNhixRaiM4QVYpM8vkAcjQxOGocMh7w+61+eMXSLxRpIx+RAAElDNB+7aSicPBDp
+         Lo6E/lJegwIXnqaANFNkbRY4WWnDjjiHY+Q12Q7UbP25tqQDpZxzdzaAeBJCZADUHpUA
+         /UZ/lv3L+Mnlt6EklM1g5HVDaRVwRPGXMyMXeFxJl6ig2iilUQLLAUpj9qsrnfD7UfC9
+         8qGnuSXHyDj2REOhYRrctw9lw5gTOcwt7ATHIV1spjTLtbnlqaK/mo2n6HiUEE6To5N9
+         nyMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1773321149; x=1773925949;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9GO5Ex/QIWkGPUP7iuuggNm3NBAPmofIMJdKE65jaYI=;
+        b=nZ6cv6ViLIxHqa2ZdGttogcYK3CXtZ4Pu0oPho0rz8TNfXQtErGKnpsIuLusoaIW5c
+         NmGkeqvXMjvRIp0rFr0HczTVpJEBC9xp2iviWHCgtLFRbttm0UzQSjzzxvkPaSjLu+Pk
+         NsU+bRzSalKJO0iXm2IF+E8nhT2NFp+6I7XI/d8hxJ4GUTlcGUp+zSAzYX2Csz3i88hy
+         QGomFl6b5IVWUbYwBR1qSKNnRStAFxuoJ5c4WOmv969/i98FC3BSu8wRWV/1sV9dTiF8
+         hLAkizdxKbHBqA3P4zliZsRmhjx5zhvuvVH3MrwbJBzTAgswWsRNJ8nhyt6+ga8XLVwF
+         F0Lg==
+X-Forwarded-Encrypted: i=1; AJvYcCXwI8ib4ZQ8RGW+GbOel/35F8z/38HVymZH3+sKXM7CyNFmNdQo+vwJbAYeDVhOTWJfPsBgyhSm+YrQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzT2Nup0PGNP4p/ey/pfpfvGmw24tmd2oMEKTzj8N49S/KT4FlR
+	EtDrzb2NTOtwmPTxq1xkcDeV4x1nY4qy+lXUx+gdNWF0hv9SYo8+WVfB
+X-Gm-Gg: ATEYQzydhE0x5U4OE/kJCDEtbuCcJQwRuaZWV7rqSNabGHSWEDHGlldmqvoyoUBp9Z/
+	zs0ZMxoo3Xna2b5rhpUNaPfLtmZcS7kWPVEXfXvuuP3e1O4C70xN+sFd9D2kxEzwkOgF6y5EO68
+	+NJMESfmZ9ETDP5jUa3h8TegQek5dJSFVm/jH6Yw0AzKRBqls+5zle+cUt8J/s1RAM+xy0YXwOG
+	fH4ZKabUL0XSn7nkTRaPYJMKuHyypISyOkdgU6GeApiVEOfZ9E4lR2nILRyq5pIKuV7MXZlU568
+	xHF7Bm3rmtTAbbT5OAGLJTfdp4+vpr0oRjf2C1ZFPad33rFEsgo9Cg79g9v3JvRfmPPs3lPcjIz
+	io0EyGll7MmCvvMZ8NV5lJAL85Ak9jpLauBB+y3Gx5eP3JubuUoHyvu9GrIWC5QVz3SgW4PFeyS
+	esMCn4VA5IBermWZkepZVRL82GHQ==
+X-Received: by 2002:a05:600c:8b0a:b0:483:709e:f239 with SMTP id 5b1f17b1804b1-4854b10c998mr108390745e9.22.1773321149275;
+        Thu, 12 Mar 2026 06:12:29 -0700 (PDT)
+Received: from [192.168.0.39] ([79.133.247.80])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854b0bff95sm85143035e9.3.2026.03.12.06.12.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Mar 2026 06:12:28 -0700 (PDT)
+From: Erikas Bitovtas <xerikasxx@gmail.com>
+Date: Thu, 12 Mar 2026 15:12:23 +0200
+Subject: [PATCH] arm64: dts: qcom: msm8939-asus-z00t: add USB-OTG pin
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="z6vnm6QHpA1WTayS"
-Content-Disposition: inline
-In-Reply-To: <20260224-max77759-charger-v8-4-eb86bd570e9c@google.com>
-X-Cookie: I feel better about world problems now!
-X-Spamd-Result: default: False [-2.76 / 15.00];
-	SIGNED_PGP(-2.00)[];
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260312-z00t-otg-pin-v1-1-ce86137ab989@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MMQqAMAxA0auUzAbSWAS9ijhIGzVLlbaIKN7d4
+ viG/x/IklQyDOaBJKdm3WOFbQz4bY6roIZqYOKOWst4ExXcy4qHRnRWLHHo2bsANTmSLHr9u3F
+ 63w9mLTF3XgAAAA==
+X-Change-ID: 20260312-z00t-otg-pin-41e102d92c4d
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>
+X-Mailer: b4 0.14.3
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.15)[generic];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274594-lists,devicetree=lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linaro.org,linuxfoundation.org,google.com,linux.intel.com,samsung.com,gmail.com,linux-foundation.org,vger.kernel.org,lists.infradead.org];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DD4632725B8
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274595-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: DF9DD272539
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This device uses an ID pin set to active high to detect USB-OTG devices.
+Add support for it on extcon-usb-gpio.
 
---z6vnm6QHpA1WTayS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+---
+This device uses an ID pin to identify USB-OTG devices. In this commit
+we add support for USB-OTG gpio over pinctrl in extcon-usb-gpio.
 
-On Tue, Feb 24, 2026 at 01:45:34AM +0000, Amit Sunil Dhamne via B4 Relay wr=
-ote:
-> From: Amit Sunil Dhamne <amitsd@google.com>
->=20
-> Add a helper function to find the selector for a given value in a linear
-> range array. The selector should be such that the value it represents
-> should be higher or equal to the given value.
+For USB to work in host mode, a vbus-supply is also needed. On this
+device, vbus is supplied by Summit Microelectronics SMB358 charging IC,
+for which there is a driver in mainline. Unfortunately, it cannot be
+added to this device tree at the moment, because charging detection does
+not work correctly - device begins to charge only upon probing the
+charger driver module. For now, we add just the pin - USB-OTG will
+require an adapter with an external power supply.
+---
+ arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-Acked-by: Mark Brown <broonie@kernel.org>
+diff --git a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+index ea90b00a2c8a..6c19044c24bc 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
++++ b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+@@ -127,7 +127,7 @@ reg_sd_vmmc: regulator-sdcard-vmmc {
+ 	usb_id: usb-id {
+ 		compatible = "linux,extcon-usb-gpio";
+ 		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
+-		pinctrl-0 = <&usb_id_default>;
++		pinctrl-0 = <&usb_id_default>, <&usb_id_switch_default>;
+ 		pinctrl-names = "default";
+ 	};
+ };
+@@ -330,4 +330,11 @@ mag_reset_default: mag-reset-default-state {
+ 		drive-strength = <2>;
+ 		bias-disable;
+ 	};
++
++	usb_id_switch_default: usb-id-switch-default-state {
++		pins = "gpio121";
++		function = "gpio";
++		drive-strength = <2>;
++		output-high;
++	};
+ };
 
---z6vnm6QHpA1WTayS
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+base-commit: b0501426597b91ad69359c312e32fefe4cd8ec67
+change-id: 20260312-z00t-otg-pin-41e102d92c4d
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Erikas Bitovtas <xerikasxx@gmail.com>
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmyu1EACgkQJNaLcl1U
-h9BlIgf/WMBGgptFYb7yIkxGUKOn+mEm5q45nldetnrV4TDR6/fAFjQxqU/GOzxS
-+RPqXEnr6F/3iDWu5WJimjJi9gjJmxkw52yeg39ccZj3DOA2IrooBLGMRFMOqaj6
-CVnKmk6oOv71y0xclOYuRpt3je4UIYAwViaJds5ASxPTi2qnDSmjDVez2iBwbuwr
-FJZKbzW7hqrcGiRLLkU5TS1+BzMSP/G1ErzLcduQ24Vtc5zwys6wpnkny7ma8URw
-eQVUJX+avpSiNGQxBSlOcFUypkh9ISW7OVo67fk76i9MfPiIJZw+g9YtwPKmq7pG
-2YWuApGAT4LC24MHQDEFu9Umvmuvqg==
-=sJI6
------END PGP SIGNATURE-----
-
---z6vnm6QHpA1WTayS--
 
