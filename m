@@ -1,187 +1,250 @@
-Return-Path: <devicetree+bounces-274595-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274596-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SHMDN8e7smmvPAAAu9opvQ
-	(envelope-from <devicetree+bounces-274595-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:12:39 +0100
+	id AFFZI6i8smmvPAAAu9opvQ
+	(envelope-from <devicetree+bounces-274596-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:16:24 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF9DD272539
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:12:38 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id E467D2725FC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:16:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id E6E3230069AC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:12:35 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 8CD79300EA90
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:13:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B1E3A6B83;
-	Thu, 12 Mar 2026 13:12:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fWDCm1kE"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067223C0628;
+	Thu, 12 Mar 2026 13:13:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00F403090DE
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8431435A3A5
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773321152; cv=none; b=Cme+a3mXs7MYZoBkyo89tAGAn1fRf++jdNdQ4pgJNOJEPfsZkdYGZEmn625urJqyYosTwgsCRf0f2lSoGbXEGvpzqqDt5TLlOfsKh3OFvduBdgD+usQy2GYQ+AXg8BfMGGiRF3MwQnBbxHzHQY7ozp8k6TT71WDZfG6SpiNxSgo=
+	t=1773321212; cv=none; b=bfH9aC9U6xHENmmtHWWPR2vcIeAdrcKuqmEHjLDRJkYPYzsz14cZCYf0joeELcEjtCrG7aRVC8b4HrQzaXm/qILjeRJjJyy49KLkACUCFFZ+N3eyi/CpVr8ZtXSPEOJ0uvxIPtQeLhV6Cm5zeaqHyFMdTwzBg7vhMKZ4T65HJto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773321152; c=relaxed/simple;
-	bh=1dY0YAKWqPQKpy0wX5QfyVs4CI3YqPfP2ubH9Wa4uIg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=dw8joh6nM3/xACCC1PxHkvfEBqh2A3qbSWRgDa9t+mBcnyl3+TYP7ZqX0eX/J/LYAnSp3WCiDxSleO/ArH4rH/L/3lySSFnD3g2Y+m70uS5X2M5ShPx8WsSIiW4NkjHb77t28hpMN1lVQVphU9Ar9917NJ7EMu4FBrTsWyFW3MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fWDCm1kE; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1773321212; c=relaxed/simple;
+	bh=9Xf09/CQRKakxUM97o3pjEHQxlgCJx2m/hZtTEYbHSM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sp94D+9uRm2goWPzUxW2uJbNW0b1upPl+4BNOQZPD4KkiYlb+usBshqXARR56FuuDUgwjseg0rN5bNI/c+LlkXlryuaOmZbiDzCtF2Pic4gXRYQIj/1YMJZi77F8LS0uB+YvGcMq1HQVKnM9C7fGmJP+5X5S6gj1hgt8y2kBn0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-439b7a87fb5so807524f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:12:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773321149; x=1773925949; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9GO5Ex/QIWkGPUP7iuuggNm3NBAPmofIMJdKE65jaYI=;
-        b=fWDCm1kEu/SIfBGLZ6yvApy7JT/SX++h9CKRWcZf/4h2FctXvlvjH4yY7PoStjk9rn
-         6xAyDNhixRaiM4QVYpM8vkAcjQxOGocMh7w+61+eMXSLxRpIx+RAAElDNB+7aSicPBDp
-         Lo6E/lJegwIXnqaANFNkbRY4WWnDjjiHY+Q12Q7UbP25tqQDpZxzdzaAeBJCZADUHpUA
-         /UZ/lv3L+Mnlt6EklM1g5HVDaRVwRPGXMyMXeFxJl6ig2iilUQLLAUpj9qsrnfD7UfC9
-         8qGnuSXHyDj2REOhYRrctw9lw5gTOcwt7ATHIV1spjTLtbnlqaK/mo2n6HiUEE6To5N9
-         nyMg==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-662b5bf4b10so1613246a12.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:13:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773321149; x=1773925949;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9GO5Ex/QIWkGPUP7iuuggNm3NBAPmofIMJdKE65jaYI=;
-        b=nZ6cv6ViLIxHqa2ZdGttogcYK3CXtZ4Pu0oPho0rz8TNfXQtErGKnpsIuLusoaIW5c
-         NmGkeqvXMjvRIp0rFr0HczTVpJEBC9xp2iviWHCgtLFRbttm0UzQSjzzxvkPaSjLu+Pk
-         NsU+bRzSalKJO0iXm2IF+E8nhT2NFp+6I7XI/d8hxJ4GUTlcGUp+zSAzYX2Csz3i88hy
-         QGomFl6b5IVWUbYwBR1qSKNnRStAFxuoJ5c4WOmv969/i98FC3BSu8wRWV/1sV9dTiF8
-         hLAkizdxKbHBqA3P4zliZsRmhjx5zhvuvVH3MrwbJBzTAgswWsRNJ8nhyt6+ga8XLVwF
-         F0Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCXwI8ib4ZQ8RGW+GbOel/35F8z/38HVymZH3+sKXM7CyNFmNdQo+vwJbAYeDVhOTWJfPsBgyhSm+YrQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzT2Nup0PGNP4p/ey/pfpfvGmw24tmd2oMEKTzj8N49S/KT4FlR
-	EtDrzb2NTOtwmPTxq1xkcDeV4x1nY4qy+lXUx+gdNWF0hv9SYo8+WVfB
-X-Gm-Gg: ATEYQzydhE0x5U4OE/kJCDEtbuCcJQwRuaZWV7rqSNabGHSWEDHGlldmqvoyoUBp9Z/
-	zs0ZMxoo3Xna2b5rhpUNaPfLtmZcS7kWPVEXfXvuuP3e1O4C70xN+sFd9D2kxEzwkOgF6y5EO68
-	+NJMESfmZ9ETDP5jUa3h8TegQek5dJSFVm/jH6Yw0AzKRBqls+5zle+cUt8J/s1RAM+xy0YXwOG
-	fH4ZKabUL0XSn7nkTRaPYJMKuHyypISyOkdgU6GeApiVEOfZ9E4lR2nILRyq5pIKuV7MXZlU568
-	xHF7Bm3rmtTAbbT5OAGLJTfdp4+vpr0oRjf2C1ZFPad33rFEsgo9Cg79g9v3JvRfmPPs3lPcjIz
-	io0EyGll7MmCvvMZ8NV5lJAL85Ak9jpLauBB+y3Gx5eP3JubuUoHyvu9GrIWC5QVz3SgW4PFeyS
-	esMCn4VA5IBermWZkepZVRL82GHQ==
-X-Received: by 2002:a05:600c:8b0a:b0:483:709e:f239 with SMTP id 5b1f17b1804b1-4854b10c998mr108390745e9.22.1773321149275;
-        Thu, 12 Mar 2026 06:12:29 -0700 (PDT)
-Received: from [192.168.0.39] ([79.133.247.80])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854b0bff95sm85143035e9.3.2026.03.12.06.12.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2026 06:12:28 -0700 (PDT)
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-Date: Thu, 12 Mar 2026 15:12:23 +0200
-Subject: [PATCH] arm64: dts: qcom: msm8939-asus-z00t: add USB-OTG pin
+        d=1e100.net; s=20230601; t=1773321209; x=1773926009;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=udEH6r8HyARkgcp8nLO9sBcamtg2WZj/AdfmCmcqat4=;
+        b=nG4U9tb+U9RK58mo9IhWaureR3mAKps+jpkWmeqNruVW7gkBwHYxxxL5dhjC83QXtI
+         T304qndbTXW6ORocQkWiDMoKh85aNQetVuwwmUFJMMEOdhfWZl/LbESEr3tbq8Z/l1AY
+         660Xkpfd8BqHYpqNK1qkKDhVg/Tifzq1qb+ceugOl1xtGSHngoE/Fb+C+y/lWN+KBF4k
+         kq3Er5THKOHjsRgXvFHd3cjnWxCfHlHZ8ajaA9caek7E2wlWdgSnVniA9Spk9SoyHMZU
+         6gcnBT4dNTBGMzifiRq6iVOrlQIr92iq0Cho4wUnsyw9c2UmnqwE+jZ3qBb0wBYgj4e7
+         sr6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXC9zrh5YxJRCPqcsfZYhKxFKNK/0vxNrJv/JlXRuz8YluiB/PHI/bHc/F0vPHiepNGrwlGhLTKya73@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKoxO2IH/tPyq81d9Q3qzfR3v4fFw8I+WN6Hl7Qoj0rl2eCJ1z
+	GJ5QW3qJv76bp5qMY1lSh0zjJLwt6OfyaTbJ4poC3IaJT5MyFy1Tui7ybCsZbea91fc=
+X-Gm-Gg: ATEYQzyUMNUX8T6P3d+0SeQUrqLrsU06P76BUNZxGA3L3Ngxgkw73Z3BOp2ZeicZvRo
+	pz0gd/41KEko7hHpFn1p0dRua2N71Z3rWrcY2rOCVISJVJp0Ti5y5k6PaGIIt7ub9IPHwe9RMgB
+	o6171P7ixEOwgswoUbPHZ/XrReftVKJ9qqKCEcushqmqpwwv9vvMki5POUnUt64W6XDtvptMKvQ
+	y20QvKPr1kaMhJAJ/bB7eoj5bIEoDpnD8sCfP21buPfVRueSmkZX+7xA/5ZsR796i6+6UvSzmVY
+	4rZn9vIvTFaPmPGW/4DhekRBZd5XXQ2YzVq0flB+1AYmgaE+9EWy1jbnMo9vtWtEsBw21f3bbX3
+	2g3LaDHUhXAAA3JLdD2DkWcpMYpCnkEAICL2ELGYIB0hHQfS+zHCJHTfzEjmVwzj8aGMJl1+fCi
+	cKQqYNN/LQGE8opOK6+8AD5dgPSJ1dDRtzEkSQovmAvVnDRSGocN8pbR616Mcd
+X-Received: by 2002:a05:6402:2686:b0:65f:9ce4:e046 with SMTP id 4fb4d7f45d1cf-663192c4ed7mr3512281a12.3.1773321208616;
+        Thu, 12 Mar 2026 06:13:28 -0700 (PDT)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com. [209.85.208.52])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-66350b85f3bsm520205a12.25.2026.03.12.06.13.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Mar 2026 06:13:28 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6634d819492so1881336a12.3
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:13:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVHfYld8qRbbNg983CQRI4GLZKkN9+FCV2fhksdhwTfpxMlQi/f+7SCpC0E/fsrwKn0YvFGvfKVE0WB@vger.kernel.org
+X-Received: by 2002:a17:907:7b93:b0:b91:2f65:e938 with SMTP id
+ a640c23a62f3a-b972e603b8amr390837366b.60.1773321208196; Thu, 12 Mar 2026
+ 06:13:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260312-z00t-otg-pin-v1-1-ce86137ab989@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MMQqAMAxA0auUzAbSWAS9ijhIGzVLlbaIKN7d4
- viG/x/IklQyDOaBJKdm3WOFbQz4bY6roIZqYOKOWst4ExXcy4qHRnRWLHHo2bsANTmSLHr9u3F
- 63w9mLTF3XgAAAA==
-X-Change-ID: 20260312-z00t-otg-pin-41e102d92c4d
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- phone-devel@vger.kernel.org, Erikas Bitovtas <xerikasxx@gmail.com>
-X-Mailer: b4 0.14.3
-X-Spamd-Result: default: False [-0.66 / 15.00];
+References: <20260203121723.312336-1-biju.das.jz@bp.renesas.com>
+ <CAL_JsqJK3brXxSeD-U42PBCeHoxUhWJYho3ZWj__t5C1LL-n-Q@mail.gmail.com> <TY3PR01MB11346B87DF83086FCFE19B15D8698A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB11346B87DF83086FCFE19B15D8698A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 12 Mar 2026 14:13:15 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW7GeCF-xTNpRRNEBfzbqUA8ZNqFxctT8zufdRHkvSiAQ@mail.gmail.com>
+X-Gm-Features: AaiRm51xpIeuv2QHPm735sslWhSiZm3fYb3vmdcw6ZXZmPeZ7Qqh0uUgQF8JQ5U
+Message-ID: <CAMuHMdW7GeCF-xTNpRRNEBfzbqUA8ZNqFxctT8zufdRHkvSiAQ@mail.gmail.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: micrel: Fix dtbs compatible
+ too long warnings
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Rob Herring <robh@kernel.org>, "biju.das.au" <biju.das.au@gmail.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stefan Eichenberger <eichest@gmail.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [0.04 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.sr.ht,gmail.com];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,vger.kernel.org,bp.renesas.com];
+	DMARC_NA(0.00)[linux-m68k.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274596-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274595-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[xerikasxx@gmail.com,devicetree@vger.kernel.org];
-	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
+	R_DKIM_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: DF9DD272539
+	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,mail.gmail.com:mid,linux-m68k.org:email]
+X-Rspamd-Queue-Id: E467D2725FC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This device uses an ID pin set to active high to detect USB-OTG devices.
-Add support for it on extcon-usb-gpio.
+Hi Biju,
 
-Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
----
-This device uses an ID pin to identify USB-OTG devices. In this commit
-we add support for USB-OTG gpio over pinctrl in extcon-usb-gpio.
+On Wed, 4 Feb 2026 at 10:18, Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > From: Rob Herring <robh@kernel.org>
+> > On Tue, Feb 3, 2026 at 6:17=E2=80=AFAM Biju <biju.das.au@gmail.com> wro=
+te:
+> > > From: Biju Das <biju.das.jz@bp.renesas.com>
+> > > The KSZ9131 PHY is suitable for IEEE 802.3 applications.
+> > >
+> > > Fix the below dtbs warning "compatible: ['ethernet-phy-id0022.1640',
+> > > 'ethernet-phy-ieee802.3-c22'] is too long" on the below dts:
+> > >
+> > > r8a774b1-beacon-rzg2n-kit.dtb
+> > > r8a774a1-beacon-rzg2m-kit.dtb
+> > > r8a774e1-beacon-rzg2h-kit.dtb
+> > > r9a08g046l48-smarc.dtb
+> > > r9a07g043u11-smarc.dtb
+> > > r9a07g044c2-smarc.dtb
+> > > r9a07g044l2-smarc.dtb
+> > > r9a07g044l2-smarc.dtb
+> > > r9a07g054l2-smarc.dtb
+> > > r9a07g054l2-smarc.dtb
+> > > r9a09g047e57-smarc.dtb
+> > > r9a09g047e57-smarc.dtb
+> > > r9a09g056n48-rzv2n-evk.dtb
+> > > r9a09g056n48-rzv2n-evk.dtb
+> > > r9a09g057h44-rzv2h-evk.dtb
+> > > r9a09g057h44-rzv2h-evk.dtb
+> > > r9a07g043u11-smarc-cru-csi-ov5645.dtb
+> > > r9a07g043u11-smarc-pmod.dtb
+> > > r9a07g043u11-smarc-du-adv7513.dtb
+> > > r9a09g047e57-smarc-cru-csi-ov5645.dtb
+> > > r9a07g044c2-smarc-cru-csi-ov5645.dtb
+> > > r9a09g047e57-smarc-cru-csi-ov5645.dtb
+> > > r9a07g044l2-smarc-cru-csi-ov5645.dtb
+> > > r9a07g044l2-smarc-cru-csi-ov5645.dtb
+> > > r9a07g054l2-smarc-cru-csi-ov5645.dtb
+> > > r9a07g054l2-smarc-cru-csi-ov5645.dtb
+> > > r9a09g056n48-rzv2n-evk-cn15-emmc.dtb
+> > > r9a09g056n48-rzv2n-evk-cn15-emmc.dtb
+> > > r9a09g056n48-rzv2n-evk-cn15-sd.dtb
+> > > r9a09g057h44-rzv2h-evk-cn15-sd.dtb
+> > > r9a09g056n48-rzv2n-evk-cn15-sd.dtb
+> > > r9a09g057h44-rzv2h-evk-cn15-emmc.dtb
+> > > r9a09g057h44-rzv2h-evk-cn15-sd.dtb
+> > > r9a09g057h44-rzv2h-evk-cn15-emmc.dtb
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > ---
+> > >  .../bindings/net/micrel,gigabit.yaml          | 23 +++++++++++------=
+--
+> > >  1 file changed, 14 insertions(+), 9 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/micrel,gigabit.yam=
+l
+> > > b/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
+> > > index 384b4ea6181e..284c3ba379f3 100644
+> > > --- a/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
+> > > @@ -17,15 +17,20 @@ description:
+> > >
+> > >  properties:
+> > >    compatible:
+> > > -    enum:
+> > > -      - ethernet-phy-id0022.1610  # KSZ9021
+> > > -      - ethernet-phy-id0022.1611  # KSZ9021RLRN
+> > > -      - ethernet-phy-id0022.1620  # KSZ9031
+> > > -      - ethernet-phy-id0022.1631  # KSZ9477
+> > > -      - ethernet-phy-id0022.1640  # KSZ9131
+> > > -      - ethernet-phy-id0022.1650  # LAN8841
+> > > -      - ethernet-phy-id0022.1660  # LAN8814
+> > > -      - ethernet-phy-id0022.1670  # LAN8804
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: ethernet-phy-id0022.1640
+> > > +          - const: ethernet-phy-ieee802.3-c22
+> >
+> > To avoid the errors, you would need a custom 'select' that excludes the=
+ c22 compatible from this
+> > schema (IOW, lists all the other compatibles here).
+>
+> OK.
+>
+> >
+> > However, I think the correct fix is probably dropping the c22 compatibl=
+e from your .dts files. I don't
+> > that compatible is useful on its own?
+>
+> I will wait for Geert's input to drop c22 from .dts files.
 
-For USB to work in host mode, a vbus-supply is also needed. On this
-device, vbus is supplied by Summit Microelectronics SMB358 charging IC,
-for which there is a driver in mainline. Unfortunately, it cannot be
-added to this device tree at the moment, because charging detection does
-not work correctly - device begins to charge only upon probing the
-charger driver module. For now, we add just the pin - USB-OTG will
-require an adapter with an external power supply.
----
- arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Makes sense.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-index ea90b00a2c8a..6c19044c24bc 100644
---- a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-@@ -127,7 +127,7 @@ reg_sd_vmmc: regulator-sdcard-vmmc {
- 	usb_id: usb-id {
- 		compatible = "linux,extcon-usb-gpio";
- 		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
--		pinctrl-0 = <&usb_id_default>;
-+		pinctrl-0 = <&usb_id_default>, <&usb_id_switch_default>;
- 		pinctrl-names = "default";
- 	};
- };
-@@ -330,4 +330,11 @@ mag_reset_default: mag-reset-default-state {
- 		drive-strength = <2>;
- 		bias-disable;
- 	};
-+
-+	usb_id_switch_default: usb-id-switch-default-state {
-+		pins = "gpio121";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		output-high;
-+	};
- };
+So we should probably fix the following, too?
+Documentation/devicetree/bindings/net/ethernet-phy.yaml
+Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
+Documentation/devicetree/bindings/net/renesas,ether.yaml
+Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
 
----
-base-commit: b0501426597b91ad69359c312e32fefe4cd8ec67
-change-id: 20260312-z00t-otg-pin-41e102d92c4d
+> > Also, it doesn't make sense that ethernet-phy-id0022.1640 is sometimes =
+compatible with ethernet-phy-
+> > ieee802.3-c22 and sometimes isn't.
+>
+> OK.
 
-Best regards,
--- 
-Erikas Bitovtas <xerikasxx@gmail.com>
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
