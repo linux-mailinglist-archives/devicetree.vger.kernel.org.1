@@ -1,153 +1,122 @@
-Return-Path: <devicetree+bounces-274649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274650-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YHXwOTLYsmlDQAAAu9opvQ
-	(envelope-from <devicetree+bounces-274649-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:13:54 +0100
+	id +LUaHrbasmlMQQAAu9opvQ
+	(envelope-from <devicetree+bounces-274650-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:24:38 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B43127408B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:13:54 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 753B9274528
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:24:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 0130C303C4E2
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:13:04 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id AADA33099174
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C25E397E94;
-	Thu, 12 Mar 2026 15:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753B53C6A4F;
+	Thu, 12 Mar 2026 15:13:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ebdNbp5c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00CD34EEFC
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 15:12:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EBBC3C6A40;
+	Thu, 12 Mar 2026 15:13:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773328365; cv=none; b=A49UCKmYmQVJbAXwgtHGBInVQ+OS/hqCUiCjaiqaAoabIK+DUBpRUkRstFbgbqJ2gQQNR6V1W4y5g+S7edd+pgs8NydNNDyv/NHew/q9600g2Q8wJSpk6xKbnu31nc4cl8tb37lO94luaj6YoigFgsBuq2cxYBXxEJI/y8hU4I8=
+	t=1773328390; cv=none; b=o4iqWYHv52hSRXDbSXECNEJS7ornMrWcmdU74/SEAjJ5JLpIW5Xyq6xDCpma2iKodSowGjOPX4d4OlIvTfP0r/nVl86EwRArVvb6sbiShIorYFJuXrkoAvokf3KQW8Kz/JBan97p2kRmbBWlqEDJ9XM3yMje/IMfaAjao3BGFeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773328365; c=relaxed/simple;
-	bh=xL8m87uKS9y7aocchYesBcn3/kaLnfg9HDUZiyM5xYA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GWi070AhiJRmk+3AoTCnhTJa6AvYlj53f15BOX7CwiCoMn4Ligg4+jT4/8GkPPHFNjjq7u4f5SyXCDen24RFc6gW3Mh4mMI6zUNWwgvSEr2lgQ19FJ8rwHsE7yX44+mqJr4duOJ+DTk/lzKGBrl6Mwgmi+CPhC1+QbVfvYVjl9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sirat.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-79885f4a8ffso10530587b3.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 08:12:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773328363; x=1773933163;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=xL8m87uKS9y7aocchYesBcn3/kaLnfg9HDUZiyM5xYA=;
-        b=N/lB1Jfvm6H8QhQ3/nE0wBFqtpOneFDO+Ke82zoDTAMlOcHPhidZ5OLOp3TmjCvBPk
-         8cf56owV9Hilt6A/q0JKa35Mki6l2JHsYtbCCR28LYwhJaESHg4/SZxxW7wuN5BvBwqR
-         bOl1nGXXf/yzeN2Ka+F415FJII/pYXAEmsbRO4cq77C18Of2gv54ajKA1OKCfqshkrwg
-         77ArOE3MZXGXOl+1+bEF8rTDlZeLbamGwloUChyuAeX4NT35FymPOc5baqjVl9neV5vW
-         hVPUHcEU8YeZ/aVf1GFNEh98Blw5iDyZayUe0NqPgWxejkiVNeA6V9sT1gLS5+NmgN/9
-         QGaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVopwV4jIdc/bgfqErLIjm85EUydVh+Y6hWr36vBvfcO/s7kKu3AP3aInksiDIa7WtF0vNtTC1UeeO2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCDBNSnKbfKIz6Vg8mM8xLuSEfo3Uu/bjMSU/PBNv3cIi1T+3q
-	pLG+oyMrkxm/+K/cwOHC3VpBbPetpICEQ9i0fvg+jMj3uplfXzjRgfP1djCPrra9nmu88Q==
-X-Gm-Gg: ATEYQzxTkKE+Hu6oDAlBM/rcWeLdezKShMGJouxFLhD0fJSuDtnuOqvW+uRSfh/FkOm
-	9BefXLdP0KgF71roDIFOwpLblSYp4lqYq4OSu7KxuRoFQZH7UgYBbNlZF+uZ2skJZMS5iikVXzQ
-	Aa7s+Owsvsyd5LtnkIurYqE+T7wjtQMr1mYVXUOQ3JR1pufZS4OfaNPBh0KJa9UknhhOq4e7wxo
-	8+Dbw2V6bk81NmTN5nUtPEnazjCg84YxKRRY08YEB3IWELHsGzkc5LMtc+GyNpqpTw4J96WIXUe
-	mZKvRRenXJ/UugIuPthxZ/kXx88RmLST+xICq9f1wgXBAFuAmDn9Pr62X328AwdOW1neV3Xr3B1
-	ihXfW8ICQp3Ka9Smz6sAjKcPlUk8Qcu9MYriRjDlP8kI7VHvYU/akVTHsN7aAAXxeJG9V7RMUYe
-	X8C+XtGn6sy74l1IC2C04SgoVRyv/DqaBnHAHYMBSc6NcsUws6VK6eyeyRh3Tm
-X-Received: by 2002:a05:690c:6:b0:798:2723:ab40 with SMTP id 00721157ae682-79917ecc38fmr64268477b3.22.1773328362580;
-        Thu, 12 Mar 2026 08:12:42 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-79917f0846csm33499417b3.39.2026.03.12.08.12.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Mar 2026 08:12:41 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-7986fb839f5so11184067b3.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 08:12:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUmlB1QCamzHjcJ+T5Cz6R/OTL5RFWLV5muyJ2Foe3beRxdTo+iT7rqrdzJ5LsapMuMSWASFZnRKxcE@vger.kernel.org
-X-Received: by 2002:a05:690c:498e:b0:794:cd8e:3616 with SMTP id
- 00721157ae682-79917ecc0ecmr62120677b3.21.1773328361720; Thu, 12 Mar 2026
- 08:12:41 -0700 (PDT)
+	s=arc-20240116; t=1773328390; c=relaxed/simple;
+	bh=qmd4fXGEUkzPL6jhYNgQSGXEqS1ZGmKTp8UonTLZLQQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LEis3+rMahImqa5sFRsM0a+2jFWjdVWk/PRdbVsoBN7br+kTKjHvtDz/+uY1Fwse8EZv3oQek1L4NcRz2j6Ar0xGih+g4WBsuZ081eAhVgEyC5d5mI1OUmB/+oilDJt1p4pytxjyAFrKXRFX4dgHNYrRdruCtTVvDcxs/xQ6rzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ebdNbp5c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2134C4CEF7;
+	Thu, 12 Mar 2026 15:13:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773328389;
+	bh=qmd4fXGEUkzPL6jhYNgQSGXEqS1ZGmKTp8UonTLZLQQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ebdNbp5cbrYFvu/hWOzgRU4Ul05aIdTTiYeQBIPAiyKlI7kQOE0Pk0YkJs30uZt3h
+	 kClOsQ/Zk7NfcW7zo4COkkffexh4spyEBUE06ivy0AUm211C2Hau6X/PF19sMsbFQn
+	 Y3kcFKcCufoeAludy9cYYBHM2JEK/3EsDY33SAATUwc6nUT1wRzknLWZ3QcRPphG7s
+	 luxtVzblW04j57GM5exCqU0gmJNpNU1iu194tyZCYqGL5e0dkS1Uk3uTxbdLCMqg9h
+	 vsZZ6ucqQGyOmA68+NgKJtnXghIL2y4cQVOfqXe56UiTyo6+ldTV3BbgZ193qnHwt6
+	 1apNSO8lmaAGw==
+Date: Thu, 12 Mar 2026 10:13:08 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	Thomas Gleixner <tglx@kernel.org>, Marc Zyngier <maz@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: arm,gic-v3: Fix
+ EPPI range
+Message-ID: <177332838742.3145528.6567102569919276162.robh@kernel.org>
+References: <3e49a63c6b2b6ee48e3737adee87781f9c136c5f.1772792753.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311224044.21480-1-email@sirat.me> <abLNbGUmaA7K0s68@ashevche-desk.local>
-In-Reply-To: <abLNbGUmaA7K0s68@ashevche-desk.local>
-From: Sirat <email@sirat.me>
-Date: Thu, 12 Mar 2026 21:12:30 +0600
-X-Gmail-Original-Message-ID: <CANn+LW+F2bVMAGwoF8q9yBpF3x5r_hWDqvE3_JYjcLd16A_cEA@mail.gmail.com>
-X-Gm-Features: AaiRm52FISbjek1ffTmmZvvhnepNiWW88rSSPxALXAFJ0Q2YHDic6R6kDrORw6w
-Message-ID: <CANn+LW+F2bVMAGwoF8q9yBpF3x5r_hWDqvE3_JYjcLd16A_cEA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] iio: proximity: add driver for ST VL53L1X ToF sensor
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, jic23@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e49a63c6b2b6ee48e3737adee87781f9c136c5f.1772792753.git.geert+renesas@glider.be>
+X-Spamd-Result: default: False [-1.16 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274650-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[sirat.me];
-	TAGGED_FROM(0.00)[bounces-274649-lists,devicetree=lfdr.de];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[email@sirat.me,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,intel.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 8B43127408B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,glider.be:email]
+X-Rspamd-Queue-Id: 753B9274528
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 12, 2026 at 8:28=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@intel.com> wrote:
->
-> On Thu, Mar 12, 2026 at 04:40:35AM +0600, Siratul Islam wrote:
-...
-> > ---
-> > Changes in v3:
-> > - Merge DT binding into existing st,vl53l0x.yaml (per Krzysztof).
-> > - Use "reset-gpios" in the binding but xshut_gpio in the driver since t=
-hat's the actual pin name.
->
-> But why is it "reset" in the bindings? If it's a power rail or enable pin=
-, why
-> not call it as a such in the bindings? The connection on PCB level is dif=
-ferent story.
->
-In v2, I actually used a separate st,vl53l1x.yaml binding with
-`xshut-gpios` and a required `vdd-supply`.
-But Krzysztof pointed out that they share the same pins so the
-existing st,vl53l0x.yaml should suffice,
-using reset as the xshut pin.
 
-I think a choice has to be made here:
-1. Either I use the st,vl53l0x.yaml binding with wrong pin name and
-optional vdd-supply to not break existing code.
-2. Or use a separate binding st,vl53l1x.yaml with 1. correct pin name,
-and 2. require vdd-supply
+On Fri, 06 Mar 2026 11:26:20 +0100, Geert Uytterhoeven wrote:
+> According to the "Arm Generic Interrupt Controller (GIC) Architecture
+> Specification, v3 and v4", revision H.b[1], there can be only 64
+> Extended PPI interrupts.
+> 
+> [1] https://developer.arm.com/documentation/ihi0069/hb/
+> 
+> Fixes: 4b049063e0bcbfd3 ("dt-bindings: interrupt-controller: arm,gic-v3: Describe EPPI range support")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Brain-farted-by: Marc Zyngier <maz@kernel.org>
+> Acked-by: Marc Zyngier <maz@kernel.org>
+> ---
+> v2:
+>   - s/v3 and v3/v3 and v4/,
+>   - Add tags.
+> ---
+>  .../devicetree/bindings/interrupt-controller/arm,gic-v3.yaml    | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Krzysztof, do you have a preference on how we should handle this?
->
->
+Applied, thanks!
+
 
