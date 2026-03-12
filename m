@@ -1,149 +1,331 @@
-Return-Path: <devicetree+bounces-274713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274714-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WCOFNi/qsmljQwAAu9opvQ
-	(envelope-from <devicetree+bounces-274713-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:30:39 +0100
+	id uH17EmPusmnAQwAAu9opvQ
+	(envelope-from <devicetree+bounces-274714-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:48:35 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76FBE2759AB
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:30:39 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E5A275EB8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 17:48:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id 7DF52301397C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:30:38 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id DD25330C401A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC823F7E79;
-	Thu, 12 Mar 2026 16:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 619F93DC4B6;
+	Thu, 12 Mar 2026 16:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H5eO1S28"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FswO7ROd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A69E83EF0C4;
-	Thu, 12 Mar 2026 16:30:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD4FF391852
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 16:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773333035; cv=none; b=n7IlRKtQ4GoLJaHsWxmWcPGpk6yUJ4aWHBUluL1do/hvo6ak2xnPSu3j8jQ4PmAPGl6prW47244ladOLxpr78xSdAAdTj2SEH9cXp2izBpnlCt1XKp4VT7eUuwEEQJXOT3s5bXZnWtz7SYe3J+6FYii+r/rObO71DjMdKHxNGiU=
+	t=1773333730; cv=none; b=D3kVmO6HfMckFF7lcFYvinX8wCYnSfaZV9uLWLytHIvmkYVPVkRqrko9w6N7CVPolPwy+IjWIANEORE8OsjlRUpX4vCiCpzQP0Haye5AXmVUkf6luAGqUwSLyt/FLwHx2uHLcGuu8xswIOUUApnMUcHFrcj5djbiEUvmD/V1sDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773333035; c=relaxed/simple;
-	bh=/8dl5d+rK7fW4VwaKsZFEBOvFY30/g9P83dM4eYvnoU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=VblgHbQUq2qH/W3Lr/Ng4+NhNpGrnEPoxI1wKTUOZV8iWSColtO5JCXIlHRuFh1eDnMBvc+O1VrU0pA2qZQTQ9uuD3Yh3ETi+KZBpUtTSoDgGppYPvuZLITgey9fGPYTsV5hYPnmF1JRyGxkwVO8mqP5yeay5V5vxIg/nDUHVFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H5eO1S28; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9168C4CEF7;
-	Thu, 12 Mar 2026 16:30:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773333035;
-	bh=/8dl5d+rK7fW4VwaKsZFEBOvFY30/g9P83dM4eYvnoU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=H5eO1S28gqwRRcnBjwWnEwx5alKXA/Ys2Awjtq5paI8O8QtZojdy+hqxQzuEXn+HA
-	 sgkpriH7Jc7uR8r1fERY3865nXxp3GN4vKm/QKmqO8VKDxWtemdOLITMZNLOHNBd5e
-	 JJ7K8WO9MXxc4eRK3NhGmCw6bXwOEHEcVeFh7fZVmruMFBMbNr5KOll95VD+tCyPxk
-	 jSw5U86RFABfjRqvUjR5/h3DhiM1nbxkMC036Oi8XHc1tYSS6z47OoVApGS/t8hhLb
-	 ZomzCIFQoso1rd9rTm/7kQp/CEuBjva/IUamtvI79jpr0YL3eMciHEhW/izZmFKNNu
-	 Xyj9aWqc2/Ncg==
-Date: Thu, 12 Mar 2026 11:30:34 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1773333730; c=relaxed/simple;
+	bh=Dnru2orojmNkrv/RLfc/YG3q8++TJoYKXqNovIMFAvA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=pPQTieXSkOAxXG4/AqvnRBhhgQy/HzUmBS5pm5KEG7m/Mv2rDY4Hwn2+XB0nCcnaAsVdjer+8dlEuVtN/gOMtGJd6W8cwJj27ah4FtUXk9gwMjSzNFQhWtcTIbA+WALyinLCBjQ8i7o95XseG5zgLOVTSLYJT53LTbP99Spqwi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FswO7ROd; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 3CCA31A2E14;
+	Thu, 12 Mar 2026 16:42:07 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 03A3C6001B;
+	Thu, 12 Mar 2026 16:42:07 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3719810369E3A;
+	Thu, 12 Mar 2026 17:41:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1773333725; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=B0FmF+DsXQX7GOkjZHLkLGAuMKOJtSb12a+vbzhQook=;
+	b=FswO7ROdPc4bZ3FXD4JYr3MHBPxofY/AMnw70L6CzfVcXCjar5dW7hRC57P83dRVeJx+pj
+	BjPuPR1Af/NkNEK9rOhLZRTb9gdGg3jDtU+eKmhui8hFss66u2UvEtonwU1iIYXaDfJbyj
+	yf0l6m2iPSvIdvse2U3VJrigTFfKdPZ+CRVJ4Vmg1dv2QTP8KreuNhCLnD0NiXcSmsuEiC
+	75WsxRv05LcBWrDGgUC1Z3gOcRegLK9bG7HCFjWmUdgm2DU9iF+Tb6ou22OIq/9m23PjRC
+	lF9MdP3nyeyIYVtshqQerqIqx7/36XmJABnakwd1d8BtHsCYJ8cd2zPWrhrCRg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, 
- Tetsuya Nomura <tetsuya.nomura@soho-enterprise.com>, 
- Hans Verkuil <hverkuil@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Hans de Goede <hansg@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-media@vger.kernel.org, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Alexander Shiyan <eagle.alexander923@gmail.com>
-In-Reply-To: <20260312150437.1091195-2-eagle.alexander923@gmail.com>
-References: <20260312150437.1091195-1-eagle.alexander923@gmail.com>
- <20260312150437.1091195-2-eagle.alexander923@gmail.com>
-Message-Id: <177333303408.3475085.938537535374470457.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add Sony IMX662 sensor
-X-Spamd-Result: default: False [0.34 / 15.00];
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 12 Mar 2026 17:41:58 +0100
+Message-Id: <DH0YC7M9YFU7.31DSHCPV381WC@bootlin.com>
+Subject: Re: [PATCH v11 2/3] drm/bridge: imx: Add i.MX93 parallel display
+ format configuration support
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Shawn Guo"
+ <shawnguo@kernel.org>, "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Fabio Estevam"
+ <festevam@gmail.com>, "Peng Fan" <peng.fan@nxp.com>, "Andrzej Hajda"
+ <andrzej.hajda@intel.com>, "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>, "Laurent Pinchart"
+ <Laurent.pinchart@ideasonboard.com>, "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Frank Li"
+ <Frank.Li@nxp.com>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>
+To: "Liu Ying" <victor.liu@nxp.com>, "Marco Felsch"
+ <m.felsch@pengutronix.de>
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+X-Mailer: aerc 0.20.1
+References: <20260303-v6-18-topic-imx93-parallel-display-v11-0-1b03733c8461@pengutronix.de> <20260303-v6-18-topic-imx93-parallel-display-v11-2-1b03733c8461@pengutronix.de> <33e09cc9-69bd-468b-8361-b92a50686f74@nxp.com> <DGZ2XYTVUR28.16ITKRM9S2ACV@bootlin.com> <ot5qypkeirkiweicjijholt2hwfpnnfhrcm3d6euqfnupptsab@din4bkq2sh5h> <ccce0f8c-88bf-4cd8-a806-b62049606cfe@nxp.com>
+In-Reply-To: <ccce0f8c-88bf-4cd8-a806-b62049606cfe@nxp.com>
+X-Last-TLS-Session-Version: TLSv1.3
+X-Spamd-Result: default: False [-0.16 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
+	MV_CASE(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274713-lists,devicetree=lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_CC(0.00)[kernel.org,pengutronix.de,gmail.com,nxp.com,intel.com,linaro.org,ideasonboard.com,kwiboo.se,linux.intel.com,suse.de,ffwll.ch,vger.kernel.org,lists.linux.dev,lists.infradead.org,lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274714-lists,devicetree=lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	FROM_HAS_DN(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[luca.ceresoli@bootlin.com,devicetree@vger.kernel.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 76FBE2759AB
+X-Rspamd-Queue-Id: B5E5A275EB8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hello Marco, Liu,
 
-On Thu, 12 Mar 2026 18:04:36 +0300, Alexander Shiyan wrote:
-> Add device tree binding documentation for the Sony IMX662 CMOS image
-> sensor. The sensor features a native pixel array of 1936x1100
-> (effective 1920x1080) and supports MIPI CSI-2 output with 2 or 4 data
-> lanes, RAW10/RAW12 formats, and both colour and monochrome variants.
-> The link-frequencies property accepts up to eight values corresponding
-> to the allowed MIPI data rates.
-> 
-> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
-> ---
->  .../bindings/media/i2c/sony,imx662.yaml       | 112 ++++++++++++++++++
->  1 file changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx662.yaml
-> 
+On Thu Mar 12, 2026 at 10:15 AM CET, Liu Ying wrote:
+> On Wed, Mar 11, 2026 at 08:45:25PM +0100, Marco Felsch wrote:
+>> Hi Liu, Luca,
+>
+> Hi,
+>
+>>
+>> sorry for the delayed response, I was at the EW26.
+>
+> Np at all, it's good to go out to meet people sometimes :)
+>
+>>
+>> On 26-03-10, Luca Ceresoli wrote:
+>>> Hi Liu, Marco,
+>>>
+>>> On Tue Mar 10, 2026 at 3:57 AM CET, Liu Ying wrote:
+>>>> Hi Marco, Luca,
+>>>>
+>>>> On Tue, Mar 03, 2026 at 11:34:27AM +0100, Marco Felsch wrote:
+>>>>
+>>>> [...]
+>>>>
+>>>>> +	next_bridge =3D devm_drm_of_get_bridge(dev, dev->of_node, 1, 0);
+>>>>> +	if (IS_ERR(next_bridge))
+>>>>> +		return dev_err_probe(dev, PTR_ERR(next_bridge),
+>>>>> +				     "failed to get next bridge\n");
+>>>>> +	pdfc->dev =3D dev;
+>>>>> +	pdfc->bridge.of_node =3D dev->of_node;
+>>>>> +	pdfc->bridge.type =3D DRM_MODE_CONNECTOR_DPI;
+>>>>> +	pdfc->bridge.next_bridge =3D next_bridge;
+>>>>
+>>>> When I was reviewing another patch[1], I was aware of the necessity of
+>>>> calling drm_bridge_get() for next_bridge to balance the next bridge's
+>>>> refcount put from __drm_bridge_free() for this bridge.  I'd be good if
+>>>> Luca may confirm this is correct.  Sorry for bringing this up late.
+>>>
+>>> Indeed you have a good point.
+>>
+>> At which stage did you faced this issue? During driver probe, because of
+>> EPROBE_DEFER?
+>
+> I just want to balance the get/put for the next bridge's refcount by
+> calling drm_bridge_get() for next_bridge, as I said above.  There could
+> be some way to trigger some particular Use-After-Free issues if you don't
+> do that.  I did take some time today to try to trigger UAF, but no luck,
+> though I found a potential bug in encoder_bridges_show() and generated a
+> fix[1](Cc'ed Marco) when I played with debugfs to read the refcounts.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+The whole need for refcounting DRM bridges exists if such bridges can be
+removed when other parts of the kernel still have a pointer (=3D a referenc=
+e)
+to them. This is not the case with current DRM because you cannot remove
+some bridges without removing the whole pipeline (card). However I am
+working since a long time to suppor hardware where the last part of the
+display pipeline is hot-pluggable, causing DRM bridges to be added and
+removed at runtime without removal of the initial part of the pipeline
+(CRCT, encoder and 0 or more bridges).
 
-yamllint warnings/errors:
+See these links for more background info:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx662.yaml: ignoring, error in schema: properties: port: properties: endpoint: properties: data-lanes: description
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx662.yaml: 'maintainers' is a required property
-	hint: Metaschema for devicetree binding documentation
-	from schema $id: http://devicetree.org/meta-schemas/base.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/media/i2c/sony,imx662.yaml: properties:port:properties:endpoint:properties:data-lanes:description: {'Number of MIPI CSI-2 data lanes. Supported values': '2, 4.'} is not of type 'string'
-Documentation/devicetree/bindings/media/i2c/sony,imx662.example.dtb: /example-0/i2c/camera@1a: failed to match any schema with compatible: ['sony,imx662']
+ * ELCE 2025:
+   - https://www.youtube.com/watch?v=3DC8dEQ4OzMnc
+   - https://bootlin.com/pub/conferences/2025/elce/ceresoli-hotplug-status.=
+pdf
+ * Lots of links in the slides about previous activity
+ * LPC 2024 has a general description fo the use case:
+   - https://lpc.events/event/18/contributions/1696/
 
-doc reference errors (make refcheckdocs):
+> My idea to trigger UAF is to remove imx_lcdif/imx93_pdfc/simple_panel
+> modules when doing pageflips.  Dunno if EPROBE_DEFER may trigger UAF.
 
-See https://patchwork.kernel.org/project/devicetree/patch/20260312150437.1091195-2-eagle.alexander923@gmail.com
+Perhaps there is some possible UAF on probe errors or deferrals, but the
+typical case is when removing the final part of a pipeline, including 1+
+bridges. This was discussed in detail in [0], but here's an excerpt with
+the typical UAF scenario with hotplug:
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+  1. pipeline: encoder --> bridge A --> bridge B --> bridge C
+  2. encoder takes a reference to bridge B
+     using devm_drm_of_find_bridge() or other means
+  3. bridge B takes a next_bridge reference to bridge C
+     using devm_drm_of_find_bridge()
+  4. encoder calls (bridge B)->foo(), which in turns references
+     next_bridge, e.g.:
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+       b_foo() {
+           bar(b->next_bridge);
+       }
 
-pip3 install dtschema --upgrade
+If bridges B and C are removed, bridge C can be freed but B is still
+allocated because the encoder holds a ref. So when step 4 happens, 'b->c'
+would be a use-after-free (or NULL deref if b.remove cleared it, which is
+just as bad).
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+[0] https://lore.kernel.org/all/DEH2CVQV21Z2.25PJBAQAKFJSG@bootlin.com/
 
+>> That's the reason for having the local next_bridge variable since I
+>> faced with the same issue. In other words this driver is correct and
+>> it's on purpose to not assign it directly. Albeit I could/should have
+>> added a comment.
+>
+> What's the issue your faced?  How would using next_bridge variable impact=
+?
+> Without knowing these info, I presume that you still need to call
+> drm_bridge_get() for next_bridge, since it's kind of obvious if you take
+> a look at __drm_bridge_free().
+
+Exactly. The idea in a nutshell is: every pointer to a drm_bridge stored
+somewhere is a reference to a bridge. So:
+
+ * When you take a reference (=3D you set a pointer to the address of a
+   bridge) you need to call drm_bridge_get() to increment the
+   refcount.
+ * When you clear a reference (set it to NULL) or the pointer becomes
+   unreachable (the device goes away, the struct holding it is not
+   reachable anymore, etc) you need to call drm_bridge_put() to decrement
+   the refcount.
+
+This way the struct drm_bridge (or, typically, the private driver struct
+embedding it) will be freed only when the refcount goes to 0, avoiding UAF.
+
+I have been converting most of the accessors returning a drm_bridge pointer
+in order to drm_bridge_get() the bridge before returning it. A few random
+examples:
+
+ - https://lore.kernel.org/lkml/20250620-drm-bridge-alloc-getput-drm-bridge=
+-c-v9-0-ca53372c9a84@bootlin.com/
+ - https://lore.kernel.org/lkml/20250709-drm-bridge-alloc-getput-drm_bridge=
+_get_prev_bridge-v1-0-34ba6f395aaa@bootlin.com/
+ - https://lore.kernel.org/lkml/20260109-drm-bridge-alloc-getput-drm_of_fin=
+d_bridge-2-v2-4-8bad3ef90b9f@bootlin.com/
+
+I hope this clarifies the general refcount topic. Now to *_of_get_bridge().
+
+>>> After re-checking devm_drm_of_get_bridge(), as I wrote on the other thr=
+ead
+>>> you pointed to, you should call drm_bridge_get():
+>>>
+>>> -	pdfc->bridge.next_bridge =3D next_bridge;
+>>> +	pdfc->bridge.next_bridge =3D drm_bridge_get(next_bridge);
+>>>
+>>> Marco, you can keep my R-by if you resend with just this change.
+>>>
+>>> Sorry about the confusion here.
+>>>
+>>> As mention on the other thread, devm_drm_of_get_bridge() is unable to
+>>> support bridge hotplug. So it should be deprecated, but as of now there=
+ is
+>>> no alternative.
+>>
+>> Sorry I need a bit more context. What's the issue?
+
+The issue with devm_drm_of_get_bridge(MYDEV, ...) (similarly for other
+*_of_get_bridge() functions) is it can return one of:
+
+ A) an existing bridge, returned by drm_of_find_panel_or_bridge() in the
+    &bridge parameter
+ B) a panel_bridge it creates on the fly calling
+    devm_drm_panel_bridge_add(MYDEV) based on the panel returned by
+    drm_of_find_panel_or_bridge() in the &panel parameter
+
+The caller of devm_drm_of_get_bridge() gets a drm_bridge pointer but
+doesn't know whether case A or B happened.
+
+This is not a problem if the entire card is torn down at once because
+devm/drmm will take care or the removal. Even easier if the card is not
+torn down at all.
+
+Now imagine adding hotplug so you can keep MYDEV present but remove any
+bridges after MYDEV and the panel. The devm action added by
+devm_drm_of_get_bridge() won't trigger (because MYDEV is not going
+away). The caller of devm_drm_of_get_bridge(), i.e. the MYDEV driver,
+should remove the panel_bridge in case B but it has no way to know whether
+case A or B happened.
+
+So, this is tricky. The good news for you is you're not supposed to fix
+it. The *_of_get_bridge() API is just unable to handle hotplug, that will
+be fixed at some point. For now just ensure you get a reference for every
+bridge pointer you store, and to put it when that reference goes away.
+
+>> How can I trigger the
+>> issue?
+
+See the example above.
+
+>> Why is bridge hotplug required at this stage?
+
+Because there is hot-pluggable hardware we want to support, see the ELCE
+and even better the LPC links above.
+
+>> Why is only this
+>> bridge affecte by the hotplug issue?
+
+It's not only this driver. Hotplug can potentially be used on any hardware,
+so I'm working to implement it in a general way in the DRM common code, but
+all drviers need to at least do the refcounting on their side. I'm trying
+to catch all patches involving bridge pointers and check whether they do
+refcounting right. This is just one of many patches I have commented about
+in the past months.
+
+I hope this clarified a bit.
+
+Best regards,
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
