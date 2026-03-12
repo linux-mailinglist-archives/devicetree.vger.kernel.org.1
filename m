@@ -1,250 +1,199 @@
-Return-Path: <devicetree+bounces-274596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274597-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFFZI6i8smmvPAAAu9opvQ
-	(envelope-from <devicetree+bounces-274596-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:16:24 +0100
+	id cGmHA/69smmvPAAAu9opvQ
+	(envelope-from <devicetree+bounces-274597-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:22:06 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id E467D2725FC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:16:23 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F21B2726F1
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 14:22:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 8CD79300EA90
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:13:33 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 27C8B3028EE8
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 13:22:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 067223C0628;
-	Thu, 12 Mar 2026 13:13:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B05CA3C6614;
+	Thu, 12 Mar 2026 13:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lcs0FmQA";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="B6UB2JOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8431435A3A5
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A370D3BF676
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:21:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773321212; cv=none; b=bfH9aC9U6xHENmmtHWWPR2vcIeAdrcKuqmEHjLDRJkYPYzsz14cZCYf0joeELcEjtCrG7aRVC8b4HrQzaXm/qILjeRJjJyy49KLkACUCFFZ+N3eyi/CpVr8ZtXSPEOJ0uvxIPtQeLhV6Cm5zeaqHyFMdTwzBg7vhMKZ4T65HJto=
+	t=1773321720; cv=none; b=S+nuqnioWgnvnYHoe3JeqMCxUsHDvWZp+opZ8jYjCZC5QawH7/sOL0Rmdmbo2FEp1htTtRHvfyjoo9URP0jnvQf24duJ+4TAsM+dKTnHLUdJKINmHECx+LMiBWpB6F6bPdjrSWvY9LDEBnk48gsLwmKygWfzIGSeUICcunsFht0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773321212; c=relaxed/simple;
-	bh=9Xf09/CQRKakxUM97o3pjEHQxlgCJx2m/hZtTEYbHSM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sp94D+9uRm2goWPzUxW2uJbNW0b1upPl+4BNOQZPD4KkiYlb+usBshqXARR56FuuDUgwjseg0rN5bNI/c+LlkXlryuaOmZbiDzCtF2Pic4gXRYQIj/1YMJZi77F8LS0uB+YvGcMq1HQVKnM9C7fGmJP+5X5S6gj1hgt8y2kBn0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-662b5bf4b10so1613246a12.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:13:30 -0700 (PDT)
+	s=arc-20240116; t=1773321720; c=relaxed/simple;
+	bh=o81hrhAPbE+2p+74JicN6rf37VDssxW6q9OQI7SUeqk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rImn7sAqlMU5oTnmcFD+mCp6V3mfMgPEQCENK/e89zh1hYwWaeUYIFNyUao3s/y2m5U7+PqQ1J0+BPctFZulE2fdyul8kRDScy2lE7/+hUTStisA+LzX5ZBcdjutARAuP9RnNo1Ux9jnWnLOnvRTuaI3Hr+8YGGH3pTwVmRcAPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lcs0FmQA; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=B6UB2JOd; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62CAGCLf4027169
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:21:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=GPxgAQbZ5dE/WqRRfs+nfo5G
+	A/qWcrHqNAXneO/r7nE=; b=lcs0FmQA+hGDdxw+nSL5SotmDzFhPiuhH2nK7mDT
+	cFhz5yEGfijU7OQA7/Y6VKEwx0gW5crGJ2d/RcMF2Qw64vC+e69CJS9hvW10hPfm
+	zt4AT5PyDyjRo8sGoJl+wALirOt7PyATeQbChlyAH2ViGIavCJRn7oO6/bAfcIs3
+	cKNj3ahLsVkpOiPPsZvslUqfL/PBNe/qU3HKIfO6Ge86ZiPNHpkYXjhuobTPuTdv
+	E1Tj7ZJ2Vx6r0SNz/zlOttH7H2klVOc09pVIMyLIVShJ/7Ye/KhZQNmTBXJnfrih
+	b0e+xhgByDPeOOXuy72g1Bfs7Mx+Dh7pQEHjYfGTBO0RkA==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cuh54t541-1
+	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 13:21:56 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-8cd81506677so588374285a.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=oss.qualcomm.com; s=google; t=1773321716; x=1773926516; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GPxgAQbZ5dE/WqRRfs+nfo5GA/qWcrHqNAXneO/r7nE=;
+        b=B6UB2JOdzOoDhQ8y/D8sa1hQGCBpaad4DAJnHgJC1Bi3IZZwB0eW2XECs0YmmWSZJ0
+         SWVc2aIo1lK2fge++e192GIHiB6wYdGCSYB0IWSpf6TPVMzjHZdEdVFckGKBhakqEZA8
+         E5CLQTzWRdh+sRb3dpqXapaoc/bh/gl2PF0GIVrcbcOehhJa5H+FzyVcOC6ejQB5d7va
+         x/Lm6htiQqZuEBaITwRBkuV5HzmQgnurVz76tOOyLXN984iMNdD1eUyCmeqkx/7hcLOa
+         U1kXSjXOiX7w7XYPqFKrC4+GBMdjDyLpW3cVZielpF3+dWT+tY9Fg0RoMfoRXFDhCVyU
+         ReDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773321209; x=1773926009;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=udEH6r8HyARkgcp8nLO9sBcamtg2WZj/AdfmCmcqat4=;
-        b=nG4U9tb+U9RK58mo9IhWaureR3mAKps+jpkWmeqNruVW7gkBwHYxxxL5dhjC83QXtI
-         T304qndbTXW6ORocQkWiDMoKh85aNQetVuwwmUFJMMEOdhfWZl/LbESEr3tbq8Z/l1AY
-         660Xkpfd8BqHYpqNK1qkKDhVg/Tifzq1qb+ceugOl1xtGSHngoE/Fb+C+y/lWN+KBF4k
-         kq3Er5THKOHjsRgXvFHd3cjnWxCfHlHZ8ajaA9caek7E2wlWdgSnVniA9Spk9SoyHMZU
-         6gcnBT4dNTBGMzifiRq6iVOrlQIr92iq0Cho4wUnsyw9c2UmnqwE+jZ3qBb0wBYgj4e7
-         sr6A==
-X-Forwarded-Encrypted: i=1; AJvYcCXC9zrh5YxJRCPqcsfZYhKxFKNK/0vxNrJv/JlXRuz8YluiB/PHI/bHc/F0vPHiepNGrwlGhLTKya73@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKoxO2IH/tPyq81d9Q3qzfR3v4fFw8I+WN6Hl7Qoj0rl2eCJ1z
-	GJ5QW3qJv76bp5qMY1lSh0zjJLwt6OfyaTbJ4poC3IaJT5MyFy1Tui7ybCsZbea91fc=
-X-Gm-Gg: ATEYQzyUMNUX8T6P3d+0SeQUrqLrsU06P76BUNZxGA3L3Ngxgkw73Z3BOp2ZeicZvRo
-	pz0gd/41KEko7hHpFn1p0dRua2N71Z3rWrcY2rOCVISJVJp0Ti5y5k6PaGIIt7ub9IPHwe9RMgB
-	o6171P7ixEOwgswoUbPHZ/XrReftVKJ9qqKCEcushqmqpwwv9vvMki5POUnUt64W6XDtvptMKvQ
-	y20QvKPr1kaMhJAJ/bB7eoj5bIEoDpnD8sCfP21buPfVRueSmkZX+7xA/5ZsR796i6+6UvSzmVY
-	4rZn9vIvTFaPmPGW/4DhekRBZd5XXQ2YzVq0flB+1AYmgaE+9EWy1jbnMo9vtWtEsBw21f3bbX3
-	2g3LaDHUhXAAA3JLdD2DkWcpMYpCnkEAICL2ELGYIB0hHQfS+zHCJHTfzEjmVwzj8aGMJl1+fCi
-	cKQqYNN/LQGE8opOK6+8AD5dgPSJ1dDRtzEkSQovmAvVnDRSGocN8pbR616Mcd
-X-Received: by 2002:a05:6402:2686:b0:65f:9ce4:e046 with SMTP id 4fb4d7f45d1cf-663192c4ed7mr3512281a12.3.1773321208616;
-        Thu, 12 Mar 2026 06:13:28 -0700 (PDT)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com. [209.85.208.52])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-66350b85f3bsm520205a12.25.2026.03.12.06.13.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Mar 2026 06:13:28 -0700 (PDT)
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-6634d819492so1881336a12.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:13:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVHfYld8qRbbNg983CQRI4GLZKkN9+FCV2fhksdhwTfpxMlQi/f+7SCpC0E/fsrwKn0YvFGvfKVE0WB@vger.kernel.org
-X-Received: by 2002:a17:907:7b93:b0:b91:2f65:e938 with SMTP id
- a640c23a62f3a-b972e603b8amr390837366b.60.1773321208196; Thu, 12 Mar 2026
- 06:13:28 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1773321716; x=1773926516;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GPxgAQbZ5dE/WqRRfs+nfo5GA/qWcrHqNAXneO/r7nE=;
+        b=jYbiAhpeVU46z1OhFhOp2jT76jGIubx1itOcUV85ZBVvybYlkhAyEUCDmhLhJEeELE
+         goSo+qheO51ukEPbMjCjTi5msYLcehdHg3qy2P1AXpcAT2Tj/n56Ba49wpPQotmgXXpD
+         vZQccGgM/wq/T9HSSX1V2eBuR5EKedpU2CApboIQ2AtafLxuuSPz0hHTN5HiXGu0Gi4H
+         LSfZN1MujTh4tKO9ERqHidN1ZUYQVWcO0DSzvcnoPuYE27qZ514wkHwB7D7lbjgDOX0j
+         qPmwtwCdJsv/bAd0gCb0FGK2pIbqxSDbANDVfWFpth3Og/rkTRtfy4Q4OzYzjPMYFnJD
+         piRA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAW91MbCVUXy7+c386Gba+TUB1616s7I37smfU0v+vO8RH0+3A5EkMftQVrSb3jnTCgWhyHjLCi0IB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyV7dpGLUfLAuLiui3vCiJsy0AJlXozlChnoaHm22c17CFo+Mj3
+	Kq+wdS+nb6JIFczt9pSJHqTDUPsK6zIzwuZyDreD3ENf7Ax9uuNj5G/3Fmu8Z6wWqoZecYrsQuy
+	W+SnsWqgp27nhWAVoTbdQt4g7kAbS/P+FVjfvyI4v83+/lHJi8NeF0MvniYS9MsRp
+X-Gm-Gg: ATEYQzyZyXzz5+0PiQHDZcEXZF2hoEMkSJqDM0BD0U9L0bbiVDqLs5nHUcv4jkpp3ET
+	PI1nJbOJC/8AV32HjpM6vyeNOb/2q5I657SbfiJCAnB+1H7XIT7AYGKyd+CdQpUHIqKI3x/4xqp
+	rw2G2WOlNwgdhgj+GZNm0yFh1n8oDTdhGnKFPXxEbmL466mvF46Ze86z3qPkkk5aXbu8z8DiLdN
+	IQSuEG9YlXSj4ivn7WFZIQhU3k7S/Hmag4yrVL/qMNYriXM/tif0pvnASq0Tcv2xLI7W6+w2FhJ
+	h1DgsJ/4G+p/crAQ1/HkTxtI/mS0b5WREC6EkfTUCNoduAdt+D1qwGY5u6R3T1PdELUC/SBaGkO
+	l93eKsjZCMer062MwymEdXgKrObHsfOHi40UKB5HED5jOA0CeFrLoXzydMsn8C+13pZlc4zB50P
+	Jivf1m34vRvfXEIolumeABSicpa+UvxN3p/EU=
+X-Received: by 2002:a05:620a:4629:b0:8cd:8f18:d1fa with SMTP id af79cd13be357-8cda196c76bmr789157385a.22.1773321715876;
+        Thu, 12 Mar 2026 06:21:55 -0700 (PDT)
+X-Received: by 2002:a05:620a:4629:b0:8cd:8f18:d1fa with SMTP id af79cd13be357-8cda196c76bmr789153485a.22.1773321715341;
+        Thu, 12 Mar 2026 06:21:55 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5a156162b8dsm974392e87.44.2026.03.12.06.21.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Mar 2026 06:21:54 -0700 (PDT)
+Date: Thu, 12 Mar 2026 15:21:52 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Abel Vesa <abel.vesa@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: glymur-crd: Enable keyboard,
+ trackpad and touchscreen
+Message-ID: <75x4qxntdgvkbqjqedievzepwozcj6xnjm2ryzumnacq2cnskz@2qgyuyd4k2kr>
+References: <20260312-glymur-dts-crd-enable-kbd-tp-ts-v2-1-2277bee4c564@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260203121723.312336-1-biju.das.jz@bp.renesas.com>
- <CAL_JsqJK3brXxSeD-U42PBCeHoxUhWJYho3ZWj__t5C1LL-n-Q@mail.gmail.com> <TY3PR01MB11346B87DF83086FCFE19B15D8698A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346B87DF83086FCFE19B15D8698A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Mar 2026 14:13:15 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW7GeCF-xTNpRRNEBfzbqUA8ZNqFxctT8zufdRHkvSiAQ@mail.gmail.com>
-X-Gm-Features: AaiRm51xpIeuv2QHPm735sslWhSiZm3fYb3vmdcw6ZXZmPeZ7Qqh0uUgQF8JQ5U
-Message-ID: <CAMuHMdW7GeCF-xTNpRRNEBfzbqUA8ZNqFxctT8zufdRHkvSiAQ@mail.gmail.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: micrel: Fix dtbs compatible
- too long warnings
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, "biju.das.au" <biju.das.au@gmail.com>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Stefan Eichenberger <eichest@gmail.com>, "netdev@vger.kernel.org" <netdev@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [0.04 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260312-glymur-dts-crd-enable-kbd-tp-ts-v2-1-2277bee4c564@oss.qualcomm.com>
+X-Proofpoint-GUID: 8DPmOXVZXrzFi_XyzXyt7n49USV1-3BG
+X-Authority-Analysis: v=2.4 cv=BNG+bVQG c=1 sm=1 tr=0 ts=69b2bdf4 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=3WHJM1ZQz_JShphwDgj5:22 a=bC-a23v3AAAA:8
+ a=EUspDBNiAAAA:8 a=56d9N2h_IVndxkp9Tz8A:9 a=CjuIK1q_8ugA:10
+ a=IoWCM6iH3mJn3m4BftBB:22 a=FO4_E8m0qiDe52t0p3_H:22
+X-Proofpoint-ORIG-GUID: 8DPmOXVZXrzFi_XyzXyt7n49USV1-3BG
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEyMDEwNiBTYWx0ZWRfX12B1w0vQC61I
+ 90QJeqtzvEcd8LXtuMidEEgRw+kSROYxGo2qWfEtr7a1X0k0RnTNOZCxanmpIruxTMyZlGcT4X3
+ eb1RcLKQ+kYiNu/mRRbYTXBuu4z/ybkUaD9S186bWpkKSU9+n8vL2oTmB0/4wgWHxvHa1nFQQDn
+ rzTjc3CC7zex2/cLMId4lj7QiQJQnBsTW4EdzCojBC7RjeRXTty6qsACpOfn+Lhjp651A+EZHwi
+ InmZWGOe1MpEi/Mlo7OITzHI99NgOVFK4UJKmUwfHMC9JSDv/93sjACKEUrpFmGBJ2KH51kIEA3
+ MwR4qqA39Tg4Ca+WhKKC3W5sFnym1MX2jlVxyevOQnE6GsmAg4Ts/Q4m5oLxEHAngL9+d8grQgb
+ PUsgc8Gurf1/BNC44iMJ3zpdq3h0lwRxUM2cN+O+9mBGCC0jwF8+bJIFAb9DpE2Jk1UbspMcVlx
+ t2iwplEaCP4ZIsc0guQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-12_01,2026-03-12_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 clxscore=1015 bulkscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 adultscore=0 phishscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603120106
+X-Spamd-Result: default: False [-1.66 / 15.00];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,lunn.ch,davemloft.net,google.com,redhat.com,vger.kernel.org,bp.renesas.com];
-	DMARC_NA(0.00)[linux-m68k.org];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[bounces-274596-lists,devicetree=lfdr.de];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[bounces-274597-lists,devicetree=lfdr.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:email];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,netdev,dt];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[renesas.com:email,mail.gmail.com:mid,linux-m68k.org:email]
-X-Rspamd-Queue-Id: E467D2725FC
+	RCVD_COUNT_SEVEN(0.00)[7]
+X-Rspamd-Queue-Id: 5F21B2726F1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Biju,
+On Thu, Mar 12, 2026 at 03:00:42PM +0200, Abel Vesa wrote:
+> On CRD, the keyboard, trackpad and touchscreen are connected over I2C
+> and all share a 3.3V regulator.
+> 
+> So describe the regulator and each input device along with their
+> pinctrl states.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> ---
+> Changes in v2:
+> - Rebased on next-20260311
+> - Re-ordered pinctrl properties in vreg_misc_3p3, as Konrad suggested.
+> - Dropped next level dependency patchset.
+> - Link to v1: https://patch.msgid.link/20260309-glymur-dts-crd-enable-kbd-tp-ts-v1-1-56e03f769a76@oss.qualcomm.com
+> ---
+>  arch/arm64/boot/dts/qcom/glymur-crd.dts | 117 ++++++++++++++++++++++++++++++++
+>  1 file changed, 117 insertions(+)
+> 
 
-On Wed, 4 Feb 2026 at 10:18, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > From: Rob Herring <robh@kernel.org>
-> > On Tue, Feb 3, 2026 at 6:17=E2=80=AFAM Biju <biju.das.au@gmail.com> wro=
-te:
-> > > From: Biju Das <biju.das.jz@bp.renesas.com>
-> > > The KSZ9131 PHY is suitable for IEEE 802.3 applications.
-> > >
-> > > Fix the below dtbs warning "compatible: ['ethernet-phy-id0022.1640',
-> > > 'ethernet-phy-ieee802.3-c22'] is too long" on the below dts:
-> > >
-> > > r8a774b1-beacon-rzg2n-kit.dtb
-> > > r8a774a1-beacon-rzg2m-kit.dtb
-> > > r8a774e1-beacon-rzg2h-kit.dtb
-> > > r9a08g046l48-smarc.dtb
-> > > r9a07g043u11-smarc.dtb
-> > > r9a07g044c2-smarc.dtb
-> > > r9a07g044l2-smarc.dtb
-> > > r9a07g044l2-smarc.dtb
-> > > r9a07g054l2-smarc.dtb
-> > > r9a07g054l2-smarc.dtb
-> > > r9a09g047e57-smarc.dtb
-> > > r9a09g047e57-smarc.dtb
-> > > r9a09g056n48-rzv2n-evk.dtb
-> > > r9a09g056n48-rzv2n-evk.dtb
-> > > r9a09g057h44-rzv2h-evk.dtb
-> > > r9a09g057h44-rzv2h-evk.dtb
-> > > r9a07g043u11-smarc-cru-csi-ov5645.dtb
-> > > r9a07g043u11-smarc-pmod.dtb
-> > > r9a07g043u11-smarc-du-adv7513.dtb
-> > > r9a09g047e57-smarc-cru-csi-ov5645.dtb
-> > > r9a07g044c2-smarc-cru-csi-ov5645.dtb
-> > > r9a09g047e57-smarc-cru-csi-ov5645.dtb
-> > > r9a07g044l2-smarc-cru-csi-ov5645.dtb
-> > > r9a07g044l2-smarc-cru-csi-ov5645.dtb
-> > > r9a07g054l2-smarc-cru-csi-ov5645.dtb
-> > > r9a07g054l2-smarc-cru-csi-ov5645.dtb
-> > > r9a09g056n48-rzv2n-evk-cn15-emmc.dtb
-> > > r9a09g056n48-rzv2n-evk-cn15-emmc.dtb
-> > > r9a09g056n48-rzv2n-evk-cn15-sd.dtb
-> > > r9a09g057h44-rzv2h-evk-cn15-sd.dtb
-> > > r9a09g056n48-rzv2n-evk-cn15-sd.dtb
-> > > r9a09g057h44-rzv2h-evk-cn15-emmc.dtb
-> > > r9a09g057h44-rzv2h-evk-cn15-sd.dtb
-> > > r9a09g057h44-rzv2h-evk-cn15-emmc.dtb
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > >  .../bindings/net/micrel,gigabit.yaml          | 23 +++++++++++------=
---
-> > >  1 file changed, 14 insertions(+), 9 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/net/micrel,gigabit.yam=
-l
-> > > b/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
-> > > index 384b4ea6181e..284c3ba379f3 100644
-> > > --- a/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/micrel,gigabit.yaml
-> > > @@ -17,15 +17,20 @@ description:
-> > >
-> > >  properties:
-> > >    compatible:
-> > > -    enum:
-> > > -      - ethernet-phy-id0022.1610  # KSZ9021
-> > > -      - ethernet-phy-id0022.1611  # KSZ9021RLRN
-> > > -      - ethernet-phy-id0022.1620  # KSZ9031
-> > > -      - ethernet-phy-id0022.1631  # KSZ9477
-> > > -      - ethernet-phy-id0022.1640  # KSZ9131
-> > > -      - ethernet-phy-id0022.1650  # LAN8841
-> > > -      - ethernet-phy-id0022.1660  # LAN8814
-> > > -      - ethernet-phy-id0022.1670  # LAN8804
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: ethernet-phy-id0022.1640
-> > > +          - const: ethernet-phy-ieee802.3-c22
-> >
-> > To avoid the errors, you would need a custom 'select' that excludes the=
- c22 compatible from this
-> > schema (IOW, lists all the other compatibles here).
->
-> OK.
->
-> >
-> > However, I think the correct fix is probably dropping the c22 compatibl=
-e from your .dts files. I don't
-> > that compatible is useful on its own?
->
-> I will wait for Geert's input to drop c22 from .dts files.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Makes sense.
 
-So we should probably fix the following, too?
-Documentation/devicetree/bindings/net/ethernet-phy.yaml
-Documentation/devicetree/bindings/net/mscc-phy-vsc8531.yaml
-Documentation/devicetree/bindings/net/renesas,ether.yaml
-Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-Documentation/devicetree/bindings/net/amlogic,g12a-mdio-mux.yaml
-
-> > Also, it doesn't make sense that ethernet-phy-id0022.1640 is sometimes =
-compatible with ethernet-phy-
-> > ieee802.3-c22 and sometimes isn't.
->
-> OK.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+With best wishes
+Dmitry
 
