@@ -1,175 +1,230 @@
-Return-Path: <devicetree+bounces-274672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274673-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0AX6B7fcsmlMQQAAu9opvQ
-	(envelope-from <devicetree+bounces-274672-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:33:11 +0100
+	id KFJMNEXcsmlMQQAAu9opvQ
+	(envelope-from <devicetree+bounces-274673-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:31:17 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
-	by mail.lfdr.de (Postfix) with ESMTPS id 780D12748D3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:33:10 +0100 (CET)
+Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52906274815
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 16:31:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 70555307B556
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:27:21 +0000 (UTC)
+	by sto.lore.kernel.org (Postfix) with ESMTP id E55C130489B0
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 15:28:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFC063859D1;
-	Thu, 12 Mar 2026 15:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB39384242;
+	Thu, 12 Mar 2026 15:28:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="kM8HjATG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gFodYMLy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DB4375F88;
-	Thu, 12 Mar 2026 15:27:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFFF364029;
+	Thu, 12 Mar 2026 15:28:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773329239; cv=none; b=VhY9aUeSXBmsNXFmR+5Q4zRrPnR90RKGGV+EAmLkhpyOwQ+2kGcnztzwHdahjArPovFekJrHGjly6w4eEQqoAxRRIq0jYYZtPy+0Rmm/elToZSg8aNY4Qq6F45TeHhcLD5Gzfgzb3eayc4UfAjxyu22HrEa5rlnxvIBrVAendV4=
+	t=1773329332; cv=none; b=lLclyDaSCVTW4d1MnyzL82L8Vw5Cw6hWVCc3cVkk9ZmZYFSl/4aVx1ZZYeWnXz1zmJfKCI0sgBrmvumK4NbC+uLlhr6lYSd+CS5ys8oZDMNxKKCFpOZocrWqvb2+iv3cyua24CSxyDBu19qVOaTW72xs9tiDfh6Vrc88hK3/TMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773329239; c=relaxed/simple;
-	bh=3gNgYTTVULTKANJUJ/9Pi3V8zjzLXODn4zDu8DouePU=;
+	s=arc-20240116; t=1773329332; c=relaxed/simple;
+	bh=evlB7UmYgfXR0LeObfNN35XybfXOCZeXbvVto+3/lcI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CDnkaJjtI7/uS6gnJpKts2PayWJr/Jx0EowyggnWArpZf46fFcYPV11cYFLPrSDvKlRylbUAwoD90tiNPOZ15PZE5A30IjuAlQTHgw1pe6qWtZ82f0q65EbY/IpIDSxTJXudc0sPhVvyt/r+Z0JO4RtQ/JkWuwowOtuvf1kQ4DA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=kM8HjATG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FAE7C4CEF7;
-	Thu, 12 Mar 2026 15:27:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1773329239;
-	bh=3gNgYTTVULTKANJUJ/9Pi3V8zjzLXODn4zDu8DouePU=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=c3JvfPqu4rtGy0NCYE1YYhiypzodBMc/qaaUPYiLtvQUHnmglHsStrF7DVyQiqDAWAuelJtCKWH/mdcDOpVoyUVmwFO9+ffyovkAcS47J6GyeOQyK73M0W4IttTzjD87cSKVQtZbaPGB2sO7uKwYjOajFzH9+LKxE3QK4T2w7nw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gFodYMLy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C1E6C4CEF7;
+	Thu, 12 Mar 2026 15:28:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773329332;
+	bh=evlB7UmYgfXR0LeObfNN35XybfXOCZeXbvVto+3/lcI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kM8HjATG79tRKUGkuqfgkwFddma+9QRl1vjcNBOKPetSajqw1znNWVuws9HsU0mq/
-	 DHMjUSFr0wmKflSkf5i/6IO5CBWS3kHWFN/QrdZwXyWaOZbpLFdbaZBac7Tt/w/ov8
-	 pz30LFNoTFHMP1XgPK2joLFiKrlfolOA88SuJ2QA=
-Date: Thu, 12 Mar 2026 16:27:07 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, Andrew Lunn <andrew@lunn.ch>,
-	Rob Herring <robh@kernel.org>,
+	b=gFodYMLyNAGPQXugwNFC72H1iGvqR3UrCJVMCOPPy8Mto5tlMsMz+Y0leMQsoppvi
+	 FZBoZgaILr9+s0zmv6f1PTedIvH6FbNOYFjUS/sOfeBXJUHwvQ+qsDkA60SGKRptAW
+	 WHB5A0kLVm7eDLMndht6nDye7g1VvFmOXkOMpLn+a/02eQ5OSVRecdXiDiennCAYep
+	 MloOn9u7q3U9uDY5k6Zik/SqOFsbiFhvZwLxpMli8s2yPm6rEcbXi9o4OrzpoO3vqX
+	 mCRgdGtbI/rjC7h0lQhuxM7FSabdYQiU5JB5CuX3x+PLfXnGy/xl0fXYeVDBukXewO
+	 SvuEmIZxkQaTg==
+Date: Thu, 12 Mar 2026 10:28:51 -0500
+From: Rob Herring <robh@kernel.org>
+To: Akhila YS <akhilayalmati@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kalle Niemi <kaleposti@gmail.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Peter Rosin <peda@axentia.se>, Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Richard Fitzgerald <rf@opensource.cirrus.com>,
-	David Rhodes <david.rhodes@cirrus.com>,
-	Linus Walleij <linusw@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Mark Brown <broonie@kernel.org>, Len Brown <lenb@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Davidlohr Bueso <dave@stgolabs.net>,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Dave Jiang <dave.jiang@intel.com>,
-	Alison Schofield <alison.schofield@intel.com>,
-	Vishal Verma <vishal.l.verma@intel.com>,
-	Ira Weiny <ira.weiny@intel.com>,
-	Dan Williams <dan.j.williams@intel.com>,
-	Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>,
-	linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org, linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-sound@vger.kernel.org, patches@opensource.cirrus.com,
-	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-acpi@vger.kernel.org,
-	linux-cxl@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH v5 02/28] driver core: Rename get_dev_from_fwnode()
- wrapper to get_device_from_fwnode()
-Message-ID: <2026031242-debug-aviation-19b8@gregkh>
-References: <20260227135428.783983-1-herve.codina@bootlin.com>
- <20260227135428.783983-3-herve.codina@bootlin.com>
- <CAMuHMdVVsEB-xb8Jz4ujBam2NxtxAOb7byYa3VR_eHsbTD5rXw@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mtd: hisilicon,504-nfc: convert to DT schema
+Message-ID: <20260312152851.GA3190071-robh@kernel.org>
+References: <20260307-hisi504-1-v1-1-8bf9a186faf2@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdVVsEB-xb8Jz4ujBam2NxtxAOb7byYa3VR_eHsbTD5rXw@mail.gmail.com>
-X-Spamd-Result: default: False [3.84 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
+In-Reply-To: <20260307-hisi504-1-v1-1-8bf9a186faf2@gmail.com>
+X-Spamd-Result: default: False [0.34 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274672-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[bootlin.com,lunn.ch,kernel.org,gmail.com,nxp.com,pengutronix.de,baylibre.com,sang-engineering.com,axentia.se,arndb.de,google.com,opensource.cirrus.com,cirrus.com,linaro.org,linux.intel.com,stgolabs.net,huawei.com,intel.com,vger.kernel.org,lists.linux.dev,lists.infradead.org,microchip.com,oss.qualcomm.com];
-	RCVD_COUNT_THREE(0.00)[4];
+	TAGGED_FROM(0.00)[bounces-274673-lists,devicetree=lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[64];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,linuxfoundation.org:dkim,bootlin.com:email,linaro.org:email,intel.com:email]
-X-Rspamd-Queue-Id: 780D12748D3
+	DBL_PROHIBIT(0.00)[0.61.87.32:email];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robh@kernel.org,devicetree@vger.kernel.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,devicetree.org:url,0.0.0.0:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,nod.at:email]
+X-Rspamd-Queue-Id: 52906274815
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 10, 2026 at 04:03:42PM +0100, Geert Uytterhoeven wrote:
-> Hi Hervé,
+On Sat, Mar 07, 2026 at 04:43:56PM +0000, Akhila YS wrote:
+> Convert Hisilicon Hip04 Soc NAND controller DT binding to YAML format.
 > 
-> On Fri, 27 Feb 2026 at 14:55, Herve Codina <herve.codina@bootlin.com> wrote:
-> > get_dev_from_fwnode() calls get_device() and so it acquires a reference
-> > on the device returned.
-> >
-> > In order to be more obvious that this wrapper is a get_device() variant,
-> > rename it to get_device_from_fwnode().
-> >
-> > Suggested-by: Mark Brown <broonie@kernel.org>
-> > Link: https://lore.kernel.org/lkml/CAGETcx97QjnjVR8Z5g0ndLHpK96hLd4aYSV=iEkKPNbNOccYmA@mail.gmail.com/
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Reviewed-by: Saravana Kannan <saravanak@google.com>
-> > Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
+> Signed-off-by: Akhila YS <akhilayalmati@gmail.com>
+> ---
+>  .../devicetree/bindings/mtd/hisilicon,504-nfc.yaml | 90 ++++++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+
+Convert implies the removal of the .txt binding. Where is that? Could be 
+missing? If so, say that.
+
 > 
-> FTR, one more user of get_dev_from_fwnode() appeared in commit
-> 9035073d0ef1de81 ("reset: convert reset core to using firmware nodes")
-> in reset/next.
+> diff --git a/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml b/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml
+> new file mode 100644
+> index 000000000000..805ef0af0e04
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/hisilicon,504-nfc.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/hisilicon,504-nfc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HiSilicon Hip04 NAND Flash Controller
+> +
+> +maintainers:
+> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +  - Richard Weinberger <richard@nod.at>
 
-Ick, that's going to make this hard to land anywhere.  This is a rough
-series, perhaps it should be split up to make it easier somehow?
+This should be someone with the h/w. I would use the HiSilicon 
+maintainer from MAINTAINERS.
 
-thanks,
+> +
+> +description:
+> +  The HiSilicon 504 NFC is a NAND flash memory controller used in the
+> +  Hip04 SoC. It supports hardware ECC for NAND devices and provides
+> +  register and buffer regions for NAND operations.
+> +
+> +allOf:
+> +  - $ref: nand-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: hisilicon,504-nfc
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 2
 
-greg k-h
+Need to define what each entry is.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  nand-bus-width:
+> +    enum: [8, 16]
+> +
+> +  nand-ecc-mode:
+> +    enum:
+> +      - none
+> +      - hw
+> +
+> +  nand-ecc-strength:
+> +    const: 16
+> +
+> +  nand-ecc-step-size:
+> +    const: 1024
+> +
+
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+
+These can be dropped as the child (partitions) doesn't have an address.
+
+> +
+> +  partitions:
+> +    $ref: /schemas/mtd/partitions/fixed-partitions.yaml#
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - nand-bus-width
+> +  - nand-ecc-mode
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    nand-controller@4020000 {
+> +        compatible = "hisilicon,504-nfc";
+> +        reg = <0x04020000 0x10000>, <0x05000000 0x1000>;
+> +        interrupts = <0 379 4>;
+> +        nand-bus-width = <8>;
+> +        nand-ecc-mode = "hw";
+> +        nand-ecc-strength = <16>;
+> +        nand-ecc-step-size = <1024>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        partitions {
+> +             compatible = "fixed-partitions";
+> +             #address-cells = <1>;
+> +             #size-cells = <1>;
+> +
+> +             partition@0 {
+> +                 label = "nand_text";
+> +                 reg = <0x0 0x400000>;
+> +            };
+> +        };
+> +    };
+> +...
+> 
+> ---
+> base-commit: d4906ae14a5f136ceb671bb14cedbf13fa560da6
+> change-id: 20260306-hisi504-1-d7aa09c70d93
+> 
+> Best regards,
+> -- 
+> Akhila YS <akhilayalmati@gmail.com>
+> 
 
