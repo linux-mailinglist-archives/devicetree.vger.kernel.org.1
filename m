@@ -1,103 +1,104 @@
-Return-Path: <devicetree+bounces-274779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274780-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KFVmOo0Ss2mDSAAAu9opvQ
-	(envelope-from <devicetree+bounces-274779-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:22:53 +0100
+	id WJI6NXcUs2mDSAAAu9opvQ
+	(envelope-from <devicetree+bounces-274780-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:31:03 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7975C277C9F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:22:53 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F68277FA2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 20:31:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A2928304AAE9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:20:55 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id D775930559A6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 19:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D8B4070EA;
-	Thu, 12 Mar 2026 19:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B494070F0;
+	Thu, 12 Mar 2026 19:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Sigd0/Hw";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="hgZv6pz1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="We0lFU1A";
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="fkYJEPnA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE756406293
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:18:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6414070F4
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:18:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773343115; cv=none; b=FOyFsGQxsr8AO8QCFK71KRBNZQcLHUdu6/Hv4ZPMp2EnIRUX/rt8T34gL0Hu7QDwD6hg0TkFiS4cyEq9IU2QATMQxWosY6UQcGcgKIUrVfyZ2cUzGNXeyCH+E8Q+GivMs+mOsAHP/tzZ5zr9c9obaW1mPs4TwChdrCgNXQnGfXg=
+	t=1773343119; cv=none; b=AMA8xpRum5s1Ljk0LVuuQd6Cn9FhLN9ayAzo7UydR1o9MgjDL9yknh5afiqykCQIS+5AWAijLHROo4SlfTVFUd1zBRSot+EpywTeKozdK+a6g4lDD4v9qLwvovBWgVTYzTMqBNTakIbUFb8ttyCVXD2mcwfYFsiiFAGc9AZ2emM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773343115; c=relaxed/simple;
-	bh=mQhGzCxvs3S3GUmcWZM7b/t2cMqdUR1t3CGSawFbijg=;
+	s=arc-20240116; t=1773343119; c=relaxed/simple;
+	bh=N3H7+2vtqLg6QQ4dN2zo7tRBw4lRUW7IRodijLAqYE0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l/KrsGN5dddlAkeRA9O/pjQO7DROC9ep9l1O8/ohQNOokng6/BW+6hTFnXCj6Rbo6SuRn0CFuuWK3oUkZktne/GE6oiGRe3jtqDs1N+NPlaFcg95nkutgjrHFUXHOkOuFgkZWh5iPSnBWMWmsFtE46sehHN2rwWFsm5DF/Wtf2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Sigd0/Hw; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=hgZv6pz1; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=FIObLRoJYxH4xW5z0ovtj3L3mn/VIb95DU+lutF00K3NWKluM/R3w0kfRt1pM+BGynQG3byUI6dahxJXhgVc3aw57IPILgeiIb2VKU3vFZw15kyTBmoKcJ/zs71HTVWIGiHhLEDiMpj7p43Yu0c5b7SysLTrJrN5e5+YB2DwRTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=We0lFU1A; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=fkYJEPnA; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62CIMa8P4025754
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:18:33 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62CJAoWT4132440
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:18:37 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	rSnYdF3yntUL3R56pQlGX4piuC29cFagEaWXPmDySlM=; b=Sigd0/Hwn4YpZphM
-	y6JWCPs71IXZNOP0msv4dWcnkTfVqK8wBSJHbTJby31zvg4UUy6l6siVEp/iI0M0
-	KerkldPRVI9F4gMU7wsTmy+d5RoxoqPhV6//W01SslJKXFRAc6cVszs3l550nOC1
-	GXSj7vVWdaicUchVeDYSPnbCZ2VkcHPPJ7En0WFdbWQ02PJVNqr3ofq0l131qpS2
-	E/46rBpGksEy6shAPv6RMz0ZbaMp3j3MMdoXyBH4IQD8rxGlyqqJ0tebVsB0GyVK
-	+y4DPsrDq+MPkWlWQrIxqKGAPt5NMCXFuOydsddrtKuK7ini4KZGpwjJj7jr/7kx
-	8sAcQQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cuh50u8ys-1
+	F5OsB/HItLJlP+MT0p+X93pBrSZTfPHNoWEoN+Lyl2c=; b=We0lFU1AOo0Ik6m1
+	PIE39qlUc6OZPhvhMKcm3vRpnV9tnFvTpSoCFLa+qyrfFU2/3hsxk4IovsIkGVRc
+	CO4RklWgPCtcThKReHDoUcuZVthvbBfR+Uhvg2CVDiVqRE5BGYdbR3zmUqjUGTDz
+	lKk4dIRwjUjihuHgBNZUHEtICchcVA8r5QkgL7gOcEK5IfL1iQQKKd3gn0eLFEen
+	rSKNAaEFw5DcTUKqGNzL/ndybkTnNFDYYLJqWndMao8pp2xIpIb4gmxkRzCc8ccI
+	rVxf5p3JDBSfoXQiHeyQZmhN9DZbywx/UE5IsFw418bvsM7w3qHlv1guNknlvjiP
+	3ejzOw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cuh4w3axt-1
 	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:18:33 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-89a178d7270so223313836d6.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 12:18:33 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 19:18:37 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8cd773dd39bso1001149185a.2
+        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 12:18:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773343112; x=1773947912; darn=vger.kernel.org;
+        d=oss.qualcomm.com; s=google; t=1773343116; x=1773947916; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=rSnYdF3yntUL3R56pQlGX4piuC29cFagEaWXPmDySlM=;
-        b=hgZv6pz1dYmvnUnvpNjelGEbONlu1R0vBMmKj7sEdVmK3h7C2ExAu/pRE11Vm7p2cD
-         5dbbGzINP3qKOLzZbYaljo1sMKddjSw+/2RVWBXrfdKUp15Duyp2HyH77QN+k9wSDDZc
-         icyDEKTOSnk493Q8cB88qpCj4xqq7QtWDGkoQrNd8OACeN4buN4ucmrioUZk18YbJT2G
-         N6i3+ZI08f9nIi4DZitPExZmPULEp30QXydDm/8aJ1lIyof4os3qZYz5E4YCvC7tN/PO
-         D5ceOpg2FlHv7w5DYeCb577NisnnQKXzNmdwz1Fh2iwqB76PHKnfkvwNdx2PCSUnZTHF
-         6TOw==
+        bh=F5OsB/HItLJlP+MT0p+X93pBrSZTfPHNoWEoN+Lyl2c=;
+        b=fkYJEPnAqt5RfUg5uU7n+1c2XAlbHqv4GiruWZ1tiJfeHm7joeMbe88eP/1/kXmSRh
+         l2RRTOooByjkJKdD4/srdoEZFA1lDeIEflAcnmxN8t+rTtptjF0NMRUcJxIBTGJZpCsg
+         gvqbubGYUP6aIk9u1UlZ2O/ZG6kN5HeMp6lhCnHP1TrBB2BmrtEITVg0OCdx9nRwm3U0
+         GSDTRMlS6Ikh5QZFht7s0H/4d1pxjyPM9YnxVAsjk6hkFxl7lIm8+/tiCD/RbarJNRVr
+         NJtTDYLehqT2CnBYAQVey7QGetVrLjgcm3lmuofb/q5RLuOnjghgr/3SpHbKcOZX2ecY
+         ZEOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773343112; x=1773947912;
+        d=1e100.net; s=20230601; t=1773343116; x=1773947916;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=rSnYdF3yntUL3R56pQlGX4piuC29cFagEaWXPmDySlM=;
-        b=pCHd/bAIz1sOlyEEFuCqAV9Jod1LTkhTgGQCeYphm9ml1b88OH26HzmcUWqs5q8oNu
-         w0I8LK3Dg13cqMKPPCTE8408gLtg5i5wV42hmwCSrq+7Q1Jx277EJ/13DLEiub2t/ZMR
-         exBObeMFOGBFGLbBuJY4OhoZRUdrxYEUmuCYgJR0OZFX/Wh0OGYtS9h+NOV7SO0SABAg
-         KEgDIADIAw0kzLYOfSxNkyLvNQavYavT40J46RBEEI5EvlAQ8pds3mbj0MZAZ1mQ+s0h
-         cT9TcPP9t7+M3ws/V00IDtDpHcT0j7ZRO23sRE5EoT6xMVat66SIk09S9wyXzf3Ku610
-         S1sg==
-X-Gm-Message-State: AOJu0YxcDjQ3jdn7tDRteb+w1RVZNEFrh39G+JNmw+SnbO+M93/0eaNj
-	sJJKWzUcSA5f7R2rFO0ZgPrPahrigoiV/qL469uIW9WXGIefyroKpBC6j+g+ZBnz+kuTqt4v+1G
-	Bm4KoNuP6rSrUAtqcFZePcct1442b4ikTQe1wBLla/zV+gE0LIm6VgKcgYGVcW8V4
-X-Gm-Gg: ATEYQzwsP5F7i+esXStwehJXja3N4vfYkFA8faMdmVyBFg/cn/34p+2oIOfsV0LkkOt
-	BEpMLXkqKYQLXkx5pA+zcIF8E/M9ttG+G9oMz1lkK+0Pee9o+DjJMSfb8AkO4H31KJJP31GwvCx
-	cTWhPdZWcT/QdJUcvwB/tVGttgBESKc0yeHwc79SAvrDxIPi9TA4boHcr/l2KpCuCKFVM8gdrl5
-	uzqTu0NmMl9cHS9Uw1tqoifJ17Xwto0ZihReWcV1hY9Ug7odzDQ5vQ9BLda6L1MRN2S/0HaN8NP
-	Pkq5HbgBRH4fHJG8ay2+2Lvg064ykdRlaUDd4rK+nn2ll24CEJfP6eJvpQr+Opn9qibCXkgtWEc
-	nceJVnxyUKiXwIFzlHWqvcfC8k/B+auMteHv66uFqTB8p
-X-Received: by 2002:a05:620a:4081:b0:8cd:79f2:dc48 with SMTP id af79cd13be357-8cdb5a9751bmr131726385a.28.1773343111772;
-        Thu, 12 Mar 2026 12:18:31 -0700 (PDT)
-X-Received: by 2002:a05:620a:4081:b0:8cd:79f2:dc48 with SMTP id af79cd13be357-8cdb5a9751bmr131721785a.28.1773343111273;
-        Thu, 12 Mar 2026 12:18:31 -0700 (PDT)
+        bh=F5OsB/HItLJlP+MT0p+X93pBrSZTfPHNoWEoN+Lyl2c=;
+        b=c7z3MOaHTYOsUbDzfyLT+cJ412CmA2CaSVYYeDDoiCJMrSwk2g+3GjPu6MqTtJN6pe
+         RN1NKoQpIakT5+vZTyNRnYVndFJwcFqgUcEGNddY1gf/TP9R+AD7puIttNCxJM1dvmp1
+         TQMHO+zzFBWYj8wPCMXyiZv+BCxZwynZZOdqo28zIthTtlRRsv6/gKvNhwQzIl4/tmRJ
+         ioRMqCgWpa6AMafZ8S5xQhNNE/UoL44ftcV1ckp2pDaEV8rSNTx6gfwVm9mbMW/x3fVX
+         jkcgX5/nx9u0UAKZi/ssyFXJjAw3JdmWrriKFP7ii1E3uUd0GLrAjdtLIjr3DU7kS2cz
+         BpYw==
+X-Gm-Message-State: AOJu0YxD0d3W1UVLAeSmTzzU2Y2AcsgTbIJzyqEWbygyIsxGJJIqDDfx
+	eoiYJPVhOe78vF6M4E8fJIg8byX3S+hy5EvsYT+nYp2iS27gROZS9KcZDNYZvynReSbSP1qSXk9
+	nb/AWtco7pwFDy39vDlY5IBc9QyZ5cLs81lpHXq0+G6vtMahKUrpaqN6UMrnajoKS
+X-Gm-Gg: ATEYQzzB+7ruR0uit+TK1a1vLQ9ez7CCBa/6h7vjiz/5b5aJ09ykXmBXUFIvkgCDJSu
+	LEYuNNcNMK8rLWv2Bznb6m+lHLLnV885Dtl7rgY51al1C0CPYN00PuumVH8UXIhDXjiQGEf6ysK
+	GwDMl/xhgZlvSShpYKUolAKQ1kQn36vRSZmhLQ9/pVWEkLmDfKdjEGisHxJixJ8qzUYtbPDrtDV
+	RGMXs/NBc9PvmqkigbLuAt9n1MmTDdC/tuJS/W1HpffB+rJNW0rJNIMU5IwQ5H4xWJ5Ss1utDxf
+	3uzaalfT6DDklR2edA6PLDT7zpS5Nwx6ZnfA+gfIhiJwhuCtgNsYWR0/kTn8LAZtoK90p309uqF
+	XWVKdBaRfugWV0ytUCm5OOz+Yz4z94/iwI3D5h8Xd7lKS
+X-Received: by 2002:a05:620a:1983:b0:8cd:b33f:1832 with SMTP id af79cd13be357-8cdb5aa5419mr124302685a.28.1773343116368;
+        Thu, 12 Mar 2026 12:18:36 -0700 (PDT)
+X-Received: by 2002:a05:620a:1983:b0:8cd:b33f:1832 with SMTP id af79cd13be357-8cdb5aa5419mr124297485a.28.1773343115803;
+        Thu, 12 Mar 2026 12:18:35 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.219.94])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485577835ebsm1874935e9.7.2026.03.12.12.18.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-485577835ebsm1874935e9.7.2026.03.12.12.18.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2026 12:18:30 -0700 (PDT)
+        Thu, 12 Mar 2026 12:18:32 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
-Date: Thu, 12 Mar 2026 20:17:57 +0100
-Subject: [PATCH v2 10/12] arm64: dts: imx95: Use undeprecated reset-gpios
+Date: Thu, 12 Mar 2026 20:17:58 +0100
+Subject: [PATCH v2 11/12] ARM: dts: imx6q: Use undeprecated reset-gpios and
+ drop reset-gpio-active-high
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -106,7 +107,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260312-dts-snps-reset-gpios-v2-10-0d5040eb4a1e@oss.qualcomm.com>
+Message-Id: <20260312-dts-snps-reset-gpios-v2-11-0d5040eb4a1e@oss.qualcomm.com>
 References: <20260312-dts-snps-reset-gpios-v2-0-0d5040eb4a1e@oss.qualcomm.com>
 In-Reply-To: <20260312-dts-snps-reset-gpios-v2-0-0d5040eb4a1e@oss.qualcomm.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -121,53 +122,52 @@ Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
         kernel@dh-electronics.com, linux@ew.tq-group.com,
         Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4317;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=6359;
  i=krzysztof.kozlowski@oss.qualcomm.com; h=from:subject:message-id;
- bh=mQhGzCxvs3S3GUmcWZM7b/t2cMqdUR1t3CGSawFbijg=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpsxFpECtLe4fmQO3jsGZ5daSUkWr9nLat9a3vr
- ylRqvkBJlqJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCabMRaQAKCRDBN2bmhouD
- 1/pqD/4zt45RTWOxkdx6kNYSDqz1Ilg6uzpxgtNeflvTp8ahw7W3nw+qZO/ShDEK1kN8J+0aTcl
- YODqsk/KHnKG9bLXoIWKiiTXTKhU9uyeQYywBX26E+bjndpq52wPUyKsJB7Jj1ZXtn2h7NJPndj
- DA4YzYS6qbhK+yBeKiHrcO9STLNVT6P47QYWjqfZwPiQRiZhTTS/MOJy6RW1Z4a0Zaxa5L2hLL1
- 33S5XKErzbmIUT6H0xAUQUx/CWzWETPR8eJbqaWRz+YaEmoVHH3t90tVIWKcKz6R1qrF3B0pwVn
- QUi/Z8/MeShwVyHyw0uRiuUtNdp1yPpdIrH3Yn5USmIhJguzlgdWfv62lDlNZqztejqmVv+2Zoa
- mIUTAktIhCJEmcqEbHtU6NkepgsK875dXG2DEAhQcyoCJCL+r3tU8Z4+fRjod/Ds6LoT0Tn+Maf
- 3Sfs6hWqQ+ahQuiFAGIOk9ZDtp3yuHOXKTItxcwD4wa1kqpMf9sLc7ihandIsUNUJVQjBBmH2/J
- /2yQlCN64SQXL4Q7L0IJWRHXihxXLOpcNeQogzmwJPPZP6ybv3GtONQaWBAsw91nvMThA050AbJ
- GTrfl4A9BJyj0DVxShb/+w9gx9g7p1m/Bbl3DW2TH9JmIOldZZjmRE4itUDVY78o+iVB4gXZgRg
- qfYn5jbDD5wpm6A==
+ bh=N3H7+2vtqLg6QQ4dN2zo7tRBw4lRUW7IRodijLAqYE0=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBpsxFqasB3p5OKn4gp6uF+7tjGNif+YMMHawHjP
+ KdHswytElyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCabMRagAKCRDBN2bmhouD
+ 14hyD/9d882WM29V8Alf41+0m7Cw1LLTS9hrbKqwz2ZR/5qLY5yckb83aIbGX9UJ7KPg1Spm+5w
+ W4rtNgxvfURgninwzYzUXLT0xYlJW7zI6AMKzHhBQVFKcjTD+BtDdv4qQTFVk6xjzplR8Q0UdTV
+ I9fjoVsByp1dcYtc+pNYJ9D3kXWUrWMRWJSL8Q6bcNJUTnsdEKbs2ua7xyTs6ufXWLn3Bt+GNhE
+ BmGqVpEuJ2f6tRgx3Ddl2mR8Qw9igvx7k7xFQRbHZ9pDctnWLdNrRtoSKLzcpXiaitu/g3Qb6UG
+ rXBKj55uWLcYU4AU8lW7I2t41Oz+P1/5etL4RVDFQS7Ecu+csBKuum0wrO5nEEvaViJ3tTo/tfR
+ HUmcucd6JwSXoEsaptT4HJV+pJ8J9pusqoY9wYLQiqUixcdrWO9i/pkvlCpbRDgeMXQV/q1EDwp
+ L5HRTh5lj/kxQH4+3jr3FpkwMrQuI8UTCjsTJuF8nUl1EkErVj/q5msHnf3XH0ysXTxZl6ld3SN
+ Jz5bvc3LivSAtGxSZOzHqJ06BcJpXbMqKG/6IpBdaSyT8mYxGn1mhNI3fB+nfJ5LDJstP1m3f43
+ N1cAAg4dmqJi7YL3EuQrTNQYIKzlrErI3Z8pgi2oVBpHYxlu6AI7gCU6DlvfKVxGAnLywCMHc2w
+ ExoKekrZ1bD+61w==
 X-Developer-Key: i=krzysztof.kozlowski@oss.qualcomm.com; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-X-Proofpoint-GUID: ZVBcrQNBY0ymFpMPxYooZVNYtHHrFQud
-X-Authority-Analysis: v=2.4 cv=LvKfC3dc c=1 sm=1 tr=0 ts=69b31189 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
+X-Proofpoint-GUID: mFhZDTfl0hMhogUKSFaEE-XYgQ35OBLA
+X-Authority-Analysis: v=2.4 cv=Cpays34D c=1 sm=1 tr=0 ts=69b3118d cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=gOEeR9iKwsj33Yj5oN/cWg==:17
  a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=EUspDBNiAAAA:8 a=jGA75YajJU-kK98SflYA:9 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-ORIG-GUID: ZVBcrQNBY0ymFpMPxYooZVNYtHHrFQud
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEyMDE1NiBTYWx0ZWRfX8EA94NbDyfGr
- 7U3rDwHiCOo1AUL3S/4o7Iot+5jrrw3wR2V2y17c8XsijeRadCG2eKap5cBtbLmYehVhNVcqemD
- XgqAsV4q8z7dfx/ku5xMWHKoZMtbL0yZYZ6lbbtouO7aoR5ZWxR5Ejc36fd+nCL/+BfbFAsSzvR
- NZ44DIkgnDXkqWUOne2ks0N45yILHknMwr9iG+BkIZ/EJCgs4F/kGJ4WMgRn4rJtXQOILrAkGII
- 1mRDfGeGwUhnurujsw2LcSJC7f2+iD0bZyqxFQL5N7oeLgBiSKznIKrStl8+lmN1/YLAI0Sq9Ls
- agC0k2re/UehKQReLUCB3heXvcT4JqNKVK88yWawPwh6a8wAjgP4yPAfj3IXXB4dnq54yD9ZmwL
- P3dBP5Wv5ETwbDazeWvoRZcAht9g9R5T8kHV6R5FSPqCi8yg97IVE5Bjh4xfgcD22hDgvXzBlwm
- olvoMzrvQQxcaCIDnDw==
+ a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=yOCtJkima9RkubShWh1s:22
+ a=EUspDBNiAAAA:8 a=TSsFHv4FMKH2p5kP-T8A:9 a=QEXdDO2ut3YA:10
+ a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-ORIG-GUID: mFhZDTfl0hMhogUKSFaEE-XYgQ35OBLA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEyMDE1NiBTYWx0ZWRfX6WwfsGi6JZYw
+ pfSio3YOcLeyhG/Wq6DAW6aX6NL8kaMBSUC1Rq8ExfAKBBh5aJegj6qD2cKIkuDKK936Y3RHBk5
+ Mb96EKLC9dCbW4PJChM8fZJdm3tUQNHIRMC6siKHGGI1cROaQzZc+5bxeK7mWTeSXplCmKxgJcD
+ BtDqZtV/UGMx2L1ANreUwwXY819ZBpUE7o0nvEaZc9bgDJ/9awJ/cnz6PcaSch9j8kFIe3cg4ai
+ AyWCHpaVvIOUDQjAGl5ZTd5q6wD1WkB5zFABQjPTN/wQ3e+J19z7pA0l2kICUefkazvLjTzScPP
+ UiNAbNrHtxTtlIpbFiUQXig4HpspFBhMVsEjyWQwHobDJcKzMtemSGQhhV0A9V+3cyZRaHXE9GX
+ jVu8TyX95feMHhPf4o3ROD1ilFWS9alqK9/FKumR2iY5UUEP9oSBdP2n2T6CgBY5SXJ2NXgz2PI
+ 9cjqBH9aTN6PdGr+k8w==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-12_02,2026-03-12_01,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603120156
+ priorityscore=1501 phishscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 spamscore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603120156
 X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
@@ -175,132 +175,181 @@ X-Spamd-Result: default: False [-0.66 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_TWELVE(0.00)[17];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274779-lists,devicetree=lfdr.de];
+	TAGGED_FROM(0.00)[bounces-274780-lists,devicetree=lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_TO(0.00)[kernel.org,nxp.com,pengutronix.de,gmail.com,dh-electronics.com,denx.de,armlinux.org.uk];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,oss.qualcomm.com:mid,qualcomm.com:dkim,qualcomm.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,0.0.0.8:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,oss.qualcomm.com:mid,0.0.0.32:email,0.0.0.68:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns];
 	TO_DN_SOME(0.00)[];
 	PRECEDENCE_BULK(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[krzysztof.kozlowski@oss.qualcomm.com,devicetree@vger.kernel.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	DBL_PROHIBIT(0.00)[0.0.0.1:email];
+	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	DBL_PROHIBIT(0.00)[0.0.0.0:email];
 	MID_RHS_MATCH_FROM(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[devicetree,dt];
 	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 7975C277C9F
+X-Rspamd-Queue-Id: E5F68277FA2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Freescale i.MX95 PCIe host controller bindings, through referenced
+Freescale i.MX6 PCIe host controller bindings, through referenced
 snps,dw-pcie-common.yaml schema, already document "reset-gpios", just
 like Linux kernel did for a long time.  Use the preferred form over
 "reset-gpio" which is deprecated since commit 42694f9f6407
 ("dt-bindings: PCI: add snps,dw-pcie.yaml") in 2021.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
----
- arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts        | 2 +-
- arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts       | 2 +-
- arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts        | 4 ++--
- arch/arm64/boot/dts/freescale/imx95-19x19-verdin-evk.dts | 4 ++--
- arch/arm64/boot/dts/freescale/imx95-libra-rdk-fpsc.dts   | 4 ++--
- 5 files changed, 8 insertions(+), 8 deletions(-)
+Linux kernel already properly parses GPIO active level from phandle
+arguments, thus we can also drop "reset-gpio-active-high".
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-index d4184fb8b28c..d0f2d3beb72b 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts
-@@ -554,7 +554,7 @@ &netcmix_blk_ctrl {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
+However this change will impact U-Boot, because it only parses
+"reset-gpio" property for imx6q amd imx6sq.  Intention is to update
+U-Boot to work with newer DTS, but any other out of tree user of this
+DTS which did not implement undeprecated "reset-gpios" will be affected
+as well.  There was plenty of time for these projects to switch to
+undeprecated "reset-gpios", though.
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@oss.qualcomm.com>
+
+---
+
+Changes in v2:
+1. Drop reset-gpio-active-high, update commit msg
+---
+ arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval.dtsi      | 3 +--
+ arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts | 3 +--
+ arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts      | 3 +--
+ arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi             | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts            | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dts       | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-gw5400-a.dts          | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-novena.dts            | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx6q-tbs2910.dts           | 2 +-
+ 9 files changed, 9 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval.dtsi
+index b6c45ad3f430..87f6c865f5c3 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-eval.dtsi
+@@ -55,8 +55,7 @@ &pcie {
  	pinctrl-names = "default";
--	reset-gpio = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_m2_pwr>;
- 	vpcie3v3aux-supply = <&reg_m2_pwr>;
- 	supports-clkreq;
-diff --git a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-index 0f43e3be7058..7a615b1f6199 100644
---- a/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-15x15-frdm.dts
-@@ -549,7 +549,7 @@ &netcmix_blk_ctrl {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
- 	pinctrl-names = "default";
--	reset-gpio = <&gpio5 13 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&gpio5 13 GPIO_ACTIVE_LOW>;
- 	supports-clkreq;
- 	vpcie-supply = <&reg_m2_mkey_pwr>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 041fd838fabb..4439658681f0 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -540,7 +540,7 @@ &netc_timer {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
- 	pinctrl-names = "default";
--	reset-gpio = <&i2c7_pcal6524 5 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&i2c7_pcal6524 5 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_pcie0>;
- 	vpcie3v3aux-supply = <&reg_pcie0>;
- 	supports-clkreq;
-@@ -557,7 +557,7 @@ &pcie0_ep {
- &pcie1 {
- 	pinctrl-0 = <&pinctrl_pcie1>;
- 	pinctrl-names = "default";
--	reset-gpio = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_slot_pwr>;
- 	vpcie3v3aux-supply = <&reg_slot_pwr>;
- 	status = "okay";
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-verdin-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-verdin-evk.dts
-index 2b0ff232f680..1f2240bd21f8 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-verdin-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-verdin-evk.dts
-@@ -305,7 +305,7 @@ ethphy0: ethernet-phy@1 {
- &pcie0 {
- 	pinctrl-0 = <&pinctrl_pcie0>;
- 	pinctrl-names = "default";
--	reset-gpio = <&i2c7_pcal6524 17 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&i2c7_pcal6524 17 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_pcie0>;
- 	status = "okay";
+ 	pinctrl-0 = <&pinctrl_reset_moci>;
+ 	/* active-high meaning opposite of regular PERST# active-low polarity */
+-	reset-gpio = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+-	reset-gpio-active-high;
++	reset-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
  };
-@@ -313,7 +313,7 @@ &pcie0 {
- &pcie1 {
- 	pinctrl-0 = <&pinctrl_pcie1>;
+ 
+ &pwm1 {
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts
+index 3ac7a4501620..021d402e1310 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora-v1.2.dts
+@@ -146,8 +146,7 @@ &pcie {
  	pinctrl-names = "default";
--	reset-gpio = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&i2c7_pcal6524 16 GPIO_ACTIVE_LOW>;
+ 	pinctrl-0 = <&pinctrl_reset_moci>;
+ 	/* active-high meaning opposite of regular PERST# active-low polarity */
+-	reset-gpio = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+-	reset-gpio-active-high;
++	reset-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
  	status = "okay";
  };
  
-diff --git a/arch/arm64/boot/dts/freescale/imx95-libra-rdk-fpsc.dts b/arch/arm64/boot/dts/freescale/imx95-libra-rdk-fpsc.dts
-index 26c2df9b1b60..99ce38df4538 100644
---- a/arch/arm64/boot/dts/freescale/imx95-libra-rdk-fpsc.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-libra-rdk-fpsc.dts
-@@ -243,13 +243,13 @@ ethphy2: ethernet-phy@8 {
- };
- 
- &pcie0 {
--	reset-gpio = <&gpio1 10 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_vdd_3v3>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts
+index f338be435277..1aea31902a34 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-apalis-ixora.dts
+@@ -93,8 +93,7 @@ &pcie {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_reset_moci>;
+ 	/* active-high meaning opposite of regular PERST# active-low polarity */
+-	reset-gpio = <&gpio1 28 GPIO_ACTIVE_HIGH>;
+-	reset-gpio-active-high;
++	reset-gpios = <&gpio1 28 GPIO_ACTIVE_HIGH>;
  	status = "okay";
  };
  
- &pcie1 {
--	reset-gpio = <&gpio1 14 GPIO_ACTIVE_LOW>;
-+	reset-gpios = <&gpio1 14 GPIO_ACTIVE_LOW>;
- 	vpcie-supply = <&reg_vdd_3v3>;
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi b/arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi
+index 02d66523668d..7de8cf7804d1 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-ba16.dtsi
+@@ -344,7 +344,7 @@ rtc@32 {
+ &pcie {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pcie>;
+-	reset-gpio = <&gpio7 12 GPIO_ACTIVE_LOW>;
++	reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
+ 	fsl,tx-swing-full = <103>;
+ 	fsl,tx-swing-low = <103>;
+ 	status = "okay";
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts b/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts
+index 13245af8f74d..ff6c16b9a1dd 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dts
+@@ -468,7 +468,7 @@ MX6QDL_PAD_SD1_DAT3__SD1_DATA3	0x17071
+ &pcie {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pcie>;
+-	reset-gpio = <&gpio1 26 GPIO_ACTIVE_LOW>;
++	reset-gpios = <&gpio1 26 GPIO_ACTIVE_LOW>;
+ 	vpcie-supply = <&reg_pcie_power_on_gpio>;
  	status = "okay";
  };
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dts b/arch/arm/boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dts
+index cbe580dec182..5a3783d8f15c 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dts
+@@ -425,7 +425,7 @@ MX6QDL_PAD_SD4_DAT7__SD4_DATA7		0x17059
+ &pcie {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pcie>;
+-	reset-gpio = <&gpio4 8 GPIO_ACTIVE_LOW>;
++	reset-gpios = <&gpio4 8 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-gw5400-a.dts b/arch/arm/boot/dts/nxp/imx/imx6q-gw5400-a.dts
+index bf8fde9cb38d..e9a4b9f8015a 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-gw5400-a.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-gw5400-a.dts
+@@ -330,7 +330,7 @@ &ldb {
+ };
+ 
+ &pcie {
+-	reset-gpio = <&gpio1 29 GPIO_ACTIVE_LOW>;
++	reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts b/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts
+index 24fc3ff1c70c..0cd0443b9df5 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-novena.dts
+@@ -459,7 +459,7 @@ lvds-channel@0 {
+ &pcie {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pcie_novena>;
+-	reset-gpio = <&gpio3 29 GPIO_ACTIVE_LOW>;
++	reset-gpios = <&gpio3 29 GPIO_ACTIVE_LOW>;
+ 	vpcie-supply = <&reg_pcie>;
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-tbs2910.dts b/arch/arm/boot/dts/nxp/imx/imx6q-tbs2910.dts
+index 3bd0e2c9e57a..fbd1dc6f6414 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6q-tbs2910.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx6q-tbs2910.dts
+@@ -174,7 +174,7 @@ rtc: rtc@68 {
+ &pcie {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_pcie>;
+-	reset-gpio = <&gpio7 12 GPIO_ACTIVE_LOW>;
++	reset-gpios = <&gpio7 12 GPIO_ACTIVE_LOW>;
+ 	status = "okay";
+ };
+ 
 
 -- 
 2.51.0
