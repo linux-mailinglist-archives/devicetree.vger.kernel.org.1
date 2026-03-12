@@ -1,196 +1,194 @@
-Return-Path: <devicetree+bounces-274417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274418-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPHcC+hCsmlFKgAAu9opvQ
-	(envelope-from <devicetree+bounces-274417-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:36:56 +0100
+	id wLvoMVFDsmlFKgAAu9opvQ
+	(envelope-from <devicetree+bounces-274418-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:38:41 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from tor.lore.kernel.org (tor.lore.kernel.org [172.105.105.114])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFACC26D24A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:36:55 +0100 (CET)
+Received: from tor.lore.kernel.org (tor.lore.kernel.org [IPv6:2600:3c04:e001:36c::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 416DD26D262
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 05:38:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by tor.lore.kernel.org (Postfix) with ESMTP id 748A13037C22
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:36:49 +0000 (UTC)
+	by tor.lore.kernel.org (Postfix) with ESMTP id B7ED7302D5A3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 04:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE018396598;
-	Thu, 12 Mar 2026 04:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFC139657C;
+	Thu, 12 Mar 2026 04:38:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FMjyh3dt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cgS2pzQW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99721397682
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:36:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.219.45
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773290208; cv=pass; b=r/tsvlDDgULvc+1ErtcEfz70xD7wHzJtvbGsTjFZjLeVTD8Ka9WnNAZ9XfsrZ39DpLI/SDjjPcSIRwf+Xxkl2u7/W9k8bvruD8ZQBzTVjumj3p/Amem1I2GYRiOfngplSv07asow7YqwMlRV28IyeXkJkI4QYI1BydhNzzGrVi0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773290208; c=relaxed/simple;
-	bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=tHadG1o435qutFGQitXEpLKp9bUNwRuXg82uBvaQKWqZuoQ5FRiefCcbBYuz6o5TB0+LDf9Py1pFkHvTllXmtDwYgpj02YS/ecnZTcNQY5ApSMMptDcRJisx7sdMf66h446hPsCvuY76HKW0EJ7yPnNvZhZWXRAc6ECXcbMuM9E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FMjyh3dt; arc=pass smtp.client-ip=209.85.219.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A1F373BE8
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 04:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773290318; cv=none; b=b+73kwmggYRxC4Xy0idJlxtFsqo3SSyOcNC+dxgZpZH9ejlm5bKoltch/4ntgJxdRinyp6hBsGptwv0Zro2wN5R8M1gmUhFGjMH1l3v13U7USe4OgMeX4GlTzw/T9njT3KVVxRSx5xvZz4WzPJCNrRYp6W5KqccLzpBJef0RFkg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773290318; c=relaxed/simple;
+	bh=4mPW2KCDwFnBKr4La5QSPbgANUaDPcsaWqjSYRaqyCY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SCcQVeHiErR0D7OiaFTTMx1BGHHk0ckHb/er5R5ZUPpKlSe7rqx8lm/lpSI+I/in2ghiYd+0McdLYV/ltLUOOy+G00QogREdA1y4JLtcIzVXb1U0eZDmMnv27lwSYKQTb0hgFW+wIA6hxsGxlh+1sMBIDGbwb3NpEPyzw0/JW/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cgS2pzQW; arc=none smtp.client-ip=209.85.216.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-89a0ece9f14so7246026d6.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:36:47 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773290206; cv=none;
-        d=google.com; s=arc-20240605;
-        b=J4UXo9f4qf1PFfTkO5j8Poeck/PXeyNcpo+/N+hwlqsbIa3oe2Y9iqVB1QTLwCAoME
-         awpO4UClR3RkXYq/5mt4rE9YjvYyA5qNo0qkLPEs89Gx0BafgM4mFvha1K7SjmziBv5c
-         bXRNtCOpVVieCwp8K5w18mzi2giIMp0bptZr4GluFV4BbGPjVeoOoJ4cvUCCNrA7m4vz
-         Fp5WcI1TuAOLjb7xPlnHR+7818fduT+EdwTftDs4eBRHtDI/A8DWxV7Pu2HsMCbBTHRK
-         PEzSGNBtcsB4m06ZL5tUN7URd9lC/C4mtJTyS3jMr3MVCJ4HYbGDcR4uJKbFc0+wAFG3
-         mu5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
-        fh=2n319zc/IKjnt2nByAXSZPryITzJmFJz3hYqsvCEIGI=;
-        b=I6LfcnF2Tzo5V6EGhzfvwiCSisKl56k6DrOoC0LrtO4N4NdqnoPLkz1Hx/W2oc01NR
-         X8AGC1i6jN2EipPXNd1orT4wjr12pnYQUBlbtfmpdv6QyK9A7ZHCzZi8PZqgraKLSFX9
-         bjjVYUos9PMatusMZBxFIQNqh6CABaW4odBbCVT7N4ptWheJtqJvdwtEUWghSg4GYI8G
-         hKlW08IxQFt4uGb7VbpPjzyHzT601HbSOX+t7zSCXZ86LhdymWby0jSB0Sc8RiJh1u7F
-         AnY6hHWK3BAJque/ZIzBXb4wmIBBhpePhtFhchJWl0VtmUc7JVVDKgugr61S1HJ14Esg
-         iFzw==;
-        darn=vger.kernel.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-3567e2b4159so263298a91.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 21:38:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773290206; x=1773895006; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
-        b=FMjyh3dtN2oHj3I54Kqz02eZJ6i0M6hL5EOEoYhXDU8JpNxQ1J+qFlpWaKwkTl7vtT
-         Yb+R/ycqDtA1Xy4h74UGCZ9pjOXIookwQSpsQ07REkWnK6EqOj6BvoL467537iMvR+af
-         pbNOQ2JQ87o/VX0HBiM4BRO9tnIDeFmo4dHp79RIftZEkNYqZmyZ9LLpdzLyTjwpLZAx
-         BMjudBbjG8qbIQCWrtsLNo480tH3XZwwCsbe2b+jfHm6UZweq/wf6LBOOOyYiQbQVOV1
-         ilIajVyEOz2HpgB0yUTbbfRgTn+SDtY3KXqcvOLZPzJWyPhnNGCHMM0W0CTtOY8dgeUs
-         a8YQ==
+        d=gmail.com; s=20230601; t=1773290317; x=1773895117; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=G86kT0pIOAFLs1KKlevO+I1uz0hOs9nckbA6KVOb6Gw=;
+        b=cgS2pzQWB7LSDt3clwc2TNtamOXBZ0eZ2ApV0ATgdxdAT+gNvnHu48YYS64m9NfPKR
+         95iKhN7i/AF8CViOa4jWVkYCtWoIvMmjaQsJHNqQY0PTncbPugs6sKhxeCwXXW673gM0
+         +uK3TzNfHTk9qmLOUdfTNIBdnGeAe6IVuNkoKVHgwFSynRlli0dk/J/vI/C7HuNmvHTI
+         +72qleymJoFNZYrn3QGslBnJLzEwnYY57OvFaQEKfftKP8INmg7jcKKlU6og+jRQpclV
+         YH3R0UmZAWs3zPP/zoOIidZbKOJ0+R3Lak68oorcSQT6gTIAYJne/j+x5/hSBA6poebR
+         0hVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773290206; x=1773895006;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=cr6QRlE97B26XWoApElcaPZVstrR5FuQHwzvCKtLY3s=;
-        b=OYgcEeGyVi7K5IVTqfe/QuD95fTjGdF3+X1y71BtGUg7uMxGjxjnLwx5OQxQjaYdLX
-         U/Rh60b0pIKbuqkcGRJmt68enQgwc3OAADW4+SjIAa+7Kv2YMktYu2ZwYr5RkcXNuoMI
-         EDu8gXWPivZ+/Nq4CVEU8ZNK65bzN7uSB5H6wkPoxIVzUg/j3gDS9JwNghP568B/TtLg
-         N4Wu+NomSDsXqXje/wrKHLsQ3wsat/1uy8P6xTWK5me9AA0nSh/XYFBnzdns4yI0rgXG
-         d3UoCwvVlW9UCtAq2PkVlSwAV4FixgG5Px/aE5XU9l/PCLDePEvQ7QXecPCMqF1rdPIA
-         7T6A==
-X-Forwarded-Encrypted: i=1; AJvYcCXkJoyx1XfkEDHVSZw+Wdg2+F4in7XnpVYQdY9tL+25NgQIvLSWnAk5ECLHWlK4W2pz8OMEyVmGTlFG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJKud+xWBpRPCk6o/LZ7XU0h5j7oc5pxe03hSnVkKo4gKEedzc
-	k7xtSeznTjMZp39LXzH8Vhv2PC0Q6lHW5N79MrplddTRhXlRbxsMWODXrCGqGl2ySi7M+42E2yk
-	4Le7E7esfyMN8YgC/gCNYmHdiYb0CZXc=
-X-Gm-Gg: ATEYQzzRJI/oOmyk2CJCPu9WsbPU1Ew8opZPJr3sUn43WCqWFWzMw5KeViOhdkTL1OC
-	OIx0o3WOn8YOd/GPbsD4nEC3dbz6lOvyZB4tY49E3/3iR16fK3CVs1Q9we5iBcNqDo9q6viRwYw
-	LZi4sc0dTPdEp5ZjNN45xBMZevtM3Bw52eZIPWuBb7qIXWGd4pDlr4sTA+K31SPDhDJzwFm4nQy
-	oWyYeMBJCflsDQBvrxAuEix3K6NuVvpKhS4IJ3WGKBaRNSHt93RL526EP++m++mApqedOq8nFUJ
-	C8B0TYgKl6l982OPwP2AqoUXpQ==
-X-Received: by 2002:a05:622a:1921:b0:509:17e4:ceff with SMTP id
- d75a77b69052e-5093a0c6df7mr62767181cf.31.1773290206588; Wed, 11 Mar 2026
- 21:36:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1773290317; x=1773895117;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G86kT0pIOAFLs1KKlevO+I1uz0hOs9nckbA6KVOb6Gw=;
+        b=JnH1bIGF62qk0f5MPnZcTzqth51u2YvMtR+0mDf2mNRfqutq58NPqG4iq9WQOl4CSE
+         kWOwoeQkKhQfop4SBiA0BFKFsYQCDTbPNSZ05MFU0xeQk/6Pgh0aZl7tjRTbornv0A/x
+         tJkz/1DDRUb7+lX/FQE1V1aIjssb9dAT0yNgpbZPepBpJxBhQjts+Kq4HQD1Y0yYWvIw
+         d9BnXqmZp0QfVKcUwgeDfkR+Yr/LiF2cfug2+KBKQEsJNSb8SvcbJkv/u1do8BOlhDsn
+         z4DlEYrX59MVBBoeNQEq4BaaAD8OzTo/eVpsiFsHHwYrkY4RgqXvL+5XVs9bvvYa+xeG
+         ehDg==
+X-Forwarded-Encrypted: i=1; AJvYcCXUpOb9Ol7dclHPz/S/3SjbX+GGVMR2Jqren9Xn8aVUJ43L3Pg6rhjTNCYhogFdiGD6Y/lImFl+NIq6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+DUA7bTYpG/lOQUnmED7LI3DZnBbCMsm9wlRSDfdp7yXHFqyT
+	CJvbSW4d6p3OIDGMO6nBgLMJVRzpPvKaC6bh6WNPc7tBWqavGB9nJiGH
+X-Gm-Gg: ATEYQzw6KKDVKYHN0wpMkVyBmz0WSwWNi4I3hzxVV7/Iuub5ma+dBvZaCaucfO8jPDa
+	NGnyl3Q/Lp0Fh7OnJWwsvgbGxvS6cOZ4PVZqwRBBPnwahbZnzY0IMW0MSEwe7liq2+FS3S2EZcg
+	iyFts7d0NSZT7L+JSgLQq3stshpsn208Ej9VpzeAwVtHedAXzgQkDDRK+XuIfWwiIqHnXl5OByX
+	6ZFLVrl9nnL0tt3NOeUJIDkdxQeUkRYv4tCWsCxQsaCQqZeeCUZwVq/0QzZ6kj5IvnBCCQFfzf8
+	zQAssMNUEd8JWjVnAF33xYbBObT0bpmd7SEMTIcAFlMUG9fpk3Zv73JazosYZCVeINEhbTC4jPs
+	q7v6f+//AWO2hBxt0Ljq6+s83Ydvw77VeQye1L3BMkg4G5ANa/OBe41i8LM4qWcmUjN0cQxSBRG
+	ZYcD6AqnlqKZe7yYaipi09PWsvdVqssTvJqnfRXpwVSo/QH3rgbyuwkGe+IQg=
+X-Received: by 2002:a17:90b:1d12:b0:35a:3e2:7cbb with SMTP id 98e67ed59e1d1-35a03e28b34mr3993313a91.29.1773290316882;
+        Wed, 11 Mar 2026 21:38:36 -0700 (PDT)
+Received: from test-HP-Desktop-Pro-G3.. ([103.218.174.23])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-35a030490b9sm3793460a91.17.2026.03.11.21.38.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Mar 2026 21:38:36 -0700 (PDT)
+From: Sudarshan Shetty <tessolveupstream@gmail.com>
+To: andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	marex@denx.de,
+	valentin@compulab.co.il,
+	philippe.schenker@toradex.com,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Sudarshan Shetty <tessolveupstream@gmail.com>
+Subject: [PATCH v2 0/2] drm: bridge: ti-sn65dsi83: Improve dual-link LVDS support
+Date: Thu, 12 Mar 2026 10:07:41 +0530
+Message-Id: <20260312043743.261475-1-tessolveupstream@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260304192417.818211-1-akkun11.open@gmail.com>
- <20260304192417.818211-3-akkun11.open@gmail.com> <94465ca7-b3dc-4736-9d58-4024f2494e54@collabora.com>
- <CAKr_iV5cmE-GBp679Q-=bZi+186BvMvD41ctxnxNC3mTKEzuRw@mail.gmail.com> <0994fef0-88f2-4277-aa46-0b6a33c53bfa@collabora.com>
-In-Reply-To: <0994fef0-88f2-4277-aa46-0b6a33c53bfa@collabora.com>
-From: Akari Tsuyukusa <akkun11.open@gmail.com>
-Date: Thu, 12 Mar 2026 13:36:36 +0900
-X-Gm-Features: AaiRm52b3iO4YllKLxTy076zO5CoI8gqzYjvZNNALgsMyNPOjlsY9BPqBID541M
-Message-ID: <CAKr_iV6tVkT1be8EjXoNjMerTek0s79W2-n2shzt-wrmB1bYgA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm: dts: mediatek: mt6589: add basic support for
- Lenovo B8000-F
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, sean.wang@mediatek.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spamd-Result: default: False [-0.66 / 15.00];
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [0.84 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:172.105.105.114:c];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c04:e001:36c::/64];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274417-lists,devicetree=lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,mediatek.com,vger.kernel.org,lists.infradead.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[akkun11open@gmail.com,devicetree@vger.kernel.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,dt];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,kernel.org,suse.de,ffwll.ch,denx.de,compulab.co.il,toradex.com,lists.freedesktop.org,vger.kernel.org];
+	RCVD_TLS_LAST(0.00)[];
 	FREEMAIL_FROM(0.00)[gmail.com];
-	ASN(0.00)[asn:63949, ipnet:172.105.96.0/20, country:SG];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
-X-Rspamd-Queue-Id: BFACC26D24A
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	TAGGED_FROM(0.00)[bounces-274418-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tessolveupstream@gmail.com,devicetree@vger.kernel.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	RCVD_COUNT_FIVE(0.00)[5];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:63949, ipnet:2600:3c04::/32, country:SG];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[tor.lore.kernel.org:helo,tor.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 416DD26D262
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 6, 2026 at 11:06=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
-> Ouch. Well, it's mostly done then, hopefully sooner than later :-)
+Hi all,
 
-Thank you for your consideration.
+This patch series improves dual-link LVDS support in the SN65DSI83
+DSI-to-LVDS bridge driver.
 
-> > - PWRAP and MT6320 PMIC RTC
-> Start upstreaming the RTC (and MFD parts) right now maybe?
-> That all depends on the actual state of things, of course.
->
-> Remember that you can upstream whatever is clean and works fine, that doe=
-sn't
-> have hard dependencies on other components.
+Currently the driver programs identical horizontal timing parameters
+for both single-link and dual-link LVDS modes. According to TI
+documentation, when operating in dual-link mode the horizontal timing
+values must be divided by two before being programmed into the device.
+Without this adjustment, some panels fail to light up or produce
+corrupted output.
 
-mediatek,mt6397.yaml says that "regulators are needed",
-so I have to complete the regulator driver.
-It will be completed soon.
+TI also provides recommended register settings for dual-link LVDS
+operation. This series adds support for an optional DT property
+ti,dual-link-video-mode that enables the required configuration
+in the driver.
 
-> > - Power Domains (scpsys)
->
-> The power domains should be handled by mtk-pm-domains.c - not sure what y=
-ou wrote
-> but if you did it on mtk-scpsys.c that's wrong.
+When the property is present, the driver applies the recommended
+register settings and uses a simplified DSI video mode configuration
+to ensure correct dual-link LVDS operation.
 
-Ohno! I wrote in mtk-scpsys.c, thank you for telling me about this.
+Summary:
+ - Add DT binding for ti,dual-link-video-mode
+ - Add driver support to enable dual-link LVDS configuration
+ - Apply recommended register settings for dual-link operation
+ - Adjust DSI mode flags when dual-link mode is enabled
 
-> > - eMMC/SD (MSDC)
-> I can confirm that the MSDC controller in MT6589 will work with mtk-sd, t=
-here may
-> be some very small modifications to be done.... if any.
-> The mtk-sd driver does support "very old" SoCs already :-)
+Changes in v2:
+ - Introduce ti,dual-link-video-mode DT property
+ - Add DT binding documentation for the new property
+ - Update driver to read the DT property and apply dual-link
+   configuration conditionally
+ - Adjust DSI mode flags when dual-link video mode is enabled
+ - Update commit messages
 
-I forgot to add "CONFIG_REGULATOR_FIXED_VOLTAGE=3Dy".
-SD is working and can boot from it.
-However, increasing the frequency causes errors,
-so adjustments are necessary.
+Thanks,
+Anusha
 
-> Keep up the good work!
+Sudarshan Shetty (2):
+  dt-bindings: display: bridge: ti,sn65dsi83: Add dual-link video mode
+    property
+  drm: bridge: ti-sn65dsi83: Add support for dual-link LVDS video mode
 
-I will continue to do my best!
-Further news will be sent via patch.
+ .../bindings/display/bridge/ti,sn65dsi83.yaml |  9 ++++
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c         | 52 +++++++++++++++++--
+ 2 files changed, 57 insertions(+), 4 deletions(-)
 
-Best regards,
-Akari
+-- 
+2.34.1
+
 
