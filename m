@@ -1,310 +1,219 @@
-Return-Path: <devicetree+bounces-274448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274450-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4NqKAGxfsmlmMAAAu9opvQ
-	(envelope-from <devicetree+bounces-274448-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:38:36 +0100
+	id gFfNLRdgsmlmMAAAu9opvQ
+	(envelope-from <devicetree+bounces-274450-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:41:27 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sin.lore.kernel.org (sin.lore.kernel.org [104.64.211.4])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3879B26DF75
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:38:35 +0100 (CET)
+Received: from sea.lore.kernel.org (sea.lore.kernel.org [172.234.253.10])
+	by mail.lfdr.de (Postfix) with ESMTPS id 637C026E00E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 07:41:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sin.lore.kernel.org (Postfix) with ESMTP id F0DF7301731B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 06:35:01 +0000 (UTC)
+	by sea.lore.kernel.org (Postfix) with ESMTP id 1C4D4301CF9F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 06:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 306DB3A1A2F;
-	Thu, 12 Mar 2026 06:34:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2A43A7593;
+	Thu, 12 Mar 2026 06:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fJUnzsgT";
-	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="U6P/DtdB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eapm8q3E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD38339E6D4
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773297298; cv=none; b=JrIK86QivRCOYGCD/KM4kbkzPm2rIwBmq2dQsneNTVnbC7zAFKKE+62L7IclJvD1VVL3Q+teENc05k+lye4MDM5kLUO7Oi4ny9JTN59pk4jkEyzyP/WsyErh59poYAhGE5zMQ5UIQcyvn0pkwsqhL07ndQ3RHGVliIpgZZatw38=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773297298; c=relaxed/simple;
-	bh=FUxUDh7qrm0oeEUmw+VjOZXnXxJtzKNzhMYElE8ggBE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tP+TKuhLz+NhxlXH7MKp+zGtF2CWWUvN4Hui5cip4+5XgPvBU9plRWIaebjrt52jHxImpAw038ll1uSVipgFV8VW6oIny+yjOtN+xLt0BeywzG65A8pONleGKN+CfWBVkM/lY0npM3bpA69HBKsMrhY+D1iXYLM22i8xGxG2+rQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fJUnzsgT; dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b=U6P/DtdB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 62BMN3944025771
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:34:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Gx9so5/H9hADS1SBta9ddxnmlLWWD5M+F9fr6sL/dgI=; b=fJUnzsgTR1TwQO7b
-	fRFP7fvPGypOcU9Mps1AUjaykGTNGki9KobVoX09LAwwxETI08UCbhhWDiwdYVeQ
-	U2NC+PwBhb66oMxrq6yTraQ91XQee4vmEuj66eB8Bhjt8PoR93CJynkuGdTqag24
-	flrQsP94HIA572XJR+kQ2Il1wk9vjM+GqpMPTLNsCkvMWnuSBHsyWwrhFqcBCFfU
-	qiXBWDYQgQNjTeSJ9IEJZgtyLEdDRdWh24QTZuKZkJUdgW3bniqwpcU4KFOOECbf
-	7Rsw77LKDF0T4DsFhawV2dDR0IIrZd1SCT+931qJGYo//rFLnK358aDdU0W2Pq9i
-	qaRLhQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cuh50s4gu-1
-	(version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:34:55 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-8299499d582so2667940b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 23:34:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9A53A5E75
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 06:41:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=209.85.222.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1773297682; cv=pass; b=EldQwZick6md0JTaMzvjPwV8ADh8eLRPxFabswk3Wa99038onTNEEC/QgSux5olN9kvqCcAHbMAw6Ay9qBVumr9NmchdJwDEnOkL2pHU2IfkW+OHrsOdWjeOYGZWkWGwHeYevUIkRA9RSyE6La/5XX7OVqMuMKMp59e4WGvO6Ss=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1773297682; c=relaxed/simple;
+	bh=ruqRuW5SL/WOPbRDc7f8nNsrXjE37PMZPlSi9lQGPBA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GkUDeXdi6MqFKVJjYr62ceua7kJVQP7LnKRYL0QJcmBaBydoHZbSoyvFHBRZRCWPw/z1NcupUQV0+4LsM6N8QZstkbCl/2sA9SFCIJxNQS6J33rF0/cedFWKYkPPpg9kafXlmaf4cquRhJwfSnIso22XVjRAxKve0rhOl7sM1fw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eapm8q3E; arc=pass smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-94de664b541so175915241.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Mar 2026 23:41:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773297678; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bGhh9d451P7sLw6CLVZhE8h7IidOoeN2rfyS3B0APDtpzjZ/gqKy5uso9CMecoRsmg
+         U036RdV+7SiSowGVfBqF7DVZZUFiDOUaEkpFoZfVtUDB4mwtMpagne+yEzn0Ne2JQHd1
+         eVuVzm0bLkxiAuunsRT1cIDfvwzZii9GsSBEVA211WaCg8A01K4k2fJ0xtnrqcfZZnyR
+         LXXH5/HrFE+0RjpjTd4FvmHunL5NWNehPtijYkHRQBvcKTE3pC1mVkqCGsepVWNB8i+3
+         1hOtrd9gGR5ZVFfqWxhiv6gdnm/uy+IZyXdnDCmG8+fu/vmjwaXffQpp8k7xasDl0Kwx
+         FUKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ruqRuW5SL/WOPbRDc7f8nNsrXjE37PMZPlSi9lQGPBA=;
+        fh=EQicRYv4WeMmhQx066Luj0dFdjrlOtkU+WCj1e2+LA4=;
+        b=U08UXPM5JPQOStd7HowGpQ32xEcOrDMN2VWpPI2xXSV2FVSK1tCNHCm2cp+8LUwt1L
+         ja0CDKyr9zpTSfcp6IsesiTMMtr5V31zXEMjbJ8iUCmfWHG8TstVLdV2CPbyemxfKtgD
+         q2u0UrwMZoMvVrPHjhk99HGZ2PTRZg4m02VIdy3cugFrQK8L+MIPK0eO8HhAQD6yZLqp
+         s73BvNBhm+dOlGW01D1jvRRRn6oEwa35TpdhK9S1aBAFtESd8h8mCYGE9EFm0yGmvSXk
+         uGsbhDuCD6mIlUEnTSu+MjJmQ3VAKh16eGAX57S9wNYPNFm4yNO6fm/XGMZpa14hAIzj
+         MgFg==;
+        darn=vger.kernel.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=oss.qualcomm.com; s=google; t=1773297295; x=1773902095; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gx9so5/H9hADS1SBta9ddxnmlLWWD5M+F9fr6sL/dgI=;
-        b=U6P/DtdB08TBVG+0qap4aKucdjVuGRa1dDzMx7flcKNQvze0jkoY9OP+vvWW3J5JzX
-         Sn/ERjwUHSu36uacF1w4SqFCI9HcYwowaJRs693/alshyNnQnJjGBumS1weixLwaVbyK
-         cUrbiBKojpxW5SWlP6PP/cpF3P+ZkeLN7xns5SZZrt0chKheCv+wM3hPOuFiM4uQ09cH
-         OVtGZfbjQ+VYIwAjXfWRWGExOEmPb/ba+ofNJwitpS7FkI9Ad9U3+HSfVg1oqvHgHICO
-         W4em+fXTja2lHb7eTWfzkEnI1EMEiZYCRMHH0Yep0mYDn0vbNIlEqS2F+52ZYWbzQBsI
-         7L+Q==
+        d=gmail.com; s=20230601; t=1773297678; x=1773902478; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ruqRuW5SL/WOPbRDc7f8nNsrXjE37PMZPlSi9lQGPBA=;
+        b=eapm8q3EK1SFDMUx6sCVYTTiHPWhq1cZUUR9TVZ2sglxTNXndvaz3TIWtFczNCaJSz
+         yWkAcPSypiKssA/7J7C2wk9ep1D4D4IFKl0qasLHySpk4hFor0X9o/FLC92NmbvyZKB3
+         HrGu3kO/meF3+hF7n7hjWnyaUFkIEjEz3S3PuOviCMvAavVatmuqK008wzWo6q/P9tfP
+         xGPa6eNn6UNKizJAAxW+KxqYxrAZygXvPJRUjx0RrHHOPH2VeoL85TE0dBeX+N7+NyE2
+         9lrIOEAAERQaDHgJWnL9C1E/xNN7hKFsdwkwWnH7aIzAirZdJFH0Hzpu0h12qsaceTOg
+         nq+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773297295; x=1773902095;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Gx9so5/H9hADS1SBta9ddxnmlLWWD5M+F9fr6sL/dgI=;
-        b=nTpERX5q4xcPzq57HsrYgzxHhOaDd5eeedyZOlFALROATQZskB4HtFqaC87x6ZHaxn
-         x0Y6badK+Qw5SsoAoMJm4s3ALb5iG15M2T/XNd2yzGX8tVecW7kThDLWuiWhnN0d7fan
-         oc6tPbveI1XUv13qSd7NYKB5j7vq4QPRcy9U7SuSZdfl2SGKPZ3xWa6D/DXt70Vbz1hh
-         bgVLU1eN0n+Mr1CsOUTT5UEIOp+TCgpCLh1tIrH9amEq6GQqTvDfWV44K4he1fjMy8uO
-         gNmMHJ3IC3pvZ3yo0bB24JlCJHCewO6lkUtDddG2i4BMnZE3BPOxeLilMN/NzYfzFc8b
-         2TZg==
-X-Forwarded-Encrypted: i=1; AJvYcCUKTMuAXY/oevwiqbtTfjYopLIBIkE3yLy9MERMITt5v2vZJBzs3j+zW0U14WXL0gY45kmtP2RwhpoY@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7fU0lHK1lFkKpxZU9rG6200pQA0e1U7RdVvqx85S3az/+MAEg
-	1cPbQNCqyQr3BbMXVNVWHuBLbPojgF/rjJIXa1la8OcxMv+tpuIO6zJNsL8PU8TEanpM7q9s0Di
-	Tq8kZfvIEfa3//8DHgOvjH6oTLRwgKro7y2fPJSw2dCli4GaGwqzBAiWDThJr120F
-X-Gm-Gg: ATEYQzyjzyrTXhiGqVl6w/AHv5tQotFeV0bj0DFX5fbqrtT6+YQ6x0ZqjIKJ/bktGUY
-	CVvIkoCb7WYgFsFe/HPIqHx1vWbmvYJrgIQUz5VgevZ/73SHbF2NqrDg/Aeb4nnj57oBAd+TzVs
-	4Lyn9Xzx8EVQ1lZ0E6Hzf9UErV8fTAZ0Z56Y7MwhCSGxKtOZogcKuBQLm4n0FCxLMY3PjT4WPqT
-	dq0v+nEUBQqGMagDXRUe9bvRkor7LQvJPzYggwHtqoEKjxrMiHNv8ZgBOTVwZ4wR5YjFMC6+Sek
-	Jknm7eupLHXbeGgM1zqlkvObT81QBJn65DI5M3n6B2xe7pMiCMBA1L9fpOZ084I5jSks6DaGFG+
-	JSfYmIttuOZn8TmLFGpr6ortMdG0sBSP8o+4c4gzEYb2H35rcZXGgx04=
-X-Received: by 2002:a05:6a00:1912:b0:81e:c5a:8c25 with SMTP id d2e1a72fcca58-829f7150647mr4231807b3a.44.1773297295223;
-        Wed, 11 Mar 2026 23:34:55 -0700 (PDT)
-X-Received: by 2002:a05:6a00:1912:b0:81e:c5a:8c25 with SMTP id d2e1a72fcca58-829f7150647mr4231790b3a.44.1773297294709;
-        Wed, 11 Mar 2026 23:34:54 -0700 (PDT)
-Received: from [192.168.1.8] ([106.222.235.28])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-82a072612e2sm2132526b3a.21.2026.03.11.23.34.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2026 23:34:54 -0700 (PDT)
-Message-ID: <0bf0a64c-0f05-49ea-b7a2-e1b1345a3d7f@oss.qualcomm.com>
-Date: Thu, 12 Mar 2026 12:04:47 +0530
+        d=1e100.net; s=20230601; t=1773297678; x=1773902478;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ruqRuW5SL/WOPbRDc7f8nNsrXjE37PMZPlSi9lQGPBA=;
+        b=h2BC7h+yz3vQzwOn+UHIGH8uqy/720cC7RJxe3tIVb21JKu7TZ2iqVHemnLUn0dq/i
+         17byYi3A2zAESX7Qv4GfaYyqW7mz1H4Wyp88KlYB4Hvy79R4Bt+OjTbHkZPdDHfiwYa+
+         VWHn3QbvuBjhEPZhkhttkmke/m67AUoloD4+2+IKx2lrpa/3wcGz6EgQOo1xzDd9XzTM
+         LAEYBuhA9ZzoN4qnmpumpDzJWzpXt403EjeV762zJMU1TP+3IG40QLsPjx4NOtzyR1Ff
+         REsSgciQ+kdCF20p7cQz7tdXFAhZjtOP1I0nd/mPgTWUN+VZef6TapAKV+vuzXaDcvLS
+         5sxg==
+X-Forwarded-Encrypted: i=1; AJvYcCW3AHolgyGGo3iu2fJPMhjJ7bWqsZF6j99jnQ+GuTb3hiFPrnl8FcNfyxpAWZlPe1VxdLKs8iFzDTNS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwO1seQf3Ob0iR2yXlVNJm5V1ULN9OzIhegpXZ1JY4eCfBPkSRx
+	5wdw5YU030LQoh7I2ZskQuLCbuzzUcncSYmZcIbugJoJKNSnbtGBG51/PtVK7elo71P9QwdSqi+
+	D0ZAlQiUaY4UUZ/xDVYail93ymkzytZWynmaJRhZxKQ==
+X-Gm-Gg: ATEYQzy1VB73vr+y4AIbTv5ureA3fXSIsOW/93ynNC6gBP+C/hNC8DWJZ7KDX9EWVzB
+	qtVJ85OQNNe7JYm5cWiOS1V8Ho+0DNKdEmWosmdEkj/w3htGRak5L81RsidPVQP474UfriwblfY
+	s1I9Gs7WTeNbdqslEJMZqFkmB6F72eKMgWm064Wy14JyOFImlmWJK9ksPDFiG5rUjAaX8dy0H/a
+	z1ZRV/LSyUg6ZuYQdDoo51g6kBTHg5qRCPWUc2gzNsfiy+pYWcGy2Cu5iGqe8cE0MY7DdRRWY1W
+	Td9jDpt5
+X-Received: by 2002:a05:6102:c0b:b0:5ff:dd9f:3ea1 with SMTP id
+ ada2fe7eead31-601df08a60amr1728016137.39.1773297678151; Wed, 11 Mar 2026
+ 23:41:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: qcom: qcs6490-rb3gen2: Enable CAN bus
- controller
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
-        mailhol@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
-References: <20260108125200.2803112-1-viken.dadhaniya@oss.qualcomm.com>
- <20260108125200.2803112-3-viken.dadhaniya@oss.qualcomm.com>
- <n6affntgff5wy4xmm255v5h2ejpepicpz2cybcuvsxmry5td6u@jucskv7zrzvv>
- <5cdfe5a5-3c78-45a2-886c-768b224ad776@oss.qualcomm.com>
- <wbx2qrkhpsntggzqkzkpi4sa6qv3buhkjbwmjoa7zgw2oc4b7u@qugyhcxb6qrh>
- <316fa702-6cd8-4842-aecf-c176a5a53e2e@oss.qualcomm.com>
- <qvuokwiqllm6zmlzj3pfvziylrr5krjya5rnf3ojeycdoutlro@fl5qukh4vorm>
- <5486697e-d02e-4b12-9a60-99d0de343515@oss.qualcomm.com>
- <2ho25tzct6t7gsuyufyg7m4a2ikmblhukb4uddwc7p35wd6yne@heippz3lh4kj>
- <465ab63f-3d0c-46f7-a08e-cdc5fc26b600@oss.qualcomm.com>
- <73nfsa3r3isf2shizemroctjpleya4wnnel634g7b5qyvvmze5@vre6wrdxxpet>
-Content-Language: en-US
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-In-Reply-To: <73nfsa3r3isf2shizemroctjpleya4wnnel634g7b5qyvvmze5@vre6wrdxxpet>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: qJbu209YArtleMAcnEzOpcVob20NakIg
-X-Authority-Analysis: v=2.4 cv=LvKfC3dc c=1 sm=1 tr=0 ts=69b25e8f cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Kc38NYG6zNWDZ5XZA/lzmQ==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22
- a=GPwEFdiLN6RVZEhl-y8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-ORIG-GUID: qJbu209YArtleMAcnEzOpcVob20NakIg
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzEyMDA1MCBTYWx0ZWRfX3/FSUsJAnwnV
- birQfUu6mIGI/VoQHzbGDImeEjSjVE3ZK5eheUsB+Zeej60mSzunTPWvEGdJUZs5VghRJHk9POH
- 0efXr3BGh1m3ra8HHtgw38A6+VCFK8/hr6SQyxi2InUp2A+vz+I3Nk5X9fli/7loSArmfjiXxzy
- eAqeMjyGLmcZjPlH4nW6npc7F0QlZFABz20+ApUAR+lvN2trxlMllnrXxePkndb4PPE+3IV5Fqs
- mlZ6E1dv/n2xTWkeIwoFIyth5YhbdH0OvINDxiBL6Gn6vEqE3aPf5AOfJNiAAt5mkWFm0Ct35Gk
- sPjPojRrBylI8wQkNFtLLozJVyCkCmclydR+Xc1YjgKTJUjdaW/yEDnJzSGwrMfVj5VGc8zknMA
- UISjh9E1BjnLGojUxkcNfYe745G4qWErFJontiYSCUC3UHJNvxF9HP3IQrXGS/u7xoYnVTzNGsX
- DIe7TJfLDa0LZQu4+Zg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-11_02,2026-03-09_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 malwarescore=0 adultscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603120050
-X-Spamd-Result: default: False [-0.66 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:104.64.211.4:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+References: <CAH2e8h4R-nF+eV+OnkSySKSY5_H-V8Ndyfhac3=VNQ-bMaBeFg@mail.gmail.com>
+ <af606d6c-3ce3-4342-bd5c-ce3ea28c6923@oss.qualcomm.com>
+In-Reply-To: <af606d6c-3ce3-4342-bd5c-ce3ea28c6923@oss.qualcomm.com>
+From: Pengyu Luo <mitltlatltl@gmail.com>
+Date: Thu, 12 Mar 2026 14:40:54 +0800
+X-Gm-Features: AaiRm52ANSGIe5raH-Y5MaxjaPKZX8myZRmP4R9pHNsa95fTfc0HNUXVKy8RQA0
+Message-ID: <CAH2e8h4Vp9fJYAUUbOmoHSKB25wakPBvmpwa62BTRqgRQbMWuw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: sm8750: Add GPU clock & IOMMU nodes
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: taniya.das@oss.qualcomm.com, abel.vesa@oss.qualcomm.com, 
+	ajit.pandey@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	imran.shaik@oss.qualcomm.com, jagadeesh.kona@oss.qualcomm.com, 
+	Konrad Dybcio <konradybcio@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>, 
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-2.16 / 15.00];
+	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=2];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:172.234.253.10:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[17];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_FROM(0.00)[bounces-274448-lists,devicetree=lfdr.de];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,qualcomm.com:dkim];
-	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[viken.dadhaniya@oss.qualcomm.com,devicetree@vger.kernel.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TAGGED_FROM(0.00)[bounces-274450-lists,devicetree=lfdr.de];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:104.64.192.0/19, country:SG];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:172.234.224.0/19, country:SG];
 	TAGGED_RCPT(0.00)[devicetree,dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[7]
-X-Rspamd-Queue-Id: 3879B26DF75
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,lkml.org:url,qualcomm.com:email,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns]
+X-Rspamd-Queue-Id: 637C026E00E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Tue, Mar 10, 2026 at 9:32=E2=80=AFPM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 3/9/26 11:27 AM, Pengyu Luo wrote:
+> > On Thu, Mar 5, 2026 6:40 PM Taniya Das <taniya.das@oss.qualcomm.com> wr=
+ote:
+> >> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> >>
+> >> Add the GPU_CC and GX_CC (brand new! as far as we're concerned, this
+> >> is simply a separate block housing the GX GDSC) nodes, required to
+> >> power up the graphics-related hardware.
+> >>
+> >> Make use of it by enabling the associated IOMMU as well. The GPU itsel=
+f
+> >> needs some more work and will be enabled later.
+> >>
+> >> Reviewed-by: Abel Vesa <abel.vesa@oss.qualcomm.com>
+> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> >> Co-developed-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> >> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> >> ---
+> >>
+> >
+> > Hi Taniya and Konrad, GX GDSC stuck at 'on' on my device
+> > the raw register values are
+> >
+> > 0x3d68024: 0x00000000
+> > 0x3d68028: 0x00000000
+>
+> These likely indicate that some clock or voltage rail is not accessible
+> at the very moment you're reading them back
+>
 
+It seems to be harmless. In the downstream, they are always zero too.
+TB322FC:/ # devmem 0x3d68024
+0x00000000
+TB322FC:/ # devmem 0x3d68028
+0x00000000
 
-On 2/18/2026 5:49 AM, Dmitry Baryshkov wrote:
-> On Tue, Feb 17, 2026 at 12:15:12PM +0100, Konrad Dybcio wrote:
->> On 2/4/26 2:09 AM, Dmitry Baryshkov wrote:
->>> On Tue, Feb 03, 2026 at 05:07:11PM +0530, Viken Dadhaniya wrote:
->>>>
->>>>
->>>> On 1/19/2026 11:59 AM, Dmitry Baryshkov wrote:
->>>>> On Mon, Jan 19, 2026 at 10:21:37AM +0530, Viken Dadhaniya wrote:
->>>>>>
->>>>>>
->>>>>> On 1/9/2026 7:35 PM, Dmitry Baryshkov wrote:
->>>>>>> On Fri, Jan 09, 2026 at 06:23:39PM +0530, Viken Dadhaniya wrote:
->>>>>>>>
->>>>>>>>
->>>>>>>> On 1/8/2026 7:33 PM, Dmitry Baryshkov wrote:
->>>>>>>>> On Thu, Jan 08, 2026 at 06:22:00PM +0530, Viken Dadhaniya wrote:
->>>>>>>>>> Enable the MCP2518FD CAN controller on the QCS6490 RB3 Gen2 platform.
->>>>>>>>>> The controller is connected via SPI3 and uses a 40 MHz oscillator.
->>>>>>>>>> A GPIO hog for GPIO0 is included to configure the CAN transceiver in
->>>>>>>>>> Normal mode during boot.
->>>>>>>>>
->>>>>>>>> The main question is: what is so different between RB3 Gen2 and previous
->>>>>>>>> RB boards which also incorporated this CAN controller? Are there any
->>>>>>>>> board differences or is it that nobody tested the CAN beforehand?
->>>>>>>>>
->>>>>>>>
->>>>>>>> The behavior is consistent across platforms, but I do not have details on
->>>>>>>> how other platforms were tested.
->>>>>>>>
->>>>>>>> On the RB3Gen2 board, communication with the PCAN interface requires the
->>>>>>>> CAN transceiver to be in normal mode. Since the GPIO-controller support
->>>>>>>> was recently integrated into the driver, I configured the transceiver using a
->>>>>>>> GPIO hog property. Without this configuration, the transceiver is not set
->>>>>>>> to normal mode, and CAN communication does not work.
->>>>>>>
->>>>>>> How do we verify the mode on a running system? I have the boards, but I
->>>>>>> don't have anything connected to them over the CAN bus.
->>>>>>>
->>>>>>> BTW: can you recommend any simple setup to actually test the CAN bus on
->>>>>>> those devices?
->>>>>>>
->>>>>>
->>>>>> I tested the CAN controller using the following commands:
->>>>>>
->>>>>> 1. Loopback Mode Testing (GPIO hog not required)
->>>>>>
->>>>>> ip link set can0 down
->>>>>> ip link set can0 type can bitrate 500000 loopback on
->>>>>> ip link set can0 up
->>>>>> cansend can0 12345678#1122334455667788_B
->>>>>> candump can0
->>>>>>
->>>>>> 2. Testing with External CAN FD Adapter (PCAN-USB FD)
->>>>>
->>>>> Thanks! It's price doesn't make it esily available, but it answers the
->>>>> most imporant question: by the USB CAN adapter.
->>>>>
->>>>> Did you add
->>>>>
->>>>>> A GPIO hog was required to configure the transceiver in normal mode.
->>>>>
->>>>> I'd phrase it differently: to pull the transceiver out of standby mode.
->>>>> By using the GPIO pin you make it always stay in the normal mode. It is
->>>>> fine, but it is not optimal. Instead a proper solution would be to use
->>>>> the MCP251XFD_REG_IOCON_XSTBYEN bit. Could you please instead implement
->>>>> support for setting that bit, based on the DT property.
->>>>
->>>> Thanks for the suggestion.
->>>>
->>>> I tested enabling IOCON.XSTBYEN, but on this hardware it doesn’t bring
->>>> the transceiver out of standby by itself. With only XSTBYEN set, the bus
->>>> remains inactive and no frames reach the CAN adapter. Clearing LAT0
->>>> (driving GPIO0 low) is required to put the transceiver into normal mode;
->>>> data transfer works only after LAT0 is cleared.
->>>
->>> Why? It should be doing exactly what is required. Could you please check
->>> the voltage on the pin with the XSTBYEN bit set?
->>
->> If I'm interpreting the datasheet correctly, XSTBYEN only muxes the pin
->> into its function and does *not* actually impact the operating mode,
->> which would match what Viken is observing
-> 
-> See the "Family Reference Manual":
-> 
-> Setting the XSTBYEN bit configures the INT0/GPIO0/XSTBY pin to
-> automatically control the standby pin of an external CAN transceiver.
-> The pin is driven high when the MCP25XXFD enters Sleep mode and driven
-> low when it exits Sleep mode. Standby pin control is not available in
-> LPM.  IOCON is reset in LPM and GPIO0 will be configured as an input.
+In [1], the commit log mentioned
+The GX GDSC is modelled to aid the GMU in powering down the GPU in the
+event that the GPU crashes.
 
-I measured the standby pin voltage with only XSTBYEN=1 set
-(TRIS0 left at reset default of 1 = input): the pin is HIGH
-(~3.3V), meaning the transceiver remains in standby.
+> GPU support for 8750 is not yet upstream (and A830 is somewhat different
+> vs the supported A840) - there may be something wrong in that sequence.
+>
 
-The root cause is that after reset TRIS0=1 (input direction),
-so the pin is not driven. XSTBYEN=1 alone has no effect while
-the pin is configured as input.
+Indeed. Chances are that I can't enable gpu. I must reboot again and again =
+to
+match the sequence by luck, then I can enable it[2], and I must
+disable register protection.(I just noticed the hack from here[3])
 
-Clearing TRIS0=0 (output) atomically with XSTBYEN=1 fixes this:
+> I heard it's in the works though, so you may be better off waiting a bit.
+>
 
-  regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-                     MCP251XFD_REG_IOCON_XSTBYEN |
-                     MCP251XFD_REG_IOCON_TRIS0   |
-                     MCP251XFD_REG_IOCON_LAT0,
-                     MCP251XFD_REG_IOCON_XSTBYEN);
+Glad to hear that. I am looking forward to it.
 
-After the above change: pin is LOW (~0V), IOCON = 0x03020042,
-transceiver active, CAN communication works. Verified on RB3
-Gen2 with PCAN-USB FD.
+Slightly off-topic, do you know if anyone is working on wcn786x/wcn7880,
+sm8750 QRD SKU2 V8 Power Grid uses this.
 
-Should I send a patch implementing this, gated on a DT property
-such as "microchip,xstbyen"?
+[1]: https://lkml.org/lkml/2024/1/23/1408
+[2]: https://postimg.cc/xJr11DK5
+[3]: https://github.com/gio3k/linux/commit/f96512ab05a1bcc6b7e82b27f44d9072=
+38fc64fb
 
-> 
->>
->> Konrad
-> 
+Best wishes,
+Pengyu
 
