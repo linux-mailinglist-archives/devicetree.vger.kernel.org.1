@@ -1,148 +1,202 @@
-Return-Path: <devicetree+bounces-274518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274528-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGkRAMeRsml5NgAAu9opvQ
-	(envelope-from <devicetree+bounces-274518-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:27 +0100
+	id 4HX9AemfsmkOOQAAu9opvQ
+	(envelope-from <devicetree+bounces-274528-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:13:45 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sto.lore.kernel.org (sto.lore.kernel.org [IPv6:2600:3c09:e001:a7::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C5E42702DC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:26 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E18270B25
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 12:13:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sto.lore.kernel.org (Postfix) with ESMTP id A5B563019CB5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 10:13:15 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 45063300A641
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 11:13:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D7F3AC0DB;
-	Thu, 12 Mar 2026 10:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0193F39C010;
+	Thu, 12 Mar 2026 11:13:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="WVwnyp97"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABFB63B7761
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 10:13:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4359039BFFA;
+	Thu, 12 Mar 2026 11:13:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773310393; cv=none; b=IQLG9+1a0cwgqO2hrR09oqPVYkaruOMjdFBOH4Ni+7OIvOWgqKnEdM6gikNh3DmXsQZy6yJ8gnqc+E3tHtlrjleq9Ud9AvFGFINjzPWQ0U4iNZ9hnEbjOLgFsTdE7XDv4yhTEKizALDYfLvWzug+OFsL4033rU6FtKGkiCdAd4A=
+	t=1773314013; cv=none; b=NdK5sdGqCXXZwjI+j1P2N0hv7DheEO3sAenQx2skADngh6OX6GHY7ZRARRcxESHRK07GxE/O4PpdPn8n5IRhFzqJuOjPn3ID3TOiUUtim0cFu6Frsn4SisbYMFtNtetDluVzeNyeid9HV/dIAZdWw7R3eajcLt4F19jBWqKslCo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773310393; c=relaxed/simple;
-	bh=anBT9rHzajcp5J37Vaca7h+6VrrR9T6D0lZFYoavTjs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p8IETrWUYXVWGj2wjv38+J9TSgnu+kh8RgMae8/gYAz0GLHrCYXMXrKPlBLWwitZNZzy34jMOA95rgj4TgiCkk2POypXNyUUt2GaSB734/1MtrWYbOz+1xwEAhqFKZzCsQtvxrk/t4YspnL3b848TkaBIUaCS05+VqF8FedN2IM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-56adf76631cso308299e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 03:13:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773310388; x=1773915188;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mRUIGhDHBmpDT5lNoF1B+T5NZ6zsaWhp+bjML87d5C0=;
-        b=JF/hNxWhzg3KOS1ECdLJdG6jE2Rjmysqv8eTQauN4HK1wPXXj5WOI6LU7EYyuyzeGt
-         ZgVLCtUuKoLWheXkx6usq5j/AtNpP0YpnnjnkJB8VLg4MHwtibdhriIQDfpMMahHWaeI
-         uqNlWW1beqyNVbjhtJDgqEBqijM8nRA3pAxZdUWuOg3Z+NKRWxgeLpl34dMgyr2+fDEP
-         b8lCUtcaJ3RW/3liB+bTHndlL39RcfpwsfSXji5kMf57yBPwYfvuMmtqZ6Xi131BOfMY
-         zbAqNFzUeOS67DdpmNDv6SjMNiQmoN3i56uSBXwG5F5DXWmG6QfOH3adymhTXz/ykM9l
-         VsOg==
-X-Forwarded-Encrypted: i=1; AJvYcCVT/vTOH/F6bCHq8uWhpkLNNULNsrTKroZtp2+JRTzouPiz7N3Q3JPr+ulrsHpQmyr8oLZRSyyTzpTe@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBYkESrB1HXtlSIajwgW5ukgbMxC+c+8R3Kti33Mg2BIm6kt29
-	YJOQfLykISOvCFORmCcLXquLHSs3nC1KZY5bCFt7gfQssLVo3hJX00AJ+XJYuRx5DXM=
-X-Gm-Gg: ATEYQzzzNc6Ws5e1VKw0OX9+SXZS7MhXpgp1Ai6fakfKSG0PN0VeCKonmujbFBSVzMI
-	R1e0/ev5YUh9nD+fXk27cZnlsEpACaLkG0aWep3pBqRJkKDTTj7QnAqQ38DdfdAFWLdYYdQUiky
-	awF/G1xlYAK/QUZBh3KdzMDp2LovMMW/dzC4vV9/b/3VB4OjT1UwYDKnHD8QSmHkuKR7RR5USy3
-	9NLlSnLNQI+Tg0x3zZUmPEliLfO97ZzKCq29SWJS9p+4G7a1bJ2WlxWZPcf8ae4gFos15Okqsmn
-	XyLzSF/ozSVC1X3oIvSsaGImUgBAY7F6UrU4fsjtxcq2mpUAcCIhdcPmhEO1oRH87mn7d3zUy6f
-	pDYHX3BvYOHweeXsuGn5vAmb75N/USXtxb++NTwhClO9dbAMD4RrZv68NEmoCyM+jAzMmm2/6LO
-	DggxSv7lC+MXtodWYXUq5LGw5ZmQeE3NwOCNpmLEIy0uYcoYYOYIsLrBcKXFuVuC9z
-X-Received: by 2002:a05:6102:3e8c:b0:5fd:f14d:4cd6 with SMTP id ada2fe7eead31-601def7d301mr2006104137.27.1773310388294;
-        Thu, 12 Mar 2026 03:13:08 -0700 (PDT)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-601de74a80asm1781345137.6.2026.03.12.03.13.08
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Mar 2026 03:13:08 -0700 (PDT)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-56adf76631cso308294e0c.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 03:13:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUy28eZgZvgSNtN/ygQ7thmG0FJTdBCdSfffYQswo5zhFQyPjYi6HuN0mohdQAv9COW/2xxVMHwLzcp@vger.kernel.org
-X-Received: by 2002:a05:6102:6c8:b0:5fd:f509:c97 with SMTP id
- ada2fe7eead31-601ded4f6bcmr1922271137.18.1773310387815; Thu, 12 Mar 2026
- 03:13:07 -0700 (PDT)
+	s=arc-20240116; t=1773314013; c=relaxed/simple;
+	bh=fK30BnDAuRRayEMvtHyRyZWywfWn5YVhU+eYCu1d6Q0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FM84gU6I0ehEfJzSk0zGBgZIeziKxCU2UoVwt+YNG2US9/0XCyifRU3trODJCiW7ynoQjMwAPTV363T5RcHZ7Ojbm0qTNGj8SbDg+jrYqV0fnimFPT/mm7s/UiAFR5LR36Y8aK8Mc6nlIvyaoJvgU13P1zat65mvK8Ns09OufS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=WVwnyp97; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202602; t=1773314008;
+	bh=ogOJuVgEOyNp7MYF1N10yAHFemHK4vJfX9srTkNa9xQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WVwnyp97UgwtuixzV0wWHSJmJO7OW5Hpy1AZe1WcygRzuHG8pGOh34y0bbodyTeTl
+	 rWgaUqU3P8yDARHx1ih5gthLUP7ZpheVtyJGAR/CvTuZ1EnNmkay9sy7tvlDdHy+zI
+	 cmm3hK2sgRcfzRUjH4wZ/cVjVAW5Diho2TQORkk4fZPTNdEH9dm9MY3Ycgnh9BvDpQ
+	 mdO9f0DiL2+C1rXUzGnIT1PDbpgEw6wAPB1hLhHM3fxhSNP0HsZp2QtP+kgxBkt9s7
+	 bOYjzL59L7rDbXDcMwXOhR2lng203jFjeXLKqlPb86IYBju0F8shL6Y3SsK84FrDkx
+	 j2djh4KIRBysw==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4fWlNS4M7Dz4wGX; Thu, 12 Mar 2026 22:13:28 +1100 (AEDT)
+Date: Thu, 12 Mar 2026 21:21:45 +1100
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ayush Singh <ayush@beagleboard.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	devicetree-compiler@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree-spec@vger.kernel.org,
+	Hui Pu <hui.pu@gehealthcare.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [RFC PATCH 00/15] Add support for structured tags and v18 dtb
+ version
+Message-ID: <abKTueGkoFYpOwap@zatzit>
+References: <20260210173349.636766-1-herve.codina@bootlin.com>
+ <20260312085400.3a11df8b@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20260311200307.16034-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20260311200307.16034-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 12 Mar 2026 11:12:55 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVT9WoXN=9SCXr-rBoTn8tG8uQptuVEkA2Bnamaky6wJw@mail.gmail.com>
-X-Gm-Features: AaiRm50l5HVFmnjSkJzKh_VBVP91gGl5Lzdoyu5m4T1kcOaEkTPJSpDpnqS3aEo
-Message-ID: <CAMuHMdVT9WoXN=9SCXr-rBoTn8tG8uQptuVEkA2Bnamaky6wJw@mail.gmail.com>
-Subject: Re: [PATCH v3] ARM: dts: renesas: r9a06g032-rzn1d400-db: use
- interrupt for Micrel PHYs
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Herve Codina <herve.codina@bootlin.com>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spamd-Result: default: False [-1.46 / 15.00];
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="d439fW6Annuy2nfv"
+Content-Disposition: inline
+In-Reply-To: <20260312085400.3a11df8b@bootlin.com>
+X-Spamd-Result: default: False [-1.76 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c09:e001:a7::/64:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[gibson.dropbear.id.au:s=202602];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.15)[generic];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,bootlin.com,gmail.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-m68k.org];
-	TAGGED_FROM(0.00)[bounces-274518-lists,devicetree=lfdr.de];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[dropbear.id.au];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ASN(0.00)[asn:63949, ipnet:2600:3c09::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[devicetree,renesas,dt];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[geert@linux-m68k.org,devicetree@vger.kernel.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_FROM(0.00)[bounces-274528-lists,devicetree=lfdr.de];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	R_DKIM_NA(0.00)[];
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[david@gibson.dropbear.id.au,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[gibson.dropbear.id.au:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[glider.be:email,bootlin.com:email,sto.lore.kernel.org:helo,sto.lore.kernel.org:rdns,linux-m68k.org:email,mail.gmail.com:mid,sang-engineering.com:email]
-X-Rspamd-Queue-Id: 9C5E42702DC
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ozlabs.org:url,bootlin.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,gibson.dropbear.id.au:dkim]
+X-Rspamd-Queue-Id: 72E18270B25
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 11 Mar 2026 at 21:03, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Make use of the interrupts wired to the Micrel PHYs via the GPIO IRQ
-> mux.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Herve Codina <herve.codina@bootlin.com>
-> ---
-> Changes since v2:
->
-> * use pull-up bias (much better now)
-> * keep pinmux sorting correct
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v7.1.
+--d439fW6Annuy2nfv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Gr{oetje,eeting}s,
+On Thu, Mar 12, 2026 at 08:54:00AM +0100, Herve Codina wrote:
+> Hi David,
+>=20
+> On Tue, 10 Feb 2026 18:33:28 +0100
+> Herve Codina <herve.codina@bootlin.com> wrote:
+>=20
+> > Recently, I sent a RFC series related to support for metadata and addon
+> > device-trees [1].
+> >=20
+> > During the discussion the concept of structured tags and "unknown" tags
+> > emerged as well as the need to have them handled as a prerequisite of
+> > support for metadata and addon.
+> >=20
+> > The conclusion was the need for a new dtb version (v18) with support
+> > for:
+> >   - Structured tags and based on them, "unknown" tags.
+> >     Those structured tags allow to have an standardized definition of
+> >     tags with the capability of skipping a tag and its related data
+> >     when a "unknown" tag is incountered by a given version of libfdt,
+> >     dtc and tools. Those "unknown" tags are tags defined in future
+> >     versions. Even if they exact meaning is unknown for an 'old'
+> >     version, they structure is understood and the 'old' version can skip
+> >     them without any errors if allowed.
+> >=20
+> >   - Flags in the dtb header (dt_flags).
+> >     The goal of this field is to have a placeholder to specify the
+> >     type of dtb we are dealing with. For instance, addons dtb will set a
+> >     flag in this placeholder
+> >=20
+> >   - A last compatible version for writing purpose.
+> >     The goal of the new dtb header field (last_comp_version_w) is to
+> >     disable globally any modification. It works similarly to
+> >     last_comp_version but for modification. It can be used to avoid any
+> >     modification that could be done by an 'old' version and could lead
+> >     to inconsistencies between the modification itself and some
+> >     "unknown" tags.
+> >=20
+> > This RFC series implements those features and leads to the v18 dtb
+> > version.
+>=20
+> I sent this series a month ago.
+>=20
+> I know some patches have been applied but what's the plan for the remaini=
+ng
+> ones?
 
-                        Geert
+Get to them as time permits, which I do not expect to be soon.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> Is there anything I can do to help move things forward?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Usher forth a world where small projects get sufficient support to
+have apprentice maintainers?  Other than that, not really.
+
+> Let me know if you want some rebase and/or modification and so a new vers=
+ion
+> of the series or if you need anything else that can help in moving forwar=
+d.
+
+I will when I can.
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--d439fW6Annuy2nfv
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmmyk6oACgkQzQJF27ox
+2GfnPw//RpwvbzMuQROnh5UoDdsdrkZWylGx2xKuoMVMg0aMpnRBDMJ54FZQ9OZx
+zcJUjdqeuhb4LxUtGwZmmjo6Ab+WonINGFIZmGURXzBQrFTu2tWa2QVsAz7XXBe0
+7LBcj1YaadQe4cgZS/xhr5aDz1efJhKwWI2CNi+0xWajNdt7wX0Wsi+jMy2CLnDr
+VTkDmCwzQ3OWlVFaZQ99e/hL1JhdywEVtBCCEeinLZwYLy7+IA7fFfHTsDGbvmaO
+obsIx6nKKE8YWk71J72scdDeajdngmKOzW9xuKCtWcTKMPO0RZUfkdz262rX2isf
+8dExCWERYXr0M/nmLnCu1tHU7kDTH0AF7sRzaugTwrupG6MOI5g0ivK3iWX2yBTR
+KDfzcDkMV/BoHH2OaA1Sc0DUX3oCAXtXN51p2PhotZKNtDNOzdYrK/2u4P89GSjt
+YtVkvWC6bV4bh5JDgnSLKGzL3ys6r/nWhDnmZrbeNPUfo4uWa/QHQ57fhgdgO0x/
+zJv+GB0MOOhJlR1jajYDXm2o7UAr5ehV1ZnT9XpXaoactOnzkQG3uTrQWu9ibB6e
+TYnVQGk9zkzzFMFjq7/uvFNc2kaxDRoQcesHaOBh4cDu40FRDbK6TJ5uYU1MvwgI
+W/3GaSqhX5IUZHPuDD4++rJVkjGG6Jf2Q6mshVwCvciI06OWa88=
+=XoO0
+-----END PGP SIGNATURE-----
+
+--d439fW6Annuy2nfv--
 
