@@ -1,202 +1,168 @@
-Return-Path: <devicetree+bounces-274481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-274482-lists+devicetree=lfdr.de@vger.kernel.org>
 Delivered-To: lists+devicetree@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJbINBd5sml/MwAAu9opvQ
-	(envelope-from <devicetree+bounces-274481-lists+devicetree=lfdr.de@vger.kernel.org>)
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:28:07 +0100
+	id yIaXIw55sml/MwAAu9opvQ
+	(envelope-from <devicetree+bounces-274482-lists+devicetree=lfdr.de@vger.kernel.org>)
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:27:58 +0100
 X-Original-To: lists+devicetree@lfdr.de
-Received: from sea.lore.kernel.org (sea.lore.kernel.org [IPv6:2600:3c0a:e001:db::12fc:5321])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D66C26EEAE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:28:07 +0100 (CET)
+Received: from sin.lore.kernel.org (sin.lore.kernel.org [IPv6:2600:3c15:e001:75::12fc:5321])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B5D26EE85
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 09:27:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (conduit.subspace.kernel.org [100.90.174.1])
-	by sea.lore.kernel.org (Postfix) with ESMTP id 7EC3030AD931
-	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:27:20 +0000 (UTC)
+	by sin.lore.kernel.org (Postfix) with ESMTP id 9B34F30074E3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Mar 2026 08:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38021376BF2;
-	Thu, 12 Mar 2026 08:27:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F3EC34A797;
+	Thu, 12 Mar 2026 08:27:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SUNucwN6"
+	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="CMQLsGk7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-10699.protonmail.ch (mail-10699.protonmail.ch [79.135.106.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C63434A797
-	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 08:27:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA8D33A6F7
+	for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 08:27:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1773304037; cv=none; b=ZtMallssPAXPNPrQ2b/UT1Pqq/XkBH58PukHN63vrDVc6NRBCByIuFI1eEqZ3RH797GrsKeDbQhiH9MjDVTUYo7iFq47CI/u1uwwcZWeAdMxpb1tu9+qPvAnMtn6u6msmw7+H4lP9/mFblv0e/6SWf2k+CtVjWWzOpb6Z9cucMc=
+	t=1773304068; cv=none; b=f5MzLg+9g9PlNxd7JcrvhY0K7wNngyUBd7aDv4Zgo4AC3ZoMTg+rFgObkA8yDty0yqCKAl6plOGGJJqSAuP+EfDZUh8Mo7TZHGi8sh7KLJkLU6Vno2Aawj0HFhQzzKcIgRueViW3uD8900o695dFIdG/5Qai2NcTt/R5eQDaMhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1773304037; c=relaxed/simple;
-	bh=wBxyqppGt2i2tSwcaWrs1I6l6vXH1+ZcfjTJ0ISdvaE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GHz37ss4R4tdUatHJoSvuv0aQo6pOUYG0OakTndN+f51wMnomkoB9GyOLsgLcaB5aFYNZL4J2k511Pu6daguSay1atfYfP/JqTnlEHULSk0gNTxj8kvZ1R9H/bqf9pPm/lXhemaWWWXZbzGFWIH1Uh3gWalVPIBWjIjuOf+gwZI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SUNucwN6; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4852b81c73aso5602535e9.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Mar 2026 01:27:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773304034; x=1773908834; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7uedDcFbH0r3wxJK4Nkw9V1od9AYnobc+4Fv3N7Cy3Y=;
-        b=SUNucwN6YSPwE2CFKcy247ib7Ns75R5Iy3NNIIgtqd16X7246hRF+fjBqNr4isjGET
-         yIahl3nJ09fY9ePy7q4ebZA6X5qDGv61waeI/yOdno/tb+fOvMruSHg4s5HPQFOeA8fr
-         EXm1bTJ5zdn+Tk48XiT79mgDngBA3D+u07YugCns0VTY0mCamHd+rPrB9NnZO/YQodhe
-         t1+NV3KwA9c1pHETn6cKph0awPw5bquZqXaLMC+9XKA/OdN3i+Ru1pX67MaB4PhaIAZc
-         8lmBQd/tWHjI0ggXpahX8EHZJP334t46zIrVx7dRKmfTgzjR1rjKQzixPc6R8e1kNWoE
-         0fKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773304034; x=1773908834;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=7uedDcFbH0r3wxJK4Nkw9V1od9AYnobc+4Fv3N7Cy3Y=;
-        b=fIVDtQGVprOYwlLPMWnKdfoNg2fg9cqedEFGlaeNN9edg2GvZsYYNoMvgQVdXuuuw/
-         +/rjXBKcg5+pSR5VIJiXK/+3gpdBJrUpI3P5321oYx8cHOZ/7glJg3sBdDUmD2u324mF
-         7Qql7URhnB7Hi+9K0qO38qCf3dBxc6SWIeVJT0jWXU1HirIAtFKgI137gEm0dS6arJgZ
-         kKulgnvm74bs6H2yaW1zIa/suPQ1BT0vlgR+AiZw+wOVKSO1W2f2brATrNfp8WhqwjlC
-         ppTNCcTs9N4QVW7/VsU74a3pDruyo4Kg7KeC1cuo6DlpIcp+3BVzN35Yt9CkrPMss4wl
-         JgAw==
-X-Forwarded-Encrypted: i=1; AJvYcCXoM5U6z/slX9dB7JaZuy3hiPtYSTlagYxlkYNf1EPZQcqHRXclM4OmBHrZ2ZGdpoyN2wS8KlFwluMS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yysio+bQRyAXNUrThSfSAr68RBZrPEiHjjwfz7VScaAbF0A5X9j
-	OYjkthvldpKAFnnecz87mg3k0tqNZTodV4PTOxlrKB8PcqgoA8ykBsSq
-X-Gm-Gg: ATEYQzxce/3cDiG16P0W4RcfqhGcTzZVA4AwlmjS9l/IOuR68/Slk2XhYr93IjT9Alh
-	I1WrPaGfBdYjKbq3HbNi2lN16uh0N3V94+a7K4FBCTLbT2U8aWblQTUiSSVBJEBuJrvCRgqxx4s
-	CJ/Vk5+2mIFRN3FiXVjAP7U21YktqEMvfO+x5XrJS5IAhgM4Jum6Bmq/VGzzV17KQjqmkphv0z+
-	I9iId93qWbn5rUa5pZMZH2CXm4lwd7GlrZrQW2BDtnGQEvEnHmpJfiSBr6FVwC/DLZd67f3GC31
-	asx/XC+d5eFzfRwokeRdvx0e6FBj+x6VnoDQ1iO7bvsoldHMPNKBUfQUYxxvFGLFrXx9tRP/NT5
-	hEfXRv+5g7QyiLLQKQaZJaI13Dcsk5HwOFX+KBoQtTzVwkU647T6ZHWLbHAYAQFaXoPCQCLVkPk
-	ifk24u3Tvaw23dT4D5t4491kjVmc3sVd0C+ptU/7hThRouOX/ApaMsubvIzA==
-X-Received: by 2002:a05:600c:3b18:b0:482:e5d4:b7ca with SMTP id 5b1f17b1804b1-4854b0b32d8mr96124265e9.8.1773304033517;
-        Thu, 12 Mar 2026 01:27:13 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:23c4:a758:8a01:775:4d0d:d776:157e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4854a2eea84sm65925065e9.1.2026.03.12.01.27.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Mar 2026 01:27:13 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 1/2] dt-bindings: serial: renesas,rsci: Document RZ/G3L SoC
-Date: Thu, 12 Mar 2026 08:26:58 +0000
-Message-ID: <20260312082708.98835-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260312082708.98835-1-biju.das.jz@bp.renesas.com>
-References: <20260312082708.98835-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1773304068; c=relaxed/simple;
+	bh=kAVPbUHOPEauVX4ji7z7DwgBGJ3id0IXL4Uk2Bj/dMs=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=iwjObZeTIdYzVouQiq3Y0CZ4y6g5BdZ9ceDajPuE0QmD2DGnYEnYAVcO2KIgQocPu3vWPA/dbkoFVGJXfdPm9xDNuUqm216ZbHuWD0zZuYfh0YK3x0T2fS7Ek2KdwrCOL2rlcb8ogW6NA3EtV1BaS6x1hlnA7XC5g/NEVh8UDyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=CMQLsGk7; arc=none smtp.client-ip=79.135.106.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=protonmail3; t=1773304058; x=1773563258;
+	bh=t3JRYEaTTfsm2Ky7MxiycRSWgHtEl/Gte6nrmwb1bIM=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=CMQLsGk7pSO5Ng/CrZjpsokJB0a6B/pKDgFSKBB5XTjnjQeEiPmUQTQBRTUAsvstM
+	 rxCc9NmyDYb4lKZzJpsIO42aYkMyxkI0QLIkAlIAoeBOxp0JHvR2TQfHeHRt3rMzcG
+	 vomZ1yFkvRre+805m8WVFfkC+ptCXVeQygZHSEAbpqG/80FIAO427oGw6uAfTbw1ig
+	 zPM9M74z7M/bGoNx7fF7D4sr6TDFrFhqOxB3S/g3gDuUhnTd0x5m3Eknbws4kv79pR
+	 nymxUXYsuwxiwNOEl+sEjlVyh+qyGetOuLaqSF/hCa7am31uYFDMlDNkbimhWjeQDJ
+	 GSjH+dLoiQlrA==
+Date: Thu, 12 Mar 2026 08:27:33 +0000
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+From: cristian_ci <cristian_ci@protonmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <jesszhan0024@gmail.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 2/6] drm/panel: Add driver for Novatek NT35532
+Message-ID: <xftpHWQbO-34K0sCpyznwHTYxoNo1CMY1NyFzsDhEeM0s59S3Rqvu9tmdlEk6VAaxam3HVz3Bk7_7m10FEn3X-3Lc2HMVMxWUXkB-Olgt6Y=@protonmail.com>
+In-Reply-To: <kvq4py5svidg7c4tu2kxwpj6fnsod66kq555pwchd44nfdjejk@yvpk4ismso7r>
+References: <20260308-rimob-new-features-v1-0-aa2c330572c0@protonmail.com> <20260308-rimob-new-features-v1-2-aa2c330572c0@protonmail.com> <kvq4py5svidg7c4tu2kxwpj6fnsod66kq555pwchd44nfdjejk@yvpk4ismso7r>
+Feedback-ID: 27475468:user:proton
+X-Pm-Message-ID: fa519c905e9f51896a873557cf26c22f69b1db27
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-0.16 / 15.00];
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spamd-Result: default: False [-0.66 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[subspace.kernel.org:s=arc-20240116:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip6:2600:3c0a:e001:db::/64:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[protonmail.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[protonmail.com:s=protonmail3];
+	R_SPF_ALLOW(-0.20)[+ip6:2600:3c15:e001:75::/64:c];
 	MAILLIST(-0.15)[generic];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_FROM(0.00)[bounces-274481-lists,devicetree=lfdr.de];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[bp.renesas.com,vger.kernel.org,gmail.com];
-	FREEMAIL_TO(0.00)[linuxfoundation.org,kernel.org,glider.be,gmail.com];
+	TAGGED_FROM(0.00)[bounces-274482-lists,devicetree=lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[protonmail.com];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FREEMAIL_CC(0.00)[linaro.org,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org,lists.sr.ht];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PRECEDENCE_BULK(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[bijudasau@gmail.com,devicetree@vger.kernel.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TAGGED_RCPT(0.00)[devicetree,dt,renesas];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:63949, ipnet:2600:3c0a::/32, country:SG];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bp.renesas.com:mid,sea.lore.kernel.org:helo,sea.lore.kernel.org:rdns,renesas.com:email]
-X-Rspamd-Queue-Id: 6D66C26EEAE
+	PRECEDENCE_BULK(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[cristian_ci@protonmail.com,devicetree@vger.kernel.org];
+	DKIM_TRACE(0.00)[protonmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:63949, ipnet:2600:3c15::/32, country:SG];
+	TAGGED_RCPT(0.00)[devicetree,dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,sin.lore.kernel.org:helo,sin.lore.kernel.org:rdns,protonmail.com:dkim,protonmail.com:email,protonmail.com:mid]
+X-Rspamd-Queue-Id: B2B5D26EE85
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+On Sunday, March 8th, 2026 at 20:27, Dmitry Baryshkov <dmitry.baryshkov@oss=
+.qualcomm.com> wrote:
 
-Document the serial communication interface (RSCI) used on the Renesas
-RZ/G3L (R9A08G046) SoC. This SoC integrates the same RSCI IP block as
-the RZ/G3E (R9A09G047), but it has 3 clocks compared to 6 clocks on
-the RZ/G3E SoC. The RZ/G3L has a single TCLK with internal dividers,
-whereas the RZ/G3E has explicit clocks for TCLK and its dividers.
+> On Sun, Mar 08, 2026 at 04:52:42PM +0100, Cristian Cozzolino via B4 Relay=
+ wrote:
+> > From: Cristian Cozzolino <cristian_ci@protonmail.com>
+> > +
+> > +static int nt35532_on(struct novatek_nt35532 *ctx)
+> > +{
+> > +=09struct mipi_dsi_multi_context dsi_ctx =3D { .dsi =3D ctx->dsi };
+> > +
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xff, 0x01);
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x6e, 0x80);
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x68, 0x13);
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xfb, 0x01);
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xff, 0x02);
+>=20
+> If this goes to be resent for any reason, could you please insert an
+> empty line before 0xff, 0xNN wries?
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../bindings/serial/renesas,rsci.yaml         | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Just to be sure about such request, should I add a blank line before:
 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-index e059b14775eb..85ebb3056066 100644
---- a/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,rsci.yaml
-@@ -14,6 +14,7 @@ properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - renesas,r9a08g046-rsci # RZ/G3L
-           - renesas,r9a09g047-rsci # RZ/G3E
-           - renesas,r9a09g077-rsci # RZ/T2H
- 
-@@ -145,6 +146,31 @@ allOf:
-         - resets
-         - reset-names
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a08g046-rsci
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 6
-+
-+        interrupt-names:
-+          minItems: 6
-+
-+        clocks:
-+          minItems: 2
-+          maxItems: 3
-+
-+        clock-names:
-+          minItems: 2
-+          maxItems: 3
-+
-+      required:
-+        - resets
-+        - reset-names
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.43.0
+=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xff, 0x02);
 
+, before:
+
+=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xff, 0x05);
+
+, before:
+
+=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xff, 0x01);
+
+and so on...?
+
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0xfb, 0x01);
+>=20
+> [...]
+>=20
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x11, 0x00);
+>=20
+> I suppose this is MIPI_DCS_EXIT_SLEEP_MODE,
+>=20
+> > +=09mipi_dsi_msleep(&dsi_ctx, 120);
+> > +=09mipi_dsi_generic_write_seq_multi(&dsi_ctx, 0x29, 0x00);
+>=20
+> MIPI_DCS_SET_DISPLAY_ON
+
+I've done a double-check through NT35532 datasheet and=20
+include/video/mipi_display.h: instruction codes match exactly=20
+those mipi dcs command enum item names you've mentioned.
+So, would I have something like:
+
+mipi_dsi_generic_write_seq_multi(&dsi_ctx, MIPI_DCS_EXIT_SLEEP_MODE, 0x00);
+
+mipi_dsi_generic_write_seq_multi(&dsi_ctx, MIPI_DCS_SET_DISPLAY_ON, 0x00);
+
+?
+
+> > +=09mipi_dsi_msleep(&dsi_ctx, 50);
+> > +
+> > +=09return dsi_ctx.accum_err;
+> > +}
+> > +
+>=20
+> --
+> With best wishes
+> Dmitry
+> 
 
